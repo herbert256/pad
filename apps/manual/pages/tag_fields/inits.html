@@ -1,0 +1,97 @@
+{data 'abc'}
+  ---
+  A:
+    name: bob
+    phone: 555-1111
+  B:
+    name: jim
+    phone: 555-2222
+  C:
+    name: joe
+    phone: 555-3333
+  D:
+    name: steve
+    phone: 555-4444
+  E:
+    name: jerry
+    phone: 555-5555
+{/data}
+
+
+{content 'header1'}
+<table border=1>
+  <tr>
+    <th> name    </th>
+    <th> count   </th>
+    <th> index   </th>
+    <th> current </th>
+    <th> done    </th>
+    <th> remain  </th>
+    <th> first  </th>
+    <th> border </th>
+    <th> middle </th>
+    <th> last   </th>
+    <th> even   </th>
+    <th> odd    </th>
+  </tr>
+{/content}
+
+{content 'footer1'}
+  </table>
+{/content}
+
+
+{content 'header2'}
+  <table border=1 valign=center>
+    <tr>
+      <th> first  </th>
+      <th> border </th>
+      <th> middle </th>
+      <th> last   </th>
+      <th> even   </th>
+      <th> odd    </th>
+    </tr>
+{/content}
+
+{content 'footer2'}
+  </table>
+{/content}
+
+
+{content 'header3'}
+  <table border=1>
+    <tr>
+      <th> count   </th>
+      <th> index   </th>
+      <th> current </th>
+      <th> done    </th>
+      <th> remain  </th>
+      <th> first  </th>
+      <th> border </th>
+      <th> middle </th>
+      <th> last   </th>
+      <th> even   </th>
+      <th> odd    </th>
+    </tr>
+{/content}
+
+
+{content 'line3'} 
+  <tr>
+    <td> {$-1#count}     </td>
+    <td> {$-1#index}     </td>
+    <td> {$-1#current}   </td>
+    <td> {$-1#done}      </td>
+    <td> {$-1#remaining} </td>
+    <td> {$-1#first}     </td>
+    <td> {$-1#border}    </td>
+    <td> {$-1#middle}    </td>
+    <td> {$-1#last}      </td>
+    <td> {$-1#even}      </td>
+    <td> {$-1#odd}       </td>    
+  </tr>
+{/content}
+
+{content 'footer3'}
+  </table>
+{/content}

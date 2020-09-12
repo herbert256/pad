@@ -1,0 +1,31 @@
+{content 'alt'}
+  <tr>
+    <td>{curl 'app://{$file}' | @source}</td>
+    <td>
+      <table border=1 cellpadding="3" cellspacing="0" align="center">
+        {data 'myData' | 'app://{$file}'}
+        {myData}
+          <tr>
+            <td>{$name}</td>
+            <td>{$phone}</td>
+          </tr>
+        {/myData}
+      </table>
+    </td>   
+  </tr>
+{/content}
+
+<table border=1 cellpadding="10" cellspacing="0" >
+
+  {alt $file = 'array/alt/json1.json'}
+  {alt $file = 'array/alt/json2.json'}
+  {alt $file = 'array/alt/xml1.xml'}
+  {alt $file = 'array/alt/yaml1.yaml'}
+
+  {alt $file = 'record/alt/json1.json'}
+  {alt $file = 'record/alt/xml1.xml'}
+  {alt $file = 'record/alt/xml2.xml'}
+  {alt $file = 'record/alt/yaml1.yaml'}
+  {alt $file = 'record/alt/yaml2.yaml'}
+
+</table>

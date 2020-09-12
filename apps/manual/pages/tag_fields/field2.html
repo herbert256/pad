@@ -1,0 +1,21 @@
+<table border=1>
+
+  {abc}
+
+    {first}
+      <tr>
+        {abc#fields | @name='field'}
+          <th> {$abc#{$field#current}#name} </th> 
+        {/abc#fields}
+      </tr>
+    {/first}
+      
+    <tr>
+      {abc#fields | @name='field'}
+        <td> {$abc#{$field#current}#value} </td>
+      {/abc#fields}
+    </tr>
+
+  {/abc}
+
+</table>

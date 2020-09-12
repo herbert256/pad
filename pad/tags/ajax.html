@@ -1,0 +1,16 @@
+<div id="padAjax{$pad_ajax}"></div>
+
+<script>
+  padAjax{$pad_ajax} = new XMLHttpRequest();
+  padAjax{$pad_ajax}.onreadystatechange=function() {
+    if (padAjax{$pad_ajax}.readyState === 4) {
+      if (padAjax{$pad_ajax}.status === 200) {
+        document.getElementById("padAjax{$pad_ajax}").innerHTML=padAjax{$pad_ajax}.responseText;
+      } else {
+        document.getElementById("padAjax{$pad_ajax}").innerHTML=padAjax{$pad_ajax}.statusText;
+      }
+    }
+  }
+  padAjax{$pad_ajax}.open("GET","{$pad_url|raw}",true);
+  padAjax{$pad_ajax}.send();
+</script>

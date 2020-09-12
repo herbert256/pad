@@ -1,0 +1,9 @@
+{set $abc = 10}
+
+{content}
+  <p> {$abc} </p>
+{/content 'myContent'}
+
+{set $abc = $abc + 10} {myContent}
+{set $abc = $abc + 10} {myContent}
+{set $abc = $abc + 10} {myContent}
