@@ -14,9 +14,9 @@
   //
   //  ============================================================================
 
-  define ( 'PAD_HOME', '/data/pad/'  );  // Home of the PAD framework files
-  define ( 'PAD_APPS', '/data/apps/' );  // Home of the PAD applications
-  define ( 'PAD_DATA', '/data/data/' );  // Data locaction, used for logs/cache/errors/etc.
+  define ( 'PAD_HOME', '/app/pad/'  );  // Home of the PAD framework files
+  define ( 'PAD_APPS', '/app/apps/' );  // Home of the PAD applications
+  define ( 'PAD_DATA', '/app/data/' );  // Data locaction, used for logs/cache/errors/etc.
 
   include PAD_HOME . 'pad.php';
 
