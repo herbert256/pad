@@ -5,6 +5,10 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
+apt update
+apt -y upgrade
+apt -y install nano mc 
+
 su - herbert -c "ln -s /mnt/chromeos/GoogleDrive/MyDrive /home/herbert/google"
 su - herbert -c "ln -s /mnt/chromeos/MyFiles/Downloads   /home/herbert/downloads"
 
@@ -32,6 +36,7 @@ sed -i 's/var\/www/home\/herbert/g'                           /etc/apache2/apach
 sed -i 's/#ServerName www.example.com/ServerName localhost/g' /etc/apache2/sites-enabled/000-default.conf
 sed -i 's/var\/www\/html/home\/herbert\/pad\/www/g'           /etc/apache2/sites-enabled/000-default.conf
 sed -i 's/RUN_USER=www-data/RUN_USER=herbert/g'               /etc/apache2/envvars
+sed -i 's/RUN_GROUP=www-data/RUN_GROUP=herbert/g'             /etc/apache2/envvars
 
 echo 'ServerName localhost' >> /etc/apache2/apache2.conf
 
@@ -128,14 +133,3 @@ apt -y autoclean
 apt -y clean
 
 chown -R herbert:herbert /var/www
-
-service apache2 stop
-service apache2 start
-
-apt -y install cron
-
-service cron start
-
-crontab -u herbert -l > /tmp/cron
-echo "0 * * * * /home/herbert/pad/scripts/backup.sh" >> /tmp/cron
-crontab -u herbert /tmp/cron
