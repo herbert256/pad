@@ -5,8 +5,8 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-su - me -c "ln -s /mnt/chromeos/GoogleDrive/MyDrive /home/me/google"
-su - me -c "ln -s /mnt/chromeos/MyFiles/Downloads   /home/me/downloads"
+su - herbert -c "ln -s /mnt/chromeos/GoogleDrive/MyDrive /home/herbert/google"
+su - herbert -c "ln -s /mnt/chromeos/MyFiles/Downloads   /home/herbert/downloads"
 
 echo '127.0.0.1 penguin.linux.test' >> /etc/hosts
 
@@ -22,18 +22,16 @@ apt -y install mariadb-server
 
 service mariadb start
 sleep 1
-echo "CREATE USER 'me'@'localhost' IDENTIFIED BY 'me';" | mysql
-echo "GRANT ALL PRIVILEGES ON *.* TO 'me'@'localhost'  WITH GRANT OPTION;" | mariadb
+echo "CREATE USER 'herbert'@'localhost' IDENTIFIED BY '';" | mysql
+echo "GRANT ALL PRIVILEGES ON *.* TO 'herbert'@'localhost'  WITH GRANT OPTION;" | mariadb
 echo "FLUSH PRIVILEGES;" | mariadb
-echo "drop USER 'root'@'localhost' " | mariadb --user=me --password=me
-echo "FLUSH PRIVILEGES;" | mariadb --user=me --password=me
 
 apt -y install apache2 tidy libyaml-0-2 libaspell15 libpng16-16 libwebp6 libjpeg-progs libxpm4 libfreetype6 libonig5 libsodium23 libxslt1.1 libzip4 apache2-dev gcc make pkg-config libxslt1-dev libtidy-dev libzip-dev libsodium-dev libxml2-dev libfreetype6-dev libonig-dev libpspell-dev libsqlite3-dev libssl-dev zlib1g-dev libbz2-dev libcurl4-gnutls-dev libpng-dev libwebp-dev libjpeg-dev libxpm-dev
 
-sed -i 's/var\/www/home\/me/g'                                /etc/apache2/apache2.conf
+sed -i 's/var\/www/home\/herbert/g'                           /etc/apache2/apache2.conf
 sed -i 's/#ServerName www.example.com/ServerName localhost/g' /etc/apache2/sites-enabled/000-default.conf
-sed -i 's/var\/www\/html/home\/me\/www/g'                     /etc/apache2/sites-enabled/000-default.conf
-sed -i 's/RUN_USER=www-data/RUN_USER=me/g'                    /etc/apache2/envvars
+sed -i 's/var\/www\/html/home\/herbert\/pad\/www/g'           /etc/apache2/sites-enabled/000-default.conf
+sed -i 's/RUN_USER=www-data/RUN_USER=herbert/g'               /etc/apache2/envvars
 
 echo 'ServerName localhost' >> /etc/apache2/apache2.conf
 
@@ -51,15 +49,16 @@ cat << EOT >> /etc/apache2/apache2.conf
 </Location>
 EOT
 
-wget https://downloads.php.net/~pollita/php-8.0.0beta2.tar.gz
-tar xzf php-8.0.0beta2.tar.gz
-rm php-8.0.0beta2.tar.gz
-cd php-8.0.0beta2
+cd /tmp
+wget https://downloads.php.net/~pollita/php-8.0.0beta4.tar.xz
+tar xf php*.xz
+rm php*.xz
+cd php*
 ./configure --with-apxs2=/usr/bin/apxs2 --with-mysql-sock=/run/mysqld/mysqld.sock --enable-mbstring --enable-exif --enable-ftp --with-zip --enable-soap --with-mysqli --with-pdo-mysql --with-curl --with-openssl --with-zlib --with-bz2 --enable-gd --with-webp --with-jpeg --with-xpm --with-freetype --with-tidy --with-xsl --with-sodium --enable-shmop --with-pspell --with-pear
 make -j4
 make install
 cd ..
-rm -rf php-8.0.0beta2
+rm -rf php*
 
 echo 'memory_limit = 2048M'        >  /usr/local/lib/php.ini
 echo 'display_errors = on'         >> /usr/local/lib/php.ini
@@ -89,7 +88,8 @@ mv phpMyAdmin-5.1+snapshot-english phpmyadmin
 cd /var/www/phpmyadmin
 cp config.sample.inc.php config.inc.php
 sed -i "s/secret'] = ''/secret'] = '73456dfggfddfgfdsdf54323456654323477'/g" config.inc.php
-mariadb --user=me --password=me < sql/create_tables.sql
+sed -i "s/AllowNoPassword'] = false/AllowNoPassword'] = true/g"              config.inc.php
+mariadb < sql/create_tables.sql
 cat << EOT >> /etc/apache2/apache2.conf
 Alias /phpmyadmin /var/www/phpmyadmin
 <Directory /var/www/phpmyadmin/>
@@ -115,36 +115,27 @@ Alias /info /var/www/phpsysinfo
 </Directory>
 EOT
 
-apt -y install memcached libmemcached-dev
+apt -y install memcached libmemcached-dev libyaml-dev
 pecl channel-update pecl.php.net
 printf "\n\n\n\n\n\n\n\n" | pecl install memcached
-
-apt -y install libyaml-dev
-pecl channel-update pecl.php.net
-printf "\n\n\n\n\n\n" | pecl install yaml
-echo 'extension=yaml.so' >> /usr/local/lib/php.ini
+printf "\n\n\n\n\n\n"     | pecl install yaml
+echo 'extension=yaml.so'      >> /usr/local/lib/php.ini
+echo 'extension=memcached.so' >>  /usr/local/lib/php.ini
 
 apt -y remove gcc make pkg-config apache2-dev libmemcached-dev libyaml-dev libtidy-dev libzip-dev libxslt1-dev libsodium-dev libxml2-dev libfreetype6-dev libonig-dev libpspell-dev libsqlite3-dev libssl-dev zlib1g-dev libbz2-dev libcurl4-gnutls-dev libpng-dev libwebp-dev libjpeg-dev libxpm-dev
 apt -y autoremove
+apt -y autoclean
 apt -y clean
 
-chmod 755 /home/me/apps/manual/scripts/hello.*
+chown -R herbert:herbert /var/www
 
-mariadb --user=me --password=me < /home/me/pad/doc/database.sql
-mariadb --user=me --password=me < /home/me/pad/cache/cache.sql
-mariadb --user=me --password=me < /home/me/apps/manual/database/demo.sql
-mariadb --user=me --password=me < /home/me/apps/classicmodels/setup/classicmodels.sql
-
-chown -R me:me /var/www
-
-echo "/usr/sbin/service memcached start" >> /etc/rc.local
-echo 'extension=memcached.so' >>  /usr/local/lib/php.ini
 service apache2 stop
 service apache2 start
 
 apt -y install cron
+
 service cron start
 
-crontab -u me -l > /tmp/cron
-echo "0 * * * * /home/me/scripts/backup.sh" >> /tmp/cron
-crontab -u me /tmp/cron
+crontab -u herbert -l > /tmp/cron
+echo "0 * * * * /home/herbert/pad/scripts/backup.sh" >> /tmp/cron
+crontab -u herbert /tmp/cron
