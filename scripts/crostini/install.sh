@@ -26,11 +26,11 @@ apt -y install mariadb-server
 
 service mariadb start
 sleep 1
-echo "CREATE USER 'herbert'@'localhost' IDENTIFIED BY '';" | mysql
+echo "CREATE USER 'herbert'@'localhost' IDENTIFIED BY '';" | mariadb
 echo "GRANT ALL PRIVILEGES ON *.* TO 'herbert'@'localhost'  WITH GRANT OPTION;" | mariadb
 echo "FLUSH PRIVILEGES;" | mariadb
 
-apt -y install apache2 tidy libyaml-0-2 libaspell15 libpng16-16 libwebp6 libjpeg-progs libxpm4 libfreetype6 libonig5 libsodium23 libxslt1.1 libzip4 apache2-dev gcc make pkg-config libxslt1-dev libtidy-dev libzip-dev libsodium-dev libxml2-dev libfreetype6-dev libonig-dev libpspell-dev libsqlite3-dev libssl-dev zlib1g-dev libbz2-dev libcurl4-gnutls-dev libpng-dev libwebp-dev libjpeg-dev libxpm-dev
+apt -y install gcc make pkg-config apache2 apache2-dev tidy libyaml-0-2 libaspell15 libpng16-16 libwebp6 libjpeg-progs libxpm4 libfreetype6 libonig5 libsodium23 libxslt1.1 libzip4 libtidy-dev libzip-dev libsodium-dev libxml2-dev libfreetype6-dev libonig-dev libpspell-dev libsqlite3-dev libssl-dev zlib1g-dev libbz2-dev libcurl4-gnutls-dev libpng-dev libwebp-dev libjpeg-dev libxpm-dev
 
 sed -i 's/var\/www/home\/herbert/g'                           /etc/apache2/apache2.conf
 sed -i 's/#ServerName www.example.com/ServerName localhost/g' /etc/apache2/sites-enabled/000-default.conf
@@ -126,6 +126,11 @@ printf "\n\n\n\n\n\n\n\n" | pecl install memcached
 printf "\n\n\n\n\n\n"     | pecl install yaml
 echo 'extension=yaml.so'      >> /usr/local/lib/php.ini
 echo 'extension=memcached.so' >>  /usr/local/lib/php.ini
+
+cd /tmp
+wget http://www.webmin.com/download/deb/webmin-current.deb
+apt -y install ./webmin-current.deb
+rm webmin-current.deb
 
 apt -y remove gcc make pkg-config apache2-dev libmemcached-dev libyaml-dev libtidy-dev libzip-dev libxslt1-dev libsodium-dev libxml2-dev libfreetype6-dev libonig-dev libpspell-dev libsqlite3-dev libssl-dev zlib1g-dev libbz2-dev libcurl4-gnutls-dev libpng-dev libwebp-dev libjpeg-dev libxpm-dev
 apt -y autoremove
