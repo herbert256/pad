@@ -30,7 +30,10 @@ echo "CREATE USER 'herbert'@'localhost' IDENTIFIED BY '';" | mariadb
 echo "GRANT ALL PRIVILEGES ON *.* TO 'herbert'@'localhost'  WITH GRANT OPTION;" | mariadb
 echo "FLUSH PRIVILEGES;" | mariadb
 
-apt -y install gcc make pkg-config apache2 apache2-dev tidy libyaml-0-2 libaspell15 libpng16-16 libwebp6 libjpeg-progs libxpm4 libfreetype6 libonig5 libsodium23 libxslt1.1 libzip4 libtidy-dev libzip-dev libsodium-dev libxml2-dev libfreetype6-dev libonig-dev libpspell-dev libsqlite3-dev libssl-dev zlib1g-dev libbz2-dev libcurl4-gnutls-dev libpng-dev libwebp-dev libjpeg-dev libxpm-dev
+apt -y install apache2 
+
+a2enmod info
+a2enmod status
 
 sed -i 's/var\/www/home\/herbert/g'                           /etc/apache2/apache2.conf
 sed -i 's/#ServerName www.example.com/ServerName localhost/g' /etc/apache2/sites-enabled/000-default.conf
@@ -54,36 +57,25 @@ cat << EOT >> /etc/apache2/apache2.conf
 </Location>
 EOT
 
-cd /tmp
-wget https://downloads.php.net/~pollita/php-8.0.0beta4.tar.xz
-tar xf php*.xz
-rm php*.xz
-cd php*
-./configure --with-apxs2=/usr/bin/apxs2 --with-mysql-sock=/run/mysqld/mysqld.sock --enable-mbstring --enable-exif --enable-ftp --with-zip --enable-soap --with-mysqli --with-pdo-mysql --with-curl --with-openssl --with-zlib --with-bz2 --enable-gd --with-webp --with-jpeg --with-xpm --with-freetype --with-tidy --with-xsl --with-sodium --enable-shmop --with-pspell --with-pear
-make -j4
-make install
-cd ..
-rm -rf php*
+wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+echo "deb https://packages.sury.org/php/ buster main" | tee /etc/apt/sources.list.d/php.list
+apt update
+apt -y upgrade
 
-echo 'memory_limit = 2048M'        >  /usr/local/lib/php.ini
-echo 'display_errors = on'         >> /usr/local/lib/php.ini
-echo 'error_reporting = E_ALL'     >> /usr/local/lib/php.ini
-echo 'zend_extension=opcache.so'   >> /usr/local/lib/php.ini
-echo 'opcache.enable=1'            >> /usr/local/lib/php.ini
-echo 'opcache.enable_cli=1'        >> /usr/local/lib/php.ini
-echo 'opcache.jit_buffer_size=32M' >> /usr/local/lib/php.ini
-echo 'opcache.jit=1235'            >> /usr/local/lib/php.ini
+apt -y install php7.4 libapache2-mod-php7.4 php7.4-{bcmath,bz2,curl,dba,enchant,gd,gmp,imap,interbase,intl,json,ldap,mbstring,mysql,odbc,opcache,pgsql,pspell,readline,soap,sqlite3,sybase,tidy,xml,xmlrpc,xsl,zip} php-pear
+
+a2dismod mpm_event
+a2enmod  mpm_prefork
+a2enmod  php
+
+sed -i 's/memory_limit = 128M/memory_limit = 2048M/g'                                    /etc/php/7.4/apache2/php.ini
+sed -i 's/display_errors = Off/display_errors = on/g'                                    /etc/php/7.4/apache2/php.ini
+sed -i 's/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/error_reporting = E_ALL/g' /etc/php/7.4/apache2/php.ini
 
 echo ' '                                    >> /etc/apache2/apache2.conf
 echo '<FilesMatch "\.php">'                 >> /etc/apache2/apache2.conf
 echo '  SetHandler application/x-httpd-php' >> /etc/apache2/apache2.conf
 echo '</FilesMatch>'                        >> /etc/apache2/apache2.conf
-
-a2enmod php
-a2enmod info
-a2enmod status
-a2dismod mpm_event
-a2enmod mpm_prefork
 
 cd /var/www
 wget https://files.phpmyadmin.net/snapshots/phpMyAdmin-5.1+snapshot-english.tar.gz
@@ -122,6 +114,8 @@ EOT
 
 apt -y install memcached libmemcached-dev libyaml-dev
 pecl channel-update pecl.php.net
+printf "\n\n\n\n\n\n\n\n" | pecl install memcached
+printf "\n\n\n\n\n\n\n\n" | pecl install memcached
 printf "\n\n\n\n\n\n\n\n" | pecl install memcached
 printf "\n\n\n\n\n\n"     | pecl install yaml
 echo 'extension=yaml.so'      >> /usr/local/lib/php.ini
