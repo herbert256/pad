@@ -5,9 +5,9 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-apt update
-apt -y upgrade
-apt -y install nano mc 
+apt-get update
+apt-get -y upgrade
+apt-get -y install nano mc apt-utils
 
 su - herbert -c "ln -s /mnt/chromeos/GoogleDrive/MyDrive /home/herbert/google"
 su - herbert -c "ln -s /mnt/chromeos/MyFiles/Downloads   /home/herbert/downloads"
@@ -16,13 +16,13 @@ echo '127.0.0.1 penguin.linux.test' >> /etc/hosts
 
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add -
 echo "deb https://download.sublimetext.com/ apt/stable/" | tee /etc/apt/sources.list.d/sublime-text.list
-apt update
-apt -y install sublime-text
+apt-get update
+apt-get -y install sublime-text
 
 apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
 echo "deb http://mariadb.mirror.triple-it.nl/repo/10.5/debian buster main" | tee /etc/apt/sources.list.d/MariaDB.list
-apt update
-apt -y install mariadb-server
+apt-get update
+apt-get -y install mariadb-server
 
 service mariadb start
 sleep 1
@@ -30,7 +30,7 @@ echo "CREATE USER 'herbert'@'localhost' IDENTIFIED BY '';" | mariadb
 echo "GRANT ALL PRIVILEGES ON *.* TO 'herbert'@'localhost'  WITH GRANT OPTION;" | mariadb
 echo "FLUSH PRIVILEGES;" | mariadb
 
-apt -y install git-all gcc make pkg-config apache2 apache2-dev tidy libyaml-0-2 libaspell15 libpng16-16 libwebp6 libjpeg-progs libxpm4 libfreetype6 libonig5 libsodium23 libxslt1.1 libzip4 libtidy-dev libzip-dev libsodium-dev libxml2-dev libfreetype6-dev libonig-dev libpspell-dev libsqlite3-dev libssl-dev zlib1g-dev libbz2-dev libcurl4-gnutls-dev libpng-dev libwebp-dev libjpeg-dev libxpm-dev
+apt-get -y install gcc make pkg-config apache2 apache2-dev tidy libyaml-0-2 libaspell15 libpng16-16 libwebp6 libjpeg-progs libxpm4 libfreetype6 libonig5 libsodium23 libxslt1.1 libzip4 libtidy-dev libzip-dev libsodium-dev libxml2-dev libfreetype6-dev libonig-dev libpspell-dev libsqlite3-dev libssl-dev zlib1g-dev libbz2-dev libcurl4-gnutls-dev libpng-dev libwebp-dev libjpeg-dev libxpm-dev
 
 sed -i 's/var\/www/home\/herbert/g'                           /etc/apache2/apache2.conf
 sed -i 's/#ServerName www.example.com/ServerName localhost/g' /etc/apache2/sites-enabled/000-default.conf
@@ -120,8 +120,9 @@ Alias /info /var/www/phpsysinfo
 </Directory>
 EOT
 
-apt -y install memcached libmemcached-dev libyaml-dev
+apt-get -y install memcached libmemcached-dev libyaml-dev
 pecl channel-update pecl.php.net
+printf "\n\n\n\n\n\n\n\n" | pecl install memcached
 printf "\n\n\n\n\n\n\n\n" | pecl install memcached
 printf "\n\n\n\n\n\n"     | pecl install yaml
 echo 'extension=yaml.so'      >> /usr/local/lib/php.ini
@@ -129,12 +130,12 @@ echo 'extension=memcached.so' >>  /usr/local/lib/php.ini
 
 cd /tmp
 wget http://www.webmin.com/download/deb/webmin-current.deb
-apt -y install ./webmin-current.deb
+apt-get -y install ./webmin-current.deb
 rm webmin-current.deb
 
-apt -y remove gcc make pkg-config apache2-dev libmemcached-dev libyaml-dev libtidy-dev libzip-dev libxslt1-dev libsodium-dev libxml2-dev libfreetype6-dev libonig-dev libpspell-dev libsqlite3-dev libssl-dev zlib1g-dev libbz2-dev libcurl4-gnutls-dev libpng-dev libwebp-dev libjpeg-dev libxpm-dev
-apt -y autoremove
-apt -y autoclean
-apt -y clean
+apt-get -y remove gcc make pkg-config apache2-dev libmemcached-dev libyaml-dev libtidy-dev libzip-dev libxslt1-dev libsodium-dev libxml2-dev libfreetype6-dev libonig-dev libpspell-dev libsqlite3-dev libssl-dev zlib1g-dev libbz2-dev libcurl4-gnutls-dev libpng-dev libwebp-dev libjpeg-dev libxpm-dev
+apt-get -y autoremove
+apt-get -y autoclean
+apt-get -y clean
 
 chown -R herbert:herbert /var/www
