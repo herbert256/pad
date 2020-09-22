@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
 if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 
    exit 1
 fi
 
-apt-get update
-apt-get -y upgrade
-apt-get -y install nano mc 
+apt update
+apt -y upgrade
+apt -y install nano mc 
 
 su - herbert -c "ln -s /mnt/chromeos/GoogleDrive/MyDrive /home/herbert/google"
 su - herbert -c "ln -s /mnt/chromeos/MyFiles/Downloads   /home/herbert/downloads"
@@ -15,13 +16,13 @@ echo '127.0.0.1 penguin.linux.test' >> /etc/hosts
 
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add -
 echo "deb https://download.sublimetext.com/ apt/stable/" | tee /etc/apt/sources.list.d/sublime-text.list
-apt-get update
-apt-get -y install sublime-text
+apt update
+apt -y install sublime-text
 
 apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
 echo "deb http://mariadb.mirror.triple-it.nl/repo/10.5/debian buster main" | tee /etc/apt/sources.list.d/MariaDB.list
-apt-get update
-apt-get -y install mariadb-server
+apt update
+apt -y install mariadb-server
 
 service mariadb start
 sleep 1
@@ -29,7 +30,7 @@ echo "CREATE USER 'herbert'@'localhost' IDENTIFIED BY '';" | mariadb
 echo "GRANT ALL PRIVILEGES ON *.* TO 'herbert'@'localhost'  WITH GRANT OPTION;" | mariadb
 echo "FLUSH PRIVILEGES;" | mariadb
 
-apt-get -y install apache2 
+apt -y install apache2 
 
 a2enmod info
 a2enmod status
@@ -58,10 +59,10 @@ EOT
 
 wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 echo "deb https://packages.sury.org/php/ buster main" | tee /etc/apt/sources.list.d/php.list
-apt-get update
-apt-get -y upgrade
+apt update
+apt -y upgrade
 
-apt-get -y install php7.4 libapache2-mod-php7.4 php7.4-{bcmath,bz2,curl,dba,enchant,gd,gmp,imap,interbase,intl,json,ldap,mbstring,mysql,odbc,opcache,pgsql,pspell,readline,soap,sqlite3,sybase,tidy,xml,xmlrpc,xsl,zip} php-pear
+apt -y install php7.4 libapache2-mod-php7.4 php7.4-{bcmath,bz2,curl,dba,enchant,gd,gmp,imap,interbase,intl,json,ldap,mbstring,mysql,odbc,opcache,pgsql,pspell,readline,soap,sqlite3,sybase,tidy,xml,xmlrpc,xsl,zip} php-pear
 
 a2dismod mpm_event
 a2enmod  mpm_prefork
@@ -77,9 +78,10 @@ echo '  SetHandler application/x-httpd-php' >> /etc/apache2/apache2.conf
 echo '</FilesMatch>'                        >> /etc/apache2/apache2.conf
 
 cd /var/www
-
-wget -O - https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-english.tar.xz | tar xJ
-mv phpMyAdmin* phpmyadmin
+wget https://files.phpmyadmin.net/snapshots/phpMyAdmin-5.1+snapshot-english.tar.gz
+tar xzvf phpMyAdmin-5.1+snapshot-english.tar.gz
+rm phpMyAdmin-5.1+snapshot-english.tar.gz
+mv phpMyAdmin-5.1+snapshot-english phpmyadmin
 cd /var/www/phpmyadmin
 cp config.sample.inc.php config.inc.php
 sed -i "s/secret'] = ''/secret'] = '73456dfggfddfgfdsdf54323456654323477'/g" config.inc.php
@@ -110,17 +112,23 @@ Alias /info /var/www/phpsysinfo
 </Directory>
 EOT
 
-apt-get -y install php-dev pkg-config gcc make zlib1g-dev memcached libmemcached-dev libyaml-dev
+apt -y install memcached libmemcached-dev libyaml-dev
 pecl channel-update pecl.php.net
 printf "\n\n\n\n\n\n\n\n" | pecl install memcached
 printf "\n\n\n\n\n\n\n\n" | pecl install memcached
+printf "\n\n\n\n\n\n\n\n" | pecl install memcached
 printf "\n\n\n\n\n\n"     | pecl install yaml
-echo 'extension=yaml.so'      >> /etc/php/7.4/apache2/php.ini
-echo 'extension=memcached.so' >> /etc/php/7.4/apache2/php.ini
+echo 'extension=yaml.so'      >> /usr/local/lib/php.ini
+echo 'extension=memcached.so' >>  /usr/local/lib/php.ini
+
+cd /tmp
+wget http://www.webmin.com/download/deb/webmin-current.deb
+apt -y install ./webmin-current.deb
+rm webmin-current.deb
+
+apt -y remove gcc make pkg-config apache2-dev libmemcached-dev libyaml-dev libtidy-dev libzip-dev libxslt1-dev libsodium-dev libxml2-dev libfreetype6-dev libonig-dev libpspell-dev libsqlite3-dev libssl-dev zlib1g-dev libbz2-dev libcurl4-gnutls-dev libpng-dev libwebp-dev libjpeg-dev libxpm-dev
+apt -y autoremove
+apt -y autoclean
+apt -y clean
 
 chown -R herbert:herbert /var/www
-
-git config --global user.email "herbert@groot.jebbink.nl"
-git config --global user.name "Herbert Groot Jebbink"
-
-

@@ -6,28 +6,8 @@ fi
 
 apt-get update
 apt-get -y upgrade
-apt-get -y install nano mc 
-
-su - herbert -c "ln -s /mnt/chromeos/GoogleDrive/MyDrive /home/herbert/google"
-su - herbert -c "ln -s /mnt/chromeos/MyFiles/Downloads   /home/herbert/downloads"
-
-echo '127.0.0.1 penguin.linux.test' >> /etc/hosts
-
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add -
-echo "deb https://download.sublimetext.com/ apt/stable/" | tee /etc/apt/sources.list.d/sublime-text.list
-apt-get update
-apt-get -y install sublime-text
-
-apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
-echo "deb http://mariadb.mirror.triple-it.nl/repo/10.5/debian buster main" | tee /etc/apt/sources.list.d/MariaDB.list
-apt-get update
-apt-get -y install mariadb-server
-
-service mariadb start
-sleep 1
-echo "CREATE USER 'herbert'@'localhost' IDENTIFIED BY '';" | mariadb
-echo "GRANT ALL PRIVILEGES ON *.* TO 'herbert'@'localhost'  WITH GRANT OPTION;" | mariadb
-echo "FLUSH PRIVILEGES;" | mariadb
+apt-get -y dist-upgrade
+apt-get -y full-upgrade
 
 apt-get -y install apache2 
 
@@ -55,11 +35,6 @@ cat << EOT >> /etc/apache2/apache2.conf
     Require all granted
 </Location>
 EOT
-
-wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
-echo "deb https://packages.sury.org/php/ buster main" | tee /etc/apt/sources.list.d/php.list
-apt-get update
-apt-get -y upgrade
 
 apt-get -y install php7.4 libapache2-mod-php7.4 php7.4-{bcmath,bz2,curl,dba,enchant,gd,gmp,imap,interbase,intl,json,ldap,mbstring,mysql,odbc,opcache,pgsql,pspell,readline,soap,sqlite3,sybase,tidy,xml,xmlrpc,xsl,zip} php-pear
 
@@ -110,7 +85,7 @@ Alias /info /var/www/phpsysinfo
 </Directory>
 EOT
 
-apt-get -y install php-dev pkg-config gcc make zlib1g-dev memcached libmemcached-dev libyaml-dev
+apt-get -y install memcached libmemcached-dev libyaml-dev
 pecl channel-update pecl.php.net
 printf "\n\n\n\n\n\n\n\n" | pecl install memcached
 printf "\n\n\n\n\n\n\n\n" | pecl install memcached
@@ -119,8 +94,3 @@ echo 'extension=yaml.so'      >> /etc/php/7.4/apache2/php.ini
 echo 'extension=memcached.so' >> /etc/php/7.4/apache2/php.ini
 
 chown -R herbert:herbert /var/www
-
-git config --global user.email "herbert@groot.jebbink.nl"
-git config --global user.name "Herbert Groot Jebbink"
-
-
