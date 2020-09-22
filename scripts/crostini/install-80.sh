@@ -87,7 +87,7 @@ a2enmod mpm_prefork
 
 cd /var/www
 wget https://files.phpmyadmin.net/snapshots/phpMyAdmin-5.1+snapshot-english.tar.gz
-tar xzvf phpMyAdmin-5.1+snapshot-english.tar.gz
+tar xzf phpMyAdmin-5.1+snapshot-english.tar.gz
 rm phpMyAdmin-5.1+snapshot-english.tar.gz
 mv phpMyAdmin-5.1+snapshot-english phpmyadmin
 cd /var/www/phpmyadmin
@@ -106,7 +106,7 @@ EOT
 
 cd /var/www
 wget https://github.com/phpsysinfo/phpsysinfo/archive/v3.3.2.tar.gz
-tar zxvf v3.3.2.tar.gz
+tar zxf v3.3.2.tar.gz
 rm v3.3.2.tar.gz
 mv phpsysinfo-3.3.2 phpsysinfo
 cd /var/www/phpsysinfo
