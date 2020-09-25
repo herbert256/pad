@@ -8,6 +8,9 @@ sudo sed -i 's/RUN_GROUP=www-data/RUN_GROUP=herbert/g' /etc/apache2/envvars
 sudo sed -i 's/var\/www/home\/herbert/g'            /etc/apache2/apache2.conf
 sudo sed -i 's/var\/www\/html/home\/herbert\/www/g' /etc/apache2/sites-enabled/000-default.conf
 
+
+
+
 mysql --user mariadb < /home/herbert/pad/doc/database.sql
 mysql --user mariadb < /home/herbert/pad/cache/cache.sql
 mysql --user mariadb < /home/herbert/apps/manual/database/demo.sql
