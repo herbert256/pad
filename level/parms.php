@@ -36,12 +36,13 @@
 
   }
 
-  $pad_parameters [$pad_lvl] ['parm'] = $pad_parm;
-
+  $pad_parameters [$pad_lvl] ['parm']      = $pad_parm;
   $pad_parameters [$pad_lvl] ['parms_org'] = $pad_parms_org;
   $pad_parameters [$pad_lvl] ['parms_app'] = $pad_parms_app;
   $pad_parameters [$pad_lvl] ['parms_pad'] = $pad_parms_pad;
   $pad_parameters [$pad_lvl] ['parms_seq'] = $pad_parms_seq;
+
+  include PAD_HOME . 'level/check.php';
 
   if ( $pad_trace and $pad_parms ) {
     $pad_trace = "";

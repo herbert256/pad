@@ -13,6 +13,9 @@
 
   include PAD_HOME . "level/type.php";
 
+  if ( $pad_walk == 'next' and isset ( $pad_parms_pad ['toDataStore'] ) )
+     pad_error ('@toDataStore can not be used together with the walking method');
+
   if ( $pad_tag_result === NULL or ! isset ($pad_tag_result) or ! isset ($pad_data[$pad_lvl]) or $pad_data[$pad_lvl] === NULL ) {
     $pad_tag_result = $pad_content = $pad_false = $pad_tag_ob = '';
     $pad_data [$pad_lvl] = [];
