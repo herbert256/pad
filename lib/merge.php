@@ -88,6 +88,7 @@
 
   }
 
+  
   function pad_var_data ($analyse) {
 
     if     ( $analyse === NULL         ) return ''; 
@@ -97,6 +98,29 @@
     elseif ( is_object    ( $analyse ) ) return '';
     elseif ( is_resource  ( $analyse ) ) return '';
     else                                return (string) $analyse;
+
+  }
+
+
+  function pad_true_false ($analyse) {
+
+    if     ( $analyse === NULL         ) return FALSE;
+    elseif ( $analyse === FALSE        ) return FALSE;
+    elseif ( $analyse === TRUE         ) return TRUE;
+    elseif ( is_object    ( $analyse ) ) return FALSE;
+    elseif ( is_resource  ( $analyse ) ) return FALSE;
+    elseif ( is_array     ( $analyse ) ) 
+      if ( count($analyse) )
+        return TRUE;
+      else
+        return FALSE;
+    else {
+      $work = trim ($analyse);
+      if ( $work )
+        return TRUE;
+      else
+        return FALSE;
+    }
 
   }
 

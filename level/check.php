@@ -6,6 +6,9 @@
   if ( isset ( $pad_parms_pad ['toDataStore'] ) and $pad_parms_pad ['toDataStore'] === TRUE )
     pad_error ('@toDataStore must have a value');
 
+  if ( isset ( $pad_parms_pad ['toFlagStore'] ) and $pad_parms_pad ['toFlagStore'] === TRUE )
+    pad_error ('@toFlagStore must have a value');
+
   if ( isset ( $pad_parms_pad ['walk'] ) and $pad_parms_pad ['walk'] !== TRUE )
     pad_error ('@walk may not have a value');
 

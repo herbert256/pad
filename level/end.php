@@ -32,16 +32,10 @@
     include PAD_HOME . 'level/callback.php' ;
   }
 
-  if ( isset ( $pad_parms_pad ['toContentStore'] )  ) {
-    $pad_content_store [$pad_parms_pad ['toContentStore']] = $pad_result [$pad_lvl];
-    $pad_result [$pad_lvl] = '';
-  }
-
-  if ( isset ( $pad_parms_pad ['toDataStore'] )  ) {
-    $pad_data_store [$pad_parms_pad ['toDataStore']] = $pad_data [$pad_lvl];
-    if ( trim($pad_result [$pad_lvl]) == '' )
-      $pad_result [$pad_lvl]) = '';
-  }
+  if ( isset ( $pad_parms_pad ['toContentStore'] )  
+    or isset ( $pad_parms_pad ['toDataStore']    )  
+    or isset ( $pad_parms_pad ['toFlagStore']    )  )
+      include PAD_HOME . 'level/store.php' ;
 
   pad_trace ("level/end", "nr=$pad_lvl_cnt", TRUE);
 

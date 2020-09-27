@@ -56,6 +56,7 @@
     if     ( file_exists     ( PAD_APP  . "tags/$pad_tag.php" ) ) $pad_tag_type = 'app';
     elseif ( file_exists     ( PAD_HOME . "tags/$pad_tag.php" ) ) $pad_tag_type = 'tag';
     elseif ( pad_level_array ( $pad_tag                       ) ) $pad_tag_type = 'level';
+    elseif ( isset           ( $pad_flag_store [$pad_tag]     ) ) $pad_tag_type = 'flag';
     elseif ( isset           ( $pad_content_store [$pad_tag]  ) ) $pad_tag_type = 'content';
     elseif ( isset           ( $pad_data_store [$pad_tag]     ) ) $pad_tag_type = 'data';
     elseif ( isset           ( $pad_db_tables [$pad_tag]      ) ) $pad_tag_type = 'table';

@@ -135,12 +135,7 @@
 
   function pad_data_name () {
 
-    if ( isset ($GLOBALS ['pad_data_name']) and $GLOBALS ['pad_data_name']) {
-      $name = $GLOBALS ['pad_data_name'];
-      unset ($GLOBALS ['pad_data_name']);
-    }
-    else
-      $name = $GLOBALS['pad_name'];
+    $name = $GLOBALS['pad_name'];
 
     if ($name == 'data' and $GLOBALS['pad_tag_type'] == 'tag' and pad_valid_name($GLOBALS['pad_parm']) )
       return $GLOBALS['pad_parm'];

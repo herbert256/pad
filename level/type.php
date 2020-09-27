@@ -10,6 +10,8 @@
 
   $pad_tag_ob = ob_get_clean() . $pad_app_ob;
 
+  $pad_true_false [$pad_lvl] = pad_true_false ($pad_tag_result);
+
   $pad_tag_result_type = pad_analyze_var ($pad_tag_result);
   
   if ($pad_trace) {
