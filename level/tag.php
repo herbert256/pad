@@ -9,11 +9,12 @@
     $pad_data [1] [1] = &$GLOBALS;
 
   $pad_content_store_name = pad_tag_parm ('content');
-  $pad_data_store_name    = pad_tag_parm ('data');
+  $pad_data_store_name    = pad_tag_parm ('data'); 
+  $pad_flag_store_name    = pad_tag_parm ('flag');
 
   include PAD_HOME . "level/type.php";
 
-  if ( $pad_walk == 'next' and isset ( $pad_parms_pad ['toDataStore'] ) )
+  if ( $pad_walk == 'next' and isset ( $pad_parms_tag ['toDataStore'] ) )
      pad_error ('@toDataStore can not be used together with the walking method');
 
   if ( $pad_tag_result === NULL or ! isset ($pad_tag_result) or ! isset ($pad_data[$pad_lvl]) or $pad_data[$pad_lvl] === NULL ) {

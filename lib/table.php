@@ -3,26 +3,26 @@
 
   function pad_db_get_data ($table, $page=0, $rows=0, $unionBuild=0) {
 
-    global $pad_data, $pad_lvl, $pad_parms_pad, $pad_key, $pad_db_relations, $pad_db_tables, $pad_db, $pad_filter;
+    global $pad_data, $pad_lvl, $pad_parms_tag, $pad_key, $pad_db_relations, $pad_db_tables, $pad_db, $pad_filter;
 
     $parms = pad_db_get_db ($table);
 
-    $db          = $pad_parms_pad ['db']          ?? $parms ['db']          ?? '';
-    $all         = $pad_parms_pad ['all']         ?? $parms ['all']         ?? 0;
-    $distinct    = $pad_parms_pad ['distinct']    ?? $parms ['distinct']    ?? 0;
-    $distinctrow = $pad_parms_pad ['distinctrow'] ?? $parms ['distinctrow'] ?? 0;
-    $keys        = $pad_parms_pad ['key']         ?? $parms ['key']         ?? '';
-    $fields      = $pad_parms_pad ['fields']      ?? $parms ['fields']      ?? '*';
-    $type        = $pad_parms_pad ['type']        ?? $parms ['type']        ?? 'array';
-    $where       = $pad_parms_pad ['where']       ?? $parms ['where']       ?? '';
-    $group       = $pad_parms_pad ['group']       ?? $parms ['group']       ?? '';
-    $rollup      = $pad_parms_pad ['rollup']      ?? $parms ['rollup']      ?? 0;
-    $having      = $pad_parms_pad ['having']      ?? $parms ['having']      ?? '';
-    $join        = $pad_parms_pad ['join']        ?? $parms ['join']        ?? [];
-    $union       = $pad_parms_pad ['union']       ?? $parms ['union']       ?? '';
-    $order       = $pad_parms_pad ['order']       ?? $parms ['order']       ?? '';
-    $page        = $pad_parms_pad ['page']        ?? $parms ['page']        ?? $page;
-    $rows        = $pad_parms_pad ['rows']        ?? $parms ['rows']        ?? $rows;
+    $db          = $pad_parms_tag ['db']          ?? $parms ['db']          ?? '';
+    $all         = $pad_parms_tag ['all']         ?? $parms ['all']         ?? 0;
+    $distinct    = $pad_parms_tag ['distinct']    ?? $parms ['distinct']    ?? 0;
+    $distinctrow = $pad_parms_tag ['distinctrow'] ?? $parms ['distinctrow'] ?? 0;
+    $keys        = $pad_parms_tag ['key']         ?? $parms ['key']         ?? '';
+    $fields      = $pad_parms_tag ['fields']      ?? $parms ['fields']      ?? '*';
+    $type        = $pad_parms_tag ['type']        ?? $parms ['type']        ?? 'array';
+    $where       = $pad_parms_tag ['where']       ?? $parms ['where']       ?? '';
+    $group       = $pad_parms_tag ['group']       ?? $parms ['group']       ?? '';
+    $rollup      = $pad_parms_tag ['rollup']      ?? $parms ['rollup']      ?? 0;
+    $having      = $pad_parms_tag ['having']      ?? $parms ['having']      ?? '';
+    $join        = $pad_parms_tag ['join']        ?? $parms ['join']        ?? [];
+    $union       = $pad_parms_tag ['union']       ?? $parms ['union']       ?? '';
+    $order       = $pad_parms_tag ['order']       ?? $parms ['order']       ?? '';
+    $page        = $pad_parms_tag ['page']        ?? $parms ['page']        ?? $page;
+    $rows        = $pad_parms_tag ['rows']        ?? $parms ['rows']        ?? $rows;
     
     $start = '';
 

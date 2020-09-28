@@ -24,10 +24,6 @@
     foreach ( $pad_current [$pad_lvl] as $pad_k => $pad_v )
       pad_set_global ( $pad_k, $pad_v );
 
-    if ( $pad_tag_parms )
-      foreach ( $pad_parms_app as $pad_k => $pad_v )
-        pad_set_global ( $pad_k, $pad_v );
-
   }
 
   if ( isset($pad_parms_pad ['callback']) ) {

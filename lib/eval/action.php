@@ -15,16 +15,6 @@
     $left  = $result [$f] [0];
     $opr   = $result [$b] [0];
     $right = $result [$k] [0];
-
-    if ( $opr == '..' ) {
-      $result [$k][1] = 'VAL';
-      $result [$k][6] = 'array';
-      $result [$k][7] = range ( $left, $right );
-      $result [$k][0] = implode ( '|', $result [$k][7] );
-      unset ($result[$b]);
-      unset ($result[$f]);
-      return;
-    }
  
     set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
     

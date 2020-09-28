@@ -5,7 +5,7 @@
     return TRUE;
   }
 
-  $pad_eval = pad_eval($pad_parms_org[0]);
+  $pad_eval = $pad_parms_seq[0];
   
   $pad_wrk  = [ $pad_parameters [$pad_lvl] ['tag_count'] => [] ];
 

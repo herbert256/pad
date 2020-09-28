@@ -3,7 +3,7 @@
   if ($pad_lvl > 1) 
     pad_data_chk ( $pad_data[$pad_lvl] );
 
-  if ( isset ( $pad_parms_pad ['sort'] ) )   
+  if ( isset ( $pad_parms_tag ['sort'] ) )   
     include PAD_HOME . 'level/sort.php';
 
   include PAD_HOME . 'level/filter.php';

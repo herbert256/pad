@@ -32,13 +32,13 @@
   
   function pad_db_part2 ( $pad_sql_connect, $sql, $vars, $db_type) {
 
-    global $pad_db_tables, $pad_db_rows_found, $pad_track_sql, $pad_parms_pad;
+    global $pad_db_tables, $pad_db_rows_found, $pad_track_sql, $pad_parms_tag;
     
     if ( isset ( $pad_db_tables[$sql] ) ) {
-      $pad_parms_pad_save = $pad_parms_pad;
-      $pad_parms_pad = [];
+      $pad_parms_tag_save = $pad_parms_tag;
+      $pad_parms_tag = [];
       $result = pad_db_get_data ($sql); 
-      $pad_parms_pad = $pad_parms_pad_save;
+      $pad_parms_tag = $pad_parms_tag_save;
       return $result;
     }
 

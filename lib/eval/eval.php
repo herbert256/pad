@@ -1,7 +1,7 @@
 <?php
   
   const pad_eval_precedence = [
-    '..', '**', '*', '/', '%', '+', '-',
+    '**', '*', '/', '%', '+', '-',
     '.',
     'PHP',
     'LT', 'LE', 'GT', 'GE', 'EQ', 'NE',
@@ -10,7 +10,7 @@
   ];
 
   const pad_eval_1   = [ '+', '-', '*', '/', '%', '.' ];
-  const pad_eval_2   = [ '..', '**'];
+  const pad_eval_2   = [ '**'];
   const pad_eval_txt = [ 'LT', 'LE', 'GT', 'GE', 'EQ', 'NE', 'AND', 'XOR', 'OR', 'NOT' ];
 
   function pad_eval ($eval, $myself='') {
@@ -57,9 +57,6 @@
       $eval_return = $return [0];
     else
       $eval_return = implode (' ', $return);
-
-    if ( count($result) <> 1 or $result [array_key_first($result)] [1] <> 'VAL')
-      pad_error ("Eval result is not a single value: ---> $eval <---> $eval_return <---");
 
     return $eval_return;
 

@@ -175,9 +175,9 @@
 
   function pad_tag_flag ($flag) {
 
-    global $pad_parms_pad;
+    global $pad_parms_tag;
 
-    if ( isset ( $pad_parms_pad [$flag] ) )
+    if ( isset ( $pad_parms_tag [$flag] ) )
       return TRUE;
     else
       return FALSE;
@@ -187,10 +187,10 @@
 
   function pad_tag_parm ($parm, $default='') {
 
-    global $pad_parms_pad;
+    global $pad_parms_tag;
 
-    if ( isset ( $pad_parms_pad [$parm] ) )
-      return $pad_parms_pad [$parm];
+    if ( isset ( $pad_parms_tag [$parm] ) )
+      return $pad_parms_tag [$parm];
     else
       return $default;
 
