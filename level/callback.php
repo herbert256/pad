@@ -1,6 +1,6 @@
 <?php
 
-  $pad_include_file = PAD_APP . "callbacks/" . $pad_parms_pad ['callback'] . ".php";
+  $pad_include_file = PAD_APP . "callbacks/" . $pad_parms_tag ['callback'] . ".php";
 
   if ( $pad_callback == 'exit_occurrence' ) 
     $pad_content = $pad_html [$pad_lvl];

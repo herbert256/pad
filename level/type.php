@@ -6,6 +6,8 @@
 
   $pad_tag_result = include PAD_HOME . "types/$pad_tag_type.php";
 
+  $pad_walks [$pad_lvl] = $pad_walk; 
+
   $pad_parameters [$pad_lvl] ['tag_parms'] = $pad_tag_parms;
 
   $pad_tag_ob = ob_get_clean() . $pad_app_ob;

@@ -4,6 +4,8 @@
 
   $pad_lvl++;
 
+  $pad_walks_data [ $pad_lvl] = [];
+
   $pad_parameters [$pad_lvl] ['name'] = '';
   $pad_parameters [$pad_lvl] ['parm'] = '';
 
@@ -61,7 +63,7 @@
   if ($pad_next)
     return;  
 
-  if ( isset ( $pad_parms_pad ['callback'] ) ) {
+  if ( isset ( $pad_parms_tag ['callback'] ) ) {
     $pad_callback = "init_tag";
     include PAD_HOME . 'level/callback.php';
   }

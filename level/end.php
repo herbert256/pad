@@ -27,7 +27,7 @@
 
   }
 
-  if ( isset($pad_parms_pad ['callback']) ) {
+  if ( isset($pad_parms_tag ['callback']) ) {
     $pad_callback = "exit_tag";
     include PAD_HOME . 'level/callback.php' ;
   }

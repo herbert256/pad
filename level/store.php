@@ -5,8 +5,11 @@
   }
 
   if ( isset ( $pad_parms_tag ['toDataStore'] )  ) {
-    $pad_data_store [$pad_parms_tag ['toDataStore']] = $pad_data [$pad_lvl];
-  }
+    if ( $pad_walks [$pad_lvl ]<> 'start' ) 
+      $pad_data_store [$pad_parms_tag ['toDataStore']] = $pad_walks_data [ $pad_lvl];
+    else
+      $pad_data_store [$pad_parms_tag ['toDataStore']] = $pad_data [$pad_lvl];
+    }
 
   if ( isset ( $pad_parms_tag ['toFlagStore'] )  ) {
 

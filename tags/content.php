@@ -1,21 +1,48 @@
 <?php
 
-  if ( $pad_single and ! isset ( $pad_parms_seq [1] ) )
-    return pad_tag_error ();
-  
-  if ( $pad_parms_type == 'close' and $pad_walk == 'start' ) {
+  if ( $pad_pair and $pad_parms_type == 'close' and $pad_walk == 'start' ) {
     $pad_walk = 'end';
     return TRUE;
   }
 
-  if ( $pad_single )
-    $pad_content = pad_external ( $pad_parms_seq [1] );
+  if ( $pad_walk == 'start' ) {
+    $pad_walk = 'occurrence/start';
+    return TRUE;
+  } 
 
-  include PAD_HOME . 'level/after.php';
+  if ( isset ( $pad_parms_seq [1] ) )
+    if ( $pad_tag == 'content')
+      $pad_html [$pad_lvl] .= pad_content ( $pad_parms_seq [1] );
+    else
+      $pad_data [$pad_lvl] = pad_add_array_to_data ( pad_data ( $pad_parms_seq [1] ) )
 
-  $pad_content_store [$pad_parm] = $pad_content;
-  $pad_content = '';
+  if ( $pad_walk == 'occurrence/start' ) {
 
-  return NULL;
+    if ( $pad_tag == 'content')
+      $pad_content_store [$pad_parm] = $pad_html[$pad_lvl]; 
+    else
+      $pad_data_store [$pad_parm] = $pad_data [$pad_lvl];  
+
+    $pad_html[$pad_lvl] = '';
+    $pad_data[$pad_lvl] = [];
+
+    return TRUE;
+
+  } 
+
+  if ( $pad_walk == 'end' ) {
+
+    if ( $pad_tag == 'content')
+      $pad_content_store [$pad_parm] = $pad_result [$pad_lvl];
+    else
+      $pad_data_store [$pad_parm] = pad_add_array_to_data ( pad_data ( $pad_result [$pad_lvl] ) );
+    
+    $pad_content = '';
+
+    return TRUE;
+ 
+  } 
+
+  pad_error ('oops');
 
 ?>

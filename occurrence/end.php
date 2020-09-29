@@ -9,7 +9,7 @@
 
   $pad_result [$pad_lvl] .= $pad_html[$pad_lvl];
 
-  if ( isset($pad_parms_pad ['callback']) and count($pad_data [$pad_lvl]) ) {
+  if ( isset($pad_parms_tag ['callback']) and count($pad_data [$pad_lvl]) ) {
     $pad_callback = "exit_occurrence";
     include PAD_HOME . 'level/callback.php';
   }

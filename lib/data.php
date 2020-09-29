@@ -3,14 +3,48 @@
   function pad_data ($input, $content='') {
 
     if ( $input === NULL       )  return [];
-    if ( is_array ( $input)    )  return [];
-    if ( is_object ( $input)   )  return [];
-    if ( is_resource ( $input) )  return [];
+    if ( is_array ( $input)    )  return $input;
+    if ( is_object ( $input)   )  return pad_xxx_to_array($input);
+    if ( is_resource ( $input) )  return pad_xxx_to_array($input);
     if ( $input === FALSE      )  return [];
-    if ( $input === TRUE       )  return [];
+    if ( $input === TRUE       )  return [1 => [1=>1] ];
     if ( ! $input              )  return [];
-      
+    
     $data = (string) trim($input);
+
+    $stream = pad_explode ($data, '://', 2);
+
+    if ( isset ( $GLOBALS [$pad_data_store] [$data] ) {
+
+      return $GLOBALS [$pad_data_store] [$data];
+
+    } elseif ( isset ( $GLOBALS [$pad_content_store] [$data] ) {
+
+      $data = $GLOBALS [$pad_content_store] [$data];
+
+    } elseif ( count ($stream) == 2 and $stream[0] == 'range' ) {
+
+      $range = pad_explode ($stream[1], '..');
+      return range ( $range[0], $range[1] );      
+ 
+    } elseif ( count ($stream) == 2 and $stream[0] == 'sql' ) {
+
+      return db ( $stream [1] );
+
+    } elseif ( count ($stream) == 2 and pad_valid_name($stream[0]) ) {
+
+      $curl_return = pad_curl ($data, $curl);
+
+      if ( $curl_return === TRUE) {
+
+        if ( ! $content )
+          $content = $curl ['result_type'];
+
+        $data = $curl ['data'];  
+
+      }
+
+    }
 
     if ( substr($data, 0, 1) == '(' and substr($data, -1) == ')' ) {
       $work = pad_explode(substr($data, 1, -1), ',');

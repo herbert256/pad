@@ -14,9 +14,6 @@
 
   include PAD_HOME . "level/type.php";
 
-  if ( $pad_walk == 'next' and isset ( $pad_parms_tag ['toDataStore'] ) )
-     pad_error ('@toDataStore can not be used together with the walking method');
-
   if ( $pad_tag_result === NULL or ! isset ($pad_tag_result) or ! isset ($pad_data[$pad_lvl]) or $pad_data[$pad_lvl] === NULL ) {
     $pad_tag_result = $pad_content = $pad_false = $pad_tag_ob = '';
     $pad_data [$pad_lvl] = [];
@@ -37,12 +34,11 @@
   if ( is_array($pad_tag_result) )
     $pad_data [$pad_lvl] = $pad_tag_result;
 
-  if ( $pad_data_store_name ) {
-    if ( count($pad_data [$pad_lvl]) == 1 and isset($pad_data[$pad_lvl][1]) and count($pad_data[$pad_lvl][1]) == 0 )
+  if ( $pad_data_store_name )
+    if ( pad_is_default_data ( $pad_data [$pad_lvl] ) )
       $pad_data [$pad_lvl] = $pad_data_store [$pad_data_store_name];
     else
-      $pad_data [$pad_lvl] = array_merge($pad_data [$pad_lvl], pad_data_store [$pad_data_store_name]);
-  }
+      $pad_data [$pad_lvl] = array_merge ( $pad_data [$pad_lvl], $pad_data_store [$pad_data_store_name] );
 
   if     ( is_array($pad_tag_result) )  $pad_base [$pad_lvl] = ( count($pad_data [$pad_lvl]) ) ? $pad_content : $pad_false;
   elseif ( $pad_tag_result === FALSE )  $pad_base [$pad_lvl] = $pad_false;
@@ -55,9 +51,7 @@
     $pad_base [$pad_lvl] .= $pad_content_store [$pad_content_store_name] ;
 
   if ( $pad_tag_result === NULL )
-    $pad_html [$pad_lvl] = '';
- 
-  $pad_walks [$pad_lvl] = $pad_walk;  
+    $pad_html [$pad_lvl] = ''; 
 
   include PAD_HOME . 'level/after.php';
 

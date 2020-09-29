@@ -74,6 +74,9 @@
     $split   = explode(' ', trim($sql), 2);
     $command = trim(strtolower($split[0]));
 
+    if ($command == 'select')
+      $command = 'array';
+
     if     ( $command == 'check'  )  $sql = 'select 1 from ' . $split[1] . ' limit 0,1';
     elseif ( $command == 'record' )  $sql = 'select '        . $split[1] . ' limit 0,1';
     elseif ( $command == 'field'  )  $sql = 'select '        . $split[1] . ' limit 0,1';

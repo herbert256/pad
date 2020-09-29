@@ -35,9 +35,9 @@ go: $end = strpos($source, '}');
 
     if ( $char == '$' or $char == '!' ) {
       $source = substr($source, 0, $start) 
-              . '<b><font color="black">#open#'.$char.'</font><font color="green">' 
-              . substr($between, 1) 
-              . '</font><font color="black">#close#</font></b>' 
+              . '<b>#open#<font color="green">' 
+              . $between 
+              . '</font>#close#</b>' 
               . substr($source, $end+1);      
         goto go;
     }
@@ -64,15 +64,18 @@ go: $end = strpos($source, '}');
     } 
 
 co: $parms  = trim($words[1] ?? '');
+
     $space  = ($parms) ? ' ' : '';
-//    $parms  = str_replace(' ', '&nbsp;',  $parms);
-  $parms  = str_replace('=', '<font color="black">=</font>',  $parms);
-   $parms  = str_replace('|', '<font color="black">|</font>',  $parms);
-    $parms  = str_replace('@', '<font color="black">@</font>',  $parms);
+    $parms  = str_replace ('<b>#open#<font color="green">', '',  $parms);
+    $parms  = str_replace ('</font>#close#</b>', '',             $parms);
+    $parms  = str_replace (' ', '&nbsp;',                        $parms);
+    $parms  = str_replace ('=', '<font color="black">=</font>',  $parms);
+    $parms  = str_replace ('|', '<font color="black">|</font>',  $parms);
+    $parms  = str_replace ('@', '<font color="black">@</font>',  $parms);
+    $parms  = str_replace ('$', '<font color="black">$</font>',  $parms);
+
     $source = substr($source, 0, $start) 
-            . '<b>#open#<font color="blue">' 
-            . $search
-            . $space . '</font><font color="red">' 
+            . '<b>#open#<font color="blue">'.$search.$space.'</font><font color="red">' 
             . $parms
             . '</font>#close#</b>' 
             . substr($source, $end+1);

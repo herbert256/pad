@@ -1,7 +1,38 @@
 <?php
 
+  function pad_add_array_to_data ( $array ) {
 
-  function pad_external ($parm) {
+    global $pad_data, $pad_lvl;
+
+    if ( pad_is_default_data ( $pad_data [$pad_lvl] ) )
+      return $array;
+    else
+      return array_merge ( $pad_data [$pad_lvl], $array );
+    
+  }
+
+  function pad_is_default_data ( $data ) {
+    
+    if ( ! is_array ( $data ) )
+      return FALSE;
+
+    if ( count ( $data ) <> 1 )
+      return FALSE;
+
+    if ( ! isset ( $data [1] ) )
+      return FALSE;
+     
+    if ( ! is_array ( $data [1] ) )
+      return FALSE;
+
+    if ( count ( $data [1] ) )
+      return FALSE;
+
+    return TRUE;
+
+  }
+
+  function pad_content ($parm) {
 
     $curl_in         = [];
     $curl_in ['url'] = $parm;
@@ -162,7 +193,7 @@
     for ($lvl = $end; $lvl>=$start; $lvl--)  {    
 
       foreach ( $pad_save_vars [$lvl] as $key => $value) {
-        $GLOBALS [$key] = $pad_save_vars [$lvl] [$key];
+        $GLOBALS [$key] = $value;
       }
 
       foreach ( $pad_delete_vars [$lvl] as $key)
