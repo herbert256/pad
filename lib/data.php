@@ -2,25 +2,31 @@
 
   function pad_data ($input, $content='') {
 
-    if ( $input === NULL       )  return [];
-    if ( is_array ( $input)    )  return $input;
-    if ( is_object ( $input)   )  return pad_xxx_to_array($input);
-    if ( is_resource ( $input) )  return pad_xxx_to_array($input);
-    if ( $input === FALSE      )  return [];
-    if ( $input === TRUE       )  return [1 => [1=>1] ];
-    if ( ! $input              )  return [];
+    $GLOBALS ['AAA'] = $input;
+
+    if     ( $input === NULL       )  $data = [];
+    elseif ( is_array ( $input)    )  $data = $input;
+    elseif ( is_object ( $input)   )  $data = pad_xxx_to_array ( $input );
+    elseif ( is_resource ( $input) )  $data = pad_xxx_to_array ( $input );
+    elseif ( $input === FALSE      )  $data = [];
+    elseif ( $input === TRUE       )  $data = [1 => [] ];
+    elseif ( ! $input              )  $data = [];
+    else                              $data = (string) trim($input);
     
-    $data = (string) trim($input);
+    if ( is_array ( $data ) ) {
+      pad_data_chk ( $data );
+      return $data;
+    }
 
     $stream = pad_explode ($data, '://', 2);
 
-    if ( isset ( $GLOBALS [$pad_data_store] [$data] ) {
+    if ( isset ( $GLOBALS ['pad_data_store'] [$data] ) ) {
 
-      return $GLOBALS [$pad_data_store] [$data];
+      return $GLOBALS ['pad_data_store'] [$data];
 
-    } elseif ( isset ( $GLOBALS [$pad_content_store] [$data] ) {
+    } elseif ( isset ( $GLOBALS ['pad_content_store'] [$data] ) ) {
 
-      $data = $GLOBALS [$pad_content_store] [$data];
+      $data = $GLOBALS ['pad_content_store'] [$data];
 
     } elseif ( count ($stream) == 2 and $stream[0] == 'range' ) {
 
@@ -29,7 +35,13 @@
  
     } elseif ( count ($stream) == 2 and $stream[0] == 'sql' ) {
 
-      return db ( $stream [1] );
+      $work = db ( $stream [1] );
+
+      if ( ! is_array($work) )
+        return pad_data ($work);
+        
+      pad_data_chk ( $work );
+      return $work;
 
     } elseif ( count ($stream) == 2 and pad_valid_name($stream[0]) ) {
 
@@ -50,6 +62,7 @@
       $work = pad_explode(substr($data, 1, -1), ',');
       foreach ($work as $key => $value)
         $work[$key] = pad_eval($value);
+      pad_data_chk ( $work );
       return $work;
     }
     
@@ -181,6 +194,8 @@
         return pad_data_error ($data, "YAML parse error" );
       
     }
+
+    pad_data_chk ($result);
 
     return $result;
     

@@ -9,7 +9,7 @@
   include PAD_HOME . 'level/filter.php';
   
   if ( pad_tag_parm ('ignore') )
-  $pad_base [$pad_lvl] = '{ignore}' . $pad_base [$pad_lvl] . '{/ignore}';    
+    $pad_base [$pad_lvl] = '{ignore}' . $pad_base [$pad_lvl] . '{/ignore}';    
 
   if ( pad_tag_parm ('source') )
     $pad_base [$pad_lvl] = '{ignore}' . pad_colors_string ($pad_base [$pad_lvl]) . '{/ignore}';  

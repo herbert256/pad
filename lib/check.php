@@ -3,8 +3,12 @@
 
  function pad_data_chk (&$result) {
 
-    if ( ! is_array ($result) )
-      $result = [];
+    if     ( $result === NULL       )  $result = [];
+    elseif ( is_object ( $result)   )  $result = pad_xxx_to_array ($result);
+    elseif ( is_resource ( $result) )  $result = pad_xxx_to_array ($result);
+    elseif ( $result === FALSE      )  $result = [];
+    elseif ( $result === TRUE       )  $result = [1 => [] ];
+    elseif ( ! is_array ($result)   )  $result = [pad_data ($result)];
 
     pad_data_chk_simple_array ($result);
     pad_data_chk_chk_one      ($result);

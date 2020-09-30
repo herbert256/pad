@@ -44,7 +44,8 @@
     $pad_trace = TRUE;
 
   if ( $pad_walks [$pad_lvl] == 'occurrence/start' ) {
-    $pad_walk == 'occurrence/start'
+    $pad_walk = 'occurrence/start';
+    $pad_content = $pad_html [$pad_lvl];
     include PAD_HOME . "level/type.php";
   }
 

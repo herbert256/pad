@@ -63,9 +63,9 @@
     elseif ( pad_array_check ( $pad_tag                       ) ) $pad_tag_type = 'array';
     elseif ( pad_field_check ( $pad_tag                       ) ) $pad_tag_type = 'field';
     elseif ( defined         ( $pad_tag                       ) ) $pad_tag_type = 'constant';
-    elseif ( function_exists ( $pad_tag                       ) ) $pad_tag_type = 'function';
-    elseif ( is_object       ( $pad_tag                       ) ) $pad_tag_type = 'object';
-    elseif ( is_resource     ( $pad_tag                       ) ) $pad_tag_type = 'resource';
+    elseif ( function_exists ( $pad_tag                       ) ) $pad_tag_type = 'php';
+    elseif ( pad_is_object   ( $pad_tag                       ) ) $pad_tag_type = 'object';
+    elseif ( pad_is_resource ( $pad_tag                       ) ) $pad_tag_type = 'resource';
     else                                                          return pad_html ( '&open;' . $pad_between . '&close;' );
 
   }

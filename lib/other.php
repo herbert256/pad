@@ -4,15 +4,20 @@
   function pad_xxx_to_array ($xxx) {
 
     set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
-    $error_level = error_reporting(E_ALL);
+    $error_level = error_reporting(0);
+
+    $array = [];
 
     try {
-      $array = (array) $GLOBALS[$xxx];
+      $array = (array) $xxx;
     }
     catch (Throwable $e) {
       $array = [];
     }
     
+    if     ( $array === NULL     )  $array = [];
+    elseif ( ! is_array ($array) )  $array = [];
+
     error_reporting($error_level);
     restore_error_handler();
     

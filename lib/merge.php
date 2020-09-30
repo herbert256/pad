@@ -1,13 +1,34 @@
 <?php
 
-  function pad_add_array_to_data ( $array ) {
+  function pad_is_object ($item) {
+
+    if ( isset ($GLOBALS[$item]) and is_object ($GLOBALS[$item]) )
+      return TRUE;
+    else
+      return FALSE;
+
+  }
+
+  function pad_is_resource ($item) {
+
+    if ( isset ($GLOBALS[$item]) and is_resource ($GLOBALS[$item]) )
+      return TRUE;
+    else
+      return FALSE;
+
+  }
+
+  function pad_add_array_to_data ( $array, $type='') {
 
     global $pad_data, $pad_lvl;
 
-    if ( pad_is_default_data ( $pad_data [$pad_lvl] ) )
-      return $array;
-    else
-      return array_merge ( $pad_data [$pad_lvl], $array );
+    $add = pad_data ($array, $type);
+
+    if ( pad_is_default_data ( $pad_data [$pad_lvl] ) and count ($add) )
+      $pad_data [$pad_lvl] = [];
+
+    foreach ( $add as $value)
+      $pad_data [$pad_lvl] [] = $value;
     
   }
 
@@ -30,20 +51,6 @@
 
     return TRUE;
 
-  }
-
-  function pad_content ($parm) {
-
-    $curl_in         = [];
-    $curl_in ['url'] = $parm;
-
-    $curl_result = pad_curl ( $curl_in, $curl_out );
-
-    if ( $curl_result === TRUE )
-      return $curl_out ['data'];
-    else
-      return pad_error ("Curl failed: " . $curl_out ['result_code'] );
-      
   }
 
 

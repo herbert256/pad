@@ -10,39 +10,25 @@
     return TRUE;
   } 
 
-  if ( isset ( $pad_parms_seq [1] ) )
+  if ( isset($pad_parms_seq[1]) )
     if ( $pad_tag == 'content')
-      $pad_html [$pad_lvl] .= pad_content ( $pad_parms_seq [1] );
+      $pad_content .= pad_content ( $pad_parms_seq[1] ); 
     else
-      $pad_data [$pad_lvl] = pad_add_array_to_data ( pad_data ( $pad_parms_seq [1] ) )
-
-  if ( $pad_walk == 'occurrence/start' ) {
-
-    if ( $pad_tag == 'content')
-      $pad_content_store [$pad_parm] = $pad_html[$pad_lvl]; 
-    else
-      $pad_data_store [$pad_parm] = $pad_data [$pad_lvl];  
-
-    $pad_html[$pad_lvl] = '';
-    $pad_data[$pad_lvl] = [];
-
-    return TRUE;
-
-  } 
-
-  if ( $pad_walk == 'end' ) {
-
-    if ( $pad_tag == 'content')
-      $pad_content_store [$pad_parm] = $pad_result [$pad_lvl];
-    else
-      $pad_data_store [$pad_parm] = pad_add_array_to_data ( pad_data ( $pad_result [$pad_lvl] ) );
-    
-    $pad_content = '';
-
-    return TRUE;
+      pad_add_array_to_data ( $pad_parms_seq[1], pad_tag_parm('type') ); 
  
-  } 
+  if ( $pad_tag == 'content')
+    $pad_content_store [$pad_parm] = $pad_content; 
+  else {
+    pad_add_array_to_data ( $pad_content, pad_tag_parm('type') ); 
+    $pad_data_store [$pad_parm] = $pad_data [$pad_lvl]; 
+  }
 
-  pad_error ('oops');
+  $pad_html [$pad_lvl] = '';
+  $pad_data [$pad_lvl] = [];
+
+  $pad_content = '';
+  $pad_walk    = '';
+
+  return TRUE;
 
 ?>
