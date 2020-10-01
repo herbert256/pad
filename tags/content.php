@@ -19,7 +19,8 @@
   if ( $pad_tag == 'content')
     $pad_content_store [$pad_parm] = $pad_content; 
   else {
-    pad_add_array_to_data ( $pad_content, pad_tag_parm('type') ); 
+    if ( trim ($pad_content) )
+      pad_add_array_to_data ( $pad_content, pad_tag_parm('type') ); 
     $pad_data_store [$pad_parm] = $pad_data [$pad_lvl]; 
   }
 

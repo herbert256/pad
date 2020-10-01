@@ -32,10 +32,10 @@
     include PAD_HOME . 'level/callback.php' ;
   }
 
-  if ( isset ( $pad_parms_tag ['toContentStore'] )  
-    or isset ( $pad_parms_tag ['toDataStore']    )  
-    or isset ( $pad_parms_tag ['toFlagStore']    )  )
-      include PAD_HOME . 'level/store.php' ;
+  if ( isset ( $pad_parms_tag ['toContent'] )  
+    or isset ( $pad_parms_tag ['toData']    )  
+    or isset ( $pad_parms_tag ['toFlag']    )  )
+      include PAD_HOME . 'parms/store.php' ;
 
   pad_trace ("level/end", "nr=$pad_lvl_cnt", TRUE);
 

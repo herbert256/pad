@@ -1,8 +1,14 @@
 <?php
 
-  $pad_sort_args = [];
+  $pad_sort_fields = [];
+  $pad_sort_args   = [];
 
-  $pad_sort_fields = pad_explode($pad_parms_tag ['sort'], ',');
+  if ( $pad_parms_tag ['sort'] === TRUE)
+    $pad_sort_fields [] = $pad_name;
+  else
+    $pad_sort_fields = pad_explode($pad_parms_tag ['sort'], ',');
+
+  if ( ! count($pad_sort_fields) ) 
 
   foreach ($pad_sort_fields as $pad_k => $pad_v) {
 

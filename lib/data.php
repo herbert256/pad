@@ -18,13 +18,22 @@
       return $data;
     }
 
-    $stream = pad_explode ($data, '://', 2);
-
     if ( isset ( $GLOBALS ['pad_data_store'] [$data] ) ) {
 
-      return $GLOBALS ['pad_data_store'] [$data];
+      $new = pad_data_name ();
+      $arr = $GLOBALS ['pad_data_store'] [$data];
 
-    } elseif ( isset ( $GLOBALS ['pad_content_store'] [$data] ) ) {
+      foreach ($arr as $key => $value)
+        if ( is_array ($value) and count($value) == 1 and isset ($value[$data]) )
+          $arr [$key] = [ $new => $value[$data] ];
+ 
+      return $arr;
+
+    }
+
+    $stream = pad_explode ($data, '://', 2);
+
+    if ( isset ( $GLOBALS ['pad_content_store'] [$data] ) ) {
 
       $data = $GLOBALS ['pad_content_store'] [$data];
 
