@@ -15,7 +15,7 @@
       pad_trace('pair', "result: SINGLE");
       $pad_single  = TRUE;
       $pad_content = '';
-      return;
+      return TRUE;
     }
 
     $pad_content = substr($pad_html[$pad_lvl], $pad_end[$pad_lvl]+1, $pad_pos - $pad_end[$pad_lvl] - 1);
@@ -32,15 +32,36 @@
   $pad_content = substr ($pad_content, 0, $pad_pos);
 
   $pad_end [$pad_lvl] = strpos ( $pad_html[$pad_lvl], '}', $pad_pos+2);
+  if ( $pad_end [$pad_lvl] === FALSE )
+    pad_error ("No closure of close tag found");
+
+  $pad_tmp = substr ($pad_html[$pad_lvl], $pad_pos+1, $pad_end[$pad_lvl]-$pad_pos-1);
+
+  while ( substr_count($pad_tmp, '{') <> substr_count($pad_tmp, '}') ) {
+
+    if ( $pad_end [$pad_lvl] === FALSE or $pad_end [$pad_lvl] + 1 == strlen($pad_html[$pad_lvl]) )
+       break;
+
+    $pad_end [$pad_lvl] = strpos ( $pad_html[$pad_lvl], '}', $pad_end [$pad_lvl] + 1); 
+    if ( $pad_end [$pad_lvl] !== FALSE )
+      $pad_tmp = substr ($pad_html[$pad_lvl], $pad_pos+1, $pad_end[$pad_lvl]-$pad_pos-1);
+
+  }
+
+  if ( $pad_end [$pad_lvl] === FALSE )
+    $pad_end [$pad_lvl] = strpos ( $pad_html[$pad_lvl], '}', $pad_pos+2);
 
   $pad_between2 = substr ($pad_html[$pad_lvl], $pad_pos+1, $pad_end[$pad_lvl]-$pad_pos-1);
   $pad_words    = preg_split ("/[\s]+/", $pad_between2, 2, PREG_SPLIT_NO_EMPTY);
   $pad_parms2   = trim ($pad_words[1] ?? '');
 
-  if ($pad_parms and $pad_parms2) 
-    pad_error ("Both open and close parameters used: $pad_pair_search / $pad_parms / $pad_parms2");
-
   if ($pad_parms2) {
+
+    if ($pad_parms) 
+      pad_error ("Both open and close parameters used: $pad_pair_search / $pad_parms / $pad_parms2");
+
+    if ( strpos($pad_parms2, '}') ) 
+       return include PAD_HOME . 'level/close.php';
 
     $pad_between    = $pad_between2;
     $pad_parms      = $pad_parms2;
@@ -69,12 +90,8 @@
 go: $pad_pos++;
     $pad_pos = strpos($pad_content, '{else}', $pad_pos);
 
-  if ( $pad_pos === FALSE ) {
-     // foreach ( $pad_open_close as $pad_false_tag => $pad_dummy_var )
-     //   if ( strpos($pad_content, "{/$pad_false_tag") !== FALSE and ! pad_check_tag ($pad_false_tag, $pad_content) )
-     //     pad_tag_error ('Number of {' . $pad_false_tag . '} and {/' . $pad_false_tag . '} do not match');
-    return;
-  }
+  if ( $pad_pos === FALSE )
+    return TRUE;
   
   $pad_false_check = substr($pad_content,0,$pad_pos);
 
@@ -94,5 +111,7 @@ go: $pad_pos++;
   foreach ( $pad_open_close as $pad_false_tag => $pad_dummy_var )
     if ( strpos($pad_content, "{/$pad_false_tag") and ! pad_check_tag ($pad_false_tag, $pad_content) )
       return pad_tag_error ('Number of {' . $pad_false_tag . '} and {/' . $pad_false_tag . '} do not match');
+
+  return TRUE;
 
 ?>

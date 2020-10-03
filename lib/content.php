@@ -37,7 +37,7 @@
         if ( $curl_return === TRUE)
           return $curl ['data'];  
         else
-          return pad_error ("Curl failed: " . $curl ['result_code'] );
+          return pad_error ("Curl failed: " . $curl ['result_code'] . ' ' . $data);
   
     }
 

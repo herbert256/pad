@@ -31,7 +31,7 @@
   $pad_between = substr($pad_html[$pad_lvl], $pad_start[$pad_lvl]+1, $pad_end[$pad_lvl]-$pad_start[$pad_lvl]-1);
   $pad_char    = substr($pad_between, 0, 1);
   
-  if     ( $pad_char == '!' )             return pad_html ( pad_escape ( pad_field_value (substr($pad_between,1),1) ) );
+  if     ( $pad_char == '!' )             return pad_html ( pad_raw ( pad_field_value (substr($pad_between,1),1) ) );
   elseif ( $pad_char == '$' )             return pad_html ( include PAD_HOME . 'level/var.php' );
   elseif ( ! pad_valid_name($pad_char) )  return pad_html ( '&open;' . $pad_between . '&close;' );
 
@@ -70,6 +70,9 @@
 
   }
  
-  include PAD_HOME . 'level/start.php';
+  $pad_pair_result = include PAD_HOME . 'level/pair.php';
+  
+  if ( $pad_pair_result )
+    include PAD_HOME . 'level/start.php';
  
 ?>

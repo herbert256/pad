@@ -139,12 +139,16 @@
 
   function pad_data_name () {
 
-    $name = $GLOBALS['pad_name'];
-
-    if ($name == 'data' and $GLOBALS['pad_tag_type'] == 'tag' and pad_valid_name($GLOBALS['pad_parm']) )
+    if ( $GLOBALS['pad_name'] == 'data' and $GLOBALS['pad_tag_type'] == 'tag' and pad_valid_name($GLOBALS['pad_parm']) )
       return $GLOBALS['pad_parm'];
 
-    return $name;
+    if ( $GLOBALS['pad_name'] == 'range' and $GLOBALS['pad_tag_type'] == 'tag' )
+      if     ( pad_tag_parm ('name')   ) 
+        return pad_tag_parm ('name');
+      elseif ( pad_tag_parm ('toData') ) 
+        return pad_tag_parm ('toData');
+ 
+    return $GLOBALS['pad_name'];
 
   }
 

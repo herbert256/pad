@@ -63,7 +63,7 @@ go: $end = strpos($source, '}');
       goto go;
     } 
 
-co: $parms  = trim($words[1] ?? '');
+co: $parms  = $words[1] ?? '';
 
     $space  = ($parms) ? ' ' : '';
     $parms  = str_replace ('<b>#open#<font color="green">', '',  $parms);

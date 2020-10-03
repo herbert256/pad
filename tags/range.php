@@ -1,11 +1,6 @@
 <?php
 
-  if ( pad_tag_parm ('name') )
-    $pad_range_name = pad_tag_parm ('name');
-  elseif ( pad_tag_parm ('toData') )
-    $pad_range_name = pad_tag_parm ('toData');
-  else
-    $pad_range_name = 'range';
+  $pad_range_name = pad_data_name ();
 
   if ( $pad_walk == 'start' ) {
  

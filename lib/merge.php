@@ -1,5 +1,19 @@
 <?php
 
+function pad_raw ( $data ) {
+
+  return str_replace ( '}', '&close;', $data );
+  
+}
+
+function pad_ignore () {
+
+  pad_html ( '&open;' . $GLOBALS['pad_between'] . '&close;' );
+
+  return FALSE;
+  
+}
+
   function pad_is_object ($item) {
 
     if ( isset ($GLOBALS[$item]) and is_object ($GLOBALS[$item]) )

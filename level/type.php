@@ -8,8 +8,6 @@
 
   $pad_walks [$pad_lvl] = $pad_walk; 
 
-  $pad_parameters [$pad_lvl] ['tag_parms'] = $pad_tag_parms;
-
   $pad_tag_ob = ob_get_clean() . $pad_app_ob;
 
   $pad_true_false [$pad_lvl] = pad_true_false ($pad_tag_result);

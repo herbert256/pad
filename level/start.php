@@ -1,7 +1,5 @@
 <?php
   
-  include PAD_HOME . 'level/pair.php';
-
   $pad_lvl++;
 
   $pad_walks_data [ $pad_lvl] = [];
@@ -17,6 +15,7 @@
   if ( isset ( $pad_current [$pad_lvl] ) )
     unset ( $pad_current [$pad_lvl] );
 
+  $pad_walks       [$pad_lvl]   = '';
   $pad_current     [$pad_lvl]   = [];
   $pad_parameters  [$pad_lvl]   = [];
   $pad_data        [$pad_lvl]   = []; 
@@ -30,12 +29,14 @@
   $pad_db_lvl      [$pad_lvl]   = [];
 
   $pad_filter = [];
-  $pad_tag_parms = TRUE;
 
   include PAD_HOME . 'level/parms.php';
 
-  if ( isset ( $pad_parms_tag ['flag'] ) and $pad_flag_store [$pad_parms_tag ['flag']] === FALSE )
-    return include PAD_HOME . 'level/parms.php';
+  if ( isset ( $pad_parms_tag ['flag'] ) and $pad_flag_store [$pad_parms_tag ['flag']] === FALSE ) {
+    $pad_parms = '';
+    include PAD_HOME . 'level/parms.php';
+    return;
+  }
 
   $pad_name = $pad_parms_tag ['name'] ?? $pad_tag;
 
@@ -47,7 +48,6 @@
   $pad_parameters [$pad_lvl] ['content']     = $pad_content;
   $pad_parameters [$pad_lvl] ['false']       = $pad_false;
   $pad_parameters [$pad_lvl] ['filter']      = $pad_filter;
-  $pad_parameters [$pad_lvl] ['tag_parms']   = $pad_tag_parms;
   $pad_parameters [$pad_lvl] ['parms']       = $pad_parms;
   $pad_parameters [$pad_lvl] ['between']     = $pad_between;
   $pad_parameters [$pad_lvl] ['parms_type']  = $pad_parms_type;

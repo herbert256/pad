@@ -1,23 +1,7 @@
 <?php
 
-
-  function pad_error ( $error ) {
-
-    extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
-
-    if ( ($GLOBALS['pad_error_action']??'') == 'php' ) {
-      throw new ErrorException ($error, 0, E_ERROR, $file, $line);
-      return FALSE;
-    }
-
-    return pad_error_go ($error, $file, $line);
- 
-  }
-
-
   if ( $pad_error_action == 'php' )
     return;
-
 
   ini_set ('display_errors', 0);
   
@@ -40,6 +24,22 @@
     
   }
   
+
+  function pad_error ( $error ) {
+
+    extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
+
+    if ( ($GLOBALS['pad_error_action']??'') == 'php' ) {
+      throw new ErrorException ($error, 0, E_ERROR, $file, $line);
+      return FALSE;
+    }
+
+    return pad_error_go ($error, $file, $line);
+ 
+  }
+
+
+
 
   function pad_error_handler ( $type, $error, $file, $line ) {
 
@@ -83,6 +83,9 @@
 
     global $pad_error_action, $PADREQID;
 
+    set_error_handler     ('pad_error_handler_2'  );
+    set_exception_handler ('pad_error_exception_2');
+        
     if ( ! in_array($pad_error_action, ['report', 'ignore']) ) {    
       $buffer  = '';
       $buffers = ob_get_level ();
@@ -94,9 +97,6 @@
       pad_error_2 ("TWO: $error", $file, $line);
   
     $GLOBALS['pad_exit'] = 2;
-    
-    set_error_handler     ('pad_error_handler_2'  );
-    set_exception_handler ('pad_error_exception_2');
       
     $msg = pad_error_msg ($error, $file, $line);
 
