@@ -7,6 +7,7 @@
 
   pad_trace('pair', "start: $pad_pair_search");
 
+go2:  
   do {
 
     $pad_pos = strpos($pad_html[$pad_lvl] , '{/' . $pad_pair_search, $pad_pos);
@@ -16,7 +17,7 @@
       $pad_single  = TRUE;
       $pad_content = '';
       return TRUE;
-    }
+    } 
 
     $pad_content = substr($pad_html[$pad_lvl], $pad_end[$pad_lvl]+1, $pad_pos - $pad_end[$pad_lvl] - 1);
 
@@ -25,6 +26,15 @@
   } while ( ( substr_count($pad_content, '{'.$pad_pair_search.' ' ) + substr_count($pad_content, '{'.$pad_pair_search.'}' ) )
               <>    
             ( substr_count($pad_content, '{/'.$pad_pair_search.' ') + substr_count($pad_content, '{/'.$pad_pair_search.'}') ) );
+
+  $pad_pair_close = strpos($pad_html[$pad_lvl], '}', $pad_pos);
+  $pad_pair_mark  = strpos($pad_html[$pad_lvl], '#', $pad_pos);
+
+  if ($pad_pair_close !== FALSE and $pad_pair_mark !== FALSE and $pad_pair_mark < $pad_pair_close ) {
+    $pad_pos++;
+    goto go2;
+  }
+  
 
   pad_trace('pair', "result: PAIR");
   

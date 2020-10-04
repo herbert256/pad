@@ -1,5 +1,11 @@
 <?php
 
+  if ( count ($pad_data[$pad_lvl] ) )
+    include PAD_HOME . 'occurrence/end.php';
+
+  if ( next($pad_data[$pad_lvl]) !== FALSE )
+    return include PAD_HOME . 'occurrence/start.php';
+
   if ( $pad_walks [$pad_lvl] == 'next' ) {
     
     foreach ( $pad_parameters [$pad_lvl] as $pad_k => $pad_v )

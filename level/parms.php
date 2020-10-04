@@ -26,7 +26,7 @@
         $pad_parms_tag [$pad_f2] = pad_eval($pad_w2);
       else
         $pad_parms_tag [$pad_f2] = TRUE;
-    elseif ( $pad_f1 == '$' and pad_valid_name ($pad_f2) and $pad_w2 )
+    elseif ( $pad_f1 == '$' and pad_valid_name ($pad_f2) and strlen(trim($pad_w2)) > 0 )
       $pad_parms_set [$pad_f2] = pad_eval($pad_w2);
     else
       $pad_parms_seq [] = pad_eval($pad_v);

@@ -10,7 +10,6 @@
 
   else
 
-    pad_error ("There must be one or two parameters for $option");
-
+    pad_eval_error ("There must be one or two parameters for $option");
 
 ?>

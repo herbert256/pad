@@ -13,7 +13,7 @@ sudo sed -i 's/\/home\/herbert\/php/\/var\/www\/php/g' /etc/apache2/apache2.conf
 mysql --user mariadb < /home/herbert/pad/doc/database.sql
 mysql --user mariadb < /home/herbert/pad/cache/cache.sql
 mysql --user mariadb < /home/herbert/apps/manual/database/demo.sql
-mysql --user mariadb < /home/herbert/apps/classicmodels/setup/classicmodels.sql
+mysql --user mariadb < /home/herbert/apps/classicmodels/config/classicmodels.sql
 
 sudo chown -R herbert:herbert /var/www
 

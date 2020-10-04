@@ -27,40 +27,34 @@
 
   }
 
+  if ( ! pad_field_check ( $pad_fld ) )
+    return '&open;' . $pad_between . '&close;';
+
   if ( substr($pad_fld, 0, 1) == '$' )
     $pad_fld = pad_field_value ($pad_fld);
-
-  $pad_ignore = array_search ('ignore', $pad_expl);
-  if ( $pad_ignore !== FALSE ) 
-    unset ( $pad_expl[$pad_ignore] );     
-
-  $pad_raw = array_search ('raw', $pad_expl);
-  if ( $pad_raw !== FALSE ) 
-    unset ( $pad_expl[$pad_raw] );     
-
+   
   $pad_opts = [];
 
-  if ( $pad_raw === FALSE )
+  if ( $pad_first <> '!')
     foreach ( $pad_data_default_start as $pad_v )
       $pad_opts [] = $pad_v;
 
   foreach ( $pad_expl as $pad_v )
     $pad_opts [] = trim($pad_v);
 
-  if ( $pad_raw === FALSE )
+  if ( $pad_first <> '!')
     foreach ( $pad_data_default_end as $pad_v )
       $pad_opts [] = $pad_v;
 
-  $pad_val = pad_field_value ($pad_fld);
+  if ( $pad_first == '!')
+    $pad_val = pad_raw ( pad_field_value ( $pad_fld ) );
+  else
+    $pad_val = pad_field_value ($pad_fld);
 
   $pad_val = pad_var_opts ($pad_val, $pad_opts);
 
-  if ($pad_trace) 
-    pad_trace ("field/end", "nr=$pad_fld_cnt value=$pad_val");
+  pad_trace ("field/end", "nr=$pad_fld_cnt value=$pad_val");
 
-  if ( $pad_ignore )
-    return "{ignore}$pad_val{/ignore}";
-  else 
-    return $pad_val;
+  return $pad_val;
 
 ?>

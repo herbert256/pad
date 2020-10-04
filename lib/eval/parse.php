@@ -2,8 +2,6 @@
   
   function pad_eval_parse (&$result, $eval, $myself='') {
     
-    $result = [];
-
     $input  = str_split ( pad_unescape($eval) );
     $is_hex = $is_var = $is_str = $is_quote = $is_num = $is_other = FALSE;
     $skip   = $i = 0;

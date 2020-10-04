@@ -16,55 +16,28 @@
     $opr   = $result [$b] [0];
     $right = $result [$k] [0];
  
-    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
+    if     ( $opr == 'LT'  ) $now = ($left <   $right) ? 1 : '';
+    elseif ( $opr == 'LE'  ) $now = ($left <=  $right) ? 1 : '';
+    elseif ( $opr == 'EQ'  ) $now = ($left ==  $right) ? 1 : '';
+    elseif ( $opr == 'GE'  ) $now = ($left >=  $right) ? 1 : '';
+    elseif ( $opr == 'GT'  ) $now = ($left >   $right) ? 1 : '';
+    elseif ( $opr == 'NE'  ) $now = ($left <>  $right) ? 1 : '';
+    elseif ( $opr == 'AND' ) $now = ($left AND $right) ? 1 : '';
+    elseif ( $opr == 'OR'  ) $now = ($left OR  $right) ? 1 : '';
+    elseif ( $opr == 'XOR' ) $now = ($left XOR $right) ? 1 : ''; 
+    elseif ( $opr == '+'   ) $now =  $left +   $right;
+    elseif ( $opr == '-'   ) $now =  $left -   $right;
+    elseif ( $opr == '*'   ) $now =  $left *   $right;
+    elseif ( $opr == '/'   ) $now =  $left /   $right;
+    elseif ( $opr == '%'   ) $now =  $left %   $right;
+    elseif ( $opr == '.'   ) $now =  $left .   $right;
+    else 
+      throw new Exception('Unknow operation');
+
+    $result [$k] [0] = (string) $now;
     
-    $error_level = error_reporting(E_ALL);
-
-    try {
-
-      if     ( $opr == 'LT'  ) $result[$k][0] = ($left <   $right) ? 1 : '';
-      elseif ( $opr == 'LE'  ) $result[$k][0] = ($left <=  $right) ? 1 : '';
-      elseif ( $opr == 'EQ'  ) $result[$k][0] = ($left ==  $right) ? 1 : '';
-      elseif ( $opr == 'GE'  ) $result[$k][0] = ($left >=  $right) ? 1 : '';
-      elseif ( $opr == 'GT'  ) $result[$k][0] = ($left >   $right) ? 1 : '';
-      elseif ( $opr == 'NE'  ) $result[$k][0] = ($left <>  $right) ? 1 : '';
-
-      elseif ( $opr == 'AND' ) $result[$k][0] = ($left AND $right) ? 1 : '';
-      elseif ( $opr == 'OR'  ) $result[$k][0] = ($left OR  $right) ? 1 : '';
-      elseif ( $opr == 'XOR' ) $result[$k][0] = ($left XOR $right) ? 1 : '';
-
-      elseif ( $opr == '**'  ) $result[$k][0] = $left **  $right;
-      elseif ( $opr == '+'   ) $result[$k][0] = $left +   $right;
-      elseif ( $opr == '-'   ) $result[$k][0] = $left -   $right;
-      elseif ( $opr == '*'   ) $result[$k][0] = $left *   $right;
-      elseif ( $opr == '/'   ) $result[$k][0] = $left /   $right;
-      elseif ( $opr == '%'   ) $result[$k][0] = $left %   $right;
-
-      elseif ( $opr == '.'   ) $result[$k][0] = $left .   $right;
-
-      else 
-
-        throw new Exception('Unknow operation');
-
-    }
-
-    catch (Throwable $e) {
-
-      $error = $e->getMessage();
-
-      pad_error ("PAD Eval error: $error: '$left $opr $right'"); 
-
-      $result[$k][0] = '';
-
-    }
-    
-    error_reporting($error_level);
-    restore_error_handler();
-
-    $result[$k][0] = (string) $result[$k][0];
-    
-    unset ($result[$b]);
-    unset ($result[$f]);
+    unset ( $result [$b] );
+    unset ( $result [$f] );
 
   }
   

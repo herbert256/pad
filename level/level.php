@@ -5,21 +5,10 @@
     
   $pad_end [$pad_lvl] = strpos($pad_html[$pad_lvl], '}');
 
-  if ( $pad_end[$pad_lvl] === FALSE ) {
-    
-    if ( count ($pad_data[$pad_lvl] ) )
-      include PAD_HOME . 'occurrence/end.php';
+  if ( $pad_end[$pad_lvl] === FALSE )
+     return include PAD_HOME . 'level/end.php';
 
-    if ( next($pad_data[$pad_lvl]) !== FALSE )
-      include PAD_HOME . 'occurrence/start.php';
-    else
-      include PAD_HOME . 'level/end.php';
-
-    return;
-
-  }
-
-  $pad_start [$pad_lvl] = strrpos ($pad_html[$pad_lvl], '{', $pad_end[$pad_lvl] - strlen($pad_html[$pad_lvl]));
+  $pad_start [$pad_lvl] = strrpos ( $pad_html[$pad_lvl], '{', $pad_end[$pad_lvl] - strlen($pad_html[$pad_lvl]) );
   
   if ( $pad_start [$pad_lvl] === FALSE ) {
     $pad_html [$pad_lvl] = substr($pad_html[$pad_lvl], 0, $pad_end[$pad_lvl])
@@ -29,15 +18,16 @@
   }
 
   $pad_between = substr($pad_html[$pad_lvl], $pad_start[$pad_lvl]+1, $pad_end[$pad_lvl]-$pad_start[$pad_lvl]-1);
-  $pad_char    = substr($pad_between, 0, 1);
+  $pad_first   = substr($pad_between, 0, 1);
+  $pad_words   = preg_split("/[\s]+/", $pad_between, 2, PREG_SPLIT_NO_EMPTY);
+  $pad_tag     = trim($pad_words[0] ?? '');
+  $pad_parms   = trim($pad_words[1] ?? '');
   
-  if     ( $pad_char == '!' )             return pad_html ( pad_raw ( pad_field_value (substr($pad_between,1),1) ) );
-  elseif ( $pad_char == '$' )             return pad_html ( include PAD_HOME . 'level/var.php' );
-  elseif ( ! pad_valid_name($pad_char) )  return pad_html ( '&open;' . $pad_between . '&close;' );
+  if     ( $pad_first == '!'             ) return pad_html ( include PAD_HOME . 'level/var.php'  );
+  elseif ( $pad_first == '$'             ) return pad_html ( include PAD_HOME . 'level/var.php'  );
+  elseif ( ! ctype_alpha ( $pad_first )  ) return pad_html ( '&open;' . $pad_between . '&close;' );
+  elseif ( ! pad_valid_name ( $pad_tag ) ) return pad_html ( '&open;' . $pad_between . '&close;' );
 
-  $pad_words       = preg_split("/[\s]+/", $pad_between, 2, PREG_SPLIT_NO_EMPTY);
-  $pad_tag         = trim($pad_words[0] ?? '');
-  $pad_parms       = trim($pad_words[1] ?? '');
   $pad_pair_search = $pad_tag;
   $pad_parms_type  = ( $pad_parms ) ? 'open' : 'none';
 
