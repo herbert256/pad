@@ -59,7 +59,8 @@
 
   include PAD_HOME . 'level/after.php';
 
-  if ( $pad_single === TRUE and $pad_tag_type == 'data' and $pad_base [$pad_lvl] == '') 
+  if ( $pad_single === TRUE and $pad_tag_type == 'data' )
+    if ( trim($pad_base [$pad_lvl]) === '') 
     include PAD_HOME . 'level/data_tag.php';
 
   if ( isset ( $pad_parms_tag ['callback'] ) ) {
