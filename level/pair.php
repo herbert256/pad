@@ -27,7 +27,7 @@ go2:
               <>    
             ( substr_count($pad_content, '{/'.$pad_pair_search.' ') + substr_count($pad_content, '{/'.$pad_pair_search.'}') ) );
 
-  $pad_pair_check = $pad_html[$pad_lvl].' }|#';
+/*   $pad_pair_check = $pad_html[$pad_lvl].' }|#';
   $pad_pair_mark  = strpos ( $pad_pair_check, '#', $pad_pos );
   $pad_pair_close = strpos ( $pad_pair_check, '}', $pad_pos );
   $pad_pair_space = strpos ( $pad_pair_check, ' ', $pad_pos );
@@ -36,7 +36,7 @@ go2:
   if ( $pad_pair_mark < $pad_pair_close and $pad_pair_mark < $pad_pair_space and $pad_pair_mark < $pad_pair_pipe ) {
     $pad_pos++;
     goto go2;
-  }
+  } */
 
   pad_trace('pair', "result: PAIR");
   

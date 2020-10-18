@@ -21,7 +21,7 @@
 
   if ( $pad_app_return !== TRUE and $pad_app_return !== FALSE and $pad_app_return !== NULL ) {
     if ( $pad_app_return or $pad_app_ob )
-      $pad_app_return = "{location '$pad_include_file'}" . $pad_app_return . $pad_app_ob . '{/location}';
+      $pad_app_return = pad_build_location ( $pad_include_file, $pad_app_return . $pad_app_ob );
     $pad_app_ob = '';
   }
 

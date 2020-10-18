@@ -275,7 +275,7 @@
   function pad_valid_name ($name) {
  
     if ( ! preg_match('/^[A-Za-z0-9_:#]+$/', $name ) ) return FALSE;
-    if ( ! ctype_alpha(substr($name, 0, 1))         ) return FALSE;
+    if ( ! ctype_alpha(substr($name, 0, 1))         )  return FALSE;
 
     return TRUE;
 

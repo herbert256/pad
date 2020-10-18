@@ -1,11 +1,11 @@
 <?php
 
-  if ( ! trim($pad_content) and ! pad_tag_parm ('content') ) {
+  if ( pad_tag_parm ('print') ) {
 
-    $pad_content = '{$' . $pad_name . '}';
+    $pad_content .= '{$' . $pad_name . '}';
 
     if ( pad_tag_parm ('glue') )
-     $pad_content .= '{last}{else}' . pad_tag_parm ('glue') . '{/last}';
+      $pad_content .= '{last}{else}' . pad_tag_parm ('glue') . '{/last}';
 
   }
 

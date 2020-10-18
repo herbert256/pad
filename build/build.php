@@ -12,9 +12,10 @@
 
   pad_check_page ();
 
-  $pad_lvl   = 0;
+  $pad_lvl = 0;
+
   $pad_content_store = [];
-  $pad_data_store  = [];
+  $pad_data_store    = [];
   
   $pad_build_base = PAD_APPS . $app;
   $pad_build_page = "pages/$page";

@@ -71,6 +71,9 @@ exit();
 
   include PAD_HOME . 'cache/cache.php';
 
+  $pad_lib = PAD_APP . 'lib';
+  include PAD_HOME . 'inits/lib.php';
+    
   pad_get_vars ();
   
   $pad_request_scheme = $_SERVER ['REQUEST_SCHEME'] ?? 'http';
@@ -88,18 +91,14 @@ exit();
   $pad          = $pad_script . "?app=$app&page=";
   $pad_location = $pad_host . $pad;
 
-  $pad_lvl         = 1;
   $pad_occur   [0] = 0;
   $pad_current [0] = [];
 
   $pad_eval_cnt = $pad_fld_cnt = $pad_lvl_cnt = $pad_trc_cnt = $pad_occur_cnt = 0;
 
+  pad_trace ("pad/start", "app=$app page=$page session=$PADSESSID request=$PADREQID", TRUE);
+
+  $pad_lvl  = 1;  
   $pad_next = $page;
-
-  if ($pad_trace)
-    pad_trace ("pad/start", "app=$app page=$page session=$PADSESSID request=$PADREQID", TRUE);
-
-  $pad_lib = PAD_APP . 'lib';
-  include PAD_HOME . 'inits/lib.php';
 
 ?>

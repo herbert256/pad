@@ -1,18 +1,45 @@
 <?php
 
-function pad_raw ( $data ) {
+  function pad_build_location ($location, $html) {
 
-  return str_replace ( '}', '&close;', $data );
+    if ( $GLOBALS['pad_location_tag'])
+      return "{location '$location'}" . $html . '{/location}';
+    else
+      return $html;    
   
-}
+  }
 
-function pad_ignore () {
+  function pad_build_html ($file) {
 
-  pad_html ( '&open;' . $GLOBALS['pad_between'] . '&close;' );
+    if ( file_exists($file) ) 
+      return "{build 'html' | '$file'}" . pad_get_html ($file) . "{/build}";
+    else
+      return '';
 
-  return FALSE;
-  
-}
+  }
+
+  function pad_build_php ($file) {
+
+    if ( file_exists($file) ) 
+      return "{build 'php' | '$file'}";
+    else
+      return '';
+
+  }
+
+  function pad_raw ( $data ) {
+
+    return str_replace ( '}', '&close;', $data );
+    
+  }
+
+  function pad_ignore () {
+
+    pad_html ( '&open;' . $GLOBALS['pad_between'] . '&close;' );
+
+    return FALSE;
+    
+  }
 
   function pad_is_object ($item) {
 
@@ -448,8 +475,8 @@ function pad_ignore () {
     
     $html = str_replace(['\{', '\}','\|', '\='], ['&open;','&close;','&pipe;', '&eq;'], $html);
     
-    return "{location '$file'}" . $html . '{/location}';
-    
+    return pad_build_location ($file, $html);
+
   }
 
   

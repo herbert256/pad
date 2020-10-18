@@ -41,6 +41,9 @@
     $pad_tag_type = substr ($pad_tag, 0, $pad_ns_pos);
     $pad_tag      = substr ($pad_tag, $pad_ns_pos+1);
 
+    if ( ! file_exists ( PAD_HOME . "types/$pad_tag_type.php" ) ) 
+      return pad_html ( '&open;' . $pad_between . '&close;' );
+    
   } else {
 
     if     ( file_exists     ( PAD_APP  . "tags/$pad_tag.php" ) ) $pad_tag_type = 'app';

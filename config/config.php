@@ -1,5 +1,7 @@
 <?php
   
+  $pad_location_tag = FALSE;
+
   //  Error handling
 
   $pad_error_action = 'pad';  // 'pad'    = PAD's own full blown error handler.

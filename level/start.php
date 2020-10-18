@@ -61,7 +61,7 @@
 
   if ( $pad_single === TRUE and $pad_tag_type == 'data' )
     if ( trim($pad_base [$pad_lvl]) === '') 
-    include PAD_HOME . 'level/data_tag.php';
+      include PAD_HOME . 'level/data_tag.php';
 
   if ( isset ( $pad_parms_tag ['callback'] ) ) {
     $pad_callback = "init_tag";
