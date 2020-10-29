@@ -9,8 +9,7 @@
 
   $pad_lvl_cnt++;
 
-  if ($pad_trace)
-    pad_trace ("level/start", "nr=$pad_lvl_cnt " . '{' . $pad_between . '}' . " nr=$pad_lvl_cnt", TRUE);
+  pad_trace ("level/start", "nr=$pad_lvl_cnt " . '{' . $pad_between . '}' . " nr=$pad_lvl_cnt", TRUE);
 
   if ( isset ( $pad_current [$pad_lvl] ) )
     unset ( $pad_current [$pad_lvl] );
@@ -59,14 +58,15 @@
 
   include PAD_HOME . 'level/after.php';
 
-  if ( $pad_single === TRUE and $pad_tag_type == 'data' )
-    if ( trim($pad_base [$pad_lvl]) === '') 
-      include PAD_HOME . 'level/data_tag.php';
-
   if ( isset ( $pad_parms_tag ['callback'] ) ) {
     $pad_callback = "init_tag";
     include PAD_HOME . 'level/callback.php';
   }
+
+  if ( isset ( $pad_parms_tag ['parent'] ) )
+    include PAD_HOME . 'level/parent.php';
+  elseif ( $pad_single === TRUE and $pad_tag_type == 'data' and trim($pad_base [$pad_lvl]) === '' and ! isset ( $pad_parms_tag ['print'] ) )
+    include PAD_HOME . 'level/parent.php';
 
   if ( count ($pad_data[$pad_lvl] ) )
     include PAD_HOME . 'occurrence/start.php';

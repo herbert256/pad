@@ -21,38 +21,57 @@
         pad_dump_item ( "    $file:$line - $function\n");
     }
 
-  pad_dump_item ( "\n<b>Current:</b> {" . ($GLOBALS['pad_between'] ?? '???') . "}\n");
-
-  if ( isset($GLOBALS ['pad_lvl']) and $GLOBALS ['pad_lvl'] > 2 ) {
-    pad_dump_item ( "\n<b>Levels 1</b>\n");
-    for ($i=$GLOBALS ['pad_lvl']; $i; $i--) { 
-      pad_dump_item ( "    $i - " . ($GLOBALS['pad_parameters'] [$i] ['name']??'???') . ' - ' . ($GLOBALS['pad_parameters'] [$i] ['parm']??'') . "\n");
-    }
-
-  }
-
-   if ( isset ( $GLOBALS ['pad_parameters'] ) ) 
-    if ( isset ( $GLOBALS ['pad_lvl'] ) and $GLOBALS ['pad_lvl'] > 1 ) {
-      if ( count ($GLOBALS ['pad_parameters'] [$GLOBALS ['pad_lvl']] ) )
-        $lvl = $GLOBALS ['pad_lvl'];
-      else
-        $lvl = $GLOBALS ['pad_lvl'] - 1;
-      $work = $GLOBALS ['pad_parameters'] [$lvl];
-      foreach ($work as $key => $val)
-        if ( is_scalar($val) )
-          $work [$key] = substr(trim(preg_replace('/\s+/', ' ', $val) ), 0, 100);
-      pad_dump_array  ("Level: $lvl", $work );
-    }
-
     if ( isset ( $GLOBALS ['pad_trace_log'] ) )
       pad_dump_array  ("Trace", $GLOBALS ['pad_trace_log'] );
 
     if ( isset ( $GLOBALS ['pad_errors'] ) and is_array ( $GLOBALS ['pad_errors']) and count($GLOBALS ['pad_errors']) > 1 )
       pad_dump_array  ('Errors', $GLOBALS ['pad_errors'] );
 
+    if ( isset($GLOBALS ['pad_lvl']) and $GLOBALS ['pad_lvl'] > 2 ) {
+      pad_dump_item ( "\n<b>Levels</b>\n");
+      for ($i=$GLOBALS ['pad_lvl']; $i>1; $i--)
+        pad_dump_item ( "    $i - " . ($GLOBALS['pad_parameters'] [$i] ['name']??'???') . ' - ' . ($GLOBALS['pad_parameters'] [$i] ['parm']??'') . "\n");
+    }
+
+    function pad_dump_short ($G) {
+      return substr ( preg_replace('/\s+/', ' ', $G ), 0, 100 );
+    }
+
+    function pad_dump_sanitize ($array) {
+
+      foreach ($array as $key => $val)
+        if ( is_array ($val) )
+          $array [$key] = pad_dump_sanitize ($val);
+        elseif ( is_object($val) )
+          $array [$key] = '***object***';
+        elseif ( is_resource($val) )
+          $array [$key] = '***resource***';
+        elseif ( is_scalar($val) )
+          $array [$key] = pad_dump_short ( $val );
+
+      return $array;
+ 
+    }
+
+    if ( isset ( $GLOBALS ['pad_parameters'] ) and isset ( $GLOBALS ['pad_parameters'] ) ) {
+      for ( $lvl=$GLOBALS ['pad_lvl'];  $lvl>1; $lvl-- ) {
+        $work = $GLOBALS ['pad_parameters'] [$lvl];
+        foreach ($work as $key => $val)
+          if ( is_scalar($val) )
+            $work [$key] = substr(trim(preg_replace('/\s+/', ' ', $val) ), 0, 100);
+        pad_dump_array  ('Level '.$lvl, $work );
+        pad_dump_item ("    [result] => " . pad_dump_short ( $GLOBALS ['pad_result'] [$lvl] ) . "\n");
+        pad_dump_item ("    [base] => "   . pad_dump_short ( $GLOBALS ['pad_base']   [$lvl] ) . "\n");
+        pad_dump_item ("    [html] => "   . pad_dump_short ( $GLOBALS ['pad_html']   [$lvl] ) . "\n");
+      }
+    }
+
+    if ( isset ( $_REQUEST ) )
+      pad_dump_array  ('Request variables', $_REQUEST);
+      
     pad_dump_item ( "<br><b>APP variables</b>");
     foreach ($GLOBALS as $key => $value)
-      if ( substr($key, 0, 3) <> 'pad' and ! in_array($key, ['page','app','PADREQID','PHPSESSID','PADSESSID','GLOBALS','_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'] ) ) {
+      if ( substr($key, 0, 3) <> 'pad' and ! in_array($key, ['page','app','PADSESSID','PADREQID','PHPSESSID','PADREFID','GLOBALS','_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'] ) ) {
         if (is_object($value))
           pad_dump_object ($key, $value);
         elseif (is_array ($value))
@@ -60,43 +79,15 @@
         else
           pad_dump_item ( "\n  [$key] => " . htmlentities($value) );
       }
-
     pad_dump_item ( "\n ");
 
-    if ( isset ( $GLOBALS ['pad_parameters'] ) )
-      foreach ($GLOBALS ['pad_parameters'] as $key => $val)
-        pad_dump_array ('$pad_parameters['.$key.']', $GLOBALS ['pad_parameters'][$key]  );
-
-    if ( isset ( $GLOBALS ['pad_lvl'] ) )
-      pad_dump_item ( "\n<b>Level: ". $GLOBALS['pad_lvl'] . "</b>\n");
-
-   if ( isset ( $GLOBALS ['pad_key'] ) )
-          pad_dump_array ('$pad_key', $GLOBALS ['pad_key']  );
-
-    if ( isset ( $GLOBALS ['pad_data'] ) )
-      foreach ($GLOBALS ['pad_data'] as $key => $val)
-        if ($key > 1)
-          pad_dump_array ('$pad_data['.$key.']', $GLOBALS ['pad_data'][$key]  );
-      
-    if ( isset ( $GLOBALS ['pad_headers'] ) )
-      pad_dump_array  ('Headers-out',  $GLOBALS ['pad_headers'] );
-
-   if ( isset ( $GLOBALS ['pad_db'] ) )
-      pad_dump_array  ('db', $GLOBALS ['pad_db'] );
-
-    if ( isset ( $GLOBALS ['pad_db_lvl'] ) )
-      pad_dump_array  ('db_lvl', $GLOBALS ['pad_db_lvl'] );
-
-    if ( isset ( $_REQUEST ) )
-      pad_dump_array  ('Request variables', $_REQUEST);
-      
     if ( isset ( $GLOBALS ['pad_sql_connect'     ] ) ) pad_dump_object ('MySQL-App', $GLOBALS ['pad_sql_connect']      );
     if ( isset ( $GLOBALS ['pad_pad_sql_connect' ] ) ) pad_dump_object ('MySQL-PAD', $GLOBALS ['pad_pad_sql_connect']  );
 
     $pad = [];
-    $not = ['pad_base','pad_sql_connect','pad_pad_sql_connect','pad_headers','pad_data','pad_parameters', 'pad_errors', 'pad_result', 'pad_html', 'pad_output', 'pad_output_gz', 'pad_current'];
+    $not = ['pad_lib_directory', 'pad_lib_iterator', 'pad_lib_one', 'pad_base','pad_sql_connect','pad_pad_sql_connect','pad_headers','pad_data','pad_parameters', 'pad_errors', 'pad_result', 'pad_html', 'pad_output', 'pad_output_gz', 'pad_current'];
 
-    pad_dump_item ( "\n<b>Internal Pad variables</b>");
+    pad_dump_item ( "\n<b>Pad variables</b>");
 
     foreach ( $GLOBALS as $key => $value )
       if ( substr($key, 0, 3)  == 'pad' and ! in_array ( $key, $not) )
@@ -104,74 +95,33 @@
     sort($pad);
     
     foreach ($pad as $key)
-      if ( ! in_array($key, ['pad_data']))
         if (is_object($GLOBALS[$key]))
           pad_dump_object ($key, $GLOBALS[$key]);
-        elseif (is_array ($GLOBALS[$key]))
-          pad_dump_array ($key, $GLOBALS[$key], 1);
+        elseif (is_array ($GLOBALS[$key])) {
+          $work =  pad_dump_sanitize ($GLOBALS[$key]);
+          pad_dump_array ($key, $work, 1);
+        }
         else
-          pad_dump_item ( "\n  [$key] => " . htmlentities($GLOBALS[$key]));
+          pad_dump_item ( "\n  [$key] => " . htmlentities(pad_dump_short($GLOBALS[$key])));
+
+    pad_dump_item ( "\n" );
+                                              pad_dump_array  ('Headers-in',  getallheaders());
+    if ( isset ( $GLOBALS ['pad_headers'] ) ) pad_dump_array  ('Headers-out', $GLOBALS ['pad_headers'] );
 
     if ( isset ( $_GET )     )  pad_dump_array  ('GET',     $_GET);
     if ( isset ( $_POST )    )  pad_dump_array  ('POST',    $_POST);
     if ( isset ( $_COOKIE )  )  pad_dump_array  ('COOKIE',  $_COOKIE);
     if ( isset ( $_FILES )   )  pad_dump_array  ('FILES',   $_FILES);
-    if ( isset ( $_SESSION ) )  pad_dump_array  ('SESSION', $_SESSION);
-                                pad_dump_array  ('HEADERS', getallheaders());
+    if ( isset ( $_SESSION ) )  pad_dump_array  ('SESSION', $_SESSION);  
     if ( isset ( $_SERVER )  )  pad_dump_array  ('SERVER',  $_SERVER);
     if ( isset ( $_ENV )     )  pad_dump_array  ('ENV',     $_ENV);
 
-    pad_dump_array ( 'Loaded files', get_included_files() );
+    pad_dump_item ( "\n".'<br><b><hr></b>');
 
-    $pad = $app = [];
-    $user = get_defined_functions () ['user'];
-
-    foreach ($user as $fun)
-      if ( substr($fun, 0, 4) == 'pad_' )
-        $pad [] = $fun;
-      else
-        $app [] = $fun;
-
-    pad_dump_array ( 'APP functions', $app );
-
-    $pad = [];
-    foreach ( $GLOBALS as $key => $value )
-      if ( substr($key, 0, 3)  == 'pad' and in_array ( $key, $not) )
-        $pad [] = $key;
-    sort($pad);
-    
-    foreach ($pad as $key)
-      if ( ! in_array($key, ['pad_data']))
-        if (is_object($GLOBALS[$key]))
-          pad_dump_object ($key, $GLOBALS[$key]);
-        elseif (is_array ($GLOBALS[$key]))
-          pad_dump_array ($key, $GLOBALS[$key], 1);
-        else
-          pad_dump_item ( "\n  [$key] => " . htmlentities($GLOBALS[$key]));
-
-    if ( isset ( $GLOBALS ['pad_data'][1] ) )
-     pad_dump_array ('$pad_data[1]', $GLOBALS ['pad_data'][1]  );
+    pad_dump_item ( htmlentities ( print_r ( $GLOBALS ) ) );
 
     pad_dump_item ( "</pre></div>");
 
-  }
-
-
-  function pad_php_internals () {
-    
-    pad_dump_item ( "<br><br><hr><b>PHP Internals</b><hr>") ;
-
-    pad_dump_array ( 'get_declared_interfaces', get_declared_interfaces () );
-    pad_dump_array ( 'get_declared_traits',     get_declared_traits () );
-    pad_dump_array ( 'get_declared_classes',    get_declared_classes () );
-
-    $modules = get_loaded_extensions ();
-    pad_dump_array ('get_loaded_extensions', $modules);
-    foreach ($modules as $module)
-      pad_dump_array ($module, get_extension_funcs($module));
-
-    pad_dump_array ( 'get_defined_constants', get_defined_constants () );
-    
   }
   
   function pad_dump_array ( $txt, $arr, $x=0) {
@@ -214,7 +164,7 @@
 
   }
 
-  function pad_dump_item ($item, $echo=1) {
+  function pad_dump_item ( $item ) {
     
     if ( isset($GLOBALS['pad_track_vars_file']) )
 
@@ -222,7 +172,7 @@
     
     else {
       
-      if ( pad_local() and $echo) {
+      if ( pad_local() ) {
         echo $item;
         $GLOBALS['pad_sent'] = TRUE;
       }

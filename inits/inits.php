@@ -1,29 +1,10 @@
 <?php
 
-  function pad_boot_error ( $info ) {
-
-echo $info;
-exit();
-
-    header ( 'HTTP/1.0 500 Internal Server Error' );
-
-    $id = uniqid ();
-    
-    echo "Error: $id";
-
-    error_log ( "PAD error: $id $info", 4 );
-
-    exit ();
-
-  }
-
   $app  = $_REQUEST['app']  ?? 'pad';
   $page = $_REQUEST['page'] ?? 'index';
 
   if ( ! preg_match ( '/^[A-Za-z0-9_]+$/',   $app  ) ) pad_boot_error ("Invalid name for app: $app");
   if ( ! preg_match ( '/^[A-Za-z0-9\/_]+$/', $page ) ) pad_boot_error ("Invalid name for page: $page");
-
-  $pad_trace_file = "trace.txt";
 
   $pad_lib = PAD_HOME . 'lib';
   include PAD_HOME . 'inits/lib.php';
@@ -31,8 +12,6 @@ exit();
   $PADSESSID = $_GET['PADSESSID'] ?? $_COOKIE['PADSESSID'] ?? pad_random_string(16);
   $PADREFID  = $_GET['PADREQID']  ?? $_COOKIE['PADREQID']  ?? '';
   $PADREQID  = pad_random_string(16);
-
-  $pad_trace_file = "trace/$app/$page/$PADREQID.txt";
 
   $pad_output  = '';
   $pad_stop    = '500';
@@ -49,13 +28,16 @@ exit();
     include PAD_APPS . $app . "/pages/$page.php";
     exit();
   }
-
-  include PAD_HOME . 'inits/error.php';
+ 
+  include PAD_HOME . 'inits/error.php';  
 
   if ( isset($_SERVER['QUERY_STRING']) and $_SERVER['QUERY_STRING'] and strpos($_SERVER['QUERY_STRING'], '=') === FALSE )
     include PAD_HOME . 'inits/fast.php';
 
   define ( 'PAD_APP', PAD_APPS . $app . '/' );
+
+  $pad_trace_file = "trace/$app/$page/$PADREQID.txt";
+  pad_trace ("pad/start", "app=$app page=$page session=$PADSESSID request=$PADREQID", TRUE);
 
   if ( ! isset($_COOKIE['PADSESSID']) or $_COOKIE['PADSESSID'] <> $PADSESSID )
     setCookie ('PADSESSID', $PADSESSID, time() + $pad_cookie_time);
@@ -71,9 +53,6 @@ exit();
 
   include PAD_HOME . 'cache/cache.php';
 
-  $pad_lib = PAD_APP . 'lib';
-  include PAD_HOME . 'inits/lib.php';
-    
   pad_get_vars ();
   
   $pad_request_scheme = $_SERVER ['REQUEST_SCHEME'] ?? 'http';
@@ -96,7 +75,6 @@ exit();
 
   $pad_eval_cnt = $pad_fld_cnt = $pad_lvl_cnt = $pad_trc_cnt = $pad_occur_cnt = 0;
 
-  pad_trace ("pad/start", "app=$app page=$page session=$PADSESSID request=$PADREQID", TRUE);
 
   $pad_lvl  = 1;  
   $pad_next = $page;

@@ -397,10 +397,9 @@
     if ( ! $GLOBALS['pad_timing'] )
       return;
 
-    global $pad_timings, $pad_boot;
+    global $pad_timings;
 
-    $pad_timings ['php'] = $pad_boot       - $_SERVER['REQUEST_TIME_FLOAT'];
-    $pad_timings ['user']  = microtime(true) - $pad_boot;
+    $pad_timings ['total']  = microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'];;
 
     foreach ($pad_timings as $key => $val)
       $pad_timings [$key] = (int) ( $val * 1000000 );

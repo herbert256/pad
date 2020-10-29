@@ -7,13 +7,19 @@
 
   pad_trace('pair', "start: $pad_pair_search");
 
+  if ( substr($pad_html[$pad_lvl],$pad_pos-1,1) == '/') {
+    pad_trace('pair', "result: SINGLE-1");
+    $pad_single  = TRUE;
+    return TRUE;
+  } 
+
 go2:  
   do {
 
     $pad_pos = strpos($pad_html[$pad_lvl] , '{/' . $pad_pair_search, $pad_pos);
 
     if ($pad_pos === FALSE) {
-      pad_trace('pair', "result: SINGLE");
+      pad_trace('pair', "result: SINGLE-2");
       $pad_single  = TRUE;
       $pad_content = '';
       return TRUE;
@@ -23,15 +29,11 @@ go2:
 
     $pad_pos++;
 
-  } while ( ( substr_count($pad_content, '{'.$pad_pair_search.' ' ) + substr_count($pad_content, '{'.$pad_pair_search.'}' ) )
-              <>    
-            ( substr_count($pad_content, '{/'.$pad_pair_search.' ') + substr_count($pad_content, '{/'.$pad_pair_search.'}') ) );
+  } while ( substr_count($pad_content, '{'.$pad_pair_search ) <> substr_count($pad_content, '{/'.$pad_pair_search) );
 
-$pad_pair_check = substr($pad_html[$pad_lvl], $pad_pos + strlen($pad_pair_search) + 1, 1);
-if ( ! ($pad_pair_check == ' ' or $pad_pair_check == '}' or $pad_pair_check ==  '|') ) {
-  $pad_pos++;
-  goto go2;
-}
+  $pad_pair_check = substr($pad_html[$pad_lvl], $pad_pos + strlen($pad_pair_search) + 1, 1);
+  if ( ! ($pad_pair_check == ' ' or $pad_pair_check == '}' or $pad_pair_check ==  '|') )
+    goto go2;
  
   pad_trace('pair', "result: PAIR");
   

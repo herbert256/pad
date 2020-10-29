@@ -2,8 +2,6 @@
 
   function pad_data ($input, $content='') {
 
-    $GLOBALS ['AAA'] = $input;
-
     if     ( $input === NULL       )  $data = [];
     elseif ( is_array ( $input)    )  $data = $input;
     elseif ( is_object ( $input)   )  $data = pad_xxx_to_array ( $input );
