@@ -1,20 +1,25 @@
 #!/bin/bash
 
-sudo service apache2 stop
+if [[ $EUID -ne 0 ]]; then
+	echo "Must be root"
+	exit 1
+fi
 
-sudo sed -i 's/RUN_USER=www-data/RUN_USER=herbert/g'   /etc/apache2/envvars
-sudo sed -i 's/RUN_GROUP=www-data/RUN_GROUP=herbert/g' /etc/apache2/envvars
+service apache2 stop
 
-sudo sed -i 's/var\/www/home\/herbert/g'            /etc/apache2/apache2.conf
-sudo sed -i 's/var\/www\/html/home\/herbert\/www/g' /etc/apache2/sites-enabled/000-default.conf
+sed -i 's/RUN_USER=www-data/RUN_USER=herbert/g'   /etc/apache2/envvars
+sed -i 's/RUN_GROUP=www-data/RUN_GROUP=herbert/g' /etc/apache2/envvars
 
-sudo sed -i 's/\/home\/herbert\/php/\/var\/www\/php/g' /etc/apache2/apache2.conf
+sed -i 's/var\/www/home\/herbert/g'            /etc/apache2/apache2.conf
+sed -i 's/var\/www\/html/home\/herbert\/www/g' /etc/apache2/sites-enabled/000-default.conf
 
-mysql --user mariadb < /home/herbert/pad/doc/database.sql
-mysql --user mariadb < /home/herbert/pad/cache/cache.sql
-mysql --user mariadb < /home/herbert/apps/manual/database/demo.sql
-mysql --user mariadb < /home/herbert/apps/classicmodels/config/classicmodels.sql
+sed -i 's/\/home\/herbert\/php/\/var\/www\/php/g' /etc/apache2/apache2.conf
 
-sudo chown -R herbert:herbert /var/www
+mysql < /home/herbert/pad/doc/database.sql
+mysql < /home/herbert/pad/cache/cache.sql
+mysql < /home/herbert/apps/manual/database/demo.sql
+mysql < /home/herbert/apps/classicmodels/config/classicmodels.sql
 
-sudo service apache2 start
+chown -R herbert:herbert /var/www
+
+service apache2 start
