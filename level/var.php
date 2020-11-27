@@ -2,8 +2,7 @@
 
   $pad_fld_cnt++;
 
-  if ($pad_trace) 
-    pad_trace ("field/start", "nr=$pad_fld_cnt " . '{' . $pad_between . '}');
+  pad_trace ("field/start", "nr=$pad_fld_cnt " . '{' . $pad_between . '}');
 
   $pad_key[$pad_lvl] = key($pad_data[$pad_lvl]);
 
@@ -46,12 +45,11 @@
     foreach ( $pad_data_default_end as $pad_v )
       $pad_opts [] = $pad_v;
 
-  if ( $pad_first == '!')
-    $pad_val = pad_raw ( pad_field_value ( $pad_fld ) );
-  else
-    $pad_val = pad_field_value ($pad_fld);
-
+  $pad_val = pad_field_value ($pad_fld);
   $pad_val = pad_var_opts ($pad_val, $pad_opts);
+
+  if ( $pad_first == '!')
+    $pad_val = pad_raw ( $pad_val );
 
   pad_trace ("field/end", "nr=$pad_fld_cnt value=$pad_val");
 

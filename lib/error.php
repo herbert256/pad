@@ -33,7 +33,7 @@
     $GLOBALS ['pad_errors'] [] = pad_error_msg ($error, $file, $line);
  
     if ( error_reporting() & $type )
-      pad_error_go ($error, $file, $line);
+      return pad_error_go ($error, $file, $line);
       
     return TRUE;
 
@@ -52,28 +52,26 @@
     if ( $GLOBALS['pad_exit'] == 9 )
       exit;
 
-    gc_collect_cycles();
-
     $error = error_get_last ();
 
     if ( ! is_null($error) )
-      pad_error_go ( 'SHUTDOWN: ' . $error['message'], $error['file'], $error['line'] );
+      return pad_error_go ( 'SHUTDOWN: ' . $error['message'], $error['file'], $error['line'] );
     
   }
 
 
   function pad_error_go ($error, $file, $line) {
 
-    if ( ($GLOBALS['pad_exit']??0) <> 1 )
+    if ( $GLOBALS['pad_exit'] <> 1 )
       pad_error_2 ("TWO: $error", $file, $line);
       
     $GLOBALS['pad_exit'] = 2;
-    
-    global $pad_error_action, $PADREQID;
-
+ 
     set_error_handler     ('pad_error_handler_2'  );
     set_exception_handler ('pad_error_exception_2');
-        
+  
+    global $pad_error_action, $PADREQID;
+       
     if ( ! in_array($pad_error_action, ['report', 'ignore']) ) {    
       $buffer  = '';
       $buffers = ob_get_level ();
@@ -91,10 +89,10 @@
     if ( $pad_error_action == 'abort'  ) pad_exit ();
     if ( $pad_error_action == 'pad'    ) pad_error_pad ($msg);
 
+    $GLOBALS['pad_exit'] = 1;
+
     restore_error_handler     ();
     restore_exception_handler ();
-
-    $GLOBALS['pad_exit'] = 1;
 
     return FALSE;
 
@@ -148,7 +146,7 @@
     if ( pad_local() )
       echo "<pre><hr><b>$error</b><hr></pre>";
     else {
-      echo 'Ërror: ' . pad_id ();
+      echo 'Error: ' . pad_id ();
       pad_error_log ( $error );
     }
 

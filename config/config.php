@@ -10,10 +10,11 @@
                               // 'report' = As 'none' but report the error also.
                               // 'abort'  = Abort as soon as possible.
                               // 'close'  = Also aborting but try to close nicely (tracking/logging/etc)
+                              // 'boot'   = Use the lightweight PAD boot error handler
 
   $pad_error_level  = 'all';  // Kind of errors that will be processed by $pad_error_action
                               // 'none' | 'error' | 'warning' | 'notice' | 'all'
-                              // (not used when $pad_error_action is 'php'
+                              // (not used when $pad_error_action is 'php' or 'boot')
 
   // Trace the internal working of PAD
 
