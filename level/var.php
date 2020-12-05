@@ -4,8 +4,6 @@
 
   pad_trace ("field/start", "nr=$pad_fld_cnt " . '{' . $pad_between . '}');
 
-  $pad_key[$pad_lvl] = key($pad_data[$pad_lvl]);
-
   $pad_pipe  = strpos($pad_between, '|');
   $pad_space = strpos($pad_between, ' ');
 
@@ -26,12 +24,12 @@
 
   }
 
+  if ( substr($pad_fld, 0, 1) == '$' )
+    $pad_fld = pad_field_value ($pad_fld);
+
   if ( ! pad_field_check ( $pad_fld ) )
     return '&open;' . $pad_between . '&close;';
 
-  if ( substr($pad_fld, 0, 1) == '$' )
-    $pad_fld = pad_field_value ($pad_fld);
-   
   $pad_opts = [];
 
   if ( $pad_first <> '!')

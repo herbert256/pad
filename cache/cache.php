@@ -1,9 +1,4 @@
 <?php
-  
-  if ( isset($_COOKIE['cache']) and $_COOKIE['cache'] <> 'fast') {
-    $pad_cache_server_age  = 3600;
-    $pad_cache_server_type = $_COOKIE['cache'];
-  }
 
   $pad_client_etag = isset($_SERVER['HTTP_IF_NONE_MATCH']) ? substr($_SERVER['HTTP_IF_NONE_MATCH'], 1, 22) : '';
 
@@ -11,7 +6,7 @@
     or count($_FILES)
     or (!$pad_cache_server_age and !$pad_cache_client_age or !$pad_cache_server_type)
     or ($pad_client_etag and ! preg_match('/^[a-zA-Z0-9-_]+$/', $pad_client_etag) ) ) {
-    $pad_cache = $pad_cache_server_age = $pad_cache_client_age = FALSE;
+    $pad_cache = $pad_cache_client_age = $pad_cache_server_age = FALSE;
     return;
   }
 
@@ -35,11 +30,8 @@
       $pad_cache_etag = $pad_client_etag;
 
     if ( $pad_cache_age >= $pad_cache_max ) {
-      pad_timing_end ('cache');
       $pad_stop = '304';
-      $pad_time = $pad_cache_age;
-      $pad_etag = $pad_cache_etag;
-      include PAD_HOME . 'exits/stop.php';
+      include PAD_HOME . 'cache/stop.php';
     }
     
   }
@@ -58,11 +50,8 @@
       if ($pad_output) {
         if ( $GLOBALS['pad_cache_server_gzip'] and ! $GLOBALS['pad_client_gzip'] )
           $pad_output = pad_unzip($pad_output);
-        pad_timing_end ('cache');
-        $pad_stop = '200';
-        $pad_time = $pad_cache_age;
-        $pad_etag = $pad_cache_etag;
-        include PAD_HOME . 'exits/stop.php';
+         $pad_stop = '200';
+        include PAD_HOME . 'cache/stop.php';
       }
 
     }

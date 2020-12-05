@@ -12,8 +12,7 @@
   if ( $GLOBALS['pad_track_vars'] )
     pad_track_vars ('');
 
-  if ( $GLOBALS['pad_trace'] )
-    pad_trace ("pad/end", "app=" . $GLOBALS['app'] .  " page=" . $GLOBALS['page'] .  "  session=" . $GLOBALS['PADSESSID'] .  " request=" . $GLOBALS['PADREQID'], TRUE);
+  pad_trace ("pad/end", "app=" . $GLOBALS['app'] .  " page=" . $GLOBALS['page'] .  "  session=" . $GLOBALS['PADSESSID'] .  " request=" . $GLOBALS['PADREQID'], TRUE);
 
   pad_close_session ();
 
@@ -71,16 +70,18 @@
   function pad_track_file ($pad_stop) {
     
     $id = pad_id ();
-    
+  
     $track = [
-        'id'        => $id,
-        'app'       => $GLOBALS ['app']  ?? '',
+        'session'   => $GLOBALS ['PADSESSID'] ?? '',
+        'request'   => $GLOBALS ['PADREQID'] ?? '',
+        'reference' => $GLOBALS ['PADREFID '] ?? '',
+        'app'       => $GLOBALS ['app'] ?? '',
         'page'      => $GLOBALS ['page'] ?? '',
         'start'     => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0,
         'end'       => microtime(true),
         'length'    => $GLOBALS ['pad_len'] ?? 0,
         'stop'      => $pad_stop ?? '',
-        'etag'      => $GLOBALS ['pad_etag'] ?? $GLOBALS['pad_cache_etag'] ?? '',
+        'etag'      => $GLOBALS ['pad_etag'] ?? '',
         'uri'       => $_SERVER ['REQUEST_URI']     ?? '' ,
         'referer'   => $_SERVER ['HTTP_REFERER']    ?? '' ,
         'remote'    => $_SERVER ['REMOTE_ADDR']     ?? '' ,

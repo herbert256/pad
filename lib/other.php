@@ -40,7 +40,8 @@
   function pad_exit () {
 
     $GLOBALS['pad_exit'] = 9;
-
+    $GLOBALS['pad_no_boot_shutdown'] = TRUE;
+    
     exit();
 
   }
@@ -172,14 +173,15 @@
     
   }
 
+  
   function pad_close_html () {
 
     echo "\r\n";
-
     for ($i = 1; $i <= 25; $i++)
       echo "</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>\r\n";
 
   }
+
 
   function pad_local () {
 
@@ -259,7 +261,7 @@
   function pad_file_put_contents ($file, $data, $append=0) {
     
     if ( ! preg_match('/^[A-Za-z0-9_\-\/\.]+$/', $file) or strpos($file, '//') or strpos($file, '..') )
-      pad_error ("Invalid file name: $file");
+      return pad_error ("Invalid file name: $file");
 
     $file = PAD_DATA . $file;
 
@@ -399,7 +401,8 @@
 
     global $pad_timings;
 
-    $pad_timings ['total']  = microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'];;
+    $pad_timings ['init'] = $GLOBALS['pad_boot'] - $_SERVER['REQUEST_TIME_FLOAT'];
+    $pad_timings ['pad']  = microtime(true) -$GLOBALS['pad_boot'];
 
     foreach ($pad_timings as $key => $val)
       $pad_timings [$key] = (int) ( $val * 1000000 );
@@ -408,6 +411,4 @@
 
   }
   
-
-
 ?>

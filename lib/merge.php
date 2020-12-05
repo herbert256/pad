@@ -173,10 +173,10 @@
     if     ( $analyse === NULL         ) return ''; 
     elseif ( $analyse === FALSE        ) return '';
     elseif ( $analyse === TRUE         ) return '1';
-    elseif ( is_array     ( $analyse ) ) return count($analyse);
+    elseif ( is_array     ( $analyse ) ) return (string) count($analyse);
     elseif ( is_object    ( $analyse ) ) return '';
     elseif ( is_resource  ( $analyse ) ) return '';
-    else                                return (string) $analyse;
+    else                                 return (string) $analyse;
 
   }
 
@@ -414,10 +414,6 @@
       $content = substr($content, $first+1, $last-$first);
       return;
     }
-
-//    $array = preg_split("/\r\n|\n|\r/", $content);
-//    if ( count ($array) > 1 )
-//      $type = 'json';
 
   }
 

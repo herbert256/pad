@@ -33,12 +33,14 @@
 
     set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
     $error_level = error_reporting(E_ALL);
+
     try {
       pad_eval_go ( $pad_eval_result, array_key_first($pad_eval_result), array_key_last($pad_eval_result), $myself) ;
     }
     catch (Throwable $e) {
-      return pad_eval_error ( $e->getMessage() );
+      return pad_eval_error ( $e->getMessage() . ' ' . $e->getFile() . '/' . $e->getLine() );
     }
+
     error_reporting($error_level);
     restore_error_handler();
 

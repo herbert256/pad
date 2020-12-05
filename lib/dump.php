@@ -33,25 +33,6 @@
         pad_dump_item ( "    $i - " . ($GLOBALS['pad_parameters'] [$i] ['name']??'???') . ' - ' . ($GLOBALS['pad_parameters'] [$i] ['parm']??'') . "\n");
     }
 
-    function pad_dump_short ($G) {
-      return substr ( preg_replace('/\s+/', ' ', $G ), 0, 100 );
-    }
-
-    function pad_dump_sanitize ($array) {
-
-      foreach ($array as $key => $val)
-        if ( is_array ($val) )
-          $array [$key] = pad_dump_sanitize ($val);
-        elseif ( is_object($val) )
-          $array [$key] = '***object***';
-        elseif ( is_resource($val) )
-          $array [$key] = '***resource***';
-        elseif ( is_scalar($val) )
-          $array [$key] = pad_dump_short ( $val );
-
-      return $array;
- 
-    }
 
     if ( isset ( $GLOBALS ['pad_parameters'] ) and isset ( $GLOBALS ['pad_parameters'] ) ) {
       for ( $lvl=$GLOBALS ['pad_lvl'];  $lvl>1; $lvl-- ) {
@@ -117,13 +98,30 @@
     if ( isset ( $_ENV )     )  pad_dump_array  ('ENV',     $_ENV);
 
     pad_dump_item ( "\n".'<br><b><hr></b>');
-
-    pad_dump_item ( htmlentities ( print_r ( $GLOBALS ) ) );
-
     pad_dump_item ( "</pre></div>");
 
   }
-  
+
+  function pad_dump_short ($G) {
+    return substr ( preg_replace('/\s+/', ' ', $G ), 0, 100 );
+  }
+
+  function pad_dump_sanitize ($array) {
+
+    foreach ($array as $key => $val)
+      if ( is_array ($val) )
+        $array [$key] = pad_dump_sanitize ($val);
+      elseif ( is_object($val) )
+        $array [$key] = '***object***';
+      elseif ( is_resource($val) )
+        $array [$key] = '***resource***';
+      elseif ( is_scalar($val) )
+        $array [$key] = pad_dump_short ( $val );
+
+    return $array;
+
+  }
+
   function pad_dump_array ( $txt, $arr, $x=0) {
 
     if ( $x and ! count ($arr )) {

@@ -5,12 +5,11 @@
   //  Error handling
 
   $pad_error_action = 'pad';  // 'pad'    = PAD's own full blown error handler.
+                              // 'boot'   = Use the lightweight PAD boot error handler
                               // 'php'    = Use the PHP defaults (php.ini).
+                              // 'abort'  = Abort as soon as possible.
                               // 'none'   = Ignore every error and continue processing.
                               // 'report' = As 'none' but report the error also.
-                              // 'abort'  = Abort as soon as possible.
-                              // 'close'  = Also aborting but try to close nicely (tracking/logging/etc)
-                              // 'boot'   = Use the lightweight PAD boot error handler
 
   $pad_error_level  = 'all';  // Kind of errors that will be processed by $pad_error_action
                               // 'none' | 'error' | 'warning' | 'notice' | 'all'

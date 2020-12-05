@@ -29,8 +29,6 @@
     exit();
   }
  
-  include PAD_HOME . 'inits/error.php';  
-
   if ( isset($_SERVER['QUERY_STRING']) and $_SERVER['QUERY_STRING'] and strpos($_SERVER['QUERY_STRING'], '=') === FALSE )
     include PAD_HOME . 'inits/fast.php';
 
@@ -75,8 +73,14 @@
 
   $pad_eval_cnt = $pad_fld_cnt = $pad_lvl_cnt = $pad_trc_cnt = $pad_occur_cnt = 0;
 
-
   $pad_lvl  = 1;  
   $pad_next = $page;
+
+  include PAD_HOME . 'inits/error.php';  
+
+  $pad_lib = PAD_APP . 'lib';
+  include PAD_HOME . 'inits/lib.php';
+
+  $pad_timings = $pad_timings_start = [];
 
 ?>
