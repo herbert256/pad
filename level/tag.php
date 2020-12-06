@@ -19,10 +19,11 @@
   if ( is_array($pad_tag_result) ) {
     if ( pad_is_default_data ( $pad_data [$pad_lvl] ) )
       $pad_data [$pad_lvl] = [];
-     pad_add_array_to_data ( $pad_tag_result, pad_tag_parm('type') );
+    pad_add_array_to_data ( $pad_tag_result, pad_tag_parm('type') );
   }
 
-  if ( pad_tag_parm ('data')     ) pad_add_array_to_data ( pad_tag_parm ('data'), pad_tag_parm('type') );
+  if ( pad_tag_parm ('data') ) 
+    pad_add_array_to_data ( pad_tag_parm ('data'), pad_tag_parm('type') );
 
   if ( $pad_tag_result === NULL or ! isset ($pad_tag_result) ) {
     $pad_tag_result = $pad_content = $pad_false = $pad_tag_ob = '';

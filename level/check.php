@@ -1,16 +1,16 @@
 <?php
 
-  if ( isset ( $pad_parms_tag ['toContentStore'] ) ) {
+  if ( isset ( $pad_parms_tag ['toContent'] ) ) {
     
     if ( $pad_tag == 'content' )
-      pad_error ('@toContentStore not allowed with the {content} tag');
+      pad_error ('@toContent not allowed with the {content} tag');
  
   }
 
-  if ( isset ( $pad_parms_tag ['toDataStore'] ) ) {
+  if ( isset ( $pad_parms_tag ['toData'] ) ) {
 
     if ( $pad_tag == 'data' )
-      pad_error ('@toDataStore not allowed with the {data} tag');
+      pad_error ('@toDataS not allowed with the {data} tag');
  
   }
 

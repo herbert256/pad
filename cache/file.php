@@ -1,12 +1,12 @@
 <?php
 
 
-  function pad_cache_init ($url, $etag) {
+  function pad_cache_init_file ($url, $etag) {
 
   }
 
 
-  function pad_cache_etag ($etag) {
+  function pad_cache_etag_file ($etag) {
     
     global $pad_cache_file;
 
@@ -15,7 +15,7 @@
   }
 
   
-  function pad_cache_url ($url) {
+  function pad_cache_url_file ($url) {
 
     global $pad_cache_file;
 
@@ -30,7 +30,7 @@
   }
 
 
-  function pad_cache_get ($etag) {
+  function pad_cache_get_file ($etag) {
 
     global $pad_cache_file;
 
@@ -39,7 +39,7 @@
   }
 
 
-  function pad_cache_store ($url, $etag, $data) {
+  function pad_cache_store_file ($url, $etag, $data) {
 
     global $pad_cache_file;
     
@@ -60,7 +60,7 @@
   }
 
   
-  function pad_cache_update ($url, $etag) {
+  function pad_cache_update_file ($url, $etag) {
 
     global $pad_cache_file;
  
@@ -69,7 +69,7 @@
   }
 
 
-  function pad_cache_delete ($url, $etag) {
+  function pad_cache_delete_file ($url, $etag) {
 
     global $pad_cache_file;
 

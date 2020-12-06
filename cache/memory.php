@@ -1,24 +1,24 @@
 <?php
 
-  function pad_cache_init ($url, $etag) {
+  function pad_cache_init_memory ($url, $etag) {
     $GLOBALS['pad_cache_mem'] = new Memcached();
     $GLOBALS['pad_cache_mem']->addServer($GLOBALS['pad_cache_memory_host'], $GLOBALS['pad_cache_memory_port']);
   }
 
-  function pad_cache_etag ($get) {
+  function pad_cache_etag_memory ($get) {
     return $GLOBALS['pad_cache_mem']->get($get);
   }
 
-  function pad_cache_url ($url) {
+  function pad_cache_url_memory ($url) {
     return $GLOBALS['pad_cache_mem']->get($url);
   }
 
-  function pad_cache_get ($etag) {
+  function pad_cache_get_memory ($etag) {
     return $GLOBALS['pad_cache_mem']->get("x$etag");
   }
 
 
-  function pad_cache_store ($url, $etag, $data) {
+  function pad_cache_store_memory ($url, $etag, $data) {
 
     $GLOBALS['pad_cache_server_age'];
 
@@ -32,7 +32,7 @@
   }
 
   
-  function pad_cache_update ($url, $etag) {
+  function pad_cache_update_memory ($url, $etag) {
 
     $GLOBALS['pad_cache_mem']->set($etag, $_SERVER['REQUEST_TIME'], $GLOBALS['pad_cache_server_age']);
 
@@ -44,7 +44,7 @@
   }
 
 
-  function pad_cache_delete ($url, $etag) {
+  function pad_cache_delete_memory ($url, $etag) {
 
     $GLOBALS['pad_cache_mem']->delete($etag);
  

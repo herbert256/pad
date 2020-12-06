@@ -402,7 +402,7 @@
     global $pad_timings;
 
     $pad_timings ['init'] = $GLOBALS['pad_boot'] - $_SERVER['REQUEST_TIME_FLOAT'];
-    $pad_timings ['pad']  = microtime(true) -$GLOBALS['pad_boot'];
+    $pad_timings ['run']  = microtime(true) -$GLOBALS['pad_boot'];
 
     foreach ($pad_timings as $key => $val)
       $pad_timings [$key] = (int) ( $val * 1000000 );

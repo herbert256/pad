@@ -1,7 +1,7 @@
 <?php
 
 
-  function pad_cache_init ($url, $etag) {
+  function pad_cache_init_db ($url, $etag) {
     
     global $pad_cache_db_connect, $pad_cache_db_host, $pad_cache_db_user, $pad_cache_db_password, $pad_cache_db_database;
     
@@ -10,7 +10,7 @@
   }
     
 
-  function pad_cache_db ( $sql, $vars=[] ) {
+  function pad_cache_db_db ( $sql, $vars=[] ) {
     
     global $pad_cache_db_connect;
 
@@ -19,28 +19,28 @@
   }
 
 
-  function pad_cache_etag ($etag) {
+  function pad_cache_etag_db ($etag) {
 
     return pad_cache_db ( "field age from etag where etag='{0}'", [$etag] );
 
   }
 
   
-  function pad_cache_url ($url) {
+  function pad_cache_url_db ($url) {
 
     return pad_cache_db ( "record age, etag from url where url='{0}'", [$url] );
 
   }
 
 
-  function pad_cache_get ($etag) {
+  function pad_cache_get_db ($etag) {
 
     return pad_cache_db ( "field data from data where etag='{0}'", [$etag] );
 
   }
 
 
-  function pad_cache_store ($url, $etag, $data) {
+  function pad_cache_store_db ($url, $etag, $data) {
 
     pad_cache_db ( "replace etag values ('{0}', {1})", [$etag,$_SERVER['REQUEST_TIME']] );
 
@@ -52,7 +52,7 @@
   }
 
   
-  function pad_cache_update ($url, $etag) {
+  function pad_cache_update_db ($url, $etag) {
 
     pad_cache_db ( "update etag set age={0} where etag='{1}'", [$_SERVER['REQUEST_TIME'],$etag] );
 
@@ -62,7 +62,7 @@
   }
 
 
-  function pad_cache_delete ($url, $etag) {
+  function pad_cache_delete_db ($url, $etag) {
 
     pad_cache_db ( "delete from etag where etag='{0}'", [$etag] );
  

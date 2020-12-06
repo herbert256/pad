@@ -13,10 +13,8 @@
   $pad_true_false [$pad_lvl] = pad_true_false ($pad_tag_result);
 
   $pad_tag_result_type = pad_analyze_var ($pad_tag_result);
+  $pad_tag_result_data = pad_var_data    ($pad_tag_result);
   
-  if ($pad_trace) {
-    $pad_trace2 = pad_var_data ($pad_tag_result) . $pad_tag_ob; 
-    pad_trace ("tag/$pad_walk", "tag=$pad_tag result_type=$pad_tag_result_type|result_data=" . $pad_trace2, TRUE);
-  }
+  pad_trace ("tag/$pad_walk", "tag=$pad_tag result_type=$pad_tag_result_type|result_data=$pad_tag_result_data$pad_tag_ob", TRUE);
 
 ?>

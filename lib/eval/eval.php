@@ -71,9 +71,7 @@
 
     pad_trace ("eval/error", "nr=$pad_eval_cnt error=$txt result=$return");
 
-    pad_error ("Eval: $txt: $pad_eval_start --> $return");
-
-    return '';
+    return $pad_eval_start;
 
   }
 
