@@ -1,5 +1,43 @@
 <?php
 
+
+  function pad_set_global ( $name, $value ) {
+
+    global $pad_lvl, $pad_save_vars, $pad_delete_vars;
+    
+    if ( isset($GLOBALS [$name]) and ! isset ($pad_save_vars [$pad_lvl] [$name]) )
+      $pad_save_vars [$pad_lvl] [$name] = $GLOBALS [$name];
+
+    if ( ! isset ( $GLOBALS [$name] ) )
+      $pad_delete_vars [$pad_lvl] [] = $name;
+    else
+      unset ( $GLOBALS [$name] );
+
+    $GLOBALS [$name] = $value;
+
+  }
+
+
+  function pad_reset ($start, $end) {
+
+    global $pad_save_vars, $pad_delete_vars;
+  
+    for ($lvl = $end; $lvl>=$start; $lvl--)  {    
+
+      foreach ( $pad_save_vars [$lvl] as $key => $value) {
+        if ( $GLOBALS [$key] )
+          unset ($GLOBALS [$key] );
+        $GLOBALS [$key]= $value;
+      }
+
+      foreach ( $pad_delete_vars [$lvl] as $key)
+        unset ($GLOBALS [$key]);
+
+    }
+
+  }
+
+
   function pad_build_location ($location, $html) {
 
     if ( $GLOBALS['pad_location_tag'])
@@ -112,6 +150,15 @@
     }
 
     return FALSE;
+
+  }
+
+
+  function pad_syntax_error ($error='') {
+
+    pad_ignore();
+
+    return pad_error ( $error );
 
   }
 
@@ -232,24 +279,6 @@
      return ':' . $work;
 
   }
-  
-
-  function pad_reset ($start, $end) {
-
-    global $pad_save_vars, $pad_delete_vars;
-  
-    for ($lvl = $end; $lvl>=$start; $lvl--)  {    
-
-      foreach ( $pad_save_vars [$lvl] as $key => $value) {
-        $GLOBALS [$key] = $value;
-      }
-
-      foreach ( $pad_delete_vars [$lvl] as $key)
-        unset ($GLOBALS [$key]);
-
-    }
-
-  }
 
 
   function pad_tag_flag ($flag) {
@@ -296,6 +325,7 @@
 
   }  
 
+
   function pad_find_lvl ($search = '') {
 
     global $pad_lvl, $pad_parameters;
@@ -310,23 +340,6 @@
       return $pad_lvl + $find;
 
     return FALSE;
-
-  }
-
-
-  function pad_set_global ( $name, $value ) {
-
-    global $pad_lvl, $pad_save_vars, $pad_delete_vars;
-    
-    if ( isset($GLOBALS [$name]) and ! isset ($pad_save_vars [$pad_lvl] [$name]) )
-      $pad_save_vars [$pad_lvl] [$name] = $GLOBALS [$name];
-
-    if ( ! isset ( $GLOBALS [$name] ) )
-      $pad_delete_vars [$pad_lvl] [] = $name;
-    else
-      unset ( $GLOBALS [$name] );
-
-    $GLOBALS [$name] = $value;
 
   }
 

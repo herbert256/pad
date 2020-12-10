@@ -11,10 +11,6 @@
 
   pad_trace ("occur/start", "nr=$pad_occur_cnt key=" . $pad_key [$pad_lvl] . ' html=' . $pad_html[$pad_lvl]);
 
-  if ( $pad_tag <> 'set' or $pad_pair )
-    foreach ( $pad_parms_set as $pad_k => $pad_v )
-      pad_set_global ( $pad_k, $pad_v );
-
   $pad_current [$pad_lvl] = $pad_data [$pad_lvl] [$pad_key [$pad_lvl]];
 
   if ( $pad_walks [$pad_lvl] <> 'start' and isset ( $pad_parms_tag ['toDataStore'] ))

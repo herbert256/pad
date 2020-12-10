@@ -1,5 +1,6 @@
 <?php
   
+  $pad_check_syntax = TRUE;
   $pad_location_tag = FALSE;
 
   //  Error handling

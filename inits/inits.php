@@ -49,7 +49,7 @@
   if ($pad_track_db_request)
     $pad_track_db_session = TRUE;
 
-  include PAD_HOME . 'cache/cache.php';
+  include PAD_HOME . 'cache/inits.php';
 
   pad_get_vars ();
   

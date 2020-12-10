@@ -17,7 +17,13 @@
     return;
   }
 
-  $pad_between = substr($pad_html[$pad_lvl], $pad_start[$pad_lvl]+1, $pad_end[$pad_lvl]-$pad_start[$pad_lvl]-1);
+  $pad_pair = ( substr($pad_html[$pad_lvl],$pad_end[$pad_lvl]-1,1) == '/' );
+
+  if ( $pad_pair )
+    $pad_between = substr($pad_html[$pad_lvl], $pad_start[$pad_lvl]+1, $pad_end[$pad_lvl]-$pad_start[$pad_lvl]-2);
+  else
+    $pad_between = substr($pad_html[$pad_lvl], $pad_start[$pad_lvl]+1, $pad_end[$pad_lvl]-$pad_start[$pad_lvl]-1);
+
   $pad_first   = substr($pad_between, 0, 1);
   $pad_words   = preg_split("/[\s]+/", $pad_between, 2, PREG_SPLIT_NO_EMPTY);
   $pad_tag     = trim($pad_words[0] ?? '');
@@ -62,10 +68,15 @@
     else                                                          return pad_html ( '&open;' . $pad_between . '&close;' );
 
   }
- 
-  $pad_pair_result = include PAD_HOME . 'level/pair.php';
-  
-  if ( $pad_pair_result )
+
+  $pad_content = $pad_false = '';
+
+  if ( $pad_pair )
+    $pad_pair_result = include PAD_HOME . 'level/pair.php';
+
+  if ( ! $pad_pair OR $pad_pair_result === TRUE ) 
     include PAD_HOME . 'level/start.php';
- 
+  else 
+    pad_html ( '&open;' . $pad_between . '&close;' );
+
 ?>

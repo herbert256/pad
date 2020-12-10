@@ -16,6 +16,4 @@
 
   pad_reset ($pad_lvl, $pad_lvl);
 
-  $pad_save_vars [$pad_lvl] = $pad_delete_vars [$pad_lvl] = [];
-
 ?>

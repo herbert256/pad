@@ -22,10 +22,10 @@
   $pad_occur       [$pad_lvl]   = 0;
   $pad_result      [$pad_lvl]   = '';
   $pad_html        [$pad_lvl]   = '';
-  $pad_save_vars   [$pad_lvl]   = [];
-  $pad_delete_vars [$pad_lvl]   = [];
   $pad_db          [$pad_lvl]   = '';
   $pad_db_lvl      [$pad_lvl]   = [];
+  $pad_save_vars   [$pad_lvl]   = [];
+  $pad_delete_vars [$pad_lvl]   = [];
 
   $pad_filter = [];
 
@@ -43,7 +43,6 @@
   $pad_parameters [$pad_lvl] ['tag']         = $pad_tag;
   $pad_parameters [$pad_lvl] ['tag_type']    = $pad_tag_type;
   $pad_parameters [$pad_lvl] ['pair']        = $pad_pair;
-  $pad_parameters [$pad_lvl] ['single']      = $pad_single;
   $pad_parameters [$pad_lvl] ['content']     = $pad_content;
   $pad_parameters [$pad_lvl] ['false']       = $pad_false;
   $pad_parameters [$pad_lvl] ['filter']      = $pad_filter;
@@ -65,7 +64,7 @@
 
   if ( isset ( $pad_parms_tag ['parent'] ) )
     include PAD_HOME . 'level/parent.php';
-  elseif ( $pad_single === TRUE and $pad_tag_type == 'data' and trim($pad_base [$pad_lvl]) === '' and ! isset ( $pad_parms_tag ['print'] ) )
+  elseif ( $pad_pair === FALSE and $pad_tag_type == 'data' and trim($pad_base [$pad_lvl]) === '' and ! isset ( $pad_parms_tag ['print'] ) )
     include PAD_HOME . 'level/parent.php';
 
   if ( count ($pad_data[$pad_lvl] ) )

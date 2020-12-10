@@ -20,11 +20,11 @@
 
   include PAD_HOME . "cache/$pad_cache_server_type.php";
   
-  pad_cache_init ($pad_cache_url, $pad_client_etag);
+  "pad_cache_init_$pad_cache_server_type" ($pad_cache_url, $pad_client_etag);
   
   if ( $pad_client_etag ) {
     
-    $pad_cache_age = pad_cache_etag ($pad_client_etag);
+    $pad_cache_age = "pad_cache_etag_$pad_cache_server_type" ($pad_client_etag);
 
     if ( $pad_cache_age )
       $pad_cache_etag = $pad_client_etag;
@@ -36,7 +36,7 @@
     
   }
 
-  $url = pad_cache_url ($pad_cache_url);
+  $url = "pad_cache_url_$pad_cache_server_type" ($pad_cache_url);
 
   if ( is_array($url) ) {
 
@@ -45,7 +45,7 @@
 
     if ( $pad_cache_age >= $pad_cache_max and ! $GLOBALS['pad_cache_server_no_data']) {
 
-      $pad_output = pad_cache_get ($pad_cache_etag);
+      $pad_output = "pad_cache_get_$pad_cache_server_type" ($pad_cache_etag);
 
       if ($pad_output) {
         if ( $GLOBALS['pad_cache_server_gzip'] and ! $GLOBALS['pad_client_gzip'] )

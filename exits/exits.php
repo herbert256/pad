@@ -26,7 +26,7 @@
     $pad_output = pad_zip($pad_output);
 
   if ( $pad_cache and $pad_cache_server_age )
-    include PAD_HOME . 'exits/cache.php';
+    include PAD_HOME . 'cache/exits.php';
 
   include PAD_HOME . 'exits/stop.php';
 
