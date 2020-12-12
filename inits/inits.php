@@ -1,5 +1,7 @@
 <?php
 
+  $pad_boot = microtime(true);
+
   $app  = $_REQUEST['app']  ?? 'pad';
   $page = $_REQUEST['page'] ?? 'index';
 
@@ -29,15 +31,15 @@
     exit();
   }
 
-  $pad_lib = PAD_APP . 'lib';
-  include PAD_HOME . 'inits/lib.php';
+  define ( 'PAD_APP', PAD_APPS . $app . '/' );
 
   include PAD_HOME . 'inits/error.php';  
+
+  $pad_lib = PAD_APP . 'lib';
+  include PAD_HOME . 'inits/lib.php';
  
   if ( isset($_SERVER['QUERY_STRING']) and $_SERVER['QUERY_STRING'] and strpos($_SERVER['QUERY_STRING'], '=') === FALSE )
     include PAD_HOME . 'inits/fast.php';
-
-  define ( 'PAD_APP', PAD_APPS . $app . '/' );
 
   $pad_trace_file = "trace/$app/$page/$PADREQID.txt";
   pad_trace ("pad/start", "app=$app page=$page session=$PADSESSID request=$PADREQID", TRUE);

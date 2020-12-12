@@ -39,7 +39,7 @@
   }
 
   foreach ($pad_parms_end as $pad_k => $pad_v)
-    if ( isset ( $pad_parms_tag [$pad_k] ) 
+    if ( isset ( $pad_parms_tag [$pad_k] ) )
         include PAD_HOME . "parms/$pad_k.php" ;
 
   pad_trace ("level/end", "nr=$pad_lvl_cnt", TRUE);

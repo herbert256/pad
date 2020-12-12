@@ -86,6 +86,18 @@
           pad_dump_item ( "\n  [$key] => " . htmlentities(pad_dump_short($GLOBALS[$key])));
 
     pad_dump_item ( "\n" );
+    foreach ( $GLOBALS as $key => $value )
+      if ( in_array ( $key, $not) )
+        if ( ! (is_array($value) or is_resource($value) or is_object($value)) )
+          pad_dump_item ( "\n  [$key] => " . pad_dump_short ( $value) );
+
+    pad_dump_item ( "\n" );
+    foreach ( $GLOBALS as $key => $value )
+      if ( in_array ( $key, $not) )
+        if ( is_array($value) or is_resource($value) or is_object($value) )
+          pad_dump_array ($key, $value);
+
+    pad_dump_item ( "\n" );
                                               pad_dump_array  ('Headers-in',  getallheaders());
     if ( isset ( $GLOBALS ['pad_headers'] ) ) pad_dump_array  ('Headers-out', $GLOBALS ['pad_headers'] );
 
@@ -97,8 +109,7 @@
     if ( isset ( $_SERVER )  )  pad_dump_array  ('SERVER',  $_SERVER);
     if ( isset ( $_ENV )     )  pad_dump_array  ('ENV',     $_ENV);
 
-    pad_dump_item ( "\n".'<br><b><hr></b>');
-    pad_dump_item ( "</pre></div>");
+    pad_dump_item ( "\n</pre></div>");
 
   }
 
@@ -124,32 +135,33 @@
 
   function pad_dump_array ( $txt, $arr, $x=0) {
 
+    if ( ! is_array($arr) ) {
+      pad_dump_item ( "\n  [$txt] => [todo, not array] \n");
+      return;
+    }
+
     if ( $x and ! count ($arr )) {
       pad_dump_item ( "\n  [$txt] => [empty array]");
       return;
     }
 
-    if ( is_array($arr) ) {
- 
-      $p = htmlentities ( print_r ( $arr, TRUE ) ) ;
+    $p = htmlentities ( print_r ( $arr, TRUE ) ) ;
 
-      $p = str_replace(" =&gt; Array\n" ,"\n", $p);
-      $p = str_replace(")\n\n" ,")\n", $p);
-      $p = preg_replace("/[\n]\s+\(/", "", $p);
-      $p = preg_replace("/[\n]\s+\)/", "", $p);
-      $p = str_replace("&lt;/address&gt;\n", "&lt;/address&gt;", $p);
+    $p = str_replace(" =&gt; Array\n" ,"\n", $p);
+    $p = str_replace(")\n\n" ,")\n", $p);
+    $p = preg_replace("/[\n]\s+\(/", "", $p);
+    $p = preg_replace("/[\n]\s+\)/", "", $p);
+    $p = str_replace("&lt;/address&gt;\n", "&lt;/address&gt;", $p);
 
-      if ($x)
-        pad_dump_item ( "\n  [$txt]");
-      else
-        pad_dump_item ( "\n<b>$txt</b>");
+    if ($x)
+      pad_dump_item ( "\n  [$txt]");
+    else
+      pad_dump_item ( "\n<b>$txt</b>");
 
-      if ($x)
-        pad_dump_item ( "\n" . substr($p, 8, strlen($p) - 11));
-      else
-        pad_dump_item ( "\n" . substr($p, 8, strlen($p) - 10));
-
-    }
+    if ($x)
+      pad_dump_item ( "\n" . substr($p, 8, strlen($p) - 11));
+    else
+      pad_dump_item ( "\n" . substr($p, 8, strlen($p) - 10));
 
   }
 
