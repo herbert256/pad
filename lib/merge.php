@@ -505,7 +505,7 @@
 
   }
 
-  function pad_data_filter_go (&$vars, &$start, &$end) {
+  function pad_data_filter_go (&$vars, $start, $end) {
 
     $now = 0;
     foreach ( $vars as $key => $value ) {
@@ -513,9 +513,6 @@
       if ($now < $start or $now > $end)
         unset($vars [$key]);
     }
-
-    $start = 1;
-    $end   = count($vars);
 
   }
 

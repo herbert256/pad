@@ -35,13 +35,12 @@
 
   if ( isset($pad_parms_tag ['callback']) ) {
     $pad_callback = "exit_tag";
-    include PAD_HOME . 'level/callback.php' ;
+    include PAD_HOME . 'parms/callback.php' ;
   }
 
-  if ( isset ( $pad_parms_tag ['toContent'] )  
-    or isset ( $pad_parms_tag ['toData']    )  
-    or isset ( $pad_parms_tag ['toFlag']    )  )
-      include PAD_HOME . 'parms/store.php' ;
+  foreach ($pad_parms_end as $pad_k => $pad_v)
+    if ( isset ( $pad_parms_tag [$pad_k] ) 
+        include PAD_HOME . "parms/$pad_k.php" ;
 
   pad_trace ("level/end", "nr=$pad_lvl_cnt", TRUE);
 

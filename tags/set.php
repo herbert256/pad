@@ -10,6 +10,8 @@
     foreach ( $pad_set_delete [$lvl] as $pad_k)
       unset ($GLOBALS [$pad_k]);
 
+    return;
+
   }
 
   $pad_set_save [$lvl] = $pad_set_delete [$lvl] = [];
@@ -26,11 +28,10 @@
     if ( strlen($pad_w[1]) = 0        ) return pad_syntax_error ("{set} syntax error (4)");
     
     $pad_set_var = substr($pad_w[0], 1);
-    $pad_set_val = pad_eval ( pad_unescape ( $pad_w[1] ) );
+    $pad_set_val = pad_eval ( pad_unescape ( $pad_w[1]??'' ) );
 
     if ( ! pad_valid_name ($pad_set_var) ) 
-      return pad_syntax_error ("{set} syntax error (4)");
-
+      return pad_syntax_error ("{set} syntax error (5)");
 
     if ( $pad_pair )
 

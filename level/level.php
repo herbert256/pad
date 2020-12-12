@@ -6,7 +6,7 @@
   $pad_end [$pad_lvl] = strpos($pad_html[$pad_lvl], '}');
 
   if ( $pad_end[$pad_lvl] === FALSE )
-     return include PAD_HOME . 'level/end.php';
+    return include PAD_HOME . 'level/end.php';
 
   $pad_start [$pad_lvl] = strrpos ( $pad_html[$pad_lvl], '{', $pad_end[$pad_lvl] - strlen($pad_html[$pad_lvl]) );
   
@@ -31,8 +31,8 @@
   
   if     ( $pad_first == '!'             ) return pad_html ( include PAD_HOME . 'level/var.php'  );
   elseif ( $pad_first == '$'             ) return pad_html ( include PAD_HOME . 'level/var.php'  );
-  elseif ( ! ctype_alpha ( $pad_first )  ) return pad_html ( '&open;' . $pad_between . '&close;' );
-  elseif ( ! pad_valid_name ( $pad_tag ) ) return pad_html ( '&open;' . $pad_between . '&close;' );
+  elseif ( ! ctype_alpha ( $pad_first )  ) return pad_ignore ();
+  elseif ( ! pad_valid_name ( $pad_tag ) ) return pad_ignore ();
 
   $pad_pair_search = $pad_tag;
   $pad_parms_type  = ( $pad_parms ) ? 'open' : 'none';
@@ -48,7 +48,7 @@
     $pad_tag      = substr ($pad_tag, $pad_ns_pos+1);
 
     if ( ! file_exists ( PAD_HOME . "types/$pad_tag_type.php" ) ) 
-      return pad_html ( '&open;' . $pad_between . '&close;' );
+      return pad_ignore ();
     
   } else {
 
@@ -65,18 +65,18 @@
     elseif ( function_exists ( $pad_tag                       ) ) $pad_tag_type = 'php';
     elseif ( pad_is_object   ( $pad_tag                       ) ) $pad_tag_type = 'object';
     elseif ( pad_is_resource ( $pad_tag                       ) ) $pad_tag_type = 'resource';
-    else                                                          return pad_html ( '&open;' . $pad_between . '&close;' );
+    else                                                          return pad_ignore ();
 
   }
 
   $pad_content = $pad_false = '';
 
-  if ( $pad_pair )
+  if ( $pad_pair ) {
     $pad_pair_result = include PAD_HOME . 'level/pair.php';
+    if ( $pad_pair_result === FALSE ) 
+     return pad_ignore ();
+  }
 
-  if ( ! $pad_pair OR $pad_pair_result === TRUE ) 
-    include PAD_HOME . 'level/start.php';
-  else 
-    pad_html ( '&open;' . $pad_between . '&close;' );
+  include PAD_HOME . 'level/start.php';
 
 ?>

@@ -38,13 +38,13 @@
 
     extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
 
+    if ( $GLOBALS['pad_error_action'] == 'boot' ) 
+      pad_boot_error_go ($error, $file, $line);
+
     if ( $GLOBALS['pad_error_action'] == 'php' )
       throw new ErrorException ($error, 0, E_ERROR, $file, $line);
 
-    if ( $GLOBALS['pad_error_action'] == 'boot' ) 
-      pad_boot_error_go ($error, $file, $line);
-    else
-      return pad_error_go ($error, $file, $line);
+    return pad_error_go ($error, $file, $line);
  
   }
 

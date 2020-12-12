@@ -11,7 +11,7 @@
   include PAD_HOME . "level/type.php";
 
   if (pad_tag_parm ('content') ) 
-    $pad_content .= pad_content (pad_tag_parm ('content'));    
+    include PAD_HOME . "parms/content.php";    
 
   if ( is_object   ( $pad_tag_result ) ) $pad_tag_result = pad_xxx_to_array ( $pad_tag_result );
   if ( is_resource ( $pad_tag_result ) ) $pad_tag_result = pad_xxx_to_array ( $pad_tag_result );
@@ -23,7 +23,7 @@
   }
 
   if ( pad_tag_parm ('data') ) 
-    pad_add_array_to_data ( pad_tag_parm ('data'), pad_tag_parm('type') );
+    include PAD_HOME . "parms/data.php"; 
 
   if ( $pad_tag_result === NULL or ! isset ($pad_tag_result) ) {
     $pad_tag_result = $pad_content = $pad_false = $pad_tag_ob = '';

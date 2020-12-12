@@ -31,7 +31,7 @@
 
   if ( isset($pad_parms_tag ['callback']) ) {
     $pad_callback = "init_occurrence";
-    include PAD_HOME . 'level/callback.php';
+    include PAD_HOME . 'parms/callback.php';
   }
 
   include PAD_HOME . 'occurrence/db.php';

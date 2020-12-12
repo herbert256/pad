@@ -31,11 +31,8 @@
 
   include PAD_HOME . 'level/parms.php';
 
-  if ( isset ( $pad_parms_tag ['flag'] ) and $pad_flag_store [$pad_parms_tag ['flag']] === FALSE ) {
-    $pad_parms = '';
-    include PAD_HOME . 'level/parms.php';
-    return;
-  }
+  if ( isset ( $pad_parms_tag ['flag'] ) )
+    include PAD_HOME . 'level/parms/flag.php';
 
   $pad_name = $pad_parms_tag ['name'] ?? $pad_tag;
 
@@ -55,17 +52,22 @@
   $pad_walk = 'start';
   include PAD_HOME . 'level/tag.php';
 
-  include PAD_HOME . 'level/after.php';
+  if ($pad_lvl > 1) 
+    pad_data_chk ( $pad_data[$pad_lvl] );
+  
+  foreach ($pad_parms_start as $pad_k => $pad_v)
+    if ( isset ( $pad_parms_tag [$pad_k] ) 
+      include PAD_HOME . "parms/$pad_k.php" ;
 
   if ( isset ( $pad_parms_tag ['callback'] ) ) {
     $pad_callback = "init_tag";
-    include PAD_HOME . 'level/callback.php';
+    include PAD_HOME . 'parms/callback.php';
   }
 
   if ( isset ( $pad_parms_tag ['parent'] ) )
-    include PAD_HOME . 'level/parent.php';
+    include PAD_HOME . 'parms/parent.php';
   elseif ( $pad_pair === FALSE and $pad_tag_type == 'data' and trim($pad_base [$pad_lvl]) === '' and ! isset ( $pad_parms_tag ['print'] ) )
-    include PAD_HOME . 'level/parent.php';
+    include PAD_HOME . 'parms/parent.php';
 
   if ( count ($pad_data[$pad_lvl] ) )
     include PAD_HOME . 'occurrence/start.php';
