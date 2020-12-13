@@ -19,10 +19,7 @@
   $pad_ob = ob_get_clean();
   
   if ($pad_ob)
-    if ($GLOBALS['pad_trace'] == 'none' or $GLOBALS['pad_trace'] == 'file')
-      pad_error ("Illegal output: $pad_ob");
-    else
-      echo "<hr>Illegal output: $pad_ob";
+    pad_trace ("error", "Illegal output: $pad_ob");
 
   if ( ! isset($GLOBALS['pad_sent']) ) {
 
@@ -30,13 +27,13 @@
 
     include PAD_HOME . 'exits/headers.php';
 
-    if ( $GLOBALS['pad_trace'] == 'browser' or $GLOBALS['pad_trace'] == 'both' )
+    if ( $GLOBALS['pad_trace_browser'] )
       echo "</pre><hr>";
   
     if ( $pad_stop == 200 )
       echo $GLOBALS['pad_output'];
 
-    if ( $GLOBALS['pad_trace'] == 'browser' or $GLOBALS['pad_trace'] == 'both' )
+    if ( $GLOBALS['pad_trace_browser'] )
       echo "<hr>";
 
   }  

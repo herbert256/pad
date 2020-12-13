@@ -79,9 +79,14 @@
 
   function pad_ignore () {
 
-    pad_trace ('ignore', $GLOBALS['pad_between']);
+    if ( $GLOBALS['pad_pair'] ) 
+      $tmp = $GLOBALS['pad_between'];
+    else
+      $tmp = $GLOBALS['pad_between'] . '/' ;
+      
+    pad_trace ( 'ignore', '{' . $tmp . '}' );
 
-    pad_html ( '&open;' . $GLOBALS['pad_between'] . '&close;' );
+    pad_html  ( '&open;' . $tmp . '&close;' );
 
     return FALSE;
     
@@ -191,20 +196,19 @@
 
   function pad_trace ($type, $parm='', $skip=FALSE) {
 
-    global $pad_trace, $pad_lvl, $PADREQID, $pad_lvl_cnt, $pad_trc_cnt, $pad_occur_cnt, $pad_occur, $pad_trace_log;
+    global $pad_trace, $pad_trc_cnt, $pad_trace_log, $pad_trace_hist, $pad_trace_browser, $pad_trace_file;
+    global $pad_lvl, $PADREQID, $pad_lvl_cnt, $pad_trc_cnt, $pad_occur_cnt, $pad_occur;
 
     if ( $pad_trace == 'none')
       return;
 
-    if ( ( $pad_trace == 'browser' or $pad_trace == 'both') and ! headers_sent () ) {
-      header ( 'HTTP/1.0 500 Internal Server Error' );
+    if ( ! $pad_trc_cnt and $pad_trace_browser )
       echo "<pre>";
-    }
 
     $pad_trc_cnt++;
 
-    $lineX  = str_pad ( $pad_trc_cnt,  3, ' ', STR_PAD_LEFT );
-    $lvlX   = str_pad ( $pad_lvl,      3, ' ', STR_PAD_LEFT );
+    $lineX  = str_pad ( $pad_trc_cnt, 3, ' ', STR_PAD_LEFT );
+    $lvlX   = str_pad ( $pad_lvl,     3, ' ', STR_PAD_LEFT );
 
     if ( isset( $pad_occur [$pad_lvl] ) and $pad_occur [$pad_lvl] and !$skip )
       $occurX = str_pad ( $pad_occur [$pad_lvl],  2, ' ', STR_PAD_LEFT );
@@ -215,20 +219,20 @@
     
     $parm = trim(preg_replace('/\s+/', ' ', $parm));
     
-    if ( strlen($parm) > 125)
-      $parm = substr($parm, 0, 125);
-
-    if ($pad_trc_cnt > 25)
-      unset ($pad_trace_log [$pad_trc_cnt-25]);
+    if ( strlen($parm) > 100)
+      $parm = substr($parm, 0, 100);
     
     $lineL = "$lvlX $occurX   $typeX $parm";
-    $pad_trace_log [$pad_trc_cnt] = $lineL;
+    
+    if ($pad_trc_cnt > 25)
+      unset ($pad_trace_hist [$pad_trc_cnt-25]);
+    $pad_trace_hist [$pad_trc_cnt] = $lineL;
   
-    if ( ( $pad_trace == 'file' or $pad_trace == 'both') and ! headers_sent () ) {    
-      pad_file_put_contents ($GLOBALS['pad_trace_file'], "$lineX " . $pad_trace_log [$pad_trc_cnt] . PHP_EOL, 1);
+    if ( $pad_trace_file )  
+      pad_file_put_contents ($GLOBALS['pad_trace_log'], "$lineX $lineL" . PHP_EOL, 1);
 
-    if ( ( $pad_trace == 'browser' or $pad_trace == 'both') and ! headers_sent () )
-      echo "$lineL\n";
+    if ( $pad_trace_browser )
+      echo htmlentities("$lineL\n");
 
   }
 

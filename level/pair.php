@@ -9,7 +9,7 @@ start:
     $pad_pos = strpos($pad_html[$pad_lvl] , '{/' . $pad_pair_search, $pad_pos);
 
     if ($pad_pos === FALSE)
-      return pad_error ("No closure of close tag found (1)");
+      return pad_error ("No close tag found (1)");
 
     $pad_content = substr($pad_html[$pad_lvl], $pad_end[$pad_lvl]+1, $pad_pos - $pad_end[$pad_lvl] - 1);
 
@@ -25,7 +25,7 @@ start:
 
   $pad_end [$pad_lvl] = strpos ( $pad_html[$pad_lvl], '}', $pad_pos+2);
   if ( $pad_end [$pad_lvl] === FALSE )
-    return pad_error ("No closure of close tag found (2)");
+    return pad_error ("No close tag found (2)");
 
   $pad_tmp = substr ($pad_html[$pad_lvl], $pad_pos+1, $pad_end[$pad_lvl]-$pad_pos-1);
 

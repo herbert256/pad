@@ -1,12 +1,11 @@
 <?php
 
-  if ( $pad_parms_type == 'close' and $pad_walk == 'start' ) {
+  if ( $pad_walk == 'start' and $pad_parms_type == 'close' ) {
     $pad_walk = 'next';
     return TRUE;
   }
 
   $pad_eval = pad_eval($pad_parms_org[0]);
-  
   $pad_wrk  = [ $pad_parameters [$pad_lvl] ['tag_count'] => [] ];
 
   if ($pad_tag == 'while') { 

@@ -1,18 +1,29 @@
 <?php
 
-  $pad_boot = microtime(true);
-
   $app  = $_REQUEST['app']  ?? 'pad';
   $page = $_REQUEST['page'] ?? 'index';
 
   if ( ! preg_match ( '/^[A-Za-z0-9_]+$/',   $app  ) ) pad_boot_error ("Invalid name for app: $app");
   if ( ! preg_match ( '/^[A-Za-z0-9\/_]+$/', $page ) ) pad_boot_error ("Invalid name for page: $page");
 
+  include PAD_HOME . 'config/config.php';
+
+  if ( file_exists(PAD_APPS . $app . "/config/config.php") )
+    include PAD_APPS . $app . "/config/config.php";
+
+  if ($pad_no_no) 
+    include PAD_HOME . 'inits/nono.php';
+ 
+  if ( isset($_SERVER['QUERY_STRING']) and $_SERVER['QUERY_STRING'] and strpos($_SERVER['QUERY_STRING'], '=') === FALSE )
+    include PAD_HOME . 'inits/fast.php';
+
+  define ( 'PAD_APP', PAD_APPS . $app . '/' );
+
   $pad_lib = PAD_HOME . 'lib';
   include PAD_HOME . 'inits/lib.php';
-
-  $PADSESSID = $_GET['PADSESSID'] ?? $_COOKIE['PADSESSID'] ?? pad_random_string(16);
-  $PADREFID  = $_GET['PADREQID']  ?? $_COOKIE['PADREQID']  ?? '';
+ 
+  $PADSESSID = $PADSESSID ?? $_GET['PADSESSID'] ?? $_COOKIE['PADSESSID'] ?? pad_random_string(16);
+  $PADREFID  = $PADREFID  ?? $_GET['PADREQID']  ?? $_COOKIE['PADREQID']  ?? '';
   $PADREQID  = pad_random_string(16);
 
   $pad_output  = '';
@@ -21,28 +32,8 @@
   $pad_exit    = 1;
   $pad_time    = $_SERVER['REQUEST_TIME'];
 
-  include PAD_HOME . 'config/config.php';
-
-  if ( file_exists(PAD_APPS . $app . "/config/config.php") )
-    include PAD_APPS . $app . "/config/config.php";
-
-  if ($pad_no_no) {
-    include PAD_APPS . $app . "/pages/$page.php";
-    exit();
-  }
-
-  define ( 'PAD_APP', PAD_APPS . $app . '/' );
-
-  include PAD_HOME . 'inits/error.php';  
-
   $pad_lib = PAD_APP . 'lib';
   include PAD_HOME . 'inits/lib.php';
- 
-  if ( isset($_SERVER['QUERY_STRING']) and $_SERVER['QUERY_STRING'] and strpos($_SERVER['QUERY_STRING'], '=') === FALSE )
-    include PAD_HOME . 'inits/fast.php';
-
-  $pad_trace_file = "trace/$app/$page/$PADREQID.txt";
-  pad_trace ("pad/start", "app=$app page=$page session=$PADSESSID request=$PADREQID", TRUE);
 
   if ( ! headers_sent () ) {
     if ( ! isset($_COOKIE['PADSESSID']) or $_COOKIE['PADSESSID'] <> $PADSESSID )
@@ -60,6 +51,15 @@
   include PAD_HOME . 'cache/inits.php';
 
   pad_get_vars ();
+
+  $pad_trace_file    = ( $GLOBALS['pad_trace'] == 'file'    or $GLOBALS['pad_trace'] == 'both' );
+  $pad_trace_browser = ( $GLOBALS['pad_trace'] == 'browser' or $GLOBALS['pad_trace'] == 'both' );
+  $pad_trace_log     = "trace/$app/$page/$PADREQID.txt";
+  $pad_trace_hist    = [];
+  $pad_trc_cnt       = 0;
+  pad_trace ("pad/start", "app=$app page=$page session=$PADSESSID request=$PADREQID", TRUE);
+
+  include PAD_HOME . 'inits/error.php';    
   
   $pad_request_scheme = $_SERVER ['REQUEST_SCHEME'] ?? 'http';
   $pad_http_host      = $_SERVER ['HTTP_HOST']      ?? 'localhost';
@@ -79,7 +79,7 @@
   $pad_occur   [0] = 0;
   $pad_current [0] = [];
 
-  $pad_eval_cnt = $pad_fld_cnt = $pad_lvl_cnt = $pad_trc_cnt = $pad_occur_cnt = 0;
+  $pad_eval_cnt = $pad_fld_cnt = $pad_lvl_cnt = $pad_occur_cnt = 0;
 
   $pad_timings = $pad_timings_start = [];
 

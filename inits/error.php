@@ -78,31 +78,39 @@
 
   function pad_error_go ($error, $file, $line) {
 
+    try {
+
+      $PADREQID = $GLOBALS['PADREQID'] ?? uniqid();
+
+      $msg = "$file:$line $error";
+      $msg = str_replace (PAD_APP,  'APP://', $msg);
+      $msg = str_replace (PAD_HOME, 'PAD://', $msg);
+
+      error_log ("[PAD] $PADREQID $msg", 4);   
+
+    } catch (Exception $e) {
+
+      pad_boot_error_go ($e->getMessage(), $e->getFile(), $e->getLine());
+
+    }
+
     if ( $GLOBALS['pad_error_action'] == 'abort') 
       pad_exit ();
     elseif ( $GLOBALS['pad_error_action'] == 'none') 
       return FALSE;    
 
-    if ( $GLOBALS['pad_exit'] == 2 )
+    if ( $GLOBALS['pad_exit'] <> 1 )
       pad_boot_error_go ($error, $file, $line);
-    else
-      $GLOBALS['pad_exit'] = 2;
 
+    $GLOBALS['pad_exit'] = 9;
     restore_exception_handler ();
     restore_error_handler     ();
 
+    unset ( $GLOBALS['pad_no_boot_shutdown'] );
     set_error_handler     ( 'pad_boot_error_handler'     );
     set_exception_handler ( 'pad_boot_exception_handler' );
-    unset ( $GLOBALS['pad_no_boot_shutdown'] );
 
-    global $PADREQID;    
-
-    $msg = "$file:$line $error";
-    $msg = str_replace (PAD_APP,  'APP://', $msg);
-    $msg = str_replace (PAD_HOME, 'PAD://', $msg);
-
-    error_log ("[PAD] $PADREQID $msg", 4);   
-    pad_trace ('error', $msg);
+    pad_trace ('error', $msg);   
               
     $buffer  = '';
     $buffers = ob_get_level ();

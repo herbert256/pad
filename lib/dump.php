@@ -18,10 +18,11 @@
     foreach ( $pad_debug_backtrace as $key => $trace ) {
       extract ( $trace );
       if ( isset($file) and isset($line) and isset($function) )
-        pad_dump_item ( "    $file:$line - $function\n");
+        if ( $function <> 'pad_dump' and $function <> 'pad_error_go' )
+          pad_dump_item ( "    $file:$line - $function\n");
     }
 
-    if ( isset ( $GLOBALS ['pad_trace_log'] ) )
+    if ( count ( $GLOBALS ['pad_trace_hist'] ) and ! $GLOBALS ['pad_trace_browser'] )
       pad_dump_array  ("Trace", $GLOBALS ['pad_trace_log'] );
 
     if ( isset ( $GLOBALS ['pad_errors'] ) and is_array ( $GLOBALS ['pad_errors']) and count($GLOBALS ['pad_errors']) > 1 )
@@ -32,7 +33,6 @@
       for ($i=$GLOBALS ['pad_lvl']; $i>1; $i--)
         pad_dump_item ( "    $i - " . ($GLOBALS['pad_parameters'] [$i] ['name']??'???') . ' - ' . ($GLOBALS['pad_parameters'] [$i] ['parm']??'') . "\n");
     }
-
 
     if ( isset ( $GLOBALS ['pad_parameters'] ) and isset ( $GLOBALS ['pad_parameters'] ) ) {
       for ( $lvl=$GLOBALS ['pad_lvl'];  $lvl>1; $lvl-- ) {
@@ -47,20 +47,26 @@
       }
     }
 
-    if ( isset ( $_REQUEST ) )
+    if ( isset ( $_REQUEST ) and count ( $_REQUEST ) )
       pad_dump_array  ('Request variables', $_REQUEST);
       
-    pad_dump_item ( "<br><b>APP variables</b>");
+    $app_chk = ['page','app','PADSESSID','PADREQID','PHPSESSID','PADREFID','GLOBALS','_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
+    $app_flds = FALSE;
     foreach ($GLOBALS as $key => $value)
-      if ( substr($key, 0, 3) <> 'pad' and ! in_array($key, ['page','app','PADSESSID','PADREQID','PHPSESSID','PADREFID','GLOBALS','_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'] ) ) {
-        if (is_object($value))
-          pad_dump_object ($key, $value);
-        elseif (is_array ($value))
-          pad_dump_array ($key, $value);
-        else
-          pad_dump_item ( "\n  [$key] => " . htmlentities($value) );
-      }
-    pad_dump_item ( "\n ");
+      if ( substr($key, 0, 3) <> 'pad' and ! in_array($key, $app_chk ) )
+        $app_flds = TRUE;
+    if ( $app_flds ) {
+      pad_dump_item ( "<br><b>APP variables</b>");
+      foreach ($GLOBALS as $key => $value)
+        if ( substr($key, 0, 3) <> 'pad' and ! in_array($key, $app_chk ) )
+          if (is_object($value))
+            pad_dump_object ($key, $value);
+          elseif (is_array ($value))
+            pad_dump_array ($key, $value);
+          else
+            pad_dump_item ( "\n  [$key] => " . htmlentities($value) );
+      pad_dump_item ( "\n ");
+    }
 
     if ( isset ( $GLOBALS ['pad_sql_connect'     ] ) ) pad_dump_object ('MySQL-App', $GLOBALS ['pad_sql_connect']      );
     if ( isset ( $GLOBALS ['pad_pad_sql_connect' ] ) ) pad_dump_object ('MySQL-PAD', $GLOBALS ['pad_pad_sql_connect']  );
