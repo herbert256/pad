@@ -14,7 +14,7 @@
 
   // Trace the internal working of PAD
 
-  $pad_trace = 'both';   // 'none', 'browser', 'file', 'both'
+  $pad_trace = 'file';   // 'none', 'browser', 'file', 'both'
 
   // Keep track of stuff, lots of data.
 

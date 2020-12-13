@@ -37,6 +37,8 @@
 
   $pad_base [$pad_lvl] .= $pad_tag_ob;
 
+  pad_trace ("tag/base", $pad_base [$pad_lvl], TRUE);
+
   reset ( $pad_data[$pad_lvl] );
 
 ?>

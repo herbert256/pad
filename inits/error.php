@@ -59,7 +59,7 @@
 
   function pad_error_exception ( $error ) {
 
-    return pad_error_go ( $error->getMessage(), $error->getFile(), $error->getLine()) ;
+    pad_error_go ( $error->getMessage(), $error->getFile(), $error->getLine()) ;
 
   }
   
@@ -67,11 +67,11 @@
   function pad_error_shutdown () {
 
     if ( $GLOBALS['pad_exit'] == 9 )
-      exit;
+      return;
 
     $error = error_get_last ();
     if ($error !== NULL)
-      return pad_error_go ( $error['message']??'', $error['file']??'', $error['line']??'');
+      pad_error_go ( $error['message']??'', $error['file']??'', $error['line']??'');
     
   }
 
@@ -110,16 +110,14 @@
     set_error_handler     ( 'pad_boot_error_handler'     );
     set_exception_handler ( 'pad_boot_exception_handler' );
 
-    pad_trace ('error', $msg);   
-              
-    $buffer  = '';
     $buffers = ob_get_level ();
-    for ($i = 1; $i <= $buffers; $i++)
-      $buffer .= ob_get_clean();
-   
-    if ( $GLOBALS['pad_track_errors'] ) 
-      pad_track_vars ("errors/$PADREQID.html", $msg);
-  
+    for ($i = 1; $i <= $buffers; $i++) {
+      $buffer = ob_get_clean();
+      pad_trace ('error/buffer', $buffer);
+    }
+
+    pad_trace ('error/error', $msg);   
+
     if ( ! headers_sent() )
       header ( 'HTTP/1.0 500 Internal Server Error' );
 
@@ -131,7 +129,10 @@
     $GLOBALS ['pad_sent'] = TRUE;
 
     pad_dump ();
-
+               
+    if ( $GLOBALS['pad_track_errors'] ) 
+      pad_track_vars ("errors/$PADREQID.html", $msg);
+  
     $GLOBALS ['pad_stop'] = 500;
     include PAD_HOME . 'exits/stop.php';
 

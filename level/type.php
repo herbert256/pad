@@ -2,6 +2,8 @@
 
   $pad_app_ob = '';
 
+  pad_trace ("types/$pad_tag_type", "tag=$pad_tag", TRUE);
+
   ob_start();
 
   $pad_tag_result = include PAD_HOME . "types/$pad_tag_type.php";

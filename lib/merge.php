@@ -1,4 +1,4 @@
-  <?php
+<?php
 
   function pad_build_html ($file) {
 
@@ -168,6 +168,8 @@
 
 
   function pad_syntax_error ($error='') {
+
+    pad_trace ("syntax/error", $error, TRUE);
 
     pad_ignore();
 

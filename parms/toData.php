@@ -1,6 +1,11 @@
 <?php
 
-  if ( $pad_walks [$pad_lvl ]<> 'start' ) 
+  if ( !$pad_pair and !$pad_content and !pad_is_default_data($pad_data [$pad_lvl]) ) {
+    $pad_data_store [$pad_parms_tag ['toData']] = $pad_data [$pad_lvl];
+    return;
+  }
+
+  if ( $pad_walks [$pad_lvl ] <> 'start' ) 
     $pad_data_store [$pad_parms_tag ['toData']] = $pad_walks_data [ $pad_lvl];
   else
     $pad_data_store [$pad_parms_tag ['toData']] = $pad_data [$pad_lvl];

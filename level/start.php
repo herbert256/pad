@@ -55,9 +55,9 @@
   if ($pad_lvl > 1) 
     pad_data_chk ( $pad_data[$pad_lvl] );
   
-  foreach ($pad_parms_start as $pad_k => $pad_v)
-    if ( isset ( $pad_parms_tag [$pad_k] ) )
-      include PAD_HOME . "parms/$pad_k.php" ;
+  foreach ($pad_parms_start as $pad_v)
+    if ( isset ( $pad_parms_tag [$pad_v] ) )
+      include PAD_HOME . "parms/$pad_v.php" ;
 
   if ( isset ( $pad_parms_tag ['callback'] ) ) {
     $pad_callback = "init_tag";

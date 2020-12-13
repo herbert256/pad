@@ -5,6 +5,8 @@
 
   if ( ! preg_match ( '/^[A-Za-z0-9_]+$/',   $app  ) ) pad_boot_error ("Invalid name for app: $app");
   if ( ! preg_match ( '/^[A-Za-z0-9\/_]+$/', $page ) ) pad_boot_error ("Invalid name for page: $page");
+  if ( ! file_exists ( PAD_APPS . $app )             ) pad_boot_error ("Applicaton does not exists: $app");
+  if ( ! is_dir ( PAD_APPS . $app )                  ) pad_boot_error ("Applicaton is not a directory: $app");
 
   include PAD_HOME . 'config/config.php';
 
@@ -32,9 +34,6 @@
   $pad_exit    = 1;
   $pad_time    = $_SERVER['REQUEST_TIME'];
 
-  $pad_lib = PAD_APP . 'lib';
-  include PAD_HOME . 'inits/lib.php';
-
   if ( ! headers_sent () ) {
     if ( ! isset($_COOKIE['PADSESSID']) or $_COOKIE['PADSESSID'] <> $PADSESSID )
       setCookie ('PADSESSID', $PADSESSID, time() + $pad_cookie_time);
@@ -48,19 +47,17 @@
   if ($pad_track_db_request)
     $pad_track_db_session = TRUE;
 
+  $pad_lib = PAD_APP . 'lib';
+  include PAD_HOME . 'inits/lib.php';
+
   include PAD_HOME . 'cache/inits.php';
+
+  include PAD_HOME . 'inits/error.php';
 
   pad_get_vars ();
 
-  $pad_trace_file    = ( $GLOBALS['pad_trace'] == 'file'    or $GLOBALS['pad_trace'] == 'both' );
-  $pad_trace_browser = ( $GLOBALS['pad_trace'] == 'browser' or $GLOBALS['pad_trace'] == 'both' );
-  $pad_trace_log     = "trace/$app/$page/$PADREQID.txt";
-  $pad_trace_hist    = [];
-  $pad_trc_cnt       = 0;
-  pad_trace ("pad/start", "app=$app page=$page session=$PADSESSID request=$PADREQID", TRUE);
+  include PAD_HOME . 'inits/trace.php';
 
-  include PAD_HOME . 'inits/error.php';    
-  
   $pad_request_scheme = $_SERVER ['REQUEST_SCHEME'] ?? 'http';
   $pad_http_host      = $_SERVER ['HTTP_HOST']      ?? 'localhost';
   $pad_server_port    = $_SERVER ['SERVER_PORT']    ?? 80;
