@@ -7,7 +7,6 @@
                               // 'php'    = Use the PHP defaults (php.ini).
                               // 'abort'  = Abort as soon as possible.
                               // 'none'   = Ignore every error and continue processing.
-                              // 'report' = As 'none' but report the error also.
 
   $pad_error_level  = 'all';  // Kind of errors that will be processed by $pad_error_action
                               // 'none' | 'error' | 'warning' | 'notice' | 'all'
@@ -15,7 +14,7 @@
 
   // Trace the internal working of PAD
 
-  $pad_trace = FALSE;
+  $pad_trace = 'both';   // 'none', 'browser', 'file', 'both'
 
   // Keep track of stuff, lots of data.
 

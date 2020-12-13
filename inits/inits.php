@@ -44,11 +44,12 @@
   $pad_trace_file = "trace/$app/$page/$PADREQID.txt";
   pad_trace ("pad/start", "app=$app page=$page session=$PADSESSID request=$PADREQID", TRUE);
 
-  if ( ! isset($_COOKIE['PADSESSID']) or $_COOKIE['PADSESSID'] <> $PADSESSID )
-    setCookie ('PADSESSID', $PADSESSID, time() + $pad_cookie_time);
-
-  setCookie ('PADREQID', $PADREQID, time() + $pad_cookie_time);
-  pad_header ("X-PAD: $PADREQID");
+  if ( ! headers_sent () ) {
+    if ( ! isset($_COOKIE['PADSESSID']) or $_COOKIE['PADSESSID'] <> $PADSESSID )
+      setCookie ('PADSESSID', $PADSESSID, time() + $pad_cookie_time);
+    setCookie ('PADREQID', $PADREQID, time() + $pad_cookie_time);
+    pad_header ("X-PAD: $PADREQID");
+  }
 
   if ($pad_client_gzip and (!isset($_SERVER['HTTP_ACCEPT_ENCODING']) or strpos($_SERVER['HTTP_ACCEPT_ENCODING'],'gzip') === FALSE))
     $pad_client_gzip = FALSE;

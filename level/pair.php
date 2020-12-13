@@ -92,7 +92,7 @@ go: $pad_pos++;
     $pad_pos = strpos($pad_content, '{else}', $pad_pos);
 
   if ( $pad_pos === FALSE )
-    return TRUE;
+    goto end;
   
   $pad_false_check = substr($pad_content,0,$pad_pos);
 
@@ -104,6 +104,10 @@ go: $pad_pos++;
 
   $pad_false   = substr($pad_content, $pad_pos+6);
   $pad_content = substr($pad_content, 0, $pad_pos);
+
+end:
+  pad_trace ('pair/content', $pad_content);
+  pad_trace ('pair/else',    $pad_false);
 
   return TRUE;
 

@@ -78,35 +78,32 @@
 
   function pad_error_go ($error, $file, $line) {
 
-    global $pad_error_action, $PADREQID;    
-
-    $file = str_replace (PAD_APP,  'APP://', $file);
-    $file = str_replace (PAD_HOME, 'PAD://', $file);
-    $msg  = "$file:$line $error";
-    error_log ("[PAD] $PADREQID $msg", 4);   
+    if ( $GLOBALS['pad_error_action'] == 'abort') 
+      pad_exit ();
+    elseif ( $GLOBALS['pad_error_action'] == 'none') 
+      return FALSE;    
 
     if ( $GLOBALS['pad_exit'] == 2 )
       pad_boot_error_go ($error, $file, $line);
-    $GLOBALS['pad_exit'] = 2;
-    
-    if ( $pad_error_action == 'abort') 
-      pad_exit ();
+    else
+      $GLOBALS['pad_exit'] = 2;
 
-    if ( $pad_error_action == 'none') 
-      return FALSE;    
-
-    if ( $pad_error_action == 'report') {
-      error_log ("[PAD] $PADREQID $file/$line $error", 4);
-      return FALSE;
-    }
-          
     restore_exception_handler ();
     restore_error_handler     ();
 
     set_error_handler     ( 'pad_boot_error_handler'     );
     set_exception_handler ( 'pad_boot_exception_handler' );
-    unset ($GLOBALS['pad_no_boot_shutdown']);
+    unset ( $GLOBALS['pad_no_boot_shutdown'] );
 
+    global $PADREQID;    
+
+    $msg = "$file:$line $error";
+    $msg = str_replace (PAD_APP,  'APP://', $msg);
+    $msg = str_replace (PAD_HOME, 'PAD://', $msg);
+
+    error_log ("[PAD] $PADREQID $msg", 4);   
+    pad_trace ('error', $msg);
+              
     $buffer  = '';
     $buffers = ob_get_level ();
     for ($i = 1; $i <= $buffers; $i++)
@@ -118,12 +115,10 @@
     if ( ! headers_sent() )
       header ( 'HTTP/1.0 500 Internal Server Error' );
 
-    if ( pad_local() ) {
-      pad_close_html();
+    if ( pad_local() )
       echo "<pre><hr><b>$msg</b><hr></pre>";
-    } else {
+    else 
       echo "Error: $PADREQID";
-    }
 
     $GLOBALS ['pad_sent'] = TRUE;
 

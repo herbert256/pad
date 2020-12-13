@@ -12,16 +12,16 @@
     $pad_build_src .= "/$pad_value";
 
     if ( is_dir ($pad_build_src) ) {
-      $pad_build .= "{build 'php' | '$pad_build_src/inits.php'}";
+      $pad_build .= pad_build_php ("$pad_build_src/inits");
       $pad_after []  = $pad_build_src;
     }
     else 
-     $pad_build .= "{build 'php' | '$pad_build_src.php'}";
+      $pad_build .= pad_build_php ($pad_build_src);
         
   }
 
   foreach ( array_reverse ($pad_after, TRUE) as $pad_build_src ) 
-    $pad_build .= "{build 'php' | '$pad_build_src/exits.php'}";
+    $pad_build .= pad_build_php ("$pad_build_src/exits");
 
   $pad_build .= '{content/}';
 
@@ -36,15 +36,15 @@
 
     if ( ! $pad_is_dir or ! isset($_REQUEST['pad_include']) )
       if ( $pad_is_dir )
-        $pad_build_now .= "{build 'html' | '$pad_build_src/inits.php'}" . pad_get_html ("$pad_build_src/inits.html") . "{/build}";
+        $pad_build_now .= pad_build_html ("$pad_build_src/inits");
      else
-        $pad_build_now .= "{build 'html' | '$pad_build_src.php'}" . pad_get_html ("$pad_build_src.html") . "{/build}";
+        $pad_build_now .= pad_build_html ($pad_build_src);
 
     if ( $pad_is_dir and strpos ($pad_build_now, '{content/}') === FALSE )
       $pad_build_now .= '{content/}';
 
     if ( $pad_is_dir )
-      $pad_build_now .= "{build 'html' | '$pad_build_src/exits.php'}" . pad_get_html ("$pad_build_src/exits.html") . "{/build}";
+      $pad_build_now .= pad_build_html ("$pad_build_src/exits");
 
     $pad_build = str_replace ( '{content/}', $pad_build_now, $pad_build );
 

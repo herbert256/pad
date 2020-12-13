@@ -1,5 +1,29 @@
-<?php
+  <?php
 
+  function pad_build_html ($file) {
+
+   pad_trace ('build/html', "$file.html");
+
+    if ( file_exists("$file.html") ) 
+      return "{build 'html' | '$file.php'}" . pad_get_html ("$file.html") . "{/build}";
+    else
+      return '';
+
+  }
+
+  function pad_build_php ($file) {
+
+    pad_trace ('build/php', "$file.php");
+
+    $GLOBALS ['pad_build_store'] ["$file.php"] = '';
+    $GLOBALS ['pad_build_ob']    ["$file.php"] = '';
+
+    if ( file_exists("$file.php") )
+      return "{build 'php' | '$file.php' /}";
+    else
+      return '';
+
+  }
 
   function pad_set_global ( $name, $value ) {
 
@@ -47,24 +71,6 @@
   
   }
 
-  function pad_build_html ($file) {
-
-    if ( file_exists($file) ) 
-      return "{build 'html' | '$file'}" . pad_get_html ($file) . "{/build}";
-    else
-      return '';
-
-  }
-
-  function pad_build_php ($file) {
-
-    if ( file_exists($file) ) 
-      return "{build 'php' | '$file'}";
-    else
-      return '';
-
-  }
-
   function pad_raw ( $data ) {
 
     return str_replace ( '}', '&close;', $data );
@@ -72,6 +78,8 @@
   }
 
   function pad_ignore () {
+
+    pad_trace ('ignore', $GLOBALS['pad_between']);
 
     pad_html ( '&open;' . $GLOBALS['pad_between'] . '&close;' );
 
@@ -185,8 +193,13 @@
 
     global $pad_trace, $pad_lvl, $PADREQID, $pad_lvl_cnt, $pad_trc_cnt, $pad_occur_cnt, $pad_occur, $pad_trace_log;
 
-    if ( ! $pad_trace )
+    if ( $pad_trace == 'none')
       return;
+
+    if ( ( $pad_trace == 'browser' or $pad_trace == 'both') and ! headers_sent () ) {
+      header ( 'HTTP/1.0 500 Internal Server Error' );
+      echo "<pre>";
+    }
 
     $pad_trc_cnt++;
 
@@ -202,15 +215,20 @@
     
     $parm = trim(preg_replace('/\s+/', ' ', $parm));
     
-    if ( strlen($parm) > 100)
-      $parm = substr($parm, 0, 100);
+    if ( strlen($parm) > 125)
+      $parm = substr($parm, 0, 125);
 
     if ($pad_trc_cnt > 25)
       unset ($pad_trace_log [$pad_trc_cnt-25]);
     
-    $pad_trace_log [$pad_trc_cnt] = "$lvlX $occurX   $typeX $parm";
-      
-    pad_file_put_contents ($GLOBALS['pad_trace_file'], "$lineX " . $pad_trace_log [$pad_trc_cnt] . PHP_EOL, 1);
+    $lineL = "$lvlX $occurX   $typeX $parm";
+    $pad_trace_log [$pad_trc_cnt] = $lineL;
+  
+    if ( ( $pad_trace == 'file' or $pad_trace == 'both') and ! headers_sent () ) {    
+      pad_file_put_contents ($GLOBALS['pad_trace_file'], "$lineX " . $pad_trace_log [$pad_trc_cnt] . PHP_EOL, 1);
+
+    if ( ( $pad_trace == 'browser' or $pad_trace == 'both') and ! headers_sent () )
+      echo "$lineL\n";
 
   }
 

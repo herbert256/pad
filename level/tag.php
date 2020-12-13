@@ -45,6 +45,8 @@
     $pad_data [$pad_lvl] [1] = [];
   }
 
+  pad_trace ('tag/content', "content=" . $pad_base [$pad_lvl]);
+
   reset ( $pad_data[$pad_lvl] );
 
 ?>

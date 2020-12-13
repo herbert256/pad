@@ -17,17 +17,19 @@
     return;
   }
 
-  $pad_pair = ( substr($pad_html[$pad_lvl],$pad_end[$pad_lvl]-1,1) == '/' );
+  $pad_pair = ! ( substr($pad_html[$pad_lvl],$pad_end[$pad_lvl]-1,1) == '/' );
 
   if ( $pad_pair )
-    $pad_between = substr($pad_html[$pad_lvl], $pad_start[$pad_lvl]+1, $pad_end[$pad_lvl]-$pad_start[$pad_lvl]-2);
-  else
     $pad_between = substr($pad_html[$pad_lvl], $pad_start[$pad_lvl]+1, $pad_end[$pad_lvl]-$pad_start[$pad_lvl]-1);
+  else
+    $pad_between = substr($pad_html[$pad_lvl], $pad_start[$pad_lvl]+1, $pad_end[$pad_lvl]-$pad_start[$pad_lvl]-2);
 
   $pad_first   = substr($pad_between, 0, 1);
   $pad_words   = preg_split("/[\s]+/", $pad_between, 2, PREG_SPLIT_NO_EMPTY);
   $pad_tag     = trim($pad_words[0] ?? '');
   $pad_parms   = trim($pad_words[1] ?? '');
+
+  pad_trace ('tag/inits', "tag=$pad_tag parms=$pad_parms pair=$pad_pair");
   
   if     ( $pad_first == '!'             ) return pad_html ( include PAD_HOME . 'level/var.php'  );
   elseif ( $pad_first == '$'             ) return pad_html ( include PAD_HOME . 'level/var.php'  );
@@ -74,7 +76,7 @@
   if ( $pad_pair ) {
     $pad_pair_result = include PAD_HOME . 'level/pair.php';
     if ( $pad_pair_result === FALSE ) 
-     return pad_ignore ();
+      return pad_ignore ();
   }
 
   include PAD_HOME . 'level/start.php';
