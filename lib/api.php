@@ -8,11 +8,12 @@
 
   function padFastLink ($app, $page, $vars ) {
     
-    global $pad_fast_link, $PADSESSID, $pad_host, $pad;
+    global $pad_fast_link, $PADSESSID, $PADREQID, $pad_host, $pad;
   
-    $vars['app']       = $app;
-    $vars['page']      = $page;
-    $vars['PADSESSID'] = $PADSESSID;
+    $vars ['app']       = $app;
+    $vars ['page']      = $page;
+    $vars ['PADSESSID'] = $PADSESSID;
+    $vars ['PADREFID']  = $PADREQID;
     
     $fast = pad_random_string($pad_fast_link);
   

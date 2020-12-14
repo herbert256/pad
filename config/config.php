@@ -18,41 +18,41 @@
 
   // Keep track of stuff, lots of data.
 
-  $pad_track_output      = FALSE;    // Store the output of every request
-  $pad_track_vars        = FALSE;    // Store the endstate of all vars for every request
-  $pad_track_db_session  = FALSE;
-  $pad_track_db_request  = FALSE;
-  $pad_track_file        = FALSE;
-  $pad_track_sql         = FALSE;    //  Detail information about every executed SQL statement.
-  $pad_track_errors      = TRUE;     //  Dumps errors to the file system.
+  $pad_track_output      = TRUE;    // Store the output of every request
+  $pad_track_vars        = TRUE;    // Store the endstate of all vars for every request
+  $pad_track_db_session  = TRUE;
+  $pad_track_db_request  = TRUE;
+  $pad_track_file        = TRUE;
+  $pad_track_sql         = TRUE;    //  Detail information about every executed SQL statement.
+  $pad_track_errors      = TRUE;    //  Dumps errors to the file system.
 
   // Cache settings
   
   $pad_cache_server_age       = 0;                    //  Seconds to keep the cache at PAD server side, 
-                                                        //  0 to turn of server-side caching
+                                                      //  0 to turn of server-side caching
 
-  $pad_cache_proxy_age        = 0;                     //  How long a proxy is allowed to cache. 
-                                                        //  0 to turn of proxy-side caching
+  $pad_cache_proxy_age        = 0;                    //  How long a proxy is allowed to cache. 
+                                                      //  0 to turn of proxy-side caching
 
-  $pad_cache_client_age       = 0;                     //  How long the client is allowed to cache.
-                                                        //  0 to turn of client-side caching
+  $pad_cache_client_age       = 0;                    //  How long the client is allowed to cache.
+                                                      //  0 to turn of client-side caching
 
-  // Server-side cache settings
+  // Server-side cache settings ( used wheb $pad_cache_server_age <> 0 )
 
   $pad_cache_server_type      = 'db';                 //  The implementation of the server-side cache: file/db/memory
-  $pad_cache_server_gzip      = FALSE;                  //  Store the cache zipped
-  $pad_cache_server_no_data   = FALSE;                  //  Do not store the data itself, only the etag and timestamp,
-                                                        //  caching based on the client 'etag' & 'modified' HTTP headers.
+  $pad_cache_server_gzip      = FALSE;                //  Store the cache zipped
+  $pad_cache_server_no_data   = FALSE;                //  Do not store the data itself, only the etag and timestamp,
+                                                      //  caching based on the client 'etag' & 'modified' HTTP headers.
 
-  $pad_cache_memory_host      = 'localhost';            //  Used when $pad_cache_server_type is 'memory'
+  $pad_cache_memory_host      = 'localhost';          //  Used when $pad_cache_server_type is 'memory'
   $pad_cache_memory_port      = '11211';
 
-  $pad_cache_db_host          = 'localhost';            //  Used when $pad_cache_server_type is 'db'
+  $pad_cache_db_host          = 'localhost';          //  Used when $pad_cache_server_type is 'db'
   $pad_cache_db_database      = 'cache';
   $pad_cache_db_user          = 'cache';
   $pad_cache_db_password      = 'cache';
 
-  $pad_cache_file             = PAD_DATA . 'cache';  //  Used when $pad_cache_server_type is 'file'
+  $pad_cache_file             = PAD_DATA . 'cache';   //  Used when $pad_cache_server_type is 'file'
 
   // SQL parms - PAD internal
 
@@ -108,24 +108,25 @@
 
   // lib tidy
 
-  $pad_tidy                   = FALSE;
+  $pad_tidy                   = TRUE;
   $pad_tidy_ccsid             = 'utf8'; 
-  $pad_tidy_config            = [ 'indent'              => true,
-                                  'output-html'         => true,
-                                  'doctype'             => 'html5',
-                                  'wrap'                => 200,
-                                  'tab-size'            => 2,
-                                  'omit-optional-tags'  => TRUE
+  $pad_tidy_config            = [ 
+                                  'output-html'     => true,
+                                  'doctype'         => 'html5',
+                                  'wrap'            => 200,
+                                  'indent'          => true,
+                                  'tab-size'        => 2,
+                                  'vertical-space'  => 'yes',
+                                  'replace-color'   => 'yes'
                                 ];
-
 
   $pad_local = ['localhost', 'penguin.linux.test', '127.0.0.1'];
   
   // Other settings.
 
-  $pad_client_gzip            = FALSE;      // Send the result zipped
-  $pad_etag_304               = FALSE;      // Send a 304 header, based on the client etag http header
-  $pad_no_no                  = FALSE;      // No PAD stuff, just plane PHP
+  $pad_client_gzip            = TRUE;   // Send the result zipped
+  $pad_etag_304               = FALSE;  // Send a 304 header, based on the client etag http header
+  $pad_no_no                  = FALSE;  // No PAD stuff, just plane PHP
   $pad_check_syntax           = TRUE;
   $pad_location_tag           = FALSE;
   
