@@ -181,13 +181,12 @@
   function pad_tag_error ($error='') {
 
     if ($error)
-      pad_error ($error);
+      return pad_error ($error);
     else
-      pad_error ("PAD tag syntax error");
-
-    return FALSE ;
+      return pad_error ("PAD tag syntax error");
 
   }
+
 
   function pad_check_tag ($tag, $string) {
 
@@ -196,59 +195,16 @@
   }
   
 
-  function pad_trace ($type, $parm='', $skip=FALSE) {
+  function pad_check_value (&$value) {
 
-    global $pad_trace, $pad_trc_cnt, $pad_trace_log, $pad_trace_hist, $pad_trace_browser, $pad_trace_file;
-    global $pad_lvl, $PADREQID, $pad_lvl_cnt, $pad_trc_cnt, $pad_occur_cnt, $pad_occur;
-
-    if ( $pad_trace == 'none')
-      return;
-
-    if ( ! $pad_trc_cnt and $pad_trace_browser )
-      echo "<pre>";
-
-    $pad_trc_cnt++;
-
-    $lineX  = str_pad ( $pad_trc_cnt, 3, ' ', STR_PAD_LEFT );
-    $lvlX   = str_pad ( $pad_lvl,     3, ' ', STR_PAD_LEFT );
-
-    if ( isset( $pad_occur [$pad_lvl] ) and $pad_occur [$pad_lvl] and !$skip )
-      $occurX = str_pad ( $pad_occur [$pad_lvl],  2, ' ', STR_PAD_LEFT );
-    else
-      $occurX = '  ';
+    if     ($value === NULL)      $value = '';
+    elseif ($value === TRUE)      $value = '1';
+    elseif ($value === FALSE)     $value = '';
+    elseif (is_array($value))     $value = '';
+    elseif (is_object($value))    $value = '';
+    elseif (is_resource($value))  $value = '';
+    else                          $value = (string) $value;
     
-    $typeX  = str_pad ( $type, 13);
-    
-    $parm = trim(preg_replace('/\s+/', ' ', $parm));
-    
-    if ( strlen($parm) > 100)
-      $parm = substr($parm, 0, 100);
-    
-    $lineL = "$lvlX $occurX   $typeX $parm";
-    
-    if ($pad_trc_cnt > 25)
-      unset ($pad_trace_hist [$pad_trc_cnt-25]);
-    $pad_trace_hist [$pad_trc_cnt] = $lineL;
-  
-    if ( $pad_trace_file )  
-      pad_file_put_contents ($GLOBALS['pad_trace_log'], "$lineX $lineL" . PHP_EOL, 1);
-
-    if ( $pad_trace_browser )
-      echo htmlentities("$lineL\n");
-
-  }
-
-  
-  function pad_var_data ($analyse) {
-
-    if     ( $analyse === NULL         ) return ''; 
-    elseif ( $analyse === FALSE        ) return '';
-    elseif ( $analyse === TRUE         ) return '1';
-    elseif ( is_array     ( $analyse ) ) return (string) count($analyse);
-    elseif ( is_object    ( $analyse ) ) return '';
-    elseif ( is_resource  ( $analyse ) ) return '';
-    else                                 return (string) $analyse;
-
   }
 
 
@@ -264,27 +220,27 @@
         return TRUE;
       else
         return FALSE;
-    else {
-      $work = trim ($analyse);
-      if ( $work )
+    else
+      if ( trim($analyse) )
         return TRUE;
       else
         return FALSE;
-    }
 
   }
+
 
   function pad_analyze_var ($analyse) {
 
     if     ( $analyse === NULL         ) return 'null'; 
     elseif ( $analyse === FALSE        ) return 'false';
     elseif ( $analyse === TRUE         ) return 'true';
-    elseif ( is_array     ( $analyse ) ) return 'array:'       . count($analyse);
-    elseif ( is_object    ( $analyse ) ) return 'object:'      . get_class ($analyse);
-    elseif ( is_resource  ( $analyse ) ) return 'resource:'    . get_resource_type($analyse) ;
+    elseif ( is_array     ( $analyse ) ) return 'array:'       . count                ($analyse);
+    elseif ( is_object    ( $analyse ) ) return 'object:'      . get_class            ($analyse);
+    elseif ( is_resource  ( $analyse ) ) return 'resource:'    . get_resource_type    ($analyse) ;
     elseif ( is_integer   ( $analyse ) ) return 'integer'      . pad_analyze_var_info ($analyse);
     elseif ( is_float     ( $analyse ) ) return 'float'        . pad_analyze_var_info ($analyse);
     elseif ( is_double    ( $analyse ) ) return 'double'       . pad_analyze_var_info ($analyse);
+    elseif ( is_bool      ( $analyse ) ) return 'bool'         . pad_analyze_var_info ($analyse);
     elseif ( ctype_alpha  ( $analyse ) ) return 'alphabetic'   . pad_analyze_var_info ($analyse);
     elseif ( ctype_digit  ( $analyse ) ) return 'numeric'      . pad_analyze_var_info ($analyse);
     elseif ( ctype_xdigit ( $analyse ) ) return 'hexadecimal'  . pad_analyze_var_info ($analyse);
@@ -301,18 +257,6 @@
      $work = substr($work, 0, 50);
 
      return ':' . $work;
-
-  }
-
-
-  function pad_tag_flag ($flag) {
-
-    global $pad_parms_tag;
-
-    if ( isset ( $pad_parms_tag [$flag] ) )
-      return TRUE;
-    else
-      return FALSE;
 
   }
 

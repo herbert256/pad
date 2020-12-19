@@ -44,7 +44,7 @@
     if ( $GLOBALS['pad_error_action'] == 'php' )
       throw new ErrorException ($error, 0, E_ERROR, $file, $line);
 
-    return pad_error_go ($error, $file, $line);
+    return pad_error_go ("$error - PAD", $file, $line);
  
   }
 
@@ -52,14 +52,14 @@
   function pad_error_handler ( $type, $error, $file, $line ) {
  
     if ( error_reporting() & $type )
-      return pad_error_go ($error, $file, $line);
+      return pad_error_go ( "$error - handler", $file, $line );
 
   }
 
 
   function pad_error_exception ( $error ) {
 
-    pad_error_go ( $error->getMessage(), $error->getFile(), $error->getLine()) ;
+    pad_error_go ( $error->getMessage() . ' - exception', $error->getFile(), $error->getLine()) ;
 
   }
   
@@ -71,7 +71,7 @@
 
     $error = error_get_last ();
     if ($error !== NULL)
-      pad_error_go ( $error['message']??'', $error['file']??'', $error['line']??'');
+      pad_error_go ( $error['message'] . ' - shutdown', $error['file'], $error['line']);
     
   }
 

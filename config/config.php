@@ -14,7 +14,7 @@
 
   // Trace the internal working of PAD
 
-  $pad_trace = 'file';   // 'none', 'browser', 'file', 'both'
+  $pad_trace = 'file';   // browser', 'file', 'memory'
 
   // Keep track of stuff, lots of data.
 
@@ -56,7 +56,7 @@
 
   // SQL parms - PAD internal
 
-  $pad_pad_sql_host           = 'l127.0.0.1';
+  $pad_pad_sql_host           = '127.0.0.1';
   $pad_pad_sql_database       = 'pad';
   $pad_pad_sql_user           = 'pad';
   $pad_pad_sql_password       = 'pad';

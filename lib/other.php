@@ -111,18 +111,6 @@
   }
   
 
-  function pad_check_value (&$value) {
-
-    if     ($value === NULL)      $value = '';
-    elseif ($value === TRUE)      $value = '1';
-    elseif ($value === FALSE)     $value = '';
-    elseif (is_array($value))     $value = '';
-    elseif (is_object($value))    $value = '';
-    elseif (is_resource($value))  $value = '';
-    else                          $value = (string) $value;
-    
-  }
-
 
   function pad_fatal ($error) {
     
@@ -195,9 +183,10 @@
     $ip   = $_SERVER ['REMOTE_ADDR'] ?? '';
     $name = $_SERVER ['SERVER_NAME'] ?? '';
 
-    if ( in_array($host, $GLOBALS['pad_local']) )  return TRUE;
-    if ( in_array($ip,   $GLOBALS['pad_local']) )  return TRUE;
-    if ( in_array($name, $GLOBALS['pad_local']) )  return TRUE;
+    if ( in_array($host, $GLOBALS['pad_local']) ) return TRUE;
+    if ( in_array($ip,   $GLOBALS['pad_local']) ) return TRUE;
+    if ( in_array($name, $GLOBALS['pad_local']) ) return TRUE;
+
     return FALSE;
     
   }
@@ -241,6 +230,7 @@
     
   }
   
+
   function pad_short_md5 ($input) {
     return substr(pad_base64(md5($input,TRUE)),0,22);
   }
@@ -261,10 +251,12 @@
     return strtr(base64_encode($string),'+/','_-');
   }
 
+
   function pad_file_put_contents ($file, $data, $append=0) {
     
     if ( ! preg_match('/^[A-Za-z0-9_\-\/\.]+$/', $file) or strpos($file, '//') or strpos($file, '..') )
-      return pad_error ("Invalid file name: $file");
+      // return pad_error ("Invalid file name: $file");
+return;
 
     $file = PAD_DATA . $file;
 
@@ -276,6 +268,7 @@
     pad_timing_end ('write');
     
   }
+
 
   function pad_valid_name ($name) {
  
@@ -367,53 +360,6 @@
   }
 
 
-  function pad_timing_start ($timing) {
-    
-    if ( ! $GLOBALS['pad_timing'] )
-      return;
-    
-    global $pad_timings, $pad_timings_start;
-    
-    if ( ! isset ( $pad_timings[$timing] ) )
-      $pad_timings [$timing] = 0;
-
-    $pad_timings_start [$timing] = microtime(true);
-
-  }
-
-  function pad_timing_end ($timing) {
-    
-    if ( ! $GLOBALS['pad_timing'] )
-      return;
-
-    global $pad_timings, $pad_timings_start;
-
-    if ($timing == 'sql' and isset($pad_timings_start ['cache']) and $pad_timings_start ['cache'])
-      return;
-
-    $pad_timings [$timing] = $pad_timings [$timing] + (microtime(true) - $pad_timings_start [$timing]) ;
-    
-    $pad_timings_start [$timing] = 0;
-    
-  }
-  
-  function pad_timing_close () {
-
-    if ( ! $GLOBALS['pad_timing'] )
-      return;
-
-    global $pad_timings;
-    $pad_timings ['init'] = microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'];
-
-    foreach ($pad_timings as $key => $val)
-      $pad_timings [$key] = (int) ( $val * 1000000 );
-
-    pad_header ('X-PAD-Timings: ' . json_encode($pad_timings) );
-
-  }
-  
-
-
   function pad_track_db_session ($pad_stop) {
 
     $session = pad_db( "field id from track_session where sessionid='{1}'", [ 1 => $GLOBALS['PADSESSID'] ] );
@@ -445,6 +391,7 @@
     );
       
   }
+
 
   function pad_track_file ($pad_stop) {
     
