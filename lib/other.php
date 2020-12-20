@@ -253,18 +253,16 @@
 
 
   function pad_file_put_contents ($file, $data, $append=0) {
-    
-    if ( ! preg_match('/^[A-Za-z0-9_\-\/\.]+$/', $file) or strpos($file, '//') or strpos($file, '..') )
-      // return pad_error ("Invalid file name: $file");
-return;
 
     $file = PAD_DATA . $file;
+   
+    pad_timing_start ('write');
 
     pad_check_file ($file);
-    
-    pad_timing_start ('write');
+
     if ($append) file_put_contents ($file, $data, LOCK_EX | FILE_APPEND);
     else         file_put_contents ($file, $data, LOCK_EX);
+
     pad_timing_end ('write');
     
   }
@@ -300,6 +298,9 @@ return;
   
   
   function pad_check_file ($file) {
+
+    if ( ! preg_match('/^[A-Za-z0-9_\-\/\.]+$/', $file) or strpos($file, '//') or strpos($file, '..') )
+      return pad_error ("Invalid file name: $file");
 
     $pos = strrpos($file, '/');
     $dir = substr($file, 0, $pos);
