@@ -92,7 +92,7 @@
     $GLOBALS['pad_last_sql'] = $sql;
     
     if ( ! $query )
-      padError ( 'MySQL-' . mysqli_errno ( $pad_sql_connect ) . ': ' . mysqli_error ( $pad_sql_connect )  . '<br><br>' . $sql );
+      pad_error ( 'MySQL-' . mysqli_errno ( $pad_sql_connect ) . ': ' . mysqli_error ( $pad_sql_connect ) . $sql );
 
     pad_timing_start ('sql');
     $pad_db_rows_found = $rows = mysqli_affected_rows($pad_sql_connect);
@@ -162,8 +162,6 @@
     $backTrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS,3);
     extract ( $backTrace[2] );
 
-    list($usec, $sec) = explode(" ", microtime());
-
     $now   = microtime(true);
     $sec   = floor($now);
     $micro = (int) (($now - $sec) * 1000);
@@ -174,7 +172,7 @@
     $log = "$start $file:$line rows:$rows time:$duration"
          . "\r\n\r\n$sql\r\n----------------------------------------\r\n";
 
-    pad_file_put_contents ("sql_$type.txt", $log, 1);
+    pad_file_put_contents ("sql/$type.txt", $log, 1);
     
   }
 

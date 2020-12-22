@@ -1,11 +1,6 @@
 <?php
 
 
-  function padError ($error) {
-    pad_error ($error);
-  }
-
-
   function padFastLink ($app, $page, $vars ) {
     
     global $pad_fast_link, $PADSESSID, $PADREQID, $pad_host, $pad;
@@ -15,7 +10,7 @@
     $vars ['PADSESSID'] = $PADSESSID;
     $vars ['PADREFID']  = $PADREQID;
     
-    $fast = pad_random_string($pad_fast_link);
+    $fast = pad_random_string ($pad_fast_link);
   
     pad_db (
       "insert into links values('{0}','{1}')",

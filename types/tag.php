@@ -1,12 +1,8 @@
 <?php
 
-  $pad_tag_base = PAD_HOME . "tags/$pad_tag";
-
-  $pad_return = include "$pad_tag_base.php";
-
-  if ($pad_return === TRUE and file_exists("$pad_tag_base.html") )
-    return pad_get_html ("$pad_tag_base.html");
+  if ( file_exists ( PAD_APP  . "tags/$pad_tag.php"  ) )
+    return include PAD_HOME . 'types/app.php';
   else
-    return $pad_return;
+    return include PAD_HOME . 'types/pad.php';
 
 ?>
