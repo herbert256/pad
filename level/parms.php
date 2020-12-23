@@ -8,9 +8,6 @@
   if ( $pad_tag <> 'set' or $pad_tag_type <> 'tag' ) {
 
     $pad_parms_org = pad_explode ($pad_parms, '|');
-    
-    foreach ( $pad_parms_org as $pad_k => $pad_v )
-      $pad_parms_org [$pad_k] = pad_unescape ($pad_v);
 
     foreach ( $pad_parms_org as $pad_k => $pad_v )
       $pad_parms_seq [$pad_k] = pad_eval($pad_v);

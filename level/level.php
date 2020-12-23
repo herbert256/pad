@@ -44,7 +44,7 @@
 
   $pad_ns_pos = strpos($pad_tag, ':');
 
-  if ($pad_ns_pos) {
+  if ( $pad_ns_pos ) {
 
     $pad_tag_type = substr ($pad_tag, 0, $pad_ns_pos);
     $pad_tag      = substr ($pad_tag, $pad_ns_pos+1);
@@ -54,23 +54,10 @@
     
   } else {
 
-    if     ( file_exists     ( PAD_APP  . "tags/$pad_tag.php"      ) ) $pad_tag_type = 'tag';
-    elseif ( file_exists     ( PAD_HOME . "tags/$pad_tag.php"      ) ) $pad_tag_type = 'tag';
-    elseif ( file_exists     ( PAD_HOME . "tag/$pad_tag.php"       ) ) $pad_tag_type = 'parm';
-    elseif ( pad_level_array ( $pad_tag                            ) ) $pad_tag_type = 'level';
-    elseif ( isset           ( $pad_flag_store [$pad_tag]          ) ) $pad_tag_type = 'flag';
-    elseif ( isset           ( $pad_content_store [$pad_tag]       ) ) $pad_tag_type = 'content';
-    elseif ( isset           ( $pad_data_store [$pad_tag]          ) ) $pad_tag_type = 'data';
-    elseif ( isset           ( $pad_db_tables [$pad_tag]           ) ) $pad_tag_type = 'table';
-    elseif ( file_exists     ( PAD_APP  . "functions/$pad_tag.php" ) ) $pad_tag_type = 'function';
-    elseif ( file_exists     ( PAD_HOME . "functions/$pad_tag.php" ) ) $pad_tag_type = 'function';
-    elseif ( pad_array_check ( $pad_tag                            ) ) $pad_tag_type = 'array';
-    elseif ( pad_field_check ( $pad_tag                            ) ) $pad_tag_type = 'field';
-    elseif ( defined         ( $pad_tag                            ) ) $pad_tag_type = 'constant';
-    elseif ( function_exists ( $pad_tag                            ) ) $pad_tag_type = 'php';
-    elseif ( pad_is_object   ( $pad_tag                            ) ) $pad_tag_type = 'object';
-    elseif ( pad_is_resource ( $pad_tag                            ) ) $pad_tag_type = 'resource';
-    else                                                               return pad_ignore ();
+    $pad_tag_type = pad_get_type ( $pad_tag );
+
+    if ( $pad_tag_type === FALSE )
+      return pad_ignore ();
 
   }
 

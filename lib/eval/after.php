@@ -1,7 +1,17 @@
 <?php
   
+  function pad_eval_set_type ( &$result, $k, $type ) {
+
+    $result [$k] [0] = 'TYPE';
+    $result [$k] [2] = $type;
+    $result [$k] [5] = 0;
+
+  }
+   
   function pad_eval_after ( &$result ) {
  
+    global $pad_flag_store, $pad_data_store, $pad_content_store;
+
     $check = 0;
     
     foreach($result as $one) {
@@ -17,26 +27,13 @@
       return pad_error ("Unequal () pairs");
 
     foreach ($result as $k => $one)
-      
-      if ( $one[1] == 'other' )  {
-
-        $option = $one[0];
-
-        $php = '';
-        if ( pad_valid_name($option) )
-          if ( file_exists(PAD_APP . "functions/$option.php") )
-            $php = PAD_APP . "functions/$option.php";
-          elseif ( file_exists(PAD_HOME . "functions/$option.php") )
-            $php = PAD_HOME . "functions/$option.php";
-
-        if ($php) {
-          $result[$k][0] = 'PHP';
-          $result[$k][1] = 'OPR';
-          $result[$k][2] = $php;
-          $result[$k][3] = $option;
-          $result[$k][5] = 0;
+      if ( $one[1] == 'other' and pad_valid_name ($one[0]) ) {
+        $type = pad_get_type ( $one[0] );
+        if ( $pad_tag_type !== FALSE ) {
+          $result [$k] [0] = 'TYPE';
+          $result [$k] [2] = $type;
+          $result [$k] [5] = 0;
         }
-  
       }
 
     foreach ($result as $k => $one)

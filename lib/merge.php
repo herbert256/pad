@@ -1,5 +1,27 @@
 <?php
 
+  function pad_get_type ( $type ) {
+
+    if     ( file_exists     ( PAD_APP  . "tags/$type.php"      ) ) return 'tag_app';
+    elseif ( file_exists     ( PAD_HOME . "tags/$type.php"      ) ) return 'tag_pad';
+    elseif ( file_exists     ( PAD_HOME . "tag/$type.php"       ) ) return 'parm';
+    elseif ( pad_level_array ( $type                            ) ) return 'level';
+    elseif ( isset           ( $pad_flag_store [$type]          ) ) return 'flag';
+    elseif ( isset           ( $pad_content_store [$type]       ) ) return 'content';
+    elseif ( isset           ( $pad_data_store [$type]          ) ) return 'data';
+    elseif ( isset           ( $pad_db_tables [$type]           ) ) return 'table';
+    elseif ( file_exists     ( PAD_APP  . "functions/$type.php" ) ) return 'function_app';
+    elseif ( file_exists     ( PAD_HOME . "functions/$type.php" ) ) return 'function_pad';
+    elseif ( pad_array_check ( $type                            ) ) return 'array';
+    elseif ( pad_field_check ( $type                            ) ) return 'field';
+    elseif ( defined         ( $type                            ) ) return 'constant';
+    elseif ( function_exists ( $type                            ) ) return 'function_php';
+    elseif ( pad_is_object   ( $type                            ) ) return 'object';
+    elseif ( pad_is_resource ( $type                            ) ) return 'resource';
+    else                                                            return FALSE;
+
+  }
+
   function pad_build_html ($file) {
 
    pad_trace ('build/html', "$file.html");
