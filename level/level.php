@@ -54,7 +54,7 @@
     
   } else {
 
-    $pad_tag_type = pad_get_type ( $pad_tag );
+    $pad_tag_type = pad_get_type_lvl ( $pad_tag );
 
     if ( $pad_tag_type === FALSE )
       return pad_ignore ();

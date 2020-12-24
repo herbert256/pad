@@ -1,5 +1,5 @@
 <?php
 
-  return constant ($pad_tag);
+  return constant ($name);
 
 ?>

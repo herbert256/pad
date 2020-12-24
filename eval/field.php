@@ -1,5 +1,5 @@
 <?php
 
-  return pad_field_value ($pad_tag);
+  return pad_field_value ($name);
 
 ?>

@@ -1,5 +1,5 @@
 <?php
  
-  return pad_array_value ($pad_tag, TRUE);
+  return pad_array_value ($name, TRUE);
 
 ?>

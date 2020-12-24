@@ -28,11 +28,25 @@
 
     foreach ($result as $k => $one)
       if ( $one[1] == 'other' and pad_valid_name ($one[0]) ) {
-        $type = pad_get_type ( $one[0] );
+        $type = pad_get_type_eval ( $one[0] );
         if ( $pad_tag_type !== FALSE ) {
-          $result [$k] [0] = 'TYPE';
-          $result [$k] [2] = $type;
-          $result [$k] [5] = 0;
+          $result[$k][0] = 'TYPE';
+          $result[$k][1] = 'OPR';
+          $result[$k][2] = $type;
+          $result[$k][3] = $type;
+          $result[$k][5] = 0;
+        }
+      }
+
+    foreach ($result as $k => $one)
+      if ( $one[1] == 'other' {
+        $exp = pad_explode ($one[0], ':');
+        if ( count($exp) == 2 and pad_valid_name ($exp[1]) and file_exists ( PAD_HOME . "eval/" . $exp[0] . ".php" ) ) {
+          $result[$k][0] = 'TYPE';
+          $result[$k][1] = 'OPR';
+          $result[$k][2] = $exp[1];
+          $result[$k][3] = $exp[1];
+          $result[$k][5] = 0;
         }
       }
 

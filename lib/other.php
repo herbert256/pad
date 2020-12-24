@@ -3,6 +3,9 @@
 
   function pad_xxx_to_array ($xxx) {
 
+     if ( is_array($xxx) )
+       return ($xxx);
+
     set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
     $error_level = error_reporting(0);
 

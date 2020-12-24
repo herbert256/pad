@@ -40,7 +40,7 @@ go: $b = -1;
           if ($key2<$open)
             $last = $key2;
           
-        if ( $last and $result[$last][0] == 'PHP' and $result[$last][1] == 'OPR' )
+        if ( $last and $result[$last][0] == 'TYPE' and $result[$last][1] == 'OPR' )
           $result[$last][5] = $key;
 
         pad_eval_go ($result, $open+1, $key-1, $myself);
@@ -100,9 +100,9 @@ go: $b = -1;
 
         if ( $b >= $start and $result[$b][0] == $now and $result[$b][1] == 'OPR' ) {
 
-          if ($result[$b][0] == 'PHP') {
+          if ($result[$b][0] == 'TYPE') {
         
-            pad_eval_php ($b, $f, $result, $myself, $start);
+            pad_eval_type ($b, $f, $result, $myself, $start);
 
             goto go;
  
@@ -122,9 +122,9 @@ go: $b = -1;
 
         }
 
-        if ( $now == 'PHP' and $k == array_key_last ($result) and $result[$k][0] == 'PHP' and $result[$k][1] == 'OPR' ) {
+        if ( $now == 'TYPE' and $k == array_key_last ($result) and $result[$k][0] == 'TYPE' and $result[$k][1] == 'OPR' ) {
           
-          pad_eval_php ($k, $b, $result, $myself, $start);
+          pad_eval_type ($k, $b, $result, $myself, $start);
           
           goto go;
 

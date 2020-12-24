@@ -5,6 +5,6 @@
 
   $pad_idx = pad_idx ( $pad_parm ); 
 
-  return include PAD_HOME . "tag/$pad_tag.php"; 
+  return include PAD_HOME . "tag/$name.php"; 
 
 ?>
