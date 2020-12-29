@@ -1,5 +1,8 @@
 <?php
 
-  return include PAD_HOME . 'eval/function_php.php';
+  if ( ! count ($parm) and $value )
+    $parm [0] = $value;
+
+  return call_user_func_array ($name, $parm);
 
 ?>

@@ -24,10 +24,7 @@
   else
     $pad_between = substr($pad_html[$pad_lvl], $pad_start[$pad_lvl]+1, $pad_end[$pad_lvl]-$pad_start[$pad_lvl]-2);
 
-  $pad_first   = substr($pad_between, 0, 1);
-  $pad_words   = preg_split("/[\s]+/", $pad_between, 2, PREG_SPLIT_NO_EMPTY);
-  $pad_tag     = trim($pad_words[0] ?? '');
-  $pad_parms   = trim($pad_words[1] ?? '');
+  include PAD_HOME . 'level/parms1.php';
 
   pad_trace ('tag/inits', "tag=$pad_tag parms=$pad_parms pair=$pad_pair");
   
@@ -35,12 +32,6 @@
   elseif ( $pad_first == '$'             ) return pad_html ( include PAD_HOME . 'level/var.php'  );
   elseif ( ! ctype_alpha ( $pad_first )  ) return pad_ignore ();
   elseif ( ! pad_valid_name ( $pad_tag ) ) return pad_ignore ();
-
-  $pad_pair_search = $pad_tag;
-  $pad_parms_type  = ( $pad_parms ) ? 'open' : 'none';
-
-  $pad_parameters [$pad_lvl+1] ['name'] = $pad_tag;
-  $pad_parameters [$pad_lvl+1] ['parm'] = $pad_parms;
 
   $pad_ns_pos = strpos($pad_tag, ':');
 
@@ -69,6 +60,7 @@
       return pad_ignore ();
   }
 
+  $pad_go_parms = TRUE;
   include PAD_HOME . 'level/start.php';
 
 ?>

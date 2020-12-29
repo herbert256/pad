@@ -80,11 +80,20 @@
 
     try {
 
-      $PADREQID = $GLOBALS['PADREQID'] ?? uniqid();
+      if ( $GLOBALS['pad_error_action'] == 'abort') 
+        pad_exit ();
+
+      if ( $GLOBALS['pad_error_action'] == 'none') 
+        return FALSE;    
+
+      if ( $GLOBALS['pad_exit'] <> 1 )
+        pad_boot_error_go ($error, $file, $line);
 
       $msg = "$file:$line $error";
-      $msg = str_replace (PAD_APP,  'APP://', $msg);
-      $msg = str_replace (PAD_HOME, 'PAD://', $msg);
+      $msg = str_replace (PAD_APP,  'APP:', $msg);
+      $msg = str_replace (PAD_HOME, 'PAD:', $msg);
+
+      $PADREQID = $GLOBALS['PADREQID'] ?? uniqid();
 
       error_log ("[PAD] $PADREQID $msg", 4);   
 
@@ -93,14 +102,6 @@
       pad_boot_error_go ($e->getMessage(), $e->getFile(), $e->getLine());
 
     }
-
-    if ( $GLOBALS['pad_error_action'] == 'abort') 
-      pad_exit ();
-    elseif ( $GLOBALS['pad_error_action'] == 'none') 
-      return FALSE;    
-
-    if ( $GLOBALS['pad_exit'] <> 1 )
-      pad_boot_error_go ($error, $file, $line);
 
     $GLOBALS['pad_exit'] = 9;
     restore_exception_handler ();

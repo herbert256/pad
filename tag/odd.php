@@ -1,7 +1,5 @@
 <?php
 
-  global $pad_occur;
-
-  return ( $pad_occur [$pad_idx] % 2 <> 0 );
+  return ( ! (include PAD_HOME . "tag/even.php") );
 
 ?>

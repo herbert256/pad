@@ -12,7 +12,7 @@
     pad_track_file ($pad_stop);
 
   if ( $GLOBALS['pad_track_vars'] )
-    pad_track_vars ("vars/$app/$page/" . $GLOBALS['PADREQID'] . ".html");
+    pad_track_vars ("vars/" . $GLOBALS['app'] . "/" . $GLOBALS['page'] . "/" . $GLOBALS['PADREQID'] . ".html");
 
   pad_close_session ();
 

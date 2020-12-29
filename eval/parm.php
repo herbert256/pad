@@ -1,10 +1,9 @@
 <?php
 
-  if (!$pad_parm)
-    $pad_parm = -1;
+  $pad_parm_field = $name;
+  $pad_parm_value = $value;
+  $pad_parm_parms = $parm;
 
-  $pad_idx = pad_idx ( $pad_parm ); 
-
-  return include PAD_HOME . "tag/$name.php"; 
-
+  return include PAD_HOME . "eval/parm_go.php";
+  
 ?>

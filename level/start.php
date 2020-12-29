@@ -1,35 +1,30 @@
 <?php
   
   $pad_lvl++;
-
-  $pad_walks_data [ $pad_lvl] = [];
-
-  $pad_parameters [$pad_lvl] ['name'] = '';
-  $pad_parameters [$pad_lvl] ['parm'] = '';
-
   $pad_lvl_cnt++;
 
-  pad_trace ("level/start", "nr=$pad_lvl_cnt " . '{' . $pad_between . '}' . " nr=$pad_lvl_cnt", TRUE);
+  pad_trace ("level/start", "nr=$pad_lvl_cnt " . '{' . $pad_between . '}', TRUE);
 
   if ( isset ( $pad_current [$pad_lvl] ) )
     unset ( $pad_current [$pad_lvl] );
 
-  $pad_walks       [$pad_lvl]   = '';
-  $pad_current     [$pad_lvl]   = [];
-  $pad_parameters  [$pad_lvl]   = [];
-  $pad_data        [$pad_lvl]   = []; 
-  $pad_base        [$pad_lvl]   = '';
-  $pad_occur       [$pad_lvl]   = 0;
-  $pad_result      [$pad_lvl]   = '';
-  $pad_html        [$pad_lvl]   = '';
-  $pad_db          [$pad_lvl]   = '';
-  $pad_db_lvl      [$pad_lvl]   = [];
-  $pad_save_vars   [$pad_lvl]   = [];
-  $pad_delete_vars [$pad_lvl]   = [];
+  $pad_walks       [$pad_lvl] = '';
+  $pad_walks_data  [$pad_lvl] = [];
+  $pad_current     [$pad_lvl] = [];
+  $pad_parameters  [$pad_lvl] = [];
+  $pad_data        [$pad_lvl] = []; 
+  $pad_base        [$pad_lvl] = '';
+  $pad_occur       [$pad_lvl] = 0;
+  $pad_result      [$pad_lvl] = '';
+  $pad_html        [$pad_lvl] = '';
+  $pad_db          [$pad_lvl] = '';
+  $pad_db_lvl      [$pad_lvl] = [];
+  $pad_save_vars   [$pad_lvl] = [];
+  $pad_delete_vars [$pad_lvl] = [];
 
   $pad_filter = [];
 
-  include PAD_HOME . 'level/parms.php';
+  include PAD_HOME . 'level/parms2.php';
 
   if ( isset ( $pad_parms_tag ['flag'] ) )
     include PAD_HOME . 'level/parms/flag.php';
@@ -46,7 +41,6 @@
   $pad_parameters [$pad_lvl] ['parms']       = $pad_parms;
   $pad_parameters [$pad_lvl] ['between']     = $pad_between;
   $pad_parameters [$pad_lvl] ['parms_type']  = $pad_parms_type;
-  
   $pad_parameters [$pad_lvl] ['tag_count']   = 0;
  
   $pad_walk = 'start';
