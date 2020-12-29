@@ -60,7 +60,7 @@
       return pad_ignore ();
   }
 
-  $pad_go_parms = TRUE;
+  $pad_from_eval = FALSE; 
   include PAD_HOME . 'level/start.php';
 
 ?>

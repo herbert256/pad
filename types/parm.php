@@ -6,6 +6,8 @@
 
   $pad_parm_return = include PAD_HOME . "eval/parm_go.php"; 
 
+  if ( $pad_parm_return === TRUE and $pad_content == '' and ! isset ( $pad_parm_tag ['content'] ) )
+    $pad_content = '1';
 
   return $pad_parm_return;
 

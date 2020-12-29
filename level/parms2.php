@@ -1,6 +1,6 @@
 <?php
 
-  if ($pad_go_parms) {
+  if ( $pad_from_eval === FALSE ) {
 
     $pad_parms_org = [];
     $pad_parms_seq = [];

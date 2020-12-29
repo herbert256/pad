@@ -19,24 +19,11 @@
 
   }
 
-  if ( $pad_walks [$pad_lvl] == 'end' ) {
+  if ( $pad_walks [$pad_lvl] == 'end' )
+    include PAD_HOME . 'walk/end.php';
 
-    foreach ( $pad_parameters [$pad_lvl] as $pad_k => $pad_v )
-      $GLOBALS['pad_'.$pad_k] = $pad_v;
-
-    $pad_content = $pad_result[$pad_lvl];
-
-    $pad_walk = 'end';
-    include PAD_HOME . "level/type.php";
-
-    $pad_result[$pad_lvl] = $pad_content;
-
-  }
-
-  if ( isset($pad_parms_tag ['callback']) ) {
-    $pad_callback = "exit_tag";
-    include PAD_HOME . 'parms/callback.php' ;
-  }
+  if ( isset($pad_parms_tag ['callback']) and ! isset($pad_parms_tag ['before']))
+    include PAD_HOME . 'callback/exit.php' ;
 
   foreach ($pad_parms_end as $pad_v)
     if ( isset ( $pad_parms_tag [$pad_v] ) )

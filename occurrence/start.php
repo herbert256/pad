@@ -29,20 +29,15 @@
 
   }
 
-  if ( isset($pad_parms_tag ['callback']) ) {
-    $pad_callback = "init_occurrence";
-    include PAD_HOME . 'parms/callback.php';
-  }
+  if ( isset($pad_parms_tag ['callback']) and ! isset($pad_parms_tag ['before']))
+    include PAD_HOME . 'callback/row.php' ;
 
   include PAD_HOME . 'occurrence/db.php';
 
   if ($pad_name == 'trace')
     $pad_trace = TRUE;
 
-  if ( $pad_walks [$pad_lvl] == 'occurrence/start' ) {
-    $pad_walk = 'occurrence/start';
-    $pad_content = $pad_html [$pad_lvl];
-    include PAD_HOME . "level/type.php";
-  }
+  if ( $pad_walks [$pad_lvl] == 'occurrence_start' )
+    include PAD_HOME . "level/occurrence_start.php";
 
 ?>

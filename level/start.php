@@ -53,10 +53,8 @@
     if ( isset ( $pad_parms_tag [$pad_v] ) )
       include PAD_HOME . "parms/$pad_v.php" ;
 
-  if ( isset ( $pad_parms_tag ['callback'] ) ) {
-    $pad_callback = "init_tag";
-    include PAD_HOME . 'parms/callback.php';
-  }
+  if ( isset($pad_parms_tag ['callback']) and ! isset($pad_parms_tag ['before']))
+    include PAD_HOME . 'callback/init.php' ;
 
   if ( isset ( $pad_parms_tag ['parent'] ) )
     include PAD_HOME . 'parms/parent.php';

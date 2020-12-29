@@ -14,7 +14,7 @@
   $pad_parms_tag = [];
   $pad_parms_val = $parm;
 
-  $pad_go_parms = FALSE;  
+  $pad_from_eval = TRUE;  
   include PAD_HOME . 'level/start.php';
 
   $pad_lvl--;
