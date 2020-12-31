@@ -5,18 +5,23 @@
     pad_trace ( "get/start", "$target: $input");
 
     pad_check_url ( $input, $type, $parm );
+
+    if ( file_exists ( PAD_APP . "data/$input" ) ) {
+
+      if ( substr($input, -4)  ==  '.php' )
+        $result = inlude PAD_APP . "data/$input";
+      else
+        $result = pad_file_get_contents ( $file )
+
+    }
  
-    if ( $type = '' )
+    elseif ( $type = '' )
 
       $result = $input;
 
-    elseif ( file_exists ( PAD_HOME . "get/$type.php" ) )
-
-      $result = include PAD_HOME . "get/$type.php";
-
     elseif ( file_exists ( PAD_HOME . "eval/$type.php" ) )
 
-      $result = include PAD_HOME . "get/go/eval.php";
+      $result = include PAD_HOME . "eval/go/get.php";
 
     else {
 
@@ -24,7 +29,7 @@
 
     }
  
-    if (  $result <> $input ) {
+    if ( $result <> $input ) {
 
       pad_check_url ( $result, $type, $parm );
 

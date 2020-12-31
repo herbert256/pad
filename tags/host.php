@@ -3,7 +3,8 @@
   $pad_parms_tag ['url']   = $pad_location . trim($pad_parm);
   $pad_parms_tag ['cache'] = FALSE;
 
-  $pad_parms_tag ['get'] ['PADSESSID'] = $PADSESSID;
+  $pad_parms_tag ['cookies'] ['PADSESSID'] = $GLOBALS['PADSESSID'];   
+  $pad_parms_tag ['cookies'] ['PADREQID']  = $GLOBALS['PADREQID'];    
 
   if ( ! pad_tag_parm ('complete') )
     $pad_parms_tag ['get'] ['pad_include'] = 1;
