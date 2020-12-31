@@ -37,7 +37,7 @@
   if ($pad_name == 'trace')
     $pad_trace = TRUE;
 
-  if ( $pad_walks [$pad_lvl] == 'occurrence_start' )
-    include PAD_HOME . "level/occurrence_start.php";
+  if ( $pad_walks [$pad_lvl] == 'occurrence' )
+    include PAD_HOME . "walk/occurrence.php";
 
 ?>

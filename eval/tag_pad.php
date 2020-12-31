@@ -2,6 +2,6 @@
 
   $pad_tag_type = 'pad';
 
-  return include PAD_HOME . 'eval/tag_xxx.php';
+  return include PAD_HOME . 'eval/go/tag.php';
 
 ?>

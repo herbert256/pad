@@ -7,12 +7,8 @@
     return include PAD_HOME . 'occurrence/start.php';
 
   if ( $pad_walks [$pad_lvl] == 'next' ) {
-    
-    foreach ( $pad_parameters [$pad_lvl] as $pad_k => $pad_v )
-      $GLOBALS['pad_'.$pad_k] = $pad_v;
 
-    $pad_walk = 'next';
-    include PAD_HOME . 'level/tag.php';
+    include PAD_HOME . 'walk/next.php';
   
     if ( $pad_walk == 'next' )
       return include PAD_HOME . 'occurrence/start.php';
@@ -22,7 +18,7 @@
   if ( $pad_walks [$pad_lvl] == 'end' )
     include PAD_HOME . 'walk/end.php';
 
-  if ( isset($pad_parms_tag ['callback']) and ! isset($pad_parms_tag ['before']))
+  if ( isset($pad_parms_tag ['callback']) and ! isset($pad_parms_tag ['before']) )
     include PAD_HOME . 'callback/exit.php' ;
 
   foreach ($pad_parms_end as $pad_v)

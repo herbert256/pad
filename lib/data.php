@@ -3,67 +3,34 @@
   function pad_data ($input, $content='') {
 
     if     ( $input === NULL       )  $data = [];
+    elseif ( $input === FALSE      )  $data = [];
+    elseif ( $input === TRUE       )  $data = [1 => [] ];
     elseif ( is_array ( $input)    )  $data = $input;
     elseif ( is_object ( $input)   )  $data = pad_xxx_to_array ( $input );
     elseif ( is_resource ( $input) )  $data = pad_xxx_to_array ( $input );
-    elseif ( $input === FALSE      )  $data = [];
-    elseif ( $input === TRUE       )  $data = [1 => [] ];
     elseif ( ! $input              )  $data = [];
     else                              $data = (string) trim($input);
+
+    if     ( $input === NULL       )  pad_trace ( "data/start", "NULL");
+    elseif ( $input === FALSE      )  pad_trace ( "data/start", "FALSE");
+    elseif ( $input === TRUE       )  pad_trace ( "data/start", "TRUE");
+    elseif ( is_array ( $input)    )  pad_trace ( "data/start", "ARRAY: "    . pad_make_string ( $input ) );
+    elseif ( is_object ( $input)   )  pad_trace ( "data/start", "OBJECT: "   . pad_make_string ( $input ) );
+    elseif ( is_resource ( $input) )  pad_trace ( "data/start", "RESOURCE: " . pad_make_string ( $input ) );
+    elseif ( ! $input              )  pad_trace ( "data/start", "EMPTY");
+    else                              pad_trace ( "data/start", "STRING: "   . pad_make_string ( $input ) );
     
     if ( is_array ( $data ) ) {
       pad_data_chk ( $data );
       return $data;
     }
 
-    if ( isset ( $GLOBALS ['pad_data_store'] [$data] ) ) {
+    pad_trace ("data/start", $error);
 
-      $new = pad_data_name ();
-      $arr = $GLOBALS ['pad_data_store'] [$data];
-
-      foreach ($arr as $key => $value)
-        if ( is_array ($value) and count($value) == 1 and isset ($value[$data]) )
-          $arr [$key] = [ $new => $value[$data] ];
+    pad_check_url ( $data, $type, $parm );
  
-      return $arr;
-
-    }
-
-    $stream = pad_explode ($data, '://', 2);
-
-    if ( isset ( $GLOBALS ['pad_content_store'] [$data] ) ) {
-
-      $data = $GLOBALS ['pad_content_store'] [$data];
-
-    } elseif ( count ($stream) == 2 and $stream[0] == 'range' ) {
-
-      $range = pad_explode ($stream[1], '..');
-      return range ( $range[0], $range[1] );      
- 
-    } elseif ( count ($stream) == 2 and $stream[0] == 'sql' ) {
-
-      $work = db ( $stream [1] );
-
-      if ( ! is_array($work) )
-        return pad_data ($work);
-        
-      pad_data_chk ( $work );
-      return $work;
-
-    } elseif ( count ($stream) == 2 and pad_valid_name($stream[0]) ) {
-
-      $curl_return = pad_curl ($data, $curl);
-
-      if ( $curl_return === TRUE) {
-
-        if ( ! $content )
-          $content = $curl ['result_type'];
-
-        $data = $curl ['data'];  
-
-      }
-
-    }
+    if ( $type )
+      return pad_get ( $data, 'data', $content);
 
     if ( substr($data, 0, 1) == '(' and substr($data, -1) == ')' ) {
       $work = pad_explode(substr($data, 1, -1), ',');
@@ -212,8 +179,8 @@
   function pad_data_error ($data, $error) {
 
     $GLOBALS['DEBUG_DATA_PAD'] = $data;
-      
-    pad_error ($error);
+
+    pad_trace ("data/error", $error);
 
     return [];
     

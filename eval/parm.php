@@ -4,6 +4,6 @@
   $pad_parm_value = $value;
   $pad_parm_parms = $parm;
 
-  return include PAD_HOME . "eval/parm_go.php";
+  return include PAD_HOME . "eval/go/parm.php";
   
 ?>

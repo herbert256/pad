@@ -1,6 +1,6 @@
 <?php
 
-  $pad_walk = 'occurrence_start';
+  $pad_walk = 'occurrence';
 
   $pad_content = $pad_html [$pad_lvl];
 

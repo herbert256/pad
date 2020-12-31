@@ -1,7 +1,5 @@
 <?php
 
-  pad_error ($pad_parm);
- 
-  return FALSE;
-  
+  return pad_error ($pad_parm);
+   
 ?>

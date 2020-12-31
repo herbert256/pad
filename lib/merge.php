@@ -1,5 +1,93 @@
 <?php
 
+  function pad_check_url ( $input, &$type, &$parm ) {
+
+    $type = '';
+    $parm = '';
+
+    $data = pad_make_string ( $input )
+
+    $stream = pad_explode ($data, '://', 2);
+
+    if ( count ($stream) <> 2 or ! pad_valid_name ($stream[0]) )
+      return FALSE;
+
+    $type = $stream[0];
+    $parm = $stream[1];
+
+    return TRUE;
+
+  }
+
+  function pad_make_flag ( $input ) {    
+
+    if     ( $input === NULL  )  return FALSE;
+    elseif ( $input === FALSE )  return FALSE;
+    elseif ( $input === TRUE  )  return TRUE;
+
+    if ( is_array ($input) or is_object ($input) or is_resource ($input) )  {
+
+      $array = pad_xxx_to_array ( $input );
+
+      if ( pad_is_default_data ( $data )  )
+        return FALSE;
+
+      if ( count ( $data ) )
+        return TRUE; 
+      else
+        return FALSE;
+
+    }
+ 
+    $flag = (string) trim ($input);
+
+    if ( $flag )
+      return TRUE; 
+    else
+      return FALSE;
+
+  }
+
+
+  function pad_make_string ( $input ) {    
+
+    if     ( $input === NULL        )  return '';
+    elseif ( $input === FALSE       )  return '';
+    elseif ( $input === TRUE        )  return '1';
+    elseif ( is_array ( $input )    )  return pad_array_to_string ( $input );
+    elseif ( is_object ( $input )   )  return pad_array_to_string ( $input );
+    elseif ( is_resource ( $input ) )  return pad_array_to_string ( $input );
+    else                               return (string) trim ($input); 
+
+  }
+
+  function pad_array_to_string ( $input ) {    
+
+    $array = pad_make_array ( $input );
+
+    foreach ( $array as $key => $value )
+      $array [$key] = pad_make_string ( $value );
+
+    return trim ( implode (' ', $array) );
+
+  }
+
+
+ function pad_make_array ( $input ) {      
+
+    if     ( $input === NULL       )  return [];
+    elseif ( $input === FALSE      )  return [];
+    elseif ( $input === TRUE       )  return [1 => 1 ];
+    elseif ( is_array ( $input)    )  return $input;
+    elseif ( is_object ( $input)   )  return pad_xxx_to_array ( $input );
+    elseif ( is_resource ( $input) )  return pad_xxx_to_array ( $input );
+    elseif ( ! trim($input)        )  return [];
+    else                              return [1 => trim($input) ];      
+
+  }
+
+
+
   function pad_callback_before_xxx ($pad_callback_type) {
 
     $pad_vars_before = [];
@@ -543,14 +631,26 @@
   }
 
 
-  function pad_get_html ($file) {
+  function pad_file_get_contents ( $file ) {
 
-    if ( ! file_exists($file) )
-      return '';
-      
     pad_timing_start ('read');
-    $html = file_get_contents ($file);
+
+    if ( ! file_exists($file) ) {
+      pad_trace ('file_not_found', $file);
+      $return = '';
+    }
+    else
+      $return = file_get_contents ($file);
+
     pad_timing_end ('read');
+
+    return $return;    
+
+  }
+
+  function pad_get_html ($file) {
+      
+    $html = pad_file_get_contents ( $file );    
     
     $html = str_replace(['\{', '\}','\|', '\='], ['&open;','&close;','&pipe;', '&eq;'], $html);
     
