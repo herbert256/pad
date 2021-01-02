@@ -21,7 +21,7 @@
   if ( isset($pad_parms_tag ['callback']) and ! isset($pad_parms_tag ['before']) )
     include PAD_HOME . 'callback/exit.php' ;
 
-  foreach ($pad_parms_end as $pad_v)
+  foreach ($pad_parms_level_end as $pad_v)
     if ( isset ( $pad_parms_tag [$pad_v] ) )
         include PAD_HOME . "parms/$pad_v.php" ;
 

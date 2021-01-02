@@ -108,7 +108,7 @@
 
   // lib tidy
 
-  $pad_tidy                   = TRUE;
+  $pad_tidy                   = FALSE;
   $pad_tidy_ccsid             = 'utf8'; 
   $pad_tidy_config            = [ 
                                   'output-html'     => true,
@@ -124,7 +124,7 @@
   
   // Other settings.
 
-  $pad_client_gzip            = TRUE;   // Send the result zipped
+  $pad_client_gzip            = false;   // Send the result zipped
   $pad_etag_304               = FALSE;  // Send a 304 header, based on the client etag http header
   $pad_no_no                  = FALSE;  // No PAD stuff, just plane PHP
   $pad_check_syntax           = TRUE;

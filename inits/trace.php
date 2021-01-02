@@ -40,8 +40,8 @@
     
     $lineL = "$lvlX $occurX   $typeX $parm";
     
-    if ($pad_trc_cnt > 25)
-      unset ($pad_trace_hist [$pad_trc_cnt-25]);
+    if ($pad_trc_cnt > 50)
+      unset ($pad_trace_hist [$pad_trc_cnt-50]);
     $pad_trace_hist [$pad_trc_cnt] = $lineL;
   
     if ( $pad_trace_file )  

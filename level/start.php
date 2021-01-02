@@ -49,7 +49,7 @@
   if ($pad_lvl > 1) 
     pad_data_chk ( $pad_data[$pad_lvl] );
   
-  foreach ($pad_parms_start as $pad_v)
+  foreach ($pad_parms_level_start as $pad_v)
     if ( isset ( $pad_parms_tag [$pad_v] ) )
       include PAD_HOME . "parms/$pad_v.php" ;
 

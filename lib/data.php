@@ -25,12 +25,10 @@
       return $data;
     }
 
-    pad_trace ("data/start", $error);
-
-    pad_check_url ( $data, $type, $parm );
+    pad_trace ("data/start", $data);
  
-    if ( $type )
-      return pad_get ( $data, 'data', $content);
+    if ( pad_get_check ( $data ) )
+      return pad_get_data ( $data , [], $content);
 
     if ( substr($data, 0, 1) == '(' and substr($data, -1) == ')' ) {
       $work = pad_explode(substr($data, 1, -1), ',');

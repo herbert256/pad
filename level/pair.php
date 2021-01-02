@@ -1,7 +1,5 @@
 <?php
 
-  $pad_content = $pad_false = '';
-
   $pad_pos = $pad_end [$pad_lvl];
 
   pad_trace('pair', "start: $pad_pair_search");

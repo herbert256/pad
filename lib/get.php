@@ -1,56 +1,154 @@
 <?php  
 
-  function pad_get ( $input, $target='content', $data_type='' ) {
 
-    pad_trace ( "get/start", "$target: $input");
+  function pad_get_content_store () {
 
-    pad_check_url ( $input, $type, $parm );
+    $parm = pad_tag_parm ('content');
 
-    if ( file_exists ( PAD_APP . "data/$input" ) ) {
+    if ( isset ( $GLOBALS ['pad_content_store'] [$parm] ) )
+      return $GLOBALS ['pad_content_store'] [ $parm ];
+    else
+      return pad_get_content ( $parm );
 
-      if ( substr($input, -4)  ==  '.php' )
-        $result = inlude PAD_APP . "data/$input";
-      else
-        $result = pad_file_get_contents ( $file )
+  }
 
-    }
+
+  function pad_get_data_store ( $type='' ) {
+
+    $parm = pad_tag_parm ('data');
+
+    if ( isset ( $GLOBALS ['pad_data_store'] [ $parm] ) )
+      return $GLOBALS ['pad_data_store'] [ $parm ];
+    else
+      return pad_get_data ( $parm, [], $type );
+
+  }
+
+
+  function pad_get_flag_store () {
+
+    $parm = pad_tag_parm ('flag');
+
+    if ( isset ( $GLOBALS ['pad_flag_store'] [ $parm] ) )
+      return $GLOBALS ['pad_flag_store'] [ $parm ];
+    else
+      return pad_get_flag ( $parm );
+
+  }
  
-    elseif ( $type = '' )
 
-      $result = $input;
+  function pad_get_content ( $input, $parms=[]) {
 
-    elseif ( file_exists ( PAD_HOME . "eval/$type.php" ) )
+    $data = pad_get_internal ( $input, $parms );
 
-      $result = include PAD_HOME . "eval/go/get.php";
+    return pad_make_string ( $data );
 
-    else {
+  }
 
-      $result = pad_curl ( $input, $curl );  
+  function pad_get_data ( $input, $parms=[], $data_type='' ) {
 
+    $data = pad_get_internal ( $input, $parms );
+
+    return pad_data ( $data, $data_type );
+
+  }
+
+  function pad_get_flag ( $input, $parms=[] ) {
+
+    $data = pad_get_internal ( $input, $parms );
+
+    return pad_make_flag ( $data );
+
+  }
+
+
+  function pad_get_internal ( $input, $parm=[] ) {
+
+    $result = $input;
+
+    while ( pad_get_check ( $result ) )
+      $result = pad_get_go ( $result, $parm );
+
+    return $result;
+
+  }
+
+  
+ function pad_get_check ( $input, $curl=TRUE ) {
+
+    pad_trace ( "get/check", $input);
+
+    if ( $curl ) {
+      if ( substr ( $input, 0, 7 ) == 'http://' )
+        return TRUE;
+      if ( substr ( $input, 0, 8 ) == 'https://' )
+        return TRUE;
     }
+
+    if ( file_exists ( PAD_APP . "data/$input" ) )
+      return TRUE;
+
+    $parts = pad_explode ($input, '://', 2);
+
+    if ( count ($parts) <> 2 )
+      return FALSE;
+
+    $parm = $parts[1];
+
+    $parts = pad_explode ($parts[0], ':');
+
+    if ( count ($parts) > 2 )
+      return FALSE;
+
+    if ( count ($parts) == 2 ) {
+      $kind = $parts [0];
+      $name = $parts [1];
+    } else {
+      $kind = pad_get_type_eval ( $parts [0] );
+      $name = $parts [0];
+    }
+
+    if ( ! file_exists ( PAD_HOME . "eval/$kind.php" ) ) 
+      return FALSE;
+
+    return TRUE;
+
+  }
+
+  function pad_get_go ( $input, $parm=[] ) {
+
+    pad_trace ( "get/start", "$input");
+
+    if ( substr ( $input, 0, 7 ) == 'http://' or substr ( $input, 0, 8 ) == 'https://' )
+      return pad_curl ($input);
  
-    if ( $result <> $input ) {
+    if ( file_exists ( PAD_APP . "data/$input" ) )
+      return pad_file_get_contents ( PAD_APP . "data/$input" );
 
-      pad_check_url ( $result, $type, $parm );
+    $parts = pad_explode ($input, '://', 2);
 
-      if ( $type <> '' )
-        return pad_get ( $result, $target, $data_type );
-      
+    $value = $parts[1];
+
+    $parts = pad_explode ($parts[0], ':');
+
+    if ( count ($parts) == 2 ) {
+      $kind = $parts [0];
+      $name = $parts [1];
+    } else {
+      $kind = pad_get_type_eval ( $parts [0] );
+      $name = $parts [0];
     }
 
-    if ( $target == 'content' )
-      $get = pad_make_string ( $result );
+    $count = count ($parm);
 
-    if ( $target == 'data' ) 
-      $get = pad_data ( $result, $data_type )
+    pad_trace ( "get/eval", "$kind:$name $value");
 
-    if ( $target == 'flag' ) 
-      $get = pad_make_flag ( $result );
+    $get = include PAD_HOME . "eval/$kind.php";
 
-    pad_trace ( "get/end", pad_make_string ( $get ));
+    pad_trace ( "get/end", pad_make_string ( $get ) );
 
     return $get;
-    
+
   }
 
 ?>

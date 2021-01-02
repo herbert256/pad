@@ -1,23 +1,5 @@
 <?php
 
-  function pad_check_url ( $input, &$type, &$parm ) {
-
-    $type = '';
-    $parm = '';
-
-    $data = pad_make_string ( $input )
-
-    $stream = pad_explode ($data, '://', 2);
-
-    if ( count ($stream) <> 2 or ! pad_valid_name ($stream[0]) )
-      return FALSE;
-
-    $type = $stream[0];
-    $parm = $stream[1];
-
-    return TRUE;
-
-  }
 
   function pad_make_flag ( $input ) {    
 
@@ -156,9 +138,8 @@
 
   function pad_get_type_lvl ( $type ) {
 
-    if     ( file_exists     ( PAD_APP  . "tags/$type.php"           ) ) return 'app';
-    elseif ( file_exists     ( PAD_HOME . "tags/$type.php"           ) ) return 'pad';
-    elseif ( function_exists ( $type                                 ) ) return 'php';
+    if     ( file_exists     ( PAD_APP  . "tags/$type.php"           ) ) return 'tag_app';
+    elseif ( file_exists     ( PAD_HOME . "tags/$type.php"           ) ) return 'tag_pad';
     elseif ( isset           ( $GLOBALS['pad_flag_store'] [$type]    ) ) return 'flag';
     elseif ( isset           ( $GLOBALS['pad_content_store'] [$type] ) ) return 'content';
     elseif ( isset           ( $GLOBALS['pad_data_store'] [$type]    ) ) return 'data';
@@ -170,17 +151,18 @@
     elseif ( defined         ( $type                                 ) ) return 'constant';
     elseif ( file_exists     ( PAD_APP  . "functions/$type.php"      ) ) return 'function_app';
     elseif ( file_exists     ( PAD_HOME . "functions/$type.php"      ) ) return 'function_pad';
+    elseif ( function_exists ( $type                                 ) ) return 'function_php';
     elseif ( pad_is_object   ( $type                                 ) ) return 'object';
     elseif ( pad_is_resource ( $type                                 ) ) return 'resource';
     else                                                                 return FALSE;
 
   }
 
-   function pad_get_type_eval ( $type ) {
+  function pad_get_type_eval ( $type ) {
 
-    if     ( file_exists     ( PAD_APP  . "functions/$type.php"      ) ) return 'app';
-    elseif ( file_exists     ( PAD_HOME . "functions/$type.php"      ) ) return 'pad';
-    elseif ( function_exists ( $type                                 ) ) return 'php';
+    if     ( file_exists     ( PAD_APP  . "functions/$type.php"      ) ) return 'function_app';
+    elseif ( file_exists     ( PAD_HOME . "functions/$type.php"      ) ) return 'function_pad';
+    elseif ( function_exists ( $type                                 ) ) return 'function_php';
     elseif ( isset           ( $GLOBALS['pad_flag_store'] [$type]    ) ) return 'flag';
     elseif ( isset           ( $GLOBALS['pad_content_store'] [$type] ) ) return 'content';
     elseif ( isset           ( $GLOBALS['pad_data_store'] [$type]    ) ) return 'data';
@@ -203,7 +185,7 @@
    pad_trace ('build/html', "$file.html");
 
     if ( file_exists("$file.html") ) 
-      return "{build 'html' | '$file.php'}" . pad_get_html ("$file.html") . "{/build}";
+      return "{build 'html' | '$file.php'}" . pad_html_get ("$file.html") . "{/build}";
     else
       return '';
 
@@ -314,10 +296,10 @@
 
     $add = pad_data ($array, $type);
 
-    if ( pad_is_default_data ( $pad_data [$pad_lvl] ) and count ($add) )
+    if ( pad_is_default_data ( $pad_data [$pad_lvl] )  )
       $pad_data [$pad_lvl] = [];
 
-    foreach ( $add as $value)
+    foreach ( $add as $value )
       $pad_data [$pad_lvl] [] = $value;
     
   }
@@ -648,7 +630,7 @@
 
   }
 
-  function pad_get_html ($file) {
+  function pad_html_get ($file) {
       
     $html = pad_file_get_contents ( $file );    
     

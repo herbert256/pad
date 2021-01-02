@@ -1,31 +1,62 @@
 <?php
   
-  $pad_lvl = $GLOBALS['pad_lvl'];
+  $pad_between = "$name '$value'";
 
-  $pad_content = $value;
-  $pad_false   = '';
-  $pad_pair    = FALSE;
+  foreach ($parm as $pad_k => $pad_v)
+    $pad_between .= " | '$pad_v' ";
 
-  $pad_between = $name . ' ' . implode ( ' | ' , $parm );
   include PAD_HOME . 'level/parms1.php';
+
+  $pad_content   = '';
+  $pad_false     = '';
+  $pad_pair      = FALSE;
+  $pad_name      = $pad_tag;
+  $pad_parm      = $parm [0] ?? '';
+  $pad_filter    = [];
+  $oad_tag_count = 0;
+  $pad_walk      = 'start';
 
   $pad_parms_org = $parm;
   $pad_parms_seq = $parm;
   $pad_parms_tag = [];
   $pad_parms_val = $parm;
+ 
+  $pad_lvl = $GLOBALS['pad_lvl'] + 1;
 
-  $pad_from_eval = TRUE;  
-  include PAD_HOME . 'level/start.php';
+  if ( isset ( $pad_current [$pad_lvl] ) )
+    unset ( $pad_current [$pad_lvl] );
 
-  $pad_lvl--;
+  $pad_walks       [$pad_lvl] = '';
+  $pad_walks_data  [$pad_lvl] = [];
+  $pad_current     [$pad_lvl] = [];
+  $pad_parameters  [$pad_lvl] = []; 
+  $pad_base        [$pad_lvl] = '';
+  $pad_occur       [$pad_lvl] = 0;
+  $pad_result      [$pad_lvl] = '';
+  $pad_html        [$pad_lvl] = '';
+  $pad_db          [$pad_lvl] = '';
+  $pad_db_lvl      [$pad_lvl] = [];
+  $pad_save_vars   [$pad_lvl] = [];
+  $pad_delete_vars [$pad_lvl] = [];
 
-  foreach ( $pad_parameters [$pad_lvl] as $pad_k => $pad_v )
-    $GLOBALS['pad_'.$pad_k] = $pad_v;
+  $pad_data [$pad_lvl] [1] = [];
 
-  if     ( is_array($pad_tag_result)       ) return $pad_tag_result;
-  elseif ( $pad_tag_result === FALSE       ) return '';
-  elseif ( $pad_tag_result === TRUE        ) return '1'
-  elseif ( ! count ($pad_data [$pad_lvl+1) ) return '';
-  else                                       return $pad_base [$pad_lvl+1];
+  $result = include PAD_HOME . "types/$pad_tag_type.php";
+
+  if ( in_array ( $pad_walk, ['next', 'end', 'occurence'] ) ) {
+
+    $pad_html [$pad_lvl] = $pad_html [$pad_lvl] = $pad_html [$pad_lvl] = $pad_content;
+    
+    $result = include PAD_HOME . "types/$pad_tag_type.php";
+  
+  }
+
+  if ( ! pad_is_default_data ( $pad_data [$pad_lvl] ) )
+    return $pad_data [$pad_lvl];
+
+  if ( $pad_content !== '' )
+    return $pad_content;
+
+  return $result;
 
 ?>

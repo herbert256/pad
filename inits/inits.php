@@ -80,8 +80,12 @@
 
   $pad_timings = $pad_timings_start = [];
 
-  $pad_parms_start = ['one', 'before', 'random', 'start', 'end', 'dedup', 'page', 'rows', 'top', 'bottom', 'row', 'sort', 'ignore', 'source'];
-  $pad_parms_end   = ['toFlag', 'toContent', 'toData'];
+  $pad_parms_level_start = ['before', 'random', 'start', 'end', 'dedup', 'page', 'rows', 'top', 'bottom', 
+                            'row', 'sort', 'ignore', 'source'];
+  $pad_parms_level_end   = ['toFlag', 'toContent', 'toData'];
+  
+  $pad_parms_occur_start = [];
+  $pad_parms_occur_end   = ['one'];
 
   $pad_lvl  = 1;  
   $pad_next = $page;

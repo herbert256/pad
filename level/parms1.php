@@ -7,8 +7,5 @@
 
   $pad_pair_search = $pad_tag;
   $pad_parms_type  = ( $pad_parms ) ? 'open' : 'none';
-
-  $pad_parameters [$pad_lvl+1] ['name'] = $pad_tag;
-  $pad_parameters [$pad_lvl+1] ['parm'] = $pad_parms;
   
 ?>

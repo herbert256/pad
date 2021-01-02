@@ -9,7 +9,7 @@
     $pad_add .= "{isolate}";
 
   $pad_add .= "{build 'call' | '$pad_include_php'}";
-  $pad_add .= pad_get_html ($pad_include_html);
+  $pad_add .= pad_html_get ($pad_include_html);
   $pad_add .= "{/build}";
 
   if ( $pad_mode == 'isolate' )

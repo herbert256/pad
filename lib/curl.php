@@ -1,9 +1,30 @@
 <?php
 
-  function pad_curl ($input, &$output) {
-      
-    // Returns TRUE or FALSE
-    
+  function pad_curl ($url) {
+
+    pad_trace ("curl-1/start", $url);
+
+    if ( pad_get_check ( $url, FALSE ) )
+
+      $data = pad_get_content ( $url );
+
+    else {
+
+      $input ['url'] = $url;
+      $output = [];
+
+      $data = pad_curl_get ( $input, $output );
+
+    }
+
+    pad_trace ( "curl-1/end", $data);
+
+    return $data;
+
+  }
+
+  function pad_curl_extra ($input, &$output) {
+
     //  Required input parms
     //  - ['url']
     
@@ -32,14 +53,10 @@
 
     if ( substr($url, 0, 1) == '"' or substr($url, 0, 1) == "'" )
       $url =  substr($url, 1, -1);
-
-    pad_trace ("curl/start", $url);
-
-    pad_check_url ( $url, $type, $parm );
  
-    if ( $type and file_exists ( PAD_HOME . "get/$type.php" ) ) {
+    if ( pad_get_check ( $url, FALSE ) ) {
  
-      $data    = pad_get ( $url );
+      $data    = pad_get_content ( $url );
       $content = '';
  
       pad_content_type ($data, $content);
@@ -51,13 +68,15 @@
  
     else
  
-      $data = pad_curl_get ($input, $output );
+      $data = pad_curl_get ( $input, $output );
 
     return $data;
 
   }
 
-  function pad_curl_get ($input, &$output) {
+  function pad_curl_get ( $input, &$output ) {
+
+    pad_trace ("curl-2/start", $input ['url']);
 
     $url = $input ['url'];
     $error = FALSE;
@@ -192,7 +211,7 @@
     if ( ! $output ['result_type'] or $output ['result_type'] == 'json')
       pad_content_type ( $output ['data'], $output ['result_type'] );
  
-    pad_trace ( "curl/end", $output ['info']['http_code'] );
+    pad_trace ( "curl-2/end", $output ['info']['http_code'] . ' - ' . $output ['data']);
 
     if ( $error )
       return '';
