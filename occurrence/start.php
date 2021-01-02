@@ -37,9 +37,13 @@
   if ($pad_name == 'trace')
     $pad_trace = TRUE;
 
-  foreach ($pad_parms_occur_start as $pad_v)
-    if ( isset ( $pad_parms_tag [$pad_v] ) )
-      include PAD_HOME . "parms/$pad_v.php" ;
+  $pad_options = 'occur_start';
+  include PAD_HOME . "level/options.php";
+
+  if ($pad_parms_type == 'open' ) {
+    $pad_options = 'occur_tag';
+    include PAD_HOME . "level/options.php";
+  }
 
   if ( $pad_walks [$pad_lvl] == 'occurrence' )
     include PAD_HOME . "walk/occurrence.php";

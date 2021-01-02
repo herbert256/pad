@@ -1,32 +1,28 @@
 <?php
 
-  if ( $pad_from_eval === FALSE ) {
+  $pad_parms_org = [];
+  $pad_parms_seq = [];
+  $pad_parms_tag = [];
+  $pad_parms_val = [];
 
-    $pad_parms_org = [];
-    $pad_parms_seq = [];
-    $pad_parms_tag = [];
-    $pad_parms_val = [];
+  if ( $pad_tag <> 'set' or $pad_tag_type <> 'tag' ) {
 
-    if ( $pad_tag <> 'set' or $pad_tag_type <> 'tag' ) {
+    $pad_parms_org = pad_explode ($pad_parms, '|');
 
-      $pad_parms_org = pad_explode ($pad_parms, '|');
+    foreach ( $pad_parms_org as $pad_k => $pad_v )
+      $pad_parms_seq [$pad_k] = pad_eval($pad_v);
+    
+    foreach ( $pad_parms_org as $pad_k => $pad_v ) {
 
-      foreach ( $pad_parms_org as $pad_k => $pad_v )
-        $pad_parms_seq [$pad_k] = pad_eval($pad_v);
-      
-      foreach ( $pad_parms_org as $pad_k => $pad_v ) {
+      $pad_w = pad_explode ($pad_v, '=', 2);
 
-        $pad_w = pad_explode ($pad_v, '=', 2);
-
-        if ( pad_valid_name ($pad_w[0] ) )
-          if ( count($pad_w) == 1 )
-            $pad_parms_tag [$pad_w[0]] = TRUE;
-          else
-            $pad_parms_tag [$pad_w[0]] = pad_eval($pad_w[1]);
+      if ( pad_valid_name ($pad_w[0] ) )
+        if ( count($pad_w) == 1 )
+          $pad_parms_tag [$pad_w[0]] = TRUE;
         else
-            $pad_parms_val [] = $pad_parms_seq [$pad_k];
-
-      }
+          $pad_parms_tag [$pad_w[0]] = pad_eval($pad_w[1]);
+      else
+          $pad_parms_val [] = $pad_parms_seq [$pad_k];
 
     }
 

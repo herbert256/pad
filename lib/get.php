@@ -78,6 +78,9 @@
 
     pad_trace ( "get/check", $input);
 
+    if ( ! $input )
+      return FALSE;
+
     if ( $curl ) {
       if ( substr ( $input, 0, 7 ) == 'http://' )
         return TRUE;

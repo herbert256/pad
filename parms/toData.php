@@ -10,6 +10,6 @@
   else
     $pad_data_store [$pad_parms_tag ['toData']] = $pad_data [$pad_lvl];
 
-  $pad_result [$pad_lvl] = '';
+  $pad_content = '';
   
 ?>

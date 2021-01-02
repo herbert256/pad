@@ -21,9 +21,13 @@
   if ( isset($pad_parms_tag ['callback']) and ! isset($pad_parms_tag ['before']) )
     include PAD_HOME . 'callback/exit.php' ;
 
-  foreach ($pad_parms_level_end as $pad_v)
-    if ( isset ( $pad_parms_tag [$pad_v] ) )
-        include PAD_HOME . "parms/$pad_v.php" ;
+  $pad_options = 'level_end';
+  include PAD_HOME . "level/options.php";
+
+  if ($pad_parms_type == 'close' ) {
+    $pad_options = 'level_tag';
+    include PAD_HOME . "level/options.php";
+  }
 
   pad_trace ("level/end", "nr=$pad_lvl_cnt", TRUE);
 
