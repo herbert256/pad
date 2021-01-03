@@ -37,10 +37,11 @@
   $pad_parameters [$pad_lvl] ['parms_val'] = $pad_parms_val;
 
   include PAD_HOME . 'level/check.php';
+  include PAD_HOME . 'level/demand.php';
 
   if ( $pad_trace and $pad_parms ) {
     $pad_trace = "";
-    foreach ( $pad_parms_seq as $pad_k => $pad_v )
+    foreach ( $pad_parms_val as $pad_k => $pad_v )
       $pad_trace .= " $pad_k=$pad_v"; 
     foreach ( $pad_parms_tag as $pad_k => $pad_v )
       $pad_trace .= " $pad_k=$pad_v";

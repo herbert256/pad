@@ -51,12 +51,11 @@
   include PAD_HOME . 'inits/lib.php';
 
   include PAD_HOME . 'cache/inits.php';
-
+  include PAD_HOME . 'inits/options.php';
   include PAD_HOME . 'inits/error.php';
+  include PAD_HOME . 'inits/trace.php';
 
   pad_get_vars ();
-
-  include PAD_HOME . 'inits/trace.php';
 
   $pad_request_scheme = $_SERVER ['REQUEST_SCHEME'] ?? 'http';
   $pad_http_host      = $_SERVER ['HTTP_HOST']      ?? 'localhost';
@@ -79,15 +78,6 @@
   $pad_eval_cnt = $pad_fld_cnt = $pad_lvl_cnt = $pad_occur_cnt = 0;
 
   $pad_timings = $pad_timings_start = [];
-
-  $pad_parms_level_start = ['before', 'random', 'start', 'end', 'dedup', 'page', 'rows', 'top', 'bottom', 
-                            'row', 'sort', 'ignore', 'source'];
-  $pad_parms_level_tag   = ['function'];
-  $pad_parms_level_end   = ['toFlag', 'toContent', 'toData'];
-  
-  $pad_parms_occur_start = [];
-  $pad_parms_occur_tag   = [];
-  $pad_parms_occur_end   = ['one'];
 
   $pad_lvl  = 1;  
   $pad_next = $page;

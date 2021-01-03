@@ -15,7 +15,7 @@
 
   } elseif ( $pad_walk == 'start' ) {
       
-    $pad_walk = 'occurrence';
+    $pad_walk = 'occurrence-start';
 
   } else {
 
@@ -32,9 +32,6 @@
       elseif ( $pad_tag == 'flag'    ) $pad_flag_store    [$pad_parm] = pad_get_flah    ( $pad_get, $pad_prm ); 
 
     } else  {
-
-      if ( $pad_tag == 'data')
-        $pad_data_store [$pad_parm] = pad_data ( $pad_html [$pad_lvl], pad_tag_parm('type') );
 
       if     ( $pad_tag == 'content' ) $pad_content_store [$pad_parm] = pad_make_string ( $pad_html [$pad_lvl] ); 
       elseif ( $pad_tag == 'data'    ) $pad_data_store    [$pad_parm] = pad_data        ( $pad_html [$pad_lvl], pad_tag_parm('type') );

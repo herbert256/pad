@@ -47,7 +47,9 @@
 
   function pad_get_data ( $input, $parms=[], $data_type='' ) {
 
+    pad_trace ("get/data", "start: " . pad_make_string($input), TRUE);
     $data = pad_get_internal ( $input, $parms );
+    pad_trace ("get/data", "end: " . pad_make_string($data), TRUE);
 
     return pad_data ( $data, $data_type );
 

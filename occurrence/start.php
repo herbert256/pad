@@ -13,7 +13,7 @@
 
   $pad_current [$pad_lvl] = $pad_data [$pad_lvl] [$pad_key [$pad_lvl]];
 
-  if ( $pad_walks [$pad_lvl] <> 'start' and isset ( $pad_parms_tag ['toDataStore'] ))
+  if ( $pad_walks [$pad_lvl] <> 'start' and isset ( $pad_parms_tag ['toData'] ))
     $pad_walks_data [ $pad_lvl] [] = $pad_current [$pad_lvl];
 
   if ( $pad_lvl > 1 ) {
@@ -40,12 +40,7 @@
   $pad_options = 'occur_start';
   include PAD_HOME . "level/options.php";
 
-  if ($pad_parms_type == 'open' ) {
-    $pad_options = 'occur_tag';
-    include PAD_HOME . "level/options.php";
-  }
-
-  if ( $pad_walks [$pad_lvl] == 'occurrence' )
-    include PAD_HOME . "walk/occurrence.php";
+  if ( $pad_walks [$pad_lvl] == 'occurrence-start' )
+    include PAD_HOME . "walk/occurrence-start.php";
 
 ?>

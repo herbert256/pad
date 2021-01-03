@@ -44,18 +44,13 @@
   $pad_parameters [$pad_lvl] ['tag_count']   = 0;
  
   $pad_walk = 'start';
-  include PAD_HOME . 'level/tag.php';
+  $pad_tag_result = include PAD_HOME . 'level/tag.php';
 
   if ($pad_lvl > 1) 
     pad_data_chk ( $pad_data[$pad_lvl] );
   
   $pad_options = 'level_start';
   include PAD_HOME . "level/options.php";
-
-  if ( $pad_parms_type == 'open' ) {
-    $pad_options = 'level_tag';
-    include PAD_HOME . "level/options.php";
-  }
 
   if ( isset($pad_parms_tag ['callback']) and ! isset($pad_parms_tag ['before']))
     include PAD_HOME . 'callback/init.php' ;
@@ -70,4 +65,6 @@
   else
     $pad_html [$pad_lvl] = '';
 
+  return $pad_tag_result;
+  
 ?>

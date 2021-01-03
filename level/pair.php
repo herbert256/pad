@@ -72,6 +72,8 @@ go2:
     $pad_parms      = $pad_parms2;
     $pad_parms_type = 'close';
 
+    pad_trace('closeParms', $pad_between);
+
     $pad_parameters [$pad_lvl+1] ['parm'] = $pad_parms;
  
   }

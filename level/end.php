@@ -3,6 +3,9 @@
   if ( count ($pad_data[$pad_lvl] ) )
     include PAD_HOME . 'occurrence/end.php';
 
+  foreach ( $pad_parameters [$pad_lvl] as $pad_k => $pad_v )
+    $GLOBALS['pad_'.$pad_k] = $pad_v;
+
   if ( next($pad_data[$pad_lvl]) !== FALSE )
     return include PAD_HOME . 'occurrence/start.php';
 
@@ -23,11 +26,6 @@
 
   $pad_options = 'level_end';
   include PAD_HOME . "level/options.php";
-
-  if ($pad_parms_type == 'close' ) {
-    $pad_options = 'level_tag';
-    include PAD_HOME . "level/options.php";
-  }
 
   pad_trace ("level/end", "nr=$pad_lvl_cnt", TRUE);
 

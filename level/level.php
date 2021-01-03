@@ -60,6 +60,6 @@
       return pad_ignore ();
   }
 
-  include PAD_HOME . 'level/start.php';
+  return include PAD_HOME . 'level/start.php';
 
 ?>
