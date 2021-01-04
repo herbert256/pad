@@ -1,4 +1,6 @@
 <?php
+
+  include PAD_HOME . "walk/go/walk.php";  
   
   $pad_walk = 'occurence-end';
 

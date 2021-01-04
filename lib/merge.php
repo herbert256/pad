@@ -1,16 +1,40 @@
 <?php
 
+  function pad_check_range ( $input ) {
 
-  function pad_check_walk ( $walk ) {
+    pad_trace ("range/check", $input, TRUE);
 
-    if ( $walk == 'start' ) {
+    $parts = pad_explode ($input, '..');
 
-      if ( $GLOBALS['pad_parms_type'] == 'close' ) {
+    if ( count ($parts) == 2 and ctype_alnum($parts[0]) and ctype_alnum($parts[1]) )
+      return TRUE;
 
-        if ( pad_tag_parm == 'occurence' )
-          $GLOBALS['pad_walk'] = 'occurence-end';
+  }
+
+  function pad_get_range ( $input ) {
+
+    pad_trace ("range/get", $input, TRUE);
+
+    $parts = pad_explode ($input, '..');
+
+    return range ( $parts[0], $parts[0], pad_tag_parm ('step') ?? 1 );
+
+  }
+
+  function pad_start_to_end () {
+
+    global $pad_walk, $pad_walks, $pad_parms_type, $pad_parms_tag;
+
+    if ( $pad_walk == 'start' ) {
+
+      if ( $pad_parms_type == 'close' ) {
+
+        if ( isset ( $pad_parms_tag ['occurence'] ) )
+          $pad_walk = 'occurence-end';
         else
-          $GLOBALS['pad_walk'] = 'end';
+          $pad_walk = 'end';
+
+        $pad_walks [$pad_lvl] = $pad_walk;
 
         return TRUE;
 
@@ -408,11 +432,11 @@
 
     $add = pad_data ($array, $type);
 
-    if ( pad_is_default_data ( $pad_data [$pad_lvl] )  )
-      $pad_data [$pad_lvl] = [];
-
-    foreach ( $add as $value )
-      $pad_data [$pad_lvl] [] = $value;
+    if ( pad_is_default_data ( $pad_data [$pad_lvl] ) )
+      $pad_data [$pad_lvl] = $array;
+    else
+      foreach ( $add as $value )
+        $pad_data [$pad_lvl] [] = $value;
     
   }
 

@@ -2,7 +2,7 @@
 
   $pad_loop_type  = $pad_parms_tag ['type']  ?? 'build';
   $pad_loop_start = $pad_parms_tag ['start'] ?? 1;
-  $pad_loop_end   = $pad_parms_tag ['end']   ?? $pad_parms_seq [0] ?? 10;
+  $pad_loop_end   = $pad_parms_tag ['end']   ?? $pad_parms_val [0] ?? 10;
   $pad_loop_step  = $pad_parms_tag ['step']  ?? 1;
 
   if ( $pad_loop_type == 'build') {

@@ -1,6 +1,6 @@
 <?php
 
-  pad_trace ("types/$pad_tag_type", "tag=$pad_tag", TRUE);
+  pad_trace ("type", "$pad_tag_type.php ($pad_tag)", TRUE);
 
   $pad_app_ob = '';
   ob_start();

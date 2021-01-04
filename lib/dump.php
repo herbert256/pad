@@ -11,19 +11,21 @@ try {
 
     pad_dump_item ("<div align=\"left\"><pre>");
 
-    if ($info)
+    if ($info and $info <> 'NOTRACE')
       pad_dump_item ("<hr><b>$info</b><hr><br>");
 
     $pad_debug_backtrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS);
 
     $not = ['pad_dump', 'pad_error_go', 'pad_error_handler', 'pad_error_exception','pad_error_shutdown'];
 
-    pad_dump_item ( "<b>Stack</b>\n");
-    foreach ( $pad_debug_backtrace as $key => $trace ) {
-      extract ( $trace );
-      //if ( isset($file) and isset($line) and isset($function) and ! in_array($function, $not ) )
-      if ( isset($file) and isset($line) and isset($function)  )
-        pad_dump_item ( "    $file:$line - $function\n");
+    if ( $info <> 'NOTRACE') {
+      pad_dump_item ( "<b>Stack</b>\n");
+      foreach ( $pad_debug_backtrace as $key => $trace ) {
+        extract ( $trace );
+        //if ( isset($file) and isset($line) and isset($function) and ! in_array($function, $not ) )
+        if ( isset($file) and isset($line) and isset($function)  )
+          pad_dump_item ( "    $file:$line - $function\n");
+      }
     }
 
     if ( count ( $GLOBALS ['pad_trace_hist'] ) and ! $GLOBALS ['pad_trace_browser'] )

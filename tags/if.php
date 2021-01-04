@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! isset($pad_parms_seq[0]) )
+  if ( ! isset($pad_parms_val[0]) )
     return pad_tag_error ();
   
   $pad_if   = $pad_parms_org[0];

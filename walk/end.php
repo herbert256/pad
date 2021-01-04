@@ -1,5 +1,7 @@
 <?php
 
+  include PAD_HOME . "walk/go/walk.php";
+
   $pad_walk = 'end';
 
   $pad_content = $pad_result [$pad_lvl];

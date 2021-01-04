@@ -26,6 +26,12 @@
     }
 
     pad_trace ("data/start", $data);
+
+    if ( pad_check_range ( $data ) ) {
+      $data = pad_get_range ( $data ); 
+      pad_data_chk ( $data );
+      return $data;
+    }
  
     if ( pad_get_check ( $data ) )
       return pad_get_data ( $data , [], $content);

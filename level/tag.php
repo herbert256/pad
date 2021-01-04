@@ -8,17 +8,22 @@
   else
     $pad_data [$pad_lvl] [1] = [];
 
-  include PAD_HOME . "level/type.php";
+ if ( pad_tag_parm ('content') ) 
+    include PAD_HOME . "parms/content.php";    
+
+  $pad_tag_result = include PAD_HOME . "level/type.php";
 
   if ( $pad_tag_result === NULL )
     return include PAD_HOME . "level/null.php"; 
 
-  if ( pad_tag_parm ('content') ) include PAD_HOME . "parms/content.php";    
-  if ( pad_tag_parm ('data')    ) include PAD_HOME . "parms/data.php"; 
+  if ( is_object   ( $pad_tag_result ) ) $pad_tag_result = pad_xxx_to_array ( $pad_tag_result );
+  if ( is_resource ( $pad_tag_result ) ) $pad_tag_result = pad_xxx_to_array ( $pad_tag_result );
 
-  if ( is_object   ( $pad_tag_result ) ) $pad_tag_result      = pad_xxx_to_array ( $pad_tag_result );
-  if ( is_resource ( $pad_tag_result ) ) $pad_tag_result      = pad_xxx_to_array ( $pad_tag_result );
-  if ( is_array    ( $pad_tag_result ) ) $pad_data [$pad_lvl] = $pad_tag_result;
+  if ( is_array ( $pad_tag_result ) )
+    pad_add_array_to_data ($pad_tag_result);
+
+  if ( pad_tag_parm ('data') ) 
+    include PAD_HOME . "parms/data.php"; 
 
   if ($pad_lvl > 1)
     $pad_data [$pad_lvl] = pad_data ( $pad_data [$pad_lvl] );   
@@ -33,6 +38,6 @@
 
   pad_trace ("tag/base", $pad_base [$pad_lvl], TRUE);
 
-  reset ( $pad_data[$pad_lvl] );
+  return $pad_tag_result;
   
 ?>

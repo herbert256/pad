@@ -1,6 +1,4 @@
 <?php
-
-  include PAD_HOME . "walk/go/walk.php";
   
   $pad_return = include PAD_HOME . "level/type.php";
 

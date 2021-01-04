@@ -1,5 +1,5 @@
 <?php
 
-  include PAD_HOME . 'tags/data.php';
+  return include PAD_HOME . 'tags/go/store.php';
 
 ?>
