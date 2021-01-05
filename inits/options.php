@@ -1,6 +1,6 @@
 <?php
 
-  $pad_parms_demand       = ['function'];
+  $pad_parms_demand       = ['function', 'flag'];
   $pad_parms_demand_level = [];
   $pad_parms_demand_occur = [];
 

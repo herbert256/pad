@@ -3,12 +3,13 @@
 //parse a CSV file into a two-dimensional array
 //this seems as simple as splitting a string by lines and commas, but this only works if tricks are performed
 //to ensure that you do NOT split on lines and commas that are inside of double quotes.
+
 function parse_csv($str)
 {
     //match all the non-quoted text and one series of quoted text (or the end of the string)
     //each group of matches will be parsed with the callback, with $matches[1] containing all the non-quoted text,
     //and $matches[3] containing everything inside the quotes
-    $str = preg_replace_callback('/([^"]*)("((""|[^"])*)"|$)/s', 'parse_csv_quotes', $str);
+    $str = preg_replace_callback('/([^"]*)("((""|[^"])*)",$)/s', 'parse_csv_quotes', $str);
 
     //remove the very last newline to prevent a 0-field array for the last line
     $str = preg_replace('/\n$/', '', $str);

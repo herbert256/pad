@@ -14,7 +14,7 @@
       $pad_data [$pad_lvl] [$pad_key [$pad_lvl]] = $pad_return;
       return $pad_content;
     } else {
-      return  pad_make_string ( $pad_return );
+      return  pad_make_content ( $pad_return );
     }
   }
 

@@ -37,7 +37,7 @@
 
     $output                  = [];
     $output ['result_code']  = '999';  //  200 / 404 / etc
-    $output ['result_type']  = '';     //  'xml' | 'html' | 'json' | 'yaml' | 'csv' | ''
+    $output ['result_type']  = '';     //  'xml' , 'html' , 'json' , 'yaml' , 'csv' , ''
     $output ['info']         = [];
     $output ['headers']      = [];
     $output ['cookies']      = [];

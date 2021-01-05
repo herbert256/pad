@@ -1,70 +1,56 @@
 <?php  
 
-
-  function pad_get_content_store () {
-
-    $parm = pad_tag_parm ('content');
-
-    if ( isset ( $GLOBALS ['pad_content_store'] [$parm] ) )
-      return $GLOBALS ['pad_content_store'] [ $parm ];
-    else
-      return pad_get_content ( $parm );
-
+  function pad_get_content_store ( $type='' ) {
+    return pad_get_store ( 'content', $type );
   }
-
 
   function pad_get_data_store ( $type='' ) {
+    return pad_get_store ( 'data', $type  );
+  }
 
-    $parm = pad_tag_parm ('data');
+  function pad_get_flag_store ( $type='' ) {
+    return pad_get_store ( 'flag', $type  );
+  }
 
-    if ( isset ( $GLOBALS ['pad_data_store'] [ $parm] ) )
-      return $GLOBALS ['pad_data_store'] [ $parm ];
-    else
-      return pad_get_data ( $parm, [], $type );
+
+  function pad_get_store ( $store, $type ) {
+
+    $parm = pad_tag_parm ($store);
+
+    if ( isset ( $GLOBALS ["pad_$store"."_store"] [$parm] ) )
+      return $GLOBALS ["pad_$store"."_store"] [ $parm ];
+
+    $function = "pad_get_$store";
+
+    return $function ( $parm, $type );
+
+  }
+
+  function pad_get_content ( $input, $type='', $parms=[]) {
+    return pad_make_content ( pad_get_xxx ( 'content', $input, $parms ));
+  }
+
+  function pad_get_data ( $input, $type='', $parms=[] ) {
+    return pad_make_data ( pad_get_xxx ( 'data', $input, $parms ), $type );
+  }
+
+  function pad_get_flag ( $input, $type='', $parms=[] ) {
+    return pad_make_flag ( pad_get_xxx ( 'flag', $input, $parms ) );
+  }
+
+
+  function pad_get_xxx ( $type, $input, $parms ) {
+
+    pad_trace ("get/$type", "start: " . pad_info ($input), TRUE);
+    $data = pad_get ( $input, $parms );
+    pad_trace ("get/type", "end: " . pad_info ($data), TRUE);
+
+    return $data;
 
   }
 
 
-  function pad_get_flag_store () {
-
-    $parm = pad_tag_parm ('flag');
-
-    if ( isset ( $GLOBALS ['pad_flag_store'] [ $parm] ) )
-      return $GLOBALS ['pad_flag_store'] [ $parm ];
-    else
-      return pad_get_flag ( $parm );
-
-  }
- 
-
-  function pad_get_content ( $input, $parms=[]) {
-
-    $data = pad_get_internal ( $input, $parms );
-
-    return pad_make_string ( $data );
-
-  }
-
-  function pad_get_data ( $input, $parms=[], $data_type='' ) {
-
-    pad_trace ("get/data", "start: " . pad_make_string($input), TRUE);
-    $data = pad_get_internal ( $input, $parms );
-    pad_trace ("get/data", "end: " . pad_make_string($data), TRUE);
-
-    return pad_data ( $data, $data_type );
-
-  }
-
-  function pad_get_flag ( $input, $parms=[] ) {
-
-    $data = pad_get_internal ( $input, $parms );
-
-    return pad_make_flag ( $data );
-
-  }
-
-
-  function pad_get_internal ( $input, $parm=[] ) {
+  function pad_get ( $input, $parm=[] ) {
 
     $result = $input;
 
@@ -83,6 +69,9 @@
     if ( ! $input )
       return FALSE;
 
+    if ( pad_check_range ( $input ) )
+      return TRUE;
+
     if ( $curl ) {
       if ( substr ( $input, 0, 7 ) == 'http://' )
         return TRUE;
@@ -93,28 +82,15 @@
     if ( file_exists ( PAD_APP . "data/$input" ) )
       return TRUE;
 
-    $parts = pad_explode ($input, '://', 2);
+    $parts = pad_explode ($input], ':', 2);
 
-    if ( count ($parts) <> 2 )
-      return FALSE;
+    if ( count ($parts) == 2 and pad_check_type ( $parts [0], $parts [1] ) )
+      return TRUE;
 
-    $parm = $parts[1];
+   if ( pad_get_type_eval ( $parts [0] ) )
+     return TRUE;
 
-    $parts = pad_explode ($parts[0], ':');
-
-    if ( count ($parts) > 2 )
-      return FALSE;
-
-    if ( count ($parts) == 2 ) {
-      $kind = $parts [0];
-      $name = $parts [1];
-    } else {
-      $kind = pad_get_type_eval ( $parts [0] );
-      $name = $parts [0];
-    }
-
-    if ( ! file_exists ( PAD_HOME . "eval/$kind.php" ) ) 
-      return FALSE;
+    pad_trace ( "get/check", "hit: $kind/$name" );
 
     return TRUE;
 
@@ -130,27 +106,33 @@
     if ( file_exists ( PAD_APP . "data/$input" ) )
       return pad_file_get_contents ( PAD_APP . "data/$input" );
 
-    $parts = pad_explode ($input, '://', 2);
+    $parts = pad_explode ($input], ':', 2);
 
-    $value = $parts[1];
+    if ( count ($parts) == 2 and pad_check_type ( $parts [0], $parts [1] ) ) {
 
-    $parts = pad_explode ($parts[0], ':');
-
-    if ( count ($parts) == 2 ) {
-      $kind = $parts [0];
-      $name = $parts [1];
+      $parts = pad_explode ($input], ':', 3);
+      
+      $kind  = $parts [0];
+      $name  = $parts [1];
+      $value = $parts [2] ?? '';
+   
     } else {
-      $kind = pad_get_type_eval ( $parts [0] );
-      $name = $parts [0];
+   
+      $parts = pad_explode ($input], ':', 2);
+   
+      $kind  = pad_get_type_eval ( $parts [0] );
+      $name  = $parts [0];
+      $value = $parts [1] ?? '';      
+   
     }
 
     $count = count ($parm);
 
-    pad_trace ( "get/eval", "$kind:$name $value");
+    pad_trace ( "get/eval", "$kind:$name:$value");
 
     $get = include PAD_HOME . "eval/$kind.php";
 
-    pad_trace ( "get/end", pad_make_string ( $get ) );
+    pad_trace ( "get/end", pad_make_content ( $get ) );
 
     return $get;
 

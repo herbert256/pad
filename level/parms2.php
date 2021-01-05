@@ -6,7 +6,7 @@
 
   if ( $pad_tag <> 'set' or $pad_tag_type <> 'tag' ) {
 
-    $pad_parms_org = pad_explode ($pad_parms, '|');
+    $pad_parms_org = pad_explode ($pad_parms, ',');
     
     foreach ( $pad_parms_org as $pad_v ) {
 
@@ -31,9 +31,6 @@
   $pad_parameters [$pad_lvl] ['parms_tag'] = $pad_parms_tag;  
   $pad_parameters [$pad_lvl] ['parms_val'] = $pad_parms_val;
 
-  include PAD_HOME . 'level/check.php';
-  include PAD_HOME . 'level/demand.php';
-
   if ( $pad_trace and $pad_parms ) {
 
     $pad_trace_x = "";
@@ -47,5 +44,8 @@
     pad_trace ("parms/tag", $pad_trace_x, TRUE);
  
   }    
+
+  include PAD_HOME . 'level/check.php';
+  include PAD_HOME . 'level/demand.php';
 
 ?>

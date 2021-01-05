@@ -1,7 +1,10 @@
 <?php
 
-  $pad_output = str_replace ( ['&open;', '&close;', '&pipe;', '&eq;'], ['{', '}', '|', '='], $pad_output );
-  $pad_output = str_replace ( ['#open#', '#close#', '#pipe#', '#eq#'], ['{', '}', '|', '='], $pad_output );
+  $pad_output = str_replace ( 
+    [ '&open;', '&close;', '&pipe;', '&eq;', '&comma;'], 
+    [' {',      '}',       '|',      '=',     ','], 
+    $pad_output 
+  );
 
   if ( count ($pad_sanitize) )
     include PAD_HOME . 'exits/sanitize.php';

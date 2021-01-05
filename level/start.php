@@ -26,9 +26,6 @@
 
   include PAD_HOME . 'level/parms2.php';
 
-  if ( isset ( $pad_parms_tag ['flag'] ) )
-    include PAD_HOME . 'level/parms/flag.php';
-
   $pad_name = $pad_parms_tag ['name'] ?? $pad_tag;
 
   $pad_parameters [$pad_lvl] ['name']        = $pad_name;

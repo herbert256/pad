@@ -1,6 +1,6 @@
 <?php
 
-  function pad_data ($input, $content='') {
+  function pad_make_data ($input, $content='') {
 
     if     ( $input === NULL       )  $data = [];
     elseif ( $input === FALSE      )  $data = [];
@@ -11,37 +11,37 @@
     elseif ( ! $input              )  $data = [];
     else                              $data = (string) trim($input);
 
-    if     ( $input === NULL       )  pad_trace ( "data/start", "NULL");
-    elseif ( $input === FALSE      )  pad_trace ( "data/start", "FALSE");
-    elseif ( $input === TRUE       )  pad_trace ( "data/start", "TRUE");
-    elseif ( is_array ( $input)    )  pad_trace ( "data/start", "ARRAY: "    . pad_make_string ( $input ) );
-    elseif ( is_object ( $input)   )  pad_trace ( "data/start", "OBJECT: "   . pad_make_string ( $input ) );
-    elseif ( is_resource ( $input) )  pad_trace ( "data/start", "RESOURCE: " . pad_make_string ( $input ) );
-    elseif ( ! $input              )  pad_trace ( "data/start", "EMPTY");
-    else                              pad_trace ( "data/start", "STRING: "   . pad_make_string ( $input ) );
+    pad_trace ( "data/start", pad_info ( $input ) );
     
     if ( is_array ( $data ) ) {
       pad_data_chk ( $data );
       return $data;
     }
-
-    pad_trace ("data/start", $data);
-
-    if ( pad_check_range ( $data ) ) {
-      $data = pad_get_range ( $data ); 
-      pad_data_chk ( $data );
-      return $data;
-    }
  
     if ( pad_get_check ( $data ) )
-      return pad_get_data ( $data , [], $content);
+      return pad_get_data ( $data );
+
+    if ( pad_check_range ( $input ) ) { 
+
+      $data = pad_get_range ( $input );
+
+      pad_data_chk ( $data );
+ 
+      return $data;
+ 
+    }
 
     if ( substr($data, 0, 1) == '(' and substr($data, -1) == ')' ) {
-      $work = pad_explode(substr($data, 1, -1), ',');
-      foreach ($work as $key => $value)
-        $work[$key] = pad_eval($value);
-      pad_data_chk ( $work );
-      return $work;
+
+      $data = pad_explode(substr($data, 1, -1), ',');
+
+      foreach ($data as $key => $value)
+        $data[$key] = pad_eval($value);
+
+      pad_data_chk ( $data );
+
+      return $data;
+
     }
     
     if ( ! $content )

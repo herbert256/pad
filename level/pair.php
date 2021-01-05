@@ -23,7 +23,7 @@ go2:
   } while ( substr_count($pad_content, '{'.$pad_pair_search ) <> substr_count($pad_content, '{/'.$pad_pair_search) );
 
   $pad_pair_check = substr($pad_html[$pad_lvl], $pad_pos + strlen($pad_pair_search) + 1, 1);
-  if ( ! ($pad_pair_check == ' ' or $pad_pair_check == '}' or $pad_pair_check ==  '|') )
+  if ( ! ($pad_pair_check == ' ' or $pad_pair_check == '}' or $pad_pair_check ==  ',') )
     goto go2;
  
   pad_trace('pair', "result: PAIR");

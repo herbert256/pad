@@ -204,7 +204,7 @@
     
     foreach  ($explode as $key => $value ) {
 
-      if ( $limit == '|' ) $explode [$key] = str_replace ( '&pipe;',  '|', $explode [$key] );
+      if ( $limit == '|' ) $explode [$key] = str_replace ( '&pipe;',  ',', $explode [$key] );
       if ( $limit == '=' ) $explode [$key] = str_replace ( '&eq;',    '=', $explode [$key] );
       if ( $limit == ',' ) $explode [$key] = str_replace ( '&comma;', ',', $explode [$key] );
 
@@ -282,10 +282,10 @@
 
 
   function pad_unescape ( $string ) {
-    return str_replace ( ['&open;','&close;','&pipe;', '&eq;'], ['{','}','|','='], $string );
+    return str_replace ( ['&open;','&close;','&pipe;', '&eq;','&comma;'], ['{','}','|','=',','], $string );
   }
   function pad_escape ( $string ) {
-    return str_replace ( ['{','}','|', '='], ['&open;','&close;','&pipe;', '&eq;'],  $string );
+    return str_replace ( ['{','}','|','=',','], ['&open;','&close;','&pipe;', '&eq;', '&comma;'],  $string );
   }
 
 

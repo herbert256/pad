@@ -9,7 +9,7 @@
                               // 'none'   = Ignore every error and continue processing.
 
   $pad_error_level  = 'all';  // Kind of errors that will be processed by $pad_error_action
-                              // 'none' | 'error' | 'warning' | 'notice' | 'all'
+                              // 'none' , 'error' , 'warning' , 'notice' , 'all'
                               // (not used when $pad_error_action is 'php' or 'boot')
 
   // Trace the internal working of PAD

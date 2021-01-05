@@ -1,5 +1,18 @@
 <?php
 
+  function pad_info ( $input ) {
+
+    if     ( $input === NULL       )  return "NULL";
+    elseif ( $input === FALSE      )  return "FALSE";
+    elseif ( $input === TRUE       )  return "TRUE";
+    elseif ( is_array ( $input)    )  return "ARRAY: "    . pad_make_content ( $input );
+    elseif ( is_object ( $input)   )  return "OBJECT: "   . pad_make_content ( $input );
+    elseif ( is_resource ( $input) )  return "RESOURCE: " . pad_make_content ( $input );
+    elseif ( ! $input              )  return "EMPTY";
+    else                              return "STRING: "   . pad_make_content ( $input );
+    
+  }
+
   function pad_check_range ( $input ) {
 
     pad_trace ("range/check", $input, TRUE);
@@ -167,7 +180,7 @@
   }
 
 
-  function pad_make_string ( $input ) {    
+  function pad_make_content ( $input ) {    
 
     if     ( $input === NULL        )  return '';
     elseif ( $input === FALSE       )  return '';
@@ -184,7 +197,7 @@
     $array = pad_make_array ( $input );
 
     foreach ( $array as $key => $value )
-      $array [$key] = pad_make_string ( $value );
+      $array [$key] = pad_make_content ( $value );
 
     return trim ( implode (' ', $array) );
 
@@ -316,12 +329,34 @@
 
   } 
 
+  function pad_check_type ( $type, $name ) {
+
+    if     ( file_exists     ( PAD_APP  . "tags/$name.php"           ) and $type == 'tag_app'      ) return TRUE;
+    elseif ( file_exists     ( PAD_HOME . "tags/$name.php"           ) and $type == 'tag_pad'      ) return TRUE;
+    elseif ( isset           ( $GLOBALS['pad_flag_store'] [$name]    ) and $type == 'flag'         ) return TRUE;
+    elseif ( isset           ( $GLOBALS['pad_content_store'] [$name] ) and $type == 'content'      ) return TRUE;
+    elseif ( isset           ( $GLOBALS['pad_data_store'] [$name]    ) and $type == 'data'         ) return TRUE;
+    elseif ( file_exists     ( PAD_HOME . "tag/$name.php"            ) and $type == 'parm'         ) return TRUE;
+    elseif ( pad_level_array ( $name                                 ) and $type == 'level'        ) return TRUE;
+    elseif ( isset           ( $GLOBALS['pad_db_tables'] [$name]     ) and $type == 'table'        ) return TRUE;
+    elseif ( pad_array_check ( $name                                 ) and $type == 'array'        ) return TRUE;
+    elseif ( pad_field_check ( $name                                 ) and $type == 'field'        ) return TRUE;
+    elseif ( defined         ( $name                                 ) and $type == 'constant'     ) return TRUE;
+    elseif ( file_exists     ( PAD_APP  . "functions/$name.php"      ) and $type == 'function_app' ) return TRUE;
+    elseif ( file_exists     ( PAD_HOME . "functions/$name.php"      ) and $type == 'function_pad' ) return TRUE;
+    elseif ( function_exists ( $name                                 ) and $type == 'function_php' ) return TRUE;
+    elseif ( pad_is_object   ( $name                                 ) and $type == 'object'       ) return TRUE;
+    elseif ( pad_is_resource ( $type                                 ) and $type == 'resource'     ) return TRUE;
+    else                                                                                             return FALSE;
+
+  }
+
   function pad_build_html ($file) {
 
    pad_trace ('build/html', "$file.html");
 
     if ( file_exists("$file.html") ) 
-      return "{build 'html' | '$file.php'}" . pad_html_get ("$file.html") . "{/build}";
+      return "{build 'html' , '$file.php'}" . pad_html_get ("$file.html") . "{/build}";
     else
       return '';
 
@@ -335,7 +370,7 @@
     $GLOBALS ['pad_build_ob']    ["$file.php"] = '';
 
     if ( file_exists("$file.php") )
-      return "{build 'php' | '$file.php' /}";
+      return "{build 'php' , '$file.php' /}";
     else
       return '';
 
@@ -430,7 +465,7 @@
 
     global $pad_data, $pad_lvl;
 
-    $add = pad_data ($array, $type);
+    $add = pad_make_data ($array, $type);
 
     if ( pad_is_default_data ( $pad_data [$pad_lvl] ) )
       $pad_data [$pad_lvl] = $array;
@@ -769,9 +804,7 @@
   function pad_html_get ($file) {
       
     $html = pad_file_get_contents ( $file );    
-    
-    $html = str_replace(['\{', '\}','\|', '\='], ['&open;','&close;','&pipe;', '&eq;'], $html);
-    
+        
     return pad_build_location ($file, $html);
 
   }

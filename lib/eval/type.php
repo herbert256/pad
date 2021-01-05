@@ -41,7 +41,7 @@
       $result [$type] [1] = 'VAL';
     }
 
-    pad_trace ("eval/function", "nr=$pad_eval_cnt function=$kind/$name $value");  
+    pad_trace ("eval/function", "function=$kind/$name $value");  
 
     foreach ( $result as $key => $parm)
       if ($key > $type and $key <= $result [$type] [5] - 1)
