@@ -15,7 +15,7 @@ sed -i 's/var\/www\/html/home\/herbert\/www/g'    /etc/apache2/sites-enabled/000
 
 mysql < /home/herbert/pad/install/database.sql
 mysql < /home/herbert/pad/cache/cache.sql
-mysql < /home/herbert/apps/manual/database/demo.sql
+mysql < /home/herbert/apps/pad/database/demo.sql
 mysql < /home/herbert/apps/classicmodels/config/classicmodels.sql
 
 chown -R herbert:herbert /var/www
