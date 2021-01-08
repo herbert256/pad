@@ -41,9 +41,9 @@
 
   function pad_get_xxx ( $type, $input, $parms ) {
 
-    pad_trace ("get/$type", "start: " . pad_info ($input), TRUE);
+    pad_trace ("get/$type", "start: " . pad_info ($input));
     $data = pad_get ( $input, $parms );
-    pad_trace ("get/type", "end: " . pad_info ($data), TRUE);
+    pad_trace ("get/type", "end: " . pad_info ($data));
 
     return $data;
 
@@ -64,13 +64,8 @@
   
  function pad_get_check ( $input, $curl=TRUE ) {
 
-    pad_trace ( "get/check", $input);
-
-    if ( ! $input )
+     if ( ! $input )
       return FALSE;
-
-    if ( pad_check_range ( $input ) )
-      return TRUE;
 
     if ( $curl ) {
       if ( substr ( $input, 0, 7 ) == 'http://' )
@@ -82,17 +77,15 @@
     if ( file_exists ( PAD_APP . "data/$input" ) )
       return TRUE;
 
-    $parts = pad_explode ($input], ':', 2);
+    $parts = pad_explode ($input, ':', 3);
 
-    if ( count ($parts) == 2 and pad_check_type ( $parts [0], $parts [1] ) )
+    if ( count ($parts) >= 2 and pad_check_type ( $parts [0], $parts [1] ) )
       return TRUE;
 
    if ( pad_get_type_eval ( $parts [0] ) )
      return TRUE;
 
-    pad_trace ( "get/check", "hit: $kind/$name" );
-
-    return TRUE;
+    return FALSE;
 
   }
 
@@ -106,20 +99,17 @@
     if ( file_exists ( PAD_APP . "data/$input" ) )
       return pad_file_get_contents ( PAD_APP . "data/$input" );
 
-    $parts = pad_explode ($input], ':', 2);
+    $parts = pad_explode ($input, ':', 3);
 
-    if ( count ($parts) == 2 and pad_check_type ( $parts [0], $parts [1] ) ) {
-
-      $parts = pad_explode ($input], ':', 3);
+    if ( count ($parts) >= 2 and pad_check_type ( $parts [0], $parts [1] ) ) {
       
       $kind  = $parts [0];
       $name  = $parts [1];
       $value = $parts [2] ?? '';
    
     } else {
-   
-      $parts = pad_explode ($input], ':', 2);
-   
+
+      $parts = pad_explode ($input, ':', 2);
       $kind  = pad_get_type_eval ( $parts [0] );
       $name  = $parts [0];
       $value = $parts [1] ?? '';      
@@ -128,11 +118,9 @@
 
     $count = count ($parm);
 
-    pad_trace ( "get/eval", "$kind:$name:$value");
-
     $get = include PAD_HOME . "eval/$kind.php";
 
-    pad_trace ( "get/end", pad_make_content ( $get ) );
+    pad_trace ( "get/end", "$kind:$name:$value --> " . pad_make_content ( $get ) );
 
     return $get;
 

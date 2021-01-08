@@ -8,9 +8,9 @@
   $pad_trace_hist    = [];
   $pad_trc_cnt       = 0;
 
-  pad_trace ("pad/start", "app=$app page=$page session=$PADSESSID request=$PADREQID", TRUE);
+  pad_trace ("pad/start", "app=$app page=$page session=$PADSESSID request=$PADREQID");
 
-  function pad_trace ($type, $parm='', $skip=FALSE) {
+  function pad_trace ($type, $parm='') {
 
     global $pad_trace, $pad_trc_cnt, $pad_trace_log, $pad_trace_hist, $pad_trace_browser, $pad_trace_file;
     global $pad_lvl, $PADREQID, $pad_lvl_cnt, $pad_trc_cnt, $pad_occur_cnt, $pad_occur;
@@ -26,7 +26,7 @@
     $lineX  = str_pad ( $pad_trc_cnt, 3, ' ', STR_PAD_LEFT );
     $lvlX   = str_pad ( $pad_lvl,     3, ' ', STR_PAD_LEFT );
 
-    if ( isset( $pad_occur [$pad_lvl] ) and $pad_occur [$pad_lvl] and !$skip )
+    if ( isset( $pad_occur [$pad_lvl] ) and $pad_occur [$pad_lvl] )
       $occurX = str_pad ( $pad_occur [$pad_lvl],  2, ' ', STR_PAD_LEFT );
     else
       $occurX = '  ';

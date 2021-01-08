@@ -15,7 +15,7 @@
 
   function pad_check_range ( $input ) {
 
-    pad_trace ("range/check", $input, TRUE);
+    pad_trace ("range/check", $input);
 
     $parts = pad_explode ($input, '..');
 
@@ -26,7 +26,7 @@
 
   function pad_get_range ( $input ) {
 
-    pad_trace ("range/get", $input, TRUE);
+    pad_trace ("range/get", $input);
 
     $parts = pad_explode ($input, '..');
 
@@ -512,7 +512,7 @@
 
   function pad_syntax_error ($error='') {
 
-    pad_trace ("syntax/error", $error, TRUE);
+    pad_trace ("syntax/error", $error);
 
     pad_ignore();
 

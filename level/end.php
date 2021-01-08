@@ -18,6 +18,8 @@
 
   }
 
+  $pad_occur [$pad_lvl] = 0;
+
   if ( $pad_walks [$pad_lvl] == 'end' )
     include PAD_HOME . 'walk/end.php';
 
@@ -27,7 +29,7 @@
   $pad_options = 'level_end';
   include PAD_HOME . "level/options.php";
 
-  pad_trace ("level/end", "nr=$pad_lvl_cnt", TRUE);
+  pad_trace ("level/end", "nr=$pad_lvl_cnt");
 
   $pad_lvl--;
 
