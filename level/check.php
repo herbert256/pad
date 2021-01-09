@@ -3,7 +3,7 @@
   if ( isset ( $pad_parms_tag ['toContent'] ) ) {
     
     if ( $pad_tag == 'content' )
-      pad_error ('@toContent not allowed with the {content/} tag');
+      pad_error ('@toContent not allowed with the {content} tag');
  
   }
 

@@ -23,7 +23,7 @@
   foreach ( array_reverse ($pad_after, TRUE) as $pad_build_src ) 
     $pad_build .= pad_build_php ("$pad_build_src/exits");
 
-  $pad_build .= '{content/}';
+  $pad_build .= '{content}';
 
   $pad_build_src = $pad_build_base;
   
@@ -40,13 +40,13 @@
      else
         $pad_build_now .= pad_build_html ($pad_build_src);
 
-    if ( $pad_is_dir and strpos ($pad_build_now, '{content/}') === FALSE )
-      $pad_build_now .= '{content/}';
+    if ( $pad_is_dir and strpos ($pad_build_now, '{content}') === FALSE )
+      $pad_build_now .= '{content}';
 
     if ( $pad_is_dir )
       $pad_build_now .= pad_build_html ("$pad_build_src/exits");
 
-    $pad_build = str_replace ( '{content/}', $pad_build_now, $pad_build );
+    $pad_build = str_replace ( '{content}', $pad_build_now, $pad_build );
 
   }
 
