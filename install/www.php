@@ -2,7 +2,7 @@
 
   //  ============================================================================
   //  PAD 10.0  - (P)HP (A)pplication (D)river
-  //  (c) 2004-2020 - Herbert Groot Jebbink - herbert@groot.jebbink.nl
+  //  (c) 2004-2021 - Herbert Groot Jebbink - herbert@groot.jebbink.nl
   //  ============================================================================
   //
   //  This is the PAD startup file, the first file that becomes active.
@@ -48,13 +48,13 @@
       pad_boot_error_go ( $error['message'], $error['file'], $error['line'] );
   }
 
-  function pad_boot_error_go ($error, $file, $line) {
+  function pad_boot_error_go ( $error, $file, $line ) {
     $GLOBALS ['pad_no_boot_shutdown'] = TRUE;
-    $id = uniqid();
+    $id = $GLOBALS['PADREQID'] ?? uniqid();
     error_log ( "[PAD] $id $file:$line $error", 4 );
     if ( ! headers_sent () )
       header ( 'HTTP/1.0 500 Internal Server Error' );
-    echo "Error: $id $file:$line $error";
+    echo "Error: $id";
     exit;   
   }  
 

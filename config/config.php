@@ -5,26 +5,29 @@
   $pad_error_action = 'pad';  // 'pad'    = PAD's own full blown error handler.
                               // 'boot'   = Use the lightweight PAD boot error handler
                               // 'php'    = Use the PHP defaults (php.ini).
-                              // 'abort'  = Abort as soon as possible.
-                              // 'none'   = Ignore every error and continue processing.
-
+                              // 'stop'   = Stop processing but do the normal exit handling.
+                              // 'abort'  = Abort, do not the exit handling
+                              // 'none'   = Ignore the error and continue processing.
+ 
   $pad_error_level  = 'all';  // Kind of errors that will be processed by $pad_error_action
                               // 'none' , 'error' , 'warning' , 'notice' , 'all'
                               // (not used when $pad_error_action is 'php' or 'boot')
 
+  $pad_error_server = TRUE;
+
   // Trace the internal working of PAD
 
-  $pad_trace = 'file';   // browser', 'file', 'memory'
+  $pad_trace = 'memory';   // 'file', 'memory'
 
   // Keep track of stuff, lots of data.
 
-  $pad_track_output      = TRUE;    // Store the output of every request
-  $pad_track_vars        = TRUE;    // Store the endstate of all vars for every request
-  $pad_track_db_session  = TRUE;
-  $pad_track_db_request  = TRUE;
-  $pad_track_file        = TRUE;
-  $pad_track_sql         = TRUE;    //  Detail information about every executed SQL statement.
-  $pad_track_errors      = TRUE;    //  Dumps errors to the file system.
+  $pad_track_output      = FALSE;    // Store the output of every request
+  $pad_track_vars        = FALSE;    // Store the endstate of all vars for every request
+  $pad_track_db_session  = FALSE;
+  $pad_track_db_request  = FALSE;
+  $pad_track_file        = FALSE;
+  $pad_track_sql         = FALSE;    //  Detail information about every executed SQL statement.
+  $pad_track_errors      = FALSE;    //  Dumps errors to the file system.
 
   // Cache settings
   
@@ -127,7 +130,6 @@
   $pad_client_gzip            = false;   // Send the result zipped
   $pad_etag_304               = FALSE;  // Send a 304 header, based on the client etag http header
   $pad_no_no                  = FALSE;  // No PAD stuff, just plane PHP
-  $pad_check_syntax           = TRUE;
   $pad_location_tag           = FALSE;
   
   $pad_cookie_time            = 60 * 60 * 24 * 366 * 10;

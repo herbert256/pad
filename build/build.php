@@ -7,7 +7,7 @@
   $page = $pad_next;
   $pad_next = '';
 
-  pad_trace ('build/start', "result=$page mode=$pad_mode");
+  pad_trace ('build/start', "page=$page mode=$pad_mode");
 
   if ( ! preg_match ( '/^[A-Za-z0-9\/_]+$/', $page ) )  
     pad_error ("Invalid page name '$page'");
@@ -15,9 +15,6 @@
   pad_check_page ();
 
   $pad_lvl = 0;
-
-  $pad_content_store = [];
-  $pad_data_store    = [];
   
   $pad_build_base = PAD_APPS . $app;
   $pad_build_page = "pages/$page";
