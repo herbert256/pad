@@ -15,11 +15,7 @@
     pad_track_vars ("vars/" . $GLOBALS['app'] . "/" . $GLOBALS['page'] . "/" . $GLOBALS['PADREQID'] . ".html");
 
   pad_close_session ();
-
-  $pad_ob = ob_get_clean();
-  
-  if ($pad_ob)
-    pad_trace ("error", "Illegal output: $pad_ob");
+  pad_empty_buffers ();
 
   if ( ! isset($GLOBALS['pad_sent']) ) {
 
@@ -38,7 +34,7 @@
 
   }  
 
-  pad_trace ("end/end", "app=" . $GLOBALS['app'] .  " page=" . $GLOBALS['page'] .  "  session=" . $GLOBALS['PADSESSID'] .  " request=" . $GLOBALS['PADREQID']);
+  pad_trace ("pad/end", "app=" . $GLOBALS['app'] .  " page=" . $GLOBALS['page'] .  "  session=" . $GLOBALS['PADSESSID'] .  " request=" . $GLOBALS['PADREQID']);
 
   pad_exit ();
 

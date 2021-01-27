@@ -52,6 +52,8 @@
 
   function pad_get ( $input, $parm=[] ) {
 
+    pad_trace ( "get/start", $input);
+
     $result = $input;
 
     while ( pad_get_check ( $result ) )
@@ -63,6 +65,8 @@
 
   
  function pad_get_check ( $input, $curl=TRUE ) {
+
+    pad_trace ( "get/check", $input);
 
      if ( ! $input )
       return FALSE;
@@ -91,7 +95,7 @@
 
   function pad_get_go ( $input, $parm=[] ) {
 
-    pad_trace ( "get/start", "$input");
+    pad_trace ( "get/go", $input);
 
     if ( substr ( $input, 0, 7 ) == 'http://' or substr ( $input, 0, 8 ) == 'https://' )
       return pad_curl ($input);

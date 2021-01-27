@@ -93,7 +93,7 @@
   }
 
  
-  function pad_tag_in_function ( $type, $between ) {
+  function pad_tag_as_function ( $type, $between ) {
 
     $GLOBALS['pad_lvl']++;
     $pad_lvl = $GLOBALS['pad_lvl'];
@@ -128,11 +128,11 @@
 
     include PAD_HOME . 'level/parms2.php';
 
-    $result = include PAD_HOME . "types/$pad_tag_type.php";
+    $result = include PAD_HOME . "level/type.php";
 
     if ( in_array ( $pad_walk, ['end', 'occurence'] ) ) {
       $pad_base [$pad_lvl] = $pad_html [$pad_lvl] = $pad_result [$pad_lvl] = $pad_content;
-      $result = include PAD_HOME . "types/$pad_tag_type.php";
+      $result = include PAD_HOME . "level/type.php";
     }
 
     foreach ( $GLOBALS['pad_parameters'] [$pad_lvl-1] as $pad_k => $pad_v )
@@ -188,7 +188,7 @@
     elseif ( is_array ( $input )    )  return pad_array_to_string ( $input );
     elseif ( is_object ( $input )   )  return pad_array_to_string ( $input );
     elseif ( is_resource ( $input ) )  return pad_array_to_string ( $input );
-    else                               return (string) trim ($input); 
+    else                               return (string) $input; 
 
   }
 
@@ -351,30 +351,6 @@
 
   }
 
-  function pad_build_html ($file) {
-
-   pad_trace ('build/html', "$file.html");
-
-    if ( file_exists("$file.html") ) 
-      return "{build 'html' , '$file.php'}" . pad_html_get ("$file.html") . "{/build}";
-    else
-      return '';
-
-  }
-
-  function pad_build_php ($file) {
-
-    pad_trace ('build/php', "$file.php");
-
-    $GLOBALS ['pad_build_store'] ["$file.php"] = '';
-    $GLOBALS ['pad_build_ob']    ["$file.php"] = '';
-
-    if ( file_exists("$file.php") )
-      return "{build 'php' , '$file.php' /}";
-    else
-      return '';
-
-  }
 
   function pad_set_global ( $name, $value ) {
 
@@ -410,16 +386,6 @@
 
     }
 
-  }
-
-
-  function pad_build_location ($location, $html) {
-
-    if ( $GLOBALS['pad_location_tag'])
-      return "{location '$location'}" . $html . '{/location}';
-    else
-      return $html;    
-  
   }
 
   function pad_raw ( $data ) {
@@ -789,7 +755,7 @@
     pad_timing_start ('read');
 
     if ( ! file_exists($file) ) {
-      pad_trace ('file_not_found', $file);
+      pad_trace ('not/found', $file);
       $return = '';
     }
     else
@@ -801,13 +767,29 @@
 
   }
 
-  function pad_html_get ($file) {
+  function pad_get_html ($file) {
       
-    $html = pad_file_get_contents ( $file );    
-        
-    return pad_build_location ($file, $html);
+    if ( file_exists ($file) ) {
+      return pad_build_location ( $file, pad_file_get_contents ($file) );
+    elseif ( $pad_add_location )
+      return "{false '$file' /}"
+    else
+      return '';
 
   }
+
+  function pad_build_location ( $location, $data ) {
+
+    if ( $GLOBALS['call_return'])
+      if ( $data )
+        return "{true '$location'}" . $data . '{/true}';
+      else
+        return "{empty '$location' /}";
+    else
+      return $data;    
+  
+  }
+
 
   
   function pad_valid_store ($fld) {

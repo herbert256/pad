@@ -5,8 +5,8 @@
   $pad_error_action = 'pad';  // 'pad'    = PAD's own full blown error handler.
                               // 'boot'   = Use the lightweight PAD boot error handler
                               // 'php'    = Use the PHP defaults (php.ini).
-                              // 'stop'   = Stop processing but do the normal exit handling.
-                              // 'abort'  = Abort, do not the exit handling
+                              // 'stop'   = Stop processing but do the exit handling.
+                              // 'abort'  = Abort, don't do the exit handling
                               // 'none'   = Ignore the error and continue processing.
  
   $pad_error_level  = 'all';  // Kind of errors that will be processed by $pad_error_action
@@ -27,7 +27,7 @@
   $pad_track_db_request  = FALSE;
   $pad_track_file        = FALSE;
   $pad_track_sql         = FALSE;    //  Detail information about every executed SQL statement.
-  $pad_track_errors      = FALSE;    //  Dumps errors to the file system.
+  $pad_track_errors      = TRUE;    //  Dumps errors to the file system.
 
   // Cache settings
   
@@ -127,10 +127,10 @@
   
   // Other settings.
 
-  $pad_client_gzip            = false;   // Send the result zipped
+  $pad_client_gzip            = FALSE;   // Send the result zipped
   $pad_etag_304               = FALSE;  // Send a 304 header, based on the client etag http header
   $pad_no_no                  = FALSE;  // No PAD stuff, just plane PHP
-  $pad_location_tag           = FALSE;
+  $pad_add_location           = FALSE;
   
   $pad_cookie_time            = 60 * 60 * 24 * 366 * 10;
   $pad_fast_link              = 32;

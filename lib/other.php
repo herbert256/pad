@@ -1,6 +1,18 @@
 <?php
 
 
+  function pad_empty_buffers () {
+
+    $buffers = ob_get_level ();
+
+    for ($i = 1; $i <= $buffers; $i++) {
+      $buffer = ob_get_clean();
+      pad_trace ('buffer/data', $buffer);
+    }
+
+  }
+
+
   function pad_xxx_to_array ($xxx) {
 
      if ( is_array($xxx) )

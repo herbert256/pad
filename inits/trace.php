@@ -18,6 +18,9 @@
     if ( $pad_trace == 'none')
       return;
 
+    if ( is_array($parm) )
+      $parm = "*** ARRAY ***";
+
     if ( ! $pad_trc_cnt and $pad_trace_browser )
       echo "<pre>";
 

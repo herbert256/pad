@@ -34,7 +34,7 @@
   elseif ( $pad_tag_result === TRUE  )     $pad_base [$pad_lvl] = $pad_content;
   else                                     $pad_base [$pad_lvl] = $pad_tag_result;
 
-  $pad_base [$pad_lvl] .= $pad_tag_ob;
+  $pad_base [$pad_lvl] .= $pad_tag_content;
 
   pad_trace ("tag/base", $pad_base [$pad_lvl], TRUE);
 

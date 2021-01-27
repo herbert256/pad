@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD_HOME . 'types/object.php';
+  return pad_xxx_to_array ($$pad_tag);
 
 ?>
