@@ -10,7 +10,7 @@
   ob_start();
   
   pad_timing_start ('app');
-  $pad_call_return = include ($pad_call);
+  $pad_call_return = include $pad_call;
   pad_timing_end ('app');
 
   if ( is_array($pad_call_return) or is_object($pad_call_return) or is_resource($pad_call_return) )

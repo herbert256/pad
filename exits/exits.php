@@ -9,7 +9,7 @@
   if ( count ($pad_sanitize) )
     include PAD_HOME . 'exits/sanitize.php';
 
-  if ( $pad_tidy and ! isset($_REQUEST['pad_include']) )
+  if ( $pad_tidy )
     include PAD_HOME . 'exits/tidy.php';
   
   $pad_etag = pad_short_md5 ($pad_output);

@@ -14,39 +14,12 @@
 
   $pad_lvl = 0;
 
-  if ( isset($_REQUEST['pad_include']) )
-    $pad_mode = 'include';
-
   $pad_build_base = PAD_APPS . $app;
 
   $pad_html [0]  = '{true}';  
   $pad_html [0] .= '{content}';
 
-  $pad_exits     = [];
-  $pad_build_mrg = pad_split ("pages/$page", '/');
-
-  foreach ($pad_build_mrg as $pad_value) {
-
-    $pad_build_base .= "/$pad_value";
-
-    if ( is_dir ($pad_build_base) ) {
-      $pad_exits [] = "$pad_build_base/exits";
-      $pad_one = "$pad_build_base/inits";
-    }
-    else
-      $pad_one = $pad_build_base;
-
-    $pad_build_now = include PAD_HOME . 'build/one.php';
-
-    if ( strpos($pad_html [0], '{content}') !== FALSE)
-      $pad_html [0] = str_replace('{content}', $pad_build_now, $pad_html [0]);
-    else
-      $pad_html [0] .= $pad_build_now;
-
-  }
-
-  foreach ( array_reverse ($pad_exits) as $pad_one )
-    $pad_html [0] .= include PAD_HOME . 'build/one.php';
+  include PAD_HOME . "build/$pad_mode.php";
 
   $pad_html [0] .= '{/true}';
 

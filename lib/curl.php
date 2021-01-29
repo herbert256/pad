@@ -43,12 +43,12 @@
     $output ['cookies']      = [];
     $output ['data']         = '';
 
-    $url = '';
     if ( ! is_array($input) ) {
       $url = $input;
       $input = [];
       $input ['url'] = $url;
     }
+
     $url = $input ['url'] ?? '';
 
     if ( substr($url, 0, 1) == '"' or substr($url, 0, 1) == "'" )

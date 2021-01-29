@@ -88,9 +88,13 @@
 
   // How the app parts from ../$app/pages/ are processed.
 
-  $pad_mode = 'before';     // isolate
-                            // before
-                            // demand
+  $pad_mode               = 'before';     // isolate
+                                          // before
+                                          // demand
+                                          // include
+  $pad_add_location       = FALSE;
+  $pad_merge_inits_exits  = 'content';    // 'content'
+
 
   // PAD database structure
   
@@ -129,9 +133,8 @@
 
   $pad_client_gzip            = FALSE;   // Send the result zipped
   $pad_etag_304               = FALSE;  // Send a 304 header, based on the client etag http header
-  $pad_no_no                  = FALSE;  // No PAD stuff, just plane PHP
-  $pad_add_location           = FALSE;
-  
+  $pad_no_no                  = FALSE;  // No PAD stuff, just plane PHP                                              // 'end'
+
   $pad_cookie_time            = 60 * 60 * 24 * 366 * 10;
   $pad_fast_link              = 32;
   $pad_timing                 = TRUE;

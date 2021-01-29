@@ -19,6 +19,9 @@
   if ( isset($_SERVER['QUERY_STRING']) and $_SERVER['QUERY_STRING'] and strpos($_SERVER['QUERY_STRING'], '=') === FALSE )
     include PAD_HOME . 'inits/fast.php';
 
+  if ( isset($_REQUEST['pad_include']) )
+    $pad_mode = 'include';
+
   define ( 'PAD_APP', PAD_APPS . $app . '/' );
 
   $pad_lib = PAD_HOME . 'lib';

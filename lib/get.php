@@ -68,7 +68,10 @@
 
     pad_trace ( "get/check", $input);
 
-     if ( ! $input )
+    if ( is_array($input) or is_object($input) or is_resource($input) )
+      return FALSE;
+
+    if ( ! $input )
       return FALSE;
 
     if ( $curl ) {
@@ -96,6 +99,9 @@
   function pad_get_go ( $input, $parm=[] ) {
 
     pad_trace ( "get/go", $input);
+
+    if ( is_array($input) or is_object($input) or is_resource($input) )
+      return FALSE;
 
     if ( substr ( $input, 0, 7 ) == 'http://' or substr ( $input, 0, 8 ) == 'https://' )
       return pad_curl ($input);

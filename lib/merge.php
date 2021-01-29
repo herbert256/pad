@@ -755,11 +755,13 @@
     pad_timing_start ('read');
 
     if ( ! file_exists($file) ) {
-      pad_trace ('not/found', $file);
+      pad_trace ('read', "$file *** NOT FOUND ***");
       $return = '';
     }
-    else
+    else {
+      pad_trace ('read', "$file");
       $return = file_get_contents ($file);
+    }
 
     pad_timing_end ('read');
 
@@ -768,19 +770,29 @@
   }
 
   function pad_get_html ($file) {
+
+    global $pad_mode;
+
+    $html = '';
+
+    if ( $pad_mode == 'isolate' )
+      $html .= '{isolate}';    
+
+    if ( $pad_mode == 'demand' or $pad_mode == 'isolate' )
+      $html .= "{call '" . str_replace ( '.html', '.php', $file ) . "'}";    
+
+    $html .= pad_file_get_contents ($file);
       
-    if ( file_exists ($file) ) {
-      return pad_build_location ( $file, pad_file_get_contents ($file) );
-    elseif ( $pad_add_location )
-      return "{false '$file' /}"
-    else
-      return '';
+    if ( $pad_mode == 'isolate' )
+      $html .= '{/isolate}';    
+
+    return $html;
 
   }
 
   function pad_build_location ( $location, $data ) {
 
-    if ( $GLOBALS['call_return'])
+    if ( $GLOBALS['pad_add_location'] )
       if ( $data )
         return "{true '$location'}" . $data . '{/true}';
       else
