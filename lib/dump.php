@@ -196,8 +196,8 @@ try {
     
     if ( isset($GLOBALS['pad_track_vars_file']) )
 
-        pad_file_put_contents ($GLOBALS['pad_track_vars_file'], $item, 1);
-    
+      //file_put_contents ($GLOBALS['pad_track_vars_file'], $item, LOCK_EX | FILE_APPEND);
+    $a=1;
     else {
       
       if ( pad_local() ) {

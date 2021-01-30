@@ -6,11 +6,16 @@
 
   $pad_build_mrg = pad_split ("pages/$page", '/');
 
-  foreach ($pad_build_mrg as $pad_value) {
+  foreach ($pad_build_mrg as $pad_build_key => $pad_build_value) {
 
-    $pad_build_now .= "/$pad_value";
+    $pad_build_now .= "/$pad_build_value";
 
-    if ( is_dir ($pad_build_now) ) {
+    if ( $pad_build_key == array_key_last($pad_build_mrg) 
+       and (pad_file_exists("$pad_build_now.php") or pad_file_exists("$pad_build_now.html") ) ) {
+
+      $pad_build_html = pad_get_html ( "$pad_build_now.html" );
+
+    } elseif ( is_dir ($pad_build_now) ) {
 
       $pad_build_inits = pad_get_html ( "$pad_build_now/inits.html" );
       $pad_build_exits = pad_get_html ( "$pad_build_now/exits.html" );

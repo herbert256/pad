@@ -4,18 +4,20 @@
 
     pad_trace ("curl-1/start", $url);
 
-    if ( pad_get_check ( $url, FALSE ) )
+    if ( substr($url, 0, 1) == '"' or substr($url, 0, 1) == "'" )
+      $url = substr($url, 1, -1);
+ 
+    if ( substr ( $url, 0, 7 ) == 'http://' or substr ( $url, 0, 8 ) == 'https://' ) {
+
+      $data = pad_curl_extra ( $url, $output );
+
+    } elseif ( pad_get_check ( $url ) )
 
       $data = pad_get_content ( $url );
 
-    else {
+    else 
 
-      $input ['url'] = $url;
-      $output = [];
-
-      $data = pad_curl_get ( $input, $output );
-
-    }
+      return pad_error ("curl: invalid URL: $url");
 
     pad_trace ( "curl-1/end", $data);
 
@@ -54,7 +56,11 @@
     if ( substr($url, 0, 1) == '"' or substr($url, 0, 1) == "'" )
       $url =  substr($url, 1, -1);
  
-    if ( pad_get_check ( $url, FALSE ) ) {
+    if ( substr ( $url, 0, 7 ) == 'http://' or substr ( $url, 0, 8 ) == 'https://' )
+
+      $data = pad_curl_get ( $input, $output );
+
+    elseif ( pad_get_check ( $url, FALSE ) ) {
  
       $data    = pad_get_content ( $url );
       $content = '';

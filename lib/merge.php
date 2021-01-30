@@ -287,7 +287,8 @@
 
   function pad_get_type_lvl ( $type ) {
 
-    if     ( pad_file_exists     ( PAD_APP  . "tags/$type.php"           ) ) return 'tag_app';
+    if     ( ! pad_valid_name ( $type ) ) return FALSE;
+    elseif     ( pad_file_exists     ( PAD_APP  . "tags/$type.php"           ) ) return 'tag_app';
     elseif ( pad_file_exists     ( PAD_HOME . "tags/$type.php"           ) ) return 'tag_pad';
     elseif ( isset           ( $GLOBALS['pad_flag_store'] [$type]    ) ) return 'flag';
     elseif ( isset           ( $GLOBALS['pad_content_store'] [$type] ) ) return 'content';
@@ -309,7 +310,8 @@
 
   function pad_get_type_eval ( $type ) {
 
-    if     ( pad_file_exists     ( PAD_APP  . "functions/$type.php"      ) ) return 'function_app';
+        if     ( ! pad_valid_name ( $type ) ) return FALSE;
+    elseif     ( pad_file_exists     ( PAD_APP  . "functions/$type.php"      ) ) return 'function_app';
     elseif ( pad_file_exists     ( PAD_HOME . "functions/$type.php"      ) ) return 'function_pad';
     elseif ( function_exists ( $type                                 ) ) return 'function_php';
     elseif ( isset           ( $GLOBALS['pad_flag_store'] [$type]    ) ) return 'flag';
@@ -331,7 +333,8 @@
 
   function pad_check_type ( $type, $name ) {
 
-    if     ( pad_file_exists     ( PAD_APP  . "tags/$name.php"           ) and $type == 'tag_app'      ) return TRUE;
+        if     ( ! pad_valid_name ( $type ) or ! pad_valid_name ( $name) ) return FALSE;
+    elseif     ( pad_file_exists     ( PAD_APP  . "tags/$name.php"           ) and $type == 'tag_app'      ) return TRUE;
     elseif ( pad_file_exists     ( PAD_HOME . "tags/$name.php"           ) and $type == 'tag_pad'      ) return TRUE;
     elseif ( isset           ( $GLOBALS['pad_flag_store'] [$name]    ) and $type == 'flag'         ) return TRUE;
     elseif ( isset           ( $GLOBALS['pad_content_store'] [$name] ) and $type == 'content'      ) return TRUE;
@@ -749,16 +752,26 @@
 
   }
 
+  function pad_valid_file_name ( $file ) {
+
+    if ( ! preg_match ('/^[A-Za-z0-9\.\/_]+$/', $file) ) return FALSE;
+    if ( substr($file,0,1) <> '/' )                      return FALSE;
+    if ( strpos($file, '//') !== FALSE )                 return FALSE;
+    if ( strpos($file, '..') !== FALSE )                 return FALSE;
+
+    return TRUE;
+
+  }
+
+
   function pad_file_exists ( $file ) {
 
-    if ( ! preg_match ('/^[A-Za-z0-9\.\/_]+$/', $file) ) pad_error ("Invalid name: $file");
-    if ( substr($file,0,1) <> '/' )                      pad_error ("Invalid name: $file");
-    if ( strpos($file, '//') !== FALSE )                 pad_error ("Invalid name: $file");
-    if ( strpos($file, '..') !== FALSE )                 pad_error ("Invalid name: $file");
+    if ( ! pad_valid_file_name ( $file ) ) 
+      pad_error ("Invalid name: $file");
 
     pad_timing_start ('read');
 
-    if ( pad_file_exists ($file) ) {
+    if ( file_exists ($file) ) {
       pad_timing_end ('read');
       pad_trace ('exists/true', $file);
       return TRUE;
@@ -781,7 +794,7 @@
     pad_trace ('read/true', $file);
 
     pad_timing_start ('read');
-    $return = pad_file_get_contents ($file);
+    $return = file_get_contents ($file);
     pad_timing_end ('read');
 
     return $return;    
