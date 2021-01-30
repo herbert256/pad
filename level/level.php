@@ -45,7 +45,7 @@
     $pad_tag_type = substr ($pad_tag, 0, $pad_ns_pos);
     $pad_tag      = substr ($pad_tag, $pad_ns_pos+1);
 
-    if ( ! file_exists ( PAD_HOME . "types/$pad_tag_type.php" ) ) 
+    if ( ! pad_file_exists ( PAD_HOME . "types/$pad_tag_type.php" ) ) 
       return pad_ignore ();
     
   } else {

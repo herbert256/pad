@@ -31,7 +31,7 @@
 
     $pad_idx = pad_idx ($tag);
 
-    if ( file_exists ( PAD_HOME . "tag/".$field.".php" ) )
+    if ( pad_file_exists ( PAD_HOME . "tag/".$field.".php" ) )
       return include PAD_HOME . "tag/$field.php";
 
     if ( in_array ( $parm, ['name','value'] )  and $pad_idx) {

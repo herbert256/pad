@@ -1,6 +1,6 @@
 <?php
 
-  if ( $pad_mode == 'include' )
+  if ( $pad_build_mode== 'include' )
     $pad_tidy_config ['show-body-only'] = true;
 
   $pad_tidy_out = new tidy;

@@ -6,10 +6,10 @@
 
   $pad_tag_php = '';
 
-  if ( file_exists("$pad_tag_go.html") )
+  if ( pad_file_exists("$pad_tag_go.html") )
   	$pad_tag_content .= pad_get_html ("$pad_tag_go.html");
 
-  if ( file_exists("$pad_tag_go.php") ) {
+  if ( pad_file_exists("$pad_tag_go.php") ) {
 
     ob_start();
 

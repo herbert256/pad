@@ -10,7 +10,7 @@
     
     global $pad_cache_file;
 
-    return ( file_exists ("$pad_cache_file/etag/$etag") ) ? filemtime("$pad_cache_file/etag/$etag") : FALSE;
+    return ( pad_file_exists ("$pad_cache_file/etag/$etag") ) ? filemtime("$pad_cache_file/etag/$etag") : FALSE;
 
   }
 
@@ -19,9 +19,9 @@
 
     global $pad_cache_file;
 
-    if ( file_exists ("$pad_cache_file/url/$url") ) {
-      $etag = file_get_contents("$pad_cache_file/url/$url");
-      if ( file_exists ("$pad_cache_file/etag/$etag") )
+    if ( pad_file_exists ("$pad_cache_file/url/$url") ) {
+      $etag = pad_file_get_contents("$pad_cache_file/url/$url");
+      if ( pad_file_exists ("$pad_cache_file/etag/$etag") )
         return [0 => filemtime("$pad_cache_file/etag/$etag"), 1 => $etag];
     }
 
@@ -34,7 +34,7 @@
 
     global $pad_cache_file;
 
-    return ( file_exists ("$pad_cache_file/etag/$etag" ) ) ? file_get_contents("$pad_cache_file/etag/$etag") : FALSE;
+    return ( pad_file_exists ("$pad_cache_file/etag/$etag" ) ) ? pad_file_get_contents("$pad_cache_file/etag/$etag") : FALSE;
 
   }
 

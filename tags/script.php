@@ -2,7 +2,7 @@
 
   $pad_exec = PAD_APP . "scripts/" . escapeshellcmd ($pad_parm);
 
-  if ( ! file_exists($pad_exec) ) {
+  if ( ! pad_file_exists($pad_exec) ) {
     pad_error ("Script $pad_exec not found");
     return FALSE;
   }

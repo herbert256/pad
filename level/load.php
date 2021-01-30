@@ -1,12 +1,12 @@
 <?php
 
-  if ( ! file_exists($pad_load) ) {
-    if ( $pad_add_location )
+  if ( ! pad_file_exists($pad_load) ) {
+    if ( $pad_build_location )
       return "{false '$pad_include_file'}";
     return '';
   }
 
-  if ( $pad_add_location )
+  if ( $pad_build_location )
 
   ob_start();
   
@@ -23,9 +23,9 @@
    
   $pad_app_return .= ob_get_clean();
 
-  if ($pad_app_return == '' and $pad_add_location )
+  if ($pad_app_return == '' and $pad_build_location )
     return "{empty '$pad_load'}";
-  elseif ( $pad_add_location )
+  elseif ( $pad_build_location )
     return "{true '$pad_load}" || $pad_one.php || "{/true}";
   else
     return $pad_app_return;

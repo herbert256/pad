@@ -41,7 +41,7 @@
     foreach ($result as $k => $one)
       if ( $one[1] == 'other' ) {
         $exp = pad_explode ($one[0], ':');
-        if ( count($exp) == 2 and pad_valid_name ($exp[1]) and file_exists ( PAD_HOME . "eval/" . $exp[0] . ".php" ) ) {
+        if ( count($exp) == 2 and pad_valid_name ($exp[1]) and pad_file_exists ( PAD_HOME . "eval/" . $exp[0] . ".php" ) ) {
           $result[$k][0] = 'TYPE';
           $result[$k][1] = 'OPR';
           $result[$k][2] = $exp[0];          

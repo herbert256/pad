@@ -113,7 +113,7 @@
     
     $pad_content_store_file = "output/$pad_etag.html";
 
-    if ( ! file_exists(PAD_DATA . "$pad_content_store_file") )
+    if ( ! pad_file_exists(PAD_DATA . "$pad_content_store_file") )
       pad_file_put_contents ($pad_content_store_file, $pad_output);
 
   }
@@ -155,7 +155,7 @@
         return pad_fatal ("'exits' is a reserved word and can not be used as page name");
 
       if ( $key == array_key_last($pad_page_parts)
-            and (file_exists("$pad_location/$value.php") or file_exists("$pad_location/$value.html") ) )
+            and (pad_file_exists("$pad_location/$value.php") or pad_file_exists("$pad_location/$value.html") ) )
       
         return; 
        
@@ -172,7 +172,7 @@
       
     }
     
-    if ( ! file_exists("$pad_location/$file.php") and ! file_exists("$pad_location/$file.html") )
+    if ( ! pad_file_exists("$pad_location/$file.php") and ! pad_file_exists("$pad_location/$file.html") )
       return pad_error ("Page '$app/$page' not found (2)");
 
     $page = str_replace(PAD_APP . "pages/", '', "$pad_location/$file");
@@ -320,10 +320,10 @@
     $pos = strrpos($file, '/');
     $dir = substr($file, 0, $pos);
     
-    if (!file_exists($dir))
+    if (!pad_file_exists($dir))
       mkdir($dir, $GLOBALS['pad_dir_mode'], true);
     
-    if (!file_exists($file)) {
+    if (!pad_file_exists($file)) {
       touch($file);
       chmod($file, $GLOBALS['pad_file_mode']);
     }

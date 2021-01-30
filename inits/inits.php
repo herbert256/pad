@@ -20,7 +20,7 @@
     include PAD_HOME . 'inits/fast.php';
 
   if ( isset($_REQUEST['pad_include']) )
-    $pad_mode = 'include';
+    $pad_build_mode= 'include';
 
   define ( 'PAD_APP', PAD_APPS . $app . '/' );
 

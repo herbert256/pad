@@ -1,7 +1,7 @@
 <?php
 
-  if ( ! file_exists($pad_call) ) {
-    if ( $pad_add_location )
+  if ( ! pad_file_exists($pad_call) ) {
+    if ( $pad_build_location )
       return "{false '$pad_call'/}";
     else
       return '';

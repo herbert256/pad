@@ -81,7 +81,7 @@
         return TRUE;
     }
 
-    if ( file_exists ( PAD_APP . "data/$input" ) )
+    if ( pad_file_exists ( PAD_APP . "data/$input" ) )
       return TRUE;
 
     $parts = pad_explode ($input, ':', 3);
@@ -106,7 +106,7 @@
     if ( substr ( $input, 0, 7 ) == 'http://' or substr ( $input, 0, 8 ) == 'https://' )
       return pad_curl ($input);
  
-    if ( file_exists ( PAD_APP . "data/$input" ) )
+    if ( pad_file_exists ( PAD_APP . "data/$input" ) )
       return pad_file_get_contents ( PAD_APP . "data/$input" );
 
     $parts = pad_explode ($input, ':', 3);

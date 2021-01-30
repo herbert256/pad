@@ -7,13 +7,13 @@
                               // 'php'    = Use the PHP defaults (php.ini).
                               // 'stop'   = Stop processing but do the exit handling.
                               // 'abort'  = Abort, don't do the exit handling
-                              // 'none'   = Ignore the error and continue processing.
+                              // 'none'   = Ignore all errors and continue processing.
  
   $pad_error_level  = 'all';  // Kind of errors that will be processed by $pad_error_action
                               // 'none' , 'error' , 'warning' , 'notice' , 'all'
                               // (not used when $pad_error_action is 'php' or 'boot')
 
-  $pad_error_server = TRUE;
+  $pad_error_server = TRUE;   //  Log errors to the HTTP server log (most likely /var/log/apache2/error.log)
 
   // Trace the internal working of PAD
 
@@ -21,12 +21,12 @@
 
   // Keep track of stuff, lots of data.
 
-  $pad_track_output      = FALSE;    // Store the output of every request
-  $pad_track_vars        = FALSE;    // Store the endstate of all vars for every request
+  $pad_track_output      = FALSE;   // Store the output of every request
+  $pad_track_vars        = FALSE;   // Store the endstate of all vars for every request
   $pad_track_db_session  = FALSE;
   $pad_track_db_request  = FALSE;
   $pad_track_file        = FALSE;
-  $pad_track_sql         = FALSE;    //  Detail information about every executed SQL statement.
+  $pad_track_sql         = FALSE;   //  Detail information about every executed SQL statement.
   $pad_track_errors      = TRUE;    //  Dumps errors to the file system.
 
   // Cache settings
@@ -88,13 +88,13 @@
 
   // How the app parts from ../$app/pages/ are processed.
 
-  $pad_mode               = 'before';     // isolate
-                                          // before
-                                          // demand
-                                          // include
-  $pad_add_location       = FALSE;
-  $pad_merge_inits_exits  = 'content';    // 'content'
-
+  $pad_build_mode     = 'before';     // 'isolate'
+                                      // 'before'
+                                      // 'demand'
+                                      // 'include'
+  $pad_build_location = FALSE;
+  $pad_build_merge    = 'content';    // 'content'
+                                      // 'end'
 
   // PAD database structure
   
@@ -131,9 +131,9 @@
   
   // Other settings.
 
-  $pad_client_gzip            = FALSE;   // Send the result zipped
+  $pad_client_gzip            = FALSE;  // Send the result zipped
   $pad_etag_304               = FALSE;  // Send a 304 header, based on the client etag http header
-  $pad_no_no                  = FALSE;  // No PAD stuff, just plane PHP                                              // 'end'
+  $pad_no_no                  = FALSE;  // No PAD stuff, just plane PHP   
 
   $pad_cookie_time            = 60 * 60 * 24 * 366 * 10;
   $pad_fast_link              = 32;

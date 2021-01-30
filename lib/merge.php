@@ -62,8 +62,8 @@
 
   function pad_function_type ( $check ) {
 
-    if     ( file_exists ( PAD_APP  . "functions/$check.php" ) ) return 'app';
-    elseif ( file_exists ( PAD_HOME . "functions/$check.php" ) ) return 'pad';
+    if     ( pad_file_exists ( PAD_APP  . "functions/$check.php" ) ) return 'app';
+    elseif ( pad_file_exists ( PAD_HOME . "functions/$check.php" ) ) return 'pad';
     elseif ( function_exists ( $check                        ) ) return 'php';
     else                                                         return pad_error ('Function not found: ' . $check);
 
@@ -287,19 +287,19 @@
 
   function pad_get_type_lvl ( $type ) {
 
-    if     ( file_exists     ( PAD_APP  . "tags/$type.php"           ) ) return 'tag_app';
-    elseif ( file_exists     ( PAD_HOME . "tags/$type.php"           ) ) return 'tag_pad';
+    if     ( pad_file_exists     ( PAD_APP  . "tags/$type.php"           ) ) return 'tag_app';
+    elseif ( pad_file_exists     ( PAD_HOME . "tags/$type.php"           ) ) return 'tag_pad';
     elseif ( isset           ( $GLOBALS['pad_flag_store'] [$type]    ) ) return 'flag';
     elseif ( isset           ( $GLOBALS['pad_content_store'] [$type] ) ) return 'content';
     elseif ( isset           ( $GLOBALS['pad_data_store'] [$type]    ) ) return 'data';
-    elseif ( file_exists     ( PAD_HOME . "tag/$type.php"            ) ) return 'parm';
+    elseif ( pad_file_exists     ( PAD_HOME . "tag/$type.php"            ) ) return 'parm';
     elseif ( pad_level_array ( $type                                 ) ) return 'level';
     elseif ( isset           ( $GLOBALS['pad_db_tables'] [$type]     ) ) return 'table';
     elseif ( pad_array_check ( $type                                 ) ) return 'array';
     elseif ( pad_field_check ( $type                                 ) ) return 'field';
     elseif ( defined         ( $type                                 ) ) return 'constant';
-    elseif ( file_exists     ( PAD_APP  . "functions/$type.php"      ) ) return 'function_app';
-    elseif ( file_exists     ( PAD_HOME . "functions/$type.php"      ) ) return 'function_pad';
+    elseif ( pad_file_exists     ( PAD_APP  . "functions/$type.php"      ) ) return 'function_app';
+    elseif ( pad_file_exists     ( PAD_HOME . "functions/$type.php"      ) ) return 'function_pad';
     elseif ( function_exists ( $type                                 ) ) return 'function_php';
     elseif ( pad_is_object   ( $type                                 ) ) return 'object';
     elseif ( pad_is_resource ( $type                                 ) ) return 'resource';
@@ -309,20 +309,20 @@
 
   function pad_get_type_eval ( $type ) {
 
-    if     ( file_exists     ( PAD_APP  . "functions/$type.php"      ) ) return 'function_app';
-    elseif ( file_exists     ( PAD_HOME . "functions/$type.php"      ) ) return 'function_pad';
+    if     ( pad_file_exists     ( PAD_APP  . "functions/$type.php"      ) ) return 'function_app';
+    elseif ( pad_file_exists     ( PAD_HOME . "functions/$type.php"      ) ) return 'function_pad';
     elseif ( function_exists ( $type                                 ) ) return 'function_php';
     elseif ( isset           ( $GLOBALS['pad_flag_store'] [$type]    ) ) return 'flag';
     elseif ( isset           ( $GLOBALS['pad_content_store'] [$type] ) ) return 'content';
     elseif ( isset           ( $GLOBALS['pad_data_store'] [$type]    ) ) return 'data';
-    elseif ( file_exists     ( PAD_HOME . "tag/$type.php"            ) ) return 'parm';
+    elseif ( pad_file_exists     ( PAD_HOME . "tag/$type.php"            ) ) return 'parm';
     elseif ( pad_level_array ( $type                                 ) ) return 'level';
     elseif ( isset           ( $GLOBALS['pad_db_tables'] [$type]     ) ) return 'table';
     elseif ( pad_array_check ( $type                                 ) ) return 'array';
     elseif ( pad_field_check ( $type                                 ) ) return 'field';
     elseif ( defined         ( $type                                 ) ) return 'constant';
-    elseif ( file_exists     ( PAD_APP  . "tags/$type.php"           ) ) return 'tag_app';
-    elseif ( file_exists     ( PAD_HOME . "tags/$type.php"           ) ) return 'tag_pad';
+    elseif ( pad_file_exists     ( PAD_APP  . "tags/$type.php"           ) ) return 'tag_app';
+    elseif ( pad_file_exists     ( PAD_HOME . "tags/$type.php"           ) ) return 'tag_pad';
     elseif ( pad_is_object   ( $type                                 ) ) return 'object';
     elseif ( pad_is_resource ( $type                                 ) ) return 'resource';
     else                                                                 return FALSE;
@@ -331,19 +331,19 @@
 
   function pad_check_type ( $type, $name ) {
 
-    if     ( file_exists     ( PAD_APP  . "tags/$name.php"           ) and $type == 'tag_app'      ) return TRUE;
-    elseif ( file_exists     ( PAD_HOME . "tags/$name.php"           ) and $type == 'tag_pad'      ) return TRUE;
+    if     ( pad_file_exists     ( PAD_APP  . "tags/$name.php"           ) and $type == 'tag_app'      ) return TRUE;
+    elseif ( pad_file_exists     ( PAD_HOME . "tags/$name.php"           ) and $type == 'tag_pad'      ) return TRUE;
     elseif ( isset           ( $GLOBALS['pad_flag_store'] [$name]    ) and $type == 'flag'         ) return TRUE;
     elseif ( isset           ( $GLOBALS['pad_content_store'] [$name] ) and $type == 'content'      ) return TRUE;
     elseif ( isset           ( $GLOBALS['pad_data_store'] [$name]    ) and $type == 'data'         ) return TRUE;
-    elseif ( file_exists     ( PAD_HOME . "tag/$name.php"            ) and $type == 'parm'         ) return TRUE;
+    elseif ( pad_file_exists     ( PAD_HOME . "tag/$name.php"            ) and $type == 'parm'         ) return TRUE;
     elseif ( pad_level_array ( $name                                 ) and $type == 'level'        ) return TRUE;
     elseif ( isset           ( $GLOBALS['pad_db_tables'] [$name]     ) and $type == 'table'        ) return TRUE;
     elseif ( pad_array_check ( $name                                 ) and $type == 'array'        ) return TRUE;
     elseif ( pad_field_check ( $name                                 ) and $type == 'field'        ) return TRUE;
     elseif ( defined         ( $name                                 ) and $type == 'constant'     ) return TRUE;
-    elseif ( file_exists     ( PAD_APP  . "functions/$name.php"      ) and $type == 'function_app' ) return TRUE;
-    elseif ( file_exists     ( PAD_HOME . "functions/$name.php"      ) and $type == 'function_pad' ) return TRUE;
+    elseif ( pad_file_exists     ( PAD_APP  . "functions/$name.php"      ) and $type == 'function_app' ) return TRUE;
+    elseif ( pad_file_exists     ( PAD_HOME . "functions/$name.php"      ) and $type == 'function_pad' ) return TRUE;
     elseif ( function_exists ( $name                                 ) and $type == 'function_php' ) return TRUE;
     elseif ( pad_is_object   ( $name                                 ) and $type == 'object'       ) return TRUE;
     elseif ( pad_is_resource ( $type                                 ) and $type == 'resource'     ) return TRUE;
@@ -749,41 +749,60 @@
 
   }
 
+  function pad_file_exists ( $file ) {
 
-  function pad_file_get_contents ( $file ) {
+    if ( ! preg_match ('/^[A-Za-z0-9\.\/_]+$/', $file) ) pad_error ("Invalid name: $file");
+    if ( substr($file,0,1) <> '/' )                      pad_error ("Invalid name: $file");
+    if ( strpos($file, '//') !== FALSE )                 pad_error ("Invalid name: $file");
+    if ( strpos($file, '..') !== FALSE )                 pad_error ("Invalid name: $file");
 
     pad_timing_start ('read');
 
-    if ( ! file_exists($file) ) {
-      pad_trace ('read', "$file *** NOT FOUND ***");
-      $return = '';
+    if ( pad_file_exists ($file) ) {
+      pad_timing_end ('read');
+      pad_trace ('exists/true', $file);
+      return TRUE;
     }
     else {
-      pad_trace ('read', "$file");
-      $return = file_get_contents ($file);
+      pad_timing_end ('read');
+      pad_trace ('exists/true', $file);
+      return FALSE;
     }
 
+  }
+
+  function pad_file_get_contents ( $file ) {
+
+    if ( ! pad_file_exists($file) ) {
+      pad_trace ('read/false', $file);
+      return '';
+    }
+
+    pad_trace ('read/true', $file);
+
+    pad_timing_start ('read');
+    $return = pad_file_get_contents ($file);
     pad_timing_end ('read');
 
     return $return;    
 
   }
 
-  function pad_get_html ($file) {
+  function pad_get_html ($file, $call=false) {
 
-    global $pad_mode;
+    global $pad_build_mode;
 
     $html = '';
 
-    if ( $pad_mode == 'isolate' )
+    if ( $pad_build_mode== 'isolate' )
       $html .= '{isolate}';    
 
-    if ( $pad_mode == 'demand' or $pad_mode == 'isolate' )
+    if ( $call or $pad_build_mode == 'demand' or $pad_build_mode == 'isolate' )
       $html .= "{call '" . str_replace ( '.html', '.php', $file ) . "'}";    
 
     $html .= pad_file_get_contents ($file);
       
-    if ( $pad_mode == 'isolate' )
+    if ( $pad_build_mode== 'isolate' )
       $html .= '{/isolate}';    
 
     return $html;
@@ -792,7 +811,7 @@
 
   function pad_build_location ( $location, $data ) {
 
-    if ( $GLOBALS['pad_add_location'] )
+    if ( $GLOBALS['pad_build_location'] )
       if ( $data )
         return "{true '$location'}" . $data . '{/true}';
       else
