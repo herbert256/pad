@@ -1,5 +1,7 @@
 <?php
 
+  ob_start();
+
   $app  = $_REQUEST['app']  ?? 'pad';
   $page = $_REQUEST['page'] ?? 'index';
 

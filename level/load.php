@@ -14,9 +14,8 @@
   $pad_app_return = include ($pad_load);
   pad_timing_end ('read');
 
-  if ( is_array($pad_app_return) or is_object($pad_app_return) or is_resource($pad_app_return) ) {
+  if ( is_array($pad_app_return) or is_object($pad_app_return) or is_resource($pad_app_return) )
     $pad_app_return = pad_make_content ( $pad_app_return );
-  }
 
   if ($pad_app_return === 1 or $pad_app_return === TRUE or $pad_app_return === FALSE or $pad_app_return === NULL)
     $pad_app_return = '';

@@ -1,9 +1,5 @@
 <?php
 
-  $pad_trace_file    = ( strpos($pad_trace, 'file')    !== FALSE );
-  $pad_trace_browser = ( strpos($pad_trace, 'browser') !== FALSE );
-  $pad_trace_memory  = ( strpos($pad_trace, 'memory')  !== FALSE );
-
   $pad_trace_log     = "trace/$app/$page/$PADREQID.txt";
   $pad_trace_hist    = [];
   $pad_trc_cnt       = 0;
@@ -12,17 +8,14 @@
 
   function pad_trace ($type, $parm='') {
 
-    global $pad_trace, $pad_trc_cnt, $pad_trace_log, $pad_trace_hist, $pad_trace_browser, $pad_trace_file;
+    global $pad_trace, $pad_trc_cnt, $pad_trace_log, $pad_trace_hist;
     global $pad_lvl, $PADREQID, $pad_lvl_cnt, $pad_trc_cnt, $pad_occur_cnt, $pad_occur;
 
-    if ( $pad_trace == 'none')
+    if ( ! $pad_trace )
       return;
 
     if ( is_array($parm) )
-      $parm = "*** ARRAY ***";
-
-    if ( ! $pad_trc_cnt and $pad_trace_browser )
-      echo "<pre>";
+      $parm = pad_info($parm);
 
     $pad_trc_cnt++;
 
@@ -45,14 +38,9 @@
     
     if ($pad_trc_cnt > 50)
       unset ($pad_trace_hist [$pad_trc_cnt-50]);
+
     $pad_trace_hist [$pad_trc_cnt] = $lineL;
   
-    if ( $pad_trace_file )  
-      pad_file_put_contents ($GLOBALS['pad_trace_log'], "$lineX $lineL" . PHP_EOL, 1);
-
-    if ( $pad_trace_browser )
-      echo htmlentities("$lineL\n");
-
   }  
       
 ?>

@@ -22,15 +22,9 @@
     $GLOBALS['pad_sent'] = TRUE;
 
     include PAD_HOME . 'exits/headers.php';
-
-    if ( $GLOBALS['pad_trace_browser'] )
-      echo "</pre><hr>";
   
     if ( $pad_stop == 200 )
       echo $GLOBALS['pad_output'];
-
-    if ( $GLOBALS['pad_trace_browser'] )
-      echo "<hr>";
 
   }  
 

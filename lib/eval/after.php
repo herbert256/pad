@@ -8,7 +8,7 @@
 
   }
    
-  function pad_eval_after ( &$result ) {
+  function pad_eval_after ( &$result, $eval ) {
  
     global $pad_flag_store, $pad_data_store, $pad_content_store;
 
@@ -17,14 +17,18 @@
     foreach($result as $one) {
       if ($one[1] == 'close')
         $check--;
-      if ($check < 0)
-        return pad_error ("Incorrect use of )");
+      if ($check < 0) {
+        pad_eval_error ("Incorrect use of ): $eval");
+        return FALSE;
+      }
       if ($one[1] == 'open')
         $check++;
     }
 
-    if ($check <> 0)
-      return pad_error ("Unequal () pairs");
+    if ($check <> 0) {
+      pad_eval_error ("Unequal () pairs: $eval");
+      return FALSE;
+    }
 
     foreach ($result as $k => $one)
       if ( $one[1] == 'other' and pad_valid_name ($one[0]) ) {
@@ -82,6 +86,8 @@
     foreach ($result as $k => $one)
       if ( $one[1] == 'other' )
         $result[$k][1] = 'VAL';
+
+    return TRUE;
 
   }
   

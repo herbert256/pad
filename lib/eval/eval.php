@@ -28,32 +28,44 @@
       return '';
     }
 
-    pad_eval_parse ( $pad_eval_result, $eval, $myself);
-    pad_eval_after ( $pad_eval_result );
-
     set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
     $error_level = error_reporting(E_ALL);
 
     try {
+
+      pad_eval_parse ( $pad_eval_result, $eval, $myself);
+      
+      if ( ! pad_eval_after ( $pad_eval_result, $eval ) )
+        return $pad_eval_start;
+      
       pad_eval_go ( $pad_eval_result, array_key_first($pad_eval_result), array_key_last($pad_eval_result), $myself) ;
+
+      $key = array_key_first ($pad_eval_result);
+        
+      if ( count($pad_eval_result) < 1 )
+        $return = pad_eval_error("No result back");
+      elseif ( count($pad_eval_result) > 1 )                                                
+        $return = pad_eval_error("More then one result back");
+      elseif ( isset($pad_eval_result[$key][6]) and $pad_eval_result [$key][6] == 'array' ) 
+        $return = pad_eval_error("Result is an array");
+      elseif ( isset($pad_eval_result[$key][1]) <> 'VAL' )         
+        $return = pad_eval_error("Result is not a value");
+      else
+        $return = $pad_eval_result [$key] [0];
     }
+
     catch (Throwable $e) {
+
       return pad_eval_error ( $e->getMessage() . ' ' . $e->getFile() . '/' . $e->getLine() );
+ 
     }
 
     error_reporting($error_level);
     restore_error_handler();
 
-    $key = array_key_first ($pad_eval_result);
-      
-    if     ( count($pad_eval_result) < 1 )                                                return pad_eval_error("No result back");
-    elseif ( count($pad_eval_result) > 1 )                                                return pad_eval_error("More then one result back");
-    elseif ( isset($pad_eval_result[$key][6]) and $pad_eval_result [$key][6] == 'array' ) return pad_eval_error("Result is an array");
-    elseif ( isset($pad_eval_result[$key][1]) <> 'VAL'                         )          return pad_eval_error("Result is not a value");
-    else {
-      pad_trace ("eval/end", "nr=$pad_eval_cnt output=" .$pad_eval_result [$key] [0] );
-      return $pad_eval_result [$key] [0];
-    }
+    pad_trace ("eval/end", "nr=$pad_eval_cnt output=$return" );
+
+    return $return;
 
   }
 
@@ -63,7 +75,7 @@
 
     $return = '';
     foreach ($pad_eval_result as $k => $one)
-      if ( ($one[6]??'') == 'array' )
+      if ( ($one[6]??'') == 'array' and isset($one[7]) )
         foreach ( $one [7] as $value)
           $return .= $value . ' ';
       else

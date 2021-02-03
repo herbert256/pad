@@ -115,7 +115,7 @@
       if ( $GLOBALS['pad_error_action'] == 'none') 
         return FALSE;
 
-      echo "Error";
+      echo " $file:$line $error";
 
       pad_exit ();
 

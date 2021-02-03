@@ -5,6 +5,9 @@ if [[ $EUID -ne 0 ]]; then
 	exit 1
 fi
 
+
+chmod 755 /home/herbert/apps/pad/scripts/*
+
 service apache2 stop
 
 rm /home/herbert/www/index.php

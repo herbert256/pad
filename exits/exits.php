@@ -20,12 +20,6 @@
   
   $pad_etag = pad_short_md5 ($pad_output);
 
-  $pad_ob = ob_get_clean();
-  if ($pad_ob) {
-    echo "Illegal output<hr><pre>$pad_ob</pre><hr>";
-    pad_exit();
-  }
-
   if ( $pad_track_output )
     pad_track_output ();
 

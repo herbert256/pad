@@ -68,6 +68,9 @@
 
     pad_trace ( "get/check", $input);
 
+    if ( strlen(trim($input)) == 0)
+      return FALSE;
+
     if ( is_array($input) or is_object($input) or is_resource($input) )
       return FALSE;
 
