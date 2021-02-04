@@ -24,6 +24,9 @@
        or $pad_parameters [$pad_lvl] ['name'] <> $pad_parameters [$pad_lvl] ['tag'] )
      pad_set_global ( $pad_name, $pad_current [$pad_lvl] );
 
+    foreach ( $pad_parms_var as $pad_k => $pad_v )
+      pad_set_global ( $pad_k, $pad_v );
+
     foreach ( $pad_current [$pad_lvl] as $pad_k => $pad_v )
       pad_set_global ( $pad_k, $pad_v );
 

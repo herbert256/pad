@@ -752,60 +752,6 @@
 
   }
 
-  function pad_valid_file_name ( $file ) {
-
-    if ( ! preg_match ('/^[A-Za-z0-9\.\/_]+$/', $file) ) return FALSE;
-    if ( substr($file,0,1) <> '/' )                      return FALSE;
-    if ( strpos($file, '//') !== FALSE )                 return FALSE;
-    if ( strpos($file, '..') !== FALSE )                 return FALSE;
-
-    if ( str_starts_with($file, PAD_HOME) ) return TRUE;
-    if ( str_starts_with($file, PAD_APPS) ) return TRUE;
-    if ( str_starts_with($file, PAD_DATA) ) return TRUE;
-
-    return FALSE;
-
-  }
-
-
-  function pad_file_exists ( $file ) {
-
-    if ( ! pad_valid_file_name ( $file ) ) {
-      pad_trace ('exists/invalid', $file);
-      return FALSE;
-    }
-
-    pad_timing_start ('read');
-
-    if ( file_exists ($file) ) {
-      pad_timing_end ('read');
-      pad_trace ('exists/true', $file);
-      return TRUE;
-    }
-    else {
-      pad_timing_end ('read');
-      pad_trace ('exists/false', $file);
-      return FALSE;
-    }
-
-  }
-
-  function pad_file_get_contents ( $file ) {
-
-    if ( ! pad_file_exists($file) ) {
-      pad_trace ('read/false', $file);
-      return '';
-    }
-
-    pad_trace ('read/true', $file);
-
-    pad_timing_start ('read');
-    $return = file_get_contents ($file);
-    pad_timing_end ('read');
-
-    return $return;    
-
-  }
 
   function pad_get_html ($file, $call=false) {
 
@@ -827,6 +773,7 @@
     return $html;
 
   }
+
 
   function pad_build_location ( $location, $data ) {
 

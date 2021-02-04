@@ -77,7 +77,7 @@
     foreach ($pad_eval_result as $k => $one)
       if ( ($one[6]??'') == 'array' and isset($one[7]) )
         foreach ( $one [7] as $value)
-          $return .= $value . ' ';
+          $return .= pad_info($value) . ' ';
       else
         $return .= $one[0] . ' ';   
 

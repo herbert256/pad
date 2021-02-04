@@ -267,20 +267,6 @@
   }
 
 
-  function pad_file_put_contents ($file, $data, $append=0) {
-
-    $file = PAD_DATA . $file;
-   
-    pad_timing_start ('write');
-
-    pad_check_file ($file);
-
-    if ($append) file_put_contents ($file, $data, LOCK_EX | FILE_APPEND);
-    else         file_put_contents ($file, $data, LOCK_EX);
-
-    pad_timing_end ('write');
-    
-  }
 
 
   function pad_valid_name ($name) {
@@ -312,24 +298,6 @@
   }
   
   
-  function pad_check_file ($file) {
-
-    if ( ! preg_match('/^[A-Za-z0-9_\-\/\.]+$/', $file) or strpos($file, '//') or strpos($file, '..') )
-      return pad_error ("Invalid file name: $file");
-
-    $pos = strrpos($file, '/');
-    $dir = substr($file, 0, $pos);
-    
-    if (!pad_file_exists($dir))
-      mkdir($dir, $GLOBALS['pad_dir_mode'], true);
-    
-    if (!pad_file_exists($file)) {
-      touch($file);
-      chmod($file, $GLOBALS['pad_file_mode']);
-    }
-  
-  }
-
 
   function pad_zip ($data) {
 

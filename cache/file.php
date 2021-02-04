@@ -10,7 +10,7 @@
     
     global $pad_cache_file;
 
-    return ( pad_file_exists ("$pad_cache_file/etag/$etag") ) ? filemtime("$pad_cache_file/etag/$etag") : FALSE;
+    return ( pad_file_exists ("$pad_cache_file/etag/$etag") ) ? pad_file_time ("$pad_cache_file/etag/$etag") : FALSE;
 
   }
 
@@ -22,7 +22,7 @@
     if ( pad_file_exists ("$pad_cache_file/url/$url") ) {
       $etag = pad_file_get_contents("$pad_cache_file/url/$url");
       if ( pad_file_exists ("$pad_cache_file/etag/$etag") )
-        return [0 => filemtime("$pad_cache_file/etag/$etag"), 1 => $etag];
+        return [0 => pad_file_time ("$pad_cache_file/etag/$etag"), 1 => $etag];
     }
 
     return [];
@@ -43,19 +43,12 @@
 
     global $pad_cache_file;
     
-    pad_timing_start ('write');
-    
-    pad_check_file ("$pad_cache_file/url/$url");
-    file_put_contents ("$pad_cache_file/url/$url", $etag, LOCK_EX);
-
-    pad_check_file ("$pad_cache_file/etag/$etag");
+    pad_file_put_contents ("$pad_cache_file/url/$url", $etag, LOCK_EX);
 
     if ( $GLOBALS['pad_cache_server_no_data'] )
-      touch ("$pad_cache_file/etag/$etag", $_SERVER['REQUEST_TIME']);
+      pad_file_touch ("$pad_cache_file/etag/$etag", $_SERVER['REQUEST_TIME']);
     else
-      file_put_contents ("$pad_cache_file/etag/$etag", $data, LOCK_EX);
-
-    pad_timing_end ('write');
+      pad_file_put_contents ("$pad_cache_file/etag/$etag", $data, LOCK_EX);
 
   }
 
@@ -64,7 +57,7 @@
 
     global $pad_cache_file;
  
-    touch ("$pad_cache_file/etag/$etag", $_SERVER['REQUEST_TIME']);
+    pad_file_touch ("$pad_cache_file/etag/$etag", $_SERVER['REQUEST_TIME']);
     
   }
 
@@ -73,8 +66,8 @@
 
     global $pad_cache_file;
 
-    @unlink ("$pad_cache_file/url/$url");
-    @unlink ("$pad_cache_file/etag/$etag");
+    pad_file_delete ("$pad_cache_file/url/$url");
+    pad_file_delete ("$pad_cache_file/etag/$etag");
 
   }
   

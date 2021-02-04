@@ -33,8 +33,8 @@
 
   pad_trace ('tag/inits', "tag=$pad_tag parms=$pad_parms pair=$pad_pair");
   
-  if     ( $pad_first == '!'             ) return pad_html ( include PAD_HOME . 'level/var.php'  );
-  elseif ( $pad_first == '$'             ) return pad_html ( include PAD_HOME . 'level/var.php'  );
+  if     ( $pad_first == '!'             ) return pad_html ( include PAD_HOME . 'level/var.php' );
+  elseif ( $pad_first == '$'             ) return pad_html ( include PAD_HOME . 'level/var.php' );
   elseif ( ! ctype_alpha ( $pad_first )  ) return pad_ignore ();
   elseif ( ! pad_valid_name ( $pad_tag ) ) return pad_ignore ();
 

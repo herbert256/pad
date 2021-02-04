@@ -1,5 +1,6 @@
 <?php  
 
+
   function pad_get_content_store ( $type='' ) {
     return pad_get_store ( 'content', $type );
   }
@@ -25,6 +26,7 @@
     return $function ( $parm, $type );
 
   }
+
 
   function pad_get_content ( $input, $type='', $parms=[]) {
     return pad_make_content ( pad_get_xxx ( 'content', $input, $parms ));
@@ -84,7 +86,7 @@
         return TRUE;
     }
 
-    if ( pad_valid_file_name ( PAD_APP . "data/$input" ) and pad_file_exists ( PAD_APP . "data/$input" ) )
+    if ( pad_file_valid_name ( PAD_APP . "data/$input" ) and pad_file_exists ( PAD_APP . "data/$input" ) )
       return TRUE;
 
     $parts = pad_explode ($input, ':', 3);
@@ -98,6 +100,7 @@
     return FALSE;
 
   }
+
 
   function pad_get_go ( $input, $parm=[] ) {
 
@@ -138,5 +141,6 @@
     return $get;
 
   }
+
 
 ?>

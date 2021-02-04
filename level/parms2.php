@@ -3,6 +3,7 @@
   $pad_parms_org = [];
   $pad_parms_tag = [];
   $pad_parms_val = [];
+  $pad_parms_var = [];
 
   if ( $pad_tag <> 'set' or $pad_tag_type <> 'tag' ) {
 
@@ -12,7 +13,9 @@
 
       $pad_w = pad_explode ($pad_v, '=', 2);
 
-      if ( pad_valid_name ($pad_w[0] ) )
+      if ( count($pad_w) == 2 and substr($pad_w[0], 0, 1) == '')
+        $pad_parms_var [substr($pad_w[0],1)] = pad_eval ( $pad_w[1] );
+      elseif ( pad_valid_name ($pad_w[0] ) )
         if ( count($pad_w) == 1 )
           $pad_parms_tag [$pad_w[0]] = TRUE;
         else
@@ -30,6 +33,7 @@
   $pad_parameters [$pad_lvl] ['parms_org'] = $pad_parms_org;
   $pad_parameters [$pad_lvl] ['parms_tag'] = $pad_parms_tag;  
   $pad_parameters [$pad_lvl] ['parms_val'] = $pad_parms_val;
+  $pad_parameters [$pad_lvl] ['parms_var'] = $pad_parms_var;
 
   if ( $pad_trace and $pad_parms ) {
 
