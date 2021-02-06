@@ -1,6 +1,6 @@
 <?php
 
-    pad_dump ('NOTRACE');
+    pad_dump ();
     pad_exit ();
 
 ?>

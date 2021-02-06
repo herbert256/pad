@@ -29,6 +29,8 @@
   $pad_options = 'level_end';
   include PAD_HOME . "level/options.php";
 
+  pad_reset_set ($pad_lvl);
+
   pad_trace ("level/end", "nr=$pad_lvl_cnt");
 
   $pad_lvl--;

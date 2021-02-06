@@ -11,9 +11,9 @@
 
     $field = ( substr ( $parm, 0, 1 ) == '$' ) ? substr ( $parm, 1 ) : $parm;
 
-    if     ( strpos ( $field, '#' ) !== FALSE ) $value = pad_field_tag    ( $field );
-    elseif ( strpos ( $field, ':' ) !== FALSE ) $value = pad_field_prefix ( $field );
-    else                                        $value = pad_field_level  ( $field );
+    if     ( strpos ( $field, '#' ) !== FALSE ) $value = pad_field_tag    ( $field        );
+    elseif ( strpos ( $field, ':' ) !== FALSE ) $value = pad_field_prefix ( $field, $type );
+    else                                        $value = pad_field_level  ( $field, $type );
 
     if      ($type == 1) return ( $value !== NULL and ( $value === PAD_NOT_FOUND or ! is_scalar($value) ) ) ? FALSE : TRUE;
     else if ($type == 2) return ( $value === NULL or    $value === PAD_NOT_FOUND or ! is_scalar($value)   ) ? NULL  : $value;
@@ -45,14 +45,14 @@
     
   }
 
-  function pad_field_prefix ( $field ) {
+  function pad_field_prefix ( $field, $type ) {
 
     global $pad_lvl, $pad_db_lvl, $pad_current;
 
     list ( $prefix, $field ) = explode (':', $field, 2);
 
     if ( $prefix == 'PHP' )
-      return pad_field_search ($GLOBALS, $field);
+      return pad_field_search ($GLOBALS, $field, $type);
 
     $lvl = pad_find_lvl ( $prefix );
 
@@ -62,25 +62,33 @@
       for ( $i=$pad_lvl; $i; $i-- )
         foreach ( $pad_db_lvl [$i] as $key => $value)
           if ($key == $prefix)
-            return pad_field_search ($value, $field);
+            return pad_field_search ($value, $field, $type);
 
     return PAD_NOT_FOUND;
     
   }
 
 
-  function pad_field_level ( $field ) {
+  function pad_field_level ( $field, $type ) {
 
     global $pad_lvl, $pad_db_lvl, $pad_current;
 
     for ( $i=$pad_lvl; $i; $i-- ) {
 
-      $work = pad_field_search ( $pad_current[$i], $field );
+      // if ( is_array($pad_current[$i]) )
+      //   foreach ( $pad_current[$i] as $key => $value ) 
+      //     if ( is_array($value) ) {
+      //       $work = pad_field_search ( $value, $field, $type);   
+      //         if ( $work !== PAD_NOT_FOUND )
+      //           return $work;
+      //     }
+
+      $work = pad_field_search ( $pad_current[$i], $field, $type );
       if ( $work !== PAD_NOT_FOUND )
         return $work;
 
       foreach ( $pad_db_lvl [$i] as $key => $value ) {
-        $work = pad_field_search ( $value, $field);   
+        $work = pad_field_search ( $value, $field, $type);   
         if ( $work !== PAD_NOT_FOUND )
           return $work;
       }
@@ -92,7 +100,7 @@
   }
 
 
-  function pad_field_search ($current, $field) {
+  function pad_field_search ($current, $field, $type) {
 
     if ( is_object ($current) or is_resource ($current) )
       $current = (array) $current;
@@ -110,6 +118,12 @@
       $current = &$current [$name];
         
     }
+
+    if ( ($type == 1 or $type == 2) and is_array($current) )
+      return PAD_NOT_FOUND;
+
+    if ( ($type == 3 or $type == 4) and ! is_array($current) )
+      return PAD_NOT_FOUND;
 
     return $current;
 

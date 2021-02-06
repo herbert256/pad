@@ -22,6 +22,10 @@
   $pad_save_vars   [$pad_lvl] = [];
   $pad_delete_vars [$pad_lvl] = [];
 
+  $pad_set_set     [$pad_lvl] = [];
+  $pad_set_save    [$pad_lvl] = [];
+  $pad_set_delete  [$pad_lvl] = [];
+
   $pad_filter = [];
 
   include PAD_HOME . 'level/parms2.php';

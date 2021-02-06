@@ -6,7 +6,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 
-chmod 755 /home/herbert/apps/pad/scripts/*
+chmod 755 /home/herbert/apps/reference/scripts/*
 
 service apache2 stop
 

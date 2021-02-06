@@ -11,7 +11,7 @@ go2:
 
     if ($pad_pos === FALSE) {
       pad_trace('pair', "result: SINGLE-2");
-      $pad_pair  = FALSE;
+      $pad_pair = FALSE;
       $pad_content = '';
       return TRUE;
     } 

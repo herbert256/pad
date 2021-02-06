@@ -9,7 +9,7 @@
     $pad_data [$pad_lvl] [1] = [];
 
  if ( pad_tag_parm ('content') ) 
-    include PAD_HOME . "parms/content.php";    
+    $pad_content .= include PAD_HOME . "parms/content.php";    
 
   $pad_tag_result = include PAD_HOME . "level/type.php";
 
@@ -23,7 +23,7 @@
     pad_add_array_to_data ($pad_tag_result);
 
   if ( pad_tag_parm ('data') ) 
-    include PAD_HOME . "parms/data.php"; 
+    $pad_data [$pad_lvl] = include PAD_HOME . "parms/data.php"; 
 
   if ($pad_lvl > 1)
     $pad_data [$pad_lvl] = pad_make_data ( $pad_data [$pad_lvl] );   
@@ -32,7 +32,7 @@
   elseif ( is_array($pad_tag_result) )     $pad_base [$pad_lvl] = $pad_content;
   elseif ( $pad_tag_result === FALSE )     $pad_base [$pad_lvl] = $pad_false;
   elseif ( $pad_tag_result === TRUE  )     $pad_base [$pad_lvl] = $pad_content;
-  else                                     $pad_base [$pad_lvl] = $pad_tag_result;
+  else                                     $pad_base [$pad_lvl] = $pad_tag_result . $pad_content;
 
   $pad_base [$pad_lvl] .= $pad_tag_content;
 

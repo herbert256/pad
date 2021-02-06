@@ -84,6 +84,7 @@
     pad_trace ("eval/error", "nr=$pad_eval_cnt error=$txt result=$return");
 
     return $pad_eval_start;
+    return $txt;
 
   }
 

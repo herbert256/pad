@@ -8,10 +8,8 @@
   if ( $pad_end[$pad_lvl] === FALSE )
     return include PAD_HOME . 'level/end.php';
 
-  if ( substr ( $pad_html[$pad_lvl], $pad_end[$pad_lvl]-5, 6 )  == '{dump}' ) {
-    pad_dump ('NOTRACE');
-    pad_exit ();
-  }
+  if ( substr ( $pad_html[$pad_lvl], $pad_end[$pad_lvl]-5, 6 ) == '{dump}' )
+    pad_dump ();
 
   $pad_start [$pad_lvl] = strrpos ( $pad_html[$pad_lvl], '{', $pad_end[$pad_lvl] - strlen($pad_html[$pad_lvl]) );
   

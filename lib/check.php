@@ -1,7 +1,7 @@
 <?php
 
 
- function pad_data_chk (&$result) {
+  function pad_data_chk (&$result) {
 
     if     ( $result === NULL       )  $result = [];
     elseif ( is_object ( $result)   )  $result = pad_xxx_to_array ($result);
@@ -138,6 +138,15 @@
 
 
   function pad_data_name () {
+
+    if ( $GLOBALS['pad_name'] == 'data' )
+      return $GLOBALS['pad_parm'];
+
+    if ( pad_tag_parm ('name')   ) 
+      return pad_tag_parm ('name');
+
+    if ( pad_tag_parm ('toData') ) 
+      return pad_tag_parm ('toData');
 
     if ( $GLOBALS['pad_name'] == 'data' and $GLOBALS['pad_tag_type'] == 'tag' and pad_valid_name($GLOBALS['pad_parm']) )
       return $GLOBALS['pad_parm'];
