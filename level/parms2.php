@@ -39,13 +39,16 @@
 
   if ( $pad_trace ) {
 
+    if ( count($pad_parms_org) )
+      pad_trace ("parms/org", $pad_parms, TRUE);
+
     if ( count($pad_parms_val) ) {
       $pad_trace_x = "";
       foreach ( $pad_parms_val as $pad_k => $pad_v )
         $pad_trace_x .= "$pad_k=$pad_v "; 
       pad_trace ("parms/val", $pad_trace_x, TRUE);
     }
-
+    
     if ( count($pad_parms_tag) ) {
       $pad_trace_x = "";
       foreach ( $pad_parms_tag as $pad_k => $pad_v )

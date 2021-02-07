@@ -28,7 +28,7 @@
     $pad_fld = pad_field_value ($pad_fld);
 
   if ( ! pad_field_check ( $pad_fld ) )
-    return '&open;' . $pad_between . '&close;';
+    pad_trace ("field/error", "nr=$pad_fld_cnt *** NOT FOUND ***");
 
   $pad_opts = [];
 

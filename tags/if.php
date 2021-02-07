@@ -3,7 +3,7 @@
   if ( ! isset($pad_parms_val[0]) )
     return pad_tag_error ();
   
-  $pad_if   = $pad_parms_org[0];
+  $pad_if   = $pad_parms;
   $pad_else = strpos($pad_content, '{elseif');
 
   while ($pad_else !== FALSE) {

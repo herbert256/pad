@@ -935,17 +935,6 @@
   }
 
 
-  function pad_syntax_error ($error='') {
-
-    pad_trace ("syntax/error", $error);
-
-    pad_ignore();
-
-    return pad_error ( $error );
-
-  }
-
-
   function pad_tag_error ($error='') {
 
     if ($error)

@@ -16,9 +16,9 @@
     else                                        $value = pad_field_level  ( $field, $type );
 
     if      ($type == 1) return ( $value !== NULL and ( $value === PAD_NOT_FOUND or ! is_scalar($value) ) ) ? FALSE : TRUE;
-    else if ($type == 2) return ( $value === NULL or    $value === PAD_NOT_FOUND or ! is_scalar($value)   ) ? NULL  : $value;
+    else if ($type == 2) return ( $value === NULL or    $value === PAD_NOT_FOUND or ! is_scalar($value)   ) ? ''    : $value;
     else if ($type == 3) return ( $value === NULL or    $value === PAD_NOT_FOUND or   is_scalar($value)   ) ? FALSE : TRUE;
-    else                 return ( $value === NULL or    $value === PAD_NOT_FOUND or   is_scalar($value)   ) ? NULL  : $value;
+    else                 return ( $value === NULL or    $value === PAD_NOT_FOUND or   is_scalar($value)   ) ? []    : $value;
 
   }
   
