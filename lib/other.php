@@ -880,6 +880,8 @@
 
     global $pad_data, $pad_lvl;
 
+    pad_trace ( 'data/add', 'before=' . count($pad_data [$pad_lvl]) );
+
     $add = pad_make_data ($array, $type);
 
     if ( pad_is_default_data ( $pad_data [$pad_lvl] ) )
@@ -887,6 +889,8 @@
     else
       foreach ( $add as $value )
         $pad_data [$pad_lvl] [] = $value;
+
+    pad_trace ( 'data/add', 'after=' . count($pad_data [$pad_lvl]) );
     
   }
 
