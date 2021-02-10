@@ -38,7 +38,7 @@
     $pad_trace = TRUE;
 
   $pad_options = 'occur_start';
-  include PAD_HOME . "level/options.php";
+  include PAD_HOME . "options/go/options.php";
 
   if ( $pad_walks [$pad_lvl] == 'occurrence-start' )
     include PAD_HOME . "walk/occurrence-start.php";

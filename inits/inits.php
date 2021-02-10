@@ -56,7 +56,7 @@
   include PAD_HOME . 'inits/lib.php';
 
   include PAD_HOME . 'cache/inits.php';
-  include PAD_HOME . 'inits/options.php';
+  include PAD_HOME . 'options/go/inits.php';
   include PAD_HOME . 'inits/error.php';
   include PAD_HOME . 'inits/trace.php';
 
@@ -81,8 +81,7 @@
   $pad_current [0] = [];
 
   $pad_eval_cnt = $pad_fld_cnt = $pad_lvl_cnt = $pad_occur_cnt = 0;
-
-  $pad_timings = $pad_timings_start = [];
+  $pad_timings  = $pad_timings_start = [];
 
   $pad_lvl  = 1;  
   $pad_next = $page;

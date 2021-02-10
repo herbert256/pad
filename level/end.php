@@ -27,7 +27,7 @@
     include PAD_HOME . 'callback/exit.php' ;
 
   $pad_options = 'level_end';
-  include PAD_HOME . "level/options.php";
+  include PAD_HOME . "options/go/options.php";
 
   pad_reset_set ($pad_lvl);
 

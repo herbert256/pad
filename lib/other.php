@@ -547,13 +547,13 @@
     $pad_between = $between;
     include PAD_HOME . 'level/parms1.php';
 
-    $pad_tag_type  = $type;
-    $pad_content   = '';
-    $pad_false     = '';
-    $pad_pair      = FALSE;
-    $pad_name      = $pad_tag;
-    $pad_filter    = [];
-    $pad_walk      = 'start';
+    $pad_tag_type     = $type;
+    $pad_content      = '';
+    $pad_false        = '';
+    $pad_pair         = FALSE;
+    $pad_name         = $pad_tag;
+    $pad_options_done = [];
+    $pad_walk         = 'start';
 
     $pad_data [$pad_lvl] [1] = [];
 

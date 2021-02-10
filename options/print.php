@@ -3,6 +3,6 @@
   $pad_content .= '{$' . $pad_name . '}';
 
   if ( pad_tag_parm ('glue') )
-    include PAD_HOME . 'parms/glue.php';
+    include PAD_HOME . 'options/glue.php';
 
 ?>

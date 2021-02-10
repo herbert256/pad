@@ -9,7 +9,7 @@
     $pad_data [$pad_lvl] [1] = [];
 
  if ( pad_tag_parm ('content') ) 
-    $pad_content .= include PAD_HOME . "parms/content.php";    
+    $pad_content .= include PAD_HOME . "options/content.php";    
 
   $pad_tag_result = include PAD_HOME . "level/type.php";
 
@@ -23,7 +23,7 @@
     pad_add_array_to_data ($pad_tag_result);
 
   if ( pad_tag_parm ('data') ) 
-    $pad_data [$pad_lvl] = include PAD_HOME . "parms/data.php"; 
+    $pad_data [$pad_lvl] = include PAD_HOME . "options/data.php"; 
 
   if ($pad_lvl > 1)
     $pad_data [$pad_lvl] = pad_make_data ( $pad_data [$pad_lvl] );   

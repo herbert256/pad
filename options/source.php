@@ -2,6 +2,6 @@
 
   $pad_content = pad_colors_string ($pad_content);  
 
-  include PAD_HOME . 'parms/ignore.php';
+  include PAD_HOME . 'options/ignore.php';
 
 ?>
