@@ -69,11 +69,11 @@ co: $parms  = $words[1] ?? '';
     $parms  = str_replace ('<b>#open#<font color="green">', '',  $parms);
     $parms  = str_replace ('</font>#close#</b>', '',             $parms);
     $parms  = str_replace (' ', '&nbsp;',                        $parms);
-   // $parms  = str_replace (',', '<font color="black">,</font>',  $parms);
     $parms  = str_replace ('=', '<font color="black">=</font>',  $parms);
     $parms  = str_replace ('|', '<font color="black">|</font>',  $parms);
     $parms  = str_replace ('@', '<font color="black">@</font>',  $parms);
     $parms  = str_replace ('$', '<font color="black">$</font>',  $parms);
+    $parms  = str_replace (',', '<font color="black">,</font>',  $parms);
 
     $source = substr($source, 0, $start) 
             . '<b>#open#<font color="blue">'.$search.$space.'</font><font color="red">' 

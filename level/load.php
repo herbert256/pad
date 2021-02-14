@@ -25,7 +25,7 @@
   if ($pad_app_return == '' and $pad_build_location )
     return "{empty '$pad_load'}";
   elseif ( $pad_build_location )
-    return "{true '$pad_load}" || $pad_one.php || "{/true}";
+    return "{true '$pad_load}" || "$pad_one.php" || "{/true}";
   else
     return $pad_app_return;
 

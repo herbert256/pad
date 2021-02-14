@@ -7,7 +7,8 @@
 
     for ($i = 1; $i <= $buffers; $i++) {
       $buffer = ob_get_clean();
-      pad_trace ('buffer/data', $buffer);
+      if ( strlen($buffer) )
+        pad_trace ('ob/data', $buffer);
     }
 
   }
