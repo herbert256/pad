@@ -6,12 +6,7 @@
     if ( ! $GLOBALS['pad_timing'] )
       return;
     
-    global $pad_timings, $pad_timings_start;
-    
-    if ( ! isset ( $pad_timings[$timing] ) )
-      $pad_timings [$timing] = 0;
-
-    $pad_timings_start [$timing] = microtime(true);
+    $GLOBALS['pad_timings_start'] [$timing] = microtime(true);
 
   }
 
@@ -23,12 +18,12 @@
 
     global $pad_timings, $pad_timings_start;
 
-    if ($timing == 'sql' and isset($pad_timings_start ['cache']) and $pad_timings_start ['cache'])
+    if ($timing == 'sql' and isset($pad_timings_start ['cache']) )
       return;
 
-    $pad_timings [$timing] = $pad_timings [$timing] + (microtime(true) - $pad_timings_start [$timing]) ;
+    $pad_timings [$timing] = ($pad_timings [$timing]??0) + (microtime(true) - $pad_timings_start [$timing]) ;
     
-    $pad_timings_start [$timing] = 0;
+    unset($pad_timings_start [$timing]);
     
   }
 
@@ -41,7 +36,7 @@
     global $pad_timings;
     
     $pad_timings ['boot'] = $GLOBALS['pad_boot'] - $_SERVER['REQUEST_TIME_FLOAT'];
-    $pad_timings ['main'] = microtime(true)      - $GLOBALS['pad_boot'];
+    $pad_timings ['all']  = microtime(true)      - $_SERVER['REQUEST_TIME_FLOAT'];
 
     foreach ($pad_timings as $key => $val)
       $pad_timings [$key] = (int) ( $val * 1000000 );
