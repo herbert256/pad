@@ -1,11 +1,7 @@
 <?php
 
-  if ( ! pad_file_exists($pad_call) ) {
-    if ( $pad_build_location )
-      return "{false '$pad_call'/}";
-    else
-      return '';
-  }
+  if ( ! pad_file_exists($pad_call) )
+    return ( $pad_build_location ) ? "{false '$pad_call'/}" : '';
 
   ob_start();
   
