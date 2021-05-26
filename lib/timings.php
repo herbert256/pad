@@ -21,7 +21,7 @@
     if ($timing == 'sql' and isset($pad_timings_start ['cache']) )
       return;
 
-    $pad_timings [$timing] = ($pad_timings [$timing]??0) + (microtime(true) - $pad_timings_start [$timing]) ;
+    $pad_timings [$timing] = ($pad_timings[$timing]??0) + (microtime(true) - $pad_timings_start[$timing]) ;
     
     unset($pad_timings_start [$timing]);
     

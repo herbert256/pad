@@ -41,6 +41,10 @@
 
     $pad_trace_hist [$pad_trc_cnt] = $lineL;
   
+    $id = pad_id ();
+     
+    pad_file_put_contents ( "trace/$id.txt", $lineL, 1);
+
   }  
       
 ?>

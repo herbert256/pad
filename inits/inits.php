@@ -86,4 +86,7 @@
   $pad_lvl  = 1;  
   $pad_next = $page;
 
+  if ( pad_demo() ) 
+    include PAD_HOME . 'demo/request_start.php';
+
 ?>

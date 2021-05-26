@@ -18,7 +18,7 @@
   if ( $pad_tidy )
     include PAD_HOME . 'exits/tidy.php';
   
-  $pad_etag = pad_short_md5 ($pad_output);
+  $pad_etag = md5 ($pad_output);
 
   if ( $pad_track_output )
     pad_track_output ();
@@ -30,6 +30,10 @@
 
   if ( $pad_cache and $pad_cache_server_age )
     include PAD_HOME . 'cache/exits.php';
+
+  if ( pad_demo() ) 
+    include PAD_HOME . 'demo/request_end.php';
+
 
   include PAD_HOME . 'exits/stop.php';
 

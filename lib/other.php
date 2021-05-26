@@ -190,6 +190,13 @@
   }
 
 
+  function pad_demo () {
+
+    return ( isset ( $_REQUEST ['pad_demo'] ) );
+
+  }
+
+
   function pad_local () {
 
     if ( !  isset($GLOBALS['pad_local']) )
@@ -217,11 +224,11 @@
     
     foreach  ($explode as $key => $value ) {
 
-      if ( $limit == '|' ) $explode [$key] = str_replace ( '&pipe;',  ',', $explode [$key] );
+      if ( $limit == '|' ) $explode [$key] = str_replace ( '&pipe;',  '|', $explode [$key] );
       if ( $limit == '=' ) $explode [$key] = str_replace ( '&eq;',    '=', $explode [$key] );
       if ( $limit == ',' ) $explode [$key] = str_replace ( '&comma;', ',', $explode [$key] );
 
-      if ( $limit == '|' ) $explode [$key] = str_replace ( '#pipe#',  ',', $explode [$key] );
+      if ( $limit == '|' ) $explode [$key] = str_replace ( '#pipe#',  '|', $explode [$key] );
       if ( $limit == '=' ) $explode [$key] = str_replace ( '#eq#',    '=', $explode [$key] );
       if ( $limit == ',' ) $explode [$key] = str_replace ( '#comma#', ',', $explode [$key] );
 
@@ -249,42 +256,34 @@
     return $explode;
     
   }
-  
 
-  function pad_short_md5 ($input) {
-    return substr(pad_base64(md5($input,TRUE)),0,22);
-  }
-
-  function pad_md5_bin ($short) {
-    return base64_decode(strtr($short,'_-','+/').'==');
-  }
-  
-  function pad_short_md5_to_long ($short) {
-    return unpack('H*',base64_decode(strtr($short,'_-','+/').'=='))[1];
-  }
 
   function pad_random_string ($len) {
-    return substr(strtr(base64_encode(random_bytes(ceil(($len/4)*3))),'+/','_-'),0,$len);
+    $random = substr(base64_encode(random_bytes(ceil(($len/4)*3))),0,$len);
+    $random = str_replace ( '+', pad_random_char(), $random );
+    $random = str_replace ( '/', pad_random_char(), $random );
+    return $random;
   }
 
-  function pad_base64 ($string) {
-    return strtr(base64_encode($string),'+/','_-');
+  function pad_random_char () {
+    $random = mt_rand(0,61);
+    return ($random < 10) ? chr($random+48) : ($random < 36 ? chr($random+55) : $random+61);
   }
 
-
-  function pad_valid_name2 ($name) {
- 
-    if ( ! preg_match('/^[A-Za-z0-9_]+$/', $name ) ) return FALSE;
-    if ( ! ctype_alpha(substr($name, 0, 1))        ) return FALSE;
-
-    return TRUE;
-
-  }
 
   function pad_valid_name ($name) {
  
     if ( ! preg_match('/^[A-Za-z0-9_:#]+$/', $name ) ) return FALSE;
     if ( ! ctype_alpha(substr($name, 0, 1))          ) return FALSE;
+
+    return TRUE;
+
+  }
+
+  function pad_valid_name2 ($name) {
+ 
+    if ( ! preg_match('/^[A-Za-z0-9_]+$/', $name ) ) return FALSE;
+    if ( ! ctype_alpha(substr($name, 0, 1))        ) return FALSE;
 
     return TRUE;
 

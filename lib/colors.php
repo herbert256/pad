@@ -18,6 +18,8 @@
 
 go: $end = strpos($source, '}');
 
+   $souce = str_replace (',', '<font color="black">,</font>',  $source);
+
     if ( $end === FALSE )
       return $source;
 
@@ -75,10 +77,24 @@ co: $parms  = $words[1] ?? '';
     $parms  = str_replace ('$', '<font color="black">$</font>',  $parms);
     $parms  = str_replace (',', '<font color="black">,</font>',  $parms);
 
+    if (substr($parms, -1) == '/') {
+      $close1='/';
+      $parms=substr($parms, 0, -1);
+    } else
+      $close1 = '';
+
+    if (substr($search, 0,1) == '/') {
+      $close2='/';
+      $search=substr($search, 1);
+    } else
+      $close2 = '';
+
     $source = substr($source, 0, $start) 
-            . '<b>#open#<font color="blue">'.$search.$space.'</font><font color="red">' 
+            . '<b>#open#' . $close2 . '<font color="blue">'.$search.$space.'</font><font color="red">' 
             . $parms
-            . '</font>#close#</b>' 
+            . '</font>'
+            . $close1
+            . '#close#</b>' 
             . substr($source, $end+1);
 
     goto go;

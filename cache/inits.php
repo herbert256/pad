@@ -13,7 +13,7 @@
   pad_timing_start ('cache');
 
   $pad_cache      = TRUE;
-  $pad_cache_url  = pad_short_md5($_SERVER['REQUEST_URI']);
+  $pad_cache_url  = md5($_SERVER['REQUEST_URI']);
   $pad_cache_max  = $_SERVER['REQUEST_TIME'] - $pad_cache_server_age;
   $pad_cache_age  = 0;
   $pad_cache_etag = '';

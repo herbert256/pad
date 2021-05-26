@@ -4,7 +4,7 @@
   $pad_parms_demand_level = [];
   $pad_parms_demand_occur = [];
 
-  $pad_parms_level_start = ['dump', 'before', 'random', 'start', 'end', 'dedup', 'page', 'rows', 'top', 'bottom', 
+  $pad_parms_level_start = ['dump', 'before', 'random', 'start', 'end', 'dedup', 'page', 'rows', 'first', 'last', 
                             'row', 'sort', 'ignore', 'source'];
   $pad_parms_level_end   = ['toFlag', 'toContent', 'toData'];
   

@@ -3,40 +3,77 @@
 
   function pad_error ( $error ) {
 
-    extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
+    try {
+  
+      extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
 
-    if ( $GLOBALS['pad_error_action'] == 'php' )
-      throw new ErrorException ($error, 0, E_ERROR, $file, $line);
+      if ( $GLOBALS['pad_error_action'] == 'php' )
+        throw new ErrorException ($error, 0, E_ERROR, $file, $line);
 
-    return pad_error_go (  $error, $file, $line );
+      return pad_error_go ( 'USER: ' . $error, $file, $line );
+    
+    } catch (Exception $e) {
+
+      return pad_error_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
+
+    }
  
   }
 
 
   function pad_error_handler ( $type, $error, $file, $line ) {
  
-    if ( error_reporting() & $type )
-      return pad_error_go ( 'ERROR: ' . $error, $file, $line );
+    try {
+  
+      if ( error_reporting() & $type )
+        return pad_error_go ( 'ERROR: ' . $error, $file, $line );
+    
+    } catch (Exception $e) {
+
+      return pad_error_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
+
+    }
 
   }
 
 
   function pad_error_exception ( $error ) {
 
-    return pad_error_go ( 'EXCEPTION: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
+    try {
+
+      return pad_error_go ( 'EXCEPTION: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
+    
+    } catch (Exception $e) {
+
+      return pad_error_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
+
+    }
 
   }
   
 
   function pad_error_shutdown () {
 
-    if ( $GLOBALS['pad_exit'] == 9 )
-      return;
+    try {
+  
+      if ( $GLOBALS['pad_exit'] == 9 )
+        return;
 
-    $error = error_get_last ();
-    if ($error !== NULL)
-      return pad_error_go ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
+      if ( $GLOBALS['pad_exit'] == 2 ) {
+        $error = error_get_last ();
+        return pad_error_error ( $error['message']??'' , $error['file']??'', $error['line']??'' );
+      }
+
+      $error = error_get_last ();
+      if ($error !== NULL)
+        return pad_error_go ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
     
+    } catch (Exception $e) {
+
+      return pad_error_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
+
+    }
+
   }
 
 
@@ -47,7 +84,7 @@
       if ( $GLOBALS['pad_exit'] <> 1 ) 
         return pad_error_error ( $error, $file, $line );
 
-      $GLOBALS['pad_exit'] = 9;
+      $GLOBALS['pad_exit'] = 2;
 
       $id = $GLOBALS['PADREQID'] ?? uniqid();
 
@@ -110,12 +147,12 @@
 
     try {
 
-      error_log ("[PAD] $file:$line $error", 4);  
+      error_log ("[PAD] ERROR-ERROR: $file:$line $error", 4);  
 
       if ( $GLOBALS['pad_error_action'] == 'none') 
         return FALSE;
 
-      echo " $file:$line $error";
+      echo "ERROR IN ERROR";
 
       pad_exit ();
 

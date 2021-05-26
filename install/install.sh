@@ -14,4 +14,6 @@ mysql < /home/herbert/pad/cache/cache.sql
 mysql < /home/herbert/apps/pad/database/demo.sql
 mysql < /home/herbert/apps/classicmodels/config/classicmodels.sql
 
+cp /home/herbert/pad/install/www.php /home/herbert/www/index.php
+
 service apache2 start

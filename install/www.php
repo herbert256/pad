@@ -1,5 +1,7 @@
 <?php
 
+  $pad_boot = microtime(true);
+  
   //  ============================================================================
   //  PAD 10.0  - (P)HP (A)pplication (D)river
   //  (c) 2004-2021 - Herbert Groot Jebbink - herbert@groot.jebbink.nl
