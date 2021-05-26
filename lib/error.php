@@ -14,7 +14,7 @@
     
     } catch (Exception $e) {
 
-      return pad_error_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
+      pad_boot_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
 
     }
  
@@ -30,7 +30,7 @@
     
     } catch (Exception $e) {
 
-      return pad_error_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
+      pad_boot_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
 
     }
 
@@ -45,7 +45,7 @@
     
     } catch (Exception $e) {
 
-      return pad_error_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
+      pad_boot_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
 
     }
 
@@ -59,18 +59,17 @@
       if ( $GLOBALS['pad_exit'] == 9 )
         return;
 
-      if ( $GLOBALS['pad_exit'] == 2 ) {
-        $error = error_get_last ();
-        return pad_error_error ( $error['message']??'' , $error['file']??'', $error['line']??'' );
-      }
-
       $error = error_get_last ();
-      if ($error !== NULL)
-        return pad_error_go ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
+
+      if ( $error !== NULL)
+        if ( $GLOBALS['pad_exit'] == 2 )
+          pad_boot_error ( $error['message'], $error['file'], $error['line'] );
+        else
+          return pad_error_go ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
     
     } catch (Exception $e) {
 
-      return pad_error_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
+      pad_boot_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
 
     }
 
@@ -81,34 +80,30 @@
  
     try {
 
-      if ( $GLOBALS['pad_exit'] <> 1 ) 
-        return pad_error_error ( $error, $file, $line );
+      if ( $GLOBALS['pad_exit'] == 1 ) 
+        $GLOBALS['pad_exit'] = 2;
+      else
+        pad_boot_error ( $error, $file, $line );
 
-      $GLOBALS['pad_exit'] = 2;
+      pad_trace ('error', "$file:$line $error");   
 
-      $id = $GLOBALS['PADREQID'] ?? uniqid();
-
-      $msg = "$file:$line $error";
-      $msg = str_replace (PAD_APP,  'APP:', $msg);
-      $msg = str_replace (PAD_HOME, 'PAD:', $msg);
+      $id  = $GLOBALS['PADREQID'] ?? uniqid();
 
       if ( $GLOBALS['pad_error_server'] ) 
-        error_log ("[PAD] $id $msg", 4);   
+        error_log ("[PAD] $id $file:$line $error", 4);   
 
       if ( $GLOBALS['pad_track_errors'] ) 
-        pad_track_vars ("errors/$id.html", $msg);
+        pad_track_vars ("errors/$id.html", "$file:$line $error");
 
-      if ( $GLOBALS['pad_error_action'] == 'none') {
+      if ( $GLOBALS['pad_error_action'] == 'none' ) {
         $GLOBALS['pad_exit'] = 1;
         return FALSE;
       }
 
-      pad_trace ('error/error', $msg);   
-
       pad_empty_buffers ();
 
       if ( $GLOBALS['pad_error_action'] == 'boot' ) 
-        pad_boot_error_go ($error, $file, $line);
+        pad_boot_error ($error, $file, $line);
 
       if ( ! headers_sent() )
         header ( 'HTTP/1.0 500 Internal Server Error' );
@@ -121,7 +116,7 @@
       if ( $GLOBALS['pad_error_action'] == 'pad') {
 
         if ( pad_local() )
-          echo "<pre><hr><b>$msg</b><hr></pre>";
+          echo "<pre><hr><b>$file:$line $error</b><hr></pre>";
         else 
           echo "Error: $id";
 
@@ -136,35 +131,7 @@
 
     } catch (Exception $e) {
 
-      return pad_error_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
-
-    }
-
-  }
-
-
-  function pad_error_error ($error, $file, $line) {
-
-    try {
-
-      error_log ("[PAD] ERROR-ERROR: $file:$line $error", 4);  
-
-      if ( $GLOBALS['pad_error_action'] == 'none') 
-        return FALSE;
-
-      echo "ERROR IN ERROR";
-
-      pad_exit ();
-
-    } catch (Exception $e) {
-
-      if ( $GLOBALS['pad_error_action'] == 'none') 
-        return FALSE;
-
-      $GLOBALS['pad_exit'] = 9;
-      $GLOBALS['pad_no_boot_shutdown'] = TRUE;
-
-      exit;
+      pad_boot_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
 
     }
 

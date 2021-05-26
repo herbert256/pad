@@ -199,11 +199,4 @@
 
   }
 
-  function xxx ( $item ) {
-    
-    echo $item;
-    $GLOBALS['pad_sent'] = TRUE;
-    
-  }
-
 ?>

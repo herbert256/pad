@@ -36,7 +36,7 @@
 
     error_reporting($error_level);
     restore_error_handler();
-    
+
     return $array;
     
   }
@@ -44,12 +44,12 @@
 
   function pad_track_vars ($file, $info='') {
 
-    $GLOBALS ['pad_track_vars_file'] = $file ;   
-    
-    pad_dump ($info);
-      
-    unset ( $GLOBALS ['pad_track_vars_file'] ) ;   
+    ob_start();
 
+    pad_dump_vars ($info);
+
+    pad_file_put_contents ( $file, ob_get_clean() );
+        
   }
   
 

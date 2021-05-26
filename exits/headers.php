@@ -7,11 +7,6 @@
     pad_header ('HTTP/1.0 500 Internal Server Error' );
   elseif ($pad_stop==304)
     pad_header ('HTTP/1.1 304 Not Modified');
-  elseif ($pad_stop<>302) {
-    if ( $pad_client_gzip )
-      pad_header ('Content-Encoding: gzip');
-    pad_header ('Content-Length: ' . $pad_len);
-  }
     
   if ( $pad_stop<>200 and $pad_stop<>304 )
 
@@ -19,7 +14,7 @@
 
   else {
 
-    if ($GLOBALS ['pad_cache_proxy_age'] ) {
+    if ( $GLOBALS ['pad_cache_proxy_age'] ) {
       $type = 'public';
       $sage = $GLOBALS ['pad_cache_proxy_age'] - ($_SERVER['REQUEST_TIME'] - $pad_time);
       if ($sage < 0)
@@ -42,5 +37,11 @@
   } 
 
   pad_timing_close ();
+
+  if ( $pad_stop == 200 ) {
+    if ( $pad_client_gzip )
+      pad_header ('Content-Encoding: gzip');
+    pad_header ('Content-Length: ' . $pad_len);
+  }
 
 ?>
