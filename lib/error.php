@@ -14,7 +14,7 @@
     
     } catch (Exception $e) {
 
-      pad_boot_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
+      pad_error_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
 
     }
  
@@ -30,7 +30,7 @@
     
     } catch (Exception $e) {
 
-      pad_boot_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
+      pad_error_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
 
     }
 
@@ -45,7 +45,7 @@
     
     } catch (Exception $e) {
 
-      pad_boot_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
+      pad_error_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
 
     }
 
@@ -63,13 +63,13 @@
 
       if ( $error !== NULL)
         if ( $GLOBALS['pad_exit'] == 2 )
-          pad_boot_error ( $error['message'], $error['file'], $error['line'] );
+          pad_error_error ( $error['message'], $error['file'], $error['line'] );
         else
           return pad_error_go ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
     
     } catch (Exception $e) {
 
-      pad_boot_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
+      pad_error_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
 
     }
 
@@ -83,7 +83,7 @@
       if ( $GLOBALS['pad_exit'] == 1 ) 
         $GLOBALS['pad_exit'] = 2;
       else
-        pad_boot_error ( $error, $file, $line );
+        pad_error_error ( $error, $file, $line );
 
       pad_trace ('error', "$file:$line $error");   
 
@@ -103,7 +103,7 @@
       pad_empty_buffers ();
 
       if ( $GLOBALS['pad_error_action'] == 'boot' ) 
-        pad_boot_error ($error, $file, $line);
+        pad_error_error ($error, $file, $line);
 
       if ( ! headers_sent() )
         header ( 'HTTP/1.0 500 Internal Server Error' );
@@ -115,14 +115,17 @@
 
       if ( $GLOBALS['pad_error_action'] == 'pad') {
 
-        if ( pad_local() )
+        if ( pad_local() ) {
           echo "<pre><hr><b>$file:$line $error</b><hr></pre>";
-        else 
+          pad_dump ();
+        }
+        else {
           echo "Error: $id";
+          if ( ! $GLOBALS['pad_track_errors'] ) 
+            pad_track_vars ("errors/$id.html", "$file:$line $error");
+        }
 
         $GLOBALS ['pad_sent'] = TRUE;
-
-        pad_dump ();
                      
       }
       
@@ -131,11 +134,31 @@
 
     } catch (Exception $e) {
 
-      pad_boot_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
+      pad_error_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
 
     }
 
   }
 
+  function pad_error_error ( $error, $file, $line ) {
+
+    $GLOBALS ['pad_exit']             = 9;
+    $GLOBALS ['pad_no_boot_shutdown'] = TRUE;
+
+    $id = $GLOBALS['PADREQID'] ?? uniqid();
+
+    error_log ( "[PAD] $id - $file:$line $error", 4 );
+    
+    if ( ! headers_sent () )
+      header ( 'HTTP/1.0 500 Internal Server Error' );
+
+    if ( pad_local () )
+      echo "$id - $file:$line $error";
+    else
+      echo "Error: $id";
+
+    exit;
+
+  }  
 
 ?>
