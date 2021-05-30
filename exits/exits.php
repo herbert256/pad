@@ -31,8 +31,8 @@
   if ( $pad_cache and $pad_cache_server_age )
     include PAD_HOME . 'cache/exits.php';
 
-  if ( pad_demo() ) 
-    include PAD_HOME . 'demo/request_end.php';
+  if ( count ($pad_close_tags) )
+    include PAD_HOME . 'walk/close.php';
 
 
   include PAD_HOME . 'exits/stop.php';

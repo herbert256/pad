@@ -3,12 +3,8 @@
 
   function pad_data_chk (&$result) {
 
-    if     ( $result === NULL       )  $result = [];
-    elseif ( is_object ( $result)   )  $result = pad_xxx_to_array ($result);
-    elseif ( is_resource ( $result) )  $result = pad_xxx_to_array ($result);
-    elseif ( $result === FALSE      )  $result = [];
-    elseif ( $result === TRUE       )  $result = [1 => [] ];
-    elseif ( ! is_array ($result)   )  $result = [pad_make_data ($result)];
+    if ( ! is_array ($result) )  
+      $result = [ pad_make_data ($result) ];
 
     pad_data_chk_simple_array ($result);
     pad_data_chk_chk_one      ($result);
@@ -147,15 +143,6 @@
 
     if ( pad_tag_parm ('toData') ) 
       return pad_tag_parm ('toData');
-
-    if ( $GLOBALS['pad_name'] == 'data' and $GLOBALS['pad_tag_type'] == 'tag' and pad_valid_name($GLOBALS['pad_parm']) )
-      return $GLOBALS['pad_parm'];
-
-    if ( $GLOBALS['pad_name'] == 'range' and $GLOBALS['pad_tag_type'] == 'tag' )
-      if     ( pad_tag_parm ('name')   ) 
-        return pad_tag_parm ('name');
-      elseif ( pad_tag_parm ('toData') ) 
-        return pad_tag_parm ('toData');
  
     return $GLOBALS['pad_name'];
 

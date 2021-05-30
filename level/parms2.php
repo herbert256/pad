@@ -56,7 +56,7 @@
       pad_trace ("parms/tag", $pad_trace_x, TRUE);
     }
 
-    if ( count($pad_set_set[$pad_lvl]) ) {
+    if ( isset($pad_set_set[$pad_lvl]) and count($pad_set_set[$pad_lvl]) ) {
       $pad_trace_x = "";
       foreach ( $pad_set_set[$pad_lvl] as $pad_k => $pad_v )
         $pad_trace_x .= "$pad_k=$pad_v "; 

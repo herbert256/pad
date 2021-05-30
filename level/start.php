@@ -3,9 +3,6 @@
   $pad_lvl++;
   $pad_lvl_cnt++;
 
-  if ( pad_demo() ) 
-    include PAD_HOME . 'demo/level_start.php';
-
   pad_trace ("level/start", "nr=$pad_lvl_cnt " . '{' . $pad_between . '}', TRUE);
 
   if ( isset ( $pad_current [$pad_lvl] ) )
