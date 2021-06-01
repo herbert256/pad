@@ -9,7 +9,7 @@
  	include PAD_HOME . 'level/parms2.php';
 
   	$pad_walk = 'close';
-  	#zzz();
+ 
   	include PAD_HOME . 'level/type.php';
 
   }
