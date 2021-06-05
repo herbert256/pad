@@ -1,5 +1,28 @@
 <?php
 
+  function pad_min_max_count (&$min, &$max, &$count) {
+
+    if ( ! $count and $max ) {
+      $count = $max - $min;
+      if ( $min)
+        $count++;
+    }
+
+    if ( ! $max      ) $max   = PHP_INT_MAX;
+    if ( $max < $min ) $max   = $min;
+    if ( ! $count    ) $count = PHP_INT_MAX;
+
+  }
+
+  function pad_unquote (&$quote) {
+
+    if ( substr($quote, 0, 1) == '"' and substr($quote, -1) == '"' ) 
+      $quote = substr($quote, 1, -1);
+
+    if ( substr($quote, 0, 1) == "'" and substr($quote, -1) == "'" ) 
+      $quote = substr($quote, 1, -1);
+
+  }
 
   function pad_empty_buffers () {
 
@@ -720,7 +743,9 @@
 
     if     ( ! pad_valid_name    ( $type ) )                                 return FALSE;
     elseif ( pad_file_exists     ( PAD_APP  . "tags/$type.php"           ) ) return 'tag_app';
+    elseif ( pad_file_exists     ( PAD_APP  . "tags/$type.html"          ) ) return 'tag_app';
     elseif ( pad_file_exists     ( PAD_HOME . "tags/$type.php"           ) ) return 'tag_pad';
+    elseif ( pad_file_exists     ( PAD_HOME . "tags/$type.html"          ) ) return 'tag_pad';
     elseif ( pad_chk_level_array ( $type                                 ) ) return 'level';
     elseif ( isset               ( $GLOBALS['pad_flag_store'] [$type]    ) ) return 'flag';
     elseif ( isset               ( $GLOBALS['pad_content_store'] [$type] ) ) return 'content';
@@ -755,7 +780,9 @@
     elseif ( pad_field_check     ( $type                                 ) ) return 'field';
     elseif ( defined             ( $type                                 ) ) return 'constant';
     elseif ( pad_file_exists     ( PAD_APP  . "tags/$type.php"           ) ) return 'tag_app';
+    elseif ( pad_file_exists     ( PAD_APP  . "tags/$type.html"          ) ) return 'tag_app';
     elseif ( pad_file_exists     ( PAD_HOME . "tags/$type.php"           ) ) return 'tag_pad';
+    elseif ( pad_file_exists     ( PAD_HOME . "tags/$type.html"          ) ) return 'tag_pad';
     elseif ( pad_is_object       ( $type                                 ) ) return 'object';
     elseif ( pad_is_resource     ( $type                                 ) ) return 'resource';
     else                                                                     return FALSE;
@@ -765,9 +792,11 @@
   function pad_check_type ( $type, $name ) {
 
         if ( ! pad_valid_name ( $type ) or ! pad_valid_name ( $name)  )                               return FALSE;
-    elseif ( pad_chk_level_array  ( $name                                 ) and $type == 'level'        ) return TRUE;
+    elseif ( pad_chk_level_array  ( $name                             ) and $type == 'level'        ) return TRUE;
     elseif ( pad_file_exists  ( PAD_APP  . "tags/$name.php"           ) and $type == 'tag_app'      ) return TRUE;
+    elseif ( pad_file_exists  ( PAD_APP  . "tags/$name.html"          ) and $type == 'tag_app'      ) return TRUE;
     elseif ( pad_file_exists  ( PAD_HOME . "tags/$name.php"           ) and $type == 'tag_pad'      ) return TRUE;
+    elseif ( pad_file_exists  ( PAD_HOME . "tags/$name.html"          ) and $type == 'tag_pad'      ) return TRUE;
     elseif ( isset            ( $GLOBALS['pad_flag_store'] [$name]    ) and $type == 'flag'         ) return TRUE;
     elseif ( isset            ( $GLOBALS['pad_content_store'] [$name] ) and $type == 'content'      ) return TRUE;
     elseif ( isset            ( $GLOBALS['pad_data_store'] [$name]    ) and $type == 'data'         ) return TRUE;

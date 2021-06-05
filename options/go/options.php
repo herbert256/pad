@@ -16,11 +16,12 @@
   elseif ( $pad_options == 'occur_start' ) $pad_content = $pad_html   [$pad_lvl];
   elseif ( $pad_options == 'occur_end'   ) $pad_content = $pad_html   [$pad_lvl];
 
-  foreach ( $pad_options_walk as $pad_option_name )
-    if ( isset ( $pad_parms_tag [$pad_option_name] ) )
+  foreach ( $pad_parms_tag as $pad_option_name => $pad_v )
+    if ( in_array ( $pad_option_name, $pad_options_walk ) )
       if ( ! isset ( $pad_options_done [$pad_option_name] ) ) {
-        pad_trace ('option', "$pad_option_name / $pad_content");
-        include PAD_HOME . "options/go/$pad_options.php" ;
+        pad_trace ('option', "$pad_options -> $pad_option_name");
+        $pad_options_done [$pad_option_name] = TRUE;
+        include PAD_HOME . "options/$pad_option_name.php" ;
       }
 
   if     ($pad_options == 'level_start' ) $pad_base   [$pad_lvl] = $pad_content;

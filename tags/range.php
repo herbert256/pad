@@ -2,7 +2,9 @@
 
   if ( $pad_walk == 'start' ) {
  
-    $pad_range_range = pad_explode ($pad_parms_org [0], '..');
+    pad_unquote ( $pad_parms_org[0] );
+    
+    $pad_range_range = pad_explode ( $pad_parms_org[0], '..' );
 
     if ( ! isset($pad_parms_tag ['walk']) )
       return range($pad_range_range[0], $pad_range_range[1], $pad_parms_tag['step']??1);
