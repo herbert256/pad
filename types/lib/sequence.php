@@ -2,10 +2,10 @@
 
   function pad_seq ( $val, $min, &$wrk, &$seq, &$idx ) {
 
-    $pad_wrk [$idx] = $val;
+    $wrk [$idx] = $val;
 
     if ( $val >= $min )
-      $pad_seq [$idx] = 1;
+      $seq [$idx] = $val;
 
     $idx++;
 

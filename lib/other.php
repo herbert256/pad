@@ -746,6 +746,7 @@
     elseif ( pad_file_exists     ( PAD_APP  . "tags/$type.html"          ) ) return 'tag_app';
     elseif ( pad_file_exists     ( PAD_HOME . "tags/$type.php"           ) ) return 'tag_pad';
     elseif ( pad_file_exists     ( PAD_HOME . "tags/$type.html"          ) ) return 'tag_pad';
+    elseif ( pad_file_exists     ( PAD_HOME . "sequence/$type"           ) ) return 'sequence';
     elseif ( pad_chk_level_array ( $type                                 ) ) return 'level';
     elseif ( isset               ( $GLOBALS['pad_flag_store'] [$type]    ) ) return 'flag';
     elseif ( isset               ( $GLOBALS['pad_content_store'] [$type] ) ) return 'content';
@@ -761,6 +762,33 @@
     elseif ( pad_is_object       ( $type                                 ) ) return 'object';
     elseif ( pad_is_resource     ( $type                                 ) ) return 'resource';
     else                                                                     return FALSE;
+
+  }
+
+
+  function pad_check_type ( $type, $name ) {
+
+        if ( ! pad_valid_name ( $type ) or ! pad_valid_name ( $name)  )                               return FALSE;
+    elseif ( pad_chk_level_array  ( $name                             ) and $type == 'level'        ) return TRUE;
+    elseif ( pad_file_exists  ( PAD_APP  . "tags/$name.php"           ) and $type == 'tag_app'      ) return TRUE;
+    elseif ( pad_file_exists  ( PAD_APP  . "tags/$name.html"          ) and $type == 'tag_app'      ) return TRUE;
+    elseif ( pad_file_exists  ( PAD_HOME . "tags/$name.php"           ) and $type == 'tag_pad'      ) return TRUE;
+    elseif ( pad_file_exists  ( PAD_HOME . "tags/$name.html"          ) and $type == 'tag_pad'      ) return TRUE;
+    elseif ( pad_file_exists  ( PAD_HOME . "sequence/$type"           ) and $type == 'sequence'     ) return TRUE;
+    elseif ( isset            ( $GLOBALS['pad_flag_store'] [$name]    ) and $type == 'flag'         ) return TRUE;
+    elseif ( isset            ( $GLOBALS['pad_content_store'] [$name] ) and $type == 'content'      ) return TRUE;
+    elseif ( isset            ( $GLOBALS['pad_data_store'] [$name]    ) and $type == 'data'         ) return TRUE;
+    elseif ( pad_file_exists  ( PAD_HOME . "tag/$name.php"            ) and $type == 'parm'         ) return TRUE;
+    elseif ( isset            ( $GLOBALS['pad_db_tables'] [$name]     ) and $type == 'table'        ) return TRUE;
+    elseif ( pad_array_check  ( $name                                 ) and $type == 'array'        ) return TRUE;
+    elseif ( pad_field_check  ( $name                                 ) and $type == 'field'        ) return TRUE;
+    elseif ( defined          ( $name                                 ) and $type == 'constant'     ) return TRUE;
+    elseif ( pad_file_exists  ( PAD_APP  . "functions/$name.php"      ) and $type == 'function_app' ) return TRUE;
+    elseif ( pad_file_exists  ( PAD_HOME . "functions/$name.php"      ) and $type == 'function_pad' ) return TRUE;
+    elseif ( function_exists  ( $name                                 ) and $type == 'function_php' ) return TRUE;
+    elseif ( pad_is_object    ( $name                                 ) and $type == 'object'       ) return TRUE;
+    elseif ( pad_is_resource  ( $type                                 ) and $type == 'resource'     ) return TRUE;
+    else                                                                                              return FALSE;
 
   }
 
@@ -783,36 +811,12 @@
     elseif ( pad_file_exists     ( PAD_APP  . "tags/$type.html"          ) ) return 'tag_app';
     elseif ( pad_file_exists     ( PAD_HOME . "tags/$type.php"           ) ) return 'tag_pad';
     elseif ( pad_file_exists     ( PAD_HOME . "tags/$type.html"          ) ) return 'tag_pad';
+    elseif ( pad_file_exists     ( PAD_HOME . "sequence/$type"           ) ) return 'sequence';
     elseif ( pad_is_object       ( $type                                 ) ) return 'object';
     elseif ( pad_is_resource     ( $type                                 ) ) return 'resource';
     else                                                                     return FALSE;
 
   } 
-
-  function pad_check_type ( $type, $name ) {
-
-        if ( ! pad_valid_name ( $type ) or ! pad_valid_name ( $name)  )                               return FALSE;
-    elseif ( pad_chk_level_array  ( $name                             ) and $type == 'level'        ) return TRUE;
-    elseif ( pad_file_exists  ( PAD_APP  . "tags/$name.php"           ) and $type == 'tag_app'      ) return TRUE;
-    elseif ( pad_file_exists  ( PAD_APP  . "tags/$name.html"          ) and $type == 'tag_app'      ) return TRUE;
-    elseif ( pad_file_exists  ( PAD_HOME . "tags/$name.php"           ) and $type == 'tag_pad'      ) return TRUE;
-    elseif ( pad_file_exists  ( PAD_HOME . "tags/$name.html"          ) and $type == 'tag_pad'      ) return TRUE;
-    elseif ( isset            ( $GLOBALS['pad_flag_store'] [$name]    ) and $type == 'flag'         ) return TRUE;
-    elseif ( isset            ( $GLOBALS['pad_content_store'] [$name] ) and $type == 'content'      ) return TRUE;
-    elseif ( isset            ( $GLOBALS['pad_data_store'] [$name]    ) and $type == 'data'         ) return TRUE;
-    elseif ( pad_file_exists  ( PAD_HOME . "tag/$name.php"            ) and $type == 'parm'         ) return TRUE;
-    elseif ( isset            ( $GLOBALS['pad_db_tables'] [$name]     ) and $type == 'table'        ) return TRUE;
-    elseif ( pad_array_check  ( $name                                 ) and $type == 'array'        ) return TRUE;
-    elseif ( pad_field_check  ( $name                                 ) and $type == 'field'        ) return TRUE;
-    elseif ( defined          ( $name                                 ) and $type == 'constant'     ) return TRUE;
-    elseif ( pad_file_exists  ( PAD_APP  . "functions/$name.php"      ) and $type == 'function_app' ) return TRUE;
-    elseif ( pad_file_exists  ( PAD_HOME . "functions/$name.php"      ) and $type == 'function_pad' ) return TRUE;
-    elseif ( function_exists  ( $name                                 ) and $type == 'function_php' ) return TRUE;
-    elseif ( pad_is_object    ( $name                                 ) and $type == 'object'       ) return TRUE;
-    elseif ( pad_is_resource  ( $type                                 ) and $type == 'resource'     ) return TRUE;
-    else                                                                                              return FALSE;
-
-  }
 
 
   function pad_set_global ( $name, $value ) {
