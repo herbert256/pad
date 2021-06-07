@@ -2,22 +2,14 @@
 
   $pad_seq_rows   = $pad_parms_tag ['rows']   ?? 0;
   $pad_seq_row    = $pad_parms_tag ['row']    ?? 0;
-  $pad_seq_min    = $pad_parms_tag ['min']    ?? 0;
-  $pad_seq_max    = $pad_parms_tag ['max']    ?? 0;
-  $pad_seq_from   = $pad_parms_tag ['from']   ?? 0;
-  $pad_seq_to     = $pad_parms_tag ['to']     ?? 0;
+  $pad_seq_min    = $pad_parms_tag ['from']   ?? 1;
+  $pad_seq_max    = $pad_parms_tag ['to']     ?? 0;
   $pad_seq_start  = $pad_parms_tag ['start']  ?? 0;
   $pad_seq_end    = $pad_parms_tag ['end']    ?? 0;
   $pad_seq_random = $pad_parms_tag ['random'] ?? 0;
   $pad_seq_unique = $pad_parms_tag ['unique'] ?? 0;
   $pad_seq_floor  = $pad_parms_tag ['floor']  ?? 0;
   $pad_seq_ceil   = $pad_parms_tag ['ceil']   ?? 0;
-
-  if ($pad_seq_from and ! $pad_seq_min)
-    $pad_seq_min = $pad_seq_from;
-
-  if ($pad_seq_to and ! $pad_seq_max)
-    $pad_seq_max = $pad_seq_to;
 
   if (!$pad_seq_max)
     $pad_seq_max = PHP_INT_MAX;
@@ -36,29 +28,14 @@
   if ( isset ( $pad_parms_tag ['start'] ) ) pad_set_arr_var ( 'options_done', 'start', TRUE ); 
   if ( isset ( $pad_parms_tag ['end']   ) ) pad_set_arr_var ( 'options_done', 'end',   TRUE ); 
 
-  $pad_seq_result = $pad_seq_base = [];
-
-  if ( $pad_seq_random and $pad_tag <> 'random' and in_array($pad_tag, ['step', 'multiple', 'prime', 'power'] ) )
-    $pad_seq_init = include PAD_HOME . "sequence/random.php" ;
-  else 
-    if ( ! pad_file_exists ( PAD_HOME . "sequence/types/$pad_tag/init.php" )) 
-      $pad_seq_init = $pad_seq_min;
-    else
-      $pad_seq_init = include PAD_HOME . "sequence/types/$pad_tag/init.php";
-
-  if ( is_null($pad_seq_init) or $pad_seq_init == FALSE )
-    return FALSE;
+  $pad_seq_init = include PAD_HOME . "sequence/first.php";
  
-  if ( is_array ($pad_seq_init) and ! count($pad_seq_init) )
+  if ( ! is_array ($pad_seq_init) )
     return FALSE;
- 
-  if ( ! is_array($pad_seq_init) ) {
-    $pad_seq_save = $pad_seq_init;
-    $pad_seq_init = [];
-    $pad_seq_init [] = $pad_seq_save;
-  }
 
-  $pad_seq_idx = 1;
+  $pad_seq_base   = [];
+  $pad_seq_result = [];
+  $pad_seq_idx    = 1;
   $pad_seq_now = $pad_seq_init [0]; 
 
   while ( 1 ) {
@@ -98,10 +75,8 @@ next:
         pad_set_arr_var ( 'options_done', $pad_seq_opt_name, TRUE );
       }
 
-  if ( $pad_seq_random and $pad_tag <> 'random' and ! in_array($pad_tag, ['step', 'multiple', 'prime', 'power'] ) ) {
-    pad_set_arr_var ( 'options_done', 'random', TRUE );
-    include PAD_HOME . "sequence/options/shuffle.php";
-  }
+  if ( $pad_seq_random and $pad_tag <> 'random' and ! pad_file_exists ( PAD_HOME . "sequence/types/$pad_tag/random.php" ) )
+    include PAD_HOME . "sequence/options/shuffle.php";  
 
   return $pad_seq_result; 
 
