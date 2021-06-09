@@ -1,5 +1,5 @@
 <?php
 
-  return intval($pad_seq_now) + intval($pad_seq_step);
+  return intval($pad_sequence) + intval($pad_seq_step);
 
 ?>

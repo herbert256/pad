@@ -24,7 +24,9 @@
     $GLOBALS ["pad_seq_$pad_tag"] = $pad_parm;
   else
     $GLOBALS ["pad_seq_$pad_tag"] = 1;
- 
+
+  include PAD_HOME . "sequence/checks.php";
+
   pad_set_arr_var ( 'options_done', 'random', TRUE );
   pad_set_arr_var ( 'options_done', 'rows',   TRUE ); 
   pad_set_arr_var ( 'options_done', 'row',    TRUE ); 

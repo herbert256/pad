@@ -1,8 +1,8 @@
 <?php
 
-  for ( $pad_seq_check = $pad_seq_min; $pad_seq_check <= $pad_seq_max; $pad_seq_check++ ) {
+  for ( $pad_sequence = $pad_seq_min; $pad_sequence <= $pad_seq_max; $pad_sequence++ ) {
 
-    $pad_seq_now = include PAD_HOME . "sequence/types/$pad_tag/loop.php";
+    $pad_sequence = include PAD_HOME . "sequence/types/$pad_tag/loop.php";
 
     if ( ! include 'one.php')
       break;
