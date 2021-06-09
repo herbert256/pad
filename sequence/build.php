@@ -15,7 +15,7 @@
   $pad_seq_step     = $pad_parms_tag ['step']     ?? 0;
   $pad_seq_multiple = $pad_parms_tag ['multiple'] ?? 0;
 
-  if (!$pad_seq_max)
+  if ( ! $pad_seq_max )
     $pad_seq_max = PHP_INT_MAX;
 
   if ( isset($pad_parms_tag [$pad_tag]) )
@@ -26,60 +26,24 @@
     $GLOBALS ["pad_seq_$pad_tag"] = 1;
  
   pad_set_arr_var ( 'options_done', 'random', TRUE );
-
-  if ( isset ( $pad_parms_tag ['rows']  ) ) pad_set_arr_var ( 'options_done', 'rows',  TRUE ); 
-  if ( isset ( $pad_parms_tag ['row']   ) ) pad_set_arr_var ( 'options_done', 'row',   TRUE ); 
-  if ( isset ( $pad_parms_tag ['start'] ) ) pad_set_arr_var ( 'options_done', 'start', TRUE ); 
-  if ( isset ( $pad_parms_tag ['end']   ) ) pad_set_arr_var ( 'options_done', 'end',   TRUE ); 
-
-  $pad_seq_init = include PAD_HOME . "sequence/first.php";
- 
-  if ( ! is_array ($pad_seq_init) )
-    return FALSE;
+  pad_set_arr_var ( 'options_done', 'rows',   TRUE ); 
+  pad_set_arr_var ( 'options_done', 'row',    TRUE ); 
+  pad_set_arr_var ( 'options_done', 'start',  TRUE ); 
+  pad_set_arr_var ( 'options_done', 'end',    TRUE ); 
 
   $pad_seq_base   = [];
   $pad_seq_result = [];
-  $pad_seq_idx    = 1;
-  $pad_seq_now = $pad_seq_init [0]; 
 
-  while ( 1 ) {
+  if ( ($pad_tag == 'random' or $pad_seq_random) and pad_file_exists ( PAD_HOME . "sequence/types/$pad_tag/random.php" ) )
+    include PAD_HOME . "sequence/random.php";
+  elseif ( pad_file_exists ( PAD_HOME . "sequence/types/$pad_tag/loop.php" ) )
+    include PAD_HOME . "sequence/loop.php";
+  else
+    include PAD_HOME . "sequence/jump.php";
 
-    if ( ! ($pad_seq_unique and in_array ($pad_seq_now, $pad_seq_base) ) ) {
+  include PAD_HOME . "sequence/options.php";  
 
-      $pad_seq_base [$pad_seq_idx] = $pad_seq_now;
-
-      if ( $pad_seq_max   and $pad_seq_now   >  $pad_seq_max ) break;
-      if ( $pad_seq_min   and $pad_seq_min   >  $pad_seq_now ) goto next;
-      if ( $pad_seq_row   and $pad_seq_row   <> $pad_seq_idx ) goto next;
-      if ( $pad_seq_start and $pad_seq_start >  $pad_seq_idx ) goto next;
-
-      $pad_seq_result [$pad_seq_idx] = $pad_seq_now;
-
-next:
-
-      if ( $pad_seq_row  and $pad_seq_row  == $pad_seq_idx            ) break;
-      if ( $pad_seq_rows and $pad_seq_rows == count ($pad_seq_result) ) break;
-      if ( $pad_seq_end  and $pad_seq_end  == $pad_seq_idx            ) break;
-
-      $pad_seq_idx++;
-
-    }
-
-    $pad_seq_now = include PAD_HOME . "sequence/next.php";
-
-    if ( is_null($pad_seq_now) or $pad_seq_now === FALSE )
-      break;
-  
-  }
-
-  foreach ( $pad_parms_tag as $pad_seq_opt_name => $pad_seq_opt_value) 
-    if ( $pad_seq_opt_name <> $pad_tag )
-      if ( pad_file_exists ( PAD_HOME . "sequence/options/$pad_seq_opt_name.php" ) ) {
-        include PAD_HOME . "sequence/options/$pad_seq_opt_name.php";
-        pad_set_arr_var ( 'options_done', $pad_seq_opt_name, TRUE );
-      }
-
-  if ( $pad_seq_random and $pad_tag <> 'random' and ! pad_file_exists ( PAD_HOME . "sequence/types/$pad_tag/random.php" ) )
+  if ( $pad_seq_random and ! pad_file_exists ( PAD_HOME . "sequence/types/$pad_tag/random.php" ) )
     include PAD_HOME . "sequence/options/shuffle.php";  
 
   return $pad_seq_result; 
