@@ -1,5 +1,5 @@
 <?php
 
-  return ($pad_sequence % 2);
+  return $pad_sequence % 2;
 
 ?>

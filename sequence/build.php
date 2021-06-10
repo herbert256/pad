@@ -15,6 +15,12 @@
   $pad_seq_step     = $pad_parms_tag ['step']     ?? 0;
   $pad_seq_multiple = $pad_parms_tag ['multiple'] ?? 0;
 
+  if ( $pad_seq_unique ) {
+    $pad_seq_unique_cnt = 0;
+    if ( $pad_seq_unique === TRUE )
+      $pad_seq_unique = 250;
+  }
+
   if ( ! $pad_seq_max )
     $pad_seq_max = PHP_INT_MAX;
 
@@ -25,7 +31,16 @@
   else
     $GLOBALS ["pad_seq_$pad_tag"] = 1;
 
-  include PAD_HOME . "sequence/checks.php";
+  $pad_seq_multi_rows = [];
+  if ( strpos($pad_seq_row, ';') ) {
+    $pad_seq_multi_rows = pad_explode ($pad_seq_row, ';');
+    $pad_seq_row = 0;
+  }
+
+  $pad_checks = [];
+  foreach ( $pad_parms_tag as $pad_k => $pad_v )
+    if ( $pad_k <> $pad_tag and pad_file_exists ( PAD_HOME . "sequence/types/$pad_k/check.php" ) )
+      $pad_checks [] = $pad_k;
 
   pad_set_arr_var ( 'options_done', 'random', TRUE );
   pad_set_arr_var ( 'options_done', 'rows',   TRUE ); 
@@ -36,7 +51,7 @@
   $pad_seq_base   = [];
   $pad_seq_result = [];
 
-  if ( ($pad_tag == 'random' or $pad_seq_random) and pad_file_exists ( PAD_HOME . "sequence/types/$pad_tag/random.php" ) )
+  if ( $pad_seq_random and pad_file_exists ( PAD_HOME . "sequence/types/$pad_tag/random.php" ) )
     include PAD_HOME . "sequence/random.php";
   elseif ( pad_file_exists ( PAD_HOME . "sequence/types/$pad_tag/loop.php" ) )
     include PAD_HOME . "sequence/loop.php";

@@ -255,7 +255,7 @@
       if ( $limit == '=' ) $explode [$key] = str_replace ( '#eq#',    '=', $explode [$key] );
       if ( $limit == ',' ) $explode [$key] = str_replace ( '#comma#', ',', $explode [$key] );
 
-      $explode [$key] = (string) trim ( $value );
+      $explode [$key] = (string) trim ( $explode [$key] );
 
       if ( $explode[$key] === '' )
         unset ( $explode[$key] );
