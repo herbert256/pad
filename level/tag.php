@@ -25,6 +25,9 @@
   if ( pad_tag_parm ('data') ) 
     $pad_data [$pad_lvl] = include PAD_HOME . "options/data.php"; 
 
+  if ( pad_tag_parm ('sequence') ) 
+    $pad_data [$pad_lvl] = include PAD_HOME . "options/sequence.php"; 
+
   if ($pad_lvl > 1)
     $pad_data [$pad_lvl] = pad_make_data ( $pad_data [$pad_lvl] );   
 

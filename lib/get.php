@@ -13,6 +13,9 @@
     return pad_get_store ( 'flag', $type  );
   }
 
+  function pad_get_seq_store ( $type='' ) {
+    return pad_get_store ( 'seq', $type  );
+  }
 
   function pad_get_store ( $store, $type ) {
 

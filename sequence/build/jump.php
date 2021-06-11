@@ -29,11 +29,11 @@
 
     $pad_seq_init_cnt++;
 
-    if ( isset ( $pad_seq_init [$pad_seq_init_cnt] ) ) {
+    if ( isset ( $pad_seq_init [$pad_seq_init_cnt] ) )
 
       $pad_sequence = $pad_seq_init [$pad_seq_init_cnt];
    
-    } elseif ( pad_file_exists ( PAD_HOME . "sequence/types/$pad_tag/jump.php" ) ) {
+    elseif ( pad_file_exists ( PAD_HOME . "sequence/types/$pad_tag/jump.php" ) ) {
 
       $G = &$pad_seq_base; 
       $n = count($pad_seq_base) - 1;
