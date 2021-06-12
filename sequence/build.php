@@ -75,7 +75,7 @@
       continue;
     }
 
-  if ( ! $pad_seq_pull and $pad_seq_random and ! pad_file_exists ( PAD_HOME . "sequence/types/$pad_tag/random.php" ) )
+  if ( !$pad_seq_pull and $pad_seq_random and !pad_file_exists(PAD_HOME . "sequence/types/$pad_tag/random.php") )
     include PAD_HOME . "sequence/options/shuffle.php";  
 
   if ( isset($pad_parms_tag['push']) ) {
