@@ -1,8 +1,8 @@
 <?php
 
-  if ( $pad_seq_min % 2 )
-    return $pad_seq_min;
+  if ( $pad_seq_from % 2 )
+    return $pad_seq_from;
   else
-    return $pad_seq_min + 1;
+    return $pad_seq_from + 1;
 
 ?>

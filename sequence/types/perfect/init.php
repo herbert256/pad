@@ -2,10 +2,10 @@
 
   $pad_seq_perfect = [];
 
-  if ($pad_seq_min == 0)
-    $pad_seq_min = 1; 
+  if ($pad_seq_from == 0)
+    $pad_seq_from = 1; 
 
-  for ($pad_seq_perfect_check = $pad_seq_min; $pad_seq_perfect_check <= $pad_seq_max; $pad_seq_perfect_check++) {
+  for ($pad_seq_perfect_check = $pad_seq_from; $pad_seq_perfect_check <= $pad_seq_to; $pad_seq_perfect_check++) {
 
     $pad_seq_perfect_sum = 0; 
     
