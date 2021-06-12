@@ -7,22 +7,15 @@
   else
     $pad_seq_init = $pad_seq_min;
 
-  if ( is_null($pad_seq_init) or $pad_seq_init === FALSE or ( is_array($pad_seq_init) and ! count($pad_seq_init) ) )
+if ( ! is_array($pad_seq_init) )
+    $pad_seq_init = [ 0 => $pad_seq_init ];
+  
+  if ( ! count($pad_seq_init) )
     return ;
-     
-  if ( ! is_array($pad_seq_init) ) {
-    $pad_seq_save = $pad_seq_init;
-    $pad_seq_init = [];
-    $pad_seq_init [] = $pad_seq_save;
-  }
- 
+    
   $pad_sequence = $pad_seq_init [0]; 
 
-
   while ( TRUE ) {
-
-    if ( is_null($pad_sequence) or $pad_sequence === FALSE )
-      break;
 
     if ( ! include 'one.php')
       break;
@@ -42,7 +35,8 @@
 
     } else 
 
-      $pad_sequence = FALSE;
+      break;
+
   }
 
 ?>

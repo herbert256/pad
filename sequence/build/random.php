@@ -1,6 +1,6 @@
 <?php
 
-  while ( 1 ) {
+  while ( TRUE ) {
 
     $pad_sequence = include PAD_HOME . "sequence/types/$pad_tag/random.php";
 

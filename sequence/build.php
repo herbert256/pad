@@ -32,7 +32,7 @@
   elseif ( $pad_parm )
     $GLOBALS ["pad_seq_$pad_tag"] = $pad_parm;
   else
-    $GLOBALS ["pad_seq_$pad_tag"] = 1;
+    $GLOBALS ["pad_seq_$pad_tag"] = TRUE;
 
   $pad_seq_multi_rows = [];
   if ( strpos($pad_seq_row, ';') ) {
@@ -87,7 +87,9 @@
   if ( $pad_seq_random and ! pad_file_exists ( PAD_HOME . "sequence/types/$pad_tag/random.php" ) )
     include PAD_HOME . "sequence/options/shuffle.php";  
 
-  if ( $pad_seq_push ) {
+  if ( isset($pad_parms_tag['push']) ) {
+    if ( $pad_seq_push === TRUE )
+      $pad_seq_push = 'pad_seq';
     $pad_seq_store [$pad_seq_push] = $pad_seq_result;
     return NULL;
   }

@@ -1,5 +1,8 @@
 <?php
 
+  if ( is_null($pad_sequence) or $pad_sequence === FALSE )
+    return false;
+
   if ( $pad_seq_unique ) {
     $pad_seq_unique_cnt++;
     if ( $pad_seq_unique_cnt > $pad_seq_unique)
