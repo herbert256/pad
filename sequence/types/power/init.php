@@ -1,3 +1,4 @@
+
 <?php
 
   for ($pad_seq_power_idx=1; $pad_seq_power_idx <= 64; $pad_seq_power_idx++) {

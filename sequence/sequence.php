@@ -1,11 +1,11 @@
 <?php
 
   if ( ! isset($pad_parms_tag ['walk']) )
-    return include PAD_HOME . "sequence/build.php";
+    return include PAD_HOME . "sequence/build/build.php";
 
   if ( $pad_walk == 'start' ) {
 
-    $pad_seq_store [$pad_lvl] = include PAD_HOME . "sequence/build.php";
+    $pad_seq_store [$pad_lvl] = include PAD_HOME . "sequence/build/build.php";
 
     if ( ! is_array ($pad_seq_store[$pad_lvl]) or ! count ($pad_seq_store[$pad_lvl]) ) {
       $pad_walk = '';

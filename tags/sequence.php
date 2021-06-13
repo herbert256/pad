@@ -11,7 +11,7 @@
         break;
       }
 
-  $pad_sequence = include PAD_HOME . "sequence/types/$pad_tag/go.php";
+  $pad_sequence = include PAD_HOME . "sequence/sequence.php";
 
   $pad_tag = 'sequence';
 
