@@ -1,32 +1,26 @@
 <?php
 
+  $pad_seq_rows     = $pad_parms_tag ['rows']    ?? 0;
+  $pad_seq_page     = $pad_parms_tag ['page']    ?? 0;
+  $pad_seq_row      = $pad_parms_tag ['row']     ?? 0;
+  $pad_seq_value    = $pad_parms_tag ['value']   ?? 0;
+  $pad_seq_min      = $pad_parms_tag ['min']     ?? 0;
+  $pad_seq_max      = $pad_parms_tag ['max']     ?? PHP_INT_MAX;
+  $pad_seq_from     = $pad_parms_tag ['from']    ?? 0;
+  $pad_seq_to       = $pad_parms_tag ['to']      ?? PHP_INT_MAX;
+  $pad_seq_start    = $pad_parms_tag ['start']   ?? 0;
+  $pad_seq_end      = $pad_parms_tag ['end']     ?? PHP_INT_MAX;
+  $pad_seq_unique   = $pad_parms_tag ['unique']  ?? 0;
+  $pad_seq_random   = $pad_parms_tag ['random']  ?? 0;
+  $pad_seq_push     = $pad_parms_tag ['push']    ?? '';
+  $pad_seq_pull     = $pad_parms_tag ['pull']    ?? ''; 
+  $pad_seq_build    = $pad_parms_tag ['build']   ?? '';
+  $pad_seq_loop     = $pad_parms_tag ['loop']    ?? '';
+  $pad_seq_protect  = $pad_parms_tag ['protect'] ?? 10000;
+
   if ( ! isset($pad_parms_tag ['walk']) )
-    return include PAD_HOME . "sequence/build/build.php";
-
-  if ( $pad_walk == 'start' ) {
-
-    $pad_seq_store [$pad_lvl] = include PAD_HOME . "sequence/build/build.php";
-
-    if ( ! is_array ($pad_seq_store[$pad_lvl]) or ! count ($pad_seq_store[$pad_lvl]) ) {
-      $pad_walk = '';
-      return $pad_seq_store [$pad_lvl];
-    }
-
-    $pad_seq_store_now = reset ( $pad_seq_store [$pad_lvl] ) ;
-
-    $pad_walk = 'next';
-
-  } else {
-
-    $pad_seq_store_now = next ($pad_seq_store[$pad_lvl]);
-
-    if ( $pad_seq_store_now === FALSE ) {
-      $pad_walk = '';
-      return NULL;
-    }
-
-  }
-
-  return [ $pad_seq_store_now => $pad_seq_store_now ];
+    return include 'build/build.php';
+  else 
+    return include 'walk.php';
 
 ?>
