@@ -1,5 +1,7 @@
 <?php
 
+  $n=0;
+  
   for ( $pad_seq_idx = 0; $pad_seq_idx <= 18; $pad_seq_idx++ ) 
     $GLOBALS [ 'pad_seq_sts_' . sprintf('%02d', $pad_seq_idx) ] = 0;
 
@@ -47,6 +49,15 @@
     $pad_seq_page_end   = $pad_seq_page * $pad_seq_rows; 
   }
 
+  if ( $pad_tag == 'pull' ) {
+    $pad_pull_start = TRUE;
+    $pad_pull_store = ( $pad_parm     ) ? $pad_parm     : 'pad_seq';
+    $pad_tag        = ( $pad_seq_into ) ? $pad_seq_into : 'loop';
+    $pad_parm       = '';
+  }
+  else
+    $pad_pull_start = FALSE;
+
   if ( isset($pad_parms_tag [$pad_tag]) )
     $GLOBALS ["pad_seq_$pad_tag"] = $pad_parms_tag [$pad_tag];
   elseif ( $pad_parm )
@@ -63,7 +74,13 @@
   $pad_seq_base   = [];
   $pad_seq_result = [];
 
-  include 'type.php';
+  $pad_seq_build = include 'type.php';  
+
+  if ( $pad_pull_start ) 
+    include PAD_HOME . "sequence/build/pull.php";
+  else
+    include PAD_HOME . "sequence/build/$pad_seq_build.php";
+
   include 'options.php';
   
   if ( !$pad_seq_pull and $pad_seq_random and !pad_file_exists(PAD_HOME . "sequence/types/$pad_tag/random.php") )
