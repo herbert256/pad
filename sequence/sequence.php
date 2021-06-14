@@ -14,7 +14,7 @@
   $pad_seq_random   = intval ( $pad_parms_tag ['random']  ?? 0           );
   $pad_seq_push     = $pad_parms_tag ['push']    ?? '';
   $pad_seq_pull     = $pad_parms_tag ['pull']    ?? ''; 
-  $pad_seq_protect  = $pad_parms_tag ['protect'] ?? 100000;
+  $pad_seq_protect  = $pad_parms_tag ['protect'] ?? 10000000;
 
   pad_set_arr_var ( 'options_done', 'rows',    TRUE );
   pad_set_arr_var ( 'options_done', 'page',    TRUE );
