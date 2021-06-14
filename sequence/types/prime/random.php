@@ -1,6 +1,6 @@
 <?php
 
-  $pad_seq_rand = rand ( $pad_seq_min, $pad_seq_max );
+  $pad_seq_rand = rand ( $pad_seq_init, $pad_seq_exit );
 
   if ( gmp_prob_prime ($pad_seq_rand) )
     return $pad_seq_rand;

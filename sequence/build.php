@@ -1,5 +1,8 @@
 <?php
 
+  for ( $pad_seq_idx = 0; $pad_seq_idx <= 17; $pad_seq_idx++ ) 
+    $GLOBALS [ 'pad_seq_sts_' . sprintf('%02d', $pad_seq_idx) ] = 0;
+
   if ( isset($pad_parms_tag ['from']) or isset($pad_parms_tag ['to']) ) {
 
     $pad_seq_type = 'from';
@@ -9,7 +12,7 @@
     if ( ! $pad_seq_init and ! isset($pad_parms_tag ['from']) )
       $pad_seq_init = 1;    
 
-    $pad_seq_cnt = intval($pad_seq_init) - 1;    
+    $pad_seq_fromto_cnt = intval($pad_seq_init) - 1;    
 
   } elseif ( isset($pad_parms_tag ['min']) or isset($pad_parms_tag ['max']) ) {
 
@@ -20,7 +23,7 @@
     if ( ! $pad_seq_init and ! isset($pad_parms_tag ['min']) )
       $pad_seq_init = 1;    
 
-    $pad_seq_cnt = 0;
+    $pad_seq_fromto_cnt = 0;
 
   } else {
 
@@ -28,10 +31,11 @@
     $pad_seq_init = 1; 
     $pad_seq_exit = PHP_INT_MAX;
 
-    $pad_seq_cnt = 0;
+    $pad_seq_fromto_cnt = 0;
+    
   }
 
-  $pad_seq_protect_cnt = $pad_seq_base_cnt = $pad_seq_result_cnt = 0;
+  $pad_seq_cnt = $pad_seq_protect_cnt = $pad_seq_base_cnt = $pad_seq_result_cnt = 0;
 
   if ( $pad_seq_page ) {
     $pad_seq_page_start = (($pad_seq_page-1) * $pad_seq_rows) + 1; 

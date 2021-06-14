@@ -1,5 +1,7 @@
 <?php
 
+  $pad_seq_type = 'min';
+
   $pad_seq_loop_start = $pad_seq_min;
   $pad_seq_loop_end   = $pad_seq_max;
 

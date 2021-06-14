@@ -4,11 +4,9 @@
     $pad_seq_build = 'pull';  
   elseif ( $pad_seq_random and pad_file_exists ( PAD_HOME . "sequence/types/$pad_tag/random.php" ) ) 
     $pad_seq_build = 'random';
-  elseif ( ( isset($pad_parms_tag ['from']) or isset($pad_parms_tag ['to']) ) 
-      and pad_file_exists (PAD_HOME . "sequence/types/$pad_tag/from_to.php") )
+  elseif ( $pad_seq_type == 'from' and pad_file_exists (PAD_HOME . "sequence/types/$pad_tag/from_to.php") )
     $pad_seq_build = 'from_to';
-  elseif ( ( isset($pad_parms_tag ['min']) or isset($pad_parms_tag ['max']) ) 
-      and pad_file_exists (PAD_HOME . "sequence/types/$pad_tag/min_max.php") )
+  elseif ( $pad_seq_type == 'min' and pad_file_exists (PAD_HOME . "sequence/types/$pad_tag/min_max.php") )
     $pad_seq_build = 'min_max';
   elseif ( pad_file_exists ( PAD_HOME . "sequence/types/$pad_tag/order.php" ) ) 
     $pad_seq_build = 'order';
