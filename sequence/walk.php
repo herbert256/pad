@@ -2,7 +2,7 @@
 
   if ( $pad_walk == 'start' ) {
 
-    $pad_seq_walk [$pad_lvl] = include PAD_HOME . "sequence/build/build.php";
+    $pad_seq_walk [$pad_lvl] = include 'build.php';
 
     if ( ! is_array ($pad_seq_walk[$pad_lvl]) or ! count ($pad_seq_walk[$pad_lvl]) ) {
       $pad_walk = '';

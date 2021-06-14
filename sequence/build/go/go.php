@@ -17,7 +17,7 @@
 
   if ( $pad_sequence === FALSE                                          ) { $pad_seq_sts_06++; return true; }
   if ( $pad_seq_min    and $pad_sequence < $pad_seq_min                 ) { $pad_seq_sts_07++; return true; }
-  if ( $pad_seq_start  and $pad_seq_base_cnt < $pad_seq_start           ) { $pad_seq_sts_08++; return true; }
+  if ( $pad_seq_start  and count($pad_seq_base) < $pad_seq_start        ) { $pad_seq_sts_08++; return true; }
   if ( $pad_seq_page   and $pad_seq_base_cnt < $pad_seq_page_start      ) { $pad_seq_sts_09++; return true; }
   if ( $pad_seq_row    and ! in_array ($pad_seq_base_cnt, $pad_seq_row) ) { $pad_seq_sts_10++; return true; }
   if ( $pad_seq_value  and ! in_array ($pad_sequence, $pad_seq_value)   ) { $pad_seq_sts_11++; return true; }

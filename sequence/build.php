@@ -27,7 +27,7 @@
 
   } else {
 
-    $pad_seq_type = 'from';
+    $pad_seq_type = '';
     $pad_seq_init = 1; 
     $pad_seq_exit = PHP_INT_MAX;
 
@@ -49,7 +49,7 @@
   else
     $GLOBALS ["pad_seq_$pad_tag"] = TRUE;
 
-  $pad_seq_row   = (!$pad_seq_row)   ? [] : pad_explode ($pad_seq_row,   ';');
+  $pad_seq_row   = (!$pad_seq_row)   ? [] : pad_explode ($pad_seq_row,   ';'); 
   $pad_seq_value = (!$pad_seq_value) ? [] : pad_explode ($pad_seq_value, ';');
 
   $pad_seq_dir = 'checks';  include 'dir.php';

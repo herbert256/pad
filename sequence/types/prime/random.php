@@ -7,11 +7,11 @@
 
   $pad_seq_rand = gmp_intval ( gmp_nextprime ($pad_seq_rand) );
 
-  if ( $pad_seq_rand <= $pad_seq_max )
+  if ( $pad_seq_rand <= $pad_seq_exit )
     return $pad_seq_rand;
-  elseif ( gmp_prob_prime ($pad_seq_min) )
-    return $pad_seq_min;
+  elseif ( gmp_prob_prime ($pad_seq_init) )
+    return $pad_seq_init;
   else
-    return gmp_intval ( gmp_nextprime ($pad_seq_min) ); 
+    return gmp_intval ( gmp_nextprime ($pad_seq_init) ); 
 
 ?>

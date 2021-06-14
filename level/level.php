@@ -24,6 +24,9 @@
   else
     $pad_between = substr($pad_html[$pad_lvl], $pad_start[$pad_lvl]+1, $pad_end[$pad_lvl]-$pad_start[$pad_lvl]-2);
 
+  if ( $pad_between == 'dump' )
+    pad_dump ('{dump} tag found');
+
   include PAD_HOME . 'level/parms1.php';
 
   pad_trace ('tag/inits', "tag=$pad_tag parms=$pad_parms pair=$pad_pair");
