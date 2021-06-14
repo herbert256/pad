@@ -7,12 +7,9 @@
   if ( isset($pad_parms_tag ['min'])  ) $pad_seq_init_type = 'min';
   else                                  $pad_seq_init_type = 'from';
 
-  if ( $pad_seq_from )
-    $pad_seq_cnt = $pad_seq_from -1;
-  else
-    $pad_seq_cnt = 0;
+  $pad_seq_cnt = 0;
 
-  $pad_seq_protect_cnt = $pad_seq_base_cnt =$pad_seq_result_cnt = 0;
+  $pad_seq_protect_cnt = $pad_seq_base_cnt = $pad_seq_result_cnt = 0;
 
   if ( $pad_seq_page ) {
     $pad_seq_page_start = (($pad_seq_page-1) * $pad_seq_rows) + 1; 

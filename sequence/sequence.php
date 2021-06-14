@@ -14,13 +14,11 @@
   $pad_seq_random   = $pad_parms_tag ['random']  ?? 0;
   $pad_seq_push     = $pad_parms_tag ['push']    ?? '';
   $pad_seq_pull     = $pad_parms_tag ['pull']    ?? ''; 
-  $pad_seq_build    = $pad_parms_tag ['build']   ?? '';
-  $pad_seq_loop     = $pad_parms_tag ['loop']    ?? '';
   $pad_seq_protect  = $pad_parms_tag ['protect'] ?? 10000;
 
-  if ( ! isset($pad_parms_tag ['walk']) )
-    return include 'build/build.php';
-  else 
+  if ( isset($pad_parms_tag ['walk']) )
     return include 'walk.php';
+  else 
+    return include 'build.php';
 
 ?>

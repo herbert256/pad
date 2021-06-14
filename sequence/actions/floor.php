@@ -1,5 +1,5 @@
 <?php
 
-  return floor ( $pad_sequence_result / $pad_seq_floor ) * $pad_seq_floor ;
+  return floor ( $pad_sequence / $pad_seq_floor ) * $pad_seq_floor ;
 
 ?>
