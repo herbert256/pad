@@ -1,7 +1,12 @@
 <?php
 
-  for ( $pad_seq_idx = 0; $pad_seq_idx <= 17; $pad_seq_idx++ ) 
+  for ( $pad_seq_idx = 0; $pad_seq_idx <= 18; $pad_seq_idx++ ) 
     $GLOBALS [ 'pad_seq_sts_' . sprintf('%02d', $pad_seq_idx) ] = 0;
+
+  if ( isset($pad_parms_tag ['from']) or isset($pad_parms_tag ['to']) ) 
+    $pad_seq_fromto_max =  ( ( intval( $pad_parms_tag ['to'] ?? PHP_INT_MAX ) ) - ( intval ( $pad_parms_tag ['from'] ?? 1 ) ) ) + 1;
+  else
+    $pad_seq_fromto_max = 0;
 
   if ( isset($pad_parms_tag ['from']) or isset($pad_parms_tag ['to']) ) {
 

@@ -6,6 +6,7 @@
   $pad_seq_fromto_cnt++;
   $pad_seq_protect_cnt++;
 
+  if ( $pad_seq_fromto_max and $pad_seq_cnt > $pad_seq_fromto_max  ) { $pad_seq_sts_17++; return false; }
   if ( is_null($pad_sequence)                                      ) { $pad_seq_sts_01++; return false; }
   if ( $pad_seq_to  and $pad_seq_fromto_cnt > $pad_seq_to          ) { $pad_seq_sts_02++; return false; }
   if ( $pad_seq_max and $pad_sequence > $pad_seq_max               ) { $pad_seq_sts_03++; return false; }
@@ -36,7 +37,7 @@
   if ( $pad_seq_row   and $pad_seq_result_cnt >= count($pad_seq_row)   ) { $pad_seq_sts_15++; return false; }
   if ( $pad_seq_value and $pad_seq_result_cnt >= count($pad_seq_value) ) { $pad_seq_sts_16++; return false; }
 
-  $pad_seq_sts_17++; 
+  $pad_seq_sts_18++; 
 
   return true;
 

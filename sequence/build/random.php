@@ -1,5 +1,5 @@
 <?php
 
-  return 'from_to.php'; 
+  include PAD_HOME . "sequence/build/go/loop.php"; 
 
 ?>
