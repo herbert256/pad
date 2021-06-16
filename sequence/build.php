@@ -1,54 +1,20 @@
 <?php
 
+  if ( !$pad_seq_value and !$pad_seq_rows and !$pad_seq_row and 
+    $pad_seq_to == PHP_INT_MAX and $pad_seq_max == PHP_INT_MAX  and $pad_seq_end == PHP_INT_MAX )
+    $pad_seq_rows = 100;
+
   $pad_seq_init = $pad_seq_base = $pad_seq_result = [];
   $pad_seq_cnt  = $pad_seq_protect_cnt = 0;
-
-  $pad_seq_loop_idx = 1; 
-  $pad_seq_loop_end = PHP_INT_MAX;
-
-  $pad_seq_type = '';
 
   for ( $pad_seq_idx = 0; $pad_seq_idx <= 18; $pad_seq_idx++ ) 
     $GLOBALS [ 'pad_seq_sts_' . sprintf('%02d', $pad_seq_idx) ] = 0;
 
-  if ( isset($pad_parms_tag ['from']) or isset($pad_parms_tag ['to']) ) 
-    $pad_seq_fromto_max =  ( ( intval( $pad_parms_tag ['to'] ?? PHP_INT_MAX ) ) - ( intval ( $pad_parms_tag ['from'] ?? 1 ) ) ) + 1;
-  else
-    $pad_seq_fromto_max = 0;
-
-  if ( isset($pad_parms_tag ['from']) or isset($pad_parms_tag ['to']) ) {
-
-    $pad_seq_type = 'from';
-    $pad_seq_loop_idx = $pad_seq_from;
-    $pad_seq_loop_end = $pad_seq_to;
-
-    if ( ! $pad_seq_loop_idx and ! isset($pad_parms_tag ['from']) )
-      $pad_seq_loop_idx = 1;    
-
-  } elseif ( isset($pad_parms_tag ['min']) or isset($pad_parms_tag ['max']) ) {
-
-    $pad_seq_type = 'min';
-    $pad_seq_loop_idx = $pad_seq_min;
-    $pad_seq_loop_end = $pad_seq_max;
-
-    if ( ! $pad_seq_loop_idx and ! isset($pad_parms_tag ['min']) )
-      $pad_seq_loop_idx = 1;    
-
-  }
-
-  if ( $pad_seq_page ) {
-    $pad_seq_page_start = (($pad_seq_page-1) * $pad_seq_rows) + 1; 
-    $pad_seq_page_end   = $pad_seq_page * $pad_seq_rows; 
-  }
-
-  if ( $pad_tag == 'pull' ) {
-    $pad_pull_start = TRUE;
-    $pad_pull_store = ( $pad_parm     ) ? $pad_parm     : 'pad_seq';
-    $pad_tag        = ( $pad_seq_into ) ? $pad_seq_into : 'loop';
-    $pad_parm       = '';
-  }
-  else
-    $pad_pull_start = FALSE;
+  include 'from_to.php';
+  include 'init_exit.php';
+  include 'increment.php';
+  include 'page.php';
+  include 'pull.php';
 
   if ( isset($pad_parms_tag [$pad_tag]) )
     $GLOBALS ["pad_seq_$pad_tag"] = $pad_parms_tag [$pad_tag];
