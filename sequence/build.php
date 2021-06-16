@@ -10,9 +10,10 @@
   for ( $pad_seq_idx = 0; $pad_seq_idx <= 18; $pad_seq_idx++ ) 
     $GLOBALS [ 'pad_seq_sts_' . sprintf('%02d', $pad_seq_idx) ] = 0;
 
-  include 'from_to.php';
-  include 'init_exit.php';
   include 'increment.php';
+  include 'from_to.php';
+  include 'min_max.php';
+  include 'init_exit.php';
   include 'page.php';
   include 'pull.php';
 

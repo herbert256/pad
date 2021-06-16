@@ -13,22 +13,7 @@
     $pad_seq_loop_end = PHP_INT_MAX;
   }
 
-  if ( $pad_seq_multiple and $pad_seq_loop_idx % $pad_seq_multiple )
-    $pad_seq_loop_idx = ceil ( $pad_seq_loop_idx / $pad_seq_multiple ) * $pad_seq_multiple;
-
-  if ( $pad_seq_even and $pad_seq_loop_idx % 2 )
-    $pad_seq_loop_idx++;
-
-  if ( $pad_seq_even and ! $pad_seq_loop_idx % 2 )
-    $pad_seq_loop_idx++;
-
-  if ( $pad_seq_multiple and $pad_seq_loop_end % $pad_seq_multiple )
-    $pad_seq_loop_end = floor ( $pad_seq_loop_end / $pad_seq_multiple ) * $pad_seq_multiple;
-
-  if ( $pad_seq_even and $pad_seq_loop_end % 2 )
-    $pad_seq_loop_end--;
-
-  if ( $pad_seq_even and ! $pad_seq_loop_end % 2 )
-    $pad_seq_loop_end--;
+  $pad_seq_loop_idx = pad_seq_check ( $pad_seq_loop_idx, $pad_seq_increment, $pad_seq_even, $pad_seq_odd );
+  $pad_seq_loop_end = pad_seq_check ( $pad_seq_loop_end, $pad_seq_increment, $pad_seq_even, $pad_seq_odd );
 
 ?>

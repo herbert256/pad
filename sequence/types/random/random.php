@@ -1,5 +1,5 @@
 <?php
 
-  return $pad_seq_rand;
+  return $pad_seq_minmax_rand;
 
 ?>
