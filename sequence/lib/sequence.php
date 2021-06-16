@@ -3,8 +3,20 @@
   function pad_seq_random ( $min, $max, $step, $multiple, $even, $odd ) {
 
     $rand = rand ( $min, $max ); 
-    $rand = pad_seq_check_even_odd_down ( $check, $even, $odd );
-    $rand = pad_seq_check_multiple_down ( $check, $multiple );
+
+    $rand = pad_seq_check_even_odd_down ( $rand, $even, $odd );
+    if ( $rand < $min )
+      $rand = $rand+2;
+
+    $rand = pad_seq_check_multiple_down ( $rand, $multiple );
+    if ( $rand < $min )
+      $rand = $rand+$multiple;
+
+    if ( $rand < $min )
+      $rand = $min;
+
+    if ( $rand > $max )
+      $rand = $max;
 
     return $rand;
 
