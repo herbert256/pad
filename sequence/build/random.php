@@ -1,5 +1,5 @@
 <?php
 
-  include "go/loop.php"; 
+  include "loop.php"; 
 
 ?>

@@ -4,7 +4,7 @@
     $pad_seq_to == PHP_INT_MAX and $pad_seq_max == PHP_INT_MAX  and $pad_seq_end == PHP_INT_MAX )
     $pad_seq_rows = 100;
 
-  $pad_seq_init = $pad_seq_base = $pad_seq_result = [];
+  $pad_seq_init = $pad_seq_base = $pad_seq_result = $pad_seq_prepare = [];
   $pad_seq_cnt  = $pad_seq_protect_cnt = 0;
 
   for ( $pad_seq_idx = 0; $pad_seq_idx <= 18; $pad_seq_idx++ ) 
@@ -13,6 +13,7 @@
   include 'increment.php';
   include 'from_to.php';
   include 'min_max.php';
+  include 'loop_idx_end.php';
   include 'init_exit.php';
   include 'page.php';
   include 'pull.php';
@@ -31,6 +32,9 @@
   $pad_seq_dir = 'actions'; include 'dir.php';
 
   $pad_seq_build = include 'type.php';  
+
+  $pad_seq_jump  = ($pad_seq_build == 'jump' );
+  $pad_seq_fixed = ($pad_seq_build == 'fixed');
 
   if ( $pad_pull_start ) 
     include PAD_HOME . "sequence/build/pull.php";
