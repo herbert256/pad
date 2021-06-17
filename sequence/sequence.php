@@ -8,7 +8,7 @@
   $pad_seq_value    =          $pad_parms_tag ['value']    ?? 0;
   $pad_seq_min      = intval ( $pad_parms_tag ['min']      ?? 0           );
   $pad_seq_max      = intval ( $pad_parms_tag ['max']      ?? PHP_INT_MAX );
-  $pad_seq_from     = intval ( $pad_parms_tag ['from']     ?? 0           );
+  $pad_seq_from     = intval ( $pad_parms_tag ['from']     ?? 1           );
   $pad_seq_to       = intval ( $pad_parms_tag ['to']       ?? PHP_INT_MAX );
   $pad_seq_start    = intval ( $pad_parms_tag ['start']    ?? 0           );
   $pad_seq_end      = intval ( $pad_parms_tag ['end']      ?? PHP_INT_MAX );
@@ -21,10 +21,7 @@
   $pad_seq_into     =          $pad_parms_tag ['into']     ?? '';
   $pad_seq_push     =          $pad_parms_tag ['push']     ?? '';
   $pad_seq_pull     =          $pad_parms_tag ['pull']     ?? ''; 
-  $pad_seq_protect  =          $pad_parms_tag ['protect']  ?? 10000000;
-
-  if ( ! $pad_seq_from and ! isset($pad_parms_tag ['from']) )  $pad_seq_from = 1;    
-  if ( ! $pad_seq_min  and ! isset($pad_parms_tag ['min'])  )  $pad_seq_min  = 1;    
+  $pad_seq_protect  =          $pad_parms_tag ['protect']  ?? 10000000;  
 
   pad_set_arr_var ( 'options_done', 'rows',     TRUE );
   pad_set_arr_var ( 'options_done', 'page',     TRUE );

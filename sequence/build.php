@@ -18,6 +18,9 @@
   include 'page.php';
   include 'pull.php';
 
+  $pad_seq_dir = 'checks';  include 'dir.php';
+  $pad_seq_dir = 'actions'; include 'dir.php';
+
   if ( isset($pad_parms_tag [$pad_tag]) )
     $GLOBALS ["pad_seq_$pad_tag"] = $pad_parms_tag [$pad_tag];
   elseif ( $pad_parm )
@@ -27,9 +30,6 @@
 
   $pad_seq_row   = (!$pad_seq_row)   ? [] : pad_explode ($pad_seq_row,   ';'); 
   $pad_seq_value = (!$pad_seq_value) ? [] : pad_explode ($pad_seq_value, ';');
-
-  $pad_seq_dir = 'checks';  include 'dir.php';
-  $pad_seq_dir = 'actions'; include 'dir.php';
 
   $pad_seq_build = include 'type.php';  
 

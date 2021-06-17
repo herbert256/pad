@@ -9,8 +9,7 @@
   if ( $pad_seq_random )
     include 'random.php';
 
-  if     ( $pad_pull_start )                             $pad_seq_one = $pad_seq_loop_idx;
-  elseif ( $pad_seq_build == 'fixed' )                   $pad_seq_one = $pad_seq_loop_idx;
+  if     ( $pad_seq_build == 'fixed' )                   $pad_seq_one = $pad_seq_loop_idx;
   elseif ( isset ( $pad_seq_prepare [$pad_seq_cnt-1] ) ) $pad_seq_one = $pad_seq_prepare [$pad_seq_cnt-1];
   else                                                   $pad_seq_one = include PAD_HOME . "sequence/types/$pad_tag/$pad_seq_build.php";
 
@@ -30,8 +29,8 @@
   $pad_seq_check_even_odd = pad_seq_check_even_odd_up ( $pad_sequence, $pad_seq_even, $pad_seq_odd );
   $pad_seq_check_multiple = pad_seq_check_multiple_up ( $pad_sequence, $pad_seq_multiple );
 
-  if ( is_numeric($pad_sequence) and $pad_seq_max and $pad_sequence > $pad_seq_max ) { $pad_seq_sts_04++; return false; }
-  if ( is_numeric($pad_sequence) and $pad_seq_min and $pad_sequence < $pad_seq_min ) { $pad_seq_sts_05++; return true;  }
+  if ( $pad_seq_max    and is_numeric($pad_sequence) and $pad_sequence > $pad_seq_max ) { $pad_seq_sts_04++; return false; }
+  if ( $pad_seq_min    and is_numeric($pad_sequence) and $pad_sequence < $pad_seq_min ) { $pad_seq_sts_05++; return true;  }
   if ( $pad_seq_start  and count($pad_seq_base) < $pad_seq_start               ) { $pad_seq_sts_06++; return true;  }
   if ( $pad_seq_page   and count($pad_seq_base) < $pad_seq_page_start          ) { $pad_seq_sts_07++; return true;  }
   if ( $pad_seq_row    and ! in_array (count($pad_seq_base), $pad_seq_row)     ) { $pad_seq_sts_08++; return true;  }
@@ -59,4 +58,4 @@
 
   return true;
 
-?>
+?>  

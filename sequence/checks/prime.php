@@ -1,5 +1,9 @@
 <?php
 
-  return gmp_prob_prime ( $pad_sequence ) ;
+  if (gmp_prob_prime ( $pad_sequence )  )
+    return TRUE;
+  else
+    return FALSE;dsfsfd
+
 
 ?>

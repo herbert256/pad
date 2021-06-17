@@ -1,5 +1,5 @@
 <?php
-
+  
   function pad_seq_random ( $min, $max, $step, $multiple, $even, $odd ) {
 
     $rand = rand ( $min, $max ); 
@@ -70,5 +70,18 @@
     return $check;
 
   }
+
+  function pad_reverse ( $x ) {
+
+   $rev = 0;
+    while ($x > 0)
+    {
+         $rev = ($rev  * 10) + $x % 10;
+        $x = (int)($x / 10);
+    }
+    return $rev;
+
+  }
+
 
 ?>
