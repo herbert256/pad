@@ -56,7 +56,9 @@
 
     $lvl = pad_find_lvl ( $prefix );
 
-    if ( $lvl )
+    if ( $lvl == 1) 
+      return pad_field_search ($GLOBALS);
+    elseif ( $lvl ) 
       return pad_field_search ($pad_current [$lvl], $field);
     else
       for ( $i=$pad_lvl; $i; $i-- )
@@ -75,15 +77,11 @@
 
     for ( $i=$pad_lvl; $i; $i-- ) {
 
-      // if ( is_array($pad_current[$i]) )
-      //   foreach ( $pad_current[$i] as $key => $value ) 
-      //     if ( is_array($value) ) {
-      //       $work = pad_field_search ( $value, $field, $type);   
-      //         if ( $work !== PAD_NOT_FOUND )
-      //           return $work;
-      //     }
+      if ( $i == 1 )
+        $work = pad_field_search ( $GLOBALS, $field, $type );
+      else
+        $work = pad_field_search ( $pad_current[$i], $field, $type );
 
-      $work = pad_field_search ( $pad_current[$i], $field, $type );
       if ( $work !== PAD_NOT_FOUND )
         return $work;
 

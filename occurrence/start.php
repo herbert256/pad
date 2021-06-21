@@ -21,8 +21,8 @@
     if ( count($pad_data [$pad_lvl]) <> 1 
        or !isset($pad_data [$pad_lvl][1]) 
        or count($pad_data [$pad_lvl][1]) 
-       or $pad_parameters [$pad_lvl] ['name'] <> $pad_parameters [$pad_lvl] ['tag'] )
-     pad_set_global ( $pad_name, $pad_current [$pad_lvl] );
+       or $pad_parameters [$pad_lvl] ['name'] <> $pad_parameters [$pad_lvl] ['tag'] )  
+       pad_set_global ( $pad_name, $pad_current [$pad_lvl] );
 
     foreach ( $pad_current [$pad_lvl] as $pad_k => $pad_v )
       pad_set_global ( $pad_k, $pad_v );

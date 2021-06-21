@@ -133,6 +133,8 @@
   }
 
   function pad_dump_short ($G) {
+    if ( $G === NULL)
+      $G = '';
     return substr ( preg_replace('/\s+/', ' ', $G ), 0, 100 );
   }
 

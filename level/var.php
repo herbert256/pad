@@ -44,7 +44,7 @@
       $pad_opts [] = $pad_v;
 
   $pad_val = pad_field_value ($pad_fld);
-  #$pad_val = pad_var_opts ($pad_val, $pad_opts);
+  $pad_val = pad_var_opts ($pad_val, $pad_opts);
 
   if ( $pad_first == '!')
     $pad_val = pad_raw ( $pad_val );

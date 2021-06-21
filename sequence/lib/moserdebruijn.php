@@ -20,7 +20,7 @@ function pad_moserdebruijn($n)
      
         // S(2 * n + 1) = 4 * S(n) + 1
         else
-        $S[$i] = 4 * $S[$i/2] + 1;
+        $S[$i] = 4 * $S[ceil($i/2)] + 1;
     }
      
     return $S[$n];
