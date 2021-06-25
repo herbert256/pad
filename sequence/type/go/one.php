@@ -9,9 +9,16 @@
   if ( $pad_seq_random )
     include 'random.php';
 
-  if     ( $pad_seq_build == 'fixed' )                   $pad_seq_one = $pad_seq_loop_idx;
-  elseif ( isset ( $pad_seq_prepare [$pad_seq_cnt-1] ) ) $pad_seq_one = $pad_seq_prepare [$pad_seq_cnt-1];
-  else                                                   $pad_seq_one = include PAD_HOME . "sequence/types/$pad_tag/$pad_seq_build.php";
+  if     ( $pad_seq_build == 'fixed' )                   
+    $pad_seq_one = $pad_seq_loop_idx;
+  elseif ( isset ( $pad_seq_prepare [$pad_seq_cnt-1] ) ) 
+    $pad_seq_one = $pad_seq_prepare [$pad_seq_cnt-1];
+  elseif ( $pad_seq_build == 'function' ) {
+    $pad_seq_one = "pad_$pad_tag";
+    $pad_seq_one = $pad_seq_one($pad_sequence);
+  }
+  else
+    $pad_seq_one = include PAD_HOME . "sequence/types/$pad_tag/$pad_seq_build.php";
 
   $pad_seq_unique_check = in_array ($pad_seq_one, $pad_seq_base);
 

@@ -10,16 +10,16 @@
   for ( $pad_seq_idx = 0; $pad_seq_idx <= 18; $pad_seq_idx++ ) 
     $GLOBALS [ 'pad_seq_sts_' . sprintf('%02d', $pad_seq_idx) ] = 0;
 
-  include 'increment.php';
-  include 'from_to.php';
-  include 'min_max.php';
-  include 'loop_idx_end.php';
-  include 'init_exit.php';
-  include 'page.php';
-  include 'pull.php';
+  include 'build/increment.php';
+  include 'build/from_to.php';
+  include 'build/min_max.php';
+  include 'build/loop_idx_end.php';
+  include 'build/init_exit.php';
+  include 'build/page.php';
+  include 'build/pull.php';
 
-  $pad_seq_dir = 'checks';  include 'dir.php';
-  $pad_seq_dir = 'actions'; include 'dir.php';
+  $pad_seq_dir = 'checks';  include 'build/dir.php';
+  $pad_seq_dir = 'actions'; include 'build/dir.php';
 
   if ( isset($pad_parms_tag [$pad_tag]) )
     $GLOBALS ["pad_seq_$pad_tag"] = $pad_parms_tag [$pad_tag];
@@ -31,23 +31,23 @@
   $pad_seq_row   = (!$pad_seq_row)   ? [] : pad_explode ($pad_seq_row,   ';'); 
   $pad_seq_value = (!$pad_seq_value) ? [] : pad_explode ($pad_seq_value, ';');
 
-  $pad_seq_build = include 'type.php';  
+  $pad_seq_build = include 'build/type.php';  
 
-  $pad_seq_jump  = ($pad_seq_build == 'jump' );
-  $pad_seq_fixed = ($pad_seq_build == 'fixed');
+  if ( $pad_seq_build == 'function' ) 
+    include_once "functions/$pad_tag.php";
 
   if ( $pad_pull_start ) 
-    include PAD_HOME . "sequence/build/pull.php";
+    include "type/pull.php";
   else
-    include PAD_HOME . "sequence/build/$pad_seq_build.php";
+    include "type/$pad_seq_build.php";
 
-  include 'options.php';
+  include 'build/options.php';
   
   if ( !$pad_seq_pull and $pad_seq_random and !pad_file_exists(PAD_HOME . "sequence/types/$pad_tag/random.php") )
     include PAD_HOME . 'sequence/options/shuffle.php';  
 
   if ( $pad_seq_push )
-    return include 'push.php';
+    return include 'build/push.php';
 
   return $pad_seq_result; 
 
