@@ -92,10 +92,12 @@
                                       // 'before'
                                       // 'demand'
                                       // 'include'
-  $pad_build_location = FALSE;
+  
   $pad_build_merge    = 'content';    // 'content'
                                       // 'end'
 
+  $pad_build_location = FALSE;
+ 
   // PAD database structure
   
   $pad_db_tables = $pad_db_relations = [];

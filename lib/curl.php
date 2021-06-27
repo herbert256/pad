@@ -2,7 +2,13 @@
 
   function pad_curl ($url) {
 
+    global $pad_host, $pad_script, $app;
+
     pad_trace ("curl-1/start", $url);
+
+    if ( pad_file_exists ( PAD_APP . "pages/$url.php" ) or pad_file_exists ( PAD_APP . "pages/$url.html" ) ) {
+      return pad_curl_extra ("$pad_host$pad_script?app=$app&page=$url", $output);
+    }
 
     if ( substr($url, 0, 1) == '"' or substr($url, 0, 1) == "'" )
       $url = substr($url, 1, -1);

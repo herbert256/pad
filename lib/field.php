@@ -51,15 +51,15 @@
 
     list ( $prefix, $field ) = explode (':', $field, 2);
 
-    if ( $prefix == 'PHP' )
+    if ( $prefix == 'PHP' or $prefix === 1 or $prefix === '1' )
       return pad_field_search ($GLOBALS, $field, $type);
 
     $lvl = pad_find_lvl ( $prefix );
 
     if ( $lvl == 1) 
-      return pad_field_search ($GLOBALS);
+      return pad_field_search ($GLOBALS, $field, $type);
     elseif ( $lvl ) 
-      return pad_field_search ($pad_current [$lvl], $field);
+      return pad_field_search ($pad_current [$lvl], $field, $type);
     else
       for ( $i=$pad_lvl; $i; $i-- )
         foreach ( $pad_db_lvl [$i] as $key => $value)

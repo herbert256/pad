@@ -845,7 +845,7 @@
     for ($lvl = $end; $lvl>=$start; $lvl--)  {    
 
       foreach ( $pad_save_vars [$lvl] as $key => $value) {
-        if ( $GLOBALS [$key] )
+        if ( isset ( $GLOBALS [$key] ) ) 
           unset ($GLOBALS [$key] );
         $GLOBALS [$key]= $value;
       }
@@ -1265,7 +1265,7 @@
       if ( $data )
         return "{true '$location'}" . $data . '{/true}';
       else
-        return "{empty '$location' /}";
+        return "{false '$location' /}";
     else
       return $data;    
   
