@@ -5,8 +5,8 @@
   $pad_error_action = 'pad';  // 'pad'    = PAD's own full blown error handler.
                               // 'boot'   = Use the lightweight PAD boot error handler
                               // 'php'    = Use the PHP defaults (php.ini).
-                              // 'stop'   = Stop processing but do the exit handling.
-                              // 'abort'  = Abort, don't do the exit handling
+                              // 'stop'   = Stop processing but do the PAD exit handling.
+                              // 'abort'  = Abort, don't do the PAD exit handling
                               // 'none'   = Ignore all errors and continue processing.
                               // 'report' = Report the error and continue processing.
  
@@ -16,19 +16,20 @@
 
   $pad_error_server = TRUE;   //  Log errors to the HTTP server log (most likely /var/log/apache2/error.log)
 
+  $pad_error_dump   = TRUE;   //  Dumps errors to the file system.
+
   // Trace the internal working of PAD
 
-  $pad_trace = TRUE;  
+  $pad_trace = FALSE;  
 
   // Keep track of stuff, lots of data.
 
-  $pad_track_output      = TRUE;   // Store the output of every request
-  $pad_track_vars        = TRUE;   // Store the endstate of all vars for every request
-  $pad_track_db_session  = TRUE;
-  $pad_track_db_request  = TRUE;
-  $pad_track_file        = TRUE;
-  $pad_track_sql         = TRUE;   //  Detail information about every executed SQL statement.
-  $pad_track_errors      = TRUE;    //  Dumps errors to the file system.
+  $pad_track_output      = FALSE;   // Store the output of every request
+  $pad_track_vars        = FALSE;   // Store the endstate of all vars for every request
+  $pad_track_db_session  = FALSE;
+  $pad_track_db_request  = FALSE;
+  $pad_track_file        = FALSE;
+  $pad_track_sql         = FALSE;   //  Detail information about every executed SQL statement.
 
   // Cache settings
   

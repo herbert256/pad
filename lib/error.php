@@ -5,8 +5,8 @@
 
     try {
   
-      if ( $GLOBALS['pad_exit'] == 9 )
-        exit;
+      if ( $GLOBALS['pad_exit'] <> 1 )
+        pad_error_exit ( "pad_error: " . $error );
 
       extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
 
@@ -25,9 +25,9 @@
  
     try {
  
-      if ( $GLOBALS['pad_exit'] == 9 )
-        exit;
- 
+      if ( $GLOBALS['pad_exit'] <> 1 )
+        pad_error_exit ( "pad_error_handler: " . $error );
+
       if ( error_reporting() & $type )
         return pad_error_go ( 'ERROR: ' . $error, $file, $line );
     
@@ -44,8 +44,8 @@
 
     try {
 
-      if ( $GLOBALS['pad_exit'] == 9 )
-        exit;
+      if ( $GLOBALS['pad_exit'] <> 1 )
+        pad_error_exit ( "pad_error_exception: " . $error->getMessage() );
 
       return pad_error_go ( 'EXCEPTION: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
     
@@ -67,13 +67,12 @@
 
       $error = error_get_last ();
 
-      if ( $error !== NULL) 
-        if ( $GLOBALS['pad_exit'] == 2 )
-          pad_error_error ( $error['message'], $error['file'], $error['line'] );
-        else
-          pad_error_go ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
-
-      exit();
+      if ( $error === NULL ) 
+        exit;
+      elseif ( $GLOBALS['pad_exit'] == 1 )
+        pad_error_go ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
+      else
+        pad_error_error ( $error['message'], $error['file'], $error['line'] );
     
     } catch (Exception $e) {
 
@@ -87,8 +86,8 @@
   function pad_error_go ($error, $file, $line) {
 
     if ( $GLOBALS['pad_exit'] == 9 )
-      exit; 
- 
+      pad_error_exit ( "pad_error_go: " . $error );
+
     try {
 
       if ( $GLOBALS['pad_exit'] == 1 ) 
@@ -109,7 +108,7 @@
       elseif ( $GLOBALS['pad_error_action'] == 'report' )
         error_log ("[PAD] $id $file:$line $error", 4);   
 
-      if ( $GLOBALS['pad_track_errors'] or $GLOBALS['pad_error_action'] == 'report' ) 
+      if ( $GLOBALS['pad_error_dump'] or $GLOBALS['pad_error_action'] == 'report' ) 
         pad_track_vars ("errors/$id.html", "$file:$line $error");
 
       return pad_error_action ( $error, $file, $line );
@@ -143,7 +142,7 @@
 
       } elseif ( $pad_error_action == 'abort') {
 
-        pad_exit ();
+        pad_error_exitit ();
 
       } elseif ( $pad_error_action == 'stop') {
 
@@ -172,7 +171,7 @@
     if ( pad_local() )
       pad_dump ("$file:$line $error");
 
-    if ( ! $GLOBALS['pad_track_errors'] ) 
+    if ( ! $GLOBALS['pad_error_dump'] ) 
       pad_track_vars ("errors/$id.html", "$file:$line $error");
 
     echo "Error: $id";
@@ -194,25 +193,59 @@
     try {
 
       if ( $GLOBALS['pad_exit'] == 9 )
-        exit; 
+        pad_error_exit ( "pad_error_error: " . $error );
 
       $error = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '.', $error);
       if ( strlen($error) > 255 )
         $error = substr($error, 0, 255);
 
-      error_log ( "[PAD] $id - $file:$line $error", 4 );
+      error_log ( "[PAD] $id - error-error: $file:$line $error", 4 );
       
       if ( ! headers_sent () )
         header ( 'HTTP/1.0 500 Internal Server Error' );
 
-      echo "Error: $id";
+      echo "error-error: $id";
 
       if ( pad_local () )
         echo " - $file:$line $error";
 
     } catch (Exception $e) {
 
-      echo 'wtf -> ' . $id;
+      echo 'wtf (error) -> ' . $id;
+
+    }
+
+    exit;
+
+  }  
+
+
+ function pad_error_exit ( $error ) {
+
+    $GLOBALS ['pad_exit']             = 9;
+    $GLOBALS ['pad_no_boot_shutdown'] = TRUE;
+
+    $id = $GLOBALS['PADREQID'] ?? uniqid();
+
+    try {
+
+      $error = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '.', $error);
+      if ( strlen($error) > 255 )
+        $error = substr($error, 0, 255);
+
+      error_log ( "[PAD] $id - error-exit: $error", 4 );
+      
+      if ( ! headers_sent () )
+        header ( 'HTTP/1.0 500 Internal Server Error' );
+
+      echo "error-exit: $id";
+
+      if ( pad_local () )
+        echo " - $error";
+
+    } catch (Exception $e) {
+
+      echo 'wtf (exit) -> ' . $id;
 
     }
 
