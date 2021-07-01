@@ -1,5 +1,14 @@
 <?php
 
+  $pad_output      = '';
+  $pad_stop        = '999';
+  $pad_etag        = '';
+  $pad_exit        = 1;
+  $pad_time        = $_SERVER['REQUEST_TIME'];
+  $pad_lvl         = 1;  
+  $pad_occur   [0] = $pad_eval_cnt   = $pad_fld_cnt = $pad_lvl_cnt = $pad_occur_cnt = 0;
+  $pad_current [0] = $pad_close_tags = $pad_timings = $pad_timings_start = [];
+
   ob_start();
 
   $app  = $_REQUEST['app']  ?? 'pad';
@@ -17,12 +26,9 @@
 
   if ($pad_no_no) 
     include PAD_HOME . 'inits/nono.php';
- 
+
   if ( isset($_SERVER['QUERY_STRING']) and $_SERVER['QUERY_STRING'] and strpos($_SERVER['QUERY_STRING'], '=') === FALSE )
     include PAD_HOME . 'inits/fast.php';
-
-  if ( isset($_REQUEST['pad_include']) )
-    $pad_build_mode= 'include';
 
   define ( 'PAD_APP', PAD_APPS . $app . '/' );
 
@@ -33,11 +39,8 @@
   $PADREFID  = $PADREFID  ?? $_GET['PADREQID']  ?? $_COOKIE['PADREQID']  ?? '';
   $PADREQID  = pad_random_string(16);
 
-  $pad_output  = '';
-  $pad_stop    = '500';
-  $pad_etag    = '';
-  $pad_exit    = 1;
-  $pad_time    = $_SERVER['REQUEST_TIME'];
+  include PAD_HOME . 'inits/trace.php';
+  include PAD_HOME . 'inits/error.php';
 
   if ( ! headers_sent () ) {
     if ( ! isset($_COOKIE['PADSESSID']) or $_COOKIE['PADSESSID'] <> $PADSESSID )
@@ -57,8 +60,6 @@
 
   include PAD_HOME . 'cache/inits.php';
   include PAD_HOME . 'options/go/inits.php';
-  include PAD_HOME . 'inits/error.php';
-  include PAD_HOME . 'inits/trace.php';
 
   pad_get_vars ();
 
@@ -77,13 +78,26 @@
   $pad          = $pad_script . "?app=$app&page=";
   $pad_location = $pad_host . $pad;
 
-  $pad_occur   [0] = 0;
-  $pad_current [0] = [];
- 
-  $pad_eval_cnt   = $pad_fld_cnt = $pad_lvl_cnt = $pad_occur_cnt = 0;
-  $pad_close_tags = $pad_timings = $pad_timings_start = [];
-
-  $pad_lvl  = 1;  
   $pad_next = $page;
+
+  if ( isset($_REQUEST['pad_include']) )
+    $pad_build_mode= 'include';
+
+  function pad_local () {
+
+    if ( !  isset($GLOBALS['pad_local']) )
+      return FALSE;
+    
+    $host = strtolower(trim($_SERVER['HTTP_HOST']??''));
+    $ip   = $_SERVER ['REMOTE_ADDR'] ?? '';
+    $name = $_SERVER ['SERVER_NAME'] ?? '';
+
+    if ( in_array ( $host, $GLOBALS['pad_local'] ) ) return TRUE;
+    if ( in_array ( $ip,   $GLOBALS['pad_local'] ) ) return TRUE;
+    if ( in_array ( $name, $GLOBALS['pad_local'] ) ) return TRUE;
+
+    return FALSE;
+    
+  }
 
 ?>

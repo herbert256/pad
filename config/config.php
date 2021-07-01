@@ -8,6 +8,7 @@
                               // 'stop'   = Stop processing but do the exit handling.
                               // 'abort'  = Abort, don't do the exit handling
                               // 'none'   = Ignore all errors and continue processing.
+                              // 'report' = Report the error and continue processing.
  
   $pad_error_level  = 'all';  // Kind of errors that will be processed by $pad_error_action
                               // 'none' , 'error' , 'warning' , 'notice' , 'all'
@@ -17,16 +18,16 @@
 
   // Trace the internal working of PAD
 
-  $pad_trace = FALSE;  
+  $pad_trace = TRUE;  
 
   // Keep track of stuff, lots of data.
 
-  $pad_track_output      = FALSE;   // Store the output of every request
-  $pad_track_vars        = FALSE;   // Store the endstate of all vars for every request
-  $pad_track_db_session  = FALSE;
-  $pad_track_db_request  = FALSE;
-  $pad_track_file        = FALSE;
-  $pad_track_sql         = FALSE;   //  Detail information about every executed SQL statement.
+  $pad_track_output      = TRUE;   // Store the output of every request
+  $pad_track_vars        = TRUE;   // Store the endstate of all vars for every request
+  $pad_track_db_session  = TRUE;
+  $pad_track_db_request  = TRUE;
+  $pad_track_file        = TRUE;
+  $pad_track_sql         = TRUE;   //  Detail information about every executed SQL statement.
   $pad_track_errors      = TRUE;    //  Dumps errors to the file system.
 
   // Cache settings
@@ -129,7 +130,7 @@
                                   'replace-color'   => 'yes'
                                 ];
 
-  $pad_local = ['localhost', 'penguin.linux.test', '127.0.0.1'];
+  $pad_local = [ 'localhost', 'penguin.linux.test', '127.0.0.1' ];
   
   // Other settings.
 

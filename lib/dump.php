@@ -6,23 +6,18 @@
 
     gc_collect_cycles ();
 
-    if ( ! headers_sent() )
-      header ( 'HTTP/1.0 500 Internal Server Error' );
-
     $GLOBALS['pad_sent'] = TRUE;
 
     pad_close_html();
-    flush();
 
     pad_dump_vars ($info);
 
-    pad_exit ();
+    $GLOBALS ['pad_stop'] = 500;
+    include PAD_HOME . 'exits/stop.php';
 
   }  
 
   function pad_dump_vars ($info='') {
-
-    $GLOBALS ['pad_dump_id'] = uniqid (TRUE);
 
     echo ("<div align=\"left\"><pre>");
     
@@ -87,14 +82,14 @@
           elseif (is_array ($value))
             pad_dump_array ($key, $value);
           else
-            echo ( "\n  [$key] => " . htmlentities($value) );
+            echo ( "\n  [$key] => " . htmlentities($value??'') );
       echo ( "\n ");
     }
 
     if ( isset ( $GLOBALS ['pad_sql_connect'     ] ) ) pad_dump_object ('MySQL-App', $GLOBALS ['pad_sql_connect']      );
     if ( isset ( $GLOBALS ['pad_pad_sql_connect' ] ) ) pad_dump_object ('MySQL-PAD', $GLOBALS ['pad_pad_sql_connect']  );
 
-    $not = ['pad_lib_directory', 'pad_lib_iterator', 'pad_lib_one', 'pad_base','pad_sql_connect','pad_pad_sql_connect','pad_headers','pad_data','pad_parameters', 'pad_errors', 'pad_result', 'pad_html', 'pad_output', 'pad_output_gz', 'pad_current'];
+    $not = ['pad_base','pad_sql_connect','pad_pad_sql_connect','pad_headers','pad_data','pad_parameters', 'pad_errors', 'pad_result', 'pad_html', 'pad_output', 'pad_output_gz', 'pad_current', 'pad_lib_directory', 'pad_lib_iterator', 'pad_lib_one'];
 
     echo ( "\n<b>Pad variables</b>");
 
@@ -110,10 +105,10 @@
       elseif (is_array ($GLOBALS[$key])) {
         $work =  pad_dump_sanitize ($GLOBALS[$key]);
         pad_dump_array ($key, $work, 1);
-      }
-      else
-        echo ( "\n  [$key] => " . htmlentities(pad_dump_short($GLOBALS[$key])));
+      } else
+        echo ( "\n  [$key] => " . htmlentities(pad_dump_short($GLOBALS[$key]??'')));
 
+    echo ( "\n" );
                                               pad_dump_array  ('Headers-in',  getallheaders());
     if ( isset ( $GLOBALS ['pad_headers'] ) ) pad_dump_array  ('Headers-out', $GLOBALS ['pad_headers'] );
 
@@ -125,8 +120,18 @@
     if ( isset ( $_SERVER )  )  pad_dump_array  ('SERVER',  $_SERVER);
     if ( isset ( $_ENV )     )  pad_dump_array  ('ENV',     $_ENV);
 
-    echo ( "\n<b>GLOBALS</b>\n");
-    echo ( htmlentities ( print_r ( $GLOBALS, TRUE ) ) );
+    echo ( "\n\n<b>Pad variables - part 2 </b>");
+
+    foreach ($not as $key)
+      if (isset($GLOBALS[$key]))
+        if (is_object($GLOBALS[$key]))
+          pad_dump_object ($key, $GLOBALS[$key]);
+        elseif (is_array ($GLOBALS[$key])) {
+          $work =  pad_dump_sanitize ($GLOBALS[$key]);
+          pad_dump_array ($key, $work, 1);
+        }
+        else
+          echo ( "\n  [$key] => " . htmlentities(pad_dump_short($GLOBALS[$key])));
 
     echo ( "\n</pre></div>" );
 

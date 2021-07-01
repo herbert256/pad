@@ -5,10 +5,10 @@
 
     try {
   
-      extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
+      if ( $GLOBALS['pad_exit'] == 9 )
+        exit;
 
-      if ( $GLOBALS['pad_error_action'] == 'php' )
-        throw new ErrorException ($error, 0, E_ERROR, $file, $line);
+      extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
 
       return pad_error_go ( 'USER: ' . $error, $file, $line );
     
@@ -24,7 +24,10 @@
   function pad_error_handler ( $type, $error, $file, $line ) {
  
     try {
-  
+ 
+      if ( $GLOBALS['pad_exit'] == 9 )
+        exit;
+ 
       if ( error_reporting() & $type )
         return pad_error_go ( 'ERROR: ' . $error, $file, $line );
     
@@ -41,6 +44,9 @@
 
     try {
 
+      if ( $GLOBALS['pad_exit'] == 9 )
+        exit;
+
       return pad_error_go ( 'EXCEPTION: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
     
     } catch (Exception $e) {
@@ -54,18 +60,20 @@
 
   function pad_error_shutdown () {
 
-    try {
-  
+    try {  
+
       if ( $GLOBALS['pad_exit'] == 9 )
-        return;
+        exit;
 
       $error = error_get_last ();
 
-      if ( $error !== NULL)
+      if ( $error !== NULL) 
         if ( $GLOBALS['pad_exit'] == 2 )
           pad_error_error ( $error['message'], $error['file'], $error['line'] );
         else
-          return pad_error_go ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
+          pad_error_go ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
+
+      exit();
     
     } catch (Exception $e) {
 
@@ -77,6 +85,9 @@
 
 
   function pad_error_go ($error, $file, $line) {
+
+    if ( $GLOBALS['pad_exit'] == 9 )
+      exit; 
  
     try {
 
@@ -85,52 +96,23 @@
       else
         pad_error_error ( $error, $file, $line );
 
+      $error = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '.', $error);
+      if ( strlen($error) > 255 )
+        $error = substr($error, 0, 255);
+
       pad_trace ('error', "$file:$line $error");   
 
-      $id  = $GLOBALS['PADREQID'] ?? uniqid();
+      $id = $GLOBALS['PADREQID'] ?? uniqid();
 
-      if ( $GLOBALS['pad_error_server'] ) 
+      if ( $GLOBALS['pad_error_server'] and $GLOBALS['pad_error_action'] <> 'boot' ) 
+        error_log ("[PAD] $id $file:$line $error", 4);   
+      elseif ( $GLOBALS['pad_error_action'] == 'report' )
         error_log ("[PAD] $id $file:$line $error", 4);   
 
-      if ( $GLOBALS['pad_track_errors'] ) 
+      if ( $GLOBALS['pad_track_errors'] or $GLOBALS['pad_error_action'] == 'report' ) 
         pad_track_vars ("errors/$id.html", "$file:$line $error");
 
-      if ( $GLOBALS['pad_error_action'] == 'none' ) {
-        $GLOBALS['pad_exit'] = 1;
-        return FALSE;
-      }
-
-      pad_empty_buffers ();
-
-      if ( $GLOBALS['pad_error_action'] == 'boot' ) 
-        pad_error_error ($error, $file, $line);
-
-      if ( ! headers_sent() )
-        header ( 'HTTP/1.0 500 Internal Server Error' );
-
-      if ( $GLOBALS['pad_error_action'] == 'abort')  {
-        echo "Error: $id";
-        pad_exit ();
-      }
-
-      if ( $GLOBALS['pad_error_action'] == 'pad') {
-
-        if ( pad_local() ) {
-          echo "<pre><hr><b>$file:$line $error</b><hr></pre>";
-          pad_dump ();
-        }
-        else {
-          echo "Error: $id";
-          if ( ! $GLOBALS['pad_track_errors'] ) 
-            pad_track_vars ("errors/$id.html", "$file:$line $error");
-        }
-
-        $GLOBALS ['pad_sent'] = TRUE;
-                     
-      }
-      
-      $GLOBALS ['pad_stop'] = 500;
-      include PAD_HOME . 'exits/stop.php';
+      return pad_error_action ( $error, $file, $line );
 
     } catch (Exception $e) {
 
@@ -140,6 +122,68 @@
 
   }
 
+
+  function pad_error_action ( $error, $file, $line ) {  
+
+      global $pad_error_action;
+
+      if ( $pad_error_action == 'boot' ) {
+
+        pad_boot_error_go ( $error, $file, $line );
+
+      } elseif ( $pad_error_action == 'none' ) {
+
+        $GLOBALS['pad_exit'] = 1;
+        return FALSE;
+
+      } elseif ( $pad_error_action == 'report' ) {
+
+        $GLOBALS['pad_exit'] = 1;
+        return FALSE;
+
+      } elseif ( $pad_error_action == 'abort') {
+
+        pad_exit ();
+
+      } elseif ( $pad_error_action == 'stop') {
+
+        $GLOBALS ['pad_stop'] = 500;
+        include PAD_HOME . 'exits/stop.php';
+      
+      } elseif ( $pad_error_action == 'pad' ) {
+
+        pad_error_pad ( $error, $file, $line );
+
+      } elseif ( $pad_error_action == 'php' ) {
+
+        throw new ErrorException ($error, 0, E_ERROR, $file, $line);
+
+      } else {
+
+        pad_dump ("Unknown error action: $file:$line $error");
+
+      }
+
+  }
+
+
+  function pad_error_pad ( $error, $file, $line ) {
+
+    if ( pad_local() )
+      pad_dump ("$file:$line $error");
+
+    if ( ! $GLOBALS['pad_track_errors'] ) 
+      pad_track_vars ("errors/$id.html", "$file:$line $error");
+
+    echo "Error: $id";
+    $GLOBALS ['pad_sent'] = TRUE;             
+      
+    $GLOBALS ['pad_stop'] = 500;
+    include PAD_HOME . 'exits/stop.php';
+
+  }
+
+
   function pad_error_error ( $error, $file, $line ) {
 
     $GLOBALS ['pad_exit']             = 9;
@@ -147,18 +191,34 @@
 
     $id = $GLOBALS['PADREQID'] ?? uniqid();
 
-    error_log ( "[PAD] $id - $file:$line $error", 4 );
-    
-    if ( ! headers_sent () )
-      header ( 'HTTP/1.0 500 Internal Server Error' );
+    try {
 
-    if ( pad_local () )
-      echo "$id - $file:$line $error";
-    else
+      if ( $GLOBALS['pad_exit'] == 9 )
+        exit; 
+
+      $error = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '.', $error);
+      if ( strlen($error) > 255 )
+        $error = substr($error, 0, 255);
+
+      error_log ( "[PAD] $id - $file:$line $error", 4 );
+      
+      if ( ! headers_sent () )
+        header ( 'HTTP/1.0 500 Internal Server Error' );
+
       echo "Error: $id";
+
+      if ( pad_local () )
+        echo " - $file:$line $error";
+
+    } catch (Exception $e) {
+
+      echo 'wtf -> ' . $id;
+
+    }
 
     exit;
 
   }  
+
 
 ?>

@@ -16,6 +16,9 @@
 
   include $pad_no_no;
 
+  $pad_exit             = 9;
+  $pad_no_boot_shutdown = TRUE;
+
   exit();
 
 ?>

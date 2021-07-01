@@ -78,7 +78,7 @@
 
   function pad_exit () {
 
-    $GLOBALS['pad_exit'] = 9;
+    $GLOBALS['pad_exit']             = 9;
     $GLOBALS['pad_no_boot_shutdown'] = TRUE;
     
     exit();
@@ -217,24 +217,6 @@
 
     return ( isset ( $_REQUEST ['pad_demo'] ) );
 
-  }
-
-
-  function pad_local () {
-
-    if ( !  isset($GLOBALS['pad_local']) )
-      return FALSE;
-    
-    $host = strtolower(trim($_SERVER['HTTP_HOST']??''));
-    $ip   = $_SERVER ['REMOTE_ADDR'] ?? '';
-    $name = $_SERVER ['SERVER_NAME'] ?? '';
-
-    if ( in_array($host, $GLOBALS['pad_local']) ) return TRUE;
-    if ( in_array($ip,   $GLOBALS['pad_local']) ) return TRUE;
-    if ( in_array($name, $GLOBALS['pad_local']) ) return TRUE;
-
-    return FALSE;
-    
   }
 
 

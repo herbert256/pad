@@ -15,8 +15,6 @@
   if ( strlen(trim($pad_case)) == 0 )
     return pad_tag_error ();
 
-  pad_trace ('case', 'START: ' . $pad_parms_val[0]);
-
   $pad_content = substr ($pad_content, $pad_pos+1);
 
   $pad_when = strpos($pad_content , '{when');
@@ -30,12 +28,9 @@
     else {
 
       if ( $pad_parms_val[0] == pad_eval($pad_case) ) {
-        pad_trace ('case', 'TRUE: ' . $pad_case);
         $pad_content = substr ($pad_content, 0, $pad_when);
         return TRUE;
       }
-
-      pad_trace ('case', 'FALSE: ' . $pad_case);
 
       $pad_pos = strpos($pad_content, '}', $pad_when); 
       if ($pad_pos  === FALSE) 
@@ -56,12 +51,9 @@
   if ( ! pad_check_tag ('case', $pad_content) )
     return pad_tag_error ("Number of {case} and {/case} do not match");
 
-  if ( $pad_parms_val[0] == pad_eval($pad_case) ) {
-    pad_trace ('case', 'TRUE: ' . $pad_case);
+  if ( $pad_parms_val[0] == pad_eval($pad_case) )
     return TRUE;
-  }
   
-  pad_trace ('case', 'FALSE: ' . $pad_case);
   return FALSE;
 
 ?>

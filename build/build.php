@@ -5,10 +5,10 @@
   $page = $pad_next;
   $pad_next = '';
 
-  pad_trace ('build/start', "page=$page mode=$pad_build_mode");
-
   if ( ! preg_match ( '/^[A-Za-z0-9\/_]+$/', $page ) )  
     pad_error ("Invalid page name '$page'");
+
+  pad_trace ('build/start', "page=$page mode=$pad_build_mode");
 
   pad_check_page ();
 

@@ -17,6 +17,10 @@
     if ( is_array($parm) )
       $parm = pad_info($parm);
 
+    $parm = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '.', $parm);
+    if ( strlen($parm) > 100 )
+      $parm = substr($parm, 0, 100);
+
     $pad_trc_cnt++;
 
     $lineX  = str_pad ( $pad_trc_cnt, 3, ' ', STR_PAD_LEFT );
@@ -27,13 +31,7 @@
     else
       $occurX = '  ';
     
-    $typeX  = str_pad ( $type, 13);
-    
-    $parm = trim(preg_replace('/\s+/', ' ', $parm));
-    
-    if ( strlen($parm) > 100)
-      $parm = substr($parm, 0, 100);
-    
+    $typeX  = str_pad ( $type, 13);    
     $lineL = "$lvlX $occurX   $typeX $parm";
     
     if ($pad_trc_cnt > 50)

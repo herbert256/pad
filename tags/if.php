@@ -15,12 +15,9 @@
     else {
 
       if ( pad_eval ($pad_if) ) {
-        pad_trace ('if', 'TRUE: ' . $pad_if);
         $pad_content = substr ($pad_content, 0, $pad_else);
         return TRUE;
       }
-
-      pad_trace ('if', 'FALSE: ' . $pad_if);
 
       $pad_pos     = strpos ( $pad_content, '}', $pad_else );
       $pad_if      = substr ( $pad_content, $pad_else+8, $pad_pos-($pad_else+8) );
@@ -31,12 +28,9 @@
 
   }
 
-  if ( pad_eval ($pad_if) ) {
-    pad_trace ('if', 'TRUE: ' . $pad_if);
+  if ( pad_eval ($pad_if) )
     return TRUE;
-  }
   
-  pad_trace ('if', 'FALSE: ' . $pad_if);
   return FALSE;
 
 ?>
