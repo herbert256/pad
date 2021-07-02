@@ -1,21 +1,47 @@
 <?php
 
+  function pad_include ($url) {
+
+    global $pad_host, $pad_script, $app;
+
+    $input  = [];
+    $output = [];
+
+    $input ['url'] = "$pad_host$pad_script?app=$app&page=$url&pad_include=1";
+
+    $input ['cookies'] ['PADSESSID'] = $GLOBALS ['PADSESSID']; 
+    $input ['cookies'] ['PADREQID']  = $GLOBALS ['PADREQID']; 
+
+    pad_trace ( "pad_include", $input ['url'] );
+
+    pad_curl_get ($input, $output);
+
+    return $output;
+
+  }
+
   function pad_curl ($url) {
 
     global $pad_host, $pad_script, $app;
 
+    if ( substr($url, 0, 1) == '"' or substr($url, 0, 1) == "'" )
+      $url = substr($url, 1, -1);
+
+    $include = '';
+    if ( substr($url, -14) == '&pad_include=1') {
+      $include = '&pad_include=1';
+      $url = substr($url, 0, -14);
+    }
+
     pad_trace ("curl-1/start", $url);
 
     if ( pad_file_exists ( PAD_APP . "pages/$url.php" ) or pad_file_exists ( PAD_APP . "pages/$url.html" ) ) {
-      return pad_curl_extra ("$pad_host$pad_script?app=$app&page=$url", $output);
+      return pad_curl_extra ("$pad_host$pad_script?app=$app&page=$url$include", $output);
     }
-
-    if ( substr($url, 0, 1) == '"' or substr($url, 0, 1) == "'" )
-      $url = substr($url, 1, -1);
  
     if ( substr ( $url, 0, 7 ) == 'http://' or substr ( $url, 0, 8 ) == 'https://' ) {
 
-      $data = pad_curl_extra ( $url, $output );
+      $data = pad_curl_extra ( "$url$include", $output );
 
     } elseif ( pad_get_check ( $url ) )
 

@@ -26,7 +26,7 @@
     try {
  
       if ( $GLOBALS['pad_exit'] <> 1 )
-        pad_error_exit ( "pad_error_handler: " . $error );
+        pad_error_exit ( "pad_error_handler: $file:$line $error" );
 
       if ( error_reporting() & $type )
         return pad_error_go ( 'ERROR: ' . $error, $file, $line );

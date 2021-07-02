@@ -89,7 +89,7 @@
     if ( isset ( $GLOBALS ['pad_sql_connect'     ] ) ) pad_dump_object ('MySQL-App', $GLOBALS ['pad_sql_connect']      );
     if ( isset ( $GLOBALS ['pad_pad_sql_connect' ] ) ) pad_dump_object ('MySQL-PAD', $GLOBALS ['pad_pad_sql_connect']  );
 
-    $not = ['pad_base','pad_sql_connect','pad_pad_sql_connect','pad_headers','pad_data','pad_parameters', 'pad_errors', 'pad_result', 'pad_html', 'pad_output', 'pad_output_gz', 'pad_current', 'pad_lib_directory', 'pad_lib_iterator', 'pad_lib_one'];
+    $not = ['pad_base','pad_sql_connect','pad_pad_sql_connect','pad_headers','pad_data','pad_parameters', 'pad_errors', 'pad_result', 'pad_html', 'pad_output', 'pad_lib_result', 'pad_output_gz', 'pad_current', 'pad_lib_directory', 'pad_lib_iterator', 'pad_lib_one'];
 
     echo ( "\n<b>Pad variables</b>");
 

@@ -1,6 +1,6 @@
 <?php
 
-  if ( $pad_stop == '999' )
+  if ( $GLOBALS['pad_stop'] == '999' )
     pad_dump ("Internal error, pad_stop not set");
 
   pad_trace ("end/start", "end=" . $GLOBALS['pad_stop']);
