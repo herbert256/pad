@@ -103,6 +103,12 @@
 
       $id = $GLOBALS['PADREQID'] ?? uniqid();
 
+      if ( ! headers_sent () ) {
+        if ( in_array($GLOBALS['pad_error_server'], ['pad', 'stop', 'abort']) )
+          pad_header ('HTTP/1.0 500 Internal Server Error' );
+        pad_header ("X-PAD-ERROR: $id" );
+      }
+
       if ( $GLOBALS['pad_error_server'] and $GLOBALS['pad_error_action'] <> 'boot' ) 
         error_log ("[PAD] $id $file:$line $error", 4);   
       elseif ( $GLOBALS['pad_error_action'] == 'report' )
@@ -142,7 +148,7 @@
 
       } elseif ( $pad_error_action == 'abort') {
 
-        pad_error_exitit ();
+        pad_exit ();
 
       } elseif ( $pad_error_action == 'stop') {
 

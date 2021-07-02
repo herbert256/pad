@@ -36,7 +36,8 @@
         echo ( "    $file:$line - $function\n");
     }
 
-    pad_dump_array  ("Trace", $GLOBALS ['pad_trace_hist'] );
+    if ( count($GLOBALS ['pad_trace_hist']) )
+      pad_dump_array  ("Trace", $GLOBALS ['pad_trace_hist'] );
 
     if ( isset ( $GLOBALS ['pad_errors'] ) and is_array ( $GLOBALS ['pad_errors']) and count($GLOBALS ['pad_errors']) > 1 )
       pad_dump_array  ('Errors', $GLOBALS ['pad_errors'] );
