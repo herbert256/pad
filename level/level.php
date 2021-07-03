@@ -63,6 +63,9 @@
       return pad_ignore ();
   }
 
+  if ( isset($_REQUEST['pad_build_reference']) )
+    $pad_build_reference [$pad_tag_type] [$pad_tag] = 1;
+
   return include PAD_HOME . 'level/start.php';
 
 ?>

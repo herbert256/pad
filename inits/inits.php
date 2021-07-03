@@ -83,6 +83,9 @@
   if ( isset($_REQUEST['pad_include']) )
     $pad_build_mode= 'include';
 
+  if ( isset($_REQUEST['pad_build_reference']) )
+    $pad_build_reference = [];
+
   function pad_local () {
 
     if ( !  isset($GLOBALS['pad_local']) )

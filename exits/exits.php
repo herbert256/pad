@@ -34,6 +34,11 @@
   if ( count ($pad_close_tags) )
     include PAD_HOME . 'walk/close.php';
 
+  if ( isset($_REQUEST['pad_build_reference']) ) {
+    $pad_build_reference_file = PAD_APP . "pages/reference/DATA/$page.json";
+    $pad_build_reference_out  = json_encode ($pad_build_reference);
+    pad_forceFilePutContents ($pad_build_reference_file, $pad_build_reference_out );
+  }
 
   include PAD_HOME . 'exits/stop.php';
 
