@@ -13,11 +13,11 @@
 
     if ( $GLOBALS['pad_trace'] ) {
       pad_trace ('reference', $type);
-      pad_file_put_contents ( $GLOBALS['$pad_trace_dir_base'] . "reference/$type", $GLOBALS['pad_trc_cnt'] );
+      pad_file_put_contents ( $GLOBALS['$pad_trace_dir_base'] . "reference/$type");
     }
 
-    pad_file_put_contents ( "reference/types/$type/" . str_replace ('/','.',$ref), $GLOBALS['pad_trc_cnt'] );
-    pad_file_put_contents ( "reference/pages/$ref/$type", $GLOBALS['pad_trc_cnt'] );
+    pad_file_put_contents ( "reference/$type/" . str_replace ('/','.',$ref) );
+    pad_file_put_contents ( "reference/pages/$ref/$type" );
 
   }
 
