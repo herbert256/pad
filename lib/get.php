@@ -137,6 +137,9 @@
 
     $count = count ($parm);
 
+    if ( isset($_REQUEST['pad_build_reference']) )
+      pad_build_reference ("eval/get/$kind/$name");
+
     $get = include PAD_HOME . "eval/$kind.php";
 
     pad_trace ( "get/end", "$kind:$name:$value --> " . pad_make_content ( $get ) );

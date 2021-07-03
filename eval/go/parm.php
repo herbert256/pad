@@ -16,6 +16,9 @@
 
   $pad_parm_result = pad_field_tag ("$pad_parm_tag#$pad_parm_field#$pad_parm_parm");
 
+  if ( isset($_REQUEST['pad_build_reference']) )
+    pad_build_reference ("eval/go/parm/$pad_parm_tag/$pad_parm_field/$pad_parm_parm");
+
   pad_trace ("parm", "$pad_parm_tag#$pad_parm_field#$pad_parm_parm --> " . pad_info ( $pad_parm_result ) );
 
   if ( $pad_parm_result === PAD_NOT_FOUND )
