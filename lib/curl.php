@@ -9,6 +9,9 @@
 
     $input ['url'] = "$pad_host$pad_script?app=$app&page=$url&pad_include=1";
 
+    if ( isset($_REQUEST['pad_build_reference']) )
+      $input ['url'] .= '&pad_build_reference=1';
+
     $input ['cookies'] ['PADSESSID'] = $GLOBALS ['PADSESSID']; 
     $input ['cookies'] ['PADREQID']  = $GLOBALS ['PADREQID']; 
 

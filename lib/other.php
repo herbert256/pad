@@ -2,7 +2,12 @@
 
   function pad_build_reference ($type) {
 
-    $file = PAD_APPS . "pad/__DATA/reference/$type/" . str_replace ( '/', '.', $GLOBALS['page'] );
+    pad_build_reference_go ( PAD_APPS . "pad/__DATA/reference/types/$type/" . str_replace ( '/', '.', $GLOBALS['page'] ) );
+    pad_build_reference_go ( PAD_APPS . "pad/__DATA/reference/pages/" . $GLOBALS['page'] . "/$type"  );
+
+  }
+
+  function pad_build_reference_go ($file) {
 
     if ( file_exists($file) )
       return;
@@ -20,7 +25,7 @@
 
     if ( ! $count and $max ) {
       $count = $max - $min;
-      if ( $min)
+      if ( $min )
         $count++;
     }
 
