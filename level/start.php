@@ -3,6 +3,11 @@
   $pad_lvl++;
   $pad_lvl_cnt++;
 
+  if ( $pad_trace ) {
+    $pad_trace_dir_lvl = "$pad_trace_dir_base/levels/$pad_lvl_cnt.$pad_tag";
+    mkdir("$pad_trace_dir_lvl/fields", 0777, true);
+  }
+
   pad_trace ("level/start", "nr=$pad_lvl_cnt " . '{' . $pad_between . '}', TRUE);
 
   if ( isset ( $pad_current [$pad_lvl] ) )
@@ -43,7 +48,10 @@
   $pad_parameters [$pad_lvl] ['between']          = $pad_between;
   $pad_parameters [$pad_lvl] ['parms_type']       = $pad_parms_type;
   $pad_parameters [$pad_lvl] ['tag_count']        = 0;
- 
+
+  if ( $pad_trace )
+    $pad_parameters [$pad_lvl] ['trace_dir']      = $pad_trace_dir_lvl ;
+
   $pad_walk = 'start';
   $pad_tag_result = include PAD_HOME . 'level/tag.php';
 
@@ -60,6 +68,11 @@
     include PAD_HOME . 'options/parent.php';
   elseif ( $pad_pair === FALSE and $pad_tag_type == 'data' and trim($pad_base [$pad_lvl]) === '' and ! isset ( $pad_parms_tag ['print'] ) )
     include PAD_HOME . 'options/parent.php';
+
+  if ( $pad_trace ) {
+    file_put_contents ("$pad_trace_dir_lvl/parameters.json", pad_json ($pad_parameters [$pad_lvl] ) );
+    file_put_contents ("$pad_trace_dir_lvl/data.json",       pad_json ($pad_data[$pad_lvl]        ) );
+  }
 
   if ( count ($pad_data[$pad_lvl] ) )
     include PAD_HOME . 'occurrence/start.php';

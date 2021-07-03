@@ -29,13 +29,17 @@
 
   include PAD_HOME . 'level/parms1.php';
 
-  pad_trace ('tag/inits', "tag=$pad_tag parms=$pad_parms pair=$pad_pair");
-  
-  if     ( $pad_first == '!'             ) return pad_html ( include PAD_HOME . 'level/var.php' );
-  elseif ( $pad_first == '$'             ) return pad_html ( include PAD_HOME . 'level/var.php' );
-  elseif ( ! ctype_alpha ( $pad_first )  ) return pad_ignore ();
-  elseif ( ! pad_valid_name ( $pad_tag ) ) return pad_ignore ();
+  if     ( $pad_first == '!' ) return pad_html ( include PAD_HOME . 'level/var.php' );
+  elseif ( $pad_first == '$' ) return pad_html ( include PAD_HOME . 'level/var.php' );
 
+  #if ( $pad_trace and isset ($GLOBALS['pad_trace_dir_occ']) )
+  #  unset ($GLOBALS['pad_trace_dir_occ']);
+
+  pad_trace ('tag/inits', "tag=$pad_tag parms=$pad_parms pair=$pad_pair");
+
+  if     ( ! ctype_alpha ( $pad_first )  ) return pad_ignore ('ctype_alpha');
+  elseif ( ! pad_valid_name ( $pad_tag ) ) return pad_ignore ('pad_valid_name');
+  
   $pad_ns_pos = strpos($pad_tag, ':');
 
   if ( $pad_ns_pos ) {
@@ -44,14 +48,14 @@
     $pad_tag      = substr ($pad_tag, $pad_ns_pos+1);
 
     if ( ! pad_file_exists ( PAD_HOME . "types/$pad_tag_type.php" ) ) 
-      return pad_ignore ();
+      return pad_ignore ('tag_type_not_exists');
     
   } else {
 
     $pad_tag_type = pad_get_type_lvl ( $pad_tag );
 
     if ( $pad_tag_type === FALSE )
-      return pad_ignore ();
+      return pad_ignore ('tag_type_false');
 
   }
 
@@ -60,7 +64,7 @@
   if ( $pad_pair ) {
     $pad_pair_result = include PAD_HOME . 'level/pair.php';
     if ( $pad_pair_result === FALSE ) 
-      return pad_ignore ();
+      return pad_ignore ('pair_result_is_false');
   }
 
   if ( isset($_REQUEST['pad_build_reference']) ) {

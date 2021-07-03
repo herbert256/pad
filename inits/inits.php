@@ -6,8 +6,8 @@
   $pad_exit        = 1;
   $pad_time        = $_SERVER['REQUEST_TIME'];
   $pad_lvl         = 1;  
-  $pad_occur   [0] = $pad_eval_cnt   = $pad_fld_cnt = $pad_lvl_cnt = $pad_occur_cnt = 0;
-  $pad_current [0] = $pad_close_tags = $pad_timings = $pad_timings_start = [];
+  $pad_occur   [0] = $pad_trc_cnt = $pad_eval_cnt   = $pad_fld_cnt = $pad_lvl_cnt = $pad_occur_cnt = 0;
+  $pad_current [0] = $pad_trace_hist = $pad_close_tags = $pad_timings = $pad_timings_start = $pad_opts_trace = [];
 
   ob_start();
 

@@ -1,5 +1,12 @@
 <?php
 
+  function pad_json ($data) {
+
+    return json_encode ( $data, JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR );
+
+  }
+
+
   function pad_build_reference ($type) {
 
     pad_build_reference_go ( PAD_APPS . "pad/__DATA/reference/types/$type/" . str_replace ( '/', '.', $GLOBALS['page'] ) );
@@ -93,6 +100,16 @@
     pad_dump_vars ($info);
 
     pad_file_put_contents ( $file, ob_get_clean() );
+        
+  }
+
+  function pad_get_info ($info='') {
+
+    ob_start();
+
+    pad_dump_vars ($info);
+
+    return ob_get_clean();
         
   }
   
@@ -418,7 +435,19 @@
     
     $id = pad_id ();
   
-    $track = [
+    $track = pad_track ($pad_stop);
+    $json  = json_encode($track, JSON_PARTIAL_OUTPUT_ON_ERROR);
+    
+    pad_file_put_contents ( "track/$id.json", $json, 1);
+      
+  }
+
+
+  function pad_track ($pad_stop) {
+    
+    $id = pad_id ();
+  
+    return [
         'session'   => $GLOBALS ['PADSESSID'] ?? '',
         'request'   => $GLOBALS ['PADREQID'] ?? '',
         'reference' => $GLOBALS ['PADREFID '] ?? '',
@@ -435,13 +464,8 @@
         'agent'     => $_SERVER ['HTTP_USER_AGENT'] ?? '',
         'cookies  ' => $_SERVER ['HTTP_COOKIE']     ?? ''
       ];
-
-    $json = json_encode($track, JSON_PARTIAL_OUTPUT_ON_ERROR);
-    
-    pad_file_put_contents ( "track/$id.json", $json, 1);
       
   }
-
 
   function pad_close_session () {
 
@@ -881,14 +905,14 @@
     
   }
 
-  function pad_ignore () {
+  function pad_ignore ($info) {
 
     if ( $GLOBALS['pad_pair'] ) 
       $tmp = $GLOBALS['pad_between'];
     else
       $tmp = $GLOBALS['pad_between'] . '/' ;
       
-    pad_trace ( 'ignore', '{' . $tmp . '}' );
+    pad_trace ( 'ignore', $info . ' {' . $tmp . '}' );
 
     pad_html  ( '&open;' . $tmp . '&close;' );
 
@@ -1113,7 +1137,10 @@
 
   function pad_var_opts ($val, $opts) {
   
-    global $pad_trace, $pad_fld_cnt;
+    global $pad_opts_trace, $pad_trace, $pad_fld_cnt;
+
+    if ($pad_trace)
+      $pad_opts_trace = [];
 
     foreach($opts as $opt) {
         
@@ -1131,8 +1158,10 @@
       if ( $prepend )                 $val = (string) $now . $val;
       if ( ! $append and ! $prepend ) $val = (string) $now;
 
-      if ($pad_trace and $val <> $save)
+      if ($pad_trace and $val <> $save) {
+        $pad_opts_trace [$opt] = $val;
         pad_trace ("field/option", "nr=$pad_fld_cnt opt=$opt before=$save after=$val");
+      }
 
     }
 

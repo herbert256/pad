@@ -3,6 +3,8 @@
   if ( count ($pad_data[$pad_lvl] ) )
     include PAD_HOME . 'occurrence/end.php';
 
+  unset ($pad_trace_dir_occ);
+
   foreach ( $pad_parameters [$pad_lvl] as $pad_k => $pad_v )
     $GLOBALS['pad_'.$pad_k] = $pad_v;
 
@@ -33,7 +35,19 @@
 
   pad_trace ("level/end", "nr=$pad_lvl_cnt");
 
+  if ( $pad_trace )
+    file_put_contents ("$pad_trace_dir_lvl/result.html", $pad_result[$pad_lvl] );
+
   $pad_lvl--;
+
+  if ( $pad_trace ) {
+    if ($pad_lvl) {
+      $pad_trace_dir_lvl = $pad_parameters [$pad_lvl] ['trace_dir'];
+      $pad_trace_dir_occ = $pad_parameters [$pad_lvl] ['occur_dir'];
+    } else {
+      $pad_trace_dir_lvl = "$pad_trace_dir_base/levels/0.pad";
+    }
+  }
 
   if ($pad_lvl > 1)
     foreach ( $pad_parameters [$pad_lvl] as $pad_k => $pad_v )

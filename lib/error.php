@@ -14,7 +14,7 @@
     
     } catch (Exception $e) {
 
-      pad_error_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
+      pad_error_error ( "pad_error: " . $e->getMessage(), $e->getFile(), $e->getLine() );
 
     }
  
@@ -33,7 +33,7 @@
     
     } catch (Exception $e) {
 
-      pad_error_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
+      pad_error_error ( "pad_error_handler: " . $e->getMessage(), $e->getFile(), $e->getLine() );
 
     }
 
@@ -51,7 +51,7 @@
     
     } catch (Exception $e) {
 
-      pad_error_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
+      pad_error_error ( "pad_error_exception: " . $e->getMessage(), $e->getFile(), $e->getLine() );
 
     }
 
@@ -72,11 +72,11 @@
       elseif ( $GLOBALS['pad_exit'] == 1 )
         pad_error_go ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
       else
-        pad_error_error ( $error['message'], $error['file'], $error['line'] );
+        pad_error_error ( "pad_shutdown-1: " . $error['message'], $error['file'], $error['line'] );
     
     } catch (Exception $e) {
 
-      pad_error_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
+      pad_error_error ( "pad_shutdown-2: " . $e->getMessage(), $e->getFile(), $e->getLine() );
 
     }
 
@@ -93,7 +93,14 @@
       if ( $GLOBALS['pad_exit'] == 1 ) 
         $GLOBALS['pad_exit'] = 2;
       else
-        pad_error_error ( $error, $file, $line );
+        pad_error_error ( "pad_error_go-1: " . $error, $file, $line );
+
+      if ( $GLOBALS['pad_trace'] ) {
+        $dir = $GLOBALS['$pad_trace_dir_base'] . "/errors";
+        if ( ! is_dir($dir) )
+          mkdir ($dir, 0777, true);
+        file_put_contents ("$dir/" . uniqid() . ".html", pad_get_info ("ERROR: $file:$line $error")  );
+      }
 
       $error = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '.', $error);
       if ( strlen($error) > 255 )
@@ -121,7 +128,7 @@
 
     } catch (Exception $e) {
 
-      pad_error_error ( $e->getMessage(), $e->getFile(), $e->getLine() );
+      pad_error_error ( "pad_error-go-2: " . $e->getMessage(), $e->getFile(), $e->getLine() );
 
     }
 

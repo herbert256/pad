@@ -1,14 +1,23 @@
 <?php
 
-  $pad_trace_log     = "trace/$app/$page/$PADREQID.txt";
-  $pad_trace_hist    = [];
-  $pad_trc_cnt       = 0;
+  if ( isset($_REQUEST['pad_trace']) )
+    $pad_trace = TRUE;
+
+  if ( ! $pad_trace )
+    return;
+
+  $pad_trace_dir_base = PAD_DATA . "trace/$app/$page/$PADREQID";
+  $pad_trace_dir_lvl  = "$pad_trace_dir_base/levels/0.pad";
+    
+  mkdir ("$pad_trace_dir_lvl/fields", 0777, true);
+
+  file_put_contents ($pad_trace_dir_base . "/start.html", pad_get_info ('TRACE - start') );
 
   pad_trace ("pad/start", "app=$app page=$page session=$PADSESSID request=$PADREQID");
 
   function pad_trace ($type, $parm='') {
 
-    global $pad_trace, $pad_trc_cnt, $pad_trace_log, $pad_trace_hist;
+    global $pad_trace, $pad_trc_cnt, $pad_trace_hist, $pad_trace_dir_base;
     global $pad_lvl, $PADREQID, $pad_lvl_cnt, $pad_trc_cnt, $pad_occur_cnt, $pad_occur;
 
     if ( ! $pad_trace )
@@ -41,8 +50,14 @@
   
     $id = pad_id ();
      
-    pad_file_put_contents ( "trace/$id.txt", $lineL, 1);
+    file_put_contents ( "$pad_trace_dir_base/trace.txt", $lineL . "\n", FILE_APPEND );
+    
+    if ( isset ($GLOBALS['pad_trace_dir_lvl']) )
+      file_put_contents ( $GLOBALS['pad_trace_dir_lvl'] . "/trace.txt",  $lineL . "\n", FILE_APPEND );
+ 
+    if ( isset ($GLOBALS['pad_trace_dir_occ']) )
+      file_put_contents ( $GLOBALS['pad_trace_dir_occ'] . "/trace.txt",  $lineL . "\n", FILE_APPEND );
 
-  }  
+ }  
       
 ?>

@@ -34,6 +34,11 @@
     try {
 
       pad_eval_parse ( $pad_eval_result, $eval, $myself);
+
+      if ( $pad_trace ) {
+        $GLOBALS ['pad_trace_eval_parsed'] = $pad_eval_result;
+        $GLOBALS ['pad_trace_eval_myself'] = $myself;
+      }
       
       if ( ! pad_eval_after ( $pad_eval_result, $eval ) )
         return $pad_eval_start;
@@ -71,7 +76,7 @@
 
   function pad_eval_error ($txt) {
 
-    global $pad_trace, $pad_eval_cnt, $pad_eval_start, $pad_eval_result;
+    global $pad_trace, $pad_eval_cnt, $pad_eval_start, $pad_eval_result, $app, $page, $PADREQID;
 
     $return = '';
     foreach ($pad_eval_result as $k => $one)
@@ -83,8 +88,33 @@
 
     pad_trace ("eval/error", "nr=$pad_eval_cnt error=$txt result=$return");
 
+    if ( $pad_trace ) {
+
+      $json = pad_json ( [
+        'eval'    => $pad_eval_start ?? '',
+        'myself'  => $GLOBALS ['pad_trace_eval_myself'] ?? '',
+        'error'   => $text ?? '',
+        'nummer'  => $pad_eval_cnt ?? '',
+        'parsed'  => $GLOBALS ['pad_trace_eval_parsed'] ?? '',
+        'result'  => $pad_eval_result  ?? '',
+        'app'     => $app  ?? '',
+        'page'    => $page  ?? '',
+        'request' => $PADREQID ?? ''        
+      ] );
+
+      $dir = $GLOBALS['pad_trace_dir_base'] . "/errors/eval/";
+      if ( ! is_dir($dir) )
+        mkdir ($dir, 0777, true);
+      file_put_contents ("$dir/$pad_eval_cnt.json", $json );
+
+      $dir = PAD_DATA . "errors/eval/$app/$page";
+      if ( ! is_dir($dir) )
+        mkdir ($dir, 0777, true);
+      file_put_contents ( "$dir/$pad_eval_cnt.json", $json );
+
+    }
+
     return $pad_eval_start;
-    return $txt;
 
   }
 
