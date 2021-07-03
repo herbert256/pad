@@ -34,9 +34,9 @@
   if ( $GLOBALS['pad_trace'] ) {
     $pad_trace_dir_lvl = $GLOBALS['pad_trace_dir_lvl'] = $GLOBALS['pad_trace_dir_base'] . '/levels/0.pad';
     pad_trace ("pad/end", "stop=" . $pad_stop .  " len=" . $pad_len);
-    file_put_contents ($GLOBALS['pad_trace_dir_base'] . "/track.html",  pad_json ( pad_track ($GLOBALS['pad_stop']) ) );
-    file_put_contents ($GLOBALS['pad_trace_dir_base'] . "/output.html", $GLOBALS['pad_output']                        );
-    file_put_contents ($GLOBALS['pad_trace_dir_base'] . "/end.html",    pad_get_info ('TRACE - end' )                 );
+    pad_file_put_contents ($GLOBALS['pad_trace_dir_base'] . "/track.html",  pad_json ( pad_track ($GLOBALS['pad_stop']) ) );
+    pad_file_put_contents ($GLOBALS['pad_trace_dir_base'] . "/output.html", $GLOBALS['pad_output']                        );
+    pad_file_put_contents ($GLOBALS['pad_trace_dir_base'] . "/end.html",    pad_get_info ('TRACE - end' )                 );
   }
 
   pad_exit ();

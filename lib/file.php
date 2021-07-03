@@ -68,7 +68,7 @@
   }
 
 
-  function pad_file_put_contents ($file, $data, $append=0) {
+  function pad_file_put_contents ($file, $data='', $append=0) {
 
     $file = PAD_DATA . $file;
 
@@ -91,10 +91,12 @@
       pad_timing_end ('write');
     }
 
-    pad_timing_start ('write');
-    if ($append) file_put_contents ($file, "$data\n", LOCK_EX | FILE_APPEND);
-    else         file_put_contents ($file, $data, LOCK_EX);
-    pad_timing_end ('write');
+    if ($data) {
+      pad_timing_start ('write');
+      if ($append) file_put_contents ($file, "$data\n", LOCK_EX | FILE_APPEND);
+      else         file_put_contents ($file, $data, LOCK_EX);
+      pad_timing_end ('write');
+    }
     
   }
 

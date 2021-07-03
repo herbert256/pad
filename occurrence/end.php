@@ -11,7 +11,7 @@
 
   if ($pad_trace) {
     pad_trace ("occur/end", "nr=$pad_occur_cnt html=" . $pad_html [$pad_lvl]);
-    file_put_contents ("$pad_trace_dir_occ/result.html", $pad_html [$pad_lvl] );
+    pad_file_put_contents ("$pad_trace_dir_occ/result.html", $pad_html [$pad_lvl] );
   }
 
   $pad_result [$pad_lvl] .= $pad_html [$pad_lvl];

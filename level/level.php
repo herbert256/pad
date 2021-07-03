@@ -68,8 +68,8 @@
   }
 
   if ( isset($_REQUEST['pad_build_reference']) ) {
-    pad_build_reference ("tag/types/$pad_tag_type/$pad_tag");
-    pad_build_reference ("tag/tags/$pad_tag/$pad_tag_type");
+    pad_build_reference ("types/$pad_tag_type/$pad_tag");
+    pad_build_reference ("tags/$pad_tag/$pad_tag_type");
   }
 
   return include PAD_HOME . 'level/start.php';

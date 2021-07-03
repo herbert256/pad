@@ -95,13 +95,12 @@
       else
         pad_error_error ( "pad_error_go-1: " . $error, $file, $line );
 
-      if ( $GLOBALS['pad_trace'] ) {
-        $dir = $GLOBALS['$pad_trace_dir_base'] . "/errors";
-        if ( ! is_dir($dir) )
-          mkdir ($dir, 0777, true);
-        file_put_contents ("$dir/" . uniqid() . ".html", pad_get_info ("ERROR: $file:$line $error")  );
-      }
-
+      if ( $GLOBALS['pad_trace'] )
+        pad_file_put_contents (
+          $GLOBALS['$pad_trace_dir_base'] . "/errors/" . uniqid() . ".html",
+          pad_get_info ("ERROR: $file:$line $error")  
+        );
+  
       $error = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '.', $error);
       if ( strlen($error) > 255 )
         $error = substr($error, 0, 255);

@@ -9,7 +9,6 @@
   if ( $pad_trace ) {
     $pad_trace_dir_occ = "$pad_trace_dir_lvl/occurrences/$pad_occur_cnt";
     $pad_parameters [$pad_lvl] ['occur_dir'] = $pad_trace_dir_occ ;
-    mkdir("$pad_trace_dir_occ/fields", 0777, true);
   }
 
   $pad_html [$pad_lvl] = $pad_base[$pad_lvl];

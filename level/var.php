@@ -73,11 +73,11 @@
         $pad_trace_data ['result'] = $pad_val;
 
     if ( isset ($pad_trace_dir_occ) )
-      file_put_contents ("$pad_trace_dir_occ/fields/$pad_fld_cnt.$pad_fld.json", pad_json ($pad_trace_data ) );
+      pad_file_put_contents ("$pad_trace_dir_occ/fields/$pad_fld_cnt.$pad_fld.json", pad_json ($pad_trace_data ) );
     elseif ( isset ($pad_trace_dir_lvl) )
-      file_put_contents ("$pad_trace_dir_lvl/fields/$pad_fld_cnt.$pad_fld.json", pad_json ($pad_trace_data ) );
+      pad_file_put_contents ("$pad_trace_dir_lvl/fields/$pad_fld_cnt.$pad_fld.json", pad_json ($pad_trace_data ) );
     else      
-      file_put_contents ("$pad_trace_dir_base/$pad_fld_cnt.$pad_fld.json", pad_json ($pad_trace_data ) );
+      pad_file_put_contents ("$pad_trace_dir_base/$pad_fld_cnt.$pad_fld.json", pad_json ($pad_trace_data ) );
 
   }
 

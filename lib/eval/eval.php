@@ -96,21 +96,14 @@
         'error'   => $text ?? '',
         'nummer'  => $pad_eval_cnt ?? '',
         'parsed'  => $GLOBALS ['pad_trace_eval_parsed'] ?? '',
-        'result'  => $pad_eval_result  ?? '',
-        'app'     => $app  ?? '',
-        'page'    => $page  ?? '',
+        'result'  => $pad_eval_result ?? '',
+        'app'     => $app ?? '',
+        'page'    => $page ?? '',
         'request' => $PADREQID ?? ''        
       ] );
 
-      $dir = $GLOBALS['pad_trace_dir_base'] . "/errors/eval/";
-      if ( ! is_dir($dir) )
-        mkdir ($dir, 0777, true);
-      file_put_contents ("$dir/$pad_eval_cnt.json", $json );
-
-      $dir = PAD_DATA . "errors/eval/$app/$page";
-      if ( ! is_dir($dir) )
-        mkdir ($dir, 0777, true);
-      file_put_contents ( "$dir/$pad_eval_cnt.json", $json );
+      pad_file_put_contents ( $GLOBALS['pad_trace_dir_base'] . "/errors/eval/$pad_eval_cnt.json", $json );
+      pad_file_put_contents ( "errors/eval/$app/$page/$pad_eval_cnt.json", $json );
 
     }
 

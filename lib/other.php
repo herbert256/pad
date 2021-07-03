@@ -9,24 +9,18 @@
 
   function pad_build_reference ($type) {
 
-    pad_build_reference_go ( PAD_APPS . "pad/__DATA/reference/types/$type/" . str_replace ( '/', '.', $GLOBALS['page'] ) );
-    pad_build_reference_go ( PAD_APPS . "pad/__DATA/reference/pages/" . $GLOBALS['page'] . "/$type"  );
+    $ref = $GLOBALS['app'] . '/' . $GLOBALS['page'];
+
+    if ( $GLOBALS['pad_trace'] ) {
+      pad_trace ('reference', $type);
+      pad_file_put_contents ( $GLOBALS['$pad_trace_dir_base'] . "reference/$type", $GLOBALS['pad_trc_cnt'] );
+    }
+
+    pad_file_put_contents ( "reference/types/$type/" . str_replace ('/','.',$ref), $GLOBALS['pad_trc_cnt'] );
+    pad_file_put_contents ( "reference/pages/$ref/$type", $GLOBALS['pad_trc_cnt'] );
 
   }
 
-  function pad_build_reference_go ($file) {
-
-    if ( file_exists($file) )
-      return;
-
-    $dir = dirname($file);
-
-    if ( ! file_exists($dir) )
-      mkdir($dir, 0777, true);
-
-    touch ($file);
-
-  }
 
   function pad_min_max_count (&$min, &$max, &$count) {
 
