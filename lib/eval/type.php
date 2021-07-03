@@ -29,6 +29,9 @@
     $name  = $result [$type] [3];
     $count = count($parm);
     
+    if ( isset($_REQUEST['pad_build_reference']) )
+      pad_build_reference ("eval/$kind/$name");
+
     $value = include PAD_HOME . "eval/$kind.php" ;
       
     if ( is_array($value) or is_object($value) or is_resource($value) ) {

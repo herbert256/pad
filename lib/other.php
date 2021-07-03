@@ -1,5 +1,21 @@
 <?php
 
+  function pad_build_reference ($type) {
+
+    $file = PAD_APPS . "pad/__DATA/reference/$type/" . str_replace ( '/', '.', $GLOBALS['page'] );
+
+    if ( file_exists($file) )
+      return;
+
+    $dir = dirname($file);
+
+    if ( ! file_exists($dir) )
+      mkdir($dir, 0777, true);
+
+    touch ($file);
+
+  }
+
   function pad_min_max_count (&$min, &$max, &$count) {
 
     if ( ! $count and $max ) {
