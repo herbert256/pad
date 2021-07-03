@@ -29,7 +29,7 @@
     $name  = $result [$type] [3];
     $count = count($parm);
     
-    if ( isset($_REQUEST['pad_build_reference']) )
+    if ( $GLOBALS['pad_trace'] )
       pad_build_reference ("eval/type/$kind/$name");
 
     $value = include PAD_HOME . "eval/$kind.php" ;

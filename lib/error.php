@@ -85,6 +85,8 @@
 
   function pad_error_go ($error, $file, $line) {
 
+    global $app, $page;
+
     if ( $GLOBALS['pad_exit'] == 9 )
       pad_error_exit ( "pad_error_go: " . $error );
 
@@ -97,7 +99,7 @@
 
       if ( $GLOBALS['pad_trace'] )
         pad_file_put_contents (
-          $GLOBALS['$pad_trace_dir_base'] . "/errors/" . uniqid() . ".html",
+          $GLOBALS['pad_trace_dir_base'] . "/errors/" . uniqid() . ".html",
           pad_get_info ("ERROR: $file:$line $error")  
         );
   
@@ -109,11 +111,8 @@
 
       $id = $GLOBALS['PADREQID'] ?? uniqid();
 
-      if ( ! headers_sent () ) {
-        if ( in_array($GLOBALS['pad_error_server'], ['pad', 'stop', 'abort']) )
-          pad_header ('HTTP/1.0 500 Internal Server Error' );
-        pad_header ("X-PAD-ERROR: $id" );
-      }
+      if ( ! headers_sent () and in_array($GLOBALS['pad_error_action'], ['pad', 'stop', 'abort']) )
+        pad_header ('HTTP/1.0 500 Internal Server Error' );
 
       if ( $GLOBALS['pad_error_server'] and $GLOBALS['pad_error_action'] <> 'boot' ) 
         error_log ("[PAD] $id $file:$line $error", 4);   
@@ -121,7 +120,7 @@
         error_log ("[PAD] $id $file:$line $error", 4);   
 
       if ( $GLOBALS['pad_error_dump'] or $GLOBALS['pad_error_action'] == 'report' ) 
-        pad_track_vars ("errors/$id.html", "$file:$line $error");
+        pad_track_vars ("errors/$app/$page/$id/" . uniqid() . "html", "$file:$line $error");
 
       return pad_error_action ( $error, $file, $line );
 

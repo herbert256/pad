@@ -86,9 +86,9 @@
       else
         $return .= $one[0] . ' ';   
 
-    pad_trace ("eval/error", "nr=$pad_eval_cnt error=$txt result=$return");
-
     if ( $pad_trace ) {
+
+      pad_trace ("eval/error", "nr=$pad_eval_cnt error=$txt result=$return");
 
       $json = pad_json ( [
         'eval'    => $pad_eval_start ?? '',
@@ -103,7 +103,7 @@
       ] );
 
       pad_file_put_contents ( $GLOBALS['pad_trace_dir_base'] . "/errors/eval/$pad_eval_cnt.json", $json );
-      pad_file_put_contents ( "errors/eval/$app/$page/$pad_eval_cnt.json", $json );
+      pad_file_put_contents ( "errors/$app/$page/$PADREQID/eval.$pad_eval_cnt.json", $json );
 
     }
 

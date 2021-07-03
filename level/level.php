@@ -67,7 +67,7 @@
       return pad_ignore ('pair_result_is_false');
   }
 
-  if ( isset($_REQUEST['pad_build_reference']) ) {
+  if ( $GLOBALS['pad_trace'] ) {
     pad_build_reference ("types/$pad_tag_type/$pad_tag");
     pad_build_reference ("tags/$pad_tag/$pad_tag_type");
   }

@@ -9,13 +9,13 @@
 
   function pad_build_reference ($type) {
 
+    $type = str_replace('//', '', $type);
+
     $ref = $GLOBALS['app'] . '/' . $GLOBALS['page'];
 
-    if ( $GLOBALS['pad_trace'] ) {
-      pad_trace ('reference', $type);
-      pad_file_put_contents ( $GLOBALS['$pad_trace_dir_base'] . "reference/$type");
-    }
-
+    pad_trace ('reference', $type);
+    
+    pad_file_put_contents ( $GLOBALS['pad_trace_dir_base'] . "/reference/$type");
     pad_file_put_contents ( "reference/$type/" . str_replace ('/','.',$ref) );
     pad_file_put_contents ( "reference/pages/$ref/$type" );
 
@@ -310,7 +310,10 @@
 
   function pad_valid_name ($name) {
  
-    if ( ! preg_match('/^[A-Za-z0-9_:#]+$/', $name ) ) return FALSE;
+    if ( ! preg_match('/^[A-Za-z0-9_:#-]+$/', $name ) ) return FALSE;
+
+    if ( substr($name, 0, 1) == '-' or substr($name, 0, 1) == '_' ) return true;
+
     if ( ! ctype_alpha(substr($name, 0, 1))          ) return FALSE;
 
     return TRUE;

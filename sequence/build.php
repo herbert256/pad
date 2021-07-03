@@ -28,7 +28,7 @@
   else
     $GLOBALS ["pad_seq_$pad_tag"] = TRUE;
 
-  if ( isset($_REQUEST['pad_build_reference']) )
+  if ( $GLOBALS['pad_trace'] )
     pad_build_reference ("sequence/$pad_tag");
 
   $pad_seq_row   = (!$pad_seq_row)   ? [] : pad_explode ($pad_seq_row,   ';'); 

@@ -23,7 +23,7 @@
           $pad_parms_tag [$pad_w[0]] = TRUE;
         else
           $pad_parms_tag [$pad_w[0]] = pad_eval ( $pad_w[1] );
-        if ( isset($_REQUEST['pad_build_reference']) )
+        if ( $GLOBALS['pad_trace'] )
           pad_build_reference ("parm/".$pad_w[0]);
       } else
         $pad_parms_val [] = pad_eval ( $pad_v );

@@ -19,7 +19,7 @@
 
   function pad_file_valid_name ( $file ) {
 
-    if ( ! preg_match ('/^[A-Za-z0-9\.\/_]+$/', $file) ) return FALSE;
+    if ( ! preg_match ('/^[A-Za-z0-9\.\/_#:-]+$/', $file) ) return FALSE;
     if ( substr($file,0,1) <> '/' )                      return FALSE;
     if ( strpos($file, '//') !== FALSE )                 return FALSE;
     if ( strpos($file, '..') !== FALSE )                 return FALSE;
@@ -69,6 +69,9 @@
 
 
   function pad_file_put_contents ($file, $data='', $append=0) {
+
+    if ( substr($file, 0, 1) == '/')
+      $file = substr($file, 1);
 
     $file = PAD_DATA . $file;
 

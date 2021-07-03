@@ -31,7 +31,7 @@
 
     $pad_idx = pad_idx ($tag);
 
-    if ( isset($_REQUEST['pad_build_reference']) )
+    if ( $GLOBALS['pad_trace'] )
       pad_build_reference ("field/tag/$tag/$field");
 
     if ( pad_file_exists ( PAD_HOME . "tag/".$field.".php" ) )
@@ -54,7 +54,7 @@
 
     list ( $prefix, $field ) = explode (':', $field, 2);
 
-    if ( isset($_REQUEST['pad_build_reference']) )
+    if ( $GLOBALS['pad_trace'] )
       pad_build_reference ("field/prefix/$prefix/$field");   
 
     if ( $prefix == 'PHP' or $prefix === 1 or $prefix === '1' )

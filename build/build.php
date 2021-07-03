@@ -21,7 +21,7 @@
 
   $pad_html [0] = '';
 
-  if ( isset($_REQUEST['pad_build_reference']) )
+  if ( $GLOBALS['pad_trace'] )
     pad_build_reference ("build/$pad_build_mode/$pad_build_merge");
 
   include PAD_HOME . "build/$pad_build_mode.php";

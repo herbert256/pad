@@ -22,7 +22,7 @@
         pad_trace ('option', "$pad_options -> $pad_option_name");
         $pad_options_done [$pad_option_name] = TRUE;
         include PAD_HOME . "options/$pad_option_name.php" ;
-        if ( isset($_REQUEST['pad_build_reference']) ) {
+        if ( $GLOBALS['pad_trace'] ) {
           pad_build_reference ("option/events/$pad_options/$pad_option_name");
           pad_build_reference ("option/options/$pad_option_name/$pad_options");
         }
