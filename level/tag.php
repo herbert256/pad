@@ -6,7 +6,7 @@
   $pad_data [$pad_lvl] [1] = [];
 
   if ( $pad_lvl == 1 )
-    $pad_data [$pad_lvl] [1] ['*dummy*'] = '*dummy*';
+    $pad_data [1] [1] = [];
 
  if ( pad_tag_parm ('content') ) 
     $pad_content .= include PAD_HOME . "options/content.php";    

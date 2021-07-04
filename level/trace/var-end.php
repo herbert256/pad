@@ -16,6 +16,6 @@
     if ( $pad_val <> $pad_val_base )
       $pad_trace_data ['result'] = $pad_val;
 
-  pad_file_put_contents ("$pad_trace_dir_occ/field.$pad_fld_cnt.$pad_fld_trace.json", pad_json ($pad_trace_data ) );
+  pad_file_put_contents ("$pad_trace_dir_occ/fields/$pad_fld_cnt.$pad_fld_trace.json", pad_json ($pad_trace_data ) );
 
 ?>
