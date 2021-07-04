@@ -93,7 +93,7 @@
       $json = pad_json ( [
         'eval'    => $pad_eval_start ?? '',
         'myself'  => $GLOBALS ['pad_trace_eval_myself'] ?? '',
-        'error'   => $text ?? '',
+        'error'   => $txt ?? '',
         'nummer'  => $pad_eval_cnt ?? '',
         'parsed'  => $GLOBALS ['pad_trace_eval_parsed'] ?? '',
         'result'  => $pad_eval_result ?? '',
@@ -103,7 +103,7 @@
       ] );
 
       pad_file_put_contents ( $GLOBALS['pad_trace_dir_base'] . "/errors/eval/$pad_eval_cnt.json", $json );
-      pad_file_put_contents ( "errors/$app/$page/$PADREQID/eval.$pad_eval_cnt.json", $json );
+      pad_file_put_contents ( "errors/eval/$app/$page/$PADREQID/$pad_eval_cnt.json", $json );
 
     }
 

@@ -31,9 +31,6 @@
 
     $pad_idx = pad_idx ($tag);
 
-    if ( $GLOBALS['pad_trace'] )
-      pad_build_reference ("field/tag/$tag/$field");
-
     if ( pad_file_exists ( PAD_HOME . "tag/".$field.".php" ) )
       return include PAD_HOME . "tag/$field.php";
 
@@ -53,9 +50,6 @@
     global $pad_lvl, $pad_db_lvl, $pad_current;
 
     list ( $prefix, $field ) = explode (':', $field, 2);
-
-    if ( $GLOBALS['pad_trace'] )
-      pad_build_reference ("field/prefix/$prefix/$field");   
 
     if ( $prefix == 'PHP' or $prefix === 1 or $prefix === '1' )
       return pad_field_search ($GLOBALS, $field, $type);

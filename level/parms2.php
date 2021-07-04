@@ -39,34 +39,6 @@
   $pad_parameters [$pad_lvl] ['parms_tag'] = $pad_parms_tag;  
   $pad_parameters [$pad_lvl] ['parms_val'] = $pad_parms_val;
 
-  if ( $pad_trace ) {
-
-    if ( count($pad_parms_org) )
-      pad_trace ("parms/org", $pad_parms, TRUE);
-
-    if ( count($pad_parms_val) ) {
-      $pad_trace_x = "";
-      foreach ( $pad_parms_val as $pad_k => $pad_v )
-        $pad_trace_x .= "$pad_k=$pad_v "; 
-      pad_trace ("parms/val", $pad_trace_x, TRUE);
-    }
-    
-    if ( count($pad_parms_tag) ) {
-      $pad_trace_x = "";
-      foreach ( $pad_parms_tag as $pad_k => $pad_v )
-        $pad_trace_x .= "$pad_k=$pad_v "; 
-      pad_trace ("parms/tag", $pad_trace_x, TRUE);
-    }
-
-    if ( isset($pad_set_set[$pad_lvl]) and count($pad_set_set[$pad_lvl]) ) {
-      $pad_trace_x = "";
-      foreach ( $pad_set_set[$pad_lvl] as $pad_k => $pad_v )
-        $pad_trace_x .= "$pad_k=$pad_v "; 
-      pad_trace ("parms/set", $pad_trace_x, TRUE);
-    }
- 
-  }    
-
   include PAD_HOME . 'level/check.php';
   include PAD_HOME . 'level/demand.php';
 

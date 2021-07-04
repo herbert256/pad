@@ -120,7 +120,7 @@
         error_log ("[PAD] $id $file:$line $error", 4);   
 
       if ( $GLOBALS['pad_error_dump'] or $GLOBALS['pad_error_action'] == 'report' ) 
-        pad_track_vars ("errors/$app/$page/$id/" . uniqid() . "html", "$file:$line $error");
+        pad_track_vars ("errors/$app/$page/$id." .uniqid() . ".html", "$file:$line $error");
 
       return pad_error_action ( $error, $file, $line );
 

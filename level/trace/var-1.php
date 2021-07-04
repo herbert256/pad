@@ -25,7 +25,7 @@
         'error'  => "*** NOT FOUND ***"
       ] );
 
-    pad_file_put_contents ( "errors/$app/$page/$PADREQID/field.$pad_fld_cnt.json", $pad_trace_json ); 
+    pad_file_put_contents ( "errors/field/$app/$page/$PADREQID/$pad_fld_cnt.json", $pad_trace_json ); 
     pad_file_put_contents ( "$pad_trace_dir_base/errors/fields/$pad_fld_cnt.json", $pad_trace_json ); 
  
   }
