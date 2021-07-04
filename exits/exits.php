@@ -1,11 +1,5 @@
 <?php
 
-  if ( $pad_trace ) {
-    $pad_trace_dir_lvl = $GLOBALS['pad_trace_dir_base'] . '/levels/0.pad';
-    if ( isset ($pad_trace_dir_occ) )
-      unset ($pad_trace_dir_occ);
-  }
-
   $pad_output = str_replace ( 
     [ '&open;', '&close;', '&pipe;', '&eq;', '&comma;'], 
     [ '{',      '}',       '|',      '=',     ','], 

@@ -21,12 +21,14 @@
     $pad_expl = [];
 
   }
-
-  if ( $pad_trace ) 
-    include 'trace/var-1.php';
   
   if ( substr($pad_fld, 0, 1) == '$' )
     $pad_fld = pad_field_value ($pad_fld);
+
+  $pad_val = pad_field_value ($pad_fld);
+
+  if ( $pad_trace ) 
+    include 'trace/var-start.php';
 
   $pad_opts = [];
 
@@ -41,19 +43,13 @@
     foreach ( $pad_data_default_end as $pad_v )
       $pad_opts [] = $pad_v;
 
-  if ( $pad_trace ) {
-    $pad_val = $pad_val_base = pad_field_value ($pad_fld);
-  } else {
-    $pad_val = pad_field_value ($pad_fld);
-  }
-
   $pad_val = pad_var_opts ($pad_val, $pad_opts);
 
   if ( $pad_first == '!')
     $pad_val = pad_raw ( $pad_val );
 
   if ( $pad_trace ) 
-    include 'trace/var-2.php';
+    include 'trace/var-end.php';
 
   return $pad_val;
 

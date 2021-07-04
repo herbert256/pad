@@ -1,12 +1,10 @@
 <?php
 
-  $pad_fld_cnt++;
+  $pad_val_base = $pad_val;
 
   pad_trace ("field/start", "nr=$pad_fld_cnt " . '{' . $pad_between . '}');
 
-  $pad_fld_trace = str_replace(':', '_', $pad_fld);
-  $pad_fld_trace = str_replace('#', '_', $pad_fld_trace);  
-  $pad_fld_trace = str_replace('$', '_', $pad_fld_trace);  
+  $pad_fld_trace = $pad_fld;
 
   if ( ! pad_valid_name ( $pad_fld_trace ) )
     $pad_fld_trace = 'not_valid';

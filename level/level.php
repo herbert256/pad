@@ -32,9 +32,6 @@
   if     ( $pad_first == '!' ) return pad_html ( include PAD_HOME . 'level/var.php' );
   elseif ( $pad_first == '$' ) return pad_html ( include PAD_HOME . 'level/var.php' );
 
-  #if ( $pad_trace and isset ($GLOBALS['pad_trace_dir_occ']) )
-  #  unset ($GLOBALS['pad_trace_dir_occ']);
-
   pad_trace ('tag/inits', "tag=$pad_tag parms=$pad_parms pair=$pad_pair");
 
   if     ( ! ctype_alpha ( $pad_first )  ) return pad_ignore ('ctype_alpha');

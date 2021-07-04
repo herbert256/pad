@@ -7,11 +7,9 @@
     return;
 
   $pad_trace_dir_base = "trace/$app/$page/$PADREQID";
-  $pad_trace_dir_lvl  = "$pad_trace_dir_base/levels/0.pad";
     
   pad_file_put_contents ($pad_trace_dir_base . "/start.html", pad_get_info ('TRACE - start') );
-
-  pad_trace ("pad/start", "app=$app page=$page session=$PADSESSID request=$PADREQID");
+  pad_file_put_contents ($pad_trace_dir_base . "/start.json", pad_json ( pad_track ('000') ) );
 
   function pad_trace ($type, $parm='') {
 
@@ -47,10 +45,6 @@
     $pad_trace_hist [$pad_trc_cnt] = $lineL;
      
     pad_file_put_contents ( $GLOBALS['pad_trace_dir_base'] . "/trace.txt", $lineL, TRUE );
-    pad_file_put_contents ( $GLOBALS['pad_trace_dir_lvl']  . "/trace.txt", $lineL, TRUE );
- 
-    if ( isset ($GLOBALS['pad_trace_dir_occ']) )
-      pad_file_put_contents ( $GLOBALS['pad_trace_dir_occ'] . "/trace.txt", $lineL, TRUE );
 
  }  
       

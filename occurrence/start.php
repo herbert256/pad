@@ -6,15 +6,8 @@
   $pad_occur [$pad_lvl]++;
   $pad_occur_cnt++;
 
-  if ( $pad_trace ) {
-    $pad_trace_dir_occ = "$pad_trace_dir_lvl/occurrences/$pad_occur_cnt";
-    $pad_parameters [$pad_lvl] ['occur_dir'] = $pad_trace_dir_occ ;
-  }
-
   $pad_html [$pad_lvl] = $pad_base[$pad_lvl];
   $pad_key  [$pad_lvl] = key($pad_data[$pad_lvl]);
-
-  pad_trace ("occur/start", "nr=$pad_occur_cnt key=" . $pad_key [$pad_lvl] . ' html=' . $pad_html[$pad_lvl]);
 
   $pad_current [$pad_lvl] = $pad_data [$pad_lvl] [$pad_key [$pad_lvl]];
 
@@ -39,13 +32,13 @@
 
   include PAD_HOME . 'occurrence/db.php';
 
-  if ($pad_name == 'trace')
-    $pad_trace = TRUE;
-
   $pad_options = 'occur_start';
   include PAD_HOME . "options/go/options.php";
 
   if ( $pad_walks [$pad_lvl] == 'occurrence-start' )
     include PAD_HOME . "walk/occurrence-start.php";
+
+  if ( $pad_trace ) 
+    include 'trace/start.php';
 
 ?>
