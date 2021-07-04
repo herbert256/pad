@@ -7,7 +7,9 @@
     return;
 
   $pad_trace_dir_base = "trace/$app/$page/$PADREQID";
-    
+  $pad_trace_dir_lvl  = $pad_trace_dir_base;
+  $pad_trace_dir_occ  = $pad_trace_dir_base;
+      
   pad_file_put_contents ($pad_trace_dir_base . "/start.html", pad_get_info ('TRACE - start') );
   pad_file_put_contents ($pad_trace_dir_base . "/start.json", pad_json ( pad_track ('000') ) );
 

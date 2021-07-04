@@ -43,6 +43,7 @@
   $pad_parameters [$pad_lvl] ['between']          = $pad_between;
   $pad_parameters [$pad_lvl] ['parms_type']       = $pad_parms_type;
   $pad_parameters [$pad_lvl] ['tag_count']        = 0;
+  $pad_parameters [$pad_lvl] ['lvl_cnt']          = $pad_lvl_cnt;
 
   $pad_walk = 'start';
   $pad_tag_result = include PAD_HOME . 'level/tag.php';

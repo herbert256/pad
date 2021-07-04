@@ -7,7 +7,7 @@
     include PAD_HOME . "walk/occurrence-end.php";
 
   if ( $pad_trace ) 
-    include 'trace/start.php';
+    include 'trace/end.php';
   
   $pad_result [$pad_lvl] .= $pad_html [$pad_lvl];
 
