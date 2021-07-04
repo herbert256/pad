@@ -3,7 +3,6 @@
   if ( $pad_tag == $pad_name and $pad_parm and pad_valid_name ($pad_parm) and strlen($pad_parm) < 100) {
     $pad_name = $pad_parm;
     $pad_parameters [$pad_lvl] ['name'] = $pad_parm;
-    #$pad_parms_tag ['name'] = $pad_parm;
   }
 
   pad_trace ("store/start", "$pad_tag/$pad_walk: " . ($pad_parms_val [1] ?? ''));

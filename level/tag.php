@@ -13,6 +13,8 @@
 
   $pad_tag_result = include PAD_HOME . "level/type.php";
 
+  $pad_parameters [$pad_lvl] ['tag_result'] = pad_info ($pad_tag_result);
+  
   if ( $pad_tag_result === NULL )
     return include PAD_HOME . "level/null.php"; 
 
