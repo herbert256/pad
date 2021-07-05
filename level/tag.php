@@ -5,9 +5,6 @@
   $pad_data [$pad_lvl]     = [];
   $pad_data [$pad_lvl] [1] = [];
 
-  if ( $pad_lvl == 1 )
-    $pad_data [1] [1] = [];
-
  if ( pad_tag_parm ('content') ) 
     $pad_content .= include PAD_HOME . "options/content.php";    
 
@@ -43,8 +40,6 @@
     $pad_data [$pad_lvl] [0] = [];
 
   $pad_base [$pad_lvl] .= $pad_tag_content;
-
-  pad_trace ("tag/base", $pad_base [$pad_lvl], TRUE);
 
   return $pad_tag_result;
   

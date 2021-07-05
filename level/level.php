@@ -32,8 +32,6 @@
   if     ( $pad_first == '!' ) return pad_html ( include PAD_HOME . 'level/var.php' );
   elseif ( $pad_first == '$' ) return pad_html ( include PAD_HOME . 'level/var.php' );
 
-  pad_trace ('tag/inits', "tag=$pad_tag parms=$pad_parms pair=$pad_pair");
-
   if     ( ! ctype_alpha ( $pad_first )  ) return pad_ignore ('ctype_alpha');
   elseif ( ! pad_valid_name ( $pad_tag ) ) return pad_ignore ('pad_valid_name');
   
@@ -62,11 +60,6 @@
     $pad_pair_result = include PAD_HOME . 'level/pair.php';
     if ( $pad_pair_result === FALSE ) 
       return pad_ignore ('pair_result_is_false');
-  }
-
-  if ( $GLOBALS['pad_trace'] ) {
-    pad_build_reference ("types/$pad_tag_type/$pad_tag");
-    pad_build_reference ("tags/$pad_tag/$pad_tag_type");
   }
 
   return include PAD_HOME . 'level/start.php';

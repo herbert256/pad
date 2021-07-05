@@ -1,23 +1,56 @@
 <?php
 
-  function pad_json ($data) {
 
-    return json_encode ( $data, JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_FORCE_OBJECT );
+  function pad_local () {
 
+    if ( !  isset($GLOBALS['pad_local']) )
+      return FALSE;
+    
+    $host = strtolower(trim($_SERVER['HTTP_HOST']??''));
+    $ip   = $_SERVER ['REMOTE_ADDR'] ?? '';
+    $name = $_SERVER ['SERVER_NAME'] ?? '';
+
+    if ( in_array ( $host, $GLOBALS['pad_local'] ) ) return TRUE;
+    if ( in_array ( $ip,   $GLOBALS['pad_local'] ) ) return TRUE;
+    if ( in_array ( $name, $GLOBALS['pad_local'] ) ) return TRUE;
+
+    return FALSE;
+    
   }
 
 
-  function pad_build_reference ($type) {
+  function pad_explode ( $haystack, $limit, $number=0 ) {
 
-    $type = str_replace('//', '', $type);
-
-    $ref = $GLOBALS['app'] . '/' . $GLOBALS['page'];
-
-    pad_trace ('reference', $type);
+    if ($number)
+      $explode = explode ( $limit, $haystack, $number );
+    else
+      $explode = explode ( $limit, $haystack );
     
-    pad_file_put_contents ( $GLOBALS['pad_trace_dir_base'] . "/reference/$type");
-    pad_file_put_contents ( "reference/$type/" . str_replace ('/','.',$ref) );
-    pad_file_put_contents ( "reference/pages/$ref/$type" );
+    foreach  ($explode as $key => $value ) {
+
+      if ( $limit == '|' ) $explode [$key] = str_replace ( '&pipe;',  '|', $explode [$key] );
+      if ( $limit == '=' ) $explode [$key] = str_replace ( '&eq;',    '=', $explode [$key] );
+      if ( $limit == ',' ) $explode [$key] = str_replace ( '&comma;', ',', $explode [$key] );
+
+      if ( $limit == '|' ) $explode [$key] = str_replace ( '#pipe#',  '|', $explode [$key] );
+      if ( $limit == '=' ) $explode [$key] = str_replace ( '#eq#',    '=', $explode [$key] );
+      if ( $limit == ',' ) $explode [$key] = str_replace ( '#comma#', ',', $explode [$key] );
+
+      $explode [$key] = (string) trim ( $explode [$key] );
+
+      if ( $explode[$key] === '' )
+        unset ( $explode[$key] );
+
+    }
+
+    return array_values ( $explode );
+    
+  }
+
+
+  function pad_json ($data) {
+
+    return json_encode ( $data, JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_FORCE_OBJECT );
 
   }
 
@@ -36,6 +69,7 @@
 
   }
 
+
   function pad_unquote (&$quote) {
 
     if ( substr($quote, 0, 1) == '"' and substr($quote, -1) == '"' ) 
@@ -46,15 +80,13 @@
 
   }
 
+
   function pad_empty_buffers () {
 
     $buffers = ob_get_level ();
 
-    for ($i = 1; $i <= $buffers; $i++) {
+    for ($i = 1; $i <= $buffers; $i++)
       $buffer = ob_get_clean();
-      if ( strlen($buffer) )
-        pad_trace ('ob/data', $buffer);
-    }
 
   }
 
@@ -85,35 +117,14 @@
     return $array;
     
   }
-
-
-  function pad_track_vars ($file, $info='') {
-
-    ob_start();
-
-    pad_dump_vars ($info);
-
-    pad_file_put_contents ( $file, ob_get_clean() );
-        
-  }
-
-  function pad_get_info ($info='') {
-
-    ob_start();
-
-    pad_dump_vars ($info);
-
-    return ob_get_clean();
-        
-  }
   
 
   function pad_exit () {
 
-    $GLOBALS['pad_exit']             = 9;
-    $GLOBALS['pad_no_boot_shutdown'] = TRUE;
+    $GLOBALS['pad_skip_shutdown']      = TRUE;
+    $GLOBALS['pad_skip_boot_shutdown'] = TRUE;
     
-    exit();
+    exit;
 
   }
 
@@ -196,6 +207,12 @@
 
     global $app, $page;
   
+    if ( ! preg_match ( '/^[A-Za-z0-9\/_]+$/', $page ) ) pad_error ("Invalid page name '$page'");
+    if ( strpos($page, '__LIB') !== FALSE)               pad_error ("Invalid page name '$page'");
+    if ( strpos($page, '//') !== FALSE)                  pad_error ("Invalid page name '$page'");
+    if ( substr($page, 0, 1) == '/')                     pad_error ("Invalid page name '$page'");
+    if ( substr($page, -1) == '/')                       pad_error ("Invalid page name '$page'");
+
     $pad_location = PAD_APP . "pages";
 
     $pad_page_parts = pad_split ($page, '/');
@@ -252,35 +269,6 @@
   }
 
 
-  function pad_explode ( $haystack, $limit, $number=0 ) {
-
-    if ($number)
-      $explode = explode ( $limit, $haystack, $number );
-    else
-      $explode = explode ( $limit, $haystack );
-    
-    foreach  ($explode as $key => $value ) {
-
-      if ( $limit == '|' ) $explode [$key] = str_replace ( '&pipe;',  '|', $explode [$key] );
-      if ( $limit == '=' ) $explode [$key] = str_replace ( '&eq;',    '=', $explode [$key] );
-      if ( $limit == ',' ) $explode [$key] = str_replace ( '&comma;', ',', $explode [$key] );
-
-      if ( $limit == '|' ) $explode [$key] = str_replace ( '#pipe#',  '|', $explode [$key] );
-      if ( $limit == '=' ) $explode [$key] = str_replace ( '#eq#',    '=', $explode [$key] );
-      if ( $limit == ',' ) $explode [$key] = str_replace ( '#comma#', ',', $explode [$key] );
-
-      $explode [$key] = (string) trim ( $explode [$key] );
-
-      if ( $explode[$key] === '' )
-        unset ( $explode[$key] );
-
-    }
-
-    return array_values ( $explode );
-    
-  }
-
-
   function pad_split ($haystack, $split) {
 
     $explode = explode($split, $haystack);
@@ -296,7 +284,10 @@
 
 
   function pad_random_string ($len) {
-    $random = substr(base64_encode(random_bytes(ceil(($len/4)*3))),0,$len);
+    $random = ceil(($len/4)*3);
+    $random = random_bytes($random);
+    $random = base64_encode($random);
+    $random = substr($random,0,$len);
     $random = str_replace ( '+', pad_random_char(), $random );
     $random = str_replace ( '/', pad_random_char(), $random );
     return $random;
@@ -304,7 +295,7 @@
 
   function pad_random_char () {
     $random = mt_rand(0,61);
-    return ($random < 10) ? chr($random+48) : ($random < 36 ? chr($random+55) : $random+61);
+    return ($random < 10) ? chr($random+48) : ($random < 36 ? chr($random+55) : chr($random+61));
   }
 
 
@@ -493,8 +484,6 @@
 
   function pad_check_range ( $input ) {
 
-    pad_trace ("range/check", $input);
-
     $parts = pad_explode ($input, '..');
 
     if ( count ($parts) == 2 and ctype_alnum($parts[0]) and ctype_alnum($parts[1]) )
@@ -503,8 +492,6 @@
   }
 
   function pad_get_range ( $input ) {
-
-    pad_trace ("range/get", $input);
 
     $parts = pad_explode ($input, '..');
 
@@ -909,8 +896,6 @@
     else
       $tmp = $GLOBALS['pad_between'] . '/' ;
       
-    pad_trace ( 'ignore', $info . ' {' . $tmp . '}' );
-
     pad_html  ( '&open;' . $tmp . '&close;' );
 
     return FALSE;
@@ -939,8 +924,6 @@
 
     global $pad_data, $pad_lvl;
 
-    pad_trace ( 'data/add', 'before=' . count($pad_data [$pad_lvl]) );
-
     $add = pad_make_data ($array, $type);
 
     if ( pad_is_default_data ( $pad_data [$pad_lvl] ) )
@@ -949,8 +932,6 @@
       foreach ( $add as $value )
         $pad_data [$pad_lvl] [] = $value;
 
-    pad_trace ( 'data/add', 'after=' . count($pad_data [$pad_lvl]) );
-    
   }
 
   function pad_is_default_data ( $data ) {
@@ -1155,10 +1136,8 @@
       if ( $prepend )                 $val = (string) $now . $val;
       if ( ! $append and ! $prepend ) $val = (string) $now;
 
-      if ($pad_trace and $val <> $save) {
+      if ($pad_trace and $val <> $save)
         $pad_opts_trace [$opt] = $val;
-        pad_trace ("field/option", "nr=$pad_fld_cnt opt=$opt before=$save after=$val");
-      }
 
     }
 

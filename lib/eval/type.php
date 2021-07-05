@@ -29,9 +29,6 @@
     $name  = $result [$type] [3];
     $count = count($parm);
     
-    if ( $GLOBALS['pad_trace'] )
-      pad_build_reference ("eval/type/$kind/$name");
-
     $value = include PAD_HOME . "eval/$kind.php" ;
       
     if ( is_array($value) or is_object($value) or is_resource($value) ) {
@@ -43,8 +40,6 @@
       $result [$type] [0] = $value;
       $result [$type] [1] = 'VAL';
     }
-
-    pad_trace ("eval/function", "function=$kind/$name $value");  
 
     foreach ( $result as $key => $parm)
       if ($key > $type and $key <= $result [$type] [5] - 1)

@@ -2,8 +2,6 @@
 
   $pad_tag_go = $pad_tag_base."tags/$pad_tag";
 
-  pad_trace ("go/tag", "tag=$pad_tag_go" );
-
   $pad_tag_php = '';
 
   if ( pad_file_exists("$pad_tag_go.html") )

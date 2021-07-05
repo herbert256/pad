@@ -1,5 +1,7 @@
 <?php
 
+  $pad_output = $pad_result [1];
+
   $pad_output = str_replace ( 
     [ '&open;', '&close;', '&pipe;', '&eq;', '&comma;'], 
     [ '{',      '}',       '|',      '=',     ','], 

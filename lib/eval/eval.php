@@ -15,18 +15,14 @@
 
   function pad_eval ($eval, $myself='') {
 
-    global $pad_trace, $pad_eval_cnt, $pad_eval_start, $pad_eval_result;
+    global $pad_eval_cnt, $pad_eval_start, $pad_eval_result, $pad_trace;
 
     $pad_eval_cnt++;
     $pad_eval_start = $eval;
     $pad_eval_result = [];
 
-    pad_trace ("eval/start", "nr=$pad_eval_cnt input=$eval self=$myself");
-
-    if ( strlen(trim($eval)) == 0 ) {
-      pad_trace ("eval/empty", "nr=$pad_eval_cnt");
+    if ( strlen(trim($eval)) == 0 )
       return '';
-    }
 
     set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
     $error_level = error_reporting(E_ALL);
@@ -68,8 +64,6 @@
     error_reporting($error_level);
     restore_error_handler();
 
-    pad_trace ("eval/end", "nr=$pad_eval_cnt output=$return" );
-
     return $return;
 
   }
@@ -87,8 +81,6 @@
         $return .= $one[0] . ' ';   
 
     if ( $pad_trace ) {
-
-      pad_trace ("eval/error", "nr=$pad_eval_cnt error=$txt result=$return");
 
       $json = pad_json ( [
         'eval'    => $pad_eval_start ?? '',

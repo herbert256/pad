@@ -45,19 +45,11 @@
 
 
   function pad_get_xxx ( $type, $input, $parms ) {
-
-    pad_trace ("get/$type", "start: " . pad_info ($input));
-    $data = pad_get ( $input, $parms );
-    pad_trace ("get/type", "end: " . pad_info ($data));
-
-    return $data;
-
+    return pad_get ( $input, $parms );
   }
 
 
   function pad_get ( $input, $parm=[] ) {
-
-    pad_trace ( "get/start", $input);
 
     $result = $input;
 
@@ -70,8 +62,6 @@
 
   
  function pad_get_check ( $input, $curl=TRUE ) {
-
-    pad_trace ( "get/check", $input);
 
     if ( strlen(trim($input)) == 0)
       return FALSE;
@@ -107,8 +97,6 @@
 
   function pad_get_go ( $input, $parm=[] ) {
 
-    pad_trace ( "get/go", $input);
-
     if ( is_array($input) or is_object($input) or is_resource($input) )
       return FALSE;
 
@@ -137,12 +125,7 @@
 
     $count = count ($parm);
 
-    if ( $GLOBALS['pad_trace'] )
-      pad_build_reference ("eval/get/$kind/$name");
-
     $get = include PAD_HOME . "eval/$kind.php";
-
-    pad_trace ( "get/end", "$kind:$name:$value --> " . pad_make_content ( $get ) );
 
     return $get;
 

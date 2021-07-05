@@ -15,8 +15,6 @@
     $input ['cookies'] ['PADSESSID'] = $GLOBALS ['PADSESSID']; 
     $input ['cookies'] ['PADREQID']  = $GLOBALS ['PADREQID']; 
 
-    pad_trace ( "pad_include", $input ['url'] );
-
     pad_curl_get ($input, $output);
 
     return $output;
@@ -36,8 +34,6 @@
       $url = substr($url, 0, -14);
     }
 
-    pad_trace ("curl-1/start", $url);
-
     if ( pad_file_exists ( PAD_APP . "pages/$url.php" ) or pad_file_exists ( PAD_APP . "pages/$url.html" ) ) {
       return pad_curl_extra ("$pad_host$pad_script?app=$app&page=$url$include", $output);
     }
@@ -53,8 +49,6 @@
     else 
 
       return pad_error ("curl: invalid URL: $url");
-
-    pad_trace ( "curl-1/end", $data);
 
     return $data;
 
@@ -117,8 +111,6 @@
 
   function pad_curl_get ( $input, &$output ) {
 
-    pad_trace ("curl-2/start", $input ['url']);
-
     $url = $input ['url'];
     $error = FALSE;
 
@@ -175,10 +167,8 @@
     $output ['info'] = curl_getinfo ($curl);
     pad_timing_end   ('curl');
 
-    if ($result === FALSE) {
-      pad_trace ("curl/error", "FALSE from curl_exec: $url");
+    if ($result === FALSE)
       return '';
-    }
     
     if ( isset ( $output ['info'] ['http_code'] ) )
       $output ['result_code'] = $output ['info'] ['http_code'];
@@ -230,13 +220,8 @@
       
     }
 
-    if ( substr ($output ['info']['http_code'], 0, 1) <> '2' ) {
-
-      pad_trace ("curl/error", "Geen 200 retour $url: " . $output ['info']['http_code'] );
-
+    if ( substr ($output ['info']['http_code'], 0, 1) <> '2' )
       $error = TRUE;
-
-    }
 
     if ( isset($output ['info']['header_size']) )
       $output ['data'] = trim(substr($result, $output ['info']['header_size']));
@@ -252,8 +237,6 @@
     if ( ! $output ['result_type'] or $output ['result_type'] == 'json')
       pad_content_type ( $output ['data'], $output ['result_type'] );
  
-    pad_trace ( "curl-2/end", $output ['info']['http_code'] . ' - ' . $output ['data']);
-
     if ( $error )
       return '';
     else

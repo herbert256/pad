@@ -1,6 +1,6 @@
 <?php
 
-  $pad_html [0] .= '{content}';
+  $pad_base [1] .= '{content}';
 
   $pad_build_now = $pad_build_base;
 
@@ -37,9 +37,7 @@
 
     }
 
-    $pad_html [0] = str_replace ( '{content}', $pad_build_html, $pad_html [0] );
-
-    pad_trace ('build/html', 'html=' . $pad_build_html );
+    $pad_base [1] = str_replace ( '{content}', $pad_build_html, $pad_base [1] );
 
   }
 

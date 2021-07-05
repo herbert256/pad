@@ -5,6 +5,4 @@
 
   $pad_demand = ( isset ($pad_parms_tag ['occurrence']) ) ? $pad_demand_occur : $pad_demand_level;
 
-  pad_trace ( "demand", "$pad_demand / $pad_demand_level / $pad_demand_occur" );
-
 ?>

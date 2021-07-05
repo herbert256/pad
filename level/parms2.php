@@ -18,14 +18,12 @@
 
     } else {
 
-      if ( pad_valid_name ($pad_w[0] ) ) {
+      if ( pad_valid_name ($pad_w[0] ) )
         if ( count($pad_w) == 1 )
           $pad_parms_tag [$pad_w[0]] = TRUE;
         else
           $pad_parms_tag [$pad_w[0]] = pad_eval ( $pad_w[1] );
-        if ( $GLOBALS['pad_trace'] )
-          pad_build_reference ("parm/".$pad_w[0]);
-      } else
+      else
         $pad_parms_val [] = pad_eval ( $pad_v );
 
     }

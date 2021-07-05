@@ -1,7 +1,5 @@
 <?php
 
-  pad_trace ("field/end", "nr=$pad_fld_cnt value=$pad_val");
-
   $pad_trace_data = [ 
     'field'   => '{' . $pad_between . '}',
     'nr'      => $pad_fld_cnt,
@@ -12,9 +10,8 @@
 
   if ( count ($pad_opts_trace) )
     $pad_trace_data ['changed'] = $pad_opts_trace;
-  else
-    if ( $pad_val <> $pad_val_base )
-      $pad_trace_data ['result'] = $pad_val;
+  elseif ( $pad_val <> $pad_val_base )
+    $pad_trace_data ['result'] = $pad_val;
 
   pad_file_put_contents ("$pad_trace_dir_occ/fields/$pad_fld_cnt.$pad_fld_trace.json", pad_json ($pad_trace_data ) );
 

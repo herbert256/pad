@@ -1,4 +1,4 @@
-<?php
+ <?php
   
   //  Error handling
 
@@ -13,8 +13,6 @@
   $pad_error_level  = 'all';  // Kind of errors that will be processed by $pad_error_action
                               // 'none' , 'error' , 'warning' , 'notice' , 'all'
                               // (not used when $pad_error_action is 'php' or 'boot')
-
-  $pad_error_server = TRUE;   //  Log errors to the HTTP server log (most likely /var/log/apache2/error.log)
 
   $pad_error_dump   = TRUE;   //  Dumps errors to the file system.
 

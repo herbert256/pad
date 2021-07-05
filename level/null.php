@@ -6,8 +6,6 @@
     
   $pad_data [$pad_lvl] = $pad_base [$pad_lvl] = [];
 
-  pad_trace ('tag/null', "");
-
   return NULL;
 
 ?>

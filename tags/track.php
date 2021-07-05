@@ -1,6 +1,6 @@
 <?php
 
-  pad_track_vars ("dump/$app/$page/" . $GLOBALS['PADREQID'] . '_' . uniqid() . ".html", $pad_parm);
+  pad_dump_to_file ("dump/$app/$page/" . $GLOBALS['PADREQID'] . '_' . uniqid() . ".html", $pad_parm);
 
   return NULL;
   

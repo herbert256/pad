@@ -2,15 +2,12 @@
 
   $pad_pos = $pad_end [$pad_lvl];
 
-  pad_trace('pair', "start: $pad_pair_search");
-
 go2:  
   do {
 
     $pad_pos = strpos($pad_html[$pad_lvl] , '{/' . $pad_pair_search, $pad_pos);
 
     if ($pad_pos === FALSE) {
-      pad_trace('pair', "result: SINGLE-2");
       $pad_pair = FALSE;
       $pad_content = '';
       return TRUE;
@@ -26,14 +23,11 @@ go2:
   if ( ! ($pad_pair_check == ' ' or $pad_pair_check == '}' or $pad_pair_check ==  ',') )
     goto go2;
  
-  pad_trace('pair', "result: PAIR");
-  
   $pad_content = substr ($pad_content, 0, $pad_pos);
 
   $pad_end [$pad_lvl] = strpos ( $pad_html[$pad_lvl], '}', $pad_pos+2);
   if ( $pad_end [$pad_lvl] === FALSE )
     pad_error ("No closure of close tag found");
-
 
   $pad_tmp = substr ($pad_html[$pad_lvl], $pad_pos+1, $pad_end[$pad_lvl]-$pad_pos-1);
 
@@ -72,8 +66,6 @@ go2:
     $pad_parms      = $pad_parms2;
     $pad_parms_type = 'close';
 
-    pad_trace('closeParms', $pad_between);
-
     $pad_parameters [$pad_lvl+1] ['parm'] = $pad_parms;
  
   }
@@ -102,7 +94,7 @@ go: $pad_pos++;
     $pad_pos = strpos($pad_content, '{else}', $pad_pos);
 
   if ( $pad_pos === FALSE )
-    goto end;
+    return TRUE;
   
   $pad_false_check = substr($pad_content,0,$pad_pos);
 
@@ -114,10 +106,6 @@ go: $pad_pos++;
 
   $pad_false   = substr($pad_content, $pad_pos+6);
   $pad_content = substr($pad_content, 0, $pad_pos);
-
-end:
-  pad_trace ('pair/content', $pad_content);
-  pad_trace ('pair/else',    $pad_false);
 
   return TRUE;
 

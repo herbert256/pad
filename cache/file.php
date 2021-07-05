@@ -116,8 +116,6 @@
     $return = file_get_contents ($file);
     pad_timing_end ('read');
 
-    pad_trace ('file/read', $file);
-
     return $return;    
 
   }

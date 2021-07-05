@@ -11,8 +11,6 @@
     elseif ( ! $input              )  $data = [];
     else                              $data = (string) trim($input);
 
-    pad_trace ( "data/start", pad_info ( $input ) );
-    
     if ( is_array ( $data ) ) {
       pad_data_chk ( $data );
       return $data;
@@ -183,8 +181,6 @@
   function pad_data_error ($data, $error) {
 
     $GLOBALS['DEBUG_DATA_PAD'] = $data;
-
-    pad_trace ("data/error", $error);
 
     return [];
     

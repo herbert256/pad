@@ -16,13 +16,11 @@
 
       if ( pad_file_exists($pad_lib_php) ) {
         $pad_call = $pad_lib_php;
-        $pad_lib_result .= "{lib '$pad_lib_php'}";
         $pad_lib_result .= include PAD_HOME . 'level/call.php';
-        $pad_lib_result .= "{/lib}";
       }
 
       if ( pad_file_exists($pad_lib_html) )
-        $pad_lib_result .= "{lib '$pad_lib_html'} " . pad_get_html ( $pad_lib_html ) . " {/lib}";
+        $pad_lib_result .= pad_get_html ( $pad_lib_html );
       
     }
 

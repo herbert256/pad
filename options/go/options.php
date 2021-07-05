@@ -9,8 +9,6 @@
   if ( $pad_options == $pad_demand_occur ) $pad_options_walk = array_merge ( $pad_options_walk, $pad_parms_demand_occur);
   if ( $pad_options == $pad_demand )       $pad_options_walk = array_merge ( $pad_options_walk, $pad_parms_demand );
    
-  pad_trace ('options', "$pad_option_type / $pad_option_event / $pad_content");
- 
   if     ( $pad_options == 'level_start' ) $pad_content = $pad_base   [$pad_lvl];
   elseif ( $pad_options == 'level_end'   ) $pad_content = $pad_result [$pad_lvl];
   elseif ( $pad_options == 'occur_start' ) $pad_content = $pad_html   [$pad_lvl];
@@ -19,13 +17,8 @@
   foreach ( $pad_parms_tag as $pad_option_name => $pad_v )
     if ( in_array ( $pad_option_name, $pad_options_walk ) )
       if ( ! isset ( $pad_options_done [$pad_option_name] ) ) {
-        pad_trace ('option', "$pad_options -> $pad_option_name");
         $pad_options_done [$pad_option_name] = TRUE;
         include PAD_HOME . "options/$pad_option_name.php" ;
-        if ( $GLOBALS['pad_trace'] ) {
-          pad_build_reference ("option/events/$pad_options/$pad_option_name");
-          pad_build_reference ("option/options/$pad_option_name/$pad_options");
-        }
       }
 
   if     ($pad_options == 'level_start' ) $pad_base   [$pad_lvl] = $pad_content;

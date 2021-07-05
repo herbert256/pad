@@ -2,22 +2,65 @@
 
   function pad_dump ($info='') {
 
+    if ( ! pad_local () )
+      return;
+
     pad_empty_buffers ();
-
     gc_collect_cycles ();
+    pad_close_html    ();
+    pad_dump_vars     ($info);
 
-    $GLOBALS['pad_sent'] = TRUE;
-
-    pad_close_html();
-
-    pad_dump_vars ($info);
-
+    $GLOBALS[ 'pad_sent'] = TRUE;
     $GLOBALS ['pad_stop'] = 500;
+
     include PAD_HOME . 'exits/stop.php';
 
   }  
 
-  function pad_dump_vars ($info='') {
+  function pad_dump_to_file ($file, $info='') {
+
+    ob_start();
+
+    pad_dump_vars ($info);
+
+    pad_file_put_contents ( $file, ob_get_clean() );
+        
+  }
+
+  function pad_dump_get ($info='') {
+
+    ob_start();
+
+    pad_dump_vars ($info);
+
+    return ob_get_clean();
+        
+  }
+
+
+  function pad_dump_get_app_vars () { return pad_dump_get_xxx_vars ('app'); }
+  function pad_dump_get_pad_vars () { return pad_dump_get_xxx_vars ('pad'); }
+  function pad_dump_get_php_vars () { return pad_dump_get_xxx_vars ('php'); }
+
+  function pad_dump_get_xxx_vars ($type) {
+
+    $chk = ['_GET','_POST','_COOKIE','_FILES','_SESSION','_SERVER','_ENV','_REQUEST'];
+
+    $dump = [];
+
+    foreach ($GLOBALS as $key => $value)
+      if (    ( $type == 'app' and substr($key, 0, 3) <> 'pad' and ! in_array($key, $chk) ) 
+           or ( $type == 'pad' and substr($key, 0, 3) == 'pad'                            )
+           or ( $type == 'php' and in_array($key, $chk)                                   ) 
+         )
+        $dump [$key] = $value;
+
+    return pad_json ($dump);
+
+  }
+
+
+  function pad_dump_vars ($info) {
 
     echo ("<div align=\"left\"><pre>");
     
@@ -26,18 +69,15 @@
 
     $pad_debug_backtrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS);
 
-    $not = ['pad_error','pad_dump','pad_dump_go','pad_error_go','pad_error_handler','pad_error_exception','pad_error_shutdown'];
-    $not = [];
+    $not = ['pad_dump','pad_dump_vars','pad_dump_to_file','pad_dump_get',
+            'pad_error','pad_error_go','pad_error_handler','pad_error_exception','pad_error_shutdown'];
 
     echo ( "<b>Stack</b>\n");
     foreach ( $pad_debug_backtrace as $key => $trace ) {
       extract ( $trace );
-       if ( isset($file) and isset($line) and isset($function) and ! in_array($function, $not) )
+      if ( ! in_array($function, $not) )
         echo ( "    $file:$line - $function\n");
     }
-
-    if ( count($GLOBALS ['pad_trace_hist']) )
-      pad_dump_array  ("Trace", $GLOBALS ['pad_trace_hist'] );
 
     if ( isset ( $GLOBALS ['pad_errors'] ) and is_array ( $GLOBALS ['pad_errors']) and count($GLOBALS ['pad_errors']) > 1 )
       pad_dump_array  ('Errors', $GLOBALS ['pad_errors'] );
@@ -81,7 +121,7 @@
           if (is_object($value))
             pad_dump_object ($key, $value);
           elseif (is_array ($value))
-            pad_dump_array ($key, $value);
+            pad_dump_array ($key, pad_dump_sanitize ($value), 1);          
           else
             echo ( "\n  [$key] => " . htmlentities($value??'') );
       echo ( "\n ");
@@ -103,10 +143,9 @@
     foreach ($pad as $key)
       if (is_object($GLOBALS[$key]))
         pad_dump_object ($key, $GLOBALS[$key]);
-      elseif (is_array ($GLOBALS[$key])) {
-        $work =  pad_dump_sanitize ($GLOBALS[$key]);
-        pad_dump_array ($key, $work, 1);
-      } else
+      elseif (is_array ($GLOBALS[$key]))
+        pad_dump_array ($key,  pad_dump_sanitize ($GLOBALS[$key]), 1);
+      else
         echo ( "\n  [$key] => " . htmlentities(pad_dump_short($GLOBALS[$key]??'')));
 
     echo ( "\n" );

@@ -41,8 +41,6 @@
       $GLOBALS['pad_'.$pad_k] = $pad_v;
   
   if ($pad_lvl)
-    pad_html ($pad_result[$pad_lvl+1]);
-  else
-    $pad_output = $pad_result [1];
+    pad_html ( $pad_result[$pad_lvl+1]);
   
 ?>
