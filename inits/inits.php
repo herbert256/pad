@@ -1,38 +1,39 @@
 <?php
 
+  $app  = $_REQUEST['app']  ?? 'pad';
+  $page = $_REQUEST['page'] ?? 'index';
+
+  if ( ! preg_match ( '/^[A-Za-z0-9\/_-]+$/', $page ) ) pad_boot_error ("Invalid page name: $page");
+  if ( strpos($page, '//') !== FALSE)                   pad_boot_error ("Invalid page name '$page'");
+  if ( substr($page, 0, 1) == '/')                      pad_boot_error ("Invalid page name '$page'");
+  if ( substr($page, -1) == '/')                        pad_boot_error ("Invalid page name '$page'");
+
+  if ( ! preg_match ( '/^[A-Za-z0-9_]+$/',   $app  ) ) pad_boot_error ("Invalid name for app: $app");
+  if ( ! file_exists ( PAD_APPS . $app )             ) pad_boot_error ("Applicaton does not exists: $app");
+  if ( ! is_dir ( PAD_APPS . $app )                  ) pad_boot_error ("Applicaton is not a directory: $app");
+
+  define ( 'PAD_APP', PAD_APPS . $app . '/' );
+ 
   ob_start();
 
   $pad_lib = PAD_HOME . 'lib';
   include PAD_HOME . 'inits/lib.php';
 
-  $PADREQID = pad_random_string(16);
+  $PADSESSID = $PADSESSID ?? $_GET['PADSESSID'] ?? $_COOKIE['PADSESSID'] ?? pad_random_string(16);
+  $PADREFID  = $PADREFID  ?? $_GET['PADREQID']  ?? $_COOKIE['PADREQID']  ?? '';
+  $PADREQID  = pad_random_string(16);
 
   $pad_output = '';
   $pad_stop   = '999';
   $pad_etag   = '';
   $pad_exit   = 1;
-  $pad_time   = $_SERVER['REQUEST_TIME'];
-  $pad_lvl    = 1;  
+  $pad_time   = $_SERVER['REQUEST_TIME'];  
 
-  $pad_between = $pad_pair = $pad_content = $pad_false = $pad_options_done = $pad_parms = $pad_between = $pad_parms_type = '';
-  $pad_eval_cnt = $pad_tag_count = $pad_fld_cnt = $pad_lvl_cnt = $pad_occur_cnt = 0;
-  $pad_close_tags = $pad_timings = $pad_timings_start = $pad_opts_trace = [];
+  $pad_eval_cnt   = $pad_fld_cnt = $pad_lvl_cnt = 0;
+  $pad_close_tags = $pad_timings = $pad_timings_start = [];
 
-  include PAD_HOME . 'level/parms1.php';
-  
-  $pad_tag = $pad_tag_type = $pad_name = 'pad';
-
-  include PAD_HOME . 'level/inits.php';
-
-  $pad_data [1] [1] = [];
-
-  $app  = $_REQUEST['app']  ?? 'pad';
-  $page = $_REQUEST['page'] ?? 'index';
-
-  if ( ! preg_match ( '/^[A-Za-z0-9_]+$/',   $app  ) ) pad_boot_error ("Invalid name for app: $app");
-  if ( ! preg_match ( '/^[A-Za-z0-9\/_]+$/', $page ) ) pad_boot_error ("Invalid name for page: $page");
-  if ( ! file_exists ( PAD_APPS . $app )             ) pad_boot_error ("Applicaton does not exists: $app");
-  if ( ! is_dir ( PAD_APPS . $app )                  ) pad_boot_error ("Applicaton is not a directory: $app");
+  $pad_lvl = 1;  
+  include PAD_HOME . 'inits/level.php';
 
   include PAD_HOME . 'config/config.php';
 
@@ -45,13 +46,8 @@
   if ( isset($_SERVER['QUERY_STRING']) and $_SERVER['QUERY_STRING'] and strpos($_SERVER['QUERY_STRING'], '=') === FALSE )
     include PAD_HOME . 'inits/fast.php';
 
-  define ( 'PAD_APP', PAD_APPS . $app . '/' );
- 
-  $PADSESSID = $PADSESSID ?? $_GET['PADSESSID'] ?? $_COOKIE['PADSESSID'] ?? pad_random_string(16);
-  $PADREFID  = $PADREFID  ?? $_GET['PADREQID']  ?? $_COOKIE['PADREQID']  ?? '';
-
-  include PAD_HOME . 'inits/trace.php';
   include PAD_HOME . 'inits/error.php';
+  include PAD_HOME . 'inits/trace.php';
 
   if ( ! headers_sent () ) {
     if ( ! isset($_COOKIE['PADSESSID']) or $_COOKIE['PADSESSID'] <> $PADSESSID )
@@ -68,7 +64,7 @@
 
   $pad_lib = PAD_APP . 'lib';
   include PAD_HOME . 'inits/lib.php';
-
+  
   include PAD_HOME . 'cache/inits.php';
   include PAD_HOME . 'options/go/inits.php';
 

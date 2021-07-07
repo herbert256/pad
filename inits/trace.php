@@ -17,5 +17,4 @@
   pad_file_put_contents ($pad_trace_dir_base . "/start.json", pad_json ( pad_track ('000') ) );
   pad_file_put_contents ($pad_trace_dir_base . "/php.json",   pad_dump_get_php_vars ()       );
 
-
 ?>

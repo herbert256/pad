@@ -24,6 +24,9 @@
   
   function pad_field_tag ($field) {
 
+    $save   = $GLOBALS ['pad_lvl'];
+    $return = PAD_NOT_FOUND;
+
     $temp  = explode ('#', $field, 3);
     $tag   = $temp[0];
     $field = $temp[1];
@@ -32,17 +35,21 @@
     $pad_idx = pad_idx ($tag);
 
     if ( pad_file_exists ( PAD_HOME . "tag/".$field.".php" ) )
-      return include PAD_HOME . "tag/$field.php";
+      $return = include PAD_HOME . "tag/$field.php";
 
-    if ( in_array ( $parm, ['name','value'] )  and $pad_idx) {
+    if ( $return !== PAD_NOT_FOUND and in_array ( $parm, ['name','value'] ) and $pad_idx) {
       $pos = 1;
       foreach( $GLOBALS['pad_current'] [$pad_idx] as $key => $value )
-        if ( $pos++ == $field )
-          return ( $parm == 'name') ? $key : $value;
+        if ( $pos++ == $field ) {
+          $return = ( $parm == 'name') ? $key : $value;
+          break;
+        }
     }
 
-    return PAD_NOT_FOUND;
-    
+    $GLOBALS ['pad_lvl'] = $ave;
+
+    return $return;
+
   }
 
   function pad_field_prefix ( $field, $type ) {

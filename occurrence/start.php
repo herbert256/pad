@@ -4,10 +4,8 @@
     $GLOBALS['pad_'.$pad_k] = $pad_v;
 
   $pad_occur [$pad_lvl]++;
-  $pad_occur_cnt++;
-
-  $pad_html [$pad_lvl] = $pad_base[$pad_lvl];
-  $pad_key  [$pad_lvl] = key($pad_data[$pad_lvl]);
+  $pad_html  [$pad_lvl] = $pad_base[$pad_lvl];
+  $pad_key   [$pad_lvl] = key($pad_data[$pad_lvl]);
 
   $pad_current [$pad_lvl] = $pad_data [$pad_lvl] [$pad_key [$pad_lvl]];
 

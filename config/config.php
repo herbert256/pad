@@ -133,9 +133,9 @@
   
   // Other settings.
 
-  $pad_client_gzip            = FALSE;  // Send the result zipped
-  $pad_etag_304               = FALSE;  // Send a 304 header, based on the client etag http header
-  $pad_no_no                  = FALSE;  // No PAD stuff, just plane PHP   
+  $pad_client_gzip            = FALSE; // Send the result zipped
+  $pad_etag_304               = TRUE;  // Send a 304 header, based on the client etag http header
+  $pad_no_no                  = FALSE; // No PAD stuff, just plane PHP   
 
   $pad_cookie_time            = 60 * 60 * 24 * 366 * 10;
   $pad_fast_link              = 32;

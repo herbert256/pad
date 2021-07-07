@@ -68,6 +68,9 @@
 
   function pad_file_put_contents ($file, $data='', $append=0) {
 
+    if ( is_array($data) )
+      $data = pad_json ($data);
+
     if ( substr($file, 0, 1) == '/')
       $file = substr($file, 1);
 

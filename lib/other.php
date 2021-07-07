@@ -1097,18 +1097,47 @@
 
   function pad_find_lvl ($search = '') {
 
+    $find = (int) $search;
+ 
+    if ( $find < 0 ) 
+      return $pad_lvl + $find;
+
+    if ( is_numeric($search) ) 
+      return (int) $search;
+
     global $pad_lvl, $pad_parameters;
 
     for ($i=$pad_lvl; $i; $i--)
       if ( isset($pad_parameters [$i] ['name']) and $pad_parameters [$i] ['name'] == $search)
         return $i;
 
-    $find = (int) $search;
- 
-    if ( $find < 0 ) 
-      return $pad_lvl + $find;
+    if ( isset( $GLOBALS['pad_data_store'] [$search]) )
+      return pad_find_lvl_fake ( $GLOBALS['pad_data_store'], $search );
+
+    if ( isset( $GLOBALS['pad_seq_store'] [$search]) )
+      return pad_find_lvl_fake ( $GLOBALS['pad_seq_store'], $search );
 
     return FALSE;
+
+  }
+
+
+  function pad_find_lvl_fake ($fake, $name) {
+
+    $GLOBALS ['pad_find_lvl_fake'] = true;
+
+    global $pad_lvl;
+
+    $pad_lvl = 999999;
+    include PAD_HOME . 'inits/level.php';
+  
+    $GLOBALS ['pad_data']    [$pad_lvl] = pad_make_data ( $fake );
+    $GLOBALS ['pad_current'] [$pad_lvl] = reset ( $GLOBALS ['pad_data'] );
+    $GLOBALS ['pad_key']     [$pad_key] = key ( $GLOBALS ['pad_data'] [$pad_lvl] );
+    $GLOBALS ['pad_occur']   [$pad_key] = 1;
+
+    $pad_lvl = $pad_lvl_save;
+
 
   }
 

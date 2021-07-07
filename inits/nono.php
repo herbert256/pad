@@ -1,5 +1,7 @@
 <?php
 
+  ob_get_clean();
+
   $pad_no_no = PAD_APPS . $app . "/pages/$page.php";
 
   if ( ! file_exists ( $pad_no_no ) )
@@ -14,9 +16,12 @@
   unset ($key);
   unset ($value);
 
+  unset($PADSESSID);
+  unset($PADREFID);
+  unset($PADREQID);
+
   include $pad_no_no;
 
-  $pad_exit             = 9;
   $pad_no_boot_shutdown = TRUE;
 
   exit();
