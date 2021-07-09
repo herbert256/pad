@@ -5,8 +5,18 @@
     $pad_parameters [$pad_lvl] ['name'] = $pad_parm;
   }
 
-  if ( pad_start_to_end () )
+  if ( $pad_walk == 'start' and $pad_parms_type == 'close' ) {
+
+    if ( isset ( $pad_parms_tag ['occurence'] ) )
+      $pad_walk = 'occurence-end';
+    else
+      $pad_walk = 'end';
+
+    $pad_walks [$pad_lvl] = $pad_walk;
+
     return TRUE;
+
+  }
 
   if ( isset ( $pad_parms_val [1] ) ) {
 

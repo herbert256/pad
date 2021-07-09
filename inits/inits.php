@@ -7,10 +7,9 @@
   if ( strpos($page, '//') !== FALSE)                   pad_boot_error ("Invalid page name '$page'");
   if ( substr($page, 0, 1) == '/')                      pad_boot_error ("Invalid page name '$page'");
   if ( substr($page, -1) == '/')                        pad_boot_error ("Invalid page name '$page'");
-
-  if ( ! preg_match ( '/^[A-Za-z0-9_]+$/',   $app  ) ) pad_boot_error ("Invalid name for app: $app");
-  if ( ! file_exists ( PAD_APPS . $app )             ) pad_boot_error ("Applicaton does not exists: $app");
-  if ( ! is_dir ( PAD_APPS . $app )                  ) pad_boot_error ("Applicaton is not a directory: $app");
+  if ( ! preg_match ( '/^[A-Za-z0-9_]+$/',   $app  ) )  pad_boot_error ("Invalid name for app: $app");
+  if ( ! file_exists ( PAD_APPS . $app )             )  pad_boot_error ("Applicaton does not exists: $app");
+  if ( ! is_dir ( PAD_APPS . $app )                  )  pad_boot_error ("Applicaton is not a directory: $app");
 
   define ( 'PAD_APP', PAD_APPS . $app . '/' );
  
@@ -28,9 +27,6 @@
   $pad_etag   = '';
   $pad_exit   = 1;
   $pad_time   = $_SERVER['REQUEST_TIME'];  
-
-  $pad_eval_cnt   = $pad_fld_cnt = $pad_lvl_cnt = 0;
-  $pad_close_tags = $pad_timings = $pad_timings_start = [];
 
   $pad_lvl = 1;  
   include PAD_HOME . 'inits/level.php';

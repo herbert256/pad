@@ -499,31 +499,6 @@
 
   }
 
-  function pad_start_to_end () {
-
-    global $pad_lvl, $pad_walk, $pad_walks, $pad_parms_type, $pad_parms_tag;
-
-    if ( $pad_walk == 'start' ) {
-
-      if ( $pad_parms_type == 'close' ) {
-
-        if ( isset ( $pad_parms_tag ['occurence'] ) )
-          $pad_walk = 'occurence-end';
-        else
-          $pad_walk = 'end';
-
-        $pad_walks [$pad_lvl] = $pad_walk;
-
-        return TRUE;
-
-      }
-
-    }
-
-    return FALSE;
-
-  }
-
 
   function pad_function_type ( $check ) {
 
@@ -1094,8 +1069,12 @@
 
   }  
 
+  function pad_find_lvl_base ($search = '') {
 
-  function pad_find_lvl ($search = '') {
+    global $pad_lvl, $pad_parameters;
+
+    if ($search=='')
+      return $pad_lvl;
 
     $find = (int) $search;
  
@@ -1105,11 +1084,21 @@
     if ( is_numeric($search) ) 
       return (int) $search;
 
-    global $pad_lvl, $pad_parameters;
-
     for ($i=$pad_lvl; $i; $i--)
       if ( isset($pad_parameters [$i] ['name']) and $pad_parameters [$i] ['name'] == $search)
         return $i;
+
+    return FALSE;
+
+  }
+
+  function pad_find_lvl ($search = '') {
+
+    $return = pad_find_lvl_base ($search);
+    if ( $return )
+      return $return;
+
+    global $pad_lvl, $pad_parameters;
 
     if ( isset( $GLOBALS['pad_data_store'] [$search]) )
       return pad_find_lvl_fake ( $GLOBALS['pad_data_store'], $search );
@@ -1117,14 +1106,17 @@
     if ( isset( $GLOBALS['pad_seq_store'] [$search]) )
       return pad_find_lvl_fake ( $GLOBALS['pad_seq_store'], $search );
 
+    for ($i=$pad_lvl; $i; $i--)
+      if ( isset( $GLOBALS['pad_db_lvl'] [$i] ) )
+        if ( isset( $GLOBALS['pad_db_lvl'] [$i] [$search]) )
+          return pad_find_lvl_fake ( $GLOBALS['pad_db_lvl'] [$i] [$search], $search );
+
     return FALSE;
 
   }
 
 
   function pad_find_lvl_fake ($fake, $name) {
-
-    $GLOBALS ['pad_find_lvl_fake'] = true;
 
     global $pad_lvl;
 

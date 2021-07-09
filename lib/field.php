@@ -27,17 +27,24 @@
     $save   = $GLOBALS ['pad_lvl'];
     $return = PAD_NOT_FOUND;
 
-    $temp  = explode ('#', $field, 3);
-    $tag   = $temp[0];
-    $field = $temp[1];
-    $parm  = $temp[2]??'';
+    if ( substr($field, 0, 1) == '#' ) {
+      $temp  = pad_explode ($field, '#', 2);
+      $tag   = '';
+      $field = $temp[0];
+      $parm  = $temp[1]??'';
+    } else {
+      $temp  = pad_explode ($field, '#', 3);
+      $tag   = $temp[0];
+      $field = $temp[1];
+      $parm  = $temp[2]??'';
+    }
 
     $pad_idx = pad_idx ($tag);
 
     if ( pad_file_exists ( PAD_HOME . "tag/".$field.".php" ) )
       $return = include PAD_HOME . "tag/$field.php";
 
-    if ( $return !== PAD_NOT_FOUND and in_array ( $parm, ['name','value'] ) and $pad_idx) {
+    if ( $return === PAD_NOT_FOUND and in_array ( $parm, ['name','value'] ) and $pad_idx and isset($GLOBALS['pad_current'] ) ) {
       $pos = 1;
       foreach( $GLOBALS['pad_current'] [$pad_idx] as $key => $value )
         if ( $pos++ == $field ) {
@@ -46,7 +53,7 @@
         }
     }
 
-    $GLOBALS ['pad_lvl'] = $ave;
+    $GLOBALS ['pad_lvl'] = $save;
 
     return $return;
 
@@ -61,9 +68,9 @@
     if ( $prefix == 'PHP' or $prefix === 1 or $prefix === '1' )
       return pad_field_search ($GLOBALS, $field, $type);
 
-    $lvl = pad_find_lvl ( $prefix );
+    $lvl = pad_find_lvl_base ( $prefix );
 
-    if ( $lvl == 1) 
+    if ( $lvl == 1 ) 
       return pad_field_search ($GLOBALS, $field, $type);
     elseif ( $lvl ) 
       return pad_field_search ($pad_current [$lvl], $field, $type);
