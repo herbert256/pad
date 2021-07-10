@@ -1,6 +1,7 @@
 <?php
 
   $pad_parms_org = [];
+  $pad_parms_seq = [];
   $pad_parms_tag = [];
   $pad_parms_val = [];
 
@@ -34,6 +35,7 @@
 
   $pad_parameters [$pad_lvl] ['parm']      = $pad_parm;
   $pad_parameters [$pad_lvl] ['parms_org'] = $pad_parms_org;
+  $pad_parameters [$pad_lvl] ['parms_seq'] = $pad_parms_seq;
   $pad_parameters [$pad_lvl] ['parms_tag'] = $pad_parms_tag;  
   $pad_parameters [$pad_lvl] ['parms_val'] = $pad_parms_val;
 
