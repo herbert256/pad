@@ -24,22 +24,19 @@
   
   function pad_field_tag_parm ($tag, $field) {
 
-    global $pad_lvl, $pad_parameters;
-
     $lvl = pad_field_tag_lvl ($tag);
     $idx = intval ($field) - 1 ;
 
-    if ( isset ( $pad_parameters [$lvl] ['parm_seq'] [$idx] ) )
-      return $pad_parameters [$lvl] ['parm_seq'] [$idx]; 
+    global $pad_lvl, $pad_parameters;
+    
+    if ( isset ( $pad_parameters [$lvl] ['parms_seq'] [$idx] ) )
+      return $pad_parameters [$lvl] ['parms_seq'] [$idx]; 
     else
       return PAD_NOT_FOUND;
 
   }
   
   function pad_field_tag ($field) {
-
-    $save   = $GLOBALS ['pad_lvl'];
-    $return = PAD_NOT_FOUND;
 
     if ( substr($field, 0, 1) == '#' ) {
       $temp  = pad_explode ($field, '#', 2);
@@ -56,23 +53,19 @@
     if ( is_numeric($field) )
       return pad_field_tag_parm ($tag, $field);
 
-    $pad_idx = pad_field_tag_lvl  ($tag);
-
+    $pad_idx = pad_field_tag_lvl ($tag);
+    
     if ( pad_file_exists ( PAD_HOME . "tag/".$field.".php" ) )
-      $return = include PAD_HOME . "tag/$field.php";
+      return include PAD_HOME . "tag/$field.php";
 
-    if ( $return === PAD_NOT_FOUND and in_array ( $parm, ['name','value'] ) and $pad_idx and isset($GLOBALS['pad_current'] ) ) {
+    if ( in_array ( $parm, ['name','value'] ) and $pad_idx and isset($GLOBALS['pad_current'] ) ) {
       $pos = 1;
       foreach( $GLOBALS['pad_current'] [$pad_idx] as $key => $value )
-        if ( $pos++ == $field ) {
-          $return = ( $parm == 'name') ? $key : $value;
-          break;
-        }
+        if ( $pos++ == $field )
+          return  ( $parm == 'name') ? $key : $value;
     }
 
-    $GLOBALS ['pad_lvl'] = $save;
-
-    return $return;
+    return PAD_NOT_FOUND;
 
   }
 
@@ -109,7 +102,7 @@
 
     global $pad_lvl, $pad_db_lvl, $pad_current;
 
-    if ( is_numeric($field) )
+    if ( is_numeric($field) ) 
       return pad_field_tag_parm ('', $field);
 
     for ( $i=$pad_lvl; $i; $i-- ) {
@@ -165,29 +158,6 @@
   }
 
 
-  function pad_field_tag_lvl  ($search = '') {
-
-    $return = pad_field_tag_lvl_base ($search);
-    if ( $return )
-      return $return;
-
-    global $pad_lvl, $pad_parameters;
-
-    if ( isset( $GLOBALS['pad_data_store'] [$search]) )
-      return pad_field_tag_lvl_fake ( $GLOBALS['pad_data_store'], $search );
-
-    if ( isset( $GLOBALS['pad_seq_store'] [$search]) )
-      return pad_field_tag_lvl_fake ( $GLOBALS['pad_seq_store'], $search );
-
-    for ($i=$pad_lvl; $i; $i--)
-      if ( isset( $GLOBALS['pad_db_lvl'] [$i] ) )
-        if ( isset( $GLOBALS['pad_db_lvl'] [$i] [$search]) )
-          return pad_field_tag_lvl_fake ( $GLOBALS['pad_db_lvl'] [$i] [$search], $search );
-
-    return $GLOBALS ['pad_lvl'];
-
-  }  
-
   function pad_field_tag_lvl_base ($search = '') {
 
     global $pad_lvl, $pad_parameters;
@@ -211,9 +181,36 @@
 
   }
 
+
+  function pad_field_tag_lvl  ($search = '') {
+
+    $return = pad_field_tag_lvl_base ($search);
+    if ( $return )
+      return $return;
+
+    global $pad_lvl, $pad_parameters;
+
+    if ( isset( $GLOBALS['pad_data_store'] [$search]) )
+      return pad_field_tag_lvl_fake ( $GLOBALS['pad_data_store'], $search );
+
+    if ( isset( $GLOBALS['pad_seq_store'] [$search]) )
+      return pad_field_tag_lvl_fake ( $GLOBALS['pad_seq_store'], $search );
+
+    for ($i=$pad_lvl; $i; $i--)
+      if ( isset( $GLOBALS['pad_db_lvl'] [$i] ) )
+        if ( isset( $GLOBALS['pad_db_lvl'] [$i] [$search]) )
+          return pad_field_tag_lvl_fake ( $GLOBALS['pad_db_lvl'] [$i] [$search], $search );
+
+    return $GLOBALS ['pad_lvl'];
+
+  }  
+
+
   function pad_field_tag_lvl_fake ($fake, $name) {
 
     global $pad_lvl;
+
+    $pad_lvl_save = $pad_lvl;
 
     $pad_lvl = 999999;
     include PAD_HOME . 'inits/level.php';
@@ -225,6 +222,7 @@
 
     $pad_lvl = $pad_lvl_save;
 
+    return $pad_lvl;
 
   }
 

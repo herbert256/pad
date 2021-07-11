@@ -1,5 +1,13 @@
 <?php
 
+  function pad_trace ($local) {
+
+    $dir  = $GLOBALS ['pad_trace_dir_occ'] . "/trace/" . uniqid() . '.html';
+    $data = [ 'local' => $local, 'globals' => $GLOBALS ];
+
+    pad_file_put_contents ( $dir, $data );
+
+  }
 
   function pad_local () {
 
@@ -211,7 +219,7 @@
     if ( strpos($page, '__LIB') !== FALSE)               pad_error ("Invalid page name '$page'");
     if ( strpos($page, '//') !== FALSE)                  pad_error ("Invalid page name '$page'");
     if ( substr($page, 0, 1) == '/')                     pad_error ("Invalid page name '$page'");
-    if ( substr($page, -1) == '/')                       pad_error ("Invalid page name '$page'");
+    #if ( substr($page, -1) == '/')                       pad_error ("Invalid page name '$page'");
 
     $pad_location = PAD_APP . "pages";
 

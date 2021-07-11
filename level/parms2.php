@@ -17,15 +17,23 @@
       $pad_set_value = $pad_w[1];
       include PAD_HOME . 'level/set.php';
 
+      $pad_parms_seq [] = $GLOBALS [$pad_set_name];
+
     } else {
 
       if ( pad_valid_name ($pad_w[0] ) )
-        if ( count($pad_w) == 1 )
+        if ( count($pad_w) == 1 ) {
           $pad_parms_tag [$pad_w[0]] = TRUE;
-        else
+          $pad_parms_seq [] = TRUE;
+        }
+        else {
           $pad_parms_tag [$pad_w[0]] = pad_eval ( $pad_w[1] );
-      else
+          $pad_parms_seq [] = $pad_parms_tag [$pad_w[0]];
+        }
+      else {
         $pad_parms_val [] = pad_eval ( $pad_v );
+        $pad_parms_seq [] = end ($pad_parms_val);
+      }
 
     }
 

@@ -21,6 +21,10 @@
   $pad_set_save    [$pad_lvl] = [];
   $pad_set_delete  [$pad_lvl] = [];
 
+  $pad_parameters  [$pad_lvl] ['tag']      = '';
+  $pad_parameters  [$pad_lvl] ['tag_type'] = '';
+  $pad_parameters  [$pad_lvl] ['name']     = '';
+
   $pad_walk = 'start';
 
   $pad_options_done = [];

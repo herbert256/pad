@@ -17,7 +17,7 @@
   $pad_parm_result = pad_field_tag ("$pad_parm_tag#$pad_parm_field#$pad_parm_parm");
 
   if ( $pad_parm_result === PAD_NOT_FOUND )
-    return NULĹ;
+    return NULL;
   else
     return $pad_parm_result;
 

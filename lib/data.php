@@ -1,6 +1,6 @@
 <?php
 
-  function pad_make_data ($input, $content='') {
+  function pad_make_data ($input, $content='', $name='') {
 
     if     ( $input === NULL       )  $data = [];
     elseif ( $input === FALSE      )  $data = [];
@@ -12,7 +12,7 @@
     else                              $data = (string) trim($input);
 
     if ( is_array ( $data ) ) {
-      pad_data_chk ( $data );
+      pad_data_chk ( $data, $name );
       return $data;
     }
  
@@ -23,7 +23,7 @@
 
       $data = pad_get_range ( $input );
 
-      pad_data_chk ( $data );
+      pad_data_chk ( $data, $name );
  
       return $data;
  
@@ -36,7 +36,7 @@
       foreach ($data as $key => $value)
         $data[$key] = pad_eval($value);
 
-      pad_data_chk ( $data );
+      pad_data_chk ( $data, $name );
 
       return $data;
 
@@ -171,7 +171,7 @@
       
     }
 
-    pad_data_chk ($result);
+    pad_data_chk ($result, $name);
 
     return $result;
     
@@ -184,6 +184,123 @@
 
     return [];
     
+  }
+
+   function pad_data_chk (&$result,$name) {
+
+    if ( ! count($result) )
+      return;
+
+    pad_data_chk_simple_array ($result,$name);
+    pad_data_chk_chk_one      ($result,$name);
+    pad_data_chk_data_attr    ($result,$name);
+    pad_data_chk_check_record ($result,$name);
+    pad_data_chk_check_array  ($result,$name);
+
+  }
+
+
+  function pad_data_chk_check_array (&$result,$name) {
+
+    foreach ($result as $k => $v) {
+      $x = 0 ;
+      foreach ($v as $k2 => $v2)
+        if ( ctype_digit( (string) $k2) and ( $k2 == $x or ($k2-1==$x) ) and ! is_array($v2) )
+          $x++;
+        else
+          return;
+    }
+
+    $name = pad_data_name($name);
+
+    foreach ($result as $k => $v) {
+      $tmp = $v;
+      $result [$k] = [];
+      foreach ($tmp as $k2 => $v2)
+        $result [$k] ["$name"] [$k2] ["$name"] = $v2;
+    }
+
+  }
+
+
+  function pad_data_chk_check_record (&$result,$name) {
+    
+    foreach ($result as $k => $v)
+      if ( ! is_array($v) ) {
+        $tmp = $result;
+        $result = [];
+        foreach ($tmp as $k => $v)
+          $result [0] [$k] = $v;
+        return;
+      }
+
+  }
+
+  
+  function pad_data_chk_simple_array (&$result,$name) {
+
+    foreach ($result as $pad_k => $pad_v)
+      if ( is_array($pad_v) or ! is_numeric($pad_k) )
+        return;
+  
+    $name   = pad_data_name($name);
+    $tmp    = $result;
+    $result = [];
+    
+    foreach ($tmp as $k => $v)
+      $result [$k] [$name] = $v;
+
+  }
+
+
+  function pad_data_chk_chk_one (&$result,$name) {
+
+    if ( count($result) == 1 and is_array($result[array_key_first($result)]) ) {
+      
+      $idx=0;
+      foreach ($result[array_key_first($result)] as $key => $value) {
+        if ( $key <> $idx ) {
+          $idx = 0;
+          break;
+        }
+        $idx++;
+      }
+      
+      if ($idx) {
+        $tmp = $result[array_key_first($result)];
+        $result = $tmp;
+      }
+
+    }
+    
+  }
+
+
+  function pad_data_chk_data_attr (&$result,$name) {
+    
+    foreach ($result as $k => $v)
+      if ( is_array($v) )
+        if (trim($k) == 'attr') {
+          foreach ($v as $k2 => $v2)
+            $result [$k2] = $v2;
+          unset ($result [$k]);
+        } else
+          pad_data_chk_data_attr ( $result [$k], $name );
+
+  }
+
+
+  function pad_data_name ($name) {
+
+    if     ( $name                          ) $return = $name;
+    elseif ( $GLOBALS['pad_name'] == 'data' ) $return = $GLOBALS['pad_parm'];
+    elseif ( pad_tag_parm ('name')          ) $return = pad_tag_parm ('name');
+    elseif ( pad_tag_parm ('toData')        ) $return = pad_tag_parm ('toData');
+    else                                      $return = $GLOBALS['pad_name'];
+
+    if (substr($return, 0, 1) == '$')
+      $return = substr($return, 1);
+
   }
 
   

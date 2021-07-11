@@ -68,6 +68,8 @@
 
   function pad_file_put_contents ($file, $data='', $append=0) {
 
+    $file = str_replace('//', '/', $file);
+    
     if ( is_array($data) )
       $data = pad_json ($data);
 
