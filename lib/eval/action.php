@@ -34,7 +34,7 @@
     else 
       throw new Exception('Unknow operation');
 
-    $result [$k] [0] = (string) $now;
+    $result [$k] [0] = $now;
     
     unset ( $result [$b] );
     unset ( $result [$f] );

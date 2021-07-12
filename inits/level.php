@@ -8,6 +8,4 @@
   include PAD_HOME . 'level/parms1.php';
   include PAD_HOME . 'level/inits.php';
 
-  $pad_data [$pad_lvl] [$pad_lvl] = [];
-
 ?>

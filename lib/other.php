@@ -36,6 +36,8 @@
     
     foreach  ($explode as $key => $value ) {
 
+      $explode[$key] = trim($value);
+    
       if ( $limit == '|' ) $explode [$key] = str_replace ( '&pipe;',  '|', $explode [$key] );
       if ( $limit == '=' ) $explode [$key] = str_replace ( '&eq;',    '=', $explode [$key] );
       if ( $limit == ',' ) $explode [$key] = str_replace ( '&comma;', ',', $explode [$key] );
@@ -43,9 +45,7 @@
       if ( $limit == '|' ) $explode [$key] = str_replace ( '#pipe#',  '|', $explode [$key] );
       if ( $limit == '=' ) $explode [$key] = str_replace ( '#eq#',    '=', $explode [$key] );
       if ( $limit == ',' ) $explode [$key] = str_replace ( '#comma#', ',', $explode [$key] );
-
-      $explode [$key] = (string) trim ( $explode [$key] );
-
+    
       if ( $explode[$key] === '' )
         unset ( $explode[$key] );
 
@@ -618,9 +618,7 @@
 
     }
  
-    $flag = (string) trim ($input);
-
-    if ( $flag )
+    if ( $input )
       return TRUE; 
     else
       return FALSE;
@@ -636,7 +634,7 @@
     elseif ( is_array ( $input )    )  return pad_array_to_string ( $input );
     elseif ( is_object ( $input )   )  return pad_array_to_string ( $input );
     elseif ( is_resource ( $input ) )  return pad_array_to_string ( $input );
-    else                               return (string) $input; 
+    else                               return $input; 
 
   }
 
@@ -793,15 +791,15 @@
         if ( ! pad_valid_name    ( $type ) )                                 return FALSE;
     elseif ( pad_file_exists     ( PAD_APP  . "functions/$type.php"      ) ) return 'function_app';
     elseif ( pad_file_exists     ( PAD_HOME . "functions/$type.php"      ) ) return 'function_pad';
-    elseif ( pad_chk_level_array ( $type                                 ) ) return 'level';
     elseif ( function_exists     ( $type                                 ) ) return 'function_php';
+    elseif ( pad_field_check     ( $type                                 ) ) return 'field';
     elseif ( isset               ( $GLOBALS['pad_flag_store'] [$type]    ) ) return 'flag';
     elseif ( isset               ( $GLOBALS['pad_content_store'] [$type] ) ) return 'content';
     elseif ( isset               ( $GLOBALS['pad_data_store'] [$type]    ) ) return 'data';
     elseif ( pad_file_exists     ( PAD_HOME . "tag/$type.php"            ) ) return 'parm';
     elseif ( isset               ( $GLOBALS['pad_db_tables'] [$type]     ) ) return 'table';
     elseif ( pad_array_check     ( $type                                 ) ) return 'array';
-    elseif ( pad_field_check     ( $type                                 ) ) return 'field';
+    elseif ( pad_chk_level_array ( $type                                 ) ) return 'level';
     elseif ( defined             ( $type                                 ) ) return 'constant';
     elseif ( pad_file_exists     ( PAD_APP  . "tags/$type.php"           ) ) return 'tag_app';
     elseif ( pad_file_exists     ( PAD_APP  . "tags/$type.html"          ) ) return 'tag_app';
@@ -832,9 +830,12 @@
   }
 
 
-  function pad_reset ($start, $end) {
+  function pad_reset ($start, $end=0) {
 
     global $pad_save_vars, $pad_delete_vars;
+
+    if ( ! $end )
+      $end = $start;
   
     for ($lvl = $end; $lvl>=$start; $lvl--)  {    
 
@@ -851,20 +852,6 @@
 
   }
 
-  function pad_reset_set ($lvl) {
-
-    global $pad_set_save, $pad_set_delete;
-  
-    foreach ( $pad_set_save [$lvl] as $key => $value) {
-      if ( $GLOBALS [$key] )
-        unset ($GLOBALS [$key] );
-      $GLOBALS [$key]= $value;
-    }
-
-    foreach ( $pad_set_delete [$lvl] as $key)
-      unset ($GLOBALS [$key]);
-  
-  }
 
   function pad_raw ( $data ) {
 
@@ -919,20 +906,11 @@
 
   function pad_is_default_data ( $data ) {
     
-    if ( ! is_array ( $data ) )
-      return FALSE;
-
-    if ( count ( $data ) <> 1 )
-      return FALSE;
-
-    if ( ! isset ( $data [1] ) )
-      return FALSE;
-     
-    if ( ! is_array ( $data [1] ) )
-      return FALSE;
-
-    if ( count ( $data [1] ) )
-      return FALSE;
+    if ( ! is_array ( $data )       ) return FALSE;
+    if ( count ( $data ) <> 1       ) return FALSE;
+    if ( ! isset ( $data [999] )    ) return FALSE;
+    if ( ! is_array ( $data [999] ) ) return FALSE;
+    if ( count ( $data [999] )      ) return FALSE;
 
     return TRUE;
 
@@ -987,7 +965,6 @@
     elseif (is_array($value))     $value = '';
     elseif (is_object($value))    $value = '';
     elseif (is_resource($value))  $value = '';
-    else                          $value = (string) $value;
     
   }
 
@@ -1036,7 +1013,7 @@
 
   function pad_analyze_var_info ($analyse) {
 
-     $work = (string) $analyse;
+     $work = $analyse;
      $work = trim(preg_replace('/\s+/', ' ', $work));
      $work = substr($work, 0, 50);
 
@@ -1088,9 +1065,9 @@
   
       $now = (substr($opt, 0, 1) == '%') ? sprintf($opt, $val) : pad_eval ($opt, $val);
      
-      if ( $append )                  $val = (string) $val . $now;
-      if ( $prepend )                 $val = (string) $now . $val;
-      if ( ! $append and ! $prepend ) $val = (string) $now;
+      if ( $append )                  $val = $val . $now;
+      if ( $prepend )                 $val = $now . $val;
+      if ( ! $append and ! $prepend ) $val = $now;
 
       if ($pad_trace and $val <> $save)
         $pad_opts_trace [$opt] = $val;

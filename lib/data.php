@@ -200,6 +200,22 @@
   }
 
 
+  function pad_data_chk_simple_array (&$result,$name) {
+
+    foreach ($result as $pad_k => $pad_v)
+      if ( is_array($pad_v) or ! is_numeric($pad_k) )
+        return;
+  
+    $name   = pad_data_name($name);
+    $tmp    = $result;
+    $result = [];
+    
+    foreach ($tmp as $k => $v)
+      $result [$k] [$name] = $v;
+
+  }
+  
+
   function pad_data_chk_check_array (&$result,$name) {
 
     foreach ($result as $k => $v) {
@@ -235,23 +251,6 @@
       }
 
   }
-
-  
-  function pad_data_chk_simple_array (&$result,$name) {
-
-    foreach ($result as $pad_k => $pad_v)
-      if ( is_array($pad_v) or ! is_numeric($pad_k) )
-        return;
-  
-    $name   = pad_data_name($name);
-    $tmp    = $result;
-    $result = [];
-    
-    foreach ($tmp as $k => $v)
-      $result [$k] [$name] = $v;
-
-  }
-
 
   function pad_data_chk_chk_one (&$result,$name) {
 
@@ -300,6 +299,8 @@
 
     if (substr($return, 0, 1) == '$')
       $return = substr($return, 1);
+
+    return $return;
 
   }
 

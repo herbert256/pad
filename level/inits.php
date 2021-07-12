@@ -1,5 +1,8 @@
 <?php
 
+  $pad_data [$pad_lvl]       = [];
+  $pad_data [$pad_lvl] [999] = [];
+
   $pad_occur   [$pad_lvl] = 0;
   $pad_current [$pad_lvl] = [];
 
@@ -7,7 +10,6 @@
   $pad_walks       [$pad_lvl] = '';
   $pad_walks_data  [$pad_lvl] = [];
   $pad_current     [$pad_lvl] = [];
-  $pad_data        [$pad_lvl] = []; 
   $pad_base        [$pad_lvl] = '';
   $pad_occur       [$pad_lvl] = 0;
   $pad_result      [$pad_lvl] = '';

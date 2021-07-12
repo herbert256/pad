@@ -13,7 +13,7 @@
 
     if ( count($pad_w) == 2 and substr($pad_w[0], 0, 1) == '$') {
 
-      $pad_set_name  = substr($pad_w[0], 1);
+      $pad_set_name  = trim(substr($pad_w[0], 1));
       $pad_set_value = $pad_w[1];
       include PAD_HOME . 'level/set.php';
 

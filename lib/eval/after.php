@@ -79,7 +79,7 @@
             $result[$k][7] = constant ( $one[0] );
           }
           else
-            $result[$k][0] = (string) constant ( $one[0] );
+            $result[$k][0] = constant ( $one[0] );
  
         }
 

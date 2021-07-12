@@ -199,7 +199,7 @@
 
         $i += 100;
         $result[$i][1] = 'VAL';
-        $result[$i][0] = (string) $myself;
+        $result[$i][0] = $myself;
 
         $in_other = FALSE;
 

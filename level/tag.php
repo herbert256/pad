@@ -2,9 +2,6 @@
 
   $pad_parameters [$pad_lvl] ['tag_count']++;
 
-  $pad_data [$pad_lvl]     = [];
-  $pad_data [$pad_lvl] [1] = [];
-
  if ( pad_tag_parm ('content') ) 
     $pad_content .= include PAD_HOME . "options/content.php";    
 

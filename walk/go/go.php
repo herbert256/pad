@@ -18,6 +18,6 @@
     }
   }
 
-  return  (string) $pad_return;
+  return $pad_return;
 
 ?>

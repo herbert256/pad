@@ -14,11 +14,12 @@
 
   if ( $pad_lvl > 1 ) {
 
-    if ( count($pad_data [$pad_lvl]) <> 1 
-       or !isset($pad_data [$pad_lvl][1]) 
-       or count($pad_data [$pad_lvl][1]) 
-       or $pad_parameters [$pad_lvl] ['name'] <> $pad_parameters [$pad_lvl] ['tag'] )  
-       pad_set_global ( $pad_name, $pad_current [$pad_lvl] );
+    if ( ! pad_is_default_data ($pad_data [$pad_lvl]) )
+      pad_set_global ( $pad_name, $pad_current [$pad_lvl] );
+    elseif ( isset($pad_parms_val[0]) )
+      pad_set_global ( $pad_name, $pad_parms_val[0] );
+    else
+      pad_set_global ( $pad_name, 'n/a' );
 
     foreach ( $pad_current [$pad_lvl] as $pad_k => $pad_v )
       pad_set_global ( $pad_k, $pad_v );

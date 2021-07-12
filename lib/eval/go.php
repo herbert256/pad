@@ -81,12 +81,12 @@ go: $b = -1;
         $result[$k][1] = 'VAL';      
  
         if ( pad_field_check ( $one[0] ) ) 
-          $result[$k][0] = (string) pad_field_value ( $one[0] );
+          $result[$k][0] = pad_field_value ( $one[0] );
         elseif ( pad_array_check ( $one[0] ) ) {
           $result[$k][6] = 'array';
           $result[$k][7] = pad_array_value ( $one[0]);
         } else
-          $result[$k][0] = (string) $one[0]   ;
+          $result[$k][0] = $one[0]   ;
 
       }
 
