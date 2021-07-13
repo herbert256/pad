@@ -14,19 +14,18 @@
 
   if ( $pad_lvl > 1 ) {
 
-    if ( ! pad_is_default_data ($pad_data [$pad_lvl]) )
+    if ( pad_is_default_data ($pad_data [$pad_lvl]) ) {
+      if ( isset($pad_parms_val[0]) )
+        pad_set_global ( $pad_name, $pad_parms_val[0] );
+    } else
       pad_set_global ( $pad_name, $pad_current [$pad_lvl] );
-    elseif ( isset($pad_parms_val[0]) )
-      pad_set_global ( $pad_name, $pad_parms_val[0] );
-    else
-      pad_set_global ( $pad_name, 'n/a' );
 
     foreach ( $pad_current [$pad_lvl] as $pad_k => $pad_v )
       pad_set_global ( $pad_k, $pad_v );
 
   }
 
-  if ( isset($pad_parms_tag ['callback']) and ! isset($pad_parms_tag ['before']))
+  if ( isset($pad_parms_tag ['callback']) and ! isset($pad_parms_tag ['before']) )
     include PAD_HOME . 'callback/row.php' ;
 
   include PAD_HOME . 'occurrence/db.php';
