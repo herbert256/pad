@@ -54,6 +54,7 @@
       return pad_field_tag_parm ($tag, $field);
 
     $pad_idx = pad_field_tag_lvl ($tag);
+    $GLOBALS['xxx'] = $pad_idx;
     
     if ( pad_file_exists ( PAD_HOME . "tag/".$field.".php" ) )
       return include PAD_HOME . "tag/$field.php";
@@ -162,16 +163,16 @@
 
     global $pad_lvl, $pad_parameters;
 
-    if ($search=='')
+    $GLOBALS['yyy'] = $search;
+
+    if ( trim($search) === '0' or trim($search) == '' )
       return $pad_lvl;
 
-    $find = (int) $search;
- 
-    if ( $find < 0 ) 
-      return $pad_lvl + $find;
+    if ( is_numeric($search) and $search < 0 ) 
+      return ($pad_lvl + $search) - 1;
 
     if ( is_numeric($search) ) 
-      return (int) $search;
+      return $search;
 
     for ($i=$pad_lvl; $i; $i--)
       if ( isset($pad_parameters [$i] ['name']) and $pad_parameters [$i] ['name'] == $search)
@@ -185,7 +186,7 @@
   function pad_field_tag_lvl  ($search = '') {
 
     $return = pad_field_tag_lvl_base ($search);
-    if ( $return )
+    if ( ! $return === FALSE)
       return $return;
 
     global $pad_lvl, $pad_parameters;
