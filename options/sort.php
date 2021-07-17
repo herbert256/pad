@@ -4,7 +4,7 @@
     return;
 
   $pad_sort_args   = [];
-  $pad_sort_fields = pad_explode($pad_parms_tag ['sort'], ','); 
+  $pad_sort_fields = pad_explode($pad_parms_tag ['sort'], ';'); 
 
   if ( $pad_parms_tag ['sort'] === TRUE or ! count ($pad_sort_fields)) {
     $pad_sort_fields = []; 

@@ -76,7 +76,12 @@
 
   function pad_field_tag_lvl_base ($search, $data) {
 
-    global $pad_lvl, $pad_parameters;
+    global $pad_lvl, $pad_parameters, $pad_parms_val;
+
+    if ( $data and ! isset($pad_parms_val[0]) )
+      for ($i=$pad_lvl-1; $i; $i--)
+        if ( ! $pad_parameters [$i] ['default_data'] )
+          return $i;
 
     if ( trim($search) === '0' or trim($search) == '' )
       return $pad_lvl;
@@ -89,8 +94,7 @@
 
     for ($i=$pad_lvl; $i; $i--)
       if ( $pad_parameters [$i] ['name'] == $search)
-        if ( ( ! $data ) or ( $data and ! $pad_parameters [$i] ['default_data'] ) )
-          return $i;
+        return $i;
 
     return FALSE;
 

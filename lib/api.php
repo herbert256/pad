@@ -23,22 +23,14 @@
 
   function pad_go ( $go ) {
 
-    global $pad_host, $pad_script, $app, $pad_stop;
+    global $pad_host, $pad_script, $pad_stop;
 
     $parts = pad_explode ($go, '://', 2);
 
     if ( count ($parts) == 2)
-
       $next = $go;
-
-    else {
-
-      $parts = pad_explode ($go, '&', 2);
-      $base  = pad_explode ($parts[0], '/');
-
-      $next = "$pad_host$pad_script?app=$app&page=$go";
-
-    }
+    else
+      $next = "$pad_host$pad_script?app=$go";
   
     pad_header ("Location: $next");
     

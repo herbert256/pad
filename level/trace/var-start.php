@@ -13,11 +13,15 @@
  
     $pad_trace_json = pad_json ( 
       [ 
+        'app'    => $app,
+        'page'   => $page,
+        'id'     => $PADREQID,
         'field'  => $pad_fld,
         'nr'     => $pad_fld_cnt,
         'start'  => $pad_between,
         'error'  => "*** NOT FOUND ***"
-      ] );
+      ] 
+    );
 
     pad_file_put_contents ( "errors/field/$app/$page/$PADREQID/$pad_fld_cnt.json", $pad_trace_json ); 
     pad_file_put_contents ( "$pad_trace_dir_base/errors/fields/$pad_fld_cnt.json", $pad_trace_json ); 

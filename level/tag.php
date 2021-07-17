@@ -24,8 +24,7 @@
   if ( pad_tag_parm ('sequence') ) 
     $pad_data [$pad_lvl] = include PAD_HOME . "options/sequence.php"; 
 
-  if ($pad_lvl > 1)
-    $pad_data [$pad_lvl] = pad_make_data ( $pad_data [$pad_lvl] );   
+  $pad_data [$pad_lvl] = pad_make_data ( $pad_data [$pad_lvl] );   
 
   if     ( ! count($pad_data [$pad_lvl]) ) $pad_base [$pad_lvl] = $pad_false;
   elseif ( is_array($pad_tag_result) )     $pad_base [$pad_lvl] = $pad_content;

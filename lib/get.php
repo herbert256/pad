@@ -101,7 +101,7 @@
       return FALSE;
 
     if ( substr ( $input, 0, 7 ) == 'http://' or substr ( $input, 0, 8 ) == 'https://' )
-      return pad_curl ($input);
+      return pad_curl ($input, $output);
  
     if ( pad_file_exists ( PAD_APP . "data/$input" ) )
       return pad_file_get_contents ( PAD_APP . "data/$input" );

@@ -1,5 +1,25 @@
 <?php
 
+
+  function pad_include ($url) {
+
+    global $pad_host, $pad_script, $app;
+
+    $input  = [];
+    $output = [];
+
+    $input ['url'] = "$pad_host$pad_script?app=$url&pad_include=1";
+
+    $input ['cookies'] ['PADSESSID'] = $GLOBALS ['PADSESSID']; 
+    $input ['cookies'] ['PADREQID']  = $GLOBALS ['PADREQID']; 
+
+    pad_curl ($input, $output);
+
+    return $output;
+
+  }
+
+
   function pad_trace ($local) {
 
     $dir  = $GLOBALS ['pad_trace_dir_occ'] . "/trace/" . uniqid() . '.html';
@@ -8,6 +28,7 @@
     pad_file_put_contents ( $dir, $data );
 
   }
+
 
   function pad_local () {
 
@@ -899,6 +920,12 @@
     else
       foreach ( $add as $value )
         $pad_data [$pad_lvl] [] = $value;
+
+  }
+
+  function pad_default_data () {
+    
+    return [ 999 => [] ];
 
   }
 

@@ -22,6 +22,10 @@
   $PADREFID  = $PADREFID  ?? $_GET['PADREQID']  ?? $_COOKIE['PADREQID']  ?? '';
   $PADREQID  = pad_random_string(16);
 
+  $pad_trace_dir_base = "trace/$app/$page/$PADREQID";
+  $pad_trace_dir_lvl  = $pad_trace_dir_base;
+  $pad_trace_dir_occ  = "$pad_trace_dir_base/2-tree";
+
   $pad_output = '';
   $pad_stop   = '000';
   $pad_etag   = '';
