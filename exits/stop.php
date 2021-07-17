@@ -1,6 +1,6 @@
 <?php
 
-  if ( $GLOBALS['pad_stop'] == '999' )
+  if ( $GLOBALS['pad_stop'] == '000' )
     pad_dump ("Internal error, pad_stop not set");
 
   $pad_stop = $GLOBALS['pad_stop'];
@@ -10,7 +10,7 @@
     pad_track_db_session ($pad_stop);
 
   if ( $GLOBALS['pad_track_file'] )
-    pad_track_file ($pad_stop);
+    pad_track_file ();
 
   if ( $GLOBALS['pad_track_vars'] )
     pad_track_vars ("vars/" . $GLOBALS['app'] . "/" . $GLOBALS['page'] . "/" . $GLOBALS['PADREQID'] . ".html");

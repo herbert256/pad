@@ -1,8 +1,5 @@
 <?php
 
-  if ( $pad_lvl <= 1)
-    return;
-
   $pad_trace_dir_occ = "$pad_trace_dir_lvl/occurrence-" . $pad_occur [$pad_lvl];
 
   $pad_parameters [$pad_lvl] ['occur_dir'] = $pad_trace_dir_occ ;

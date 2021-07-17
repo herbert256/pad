@@ -19,7 +19,7 @@
   $pad_base [1] = $pad_lib_result . $pad_base [1];
 
   if ( $pad_trace )
-    pad_file_put_contents ("$pad_trace_dir_base/base.html", $pad_base [1] );
+    pad_file_put_contents ("$pad_trace_dir_base/1-start/base.html", $pad_base [1] );
   
   include PAD_HOME . 'occurrence/start.php';
 

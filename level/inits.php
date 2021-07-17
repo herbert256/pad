@@ -1,5 +1,7 @@
 <?php
 
+  $pad_lvl_cnt++;
+  
   $pad_data [$pad_lvl]       = [];
   $pad_data [$pad_lvl] [999] = [];
 
@@ -26,6 +28,15 @@
   $pad_parameters  [$pad_lvl] ['tag']      = '';
   $pad_parameters  [$pad_lvl] ['tag_type'] = '';
   $pad_parameters  [$pad_lvl] ['name']     = '';
+
+  $pad_trace_dir_lvl  = $pad_trace_dir_occ;
+  $pad_trace_dir_lvl .= '/tag.' . $pad_lvl_cnt;
+  $pad_trace_dir_lvl .= '.' . $pad_parameters[$pad_lvl] ['tag'];
+
+  if ( $pad_parameters[$pad_lvl] ['tag'] <> $pad_parameters[$pad_lvl] ['name'] )
+    $pad_trace_dir_lvl .= '.' . $pad_parameters[$pad_lvl] ['name'];
+
+  $pad_parameters [$pad_lvl] ['trace_dir'] = $pad_trace_dir_lvl ;
 
   $pad_walk = 'start';
 

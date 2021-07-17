@@ -427,21 +427,19 @@
   }
 
 
-  function pad_track_file ($pad_stop) {
+  function pad_track_file () {
     
     $id = pad_id ();
   
-    $track = pad_track ($pad_stop);
-    $json  = json_encode($track, JSON_PARTIAL_OUTPUT_ON_ERROR);
+    $track = pad_track ();
+    $json  = pad_json ($track);
     
     pad_file_put_contents ( "track/$id.json", $json, 1);
       
   }
 
 
-  function pad_track ($pad_stop) {
-    
-    $id = pad_id ();
+  function pad_track () {
   
     return [
         'session'   => $GLOBALS ['PADSESSID'] ?? '',
@@ -452,7 +450,7 @@
         'start'     => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0,
         'end'       => microtime(true),
         'length'    => $GLOBALS ['pad_len'] ?? 0,
-        'stop'      => $pad_stop ?? '',
+        'stop'      => $GLOBALS ['pad_stop'] ?? '',
         'etag'      => $GLOBALS ['pad_etag'] ?? '',
         'uri'       => $_SERVER ['REQUEST_URI']     ?? '' ,
         'referer'   => $_SERVER ['HTTP_REFERER']    ?? '' ,

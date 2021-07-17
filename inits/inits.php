@@ -23,7 +23,7 @@
   $PADREQID  = pad_random_string(16);
 
   $pad_output = '';
-  $pad_stop   = '999';
+  $pad_stop   = '000';
   $pad_etag   = '';
   $pad_exit   = 1;
   $pad_time   = $_SERVER['REQUEST_TIME'];  

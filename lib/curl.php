@@ -1,70 +1,21 @@
 <?php
 
-  function pad_include ($url) {
-
-    global $pad_host, $pad_script, $app;
-
-    $input  = [];
-    $output = [];
-
-    $input ['url'] = "$pad_host$pad_script?app=$app&page=$url&pad_include=1";
-
-    if ( $GLOBALS['pad_trace'] )
-      $input ['url'] .= '&pad_trace=1';
-
-    $input ['cookies'] ['PADSESSID'] = $GLOBALS ['PADSESSID']; 
-    $input ['cookies'] ['PADREQID']  = $GLOBALS ['PADREQID']; 
-
-    pad_curl_get ($input, $output);
-
-    return $output;
-
-  }
-
-  function pad_curl ($url) {
-
-    global $pad_host, $pad_script, $app;
-
-    if ( substr($url, 0, 1) == '"' or substr($url, 0, 1) == "'" )
-      $url = substr($url, 1, -1);
-
-    $include = '';
-    if ( substr($url, -14) == '&pad_include=1') {
-      $include = '&pad_include=1';
-      $url = substr($url, 0, -14);
-    }
-
-    if ( pad_file_exists ( PAD_APP . "pages/$url.php" ) or pad_file_exists ( PAD_APP . "pages/$url.html" ) ) {
-      return pad_curl_extra ("$pad_host$pad_script?app=$app&page=$url$include", $output);
-    }
- 
-    if ( substr ( $url, 0, 7 ) == 'http://' or substr ( $url, 0, 8 ) == 'https://' ) {
-
-      $data = pad_curl_extra ( "$url$include", $output );
-
-    } elseif ( pad_get_check ( $url ) )
-
-      $data = pad_get_content ( $url );
-
-    else 
-
-      return pad_error ("curl: invalid URL: $url");
-
-    return $data;
-
-  }
-
-  function pad_curl_extra ($input, &$output) {
+  function pad_curl ($input, &$output) {
 
     //  Required input parms
     //  - ['url']
     
     //  Optional input parms
+    //  - ['user']
+    //  - ['password']
     //  - ['get']
     //  - ['post']
     //  - ['cookies']
     //  - ['headers']
     //  - ['options']
+
+    if ( ! is_array($input) )
+      $input = [ 'url' => $input ];
 
     $output                  = [];
     $output ['result_code']  = '999';  //  200 / 404 / etc
@@ -74,51 +25,12 @@
     $output ['cookies']      = [];
     $output ['data']         = '';
 
-    if ( ! is_array($input) ) {
-      $url = $input;
-      $input = [];
-      $input ['url'] = $url;
-    }
-
-    $url = $input ['url'] ?? '';
-
-    if ( substr($url, 0, 1) == '"' or substr($url, 0, 1) == "'" )
-      $url =  substr($url, 1, -1);
- 
-    if ( substr ( $url, 0, 7 ) == 'http://' or substr ( $url, 0, 8 ) == 'https://' )
-
-      $data = pad_curl_get ( $input, $output );
-
-    elseif ( pad_get_check ( $url, FALSE ) ) {
- 
-      $data    = pad_get_content ( $url );
-      $content = '';
- 
-      pad_content_type ($data, $content);
- 
-      $output ['result_code']  = '200';
-      $output ['result_type']  = $content; 
- 
-    }
- 
-    else
- 
-      $data = pad_curl_get ( $input, $output );
-
-    return $data;
-
-  }
-
-  function pad_curl_get ( $input, &$output ) {
-
-    $url = $input ['url'];
     $error = FALSE;
 
-    $get = '';
     if ( isset($input['get']) ) {
       $str = ( strpos ($input ['url'], '?' ) === FALSE ) ? '?' : '&';
       foreach ( $input['get'] as $key => $val ) {
-        $get .= $str . $key . '=' . urlencode($val);
+        $input ['url'] .= $str . $key . '=' . urlencode($val);
         $str = '&';
       }
     }
@@ -129,13 +41,11 @@
     pad_curl_opt ($options, 'ENCODING',       'gzip' );
     pad_curl_opt ($options, 'FOLLOWLOCATION', true);
     pad_curl_opt ($options, 'HEADER',         true);
-    pad_curl_opt ($options, 'USERAGENT',      $_SERVER['HTTP_USER_AGENT'] ?? 'Mozilla/5.0 (X11; Linux x86_64) Gecko/20100101 Pad/1.0');
+    pad_curl_opt ($options, 'USERAGENT',      $_SERVER['HTTP_USER_AGENT'] ?? 'Mozilla/5.0 (X11; CrOS x86_64 13904.77.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.147 Safari/537.36 PAD/10.0');
     pad_curl_opt ($options, 'REFERER',        $GLOBALS['pad_location'] . $GLOBALS['page']);
 
     if ( isset($input['user']) )
       pad_curl_opt ($options, 'USERPWD', $input['user'] . ":" . $input['$password']);
-    
-    $curl = curl_init ( $input ['url'] . $get );
     
     if ( isset($input['post']) ) {
       pad_curl_opt ($options, 'POST', true);
@@ -158,7 +68,9 @@
         $headers_in [] = $key . ': ' . $val;
       pad_curl_opt ($options, 'HTTPHEADER', $headers_in);
     }
-  
+
+    $curl = curl_init ( $input ['url'] );
+      
     foreach ( $options as $key => $val )
       curl_setopt ( $curl, constant('CURLOPT_'.$key), $val );
   

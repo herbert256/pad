@@ -188,14 +188,20 @@
 
    function pad_data_chk (&$result,$name) {
 
-    if ( ! count($result) )
-      return;
+    if ( $GLOBALS['pad_trace'] )
+      $data = [ 'name' => $name, 'before' => $result ];
 
     pad_data_chk_simple_array ($result,$name);
     pad_data_chk_chk_one      ($result,$name);
     pad_data_chk_data_attr    ($result,$name);
-    pad_data_chk_check_record ($result,$name);
+    pad_data_chk_check_record ($result,$name); 
     pad_data_chk_check_array  ($result,$name);
+
+    if ( $GLOBALS['pad_trace'] ) {
+      $trace = $GLOBALS['pad_trace_dir_lvl'] . '/chk_data/' . uniqid() . '.json';
+      $data ['after'] = $result;
+      pad_file_put_contents ( $trace, $data );
+    }
 
   }
 

@@ -1,7 +1,6 @@
 <?php
 
   $pad_lvl++;
-  $pad_lvl_cnt++;
   
   if ( isset ( $pad_current [$pad_lvl] ) )
     unset ( $pad_current [$pad_lvl] );
@@ -12,6 +11,8 @@
 
   if ($pad_lvl > 1) 
     pad_make_data ( $pad_data[$pad_lvl] );
+
+  $pad_parameters [$pad_lvl] ['default_data'] = pad_is_default_data ( $pad_parameters [$pad_lvl] );
   
   $pad_options = 'level_start';
   include PAD_HOME . "options/go/options.php";

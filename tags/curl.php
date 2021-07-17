@@ -6,6 +6,6 @@
   if ( ! $pad_parms_tag ['url'] )
     return pad_error ("Curl: No URL given");
 
-  return pad_curl_extra ( $pad_parms_tag, $pad_curl_output );
+  return pad_curl ( $pad_parms_tag, $pad_curl_output );
 
 ?>
