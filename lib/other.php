@@ -251,10 +251,10 @@
     foreach ($pad_page_parts as $key => $value) {
       
       if ($value == 'inits')
-        return pad_fatal ("'inits' is a reserved word and can not be used as page name");
+        return pad_error ("'inits' is a reserved word and can not be used as page name");
 
       if ($value == 'exits')
-        return pad_fatal ("'exits' is a reserved word and can not be used as page name");
+        return pad_error ("'exits' is a reserved word and can not be used as page name");
 
       if ( $key == array_key_last($pad_page_parts)
             and (pad_file_exists("$pad_location/$value.php") or pad_file_exists("$pad_location/$value.html") ) )
@@ -268,7 +268,7 @@
 
       } else {
 
-        return pad_fatal ("Page '$app/$page' not found (1): $pad_location/$value.php");
+        return pad_error ("Page '$app/$page' not found (1): $pad_location/$value.php");
 
       }
       

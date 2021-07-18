@@ -3,7 +3,7 @@
   function pad_colors_file ($file) {
 
     if ( ! pad_file_exists($file) )
-      return '';
+      return 'xx';
 
     if (substr($file, -5) == '.html')
       return pad_colors_string ( pad_file_get_contents($file) ) ;
