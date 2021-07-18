@@ -18,7 +18,7 @@
 
   // Trace the internal working of PAD
 
-  $pad_trace = false;  
+  $pad_trace = TRUE;  
 
   // Keep track of stuff, lots of data.
 
