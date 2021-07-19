@@ -23,8 +23,8 @@
   $PADREQID  = pad_random_string(16);
 
   $pad_trace_dir_base = "trace/$app/$page/$PADREQID";
-  $pad_trace_dir_lvl  = $pad_trace_dir_base;
-  $pad_trace_dir_occ  = "$pad_trace_dir_base/2-tree";
+  $pad_trace_dir_lvl  = "$pad_trace_dir_base/tree";
+  $pad_trace_dir_occ  = "$pad_trace_dir_base/tree";
 
   $pad_output = '';
   $pad_stop   = '000';
@@ -53,7 +53,7 @@
     if ( ! isset($_COOKIE['PADSESSID']) or $_COOKIE['PADSESSID'] <> $PADSESSID )
       setCookie ('PADSESSID', $PADSESSID, time() + $pad_cookie_time);
     setCookie ('PADREQID', $PADREQID, time() + $pad_cookie_time);
-    pad_header ("X-PAD: $PADREQID");
+    pad_header ("X-PAD-ID: $PADREQID");
   }
 
   if ($pad_client_gzip and (!isset($_SERVER['HTTP_ACCEPT_ENCODING']) or strpos($_SERVER['HTTP_ACCEPT_ENCODING'],'gzip') === FALSE))

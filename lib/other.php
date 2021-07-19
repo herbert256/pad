@@ -152,6 +152,9 @@
 
     $GLOBALS['pad_skip_shutdown']      = TRUE;
     $GLOBALS['pad_skip_boot_shutdown'] = TRUE;
+
+    if ( $GLOBALS['pad_trace'] )
+      include PAD_HOME . 'exits/trace.php';
     
     exit;
 
@@ -477,7 +480,7 @@
         'referer'   => $_SERVER ['HTTP_REFERER']    ?? '' ,
         'remote'    => $_SERVER ['REMOTE_ADDR']     ?? '' ,
         'agent'     => $_SERVER ['HTTP_USER_AGENT'] ?? '',
-        'cookies  ' => $_SERVER ['HTTP_COOKIE']     ?? ''
+        'cookies'   => $_SERVER ['HTTP_COOKIE']     ?? ''
       ];
       
   }

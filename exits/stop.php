@@ -29,9 +29,6 @@
 
   }  
 
-  if ( $GLOBALS['pad_trace'] )
-    include 'trace.php';
-
   pad_exit ();
 
 ?>

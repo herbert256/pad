@@ -45,11 +45,12 @@
   function pad_dump_get_xxx_vars ($type) {
 
     $chk = ['_GET','_POST','_COOKIE','_FILES','_SESSION','_SERVER','_ENV','_REQUEST'];
+    $not = ['app','page','PADSESSID','PADREFID','PADREQID'];
 
     $dump = [];
 
     foreach ($GLOBALS as $key => $value)
-      if (    ( $type == 'app' and substr($key, 0, 3) <> 'pad' and ! in_array($key, $chk) ) 
+      if (    ( $type == 'app' and substr($key, 0, 3) <> 'pad' and ! in_array($key, $chk) and ! in_array($key, $not) ) 
            or ( $type == 'pad' and substr($key, 0, 3) == 'pad'                            )
            or ( $type == 'php' and in_array($key, $chk)                                   ) 
          )
