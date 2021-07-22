@@ -35,8 +35,7 @@
 
     global $pad_timings;
     
-    $pad_timings ['boot'] = $GLOBALS['pad_boot'] - $_SERVER['REQUEST_TIME_FLOAT'];
-    $pad_timings ['all']  = microtime(true)      - $_SERVER['REQUEST_TIME_FLOAT'];
+    $pad_timings ['all'] = microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'];
 
     foreach ($pad_timings as $key => $val)
       $pad_timings [$key] = (int) ( $val * 1000000 );

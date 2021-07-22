@@ -18,12 +18,14 @@
 
   // Trace the internal working of PAD
 
-  $pad_trace = TRUE;  
+  $pad_trace                   = FALSE;  
+  $pad_trace_fields            = TRUE;  
+  $pad_trace_eval              = TRUE;  
+  $pad_trace_occurence_details = TRUE;  
 
   // Keep track of stuff, lots of data.
 
   $pad_track_output      = FALSE;   // Store the output of every request
-  $pad_track_vars        = FALSE;   // Store the endstate of all vars for every request
   $pad_track_db_session  = FALSE;
   $pad_track_db_request  = FALSE;
   $pad_track_file        = FALSE;

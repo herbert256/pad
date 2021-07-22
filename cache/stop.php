@@ -5,6 +5,6 @@
   $pad_time = $pad_cache_age;
   $pad_etag = $pad_cache_etag;
 
-  include PAD_HOME . 'exits/stop.php';
+  pad_stop ($pad_stop);
 
 ?>

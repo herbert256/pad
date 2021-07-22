@@ -48,7 +48,7 @@
   if ( $pad_first == '!')
     $pad_val = pad_raw ( $pad_val );
 
-  if ( $pad_trace ) 
+  if ( $pad_trace and $pad_trace_fields ) 
     include 'trace/var-end.php';
 
   return $pad_val;

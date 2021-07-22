@@ -11,9 +11,8 @@
     pad_dump_vars     ($info);
 
     $GLOBALS[ 'pad_sent'] = TRUE;
-    $GLOBALS ['pad_stop'] = 500;
 
-    include PAD_HOME . 'exits/stop.php';
+    pad_stop (500);
 
   }  
 

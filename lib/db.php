@@ -182,7 +182,7 @@
     $connect = mysqli_connect ( "p:$host" , $user , $password , $database );
     
     if ( ! $connect )
-      pad_fatal ( mysqli_connect_errno ( ) . ' - ' . mysqli_connect_error ( ) );
+      return pad_error ( mysqli_connect_errno ( ) . ' - ' . mysqli_connect_error ( ) );
       
     mysqli_query($connect, "SET SESSION sql_mode = 'TRADITIONAL'");
     

@@ -1,7 +1,7 @@
 <?php
 
 
-  function padFastLink ($app, $page, $vars ) {
+  function pad_fast_link ($app, $page, $vars ) {
     
     global $pad_fast_link, $PADSESSID, $PADREQID, $pad_host, $pad;
   
@@ -21,6 +21,7 @@
 
   }
 
+
   function pad_go ( $go ) {
 
     global $pad_host, $pad_script, $pad_stop;
@@ -34,27 +35,9 @@
   
     pad_header ("Location: $next");
     
-    $pad_stop = '302';
-    include PAD_HOME . 'exits/stop.php';
+    pad_stop (302);
 
   }
 
-
-  function padLocation ( $location ) {
-
-    $next = $GLOBALS['pad_location'] . $location;
-  
-    pad_header ("Location: $next");
-
-    $pad_stop = '302';
-    include PAD_HOME . 'exits/stop.php';
-
-  }
-
-
-  function padNext ( $next ) {
-    $GLOBALS ['pad_next'] = $next;
-  }
-  
 
 ?>

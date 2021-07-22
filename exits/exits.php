@@ -36,6 +36,6 @@
   if ( count ($pad_close_tags) )
     include PAD_HOME . 'walk/close.php';
 
-  include PAD_HOME . 'exits/stop.php';
+  pad_stop ($pad_stop);
 
 ?>

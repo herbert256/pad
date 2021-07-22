@@ -147,20 +147,7 @@
     
   }
   
-
-  function pad_exit () {
-
-    $GLOBALS['pad_skip_shutdown']      = TRUE;
-    $GLOBALS['pad_skip_boot_shutdown'] = TRUE;
-
-    if ( $GLOBALS['pad_trace'] )
-      include PAD_HOME . 'exits/trace.php';
-    
-    exit;
-
-  }
-
-
+      
   function pad_header ($header) {
 
     if ( headers_sent () )
@@ -224,16 +211,6 @@
 
   }
   
-
-
-  function pad_fatal ($error) {
-    
-    pad_error ($error);
-    
-    pad_exit ();
-    
-  }
-
 
   function pad_check_page () {
 
@@ -418,7 +395,7 @@
   }
 
 
-  function pad_track_db_session ($pad_stop) {
+  function pad_track_db_session () {
 
     $session = pad_db( "field id from track_session where sessionid='{1}'", [ 1 => $GLOBALS['PADSESSID'] ] );
 
@@ -437,7 +414,7 @@
          3 => $GLOBALS['page'] ?? '',
          4 => pad_duration($_SERVER['REQUEST_TIME_FLOAT'] ?? 0),
          5 => $GLOBALS['pad_len'] ?? 0,
-         6 => $pad_stop ?? '',
+         6 => $GLOBALS['pad_stop'] ?? '',
          8 => $GLOBALS['pad_etag'] ?? $GLOBALS['pad_cache_etag'] ?? '',
          9 => $_SERVER ['REQUEST_URI']     ?? '' ,
         10 => $_SERVER ['HTTP_REFERER']    ?? '' ,

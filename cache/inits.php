@@ -50,7 +50,7 @@
       if ($pad_output) {
         if ( $GLOBALS['pad_cache_server_gzip'] and ! $GLOBALS['pad_client_gzip'] )
           $pad_output = pad_unzip($pad_output);
-         $pad_stop = '200';
+        $pad_stop = '200';
         include PAD_HOME . 'cache/stop.php';
       }
 
