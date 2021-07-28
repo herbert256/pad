@@ -36,58 +36,34 @@
 
   function pad_error_handler ( $type, $error, $file, $line ) {
  
-    try {
+    if ( error_reporting() & $type )
+      return pad_error ( 'ERROR: ' . $error, $file, $line );
  
-      if ( error_reporting() & $type )
-        return pad_error ( 'ERROR: ' . $error, $file, $line );
-    
-    } catch (Exception $e) {
-
-      pad_boot_error ( "pad_error_handler: " . $e->getMessage(), $e->getFile(), $e->getLine() );
-
-    }
-
   }
 
 
   function pad_error_exception ( $error ) {
 
-    try {
-
-      return pad_error ( 'EXCEPTION: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
-    
-    } catch (Exception $e) {
-
-      pad_boot_error ( "pad_error_exception: " . $e->getMessage(), $e->getFile(), $e->getLine() );
-
-    }
-
+    return pad_error ( 'EXCEPTION: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
+ 
   }
   
 
   function pad_error_shutdown () {
 
-    try {  
+    if ( isset ( $GLOBALS['pad_skip_shutdown'] ) )
+      return;
 
-      if ( isset ( $GLOBALS['pad_skip_shutdown'] ) )
-        return;
+    $error = error_get_last ();
 
-      $error = error_get_last ();
+    if ( $error === NULL ) 
+      exit;
 
-      if ( $error === NULL ) 
-        exit;
-
-      if ( $GLOBALS['pad_exit'] == 1 )
-        pad_error ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
-      else
-        pad_boot_error ( "pad_shutdown-1: " . $error['message'], $error['file'], $error['line'] );
-    
-    } catch (Exception $e) {
-
-      pad_boot_error ( "pad_shutdown-2: " . $e->getMessage(), $e->getFile(), $e->getLine() );
-
-    }
-
+    if ( $GLOBALS['pad_exit'] == 1 )
+      pad_error ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
+    else
+      pad_boot_error ( "ERROR-5: " . $error['message'], $error['file'], $error['line'] );
+  
   }
 
 
@@ -95,15 +71,23 @@
 
     global $app, $page, $pad_error_action, $pad_exit, $pad_trace, $pad_trace_dir_base, $PADREQID;
 
+    if ( $pad_exit <> 1 ) 
+      pad_boot_error ( "ERROR-2: " . $error, $file, $line );
+
+    if ( ! $file ) {
+      try {
+        extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
+      } catch (Exception $e) {
+        pad_boot_error ( "ERROR-3: " . $e->getMessage(), $e->getFile(), $e->getLine() );
+      }
+    }
+
+    if ( $pad_error_action == 'php' )
+      throw new ErrorException ($error, 0, E_ERROR, $file, $line);
+
     try {
 
-      if ( $pad_exit <> 1 ) 
-        pad_boot_error ( "pad_error_go-1: " . $error, $file, $line );
-
       $pad_exit = 2;
-
-      if ( ! $file )
-        extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
  
       $error = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '.', $error);
       if ( strlen($error) > 255 )
@@ -118,7 +102,7 @@
           pad_dump_get ("ERROR: $file:$line $error")  
         );
  
-      if ( ! headers_sent () and in_array($pad_error_action, ['pad', 'stop', 'abort', 'boot']) )
+      if ( ! headers_sent () and in_array($pad_error_action, ['pad', 'stop', 'abort']) )
         pad_header ('HTTP/1.0 500 Internal Server Error' );
 
       if ( $GLOBALS['pad_error_dump'] or $pad_error_action == 'report' or $pad_error_action == 'pad' ) 
@@ -131,10 +115,6 @@
       elseif ( $pad_error_action == 'abort')
 
         pad_exit ();
-      
-      elseif ( $pad_error_action == 'php' )
-
-        throw new ErrorException ($error, 0, E_ERROR, $file, $line);
 
       elseif ( $pad_error_action == 'none' or $pad_error_action == 'report' ) {
 
@@ -156,7 +136,7 @@
 
     } catch (Exception $e) {
 
-      pad_boot_error ( "pad_error-go-2: " . $e->getMessage(), $e->getFile(), $e->getLine() );
+      pad_boot_error ( "ERROR-4: " . $e->getMessage(), $e->getFile(), $e->getLine() );
 
     }
 

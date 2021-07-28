@@ -291,6 +291,29 @@
     
   }
 
+  function pad_md5 ($input) {
+    return substr(pad_base64(pad_pack(md5($input))),0,22);
+  }
+  
+  function pad_md5_unpack ($input) {
+    return pad_unpack(pad_unbase64 ($input.'=='));
+  }
+
+  function pad_pack ($data) {
+    return pack('H*',$data);
+  }
+
+  function pad_unpack ($data) {
+    return unpack('H*',$data)[1];
+  }
+
+  function pad_base64 ($string) {
+    return strtr(base64_encode($string),'+/','_-');
+  }
+
+  function pad_unbase64 ($string) {
+    return base64_decode(strtr($string,'_-','+/'));
+  }
 
   function pad_random_string ($len) {
     $random = ceil(($len/4)*3);

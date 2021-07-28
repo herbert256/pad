@@ -59,13 +59,10 @@
   if ($pad_client_gzip and (!isset($_SERVER['HTTP_ACCEPT_ENCODING']) or strpos($_SERVER['HTTP_ACCEPT_ENCODING'],'gzip') === FALSE))
     $pad_client_gzip = FALSE;
 
-  if ($pad_track_db_request)
-    $pad_track_db_session = TRUE;
-
   $pad_lib = PAD_APP . 'lib';
   include PAD_HOME . 'inits/lib.php';
   
-  include PAD_HOME . 'cache/inits.php';
+  include PAD_HOME . 'cache/cache.php';
   include PAD_HOME . 'options/go/inits.php';
 
   pad_get_vars ();

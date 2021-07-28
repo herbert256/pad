@@ -20,12 +20,12 @@
   if ( $pad_tidy )
     include PAD_HOME . 'exits/tidy.php';
   
-  $pad_etag = md5 ($pad_output);
+  $pad_etag = pad_md5 ($pad_output);
 
   if ( $pad_track_output )
     pad_track_output ();
 
-  $pad_stop = ( $pad_etag_304 and $pad_client_etag == $pad_etag ) ? 304 : 200;
+  $pad_stop = ( $pad_etag_304 and ($pad_cache_client??'') == $pad_etag ) ? 304 : 200;
    
   if ( $pad_client_gzip and $pad_stop == 200 )
     $pad_output = pad_zip($pad_output);

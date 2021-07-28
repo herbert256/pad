@@ -20,8 +20,6 @@
 
   function pad_cache_store_memory ($url, $etag, $data) {
 
-    $GLOBALS['pad_cache_server_age'];
-
     $GLOBALS['pad_cache_mem']->set($etag, $_SERVER['REQUEST_TIME'], $GLOBALS['pad_cache_server_age']);
 
     if ( ! $GLOBALS['pad_cache_server_no_data'] ) {

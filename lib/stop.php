@@ -6,7 +6,7 @@
     $GLOBALS['pad_stop'] = $stop;
     $GLOBALS['pad_len']  = ( $stop == 200 ) ? strlen($GLOBALS['pad_output']) : 0;
 
-    if ( $GLOBALS['pad_track_db_session'] )
+    if ( $GLOBALS['pad_track_db_session'] or $GLOBALS['pad_track_db_request'] )
       pad_track_db_session ();
 
     if ( $GLOBALS['pad_track_file'] )
@@ -45,7 +45,7 @@
     elseif ( $stop == 304 )
       pad_header ('HTTP/1.1 304 Not Modified');
       
-    if ( $stop <> 200 and $stop <> 304 )
+    if ( ($stop <> 200 and $stop <> 304) or ! $GLOBALS['pad_cache'] )
 
       pad_header ('Cache-Control: no-cache, no-store');
 

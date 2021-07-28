@@ -57,7 +57,8 @@
   $pad_cache_db_user          = 'cache';
   $pad_cache_db_password      = 'cache';
 
-  $pad_cache_file             = PAD_DATA . 'cache';   //  Used when $pad_cache_server_type is 'file'
+  $pad_cache_file             = PAD_DATA . 'cache/';   //  Used when $pad_cache_server_type is 'file'
+  $pad_cache_file_mode        = 755;
 
   // SQL parms - PAD internal
 

@@ -1,28 +1,22 @@
 <?php
 
 
-  function pad_cache_init_file ($url, $etag) {
-
-  }
+  function pad_cache_init ($url, $etag) {}
 
 
-  function pad_cache_etag_file ($etag) {
+  function pad_cache_etag ($etag) {
     
-    global $pad_cache_file;
-
-    return ( pad_cache_file_exists ("$pad_cache_file/etag/$etag") ) ? pad_cache_file_time ("$pad_cache_file/etag/$etag") : FALSE;
+    return ( pad_cache_exists ("etag/$etag") ) ? pad_cache_time ("etag/$etag") : FALSE;
 
   }
 
   
-  function pad_cache_url_file ($url) {
+  function pad_cache_url ($url) {
 
-    global $pad_cache_file;
-
-    if ( pad_cache_file_exists ("$pad_cache_file/url/$url") ) {
-      $etag = pad_cache_file_get_contents("$pad_cache_file/url/$url");
-      if ( pad_cache_file_exists ("$pad_cache_file/etag/$etag") )
-        return [0 => pad_cache_file_time ("$pad_cache_file/etag/$etag"), 1 => $etag];
+    if ( pad_cache_exists ("url/$url") ) {
+      $etag = pad_cache_get_contents("url/$url");
+      if ( pad_cache_exists ("etag/$etag") )
+        return [pad_cache_time ("etag/$etag"), $etag];
     }
 
     return [];
@@ -30,87 +24,56 @@
   }
 
 
-  function pad_cache_get_file ($etag) {
+  function pad_cache_get ($etag) {
 
-    global $pad_cache_file;
-
-    return ( pad_cache_file_exists ("$pad_cache_file/etag/$etag" ) ) ? pad_cache_file_get_contents("$pad_cache_file/etag/$etag") : FALSE;
+    return ( pad_cache_exists ("etag/$etag" ) ) ? pad_cache_get_contents("etag/$etag") : FALSE;
 
   }
 
 
-  function pad_cache_store_file ($url, $etag, $data) {
-
-    global $pad_cache_file;
+  function pad_cache_store ($url, $etag, $data) {
     
-    pad_cache_file_put_contents ("$pad_cache_file/url/$url", $etag, LOCK_EX);
+    pad_cache_put_contents ("url/$url", $etag);
 
     if ( $GLOBALS['pad_cache_server_no_data'] )
-      pad_cache_file_touch ("$pad_cache_file/etag/$etag", $_SERVER['REQUEST_TIME']);
+      pad_cache_touch ("etag/$etag", $_SERVER['REQUEST_TIME']);
     else
-      pad_cache_file_put_contents ("$pad_cache_file/etag/$etag", $data, LOCK_EX);
+      pad_cache_put_contents ("etag/$etag", $data);
 
   }
 
   
-  function pad_cache_update_file ($url, $etag) {
+  function pad_cache_update ($url, $etag) {
 
-    global $pad_cache_file;
- 
-    pad_cache_file_touch ("$pad_cache_file/etag/$etag", $_SERVER['REQUEST_TIME']);
+    pad_cache_touch ("etag/$etag", $_SERVER['REQUEST_TIME']);
     
   }
 
 
-  function pad_cache_delete_file ($url, $etag) {
+  function pad_cache_delete ($url, $etag) {
 
-    global $pad_cache_file;
-
-    pad_cache_file_delete ("$pad_cache_file/url/$url");
-    pad_cache_file_delete ("$pad_cache_file/etag/$etag");
-
-  }
-  
-
-  function pad_cache_file_valid_name ( $file ) {
-
-    if ( ! preg_match ('/^[A-Za-z0-9\.\/_]+$/', $file) ) return FALSE;
-    if ( substr($file,0,1) <> '/' )                      return FALSE;
-    if ( strpos($file, '//') !== FALSE )                 return FALSE;
-    if ( strpos($file, '..') !== FALSE )                 return FALSE;
-
-    if ( str_starts_with($file, PAD_HOME) ) return TRUE;
-    if ( str_starts_with($file, PAD_APPS) ) return TRUE;
-    if ( str_starts_with($file, PAD_DATA) ) return TRUE;
-
-    return FALSE;
+    pad_cache_delete_file ("url/$url");
+    pad_cache_delete_file ("etag/$etag");
 
   }
 
 
-  function pad_cache_file_exists ( $file ) {
+  function pad_cache_exists ( $file ) {
 
-    if ( ! pad_cache_file_valid_name ( $file ) )
-      return FALSE;
+    $file = $GLOBALS ['pad_cache_file'] . $file;
 
     pad_timing_start ('read');
+    $return = file_exists ($file);
+    pad_timing_end ('read');
 
-    if ( file_exists ($file) ) {
-      pad_timing_end ('read');
-      return TRUE;
-    }
-    else {
-      pad_timing_end ('read');
-      return FALSE;
-    }
+    return $return;    
 
   }
 
 
-  function pad_cache_file_get_contents ( $file ) {
+  function pad_cache_get_contents ( $file ) {
 
-    if ( ! pad_cache_file_exists($file) )
-      return '';
+    $file = $GLOBALS ['pad_cache_file'] . $file;
 
     pad_timing_start ('read');
     $return = file_get_contents ($file);
@@ -121,33 +84,25 @@
   }
 
 
-  function pad_cache_file_put_contents ($file, $data, $append=0) {
-
-    $file = PAD_DATA . $file;
-
-    if ( ! pad_cache_file_valid_name ( $file ) )
-      return pad_error ("Invalid file name: $file");
+  function pad_cache_put_contents ($file, $data) {
    
-    pad_cache_file_create ($file);
+    pad_cache_create ($file);
 
+    $file = $GLOBALS ['pad_cache_file'] . $file;
+    
     pad_timing_start ('write');
-    if ($append) file_put_contents ($file, $data, LOCK_EX | FILE_APPEND);
-    else         file_put_contents ($file, $data, LOCK_EX);
+    file_put_contents ($file, $data, LOCK_EX);
     pad_timing_end ('write');
     
   }
 
 
-  function pad_cache_file_touch ($file, $time) {
+  function pad_cache_touch ($file, $time) {
 
-    $file = PAD_DATA . $file;
+    pad_cache_create ($file);
 
-    if ( ! pad_cache_file_valid_name ( $file ) )
-      return pad_error ("Invalid file name: $file");
-
-    if ( ! file_exists($file) )
-      pad_cache_file_create ($file);
-
+    $file = $GLOBALS ['pad_cache_file'] . $file;
+    
     pad_timing_start ('write');
     touch ( $file, $time );
     pad_timing_end ('write');
@@ -155,32 +110,25 @@
   }
   
 
-  function pad_cache_file_create ($file) {
+  function pad_cache_create ($file) {
 
-    $pos = strrpos($file, '/');
-    $dir = substr($file, 0, $pos);
+    $file = $GLOBALS ['pad_cache_file'] . $file;
+    
+    $dir = substr($file, 0, strrpos($file, '/'));
     
     if ( ! file_exists($dir) ) {
       pad_timing_start ('write');
       mkdir($dir, $GLOBALS['pad_dir_mode'], true);
       pad_timing_end ('write');
     }
-    
-    if ( ! file_exists($file) ) {
-      pad_timing_start ('write');
-      touch($file);
-      chmod($file, $GLOBALS['pad_cache_file_mode']);
-      pad_timing_end ('write');
-    }
   
   }
 
-  function pad_cache_file_delete ($file) {
+  function pad_cache_delete_file ($file) {
 
-    if ( ! pad_cache_file_valid_name ( $file ) )
-      return pad_error ("Invalid file name: $file");
-
-    if ( ! file_exists($file) ) {
+    $file = $GLOBALS ['pad_cache_file'] . $file;
+    
+    if ( file_exists($file) ) {
       pad_timing_start ('write');
       unlink ($file);
       pad_timing_end ('write');
@@ -189,14 +137,13 @@
   }
 
 
-  function pad_cache_file_time ($file) {
+  function pad_cache_time ($file) {
 
-    if ( ! pad_cache_file_valid_name ( $file ) )
-      return pad_error ("Invalid file name: $file");
-
+    $file = $GLOBALS ['pad_cache_file'] . $file;
+    
     if ( file_exists($file) ) {
       pad_timing_start ('read');
-      $return =filemtime("$pad_cache_file/etag/$etag");
+      $return = filemtime($file);
       pad_timing_end ('read');
       return $return;
     }
