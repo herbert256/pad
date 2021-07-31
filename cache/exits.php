@@ -18,6 +18,11 @@
     
   }
 
+  if ( $pad_trace ) {
+    $pad_cache_stop = $pad_stop + .4;
+    include 'trace.php';
+  }
+  
   pad_timing_end ('cache');
     
 ?>

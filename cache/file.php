@@ -62,9 +62,7 @@
 
     $file = $GLOBALS ['pad_cache_file'] . $file;
 
-    pad_timing_start ('read');
     $return = file_exists ($file);
-    pad_timing_end ('read');
 
     return $return;    
 
@@ -75,9 +73,7 @@
 
     $file = $GLOBALS ['pad_cache_file'] . $file;
 
-    pad_timing_start ('read');
     $return = file_get_contents ($file);
-    pad_timing_end ('read');
 
     return $return;    
 
@@ -90,9 +86,7 @@
 
     $file = $GLOBALS ['pad_cache_file'] . $file;
     
-    pad_timing_start ('write');
     file_put_contents ($file, $data, LOCK_EX);
-    pad_timing_end ('write');
     
   }
 
@@ -103,9 +97,7 @@
 
     $file = $GLOBALS ['pad_cache_file'] . $file;
     
-    pad_timing_start ('write');
     touch ( $file, $time );
-    pad_timing_end ('write');
 
   }
   
@@ -113,14 +105,10 @@
   function pad_cache_create ($file) {
 
     $file = $GLOBALS ['pad_cache_file'] . $file;
+    $dir  = substr($file, 0, strrpos($file, '/'));
     
-    $dir = substr($file, 0, strrpos($file, '/'));
-    
-    if ( ! file_exists($dir) ) {
-      pad_timing_start ('write');
+    if ( ! file_exists($dir) )
       mkdir($dir, $GLOBALS['pad_dir_mode'], true);
-      pad_timing_end ('write');
-    }
   
   }
 
@@ -128,11 +116,8 @@
 
     $file = $GLOBALS ['pad_cache_file'] . $file;
     
-    if ( file_exists($file) ) {
-      pad_timing_start ('write');
+    if ( file_exists($file) )
       unlink ($file);
-      pad_timing_end ('write');
-    }
 
   }
 
@@ -141,12 +126,8 @@
 
     $file = $GLOBALS ['pad_cache_file'] . $file;
     
-    if ( file_exists($file) ) {
-      pad_timing_start ('read');
-      $return = filemtime($file);
-      pad_timing_end ('read');
-      return $return;
-    }
+    if ( file_exists($file) )
+      return filemtime($file);
 
     return 0;
 

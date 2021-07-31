@@ -6,7 +6,7 @@
   if ( ! preg_match ( '/^[A-Za-z0-9\/_-]+$/', $page ) ) pad_boot_error ("Invalid page name: $page");
   if ( strpos($page, '//') !== FALSE)                   pad_boot_error ("Invalid page name '$page'");
   if ( substr($page, 0, 1) == '/')                      pad_boot_error ("Invalid page name '$page'");
-  #if ( substr($page, -1) == '/')                        pad_boot_error ("Invalid page name '$page'");
+  if ( substr($page, -1) == '/')                        pad_boot_error ("Invalid page name '$page'");
   if ( ! preg_match ( '/^[A-Za-z0-9_]+$/',   $app  ) )  pad_boot_error ("Invalid name for app: $app");
   if ( ! file_exists ( PAD_APPS . $app )             )  pad_boot_error ("Applicaton does not exists: $app");
   if ( ! is_dir ( PAD_APPS . $app )                  )  pad_boot_error ("Applicaton is not a directory: $app");
@@ -26,11 +26,12 @@
   $pad_trace_dir_lvl  = "$pad_trace_dir_base/tree";
   $pad_trace_dir_occ  = "$pad_trace_dir_base/tree";
 
-  $pad_output = '';
-  $pad_stop   = '000';
-  $pad_etag   = '';
-  $pad_exit   = 1;
-  $pad_time   = $_SERVER['REQUEST_TIME'];  
+  $pad_output     = '';
+  $pad_stop       = '000';
+  $pad_cache_stop = 0;
+  $pad_etag       = '';
+  $pad_exit       = 1;
+  $pad_time       = $_SERVER['REQUEST_TIME'];  
 
   $pad_lvl = 1;  
   include PAD_HOME . 'inits/level.php';
