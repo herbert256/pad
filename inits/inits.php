@@ -7,9 +7,10 @@
   if ( strpos($page, '//') !== FALSE)                   pad_boot_error ("Invalid page name '$page'");
   if ( substr($page, 0, 1) == '/')                      pad_boot_error ("Invalid page name '$page'");
   if ( substr($page, -1) == '/')                        pad_boot_error ("Invalid page name '$page'");
+  
   if ( ! preg_match ( '/^[A-Za-z0-9_]+$/',   $app  ) )  pad_boot_error ("Invalid name for app: $app");
   if ( ! file_exists ( PAD_APPS . $app )             )  pad_boot_error ("Applicaton does not exists: $app");
-  if ( ! is_dir ( PAD_APPS . $app )                  )  pad_boot_error ("Applicaton is not a directory: $app");
+  if ( ! is_dir ( PAD_APPS . $app )                  )  pad_boot_error ("Applicaton does not exists: $app");
 
   define ( 'PAD_APP', PAD_APPS . $app . '/' );
  
@@ -52,8 +53,8 @@
 
   if ( ! headers_sent () ) {
     if ( ! isset($_COOKIE['PADSESSID']) or $_COOKIE['PADSESSID'] <> $PADSESSID )
-      setCookie ('PADSESSID', $PADSESSID, time() + $pad_cookie_time);
-    setCookie ('PADREQID', $PADREQID, time() + $pad_cookie_time);
+      setCookie ('PADSESSID', $PADSESSID, time() + (60 * 60 * 24 * 366 * 10) );
+    setCookie ('PADREQID', $PADREQID, time() + (60 * 60 * 24 * 366 * 10) );
     pad_header ("X-PAD-ID: $PADREQID");
   }
 

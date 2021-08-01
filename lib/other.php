@@ -193,7 +193,7 @@
   }
 
 
-  function pad_track_output () {
+  function pad_track_output_file () {
 
     global $pad_etag, $pad_output;
     
@@ -201,6 +201,17 @@
 
     if ( ! pad_file_exists(PAD_DATA . "$pad_content_store_file") )
       pad_file_put_contents ($pad_content_store_file, $pad_output);
+
+  }
+
+  function pad_track_output_db () {
+
+    global $pad_etag, $pad_output;
+    
+    $etag = pad_db ( "check track_data where etag='{1}'", [ 1 => $pad_etag ] );
+
+    if ( ! $etag )
+      $session = pad_db ( "insert into track_data values('{1}', '{2}')", [ 1 => $pad_etag, 2=> $pad_output ] );
 
   }
 
@@ -420,31 +431,31 @@
 
   function pad_track_db_session () {
 
-    $session = pad_db( "field id from track_session where sessionid='{1}'", [ 1 => $GLOBALS['PADSESSID'] ] );
+    $session = $GLOBALS['PADSESSID'];
+    $request = $GLOBALS['PADREQID'];
 
-    if ( ! $session )
-      $session = pad_db ( "insert into track_session values(NULL, '{1}', NOW(), NOW(), 1)", [ 1 => $GLOBALS['PADSESSID'] ] );
+    if ( pad_db ( "check track_session where session='$session'" ) )
+      pad_db ( "update track_session set requests=requests+1 where session='$session'");
     else
-      pad_db ( "update track_session set requests=requests+1 where id=$session");
+      pad_db ( "insert into track_session values('$session', NOW(), NOW(), 1)" );
    
     if ( ! $GLOBALS['pad_track_db_request'] )
       return;
 
     pad_db ( "insert into track_request
-              values(NULL, {1}, '{2:32}', '{3:32}', NOW(), '{4}', {5}, '{6}', '{7:32}', '{8:32}', '{9:1023}', '{10:1023}', '{11:1023}', '{12:1023}', '{13:1023}', '{14:25}')",
+              values('{1}', '{2}', '{3:32}', '{4:32}', NOW(), {5}, '{6}', '{7:32}', '{8}', '{9:1023}', '{10:1023}', '{11:1023}', '{12:1023}')",
       [  1 => $session,
-         2 => $GLOBALS['app']  ?? '',
-         3 => $GLOBALS['page'] ?? '',
-         4 => pad_duration($_SERVER['REQUEST_TIME_FLOAT'] ?? 0),
-         5 => $GLOBALS['pad_len'] ?? 0,
-         6 => $GLOBALS['pad_stop'] ?? '',
-         8 => $GLOBALS['pad_etag'] ?? $GLOBALS['pad_cache_etag'] ?? '',
+         2 => $request,
+         3 => $GLOBALS['app']  ?? '',
+         4 => $GLOBALS['page'] ?? '',
+         5 => pad_duration($_SERVER['REQUEST_TIME_FLOAT'] ?? 0),
+         6 => $GLOBALS['pad_len'] ?? 0,
+         7 => $GLOBALS['pad_stop'] ?? '',
+         8 => $GLOBALS['pad_etag'] ?? '',
          9 => $_SERVER ['REQUEST_URI']     ?? '' ,
         10 => $_SERVER ['HTTP_REFERER']    ?? '' ,
         11 => $_SERVER ['REMOTE_ADDR']     ?? '' ,
-        12 => $_SERVER ['HTTP_USER_AGENT'] ?? '' ,
-        13 => $_SERVER ['HTTP_COOKIE']     ?? '' ,
-        14 => pad_id ()
+        12 => $_SERVER ['HTTP_USER_AGENT'] ?? ''
       ]
     );
       

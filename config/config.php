@@ -25,11 +25,14 @@
 
   // Keep track of stuff, lots of data.
 
-  $pad_track_output      = FALSE;   // Store the output of every request
-  $pad_track_db_session  = FALSE;
-  $pad_track_db_request  = FALSE;
-  $pad_track_file        = FALSE;
-  $pad_track_sql         = FALSE;   //  Detail information about every executed SQL statement.
+  $pad_track_db_session  = TRUE;
+  $pad_track_db_request  = TRUE;
+  $pad_track_db_data     = TRUE;
+
+  $pad_track_file        = TRUE;
+  $pad_track_output      = TRUE;   // Store the output of every request
+  
+  $pad_track_sql         = TRUE;   //  Detail information about every executed SQL statement.
 
   // Cache settings
   
@@ -139,8 +142,6 @@
   $pad_client_gzip            = FALSE; // Send the result zipped
   $pad_etag_304               = TRUE;  // Send a 304 header, based on the client etag http header
   $pad_no_no                  = FALSE; // No PAD stuff, just plane PHP   
-
-  $pad_cookie_time            = 60 * 60 * 24 * 366 * 10;
   $pad_fast_link              = 32;
   $pad_timing                 = TRUE;
 

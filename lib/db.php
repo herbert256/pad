@@ -92,7 +92,7 @@
     $GLOBALS['pad_last_sql'] = $sql;
     
     if ( ! $query )
-      pad_error ( 'MySQL-' . mysqli_errno ( $pad_sql_connect ) . ': ' . mysqli_error ( $pad_sql_connect ) . $sql );
+      pad_error ( 'MySQL-' . mysqli_errno ( $pad_sql_connect ) . ': ' . mysqli_error ( $pad_sql_connect ) . ' - '. $sql );
 
     pad_timing_start ('sql');
     $pad_db_rows_found = $rows = mysqli_affected_rows($pad_sql_connect);

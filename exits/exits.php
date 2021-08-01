@@ -26,7 +26,10 @@
   $pad_etag = pad_md5 ($pad_output);
 
   if ( $pad_track_output )
-    pad_track_output ();
+    pad_track_output_file ();
+
+  if ( $pad_track_db_data )
+    pad_track_output_db ();
 
   $pad_stop = ( $pad_etag_304 and ($pad_cache_client??'') == $pad_etag ) ? 304 : 200;
 

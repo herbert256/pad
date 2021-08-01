@@ -59,10 +59,10 @@
     if ( $error === NULL ) 
       exit;
 
-    if ( $GLOBALS['pad_exit'] == 1 )
-      pad_error ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
-    else
+    if ( $GLOBALS['pad_exit'] <> 1 )
       pad_boot_error ( "ERROR-5: " . $error['message'], $error['file'], $error['line'] );
+      
+    pad_error ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
   
   }
 
@@ -74,13 +74,12 @@
     if ( $pad_exit <> 1 ) 
       pad_boot_error ( "ERROR-2: " . $error, $file, $line );
 
-    if ( ! $file ) {
+    if ( ! $file )
       try {
         extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
       } catch (Exception $e) {
         pad_boot_error ( "ERROR-3: " . $e->getMessage(), $e->getFile(), $e->getLine() );
       }
-    }
 
     if ( $pad_error_action == 'php' )
       throw new ErrorException ($error, 0, E_ERROR, $file, $line);
