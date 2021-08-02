@@ -9,8 +9,8 @@
     if ( $GLOBALS['pad_track_db_session'] or $GLOBALS['pad_track_db_request'] )
       pad_track_db_session ();
 
-    if ( $GLOBALS['pad_track_file'] )
-      pad_track_file ();
+    if ( $GLOBALS['pad_track_file_request'] )
+      pad_track_file_request ();
 
     pad_close_session ();
     pad_empty_buffers ();

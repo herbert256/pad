@@ -20,16 +20,6 @@
   }
 
 
-  function pad_trace ($local) {
-
-    $dir  = $GLOBALS ['pad_trace_dir_occ'] . "/trace/" . uniqid() . '.html';
-    $data = [ 'local' => $local, 'globals' => $GLOBALS ];
-
-    pad_file_put_contents ( $dir, $data );
-
-  }
-
-
   function pad_local () {
 
     if ( !  isset($GLOBALS['pad_local']) )
@@ -80,32 +70,6 @@
   function pad_json ($data) {
 
     return json_encode ( $data, JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_FORCE_OBJECT );
-
-  }
-
-
-  function pad_min_max_count (&$min, &$max, &$count) {
-
-    if ( ! $count and $max ) {
-      $count = $max - $min;
-      if ( $min )
-        $count++;
-    }
-
-    if ( ! $max      ) $max   = PHP_INT_MAX;
-    if ( $max < $min ) $max   = $min;
-    if ( ! $count    ) $count = PHP_INT_MAX;
-
-  }
-
-
-  function pad_unquote (&$quote) {
-
-    if ( substr($quote, 0, 1) == '"' and substr($quote, -1) == '"' ) 
-      $quote = substr($quote, 1, -1);
-
-    if ( substr($quote, 0, 1) == "'" and substr($quote, -1) == "'" ) 
-      $quote = substr($quote, 1, -1);
 
   }
 
@@ -191,13 +155,6 @@
     }
   
   }
-
-
-  function pad_id () {
-
-    return $GLOBALS['PADREQID'] ?? uniqid(TRUE);
-
-  }
   
 
   function pad_check_page () {
@@ -255,13 +212,6 @@
     echo "\r\n";
     for ($i = 1; $i <= 25; $i++)
       echo "</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>\r\n";
-
-  }
-
-
-  function pad_demo () {
-
-    return ( isset ( $_REQUEST ['pad_demo'] ) );
 
   }
 
@@ -990,9 +940,6 @@
     $GLOBALS ["pad_$arr"] [$var] = $pad_parameters [$pad_lvl] [$arr] [$var] = $val;
 
   }   
-
-
-
 
 
   function pad_var_opts ($val, $opts) {

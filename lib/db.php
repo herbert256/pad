@@ -167,7 +167,7 @@
     $micro = (int) (($now - $sec) * 1000);
     $micro = str_pad($micro, 3, '0', STR_PAD_LEFT);
 
-    $start = date('Y-m-d H:i:s', $sec) . '.' . $micro . ' ' . pad_id ();
+    $start = date('Y-m-d H:i:s', $sec) . '.' . $micro . ' ' . $GLOBALS['PADREQID'];
 
     $log = "$start $file:$line rows:$rows time:$duration"
          . "\r\n\r\n$sql\r\n----------------------------------------\r\n";

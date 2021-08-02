@@ -26,8 +26,7 @@
 
   function pad_track_file_request () {
     
-    $id = pad_id ();
-  
+    $id    = $GLOBALS['PADREQID'];
     $track = pad_track ();
     $json  = pad_json ($track);
     
