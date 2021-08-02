@@ -25,12 +25,12 @@
 
   // Keep track of stuff, lots of data.
 
+  $pad_track_file_request = TRUE;
+  $pad_track_file_data    = TRUE; 
+
   $pad_track_db_session  = TRUE;
   $pad_track_db_request  = TRUE;
   $pad_track_db_data     = TRUE;
-
-  $pad_track_file        = TRUE;
-  $pad_track_output      = TRUE;   // Store the output of every request
   
   $pad_track_sql         = TRUE;   //  Detail information about every executed SQL statement.
 
