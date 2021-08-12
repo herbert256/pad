@@ -36,7 +36,7 @@
 
   // Cache settings
   
-  $pad_cache_server_age       = 0;                    //  Seconds to keep the cache at PAD server side, 
+  $pad_cache_server_age       = 60;                    //  Seconds to keep the cache at PAD server side, 
                                                       //  0 to turn of server-side caching
 
   $pad_cache_proxy_age        = 0;                    //  How long a proxy is allowed to cache. 
@@ -47,9 +47,9 @@
 
   // Server-side cache settings ( used wheb $pad_cache_server_age <> 0 )
 
-  $pad_cache_server_type      = 'db';                 //  The implementation of the server-side cache: file/db/memory
+  $pad_cache_server_type      = 'memory';                 //  The implementation of the server-side cache: file/db/memory
   $pad_cache_server_gzip      = FALSE;                //  Store the cache zipped
-  $pad_cache_server_no_data   = TRUE;                //  Do not store the data itself, only the etag and timestamp,
+  $pad_cache_server_no_data   = FALSE;                //  Do not store the data itself, only the etag and timestamp,
                                                       //  caching based on the client 'etag' & 'modified' HTTP headers.
 
   $pad_cache_memory_host      = 'localhost';          //  Used when $pad_cache_server_type is 'memory'

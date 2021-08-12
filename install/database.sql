@@ -45,28 +45,6 @@ CREATE TABLE `track_data` (
 
 ALTER TABLE `track_data` ADD PRIMARY KEY (`etag`);
 
-CREATE TABLE `cache_etag` (
-  `etag`  char(22) NOT NULL ,
-  `age`  int NOT NULL
-) ENGINE=aria DEFAULT CHARSET=latin1;
-
-ALTER TABLE `cache_etag` ADD PRIMARY KEY (`etag`);
-
-CREATE TABLE `cache_url` (
-  `url` char(22) NOT NULL,
-  `age`  int NOT NULL ,
-  `etag`  char(22) NOT NULL
-) ENGINE=aria DEFAULT CHARSET=latin1;
-
-ALTER TABLE `cache_url` ADD PRIMARY KEY (`url`);
-
-CREATE TABLE `cache_data` (
-  `etag` char(22) NOT NULL,
-  `data` longblob NOT NULL
-) ENGINE=aria DEFAULT CHARSET=latin1;
-
-ALTER TABLE `cache_data` ADD PRIMARY KEY (`etag`);
-
 CREATE TABLE `links` (
   `link` varchar(64) NOT NULL,
   `vars` text NOT NULL
