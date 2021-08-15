@@ -1,0 +1,37 @@
+{data 'myCSV' , type='csv'}
+  name,phone
+  jack,555-3425
+  jim,555-4364
+  joe,555-3422
+  jerry,555-4973
+{/data}
+
+{data}
+  [
+    {myCSV}
+      { "name": "{$name}", "phone": "{$phone}" }{not_last},{/not_last}
+    {/myCSV}
+  ]
+{/data 'myJSON'}
+
+{data}
+  <records>
+    {myJSON}
+      <record name="{$name}" phone="{$phone}"/>
+    {/myJSON}
+  </records>
+{/data 'myXML'}
+
+{data}
+  ---
+    {myXML}
+    - name: {$name}
+      phone: {$phone}
+    {/myXML}
+{/data 'myYAML'}
+
+<table>
+  {myYAML}
+    {row}
+  {/myYAML}
+</table>

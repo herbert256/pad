@@ -1,0 +1,17 @@
+[set $nope    =  5]
+[set $left    = 10]
+[set $between = 15]
+[set $right   = 25]
+[set $oops    = 30]
+
+[if $nope between (10, 25)     ] NOK [else] ok  [/if]
+[if $left between (10, 25)     ] NOK [else] ok  [/if]
+[if $between between (10, 25)  ] ok  [else] NOK [/if]
+[if $right between (10, 25)    ] NOK [else] ok  [/if]
+[if $oops between (10, 25)     ] NOK [else] ok  [/if]
+
+[if $nope range (10, 25)     ] NOK [else] ok  [/if]
+[if $left range (10, 25)     ] ok  [else] NOK [/if]
+[if $between range (10, 25)  ] ok  [else] NOK [/if]
+[if $right range (10, 25)    ] ok  [else] NOK [/if]
+[if $oops range (10, 25)     ] NOK [else] ok  [/if]

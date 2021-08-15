@@ -1,0 +1,23 @@
+<style>
+  th, td     { font-size: 14px; }
+  blockquote { margin-left: 15px; margin-right: 0px; }
+</style>
+
+<table border=1>
+  <tr>
+    <td>mode='before',  merge='content' </td>
+    <td>mode='before',  merge='end'     </td>
+    <td>mode='demand',  merge='content' </td>
+    <td>mode='demand',  merge='end'     </td>
+    <td>mode='isolate', merge='content' </td>
+    <td>mode='isolate', merge='end'     </td>
+  </tr>      
+  <tr>
+    <td>{get_mode 'before',  'content'} </td>
+    <td>{get_mode 'before',  'end'}     </td>
+    <td>{get_mode 'demand',  'content'} </td>
+    <td>{get_mode 'demand',  'end'}     </td>
+    <td>{get_mode 'isolate', 'content'} </td>
+    <td>{get_mode 'isolate', 'end'}     </td>
+  </tr>
+</table>

@@ -1,0 +1,38 @@
+{data 'myData'}
+  [
+    { "name": "joe",   "phone": "555-3425" },
+    { "name": "jim",   "phone": "555-2364" },
+    { "name": "jack",  "phone": "555-3422" },
+    { "name": "jerry", "phone": "555-4973" }
+  ]
+{/data}
+
+<table>
+  {myData}
+    {row}
+  {/myData}
+</table>
+
+<hr>
+
+<table>
+  {myData}
+    {row}
+  {/myData}
+</table>
+
+<hr>
+
+<table>
+  {tag data='myData'}
+    {row}
+  {/tag}
+</table>
+
+<hr>
+
+<table>
+  {tag data='myData'}
+    {row}
+  {/tag}
+</table>

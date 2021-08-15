@@ -1,0 +1,9 @@
+<table border='1'>
+  {loop start=1, end=3, name='row'}
+    <tr>
+      {loop start=1, end=5, name='column'}
+        {cell ($row*10) + $column}
+      {/loop}
+    </tr>
+  {/loop}
+</table>

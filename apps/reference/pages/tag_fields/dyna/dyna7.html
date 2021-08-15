@@ -1,0 +1,21 @@
+<table border=1>
+
+  {departments}
+
+    {first}
+      <tr>
+        {departments#names}
+          <th> {$name} </th> 
+        {/departments#names}
+      </tr>
+    {/first}
+      
+    <tr>
+      {departments#values}
+        <td> {$value} </td>
+      {/departments#values}
+    </tr>
+
+  {/departments}
+
+</table>

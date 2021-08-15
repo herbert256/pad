@@ -1,0 +1,22 @@
+{content 'table'}
+    <table border=1>
+      <tr>
+        <th> Name  </th>
+        <th> Phone </th>
+      </tr>
+    {@content}
+  </table>
+{/content}
+
+{content 'row'}
+  <tr>
+    <td> {$name}  </td>
+    <td> {$phone} </td>
+  </tr>
+{/content}
+
+{table}
+  {staff}
+    {row}
+  {/staff}
+{/table}

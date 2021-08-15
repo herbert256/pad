@@ -1,0 +1,15 @@
+{header}
+
+  {staff}
+    <tr>
+      <td> {$name}                                     </td>
+      <td> {if $staff#current EQ 1           } X {/if} </td>
+      <td> {if $staff#border                 } X {/if} </td>
+      <td> {if $staff#middle                 } X {/if} </td>
+      <td> {if $staff#count EQ $staff#current} X {/if} </td>
+      <td> {if $staff#even                   } X {/if} </td>
+      <td> {if $staff#odd                    } X {/if} </td>
+    </tr>
+  {/staff}
+
+{footer}

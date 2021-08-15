@@ -1,0 +1,30 @@
+{content 'header'}
+  <table border=1>
+    <tr>
+      <th> current  </th>
+      <th> count    </th>
+      <th> done     </th>
+      <th> remain   </th>
+      <th> first    </th>
+      <th> last     </th>
+      <th> border   </th>
+      <th> middle   </th>
+    </tr>
+{/content}
+
+{content 'line'} 
+  <tr>
+    <td> {$-1#current}   </td>
+    <td> {$-1#count}     </td>
+    <td> {$-1#done}      </td>
+    <td> {$-1#remaining} </td>
+    <td> {$-1#first}     </td>
+    <td> {$-1#last}      </td>
+    <td> {$-1#border}    </td>
+    <td> {$-1#middle}    </td>
+  </tr>
+{/content}
+
+{content 'footer'}
+  </table>
+{/content}
