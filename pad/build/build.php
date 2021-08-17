@@ -7,7 +7,7 @@
 
   pad_check_page ();
 
-  $pad_build_base = PAD_HOME . 'apps/$app';
+  $pad_build_base = PAD_HOME . "apps/$app" ;
 
   $pad_lvl = 1;
 
