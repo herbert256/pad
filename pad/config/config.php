@@ -36,7 +36,7 @@
 
   // Cache settings
   
-  $pad_cache_server_age       = 60;                    //  Seconds to keep the cache at PAD server side, 
+  $pad_cache_server_age       = 0;                    //  Seconds to keep the cache at PAD server side, 
                                                       //  0 to turn of server-side caching
 
   $pad_cache_proxy_age        = 0;                    //  How long a proxy is allowed to cache. 
