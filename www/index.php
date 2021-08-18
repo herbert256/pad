@@ -20,10 +20,9 @@
   $pad_error_reporting = error_reporting (E_ALL);
 
   define ( 'PAD_HOME', '/home/herbert/pad/'  ); // Home of PAD itself
-  define ( 'PAD_APPS', '/home/herbert/apps/' ); // Home of the PAD applications
   define ( 'PAD_DATA', '/home/herbert/data/' ); // Data locaction, used for logs/cache/errors/etc.
   
-  include PAD_HOME . 'pad.php';
+  include PAD_HOME . 'pad/pad.php';
  
   function pad_boot_error_handler ( $type, $error, $file, $line ) {
     pad_boot_error ($error, $file, $line);
