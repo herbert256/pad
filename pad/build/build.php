@@ -7,12 +7,7 @@
 
   pad_check_page ();
 
-<<<<<<< HEAD
   $pad_build_base = PAD_HOME . "apps/$app";
-=======
-  $pad_build_base = PAD_HOME . "apps/$app" ;
->>>>>>> 426505381be2926d63618928d50540a70604ef71
-
   $pad_lvl = 1;
 
   $pad_base [1] = '';
