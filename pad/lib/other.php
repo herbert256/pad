@@ -193,7 +193,7 @@
 
       } else {
 
-        return pad_error ("Page '$app/$page' not found (1): $pad_location/$value.php");
+        return pad_error ("Page '$app/$page' not found (1)");
 
       }
       

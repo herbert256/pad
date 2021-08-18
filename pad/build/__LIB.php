@@ -1,7 +1,11 @@
 <?php
 
   $pad_lib_result = '';
+<<<<<<< HEAD
   $pad_lib_build  = PAD_HOME . "apps/$app";
+=======
+  $pad_lib_build  = PAD_HOME . "apps/$app" ;
+>>>>>>> 426505381be2926d63618928d50540a70604ef71
 
   $pad_lib_mrg = pad_split ("pages/$page", '/');
 
