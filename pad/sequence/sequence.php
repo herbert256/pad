@@ -6,6 +6,8 @@
   $pad_seq_page     = intval ( $pad_parms_tag ['page']     ?? 0           );
   $pad_seq_row      =          $pad_parms_tag ['row']      ?? 0;
   $pad_seq_value    =          $pad_parms_tag ['value']    ?? 0;
+  $pad_seq_first    = intval ( $pad_parms_tag ['first']    ?? 0           );
+  $pad_seq_last     = intval ( $pad_parms_tag ['last']     ?? PHP_INT_MAX );
   $pad_seq_min      = intval ( $pad_parms_tag ['min']      ?? 0           );
   $pad_seq_max      = intval ( $pad_parms_tag ['max']      ?? PHP_INT_MAX );
   $pad_seq_from     = intval ( $pad_parms_tag ['from']     ?? 1           );

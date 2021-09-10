@@ -4,6 +4,9 @@
   $pad_seq_sts_00++;
   $pad_seq_protect_cnt++;
  
+  if ( $pad_seq_cnt > $pad_seq_max_loops )
+    { $pad_seq_sts_18++; return false; }
+
   $pad_sequence = $pad_seq_loop_idx;
 
   if ( $pad_seq_random )
@@ -56,7 +59,7 @@
   if ( $pad_seq_value      and count($pad_seq_result) >= count($pad_seq_value) ) { $pad_seq_sts_16++; return false; }
   if ( $pad_seq_fromto_max and $pad_seq_cnt           >= $pad_seq_fromto_max   ) { $pad_seq_sts_17++; return false; }
 
-  $pad_seq_sts_18++; 
+  $pad_seq_sts_19++; 
 
   return true;
 
