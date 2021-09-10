@@ -18,9 +18,6 @@
   include 'build/page.php';
   include 'build/pull.php';
 
-  $pad_seq_dir = 'checks';  include 'build/dir.php';
-  $pad_seq_dir = 'actions'; include 'build/dir.php';
-
   if ( isset($pad_parms_tag [$pad_tag]) )
     $GLOBALS ["pad_seq_$pad_tag"] = $pad_parms_tag [$pad_tag];
   elseif ( $pad_parm )

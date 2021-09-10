@@ -14,13 +14,11 @@
   $pad_seq_end      = intval ( $pad_parms_tag ['end']      ?? PHP_INT_MAX );
   $pad_seq_unique   = intval ( $pad_parms_tag ['unique']   ?? 0           );
   $pad_seq_random   = intval ( $pad_parms_tag ['random']   ?? 0           );
-  $pad_seq_even     = intval ( $pad_parms_tag ['even']     ?? 0           );
-  $pad_seq_odd      = intval ( $pad_parms_tag ['odd']      ?? 0           );
-  $pad_seq_step     = intval ( $pad_parms_tag ['step']     ?? 0           );
-  $pad_seq_multiple = intval ( $pad_parms_tag ['multiple'] ?? 0           );
   $pad_seq_into     =          $pad_parms_tag ['into']     ?? '';
   $pad_seq_push     =          $pad_parms_tag ['push']     ?? '';
   $pad_seq_pull     =          $pad_parms_tag ['pull']     ?? ''; 
+  $pad_seq_checks   =          $pad_parms_tag ['checks']   ?? [];  
+  $pad_seq_actions  =          $pad_parms_tag ['actions']  ?? [];  
   $pad_seq_protect  =          $pad_parms_tag ['protect']  ?? 10000000;  
 
   pad_set_arr_var ( 'options_done', 'rows',     TRUE );
@@ -43,6 +41,8 @@
   pad_set_arr_var ( 'options_done', 'even',     TRUE );
   pad_set_arr_var ( 'options_done', 'odd',      TRUE );
   pad_set_arr_var ( 'options_done', 'multiple', TRUE );
+  pad_set_arr_var ( 'options_done', 'checks',   TRUE );
+  pad_set_arr_var ( 'options_done', 'actions',  TRUE );
 
   if ( isset($pad_parms_tag ['walk']) )
     return include 'walk.php';

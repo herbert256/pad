@@ -6,36 +6,11 @@
     {$sequence}
 {/sequence}{/demo}
 
-{demo}{sequence 'range', range='D..M'}
-    {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'composite', rows=25}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'palindrome', rows=20, prime}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'prime', rows=25}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'emirp', rows=25}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'power', power=2, rows=8}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'repeat', repeat=6, rows=5}
+{demo}{sequence 'loop', rows=25}
     {$sequence}
 {/sequence}{/demo}
 
 {close/}
-
 
 <h2>shorter syntax</h2>
 
@@ -59,18 +34,40 @@
 
 {close/}
 
+<h2>xxxx</h2>
+
+{open/}
+
+{demo}{sequence 'even', from=11, to=91}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence 'odd', from=11, to=91, step=5}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence 'step', from=11, to=91, step=5}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence 'multiple', from=11, to=91, multiple=5}
+  {$sequence}
+{/sequence}{/demo}
+
+{close/}
+
 
 <h2>step & multiple</h2>
 
 {open/}
 
-{demo}{loop step=5, from=11, to=91}
-  {$loop}
-{/loop}{/demo}
+{demo}{sequence from=11, to=91, step=5}
+  {$sequence}
+{/sequence}{/demo}
 
-{demo}{loop multiple=5, from=11, to=91}
-  {$loop}
-{/loop}{/demo}
+{demo}{sequence from=11, to=91, multiple=5}
+  {$sequence}
+{/sequence}{/demo}
 
 {close/}
 
@@ -79,13 +76,13 @@
 
 {open/}
 
-{demo}{loop even, from=11, to=21}
-  {$loop}
-{/loop}{/demo}
+{demo}{sequence even, from=11, to=21}
+  {$sequence}
+{/sequence}{/demo}
 
-{demo}{loop odd, from=10, to=20}
-  {$loop}
-{/loop}{/demo}
+{demo}{sequence odd, from=10, to=20}
+  {$sequence}
+{/sequence}{/demo}
 
 {close/}
 
@@ -94,21 +91,21 @@
 
 {open/}
 
-{demo}{loop rows=16}
-    {$loop}
-{/loop}{/demo}
+{demo}{sequence rows=16}
+    {$sequence}
+{/sequence}{/demo}
 
-{demo}{loop min=4, max=12}
-    {$loop}
-{/loop}{/demo}
+{demo}{sequence min=4, max=12}
+    {$sequence}
+{/sequence}{/demo}
 
-{demo}{loop from=4, to=12}
-    {$loop}
-{/loop}{/demo}
+{demo}{sequence from=4, to=12}
+    {$sequence}
+{/sequence}{/demo}
 
-{demo}{loop start=4, end=12}
-    {$loop}
-{/loop}{/demo}
+{demo}{sequence start=4, end=12}
+    {$sequence}
+{/sequence}{/demo}
 
 {close/}
 
@@ -199,21 +196,21 @@
 
 {open/}
 
-{demo}{loop from=10, to=20, round=10}
-  {$loop}
-{/loop}{/demo}
+{demo}{sequence from=10, to=20, round=10}
+  {$sequence}
+{/sequence}{/demo}
 
-{demo}{loop from=10, to=20, floor=10}
-  {$loop}
-{/loop}{/demo}
+{demo}{sequence from=10, to=20, floor=10}
+  {$sequence}
+{/sequence}{/demo}
 
-{demo}{loop from=10, to=20, ceil=10}
-  {$loop}
-{/loop}{/demo}
+{demo}{sequence from=10, to=20, ceil=10}
+  {$sequence}
+{/sequence}{/demo}
 
-{demo}{loop from=10, to=20, eval = '@ * 10 | @ - 1'}
-  {$loop}
-{/loop}{/demo}
+{demo}{sequence from=10, to=20, eval = '@ * 10 | @ - 1'}
+  {$sequence}
+{/sequence}{/demo}
 
 {close/}
 
@@ -222,21 +219,21 @@
 
 {open/}
 
-{demo}{loop to=50}
-  {$loop}
-{/loop}{/demo}
+{demo}{sequence to=50}
+  {$sequence}
+{/sequence}{/demo}
 
-{demo}{loop to=50, prime}
-  {$loop}
-{/loop}{/demo}
+{demo}{sequence to=50, prime}
+  {$sequence}
+{/sequence}{/demo}
 
-{demo}{loop to=50, power=2}
-  {$loop}
-{/loop}{/demo}
+{demo}{sequence to=50, power=2}
+  {$sequence}
+{/sequence}{/demo}
 
-{demo}{loop to=50, triangular}
-  {$loop}
-{/loop}{/demo}
+{demo}{sequence to=50, triangular}
+  {$sequence}
+{/sequence}{/demo}
 
 {close/}
 
@@ -286,7 +283,7 @@
   {$pull}
 {/pull}{/demo}
 
-{demo}{loop rows=8, push='abc'/}{/demo}
+{demo}{sequence rows=8, push='abc'/}{/demo}
 
 {demo}{pull 'abc'}
   {$pull}
@@ -303,7 +300,7 @@
 
 {open/}
 
-{demo}{loop from=1, to=25, push='mySequence'/}{/demo}
+{demo}{sequence from=1, to=25, push='mySequence'/}{/demo}
 
 {demo}{mySequence}
   {$mySequence}
@@ -320,17 +317,17 @@
 
 {open/}
 
-{demo}{loop from=15, to=25}
-  {$loop | @ * 10 | @ - 1}
-{/loop}{/demo}
+{demo}{sequence from=15, to=25}
+  {$sequence | @ * 10 | @ - 1}
+{/sequence}{/demo}
 
 {demo}{eval '@ * 10 | @ - 1', from=15, to=25}
   {$eval}
 {/eval}{/demo}
 
-{demo}{loop from=15, to=25, eval='@ * 10 | @ - 1'}
-  {$loop}
-{/loop}{/demo}
+{demo}{sequence from=15, to=25, eval='@ * 10 | @ - 1'}
+  {$sequence}
+{/sequence}{/demo}
 
 {close/}
 
@@ -413,6 +410,44 @@
 
 {demo}{sequence 'pentagonal', rows=20}
   {$sequence}
+{/sequence}{/demo}
+
+{close/}
+
+<h2>basic usage</h2>
+
+{open/}
+
+{demo}{sequence 'sequence', from=1, to=25}
+    {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence 'range', range='D..M'}
+    {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence 'composite', rows=25}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence 'palindrome', rows=20, prime}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence 'prime', rows=25}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence 'emirp', rows=25}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence 'power', power=2, rows=8}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence 'repeat', repeat=6, rows=5}
+    {$sequence}
 {/sequence}{/demo}
 
 {close/}

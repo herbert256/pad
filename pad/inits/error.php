@@ -76,7 +76,7 @@
         pad_boot_error ( "ERROR-3: " . $e->getMessage(), $e->getFile(), $e->getLine() );
       }
 
-    if ( $pad_error_action == 'php' )
+    if ( $GLOBALS['pad_error_action'] == 'php' )
       throw new ErrorException ($error, 0, E_ERROR, $file, $line);
 
     try {
