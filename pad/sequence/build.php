@@ -20,13 +20,11 @@
   include 'build/init_exit.php';
   include 'build/page.php';
   include 'build/pull.php';
-  #include 'build/rows.php';
+  include 'build/rows.php';
 
   $pad_seq_max_loops = ($pad_seq_end - $pad_seq_from ) + 1;
 
-  if ( isset($pad_parms_tag [$pad_tag]) )
-    $GLOBALS ["pad_seq_$pad_tag"] = $pad_parms_tag [$pad_tag];
-  elseif ( $pad_parm )
+  if ( $pad_parm )
     $GLOBALS ["pad_seq_$pad_tag"] = $pad_parm;
   else
     $GLOBALS ["pad_seq_$pad_tag"] = TRUE;

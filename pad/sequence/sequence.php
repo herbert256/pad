@@ -39,10 +39,6 @@
   pad_set_arr_var ( 'options_done', 'push',     TRUE );
   pad_set_arr_var ( 'options_done', 'pull',     TRUE );
   pad_set_arr_var ( 'options_done', 'protect',  TRUE );
-  pad_set_arr_var ( 'options_done', 'step',     TRUE );
-  pad_set_arr_var ( 'options_done', 'even',     TRUE );
-  pad_set_arr_var ( 'options_done', 'odd',      TRUE );
-  pad_set_arr_var ( 'options_done', 'multiple', TRUE );
   pad_set_arr_var ( 'options_done', 'checks',   TRUE );
   pad_set_arr_var ( 'options_done', 'actions',  TRUE );
 
