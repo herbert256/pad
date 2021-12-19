@@ -1,7 +1,7 @@
 <?php
 
   $pad_lib_result = '';
-  $pad_lib_build  = PAD_HOME . "apps/$app";
+  $pad_lib_build  = PAD_APP . $app;
 
   $pad_lib_mrg = pad_split ("pages/$page", '/');
 

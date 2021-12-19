@@ -1,7 +1,6 @@
  <?php
 
   preLoad ('/home/herbert/pad');
-  preLoad ('/home/herbert/apps');
 
   function preLoad ($path) {
 

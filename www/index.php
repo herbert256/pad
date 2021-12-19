@@ -29,7 +29,7 @@
   $pad_display_errors  = ini_set ('display_errors', 0);
   $pad_error_reporting = error_reporting (E_ALL);
   
-  include PAD_HOME . 'pad/pad.php';
+  include PAD_HOME . 'pad.php';
 
 
   // PAD boot error handling
@@ -55,23 +55,21 @@
       pad_boot_error_go ( $error['message'], $error['file'], $error['line'] );
   }
 
-  function pad_boot_error_go ( $error, $file='', $line='' ) {
+  function pad_boot_error_go ( $error, $file, $line ) {
 
     $GLOBALS ['pad_skip_shutdown']      = TRUE;
     $GLOBALS ['pad_skip_boot_shutdown'] = TRUE;
 
-    $id    = $GLOBALS['PADREQID'] ?? uniqid();
-    $error = "$id - $file:$line $error";
-
     if ( ! headers_sent () )
       header ( 'HTTP/1.0 500 Internal Server Error' );
 
-    if ( function_exists ( 'pad_local' ) and pad_local () )
-      echo $error;
-    else {
-      error_log ( "[PAD] $error", 4 );
-      echo "Error: $id";
-    }
+    #if ( function_exists ( 'pad_local' ) and pad_local () )
+      echo  "$file:$line $error";
+    #else {
+    #  $id = $GLOBALS['PADREQID'] ?? uniqid();
+    #  error_log ( "[PAD] $id - $file:$line $error", 4 );
+    #  echo "Error: $id";
+    #}
  
     exit;
 
