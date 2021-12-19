@@ -39,8 +39,8 @@
 
   include PAD_HOME . 'pad/config/config.php';
 
-  if ( file_exists(PAD_HOME . $app . "/config/config.php") )
-    include PAD_HOME . $app . "/config/config.php";
+  if ( file_exists(PAD_APP . 'config/config.php') )
+    include PAD_APP . 'config/config.php';
 
   if ($pad_no_no) 
     include PAD_HOME . 'pad/inits/nono.php';
