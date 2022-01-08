@@ -44,8 +44,8 @@
 
   include 'build/options.php';
   
-  if ( !$pad_seq_pull and $pad_seq_random and !pad_file_exists(PAD_HOME . "pad/sequence/types/$pad_tag/random.php") )
-    include PAD_HOME . 'pad/sequence/options/shuffle.php';  
+  if ( !$pad_seq_pull and $pad_seq_random and !pad_file_exists(PAD . "sequence/types/$pad_tag/random.php") )
+    include PAD . 'sequence/options/shuffle.php';  
 
   if ( $pad_seq_push )
     return include 'build/push.php';

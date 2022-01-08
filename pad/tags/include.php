@@ -5,8 +5,8 @@
     return $pad_include_call ['data'];
   }
 
-  $pad_one = PAD_APP . "includes/$pad_parm";
+  $pad_one = APP . "includes/$pad_parm";
 
-  return include PAD_HOME . 'pad/build/one.php';
+  return include PAD . 'build/one.php';
 
 ?>

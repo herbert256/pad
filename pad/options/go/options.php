@@ -18,7 +18,7 @@
     if ( in_array ( $pad_option_name, $pad_options_walk ) )
       if ( ! isset ( $pad_options_done [$pad_option_name] ) ) {
         $pad_options_done [$pad_option_name] = TRUE;
-        include PAD_HOME . "pad/options/$pad_option_name.php" ;
+        include PAD . "options/$pad_option_name.php" ;
       }
 
   if     ($pad_options == 'level_start' ) $pad_base   [$pad_lvl] = $pad_content;

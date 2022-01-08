@@ -3,7 +3,7 @@
   $dir = $dir ?? '';
 
   $title = 'PAD - Reference';
-  $path  = PAD_APP . "pages/";
+  $path  = APP . "pages/";
 
   if ($dir) {
     $title .= " - $dir";

@@ -4,6 +4,6 @@
   if ( $pad_sequence == 2 ) return 0; 
   if ( $pad_sequence == 3 ) return 2; 
 
-  return include PAD_HOME . "pad/sequence/types/fibonacci/fibonacci.php"; 
+  return include PAD . "sequence/types/fibonacci/fibonacci.php"; 
 
 ?>

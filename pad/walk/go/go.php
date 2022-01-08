@@ -1,6 +1,6 @@
 <?php
   
-  $pad_return = include PAD_HOME . "pad/level/type.php";
+  $pad_return = include PAD . "level/type.php";
 
   if     ( $pad_return === NULL  ) return  '';
   elseif ( $pad_return === FALSE ) return  $pad_false;

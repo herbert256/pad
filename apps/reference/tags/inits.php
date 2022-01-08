@@ -1,6 +1,6 @@
 <?php
 
-  $path = PAD_APP . "pages/$pad_parm";
+  $path = APP . "pages/$pad_parm";
 
   $lib_php    = "$path/__LIB.php";
   $lib_html   = "$path/__LIB.html";

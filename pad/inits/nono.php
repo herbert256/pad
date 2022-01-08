@@ -2,7 +2,7 @@
 
   ob_get_clean();
 
-  $pad_no_no = PAD_HOME . "pad/$app/pages/$page.php";
+  $pad_no_no = PAD . "$app/pages/$page.php";
 
   if ( ! file_exists ( $pad_no_no ) )
     pad_boot_error ("Page does not exists: $app/$page");

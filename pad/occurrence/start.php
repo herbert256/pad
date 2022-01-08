@@ -26,15 +26,15 @@
   }
 
   if ( isset($pad_parms_tag ['callback']) and ! isset($pad_parms_tag ['before']) )
-    include PAD_HOME . 'pad/callback/row.php' ;
+    include PAD . 'callback/row.php' ;
 
-  include PAD_HOME . 'pad/occurrence/db.php';
+  include PAD . 'occurrence/db.php';
 
   $pad_options = 'occur_start';
-  include PAD_HOME . "pad/options/go/options.php";
+  include PAD . "options/go/options.php";
 
   if ( $pad_walks [$pad_lvl] == 'occurrence-start' )
-    include PAD_HOME . "pad/walk/occurrence-start.php";
+    include PAD . "walk/occurrence-start.php";
 
   if ( $pad_trace ) 
     include 'trace/start.php';

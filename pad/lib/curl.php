@@ -79,8 +79,11 @@
     $output ['info'] = curl_getinfo ($curl);
     pad_timing_end   ('curl');
 
-    if ($result === FALSE)
+    if ($result === FALSE) {
+      if ($GLOBALS['pad_trace_curl'])
+        pad_trace_curl ( $output  );
       return '';
+    }
     
     if ( isset ( $output ['info'] ['http_code'] ) )
       $output ['result_code'] = $output ['info'] ['http_code'];
@@ -149,6 +152,11 @@
     if ( ! $output ['result_type'] or $output ['result_type'] == 'json')
       pad_content_type ( $output ['data'], $output ['result_type'] );
  
+    if ($GLOBALS['pad_trace_curl']) {
+      $output ['input'] = $output
+      pad_trace_curl ( $output );
+    }
+
     if ( $error )
       return '';
     else
@@ -156,6 +164,11 @@
     
   }
 
+  function pad_trace_curl ( $trace ) {
+
+    pad_trace_write ( 'curl', pad_random_string(). ".json", pad_json ($trace) );
+
+  }
   
   function pad_curl_opt (&$options, $name, $value) {
     

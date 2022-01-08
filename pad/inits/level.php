@@ -5,7 +5,7 @@
   $pad_eval_cnt   = $pad_fld_cnt = $pad_lvl_cnt = 0;
   $pad_close_tags = $pad_timings = $pad_timings_start = [];
 
-  include PAD_HOME . 'pad/level/parms1.php';
-  include PAD_HOME . 'pad/level/inits.php';
+  include PAD . 'level/parms1.php';
+  include PAD . 'level/inits.php';
 
 ?>

@@ -9,6 +9,6 @@
   if ( ! pad_tag_parm ('complete') )
     $pad_parms_tag ['get'] ['pad_include'] = 1;
 
-  return include PAD_HOME . 'pad/tags/curl.php';
+  return include PAD . 'tags/curl.php';
 
 ?>

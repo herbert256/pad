@@ -1,5 +1,5 @@
 <?php
  
-  return include PAD_HOME . 'pad/types/function_pad.php';
+  return include PAD . 'types/function_pad.php';
 
 ?>

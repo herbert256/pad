@@ -1,5 +1,5 @@
 <?php
 
-  include PAD_HOME . 'pad/build/html.php';
+  include PAD . 'build/html.php';
 
 ?>

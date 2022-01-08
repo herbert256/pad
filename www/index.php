@@ -16,8 +16,9 @@
 
   // Start settings
 
-  define ( 'PAD_HOME', '/home/herbert/pad/'  ); // Home of PAD itself
-  define ( 'PAD_DATA', '/home/herbert/data/' ); // Data locaction, used for logs/cache/errors/etc.
+  define ( 'PAD',  '/home/herbert/pad/pad/'  ); // Home of PAD itself
+  define ( 'APPS', '/home/herbert/pad/apps/' ); // Home of PAD itself
+  define ( 'DATA', '/home/herbert/data/'     ); // Data locaction, used for logs/cache/errors/etc.
 
   // End settings
 
@@ -29,7 +30,7 @@
   $pad_display_errors  = ini_set ('display_errors', 0);
   $pad_error_reporting = error_reporting (E_ALL);
   
-  include PAD_HOME . 'pad.php';
+  include PAD . 'pad.php';
 
 
   // PAD boot error handling

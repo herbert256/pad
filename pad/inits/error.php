@@ -67,13 +67,13 @@
   function pad_error ($error, $file='', $line='') {
 
     if ( $GLOBALS['pad_exit'] <> 1 ) 
-      pad_boot_error ( "ERROR-2: " . $error, $file, $line );
+      pad_boot_error ( "ERROR-2: $error at $file:$line" );
 
     if ( ! $file )
       try {
         extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
       } catch (Exception $e) {
-        pad_boot_error ( "ERROR-3: " . $e->getMessage(), $e->getFile(), $e->getLine() );
+        pad_boot_error ( "ERROR-3: " . $e->getMessage() . ' at ' . $e->getFile() . ':' . $e->getLine() );
       }
 
     if ( $GLOBALS['pad_error_action'] == 'php' )
@@ -82,7 +82,7 @@
     try {
       return pad_error_go ($error, $file, $line); 
     } catch (Exception $e) {
-      pad_boot_error ( "ERROR-4: " . $e->getMessage(), $e->getFile(), $e->getLine() );
+      pad_boot_error ( "ERROR-4: " . $e->getMessage() . ' at ' . $e->getFile() .  ':' . $e->getLine() );
     }
 
   }
@@ -95,6 +95,9 @@
     $pad_exit = 2;
 
     $error = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '.', $error);
+    $error = preg_replace('/\s+/', ' ', $error);
+    $error = trim($error);
+    
     if ( strlen($error) > 255 )
       $error = substr($error, 0, 255);
 

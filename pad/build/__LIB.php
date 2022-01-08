@@ -1,7 +1,7 @@
 <?php
 
   $pad_lib_result = '';
-  $pad_lib_build  = PAD_APP . $app;
+  $pad_lib_build  = APP . $app;
 
   $pad_lib_mrg = pad_split ("pages/$page", '/');
 
@@ -16,7 +16,7 @@
 
       if ( pad_file_exists($pad_lib_php) ) {
         $pad_call = $pad_lib_php;
-        $pad_lib_result .= include PAD_HOME . 'pad/level/call.php';
+        $pad_lib_result .= include PAD . 'level/call.php';
       }
 
       if ( pad_file_exists($pad_lib_html) )

@@ -1,11 +1,7 @@
 <?php
 
-  $pad_val_base = $pad_val;
-
+  $pad_val_base  = $pad_val;
   $pad_fld_trace = $pad_fld;
-
-  if ( ! pad_valid_name ( $pad_fld_trace ) )
-    $pad_fld_trace = 'not_valid';
 
   if ( ! pad_field_check ( $pad_fld ) ) {
 

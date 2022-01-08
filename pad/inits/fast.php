@@ -7,6 +7,6 @@
   
   extract ( unserialize ( $pad_fast ), EXTR_OVERWRITE );
 
-  include PAD_HOME . 'pad/config/config.php';
+  include PAD . 'config/config.php';
 
 ?>

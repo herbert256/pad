@@ -1,5 +1,6 @@
 <?php
 
+
   function pad_remove_dir ($dir) { 
   
    if (is_dir($dir)) { 
@@ -17,15 +18,24 @@
  
   }
 
+
+  function pad_trace_file_operations ( $operation, $value ) {
+
+    pad_trace_write ( '', 'file_operations.txt', "$operation: $file:$line -> $value\n" );
+
+  }
+
+
   function pad_file_valid_name ( $file ) {
 
     if ( ! preg_match ('/^[A-Za-z0-9\.\/_#:-]+$/', $file) ) return FALSE;
-    if ( substr($file,0,1) <> '/' )                         return FALSE;
     if ( strpos($file, '//') !== FALSE )                    return FALSE;
     if ( strpos($file, '..') !== FALSE )                    return FALSE;
 
-    if ( str_starts_with($file, PAD_HOME) ) return TRUE;
-    if ( str_starts_with($file, PAD_DATA) ) return TRUE;
+
+    if ( str_starts_with($file, PAD)  ) return TRUE;
+    if ( str_starts_with($file, APPS) ) return TRUE;
+    if ( str_starts_with($file, DATA) ) return TRUE;
 
     return FALSE;
 
@@ -33,6 +43,9 @@
 
 
   function pad_file_exists ( $file ) {
+
+    if ($GLOBALS['pad_trace_file_operations'])
+      pad_trace_file_operations( 'exists', $file );
 
     if ( ! pad_file_valid_name ( $file ) )
       return FALSE;
@@ -53,6 +66,9 @@
 
   function pad_file_get_contents ( $file ) {
 
+    if ($GLOBALS['pad_trace_file_operations'])
+      pad_trace_file_operations( 'get...', $file );
+
     if ( ! pad_file_exists($file) )
       return '';
 
@@ -67,6 +83,9 @@
 
   function pad_file_put_contents ($file, $data='', $append=0) {
 
+    if ($GLOBALS['pad_trace_file_operations'])
+      pad_trace_file_operations( 'put...', $file );
+
     $file = str_replace('//', '/', $file);
     
     if ( is_array($data) )
@@ -75,7 +94,7 @@
     if ( substr($file, 0, 1) == '/')
       $file = substr($file, 1);
 
-    $file = PAD_DATA . $file;
+    $file = DATA . $file;
 
     if ( ! pad_file_valid_name ( $file ) )
       return pad_error ("Invalid file name: $file");

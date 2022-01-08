@@ -2,6 +2,6 @@
  
   $pad_tag_type = 'function_' . pad_function_type ($pad_tag);
 
-  return include PAD_HOME . 'pad/types/$pad_tag_typ.php';
+  return include PAD . 'types/$pad_tag_typ.php';
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-  include_once PAD_HOME . "pad/sequence/lib/sequence.php";
+  include_once PAD . "sequence/lib/sequence.php";
 
   $pad_seq_rows     = intval ( $pad_parms_tag ['rows']     ?? 0           );
   $pad_seq_page     = intval ( $pad_parms_tag ['page']     ?? 0           );

@@ -15,7 +15,7 @@
   $pad_cache_age    = 0;
   $pad_cache_etag   = '';
 
-  include PAD_HOME . "pad/cache/$pad_cache_server_type.php";
+  include PAD . "cache/$pad_cache_server_type.php";
   
   pad_cache_init ($pad_cache_url, $pad_cache_client);
   
@@ -28,7 +28,7 @@
 
     if ( $pad_cache_age >= $pad_cache_max ) {
       $pad_cache_stop = 304.1;
-      include PAD_HOME . 'pad/cache/stop.php';
+      include PAD . 'cache/stop.php';
     }
     
   }
@@ -42,7 +42,7 @@
 
     if ( $pad_cache_mod and $pad_cache_mod >= $pad_cache_max and $pad_cache_age >= $pad_cache_max ) {
       $pad_cache_stop = 304.2;
-      include PAD_HOME . 'pad/cache/stop.php';
+      include PAD . 'cache/stop.php';
     }
 
     if ( $pad_cache_age >= $pad_cache_max and ! $GLOBALS['pad_cache_server_no_data'] ) {
@@ -51,7 +51,7 @@
 
       if ( $pad_output ) {
         $pad_cache_stop = 200.3;
-        include PAD_HOME . 'pad/cache/stop.php';
+        include PAD . 'cache/stop.php';
       }
 
     }

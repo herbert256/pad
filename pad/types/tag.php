@@ -1,8 +1,8 @@
 <?php
 
-  if ( pad_file_exists ( PAD_APP  . "tags/$pad_tag.php"  ) )
-    return include PAD_HOME . 'pad/types/app.php';
+  if ( pad_file_exists ( APP  . "tags/$pad_tag.php"  ) )
+    return include PAD . 'types/app.php';
   else
-    return include PAD_HOME . 'pad/types/pad.php';
+    return include PAD . 'types/pad.php';
 
 ?>

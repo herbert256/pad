@@ -4,7 +4,7 @@
 
   ob_start();
 
-  $pad_tag_result = include PAD_HOME . "pad/types/$pad_tag_type.php";
+  $pad_tag_result = include PAD . "types/$pad_tag_type.php";
 
   $pad_tag_content .= ob_get_clean();
 

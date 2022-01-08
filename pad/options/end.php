@@ -1,5 +1,5 @@
 <?php
 
-  include PAD_HOME . 'pad/options/start.php';
+  include PAD . 'options/start.php';
 
 ?>

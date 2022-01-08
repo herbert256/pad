@@ -29,7 +29,7 @@
     $name  = $result [$type] [3];
     $count = count($parm);
     
-    $value = include PAD_HOME . "pad/eval/$kind.php" ;
+    $value = include PAD . "eval/$kind.php" ;
       
     if ( is_array($value) or is_object($value) or is_resource($value) ) {
       $result [$type] [6] = 'array';

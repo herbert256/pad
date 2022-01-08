@@ -79,7 +79,7 @@
         return TRUE;
     }
 
-    if ( pad_file_exists ( PAD_APP . "data/$input" ) )
+    if ( pad_file_exists ( APP . "data/$input" ) )
       return TRUE;
 
     $parts = pad_explode ($input, ':', 3);
@@ -103,8 +103,8 @@
     if ( substr ( $input, 0, 7 ) == 'http://' or substr ( $input, 0, 8 ) == 'https://' )
       return pad_curl ($input, $output);
  
-    if ( pad_file_exists ( PAD_APP . "data/$input" ) )
-      return pad_file_get_contents ( PAD_APP . "data/$input" );
+    if ( pad_file_exists ( APP . "data/$input" ) )
+      return pad_file_get_contents ( APP . "data/$input" );
 
     $parts = pad_explode ($input, ':', 3);
 
@@ -125,7 +125,7 @@
 
     $count = count ($parm);
 
-    $get = include PAD_HOME . "pad/eval/$kind.php";
+    $get = include PAD . "eval/$kind.php";
 
     return $get;
 

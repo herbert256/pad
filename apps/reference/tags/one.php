@@ -4,9 +4,9 @@
   
   $url = "$pad_host$pad_script?app=reference&page=$one";
 
-  $pad_file  = PAD_APP . "pages/$one.pad";
-  $php_file  = PAD_APP . "pages/$one.php";
-  $html_file = PAD_APP . "pages/$one.html";
+  $pad_file  = APP . "pages/$one.pad";
+  $php_file  = APP . "pages/$one.php";
+  $html_file = APP . "pages/$one.html";
 
   $dirx = substr($one, 0, strrpos($one, '/')+1 ); 
   $link = str_replace($dirx, '', $one);
@@ -15,9 +15,9 @@
     foreach ( file($pad_file, FILE_IGNORE_NEW_LINES) as $line ) {
       $cmd = pad_explode ($line, ':');
       if ($cmd[0] == 'php')
-         $php_file = PAD_APP . $cmd[1];
+         $php_file = APP . $cmd[1];
       if ($cmd[0] == 'html')
-         $html_file = PAD_APP . $cmd[1];
+         $html_file = APP . $cmd[1];
     }
 
   $php_data  = ( pad_file_exists($php_file ) ) ? pad_colors_file ($php_file ) : '';

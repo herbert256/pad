@@ -11,12 +11,12 @@
 
     ob_start();
 
-    if ( $pad_tag_base == PAD_APP )
+    if ( $pad_tag_base == APP )
       pad_timing_start ('app');
 
     $pad_tag_php = include "$pad_tag_go.php";
 
-    if ( $pad_tag_base == PAD_APP )
+    if ( $pad_tag_base == APP )
       pad_timing_end ('app');
 
     if ( $pad_tag_php === 1 )

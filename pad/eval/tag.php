@@ -1,7 +1,7 @@
 <?php
 
-  if     ( pad_file_exists ( PAD_APP  . "tags/$name.php"  ) ) return include PAD_APP  . 'eval/tag_app.php';
-  elseif ( pad_file_exists ( PAD_HOME . "pad/tags/$name.php"  ) ) return include PAD_HOME . 'pad/eval/tag_pad.php';
+  if     ( pad_file_exists ( APP  . "tags/$name.php"  ) ) return include APP  . 'eval/tag_app.php';
+  elseif ( pad_file_exists ( PAD . "tags/$name.php"  ) ) return include PAD . 'eval/tag_pad.php';
   else                                                        return '';
   
 ?>

@@ -18,10 +18,12 @@
 
   // Trace the internal working of PAD
 
-  $pad_trace                   = FALSE;  
+  $pad_trace                   = TRUE;  
   $pad_trace_fields            = TRUE;  
   $pad_trace_eval              = TRUE;  
   $pad_trace_occurence_details = TRUE;  
+  $pad_trace_file_operations   = TRUE;  
+  $pad_trace_curl              = TRUE;  
 
   // Keep track of stuff, lots of data.
 
@@ -60,7 +62,7 @@
   $pad_cache_db_user          = 'cache';
   $pad_cache_db_password      = 'cache';
 
-  $pad_cache_file             = PAD_DATA . 'cache/';   //  Used when $pad_cache_server_type is 'file'
+  $pad_cache_file             = DATA . 'cache/';   //  Used when $pad_cache_server_type is 'file'
   $pad_cache_file_mode        = 755;
 
   // SQL parms - PAD internal

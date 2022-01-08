@@ -1,6 +1,6 @@
 <?php
 
-  include PAD_HOME . "pad/walk/go/walk.php";
+  include PAD . "walk/go/walk.php";
   
   return TRUE;
 

@@ -1,11 +1,11 @@
 <?php
   
-  $item = pad_dir_list ( PAD_APP . "pages/$dir" );
+  $item = pad_dir_list ( APP . "pages/$dir" );
 
   if ( count($item) == 1 )
     pad_go ( "reference&page=one&one=$dir/" . reset($item) );
 
-  $pad_file = PAD_APP . "pages/$dir/dir.pad";
+  $pad_file = APP . "pages/$dir/dir.pad";
 
   if ( pad_file_exists($pad_file) )
     foreach ( file($pad_file, FILE_IGNORE_NEW_LINES) as $line ) {

@@ -4,7 +4,7 @@
   $bench = ['all', 'app', 'read', 'write', 'curl', 'sql', 'cache'];
 
   $files     = [];
-  $path      = PAD_HOME . 'reference/pages/';
+  $path      = PAD . 'reference/pages/';
   $directory = new RecursiveDirectoryIterator ($path);
   $iterator  = new RecursiveIteratorIterator  ($directory);
 
@@ -26,7 +26,7 @@
     $files [$item] ['item'] = $item;
 
     $store_write = "regression/$item.html";
-    $store_read  = PAD_DATA . $store_write;
+    $store_read  = DATA . $store_write;
 
     $curl = pad_include ("reference&page=$item");
 

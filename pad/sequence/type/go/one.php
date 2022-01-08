@@ -21,7 +21,7 @@
     $pad_seq_one = $pad_seq_one($pad_sequence);
   }
   else
-    $pad_seq_one = include PAD_HOME . "pad/sequence/types/$pad_tag/$pad_seq_build.php";
+    $pad_seq_one = include PAD . "sequence/types/$pad_tag/$pad_seq_build.php";
 
   $pad_seq_unique_check = in_array ($pad_seq_one, $pad_seq_base);
 

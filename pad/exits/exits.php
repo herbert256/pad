@@ -15,13 +15,13 @@
   );
 
   if ( count ($pad_sanitize) )
-    include PAD_HOME . 'pad/exits/sanitize.php';
+    include PAD . 'exits/sanitize.php';
 
   if ( $pad_tidy )
-    include PAD_HOME . 'pad/exits/tidy.php';
+    include PAD . 'exits/tidy.php';
 
   if ( count ($pad_close_tags) )
-    include PAD_HOME . 'pad/walk/close.php';
+    include PAD . 'walk/close.php';
   
   $pad_etag = pad_md5 ($pad_output);
 
@@ -34,7 +34,7 @@
   $pad_stop = ( $pad_etag_304 and ($pad_cache_client??'') == $pad_etag ) ? 304 : 200;
 
   if ( $pad_cache and $pad_cache_server_age )
-    include PAD_HOME . 'pad/cache/exits.php';
+    include PAD . 'cache/exits.php';
 
   pad_stop ($pad_stop);
 

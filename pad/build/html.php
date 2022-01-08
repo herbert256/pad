@@ -2,7 +2,7 @@
 
   $pad_base [1] .= '{content}';
 
-  $pad_build_now = $pad_build_base;
+  $pad_build_now = substr(APP, 0, -1);
 
   $pad_build_mrg = pad_split ("pages/$page", '/');
 

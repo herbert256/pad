@@ -2,6 +2,6 @@
 
   $pad_call = "$pad_parm";
 
-  return include PAD_HOME . 'pad/level/call.php';
+  return include PAD . 'level/call.php';
 
 ?>

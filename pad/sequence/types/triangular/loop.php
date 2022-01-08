@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD_HOME . "pad/sequence/checks/triangular.php"; 
+  return include PAD . "sequence/checks/triangular.php"; 
 
 ?>

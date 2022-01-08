@@ -35,8 +35,8 @@
     else
       $pad_idx = pad_field_tag_lvl ($tag, FALSE);
     
-    if ( pad_file_exists ( PAD_HOME . "pad/tag/".$field.".php" ) )
-      return include PAD_HOME . "pad/tag/$field.php";
+    if ( pad_file_exists ( PAD . "tag/".$field.".php" ) )
+      return include PAD . "tag/$field.php";
 
     if ( in_array ( $parm, ['name','value'] ) and $pad_idx and isset($GLOBALS['pad_current'] ) ) {
       $pos = 1;
@@ -108,7 +108,7 @@
     $pad_lvl_save = $pad_lvl;
 
     $pad_lvl = 999999;
-    include PAD_HOME . 'pad/inits/level.php';
+    include PAD . 'inits/level.php';
   
     $GLOBALS ['pad_data']    [$pad_lvl] = pad_make_data ( $fake );
     $GLOBALS ['pad_current'] [$pad_lvl] = reset ( $GLOBALS ['pad_data'] );

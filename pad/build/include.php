@@ -1,7 +1,7 @@
 <?php
 
-  $pad_build_now = $pad_build_base;
-
+  $pad_build_now = substr(APP, 0, -1);
+  
   $pad_exits     = [];
   $pad_build_mrg = pad_split ("pages/$page", '/');
 
@@ -12,7 +12,7 @@
     if ( is_dir ($pad_build_now) ) {
 
       $pad_call = "$pad_build_now/inits.php";
-      include PAD_HOME . 'pad/level/call.php';
+      include PAD . 'level/call.php';
 
       $pad_exits [] = "$pad_build_now/exits.php";
 
@@ -21,11 +21,11 @@
   }
 
   $pad_call = "$pad_build_now.php";
-  $pad_base [1] .= include PAD_HOME . 'pad/level/call.php';
+  $pad_base [1] .= include PAD . 'level/call.php';
 
   foreach ( array_reverse ($pad_exits) as $pad_call )
-    include PAD_HOME . 'pad/level/call.php';
+    include PAD . 'level/call.php';
 
-  $pad_base [1] .= pad_get_html ( "$pad_build_base/pages/$page.html" );
+  $pad_base [1] .= pad_get_html ( APP . 'pages/$page.html' );
 
 ?>

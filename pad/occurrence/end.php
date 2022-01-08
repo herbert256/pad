@@ -1,10 +1,10 @@
 <?php
 
   $pad_options = 'occur_end';
-  include PAD_HOME . "pad/options/go/options.php";
+  include PAD . "options/go/options.php";
 
   if ( $pad_walks [$pad_lvl] == 'occurrence-end' )
-    include PAD_HOME . "pad/walk/occurrence-end.php";
+    include PAD . "walk/occurrence-end.php";
 
   if ( $pad_trace ) 
     include 'trace/end.php';

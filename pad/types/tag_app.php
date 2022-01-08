@@ -1,7 +1,7 @@
 <?php
 
-  $pad_tag_base = PAD_APP;
+  $pad_tag_base = APP;
 
-  return include PAD_HOME . "pad/types/go/tag.php";
+  return include PAD . "types/go/tag.php";
 
 ?>

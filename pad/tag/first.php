@@ -2,6 +2,6 @@
   
   global $pad_data, $pad_key;
 
-  return ( (include PAD_HOME . "pad/tag/current.php") == 1);
+  return ( (include PAD . "tag/current.php") == 1);
 
 ?>

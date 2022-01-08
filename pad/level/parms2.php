@@ -15,7 +15,7 @@
 
       $pad_set_name  = trim(substr($pad_w[0], 1));
       $pad_set_value = $pad_w[1];
-      include PAD_HOME . 'pad/level/set.php';
+      include PAD . 'level/set.php';
 
       $pad_parms_seq [] = $GLOBALS [$pad_set_name];
 
@@ -47,7 +47,7 @@
   $pad_parameters [$pad_lvl] ['parms_tag'] = $pad_parms_tag;  
   $pad_parameters [$pad_lvl] ['parms_val'] = $pad_parms_val;
 
-  include PAD_HOME . 'pad/level/check.php';
-  include PAD_HOME . 'pad/level/demand.php';
+  include PAD . 'level/check.php';
+  include PAD . 'level/demand.php';
 
 ?>

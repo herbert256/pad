@@ -1,7 +1,7 @@
 <?php
 
-  $pad_one = PAD_APP . "pages/$pad_parm";
+  $pad_one = APP . "pages/$pad_parm";
   
-  return include PAD_HOME . 'pad/build/one.php';
+  return include PAD . 'build/one.php';
 
 ?>
