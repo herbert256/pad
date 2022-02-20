@@ -25,16 +25,16 @@
   $pad_trace_file_operations   = TRUE;  
   $pad_trace_curl              = TRUE;  
 
-  // Keep track of stuff, lots of data.
+  // Keep track of stuff
 
-  $pad_track_file_request = FALSE;
-  $pad_track_file_data    = FALSE; 
+  $pad_track_file_request = TRUE;
+  $pad_track_file_data    = TRUE; 
 
   $pad_track_db_session  = TRUE;
   $pad_track_db_request  = TRUE;
   $pad_track_db_data     = TRUE;
   
-  $pad_track_sql         = FALSE;   //  Detail information about every executed SQL statement.
+  $pad_track_sql         = TRUE;   //  Detail information about every executed SQL statement.
 
   // Cache settings
   

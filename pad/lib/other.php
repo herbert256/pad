@@ -2,43 +2,50 @@
 
   function pad_trace_write ( $dir, $file, $data ) {
 
-    $target  = DATA . $GLOBALS['pad_trace_dir_base']  
+    $target = DATA . $GLOBALS['pad_trace_dir_base'] ;
     if ($dir)
       $target .= "/$dir";
 
-    $file = $target . "/$file";
-
     if ( ! file_exists($target) )
       mkdir($target, $GLOBALS['pad_dir_mode'], true);
-   
-    if ( ! file_exists($file) ) {
-      touch($file);
-      chmod($file, $GLOBALS['pad_file_mode']);
+
+    $target .= "/$file";
+
+    if ( ! file_exists($target) ) {
+      touch($target);
+      chmod($target, $GLOBALS['pad_file_mode']);
     }
 
-    file_put_contents ( $file, $data, FILE_APPEND | LOCK_EX );
+    file_put_contents ( $target, $data, FILE_APPEND | LOCK_EX );
 
   }
 
 
   function pad_include ($url) {
 
+    return pad ("$url&pad_include=1");
+
+  }
+
+
+  function pad ($url) {
+
     global $pad_host, $pad_script, $app;
+
+    if ( strpos ($url, '&page') === FALSE )
+      $url = "$app&page=$url";
 
     $input  = [];
     $output = [];
 
-    $input ['url'] = "$pad_host$pad_script?app=$url&pad_include=1";
+    $input ['url'] = "$pad_host$pad_script?app=$url";
 
     $input ['cookies'] ['PADSESSID'] = $GLOBALS ['PADSESSID']; 
     $input ['cookies'] ['PADREQID']  = $GLOBALS ['PADREQID']; 
 
-    pad_curl ($input, $output);
-
-    return $output;
+    return pad_curl ($input, $output);
 
   }
-
 
   function pad_local () {
 
@@ -182,7 +189,6 @@
     global $app, $page;
   
     if ( ! preg_match ( '/^[A-Za-z0-9\/_]+$/', $page ) ) pad_error ("Invalid page name '$page'");
-    if ( strpos($page, '__LIB') !== FALSE)               pad_error ("Invalid page name '$page'");
     if ( strpos($page, '//') !== FALSE)                  pad_error ("Invalid page name '$page'");
     if ( substr($page, 0, 1) == '/')                     pad_error ("Invalid page name '$page'");
 
@@ -212,7 +218,7 @@
 
       } else {
 
-        return pad_error ("Page |$pad_location| '$app/$page' not found (1)");
+        return pad_error ("Page '$app/$page' not found (1)");
 
       }
       

@@ -17,7 +17,7 @@
   // Start settings
 
   define ( 'PAD',  '/home/herbert/pad/pad/'  ); // Home of PAD itself
-  define ( 'APPS', '/home/herbert/pad/apps/' ); // Home of PAD itself
+  define ( 'APPS', '/home/herbert/pad/apps/' ); // Home of the PAD applications
   define ( 'DATA', '/home/herbert/data/'     ); // Data locaction, used for logs/cache/errors/etc.
 
   // End settings
@@ -64,13 +64,13 @@
     if ( ! headers_sent () )
       header ( 'HTTP/1.0 500 Internal Server Error' );
 
-    #if ( function_exists ( 'pad_local' ) and pad_local () )
+    if ( function_exists ( 'pad_local' ) and pad_local () )
       echo  "$file:$line $error";
-    #else {
-    #  $id = $GLOBALS['PADREQID'] ?? uniqid();
-    #  error_log ( "[PAD] $id - $file:$line $error", 4 );
-    #  echo "Error: $id";
-    #}
+    else {
+      $id = $GLOBALS['PADREQID'] ?? uniqid(TRUE);
+      error_log ( "[PAD] $id - $file:$line $error", 4 );
+      echo "Error: $id";
+    }
  
     exit;
 

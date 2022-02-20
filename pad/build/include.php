@@ -26,6 +26,6 @@
   foreach ( array_reverse ($pad_exits) as $pad_call )
     include PAD . 'level/call.php';
 
-  $pad_base [1] .= pad_get_html ( APP . 'pages/$page.html' );
+  $pad_base [1] .= pad_get_html ( APP . "pages/$page.html" );
 
 ?>

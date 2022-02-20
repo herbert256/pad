@@ -27,7 +27,6 @@
       if ( substr($file, -1) == '.'         ) continue;
       if ( substr($file, -2) == '..'        ) continue;
       if ( is_dir($one)                     ) continue;
-      if ( substr($item, -5) == '__LIB'     ) continue;
       if ( substr($item, -5) == 'inits'     ) continue;
       if ( substr($item, -5) == 'exits'     ) continue;
       if ( $ext <> 'html' and $ext <> 'php' ) continue;

@@ -65,8 +65,8 @@
   $pad_uri            = $_SERVER ['REQUEST_URI']    ?? '/';
 
   if (strpos ( $pad_http_host, ':') === FALSE )
-    if ( !($pad_request_scheme == 'http'  and $pad_server_port == 80) and 
-         !($pad_request_scheme == 'https' and $pad_server_port == 443) )
+    if ( ($pad_request_scheme == 'http'  and $pad_server_port <> 80) or 
+         ($pad_request_scheme == 'https' and $pad_server_port <> 443) )
       $pad_http_host .= ':' . $pad_server_port;
 
   $pad_host     = $pad_request_scheme . '://' . $pad_http_host;

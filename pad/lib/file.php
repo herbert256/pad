@@ -21,6 +21,11 @@
 
   function pad_trace_file_operations ( $operation, $value ) {
 
+    if ( strpos($value, 'trace') !== FALSE)
+      return;
+    
+    extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 2) [1] );
+
     pad_trace_write ( '', 'file_operations.txt', "$operation: $file:$line -> $value\n" );
 
   }

@@ -15,7 +15,6 @@
     $item  = substr($file, 0, strrpos($file, '.')   );
 
     if ( ! strpos($item, '/')             ) continue;
-    if ( strrpos($item, '__LIB')          ) continue;
     if ( substr($item,  -5) == 'inits'    ) continue;
     if ( substr($item,  -5) == 'exits'    ) continue;
     if ( $ext <> 'html' and $ext <> 'php' ) continue;

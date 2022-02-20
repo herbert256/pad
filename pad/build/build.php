@@ -12,7 +12,6 @@
   $pad_base [1] = '';
 
   include PAD . "build/$pad_build_mode.php";
-  include PAD . "build/__LIB.php";
 
   $pad_base [1] = $pad_lib_result . $pad_base [1];
 

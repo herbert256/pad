@@ -18,6 +18,8 @@
       $input = [ 'url' => $input ];
 
     $output                  = [];
+    $output ['input']        = $input;
+    $output ['options']      = [];
     $output ['result_code']  = '999';  //  200 / 404 / etc
     $output ['result_type']  = '';     //  'xml' , 'html' , 'json' , 'yaml' , 'csv' , ''
     $output ['info']         = [];
@@ -69,8 +71,9 @@
       pad_curl_opt ($options, 'HTTPHEADER', $headers_in);
     }
 
+    $output ['options'] = $options;      
+
     $curl = curl_init ( $input ['url'] );
-      
     foreach ( $options as $key => $val )
       curl_setopt ( $curl, constant('CURLOPT_'.$key), $val );
   
@@ -152,10 +155,8 @@
     if ( ! $output ['result_type'] or $output ['result_type'] == 'json')
       pad_content_type ( $output ['data'], $output ['result_type'] );
  
-    if ($GLOBALS['pad_trace_curl']) {
-      $output ['input'] = $output
+    if ($GLOBALS['pad_trace_curl'])
       pad_trace_curl ( $output );
-    }
 
     if ( $error )
       return '';
