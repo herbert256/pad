@@ -20,8 +20,8 @@
 
   pad_file_put_contents ( $GLOBALS['pad_trace_dir_base'] . "/end.json",         $GLOBALS['pad_trace_data'] );
   pad_file_put_contents ( $GLOBALS['pad_trace_dir_base'] . "/result.html",      $GLOBALS['pad_result'][1]  );
-  pad_file_put_contents ( $GLOBALS['pad_trace_dir_base'] . "/pad.json",         pad_dump_get_pad_vars ()   );
-  pad_file_put_contents ( $GLOBALS['pad_trace_dir_base'] . "/app.json",         pad_dump_get_app_vars ()   );
+  pad_file_put_contents ( $GLOBALS['pad_trace_dir_base'] . "/pad.json",         pad_trace_get_pad_vars ()   );
+  pad_file_put_contents ( $GLOBALS['pad_trace_dir_base'] . "/app.json",         pad_trace_get_app_vars ()   );
   pad_file_put_contents ( $GLOBALS['pad_trace_dir_base'] . "/headers-out.json", $GLOBALS ['pad_headers']   );
  
 ?>

@@ -1,24 +1,6 @@
 <?php
 
 
-  function pad_remove_dir ($dir) { 
-  
-   if (is_dir($dir)) { 
-     $objects = scandir($dir);
-     foreach ($objects as $object) { 
-       if ($object != "." && $object != "..") { 
-         if (is_dir($dir. DIRECTORY_SEPARATOR .$object) && !is_link($dir."/".$object))
-           pad_remove_dir ($dir. DIRECTORY_SEPARATOR .$object);
-         else
-           unlink($dir. DIRECTORY_SEPARATOR .$object); 
-       } 
-     }
-     rmdir($dir); 
-   } 
- 
-  }
-
-
   function pad_trace_file_operations ( $operation, $value ) {
 
     if ( strpos($value, 'trace') !== FALSE)
@@ -36,7 +18,6 @@
     if ( ! preg_match ('/^[A-Za-z0-9\.\/_#:-]+$/', $file) ) return FALSE;
     if ( strpos($file, '//') !== FALSE )                    return FALSE;
     if ( strpos($file, '..') !== FALSE )                    return FALSE;
-
 
     if ( str_starts_with($file, PAD)  ) return TRUE;
     if ( str_starts_with($file, APPS) ) return TRUE;

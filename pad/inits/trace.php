@@ -24,7 +24,7 @@
   ];
       
   pad_file_put_contents ($pad_trace_dir_base . "/start.json",      $pad_trace_data_start    );
-  pad_file_put_contents ($pad_trace_dir_base . "/php.json",        pad_dump_get_php_vars () );
+  pad_file_put_contents ($pad_trace_dir_base . "/php.json",        pad_trace_get_php_vars () );
   pad_file_put_contents ($pad_trace_dir_base . "/headers-in.json", getallheaders()          );
 
 ?>

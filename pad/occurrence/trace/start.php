@@ -18,8 +18,8 @@
   ];
 
   pad_file_put_contents ( "$pad_trace_dir_occ/occurrence.json", $pad_trace_data );
-  pad_file_put_contents ( "$pad_trace_dir_occ/pad.json",        pad_dump_get_pad_vars ()   );
-  pad_file_put_contents ( "$pad_trace_dir_occ/app.json",        pad_dump_get_app_vars ()   );
+  pad_file_put_contents ( "$pad_trace_dir_occ/pad.json",        pad_trace_get_pad_vars ()   );
+  pad_file_put_contents ( "$pad_trace_dir_occ/app.json",        pad_trace_get_app_vars ()   );
 
 
   if ( $pad_trace_occurence_details ) {

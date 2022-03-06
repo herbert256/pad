@@ -13,8 +13,6 @@
 
   include PAD . "build/$pad_build_mode.php";
 
-  $pad_base [1] = $pad_lib_result . $pad_base [1];
-
   if ( $pad_trace )
     pad_file_put_contents ("$pad_trace_dir_base/base.html", $pad_base [1] );
   

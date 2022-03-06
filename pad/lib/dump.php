@@ -1,5 +1,6 @@
 <?php
 
+
   function pad_dump ($info='') {
 
     if ( ! pad_local () )
@@ -10,11 +11,12 @@
     pad_close_html    ();
     pad_dump_vars     ($info);
 
-    $GLOBALS[ 'pad_sent'] = TRUE;
+    $GLOBALS ['pad_sent'] = TRUE;
 
     pad_stop (500);
 
-  }  
+  }   
+
 
   function pad_dump_to_file ($file, $info='') {
 
@@ -26,6 +28,7 @@
         
   }
 
+
   function pad_dump_get ($info='') {
 
     ob_start();
@@ -34,29 +37,6 @@
 
     return ob_get_clean();
         
-  }
-
-
-  function pad_dump_get_app_vars () { return pad_dump_get_xxx_vars ('app'); }
-  function pad_dump_get_pad_vars () { return pad_dump_get_xxx_vars ('pad'); }
-  function pad_dump_get_php_vars () { return pad_dump_get_xxx_vars ('php'); }
-
-  function pad_dump_get_xxx_vars ($type) {
-
-    $chk = ['_GET','_POST','_COOKIE','_FILES','_SESSION','_SERVER','_ENV','_REQUEST'];
-    $not = ['app','page','PADSESSID','PADREFID','PADREQID'];
-
-    $dump = [];
-
-    foreach ($GLOBALS as $key => $value)
-      if (    ( $type == 'app' and substr($key, 0, 3) <> 'pad' and ! in_array($key, $chk) and ! in_array($key, $not) ) 
-           or ( $type == 'pad' and substr($key, 0, 3) == 'pad'                            )
-           or ( $type == 'php' and in_array($key, $chk)                                   ) 
-         )
-        $dump [$key] = $value;
-
-    return pad_json ($dump);
-
   }
 
 
@@ -130,7 +110,7 @@
     if ( isset ( $GLOBALS ['pad_sql_connect'     ] ) ) pad_dump_object ('MySQL-App', $GLOBALS ['pad_sql_connect']      );
     if ( isset ( $GLOBALS ['pad_pad_sql_connect' ] ) ) pad_dump_object ('MySQL-PAD', $GLOBALS ['pad_pad_sql_connect']  );
 
-    $not = ['pad_base','pad_sql_connect','pad_pad_sql_connect','pad_headers','pad_data','pad_parameters', 'pad_errors', 'pad_result', 'pad_html', 'pad_output', 'pad_lib_result', 'pad_output_gz', 'pad_current', 'pad_lib_directory', 'pad_lib_iterator', 'pad_lib_one'];
+    $not = ['pad_base','pad_sql_connect','pad_pad_sql_connect','pad_headers','pad_data','pad_parameters', 'pad_errors', 'pad_result', 'pad_html', 'pad_output', 'pad_output_gz', 'pad_current', 'pad_lib_directory', 'pad_lib_iterator', 'pad_lib_one'];
 
     echo ( "\n<b>Pad variables</b>");
 
@@ -245,5 +225,6 @@
     echo ( "\n" . $p);
 
   }
+
 
 ?>
