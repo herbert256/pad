@@ -23,7 +23,6 @@
   $php_data  = ( pad_file_exists($php_file ) ) ? pad_colors_file ($php_file ) : '';
   $html_data = ( pad_file_exists($html_file) ) ? pad_colors_file ($html_file) : '';
 
-  $curl   = pad_include ("reference&page=$one");
-  $result = $curl ['data'];
+  $result = pad_include ("reference&page=$one");
 
 ?>
