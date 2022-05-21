@@ -9,11 +9,10 @@
 
     foreach ($iterator as $loop) {
 
-      $file  = $loop->getPathname();
+      $file = $loop->getPathname();
 
-      if ( substr($file, -4) == '.php' ) {
+      if ( substr($file, -4) == '.php' )
         opcache_compile_file ($file);
-      } 
 
     }
 

@@ -4,11 +4,10 @@
 
   echo ( "<br><hr><pre> ");
 
-  dump ( 'Filters', filter_list () );
-
-  dump ( 'HEADERS',                 getallheaders () );
-  dump ( 'SERVER',                  $_SERVER);
-  dump ( 'ENV',                     $_ENV);
+  dump ( 'Filters', filter_list ()   );
+  dump ( 'HEADERS', getallheaders () );
+  dump ( 'SERVER',  $_SERVER         );
+  dump ( 'ENV',     $_ENV            ) ;
 
   $constants = get_defined_constants (1);
   foreach ( get_loaded_extensions () as $extension ) {
