@@ -7,22 +7,19 @@
 
   $pad_tag_result = include PAD . "level/type.php";
 
+  if ( $pad_tag_result === NULL )
+    return NULL; 
+
   $pad_parameters [$pad_lvl] ['tag_result'] = pad_info ($pad_tag_result);
   
-  if ( $pad_tag_result === NULL )
-    return include PAD . "level/null.php"; 
-
   if ( is_object   ( $pad_tag_result ) ) $pad_tag_result = pad_xxx_to_array ( $pad_tag_result );
   if ( is_resource ( $pad_tag_result ) ) $pad_tag_result = pad_xxx_to_array ( $pad_tag_result );
 
   if ( is_array ( $pad_tag_result ) )
     pad_add_array_to_data ($pad_tag_result);
 
-  if ( pad_tag_parm ('data') ) 
-    $pad_data [$pad_lvl] = include PAD . "options/data.php"; 
-
-  if ( pad_tag_parm ('sequence') ) 
-    $pad_data [$pad_lvl] = include PAD . "options/sequence.php"; 
+  if ( pad_tag_parm ('data') )     $pad_data [$pad_lvl] = include PAD . "options/data.php"; 
+  if ( pad_tag_parm ('sequence') ) $pad_data [$pad_lvl] = include PAD . "options/sequence.php"; 
 
   $pad_data [$pad_lvl] = pad_make_data ( $pad_data [$pad_lvl] );   
 

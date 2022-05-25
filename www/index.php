@@ -23,29 +23,36 @@
   // End settings
 
 
+  // Start Boot error handling 
+
+  $pad_display_errors  = ini_set ('display_errors', 0);
+  $pad_error_reporting = error_reporting (E_ALL);
+
   set_error_handler          ( 'pad_boot_error_handler'   );
   set_exception_handler      ( 'pad_boot_error_exception' );
   register_shutdown_function ( 'pad_boot_error_shutdown'  );
+
+  // End Boot error handling 
   
-  $pad_display_errors  = ini_set ('display_errors', 0);
-  $pad_error_reporting = error_reporting (E_ALL);
+
+  // go to PAD
   
   include PAD . 'pad.php';
 
 
-  // PAD boot error handling
+  // PAD boot error handling functions
  
   function pad_boot_error ( $error ) {
     extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
-    pad_boot_error_go ($error, $file, $line);
+    pad_boot_error_go ( $error, $file, $line );
   }
 
   function pad_boot_error_handler ( $type, $error, $file, $line ) {
-    pad_boot_error_go ($error, $file, $line);
+    pad_boot_error_go ( $error, $file, $line );
   }
 
   function pad_boot_error_exception ( $error ) {
-    pad_boot_error_go ($error->getMessage(), $error->getFile(), $error->getLine()) ;
+    pad_boot_error_go ( $error->getMessage(), $error->getFile(), $error->getLine() ) ;
   }
 
   function pad_boot_error_shutdown () {
@@ -58,8 +65,8 @@
 
   function pad_boot_error_go ( $error, $file, $line ) {
 
-    $GLOBALS ['pad_skip_shutdown']      = TRUE;
     $GLOBALS ['pad_skip_boot_shutdown'] = TRUE;
+    $GLOBALS ['pad_skip_shutdown']      = TRUE;
 
     if ( ! headers_sent () )
       header ( 'HTTP/1.0 500 Internal Server Error' );

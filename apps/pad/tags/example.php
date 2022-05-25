@@ -1,6 +1,6 @@
 <?php
 
-  $result = pad_include ("examples/$pad_parm");
+  $result = pad_include ($app, "examples/$pad_parm");
 
   $file = APP . "pages/examples/$pad_parm";
 

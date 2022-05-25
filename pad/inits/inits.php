@@ -55,8 +55,7 @@
   
   include PAD . 'cache/cache.php';
   include PAD . 'options/go/inits.php';
-
-  pad_get_vars ();
+  include PAD . 'inits/parms.php';
 
   $pad_request_scheme = $_SERVER ['REQUEST_SCHEME'] ?? 'http';
   $pad_http_host      = $_SERVER ['HTTP_HOST']      ?? 'localhost';

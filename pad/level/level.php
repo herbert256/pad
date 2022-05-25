@@ -24,13 +24,10 @@
   else
     $pad_between = substr($pad_html[$pad_lvl], $pad_start[$pad_lvl]+1, $pad_end[$pad_lvl]-$pad_start[$pad_lvl]-2);
 
-  if ( $pad_between == 'dump' )
-    pad_dump ('{dump} tag found');
-
   include PAD . 'level/parms1.php';
 
-  if     ( $pad_first == '!' ) return pad_html ( include PAD . 'level/var.php' );
-  elseif ( $pad_first == '$' ) return pad_html ( include PAD . 'level/var.php' );
+  if     ( $pad_first == '!' ) return pad_html ( include PAD . 'var/raw.php' );
+  elseif ( $pad_first == '$' ) return pad_html ( include PAD . 'var/opt.php' );
 
   if     ( ! ctype_alpha ( $pad_first )  ) return pad_ignore ('ctype_alpha');
   elseif ( ! pad_valid_name ( $pad_tag ) ) return pad_ignore ('pad_valid_name');
@@ -62,6 +59,6 @@
       return pad_ignore ('pair_result_is_false');
   }
 
-  return include PAD . 'level/start.php';
+  include PAD . 'level/start.php';
 
 ?>

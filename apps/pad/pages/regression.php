@@ -1,10 +1,10 @@
 <?php
 
-  $title = "PAD - regression test";
+  $title = "Regression test";
   $bench = ['all', 'app', 'read', 'write', 'curl', 'sql', 'cache'];
 
   $files     = [];
-  $path      = PAD . 'reference/pages/';
+  $path      = APPS . 'reference/pages/';
   $directory = new RecursiveDirectoryIterator ($path);
   $iterator  = new RecursiveIteratorIterator  ($directory);
 
@@ -27,7 +27,7 @@
     $store_write = "regression/$item.html";
     $store_read  = DATA . $store_write;
 
-    $curl = pad_include ("reference&page=$item");
+    $curl = pad_complete ('reference', $item);
 
     $timings = isset ($curl ['headers'] ['X-PAD-Timings']) ? json_decode ($curl ['headers'] ['X-PAD-Timings'], TRUE) : [];
       

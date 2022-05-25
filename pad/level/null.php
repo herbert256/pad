@@ -6,6 +6,8 @@
     
   $pad_data [$pad_lvl] = $pad_base [$pad_lvl] = [];
 
+  $pad_parameters [$pad_lvl] ['tag_result'] = NULL;
+
   return NULL;
 
 ?>

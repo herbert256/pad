@@ -1,13 +1,13 @@
 <?php
 
-  $pad_tag_content = '';
-
   ob_start();
-
-  $pad_tag_result = include PAD . "types/$pad_tag_type.php";
-
+  $pad_tag_content  = '';
+  $pad_tag_result   = include PAD . "types/$pad_tag_type.php";
   $pad_tag_content .= ob_get_clean();
 
+  if ( $pad_tag_result === NULL )
+    return include PAD . "level/null.php"; 
+  
   if ( $pad_walk == 'close' ) {
 	  $pad_close_tags[$pad_tag] = $pad_tag;
   	$pad_walk == '';

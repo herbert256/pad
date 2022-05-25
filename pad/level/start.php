@@ -8,6 +8,9 @@
   include 'inits.php';
 
   $pad_tag_result = include 'tag.php';
+  
+  if ( $pad_tag_result === NULL )
+    return NULL;
 
   $pad_parameters [$pad_lvl] ['default_data'] = pad_is_default_data ( $pad_data [$pad_lvl] );
   

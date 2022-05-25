@@ -1,6 +1,6 @@
 <?php
 
-  function pad_curl ($input, &$output) {
+  function pad_curl ($input) {
 
     //  Required input parms
     //  - ['url']
@@ -26,8 +26,6 @@
     $output ['headers']      = [];
     $output ['cookies']      = [];
     $output ['data']         = '';
-
-    $error = FALSE;
 
     if ( isset($input['get']) ) {
       $str = ( strpos ($input ['url'], '?' ) === FALSE ) ? '?' : '&';
@@ -85,7 +83,7 @@
     if ($result === FALSE) {
       if ($GLOBALS['pad_trace_curl'])
         pad_trace_curl ( $output  );
-      return '';
+      return $output;
     }
     
     if ( isset ( $output ['info'] ['http_code'] ) )
@@ -138,9 +136,6 @@
       
     }
 
-    if ( substr ($output ['info']['http_code'], 0, 1) <> '2' )
-      $error = TRUE;
-
     if ( isset($output ['info']['header_size']) )
       $output ['data'] = trim(substr($result, $output ['info']['header_size']));
     else
@@ -158,10 +153,7 @@
     if ($GLOBALS['pad_trace_curl'])
       pad_trace_curl ( $output );
 
-    if ( $error )
-      return '';
-    else
-      return $output ['data'];
+    return $output;
     
   }
 
