@@ -113,7 +113,7 @@
     if ( ! headers_sent () and in_array($pad_error_action, ['pad', 'stop', 'abort']) )
       pad_header ('HTTP/1.0 500 Internal Server Error' );
 
-    if ( $GLOBALS['pad_error_dump'] or $pad_error_action == 'report' or $pad_error_action == 'pad' ) 
+    if ( $GLOBALS['pad_error_dump'] ) 
       pad_dump_to_file ("errors/$app/$page/$PADREQID." .uniqid() . ".html", "$file:$line $error");
 
     if ( $pad_error_action == 'boot' )

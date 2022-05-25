@@ -14,27 +14,27 @@
                               // 'none' , 'error' , 'warning' , 'notice' , 'all'
                               // (not used when $pad_error_action is 'php' or 'boot')
 
-  $pad_error_dump   = TRUE;   //  Dumps errors to the file system.
+  $pad_error_dump   = FALSE;   //  Dumps errors to the file system.
 
   // Trace the internal working of PAD
 
-  $pad_trace                   = TRUE;  
-  $pad_trace_fields            = TRUE;  
-  $pad_trace_eval              = TRUE;  
-  $pad_trace_occurence_details = TRUE;  
-  $pad_trace_file_operations   = TRUE;  
-  $pad_trace_curl              = TRUE;  
+  $pad_trace                   = FALSE;  
+  $pad_trace_fields            = FALSE;  
+  $pad_trace_eval              = FALSE;  
+  $pad_trace_occurence_details = FALSE;  
+  $pad_trace_file_operations   = FALSE;  
+  $pad_trace_curl              = FALSE;  
 
   // Keep track of stuff
 
-  $pad_track_file_request = TRUE;
-  $pad_track_file_data    = TRUE; 
+  $pad_track_file_request = FALSE;
+  $pad_track_file_data    = FALSE; 
 
-  $pad_track_db_session  = TRUE;
-  $pad_track_db_request  = TRUE;
-  $pad_track_db_data     = TRUE;
+  $pad_track_db_session  = FALSE;
+  $pad_track_db_request  = FALSE;
+  $pad_track_db_data     = FALSE;
   
-  $pad_track_sql         = TRUE;   //  Detail information about every executed SQL statement.
+  $pad_track_sql         = FALSE;   //  Detail information about every executed SQL statement.
 
   // Cache settings
   
