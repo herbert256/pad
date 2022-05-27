@@ -34,7 +34,7 @@
     }
     
     if ( ! $content )
-      pad_content_type ($data, $content);
+      $content = pad_content_type ($data);
 
     $csv = $html = $xml = $json = $yaml = '';
     

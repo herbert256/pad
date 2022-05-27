@@ -1,5 +1,45 @@
 <?php
 
+  function pad_include ( $app, $page='index', $query='' ) {
+
+    return pad ( $app, $page, $query, 1 );
+    
+  }
+
+  function pad ( $app, $page='index', $query='', $include='' ) {
+
+    $result = pad_complete ( $app, $page, $query, $include );
+
+    return $result ['data'];
+    
+  }
+
+  function pad_complete ( $app, $page='index', $query='', $include='' ) {
+
+    global $pad_host, $pad_script;
+
+    if ($include)
+      $include = '&pad_include=1';
+
+    $input = $output = [];
+
+    $input ['url'] = "$pad_host$pad_script?app=$app&page=$page$query$include";
+
+    $input ['cookies'] ['PADSESSID'] = $GLOBALS['PADSESSID'];
+    $input ['cookies'] ['PADREQID']  = $GLOBALS['PADREQID'];
+    
+    return pad_curl ($input);
+    
+  }
+
+  function pad_curl_data ($input) {    
+
+    $curl = pad_curl ($input);
+    
+    return $curl ['data'];
+
+  }
+
   function pad_curl ($input) {
 
     //  Required input parms
@@ -17,15 +57,15 @@
     if ( ! is_array($input) )
       $input = [ 'url' => $input ];
 
-    $output                  = [];
-    $output ['input']        = $input;
-    $output ['options']      = [];
-    $output ['result_code']  = '999';  //  200 / 404 / etc
-    $output ['result_type']  = '';     //  'xml' , 'html' , 'json' , 'yaml' , 'csv' , ''
-    $output ['info']         = [];
-    $output ['headers']      = [];
-    $output ['cookies']      = [];
-    $output ['data']         = '';
+    $output             = [];
+    $output ['input']   = $input;
+    $output ['options'] = [];
+    $output ['result']  = '999';  //  200 / 404 / etc
+    $output ['type']    = '';     //  'xml' , 'html' , 'json' , 'yaml' , 'csv' , ''
+    $output ['info']    = [];
+    $output ['headers'] = [];
+    $output ['cookies'] = [];
+    $output ['data']    = '';
 
     if ( isset($input['get']) ) {
       $str = ( strpos ($input ['url'], '?' ) === FALSE ) ? '?' : '&';
@@ -33,6 +73,21 @@
         $input ['url'] .= $str . $key . '=' . urlencode($val);
         $str = '&';
       }
+    }
+
+    $output ['url'] = $input ['url'] ;  
+
+    if ( ! strpos( $input ['url'], '://') ) {
+      $file = APP . 'data/' . $input ['url'];
+      if ( file_exists ( $file ) ) {
+        $output ['data']    = file_get_contents ( $file );   
+        $output ['type']    = pad_content_type  ( $output ['data'] );   
+        $output ['result']  = '200';
+      } else {
+        $output ['data']    = '';      
+        $output ['result']  = '404';
+      }
+      return $output;
     }
 
     $options = $input ['options'] ?? [];
@@ -72,6 +127,10 @@
     $output ['options'] = $options;      
 
     $curl = curl_init ( $input ['url'] );
+
+    if ($curl === FALSE)
+      return pad_curl_error ($output, 'curl_init = FALSE');
+
     foreach ( $options as $key => $val )
       curl_setopt ( $curl, constant('CURLOPT_'.$key), $val );
   
@@ -80,16 +139,13 @@
     $output ['info'] = curl_getinfo ($curl);
     pad_timing_end   ('curl');
 
-    if ($result === FALSE) {
-      if ($GLOBALS['pad_trace_curl'])
-        pad_trace_curl ( $output  );
-      return $output;
-    }
+    if ($result  === FALSE)
+      return pad_curl_error ($output, 'curl_exec = FALSE');
     
     if ( isset ( $output ['info'] ['http_code'] ) )
-      $output ['result_code'] = $output ['info'] ['http_code'];
+      $output ['result'] = $output ['info'] ['http_code'];
     else
-      $output ['result_code'] = 'xxx';
+      $output ['result'] = 'xxx';
 
     if ( isset($output ['info']['header_size']) and $output ['info']['header_size'] > 0 ) {
         
@@ -113,13 +169,13 @@
             $file = pad_between ($value, '"', '"');
         
           if ( $header == 'Content-Type' )
-            if     (strpos ($value, 'html')       !== FALSE) $output ['result_type'] = 'html';
-            elseif (strpos ($value, 'xml')        !== FALSE) $output ['result_type'] = 'xml';
-            elseif (strpos ($value, 'json')       !== FALSE) $output ['result_type'] = 'json';
-            elseif (strpos ($value, 'javascript') !== FALSE) $output ['result_type'] = 'json';
-            elseif (strpos ($value, 'csv')        !== FALSE) $output ['result_type'] = 'csv';
-            elseif (strpos ($value, 'yaml')       !== FALSE) $output ['result_type'] = 'yaml';
-            elseif (strpos ($value, 'yml')        !== FALSE) $output ['result_type'] = 'yaml';
+            if     (strpos ($value, 'html')       !== FALSE) $output ['type'] = 'html';
+            elseif (strpos ($value, 'xml')        !== FALSE) $output ['type'] = 'xml';
+            elseif (strpos ($value, 'json')       !== FALSE) $output ['type'] = 'json';
+            elseif (strpos ($value, 'javascript') !== FALSE) $output ['type'] = 'json';
+            elseif (strpos ($value, 'csv')        !== FALSE) $output ['type'] = 'csv';
+            elseif (strpos ($value, 'yaml')       !== FALSE) $output ['type'] = 'yaml';
+            elseif (strpos ($value, 'yml')        !== FALSE) $output ['type'] = 'yaml';
          
           if ( $header == 'Set-Cookie') {
             $first = strpos ($value, '=');
@@ -141,17 +197,19 @@
     else
       $output ['data'] = trim($result);
 
-    if ( ! $output ['result_type'] and $file) {
+    if ( ! $output ['type'] and $file) {
       $pos = strrpos($file, '.');
       if ( ! $pos !==FALSE)
-        $output ['result_type'] = substr($parm, $pos+1);
+        $output ['type'] = substr($parm, $pos+1);
     }
 
-    if ( ! $output ['result_type'] or $output ['result_type'] == 'json')
-      pad_content_type ( $output ['data'], $output ['result_type'] );
+    if ( ! $output ['type'] )
+      $output ['type'] = pad_content_type ( $output ['data'] );
  
     if ($GLOBALS['pad_trace_curl'])
       pad_trace_curl ( $output );
+
+    $GLOBALS['pad_curl_last'] = $output;
 
     return $output;
     
@@ -170,5 +228,17 @@
 
   }
 
+  function pad_curl_error ($output, $error) {
+
+    $output ['ERROR'] = $error;
+
+     if ($GLOBALS['pad_trace_curl'])
+      pad_trace_curl ( $output );
+
+    $GLOBALS['pad_curl_last'] = $output;
+
+    return $output;
+
+  }
 
 ?>

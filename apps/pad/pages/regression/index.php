@@ -15,6 +15,7 @@
     $item  = substr($file, 0, strrpos($file, '.')   );
 
     if ( ! strpos($item, '/')             ) continue;
+    if ( strpos($item, 'error') !== FALSE ) continue;
     if ( substr($item,  -5) == 'inits'    ) continue;
     if ( substr($item,  -5) == 'exits'    ) continue;
     if ( $ext <> 'html' and $ext <> 'php' ) continue;
@@ -34,7 +35,7 @@
     foreach ($bench as $wrk)
       $files [$item] [$wrk] = $timings[$wrk] ?? 0;
 
-    if ( $curl ['result_code'] <> 200 )                         $status = $curl ['result_code'] ;
+    if ( $curl ['result'] <> 200 )                              $status = $curl ['result'] ;
     elseif ( strrpos($store_write, 'random') )                  $status = 'random' ;
     elseif ( ! file_exists ($store_read) )                      $status = 'new';
     elseif ( file_get_contents($store_read) == $curl ['data'] ) $status = 'ok';

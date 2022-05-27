@@ -1,0 +1,23 @@
+{if $demo}
+
+  {!result}
+
+{else}
+
+  <table border="1" cellpadding="10" cellspacing="0">
+
+    <tr>
+      {if $php}  <th bgcolor="#dddddd">PHP <br><font size="-2">{$php_file} </font></th>{/if}
+      {if $html}<th bgcolor="#dddddd">HTML<br><font size="-2">{$html_file}</font></th>{/if}
+      <th bgcolor="#dddddd">Result</th>
+    </tr>
+
+    <tr>
+      {if $php} <td style="vertical-align:top">{!php} </td>{/if}
+      {if $html}<td style="vertical-align:top">{!html}</td>{/if}
+      <td style="vertical-align:top">{!result}</td>
+    </tr>
+
+  </table>
+
+{/if}

@@ -1,14 +1,14 @@
 <?php
 
-  if     ( $pad_seq_random and pad_file_exists (PAD . "sequence/types/$pad_tag/random.php") )          return 'random';
-  elseif ( $pad_seq_type == 'from' and pad_file_exists (PAD . "sequence/types/$pad_tag/from_to.php") ) return 'from_to';
-  elseif ( $pad_seq_type == 'min'  and pad_file_exists (PAD . "sequence/types/$pad_tag/min_max.php") ) return 'min_max';
-  elseif ( pad_file_exists (PAD . "sequence/types/$pad_tag/order.php") )                               return 'order';
-  elseif ( pad_file_exists (PAD . "sequence/types/$pad_tag/fixed.php") )                               return 'fixed';
-  elseif ( pad_file_exists (PAD . "sequence/types/$pad_tag/jump.php") )                                return 'jump';
-  elseif ( pad_file_exists (PAD . "sequence/functions/$pad_tag.php") )                                 return 'function';
-  elseif ( pad_file_exists (PAD . "sequence/types/$pad_tag/from_to.php") )                             return 'from_to';
-  elseif ( pad_file_exists (PAD . "sequence/types/$pad_tag/min_max.php") )                             return 'min_max';
+  if     ( $pad_seq_random and pad_file_exists (PAD . "sequence/types/$pad_seq_seq/random.php") )          return 'random';
+  elseif ( $pad_seq_type == 'from' and pad_file_exists (PAD . "sequence/types/$pad_seq_seq/from_to.php") ) return 'from_to';
+  elseif ( $pad_seq_type == 'min'  and pad_file_exists (PAD . "sequence/types/$pad_seq_seq/min_max.php") ) return 'min_max';
+  elseif ( pad_file_exists (PAD . "sequence/types/$pad_seq_seq/order.php") )                               return 'order';
+  elseif ( pad_file_exists (PAD . "sequence/types/$pad_seq_seq/fixed.php") )                               return 'fixed';
+  elseif ( pad_file_exists (PAD . "sequence/types/$pad_seq_seq/jump.php") )                                return 'jump';
+  elseif ( pad_file_exists (PAD . "sequence/functions/$pad_seq_seq.php") )                                 return 'function';
+  elseif ( pad_file_exists (PAD . "sequence/types/$pad_seq_seq/from_to.php") )                             return 'from_to';
+  elseif ( pad_file_exists (PAD . "sequence/types/$pad_seq_seq/min_max.php") )                             return 'min_max';
   else                                                                                                      return 'loop';
 
 ?>

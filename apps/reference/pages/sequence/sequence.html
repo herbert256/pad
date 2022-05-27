@@ -1,475 +1,144 @@
-<h2>test</h2>
-
 {open/}
 
-{demo}{even rows=5}
-    {$even}
-{/even}{/demo}
-
-{demo}{odd rows=5}
-    {$odd}
-{/odd}{/demo}
-
-{demo}{step 5, rows=5}
-    {$step}
-{/step}{/demo}
-
-{demo}{multiple 5,rows=5}
-    {$multiple}
-{/multiple}{/demo}
-
-{close/}
-
-<h2>basic usage</h2>
-
-{open/}
-
-{demo}{sequence 'loop', from=1, to=25}
-    {$sequence}
+{demo}{sequence loop=TRUE, rows=10}
+  {$sequence} 
 {/sequence}{/demo}
 
-{demo}{sequence 'loop', rows=25}
-    {$sequence}
+{demo}{sequence list='11;15;33;23;7;123;65;3;123'}
+  {$sequence} 
 {/sequence}{/demo}
 
-{close/}
+{demo}{sequence range='F..Q'}
+  {$sequence} 
+{/sequence}{/demo}   
 
-<h2>shorter syntax</h2>
+{close/}<p>{open/}
 
-{open/}
+{demo}{sequence even=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}       
+{demo}{sequence odd=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}         
 
-{demo}{sequence 'power', power=2, rows=4}
+{close/}<p>{open/}
+
+{demo}{sequence step=4, rows=10}
+  {$sequence} 
+{/sequence}{/demo}
+{demo}{sequence multiple=4, rows=10}
+  {$sequence} 
+{/sequence}{/demo}       
+
+{close/}<p>{open/}
+
+{demo}{sequence square=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}   
+{demo}{sequence triangular=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}
+{demo}{sequence cube=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}
+{demo}{sequence pentagonal=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}
+
+{close/}<p>{open/}
+
+{demo}{sequence composite=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}
+{demo}{sequence prime=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}   
+{demo}{sequence emirp=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}   
+ 
+
+{close/}<p>{open/}
+
+{demo}{sequence random=2, rows=10, max=1000}
+  {$sequence} 
+{/sequence}{/demo}
+{demo}{sequence repeat=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}
+{demo}{sequence palindrome=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo} 
+{demo}{sequence perfect=TRUE, rows=5}
+  {$sequence} 
+{/sequence}{/demo}     
+{demo}{sequence power=2, rows=10}
+  {$sequence} 
+{/sequence}{/demo} 
+
+{close/}<p>{open/}
+
+{demo}{sequence catalan=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}    
+{demo}{sequence cullen=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo} 
+{demo}{sequence kolakoski=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}  
+{demo}{sequence lucas=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}          
+{demo}{sequence pell=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}        
+{demo}{sequence perrin=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}     
+{demo}{sequence recaman=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}  
+{demo}{sequence fibonacci=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}  
+{demo}{sequence kynea=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}     
+{demo}{sequence moserdebruijn=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}
+{demo}{sequence padovan=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}
+{demo}{sequence bell=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}
+{demo}{sequence golomb=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}     
+{demo}{sequence tribonacci=TRUE, rows=10}
+  {$sequence} 
+{/sequence}{/demo}
+
+{close/}<h3>Eval</h3>{open/}
+
+{demo}{sequence eval='@ * 10 | @ - 1', rows=10}
   {$sequence}
 {/sequence}{/demo}
 
-{demo}{sequence power=2, rows=4}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{power power=2, rows=4}
-  {$power}
-{/power}{/demo}
-
-{demo}{power 2, rows=4}
-  {$power}
-{/power}{/demo}
-
-{close/}
-
-<h2>xxxx</h2>
-
-{open/}
-
-{demo}{sequence 'even', from=11, to=91}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'odd', from=11, to=91, step=5}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'step', from=11, to=91, step=5}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'multiple', from=11, to=91, multiple=5}
-  {$sequence}
-{/sequence}{/demo}
-
-{close/}
-
-
-<h2>step & multiple</h2>
-
-{open/}
-
-{demo}{sequence from=11, to=91, step=5}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence from=11, to=91, multiple=5}
-  {$sequence}
-{/sequence}{/demo}
-
-{close/}
-
-
-<h2>even & odd</h2>
-
-{open/}
-
-{demo}{sequence even, from=11, to=21}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence odd, from=10, to=20}
-  {$sequence}
-{/sequence}{/demo}
-
-{close/}
-
-
-<h2>from/to & min/max & start/end - The same ?</h2>
-
-{open/}
-
-{demo}{sequence rows=16}
-    {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence min=4, max=12}
-    {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence from=4, to=12}
-    {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence start=4, end=12}
-    {$sequence}
-{/sequence}{/demo}
-
-{close/}
-
-
-<h2>from/to & min/max & start/end - No !</h2>
-
-{open/}
-
-{demo}{power 2, rows=16}
-    {$power}
-{/power}{/demo}
-
-{demo}{power 2, min=4, max=12}
-    {$power}
-{/power}{/demo}
-
-{demo}{power 2, from=4, to=12}
-    {$power}
-{/power}{/demo}
-
-{demo}{power 2, from=4, to=12, start=2, end=4}
-    {$power}
-{/power}{/demo}
-
-
-{close/}
-
-
-<h2>row & value</h2>
-
-{open/}
-
-{demo}{power 2, rows=16}
-  {$power}
-{/power}{/demo}
-
-{demo}{power 2, row=5}
-  {$power}
-{/power}{/demo}
-
-{demo}{power 2, row='4;6;8'}
-  {$power}
-{/power}{/demo}
-
-{demo}{power 2, value=128}
-  {$power}
-{/power}{/demo}
-
-{demo}{power 2, value='16;32;48;64'}
-  {$power}
-{/power}{/demo}
-
-{close/}
-
-
-<h2>first & last</h2>
-
-{open/}
-
-{demo}{range '11..50'}
-  {$range}
-{/range}{/demo}
-
-{demo}{range '11..50', first}
-  {$range}
-{/range}{/demo}
-
-{demo}{range '11..50', first=10}
-  {$range}
-{/range}{/demo}
-
-{demo}{range '11..50', last}
-  {$range}
-{/range}{/demo}
-
-{demo}{range '11..50', last=10}
-  {$range}
-{/range}{/demo}
-
-{demo}{range '11..50', reverse, last=10}
-  {$range}
-{/range}{/demo}
-
-{close/}
-
-
-<h2>actions</h2>
-
-{open/}
-
-{demo}{sequence from=10, to=20, round=10}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence from=10, to=20, floor=10}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence from=10, to=20, ceil=10}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence from=10, to=20, eval = '@ * 10 | @ - 1'}
-  {$sequence}
-{/sequence}{/demo}
-
-{close/}
-
-
-<h2>checks</h2>
-
-{open/}
-
-{demo}{sequence to=50}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence to=50, prime}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence to=50, power=2}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence to=50, triangular}
-  {$sequence}
-{/sequence}{/demo}
-
-{close/}
-
-
-<h2>options</h2>
-
-{open/}
-
-{demo}{range 'A..Z'}
-  {$range}
-{/range}{/demo}
-
-{demo}{range 'A..Z', reverse}
-  {$range}
-{/range}{/demo}
-
-{demo}{range 'A..Z', shuffle, sort}
-  {$range}
-{/range}{/demo}
-
-{demo}{range 'A..Z', first=10}
-  {$range}
-{/range}{/demo}
-
-{demo}{range 'A..Z', last=10}
-  {$range}
-{/range}{/demo}
-
-{demo}{range 'A..Z', last=10, first=5}
-  {$range}
-{/range}{/demo}
-
-{close/}
-
-
-<h2>push & pull</h2>
-
-{open/}
-
-{demo}{power 2, rows=16, push/}{/demo}
-
-{demo}{pull}
-  {$pull}
-{/pull}{/demo}
-
-{demo}{pull into='prime'}
-  {$pull}
-{/pull}{/demo}
-
-{demo}{sequence rows=8, push='abc'/}{/demo}
-
-{demo}{pull 'abc'}
-  {$pull}
-{/pull}{/demo}
-
-{demo}{pull 'abc', into='power', power=2}
-  {$pull}
-{/pull}{/demo}
-
-{close/}
-
-
-<h2>sequence data to standaard pad data</h2>
-
-{open/}
-
-{demo}{sequence from=1, to=25, push='mySequence'/}{/demo}
-
-{demo}{mySequence}
-  {$mySequence}
-{/mySequence}{/demo}
-
-{demo}{tag sequence='mySequence'}
-  {$tag}
-{/tag}{/demo}
-
-{close/}
-
-
-<h2>Eval</h2>
-
-{open/}
-
-{demo}{sequence from=15, to=25}
-  {$sequence | @ * 10 | @ - 1}
-{/sequence}{/demo}
-
-{demo}{eval '@ * 10 | @ - 1', from=15, to=25}
-  {$eval}
-{/eval}{/demo}
-
-{demo}{sequence from=15, to=25, eval='@ * 10 | @ - 1'}
-  {$sequence}
-{/sequence}{/demo}
-
-{close/}
-
-
-<h2>Integer sequences with names</h2>
-
-{open/}
-
-{demo}{sequence 'fibonacci', rows=20}
-    {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'lucas', rows=20}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'padovan', rows=20}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'perrin', rows=20}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'golomb', rows=30}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'recaman', rows=20}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'kolakoski', rows=40}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'tribonacci', rows=20}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'xmoserdebruijn', rows=20}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'cullen', rows=15}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'kynea', rows=10}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'catalan', rows=15}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'bell', rows=15}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'pell', rows=15}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'perfect', rows=8}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'cube', rows=15}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'square', rows=20}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'triangular', rows=20}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'pentagonal', rows=20}
-  {$sequence}
-{/sequence}{/demo}
-
-{close/}
-
-<h2>basic usage</h2>
-
-{open/}
-
-{demo}{sequence 'sequence', from=1, to=25}
-    {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'range', range='D..M'}
-    {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'composite', rows=25}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'palindrome', rows=20, prime}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'prime', rows=25}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'emirp', rows=25}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'power', power=2, rows=8}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'repeat', repeat=6, rows=5}
-    {$sequence}
-{/sequence}{/demo}
+{close/}<h3>push & pull</h3>{open/}
+
+{demo}{sequence range='4..8', push=range}
+  {$sequence} 
+{/sequence}{/demo}   
+
+{demo}{sequence power=2, pull=range}
+  {$sequence} 
+{/sequence}{/demo}   
+
+{demo}{sequence eval='@ * 10 | @ - 1', pull=range}
+  {$sequence} 
+{/sequence}{/demo}   
 
 {close/}

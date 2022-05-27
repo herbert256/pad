@@ -242,10 +242,12 @@
 
 
   function pad_valid_name ($name) {
+
+    if ( $name === '' ) return FALSE;
  
     if ( ! preg_match('/^[A-Za-z0-9_:#-]+$/', $name ) ) return FALSE;
 
-    if ( substr($name, 0, 1) == '-' or substr($name, 0, 1) == '_' ) return true;
+    if ( substr($name, 0, 1) == '-' or substr($name, 0, 1) == '_' ) return TRUE;
 
     if ( ! ctype_alpha(substr($name, 0, 1))          ) return FALSE;
 
@@ -860,13 +862,10 @@
   }
 
   
-  function pad_content_type (&$content, &$type) {
+  function pad_content_type (&$content) {
 
     $content = trim ( $content );
 
-    if ( $type == 'json' and ( substr($content, 0, 1) == '{' or substr($content, 0, 1) == '[') )
-      return;
-      
     if ( substr ($content, 0, 5) == '%YAML' )
       $type = 'yaml';
     elseif ( substr ($content, 0, 3) == '---' )
@@ -894,16 +893,18 @@
       $type = 'json';
     elseif ( substr($content, -1) == ')')
       $type = 'json';
+    else
+      $type = '';
       
     if ( $type )
-      return;
+      return $type;
 
     $first = strpos ($content, '({');
     $last  = strpos ($content, '})');
     if ($first !== FALSE and $last !== FALSE and $first < $last ) {
       $type = 'json';
       $content = substr($content, $first+1, $last-$first);
-      return;
+      return $type;
     }
 
     $first = strpos ($content, '([');
@@ -911,7 +912,7 @@
     if ($first !== FALSE and $last !== FALSE and $first < $last ) {
       $type = 'json';
       $content = substr($content, $first+1, $last-$first);
-      return;
+      return $type;
     }
 
   }
