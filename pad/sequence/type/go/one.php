@@ -55,10 +55,7 @@
   if ( $pad_seq_unique and $pad_seq_unique_check                               ) { $pad_seq_sts_11++; return true;  }
   if ( $pad_seq_protect_cnt > $pad_seq_protect                                 ) { $pad_seq_sts_12++; return false; }
 
-  if ( $pad_seq_actions ) $pad_seq_add = include 'actions.php';  
-  else                    $pad_seq_add = $pad_sequence;
-
-  $pad_seq_result [] = $pad_seq_add;
+  $pad_seq_result [] = $pad_sequence;
 
   $pad_seq_protect_cnt = 0;
 

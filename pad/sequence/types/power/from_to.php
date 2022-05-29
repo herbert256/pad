@@ -1,5 +1,5 @@
 <?php
 
-  return $pad_seq_power ** $pad_sequence;
+  return $pad_seq_parm ** $pad_sequence;
 
 ?>

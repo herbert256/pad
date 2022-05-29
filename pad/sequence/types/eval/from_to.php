@@ -1,5 +1,7 @@
 <?php
+ 
+  $pad_seq_eval_tbl = pad_explode ( $pad_seq_parm, '|' );
 
-  return include PAD . 'sequence/actions/eval.php';
+  return pad_var_opts ( $pad_sequence, $pad_seq_eval_tbl );
 
 ?>
