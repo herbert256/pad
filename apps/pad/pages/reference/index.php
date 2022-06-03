@@ -1,45 +1,25 @@
 <?php
 
-  $dir = $dir ?? '';
+  $title     = 'Reference';
+  $reference = APPS . "reference/pages";
 
-  $title = 'PAD - Reference';
-  $path  = APP . "pages/";
-
-  if ($dir) {
-    $title .= " - $dir";
-    $path  .= "$dir/";
-  }
-
-  $directory = new DirectoryIterator ($path);
-  $iterator  = new IteratorIterator  ($directory);
+  $directory = new RecursiveDirectoryIterator ($reference);
+  $iterator  = new RecursiveIteratorIterator  ($directory);
 
   $dirs = [];
 
-  foreach ($iterator as $loop_info) {
+  foreach ($iterator as $dir) {
 
-    $one = $loop_info->getPathname();
+    $path = $dir->getPathname();
+ 
+    $dir = str_replace($reference, '', $path);
+    $dir = substr($dir, 1);
 
-    if ( is_dir($one) ) {
+    if (substr($dir, -2) == '/.')  $dir = substr($dir, 0, -2);
+    if (substr($dir, -3) == '/..') $dir = substr($dir, 0, -3);
 
-      $item = str_replace ( $path, '', $one );
-    
-      if ( $item and $item <> '.' and $item <> '..' ) {
-
-        $dirs [$item] ['item'] = $item;
-
-        if ($dir)
-          $dirs [$item] ['link'] = "$dir/$item";
-        else
-          $dirs [$item] ['link'] = $item;
-  
-        if ( count ( pad_dir_list ($one) ) )   
-          $dirs [$item] ['next'] = 'dir';
-        else
-          $dirs [$item] ['next'] = 'index';
-
-      }
-
-    }
+   if ( $dir and is_dir($path) and count(pad_dir_list ($path)))
+      $dirs [$dir] ['dir'] = $dir;
  
   }
 

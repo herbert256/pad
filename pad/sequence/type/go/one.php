@@ -51,7 +51,6 @@
   if ( $pad_seq_page   and count($pad_seq_base) < $pad_seq_page_start          ) { $pad_seq_sts_07++; return true;  }
   if ( $pad_seq_row    and ! in_array (count($pad_seq_base), $pad_seq_row)     ) { $pad_seq_sts_08++; return true;  }
   if ( $pad_seq_value  and ! in_array ($pad_sequence, $pad_seq_value)          ) { $pad_seq_sts_09++; return true;  }
-  if ( $pad_seq_checks and ! include 'check.php'                               ) { $pad_seq_sts_10++; return true;  }
   if ( $pad_seq_unique and $pad_seq_unique_check                               ) { $pad_seq_sts_11++; return true;  }
   if ( $pad_seq_protect_cnt > $pad_seq_protect                                 ) { $pad_seq_sts_12++; return false; }
 

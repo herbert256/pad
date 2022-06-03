@@ -19,7 +19,6 @@
   $pad_seq_into     =          $pad_parms_tag ['into']     ?? '';
   $pad_seq_push     =          $pad_parms_tag ['push']     ?? '';
   $pad_seq_pull     =          $pad_parms_tag ['pull']     ?? ''; 
-  $pad_seq_checks   =          $pad_parms_tag ['checks']   ?? [];  
   $pad_seq_protect  =          $pad_parms_tag ['protect']  ?? 10000; 
   $pad_seq_name     =          $pad_parms_tag ['name']     ?? ''; 
 
@@ -69,8 +68,6 @@
   pad_set_arr_var ( 'options_done', 'push',     TRUE );
   pad_set_arr_var ( 'options_done', 'pull',     TRUE );
   pad_set_arr_var ( 'options_done', 'protect',  TRUE );
-  pad_set_arr_var ( 'options_done', 'checks',   TRUE );
-  pad_set_arr_var ( 'options_done', 'actions',  TRUE );
 
   $pad_seq_init = $pad_seq_base = $pad_seq_result = $pad_seq_prepare = [];
   $pad_seq_cnt  = $pad_seq_protect_cnt = 0;
@@ -78,7 +75,6 @@
   for ( $pad_seq_idx = 0; $pad_seq_idx <= 21; $pad_seq_idx++ ) 
     $GLOBALS [ 'pad_seq_sts_' . sprintf('%02d', $pad_seq_idx) ] = 0;
 
-  include 'build/checks.php';
   include 'build/increment.php';
   include 'build/from_to.php';
   include 'build/min_max.php';
@@ -104,10 +100,10 @@
 
   include "type/$pad_seq_build.php";
 
-  include 'build/options.php';
+  include 'build/actions.php';
   
   if ( $pad_seq_random and !pad_file_exists(PAD . "sequence/types/$pad_seq_seq/random.php") )
-    include PAD . 'sequence/options/shuffle.php';  
+    include PAD . 'sequence/actions/list/shuffle.php';  
 
   if ( $pad_seq_push ) {
     if ( $pad_seq_push === TRUE )

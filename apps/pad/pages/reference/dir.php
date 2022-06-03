@@ -1,6 +1,6 @@
 <?php
   
-  $item = pad_dir_list ( APP . "pages/$dir" );
+  $item = pad_dir_list ( APPS . "reference/pages/$dir" );
 
   if ( count($item) == 1 )
     pad_go ( "reference&page=one&one=$dir/" . reset($item) );

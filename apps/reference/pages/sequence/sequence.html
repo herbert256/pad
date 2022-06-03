@@ -1,7 +1,58 @@
+<h2>actions - one</h2>
+
+{table}
+
+{demo}{sequence range='30..40'}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence range='30..40', round=10}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence range='30..40', floor=10}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence range='30..40', ceil=10}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence range='30..40', eval = '@ * 10 | @ + 5 | @ - 1'}
+  {$sequence}
+{/sequence}{/demo}
+
+{/table}
+
+
+<h2>actions - list</h2>
+
+{table}
+
+{demo}{sequence range='A..Z'}
+  {$range}
+{/sequence}{/demo}
+
+{demo}{sequence range='A..Z', reverse}
+  {$range}
+{/sequence}{/demo}
+
+{demo}{sequence range='A..Z', shuffle}
+  {$range}
+{/sequence}{/demo}
+
+{demo}{sequence range='A..Z', shuffle, sort}
+  {$range}
+{/sequence}{/demo}
+
+
+{/table}
+
+
 
 <h2>row & value</h2>
 
-{open/}
+{table}
 
 {demo}{sequence power=2, rows=8}
   {$power}
@@ -23,66 +74,45 @@
   {$power}
 {/sequence}{/demo}
 
-{close/}
+{/table}
 
 
 <h2>first & last</h2>
 
-{open/}
+{table}
 
-{demo}{sequence range='11..50'}
+{demo}{sequence range='11..30'}
   {$range}
 {/sequence}{/demo}
 
-{demo}{sequence range='11..50', first}
+{demo}{sequence range='11..30', first}
   {$range}
 {/sequence}{/demo}
 
-{demo}{sequence range='11..50', first=10}
+{demo}{sequence range='11..30', first=10}
   {$range}
 {/sequence}{/demo}
 
-{demo}{sequence range='11..50', last}
+{demo}{sequence range='11..30', last}
   {$range}
 {/sequence}{/demo}
 
-{demo}{sequence range='11..50', last=10}
+{demo}{sequence range='11..30', last=10}
   {$range}
 {/sequence}{/demo}
 
-{demo}{sequence range='11..50', reverse, last=10}
+{demo}{sequence range='11..30', reverse, last=10}
   {$range}
 {/sequence}{/demo}
 
-{close/}
+{/table}
 
 
-<h2>actions</h2>
-
-{open/}
-
-{demo}{sequence from=10, to=20, round=10}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence from=10, to=20, floor=10}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence from=10, to=20, ceil=10}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence from=10, to=20, eval = '@ * 10 | @ - 1'}
-  {$sequence}
-{/sequence}{/demo}
-
-{close/}
 
 
 <h2>checks</h2>
 
-{open/}
+{table}
 
 {demo}{sequence to=50}
   {$sequence}
@@ -100,42 +130,14 @@
   {$sequence}
 {/sequence}{/demo}
 
-{close/}
+{/table}
 
 
-<h2>options</h2>
 
-{open/}
-
-{demo}{sequence range='A..Z'}
-  {$range}
-{/sequence}{/demo}
-
-{demo}{sequence range='A..Z', reverse}
-  {$range}
-{/sequence}{/demo}
-
-{demo}{sequence range='A..Z', shuffle, sort}
-  {$range}
-{/sequence}{/demo}
-
-{demo}{sequence range='A..Z', first=10}
-  {$range}
-{/sequence}{/demo}
-
-{demo}{sequence range='A..Z', last=10}
-  {$range}
-{/sequence}{/demo}
-
-{demo}{sequence range='A..Z', last=10, first=5}
-  {$range}
-{/sequence}{/demo}
-
-{close/}
 
 <h2>sequence data to standaard pad data</h2>
 
-{open/}
+{table}
 
 {demo}{sequence from=1, to=25, push='mySequence'/}{/demo}
 
@@ -147,9 +149,9 @@
   {$myVar}
 {/tag}{/demo}
 
-{close/}
+{/table}
 
-{open/}
+{table}
 
 {demo}{sequence rows=10}
   {$sequence} 
@@ -163,7 +165,7 @@
   {$sequence} 
 {/sequence}{/demo}   
 
-{close/}<p>{open/}
+{/table}<p>{table}
 
 {demo}{sequence even=TRUE, rows=10}
   {$sequence} 
@@ -172,7 +174,7 @@
   {$sequence} 
 {/sequence}{/demo}         
 
-{close/}<p>{open/}
+{/table}<p>{table}
 
 {demo}{sequence step=4, rows=10}
   {$sequence} 
@@ -181,7 +183,7 @@
   {$sequence} 
 {/sequence}{/demo}       
 
-{close/}<p>{open/}
+{/table}<p>{table}
 
 {demo}{sequence square=TRUE, rows=10}
   {$sequence} 
@@ -196,7 +198,7 @@
   {$sequence} 
 {/sequence}{/demo}
 
-{close/}<p>{open/}
+{/table}<p>{table}
 
 {demo}{sequence composite=TRUE, rows=10}
   {$sequence} 
@@ -209,7 +211,7 @@
 {/sequence}{/demo}   
  
 
-{close/}<p>{open/}
+{/table}<p>{table}
 
 {demo}{sequence random=2, rows=10, max=1000}
   {$sequence} 
@@ -227,7 +229,7 @@
   {$sequence} 
 {/sequence}{/demo} 
 
-{close/}<p>{open/}
+{/table}<p>{table}
 
 {demo}{sequence catalan=TRUE, rows=10}
   {$sequence} 
@@ -272,13 +274,13 @@
   {$sequence} 
 {/sequence}{/demo}
 
-{close/}<h3>Eval</h3>{open/}
+{/table}<h3>Eval</h3>{table}
 
 {demo}{sequence eval='@ * 10 | @ - 1', rows=10}
   {$sequence}
 {/sequence}{/demo}
 
-{close/}<h3>push & pull</h3>{open/}
+{/table}<h3>push & pull</h3>{table}
 
 {demo}{sequence range='4..8', push=range}
   {$sequence} 
@@ -292,7 +294,7 @@
   {$sequence} 
 {/sequence}{/demo}   
 
-{close/}<h3>from/to & min/max & start/end - The same ?</h3>{open/}
+{/table}<h3>from/to & min/max & start/end - The same ?</h3>{table}
 
 {demo}{sequence rows=16}
     {$sequence}
@@ -310,7 +312,7 @@
     {$sequence}
 {/sequence}{/demo}
 
-{close/}<h3>from/to & min/max & start/end - No !</h3>{open/}
+{/table}<h3>from/to & min/max & start/end - No !</h3>{table}
 
 {demo}{sequence power=2, rows=16}
     {$power}
@@ -328,7 +330,7 @@
     {$power}
 {/sequence}{/demo}
 
-{close/}<h3>Name of variable</h3>{open/}
+{/table}<h3>Name of variable</h3>{table}
 
 {demo}{sequence power=2, rows=16}
     {$sequence}
@@ -342,4 +344,4 @@
     {$myName}
 {/sequence}{/demo}
 
-{close/}
+{/table}
