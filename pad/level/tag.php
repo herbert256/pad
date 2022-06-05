@@ -27,8 +27,13 @@
   elseif ( is_array($pad_tag_result) )     $pad_base [$pad_lvl] = $pad_content;
   elseif ( $pad_tag_result === FALSE )     $pad_base [$pad_lvl] = $pad_false;
   elseif ( $pad_tag_result === TRUE  )     $pad_base [$pad_lvl] = $pad_content;
-  else                                     $pad_base [$pad_lvl] = $pad_tag_result . $pad_content;
-
+  else {
+    if ( strpos($pad_tag_result , '@content@') === FALSE)
+      $pad_base [$pad_lvl] = $pad_tag_result . $pad_content;
+    else
+      $pad_base [$pad_lvl] = str_replace('@content@', $pad_content, $pad_tag_result);
+ }
+ 
   if ( $pad_false and $pad_base [$pad_lvl] == $pad_false and ! count($pad_data [$pad_lvl]) )
     $pad_data [$pad_lvl] [0] = [];
 

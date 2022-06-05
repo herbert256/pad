@@ -8,7 +8,7 @@
     [ 'name' => 'jerry', 'salary' => 5000, 'bonus' =>  100, 'phone' => '555-5555']
   ];
 
-  $join = FALSE;
+  $join = TRUE;
 
   function pad_dir_list ($dir) {
 

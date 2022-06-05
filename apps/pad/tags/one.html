@@ -1,6 +1,6 @@
 {if $result contains ( '<!-- demo -->')} 
 
-  {pad_go 'reference&page={$one}'}
+  <td style="vertical-align:top">{!result}</td>
 
 {else}
 
@@ -10,26 +10,30 @@
 
     <tr>
       {if $php_data or $join} 
+        {show_php}
         <td align="center" bgcolor="#dddddd">
           {if $php_data}
-            <font size="-1">{$php_file  | replace(APP, '')}</font>
+            <font size="-1">{$php_file}</font>
           {/if}
         </td>
+        {/show_php}
       {/if}
       {if $html_data or $join}
         <td align="center" bgcolor="#dddddd">
           {if $html_data}
-            <font size="-1">{$html_file | replace(APP, '')}</font>
+            <font size="-1">{$html_file}</font>
           {/if}
         </td>
       {/if}  
-      <td align="center" bgcolor="#dddddd"><a href="{$url}&pad_include=1">GO</a></td>
+      <td align="center" bgcolor="#dddddd"><a href="{$url}">GO</a></td>
     </tr>
 
     <tr>
-      {if $php_data or $join}<td style="vertical-align:top">{!php_data}</td>{/if}
+      {show_php}
+        {if $php_data or $join}<td style="vertical-align:top">{!php_data}</td>{/if}
+      {/show_php}
       {if $html_data or $join}<td style="vertical-align:top">{!html_data}</td>{/if}
-      <td style="vertical-align:top">{!result}</td>
+      <td style="vertical-align:center">{!result}</td>
     </tr>
 
   {if not $join}

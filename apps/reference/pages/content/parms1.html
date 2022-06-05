@@ -10,13 +10,13 @@
 
 {content 'row'}
   <tr>
-    <td> {$name}  </td>
-    <td> {$phone} </td>
+    <td bgcolor="{$color1}"> {$name}  </td>
+    <td bgcolor="{$color2}"> {$phone} </td>
   </tr>
 {/content}
 
 {myTable}
   {staff}
-    {row}
+    {row $color1='orange', $color2='yellow'}
   {/staff}
 {/myTable}

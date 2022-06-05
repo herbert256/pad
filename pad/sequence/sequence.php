@@ -35,10 +35,20 @@
     else
       $pad_seq_parm = '';
 
-  } elseif ( $pad_seq_to or $pad_seq_rows ) {
+  } elseif ( strpos($pad_parm, '..') ) {
 
-    $pad_seq_seq  = 'loop';
-    $pad_seq_parm = TRUE;
+      $pad_seq_seq  = 'range';
+      $pad_seq_parm = $pad_parm;
+
+  } elseif ( ctype_digit($pad_parm) ) {
+
+      $pad_seq_seq  = 'range';
+      $pad_seq_parm = "1..$pad_parm";
+
+  } elseif ( isset($pad_parms_tag['rows']) ) {
+
+      $pad_seq_seq  = 'range';
+      $pad_seq_parm = "1.." . $pad_parms_tag['rows'];
 
   } else {
 
@@ -51,23 +61,23 @@
   if ( ! $pad_seq_name )
     $pad_seq_name = $pad_seq_seq; 
 
-  pad_set_arr_var ( 'options_done', $pad_parm,  TRUE );
-  pad_set_arr_var ( 'options_done', 'rows',     TRUE );
-  pad_set_arr_var ( 'options_done', 'page',     TRUE );
-  pad_set_arr_var ( 'options_done', 'row',      TRUE );
-  pad_set_arr_var ( 'options_done', 'value',    TRUE );
-  pad_set_arr_var ( 'options_done', 'min',      TRUE );
-  pad_set_arr_var ( 'options_done', 'max',      TRUE );
-  pad_set_arr_var ( 'options_done', 'start',    TRUE );
-  pad_set_arr_var ( 'options_done', 'end',      TRUE );
-  pad_set_arr_var ( 'options_done', 'from',     TRUE );
-  pad_set_arr_var ( 'options_done', 'to',       TRUE );
-  pad_set_arr_var ( 'options_done', 'unique',   TRUE );
-  pad_set_arr_var ( 'options_done', 'random',   TRUE );
-  pad_set_arr_var ( 'options_done', 'into',     TRUE );
-  pad_set_arr_var ( 'options_done', 'push',     TRUE );
-  pad_set_arr_var ( 'options_done', 'pull',     TRUE );
-  pad_set_arr_var ( 'options_done', 'protect',  TRUE );
+  pad_set_arr_var ( 'options_done', $pad_seq_seq, TRUE );
+  pad_set_arr_var ( 'options_done', 'rows',       TRUE );
+  pad_set_arr_var ( 'options_done', 'page',       TRUE );
+  pad_set_arr_var ( 'options_done', 'row',        TRUE );
+  pad_set_arr_var ( 'options_done', 'value',      TRUE );
+  pad_set_arr_var ( 'options_done', 'min',        TRUE );
+  pad_set_arr_var ( 'options_done', 'max',        TRUE );
+  pad_set_arr_var ( 'options_done', 'start',      TRUE );
+  pad_set_arr_var ( 'options_done', 'end',        TRUE );
+  pad_set_arr_var ( 'options_done', 'from',       TRUE );
+  pad_set_arr_var ( 'options_done', 'to',         TRUE );
+  pad_set_arr_var ( 'options_done', 'unique',     TRUE );
+  pad_set_arr_var ( 'options_done', 'random',     TRUE );
+  pad_set_arr_var ( 'options_done', 'into',       TRUE );
+  pad_set_arr_var ( 'options_done', 'push',       TRUE );
+  pad_set_arr_var ( 'options_done', 'pull',       TRUE );
+  pad_set_arr_var ( 'options_done', 'protect',    TRUE );
 
   $pad_seq_init = $pad_seq_base = $pad_seq_result = $pad_seq_prepare = [];
   $pad_seq_cnt  = $pad_seq_protect_cnt = 0;
