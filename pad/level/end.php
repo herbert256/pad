@@ -29,6 +29,14 @@
   $pad_options = 'level_end';
   include PAD . "options/go/options.php";
 
+  if ( count($pad_set_save [$pad_lvl]) )
+    foreach ($pad_set_save [$pad_lvl] as $pad_set_name => $pad_set_value )
+      $GLOBALS [$pad_set_name] = $pad_set_value;
+
+  if ( count($pad_set_delete [$pad_lvl]) )
+    foreach ($pad_set_delete [$pad_lvl] as $pad_set_name )
+      unset ( $GLOBALS [$pad_set_name] );
+
   pad_reset ($pad_lvl);
 
   if ( $pad_trace ) 
