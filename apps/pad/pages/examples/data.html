@@ -1,4 +1,4 @@
-{data 'staff'}
+{data 'myData'}
   [
     { "name": "joe",   "phone": "555-3425" },
     { "name": "jim",   "phone": "555-2364" },
@@ -9,10 +9,10 @@
 {/data}
 
 <table border=1>
-  {staff}
+  {myData}
     <tr bgcolor="{switch 'pink', 'yellow'}">
       <td>{$name | ucwords}</td> 
       <td>{$phone}</td>
     </tr>
-  {/staff}
+  {/myData}
 </table>

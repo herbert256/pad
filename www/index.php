@@ -35,7 +35,7 @@
   // End Boot error handling 
   
 
-  // go to PAD
+  // Go to PAD
   
   include PAD . 'pad.php';
 
@@ -74,10 +74,10 @@
     $id = $GLOBALS['PADREQID'] ?? uniqid(TRUE);
     error_log ( "[PAD] $id - $file:$line $error", 4 );
 
-    if ( function_exists ( 'pad_local' ) and pad_local () )
+#    if ( function_exists ( 'pad_local' ) and pad_local () )
       echo "$file:$line $error";
-    else
-      echo "Error: $id";
+#    else
+#      echo "Error: $id";
  
     exit;
 

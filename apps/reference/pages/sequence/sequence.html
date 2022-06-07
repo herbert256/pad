@@ -1,157 +1,4 @@
-<h2>actions - one</h2>
-
-{table}
-
-{demo}{sequence range='30..40'}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence range='30..40', round=10}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence range='30..40', floor=10}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence range='30..40', ceil=10}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence range='30..40', eval = '@ * 10 | @ + 5 | @ - 1'}
-  {$sequence}
-{/sequence}{/demo}
-
-{/table}
-
-
-<h2>actions - list</h2>
-
-{table}
-
-{demo}{sequence range='A..Z'}
-  {$range}
-{/sequence}{/demo}
-
-{demo}{sequence range='A..Z', reverse}
-  {$range}
-{/sequence}{/demo}
-
-{demo}{sequence range='A..Z', shuffle}
-  {$range}
-{/sequence}{/demo}
-
-{demo}{sequence range='A..Z', shuffle, sort}
-  {$range}
-{/sequence}{/demo}
-
-
-{/table}
-
-
-
-<h2>row & value</h2>
-
-{table}
-
-{demo}{sequence power=2, rows=8}
-  {$power}
-{/sequence}{/demo}
-
-{demo}{sequence power=2, row=5}
-  {$power}
-{/sequence}{/demo}
-
-{demo}{sequence power=2, row='4;6;8'}
-  {$power}
-{/sequence}{/demo}
-
-{demo}{sequence power=2, value=128}
-  {$power}
-{/sequence}{/demo}
-
-{demo}{sequence power=2, value='16;32;48;64'}
-  {$power}
-{/sequence}{/demo}
-
-{/table}
-
-
-<h2>first & last</h2>
-
-{table}
-
-{demo}{sequence range='11..30'}
-  {$range}
-{/sequence}{/demo}
-
-{demo}{sequence range='11..30', first}
-  {$range}
-{/sequence}{/demo}
-
-{demo}{sequence range='11..30', first=10}
-  {$range}
-{/sequence}{/demo}
-
-{demo}{sequence range='11..30', last}
-  {$range}
-{/sequence}{/demo}
-
-{demo}{sequence range='11..30', last=10}
-  {$range}
-{/sequence}{/demo}
-
-{demo}{sequence range='11..30', reverse, last=10}
-  {$range}
-{/sequence}{/demo}
-
-{/table}
-
-
-
-
-<h2>checks</h2>
-
-{table}
-
-{demo}{sequence to=50}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence to=50, prime}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence to=50, power=2}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence to=50, triangular}
-  {$sequence}
-{/sequence}{/demo}
-
-{/table}
-
-
-
-
-<h2>sequence data to standaard pad data</h2>
-
-{table}
-
-{demo}{sequence from=1, to=25, push='mySequence'/}{/demo}
-
-{demo}{mySequence}
-  {$mySequence}
-{/mySequence}{/demo}
-
-{demo}{tag sequence='mySequence', name='myVar'}
-  {$myVar}
-{/tag}{/demo}
-
-{/table}
-
-{table}
+<p>basic usage{table}
 
 {demo}{sequence rows=10}
   {$sequence} 
@@ -165,7 +12,7 @@
   {$sequence} 
 {/sequence}{/demo}   
 
-{/table}<p>{table}
+{/table}<p>even and odd{table}
 
 {demo}{sequence even=TRUE, rows=10}
   {$sequence} 
@@ -174,7 +21,7 @@
   {$sequence} 
 {/sequence}{/demo}         
 
-{/table}<p>{table}
+{/table}<p>step and mulitple{table}
 
 {demo}{sequence step=4, rows=10}
   {$sequence} 
@@ -183,7 +30,7 @@
   {$sequence} 
 {/sequence}{/demo}       
 
-{/table}<p>{table}
+{/table}<p>triangular / cube / pentagonal{table}
 
 {demo}{sequence square=TRUE, rows=10}
   {$sequence} 
@@ -198,7 +45,7 @@
   {$sequence} 
 {/sequence}{/demo}
 
-{/table}<p>{table}
+{/table}<p>composite and prime{table}
 
 {demo}{sequence composite=TRUE, rows=10}
   {$sequence} 
@@ -211,7 +58,7 @@
 {/sequence}{/demo}   
  
 
-{/table}<p>{table}
+{/table}<p>other numbbers{table}
 
 {demo}{sequence random=2, rows=10, max=1000}
   {$sequence} 
@@ -229,7 +76,7 @@
   {$sequence} 
 {/sequence}{/demo} 
 
-{/table}<p>{table}
+{/table}<p>named sequences{table}
 
 {demo}{sequence catalan=TRUE, rows=10}
   {$sequence} 
@@ -343,5 +190,170 @@
 {demo}{sequence power=2, rows=16, name=myName}
     {$myName}
 {/sequence}{/demo}
+
+{/table}
+
+<h2>actions - one</h2>
+
+{table}
+
+{demo}{sequence range='30..40'}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence range='30..40', round=10}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence range='30..40', floor=10}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence range='30..40', ceil=10}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence range='30..40', eval = '@ * 10 | @ + 5 | @ - 1'}
+  {$sequence}
+{/sequence}{/demo}
+
+{/table}
+
+
+<h2>actions - list</h2>
+
+{table}
+
+{demo}{sequence range='A..Z'}
+  {$range}
+{/sequence}{/demo}
+
+{demo}{sequence range='A..Z', reverse}
+  {$range}
+{/sequence}{/demo}
+
+{demo}{sequence range='A..Z', shuffle}
+  {$range}
+{/sequence}{/demo}
+
+{demo}{sequence range='A..Z', shuffle, sort}
+  {$range}
+{/sequence}{/demo}
+
+
+{/table}
+
+
+
+<h2>row & value</h2>
+
+{table}
+
+{demo}{sequence power=2, rows=8}
+  {$power}
+{/sequence}{/demo}
+
+{demo}{sequence power=2, row=5}
+  {$power}
+{/sequence}{/demo}
+
+{demo}{sequence power=2, row='4;6;8'}
+  {$power}
+{/sequence}{/demo}
+
+{demo}{sequence power=2, value=128}
+  {$power}
+{/sequence}{/demo}
+
+{demo}{sequence power=2, value='16;32;48;64'}
+  {$power}
+{/sequence}{/demo}
+
+{/table}
+
+
+<h2>first & last</h2>
+
+{table}
+
+{demo}{sequence range='11..30'}
+  {$range}
+{/sequence}{/demo}
+
+{demo}{sequence range='11..30', first}
+  {$range}
+{/sequence}{/demo}
+
+{demo}{sequence range='11..30', first=10}
+  {$range}
+{/sequence}{/demo}
+
+{demo}{sequence range='11..30', last}
+  {$range}
+{/sequence}{/demo}
+
+{demo}{sequence range='11..30', last=10}
+  {$range}
+{/sequence}{/demo}
+
+{demo}{sequence range='11..30', reverse, last=10}
+  {$range}
+{/sequence}{/demo}
+
+{/table}
+
+<h2>checks</h2>
+
+{table}
+
+{demo}{sequence to=50}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence to=50, prime}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence to=50, power=2}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence to=50, triangular}
+  {$sequence}
+{/sequence}{/demo}
+
+{/table}<h2>sequence data to standaard PAD content/data</h2>{table}
+
+{demo}{sequence range='a..z', toContent='fiets'} 
+    {$range}
+{/sequence}
+
+{fiets}{/demo}
+
+{demo}{sequence from=1, to=25, push='mySequence'/}
+
+{mySequence}
+  {$mySequence}
+{/mySequence}{/demo}
+
+{demo}{tag sequence='mySequence', name='myVar'}
+  {$myVar}
+{/tag}{/demo}
+
+{sequence range='a..z', toData='pomp'} 
+
+{demo}{pomp}
+    {$pomp}
+{/pomp}{/demo}
+
+{/table}<h2>print / glue / open / close</h2>{table}
+
+{demo}
+  {sequence range='a..z', print}
+{/demo}
+
+{demo}
+  {sequence range='a..z', print, open='(', glue='&comma;', close=')'}
+{/demo}
 
 {/table}

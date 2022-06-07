@@ -36,6 +36,8 @@
 
   function pad_error_handler ( $type, $error, $file, $line ) {
  
+    if ( $GLOBALS['pad_error_action'] == 'ignore' ) RETURN FALSE;
+
     if ( error_reporting() & $type )
       return pad_error ( 'ERROR: ' . $error, $file, $line );
  
@@ -44,12 +46,16 @@
 
   function pad_error_exception ( $error ) {
 
+    if ( $GLOBALS['pad_error_action'] == 'ignore' ) RETURN FALSE;
+
     return pad_error ( 'EXCEPTION: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
  
   }
   
 
   function pad_error_shutdown () {
+
+    if ( $GLOBALS['pad_error_action'] == 'ignore' ) RETURN FALSE;
 
     if ( isset ( $GLOBALS['pad_skip_shutdown'] ) )
       return;
@@ -65,6 +71,8 @@
 
 
   function pad_error ($error, $file='', $line='') {
+
+    if ( $GLOBALS['pad_error_action'] == 'ignore' ) RETURN FALSE;
 
     if ( $GLOBALS['pad_exit'] <> 1 ) 
       pad_boot_error ( "ERROR-2: $error at $file:$line" );
@@ -89,6 +97,8 @@
 
 
   function pad_error_go ($error, $file, $line) {
+
+    if ( $GLOBALS['pad_error_action'] == 'ignore' ) RETURN FALSE;
 
     global $app, $page, $pad_error_action, $pad_exit, $pad_trace, $pad_trace_dir_base, $PADREQID;
 

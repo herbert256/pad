@@ -1,5 +1,5 @@
 <?php
 
-  include APP . "tags/error.php";
+  include APP . "tags/error_error.php";
 
 ?>

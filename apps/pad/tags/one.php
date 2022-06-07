@@ -23,11 +23,14 @@
   $php_data  = ( pad_file_exists($php_file ) ) ? pad_colors_file ($php_file ) : '';
   $html_data = ( pad_file_exists($html_file) ) ? pad_colors_file ($html_file) : '';
 
-  $php_file  = str_replace(APPS.'reference/pages/', '', $php_file);  
-  $html_file = str_replace(APPS.'reference/pages/', '', $html_file);
+  $php_file  = str_replace(APPS.'reference/', '', $php_file);  
+  $html_file = str_replace(APPS.'reference/', '', $html_file);
 
   $result = pad ('reference', $one);
 
+  if ( strpos($result, '<!-- demo -->' ))
+    $demo = TRUE;
+  
   if ( $php_data )
     $show_php = TRUE;
 

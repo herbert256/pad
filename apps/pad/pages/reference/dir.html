@@ -1,19 +1,26 @@
-
 {$intro}
 
-{if $join}
-  <table border="1" cellpadding="10" cellspacing="0">
+{if ($demo)}
+
+  {one '{$dir}/{$item}'}
+
+{else}
+
+  {if $join}
+    <table border="1" cellpadding="10" cellspacing="0">
+  {/if}
+
+  {item}
+    {one '{$dir}/{$item}'}
+  {/item}
+
+  {if $join}
+    </table>
+  {/if}
+
 {/if}
 
-{item}
-  <p>{one '{$dir}/{$item}'/}</p>
-{/item}
-
-{if $join}
-  </table>
-{/if}
-
-{inits '{$dir}' /}
+{inits '{$dir}'}
 
 {if $staff}
   {staff}

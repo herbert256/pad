@@ -1,5 +1,5 @@
 <?php
 
-  $pad_content .= '{last}{else}' . pad_tag_parm ('glue') . '{/last}';
+  $pad_content .= '{not_last}' . pad_tag_parm ('glue') . '{/not_last}';
 
 ?>

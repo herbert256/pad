@@ -23,6 +23,14 @@
 {demo}
 
 <table>
+  {myData content='myContent'}
+</table>
+
+{/demo}
+
+{demo}
+
+<table>
   {myContent data='myData'}
 </table>
 
@@ -31,17 +39,7 @@
 {demo}
 
 <table>
-  {myContent}
-    {myData}
-  {/myContent}
-</table>
-
-{/demo}
-
-{demo}
-
-<table>
-  {myData content='myContent'}
+  {tag content='myContent', data='myData'}
 </table>
 
 {/demo}
@@ -59,7 +57,9 @@
 {demo}
 
 <table>
-  {tag content='myContent', data='myData'}
+  {myContent}
+    {myData}
+  {/myContent}
 </table>
 
 {/demo}

@@ -7,29 +7,20 @@
   ]
 {/data}
 
+{content 'row'}
+  <tr>
+    <td>{$name}</td> 
+    <td>{$phone}</td>
+  </tr>
+{/content}
+
 <table>
   {myData}
     {row}
   {/myData}
 </table>
 
-<hr>
-
-<table>
-  {myData}
-    {row}
-  {/myData}
-</table>
-
-<hr>
-
-<table>
-  {tag data='myData'}
-    {row}
-  {/tag}
-</table>
-
-<hr>
+<p>
 
 <table>
   {tag data='myData'}

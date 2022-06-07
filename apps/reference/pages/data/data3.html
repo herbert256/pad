@@ -1,46 +1,37 @@
-{data 'xml'}
-  <data>
-    <row name="bob"   phone="555-1111" />
-    <row name="jim"   phone="555-2222" />
-    <row name="joe"   phone="555-3333" />
-    <row name="jerry" phone="555-4444" />
-  </data>
-{/data}
-
-{data 'json'}
-  [
-    { "name": "bob",   "phone": "555-5555" },
-    { "name": "jim",   "phone": "555-6666" },
-    { "name": "joe",   "phone": "555-7777" },
-    { "name": "jerry", "phone": "555-8888" }
-  ]
-{/data}
-
-{data 'yaml'}
-  ---
-  - name: bob
-    phone: 555-3425
-  - name: jim
-    phone: 555-4364
-  - name: joe
-    phone: 555-3422
-  - name: jerry
-    phone: 555-4973
-{/data}
-
-{data 'csv' , type='csv'}
+{data 'myCSV' , type='csv'}
   name,phone
-  bob,555-3425
+  jack,555-3425
   jim,555-4364
   joe,555-3422
   jerry,555-4973
 {/data}
 
-{list 'xml', 'json', 'yaml', 'csv', name='abc'}
-  <h4>{$abc}</h4>
-  <table border=1>
-    {tag data=$abc}
-      {row}
-    {/tag}
-  </table>
-{/list}
+{data}
+  [
+    {myCSV}
+      { "name": "{$name}", "phone": "{$phone}" }{not_last},{/not_last}
+    {/myCSV}
+  ]
+{/data 'myJSON'}
+
+{data}
+  <records>
+    {myJSON}
+      <record name="{$name}" phone="{$phone}"/>
+    {/myJSON}
+  </records>
+{/data 'myXML'}
+
+{data}
+  ---
+    {myXML}
+    - name: {$name}
+      phone: {$phone}
+    {/myXML}
+{/data 'myYAML'}
+
+<table>
+  {myYAML}
+    {row}
+  {/myYAML}
+</table>
