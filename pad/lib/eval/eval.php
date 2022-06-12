@@ -1,6 +1,7 @@
 <?php
   
   const pad_eval_precedence = [
+    '!',
     '**', '*', '/', '%', '+', '-',
     '.',
     'TYPE',
@@ -9,97 +10,95 @@
     'NOT',
   ];
 
-  const pad_eval_1   = [ '+', '-', '*', '/', '%', '.' ];
+  const pad_eval_1   = [ '!', '+', '-', '*', '/', '%', '.' ];
   const pad_eval_2   = [ '**'];
   const pad_eval_txt = [ 'LT', 'LE', 'GT', 'GE', 'EQ', 'NE', 'AND', 'XOR', 'OR', 'NOT' ];
 
   function pad_eval ($eval, $myself='') {
 
+    if ( strlen(trim($eval)) == 0 )
+      return pad_eval_error ('Empty eval call');
+
     global $pad_eval_cnt, $pad_eval_start, $pad_eval_result, $pad_trace;
+
+    $GLOBALS ['pad_trace_eval_stage']   = 'start';
+    $GLOBALS ['pad_trace_eval_eval']    = $eval;
+    $GLOBALS ['pad_trace_eval_myself']  = $myself;
+    $GLOBALS ['pad_trace_eval_parsed']  = [];
+    $GLOBALS ['pad_trace_eval_after']   = [];
+    $GLOBALS ['pad_trace_eval_go']      = [];
 
     $pad_eval_cnt++;
     $pad_eval_start = $eval;
     $pad_eval_result = [];
 
-    if ( strlen(trim($eval)) == 0 )
-      return '';
+    $pad_eval_parse = pad_eval_parse ( $pad_eval_result, $eval, $myself );
+    if ( $pad_eval_parse )
+      return pad_eval_error ($pad_eval_parse);
+    $GLOBALS ['pad_trace_eval_parsed'] = $pad_eval_result;
 
-    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
-    $error_level = error_reporting(E_ALL);
+    $pad_eval_after = pad_eval_after ( $pad_eval_result, $eval );  
+    if ( $pad_eval_after )
+      return pad_eval_error ($pad_eval_after);
+    $GLOBALS ['pad_trace_eval_after'] = $pad_eval_result;
 
-    try {
+    pad_eval_go ( $pad_eval_result, array_key_first($pad_eval_result), array_key_last($pad_eval_result), $myself) ;
 
-      pad_eval_parse ( $pad_eval_result, $eval, $myself);
+    $GLOBALS ['pad_trace_eval_go'] =  $pad_eval_result;
 
-      if ( $pad_trace ) {
-        $GLOBALS ['pad_trace_eval_parsed'] = $pad_eval_result;
-        $GLOBALS ['pad_trace_eval_myself'] = $myself;
-      }
+    $key = array_key_first ($pad_eval_result);
       
-      if ( ! pad_eval_after ( $pad_eval_result, $eval ) )
-        return $pad_eval_start;
-      
-      pad_eval_go ( $pad_eval_result, array_key_first($pad_eval_result), array_key_last($pad_eval_result), $myself) ;
+    if ( count($pad_eval_result) < 1 )
+      return pad_eval_error("No result back");
+    elseif ( count($pad_eval_result) > 1 )                                                
+      return pad_eval_error("More then one result back");
+    elseif ( isset($pad_eval_result[$key][6]) and $pad_eval_result [$key][6] == 'array' ) 
+      return pad_eval_error("Result is an array");
+    elseif ( isset($pad_eval_result[$key][1]) <> 'VAL' )         
+      return pad_eval_error("Result is not a value");
 
-      $key = array_key_first ($pad_eval_result);
-        
-      if ( count($pad_eval_result) < 1 )
-        $return = pad_eval_error("No result back");
-      elseif ( count($pad_eval_result) > 1 )                                                
-        $return = pad_eval_error("More then one result back");
-      elseif ( isset($pad_eval_result[$key][6]) and $pad_eval_result [$key][6] == 'array' ) 
-        $return = pad_eval_error("Result is an array");
-      elseif ( isset($pad_eval_result[$key][1]) <> 'VAL' )         
-        $return = pad_eval_error("Result is not a value");
-      else
-        $return = $pad_eval_result [$key] [0];
-    }
+    $GLOBALS ['pad_trace_eval_stage'] = 'end';
 
-    catch (Throwable $e) {
-
-      return pad_eval_error ( $e->getMessage() . ' ' . $e->getFile() . '/' . $e->getLine() );
- 
-    }
-
-    error_reporting($error_level);
-    restore_error_handler();
-
-    return $return;
+    return $pad_eval_result [$key] [0];
 
   }
 
+
   function pad_eval_error ($txt) {
 
-    global $pad_trace, $pad_eval_cnt, $pad_eval_start, $pad_eval_result, $app, $page, $PADREQID;
+    pad_eval_error_trace ($txt);
 
-    $return = '';
-    foreach ($pad_eval_result as $k => $one)
-      if ( ($one[6]??'') == 'array' and isset($one[7]) )
-        foreach ( $one [7] as $value)
-          $return .= pad_info($value) . ' ';
-      else
-        $return .= $one[0] . ' ';   
+    $GLOBALS ['pad_trace_eval_stage'] = 'error';
+
+    pad_error ($txt);
+
+    $GLOBALS ['pad_trace_eval_stage'] = 'end';
+
+    return $GLOBALS ['pad_trace_eval_eval'];
+
+  }
+
+  function pad_eval_error_trace ($txt) {
+
+    global $pad_trace, $pad_eval_cnt, $pad_eval_result, $app, $page, $PADREQID, $pad_trace_dir_base;
 
     if ( $pad_trace ) {
 
       $json = pad_json ( [
-        'eval'    => $pad_eval_start ?? '',
+        'eval'    => $GLOBALS ['pad_trace_eval_eval']   ?? '',
         'myself'  => $GLOBALS ['pad_trace_eval_myself'] ?? '',
-        'error'   => $txt ?? '',
-        'nummer'  => $pad_eval_cnt ?? '',
+        'error'   => $txt                               ?? '',
+        'number'  => $pad_eval_cnt                      ?? '',
         'parsed'  => $GLOBALS ['pad_trace_eval_parsed'] ?? '',
-        'result'  => $pad_eval_result ?? '',
-        'app'     => $app ?? '',
-        'page'    => $page ?? '',
-        'request' => $PADREQID ?? ''        
+        'after'   => $GLOBALS ['pad_trace_eval_after']  ?? '',
+        'result'  => $pad_eval_result                   ?? '',
+        'request' => $PADREQID                          ?? ''
       ] );
 
-      pad_file_put_contents ( $GLOBALS['pad_trace_dir_base'] . "/errors/eval/$pad_eval_cnt.json", $json );
+      pad_file_put_contents ( "$pad_trace_dir_base/eval_error_$pad_eval_cnt.json",   $json );
       pad_file_put_contents ( "errors/eval/$app/$page/$PADREQID/$pad_eval_cnt.json", $json );
 
     }
-
-    return $pad_eval_start;
 
   }
 

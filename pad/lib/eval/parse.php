@@ -22,7 +22,7 @@
       $next  = (isset($input[$key+1])) ? $input[$key+1] : '';
       $next2 = (isset($input[$key+2])) ? $input[$key+2] : '';
       
-      if ($one=='\\') {
+      if ($one=="\\") {
 
         if ($next == 'n')
           $next = "\n";
@@ -31,13 +31,13 @@
         elseif ($next == 't')
           $next = "\t";
         elseif ( ! in_array ($next, ["'", '"', "\\"]))
-          return pad_error ("Unsupported \\ char");
+          return "Unsupported \\ char";
           
         if ($is_str or $is_quote) {
           $result [$i] [0] .= $next;
           $skip=1;
         } else
-          return pad_error ("Escape \\ char only allowed inside a string");
+          return "Escape \\ char only allowed inside a string";
       
         continue;
 
@@ -309,6 +309,8 @@
       $result[$i][0] .= $one;
 
     }
+
+    return '';
 
   }
   

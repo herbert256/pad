@@ -14,7 +14,7 @@
                               // 'none' , 'error' , 'warning' , 'notice' , 'all'
                               // (not used when $pad_error_action is 'php' or 'boot')
 
-  $pad_error_dump   = FALSE;   //  Dumps errors to the file system.
+  $pad_error_dump   = FALSE;  //  Dumps errors to the file system.
 
   // Trace the internal working of PAD
 

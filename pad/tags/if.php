@@ -1,7 +1,4 @@
 <?php
-
-  if ( ! isset($pad_parms_val[0]) )
-    return pad_tag_error ();
   
   $pad_if   = $pad_parms;
   $pad_else = strpos($pad_content, '{elseif');

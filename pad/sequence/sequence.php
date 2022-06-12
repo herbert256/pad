@@ -22,50 +22,8 @@
   $pad_seq_protect  =          $pad_parms_tag ['protect']  ?? 10000; 
   $pad_seq_name     =          $pad_parms_tag ['name']     ?? ''; 
 
-  $pad_seq_tmp = array_key_first($pad_parms_tag) ?? '';
-
-  if ($pad_seq_tmp and ctype_alnum($pad_seq_tmp) and file_exists(PAD . "sequence/types/$pad_seq_tmp") ) {
-
-    $pad_seq_seq = $pad_seq_tmp;
-
-    if ( isset($pad_parms_tag[$pad_seq_seq]) )
-      $pad_seq_parm = $pad_parms_tag[$pad_seq_seq];
-    elseif ( isset($pad_parms_seq[1]) )
-      $pad_seq_parm = $pad_parms_seq[1];
-    else
-      $pad_seq_parm = '';
-
-  } elseif ( strpos($pad_parm, '..') ) {
-
-      $pad_seq_seq  = 'range';
-      $pad_seq_parm = $pad_parm;
-
-  } elseif ( ctype_digit($pad_parm) ) {
-
-      $pad_seq_seq  = 'range';
-      $pad_seq_parm = "1..$pad_parm";
-
-  } elseif ( isset($pad_parms_tag['rows']) ) {
-
-      $pad_seq_seq  = 'range';
-      $pad_seq_parm = "1.." . $pad_parms_tag['rows'];
-
-  } else {
-
-    $pad_seq_seq  = 'loop';
-    $pad_seq_rows = 10;
-    $pad_seq_parm = TRUE;
-
-  }
-
-  if ( ! $pad_seq_name and isset($pad_parms_tag ['toData'] ) )
-    $pad_seq_name = $pad_parms_tag ['toData']; 
-
-  if ( ! $pad_seq_name )
-    $pad_seq_name = $pad_seq_seq; 
-
-
-  $pad_name = $pad_parameters [$pad_lvl] ['name'] = $pad_seq_name;
+  include 'build/sequence.php';
+  include 'build/name.php';
 
   pad_set_arr_var ( 'options_done', $pad_seq_seq, TRUE );
   pad_set_arr_var ( 'options_done', 'rows',       TRUE );
@@ -130,8 +88,8 @@
 
   $pad_data [$pad_lvl] = [];
   foreach ( $pad_seq_result as $pad_v )
-     if ( $pad_seq_name == $pad_seq_seq )
-      $pad_data [$pad_lvl] [] = [ $pad_seq_name => $pad_v, "sequence" => $pad_v ];    
+    if ( $pad_seq_name == $pad_seq_seq )
+     $pad_data [$pad_lvl] [] = [ $pad_seq_name => $pad_v, "sequence" => $pad_v ];    
     else
       $pad_data [$pad_lvl] [] = [ $pad_seq_name => $pad_v ];    
 

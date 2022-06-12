@@ -34,6 +34,9 @@
       $pad_idx = pad_field_tag_lvl ($tag, TRUE);
     else
       $pad_idx = pad_field_tag_lvl ($tag, FALSE);
+
+#    if ( ! isset( $GLOBALS['pad_key'] [$pad_idx] ) or ! isset( $GLOBALS['data'] [$pad_idx] ))
+#      $pad_idx--;
     
     if ( pad_file_exists ( PAD . "tag/".$field.".php" ) )
       return include PAD . "tag/$field.php";

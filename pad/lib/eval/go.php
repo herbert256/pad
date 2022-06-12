@@ -108,7 +108,7 @@ go: $b = -1;
 
             goto go;
  
-           } elseif ( $result[$k][1] == 'VAL' and $result[$b][0] == 'NOT' ) {
+           } elseif ( $result[$k][1] == 'VAL' and ($result[$b][0] == 'NOT' or $result[$b][0] == '!' ) ) {
  
             pad_eval_not ($result, $k, $b);
 

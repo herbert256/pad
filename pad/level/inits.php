@@ -3,6 +3,7 @@
   $pad_lvl_cnt++;
   
   $pad_data [$pad_lvl] = pad_default_data();
+  $pad_key [$pad_lvl]  = [];
 
   $pad_occur   [$pad_lvl] = 0;
   $pad_current [$pad_lvl] = [];

@@ -25,14 +25,25 @@
     elseif ( $opr == 'AND' ) $now = ($left AND $right) ? 1 : '';
     elseif ( $opr == 'OR'  ) $now = ($left OR  $right) ? 1 : '';
     elseif ( $opr == 'XOR' ) $now = ($left XOR $right) ? 1 : ''; 
-    elseif ( $opr == '+'   ) $now =  $left +   $right;
-    elseif ( $opr == '-'   ) $now =  $left -   $right;
-    elseif ( $opr == '*'   ) $now =  $left *   $right;
-    elseif ( $opr == '/'   ) $now =  $left /   $right;
-    elseif ( $opr == '%'   ) $now =  $left %   $right;
     elseif ( $opr == '.'   ) $now =  $left .   $right;
-    else 
-      throw new Exception('Unknow operation');
+ 
+    else { 
+
+      if (strpos($left, '.') === FALSE ) $left  = (int)    $left;
+      else                               $left  = (double) $left;
+
+      if (strpos($right, '.') === FALSE ) $right  = (int)    $right;
+      else                                $right  = (double) $right;
+
+      if     ( $opr == '+'   ) $now =  $left +   $right;
+      elseif ( $opr == '-'   ) $now =  $left -   $right;
+      elseif ( $opr == '*'   ) $now =  $left *   $right;
+      elseif ( $opr == '/'   ) $now =  $left /   $right;
+      elseif ( $opr == '%'   ) $now =  $left %   $right;
+      else 
+        throw new Exception('Unknow operation');
+
+    }
 
     $result [$k] [0] = $now;
     

@@ -1,0 +1,25 @@
+{data 'xml'}
+  <row name="bob" phone="555-1111"/>
+{/data}
+
+{data 'json'}
+  { 
+    "name": "json",
+    "phone": "555-3425" 
+  }
+{/data}
+
+{data 'yaml'}
+---
+- name: yaml
+  phone: 555-3425
+{/data}
+
+{list 'xml', 'json', 'yaml'}
+  <h4>{$list}</h4>
+  <table>
+    {tag data=$list}
+      {row}
+    {/tag}
+  </table>
+{/list} 

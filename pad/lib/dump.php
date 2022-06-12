@@ -20,11 +20,7 @@
 
   function pad_dump_to_file ($file, $info='') {
 
-    ob_start();
-
-    pad_dump_vars ($info);
-
-    pad_file_put_contents ( $file, ob_get_clean() );
+    pad_file_put_contents ( $file, pad_dump_get ($info) );
         
   }
 
@@ -73,9 +69,23 @@
     $pad_debug_backtrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS);
 
     echo ("<div align=\"left\"><pre>");
-    
+
     if ($info)
       echo ("<hr><b>$info</b><hr><br>");
+
+    if ( isset($GLOBALS ['pad_trace_eval_stage'] ) and $GLOBALS ['pad_trace_eval_stage'] <> 'end' ) {
+
+      echo ( "<b>Eval details</b>\n");
+
+      pad_dump_field  ('eval',   $GLOBALS ['pad_trace_eval_eval']   );
+      pad_dump_field  ('myself', $GLOBALS ['pad_trace_eval_myself'] );
+      pad_dump_array  ('parsed', $GLOBALS ['pad_trace_eval_parsed'], 1  );
+      pad_dump_array  ('after',  $GLOBALS ['pad_trace_eval_after'],  1  );
+      pad_dump_array  ('go',     $GLOBALS ['pad_trace_eval_go'],     1  );
+
+      echo ( "\n\n");
+
+    }
 
     echo ( "<b>Stack</b>\n");
     foreach ( $pad_debug_backtrace as $key => $trace ) {
@@ -157,23 +167,28 @@
   function pad_dump_fields ($fields, $text) {
 
     echo ( "\n<b>$text</b>");
+
     foreach ($fields as $key)
       if (is_object($GLOBALS[$key]))
         pad_dump_object ($key, $GLOBALS[$key]);
       elseif (is_array ($GLOBALS[$key]))
         pad_dump_array ($key,  pad_dump_sanitize ($GLOBALS[$key]), 1);
       else
-        echo ( "\n  [$key] => " . htmlentities(pad_dump_short($GLOBALS[$key]??''))); 
+        pad_dump_field ( $key, $GLOBALS[$key] ); 
 
     echo ( "\n" );
 
+  }
+
+  function pad_dump_field ($field, $value) {
+    echo ( "\n  [$field] => " . htmlentities(pad_dump_short($value??''))); 
   }
 
   function pad_dump_short ($G) {
     if ( $G === NULL)
       $G = '';
     return substr ( preg_replace('/\s+/', ' ', $G ), 0, 100 );
-  }
+  }  
 
   function pad_dump_sanitize ($array) {
 
@@ -205,7 +220,7 @@
     }
 
     if ( $x and ! count ($arr )) {
-      echo ( "\n  [$txt] => [empty array]");
+      echo ( "\n  [$txt] => []");
       return;
     }
 
@@ -235,7 +250,7 @@
     $p = preg_replace("/[\n]\(/", "", $p);
     $p = preg_replace("/[\n]\\)/", "", $p);
     $p = substr($p, 0,-1);
-    
+
     echo ( "\n  [$txt] $p");
 
   }

@@ -1,4 +1,4 @@
-{data 'myCSV' , type='csv'}
+{data 'myCSV', type='csv'}
   name,phone
   jack,555-3425
   jim,555-4364
@@ -32,6 +32,9 @@
 
 <table>
   {myYAML}
-    {row}
+    <tr>
+      <td>{$name}</td> 
+      <td>{$phone}</td>
+    </tr>
   {/myYAML}
 </table>

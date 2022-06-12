@@ -30,6 +30,7 @@
     $count = count($parm);
     
     $value = include PAD . "eval/$kind.php" ;
+      $GLOBALS['aa'] = $kind;
       
     if ( is_array($value) or is_object($value) or is_resource($value) ) {
       $result [$type] [6] = 'array';
@@ -49,7 +50,7 @@
 
   function pad_array_single ($value) {
 
-    $value = pad_xxx_to_array ($$value);
+    $value = pad_xxx_to_array ($value);
 
     $array = [];
 

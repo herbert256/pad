@@ -13,10 +13,6 @@
     return pad_get_store ( 'flag', $type  );
   }
 
-  function pad_get_seq_store ( $type='' ) {
-    return pad_get_store ( 'seq', $type  );
-  }
-
   function pad_get_store ( $store, $type ) {
 
     $parm = pad_tag_parm ($store);
@@ -42,7 +38,6 @@
   function pad_get_flag ( $input, $type='', $parms=[] ) {
     return pad_make_flag ( pad_get_xxx ( 'flag', $input, $parms ) );
   }
-
 
   function pad_get_xxx ( $type, $input, $parms ) {
     return pad_get ( $input, $parms );

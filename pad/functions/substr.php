@@ -10,6 +10,6 @@
 
   else
 
-    pad_eval_error ("There must be one or two parameters for $name");
+    pad_error ("There must be one or two parameters for $name");
 
 ?>

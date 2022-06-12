@@ -58,12 +58,30 @@
 {/sequence}{/demo}   
  
 
-{/table}<p>other numbbers{table}
+{/table}<p>Syntax{table}
+
+{demo}{sequence type='step', step=4, rows=5} 
+  {$step} 
+{/sequence}{/demo}   
+{demo}{sequence 'step', step=4, rows=5} 
+  {$step} 
+{/sequence}{/demo}   
+{demo}{sequence step=4, rows=5} 
+  {$step} 
+{/sequence}{/demo}   
+{demo}{step step=4, rows=5} 
+  {$step} 
+{/step}{/demo}   
+{demo}{step 4, rows=5}
+  {$step}
+{/step}{/demo}   
+
+{/table}<p>other{table}
 
 {demo}{sequence random=2, rows=10, max=1000}
   {$sequence} 
 {/sequence}{/demo}
-{demo}{sequence repeat=TRUE, rows=10}
+{demo}{sequence repeat='abc', rows=10}
   {$sequence} 
 {/sequence}{/demo}
 {demo}{sequence palindrome=TRUE, rows=10}
@@ -78,7 +96,7 @@
 
 {/table}<p>named sequences{table}
 
-{demo}{sequence catalan=TRUE, rows=10}
+{demo}{sequence 'catalan', rows=10}
   {$sequence} 
 {/sequence}{/demo}    
 {demo}{sequence cullen=TRUE, rows=10}
@@ -129,15 +147,15 @@
 
 {/table}<h3>push & pull</h3>{table}
 
-{demo}{sequence range='4..8', push=range}
+{demo}{sequence range='4..8', push='range'}
   {$sequence} 
 {/sequence}{/demo}   
 
-{demo}{sequence power=2, pull=range}
+{demo}{sequence power=2, pull='range'}
   {$sequence} 
 {/sequence}{/demo}   
 
-{demo}{sequence eval='@ * 10 | @ - 1', pull=range}
+{demo}{sequence eval='@ * 10 | @ - 1', pull='range'}
   {$sequence} 
 {/sequence}{/demo}   
 
@@ -187,7 +205,7 @@
     {$power}
 {/sequence}{/demo}
 
-{demo}{sequence power=2, rows=16, name=myName}
+{demo}{sequence power=2, rows=16, name='myName'}
     {$myName}
 {/sequence}{/demo}
 

@@ -17,18 +17,14 @@
     foreach($result as $one) {
       if ($one[1] == 'close')
         $check--;
-      if ($check < 0) {
-        pad_eval_error ("Incorrect use of ): $eval");
-        return FALSE;
-      }
+      if ($check < 0)
+        return "Incorrect use of ): $eval";
       if ($one[1] == 'open')
         $check++;
     }
 
-    if ($check <> 0) {
-      pad_eval_error ("Unequal () pairs: $eval");
-      return FALSE;
-    }
+    if ($check <> 0) 
+      return "Unequal () pairs: $eval";
 
     foreach ($result as $k => $one)
       if ( $one[1] == 'other' and pad_valid_name ($one[0]) ) {
@@ -85,9 +81,13 @@
 
     foreach ($result as $k => $one)
       if ( $one[1] == 'other' )
-        $result[$k][1] = 'VAL';
+        return 'Unknow eval argument: ' . $one[0];
 
-    return TRUE;
+#    foreach ($result as $k => $one)
+#      if ( $one[1] == 'other' )
+#        $result[$k][1] = 'VAL';
+
+    return '';
 
   }
   
