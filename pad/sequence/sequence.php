@@ -25,23 +25,24 @@
   include 'build/sequence.php';
   include 'build/name.php';
 
-  pad_set_arr_var ( 'options_done', $pad_seq_seq, TRUE );
-  pad_set_arr_var ( 'options_done', 'rows',       TRUE );
-  pad_set_arr_var ( 'options_done', 'page',       TRUE );
-  pad_set_arr_var ( 'options_done', 'row',        TRUE );
-  pad_set_arr_var ( 'options_done', 'value',      TRUE );
-  pad_set_arr_var ( 'options_done', 'min',        TRUE );
-  pad_set_arr_var ( 'options_done', 'max',        TRUE );
-  pad_set_arr_var ( 'options_done', 'start',      TRUE );
-  pad_set_arr_var ( 'options_done', 'end',        TRUE );
-  pad_set_arr_var ( 'options_done', 'from',       TRUE );
-  pad_set_arr_var ( 'options_done', 'to',         TRUE );
-  pad_set_arr_var ( 'options_done', 'unique',     TRUE );
-  pad_set_arr_var ( 'options_done', 'random',     TRUE );
-  pad_set_arr_var ( 'options_done', 'into',       TRUE );
-  pad_set_arr_var ( 'options_done', 'push',       TRUE );
-  pad_set_arr_var ( 'options_done', 'pull',       TRUE );
-  pad_set_arr_var ( 'options_done', 'protect',    TRUE );
+  pad_set_arr_var ( 'options_done', $pad_seq_seq,  TRUE );
+  pad_set_arr_var ( 'options_done', $pad_seq_name, TRUE );
+  pad_set_arr_var ( 'options_done', 'rows',        TRUE );
+  pad_set_arr_var ( 'options_done', 'page',        TRUE );
+  pad_set_arr_var ( 'options_done', 'row',         TRUE );
+  pad_set_arr_var ( 'options_done', 'value',       TRUE );
+  pad_set_arr_var ( 'options_done', 'min',         TRUE );
+  pad_set_arr_var ( 'options_done', 'max',         TRUE );
+  pad_set_arr_var ( 'options_done', 'start',       TRUE );
+  pad_set_arr_var ( 'options_done', 'end',         TRUE );
+  pad_set_arr_var ( 'options_done', 'from',        TRUE );
+  pad_set_arr_var ( 'options_done', 'to',          TRUE );
+  pad_set_arr_var ( 'options_done', 'unique',      TRUE );
+  pad_set_arr_var ( 'options_done', 'random',      TRUE );
+  pad_set_arr_var ( 'options_done', 'into',        TRUE );
+  pad_set_arr_var ( 'options_done', 'push',        TRUE );
+  pad_set_arr_var ( 'options_done', 'pull',        TRUE );
+  pad_set_arr_var ( 'options_done', 'protect',     TRUE );
 
   $pad_seq_init = $pad_seq_base = $pad_seq_result = $pad_seq_prepare = [];
   $pad_seq_cnt  = $pad_seq_protect_cnt = 0;
@@ -69,8 +70,8 @@
 
   $pad_seq_build = include 'build/type.php';  
 
-  if ( $pad_seq_build == 'function' ) 
-    include_once "functions/$pad_seq_seq.php";
+  if ( $pad_seq_build == 'Nth'  ) include_once "functions/Nth/$pad_seq_seq.php";
+  if ( $pad_seq_build == 'bool' ) include_once "functions/bool/$pad_seq_seq.php";
 
   include "type/$pad_seq_build.php";
 

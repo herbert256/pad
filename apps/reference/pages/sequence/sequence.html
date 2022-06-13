@@ -143,21 +143,7 @@
 
 {demo}{sequence eval='@ * 10 | @ - 1', rows=10}
   {$sequence}
-{/sequence}{/demo}
-
-{/table}<h3>push & pull</h3>{table}
-
-{demo}{sequence range='4..8', push='range'}
-  {$sequence} 
-{/sequence}{/demo}   
-
-{demo}{sequence power=2, pull='range'}
-  {$sequence} 
-{/sequence}{/demo}   
-
-{demo}{sequence eval='@ * 10 | @ - 1', pull='range'}
-  {$sequence} 
-{/sequence}{/demo}   
+{/sequence}{/demo} 
 
 {/table}<h3>from/to & min/max & start/end - The same ?</h3>{table}
 
@@ -339,30 +325,6 @@
 {demo}{sequence to=50, triangular}
   {$sequence}
 {/sequence}{/demo}
-
-{/table}<h2>sequence data to standaard PAD content/data</h2>{table}
-
-{demo}{sequence range='a..z', toContent='fiets'} 
-    {$range}
-{/sequence}
-
-{fiets}{/demo}
-
-{demo}{sequence from=1, to=25, push='mySequence'/}
-
-{mySequence}
-  {$mySequence}
-{/mySequence}{/demo}
-
-{demo}{tag sequence='mySequence', name='myVar'}
-  {$myVar}
-{/tag}{/demo}
-
-{sequence range='a..z', toData='pomp'} 
-
-{demo}{pomp}
-    {$pomp}
-{/pomp}{/demo}
 
 {/table}<h2>print / glue / open / close</h2>{table}
 

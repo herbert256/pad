@@ -1,6 +1,7 @@
 <?php
 
   $pad_seq_idx = $pad_seq_cnt;
+
   $pad_seq_cnt++;
   $pad_seq_sts_00++;
   $pad_seq_protect_cnt++;
@@ -22,14 +23,32 @@
      }
 
   if ( $pad_seq_build == 'fixed' ) {  
+
     if ( ! $pad_seq_pull )  
       $pad_seq_one = $pad_seq_loop_idx;
+
   } elseif ( isset ( $pad_seq_prepare [$pad_seq_idx] ) ) {
+
     if ( ! $pad_seq_pull ) 
       $pad_seq_one = $pad_seq_prepare [$pad_seq_idx];
-  } elseif ( $pad_seq_build == 'function' )
+
+  } elseif ( $pad_seq_build == 'Nth' )
+
     $pad_seq_one = "pad_$pad_seq_seq"($pad_sequence);
-  else
+
+  elseif ( $pad_seq_build == 'bool' ) {
+
+    $pad_seq_one = "pad_$pad_seq_seq"($pad_sequence);
+
+    if ( $pad_seq_one )
+      $pad_seq_one = $pad_sequence;
+    else {
+      $pad_seq_sts_20++; 
+      return true;
+    }
+
+  } else
+
     $pad_seq_one = include PAD . "sequence/types/$pad_seq_seq/$pad_seq_build.php";
 
   $pad_seq_unique_check = in_array ($pad_seq_one, $pad_seq_base);
@@ -64,7 +83,7 @@
   if ( $pad_seq_value      and count($pad_seq_result) >= count($pad_seq_value) ) { $pad_seq_sts_16++; return false; }
   if ( $pad_seq_fromto_max and $pad_seq_cnt           >= $pad_seq_fromto_max   ) { $pad_seq_sts_17++; return false; }
 
-  $pad_seq_sts_20++; 
+  $pad_seq_sts_21++; 
 
   return true;
 
