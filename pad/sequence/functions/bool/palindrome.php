@@ -1,6 +1,6 @@
 <?php
 
-function pad_palindrome ($n) {
+function pad_sequence_palindrome ($n) {
 
   if ( $n == pad_reverse($n) )
     return TRUE;

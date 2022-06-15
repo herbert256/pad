@@ -1,0 +1,71 @@
+<h2>actions - one</h2>
+
+{table}
+
+{demo}{sequence range='30..40'}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence range='30..40', round=10}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence range='30..40', floor=10}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence range='30..40', ceil=10}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence range='30..40', eval = '@ * 10 | @ + 5 | @ - 1'}
+  {$sequence}
+{/sequence}{/demo}
+
+{/table}
+
+<h2>actions - list</h2>
+
+{table}
+
+{demo}{sequence range='A..Z'}
+  {$range}
+{/sequence}{/demo}
+
+{demo}{sequence range='A..Z', reverse}
+  {$range}
+{/sequence}{/demo}
+
+{demo}{sequence range='A..Z', shuffle}
+  {$range}
+{/sequence}{/demo}
+
+{demo}{sequence range='A..Z', shuffle, sort}
+  {$range}
+{/sequence}{/demo}
+
+
+{/table}
+
+
+<h2>actions - boolean filters</h2>
+
+{table}
+
+{demo}{loop rows=25, palindrome} 
+  {$loop} 
+{/loop}{/demo}
+
+{demo}{loop rows=10, even} 
+  {$loop} 
+{/loop}{/demo}
+
+{demo}{loop rows=10, odd} 
+  {$loop} 
+{/loop}{/demo}
+
+{demo}{loop rows=10, prime} 
+  {$loop} 
+{/loop}{/demo}
+
+{/table}

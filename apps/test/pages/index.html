@@ -1,10 +1,25 @@
 <hr>
-{composite rows=10} 
-  {$composite} 
-{/composite}
+{loop rows=50, palindrome, palindrome} 
+  {$loop} 
+{/loop}
 
 <hr>
-{bell rows=10} 
-  {$bell} 
-{/bell}
+{loop rows=10, palindrome, even} 
+  {$loop} 
+{/loop}
 
+<hr>
+{loop rows=10, palindrome, odd} 
+  {$loop} 
+{/loop}
+
+
+<hr>
+{loop rows=10, prime} 
+  {$loop} 
+{/loop}
+
+<hr>
+{prime rows=10} 
+  {$prime} 
+{/prime}

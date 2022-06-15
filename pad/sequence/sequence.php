@@ -47,10 +47,11 @@
   $pad_seq_init = $pad_seq_base = $pad_seq_result = $pad_seq_prepare = [];
   $pad_seq_cnt  = $pad_seq_protect_cnt = 0;
 
-  for ( $pad_seq_idx = 0; $pad_seq_idx <= 21; $pad_seq_idx++ ) 
+  for ( $pad_seq_idx = 0; $pad_seq_idx <= 22; $pad_seq_idx++ ) 
     $GLOBALS [ 'pad_seq_sts_' . sprintf('%02d', $pad_seq_idx) ] = 0;
 
   include 'build/increment.php';
+  include 'build/bool.php';
   include 'build/from_to.php';
   include 'build/min_max.php';
   include 'build/start_end.php';

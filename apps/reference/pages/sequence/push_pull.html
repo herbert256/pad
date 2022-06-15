@@ -1,22 +1,16 @@
+<h2>push & pull</h2>
+
 {table}
 
-{demo}{sequence range='4..8', push}
-  {$sequence} 
-{/sequence}{/demo}   
+{demo}{power 2, from=4, to=8}
+  {$power} 
+{/power}{/demo}   
 
-{demo}{sequence power=2, pull}
-  {$sequence} 
-{/sequence}{/demo}   
+{demo}{range '4..8', push}
 
-{demo}{sequence eval='@ * 10 | @ - 1', pull='range'}
-  {$sequence} 
-{/sequence}{/demo}   
-
-{demo}{sequence range='a..z', toContent='fiets'} 
-    {$range}
-{/sequence}
-
-{fiets}{/demo}
+{power 2, pull}
+  {$power} 
+{/power}{/demo}   
 
 {demo}{sequence from=1, to=25, push='mySequence'/}
 
@@ -24,24 +18,18 @@
   {$mySequence}
 {/mySequence}{/demo}
 
-{demo}{tag sequence='mySequence', name='myVar'}
-  {$myVar}
-{/tag}{/demo}
+{demo}{sequence range='a..z', toContent='fiets'} 
+    {$range}
+{/sequence}
 
-{sequence range='a..z', toData='pomp'} 
+<li>{fiets}
+<li>{fiets}
+{/demo}
 
-{demo}{pomp}
+{demo}{sequence range='a..z', toData='pomp'} 
+
+{pomp}
     {$pomp}
 {/pomp}{/demo}
-
-{/table}<h2>print / glue / open / close</h2>{table}
-
-{demo}
-  {sequence range='a..z', print}
-{/demo}
-
-{demo}
-  {sequence range='a..z', print, open='(', glue='&comma;', close=')'}
-{/demo}
 
 {/table}

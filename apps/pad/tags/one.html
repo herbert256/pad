@@ -1,6 +1,6 @@
 {if $result contains ( '<!-- demo -->')} 
 
-  {!result}
+  <a id="{$item}"></a> {!result} <a href="#top">top</a>
 
 {else}
 
@@ -33,7 +33,7 @@
         {if $php_data or $join}<td style="vertical-align:top">{!php_data}</td>{/if}
       {/show_php}
       {if $html_data or $join}<td style="vertical-align:top">{!html_data}</td>{/if}
-      <td style="vertical-align:center">{!result}</td>
+      <td style="vertical-align:center"><a id="{$item}">{!result}</td>
     </tr>
 
   {if not $join}

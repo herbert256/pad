@@ -4,7 +4,7 @@
 
 // Function to generate nth term
 // of Moser-de Bruijn Sequence
-function pad_moserdebruijn($n)
+function pad_sequence_moserdebruijn($n)
 {
   
    $S = array();

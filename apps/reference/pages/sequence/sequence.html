@@ -1,4 +1,4 @@
-<p>basic usage{table}
+<h2>basic usage</h2>{table}
 
 {demo}{sequence rows=10}
   {$sequence} 
@@ -12,7 +12,7 @@
   {$sequence} 
 {/sequence}{/demo}   
 
-{/table}<p>even and odd{table}
+{/table}<h2>even and odd</h2>{table}
 
 {demo}{sequence even=TRUE, rows=10}
   {$sequence} 
@@ -21,7 +21,7 @@
   {$sequence} 
 {/sequence}{/demo}         
 
-{/table}<p>step and mulitple{table}
+{/table}<h2>step and mulitple</h2>{table}
 
 {demo}{sequence step=4, rows=10}
   {$sequence} 
@@ -30,7 +30,7 @@
   {$sequence} 
 {/sequence}{/demo}       
 
-{/table}<p>triangular / cube / pentagonal{table}
+{/table}<h2>triangular / cube / pentagonal</h2>{table}
 
 {demo}{sequence square=TRUE, rows=10}
   {$sequence} 
@@ -45,7 +45,7 @@
   {$sequence} 
 {/sequence}{/demo}
 
-{/table}<p>composite and prime{table}
+{/table}<h2>composite and prime</h2>{table}
 
 {demo}{sequence composite=TRUE, rows=10}
   {$sequence} 
@@ -57,26 +57,7 @@
   {$sequence} 
 {/sequence}{/demo}   
  
-
-{/table}<p>Syntax{table}
-
-{demo}{sequence type='step', step=4, rows=5} 
-  {$step} 
-{/sequence}{/demo}   
-{demo}{sequence 'step', step=4, rows=5} 
-  {$step} 
-{/sequence}{/demo}   
-{demo}{sequence step=4, rows=5} 
-  {$step} 
-{/sequence}{/demo}   
-{demo}{step step=4, rows=5} 
-  {$step} 
-{/step}{/demo}   
-{demo}{step 4, rows=5}
-  {$step}
-{/step}{/demo}   
-
-{/table}<p>other{table}
+{/table}<h2>other</h2>{table}
 
 {demo}{sequence random=2, rows=10, max=1000}
   {$sequence} 
@@ -94,58 +75,13 @@
   {$sequence} 
 {/sequence}{/demo} 
 
-{/table}<p>named sequences{table}
-
-{demo}{sequence 'catalan', rows=10}
-  {$sequence} 
-{/sequence}{/demo}    
-{demo}{sequence cullen=TRUE, rows=10}
-  {$sequence} 
-{/sequence}{/demo} 
-{demo}{sequence kolakoski=TRUE, rows=10}
-  {$sequence} 
-{/sequence}{/demo}  
-{demo}{sequence lucas=TRUE, rows=10}
-  {$sequence} 
-{/sequence}{/demo}          
-{demo}{sequence pell=TRUE, rows=10}
-  {$sequence} 
-{/sequence}{/demo}        
-{demo}{sequence perrin=TRUE, rows=10}
-  {$sequence} 
-{/sequence}{/demo}     
-{demo}{sequence recaman=TRUE, rows=10}
-  {$sequence} 
-{/sequence}{/demo}  
-{demo}{sequence fibonacci=TRUE, rows=10}
-  {$sequence} 
-{/sequence}{/demo}  
-{demo}{sequence kynea=TRUE, rows=10}
-  {$sequence} 
-{/sequence}{/demo}     
-{demo}{sequence moserdebruijn=TRUE, rows=10}
-  {$sequence} 
-{/sequence}{/demo}
-{demo}{sequence padovan=TRUE, rows=10}
-  {$sequence} 
-{/sequence}{/demo}
-{demo}{sequence bell=TRUE, rows=10}
-  {$sequence} 
-{/sequence}{/demo}
-{demo}{sequence golomb=TRUE, rows=10}
-  {$sequence} 
-{/sequence}{/demo}     
-{demo}{sequence tribonacci=TRUE, rows=10}
-  {$sequence} 
-{/sequence}{/demo}
-
-{/table}<h3>Eval</h3>{table}
+{/table}<h2>Eval</h2>{table}
 
 {demo}{sequence eval='@ * 10 | @ - 1', rows=10}
   {$sequence}
 {/sequence}{/demo} 
 
-{/table}<h3>from/to & min/max & start/end - The same ?</h3>{table}
+{/table}<h2>from/to & min/max & start/end - The same ?</h2>{table}
 
 {demo}{sequence rows=16}
     {$sequence}
@@ -163,7 +99,7 @@
     {$sequence}
 {/sequence}{/demo}
 
-{/table}<h3>from/to & min/max & start/end - No !</h3>{table}
+{/table}<h2>from/to & min/max & start/end - No !</h2>{table}
 
 {demo}{sequence power=2, rows=16}
     {$power}
@@ -181,7 +117,7 @@
     {$power}
 {/sequence}{/demo}
 
-{/table}<h3>Name of variable</h3>{table}
+{/table}<h2>Name of variable</h2>{table}
 
 {demo}{sequence power=2, rows=16}
     {$sequence}
@@ -196,57 +132,6 @@
 {/sequence}{/demo}
 
 {/table}
-
-<h2>actions - one</h2>
-
-{table}
-
-{demo}{sequence range='30..40'}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence range='30..40', round=10}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence range='30..40', floor=10}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence range='30..40', ceil=10}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence range='30..40', eval = '@ * 10 | @ + 5 | @ - 1'}
-  {$sequence}
-{/sequence}{/demo}
-
-{/table}
-
-
-<h2>actions - list</h2>
-
-{table}
-
-{demo}{sequence range='A..Z'}
-  {$range}
-{/sequence}{/demo}
-
-{demo}{sequence range='A..Z', reverse}
-  {$range}
-{/sequence}{/demo}
-
-{demo}{sequence range='A..Z', shuffle}
-  {$range}
-{/sequence}{/demo}
-
-{demo}{sequence range='A..Z', shuffle, sort}
-  {$range}
-{/sequence}{/demo}
-
-
-{/table}
-
 
 
 <h2>row & value</h2>
@@ -303,37 +188,5 @@
 {demo}{sequence range='11..30', reverse, last=10}
   {$range}
 {/sequence}{/demo}
-
-{/table}
-
-<h2>checks</h2>
-
-{table}
-
-{demo}{sequence to=50}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence to=50, prime}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence to=50, power=2}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence to=50, triangular}
-  {$sequence}
-{/sequence}{/demo}
-
-{/table}<h2>print / glue / open / close</h2>{table}
-
-{demo}
-  {sequence range='a..z', print}
-{/demo}
-
-{demo}
-  {sequence range='a..z', print, open='(', glue='&comma;', close=')'}
-{/demo}
 
 {/table}

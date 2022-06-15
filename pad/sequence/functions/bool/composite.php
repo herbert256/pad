@@ -4,7 +4,7 @@
 // program to check
 // if a number is composite.
 
-function pad_composite($n)
+function pad_sequence_composite($n)
 {
     
     // Corner cases

@@ -34,11 +34,11 @@
 
   } elseif ( $pad_seq_build == 'Nth' )
 
-    $pad_seq_one = "pad_$pad_seq_seq"($pad_sequence);
+    $pad_seq_one = "pad_sequence_$pad_seq_seq"($pad_sequence);
 
   elseif ( $pad_seq_build == 'bool' ) {
 
-    $pad_seq_one = "pad_$pad_seq_seq"($pad_sequence);
+    $pad_seq_one = "pad_sequence_$pad_seq_seq"($pad_sequence);
 
     if ( $pad_seq_one )
       $pad_seq_one = $pad_sequence;
@@ -54,6 +54,14 @@
   $pad_seq_unique_check = in_array ($pad_seq_one, $pad_seq_base);
 
   $pad_seq_base [] = $pad_seq_one;
+
+  foreach ( $pad_seq_bool as $pad_seq_bool_name ) {
+    $pad_seq_bool_check = "pad_sequence_$pad_seq_bool_name"($pad_seq_one);
+    if ( ! $pad_seq_bool_check ) {
+      $pad_seq_sts_21++; 
+      return true;
+    }
+  }
 
   if ( $pad_seq_build == 'jump' )
     if ( $pad_seq_one !== NULL and $pad_seq_one !== FALSE and $pad_seq_one !== TRUE)  
@@ -83,7 +91,7 @@
   if ( $pad_seq_value      and count($pad_seq_result) >= count($pad_seq_value) ) { $pad_seq_sts_16++; return false; }
   if ( $pad_seq_fromto_max and $pad_seq_cnt           >= $pad_seq_fromto_max   ) { $pad_seq_sts_17++; return false; }
 
-  $pad_seq_sts_21++; 
+  $pad_seq_sts_22++; 
 
   return true;
 
