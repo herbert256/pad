@@ -4,13 +4,13 @@
 
   foreach ( $pad_parms_tag as $pad_seq_bool_name => $pad_seq_bool_value )
 
-    if ( $pad_seq_bool_name <> $pad_seq_seq and pad_file_exists ( PAD . "sequence/functions/bool/$pad_seq_bool_name.php" ) ) {
+    if ( $pad_seq_bool_name <> $pad_seq_seq and pad_file_exists ( PAD . "sequence/types/$pad_seq_bool_name/bool.php" ) ) {
 
       $pad_seq_bool [] = $pad_seq_bool_name;
 
       pad_set_arr_var ( 'options_done', $pad_seq_bool_name, TRUE );
 
-      include_once PAD . "sequence/functions/bool/$pad_seq_bool_name.php";
+      include_once PAD . "sequence/types/$pad_seq_bool_name/bool.php";
 
     }
   

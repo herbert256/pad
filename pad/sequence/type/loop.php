@@ -6,7 +6,7 @@
 
     $pad_seq_loop_idx = $pad_seq_go;
 
-    if ( ! include 'go/one.php')
+    if ( ! include 'go/go.php')
         break;
 
     $pad_seq_go = $pad_seq_go + $pad_seq_increment;

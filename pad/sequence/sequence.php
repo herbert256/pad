@@ -43,24 +43,20 @@
   pad_set_arr_var ( 'options_done', 'push',        TRUE );
   pad_set_arr_var ( 'options_done', 'pull',        TRUE );
   pad_set_arr_var ( 'options_done', 'protect',     TRUE );
+  pad_set_arr_var ( 'options_done', 'random',      TRUE );
 
-  $pad_seq_init = $pad_seq_base = $pad_seq_result = $pad_seq_prepare = [];
+  $pad_seq_base = $pad_seq_result = $pad_seq_prepare = $pad_seq_random_list = [];
   $pad_seq_cnt  = $pad_seq_protect_cnt = 0;
 
-  for ( $pad_seq_idx = 0; $pad_seq_idx <= 22; $pad_seq_idx++ ) 
+  for ( $pad_seq_idx = 0; $pad_seq_idx <= 25; $pad_seq_idx++ ) 
     $GLOBALS [ 'pad_seq_sts_' . sprintf('%02d', $pad_seq_idx) ] = 0;
 
-  include 'build/increment.php';
+  $pad_seq_increment = 1; 
+
   include 'build/bool.php';
-  include 'build/from_to.php';
-  include 'build/min_max.php';
-  include 'build/start_end.php';
-  include 'build/loop_idx_end.php';
-  include 'build/init_exit.php';
+  include 'build/loop.php';
   include 'build/page.php';
   include 'build/rows.php';
-
-  $pad_seq_max_loops = ($pad_seq_to - $pad_seq_from ) + 1;
 
   $pad_seq_row   = (!$pad_seq_row)   ? [] : pad_explode ($pad_seq_row,   ';'); 
   $pad_seq_value = (!$pad_seq_value) ? [] : pad_explode ($pad_seq_value, ';');
@@ -71,8 +67,8 @@
 
   $pad_seq_build = include 'build/type.php';  
 
-  if ( $pad_seq_build == 'Nth'  ) include_once "functions/Nth/$pad_seq_seq.php";
-  if ( $pad_seq_build == 'bool' ) include_once "functions/bool/$pad_seq_seq.php";
+  if ( $pad_seq_build == 'function' ) include_once "types/$pad_seq_seq/function.php";
+  if ( $pad_seq_build == 'bool'     ) include_once "types/$pad_seq_seq/bool.php";
 
   include "type/$pad_seq_build.php";
 
