@@ -9,7 +9,7 @@
     if ( ! include 'go/go.php')
         break;
 
-    $pad_seq_go = $pad_seq_go + $pad_seq_increment;
+    $pad_seq_go = $pad_seq_go + $pad_seq_loop_increment;
 
   }
 

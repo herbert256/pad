@@ -24,6 +24,10 @@
 
   include 'build/sequence.php';
   include 'build/name.php';
+  include 'build/bool.php';
+  include 'build/loop.php';
+  include 'build/page.php';
+  include 'build/rows.php';
 
   pad_set_arr_var ( 'options_done', $pad_seq_seq,  TRUE );
   pad_set_arr_var ( 'options_done', $pad_seq_name, TRUE );
@@ -48,22 +52,11 @@
   $pad_seq_base = $pad_seq_result = $pad_seq_prepare = $pad_seq_random_list = [];
   $pad_seq_cnt  = $pad_seq_protect_cnt = 0;
 
-  for ( $pad_seq_idx = 0; $pad_seq_idx <= 25; $pad_seq_idx++ ) 
-    $GLOBALS [ 'pad_seq_sts_' . sprintf('%02d', $pad_seq_idx) ] = 0;
-
-  $pad_seq_increment = 1; 
-
-  include 'build/bool.php';
-  include 'build/loop.php';
-  include 'build/page.php';
-  include 'build/rows.php';
-
   $pad_seq_row   = (!$pad_seq_row)   ? [] : pad_explode ($pad_seq_row,   ';'); 
   $pad_seq_value = (!$pad_seq_value) ? [] : pad_explode ($pad_seq_value, ';');
 
-  if ( $pad_seq_pull )
-    if ( $pad_seq_pull === TRUE )
-      $pad_seq_pull = array_key_last ($pad_seq_store);
+  if ( $pad_seq_pull === TRUE ) $pad_seq_pull = array_key_last ($pad_seq_store);
+  if ( $pad_seq_push === TRUE ) $pad_seq_push = $pad_seq_name;
 
   $pad_seq_build = include 'build/type.php';  
 
@@ -78,8 +71,6 @@
     include PAD . 'sequence/actions/list/shuffle.php';  
 
   if ( $pad_seq_push ) {
-    if ( $pad_seq_push === TRUE )
-      $pad_seq_push = $pad_seq_name;
     $pad_seq_store[$pad_seq_push] = $pad_seq_result;
     return NULL;
   }
@@ -90,6 +81,8 @@
      $pad_data [$pad_lvl] [] = [ $pad_seq_name => $pad_v, "sequence" => $pad_v ];    
     else
       $pad_data [$pad_lvl] [] = [ $pad_seq_name => $pad_v ];    
+
+  #return ( count ( $pad_data [$pad_lvl] ) );
 
   if ( count ( $pad_data [$pad_lvl] ) )
     return TRUE;
