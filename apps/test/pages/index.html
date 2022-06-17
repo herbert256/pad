@@ -1,9 +1,11 @@
-{sequence 'odd', rows=10} 
-  {$sequence} 
-{/sequence}
+{power 2, from=4, to=8}
+  {$power} 
+{/power}  
 
-<br>
+<hr>
 
-{sequence 'even', rows=10} 
-  {$sequence} 
-{/sequence}
+{range '4..8', push}
+
+{power 2, pull}
+  {$power} 
+{/power} 

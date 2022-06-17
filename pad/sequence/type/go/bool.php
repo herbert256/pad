@@ -1,13 +1,10 @@
 <?php
 
-  if ( ! $pad_seq_random ) {
-
+  if ( ! $pad_seq_random )
     if ( "pad_sequence_$pad_seq_seq"($pad_sequence) )
       return $pad_sequence;
-    
-    return FALSE;
-
-  }
+    else
+      return FALSE;
 
   $pad_seq_random_try = 1;
 

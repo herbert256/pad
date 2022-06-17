@@ -2,28 +2,38 @@
 
   include_once PAD . "sequence/lib/sequence.php";
 
-  $pad_seq_rows     = intval ( $pad_parms_tag ['rows']     ?? 0           );
-  $pad_seq_page     = intval ( $pad_parms_tag ['page']     ?? 0           );
-  $pad_seq_row      =          $pad_parms_tag ['row']      ?? 0;
-  $pad_seq_value    =          $pad_parms_tag ['value']    ?? 0;
-  $pad_seq_first    = intval ( $pad_parms_tag ['first']    ?? 0           );
-  $pad_seq_last     = intval ( $pad_parms_tag ['last']     ?? PHP_INT_MAX );
-  $pad_seq_min      = intval ( $pad_parms_tag ['min']      ?? 0           );
-  $pad_seq_max      = intval ( $pad_parms_tag ['max']      ?? PHP_INT_MAX );
-  $pad_seq_from     = intval ( $pad_parms_tag ['from']     ?? 1           );
-  $pad_seq_to       = intval ( $pad_parms_tag ['to']       ?? PHP_INT_MAX );
-  $pad_seq_start    = intval ( $pad_parms_tag ['start']    ?? 0           );
-  $pad_seq_end      = intval ( $pad_parms_tag ['end']      ?? PHP_INT_MAX );
-  $pad_seq_unique   = intval ( $pad_parms_tag ['unique']   ?? 0           );
-  $pad_seq_random   = intval ( $pad_parms_tag ['random']   ?? 0           );
-  $pad_seq_into     =          $pad_parms_tag ['into']     ?? '';
-  $pad_seq_push     =          $pad_parms_tag ['push']     ?? '';
-  $pad_seq_pull     =          $pad_parms_tag ['pull']     ?? ''; 
-  $pad_seq_protect  =          $pad_parms_tag ['protect']  ?? 10000; 
-  $pad_seq_name     =          $pad_parms_tag ['name']     ?? ''; 
+  $pad_seq_rows      = intval ( $pad_parms_tag ['rows']      ?? 0           );
+  $pad_seq_page      = intval ( $pad_parms_tag ['page']      ?? 0           );
+  $pad_seq_row       =          $pad_parms_tag ['row']       ?? 0;
+  $pad_seq_value     =          $pad_parms_tag ['value']     ?? 0;
+  $pad_seq_first     = intval ( $pad_parms_tag ['first']     ?? 0           );
+  $pad_seq_last      = intval ( $pad_parms_tag ['last']      ?? PHP_INT_MAX );
+  $pad_seq_min       = intval ( $pad_parms_tag ['min']       ?? 0           );
+  $pad_seq_max       = intval ( $pad_parms_tag ['max']       ?? PHP_INT_MAX );
+  $pad_seq_from      = intval ( $pad_parms_tag ['from']      ?? 1           );
+  $pad_seq_increment = intval ( $pad_parms_tag ['increment'] ?? 1           );
+  $pad_seq_to        = intval ( $pad_parms_tag ['to']        ?? PHP_INT_MAX );
+  $pad_seq_start     = intval ( $pad_parms_tag ['start']     ?? 0           );
+  $pad_seq_end       = intval ( $pad_parms_tag ['end']       ?? PHP_INT_MAX );
+  $pad_seq_unique    = intval ( $pad_parms_tag ['unique']    ?? 0           );
+  $pad_seq_random    = intval ( $pad_parms_tag ['random']    ?? 0           );
+  $pad_seq_into      =          $pad_parms_tag ['into']      ?? '';
+  $pad_seq_push      =          $pad_parms_tag ['push']      ?? '';
+  $pad_seq_pull      =          $pad_parms_tag ['pull']      ?? ''; 
+  $pad_seq_protect   =          $pad_parms_tag ['protect']   ?? 100000; 
+  $pad_seq_max_loops =          $pad_parms_tag ['max_loops'] ?? 100000; 
+  $pad_seq_name      =          $pad_parms_tag ['name']      ?? ''; 
+  $pad_seq_limits    =          $pad_parms_tag ['limits']    ?? 0; 
+
+  if ( $pad_seq_from <> 1 or $pad_seq_to <> PHP_INT_MAX or $pad_seq_rows )
+    $pad_seq_limits = TRUE;
 
   include 'build/sequence.php';
   include 'build/name.php';
+
+  if ( $pad_seq_seq == 'random' or $pad_seq_random )  
+    include 'build/random.php';
+
   include 'build/bool.php';
   include 'build/loop.php';
   include 'build/page.php';
@@ -49,7 +59,7 @@
   pad_set_arr_var ( 'options_done', 'protect',     TRUE );
   pad_set_arr_var ( 'options_done', 'random',      TRUE );
 
-  $pad_seq_base = $pad_seq_result = $pad_seq_prepare = $pad_seq_random_list = [];
+  $pad_seq_base = $pad_seq_result = $pad_seq_prepare = [];
   $pad_seq_cnt  = $pad_seq_protect_cnt = 0;
 
   $pad_seq_row   = (!$pad_seq_row)   ? [] : pad_explode ($pad_seq_row,   ';'); 
@@ -60,17 +70,23 @@
 
   $pad_seq_build = include 'build/type.php';  
 
+  if ( $pad_seq_seq == 'random' or $pad_seq_random )  
+    include 'build/random.php';
+
   if ( $pad_seq_build == 'function' ) include_once "types/$pad_seq_seq/function.php";
   if ( $pad_seq_build == 'bool'     ) include_once "types/$pad_seq_seq/bool.php";
 
    if ( pad_file_exists ( PAD . "sequence/types/$pad_seq_seq/init.php" )) 
      include PAD . "sequence/types/$pad_seq_seq/init.php";
 
-  include "type/$pad_seq_build.php";
+  if ( $pad_seq_pull )
+    include "build/pull.php";
+  else
+    include "type/$pad_seq_build.php";
 
   include 'build/actions.php';
   
-  if ( $pad_seq_random and !pad_file_exists(PAD . "sequence/types/$pad_seq_seq/random.php") )
+  if ( $pad_seq_random )
     include PAD . 'sequence/actions/list/shuffle.php';  
 
   if ( $pad_seq_push ) {
