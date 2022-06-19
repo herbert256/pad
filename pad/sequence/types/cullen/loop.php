@@ -1,5 +1,5 @@
 <?php
 
-  return (1 << $pad_seq_now) * $pad_seq_now + 1;  
+  return (1 << $pad_seq_loop) * $pad_seq_loop + 1;  
 
 ?>

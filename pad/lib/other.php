@@ -243,11 +243,13 @@
 
   function pad_valid ($name) {
 
-    if ( $name == ''                        ) return FALSE;
-    if ( ! ctype_alnum($name)               ) return FALSE;
-    if ( ! ctype_alpha(substr($name, 0, 1)) ) return FALSE;
+    if ( $name == '' ) 
+      return FALSE;
 
-    return TRUE;
+    if ( ! preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/',$name) )
+      return FALSE;
+
+    return TRUE;  
 
   }
 

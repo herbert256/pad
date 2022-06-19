@@ -16,7 +16,7 @@
 
     $pad_go_init = FALSE;
 
-    $pad_seq_go = $pad_seq_go + $pad_seq_increment;
+    $pad_seq_go = $pad_seq_go + $pad_seq_inc;
 
   }
 
