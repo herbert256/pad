@@ -21,12 +21,9 @@
   $pad_seq_push      =          $pad_parms_tag ['push']      ?? '';
   $pad_seq_pull      =          $pad_parms_tag ['pull']      ?? ''; 
   $pad_seq_protect   =          $pad_parms_tag ['protect']   ?? 100000; 
-  $pad_seq_max_loops =          $pad_parms_tag ['max_loops'] ?? 100000; 
+  $pad_seq_max_loops =          $pad_parms_tag ['max_loops'] ?? 10000; 
   $pad_seq_name      =          $pad_parms_tag ['name']      ?? ''; 
-  $pad_seq_limits    =          $pad_parms_tag ['limits']    ?? 0; 
-
-  if ( $pad_seq_from <> 1 or $pad_seq_to <> PHP_INT_MAX or $pad_seq_rows )
-    $pad_seq_limits = TRUE;
+  $pad_seq_to_data   =          $pad_parms_tag ['toData']    ?? ''; 
 
   include 'build/sequence.php';
   include 'build/name.php';
@@ -59,7 +56,7 @@
   pad_set_arr_var ( 'options_done', 'protect',     TRUE );
   pad_set_arr_var ( 'options_done', 'random',      TRUE );
 
-  $pad_seq_base = $pad_seq_result = $pad_seq_prepare = [];
+  $pad_seq_base = $pad_seq_result = $pad_loop_for = [];
   $pad_seq_cnt  = $pad_seq_protect_cnt = 0;
 
   $pad_seq_row   = (!$pad_seq_row)   ? [] : pad_explode ($pad_seq_row,   ';'); 
@@ -76,17 +73,18 @@
   if ( $pad_seq_build == 'function' ) include_once "types/$pad_seq_seq/function.php";
   if ( $pad_seq_build == 'bool'     ) include_once "types/$pad_seq_seq/bool.php";
 
-   if ( pad_file_exists ( PAD . "sequence/types/$pad_seq_seq/init.php" )) 
-     include PAD . "sequence/types/$pad_seq_seq/init.php";
+  if ( pad_file_exists ( PAD . "sequence/types/$pad_seq_seq/init.php" )) 
+    include PAD . "sequence/types/$pad_seq_seq/init.php";
+
+  $pad_sequence = $pad_seq_loop_idx = $pad_loop_start;
 
   if ( $pad_seq_pull )
-    include "build/pull.php";
+    include "type/pull.php";
   else
     include "type/$pad_seq_build.php";
 
   include 'build/actions.php';
-  
-  if ( $pad_seq_random )
+   if ( $pad_seq_random )
     include PAD . 'sequence/actions/list/shuffle.php';  
 
   if ( $pad_seq_push ) {
@@ -94,16 +92,6 @@
     return NULL;
   }
 
-  $pad_data [$pad_lvl] = [];
-  foreach ( $pad_seq_result as $pad_v )
-    if ( $pad_seq_name == $pad_seq_seq )
-     $pad_data [$pad_lvl] [] = [ $pad_seq_name => $pad_v, "sequence" => $pad_v ];    
-    else
-      $pad_data [$pad_lvl] [] = [ $pad_seq_name => $pad_v ];    
-
-  if ( count ( $pad_data [$pad_lvl] ) )
-    return TRUE;
-  else
-    return FALSE;
+  return $pad_seq_result;
 
 ?>

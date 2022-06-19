@@ -2,7 +2,7 @@
 
   function pad_get_type_lvl ( $type ) {
 
-    if     ( ! pad_valid_name    ( $type ) )                                 return FALSE;
+    if     ( ! pad_valid    ( $type ) )                                 return FALSE;
     elseif ( pad_file_exists     ( APP . "tags/$type.php"                ) ) return 'tag_app';
     elseif ( pad_file_exists     ( APP . "tags/$type.html"               ) ) return 'tag_app';
     elseif ( pad_file_exists     ( PAD . "tags/$type.php"                ) ) return 'tag_pad';
@@ -29,7 +29,7 @@
 
   function pad_check_type ( $type, $name ) {
 
-        if ( ! pad_valid_name ( $type ) or ! pad_valid_name ( $name)  )                                 return FALSE;
+        if ( ! pad_valid ( $type ) or ! pad_valid ( $name)  )                                 return FALSE;
     elseif ( pad_chk_level_array  ( $name                             ) and $type == 'level'          ) return TRUE;
     elseif ( pad_file_exists  ( APP . "tags/$name.php"                ) and $type == 'tag_app'        ) return TRUE;
     elseif ( pad_file_exists  ( APP . "tags/$name.html"               ) and $type == 'tag_app'        ) return TRUE;
@@ -56,7 +56,7 @@
 
   function pad_get_type_eval ( $type ) {
 
-        if ( ! pad_valid_name    ( $type ) )                                 return FALSE;
+        if ( ! pad_valid    ( $type ) )                                 return FALSE;
     elseif ( pad_file_exists     ( APP . "functions/$type.php"           ) ) return 'function_app';
     elseif ( pad_file_exists     ( PAD . "functions/$type.php"           ) ) return 'function_pad';
     elseif ( function_exists     ( $type                                 ) ) return 'function_php';

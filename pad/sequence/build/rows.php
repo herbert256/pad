@@ -7,6 +7,6 @@
   if ( $pad_seq_start     or $pad_seq_end <> PHP_INT_MAX ) return;
   if ( $pad_seq_min       or $pad_seq_max <> PHP_INT_MAX ) return;
 
-  $pad_seq_rows = 100;
+  
 
 ?>

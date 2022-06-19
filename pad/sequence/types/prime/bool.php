@@ -1,15 +1,11 @@
 <?php
 
-  function pad_sequence_prime ( $num ) {
+  function pad_sequence_bool_prime ( $n ) {
 
-    if ($num == 1)
+    if ( gmp_prob_prime ($n) )
+      return TRUE;
+    else
       return FALSE;
-
-    for ($i = 2; $i <= $num/2; $i++)
-      if ($num % $i == 0)
-        return FALSE;
-
-    return TRUE;
 
   }
 

@@ -1,8 +1,8 @@
 <?php
 
-  $pad_seq_loop_idx  = 1;
+  $pad_sequence       = 1;
   $pad_seq_loop_increment = 1;
 
-  include "loop.php";    
+  include "go/loop.php";    
 
 ?>

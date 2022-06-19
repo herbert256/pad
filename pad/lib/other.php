@@ -241,7 +241,17 @@
   }
 
 
-  function pad_valid_name ($name) {
+  function pad_valid ($name) {
+
+    if ( $name == ''                        ) return FALSE;
+    if ( ! ctype_alnum($name)               ) return FALSE;
+    if ( ! ctype_alpha(substr($name, 0, 1)) ) return FALSE;
+
+    return TRUE;
+
+  }
+
+  function pad_valid2 ($name) {
 
     if ( $name === '' ) return FALSE;
  
@@ -250,15 +260,6 @@
     if ( substr($name, 0, 1) == '-' or substr($name, 0, 1) == '_' ) return TRUE;
 
     if ( ! ctype_alpha(substr($name, 0, 1))          ) return FALSE;
-
-    return TRUE;
-
-  }
-
-  function pad_valid_name2 ($name) {
- 
-    if ( ! preg_match('/^[A-Za-z0-9_]+$/', $name ) ) return FALSE;
-    if ( ! ctype_alpha(substr($name, 0, 1))        ) return FALSE;
 
     return TRUE;
 

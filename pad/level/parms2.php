@@ -27,7 +27,7 @@
 
     } else {
 
-      if ( pad_valid_name ($pad_w[0]) and ! is_numeric($pad_w[0]) )
+      if ( pad_valid ($pad_w[0]) and ! is_numeric($pad_w[0]) )
         if ( count($pad_w) == 1 ) {
           $pad_parms_tag [$pad_w[0]] = TRUE;
           $pad_parms_seq [] = TRUE;

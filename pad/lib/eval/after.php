@@ -27,7 +27,7 @@
       return "Unequal () pairs: $eval";
 
     foreach ($result as $k => $one)
-      if ( $one[1] == 'other' and pad_valid_name ($one[0]) ) {
+      if ( $one[1] == 'other' and pad_valid ($one[0]) ) {
         $type = pad_get_type_eval ( $one[0] );
         if ( $type !== FALSE ) {
           $result[$k][0] = 'TYPE';
@@ -41,7 +41,7 @@
     foreach ($result as $k => $one)
       if ( $one[1] == 'other' ) {
         $exp = pad_explode ($one[0], ':');
-        if ( count($exp) == 2 and pad_valid_name ($exp[1]) and pad_file_exists ( PAD . "eval/" . $exp[0] . ".php" ) ) {
+        if ( count($exp) == 2 and pad_valid ($exp[1]) and pad_file_exists ( PAD . "eval/" . $exp[0] . ".php" ) ) {
           $result[$k][0] = 'TYPE';
           $result[$k][1] = 'OPR';
           $result[$k][2] = $exp[0];          

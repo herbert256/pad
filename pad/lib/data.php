@@ -195,21 +195,11 @@
     if ( pad_is_default_data($result) or ! count($result) )
       return $result;
 
-    if ( $GLOBALS['pad_trace'] )
-      $before =  $result;
-      $data = [ 'name' => $name, 'before' => $result ];
-
     $result = pad_data_chk_simple_array ($result,$name);
     $result = pad_data_chk_chk_one      ($result,$name);
     $result = pad_data_chk_data_attr    ($result,$name);
     $result = pad_data_chk_check_record ($result,$name); 
     $result = pad_data_chk_check_array  ($result,$name);
-
-    if ( $GLOBALS['pad_trace'] and $result <> $before) {
-      $data = [ 'name' => $name, 'before' => $before, 'after' => $result ];
-      $trace = $GLOBALS['pad_trace_dir_lvl'] . '/chk_data/' . uniqid() . '.json';
-      pad_file_put_contents ( $trace, $data );
-    }
 
     return $result;
 

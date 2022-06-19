@@ -1,0 +1,37 @@
+<h3>from/to & min/max & start/end - The same ?</h3>{table}
+
+{demo}{sequence rows=16}
+    {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence min=4, max=12}
+    {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence from=4, to=12}
+    {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence start=4, end=12}
+    {$sequence}
+{/sequence}{/demo}
+
+{/table}<h3>from/to & min/max & start/end - No !</h3>{table}
+
+{demo}{sequence power=2, rows=16}
+    {$power}
+{/sequence}{/demo}
+
+{demo}{sequence power=2, min=4, max=12}
+    {$power}
+{/sequence}{/demo}
+
+{demo}{sequence power=2, from=4, to=12}
+    {$power}
+{/sequence}{/demo}
+
+{demo}{sequence power=2, from=4, to=12, start=2, end=4}
+    {$power}
+{/sequence}{/demo}
+
+{/table}

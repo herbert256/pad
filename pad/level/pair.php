@@ -82,7 +82,7 @@ go2:
       if ($pad_pos3 !== FALSE and $pad_pos3 < $pad_pos2 )
         $pad_pos2 = $pad_pos3;      
       $pad_false_tag = substr($pad_content, $pad_pos+2, $pad_pos2-$pad_pos-2);
-      if ( pad_valid_name ($pad_false_tag) )
+      if ( pad_valid ($pad_false_tag) )
         $pad_open_close [$pad_false_tag] = TRUE;
     }
     $pad_pos = strpos($pad_content, '{/', $pad_pos+1);
