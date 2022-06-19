@@ -1,6 +1,6 @@
 <?php
 
-  function pad_sequence_bool_even( $n ) {
+  function pad_seq_now_bool_even( $n ) {
 
     if ( $n & 1 )
       return FALSE;

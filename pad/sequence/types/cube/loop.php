@@ -1,5 +1,5 @@
 <?php
 
-return $pad_sequence ** 3;
+return $pad_seq_now ** 3;
 
 ?>

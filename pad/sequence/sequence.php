@@ -13,17 +13,16 @@
   $pad_seq_from      = intval ( $pad_parms_tag ['from']      ?? 1           );
   $pad_seq_increment = intval ( $pad_parms_tag ['increment'] ?? 1           );
   $pad_seq_to        = intval ( $pad_parms_tag ['to']        ?? PHP_INT_MAX );
-  $pad_seq_start     = intval ( $pad_parms_tag ['start']     ?? 0           );
-  $pad_seq_end       = intval ( $pad_parms_tag ['end']       ?? PHP_INT_MAX );
   $pad_seq_unique    = intval ( $pad_parms_tag ['unique']    ?? 0           );
   $pad_seq_random    = intval ( $pad_parms_tag ['random']    ?? 0           );
   $pad_seq_into      =          $pad_parms_tag ['into']      ?? '';
   $pad_seq_push      =          $pad_parms_tag ['push']      ?? '';
   $pad_seq_pull      =          $pad_parms_tag ['pull']      ?? ''; 
-  $pad_seq_protect   =          $pad_parms_tag ['protect']   ?? 100000; 
-  $pad_seq_max_loops =          $pad_parms_tag ['max_loops'] ?? 10000; 
   $pad_seq_name      =          $pad_parms_tag ['name']      ?? ''; 
   $pad_seq_to_data   =          $pad_parms_tag ['toData']    ?? ''; 
+
+  $pad_seq_protect   =          $pad_parms_tag ['protect']   ?? 10000; 
+  $pad_seq_save      =          $pad_parms_tag ['save']      ?? 100; 
 
   include 'build/sequence.php';
   include 'build/name.php';
@@ -34,7 +33,6 @@
   include 'build/bool.php';
   include 'build/loop.php';
   include 'build/page.php';
-  include 'build/rows.php';
 
   pad_set_arr_var ( 'options_done', $pad_seq_seq,  TRUE );
   pad_set_arr_var ( 'options_done', $pad_seq_name, TRUE );
@@ -76,7 +74,7 @@
   if ( pad_file_exists ( PAD . "sequence/types/$pad_seq_seq/init.php" )) 
     include PAD . "sequence/types/$pad_seq_seq/init.php";
 
-  $pad_sequence = $pad_seq_loop_idx = $pad_loop_start;
+  include 'build/save.php';
 
   if ( $pad_seq_pull )
     include "type/pull.php";

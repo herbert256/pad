@@ -1,9 +1,9 @@
 <?php
 
-    $pad_sequence = (1 << $pad_sequence) + 1;
-    $pad_sequence = $pad_sequence * $pad_sequence;
-    $pad_sequence = $pad_sequence - 2;
+    $pad_seq_loop = (1 << $pad_seq_loop) + 1;
+    $pad_seq_loop = $pad_seq_loop * $pad_seq_loop;
+    $pad_seq_loop = $pad_seq_loop - 2;
 
-    return $pad_sequence; 
+    return $pad_seq_loop; 
 
 ?>

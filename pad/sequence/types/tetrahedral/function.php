@@ -1,6 +1,6 @@
 <?php
 
-function pad_sequence_tetrahedral ($n) {
+function pad_seq_now_tetrahedral ($n) {
 
   return ($n*($n+1)*($n+2))/6;
 

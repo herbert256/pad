@@ -1,12 +1,12 @@
 <?php
 
-  if ( ! gmp_prob_prime ( $pad_sequence ) )
+  if ( ! gmp_prob_prime ( $pad_seq_now ) )
     return false;
 
-  if ( $pad_sequence < 11 )
+  if ( $pad_seq_now < 11 )
     return false;
 
-   $pad_reverse = pad_reverse($pad_sequence);
+   $pad_reverse = pad_reverse($pad_seq_now);
 
   if ( gmp_prob_prime ( $pad_reverse ) ) 
     return TRUE;
