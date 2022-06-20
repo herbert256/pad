@@ -10,6 +10,4 @@
   else 
     $pad_seq_end = PHP_INT_MAX;
 
-  $pad_seq_max = ($pad_seq_end - $pad_seq_start) + 1;
-
 ?>

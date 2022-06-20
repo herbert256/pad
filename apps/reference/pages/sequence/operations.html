@@ -2,25 +2,25 @@
 
 {table}
 
-{demo}{sequence range='30..40'}
-  {$sequence}
-{/sequence}{/demo}
+{demo}{range '30..40'}
+  {$range }
+{/range }{/demo}
 
-{demo}{sequence range='30..40', round=10}
-  {$sequence}
-{/sequence}{/demo}
+{demo}{range '30..40', round=5}
+  {$range }
+{/range }{/demo}
 
-{demo}{sequence range='30..40', floor=10}
-  {$sequence}
-{/sequence}{/demo}
+{demo}{range '30..40', floor=5}
+  {$range }
+{/range }{/demo}
 
-{demo}{sequence range='30..40', ceil=10}
-  {$sequence}
-{/sequence}{/demo}
+{demo}{range '30..40', ceil=5}
+  {$range }
+{/range }{/demo}
 
-{demo}{sequence range='30..40', eval = '@ * 10 | @ + 5 | @ - 1'}
-  {$sequence}
-{/sequence}{/demo}
+{demo}{range '30..40', eval = '@ * 10 | @ + 5 | @ - 1'}
+  {$range }
+{/range }{/demo}
 
 {/table}
 
@@ -28,22 +28,25 @@
 
 {table}
 
-{demo}{sequence range='A..Z'}
+{demo}{range 'A..Z'}
   {$range}
-{/sequence}{/demo}
+{/range }{/demo}
 
-{demo}{sequence range='A..Z', reverse}
+{demo}{range 'A..Z', reverse}
   {$range}
-{/sequence}{/demo}
+{/range }{/demo}
 
-{demo}{sequence range='A..Z', shuffle}
+{demo}{range 'A..Z', shuffle}
   {$range}
-{/sequence}{/demo}
+{/range }{/demo}
 
-{demo}{sequence range='A..Z', shuffle, sort}
+{demo}{range 'A..Z', shuffle, sort}
   {$range}
-{/sequence}{/demo}
+{/range }{/demo}
 
+{demo}{range 'A..Z', random, sort}
+  {$range}
+{/range }{/demo}
 
 {/table}
 

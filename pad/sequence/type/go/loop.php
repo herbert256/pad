@@ -7,7 +7,7 @@
   while ( $pad_seq_go <= $pad_seq_end ) {
 
     if ( $pad_seq_random )
-      $pad_seq_loop = pad_seq_random ( $pad_seq_random_start, $pad_seq_random_end );
+      $pad_seq_loop = pad_seq_random ( $pad_seq_start, $pad_seq_end );
     else
       $pad_seq_loop = $pad_seq_go;
 

@@ -1,10 +1,8 @@
 <?php
 
-  $pad_seq_cnt++;
   $pad_seq_protect_cnt++;
-
-  if ( $pad_seq_cnt         > $pad_seq_max      ) return FALSE;
-  if ( $pad_seq_protect_cnt > $pad_seq_protect  ) return pad_error ("No stop limiet for sequence tag");
+  if ( $pad_seq_protect_cnt > $pad_seq_protect ) 
+    return pad_error ("No stop limiet for sequence tag");
 
   if ( $pad_seq_build == 'fixed' ) 
 

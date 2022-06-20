@@ -1,0 +1,47 @@
+<h3>Random</h3>{table}
+
+{demo}{sequence random, rows=3}
+  {$random} 
+{/sequence}{/demo}
+
+{demo}{sequence random, to=100, rows=3}
+  {$random} 
+{/sequence}{/demo}
+
+{demo}{sequence random, max=100, rows=3}
+  {$random} 
+{/sequence}{/demo}
+
+{demo}{sequence random, min=11, max=13, rows=5}
+  {$random} 
+{/sequence}{/demo}
+
+{/table}
+
+{table}
+
+{demo}{range 'A..Z'}
+  {$range}
+{/range }{/demo}
+
+{demo}{range 'A..Z', shuffle}
+  {$range}
+{/range }{/demo}
+
+{demo}{range 'A..Z', shuffle, sort}
+  {$range}
+{/range }{/demo}
+
+{demo}{range 'A..Z', random}
+  {$range}
+{/range }{/demo}
+
+{demo}{range 'A..Z', random, sort}
+  {$range}
+{/range }{/demo}
+
+{demo}{range 'A..Z', random, unique}
+  {$range}
+{/range }{/demo}
+
+{/table}

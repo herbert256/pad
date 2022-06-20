@@ -20,15 +20,11 @@
   $pad_seq_pull    =          $pad_parms_tag ['pull']      ?? ''; 
   $pad_seq_name    =          $pad_parms_tag ['name']      ?? ''; 
   $pad_seq_data    =          $pad_parms_tag ['toData']    ?? ''; 
-  $pad_seq_protect =          $pad_parms_tag ['protect']   ?? 1000; 
-  $pad_seq_save    =          $pad_parms_tag ['save']      ?? 100; 
+  $pad_seq_protect =          $pad_parms_tag ['protect']   ?? 10000; 
+  $pad_seq_save    =          $pad_parms_tag ['save']      ?? 1000; 
 
   include 'build/sequence.php';
   include 'build/name.php';
-
-  if ( $pad_seq_seq == 'random' or $pad_seq_random )  
-    include 'build/random.php';
-
   include 'build/bool.php';
   include 'build/loop.php';
   include 'build/page.php';
@@ -54,7 +50,7 @@
   pad_set_arr_var ( 'options_done', 'random',      TRUE );
 
   $pad_seq_base = $pad_seq_result = $pad_loop_for = [];
-  $pad_seq_cnt  = $pad_seq_protect_cnt = 0;
+  $pad_seq_protect_cnt = 0;
 
   $pad_seq_row   = (!$pad_seq_row)   ? [] : pad_explode ($pad_seq_row,   ';'); 
   $pad_seq_value = (!$pad_seq_value) ? [] : pad_explode ($pad_seq_value, ';');
@@ -65,7 +61,7 @@
   $pad_seq_build = include 'build/type.php';  
 
   if ( $pad_seq_seq == 'random' or $pad_seq_random )  
-    include 'build/random.php';
+    $pad_seq_random = TRUE;
 
   if ( $pad_seq_build == 'function' ) include_once "types/$pad_seq_seq/function.php";
   if ( $pad_seq_build == 'bool'     ) include_once "types/$pad_seq_seq/bool.php";
@@ -81,9 +77,7 @@
     include "type/$pad_seq_build.php";
 
   include 'build/actions.php';
-   if ( $pad_seq_random )
-    include PAD . 'sequence/actions/list/shuffle.php';  
-
+ 
   if ( $pad_seq_push ) {
     $pad_seq_store[$pad_seq_push] = $pad_seq_result;
     return NULL;
