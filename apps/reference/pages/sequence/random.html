@@ -12,12 +12,17 @@
   {$random} 
 {/sequence}{/demo}
 
-{demo}{sequence random, min=11, max=13, rows=5}
+{demo}{sequence random, min=11, max=13, rows=10}
   {$random} 
 {/sequence}{/demo}
 
+{demo}{range '11..13', random, rows=10}
+  {$range} 
+{/range}{/demo}
+
 {/table}
 
+<h3>Random vs shuffle</h3>
 {table}
 
 {demo}{range 'A..Z'}
@@ -43,5 +48,14 @@
 {demo}{range 'A..Z', random, unique}
   {$range}
 {/range }{/demo}
+
+{/table}
+
+<h3>Random vs shuffle</h3>
+{table}
+
+{demo}{power 2, random, to=16, rows=8}
+  {$power}
+{/power}{/demo}
 
 {/table}

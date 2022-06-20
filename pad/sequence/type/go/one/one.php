@@ -4,6 +4,9 @@
   if ( $pad_seq_protect_cnt > $pad_seq_protect ) 
     return pad_error ("No stop limiet for sequence tag");
 
+  if ( $pad_seq_loop < $pad_seq_start ) return TRUE; 
+  if ( $pad_seq_loop > $pad_seq_end   ) return TRUE;  
+
   if ( $pad_seq_build == 'fixed' ) 
 
     $pad_sequence = $pad_seq_loop;
@@ -36,8 +39,8 @@
 
   $pad_seq_base [] = $pad_sequence;
 
-  if ( is_numeric($pad_sequence) and $pad_sequence > $pad_seq_max ) return FALSE; 
   if ( is_numeric($pad_sequence) and $pad_sequence < $pad_seq_min ) return TRUE;  
+  if ( is_numeric($pad_sequence) and $pad_sequence > $pad_seq_max ) return TRUE; 
   
   if ( $pad_seq_page   and count($pad_seq_base) < $pad_seq_page_start          ) return TRUE;
   if ( $pad_seq_row    and ! in_array (count($pad_seq_base), $pad_seq_row)     ) return TRUE;

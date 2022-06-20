@@ -1,6 +1,6 @@
 <?php
 
-  $pad_go_init = TRUE;
+  $pad_seq_init = TRUE;
 
   foreach ( $pad_seq_for as $pad_seq_loop ) {
 
@@ -9,7 +9,7 @@
 
     include 'one/one.php';
 
-   $pad_go_init = FALSE;
+   $pad_seq_init = FALSE;
 
   }
 

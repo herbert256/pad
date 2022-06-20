@@ -49,7 +49,7 @@
   pad_set_arr_var ( 'options_done', 'protect',     TRUE );
   pad_set_arr_var ( 'options_done', 'random',      TRUE );
 
-  $pad_seq_base = $pad_seq_result = $pad_loop_for = [];
+  $pad_seq_base = $pad_seq_result = $pad_seq_for = [];
   $pad_seq_protect_cnt = 0;
 
   $pad_seq_row   = (!$pad_seq_row)   ? [] : pad_explode ($pad_seq_row,   ';'); 
@@ -69,12 +69,15 @@
   if ( pad_file_exists ( PAD . "sequence/types/$pad_seq_seq/init.php" )) 
     include PAD . "sequence/types/$pad_seq_seq/init.php";
 
-  include 'build/save.php';
-
   if ( $pad_seq_pull )
-    include "type/pull.php";
-  else
+    include "build/pull.php";
+
+  if ( $pad_seq_pull or count($pad_seq_for) ) 
+    include "type/for.php";
+  else {
+    include 'build/save.php';
     include "type/$pad_seq_build.php";
+  }
 
   include 'build/actions.php';
  
