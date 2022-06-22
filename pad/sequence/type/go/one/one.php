@@ -30,7 +30,7 @@
   if     ( $pad_sequence === NULL  ) return FALSE;
   elseif ( $pad_sequence === FALSE ) return TRUE;   
   elseif ( $pad_sequence === INF   ) $pad_sequence = '?';
-  elseif ( $pad_sequence === ǸAN   ) $pad_sequence = '?';
+  elseif ( $pad_sequence === NAN   ) $pad_sequence = '?';
   elseif ( $pad_sequence === TRUE  ) $pad_sequence = $pad_seq_loop;
 
   foreach ( $pad_seq_bool as $pad_seq_bool_name ) 

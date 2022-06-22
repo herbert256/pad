@@ -4,8 +4,8 @@
 
 go: $b = -1;
 
-    if ( count ($result) == 1 )
-      return;
+ #   if ( count ($result) == 1 )
+  #    return;
 
     foreach ( $result as $k => $t ) {
 
