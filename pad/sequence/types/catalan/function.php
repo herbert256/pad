@@ -3,7 +3,7 @@
 
 // Returns value of Binomial
 // Coefficient C(n, k)
-function pad_seq_now_binomialCoeff($n, $k)
+function pad_sequence_binomialCoeff($n, $k)
 {
     $res = 1;
 
@@ -24,10 +24,10 @@ function pad_seq_now_binomialCoeff($n, $k)
 
 // A Binomial coefficient based function
 // to find nth catalan number in O(n) time
-function pad_seq_now_catalan($n)
+function pad_sequence_catalan($n)
 {
     // Calculate value of 2nCn
-    $c = pad_seq_now_binomialCoeff(2 * ($n), $n);
+    $c = pad_sequence_binomialCoeff(2 * ($n), $n);
 
     // return 2nCn/(n+1)
     return floor($c / ($n + 1));

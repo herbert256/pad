@@ -1,7 +1,7 @@
 <?php
 
   if ( ! $pad_seq_random )
-    if ( "pad_seq_now_bool_$pad_seq_seq"($pad_seq_loop) )
+    if ( "pad_sequence_bool_$pad_seq_seq"($pad_seq_loop) )
       return $pad_seq_loop;
     else
       return FALSE;
@@ -15,7 +15,7 @@
     else
       $pad_seq_loop_bool = pad_seq_random ( $pad_seq_start, $pad_seq_end );
  
-    if ( "pad_seq_now_bool_$pad_seq_seq"($pad_seq_loop_bool) )
+    if ( "pad_sequence_bool_$pad_seq_seq"($pad_seq_loop_bool) )
       return $pad_seq_loop_bool;
      
     $pad_seq_random_try++;

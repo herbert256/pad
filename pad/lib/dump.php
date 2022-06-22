@@ -42,9 +42,6 @@
 
     $not = ['pad_base','pad_sql_connect','pad_pad_sql_connect','pad_headers','pad_data','pad_parameters', 'pad_errors', 'pad_result', 'pad_html', 'pad_output', 'pad_output_gz', 'pad_current', 'pad_lib_directory', 'pad_lib_iterator', 'pad_lib_one'];
 
-    $func = ['pad_dump','pad_dump_vars','pad_dump_to_file','pad_dump_get',
-            'pad_error','pad_error_go','pad_error_handler','pad_error_exception','pad_error_shutdown'];
-
     $settings = '';
     if ( file_exists (PAD . 'config/config.php') )
       $settings .= file_get_contents(PAD . 'config/config.php');
@@ -66,6 +63,10 @@
 
     }
 
+    ksort($app_flds);
+    ksort($config);
+    ksort($pad);
+
     $pad_debug_backtrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS);
 
     echo ("<div align=\"left\"><pre>");
@@ -77,11 +78,12 @@
 
       echo ( "<b>Eval details</b>\n");
 
-      pad_dump_field  ('eval',   $GLOBALS ['pad_trace_eval_eval']   );
-      pad_dump_field  ('myself', $GLOBALS ['pad_trace_eval_myself'] );
-      pad_dump_array  ('parsed', $GLOBALS ['pad_trace_eval_parsed'], 1  );
-      pad_dump_array  ('after',  $GLOBALS ['pad_trace_eval_after'],  1  );
-      pad_dump_array  ('go',     $GLOBALS ['pad_trace_eval_go'],     1  );
+      pad_dump_field  ( 'eval',   $GLOBALS ['pad_trace_eval_eval']      );
+      pad_dump_field  ( 'myself', $GLOBALS ['pad_trace_eval_myself']    );
+      pad_dump_array  ( 'parsed', $GLOBALS ['pad_trace_eval_parsed'], 1 );
+      pad_dump_array  ( 'after',  $GLOBALS ['pad_trace_eval_after'],  1 );
+      pad_dump_array  ( 'go',     $GLOBALS ['pad_trace_eval_go'],     1 );
+      pad_dump_array  ( 'result', $GLOBALS ['pad_eval_result'],       1 );
 
       echo ( "\n\n");
 
@@ -90,8 +92,7 @@
     echo ( "<b>Stack</b>\n");
     foreach ( $pad_debug_backtrace as $key => $trace ) {
       extract ( $trace );
-      if ( ! in_array($function, $func) )
-        echo ( "    $file:$line - $function\n");
+      echo ( "    $file:$line - $function\n");
     }
 
     if ( isset ( $GLOBALS ['pad_errors'] ) and is_array ( $GLOBALS ['pad_errors']) and count($GLOBALS ['pad_errors']) > 1 )
@@ -169,12 +170,13 @@
     echo ( "\n<b>$text</b>");
 
     foreach ($fields as $key)
-      if (is_object($GLOBALS[$key]))
-        pad_dump_object ($key, $GLOBALS[$key]);
-      elseif (is_array ($GLOBALS[$key]))
-        pad_dump_array ($key,  pad_dump_sanitize ($GLOBALS[$key]), 1);
-      else
-        pad_dump_field ( $key, $GLOBALS[$key] ); 
+      if ( isset($GLOBALS[$key]) )
+        if (is_object($GLOBALS[$key]))
+          pad_dump_object ($key, $GLOBALS[$key]);
+        elseif (is_array ($GLOBALS[$key]))
+          pad_dump_array ($key,  pad_dump_sanitize ($GLOBALS[$key]), 1);
+        else
+          pad_dump_field ( $key, $GLOBALS[$key] ); 
 
     echo ( "\n" );
 

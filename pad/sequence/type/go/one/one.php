@@ -2,10 +2,10 @@
 
   $pad_seq_protect_cnt++;
   if ( $pad_seq_protect_cnt > $pad_seq_protect ) 
-    return pad_error ("No stop limiet for sequence tag");
+    return FALSE;
 
-  if ( $pad_seq_loop < $pad_seq_start ) return TRUE; 
-  if ( $pad_seq_loop > $pad_seq_end   ) return TRUE;  
+  if ( is_numeric($pad_seq_loop) and $pad_seq_loop < $pad_seq_start ) return TRUE; 
+  if ( is_numeric($pad_seq_loop) and $pad_seq_loop > $pad_seq_end   ) return TRUE;  
 
   if ( $pad_seq_build == 'fixed' ) 
 
@@ -13,7 +13,7 @@
 
   elseif ( $pad_seq_build == 'function' )
 
-    $pad_sequence = "pad_seq_now_$pad_seq_seq"($pad_seq_loop);
+    $pad_sequence = "pad_sequence_$pad_seq_seq"($pad_seq_loop);
 
   elseif ( $pad_seq_build == 'bool' )
 
@@ -27,33 +27,29 @@
 
     $pad_sequence = include PAD . "sequence/types/$pad_seq_seq/$pad_seq_build.php";
 
-  if     ( $pad_sequence === NULL)  return FALSE;
-  elseif ( $pad_sequence === FALSE) return TRUE; 
-  elseif ( $pad_sequence === TRUE)  $pad_sequence = $pad_seq_loop;
+  if     ( $pad_sequence === NULL  ) return FALSE;
+  elseif ( $pad_sequence === FALSE ) return TRUE;   
+  elseif ( $pad_sequence === INF   ) $pad_sequence = '?';
+  elseif ( $pad_sequence === ǸAN   ) $pad_sequence = '?';
+  elseif ( $pad_sequence === TRUE  ) $pad_sequence = $pad_seq_loop;
 
   foreach ( $pad_seq_bool as $pad_seq_bool_name ) 
-    if ( ! "pad_seq_now_bool_$pad_seq_bool_name"($pad_sequence) )
+    if ( ! "pad_sequence_bool_$pad_seq_bool_name"($pad_sequence) )
       return TRUE;
 
-  $pad_seq_unique_check = in_array ($pad_sequence, $pad_seq_base);
-
-  $pad_seq_base [] = $pad_sequence;
+  $pad_seq_unique_check = in_array ($pad_sequence, $pad_seq_result);
 
   if ( is_numeric($pad_sequence) and $pad_sequence < $pad_seq_min ) return TRUE;  
   if ( is_numeric($pad_sequence) and $pad_sequence > $pad_seq_max ) return TRUE; 
   
-  if ( $pad_seq_page   and count($pad_seq_base) < $pad_seq_page_start          ) return TRUE;
-  if ( $pad_seq_row    and ! in_array (count($pad_seq_base), $pad_seq_row)     ) return TRUE;
-  if ( $pad_seq_value  and ! in_array ($pad_sequence, $pad_seq_value)           ) return TRUE;
-  if ( $pad_seq_unique and $pad_seq_unique_check                               ) return TRUE;
+  if ( $pad_seq_unique and $pad_seq_unique_check ) return TRUE;
 
   $pad_seq_result [] = $pad_sequence;
 
   $pad_seq_protect_cnt = 0;
 
-  if ( $pad_seq_rows       and count($pad_seq_result) >= $pad_seq_rows         ) return FALSE;
-  if ( $pad_seq_row        and count($pad_seq_result) >= count($pad_seq_row)   ) return FALSE;
-  if ( $pad_seq_value      and count($pad_seq_result) >= count($pad_seq_value) ) return FALSE;
+  if ( $pad_seq_rows and count($pad_seq_result) >= $pad_seq_rows ) 
+    return FALSE;
 
   return TRUE;
 

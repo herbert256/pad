@@ -1,6 +1,6 @@
 <?php
 
-  function pad_seq_now_hexagonal ($n) {
+  function pad_sequence_hexagonal ($n) {
  
     return $n * (2 * $n - 1);
 

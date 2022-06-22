@@ -4,6 +4,9 @@
 
 go: $b = -1;
 
+    if ( count ($result) == 1 )
+      return;
+
     foreach ( $result as $k => $t ) {
 
       if ( $b >= $start and $result[$b][1] == 'VAL' and $result[$k][1] == 'VAL' 
