@@ -1,11 +1,8 @@
 <?php
 
   $pad_seq_protect_cnt++;
-  if ( $pad_seq_protect_cnt > $pad_seq_protect ) 
-    return FALSE;
-
-  if ( is_numeric($pad_seq_loop) and $pad_seq_loop < $pad_seq_start ) return TRUE; 
-  if ( is_numeric($pad_seq_loop) and $pad_seq_loop > $pad_seq_end   ) return TRUE;  
+  if ( $pad_seq_protect_cnt > $pad_seq_protect )
+    pad_error ("No stop limit in the sequence tag"); 
 
   if ( $pad_seq_build == 'fixed' ) 
 
@@ -37,12 +34,11 @@
     if ( ! "pad_sequence_bool_$pad_seq_bool_name"($pad_sequence) )
       return TRUE;
 
-  $pad_seq_unique_check = in_array ($pad_sequence, $pad_seq_result);
-
   if ( is_numeric($pad_sequence) and $pad_sequence < $pad_seq_min ) return TRUE;  
   if ( is_numeric($pad_sequence) and $pad_sequence > $pad_seq_max ) return TRUE; 
   
-  if ( $pad_seq_unique and $pad_seq_unique_check ) return TRUE;
+  if ( $pad_seq_unique and in_array ($pad_sequence, $pad_seq_result) ) 
+    return TRUE;
 
   $pad_seq_result [] = $pad_sequence;
 
@@ -53,4 +49,4 @@
 
   return TRUE;
 
-?>  
+?>

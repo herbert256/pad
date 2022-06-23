@@ -4,6 +4,6 @@
   $pad_seq_loop  = 1;
   $pad_seq_inc   = 1;
 
-  include "go/loop.php";    
+  include "loop.php";    
 
 ?>
