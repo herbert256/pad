@@ -64,9 +64,6 @@
     if ( isset( $GLOBALS['pad_data_store'] [$search]) )
       return pad_field_tag_lvl_fake ( $GLOBALS['pad_data_store'], $search );
 
-    if ( isset( $GLOBALS['pad_seq_store'] [$search]) )
-      return pad_field_tag_lvl_fake ( $GLOBALS['pad_seq_store'], $search );
-
     for ($i=$pad_lvl; $i; $i--)
       if ( isset( $GLOBALS['pad_db_lvl'] [$i] ) )
         if ( isset( $GLOBALS['pad_db_lvl'] [$i] [$search]) )

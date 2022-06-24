@@ -369,11 +369,11 @@
 
   }
 
-  function pad_get_range ( $input ) {
+  function pad_get_range ( $input, $increment=1 ) {
 
     $parts = pad_explode ($input, '..');
 
-    return range ( $parts[0], $parts[0], pad_tag_parm ('step') ?? 1 );
+    return range ( $parts[0], $parts[1], $increment );
 
   }
 

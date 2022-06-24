@@ -12,7 +12,6 @@
     elseif ( isset               ( $GLOBALS['pad_flag_store'] [$type]    ) ) return 'flag';
     elseif ( isset               ( $GLOBALS['pad_content_store'] [$type] ) ) return 'content';
     elseif ( isset               ( $GLOBALS['pad_data_store'] [$type]    ) ) return 'data';
-    elseif ( isset               ( $GLOBALS['pad_seq_store'] [$type]     ) ) return 'sequence_store';
     elseif ( pad_file_exists     ( PAD . "sequence/types/$type"          ) ) return 'sequence';
     elseif ( isset               ( $GLOBALS['pad_db_tables'] [$type]     ) ) return 'table';
     elseif ( pad_array_check     ( $type                                 ) ) return 'array';
@@ -29,7 +28,7 @@
 
   function pad_check_type ( $type, $name ) {
 
-        if ( ! pad_valid ( $type ) or ! pad_valid ( $name)  )                                 return FALSE;
+        if ( ! pad_valid ( $type ) or ! pad_valid ( $name)  )                                           return FALSE;
     elseif ( pad_chk_level_array  ( $name                             ) and $type == 'level'          ) return TRUE;
     elseif ( pad_file_exists  ( APP . "tags/$name.php"                ) and $type == 'tag_app'        ) return TRUE;
     elseif ( pad_file_exists  ( APP . "tags/$name.html"               ) and $type == 'tag_app'        ) return TRUE;
@@ -39,7 +38,6 @@
     elseif ( isset            ( $GLOBALS['pad_flag_store'] [$name]    ) and $type == 'flag'           ) return TRUE;
     elseif ( isset            ( $GLOBALS['pad_content_store'] [$name] ) and $type == 'content'        ) return TRUE;
     elseif ( isset            ( $GLOBALS['pad_data_store'] [$name]    ) and $type == 'data'           ) return TRUE;
-    elseif ( isset            ( $GLOBALS['pad_seq_store'] [$name]     ) and $type == 'sequence_store' ) return TRUE;
     elseif ( pad_file_exists  ( PAD . "sequence/types/$type"          ) and $type == 'sequence'       ) return TRUE;
     elseif ( isset            ( $GLOBALS['pad_db_tables'] [$name]     ) and $type == 'table'          ) return TRUE;
     elseif ( pad_array_check  ( $name                                 ) and $type == 'array'          ) return TRUE;

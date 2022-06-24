@@ -1,9 +1,11 @@
 <?php
 
-  function pad_make_data ($input, $content='', $name='') {
+  function pad_make_data ($input, $content='', $name='', $check=1) {
 
     if     ( $input === NULL       ) $data = [];
     elseif ( $input === FALSE      ) $data = [];
+    elseif ( $input === NAN        ) $data = [];
+    elseif ( $input === INF        ) $data = [];
     elseif ( $input === TRUE       ) $data = [1 => [] ];
     elseif ( is_array ( $input)    ) $data = $input;
     elseif ( is_object ( $input)   ) $data = pad_xxx_to_array ( $input );
@@ -12,14 +14,18 @@
     else                             $data = trim($input);
 
     if ( is_array ( $data ) )
-      return pad_data_chk ( $data, $name );
- 
-    if ( pad_get_check ( $data ) )
-      return pad_get_data ( $data );
+      return pad_make_data_return ($check, $data, $name);
 
     if ( pad_check_range ( $input ) ) { 
       $data = pad_get_range ( $input );
-      return pad_data_chk ( $data, $name );
+      return pad_make_data_return ($check, $data, $name);
+    }
+
+    if ( pad_get_check ( $data ) ) {
+      do  {
+        $data = pad_get_go ( $data );
+      } while ( pad_get_check ( $data ) );
+      return pad_make_data_return ($check, $data, $name);
     }
 
     if ( substr($data, 0, 1) == '(' and substr($data, -1) == ')' ) {
@@ -29,7 +35,7 @@
       foreach ($data as $key => $value)
         $data[$key] = pad_eval($value);
 
-      return pad_data_chk ( $data, $name );
+      return pad_make_data_return ($check, $data, $name);
 
     }
     
@@ -162,10 +168,20 @@
       
     }
 
-    return pad_data_chk ($result, $name);
+    return pad_make_data_return ($check, $result, $name);
 
   }
   
+
+  function pad_make_data_return ($check, $data, $name) {
+
+      if ($check)
+        return pad_data_chk ( $data, $name );
+      else
+        return $data;    
+
+  }
+
   
   function pad_data_error ($data, $error) {
 

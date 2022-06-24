@@ -18,8 +18,8 @@
   if ( is_array ( $pad_tag_result ) )
     pad_add_array_to_data ($pad_tag_result);
 
-  if ( pad_tag_parm ('data') )     $pad_data [$pad_lvl] = include PAD . "options/data.php"; 
-  if ( pad_tag_parm ('sequence') ) $pad_data [$pad_lvl] = include PAD . "options/sequence.php"; 
+  if ( pad_tag_parm ('data') )
+    $pad_data [$pad_lvl] = include PAD . "options/data.php"; 
 
   $pad_data [$pad_lvl] = pad_make_data ( $pad_data [$pad_lvl] );   
 

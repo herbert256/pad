@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . "sequence/sequence.php";
+  return include PAD . 'sequence/sequence.php'; 
 
 ?>

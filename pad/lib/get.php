@@ -28,18 +28,18 @@
 
 
   function pad_get_content ( $input, $type='', $parms=[]) {
-    return pad_make_content ( pad_get_xxx ( 'content', $input, $parms ));
+    return pad_make_content ( pad_get_xxx ( $input, $parms ));
   }
 
   function pad_get_data ( $input, $type='', $parms=[] ) {
-    return pad_make_data ( pad_get_xxx ( 'data', $input, $parms ), $type );
+    return pad_make_data ( pad_get_xxx ( $input, $parms ), $type );
   }
 
   function pad_get_flag ( $input, $type='', $parms=[] ) {
-    return pad_make_flag ( pad_get_xxx ( 'flag', $input, $parms ) );
+    return pad_make_flag ( pad_get_xxx ( $input, $parms ) );
   }
 
-  function pad_get_xxx ( $type, $input, $parms ) {
+  function pad_get_xxx ( $input, $parms ) {
     return pad_get ( $input, $parms );
   }
 

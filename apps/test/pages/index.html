@@ -1,9 +1,11 @@
-<hr>
-{abc}
-  {$abc}
-{/abc}
+{power 2, sequence='4..8'}
+  {$power}  
+{/power}
 
 <hr>
-{abc last=3}
-  {$abc}
-{/abc}
+
+{range '4..8', store='myRange'}
+
+{power 2, sequence='myRange'}
+  {$power}  
+{/power}
