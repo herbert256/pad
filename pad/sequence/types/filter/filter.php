@@ -17,5 +17,5 @@
   $pad_seq_for = $pad_seq_store [$pad_seq_parm];
 
   include PAD . "sequence/type/for.php";
-      
+       
 ?>

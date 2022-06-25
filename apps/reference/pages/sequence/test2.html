@@ -2,15 +2,13 @@
 
 {table}
 
-{demo}{range '30..40', push='myRange1'}
-{make 'myRange1', round=5}{/demo}
+{demo}{range '30..40', make='even', push='myRange1'}{/demo}
 
 {demo}{myRange1}
   {$myRange1}  
 {/myRange1}{/demo}
 
-{demo}{range '4..8', push='myRange2'}
-{make 'myRange2', power=2}{/demo}
+{demo}{range '30..40', filter='even', push='myRange2'}{/demo}
 
 {demo}{myRange2}
   {$myRange2}  

@@ -17,6 +17,8 @@
   $pad_seq_push     =          $pad_parms_tag ['push']      ?? ''; 
   $pad_seq_pull     =          $pad_parms_tag ['pull']      ?? '';
   $pad_seq_range    =          $pad_parms_tag ['range']     ?? '';
+  $pad_seq_filter   =          $pad_parms_tag ['filter']    ?? '';
+  $pad_seq_make     =          $pad_parms_tag ['make']      ?? '';
 
   include 'build/sequence.php';
 
@@ -46,6 +48,8 @@
   pad_set_arr_var ( 'options_done', 'pull',        TRUE );
   pad_set_arr_var ( 'options_done', 'range',       TRUE );
   pad_set_arr_var ( 'options_done', 'protect',     TRUE );
+  pad_set_arr_var ( 'options_done', 'filter',      TRUE );
+  pad_set_arr_var ( 'options_done', 'make',        TRUE );
 
   $pad_seq_result = $pad_seq_for = [];
   $pad_seq = $pad_sequence = $pad_seq_protect_cnt = 0;
@@ -61,6 +65,8 @@
   include 'type/type.php';
 
   include 'build/actions.php';
+
+  include 'build/operations.php';
  
   if ( $pad_seq_push )
     return include 'build/push.php';
