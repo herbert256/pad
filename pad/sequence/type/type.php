@@ -1,21 +1,23 @@
 <?php
 
-  if ( $pad_seq_sequence ) {
+  if ( $pad_seq_pull ) {
 
-    if     ( isset($pad_data_store [$pad_seq_sequence]) )  
-      $pad_seq_for = $pad_data_store [$pad_seq_sequence];
-    elseif ( pad_check_range ( $pad_seq_sequence )       )  
-      $pad_seq_for = pad_get_range ( $pad_seq_sequence, $pad_seq_inc );
-    else                                                   
-      $pad_seq_for = pad_make_data ( $pad_seq_sequence, '', $pad_seq_name, 0 );
+    $pad_seq_for = $pad_seq_store [$pad_seq_pull];
 
     return include "for.php";
 
   }
 
+  if ( $pad_seq_range and $pad_seq_seq <> 'range' ) {
+
+    $pad_seq_for = pad_get_range ( $pad_seq_range, $pad_seq_inc );
+
+    return include "for.php";
+
+  }
 
   if ( count($pad_seq_for) ) 
-    include "for.php";
+    return include "for.php";
 
   return include "$pad_seq_build.php";
 
