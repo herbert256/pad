@@ -1,5 +1,11 @@
 <?php
 
+  if  ( pad_file_exists (PAD . "sequence/types/$pad_seq_seq/$pad_seq_seq.php") )  {
+
+    return PAD . "sequence/types/$pad_seq_seq/$pad_seq_seq.php";
+
+  }
+
   if ( $pad_seq_pull ) {
 
     $pad_seq_for = $pad_seq_store [$pad_seq_pull];

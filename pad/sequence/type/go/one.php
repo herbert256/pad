@@ -1,10 +1,19 @@
 <?php
 
+  $pad_seq++;
+
   $pad_seq_protect_cnt++;
   if ( $pad_seq_protect_cnt > $pad_seq_protect )
     pad_error ("No stop limit in the sequence tag"); 
 
-  if ( $pad_seq_build == 'fixed' ) 
+  if ( $pad_seq_seq == 'make' ) {
+
+    foreach ( $pad_seq_make as $pad_seq_make_name )
+      include PAD . "sequence/types/$pad_seq_make_name/make.php"; 
+
+    $pad_sequence = $pad_seq_loop;
+
+  } elseif ( $pad_seq_build == 'fixed' ) 
 
     $pad_sequence = $pad_seq_loop;
 

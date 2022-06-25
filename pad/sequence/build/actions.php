@@ -6,7 +6,7 @@
 
       if ( pad_file_exists ( PAD . "sequence/actions/one/$pad_seq_opt_name.php" ) ) {
 
-        foreach ( $pad_seq_result as $pad_k => $pad_seq_action)
+        foreach ( $pad_seq_result as $pad_k => $pad_seq_loop)
           $pad_seq_result [$pad_k] = include PAD . "sequence/actions/one/$pad_seq_opt_name.php";
 
         pad_set_arr_var ( 'options_done', $pad_seq_opt_name, TRUE );

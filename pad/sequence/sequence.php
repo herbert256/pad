@@ -26,6 +26,12 @@
   include 'build/bool.php';
   include 'build/loop.php';
 
+  if ( ! isset($pad_parms_tag ['$pad_seq_seq']) )
+    $pad_parms_tag ["$pad_seq_seq"] = $pad_seq_parm;
+
+  if ( ! isset($GLOBALS ["pad_seq_$pad_seq_seq"]) )
+    $GLOBALS ["pad_seq_$pad_seq_seq"] = $pad_seq_parm;
+
   pad_set_arr_var ( 'options_done', $pad_seq_seq,  TRUE );
   pad_set_arr_var ( 'options_done', $pad_seq_name, TRUE );
   pad_set_arr_var ( 'options_done', 'from',        TRUE );
@@ -38,10 +44,11 @@
   pad_set_arr_var ( 'options_done', 'random',      TRUE );
   pad_set_arr_var ( 'options_done', 'push',        TRUE );
   pad_set_arr_var ( 'options_done', 'pull',        TRUE );
+  pad_set_arr_var ( 'options_done', 'range',       TRUE );
   pad_set_arr_var ( 'options_done', 'protect',     TRUE );
 
   $pad_seq_result = $pad_seq_for = [];
-  $pad_sequence = $pad_seq_protect_cnt = 0;
+  $pad_seq = $pad_sequence = $pad_seq_protect_cnt = 0;
 
   $pad_seq_build = include 'build/type.php';  
 
