@@ -68,12 +68,12 @@
       $header = explode(',', $lines [0]);
    
       foreach ($header as $key1 => $val1)
-        $header [$key1] = trim(str_replace('!!Q!!', '"', urldecode($val1)));
+        $header [$key1] = trim(str_replace('!!Q!!', '"', utf8_decode(urldecode($val1))));
    
       foreach ($lines as $key1 => $val1)
         if ($key1 > 0)
           foreach (explode(',', $val1) as $key2 => $val2)
-            $result [$key1] [$header[$key2]] = trim(str_replace('!!Q!!', '"', urldecode($val2)));
+            $result [$key1] [$header[$key2]] = trim(str_replace('!!Q!!', '"', utf8_decode(urldecode($val2))));
 
       if ( ! is_array($result)  or $result === NULL or $result === FALSE)
         return pad_data_error ($data, "CSV conversion error");
