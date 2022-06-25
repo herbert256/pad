@@ -9,11 +9,18 @@
   {$myRange1}  
 {/myRange1}{/demo}
 
-{demo}{range '4..8', push='myRange2'}
+{demo}{range '40..50', push='myRange2'}
 {filter 'myRange2', odd}{/demo}
 
 {demo}{myRange2}
   {$myRange2}  
 {/myRange2}{/demo}
+
+{demo}{range '1..100', push='myRange3'}
+{filter 'myRange3', prime}{/demo}
+
+{demo}{myRange3}
+  {$myRange3}  
+{/myRange3}{/demo}
 
 {/table}

@@ -36,10 +36,10 @@
   elseif ( $pad_sequence === NAN   ) $pad_sequence = '?';
   elseif ( $pad_sequence === TRUE  ) $pad_sequence = $pad_seq_loop;
 
-  if ( ! pad_file_exists ( PAD . "sequence/types/$pad_seq_seq/one.php" ) ) 
-    foreach ( $pad_seq_bool as $pad_seq_bool_name ) 
-      if ( ! "pad_sequence_bool_$pad_seq_bool_name"($pad_sequence) )
-        return TRUE;
+#  if ( ! pad_file_exists ( PAD . "sequence/types/$pad_seq_seq/one.php" ) ) 
+#    foreach ( $pad_seq_bool as $pad_seq_bool_name ) 
+#      if ( ! "pad_sequence_bool_$pad_seq_bool_name"($pad_sequence) )
+#        return TRUE;
 
   if ( is_numeric($pad_sequence) and $pad_sequence < $pad_seq_min ) return TRUE;  
   if ( is_numeric($pad_sequence) and $pad_sequence > $pad_seq_max ) return TRUE; 
