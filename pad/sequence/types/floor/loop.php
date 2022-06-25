@@ -1,5 +1,8 @@
 <?php  
 
-  return include PAD . "sequence/actions/one/floor.php";
+  if ( ! $pad_seq_floor )
+    $pad_seq_floor = 1;
+
+  return floor ( $pad_seq_loop / $pad_seq_floor ) * $pad_seq_floor;
 
 ?>

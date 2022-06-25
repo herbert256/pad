@@ -1,6 +1,5 @@
 <?php
   
-
   if ( $pad_seq_one == $pad_seq_seq ) 
     return;
   

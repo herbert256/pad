@@ -25,16 +25,21 @@
   if   ( $pad_seq_name ) $pad_seq_name = $pad_seq_name;
   else                   $pad_seq_name = $pad_seq_set; 
 
-  include 'build/bool.php';
+  include 'build/loop.php';
   include 'build/make.php';
   include 'build/filter.php';
-  include 'build/loop.php';
 
-  if ( ! isset($pad_parms_tag ['$pad_seq_seq']) )
-    $pad_parms_tag ["$pad_seq_seq"] = $pad_seq_parm;
+  if ( ! isset($GLOBALS ["pad_seq_$pad_seq_seq"]) ) $GLOBALS ["pad_seq_$pad_seq_seq"] = $pad_seq_parm;
+  if ( ! isset($pad_parms_tag ["$pad_seq_seq"])   ) $pad_parms_tag ["$pad_seq_seq"]   = $pad_seq_parm;
 
-  if ( ! isset($GLOBALS ["pad_seq_$pad_seq_seq"]) )
-    $GLOBALS ["pad_seq_$pad_seq_seq"] = $pad_seq_parm;
+  foreach ( $pad_parms_tag as $pad_seq_tag_name => $pad_seq_tag_value ) {
+    if ( ! isset($GLOBALS ["pad_seq_$pad_seq_tag_name"]) )
+      $GLOBALS ["pad_seq_$pad_seq_tag_name"] = $pad_seq_tag_value;
+    if ( pad_file_exists ( PAD . "sequence/types/$pad_seq_tag_name/make.php" ) )
+      pad_set_arr_var ( 'options_done', $pad_seq_tag_name, TRUE );
+    if ( pad_file_exists ( PAD . "sequence/types/$pad_seq_tag_name/filter.php" ) )
+      pad_set_arr_var ( 'options_done', $pad_seq_tag_name, TRUE );
+  }
 
   pad_set_arr_var ( 'options_done', $pad_seq_seq,  TRUE );
   pad_set_arr_var ( 'options_done', $pad_seq_name, TRUE );
