@@ -32,14 +32,27 @@
 
   if     ( $pad_sequence === NULL  ) return FALSE;
   elseif ( $pad_sequence === FALSE ) return TRUE;   
-  elseif ( $pad_sequence === INF   ) $pad_sequence = '?';
-  elseif ( $pad_sequence === NAN   ) $pad_sequence = '?';
+  elseif ( $pad_sequence === INF   ) return TRUE; 
+  elseif ( $pad_sequence === NAN   ) return TRUE; 
   elseif ( $pad_sequence === TRUE  ) $pad_sequence = $pad_seq_loop;
 
-#  if ( ! pad_file_exists ( PAD . "sequence/types/$pad_seq_seq/one.php" ) ) 
-#    foreach ( $pad_seq_bool as $pad_seq_bool_name ) 
-#      if ( ! "pad_sequence_bool_$pad_seq_bool_name"($pad_sequence) )
-#        return TRUE;
+  foreach ( $pad_parms_tag as $pad_seq_one_name => $pad_seq_one_value ) {
+    $pad_seq_loop = $pad_sequence;
+    if ( $pad_seq_one_value == 'make' and $pad_seq_seq <> 'make' )
+      $pad_sequence = include 'make.php';
+    elseif ( $pad_seq_one_value == 'filter' and $pad_seq_seq <> 'filter' ) 
+      $pad_sequence = include 'filter.php';
+    if     ( $pad_sequence === NULL  ) return FALSE;
+    elseif ( $pad_sequence === FALSE ) return TRUE;   
+    elseif ( $pad_sequence === INF   ) return TRUE; 
+    elseif ( $pad_sequence === NAN   ) return TRUE; 
+    elseif ( $pad_sequence === TRUE  ) $pad_sequence = $pad_seq_loop;      
+  }
+
+  if ( ! pad_file_exists ( PAD . "sequence/types/$pad_seq_seq/one.php" ) ) 
+    foreach ( $pad_seq_bool as $pad_seq_bool_name ) 
+      if ( ! "pad_sequence_bool_$pad_seq_bool_name"($pad_sequence) )
+        return TRUE;
 
   if ( is_numeric($pad_sequence) and $pad_sequence < $pad_seq_min ) return TRUE;  
   if ( is_numeric($pad_sequence) and $pad_sequence > $pad_seq_max ) return TRUE; 

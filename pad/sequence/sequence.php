@@ -26,6 +26,8 @@
   else                   $pad_seq_name = $pad_seq_set; 
 
   include 'build/bool.php';
+  include 'build/make.php';
+  include 'build/filter.php';
   include 'build/loop.php';
 
   if ( ! isset($pad_parms_tag ['$pad_seq_seq']) )
@@ -51,7 +53,7 @@
   pad_set_arr_var ( 'options_done', 'filter',      TRUE );
   pad_set_arr_var ( 'options_done', 'make',        TRUE );
 
-  $pad_seq_result = $pad_seq_for = [];
+  $pad_seq_result = $pad_seq_for = $pad_seq_make_list = $pad_seq_filter_list = [];
   $pad_seq = $pad_sequence = $pad_seq_protect_cnt = 0;
 
   $pad_seq_build = include 'build/type.php';  
@@ -65,8 +67,6 @@
   include 'type/type.php';
 
   include 'build/actions.php';
-
-  include 'build/operations.php';
  
   if ( $pad_seq_push )
     return include 'build/push.php';
