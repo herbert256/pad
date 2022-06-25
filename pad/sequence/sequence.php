@@ -65,6 +65,9 @@
   if ( $pad_seq_push )
     return include 'build/push.php';
 
+  if ( pad_file_exists ( PAD . "sequence/types/$pad_seq_seq/exits.php" )) 
+    return include PAD . "sequence/types/$pad_seq_seq/exits.php";
+
   $pad_name = $pad_parameters [$pad_lvl] ['name'] = $pad_seq_name;
 
   return $pad_seq_result;

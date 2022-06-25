@@ -1,0 +1,19 @@
+<h3>test</h3>
+
+{table}
+
+{demo}{range '30..40', push='myRange1'}
+{filter 'myRange1', even}{/demo}
+
+{demo}{myRange1}
+  {$myRange1}  
+{/myRange1}{/demo}
+
+{demo}{range '4..8', push='myRange2'}
+{filter 'myRange2', odd}{/demo}
+
+{demo}{myRange2}
+  {$myRange2}  
+{/myRange2}{/demo}
+
+{/table}

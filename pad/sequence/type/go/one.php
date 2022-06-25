@@ -6,14 +6,11 @@
   if ( $pad_seq_protect_cnt > $pad_seq_protect )
     pad_error ("No stop limit in the sequence tag"); 
 
-  if ( $pad_seq_seq == 'make' ) {
+  if ( pad_file_exists ( PAD . "sequence/types/$pad_seq_seq/one.php" ) ) 
+  
+    $pad_sequence = include PAD . "sequence/types/$pad_seq_seq/one.php";
 
-    foreach ( $pad_seq_make as $pad_seq_make_name )
-      include PAD . "sequence/types/$pad_seq_make_name/make.php"; 
-
-    $pad_sequence = $pad_seq_loop;
-
-  } elseif ( $pad_seq_build == 'fixed' ) 
+  elseif ( $pad_seq_build == 'fixed' ) 
 
     $pad_sequence = $pad_seq_loop;
 
@@ -39,9 +36,10 @@
   elseif ( $pad_sequence === NAN   ) $pad_sequence = '?';
   elseif ( $pad_sequence === TRUE  ) $pad_sequence = $pad_seq_loop;
 
-  foreach ( $pad_seq_bool as $pad_seq_bool_name ) 
-    if ( ! "pad_sequence_bool_$pad_seq_bool_name"($pad_sequence) )
-      return TRUE;
+  if ( ! pad_file_exists ( PAD . "sequence/types/$pad_seq_seq/one.php" ) ) 
+    foreach ( $pad_seq_bool as $pad_seq_bool_name ) 
+      if ( ! "pad_sequence_bool_$pad_seq_bool_name"($pad_sequence) )
+        return TRUE;
 
   if ( is_numeric($pad_sequence) and $pad_sequence < $pad_seq_min ) return TRUE;  
   if ( is_numeric($pad_sequence) and $pad_sequence > $pad_seq_max ) return TRUE; 

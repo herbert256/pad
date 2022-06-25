@@ -13,10 +13,9 @@
       $GLOBALS ["pad_seq_$pad_seq_make_name"] = $pad_seq_make_value;
 
     }
-
-   $pad_seq_for = $pad_seq_store [$pad_seq_parm];
-
    
-return include PAD . "sequence/type/for.php";
+  $pad_seq_for = $pad_seq_store [$pad_seq_parm];
 
+  include PAD . "sequence/type/for.php";
+      
 ?>
