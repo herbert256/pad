@@ -16,7 +16,7 @@
 
   elseif ( $pad_seq_build == 'function' )
 
-    $pad_sequence = "pad_sequence_$pad_seq_seq"($pad_seq_loop);
+    $pad_sequence = "pad_sequence_$pad_seq_seq" ($pad_seq_loop);
 
   elseif ( $pad_seq_build == 'bool' )
 
@@ -37,8 +37,8 @@
   elseif ( $pad_sequence === TRUE  ) $pad_sequence = $pad_seq_loop;
 
   $pad_seq_parm_save = $pad_seq_parm;
-  $pad_seq_loop      = $pad_seq_sequence;
-  $pad_seq_sequence  = include 'operations.php';
+  $pad_seq_loop      = $pad_sequence;
+  $pad_sequence      = include 'operations.php';
   $pad_seq_parm      = $pad_seq_parm_save;
 
   if     ( $pad_sequence === NULL  ) return FALSE;

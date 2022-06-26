@@ -20,6 +20,9 @@
   $pad_seq_filter   =          $pad_parms_tag ['filter']    ?? '';
   $pad_seq_make     =          $pad_parms_tag ['make']      ?? '';
 
+  $pad_seq_result = $pad_seq_for = $pad_seq_make_list = $pad_seq_filter_list = [];
+  $pad_seq = $pad_sequence = $pad_seq_protect_cnt = 0;
+
   include 'build/sequence.php';
 
   if   ( $pad_seq_name ) $pad_seq_name = $pad_seq_name;
@@ -58,9 +61,6 @@
   pad_set_arr_var ( 'options_done', 'protect',     TRUE );
   pad_set_arr_var ( 'options_done', 'filter',      TRUE );
   pad_set_arr_var ( 'options_done', 'make',        TRUE );
-
-  $pad_seq_result = $pad_seq_for = $pad_seq_make_list = $pad_seq_filter_list = [];
-  $pad_seq = $pad_sequence = $pad_seq_protect_cnt = 0;
 
   $pad_seq_build = include 'build/type.php';  
 

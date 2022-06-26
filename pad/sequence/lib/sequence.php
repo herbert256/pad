@@ -25,5 +25,12 @@
 
   }
 
+  function pad_seq_set ( $name, $value ) {
+
+    $GLOBALS ["pad_seq_parm"] = $value;
+    $GLOBALS ["pad_seq_$name"] = $value;
+
+  }
+
 
 ?>
