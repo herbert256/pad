@@ -28,6 +28,7 @@
   include 'build/loop.php';
   include 'build/make.php';
   include 'build/filter.php';
+  include 'build/operations.php';
 
   if ( ! isset($GLOBALS ["pad_seq_$pad_seq_seq"]) ) $GLOBALS ["pad_seq_$pad_seq_seq"] = $pad_seq_parm;
   if ( ! isset($pad_parms_tag ["$pad_seq_seq"])   ) $pad_parms_tag ["$pad_seq_seq"]   = $pad_seq_parm;

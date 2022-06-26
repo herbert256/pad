@@ -92,7 +92,8 @@
     echo ( "<b>Stack</b>\n");
     foreach ( $pad_debug_backtrace as $key => $trace ) {
       extract ( $trace );
-      echo ( "    $file:$line - $function\n");
+      if ( ! in_array($file, [PAD.'inits/error.php',PAD.'lib/dump.php']) )
+        echo ( "    $file:$line - $function\n");
     }
 
     if ( isset ( $GLOBALS ['pad_errors'] ) and is_array ( $GLOBALS ['pad_errors']) and count($GLOBALS ['pad_errors']) > 1 )

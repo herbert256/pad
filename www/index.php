@@ -43,24 +43,35 @@
   // PAD boot error handling functions
  
   function pad_boot_error ( $error ) {
+
     extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
+
     pad_boot_error_go ( $error, $file, $line );
+
   }
 
   function pad_boot_error_handler ( $type, $error, $file, $line ) {
+
     pad_boot_error_go ( $error, $file, $line );
+
   }
 
   function pad_boot_error_exception ( $error ) {
-    pad_boot_error_go ( $error->getMessage(), $error->getFile(), $error->getLine() ) ;
+
+    pad_boot_error_go ( $error->getMessage(), $error->getFile(), $error->getLine() );
+
   }
 
   function pad_boot_error_shutdown () {
+
     if ( isset ( $GLOBALS['pad_skip_boot_shutdown'] ) )
       return;
+
     $error = error_get_last ();
+ 
     if ($error !== NULL)
       pad_boot_error_go ( $error['message'], $error['file'], $error['line'] );
+ 
   }
 
   function pad_boot_error_go ( $error, $file, $line ) {
@@ -71,7 +82,8 @@
     if ( ! headers_sent () )
       header ( 'HTTP/1.0 500 Internal Server Error' );
 
-    $id = $GLOBALS['PADREQID'] ?? uniqid(TRUE);
+    $id = $GLOBALS['PADREQID'] ?? uniqid (TRUE);
+
     error_log ( "[PAD] $id - $file:$line $error", 4 );
 
 #    if ( function_exists ( 'pad_local' ) and pad_local () )
@@ -82,5 +94,6 @@
     exit;
 
   }  
+
 
 ?>
