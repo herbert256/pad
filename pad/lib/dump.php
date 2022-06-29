@@ -40,7 +40,7 @@
 
     $app_chk = ['page','app','PADSESSID','PADREQID','PHPSESSID','PADREFID','GLOBALS','_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
 
-    $not = ['pad_base','pad_sql_connect','pad_pad_sql_connect','pad_headers','pad_data','pad_parameters', 'pad_errors', 'pad_result', 'pad_html', 'pad_output', 'pad_output_gz', 'pad_current', 'pad_lib_directory', 'pad_lib_iterator', 'pad_lib_one'];
+    $not = ['pad_base','pad_sql_connect','pad_pad_sql_connect','pad_headers','pad_data','pad_parameters', 'pad_result', 'pad_html', 'pad_output', 'pad_output_gz', 'pad_current', 'pad_lib_directory', 'pad_lib_iterator', 'pad_lib_one'];
 
     $settings = '';
     if ( file_exists (PAD . 'config/config.php') )
@@ -63,9 +63,9 @@
 
     }
 
-    ksort($app_flds);
-    ksort($config);
-    ksort($pad);
+    sort($app_flds);
+    sort($config);
+    sort($pad);
 
     $pad_debug_backtrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS);
 
@@ -96,15 +96,6 @@
         echo ( "    $file:$line - $function\n");
     }
 
-    if ( isset ( $GLOBALS ['pad_errors'] ) and is_array ( $GLOBALS ['pad_errors']) and count($GLOBALS ['pad_errors']) > 1 )
-      pad_dump_array  ('Errors', $GLOBALS ['pad_errors'] );
-
-    if ( isset($GLOBALS ['pad_lvl']) and $GLOBALS ['pad_lvl'] > 2 ) {
-      echo ( "\n<b>Levels</b>\n");
-      for ($i=$GLOBALS ['pad_lvl']; $i>1; $i--)
-        echo ( "    $i - " . ($GLOBALS['pad_parameters'] [$i] ['name']??'???') . ' - ' . ($GLOBALS['pad_parameters'] [$i] ['parm']??'') . "\n");
-    }
-
     if ( isset ( $GLOBALS ['pad_parameters'] ) )
       for ( $lvl=$GLOBALS ['pad_lvl'];  $lvl>1; $lvl-- ) 
         if ( isset($GLOBALS ['pad_parameters'] [$lvl] ) ) {
@@ -113,12 +104,6 @@
           foreach ($work as $key => $val)
             if ( is_scalar($val) )
               $work [$key] = substr(trim(preg_replace('/\s+/', ' ', $val) ), 0, 100);
-
-          foreach ($work as $key => $val)
-            if ( is_array($val) and ! count($val) )
-              unset ($work[$key]);
-            elseif ( ! is_array($val) and !$val )
-              unset ($work[$key]);
 
           pad_dump_array  ('Level '.$lvl, $work );
   

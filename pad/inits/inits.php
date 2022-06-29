@@ -21,6 +21,7 @@
   $pad_cache_stop = 0;
   $pad_etag       = '';
   $pad_exit       = 1;
+  $pad_len        = 0;
   $pad_time       = $_SERVER['REQUEST_TIME'];  
 
   $pad_lvl = 1;  

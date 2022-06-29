@@ -58,7 +58,7 @@
     if ( $stop <> 302 and $stop <> 304)
       pad_header ('Content-Type: text/html; charset=UTF-8');
 
-    if ( $stop == 200 )
+    if ( $stop == 200 and $GLOBALS['pad_len'] )
       pad_header ('Content-Length: ' . $GLOBALS['pad_len']);
     
     if ( ($stop <> 200 and $stop <> 304) or ! $GLOBALS['pad_cache'] )

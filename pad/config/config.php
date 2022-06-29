@@ -7,13 +7,14 @@
                               // 'php'    = Use the PHP defaults (php.ini).
                               // 'stop'   = Stop processing but do the PAD exit handling.
                               // 'abort'  = Abort, don't do the PAD exit handling
-                              // 'none'   = Ignore all errors and continue processing.
+                              // 'ignore' = Ignore all errors and continue processing.
                               // 'report' = Report the error and continue processing.
  
   $pad_error_level  = 'all';  // Kind of errors that will be processed by $pad_error_action
                               // 'none' , 'error' , 'warning' , 'notice' , 'all'
                               // (not used when $pad_error_action is 'php' or 'boot')
 
+  $pad_error_log    = FALSE;  //  Write error to Apache error log
   $pad_error_dump   = FALSE;  //  Dumps errors to the file system.
 
   // Trace the internal working of PAD
