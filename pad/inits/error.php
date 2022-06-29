@@ -34,12 +34,34 @@
   }
 
 
+  function pad_error ($error) {
+
+    if ( $GLOBALS['pad_error_action'] == 'ignore' ) RETURN FALSE;
+
+    try {
+      extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
+    } catch (Exception $e) {
+      pad_boot_error ( "OOPS-1: " . $e->getMessage() . ' at ' . $e->getFile() . ':' . $e->getLine() );
+    }
+
+    if ( $GLOBALS['pad_error_action'] == 'php' )
+      throw new ErrorException ($error, 0, E_ERROR, $file, $line);
+
+    try {
+      return pad_error_go ($error, $file, $line); 
+    } catch (Exception $e) {
+      pad_boot_error ( "OOPS-2: " . $e->getMessage() . ' at ' . $e->getFile() .  ':' . $e->getLine() );
+    }
+
+  }
+
+
   function pad_error_handler ( $type, $error, $file, $line ) {
  
     if ( $GLOBALS['pad_error_action'] == 'ignore' ) RETURN FALSE;
 
     if ( error_reporting() & $type )
-      return pad_error ( 'ERROR: ' . $error, $file, $line );
+      return pad_error_go ( 'ERROR: ' . $error, $file, $line );
  
   }
 
@@ -48,7 +70,7 @@
 
     if ( $GLOBALS['pad_error_action'] == 'ignore' ) RETURN FALSE;
 
-    return pad_error ( 'EXCEPTION: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
+    return pad_error_go ( 'EXCEPTION: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
  
   }
   
@@ -65,44 +87,19 @@
     if ( $error === NULL ) 
       return;
   
-    return pad_error ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
+    return pad_error_go ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
   
-  }
-
-
-  function pad_error ($error, $file='', $line='') {
-
-    if ( $GLOBALS['pad_error_action'] == 'ignore' ) RETURN FALSE;
-
-    if ( $GLOBALS['pad_exit'] <> 1 ) 
-      pad_boot_error ( "ERROR-2: $error at $file:$line" );
-
-    if ( ! $file )
-      try {
-        extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
-      } catch (Exception $e) {
-        pad_boot_error ( "ERROR-3: " . $e->getMessage() . ' at ' . $e->getFile() . ':' . $e->getLine() );
-      }
-
-    if ( $GLOBALS['pad_error_action'] == 'php' )
-      throw new ErrorException ($error, 0, E_ERROR, $file, $line);
-
-    try {
-      return pad_error_go ($error, $file, $line); 
-    } catch (Exception $e) {
-      pad_boot_error ( "ERROR-4: " . $e->getMessage() . ' at ' . $e->getFile() .  ':' . $e->getLine() );
-    }
-
   }
 
 
   function pad_error_go ($error, $file, $line) {
 
-    if ( $GLOBALS['pad_error_action'] == 'ignore' ) RETURN FALSE;
-
     global $app, $page, $pad_error_action, $pad_exit, $pad_trace, $pad_trace_dir_base, $PADREQID;
 
-    $pad_exit = 2;
+    if ( $GLOBALS['pad_exit'] <> 1 ) 
+      pad_boot_error ( "OOPS-3: $error at $file:$line" );
+
+    $GLOBALS['pad_exit']= 2;
 
     $error = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '.', $error);
     $error = preg_replace('/\s+/', ' ', $error);
@@ -123,7 +120,7 @@
     if ( ! headers_sent () and in_array($pad_error_action, ['pad', 'stop', 'abort']) )
       pad_header ('HTTP/1.0 500 Internal Server Error' );
 
-    if ( $GLOBALS['pad_error_dump'] ) 
+    if ( $GLOBALS['pad_error_dump'] and ! $pad_trace ) 
       pad_dump_to_file ("errors/$app/$page/$PADREQID." .uniqid() . ".html", "$file:$line $error");
 
     if ( $pad_error_action == 'boot' )
