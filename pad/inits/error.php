@@ -35,10 +35,23 @@
 
   function pad_error ($error) {
  
-    extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
+    try {
  
-    return pad_error_go ( 'PAD: ' . $error, $file, $line); 
+      extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
+
+      if ( $GLOBALS['pad_error_action'] == 'php' ) { 
+        trigger_error("$file:$line $error", E_USER_ERROR);
+        return FALSE;
+      }
+   
+      return pad_error_go ( 'PAD: ' . $error, $file, $line); 
+   
+     } catch (Exception $e) {
  
+      pad_boot_error ( "OOPS: $error" );
+ 
+    }
+
   }
 
 
@@ -144,14 +157,6 @@
     pad_stop (500);
 
   }
-
-  $pad_error_action = 'pad';  // 'pad'    = PAD's own full blown error handler.
-                              // 'boot'   = Use the lightweight PAD boot error handler
-                              // 'php'    = Use the PHP defaults (php.ini).
-                              // 'stop'   = Stop processing but do the PAD exit handling.
-                              // 'abort'  = Abort, don't do the PAD exit handling
-                              // 'ignore' = Ignore all errors and continue processing.
-                              // 'report' = Report the error and continue processing.
  
 
 ?>

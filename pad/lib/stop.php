@@ -19,7 +19,7 @@
 
       $GLOBALS['pad_sent'] = TRUE;
 
-      pad_headers ();
+      pad_headers ($stop);
     
       if ( $stop == 200 ) {
 
@@ -41,12 +41,10 @@
   }
 
 
-  function pad_headers () {
+  function pad_headers ($stop) {
 
     if ( headers_sent () )
       return;
-
-    $stop = $GLOBALS['pad_stop'];
 
     if ( $stop == 500 )
       pad_header ('HTTP/1.0 500 Internal Server Error' );
