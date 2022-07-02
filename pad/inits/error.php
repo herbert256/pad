@@ -124,7 +124,7 @@
 
     if ( $pad_trace )
       pad_dump_to_file ("$pad_trace_dir_base/error_" .uniqid() . ".html", $error);
-    elseif ( $pad_error_dump  or $pad_error_action == 'report' ) 
+    elseif ( $pad_error_dump or $pad_error_action == 'report' ) 
       pad_dump_to_file ("errors/$app/$page/$PADREQID." .uniqid() . ".html", $error);
 
     if ( ! headers_sent () and in_array($pad_error_action, ['pad', 'stop', 'abort']) )

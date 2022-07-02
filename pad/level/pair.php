@@ -27,7 +27,7 @@ go2:
 
   $pad_end [$pad_lvl] = strpos ( $pad_html[$pad_lvl], '}', $pad_pos+2);
   if ( $pad_end [$pad_lvl] === FALSE )
-    pad_error ("No closure of close tag found");
+    return pad_error ("No closure of close tag found");
 
   $pad_tmp = substr ($pad_html[$pad_lvl], $pad_pos+1, $pad_end[$pad_lvl]-$pad_pos-1);
 

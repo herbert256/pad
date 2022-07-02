@@ -30,7 +30,7 @@
   elseif ( $pad_first == '$' ) return pad_html ( include PAD . 'var/opt.php' );
 
   if     ( ! ctype_alpha ( $pad_first )  ) return pad_ignore ('ctype_alpha');
-  elseif ( ! pad_valid ( $pad_tag ) ) return pad_ignore ('pad_valid');
+  elseif ( ! pad_valid   ( $pad_tag )    ) return pad_ignore ('pad_valid');
   
   $pad_ns_pos = strpos($pad_tag, ':');
 

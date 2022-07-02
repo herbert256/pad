@@ -1,9 +1,7 @@
 <?php
 
-  if ( $pad_tag == $pad_name and $pad_parm and pad_valid ($pad_parm) and strlen($pad_parm) < 100) {
-    $pad_name = $pad_parm;
-    $pad_parameters [$pad_lvl] ['name'] = $pad_parm;
-  }
+  if ( $pad_tag == $pad_name and $pad_parm and pad_valid ($pad_parm) and strlen($pad_parm) < 100)
+    $pad_name = $pad_parameters [$pad_lvl] ['name'] = $pad_parm;
 
   if ( $pad_walk == 'start' and $pad_parms_type == 'close' ) {
 

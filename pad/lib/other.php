@@ -23,7 +23,7 @@
 
   function pad_local () {
 
-    if ( !  isset($GLOBALS['pad_local']) )
+    if ( ! isset($GLOBALS['pad_local']) )
       return FALSE;
     
     $host = strtolower(trim($_SERVER['HTTP_HOST']??''));
@@ -380,10 +380,10 @@
 
   function pad_function_type ( $check ) {
 
-    if     ( pad_file_exists ( APP  . "functions/$check.php" ) ) return 'app';
+    if     ( pad_file_exists ( APP . "functions/$check.php" ) ) return 'app';
     elseif ( pad_file_exists ( PAD . "functions/$check.php" ) ) return 'pad';
-    elseif ( function_exists ( $check                        ) ) return 'php';
-    else                                                         return pad_error ('Function not found: ' . $check);
+    elseif ( function_exists ( $check                       ) ) return 'php';
+    else                                                        return pad_error ('Function not found: ' . $check);
 
   }
 
@@ -468,7 +468,7 @@
   } 
 
 
-  function pad_make_flag ( $input ) {    
+  function pad_make_flag ( $input ) {
 
     if     ( $input === NULL  )  return FALSE;
     elseif ( $input === FALSE )  return FALSE;
@@ -478,17 +478,17 @@
 
       $array = pad_xxx_to_array ( $input );
 
-      if ( pad_is_default_data ( $data )  )
+      if ( pad_is_default_data ( $array )  )
         return FALSE;
 
-      if ( count ( $data ) )
+      if ( count ( $array ) )
         return TRUE; 
       else
         return FALSE;
 
     }
  
-    if ( $input )
+    if ( pad_eval($input) )
       return TRUE; 
     else
       return FALSE;

@@ -17,7 +17,7 @@
   function pad_eval ($eval, $myself='') {
 
     if ( strlen(trim($eval)) == 0 )
-      return pad_eval_error ('Empty eval call');
+      return '';
 
     global $pad_eval_cnt, $pad_eval_start, $pad_eval_result, $pad_trace;
 
@@ -96,7 +96,6 @@
       ] );
 
       pad_file_put_contents ( "$pad_trace_dir_base/eval_error_$pad_eval_cnt.json",   $json );
-      pad_file_put_contents ( "errors/eval/$app/$page/$PADREQID/$pad_eval_cnt.json", $json );
 
     }
 
