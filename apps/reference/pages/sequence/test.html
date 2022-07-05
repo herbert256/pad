@@ -1,0 +1,67 @@
+{table}
+{demo}{range '1..50', store='mySeq'}{/demo}
+{/table}
+
+<h3>shift</h3>
+
+{table}
+
+{demo}{mySeq shift}
+  {$mySeq}
+{/mySeq}{/demo}
+
+{demo}{mySeq shift=2}
+  {$mySeq}
+{/mySeq}{/demo}
+
+{demo}{mySeq shift=3}
+  {$mySeq}
+{/mySeq}{/demo}
+
+{demo}{shift 'mySeq'}
+  {$shift}
+{/shift}{/demo}
+
+{demo}{shift 'mySeq'}
+  {$shift}
+{/shift}{/demo}
+
+{demo}{shift 'mySeq', rows=2}
+  {$shift}
+{/shift}{/demo}
+
+{demo}{shift 'mySeq', rows=3}
+  {$shift}
+{/shift}{/demo}
+
+{/table}<h3>pop</h3>{table}
+
+{demo}{mySeq pop}
+  {$mySeq}
+{/mySeq}{/demo}
+
+{demo}{mySeq pop=2}
+  {$mySeq}
+{/mySeq}{/demo}
+
+{demo}{mySeq pop=3}
+  {$mySeq}
+{/mySeq}{/demo}
+
+{demo}{pop 'mySeq'}
+  {$pop}
+{/pop}{/demo}
+
+{demo}{pop 'mySeq'}
+  {$pop}
+{/pop}{/demo}
+
+{demo}{pop 'mySeq', rows=2}
+  {$pop}
+{/pop}{/demo}
+
+{demo}{pop 'mySeq', rows=3}
+  {$pop}
+{/pop}{/demo}
+
+{/table}

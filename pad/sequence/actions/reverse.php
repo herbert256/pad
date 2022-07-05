@@ -1,5 +1,5 @@
 <?php
 
-  $pad_seq_result = array_reverse ( $pad_seq_result );
+  return pad_seq_array_action ('array_reverse');
 
 ?>

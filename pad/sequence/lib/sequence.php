@@ -1,5 +1,6 @@
 <?php
   
+
   function pad_seq_random ( $min, $max ) {
 
     $rand = rand ( $min, $max ); 
@@ -33,13 +34,19 @@
   }
 
 
-  function pad_seq_array_action ($action, $array='') {
+  function pad_seq_array_action ($action) {
 
+    $array  = $GLOBALS['pad_seq_action_value'];
     $arrays = pad_explode ($array, '|');
 
     $parms [] = $GLOBALS ['pad_seq_result'];
+
     foreach ($arrays as $store)
-      $parms [] = $GLOBALS['pad_seq_store'] [$store];
+      if ( $store !== TRUE )
+        if ( isset($GLOBALS['pad_seq_store'] [$store]) )
+          $parms [] = $GLOBALS['pad_seq_store'] [$store];
+        else
+          $parms [] = $store;
 
     return call_user_func_array ($action, $parms);
 
