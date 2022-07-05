@@ -1,12 +1,5 @@
 <?php
 
-  // SQL parms - application
-
-  $pad_sql_host      = '127.0.0.1';
-  $pad_sql_database  = 'classicmodels';
-  $pad_sql_user      = 'classicmodels';
-  $pad_sql_password  = 'classicmodels';
-
   // $pad_db_tables
   
   $pad_db_tables ['customers'] = [ 'db' => 'customers',    'key' => 'customerNumber', 'order' => 'customerName'];

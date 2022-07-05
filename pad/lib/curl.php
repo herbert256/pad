@@ -6,6 +6,12 @@
     
   }
 
+  function pad_function ( $app, $page='index', $query='', $include='' ) {
+
+    return pad ( $app, $page, $query, $include );
+    
+  }
+
   function pad ( $app, $page='index', $query='', $include='' ) {
 
     $result = pad_complete ( $app, $page, $query, $include );

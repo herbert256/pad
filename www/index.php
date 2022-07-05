@@ -28,9 +28,9 @@
   $pad_display_errors  = ini_set ('display_errors', 0);
   $pad_error_reporting = error_reporting (E_ALL);
 
-  set_error_handler          ( 'pad_boot_error_handler'   );
-  set_exception_handler      ( 'pad_boot_error_exception' );
-  register_shutdown_function ( 'pad_boot_error_shutdown'  );
+  set_error_handler          ( 'pad_boot_error_handler'     );
+  set_exception_handler      ( 'pad_boot_exception_handler' );
+  register_shutdown_function ( 'pad_boot_shutdown_function' );
 
   // End Boot error handling 
   
@@ -56,13 +56,13 @@
 
   }
 
-  function pad_boot_error_exception ( $error ) {
+  function pad_boot_exception_handler ( $error ) {
 
     pad_boot_error_go ( $error->getMessage(), $error->getFile(), $error->getLine() );
 
   }
 
-  function pad_boot_error_shutdown () {
+  function pad_boot_shutdown_function () {
 
     if ( isset ( $GLOBALS['pad_skip_boot_shutdown'] ) )
       return;
@@ -86,10 +86,10 @@
 
     error_log ( "[PAD] $id - $file:$line $error", 4 );
 
-    if ( function_exists ( 'pad_local' ) and pad_local () )
+#    if ( function_exists ( 'pad_local' ) and pad_local () )
       echo "$file:$line $error";
-    else
-      echo "Error: $id";
+#    else
+#      echo "Error: $id";
  
     exit;
 

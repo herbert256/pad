@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'types/tag_app.php';
+  return 'tag_app.php';
 
 ?>

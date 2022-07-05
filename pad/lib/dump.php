@@ -42,6 +42,8 @@
 
     $not = ['pad_base','pad_sql_connect','pad_pad_sql_connect','pad_headers','pad_data','pad_parameters', 'pad_result', 'pad_html', 'pad_output', 'pad_output_gz', 'pad_current', 'pad_lib_directory', 'pad_lib_iterator', 'pad_lib_one'];
 
+    $ids = [ 'session' => $GLOBALS['PADSESSID'], 'request' => $GLOBALS['PADREQID'], 'reference' => $GLOBALS['PADREFID'] ];
+
     $settings = '';
     if ( file_exists (PAD . 'config/config.php') )
       $settings .= file_get_contents(PAD . 'config/config.php');
@@ -118,13 +120,15 @@
 
         }
 
-    if ( isset ( $GLOBALS ['pad_data'] ) )
+    if ( isset ( $GLOBALS ['pad_data'] ) and is_array ( $GLOBALS ['pad_data'] ) )
       for ( $lvl=$GLOBALS ['pad_lvl'];  $lvl>1; $lvl-- )
         if ( isset ($GLOBALS ['pad_data'][$lvl]) )
           pad_dump_array  ('Level '.$lvl, $GLOBALS ['pad_data'][$lvl] );
 
     if ( isset ( $_REQUEST ) and count ( $_REQUEST ) )
       pad_dump_array  ('Request variables', $_REQUEST);
+ 
+    pad_dump_array  ("ID's", $ids);
  
     pad_dump_fields ($app_flds, "APP variables");
 

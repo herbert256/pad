@@ -1,0 +1,25 @@
+<h3>actions</h3>
+
+{table}
+
+{demo}{multiple 5, rows=5}
+  {$multiple}
+{/range}{/demo}
+
+{demo}{multiple 5, rows=5, store='mySequence1'}{/demo}
+
+{demo}{range '1..25', store='mySequence2'}{/demo}
+
+{demo}{mySequence1 'mySequence1', intersection='mySequence2'}
+  {$mySequence1}
+{/mySequence}{/demo}
+
+{demo}{mySequence1, difference='mySequence2'}
+  {$mySequence1}
+{/mySequence1}{/demo}
+
+{demo}{mySequence, merge='mySequence2'}
+  {$mySequence1}
+{/mySequence}{/demo}
+
+{/table}

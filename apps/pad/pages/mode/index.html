@@ -7,16 +7,14 @@
 
 <table border=1>
   <tr>
+    <td>mode='before'  </td>
     <td>mode='demand'  </td>
     <td>mode='isolate' </td>
-    <td>mode='before'  </td>
-    <td>mode='include' </td>
   </tr>      
   <tr>
-    <td>{get_pad 'mode', 'level1/level2/page', '&mode=demand}  </td>
-    <td>{get_pad 'mode', 'level1/level2/page', '&mode=isolate} </td>
-    <td>{get_pad 'mode', 'level1/level2/page', '&mode=before}  </td>
-    <td>{get_pad 'mode', 'level1/level2/page', '&mode=include} </td>
+    <td>{padXXX 'mode', 'level1/level2/page', '&mode=before}  </td>
+    <td>{padXXX 'mode', 'level1/level2/page', '&mode=demand}  </td>
+    <td>{padXXX 'mode', 'level1/level2/page', '&mode=isolate} </td>
   </tr>
 </table>
 
@@ -28,8 +26,8 @@
     <td>mode='isolate', merge='end'     </td>
   </tr>      
   <tr>
-    <td>{get_pad 'mode', 'level1/level2/page', '&mode=isolate&merge=content'} </td>
-    <td>{get_pad 'mode', 'level1/level2/page', '&mode=isolate&merge=end'}     </td>
+    <td>{padXXX 'mode', 'level1/level2/page', '&mode=isolate&merge=content'} </td>
+    <td>{padXXX 'mode', 'level1/level2/page', '&mode=isolate&merge=end'}     </td>
   </tr>
 </table>
 
@@ -45,11 +43,11 @@
     <td>mode='isolate', merge='end'     </td>
   </tr>      
   <tr>
-    <td>{get_pad 'mode', 'level1/level2/page', '&mode=before&merge=content'} </td>
-    <td>{get_pad 'mode', 'level1/level2/page', '&mode=before&merge=end'}     </td>
-    <td>{get_pad 'mode', 'level1/level2/page', '&mode=demand&merge=content'} </td>
-    <td>{get_pad 'mode', 'level1/level2/page', '&mode=demand&merge=end'}     </td>
-    <td>{get_pad 'mode', 'level1/level2/page', '&mode=isolate&merge=content'} </td>
-    <td>{get_pad 'mode', 'level1/level2/page', '&mode=isolate&merge=end'}     </td>
+    <td>{padXXX 'mode', 'level1/level2/page', '&mode=before&merge=content'} </td>
+    <td>{padXXX 'mode', 'level1/level2/page', '&mode=before&merge=end'}     </td>
+    <td>{padXXX 'mode', 'level1/level2/page', '&mode=demand&merge=content'} </td>
+    <td>{padXXX 'mode', 'level1/level2/page', '&mode=demand&merge=end'}     </td>
+    <td>{padXXX 'mode', 'level1/level2/page', '&mode=isolate&merge=content'} </td>
+    <td>{padXXX 'mode', 'level1/level2/page', '&mode=isolate&merge=end'}     </td>
   </tr>
 </table>
