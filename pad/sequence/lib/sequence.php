@@ -14,7 +14,7 @@
 
   }
 
-  function pad_reverse ( $x ) {
+  function pad_seq_reverse ( $x ) {
 
    $rev = 0;
     while ($x > 0) {
@@ -32,5 +32,17 @@
 
   }
 
+
+  function pad_seq_array_action ($action, $array='') {
+
+    $arrays = pad_explode ($array, '|');
+
+    $parms [] = $GLOBALS ['pad_seq_result'];
+    foreach ($arrays as $store)
+      $parms [] = $GLOBALS['pad_seq_store'] [$store];
+
+    return call_user_func_array ($action, $parms);
+
+  }
 
 ?>

@@ -243,7 +243,7 @@
 
   function pad_valid ($name) {
 
-    if ( $name == '' ) 
+    if ( trim($name) == '' ) 
       return FALSE;
 
     if ( ! preg_match('/^[a-zA-Z_][:#a-zA-Z0-9_]*$/',$name) )
