@@ -10,6 +10,7 @@
   $pad_seq_max      = intval ( $pad_parms_tag ['max']       ?? PHP_INT_MAX );
   $pad_seq_unique   = intval ( $pad_parms_tag ['unique']    ?? 0           );
   $pad_seq_random   = intval ( $pad_parms_tag ['random']    ?? 0           );
+  $pad_seq_count    = intval ( $pad_parms_tag ['count']     ?? 0           );
   $pad_seq_name     =          $pad_parms_tag ['name']      ?? ''; 
   $pad_seq_protect  =          $pad_parms_tag ['protect']   ?? 1000; 
   $pad_seq_save     =          $pad_parms_tag ['save']      ?? 100; 

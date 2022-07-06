@@ -14,13 +14,11 @@
   {$sequence} 
 {/sequence}{/demo}
 
-{demo}{sequence '10..20'}
+{demo}{sequence '1..10'}
   {$sequence} 
 {/sequence}{/demo}
 
-{demo}{sequence from=10, to=20}
-  {$sequence} 
-{/sequence}{/demo}
+{/table}<h3>increment</h3>{table}
 
 {demo}{sequence 10, increment=2}
   {$sequence} 
@@ -33,6 +31,12 @@
 {demo}{sequence to=10, increment=2}
   {$sequence} 
 {/sequence}{/demo}
+
+{demo}{sequence '1..10', increment=2}
+  {$sequence} 
+{/sequence}{/demo}
+
+{/table}<h3>both</h3>{table}
 
 {demo}{sequence '10..20', increment=2}
   {$sequence} 

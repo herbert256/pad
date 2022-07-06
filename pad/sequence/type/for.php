@@ -11,7 +11,8 @@
     if ( $pad_seq_random )
       $pad_seq_loop = $pad_seq_for [array_rand($pad_seq_for)] ;
 
-    include 'go/one.php';
+    if ( ! include 'go/one.php')
+        break;
 
    $pad_seq_init = FALSE;
 
