@@ -15,10 +15,8 @@
   $pad_seq_protect  =          $pad_parms_tag ['protect']   ?? 1000; 
   $pad_seq_save     =          $pad_parms_tag ['save']      ?? 100; 
   $pad_seq_unique   =          $pad_parms_tag ['unique']    ?? '';
-  $pad_seq_push     =          $pad_parms_tag ['push']      ?? ''; 
-  $pad_seq_push2    =          $pad_parms_tag ['store']     ?? ''; 
-  $pad_seq_pull     =          $pad_parms_tag ['pull']      ?? '';
-  $pad_seq_pull2    =          $pad_parms_tag ['sequence']  ?? '';
+  $pad_seq_push     =          $pad_parms_tag ['store']     ?? ''; 
+  $pad_seq_pull     =          $pad_parms_tag ['sequence']  ?? '';
   $pad_seq_range    =          $pad_parms_tag ['range']     ?? '';
   $pad_seq_filter   =          $pad_parms_tag ['filter']    ?? '';
   $pad_seq_make     =          $pad_parms_tag ['make']      ?? '';
@@ -26,15 +24,8 @@
   $pad_seq_result = $pad_seq_for = $pad_seq_make_list = $pad_seq_filter_list = [];
   $pad_seq = $pad_sequence = $pad_seq_protect_cnt = 0;
 
-  if ( $pad_seq_push2 ) {
-    $pad_seq_push = $pad_seq_push2;
-    unset ( $pad_parms_tag ['store'] );
-    unset ( $pad_parameters [$pad_lvl] ['parms_tag'] ['store'] ); 
-  }
-
-  if ( $pad_seq_pull2 ) {
-    $pad_seq_pull = $pad_seq_pull2;
-  }
+  unset ( $pad_parms_tag ['store'] );
+  unset ( $pad_parameters [$pad_lvl] ['parms_tag'] ['store'] );
 
   include 'build/sequence.php';
 
@@ -69,7 +60,9 @@
   pad_set_arr_var ( 'options_done', 'unique',      TRUE );
   pad_set_arr_var ( 'options_done', 'random',      TRUE );
   pad_set_arr_var ( 'options_done', 'push',        TRUE );
+  pad_set_arr_var ( 'options_done', 'store',       TRUE );
   pad_set_arr_var ( 'options_done', 'pull',        TRUE );
+  pad_set_arr_var ( 'options_done', 'sequence',    TRUE );
   pad_set_arr_var ( 'options_done', 'range',       TRUE );
   pad_set_arr_var ( 'options_done', 'protect',     TRUE );
   pad_set_arr_var ( 'options_done', 'filter',      TRUE );
