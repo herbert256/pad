@@ -1,10 +1,6 @@
 <?php
 
-  if  ( $pad_seq_seq <> 'loop' and pad_file_exists (PAD . "sequence/types/$pad_seq_seq/$pad_seq_seq.php") ) 
-
-    include PAD . "sequence/types/$pad_seq_seq/$pad_seq_seq.php";
-
-  elseif ( $pad_seq_pull ) {
+  if ( $pad_seq_pull and $pad_seq_seq <> 'pull' ) {
 
     $pad_seq_for = $pad_seq_store [$pad_seq_pull];
 
@@ -18,6 +14,6 @@
 
   } else
 
-    return include "$pad_seq_build.php";
+    include "$pad_seq_build.php";
 
 ?>
