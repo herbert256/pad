@@ -12,7 +12,15 @@
 
       <td class="border"><a href="{$pad}reference/reference&reference={$item}">{$item}</a></td>
 
-      <td{if $status NE 'ok' and $status NE 'random' } bgcolor="red"{/if}>{$status}</td>
+      <td{if $status NE 'ok' and $status NE 'random' } bgcolor="red"{/if}>
+        {if $status EQ 'error'}
+          <a href="{$pad}regression/compare&item={$item}">
+        {/if}
+        {$status}
+        {if $status EQ 'error'}
+          </a>
+        {/if}
+      </td>
 
       {bench}<td align="right">{$$bench}</td>{/bench} 
 

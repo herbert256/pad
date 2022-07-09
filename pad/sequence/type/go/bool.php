@@ -13,7 +13,7 @@
     if ( count ($pad_seq_for) )
       $pad_seq_loop_bool = $pad_seq_for [array_rand($pad_seq_for)];
     else
-      $pad_seq_loop_bool = pad_seq_random ( $pad_seq_start, $pad_seq_end );
+      $pad_seq_loop_bool = pad_seq_random ( $pad_seq_loop_start, $pad_seq_loop_end );
  
     include_once PAD . "sequence/types/$pad_seq_seq/bool.php";
 

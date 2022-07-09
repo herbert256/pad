@@ -58,11 +58,6 @@
     return include 'sequence/range.php';
   } 
 
-  if ( isset($pad_parms_tag['rows']) ) {
-    $pad_seq_parm = "1.." . $pad_parms_tag['rows'];
-    return include 'sequence/range.php';
-  } 
-
 
   return include 'sequence/loop.php';
 
