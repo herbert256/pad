@@ -126,7 +126,7 @@
 
   // lib tidy
 
-  $pad_tidy                   = FALSE;
+  $pad_tidy                   = true;
   $pad_tidy_ccsid             = 'utf8'; 
   $pad_tidy_config            = [ 
                                   'output-html'     => true,
@@ -138,7 +138,7 @@
                                   'replace-color'   => 'yes'
                                 ];
 
-  $pad_remove_whitespace      = TRUE;
+  $pad_remove_whitespace      = FALSE;
 
   $pad_local = [ 'localhost', 'penguin.linux.test', '127.0.0.1' ];
   

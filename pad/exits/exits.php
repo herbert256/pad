@@ -24,7 +24,7 @@
     include PAD . 'walk/close.php';
 
   if ( $pad_remove_whitespace )
-    $pad_output = trim(preg_replace('/>\s+</', '><', $pad_output));
+   include 'whitespace.php';
   
   $pad_etag = pad_md5 ($pad_output);
 

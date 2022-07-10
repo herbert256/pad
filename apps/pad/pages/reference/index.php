@@ -1,6 +1,6 @@
 <?php
 
-  $title     = 'Reference';
+  $title     = 'All directories fromt the reference applicaton';
   $reference = APPS . "reference/pages";
 
   $directory = new RecursiveDirectoryIterator ($reference);
@@ -18,7 +18,7 @@
     if (substr($dir, -2) == '/.')  $dir = substr($dir, 0, -2);
     if (substr($dir, -3) == '/..') $dir = substr($dir, 0, -3);
 
-   if ( $dir and is_dir($path) and count(pad_dir_list ($path)))
+   if ( $dir and $dir <> '.' and is_dir($path) and count(pad_dir_list ($path)))
       $dirs [$dir] ['dir'] = $dir;
  
   }
