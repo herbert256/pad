@@ -16,12 +16,14 @@
 
   if ( count ($pad_sanitize) )
     include PAD . 'exits/sanitize.php';
-
+ 
   if ( $pad_tidy )
     include PAD . 'exits/tidy.php';
 
   if ( count ($pad_close_tags) )
     include PAD . 'walk/close.php';
+
+  $pad_output = trim(preg_replace('/>\s+</', '><', $pad_output));
   
   $pad_etag = pad_md5 ($pad_output);
 

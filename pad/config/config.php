@@ -138,6 +138,8 @@
                                   'replace-color'   => 'yes'
                                 ];
 
+  $pad_remove_whitespace      = TRUE;
+
   $pad_local = [ 'localhost', 'penguin.linux.test', '127.0.0.1' ];
   
   // Other settings.
