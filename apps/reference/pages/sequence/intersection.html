@@ -1,4 +1,4 @@
-<h3>actions - multiple</h3>
+<h3>intersection</h3>
 
 {table}
 
@@ -7,9 +7,13 @@
 {demo}{multiple 5,  rows=20, store='mySequence3'}{/demo}
 {demo}{multiple 10, rows=10, store='mySequence4'}{/demo}
 
+{/table}<br>{table}
+
 {demo}{range '1..100', intersection='mySequence1|mySequence2|mySequence3|mySequence4'}
   {$range}
 {/range}{/demo}
+
+{/table}<br>{table}
 
 {demo}{sequence type='intersection', intersection='mySequence1|mySequence2|mySequence3|mySequence4'}
   {$intersection}
@@ -23,15 +27,35 @@
   {$intersection}
 {/sequence}{/demo}
 
-{demo}{intersection 'mySequence1|mySequence2|mySequence3|mySequence4'}
-  {$intersection}
-{/intersection}{/demo}
-
 {demo}{sequence 'mySequence1', intersection='mySequence2|mySequence3|mySequence4'}
   {$mySequence1}
 {/sequence}{/demo}
 
-{demo}{mySequence4 intersection='mySequence2|mySequence3|mySequence1'}
+{/table}<br>{table}
+
+{demo}{intersection 'mySequence1|mySequence2|mySequence3|mySequence4'}
+  {$intersection}
+{/intersection}{/demo}
+
+{demo}{intersection intersection='mySequence1|mySequence2|mySequence3|mySequence4'}
+  {$intersection}
+{/intersection}{/demo}
+
+{/table}<br>{table}
+
+{demo}{mySequence1 intersection='mySequence2|mySequence3|mySequence4'}
+  {$mySequence1}
+{/mySequence1}{/demo}
+
+{demo}{mySequence2 intersection='mySequence1|mySequence3|mySequence4'}
+  {$mySequence2}
+{/mySequence2}{/demo}
+
+{demo}{mySequence3 intersection='mySequence1|mySequence2|mySequence4'}
+  {$mySequence3}
+{/mySequence3}{/demo}
+
+{demo}{mySequence4 intersection='mySequence1|mySequence2|mySequence3'}
   {$mySequence4}
 {/mySequence4}{/demo}
 

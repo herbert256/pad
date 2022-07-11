@@ -1,5 +1,12 @@
 <?php
 
+  $pad_seq_tmp = $pad_parm;
+  if ( $pad_tag == 'sequence' and pad_valid($pad_seq_tmp) and isset($pad_seq_store [$pad_seq_tmp]) )
+    return include 'sequence/store.php';
+  
+  $pad_seq_tmp = $pad_tag;
+  if ( pad_valid($pad_seq_tmp) and isset($pad_seq_store [$pad_seq_tmp]) )
+    return include 'sequence/store.php';
 
   $pad_seq_tmp = $pad_tag;
   if ( file_exists ( PAD . "sequence/types/$pad_seq_tmp" ) )  
@@ -17,7 +24,6 @@
   if ( pad_valid($pad_seq_tmp) and file_exists ( PAD . "sequence/types/$pad_seq_tmp" ) )  
     return include 'sequence/type.php';
 
-
   $pad_seq_tmp = $pad_tag ?? '';
   if ( file_exists ( PAD . "sequence/actions/$pad_seq_tmp.php" ) )
     return include 'sequence/action.php';
@@ -34,19 +40,9 @@
   if ( $pad_parm == '' and $pad_tag == 'sequence' and pad_valid($pad_seq_tmp) and file_exists ( PAD . "sequence/actions/$pad_seq_tmp.php" ) )
     return include 'sequence/action.php';
 
-
-  $pad_seq_tmp = $pad_tag;
-  if ( pad_valid($pad_seq_tmp) and isset($pad_seq_store [$pad_seq_tmp]) )
-    return include 'sequence/store.php';
-
-  $pad_seq_tmp = $pad_parm;
-  if ( $pad_tag == 'sequence' and pad_valid($pad_seq_tmp) and isset($pad_seq_store [$pad_seq_tmp]) )
-    return include 'sequence/store.php';
-
   $pad_seq_tmp = array_key_first($pad_parms_tag) ?? '';
   if ( pad_valid($pad_seq_tmp) and isset($pad_seq_store [$pad_seq_tmp]) )
     return include 'sequence/store.php';
-
  
   if ( strpos($pad_parm, '..') ) {
     $pad_seq_parm = $pad_parm;
@@ -58,8 +54,6 @@
     return include 'sequence/range.php';
   } 
 
-
   return include 'sequence/loop.php';
-
 
 ?>
