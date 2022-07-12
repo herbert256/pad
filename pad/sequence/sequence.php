@@ -24,7 +24,8 @@
   $pad_seq_filter   =          $pad_parms_tag ['filter']    ?? '';
   $pad_seq_make     =          $pad_parms_tag ['make']      ?? '';
 
-  $pad_seq_result = $pad_seq_for = $pad_seq_make_list = $pad_seq_filter_list = [];
+  $pad_seq_parm = '';
+  $pad_seq_result = $pad_seq_for = $pad_seq_make_list = $pad_seq_cache = $pad_seq_filter_list = [];
   $pad_seq = $pad_sequence = $pad_seq_protect_cnt = $pad_seq_base = 0;
 
   unset ( $pad_parms_tag ['store'] );

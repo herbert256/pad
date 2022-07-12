@@ -1,13 +1,5 @@
 <?php
 
-  if ( $pad_seq_action_value === TRUE or ! ctype_digit($pad_seq_action_value) )
-    if ( $pad_seq_count )
-      $pad_seq_action_count = $pad_seq_count;
-    else
-      $pad_seq_action_count = 1;
-  else
-    $pad_seq_action_count = $pad_seq_action_value;    
-
   if ( isset($pad_seq_store [$pad_seq_pull]) )
     if ( count($pad_seq_store [$pad_seq_pull]) > $pad_seq_action_count )
       if ( $pad_seq_action_name == 'shift')
