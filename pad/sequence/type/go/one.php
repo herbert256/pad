@@ -1,10 +1,10 @@
 <?php
 
-  $pad_seq++;
-
   $pad_seq_protect_cnt++;
   if ( $pad_seq_protect_cnt > $pad_seq_protect )
     return FALSE;
+
+  $pad_seq++;
 
   if ( pad_file_exists ( PAD . "sequence/types/$pad_seq_seq/one.php" ) ) 
   
