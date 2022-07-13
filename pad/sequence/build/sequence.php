@@ -1,5 +1,9 @@
 <?php
 
+  $pad_seq_seq  = 'loop';
+  $pad_seq_set  = 'sequence'; 
+  $pad_seq_parm = TRUE;
+
   $pad_seq_tmp = $pad_parm;
   if ( $pad_tag == 'sequence' and pad_valid($pad_seq_tmp) and isset($pad_seq_store [$pad_seq_tmp]) )
     return include 'sequence/store.php';

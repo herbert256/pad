@@ -2,6 +2,9 @@
 
   foreach ( $pad_seq_opr as $pad_seq_opr_name => $pad_seq_opr_value ) {
 
+    if ( in_array($pad_seq_opr_name, $pad_seq_one_done ) )
+      continue;
+
     $pad_seq_loop = $pad_sequence;
 
     $pad_seq_parm_save = $pad_seq_parm;

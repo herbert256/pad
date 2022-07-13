@@ -1,4 +1,4 @@
-<h3>from/to & min/max & start/end</h3>
+<h3>from/to & min/max & start/end & low/high</h3>
 
 {table}
 
@@ -18,22 +18,44 @@
   {$sequence}  
 {/sequence}{/demo}
 
+{demo}{sequence rows=16, low=8, high=12}
+  {$sequence}  
+{/sequence}{/demo}
+
 {/table}<h3>Not the same</h3>{table}
 
-{demo}{sequence even, rows=16}
+{demo}{sequence even, rows=32}
   {$even}  
 {/sequence}{/demo}
 
-{demo}{sequence even, rows=16, min=8, max=12}
+{demo}{sequence even, rows=32, min=12, max=20}
   {$even}  
 {/sequence}{/demo}
 
-{demo}{sequence even, rows=16, from=8, to=12}
+{demo}{sequence even, rows=32, from=12, to=20}
   {$even}  
 {/sequence}{/demo}
 
-{demo}{sequence even, rows=16, from=8, to=12, start=2, end=3}
+{demo}{sequence even, rows=32, start=12, end=20}
   {$even}  
+{/sequence}{/demo}
+
+{demo}{sequence even, rows=32, low=12, high=20}
+  {$even}  
+{/sequence}{/demo}
+
+{/table}<h3>Not the same</h3>{table}
+
+{demo}{sequence even, rows=32, from=12, to=20}
+  {$even}  
+{/sequence}{/demo}
+
+{demo}{sequence even, rows=32, from=12, to=20, start=4, end=6}
+  {$even}  
+{/sequence}{/demo}
+
+{demo}{sequence testBool, rows=32, from=12, to=20, low=4, high=8}
+  {$testBool}  
 {/sequence}{/demo}
 
 {/table}

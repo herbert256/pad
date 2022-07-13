@@ -76,6 +76,22 @@
     if ($info)
       echo ("<hr><b>$info</b><hr><br>");
 
+    if ( isset($GLOBALS ['pad_in_sequence'] ) and $GLOBALS ['pad_in_sequence'] === TRUE ) {
+
+      $seq = [];
+      
+      foreach ( $pad as $key )
+        if ( substr($key, 0, 7) == 'pad_seq') {
+          unset ($pad[$key]);
+          $seq [] = $key;
+        }   
+
+      pad_dump_fields ($seq, "Sequence variables");
+
+      echo ( "\n\n");
+
+    }
+
     if ( isset($GLOBALS ['pad_trace_eval_stage'] ) and $GLOBALS ['pad_trace_eval_stage'] <> 'end' ) {
 
       echo ( "<b>Eval details</b>\n");
@@ -94,7 +110,7 @@
     echo ( "<b>Stack</b>\n");
     foreach ( $pad_debug_backtrace as $key => $trace ) {
       extract ( $trace );
-      if ( ! in_array($file, [PAD.'inits/error.php',PAD.'lib/dump.php']) )
+      if ( ! in_array($file, [PAD.'inits/error.php', PAD.'lib/dump.php']) )
         echo ( "    $file:$line - $function\n");
     }
 
