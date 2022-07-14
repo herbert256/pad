@@ -1,0 +1,19 @@
+<h3>make vs filter</h3>
+
+{table}
+
+{demo}{range '11..30', store='mySeq'}{/demo}
+
+{demo}{mySeq}
+  {$mySeq}
+{/mySeq}{/demo}
+
+{demo}{filter 'mySeq', even}
+  {$filter}
+{/filter}{/demo}
+
+{demo}{make 'mySeq', even}
+  {$make}
+{/make}{/demo}
+
+{/table}

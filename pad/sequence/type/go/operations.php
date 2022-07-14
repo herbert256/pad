@@ -19,13 +19,13 @@
 
       $pad_sequence = include 'filter.php';
 
-    elseif ( pad_file_exists ( PAD . "sequence/types/$pad_seq_opr_name/filter.php" ) )
-
-      $pad_sequence = include PAD . "sequence/types/$pad_seq_opr_name/filter.php";
-
     elseif ( pad_file_exists ( PAD . "sequence/types/$pad_seq_opr_name/make.php" ) )
       
       $pad_sequence = include PAD . "sequence/types/$pad_seq_opr_name/make.php";
+
+    elseif ( pad_file_exists ( PAD . "sequence/types/$pad_seq_opr_name/filter.php" ) )
+
+      $pad_sequence = include PAD . "sequence/types/$pad_seq_opr_name/filter.php";
 
     $pad_seq_parm = $pad_seq_parm_save;
 

@@ -14,6 +14,7 @@
 
     }
    
+  $pad_seq_store_get = $pad_seq_parm;
   $pad_seq_for = $pad_seq_store [$pad_seq_parm];
 
   if ( ! $pad_seq_push and ! $pad_pair )

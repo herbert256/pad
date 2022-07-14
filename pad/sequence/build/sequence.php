@@ -58,6 +58,4 @@
     return include 'sequence/range.php';
   } 
 
-  return include 'sequence/loop.php';
-
 ?>

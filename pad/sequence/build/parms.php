@@ -28,4 +28,8 @@
   unset ( $pad_parms_tag ['store'] );
   unset ( $pad_parameters [$pad_lvl] ['parms_tag'] ['store'] );
 
+  foreach ( $pad_parms_tag as $pad_seq_tag_name => $pad_seq_tag_value )
+    if ( ! isset($GLOBALS ["pad_seq_$pad_seq_tag_name"]) )
+      $GLOBALS ["pad_seq_$pad_seq_tag_name"] = $pad_seq_tag_value;
+
 ?>
