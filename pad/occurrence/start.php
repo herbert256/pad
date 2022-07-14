@@ -30,9 +30,6 @@
 
   include PAD . 'occurrence/db.php';
 
-  $pad_options = 'occur_start';
-  include PAD . "options/go/options.php";
-
   if ( $pad_walks [$pad_lvl] == 'occurrence-start' )
     include PAD . "walk/occurrence-start.php";
 

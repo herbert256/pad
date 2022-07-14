@@ -118,6 +118,9 @@
   $pad_data_default_start = ['trim', 'white'];
   $pad_data_default_end   = ['html', 'nbsp'];
 
+  $pad_data_default_start = [];
+  $pad_data_default_end   = [];
+
   // Default filter options on the complete output, executed before Tidy
   // Must be a flag from FILTER_UNSAFE_RAW from below page.
   // https://www.php.net/manual/en/filter.filters.sanitize.php

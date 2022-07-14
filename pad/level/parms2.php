@@ -54,6 +54,5 @@
   $pad_parameters [$pad_lvl] ['parms_val'] = $pad_parms_val;
 
   include PAD . 'level/check.php';
-  include PAD . 'level/demand.php';
 
 ?>

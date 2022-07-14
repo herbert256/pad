@@ -8,7 +8,4 @@
                             'last', 'row', 'sort', 'ignore', 'source', 'shuffle', 'random', 'print'];
   $pad_parms_level_end   = ['toFlag', 'toContent', 'toData'];
   
-  $pad_parms_occur_start = [];
-  $pad_parms_occur_end   = ['one'];
-
 ?>

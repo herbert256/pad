@@ -1,8 +1,5 @@
 <?php
 
-  $pad_options = 'occur_end';
-  include PAD . "options/go/options.php";
-
   if ( $pad_walks [$pad_lvl] == 'occurrence-end' )
     include PAD . "walk/occurrence-end.php";
 
