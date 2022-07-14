@@ -21,7 +21,8 @@
   pad_set_arr_var ( 'options_done', 'sequence',    TRUE );
   pad_set_arr_var ( 'options_done', 'range',       TRUE );
   pad_set_arr_var ( 'options_done', 'protect',     TRUE );
-  pad_set_arr_var ( 'options_done', 'filter',      TRUE );
+  pad_set_arr_var ( 'options_done', 'keep',        TRUE );
+  pad_set_arr_var ( 'options_done', 'remove',      TRUE );
   pad_set_arr_var ( 'options_done', 'make',        TRUE );
 
   foreach ( $pad_parms_tag as $pad_seq_tag_name => $pad_seq_tag_value ) {

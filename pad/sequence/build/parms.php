@@ -21,7 +21,8 @@
   $pad_seq_push     =          $pad_parms_tag ['store']     ?? ''; 
   $pad_seq_pull     =          $pad_parms_tag ['sequence']  ?? '';
   $pad_seq_range    =          $pad_parms_tag ['range']     ?? '';
-  $pad_seq_filter   =          $pad_parms_tag ['filter']    ?? '';
+  $pad_seq_keep     =          $pad_parms_tag ['keep']      ?? '';
+  $pad_seq_remove   =          $pad_parms_tag ['remove']    ?? '';
   $pad_seq_make     =          $pad_parms_tag ['make']      ?? '';
   $pad_seq_update   =          $pad_parms_tag ['update']    ?? '';
 

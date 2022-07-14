@@ -6,7 +6,7 @@
 
     if ( $pad_seq_opr_name <> $pad_seq_seq )
     
-      if ( $pad_seq_opr_name == 'make' or $pad_seq_opr_name == 'filter' or $pad_seq_opr_name == 'remove' or 
+      if ( $pad_seq_opr_name == 'make' or $pad_seq_opr_name == 'keep' or $pad_seq_opr_name == 'remove' or 
            pad_file_exists ( PAD . "sequence/types/$pad_seq_opr_name/make.php" ) or 
            pad_file_exists ( PAD . "sequence/types/$pad_seq_opr_name/filter.php" ) 
          )

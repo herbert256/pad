@@ -1,4 +1,4 @@
-<h3>make vs filter vs remove</h3>
+<h3>make vs keep vs remove</h3>
 
 {table}
 
@@ -8,9 +8,9 @@
   {$make}
 {/make}{/demo}
 
-{demo}{filter 'mySeq', even}
-  {$filter}
-{/filter}{/demo}
+{demo}{keep 'mySeq', even}
+  {$keep}
+{/keep}{/demo}
 
 {demo}{remove 'mySeq', even}
   {$remove}
@@ -22,7 +22,7 @@
   {$range}
 {/range}{/demo}
 
-{demo}{range '11..30', filter='even'}
+{demo}{range '11..30', keep='even'}
   {$range}
 {/range}{/demo}
 

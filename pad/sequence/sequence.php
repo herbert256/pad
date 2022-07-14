@@ -13,6 +13,13 @@
   if ( ! isset($GLOBALS ["pad_seq_$pad_seq_seq"]) ) $GLOBALS ["pad_seq_$pad_seq_seq"] = $pad_seq_parm;
   if ( ! isset($pad_parms_tag ["$pad_seq_seq"])   ) $pad_parms_tag ["$pad_seq_seq"]   = $pad_seq_parm;
 
+  if ( $pad_seq_seq == 'make' )
+    $pad_seq_filter_check = 'make';
+  else
+    $pad_seq_filter_check = 'filter';
+
+  $pad_seq_special_ops = ['make', 'keep', 'remove'];
+
   include 'build/loop.php';
   include 'build/lists.php';
   include 'build/operations.php';
