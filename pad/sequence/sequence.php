@@ -2,7 +2,7 @@
 
   $pad_in_sequence = TRUE;
   $pad_seq_store_get = '';
-  $pad_seq_result = $pad_seq_for = $pad_seq_make_list = $pad_seq_cache = $pad_seq_filter_list = [];
+  $pad_seq_result = $pad_seq_for = $pad_seq_cache = [];
   $pad_seq = $pad_sequence = $pad_seq_protect_cnt = $pad_seq_base = 0;
 
   include_once "lib/sequence.php";
@@ -14,8 +14,7 @@
   if ( ! isset($pad_parms_tag ["$pad_seq_seq"])   ) $pad_parms_tag ["$pad_seq_seq"]   = $pad_seq_parm;
 
   include 'build/loop.php';
-  include 'build/make.php';
-  include 'build/filter.php';
+  include 'build/lists.php';
   include 'build/operations.php';
   include 'build/page.php';
   include 'build/done.php';

@@ -1,0 +1,34 @@
+<h3>make vs filter vs remove</h3>
+
+{table}
+
+{demo}{range '11..30', store='mySeq'}{/demo}
+
+{demo}{make 'mySeq', even}
+  {$make}
+{/make}{/demo}
+
+{demo}{filter 'mySeq', even}
+  {$filter}
+{/filter}{/demo}
+
+{demo}{remove 'mySeq', even}
+  {$remove}
+{/remove}{/demo}
+
+{/table}&nbsp;{table}
+
+{demo}{range '11..30', make='even'}
+  {$range}
+{/range}{/demo}
+
+{demo}{range '11..30', filter='even'}
+  {$range}
+{/range}{/demo}
+
+{demo}{range '11..30', remove='even'}
+  {$range}
+{/range}{/demo}
+
+{/table}
+
