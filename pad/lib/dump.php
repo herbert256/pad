@@ -36,19 +36,21 @@
   }
 
 
-  function pad_dump_vars ($info) {
+  function pad_dump_vars ($info='') {
 
     $app_chk = ['page','app','PADSESSID','PADREQID','PHPSESSID','PADREFID','GLOBALS','_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
 
     $not = ['pad_base','pad_sql_connect','pad_pad_sql_connect','pad_headers','pad_data','pad_parameters', 'pad_result', 'pad_html', 'pad_output', 'pad_output_gz', 'pad_current', 'pad_lib_directory', 'pad_lib_iterator', 'pad_lib_one'];
 
-    $ids = [ 'session' => $GLOBALS['PADSESSID'], 'request' => $GLOBALS['PADREQID'], 'reference' => $GLOBALS['PADREFID'] ];
+    $ids = [ 'session' => $GLOBALS['PADSESSID']??'', 'request' => $GLOBALS['PADREQID']??'', 'reference' => $GLOBALS['PADREFID']??'' ];
 
     $settings = '';
     if ( file_exists (PAD . 'config/config.php') )
       $settings .= file_get_contents(PAD . 'config/config.php');
-    if ( file_exists (APP . 'config/config.php') )
-      $settings .= file_get_contents(APP . 'config/config.php');
+
+    if ( defined('APP'))
+       if ( file_exists (APP . 'config/config.php') )
+          $settings .= file_get_contents(APP . 'config/config.php');
 
     $pad = $config = $app_flds = [];
 

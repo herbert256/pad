@@ -1,5 +1,7 @@
 <?php
 
+  pad_timing_start ('var');
+
   include 'inits.php';
 
   $pad_opts = $pad_expl;

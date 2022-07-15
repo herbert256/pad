@@ -6,7 +6,14 @@
     if ( ! $GLOBALS['pad_timing'] )
       return;
     
-    $GLOBALS['pad_timings_start'] [$timing] = microtime(true);
+    global $pad_timings_count, $pad_timings_start;
+
+    if ( isset ( $pad_timings_start [$timing] ) )
+      pad_error('tm-oops-1: ' . $timing);
+
+    $pad_timings_start [$timing] = microtime(true);
+
+    $pad_timings_count [$timing] = 1 + ($pad_timings_count [$timing]??0);
 
   }
 
@@ -18,12 +25,17 @@
 
     global $pad_timings, $pad_timings_start;
 
-    if ($timing == 'sql' and isset($pad_timings_start ['cache']) )
-      return;
+    if ( ! isset ( $GLOBALS['pad_timings_start'] [$timing] ) )
+      pad_error('tm-oops-2: ' . $timing);
 
-    $pad_timings [$timing] = ($pad_timings[$timing]??0) + (microtime(true) - $pad_timings_start[$timing]) ;
+    $now = microtime(true) - $pad_timings_start[$timing];
+
+    $pad_timings [$timing] = ($pad_timings[$timing]??0) + $now ;
     
     unset($pad_timings_start [$timing]);
+
+    foreach ( $pad_timings_start as $key => $val ) 
+      $pad_timings_start [$key] += $now;
     
   }
 
@@ -33,14 +45,20 @@
     if ( ! $GLOBALS['pad_timing'] )
       return;
 
-    global $pad_timings;
-    
-    $pad_timings ['all'] = microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'];
+    global $pad_timings, $pad_timings_boot, $pad_timings_start, $pad_timings_count;
+
+    foreach ( $pad_timings_start as $key => $val ) 
+      pad_timing_end ($key);
+
+    $pad_timings ['boot'] = $pad_timings_boot - $_SERVER['REQUEST_TIME_FLOAT'];
 
     foreach ($pad_timings as $key => $val)
       $pad_timings [$key] = (int) ( $val * 1000000 );
 
-    pad_header ('X-PAD-Timings: ' . json_encode($pad_timings) );
+    $pad_timings ['total'] = (int) ( (microtime(true) - $_SERVER['REQUEST_TIME_FLOAT']) * 1000000 );    
+
+    pad_header ('X-PAD-Timings: ' . json_encode ( $pad_timings)       );
+    pad_header ('X-PAD-Counts: '  . json_encode ( $pad_timings_count) );
 
   }
   

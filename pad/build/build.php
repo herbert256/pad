@@ -1,5 +1,7 @@
 <?php
 
+  pad_timing_start ('build');
+
   pad_reset (2, $pad_lvl);
 
   $page = $pad_next;
@@ -17,5 +19,7 @@
     pad_file_put_contents ("$pad_trace_dir_base/base.html", $pad_base [1] );
   
   include PAD . 'occurrence/start.php';
+
+  pad_timing_end ('build');
 
 ?>

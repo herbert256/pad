@@ -1,5 +1,7 @@
 <?php
 
+  pad_timing_start ('parm');
+
   $pad_parms_org = [];
   $pad_parms_seq = [];
   $pad_parms_tag = [];
@@ -54,5 +56,7 @@
   $pad_parameters [$pad_lvl] ['parms_val'] = $pad_parms_val;
 
   include PAD . 'level/check.php';
+
+  pad_timing_end ('parm');
 
 ?>

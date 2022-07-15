@@ -1,6 +1,5 @@
 <?php
 
-
   //  ============================================================================
   //  PAD - (P)HP (A)pplication (D)river
   //  (c) 2004-2022 - Herbert Groot Jebbink - herbert@groot.jebbink.nl
@@ -12,6 +11,11 @@
   //  all other PAD files must be stored *OUTSIDE* the webservers htdocs directory.
   //
   //  ============================================================================
+
+  
+  // Mark the PAD boot time
+
+  $pad_timings_boot = microtime(true);
 
 
   // Start settings
@@ -31,6 +35,7 @@
   set_error_handler          ( 'pad_boot_error_handler'     );
   set_exception_handler      ( 'pad_boot_exception_handler' );
   register_shutdown_function ( 'pad_boot_shutdown_function' );
+
 
   // End Boot error handling 
   
@@ -86,11 +91,14 @@
 
     error_log ( "[PAD] $id - $file:$line $error", 4 );
 
-    if ( function_exists ( 'pad_local' ) and pad_local () )
-      echo "$file:$line $error";
-    else
-      echo "Error: $id";
+#    if ( function_exists ( 'pad_local' ) and pad_local () )
+#      echo "$file:$line $error";
+#    else
+#      echo "Error: $id";
  
+    include_once PAD . 'lib/dump.php';
+    pad_dump_vars ("$file:$line $error");
+    
     exit;
 
   }  

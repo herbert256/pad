@@ -19,6 +19,8 @@
     if ( strlen(trim($eval)) == 0 )
       return '';
 
+    pad_timing_start ('eval');
+
     global $pad_eval_cnt, $pad_eval_start, $pad_eval_result, $pad_trace;
 
     $GLOBALS ['pad_trace_eval_stage']   = 'start';
@@ -59,6 +61,8 @@
 
     $GLOBALS ['pad_trace_eval_stage'] = 'end';
 
+    pad_timing_end ('eval');
+ 
     return $pad_eval_result [$key] [0];
 
   }
@@ -73,6 +77,8 @@
     pad_error ($txt);
 
     $GLOBALS ['pad_trace_eval_stage'] = 'end';
+
+    pad_timing_end ('eval');
 
     return $GLOBALS ['pad_trace_eval_eval'];
 

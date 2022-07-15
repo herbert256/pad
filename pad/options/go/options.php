@@ -1,5 +1,7 @@
 <?php
 
+  pad_timing_start ('opt');
+
   $pad_option_type  = substr ( $pad_options, 0, 5);
   $pad_option_event = substr ( $pad_options, 6);
 
@@ -17,5 +19,7 @@
 
   if     ($pad_options == 'level_start' ) $pad_base   [$pad_lvl] = $pad_content;
   elseif ($pad_options == 'level_end'   ) $pad_result [$pad_lvl] = $pad_content;
+
+  pad_timing_end ('opt');
 
 ?>

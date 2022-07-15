@@ -1,5 +1,7 @@
 <?php
 
+  pad_timing_start ('exit');
+
   $pad_output = $pad_result [1];
 
   $pad_output = str_replace ( 
@@ -38,6 +40,8 @@
 
   if ( $pad_cache and $pad_cache_server_age )
     include PAD . 'cache/exits.php';
+
+  pad_timing_end ('exit');
 
   pad_stop ($pad_stop);
 

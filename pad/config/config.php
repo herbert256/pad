@@ -14,7 +14,7 @@
                               // 'none' , 'error' , 'warning' , 'notice' , 'all'
                               // (not used when $pad_error_action is 'php' or 'boot')
 
-  $pad_error_log    = FALSE;  //  Write error to Apache error log
+  $pad_error_log    = FALSE;  //  Write errors to Apache error log
   $pad_error_dump   = FALSE;  //  Dumps errors to the file system.
 
   // Trace the internal working of PAD
@@ -126,10 +126,11 @@
   // https://www.php.net/manual/en/filter.filters.sanitize.php
   
   $pad_sanitize = ['STRIP_LOW', 'ENCODE_HIGH'];
+  $pad_sanitize = [];
 
   // lib tidy
 
-  $pad_tidy                   = true;
+  $pad_tidy                   = FALSE;
   $pad_tidy_ccsid             = 'utf8'; 
   $pad_tidy_config            = [ 
                                   'output-html'     => true,

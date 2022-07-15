@@ -1,5 +1,9 @@
 <?php
 
+  $pad_timings = $pad_timings_count = $pad_timings_start = [];
+
+  $pad_timings_start ['init'] = microtime(true);
+
   include PAD . 'inits/app.php';
   include PAD . 'inits/page.php';
 
@@ -24,10 +28,10 @@
   $pad_len        = 0;
   $pad_time       = $_SERVER['REQUEST_TIME'];  
 
+  include PAD . 'config/config.php';
+
   $pad_lvl = 1;  
   include PAD . 'inits/level.php';
-
-  include PAD . 'config/config.php';
 
   if ( file_exists ( APP . 'config/config.php' ) )
     include APP . 'config/config.php';
@@ -78,5 +82,7 @@
 
   if ( isset($_REQUEST['pad_include']) )
     $pad_build_mode= 'include';
+
+  pad_timing_end ('init');
 
 ?>

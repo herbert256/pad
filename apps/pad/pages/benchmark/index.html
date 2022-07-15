@@ -1,0 +1,38 @@
+<h3>Totals</h3>
+
+<table border="1" cellpadding="3" cellspacing="3">
+
+  <tr>
+    <th></th>
+    {bench}<th>{$bench}</th>{/bench}
+  </tr>
+      
+  <tr>
+    <td>Duration</td>
+    {totals}<td align="right">{$total}</td>{/totals}
+  </tr>
+
+</table>
+
+<h3>Page timings</h3>
+
+<table border="1" cellpadding="3" cellspacing="3">
+
+  <tr>
+    <th>page</th>
+    {bench}<th>{$bench}</th>{/bench}
+  </tr>
+      
+  {files}
+
+    <tr>
+
+      <td>{$item}</td>
+
+      {bench}<td align="right">{$$bench}</td>{/bench} 
+
+    </tr>
+
+  {/files}
+  
+</table>
