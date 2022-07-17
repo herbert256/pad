@@ -5,6 +5,11 @@
     return;
   }
 
+  if ( $app == 'pad' ) {
+    $pad_cache = FALSE;
+    return;
+  }
+
   pad_timing_start ('cache');
 
   $pad_cache        = TRUE;

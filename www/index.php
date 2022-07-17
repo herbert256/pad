@@ -92,13 +92,10 @@
     error_log ( "[PAD] $id - $file:$line $error", 4 );
 
 #    if ( function_exists ( 'pad_local' ) and pad_local () )
-#      echo "$file:$line $error";
+      echo "$file:$line $error";
 #    else
 #      echo "Error: $id";
  
-    include_once PAD . 'lib/dump.php';
-    pad_dump_vars ("$file:$line $error");
-    
     exit;
 
   }  

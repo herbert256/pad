@@ -18,7 +18,7 @@
     
   }
 
-  if ( $pad_trace ) {
+  if ( $pad_trace_cache ) {
     $pad_cache_stop = $pad_stop + .4;
     include 'trace.php';
   }

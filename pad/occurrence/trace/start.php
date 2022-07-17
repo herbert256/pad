@@ -10,21 +10,9 @@
   if ( $pad_lvl <= 1 )
     return;
 
-  $pad_trace_data = [ 
-    'level'      => $pad_lvl,
-    'occurrence' => $pad_occur [$pad_lvl],
-    'key'        => $pad_key [$pad_lvl],
-    'current'    => $pad_current [$pad_lvl]
-  ];
-
-  pad_file_put_contents ( "$pad_trace_dir_occ/occurrence.json", $pad_trace_data );
-  pad_file_put_contents ( "$pad_trace_dir_occ/pad.json",        pad_trace_get_pad_vars ()   );
-  pad_file_put_contents ( "$pad_trace_dir_occ/app.json",        pad_trace_get_app_vars ()   );
-
-
-  if ( $pad_trace_occurence_details ) {
-    pad_file_put_contents ( "$pad_trace_dir_occ/data.json",       $pad_data       );
-    pad_file_put_contents ( "$pad_trace_dir_occ/parameters.json", $pad_parameters );
-  }
-
+  pad_file_put_contents ( "$pad_trace_dir_occ/data.json",     $pad_current [$pad_lvl]   );
+  pad_file_put_contents ( "$pad_trace_dir_occ/pad.json",       pad_trace_get_pad_vars () );
+  pad_file_put_contents ( "$pad_trace_dir_occ/app.json",       pad_trace_get_app_vars () );
+  pad_file_put_contents ( "$pad_trace_dir_occ/html-base.html", $pad_base[$pad_lvl]      );
+  
 ?>

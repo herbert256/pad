@@ -74,7 +74,7 @@
         return TRUE;
     }
 
-    if ( pad_file_exists ( APP . "data/$input" ) )
+    if ( pad_file_valid_name ( APP . "data/$input" ) and pad_file_exists ( APP . "data/$input" ) )
       return TRUE;
 
     $parts = pad_explode ($input, ':', 3);

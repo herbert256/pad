@@ -2,7 +2,7 @@
 
   $title = "Benchmark";
 
-  $type = 'count';
+  $type = 'timings';
 
   $files = $totals = [];
 
@@ -22,53 +22,52 @@
 
   foreach ($ref as $item) {
 
-    $curl = pad_complete ('reference', $item);
+    $files [$item] ['item'] = $item;
 
-    if ( $curl ['result'] == 200 ) {
+    foreach ($bench as $wrk)
+      $files [$item] [$wrk] = 0;
 
-      $files [$item] ['item'] = $item;
+    $files [$item] ['not'] = 0;
 
-      foreach ($bench as $wrk)
-        $files [$item] [$wrk] = 0;
+    for ($i = 0; $i < 1; $i++) {
 
-      $files [$item] ['not'] = 0;
+      $start = microtime(true);
+      $curl  = pad_complete ('reference', $item);
+      $end   = microtime(true);
 
-      for ($i = 0; $i < 1; $i++) {
+      if ( $curl ['result'] <> 200 ) {
+        unset ( $files [$item] );
+        continue 2;
+      }
 
-        $start = microtime(true);
-        $curl  = pad_complete ('reference', $item);
-        $end   = microtime(true);
+      if ( $type == 'timings' ) {
 
-        if ( $type == 'timings' ) {
+        $files [$item] ['benchmark'] += (int) ( ($end - $start) * 1000000 );
+        $files [$item] ['get']       += (int) (  $curl ['info'] ['total_time'] * 1000000 );
 
-          $files [$item] ['benchmark'] += (int) ( ($end - $start) * 1000000 );
-          $files [$item] ['get']       += (int) (  $curl ['info'] ['total_time'] * 1000000 );
+        $timings = isset ($curl ['headers'] ['X-PAD-Timings']) ? json_decode ($curl ['headers'] ['X-PAD-Timings'], TRUE) : [];  
 
-          $timings = isset ($curl ['headers'] ['X-PAD-Timings']) ? json_decode ($curl ['headers'] ['X-PAD-Timings'], TRUE) : [];  
+        foreach ( $timings as $key => $val )
+          $files [$item] [$key] += $val;
 
-          foreach ( $timings as $key => $val )
-            $files [$item] [$key] += $val;
-
-          foreach ( $timings as $key => $val )
-            if ( $key <> 'total' )
-              $files [$item] ['not'] += $val;
-
-        }
-
-        if ( $type == 'count' ) {
-
-          $timings = isset ($curl ['headers'] ['X-PAD-Counts']) ? json_decode ($curl ['headers'] ['X-PAD-Counts'], TRUE) : [];  
-
-          foreach ( $timings as $key => $val )
-            if ( in_array($key, $bench) )
-              $files [$item] [$key] += $val;
-
-        }
+        foreach ( $timings as $key => $val )
+          if ( $key <> 'total' )
+            $files [$item] ['not'] += $val;
 
       }
-   
-    }
 
+      if ( $type == 'count' ) {
+
+        $timings = isset ($curl ['headers'] ['X-PAD-Counts']) ? json_decode ($curl ['headers'] ['X-PAD-Counts'], TRUE) : [];  
+
+        foreach ( $timings as $key => $val )
+          if ( in_array($key, $bench) )
+            $files [$item] [$key] += $val;
+
+      }
+
+    }
+   
   }
 
   if ( $type == 'timings' )

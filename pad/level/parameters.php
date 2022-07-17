@@ -13,7 +13,6 @@
   $pad_parameters [$pad_lvl] ['between']          = $pad_between;
   $pad_parameters [$pad_lvl] ['parms_type']       = $pad_parms_type;
   $pad_parameters [$pad_lvl] ['tag_count']        = 0;
-  $pad_parameters [$pad_lvl] ['lvl_cnt']          = $pad_lvl_cnt;
   $pad_parameters [$pad_lvl] ['parm']             = $pad_parm;
   $pad_parameters [$pad_lvl] ['parms_org']        = $pad_parms_org;
   $pad_parameters [$pad_lvl] ['parms_tag']        = $pad_parms_tag;  

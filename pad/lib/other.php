@@ -1,25 +1,5 @@
 <?php
 
-  function pad_trace_write ( $dir, $file, $data ) {
-
-    $target = DATA . $GLOBALS['pad_trace_dir_base'] ;
-    if ($dir)
-      $target .= "/$dir";
-
-    if ( ! file_exists($target) )
-      mkdir($target, $GLOBALS['pad_dir_mode'], true);
-
-    $target .= "/$file";
-
-    if ( ! file_exists($target) ) {
-      touch($target);
-      chmod($target, $GLOBALS['pad_file_mode']);
-    }
-
-    file_put_contents ( $target, $data, FILE_APPEND | LOCK_EX );
-
-  }
-
 
   function pad_local () {
 
@@ -834,9 +814,9 @@
 
   function pad_var_opts ($val, $opts) {
   
-    global $pad_opts_trace, $pad_trace, $pad_fld_cnt;
+    global $pad_opts_trace, $pad_trace_fields, $pad_fld_cnt;
 
-    if ($pad_trace)
+    if ($pad_trace_fields)
       $pad_opts_trace = [];
 
     foreach($opts as $opt) {
@@ -855,7 +835,7 @@
       if ( $prepend )                 $val = $now . $val;
       if ( ! $append and ! $prepend ) $val = $now;
 
-      if ($pad_trace and $val <> $save)
+      if ($pad_trace_fields and $val <> $save)
         $pad_opts_trace [$opt] = $val;
 
     }

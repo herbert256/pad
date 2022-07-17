@@ -58,11 +58,11 @@
   }
 
 
-  function pad_cache_exists ( $file ) {
+  function  pad_cache_exists ( $file ) {
 
     $file = $GLOBALS ['pad_cache_file'] . $file;
 
-    $return = file_exists ($file);
+    $return = pad_file_exists ($file);
 
     return $return;    
 
@@ -73,7 +73,7 @@
 
     $file = $GLOBALS ['pad_cache_file'] . $file;
 
-    $return = file_get_contents ($file);
+    $return = pad_file_get_contents ($file);
 
     return $return;    
 
@@ -82,7 +82,7 @@
 
   function pad_cache_put_contents ($file, $data) {
    
-    pad_cache_create ($file);
+    pad_cache_chk_dir($file);
 
     $file = $GLOBALS ['pad_cache_file'] . $file;
     
@@ -93,7 +93,7 @@
 
   function pad_cache_touch ($file, $time) {
 
-    pad_cache_create ($file);
+    pad_cache_chk_dir ($file);
 
     $file = $GLOBALS ['pad_cache_file'] . $file;
     
@@ -102,12 +102,12 @@
   }
   
 
-  function pad_cache_create ($file) {
+  function pad_cache_chk_dir ($file) {
 
     $file = $GLOBALS ['pad_cache_file'] . $file;
     $dir  = substr($file, 0, strrpos($file, '/'));
     
-    if ( ! file_exists($dir) )
+    if ( ! pad_file_exists ($dir) )
       mkdir($dir, $GLOBALS['pad_dir_mode'], true);
   
   }
@@ -116,7 +116,7 @@
 
     $file = $GLOBALS ['pad_cache_file'] . $file;
     
-    if ( file_exists($file) )
+    if ( pad_file_exists($file) )
       unlink ($file);
 
   }
@@ -126,7 +126,7 @@
 
     $file = $GLOBALS ['pad_cache_file'] . $file;
     
-    if ( file_exists($file) )
+    if ( pad_file_exists($file) )
       return filemtime($file);
 
     return 0;

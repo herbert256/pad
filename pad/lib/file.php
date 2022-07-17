@@ -1,14 +1,45 @@
 <?php
 
 
-  function pad_trace_file_operations ( $operation, $value ) {
+  function pad_file_trace ( $operation, $value ) {
 
-    if ( strpos($value, 'trace') !== FALSE)
-      return;
-    
     extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 2) [1] );
 
-    pad_trace_write ( '', 'file_operations.txt', "$operation: $file:$line -> $value\n" );
+    $file = DATA . $GLOBALS['pad_trace_dir_occ'] . '/file.txt';
+
+    $dir = substr($file, 0, strrpos($file, '/'));
+    if ( ! pad_file_trace_exists ($dir) ) {
+      pad_timing_start ('write');
+      mkdir ($dir, $GLOBALS['pad_dir_mode'], true);
+      pad_timing_end ('write');
+    }
+
+    if ( ! pad_file_trace_exists ($file) ) {
+      pad_timing_start ('write');
+      touch($file);
+      chmod($file, $GLOBALS['pad_file_mode']);
+      pad_timing_end ('write');
+    }
+
+    pad_timing_start ('write');
+    file_put_contents ( $file, "$operation: $file:$line -> $value\n", FILE_APPEND | LOCK_EX );
+    pad_timing_end ('write');
+
+  }
+
+
+  function pad_file_trace_exists ( $file ) {
+
+    pad_timing_start ('read');
+
+    if ( file_exists ($file) ) {
+      pad_timing_end ('read');
+      return TRUE;
+    }
+    else {
+      pad_timing_end ('read');
+      return FALSE;
+    }
 
   }
 
@@ -30,8 +61,8 @@
 
   function pad_file_exists ( $file ) {
 
-    if ($GLOBALS['pad_trace_file_operations'])
-      pad_trace_file_operations( 'exists', $file );
+    if ($GLOBALS['pad_trace_file'])
+      pad_file_trace ( 'exists', $file );
 
     if ( ! pad_file_valid_name ( $file ) )
       return FALSE;
@@ -52,8 +83,8 @@
 
   function pad_file_get_contents ( $file ) {
 
-    if ($GLOBALS['pad_trace_file_operations'])
-      pad_trace_file_operations( 'get...', $file );
+    if ($GLOBALS['pad_trace_file'])
+      pad_file_trace ( 'get...', $file );
 
     if ( ! pad_file_exists($file) )
       return '';
@@ -67,16 +98,13 @@
   }
 
 
-  function pad_file_put_contents ($file, $data='', $append=0) {
+  function pad_file_name ($file, $action) {
 
-    if ($GLOBALS['pad_trace_file_operations'])
-      pad_trace_file_operations( 'put...', $file );
+    if ($GLOBALS['pad_trace_file'])
+      pad_file_trace ( $action, $file );
 
     $file = str_replace('//', '/', $file);
     
-    if ( is_array($data) )
-      $data = pad_json ($data);
-
     if ( substr($file, 0, 1) == '/')
       $file = substr($file, 1);
 
@@ -84,23 +112,55 @@
 
     if ( ! pad_file_valid_name ( $file ) )
       return pad_error ("Invalid file name: $file");
+
+    return $file;
+
+  }
    
+
+  function pad_file_chk_dir ( $file ) {
+
     $pos = strrpos($file, '/');
     $dir = substr($file, 0, $pos);
     
     if ( ! pad_file_exists($dir) ) {
+
       pad_timing_start ('write');
-      mkdir($dir, $GLOBALS['pad_dir_mode'], true);
+
+      mkdir ($dir, $GLOBALS['pad_dir_mode'], true);
+
       pad_timing_end ('write');
-    }
-    
-    if ( ! pad_file_exists($file) ) {
-      pad_timing_start ('write');
-      touch($file);
-      chmod($file, $GLOBALS['pad_file_mode']);
-      pad_timing_end ('write');
+
     }
 
+  }
+
+  function pad_file_chk_file ( $file ) {
+
+    if ( ! pad_file_exists($file) ) {
+
+      pad_timing_start ('write');
+      
+      touch($file);
+      chmod($file, $GLOBALS['pad_file_mode']);
+      
+      pad_timing_end ('write');
+  
+    }
+
+  }
+
+
+  function pad_file_put_contents ($in, $data='', $append=0) {
+
+    $file = pad_file_name ( $in, 'put...' );
+
+    pad_file_chk_dir  ( $file );
+    pad_file_chk_file ( $file );
+
+    if ( is_array($data) )
+      $data = pad_json ($data);
+      
     if ($data) {
       pad_timing_start ('write');
       if ($append) file_put_contents ($file, "$data\n", LOCK_EX | FILE_APPEND);

@@ -19,12 +19,18 @@
 
   // Trace the internal working of PAD
 
-  $pad_trace                   = FALSE;  
-  $pad_trace_fields            = FALSE;  
-  $pad_trace_eval              = FALSE;  
-  $pad_trace_occurence_details = FALSE;  
-  $pad_trace_file_operations   = FALSE;  
-  $pad_trace_curl              = FALSE;  
+  $pad_trace           = FALSE;  
+  $pad_trace_level     = FALSE;  
+  $pad_trace_occurence = FALSE;  
+  $pad_trace_fields    = FALSE;  
+  $pad_trace_eval      = FALSE;  
+  $pad_trace_file      = FALSE;  
+  $pad_trace_curl      = FALSE;  
+  $pad_trace_cache     = FALSE;  
+  $pad_trace_timings   = FALSE;  
+  $pad_trace_headers   = FALSE;  
+  $pad_trace_options   = FALSE;
+  $pad_trace_sql       = FALSE;
 
   // Keep track of stuff
 
@@ -50,7 +56,7 @@
 
   // Server-side cache settings ( used wheb $pad_cache_server_age <> 0 )
 
-  $pad_cache_server_type      = 'db';                 //  The implementation of the server-side cache: file/db/memory
+  $pad_cache_server_type      = 'memory';                 //  The implementation of the server-side cache: file/db/memory
   $pad_cache_server_gzip      = FALSE;                //  Store the cache zipped
   $pad_cache_server_no_data   = FALSE;                //  Do not store the data itself, only the etag and timestamp,
                                                       //  caching based on the client 'etag' & 'modified' HTTP headers.
@@ -118,15 +124,11 @@
   $pad_data_default_start = ['trim', 'white'];
   $pad_data_default_end   = ['html', 'nbsp'];
 
-  $pad_data_default_start = [];
-  $pad_data_default_end   = [];
-
   // Default filter options on the complete output, executed before Tidy
   // Must be a flag from FILTER_UNSAFE_RAW from below page.
   // https://www.php.net/manual/en/filter.filters.sanitize.php
   
   $pad_sanitize = ['STRIP_LOW', 'ENCODE_HIGH'];
-  $pad_sanitize = [];
 
   // lib tidy
 

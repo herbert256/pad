@@ -59,6 +59,8 @@
     elseif ( isset($pad_eval_result[$key][1]) <> 'VAL' )         
       return pad_eval_error("Result is not a value");
 
+    pad_eval_error_trace ('trace');
+
     $GLOBALS ['pad_trace_eval_stage'] = 'end';
 
     pad_timing_end ('eval');
@@ -86,22 +88,21 @@
 
   function pad_eval_error_trace ($txt) {
 
-    global $pad_trace, $pad_eval_cnt, $pad_eval_result, $app, $page, $PADREQID, $pad_trace_dir_base;
+    global $pad_trace_eval, $pad_eval_cnt, $pad_eval_result, $app, $page, $PADREQID, $pad_trace_dir_occ;
 
-    if ( $pad_trace ) {
+    if ( $pad_trace_eval ) {
 
       $json = pad_json ( [
         'eval'    => $GLOBALS ['pad_trace_eval_eval']   ?? '',
         'myself'  => $GLOBALS ['pad_trace_eval_myself'] ?? '',
-        'error'   => $txt                               ?? '',
+        'text'    => $txt                               ?? '',
         'number'  => $pad_eval_cnt                      ?? '',
         'parsed'  => $GLOBALS ['pad_trace_eval_parsed'] ?? '',
         'after'   => $GLOBALS ['pad_trace_eval_after']  ?? '',
-        'result'  => $pad_eval_result                   ?? '',
-        'request' => $PADREQID                          ?? ''
+        'result'  => $pad_eval_result                   ?? ''
       ] );
 
-      pad_file_put_contents ( "$pad_trace_dir_base/eval_error_$pad_eval_cnt.json",   $json );
+      pad_file_put_contents ( "$pad_trace_dir_occ/eval/$pad_eval_cnt.json",   $json );
 
     }
 

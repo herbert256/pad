@@ -18,7 +18,7 @@
          )
         $dump [$key] = $value;
 
-    return pad_json ($dump);
+    return $dump;
 
   }
 

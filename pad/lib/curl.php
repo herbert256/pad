@@ -85,8 +85,8 @@
 
     if ( ! strpos( $input ['url'], '://') ) {
       $file = APP . 'data/' . $input ['url'];
-      if ( file_exists ( $file ) ) {
-        $output ['data']    = file_get_contents ( $file );   
+      if ( pad_file_exists ( $file ) ) {
+        $output ['data']    = pad_file_get_contents ( $file );   
         $output ['type']    = pad_content_type  ( $output ['data'] );   
         $output ['result']  = '200';
       } else {
@@ -223,7 +223,9 @@
 
   function pad_trace_curl ( $trace ) {
 
-    pad_trace_write ( 'curl', pad_random_string(). ".json", pad_json ($trace) );
+    $file = $GLOBALS ['pad_trace_dir_lvl'] . "/curl_" . pad_random_string(). ".json";
+
+    pad_file_put_contents ($file, pad_json ($trace) );
 
   }
   

@@ -17,8 +17,8 @@
   $PADREQID  = pad_random_string();
 
   $pad_trace_dir_base = "trace/$app/$page/$PADREQID";
-  $pad_trace_dir_lvl  = "$pad_trace_dir_base/tree";
-  $pad_trace_dir_occ  = "$pad_trace_dir_base/tree";
+  $pad_trace_dir_lvl  = "$pad_trace_dir_base";
+  $pad_trace_dir_occ  = "$pad_trace_dir_base";
 
   $pad_output     = '';
   $pad_stop       = '000';
@@ -33,7 +33,7 @@
   $pad_lvl = 1;  
   include PAD . 'inits/level.php';
 
-  if ( file_exists ( APP . 'config/config.php' ) )
+  if ( pad_file_exists ( APP . 'config/config.php' ) )
     include APP . 'config/config.php';
 
   if ($pad_no_no) 
@@ -54,11 +54,12 @@
 
   if ($pad_client_gzip and (!isset($_SERVER['HTTP_ACCEPT_ENCODING']) or strpos($_SERVER['HTTP_ACCEPT_ENCODING'],'gzip') === FALSE))
     $pad_client_gzip = FALSE;
+  
+  include PAD . 'cache/cache.php';
 
   $pad_lib = APP . 'lib';
   include PAD . 'inits/lib.php';
-  
-  include PAD . 'cache/cache.php';
+
   include PAD . 'options/go/inits.php';
   include PAD . 'inits/parms.php';
 
