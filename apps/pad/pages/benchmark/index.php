@@ -2,7 +2,7 @@
 
   $title = "Benchmark";
 
-  $type = 'timings';
+  $type = 'count';
 
   $files = $totals = [];
 

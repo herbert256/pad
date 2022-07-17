@@ -2,16 +2,10 @@
 
   $pad_lvl++;
   
-  if ( isset ( $pad_current [$pad_lvl] ) )
-    unset ( $pad_current [$pad_lvl] );
-
   include 'inits.php';
 
   $pad_tag_result = include 'tag.php';
   
-  $pad_parameters [$pad_lvl] ['pad_tag_result'] = $pad_tag_result;
-  $pad_parameters [$pad_lvl] ['default_data']   = pad_is_default_data ( $pad_data [$pad_lvl] );
-
   include 'trace/start.php';
 
   if ( $pad_tag_result === NULL )

@@ -6,9 +6,9 @@
 
     $pad_backup_trace = [];
 
-    foreach ($GLOBALS as $pad_k => $pad_v )
-      if ( substr($pad_k, 0, 9) == 'pad_trace' )
-        $pad_backup_trace [$pad_k] = $pad_v;
+    foreach ($GLOBALS as $pad_k2 => $pad_v2 )
+      if ( substr($pad_k2, 0, 9) == 'pad_trace' )
+        $pad_backup_trace [$pad_k2] = $pad_v2;
 
     $pad_trace           = TRUE;  
     $pad_trace_level     = TRUE;  
@@ -21,7 +21,8 @@
     $pad_trace_timings   = TRUE;  
     $pad_trace_headers   = TRUE;  
     $pad_trace_options   = TRUE;  
-    $pad_trace_sql       = TRUE;  
+    $pad_trace_sql       = TRUE; 
+    $pad_trace_explode   = TRUE;
 
     $pad_trace_dir_lvl = $pad_trace_dir_base . '/trace-' . $pad_lvl_cnt; 
     $pad_trace_trace_dir = $pad_trace_dir_occ = $pad_trace_dir_lvl;

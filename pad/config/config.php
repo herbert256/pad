@@ -31,6 +31,7 @@
   $pad_trace_headers   = FALSE;  
   $pad_trace_options   = FALSE;
   $pad_trace_sql       = FALSE;
+  $pad_trace_explode   = FALSE;
 
   // Keep track of stuff
 

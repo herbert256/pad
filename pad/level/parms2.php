@@ -11,13 +11,14 @@
   
   foreach ( $pad_parms_org as $pad_v ) {
 
-    $pad_v = str_replace('&comma;', ',', $pad_v);
+    if ( $pad_v == 'trace' )
+      include 'trace/option.php';
 
+    $pad_v = str_replace('&comma;', ',', $pad_v);
     $pad_w = pad_explode ($pad_v, '=', 2);
 
     if ( count($pad_w) == 2 )
       $pad_w[1] = str_replace('&is;', '=', $pad_w[1]);
-
 
     if ( count($pad_w) == 2 and substr($pad_w[0], 0, 1) == '$') {
 
@@ -59,4 +60,5 @@
 
   pad_timing_end ('parm');
 
+  
 ?>

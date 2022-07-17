@@ -43,6 +43,12 @@
 
     }
 
+    if ( $GLOBALS['pad_trace_explode'] ) 
+      pad_file_put_contents ( 
+        $GLOBALS['pad_trace_dir_occ'] . '/explode/' . pad_random_string() . '.json',
+        [ $haystack, $limit, array_values ( $explode ) ]
+      );
+
     return array_values ( $explode );
     
   }
@@ -50,7 +56,9 @@
 
   function pad_json ($data) {
 
-    return json_encode ( $data, JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_FORCE_OBJECT );
+    return json_encode ( $data, JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK
+
+    );
 
   }
 
@@ -205,7 +213,7 @@
     return base64_decode(strtr($string,'_-','+/'));
   }
 
-  function pad_random_string ($len=16) {
+  function pad_random_string ($len=8) {
     $random = ceil(($len/4)*3);
     $random = random_bytes($random);
     $random = base64_encode($random);

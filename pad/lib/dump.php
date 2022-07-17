@@ -112,7 +112,7 @@
     echo ( "<b>Stack</b>\n");
     foreach ( $pad_debug_backtrace as $key => $trace ) {
       extract ( $trace );
-      if ( ! in_array($file, [PAD.'inits/error.php', PAD.'lib/dump.php']) )
+ #     if ( ! in_array($file, [PAD.'inits/error.php', PAD.'lib/dump.php']) )
         echo ( "    $file:$line - $function\n");
     }
 
