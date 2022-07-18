@@ -4,12 +4,13 @@
 
   pad_reset (2, $pad_lvl);
 
+  include 'level.php';
+
   $page = $pad_next;
   $pad_next = '';
 
   pad_check_page ();
 
-  $pad_lvl      = 1;
   $pad_base [1] = '';
 
   include PAD . "build/$pad_build_mode.php";

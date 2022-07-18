@@ -13,6 +13,6 @@
       'between' => $pad_between,
   ];
 
-  pad_trace_write_error ( 'Field not found', 'field', $pad_fld_cnt, $pad_trace_info );
+  pad_trace_write_error ( "Field '$pad_fld' not found", 'field', $pad_fld_cnt, $pad_trace_info );
 
 ?>

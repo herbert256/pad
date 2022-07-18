@@ -1,17 +1,26 @@
 <?php
 
-  $pad_timings = $pad_timings_count = $pad_timings_start = [];
+  $pad_timings_start ['init'] = microtime(true);
+ 
+  $pad_timings_count = $pad_timings_start = [];
   $pad_err_cnt =$pad_eval_cnt = $pad_fld_cnt = $pad_lvl_cnt = $pad_opt_cnt = $pad_err_cnt = 0;
 
-  $pad_timings_start ['init'] = microtime(true);
+  $pad_lvl        = 1;
+  $pad_output     = '';
+  $pad_stop       = '000';
+  $pad_cache_stop = 0;
+  $pad_etag       = '';
+  $pad_exit       = 1;
+  $pad_len        = 0;
+  $pad_time       = $_SERVER['REQUEST_TIME'];  
 
-  include PAD . 'inits/app.php';
-  include PAD . 'inits/page.php';
+  include 'app.php';
+  include 'page.php';
 
   ob_start();
  
   $pad_lib = PAD . 'lib';
-  include PAD . 'inits/lib.php';
+  include 'lib.php';
 
   $PADSESSID = $PADSESSID ?? $_POST['PADSESSID'] ?? $_GET['PADSESSID'] ?? $_COOKIE['PADSESSID'] ?? pad_random_string();
   $PADREFID  = $PADREFID  ?? $_POST['PADREQID']  ?? $_GET['PADREQID']  ?? $_COOKIE['PADREQID']  ?? '';
@@ -21,30 +30,19 @@
   $pad_trace_dir_lvl  = "$pad_trace_dir_base";
   $pad_trace_dir_occ  = "$pad_trace_dir_base";
 
-  $pad_output     = '';
-  $pad_stop       = '000';
-  $pad_cache_stop = 0;
-  $pad_etag       = '';
-  $pad_exit       = 1;
-  $pad_len        = 0;
-  $pad_time       = $_SERVER['REQUEST_TIME'];  
-
   include PAD . 'config/config.php';
-
-  $pad_lvl = 1;  
-  include PAD . 'inits/level.php';
 
   if ( pad_file_exists ( APP . 'config/config.php' ) )
     include APP . 'config/config.php';
 
   if ($pad_no_no) 
-    include PAD . 'inits/nono.php';
+    include 'nono.php';
 
   if ( isset($_SERVER['QUERY_STRING']) and $_SERVER['QUERY_STRING'] and strpos($_SERVER['QUERY_STRING'], '=') === FALSE )
-    include PAD . 'inits/fast.php';
+    include 'fast.php';
 
-  include PAD . 'inits/error.php';
-  include PAD . 'inits/trace.php';
+  include 'error.php';
+  include 'trace.php';
 
   if ( ! headers_sent () ) {
     if ( ! isset($_COOKIE['PADSESSID']) or $_COOKIE['PADSESSID'] <> $PADSESSID )
@@ -59,10 +57,10 @@
   include PAD . 'cache/cache.php';
 
   $pad_lib = APP . 'lib';
-  include PAD . 'inits/lib.php';
+  include 'lib.php';
 
   include PAD . 'options/go/inits.php';
-  include PAD . 'inits/parms.php';
+  include 'parms.php';
 
   $pad_request_scheme = $_SERVER ['REQUEST_SCHEME'] ?? 'http';
   $pad_http_host      = $_SERVER ['HTTP_HOST']      ?? 'localhost';
