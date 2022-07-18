@@ -15,12 +15,13 @@
                               // (not used when $pad_error_action is 'php' or 'boot')
 
   $pad_error_log    = FALSE;  //  Write errors to Apache error log
-  $pad_error_dump   = FALSE;  //  Dumps errors to the file system.
+  $pad_error_dump   = TRUE;   //  Dump errors to the DATA directory
 
   // Trace the internal working of PAD
 
   $pad_trace           = FALSE;  
   $pad_trace_level     = FALSE;  
+  $pad_trace_errors    = FALSE;  
   $pad_trace_occurence = FALSE;  
   $pad_trace_fields    = FALSE;  
   $pad_trace_eval      = FALSE;  
@@ -57,7 +58,7 @@
 
   // Server-side cache settings ( used wheb $pad_cache_server_age <> 0 )
 
-  $pad_cache_server_type      = 'memory';                 //  The implementation of the server-side cache: file/db/memory
+  $pad_cache_server_type      = 'memory';             //  The implementation of the server-side cache: file/db/memory
   $pad_cache_server_gzip      = FALSE;                //  Store the cache zipped
   $pad_cache_server_no_data   = FALSE;                //  Do not store the data itself, only the etag and timestamp,
                                                       //  caching based on the client 'etag' & 'modified' HTTP headers.
@@ -136,10 +137,10 @@
   $pad_tidy                   = FALSE;
   $pad_tidy_ccsid             = 'utf8'; 
   $pad_tidy_config            = [ 
-                                  'output-html'     => true,
+                                  'output-html'     => FALSE,
                                   'doctype'         => 'html5',
                                   'wrap'            => 200,
-                                  'indent'          => true,
+                                  'indent'          => FALSE,
                                   'tab-size'        => 2,
                                   'vertical-space'  => 'yes',
                                   'replace-color'   => 'yes'
@@ -152,9 +153,9 @@
   // Other settings.
 
   $pad_client_gzip            = FALSE; // Send the result zipped
-  $pad_etag_304               = TRUE;  // Send a 304 header, based on the client etag http header
+  $pad_etag_304               = FALSE;  // Send a 304 header, based on the client etag http header
   $pad_no_no                  = FALSE; // No PAD stuff, just plane PHP   
   $pad_fast_link              = 32;
-  $pad_timing                 = TRUE;
+  $pad_timing                 = FALSE;
 
 ?>

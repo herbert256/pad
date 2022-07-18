@@ -1,6 +1,7 @@
 <?php
 
   $pad_timings = $pad_timings_count = $pad_timings_start = [];
+  $pad_err_cnt =$pad_eval_cnt = $pad_fld_cnt = $pad_lvl_cnt = $pad_opt_cnt = $pad_err_cnt = 0;
 
   $pad_timings_start ['init'] = microtime(true);
 

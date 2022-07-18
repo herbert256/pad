@@ -35,23 +35,15 @@
 
   function pad_error ($error) {
  
-    try {
- 
-      extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
+    extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
 
-      if ( $GLOBALS['pad_error_action'] == 'php' ) { 
-        trigger_error("$file:$line $error", E_USER_ERROR);
-        return FALSE;
-      }
-   
-      return pad_error_go ( 'PAD: ' . $error, $file, $line); 
-   
-     } catch (Exception $e) {
- 
-      pad_boot_error ( "OOPS: $error" );
- 
+    if ( $GLOBALS['pad_error_action'] == 'php' ) { 
+      trigger_error("$file:$line $error", E_USER_ERROR);
+      return FALSE;
     }
-
+ 
+    return pad_error_go ( 'PAD: ' . $error, $file, $line); 
+ 
   }
 
 
@@ -87,17 +79,9 @@
 
   function pad_error_go ($error, $file, $line) {
 
-    if ( $GLOBALS['pad_error_action'] == 'ignore' ) 
-      return FALSE;
-
-    if ( $GLOBALS['pad_exit'] <> 1 ) 
-      pad_boot_error ( "OOPS: $error at $file:$line" );
-
-    $GLOBALS['pad_exit']= 2;
-
     try {
  
-      pad_error_try ($error, $file, $line); 
+      return pad_error_try ($error, $file, $line); 
  
     } catch (Exception $e) {
  
@@ -110,7 +94,17 @@
 
   function pad_error_try ($error, $file, $line) {
 
-    global $app, $page, $pad_error_action, $pad_exit, $pad_trace, $pad_trace_dir_base, $PADREQID, $pad_error_dump, $pad_error_log;
+    if ( $GLOBALS['pad_error_action'] == 'ignore' ) 
+      return FALSE;
+
+    global $pad_error_action, $pad_exit, $PADREQID, $pad_trace_errors, $pad_error_dump, $pad_error_log, $pad_err_cnt;
+
+    if ( $GLOBALS['pad_exit'] <> 1 ) 
+      pad_boot_error ( "OOPS: $error at $file:$line" );
+
+    $GLOBALS['pad_exit'] = 2;
+
+    $pad_err_cnt++;
 
     $error = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '.', $error);
     $error = preg_replace('/\s+/', ' ', $error);
@@ -122,12 +116,10 @@
     if ( $pad_error_log and $pad_error_action <> 'boot' ) 
       error_log ("[PAD] $PADREQID $error", 4);   
 
-    if ( $pad_trace )
-      pad_dump_to_file ("$pad_trace_dir_base/error_" .uniqid() . ".html", $error);
-    elseif ( $pad_error_dump or $pad_error_action == 'report' ) 
-      pad_dump_to_file ("errors/$app/$page/$PADREQID." .uniqid() . ".html", $error);
+    if ( $pad_trace_errors or $pad_error_dump or $pad_error_action == 'report' )
+      pad_trace_write_error ( $error, 'pad', $pad_err_cnt, $data, 1);
 
-    if ( ! headers_sent () and in_array($pad_error_action, ['pad', 'stop', 'abort']) )
+    if ( ! headers_sent () and in_array($pad_error_action, ['pad', 'stop', 'abort', 'ignore']) )
       pad_header ('HTTP/1.0 500 Internal Server Error' );
 
     if ( $pad_error_action == 'boot' )

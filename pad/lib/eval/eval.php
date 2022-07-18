@@ -59,7 +59,7 @@
     elseif ( isset($pad_eval_result[$key][1]) <> 'VAL' )         
       return pad_eval_error("Result is not a value");
 
-    pad_eval_error_trace ('trace');
+    pad_eval_trace ();
 
     $GLOBALS ['pad_trace_eval_stage'] = 'end';
 
@@ -72,40 +72,46 @@
 
   function pad_eval_error ($txt) {
 
-    pad_eval_error_trace ($txt);
+    pad_eval_trace ();
 
     $GLOBALS ['pad_trace_eval_stage'] = 'error';
 
-    pad_error ($txt);
+    global $pad_eval_cnt;
 
-    $GLOBALS ['pad_trace_eval_stage'] = 'end';
+    $data = [
+      'eval'    => $GLOBALS ['pad_trace_eval_eval']   ?? '',
+      'myself'  => $GLOBALS ['pad_trace_eval_myself'] ?? '',
+      'parsed'  => $GLOBALS ['pad_trace_eval_parsed'] ?? '',
+      'after'   => $GLOBALS ['pad_trace_eval_after']  ?? '',
+      'result'  => $GLOBALS ['pad_trace_eval_result'] ?? ''
+    ];
+ 
+    pad_trace_write_error ( $txt, 'eval', $pad_eval_cnt, $data );
 
-    pad_timing_end ('eval');
+    return pad_error ($txt);
 
-    return $GLOBALS ['pad_trace_eval_eval'];
+  }
+
+
+  function pad_eval_trace () {
+
+    if ( ! $GLOBALS['pad_trace_eval'] )
+      return;
+
+    global $pad_eval_cnt, $pad_trace_dir_occ;
+
+    $data = [
+      'number'  => $pad_eval_cnt                      ?? '',
+      'eval'    => $GLOBALS ['pad_trace_eval_eval']   ?? '',
+      'myself'  => $GLOBALS ['pad_trace_eval_myself'] ?? '',
+      'parsed'  => $GLOBALS ['pad_trace_eval_parsed'] ?? '',
+      'after'   => $GLOBALS ['pad_trace_eval_after']  ?? '',
+      'result'  => $GLOBALS ['pad_trace_eval_result'] ?? ''
+    ];
+
+    pad_file_put_contents ( "$pad_trace_dir_occ/eval/$pad_eval_cnt.json",  $data );
 
   }
 
-  function pad_eval_error_trace ($txt) {
-
-    global $pad_trace_eval, $pad_eval_cnt, $pad_eval_result, $app, $page, $PADREQID, $pad_trace_dir_occ;
-
-    if ( $pad_trace_eval ) {
-
-      $json = pad_json ( [
-        'eval'    => $GLOBALS ['pad_trace_eval_eval']   ?? '',
-        'myself'  => $GLOBALS ['pad_trace_eval_myself'] ?? '',
-        'text'    => $txt                               ?? '',
-        'number'  => $pad_eval_cnt                      ?? '',
-        'parsed'  => $GLOBALS ['pad_trace_eval_parsed'] ?? '',
-        'after'   => $GLOBALS ['pad_trace_eval_after']  ?? '',
-        'result'  => $pad_eval_result                   ?? ''
-      ] );
-
-      pad_file_put_contents ( "$pad_trace_dir_occ/eval/$pad_eval_cnt.json",   $json );
-
-    }
-
-  }
 
 ?>

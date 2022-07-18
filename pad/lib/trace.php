@@ -22,4 +22,47 @@
 
   }
 
+
+  function pad_trace_write_error ($error, $type, $count, $vars, $force=0 ) {
+
+    if ( $GLOBALS['pad_error_dump' and ! $GLOBALS['pad_trace_errors'] )
+      return pad_trace_write_error_light ($error, $type, $count, $vars);
+
+    if ( ! $force and ! $GLOBALS['pad_trace_errors'] )
+      return;
+
+    global $pad_trace_dir_occ, $app, $page, $PADREQID;
+
+    $pad_error_dir = "$pad_trace_dir_occ/errors/$type/$count";
+
+    $data = [];
+
+    $data ['error']   = $error;
+    $data ['number']  = $count;
+    $data ['app']     = $app;
+    $data ['page']    = $page;
+    $data ['request'] = $PADREQID;
+    $data ['dir']     = $pad_error_dir;
+
+    foreach ($vars as $key => $val)
+      $data [$key] = $val;
+
+    pad_file_put_contents ( "errors/$PADREQID-$type-$count.json", $data ); 
+
+    pad_file_put_contents ( "$pad_error_dir/error.json", $data ); 
+    pad_file_put_contents ( "$pad_error_dir/pad.json",   pad_trace_get_pad_vars ()  );
+    pad_file_put_contents ( "$pad_error_dir/app.json",   pad_trace_get_app_vars ()  );
+    pad_file_put_contents ( "$pad_error_dir/php.json",   pad_trace_get_php_vars ()  );
+    pad_file_put_contents ( "$pad_error_dir/dump.html",  pad_dump_get           ()  );
+
+  }
+
+  function pad_trace_write_error_light ($error, $type, $count, $vars) {
+
+    global $app, $page, $PADREQID;
+
+    pad_file_put_contents ( "errors/$PADREQID-$type-$count.json", pad_dump_get($error) ); 
+
+  }
+
 ?>

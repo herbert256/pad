@@ -27,7 +27,7 @@
 
   $pad_val = pad_field_value ($pad_fld);
 
-  if ( $pad_trace_fields ) 
+  if ( $pad_trace_fields or $pad_trace_errors or $pad_error_dump ) 
     include 'trace/start.php';
 
 ?>
