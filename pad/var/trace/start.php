@@ -2,7 +2,7 @@
 
   $pad_val_base = $pad_val;
 
-  if ( ! $GLOBALS['pad_trace_errors'] )
+  if ( ! $GLOBALS['pad_trace_errors'] and ! $GLOBALS['pad_error_dump'] )
     return;
 
   if ( pad_field_check ( $pad_fld ) ) 

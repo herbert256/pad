@@ -25,7 +25,7 @@
 
   function pad_trace_write_error ($error, $type, $count, $vars, $force=0 ) {
 
-    if ( $GLOBALS['pad_error_dump' and ! $GLOBALS['pad_trace_errors'] )
+    if ( $GLOBALS['pad_error_dump'] and ! $GLOBALS['pad_trace_errors'] )
       return pad_trace_write_error_light ($error, $type, $count, $vars);
 
     if ( ! $force and ! $GLOBALS['pad_trace_errors'] )
@@ -61,7 +61,7 @@
 
     global $app, $page, $PADREQID;
 
-    pad_file_put_contents ( "errors/$PADREQID-$type-$count.json", pad_dump_get($error) ); 
+    pad_file_put_contents ( "errors/$PADREQID-$type-$count.html", pad_dump_get($error) ); 
 
   }
 
