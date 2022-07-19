@@ -2,7 +2,19 @@
 
   $pad_timings_start ['init'] = microtime(true);
  
-  $pad_timings_count = $pad_timings_start = [];
+  include 'app.php';
+  include 'page.php';
+
+  ob_start();
+
+  $pad_lib = PAD . 'lib';
+  include 'lib.php';
+
+  $PADSESSID = $PADSESSID ?? $_POST['PADSESSID'] ?? $_GET['PADSESSID'] ?? $_COOKIE['PADSESSID'] ?? pad_random_string();
+  $PADREFID  = $PADREFID  ?? $_POST['PADREQID']  ?? $_GET['PADREQID']  ?? $_COOKIE['PADREQID']  ?? '';
+  $PADREQID  = pad_random_string();
+
+  $pad_timings_count = $pad_timings = [];
   $pad_err_cnt =$pad_eval_cnt = $pad_fld_cnt = $pad_lvl_cnt = $pad_opt_cnt = $pad_err_cnt = 0;
 
   $pad_lvl        = 1;
@@ -13,18 +25,6 @@
   $pad_exit       = 1;
   $pad_len        = 0;
   $pad_time       = $_SERVER['REQUEST_TIME'];  
-
-  include 'app.php';
-  include 'page.php';
-
-  ob_start();
- 
-  $pad_lib = PAD . 'lib';
-  include 'lib.php';
-
-  $PADSESSID = $PADSESSID ?? $_POST['PADSESSID'] ?? $_GET['PADSESSID'] ?? $_COOKIE['PADSESSID'] ?? pad_random_string();
-  $PADREFID  = $PADREFID  ?? $_POST['PADREQID']  ?? $_GET['PADREQID']  ?? $_COOKIE['PADREQID']  ?? '';
-  $PADREQID  = pad_random_string();
 
   $pad_trace_dir_base = "trace/$app/$page/$PADREQID";
   $pad_trace_dir_lvl  = "$pad_trace_dir_base";

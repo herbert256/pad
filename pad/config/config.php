@@ -156,6 +156,6 @@
   $pad_etag_304               = FALSE;  // Send a 304 header, based on the client etag http header
   $pad_no_no                  = FALSE; // No PAD stuff, just plane PHP   
   $pad_fast_link              = 32;
-  $pad_timing                 = FALSE;
+  $pad_timing                 = TRUE;
 
 ?>

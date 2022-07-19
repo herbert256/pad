@@ -26,7 +26,7 @@
     global $pad_timings, $pad_timings_start;
 
     if ( ! isset ( $GLOBALS['pad_timings_start'] [$timing] ) )
-      pad_boot_error ('tm-oops-2: ' . $timing);
+      pad_error ('tm-oops-2: ' . $timing);
 
     $now = microtime(true) - $pad_timings_start[$timing];
 

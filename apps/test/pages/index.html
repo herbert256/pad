@@ -2,9 +2,15 @@
 
 {range 'A..C', fietspomp=31*7}
   {$range} - 
-    {loop from=1, to=3, vlaflip=15*30, dummy, trace}
+  {trace}
+    {loop from=1, to=3, vlaflip=15*30, dummy}
       {$loop}
+    {loop from=1, to=3, vlaflip=15*30, dummy}
+      {$loop}
+    {/loop}
+
     {/loop}<br>
+  {/trace}
 {/range}
 
 {/true}{/true}{/true}

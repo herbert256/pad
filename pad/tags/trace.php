@@ -25,25 +25,12 @@
     $pad_trace_explode   = TRUE;
 
     $pad_trace_dir_lvl = $pad_trace_dir_base . '/trace-' . $pad_lvl_cnt; 
-    $pad_trace_trace_dir = $pad_trace_dir_occ = $pad_trace_dir_lvl;
+    $pad_trace_dir_occ = $pad_trace_dir_lvl;
 
     $pad_parameters [$pad_lvl] ['trace_dir'] = $pad_trace_dir_lvl;
     $pad_parameters [$pad_lvl] ['occur_dir'] = $pad_trace_dir_occ;
-
-    pad_file_put_contents ( $pad_trace_dir_lvl . "/pad.json",    pad_trace_get_pad_vars () );
-    pad_file_put_contents ( $pad_trace_dir_lvl . "/app.json",    pad_trace_get_app_vars () );
-    pad_file_put_contents ( $pad_trace_dir_lvl . "/php.json",    pad_trace_get_php_vars () );
-    pad_file_put_contents ( $pad_trace_dir_lvl . "/parent.json", $pad_parameters [$pad_lvl-1] );
-    pad_file_put_contents ( $pad_trace_dir_lvl . "/html-base.html", $pad_base[$pad_lvl]        );
-
-    if ( isset($pad_parameters[$pad_lvl+1]) )
-      pad_file_put_contents ( $pad_trace_dir_lvl . "/last.json", $pad_parameters [$pad_lvl+1] );
-
+  
   } else {
-
-    pad_file_put_contents ( $pad_trace_trace_dir . "/pad-after.json", pad_trace_get_pad_vars () );
-    pad_file_put_contents ( $pad_trace_trace_dir . "/app-after.json", pad_trace_get_app_vars () );
-    pad_file_put_contents ( $pad_trace_trace_dir . "/html-result.html", $pad_result[$pad_lvl] );
 
     foreach ($pad_backup_trace as $pad_k => $pad_v )
       $GLOBALS [$pad_k] = $pad_v;
