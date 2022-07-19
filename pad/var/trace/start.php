@@ -8,11 +8,11 @@
   if ( pad_field_check ( $pad_fld ) ) 
     return;
 
-  $pad_trace_info = [ 
-      'field'   => $pad_fld,
-      'between' => $pad_between,
+  $pad_trace_data = [ 
+    'field'   => $GLOBALS['pad_fld'],
+    'between' => $GLOBALS['pad_between'],
   ];
 
-  pad_trace_write_error ( "Field '$pad_fld' not found", 'field', $pad_fld_cnt, $pad_trace_info );
+  pad_trace_write_error ( "Field '$pad_fld' not found", 'field', $GLOBALS['pad_fld_cnt'], $pad_trace_data );
 
 ?>

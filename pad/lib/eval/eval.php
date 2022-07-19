@@ -88,7 +88,7 @@
  
     pad_trace_write_error ( $txt, 'eval', $pad_eval_cnt, $data );
 
-    return pad_error ($txt);
+    return '';
 
   }
 

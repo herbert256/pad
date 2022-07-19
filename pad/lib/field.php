@@ -15,6 +15,7 @@
     elseif ( strpos ( $field, ':' ) !== FALSE ) $value = pad_field_prefix ( $field, $type );
     else                                        $value = pad_field_level  ( $field, $type );
 
+
     if      ($type == 1) return ( $value !== NULL and ( $value === PAD_NOT_FOUND or ! is_scalar($value) ) ) ? FALSE : TRUE;
     else if ($type == 2) return ( $value === NULL or    $value === PAD_NOT_FOUND or ! is_scalar($value)   ) ? ''    : $value;
     else if ($type == 3) return ( $value === NULL or    $value === PAD_NOT_FOUND or   is_scalar($value)   ) ? FALSE : TRUE;
@@ -54,7 +55,7 @@
 
   function pad_field_level ( $field, $type ) {
 
-    global $pad_lvl, $pad_db_lvl, $pad_current;
+    global $pad_lvl, $pad_db_lvl, $pad_current, $pad_parameters;
 
     if ( is_numeric($field) ) 
       return pad_field_tag_nr ('', $field);
@@ -73,6 +74,11 @@
         $work = pad_field_search ( $value, $field, $type);   
         if ( $work !== PAD_NOT_FOUND )
           return $work;
+
+      $work = pad_field_search ( $pad_parameters [$i] ['parms_tag'], $field, $type);   
+      if ( $work !== PAD_NOT_FOUND )
+        return $work;
+
       }
 
     }

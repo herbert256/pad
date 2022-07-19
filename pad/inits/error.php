@@ -117,7 +117,7 @@
       error_log ("[PAD] $PADREQID $error", 4);   
 
     if ( $pad_trace_errors or $pad_error_dump or $pad_error_action == 'report' )
-      pad_trace_write_error ( $error, 'pad', $pad_err_cnt, [], 1);
+      pad_trace_write_error ( $error, 'error', $pad_err_cnt, [], 1);
 
     if ( ! headers_sent () and in_array($pad_error_action, ['pad', 'stop', 'abort', 'ignore']) )
       pad_header ('HTTP/1.0 500 Internal Server Error' );
