@@ -15,6 +15,7 @@
     $pad_trace_occurence = TRUE;  
     $pad_trace_fields    = TRUE;  
     $pad_trace_eval      = TRUE;  
+    $pad_trace_eval_type = TRUE;  
     $pad_trace_file      = TRUE;  
     $pad_trace_curl      = TRUE;  
     $pad_trace_cache     = TRUE;  
@@ -23,6 +24,7 @@
     $pad_trace_options   = TRUE;  
     $pad_trace_sql       = TRUE; 
     $pad_trace_explode   = TRUE;
+    $pad_trace_tag       = TRUE; 
 
     $pad_trace_dir_lvl = $pad_trace_dir_base . '/trace-' . $pad_lvl_cnt; 
     $pad_trace_dir_occ = $pad_trace_dir_lvl;

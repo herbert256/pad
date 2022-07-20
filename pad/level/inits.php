@@ -20,6 +20,7 @@
   $pad_db_lvl      [$pad_lvl] = [];
   $pad_save_vars   [$pad_lvl] = [];
   $pad_delete_vars [$pad_lvl] = [];
+  $pad_tag_cnt     [$pad_lvl] = 0;
 
   $pad_set_save    [$pad_lvl] = [];
   $pad_set_delete  [$pad_lvl] = [];

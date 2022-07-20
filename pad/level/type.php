@@ -1,11 +1,19 @@
 <?php
 
+  $pad_tag_cnt [$pad_lvl]++;
+
   ob_start();
   $pad_tag_content  = '';
 
+  if ( $GLOBALS['pad_trace_tag'] )
+    include 'trace/tag/before.php';
+
   pad_timing_start ('tag');
-  $pad_tag_result   = include PAD . "types/$pad_tag_type.php";
+  $pad_tag_result = include PAD . "types/$pad_tag_type.php";
   pad_timing_end ('tag');
+
+  if ( $GLOBALS['pad_trace_tag'] )
+    include 'trace/tag/after.php';
 
   $pad_tag_content .= ob_get_clean();
 

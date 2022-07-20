@@ -11,7 +11,7 @@
   $pad_parameters [$pad_lvl] ['tag_result_data'] = $pad_tag_result;
 
   if ( $pad_tag_result === NULL )
-    return NULL; 
+    return NULL;
   
   if ( is_object   ( $pad_tag_result ) ) $pad_tag_result = pad_xxx_to_array ( $pad_tag_result );
   if ( is_resource ( $pad_tag_result ) ) $pad_tag_result = pad_xxx_to_array ( $pad_tag_result );
