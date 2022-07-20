@@ -9,7 +9,7 @@
     global $pad_timings_count, $pad_timings_start;
 
     if ( isset ( $pad_timings_start [$timing] ) )
-      pad_boot_error ('tm-oops-1: ' . $timing);
+      pad_error ('tm-oops-1: ' . $timing);
 
     $pad_timings_count [$timing] = 1 + ($pad_timings_count [$timing]??0);
 

@@ -88,6 +88,8 @@
  
     pad_trace_write_error ( $txt, 'eval', $pad_eval_cnt, $data );
 
+    pad_timing_end ('eval');
+    
     return '';
 
   }
