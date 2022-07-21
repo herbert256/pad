@@ -64,7 +64,7 @@
       return pad_eval_error("More then one result back");
     elseif ( isset($pad_eval_result[$key][6]) and $pad_eval_result [$key][6] == 'array' ) 
       return pad_eval_error("Result is an array");
-    elseif ( isset($pad_eval_result[$key][1]) <> 'VAL' )         
+    elseif ( $pad_eval_result[$key][1] <> 'VAL' )         
       return pad_eval_error("Result is not a value");
 
     pad_eval_trace  ('end', $pad_eval_result );
@@ -80,7 +80,7 @@
 
   function pad_eval_error ($txt) {
 
-    pad_eval_trace  ('error', [ 'error' => $txt, 'result' => $GLOBALS ['pad_trace_eval_result'] ] );
+    pad_eval_trace  ('error', [ 'error' => $txt, 'result' => $GLOBALS ['pad_eval_result'] ] );
 
     $GLOBALS ['pad_trace_eval_stage'] = 'error';
 

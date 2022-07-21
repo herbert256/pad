@@ -24,7 +24,7 @@
   $pad_trace_errors    = FALSE;  
   $pad_trace_occurence = FALSE;  
   $pad_trace_fields    = FALSE;  
-  $pad_trace_eval      = FALSE;   
+  $pad_trace_eval      = TRUE;   
   $pad_trace_file      = FALSE;  
   $pad_trace_curl      = FALSE;  
   $pad_trace_cache     = FALSE;  

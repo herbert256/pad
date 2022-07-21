@@ -2,9 +2,18 @@
   
   function pad_eval_go (&$result, $start, $end, $myself) {
 
-go: $b = -1;
+go: pad_eval_trace  ('go', $result );
 
-    pad_eval_trace  ('go', $result );
+    if  ( count($result) > 1 ) {
+      $f = reset($result);
+      $s = next($result);
+      if ( $f [0] and $f [1] == 'VAL' and $s [0] == 'OR' and $s [1] == 'OPR' ) {
+        $result = [ 100 => ['0' => 1, '1'=> 'VAL' ] ];
+        return;
+      }
+    }
+
+    $b = -1;
 
     foreach ( $result as $k => $t ) {
 
