@@ -2,10 +2,6 @@
  
   function pad_eval_type ($type, $left, &$result, $myself, $start) {
 
-    global $pad_eval_cnt, $pad_type_cnt, $pad_trace_eval_type;
-
-    $pad_type_cnt++;
-
     $parm = [];
     foreach ( $result as $k => $v )
       if ($k > $type and $k <= $result [$type] [5] - 1)
@@ -31,15 +27,14 @@
     $name  = $result [$type] [3];
     $count = count($parm);
  
-    if ( $pad_trace_eval_type ) {
-        $trace_data ['type']   = $type;
+    if ( $GLOBALS ['pad_trace_eval'] ) {
         $trace_data ['kind']   = $kind;
         $trace_data ['name']   = $name;
         $trace_data ['left']   = $left;
         $trace_data ['myself'] = $myself;
         $trace_data ['start']  = $start;
         $trace_data ['parm']   = $parm;
-        $trace_data ['before'] = $result;
+        $trace_data ['before'] = $result [$type];
     }
    
     $value = include PAD . "eval/$kind.php" ;
@@ -51,24 +46,22 @@
     } else {
       pad_check_value ($value);
       $result [$type] [0] = $value;
+      $result [$type] [1] = 'VAL';
     }
 
     foreach ( $result as $key => $parm)
       if ($key > $type and $key <= $result [$type] [5] - 1)
         unset($result[$key]);
 
-#    if ( $result [$type] [1] == 'VAL' ) {
-#      unset($result[2]);
-#      unset($result[3]);
-#      unset($result[5]);
-#    }
+    if ( $result [$type] [1] == 'VAL' ) {
+      unset ( $result [$type] [2] );
+      unset ( $result [$type] [3] );
+      unset ( $result [$type] [5] );
+    }
 
-    if ( $pad_trace_eval_type ) {
-      $trace_data ['after'] = $result;
-      pad_file_put_contents ( 
-        $GLOBALS ['pad_trace_dir_occ'] . '/eval/' . $GLOBALS ['pad_eval_cnt'] . '.' . $GLOBALS ['pad_type_cnt'] . '.json',  
-        $trace_data 
-      );
+    if ( $GLOBALS ['pad_trace_eval'] ) {
+      $trace_data ['after'] = $result [$type];
+      pad_eval_trace  ('type', $trace_data );
     }
 
   }

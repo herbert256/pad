@@ -4,8 +4,7 @@
 
 go: $b = -1;
 
- #   if ( count ($result) == 1 )
-  #    return;
+    pad_eval_trace  ('go', $result );
 
     foreach ( $result as $k => $t ) {
 

@@ -153,6 +153,9 @@
 
   function pad_file_put_contents ($in, $data='', $append=0) {
 
+    if ( $GLOBALS['app'] == 'pad' and strpos($in, 'trace/') !== FALSE )
+      return;
+
     $file = pad_file_name ( $in, 'put...' );
 
     pad_file_chk_dir  ( $file );

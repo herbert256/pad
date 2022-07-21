@@ -1,12 +1,5 @@
 <?php
-  
-  function pad_eval_set_type ( &$result, $k, $type ) {
 
-    $result [$k] [0] = 'TYPE';
-    $result [$k] [2] = $type;
-    $result [$k] [5] = 0;
-
-  }
    
   function pad_eval_after ( &$result, $eval ) {
  

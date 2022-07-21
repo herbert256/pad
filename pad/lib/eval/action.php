@@ -3,8 +3,12 @@
 
   function pad_eval_not ( &$result, $k, $b) {
 
-    $result[$k][0] = ( $result [$k] [0] ) ? '' : '1';
+    $start = $result [$k] [0];
+
+    $result [$k] [0] = ( $result [$k] [0] ) ? '' : '1';
     
+    pad_eval_trace ('not', [ 'start' => $start, 'result' => $result [$k] [0] ] );
+
     unset ($result[$b]);
 
   }
@@ -50,7 +54,9 @@
     unset ( $result [$b] );
     unset ( $result [$f] );
 
+    pad_eval_trace  ('action', [ 'left' => $left, 'operation' => $opr, 'right' => $right, 'result' => $now ] );
+
   }
   
   
-?>
+?>  
