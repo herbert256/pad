@@ -92,6 +92,7 @@
           $result[$k][1] = 'VAL';
         
           if ( is_array ( constant ( $one[0] ) )) {
+            $result[$k][0] = '*ARRAY*';
             $result[$k][6] = 'array';
             $result[$k][7] = constant ( $one[0] );
           }

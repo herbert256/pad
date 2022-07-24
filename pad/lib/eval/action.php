@@ -14,43 +14,82 @@
   }
   
   
+  function pad_eval_action_array ( $left, $opr, $right ) {
+
+    $action = strtolower ($opr);
+
+    if ( $action == '+' ) $action = 'append';
+
+    if ( ! pad_file_exists(PAD."sequence/eval/$action.php") ) {
+      pad_error ("Unsupported array operator: $opr");      
+      $now = '';
+    }
+    else 
+      $now = include PAD."sequence/eval/$action.php";
+
+    pad_eval_trace  ('array', [ 'left' => $left, 'action' => $action, 'right' => $right, 'result' => $now ] );
+
+    return $now;
+
+  }
+  
   function pad_eval_action ( &$result, $k, $b, $f ) {
 
     $left  = $result [$f] [0];
     $opr   = $result [$b] [0];
     $right = $result [$k] [0];
+
+    if ( isset ( $result [$f] [6] ) and $result [$f] [6] == 'array' )
+      
+      $now = pad_eval_action_array ($result [$f] [7], $opr, $result [$k] [7] );
  
-    if     ( $opr == 'LT'  ) $now = ($left <   $right) ? 1 : '';
-    elseif ( $opr == 'LE'  ) $now = ($left <=  $right) ? 1 : '';
-    elseif ( $opr == 'EQ'  ) $now = ($left ==  $right) ? 1 : '';
-    elseif ( $opr == 'GE'  ) $now = ($left >=  $right) ? 1 : '';
-    elseif ( $opr == 'GT'  ) $now = ($left >   $right) ? 1 : '';
-    elseif ( $opr == 'NE'  ) $now = ($left <>  $right) ? 1 : '';
-    elseif ( $opr == 'AND' ) $now = ($left AND $right) ? 1 : '';
-    elseif ( $opr == 'OR'  ) $now = ($left OR  $right) ? 1 : '';
-    elseif ( $opr == 'XOR' ) $now = ($left XOR $right) ? 1 : ''; 
-    elseif ( $opr == '.'   ) $now =  $left .   $right;
- 
-    else { 
+    else {
 
-      if (strpos($left, '.') === FALSE ) $left  = (int)    $left;
-      else                               $left  = (double) $left;
+      if     ( $opr == 'LT'  ) $now = ($left <   $right) ? 1 : '';
+      elseif ( $opr == 'LE'  ) $now = ($left <=  $right) ? 1 : '';
+      elseif ( $opr == 'EQ'  ) $now = ($left ==  $right) ? 1 : '';
+      elseif ( $opr == 'GE'  ) $now = ($left >=  $right) ? 1 : '';
+      elseif ( $opr == 'GT'  ) $now = ($left >   $right) ? 1 : '';
+      elseif ( $opr == 'NE'  ) $now = ($left <>  $right) ? 1 : '';
+      elseif ( $opr == 'AND' ) $now = ($left AND $right) ? 1 : '';
+      elseif ( $opr == 'OR'  ) $now = ($left OR  $right) ? 1 : '';
+      elseif ( $opr == 'XOR' ) $now = ($left XOR $right) ? 1 : ''; 
+      elseif ( $opr == '.'   ) $now =  $left .   $right;
+   
+      else { 
 
-      if (strpos($right, '.') === FALSE ) $right  = (int)    $right;
-      else                                $right  = (double) $right;
+        if (strpos($left, '.') === FALSE ) $left  = (int)    $left;
+        else                               $left  = (double) $left;
 
-      if     ( $opr == '+'   ) $now =  $left +   $right;
-      elseif ( $opr == '-'   ) $now =  $left -   $right;
-      elseif ( $opr == '*'   ) $now =  $left *   $right;
-      elseif ( $opr == '/'   ) $now =  $left /   $right;
-      elseif ( $opr == '%'   ) $now =  $left %   $right;
-      else 
-        throw new Exception('Unknow operation');
+        if (strpos($right, '.') === FALSE ) $right  = (int)    $right;
+        else                                $right  = (double) $right;
+
+        if     ( $opr == '+'   ) $now =  $left + $right;
+        elseif ( $opr == '-'   ) $now =  $left - $right;
+        elseif ( $opr == '*'   ) $now =  $left * $right;
+        elseif ( $opr == '/'   ) $now =  $left / $right;
+        elseif ( $opr == '%'   ) $now =  $left % $right;
+        else 
+          throw new Exception('Unknow operation');
+
+      }
 
     }
 
     $result [$k] [0] = $now;
-    
+    $result [$k] [1] = 'VAL';
+
+    if ( is_array($now)) {
+      $result [$k] [0] = '*ARRAY*';
+      $result [$k] [6] = 'array';
+      $result [$k] [7] = $now;
+    } else {
+      if ( isset($result [$k] [6])) {
+        unset ( $result [$k] [6] );
+        unset ( $result [$k] [7] );
+      }
+    }
+ 
     unset ( $result [$b] );
     unset ( $result [$f] );
 
