@@ -13,6 +13,16 @@
   const pad_eval_1   = [ '!', '+', '-', '*', '/', '%', '.' ];
   const pad_eval_2   = [ '**'];
   const pad_eval_txt = [ 'LT', 'LE', 'GT', 'GE', 'EQ', 'NE', 'AND', 'XOR', 'OR', 'NOT' ];
+  
+  const pad_eval_alt = [ 
+    '<'  => 'LT', 
+    '<=' => 'LE', 
+    '>'  => 'GT', 
+    '>=' => 'GE', 
+    '='  => 'EQ', 
+    '==' => 'EQ', 
+    '<>' => 'NE'
+  ];
 
   function pad_eval ($eval, $myself='') {
 

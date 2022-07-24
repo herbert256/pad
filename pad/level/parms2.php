@@ -1,11 +1,12 @@
 <?php
 
-  pad_timing_start ('parm');
-
   $pad_parms_org = [];
   $pad_parms_seq = [];
   $pad_parms_tag = [];
   $pad_parms_val = [];
+
+  if ( $pad_tag == 'if' )
+    return;
 
   $pad_parms_org = pad_explode ($pad_parms, ',');
   
@@ -14,7 +15,7 @@
     if ( $pad_v == 'trace' )
       include 'trace/option.php';
 
-    $pad_v = str_replace('&comma;', ',', $pad_v);
+    $pad_v = str_replace ('&comma;', ',', $pad_v);
     $pad_w = pad_explode ($pad_v, '=', 2);
 
     if ( count($pad_w) == 2 )
@@ -57,8 +58,5 @@
   $pad_parameters [$pad_lvl] ['parms_val'] = $pad_parms_val;
 
   include PAD . 'level/check.php';
-
-  pad_timing_end ('parm');
-
   
 ?>

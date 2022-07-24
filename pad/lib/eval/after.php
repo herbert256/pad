@@ -44,14 +44,18 @@
       }
 
     foreach ($result as $k => $one)
+      if ( $one[1] == 'other' and isset ( pad_eval_alt [$one[0]] ) ) {
+          $result[$k][0] = pad_eval_alt [$one[0]];
+          $result[$k][1] = 'OPR';
+      } 
 
+    foreach ($result as $k => $one)
       if ( $one[1] == 'other' and in_array ( strtoupper($one[0]), pad_eval_txt ) ) {
           $result[$k][0] = strtoupper($one[0]);
           $result[$k][1] = 'OPR';
       } 
 
     foreach ($result as $k => $one)
-
       if ( $one[1] == 'hex' ) {
         $result[$k][0] = hex2bin($one[0]);
         $result[$k][1] = 'VAL';
@@ -75,11 +79,7 @@
     foreach ($result as $k => $one)
       if ( $one[1] == 'other' )
         return 'Unknow eval argument: ' . $one[0];
-
-#    foreach ($result as $k => $one)
-#      if ( $one[1] == 'other' )
-#        $result[$k][1] = 'VAL';
-
+ 
     return '';
 
   }
