@@ -1,5 +1,16 @@
 <?php
-  
+
+
+  function pad_seq_action ( $sequence1, $action, $sequence2 ) {
+
+    $pad_seq_result          = $sequence1;
+    $pad_seq_action_value    = $action;
+    $pad_seq_store [$action] = $sequence2;
+
+    return include PAD . "sequence/actions/$action.php";  
+
+  }
+
 
   function pad_seq_random ( $min, $max ) {
 

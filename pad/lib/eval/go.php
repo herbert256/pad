@@ -115,7 +115,7 @@ go: pad_eval_trace  ('go', $result );
 
           if ($result[$b][0] == 'TYPE') {
         
-            pad_eval_type ($b, $f, $result, $myself, $start);
+            pad_eval_type ($b, $f, $result, $myself, $start, $end);
 
             goto go;
  
@@ -137,7 +137,7 @@ go: pad_eval_trace  ('go', $result );
 
         if ( $now == 'TYPE' and $k == array_key_last ($result) and $result[$k][0] == 'TYPE' and $result[$k][1] == 'OPR' ) {
           
-          pad_eval_type ($k, $b, $result, $myself, $start);
+          pad_eval_type ($k, $b, $result, $myself, $start, $end);
           
           goto go;
 

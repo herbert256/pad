@@ -1,2 +1,12 @@
-{if 'abc' upper EQ 'ABX' } NOK {else} ok  {/if}
-{if 'abc' upper EQ 'ABC' } ok  {else} NOK {/if}
+{range '9..15', store='mySeq1'}
+{range '10..30', store='mySeq2'}
+
+{trace}
+
+{if mySeq1 in mySeq2}
+  true
+{else}
+  false
+{/if}
+
+{/trace}

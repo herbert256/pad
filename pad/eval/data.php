@@ -1,5 +1,5 @@
 <?php
 
-  return $GLOBALS['pad_data_store'] [$name];
- 
+  return include 'store.php';
+  
 ?>

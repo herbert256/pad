@@ -84,8 +84,8 @@
       return pad_error_try ($error, $file, $line); 
  
     } catch (Exception $e) {
- 
-      pad_boot_error ( "OOPS: " . $e->getMessage() . ' at ' . $e->getFile() .  ':' . $e->getLine() );
+
+      return pad_error_error ( $e->getMessage(),$e->getFile(), $e->getLine() );
  
     }
 
@@ -99,8 +99,8 @@
 
     global $pad_error_action, $pad_exit, $PADREQID, $pad_trace_errors, $pad_error_dump, $pad_error_log, $pad_err_cnt;
 
-    if ( $GLOBALS['pad_exit'] <> 1 ) 
-      pad_boot_error ( "OOPS: $error at $file:$line" );
+    if ( $GLOBALS['pad_exit'] <> 1 )
+      return pad_error_error ($error, $file, $line);
 
     $GLOBALS['pad_exit'] = 2;
 
@@ -150,5 +150,37 @@
 
   }
  
+
+  function pad_error_error ($error, $file, $line) {
+
+    try {
+ 
+      global $PADREQID;
+
+      $error = "[PAD] $PADREQID Error-in-error: $file:$line $error";
+
+      error_log ($error, 4);
+
+      file_put_contents ( DATA . "errors/$PADREQID.html", pad_dump_get($error) );
+
+      if ( pad_local() )
+        pad_dump ($error);
+      else
+        echo "Error: $PADREQID";
+
+      $GLOBALS['pad_skip_shutdown']      = TRUE;
+      $GLOBALS['pad_skip_boot_shutdown'] = TRUE;
+      
+      exit;
+ 
+    } catch (Exception $e) {
+
+      pad_boot_error ( $error, $file, $line );
+ 
+    }     
+
+
+  }
+
 
 ?>

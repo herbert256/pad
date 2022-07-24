@@ -1,5 +1,7 @@
 <?php
 
-  return $GLOBALS['pad_seq_store'] [$name];
+  $pad_eval_single = $name;
+
+  return include "single/$kind.php";
  
 ?>

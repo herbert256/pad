@@ -3,6 +3,9 @@
 
   function pad_file_trace ( $operation, $value ) {
 
+    if ( $GLOBALS['pad_exit'] <> 1 )
+      return;
+  
     extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 2) [1] );
 
     $file = DATA . $GLOBALS['pad_trace_dir_occ'] . '/file.txt';

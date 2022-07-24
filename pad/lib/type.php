@@ -84,6 +84,7 @@
     elseif ( pad_array_check     ( $type                                 ) ) return 'array';
     elseif ( pad_chk_level_array ( $type                                 ) ) return 'level';
     elseif ( defined             ( $type                                 ) ) return 'constant';
+    elseif ( pad_file_exists     ( PAD . "sequence/actions/$type.php"    ) ) return 'sequence';
     elseif ( pad_file_exists     ( APP . "tags/$type.php"                ) ) return 'tag_app';
     elseif ( pad_file_exists     ( APP . "tags/$type.html"               ) ) return 'tag_app';
     elseif ( pad_file_exists     ( PAD . "tags/$type.php"                ) ) return 'tag_pad';

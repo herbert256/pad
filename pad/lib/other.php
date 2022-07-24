@@ -392,7 +392,7 @@
     foreach ( $parm as $pad_k => $pad_v )
       $fun [2+$pad_k] [0] = $pad_v;
 
-    pad_eval_type (1, 0, $fun, $self, 1); 
+    pad_eval_type (1, 0, $fun, $self, 1, 999999); 
 
     return $fun [1] [0];
 

@@ -1,5 +1,5 @@
 <?php
-
+ 
   $pad_seq_append = pad_explode ($pad_seq_action_value, '|');
 
   foreach ( $pad_seq_append as $pad_seq_append_key )

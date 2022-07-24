@@ -44,6 +44,30 @@
       }
 
     foreach ($result as $k => $one)
+      if ( $one[0] == 'TYPE' and $one[1] == 'OPR' and pad_file_exists ( PAD."eval/single/".$one[2].".php" ) ) {
+
+        $pad_eval_single = $one[3];
+        $pad_eval_single = include PAD . "eval/single/" . $one[2] . ".php"; 
+
+        $result [$k] [1] = 'VAL';
+
+        if ( is_array($pad_eval_single) or is_object($pad_eval_single) or is_resource($pad_eval_single) ) {
+          $result [$k] [0] = '*ARRAY*';
+          $result [$k] [6] = 'array';
+          $result [$k] [7] = pad_array_single ($pad_eval_single);
+        } else {
+          pad_check_value ($pad_eval_single);
+          $result [$k] [0] = $pad_eval_single;
+        }
+
+        unset ( $result [$k] [2] );
+        unset ( $result [$k] [3] );
+        unset ( $result [$k] [5] );
+
+      }
+
+
+    foreach ($result as $k => $one)
       if ( $one[1] == 'other' and isset ( pad_eval_alt [$one[0]] ) ) {
           $result[$k][0] = pad_eval_alt [$one[0]];
           $result[$k][1] = 'OPR';
