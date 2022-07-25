@@ -3,6 +3,7 @@
   const pad_eval_precedence = [
     '!',
     'TYPE',
+    'FUN',
     '**', '*', '/', '%', '+', '-',
     '.',
     'LT', 'LE', 'GT', 'GE', 'EQ', 'NE',
@@ -72,14 +73,14 @@
       return pad_eval_error("No result back");
     elseif ( count($pad_eval_result) > 1 )                                                
       return pad_eval_error("More then one result back");
-    elseif ( isset($pad_eval_result[$key][6]) and $pad_eval_result [$key][6] == 'array' ) 
+    elseif ( isset($pad_eval_result[$key][4]) ) 
       return pad_eval_error("Result is an array");
     elseif ( $pad_eval_result[$key][1] <> 'VAL' )         
       return pad_eval_error("Result is not a value");
 
     pad_eval_trace  ('end', $pad_eval_result );
 
-    $GLOBALS ['pad_trace_eval_stage'] = 'end';
+    #$GLOBALS ['pad_trace_eval_stage'] = 'end';
 
     pad_timing_end ('eval');
  

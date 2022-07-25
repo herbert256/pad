@@ -2,7 +2,7 @@
   
   function pad_eval_go (&$result, $start, $end, $myself) {
 
-go: pad_eval_trace  ('go', $result );
+go: pad_eval_trace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] );
 
     if  ( count($result) > 1 ) {
       $f = reset($result);
@@ -24,8 +24,6 @@ go: pad_eval_trace  ('go', $result );
         $result[$k-10][1] = 'OPR';
 
         $result[$k][0] = substr($result[$k][0], 1);
-
-        ksort($result);
 
         goto go;
 
@@ -51,8 +49,8 @@ go: pad_eval_trace  ('go', $result );
           if ($key2<$open)
             $last = $key2;
           
-        if ( $last and $result[$last][0] == 'TYPE' and $result[$last][1] == 'OPR' )
-          $result[$last][5] = $key;
+        if ( $last and $result[$last][1] == 'TYPE' )
+          $result[$last][3] = $key;
 
         pad_eval_go ($result, $open+1, $key-1, $myself);
 
@@ -94,9 +92,8 @@ go: pad_eval_trace  ('go', $result );
         if ( pad_field_check ( $one[0] ) ) 
           $result[$k][0] = pad_field_value ( $one[0] );
         elseif ( pad_array_check ( $one[0] ) ) {
-          $result[$k][o] = '*ARRAY*';
-          $result[$k][6] = 'array';
-          $result[$k][7] = pad_array_value ( $one[0]);
+          $result[$k][0] = '*ARRAY*';
+          $result[$k][4] = pad_array_value ( $one[0]);
         } else
           $result[$k][0] = $one[0]   ;
 
@@ -111,32 +108,36 @@ go: pad_eval_trace  ('go', $result );
 
         if ( $k > $end)
           break;
+       
+        if ( $b >= $start ) {
 
-        if ( $b >= $start and $result[$b][0] == $now and $result[$b][1] == 'OPR' ) {
+          if ( $now == 'TYPE' and $result[$b][1] == 'TYPE') {
 
-          if ($result[$b][0] == 'TYPE') {
-        
             pad_eval_type ($b, $f, $result, $myself, $start, $end);
 
             goto go;
- 
-           } elseif ( $result[$k][1] == 'VAL' and ($result[$b][0] == 'NOT' or $result[$b][0] == '!' ) ) {
- 
-            pad_eval_not ($result, $k, $b);
 
-            goto go;
+          } elseif ( $result[$b][0] == $now and $result[$b][1] == 'OPR'  ) {
  
-          } elseif ( $result[$k][1] == 'VAL' and $f >= $start and $result[$f][1] == 'VAL') {
+            if ( $result[$k][1] == 'VAL' and ($result[$b][0] == 'NOT' or $result[$b][0] == '!' ) ) {
  
-            pad_eval_action ($result, $k, $b, $f);
+              pad_eval_not ($result, $k, $b);
 
-            goto go;
+              goto go;
+ 
+            } elseif ( $result[$k][1] == 'VAL' and $f >= $start and $result[$f][1] == 'VAL') {
+ 
+              pad_eval_action ($result, $k, $b, $f);
 
-          }
+              goto go;
+
+            }
+
+          } 
 
         }
 
-        if ( $now == 'TYPE' and $k == array_key_last ($result) and $result[$k][0] == 'TYPE' and $result[$k][1] == 'OPR' ) {
+        if ( $now == 'TYPE' and $k == array_key_last ($result) and $result[$k][1] == 'TYPE' ) {
           
           pad_eval_type ($k, $b, $result, $myself, $start, $end);
           
@@ -153,4 +154,15 @@ go: pad_eval_trace  ('go', $result );
 
   }
   
+
+  function array_key_next ($array, $key) {
+
+    foreach ($array as $k =>$v )
+      if ( $k > $key )
+        return $k;
+
+    return FALSE;
+
+  }
+
 ?>

@@ -6,7 +6,7 @@
   foreach ( $pad_seq_merge_list as $pad_seq_merge_key ) {
 
     $pad_seq_merge_1 = $pad_seq_result;
-    $pad_seq_merge_2 = $pad_seq_store [$pad_seq_merge_key];
+    $pad_seq_merge_2 = $pad_sequence_store [$pad_seq_merge_key];
 
     $pad_seq_result = [];
 

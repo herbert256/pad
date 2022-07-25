@@ -1,6 +1,6 @@
 <?php
 
-  $pad_seq_store_get = '';
+  $pad_sequence_store_get = '';
   $pad_seq_result = $pad_seq_for = $pad_seq_cache = [];
   $pad_seq = $pad_sequence = $pad_seq_protect_cnt = $pad_seq_base = 0;
 

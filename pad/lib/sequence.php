@@ -5,7 +5,7 @@
 
     $pad_seq_result          = $sequence1;
     $pad_seq_action_value    = $action;
-    $pad_seq_store [$action] = $sequence2;
+    $pad_sequence_store [$action] = $sequence2;
 
     return include PAD . "sequence/actions/$action.php";  
 
@@ -54,8 +54,8 @@
 
     foreach ($arrays as $store)
       if ( $store !== TRUE )
-        if ( isset($GLOBALS['pad_seq_store'] [$store]) )
-          $parms [] = $GLOBALS['pad_seq_store'] [$store];
+        if ( isset($GLOBALS['pad_sequence_store'] [$store]) )
+          $parms [] = $GLOBALS['pad_sequence_store'] [$store];
         else
           $parms [] = $store;
 

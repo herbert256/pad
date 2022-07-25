@@ -1,10 +1,10 @@
 {range '11..20', store='mySeq1'}
 {range '21..30', store='mySeq2'}
-{range '11..30', store='mySeq3'}
+{range '11..40', store='mySeq3'}
 
 {trace}
 
-{if mySeq1 + mySeq2 EQ mySeq3}
+{if mySeq1 append mySeq2 in mySeq3}
   true
 {else}
   false

@@ -12,11 +12,11 @@
   if ( $pad_seq_push === TRUE ) 
     if ( $pad_seq_pull and $pad_seq_pull !== TRUE )
       $pad_seq_push = $pad_seq_pull;
-    elseif ( $pad_seq_store_get )
-      $pad_seq_push = $pad_seq_store_get;
+    elseif ( $pad_sequence_store_get )
+      $pad_seq_push = $pad_sequence_store_get;
     else
       $pad_seq_push = $pad_seq_name;
 
-  $pad_seq_store [$pad_seq_push] = $pad_seq_result;
+  $pad_sequence_store [$pad_seq_push] = $pad_seq_result;
 
 ?>

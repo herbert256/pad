@@ -2,7 +2,7 @@
 
   if ( $pad_seq_pull and $pad_seq_seq <> 'pull' ) {
 
-    $pad_seq_for = $pad_seq_store [$pad_seq_pull];
+    $pad_seq_for = $pad_sequence_store [$pad_seq_pull];
 
     include "for.php";
 

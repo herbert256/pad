@@ -1,5 +1,5 @@
 <?php
 
-  return $pad_seq_store [$pad_seq_pull];
+  return $pad_sequence_store [$pad_seq_pull];
 
 ?>

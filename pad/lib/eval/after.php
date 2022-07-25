@@ -1,6 +1,40 @@
 <?php
 
-   
+
+   function pad_eval_single ( &$result, $key) {
+    
+    if ( $GLOBALS ['pad_trace_eval'] )
+      $trace_data ['before'] = $result[$key];
+
+    $one = $result [$key];
+
+    $name  = $one[0];
+    $kind  = $one[2];
+    $parm  = [];
+    $count = 0;
+    $pad_eval_single = include PAD . "eval/single/$kind.php"; 
+
+    $result [$key] [1] = 'VAL';
+
+    if ( is_array($pad_eval_single) or is_object($pad_eval_single) or is_resource($pad_eval_single) ) {
+      $result [$key] [0] = '*ARRAY*';
+      $result [$key] [4] = pad_array_single ($pad_eval_single);
+    } else {
+      pad_check_value ($pad_eval_single);
+      $result [$key] [0] = $pad_eval_single;
+    }
+
+    unset ( $result [$key] [2] );
+    unset ( $result [$key] [3] );
+
+    if ( $GLOBALS ['pad_trace_eval'] ) {
+      $trace_data ['after'] = $result [$key];
+      pad_eval_trace ('single', $trace_data );
+    }   
+
+  }
+
+  
   function pad_eval_after ( &$result, $eval ) {
  
     global $pad_flag_store, $pad_data_store, $pad_content_store;
@@ -23,11 +57,10 @@
       if ( $one[1] == 'other' and pad_valid ($one[0]) ) {
         $type = pad_get_type_eval ( $one[0] );
         if ( $type !== FALSE ) {
-          $result[$k][0] = 'TYPE';
-          $result[$k][1] = 'OPR';
+          $result[$k][0] = $one[0];
+          $result[$k][1] = 'TYPE';
           $result[$k][2] = $type;
-          $result[$k][3] = $one[0];
-          $result[$k][5] = 0;
+          $result[$k][3] = 0;
         }
       }
 
@@ -35,37 +68,16 @@
       if ( $one[1] == 'other' ) {
         $exp = pad_explode ($one[0], ':');
         if ( count($exp) == 2 and pad_valid ($exp[1]) and pad_file_exists ( PAD . "eval/" . $exp[0] . ".php" ) ) {
-          $result[$k][0] = 'TYPE';
-          $result[$k][1] = 'OPR';
+          $result[$k][0] = $exp[1];
+          $result[$k][1] = 'TYPE';
           $result[$k][2] = $exp[0];          
-          $result[$k][3] = $exp[1];
-          $result[$k][5] = 0;
+          $result[$k][3] = 0;
         }
       }
 
-    foreach ($result as $k => $one)
-      if ( $one[0] == 'TYPE' and $one[1] == 'OPR' and pad_file_exists ( PAD."eval/single/".$one[2].".php" ) ) {
-
-        $pad_eval_single = $one[3];
-        $pad_eval_single = include PAD . "eval/single/" . $one[2] . ".php"; 
-
-        $result [$k] [1] = 'VAL';
-
-        if ( is_array($pad_eval_single) or is_object($pad_eval_single) or is_resource($pad_eval_single) ) {
-          $result [$k] [0] = '*ARRAY*';
-          $result [$k] [6] = 'array';
-          $result [$k] [7] = pad_array_single ($pad_eval_single);
-        } else {
-          pad_check_value ($pad_eval_single);
-          $result [$k] [0] = $pad_eval_single;
-        }
-
-        unset ( $result [$k] [2] );
-        unset ( $result [$k] [3] );
-        unset ( $result [$k] [5] );
-
-      }
-
+    foreach ($result as $key => $one)
+      if ( $one[1] == 'TYPE' and pad_file_exists ( PAD."eval/single/".$one[2].".php" ) )
+        pad_eval_single ( $result, $key);
 
     foreach ($result as $k => $one)
       if ( $one[1] == 'other' and isset ( pad_eval_alt [$one[0]] ) ) {
@@ -93,8 +105,7 @@
         
           if ( is_array ( constant ( $one[0] ) )) {
             $result[$k][0] = '*ARRAY*';
-            $result[$k][6] = 'array';
-            $result[$k][7] = constant ( $one[0] );
+            $result[$k][4] = constant ( $one[0] );
           }
           else
             $result[$k][0] = constant ( $one[0] );

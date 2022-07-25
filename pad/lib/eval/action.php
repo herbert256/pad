@@ -39,9 +39,9 @@
     $opr   = $result [$b] [0];
     $right = $result [$k] [0];
 
-    if ( isset ( $result [$f] [6] ) and $result [$f] [6] == 'array' )
+    if ( isset ( $result [$f] [4] ) )
       
-      $now = pad_eval_action_array ($result [$f] [7], $opr, $result [$k] [7] );
+      $now = pad_eval_action_array ($result [$f] [4], $result [$b] [0], $result [$k] [4] ?? [] );
  
     else {
 
@@ -81,15 +81,10 @@
 
     if ( is_array($now)) {
       $result [$k] [0] = '*ARRAY*';
-      $result [$k] [6] = 'array';
-      $result [$k] [7] = $now;
-    } else {
-      if ( isset($result [$k] [6])) {
-        unset ( $result [$k] [6] );
-        unset ( $result [$k] [7] );
-      }
-    }
- 
+      $result [$k] [4] = $now;
+    } elseif ( isset($result [$k] [4]))
+      unset ( $result [$k] [4] );
+
     unset ( $result [$b] );
     unset ( $result [$f] );
 

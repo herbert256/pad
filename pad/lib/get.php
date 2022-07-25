@@ -120,7 +120,10 @@
 
     $count = count ($parm);
 
-    $get = include PAD . "eval/$kind.php";
+    if ( pad_file_exists ( PAD . "eval/single/$kind.php" ) )
+      $get = include PAD . "eval/single/$kind.php";
+    else
+      $get = include PAD . "eval/parms/$kind.php";
 
     return $get;
 

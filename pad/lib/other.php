@@ -378,16 +378,15 @@
 
   function pad_function_in_tag ( $type, $name, $self, $parm ) {
 
-    $fun [1] [0] = 'TYPE';
-    $fun [1] [1] = 'OPR';
-
     if ( $type )
-      $fun [1] [2] = $type;
+      $fun [1] [0] = $type;
     else
-      $fun [1] [2] = 'function_' . pad_function_type ($name);
+      $fun [1] [0] = 'function_' . pad_function_type ($name);
 
-    $fun [1] [3] = $name;
-    $fun [1] [5] = 2 + count($parm);
+    $fun [1] [1] = 'TYPE';
+
+    $fun [1] [2] = $name;
+    $fun [1] [3] = 2 + count($parm);
 
     foreach ( $parm as $pad_k => $pad_v )
       $fun [2+$pad_k] [0] = $pad_v;

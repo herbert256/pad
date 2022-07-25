@@ -6,7 +6,7 @@
     $pad_seq_result,
     $pad_seq_splice[0],
     $pad_seq_splice[1],
-    $pad_seq_store [$pad_seq_splice[2] ]
+    $pad_sequence_store [$pad_seq_splice[2] ]
   );
 
   return $pad_seq_result;
