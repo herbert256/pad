@@ -36,10 +36,6 @@
     elseif ( pad_file_exists  ( APP . "tags/$name.html"                ) and $type == 'tag_app'        ) return TRUE;
     elseif ( pad_file_exists  ( PAD . "tags/$name.php"                 ) and $type == 'tag_pad'        ) return TRUE;
     elseif ( pad_file_exists  ( PAD . "tags/$name.html"                ) and $type == 'tag_pad'        ) return TRUE;
-    elseif ( pad_file_exists  ( APP . "tags/$name.php"                 ) and $type == 'tag'            ) return TRUE;
-    elseif ( pad_file_exists  ( APP . "tags/$name.html"                ) and $type == 'tag'            ) return TRUE;
-    elseif ( pad_file_exists  ( PAD . "tags/$name.php"                 ) and $type == 'tag'            ) return TRUE;
-    elseif ( pad_file_exists  ( PAD . "tags/$name.html"                ) and $type == 'tag'            ) return TRUE;
     elseif ( pad_file_exists  ( APP . "tags/$name.php"                 ) and $type == 'app'            ) return TRUE;
     elseif ( pad_file_exists  ( APP . "tags/$name.html"                ) and $type == 'app'            ) return TRUE;
     elseif ( pad_file_exists  ( PAD . "tags/$name.php"                 ) and $type == 'pad'            ) return TRUE;
@@ -58,7 +54,6 @@
     elseif ( pad_file_exists  ( APP  . "functions/$name.php"           ) and $type == 'function_app'   ) return TRUE;
     elseif ( pad_file_exists  ( PAD . "functions/$name.php"            ) and $type == 'function_pad'   ) return TRUE;
     elseif ( function_exists  ( $name                                  ) and $type == 'function_php'   ) return TRUE;
-    elseif ( function_exists  ( $name                                  ) and $type == 'php'            ) return TRUE;
     elseif ( pad_file_exists  ( APP  . "functions/$name.php"           ) and $type == 'function'       ) return TRUE;
     elseif ( pad_file_exists  ( PAD . "functions/$name.php"            ) and $type == 'function'       ) return TRUE;
     elseif ( function_exists  ( $name                                  ) and $type == 'function'       ) return TRUE;
@@ -71,9 +66,9 @@
   function pad_get_type_eval ( $type ) {
 
         if ( ! pad_valid         ( $type                                  ) ) return FALSE;
-    elseif ( pad_file_exists     ( APP . "functions/$type.php"            ) ) return 'function_app';
-    elseif ( pad_file_exists     ( PAD . "functions/$type.php"            ) ) return 'function_pad';
-    elseif ( function_exists     ( $type                                  ) ) return 'function_php';
+    elseif ( pad_file_exists     ( APP . "functions/$type.php"            ) ) return 'app';
+    elseif ( pad_file_exists     ( PAD . "functions/$type.php"            ) ) return 'pad';
+    elseif ( function_exists     ( $type                                  ) ) return 'php';
     elseif ( pad_field_check     ( $type                                  ) ) return 'field';
     elseif ( isset               ( $GLOBALS['pad_flag_store'] [$type]     ) ) return 'flag';
     elseif ( isset               ( $GLOBALS['pad_content_store'] [$type]  ) ) return 'content';
