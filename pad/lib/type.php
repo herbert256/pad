@@ -40,6 +40,10 @@
     elseif ( pad_file_exists  ( APP . "tags/$name.html"                ) and $type == 'app'            ) return TRUE;
     elseif ( pad_file_exists  ( PAD . "tags/$name.php"                 ) and $type == 'pad'            ) return TRUE;
     elseif ( pad_file_exists  ( PAD . "tags/$name.html"                ) and $type == 'pad'            ) return TRUE;
+    elseif ( pad_file_exists  ( APP . "tags/$name.php"                 ) and $type == 'tag'            ) return TRUE;
+    elseif ( pad_file_exists  ( APP . "tags/$name.html"                ) and $type == 'tag'            ) return TRUE;
+    elseif ( pad_file_exists  ( PAD . "tags/$name.php"                 ) and $type == 'tag'            ) return TRUE;
+    elseif ( pad_file_exists  ( PAD . "tags/$name.html"                ) and $type == 'tag'            ) return TRUE;
     elseif ( pad_file_exists  ( PAD . "tag/$name.php"                  ) and $type == 'parm'           ) return TRUE;
     elseif ( isset            ( $GLOBALS['pad_flag_store'] [$name]     ) and $type == 'flag'           ) return TRUE;
     elseif ( isset            ( $GLOBALS['pad_content_store'] [$name]  ) and $type == 'content'        ) return TRUE;
