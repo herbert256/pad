@@ -1,5 +1,5 @@
 <?php
  
-  return include 'function_app.php';
+  return include APP . "functions/$name.php";
 
 ?>

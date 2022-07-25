@@ -1,5 +1,5 @@
 <?php
  
-  return include APP . "functions/$name.php";
-
+  return pad_seq_action ( $value, $name, $parm );
+ 
 ?>
