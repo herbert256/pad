@@ -15,7 +15,7 @@
   function pad_colors_string ($source) { 
     
    $source = highlight_string($source, TRUE);
-   $source = str_replace ('{@content}', '<font color="black"><b>{<font color="red">@content</font>}</b></font>',  $source);
+   $source = str_replace ('@content@', '<font color="black"><b><font color="green">@content@</font></b></font>',  $source);
 
 go: $end = strpos($source, '}');
 

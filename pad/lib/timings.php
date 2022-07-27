@@ -3,10 +3,7 @@
 
   function pad_timing_start ($timing) {
     
-     if ( $GLOBALS['pad_exit'] <> 1 )
-      return;
-         
-    if ( ! $GLOBALS['pad_timing'] )
+     if ( $GLOBALS['pad_exit'] <> 1 or ! $GLOBALS['pad_timing'] )
       return;
    
     global $pad_timings_count, $pad_timings_start;
@@ -23,10 +20,7 @@
 
   function pad_timing_end ($timing) {
 
-    if ( $GLOBALS['pad_exit'] <> 1 )
-      return;
-    
-    if ( ! $GLOBALS['pad_timing'] )
+    if ( $GLOBALS['pad_exit'] <> 1 or ! $GLOBALS['pad_timing'] )
       return;
 
     global $pad_timings, $pad_timings_start;

@@ -22,6 +22,8 @@
 
   foreach ($ref as $item) {
 
+    $curl = pad_complete ('reference', $item);
+
     $files [$item] ['item'] = $item;
 
     foreach ($bench as $wrk)
@@ -29,7 +31,7 @@
 
     $files [$item] ['not'] = 0;
 
-    for ($i = 0; $i < 1; $i++) {
+    for ($i = 0; $i < 3; $i++) {
 
       $start = microtime(true);
       $curl  = pad_complete ('reference', $item);
