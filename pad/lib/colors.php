@@ -28,7 +28,7 @@ go: $end = strpos($source, '}');
     
     if ( $start === FALSE ) {
       $source = substr($source, 0, $end)
-              . '#close#'
+              . '&close;'
               . substr($source, $end+1);
       goto go;
     }
@@ -38,9 +38,9 @@ go: $end = strpos($source, '}');
 
     if ( $char == '$' or $char == '!' ) {
       $source = substr($source, 0, $start) 
-              . '<b>#open#<font color="green">' 
+              . '<b>&open;<font color="green">' 
               . $between 
-              . '</font>#close#</b>' 
+              . '</font>&close;</b>' 
               . substr($source, $end+1);      
         goto go;
     }
@@ -61,7 +61,7 @@ go: $end = strpos($source, '}');
 
     if ( ! pad_valid ( $tag ) )  {             
       $source = substr($source, 0, $start) 
-                . '#open#' . $between . '#close#' 
+                . '&open;' . $between . '&close;' 
                 . substr($source, $end+1);
       goto go;
     } 
@@ -69,8 +69,8 @@ go: $end = strpos($source, '}');
 co: $parms  = $words[1] ?? '';
 
     $space  = ($parms) ? ' ' : '';
-    $parms  = str_replace ('<b>#open#<font color="green">', '',  $parms);
-    $parms  = str_replace ('</font>#close#</b>', '',             $parms);
+    $parms  = str_replace ('<b>&open;<font color="green">', '',  $parms);
+    $parms  = str_replace ('</font>&close;</b>', '',             $parms);
     $parms  = str_replace (' ', '&nbsp;',                        $parms);
     $parms  = str_replace ('=', '<font color="black">=</font>',  $parms);
     $parms  = str_replace ('|', '<font color="black">|</font>',  $parms);
@@ -91,11 +91,11 @@ co: $parms  = $words[1] ?? '';
       $close2 = '';
 
     $source = substr($source, 0, $start) 
-            . '<b>#open#' . $close2 . '<font color="blue">'.$search.$space.'</font><font color="red">' 
+            . '<b>&open;' . $close2 . '<font color="blue">'.$search.$space.'</font><font color="red">' 
             . $parms
             . '</font>'
             . $close1
-            . '#close#</b>' 
+            . '&close;</b>' 
             . substr($source, $end+1);
 
     goto go;

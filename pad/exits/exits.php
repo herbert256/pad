@@ -10,12 +10,6 @@
     $pad_output 
   );
 
-  $pad_output = str_replace ( 
-    [ '#open#', '#close#', '#pipe#', '#eq#', '#comma#'], 
-    [ '{',      '}',       '|',      '=',     ','], 
-    $pad_output 
-  );
-
   if ( count ($pad_sanitize) )
     include PAD . 'exits/sanitize.php';
  

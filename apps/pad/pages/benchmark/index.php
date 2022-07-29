@@ -1,5 +1,7 @@
 <?php
 
+  ini_set('max_execution_time', '5');
+
   $title = "Benchmark";
 
   $type = 'timings';
@@ -31,7 +33,7 @@
 
     $files [$item] ['not'] = 0;
 
-    for ($i = 0; $i < 3; $i++) {
+    for ($i = 0; $i < 1; $i++) {
 
       $start = microtime(true);
       $curl  = pad_complete ('reference', $item);

@@ -14,7 +14,6 @@
   $pad_parameters [$pad_lvl] ['parms_type']       = $pad_parms_type;
   $pad_parameters [$pad_lvl] ['tag_count']        = 0;
   $pad_parameters [$pad_lvl] ['parm']             = $pad_parm;
-  $pad_parameters [$pad_lvl] ['parms_org']        = $pad_parms_org;
   $pad_parameters [$pad_lvl] ['parms_tag']        = $pad_parms_tag;  
   $pad_parameters [$pad_lvl] ['parms_val']        = $pad_parms_val;
   $pad_parameters [$pad_lvl] ['default_data']     = TRUE;

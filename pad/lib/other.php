@@ -26,17 +26,13 @@
     else
       $explode = explode ( $limit, $haystack );
     
-    foreach  ($explode as $key => $value ) {
+    foreach ($explode as $key => $value ) {
 
       $explode[$key] = trim($value);
     
       if ( $limit == '|' ) $explode [$key] = str_replace ( '&pipe;',  '|', $explode [$key] );
       if ( $limit == '=' ) $explode [$key] = str_replace ( '&eq;',    '=', $explode [$key] );
       if ( $limit == ',' ) $explode [$key] = str_replace ( '&comma;', ',', $explode [$key] );
-
-      if ( $limit == '|' ) $explode [$key] = str_replace ( '#pipe#',  '|', $explode [$key] );
-      if ( $limit == '=' ) $explode [$key] = str_replace ( '#eq#',    '=', $explode [$key] );
-      if ( $limit == ',' ) $explode [$key] = str_replace ( '#comma#', ',', $explode [$key] );
     
       if ( $explode[$key] === '' )
         unset ( $explode[$key] );

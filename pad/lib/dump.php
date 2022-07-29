@@ -101,8 +101,8 @@
       pad_dump_field  ( 'eval',   $GLOBALS ['pad_trace_eval_eval']      );
       pad_dump_field  ( 'myself', $GLOBALS ['pad_trace_eval_myself']    );
 
-      if ( count ( $GLOBALS ['pad_eval_now'] ) )
-        pad_dump_array  ( 'now', $GLOBALS ['pad_eval_now'], 1 );
+      if ( count ( $GLOBALS ['pad_trace_eval_now'] ) )
+        pad_dump_array  ( 'now', $GLOBALS ['pad_trace_eval_now'], 1 );
 
       pad_dump_array  ( 'parsed', $GLOBALS ['pad_trace_eval_parsed'], 1 );
       pad_dump_array  ( 'after',  $GLOBALS ['pad_trace_eval_after'],  1 );
