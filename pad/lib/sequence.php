@@ -3,8 +3,11 @@
 
   function pad_seq_action ( $sequence1, $action, $sequence2 ) {
 
-    $pad_seq_result          = $sequence1;
-    $pad_seq_action_value    = $action;
+    $pad_seq_result       = $sequence1;
+    $pad_seq_count        = 0;
+    $pad_seq_action_value = $action;
+    $pad_seq_action_name  = $action;
+    
     $pad_sequence_store [$action] = $sequence2;
 
     return include PAD . "sequence/actions/$action.php";  

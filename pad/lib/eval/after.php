@@ -114,6 +114,37 @@
  
         }
 
+
+    foreach ( $result as $k => $one ) {
+
+      if ( $one[1] == '$' ) {
+
+        $trace_data ['index'] = $k;
+        $trace_data ['field'] = $one[0];
+
+        $result[$k][1] = 'VAL';      
+ 
+        if ( pad_field_check ( $one[0] ) ) 
+          $result[$k][0] = pad_field_value ( $one[0] );
+        elseif ( pad_array_check ( $one[0] ) ) {
+          $result[$k][0] = '*ARRAY*';
+          $result[$k][4] = pad_array_value ( $one[0] );
+        } else
+          $result[$k][0] = $one[0]   ;
+
+        if ( $GLOBALS ['pad_trace_eval'] ) {
+          if ( isset($result[$k][4]) )
+            $trace_data ['value'] = $result[$k][4];
+          else
+            $trace_data ['value'] = $result[$k][0];
+          pad_eval_trace ('var', $trace_data );
+        }  
+
+      }
+
+    }
+
+
     foreach ($result as $k => $one)
       if ( $one[1] == 'other' )
         return 'Unknow eval argument: ' . $one[0];

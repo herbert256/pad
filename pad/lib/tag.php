@@ -8,8 +8,8 @@
 
     global $pad_parameters;
     
-    if ( isset ( $pad_parameters [$lvl] ['parms_seq'] [$idx] ) )
-      return $pad_parameters [$lvl] ['parms_seq'] [$idx]; 
+    if ( isset ( $pad_parameters [$lvl] ['parms_val'] [$idx] ) )
+      return $pad_parameters [$lvl] ['parms_val'] [$idx]; 
     else
       return PAD_NOT_FOUND;
 

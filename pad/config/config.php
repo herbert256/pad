@@ -14,7 +14,7 @@
                               // 'none' , 'error' , 'warning' , 'notice' , 'all'
                               // (not used when $pad_error_action is 'php' or 'boot')
 
-  $pad_error_log    = FALSE;  //  Write errors to Apache error log
+  $pad_error_log    = TRUE;  //  Write errors to Apache error log
   $pad_error_dump   = TRUE;   //  Dump errors to the DATA directory
 
   // Trace the internal working of PAD
