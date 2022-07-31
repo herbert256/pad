@@ -37,12 +37,16 @@ go: $end = strpos($source, '}');
     $char    = substr($between, 0, 1);
 
     if ( $char == '$' or $char == '!' ) {
+
+     $between = str_replace ('#', '<font color="black"><b><font color="black">#</font></b></font>',  $between);
+
       $source = substr($source, 0, $start) 
               . '<b>#open#<font color="green">' 
               . $between 
               . '</font>#close#</b>' 
               . substr($source, $end+1);      
         goto go;
+ 
     }
 
     $check  = str_replace('&nbsp;',  ' ', $between);
@@ -89,6 +93,9 @@ co: $parms  = $words[1] ?? '';
       $search=substr($search, 1);
     } else
       $close2 = '';
+
+    $search = str_replace ('#', '<font color="black"><b><font color="black">#</font></b></font>',  $search);
+
 
     $source = substr($source, 0, $start) 
             . '<b>#open#' . $close2 . '<font color="blue">'.$search.$space.'</font><font color="red">' 

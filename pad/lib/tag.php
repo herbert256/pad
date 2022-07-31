@@ -1,7 +1,7 @@
 <?php
   
 
-    function pad_field_tag_nr ($tag, $nr) {
+  function pad_field_tag_nr ($tag, $nr) {
 
     $lvl = pad_field_tag_lvl ($tag, FALSE);
     $idx = intval ($nr) - 1 ;
@@ -34,9 +34,6 @@
       $pad_idx = pad_field_tag_lvl ($tag, TRUE);
     else
       $pad_idx = pad_field_tag_lvl ($tag, FALSE);
-
-#    if ( ! isset( $GLOBALS['pad_key'] [$pad_idx] ) or ! isset( $GLOBALS['data'] [$pad_idx] ))
-#      $pad_idx--;
     
     if ( pad_file_exists ( PAD . "tag/".$field.".php" ) )
       return include PAD . "tag/$field.php";
