@@ -5,7 +5,8 @@
     return TRUE;
   }
 
-  $pad_eval = pad_eval($pad_parms_org[0]);
+  $pad_eval = pad_eval ( $pad_parms );
+
   $pad_wrk  = [ $pad_parameters [$pad_lvl] ['tag_count'] => [] ];
 
   if ($pad_tag == 'while') { 

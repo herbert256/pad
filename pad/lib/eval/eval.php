@@ -39,7 +39,7 @@
     $GLOBALS ['pad_trace_eval_myself']  = $myself;
     $GLOBALS ['pad_trace_eval_parsed']  = [];
     $GLOBALS ['pad_trace_eval_after']   = [];
-    $GLOBALS ['pad_trace_eval_go']      = [];
+    $GLOBALS ['pad_trace_eval_now']     = [];
 
     $pad_eval_cnt++;
     $pad_eval_step_cnt = 0;
@@ -80,7 +80,7 @@
 
     pad_eval_trace  ('end', $pad_eval_result );
 
-    #$GLOBALS ['pad_trace_eval_stage'] = 'end';
+    $GLOBALS ['pad_trace_eval_stage'] = 'end';
 
     pad_timing_end ('eval');
  
@@ -107,6 +107,7 @@
  
     pad_trace_write_error ( $txt, 'eval', $pad_eval_cnt, $data );
 
+    $GLOBALS ['pad_trace_eval_stage'] = 'end';
     pad_timing_end ('eval');
     
     return '';

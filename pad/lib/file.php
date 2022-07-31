@@ -3,29 +3,35 @@
 
   function pad_file_trace ( $operation, $value ) {
 
+    if ( strpos($value, 'trace/') !== FALSE)
+      return;
+
     if ( $GLOBALS['pad_exit'] <> 1 )
       return;
   
     extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 2) [1] );
+    $file = str_replace(PAD, '', $file);
 
-    $file = DATA . $GLOBALS['pad_trace_dir_occ'] . '/file.txt';
+    $put = DATA . $GLOBALS['pad_trace_dir_occ'] . '/file.txt';
 
-    $dir = substr($file, 0, strrpos($file, '/'));
+    $dir = substr($put, 0, strrpos($put, '/'));
     if ( ! pad_file_trace_exists ($dir) ) {
       pad_timing_start ('write');
       mkdir ($dir, $GLOBALS['pad_dir_mode'], true);
       pad_timing_end ('write');
     }
 
-    if ( ! pad_file_trace_exists ($file) ) {
+    if ( ! pad_file_trace_exists ($put) ) {
       pad_timing_start ('write');
-      touch($file);
-      chmod($file, $GLOBALS['pad_file_mode']);
+      touch($put);
+      chmod($put, $GLOBALS['pad_file_mode']);
       pad_timing_end ('write');
     }
 
+
+
     pad_timing_start ('write');
-    file_put_contents ( $file, "$operation: $file:$line -> $value\n", FILE_APPEND | LOCK_EX );
+    file_put_contents ( $put, "$operation: $file:$line -> $value\n", FILE_APPEND | LOCK_EX );
     pad_timing_end ('write');
 
   }

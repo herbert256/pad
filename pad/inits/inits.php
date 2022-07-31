@@ -26,7 +26,7 @@
   $pad_len        = 0;
   $pad_time       = $_SERVER['REQUEST_TIME'];  
 
-  $pad_trace_dir_base = "trace/$PADREQID";
+  $pad_trace_dir_base = "trace/$app-" . str_replace('/', '-', $page) . "/$PADREQID";
   $pad_trace_dir_lvl  = "$pad_trace_dir_base";
   $pad_trace_dir_occ  = "$pad_trace_dir_base";
 
