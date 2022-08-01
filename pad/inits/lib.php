@@ -11,7 +11,7 @@
     $pad_lib_file = $pad_lib_one->getPathname();
 
     if ( substr($pad_lib_file, -4) == '.php' )
-      include $pad_lib_file;
+      include_once $pad_lib_file;
 
   }
 

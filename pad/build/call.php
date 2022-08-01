@@ -10,7 +10,7 @@
     $pad_build_now .= "/$pad_build_value";
 
     if ( $pad_build_key == array_key_last($pad_build_mrg) 
-       and (pad_file_exists("$pad_build_now.php") or pad_file_exists("$pad_build_now.html") ) ) {
+       and (file_exists("$pad_build_now.php") or file_exists("$pad_build_now.html") ) ) {
  
       $pad_call = "$pad_build_now.php";
       $pad_base [1] .= include PAD . 'level/call.php';

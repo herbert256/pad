@@ -2,7 +2,7 @@
     
   function pad_colors_file ($file) {
 
-    if ( ! pad_file_exists($file) )
+    if ( ! file_exists($file) )
       return 'xx';
 
     if (substr($file, -5) == '.html')

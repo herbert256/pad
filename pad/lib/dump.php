@@ -45,11 +45,11 @@
     $ids = [ 'session' => $GLOBALS['PADSESSID']??'', 'request' => $GLOBALS['PADREQID']??'', 'reference' => $GLOBALS['PADREFID']??'' ];
 
     $settings = '';
-    if ( pad_file_exists (PAD . 'config/config.php') )
+    if ( file_exists (PAD . 'config/config.php') )
       $settings .= pad_file_get_contents(PAD . 'config/config.php');
 
     if ( defined('APP'))
-       if ( pad_file_exists (APP . 'config/config.php') )
+       if ( file_exists (APP . 'config/config.php') )
           $settings .= pad_file_get_contents(APP . 'config/config.php');
 
     $pad = $config = $app_flds = [];

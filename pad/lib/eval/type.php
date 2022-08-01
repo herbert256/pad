@@ -5,7 +5,7 @@
     $kind = $result [$type] [2];
     $name = $result [$type] [0];
 
-    if ( pad_file_exists ( PAD."eval/single/$kind.php" ) ) {
+    if ( file_exists ( PAD."eval/single/$kind.php" ) ) {
       pad_eval_single ( $result, $type);
       return;
     }

@@ -16,7 +16,6 @@
     $pad_trace_fields    = TRUE;  
     $pad_trace_eval      = TRUE;  
     $pad_trace_eval_type = TRUE;  
-    $pad_trace_file      = TRUE;  
     $pad_trace_curl      = TRUE;  
     $pad_trace_cache     = TRUE;  
     $pad_trace_timings   = TRUE;  

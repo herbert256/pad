@@ -10,7 +10,7 @@
 
   $pad_file = APPS . "reference/pages/$dir/dir.pad";
 
-  if ( pad_file_exists($pad_file) )
+  if ( file_exists($pad_file) )
     foreach ( file($pad_file, FILE_IGNORE_NEW_LINES) as $line ) {
       $cmd = pad_explode ($line, ':');
       if ($cmd[0] == 'intro') $intro = $cmd[1];

@@ -85,7 +85,7 @@
 
     if ( ! strpos( $input ['url'], '://') ) {
       $file = APP . 'data/' . $input ['url'];
-      if ( pad_file_exists ( $file ) ) {
+      if ( file_exists ( $file ) ) {
         $output ['data']    = pad_file_get_contents ( $file );   
         $output ['type']    = pad_content_type  ( $output ['data'] );   
         $output ['result']  = '200';

@@ -41,7 +41,7 @@
     
     $pad_content_store_file = "output/$pad_etag.html";
 
-    if ( ! pad_file_exists(DATA . "$pad_content_store_file") )
+    if ( ! file_exists(DATA . "$pad_content_store_file") )
       pad_file_put_contents ($pad_content_store_file, $pad_output);
 
   }

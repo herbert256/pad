@@ -25,7 +25,7 @@
     elseif ( $action == '/' ) $action = 'divide';
     elseif ( $action == '%' ) $action = 'mod';
 
-    if ( ! pad_file_exists(PAD."sequence/eval/$action.php") ) {
+    if ( ! file_exists(PAD."sequence/eval/$action.php") ) {
       pad_error ("Unsupported array operator: $opr");      
       $now = '';
     }

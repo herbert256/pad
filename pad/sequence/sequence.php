@@ -15,13 +15,13 @@
   if ( $pad_seq_build == 'function' ) include_once "types/$pad_seq_seq/function.php";
   if ( $pad_seq_build == 'bool'     ) include_once "types/$pad_seq_seq/bool.php";
 
-  if ( pad_file_exists ( PAD . "sequence/types/$pad_seq_seq/init.php" )) 
+  if ( file_exists ( PAD . "sequence/types/$pad_seq_seq/init.php" )) 
     include "types/$pad_seq_seq/init.php";
       
   include 'type/type.php';
   include 'build/actions.php';
  
-  if ( pad_file_exists ( PAD . "sequence/types/$pad_seq_seq/exit.php" ) )   
+  if ( file_exists ( PAD . "sequence/types/$pad_seq_seq/exit.php" ) )   
     include "types/$pad_seq_seq/exit.php";
 
   include 'build/push.php';

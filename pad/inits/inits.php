@@ -2,17 +2,24 @@
 
   $pad_timings_start ['init'] = microtime(true);
  
-  include 'app.php';
-  include 'page.php';
-
   ob_start();
 
   $pad_lib = PAD . 'lib';
   include 'lib.php';
 
+  $app  = $app  ?? $_REQUEST['app']  ?? 'pad';
+  $page = $page ?? $_REQUEST['page'] ?? 'index';
+
+  if ( ! pad_check_page ($app, $page) )
+    pad_boot_error ("Page not found");
+
+  $page = pad_get_page ($app, $page);
+
+  define ( 'APP', APPS . "$app/" );
+
   $PADSESSID = $PADSESSID ?? $_POST['PADSESSID'] ?? $_GET['PADSESSID'] ?? $_COOKIE['PADSESSID'] ?? pad_random_string();
   $PADREFID  = $PADREFID  ?? $_POST['PADREQID']  ?? $_GET['PADREQID']  ?? $_COOKIE['PADREQID']  ?? '';
-  $PADREQID  = pad_random_string();
+  $PADREQID  = $PADREQID  ?? pad_random_string();
 
   $pad_timings_count = $pad_timings = [];
   $pad_err_cnt =$pad_eval_cnt = $pad_fld_cnt = $pad_lvl_cnt = $pad_opt_cnt = $pad_err_cnt = $pad_type_cnt = 0;
@@ -32,7 +39,7 @@
 
   include PAD . 'config/config.php';
 
-  if ( pad_file_exists ( APP . 'config/config.php' ) )
+  if ( file_exists ( APP . 'config/config.php' ) )
     include APP . 'config/config.php';
 
   if ($pad_no_no) 
@@ -78,10 +85,10 @@
   $pad          = $pad_script . "?app=$app&page=";
   $pad_location = $pad_host . $pad;
 
-  $pad_next = $page;
-
   if ( isset($_REQUEST['pad_include']) )
     $pad_build_mode= 'include';
+
+  include PAD . 'build/build.php';
 
   pad_timing_end ('init');
 

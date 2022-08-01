@@ -17,7 +17,7 @@
   
     if     ( $curl ['result'] <> 200 )                          $status = $curl ['result'] ;
     elseif ( strrpos($store_write, 'random') )                  $status = 'random' ;
-    elseif ( ! pad_file_exists ($store_read) )                  $status = 'new';
+    elseif ( ! file_exists ($store_read) )                  $status = 'new';
     elseif ( pad_file_get_contents($store_read) == $curl ['data'] ) $status = 'ok';
     else                                                        $status = 'error';
 

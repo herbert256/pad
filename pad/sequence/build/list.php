@@ -18,7 +18,7 @@
 
   foreach ( $pad_seq_one_list as $pad_seq_one_name => $pad_seq_one_value )
 
-    if ($pad_seq_one_name <> $pad_seq_seq and pad_file_exists (PAD . "sequence/types/$pad_seq_one_name/$pad_seq_filter_check.php")) {
+    if ($pad_seq_one_name <> $pad_seq_seq and file_exists (PAD . "sequence/types/$pad_seq_one_name/$pad_seq_filter_check.php")) {
 
       $GLOBALS["pad_seq_".$pad_seq_one. "_list"] [$pad_seq_one_name] = $pad_seq_one_value;
 

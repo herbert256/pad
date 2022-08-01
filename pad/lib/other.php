@@ -121,15 +121,15 @@
     if ( ! preg_match ( '/^[A-Za-z0-9]+$/', $app  ) )    return FALSE;
     if ( trim($app) == '' )                              return FALSE;
 
+    if ( ! is_dir (APPS . $app) )
+      return FALSE;
+
     if ( ! preg_match ( '/^[A-Za-z0-9\/_]+$/', $page ) ) return FALSE;
     if ( trim($page) == '' )                             return FALSE;
 
     if ( strpos($page, '//') !== FALSE)                  return FALSE;
     if ( substr($page, 0, 1) == '/')                     return FALSE;
     if ( substr($page, -1) == '/')                       return FALSE;
-
-    if ( ! is_dir (APPS . $app) )
-      rerurn FALSE;
 
     $location = APPS . "$app/pages";
     $part     = pad_split ($page, '/');
@@ -140,7 +140,7 @@
       if ($value == 'exits') return FALSE;
 
       if ( $key == array_key_last($part)
-            and (pad_file_exists("$location/$value.php") or pad_file_exists("$location/$value.html") ) )
+            and (file_exists("$location/$value.php") or file_exists("$location/$value.html") ) )
       
         return TRUE; 
        
@@ -154,23 +154,20 @@
       
     }
     
-    return ( pad_file_exists("$location/$index.php") or pad_file_exists("$location/$index.html") )
+    return ( file_exists("$location/index.php") or file_exists("$location/index.html") );
     
   }
 
 
   function pad_get_page ( $app, $page ) {
 
-    if ( ! pad_check_page ($app, $page) )
-      pad_error ("Page not found");
-
     $location = APPS . "$app/pages";
     $part     = pad_split ($page, '/');
     
-    foreach ($part as $key => $value) {
+    foreach ($part as $key => $value)
       
       if ( $key == array_key_last($part)
-            and (pad_file_exists("$location/$value.php") or pad_file_exists("$location/$value.html") ) )
+            and (file_exists("$location/$value.php") or file_exists("$location/$value.html") ) )
         return $page; 
       elseif ( is_dir ("$location/$value") )
         $location.= "/$value";
@@ -380,8 +377,8 @@
 
   function pad_function_type ( $check ) {
 
-    if     ( pad_file_exists ( APP . "functions/$check.php" ) ) return 'app';
-    elseif ( pad_file_exists ( PAD . "functions/$check.php" ) ) return 'pad';
+    if     ( file_exists ( APP . "functions/$check.php" ) ) return 'app';
+    elseif ( file_exists ( PAD . "functions/$check.php" ) ) return 'pad';
     elseif ( function_exists ( $check                       ) ) return 'php';
     else                                                        return pad_error ('Function not found: ' . $check);
 

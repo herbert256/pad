@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! pad_file_exists($pad_call) )
+  if ( ! file_exists($pad_call) )
     return ( $pad_build_location ) ? "{false '$pad_call'/}" : '';
 
   ob_start();

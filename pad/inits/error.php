@@ -161,7 +161,7 @@
 
       error_log ($error, 4);
 
-      file_put_contents ( DATA . "errors/$PADREQID.html", pad_dump_get($error) );
+      pad_file_put_contents ( "errors/$PADREQID.html", pad_dump_get($error) );
 
       if ( pad_local() )
         pad_dump ($error);

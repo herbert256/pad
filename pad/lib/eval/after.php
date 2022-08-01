@@ -69,7 +69,7 @@
         $exp = pad_explode ($one[0], ':');
         $type = $exp[0];
         if ( count($exp) == 2 and pad_valid ($exp[0]) and pad_valid ($exp[1]) ) 
-          if ( pad_file_exists ( PAD . "eval/single/$type.php") or pad_file_exists ( PAD . "eval/parms/$type.php") ) {
+          if ( file_exists ( PAD . "eval/single/$type.php") or file_exists ( PAD . "eval/parms/$type.php") ) {
             $result[$k][0] = $exp[1];
             $result[$k][1] = 'TYPE';
             $result[$k][2] = $type;          
@@ -78,7 +78,7 @@
       }
 
     foreach ($result as $key => $one)
-      if ( $one[1] == 'TYPE' and pad_valid ($one[2]) and pad_file_exists ( PAD."eval/single/".$one[2].".php" ) )
+      if ( $one[1] == 'TYPE' and pad_valid ($one[2]) and file_exists ( PAD."eval/single/".$one[2].".php" ) )
         pad_eval_single ( $result, $key);
 
     foreach ($result as $k => $one)

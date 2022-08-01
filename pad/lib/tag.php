@@ -35,7 +35,7 @@
     else
       $pad_idx = pad_field_tag_lvl ($tag, FALSE);
     
-    if ( pad_file_exists ( PAD . "tag/".$field.".php" ) )
+    if ( file_exists ( PAD . "tag/".$field.".php" ) )
       return include PAD . "tag/$field.php";
 
     if ( in_array ( $parm, ['name','value'] ) and $pad_idx and isset($GLOBALS['pad_current'] ) ) {

@@ -1,7 +1,4 @@
 <?php
-
-  if ( $pad_next )
-    include PAD . 'build/build.php';
     
   $pad_end [$pad_lvl] = strpos($pad_html[$pad_lvl], '}');
 
@@ -39,7 +36,7 @@
     $pad_tag_type = substr ($pad_tag, 0, $pad_ns_pos);
     $pad_tag      = substr ($pad_tag, $pad_ns_pos+1);
 
-    if ( ! pad_file_exists ( PAD . "types/$pad_tag_type.php" ) ) 
+    if ( ! file_exists ( PAD . "types/$pad_tag_type.php" ) ) 
       return pad_ignore ('tag_type_not_exists');
     
   } else {

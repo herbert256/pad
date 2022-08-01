@@ -74,7 +74,7 @@
         return TRUE;
     }
 
-    if ( pad_file_valid_name ( APP . "data/$input" ) and pad_file_exists ( APP . "data/$input" ) )
+    if ( pad_file_valid_name ( APP . "data/$input" ) and file_exists ( APP . "data/$input" ) )
       return TRUE;
 
     $parts = pad_explode ($input, ':', 3);
@@ -98,7 +98,7 @@
     if ( substr ( $input, 0, 7 ) == 'http://' or substr ( $input, 0, 8 ) == 'https://' )
       return pad_curl_data ($input);
  
-    if ( pad_file_exists ( APP . "data/$input" ) )
+    if ( file_exists ( APP . "data/$input" ) )
       return pad_file_get_contents ( APP . "data/$input" );
 
     $parts = pad_explode ($input, ':', 3);
@@ -120,7 +120,7 @@
 
     $count = count ($parm);
 
-    if ( pad_file_exists ( PAD . "eval/single/$kind.php" ) )
+    if ( file_exists ( PAD . "eval/single/$kind.php" ) )
       $get = include PAD . "eval/single/$kind.php";
     else
       $get = include PAD . "eval/parms/$kind.php";

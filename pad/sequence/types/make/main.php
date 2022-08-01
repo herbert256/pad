@@ -4,7 +4,7 @@
  
   foreach ( $pad_parms_tag as $pad_seq_opt_name => $pad_seq_opt_value )
 
-    if ( pad_file_exists ( PAD . "sequence/types/$pad_seq_opt_name/$pad_seq_filter_check.php" ) ) {
+    if ( file_exists ( PAD . "sequence/types/$pad_seq_opt_name/$pad_seq_filter_check.php" ) ) {
 
       $GLOBALS ["pad_seq_mf_$pad_seq_seq"] [$pad_seq_opt_name] = $pad_seq_opt_value;
 

@@ -27,10 +27,10 @@
 
   foreach ( $pad_parms_tag as $pad_seq_tag_name => $pad_seq_tag_value ) {
 
-    if ( pad_file_exists ( PAD . "sequence/types/$pad_seq_tag_name/make.php" ) )
+    if ( file_exists ( PAD . "sequence/types/$pad_seq_tag_name/make.php" ) )
       pad_set_arr_var ( 'options_done', $pad_seq_tag_name, TRUE );
 
-    if ( pad_file_exists ( PAD . "sequence/types/$pad_seq_tag_name/filter.php" ) )
+    if ( file_exists ( PAD . "sequence/types/$pad_seq_tag_name/filter.php" ) )
       pad_set_arr_var ( 'options_done', $pad_seq_tag_name, TRUE );
 
   }

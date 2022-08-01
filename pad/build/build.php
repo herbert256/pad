@@ -6,9 +6,6 @@
 
   include 'level.php';
 
-  $page     = pad_get_page ($app, $page_next);
-  $pad_next = '';
-
   $pad_base [1] = '';
 
   include "$pad_build_mode.php";

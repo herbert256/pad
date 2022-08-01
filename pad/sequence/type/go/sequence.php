@@ -1,6 +1,6 @@
 <?php
 
- if ( pad_file_exists ( PAD . "sequence/types/$pad_seq_seq/one.php" ) ) 
+ if ( file_exists ( PAD . "sequence/types/$pad_seq_seq/one.php" ) ) 
   
     $pad_sequence = include PAD . "sequence/types/$pad_seq_seq/one.php";
 
@@ -16,7 +16,7 @@
 
     $pad_sequence = include "bool.php";
 
-  elseif ( $pad_seq_random and pad_file_exists ( PAD . "sequence/types/$pad_seq_seq/random.php") )
+  elseif ( $pad_seq_random and file_exists ( PAD . "sequence/types/$pad_seq_seq/random.php") )
 
     $pad_sequence = include PAD . "sequence/types/$pad_seq_seq/random.php" ;
 
