@@ -1,10 +1,5 @@
 <?php
 
-  pad_get_content_store ($store) {
-
-  }
-
-
   function pad_local () {
 
     if ( ! isset($GLOBALS['pad_local']) )

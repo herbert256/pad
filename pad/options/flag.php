@@ -1,6 +1,5 @@
 <?php
 
-  if ( ! pad_get_flag_store () )
-    $pad_content = '';
+  return $pad_flag_store [ pad_tag_parm('flag') ];
 
 ?>
