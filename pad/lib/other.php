@@ -115,53 +115,69 @@
 
   }
 
-  function pad_check_page () {
 
-    global $app, $page;
-  
-    if ( ! preg_match ( '/^[A-Za-z0-9\/_]+$/', $page ) ) pad_error ("Invalid page name '$page'");
-    if ( strpos($page, '//') !== FALSE)                  pad_error ("Invalid page name '$page'");
-    if ( substr($page, 0, 1) == '/')                     pad_error ("Invalid page name '$page'");
+  function pad_check_page ( $app, $page ) {
 
-    $pad_location = APP . "pages";
+    if ( ! preg_match ( '/^[A-Za-z0-9]+$/', $app  ) )    return FALSE;
+    if ( trim($app) == '' )                              return FALSE;
 
-    $pad_page_parts = pad_split ($page, '/');
+    if ( ! preg_match ( '/^[A-Za-z0-9\/_]+$/', $page ) ) return FALSE;
+    if ( trim($page) == '' )                             return FALSE;
+
+    if ( strpos($page, '//') !== FALSE)                  return FALSE;
+    if ( substr($page, 0, 1) == '/')                     return FALSE;
+    if ( substr($page, -1) == '/')                       return FALSE;
+
+    if ( ! is_dir (APPS . $app) )
+      rerurn FALSE;
+
+    $location = APPS . "$app/pages";
+    $part     = pad_split ($page, '/');
     
-    $file = '';
-    
-    foreach ($pad_page_parts as $key => $value) {
+    foreach ($part as $key => $value) {
       
-      if ($value == 'inits')
-        return pad_error ("'inits' is a reserved word and can not be used as page name");
+      if ($value == 'inits') return FALSE;
+      if ($value == 'exits') return FALSE;
 
-      if ($value == 'exits')
-        return pad_error ("'exits' is a reserved word and can not be used as page name");
-
-      if ( $key == array_key_last($pad_page_parts)
-            and (pad_file_exists("$pad_location/$value.php") or pad_file_exists("$pad_location/$value.html") ) )
+      if ( $key == array_key_last($part)
+            and (pad_file_exists("$location/$value.php") or pad_file_exists("$location/$value.html") ) )
       
-        return; 
+        return TRUE; 
        
-      elseif ( is_dir ("$pad_location/$value") ) {
+      elseif ( is_dir ("$location/$value") )
 
-        $file = 'index';
-        $pad_location .= "/$value";
+        $location.= "/$value";
 
-      } else {
+      else
 
-        return pad_error ("Page '$app/$page' not found (1)");
-
-      }
+        return FALSE;
       
     }
     
-    if ( ! pad_file_exists("$pad_location/$file.php") and ! pad_file_exists("$pad_location/$file.html") )
-      return pad_error ("Page '$app/$page' not found (2)");
-
-    $page = str_replace(APP . "pages/", '', "$pad_location/$file");
+    return ( pad_file_exists("$location/$index.php") or pad_file_exists("$location/$index.html") )
     
   }
 
+
+  function pad_get_page ( $app, $page ) {
+
+    if ( ! pad_check_page ($app, $page) )
+      pad_error ("Page not found");
+
+    $location = APPS . "$app/pages";
+    $part     = pad_split ($page, '/');
+    
+    foreach ($part as $key => $value) {
+      
+      if ( $key == array_key_last($part)
+            and (pad_file_exists("$location/$value.php") or pad_file_exists("$location/$value.html") ) )
+        return $page; 
+      elseif ( is_dir ("$location/$value") )
+        $location.= "/$value";
+   
+    return "$page/index";
+
+  }
   
   function pad_close_html () {
 

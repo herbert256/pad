@@ -26,11 +26,11 @@
 
   $pad_data [$pad_lvl] = pad_make_data ( $pad_data [$pad_lvl] );   
 
-  if     ( is_array($pad_tag_result) and ! count($pad_data [$pad_lvl]) ) $pad_else = TRUE;
-  elseif ( is_array($pad_tag_result) and   count($pad_data [$pad_lvl]) ) $pad_else = FALSE;
-  elseif ( $pad_tag_result === FALSE                                   ) $pad_else = TRUE;
-  elseif ( $pad_tag_result === ''                                      ) $pad_else = TRUE;
-  else                                                                   $pad_else = FALSE;
+  if     ( is_array($pad_tag_result) and ! count($pad_tag_result) ) $pad_else = TRUE;
+  elseif ( is_array($pad_tag_result) and   count($pad_tag_result) ) $pad_else = FALSE;
+  elseif ( $pad_tag_result === FALSE                              ) $pad_else = TRUE;
+  elseif ( $pad_tag_result === ''                                 ) $pad_else = TRUE;
+  else                                                              $pad_else = FALSE;
 
   if ( $pad_else ) {
 

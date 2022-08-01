@@ -34,9 +34,9 @@
 
   }
 
-  if     ( $pad_tag == 'content')  $pad_store_data = pad_make_content ($pad_store_source);
-  elseif ( $pad_tag == 'content')  $pad_store_data = pad_make_data    ($pad_store_source, pad_tag_parm('type'), $pad_name);
-  elseif ( $pad_tag == 'content')  $pad_store_data = pad_make_flag    ($pad_store_source);
+  if     ( $pad_tag == 'content') $pad_store_data = pad_make_content ($pad_store_source);
+  elseif ( $pad_tag == 'data'   ) $pad_store_data = pad_make_data    ($pad_store_source, pad_tag_parm('type'), $pad_name);
+  elseif ( $pad_tag == 'flag'   ) $pad_store_data = pad_make_flag    ($pad_store_source);
 
   $GLOBALS [$pad_store_name] [$pad_store_entry] = $pad_store_data;
 

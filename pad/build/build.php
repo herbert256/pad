@@ -6,14 +6,12 @@
 
   include 'level.php';
 
-  $page = $pad_next;
+  $page     = pad_get_page ($app, $page_next);
   $pad_next = '';
-
-  pad_check_page ();
 
   $pad_base [1] = '';
 
-  include PAD . "build/$pad_build_mode.php";
+  include "$pad_build_mode.php";
 
   if ( $pad_trace )
     pad_file_put_contents ("$pad_trace_dir_base/html-base.html", $pad_base [1] );
