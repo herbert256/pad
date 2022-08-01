@@ -656,16 +656,14 @@
 
   }
 
-  function pad_add_array_to_data ( $array, $type='') {
+  function pad_add_array_to_data ( $array ) {
 
     global $pad_data, $pad_lvl;
-
-    $add = pad_make_data ($array, $type);
 
     if ( pad_is_default_data ( $pad_data [$pad_lvl] ) )
       $pad_data [$pad_lvl] = $array;
     else
-      foreach ( $add as $value )
+      foreach ( $array as $value )
         $pad_data [$pad_lvl] [] = $value;
 
   }
