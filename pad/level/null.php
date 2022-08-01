@@ -1,7 +1,7 @@
 <?php
 
   if ( $GLOBALS['pad_trace_level'] )
-    pad_file_put_contents ( "$pad_trace_dir_lvl/rrsult.json", $pad_data[$pad_lvl]        );
+    pad_file_put_contents ( "$pad_trace_dir_lvl/tag.json", $pad_data[$pad_lvl] );
 
   $pad_parms_val = $pad_parms_tag  = [];
 

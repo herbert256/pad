@@ -1,11 +1,10 @@
 <?php
 
-  define ( 'PAD_NOT_FOUND', '*pad*Floe%pende!Flap*pad*' );
-
   function pad_field_check ($parm) { return pad_field ($parm, 1); } 
   function pad_field_value ($parm) { return pad_field ($parm, 2); } 
   function pad_array_check ($parm) { return pad_field ($parm, 3); } 
   function pad_array_value ($parm) { return pad_field ($parm, 4); } 
+  function pad_field_null  ($parm) { return pad_field ($parm, 5); } 
 
   function pad_field ($parm, $type) {
 
@@ -15,14 +14,13 @@
     elseif ( strpos ( $field, ':' ) !== FALSE ) $value = pad_field_prefix ( $field, $type );
     else                                        $value = pad_field_level  ( $field, $type );
 
-
-    if      ($type == 1) return ( $value !== NULL and ( $value === PAD_NOT_FOUND or ! is_scalar($value) ) ) ? FALSE : TRUE;
-    else if ($type == 2) return ( $value === NULL or    $value === PAD_NOT_FOUND or ! is_scalar($value)   ) ? ''    : $value;
-    else if ($type == 3) return ( $value === NULL or    $value === PAD_NOT_FOUND or   is_scalar($value)   ) ? FALSE : TRUE;
-    else                 return ( $value === NULL or    $value === PAD_NOT_FOUND or   is_scalar($value)   ) ? []    : $value;
+    if     ($type == 1) return ( $value !== NULL and ( $value === INF or ! is_scalar($value) ) ) ? FALSE : TRUE;
+    elseif ($type == 2) return ( $value === NULL or    $value === INF or ! is_scalar($value)   ) ? ''    : $value;
+    elseif ($type == 3) return ( $value === NULL or    $value === INF or   is_scalar($value)   ) ? FALSE : TRUE;
+    elseif ($type == 4) return ( $value === NULL or    $value === INF or   is_scalar($value)   ) ? []    : $value;
+    elseif ($type == 5) return ( $value === NULL                                               ) ? TRUE  : FALSE;
 
   }
-  
 
   function pad_field_prefix ( $field, $type ) {
 
@@ -48,7 +46,7 @@
           if ($key == $prefix)
             return pad_field_search ($value, $field, $type);
 
-    return PAD_NOT_FOUND;
+    return INF;
     
   }
 
@@ -67,23 +65,23 @@
       else
         $work = pad_field_search ( $pad_current[$i], $field, $type );
 
-      if ( $work !== PAD_NOT_FOUND )
+      if ( $work !== INF )
         return $work;
 
       foreach ( $pad_db_lvl [$i] as $key => $value ) {
         $work = pad_field_search ( $value, $field, $type);   
-        if ( $work !== PAD_NOT_FOUND )
+        if ( $work !== INF )
           return $work;
 
       $work = pad_field_search ( $pad_parameters [$i] ['parms_tag'], $field, $type);   
-      if ( $work !== PAD_NOT_FOUND )
+      if ( $work !== INF )
         return $work;
 
       }
 
     }
 
-    return PAD_NOT_FOUND;
+    return INF;
     
   }
 
@@ -98,7 +96,7 @@
     foreach ( $names as $name ) {
 
       if ( ! array_key_exists ( $name, $current ) )
-        return PAD_NOT_FOUND;
+        return INF;
 
       if ( is_object ($current[$name]) or is_resource ($current[$name]) )
         $current[$name] = (array) $current[$name];
@@ -108,10 +106,10 @@
     }
 
     if ( ($type == 1 or $type == 2) and is_array($current) )
-      return PAD_NOT_FOUND;
+      return INF;
 
     if ( ($type == 3 or $type == 4) and ! is_array($current) )
-      return PAD_NOT_FOUND;
+      return INF;
 
     return $current;
 

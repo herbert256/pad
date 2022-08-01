@@ -4,7 +4,7 @@
 
   $pad_parm_result = pad_field_tag ("$pad_field_tag#$pad_tag");
 
-  if ( $pad_parm_result === PAD_NOT_FOUND )
+  if ( $pad_parm_result === INF )
     return NULL;
   else
     return $pad_parm_result;

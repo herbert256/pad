@@ -11,7 +11,7 @@
     if ( isset ( $pad_parameters [$lvl] ['parms_val'] [$idx] ) )
       return $pad_parameters [$lvl] ['parms_val'] [$idx]; 
     else
-      return PAD_NOT_FOUND;
+      return INF;
 
   }
   
@@ -45,7 +45,7 @@
           return ( $parm == 'name') ? $key : $value;
     }
 
-    return PAD_NOT_FOUND;
+    return INF;
 
   }
 
