@@ -18,10 +18,10 @@
 
   $pad_store_name = 'pad_'.$pad_tag.'_store';
 
-  if ( isset ( $pad_parms_tag [1] ) ) {
+  if ( isset ( $pad_parms_val [1] ) ) {
 
-    $pad_store_entry  = $pad_parms_tag [0];
-    $pad_store_source = $pad_parms_tag [1];
+    $pad_store_entry  = $pad_parms_val [0];
+    $pad_store_source = $pad_parms_val [1];
   
   } else {
 

@@ -16,15 +16,14 @@
     if ( is_array ( $data ) )
       return pad_make_data_return ($check, $data, $name);
 
-    if ( pad_check_range ( $input ) ) { 
-      $data = pad_get_range ( $input );
-      return pad_make_data_return ($check, $data, $name);
-    }
+    $file = APP . "data/$data";
+    if ( pad_file_valid_name ($file) and file_exists ($file) )
+      $data = pad_file_get_contents ($file);
+    elseif ( substr ( $data, 0, 7 ) == 'http://' or substr ( $data, 0, 8 ) == 'https://' )
+      $data = pad_curl_data ($data);    
 
-    if ( pad_get_check ( $data ) ) {
-      do  {
-        $data = pad_get_go ( $data );
-      } while ( pad_get_check ( $data ) );
+    if ( pad_check_range ( $data ) ) { 
+      $data = pad_get_range ( $data );
       return pad_make_data_return ($check, $data, $name);
     }
 
