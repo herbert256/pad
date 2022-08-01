@@ -3,7 +3,7 @@
   $pad_parameters [$pad_lvl] ['tag_count']++;
 
   if ( pad_tag_parm ('content') ) $pad_content .= include PAD . "options/content.php";    
-  if ( pad_tag_parm ('else')    ) $pad_content .= include PAD . "options/else.php";    
+  if ( pad_tag_parm ('else')    ) $pad_false   .= include PAD . "options/else.php";    
 
   $pad_tag_result = include PAD . "level/type.php";
 
