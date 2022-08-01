@@ -3,7 +3,7 @@
   $pad_build_now = substr(APP, 0, -1);
   
   $pad_exits     = [];
-  $pad_build_mrg = pad_split ("pages/$page", '/');
+  $pad_build_mrg = pad_explode ("pages/$page", '/');
 
   foreach ($pad_build_mrg as $pad_value) {
 

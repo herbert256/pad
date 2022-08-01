@@ -1,5 +1,9 @@
 <?php
 
+  pad_get_content_store ($store) {
+
+  }
+
 
   function pad_local () {
 
@@ -39,7 +43,7 @@
 
     }
 
-    if ( $GLOBALS['pad_trace_explode'] ) 
+    if ( isset($GLOBALS['pad_trace_explode']) and $GLOBALS['pad_trace_explode'] ) 
       pad_file_put_contents ( 
         $GLOBALS['pad_trace_dir_occ'] . '/explode/' . pad_random_string() . '.json',
         [ $haystack, $limit, array_values ( $explode ) ]
@@ -132,7 +136,7 @@
     if ( substr($page, -1) == '/')                       return FALSE;
 
     $location = APPS . "$app/pages";
-    $part     = pad_split ($page, '/');
+    $part     = pad_explode ($page, '/');
     
     foreach ($part as $key => $value) {
       
@@ -141,15 +145,10 @@
 
       if ( $key == array_key_last($part)
             and (file_exists("$location/$value.php") or file_exists("$location/$value.html") ) )
-      
         return TRUE; 
-       
       elseif ( is_dir ("$location/$value") )
-
         $location.= "/$value";
-
       else
-
         return FALSE;
       
     }
@@ -162,10 +161,9 @@
   function pad_get_page ( $app, $page ) {
 
     $location = APPS . "$app/pages";
-    $part     = pad_split ($page, '/');
+    $part     = pad_explode ($page, '/');
     
     foreach ($part as $key => $value)
-      
       if ( $key == array_key_last($part)
             and (file_exists("$location/$value.php") or file_exists("$location/$value.html") ) )
         return $page; 
@@ -184,19 +182,6 @@
 
   }
 
-
-  function pad_split ($haystack, $split) {
-
-    $explode = explode($split, $haystack);
-    
-    foreach($explode as $key => $value) {
-      if ( trim($explode [$key]) == '' )
-        unset($explode[$key]);
-    }
-
-    return $explode;
-    
-  }
 
   function pad_md5 ($input) {
     return substr(pad_base64(pad_pack(md5($input))),0,22);
@@ -722,15 +707,6 @@
 
   }
 
-
-  function pad_tag_error ($error='') {
-
-    if ($error)
-      return pad_error ($error);
-    else
-      return pad_error ("PAD tag syntax error");
-
-  }
 
 
   function pad_check_tag ($tag, $string) {
