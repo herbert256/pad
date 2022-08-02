@@ -21,7 +21,7 @@
   else
     $pad_between = substr($pad_html[$pad_lvl], $pad_start[$pad_lvl]+1, $pad_end[$pad_lvl]-$pad_start[$pad_lvl]-2);
 
-  include PAD . 'level/parms1.php';
+  include 'parms1.php';
 
   if     ( $pad_first == '!' ) return pad_html ( include PAD . 'var/raw.php' );
   elseif ( $pad_first == '$' ) return pad_html ( include PAD . 'var/opt.php' );
@@ -51,11 +51,11 @@
   $pad_content = $pad_false = '';
 
   if ( $pad_pair ) {
-    $pad_pair_result = include PAD . 'level/pair.php';
+    $pad_pair_result = include 'pair.php';
     if ( $pad_pair_result === FALSE ) 
       return pad_ignore ('pair_result_is_false');
   }
 
-  include PAD . 'level/start.php';
+  include 'start.php';
 
 ?>

@@ -6,8 +6,6 @@
 
   $pad_between = 'pad';
 
-  $pad_close_tags = [];
-
   include PAD . 'level/parms1.php';
   include PAD . 'level/inits.php';
 

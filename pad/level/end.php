@@ -10,12 +10,9 @@
     return include PAD . 'occurrence/start.php';
 
   if ( $pad_walks [$pad_lvl] == 'next' ) {
-
     include PAD . 'walk/next.php';
-  
     if ( $pad_walk == 'next' )
       return include PAD . 'occurrence/start.php';
-
   }
 
   $pad_occur [$pad_lvl] = 0;

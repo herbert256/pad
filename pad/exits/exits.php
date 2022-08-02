@@ -16,9 +16,6 @@
   if ( $pad_tidy )
     include PAD . 'exits/tidy.php';
 
-  if ( count ($pad_close_tags) )
-    include PAD . 'walk/close.php';
-
   if ( $pad_remove_whitespace )
    include 'whitespace.php';
   
