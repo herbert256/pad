@@ -8,6 +8,6 @@
                             'rows', 'first', 'last', 'row', 'sort', 'ignore', 'source', 'shuffle', 
                             'random', 'print', 'dummy', 'parent'];
                             
-  $pad_parms_level_end   = ['toFlag', 'toContent', 'toData', 'trace'];
+  $pad_parms_level_end   = ['toFlag', 'toContent', 'toData'];
   
 ?>

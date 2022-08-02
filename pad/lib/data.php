@@ -1,6 +1,6 @@
 <?php
 
-  function pad_make_data ($input, $content='', $name='', $check=1) {
+  function pad_make_data ($input, $content='', $name='') {
 
     if     ( $input === NULL       ) $data = [];
     elseif ( $input === FALSE      ) $data = [];
@@ -14,7 +14,7 @@
     else                             $data = trim($input);
 
     if ( is_array ( $data ) )
-      return pad_make_data_return ($check, $data, $name);
+      return pad_data_chk ($data, $name);
 
     $file = APP . "data/$data";
     if ( pad_file_valid_name ($file) and file_exists ($file) )
@@ -24,7 +24,7 @@
 
     if ( pad_check_range ( $data ) ) { 
       $data = pad_get_range ( $data );
-      return pad_make_data_return ($check, $data, $name);
+      return pad_data_chk ($data, $name);
     }
 
     if ( substr($data, 0, 1) == '(' and substr($data, -1) == ')' ) {
@@ -34,7 +34,7 @@
       foreach ($data as $key => $value)
         $data[$key] = pad_eval($value);
 
-      return pad_make_data_return ($check, $data, $name);
+      return pad_data_chk ($data, $name);
 
     }
     
@@ -167,20 +167,10 @@
       
     }
 
-    return pad_make_data_return ($check, $result, $name);
+    return pad_data_chk ($result, $name);
 
   }
   
-
-  function pad_make_data_return ($check, $data, $name) {
-
-      if ($check)
-        return pad_data_chk ( $data, $name );
-      else
-        return $data;    
-
-  }
-
   
   function pad_data_error ($data, $error) {
 
