@@ -7,12 +7,14 @@
 
   $pad_eval = pad_eval ( $pad_parms );
 
+  $pad_wrk  = [ $pad_parameters [$pad_lvl] ['tag_cnt'] => [] ];
+
   if ($pad_tag == 'while') { 
     $pad_walk = ($pad_eval) ? 'next'   : '';
-    return      ($pad_eval) ? TRUE : NULL;
+    return      ($pad_eval) ? $pad_wrk : NULL;
   } else {
     $pad_walk = ($pad_eval) ? ''   : 'next';
-    return      ($pad_eval) ? NULL : TRUE;    
+    return      ($pad_eval) ? $pad_wrk : TRUE;    
   }
 
 ?>

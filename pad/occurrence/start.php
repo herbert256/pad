@@ -9,7 +9,7 @@
 
   $pad_current [$pad_lvl] = $pad_data [$pad_lvl] [$pad_key [$pad_lvl]];
 
-  if ( $pad_walks [$pad_lvl] <> 'start' and isset ( $pad_parms_tag ['toData'] ))
+  if ( $pad_walks [$pad_lvl] <> 'start' )
     $pad_walks_data [ $pad_lvl] [] = $pad_current [$pad_lvl];
 
   if ( $pad_lvl > 1 ) {

@@ -20,14 +20,14 @@
   $pad_db_lvl      [$pad_lvl] = [];
   $pad_save_vars   [$pad_lvl] = [];
   $pad_delete_vars [$pad_lvl] = [];
-  $pad_tag_cnt     [$pad_lvl] = 0;
 
   $pad_set_save    [$pad_lvl] = [];
   $pad_set_delete  [$pad_lvl] = [];
 
-  $pad_parameters  [$pad_lvl] ['tag']      = '';
-  $pad_parameters  [$pad_lvl] ['tag_type'] = '';
-  $pad_parameters  [$pad_lvl] ['name']     = '';
+  $pad_parameters  [$pad_lvl] ['tag_cnt']   = 0;
+  $pad_parameters  [$pad_lvl] ['tag']       = '';
+  $pad_parameters  [$pad_lvl] ['tag_type']  = '';
+  $pad_parameters  [$pad_lvl] ['name']      = '';
 
   $pad_walk = 'start';
 

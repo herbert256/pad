@@ -393,12 +393,15 @@
     $pad_data [$pad_lvl] [1] = [];
 
     include PAD . 'level/parms2.php';
+    include PAD . "level/type.php";
+    include PAD . "level/flags.php";
 
-    $result = include PAD . "level/type.php";
+    $result = $pad_tag_result;
 
-    if ( in_array ( $pad_walk, ['end', 'occurence'] ) ) {
+    if ( $pad_walk == 'end' ) {
       $pad_base [$pad_lvl] = $pad_html [$pad_lvl] = $pad_result [$pad_lvl] = $pad_content;
-      $result = include PAD . "level/type.php";
+      include PAD . "level/type.php";
+      include PAD . "level/flags.php";
     }
 
     foreach ( $GLOBALS['pad_parameters'] [$pad_lvl-1] as $pad_k => $pad_v )

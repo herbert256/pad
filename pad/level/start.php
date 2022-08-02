@@ -17,9 +17,13 @@
   include 'base.php';
   include 'data.php';
 
+  $pad_parameters [$pad_lvl] ['content'] = $pad_content;
+  $pad_parameters [$pad_lvl] ['false']   = $pad_false;
   $pad_parameters [$pad_lvl] ['true']    = $pad_true;
   $pad_parameters [$pad_lvl] ['null']    = $pad_null;
   $pad_parameters [$pad_lvl] ['else']    = $pad_else;
+  $pad_parameters [$pad_lvl] ['array']   = $pad_array;
+  $pad_parameters [$pad_lvl] ['text']    = $pad_text;
   $pad_parameters [$pad_lvl] ['default'] = pad_is_default_data ( $pad_data [$pad_lvl] );
   
   include 'trace/start.php';

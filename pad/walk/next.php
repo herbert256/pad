@@ -1,16 +1,24 @@
 <?php
+
+  foreach ( $pad_parameters [$pad_lvl] as $pad_k => $pad_v )
+    $GLOBALS['pad_'.$pad_k] = $pad_v;
      
   $pad_walk = 'next';
   
-  include 'walk.php';
+  $pad_content = $pad_base [$pad_lvl];
 
-  if     ( $pad_tag_result === NULL  ) return  '';
-  elseif ( $pad_tag_result === FALSE ) return  $pad_false;
-  elseif ( $pad_tag_result === TRUE  ) return  $pad_content;
+  include PAD . "level/type.php"; 
+  include PAD . "level/flags.php";
 
-  if ( array ( $pad_tag_result) )
-    return  pad_make_content ( $pad_tag_result );
+  $pad_base [$pad_lvl] = $pad_content;
 
-  return $pad_return;
-  
+  if ( $pad_walk ) {
+
+    if ( $pad_array )
+      $pad_data [$pad_lvl] = $pad_tag_result;
+ 
+    reset ( $pad_data[$pad_lvl] );
+
+  }
+ 
 ?> 

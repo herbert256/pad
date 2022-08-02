@@ -1,5 +1,5 @@
 <?php
 
-  return 'go/store.php';
+  return include 'go/store.php';
 
 ?>

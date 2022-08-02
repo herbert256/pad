@@ -20,5 +20,7 @@
     $pad_base [$pad_lvl] .= $pad_tag_content;
 
   }
+
+  $pad_content = $pad_base [$pad_lvl];
   
 ?>

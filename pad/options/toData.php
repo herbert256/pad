@@ -1,6 +1,6 @@
 <?php
 
-  $pad_store_name = $pad_parms_tag ['toFlag'];
+  $pad_store_name = $pad_parms_tag ['toData'];
 
   if ( !$pad_pair and !$pad_content and !pad_is_default_data($pad_data [$pad_lvl]) ) {
     $pad_data_store [$pad_store_name] = $pad_data [$pad_lvl];
