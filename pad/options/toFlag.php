@@ -1,10 +1,6 @@
 <?php
 
-  $pad_store_tmp = trim ( $pad_content );
-
-  if ( strlen($pad_store_tmp) )
-    $pad_flag_store [$pad_parms_tag ['toFlag']] = TRUE;
-  elseif ( $pad_true_false [$pad_lvl] )
+  if ( $pad_parameters [$pad_lvl] ['true'] )
     $pad_flag_store [$pad_parms_tag ['toFlag']] = TRUE;
   else
     $pad_flag_store [$pad_parms_tag ['toFlag']] = FALSE;
