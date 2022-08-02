@@ -7,22 +7,13 @@
 
   $pad_store_name = 'pad_'.$pad_tag.'_store';
 
-  if ( isset ( $pad_parms_val [0] ) ) {
-
+  if ( isset ( $pad_parms_val [0] ) or isset ( $pad_parms_val [1] ) ) 
     $pad_name = $pad_parms_val [0];
-  
-  }
 
-  if ( isset ( $pad_parms_val [1] ) ) {
-
-    $pad_name         = $pad_parms_val [0];
-    $pad_store_source = $pad_parms_val [1];
-  
-  } else {
-
+  if ( isset ( $pad_parms_val [1] ) )
+    $pad_store_source = $pad_parms_val [1];  
+  else
     $pad_store_source = $pad_content;
-
-  }
 
   $pad_parameters [$pad_lvl] ['name'] = $pad_name;
 
