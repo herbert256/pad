@@ -12,7 +12,7 @@
     return      ($pad_eval) ? TRUE : NULL;
   } else {
     $pad_walk = ($pad_eval) ? ''   : 'next';
-    return      ($pad_eval) ? TRUE : $pad_wrk;    
+    return      ($pad_eval) ? NULL : TRUE;    
   }
 
 ?>
