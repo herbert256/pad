@@ -21,7 +21,5 @@
   $pad_tag_content .= ob_get_clean();
   
   $pad_walks [$pad_lvl] = $pad_walk; 
-  
-  return $pad_tag_result;
 
 ?>

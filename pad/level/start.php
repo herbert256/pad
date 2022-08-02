@@ -4,7 +4,23 @@
   
   include 'inits.php';
 
-  include 'tag.php';
+  include PAD . "level/type.php";
+
+  if ( pad_tag_parm ('content') ) $pad_content  = include PAD . "options/content.php";    
+  if ( pad_tag_parm ('else')    ) $pad_false    = include PAD . "options/else.php";    
+  if ( pad_tag_parm ('flag')    ) $pad_opt_flag = include PAD . "options/flag.php";    
+
+  if ( pad_tag_parm ('flag') and ! $pad_opt_flag ) 
+    $pad_tag_result = FALSE;
+
+  include 'flags.php';
+  include 'base.php';
+  include 'data.php';
+
+  $pad_parameters [$pad_lvl] ['true']    = $pad_true;
+  $pad_parameters [$pad_lvl] ['null']    = $pad_null;
+  $pad_parameters [$pad_lvl] ['else']    = $pad_else;
+  $pad_parameters [$pad_lvl] ['default'] = pad_is_default_data ( $pad_data [$pad_lvl] );
   
   include 'trace/start.php';
 
@@ -16,7 +32,5 @@
 
   if ( count ($pad_data[$pad_lvl] ) )
     include PAD . 'occurrence/start.php';
-  else
-    $pad_html [$pad_lvl] = '';
   
 ?>

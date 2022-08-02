@@ -4,6 +4,8 @@
  
   ob_start();
 
+  set_include_path('');
+
   $pad_lib = PAD . 'lib';
   include 'lib.php';
 

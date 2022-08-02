@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'tags/go/store.php';
+  return 'go/store.php';
 
 ?>

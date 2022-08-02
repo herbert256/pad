@@ -13,7 +13,7 @@
 
       $pad_eval = pad_eval($pad_eval);
 
-      if ( ($pad_tag == 'case' and $pad_basis == $pad_eval) or ($pad_tag == 'if' and $pad_eval) ) {
+      if ( ($pad_tag == 'if' and $pad_eval) or ($pad_tag == 'case' and $pad_basis == $pad_eval) ) {
         $pad_content = substr ($pad_content, 0, $pad_chk);
         return TRUE;
       }
@@ -29,11 +29,6 @@
 
   $pad_eval = pad_eval($pad_eval);
 
-  return ( ($pad_tag == 'case' and $pad_basis == $pad_eval) or ($pad_tag == 'if' and $pad_eval) );
-
-  if ( ($pad_tag == 'case' and $pad_basis == $pad_eval) or ($pad_tag == 'if' and $pad_eval) )
-    return TRUE;
-  
-  return FALSE;;
+  return ( ($pad_tag == 'if' and $pad_eval) or ($pad_tag == 'case' and $pad_basis == $pad_eval) );
 
 ?>

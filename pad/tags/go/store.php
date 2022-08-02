@@ -12,26 +12,39 @@
 
   if ( isset ( $pad_parms_val [1] ) ) {
 
-    $pad_store_entry  = $pad_parms_val [0];
+    $pad_name         = $pad_parms_val [0];
     $pad_store_source = $pad_parms_val [1];
   
   } else {
 
-    if     ( pad_tag_parm ('name')  ) $pad_store_entry = pad_tag_parm ('name');
-    elseif ( pad_tag_parm ('store') ) $pad_store_entry = pad_tag_parm ('store');
-    else                              $pad_store_entry = $pad_parm ;
-
-    if   ( pad_tag_parm ($pad_tag)  )  $pad_store_source = pad_tag_parm ($pad_tag);
-    else                               $pad_store_source = $pad_content;
+    $pad_store_source = $pad_content;
 
   }
 
-  if     ( $pad_tag == 'content') $pad_store_data = pad_make_content ($pad_store_source);
-  elseif ( $pad_tag == 'data'   ) $pad_store_data = pad_make_data    ($pad_store_source, pad_tag_parm('type'), $pad_name);
-  elseif ( $pad_tag == 'flag'   ) $pad_store_data = pad_make_flag    ($pad_store_source);
+  if ( $pad_tag == 'content') {
 
-  $GLOBALS [$pad_store_name] [$pad_store_entry] = $pad_store_data;
+    $pad_store_data = pad_make_content ($pad_store_source);
+  
+  } elseif ( $pad_tag == 'data' ) {
 
-  return NULL;
+    if ( ! pad_is_default_data ( $pad_data[$pad_lvl] ) )
+      $pad_store_data = $pad_data[$pad_lvl];
+    elseif ( $pad_store_source )
+      $pad_store_data = pad_make_data ($pad_store_source, pad_tag_parm('type'), $pad_name);
+    else
+      $pad_store_data = '';
+
+  } elseif ( $pad_tag == 'flag' ) {
+
+    if ( $pad_store_source )
+      $pad_store_data = pad_make_flag ($pad_store_source);
+    else
+      $pad_store_data = $pad_true;
+
+  }
+
+  $GLOBALS [$pad_store_name] [$pad_name] = $pad_store_data;
+
+  $pad_content = '';
 
 ?>
