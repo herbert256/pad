@@ -25,8 +25,6 @@
     if ( ! pad_file_valid_name ( $file ) )
       return pad_error ("Invalid file name: $file");
 
-    return $file;
-
     pad_file_chk_dir  ( $file );
     pad_file_chk_file ( $file );
 
@@ -46,8 +44,8 @@
   function pad_file_valid_name ( $file ) {
 
     if ( ! preg_match ('/^[A-Za-z0-9\.\/_-]+$/', $file) ) return FALSE;
-    if ( strpos($file, '//') !== FALSE )                 return FALSE;
-    if ( strpos($file, '..') !== FALSE )                 return FALSE;
+    if ( strpos($file, '//') !== FALSE )                  return FALSE;
+    if ( strpos($file, '..') !== FALSE )                  return FALSE;
 
     if ( str_starts_with($file, PAD)  ) return TRUE;
     if ( str_starts_with($file, APPS) ) return TRUE;

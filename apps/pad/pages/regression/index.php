@@ -15,11 +15,11 @@
 
     $curl = pad_complete ('reference', $item);
   
-    if     ( $curl ['result'] <> 200 )                          $status = $curl ['result'] ;
-    elseif ( strrpos($store_write, 'random') )                  $status = 'random' ;
-    elseif ( ! file_exists ($store_read) )                  $status = 'new';
+    if     ( $curl ['result'] <> 200 )                              $status = $curl ['result'] ;
+    elseif ( strrpos($store_write, 'random') )                      $status = 'random' ;
+    elseif ( ! file_exists ($store_read) )                          $status = 'new';
     elseif ( pad_file_get_contents($store_read) == $curl ['data'] ) $status = 'ok';
-    else                                                        $status = 'error';
+    else                                                            $status = 'error';
 
     if ( $status == 'new' )
       pad_file_put_contents ($store_write, $curl ['data'] );
