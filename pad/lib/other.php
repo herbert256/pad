@@ -309,20 +309,6 @@
 
   }
   
-
-  function pad_info ( $input ) {
-
-    if     ( $input === NULL       )  return "NULL";
-    elseif ( $input === FALSE      )  return "FALSE";
-    elseif ( $input === TRUE       )  return "TRUE";
-    elseif ( is_array ( $input)    )  return "ARRAY: "    . pad_make_content ( $input );
-    elseif ( is_object ( $input)   )  return "OBJECT: "   . pad_make_content ( $input );
-    elseif ( is_resource ( $input) )  return "RESOURCE: " . pad_make_content ( $input );
-    elseif ( ! $input              )  return "EMPTY";
-    else                              return "STRING: "   . pad_make_content ( $input );
-    
-  }
-
   function pad_check_range ( $input ) {
 
     $parts = pad_explode ($input, '..');
@@ -496,74 +482,6 @@
   }
 
 
-
-  function pad_callback_before_xxx ($pad_callback_type) {
-
-    $pad_vars_before = [];
-    foreach ($GLOBALS as $pad_k => $pad_v)
-      if ( pad_valid_store ($pad_k) ) { 
-        $pad_vars_before [] = $pad_k;
-        $$pad_k = $pad_v;
-      }
-
-    include PAD . "callback/$pad_callback_type.php";
-
-    $pad_vars_after = get_defined_vars ();
-
-    foreach ($pad_vars_before as $pad_k => $pad_v)
-      if ( isset( $GLOBALS [$pad_k] ) )
-        unset( $GLOBALS [$pad_k] );
-
-    foreach ($pad_vars_after as $pad_k => $pad_v)
-      if ( pad_valid_store ($pad_k) ) {
-        if ( isset( $GLOBALS [$pad_k] ) )
-          unset( $GLOBALS [$pad_k] );
-        $GLOBALS [$pad_k] = $$pad_k;
-      }
-
-  }
-
-  function pad_callback_before_row ( &$pad_row_parm ) {
-
-    if ( isset( $GLOBALS ['row'] ) ) {
-      $pad_row_save = TRUE;
-      $pad_row_save_store = $GLOBALS ['row'];
-    } else
-      $pad_row_save = FALSE;
-
-    $pad_vars_before = [];
-    foreach ($GLOBALS as $pad_k => $pad_v)
-      if ( $pad_k <> 'row' and pad_valid_store ($pad_k) ) { 
-        $pad_vars_before [] = $pad_k;
-        $$pad_k = $pad_v;
-      }
-
-    $row = $pad_row_parm;  
-    include PAD . 'callback/row.php';
-    $pad_row_parm = $row;  
-
-    $pad_vars_after = get_defined_vars();
-
-    foreach ($pad_vars_before as $pad_k => $pad_v)
-      if ( isset( $GLOBALS [$pad_k] ) )
-        unset( $GLOBALS [$pad_k] );
-
-    foreach ($pad_vars_after as $pad_k => $pad_v)
-      if ( $pad_k <> 'row' and pad_valid_store ($pad_k) ) {
-        if ( isset( $GLOBALS [$pad_k] ) )
-          unset( $GLOBALS [$pad_k] );
-        $GLOBALS [$pad_k] = $pad_v;
-      }
-
-    if ( $pad_row_save ) {
-      if ( isset( $GLOBALS ['row'] ) )
-        unset ( $GLOBALS ['row'] );
-      $GLOBALS ['row'] = $pad_row_save_store;
-    }
-
-  }
-
-
   function pad_set_global ( $name, $value ) {
 
     global $pad_lvl, $pad_save_vars, $pad_delete_vars;
@@ -713,6 +631,8 @@
 
     if     ( $analyse === NULL         ) return FALSE;
     elseif ( $analyse === FALSE        ) return FALSE;
+    elseif ( $analyse === NAN          ) return FALSE;
+    elseif ( $analyse === INF          ) return FALSE;
     elseif ( $analyse === TRUE         ) return TRUE;
     elseif ( is_object    ( $analyse ) ) return FALSE;
     elseif ( is_resource  ( $analyse ) ) return FALSE;
@@ -730,28 +650,30 @@
   }
 
 
-  function pad_analyze_var ($analyse) {
+  function pad_info ($analyse) {
 
     if     ( $analyse === NULL         ) return 'null'; 
-    elseif ( $analyse === FALSE        ) return 'false';
     elseif ( $analyse === TRUE         ) return 'true';
-    elseif ( is_array     ( $analyse ) ) return 'array:'       . count                ($analyse);
-    elseif ( is_object    ( $analyse ) ) return 'object:'      . get_class            ($analyse);
-    elseif ( is_resource  ( $analyse ) ) return 'resource:'    . get_resource_type    ($analyse) ;
-    elseif ( is_integer   ( $analyse ) ) return 'integer'      . pad_analyze_var_info ($analyse);
-    elseif ( is_float     ( $analyse ) ) return 'float'        . pad_analyze_var_info ($analyse);
-    elseif ( is_double    ( $analyse ) ) return 'double'       . pad_analyze_var_info ($analyse);
-    elseif ( is_bool      ( $analyse ) ) return 'bool'         . pad_analyze_var_info ($analyse);
-    elseif ( ctype_alpha  ( $analyse ) ) return 'alphabetic'   . pad_analyze_var_info ($analyse);
-    elseif ( ctype_digit  ( $analyse ) ) return 'numeric'      . pad_analyze_var_info ($analyse);
-    elseif ( ctype_xdigit ( $analyse ) ) return 'hexadecimal'  . pad_analyze_var_info ($analyse);
-    elseif ( ctype_alnum  ( $analyse ) ) return 'alphanumeric' . pad_analyze_var_info ($analyse);
-    elseif ( is_string    ( $analyse ) ) return 'string'       . pad_analyze_var_info ($analyse);
-    else                                 return 'other'        . pad_analyze_var_info ($analyse);
+    elseif ( $analyse === FALSE        ) return 'false';
+    elseif ( $analyse === NAN          ) return 'nan';
+    elseif ( $analyse === INF          ) return 'inf';
+    elseif ( is_array     ( $analyse ) ) return 'array:'       . count             ($analyse);
+    elseif ( is_object    ( $analyse ) ) return 'object:'      . get_class         ($analyse);
+    elseif ( is_resource  ( $analyse ) ) return 'resource:'    . get_resource_type ($analyse) ;
+    elseif ( is_integer   ( $analyse ) ) return 'integer'      . pad_info_var      ($analyse);
+    elseif ( is_float     ( $analyse ) ) return 'float'        . pad_info_var      ($analyse);
+    elseif ( is_double    ( $analyse ) ) return 'double'       . pad_info_var      ($analyse);
+    elseif ( is_bool      ( $analyse ) ) return 'bool'         . pad_info_var      ($analyse);
+    elseif ( ctype_alpha  ( $analyse ) ) return 'alphabetic'   . pad_info_var      ($analyse);
+    elseif ( ctype_digit  ( $analyse ) ) return 'numeric'      . pad_info_var      ($analyse);
+    elseif ( ctype_xdigit ( $analyse ) ) return 'hexadecimal'  . pad_info_var      ($analyse);
+    elseif ( ctype_alnum  ( $analyse ) ) return 'alphanumeric' . pad_info_var      ($analyse);
+    elseif ( is_string    ( $analyse ) ) return 'string'       . pad_info_var      ($analyse);
+    else                                 return 'other'        . pad_info_var      ($analyse);
 
   }
 
-  function pad_analyze_var_info ($analyse) {
+  function pad_info_var ($analyse) {
 
      $work = $analyse;
      $work = trim(preg_replace('/\s+/', ' ', $work));
@@ -925,7 +847,6 @@
       return $data;    
   
   }
-
 
   
   function pad_valid_store ($fld) {

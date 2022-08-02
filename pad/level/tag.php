@@ -2,16 +2,19 @@
 
   $pad_parameters [$pad_lvl] ['tag_count']++;
 
-  if ( pad_tag_parm ('content') ) $pad_content .= include PAD . "options/content.php";    
-  if ( pad_tag_parm ('else')    ) $pad_false   .= include PAD . "options/else.php";    
-
   $pad_tag_result = include PAD . "level/type.php";
+
+  if ( pad_tag_parm ('content') ) $pad_content         = include PAD . "options/content.php";    
+  if ( pad_tag_parm ('else')    ) $pad_false           = include PAD . "options/else.php";    
+  if ( pad_tag_parm ('data')    ) $pad_data [$pad_lvl] = include PAD . "options/data.php";    
+  if ( pad_tag_parm ('flag')    ) $pad_tag_result      = include PAD . "options/flag.php";    
+
+  $pad_parameters [$pad_lvl] ['true']            = pad_true_false ($pad_tag_result);
+  $pad_parameters [$pad_lvl] ['tag_result']      = pad_info ($pad_tag_result);
+  $pad_parameters [$pad_lvl] ['tag_result_data'] = $pad_tag_result;
 
   if ( $pad_tag_result === NULL or $pad_tag_result === NULL or $pad_tag_result === INF )
     return include 'null.php';
-
-  $pad_parameters [$pad_lvl] ['tag_result']      = pad_info ($pad_tag_result);
-  $pad_parameters [$pad_lvl] ['tag_result_data'] = $pad_tag_result;
 
   if ( is_object   ( $pad_tag_result ) ) $pad_tag_result = pad_xxx_to_array ( $pad_tag_result );
   if ( is_resource ( $pad_tag_result ) ) $pad_tag_result = pad_xxx_to_array ( $pad_tag_result );
