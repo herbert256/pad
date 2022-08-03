@@ -1,7 +1,7 @@
 <?php
 
   if ( ! file_exists($pad_call) )
-    return ( $pad_build_location ) ? "{false '$pad_call'/}" : '';
+    return '';
 
   ob_start();
   
@@ -16,6 +16,6 @@
 
   $pad_call_return .= ob_get_clean();
 
-  return pad_build_location ( $pad_call, $pad_call_return );
+  return $pad_call_return ;
 
 ?>

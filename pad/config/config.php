@@ -112,8 +112,6 @@
   
   $pad_build_merge    = 'content';    // 'content'
                                       // 'end'
-
-  $pad_build_location = FALSE;
  
   // PAD database structure
   

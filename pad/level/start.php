@@ -13,6 +13,12 @@
   if ( pad_tag_parm ('flag') and ! $pad_opt_flag ) 
     $pad_tag_result = FALSE;
 
+  if ( pad_tag_parm ('data') ) {
+    if ( is_array ( $pad_tag_result ) )
+      $pad_tag_result = include PAD . "options/data.php";   
+    else
+      $pad_data [$pad_lvl] = include PAD . "options/data.php";   
+
   include 'flags.php';
   include 'base.php';
   include 'data.php';

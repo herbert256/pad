@@ -838,19 +838,6 @@
 
   }
 
-
-  function pad_build_location ( $location, $data ) {
-
-    if ( $GLOBALS['pad_build_location'] )
-      if ( $data )
-        return "{true '$location'}" . $data . '{/true}';
-      else
-        return "{false '$location' /}";
-    else
-      return $data;    
-  
-  }
-
   
   function pad_valid_store ($fld) {
 

@@ -22,7 +22,7 @@
     if ( $pad_tag_php === 1 )
       $pad_tag_php = '' ;
 
-    $pad_tag_content .= pad_build_location ( "$pad_tag_go.php", ob_get_clean() );
+    $pad_tag_content .= ob_get_clean() ;
 
   }
 

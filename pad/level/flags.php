@@ -18,7 +18,7 @@
   if     ( $pad_true and is_array($pad_tag_result) ) $pad_array = TRUE;
   else                                               $pad_array = FALSE;
 
-  if     ( $pad_true and ! is_array($pad_tag_result) ) $pad_text = TRUE;
-  else                                                 $pad_text = FALSE;
+  if     ( $pad_true and $pad_tag_result !== TRUE and is_scalar($pad_tag_result) ) $pad_text = TRUE;
+  else                                                                             $pad_text = FALSE;
 
 ?>
