@@ -9,6 +9,7 @@
 
   include PAD . "level/type.php"; 
   include PAD . "level/flags.php";
+  include PAD . "level/base.php";
 
   $pad_result [$pad_lvl] = $pad_content;
 

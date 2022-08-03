@@ -39,6 +39,4 @@
   $pad_parameters [$pad_lvl] ['parms_tag'] = $pad_parms_tag;  
   $pad_parameters [$pad_lvl] ['parms_val'] = $pad_parms_val;
 
-  include PAD . 'level/check.php';
-
 ?>

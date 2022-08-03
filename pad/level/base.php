@@ -13,7 +13,7 @@
     if ( is_array($pad_tag_result) or $pad_tag_result === TRUE  )     
       $pad_base [$pad_lvl] = $pad_content;
     elseif ( strpos($pad_tag_result , '@content@') === FALSE)
-      $pad_base [$pad_lvl] = $pad_tag_result . $pad_content;
+      $pad_base [$pad_lvl] = $pad_tag_result;
     else
       $pad_base [$pad_lvl] = str_replace('@content@', $pad_content, $pad_tag_result);
 
