@@ -16,16 +16,17 @@
     pad_boot_error ("Page not found");
 
   $page = pad_get_page ($app, $page);
-
-  define ( 'APP', APPS . "$app/" );
+  
+  if ( ! defined ('APP') )
+    define ( 'APP', APPS . "$app/" );
 
   $PADSESSID = $PADSESSID ?? $_POST['PADSESSID'] ?? $_GET['PADSESSID'] ?? $_COOKIE['PADSESSID'] ?? pad_random_string();
-  $PADREFID  = $PADREFID  ?? $_POST['PADREQID']  ?? $_GET['PADREQID']  ?? $_COOKIE['PADREQID']  ?? '';
+  $PADREFID  = $PADREFID  ?? $PADREQID ?? $_POST['PADREQID']  ?? $_GET['PADREQID']  ?? $_COOKIE['PADREQID']  ?? '';
   $PADREQID  = $PADREQID  ?? pad_random_string();
 
   $pad_timings_count = $pad_timings = [];
   $pad_err_cnt =$pad_eval_cnt = $pad_fld_cnt = $pad_lvl_cnt = $pad_opt_cnt = $pad_err_cnt = $pad_type_cnt = 0;
-  $pad_field_double_check = FALSE;
+  $pad_field_double_check = $pad_restart = '';
 
   $pad_lvl        = 1;
   $pad_output     = '';
@@ -70,7 +71,8 @@
   include 'lib.php';
 
   include PAD . 'options/go/inits.php';
-  include 'parms.php';
+
+  pad_get_vars ();
 
   $pad_request_scheme = $_SERVER ['REQUEST_SCHEME'] ?? 'http';
   $pad_http_host      = $_SERVER ['HTTP_HOST']      ?? 'localhost';

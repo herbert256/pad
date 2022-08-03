@@ -18,7 +18,7 @@
   $pad_parameters [$pad_lvl] ['text']    = $pad_text;
   $pad_parameters [$pad_lvl] ['default'] = pad_is_default_data ( $pad_data [$pad_lvl] );
   
-  if ( ! $pad_trace_level )
+  if ( $pad_trace_level )
     include 'trace/start.php';
 
   include PAD . "options/go/start.php";

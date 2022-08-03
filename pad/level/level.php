@@ -1,9 +1,12 @@
 <?php
     
+  if ( $pad_restart )
+    return include PAD . 'inits/restart.php';    
+    
   $pad_end [$pad_lvl] = strpos($pad_html[$pad_lvl], '}');
 
   if ( $pad_end[$pad_lvl] === FALSE )
-    return include PAD . 'level/end.php';
+    return include 'end.php';
 
   $pad_start [$pad_lvl] = strrpos ( $pad_html[$pad_lvl], '{', $pad_end[$pad_lvl] - strlen($pad_html[$pad_lvl]) );
   
