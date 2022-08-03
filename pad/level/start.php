@@ -3,22 +3,8 @@
   $pad_lvl++;
   
   include 'inits.php';
-
-  include PAD . "level/type.php";
-
-  if ( pad_tag_parm ('content') ) $pad_content  = include PAD . "options/content.php";    
-  if ( pad_tag_parm ('else')    ) $pad_false    = include PAD . "options/else.php";    
-  if ( pad_tag_parm ('flag')    ) $pad_opt_flag = include PAD . "options/flag.php";    
-
-  if ( pad_tag_parm ('flag') and ! $pad_opt_flag ) 
-    $pad_tag_result = FALSE;
-
-  if ( pad_tag_parm ('data') ) {
-    if ( is_array ( $pad_tag_result ) )
-      $pad_tag_result = include PAD . "options/data.php";   
-    else
-      $pad_data [$pad_lvl] = include PAD . "options/data.php";   
-
+  include 'type.php';
+  include 'options.php';
   include 'flags.php';
   include 'base.php';
   include 'data.php';

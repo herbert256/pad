@@ -484,8 +484,23 @@
 
   }
 
-
   function pad_set_global ( $name, $value ) {
+
+    global $pad_lvl, $pad_save_vars, $pad_delete_vars;
+    
+    if ( array_key_exists($name, $GLOBALS) and ! array_key_exists ($name, $pad_save_vars [$pad_lvl]) )
+      $pad_save_vars [$pad_lvl] [$name] = $GLOBALS [$name];
+
+    if ( ! array_key_exists ($name,  $GLOBALS) )
+      $pad_delete_vars [$pad_lvl] [] = $name;
+    else
+      unset ( $GLOBALS [$name] );
+
+    $GLOBALS [$name] = $value;
+
+  }
+
+  function xpad_set_global ( $name, $value ) {
 
     global $pad_lvl, $pad_save_vars, $pad_delete_vars;
     

@@ -6,14 +6,18 @@
 
   elseif ( $pad_else )
 
-    if   ( $pad_array                   ) $pad_now = array_slice ($pad_tag_result, 0, 1); 
-    else ( count ($pad_data [$pad_lvl]) ) $pad_now = array_slice ($pad_data [$pad_lvl], 0, 1); 
-    else                                  $pad_now = pad_default_data ();  
+    if     ( $pad_array                   ) $pad_now = array_slice ($pad_tag_result, 0, 1); 
+    elseif ( count ($pad_data [$pad_lvl]) ) $pad_now = array_slice ($pad_data [$pad_lvl], 0, 1); 
+    else                                    $pad_now = pad_default_data ();  
 
   elseif ( $pad_array )
 
     $pad_now = $pad_tag_result;
 
-  $pad_data [$pad_lvl] = pad_make_data ( $pad_now);   
+  else 
+
+    $pad_now = $pad_data [$pad_lvl];
+
+  $pad_data [$pad_lvl] = pad_make_data ( $pad_now );   
 
 ?>

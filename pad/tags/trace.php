@@ -30,9 +30,15 @@
 
     $pad_parameters [$pad_lvl] ['trace_dir'] = $pad_trace_dir_lvl;
     $pad_parameters [$pad_lvl] ['occur_dir'] = $pad_trace_dir_occ;
+
+    pad_file_put_contents ( $pad_trace_dir_lvl . "/pad-start.json", pad_trace_get_pad_vars ()  );
+    pad_file_put_contents ( $pad_trace_dir_lvl . "/app-start.json", pad_trace_get_app_vars ()  );
   
   } else {
 
+    pad_file_put_contents ( $pad_trace_dir_lvl . "/pad-end.json", pad_trace_get_pad_vars ()  );
+    pad_file_put_contents ( $pad_trace_dir_lvl . "/app-end.json", pad_trace_get_app_vars ()  );
+ 
     foreach ($pad_backup_trace as $pad_k => $pad_v )
       $GLOBALS [$pad_k] = $pad_v;
  

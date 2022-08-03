@@ -1,11 +1,11 @@
-{table}
+{flag 'flagFalse'}  {/flag}
 
-{demo}
+{trace}
 
-{sequence even, rows=10}
-  {$even} 
-{/sequence}
+<ul>
+  <li> 1 - {xar_null}                     true {else} false {/xar_null}
+  <li> 2 - {xar_null xfalsex='flagFalse'}  true {else} false {/xar_null}
+  <li> 3 - {xar_null}                     true {else} false {/xar_null}
+</ul>
 
-{/demo}       
-
-{/table}
+{/trace}

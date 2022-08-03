@@ -1,8 +1,5 @@
 <?php
 
-  if ( $pad_walks [$pad_lvl] == 'occurrence-end' )
-    include PAD . "walk/occurrence-end.php";
-
   if ( $pad_trace_occurence ) 
     include 'trace/end.php';
   

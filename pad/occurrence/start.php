@@ -30,9 +30,6 @@
 
   include PAD . 'occurrence/db.php';
 
-  if ( $pad_walks [$pad_lvl] == 'occurrence-start' )
-    include PAD . "walk/occurrence-start.php";
-
   if ( $pad_trace_occurence ) 
     include 'trace/start.php';
 
