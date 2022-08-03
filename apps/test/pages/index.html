@@ -4,18 +4,11 @@
 
   {staff}
 
-    {first}
-      <tr>
-        {fields}
-          <th>{$name}</th>
-        {/fields}
-      </tr>
-    {/first}
-
     <tr>
-      {fields}
-        <td> {$value} </td>
-      {/fields}
+      <td> {$name} </td>
+      {days}
+        <td {if border}bgcolor="red"{/if}{if days eq 3}bgcolor="green"{/if}> {$days} </td>
+      {/days}
     </tr>
 
   {/staff}

@@ -1,5 +1,20 @@
 <?php
   
+  function pad_first_non_parm  ($min=0) {
+
+    global $pad_lvl, $pad_parameters;
+
+    for ($i=$pad_lvl-$min; $i; $i--)
+      if ( $pad_parameters [$i] ['tag_type'] <> 'parm' )
+        return $i;
+
+    if ( $pad_lvl > 1 )
+      return $pad_lvl - 1;
+    else
+      return;
+
+  }  
+
 
   function pad_field_tag_nr ($tag, $nr) {
 
@@ -45,6 +60,12 @@
           return ( $parm == 'name') ? $key : $value;
     }
 
+    if ( $tag and ! $GLOBALS['pad_field_double_check'] ) {
+      $chk = "$tag:$field";
+      if ( pad_field_check($chk) ) return pad_field_value($chk);
+      if ( pad_array_check($chk) ) return pad_array_value($chk);   
+    }
+
     return INF;
 
   }
@@ -52,11 +73,16 @@
 
   function pad_field_tag_lvl  ($search, $data) {
 
+    global $pad_lvl, $pad_parameters;
+
+    for ($i=$pad_lvl; $i; $i--)
+      if ( $pad_parameters [$i] ['name'] == $search )
+        return $i;
+
     $return = pad_field_tag_lvl_base ($search, $data);
+    
     if ( ! $return === FALSE)
       return $return;
-
-    global $pad_lvl, $pad_parameters;
 
     if ( isset( $GLOBALS['pad_data_store'] [$search]) )
       return pad_field_tag_lvl_fake ( $GLOBALS['pad_data_store'], $search );

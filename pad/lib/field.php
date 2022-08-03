@@ -37,16 +37,25 @@
     $lvl = pad_field_tag_lvl_base ( $prefix, FALSE );
 
     if ( $lvl == 1 ) 
-      return pad_field_search ($GLOBALS, $field, $type);
+      $return = pad_field_search ($GLOBALS, $field, $type);
     elseif ( $lvl ) 
-      return pad_field_search ($pad_current [$lvl], $field, $type);
+      $return = pad_field_search ($pad_current [$lvl], $field, $type);
     else
       for ( $i=$pad_lvl; $i; $i-- )
         foreach ( $pad_db_lvl [$i] as $key => $value)
           if ($key == $prefix)
-            return pad_field_search ($value, $field, $type);
+            $return = pad_field_search ($value, $field, $type);
 
-    return INF;
+
+    if ( $return === INF ) {
+      $GLOBALS['pad_field_double_check'] = TRUE;
+      $tag = "$prefix#$field";
+      if     ( pad_field_check($tag) ) $return = pad_field_value($tag);
+      elseif ( pad_array_check($tag) ) $return = pad_array_value($tag);   
+      $GLOBALS['pad_field_double_check'] = FALSE;
+    }
+
+    return $return;
     
   }
 

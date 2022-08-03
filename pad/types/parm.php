@@ -1,6 +1,9 @@
 <?php
 
-  $pad_field_tag = $pad_parms_val[0] ?? '-1';
+  if ( isset($pad_parms_val[0]) )
+    $pad_field_tag = $pad_parms_val[0];
+  else
+    $pad_field_tag = pad_first_non_parm();
 
   $pad_parm_result = pad_field_tag ("$pad_field_tag#$pad_tag");
 
