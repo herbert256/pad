@@ -18,10 +18,10 @@
   $pad_parameters [$pad_lvl] ['text']    = $pad_text;
   $pad_parameters [$pad_lvl] ['default'] = pad_is_default_data ( $pad_data [$pad_lvl] );
   
-  include 'trace/start.php';
+  if ( ! $pad_trace_level )
+    include 'trace/start.php';
 
-  $pad_options = 'level_start';
-  include PAD . "options/go/options.php";
+  include PAD . "options/go/start.php";
 
   if ( isset($pad_parms_tag ['callback']) and ! isset($pad_parms_tag ['before']))
     include PAD . 'callback/init.php' ;

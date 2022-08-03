@@ -23,8 +23,7 @@
   if ( isset($pad_parms_tag ['callback']) and ! isset($pad_parms_tag ['before']) )
     include PAD . 'callback/exit.php' ;
 
-  $pad_options = 'level_end';
-  include PAD . "options/go/options.php";
+  include PAD . "options/go/end.php";
 
   if ( count($pad_set_save [$pad_lvl]) )
     foreach ($pad_set_save [$pad_lvl] as $pad_set_name => $pad_set_value )
