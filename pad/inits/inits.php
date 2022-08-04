@@ -78,6 +78,10 @@
   if ( isset($_REQUEST['pad_include']) )
     $pad_build_mode= 'include';
 
+  $pad_lvl     = 1;
+  $pad_between = 'start';
+  include PAD . 'level/setup.php';
+
   include PAD . 'build/build.php';
 
   pad_timing_end ('init');

@@ -1,6 +1,6 @@
 <?php
 
-  $pad_parameters [$pad_lvl] ['tag_cnt'];
+  $pad_parameters [$pad_lvl] ['tag_cnt']++;
 
   if ( $pad_trace_tag )
     include 'trace/tag/before.php';

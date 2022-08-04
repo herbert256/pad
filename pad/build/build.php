@@ -2,9 +2,7 @@
 
   pad_timing_start ('build');
 
-  include 'level.php';
-
-  $pad_base [1] = '';
+  $pad_base [$pad_lvl] = '';
 
   include "$pad_build_mode.php";
 

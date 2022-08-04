@@ -29,6 +29,10 @@
   if     ( $pad_first == '!' ) return pad_html ( include PAD . 'var/raw.php' );
   elseif ( $pad_first == '$' ) return pad_html ( include PAD . 'var/opt.php' );
 
+  $pad_lvl++;
+  include 'setup.php';
+  $pad_parameters [$pad_lvl] ['pair'] = $pad_pair;
+
   if     ( ! ctype_alpha ( $pad_first )  ) return pad_ignore ('ctype_alpha');
   elseif ( ! pad_valid   ( $pad_tag )    ) return pad_ignore ('pad_valid');
 
@@ -41,6 +45,7 @@
 
   if ( $pad_pair ) {
     $pad_pair_result = include 'pair.php';
+    $pad_parameters [$pad_lvl] ['pair'] = $pad_pair;
     if ( $pad_pair_result === FALSE ) 
       return pad_ignore ('pair_result_is_false');
   }

@@ -1,8 +1,19 @@
 <?php
 
-  $pad_lvl++;
+  $pad_parameters [$pad_lvl] ['content']    = $pad_content;
+  $pad_parameters [$pad_lvl] ['false']      = $pad_false;
+  $pad_parameters [$pad_lvl] ['between']    = $pad_content;
+  $pad_parameters [$pad_lvl] ['parm']       = $pad_parm;
+  $pad_parameters [$pad_lvl] ['parms']      = $pad_parms;
+  $pad_parameters [$pad_lvl] ['parms_type'] = $pad_parms_type;
+  $pad_parameters [$pad_lvl] ['pair']       = $pad_pair;
+
+  $pad_lvl_cnt++;
+
+  $pad_walk = 'start';
+
+  $pad_options_done = [];
   
-  include 'inits.php';
   include 'type_go.php';
   include 'options.php';
   include 'flags.php';
@@ -20,8 +31,7 @@
 
   include PAD . "options/go/start.php";
   
-  if ( $pad_trace_level )
-    include 'trace/start.php';
+  include 'trace/start.php';
 
   if ( isset($pad_parms_tag ['callback']) and ! isset($pad_parms_tag ['before']))
     include PAD . 'callback/init.php' ;

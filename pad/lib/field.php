@@ -247,25 +247,4 @@
   }
 
 
-  function pad_field_fake_level ( $name, $data ) {
-
-    global $pad_lvl;
-
-    $pad_lvl_save = $pad_lvl;
-
-    $pad_lvl = 999999;
-    include PAD . 'inits/level.php';
-  
-    $GLOBALS ['pad_data']    [$pad_lvl] = pad_make_data ( $fake );
-    $GLOBALS ['pad_current'] [$pad_lvl] = reset ( $GLOBALS ['pad_data'] );
-    $GLOBALS ['pad_key']     [$pad_key] = key ( $GLOBALS ['pad_data'] [$pad_lvl] );
-    $GLOBALS ['pad_occur']   [$pad_key] = 1;
-
-    $pad_lvl = $pad_lvl_save;
-
-    return $pad_lvl;
-    
-  }
-
-
 ?>

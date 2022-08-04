@@ -62,11 +62,11 @@ go2:
       return TRUE;
     }
 
-    $pad_between    = $pad_between2;
-    $pad_parms      = $pad_parms2;
-    $pad_parms_type = 'close';
+    $pad_between = $pad_between2;
 
-    $pad_parameters [$pad_lvl+1] ['parm'] = $pad_parms;
+    include PAD 'level/setup.php';
+
+    $pad_parameters [$pad_lvl] ['parms_type'] = 'close';
  
   }
 
