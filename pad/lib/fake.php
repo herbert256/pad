@@ -1,6 +1,6 @@
 <?php
 
-  function pad_pad ( $tag, $options, $content='', $false='', $kind='open' ) {
+  function pad_fake ( $tag, $options, $content='', $false='', $kind='open' ) {
 
     foreach ($GLOBALS as $key => $val )
       if ( substr($key, 0, 3) == 'pad' )
@@ -12,7 +12,7 @@
 
     $fake_vars = [];
     foreach ( $pad_parms [$pad] as $key => $val )
-      $fake_vars = [$key] = $$key;
+      $fake_vars [$key] = $GLOBALS["pad_$key"];
  
     $pad_timing = FALSE;
 
@@ -29,11 +29,11 @@
     $pad++; 
     include PAD . 'level/setup.php'; 
 
-                          $fake_base  = '{' . "$tag";
-    if ($kind == 'open')  $fake_base .= " $options";
-                          $fake_base .= "}$content{else}$false{/$tag";
-    if ($kind == 'close') $fake_base .= " $options";
-                          $fake_base .= "}";
+                                       $fake_base  = '{' . "$tag";
+    if ($kind == 'open' and $options)  $fake_base .= " $options";
+                                       $fake_base .= "}$content{else}$false{/$tag";
+    if ($kind == 'close' and $options) $fake_base .= " $options";
+                                       $fake_base .= "}";
 
     $pad_base [$pad] = $fake_base ;
 

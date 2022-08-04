@@ -70,7 +70,7 @@ go2:
 
     $pad_between = $pad_between2;
 
-    include PAD 'level/setup.php';
+    include 'setup.php';
 
     $pad_parms [$pad] ['parms_type'] = 'close';
  

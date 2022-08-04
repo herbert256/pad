@@ -7,6 +7,7 @@
   $pad_walks       [$pad] = 'start';
   $pad_walks_data  [$pad] = [];
   $pad_current     [$pad] = [];
+  $pad_done        [$pad] = [];
   $pad_base        [$pad] = '';
   $pad_occur       [$pad] = 0;
   $pad_start       [$pad] = 0;
@@ -33,7 +34,6 @@
   $pad_parms [$pad] ['tag_cnt']    = 0;
   $pad_parms [$pad] ['pair']       = $pad_pair ?? FALSE;
   $pad_parms [$pad] ['type']       = $pad_parms [$pad] ['type'] ?? $pad_type ?? '';
-  $pad_parms [$pad] ['done']       = [];
   $pad_parms [$pad] ['parms_type'] = $pad_prms_type ?? 'open';
   $pad_parms [$pad] ['level_dir']  = $pad_level_dir ?? $GLOBALS['pad_trace_dir'];
   $pad_parms [$pad] ['occur_dir']  = $pad_occur_dir ?? $GLOBALS['pad_trace_dir'];

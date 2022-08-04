@@ -6,6 +6,6 @@
   $pad_prms  = trim($pad_words[1] ?? '');
 
   $pad_pair_search = $pad_tag;
-  $pad_prms_type  = ( $pad_prms ) ? 'open' : 'none';
+  $pad_prms_type   = ( $pad_prms ) ? 'open' : 'none';
   
 ?>

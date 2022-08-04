@@ -25,7 +25,7 @@
     $pad_trace_explode   = TRUE;
     $pad_trace_tag       = TRUE; 
 
-    $pad_level_dir = $   . '/trace-' . $pad_lvl_cnt; 
+    $pad_level_dir = $pad_trace_dir . '/trace-' . $pad_lvl_cnt; 
     $pad_occur_dir = $pad_level_dir;
 
     $pad_parms [$pad] ['level_dir'] = $pad_level_dir;

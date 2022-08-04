@@ -22,7 +22,7 @@
 
       $GLOBALS["pad_seq_".$pad_seq_one. "_list"] [$pad_seq_one_name] = $pad_seq_one_value;
 
-      pad_set_arr_var ( 'done', $pad_seq_one_name, TRUE );
+      pad_done (, $pad_seq_one_name, TRUE );
 
       $GLOBALS ["pad_seq_$pad_seq_one_name"] = $pad_seq_one_value;
 

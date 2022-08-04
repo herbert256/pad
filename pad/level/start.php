@@ -1,12 +1,9 @@
 <?php
-
+  
+  $pad++;
   $pad_lvl_cnt++;
 
-  $pad_walk = 'start';
-
-  $pad_done = [];
-  
-  include 'parameters.php';
+  include 'setup.php';
   include 'type_go.php';
   include 'options.php';
   include 'flags.php';

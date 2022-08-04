@@ -651,11 +651,9 @@
   }
 
 
-  function pad_set_arr_var ($arr, $var, $val) {
+  function pad_done ($var, $val) {
 
-    global $pad, $pad_parms;
-
-    $GLOBALS ["pad_$arr"] [$var] = $pad_parms [$pad] [$arr] [$var] = $val;
+    $GLOBALS ['pad_done'] [$GLOBALS ['pad']] [$var] = $val;
 
   }   
 

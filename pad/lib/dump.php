@@ -120,7 +120,7 @@
     }
 
     if ( isset ( $GLOBALS ['pad_parms'] ) )
-      for ( $lvl=$GLOBALS ['pad'];  $lvl>1; $lvl-- ) 
+      for ( $lvl=$GLOBALS ['pad'];  $lvl>0; $lvl-- ) 
         if ( isset($GLOBALS ['pad_parms'] [$lvl] ) ) {
 
           $work = $GLOBALS ['pad_parms'] [$lvl];

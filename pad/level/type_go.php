@@ -8,6 +8,8 @@
   $pad_tag_content  = '';
   ob_start();
 
+  $pad_walk = $pad_walks [$pad]; 
+
   pad_timing_start ('tag');
   $pad_tag_result = include PAD . "types/$pad_type.php";
   pad_timing_end ('tag');

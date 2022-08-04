@@ -3,7 +3,7 @@
 
   function pad_db_get_data ($table, $page=0, $rows=0, $unionBuild=0) {
 
-    global $pad_data, $pad, $pad_prms_tag, $pad_key, $pad_db_relations, $pad_db_tables, $pad_db, $pad_done;
+    global $pad, $pad_data, $pad_prms_tag, $pad_key, $pad_db_relations, $pad_db_tables, $pad_db, $pad_done;
 
     $parms = pad_db_get_db ($table);
 
@@ -35,7 +35,7 @@
 
     $limit = '';
 
-    if ( ! isset($pad_done['page']) or ! isset($pad_done['rows']))
+    if ( ! isset($pad_done [$pad]['page']) or ! isset($pad_done [$pad]['rows']))
 
       if ($page or $rows) {
 
@@ -45,8 +45,8 @@
         $offset = ($page-1) * $rows;
         $limit = "limit $offset, $rows";          
 
-        pad_set_arr_var ('done', 'page', TRUE);
-        pad_set_arr_var ('done', 'rows', TRUE);
+        pad_done (, 'page', TRUE);
+        pad_done (, 'rows', TRUE);
 
       }
 
