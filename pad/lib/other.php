@@ -41,7 +41,7 @@
 
     if ( isset($GLOBALS['pad_trace_explode']) and $GLOBALS['pad_trace_explode'] ) 
       pad_file_put_contents ( 
-        $GLOBALS['pad_trace_dir_occ'] . '/explode/' . pad_random_string() . '.json',
+        $GLOBALS['pad_occur_dir'] . '/explode/' . pad_random_string() . '.json',
         [ $haystack, $limit, array_values ( $explode ) ]
       );
 

@@ -174,7 +174,7 @@
   
   function pad_data_error ($data, $error) {
 
-    global $app, $page, $PADREQID, $pad_trace_dir_base, $pad_trace;
+    global $app, $page, $PADREQID, $pad_trace_dir, $pad_trace;
 
     if ( $pad_trace ) {
 
@@ -182,7 +182,7 @@
       $put = [ 'error'=> $error, 'data' => $data ]; 
 
       pad_file_put_contents ( "errors/data/$app/$page/$PADREQID/$id.json", $put ); 
-      pad_file_put_contents ( "$pad_trace_dir_base/errors/data/$id.json",  $put ); 
+      pad_file_put_contents ( "$pad_trace_dir/errors/data/$id.json",  $put ); 
 
     }
 

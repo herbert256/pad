@@ -1,5 +1,5 @@
 <?php
 
-  $abc = pad_pad ('tag', '', 'waar', 'fout');
+  $abc = pad_fake ('dump', '', 'abc {dump} xyz', 'fout');
 
 ?>

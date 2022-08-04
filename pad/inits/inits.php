@@ -72,13 +72,13 @@
 
   $pad_host     = $pad_request_scheme . '://' . $pad_http_host;
   $pad_uri      = $pad_host . $pad_script . "?app=";
-  $pad          = $pad_script . "?app=$app&page=";
-  $pad_location = $pad_host . $pad;
+  $pad_go       = $pad_script . "?app=$app&page=";
+  $pad_location = $pad_host . $pad_go;
 
   if ( isset($_REQUEST['pad_include']) )
     $pad_build_mode= 'include';
 
-  $pad     = 1;
+  $pad = 1;
   $pad_between = 'start';
   include PAD . 'level/setup.php';
 

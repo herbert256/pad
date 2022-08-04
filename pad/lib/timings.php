@@ -45,7 +45,7 @@
     if ( ! $GLOBALS['pad_timing'] )
       return;
 
-    global $pad_timings, $pad_timings_boot, $pad_timings_start, $pad_timings_count, $pad_trace_dir_base;
+    global $pad_timings, $pad_timings_boot, $pad_timings_start, $pad_timings_count, $pad_trace_dir;
 
     foreach ( $pad_timings_start as $key => $val ) 
       pad_timing_end ($key);
@@ -61,8 +61,8 @@
     pad_header ('X-PAD-Counts: '  . json_encode ( $pad_timings_count) );
 
     if ( $GLOBALS['pad_trace_timings'] ) {
-      pad_file_put_contents ( $pad_trace_dir_base . "/timings.json", $pad_timings       );
-      pad_file_put_contents ( $pad_trace_dir_base . "/counts.json",  $pad_timings_count );
+      pad_file_put_contents ( $pad_trace_dir . "/timings.json", $pad_timings       );
+      pad_file_put_contents ( $pad_trace_dir . "/counts.json",  $pad_timings_count );
     }
 
   }

@@ -59,7 +59,7 @@ go: $end = strpos($source, '}');
 
     $ns_pos = strpos($tag, ':');
     if ($ns_pos) {
-      $tag_type = substr ($tag, 0, $ns_pos);
+      $type = substr ($tag, 0, $ns_pos);
       $tag      = substr ($tag, $ns_pos+1);
     } 
 

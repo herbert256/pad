@@ -70,24 +70,24 @@
   function pad_get_type_eval ( $type ) {
 
         if ( ! pad_valid         ( $type                                  ) ) return FALSE;
-    elseif ( file_exists     ( APP . "functions/$type.php"            ) ) return 'app';
-    elseif ( file_exists     ( PAD . "functions/$type.php"            ) ) return 'pad';
+    elseif ( file_exists         ( APP . "functions/$type.php"            ) ) return 'app';
+    elseif ( file_exists         ( PAD . "functions/$type.php"            ) ) return 'pad';
     elseif ( function_exists     ( $type                                  ) ) return 'php';
     elseif ( pad_field_check     ( $type                                  ) ) return 'field';
     elseif ( isset               ( $GLOBALS['pad_flag_store'] [$type]     ) ) return 'flag';
     elseif ( isset               ( $GLOBALS['pad_content_store'] [$type]  ) ) return 'content';
     elseif ( isset               ( $GLOBALS['pad_data_store'] [$type]     ) ) return 'data';
     elseif ( isset               ( $GLOBALS['pad_sequence_store'] [$type] ) ) return 'sequence';
-    elseif ( file_exists     ( PAD . "tag/$type.php"                  ) ) return 'parm';
+    elseif ( file_exists         ( PAD . "tag/$type.php"                  ) ) return 'parm';
     elseif ( isset               ( $GLOBALS['pad_db_tables'] [$type]      ) ) return 'table';
     elseif ( pad_array_check     ( $type                                  ) ) return 'array';
     elseif ( pad_chk_level_array ( $type                                  ) ) return 'level';
     elseif ( defined             ( $type                                  ) ) return 'constant';
-    elseif ( file_exists     ( PAD . "sequence/actions/$type.php"     ) ) return 'action';
-    elseif ( file_exists     ( APP . "tags/$type.php"                 ) ) return 'tag_app';
-    elseif ( file_exists     ( APP . "tags/$type.html"                ) ) return 'tag_app';
-    elseif ( file_exists     ( PAD . "tags/$type.php"                 ) ) return 'tag_pad';
-    elseif ( file_exists     ( PAD . "tags/$type.html"                ) ) return 'tag_pad';
+    elseif ( file_exists         ( PAD . "sequence/actions/$type.php"     ) ) return 'action';
+    elseif ( file_exists         ( APP . "tags/$type.php"                 ) ) return 'tag_app';
+    elseif ( file_exists         ( APP . "tags/$type.html"                ) ) return 'tag_app';
+    elseif ( file_exists         ( PAD . "tags/$type.php"                 ) ) return 'tag_pad';
+    elseif ( file_exists         ( PAD . "tags/$type.html"                ) ) return 'tag_pad';
     elseif ( pad_is_object       ( $type                                  ) ) return 'object';
     elseif ( pad_is_resource     ( $type                                  ) ) return 'resource';
     else                                                                      return FALSE;

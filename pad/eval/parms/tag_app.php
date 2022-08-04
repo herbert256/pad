@@ -1,6 +1,6 @@
 <?php
 
-  $pad_tag_type = 'app';
+  $pad_eval_tag_type= 'app';
 
   return include 'go/tag.php';
 

@@ -1,6 +1,6 @@
 <?php
 
-  $pad_cnt++;
+  $pad_lvl_cnt++;
 
   $pad_walk = 'start';
 

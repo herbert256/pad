@@ -31,9 +31,9 @@
     if ( ! $force and ! $GLOBALS['pad_trace_errors'] )
       return;
 
-    global $pad_trace_dir_occ, $app, $page, $PADREQID;
+    global $pad_occur_dir, $app, $page, $PADREQID;
 
-    $pad_error_dir = "$pad_trace_dir_occ/errors/$type/$count";
+    $pad_error_dir = "$pad_occur_dir/errors/$type/$count";
 
     $data = [];
 

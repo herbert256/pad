@@ -120,12 +120,12 @@
     if ( ! $GLOBALS['pad_trace_eval'] )
       return;
 
-    global $pad_eval_cnt, $pad_eval_step_cnt, $pad_trace_dir_occ;
+    global $pad_eval_cnt, $pad_eval_step_cnt, $pad_occur_dir;
 
     $pad_eval_step_cnt++;
 
     pad_file_put_contents ( 
-      "$pad_trace_dir_occ/eval/$pad_eval_cnt/$pad_eval_step_cnt.$step.json",  
+      "$pad_occur_dir/eval/$pad_eval_cnt/$pad_eval_step_cnt.$step.json",  
       $data 
     );
 

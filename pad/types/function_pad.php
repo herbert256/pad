@@ -5,6 +5,6 @@
     return TRUE;
   }
    
-  return pad_function_in_tag ( $pad_tag_type, $pad_tag, $pad_content, $pad_prms_val );
+  return pad_function_in_tag ( $pad_type, $pad_tag, $pad_content, $pad_prms_val );
 
 ?>

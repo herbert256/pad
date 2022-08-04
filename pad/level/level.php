@@ -36,10 +36,10 @@
   if     ( ! ctype_alpha ( $pad_first )  ) return pad_ignore ('ctype_alpha');
   elseif ( ! pad_valid   ( $pad_tag )    ) return pad_ignore ('pad_valid');
 
-  $pad_tag_type = include 'type_get.php';
+  $pad_type = include 'type_get.php';
 
-  if ( $pad_tag_type === FALSE )
-    return pad_ignore ('tag_type_false');
+  if ( $pad_type === FALSE )
+    return pad_ignore ('type_false');
 
   if ( $pad_pair ) {
     $pad_pair_result = include 'pair.php';

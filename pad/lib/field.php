@@ -128,7 +128,7 @@
     global $pad, $pad_parms;
 
     for ($i=$pad-$min; $i; $i--)
-      if ( $pad_parms [$i] ['tag_type'] <> 'parm' )
+      if ( $pad_parms [$i] ['type'] <> 'parm' )
         return $i;
 
     if ( $pad > 1 )

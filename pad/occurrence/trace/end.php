@@ -1,6 +1,6 @@
 <?php
     
   if ( $pad > 1 )
-    pad_file_put_contents ("$pad_trace_dir_occ/html-result.html", $pad_html [$pad] );
+    pad_file_put_contents ("$pad_occur_dir/html-result.html", $pad_html [$pad] );
 
 ?>

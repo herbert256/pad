@@ -217,7 +217,7 @@
 
   function pad_trace_curl ( $trace ) {
 
-    $file = $GLOBALS ['pad_trace_dir_lvl'] . "/curl_" . pad_random_string(). ".json";
+    $file = $GLOBALS ['pad_level_dir'] . "/curl_" . pad_random_string(). ".json";
 
     pad_file_put_contents ($file, pad_json ($trace) );
 

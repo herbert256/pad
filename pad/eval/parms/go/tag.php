@@ -1,13 +1,18 @@
 <?php
  
-  $pad_between = $name;
+  $pad_eval_tag_options = '';
 
-  if ($value)
-    $pad_between .= " '$value'";
+  if ( $value )
+    $pad_eval_tag_options = $value;
+  else
+    $pad_eval_tag_options = '';
  
   foreach ($parm as $pad_k => $pad_v)
-    $pad_between .= ", '$pad_v' ";
+    if ( $pad_eval_tag_options)
+      $pad_eval_tag_options .= ", '$pad_v'";
+    else
+      $pad_eval_tag_options .= $pad_v;
 
-  return pad_tag_as_function ( $pad_tag_type, $pad_between );
+  return pad_tag_as_function ( "$pad_eval_tag_type:$name", $pad_eval_tag_options);
   
 ?>
