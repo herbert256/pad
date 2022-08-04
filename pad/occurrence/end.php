@@ -8,6 +8,6 @@
   $pad_trace_dir_occ = $pad_trace_dir_lvl;
   $pad_parameters [$pad_lvl] ['occur_dir'] = $pad_trace_dir_occ ;
 
-  pad_reset ($pad_lvl, $pad_lvl);
+  pad_reset ($pad_lvl);
 
 ?>

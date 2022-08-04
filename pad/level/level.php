@@ -32,24 +32,10 @@
   if     ( ! ctype_alpha ( $pad_first )  ) return pad_ignore ('ctype_alpha');
   elseif ( ! pad_valid   ( $pad_tag )    ) return pad_ignore ('pad_valid');
 
-  $pad_ns_pos = strpos($pad_tag, ':');
+  $pad_tag_type = include 'type_get.php';
 
-  if ( $pad_ns_pos ) {
-
-    $pad_tag_type = substr ($pad_tag, 0, $pad_ns_pos);
-    $pad_tag      = substr ($pad_tag, $pad_ns_pos+1);
-
-    if ( ! file_exists ( PAD . "types/$pad_tag_type.php" ) ) 
-      return pad_ignore ('tag_type_not_exists');
-    
-  } else {
-
-    $pad_tag_type = pad_get_type_lvl ( $pad_tag );
-
-    if ( $pad_tag_type === FALSE )
-      return pad_ignore ('tag_type_false');
-
-  }
+  if ( $pad_tag_type === FALSE )
+    return pad_ignore ('tag_type_false');
 
   $pad_content = $pad_false = '';
 

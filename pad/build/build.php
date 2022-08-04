@@ -2,8 +2,6 @@
 
   pad_timing_start ('build');
 
-  pad_reset (2, $pad_lvl);
-
   include 'level.php';
 
   $pad_base [1] = '';

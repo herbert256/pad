@@ -1,8 +1,6 @@
  <?php
 
-  preLoad ('/home/herbert/pad');
-
-  function preLoad ($path) {
+  $path = '/home/herbert/pad';
 
     $directory = new RecursiveDirectoryIterator ($path);
     $iterator  = new RecursiveIteratorIterator  ($directory);
@@ -16,6 +14,5 @@
 
     }
 
-  }
 
 ?>  

@@ -1,5 +1,63 @@
 <?php
 
+  function pad_pad ( $tag, $options, $content='', $false='', $kind='open' ) {
+
+    $xxx_level_current = $GLOBALS ['pad_lvl']
+
+    foreach ($GLOBALS as $key => $val )
+      if ( substr($key, 0, 3) == 'pad' )
+        $$key = $val;
+
+    $pad_lvl = $xxx_level_current + 1;
+    $pad_html  [$pad_lvl] = '';
+    $pad_start [$pad_lvl] = 0;
+    $pad_end   [$pad_lvl] = 0;
+
+    if ($kind == 'open') $xxx_base = '{' . $tag . ' ' . $options . '}';
+    else                 $xxx_base = '{' . $tag . '}';
+
+    $xxx_base .= "$content{else}$false";
+
+    if ($kind == 'close') $xxx_base .= '{/' . $tag . ' ' . $options . '}';
+    else                  $xxx_base .= '{/' . $tag . '}';
+
+    $pad_base [$pad_lvl] = $xxx_base
+
+    include PAD . 'occurrence/start.php';
+
+    return $pad_html [$pad_lvl];
+
+  }
+
+  function pad_fake_level ( $between, $data=[], $content='', $false='' ) {
+
+    $level_current = $GLOBALS ['pad_lvl']
+
+    foreach ($GLOBALS as $key => $val )
+      if ( substr($key, 0, 3) == 'pad' )
+        $$key = $val;
+
+    $pad_lvl              = $level_current + 1;
+    $pad_html  [$pad_lvl] = '{' . $between . '}';
+    $pad_start [$pad_lvl] = 0;
+    $pad_end   [$pad_lvl] = strlen($pad_html[$pad_lvl]) - 1;
+
+    $pad_between   = $between;
+    $pad_pair      = FALSE;
+    $pad_content   = $content
+    $pad_false     = $false;
+
+    $pad_fake_data = $data;
+
+    include PAD . 'level/parms1.php';
+    include PAD . 'level/type_go.php';
+    include PAD . 'level/start.php';
+    include PAD . 'level/end.php'
+
+    return $pad_html [$pad_lvl];
+
+  }
+
   function pad_local () {
 
     if ( ! isset($GLOBALS['pad_local']) )
@@ -517,25 +575,19 @@
   }
 
 
-  function pad_reset ($start, $end=0) {
+  function pad_reset ($lvl) {
 
     global $pad_save_vars, $pad_delete_vars;
 
-    if ( ! $end )
-      $end = $start;
-  
-    for ($lvl = $end; $lvl>=$start; $lvl--)  {    
-
-      foreach ( $pad_save_vars [$lvl] as $key => $value) {
-        if ( isset ( $GLOBALS [$key] ) ) 
-          unset ($GLOBALS [$key] );
-        $GLOBALS [$key]= $value;
-      }
-
-      foreach ( $pad_delete_vars [$lvl] as $key)
-        unset ($GLOBALS [$key]);
-
+    foreach ( $pad_save_vars [$lvl] as $key => $value) {
+      if ( isset ( $GLOBALS [$key] ) ) 
+        unset ($GLOBALS [$key] );
+      $GLOBALS [$key]= $value;
     }
+
+    foreach ( $pad_delete_vars [$lvl] as $key)
+      if ( isset ( $GLOBALS [$key] ) )
+        unset ( $GLOBALS [$key] );
 
   }
 

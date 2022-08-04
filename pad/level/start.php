@@ -3,7 +3,7 @@
   $pad_lvl++;
   
   include 'inits.php';
-  include 'type.php';
+  include 'type_go.php';
   include 'options.php';
   include 'flags.php';
   include 'base.php';
@@ -17,11 +17,11 @@
   $pad_parameters [$pad_lvl] ['array']   = $pad_array;
   $pad_parameters [$pad_lvl] ['text']    = $pad_text;
   $pad_parameters [$pad_lvl] ['default'] = pad_is_default_data ( $pad_data [$pad_lvl] );
+
+  include PAD . "options/go/start.php";
   
   if ( $pad_trace_level )
     include 'trace/start.php';
-
-  include PAD . "options/go/start.php";
 
   if ( isset($pad_parms_tag ['callback']) and ! isset($pad_parms_tag ['before']))
     include PAD . 'callback/init.php' ;

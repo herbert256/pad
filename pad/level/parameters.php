@@ -3,8 +3,6 @@
   $pad_parameters [$pad_lvl] ['tag']              = $pad_tag;
   $pad_parameters [$pad_lvl] ['tag_type']         = $pad_tag_type;
   $pad_parameters [$pad_lvl] ['name']             = $pad_name;
-  $pad_parameters [$pad_lvl] ['tag']              = $pad_tag;
-  $pad_parameters [$pad_lvl] ['tag_type']         = $pad_tag_type;
   $pad_parameters [$pad_lvl] ['pair']             = $pad_pair;
   $pad_parameters [$pad_lvl] ['content']          = $pad_content;
   $pad_parameters [$pad_lvl] ['false']            = $pad_false;

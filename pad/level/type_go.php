@@ -2,7 +2,7 @@
 
   $pad_parameters [$pad_lvl] ['tag_cnt'];
 
-  if ( $GLOBALS['pad_trace_tag'] )
+  if ( $pad_trace_tag )
     include 'trace/tag/before.php';
 
   $pad_tag_content  = '';
@@ -14,7 +14,7 @@
 
   $pad_tag_content .= ob_get_clean();
 
-  if ( $GLOBALS['pad_trace_tag'] )
+  if ( $pad_trace_tag )
     include 'trace/tag/after.php';
 
   if ( is_object   ( $pad_tag_result ) ) $pad_tag_result = pad_xxx_to_array ( $pad_tag_result );

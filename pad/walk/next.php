@@ -7,7 +7,7 @@
   
   $pad_content = $pad_base [$pad_lvl];
 
-  include PAD . "level/type.php"; 
+  include PAD . "level/type_go.php"; 
   include PAD . "level/flags.php";
 
   $pad_base [$pad_lvl] = $pad_content;
