@@ -11,7 +11,7 @@
 
     if ( in_array ( $pad_option_name, $pad_options_walk ) and ! isset ( $pad_done [$pad] [$pad_option_name] ) ) {
 
-      pad_done (, $pad_option_name, TRUE );  
+      pad_done ( $pad_option_name, TRUE );  
 
       include PAD . "options/$pad_option_name.php" ;
 

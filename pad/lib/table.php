@@ -45,8 +45,8 @@
         $offset = ($page-1) * $rows;
         $limit = "limit $offset, $rows";          
 
-        pad_done (, 'page', TRUE);
-        pad_done (, 'rows', TRUE);
+        pad_done ('page', TRUE);
+        pad_done ( 'rows', TRUE);
 
       }
 

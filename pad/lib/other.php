@@ -244,9 +244,9 @@
 
     global $pad_html, $pad_start, $pad_end, $pad;
 
-    $pad_html[$pad] = substr($pad_html[$pad], 0, $pad_start[$pad])
-                        . $html
-                        . substr($pad_html[$pad], $pad_end[$pad]+1);
+    $pad_html [$pad] = substr($pad_html[$pad], 0, $pad_start[$pad])
+                     . $html
+                     . substr($pad_html[$pad], $pad_end[$pad]+1);
     
   }
   
