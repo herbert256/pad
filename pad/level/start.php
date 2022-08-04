@@ -1,42 +1,35 @@
 <?php
 
-  $pad_parameters [$pad_lvl] ['content']    = $pad_content;
-  $pad_parameters [$pad_lvl] ['false']      = $pad_false;
-  $pad_parameters [$pad_lvl] ['between']    = $pad_content;
-  $pad_parameters [$pad_lvl] ['parm']       = $pad_parm;
-  $pad_parameters [$pad_lvl] ['parms']      = $pad_parms;
-  $pad_parameters [$pad_lvl] ['parms_type'] = $pad_parms_type;
-  $pad_parameters [$pad_lvl] ['pair']       = $pad_pair;
-
-  $pad_lvl_cnt++;
+  $pad_cnt++;
 
   $pad_walk = 'start';
 
   $pad_options_done = [];
   
+  include 'parameters.php';
   include 'type_go.php';
   include 'options.php';
   include 'flags.php';
   include 'base.php';
   include 'data.php';
 
-  $pad_parameters [$pad_lvl] ['content'] = $pad_content;
-  $pad_parameters [$pad_lvl] ['false']   = $pad_false;
-  $pad_parameters [$pad_lvl] ['true']    = $pad_true;
-  $pad_parameters [$pad_lvl] ['null']    = $pad_null;
-  $pad_parameters [$pad_lvl] ['else']    = $pad_else;
-  $pad_parameters [$pad_lvl] ['array']   = $pad_array;
-  $pad_parameters [$pad_lvl] ['text']    = $pad_text;
-  $pad_parameters [$pad_lvl] ['default'] = pad_is_default_data ( $pad_data [$pad_lvl] );
+  $pad_parms [$pad] ['content'] = $pad_content;
+  $pad_parms [$pad] ['false']   = $pad_false;
+  $pad_parms [$pad] ['true']    = $pad_true;
+  $pad_parms [$pad] ['null']    = $pad_null;
+  $pad_parms [$pad] ['else']    = $pad_else;
+  $pad_parms [$pad] ['array']   = $pad_array;
+  $pad_parms [$pad] ['text']    = $pad_text;
+  $pad_parms [$pad] ['default'] = pad_is_default_data ( $pad_data [$pad] );
 
   include PAD . "options/go/start.php";
   
   include 'trace/start.php';
 
-  if ( isset($pad_parms_tag ['callback']) and ! isset($pad_parms_tag ['before']))
+  if ( isset($pad_prms_tag ['callback']) and ! isset($pad_prms_tag ['before']))
     include PAD . 'callback/init.php' ;
 
-  if ( count ($pad_data[$pad_lvl] ) )
+  if ( count ($pad_data[$pad] ) )
     include PAD . 'occurrence/start.php';
   
 ?>

@@ -16,6 +16,12 @@
 
   }
 
+  $pad_name = $pad_prms_tag ['name'] ?? $pad_tag;
+
+  $pad_parms [$pad] ['tag']      = $pad_tag;
+  $pad_parms [$pad] ['name']     = $pad_name;
+  $pad_parms [$pad] ['tag_type'] = $pad_tag_type;
+
   return $pad_tag_type;
   
 ?>

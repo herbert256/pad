@@ -2,7 +2,7 @@
 
   $GLOBALS ["pad_seq_mf_$pad_seq_seq"] = [];
  
-  foreach ( $pad_parms_tag as $pad_seq_opt_name => $pad_seq_opt_value )
+  foreach ( $pad_prms_tag as $pad_seq_opt_name => $pad_seq_opt_value )
 
     if ( file_exists ( PAD . "sequence/types/$pad_seq_opt_name/$pad_seq_filter_check.php" ) ) {
 

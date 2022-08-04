@@ -1,31 +1,31 @@
 <?php
 
-  foreach ( $pad_parameters [$pad_lvl] as $pad_k => $pad_v )
+  foreach ( $pad_parms [$pad] as $pad_k => $pad_v )
     $GLOBALS['pad_'.$pad_k] = $pad_v;
 
-  $pad_occur [$pad_lvl]++;
-  $pad_html  [$pad_lvl] = $pad_base[$pad_lvl];
-  $pad_key   [$pad_lvl] = key($pad_data[$pad_lvl]);
+  $pad_occur [$pad]++;
+  $pad_html  [$pad] = $pad_base[$pad];
+  $pad_key   [$pad] = key($pad_data[$pad]);
 
-  $pad_current [$pad_lvl] = $pad_data [$pad_lvl] [$pad_key [$pad_lvl]];
+  $pad_current [$pad] = $pad_data [$pad] [$pad_key [$pad]];
 
-  if ( $pad_walks [$pad_lvl] <> 'start' )
-    $pad_walks_data [ $pad_lvl] [] = $pad_current [$pad_lvl];
+  if ( $pad_walks [$pad] <> 'start' )
+    $pad_walks_data [ $pad] [] = $pad_current [$pad];
 
-  if ( $pad_lvl > 1 ) {
+  if ( $pad > 1 ) {
 
-    if ( pad_is_default_data ($pad_data [$pad_lvl]) ) {
-      if ( isset($pad_parms_val[0]) )
-        pad_set_global ( $pad_name, $pad_parms_val[0] );
+    if ( pad_is_default_data ($pad_data [$pad]) ) {
+      if ( isset($pad_prms_val[0]) )
+        pad_set_global ( $pad_name, $pad_prms_val[0] );
     } else
-      pad_set_global ( $pad_name, $pad_current [$pad_lvl] );
+      pad_set_global ( $pad_name, $pad_current [$pad] );
 
-    foreach ( $pad_current [$pad_lvl] as $pad_k => $pad_v )
+    foreach ( $pad_current [$pad] as $pad_k => $pad_v )
       pad_set_global ( $pad_k, $pad_v );
 
   }
 
-  if ( isset($pad_parms_tag ['callback']) and ! isset($pad_parms_tag ['before']) )
+  if ( isset($pad_prms_tag ['callback']) and ! isset($pad_prms_tag ['before']) )
     include PAD . 'callback/row.php' ;
 
   include PAD . 'occurrence/db.php';

@@ -25,11 +25,11 @@
     $pad_trace_explode   = TRUE;
     $pad_trace_tag       = TRUE; 
 
-    $pad_trace_dir_lvl = $pad_trace_dir_base . '/trace-' . $pad_lvl_cnt; 
+    $pad_trace_dir_lvl = $pad_trace_dir_base . '/trace-' . $pad_cnt; 
     $pad_trace_dir_occ = $pad_trace_dir_lvl;
 
-    $pad_parameters [$pad_lvl] ['trace_dir'] = $pad_trace_dir_lvl;
-    $pad_parameters [$pad_lvl] ['occur_dir'] = $pad_trace_dir_occ;
+    $pad_parms [$pad] ['trace_dir'] = $pad_trace_dir_lvl;
+    $pad_parms [$pad] ['occur_dir'] = $pad_trace_dir_occ;
 
     pad_file_put_contents ( $pad_trace_dir_lvl . "/pad-start.json", pad_trace_get_pad_vars ()  );
     pad_file_put_contents ( $pad_trace_dir_lvl . "/app-start.json", pad_trace_get_app_vars ()  );

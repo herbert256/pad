@@ -40,7 +40,7 @@
 
     $app_chk = ['page','app','PADSESSID','PADREQID','PHPSESSID','PADREFID','GLOBALS','_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
 
-    $not = ['pad_base','pad_sql_connect','pad_pad_sql_connect','pad_headers','pad_data','pad_parameters', 'pad_result', 'pad_html', 'pad_output', 'pad_output_gz', 'pad_current', 'pad_lib_directory', 'pad_lib_iterator', 'pad_lib_one'];
+    $not = ['pad_base','pad_sql_connect','pad_pad_sql_connect','pad_headers','pad_data','pad_parms', 'pad_result', 'pad_html', 'pad_output', 'pad_output_gz', 'pad_current', 'pad_lib_directory', 'pad_lib_iterator', 'pad_lib_one'];
 
     $ids = [ 'session' => $GLOBALS['PADSESSID']??'', 'request' => $GLOBALS['PADREQID']??'', 'reference' => $GLOBALS['PADREFID']??'' ];
 
@@ -120,11 +120,11 @@
         echo ( "    $file:$line - $function\n");
     }
 
-    if ( isset ( $GLOBALS ['pad_parameters'] ) )
-      for ( $lvl=$GLOBALS ['pad_lvl'];  $lvl>1; $lvl-- ) 
-        if ( isset($GLOBALS ['pad_parameters'] [$lvl] ) ) {
+    if ( isset ( $GLOBALS ['pad_parms'] ) )
+      for ( $lvl=$GLOBALS ['pad'];  $lvl>1; $lvl-- ) 
+        if ( isset($GLOBALS ['pad_parms'] [$lvl] ) ) {
 
-          $work = $GLOBALS ['pad_parameters'] [$lvl];
+          $work = $GLOBALS ['pad_parms'] [$lvl];
           foreach ($work as $key => $val)
             if ( is_scalar($val) )
               $work [$key] = substr(trim(preg_replace('/\s+/', ' ', $val) ), 0, 100);
@@ -143,7 +143,7 @@
         }
 
     if ( isset ( $GLOBALS ['pad_data'] ) and is_array ( $GLOBALS ['pad_data'] ) )
-      for ( $lvl=$GLOBALS ['pad_lvl'];  $lvl>1; $lvl-- )
+      for ( $lvl=$GLOBALS ['pad'];  $lvl>1; $lvl-- )
         if ( isset ($GLOBALS ['pad_data'][$lvl]) )
           pad_dump_array  ('Level '.$lvl, $GLOBALS ['pad_data'][$lvl] );
 

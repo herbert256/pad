@@ -1,63 +1,53 @@
 <?php
   
-  $pad_data    [$pad_lvl] = pad_default_data ();
-  $pad_current [$pad_lvl] = reset ( $pad_data[$pad_lvl] );
-  $pad_key     [$pad_lvl] = key ( $pad_data[$pad_lvl] );
+  $pad_data        [$pad] = pad_default_data ();
+  $pad_current     [$pad] = reset ( $pad_data[$pad] );
+  $pad_key         [$pad] = key ( $pad_data[$pad] );
+  $pad_parms  [$pad] = [];
+  $pad_walks       [$pad] = 'start';
+  $pad_walks_data  [$pad] = [];
+  $pad_current     [$pad] = [];
+  $pad_base        [$pad] = '';
+  $pad_occur       [$pad] = 0;
+  $pad_start       [$pad] = 0;
+  $pad_end         [$pad] = 0;
+  $pad_result      [$pad] = '';
+  $pad_html        [$pad] = '';
+  $pad_db          [$pad] = '';
+  $pad_db_lvl      [$pad] = [];
+  $pad_save_vars   [$pad] = [];
+  $pad_delete_vars [$pad] = [];
+  $pad_set_save    [$pad] = [];
+  $pad_set_delete  [$pad] = [];
 
-  $pad_occur   [$pad_lvl] = 1;
-
-  $pad_parameters  [$pad_lvl] = [];
-  $pad_walks       [$pad_lvl] = 'start';
-  $pad_walks_data  [$pad_lvl] = [];
-  $pad_current     [$pad_lvl] = [];
-  $pad_base        [$pad_lvl] = '';
-  $pad_occur       [$pad_lvl] = 0;
-  $pad_start       [$pad_lvl] = 0;
-  $pad_end         [$pad_lvl] = 0;
-  $pad_result      [$pad_lvl] = '';
-  $pad_html        [$pad_lvl] = '';
-  $pad_db          [$pad_lvl] = '';
-  $pad_db_lvl      [$pad_lvl] = [];
-  $pad_save_vars   [$pad_lvl] = [];
-  $pad_delete_vars [$pad_lvl] = [];
-
-  $pad_set_save    [$pad_lvl] = [];
-  $pad_set_delete  [$pad_lvl] = [];
-
-  $pad_parameters [$pad_lvl] = [];
-
-  $pad_parameters [$pad_lvl] ['tag']  = 'pad';
-  $pad_parameters [$pad_lvl] ['name'] = 'pad';
+  $pad_parms [$pad] ['tag']  = '';
+  $pad_parms [$pad] ['name'] = '';
 
   include PAD . 'level/parms1.php';
   include PAD . 'level/parms2.php';
 
-  $pad_name = $pad_parms_tag ['name'] ?? $pad_tag;
+  $pad_name = $pad_prms_tag ['name'] ?? $pad_tag;
 
-  $pad_parameters [$pad_lvl] ['parms']            = $pad_parms;
-  $pad_parameters [$pad_lvl] ['between']          = $pad_between;
+  $pad_parms [$pad] ['tag']              = $pad_tag;
+  $pad_parms [$pad] ['name']             = $pad_name;
+  $pad_parms [$pad] ['parms']            = $pad_prms;
+  $pad_parms [$pad] ['between']          = $pad_between;
+  $pad_parms [$pad] ['tag_cnt']          = 0;
+  $pad_parms [$pad] ['pair']             = $pad_pair ?? FALSE;
+  $pad_parms [$pad] ['tag_type']         = $pad_parms [$pad] ['tag_type']  ?? $pad_tag_type ?? '';
+  $pad_parms [$pad] ['pad_options_done'] = [];
+  $pad_parms [$pad] ['parms_type']       = $pad_prms_type;
 
-  $pad_parameters [$pad_lvl] ['tag']              = $pad_tag;
-  $pad_parameters [$pad_lvl] ['name']             = $pad_name;
-  $pad_parameters [$pad_lvl] ['tag_cnt']          = 0;
-  $pad_parameters [$pad_lvl] ['pair']             = FALSE;
-  $pad_parameters [$pad_lvl] ['tag_type']         = 'pad';
-  $pad_parameters [$pad_lvl] ['content']          = '';
-  $pad_parameters [$pad_lvl] ['false']            = '';
-  $pad_parameters [$pad_lvl] ['pad_options_done'] = [];
-  $pad_parameters [$pad_lvl] ['parms_type']       = $pad_parms_type;
-  $pad_parameters [$pad_lvl] ['default_data']     = TRUE;
+  $pad_parms [$pad] ['trace_dir'] = $pad_trace_dir_base;
+  $pad_parms [$pad] ['occur_dir'] = $pad_trace_dir_base;
 
-  $pad_parameters [$pad_lvl] ['trace_dir'] = $pad_trace_dir_base;
-  $pad_parameters [$pad_lvl] ['occur_dir'] = $pad_trace_dir_base;
-
-  $pad_parameters [$pad_lvl] ['content'] = $pad_content;
-  $pad_parameters [$pad_lvl] ['false']   = $pad_false;
-  $pad_parameters [$pad_lvl] ['true']    = TRUE;
-  $pad_parameters [$pad_lvl] ['null']    = FALSE;
-  $pad_parameters [$pad_lvl] ['else']    = FALSE;
-  $pad_parameters [$pad_lvl] ['array']   = FALSE;
-  $pad_parameters [$pad_lvl] ['text']    = TRUE;
-  $pad_parameters [$pad_lvl] ['default'] = pad_is_default_data ( $pad_data [$pad_lvl] );
+  $pad_parms [$pad] ['content'] = $pad_content ?? '';
+  $pad_parms [$pad] ['false']   = $pad_false   ?? ''; 
+  $pad_parms [$pad] ['true']    = TRUE;
+  $pad_parms [$pad] ['null']    = FALSE;
+  $pad_parms [$pad] ['else']    = FALSE;
+  $pad_parms [$pad] ['array']   = FALSE;
+  $pad_parms [$pad] ['text']    = TRUE;
+  $pad_parms [$pad] ['default'] = pad_is_default_data ( $pad_data [$pad] );
 
 ?>

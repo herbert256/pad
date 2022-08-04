@@ -2,7 +2,7 @@
 
   $pad_seq_opr = [];
 
-  foreach ( $pad_parms_tag as $pad_seq_opr_name => $pad_seq_opr_value )
+  foreach ( $pad_prms_tag as $pad_seq_opr_name => $pad_seq_opr_value )
 
     if ( $pad_seq_opr_name <> $pad_seq_seq )
     

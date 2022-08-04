@@ -1,14 +1,14 @@
 <?php
 
-  if ( ! count ($pad_data[$pad_lvl] ) )
+  if ( ! count ($pad_data[$pad] ) )
     return;
 
   $pad_sort_args   = [];
-  $pad_sort_fields = pad_explode($pad_parms_tag ['sort'], ';'); 
+  $pad_sort_fields = pad_explode($pad_prms_tag ['sort'], ';'); 
 
-  if ( $pad_parms_tag ['sort'] === TRUE or ! count ($pad_sort_fields)) {
+  if ( $pad_prms_tag ['sort'] === TRUE or ! count ($pad_sort_fields)) {
     $pad_sort_fields = []; 
-    foreach ($pad_data[$pad_lvl] as $pad_v1) {
+    foreach ($pad_data[$pad] as $pad_v1) {
       foreach ($pad_v1 as $pad_k2 => $pad_v2) 
         $pad_sort_fields [] = $pad_k2;
       break;
@@ -33,7 +33,7 @@
         $pad_sort_flags = $pad_sort_flags | constant("SORT_" . strtoupper($pad_v2) );
     }
 
-    $pad_sort_args [] = array_column ($pad_data[$pad_lvl], $pad_sort_field);
+    $pad_sort_args [] = array_column ($pad_data[$pad], $pad_sort_field);
 
     if ($pad_sort_sort)
       $pad_sort_args [] = constant("SORT_$pad_sort_sort");
@@ -43,7 +43,7 @@
 
   }
  
-  $pad_sort_args [] = &$pad_data[$pad_lvl];
+  $pad_sort_args [] = &$pad_data[$pad];
 
   call_user_func_array ('array_multisort', $pad_sort_args);
     

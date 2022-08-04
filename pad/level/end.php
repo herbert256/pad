@@ -1,42 +1,42 @@
 <?php
 
-  if ( count ($pad_data[$pad_lvl] ) )
+  if ( count ($pad_data[$pad] ) )
     include PAD . 'occurrence/end.php';
 
-  foreach ( $pad_parameters [$pad_lvl] as $pad_k => $pad_v )
+  foreach ( $pad_parms [$pad] as $pad_k => $pad_v )
     $GLOBALS['pad_'.$pad_k] = $pad_v;
 
-  if ( next($pad_data[$pad_lvl]) !== FALSE )
+  if ( next($pad_data[$pad]) !== FALSE )
     return include PAD . 'occurrence/start.php';
 
-  if ( $pad_walks [$pad_lvl] == 'next' ) {
+  if ( $pad_walks [$pad] == 'next' ) {
     include PAD . 'walk/next.php';
     if ( $pad_walk == 'next' )
       return include PAD . 'occurrence/start.php';
   }
 
-  $pad_occur [$pad_lvl] = 0;
+  $pad_occur [$pad] = 0;
 
-  if ( $pad_walks [$pad_lvl] == 'end' )
+  if ( $pad_walks [$pad] == 'end' )
     include PAD . 'walk/end.php';
 
-  if ( isset($pad_parms_tag ['callback']) and ! isset($pad_parms_tag ['before']) )
+  if ( isset($pad_prms_tag ['callback']) and ! isset($pad_prms_tag ['before']) )
     include PAD . 'callback/exit.php' ;
 
   include PAD . "options/go/end.php";
 
-  pad_reset ($pad_lvl);
+  pad_reset ($pad);
 
   if ( $pad_trace ) 
     include 'trace/end.php';
 
-  $pad_lvl--;
+  $pad--;
 
-  if ($pad_lvl > 1)
-    foreach ( $pad_parameters [$pad_lvl] as $pad_k => $pad_v )
+  if ($pad > 1)
+    foreach ( $pad_parms [$pad] as $pad_k => $pad_v )
       $GLOBALS['pad_'.$pad_k] = $pad_v;
   
-  if ($pad_lvl)
-    pad_html ( $pad_result[$pad_lvl+1]);
+  if ($pad)
+    pad_html ( $pad_result[$pad+1]);
   
 ?>

@@ -78,7 +78,7 @@
   if ( isset($_REQUEST['pad_include']) )
     $pad_build_mode= 'include';
 
-  $pad_lvl     = 1;
+  $pad     = 1;
   $pad_between = 'start';
   include PAD . 'level/setup.php';
 

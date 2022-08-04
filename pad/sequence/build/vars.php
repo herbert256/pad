@@ -6,7 +6,7 @@
 
   if ( ! $pad_seq_name )                            $pad_seq_name = $pad_seq_set; 
   if ( ! isset($GLOBALS ["pad_seq_$pad_seq_seq"]) ) $GLOBALS ["pad_seq_$pad_seq_seq"] = $pad_seq_parm;
-  if ( ! isset($pad_parms_tag ["$pad_seq_seq"])   ) $pad_parms_tag ["$pad_seq_seq"]   = $pad_seq_parm;
+  if ( ! isset($pad_prms_tag ["$pad_seq_seq"])   ) $pad_prms_tag ["$pad_seq_seq"]   = $pad_seq_parm;
 
   if ( $pad_seq_seq == 'make' )
     $pad_seq_filter_check = 'make';
@@ -15,6 +15,6 @@
 
   $pad_seq_special_ops = ['make', 'keep', 'remove'];
 
-  $pad_name = $pad_parameters [$pad_lvl] ['name'] = $pad_seq_name;
+  $pad_name = $pad_parms [$pad] ['name'] = $pad_seq_name;
 
 ?>

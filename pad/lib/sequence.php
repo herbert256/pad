@@ -77,19 +77,19 @@
 
   function pad_seq_get_count ( $first, $second, $third ) {
 
-    global $pad_parms_tag, $pad_seq_parm;
+    global $pad_prms_tag, $pad_seq_parm;
 
-    if ( isset($pad_parms_tag[$first])      and $pad_parms_tag[$first]  !== TRUE and is_numeric($pad_parms_tag[$first]) )
+    if ( isset($pad_prms_tag[$first])      and $pad_prms_tag[$first]  !== TRUE and is_numeric($pad_prms_tag[$first]) )
  
-      return $pad_parms_tag[$first];
+      return $pad_prms_tag[$first];
  
-    elseif ( isset($pad_parms_tag[$second]) and $pad_parms_tag[$second] !== TRUE and is_numeric($pad_parms_tag[$second]) )
+    elseif ( isset($pad_prms_tag[$second]) and $pad_prms_tag[$second] !== TRUE and is_numeric($pad_prms_tag[$second]) )
  
-      return $pad_parms_tag[$second];
+      return $pad_prms_tag[$second];
  
-    elseif ( isset($pad_parms_tag[$third])  and $pad_parms_tag[$third]  !== TRUE and is_numeric($pad_parms_tag[$third]) )
+    elseif ( isset($pad_prms_tag[$third])  and $pad_prms_tag[$third]  !== TRUE and is_numeric($pad_prms_tag[$third]) )
  
-      return $pad_parms_tag[$third];
+      return $pad_prms_tag[$third];
  
     elseif (                                    $pad_seq_parm !== TRUE           and is_numeric($pad_seq_parm) )
  

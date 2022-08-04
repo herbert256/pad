@@ -242,11 +242,11 @@
 
   function pad_html ($html) {
 
-    global $pad_html, $pad_start, $pad_end, $pad_lvl;
+    global $pad_html, $pad_start, $pad_end, $pad;
 
-    $pad_html[$pad_lvl] = substr($pad_html[$pad_lvl], 0, $pad_start[$pad_lvl])
+    $pad_html[$pad] = substr($pad_html[$pad], 0, $pad_start[$pad])
                         . $html
-                        . substr($pad_html[$pad_lvl], $pad_end[$pad_lvl]+1);
+                        . substr($pad_html[$pad], $pad_end[$pad]+1);
     
   }
   
@@ -427,13 +427,13 @@
 
   function pad_set_global ( $name, $value ) {
 
-    global $pad_lvl, $pad_save_vars, $pad_delete_vars;
+    global $pad, $pad_save_vars, $pad_delete_vars;
     
-    if ( array_key_exists($name, $GLOBALS) and ! array_key_exists ($name, $pad_save_vars [$pad_lvl]) )
-      $pad_save_vars [$pad_lvl] [$name] = $GLOBALS [$name];
+    if ( array_key_exists($name, $GLOBALS) and ! array_key_exists ($name, $pad_save_vars [$pad]) )
+      $pad_save_vars [$pad] [$name] = $GLOBALS [$name];
 
     if ( ! array_key_exists ($name,  $GLOBALS) )
-      $pad_delete_vars [$pad_lvl] [] = $name;
+      $pad_delete_vars [$pad] [] = $name;
     else
       unset ( $GLOBALS [$name] );
 
@@ -443,13 +443,13 @@
 
   function xpad_set_global ( $name, $value ) {
 
-    global $pad_lvl, $pad_save_vars, $pad_delete_vars;
+    global $pad, $pad_save_vars, $pad_delete_vars;
     
-    if ( isset($GLOBALS [$name]) and ! isset ($pad_save_vars [$pad_lvl] [$name]) )
-      $pad_save_vars [$pad_lvl] [$name] = $GLOBALS [$name];
+    if ( isset($GLOBALS [$name]) and ! isset ($pad_save_vars [$pad] [$name]) )
+      $pad_save_vars [$pad] [$name] = $GLOBALS [$name];
 
     if ( ! isset ( $GLOBALS [$name] ) )
-      $pad_delete_vars [$pad_lvl] [] = $name;
+      $pad_delete_vars [$pad] [] = $name;
     else
       unset ( $GLOBALS [$name] );
 
@@ -477,7 +477,7 @@
 
   function pad_ignore ($info) {
 
-    $GLOBALS ['pad_lvl']--;
+    $GLOBALS ['pad']--;
     
     if ( $GLOBALS['pad_pair'] ) 
       $tmp = $GLOBALS['pad_between'];
@@ -510,13 +510,13 @@
 
   function pad_add_array_to_data ( $array ) {
 
-    global $pad_data, $pad_lvl;
+    global $pad_data, $pad;
 
-    if ( pad_is_default_data ( $pad_data [$pad_lvl] ) )
-      $pad_data [$pad_lvl] = $array;
+    if ( pad_is_default_data ( $pad_data [$pad] ) )
+      $pad_data [$pad] = $array;
     else
       foreach ( $array as $value )
-        $pad_data [$pad_lvl] [] = $value;
+        $pad_data [$pad] [] = $value;
 
   }
 
@@ -541,9 +541,9 @@
 
   function pad_chk_level_array ($tag) {
 
-    global $pad_current, $pad_lvl;
+    global $pad_current, $pad;
 
-    for ( $search = $pad_lvl; $search>1; $search-- )
+    for ( $search = $pad; $search>1; $search-- )
       if ( isset ( $pad_current [$search] [$tag] ) and is_array ( $pad_current [$search] [$tag]) )
         return TRUE;
 
@@ -553,9 +553,9 @@
 
   function pad_get_level_array ($tag) {
 
-    global $pad_current, $pad_lvl;
+    global $pad_current, $pad;
 
-    for ( $search = $pad_lvl; $search>1; $search-- )
+    for ( $search = $pad; $search>1; $search-- )
       if ( isset ( $pad_current [$search] [$tag] ) and is_array ( $pad_current [$search] [$tag]) )
         return $pad_current [$search] [$tag];
 
@@ -641,10 +641,10 @@
 
   function pad_tag_parm ($parm, $default='') {
 
-    global $pad_parms_tag;
+    global $pad_prms_tag;
 
-    if ( isset ( $pad_parms_tag [$parm] ) )
-      return $pad_parms_tag [$parm];
+    if ( isset ( $pad_prms_tag [$parm] ) )
+      return $pad_prms_tag [$parm];
     else
       return $default;
 
@@ -653,9 +653,9 @@
 
   function pad_set_arr_var ($arr, $var, $val) {
 
-    global $pad_lvl, $pad_parameters;
+    global $pad, $pad_parms;
 
-    $GLOBALS ["pad_$arr"] [$var] = $pad_parameters [$pad_lvl] [$arr] [$var] = $val;
+    $GLOBALS ["pad_$arr"] [$var] = $pad_parms [$pad] [$arr] [$var] = $val;
 
   }   
 

@@ -3,26 +3,26 @@
 
   function pad_db_get_data ($table, $page=0, $rows=0, $unionBuild=0) {
 
-    global $pad_data, $pad_lvl, $pad_parms_tag, $pad_key, $pad_db_relations, $pad_db_tables, $pad_db, $pad_options_done;
+    global $pad_data, $pad, $pad_prms_tag, $pad_key, $pad_db_relations, $pad_db_tables, $pad_db, $pad_options_done;
 
     $parms = pad_db_get_db ($table);
 
-    $db          = $pad_parms_tag ['db']          ?? $parms ['db']          ?? '';
-    $all         = $pad_parms_tag ['all']         ?? $parms ['all']         ?? 0;
-    $distinct    = $pad_parms_tag ['distinct']    ?? $parms ['distinct']    ?? 0;
-    $distinctrow = $pad_parms_tag ['distinctrow'] ?? $parms ['distinctrow'] ?? 0;
-    $keys        = $pad_parms_tag ['key']         ?? $parms ['key']         ?? '';
-    $fields      = $pad_parms_tag ['fields']      ?? $parms ['fields']      ?? '*';
-    $type        = $pad_parms_tag ['type']        ?? $parms ['type']        ?? 'array';
-    $where       = $pad_parms_tag ['where']       ?? $parms ['where']       ?? '';
-    $group       = $pad_parms_tag ['group']       ?? $parms ['group']       ?? '';
-    $rollup      = $pad_parms_tag ['rollup']      ?? $parms ['rollup']      ?? 0;
-    $having      = $pad_parms_tag ['having']      ?? $parms ['having']      ?? '';
-    $join        = $pad_parms_tag ['join']        ?? $parms ['join']        ?? [];
-    $union       = $pad_parms_tag ['union']       ?? $parms ['union']       ?? '';
-    $order       = $pad_parms_tag ['order']       ?? $parms ['order']       ?? '';
-    $page        = $pad_parms_tag ['page']        ?? $parms ['page']        ?? $page;
-    $rows        = $pad_parms_tag ['rows']        ?? $parms ['rows']        ?? $rows;
+    $db          = $pad_prms_tag ['db']          ?? $parms ['db']          ?? '';
+    $all         = $pad_prms_tag ['all']         ?? $parms ['all']         ?? 0;
+    $distinct    = $pad_prms_tag ['distinct']    ?? $parms ['distinct']    ?? 0;
+    $distinctrow = $pad_prms_tag ['distinctrow'] ?? $parms ['distinctrow'] ?? 0;
+    $keys        = $pad_prms_tag ['key']         ?? $parms ['key']         ?? '';
+    $fields      = $pad_prms_tag ['fields']      ?? $parms ['fields']      ?? '*';
+    $type        = $pad_prms_tag ['type']        ?? $parms ['type']        ?? 'array';
+    $where       = $pad_prms_tag ['where']       ?? $parms ['where']       ?? '';
+    $group       = $pad_prms_tag ['group']       ?? $parms ['group']       ?? '';
+    $rollup      = $pad_prms_tag ['rollup']      ?? $parms ['rollup']      ?? 0;
+    $having      = $pad_prms_tag ['having']      ?? $parms ['having']      ?? '';
+    $join        = $pad_prms_tag ['join']        ?? $parms ['join']        ?? [];
+    $union       = $pad_prms_tag ['union']       ?? $parms ['union']       ?? '';
+    $order       = $pad_prms_tag ['order']       ?? $parms ['order']       ?? '';
+    $page        = $pad_prms_tag ['page']        ?? $parms ['page']        ?? $page;
+    $rows        = $pad_prms_tag ['rows']        ?? $parms ['rows']        ?? $rows;
     
     $start = '';
 
@@ -67,7 +67,7 @@
         else
           $second = $relation ['key'];
         
-        for ( $i=$pad_lvl-1; $i; $i--)
+        for ( $i=$pad-1; $i; $i--)
           if ( $pad_db [$i] ==  $key)
             pad_db_get_keys_level ($first, $second, $pad_data [$i] [$pad_key[$i]], $where, $hit1);
 
@@ -83,7 +83,7 @@
           $first  = $relation ['key'];
           $second = ( isset($val['key']) ) ? $val ['key'] : $relation ['key'];
 
-          for ( $i=$pad_lvl; $i; $i--)
+          for ( $i=$pad; $i; $i--)
             if ( $pad_db [$i] ==  $key)
               pad_db_get_keys_level ($first, $second, $pad_data [$i] [$pad_key[$i]], $where, $hit2);
   
@@ -315,7 +315,7 @@
   
   function pad_db_get_info () {
     
-    global $pad_db_tables, $pad_lvl, $pad_db_lvl, $pad_db_relations;
+    global $pad_db_tables, $pad, $pad_db_lvl, $pad_db_relations;
 
     $go = TRUE;
     
@@ -323,7 +323,7 @@
   
       $go = FALSE;
 
-      foreach ($pad_db_lvl [$pad_lvl] as $table => $value) {
+      foreach ($pad_db_lvl [$pad] as $table => $value) {
 
         if ( isset ($pad_db_relations [$table]) ) {
 
@@ -344,10 +344,10 @@
               
               foreach($parts2 as $i => $fld) {
           
-                if ( ! isset ( $fld, $pad_db_lvl [$pad_lvl] [$table] ) )
+                if ( ! isset ( $fld, $pad_db_lvl [$pad] [$table] ) )
                   continue 2;
  
-                pad_db_where ($where, $parts1[$i], $pad_db_lvl [$pad_lvl] [$table] [$fld] ?? '');
+                pad_db_where ($where, $parts1[$i], $pad_db_lvl [$pad] [$table] [$fld] ?? '');
                  
               }
   
@@ -356,7 +356,7 @@
   
               $go = TRUE;
 
-              $pad_db_lvl [$pad_lvl] [$rel] = pad_db_get ($relation, $where);
+              $pad_db_lvl [$pad] [$rel] = pad_db_get ($relation, $where);
   
             }
 
@@ -373,9 +373,9 @@
 
   function pad_db_chk ($table) {
     
-    global $pad_lvl, $pad_db_lvl;
+    global $pad, $pad_db_lvl;
 
-    for ( $i=$pad_lvl; $i; $i--)
+    for ( $i=$pad; $i; $i--)
       if ( isset ( $pad_db_lvl [$i] [$table] ) )
         return TRUE;
   
@@ -385,7 +385,7 @@
   
   function pad_db_get_main () {
     
-    global $pad_db_tables, $pad_lvl, $pad_db_lvl, $pad_db_relations;
+    global $pad_db_tables, $pad, $pad_db_lvl, $pad_db_relations;
 
     foreach ($pad_db_relations as $key => $val)
       foreach ($pad_db_relations[$key] as $key2 => $val2)
@@ -414,7 +414,7 @@
   
           if ( $where ) {
             $x = $relation['db'];
-            $pad_db_lvl [$pad_lvl] [$key] = pad_db_get ($relation, $where);
+            $pad_db_lvl [$pad] [$key] = pad_db_get ($relation, $where);
             pad_db_get_info ();
             $go = TRUE;
           }

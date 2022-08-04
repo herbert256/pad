@@ -1,61 +1,67 @@
 <?php
 
-  $pad_pos = $pad_end [$pad_lvl];
+  $pad_pos = $pad_end [$pad];
 
 go2:  
   do {
 
-    $pad_pos = strpos($pad_html[$pad_lvl] , '{/' . $pad_pair_search, $pad_pos);
+    $pad_pos = strpos($pad_html[$pad] , '{/' . $pad_pair_search, $pad_pos);
 
     if ($pad_pos === FALSE) {
+
       $pad_pair = FALSE;
       $pad_content = '';
+ 
+      $pad_parms [$pad] ['content'] = $pad_content;
+      $pad_parms [$pad] ['pair']    = $pad_pair;
+
       return TRUE;
+ 
     } 
 
-    $pad_content = substr($pad_html[$pad_lvl], $pad_end[$pad_lvl]+1, $pad_pos - $pad_end[$pad_lvl] - 1);
+    $pad_content = substr($pad_html[$pad], $pad_end[$pad]+1, $pad_pos - $pad_end[$pad] - 1);
 
     $pad_pos++;
 
   } while ( substr_count($pad_content, '{'.$pad_pair_search ) <> substr_count($pad_content, '{/'.$pad_pair_search) );
 
-  $pad_pair_check = substr($pad_html[$pad_lvl], $pad_pos + strlen($pad_pair_search) + 1, 1);
+  $pad_pair_check = substr($pad_html[$pad], $pad_pos + strlen($pad_pair_search) + 1, 1);
   if ( ! ($pad_pair_check == ' ' or $pad_pair_check == '}' or $pad_pair_check ==  ',') )
     goto go2;
  
   $pad_content = substr ($pad_content, 0, $pad_pos);
 
-  $pad_end [$pad_lvl] = strpos ( $pad_html[$pad_lvl], '}', $pad_pos+2);
-  if ( $pad_end [$pad_lvl] === FALSE )
+  $pad_end [$pad] = strpos ( $pad_html[$pad], '}', $pad_pos+2);
+  if ( $pad_end [$pad] === FALSE )
     return pad_error ("No closure of close tag found");
 
-  $pad_tmp = substr ($pad_html[$pad_lvl], $pad_pos+1, $pad_end[$pad_lvl]-$pad_pos-1);
+  $pad_tmp = substr ($pad_html[$pad], $pad_pos+1, $pad_end[$pad]-$pad_pos-1);
 
   while ( substr_count($pad_tmp, '{') <> substr_count($pad_tmp, '}') ) {
 
-    if ( $pad_end [$pad_lvl] === FALSE or $pad_end [$pad_lvl] + 1 == strlen($pad_html[$pad_lvl]) )
+    if ( $pad_end [$pad] === FALSE or $pad_end [$pad] + 1 == strlen($pad_html[$pad]) )
        break;
 
-    $pad_end [$pad_lvl] = strpos ( $pad_html[$pad_lvl], '}', $pad_end [$pad_lvl] + 1); 
-    if ( $pad_end [$pad_lvl] !== FALSE )
-      $pad_tmp = substr ($pad_html[$pad_lvl], $pad_pos+1, $pad_end[$pad_lvl]-$pad_pos-1);
+    $pad_end [$pad] = strpos ( $pad_html[$pad], '}', $pad_end [$pad] + 1); 
+    if ( $pad_end [$pad] !== FALSE )
+      $pad_tmp = substr ($pad_html[$pad], $pad_pos+1, $pad_end[$pad]-$pad_pos-1);
 
   }
 
-  if ( $pad_end [$pad_lvl] === FALSE )
-    $pad_end [$pad_lvl] = strpos ( $pad_html[$pad_lvl], '}', $pad_pos+2);
+  if ( $pad_end [$pad] === FALSE )
+    $pad_end [$pad] = strpos ( $pad_html[$pad], '}', $pad_pos+2);
 
-  $pad_between2 = substr ($pad_html[$pad_lvl], $pad_pos+1, $pad_end[$pad_lvl]-$pad_pos-1);
+  $pad_between2 = substr ($pad_html[$pad], $pad_pos+1, $pad_end[$pad]-$pad_pos-1);
   $pad_words    = preg_split ("/[\s]+/", $pad_between2, 2, PREG_SPLIT_NO_EMPTY);
-  $pad_parms2   = trim ($pad_words[1] ?? '');
+  $pad_prms2   = trim ($pad_words[1] ?? '');
 
-  if ($pad_parms2) {
+  if ($pad_prms2) {
 
-    if ($pad_parms) 
-      return pad_error ("Both open and close parameters used: $pad_pair_search / $pad_parms / $pad_parms2");
+    if ($pad_prms) 
+      return pad_error ("Both open and close parameters used: $pad_pair_search / $pad_prms / $pad_prms2");
 
-    if ( strpos($pad_parms2, '}') ) {
-      pad_html ( '{close_parms}' . $pad_parms2 . '{/close_parms}'
+    if ( strpos($pad_prms2, '}') ) {
+      pad_html ( '{close_parms}' . $pad_prms2 . '{/close_parms}'
                . '{' . $pad_pair_search . '}'
                . $pad_content
                . '{/'. $pad_pair_search . ' ###%%%close_parms%%%###}') ;
@@ -66,7 +72,7 @@ go2:
 
     include PAD 'level/setup.php';
 
-    $pad_parameters [$pad_lvl] ['parms_type'] = 'close';
+    $pad_parms [$pad] ['parms_type'] = 'close';
  
   }
 
@@ -106,6 +112,9 @@ go: $pad_pos++;
 
   $pad_false   = substr($pad_content, $pad_pos+6);
   $pad_content = substr($pad_content, 0, $pad_pos);
+
+  $pad_parms [$pad] ['content'] = $pad_content;
+  $pad_parms [$pad] ['false']   = $pad_false;
 
   return TRUE;
 

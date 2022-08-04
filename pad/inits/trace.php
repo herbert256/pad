@@ -9,8 +9,8 @@
   if ( ! $pad_trace )
     return;
 
-  $pad_parameters [1] ['trace_dir'] = $pad_trace_dir_lvl ; 
-  $pad_parameters [1] ['occur_dir'] = $pad_trace_dir_occ ;
+  $pad_parms [1] ['trace_dir'] = $pad_trace_dir_lvl ; 
+  $pad_parms [1] ['occur_dir'] = $pad_trace_dir_occ ;
 
   $pad_trace_data_start = [
     'sessionID'   => $GLOBALS ['PADSESSID'] ?? '',

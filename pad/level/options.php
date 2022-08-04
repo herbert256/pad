@@ -19,6 +19,6 @@
     if ( is_array ( $pad_tag_result ) )
       $pad_tag_result = include PAD . "options/data.php";   
     else
-      $pad_data [$pad_lvl] = include PAD . "options/data.php";   
+      $pad_data [$pad] = include PAD . "options/data.php";   
   
 ?>

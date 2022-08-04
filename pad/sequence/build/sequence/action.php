@@ -1,7 +1,7 @@
 <?php
 
-  if ( isset($pad_parms_tag[$pad_seq_tmp]) )
-    $pad_seq_parm = $pad_parms_tag[$pad_seq_tmp];
+  if ( isset($pad_prms_tag[$pad_seq_tmp]) )
+    $pad_seq_parm = $pad_prms_tag[$pad_seq_tmp];
   else
     $pad_seq_parm = $pad_parm;
 
@@ -14,10 +14,10 @@
   unset ( $pad_seq_parms[0] );
 
   if ( count($pad_seq_parms) )
-    $pad_parms_tag [$pad_seq_tmp] = implode('|', $pad_seq_parms);
+    $pad_prms_tag [$pad_seq_tmp] = implode('|', $pad_seq_parms);
   else
-    $pad_parms_tag [$pad_seq_tmp] = true;
+    $pad_prms_tag [$pad_seq_tmp] = true;
 
-  $pad_parameters [$pad_lvl] ['parms_tag'] [$pad_seq_tmp] = $pad_parms_tag [$pad_seq_tmp];
+  $pad_parms [$pad] ['parms_tag'] [$pad_seq_tmp] = $pad_prms_tag [$pad_seq_tmp];
 
 ?>

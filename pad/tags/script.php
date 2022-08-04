@@ -9,7 +9,7 @@
 
   $pad_exec_out = $pad_exec_args = [];
 
-  foreach($pad_parms_val as $pad_k => $pad_v)
+  foreach($pad_prms_val as $pad_k => $pad_v)
     if ($pad_k)
       $pad_exec_args [$pad_k] = escapeshellarg ($pad_v);
 

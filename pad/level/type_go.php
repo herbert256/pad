@@ -1,6 +1,6 @@
 <?php
 
-  $pad_parameters [$pad_lvl] ['tag_cnt']++;
+  $pad_parms [$pad] ['tag_cnt']++;
 
   if ( $pad_trace_tag )
     include 'trace/tag/before.php';
@@ -26,6 +26,6 @@
   if ( is_scalar($pad_tag_result) and strpos($pad_tag_result , '@content@') !== FALSE )
     $pad_tag_result = str_replace('@content@', $pad_content, $pad_tag_result);
 
-  $pad_walks [$pad_lvl] = $pad_walk; 
+  $pad_walks [$pad] = $pad_walk; 
 
 ?>

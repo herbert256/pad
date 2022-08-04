@@ -1,6 +1,6 @@
 <?php
   
-  foreach ( $pad_parms_tag as $pad_seq_action_name => $pad_seq_action_value )
+  foreach ( $pad_prms_tag as $pad_seq_action_name => $pad_seq_action_value )
 
     if ( $pad_seq_action_name <> $pad_seq_seq )
 

@@ -1,6 +1,6 @@
 <?php
 
-  $pad_field = pad_field_name ($pad_parms);
+  $pad_field = pad_field_name ($pad_prms);
 
   if ( isset ($GLOBALS[$pad_field]) )
     $GLOBALS[$pad_field]--;

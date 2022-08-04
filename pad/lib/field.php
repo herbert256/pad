@@ -24,7 +24,7 @@
 
   function pad_field_prefix ( $field, $type ) {
 
-    global $pad_lvl, $pad_db_lvl, $pad_current;
+    global $pad, $pad_db_lvl, $pad_current;
 
     list ( $prefix, $field ) = explode (':', $field, 2);
 
@@ -41,7 +41,7 @@
     elseif ( $lvl ) 
       $return = pad_field_search ($pad_current [$lvl], $field, $type);
     else
-      for ( $i=$pad_lvl; $i; $i-- )
+      for ( $i=$pad; $i; $i-- )
         foreach ( $pad_db_lvl [$i] as $key => $value)
           if ($key == $prefix)
             $return = pad_field_search ($value, $field, $type);
@@ -61,12 +61,12 @@
 
   function pad_field_level ( $field, $type ) {
 
-    global $pad_lvl, $pad_db_lvl, $pad_current, $pad_parameters;
+    global $pad, $pad_db_lvl, $pad_current, $pad_parms;
 
     if ( is_numeric($field) ) 
       return pad_field_tag_nr ('', $field);
 
-    for ( $i=$pad_lvl; $i; $i-- ) {
+    for ( $i=$pad; $i; $i-- ) {
 
       if ( $i == 1 )
         $work = pad_field_search ( $GLOBALS, $field, $type );
@@ -81,7 +81,7 @@
         if ( $work !== INF )
           return $work;
 
-      $work = pad_field_search ( $pad_parameters [$i] ['parms_tag'], $field, $type);   
+      $work = pad_field_search ( $pad_parms [$i] ['parms_tag'], $field, $type);   
       if ( $work !== INF )
         return $work;
 
@@ -125,14 +125,14 @@
 
   function pad_first_non_parm  ($min=0) {
 
-    global $pad_lvl, $pad_parameters;
+    global $pad, $pad_parms;
 
-    for ($i=$pad_lvl-$min; $i; $i--)
-      if ( $pad_parameters [$i] ['tag_type'] <> 'parm' )
+    for ($i=$pad-$min; $i; $i--)
+      if ( $pad_parms [$i] ['tag_type'] <> 'parm' )
         return $i;
 
-    if ( $pad_lvl > 1 )
-      return $pad_lvl - 1;
+    if ( $pad > 1 )
+      return $pad - 1;
     else
       return;
 
@@ -144,10 +144,10 @@
     $lvl = pad_field_tag_lvl ($tag, FALSE);
     $idx = intval ($nr) - 1 ;
 
-    global $pad_parameters;
+    global $pad_parms;
     
-    if ( isset ( $pad_parameters [$lvl] ['parms_val'] [$idx] ) )
-      return $pad_parameters [$lvl] ['parms_val'] [$idx]; 
+    if ( isset ( $pad_parms [$lvl] ['parms_val'] [$idx] ) )
+      return $pad_parms [$lvl] ['parms_val'] [$idx]; 
     else
       return INF;
 
@@ -196,10 +196,10 @@
 
   function pad_field_tag_lvl  ($search, $data) {
 
-    global $pad_lvl, $pad_parameters;
+    global $pad, $pad_parms;
 
-    for ($i=$pad_lvl; $i; $i--)
-      if ( $pad_parameters [$i] ['name'] == $search )
+    for ($i=$pad; $i; $i--)
+      if ( $pad_parms [$i] ['name'] == $search )
         return $i;
 
     $return = pad_field_tag_lvl_base ($search, $data);
@@ -210,36 +210,36 @@
     if ( isset( $GLOBALS['pad_data_store'] [$search]) )
       return pad_field_fake_level ( $search, $GLOBALS['pad_data_store'] );
 
-    for ($i=$pad_lvl; $i; $i--)
+    for ($i=$pad; $i; $i--)
       if ( isset( $GLOBALS['pad_db_lvl'] [$i] ) )
         if ( isset( $GLOBALS['pad_db_lvl'] [$i] [$search]) )
           return pad_field_fake_level ( $search, $GLOBALS['pad_db_lvl'] [$i] [$search] );
 
-    return $GLOBALS ['pad_lvl'];
+    return $GLOBALS ['pad'];
 
   }  
 
 
   function pad_field_tag_lvl_base ($search, $data) {
 
-    global $pad_lvl, $pad_parameters, $pad_parms_val;
+    global $pad, $pad_parms, $pad_prms_val;
 
-    if ( $data and ! isset($pad_parms_val[0]) )
-      for ($i=$pad_lvl-1; $i; $i--)
-        if ( ! $pad_parameters [$i] ['default_data'] )
+    if ( $data and ! isset($pad_prms_val[0]) )
+      for ($i=$pad-1; $i; $i--)
+        if ( ! $pad_parms [$i] ['default'] )
           return $i;
 
     if ( trim($search) === '0' or trim($search) == '' )
-      return $pad_lvl;
+      return $pad;
 
     if ( is_numeric($search) and $search < 0 )
-      return $pad_lvl - abs($search);
+      return $pad - abs($search);
 
     if ( is_numeric($search) ) 
       return $search;
 
-    for ($i=$pad_lvl; $i; $i--)
-      if ( $pad_parameters [$i] ['name'] == $search)
+    for ($i=$pad; $i; $i--)
+      if ( $pad_parms [$i] ['name'] == $search)
         return $i;
 
     return FALSE;

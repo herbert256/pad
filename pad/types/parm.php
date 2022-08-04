@@ -1,7 +1,7 @@
 <?php
 
-  if ( isset($pad_parms_val[0]) )
-    $pad_field_tag = $pad_parms_val[0];
+  if ( isset($pad_prms_val[0]) )
+    $pad_field_tag = $pad_prms_val[0];
   else
     $pad_field_tag = pad_first_non_parm();
 

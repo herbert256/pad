@@ -1,13 +1,13 @@
 <?php
 
-  if ( $pad_walk == 'start' and $pad_parms_type == 'close' ) {
+  if ( $pad_walk == 'start' and $pad_prms_type == 'close' ) {
     $pad_walk = 'next';
     return TRUE;
   }
 
-  $pad_eval = pad_eval ( $pad_parms );
+  $pad_eval = pad_eval ( $pad_prms );
 
-  $pad_wrk  = [ $pad_parameters [$pad_lvl] ['tag_cnt'] => [] ];
+  $pad_wrk  = [ $pad_parms [$pad] ['tag_cnt'] => [] ];
 
   if ($pad_tag == 'while') { 
     $pad_walk = ($pad_eval) ? 'next'   : '';

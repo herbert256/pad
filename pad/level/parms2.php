@@ -1,13 +1,13 @@
 <?php
 
-  $pad_parms_tag = [];
-  $pad_parms_val = [];
+  $pad_prms_tag = [];
+  $pad_prms_val = [];
 
   if ( ! in_array ( $pad_tag, ['if', 'case', 'while', 'until'] )  ) {
    
-    $pad_parms_org = pad_explode ($pad_parms, ',');
+    $pad_prms_org = pad_explode ($pad_prms, ',');
     
-    foreach ( $pad_parms_org as $pad_v ) {
+    foreach ( $pad_prms_org as $pad_v ) {
 
       if ( $pad_v == 'trace' )
         include 'trace/option.php';
@@ -23,20 +23,20 @@
 
       if ( pad_valid ($pad_w[0]) and ! is_numeric($pad_w[0]) )
         if ( count($pad_w) == 1 )
-          $pad_parms_tag [$pad_w[0]] = TRUE;
+          $pad_prms_tag [$pad_w[0]] = TRUE;
         else
-          $pad_parms_tag [$pad_w[0]] = pad_eval ( $pad_w[1] );
+          $pad_prms_tag [$pad_w[0]] = pad_eval ( $pad_w[1] );
       else
-        $pad_parms_val [] = pad_eval ( $pad_v );
+        $pad_prms_val [] = pad_eval ( $pad_v );
 
     }
  
   }
  
-  $pad_parm = $pad_parms_val [0] ?? '';
+  $pad_parm = $pad_prms_val [0] ?? '';
 
-  $pad_parameters [$pad_lvl] ['parm']      = $pad_parm;
-  $pad_parameters [$pad_lvl] ['parms_tag'] = $pad_parms_tag;  
-  $pad_parameters [$pad_lvl] ['parms_val'] = $pad_parms_val;
+  $pad_parms [$pad] ['parm']      = $pad_parm;
+  $pad_parms [$pad] ['parms_tag'] = $pad_prms_tag;  
+  $pad_parms [$pad] ['parms_val'] = $pad_prms_val;
 
 ?>

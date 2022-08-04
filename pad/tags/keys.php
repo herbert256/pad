@@ -1,6 +1,6 @@
 <?php
 
-  foreach ( $pad_parms_tag as $pad_k => $pad_v )
+  foreach ( $pad_prms_tag as $pad_k => $pad_v )
     $GLOBALS [ $pad_k ] = $pad_v;
   
 ?>

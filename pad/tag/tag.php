@@ -1,9 +1,9 @@
 <?php
 
-  global $pad_parameters;
+  global $pad_parms;
 
-  if ( isset ($pad_parameters [$pad_idx] [$parm] ) )
-    return $pad_parameters [$pad_idx] [$parm];
+  if ( isset ($pad_parms [$pad_idx] [$parm] ) )
+    return $pad_parms [$pad_idx] [$parm];
   else
     return NULL;
 

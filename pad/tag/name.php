@@ -1,7 +1,7 @@
 <?php
 
-  global $pad_parameters;
+  global $pad_parms;
 
-  return $pad_parameters [$pad_idx] ['name'];
+  return $pad_parms [$pad_idx] ['name'];
  
 ?>
