@@ -477,8 +477,6 @@
 
   function pad_ignore ($info) {
 
-    $GLOBALS ['pad']--;
-    
     if ( $GLOBALS['pad_pair'] ) 
       $tmp = $GLOBALS['pad_between'];
     else

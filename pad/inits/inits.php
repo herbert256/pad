@@ -79,7 +79,7 @@
     $pad_build_mode= 'include';
 
   $pad = 1;
-  $pad_between = 'start';
+  $pad_between = 'start var=val';
   include PAD . 'level/setup.php';
 
   include PAD . 'build/build.php';

@@ -30,7 +30,6 @@
   $pad_parms [$pad] ['parm']       = $pad_prms_val [0] ?? '';
   $pad_parms [$pad] ['parms_tag']  = $pad_prms_tag;  
   $pad_parms [$pad] ['parms_val']  = $pad_prms_val;
-  $pad_parms [$pad] ['between']    = $pad_between ?? '';
   $pad_parms [$pad] ['tag_cnt']    = 0;
   $pad_parms [$pad] ['pair']       = $pad_pair ?? FALSE;
   $pad_parms [$pad] ['type']       = $pad_parms [$pad] ['type'] ?? $pad_type ?? '';
@@ -45,7 +44,5 @@
   $pad_parms [$pad] ['array']      = FALSE;
   $pad_parms [$pad] ['text']       = TRUE;
   $pad_parms [$pad] ['default']    = pad_is_default_data ( $pad_data [$pad] );
-
-  include 'parameters.php';
 
 ?>
