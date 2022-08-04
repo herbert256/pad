@@ -116,8 +116,7 @@
     echo ( "<b>Stack</b>\n");
     foreach ( $pad_debug_backtrace as $key => $trace ) {
       extract ( $trace );
- #     if ( ! in_array($file, [PAD.'inits/error.php', PAD.'lib/dump.php']) )
-        echo ( "    $file:$line - $function\n");
+      echo ( "    $file:$line - $function\n");
     }
 
     if ( isset ( $GLOBALS ['pad_parms'] ) )
@@ -131,13 +130,13 @@
 
           pad_dump_array  ('Level '.$lvl, $work );
   
-          if ( $GLOBALS ['pad_base'] [$lvl] )
+          if ( isset($GLOBALS ['pad_base'] [$lvl]) and $GLOBALS ['pad_base'] [$lvl] )
             echo ("    [base] => "   . htmlentities ( pad_dump_short ( $GLOBALS ['pad_base'] [$lvl] ) ) . "\n");
 
-          if ( $GLOBALS ['pad_result'] [$lvl] and $GLOBALS ['pad_result'] <> $GLOBALS ['pad_base'] )
+          if ( isset($GLOBALS ['pad_result'] [$lvl]) and $GLOBALS ['pad_result'] [$lvl] and $GLOBALS ['pad_result'] <> $GLOBALS ['pad_base'] )
             echo ("    [result] => " . htmlentities ( pad_dump_short ( $GLOBALS ['pad_result'] [$lvl] ) ) . "\n");
   
-          if ( $GLOBALS ['pad_html'] [$lvl] and $GLOBALS ['pad_html'] <> $GLOBALS ['pad_base']and $GLOBALS ['pad_html'] <>  $GLOBALS ['pad_result'])
+          if ( isset($GLOBALS ['pad_html'] [$lvl]) and $GLOBALS ['pad_html'] [$lvl] and $GLOBALS ['pad_html'] <> $GLOBALS ['pad_base']and $GLOBALS ['pad_html'] <>  $GLOBALS ['pad_result'])
             echo ("    [html] => "   . htmlentities ( pad_dump_short ( $GLOBALS ['pad_html']    [$lvl] ) ) . "\n");
 
         }

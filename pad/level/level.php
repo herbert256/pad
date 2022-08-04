@@ -31,7 +31,7 @@
 
   $pad++;
   $pad_content = $pad_false = '';
-  $pad_parms [$pad] ['pair'] = $pad_pair;
+  include 'setup.php';
 
   if     ( ! ctype_alpha ( $pad_first )  ) return pad_ignore ('ctype_alpha');
   elseif ( ! pad_valid   ( $pad_tag )    ) return pad_ignore ('pad_valid');
@@ -43,7 +43,6 @@
 
   if ( $pad_pair ) {
     $pad_pair_result = include 'pair.php';
-    $pad_parms [$pad] ['pair'] = $pad_pair;
     if ( $pad_pair_result === FALSE ) 
       return pad_ignore ('pair_result_is_false');
   }

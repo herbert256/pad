@@ -7,7 +7,7 @@
   $pad_filter_end   = count($pad_data[$pad]);
   $pad_filter_start = ($pad_filter_end - $pad_filter_last) + 1;
   
-  pad_set_arr_var ('options_done', 'last',   TRUE);      
+  pad_set_arr_var ('done', 'last',   TRUE);      
   pad_data_filter_go ($pad_data[$pad], $pad_filter_start, $pad_filter_end);    
 
 ?>

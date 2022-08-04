@@ -93,6 +93,8 @@
     $error = trim($error);
     $error = "$file:$line $error";
 
+    $GLOBALS['pad_errror_list'] [] = $error;
+
     if ( $pad_error_log and $pad_error_action <> 'boot' ) 
       error_log ("[PAD] $PADREQID $error", 4);   
 

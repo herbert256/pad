@@ -17,4 +17,6 @@
   $pad_level_dir  = "$pad_trace_dir";
   $pad_occur_dir  = "$pad_trace_dir";
 
+  $pad_errror_list = [];
+
 ?>

@@ -4,7 +4,7 @@
 
   $pad_walk = 'start';
 
-  $pad_options_done = [];
+  $pad_done = [];
   
   include 'parameters.php';
   include 'type_go.php';

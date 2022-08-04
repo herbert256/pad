@@ -8,7 +8,7 @@
 
       $GLOBALS ["pad_seq_mf_$pad_seq_seq"] [$pad_seq_opt_name] = $pad_seq_opt_value;
 
-      pad_set_arr_var ( 'options_done', $pad_seq_opt_name, TRUE );
+      pad_set_arr_var ( 'done', $pad_seq_opt_name, TRUE );
 
       $GLOBALS ["pad_seq_$pad_seq_opt_name"] = $pad_seq_opt_value;
 

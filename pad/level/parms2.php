@@ -33,10 +33,4 @@
  
   }
  
-  $pad_parm = $pad_prms_val [0] ?? '';
-
-  $pad_parms [$pad] ['parm']      = $pad_parm;
-  $pad_parms [$pad] ['parms_tag'] = $pad_prms_tag;  
-  $pad_parms [$pad] ['parms_val'] = $pad_prms_val;
-
 ?>

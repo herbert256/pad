@@ -4,7 +4,7 @@
   $pad_link_page = $pad_prms_tag ['page'] ?? 'index';
   $pad_link_text = $pad_prms_tag ['text'] ?? $pad_content;
 
-  pad_set_arr_var ( 'options_done', 'page', TRUE );
+  pad_set_arr_var ( 'done', 'page', TRUE );
 
   return "<a href=\"$pad_host$pad_script?app=$pad_link_app&page=$pad_link_page\">$pad_link_text</a>";
 
