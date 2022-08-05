@@ -21,4 +21,9 @@
   if     ( $pad_hit and $pad_tag_result !== TRUE and is_scalar($pad_tag_result) ) $pad_text = TRUE;
   else                                                                            $pad_text = FALSE;
 
+  $pad_parms [$pad] ['hit']   = $pad_hit;
+  $pad_parms [$pad] ['null']  = $pad_null;
+  $pad_parms [$pad] ['else']  = $pad_else;
+  $pad_parms [$pad] ['array'] = $pad_array;
+  $pad_parms [$pad] ['text']  = $pad_text;
 ?>

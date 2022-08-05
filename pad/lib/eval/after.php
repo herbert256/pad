@@ -67,14 +67,15 @@
     foreach ($result as $k => $one)
       if ( $one[1] == 'other' ) {
         $exp = pad_explode ($one[0], ':');
-        $type = $exp[0];
-        if ( count($exp) == 2 and pad_valid ($exp[0]) and pad_valid ($exp[1]) ) 
+        if ( count($exp) == 2 and pad_valid ($exp[0]) and pad_valid ($exp[1]) ) {
+          $type = $exp[0];
           if ( file_exists ( PAD . "eval/single/$type.php") or file_exists ( PAD . "eval/parms/$type.php") ) {
             $result[$k][0] = $exp[1];
             $result[$k][1] = 'TYPE';
             $result[$k][2] = $type;          
             $result[$k][3] = 0;
           }
+        }
       }
 
     foreach ($result as $key => $one)

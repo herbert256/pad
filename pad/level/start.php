@@ -12,12 +12,6 @@
   include 'base.php';
   include 'data.php';
 
-  $pad_parms [$pad] ['hit']     = $pad_hit;
-  $pad_parms [$pad] ['null']    = $pad_null;
-  $pad_parms [$pad] ['else']    = $pad_else;
-  $pad_parms [$pad] ['array']   = $pad_array;
-  $pad_parms [$pad] ['text']    = $pad_text;
-
   $pad_parms [$pad] ['default'] = pad_is_default_data ( $pad_data [$pad] );
 
   include PAD . "options/go/start.php";
