@@ -11,14 +11,14 @@
   elseif ( $pad_tag_result === ''                                 ) $pad_else = TRUE;
   else                                                              $pad_else = FALSE;
 
-  if     ( $pad_null ) $pad_true = FALSE;
-  elseif ( $pad_else ) $pad_true = FALSE;
-  else                 $pad_true = TRUE;
+  if     ( $pad_null ) $pad_hit = FALSE;
+  elseif ( $pad_else ) $pad_hit = FALSE;
+  else                 $pad_hit = TRUE;
 
-  if     ( $pad_true and is_array($pad_tag_result) ) $pad_array = TRUE;
-  else                                               $pad_array = FALSE;
+  if     ( $pad_hit and is_array($pad_tag_result) ) $pad_array = TRUE;
+  else                                              $pad_array = FALSE;
 
-  if     ( $pad_true and $pad_tag_result !== TRUE and is_scalar($pad_tag_result) ) $pad_text = TRUE;
-  else                                                                             $pad_text = FALSE;
+  if     ( $pad_hit and $pad_tag_result !== TRUE and is_scalar($pad_tag_result) ) $pad_text = TRUE;
+  else                                                                            $pad_text = FALSE;
 
 ?>

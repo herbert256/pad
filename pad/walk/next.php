@@ -3,11 +3,10 @@
   $pad_walk = 'next';
   
   $pad_content = $pad_base [$pad];
-
   include PAD . "level/type_go.php"; 
-  include PAD . "level/flags.php";
-
   $pad_base [$pad] = $pad_content;
+
+  include PAD . "level/flags.php";
 
   if ( $pad_walk ) {
 

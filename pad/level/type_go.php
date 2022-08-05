@@ -33,6 +33,6 @@
     $pad_tag_result = $pad_tag_content;
 
   if ( is_scalar($pad_tag_result) and strpos($pad_tag_result , '@content@') !== FALSE )
-    $pad_tag_result = str_replace('@content@', $pad_content, $pad_tag_result);
+    $pad_tag_result = str_replace('@content@', $pad_true [$pad], $pad_tag_result);
 
 ?>

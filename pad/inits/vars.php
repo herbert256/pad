@@ -5,6 +5,7 @@
   $pad_field_double_check = $pad_restart = '';
 
   $pad            = 1;
+  $pad_between    = 'start';
   $pad_output     = '';
   $pad_stop       = '000';
   $pad_cache_stop = 0;

@@ -1,7 +1,7 @@
 <?php
 
-  if ( pad_tag_parm ('content') ) $pad_content = include PAD . "options/content.php";    
-  if ( pad_tag_parm ('else')    ) $pad_false [$pad] = include PAD . "options/else.php";    
+  if ( pad_tag_parm ('content') ) $pad_true [$pad] = include PAD . "options/content.php";    
+  if ( pad_tag_parm ('else')    ) $pad_false   [$pad] = include PAD . "options/else.php";    
 
   if ( pad_tag_parm ('null') ) {
     $pad_opt_flag = include PAD . "options/null.php"; 

@@ -39,7 +39,7 @@
   if ( $pad_type === FALSE )
     return pad_ignore ('type_false');
 
-  $pad_content [$pad+1] = $pad_false [$pad+1] = '';
+  $pad_true [$pad+1] = $pad_false [$pad+1] = '';
 
   if ( $pad_pair ) {
     $pad_pair_result = include 'pair.php';

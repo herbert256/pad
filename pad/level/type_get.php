@@ -18,9 +18,9 @@
 
   $pad_name = $pad_prms_tag ['name'] ?? $pad_tag;
 
-  $pad_parms [$pad] ['tag']  = $pad_tag;
-  $pad_parms [$pad] ['name'] = $pad_name;
-  $pad_parms [$pad] ['type'] = $pad_type;
+  $pad_parms [$pad+1] ['tag']  = $pad_tag;
+  $pad_parms [$pad+1] ['name'] = $pad_name;
+  $pad_parms [$pad+1] ['type'] = $pad_type;
 
   return $pad_type;
   

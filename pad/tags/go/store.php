@@ -35,7 +35,7 @@
     if ( $pad_store_source )
       $pad_store_data = pad_make_flag ($pad_store_source);
     else
-      $pad_store_data = $pad_true;
+      $pad_store_data = $pad_hit;
 
   }
 

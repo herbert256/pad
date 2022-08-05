@@ -11,32 +11,34 @@
   $pad_walks_data  [$pad] = [];
   $pad_current     [$pad] = [];
   $pad_done        [$pad] = [];
-  $pad_base        [$pad] = '';
   $pad_occur       [$pad] = 0;
   $pad_start       [$pad] = 0;
   $pad_end         [$pad] = 0;
-  $pad_result      [$pad] = '';
-  $pad_html        [$pad] = '';
-  $pad_content     [$pad] = '';
-  $pad_false       [$pad] = '';
   $pad_db          [$pad] = '';
   $pad_db_lvl      [$pad] = [];
+
   $pad_save_vars   [$pad] = [];
   $pad_delete_vars [$pad] = [];
   $pad_set_save    [$pad] = [];
   $pad_set_delete  [$pad] = [];
 
+  $pad_true        [$pad] = '';
+  $pad_false       [$pad] = '';
+  $pad_base        [$pad] = '';
+  $pad_html        [$pad] = '';
+  $pad_result      [$pad] = '';
+
   $pad_parms [$pad] ['tag']       = $pad_tag ?? $pad_between ?? '';
   $pad_parms [$pad] ['name']      = $pad_prms_tag ['name'] ?? $pad_parms [$pad] ['tag'];
-  $pad_parms [$pad] ['prms']      = $pad_prms ?? '';
   $pad_parms [$pad] ['parm']      = $pad_prms_val [0] ?? '';
+  $pad_parms [$pad] ['prms']      = $pad_prms ?? '';
+  $pad_parms [$pad] ['prms_type'] = $pad_prms_type ?? 'open';
   $pad_parms [$pad] ['parms_tag'] = $pad_prms_tag;  
   $pad_parms [$pad] ['parms_val'] = $pad_prms_val;
   $pad_parms [$pad] ['tag_cnt']   = 0;
   $pad_parms [$pad] ['pair']      = $pad_pair ?? FALSE;
   $pad_parms [$pad] ['type']      = $pad_parms [$pad] ['type'] ?? $pad_type ?? '';
-  $pad_parms [$pad] ['prms_type'] = $pad_prms_type ?? 'open';
-  $pad_parms [$pad] ['true']      = TRUE;
+  $pad_parms [$pad] ['hit']       = TRUE;
   $pad_parms [$pad] ['null']      = FALSE;
   $pad_parms [$pad] ['else']      = FALSE;
   $pad_parms [$pad] ['array']     = FALSE;

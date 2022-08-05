@@ -1,5 +1,8 @@
 <?php
 
+  if ( ! $pad_no_no )
+    return; 
+
   ob_get_clean();
 
   $pad_no_no = PAD . "$app/pages/$page.php";

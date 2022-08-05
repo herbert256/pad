@@ -1,12 +1,16 @@
 <?php
+    
+  if ( isset($_SERVER['QUERY_STRING']) and $_SERVER['QUERY_STRING'] and strpos($_SERVER['QUERY_STRING'], '=') === FALSE ) {
+
+    $pad_fast = pad_db ( "field vars from links where link = '{1}'", [ 1 => $_SERVER['QUERY_STRING'] ] );
+
+    if ( ! $pad_fast )
+      pad_boot_error ("Shortcut to stored parameters not found: |" . $_SERVER['QUERY_STRING'] . "|");
+    
+    extract ( unserialize ( $pad_fast ), EXTR_OVERWRITE );
+
+    include PAD . 'config/config.php';
+
+  }
   
-  $pad_fast = pad_db ( "field vars from links where link = '{1}'", [ 1 => $_SERVER['QUERY_STRING'] ] );
-
-  if ( ! $pad_fast )
-    pad_boot_error ("Shortcut to stored parameters not found: |" . $_SERVER['QUERY_STRING'] . "|");
-  
-  extract ( unserialize ( $pad_fast ), EXTR_OVERWRITE );
-
-  include PAD . 'config/config.php';
-
 ?>
