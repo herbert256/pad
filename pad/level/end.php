@@ -3,9 +3,6 @@
   if ( count ($pad_data[$pad] ) )
     include PAD . 'occurrence/end.php';
 
-  foreach ( $pad_parms [$pad] as $pad_k => $pad_v )
-    $GLOBALS['pad_'.$pad_k] = $pad_v;
-
   if ( next($pad_data[$pad]) !== FALSE )
     return include PAD . 'occurrence/start.php';
 
@@ -31,10 +28,6 @@
     include 'trace/end.php';
 
   $pad--;
-
-  if ($pad > 1)
-    foreach ( $pad_parms [$pad] as $pad_k => $pad_v )
-      $GLOBALS['pad_'.$pad_k] = $pad_v;
   
   if ($pad)
     pad_html ( $pad_result[$pad+1]);

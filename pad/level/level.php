@@ -24,7 +24,9 @@
   else
     $pad_between = substr($pad_html[$pad], $pad_start[$pad]+1, $pad_end[$pad]-$pad_start[$pad]-2);
 
-  include 'parms1.php';
+  $pad++;
+  include 'setup.php';
+  $pad--;
 
   if     ( $pad_first == '!' ) return pad_html ( include PAD . 'var/raw.php' );
   elseif ( $pad_first == '$' ) return pad_html ( include PAD . 'var/opt.php' );
@@ -37,7 +39,7 @@
   if ( $pad_type === FALSE )
     return pad_ignore ('type_false');
 
-  $pad_content = $pad_false = '';
+  $pad_content [$pad+1] = $pad_false [$pad+1] = '';
 
   if ( $pad_pair ) {
     $pad_pair_result = include 'pair.php';

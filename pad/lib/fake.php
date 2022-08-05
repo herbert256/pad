@@ -9,10 +9,6 @@
     $fake_lvl       = $pad;
     $fake_timing    = $pad_timing;
     $fake_trace_dir = $pad_trace_dir;
-
-    $fake_vars = [];
-    foreach ( $pad_parms [$pad] as $key => $val )
-      $fake_vars [$key] = $GLOBALS["pad_$key"];
  
     $pad_timing = FALSE;
 
@@ -47,10 +43,6 @@
     foreach ( $GLOBALS['pad_parms'] [$fake_lvl] as $fake_key => $fake_val )
       $GLOBALS['pad_'.$fake_key] = $fake_val;
 
-    $fake_vars = [];
-    foreach ( $fake_vars as $key => $val )
-       $$key = $fake_vars = [$key];
- 
     $pad           = $fake_lvl;
     $pad_timing    = $fake_timing;
     $pad_trace_dir = $fake_trace_dir;

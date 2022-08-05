@@ -1,8 +1,5 @@
 <?php
 
-  foreach ( $pad_parms [$pad] as $pad_k => $pad_v )
-    $GLOBALS['pad_'.$pad_k] = $pad_v;
-
   $pad_occur [$pad]++;
   $pad_html  [$pad] = $pad_base[$pad];
   $pad_key   [$pad] = key($pad_data[$pad]);

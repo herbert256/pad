@@ -3,9 +3,9 @@
   $pad_prms_tag = [];
   $pad_prms_val = [];
 
-  if ( ! in_array ( $pad_tag, ['if', 'case', 'while', 'until'] )  ) {
+  if ( ! in_array ( $pad_tag??'', ['if', 'case', 'while', 'until'] )  ) {
    
-    $pad_prms_org = pad_explode ($pad_prms, ',');
+    $pad_prms_org = pad_explode ($pad_prms??'', ',');
     
     foreach ( $pad_prms_org as $pad_v ) {
 

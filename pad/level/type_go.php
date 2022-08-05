@@ -9,9 +9,15 @@
 
   $pad_walk = $pad_walks [$pad]; 
 
+  foreach ( $pad_parms [$pad] as $pad_k => $pad_v )
+    $GLOBALS['pad_'.$pad_k] = $pad_v;
+
   pad_timing_start ('tag');
   $pad_tag_result = include PAD . "types/$pad_type.php";
   pad_timing_end ('tag');
+
+  foreach ( $pad_parms [$pad] as $pad_k => $pad_v )
+    $pad_parms [$pad] [$pad_k] = $GLOBALS['pad_'.$pad_k];
 
   $pad_walks [$pad] = $pad_walk; 
 

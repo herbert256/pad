@@ -7,11 +7,9 @@
   include 'type_go.php';
   include 'options.php';
   include 'flags.php';
-  include 'base.php';
+  include 'content.php';
   include 'data.php';
 
-  $pad_parms [$pad] ['content'] = $pad_content;
-  $pad_parms [$pad] ['false']   = $pad_false;
   $pad_parms [$pad] ['true']    = $pad_true;
   $pad_parms [$pad] ['null']    = $pad_null;
   $pad_parms [$pad] ['else']    = $pad_else;
