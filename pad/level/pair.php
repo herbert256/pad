@@ -49,29 +49,29 @@ go2:
   if ( $pad_end [$pad] === FALSE )
     $pad_end [$pad] = strpos ( $pad_html[$pad], '}', $pad_pos+2);
 
-  $pad_between2 = substr ($pad_html[$pad], $pad_pos+1, $pad_end[$pad]-$pad_pos-1);
-  $pad_words    = preg_split ("/[\s]+/", $pad_between2, 2, PREG_SPLIT_NO_EMPTY);
-  $pad_prms2   = trim ($pad_words[1] ?? '');
+  $pad_between = substr ($pad_html[$pad], $pad_pos+1, $pad_end[$pad]-$pad_pos-1);
+  $pad_words   = preg_split ("/[\s]+/", $pad_between, 2, PREG_SPLIT_NO_EMPTY);
+  $pad_prms    = trim ($pad_words[1] ?? '');
 
-  if ($pad_prms2) {
+  if ($pad_prms) {
 
     if ($pad_prms) 
       return pad_error ("Both open and close parameters used: $pad_pair_search / $pad_prms / $pad_prms2");
 
     if ( strpos($pad_prms2, '}') ) {
-      pad_html ( '{close_parms}' . $pad_prms2 . '{/close_parms}'
+      pad_html ( '{close_parms}' . $pad_prms . '{/close_parms}'
                . '{' . $pad_pair_search . '}'
                . $pad_true [$pad+1]
                . '{/'. $pad_pair_search . ' ###%%%close_parms%%%###}') ;
       return TRUE;
     }
 
-    $pad_between = $pad_between2;
 
-    include 'setup.php';
-
+    $pad++;
+    include 'between.php';
     $pad_parms [$pad] ['prms_type'] = 'close';
- 
+    $pad--;
+
   }
 
   $pad_open_close = [];
