@@ -6,10 +6,10 @@
 
   $pCurrent[$p] = $pData[$p] [$pKey[$p]];
 
-  if ( $pWalks[$p] <> 'start' )
-    $pWalks_data [ $pad] [] = $pCurrent[$p];
+  if ( $pWalk[$p] <> 'start' )
+    $pWalkData [$p] [] = $pCurrent[$p];
 
-  if ( $pad > 1 ) {
+  if ( $p > 1 ) {
 
     if ( pIs_default_data ($pData[$p]) ) {
       if ( isset($pPrmsVal[$p][0]) )

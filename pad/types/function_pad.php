@@ -1,7 +1,7 @@
 <?php
 
-  if ( $pWalk == 'start' and $pPrmsType == 'close' ) {
-    $pWalk = 'end';
+  if ( $pWalk[$p] == 'start' and $pPrmsType[$p] == 'close' ) {
+    $pWalk[$p] = 'end';
     return TRUE;
   }
    

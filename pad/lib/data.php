@@ -174,7 +174,7 @@
   
   function pData_error ($data, $error) {
 
-    global $app, $page, $PADREQID, $pTrace_dir, $pTrace;
+    global $app, $page, $PADREQID, $pTraceDir, $pTrace;
 
     if ( $pTrace ) {
 
@@ -182,7 +182,7 @@
       $put = [ 'error'=> $error, 'data' => $data ]; 
 
       pFile_put_contents ( "errors/data/$app/$page/$PADREQID/$id.json", $put ); 
-      pFile_put_contents ( "$pTrace_dir/errors/data/$id.json",  $put ); 
+      pFile_put_contents ( "$pTraceDir/errors/data/$id.json",  $put ); 
 
     }
 

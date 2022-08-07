@@ -7,8 +7,8 @@
     return;
   }
 
-  if ( $pWalks [$pad ] <> 'start' ) 
-    $pDataStore [$pStore_name] = $pWalks_data [ $pad];
+  if ( $pWalk [$p] <> 'start' ) 
+    $pDataStore [$pStore_name] = $pWalkData [$p];
   else
     $pDataStore [$pStore_name] = $pData[$p];
 

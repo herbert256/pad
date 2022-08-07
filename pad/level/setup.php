@@ -6,8 +6,8 @@
   $pCurrent    [$p] = reset ( $pData[$p] );
   $pKey        [$p] = key ( $pData[$p] );
 
-  $pWalks      [$p] = 'start';
-  $pWalks_data [$p] = [];
+  $pWalk       [$p] = 'start';
+  $pWalkData   [$p] = [];
   
   $pDone       [$p] = [];
   $pOccur      [$p] = 0;
@@ -37,8 +37,6 @@
   $pArray      [$p] = FALSE;
   $pText       [$p] = TRUE;
   $pDefault    [$p] = pIs_default_data ( $pData[$p] );
-  $pLevelDir   [$p] = $pLevelDir;
-  $pOccurDir   [$p] = $pOccurDir;
 
   include 'parms.php';
   

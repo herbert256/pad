@@ -52,29 +52,10 @@ go2:
     $pEnd[$p] = strpos ( $pHtml[$p], '}', $pPos+2);
 
   $pBetween = substr ($pHtml[$p], $pPos+1, $pEnd[$p]-$pPos-1);
-  $pWords   = preg_split ("/[\s]+/", $pBetween, 2, PREG_SPLIT_NO_EMPTY);
-  $pPrms[$p]   = trim ($pWords[1] ?? '');
+  include 'between.php';
 
-  if ($pPrms) {
-
-    if ($pPrms) 
-      return pError ("Both open and close parameters used: $pTag[$p]/ $pPrms[$p]/ $pPrms2");
-
-    if ( strpos($pPrms2, '}') ) {
-      pHtml ( '{close_parms}' . $pPrms[$p]. '{/close_parms}'
-               . '{' . $pTag[$p]. '}'
-               . $pTrue[$p+1]
-               . '{/'. $pTag[$p]. ' ###%%%close_parms%%%###}') ;
-      return TRUE;
-    }
-
-
-    $pad++;
-    include 'between.php';
+  if ($pPrms)
     $pPrmsType[$p] = 'close';
-    $pad--;
-
-  }
 
   $pOpen_close = [];
   $pOpen_close [$pTag[$p]] = TRUE;

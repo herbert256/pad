@@ -1,10 +1,10 @@
 <?php
 
-    $pWalk_save = $pWalk;
+    $pWalk[$p]_save = $pWalk[$p];
     
-    $pWalk = 'start';
+    $pWalk[$p] = 'start';
     include PAD . 'tags/trace.php';
     
-    $pWalk = $pWalk_save;
+    $pWalk[$p] = $pWalk[$p]_save;
   
 ?>

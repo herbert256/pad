@@ -14,6 +14,6 @@
     'now-max'     => ($pCache_max) ? $_SERVER['REQUEST_TIME'] - $pCache_max : 0
   ];
       
-  pFile_put_contents ( $pTrace_dir . "/cache.$pCache_stop.json", $pCache_trace );
+  pFile_put_contents ( $pTraceDir . "/cache.$pCache_stop.json", $pCache_trace );
 
 ?>

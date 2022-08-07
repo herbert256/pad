@@ -7,13 +7,9 @@
 
   $pTagContent = ''; ob_start();
 
-  $pWalk = $pWalks[$p]; 
-
   pTiming_start ('tag');
   $pTagResult = include PAD . "types/$pType.php";
   pTiming_end ('tag');
-
-  $pWalks[$p] = $pWalk; 
 
   $pTagContent .= ob_get_clean();
 

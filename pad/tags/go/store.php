@@ -1,7 +1,7 @@
 <?php
 
-  if ( $pWalk == 'start' and ($pTag[$p]== 'data' or $pTag[$p]== 'flag' or $pPrmsType == 'close' ) ) {
-    $pWalk = 'end';
+  if ( $pWalk[$p] == 'start' and ($pTag[$p]== 'data' or $pTag[$p]== 'flag' or $pPrmsType[$p] == 'close' ) ) {
+    $pWalk[$p] = 'end';
     return TRUE;
   }
 

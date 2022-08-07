@@ -1,7 +1,7 @@
 <?php
 
-  if ( $pWalk == 'start' and $pPrmsType == 'close' ) {
-    $pWalk = 'next';
+  if ( $pWalk[$p] == 'start' and $pPrmsType[$p] == 'close' ) {
+    $pWalk[$p] = 'next';
     return TRUE;
   }
 
@@ -10,10 +10,10 @@
   $pWrk  = [ $TagCnt[$p] => [] ];
 
   if ($pTag[$p]== 'while') { 
-    $pWalk = ($pEval) ? 'next'   : '';
+    $pWalk[$p] = ($pEval) ? 'next'   : '';
     return      ($pEval) ? $pWrk : NULL;
   } else {
-    $pWalk = ($pEval) ? ''   : 'next';
+    $pWalk[$p] = ($pEval) ? ''   : 'next';
     return      ($pEval) ? $pWrk : TRUE;    
   }
 

@@ -5,9 +5,6 @@
   
   $pResult[$p] .= $pHtml[$p];
 
-  $pOccurDir = $pLevelDir;
-  $pOccurDir[$p]= $pOccurDir ;
-
-  pReset ($pad);
+  pReset ($p);
 
 ?>

@@ -1,7 +1,7 @@
 <?php
 
   if ( $GLOBALS['pTrace_headers'] ) 
-    pFile_put_contents ($pTrace_dir . "/headers-in.json", getallheaders() );
+    pFile_put_contents ($pTraceDir . "/headers-in.json", getallheaders() );
 
   if ( isset($_REQUEST['pTrace']) )
     $pTrace = TRUE;
@@ -9,8 +9,10 @@
   if ( ! $pTrace )
     return;
 
-  $ [1] ['level_dir'] = $pLevelDir ; 
-  $ [1] ['occur_dir'] = $pOccurDir ;
+  $pTraceDir = "trace/$app-" . str_replace('/', '-', $page) . "/$PADREQID";
+
+  $pLevelDir [1] = $pTraceDir; 
+  $pOccurDir [1] = $pTraceDir;
 
   $pTrace_data_start = [
     'sessionID'   => $GLOBALS ['PADSESSID'] ?? '',
@@ -25,8 +27,8 @@
     'agent'       => $_SERVER ['HTTP_USER_AGENT'] ?? ''
   ];
       
-  pFile_put_contents ($pTrace_dir . "/start.json",   $pTrace_data_start     );
-  pFile_put_contents ($pTrace_dir . "/php.json",     pTrace_get_php_vars () );
-  pFile_put_contents ($pTrace_dir . "/request.json", $_REQUEST                 );
+  pFile_put_contents ($pTraceDir . "/start.json",   $pTrace_data_start     );
+  pFile_put_contents ($pTraceDir . "/php.json",     pTrace_get_php_vars () );
+  pFile_put_contents ($pTraceDir . "/request.json", $_REQUEST                 );
 
 ?>

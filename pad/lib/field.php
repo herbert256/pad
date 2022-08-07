@@ -24,7 +24,7 @@
 
   function pField_prefix ( $field, $type ) {
 
-    global $pad, $pDb_lvl, $pCurrent;
+    global $p, $pDb_lvl, $pCurrent;
 
     list ( $prefix, $field ) = explode (':', $field, 2);
 
@@ -41,7 +41,7 @@
     elseif ( $lvl ) 
       $return = pField_search ($pCurrent [$lvl], $field, $type);
     else
-      for ( $i=$pad; $i; $i-- )
+      for ( $i=$p; $i; $i-- )
         foreach ( $pDb_lvl [$i] as $key => $value)
           if ($key == $prefix)
             $return = pField_search ($value, $field, $type);
@@ -61,12 +61,12 @@
 
   function pField_level ( $field, $type ) {
 
-    global $pad, $pDb_lvl, $pCurrent, $;
+    global $p, $pDb_lvl, $pCurrent, $;
 
     if ( is_numeric($field) ) 
       return pField_tag_nr ('', $field);
 
-    for ( $i=$pad; $i; $i-- ) {
+    for ( $i=$p; $i; $i-- ) {
 
       if ( $i == 1 )
         $work = pField_search ( $GLOBALS, $field, $type );
@@ -125,14 +125,14 @@
 
   function pFirst_non_parm  ($min=0) {
 
-    global $pad, $;
+    global $p, $pType;
 
-    for ($i=$pad-$min; $i; $i--)
-      if ( $ [$i] ['type'] <> 'parm' )
+    for ($i=$p-$min; $i; $i--)
+      if ( $pType[$i] <> 'parm' )
         return $i;
 
-    if ( $pad > 1 )
-      return $pad - 1;
+    if ( $p > 1 )
+      return $p - 1;
     else
       return;
 
@@ -144,10 +144,10 @@
     $lvl = pField_tag_lvl ($tag, FALSE);
     $idx = intval ($nr) - 1 ;
 
-    global $;
+    global $pPrmsVal;
     
-    if ( isset ( $ [$lvl] ['PrmsVal'] [$idx] ) )
-      return $ [$lvl] ['PrmsVal'] [$idx]; 
+    if ( isset ( $pPrmsVal[$lvl] [$idx] ) )
+      return $pPrmsVal[$lvl] [$idx]; 
     else
       return INF;
 
@@ -196,9 +196,9 @@
 
   function pField_tag_lvl  ($search, $data) {
 
-    global $pad, $;
+    global $p, $;
 
-    for ($i=$pad; $i; $i--)
+    for ($i=$p; $i; $i--)
       if ( $ [$i] ['name'] == $search )
         return $i;
 
@@ -210,7 +210,7 @@
     if ( isset( $GLOBALS['pDataStore'] [$search]) )
       return pField_fake_level ( $search, $GLOBALS['pDataStore'] );
 
-    for ($i=$pad; $i; $i--)
+    for ($i=$p; $i; $i--)
       if ( isset( $GLOBALS['pDb_lvl'] [$i] ) )
         if ( isset( $GLOBALS['pDb_lvl'] [$i] [$search]) )
           return pField_fake_level ( $search, $GLOBALS['pDb_lvl'] [$i] [$search] );
@@ -222,24 +222,24 @@
 
   function pField_tag_lvl_base ($search, $data) {
 
-    global $pad, $, $pPrmsVal[$p];
+    global $p, $pDefault, $pName, $pPrmsVal;
 
     if ( $data and ! isset($pPrmsVal[$p][0]) )
-      for ($i=$pad-1; $i; $i--)
-        if ( ! $ [$i] ['default'] )
+      for ($i=$p-1; $i; $i--)
+        if ( !$pDefault[$i] )
           return $i;
 
     if ( trim($search) === '0' or trim($search) == '' )
-      return $pad;
+      return $p;
 
     if ( is_numeric($search) and $search < 0 )
-      return $pad - abs($search);
+      return $p - abs($search);
 
     if ( is_numeric($search) ) 
       return $search;
 
-    for ($i=$pad; $i; $i--)
-      if ( $ [$i] ['name'] == $search)
+    for ($i=$p; $i; $i--)
+      if ( $pName[$i] == $search)
         return $i;
 
     return FALSE;

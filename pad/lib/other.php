@@ -242,7 +242,7 @@
 
   function pHtml ($html) {
 
-    global $pHtml, $pStart, $pEnd, $pad;
+    global $pHtml, $pStart, $pEnd, $p;
 
     $pHtml[$p] = substr($pHtml[$p], 0, $pStart[$p])
                      . $html
@@ -427,7 +427,7 @@
 
   function pSet_global ( $name, $value ) {
 
-    global $pad, $pSave_vars, $pDelete_vars;
+    global $p, $pSave_vars, $pDelete_vars;
     
     if ( array_key_exists($name, $GLOBALS) and ! array_key_exists ($name, $pSave_vars[$p]) )
       $pSave_vars[$p] [$name] = $GLOBALS [$name];
@@ -443,7 +443,7 @@
 
   function xpSet_global ( $name, $value ) {
 
-    global $pad, $pSave_vars, $pDelete_vars;
+    global $p, $pSave_vars, $pDelete_vars;
     
     if ( isset($GLOBALS [$name]) and ! isset ($pSave_vars[$p] [$name]) )
       $pSave_vars[$p] [$name] = $GLOBALS [$name];
@@ -508,7 +508,7 @@
 
   function pAdd_array_to_data ( $array ) {
 
-    global $pData, $pad;
+    global $pData, $p;
 
     if ( pIs_default_data ( $pData[$p] ) )
       $pData[$p] = $array;
@@ -539,9 +539,9 @@
 
   function pChk_level_array ($tag) {
 
-    global $pCurrent, $pad;
+    global $pCurrent, $p;
 
-    for ( $search = $pad; $search>1; $search-- )
+    for ( $search = $p; $search>1; $search-- )
       if ( isset ( $pCurrent [$search] [$tag] ) and is_array ( $pCurrent [$search] [$tag]) )
         return TRUE;
 
@@ -551,9 +551,9 @@
 
   function pGet_level_array ($tag) {
 
-    global $pCurrent, $pad;
+    global $pCurrent, $p;
 
-    for ( $search = $pad; $search>1; $search-- )
+    for ( $search = $p; $search>1; $search-- )
       if ( isset ( $pCurrent [$search] [$tag] ) and is_array ( $pCurrent [$search] [$tag]) )
         return $pCurrent [$search] [$tag];
 

@@ -125,7 +125,7 @@
     $pEval_stepCnt++;
 
     pFile_put_contents ( 
-      "$pOccurDir/eval/$pEvalCnt/$pEval_stepCnt.$step.json",  
+      $OccurDir [$] . "/eval/$pEvalCnt/$pEval_stepCnt.$step.json",  
       $data 
     );
 

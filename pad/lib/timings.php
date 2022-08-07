@@ -45,7 +45,7 @@
     if ( ! $GLOBALS['pTiming'] )
       return;
 
-    global $pTimings, $pTimings_boot, $pTimings_start, $pTimingsCnt, $pTrace_dir;
+    global $pTimings, $pTimings_boot, $pTimings_start, $pTimingsCnt, $pTraceDir;
 
     foreach ( $pTimings_start as $key => $val ) 
       pTiming_end ($key);
@@ -61,8 +61,8 @@
     pHeader ('X-PAD-Counts: '  . json_encode ( $pTimingsCnt) );
 
     if ( $GLOBALS['pTrace_timings'] ) {
-      pFile_put_contents ( $pTrace_dir . "/timings.json", $pTimings       );
-      pFile_put_contents ( $pTrace_dir . "/counts.json",  $pTimingsCnt );
+      pFile_put_contents ( $pTraceDir . "/timings.json", $pTimings       );
+      pFile_put_contents ( $pTraceDir . "/counts.json",  $pTimingsCnt );
     }
 
   }

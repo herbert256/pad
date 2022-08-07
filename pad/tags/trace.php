@@ -1,8 +1,8 @@
 <?php
 
-  if ( $pWalk == 'start' ) {  
+  if ( $pWalk[$p] == 'start' ) {  
 
-    $pWalk = 'end';
+    $pWalk[$p] = 'end';
 
     $pBackup_trace = [];
 
@@ -25,7 +25,7 @@
     $pTrace_explode   = TRUE;
     $pTrace_tag       = TRUE; 
 
-    $pLevelDir = $pTrace_dir . '/trace-' . $pLvlCnt; 
+    $pLevelDir = $pTraceDir . '/trace-' . $pCnt; 
     $pOccurDir = $pLevelDir;
 
     $pLevelDir[$p]= $pLevelDir;

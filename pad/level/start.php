@@ -1,7 +1,9 @@
 <?php
   
-  $pad++;
-  $pLvlCnt++;
+  $p++;
+  $pCnt++;
+
+  include 'setup.php';
 
   $pContent = $pTrue[$p];
   include 'type_go.php';

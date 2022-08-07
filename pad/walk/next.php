@@ -1,6 +1,6 @@
 <?php
      
-  $pWalk = 'next';
+  $pWalk[$p] = 'next';
   
   $pContent = $pBase[$p];
   include PAD . "level/type_go.php"; 
@@ -8,7 +8,7 @@
 
   include PAD . "level/flags.php";
 
-  if ( $pWalk ) {
+  if ( $pWalk[$p] ) {
 
     if ( $pArray )
       $pData[$p] = $pTagResult;

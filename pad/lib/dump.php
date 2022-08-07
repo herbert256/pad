@@ -52,18 +52,18 @@
        if ( file_exists (APP . 'config/config.php') )
           $settings .= pFile_get_contents(APP . 'config/config.php');
 
-    $pad = $config = $app_flds = [];
+    $p = $config = $app_flds = [];
 
     foreach ($GLOBALS as $key => $value) {
 
-      if ( substr($key, 0, 3) <> 'pad' and ! in_array($key, $app_chk ) )
+      if ( substr($key, 0, 3) <> 'p' and ! in_array($key, $app_chk ) )
         $app_flds [] = $key;
  
       if (strpos($settings, '$'.$key.' ') or strpos($settings, '$'.$key.'=') or strpos($settings, '$'.$key."\t"))
         $config [] = $key;
 
-      if ( substr($key, 0, 3)  == 'pad' and ! in_array ($key, $not)  and ! in_array ($key, $config) )
-        $pad [] = $key;
+      if ( substr($key, 0, 1)  == 'p' and ! in_array ($key, $not)  and ! in_array ($key, $config) )
+        $p [] = $key;
 
     }
 
@@ -156,7 +156,7 @@
     if ( isset ( $GLOBALS ['pSql_connect'     ] ) ) pDump_object ('MySQL-App', $GLOBALS ['pSql_connect']      );
     if ( isset ( $GLOBALS ['pPad_sql_connect' ] ) ) pDump_object ('MySQL-PAD', $GLOBALS ['pPad_sql_connect']  );
 
-    pDump_fields ($pad,    "Pad variables");
+    pDump_fields ($p,    "Pad variables");
     pDump_fields ($config, "Settings");
                                               pDump_array  ('Headers-in',  getallheaders());
     if ( isset ( $GLOBALS ['pHeaders'] ) ) pDump_array  ('Headers-out', $GLOBALS ['pHeaders'] );

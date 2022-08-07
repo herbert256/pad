@@ -1,8 +1,8 @@
 <?php
 
-  if ( $pWalk == 'start' ) {
+  if ( $pWalk[$p] == 'start' ) {
 
-    $pWalk = 'end';
+    $pWalk[$p] = 'end';
     
     $pIsolate[$p] = [];
       

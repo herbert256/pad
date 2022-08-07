@@ -17,18 +17,19 @@
   include 'nono.php';
   include 'fast.php';
   include 'error.php';
-  include 'trace.php';
   include 'cookies.php';
   include 'zip.php';
   include 'host.php';
   include 'cache.php';
   include 'options.php';
   include 'parms.php';
+  include 'level.php';
 
   $pLib = APP . 'lib';
   include 'lib.php';
 
-  include PAD . 'level/setup.php';
+  include 'trace.php';
+
   include PAD . 'build/build.php';
 
   pTiming_end ('init');

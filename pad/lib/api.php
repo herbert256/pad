@@ -3,7 +3,7 @@
 
   function pFast_link ($app, $page, $vars ) {
     
-    global $pFast_link, $PADSESSID, $PADREQID, $pHost, $pad;
+    global $pFast_link, $PADSESSID, $PADREQID, $pHost, $p;
   
     $vars ['app']       = $app;
     $vars ['page']      = $page;
@@ -17,7 +17,7 @@
       [$fast, serialize($vars)]
     );
                         
-    return $pHost . $pad . $fast;
+    return $pHost . $p . $fast;
 
   }
 

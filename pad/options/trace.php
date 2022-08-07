@@ -1,8 +1,8 @@
 <?php
       
-  $pWalk_save = $pWalk;
-  $pWalk = 'end';
+  $pWalk[$p]_save = $pWalk[$p];
+  $pWalk[$p] = 'end';
   include PAD . 'tags/trace.php';
-  $pWalk = $pWalk_save;
+  $pWalk[$p] = $pWalk[$p]_save;
 
 ?>

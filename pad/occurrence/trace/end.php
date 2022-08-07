@@ -1,6 +1,6 @@
 <?php
     
-  if ( $pad > 1 )
-    pFile_put_contents ("$pOccurDir/html-result.html", $pHtml[$p] );
+  if ( $p > 1 )
+    pFile_put_contents ($OccurDir [$] . "/html-result.html", $pHtml[$p] );
 
 ?>

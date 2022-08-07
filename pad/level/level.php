@@ -18,27 +18,20 @@
   }
 
   $pBetween = substr($pHtml[$p], $pStart[$p]+1, $pEnd[$p]-$pStart[$p]-1);
-  $pFirst   = substr($pBetween, 0, 1);
+
+  include 'between.php';
 
   if     ( $pFirst == '!' ) return pHtml ( include PAD . 'var/raw.php' );
   elseif ( $pFirst == '$' ) return pHtml ( include PAD . 'var/opt.php' );
 
-  $pWords = preg_split("/[\s]+/", $pBetween, 2, PREG_SPLIT_NO_EMPTY);
-  $pTag[$p]  = trim($pWords[0] ?? '');
-  $pPrms[$p] = trim($pWords[1] ?? '');
-
-  $pPrmsType = ( $pPrms[$p]) ? 'open' : 'none';
-
-  if     ( ! ctype_alpha ( $pFirst )  ) return pIgnore ('ctype_alpha');
-  elseif ( ! pValid      ( $pTag[$p]) ) return pIgnore ('pValid');
+  if     ( ! ctype_alpha ( $pFirst )    ) return pIgnore ('ctype_alpha');
+  elseif ( ! pValid      ( $pTag[$p+1]) ) return pIgnore ('pValid');
 
   include 'type_get.php';
-  if ( $pType[$p] === NULL )
-    return pIgnore ('type_get');
-
   include 'pair.php';
-  if ( $pPair[$p] === NULL ) 
-    return pIgnore ('pair');
+
+  if ( $pType[$p+1] === NULL ) return pIgnore ('type_get');
+  if ( $pPair[$p+1] === NULL ) return pIgnore ('pair');
 
   include 'start.php';
 

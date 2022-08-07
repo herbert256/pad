@@ -3,7 +3,7 @@
 
   function pDb_get_data ($table, $page=0, $rows=0, $unionBuild=0) {
 
-    global $pad, $pData, $pPrmsTag[$p], $pKey, $pDb_relations, $pDbTables, $pDb, $pDone;
+    global $p, $pData, $pPrmsTag[$p], $pKey, $pDb_relations, $pDbTables, $pDb, $pDone;
 
     $parms = pDb_get_db ($table);
 
@@ -67,7 +67,7 @@
         else
           $second = $relation ['key'];
         
-        for ( $i=$pad-1; $i; $i--)
+        for ( $i=$p-1; $i; $i--)
           if ( $pDb [$i] ==  $key)
             pDb_get_keys_level ($first, $second, $pData [$i] [$pKey[$i]], $where, $hit1);
 
@@ -83,7 +83,7 @@
           $first  = $relation ['key'];
           $second = ( isset($val['key']) ) ? $val ['key'] : $relation ['key'];
 
-          for ( $i=$pad; $i; $i--)
+          for ( $i=$p; $i; $i--)
             if ( $pDb [$i] ==  $key)
               pDb_get_keys_level ($first, $second, $pData [$i] [$pKey[$i]], $where, $hit2);
   
@@ -315,7 +315,7 @@
   
   function pDb_get_info () {
     
-    global $pDbTables, $pad, $pDb_lvl, $pDb_relations;
+    global $pDbTables, $p, $pDb_lvl, $pDb_relations;
 
     $go = TRUE;
     
@@ -373,9 +373,9 @@
 
   function pDb_chk ($table) {
     
-    global $pad, $pDb_lvl;
+    global $p, $pDb_lvl;
 
-    for ( $i=$pad; $i; $i--)
+    for ( $i=$p; $i; $i--)
       if ( isset ( $pDb_lvl [$i] [$table] ) )
         return TRUE;
   
@@ -385,7 +385,7 @@
   
   function pDb_get_main () {
     
-    global $pDbTables, $pad, $pDb_lvl, $pDb_relations;
+    global $pDbTables, $p, $pDb_lvl, $pDb_relations;
 
     foreach ($pDb_relations as $key => $val)
       foreach ($pDb_relations[$key] as $key2 => $val2)

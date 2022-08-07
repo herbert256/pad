@@ -1,9 +1,9 @@
 <?php
 
-  $pad--;
+  $p--;
 
   $pData[$p] = $pData[$p+1];
-  reset ( $pData[ $pad] );
+  reset ( $pData[$p] );
   $pKey[$p] = key($pData[$p]);
 
   $pParent_start = strpos ( $pBase[$p], '{'.$pTag[$p]);
