@@ -27,7 +27,7 @@
   if ( $pTrace ) 
     include 'trace/end.php';
 
-  $pad--;
+  $p--;
   
   if ($pad)
     pHtml ( $pResult[$p+1]);

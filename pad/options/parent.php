@@ -2,7 +2,7 @@
 
   $pad--;
 
-  $pData[$p] = $pData [$p+1];
+  $pData[$p] = $pData[$p+1];
   reset ( $pData[ $pad] );
   $pKey[$p] = key($pData[$p]);
 

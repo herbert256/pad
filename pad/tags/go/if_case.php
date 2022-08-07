@@ -5,7 +5,7 @@
   
   while ($pChk !== FALSE) {
 
-    if ( ! pCheck_tag ($pTag[$p], substr($pContent, 0, $pChk)) ) 
+    if ( ! pCheckTag ($pTag[$p], substr($pContent, 0, $pChk)) ) 
 
       $pChk = strpos($pContent , $pTst, $pChk+$pAdd);
 

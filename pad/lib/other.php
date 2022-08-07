@@ -561,7 +561,7 @@
 
 
 
-  function pCheck_tag ($tag, $string) {
+  function pCheckTag ($tag, $string) {
 
     return ( substrCnt($string, "{" . $tag) == substrCnt($string, "{/" . $tag) ) ;
 

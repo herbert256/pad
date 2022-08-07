@@ -30,15 +30,15 @@
   $pPrmsType = ( $pPrms[$p]) ? 'open' : 'none';
 
   if     ( ! ctype_alpha ( $pFirst )  ) return pIgnore ('ctype_alpha');
-  elseif ( ! pValid   ( $pTag[$p]) ) return pIgnore ('pValid');
+  elseif ( ! pValid      ( $pTag[$p]) ) return pIgnore ('pValid');
 
-  $pPair_result = include 'pair.php';
-  if ( $pPair_result === NULL ) 
-    return pIgnore ('pair');
-
-  $pType = include 'type_get.php';
-  if ( $pType === NULL )
+  include 'type_get.php';
+  if ( $pType[$p] === NULL )
     return pIgnore ('type_get');
+
+  include 'pair.php';
+  if ( $pPair[$p] === NULL ) 
+    return pIgnore ('pair');
 
   include 'start.php';
 

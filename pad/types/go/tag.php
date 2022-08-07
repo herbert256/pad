@@ -5,7 +5,7 @@
   $pTag_php = '';
 
   if ( file_exists("$pTag_go.html") )
-  	$pTag_content .= pGet_html ("$pTag_go.html");
+  	$pTagContent .= pGet_html ("$pTag_go.html");
 
   if ( file_exists("$pTag_go.php") ) {
 
@@ -22,7 +22,7 @@
     if ( $pTag_php === 1 )
       $pTag_php = '' ;
 
-    $pTag_content .= ob_get_clean() ;
+    $pTagContent .= ob_get_clean() ;
 
   }
 
@@ -30,9 +30,9 @@
     return $pTag_php;
 
   if ( $pTag_php !== TRUE and $pTag_php !== FALSE and $pTag_php !== NULL ) {
-    if ( $pTag_php or $pTag_content )
-      $pTag_php = $pTag_content . $pTag_php;
-    $pTag_content = '';
+    if ( $pTag_php or $pTagContent )
+      $pTag_php = $pTagContent . $pTag_php;
+    $pTagContent = '';
   }
 
   return $pTag_php;

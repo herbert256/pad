@@ -2,7 +2,7 @@
 
   $pTag_trace_data ['walk_after'] = $pWalk;
   $pTag_trace_data ['result']     = $pTagResult;
-  $pTag_trace_data ['content']    = $pTag_content;
+  $pTag_trace_data ['content']    = $pTagContent;
 
   pFile_put_contents ( "$pLevelDir/result." . $TagCnt[$p] . '.json',  $pTag_trace_data );
   
