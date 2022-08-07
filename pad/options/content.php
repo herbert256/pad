@@ -1,5 +1,5 @@
 <?php
 
-  return $pad_content_store [ pad_tag_parm('content') ];
+  return $pContent_store [ pTag_parm('content') ];
   
 ?>

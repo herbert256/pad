@@ -1,34 +1,34 @@
 <?php
 
- if ( file_exists ( PAD . "sequence/types/$pad_seq_seq/one.php" ) ) 
+ if ( file_exists ( PAD . "sequence/types/$pSeq_seq/one.php" ) ) 
   
-    $pad_sequence = include PAD . "sequence/types/$pad_seq_seq/one.php";
+    $pSequence = include PAD . "sequence/types/$pSeq_seq/one.php";
 
-  elseif ( $pad_seq_build == 'fixed' ) 
+  elseif ( $pSeq_build == 'fixed' ) 
 
-    $pad_sequence = $pad_seq_loop;
+    $pSequence = $pSeq_loop;
 
-  elseif ( $pad_seq_build == 'function' )
+  elseif ( $pSeq_build == 'function' )
 
-    $pad_sequence = "pad_sequence_$pad_seq_seq" ($pad_seq_loop);
+    $pSequence = "pSequence_$pSeq_seq" ($pSeq_loop);
 
-  elseif ( $pad_seq_build == 'bool' )
+  elseif ( $pSeq_build == 'bool' )
 
-    $pad_sequence = include "bool.php";
+    $pSequence = include "bool.php";
 
-  elseif ( $pad_seq_random and file_exists ( PAD . "sequence/types/$pad_seq_seq/random.php") )
+  elseif ( $pSeq_random and file_exists ( PAD . "sequence/types/$pSeq_seq/random.php") )
 
-    $pad_sequence = include PAD . "sequence/types/$pad_seq_seq/random.php" ;
+    $pSequence = include PAD . "sequence/types/$pSeq_seq/random.php" ;
 
   else
 
-    $pad_sequence = include PAD . "sequence/types/$pad_seq_seq/$pad_seq_build.php";
+    $pSequence = include PAD . "sequence/types/$pSeq_seq/$pSeq_build.php";
 
-  if     ( $pad_sequence === NULL  ) return FALSE;
-  elseif ( $pad_sequence === FALSE ) return TRUE;   
-  elseif ( $pad_sequence === INF   ) return FALSE; 
-  elseif ( $pad_sequence === NAN   ) return FALSE; 
-  elseif ( $pad_sequence === TRUE  ) return $pad_seq_loop;
-  else                               return $pad_sequence;
+  if     ( $pSequence === NULL  ) return FALSE;
+  elseif ( $pSequence === FALSE ) return TRUE;   
+  elseif ( $pSequence === INF   ) return FALSE; 
+  elseif ( $pSequence === NAN   ) return FALSE; 
+  elseif ( $pSequence === TRUE  ) return $pSeq_loop;
+  else                               return $pSequence;
 
 ?>

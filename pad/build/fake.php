@@ -1,5 +1,5 @@
 <?php
 
-  $pad_base [$pad] = $fake_base;
+  $pBase [$pad] = $fake_base;
 
 ?>

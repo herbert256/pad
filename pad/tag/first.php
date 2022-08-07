@@ -1,6 +1,6 @@
 <?php
   
-  global $pad_data, $pad_key;
+  global $pData, $pKey;
 
   return ( (include PAD . "tag/current.php") == 1);
 

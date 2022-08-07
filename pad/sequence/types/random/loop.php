@@ -1,5 +1,5 @@
 <?php
 
-  return pad_seq_random ( $pad_seq_random_start, $pad_seq_random_end );
+  return pSeq_random ( $pSeq_random_start, $pSeq_random_end );
 
 ?>

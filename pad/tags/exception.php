@@ -1,5 +1,5 @@
 <?php
 
-  throw new Exception ($pad_parm);
+  throw new Exception ($pParm);
   
 ?>

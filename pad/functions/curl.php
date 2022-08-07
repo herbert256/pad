@@ -1,5 +1,5 @@
 <?php
 
-  return pad_curl ($value);
+  return pCurl ($value);
 
 ?>

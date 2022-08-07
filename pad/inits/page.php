@@ -2,9 +2,9 @@
 
   $page = $page ?? $_REQUEST['page'] ?? 'index';
 
-  if ( ! pad_check_page ($app, $page) )
-    pad_boot_error ("Page not found");
+  if ( ! pCheck_page ($app, $page) )
+    pBoot_error ("Page not found");
 
-  $page = pad_get_page ($app, $page);
+  $page = pGet_page ($app, $page);
   
 ?>

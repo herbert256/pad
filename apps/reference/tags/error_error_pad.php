@@ -1,5 +1,5 @@
 <?php
 
-  pad_error ("PAD error test");
+  pError ("PAD error test");
 
 ?>

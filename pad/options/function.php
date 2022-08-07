@@ -1,5 +1,5 @@
 <?php
 
-  $pad_content = pad_function_in_tag ( '', $pad_prms_tag ['function'], $pad_content, [] );
+  $pContent = pFunction_in_tag ( '', $pPrms_tag ['function'], $pContent, [] );
 
 ?>

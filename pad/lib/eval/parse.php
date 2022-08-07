@@ -1,8 +1,8 @@
 <?php
   
-  function pad_eval_parse (&$result, $eval, $myself='') {
+  function pEval_parse (&$result, $eval, $myself='') {
     
-    $input  = str_split ( pad_unescape($eval) );
+    $input  = str_split ( pUnescape($eval) );
     $is_hex = $is_var = $is_str = $is_quote = $is_num = $is_other = FALSE;
     $skip   = $i = 0;
     
@@ -266,7 +266,7 @@
 
       }
 
-      if ( in_array($one.$next, pad_eval_2) ) {
+      if ( in_array($one.$next, pEval_2) ) {
       
         $i += 100;
         $result [$i] [0] = $one.$next;
@@ -277,7 +277,7 @@
         
         continue;
 
-      } elseif ( in_array($one, pad_eval_1) ) {
+      } elseif ( in_array($one, pEval_1) ) {
       
         $i += 100;
         $result [$i] [0] = $one;

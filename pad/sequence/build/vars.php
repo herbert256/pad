@@ -1,20 +1,20 @@
 <?php
 
-  $pad_sequence_store_get = '';
-  $pad_seq_result = $pad_seq_for = $pad_seq_cache = [];
-  $pad_seq = $pad_sequence = $pad_seq_protect_cnt = $pad_seq_base = 0;
+  $pSequence_store_get = '';
+  $pSeq_result = $pSeq_for = $pSeq_cache = [];
+  $pSeq = $pSequence = $pSeq_protect_cnt = $pSeq_base = 0;
 
-  if ( ! $pad_seq_name )                            $pad_seq_name = $pad_seq_set; 
-  if ( ! isset($GLOBALS ["pad_seq_$pad_seq_seq"]) ) $GLOBALS ["pad_seq_$pad_seq_seq"] = $pad_seq_parm;
-  if ( ! isset($pad_prms_tag ["$pad_seq_seq"])   ) $pad_prms_tag ["$pad_seq_seq"]   = $pad_seq_parm;
+  if ( ! $pSeq_name )                            $pSeq_name = $pSeq_set; 
+  if ( ! isset($GLOBALS ["pSeq_$pSeq_seq"]) ) $GLOBALS ["pSeq_$pSeq_seq"] = $pSeq_parm;
+  if ( ! isset($pPrms_tag ["$pSeq_seq"])   ) $pPrms_tag ["$pSeq_seq"]   = $pSeq_parm;
 
-  if ( $pad_seq_seq == 'make' )
-    $pad_seq_filter_check = 'make';
+  if ( $pSeq_seq == 'make' )
+    $pSeq_filter_check = 'make';
   else
-    $pad_seq_filter_check = 'filter';
+    $pSeq_filter_check = 'filter';
 
-  $pad_seq_special_ops = ['make', 'keep', 'remove'];
+  $pSeq_special_ops = ['make', 'keep', 'remove'];
 
-  $pad_name = $pad_parms [$pad] ['name'] = $pad_seq_name;
+  $pName = $pParms [$pad] ['name'] = $pSeq_name;
 
 ?>

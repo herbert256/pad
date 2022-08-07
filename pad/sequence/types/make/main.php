@@ -1,24 +1,24 @@
 <?php
 
-  $GLOBALS ["pad_seq_mf_$pad_seq_seq"] = [];
+  $GLOBALS ["pSeq_mf_$pSeq_seq"] = [];
  
-  foreach ( $pad_prms_tag as $pad_seq_opt_name => $pad_seq_opt_value )
+  foreach ( $pPrms_tag as $pSeq_opt_name => $pSeq_opt_value )
 
-    if ( file_exists ( PAD . "sequence/types/$pad_seq_opt_name/$pad_seq_filter_check.php" ) ) {
+    if ( file_exists ( PAD . "sequence/types/$pSeq_opt_name/$pSeq_filter_check.php" ) ) {
 
-      $GLOBALS ["pad_seq_mf_$pad_seq_seq"] [$pad_seq_opt_name] = $pad_seq_opt_value;
+      $GLOBALS ["pSeq_mf_$pSeq_seq"] [$pSeq_opt_name] = $pSeq_opt_value;
 
-      pad_done ( $pad_seq_opt_name, TRUE );
+      pDone ( $pSeq_opt_name, TRUE );
 
-      $GLOBALS ["pad_seq_$pad_seq_opt_name"] = $pad_seq_opt_value;
+      $GLOBALS ["pSeq_$pSeq_opt_name"] = $pSeq_opt_value;
 
     }
    
-  $pad_sequence_store_get = $pad_seq_parm;
-  $pad_seq_for = $pad_sequence_store [$pad_seq_parm];
+  $pSequence_store_get = $pSeq_parm;
+  $pSeq_for = $pSequence_store [$pSeq_parm];
 
-  if ( ! $pad_seq_push and ! $pad_pair )
-    $pad_seq_push = $pad_seq_parm;
+  if ( ! $pSeq_push and ! $pPair )
+    $pSeq_push = $pSeq_parm;
 
   include PAD . "sequence/type/for.php";
       

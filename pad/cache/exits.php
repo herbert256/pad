@@ -1,28 +1,28 @@
 <?php
   
-  pad_timing_start ('cache');
+  pTiming_start ('cache');
   
-  if ( $pad_etag == $pad_cache_etag )
+  if ( $pEtag == $pCache_etag )
   
-    pad_cache_update ($pad_cache_url, $pad_etag);
+    pCache_update ($pCache_url, $pEtag);
 
   else {
 
-    if ($pad_cache_etag)
-      pad_cache_delete ($pad_cache_url, $pad_cache_etag);
+    if ($pCache_etag)
+      pCache_delete ($pCache_url, $pCache_etag);
 
-    if ( $pad_cache_server_gzip and ! $pad_client_gzip )
-      pad_cache_store ($pad_cache_url, $pad_etag, pad_zip($pad_output));
+    if ( $pCache_server_gzip and ! $pClient_gzip )
+      pCache_store ($pCache_url, $pEtag, pZip($pOutput));
     else
-      pad_cache_store ($pad_cache_url, $pad_etag, $pad_output);
+      pCache_store ($pCache_url, $pEtag, $pOutput);
     
   }
 
-  if ( $pad_trace_cache ) {
-    $pad_cache_stop = $pad_stop + .4;
+  if ( $pTrace_cache ) {
+    $pCache_stop = $pStop + .4;
     include 'trace.php';
   }
   
-  pad_timing_end ('cache');
+  pTiming_end ('cache');
     
 ?>

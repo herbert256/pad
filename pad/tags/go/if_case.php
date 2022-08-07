@@ -1,34 +1,34 @@
 <?php
   
-  $pad_chk = strpos ($pad_content, $pad_tst);
-  $pad_add = strlen ($pad_tst);
+  $pChk = strpos ($pContent, $pTst);
+  $pAdd = strlen ($pTst);
   
-  while ($pad_chk !== FALSE) {
+  while ($pChk !== FALSE) {
 
-    if ( ! pad_check_tag ($pad_tag, substr($pad_content, 0, $pad_chk)) ) 
+    if ( ! pCheck_tag ($pTag, substr($pContent, 0, $pChk)) ) 
 
-      $pad_chk = strpos($pad_content , $pad_tst, $pad_chk+$pad_add);
+      $pChk = strpos($pContent , $pTst, $pChk+$pAdd);
 
     else {
 
-      $pad_eval = pad_eval($pad_eval);
+      $pEval = pEval($pEval);
 
-      if ( ($pad_tag == 'if' and $pad_eval) or ($pad_tag == 'case' and $pad_basis == $pad_eval) ) {
-        $pad_content = substr ($pad_content, 0, $pad_chk);
+      if ( ($pTag == 'if' and $pEval) or ($pTag == 'case' and $pBasis == $pEval) ) {
+        $pContent = substr ($pContent, 0, $pChk);
         return TRUE;
       }
 
-      $pad_pos     = strpos($pad_content, '}', $pad_chk); 
-      $pad_eval    = substr($pad_content, $pad_chk+$pad_add+1, $pad_pos-($pad_chk+$pad_add+1));
-      $pad_content = substr($pad_content, $pad_pos+1);
-      $pad_chk     = strpos($pad_content, $pad_tst);
+      $pPos     = strpos($pContent, '}', $pChk); 
+      $pEval    = substr($pContent, $pChk+$pAdd+1, $pPos-($pChk+$pAdd+1));
+      $pContent = substr($pContent, $pPos+1);
+      $pChk     = strpos($pContent, $pTst);
 
     }
  
   }
 
-  $pad_eval = pad_eval($pad_eval);
+  $pEval = pEval($pEval);
 
-  return ( ($pad_tag == 'if' and $pad_eval) or ($pad_tag == 'case' and $pad_basis == $pad_eval) );
+  return ( ($pTag == 'if' and $pEval) or ($pTag == 'case' and $pBasis == $pEval) );
 
 ?>

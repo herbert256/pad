@@ -1,8 +1,8 @@
 <?php
 
-  if ( $pad_seq_page ) {
-    $pad_seq_page_start = (($pad_seq_page-1) * $pad_seq_rows) + 1; 
-    $pad_seq_page_end   = $pad_seq_page * $pad_seq_rows; 
+  if ( $pSeq_page ) {
+    $pSeq_page_start = (($pSeq_page-1) * $pSeq_rows) + 1; 
+    $pSeq_page_end   = $pSeq_page * $pSeq_rows; 
   }
 
 ?>

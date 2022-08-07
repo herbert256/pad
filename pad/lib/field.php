@@ -1,18 +1,18 @@
 <?php
 
-  function pad_field_check ($parm) { return pad_field ($parm, 1); } 
-  function pad_field_value ($parm) { return pad_field ($parm, 2); } 
-  function pad_array_check ($parm) { return pad_field ($parm, 3); } 
-  function pad_array_value ($parm) { return pad_field ($parm, 4); } 
-  function pad_field_null  ($parm) { return pad_field ($parm, 5); } 
+  function pField_check ($parm) { return pField ($parm, 1); } 
+  function pField_value ($parm) { return pField ($parm, 2); } 
+  function pArray_check ($parm) { return pField ($parm, 3); } 
+  function pArray_value ($parm) { return pField ($parm, 4); } 
+  function pField_null  ($parm) { return pField ($parm, 5); } 
 
-  function pad_field ($parm, $type) {
+  function pField ($parm, $type) {
 
     $field = ( substr ( $parm, 0, 1 ) == '$' ) ? substr ( $parm, 1 ) : $parm;
 
-    if     ( strpos ( $field, '#' ) !== FALSE ) $value = pad_field_tag    ( $field        );
-    elseif ( strpos ( $field, ':' ) !== FALSE ) $value = pad_field_prefix ( $field, $type );
-    else                                        $value = pad_field_level  ( $field, $type );
+    if     ( strpos ( $field, '#' ) !== FALSE ) $value = pField_tag    ( $field        );
+    elseif ( strpos ( $field, ':' ) !== FALSE ) $value = pField_prefix ( $field, $type );
+    else                                        $value = pField_level  ( $field, $type );
 
     if     ($type == 1) return ( $value !== NULL and ( $value === INF or ! is_scalar($value) ) ) ? FALSE : TRUE;
     elseif ($type == 2) return ( $value === NULL or    $value === INF or ! is_scalar($value)   ) ? ''    : $value;
@@ -22,36 +22,36 @@
 
   }
 
-  function pad_field_prefix ( $field, $type ) {
+  function pField_prefix ( $field, $type ) {
 
-    global $pad, $pad_db_lvl, $pad_current;
+    global $pad, $pDb_lvl, $pCurrent;
 
     list ( $prefix, $field ) = explode (':', $field, 2);
 
     if ( is_numeric($field) )
-      return pad_field_tag_nr ($prefix, $field);
+      return pField_tag_nr ($prefix, $field);
 
     if ( $prefix == 'PHP' or $prefix === 1 or $prefix === '1' )
-      return pad_field_search ($GLOBALS, $field, $type);
+      return pField_search ($GLOBALS, $field, $type);
 
-    $lvl = pad_field_tag_lvl_base ( $prefix, FALSE );
+    $lvl = pField_tag_lvl_base ( $prefix, FALSE );
 
     if ( $lvl == 1 ) 
-      $return = pad_field_search ($GLOBALS, $field, $type);
+      $return = pField_search ($GLOBALS, $field, $type);
     elseif ( $lvl ) 
-      $return = pad_field_search ($pad_current [$lvl], $field, $type);
+      $return = pField_search ($pCurrent [$lvl], $field, $type);
     else
       for ( $i=$pad; $i; $i-- )
-        foreach ( $pad_db_lvl [$i] as $key => $value)
+        foreach ( $pDb_lvl [$i] as $key => $value)
           if ($key == $prefix)
-            $return = pad_field_search ($value, $field, $type);
+            $return = pField_search ($value, $field, $type);
 
     if ( $return === INF ) {
-      $GLOBALS['pad_field_double_check'] = TRUE;
+      $GLOBALS['pField_double_check'] = TRUE;
       $tag = "$prefix#$field";
-      if     ( pad_field_check($tag) ) $return = pad_field_value($tag);
-      elseif ( pad_array_check($tag) ) $return = pad_array_value($tag);   
-      $GLOBALS['pad_field_double_check'] = FALSE;
+      if     ( pField_check($tag) ) $return = pField_value($tag);
+      elseif ( pArray_check($tag) ) $return = pArray_value($tag);   
+      $GLOBALS['pField_double_check'] = FALSE;
     }
 
     return $return;
@@ -59,29 +59,29 @@
   }
 
 
-  function pad_field_level ( $field, $type ) {
+  function pField_level ( $field, $type ) {
 
-    global $pad, $pad_db_lvl, $pad_current, $pad_parms;
+    global $pad, $pDb_lvl, $pCurrent, $pParms;
 
     if ( is_numeric($field) ) 
-      return pad_field_tag_nr ('', $field);
+      return pField_tag_nr ('', $field);
 
     for ( $i=$pad; $i; $i-- ) {
 
       if ( $i == 1 )
-        $work = pad_field_search ( $GLOBALS, $field, $type );
+        $work = pField_search ( $GLOBALS, $field, $type );
       else
-        $work = pad_field_search ( $pad_current[$i], $field, $type );
+        $work = pField_search ( $pCurrent[$i], $field, $type );
 
       if ( $work !== INF )
         return $work;
 
-      foreach ( $pad_db_lvl [$i] as $key => $value ) {
-        $work = pad_field_search ( $value, $field, $type);   
+      foreach ( $pDb_lvl [$i] as $key => $value ) {
+        $work = pField_search ( $value, $field, $type);   
         if ( $work !== INF )
           return $work;
 
-      $work = pad_field_search ( $pad_parms [$i] ['parms_tag'], $field, $type);   
+      $work = pField_search ( $pParms [$i] ['parms_tag'], $field, $type);   
       if ( $work !== INF )
         return $work;
 
@@ -94,7 +94,7 @@
   }
 
 
-  function pad_field_search ($current, $field, $type) {
+  function pField_search ($current, $field, $type) {
 
     if ( is_object ($current) or is_resource ($current) )
       $current = (array) $current;
@@ -123,12 +123,12 @@
 
   }
 
-  function pad_first_non_parm  ($min=0) {
+  function pFirst_non_parm  ($min=0) {
 
-    global $pad, $pad_parms;
+    global $pad, $pParms;
 
     for ($i=$pad-$min; $i; $i--)
-      if ( $pad_parms [$i] ['type'] <> 'parm' )
+      if ( $pParms [$i] ['type'] <> 'parm' )
         return $i;
 
     if ( $pad > 1 )
@@ -139,54 +139,54 @@
   }  
 
 
-  function pad_field_tag_nr ($tag, $nr) {
+  function pField_tag_nr ($tag, $nr) {
 
-    $lvl = pad_field_tag_lvl ($tag, FALSE);
+    $lvl = pField_tag_lvl ($tag, FALSE);
     $idx = intval ($nr) - 1 ;
 
-    global $pad_parms;
+    global $pParms;
     
-    if ( isset ( $pad_parms [$lvl] ['parms_val'] [$idx] ) )
-      return $pad_parms [$lvl] ['parms_val'] [$idx]; 
+    if ( isset ( $pParms [$lvl] ['parms_val'] [$idx] ) )
+      return $pParms [$lvl] ['parms_val'] [$idx]; 
     else
       return INF;
 
   }
   
 
-  function pad_field_tag ($field) {
+  function pField_tag ($field) {
 
     if ( substr($field, 0, 1) == '#' ) {
-      $temp  = pad_explode ($field, '#', 2);
+      $temp  = pExplode ($field, '#', 2);
       $tag   = '';
       $field = $temp[0];
       $parm  = $temp[1]??'';
     } else {
-      $temp  = pad_explode ($field, '#', 3);
+      $temp  = pExplode ($field, '#', 3);
       $tag   = $temp[0];
       $field = $temp[1];
       $parm  = $temp[2]??'';
     }
 
     if ( in_array ( $field, ['fields','names','values'] ) )
-      $pad_idx = pad_field_tag_lvl ($tag, TRUE);
+      $pIdx = pField_tag_lvl ($tag, TRUE);
     else
-      $pad_idx = pad_field_tag_lvl ($tag, FALSE);
+      $pIdx = pField_tag_lvl ($tag, FALSE);
     
     if ( file_exists ( PAD . "tag/".$field.".php" ) )
       return include PAD . "tag/$field.php";
 
-    if ( in_array ( $parm, ['name','value'] ) and $pad_idx and isset($GLOBALS['pad_current'] ) ) {
+    if ( in_array ( $parm, ['name','value'] ) and $pIdx and isset($GLOBALS['pCurrent'] ) ) {
       $pos = 1;
-      foreach( $GLOBALS['pad_current'] [$pad_idx] as $key => $value )
+      foreach( $GLOBALS['pCurrent'] [$pIdx] as $key => $value )
         if ( $pos++ == $field )
           return ( $parm == 'name') ? $key : $value;
     }
 
-    if ( $tag and ! $GLOBALS['pad_field_double_check'] ) {
+    if ( $tag and ! $GLOBALS['pField_double_check'] ) {
       $chk = "$tag:$field";
-      if ( pad_field_check($chk) ) return pad_field_value($chk);
-      if ( pad_array_check($chk) ) return pad_array_value($chk);   
+      if ( pField_check($chk) ) return pField_value($chk);
+      if ( pArray_check($chk) ) return pArray_value($chk);   
     }
 
     return INF;
@@ -194,39 +194,39 @@
   }
 
 
-  function pad_field_tag_lvl  ($search, $data) {
+  function pField_tag_lvl  ($search, $data) {
 
-    global $pad, $pad_parms;
+    global $pad, $pParms;
 
     for ($i=$pad; $i; $i--)
-      if ( $pad_parms [$i] ['name'] == $search )
+      if ( $pParms [$i] ['name'] == $search )
         return $i;
 
-    $return = pad_field_tag_lvl_base ($search, $data);
+    $return = pField_tag_lvl_base ($search, $data);
     
     if ( ! $return === FALSE)
       return $return;
 
-    if ( isset( $GLOBALS['pad_data_store'] [$search]) )
-      return pad_field_fake_level ( $search, $GLOBALS['pad_data_store'] );
+    if ( isset( $GLOBALS['pData_store'] [$search]) )
+      return pField_fake_level ( $search, $GLOBALS['pData_store'] );
 
     for ($i=$pad; $i; $i--)
-      if ( isset( $GLOBALS['pad_db_lvl'] [$i] ) )
-        if ( isset( $GLOBALS['pad_db_lvl'] [$i] [$search]) )
-          return pad_field_fake_level ( $search, $GLOBALS['pad_db_lvl'] [$i] [$search] );
+      if ( isset( $GLOBALS['pDb_lvl'] [$i] ) )
+        if ( isset( $GLOBALS['pDb_lvl'] [$i] [$search]) )
+          return pField_fake_level ( $search, $GLOBALS['pDb_lvl'] [$i] [$search] );
 
     return $GLOBALS ['pad'];
 
   }  
 
 
-  function pad_field_tag_lvl_base ($search, $data) {
+  function pField_tag_lvl_base ($search, $data) {
 
-    global $pad, $pad_parms, $pad_prms_val;
+    global $pad, $pParms, $pPrms_val;
 
-    if ( $data and ! isset($pad_prms_val[0]) )
+    if ( $data and ! isset($pPrms_val[0]) )
       for ($i=$pad-1; $i; $i--)
-        if ( ! $pad_parms [$i] ['default'] )
+        if ( ! $pParms [$i] ['default'] )
           return $i;
 
     if ( trim($search) === '0' or trim($search) == '' )
@@ -239,7 +239,7 @@
       return $search;
 
     for ($i=$pad; $i; $i--)
-      if ( $pad_parms [$i] ['name'] == $search)
+      if ( $pParms [$i] ['name'] == $search)
         return $i;
 
     return FALSE;

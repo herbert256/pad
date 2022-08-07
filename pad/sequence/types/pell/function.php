@@ -2,7 +2,7 @@
 // Iterative Pell Number Series in PHP
 
 // calculate nth pell number
-function pad_sequence_pell($n)
+function pSequence_pell($n)
 {
     if ($n <= 2)
         return $n;

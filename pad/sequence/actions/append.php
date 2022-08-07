@@ -1,11 +1,11 @@
 <?php
  
-  $pad_seq_append = pad_explode ($pad_seq_action_value, '|');
+  $pSeq_append = pExplode ($pSeq_action_value, '|');
 
-  foreach ( $pad_seq_append as $pad_seq_append_key )
-    foreach ($pad_sequence_store [$pad_seq_append_key] as $pad_seq_append_value)
-      $pad_seq_result [] = $pad_seq_append_value;
+  foreach ( $pSeq_append as $pSeq_append_key )
+    foreach ($pSequence_store [$pSeq_append_key] as $pSeq_append_value)
+      $pSeq_result [] = $pSeq_append_value;
 
-  return $pad_seq_result;
+  return $pSeq_result;
 
 ?>

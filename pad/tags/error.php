@@ -1,5 +1,5 @@
 <?php
 
-  return pad_error ($pad_parm);
+  return pError ($pParm);
    
 ?>

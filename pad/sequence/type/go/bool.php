@@ -1,26 +1,26 @@
 <?php
 
-  if ( ! $pad_seq_random )
-    if ( "pad_sequence_bool_$pad_seq_seq"($pad_seq_loop) )
-      return $pad_seq_loop;
+  if ( ! $pSeq_random )
+    if ( "pSequence_bool_$pSeq_seq"($pSeq_loop) )
+      return $pSeq_loop;
     else
       return FALSE;
 
-  $pad_seq_random_try = 1;
+  $pSeq_random_try = 1;
 
-  while ( $pad_seq_random_try <= $pad_seq_max ) {
+  while ( $pSeq_random_try <= $pSeq_max ) {
 
-    if ( count ($pad_seq_for) )
-      $pad_seq_loop_bool = $pad_seq_for [array_rand($pad_seq_for)];
+    if ( count ($pSeq_for) )
+      $pSeq_loop_bool = $pSeq_for [array_rand($pSeq_for)];
     else
-      $pad_seq_loop_bool = pad_seq_random ( $pad_seq_loop_start, $pad_seq_loop_end );
+      $pSeq_loop_bool = pSeq_random ( $pSeq_loop_start, $pSeq_loop_end );
  
-    include_once PAD . "sequence/types/$pad_seq_seq/bool.php";
+    include_once PAD . "sequence/types/$pSeq_seq/bool.php";
 
-    if ( "pad_sequence_bool_$pad_seq_seq"($pad_seq_loop_bool) )
-      return $pad_seq_loop_bool;
+    if ( "pSequence_bool_$pSeq_seq"($pSeq_loop_bool) )
+      return $pSeq_loop_bool;
      
-    $pad_seq_random_try++;
+    $pSeq_random_try++;
     
   }
  

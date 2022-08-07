@@ -2,7 +2,7 @@
 
   if ( $pad_walk == 'start' ) {
 
-    $pad_demo_source [$pad] = $pad_content;
+    $pDemo_source [$pad] = $pContent;
 
     $pad_walk = 'end';
 
@@ -13,8 +13,8 @@
   return 
     '<!-- demo -->' . 
     '<tr>' .
-      '<td style="vertical-align:top">' .  pad_colors_string (trim($pad_demo_source [$pad])) . '</td>' .
-      '<td style="vertical-align:top">' .  trim($pad_result [$pad]) .                          '</td>' .
+      '<td style="vertical-align:top">' .  pColors_string (trim($pDemo_source [$pad])) . '</td>' .
+      '<td style="vertical-align:top">' .  trim($pResult [$pad]) .                          '</td>' .
     '</tr>';
  
 ?>

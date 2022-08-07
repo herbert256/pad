@@ -1,29 +1,29 @@
 <?php
 
-  if     ( $pad_tag_result === NULL )   $pad_null = TRUE;
-  elseif ( $pad_tag_result === INF )    $pad_null = TRUE;
-  elseif ( $pad_tag_result === NAN )    $pad_null = TRUE;
-  else                                  $pad_null = FALSE;
+  if     ( $pTag_result === NULL )   $pNull = TRUE;
+  elseif ( $pTag_result === INF )    $pNull = TRUE;
+  elseif ( $pTag_result === NAN )    $pNull = TRUE;
+  else                                  $pNull = FALSE;
 
-  if     ( is_array($pad_tag_result) and ! count($pad_tag_result) ) $pad_else = TRUE;
-  elseif ( is_array($pad_tag_result) and   count($pad_tag_result) ) $pad_else = FALSE;
-  elseif ( $pad_tag_result === FALSE                              ) $pad_else = TRUE;
-  elseif ( $pad_tag_result === ''                                 ) $pad_else = TRUE;
-  else                                                              $pad_else = FALSE;
+  if     ( is_array($pTag_result) and ! count($pTag_result) ) $pElse = TRUE;
+  elseif ( is_array($pTag_result) and   count($pTag_result) ) $pElse = FALSE;
+  elseif ( $pTag_result === FALSE                              ) $pElse = TRUE;
+  elseif ( $pTag_result === ''                                 ) $pElse = TRUE;
+  else                                                              $pElse = FALSE;
 
-  if     ( $pad_null ) $pad_hit = FALSE;
-  elseif ( $pad_else ) $pad_hit = FALSE;
-  else                 $pad_hit = TRUE;
+  if     ( $pNull ) $pHit = FALSE;
+  elseif ( $pElse ) $pHit = FALSE;
+  else                 $pHit = TRUE;
 
-  if     ( $pad_hit and is_array($pad_tag_result) ) $pad_array = TRUE;
-  else                                              $pad_array = FALSE;
+  if     ( $pHit and is_array($pTag_result) ) $pArray = TRUE;
+  else                                              $pArray = FALSE;
 
-  if     ( $pad_hit and $pad_tag_result !== TRUE and is_scalar($pad_tag_result) ) $pad_text = TRUE;
-  else                                                                            $pad_text = FALSE;
+  if     ( $pHit and $pTag_result !== TRUE and is_scalar($pTag_result) ) $pText = TRUE;
+  else                                                                            $pText = FALSE;
 
-  $pad_parms [$pad] ['hit']   = $pad_hit;
-  $pad_parms [$pad] ['null']  = $pad_null;
-  $pad_parms [$pad] ['else']  = $pad_else;
-  $pad_parms [$pad] ['array'] = $pad_array;
-  $pad_parms [$pad] ['text']  = $pad_text;
+  $pParms [$pad] ['hit']   = $pHit;
+  $pParms [$pad] ['null']  = $pNull;
+  $pParms [$pad] ['else']  = $pElse;
+  $pParms [$pad] ['array'] = $pArray;
+  $pParms [$pad] ['text']  = $pText;
 ?>

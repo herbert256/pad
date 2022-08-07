@@ -1,22 +1,22 @@
 <?php
 
-  if ( ! $pad_seq_push )
-    if ($pad_seq_update )
-      $pad_seq_push = TRUE;
-    elseif ( ! $pad_pair and $pad_seq_pull )
-      $pad_seq_push = TRUE;
+  if ( ! $pSeq_push )
+    if ($pSeq_update )
+      $pSeq_push = TRUE;
+    elseif ( ! $pPair and $pSeq_pull )
+      $pSeq_push = TRUE;
 
-  if ( ! $pad_seq_push )
+  if ( ! $pSeq_push )
     return;
 
-  if ( $pad_seq_push === TRUE ) 
-    if ( $pad_seq_pull and $pad_seq_pull !== TRUE )
-      $pad_seq_push = $pad_seq_pull;
-    elseif ( $pad_sequence_store_get )
-      $pad_seq_push = $pad_sequence_store_get;
+  if ( $pSeq_push === TRUE ) 
+    if ( $pSeq_pull and $pSeq_pull !== TRUE )
+      $pSeq_push = $pSeq_pull;
+    elseif ( $pSequence_store_get )
+      $pSeq_push = $pSequence_store_get;
     else
-      $pad_seq_push = $pad_seq_name;
+      $pSeq_push = $pSeq_name;
 
-  $pad_sequence_store [$pad_seq_push] = $pad_seq_result;
+  $pSequence_store [$pSeq_push] = $pSeq_result;
 
 ?>

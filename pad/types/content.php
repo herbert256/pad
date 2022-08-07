@@ -1,12 +1,12 @@
 <?php
 
-  $pad_content_store_data = $pad_content_store [$pad_name];
+  $pContent_store_data = $pContent_store [$pName];
 
-  if ( strpos ( $pad_content_store_data, '{@content}' ) !== FALSE ) {
-    $pad_content_store_data = str_replace('{@content}', $pad_content, $pad_content_store_data);
-    $pad_content = '';
+  if ( strpos ( $pContent_store_data, '{@content}' ) !== FALSE ) {
+    $pContent_store_data = str_replace('{@content}', $pContent, $pContent_store_data);
+    $pContent = '';
   }
 
-  return $pad_content_store_data;
+  return $pContent_store_data;
 
 ?>

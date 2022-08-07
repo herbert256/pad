@@ -1,18 +1,18 @@
 <?php
     
-  function pad_colors_file ($file) {
+  function pColors_file ($file) {
 
     if ( ! file_exists($file) )
       return 'xx';
 
     if (substr($file, -5) == '.html')
-      return pad_colors_string ( pad_file_get_contents($file) ) ;
+      return pColors_string ( pFile_get_contents($file) ) ;
     else
-      return highlight_string ( pad_file_get_contents($file), TRUE ) ;
+      return highlight_string ( pFile_get_contents($file), TRUE ) ;
   
   }  
 
-  function pad_colors_string ($source) { 
+  function pColors_string ($source) { 
     
    $source = highlight_string($source, TRUE);
    $source = str_replace ('@content@', '<font color="black"><b><font color="green">@content@</font></b></font>',  $source);

@@ -13,16 +13,16 @@
     $store_write = "regression/$item.html";
     $store_read  = DATA . $store_write;
 
-    $curl = pad_complete ('reference', $item);
+    $curl = pComplete ('reference', $item);
   
     if     ( $curl ['result'] <> 200 )                              $status = $curl ['result'] ;
     elseif ( strrpos($store_write, 'random') )                      $status = 'random' ;
     elseif ( ! file_exists ($store_read) )                          $status = 'new';
-    elseif ( pad_file_get_contents($store_read) == $curl ['data'] ) $status = 'ok';
+    elseif ( pFile_get_contents($store_read) == $curl ['data'] ) $status = 'ok';
     else                                                            $status = 'error';
 
     if ( $status == 'new' )
-      pad_file_put_contents ($store_write, $curl ['data'] );
+      pFile_put_contents ($store_write, $curl ['data'] );
 
     $files [$item] ['status'] = $status;
 

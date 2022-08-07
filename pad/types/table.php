@@ -1,7 +1,7 @@
 <?php
 
-  $pad_db [$pad] = $pad_tag;
+  $pDb [$pad] = $pTag;
 
-  return pad_db_get_data ($pad_tag);
+  return pDb_get_data ($pTag);
 
 ?>

@@ -1,8 +1,8 @@
 <?php
 
-  pad_empty_buffers ();
+  pEmpty_buffers ();
   
-  $page = $pad_restart;
+  $page = $pRestart;
 
   include PAD . 'pad.php';
 

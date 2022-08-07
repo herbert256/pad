@@ -1,7 +1,7 @@
 <?php
 
-  global $pad_key;
+  global $pKey;
 
-  return $pad_key [$pad_idx];
+  return $pKey [$pIdx];
 
 ?>

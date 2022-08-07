@@ -1,7 +1,7 @@
 <?php
 
-  $pad_seq_inc = $pad_seq_parm;
+  $pSeq_inc = $pSeq_parm;
 
-  $pad_seq_loop_start = ceil ( $pad_seq_loop_start / $pad_seq_parm) * $pad_seq_parm;
+  $pSeq_loop_start = ceil ( $pSeq_loop_start / $pSeq_parm) * $pSeq_parm;
 
 ?>

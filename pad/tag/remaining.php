@@ -1,8 +1,8 @@
 <?php
 
-  global $pad_data, $pad_occur;
+  global $pData, $pOccur;
   
-  $pad_wrk = count ( $pad_data [$pad_idx] ) - $pad_occur [$pad_idx];
+  $pad_wrk = count ( $pData [$pIdx] ) - $pOccur [$pIdx];
 
   if ($pad_wrk < 0)
     return 0;

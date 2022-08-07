@@ -1,40 +1,40 @@
 <?php
 
-  $pad_tag_go = $pad_tag_base."tags/$pad_tag";
+  $pTag_go = $pTag_base."tags/$pTag";
 
-  $pad_tag_php = '';
+  $pTag_php = '';
 
-  if ( file_exists("$pad_tag_go.html") )
-  	$pad_tag_content .= pad_get_html ("$pad_tag_go.html");
+  if ( file_exists("$pTag_go.html") )
+  	$pTag_content .= pGet_html ("$pTag_go.html");
 
-  if ( file_exists("$pad_tag_go.php") ) {
+  if ( file_exists("$pTag_go.php") ) {
 
     ob_start();
 
-    if ( $pad_tag_base == APP )
-      pad_timing_start ('app');
+    if ( $pTag_base == APP )
+      pTiming_start ('app');
 
-    $pad_tag_php = include "$pad_tag_go.php";
+    $pTag_php = include "$pTag_go.php";
 
-    if ( $pad_tag_base == APP )
-      pad_timing_end ('app');
+    if ( $pTag_base == APP )
+      pTiming_end ('app');
 
-    if ( $pad_tag_php === 1 )
-      $pad_tag_php = '' ;
+    if ( $pTag_php === 1 )
+      $pTag_php = '' ;
 
-    $pad_tag_content .= ob_get_clean() ;
+    $pTag_content .= ob_get_clean() ;
 
   }
 
-  if ( is_array($pad_tag_php) or is_object($pad_tag_php) or is_resource($pad_tag_php) )
-    return $pad_tag_php;
+  if ( is_array($pTag_php) or is_object($pTag_php) or is_resource($pTag_php) )
+    return $pTag_php;
 
-  if ( $pad_tag_php !== TRUE and $pad_tag_php !== FALSE and $pad_tag_php !== NULL ) {
-    if ( $pad_tag_php or $pad_tag_content )
-      $pad_tag_php = $pad_tag_content . $pad_tag_php;
-    $pad_tag_content = '';
+  if ( $pTag_php !== TRUE and $pTag_php !== FALSE and $pTag_php !== NULL ) {
+    if ( $pTag_php or $pTag_content )
+      $pTag_php = $pTag_content . $pTag_php;
+    $pTag_content = '';
   }
 
-  return $pad_tag_php;
+  return $pTag_php;
 
 ?>

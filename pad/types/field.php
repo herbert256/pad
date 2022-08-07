@@ -1,8 +1,8 @@
 <?php
 
-  if ( pad_field_null ($pad_tag) )
+  if ( pField_null ($pTag) )
     return NULL;
   
-  return pad_field_value ($pad_tag);
+  return pField_value ($pTag);
 
 ?>

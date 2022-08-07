@@ -2,18 +2,18 @@
      
   $pad_walk = 'next';
   
-  $pad_content = $pad_base [$pad];
+  $pContent = $pBase [$pad];
   include PAD . "level/type_go.php"; 
-  $pad_base [$pad] = $pad_content;
+  $pBase [$pad] = $pContent;
 
   include PAD . "level/flags.php";
 
   if ( $pad_walk ) {
 
-    if ( $pad_array )
-      $pad_data [$pad] = $pad_tag_result;
+    if ( $pArray )
+      $pData [$pad] = $pTag_result;
  
-    reset ( $pad_data[$pad] );
+    reset ( $pData[$pad] );
 
   }
  

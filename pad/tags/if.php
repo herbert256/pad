@@ -1,7 +1,7 @@
 <?php
   
-  $pad_tst  = '{elseif';
-  $pad_eval = $pad_prms;
+  $pTst  = '{elseif';
+  $pEval = $pPrms;
 
   return include 'go/if_case.php';
 

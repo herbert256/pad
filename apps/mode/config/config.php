@@ -1,6 +1,6 @@
 <?php
 
-  $pad_build_mode  = $_REQUEST['mode']  ?? 'demand';
-  $pad_build_merge = $_REQUEST['merge'] ?? 'content';
+  $pBuild_mode  = $_REQUEST['mode']  ?? 'demand';
+  $pBuild_merge = $_REQUEST['merge'] ?? 'content';
 
 ?>

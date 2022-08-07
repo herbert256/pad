@@ -24,7 +24,7 @@
 
   foreach ($ref as $item) {
 
-    $curl = pad_complete ('reference', $item);
+    $curl = pComplete ('reference', $item);
 
     $files [$item] ['item'] = $item;
 
@@ -36,7 +36,7 @@
     for ($i = 0; $i < 1; $i++) {
 
       $start = microtime(true);
-      $curl  = pad_complete ('reference', $item);
+      $curl  = pComplete ('reference', $item);
       $end   = microtime(true);
 
       if ( $curl ['result'] <> 200 ) {

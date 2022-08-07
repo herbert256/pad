@@ -1,20 +1,20 @@
 <?php
   
 
-  function pad_eval_not ( &$result, $k, $b) {
+  function pEval_not ( &$result, $k, $b) {
 
     $start = $result [$k] [0];
 
     $result [$k] [0] = ( $result [$k] [0] ) ? '' : '1';
     
-    pad_eval_trace ('not', [ 'start' => $start, 'result' => $result [$k] [0] ] );
+    pEval_trace ('not', [ 'start' => $start, 'result' => $result [$k] [0] ] );
 
     unset ($result[$b]);
 
   }
   
   
-  function pad_eval_action_array ( $left, $opr, $right ) {
+  function pEval_action_array ( $left, $opr, $right ) {
 
     $action = strtolower ($opr);
 
@@ -26,19 +26,19 @@
     elseif ( $action == '%' ) $action = 'mod';
 
     if ( ! file_exists(PAD."sequence/eval/$action.php") ) {
-      pad_error ("Unsupported array operator: $opr");      
+      pError ("Unsupported array operator: $opr");      
       $now = '';
     }
     else 
       $now = include PAD."sequence/eval/$action.php";
 
-    pad_eval_trace  ('array', [ 'left' => $left, 'action' => $action, 'right' => $right, 'result' => $now ] );
+    pEval_trace  ('array', [ 'left' => $left, 'action' => $action, 'right' => $right, 'result' => $now ] );
 
     return $now;
 
   }
   
-  function pad_eval_action ( &$result, $k, $b, $f ) {
+  function pEval_action ( &$result, $k, $b, $f ) {
 
     $left  = $result [$f] [0];
     $opr   = $result [$b] [0];
@@ -46,7 +46,7 @@
 
     if ( isset ( $result [$f] [4] ) )
       
-      $now = pad_eval_action_array ($result [$f] [4], $result [$b] [0], $result [$k] [4] ?? [] );
+      $now = pEval_action_array ($result [$f] [4], $result [$b] [0], $result [$k] [4] ?? [] );
  
     else {
 
@@ -93,7 +93,7 @@
     unset ( $result [$b] );
     unset ( $result [$f] );
 
-    pad_eval_trace  ('action', [ 'left' => $left, 'operation' => $opr, 'right' => $right, 'result' => $now ] );
+    pEval_trace  ('action', [ 'left' => $left, 'operation' => $opr, 'right' => $right, 'result' => $now ] );
 
   }
   

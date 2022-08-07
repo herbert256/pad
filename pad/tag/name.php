@@ -1,7 +1,7 @@
 <?php
 
-  global $pad_parms;
+  global $pParms;
 
-  return $pad_parms [$pad_idx] ['name'];
+  return $pParms [$pIdx] ['name'];
  
 ?>

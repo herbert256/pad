@@ -1,39 +1,39 @@
 <?php
 
-  pad_timing_start ('exit');
+  pTiming_start ('exit');
 
-  $pad_output = $pad_result [1];
+  $pOutput = $pResult [1];
 
-  $pad_output = str_replace ( 
+  $pOutput = str_replace ( 
     [ '&open;', '&close;', '&pipe;', '&eq;', '&comma;'], 
     [ '{',      '}',       '|',      '=',     ','], 
-    $pad_output 
+    $pOutput 
   );
 
-  if ( count ($pad_sanitize) )
+  if ( count ($pSanitize) )
     include PAD . 'exits/sanitize.php';
  
-  if ( $pad_tidy )
+  if ( $pTidy )
     include PAD . 'exits/tidy.php';
 
-  if ( $pad_remove_whitespace )
+  if ( $pRemove_whitespace )
    include 'whitespace.php';
   
-  $pad_etag = pad_md5 ($pad_output);
+  $pEtag = pMd5 ($pOutput);
 
-  if ( $pad_track_file_data )
-    pad_track_file_data ();
+  if ( $pTrack_file_data )
+    pTrack_file_data ();
 
-  if ( $pad_track_db_data )
-    pad_track_db_data ();
+  if ( $pTrack_db_data )
+    pTrack_db_data ();
 
-  $pad_stop = ( $pad_etag_304 and ($pad_cache_client??'') == $pad_etag ) ? 304 : 200;
+  $pStop = ( $pEtag_304 and ($pCache_client??'') == $pEtag ) ? 304 : 200;
 
-  if ( $pad_cache and $pad_cache_server_age )
+  if ( $pCache and $pCache_server_age )
     include PAD . 'cache/exits.php';
 
-  pad_timing_end ('exit');
+  pTiming_end ('exit');
 
-  pad_stop ($pad_stop);
+  pStop ($pStop);
 
 ?>

@@ -1,10 +1,10 @@
 <?php
 
-  $pad_return = [];
+  $pReturn = [];
 
-  foreach ( $pad_data [$pad_idx] as $pad_k => $pad_v)
-    $pad_return [] ['key'] = $pad_k;
+  foreach ( $pData [$pIdx] as $pK => $pad_v)
+    $pReturn [] ['key'] = $pK;
 
-  return $pad_return;
+  return $pReturn;
 
 ?> 

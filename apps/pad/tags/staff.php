@@ -1,7 +1,7 @@
 <?php
 
   if ( $staff )
-    $staff_data = pad_colors_file (APPS.'reference/pages/inits.php');
+    $staff_data = pColors_file (APPS.'reference/pages/inits.php');
 
   return TRUE;
 

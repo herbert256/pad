@@ -1,21 +1,21 @@
 <?php
 
-  pad_get_parms ('POST',   $_POST  );
-  pad_get_parms ('GET',    $_GET   );
-  pad_get_parms ('COOKIE', $_COOKIE);
+  pGet_parms ('POST',   $_POST  );
+  pGet_parms ('GET',    $_GET   );
+  pGet_parms ('COOKIE', $_COOKIE);
 
-  if (count($pad_session_vars) ) {
+  if (count($pSession_vars) ) {
 
     if ( ! ini_get('session.auto_start') )
       session_start();
 
-    pad_get_parms ('SESSION', $_SESSION);
+    pGet_parms ('SESSION', $_SESSION);
     
-    foreach ($pad_session_vars as $pad_var)
+    foreach ($pSession_vars as $pad_var)
       if ( ! isset ($GLOBALS [$pad_var]) )
         $GLOBALS [$pad_var] = '';
 
-    $pad_session_started = TRUE;
+    $pSession_started = TRUE;
       
   }
   

@@ -4,43 +4,43 @@
 
     $pad_walk = 'end';
 
-    $pad_backup_trace = [];
+    $pBackup_trace = [];
 
-    foreach ($GLOBALS as $pad_k2 => $pad_v2 )
-      if ( substr($pad_k2, 0, 9) == 'pad_trace' )
-        $pad_backup_trace [$pad_k2] = $pad_v2;
+    foreach ($GLOBALS as $pK2 => $pad_v2 )
+      if ( substr($pK2, 0, 9) == 'pTrace' )
+        $pBackup_trace [$pK2] = $pad_v2;
 
-    $pad_trace           = TRUE;  
-    $pad_trace_level     = TRUE;  
-    $pad_trace_occurence = TRUE;  
-    $pad_trace_fields    = TRUE;  
-    $pad_trace_eval      = TRUE;  
-    $pad_trace_eval_type = TRUE;  
-    $pad_trace_curl      = TRUE;  
-    $pad_trace_cache     = TRUE;  
-    $pad_trace_timings   = TRUE;  
-    $pad_trace_headers   = TRUE;  
-    $pad_trace_options   = TRUE;  
-    $pad_trace_sql       = TRUE; 
-    $pad_trace_explode   = TRUE;
-    $pad_trace_tag       = TRUE; 
+    $pTrace           = TRUE;  
+    $pTrace_level     = TRUE;  
+    $pTrace_occurence = TRUE;  
+    $pTrace_fields    = TRUE;  
+    $pTrace_eval      = TRUE;  
+    $pTrace_eval_type = TRUE;  
+    $pTrace_curl      = TRUE;  
+    $pTrace_cache     = TRUE;  
+    $pTrace_timings   = TRUE;  
+    $pTrace_headers   = TRUE;  
+    $pTrace_options   = TRUE;  
+    $pTrace_sql       = TRUE; 
+    $pTrace_explode   = TRUE;
+    $pTrace_tag       = TRUE; 
 
-    $pad_level_dir = $pad_trace_dir . '/trace-' . $pad_lvl_cnt; 
-    $pad_occur_dir = $pad_level_dir;
+    $pLevel_dir = $pTrace_dir . '/trace-' . $pLvl_cnt; 
+    $pOccur_dir = $pLevel_dir;
 
-    $pad_parms [$pad] ['level_dir'] = $pad_level_dir;
-    $pad_parms [$pad] ['occur_dir'] = $pad_occur_dir;
+    $pParms [$pad] ['level_dir'] = $pLevel_dir;
+    $pParms [$pad] ['occur_dir'] = $pOccur_dir;
 
-    pad_file_put_contents ( $pad_level_dir . "/pad-start.json", pad_trace_get_pad_vars ()  );
-    pad_file_put_contents ( $pad_level_dir . "/app-start.json", pad_trace_get_app_vars ()  );
+    pFile_put_contents ( $pLevel_dir . "/pad-start.json", pTrace_get_pad_vars ()  );
+    pFile_put_contents ( $pLevel_dir . "/app-start.json", pTrace_get_app_vars ()  );
   
   } else {
 
-    pad_file_put_contents ( $pad_level_dir . "/pad-end.json", pad_trace_get_pad_vars ()  );
-    pad_file_put_contents ( $pad_level_dir . "/app-end.json", pad_trace_get_app_vars ()  );
+    pFile_put_contents ( $pLevel_dir . "/pad-end.json", pTrace_get_pad_vars ()  );
+    pFile_put_contents ( $pLevel_dir . "/app-end.json", pTrace_get_app_vars ()  );
  
-    foreach ($pad_backup_trace as $pad_k => $pad_v )
-      $GLOBALS [$pad_k] = $pad_v;
+    foreach ($pBackup_trace as $pK => $pad_v )
+      $GLOBALS [$pK] = $pad_v;
  
   } 
 

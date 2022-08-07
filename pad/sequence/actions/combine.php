@@ -1,42 +1,42 @@
 <?php
 
-  $pad_seq_merge_list = pad_explode ($pad_seq_action_value, '|');
+  $pSeq_merge_list = pExplode ($pSeq_action_value, '|');
 
 
-  foreach ( $pad_seq_merge_list as $pad_seq_merge_key ) {
+  foreach ( $pSeq_merge_list as $pSeq_merge_key ) {
 
-    $pad_seq_merge_1 = $pad_seq_result;
-    $pad_seq_merge_2 = $pad_sequence_store [$pad_seq_merge_key];
+    $pSeq_merge_1 = $pSeq_result;
+    $pSeq_merge_2 = $pSequence_store [$pSeq_merge_key];
 
-    $pad_seq_result = [];
+    $pSeq_result = [];
 
-    $pad_seq_merge_1_val = reset ($pad_seq_merge_1);
-    $pad_seq_merge_2_val = reset ($pad_seq_merge_2);
+    $pSeq_merge_1_val = reset ($pSeq_merge_1);
+    $pSeq_merge_2_val = reset ($pSeq_merge_2);
 
-    while ( $pad_seq_merge_1_val !== FALSE or $pad_seq_merge_2_val !== FALSE) {
+    while ( $pSeq_merge_1_val !== FALSE or $pSeq_merge_2_val !== FALSE) {
 
-      if ( $pad_seq_merge_1_val !== FALSE and $pad_seq_merge_2_val === FALSE ) {
-        if ($pad_seq_action_name == 'combine' or ! in_array($pad_seq_merge_1_val, $pad_seq_result) )
-          $pad_seq_result [] = $pad_seq_merge_1_val;
-        $pad_seq_merge_1_val = next ($pad_seq_merge_1);
-      } elseif ( $pad_seq_merge_1_val === FALSE and $pad_seq_merge_2_val !== FALSE ) {
-        if ($pad_seq_action_name == 'combine' or ! in_array($pad_seq_merge_2_val, $pad_seq_result) )
-          $pad_seq_result [] = $pad_seq_merge_2_val;
-        $pad_seq_merge_2_val = next ($pad_seq_merge_2);
-      } elseif ( $pad_seq_merge_1_val < $pad_seq_merge_2_val ) {
-        if ($pad_seq_action_name == 'combine' or ! in_array($pad_seq_merge_1_val, $pad_seq_result) )
-          $pad_seq_result [] = $pad_seq_merge_1_val;
-        $pad_seq_merge_1_val = next ($pad_seq_merge_1);
+      if ( $pSeq_merge_1_val !== FALSE and $pSeq_merge_2_val === FALSE ) {
+        if ($pSeq_action_name == 'combine' or ! in_array($pSeq_merge_1_val, $pSeq_result) )
+          $pSeq_result [] = $pSeq_merge_1_val;
+        $pSeq_merge_1_val = next ($pSeq_merge_1);
+      } elseif ( $pSeq_merge_1_val === FALSE and $pSeq_merge_2_val !== FALSE ) {
+        if ($pSeq_action_name == 'combine' or ! in_array($pSeq_merge_2_val, $pSeq_result) )
+          $pSeq_result [] = $pSeq_merge_2_val;
+        $pSeq_merge_2_val = next ($pSeq_merge_2);
+      } elseif ( $pSeq_merge_1_val < $pSeq_merge_2_val ) {
+        if ($pSeq_action_name == 'combine' or ! in_array($pSeq_merge_1_val, $pSeq_result) )
+          $pSeq_result [] = $pSeq_merge_1_val;
+        $pSeq_merge_1_val = next ($pSeq_merge_1);
       } else {
-        if ($pad_seq_action_name == 'combine' or ! in_array($pad_seq_merge_2_val, $pad_seq_result) )
-          $pad_seq_result [] = $pad_seq_merge_2_val;
-        $pad_seq_merge_2_val = next ($pad_seq_merge_2);
+        if ($pSeq_action_name == 'combine' or ! in_array($pSeq_merge_2_val, $pSeq_result) )
+          $pSeq_result [] = $pSeq_merge_2_val;
+        $pSeq_merge_2_val = next ($pSeq_merge_2);
       }
 
     }
 
   }
 
-  return $pad_seq_result;
+  return $pSeq_result;
 
 ?>

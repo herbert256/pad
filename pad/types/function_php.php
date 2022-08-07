@@ -1,5 +1,5 @@
 <?php
 
-  return call_user_func_array ($pad_tag, $pad_prms_val);
+  return call_user_func_array ($pTag, $pPrms_val);
 
 ?>

@@ -4,19 +4,19 @@
 
 // Recursive Function to
 // find the n-th element
-function pad_sequence_newmanConway ($n) {
+function pSequence_newmanConway ($n) {
 
 	if ($n == 1 || $n == 2)
 		return 1;
 
-	if ( isset ( $GLOBALS ['pad_seq_cache'] [$n] ) )
-		return $GLOBALS ['pad_seq_cache'] [$n];
+	if ( isset ( $GLOBALS ['pSeq_cache'] [$n] ) )
+		return $GLOBALS ['pSeq_cache'] [$n];
 
-	$now = pad_sequence_newmanConway ( pad_sequence_newmanConway ($n - 1)     )
+	$now = pSequence_newmanConway ( pSequence_newmanConway ($n - 1)     )
 	       +
-		   pad_sequence_newmanConway ( $n - pad_sequence_newmanConway($n - 1) );
+		   pSequence_newmanConway ( $n - pSequence_newmanConway($n - 1) );
 
-	$GLOBALS ['pad_seq_cache'] [$n] = $now;
+	$GLOBALS ['pSeq_cache'] [$n] = $now;
 
 	return $now;
 

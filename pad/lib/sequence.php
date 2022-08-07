@@ -1,21 +1,21 @@
 <?php
 
 
-  function pad_seq_action ( $sequence1, $action, $sequence2 ) {
+  function pSeq_action ( $sequence1, $action, $sequence2 ) {
 
-    $pad_seq_result       = $sequence1;
-    $pad_seq_count        = 0;
-    $pad_seq_action_value = $action;
-    $pad_seq_action_name  = $action;
+    $pSeq_result       = $sequence1;
+    $pSeq_count        = 0;
+    $pSeq_action_value = $action;
+    $pSeq_action_name  = $action;
     
-    $pad_sequence_store [$action] = $sequence2;
+    $pSequence_store [$action] = $sequence2;
 
     return include PAD . "sequence/actions/$action.php";  
 
   }
 
 
-  function pad_seq_random ( $min, $max ) {
+  function pSeq_random ( $min, $max ) {
 
     $rand = rand ( $min, $max ); 
 
@@ -29,7 +29,7 @@
 
   }
 
-  function pad_seq_reverse ( $x ) {
+  function pSeq_reverse ( $x ) {
 
    $rev = 0;
     while ($x > 0) {
@@ -40,25 +40,25 @@
 
   }
 
-  function pad_seq_set ( $name, $value ) {
+  function pSeq_set ( $name, $value ) {
 
-    $GLOBALS ["pad_seq_parm"] = $value;
-    $GLOBALS ["pad_seq_$name"] = $value;
+    $GLOBALS ["pSeq_parm"] = $value;
+    $GLOBALS ["pSeq_$name"] = $value;
 
   }
 
 
-  function pad_seq_array_action ($action) {
+  function pSeq_array_action ($action) {
 
-    $array  = $GLOBALS['pad_seq_action_value'];
-    $arrays = pad_explode ($array, '|');
+    $array  = $GLOBALS['pSeq_action_value'];
+    $arrays = pExplode ($array, '|');
 
-    $parms [] = $GLOBALS ['pad_seq_result'];
+    $parms [] = $GLOBALS ['pSeq_result'];
 
     foreach ($arrays as $store)
       if ( $store !== TRUE )
-        if ( isset($GLOBALS['pad_sequence_store'] [$store]) )
-          $parms [] = $GLOBALS['pad_sequence_store'] [$store];
+        if ( isset($GLOBALS['pSequence_store'] [$store]) )
+          $parms [] = $GLOBALS['pSequence_store'] [$store];
         else
           $parms [] = $store;
 
@@ -66,7 +66,7 @@
 
   }
 
-  function pad_seq_truncate ( $array, $side, $count ) {
+  function pSeq_truncate ( $array, $side, $count ) {
 
     if ( $side == 'left' )
       return array_slice ($array, $count);
@@ -75,25 +75,25 @@
 
   }
 
-  function pad_seq_get_count ( $first, $second, $third ) {
+  function pSeq_get_count ( $first, $second, $third ) {
 
-    global $pad_prms_tag, $pad_seq_parm;
+    global $pPrms_tag, $pSeq_parm;
 
-    if ( isset($pad_prms_tag[$first])      and $pad_prms_tag[$first]  !== TRUE and is_numeric($pad_prms_tag[$first]) )
+    if ( isset($pPrms_tag[$first])      and $pPrms_tag[$first]  !== TRUE and is_numeric($pPrms_tag[$first]) )
  
-      return $pad_prms_tag[$first];
+      return $pPrms_tag[$first];
  
-    elseif ( isset($pad_prms_tag[$second]) and $pad_prms_tag[$second] !== TRUE and is_numeric($pad_prms_tag[$second]) )
+    elseif ( isset($pPrms_tag[$second]) and $pPrms_tag[$second] !== TRUE and is_numeric($pPrms_tag[$second]) )
  
-      return $pad_prms_tag[$second];
+      return $pPrms_tag[$second];
  
-    elseif ( isset($pad_prms_tag[$third])  and $pad_prms_tag[$third]  !== TRUE and is_numeric($pad_prms_tag[$third]) )
+    elseif ( isset($pPrms_tag[$third])  and $pPrms_tag[$third]  !== TRUE and is_numeric($pPrms_tag[$third]) )
  
-      return $pad_prms_tag[$third];
+      return $pPrms_tag[$third];
  
-    elseif (                                    $pad_seq_parm !== TRUE           and is_numeric($pad_seq_parm) )
+    elseif (                                    $pSeq_parm !== TRUE           and is_numeric($pSeq_parm) )
  
-      return $pad_seq_parm;
+      return $pSeq_parm;
  
     else
  

@@ -1,14 +1,14 @@
 <?php
 
-  $pad_stop = floor($pad_cache_stop);
-  $pad_time = $pad_cache_age;
-  $pad_etag = $pad_cache_etag;
+  $pStop = floor($pCache_stop);
+  $pTime = $pCache_age;
+  $pEtag = $pCache_etag;
 
-  if ( $pad_trace_cache )
+  if ( $pTrace_cache )
     include 'trace.php';
 
-  pad_timing_end ('cache');
+  pTiming_end ('cache');
 
-  pad_stop ($pad_stop);
+  pStop ($pStop);
 
 ?>

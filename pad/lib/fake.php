@@ -1,23 +1,23 @@
 <?php
 
-  function pad_fake ( $tag, $options, $content='', $false='', $kind='open' ) {
+  function pFake ( $tag, $options, $content='', $false='', $kind='open' ) {
 
     foreach ($GLOBALS as $key => $val )
       if ( substr($key, 0, 3) == 'pad' )
         global $$key;
 
     $fake_lvl       = $pad;
-    $fake_timing    = $pad_timing;
-    $fake_trace_dir = $pad_trace_dir;
+    $fake_timing    = $pTiming;
+    $fake_trace_dir = $pTrace_dir;
  
-    $pad_timing = FALSE;
+    $pTiming = FALSE;
 
-    $pad_between    = 'fake';
-    $pad_type       = 'fake';
-    $pad_pair       = FALSE;
-    $pad_trace_dir  = $pad_level_dir . '/FAKE'; 
-    $pad_level_dir  = $pad_trace_dir;
-    $pad_occur_dir  = $pad_trace_dir;
+    $pBetween    = 'fake';
+    $pType       = 'fake';
+    $pPair       = FALSE;
+    $pTrace_dir  = $pLevel_dir . '/FAKE'; 
+    $pLevel_dir  = $pTrace_dir;
+    $pOccur_dir  = $pTrace_dir;
 
     $pad++; 
     include PAD . 'level/setup.php'; 
@@ -31,42 +31,42 @@
     if ($kind == 'close' and $options) $fake_base .= " $options";
                                        $fake_base .= "}";
 
-    $pad_base [$pad] = $fake_base ;
+    $pBase [$pad] = $fake_base ;
 
     include PAD . 'occurrence/start.php';
 
     while ( $pad > $fake_lvl ) 
       include PAD . 'level/level.php'; 
 
-    $return = $pad_html [$pad];
+    $return = $pHtml [$pad];
 
-    foreach ( $GLOBALS['pad_parms'] [$fake_lvl] as $fake_key => $fake_val )
+    foreach ( $GLOBALS['pParms'] [$fake_lvl] as $fake_key => $fake_val )
       $GLOBALS['pad_'.$fake_key] = $fake_val;
 
     $pad           = $fake_lvl;
-    $pad_timing    = $fake_timing;
-    $pad_trace_dir = $fake_trace_dir;
+    $pTiming    = $fake_timing;
+    $pTrace_dir = $fake_trace_dir;
 
-    return $pad_html [$fake_lvl+1];
+    return $pHtml [$fake_lvl+1];
 
   }
  
  
-  function pad_field_fake_level ( $name, $data ) {
+  function pField_fake_level ( $name, $data ) {
 
     global $pad;
 
-    $pad_save = $pad;
+    $pSave = $pad;
 
     $pad = 999999;
     include PAD . 'inits/setup.php';
   
-    $GLOBALS ['pad_data']    [$pad] = pad_make_data ( $fake );
-    $GLOBALS ['pad_current'] [$pad] = reset ( $GLOBALS ['pad_data'] );
-    $GLOBALS ['pad_key']     [$pad_key] = key ( $GLOBALS ['pad_data'] [$pad] );
-    $GLOBALS ['pad_occur']   [$pad_key] = 1;
+    $GLOBALS ['pData']    [$pad] = pMake_data ( $fake );
+    $GLOBALS ['pCurrent'] [$pad] = reset ( $GLOBALS ['pData'] );
+    $GLOBALS ['pKey']     [$pKey] = key ( $GLOBALS ['pData'] [$pad] );
+    $GLOBALS ['pOccur']   [$pKey] = 1;
 
-    $pad = $pad_save;
+    $pad = $pSave;
 
     return 9999;
     

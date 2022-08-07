@@ -1,18 +1,18 @@
 <?php
 
-  $pad_trace_data = [ 
-    'field'   => '{' . $pad_between . '}',
-    'nr'      => $pad_fld_cnt,
-    'source'  => $pad_fld,
+  $pTrace_data = [ 
+    'field'   => '{' . $pBetween . '}',
+    'nr'      => $pFld_cnt,
+    'source'  => $pFld,
     'value'   => $pad_val_base,
-    'options' => $pad_opts
+    'options' => $pOpts
   ];
 
-  if ( count ($pad_opts_trace) )
-    $pad_trace_data ['changed'] = $pad_opts_trace;
+  if ( count ($pOpts_trace) )
+    $pTrace_data ['changed'] = $pOpts_trace;
   elseif ( $pad_val <> $pad_val_base )
-    $pad_trace_data ['result'] = $pad_val;
+    $pTrace_data ['result'] = $pad_val;
 
-  pad_file_put_contents ("$pad_occur_dir/fields/$pad_fld_cnt.json", pad_json ($pad_trace_data ) );
+  pFile_put_contents ("$pOccur_dir/fields/$pFld_cnt.json", pJson ($pTrace_data ) );
 
 ?>

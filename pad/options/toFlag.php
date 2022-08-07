@@ -1,12 +1,12 @@
 <?php
 
-  $pad_store_name = $pad_prms_tag ['toFlag'];
+  $pStore_name = $pPrms_tag ['toFlag'];
 
-  if     ( $pad_parms [$pad] ['null']   ) $pad_flag_store [$pad_store_name] = FALSE;
-  elseif ( $pad_parms [$pad] ['else']   ) $pad_flag_store [$pad_store_name] = FALSE;
-  elseif ( trim ( $pad_result [$pad] ) <> '' ) $pad_flag_store [$pad_store_name] = TRUE;
-  else                                             $pad_flag_store [$pad_store_name] = FALSE;
+  if     ( $pParms [$pad] ['null']   ) $pFlag_store [$pStore_name] = FALSE;
+  elseif ( $pParms [$pad] ['else']   ) $pFlag_store [$pStore_name] = FALSE;
+  elseif ( trim ( $pResult [$pad] ) <> '' ) $pFlag_store [$pStore_name] = TRUE;
+  else                                             $pFlag_store [$pStore_name] = FALSE;
 
-  $pad_result [$pad] = '';
+  $pResult [$pad] = '';
   
 ?>

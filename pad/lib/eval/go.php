@@ -1,10 +1,10 @@
 <?php
   
-  function pad_eval_go (&$result, $start, $end, $myself) {
+  function pEval_go (&$result, $start, $end, $myself) {
 
-go: pad_eval_trace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] );
+go: pEval_trace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] );
 
-    $GLOBALS ['pad_trace_eval_now'] = [];
+    $GLOBALS ['pTrace_eval_now'] = [];
 
     if  ( count($result) > 1 ) {
  
@@ -16,8 +16,8 @@ go: pad_eval_trace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] )
            and $s [0] == 'AND' and $s [1] == 'OPR'
          ) {
 
-        if ( $GLOBALS ['pad_trace_eval'] ) 
-          pad_eval_trace  ('fast-and', [ 'first' => $f, 'second' => $s ] );
+        if ( $GLOBALS ['pTrace_eval'] ) 
+          pEval_trace  ('fast-and', [ 'first' => $f, 'second' => $s ] );
 
         $result = [ 100 => ['0' => '', '1'=> 'VAL' ] ];
         return;
@@ -29,8 +29,8 @@ go: pad_eval_trace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] )
            and $s [0] == 'OR' and $s [1] == 'OPR'
          ) {
 
-        if ( $GLOBALS ['pad_trace_eval'] ) 
-          pad_eval_trace  ('fast-or', [ 'first' => $f, 'second' => $s ] );
+        if ( $GLOBALS ['pTrace_eval'] ) 
+          pEval_trace  ('fast-or', [ 'first' => $f, 'second' => $s ] );
 
         $result = [ 100 => ['0' => 1, '1'=> 'VAL' ] ];
         return;
@@ -78,7 +78,7 @@ go: pad_eval_trace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] )
         if ( $last and $result[$last][1] == 'TYPE' )
           $result[$last][3] = $key;
 
-        pad_eval_go ($result, $open+1, $key-1, $myself);
+        pEval_go ($result, $open+1, $key-1, $myself);
 
         unset ($result [$open]);
         unset ($result [$key] );
@@ -89,7 +89,7 @@ go: pad_eval_trace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] )
 
     }
 
-    foreach ( pad_eval_precedence as $now ) {
+    foreach ( pEval_precedence as $now ) {
 
       $f = $b = -2;
       foreach ( $result as $k => $t ) {
@@ -99,11 +99,11 @@ go: pad_eval_trace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] )
        
         if ( $b >= $start ) {
 
-          $GLOBALS ['pad_trace_eval_now'] = $result[$b];
+          $GLOBALS ['pTrace_eval_now'] = $result[$b];
 
           if ( $now == 'TYPE' and $result[$b][1] == 'TYPE') {
 
-            pad_eval_type ($b, $f, $result, $myself, $start, $end);
+            pEval_type ($b, $f, $result, $myself, $start, $end);
 
             goto go;
 
@@ -111,13 +111,13 @@ go: pad_eval_trace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] )
  
             if ( $result[$k][1] == 'VAL' and ($result[$b][0] == 'NOT' or $result[$b][0] == '!' ) ) {
  
-              pad_eval_not ($result, $k, $b);
+              pEval_not ($result, $k, $b);
 
               goto go;
  
             } elseif ( $result[$k][1] == 'VAL' and $f >= $start and $result[$f][1] == 'VAL') {
 
-              pad_eval_action ($result, $k, $b, $f);
+              pEval_action ($result, $k, $b, $f);
 
               goto go;
 
@@ -125,15 +125,15 @@ go: pad_eval_trace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] )
 
           } 
 
-         $GLOBALS ['pad_trace_eval_now'] = [];
+         $GLOBALS ['pTrace_eval_now'] = [];
 
         }
 
         if ( $now == 'TYPE' and $k == array_key_last ($result) and $result[$k][1] == 'TYPE' ) {
 
-          $GLOBALS ['pad_trace_eval_now'] = $result[$k];
+          $GLOBALS ['pTrace_eval_now'] = $result[$k];
           
-          pad_eval_type ($k, $b, $result, $myself, $start, $end);
+          pEval_type ($k, $b, $result, $myself, $start, $end);
           
           goto go;
 

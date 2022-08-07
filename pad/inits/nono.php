@@ -1,17 +1,17 @@
 <?php
 
-  if ( ! $pad_no_no )
+  if ( ! $pNo_no )
     return; 
 
   ob_get_clean();
 
-  $pad_no_no = PAD . "$app/pages/$page.php";
+  $pNo_no = PAD . "$app/pages/$page.php";
 
-  if ( ! file_exists ( $pad_no_no ) )
-    pad_boot_error ("Page does not exists: $app/$page");
+  if ( ! file_exists ( $pNo_no ) )
+    pBoot_error ("Page does not exists: $app/$page");
 
   foreach ($GLOBALS as $key => $value)
-    if ( substr($key, 0, 3) == 'pad' and $key <> 'pad_no_no')
+    if ( substr($key, 0, 3) == 'pad' and $key <> 'pNo_no')
       unset ( $GLOBALS[$key] );
 
   unset ($page);
@@ -23,9 +23,9 @@
   unset($PADREFID);
   unset($PADREQID);
 
-  include $pad_no_no;
+  include $pNo_no;
 
-  $pad_no_boot_shutdown = TRUE;
+  $pNo_boot_shutdown = TRUE;
 
   exit();
 

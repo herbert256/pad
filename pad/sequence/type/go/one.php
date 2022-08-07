@@ -1,42 +1,42 @@
 <?php
 
-  $pad_seq++;
-  $pad_seq_protect_cnt++;
+  $pSeq++;
+  $pSeq_protect_cnt++;
 
-  $pad_seq_one_done = [];
+  $pSeq_one_done = [];
 
-  if ( $pad_seq_protect_cnt > $pad_seq_protect                ) return FALSE;
-  if ( $pad_seq < $pad_seq_low                                ) return TRUE;
-  if ( $pad_seq > $pad_seq_high                               ) return FALSE;
-  if ( $pad_seq_build == 'order' and $pad_seq < $pad_seq_from ) return TRUE;
-  if ( $pad_seq_build == 'order' and $pad_seq > $pad_seq_to   ) return FALSE;
+  if ( $pSeq_protect_cnt > $pSeq_protect                ) return FALSE;
+  if ( $pSeq < $pSeq_low                                ) return TRUE;
+  if ( $pSeq > $pSeq_high                               ) return FALSE;
+  if ( $pSeq_build == 'order' and $pSeq < $pSeq_from ) return TRUE;
+  if ( $pSeq_build == 'order' and $pSeq > $pSeq_to   ) return FALSE;
 
-  $pad_sequence = include 'sequence.php';
+  $pSequence = include 'sequence.php';
 
-  if     ( $pad_sequence === TRUE  ) return TRUE;
-  elseif ( $pad_sequence === FALSE ) return FALSE;   
+  if     ( $pSequence === TRUE  ) return TRUE;
+  elseif ( $pSequence === FALSE ) return FALSE;   
 
-  $pad_sequence = include 'operations.php';
+  $pSequence = include 'operations.php';
 
-  if     ( $pad_sequence === TRUE  ) return TRUE;
-  elseif ( $pad_sequence === FALSE ) return FALSE;    
+  if     ( $pSequence === TRUE  ) return TRUE;
+  elseif ( $pSequence === FALSE ) return FALSE;    
 
-  if ( $pad_seq_unique and in_array ($pad_sequence, $pad_seq_result) ) return TRUE;
-  if ( is_numeric($pad_sequence) and $pad_sequence > PHP_INT_MAX     ) return FALSE; 
+  if ( $pSeq_unique and in_array ($pSequence, $pSeq_result) ) return TRUE;
+  if ( is_numeric($pSequence) and $pSequence > PHP_INT_MAX     ) return FALSE; 
 
-  $pad_seq_base++;
+  $pSeq_base++;
 
-  if ( is_numeric($pad_sequence) and $pad_sequence < $pad_seq_min ) return TRUE;  
-  if ( is_numeric($pad_sequence) and $pad_sequence > $pad_seq_max ) return TRUE; 
-  if ( $pad_seq_page  and $pad_seq_base < $pad_seq_page_start     ) return TRUE; 
-  if ( $pad_seq_start and $pad_seq_base < $pad_seq_start          ) return TRUE;
+  if ( is_numeric($pSequence) and $pSequence < $pSeq_min ) return TRUE;  
+  if ( is_numeric($pSequence) and $pSequence > $pSeq_max ) return TRUE; 
+  if ( $pSeq_page  and $pSeq_base < $pSeq_page_start     ) return TRUE; 
+  if ( $pSeq_start and $pSeq_base < $pSeq_start          ) return TRUE;
 
-  $pad_seq_result [] = $pad_sequence;
+  $pSeq_result [] = $pSequence;
 
-  $pad_seq_protect_cnt = 0;
+  $pSeq_protect_cnt = 0;
 
-  if ( $pad_seq_rows and count($pad_seq_result) >= $pad_seq_rows ) return FALSE;
-  if ( $pad_seq_end  and $pad_seq_base          >= $pad_seq_end  ) return FALSE;
+  if ( $pSeq_rows and count($pSeq_result) >= $pSeq_rows ) return FALSE;
+  if ( $pSeq_end  and $pSeq_base          >= $pSeq_end  ) return FALSE;
 
   return TRUE;
 

@@ -1,5 +1,5 @@
 <?php
 
-  $pad_seq_loop = ceil ( $pad_seq_loop / $pad_seq_multiple) * $pad_seq_multiple;
+  $pSeq_loop = ceil ( $pSeq_loop / $pSeq_multiple) * $pSeq_multiple;
 
 ?>

@@ -1,12 +1,12 @@
 <?php
 
-  $pad_timings_start ['init'] = microtime(true);
+  $pTimings_start ['init'] = microtime(true);
  
   ob_start();
 
   set_include_path('');
 
-  $pad_lib = PAD . 'lib';
+  $pLib = PAD . 'lib';
   include 'lib.php';
 
   include 'app.php';
@@ -25,12 +25,12 @@
   include 'options.php';
   include 'parms.php';
 
-  $pad_lib = APP . 'lib';
+  $pLib = APP . 'lib';
   include 'lib.php';
 
   include PAD . 'level/setup.php';
   include PAD . 'build/build.php';
 
-  pad_timing_end ('init');
+  pTiming_end ('init');
 
 ?>

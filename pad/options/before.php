@@ -2,11 +2,11 @@
 
   // Callback mode: before
 
-  pad_callback_before_xxx ('init');
+  pCallback_before_xxx ('init');
 
-  foreach ( $pad_data [$pad] as $pad_k => $pad_v)
-    pad_callback_before_row ( $pad_data [$pad] [$pad_k] );
+  foreach ( $pData [$pad] as $pK => $pad_v)
+    pCallback_before_row ( $pData [$pad] [$pK] );
 
-  pad_callback_before_xxx ('exit'); 
+  pCallback_before_xxx ('exit'); 
 
 ?>

@@ -1,28 +1,28 @@
 <?php
 
-  $pad_rnd_random = ( $pad_prms_tag ['random'] === TRUE) ? 1 : $pad_prms_tag ['random'];
+  $pRnd_random = ( $pPrms_tag ['random'] === TRUE) ? 1 : $pPrms_tag ['random'];
 
-  $pad_rnd_temp = [];
+  $pRnd_temp = [];
 
-  for ($pad_rnd_i=1; $pad_rnd_i <= $pad_rnd_random; $pad_rnd_i++) { 
+  for ($pRnd_i=1; $pRnd_i <= $pRnd_random; $pRnd_i++) { 
 
-    if ( ! count($pad_data[$pad]) ) 
+    if ( ! count($pData[$pad]) ) 
       break;
 
-    $pad_rnd_rand = rand (1, count($pad_data[$pad]));
+    $pRnd_rand = rand (1, count($pData[$pad]));
 
-    $pad_rnd_now = 0;
-    foreach ( $pad_data[$pad] as $pad_rnd_key => $pad_rnd_value ) {
-      $pad_rnd_now++;
-      if ( $pad_rnd_now == $pad_rnd_rand ) {
-        $pad_rnd_temp [$pad_rnd_key] = $pad_data [$pad] [$pad_rnd_key] ;
-        unset ( $pad_data [$pad] [$pad_rnd_key] );
+    $pRnd_now = 0;
+    foreach ( $pData[$pad] as $pRnd_key => $pRnd_value ) {
+      $pRnd_now++;
+      if ( $pRnd_now == $pRnd_rand ) {
+        $pRnd_temp [$pRnd_key] = $pData [$pad] [$pRnd_key] ;
+        unset ( $pData [$pad] [$pRnd_key] );
         break;
       }
     }
       
   }
 
-  $pad_data [$pad] = $pad_rnd_temp;
+  $pData [$pad] = $pRnd_temp;
 
 ?>

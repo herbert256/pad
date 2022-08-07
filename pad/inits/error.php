@@ -1,23 +1,23 @@
 <?php
   
-  if ( $pad_error_action == 'boot' ) 
+  if ( $pError_action == 'boot' ) 
     return;
 
   restore_error_handler ();
   restore_exception_handler ();
-  $pad_skip_boot_shutdown = TRUE;
+  $pSkip_boot_shutdown = TRUE;
 
-  if ( $pad_error_action == 'php' ) {
-    ini_set ('display_errors', $pad_display_errors);
-    error_reporting ( $pad_error_reporting );
+  if ( $pError_action == 'php' ) {
+    ini_set ('display_errors', $pDisplay_errors);
+    error_reporting ( $pError_reporting );
     return;
   }
 
-  set_error_handler          ( 'pad_error_handler'   );
-  set_exception_handler      ( 'pad_error_exception' );
-  register_shutdown_function ( 'pad_error_shutdown'  );
+  set_error_handler          ( 'pError_handler'   );
+  set_exception_handler      ( 'pError_exception' );
+  register_shutdown_function ( 'pError_shutdown'  );
 
-  pad_error_reporting ( $pad_error_level );
+  pError_reporting ( $pError_level );
 
  
 ?>

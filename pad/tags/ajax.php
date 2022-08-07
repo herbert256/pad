@@ -1,16 +1,16 @@
 <?php
 
-  if ( ! isset($pad_ajax) )
-    $pad_ajax = 0;
+  if ( ! isset($pAjax) )
+    $pAjax = 0;
   
-  $pad_ajax++;
+  $pAjax++;
 
-  $pad_url = "{$pad}{$pad_parm}&pad_include=$pad_ajax";
+  $pUrl = "{$pad}{$pParm}&pInclude=$pAjax";
 
-  foreach($pad_prms_tag as $pad_pair_key => $pad_pair_value)
-    if ( substr($pad_pair_key, 0, 4) <> 'pad_' and ! is_array($pad_pair_key) )
-      if ( $pad_pair_key )
-        $pad_url .= '&' . $pad_pair_key . '=' . urlencode($pad_pair_value);
+  foreach($pPrms_tag as $pPair_key => $pPair_value)
+    if ( substr($pPair_key, 0, 4) <> 'pad_' and ! is_array($pPair_key) )
+      if ( $pPair_key )
+        $pUrl .= '&' . $pPair_key . '=' . urlencode($pPair_value);
 
   return TRUE;
 

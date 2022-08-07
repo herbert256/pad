@@ -1,28 +1,28 @@
 <?php
 
 
-  function pad_db_get_data ($table, $page=0, $rows=0, $unionBuild=0) {
+  function pDb_get_data ($table, $page=0, $rows=0, $unionBuild=0) {
 
-    global $pad, $pad_data, $pad_prms_tag, $pad_key, $pad_db_relations, $pad_db_tables, $pad_db, $pad_done;
+    global $pad, $pData, $pPrms_tag, $pKey, $pDb_relations, $pDb_tables, $pDb, $pDone;
 
-    $parms = pad_db_get_db ($table);
+    $parms = pDb_get_db ($table);
 
-    $db          = $pad_prms_tag ['db']          ?? $parms ['db']          ?? '';
-    $all         = $pad_prms_tag ['all']         ?? $parms ['all']         ?? 0;
-    $distinct    = $pad_prms_tag ['distinct']    ?? $parms ['distinct']    ?? 0;
-    $distinctrow = $pad_prms_tag ['distinctrow'] ?? $parms ['distinctrow'] ?? 0;
-    $keys        = $pad_prms_tag ['key']         ?? $parms ['key']         ?? '';
-    $fields      = $pad_prms_tag ['fields']      ?? $parms ['fields']      ?? '*';
-    $type        = $pad_prms_tag ['type']        ?? $parms ['type']        ?? 'array';
-    $where       = $pad_prms_tag ['where']       ?? $parms ['where']       ?? '';
-    $group       = $pad_prms_tag ['group']       ?? $parms ['group']       ?? '';
-    $rollup      = $pad_prms_tag ['rollup']      ?? $parms ['rollup']      ?? 0;
-    $having      = $pad_prms_tag ['having']      ?? $parms ['having']      ?? '';
-    $join        = $pad_prms_tag ['join']        ?? $parms ['join']        ?? [];
-    $union       = $pad_prms_tag ['union']       ?? $parms ['union']       ?? '';
-    $order       = $pad_prms_tag ['order']       ?? $parms ['order']       ?? '';
-    $page        = $pad_prms_tag ['page']        ?? $parms ['page']        ?? $page;
-    $rows        = $pad_prms_tag ['rows']        ?? $parms ['rows']        ?? $rows;
+    $db          = $pPrms_tag ['db']          ?? $parms ['db']          ?? '';
+    $all         = $pPrms_tag ['all']         ?? $parms ['all']         ?? 0;
+    $distinct    = $pPrms_tag ['distinct']    ?? $parms ['distinct']    ?? 0;
+    $distinctrow = $pPrms_tag ['distinctrow'] ?? $parms ['distinctrow'] ?? 0;
+    $keys        = $pPrms_tag ['key']         ?? $parms ['key']         ?? '';
+    $fields      = $pPrms_tag ['fields']      ?? $parms ['fields']      ?? '*';
+    $type        = $pPrms_tag ['type']        ?? $parms ['type']        ?? 'array';
+    $where       = $pPrms_tag ['where']       ?? $parms ['where']       ?? '';
+    $group       = $pPrms_tag ['group']       ?? $parms ['group']       ?? '';
+    $rollup      = $pPrms_tag ['rollup']      ?? $parms ['rollup']      ?? 0;
+    $having      = $pPrms_tag ['having']      ?? $parms ['having']      ?? '';
+    $join        = $pPrms_tag ['join']        ?? $parms ['join']        ?? [];
+    $union       = $pPrms_tag ['union']       ?? $parms ['union']       ?? '';
+    $order       = $pPrms_tag ['order']       ?? $parms ['order']       ?? '';
+    $page        = $pPrms_tag ['page']        ?? $parms ['page']        ?? $page;
+    $rows        = $pPrms_tag ['rows']        ?? $parms ['rows']        ?? $rows;
     
     $start = '';
 
@@ -35,7 +35,7 @@
 
     $limit = '';
 
-    if ( ! isset($pad_done [$pad]['page']) or ! isset($pad_done [$pad]['rows']))
+    if ( ! isset($pDone [$pad]['page']) or ! isset($pDone [$pad]['rows']))
 
       if ($page or $rows) {
 
@@ -45,8 +45,8 @@
         $offset = ($page-1) * $rows;
         $limit = "limit $offset, $rows";          
 
-        pad_done ('page', TRUE);
-        pad_done ( 'rows', TRUE);
+        pDone ('page', TRUE);
+        pDone ( 'rows', TRUE);
 
       }
 
@@ -55,10 +55,10 @@
 
     $hit1 = $hit2 = FALSE;
 
-    if ( isset ( $pad_db_relations [$table] ) )
-      foreach ( $pad_db_relations [$table] as $key => $val) {
+    if ( isset ( $pDb_relations [$table] ) )
+      foreach ( $pDb_relations [$table] as $key => $val) {
         
-        $relation = pad_db_get_db ($key);
+        $relation = pDb_get_db ($key);
 
         $first = $relation ['key'];
 
@@ -68,37 +68,37 @@
           $second = $relation ['key'];
         
         for ( $i=$pad-1; $i; $i--)
-          if ( $pad_db [$i] ==  $key)
-            pad_db_get_keys_level ($first, $second, $pad_data [$i] [$pad_key[$i]], $where, $hit1);
+          if ( $pDb [$i] ==  $key)
+            pDb_get_keys_level ($first, $second, $pData [$i] [$pKey[$i]], $where, $hit1);
 
       }
 
-    foreach ( $pad_db_relations as $key => $val1)
+    foreach ( $pDb_relations as $key => $val1)
       foreach ( $val1 as $key2 => $val)
  
         if ( $key2 == $table ) {
           
-          $relation = pad_db_get_db ($table);
+          $relation = pDb_get_db ($table);
 
           $first  = $relation ['key'];
           $second = ( isset($val['key']) ) ? $val ['key'] : $relation ['key'];
 
           for ( $i=$pad; $i; $i--)
-            if ( $pad_db [$i] ==  $key)
-              pad_db_get_keys_level ($first, $second, $pad_data [$i] [$pad_key[$i]], $where, $hit2);
+            if ( $pDb [$i] ==  $key)
+              pDb_get_keys_level ($first, $second, $pData [$i] [$pKey[$i]], $where, $hit2);
   
         }
 
     if ( !$hit1 and !$hit2 and $keys ) {
-      pad_db_get_keys_global ($keys, $keys_out, $values_out);
+      pDb_get_keys_global ($keys, $keys_out, $values_out);
       if ($values_out)
-        pad_db_build_where ($where, $keys_out, $values_out);
+        pDb_build_where ($where, $keys_out, $values_out);
     }
 
     if ( is_array($fields) ) {
       $work = $fields;
       $fields = '';
-      pad_db_add_fields ($fields, $db, $work);
+      pDb_add_fields ($fields, $db, $work);
     }
 
     $joinSQL = '';
@@ -113,12 +113,12 @@
       foreach ($join as $key => $value) {
         foreach ($value as $xtype => $table)
           break;
-        $joinTable = pad_db_get_db ( $table ) ;
-        pad_db_add_fields ($fields, $joinTable ['db'] , $joinTable ['fields'] );
+        $joinTable = pDb_get_db ( $table ) ;
+        pDb_add_fields ($fields, $joinTable ['db'] , $joinTable ['fields'] );
         $joinSQL .= ' ' . $xtype .  ' join ' . $joinTable ['db'] . ' ';
         if ( isset($value ['key']) ) {
           $joinSQL .= ' on ';
-          $joinSQL .= pad_db_build_join_where ($value ['key'], $joinTable ['db'], $joinTable ['key']) . ' ';
+          $joinSQL .= pDb_build_join_where ($value ['key'], $joinTable ['db'], $joinTable ['key']) . ' ';
         }
       }
     }
@@ -139,7 +139,7 @@
     }
     
     foreach ($unionQ as $key)
-      $unionSQL .= ' ' . pad_db_get_data ($key, 0, 0, 1);
+      $unionSQL .= ' ' . pDb_get_data ($key, 0, 0, 1);
 
     if ($unionBuild)
       $order = $limit = '';
@@ -154,9 +154,9 @@
   }
 
 
-  function pad_db_field ($field) {
+  function pDb_field ($field) {
 
-    $parts = pad_explode($field, '.');
+    $parts = pExplode($field, '.');
 
     if ( count($parts) == 2 )
       return  '`' . $parts[0] . '`.`' . $parts[1] . '`';
@@ -166,22 +166,22 @@
   }
 
 
-  function pad_db_build_join_where ($keys1, $db, $keys2) {
+  function pDb_build_join_where ($keys1, $db, $keys2) {
 
     $where = '';
     
-    $values1 = pad_explode ($keys1, ',');
-    $values2 = pad_explode ($keys2, ',');
+    $values1 = pExplode ($keys1, ',');
+    $values2 = pExplode ($keys2, ',');
 
     if ( count($values1) <> count($values2) )
-      pad_error ("Count keys/values does not match");
+      pError ("Count keys/values does not match");
 
     foreach ($values1 as $k => $v) {
 
       if ($where)
         $where .= ' and ';
  
-      $where .= pad_db_field($v) . ' = `' . $db . '`.' . pad_db_field($values2[$k]);
+      $where .= pDb_field($v) . ' = `' . $db . '`.' . pDb_field($values2[$k]);
  
     }
 
@@ -190,7 +190,7 @@
   }
 
   
-  function pad_db_add_fields (&$result, $table, $fields) {
+  function pDb_add_fields (&$result, $table, $fields) {
   
     if ( is_array($fields) ) {
       foreach ($fields as $key => $value) {
@@ -206,14 +206,14 @@
     
   }
   
-  function pad_db_get_db ($table) {
+  function pDb_get_db ($table) {
     
-    global $pad_db_tables;
+    global $pDb_tables;
 
-    $parms = $pad_db_tables [$table];
+    $parms = $pDb_tables [$table];
 
     if (isset($parms['base']))
-      foreach($pad_db_tables [$parms['base']] as $key => $value)
+      foreach($pDb_tables [$parms['base']] as $key => $value)
         if ( ! isset($parms[$key]) )
           $parms[$key] = $value;
 
@@ -232,15 +232,15 @@
   
 
 
-  function pad_db_build_where (&$where, $keys, $values) {
+  function pDb_build_where (&$where, $keys, $values) {
 
     global $keys_parts, $values_parts;
     
-    $keys_parts   = pad_explode ($keys,   ',');
-    $values_parts = pad_explode ($values, ',');
+    $keys_parts   = pExplode ($keys,   ',');
+    $values_parts = pExplode ($values, ',');
 
     if ( count($keys_parts) <> count($values_parts) )
-      pad_error ("Count keys does not match count values");
+      pError ("Count keys does not match count values");
 
     foreach ($keys_parts as $k => $v) {
 
@@ -249,7 +249,7 @@
       else
         $where = 'where ';
       
-      $where .= $v . ' = ' . "'" . pad_db_escape ($values_parts[$k]) . "'";
+      $where .= $v . ' = ' . "'" . pDb_escape ($values_parts[$k]) . "'";
 
     }
 
@@ -258,15 +258,15 @@
 
 
 
-  function pad_db_get_keys_level ($keys1, $keys2, $source, &$where, &$hit) {
+  function pDb_get_keys_level ($keys1, $keys2, $source, &$where, &$hit) {
 
     $hit = FALSE;
     
-    $parts1 = pad_explode ($keys1, ',');
-    $parts2 = pad_explode ($keys2, ',');
+    $parts1 = pExplode ($keys1, ',');
+    $parts2 = pExplode ($keys2, ',');
     
     if ( count($parts1) <> count($parts2) )
-      pad_error ("Keys count does not match: $keys1 / $keys2");
+      pError ("Keys count does not match: $keys1 / $keys2");
       
     foreach($parts2 as $i => $key) {
 
@@ -277,7 +277,7 @@
         else
           $where = 'where ';
   
-        $where .= $parts1[$i] . ' = ' . "'" . pad_db_escape ($source[$key]??'') . "'";
+        $where .= $parts1[$i] . ' = ' . "'" . pDb_escape ($source[$key]??'') . "'";
         
         $hit = TRUE;
 
@@ -289,15 +289,15 @@
 
   }
   
-  function pad_db_get_keys_global ($keys, &$keys_out, &$values_out) {
+  function pDb_get_keys_global ($keys, &$keys_out, &$values_out) {
     
     $keys_out = $values_out = '';
 
-    $parts = pad_explode ($keys, ',');
+    $parts = pExplode ($keys, ',');
 
     foreach($parts as $key) {
 
-      if ( pad_field_check ($key) ) {
+      if ( pField_check ($key) ) {
 
         if ($values_out) {
           $keys_out .= ',';
@@ -305,7 +305,7 @@
         }
   
         $keys_out   .= $key;
-        $values_out .= pad_field_value ($key);
+        $values_out .= pField_value ($key);
 
       }
 
@@ -313,9 +313,9 @@
 
   }
   
-  function pad_db_get_info () {
+  function pDb_get_info () {
     
-    global $pad_db_tables, $pad, $pad_db_lvl, $pad_db_relations;
+    global $pDb_tables, $pad, $pDb_lvl, $pDb_relations;
 
     $go = TRUE;
     
@@ -323,15 +323,15 @@
   
       $go = FALSE;
 
-      foreach ($pad_db_lvl [$pad] as $table => $value) {
+      foreach ($pDb_lvl [$pad] as $table => $value) {
 
-        if ( isset ($pad_db_relations [$table]) ) {
+        if ( isset ($pDb_relations [$table]) ) {
 
-          foreach ( $pad_db_relations [$table] as $rel => $val) {
+          foreach ( $pDb_relations [$table] as $rel => $val) {
   
-            if ( ! pad_db_chk ( $rel ) ) {
+            if ( ! pDb_chk ( $rel ) ) {
            
-              $relation = pad_db_get_db ($rel);
+              $relation = pDb_get_db ($rel);
   
               $first = $second = $relation ['key'];
               if ( isset($val['key']) )
@@ -339,15 +339,15 @@
   
               $where  = $relation ['where'] ?? '';
   
-              $parts1 = pad_explode ($first, ',');
-              $parts2 = pad_explode ($second, ',');
+              $parts1 = pExplode ($first, ',');
+              $parts2 = pExplode ($second, ',');
               
               foreach($parts2 as $i => $fld) {
           
-                if ( ! isset ( $fld, $pad_db_lvl [$pad] [$table] ) )
+                if ( ! isset ( $fld, $pDb_lvl [$pad] [$table] ) )
                   continue 2;
  
-                pad_db_where ($where, $parts1[$i], $pad_db_lvl [$pad] [$table] [$fld] ?? '');
+                pDb_where ($where, $parts1[$i], $pDb_lvl [$pad] [$table] [$fld] ?? '');
                  
               }
   
@@ -356,7 +356,7 @@
   
               $go = TRUE;
 
-              $pad_db_lvl [$pad] [$rel] = pad_db_get ($relation, $where);
+              $pDb_lvl [$pad] [$rel] = pDb_get ($relation, $where);
   
             }
 
@@ -371,51 +371,51 @@
   }
   
 
-  function pad_db_chk ($table) {
+  function pDb_chk ($table) {
     
-    global $pad, $pad_db_lvl;
+    global $pad, $pDb_lvl;
 
     for ( $i=$pad; $i; $i--)
-      if ( isset ( $pad_db_lvl [$i] [$table] ) )
+      if ( isset ( $pDb_lvl [$i] [$table] ) )
         return TRUE;
   
     return FALSE;
   
   }
   
-  function pad_db_get_main () {
+  function pDb_get_main () {
     
-    global $pad_db_tables, $pad, $pad_db_lvl, $pad_db_relations;
+    global $pDb_tables, $pad, $pDb_lvl, $pDb_relations;
 
-    foreach ($pad_db_relations as $key => $val)
-      foreach ($pad_db_relations[$key] as $key2 => $val2)
-        if ( ! isset($pad_db_tables [$key2] ) ) {
-          $pad_db_tables [$key2] = $pad_db_tables [$pad_db_relations[$key] [$key2] ['table']];
-          $pad_db_tables [$key2] ['virtual'] = TRUE;
+    foreach ($pDb_relations as $key => $val)
+      foreach ($pDb_relations[$key] as $key2 => $val2)
+        if ( ! isset($pDb_tables [$key2] ) ) {
+          $pDb_tables [$key2] = $pDb_tables [$pDb_relations[$key] [$key2] ['table']];
+          $pDb_tables [$key2] ['virtual'] = TRUE;
         }    $go = TRUE;
     
     while ($go) {
   
       $go = FALSE;
       
-      foreach ($pad_db_tables as $key => $val) {
+      foreach ($pDb_tables as $key => $val) {
  
-        if ( ! pad_db_chk ($key) and ! isset( $val['virtual'] ) ) {
+        if ( ! pDb_chk ($key) and ! isset( $val['virtual'] ) ) {
 
-          $relation = pad_db_get_db ($key);
+          $relation = pDb_get_db ($key);
   
           $where = '';
   
-          foreach ( pad_explode ($relation['key']??'', ',') as $fld)
-            if ( ! pad_field_check($fld) )
+          foreach ( pExplode ($relation['key']??'', ',') as $fld)
+            if ( ! pField_check($fld) )
               continue 2;
             else
-              pad_db_where ( $where, $fld, pad_field_value($fld) );
+              pDb_where ( $where, $fld, pField_value($fld) );
   
           if ( $where ) {
             $x = $relation['db'];
-            $pad_db_lvl [$pad] [$key] = pad_db_get ($relation, $where);
-            pad_db_get_info ();
+            $pDb_lvl [$pad] [$key] = pDb_get ($relation, $where);
+            pDb_get_info ();
             $go = TRUE;
           }
   
@@ -429,19 +429,19 @@
 
 
 
-  function pad_db_where (&$where, $field, $value) {
+  function pDb_where (&$where, $field, $value) {
 
     if ($where)
       $where .= ' and ';
     else
       $where = 'where ';
 
-    $where .= $field . ' = ' . "'" . pad_db_escape ($value) . "'";
+    $where .= $field . ' = ' . "'" . pDb_escape ($value) . "'";
 
   }
   
   
-  function pad_db_get ($relation, $where) {
+  function pDb_get ($relation, $where) {
 
     $db = $relation ['db'];
 
@@ -450,7 +450,7 @@
     if ( is_array($fields) ) {
       $work   = $fields;
       $fields = '';
-      pad_db_add_fields ($fields, $db, $work);
+      pDb_add_fields ($fields, $db, $work);
     }
 
     $return = db ("record $fields from $db $where");

@@ -1,115 +1,117 @@
 <?php
 
-  $pad_pos = $pad_end [$pad];
+
+  $pTrue [$pad+1] = $pFalse [$pad+1] = '';
+  $pPos = $pEnd [$pad];
 
 go2:  
   do {
 
-    $pad_pos = strpos($pad_html[$pad] , '{/' . $pad_pair_search, $pad_pos);
+    $pPos = strpos($pHtml[$pad] , '{/' . $pTag, $pPos);
 
-    if ($pad_pos === FALSE) {
+    if ($pPos === FALSE) {
 
-      $pad_true [$pad+1] = '';
+      $pTrue [$pad+1] = '';
  
-      $pad_parms [$pad] ['pair'] = $pad_pair = FALSE;
+      $pParms [$pad] ['pair'] = FALSE;
 
       return TRUE;
  
     } 
 
-    $pad_true [$pad+1] = substr($pad_html[$pad], $pad_end[$pad]+1, $pad_pos - $pad_end[$pad] - 1);
+    $pTrue [$pad+1] = substr($pHtml[$pad], $pEnd[$pad]+1, $pPos - $pEnd[$pad] - 1);
 
-    $pad_pos++;
+    $pPos++;
 
-  } while ( substr_count($pad_true [$pad+1], '{'.$pad_pair_search ) <> substr_count($pad_true [$pad+1], '{/'.$pad_pair_search) );
+  } while ( substr_count($pTrue [$pad+1], '{'.$pTag ) <> substr_count($pTrue [$pad+1], '{/'.$pTag) );
 
-  $pad_pair_check = substr($pad_html[$pad], $pad_pos + strlen($pad_pair_search) + 1, 1);
-  if ( ! ($pad_pair_check == ' ' or $pad_pair_check == '}' or $pad_pair_check ==  ',') )
+  $pPair_check = substr($pHtml[$pad], $pPos + strlen($pTag) + 1, 1);
+  if ( ! ($pPair_check == ' ' or $pPair_check == '}' or $pPair_check ==  ',') )
     goto go2;
  
-  $pad_true [$pad+1] = substr ($pad_true [$pad+1], 0, $pad_pos);
+  $pTrue [$pad+1] = substr ($pTrue [$pad+1], 0, $pPos);
 
-  $pad_end [$pad] = strpos ( $pad_html[$pad], '}', $pad_pos+2);
-  if ( $pad_end [$pad] === FALSE )
-    return pad_error ("No closure of close tag found");
+  $pEnd [$pad] = strpos ( $pHtml[$pad], '}', $pPos+2);
+  if ( $pEnd [$pad] === FALSE )
+    return pError ("No closure of close tag found");
 
-  $pad_tmp = substr ($pad_html[$pad], $pad_pos+1, $pad_end[$pad]-$pad_pos-1);
+  $pTmp = substr ($pHtml[$pad], $pPos+1, $pEnd[$pad]-$pPos-1);
 
-  while ( substr_count($pad_tmp, '{') <> substr_count($pad_tmp, '}') ) {
+  while ( substr_count($pTmp, '{') <> substr_count($pTmp, '}') ) {
 
-    if ( $pad_end [$pad] === FALSE or $pad_end [$pad] + 1 == strlen($pad_html[$pad]) )
+    if ( $pEnd [$pad] === FALSE or $pEnd [$pad] + 1 == strlen($pHtml[$pad]) )
        break;
 
-    $pad_end [$pad] = strpos ( $pad_html[$pad], '}', $pad_end [$pad] + 1); 
-    if ( $pad_end [$pad] !== FALSE )
-      $pad_tmp = substr ($pad_html[$pad], $pad_pos+1, $pad_end[$pad]-$pad_pos-1);
+    $pEnd [$pad] = strpos ( $pHtml[$pad], '}', $pEnd [$pad] + 1); 
+    if ( $pEnd [$pad] !== FALSE )
+      $pTmp = substr ($pHtml[$pad], $pPos+1, $pEnd[$pad]-$pPos-1);
 
   }
 
-  if ( $pad_end [$pad] === FALSE )
-    $pad_end [$pad] = strpos ( $pad_html[$pad], '}', $pad_pos+2);
+  if ( $pEnd [$pad] === FALSE )
+    $pEnd [$pad] = strpos ( $pHtml[$pad], '}', $pPos+2);
 
-  $pad_between = substr ($pad_html[$pad], $pad_pos+1, $pad_end[$pad]-$pad_pos-1);
-  $pad_words   = preg_split ("/[\s]+/", $pad_between, 2, PREG_SPLIT_NO_EMPTY);
-  $pad_prms    = trim ($pad_words[1] ?? '');
+  $pBetween = substr ($pHtml[$pad], $pPos+1, $pEnd[$pad]-$pPos-1);
+  $pad_words   = preg_split ("/[\s]+/", $pBetween, 2, PREG_SPLIT_NO_EMPTY);
+  $pPrms    = trim ($pad_words[1] ?? '');
 
-  if ($pad_prms) {
+  if ($pPrms) {
 
-    if ($pad_prms) 
-      return pad_error ("Both open and close parameters used: $pad_pair_search / $pad_prms / $pad_prms2");
+    if ($pPrms) 
+      return pError ("Both open and close parameters used: $pTag / $pPrms / $pPrms2");
 
-    if ( strpos($pad_prms2, '}') ) {
-      pad_html ( '{close_parms}' . $pad_prms . '{/close_parms}'
-               . '{' . $pad_pair_search . '}'
-               . $pad_true [$pad+1]
-               . '{/'. $pad_pair_search . ' ###%%%close_parms%%%###}') ;
+    if ( strpos($pPrms2, '}') ) {
+      pHtml ( '{close_parms}' . $pPrms . '{/close_parms}'
+               . '{' . $pTag . '}'
+               . $pTrue [$pad+1]
+               . '{/'. $pTag . ' ###%%%close_parms%%%###}') ;
       return TRUE;
     }
 
 
     $pad++;
     include 'between.php';
-    $pad_parms [$pad] ['prms_type'] = 'close';
+    $pParms [$pad] ['prms_type'] = 'close';
     $pad--;
 
   }
 
-  $pad_open_close = [];
-  $pad_open_close [$pad_pair_search] = TRUE;
+  $pOpen_close = [];
+  $pOpen_close [$pTag] = TRUE;
 
-  $pad_pos = strpos($pad_true [$pad+1], '{/', 0);
+  $pPos = strpos($pTrue [$pad+1], '{/', 0);
 
-  while ($pad_pos !== FALSE) {
-    $pad_pos2 = strpos($pad_true [$pad+1], '}', $pad_pos);
-    if ( $pad_pos2 !== FALSE ) {
-      $pad_pos3 = strpos($pad_true [$pad+1], ' ', $pad_pos);
-      if ($pad_pos3 !== FALSE and $pad_pos3 < $pad_pos2 )
-        $pad_pos2 = $pad_pos3;      
-      $pad_check_tag = substr($pad_true [$pad+1], $pad_pos+2, $pad_pos2-$pad_pos-2);
-      if ( pad_valid ($pad_check_tag) )
-        $pad_open_close [$pad_check_tag] = TRUE;
+  while ($pPos !== FALSE) {
+    $pPos2 = strpos($pTrue [$pad+1], '}', $pPos);
+    if ( $pPos2 !== FALSE ) {
+      $pPos3 = strpos($pTrue [$pad+1], ' ', $pPos);
+      if ($pPos3 !== FALSE and $pPos3 < $pPos2 )
+        $pPos2 = $pPos3;      
+      $pCheck_tag = substr($pTrue [$pad+1], $pPos+2, $pPos2-$pPos-2);
+      if ( pad_valid ($pCheck_tag) )
+        $pOpen_close [$pCheck_tag] = TRUE;
     }
-    $pad_pos = strpos($pad_true [$pad+1], '{/', $pad_pos+1);
+    $pPos = strpos($pTrue [$pad+1], '{/', $pPos+1);
   }
 
-  $pad_pos = -1;
+  $pPos = -1;
 
-go: $pad_pos++;
-    $pad_pos = strpos($pad_true [$pad+1], '{else}', $pad_pos);
+go: $pPos++;
+    $pPos = strpos($pTrue [$pad+1], '{else}', $pPos);
 
-  if ( $pad_pos === FALSE )
+  if ( $pPos === FALSE )
     return TRUE;
   
-  $pad_check = substr($pad_true [$pad+1],0,$pad_pos);
+  $pCheck = substr($pTrue [$pad+1],0,$pPos);
 
-  foreach ( $pad_open_close as $pad_check_tag => $pad_dummy_var )
-    if ( ( substr_count($pad_check, '{'.$pad_check_tag.' ' ) + substr_count($pad_check, '{'.$pad_check_tag.'}' ) )
+  foreach ( $pOpen_close as $pCheck_tag => $pDummy_var )
+    if ( ( substr_count($pCheck, '{'.$pCheck_tag.' ' ) + substr_count($pCheck, '{'.$pCheck_tag.'}' ) )
            <> 
-         ( substr_count($pad_check, '{/'.$pad_check_tag.' ') + substr_count($pad_check, '{/'.$pad_check_tag.'}') ) )
+         ( substr_count($pCheck, '{/'.$pCheck_tag.' ') + substr_count($pCheck, '{/'.$pCheck_tag.'}') ) )
       goto go;
 
-  $pad_false   [$pad+1] = substr ( $pad_true [$pad+1], $pad_pos+6  );
-  $pad_true [$pad+1] = substr ( $pad_true [$pad+1], 0, $pad_pos );
+  $pFalse   [$pad+1] = substr ( $pTrue [$pad+1], $pPos+6  );
+  $pTrue [$pad+1] = substr ( $pTrue [$pad+1], 0, $pPos );
 
   return TRUE;
 

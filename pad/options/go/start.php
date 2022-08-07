@@ -1,6 +1,6 @@
 <?php
 
-  $pad_options = 'start';
+  $pOptions = 'start';
 
   include "options.php";
   

@@ -2,6 +2,6 @@
 
   include_once 'function.php';
   
-  return pad_sequence_bell ( $pad_seq_loop );
+  return pSequence_bell ( $pSeq_loop );
 
 ?>

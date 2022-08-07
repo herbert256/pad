@@ -15,7 +15,7 @@
   
   // Mark the PAD boot time
 
-  $pad_timings_boot = microtime(true);
+  $pTimings_boot = microtime(true);
 
 
   // Start settings
@@ -29,12 +29,12 @@
 
   // Start Boot error handling 
 
-  $pad_display_errors  = ini_set ('display_errors', 0);
-  $pad_error_reporting = error_reporting (E_ALL);
+  $pDisplay_errors  = ini_set ('display_errors', 0);
+  $pError_reporting = error_reporting (E_ALL);
 
-  set_error_handler          ( 'pad_boot_error_handler'     );
-  set_exception_handler      ( 'pad_boot_exception_handler' );
-  register_shutdown_function ( 'pad_boot_shutdown_function' );
+  set_error_handler          ( 'pBoot_error_handler'     );
+  set_exception_handler      ( 'pBoot_exception_handler' );
+  register_shutdown_function ( 'pBoot_shutdown_function' );
 
 
   // End Boot error handling 
@@ -47,42 +47,42 @@
 
   // PAD boot error handling functions
  
-  function pad_boot_error ( $error ) {
+  function pBoot_error ( $error ) {
 
     extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
 
-    pad_boot_error_go ( $error, $file, $line );
+    pBoot_error_go ( $error, $file, $line );
 
   }
 
-  function pad_boot_error_handler ( $type, $error, $file, $line ) {
+  function pBoot_error_handler ( $type, $error, $file, $line ) {
 
-    pad_boot_error_go ( $error, $file, $line );
-
-  }
-
-  function pad_boot_exception_handler ( $error ) {
-
-    pad_boot_error_go ( $error->getMessage(), $error->getFile(), $error->getLine() );
+    pBoot_error_go ( $error, $file, $line );
 
   }
 
-  function pad_boot_shutdown_function () {
+  function pBoot_exception_handler ( $error ) {
 
-    if ( isset ( $GLOBALS['pad_skip_boot_shutdown'] ) )
+    pBoot_error_go ( $error->getMessage(), $error->getFile(), $error->getLine() );
+
+  }
+
+  function pBoot_shutdown_function () {
+
+    if ( isset ( $GLOBALS['pSkip_boot_shutdown'] ) )
       return;
 
     $error = error_get_last ();
  
     if ($error !== NULL)
-      pad_boot_error_go ( $error['message'], $error['file'], $error['line'] );
+      pBoot_error_go ( $error['message'], $error['file'], $error['line'] );
  
   }
 
-  function pad_boot_error_go ( $error, $file, $line ) {
+  function pBoot_error_go ( $error, $file, $line ) {
 
-    $GLOBALS ['pad_skip_boot_shutdown'] = TRUE;
-    $GLOBALS ['pad_skip_shutdown']      = TRUE;
+    $GLOBALS ['pSkip_boot_shutdown'] = TRUE;
+    $GLOBALS ['pSkip_shutdown']      = TRUE;
 
     if ( ! headers_sent () )
       header ( 'HTTP/1.0 500 Internal Server Error' );
@@ -91,7 +91,7 @@
 
     error_log ( "[PAD] $id - $file:$line $error", 4 );
 
-#    if ( function_exists ( 'pad_local' ) and pad_local () )
+#    if ( function_exists ( 'pLocal' ) and pLocal () )
       echo "$file:$line $error";
 #    else
 #      echo "Error: $id";

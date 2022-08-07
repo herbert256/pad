@@ -1,7 +1,7 @@
 <?php
 
 
-  function pad_track () {
+  function pTrack () {
   
     return [
         'session'   => $GLOBALS ['PADSESSID'] ?? '',
@@ -11,9 +11,9 @@
         'page'      => $GLOBALS ['page'] ?? '',
         'start'     => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0,
         'end'       => microtime(true),
-        'length'    => $GLOBALS ['pad_len'] ?? 0,
-        'stop'      => $GLOBALS ['pad_stop'] ?? '',
-        'etag'      => $GLOBALS ['pad_etag'] ?? '',
+        'length'    => $GLOBALS ['pLen'] ?? 0,
+        'stop'      => $GLOBALS ['pStop'] ?? '',
+        'etag'      => $GLOBALS ['pEtag'] ?? '',
         'uri'       => $_SERVER ['REQUEST_URI']     ?? '' ,
         'referer'   => $_SERVER ['HTTP_REFERER']    ?? '' ,
         'remote'    => $_SERVER ['REMOTE_ADDR']     ?? '' ,
@@ -24,52 +24,52 @@
   }
 
 
-  function pad_track_file_request () {
+  function pTrack_file_request () {
     
     $id    = $GLOBALS['PADREQID'];
-    $track = pad_track ();
-    $json  = pad_json ($track);
+    $track = pTrack ();
+    $json  = pJson ($track);
     
-    pad_file_put_contents ( "track/$id.json", $json, 1);
+    pFile_put_contents ( "track/$id.json", $json, 1);
       
   }
 
 
-  function pad_track_file_data () {
+  function pTrack_file_data () {
 
-    global $pad_etag, $pad_output;
+    global $pEtag, $pOutput;
     
-    $pad_content_store_file = "output/$pad_etag.html";
+    $pContent_store_file = "output/$pEtag.html";
 
-    if ( ! file_exists(DATA . "$pad_content_store_file") )
-      pad_file_put_contents ($pad_content_store_file, $pad_output);
+    if ( ! file_exists(DATA . "$pContent_store_file") )
+      pFile_put_contents ($pContent_store_file, $pOutput);
 
   }
 
 
-  function pad_track_db_session () {
+  function pTrack_db_session () {
 
     $session = $GLOBALS['PADSESSID'];
     $request = $GLOBALS['PADREQID'];
 
-    if ( pad_db ( "check track_session where session='$session'" ) )
-      pad_db ( "update track_session set requests=requests+1 where session='$session'");
+    if ( pDb ( "check track_session where session='$session'" ) )
+      pDb ( "update track_session set requests=requests+1 where session='$session'");
     else
-      pad_db ( "insert into track_session values('$session', NOW(), NOW(), 1)" );
+      pDb ( "insert into track_session values('$session', NOW(), NOW(), 1)" );
    
-    if ( ! $GLOBALS['pad_track_db_request'] )
+    if ( ! $GLOBALS['pTrack_db_request'] )
       return;
 
-    pad_db ( "insert into track_request
+    pDb ( "insert into track_request
               values('{1}', '{2}', '{3:32}', '{4:32}', NOW(), {5}, '{6}', '{7:32}', '{8}', '{9:1023}', '{10:1023}', '{11:1023}', '{12:1023}')",
       [  1 => $session,
          2 => $request,
          3 => $GLOBALS['app']  ?? '',
          4 => $GLOBALS['page'] ?? '',
-         5 => pad_duration($_SERVER['REQUEST_TIME_FLOAT'] ?? 0),
-         6 => $GLOBALS['pad_len'] ?? 0,
-         7 => $GLOBALS['pad_stop'] ?? '',
-         8 => $GLOBALS['pad_etag'] ?? '',
+         5 => pDuration($_SERVER['REQUEST_TIME_FLOAT'] ?? 0),
+         6 => $GLOBALS['pLen'] ?? 0,
+         7 => $GLOBALS['pStop'] ?? '',
+         8 => $GLOBALS['pEtag'] ?? '',
          9 => $_SERVER ['REQUEST_URI']     ?? '' ,
         10 => $_SERVER ['HTTP_REFERER']    ?? '' ,
         11 => $_SERVER ['REMOTE_ADDR']     ?? '' ,
@@ -80,14 +80,14 @@
   }
 
 
-  function pad_track_db_data () {
+  function pTrack_db_data () {
 
-    global $pad_etag, $pad_output;
+    global $pEtag, $pOutput;
     
-    $etag = pad_db ( "check track_data where etag='{1}'", [ 1 => $pad_etag ] );
+    $etag = pDb ( "check track_data where etag='{1}'", [ 1 => $pEtag ] );
 
     if ( ! $etag )
-      $session = pad_db ( "insert into track_data values('{1}', '{2}')", [ 1 => $pad_etag, 2=> $pad_output ] );
+      $session = pDb ( "insert into track_data values('{1}', '{2}')", [ 1 => $pEtag, 2=> $pOutput ] );
 
   }
 

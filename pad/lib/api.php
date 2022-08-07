@@ -1,41 +1,41 @@
 <?php
 
 
-  function pad_fast_link ($app, $page, $vars ) {
+  function pFast_link ($app, $page, $vars ) {
     
-    global $pad_fast_link, $PADSESSID, $PADREQID, $pad_host, $pad;
+    global $pFast_link, $PADSESSID, $PADREQID, $pHost, $pad;
   
     $vars ['app']       = $app;
     $vars ['page']      = $page;
     $vars ['PADSESSID'] = $PADSESSID;
     $vars ['PADREFID']  = $PADREQID;
     
-    $fast = pad_random_string ($pad_fast_link);
+    $fast = pRandom_string ($pFast_link);
   
-    pad_db (
+    pDb (
       "insert into links values('{0}','{1}')",
       [$fast, serialize($vars)]
     );
                         
-    return $pad_host . $pad . $fast;
+    return $pHost . $pad . $fast;
 
   }
 
 
-  function pad_go ( $go ) {
+  function pGo ( $go ) {
 
-    global $pad_host, $pad_script, $pad_stop;
+    global $pHost, $pScript, $pStop;
 
-    $parts = pad_explode ($go, '://', 2);
+    $parts = pExplode ($go, '://', 2);
 
     if ( count ($parts) == 2)
       $next = $go;
     else
-      $next = "$pad_host$pad_script?app=$go";
+      $next = "$pHost$pScript?app=$go";
   
-    pad_header ("Location: $next");
+    pHeader ("Location: $next");
     
-    pad_stop (302);
+    pStop (302);
 
   }
 

@@ -1,19 +1,19 @@
 <?php
 
-  if ( $pad_seq_pull and $pad_seq_seq <> 'pull' ) {
+  if ( $pSeq_pull and $pSeq_seq <> 'pull' ) {
 
-    $pad_seq_for = $pad_sequence_store [$pad_seq_pull];
+    $pSeq_for = $pSequence_store [$pSeq_pull];
 
     include "for.php";
 
-  } elseif ( $pad_seq_range and $pad_seq_seq <> 'range' ) {
+  } elseif ( $pSeq_range and $pSeq_seq <> 'range' ) {
 
-    $pad_seq_for = pad_get_range ( $pad_seq_range, $pad_seq_inc );
+    $pSeq_for = pGet_range ( $pSeq_range, $pSeq_inc );
 
     include "for.php";
 
   } else
 
-    include "$pad_seq_build.php";
+    include "$pSeq_build.php";
 
 ?>

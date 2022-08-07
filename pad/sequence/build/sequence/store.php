@@ -1,8 +1,8 @@
 <?php
 
-  $pad_seq_seq  = 'pull';
-  $pad_seq_pull = $pad_seq_tmp;
-  $pad_seq_set  = $pad_seq_tmp;
-  $pad_seq_parm = $pad_seq_tmp;
+  $pSeq_seq  = 'pull';
+  $pSeq_pull = $pSeq_tmp;
+  $pSeq_set  = $pSeq_tmp;
+  $pSeq_parm = $pSeq_tmp;
 
 ?>

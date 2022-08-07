@@ -1,7 +1,7 @@
 <?php
 
-  sort ( $pad_seq_result );
+  sort ( $pSeq_result );
 
-  return $pad_seq_result
+  return $pSeq_result
   
 ?>

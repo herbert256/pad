@@ -1,18 +1,18 @@
 <?php
 
-  if ( $GLOBALS['pad_trace_headers'] ) 
-    pad_file_put_contents ($pad_trace_dir . "/headers-in.json", getallheaders() );
+  if ( $GLOBALS['pTrace_headers'] ) 
+    pFile_put_contents ($pTrace_dir . "/headers-in.json", getallheaders() );
 
-  if ( isset($_REQUEST['pad_trace']) )
-    $pad_trace = TRUE;
+  if ( isset($_REQUEST['pTrace']) )
+    $pTrace = TRUE;
 
-  if ( ! $pad_trace )
+  if ( ! $pTrace )
     return;
 
-  $pad_parms [1] ['level_dir'] = $pad_level_dir ; 
-  $pad_parms [1] ['occur_dir'] = $pad_occur_dir ;
+  $pParms [1] ['level_dir'] = $pLevel_dir ; 
+  $pParms [1] ['occur_dir'] = $pOccur_dir ;
 
-  $pad_trace_data_start = [
+  $pTrace_data_start = [
     'sessionID'   => $GLOBALS ['PADSESSID'] ?? '',
     'requestID'   => $GLOBALS ['PADREQID'] ?? '',
     'referenceID' => $GLOBALS ['PADREFID'] ?? '',
@@ -25,8 +25,8 @@
     'agent'       => $_SERVER ['HTTP_USER_AGENT'] ?? ''
   ];
       
-  pad_file_put_contents ($pad_trace_dir . "/start.json",   $pad_trace_data_start     );
-  pad_file_put_contents ($pad_trace_dir . "/php.json",     pad_trace_get_php_vars () );
-  pad_file_put_contents ($pad_trace_dir . "/request.json", $_REQUEST                 );
+  pFile_put_contents ($pTrace_dir . "/start.json",   $pTrace_data_start     );
+  pFile_put_contents ($pTrace_dir . "/php.json",     pTrace_get_php_vars () );
+  pFile_put_contents ($pTrace_dir . "/request.json", $_REQUEST                 );
 
 ?>

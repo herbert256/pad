@@ -1,8 +1,8 @@
 <?php
 
-  if ( pad_tag_parm ('print') )
+  if ( pTag_parm ('print') )
     include PAD . 'options/print.php';
 
-  return $pad_data_store [$pad_tag];
+  return $pData_store [$pTag];
  
 ?>

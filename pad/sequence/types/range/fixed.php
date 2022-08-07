@@ -1,7 +1,7 @@
 <?php
 
-  $pad_seq_range_parms = pad_explode ( $pad_seq_parm, '..' );
+  $pSeq_range_parms = pExplode ( $pSeq_parm, '..' );
 
-  return range ( $pad_seq_range_parms[0], $pad_seq_range_parms[1], $pad_seq_inc );
+  return range ( $pSeq_range_parms[0], $pSeq_range_parms[1], $pSeq_inc );
 
 ?>

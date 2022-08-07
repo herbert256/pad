@@ -2,17 +2,17 @@
 
   $pad_val_base = $pad_val;
 
-  if ( ! $GLOBALS['pad_trace_errors'] and ! $GLOBALS['pad_error_dump'] )
+  if ( ! $GLOBALS['pTrace_errors'] and ! $GLOBALS['pError_dump'] )
     return;
 
-  if ( pad_field_check ( $pad_fld ) ) 
+  if ( pField_check ( $pFld ) ) 
     return;
 
-  $pad_trace_data = [ 
-    'field'   => $GLOBALS['pad_fld'],
-    'between' => $GLOBALS['pad_between'],
+  $pTrace_data = [ 
+    'field'   => $GLOBALS['pFld'],
+    'between' => $GLOBALS['pBetween'],
   ];
 
-  pad_trace_write_error ( "Field '$pad_fld' not found", 'field', $GLOBALS['pad_fld_cnt'], $pad_trace_data );
+  pTrace_write_error ( "Field '$pFld' not found", 'field', $GLOBALS['pFld_cnt'], $pTrace_data );
 
 ?>

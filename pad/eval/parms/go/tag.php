@@ -1,18 +1,18 @@
 <?php
  
-  $pad_eval_tag_options = '';
+  $pEval_tag_options = '';
 
   if ( $value )
-    $pad_eval_tag_options = $value;
+    $pEval_tag_options = $value;
   else
-    $pad_eval_tag_options = '';
+    $pEval_tag_options = '';
  
-  foreach ($parm as $pad_k => $pad_v)
-    if ( $pad_eval_tag_options)
-      $pad_eval_tag_options .= ", '$pad_v'";
+  foreach ($parm as $pK => $pad_v)
+    if ( $pEval_tag_options)
+      $pEval_tag_options .= ", '$pad_v'";
     else
-      $pad_eval_tag_options .= $pad_v;
+      $pEval_tag_options .= $pad_v;
 
-  return pad_tag_as_function ( "$pad_eval_tag_type:$name", $pad_eval_tag_options);
+  return pTag_as_function ( "$pEval_tag_type:$name", $pEval_tag_options);
   
 ?>

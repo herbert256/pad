@@ -1,18 +1,18 @@
 <?php
 
-  $pad_occur_dir = $pad_parms [$pad] ['level_dir'];
+  $pOccur_dir = $pParms [$pad] ['level_dir'];
 
-  if ( $pad > 1 and $pad_tag <> 'trace' )
-    $pad_occur_dir .= '/occur-' . $pad_occur [$pad];
+  if ( $pad > 1 and $pTag <> 'trace' )
+    $pOccur_dir .= '/occur-' . $pOccur [$pad];
 
-  $pad_parms [$pad] ['occur_dir'] = $pad_occur_dir ;
+  $pParms [$pad] ['occur_dir'] = $pOccur_dir ;
 
   if ( $pad <= 1 )
     return;
 
-  pad_file_put_contents ( "$pad_occur_dir/data.json",      $pad_current [$pad]       );
-  pad_file_put_contents ( "$pad_occur_dir/pad.json",       pad_trace_get_pad_vars () );
-  pad_file_put_contents ( "$pad_occur_dir/app.json",       pad_trace_get_app_vars () );
-  pad_file_put_contents ( "$pad_occur_dir/html-base.html", $pad_base [$pad]          );
+  pFile_put_contents ( "$pOccur_dir/data.json",      $pCurrent [$pad]       );
+  pFile_put_contents ( "$pOccur_dir/pad.json",       pTrace_get_pad_vars () );
+  pFile_put_contents ( "$pOccur_dir/app.json",       pTrace_get_app_vars () );
+  pFile_put_contents ( "$pOccur_dir/html-base.html", $pBase [$pad]          );
   
 ?>

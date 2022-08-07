@@ -1,11 +1,11 @@
 <?php
 
-  $pad_link_app  = $pad_prms_tag ['app']  ?? $app;
-  $pad_link_page = $pad_prms_tag ['page'] ?? 'index';
-  $pad_link_text = $pad_prms_tag ['text'] ?? $pad_content;
+  $pLink_app  = $pPrms_tag ['app']  ?? $app;
+  $pLink_page = $pPrms_tag ['page'] ?? 'index';
+  $pLink_text = $pPrms_tag ['text'] ?? $pContent;
 
-  pad_done ( 'page', TRUE );
+  pDone ( 'page', TRUE );
 
-  return "<a href=\"$pad_host$pad_script?app=$pad_link_app&page=$pad_link_page\">$pad_link_text</a>";
+  return "<a href=\"$pHost$pScript?app=$pLink_app&page=$pLink_page\">$pLink_text</a>";
 
 ?>

@@ -1,20 +1,20 @@
 <?php
 
-  $pad_seq_init = TRUE;
+  $pSeq_init = TRUE;
 
-  if ( count ($pad_seq_for) and is_array(reset($pad_seq_for)) )
-    foreach ( $pad_seq_for as $pad_k => $pad_v )
-      $pad_seq_for [$pad_k] = reset($pad_v);
+  if ( count ($pSeq_for) and is_array(reset($pSeq_for)) )
+    foreach ( $pSeq_for as $pK => $pad_v )
+      $pSeq_for [$pK] = reset($pad_v);
 
-  foreach ( $pad_seq_for as $pad_seq_loop ) {
+  foreach ( $pSeq_for as $pSeq_loop ) {
 
-    if ( $pad_seq_random )
-      $pad_seq_loop = $pad_seq_for [array_rand($pad_seq_for)] ;
+    if ( $pSeq_random )
+      $pSeq_loop = $pSeq_for [array_rand($pSeq_for)] ;
 
     if ( ! include 'go/one.php')
         break;
 
-   $pad_seq_init = FALSE;
+   $pSeq_init = FALSE;
 
   }
 

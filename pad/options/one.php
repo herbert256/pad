@@ -1,6 +1,6 @@
 <?php
 
-  $pad_base [$pad] = '';
-  $pad_data [$pad] = [];
+  $pBase [$pad] = '';
+  $pData [$pad] = [];
 
 ?>

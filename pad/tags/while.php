@@ -1,20 +1,20 @@
 <?php
 
-  if ( $pad_walk == 'start' and $pad_prms_type == 'close' ) {
+  if ( $pad_walk == 'start' and $pPrms_type == 'close' ) {
     $pad_walk = 'next';
     return TRUE;
   }
 
-  $pad_eval = pad_eval ( $pad_prms );
+  $pEval = pEval ( $pPrms );
 
-  $pad_wrk  = [ $pad_parms [$pad] ['tag_cnt'] => [] ];
+  $pad_wrk  = [ $pParms [$pad] ['tag_cnt'] => [] ];
 
-  if ($pad_tag == 'while') { 
-    $pad_walk = ($pad_eval) ? 'next'   : '';
-    return      ($pad_eval) ? $pad_wrk : NULL;
+  if ($pTag == 'while') { 
+    $pad_walk = ($pEval) ? 'next'   : '';
+    return      ($pEval) ? $pad_wrk : NULL;
   } else {
-    $pad_walk = ($pad_eval) ? ''   : 'next';
-    return      ($pad_eval) ? $pad_wrk : TRUE;    
+    $pad_walk = ($pEval) ? ''   : 'next';
+    return      ($pEval) ? $pad_wrk : TRUE;    
   }
 
 ?>

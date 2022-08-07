@@ -1,6 +1,6 @@
 <?php
 
-  $pad_call = "$pad_parm";
+  $pCall = "$pParm";
 
   return include PAD . 'level/call.php';
 

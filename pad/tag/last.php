@@ -1,7 +1,7 @@
 <?php
 
-  global $pad_data, $pad_key;
+  global $pData, $pKey;
   
-  return ( $pad_key [$pad_idx] == array_key_last ( $pad_data [$pad_idx] ) );
+  return ( $pKey [$pIdx] == array_key_last ( $pData [$pIdx] ) );
 
 ?>

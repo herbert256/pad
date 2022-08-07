@@ -1,7 +1,7 @@
 <?php
 
-  if ( $pad_seq_loop == 1 ) return 1;
+  if ( $pSeq_loop == 1 ) return 1;
 
-  return 1 + $pad_seq_result [ $pad_seq_loop - ($pad_seq_result [ $pad_seq_result [ $pad_seq_loop - 2 ] - 1 ] + 1) ];
+  return 1 + $pSeq_result [ $pSeq_loop - ($pSeq_result [ $pSeq_result [ $pSeq_loop - 2 ] - 1 ] + 1) ];
 
 ?>

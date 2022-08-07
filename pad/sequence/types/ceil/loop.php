@@ -1,8 +1,8 @@
 <?php
 
-  if ( ! $pad_seq_ceil )
-    $pad_seq_ceil = 1;
+  if ( ! $pSeq_ceil )
+    $pSeq_ceil = 1;
 
-  return ceil ( $pad_seq_loop / $pad_seq_ceil ) * $pad_seq_ceil;
+  return ceil ( $pSeq_loop / $pSeq_ceil ) * $pSeq_ceil;
 
 ?>

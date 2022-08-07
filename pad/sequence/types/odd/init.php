@@ -1,8 +1,8 @@
 <?php
 
-  $pad_seq_inc = 2;
+  $pSeq_inc = 2;
 
-  if ( ! ($pad_seq_loop_start % 2) )
-    $pad_seq_loop_start++;
+  if ( ! ($pSeq_loop_start % 2) )
+    $pSeq_loop_start++;
 
 ?>

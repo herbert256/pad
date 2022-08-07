@@ -1,13 +1,13 @@
 <?php
 
-  if ( $pad_trace_occurence ) 
+  if ( $pTrace_occurence ) 
     include 'trace/end.php';
   
-  $pad_result [$pad] .= $pad_html [$pad];
+  $pResult [$pad] .= $pHtml [$pad];
 
-  $pad_occur_dir = $pad_level_dir;
-  $pad_parms [$pad] ['occur_dir'] = $pad_occur_dir ;
+  $pOccur_dir = $pLevel_dir;
+  $pParms [$pad] ['occur_dir'] = $pOccur_dir ;
 
-  pad_reset ($pad);
+  pReset ($pad);
 
 ?>

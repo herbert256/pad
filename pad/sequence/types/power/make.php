@@ -1,10 +1,10 @@
 <?php
 
-#  $pad_seq_debug++;
+#  $pSeq_debug++;
 
-#  if ( $pad_seq_debug == 2) $a=$b;
+#  if ( $pSeq_debug == 2) $a=$b;
   
-#  return $pad_seq_debug;
+#  return $pSeq_debug;
   
   
   return include 'loop.php';

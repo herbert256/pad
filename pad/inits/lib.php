@@ -1,17 +1,17 @@
 <?php
 
-  if ( ! file_exists($pad_lib) )
+  if ( ! file_exists($pLib) )
     return;
 
-  $pad_lib_directory = new RecursiveDirectoryIterator ($pad_lib);
-  $pad_lib_iterator  = new RecursiveIteratorIterator  ($pad_lib_directory);
+  $pLib_directory = new RecursiveDirectoryIterator ($pLib);
+  $pLib_iterator  = new RecursiveIteratorIterator  ($pLib_directory);
 
-  foreach ( $pad_lib_iterator as $pad_lib_one ) {
+  foreach ( $pLib_iterator as $pLib_one ) {
 
-    $pad_lib_file = $pad_lib_one->getPathname();
+    $pLib_file = $pLib_one->getPathname();
 
-    if ( substr($pad_lib_file, -4) == '.php' )
-      include_once $pad_lib_file;
+    if ( substr($pLib_file, -4) == '.php' )
+      include_once $pLib_file;
 
   }
 

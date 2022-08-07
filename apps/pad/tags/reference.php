@@ -4,8 +4,8 @@
 
   $file = APPS . "reference/pages/$reference";
 
-  $php    = ( file_exists("$file.php" ) ) ? pad_colors_file ("$file.php")  : '';
-  $html   = ( file_exists("$file.html") ) ? pad_colors_file ("$file.html") : '';
+  $php    = ( file_exists("$file.php" ) ) ? pColors_file ("$file.php")  : '';
+  $html   = ( file_exists("$file.html") ) ? pColors_file ("$file.html") : '';
 
   $php_file  = ( file_exists("$file.php") )  ? str_replace(APPS . "reference/pages/", '', "$file.php")  : '';
   $html_file = ( file_exists("$file.html") ) ? str_replace(APPS . "reference/pages/", '', "$file.html") : '';

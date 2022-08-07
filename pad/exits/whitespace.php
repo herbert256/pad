@@ -1,5 +1,5 @@
 <?php
 
-  $pad_output = trim(preg_replace('/>\s+</', '><', $pad_output));
+  $pOutput = trim(preg_replace('/>\s+</', '><', $pOutput));
  
 ?>

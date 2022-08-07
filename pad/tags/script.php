@@ -1,27 +1,27 @@
 <?php
 
-  $pad_exec = APP . "scripts/" . escapeshellcmd ($pad_parm);
+  $pExec = APP . "scripts/" . escapeshellcmd ($pParm);
 
-  if ( ! file_exists($pad_exec) ) {
-    pad_error ("Script $pad_exec not found");
+  if ( ! file_exists($pExec) ) {
+    pError ("Script $pExec not found");
     return FALSE;
   }
 
-  $pad_exec_out = $pad_exec_args = [];
+  $pExec_out = $pExec_args = [];
 
-  foreach($pad_prms_val as $pad_k => $pad_v)
-    if ($pad_k)
-      $pad_exec_args [$pad_k] = escapeshellarg ($pad_v);
+  foreach($pPrms_val as $pK => $pad_v)
+    if ($pK)
+      $pExec_args [$pK] = escapeshellarg ($pad_v);
 
-  $pad_exec_args = implode(" ", $pad_exec_args);
+  $pExec_args = implode(" ", $pExec_args);
   
-  exec ("$pad_exec $pad_exec_args", $pad_exec_out, $pad_exec_return);
+  exec ("$pExec $pExec_args", $pExec_out, $pExec_return);
 
-  if ( $pad_exec_return ) {
-    pad_error ("Script $pad_exec has returned error $pad_exec_return");
+  if ( $pExec_return ) {
+    pError ("Script $pExec has returned error $pExec_return");
     return FALSE;    
   }
 
-  return implode("\n", $pad_exec_out);
+  return implode("\n", $pExec_out);
   
 ?>

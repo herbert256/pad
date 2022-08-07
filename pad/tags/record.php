@@ -1,8 +1,8 @@
 <?php
 
-  if ($pad_tag == 'check' ) 
-    return db ("$pad_tag $pad_parm") ? TRUE : FALSE;
+  if ($pTag == 'check' ) 
+    return db ("$pTag $pParm") ? TRUE : FALSE;
   else                  
-    return db ("$pad_tag $pad_parm");
+    return db ("$pTag $pParm");
 
 ?>

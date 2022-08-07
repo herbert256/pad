@@ -1,5 +1,5 @@
 <?php
 
-  return $GLOBALS['pad_data_store'] [$name];
+  return $GLOBALS['pData_store'] [$name];
 
 ?>

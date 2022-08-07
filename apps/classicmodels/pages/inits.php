@@ -1,38 +1,38 @@
 <?php
 
-  // $pad_db_tables
+  // $pDb_tables
   
-  $pad_db_tables ['customers'] = [ 'db' => 'customers',    'key' => 'customerNumber', 'order' => 'customerName'];
-  $pad_db_tables ['employees'] = [ 'db' => 'employees',    'key' => 'employeeNumber', 'order' => 'lastName,firstName'];
-  $pad_db_tables ['offices']   = [ 'db' => 'offices',      'key' => 'officeCode'];
-  $pad_db_tables ['details']   = [ 'db' => 'orderdetails', 'key' => 'orderNumber,productCode', 'order' => 'orderLineNumber'];
-  $pad_db_tables ['orders']    = [ 'db' => 'orders',       'key' => 'orderNumber'];
-  $pad_db_tables ['payments']  = [ 'db' => 'payments',     'key' => 'customerNumber,checkNumber'];
-  $pad_db_tables ['lines']     = [ 'db' => 'productlines', 'key' => 'productLine'];
-  $pad_db_tables ['products']  = [ 'db' => 'products',     'key' => 'productCode'];
+  $pDb_tables ['customers'] = [ 'db' => 'customers',    'key' => 'customerNumber', 'order' => 'customerName'];
+  $pDb_tables ['employees'] = [ 'db' => 'employees',    'key' => 'employeeNumber', 'order' => 'lastName,firstName'];
+  $pDb_tables ['offices']   = [ 'db' => 'offices',      'key' => 'officeCode'];
+  $pDb_tables ['details']   = [ 'db' => 'orderdetails', 'key' => 'orderNumber,productCode', 'order' => 'orderLineNumber'];
+  $pDb_tables ['orders']    = [ 'db' => 'orders',       'key' => 'orderNumber'];
+  $pDb_tables ['payments']  = [ 'db' => 'payments',     'key' => 'customerNumber,checkNumber'];
+  $pDb_tables ['lines']     = [ 'db' => 'productlines', 'key' => 'productLine'];
+  $pDb_tables ['products']  = [ 'db' => 'products',     'key' => 'productCode'];
 
-  // Relations between PAD tables, the key of *relation* must be in $pad_db_tables
-  // $pad_db_relations [*base*]  [*relation*]    = [];
+  // Relations between PAD tables, the key of *relation* must be in $pDb_tables
+  // $pDb_relations [*base*]  [*relation*]    = [];
 
-  $pad_db_relations ['products']  ['lines']      = [];
-  $pad_db_relations ['payments']  ['customers']  = [];
-  $pad_db_relations ['orders']    ['customers']  = [];
-  $pad_db_relations ['details']   ['orders']     = [];
-  $pad_db_relations ['details']   ['products']   = [];
-  $pad_db_relations ['employees'] ['offices']    = [];
+  $pDb_relations ['products']  ['lines']      = [];
+  $pDb_relations ['payments']  ['customers']  = [];
+  $pDb_relations ['orders']    ['customers']  = [];
+  $pDb_relations ['details']   ['orders']     = [];
+  $pDb_relations ['details']   ['products']   = [];
+  $pDb_relations ['employees'] ['offices']    = [];
 
   // Relations between PAD tables, the key of *relation* is an other field in *base*
-  // $pad_db_relations [*base*]  [*relation*]    = [ 'key' => *keyField*];
+  // $pDb_relations [*base*]  [*relation*]    = [ 'key' => *keyField*];
   //
   // All keys of *relation* must be given, use 'n/a' if it does not exists in *base* for a partly relation
 
-  $pad_db_relations ['customers'] ['employees']  = [ 'key' => 'salesRepEmployeeNumber'];
+  $pDb_relations ['customers'] ['employees']  = [ 'key' => 'salesRepEmployeeNumber'];
   
   // Virtual tables
   
-  $pad_db_relations ['customers'] ['sales']      = [ 'table' => 'employees', 'key' => 'salesRepEmployeeNumber' ];
-  $pad_db_relations ['employees'] ['managers']   = [ 'table' => 'employees', 'key' => 'reportsTo'              ];
-  $pad_db_relations ['managers']  ['bosses']     = [ 'table' => 'employees', 'key' => 'reportsTo'              ];
-  $pad_db_relations ['bosses']    ['hell']       = [ 'table' => 'offices',                                     ];
+  $pDb_relations ['customers'] ['sales']      = [ 'table' => 'employees', 'key' => 'salesRepEmployeeNumber' ];
+  $pDb_relations ['employees'] ['managers']   = [ 'table' => 'employees', 'key' => 'reportsTo'              ];
+  $pDb_relations ['managers']  ['bosses']     = [ 'table' => 'employees', 'key' => 'reportsTo'              ];
+  $pDb_relations ['bosses']    ['hell']       = [ 'table' => 'offices',                                     ];
   
 ?>

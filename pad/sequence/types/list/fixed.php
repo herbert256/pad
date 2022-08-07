@@ -1,5 +1,5 @@
 <?php
 
-  return explode(';', $pad_seq_parm);
+  return explode(';', $pSeq_parm);
   
 ?>

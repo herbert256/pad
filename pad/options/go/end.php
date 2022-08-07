@@ -1,6 +1,6 @@
 <?php
 
-  $pad_options = 'end';
+  $pOptions = 'end';
 
   include "options.php";
   

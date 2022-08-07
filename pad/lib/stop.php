@@ -1,84 +1,84 @@
 <?php
 
  
-  function pad_stop ($stop) {
+  function pStop ($stop) {
 
-    $GLOBALS['pad_stop'] = $stop;
-    $GLOBALS['pad_len']  = ( $stop == 200 ) ? strlen($GLOBALS['pad_output']) : 0;
+    $GLOBALS['pStop'] = $stop;
+    $GLOBALS['pLen']  = ( $stop == 200 ) ? strlen($GLOBALS['pOutput']) : 0;
 
-    if ( $GLOBALS['pad_track_db_session'] or $GLOBALS['pad_track_db_request'] )
-      pad_track_db_session ();
+    if ( $GLOBALS['pTrack_db_session'] or $GLOBALS['pTrack_db_request'] )
+      pTrack_db_session ();
 
-    if ( $GLOBALS['pad_track_file_request'] )
-      pad_track_file_request ();
+    if ( $GLOBALS['pTrack_file_request'] )
+      pTrack_file_request ();
 
-    pad_close_session ();
-    pad_empty_buffers ();
+    pClose_session ();
+    pEmpty_buffers ();
 
-    if ( ! isset($GLOBALS['pad_sent']) ) {
+    if ( ! isset($GLOBALS['pSent']) ) {
 
-      $GLOBALS['pad_sent'] = TRUE;
+      $GLOBALS['pSent'] = TRUE;
 
-      pad_headers ($stop);
+      pHeaders ($stop);
     
       if ( $stop == 200 ) {
 
-        if ( $GLOBALS['pad_cache_stop'] and $GLOBALS['pad_cache_server_gzip'] and $GLOBALS['pad_client_gzip']  )
-          echo $GLOBALS['pad_output'];
-        elseif ( $GLOBALS['pad_cache_stop'] and $GLOBALS['pad_cache_server_gzip'] and ! $GLOBALS['pad_client_gzip'] )
-          echo pad_unzip ( $GLOBALS['pad_output'] );
-        elseif ( $GLOBALS['pad_client_gzip'] )
-          echo pad_zip ( $GLOBALS['pad_output'] );
+        if ( $GLOBALS['pCache_stop'] and $GLOBALS['pCache_server_gzip'] and $GLOBALS['pClient_gzip']  )
+          echo $GLOBALS['pOutput'];
+        elseif ( $GLOBALS['pCache_stop'] and $GLOBALS['pCache_server_gzip'] and ! $GLOBALS['pClient_gzip'] )
+          echo pUnzip ( $GLOBALS['pOutput'] );
+        elseif ( $GLOBALS['pClient_gzip'] )
+          echo pZip ( $GLOBALS['pOutput'] );
         else 
-          echo $GLOBALS['pad_output'];
+          echo $GLOBALS['pOutput'];
 
       }
 
     }  
 
-    pad_exit ();
+    pExit ();
 
   }
 
 
-  function pad_headers ($stop) {
+  function pHeaders ($stop) {
 
     if ( headers_sent () )
       return;
 
     if ( $stop == 500 )
-      pad_header ('HTTP/1.0 500 Internal Server Error' );
+      pHeader ('HTTP/1.0 500 Internal Server Error' );
     elseif ( $stop == 304 )
-      pad_header ('HTTP/1.1 304 Not Modified');
-    elseif ( $stop == 200 and $GLOBALS ['pad_client_gzip'] )
-      pad_header ('Content-Encoding: gzip');
+      pHeader ('HTTP/1.1 304 Not Modified');
+    elseif ( $stop == 200 and $GLOBALS ['pClient_gzip'] )
+      pHeader ('Content-Encoding: gzip');
 
     if ( $stop <> 302 and $stop <> 304)
-      pad_header ('Content-Type: text/html; charset=UTF-8');
+      pHeader ('Content-Type: text/html; charset=UTF-8');
 
-    if ( $stop == 200 and $GLOBALS['pad_len'] )
-      pad_header ('Content-Length: ' . $GLOBALS['pad_len']);
+    if ( $stop == 200 and $GLOBALS['pLen'] )
+      pHeader ('Content-Length: ' . $GLOBALS['pLen']);
     
-    if ( ($stop <> 200 and $stop <> 304) or ! $GLOBALS['pad_cache'] )
-      pad_header ('Cache-Control: no-cache, no-store');
+    if ( ($stop <> 200 and $stop <> 304) or ! $GLOBALS['pCache'] )
+      pHeader ('Cache-Control: no-cache, no-store');
     else
-      pad_cache_headers ();
+      pCache_headers ();
 
-    pad_timing_close ();
+    pTiming_close ();
 
   }
 
 
-  function pad_cache_headers () {
+  function pCache_headers () {
 
-    if ( $GLOBALS ['pad_cache_client_age'] )
-      $age = $GLOBALS ['pad_cache_client_age'] - ($_SERVER['REQUEST_TIME'] - $GLOBALS['pad_time']);
+    if ( $GLOBALS ['pCache_client_age'] )
+      $age = $GLOBALS ['pCache_client_age'] - ($_SERVER['REQUEST_TIME'] - $GLOBALS['pTime']);
     else
       $age = 0;
 
-    if ( $GLOBALS ['pad_cache_proxy_age'] ) {
+    if ( $GLOBALS ['pCache_proxy_age'] ) {
       $type = 'public';
-      $sage = $GLOBALS ['pad_cache_proxy_age'] - ($_SERVER['REQUEST_TIME'] - $GLOBALS['pad_time']);
+      $sage = $GLOBALS ['pCache_proxy_age'] - ($_SERVER['REQUEST_TIME'] - $GLOBALS['pTime']);
     } else {
       $type = 'private';
       $sage = 0;
@@ -89,19 +89,19 @@
     
     $extra = 'no-transform, must-revalidate, proxy-revalidate';
 
-    pad_header ('Cache-Control: ' . "$type, max-age=$age, s-maxage=$sage, $extra");
-    pad_header ('Vary: '          . 'Content-Encoding');
-    pad_header ('Date: '          . gmdate('D, d M Y H:i:s', $_SERVER['REQUEST_TIME']        ) . ' GMT');;
-    pad_header ('Expires: '       . gmdate('D, d M Y H:i:s', $_SERVER['REQUEST_TIME'] + $age ) . ' GMT');
-    pad_header ('Etag: '          . '"' . $GLOBALS['pad_etag'] . '"');
+    pHeader ('Cache-Control: ' . "$type, max-age=$age, s-maxage=$sage, $extra");
+    pHeader ('Vary: '          . 'Content-Encoding');
+    pHeader ('Date: '          . gmdate('D, d M Y H:i:s', $_SERVER['REQUEST_TIME']        ) . ' GMT');;
+    pHeader ('Expires: '       . gmdate('D, d M Y H:i:s', $_SERVER['REQUEST_TIME'] + $age ) . ' GMT');
+    pHeader ('Etag: '          . '"' . $GLOBALS['pEtag'] . '"');
 
   }
 
 
-  function pad_exit () {
+  function pExit () {
 
-    $GLOBALS['pad_skip_shutdown']      = TRUE;
-    $GLOBALS['pad_skip_boot_shutdown'] = TRUE;
+    $GLOBALS['pSkip_shutdown']      = TRUE;
+    $GLOBALS['pSkip_boot_shutdown'] = TRUE;
 
     include PAD . 'exits/trace.php';
     

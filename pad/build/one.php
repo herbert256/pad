@@ -1,5 +1,5 @@
 <?php
 
-  return pad_get_html ( "$pad_one.html" , TRUE);
+  return pGet_html ( "$pOne.html" , TRUE);
 
 ?>

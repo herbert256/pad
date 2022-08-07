@@ -1,7 +1,7 @@
 <?php
  
-  $pad_type = 'function_' . pad_function_type ($pad_tag);
+  $pType = 'function_' . pFunction_type ($pTag);
 
-  return include PAD . 'types/$pad_tag_typ.php';
+  return include PAD . 'types/$pTag_typ.php';
 
 ?>

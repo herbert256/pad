@@ -1,27 +1,27 @@
 <?php
   
   $pad++;
-  $pad_lvl_cnt++;
+  $pLvl_cnt++;
 
-  $pad_content = $pad_true [$pad];
+  $pContent = $pTrue [$pad];
   include 'type_go.php';
-  $pad_true [$pad] = $pad_content;
+  $pTrue [$pad] = $pContent;
   
   include 'options.php';
   include 'flags.php';
   include 'base.php';
   include 'data.php';
 
-  $pad_parms [$pad] ['default'] = pad_is_default_data ( $pad_data [$pad] );
+  $pParms [$pad] ['default'] = pIs_default_data ( $pData [$pad] );
 
   include PAD . "options/go/start.php";
   
   include 'trace/start.php';
 
-  if ( isset($pad_prms_tag ['callback']) and ! isset($pad_prms_tag ['before']))
+  if ( isset($pPrms_tag ['callback']) and ! isset($pPrms_tag ['before']))
     include PAD . 'callback/init.php' ;
 
-  if ( count ($pad_data[$pad] ) )
+  if ( count ($pData[$pad] ) )
     include PAD . 'occurrence/start.php';
   
 ?>

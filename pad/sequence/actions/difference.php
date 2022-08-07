@@ -1,5 +1,5 @@
 <?php
 
-  return pad_seq_array_action ('array_diff');
+  return pSeq_array_action ('array_diff');
 
 ?>

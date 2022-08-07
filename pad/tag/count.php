@@ -1,7 +1,7 @@
 <?php
 
-  global $pad_data, $pad_occur;
+  global $pData, $pOccur;
 
-  return max(count($pad_data[$pad_idx]), $pad_occur [$pad_idx]);
+  return max(count($pData[$pIdx]), $pOccur [$pIdx]);
 
 ?>

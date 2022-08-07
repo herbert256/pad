@@ -1,5 +1,5 @@
 <?php
 
-  return pad_error ("TODO array operator: $action");  
+  return pError ("TODO array operator: $action");  
 
 ?>  

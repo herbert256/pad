@@ -1,6 +1,6 @@
 <?php
       
-  include PAD . 'config/$pad_parm.php';
+  include PAD . 'config/$pParm.php';
       
   return '';
     

@@ -1,33 +1,33 @@
 <?php
 
-  $pad_fld_cnt++;
+  $pFld_cnt++;
 
-  $pad_pipe  = strpos($pad_between, '|');
-  $pad_space = strpos($pad_between, ' ');
+  $pPipe  = strpos($pBetween, '|');
+  $pSpace = strpos($pBetween, ' ');
 
-  if ($pad_pipe and (!$pad_space or $pad_pipe < $pad_space) ) {
+  if ($pPipe and (!$pSpace or $pPipe < $pSpace) ) {
     
-    $pad_fld  = rtrim(substr($pad_between, 1, $pad_pipe-1));
-    $pad_expl = pad_explode(substr($pad_between, $pad_pipe+1), '|');
+    $pFld  = rtrim(substr($pBetween, 1, $pPipe-1));
+    $pExpl = pExplode(substr($pBetween, $pPipe+1), '|');
 
-  } elseif ($pad_space and (!$pad_pipe or $pad_space < $pad_pipe) ) {
+  } elseif ($pSpace and (!$pPipe or $pSpace < $pPipe) ) {
 
-    $pad_fld  = rtrim(substr($pad_between, 1, $pad_space-1));
-    $pad_expl = pad_explode(substr($pad_between, $pad_space+1), '|');
+    $pFld  = rtrim(substr($pBetween, 1, $pSpace-1));
+    $pExpl = pExplode(substr($pBetween, $pSpace+1), '|');
 
   } else {
 
-    $pad_fld  = rtrim(substr($pad_between, 1));
-    $pad_expl = [];
+    $pFld  = rtrim(substr($pBetween, 1));
+    $pExpl = [];
 
   }
   
-  if ( substr($pad_fld, 0, 1) == '$' )
-    $pad_fld = pad_field_value ($pad_fld);
+  if ( substr($pFld, 0, 1) == '$' )
+    $pFld = pField_value ($pFld);
 
-  $pad_val = pad_field_value ($pad_fld);
+  $pad_val = pField_value ($pFld);
 
-  if ( $pad_trace_fields or $pad_trace_errors or $pad_error_dump ) 
+  if ( $pTrace_fields or $pTrace_errors or $pError_dump ) 
     include 'trace/start.php';
 
 ?>

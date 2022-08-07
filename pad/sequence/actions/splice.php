@@ -1,14 +1,14 @@
 <?php
 
-  $pad_seq_splice = pad_explode ($pad_seq_action_value, '|');
+  $pSeq_splice = pExplode ($pSeq_action_value, '|');
 
   array_splice (
-    $pad_seq_result,
-    $pad_seq_splice[0],
-    $pad_seq_splice[1],
-    $pad_sequence_store [$pad_seq_splice[2] ]
+    $pSeq_result,
+    $pSeq_splice[0],
+    $pSeq_splice[1],
+    $pSequence_store [$pSeq_splice[2] ]
   );
 
-  return $pad_seq_result;
+  return $pSeq_result;
 
 ?>

@@ -1,27 +1,27 @@
 <?php
 
-  if ( ! isset( $pad_prms_tag['both']) and ! isset( $pad_prms_tag['left'])  and !  isset( $pad_prms_tag['right']) )
-    $pad_prms_tag['both'] = TRUE;
+  if ( ! isset( $pPrms_tag['both']) and ! isset( $pPrms_tag['left'])  and !  isset( $pPrms_tag['right']) )
+    $pPrms_tag['both'] = TRUE;
 
-  if ( isset( $pad_prms_tag['both']) ) {
-    $pad_seq_trucate_count = pad_seq_get_count ( 'both', 'truncate', 'count');
-    $pad_seq_result        = pad_seq_truncate  ( $pad_seq_result, 'left',  $pad_seq_trucate_count );
-    $pad_seq_result        = pad_seq_truncate  ( $pad_seq_result, 'right', $pad_seq_trucate_count );
-    pad_done ( 'both', TRUE );
+  if ( isset( $pPrms_tag['both']) ) {
+    $pSeq_trucate_count = pSeq_get_count ( 'both', 'truncate', 'count');
+    $pSeq_result        = pSeq_truncate  ( $pSeq_result, 'left',  $pSeq_trucate_count );
+    $pSeq_result        = pSeq_truncate  ( $pSeq_result, 'right', $pSeq_trucate_count );
+    pDone ( 'both', TRUE );
   }
 
-  if ( isset( $pad_prms_tag['left']) ) {
-    $pad_seq_trucate_count = pad_seq_get_count ( 'left', 'truncate', 'count');
-    $pad_seq_result        = pad_seq_truncate  ( $pad_seq_result, 'left', $pad_seq_trucate_count );
-    pad_done ( 'left', TRUE );
+  if ( isset( $pPrms_tag['left']) ) {
+    $pSeq_trucate_count = pSeq_get_count ( 'left', 'truncate', 'count');
+    $pSeq_result        = pSeq_truncate  ( $pSeq_result, 'left', $pSeq_trucate_count );
+    pDone ( 'left', TRUE );
   }
 
-  if ( isset( $pad_prms_tag['right']) ) {
-    $pad_seq_trucate_count = pad_seq_get_count ( 'right', 'truncate', 'count');
-    $pad_seq_result        = pad_seq_truncate  ( $pad_seq_result, 'right', $pad_seq_trucate_count );
-    pad_done ( 'right', TRUE );
+  if ( isset( $pPrms_tag['right']) ) {
+    $pSeq_trucate_count = pSeq_get_count ( 'right', 'truncate', 'count');
+    $pSeq_result        = pSeq_truncate  ( $pSeq_result, 'right', $pSeq_trucate_count );
+    pDone ( 'right', TRUE );
   }
 
-  return $pad_seq_result;
+  return $pSeq_result;
   
 ?>

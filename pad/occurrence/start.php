@@ -1,33 +1,33 @@
 <?php
 
-  $pad_occur [$pad]++;
-  $pad_html  [$pad] = $pad_base[$pad];
-  $pad_key   [$pad] = key($pad_data[$pad]);
+  $pOccur [$pad]++;
+  $pHtml  [$pad] = $pBase[$pad];
+  $pKey   [$pad] = key($pData[$pad]);
 
-  $pad_current [$pad] = $pad_data [$pad] [$pad_key [$pad]];
+  $pCurrent [$pad] = $pData [$pad] [$pKey [$pad]];
 
   if ( $pad_walks [$pad] <> 'start' )
-    $pad_walks_data [ $pad] [] = $pad_current [$pad];
+    $pad_walks_data [ $pad] [] = $pCurrent [$pad];
 
   if ( $pad > 1 ) {
 
-    if ( pad_is_default_data ($pad_data [$pad]) ) {
-      if ( isset($pad_prms_val[0]) )
-        pad_set_global ( $pad_name, $pad_prms_val[0] );
+    if ( pIs_default_data ($pData [$pad]) ) {
+      if ( isset($pPrms_val[0]) )
+        pSet_global ( $pName, $pPrms_val[0] );
     } else
-      pad_set_global ( $pad_name, $pad_current [$pad] );
+      pSet_global ( $pName, $pCurrent [$pad] );
 
-    foreach ( $pad_current [$pad] as $pad_k => $pad_v )
-      pad_set_global ( $pad_k, $pad_v );
+    foreach ( $pCurrent [$pad] as $pK => $pad_v )
+      pSet_global ( $pK, $pad_v );
 
   }
 
-  if ( isset($pad_prms_tag ['callback']) and ! isset($pad_prms_tag ['before']) )
+  if ( isset($pPrms_tag ['callback']) and ! isset($pPrms_tag ['before']) )
     include PAD . 'callback/row.php' ;
 
   include PAD . 'occurrence/db.php';
 
-  if ( $pad_trace_occurence ) 
+  if ( $pTrace_occurence ) 
     include 'trace/start.php';
 
 ?>

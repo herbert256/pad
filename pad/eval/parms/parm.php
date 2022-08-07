@@ -8,17 +8,17 @@
     $tag  = -1;
 
   if ( $value and isset ( $parm [0] ) )
-    $pad_parm_type = $parm [0];
+    $pParm_type = $parm [0];
   elseif ( isset ( $parm [1] ) and ! $value )
-    $pad_parm_type = $parm [1];
+    $pParm_type = $parm [1];
   else
-    $pad_parm_type = '';      
+    $pParm_type = '';      
 
-  $pad_result_parm = pad_field_tag ("$tag#$name#$pad_parm_type");
+  $pResult_parm = pField_tag ("$tag#$name#$pParm_type");
 
-  if ( $pad_result_parm === INF )
+  if ( $pResult_parm === INF )
     return NULL;
   else
-    return $pad_result_parm;
+    return $pResult_parm;
   
 ?>

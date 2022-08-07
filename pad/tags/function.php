@@ -1,20 +1,20 @@
 <?php
 
-  if ( $pad_walk == 'start' and $pad_prms_type == 'close' ) {
+  if ( $pad_walk == 'start' and $pPrms_type == 'close' ) {
     $pad_walk = 'end';
     return TRUE;
   }
 
-  $pad_tag = $pad_parm;
+  $pTag = $pParm;
 
-  if ( isset ($pad_prms_tag ['type'] ) )                     
-    $pad_function_type = "function_" . $pad_prms_tag ['type'];                
+  if ( isset ($pPrms_tag ['type'] ) )                     
+    $pFunction_type = "function_" . $pPrms_tag ['type'];                
   else
-    $pad_function_type = "function_" . pad_function_type ($pad_parm);
+    $pFunction_type = "function_" . pFunction_type ($pParm);
 
-  $pad_function_val = $pad_prms_val;
-  unset ( $pad_function_val [ array_key_first ($pad_function_val) ] );
+  $pFunction_val = $pPrms_val;
+  unset ( $pFunction_val [ array_key_first ($pFunction_val) ] );
 
-  return pad_function_in_tag ( $pad_function_type, $pad_parm, $pad_content, $pad_function_val );
+  return pFunction_in_tag ( $pFunction_type, $pParm, $pContent, $pFunction_val );
 
 ?>

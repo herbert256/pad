@@ -1,13 +1,13 @@
 <?php
 
-  if ( ! isset ($pad_prms_tag ['url']) )
-    $pad_prms_tag ['url'] = $pad_parm;
+  if ( ! isset ($pPrms_tag ['url']) )
+    $pPrms_tag ['url'] = $pParm;
 
-  if ( ! $pad_prms_tag ['url'] )
-    return pad_error ("Curl: No URL given");
+  if ( ! $pPrms_tag ['url'] )
+    return pError ("Curl: No URL given");
 
-  $pad_return = pad_curl ( $pad_prms_tag);
+  $pReturn = pCurl ( $pPrms_tag);
 
-  return $pad_return ['data'];
+  return $pReturn ['data'];
 
 ?>

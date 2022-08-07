@@ -1,5 +1,5 @@
 <?php
 
-  pad_dump ($value);
+  pDump ($value);
 
 ?>

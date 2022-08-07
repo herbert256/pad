@@ -6,10 +6,10 @@
 // function prints the
 // juggler Sequence
 
-function pad_seq_juggler ($n) {
+function pSeq_juggler ($n) {
 
 
-	$GLOBALS ['pad_seq_juggler_array'] [] = $n;
+	$GLOBALS ['pSeq_juggler_array'] [] = $n;
 
 	$a = $n;
 

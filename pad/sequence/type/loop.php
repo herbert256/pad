@@ -2,35 +2,35 @@
 
   include PAD . "sequence/build/save.php";
 
-  $pad_seq_init = TRUE;
+  $pSeq_init = TRUE;
 
-  $pad_seq_go = $pad_seq_loop_start;
+  $pSeq_go = $pSeq_loop_start;
 
-  while ( $pad_seq_go <= $pad_seq_loop_end ) {
+  while ( $pSeq_go <= $pSeq_loop_end ) {
 
-    if ( ! $pad_seq_random )
+    if ( ! $pSeq_random )
 
-      $pad_seq_loop = $pad_seq_go;
+      $pSeq_loop = $pSeq_go;
 
-    elseif ( $pad_seq_inc == 1)
+    elseif ( $pSeq_inc == 1)
 
-      $pad_seq_loop = pad_seq_random ( $pad_seq_loop_start, $pad_seq_loop_end );
+      $pSeq_loop = pSeq_random ( $pSeq_loop_start, $pSeq_loop_end );
 
     else {
 
-      $pad_seq_inc_cnt = round ( (($pad_seq_loop_end-$pad_seq_loop_start)+1) / $pad_seq_inc );
-      $pad_seq_inc_cnt = pad_seq_random ( 0, $pad_seq_inc_cnt );
+      $pSeq_inc_cnt = round ( (($pSeq_loop_end-$pSeq_loop_start)+1) / $pSeq_inc );
+      $pSeq_inc_cnt = pSeq_random ( 0, $pSeq_inc_cnt );
 
-      $pad_seq_loop = $pad_seq_loop_start + ($pad_seq_inc_cnt*$pad_seq_inc);
+      $pSeq_loop = $pSeq_loop_start + ($pSeq_inc_cnt*$pSeq_inc);
 
     }
 
     if ( ! include 'go/one.php')
         break;
 
-    $pad_seq_init = FALSE;
+    $pSeq_init = FALSE;
 
-    $pad_seq_go = $pad_seq_go + $pad_seq_inc;
+    $pSeq_go = $pSeq_go + $pSeq_inc;
 
   }
 

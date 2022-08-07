@@ -1,5 +1,5 @@
 <?php
 
-  return pad_get_level_array ($pad_tag);
+  return pGet_level_array ($pTag);
 
 ?>

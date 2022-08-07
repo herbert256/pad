@@ -1,11 +1,11 @@
 <?php
 
-  $pad_opt_cnt++;
+  $pOpt_cnt++;
 
-  $pad_options_dir = "$pad_level_dir/options/$pad_option_name-$pad_opt_cnt";
+  $pOptions_dir = "$pLevel_dir/options/$pOption_name-$pOpt_cnt";
 
-  pad_file_put_contents ( "$pad_options_dir/data.html",    $pad_data[$pad] );
-  pad_file_put_contents ( "$pad_options_dir/content.html", $pad_content );
-  pad_file_put_contents ( "$pad_options_dir/base.html",    $pad_base[$pad] );
+  pFile_put_contents ( "$pOptions_dir/data.html",    $pData[$pad] );
+  pFile_put_contents ( "$pOptions_dir/content.html", $pContent );
+  pFile_put_contents ( "$pOptions_dir/base.html",    $pBase[$pad] );
 
 ?>

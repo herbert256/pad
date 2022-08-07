@@ -1,6 +1,6 @@
 <?php
 
-  $pad_callback = "exit";
+  $pCallback = "exit";
   
   include PAD . 'options/callback.php' ;
   

@@ -1,6 +1,6 @@
 <?php
 
-  $pad_callback = "row";
+  $pCallback = "row";
 
   include PAD . 'options/callback.php' ;
   

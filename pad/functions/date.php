@@ -7,7 +7,7 @@
 
   } elseif ( $count == 0 )
   
-    $format = $GLOBALS ['pad_fmt_'.$name];
+    $format = $GLOBALS ['pFmt_'.$name];
     
   elseif ( $count == 1 )
 

@@ -1,23 +1,23 @@
 <?php
 
-  if ( $pad_null )
+  if ( $pNull )
 
-    $pad_now = [];
+    $pNow = [];
 
-  elseif ( $pad_else )
+  elseif ( $pElse )
 
-    if     ( $pad_array                   ) $pad_now = array_slice ($pad_tag_result, 0, 1); 
-    elseif ( count ($pad_data [$pad]) ) $pad_now = array_slice ($pad_data [$pad], 0, 1); 
-    else                                    $pad_now = pad_default_data ();  
+    if     ( $pArray                   ) $pNow = array_slice ($pTag_result, 0, 1); 
+    elseif ( count ($pData [$pad]) ) $pNow = array_slice ($pData [$pad], 0, 1); 
+    else                                    $pNow = pDefault_data ();  
 
-  elseif ( $pad_array )
+  elseif ( $pArray )
 
-    $pad_now = $pad_tag_result;
+    $pNow = $pTag_result;
 
   else 
 
-    $pad_now = $pad_data [$pad];
+    $pNow = $pData [$pad];
 
-  $pad_data [$pad] = pad_make_data ( $pad_now );   
+  $pData [$pad] = pMake_data ( $pNow );   
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-  $pad_in_sequence = TRUE;
+  $pIn_sequence = TRUE;
 
   include 'build/parms.php';
   include 'build/sequence.php';
@@ -12,22 +12,22 @@
   include 'build/done.php';
   include 'build/build.php';  
 
-  if ( $pad_seq_build == 'function' ) include_once "types/$pad_seq_seq/function.php";
-  if ( $pad_seq_build == 'bool'     ) include_once "types/$pad_seq_seq/bool.php";
+  if ( $pSeq_build == 'function' ) include_once "types/$pSeq_seq/function.php";
+  if ( $pSeq_build == 'bool'     ) include_once "types/$pSeq_seq/bool.php";
 
-  if ( file_exists ( PAD . "sequence/types/$pad_seq_seq/init.php" )) 
-    include "types/$pad_seq_seq/init.php";
+  if ( file_exists ( PAD . "sequence/types/$pSeq_seq/init.php" )) 
+    include "types/$pSeq_seq/init.php";
       
   include 'type/type.php';
   include 'build/actions.php';
  
-  if ( file_exists ( PAD . "sequence/types/$pad_seq_seq/exit.php" ) )   
-    include "types/$pad_seq_seq/exit.php";
+  if ( file_exists ( PAD . "sequence/types/$pSeq_seq/exit.php" ) )   
+    include "types/$pSeq_seq/exit.php";
 
   include 'build/push.php';
 
-  $pad_in_sequence = FALSE;
+  $pIn_sequence = FALSE;
 
-  return $pad_seq_result;
+  return $pSeq_result;
 
 ?>

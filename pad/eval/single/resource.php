@@ -1,5 +1,5 @@
 <?php
 
-  return pad_xxx_to_array ($name);
+  return pXxx_to_array ($name);
 
 ?>

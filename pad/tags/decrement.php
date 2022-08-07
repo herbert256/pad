@@ -1,11 +1,11 @@
 <?php
 
-  $pad_field = pad_field_name ($pad_prms);
+  $pField = pField_name ($pPrms);
 
-  if ( isset ($GLOBALS[$pad_field]) )
-    $GLOBALS[$pad_field]--;
+  if ( isset ($GLOBALS[$pField]) )
+    $GLOBALS[$pField]--;
   else
-    $GLOBALS[$pad_field] = -1;
+    $GLOBALS[$pField] = -1;
   
   return TRUE;
   

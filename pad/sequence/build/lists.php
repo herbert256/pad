@@ -1,12 +1,12 @@
 <?php
 
-  $pad_seq_one = 'keep';
+  $pSeq_one = 'keep';
   include 'list.php';
 
-  $pad_seq_one = 'make';
+  $pSeq_one = 'make';
   include 'list.php';
 
-  $pad_seq_one = 'remove';
+  $pSeq_one = 'remove';
   include 'list.php';
   
 ?>

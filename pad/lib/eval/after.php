@@ -1,9 +1,9 @@
 <?php
 
 
-   function pad_eval_single ( &$result, $key) {
+   function pEval_single ( &$result, $key) {
     
-    if ( $GLOBALS ['pad_trace_eval'] )
+    if ( $GLOBALS ['pTrace_eval'] )
       $trace_data ['before'] = $result[$key];
 
     $one = $result [$key];
@@ -12,32 +12,32 @@
     $kind  = $one[2];
     $parm  = [];
     $count = 0;
-    $pad_eval_single = include PAD . "eval/single/$kind.php"; 
+    $pEval_single = include PAD . "eval/single/$kind.php"; 
 
     $result [$key] [1] = 'VAL';
 
-    if ( is_array($pad_eval_single) or is_object($pad_eval_single) or is_resource($pad_eval_single) ) {
+    if ( is_array($pEval_single) or is_object($pEval_single) or is_resource($pEval_single) ) {
       $result [$key] [0] = '*ARRAY*';
-      $result [$key] [4] = pad_array_single ($pad_eval_single);
+      $result [$key] [4] = pArray_single ($pEval_single);
     } else {
-      pad_check_value ($pad_eval_single);
-      $result [$key] [0] = $pad_eval_single;
+      pCheck_value ($pEval_single);
+      $result [$key] [0] = $pEval_single;
     }
 
     unset ( $result [$key] [2] );
     unset ( $result [$key] [3] );
 
-    if ( $GLOBALS ['pad_trace_eval'] ) {
+    if ( $GLOBALS ['pTrace_eval'] ) {
       $trace_data ['after'] = $result [$key];
-      pad_eval_trace ('single', $trace_data );
+      pEval_trace ('single', $trace_data );
     }   
 
   }
 
   
-  function pad_eval_after ( &$result, $eval ) {
+  function pEval_after ( &$result, $eval ) {
  
-    global $pad_flag_store, $pad_data_store, $pad_content_store;
+    global $pFlag_store, $pData_store, $pContent_store;
 
     $check = 0;
     
@@ -55,7 +55,7 @@
 
     foreach ($result as $k => $one)
       if ( $one[1] == 'other' and pad_valid ($one[0]) ) {
-        $type = pad_get_type_eval ( $one[0] );
+        $type = pGet_type_eval ( $one[0] );
         if ( $type !== FALSE ) {
           $result[$k][0] = $one[0];
           $result[$k][1] = 'TYPE';
@@ -66,7 +66,7 @@
 
     foreach ($result as $k => $one)
       if ( $one[1] == 'other' ) {
-        $exp = pad_explode ($one[0], ':');
+        $exp = pExplode ($one[0], ':');
         if ( count($exp) == 2 and pad_valid ($exp[0]) and pad_valid ($exp[1]) ) {
           $type = $exp[0];
           if ( file_exists ( PAD . "eval/single/$type.php") or file_exists ( PAD . "eval/parms/$type.php") ) {
@@ -80,16 +80,16 @@
 
     foreach ($result as $key => $one)
       if ( $one[1] == 'TYPE' and pad_valid ($one[2]) and file_exists ( PAD."eval/single/".$one[2].".php" ) )
-        pad_eval_single ( $result, $key);
+        pEval_single ( $result, $key);
 
     foreach ($result as $k => $one)
-      if ( $one[1] == 'other' and isset ( pad_eval_alt [$one[0]] ) ) {
-          $result[$k][0] = pad_eval_alt [$one[0]];
+      if ( $one[1] == 'other' and isset ( pEval_alt [$one[0]] ) ) {
+          $result[$k][0] = pEval_alt [$one[0]];
           $result[$k][1] = 'OPR';
       } 
 
     foreach ($result as $k => $one)
-      if ( $one[1] == 'other' and in_array ( strtoupper($one[0]), pad_eval_txt ) ) {
+      if ( $one[1] == 'other' and in_array ( strtoupper($one[0]), pEval_txt ) ) {
           $result[$k][0] = strtoupper($one[0]);
           $result[$k][1] = 'OPR';
       } 
@@ -125,20 +125,20 @@
 
         $result[$k][1] = 'VAL';      
  
-        if ( pad_field_check ( $one[0] ) ) 
-          $result[$k][0] = pad_field_value ( $one[0] );
-        elseif ( pad_array_check ( $one[0] ) ) {
+        if ( pField_check ( $one[0] ) ) 
+          $result[$k][0] = pField_value ( $one[0] );
+        elseif ( pArray_check ( $one[0] ) ) {
           $result[$k][0] = '*ARRAY*';
-          $result[$k][4] = pad_array_value ( $one[0] );
+          $result[$k][4] = pArray_value ( $one[0] );
         } else
           $result[$k][0] = $one[0]   ;
 
-        if ( $GLOBALS ['pad_trace_eval'] ) {
+        if ( $GLOBALS ['pTrace_eval'] ) {
           if ( isset($result[$k][4]) )
             $trace_data ['value'] = $result[$k][4];
           else
             $trace_data ['value'] = $result[$k][0];
-          pad_eval_trace ('var', $trace_data );
+          pEval_trace ('var', $trace_data );
         }  
 
       }

@@ -1,22 +1,22 @@
 <?php
 
 
-  function pad_cache_init ($url, $etag) {}
+  function pCache_init ($url, $etag) {}
 
 
-  function pad_cache_etag ($etag) {
+  function pCache_etag ($etag) {
     
-    return ( pad_cache_exists ("etag/$etag") ) ? pad_cache_time ("etag/$etag") : FALSE;
+    return ( pCache_exists ("etag/$etag") ) ? pCache_time ("etag/$etag") : FALSE;
 
   }
 
   
-  function pad_cache_url ($url) {
+  function pCache_url ($url) {
 
-    if ( pad_cache_exists ("url/$url") ) {
-      $etag = pad_cache_get_contents("url/$url");
-      if ( pad_cache_exists ("etag/$etag") )
-        return [pad_cache_time ("etag/$etag"), $etag];
+    if ( pCache_exists ("url/$url") ) {
+      $etag = pCache_get_contents("url/$url");
+      if ( pCache_exists ("etag/$etag") )
+        return [pCache_time ("etag/$etag"), $etag];
     }
 
     return [];
@@ -24,43 +24,43 @@
   }
 
 
-  function pad_cache_get ($etag) {
+  function pCache_get ($etag) {
 
-    return ( pad_cache_exists ("etag/$etag" ) ) ? pad_cache_get_contents("etag/$etag") : FALSE;
+    return ( pCache_exists ("etag/$etag" ) ) ? pCache_get_contents("etag/$etag") : FALSE;
 
   }
 
 
-  function pad_cache_store ($url, $etag, $data) {
+  function pCache_store ($url, $etag, $data) {
     
-    pad_cache_put_contents ("url/$url", $etag);
+    pCache_put_contents ("url/$url", $etag);
 
-    if ( $GLOBALS['pad_cache_server_no_data'] )
-      pad_cache_touch ("etag/$etag", $_SERVER['REQUEST_TIME']);
+    if ( $GLOBALS['pCache_server_no_data'] )
+      pCache_touch ("etag/$etag", $_SERVER['REQUEST_TIME']);
     else
-      pad_cache_put_contents ("etag/$etag", $data);
+      pCache_put_contents ("etag/$etag", $data);
 
   }
 
   
-  function pad_cache_update ($url, $etag) {
+  function pCache_update ($url, $etag) {
 
-    pad_cache_touch ("etag/$etag", $_SERVER['REQUEST_TIME']);
+    pCache_touch ("etag/$etag", $_SERVER['REQUEST_TIME']);
     
   }
 
 
-  function pad_cache_delete ($url, $etag) {
+  function pCache_delete ($url, $etag) {
 
-    pad_cache_delete_file ("url/$url");
-    pad_cache_delete_file ("etag/$etag");
+    pCache_delete_file ("url/$url");
+    pCache_delete_file ("etag/$etag");
 
   }
 
 
-  function  pad_cache_exists ( $file ) {
+  function  pCache_exists ( $file ) {
 
-    $file = $GLOBALS ['pad_cache_file'] . $file;
+    $file = $GLOBALS ['pCache_file'] . $file;
 
     $return = file_exists ($file);
 
@@ -69,52 +69,52 @@
   }
 
 
-  function pad_cache_get_contents ( $file ) {
+  function pCache_get_contents ( $file ) {
 
-    $file = $GLOBALS ['pad_cache_file'] . $file;
+    $file = $GLOBALS ['pCache_file'] . $file;
 
-    $return = pad_file_get_contents ($file);
+    $return = pFile_get_contents ($file);
 
     return $return;    
 
   }
 
 
-  function pad_cache_put_contents ($file, $data) {
+  function pCache_put_contents ($file, $data) {
    
-    pad_cache_chk_dir($file);
+    pCache_chk_dir($file);
 
-    $file = $GLOBALS ['pad_cache_file'] . $file;
+    $file = $GLOBALS ['pCache_file'] . $file;
     
     file_put_contents ($file, $data, LOCK_EX);
     
   }
 
 
-  function pad_cache_touch ($file, $time) {
+  function pCache_touch ($file, $time) {
 
-    pad_cache_chk_dir ($file);
+    pCache_chk_dir ($file);
 
-    $file = $GLOBALS ['pad_cache_file'] . $file;
+    $file = $GLOBALS ['pCache_file'] . $file;
     
     touch ( $file, $time );
 
   }
   
 
-  function pad_cache_chk_dir ($file) {
+  function pCache_chk_dir ($file) {
 
-    $file = $GLOBALS ['pad_cache_file'] . $file;
+    $file = $GLOBALS ['pCache_file'] . $file;
     $dir  = substr($file, 0, strrpos($file, '/'));
     
     if ( ! file_exists ($dir) )
-      mkdir($dir, $GLOBALS['pad_dir_mode'], true);
+      mkdir($dir, $GLOBALS['pDir_mode'], true);
   
   }
 
-  function pad_cache_delete_file ($file) {
+  function pCache_delete_file ($file) {
 
-    $file = $GLOBALS ['pad_cache_file'] . $file;
+    $file = $GLOBALS ['pCache_file'] . $file;
     
     if ( file_exists($file) )
       unlink ($file);
@@ -122,9 +122,9 @@
   }
 
 
-  function pad_cache_time ($file) {
+  function pCache_time ($file) {
 
-    $file = $GLOBALS ['pad_cache_file'] . $file;
+    $file = $GLOBALS ['pCache_file'] . $file;
     
     if ( file_exists($file) )
       return filemtime($file);

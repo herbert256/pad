@@ -1,5 +1,5 @@
 <?php
   
-  return pad_seq_action ( $left, $action, $right );
+  return pSeq_action ( $left, $action, $right );
 
 ?>  

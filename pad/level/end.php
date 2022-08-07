@@ -1,9 +1,9 @@
 <?php
 
-  if ( count ($pad_data[$pad] ) )
+  if ( count ($pData[$pad] ) )
     include PAD . 'occurrence/end.php';
 
-  if ( next($pad_data[$pad]) !== FALSE )
+  if ( next($pData[$pad]) !== FALSE )
     return include PAD . 'occurrence/start.php';
 
   if ( $pad_walks [$pad] == 'next' ) {
@@ -12,24 +12,24 @@
       return include PAD . 'occurrence/start.php';
   }
 
-  $pad_occur [$pad] = 0;
+  $pOccur [$pad] = 0;
 
   if ( $pad_walks [$pad] == 'end' )
     include PAD . 'walk/end.php';
 
-  if ( isset($pad_prms_tag ['callback']) and ! isset($pad_prms_tag ['before']) )
+  if ( isset($pPrms_tag ['callback']) and ! isset($pPrms_tag ['before']) )
     include PAD . 'callback/exit.php' ;
 
   include PAD . "options/go/end.php";
 
-  pad_reset ($pad);
+  pReset ($pad);
 
-  if ( $pad_trace ) 
+  if ( $pTrace ) 
     include 'trace/end.php';
 
   $pad--;
   
   if ($pad)
-    pad_html ( $pad_result[$pad+1]);
+    pHtml ( $pResult[$pad+1]);
   
 ?>

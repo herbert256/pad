@@ -1,7 +1,7 @@
 <?php
 
-  $pad_exists = APP  . $value;
+  $pExists = APP  . $value;
 
-  return ( file_exists ($pad_exists) ) ? '1' : '0';
+  return ( file_exists ($pExists) ) ? '1' : '0';
 
 ?>

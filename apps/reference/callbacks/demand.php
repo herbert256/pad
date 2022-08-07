@@ -1,6 +1,6 @@
 <?php
 
-  switch ($pad_callback) {
+  switch ($pCallback) {
 
     case 'init':
 

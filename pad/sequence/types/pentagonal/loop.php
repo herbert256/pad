@@ -1,6 +1,6 @@
 <?php
 
 
-  return (3 * $pad_seq_loop * $pad_seq_loop - $pad_seq_loop) / 2; 
+  return (3 * $pSeq_loop * $pSeq_loop - $pSeq_loop) / 2; 
 
 ?>

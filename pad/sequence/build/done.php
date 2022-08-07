@@ -1,37 +1,37 @@
 <?php
 
-  pad_done ( $pad_seq_seq,  TRUE );
-  pad_done ( $pad_seq_name, TRUE );
-  pad_done ( 'from',        TRUE );
-  pad_done ( 'increment',   TRUE );
-  pad_done ( 'to',          TRUE );
-  pad_done ( 'rows',        TRUE );
-  pad_done ( 'min',         TRUE );
-  pad_done ( 'max',         TRUE );
-  pad_done ( 'unique',      TRUE );
-  pad_done ( 'page',        TRUE );
-  pad_done ( 'start',       TRUE );
-  pad_done ( 'end',         TRUE );
-  pad_done ( 'low',         TRUE );
-  pad_done ( 'high',        TRUE );
-  pad_done ( 'random',      TRUE );
-  pad_done ( 'push',        TRUE );
-  pad_done ( 'store',       TRUE );
-  pad_done ( 'pull',        TRUE );
-  pad_done ( 'sequence',    TRUE );
-  pad_done ( 'range',       TRUE );
-  pad_done ( 'protect',     TRUE );
-  pad_done ( 'keep',        TRUE );
-  pad_done ( 'remove',      TRUE );
-  pad_done ( 'make',        TRUE );
+  pDone ( $pSeq_seq,  TRUE );
+  pDone ( $pSeq_name, TRUE );
+  pDone ( 'from',        TRUE );
+  pDone ( 'increment',   TRUE );
+  pDone ( 'to',          TRUE );
+  pDone ( 'rows',        TRUE );
+  pDone ( 'min',         TRUE );
+  pDone ( 'max',         TRUE );
+  pDone ( 'unique',      TRUE );
+  pDone ( 'page',        TRUE );
+  pDone ( 'start',       TRUE );
+  pDone ( 'end',         TRUE );
+  pDone ( 'low',         TRUE );
+  pDone ( 'high',        TRUE );
+  pDone ( 'random',      TRUE );
+  pDone ( 'push',        TRUE );
+  pDone ( 'store',       TRUE );
+  pDone ( 'pull',        TRUE );
+  pDone ( 'sequence',    TRUE );
+  pDone ( 'range',       TRUE );
+  pDone ( 'protect',     TRUE );
+  pDone ( 'keep',        TRUE );
+  pDone ( 'remove',      TRUE );
+  pDone ( 'make',        TRUE );
 
-  foreach ( $pad_prms_tag as $pad_seq_tag_name => $pad_seq_tag_value ) {
+  foreach ( $pPrms_tag as $pSeq_tag_name => $pSeq_tag_value ) {
 
-    if ( file_exists ( PAD . "sequence/types/$pad_seq_tag_name/make.php" ) )
-      pad_done ( $pad_seq_tag_name, TRUE );
+    if ( file_exists ( PAD . "sequence/types/$pSeq_tag_name/make.php" ) )
+      pDone ( $pSeq_tag_name, TRUE );
 
-    if ( file_exists ( PAD . "sequence/types/$pad_seq_tag_name/filter.php" ) )
-      pad_done ( $pad_seq_tag_name, TRUE );
+    if ( file_exists ( PAD . "sequence/types/$pSeq_tag_name/filter.php" ) )
+      pDone ( $pSeq_tag_name, TRUE );
 
   }
 

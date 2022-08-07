@@ -1,16 +1,16 @@
 <?php
 
-  pad_timing_start ('build');
+  pTiming_start ('build');
 
-  $pad_base [$pad] = '';
+  $pBase [$pad] = '';
 
-  include "$pad_build_mode.php";
+  include "$pBuild_mode.php";
 
-  if ( $pad_trace )
-    pad_file_put_contents ("$pad_trace_dir/html-base.html", $pad_base [1] );
+  if ( $pTrace )
+    pFile_put_contents ("$pTrace_dir/html-base.html", $pBase [1] );
   
   include PAD . 'occurrence/start.php';
 
-  pad_timing_end ('build');
+  pTiming_end ('build');
 
 ?>

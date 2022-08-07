@@ -1,5 +1,5 @@
 <?php
 
-  shuffle ( $pad_data [$pad] );
+  shuffle ( $pData [$pad] );
 
 ?>

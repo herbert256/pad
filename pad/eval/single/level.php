@@ -1,5 +1,5 @@
 <?php
 
-  return pad_get_level_array ($name);
+  return pGet_level_array ($name);
 
 ?>
