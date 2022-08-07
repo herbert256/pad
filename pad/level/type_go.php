@@ -1,6 +1,6 @@
 <?php
 
-  $TagCnt[$p]++;
+  $TagCnt [$p]++;
 
   if ( $pTrace )
     include 'trace/tag/before.php';
@@ -23,6 +23,6 @@
     $pTagResult = $pTagContent;
 
   if ( is_scalar($pTagResult) and strpos($pTagResult , '@content@') !== FALSE )
-    $pTagResult = str_replace('@content@', $pTrue[$p], $pTagResult);
+    $pTagResult = str_replace('@content@', $pTrue [$p], $pTagResult);
 
 ?>

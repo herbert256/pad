@@ -1,5 +1,5 @@
 <?php
 
-  return $pFlagStore [$pTag[$p]];
+  return $pFlagStore [$pTag [$p]];
  
 ?>

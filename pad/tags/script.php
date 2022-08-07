@@ -1,6 +1,6 @@
 <?php
 
-  $pExec = APP . "scripts/" . escapeshellcmd ($pPrm[$p]);
+  $pExec = APP . "scripts/" . escapeshellcmd ($pPrm [$p]);
 
   if ( ! file_exists($pExec) ) {
     pError ("Script $pExec not found");
@@ -9,7 +9,7 @@
 
   $pExec_out = $pExec_args = [];
 
-  foreach($pPrmsVal[$p] as $pK => $pV)
+  foreach($pPrmsVal [$p] as $pK => $pV)
     if ($pK)
       $pExec_args [$pK] = escapeshellarg ($pV);
 

@@ -224,7 +224,7 @@
 
     global $p, $pDefault, $pName, $pPrmsVal;
 
-    if ( $data and ! isset($pPrmsVal[$p][0]) )
+    if ( $data and ! isset($pPrmsVal [$p][0]) )
       for ($i=$p-1; $i; $i--)
         if ( !$pDefault[$i] )
           return $i;

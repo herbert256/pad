@@ -1,89 +1,89 @@
 <?php
 
-  $pTrue[$pT] = $pFalse[$pT] = '';
-  $pPair[$pT]   = TRUE;
+  $pTrue [$p] = $pPalse [$p] = '';
+  $pPair [$p] = TRUE;
 
-  $pPos = $pEnd[$p];
+  $pPos = $pEnd [$p-1];
 
 go2:  
   do {
 
-    $pPos = strpos($pHtml[$p] , '{/' . $pTag[$p], $pPos);
+    $pPos = strpos($pHtml [$p-1] , '{/' . $pTag [$p-1], $pPos);
 
     if ($pPos === FALSE) {
 
-      $pTrue[$pT] = '';
-      $pPair[$pT] = FALSE;
+      $pTrue [$p] = '';
+      $pPair [$p] = FALSE;
 
       return FALSE;
  
     } 
 
-    $pTrue[$pT] = substr($pHtml[$p], $pEnd[$p]+1, $pPos - $pEnd[$p] - 1);
+    $pTrue [$p] = substr($pHtml [$p-1], $pEnd [$p-1]+1, $pPos - $pEnd [$p-1] - 1);
 
     $pPos++;
 
-  } while ( substrCnt($pTrue[$pT], '{'.$pTag[$p]) <> substrCnt($pTrue[$pT], '{/'.$pTag) );
+  } while ( substrCnt($pTrue [$p], '{'.$pTag [$p-1]) <> substrCnt($pTrue [$p], '{/'.$pTag[$p-1]) );
 
-  $pPair_check = substr($pHtml[$p], $pPos + strlen($pTag) + 1, 1);
+  $pPair_check = substr($pHtml [$p-1], $pPos + strlen($pTag) + 1, 1);
   if ( ! ($pPair_check == ' ' or $pPair_check == '}' or $pPair_check ==  ',') )
     goto go2;
  
-  $pTrue[$pT] = substr ($pTrue[$pT], 0, $pPos);
+  $pTrue [$p] = substr ($pTrue [$p], 0, $pPos);
 
-  $pEnd[$p] = strpos ( $pHtml[$p], '}', $pPos+2);
-  if ( $pEnd[$p] === FALSE )
+  $pEnd [$p-1] = strpos ( $pHtml [$p-1], '}', $pPos+2);
+  if ( $pEnd [$p-1] === FALSE )
     return FALSE;
 
-  $pTmp = substr ($pHtml[$p], $pPos+1, $pEnd[$p]-$pPos-1);
+  $pTmp = substr ($pHtml [$p-1], $pPos+1, $pEnd [$p-1]-$pPos-1);
 
   while ( substrCnt($pTmp, '{') <> substrCnt($pTmp, '}') ) {
 
-    if ( $pEnd[$p] === FALSE or $pEnd[$p] + 1 == strlen($pHtml[$p]) )
+    if ( $pEnd [$p-1] === FALSE or $pEnd [$p-1] + 1 == strlen($pHtml [$p-1]) )
        break;
 
-    $pEnd[$p] = strpos ( $pHtml[$p], '}', $pEnd[$p] + 1); 
-    if ( $pEnd[$p] !== FALSE )
-      $pTmp = substr ($pHtml[$p], $pPos+1, $pEnd[$p]-$pPos-1);
+    $pEnd [$p-1] = strpos ( $pHtml [$p-1], '}', $pEnd [$p-1] + 1); 
+    if ( $pEnd [$p-1] !== FALSE )
+      $pTmp = substr ($pHtml [$p-1], $pPos+1, $pEnd [$p-1]-$pPos-1);
 
   }
 
-  if ( $pEnd[$p] === FALSE )
-    $pEnd[$p] = strpos ( $pHtml[$p], '}', $pPos+2);
+  if ( $pEnd [$p-1] === FALSE )
+    $pEnd [$p-1] = strpos ( $pHtml [$p-1], '}', $pPos+2);
 
-  $pBetween = substr ($pHtml[$p], $pPos+1, $pEnd[$p]-$pPos-1);
+  $pBetween = substr ($pHtml [$p-1], $pPos+1, $pEnd [$p-1]-$pPos-1);
   include 'between.php';
 
   if ($pPrms)
-    $pPrmsType[$p] = 'close';
+    $pPrmsType [$p-1] = 'close';
 
   $pOpen_close = [];
-  $pOpen_close [$pTag[$p]] = TRUE;
+  $pOpen_close [$pTag [$p-1]] = TRUE;
 
-  $pPos = strpos($pTrue[$pT], '{/', 0);
+  $pPos = strpos($pTrue [$p], '{/', 0);
 
   while ($pPos !== FALSE) {
-    $pPos2 = strpos($pTrue[$pT], '}', $pPos);
+    $pPos2 = strpos($pTrue [$p], '}', $pPos);
     if ( $pPos2 !== FALSE ) {
-      $pPos3 = strpos($pTrue[$pT], ' ', $pPos);
+      $pPos3 = strpos($pTrue [$p], ' ', $pPos);
       if ($pPos3 !== FALSE and $pPos3 < $pPos2 )
         $pPos2 = $pPos3;      
-      $pCheckTag = substr($pTrue[$pT], $pPos+2, $pPos2-$pPos-2);
+      $pCheckTag = substr($pTrue [$p], $pPos+2, $pPos2-$pPos-2);
       if ( pValid ($pCheckTag) )
         $pOpen_close [$pCheckTag] = TRUE;
     }
-    $pPos = strpos($pTrue[$pT], '{/', $pPos+1);
+    $pPos = strpos($pTrue [$p], '{/', $pPos+1);
   }
 
   $pPos = -1;
 
 go: $pPos++;
-    $pPos = strpos($pTrue[$pT], '{else}', $pPos);
+    $pPos = strpos($pTrue [$p], '{else}', $pPos);
 
   if ( $pPos === FALSE )
     return TRUE;
   
-  $pCheck = substr($pTrue[$pT],0,$pPos);
+  $pCheck = substr($pTrue [$p],0,$pPos);
 
   foreach ( $pOpen_close as $pCheckTag => $pDummy_var )
     if ( ( substrCnt($pCheck, '{'.$pCheckTag.' ' ) + substrCnt($pCheck, '{'.$pCheckTag.'}' ) )
@@ -91,8 +91,8 @@ go: $pPos++;
          ( substrCnt($pCheck, '{/'.$pCheckTag.' ') + substrCnt($pCheck, '{/'.$pCheckTag.'}') ) )
       goto go;
 
-  $pFalse[$pT] = substr ( $pTrue[$pT], $pPos+6  );
-  $pTrue[$pT]  = substr ( $pTrue[$pT], 0, $pPos );
+  $pPalse [$p] = substr ( $pTrue [$p], $pPos+6  );
+  $pTrue [$p]  = substr ( $pTrue [$p], 0, $pPos );
 
   return TRUE;
 

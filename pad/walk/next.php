@@ -1,19 +1,19 @@
 <?php
      
-  $pWalk[$p] = 'next';
+  $pWalk [$p] = 'next';
   
-  $pContent = $pBase[$p];
+  $pContent = $pBase [$p];
   include PAD . "level/type_go.php"; 
-  $pBase[$p] = $pContent;
+  $pBase [$p] = $pContent;
 
   include PAD . "level/flags.php";
 
-  if ( $pWalk[$p] ) {
+  if ( $pWalk [$p] ) {
 
     if ( $pArray )
-      $pData[$p] = $pTagResult;
+      $pData [$p] = $pTagResult;
  
-    reset ( $pData[$p] );
+    reset ( $pData [$p] );
 
   }
  

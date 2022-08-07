@@ -1,6 +1,6 @@
 <?php
       
-  include PAD . 'config/$pPrm[$p].php';
+  include PAD . 'config/$pPrm [$p].php';
       
   return '';
     

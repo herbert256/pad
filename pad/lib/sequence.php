@@ -79,17 +79,17 @@
 
     global $pPrmsTag, $pSeq_parm;
 
-    if ( isset($pPrmsTag[$p][$first])      and $pPrmsTag[$p][$first]  !== TRUE and is_numeric($pPrmsTag[$p][$first]) )
+    if ( isset($pPrmsTag [$p][$first])      and $pPrmsTag [$p][$first]  !== TRUE and is_numeric($pPrmsTag [$p][$first]) )
  
-      return $pPrmsTag[$p][$first];
+      return $pPrmsTag [$p][$first];
  
-    elseif ( isset($pPrmsTag[$p][$second]) and $pPrmsTag[$p][$second] !== TRUE and is_numeric($pPrmsTag[$p][$second]) )
+    elseif ( isset($pPrmsTag [$p][$second]) and $pPrmsTag [$p][$second] !== TRUE and is_numeric($pPrmsTag [$p][$second]) )
  
-      return $pPrmsTag[$p][$second];
+      return $pPrmsTag [$p][$second];
  
-    elseif ( isset($pPrmsTag[$p][$third])  and $pPrmsTag[$p][$third]  !== TRUE and is_numeric($pPrmsTag[$p][$third]) )
+    elseif ( isset($pPrmsTag [$p][$third])  and $pPrmsTag [$p][$third]  !== TRUE and is_numeric($pPrmsTag [$p][$third]) )
  
-      return $pPrmsTag[$p][$third];
+      return $pPrmsTag [$p][$third];
  
     elseif (                                    $pSeq_parm !== TRUE           and is_numeric($pSeq_parm) )
  

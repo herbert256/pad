@@ -35,10 +35,10 @@
     global $pDbTables, $pDb_rows_found, $pTrack_sql, $pPrmsTag;
     
     if ( isset ( $pDbTables[$sql] ) ) {
-      $save = $pPrmsTag[$p];
-      $pPrmsTag[$p] = [];
+      $save = $pPrmsTag [$p];
+      $pPrmsTag [$p] = [];
       $result = pDb_get_data ($sql); 
-      $pPrmsTag[$p] = $save;
+      $pPrmsTag [$p] = $save;
       return $result;
     }
 

@@ -1,5 +1,5 @@
 <?php
 
-  return pError ($pPrm[$p]);
+  return pError ($pPrm [$p]);
    
 ?>

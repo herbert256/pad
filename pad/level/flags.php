@@ -21,9 +21,9 @@
   if     ( $pHit and $pTagResult !== TRUE and is_scalar($pTagResult) ) $pText = TRUE;
   else                                                                 $pText = FALSE;
 
-  $pHit[$p]  = $pHit;
-  $pNull[$p] = $pNull;
-  $pElse[$p] = $pElse;
-  $pArray[$p]= $pArray;
-  $pText[$p] = $pText;
+  $pHit [$p]  = $pHit;
+  $pNull [$p] = $pNull;
+  $pElse [$p] = $pElse;
+  $pArray [$p]= $pArray;
+  $pText [$p] = $pText;
 ?>

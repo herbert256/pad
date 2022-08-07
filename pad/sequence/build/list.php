@@ -5,12 +5,12 @@
   if ( $pSeq_one == $pSeq_seq ) 
     return;
 
-  if ( ! isset($pPrmsTag[$p] [$pSeq_one]) )
+  if ( ! isset($pPrmsTag [$p] [$pSeq_one]) )
     return;
 
   $GLOBALS["pSeq_".$pSeq_one. "_list"] = [];
 
-  $pSeq_one_tmp = pExplode ( $pPrmsTag[$p] [$pSeq_one], ';');
+  $pSeq_one_tmp = pExplode ( $pPrmsTag [$p] [$pSeq_one], ';');
 
   $pSeq_one_list = [];
   foreach ( $pSeq_one_tmp as $pEntry )

@@ -1,5 +1,27 @@
 <?php
   
+
+  function pErrorShort ( $error ) {
+
+    $GLOBALS ['pSkip_boot_shutdown'] = TRUE;
+    $GLOBALS ['pSkip_shutdown']      = TRUE;
+
+    echo ( "<pre><b>$error</b>\n\n");
+    
+    $pDebug_backtrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS);
+    
+    foreach ( $pDebug_backtrace as $key => $trace ) {
+      extract ( $trace );
+      echo ( "$file:$line - $function\n");
+    }
+    
+    echo "\n" . htmlentities ( print_r ( $GLOBALS, TRUE ) );
+    
+    exit;
+ 
+  }
+
+
   function pError_reporting ( $level ) {
 
     $none    = (int) 0;
@@ -59,6 +81,9 @@
 
   function pError_go ($error, $file, $line) {
 
+    if ( function_exists ( 'pErrorShort' ) ) 
+      pErrorShort ( "$file:$line $error" );
+
     try {
  
       return pError_try ($error, $file, $line); 
@@ -73,8 +98,6 @@
 
 
   function pError_try ($error, $file, $line) {
-
-        pDump ("Error: $PADREQID:  $error");
 
     if ( $GLOBALS['pError_action'] == 'ignore' ) 
       return FALSE;

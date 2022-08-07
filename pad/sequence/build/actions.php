@@ -1,6 +1,6 @@
 <?php
   
-  foreach ( $pPrmsTag[$p] as $pSeq_action_name => $pSeq_action_value )
+  foreach ( $pPrmsTag [$p] as $pSeq_action_name => $pSeq_action_value )
 
     if ( $pSeq_action_name <> $pSeq_seq )
 

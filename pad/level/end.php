@@ -1,23 +1,23 @@
 <?php
 
-  if ( count ($pData[$p] ) )
+  if ( count ($pData [$p] ) )
     include PAD . 'occurrence/end.php';
 
-  if ( next($pData[$p]) !== FALSE )
+  if ( next($pData [$p]) !== FALSE )
     return include PAD . 'occurrence/start.php';
 
-  if ( $pWalk[$p] == 'next' ) {
+  if ( $pWalk [$p] == 'next' ) {
     include PAD . 'walk/next.php';
-    if ( $pWalk[$p] == 'next' )
+    if ( $pWalk [$p] == 'next' )
       return include PAD . 'occurrence/start.php';
   }
 
-  $pOccur[$p] = 0;
+  $pOccur [$p] = 0;
 
-  if ( $pWalk[$p] == 'end' )
+  if ( $pWalk [$p] == 'end' )
     include PAD . 'walk/end.php';
 
-  if ( isset($pPrmsTag[$p] ['callback']) and ! isset($pPrmsTag[$p] ['before']) )
+  if ( isset($pPrmsTag [$p] ['callback']) and ! isset($pPrmsTag [$p] ['before']) )
     include PAD . 'callback/exit.php' ;
 
   include PAD . "options/go/end.php";

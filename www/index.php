@@ -84,6 +84,9 @@
     $GLOBALS ['pSkip_boot_shutdown'] = TRUE;
     $GLOBALS ['pSkip_shutdown']      = TRUE;
 
+    if ( function_exists ( 'pErrorShort' ) ) 
+      pErrorShort ( "$file:$line $error" );
+
     if ( ! headers_sent () )
       header ( 'HTTP/1.0 500 Internal Server Error' );
 

@@ -1,9 +1,9 @@
 <?php
 
-  $pWalk[$p] = 'end';
+  $pWalk [$p] = 'end';
 
-  $pContent = $pResult[$p];
+  $pContent = $pResult [$p];
   include PAD . "level/type_go.php"; 
-  $pResult[$p] = $pContent;
+  $pResult [$p] = $pContent;
 
 ?>

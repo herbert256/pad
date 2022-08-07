@@ -21,10 +21,6 @@
 
   function pExplode ( $haystack, $limit, $number=0 ) {
 
-    if ( is_array($haystack) ) {
-pDump_vars();
-   }
- 
     if ($number)
       $explode = explode ( $limit, $haystack, $number );
     else
@@ -43,11 +39,11 @@ pDump_vars();
 
     }
 
-    if ( isset($GLOBALS['pTrace']) and $GLOBALS['pTrace'] ) 
-      pFile_put_contents ( 
-        $GLOBALS['$pOccurDir'] . '/explode/' . pRandom_string() . '.json',
-        [ $haystack, $limit, array_values ( $explode ) ]
-      );
+    // if ( isset($GLOBALS['pTrace']) and $GLOBALS['pTrace'] ) 
+    //   pFile_put_contents ( 
+    //     $GLOBALS['pOccurDir'][$GLOBALS['p']] . '/explode/' . pRandom_string() . '.json',
+    //     [ $haystack, $limit, array_values ( $explode ) ]
+    //   );
 
     return array_values ( $explode );
     
@@ -248,9 +244,9 @@ pDump_vars();
 
     global $pHtml, $pStart, $pEnd, $p;
 
-    $pHtml[$p] = substr($pHtml[$p], 0, $pStart[$p])
+    $pHtml [$p] = substr($pHtml [$p], 0, $pStart [$p])
                      . $html
-                     . substr($pHtml[$p], $pEnd[$p]+1);
+                     . substr($pHtml [$p], $pEnd [$p]+1);
     
   }
   
@@ -433,11 +429,11 @@ pDump_vars();
 
     global $p, $pSave_vars, $pDelete_vars;
     
-    if ( array_key_exists($name, $GLOBALS) and ! array_key_exists ($name, $pSave_vars[$p]) )
-      $pSave_vars[$p] [$name] = $GLOBALS [$name];
+    if ( array_key_exists($name, $GLOBALS) and ! array_key_exists ($name, $pSave_vars [$p]) )
+      $pSave_vars [$p] [$name] = $GLOBALS [$name];
 
     if ( ! array_key_exists ($name,  $GLOBALS) )
-      $pDelete_vars[$p] [] = $name;
+      $pDelete_vars [$p] [] = $name;
     else
       unset ( $GLOBALS [$name] );
 
@@ -449,11 +445,11 @@ pDump_vars();
 
     global $p, $pSave_vars, $pDelete_vars;
     
-    if ( isset($GLOBALS [$name]) and ! isset ($pSave_vars[$p] [$name]) )
-      $pSave_vars[$p] [$name] = $GLOBALS [$name];
+    if ( isset($GLOBALS [$name]) and ! isset ($pSave_vars [$p] [$name]) )
+      $pSave_vars [$p] [$name] = $GLOBALS [$name];
 
     if ( ! isset ( $GLOBALS [$name] ) )
-      $pDelete_vars[$p] [] = $name;
+      $pDelete_vars [$p] [] = $name;
     else
       unset ( $GLOBALS [$name] );
 
@@ -481,14 +477,16 @@ pDump_vars();
 
   function pIgnore ($info) {
 
-    if ( $GLOBALS['pPair'] ) 
-      $tmp = $GLOBALS['pBetween'];
-    else
-      $tmp = $GLOBALS['pBetween'] . '/' ;
-      
-    pHtml  ( '&open;' . $tmp . '&close;' );
+    global $p, $pBetween, $pIgnCnt, $pTrace, $pLevelDir;
 
-    return FALSE;
+    $p--;
+          
+    pHtml  ( '&open;' . $pBetween . '&close;' );
+
+    if ( $pTrace ) { 
+      $pIgnCnt++;
+      pFile_put_contents ( $pLevelDir [$p] . "/ignore.$pIgnCnt.json", $pBetween );
+    }
     
   }
 
@@ -514,11 +512,11 @@ pDump_vars();
 
     global $pData, $p;
 
-    if ( pIs_default_data ( $pData[$p] ) )
-      $pData[$p] = $array;
+    if ( pIs_default_data ( $pData [$p] ) )
+      $pData [$p] = $array;
     else
       foreach ( $array as $value )
-        $pData[$p] [] = $value;
+        $pData [$p] [] = $value;
 
   }
 
@@ -645,8 +643,8 @@ pDump_vars();
 
     global $pPrmsTag;
 
-    if ( isset ( $pPrmsTag[$p] [$parm] ) )
-      return $pPrmsTag[$p] [$parm];
+    if ( isset ( $pPrmsTag [$p] [$parm] ) )
+      return $pPrmsTag [$p] [$parm];
     else
       return $default;
 

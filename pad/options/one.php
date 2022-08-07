@@ -1,6 +1,6 @@
 <?php
 
-  $pBase[$p] = '';
-  $pData[$p] = [];
+  $pBase [$p] = '';
+  $pData [$p] = [];
 
 ?>

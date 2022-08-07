@@ -6,6 +6,4 @@
 
   include PAD . 'pad.php';
 
-  exit ();
-
 ?>

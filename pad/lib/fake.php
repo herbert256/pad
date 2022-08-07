@@ -15,28 +15,28 @@
     $pBetween   = 'fake';
     include PAD . 'level/between.php'; 
     include PAD . 'level/setup.php'; 
-    $pType[$p]  = 'fake';
-    $pPair[$p]  = FALSE;
+    $pType [$p]  = 'fake';
+    $pPair [$p]  = FALSE;
 
     $pBetween   = 'fake';
     include PAD . 'level/between.php'; 
     include PAD . 'level/setup.php'; 
-    $pType[$p]  = 'fake';
-    $pPair[$p]  = FALSE;
+    $pType [$p]  = 'fake';
+    $pPair [$p]  = FALSE;
                                        $fake_base  = '{' . "$tag";
     if ($kind == 'open' and $options)  $fake_base .= " $options";
                                        $fake_base .= "}$content{else}$false{/$tag";
     if ($kind == 'close' and $options) $fake_base .= " $options";
                                        $fake_base .= "}";
 
-    $pBase[$p] = $fake_base ;
+    $pBase [$p] = $fake_base ;
 
     include PAD . 'occurrence/start.php';
 
     while ( $p > $fake_lvl ) 
       include PAD . 'level/level.php'; 
 
-    $return = $pHtml[$p];
+    $return = $pHtml [$p];
 
     foreach ( $GLOBALS['pParms'] [$fake_lvl] as $fake_key => $fake_val )
       $GLOBALS['pad_'.$fake_key] = $fake_val;
@@ -59,9 +59,9 @@
     $p = 999999;
     include PAD . 'inits/setup.php';
   
-    $GLOBALS ['pData']   [$p] = pMake_data ( $fake );
-    $GLOBALS ['pCurrent'][$p] = reset ( $GLOBALS ['pData'] );
-    $GLOBALS ['pKey']     [$pKey] = key ( $GLOBALS ['pData'][$p] );
+    $GLOBALS ['pData']    [$p] = pMake_data ( $fake );
+    $GLOBALS ['pCurrent'] [$p] = reset ( $GLOBALS ['pData'] );
+    $GLOBALS ['pKey']     [$pKey] = key ( $GLOBALS ['pData'] [$p] );
     $GLOBALS ['pOccur']   [$pKey] = 1;
 
     $p = $pSave;

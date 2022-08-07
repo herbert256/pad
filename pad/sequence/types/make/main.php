@@ -2,7 +2,7 @@
 
   $GLOBALS ["pSeq_mf_$pSeq_seq"] = [];
  
-  foreach ( $pPrmsTag[$p] as $pSeq_opt_name => $pSeq_opt_value )
+  foreach ( $pPrmsTag [$p] as $pSeq_opt_name => $pSeq_opt_value )
 
     if ( file_exists ( PAD . "sequence/types/$pSeq_opt_name/$pSeq_filter_check.php" ) ) {
 

@@ -7,22 +7,22 @@
 
     $parms = pDb_get_db ($table);
 
-    $db          = $pPrmsTag[$p] ['db']          ?? $parms ['db']          ?? '';
-    $all         = $pPrmsTag[$p] ['all']         ?? $parms ['all']         ?? 0;
-    $distinct    = $pPrmsTag[$p] ['distinct']    ?? $parms ['distinct']    ?? 0;
-    $distinctrow = $pPrmsTag[$p] ['distinctrow'] ?? $parms ['distinctrow'] ?? 0;
-    $keys        = $pPrmsTag[$p] ['key']         ?? $parms ['key']         ?? '';
-    $fields      = $pPrmsTag[$p] ['fields']      ?? $parms ['fields']      ?? '*';
-    $type        = $pPrmsTag[$p] ['type']        ?? $parms ['type']        ?? 'array';
-    $where       = $pPrmsTag[$p] ['where']       ?? $parms ['where']       ?? '';
-    $group       = $pPrmsTag[$p] ['group']       ?? $parms ['group']       ?? '';
-    $rollup      = $pPrmsTag[$p] ['rollup']      ?? $parms ['rollup']      ?? 0;
-    $having      = $pPrmsTag[$p] ['having']      ?? $parms ['having']      ?? '';
-    $join        = $pPrmsTag[$p] ['join']        ?? $parms ['join']        ?? [];
-    $union       = $pPrmsTag[$p] ['union']       ?? $parms ['union']       ?? '';
-    $order       = $pPrmsTag[$p] ['order']       ?? $parms ['order']       ?? '';
-    $page        = $pPrmsTag[$p] ['page']        ?? $parms ['page']        ?? $page;
-    $rows        = $pPrmsTag[$p] ['rows']        ?? $parms ['rows']        ?? $rows;
+    $db          = $pPrmsTag [$p] ['db']          ?? $parms ['db']          ?? '';
+    $all         = $pPrmsTag [$p] ['all']         ?? $parms ['all']         ?? 0;
+    $distinct    = $pPrmsTag [$p] ['distinct']    ?? $parms ['distinct']    ?? 0;
+    $distinctrow = $pPrmsTag [$p] ['distinctrow'] ?? $parms ['distinctrow'] ?? 0;
+    $keys        = $pPrmsTag [$p] ['key']         ?? $parms ['key']         ?? '';
+    $fields      = $pPrmsTag [$p] ['fields']      ?? $parms ['fields']      ?? '*';
+    $type        = $pPrmsTag [$p] ['type']        ?? $parms ['type']        ?? 'array';
+    $where       = $pPrmsTag [$p] ['where']       ?? $parms ['where']       ?? '';
+    $group       = $pPrmsTag [$p] ['group']       ?? $parms ['group']       ?? '';
+    $rollup      = $pPrmsTag [$p] ['rollup']      ?? $parms ['rollup']      ?? 0;
+    $having      = $pPrmsTag [$p] ['having']      ?? $parms ['having']      ?? '';
+    $join        = $pPrmsTag [$p] ['join']        ?? $parms ['join']        ?? [];
+    $union       = $pPrmsTag [$p] ['union']       ?? $parms ['union']       ?? '';
+    $order       = $pPrmsTag [$p] ['order']       ?? $parms ['order']       ?? '';
+    $page        = $pPrmsTag [$p] ['page']        ?? $parms ['page']        ?? $page;
+    $rows        = $pPrmsTag [$p] ['rows']        ?? $parms ['rows']        ?? $rows;
     
     $start = '';
 
@@ -35,7 +35,7 @@
 
     $limit = '';
 
-    if ( ! isset($pDone[$p]['page']) or ! isset($pDone[$p]['rows']))
+    if ( ! isset($pDone [$p]['page']) or ! isset($pDone [$p]['rows']))
 
       if ($page or $rows) {
 
@@ -323,7 +323,7 @@
   
       $go = FALSE;
 
-      foreach ($pDb_lvl[$p] as $table => $value) {
+      foreach ($pDb_lvl [$p] as $table => $value) {
 
         if ( isset ($pDb_relations [$table]) ) {
 
@@ -344,10 +344,10 @@
               
               foreach($parts2 as $i => $fld) {
           
-                if ( ! isset ( $fld, $pDb_lvl[$p] [$table] ) )
+                if ( ! isset ( $fld, $pDb_lvl [$p] [$table] ) )
                   continue 2;
  
-                pDb_where ($where, $parts1[$i], $pDb_lvl[$p] [$table] [$fld] ?? '');
+                pDb_where ($where, $parts1[$i], $pDb_lvl [$p] [$table] [$fld] ?? '');
                  
               }
   
@@ -356,7 +356,7 @@
   
               $go = TRUE;
 
-              $pDb_lvl[$p] [$rel] = pDb_get ($relation, $where);
+              $pDb_lvl [$p] [$rel] = pDb_get ($relation, $where);
   
             }
 
@@ -414,7 +414,7 @@
   
           if ( $where ) {
             $x = $relation['db'];
-            $pDb_lvl[$p] [$key] = pDb_get ($relation, $where);
+            $pDb_lvl [$p] [$key] = pDb_get ($relation, $where);
             pDb_get_info ();
             $go = TRUE;
           }

@@ -1,13 +1,8 @@
 <?php
 
   $pTimingsCnt = $pTimings = [];
-  $pErrCnt =$pEvalCnt = $pFldCnt = $pCnt = $pOptCnt = $pErrCnt = $pTypeCnt = 0;
-  $pField_double_check = $pRestart = '';
-
-  $p           = 0;
-  $pBetween    = 'start';
-  include PAD . 'level/between.php';      
-  include PAD . 'level/setup.php';      
+  $pErrCnt =$pEvalCnt = $pFldCnt = $pCnt = $pOptCnt = $pErrCnt = $pTypeCnt = $pIgnCnt = 0;
+  $pField_double_check = $pRestart = '';     
 
   $pOutput     = '';
   $pStop       = '000';

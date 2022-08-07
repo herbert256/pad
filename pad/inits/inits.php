@@ -21,14 +21,13 @@
   include 'zip.php';
   include 'host.php';
   include 'cache.php';
-  include 'options.php';
-  include 'parms.php';
   include 'level.php';
+  include 'options.php';
+  include 'trace.php';
+  include 'parms.php';
 
   $pLib = APP . 'lib';
   include 'lib.php';
-
-  include 'trace.php';
 
   include PAD . 'build/build.php';
 

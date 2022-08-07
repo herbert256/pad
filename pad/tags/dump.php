@@ -1,5 +1,5 @@
 <?php
 
-  pDump ($pPrm[$p]);
+  pDump ($pPrm [$p]);
   
 ?>

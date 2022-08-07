@@ -5,6 +5,8 @@
 
   pTiming_end ('var');
 
+  $p--;
+
   return $pVal;
 
 ?>
