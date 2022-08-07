@@ -2,7 +2,7 @@
 
 
   $pTrue [$p+1] = $pFalse [$p+1] = '';
-  $pPos = $pEnd [$p];
+  $pPos = $pEnd[$p];
 
 go2:  
   do {
@@ -13,7 +13,7 @@ go2:
 
       $pTrue [$p+1] = '';
  
-      $pPair [$p] = FALSE;
+      $pPair[$p] = FALSE;
 
       return TRUE;
  
@@ -31,25 +31,25 @@ go2:
  
   $pTrue [$p+1] = substr ($pTrue [$p+1], 0, $pPos);
 
-  $pEnd [$p] = strpos ( $pHtml[$p], '}', $pPos+2);
-  if ( $pEnd [$p] === FALSE )
+  $pEnd[$p] = strpos ( $pHtml[$p], '}', $pPos+2);
+  if ( $pEnd[$p] === FALSE )
     return pError ("No closure of close tag found");
 
   $pTmp = substr ($pHtml[$p], $pPos+1, $pEnd[$p]-$pPos-1);
 
   while ( substr_count($pTmp, '{') <> substr_count($pTmp, '}') ) {
 
-    if ( $pEnd [$p] === FALSE or $pEnd [$p] + 1 == strlen($pHtml[$p]) )
+    if ( $pEnd[$p] === FALSE or $pEnd[$p] + 1 == strlen($pHtml[$p]) )
        break;
 
-    $pEnd [$p] = strpos ( $pHtml[$p], '}', $pEnd [$p] + 1); 
-    if ( $pEnd [$p] !== FALSE )
+    $pEnd[$p] = strpos ( $pHtml[$p], '}', $pEnd[$p] + 1); 
+    if ( $pEnd[$p] !== FALSE )
       $pTmp = substr ($pHtml[$p], $pPos+1, $pEnd[$p]-$pPos-1);
 
   }
 
-  if ( $pEnd [$p] === FALSE )
-    $pEnd [$p] = strpos ( $pHtml[$p], '}', $pPos+2);
+  if ( $pEnd[$p] === FALSE )
+    $pEnd[$p] = strpos ( $pHtml[$p], '}', $pPos+2);
 
   $pBetween = substr ($pHtml[$p], $pPos+1, $pEnd[$p]-$pPos-1);
   $pad_words   = preg_split ("/[\s]+/", $pBetween, 2, PREG_SPLIT_NO_EMPTY);
@@ -71,7 +71,7 @@ go2:
 
     $pad++;
     include 'between.php';
-    $pPrmsType [$p] = 'close';
+    $pPrmsType[$p] = 'close';
     $pad--;
 
   }

@@ -1,9 +1,9 @@
 <?php
 
-  if ( isset($pPrmsTag [$p][$pSeq_tmp]) )
-    $pSeq_parm = $pPrmsTag [$p][$pSeq_tmp];
+  if ( isset($pPrmsTag[$p][$pSeq_tmp]) )
+    $pSeq_parm = $pPrmsTag[$p][$pSeq_tmp];
   else
-    $pSeq_parm = $pParm [$p];
+    $pSeq_parm = $pParm[$p];
 
   $pSeq_parms = pExplode($pSeq_parm, '|');
 
@@ -14,10 +14,10 @@
   unset ( $pSeq_parms[0] );
 
   if ( count($pSeq_parms) )
-    $pPrmsTag [$p] [$pSeq_tmp] = implode('|', $pSeq_parms);
+    $pPrmsTag[$p] [$pSeq_tmp] = implode('|', $pSeq_parms);
   else
-    $pPrmsTag [$p] [$pSeq_tmp] = true;
+    $pPrmsTag[$p] [$pSeq_tmp] = true;
 
-  pParmsPrmsTag'] [$pSeq_tmp] = $pPrmsTag [$p] [$pSeq_tmp];
+  pParmsPrmsTag'] [$pSeq_tmp] = $pPrmsTag[$p] [$pSeq_tmp];
 
 ?>

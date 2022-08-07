@@ -1,8 +1,8 @@
 <?php
 
-  $pLink_app  = $pPrmsTag [$p] ['app']  ?? $app;
-  $pLink_page = $pPrmsTag [$p] ['page'] ?? 'index';
-  $pLink_text = $pPrmsTag [$p] ['text'] ?? $pContent;
+  $pLink_app  = $pPrmsTag[$p] ['app']  ?? $app;
+  $pLink_page = $pPrmsTag[$p] ['page'] ?? 'index';
+  $pLink_text = $pPrmsTag[$p] ['text'] ?? $pContent;
 
   pDone ( 'page', TRUE );
 

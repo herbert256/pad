@@ -1,6 +1,6 @@
 <?php
 
-  $pFilter_last = $pPrmsTag [$p] ['last'];
+  $pFilter_last = $pPrmsTag[$p] ['last'];
   if ( ! $pFilter_last )
     $pFilter_last = 1;
 

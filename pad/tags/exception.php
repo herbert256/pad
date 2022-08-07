@@ -1,5 +1,5 @@
 <?php
 
-  throw new Exception ($pParm [$p]);
+  throw new Exception ($pParm[$p]);
   
 ?>

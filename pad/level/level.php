@@ -3,15 +3,15 @@
   if ( $pRestart )
     return include PAD . 'inits/restart.php';    
     
-  $pEnd [$p] = strpos($pHtml[$p], '}');
+  $pEnd[$p] = strpos($pHtml[$p], '}');
 
   if ( $pEnd[$p] === FALSE )
     return include 'end.php';
 
-  $pStart [$p] = strrpos ( $pHtml[$p], '{', $pEnd[$p] - strlen($pHtml[$p]) );
+  $pStart[$p] = strrpos ( $pHtml[$p], '{', $pEnd[$p] - strlen($pHtml[$p]) );
   
-  if ( $pStart [$p] === FALSE ) {
-    $pHtml [$p] = substr($pHtml[$p], 0, $pEnd[$p])
+  if ( $pStart[$p] === FALSE ) {
+    $pHtml[$p] = substr($pHtml[$p], 0, $pEnd[$p])
                          . '&close;'
                          . substr($pHtml[$p], $pEnd[$p]+1);
     return;

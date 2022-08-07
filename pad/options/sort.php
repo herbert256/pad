@@ -4,9 +4,9 @@
     return;
 
   $pSort_args   = [];
-  $pSort_fields = pExplode($pPrmsTag [$p] ['sort'], ';'); 
+  $pSort_fields = pExplode($pPrmsTag[$p] ['sort'], ';'); 
 
-  if ( $pPrmsTag [$p] ['sort'] === TRUE or ! count ($pSort_fields)) {
+  if ( $pPrmsTag[$p] ['sort'] === TRUE or ! count ($pSort_fields)) {
     $pSort_fields = []; 
     foreach ($pData[$p] as $pad_v1) {
       foreach ($pad_v1 as $pK2 => $pad_v2) 

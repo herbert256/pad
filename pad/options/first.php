@@ -1,6 +1,6 @@
 <?php
 
-  $pFilter_first = $pPrmsTag [$p] ['first'];
+  $pFilter_first = $pPrmsTag[$p] ['first'];
   if ( ! $pFilter_first )
     $pFilter_first = 1;
 

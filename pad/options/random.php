@@ -1,6 +1,6 @@
 <?php
 
-  $pRnd_random = ( $pPrmsTag [$p] ['random'] === TRUE) ? 1 : $pPrmsTag [$p] ['random'];
+  $pRnd_random = ( $pPrmsTag[$p] ['random'] === TRUE) ? 1 : $pPrmsTag[$p] ['random'];
 
   $pRnd_temp = [];
 
@@ -15,14 +15,14 @@
     foreach ( $pData[$p] as $pRnd_key => $pRnd_value ) {
       $pRnd_now++;
       if ( $pRnd_now == $pRnd_rand ) {
-        $pRnd_temp [$pRnd_key] = $pData [$p] [$pRnd_key] ;
-        unset ( $pData [$p] [$pRnd_key] );
+        $pRnd_temp [$pRnd_key] = $pData[$p] [$pRnd_key] ;
+        unset ( $pData[$p] [$pRnd_key] );
         break;
       }
     }
       
   }
 
-  $pData [$p] = $pRnd_temp;
+  $pData[$p] = $pRnd_temp;
 
 ?>

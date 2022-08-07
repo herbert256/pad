@@ -5,6 +5,6 @@
     return TRUE;
   }
    
-  return pFunction_in_tag ( $pType, $pTag, $pContent, $pPrmsVal [$p] );
+  return pFunction_in_tag ( $pType, $pTag, $pContent, $pPrmsVal[$p] );
 
 ?>

@@ -1,11 +1,11 @@
 <?php
 
-  if ( strpos($pParm [$p], 'page=') !== FALSE) {
-    $pInclude_call = pInclude ($pParm [$p]);
+  if ( strpos($pParm[$p], 'page=') !== FALSE) {
+    $pInclude_call = pInclude ($pParm[$p]);
     return $pInclude_call ['data'];
   }
 
-  $pOne = APP . "includes/$pParm [$p]";
+  $pOne = APP . "includes/$pParm[$p]";
 
   return include PAD . 'build/one.php';
 

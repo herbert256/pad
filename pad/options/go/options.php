@@ -4,12 +4,12 @@
 
   $pOptions_walk = $GLOBALS["pOptions_$pOptions"];
    
-  if     ( $pOptions == 'start' ) $pContent = $pBase   [$p];
-  elseif ( $pOptions == 'end'   ) $pContent = $pResult [$p];
+  if     ( $pOptions == 'start' ) $pContent = $pBase  [$p];
+  elseif ( $pOptions == 'end'   ) $pContent = $pResult[$p];
 
-  foreach ( $pPrmsTag [$p] as $pOption_name => $pad_v )
+  foreach ( $pPrmsTag[$p] as $pOption_name => $pad_v )
 
-    if ( in_array ( $pOption_name, $pOptions_walk ) and ! isset ( $pDone [$p] [$pOption_name] ) ) {
+    if ( in_array ( $pOption_name, $pOptions_walk ) and ! isset ( $pDone[$p] [$pOption_name] ) ) {
 
       pDone ( $pOption_name, TRUE );  
 
@@ -20,8 +20,8 @@
 
     }
 
-  if     ($pOptions == 'start' ) $pBase   [$p] = $pContent;
-  elseif ($pOptions == 'end'   ) $pResult [$p] = $pContent;
+  if     ($pOptions == 'start' ) $pBase  [$p] = $pContent;
+  elseif ($pOptions == 'end'   ) $pResult[$p] = $pContent;
 
   pTiming_end ('opt');
 

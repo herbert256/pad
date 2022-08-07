@@ -2,8 +2,8 @@
 
   $pad_walk = 'end';
 
-  $pContent = $pResult [$p];
+  $pContent = $pResult[$p];
   include PAD . "level/type_go.php"; 
-  $pResult [$p] = $pContent;
+  $pResult[$p] = $pContent;
 
 ?>

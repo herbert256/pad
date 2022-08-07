@@ -222,9 +222,9 @@
 
   function pField_tag_lvl_base ($search, $data) {
 
-    global $pad, $, $pPrmsVal [$p];
+    global $pad, $, $pPrmsVal[$p];
 
-    if ( $data and ! isset($pPrmsVal [$p][0]) )
+    if ( $data and ! isset($pPrmsVal[$p][0]) )
       for ($i=$pad-1; $i; $i--)
         if ( ! $ [$i] ['default'] )
           return $i;
