@@ -21,6 +21,8 @@ find /home/herbert/pad -type f -name "*.php" -name '*.txt' -exec sed -i 's/pad_r
 find /home/herbert/pad -type f -name "*.php" -name '*.txt' -exec sed -i 's/pad_s/pS/g' {} +
 find /home/herbert/pad -type f -name "*.php" -name '*.txt' -exec sed -i 's/pad_t/pT/g' {} +
 find /home/herbert/pad -type f -name "*.php" -name '*.txt' -exec sed -i 's/pad_u/pU/g' {} +
+find /home/herbert/pad -type f -name "*.php" -name '*.txt' -exec sed -i 's/pad_w/pW/g' {} +
+find /home/herbert/pad -type f -name "*.php" -name '*.txt' -exec sed -i 's/pad_v/pV/g' {} +
 find /home/herbert/pad -type f -name "*.php" -name '*.txt' -exec sed -i 's/pad_x/pX/g' {} +
 find /home/herbert/pad -type f -name "*.php" -name '*.txt' -exec sed -i 's/pad_y/pY/g' {} +
 find /home/herbert/pad -type f -name "*.php" -name '*.txt' -exec sed -i 's/pad_z/pZ/g' {} +
