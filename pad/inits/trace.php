@@ -11,8 +11,8 @@
 
   $pTraceDir = "trace/$app-" . str_replace('/', '-', $page) . "/$PADREQID";
 
-  $pLevelDir [1] = $pTraceDir; 
-  $pOccurDir [1] = $pTraceDir;
+  $pLevelDir[$p] [1] = $pTraceDir; 
+  $pOccurDir[$p] [1] = $pTraceDir;
 
   $pTrace_data_start = [
     'sessionID'   => $GLOBALS ['PADSESSID'] ?? '',
@@ -29,6 +29,6 @@
       
   pFile_put_contents ($pTraceDir . "/start.json",   $pTrace_data_start     );
   pFile_put_contents ($pTraceDir . "/php.json",     pTrace_get_php_vars () );
-  pFile_put_contents ($pTraceDir . "/request.json", $_REQUEST                 );
+  pFile_put_contents ($pTraceDir . "/request.json", $_REQUEST              );
 
 ?>
