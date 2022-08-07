@@ -1,6 +1,6 @@
 <?php
 
-  $pDb [$pad] = $pTag;
+  $pDb [$p] = $pTag;
 
   return pDb_get_data ($pTag);
 

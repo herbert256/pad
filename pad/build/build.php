@@ -2,7 +2,7 @@
 
   pTiming_start ('build');
 
-  $pBase [$pad] = '';
+  $pBase [$p] = '';
 
   include "$pBuild_mode.php";
 

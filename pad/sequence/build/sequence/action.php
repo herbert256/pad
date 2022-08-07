@@ -18,6 +18,6 @@
   else
     $pPrms_tag [$pSeq_tmp] = true;
 
-  $pParms [$pad] ['parms_tag'] [$pSeq_tmp] = $pPrms_tag [$pSeq_tmp];
+  $pParms [$p] ['parms_tag'] [$pSeq_tmp] = $pPrms_tag [$pSeq_tmp];
 
 ?>

@@ -7,7 +7,7 @@
 
   $pEval = pEval ( $pPrms );
 
-  $pad_wrk  = [ $pParms [$pad] ['tag_cnt'] => [] ];
+  $pad_wrk  = [ $pParms [$p] ['tag_cnt'] => [] ];
 
   if ($pTag == 'while') { 
     $pad_walk = ($pEval) ? 'next'   : '';

@@ -15,7 +15,7 @@
   else
     $pStore_source = $pContent;
 
-  $pParms [$pad] ['name'] = $pName;
+  $pParms [$p] ['name'] = $pName;
 
   if ( $pTag == 'content') {
 
@@ -23,8 +23,8 @@
   
   } elseif ( $pTag == 'data' ) {
 
-    if ( ! pIs_default_data ( $pData[$pad] ) )
-      $pStore_data = $pData[$pad];
+    if ( ! pIs_default_data ( $pData[$p] ) )
+      $pStore_data = $pData[$p];
     elseif ( $pStore_source )
       $pStore_data = pMake_data ($pStore_source, pTag_parm('type'), $pName);
     else

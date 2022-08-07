@@ -2,11 +2,11 @@
 
   $pStore_name = $pPrms_tag ['toFlag'];
 
-  if     ( $pParms [$pad] ['null']   ) $pFlag_store [$pStore_name] = FALSE;
-  elseif ( $pParms [$pad] ['else']   ) $pFlag_store [$pStore_name] = FALSE;
-  elseif ( trim ( $pResult [$pad] ) <> '' ) $pFlag_store [$pStore_name] = TRUE;
+  if     ( $pParms [$p] ['null']   ) $pFlag_store [$pStore_name] = FALSE;
+  elseif ( $pParms [$p] ['else']   ) $pFlag_store [$pStore_name] = FALSE;
+  elseif ( trim ( $pResult [$p] ) <> '' ) $pFlag_store [$pStore_name] = TRUE;
   else                                             $pFlag_store [$pStore_name] = FALSE;
 
-  $pResult [$pad] = '';
+  $pResult [$p] = '';
   
 ?>

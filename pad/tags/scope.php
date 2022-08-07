@@ -9,7 +9,7 @@
   if ( ! pArray_check ($pParm) )
     return pError ('First parameter must be an array');
 
-  $pData [$pad] [1] = pArray_value ($pParm);
+  $pData [$p] [1] = pArray_value ($pParm);
     
   return TRUE;
   

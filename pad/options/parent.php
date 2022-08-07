@@ -2,19 +2,19 @@
 
   $pad--;
 
-  $pData [$pad] = $pData [$pad+1];
+  $pData [$p] = $pData [$p+1];
   reset ( $pData[ $pad] );
-  $pKey [$pad] = key($pData[$pad]);
+  $pKey [$p] = key($pData[$p]);
 
-  $pParent_start = strpos ( $pBase[$pad], '{'.$pTag );
-  $pParent_end   = strpos ( $pBase[$pad], "}", $pParent_start) ;
+  $pParent_start = strpos ( $pBase[$p], '{'.$pTag );
+  $pParent_end   = strpos ( $pBase[$p], "}", $pParent_start) ;
 
-  $pBase [$pad] = substr ( $pBase[$pad], 0, $pParent_start )
-                       . substr ( $pBase[$pad], $pParent_end + 1 );
+  $pBase [$p] = substr ( $pBase[$p], 0, $pParent_start )
+                       . substr ( $pBase[$p], $pParent_end + 1 );
 
-  $pCurrent [$pad] = [];
-  $pOccur   [$pad] = 0;
-  $pResult  [$pad] = '';
-  $pHtml    [$pad] = '';
+  $pCurrent [$p] = [];
+  $pOccur   [$p] = 0;
+  $pResult  [$p] = '';
+  $pHtml    [$p] = '';
 
 ?>

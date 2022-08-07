@@ -5,9 +5,9 @@
 
   if ( $pTag <> 'set' or $pPair )
     if ( isset($GLOBALS [$pSet_name]) )
-      $pSet_save [$pad] [$pSet_name] = $GLOBALS [$pSet_name];
+      $pSet_save [$p] [$pSet_name] = $GLOBALS [$pSet_name];
     else
-      $pSet_delete [$pad] [] = $pSet_name;
+      $pSet_delete [$p] [] = $pSet_name;
 
   $GLOBALS [$pSet_name] = pad_var_opts ( '', pExplode($pSet_value, '|') );
 

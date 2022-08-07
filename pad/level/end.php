@@ -1,20 +1,20 @@
 <?php
 
-  if ( count ($pData[$pad] ) )
+  if ( count ($pData[$p] ) )
     include PAD . 'occurrence/end.php';
 
-  if ( next($pData[$pad]) !== FALSE )
+  if ( next($pData[$p]) !== FALSE )
     return include PAD . 'occurrence/start.php';
 
-  if ( $pad_walks [$pad] == 'next' ) {
+  if ( $pad_walks [$p] == 'next' ) {
     include PAD . 'walk/next.php';
     if ( $pad_walk == 'next' )
       return include PAD . 'occurrence/start.php';
   }
 
-  $pOccur [$pad] = 0;
+  $pOccur [$p] = 0;
 
-  if ( $pad_walks [$pad] == 'end' )
+  if ( $pad_walks [$p] == 'end' )
     include PAD . 'walk/end.php';
 
   if ( isset($pPrms_tag ['callback']) and ! isset($pPrms_tag ['before']) )
@@ -30,6 +30,6 @@
   $pad--;
   
   if ($pad)
-    pHtml ( $pResult[$pad+1]);
+    pHtml ( $pResult[$p+1]);
   
 ?>

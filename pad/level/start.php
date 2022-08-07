@@ -3,16 +3,16 @@
   $pad++;
   $pLvl_cnt++;
 
-  $pContent = $pTrue [$pad];
+  $pContent = $pTrue [$p];
   include 'type_go.php';
-  $pTrue [$pad] = $pContent;
+  $pTrue [$p] = $pContent;
   
   include 'options.php';
   include 'flags.php';
   include 'base.php';
   include 'data.php';
 
-  $pParms [$pad] ['default'] = pIs_default_data ( $pData [$pad] );
+  $pParms [$p] ['default'] = pIs_default_data ( $pData [$p] );
 
   include PAD . "options/go/start.php";
   
@@ -21,7 +21,7 @@
   if ( isset($pPrms_tag ['callback']) and ! isset($pPrms_tag ['before']))
     include PAD . 'callback/init.php' ;
 
-  if ( count ($pData[$pad] ) )
+  if ( count ($pData[$p] ) )
     include PAD . 'occurrence/start.php';
   
 ?>

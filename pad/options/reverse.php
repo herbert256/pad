@@ -1,5 +1,5 @@
 <?php
 
-  $pData [$pad] = array_reverse ( $pData [$pad] );
+  $pData [$p] = array_reverse ( $pData [$p] );
 
 ?>

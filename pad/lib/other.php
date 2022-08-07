@@ -244,9 +244,9 @@
 
     global $pHtml, $pStart, $pEnd, $pad;
 
-    $pHtml [$pad] = substr($pHtml[$pad], 0, $pStart[$pad])
+    $pHtml [$p] = substr($pHtml[$p], 0, $pStart[$p])
                      . $html
-                     . substr($pHtml[$pad], $pEnd[$pad]+1);
+                     . substr($pHtml[$p], $pEnd[$p]+1);
     
   }
   
@@ -429,11 +429,11 @@
 
     global $pad, $pSave_vars, $pDelete_vars;
     
-    if ( array_key_exists($name, $GLOBALS) and ! array_key_exists ($name, $pSave_vars [$pad]) )
-      $pSave_vars [$pad] [$name] = $GLOBALS [$name];
+    if ( array_key_exists($name, $GLOBALS) and ! array_key_exists ($name, $pSave_vars [$p]) )
+      $pSave_vars [$p] [$name] = $GLOBALS [$name];
 
     if ( ! array_key_exists ($name,  $GLOBALS) )
-      $pDelete_vars [$pad] [] = $name;
+      $pDelete_vars [$p] [] = $name;
     else
       unset ( $GLOBALS [$name] );
 
@@ -445,11 +445,11 @@
 
     global $pad, $pSave_vars, $pDelete_vars;
     
-    if ( isset($GLOBALS [$name]) and ! isset ($pSave_vars [$pad] [$name]) )
-      $pSave_vars [$pad] [$name] = $GLOBALS [$name];
+    if ( isset($GLOBALS [$name]) and ! isset ($pSave_vars [$p] [$name]) )
+      $pSave_vars [$p] [$name] = $GLOBALS [$name];
 
     if ( ! isset ( $GLOBALS [$name] ) )
-      $pDelete_vars [$pad] [] = $name;
+      $pDelete_vars [$p] [] = $name;
     else
       unset ( $GLOBALS [$name] );
 
@@ -510,11 +510,11 @@
 
     global $pData, $pad;
 
-    if ( pIs_default_data ( $pData [$pad] ) )
-      $pData [$pad] = $array;
+    if ( pIs_default_data ( $pData [$p] ) )
+      $pData [$p] = $array;
     else
       foreach ( $array as $value )
-        $pData [$pad] [] = $value;
+        $pData [$p] [] = $value;
 
   }
 

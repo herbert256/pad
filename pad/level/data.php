@@ -7,7 +7,7 @@
   elseif ( $pElse )
 
     if     ( $pArray                   ) $pNow = array_slice ($pTag_result, 0, 1); 
-    elseif ( count ($pData [$pad]) ) $pNow = array_slice ($pData [$pad], 0, 1); 
+    elseif ( count ($pData [$p]) ) $pNow = array_slice ($pData [$p], 0, 1); 
     else                                    $pNow = pDefault_data ();  
 
   elseif ( $pArray )
@@ -16,8 +16,8 @@
 
   else 
 
-    $pNow = $pData [$pad];
+    $pNow = $pData [$p];
 
-  $pData [$pad] = pMake_data ( $pNow );   
+  $pData [$p] = pMake_data ( $pNow );   
 
 ?>

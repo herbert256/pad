@@ -27,7 +27,7 @@
   $pSeq_update   =          $pPrms_tag ['update']    ?? '';
 
   unset ( $pPrms_tag ['store'] );
-  unset ( $pParms [$pad] ['parms_tag'] ['store'] );
+  unset ( $pParms [$p] ['parms_tag'] ['store'] );
 
   foreach ( $pPrms_tag as $pSeq_tag_name => $pSeq_tag_value )
     if ( ! isset($GLOBALS ["pSeq_$pSeq_tag_name"]) )

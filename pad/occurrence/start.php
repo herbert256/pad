@@ -1,23 +1,23 @@
 <?php
 
-  $pOccur [$pad]++;
-  $pHtml  [$pad] = $pBase[$pad];
-  $pKey   [$pad] = key($pData[$pad]);
+  $pOccur [$p]++;
+  $pHtml  [$p] = $pBase[$p];
+  $pKey   [$p] = key($pData[$p]);
 
-  $pCurrent [$pad] = $pData [$pad] [$pKey [$pad]];
+  $pCurrent [$p] = $pData [$p] [$pKey [$p]];
 
-  if ( $pad_walks [$pad] <> 'start' )
-    $pad_walks_data [ $pad] [] = $pCurrent [$pad];
+  if ( $pad_walks [$p] <> 'start' )
+    $pad_walks_data [ $pad] [] = $pCurrent [$p];
 
   if ( $pad > 1 ) {
 
-    if ( pIs_default_data ($pData [$pad]) ) {
+    if ( pIs_default_data ($pData [$p]) ) {
       if ( isset($pPrms_val[0]) )
         pSet_global ( $pName, $pPrms_val[0] );
     } else
-      pSet_global ( $pName, $pCurrent [$pad] );
+      pSet_global ( $pName, $pCurrent [$p] );
 
-    foreach ( $pCurrent [$pad] as $pK => $pad_v )
+    foreach ( $pCurrent [$p] as $pK => $pad_v )
       pSet_global ( $pK, $pad_v );
 
   }

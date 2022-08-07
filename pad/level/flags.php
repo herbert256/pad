@@ -21,9 +21,9 @@
   if     ( $pHit and $pTag_result !== TRUE and is_scalar($pTag_result) ) $pText = TRUE;
   else                                                                            $pText = FALSE;
 
-  $pParms [$pad] ['hit']   = $pHit;
-  $pParms [$pad] ['null']  = $pNull;
-  $pParms [$pad] ['else']  = $pElse;
-  $pParms [$pad] ['array'] = $pArray;
-  $pParms [$pad] ['text']  = $pText;
+  $pParms [$p] ['hit']   = $pHit;
+  $pParms [$p] ['null']  = $pNull;
+  $pParms [$p] ['else']  = $pElse;
+  $pParms [$p] ['array'] = $pArray;
+  $pParms [$p] ['text']  = $pText;
 ?>

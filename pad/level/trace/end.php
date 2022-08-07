@@ -1,7 +1,7 @@
 <?php
 
   if ( $pad > 1 ) {
-    pFile_put_contents ( "$pLevel_dir/html-result.html", $pResult[$pad] );
+    pFile_put_contents ( "$pLevel_dir/html-result.html", $pResult[$p] );
     pFile_put_contents ( "$pLevel_dir/pad-end.json",     pTrace_get_pad_vars ()  );
     pFile_put_contents ( "$pLevel_dir/app-end.json",     pTrace_get_app_vars ()  );
   }

@@ -18,9 +18,9 @@
 
   $pName = $pPrms_tag ['name'] ?? $pTag;
 
-  $pParms [$pad+1] ['tag']  = $pTag;
-  $pParms [$pad+1] ['name'] = $pName;
-  $pParms [$pad+1] ['type'] = $pType;
+  $pParms [$p+1] ['tag']  = $pTag;
+  $pParms [$p+1] ['name'] = $pName;
+  $pParms [$p+1] ['type'] = $pType;
 
   return $pType;
   

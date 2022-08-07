@@ -28,8 +28,8 @@
     $pLevel_dir = $pTrace_dir . '/trace-' . $pLvl_cnt; 
     $pOccur_dir = $pLevel_dir;
 
-    $pParms [$pad] ['level_dir'] = $pLevel_dir;
-    $pParms [$pad] ['occur_dir'] = $pOccur_dir;
+    $pParms [$p] ['level_dir'] = $pLevel_dir;
+    $pParms [$p] ['occur_dir'] = $pOccur_dir;
 
     pFile_put_contents ( $pLevel_dir . "/pad-start.json", pTrace_get_pad_vars ()  );
     pFile_put_contents ( $pLevel_dir . "/app-start.json", pTrace_get_app_vars ()  );

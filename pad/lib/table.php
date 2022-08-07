@@ -35,7 +35,7 @@
 
     $limit = '';
 
-    if ( ! isset($pDone [$pad]['page']) or ! isset($pDone [$pad]['rows']))
+    if ( ! isset($pDone [$p]['page']) or ! isset($pDone [$p]['rows']))
 
       if ($page or $rows) {
 
@@ -323,7 +323,7 @@
   
       $go = FALSE;
 
-      foreach ($pDb_lvl [$pad] as $table => $value) {
+      foreach ($pDb_lvl [$p] as $table => $value) {
 
         if ( isset ($pDb_relations [$table]) ) {
 
@@ -344,10 +344,10 @@
               
               foreach($parts2 as $i => $fld) {
           
-                if ( ! isset ( $fld, $pDb_lvl [$pad] [$table] ) )
+                if ( ! isset ( $fld, $pDb_lvl [$p] [$table] ) )
                   continue 2;
  
-                pDb_where ($where, $parts1[$i], $pDb_lvl [$pad] [$table] [$fld] ?? '');
+                pDb_where ($where, $parts1[$i], $pDb_lvl [$p] [$table] [$fld] ?? '');
                  
               }
   
@@ -356,7 +356,7 @@
   
               $go = TRUE;
 
-              $pDb_lvl [$pad] [$rel] = pDb_get ($relation, $where);
+              $pDb_lvl [$p] [$rel] = pDb_get ($relation, $where);
   
             }
 
@@ -414,7 +414,7 @@
   
           if ( $where ) {
             $x = $relation['db'];
-            $pDb_lvl [$pad] [$key] = pDb_get ($relation, $where);
+            $pDb_lvl [$p] [$key] = pDb_get ($relation, $where);
             pDb_get_info ();
             $go = TRUE;
           }

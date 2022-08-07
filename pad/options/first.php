@@ -8,6 +8,6 @@
 	$pFilter_end   = ($pFilter_start + $pFilter_first) - 1;
      
   pDone ( 'first', TRUE);      
-	pData_filter_go ($pData[$pad], $pFilter_start, $pFilter_end);    
+	pData_filter_go ($pData[$p], $pFilter_start, $pFilter_end);    
 
 ?>

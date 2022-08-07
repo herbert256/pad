@@ -4,18 +4,18 @@
 
     $pad_walk = 'end';
     
-    $pIsolate [$pad] = [];
+    $pIsolate [$p] = [];
       
     foreach ($GLOBALS as $pK => $pad_v)
       if ( pad_valid_store ($pK) ) {
-        $pIsolate [$pad] [$pK] = TRUE;
+        $pIsolate [$p] [$pK] = TRUE;
         $pTmp = "pad_$pad" . "_$pK";
         $$pTmp = $$pK;
       }
     
   } else {
 
-    foreach ( $pIsolate [$pad] as $pK => $pad_v ) {
+    foreach ( $pIsolate [$p] as $pK => $pad_v ) {
       $pTmp = "pad_$pad" . "_$pK";
       $$pK = $$pTmp;
     }

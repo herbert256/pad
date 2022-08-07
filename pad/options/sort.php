@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! count ($pData[$pad] ) )
+  if ( ! count ($pData[$p] ) )
     return;
 
   $pSort_args   = [];
@@ -8,7 +8,7 @@
 
   if ( $pPrms_tag ['sort'] === TRUE or ! count ($pSort_fields)) {
     $pSort_fields = []; 
-    foreach ($pData[$pad] as $pad_v1) {
+    foreach ($pData[$p] as $pad_v1) {
       foreach ($pad_v1 as $pK2 => $pad_v2) 
         $pSort_fields [] = $pK2;
       break;
@@ -33,7 +33,7 @@
         $pSort_flags = $pSort_flags | constant("SORT_" . strtoupper($pad_v2) );
     }
 
-    $pSort_args [] = array_column ($pData[$pad], $pSort_field);
+    $pSort_args [] = array_column ($pData[$p], $pSort_field);
 
     if ($pSort_sort)
       $pSort_args [] = constant("SORT_$pSort_sort");
@@ -43,7 +43,7 @@
 
   }
  
-  $pSort_args [] = &$pData[$pad];
+  $pSort_args [] = &$pData[$p];
 
   call_user_func_array ('array_multisort', $pSort_args);
     

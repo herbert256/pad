@@ -1,25 +1,25 @@
 <?php
 
-  $pParms [$pad] ['tag_cnt']++;
+  $pParms [$p] ['tag_cnt']++;
 
   if ( $pTrace_tag )
     include 'trace/tag/before.php';
 
   $pTag_content = ''; ob_start();
 
-  $pad_walk = $pad_walks [$pad]; 
+  $pad_walk = $pad_walks [$p]; 
 
-  foreach ( $pParms [$pad] as $pK => $pad_v )
+  foreach ( $pParms [$p] as $pK => $pad_v )
     $GLOBALS['pad_'.$pK] = $pad_v;
 
   pTiming_start ('tag');
   $pTag_result = include PAD . "types/$pType.php";
   pTiming_end ('tag');
 
-  foreach ( $pParms [$pad] as $pK => $pad_v )
-    $pParms [$pad] [$pK] = $GLOBALS['pad_'.$pK];
+  foreach ( $pParms [$p] as $pK => $pad_v )
+    $pParms [$p] [$pK] = $GLOBALS['pad_'.$pK];
 
-  $pad_walks [$pad] = $pad_walk; 
+  $pad_walks [$p] = $pad_walk; 
 
   $pTag_content .= ob_get_clean();
 
@@ -33,6 +33,6 @@
     $pTag_result = $pTag_content;
 
   if ( is_scalar($pTag_result) and strpos($pTag_result , '@content@') !== FALSE )
-    $pTag_result = str_replace('@content@', $pTrue [$pad], $pTag_result);
+    $pTag_result = str_replace('@content@', $pTrue [$p], $pTag_result);
 
 ?>
