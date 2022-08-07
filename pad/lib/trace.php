@@ -33,7 +33,7 @@
 
     global $pOccurDir, $app, $page, $PADREQID;
 
-    $pError_dir = $OccurDir [$] . "/errors/$type/$count";
+    $pError_dir = $OccurDir [$p] . "/errors/$type/$count";
 
     $data = [];
 

@@ -41,7 +41,7 @@
 
     if ( isset($GLOBALS['pTrace_explode']) and $GLOBALS['pTrace_explode'] ) 
       pFile_put_contents ( 
-        $GLOBALS['pOccurDir'] . '/explode/' . pRandom_string() . '.json',
+        $GLOBALS['$pOccurDir'] . '/explode/' . pRandom_string() . '.json',
         [ $haystack, $limit, array_values ( $explode ) ]
       );
 

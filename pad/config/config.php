@@ -20,11 +20,11 @@
   // Trace the internal working of PAD
 
   $pTrace           = FALSE;  
-  $pTrace_level     = FALSE;  
-  $pTrace_errors    = FALSE;  
-  $pTrace_occurence = FALSE;  
-  $pTrace_fields    = FALSE;  
-  $pTrace_eval      = FALSE;   
+  $pTrace     = FALSE;  
+  $pTrace    = FALSE;  
+  $pTrace = FALSE;  
+  $pTrace    = FALSE;  
+  $pTrace      = FALSE;   
   $pTrace_curl      = FALSE;  
   $pTrace_cache     = FALSE;  
   $pTrace_timings   = FALSE;  
