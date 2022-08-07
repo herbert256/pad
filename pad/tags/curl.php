@@ -1,12 +1,12 @@
 <?php
 
-  if ( ! isset ($pPrms_tag ['url']) )
-    $pPrms_tag ['url'] = $pParm;
+  if ( ! isset ($pPrmsTag [$p] ['url']) )
+    $pPrmsTag [$p] ['url'] = $pParm [$p];
 
-  if ( ! $pPrms_tag ['url'] )
+  if ( ! $pPrmsTag [$p] ['url'] )
     return pError ("Curl: No URL given");
 
-  $pReturn = pCurl ( $pPrms_tag);
+  $pReturn = pCurl ( $pPrmsTag [$p]);
 
   return $pReturn ['data'];
 

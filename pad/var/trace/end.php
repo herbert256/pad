@@ -13,6 +13,6 @@
   elseif ( $pad_val <> $pad_val_base )
     $pTrace_data ['result'] = $pad_val;
 
-  pFile_put_contents ("$pOccur_dir/fields/$pFld_cnt.json", pJson ($pTrace_data ) );
+  pFile_put_contents ("$pOccurDir/fields/$pFld_cnt.json", pJson ($pTrace_data ) );
 
 ?>

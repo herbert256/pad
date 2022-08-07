@@ -9,8 +9,8 @@
   if ( ! $pTrace )
     return;
 
-  $pParms [1] ['level_dir'] = $pLevel_dir ; 
-  $pParms [1] ['occur_dir'] = $pOccur_dir ;
+  $ [1] ['level_dir'] = $pLevelDir ; 
+  $ [1] ['occur_dir'] = $pOccurDir ;
 
   $pTrace_data_start = [
     'sessionID'   => $GLOBALS ['PADSESSID'] ?? '',

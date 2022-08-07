@@ -120,12 +120,12 @@
     if ( ! $GLOBALS['pTrace_eval'] )
       return;
 
-    global $pEval_cnt, $pEval_step_cnt, $pOccur_dir;
+    global $pEval_cnt, $pEval_step_cnt, $pOccurDir;
 
     $pEval_step_cnt++;
 
     pFile_put_contents ( 
-      "$pOccur_dir/eval/$pEval_cnt/$pEval_step_cnt.$step.json",  
+      "$pOccurDir/eval/$pEval_cnt/$pEval_step_cnt.$step.json",  
       $data 
     );
 

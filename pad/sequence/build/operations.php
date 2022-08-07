@@ -2,7 +2,7 @@
 
   $pSeq_opr = [];
 
-  foreach ( $pPrms_tag as $pSeq_opr_name => $pSeq_opr_value )
+  foreach ( $pPrmsTag [$p] as $pSeq_opr_name => $pSeq_opr_value )
 
     if ( $pSeq_opr_name <> $pSeq_seq )
     

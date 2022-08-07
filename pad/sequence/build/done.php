@@ -25,7 +25,7 @@
   pDone ( 'remove',      TRUE );
   pDone ( 'make',        TRUE );
 
-  foreach ( $pPrms_tag as $pSeq_tag_name => $pSeq_tag_value ) {
+  foreach ( $pPrmsTag [$p] as $pSeq_tag_name => $pSeq_tag_value ) {
 
     if ( file_exists ( PAD . "sequence/types/$pSeq_tag_name/make.php" ) )
       pDone ( $pSeq_tag_name, TRUE );

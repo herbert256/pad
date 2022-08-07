@@ -7,7 +7,7 @@
   if     ( $pOptions == 'start' ) $pContent = $pBase   [$p];
   elseif ( $pOptions == 'end'   ) $pContent = $pResult [$p];
 
-  foreach ( $pPrms_tag as $pOption_name => $pad_v )
+  foreach ( $pPrmsTag [$p] as $pOption_name => $pad_v )
 
     if ( in_array ( $pOption_name, $pOptions_walk ) and ! isset ( $pDone [$p] [$pOption_name] ) ) {
 

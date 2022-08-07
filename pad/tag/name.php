@@ -1,7 +1,7 @@
 <?php
 
-  global $pParms;
+  global $;
 
-  return $pParms [$pIdx] ['name'];
+  return $ [$pIdx] ['name'];
  
 ?>

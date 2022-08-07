@@ -1,6 +1,6 @@
 <?php
 
-  $pParms [$p] ['tag_cnt']++;
+  $TagCnt [$p]++;
 
   if ( $pTrace_tag )
     include 'trace/tag/before.php';
@@ -9,15 +9,15 @@
 
   $pad_walk = $pad_walks [$p]; 
 
-  foreach ( $pParms [$p] as $pK => $pad_v )
+  foreach ( $ [$p] as $pK => $pad_v )
     $GLOBALS['pad_'.$pK] = $pad_v;
 
   pTiming_start ('tag');
-  $pTag_result = include PAD . "types/$pType.php";
+  $pTagResult = include PAD . "types/$pType.php";
   pTiming_end ('tag');
 
-  foreach ( $pParms [$p] as $pK => $pad_v )
-    $pParms [$p] [$pK] = $GLOBALS['pad_'.$pK];
+  foreach ( $ [$p] as $pK => $pad_v )
+    $ [$p] [$pK] = $GLOBALS['pad_'.$pK];
 
   $pad_walks [$p] = $pad_walk; 
 
@@ -26,13 +26,13 @@
   if ( $pTrace_tag )
     include 'trace/tag/after.php';
 
-  if ( is_object   ( $pTag_result ) ) $pTag_result = pXxx_to_array ( $pTag_result );
-  if ( is_resource ( $pTag_result ) ) $pTag_result = pXxx_to_array ( $pTag_result );
+  if ( is_object   ( $pTagResult ) ) $pTagResult = pXxx_to_array ( $pTagResult );
+  if ( is_resource ( $pTagResult ) ) $pTagResult = pXxx_to_array ( $pTagResult );
 
-  if ( $pTag_result === TRUE AND $pTag_content <> '' )
-    $pTag_result = $pTag_content;
+  if ( $pTagResult === TRUE AND $pTag_content <> '' )
+    $pTagResult = $pTag_content;
 
-  if ( is_scalar($pTag_result) and strpos($pTag_result , '@content@') !== FALSE )
-    $pTag_result = str_replace('@content@', $pTrue [$p], $pTag_result);
+  if ( is_scalar($pTagResult) and strpos($pTagResult , '@content@') !== FALSE )
+    $pTagResult = str_replace('@content@', $pTrue [$p], $pTagResult);
 
 ?>

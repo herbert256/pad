@@ -1,6 +1,6 @@
 <?php
 
-  $pRnd_random = ( $pPrms_tag ['random'] === TRUE) ? 1 : $pPrms_tag ['random'];
+  $pRnd_random = ( $pPrmsTag [$p] ['random'] === TRUE) ? 1 : $pPrmsTag [$p] ['random'];
 
   $pRnd_temp = [];
 

@@ -1,6 +1,6 @@
 <?php
 
-  $pStore_name = $pPrms_tag ['toFlag'];
+  $pStore_name = $pPrmsTag [$p] ['toFlag'];
 
   $pContent_store [$pStore_name] = $pResult [$p];
 

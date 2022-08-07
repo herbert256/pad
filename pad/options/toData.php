@@ -1,6 +1,6 @@
 <?php
 
-  $pStore_name = $pPrms_tag ['toData'];
+  $pStore_name = $pPrmsTag [$p] ['toData'];
 
   if ( !$pPair and !$pContent and !pIs_default_data($pData [$p]) ) {
     $pData_store [$pStore_name] = $pData [$p];

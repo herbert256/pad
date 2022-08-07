@@ -25,19 +25,19 @@
     $pTrace_explode   = TRUE;
     $pTrace_tag       = TRUE; 
 
-    $pLevel_dir = $pTrace_dir . '/trace-' . $pLvl_cnt; 
-    $pOccur_dir = $pLevel_dir;
+    $pLevelDir = $pTrace_dir . '/trace-' . $pLvl_cnt; 
+    $pOccurDir = $pLevelDir;
 
-    $pParms [$p] ['level_dir'] = $pLevel_dir;
-    $pParms [$p] ['occur_dir'] = $pOccur_dir;
+    $pLevelDir [$p]= $pLevelDir;
+    $pOccurDir [$p]= $pOccurDir;
 
-    pFile_put_contents ( $pLevel_dir . "/pad-start.json", pTrace_get_pad_vars ()  );
-    pFile_put_contents ( $pLevel_dir . "/app-start.json", pTrace_get_app_vars ()  );
+    pFile_put_contents ( $pLevelDir . "/pad-start.json", pTrace_get_pad_vars ()  );
+    pFile_put_contents ( $pLevelDir . "/app-start.json", pTrace_get_app_vars ()  );
   
   } else {
 
-    pFile_put_contents ( $pLevel_dir . "/pad-end.json", pTrace_get_pad_vars ()  );
-    pFile_put_contents ( $pLevel_dir . "/app-end.json", pTrace_get_app_vars ()  );
+    pFile_put_contents ( $pLevelDir . "/pad-end.json", pTrace_get_pad_vars ()  );
+    pFile_put_contents ( $pLevelDir . "/app-end.json", pTrace_get_app_vars ()  );
  
     foreach ($pBackup_trace as $pK => $pad_v )
       $GLOBALS [$pK] = $pad_v;

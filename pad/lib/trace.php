@@ -31,9 +31,9 @@
     if ( ! $force and ! $GLOBALS['pTrace_errors'] )
       return;
 
-    global $pOccur_dir, $app, $page, $PADREQID;
+    global $pOccurDir, $app, $page, $PADREQID;
 
-    $pError_dir = "$pOccur_dir/errors/$type/$count";
+    $pError_dir = "$pOccurDir/errors/$type/$count";
 
     $data = [];
 

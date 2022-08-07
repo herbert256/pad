@@ -12,17 +12,17 @@
   if ( $pad > 1 ) {
 
     if ( pIs_default_data ($pData [$p]) ) {
-      if ( isset($pPrms_val[0]) )
-        pSet_global ( $pName, $pPrms_val[0] );
+      if ( isset($pPrmsVal [$p][0]) )
+        pSet_global ( $pName [$p], $pPrmsVal [$p][0] );
     } else
-      pSet_global ( $pName, $pCurrent [$p] );
+      pSet_global ( $pName [$p], $pCurrent [$p] );
 
     foreach ( $pCurrent [$p] as $pK => $pad_v )
       pSet_global ( $pK, $pad_v );
 
   }
 
-  if ( isset($pPrms_tag ['callback']) and ! isset($pPrms_tag ['before']) )
+  if ( isset($pPrmsTag [$p] ['callback']) and ! isset($pPrmsTag [$p] ['before']) )
     include PAD . 'callback/row.php' ;
 
   include PAD . 'occurrence/db.php';

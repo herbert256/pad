@@ -3,26 +3,26 @@
 
   function pDb_get_data ($table, $page=0, $rows=0, $unionBuild=0) {
 
-    global $pad, $pData, $pPrms_tag, $pKey, $pDb_relations, $pDb_tables, $pDb, $pDone;
+    global $pad, $pData, $pPrmsTag [$p], $pKey, $pDb_relations, $pDb_tables, $pDb, $pDone;
 
     $parms = pDb_get_db ($table);
 
-    $db          = $pPrms_tag ['db']          ?? $parms ['db']          ?? '';
-    $all         = $pPrms_tag ['all']         ?? $parms ['all']         ?? 0;
-    $distinct    = $pPrms_tag ['distinct']    ?? $parms ['distinct']    ?? 0;
-    $distinctrow = $pPrms_tag ['distinctrow'] ?? $parms ['distinctrow'] ?? 0;
-    $keys        = $pPrms_tag ['key']         ?? $parms ['key']         ?? '';
-    $fields      = $pPrms_tag ['fields']      ?? $parms ['fields']      ?? '*';
-    $type        = $pPrms_tag ['type']        ?? $parms ['type']        ?? 'array';
-    $where       = $pPrms_tag ['where']       ?? $parms ['where']       ?? '';
-    $group       = $pPrms_tag ['group']       ?? $parms ['group']       ?? '';
-    $rollup      = $pPrms_tag ['rollup']      ?? $parms ['rollup']      ?? 0;
-    $having      = $pPrms_tag ['having']      ?? $parms ['having']      ?? '';
-    $join        = $pPrms_tag ['join']        ?? $parms ['join']        ?? [];
-    $union       = $pPrms_tag ['union']       ?? $parms ['union']       ?? '';
-    $order       = $pPrms_tag ['order']       ?? $parms ['order']       ?? '';
-    $page        = $pPrms_tag ['page']        ?? $parms ['page']        ?? $page;
-    $rows        = $pPrms_tag ['rows']        ?? $parms ['rows']        ?? $rows;
+    $db          = $pPrmsTag [$p] ['db']          ?? $parms ['db']          ?? '';
+    $all         = $pPrmsTag [$p] ['all']         ?? $parms ['all']         ?? 0;
+    $distinct    = $pPrmsTag [$p] ['distinct']    ?? $parms ['distinct']    ?? 0;
+    $distinctrow = $pPrmsTag [$p] ['distinctrow'] ?? $parms ['distinctrow'] ?? 0;
+    $keys        = $pPrmsTag [$p] ['key']         ?? $parms ['key']         ?? '';
+    $fields      = $pPrmsTag [$p] ['fields']      ?? $parms ['fields']      ?? '*';
+    $type        = $pPrmsTag [$p] ['type']        ?? $parms ['type']        ?? 'array';
+    $where       = $pPrmsTag [$p] ['where']       ?? $parms ['where']       ?? '';
+    $group       = $pPrmsTag [$p] ['group']       ?? $parms ['group']       ?? '';
+    $rollup      = $pPrmsTag [$p] ['rollup']      ?? $parms ['rollup']      ?? 0;
+    $having      = $pPrmsTag [$p] ['having']      ?? $parms ['having']      ?? '';
+    $join        = $pPrmsTag [$p] ['join']        ?? $parms ['join']        ?? [];
+    $union       = $pPrmsTag [$p] ['union']       ?? $parms ['union']       ?? '';
+    $order       = $pPrmsTag [$p] ['order']       ?? $parms ['order']       ?? '';
+    $page        = $pPrmsTag [$p] ['page']        ?? $parms ['page']        ?? $page;
+    $rows        = $pPrmsTag [$p] ['rows']        ?? $parms ['rows']        ?? $rows;
     
     $start = '';
 

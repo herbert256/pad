@@ -15,9 +15,9 @@
     $pBetween    = 'fake';
     $pType       = 'fake';
     $pPair       = FALSE;
-    $pTrace_dir  = $pLevel_dir . '/FAKE'; 
-    $pLevel_dir  = $pTrace_dir;
-    $pOccur_dir  = $pTrace_dir;
+    $pTrace_dir  = $pLevelDir . '/FAKE'; 
+    $pLevelDir  = $pTrace_dir;
+    $pOccurDir  = $pTrace_dir;
 
     $pad++; 
     include PAD . 'level/setup.php'; 

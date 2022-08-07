@@ -61,7 +61,7 @@
 
   function pField_level ( $field, $type ) {
 
-    global $pad, $pDb_lvl, $pCurrent, $pParms;
+    global $pad, $pDb_lvl, $pCurrent, $;
 
     if ( is_numeric($field) ) 
       return pField_tag_nr ('', $field);
@@ -81,7 +81,7 @@
         if ( $work !== INF )
           return $work;
 
-      $work = pField_search ( $pParms [$i] ['parms_tag'], $field, $type);   
+      $work = pField_search ( $ [$i] ['PrmsTag'], $field, $type);   
       if ( $work !== INF )
         return $work;
 
@@ -125,10 +125,10 @@
 
   function pFirst_non_parm  ($min=0) {
 
-    global $pad, $pParms;
+    global $pad, $;
 
     for ($i=$pad-$min; $i; $i--)
-      if ( $pParms [$i] ['type'] <> 'parm' )
+      if ( $ [$i] ['type'] <> 'parm' )
         return $i;
 
     if ( $pad > 1 )
@@ -144,10 +144,10 @@
     $lvl = pField_tag_lvl ($tag, FALSE);
     $idx = intval ($nr) - 1 ;
 
-    global $pParms;
+    global $;
     
-    if ( isset ( $pParms [$lvl] ['parms_val'] [$idx] ) )
-      return $pParms [$lvl] ['parms_val'] [$idx]; 
+    if ( isset ( $ [$lvl] ['PrmsVal'] [$idx] ) )
+      return $ [$lvl] ['PrmsVal'] [$idx]; 
     else
       return INF;
 
@@ -196,10 +196,10 @@
 
   function pField_tag_lvl  ($search, $data) {
 
-    global $pad, $pParms;
+    global $pad, $;
 
     for ($i=$pad; $i; $i--)
-      if ( $pParms [$i] ['name'] == $search )
+      if ( $ [$i] ['name'] == $search )
         return $i;
 
     $return = pField_tag_lvl_base ($search, $data);
@@ -222,11 +222,11 @@
 
   function pField_tag_lvl_base ($search, $data) {
 
-    global $pad, $pParms, $pPrms_val;
+    global $pad, $, $pPrmsVal [$p];
 
-    if ( $data and ! isset($pPrms_val[0]) )
+    if ( $data and ! isset($pPrmsVal [$p][0]) )
       for ($i=$pad-1; $i; $i--)
-        if ( ! $pParms [$i] ['default'] )
+        if ( ! $ [$i] ['default'] )
           return $i;
 
     if ( trim($search) === '0' or trim($search) == '' )
@@ -239,7 +239,7 @@
       return $search;
 
     for ($i=$pad; $i; $i--)
-      if ( $pParms [$i] ['name'] == $search)
+      if ( $ [$i] ['name'] == $search)
         return $i;
 
     return FALSE;

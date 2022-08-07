@@ -27,7 +27,7 @@
   $pTag   = trim($pad_words[0] ?? '');
   $pPrms  = trim($pad_words[1] ?? '');
 
-  $pPrms_type = ( $pPrms ) ? 'open' : 'none';
+  $pPrmsType = ( $pPrms ) ? 'open' : 'none';
 
   if     ( ! ctype_alpha ( $pFirst )  ) return pIgnore ('ctype_alpha');
   elseif ( ! pad_valid   ( $pTag )    ) return pIgnore ('pad_valid');

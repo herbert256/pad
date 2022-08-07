@@ -4,9 +4,9 @@
     $pSw_now  [$pPrms]++;
   else {
     $pSw_now  [$pPrms] = 0;
-    $pSw_vars [$pPrms] = array_values($pPrms_val);
+    $pSw_vars [$pPrms] = array_values($pPrmsVal [$p]);
   }
    
-  return $pSw_vars [$pPrms] [ $pSw_now [$pPrms] % count($pPrms_val) ];
+  return $pSw_vars [$pPrms] [ $pSw_now [$pPrms] % count($pPrmsVal [$p]) ];
 
 ?>

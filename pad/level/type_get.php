@@ -16,11 +16,11 @@
 
   }
 
-  $pName = $pPrms_tag ['name'] ?? $pTag;
+  $pName [$p] = $pPrmsTag [$p] ['name'] ?? $pTag;
 
-  $pParms [$p+1] ['tag']  = $pTag;
-  $pParms [$p+1] ['name'] = $pName;
-  $pParms [$p+1] ['type'] = $pType;
+  $ [$p+1] ['tag']  = $pTag;
+  $ [$p+1] ['name'] = $pName [$p];
+  $ [$p+1] ['type'] = $pType;
 
   return $pType;
   

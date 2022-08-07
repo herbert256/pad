@@ -41,7 +41,7 @@
 
     if ( isset($GLOBALS['pTrace_explode']) and $GLOBALS['pTrace_explode'] ) 
       pFile_put_contents ( 
-        $GLOBALS['pOccur_dir'] . '/explode/' . pRandom_string() . '.json',
+        $GLOBALS['pOccurDir'] . '/explode/' . pRandom_string() . '.json',
         [ $haystack, $limit, array_values ( $explode ) ]
       );
 
@@ -639,10 +639,10 @@
 
   function pTag_parm ($parm, $default='') {
 
-    global $pPrms_tag;
+    global $pPrmsTag [$p];
 
-    if ( isset ( $pPrms_tag [$parm] ) )
-      return $pPrms_tag [$parm];
+    if ( isset ( $pPrmsTag [$p] [$parm] ) )
+      return $pPrmsTag [$p] [$parm];
     else
       return $default;
 

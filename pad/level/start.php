@@ -12,13 +12,13 @@
   include 'base.php';
   include 'data.php';
 
-  $pParms [$p] ['default'] = pIs_default_data ( $pData [$p] );
+  $pDefault [$p]= pIs_default_data ( $pData [$p] );
 
   include PAD . "options/go/start.php";
   
   include 'trace/start.php';
 
-  if ( isset($pPrms_tag ['callback']) and ! isset($pPrms_tag ['before']))
+  if ( isset($pPrmsTag [$p] ['callback']) and ! isset($pPrmsTag [$p] ['before']))
     include PAD . 'callback/init.php' ;
 
   if ( count ($pData[$p] ) )

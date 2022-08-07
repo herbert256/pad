@@ -6,18 +6,18 @@
   if ( pTag_parm ('null') ) {
     $pOpt_flag = include PAD . "options/null.php"; 
     if ( ! $pOpt_flag ) 
-      $pTag_result = NULL;
+      $pTagResult = NULL;
   }
 
   if ( pTag_parm ('false') ) {
     $pOpt_flag = include PAD . "options/false.php"; 
     if ( ! $pOpt_flag ) 
-      $pTag_result = FALSE;
+      $pTagResult = FALSE;
   }
 
   if ( pTag_parm ('data') )
-    if ( is_array ( $pTag_result ) )
-      $pTag_result = include PAD . "options/data.php";   
+    if ( is_array ( $pTagResult ) )
+      $pTagResult = include PAD . "options/data.php";   
     else
       $pData [$p] = include PAD . "options/data.php";   
   

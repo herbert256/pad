@@ -1,13 +1,13 @@
 <?php
 
-  if ( $pad_walk == 'start' and $pPrms_type == 'close' ) {
+  if ( $pad_walk == 'start' and $pPrmsType == 'close' ) {
     $pad_walk = 'next';
     return TRUE;
   }
 
   $pEval = pEval ( $pPrms );
 
-  $pad_wrk  = [ $pParms [$p] ['tag_cnt'] => [] ];
+  $pad_wrk  = [ $TagCnt [$p] => [] ];
 
   if ($pTag == 'while') { 
     $pad_walk = ($pEval) ? 'next'   : '';

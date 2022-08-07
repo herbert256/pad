@@ -5,8 +5,8 @@
   
   $pResult [$p] .= $pHtml [$p];
 
-  $pOccur_dir = $pLevel_dir;
-  $pParms [$p] ['occur_dir'] = $pOccur_dir ;
+  $pOccurDir = $pLevelDir;
+  $pOccurDir [$p]= $pOccurDir ;
 
   pReset ($pad);
 

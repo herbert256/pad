@@ -15,8 +15,8 @@
   $pTime       = $_SERVER['REQUEST_TIME'];  
 
   $pTrace_dir = "trace/$app-" . str_replace('/', '-', $page) . "/$PADREQID";
-  $pLevel_dir  = "$pTrace_dir";
-  $pOccur_dir  = "$pTrace_dir";
+  $pLevelDir  = "$pTrace_dir";
+  $pOccurDir  = "$pTrace_dir";
 
   $pErrror_list = [];
 

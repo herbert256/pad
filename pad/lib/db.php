@@ -32,13 +32,13 @@
   
   function pDb_part2 ( $pSql_connect, $sql, $vars, $db_type) {
 
-    global $pDb_tables, $pDb_rows_found, $pTrack_sql, $pPrms_tag;
+    global $pDb_tables, $pDb_rows_found, $pTrack_sql, $pPrmsTag [$p];
     
     if ( isset ( $pDb_tables[$sql] ) ) {
-      $pPrms_tag_save = $pPrms_tag;
-      $pPrms_tag = [];
+      $pPrmsTag [$p]_save = $pPrmsTag [$p];
+      $pPrmsTag [$p] = [];
       $result = pDb_get_data ($sql); 
-      $pPrms_tag = $pPrms_tag_save;
+      $pPrmsTag [$p] = $pPrmsTag [$p]_save;
       return $result;
     }
 

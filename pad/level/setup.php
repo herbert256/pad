@@ -27,17 +27,17 @@
   $pHtml        [$p] = '';
   $pResult      [$p] = '';
 
-  $pParms [$p] ['prms_type'] = $pPrms_type ?? 'open';
-  $pParms [$p] ['tag_cnt']   = 0;
-  $pParms [$p] ['pair']      = $pPair ?? FALSE;
-  $pParms [$p] ['type']      = $pParms [$p] ['type'] ?? $pType ?? '';
-  $pParms [$p] ['hit']       = TRUE;
-  $pParms [$p] ['null']      = FALSE;
-  $pParms [$p] ['else']      = FALSE;
-  $pParms [$p] ['array']     = FALSE;
-  $pParms [$p] ['text']      = TRUE;
-  $pParms [$p] ['default']   = pIs_default_data ( $pData [$p] );
-  $pParms [$p] ['level_dir'] = $pLevel_dir;
-  $pParms [$p] ['occur_dir'] = $pOccur_dir;
+  $pPrmsType [$p] = $pPrmsType ?? 'open';
+  $TagCnt [$p]   = 0;
+  $pPair [$p]      = $pPair ?? FALSE;
+  $pType [$p]      = $pType [$p] ?? $pType ?? '';
+  $pHit [$p]       = TRUE;
+  $pNull [$p]     = FALSE;
+  $pElse [$p]     = FALSE;
+  $pArray [$p]    = FALSE;
+  $pText [$p]     = TRUE;
+  $pDefault [$p]  = pIs_default_data ( $pData [$p] );
+  $pLevelDir [$p]= $pLevelDir;
+  $pOccurDir [$p]= $pOccurDir;
 
-?>
+?>    

@@ -77,19 +77,19 @@
 
   function pSeq_get_count ( $first, $second, $third ) {
 
-    global $pPrms_tag, $pSeq_parm;
+    global $pPrmsTag [$p], $pSeq_parm;
 
-    if ( isset($pPrms_tag[$first])      and $pPrms_tag[$first]  !== TRUE and is_numeric($pPrms_tag[$first]) )
+    if ( isset($pPrmsTag [$p][$first])      and $pPrmsTag [$p][$first]  !== TRUE and is_numeric($pPrmsTag [$p][$first]) )
  
-      return $pPrms_tag[$first];
+      return $pPrmsTag [$p][$first];
  
-    elseif ( isset($pPrms_tag[$second]) and $pPrms_tag[$second] !== TRUE and is_numeric($pPrms_tag[$second]) )
+    elseif ( isset($pPrmsTag [$p][$second]) and $pPrmsTag [$p][$second] !== TRUE and is_numeric($pPrmsTag [$p][$second]) )
  
-      return $pPrms_tag[$second];
+      return $pPrmsTag [$p][$second];
  
-    elseif ( isset($pPrms_tag[$third])  and $pPrms_tag[$third]  !== TRUE and is_numeric($pPrms_tag[$third]) )
+    elseif ( isset($pPrmsTag [$p][$third])  and $pPrmsTag [$p][$third]  !== TRUE and is_numeric($pPrmsTag [$p][$third]) )
  
-      return $pPrms_tag[$third];
+      return $pPrmsTag [$p][$third];
  
     elseif (                                    $pSeq_parm !== TRUE           and is_numeric($pSeq_parm) )
  

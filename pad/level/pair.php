@@ -13,7 +13,7 @@ go2:
 
       $pTrue [$p+1] = '';
  
-      $pParms [$p] ['pair'] = FALSE;
+      $pPair [$p] = FALSE;
 
       return TRUE;
  
@@ -71,7 +71,7 @@ go2:
 
     $pad++;
     include 'between.php';
-    $pParms [$p] ['prms_type'] = 'close';
+    $pPrmsType [$p] = 'close';
     $pad--;
 
   }
