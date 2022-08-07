@@ -3,7 +3,7 @@
 
    function pEval_single ( &$result, $key) {
     
-    if ( $GLOBALS ['pTrace_eval'] )
+    if ( $GLOBALS ['pTrace'] )
       $trace_data ['before'] = $result[$key];
 
     $one = $result [$key];
@@ -27,7 +27,7 @@
     unset ( $result [$key] [2] );
     unset ( $result [$key] [3] );
 
-    if ( $GLOBALS ['pTrace_eval'] ) {
+    if ( $GLOBALS ['pTrace'] ) {
       $trace_data ['after'] = $result [$key];
       pEval_trace ('single', $trace_data );
     }   
@@ -133,7 +133,7 @@
         } else
           $result[$k][0] = $one[0]   ;
 
-        if ( $GLOBALS ['pTrace_eval'] ) {
+        if ( $GLOBALS ['pTrace'] ) {
           if ( isset($result[$k][4]) )
             $trace_data ['value'] = $result[$k][4];
           else

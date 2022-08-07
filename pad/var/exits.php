@@ -1,6 +1,6 @@
   <?php
 
-  if ( $pTrace_fields ) 
+  if ( $pTrace ) 
     include 'trace/end.php';
 
   pTiming_end ('var');

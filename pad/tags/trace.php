@@ -11,19 +11,19 @@
         $pBackup_trace [$pK2] = $pV2;
 
     $pTrace           = TRUE;  
-    $pTrace_level     = TRUE;  
-    $pTrace_occurence = TRUE;  
-    $pTrace_fields    = TRUE;  
-    $pTrace_eval      = TRUE;  
-    $pTrace_eval_type = TRUE;  
-    $pTrace_curl      = TRUE;  
-    $pTrace_cache     = TRUE;  
-    $pTrace_timings   = TRUE;  
-    $pTrace_headers   = TRUE;  
-    $pTrace_options   = TRUE;  
-    $pTrace_sql       = TRUE; 
-    $pTrace_explode   = TRUE;
-    $pTrace_tag       = TRUE; 
+    $pTrace     = TRUE;  
+    $pTrace = TRUE;  
+    $pTrace    = TRUE;  
+    $pTrace      = TRUE;  
+    $pTrace_type = TRUE;  
+    $pTrace      = TRUE;  
+    $pTrace     = TRUE;  
+    $pTrace   = TRUE;  
+    $pTrace   = TRUE;  
+    $pTrace   = TRUE;  
+    $pTrace       = TRUE; 
+    $pTrace   = TRUE;
+    $pTrace       = TRUE; 
 
     $pLevelDir = $pTraceDir . '/trace-' . $pCnt; 
     $pOccurDir = $pLevelDir;

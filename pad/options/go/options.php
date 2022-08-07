@@ -15,7 +15,7 @@
 
       include PAD . "options/$pOption_name.php" ;
 
-      if ($pTrace_options)
+      if ($pTrace)
         include 'trace';
 
     }

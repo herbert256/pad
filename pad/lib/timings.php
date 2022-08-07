@@ -60,7 +60,7 @@
     pHeader ('X-PAD-Timings: ' . json_encode ( $pTimings)       );
     pHeader ('X-PAD-Counts: '  . json_encode ( $pTimingsCnt) );
 
-    if ( $GLOBALS['pTrace_timings'] ) {
+    if ( $GLOBALS['pTrace'] ) {
       pFile_put_contents ( $pTraceDir . "/timings.json", $pTimings       );
       pFile_put_contents ( $pTraceDir . "/counts.json",  $pTimingsCnt );
     }

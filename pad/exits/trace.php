@@ -1,6 +1,6 @@
 <?php
 
-  if ( $GLOBALS['pTrace_headers'] )
+  if ( $GLOBALS['pTrace'] )
     pFile_put_contents ( $GLOBALS['pTraceDir'] . "/headers-out.json", $GLOBALS ['pHeaders'] );
 
   if ( ! $GLOBALS['pTrace'] )

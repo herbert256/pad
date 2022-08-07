@@ -25,10 +25,10 @@
 
   function pTrace_write_error ($error, $type, $count, $vars, $force=0 ) {
 
-    if ( $GLOBALS['pError_dump'] and ! $GLOBALS['pTrace_errors'] )
+    if ( $GLOBALS['pError_dump'] and ! $GLOBALS['pTrace'] )
       return pTrace_write_error_light ($error, $type, $count, $vars);
 
-    if ( ! $force and ! $GLOBALS['pTrace_errors'] )
+    if ( ! $force and ! $GLOBALS['pTrace'] )
       return;
 
     global $pOccurDir, $app, $page, $PADREQID;

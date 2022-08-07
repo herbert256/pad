@@ -94,19 +94,19 @@
 
     }
 
-    if ( isset($GLOBALS ['pTrace_eval_stage'] ) and $GLOBALS ['pTrace_eval_stage'] <> 'end' ) {
+    if ( isset($GLOBALS ['pTrace_stage'] ) and $GLOBALS ['pTrace_stage'] <> 'end' ) {
 
       echo ( "<b>Eval details</b>\n");
 
-      pDump_field  ( 'eval',   $GLOBALS ['pTrace_eval_eval']      );
-      pDump_field  ( 'myself', $GLOBALS ['pTrace_eval_myself']    );
+      pDump_field  ( 'eval',   $GLOBALS ['pTrace_eval']      );
+      pDump_field  ( 'myself', $GLOBALS ['pTrace_myself']    );
 
-      if ( count ( $GLOBALS ['pTrace_eval_now'] ) )
-        pDump_array  ( 'now', $GLOBALS ['pTrace_eval_now'], 1 );
+      if ( count ( $GLOBALS ['pTrace_now'] ) )
+        pDump_array  ( 'now', $GLOBALS ['pTrace_now'], 1 );
 
-      pDump_array  ( 'parsed', $GLOBALS ['pTrace_eval_parsed'], 1 );
-      pDump_array  ( 'after',  $GLOBALS ['pTrace_eval_after'],  1 );
-      pDump_array  ( 'go',     $GLOBALS ['pTrace_eval_go'],     1 );
+      pDump_array  ( 'parsed', $GLOBALS ['pTrace_parsed'], 1 );
+      pDump_array  ( 'after',  $GLOBALS ['pTrace_after'],  1 );
+      pDump_array  ( 'go',     $GLOBALS ['pTrace_go'],     1 );
       pDump_array  ( 'result', $GLOBALS ['pEval_result'],       1 );
 
       echo ( "\n\n");

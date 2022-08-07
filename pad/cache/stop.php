@@ -4,7 +4,7 @@
   $pTime = $pCache_age;
   $pEtag = $pCache_etag;
 
-  if ( $pTrace_cache )
+  if ( $pTrace )
     include 'trace.php';
 
   pTiming_end ('cache');

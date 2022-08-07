@@ -39,7 +39,7 @@
 
     }
 
-    if ( isset($GLOBALS['pTrace_explode']) and $GLOBALS['pTrace_explode'] ) 
+    if ( isset($GLOBALS['pTrace']) and $GLOBALS['pTrace'] ) 
       pFile_put_contents ( 
         $GLOBALS['$pOccurDir'] . '/explode/' . pRandom_string() . '.json',
         [ $haystack, $limit, array_values ( $explode ) ]
@@ -658,9 +658,9 @@
 
   function pVar_opts ($val, $opts) {
   
-    global $pOpts_trace, $pTrace_fields, $pFldCnt;
+    global $pOpts_trace, $pTrace, $pFldCnt;
 
-    if ($pTrace_fields)
+    if ($pTrace)
       $pOpts_trace = [];
 
     foreach($opts as $opt) {
@@ -679,7 +679,7 @@
       if ( $prepend )                 $val = $now . $val;
       if ( ! $append and ! $prepend ) $val = $now;
 
-      if ($pTrace_fields and $val <> $save)
+      if ($pTrace and $val <> $save)
         $pOpts_trace [$opt] = $val;
 
     }

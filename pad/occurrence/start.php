@@ -27,7 +27,7 @@
 
   include PAD . 'occurrence/db.php';
 
-  if ( $pTrace_occurence ) 
+  if ( $pTrace ) 
     include 'trace/start.php';
 
 ?>

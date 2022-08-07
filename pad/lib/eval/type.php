@@ -41,7 +41,7 @@
     } else
       $value = $myself;
    
-    if ( $GLOBALS ['pTrace_eval'] ) {
+    if ( $GLOBALS ['pTrace'] ) {
         $trace_data ['type']   = $result [$type];
         $trace_data ['left']   = $left;
         $trace_data ['start']  = $start;
@@ -51,7 +51,7 @@
    
     $value = include PAD . "eval/parms/$kind.php" ;
     
-    if ( $GLOBALS ['pTrace_eval'] )
+    if ( $GLOBALS ['pTrace'] )
       $trace_data ['out'] = $value;
 
     $result [$type] [1] = 'VAL';
@@ -73,7 +73,7 @@
       unset ( $result [$type] [3] );
     }
 
-    if ( $GLOBALS ['pTrace_eval'] ) {
+    if ( $GLOBALS ['pTrace'] ) {
       $trace_data ['result'] = $result [$type];
       pEval_trace  ('type', $trace_data );
     }

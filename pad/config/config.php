@@ -19,20 +19,7 @@
 
   // Trace the internal working of PAD
 
-  $pTrace           = FALSE;  
-  $pTrace     = FALSE;  
-  $pTrace    = FALSE;  
   $pTrace = FALSE;  
-  $pTrace    = FALSE;  
-  $pTrace      = FALSE;   
-  $pTrace_curl      = FALSE;  
-  $pTrace_cache     = FALSE;  
-  $pTrace_timings   = FALSE;  
-  $pTrace_headers   = FALSE;  
-  $pTrace_options   = FALSE;
-  $pTrace_sql       = FALSE;
-  $pTrace_explode   = FALSE;
-  $pTrace_tag       = FALSE;
 
   // Keep track of stuff
 

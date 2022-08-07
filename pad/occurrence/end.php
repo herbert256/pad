@@ -1,6 +1,6 @@
 <?php
 
-  if ( $pTrace_occurence ) 
+  if ( $pTrace ) 
     include 'trace/end.php';
   
   $pResult[$p] .= $pHtml[$p];

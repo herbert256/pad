@@ -2,7 +2,7 @@
 
   $TagCnt[$p]++;
 
-  if ( $pTrace_tag )
+  if ( $pTrace )
     include 'trace/tag/before.php';
 
   $pTagContent = ''; ob_start();
@@ -13,7 +13,7 @@
 
   $pTagContent .= ob_get_clean();
 
-  if ( $pTrace_tag )
+  if ( $pTrace )
     include 'trace/tag/after.php';
 
   if ( is_object   ( $pTagResult ) ) $pTagResult = pXxx_to_array ( $pTagResult );

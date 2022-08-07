@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! $pTrace_level )
+  if ( ! $pTrace )
     return;
 
   $pLevelDir = $pOccurDir;

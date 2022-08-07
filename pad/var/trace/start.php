@@ -2,7 +2,7 @@
 
   $pVal_base = $pVal;
 
-  if ( ! $GLOBALS['pTrace_errors'] and ! $GLOBALS['pError_dump'] )
+  if ( ! $GLOBALS['pTrace'] and ! $GLOBALS['pError_dump'] )
     return;
 
   if ( pField_check ( $pFld ) ) 

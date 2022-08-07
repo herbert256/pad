@@ -34,12 +34,12 @@
 
     global $pEvalCnt, $pEval_stepCnt, $pEval_start, $pEval_result, $pTrace;
 
-    $GLOBALS ['pTrace_eval_stage']   = 'start';
-    $GLOBALS ['pTrace_eval_eval']    = $eval;
-    $GLOBALS ['pTrace_eval_myself']  = $myself;
-    $GLOBALS ['pTrace_eval_parsed']  = [];
-    $GLOBALS ['pTrace_eval_after']   = [];
-    $GLOBALS ['pTrace_eval_now']     = [];
+    $GLOBALS ['pTrace_stage']   = 'start';
+    $GLOBALS ['pTrace_eval']    = $eval;
+    $GLOBALS ['pTrace_myself']  = $myself;
+    $GLOBALS ['pTrace_parsed']  = [];
+    $GLOBALS ['pTrace_after']   = [];
+    $GLOBALS ['pTrace_now']     = [];
 
     $pEvalCnt++;
     $pEval_stepCnt = 0;
@@ -52,20 +52,20 @@
 
     if ( $pEval_parse )
       return pEval_error ($pEval_parse);
-    $GLOBALS ['pTrace_eval_parsed'] = $pEval_result;
+    $GLOBALS ['pTrace_parsed'] = $pEval_result;
 
     pEval_trace  ('parse', $pEval_result );
 
     $pEval_after = pEval_after ( $pEval_result, $eval );  
     if ( $pEval_after )
       return pEval_error ($pEval_after);
-    $GLOBALS ['pTrace_eval_after'] = $pEval_result;
+    $GLOBALS ['pTrace_after'] = $pEval_result;
 
     pEval_trace  ('after', $pEval_result );
 
     pEval_go ( $pEval_result, array_key_first($pEval_result), array_key_last($pEval_result), $myself) ;
 
-    $GLOBALS ['pTrace_eval_go'] =  $pEval_result;
+    $GLOBALS ['pTrace_go'] =  $pEval_result;
 
     $key = array_key_first ($pEval_result);
       
@@ -80,7 +80,7 @@
 
     pEval_trace  ('end', $pEval_result );
 
-    $GLOBALS ['pTrace_eval_stage'] = 'end';
+    $GLOBALS ['pTrace_stage'] = 'end';
 
     pTiming_end ('eval');
  
@@ -93,21 +93,21 @@
 
     pEval_trace  ('error', [ 'error' => $txt, 'result' => $GLOBALS ['pEval_result'] ] );
 
-    $GLOBALS ['pTrace_eval_stage'] = 'error';
+    $GLOBALS ['pTrace_stage'] = 'error';
 
     global $pEvalCnt;
 
     $data = [
-      'eval'    => $GLOBALS ['pTrace_eval_eval']   ?? '',
-      'myself'  => $GLOBALS ['pTrace_eval_myself'] ?? '',
-      'parsed'  => $GLOBALS ['pTrace_eval_parsed'] ?? '',
-      'after'   => $GLOBALS ['pTrace_eval_after']  ?? '',
-      'result'  => $GLOBALS ['pTrace_eval_result'] ?? ''
+      'eval'    => $GLOBALS ['pTrace_eval']   ?? '',
+      'myself'  => $GLOBALS ['pTrace_myself'] ?? '',
+      'parsed'  => $GLOBALS ['pTrace_parsed'] ?? '',
+      'after'   => $GLOBALS ['pTrace_after']  ?? '',
+      'result'  => $GLOBALS ['pTrace_result'] ?? ''
     ];
  
     pTrace_write_error ( $txt, 'eval', $pEvalCnt, $data );
 
-    $GLOBALS ['pTrace_eval_stage'] = 'end';
+    $GLOBALS ['pTrace_stage'] = 'end';
     pTiming_end ('eval');
     
     return '';
@@ -117,7 +117,7 @@
 
   function pEval_trace ($step, $data) {
 
-    if ( ! $GLOBALS['pTrace_eval'] )
+    if ( ! $GLOBALS['pTrace'] )
       return;
 
     global $pEvalCnt, $pEval_stepCnt, $pOccurDir;

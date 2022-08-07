@@ -206,8 +206,8 @@
     if ( ! $output ['type'] )
       $output ['type'] = pContent_type ( $output ['data'] );
  
-    if ($GLOBALS['pTrace_curl'])
-      pTrace_curl ( $output );
+    if ($GLOBALS['pTrace'])
+      pTrace ( $output );
 
     $GLOBALS['pCurl_last'] = $output;
 
@@ -215,7 +215,7 @@
     
   }
 
-  function pTrace_curl ( $trace ) {
+  function pTrace ( $trace ) {
 
     $file = $GLOBALS ['pLevelDir'] . "/curl_" . pRandom_string(). ".json";
 
@@ -234,8 +234,8 @@
 
     $output ['ERROR'] = $error;
 
-     if ($GLOBALS['pTrace_curl'])
-      pTrace_curl ( $output );
+     if ($GLOBALS['pTrace'])
+      pTrace ( $output );
 
     $GLOBALS['pCurl_last'] = $output;
 

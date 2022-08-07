@@ -18,7 +18,7 @@
     
   }
 
-  if ( $pTrace_cache ) {
+  if ( $pTrace ) {
     $pCache_stop = $pStop + .4;
     include 'trace.php';
   }
