@@ -30,8 +30,8 @@
   include 'type_get.php';
   include 'pair.php';
 
-  if ( $pType[$p+1] === NULL ) return pIgnore ('type_get');
-  if ( $pPair[$p+1] === NULL ) return pIgnore ('pair');
+  if ( ! $pType[$pT] ) return pIgnore ('type_get');
+  if ( ! $pPair[$pT] ) return pIgnore ('pair');
 
   include 'start.php';
 

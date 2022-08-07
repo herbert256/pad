@@ -30,15 +30,15 @@
   }
 
   
-  function pDb_part2 ( $pSql_connect, $sql, $vars, $db_type) {
+  function pDb_part2 ( $pSql_connect, $sql, $vars, $p, $db_type) {
 
-    global $pDbTables, $pDb_rows_found, $pTrack_sql, $pPrmsTag[$p];
+    global $pDbTables, $pDb_rows_found, $pTrack_sql, $pPrmsTag;
     
     if ( isset ( $pDbTables[$sql] ) ) {
-      $pPrmsTag[$p]_save = $pPrmsTag[$p];
+      $save = $pPrmsTag[$p];
       $pPrmsTag[$p] = [];
       $result = pDb_get_data ($sql); 
-      $pPrmsTag[$p] = $pPrmsTag[$p]_save;
+      $pPrmsTag[$p] = $save;
       return $result;
     }
 

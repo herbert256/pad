@@ -3,7 +3,7 @@
 
   function pDb_get_data ($table, $page=0, $rows=0, $unionBuild=0) {
 
-    global $p, $pData, $pPrmsTag[$p], $pKey, $pDb_relations, $pDbTables, $pDb, $pDone;
+    global $p, $pData, $pPrmsTag, $pKey, $pDb_relations, $pDbTables, $pDb, $pDone;
 
     $parms = pDb_get_db ($table);
 

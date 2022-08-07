@@ -21,6 +21,10 @@
 
   function pExplode ( $haystack, $limit, $number=0 ) {
 
+    if ( is_array($haystack) ) {
+pDump_vars();
+   }
+ 
     if ($number)
       $explode = explode ( $limit, $haystack, $number );
     else
@@ -639,7 +643,7 @@
 
   function pTag_parm ($parm, $default='') {
 
-    global $pPrmsTag[$p];
+    global $pPrmsTag;
 
     if ( isset ( $pPrmsTag[$p] [$parm] ) )
       return $pPrmsTag[$p] [$parm];

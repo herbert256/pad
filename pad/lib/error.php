@@ -74,6 +74,8 @@
 
   function pError_try ($error, $file, $line) {
 
+        pDump ("Error: $PADREQID:  $error");
+
     if ( $GLOBALS['pError_action'] == 'ignore' ) 
       return FALSE;
 

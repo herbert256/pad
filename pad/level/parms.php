@@ -5,7 +5,7 @@
 
   if ( ! in_array ( $pTag[$p], ['if', 'case', 'while', 'until'] )  ) {
    
-    $pPrms_org = pExplode ($pPrms??'', ',');
+    $pPrms_org = pExplode ($pPrms[$pT], ',');
     
     foreach ( $pPrms_org as $pV ) {
 
@@ -33,6 +33,7 @@
  
   }
 
-  $pPrm[$p] = $pPrmsVal[$p] ?? '';
+  $pPrm[$p]   = $pPrmsVal[$p][0] ?? '';
+  $pName[$pT] = $pPrmsTag[$p]['name'] ?? $pTag[$pT];
 
 ?>

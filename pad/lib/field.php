@@ -61,7 +61,7 @@
 
   function pField_level ( $field, $type ) {
 
-    global $p, $pDb_lvl, $pCurrent, $;
+    global $p, $pDb_lvl, $pCurrent, $PrmsTag;
 
     if ( is_numeric($field) ) 
       return pField_tag_nr ('', $field);
@@ -81,7 +81,7 @@
         if ( $work !== INF )
           return $work;
 
-      $work = pField_search ( $ [$i] ['PrmsTag'], $field, $type);   
+      $work = pField_search ( $PrmsTag [$i], $field, $type);   
       if ( $work !== INF )
         return $work;
 
@@ -196,10 +196,10 @@
 
   function pField_tag_lvl  ($search, $data) {
 
-    global $p, $;
+    global $p, $pName;
 
-    for ($i=$p; $i; $i--)
-      if ( $ [$i] ['name'] == $search )
+    for ( $i=$p; $i; $i-- )
+      if ( $pName[$i] == $search )
         return $i;
 
     $return = pField_tag_lvl_base ($search, $data);

@@ -38,6 +38,20 @@
 
   function pDump_vars ($info='') {
 
+    $pDebug_backtrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS);
+
+    echo ( "<pre><b>$info</b>\n");
+    foreach ( $pDebug_backtrace as $key => $trace ) {
+      extract ( $trace );
+      echo ( "    $file:$line - $function\n");
+    }
+
+    pDump_array  ( 'go', $GLOBALS ,     1 );
+
+    exit;
+
+
+
     $app_chk = ['page','app','PADSESSID','PADREQID','PHPSESSID','PADREFID','GLOBALS','_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
 
     $not = ['pBase','pSql_connect','pPad_sql_connect','pHeaders','pData','pParms', 'pResult', 'pHtml', 'pOutput', 'pOutput_gz', 'pCurrent', 'pLib_directory', 'pLib_iterator', 'pLib_one'];

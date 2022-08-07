@@ -91,6 +91,7 @@
 
     error_log ( "[PAD] $id - $file:$line $error", 4 );
 
+pDump();
 #    if ( function_exists ( 'pLocal' ) and pLocal () )
       echo "$file:$line $error";
 #    else

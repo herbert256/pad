@@ -77,7 +77,7 @@
 
   function pSeq_getCnt ( $first, $second, $third ) {
 
-    global $pPrmsTag[$p], $pSeq_parm;
+    global $pPrmsTag, $pSeq_parm;
 
     if ( isset($pPrmsTag[$p][$first])      and $pPrmsTag[$p][$first]  !== TRUE and is_numeric($pPrmsTag[$p][$first]) )
  
