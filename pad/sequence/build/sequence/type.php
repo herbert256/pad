@@ -6,6 +6,6 @@
     if ( isset($pPrmsTag[$p][$pSeq_seq]) )
       $pSeq_parm = $pPrmsTag[$p][$pSeq_seq];
     else
-      $pSeq_parm = $pParm[$p];
+      $pSeq_parm = $pPrm[$p];
 
 ?>

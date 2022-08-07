@@ -1,6 +1,6 @@
 <?php
 
-  $pPrmsTag[$p] ['url']   = $pLocation . trim($pParm[$p]);
+  $pPrmsTag[$p] ['url']   = $pLocation . trim($pPrm[$p]);
   $pPrmsTag[$p] ['cache'] = FALSE;
 
   $pPrmsTag[$p] ['cookies'] ['PADSESSID'] = $GLOBALS['PADSESSID'];   

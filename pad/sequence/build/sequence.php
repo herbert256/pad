@@ -4,7 +4,7 @@
   $pSeq_set  = 'sequence';
   $pSeq_parm = TRUE;
 
-  $pSeq_tmp = $pParm[$p];
+  $pSeq_tmp = $pPrm[$p];
   if ( $pTag[$p]== 'sequence' and pValid($pSeq_tmp) and isset($pSequenceStore [$pSeq_tmp]) )
     return include 'sequence/store.php';
   
@@ -24,7 +24,7 @@
   if ( pValid($pSeq_tmp) and file_exists ( PAD . "sequence/types/$pSeq_tmp" ) )  
     return include 'sequence/type.php';
 
-  $pSeq_tmp = $pParm[$p] ?? '';
+  $pSeq_tmp = $pPrm[$p] ?? '';
   if ( pValid($pSeq_tmp) and file_exists ( PAD . "sequence/types/$pSeq_tmp" ) )  
     return include 'sequence/type.php';
 
@@ -36,25 +36,25 @@
   if ( pValid($pSeq_tmp) and file_exists ( PAD . "sequence/actions/$pSeq_tmp.php" ) )
     return include 'sequence/action.php';
 
-  $pSeq_tmp = $pParm[$p] ?? '';
+  $pSeq_tmp = $pPrm[$p] ?? '';
   if ( pValid($pSeq_tmp) and file_exists ( PAD . "sequence/actions/$pSeq_tmp.php" ) )
    return include 'sequence/action.php';
 
   $pSeq_tmp = array_key_first($pPrmsTag[$p]) ?? '';
-  if ( $pParm[$p] == '' and $pTag[$p]== 'sequence' and pValid($pSeq_tmp) and file_exists ( PAD . "sequence/actions/$pSeq_tmp.php" ) )
+  if ( $pPrm[$p] == '' and $pTag[$p]== 'sequence' and pValid($pSeq_tmp) and file_exists ( PAD . "sequence/actions/$pSeq_tmp.php" ) )
     return include 'sequence/action.php';
 
   $pSeq_tmp = array_key_first($pPrmsTag[$p]) ?? '';
   if ( pValid($pSeq_tmp) and isset($pSequenceStore [$pSeq_tmp]) )
     return include 'sequence/store.php';
  
-  if ( strpos($pParm[$p], '..') ) {
-    $pSeq_parm = $pParm[$p];
+  if ( strpos($pPrm[$p], '..') ) {
+    $pSeq_parm = $pPrm[$p];
     return include 'sequence/range.php';
   } 
 
-  if ( ctype_digit($pParm[$p]) ) {
-    $pSeq_parm = "1..$pParm[$p]";
+  if ( ctype_digit($pPrm[$p]) ) {
+    $pSeq_parm = "1..$pPrm[$p]";
     return include 'sequence/range.php';
   } 
 

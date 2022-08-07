@@ -5,11 +5,11 @@
   else
     $pField_tag = pFirst_non_parm();
 
-  $pParm[$p]_result = pField_tag ("$pField_tag#$pTag");
+  $pPrm[$p]_result = pField_tag ("$pField_tag#$pTag");
 
-  if ( $pParm[$p]_result === INF )
+  if ( $pPrm[$p]_result === INF )
     return NULL;
   else
-    return $pParm[$p]_result;
+    return $pPrm[$p]_result;
 
 ?>

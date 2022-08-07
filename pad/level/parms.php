@@ -33,6 +33,6 @@
  
   }
 
-  $pParm[$p] = $pPrmsVal[$p] ?? '';
+  $pPrm[$p] = $pPrmsVal[$p] ?? '';
 
 ?>

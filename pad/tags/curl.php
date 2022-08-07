@@ -1,7 +1,7 @@
 <?php
 
   if ( ! isset ($pPrmsTag[$p] ['url']) )
-    $pPrmsTag[$p] ['url'] = $pParm[$p];
+    $pPrmsTag[$p] ['url'] = $pPrm[$p];
 
   if ( ! $pPrmsTag[$p] ['url'] )
     return pError ("Curl: No URL given");

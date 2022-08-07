@@ -1,6 +1,6 @@
 <?php
 
-  $pExec = APP . "scripts/" . escapeshellcmd ($pParm[$p]);
+  $pExec = APP . "scripts/" . escapeshellcmd ($pPrm[$p]);
 
   if ( ! file_exists($pExec) ) {
     pError ("Script $pExec not found");

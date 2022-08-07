@@ -3,7 +3,7 @@
   if ( isset($pPrmsTag[$p][$pSeq_tmp]) )
     $pSeq_parm = $pPrmsTag[$p][$pSeq_tmp];
   else
-    $pSeq_parm = $pParm[$p];
+    $pSeq_parm = $pPrm[$p];
 
   $pSeq_parms = pExplode($pSeq_parm, '|');
 
