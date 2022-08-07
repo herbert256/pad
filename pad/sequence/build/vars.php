@@ -1,8 +1,8 @@
 <?php
 
-  $pSequence_store_get = '';
+  $pSequenceStore_get = '';
   $pSeq_result = $pSeq_for = $pSeq_cache = [];
-  $pSeq = $pSequence = $pSeq_protect_cnt = $pSeq_base = 0;
+  $pSeq = $pSequence = $pSeq_protectCnt = $pSeq_base = 0;
 
   if ( ! $pSeq_name )                            $pSeq_name = $pSeq_set; 
   if ( ! isset($GLOBALS ["pSeq_$pSeq_seq"]) ) $GLOBALS ["pSeq_$pSeq_seq"] = $pSeq_parm;

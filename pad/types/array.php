@@ -1,5 +1,5 @@
 <?php
  
-  return pArray_value ($pTag, TRUE);
+  return pArray_value ($pTag[$p], TRUE);
 
 ?>

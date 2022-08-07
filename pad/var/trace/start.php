@@ -1,6 +1,6 @@
 <?php
 
-  $pad_val_base = $pad_val;
+  $pVal_base = $pVal;
 
   if ( ! $GLOBALS['pTrace_errors'] and ! $GLOBALS['pError_dump'] )
     return;
@@ -13,6 +13,6 @@
     'between' => $GLOBALS['pBetween'],
   ];
 
-  pTrace_write_error ( "Field '$pFld' not found", 'field', $GLOBALS['pFld_cnt'], $pTrace_data );
+  pTrace_write_error ( "Field '$pFld' not found", 'field', $GLOBALS['pFldCnt'], $pTrace_data );
 
 ?>

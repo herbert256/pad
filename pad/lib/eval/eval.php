@@ -32,7 +32,7 @@
 
     pTiming_start ('eval');
 
-    global $pEval_cnt, $pEval_step_cnt, $pEval_start, $pEval_result, $pTrace;
+    global $pEvalCnt, $pEval_stepCnt, $pEval_start, $pEval_result, $pTrace;
 
     $GLOBALS ['pTrace_eval_stage']   = 'start';
     $GLOBALS ['pTrace_eval_eval']    = $eval;
@@ -41,8 +41,8 @@
     $GLOBALS ['pTrace_eval_after']   = [];
     $GLOBALS ['pTrace_eval_now']     = [];
 
-    $pEval_cnt++;
-    $pEval_step_cnt = 0;
+    $pEvalCnt++;
+    $pEval_stepCnt = 0;
     $pEval_start = $eval;
     $pEval_result = [];
 
@@ -95,7 +95,7 @@
 
     $GLOBALS ['pTrace_eval_stage'] = 'error';
 
-    global $pEval_cnt;
+    global $pEvalCnt;
 
     $data = [
       'eval'    => $GLOBALS ['pTrace_eval_eval']   ?? '',
@@ -105,7 +105,7 @@
       'result'  => $GLOBALS ['pTrace_eval_result'] ?? ''
     ];
  
-    pTrace_write_error ( $txt, 'eval', $pEval_cnt, $data );
+    pTrace_write_error ( $txt, 'eval', $pEvalCnt, $data );
 
     $GLOBALS ['pTrace_eval_stage'] = 'end';
     pTiming_end ('eval');
@@ -120,12 +120,12 @@
     if ( ! $GLOBALS['pTrace_eval'] )
       return;
 
-    global $pEval_cnt, $pEval_step_cnt, $pOccurDir;
+    global $pEvalCnt, $pEval_stepCnt, $pOccurDir;
 
-    $pEval_step_cnt++;
+    $pEval_stepCnt++;
 
     pFile_put_contents ( 
-      "$pOccurDir/eval/$pEval_cnt/$pEval_step_cnt.$step.json",  
+      "$pOccurDir/eval/$pEvalCnt/$pEval_stepCnt.$step.json",  
       $data 
     );
 

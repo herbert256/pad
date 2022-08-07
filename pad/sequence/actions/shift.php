@@ -1,19 +1,19 @@
 <?php
 
-  if ( isset($pSequence_store [$pSeq_pull]) )
-    if ( count($pSequence_store [$pSeq_pull]) > $pSeq_action_count )
+  if ( isset($pSequenceStore [$pSeq_pull]) )
+    if ( count($pSequenceStore [$pSeq_pull]) > $pSeq_actionCnt )
       if ( $pSeq_action_name == 'shift')
-        $pSequence_store [$pSeq_pull] = array_slice($pSequence_store [$pSeq_pull], $pSeq_action_count);
+        $pSequenceStore [$pSeq_pull] = array_slice($pSequenceStore [$pSeq_pull], $pSeq_actionCnt);
       else
-        $pSequence_store [$pSeq_pull] = array_slice($pSequence_store [$pSeq_pull], 0, $pSeq_action_count * -1);
+        $pSequenceStore [$pSeq_pull] = array_slice($pSequenceStore [$pSeq_pull], 0, $pSeq_actionCnt * -1);
     else
-      $pSequence_store [$pSeq_pull] = [];
+      $pSequenceStore [$pSeq_pull] = [];
 
-  if ( count($pSeq_result) > $pSeq_action_count )
+  if ( count($pSeq_result) > $pSeq_actionCnt )
     if ( $pSeq_action_name == 'shift')
-      return array_slice ( $pSeq_result, 0, $pSeq_action_count );
+      return array_slice ( $pSeq_result, 0, $pSeq_actionCnt );
     else 
-      return array_slice ( $pSeq_result, $pSeq_action_count * -1 );
+      return array_slice ( $pSeq_result, $pSeq_actionCnt * -1 );
   else
     return $pSeq_result;
   

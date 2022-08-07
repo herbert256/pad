@@ -7,19 +7,13 @@
 
   $pTag_content = ''; ob_start();
 
-  $pad_walk = $pad_walks[$p]; 
-
-  foreach ( $[$p] as $pK => $pad_v )
-    $GLOBALS['pad_'.$pK] = $pad_v;
+  $pWalk = $pWalks[$p]; 
 
   pTiming_start ('tag');
   $pTagResult = include PAD . "types/$pType.php";
   pTiming_end ('tag');
 
-  foreach ( $[$p] as $pK => $pad_v )
-    $[$p] [$pK] = $GLOBALS['pad_'.$pK];
-
-  $pad_walks[$p] = $pad_walk; 
+  $pWalks[$p] = $pWalk; 
 
   $pTag_content .= ob_get_clean();
 

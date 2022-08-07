@@ -1,11 +1,11 @@
 <?php
 
-  if ( $pad_walk == 'start' and $pPrmsType == 'close' ) {
-    $pad_walk = 'end';
+  if ( $pWalk == 'start' and $pPrmsType == 'close' ) {
+    $pWalk = 'end';
     return TRUE;
   }
 
-  $pTag = $pParm[$p];
+  $pTag[$p]= $pParm[$p];
 
   if ( isset ($pPrmsTag[$p] ['type'] ) )                     
     $pFunction_type = "function_" . $pPrmsTag[$p] ['type'];                

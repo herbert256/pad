@@ -6,7 +6,7 @@
   reset ( $pData[ $pad] );
   $pKey[$p] = key($pData[$p]);
 
-  $pParent_start = strpos ( $pBase[$p], '{'.$pTag );
+  $pParent_start = strpos ( $pBase[$p], '{'.$pTag[$p]);
   $pParent_end   = strpos ( $pBase[$p], "}", $pParent_start) ;
 
   $pBase[$p] = substr ( $pBase[$p], 0, $pParent_start )

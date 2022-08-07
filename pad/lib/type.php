@@ -2,20 +2,20 @@
 
   function pGet_type_lvl ( $type ) {
 
-    if     ( ! pad_valid    ( $type ) )                                       return FALSE;
+    if     ( ! pValid    ( $type ) )                                       return FALSE;
     elseif ( file_exists     ( APP . "tags/$type.php"                 ) ) return 'tag_app';
     elseif ( file_exists     ( APP . "tags/$type.html"                ) ) return 'tag_app';
     elseif ( file_exists     ( PAD . "tags/$type.php"                 ) ) return 'tag_pad';
     elseif ( file_exists     ( PAD . "tags/$type.html"                ) ) return 'tag_pad';
     elseif ( pChk_level_array ( $type                                  ) ) return 'level';
     elseif ( file_exists     ( PAD . "tag/$type.php"                  ) ) return 'parm';
-    elseif ( isset               ( $GLOBALS['pFlag_store'] [$type]     ) ) return 'flag';
-    elseif ( isset               ( $GLOBALS['pContent_store'] [$type]  ) ) return 'content';
-    elseif ( isset               ( $GLOBALS['pData_store'] [$type]     ) ) return 'data';
+    elseif ( isset               ( $GLOBALS['pFlagStore'] [$type]     ) ) return 'flag';
+    elseif ( isset               ( $GLOBALS['pContentStore'] [$type]  ) ) return 'content';
+    elseif ( isset               ( $GLOBALS['pDataStore'] [$type]     ) ) return 'data';
     elseif ( file_exists     ( PAD . "sequence/types/$type"           ) ) return 'sequence';
     elseif ( file_exists     ( PAD . "sequence/actions/$type.php"     ) ) return 'action';
-    elseif ( isset               ( $GLOBALS['pSequence_store'] [$type] ) ) return 'store';
-    elseif ( isset               ( $GLOBALS['pDb_tables'] [$type]      ) ) return 'table';
+    elseif ( isset               ( $GLOBALS['pSequenceStore'] [$type] ) ) return 'store';
+    elseif ( isset               ( $GLOBALS['pDbTables'] [$type]      ) ) return 'table';
     elseif ( pArray_check     ( $type                                  ) ) return 'array';
     elseif ( pField_check     ( $type                                  ) ) return 'field';
     elseif ( defined             ( $type                                  ) ) return 'constant';
@@ -30,7 +30,7 @@
 
   function pCheck_type ( $type, $name ) {
 
-        if ( ! pad_valid ( $type ) or ! pad_valid ( $name)  )                                            return FALSE;
+        if ( ! pValid ( $type ) or ! pValid ( $name)  )                                            return FALSE;
     elseif ( pChk_level_array ( $name                               ) and $type == 'level'          ) return TRUE;
     elseif ( file_exists  ( APP . "tags/$name.php"                 ) and $type == 'tag_app'        ) return TRUE;
     elseif ( file_exists  ( APP . "tags/$name.html"                ) and $type == 'tag_app'        ) return TRUE;
@@ -45,13 +45,13 @@
     elseif ( file_exists  ( PAD . "tags/$name.php"                 ) and $type == 'tag'            ) return TRUE;
     elseif ( file_exists  ( PAD . "tags/$name.html"                ) and $type == 'tag'            ) return TRUE;
     elseif ( file_exists  ( PAD . "tag/$name.php"                  ) and $type == 'parm'           ) return TRUE;
-    elseif ( isset            ( $GLOBALS['pFlag_store'] [$name]     ) and $type == 'flag'           ) return TRUE;
-    elseif ( isset            ( $GLOBALS['pContent_store'] [$name]  ) and $type == 'content'        ) return TRUE;
-    elseif ( isset            ( $GLOBALS['pData_store'] [$name]     ) and $type == 'data'           ) return TRUE;
+    elseif ( isset            ( $GLOBALS['pFlagStore'] [$name]     ) and $type == 'flag'           ) return TRUE;
+    elseif ( isset            ( $GLOBALS['pContentStore'] [$name]  ) and $type == 'content'        ) return TRUE;
+    elseif ( isset            ( $GLOBALS['pDataStore'] [$name]     ) and $type == 'data'           ) return TRUE;
     elseif ( file_exists  ( PAD . "sequence/types/$type"           ) and $type == 'sequence'       ) return TRUE;
     elseif ( file_exists  ( PAD . "sequence/actions/$type.php"     ) and $type == 'action'         ) return TRUE;
-    elseif ( isset            ( $GLOBALS['pSequence_store'] [$name] ) and $type == 'store'          ) return TRUE;
-    elseif ( isset            ( $GLOBALS['pDb_tables'] [$name]      ) and $type == 'table'          ) return TRUE;
+    elseif ( isset            ( $GLOBALS['pSequenceStore'] [$name] ) and $type == 'store'          ) return TRUE;
+    elseif ( isset            ( $GLOBALS['pDbTables'] [$name]      ) and $type == 'table'          ) return TRUE;
     elseif ( pArray_check  ( $name                                  ) and $type == 'array'          ) return TRUE;
     elseif ( pField_check  ( $name                                  ) and $type == 'field'          ) return TRUE;
     elseif ( defined          ( $name                                  ) and $type == 'constant'       ) return TRUE;
@@ -69,17 +69,17 @@
 
   function pGet_type_eval ( $type ) {
 
-        if ( ! pad_valid         ( $type                                  ) ) return FALSE;
+        if ( ! pValid         ( $type                                  ) ) return FALSE;
     elseif ( file_exists         ( APP . "functions/$type.php"            ) ) return 'app';
     elseif ( file_exists         ( PAD . "functions/$type.php"            ) ) return 'pad';
     elseif ( function_exists     ( $type                                  ) ) return 'php';
     elseif ( pField_check     ( $type                                  ) ) return 'field';
-    elseif ( isset               ( $GLOBALS['pFlag_store'] [$type]     ) ) return 'flag';
-    elseif ( isset               ( $GLOBALS['pContent_store'] [$type]  ) ) return 'content';
-    elseif ( isset               ( $GLOBALS['pData_store'] [$type]     ) ) return 'data';
-    elseif ( isset               ( $GLOBALS['pSequence_store'] [$type] ) ) return 'sequence';
+    elseif ( isset               ( $GLOBALS['pFlagStore'] [$type]     ) ) return 'flag';
+    elseif ( isset               ( $GLOBALS['pContentStore'] [$type]  ) ) return 'content';
+    elseif ( isset               ( $GLOBALS['pDataStore'] [$type]     ) ) return 'data';
+    elseif ( isset               ( $GLOBALS['pSequenceStore'] [$type] ) ) return 'sequence';
     elseif ( file_exists         ( PAD . "tag/$type.php"                  ) ) return 'parm';
-    elseif ( isset               ( $GLOBALS['pDb_tables'] [$type]      ) ) return 'table';
+    elseif ( isset               ( $GLOBALS['pDbTables'] [$type]      ) ) return 'table';
     elseif ( pArray_check     ( $type                                  ) ) return 'array';
     elseif ( pChk_level_array ( $type                                  ) ) return 'level';
     elseif ( defined             ( $type                                  ) ) return 'constant';

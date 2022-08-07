@@ -2,11 +2,11 @@
 
   global $pData, $pOccur;
   
-  $pad_wrk = count ( $pData [$pIdx] ) - $pOccur [$pIdx];
+  $pWrk = count ( $pData [$pIdx] ) - $pOccur [$pIdx];
 
-  if ($pad_wrk < 0)
+  if ($pWrk < 0)
     return 0;
   else 
-    return $pad_wrk;
+    return $pWrk;
 
 ?>

@@ -39,10 +39,10 @@
 
     global $pEtag, $pOutput;
     
-    $pContent_store_file = "output/$pEtag.html";
+    $pContentStore_file = "output/$pEtag.html";
 
-    if ( ! file_exists(DATA . "$pContent_store_file") )
-      pFile_put_contents ($pContent_store_file, $pOutput);
+    if ( ! file_exists(DATA . "$pContentStore_file") )
+      pFile_put_contents ($pContentStore_file, $pOutput);
 
   }
 

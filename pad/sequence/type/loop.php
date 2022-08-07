@@ -18,10 +18,10 @@
 
     else {
 
-      $pSeq_inc_cnt = round ( (($pSeq_loop_end-$pSeq_loop_start)+1) / $pSeq_inc );
-      $pSeq_inc_cnt = pSeq_random ( 0, $pSeq_inc_cnt );
+      $pSeq_incCnt = round ( (($pSeq_loop_end-$pSeq_loop_start)+1) / $pSeq_inc );
+      $pSeq_incCnt = pSeq_random ( 0, $pSeq_incCnt );
 
-      $pSeq_loop = $pSeq_loop_start + ($pSeq_inc_cnt*$pSeq_inc);
+      $pSeq_loop = $pSeq_loop_start + ($pSeq_incCnt*$pSeq_inc);
 
     }
 

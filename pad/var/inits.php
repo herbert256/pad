@@ -1,6 +1,6 @@
 <?php
 
-  $pFld_cnt++;
+  $pFldCnt++;
 
   $pPipe  = strpos($pBetween, '|');
   $pSpace = strpos($pBetween, ' ');
@@ -25,7 +25,7 @@
   if ( substr($pFld, 0, 1) == '$' )
     $pFld = pField_value ($pFld);
 
-  $pad_val = pField_value ($pFld);
+  $pVal = pField_value ($pFld);
 
   if ( $pTrace_fields or $pTrace_errors or $pError_dump ) 
     include 'trace/start.php';

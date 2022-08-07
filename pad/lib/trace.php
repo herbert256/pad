@@ -1,7 +1,7 @@
 <?php
 
   function pTrace_get_app_vars () { return pTrace_get_xxx_vars ('app'); }
-  function pTrace_get_pad_vars () { return pTrace_get_xxx_vars ('pad'); }
+  function pTrace_get_pVars () { return pTrace_get_xxx_vars ('pad'); }
   function pTrace_get_php_vars () { return pTrace_get_xxx_vars ('php'); }
 
   function pTrace_get_xxx_vars ($type) {
@@ -50,7 +50,7 @@
     pFile_put_contents ( "errors/$PADREQID-$type-$count.json", $data ); 
 
     pFile_put_contents ( "$pError_dir/error.json", $data ); 
-    pFile_put_contents ( "$pError_dir/pad.json",   pTrace_get_pad_vars ()  );
+    pFile_put_contents ( "$pError_dir/pad.json",   pTrace_get_pVars ()  );
     pFile_put_contents ( "$pError_dir/app.json",   pTrace_get_app_vars ()  );
     pFile_put_contents ( "$pError_dir/php.json",   pTrace_get_php_vars ()  );
     pFile_put_contents ( "$pError_dir/dump.html",  pDump_get           ()  );

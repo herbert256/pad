@@ -1,5 +1,5 @@
 <?php
 
-  return $pContent_store [ pTag_parm('content') ];
+  return $pContentStore [ pTag_parm('content') ];
   
 ?>

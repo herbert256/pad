@@ -1,6 +1,6 @@
 <?php
 
-  $pad_walk = 'end';
+  $pWalk = 'end';
 
   $pContent = $pResult[$p];
   include PAD . "level/type_go.php"; 

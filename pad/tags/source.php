@@ -1,7 +1,7 @@
 <?php
 
-  if ( pTag_parm ('after') and $pad_walk == 'start' ) {
-    $pad_walk = 'end';
+  if ( pTag_parm ('after') and $pWalk == 'start' ) {
+    $pWalk = 'end';
     return TRUE;
   }
 

@@ -77,14 +77,14 @@
     if ( $GLOBALS['pError_action'] == 'ignore' ) 
       return FALSE;
 
-    global $pError_action, $pExit, $PADREQID, $pTrace_errors, $pError_dump, $pError_log, $pErr_cnt;
+    global $pError_action, $pExit, $PADREQID, $pTrace_errors, $pError_dump, $pError_log, $pErrCnt;
 
     if ( $GLOBALS['pExit'] <> 1 )
       return pError_error ($error, $file, $line);
 
     $GLOBALS['pExit'] = 2;
 
-    $pErr_cnt++;
+    $pErrCnt++;
 
     $error = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '.', $error);
     $error = preg_replace('/\s+/', ' ', $error);
@@ -99,7 +99,7 @@
       error_log ("[PAD] $PADREQID $error", 4);   
 
     if ( $pTrace_errors or $pError_dump or $pError_action == 'report' )
-      pTrace_write_error ( $error, 'error', $pErr_cnt, [], 1);
+      pTrace_write_error ( $error, 'error', $pErrCnt, [], 1);
 
     if ( ! headers_sent () and in_array($pError_action, ['pad', 'stop', 'abort', 'ignore']) )
       pHeader ('HTTP/1.0 500 Internal Server Error' );

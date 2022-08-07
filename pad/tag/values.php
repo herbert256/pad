@@ -2,8 +2,8 @@
 
   $pReturn = [];
 
-  foreach ($GLOBALS['pCurrent'] [$pIdx] as $pK => $pad_v)
-    $pReturn [] ['value'] = $pad_v;
+  foreach ($GLOBALS['pCurrent'] [$pIdx] as $pK => $pV)
+    $pReturn [] ['value'] = $pV;
 
   return $pReturn;
 

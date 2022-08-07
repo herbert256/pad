@@ -5,6 +5,6 @@
 
   pTiming_end ('var');
 
-  return $pad_val;
+  return $pVal;
 
 ?>

@@ -115,7 +115,7 @@
  
   // PAD database structure
   
-  $pDb_tables = $pDb_relations = [];
+  $pDbTables = $pDb_relations = [];
     
   // Default {$var} options, there must be a PHP snippet in one of below directories
   // - PAD/functions/

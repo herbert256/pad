@@ -1,12 +1,12 @@
 <?php
 
-  $pContent_store_data = $pContent_store [$pName[$p]];
+  $pContentStore_data = $pContentStore [$pName[$p]];
 
-  if ( strpos ( $pContent_store_data, '{@content}' ) !== FALSE ) {
-    $pContent_store_data = str_replace('{@content}', $pContent, $pContent_store_data);
+  if ( strpos ( $pContentStore_data, '{@content}' ) !== FALSE ) {
+    $pContentStore_data = str_replace('{@content}', $pContent, $pContentStore_data);
     $pContent = '';
   }
 
-  return $pContent_store_data;
+  return $pContentStore_data;
 
 ?>

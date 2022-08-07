@@ -1,14 +1,14 @@
 <?php
 
-  if ( $pad_walk == 'start' ) {  
+  if ( $pWalk == 'start' ) {  
 
-    $pad_walk = 'end';
+    $pWalk = 'end';
 
     $pBackup_trace = [];
 
-    foreach ($GLOBALS as $pK2 => $pad_v2 )
+    foreach ($GLOBALS as $pK2 => $pV2 )
       if ( substr($pK2, 0, 9) == 'pTrace' )
-        $pBackup_trace [$pK2] = $pad_v2;
+        $pBackup_trace [$pK2] = $pV2;
 
     $pTrace           = TRUE;  
     $pTrace_level     = TRUE;  
@@ -25,22 +25,22 @@
     $pTrace_explode   = TRUE;
     $pTrace_tag       = TRUE; 
 
-    $pLevelDir = $pTrace_dir . '/trace-' . $pLvl_cnt; 
+    $pLevelDir = $pTrace_dir . '/trace-' . $pLvlCnt; 
     $pOccurDir = $pLevelDir;
 
     $pLevelDir[$p]= $pLevelDir;
     $pOccurDir[$p]= $pOccurDir;
 
-    pFile_put_contents ( $pLevelDir . "/pad-start.json", pTrace_get_pad_vars ()  );
+    pFile_put_contents ( $pLevelDir . "/pad-start.json", pTrace_get_pVars ()  );
     pFile_put_contents ( $pLevelDir . "/app-start.json", pTrace_get_app_vars ()  );
   
   } else {
 
-    pFile_put_contents ( $pLevelDir . "/pad-end.json", pTrace_get_pad_vars ()  );
+    pFile_put_contents ( $pLevelDir . "/pad-end.json", pTrace_get_pVars ()  );
     pFile_put_contents ( $pLevelDir . "/app-end.json", pTrace_get_app_vars ()  );
  
-    foreach ($pBackup_trace as $pK => $pad_v )
-      $GLOBALS [$pK] = $pad_v;
+    foreach ($pBackup_trace as $pK => $pV )
+      $GLOBALS [$pK] = $pV;
  
   } 
 

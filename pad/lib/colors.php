@@ -63,7 +63,7 @@ go: $end = strpos($source, '}');
       $tag      = substr ($tag, $ns_pos+1);
     } 
 
-    if ( ! pad_valid ( $tag ) )  {             
+    if ( ! pValid ( $tag ) )  {             
       $source = substr($source, 0, $start) 
                 . '&open;' . $between . '&close;' 
                 . substr($source, $end+1);

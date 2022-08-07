@@ -1,8 +1,8 @@
 <?php
 
-  if ($pTag == 'check' ) 
-    return db ("$pTag $pParm[$p]") ? TRUE : FALSE;
+  if ($pTag[$p]== 'check' ) 
+    return db ("$pTag[$p]$pParm[$p]") ? TRUE : FALSE;
   else                  
-    return db ("$pTag $pParm[$p]");
+    return db ("$pTag[$p]$pParm[$p]");
 
 ?>

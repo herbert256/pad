@@ -4,11 +4,11 @@
   function pSeq_action ( $sequence1, $action, $sequence2 ) {
 
     $pSeq_result       = $sequence1;
-    $pSeq_count        = 0;
+    $pSeqCnt        = 0;
     $pSeq_action_value = $action;
     $pSeq_action_name  = $action;
     
-    $pSequence_store [$action] = $sequence2;
+    $pSequenceStore [$action] = $sequence2;
 
     return include PAD . "sequence/actions/$action.php";  
 
@@ -57,8 +57,8 @@
 
     foreach ($arrays as $store)
       if ( $store !== TRUE )
-        if ( isset($GLOBALS['pSequence_store'] [$store]) )
-          $parms [] = $GLOBALS['pSequence_store'] [$store];
+        if ( isset($GLOBALS['pSequenceStore'] [$store]) )
+          $parms [] = $GLOBALS['pSequenceStore'] [$store];
         else
           $parms [] = $store;
 
@@ -75,7 +75,7 @@
 
   }
 
-  function pSeq_get_count ( $first, $second, $third ) {
+  function pSeq_getCnt ( $first, $second, $third ) {
 
     global $pPrmsTag[$p], $pSeq_parm;
 

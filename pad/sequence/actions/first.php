@@ -1,18 +1,18 @@
 <?php
 
   if ( $pSeq_action_value === TRUE or ! ctype_digit($pSeq_action_value) )
-    if ( $pSeq_count )
-      $pSeq_action_count = $pSeq_count;
+    if ( $pSeqCnt )
+      $pSeq_actionCnt = $pSeqCnt;
     else
-      $pSeq_action_count = 1;
+      $pSeq_actionCnt = 1;
   else
-    $pSeq_action_count = $pSeq_action_value;    
+    $pSeq_actionCnt = $pSeq_action_value;    
 
-  if ( count($pSeq_result) > $pSeq_action_count )
+  if ( count($pSeq_result) > $pSeq_actionCnt )
     if ( $pSeq_action_name == 'first')
-      return array_slice ( $pSeq_result, 0, $pSeq_action_count );
+      return array_slice ( $pSeq_result, 0, $pSeq_actionCnt );
     else 
-      return array_slice ( $pSeq_result, $pSeq_action_count * -1 );
+      return array_slice ( $pSeq_result, $pSeq_actionCnt * -1 );
   else
     return $pSeq_result;
   

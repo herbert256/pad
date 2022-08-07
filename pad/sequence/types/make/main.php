@@ -14,8 +14,8 @@
 
     }
    
-  $pSequence_store_get = $pSeq_parm;
-  $pSeq_for = $pSequence_store [$pSeq_parm];
+  $pSequenceStore_get = $pSeq_parm;
+  $pSeq_for = $pSequenceStore [$pSeq_parm];
 
   if ( ! $pSeq_push and ! $pPair )
     $pSeq_push = $pSeq_parm;

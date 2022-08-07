@@ -4,21 +4,21 @@
     $pPrmsTag[$p]['both'] = TRUE;
 
   if ( isset( $pPrmsTag[$p]['both']) ) {
-    $pSeq_trucate_count = pSeq_get_count ( 'both', 'truncate', 'count');
-    $pSeq_result        = pSeq_truncate  ( $pSeq_result, 'left',  $pSeq_trucate_count );
-    $pSeq_result        = pSeq_truncate  ( $pSeq_result, 'right', $pSeq_trucate_count );
+    $pSeq_trucateCnt = pSeq_getCnt ( 'both', 'truncate', 'count');
+    $pSeq_result        = pSeq_truncate  ( $pSeq_result, 'left',  $pSeq_trucateCnt );
+    $pSeq_result        = pSeq_truncate  ( $pSeq_result, 'right', $pSeq_trucateCnt );
     pDone ( 'both', TRUE );
   }
 
   if ( isset( $pPrmsTag[$p]['left']) ) {
-    $pSeq_trucate_count = pSeq_get_count ( 'left', 'truncate', 'count');
-    $pSeq_result        = pSeq_truncate  ( $pSeq_result, 'left', $pSeq_trucate_count );
+    $pSeq_trucateCnt = pSeq_getCnt ( 'left', 'truncate', 'count');
+    $pSeq_result        = pSeq_truncate  ( $pSeq_result, 'left', $pSeq_trucateCnt );
     pDone ( 'left', TRUE );
   }
 
   if ( isset( $pPrmsTag[$p]['right']) ) {
-    $pSeq_trucate_count = pSeq_get_count ( 'right', 'truncate', 'count');
-    $pSeq_result        = pSeq_truncate  ( $pSeq_result, 'right', $pSeq_trucate_count );
+    $pSeq_trucateCnt = pSeq_getCnt ( 'right', 'truncate', 'count');
+    $pSeq_result        = pSeq_truncate  ( $pSeq_result, 'right', $pSeq_trucateCnt );
     pDone ( 'right', TRUE );
   }
 

@@ -9,9 +9,9 @@
 
   $pExec_out = $pExec_args = [];
 
-  foreach($pPrmsVal[$p] as $pK => $pad_v)
+  foreach($pPrmsVal[$p] as $pK => $pV)
     if ($pK)
-      $pExec_args [$pK] = escapeshellarg ($pad_v);
+      $pExec_args [$pK] = escapeshellarg ($pV);
 
   $pExec_args = implode(" ", $pExec_args);
   

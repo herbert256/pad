@@ -207,8 +207,8 @@
     if ( ! $return === FALSE)
       return $return;
 
-    if ( isset( $GLOBALS['pData_store'] [$search]) )
-      return pField_fake_level ( $search, $GLOBALS['pData_store'] );
+    if ( isset( $GLOBALS['pDataStore'] [$search]) )
+      return pField_fake_level ( $search, $GLOBALS['pDataStore'] );
 
     for ($i=$pad; $i; $i--)
       if ( isset( $GLOBALS['pDb_lvl'] [$i] ) )

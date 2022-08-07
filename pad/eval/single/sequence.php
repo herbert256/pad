@@ -1,5 +1,5 @@
 <?php
 
-    return $GLOBALS['pSequence_store'] [$name];
+    return $GLOBALS['pSequenceStore'] [$name];
  
 ?>

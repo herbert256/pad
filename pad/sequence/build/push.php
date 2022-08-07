@@ -12,11 +12,11 @@
   if ( $pSeq_push === TRUE ) 
     if ( $pSeq_pull and $pSeq_pull !== TRUE )
       $pSeq_push = $pSeq_pull;
-    elseif ( $pSequence_store_get )
-      $pSeq_push = $pSequence_store_get;
+    elseif ( $pSequenceStore_get )
+      $pSeq_push = $pSequenceStore_get;
     else
       $pSeq_push = $pSeq_name;
 
-  $pSequence_store [$pSeq_push] = $pSeq_result;
+  $pSequenceStore [$pSeq_push] = $pSeq_result;
 
 ?>

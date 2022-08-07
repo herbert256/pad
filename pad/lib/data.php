@@ -215,8 +215,8 @@
 
     $result = $data;
 
-    foreach ($result as $pK => $pad_v)
-      if ( is_array($pad_v) or ! is_numeric($pK) )
+    foreach ($result as $pK => $pV)
+      if ( is_array($pV) or ! is_numeric($pK) )
         return $result;
   
     $name   = pData_name($name);

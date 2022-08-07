@@ -1,11 +1,11 @@
 <?php
 
   $pSeq++;
-  $pSeq_protect_cnt++;
+  $pSeq_protectCnt++;
 
   $pSeq_one_done = [];
 
-  if ( $pSeq_protect_cnt > $pSeq_protect                ) return FALSE;
+  if ( $pSeq_protectCnt > $pSeq_protect                ) return FALSE;
   if ( $pSeq < $pSeq_low                                ) return TRUE;
   if ( $pSeq > $pSeq_high                               ) return FALSE;
   if ( $pSeq_build == 'order' and $pSeq < $pSeq_from ) return TRUE;
@@ -33,7 +33,7 @@
 
   $pSeq_result [] = $pSequence;
 
-  $pSeq_protect_cnt = 0;
+  $pSeq_protectCnt = 0;
 
   if ( $pSeq_rows and count($pSeq_result) >= $pSeq_rows ) return FALSE;
   if ( $pSeq_end  and $pSeq_base          >= $pSeq_end  ) return FALSE;

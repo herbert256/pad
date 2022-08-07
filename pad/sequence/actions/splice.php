@@ -6,7 +6,7 @@
     $pSeq_result,
     $pSeq_splice[0],
     $pSeq_splice[1],
-    $pSequence_store [$pSeq_splice[2] ]
+    $pSequenceStore [$pSeq_splice[2] ]
   );
 
   return $pSeq_result;

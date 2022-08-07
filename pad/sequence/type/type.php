@@ -2,7 +2,7 @@
 
   if ( $pSeq_pull and $pSeq_seq <> 'pull' ) {
 
-    $pSeq_for = $pSequence_store [$pSeq_pull];
+    $pSeq_for = $pSequenceStore [$pSeq_pull];
 
     include "for.php";
 

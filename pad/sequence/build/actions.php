@@ -7,12 +7,12 @@
       if ( file_exists ( PAD . "sequence/actions/$pSeq_action_name.php" ) ) {
 
         if ( $pSeq_action_value === TRUE or ! ctype_digit($pSeq_action_value) )
-          if ( $pSeq_count )
-            $pSeq_action_count = $pSeq_count;
+          if ( $pSeqCnt )
+            $pSeq_actionCnt = $pSeqCnt;
           else
-            $pSeq_action_count = 1;
+            $pSeq_actionCnt = 1;
         else
-          $pSeq_action_count = $pSeq_action_value;    
+          $pSeq_actionCnt = $pSeq_action_value;    
 
         $pSeq_result = include PAD . "sequence/actions/$pSeq_action_name.php";
 

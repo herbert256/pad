@@ -37,7 +37,7 @@
   
   function pEval_after ( &$result, $eval ) {
  
-    global $pFlag_store, $pData_store, $pContent_store;
+    global $pFlagStore, $pDataStore, $pContentStore;
 
     $check = 0;
     
@@ -54,7 +54,7 @@
       return "Unequal () pairs: $eval";
 
     foreach ($result as $k => $one)
-      if ( $one[1] == 'other' and pad_valid ($one[0]) ) {
+      if ( $one[1] == 'other' and pValid ($one[0]) ) {
         $type = pGet_type_eval ( $one[0] );
         if ( $type !== FALSE ) {
           $result[$k][0] = $one[0];
@@ -67,7 +67,7 @@
     foreach ($result as $k => $one)
       if ( $one[1] == 'other' ) {
         $exp = pExplode ($one[0], ':');
-        if ( count($exp) == 2 and pad_valid ($exp[0]) and pad_valid ($exp[1]) ) {
+        if ( count($exp) == 2 and pValid ($exp[0]) and pValid ($exp[1]) ) {
           $type = $exp[0];
           if ( file_exists ( PAD . "eval/single/$type.php") or file_exists ( PAD . "eval/parms/$type.php") ) {
             $result[$k][0] = $exp[1];
@@ -79,7 +79,7 @@
       }
 
     foreach ($result as $key => $one)
-      if ( $one[1] == 'TYPE' and pad_valid ($one[2]) and file_exists ( PAD."eval/single/".$one[2].".php" ) )
+      if ( $one[1] == 'TYPE' and pValid ($one[2]) and file_exists ( PAD."eval/single/".$one[2].".php" ) )
         pEval_single ( $result, $key);
 
     foreach ($result as $k => $one)

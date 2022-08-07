@@ -2,7 +2,7 @@
 
   if ( $pad > 1 ) {
     pFile_put_contents ( "$pLevelDir/html-result.html", $pResult[$p] );
-    pFile_put_contents ( "$pLevelDir/pad-end.json",     pTrace_get_pad_vars ()  );
+    pFile_put_contents ( "$pLevelDir/pad-end.json",     pTrace_get_pVars ()  );
     pFile_put_contents ( "$pLevelDir/app-end.json",     pTrace_get_app_vars ()  );
   }
 

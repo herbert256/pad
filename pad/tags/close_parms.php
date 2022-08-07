@@ -1,7 +1,7 @@
 <?php
 
-  if ( $pad_walk == 'start' ) {
-    $pad_walk = 'end';
+  if ( $pWalk == 'start' ) {
+    $pWalk = 'end';
     return TRUE;
   }
 

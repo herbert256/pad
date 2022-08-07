@@ -12,9 +12,9 @@
   $pSeq_rows     = intval ( $pPrmsTag[$p] ['rows']      ?? 0           );
   $pSeq_unique   = intval ( $pPrmsTag[$p] ['unique']    ?? 0           );
   $pSeq_random   = intval ( $pPrmsTag[$p] ['random']    ?? 0           );
-  $pSeq_count    = intval ( $pPrmsTag[$p] ['count']     ?? 0           );
+  $pSeqCnt    = intval ( $pPrmsTag[$p] ['count']     ?? 0           );
   $pSeq_page     = intval ( $pPrmsTag[$p] ['page']      ?? 0           );
-  $pSeq_name     =          $pPrmsTag[$p] ['name']      ?? ''; 
+  $pSeq_name     =          $pName[$p]      ?? ''; 
   $pSeq_protect  =          $pPrmsTag[$p] ['protect']   ?? 1000; 
   $pSeq_save     =          $pPrmsTag[$p] ['save']      ?? 100; 
   $pSeq_unique   =          $pPrmsTag[$p] ['unique']    ?? '';

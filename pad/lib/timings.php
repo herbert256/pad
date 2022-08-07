@@ -6,12 +6,12 @@
      if ( $GLOBALS['pExit'] <> 1 or ! $GLOBALS['pTiming'] )
       return;
    
-    global $pTimings_count, $pTimings_start;
+    global $pTimingsCnt, $pTimings_start;
 
     if ( isset ( $pTimings_start [$timing] ) )
       pError ('tm-oops-1: ' . $timing);
 
-    $pTimings_count [$timing] = 1 + ($pTimings_count [$timing]??0);
+    $pTimingsCnt [$timing] = 1 + ($pTimingsCnt [$timing]??0);
 
     $pTimings_start [$timing] = microtime(true);
 
@@ -45,7 +45,7 @@
     if ( ! $GLOBALS['pTiming'] )
       return;
 
-    global $pTimings, $pTimings_boot, $pTimings_start, $pTimings_count, $pTrace_dir;
+    global $pTimings, $pTimings_boot, $pTimings_start, $pTimingsCnt, $pTrace_dir;
 
     foreach ( $pTimings_start as $key => $val ) 
       pTiming_end ($key);
@@ -58,11 +58,11 @@
     $pTimings ['total'] = (int) ( (microtime(true) - $_SERVER['REQUEST_TIME_FLOAT']) * 1000000 );    
 
     pHeader ('X-PAD-Timings: ' . json_encode ( $pTimings)       );
-    pHeader ('X-PAD-Counts: '  . json_encode ( $pTimings_count) );
+    pHeader ('X-PAD-Counts: '  . json_encode ( $pTimingsCnt) );
 
     if ( $GLOBALS['pTrace_timings'] ) {
       pFile_put_contents ( $pTrace_dir . "/timings.json", $pTimings       );
-      pFile_put_contents ( $pTrace_dir . "/counts.json",  $pTimings_count );
+      pFile_put_contents ( $pTrace_dir . "/counts.json",  $pTimingsCnt );
     }
 
   }

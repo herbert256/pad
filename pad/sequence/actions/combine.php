@@ -6,7 +6,7 @@
   foreach ( $pSeq_merge_list as $pSeq_merge_key ) {
 
     $pSeq_merge_1 = $pSeq_result;
-    $pSeq_merge_2 = $pSequence_store [$pSeq_merge_key];
+    $pSeq_merge_2 = $pSequenceStore [$pSeq_merge_key];
 
     $pSeq_result = [];
 

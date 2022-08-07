@@ -3,23 +3,23 @@
 
   function pCallback_before_xxx ($pCallback_type) {
 
-    $pad_vars_before = [];
-    foreach ($GLOBALS as $pK => $pad_v)
-      if ( pad_valid_store ($pK) ) { 
-        $pad_vars_before [] = $pK;
-        $$pK = $pad_v;
+    $pVars_before = [];
+    foreach ($GLOBALS as $pK => $pV)
+      if ( pValid_store ($pK) ) { 
+        $pVars_before [] = $pK;
+        $$pK = $pV;
       }
 
     include PAD . "callback/$pCallback_type.php";
 
-    $pad_vars_after = get_defined_vars ();
+    $pVars_after = get_defined_vars ();
 
-    foreach ($pad_vars_before as $pK => $pad_v)
+    foreach ($pVars_before as $pK => $pV)
       if ( isset( $GLOBALS [$pK] ) )
         unset( $GLOBALS [$pK] );
 
-    foreach ($pad_vars_after as $pK => $pad_v)
-      if ( pad_valid_store ($pK) ) {
+    foreach ($pVars_after as $pK => $pV)
+      if ( pValid_store ($pK) ) {
         if ( isset( $GLOBALS [$pK] ) )
           unset( $GLOBALS [$pK] );
         $GLOBALS [$pK] = $$pK;
@@ -35,28 +35,28 @@
     } else
       $pRow_save = FALSE;
 
-    $pad_vars_before = [];
-    foreach ($GLOBALS as $pK => $pad_v)
-      if ( $pK <> 'row' and pad_valid_store ($pK) ) { 
-        $pad_vars_before [] = $pK;
-        $$pK = $pad_v;
+    $pVars_before = [];
+    foreach ($GLOBALS as $pK => $pV)
+      if ( $pK <> 'row' and pValid_store ($pK) ) { 
+        $pVars_before [] = $pK;
+        $$pK = $pV;
       }
 
     $row = $pRow_parm;  
     include PAD . 'callback/row.php';
     $pRow_parm = $row;  
 
-    $pad_vars_after = get_defined_vars();
+    $pVars_after = get_defined_vars();
 
-    foreach ($pad_vars_before as $pK => $pad_v)
+    foreach ($pVars_before as $pK => $pV)
       if ( isset( $GLOBALS [$pK] ) )
         unset( $GLOBALS [$pK] );
 
-    foreach ($pad_vars_after as $pK => $pad_v)
-      if ( $pK <> 'row' and pad_valid_store ($pK) ) {
+    foreach ($pVars_after as $pK => $pV)
+      if ( $pK <> 'row' and pValid_store ($pK) ) {
         if ( isset( $GLOBALS [$pK] ) )
           unset( $GLOBALS [$pK] );
-        $GLOBALS [$pK] = $pad_v;
+        $GLOBALS [$pK] = $pV;
       }
 
     if ( $pRow_save ) {

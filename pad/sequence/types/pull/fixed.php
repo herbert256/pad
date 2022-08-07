@@ -1,5 +1,5 @@
 <?php
 
-  return $pSequence_store [$pSeq_pull];
+  return $pSequenceStore [$pSeq_pull];
 
 ?>

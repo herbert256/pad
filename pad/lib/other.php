@@ -219,7 +219,7 @@
   }
 
 
-  function pad_valid ($name) {
+  function pValid ($name) {
 
     if ( trim($name) == '' ) 
       return FALSE;
@@ -350,8 +350,8 @@
     $fun [1] [2] = $name;
     $fun [1] [3] = 2 + count($parm);
 
-    foreach ( $parm as $pK => $pad_v )
-      $fun [2+$pK] [0] = $pad_v;
+    foreach ( $parm as $pK => $pV )
+      $fun [2+$pK] [0] = $pV;
 
     pEval_type (1, 0, $fun, $self, 1, 999999); 
 
@@ -563,7 +563,7 @@
 
   function pCheck_tag ($tag, $string) {
 
-    return ( substr_count($string, "{" . $tag) == substr_count($string, "{/" . $tag) ) ;
+    return ( substrCnt($string, "{" . $tag) == substrCnt($string, "{/" . $tag) ) ;
 
   }
   
@@ -656,9 +656,9 @@
   }   
 
 
-  function pad_var_opts ($val, $opts) {
+  function pVar_opts ($val, $opts) {
   
-    global $pOpts_trace, $pTrace_fields, $pFld_cnt;
+    global $pOpts_trace, $pTrace_fields, $pFldCnt;
 
     if ($pTrace_fields)
       $pOpts_trace = [];
@@ -787,7 +787,7 @@
   }
 
   
-  function pad_valid_store ($fld) {
+  function pValid_store ($fld) {
 
     if ( substr($fld, 0, 4) == 'pad_')
       return FALSE;

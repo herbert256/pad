@@ -5,9 +5,9 @@
   $pExits     = [];
   $pBuild_mrg = pExplode ("pages/$page", '/');
 
-  foreach ($pBuild_mrg as $pad_value) {
+  foreach ($pBuild_mrg as $pValue) {
 
-    $pBuild_now .= "/$pad_value";
+    $pBuild_now .= "/$pValue";
 
     if ( is_dir ($pBuild_now) ) {
 

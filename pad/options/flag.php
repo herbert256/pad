@@ -1,5 +1,5 @@
 <?php
 
-  return $pFlag_store [ pTag_parm('flag') ];
+  return $pFlagStore [ pTag_parm('flag') ];
 
 ?>

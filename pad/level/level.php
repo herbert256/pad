@@ -23,14 +23,14 @@
   if     ( $pFirst == '!' ) return pHtml ( include PAD . 'var/raw.php' );
   elseif ( $pFirst == '$' ) return pHtml ( include PAD . 'var/opt.php' );
 
-  $pad_words = preg_split("/[\s]+/", $pBetween, 2, PREG_SPLIT_NO_EMPTY);
-  $pTag   = trim($pad_words[0] ?? '');
-  $pPrms  = trim($pad_words[1] ?? '');
+  $pWords = preg_split("/[\s]+/", $pBetween, 2, PREG_SPLIT_NO_EMPTY);
+  $pTag[$p]  = trim($pWords[0] ?? '');
+  $pPrms[$p] = trim($pWords[1] ?? '');
 
-  $pPrmsType = ( $pPrms ) ? 'open' : 'none';
+  $pPrmsType = ( $pPrms[$p]) ? 'open' : 'none';
 
   if     ( ! ctype_alpha ( $pFirst )  ) return pIgnore ('ctype_alpha');
-  elseif ( ! pad_valid   ( $pTag )    ) return pIgnore ('pad_valid');
+  elseif ( ! pValid   ( $pTag[$p]) ) return pIgnore ('pValid');
 
   $pPair_result = include 'pair.php';
   if ( $pPair_result === NULL ) 

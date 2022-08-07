@@ -1,13 +1,13 @@
 <?php
   
-  include 'between.php';
-
+  $p++;
+  
   $pData       [$p] = pDefault_data ();
   $pCurrent    [$p] = reset ( $pData[$p] );
   $pKey        [$p] = key ( $pData[$p] );
 
-  $pad_walks      [$p] = 'start';
-  $pad_walks_data [$p] = [];
+  $pWalks      [$p] = 'start';
+  $pWalks_data [$p] = [];
   
   $pDone       [$p] = [];
   $pOccur      [$p] = 0;
@@ -27,17 +27,19 @@
   $pHtml       [$p] = '';
   $pResult     [$p] = '';
 
-  $pPrmsType[$p] = $pPrmsType ?? 'open';
-  $TagCnt[$p]   = 0;
-  $pPair[$p]      = $pPair ?? FALSE;
-  $pType[$p]      = $pType[$p] ?? $pType ?? '';
-  $pHit[$p]       = TRUE;
-  $pNull[$p]     = FALSE;
-  $pElse[$p]     = FALSE;
-  $pArray[$p]    = FALSE;
-  $pText[$p]     = TRUE;
-  $pDefault[$p]  = pIs_default_data ( $pData[$p] );
-  $pLevelDir[$p]= $pLevelDir;
-  $pOccurDir[$p]= $pOccurDir;
+  $pPrmsType   [$p] = $pPrmsType ?? 'open';
+  $TagCnt      [$p] = 0;
+  $pPair       [$p] = $pPair ?? FALSE;
+  $pType       [$p] = $pType[$p] ?? $pType ?? '';
+  $pHit        [$p] = TRUE;
+  $pNull       [$p] = FALSE;
+  $pElse       [$p] = FALSE;
+  $pArray      [$p] = FALSE;
+  $pText       [$p] = TRUE;
+  $pDefault    [$p] = pIs_default_data ( $pData[$p] );
+  $pLevelDir   [$p] = $pLevelDir;
+  $pOccurDir   [$p] = $pOccurDir;
 
+  include 'between.php';
+  
 ?>    

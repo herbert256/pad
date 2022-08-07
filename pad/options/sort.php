@@ -8,29 +8,29 @@
 
   if ( $pPrmsTag[$p] ['sort'] === TRUE or ! count ($pSort_fields)) {
     $pSort_fields = []; 
-    foreach ($pData[$p] as $pad_v1) {
-      foreach ($pad_v1 as $pK2 => $pad_v2) 
+    foreach ($pData[$p] as $pV1) {
+      foreach ($pV1 as $pK2 => $pV2) 
         $pSort_fields [] = $pK2;
       break;
     }
   }
 
-  foreach ($pSort_fields as $pK => $pad_v) {
+  foreach ($pSort_fields as $pK => $pV) {
 
     $pSort_sort = '';
     $pSort_flags = 0; 
 
-    $pSort_parms = pExplode($pad_v, ' ');
+    $pSort_parms = pExplode($pV, ' ');
 
-    foreach($pSort_parms as $pK2 => $pad_v2) {
+    foreach($pSort_parms as $pK2 => $pV2) {
       if ($pK2==0)
-        $pSort_field = $pad_v2;
-      elseif (strtolower($pad_v2) == 'asc')
+        $pSort_field = $pV2;
+      elseif (strtolower($pV2) == 'asc')
         $pSort_sort = 'ASC';
-      elseif (strtolower($pad_v2) == 'desc')
+      elseif (strtolower($pV2) == 'desc')
         $pSort_sort = 'DESC';
       else 
-        $pSort_flags = $pSort_flags | constant("SORT_" . strtoupper($pad_v2) );
+        $pSort_flags = $pSort_flags | constant("SORT_" . strtoupper($pV2) );
     }
 
     $pSort_args [] = array_column ($pData[$p], $pSort_field);

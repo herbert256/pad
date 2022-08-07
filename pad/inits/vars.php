@@ -1,10 +1,10 @@
 <?php
 
-  $pTimings_count = $pTimings = [];
-  $pErr_cnt =$pEval_cnt = $pFld_cnt = $pLvl_cnt = $pOpt_cnt = $pErr_cnt = $pType_cnt = 0;
+  $pTimingsCnt = $pTimings = [];
+  $pErrCnt =$pEvalCnt = $pFldCnt = $pLvlCnt = $pOptCnt = $pErrCnt = $pTypeCnt = 0;
   $pField_double_check = $pRestart = '';
 
-  $pad            = 1;
+  $p           = 1;
   $pBetween    = 'start';
   $pOutput     = '';
   $pStop       = '000';

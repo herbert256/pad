@@ -6,8 +6,8 @@
 
   $pCurrent[$p] = $pData[$p] [$pKey[$p]];
 
-  if ( $pad_walks[$p] <> 'start' )
-    $pad_walks_data [ $pad] [] = $pCurrent[$p];
+  if ( $pWalks[$p] <> 'start' )
+    $pWalks_data [ $pad] [] = $pCurrent[$p];
 
   if ( $pad > 1 ) {
 
@@ -17,8 +17,8 @@
     } else
       pSet_global ( $pName[$p], $pCurrent[$p] );
 
-    foreach ( $pCurrent[$p] as $pK => $pad_v )
-      pSet_global ( $pK, $pad_v );
+    foreach ( $pCurrent[$p] as $pK => $pV )
+      pSet_global ( $pK, $pV );
 
   }
 

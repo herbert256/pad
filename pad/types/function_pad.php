@@ -1,10 +1,10 @@
 <?php
 
-  if ( $pad_walk == 'start' and $pPrmsType == 'close' ) {
-    $pad_walk = 'end';
+  if ( $pWalk == 'start' and $pPrmsType == 'close' ) {
+    $pWalk = 'end';
     return TRUE;
   }
    
-  return pFunction_in_tag ( $pType, $pTag, $pContent, $pPrmsVal[$p] );
+  return pFunction_in_tag ( $pType, $pTag[$p], $pContent, $pPrmsVal[$p] );
 
 ?>

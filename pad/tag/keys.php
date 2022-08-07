@@ -2,7 +2,7 @@
 
   $pReturn = [];
 
-  foreach ( $pData [$pIdx] as $pK => $pad_v)
+  foreach ( $pData [$pIdx] as $pK => $pV)
     $pReturn [] ['key'] = $pK;
 
   return $pReturn;

@@ -1,6 +1,6 @@
 <?php
 
-  $pTag_trace_data ['walk_after'] = $pad_walk;
+  $pTag_trace_data ['walk_after'] = $pWalk;
   $pTag_trace_data ['result']     = $pTagResult;
   $pTag_trace_data ['content']    = $pTag_content;
 

@@ -1,7 +1,7 @@
 <?php
 
-  if ( $pad_walk == 'start' and ($pTag == 'data' or $pTag == 'flag' or $pPrmsType == 'close' ) ) {
-    $pad_walk = 'end';
+  if ( $pWalk == 'start' and ($pTag[$p]== 'data' or $pTag[$p]== 'flag' or $pPrmsType == 'close' ) ) {
+    $pWalk = 'end';
     return TRUE;
   }
 
@@ -17,25 +17,25 @@
 
   $pName[$p] = $pName[$p];
 
-  if ( $pTag == 'content') {
+  if ( $pTag[$p]== 'content') {
 
-    $pStore_data = pMake_content ($pStore_source);
+    $pStore_data[$p]= pMake_content ($pStore_source);
   
-  } elseif ( $pTag == 'data' ) {
+  } elseif ( $pTag[$p]== 'data' ) {
 
     if ( ! pIs_default_data ( $pData[$p] ) )
-      $pStore_data = $pData[$p];
+      $pStore_data[$p]= $pData[$p];
     elseif ( $pStore_source )
-      $pStore_data = pMake_data ($pStore_source, pTag_parm('type'), $pName[$p]);
+      $pStore_data[$p]= pMake_data ($pStore_source, pTag_parm('type'), $pName[$p]);
     else
-      $pStore_data = '';
+      $pStore_data[$p]= '';
 
-  } elseif ( $pTag == 'flag' ) {
+  } elseif ( $pTag[$p]== 'flag' ) {
 
     if ( $pStore_source )
-      $pStore_data = pMake_flag ($pStore_source);
+      $pStore_data[$p]= pMake_flag ($pStore_source);
     else
-      $pStore_data = $pHit;
+      $pStore_data[$p]= $pHit;
 
   }
 

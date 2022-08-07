@@ -3,7 +3,7 @@
 
   function pDb_get_data ($table, $page=0, $rows=0, $unionBuild=0) {
 
-    global $pad, $pData, $pPrmsTag[$p], $pKey, $pDb_relations, $pDb_tables, $pDb, $pDone;
+    global $pad, $pData, $pPrmsTag[$p], $pKey, $pDb_relations, $pDbTables, $pDb, $pDone;
 
     $parms = pDb_get_db ($table);
 
@@ -208,12 +208,12 @@
   
   function pDb_get_db ($table) {
     
-    global $pDb_tables;
+    global $pDbTables;
 
-    $parms = $pDb_tables [$table];
+    $parms = $pDbTables [$table];
 
     if (isset($parms['base']))
-      foreach($pDb_tables [$parms['base']] as $key => $value)
+      foreach($pDbTables [$parms['base']] as $key => $value)
         if ( ! isset($parms[$key]) )
           $parms[$key] = $value;
 
@@ -315,7 +315,7 @@
   
   function pDb_get_info () {
     
-    global $pDb_tables, $pad, $pDb_lvl, $pDb_relations;
+    global $pDbTables, $pad, $pDb_lvl, $pDb_relations;
 
     $go = TRUE;
     
@@ -385,20 +385,20 @@
   
   function pDb_get_main () {
     
-    global $pDb_tables, $pad, $pDb_lvl, $pDb_relations;
+    global $pDbTables, $pad, $pDb_lvl, $pDb_relations;
 
     foreach ($pDb_relations as $key => $val)
       foreach ($pDb_relations[$key] as $key2 => $val2)
-        if ( ! isset($pDb_tables [$key2] ) ) {
-          $pDb_tables [$key2] = $pDb_tables [$pDb_relations[$key] [$key2] ['table']];
-          $pDb_tables [$key2] ['virtual'] = TRUE;
+        if ( ! isset($pDbTables [$key2] ) ) {
+          $pDbTables [$key2] = $pDbTables [$pDb_relations[$key] [$key2] ['table']];
+          $pDbTables [$key2] ['virtual'] = TRUE;
         }    $go = TRUE;
     
     while ($go) {
   
       $go = FALSE;
       
-      foreach ($pDb_tables as $key => $val) {
+      foreach ($pDbTables as $key => $val) {
  
         if ( ! pDb_chk ($key) and ! isset( $val['virtual'] ) ) {
 

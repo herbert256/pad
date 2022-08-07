@@ -11,9 +11,9 @@
 
     pGet_parms ('SESSION', $_SESSION);
     
-    foreach ($pSession_vars as $pad_var)
-      if ( ! isset ($GLOBALS [$pad_var]) )
-        $GLOBALS [$pad_var] = '';
+    foreach ($pSession_vars as $pVar)
+      if ( ! isset ($GLOBALS [$pVar]) )
+        $GLOBALS [$pVar] = '';
 
     $pSession_started = TRUE;
       

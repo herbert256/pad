@@ -6,16 +6,16 @@
 
   $pOpts = [];
 
-  foreach ( $pData_default_start as $pad_v )
-    $pOpts [] = $pad_v;
+  foreach ( $pData_default_start as $pV )
+    $pOpts [] = $pV;
 
-  foreach ( $pExpl as $pad_v )
-    $pOpts [] = trim($pad_v);
+  foreach ( $pExpl as $pV )
+    $pOpts [] = trim($pV);
 
-  foreach ( $pData_default_end as $pad_v )
-    $pOpts [] = $pad_v;
+  foreach ( $pData_default_end as $pV )
+    $pOpts [] = $pV;
 
-  $pad_val = pad_var_opts ($pad_val, $pOpts);
+  $pVal = pVar_opts ($pVal, $pOpts);
 
   return include 'exits.php';
 
