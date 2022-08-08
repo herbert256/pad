@@ -7,7 +7,9 @@
 
   $pPrm         [$p] = ''; 
 
+  $pTagData     [$p] = '';
   $pTrue        [$p] = '';
+
   $pFalse       [$p] = '';
   $pPair        [$p] = FALSE;
 
