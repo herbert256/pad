@@ -8,8 +8,8 @@
     elseif ( $input === INF        ) $data = [];
     elseif ( $input === TRUE       ) $data = [1 => [] ];
     elseif ( is_array ( $input)    ) $data = $input;
-    elseif ( is_object ( $input)   ) $data = pXxx_to_array ( $input );
-    elseif ( is_resource ( $input) ) $data = pXxx_to_array ( $input );
+    elseif ( is_object ( $input)   ) $data = pToArray( $input );
+    elseif ( is_resource ( $input) ) $data = pToArray( $input );
     elseif ( ! $input              ) $data = [];
     else                             $data = trim($input);
 

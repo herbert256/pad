@@ -8,7 +8,7 @@
   $pTagContent = ''; ob_start();
 
   pTiming_start ('tag');
-  $pTagResult = include PAD . "types/$pType.php";
+  $pTagResult = include PAD . "types/" . $pType [$p] . ".php";
   pTiming_end ('tag');
 
   $pTagContent .= ob_get_clean();
@@ -16,8 +16,8 @@
   if ( $pTrace )
     include 'trace/tag/after.php';
 
-  if ( is_object   ( $pTagResult ) ) $pTagResult = pXxx_to_array ( $pTagResult );
-  if ( is_resource ( $pTagResult ) ) $pTagResult = pXxx_to_array ( $pTagResult );
+  if ( is_object   ( $pTagResult ) ) $pTagResult = pToArray( $pTagResult );
+  if ( is_resource ( $pTagResult ) ) $pTagResult = pToArray( $pTagResult );
 
   if ( $pTagResult === TRUE AND $pTagContent <> '' )
     $pTagResult = $pTagContent;

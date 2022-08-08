@@ -1,6 +1,6 @@
 <?php
 
-  $pTag_go = $pTag_base."tags/$pTag";
+  $pTag_go .= "/tags/". $pTag[$p];
 
   $pTag_php = '';
 
@@ -11,13 +11,7 @@
 
     ob_start();
 
-    if ( $pTag_base == APP )
-      pTiming_start ('app');
-
     $pTag_php = include "$pTag_go.php";
-
-    if ( $pTag_base == APP )
-      pTiming_end ('app');
 
     if ( $pTag_php === 1 )
       $pTag_php = '' ;

@@ -4,32 +4,13 @@
 
     $pWalk [$p] = 'end';
 
-    $pBackup_trace = [];
+    $pBackupTrace [$p] = [];
+    $pBackupTrace [$p] ['trace'] = $pTrace;
+    $pBackupTrace [$p] ['level'] = $pLevelDir [$p-1] ?? '';
+    $pBackupTrace [$p] ['occur'] = $pOccurDir [$p-1] ?? '';
 
-    foreach ($GLOBALS as $pK2 => $pV2 )
-      if ( substr($pK2, 0, 9) == 'pTrace' )
-        $pBackup_trace [$pK2] = $pV2;
-
-    $pTrace           = TRUE;  
-    $pTrace     = TRUE;  
-    $pTrace = TRUE;  
-    $pTrace    = TRUE;  
-    $pTrace      = TRUE;  
-    $pTrace_type = TRUE;  
-    $pTrace      = TRUE;  
-    $pTrace     = TRUE;  
-    $pTrace   = TRUE;  
-    $pTrace   = TRUE;  
-    $pTrace   = TRUE;  
-    $pTrace       = TRUE; 
-    $pTrace   = TRUE;
-    $pTrace       = TRUE; 
-
-    $pLevelDir [$p] = $pTraceDir . '/trace-' . $pCnt; 
-    $pOccurDir [$p] = $pLevelDir;
-
-    $pLevelDir [$p]= $pLevelDir;
-    $pOccurDir [$p]= $pOccurDir;
+    $pLevelDir [$p-1] = $pTraceDir . '/trace-' . $pCnt; 
+    $pOccurDir [$p-1] = $pLevelDir [$p-1];
 
     pFile_put_contents ( $pLevelDir [$p] . "/pad-start.json", pTrace_get_pVars ()  );
     pFile_put_contents ( $pLevelDir [$p] . "/app-start.json", pTrace_get_app_vars ()  );
@@ -38,9 +19,10 @@
 
     pFile_put_contents ( $pLevelDir [$p] . "/pad-end.json", pTrace_get_pVars ()  );
     pFile_put_contents ( $pLevelDir [$p] . "/app-end.json", pTrace_get_app_vars ()  );
- 
-    foreach ($pBackup_trace as $pK => $pV )
-      $GLOBALS [$pK] = $pV;
+
+    $pTrace           = $pBackupTrace [$p] ['trace'];
+    $pLevelDir [$p-1] = $pBackupTrace [$p] ['level'];
+    $pOccurDir [$p-1] = $pBackupTrace [$p] ['occur'];
  
   } 
 

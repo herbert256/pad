@@ -82,7 +82,7 @@
 
   function pArray_single ($value) {
 
-    $value = pXxx_to_array ($value);
+    $value = pToArray($value);
 
     $array = [];
 

@@ -69,7 +69,7 @@
   }
 
 
-  function pXxx_to_array ($xxx) {
+  function pToArray($xxx) {
 
      if ( is_array($xxx) )
        return ($xxx);
@@ -368,7 +368,7 @@
 
     if ( is_array ($input) or is_object ($input) or is_resource ($input) )  {
 
-      $array = pXxx_to_array ( $input );
+      $array = pToArray( $input );
 
       if ( pIs_default_data ( $array )  )
         return FALSE;
@@ -418,8 +418,8 @@
     elseif ( $input === FALSE      )  return [];
     elseif ( $input === TRUE       )  return [1 => 1 ];
     elseif ( is_array ( $input)    )  return $input;
-    elseif ( is_object ( $input)   )  return pXxx_to_array ( $input );
-    elseif ( is_resource ( $input) )  return pXxx_to_array ( $input );
+    elseif ( is_object ( $input)   )  return pToArray( $input );
+    elseif ( is_resource ( $input) )  return pToArray( $input );
     elseif ( ! trim($input)        )  return [];
     else                              return [1 => trim($input) ];      
 
@@ -485,7 +485,7 @@
 
     if ( $pTrace ) { 
       $pIgnCnt++;
-      pFile_put_contents ( $pLevelDir [$p] . "/ignore.$pIgnCnt.json", $pBetween );
+      pFile_put_contents ( $pLevelDir [$p] . "/ignore.$pIgnCnt.json", "$info: $pBetween" );
     }
     
   }

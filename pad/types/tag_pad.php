@@ -1,6 +1,6 @@
 <?php
 
-  $pTag_base = PAD;
+  $pTag_go = PAD;
 
   return include 'go/tag.php';
 

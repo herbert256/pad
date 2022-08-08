@@ -15,7 +15,7 @@ go2:
       $pTrue [$p] = '';
       $pPair [$p] = FALSE;
 
-      return FALSE;
+      return TRUE;
  
     } 
 
