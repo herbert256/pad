@@ -217,7 +217,7 @@
 
   function pTrace ( $trace ) {
 
-    $file = $GLOBALS ['pLevelDir'] . "/curl_" . pRandom_string(). ".json";
+    $file = $GLOBALS ['pLevelDir'] [$GLOBALS['p']]. "/curl_" . pRandom_string(). ".json";
 
     pFile_put_contents ($file, pJson ($trace) );
 

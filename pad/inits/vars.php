@@ -1,7 +1,7 @@
 <?php
 
   $pTimingsCnt = $pTimings = [];
-  $pErrCnt =$pEvalCnt = $pFldCnt = $pCnt = $pOptCnt = $pErrCnt = $pTypeCnt = $pIgnCnt = 0;
+  $pErrCnt =$pEvalCnt = $pFldCnt = $pCnt = $pOptCnt = $pErrCnt = $pBtwCnt = $pTypeCnt = $pIgnCnt = 0;
   $pField_double_check = $pRestart = '';     
 
   $pOutput     = '';

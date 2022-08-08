@@ -1,6 +1,6 @@
 <?php
 
-  $path = APPS . "reference/pages/$pParm";
+  $path = APPS . "reference/pages/" . $pPrm [$p];
 
   $inits_php  = "$path/inits.php";
   $inits_html = "$path/inits.html";

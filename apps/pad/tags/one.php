@@ -1,6 +1,6 @@
 <?php
 
-  $one = $pParm;
+  $one = $pPrm [$p];
   
   $url = "$pHost$pScript?app=reference&page=$one";
 

@@ -107,7 +107,7 @@
         return INF;
 
       if ( is_object ($current[$name]) or is_resource ($current[$name]) )
-        $current[$name] = (array) $current[$name];
+        $current [$name] = (array) $current [$name];
           
       $current = &$current [$name];
         

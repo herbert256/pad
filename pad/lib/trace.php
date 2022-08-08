@@ -1,7 +1,52 @@
 <?php
 
+  function pTraceGetVars ()  { 
+
+    $dump = [];
+
+    if ( isset ( $GLOBALS ['p'] ) and $GLOBALS ['p'] > 0 ) {
+      for ( $p=$GLOBALS ['p'];  $p>0; $p-- ) {
+        $dump [$p] = [
+          'tag' => $GLOBALS['pTag'][$p],
+          'prms' => $GLOBALS['pPrms'][$p],
+          't-type' => $GLOBALS['pType'][$p],
+          'prm' => $GLOBALS['pPrm'][$p],
+          'pair' => $GLOBALS['pPair'][$p],
+          'true' => pDump_short ($GLOBALS['pTrue'][$p]),
+          'false' => pDump_short ($GLOBALS['pFalse'][$p]),
+          'base' => pDump_short ($GLOBALS['pBase'][$p]),
+          'html' => pDump_short ($GLOBALS['pHtml'][$p]),
+          'result' => pDump_short ($GLOBALS['pResult'][$p]),
+          'p-type' => $GLOBALS['pPrmsType'][$p],
+          'flags' => $GLOBALS['pPrmsTag'][$p],
+          'values' => $GLOBALS['pPrmsVal'][$p],
+          'name' => $GLOBALS['pName'][$p],
+          'default' => $GLOBALS['pDefault'][$p],
+          'walk' => $GLOBALS['pWalk'][$p],
+          't-result' => $GLOBALS['pTagResult'][$p],
+          'hit' => $GLOBALS['pHit'][$p],
+          'null' => $GLOBALS['pNull'][$p],
+          'else' => $GLOBALS['pElse'][$p],
+          'array' => $GLOBALS['pArray'][$p],
+          'text' => $GLOBALS['pText'][$p]
+        ];
+      } 
+    }
+
+    if ( isset ( $GLOBALS ['p'] ) and $GLOBALS ['p'] > 0 ) {
+      for ( $p=$GLOBALS ['p'];  $p>0; $p-- ) {
+        $dump ['data'] [$p] = $GLOBALS ['pData'] [$p];
+      } 
+    }
+    
+    $dump ['GLOBALS'] = $GLOBALS;
+
+    return $dump;
+
+  }
+
+
   function pTrace_get_app_vars () { return pTrace_get_xxx_vars ('app'); }
-  function pTrace_get_pVars () { return pTrace_get_xxx_vars ('pad'); }
   function pTrace_get_php_vars () { return pTrace_get_xxx_vars ('php'); }
 
   function pTrace_get_xxx_vars ($type) {
@@ -12,11 +57,13 @@
     $dump = [];
 
     foreach ($GLOBALS as $key => $value)
-      if (    ( $type == 'app' and substr($key, 0, 3) <> 'pad' and ! in_array($key, $chk) and ! in_array($key, $not) ) 
-           or ( $type == 'pad' and substr($key, 0, 3) == 'pad'                            )
+      if (    ( $type == 'app' and substr($key, 0, 1) <> 'p' and ! in_array($key, $chk) and ! in_array($key, $not) ) 
+           or ( $type == 'pad' and substr($key, 0, 1) == 'p'                            )
            or ( $type == 'php' and in_array($key, $chk)                                   ) 
          )
         $dump [$key] = $value;
+
+    ksort ($dump);
 
     return $dump;
 
@@ -31,9 +78,9 @@
     if ( ! $force and ! $GLOBALS['pTrace'] )
       return;
 
-    global $pOccurDir, $app, $page, $PADREQID;
+    global $p, $pOccurDir, $app, $page, $PADREQID;
 
-    $pError_dir = $pOccurDir  [$p] . "/errors/$type/$count";
+    $pError_dir = $pOccurDir [$p] . "errors/$type/$count";
 
     $data = [];
 
@@ -50,7 +97,7 @@
     pFile_put_contents ( "errors/$PADREQID-$type-$count.json", $data ); 
 
     pFile_put_contents ( "$pError_dir/error.json", $data ); 
-    pFile_put_contents ( "$pError_dir/pad.json",   pTrace_get_pVars ()  );
+    pFile_put_contents ( "$pError_dir/pad.json",   pTraceGetVars ()  );
     pFile_put_contents ( "$pError_dir/app.json",   pTrace_get_app_vars ()  );
     pFile_put_contents ( "$pError_dir/php.json",   pTrace_get_php_vars ()  );
     pFile_put_contents ( "$pError_dir/dump.html",  pDump_get           ()  );

@@ -2,6 +2,6 @@
 
   $pDb [$p] = $pTag [$p];
 
-  return pDb_get_data ($pTag);
+  return pDb_get_data ($pTag[$p]);
 
 ?>

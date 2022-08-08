@@ -2,19 +2,19 @@
   
   $p++;
   
-  $pTag         [$p] = '';
-  $pType        [$p] = '';
+  $pTag         [$p] = 'init';
+  $pType        [$p] = 
 
-  $pPrms        [$p] = '';
-  $pPrmsType    [$p] = 'none';
+  $pPrm         [$p] = ''; 
 
   $pTrue        [$p] = '';
   $pFalse       [$p] = '';
   $pPair        [$p] = FALSE;
 
+  $pPrms        [$p] = '';
+  $pPrmsType    [$p] = '';
   $pPrmsTag     [$p] = [];
   $pPrmsVal     [$p] = [];
-  $pPrm         [$p] = ''; 
 
   $pName        [$p] = '';
 
@@ -42,11 +42,16 @@
   $pHtml        [$p] = '';
   $pResult      [$p] = '';
 
-  $TagCnt       [$p] = 0;
+  $pTagCnt      [$p] = 0;
+ 
+  $pTagResult   [$p] = TRUE;
   $pHit         [$p] = TRUE;
   $pNull        [$p] = FALSE;
   $pElse        [$p] = FALSE;
   $pArray       [$p] = FALSE;
   $pText        [$p] = TRUE;
-  
+
+  $pLevelDir    [$p] = $pTraceDir ?? '';
+  $pOccurDir    [$p] = $pTraceDir ?? '';
+
 ?>

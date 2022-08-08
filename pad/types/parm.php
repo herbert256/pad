@@ -5,7 +5,7 @@
   else
     $pField_tag = pFirst_non_parm();
 
-  $pFieldResult = pField_tag ("$pField_tag#$pTag");
+  $pFieldResult = pField_tag ("$pField_tag#$pTag[$p]");
 
   if ( $pFieldResult === INF )
     return NULL;

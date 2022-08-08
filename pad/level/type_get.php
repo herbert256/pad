@@ -14,4 +14,6 @@
 
     $pType [$p] = pGet_type_lvl ( $pTag [$p] );
 
+  return $pType [$p];  
+
 ?>

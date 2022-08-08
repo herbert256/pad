@@ -4,6 +4,9 @@
 
   $pBase[1] = '';
 
+  if ( isset ( $_REQUEST['pInclude']) )
+    $pBuild_mode = 'include';
+
   include "$pBuild_mode.php";
 
   if ( $pTrace )

@@ -1,6 +1,6 @@
 <?php
 
-  $pField = pField_name ($pPrms);
+  $pField = pField_name ($pPrms[$p]);
 
   if ( isset ($GLOBALS[$pField]) )
     $GLOBALS[$pField]--;

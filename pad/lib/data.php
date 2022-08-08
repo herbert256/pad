@@ -323,10 +323,10 @@
   function pData_name ($name) {
 
     if     ( $name                          ) $return = $name;
-    elseif ( $GLOBALS['pName'] == 'data' ) $return = $GLOBALS['pParm'];
-    elseif ( pTag_parm ('name')          ) $return = pTag_parm ('name');
-    elseif ( pTag_parm ('toData')        ) $return = pTag_parm ('toData');
-    else                                      $return = $GLOBALS['pName'];
+    elseif ( $GLOBALS['pName'] == 'data'    ) $return = $GLOBALS['pPrm'] [p()];
+    elseif ( pTag_parm ('name')             ) $return = pTag_parm ('name');
+    elseif ( pTag_parm ('toData')           ) $return = pTag_parm ('toData');
+    else                                      $return = $GLOBALS['pName'] [p()];
 
     if (substr($return, 0, 1) == '$')
       $return = substr($return, 1);

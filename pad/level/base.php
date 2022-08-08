@@ -1,8 +1,8 @@
 <?php
 
-  if     ( $pNull  ) $pBase [$p] = '';
-  elseif ( $pElse  ) $pBase [$p] = $pFalse [$p];    
-  elseif ( $pText  ) $pBase [$p] = $pTagResult;
-  else               $pBase [$p] = $pTrue [$p];
+  if     ( $pNull [$p]  ) $pBase [$p] = '';
+  elseif ( $pElse [$p]  ) $pBase [$p] = $pFalse [$p];    
+  elseif ( $pText [$p]  ) $pBase [$p] = $pTagResult [$p];
+  else                    $pBase [$p] = $pTrue [$p];
     
 ?>

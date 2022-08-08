@@ -3,10 +3,10 @@
   if ( isset($_REQUEST['pTrace']) )
     $pTrace = TRUE;
 
+  $pTraceDir = "trace/$app-" . str_replace('/', '-', $page) . "/$PADREQID";
+
   if ( ! $pTrace )
     return;
-
-  $pTraceDir = "trace/$app-" . str_replace('/', '-', $page) . "/$PADREQID";
 
   $pLevelDir [$p] = $pTraceDir; 
   $pOccurDir [$p] = $pTraceDir;

@@ -11,7 +11,7 @@
   if ( $pWalk [$p] ) {
 
     if ( $pArray )
-      $pData [$p] = $pTagResult;
+      $pData [$p] = $pTagResult [$p];
  
     reset ( $pData [$p] );
 

@@ -1,5 +1,5 @@
 <?php
 
-  return pToArray($$pTag);
+  return pToArray($pTag[$p]);
 
 ?>

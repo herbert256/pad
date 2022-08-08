@@ -5,7 +5,7 @@
     return $pInclude_call ['data'];
   }
 
-  $pOne = APP . "includes/$pPrm [$p]";
+  $pOne = APP . "includes/$pPrm[$p]";
 
   return include PAD . 'build/one.php';
 

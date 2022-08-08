@@ -38,20 +38,6 @@
 
   function pDump_vars ($info='') {
 
-    $pDebug_backtrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS);
-
-    echo ( "<pre><b>$info</b>\n");
-    foreach ( $pDebug_backtrace as $key => $trace ) {
-      extract ( $trace );
-      echo ( "    $file:$line - $function\n");
-    }
-
-    pDump_array  ( 'go', $GLOBALS ,     1 );
-
-    exit;
-
-
-
     $app_chk = ['page','app','PADSESSID','PADREQID','PHPSESSID','PADREFID','GLOBALS','_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
 
     $not = ['pBase','pSql_connect','pPad_sql_connect','pHeaders','pData','pParms', 'pResult', 'pHtml', 'pOutput', 'pOutput_gz', 'pCurrent', 'pLib_directory', 'pLib_iterator', 'pLib_one'];
@@ -66,18 +52,18 @@
        if ( file_exists (APP . 'config/config.php') )
           $settings .= pFile_get_contents(APP . 'config/config.php');
 
-    $p = $config = $app_flds = [];
+    $pad = $config = $app_flds = [];
 
     foreach ($GLOBALS as $key => $value) {
 
-      if ( substr($key, 0, 3) <> 'p' and ! in_array($key, $app_chk ) )
+      if ( substr($key, 0, 1) <> 'p' and ! in_array($key, $app_chk ) )
         $app_flds [] = $key;
  
       if (strpos($settings, '$'.$key.' ') or strpos($settings, '$'.$key.'=') or strpos($settings, '$'.$key."\t"))
         $config [] = $key;
 
       if ( substr($key, 0, 1)  == 'p' and ! in_array ($key, $not)  and ! in_array ($key, $config) )
-        $p [] = $key;
+        $pad [] = $key;
 
     }
 
@@ -133,30 +119,46 @@
       echo ( "    $file:$line - $function\n");
     }
 
-    if ( isset ( $GLOBALS ['pParms'] ) )
-      for ( $lvl=$GLOBALS ['pad'];  $lvl>0; $lvl-- ) 
-        if ( isset($GLOBALS ['pParms'] [$lvl] ) ) {
 
-          $work = $GLOBALS ['pParms'] [$lvl];
-          foreach ($work as $key => $val)
-            if ( is_scalar($val) )
-              $work [$key] = substr(trim(preg_replace('/\s+/', ' ', $val) ), 0, 100);
 
-          pDump_array  ('Level '.$lvl, $work );
-  
-          if ( isset($GLOBALS ['pBase'] [$lvl]) and $GLOBALS ['pBase'] [$lvl] )
-            echo ("    [base] => "   . htmlentities ( pDump_short ( $GLOBALS ['pBase'] [$lvl] ) ) . "\n");
+    if ( isset ( $GLOBALS ['p'] ) and $GLOBALS ['p'] > 0 ) {
 
-          if ( isset($GLOBALS ['pResult'] [$lvl]) and $GLOBALS ['pResult'] [$lvl] and $GLOBALS ['pResult'] <> $GLOBALS ['pBase'] )
-            echo ("    [result] => " . htmlentities ( pDump_short ( $GLOBALS ['pResult'] [$lvl] ) ) . "\n");
-  
-          if ( isset($GLOBALS ['pHtml'] [$lvl]) and $GLOBALS ['pHtml'] [$lvl] and $GLOBALS ['pHtml'] <> $GLOBALS ['pBase']and $GLOBALS ['pHtml'] <>  $GLOBALS ['pResult'])
-            echo ("    [html] => "   . htmlentities ( pDump_short ( $GLOBALS ['pHtml']    [$lvl] ) ) . "\n");
+      for ( $p=$GLOBALS ['p'];  $p>0; $p-- ) {
 
-        }
+$level = [
+'tag' => $GLOBALS['pTag'][$p],
+'type' => $GLOBALS['pType'][$p],
+'prm' => $GLOBALS['pPrm'][$p],
+'pair' => $GLOBALS['pPair'][$p],
+'true' => pDump_short ($GLOBALS['pTrue'][$p]),
+'false' => pDump_short ($GLOBALS['pFalse'][$p]),
+'base' => pDump_short ($GLOBALS['pBase'][$p]),
+'html' => pDump_short ($GLOBALS['pHtml'][$p]),
+'result' => pDump_short ($GLOBALS['pResult'][$p]),
+'prms' => $GLOBALS['pPrms'][$p],
+'type' => $GLOBALS['pPrmsType'][$p],
+'flags' => $GLOBALS['pPrmsTag'][$p],
+'values' => $GLOBALS['pPrmsVal'][$p],
+'name' => $GLOBALS['pName'][$p],
+'default' => $GLOBALS['pDefault'][$p],
+'walk' => $GLOBALS['pWalk'][$p],
+'hit' => $GLOBALS['pHit'][$p],
+'null' => $GLOBALS['pNull'][$p],
+'else' => $GLOBALS['pElse'][$p],
+'array' => $GLOBALS['pArray'][$p],
+'text' => $GLOBALS['pText'][$p]
+];
+
+pDump_array  ("Level: $p", $level);
+
+      }
+
+    }
+
+
 
     if ( isset ( $GLOBALS ['pData'] ) and is_array ( $GLOBALS ['pData'] ) )
-      for ( $lvl=$GLOBALS ['pad'];  $lvl>1; $lvl-- )
+      for ( $lvl=$GLOBALS ['p'];  $lvl>1; $lvl-- )
         if ( isset ($GLOBALS ['pData'][$lvl]) )
           pDump_array  ('Level '.$lvl, $GLOBALS ['pData'][$lvl] );
 
@@ -170,7 +172,7 @@
     if ( isset ( $GLOBALS ['pSql_connect'     ] ) ) pDump_object ('MySQL-App', $GLOBALS ['pSql_connect']      );
     if ( isset ( $GLOBALS ['pPad_sql_connect' ] ) ) pDump_object ('MySQL-PAD', $GLOBALS ['pPad_sql_connect']  );
 
-    pDump_fields ($p,    "Pad variables");
+    pDump_fields ($pad,    "Pad variables");
     pDump_fields ($config, "Settings");
                                               pDump_array  ('Headers-in',  getallheaders());
     if ( isset ( $GLOBALS ['pHeaders'] ) ) pDump_array  ('Headers-out', $GLOBALS ['pHeaders'] );

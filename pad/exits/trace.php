@@ -15,7 +15,7 @@
 
   pFile_put_contents ( $GLOBALS['pTraceDir'] . "/end.json",         $GLOBALS['pTrace_data'] );
   pFile_put_contents ( $GLOBALS['pTraceDir'] . "/html-result.html", $GLOBALS['pResult'][1]  );
-  pFile_put_contents ( $GLOBALS['pTraceDir'] . "/pad.json",         pTrace_get_pVars ()  );
+  pFile_put_contents ( $GLOBALS['pTraceDir'] . "/pad.json",         pTraceGetVars ()  );
   pFile_put_contents ( $GLOBALS['pTraceDir'] . "/app.json",         pTrace_get_app_vars ()  );
  
 ?>

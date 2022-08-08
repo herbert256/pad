@@ -27,7 +27,6 @@
 
   $pVal = pField_value ($pFld);
 
-  if ( $pTrace or $pTrace or $pError_dump ) 
-    include 'trace/start.php';
+  include 'trace/start.php';
 
 ?>

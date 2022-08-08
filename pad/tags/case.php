@@ -1,7 +1,7 @@
 <?php
 
   $pTst     = '{when';
-  $pBasis   = pEval ($pPrms);        
+  $pBasis   = pEval ($pPrms[$p]);        
   $pChk     = strpos   ($pContent , $pTst);
   $pPos     = strpos   ($pContent, '}', $pChk);
   $pEval    = substr   ($pContent, $pChk+6, $pPos-($pChk+6));

@@ -1,5 +1,10 @@
 <?php
 
+  function p () {
+
+    return $GLOBALS['p'];
+  
+  }
 
   function pLocal () {
 
@@ -477,15 +482,20 @@
 
   function pIgnore ($info) {
 
-    global $p, $pBetween, $pIgnCnt, $pTrace, $pLevelDir;
+    global $p, $pBetween, $pIgnCnt, $pTrace, $pLevelDir, $pIgnored;
 
     $p--;
+
+    $pIgnCnt++;
+
+    $pIgnored [$pIgnCnt] [] = "$info: $pBetween";
           
     pHtml  ( '&open;' . $pBetween . '&close;' );
 
-    if ( $pTrace ) { 
-      $pIgnCnt++;
-      pFile_put_contents ( $pLevelDir [$p] . "/ignore.$pIgnCnt.json", "$info: $pBetween" );
+    if ( $pTrace ) {
+      $trace ['ignored'] = "$info: $pBetween";
+      $trace ['vars']    = pTraceGetVars () ;
+      pFile_put_contents ( $pLevelDir [$p] . "/ignore.$pIgnCnt.json", $trace );
     }
     
   }
@@ -565,7 +575,7 @@
 
   function pCheckTag ($tag, $string) {
 
-    return ( substrCnt($string, "{" . $tag) == substrCnt($string, "{/" . $tag) ) ;
+    return ( substr_count($string, "{" . $tag) == substr_count($string, "{/" . $tag) ) ;
 
   }
   
@@ -641,7 +651,7 @@
 
   function pTag_parm ($parm, $default='') {
 
-    global $pPrmsTag;
+    global $p, $pPrmsTag;
 
     if ( isset ( $pPrmsTag [$p] [$parm] ) )
       return $pPrmsTag [$p] [$parm];
@@ -653,7 +663,7 @@
 
   function pDone ($var, $val) {
 
-    $GLOBALS ['pDone'] [$GLOBALS ['pad']] [$var] = $val;
+    $GLOBALS ['pDone'] [$GLOBALS ['p']] [$var] = $val;
 
   }   
 

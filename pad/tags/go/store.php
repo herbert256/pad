@@ -5,7 +5,7 @@
     return TRUE;
   }
 
-  $pStore_name = 'pad_'.$pTag.'_store';
+  $pStore_name = 'pad_'.$pTag[$p].'_store';
 
   if ( isset ( $pPrmsVal [$p] [0] ) or isset ( $pPrmsVal [$p] [1] ) ) 
     $pName [$p] = $pPrmsVal [$p] [0];

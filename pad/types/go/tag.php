@@ -1,6 +1,6 @@
 <?php
 
-  $pTag_go .= "/tags/". $pTag[$p];
+  $pTag_go .= "tags/". $pTag[$p];
 
   $pTag_php = '';
 

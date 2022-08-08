@@ -27,11 +27,11 @@
   if     ( ! ctype_alpha ( $pFirst )  ) return pIgnore ('ctype_alpha');
   elseif ( ! pValid      ( $pTag[$p]) ) return pIgnore ('pValid');
 
-  include 'type_get.php';
-  include 'pair.php';
+  $pPair [$p] = include 'pair.php';
+  $pType [$p] = include 'type_get.php';
 
-  if ( $pType [$p] === NULL ) return pIgnore ('type_get');
-  if ( $pPair [$p] === NULL ) return pIgnore ('pair');
+  if ( $pType [$p] === FALSE ) return pIgnore ('type_get');
+  if ( $pPair [$p] === NULL  ) return pIgnore ('pair');
 
   include 'start.php';
 

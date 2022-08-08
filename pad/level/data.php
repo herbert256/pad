@@ -1,18 +1,18 @@
 <?php
 
-  if ( $pNull )
+  if ( $pNull [$p] )
 
     $pNow = [];
 
-  elseif ( $pElse )
+  elseif ( $pElse [$p] )
 
-    if     ( $pArray                   ) $pNow = array_slice ($pTagResult, 0, 1); 
+    if     ( $pArray [$p]        ) $pNow = array_slice ($pTagResult [$p], 0, 1); 
     elseif ( count ($pData [$p]) ) $pNow = array_slice ($pData [$p], 0, 1); 
-    else                                    $pNow = pDefault_data ();  
+    else                           $pNow = pDefault_data ();  
 
-  elseif ( $pArray )
+  elseif ( $pArray [$p] )
 
-    $pNow = $pTagResult;
+    $pNow = $pTagResult [$p];
 
   else 
 

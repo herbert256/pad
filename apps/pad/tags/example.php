@@ -1,8 +1,8 @@
 <?php
 
-  $result = pInclude ($app, "examples/$pParm");
+  $result = pInclude ( $app, "examples/" . $pPrm [$p] );
 
-  $file = APP . "pages/examples/$pParm";
+  $file = APP . "pages/examples/" . $pPrm [$p];
 
   $php    = ( file_exists("$file.php" ) ) ? pColors_file ("$file.php")  : '';
   $html   = ( file_exists("$file.html") ) ? pColors_file ("$file.html") : '';

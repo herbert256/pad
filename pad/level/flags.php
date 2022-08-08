@@ -1,29 +1,25 @@
 <?php
 
-  if     ( $pTagResult === NULL )   $pNull = TRUE;
-  elseif ( $pTagResult === INF )    $pNull = TRUE;
-  elseif ( $pTagResult === NAN )    $pNull = TRUE;
-  else                              $pNull = FALSE;
+  if     ( $pTagResult [$p] === NULL )   $pNull [$p] = TRUE;
+  elseif ( $pTagResult [$p] === INF )    $pNull [$p] = TRUE;
+  elseif ( $pTagResult [$p] === NAN )    $pNull [$p] = TRUE;
+  else                              $pNull [$p] = FALSE;
 
-  if     ( is_array($pTagResult) and ! count($pTagResult) ) $pElse = TRUE;
-  elseif ( is_array($pTagResult) and   count($pTagResult) ) $pElse = FALSE;
-  elseif ( $pTagResult === FALSE                          ) $pElse = TRUE;
-  elseif ( $pTagResult === ''                             ) $pElse = TRUE;
-  else                                                      $pElse = FALSE;
+  if     ( is_array($pTagResult [$p]) and ! count($pTagResult [$p]) ) $pElse [$p] = TRUE;
+  elseif ( is_array($pTagResult [$p]) and   count($pTagResult [$p]) ) $pElse [$p] = FALSE;
+  elseif ( $pTagResult [$p] === FALSE                          ) $pElse [$p] = TRUE;
+  elseif ( $pTagResult [$p] === ''                             ) $pElse [$p] = TRUE;
+  else                                                      $pElse [$p] = FALSE;
 
-  if     ( $pNull ) $pHit = FALSE;
-  elseif ( $pElse ) $pHit = FALSE;
-  else              $pHit = TRUE;
+  if     ( $pNull [$p] ) $pHit [$p] = FALSE;
+  elseif ( $pElse [$p] ) $pHit [$p] = FALSE;
+  else                   $pHit [$p] = TRUE;
 
-  if     ( $pHit and is_array($pTagResult) ) $pArray = TRUE;
-  else                                       $pArray = FALSE;
+  if     ( $pHit [$p] and is_array($pTagResult [$p]) ) $pArray [$p] = TRUE;
+  else                                            $pArray [$p] = FALSE;
 
-  if     ( $pHit and $pTagResult !== TRUE and is_scalar($pTagResult) ) $pText = TRUE;
-  else                                                                 $pText = FALSE;
+  if     ( $pHit [$p] and $pTagResult [$p] !== TRUE and is_scalar($pTagResult [$p]) ) $pText [$p] = TRUE;
+  else                                                                      $pText [$p] = FALSE;
 
-  $pHit [$p]  = $pHit;
-  $pNull [$p] = $pNull;
-  $pElse [$p] = $pElse;
-  $pArray [$p]= $pArray;
-  $pText [$p] = $pText;
+
 ?>

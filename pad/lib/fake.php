@@ -12,16 +12,16 @@
  
     $pTiming = FALSE;
 
+    include PAD . 'level/setup.php'; 
     $pBetween   = 'fake';
     include PAD . 'level/between.php'; 
-    include PAD . 'level/setup.php'; 
-    $pType [$p]  = 'fake';
+    $pType [$p]  = 'true';
     $pPair [$p]  = FALSE;
 
+    include PAD . 'level/setup.php'; 
     $pBetween   = 'fake';
     include PAD . 'level/between.php'; 
-    include PAD . 'level/setup.php'; 
-    $pType [$p]  = 'fake';
+    $pType [$p]  = 'true';
     $pPair [$p]  = FALSE;
                                        $fake_base  = '{' . "$tag";
     if ($kind == 'open' and $options)  $fake_base .= " $options";
@@ -38,11 +38,8 @@
 
     $return = $pHtml [$p];
 
-    foreach ( $GLOBALS['pParms'] [$fake_lvl] as $fake_key => $fake_val )
-      $GLOBALS['pad_'.$fake_key] = $fake_val;
-
-    $p          = $fake_lvl;
-    $pTiming    = $fake_timing;
+    $p         = $fake_lvl;
+    $pTiming   = $fake_timing;
     $pTraceDir = $fake_trace_dir;
 
     return $pHtml [$fake_lvl+1];
