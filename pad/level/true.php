@@ -2,7 +2,7 @@
 
   $pPos = $pEnd [$p-1];
 
-  do {
+a: do {
 
     $pPos = strpos($pHtml [$p-1] , '{/' . $pTag [$p], $pPos);
 
@@ -15,13 +15,16 @@
 
   } while ( substr_count($pTrue [$p], '{'.$pTag [$p]) <> substr_count($pTrue [$p], '{/'.$pTag[$p]) );
  
+   $pPair_check = substr($pHtml[$p], $pPos + strlen($pTag[$p]) + 1, 1);
+   if ( ! ($pPair_check == ' ' or $pPair_check == '}' ) )
+    goto a;
+
   $pPair [$p]   = TRUE;
-  $pTrue [$p]   = substr ( $pTrue [$p], 0, $pPos);
-  $pEnd  [$p-1] = strpos ( $pHtml [$p-1], '}', $pPos+2);
+  $pEnd  [$p-1] = strpos ( $pHtml [$p-1], '}', $pPos);
 
   if ( $pEnd [$p-1] === FALSE )
     return NULL;
 
-  return $pTrue [$p];
+  return substr ( $pTrue [$p], 0, $pPos);
 
 ?>
