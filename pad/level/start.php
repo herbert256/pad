@@ -15,7 +15,7 @@
   include 'base.php';
   include 'data.php';
 
-  $pDefault [$p]= pIs_default_data ( $pData [$p] );
+  $pDefault [$p] = pIs_default_data ( $pData [$p] );
 
   include PAD . "options/go/start.php";
   

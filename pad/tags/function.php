@@ -5,7 +5,7 @@
     return TRUE;
   }
 
-  $pTag [$p]= $pPrm [$p];
+  $pTag [$p] = $pPrm [$p];
 
   if ( isset ($pPrmsTag [$p] ['type'] ) )                     
     $pFunction_type = "function_" . $pPrmsTag [$p] ['type'];                

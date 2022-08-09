@@ -13,7 +13,7 @@
 
       $pEval = pEval($pEval);
 
-      if ( ($pTag [$p]== 'if' and $pEval) or ($pTag [$p]== 'case' and $pBasis == $pEval) ) {
+      if ( ($pTag [$p] == 'if' and $pEval) or ($pTag [$p] == 'case' and $pBasis == $pEval) ) {
         $pContent = substr ($pContent, 0, $pChk);
         return TRUE;
       }
@@ -29,6 +29,6 @@
 
   $pEval = pEval($pEval);
 
-  return ( ($pTag [$p]== 'if' and $pEval) or ($pTag [$p]== 'case' and $pBasis == $pEval) );
+  return ( ($pTag [$p] == 'if' and $pEval) or ($pTag [$p] == 'case' and $pBasis == $pEval) );
 
 ?>

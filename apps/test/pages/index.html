@@ -1,13 +1,11 @@
-A 
-{if 1 EQ 2} B 
-	{if 2 EQ 2}
-		C 
-	{else}
-	    X
-	{/if} 
-	D 
-{else}
-    X	
-{/if} 
-E
+{data 'myData'}(1,2)
+  [
+    { "name": "joe",   "phone": "555-3425" },
+    { "name": "jim",   "phone": "555-2364" },
+    { "name": "john",  "phone": "555-7649" }
+  ]
+{/data}
 
+{myData}
+    {$name}
+{/myData}

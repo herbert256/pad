@@ -9,7 +9,7 @@
 
   $pWrk  = [ $pTagCnt [$p] => [] ];
 
-  if ($pTag [$p]== 'while') { 
+  if ($pTag [$p] == 'while') { 
     $pWalk [$p] = ($pEval) ? 'next'   : '';
     return      ($pEval) ? $pWrk : NULL;
   } else {

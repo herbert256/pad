@@ -80,7 +80,7 @@
 
     global $p, $pOccurDir, $app, $page, $PADREQID;
 
-    $pError_dir = $pOccurDir [$p] . "errors/$type/$count";
+    $pError_dir = $pOccurDir [$p] . "/error-$count-$type";
 
     $data = [];
 
@@ -89,12 +89,12 @@
     $data ['app']     = $app;
     $data ['page']    = $page;
     $data ['request'] = $PADREQID;
-    $data ['dir']     = $pError_dir;
+    $data ['dir']     = DATA . $pError_dir;
 
     foreach ($vars as $key => $val)
       $data [$key] = $val;
 
-    pFile_put_contents ( "errors/$PADREQID-$type-$count.json", $data ); 
+    pFile_put_contents ( "errors/$PADREQID-$count-$type.json", $data ); 
 
     pFile_put_contents ( "$pError_dir/error.json", $data ); 
     pFile_put_contents ( "$pError_dir/pad.json",   pTraceGetVars ()  );

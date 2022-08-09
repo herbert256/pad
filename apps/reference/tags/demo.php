@@ -1,8 +1,8 @@
 <?php
 
-  if ( $pad_walk == 'start' ) {
+  if ( $pWalk[$p] == 'start' ) {
 
-    $pDemo_source [$pad] = $pContent;
+    $pDemo_source [$p] = $pContent;
 
     $pad_walk = 'end';
 
@@ -13,8 +13,8 @@
   return 
     '<!-- demo -->' . 
     '<tr>' .
-      '<td style="vertical-align:top">' .  pColors_string (trim($pDemo_source [$pad])) . '</td>' .
-      '<td style="vertical-align:top">' .  trim($pResult [$pad]) .                          '</td>' .
+      '<td style="vertical-align:top">' .  pColors_string (trim($pDemo_source [$p])) . '</td>' .
+      '<td style="vertical-align:top">' .  trim($pResult [$p]) .                          '</td>' .
     '</tr>';
  
 ?>

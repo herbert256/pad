@@ -5,7 +5,7 @@
   $pSeq_parm = TRUE;
 
   $pSeq_tmp = $pPrm [$p];
-  if ( $pTag [$p]== 'sequence' and pValid($pSeq_tmp) and isset($pSequenceStore [$pSeq_tmp]) )
+  if ( $pTag [$p] == 'sequence' and pValid($pSeq_tmp) and isset($pSequenceStore [$pSeq_tmp]) )
     return include 'sequence/store.php';
   
   $pSeq_tmp = $pTag [$p];
@@ -41,7 +41,7 @@
    return include 'sequence/action.php';
 
   $pSeq_tmp = array_key_first($pPrmsTag [$p]) ?? '';
-  if ( $pPrm [$p] == '' and $pTag [$p]== 'sequence' and pValid($pSeq_tmp) and file_exists ( PAD . "sequence/actions/$pSeq_tmp.php" ) )
+  if ( $pPrm [$p] == '' and $pTag [$p] == 'sequence' and pValid($pSeq_tmp) and file_exists ( PAD . "sequence/actions/$pSeq_tmp.php" ) )
     return include 'sequence/action.php';
 
   $pSeq_tmp = array_key_first($pPrmsTag [$p]) ?? '';
