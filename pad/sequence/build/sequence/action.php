@@ -18,6 +18,4 @@
   else
     $pPrmsTag [$p] [$pSeq_tmp] = true;
 
-  pParmsPrmsTag'] [$pSeq_tmp] = $pPrmsTag [$p] [$pSeq_tmp];
-
 ?>

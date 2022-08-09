@@ -25,9 +25,11 @@
     include "types/$pSeq_seq/exit.php";
 
   include 'build/push.php';
+  include 'build/return.php';
+  include 'build/trace.php';
 
   $pIn_sequence = FALSE;
 
-  return $pSeq_result;
+  return $pSeqReturn;
 
 ?>

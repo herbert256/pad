@@ -84,9 +84,6 @@
     $GLOBALS ['pSkip_boot_shutdown'] = TRUE;
     $GLOBALS ['pSkip_shutdown']      = TRUE;
 
-    if ( function_exists ( 'pErrorShort' ) ) 
-      pErrorShort ( "$file:$line $error" );
-
     if ( ! headers_sent () )
       header ( 'HTTP/1.0 500 Internal Server Error' );
 
@@ -94,11 +91,10 @@
 
     error_log ( "[PAD] $id - $file:$line $error", 4 );
 
-pDump();
-#    if ( function_exists ( 'pLocal' ) and pLocal () )
+    if ( function_exists ( 'pLocal' ) and pLocal () )
       echo "$file:$line $error";
-#    else
-#      echo "Error: $id";
+    else
+      echo "Error: $id";
  
     exit;
 

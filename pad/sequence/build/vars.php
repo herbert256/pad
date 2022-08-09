@@ -15,6 +15,6 @@
 
   $pSeq_special_ops = ['make', 'keep', 'remove'];
 
-  $pName [$p] = $pName [$p] = $pSeq_name;
+  $pName [$p] = $pSeq_name;
 
 ?>

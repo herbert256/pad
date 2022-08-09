@@ -32,16 +32,8 @@
   
   function pDb_part2 ( $pSql_connect, $sql, $vars, $db_type ) {
 
-    global $pDbTables, $p, $pDb_rows_found, $pTrack_sql, $pPrmsTag;
+    global $p, $pDb_rows_found, $pTrack_sql, $pPrmsTag;
     
-    if ( isset ( $pDbTables[$sql] ) ) {
-      $save = $pPrmsTag [$p];
-      $pPrmsTag [$p] = [];
-      $result = pDb_get_data ($sql); 
-      $pPrmsTag [$p] = $save;
-      return $result;
-    }
-
     foreach ( $vars as $i => $replace ) {
 
       $p1 = strpos($sql, '{'.$i.'}' );

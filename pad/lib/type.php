@@ -14,7 +14,6 @@
     elseif ( file_exists     ( PAD . "sequence/types/$type"           ) ) return 'sequence';
     elseif ( file_exists     ( PAD . "sequence/actions/$type.php"     ) ) return 'action';
     elseif ( isset               ( $GLOBALS['pSequenceStore'] [$type] ) ) return 'store';
-    elseif ( isset               ( $GLOBALS['pDbTables'] [$type]      ) ) return 'table';
     elseif ( pArray_check     ( $type                                  ) ) return 'array';
     elseif ( pField_check     ( $type                                  ) ) return 'field';
     elseif ( defined             ( $type                                  ) ) return 'constant';
@@ -51,7 +50,6 @@
     elseif ( file_exists  ( PAD . "sequence/types/$type"           ) and $type == 'sequence'       ) return TRUE;
     elseif ( file_exists  ( PAD . "sequence/actions/$type.php"     ) and $type == 'action'         ) return TRUE;
     elseif ( isset            ( $GLOBALS['pSequenceStore'] [$name] ) and $type == 'store'          ) return TRUE;
-    elseif ( isset            ( $GLOBALS['pDbTables'] [$name]      ) and $type == 'table'          ) return TRUE;
     elseif ( pArray_check  ( $name                                  ) and $type == 'array'          ) return TRUE;
     elseif ( pField_check  ( $name                                  ) and $type == 'field'          ) return TRUE;
     elseif ( defined          ( $name                                  ) and $type == 'constant'       ) return TRUE;
@@ -79,7 +77,6 @@
     elseif ( isset               ( $GLOBALS['pDataStore'] [$type]     ) ) return 'data';
     elseif ( isset               ( $GLOBALS['pSequenceStore'] [$type] ) ) return 'sequence';
     elseif ( file_exists         ( PAD . "tag/$type.php"                  ) ) return 'parm';
-    elseif ( isset               ( $GLOBALS['pDbTables'] [$type]      ) ) return 'table';
     elseif ( pArray_check     ( $type                                  ) ) return 'array';
     elseif ( pChk_level_array ( $type                                  ) ) return 'level';
     elseif ( defined             ( $type                                  ) ) return 'constant';

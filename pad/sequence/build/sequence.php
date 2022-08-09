@@ -54,7 +54,7 @@
   } 
 
   if ( ctype_digit($pPrm [$p]) ) {
-    $pSeq_parm = "1..$pPrm [$p]";
+    $pSeq_parm = "1..$pPrm[$p]";
     return include 'sequence/range.php';
   } 
 

@@ -24,7 +24,7 @@
 
   function pField_prefix ( $field, $type ) {
 
-    global $p, $pDb_lvl, $pCurrent;
+    global $p, $pCurrent;
 
     list ( $prefix, $field ) = explode (':', $field, 2);
 
@@ -40,11 +40,6 @@
       $return = pField_search ($GLOBALS, $field, $type);
     elseif ( $lvl ) 
       $return = pField_search ($pCurrent [$lvl], $field, $type);
-    else
-      for ( $i=$p; $i; $i-- )
-        foreach ( $pDb_lvl [$i] as $key => $value)
-          if ($key == $prefix)
-            $return = pField_search ($value, $field, $type);
 
     if ( $return === INF ) {
       $GLOBALS['pField_double_check'] = TRUE;
@@ -61,7 +56,7 @@
 
   function pField_level ( $field, $type ) {
 
-    global $p, $pDb_lvl, $pCurrent, $PrmsTag;
+    global $p, $pCurrent;
 
     if ( is_numeric($field) ) 
       return pField_tag_nr ('', $field);
@@ -75,17 +70,6 @@
 
       if ( $work !== INF )
         return $work;
-
-      foreach ( $pDb_lvl [$i] as $key => $value ) {
-        $work = pField_search ( $value, $field, $type);   
-        if ( $work !== INF )
-          return $work;
-
-      $work = pField_search ( $PrmsTag [$i], $field, $type);   
-      if ( $work !== INF )
-        return $work;
-
-      }
 
     }
 
@@ -209,11 +193,6 @@
 
     if ( isset( $GLOBALS['pDataStore'] [$search]) )
       return pField_fake_level ( $search, $GLOBALS['pDataStore'] );
-
-    for ($i=$p; $i; $i--)
-      if ( isset( $GLOBALS['pDb_lvl'] [$i] ) )
-        if ( isset( $GLOBALS['pDb_lvl'] [$i] [$search]) )
-          return pField_fake_level ( $search, $GLOBALS['pDb_lvl'] [$i] [$search] );
 
     return $GLOBALS ['pad'];
 

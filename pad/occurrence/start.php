@@ -25,8 +25,6 @@
   if ( isset($pPrmsTag [$p] ['callback']) and ! isset($pPrmsTag [$p] ['before']) )
     include PAD . 'callback/row.php' ;
 
-  include PAD . 'occurrence/db.php';
-
   if ( $pTrace ) 
     include 'trace/start.php';
 

@@ -32,8 +32,6 @@
   $pOccur       [$p] = 0;
   $pStart       [$p] = 0;
   $pEnd         [$p] = 0;
-  $pDb          [$p] = '';
-  $pDb_lvl      [$p] = [];
 
   $pSave_vars   [$p] = [];
   $pDelete_vars [$p] = [];

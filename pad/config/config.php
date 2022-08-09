@@ -99,10 +99,6 @@
   
   $pBuild_merge    = 'content';    // 'content'
                                       // 'end'
- 
-  // PAD database structure
-  
-  $pDbTables = $pDb_relations = [];
     
   // Default {$var} options, there must be a PHP snippet in one of below directories
   // - PAD/functions/
