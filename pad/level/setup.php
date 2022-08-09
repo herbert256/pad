@@ -2,8 +2,8 @@
   
   $p++;
   
-  $pTag         [$p] = 'init';
-  $pType        [$p] = 
+  $pTag         [$p] = '';
+  $pType        [$p] = '';
 
   $pPrm         [$p] = ''; 
 
@@ -20,12 +20,12 @@
 
   $pName        [$p] = '';
 
-  $pData        [$p] = pDefault_data ();
+  $pData        [$p] = [];
   $pCurrent     [$p] = [];
   $pKey         [$p] = 1;
-  $pDefault     [$p] = TRUE;
+  $pDefault     [$p] = FALSE;
 
-  $pWalk        [$p] = 'start';
+  $pWalk        [$p] = '';
   $pWalkData    [$p] = [];
   
   $pDone        [$p] = [];
@@ -44,12 +44,12 @@
 
   $pTagCnt      [$p] = 0;
  
-  $pTagResult   [$p] = TRUE;
-  $pHit         [$p] = TRUE;
+  $pTagResult   [$p] = FALSE;
+  $pHit         [$p] = FALSE;
   $pNull        [$p] = FALSE;
   $pElse        [$p] = FALSE;
   $pArray       [$p] = FALSE;
-  $pText        [$p] = TRUE;
+  $pText        [$p] = FALSE;
 
   $pLevelDir    [$p] = $pTraceDir ?? '';
   $pOccurDir    [$p] = $pTraceDir ?? '';

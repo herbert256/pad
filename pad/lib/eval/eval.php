@@ -69,14 +69,10 @@
 
     $key = array_key_first ($pEval_result);
       
-    if ( count($pEval_result) < 1 )
-      return pEval_error("No result back");
-    elseif ( count($pEval_result) > 1 )                                                
-      return pEval_error("More then one result back");
-    elseif ( isset($pEval_result[$key][4]) ) 
-      return pEval_error("Result is an array");
-    elseif ( $pEval_result[$key][1] <> 'VAL' )         
-      return pEval_error("Result is not a value");
+    if     ( count($pEval_result) < 1        ) return pEval_error("No result back");
+    elseif ( count($pEval_result) > 1        ) return pEval_error("More then one result back");
+    elseif ( isset($pEval_result[$key][4])   ) return pEval_error("Result is an array");
+    elseif ( $pEval_result[$key][1] <> 'VAL' ) return pEval_error("Result is not a value");
 
     pEval_trace  ('end', $pEval_result );
 
@@ -107,10 +103,11 @@
  
     pTrace_write_error ( $txt, 'eval', $pEvalCnt, $data );
 
-    $GLOBALS ['pTrace_stage'] = 'end';
     pTiming_end ('eval');
     
-    return '';
+    return pError ($txt);
+
+    $GLOBALS ['pTrace_stage'] = 'end';
 
   }
 

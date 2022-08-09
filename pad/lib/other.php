@@ -1,10 +1,28 @@
 <?php
 
+
   function p () {
 
     return $GLOBALS['p'];
   
   }
+
+
+  function pFirst_non_parm  ($min=0) {
+
+    global $p, $pType;
+
+    for ($i=$p-$min; $i; $i--)
+      if ( $pType[$i] and $pType[$i] <> 'parm' )
+        return $i;
+
+    if ( $p > 1 )
+      return $p - 1;
+    else
+      return INF;
+
+  }  
+
 
   function pLocal () {
 

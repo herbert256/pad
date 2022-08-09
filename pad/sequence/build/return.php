@@ -2,7 +2,9 @@
 
   $pSeqReturn = [];
 
-  $pSeqNames = array_unique ( ['sequence', $pSeq_seq, $pSeq_set, $pSeq_name, $pName[$p] ] );
+  $pSeqNames = array_unique ( [
+    'sequence', $pSeq_seq, $pSeq_set, $pSeq_name, $pName[$p], $pPrmsTag[$p]['toData']??'' 
+  ] );
 
   foreach ($pSeq_result as $pSeqValue) {
 

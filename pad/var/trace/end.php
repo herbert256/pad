@@ -1,18 +1,23 @@
 <?php
 
-  $pTrace_data = [ 
-    'field'   => '{' . $pBetween . '}',
-    'nr'      => $pFldCnt,
-    'source'  => $pFld,
-    'value'   => $pVal_base,
-    'options' => $pOpts
-  ];
+  if ( $pVal == $pVal_base )
 
-  if ( count ($pOpts_trace) )
-    $pTrace_data ['changed'] = $pOpts_trace;
-  elseif ( $pVal <> $pVal_base )
-    $pTrace_data ['result'] = $pVal;
+    $pTrace_data = [ 
+      'field' => '{' . $pBetween . '}',
+      'nr'    => $pFldCnt,
+      'value' => $pVal
+    ];
 
-  pFile_put_contents ( $pOccurDir [$p] . "/fields/$pFldCnt.json", pJson ($pTrace_data ) );
+  else
+
+    $pTrace_data = [ 
+      'field'   => '{' . $pBetween . '}',
+      'nr'      => $pFldCnt,
+      'from '   => $pVal_base,
+      'to'      => $pVal,
+      'options' => $pOpts_trace
+    ];
+
+  pFile_put_contents ( $pOccurDir [$p] . "/fields/$pFldCnt.json", $pTrace_data );
 
 ?>
