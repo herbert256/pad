@@ -12,9 +12,13 @@
 
     if ( $pArray )
       $pData [$p] = $pTagResult [$p];
+    elseif ( $pText ) 
+      $pBase [$p] = $pTagResult [$p];
+    elseif ( $pElse ) 
+      $pBase [$p] = $pFalse [$p];
  
     reset ( $pData [$p] );
 
   }
- 
+
 ?> 

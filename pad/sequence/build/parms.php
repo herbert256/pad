@@ -12,7 +12,7 @@
   $pSeq_rows     = intval ( $pPrmsTag [$p] ['rows']      ?? 0           );
   $pSeq_unique   = intval ( $pPrmsTag [$p] ['unique']    ?? 0           );
   $pSeq_random   = intval ( $pPrmsTag [$p] ['random']    ?? 0           );
-  $pSeqCnt    = intval ( $pPrmsTag [$p] ['count']     ?? 0           );
+  $pSeqCnt       = intval ( $pPrmsTag [$p] ['count']     ?? 0           );
   $pSeq_page     = intval ( $pPrmsTag [$p] ['page']      ?? 0           );
   $pSeq_name     =          $pName [$p]      ?? ''; 
   $pSeq_protect  =          $pPrmsTag [$p] ['protect']   ?? 1000; 
@@ -27,8 +27,7 @@
   $pSeq_update   =          $pPrmsTag [$p] ['update']    ?? '';
 
   unset ( $pPrmsTag [$p] ['store'] );
-  unset ( pParmsPrmsTag'] ['store'] );
-
+ 
   foreach ( $pPrmsTag [$p] as $pSeq_tag_name => $pSeq_tag_value )
     if ( ! isset($GLOBALS ["pSeq_$pSeq_tag_name"]) )
       $GLOBALS ["pSeq_$pSeq_tag_name"] = $pSeq_tag_value;

@@ -10,7 +10,7 @@
 
   if ( $p > 1 and $pTrace ) {
     $pBetweenTrace = ['between' => $pBetween, 'tag' => $pTag[$p], 'prms' => $pPrms[$p] ];
-    pFile_put_contents ( $pLevelDir [$p] . "/between." . $pBtwCnt . ".json", $pBetweenTrace ); 
+    pFile_put_contents ( $pLevelDir [$p] . "/between/" . $pBtwCnt . ".json", $pBetweenTrace ); 
   }
 
 ?>

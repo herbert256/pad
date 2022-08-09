@@ -4,10 +4,10 @@
 
   if ( $pNs ) {
 
-    $pType [$p] = substr ($pTag [$p], 0, $pNs_pos);
-    $pTag  [$p] = substr ($pTag [$p], $pNs_pos+1);
+    $pType [$p] = substr ($pTag [$p], 0, $pNs);
+    $pTag  [$p] = substr ($pTag [$p], $pNs+1);
 
-    if ( ! file_exists ( PAD . "types/$pType.php" ) ) 
+    if ( ! file_exists ( PAD . "types/$pType[$p].php" ) ) 
       $pType [$p] = FALSE;
     
   } else

@@ -2,24 +2,30 @@
 
   $pPos = $pEnd [$p-1];
 
- a: do {
+  while (1) {
 
-    $pPos = strpos($pHtml [$p-1] , '{/' . $pTag [$p], $pPos);
+    do {
 
-    if ($pPos === FALSE) {
-      $pTrue [$p] = '';
-      return FALSE;
-    } 
+      $pPos = strpos($pHtml [$p-1] , '{/' . $pTag [$p], $pPos);
 
-    $pTrue [$p] = substr($pHtml [$p-1], $pEnd [$p-1]+1, $pPos - $pEnd [$p-1] - 1);
+      if ($pPos === FALSE) {
+        $pTrue [$p] = '';
+        return FALSE;
+      } 
 
-    $pPos++;
+      $pTrue [$p] = substr($pHtml [$p-1], $pEnd [$p-1]+1, $pPos - $pEnd [$p-1] - 1);
 
-  } while ( substr_count($pTrue [$p], '{'.$pTag [$p]) <> substr_count($pTrue [$p], '{/'.$pTag[$p]) );
+      $pPos++;
 
-  $pPair_check = substr($pHtml [$p-1], $pPos + strlen($pTag[$p]) + 1, 1);
-  if ( ! ($pPair_check == ' ' or $pPair_check == '}' ) )
-    goto a;
+    } while ( substr_count($pTrue [$p], '{'.$pTag [$p]) <> substr_count($pTrue [$p], '{/'.$pTag[$p]) );
+
+    $pPair_check = substr($pHtml [$p-1], $pPos + strlen($pTag[$p]) + 1, 1);
+    if ( ! ($pPair_check == ' ' or $pPair_check == '}' ) )
+      continue;
+
+    break;
+
+  }
  
   $pTrue [$p]  = substr ( $pTrue [$p], 0, $pPos );
   $pEnd [$p-1] = strpos ( $pHtml [$p-1], '}', $pPos+2 );
@@ -34,43 +40,6 @@
     include 'between.php';
     $pPrmsType [$p] = 'close';
   }
-
-  $pOpen_close = [];
-  $pOpen_close [$pTag [$p]] = TRUE;
-
-  $pPos = strpos($pTrue [$p], '{/', 0);
-
-  while ($pPos !== FALSE) {
-    $pPos2 = strpos($pTrue [$p], '}', $pPos);
-    if ( $pPos2 !== FALSE ) {
-      $pPos3 = strpos($pTrue [$p], ' ', $pPos);
-      if ($pPos3 !== FALSE and $pPos3 < $pPos2 )
-        $pPos2 = $pPos3;      
-      $pCheckTag = substr($pTrue [$p], $pPos+2, $pPos2-$pPos-2);
-      if ( pValid ($pCheckTag) )
-        $pOpen_close [$pCheckTag] = TRUE;
-    }
-    $pPos = strpos($pTrue [$p], '{/', $pPos+1);
-  }
-
-  $pPos = -1;
-
-go: $pPos++;
-    $pPos = strpos($pTrue [$p], '{else}', $pPos);
-
-  if ( $pPos === FALSE )
-    return TRUE;
-  
-  $pCheck = substr($pTrue [$p],0,$pPos);
-
-  foreach ( $pOpen_close as $pCheckTag => $pDummy_var )
-    if ( ( substr_count($pCheck, '{'.$pCheckTag.' ' ) + substr_count($pCheck, '{'.$pCheckTag.'}' ) )
-           <> 
-         ( substr_count($pCheck, '{/'.$pCheckTag.' ') + substr_count($pCheck, '{/'.$pCheckTag.'}') ) )
-      goto go;
-
-  $pFalse [$p] = substr ( $pTrue [$p], $pPos+6  );
-  $pTrue  [$p] = substr ( $pTrue [$p], 0, $pPos );
 
   return TRUE;
 

@@ -801,7 +801,7 @@
   
   function pValid_store ($fld) {
 
-    if ( substr($fld, 0, 4) == 'pad_')
+    if ( substr($fld, 0, 1) == 'p')
       return FALSE;
 
     if ( in_array ( $fld, ['GLOBALS','_POST','_GET','_COOKIE','_SESSION','_FILES','_SERVER','_REQUEST','_ENV'] ) )

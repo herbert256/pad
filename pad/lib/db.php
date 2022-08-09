@@ -30,9 +30,9 @@
   }
 
   
-  function pDb_part2 ( $pSql_connect, $sql, $vars, $p, $db_type) {
+  function pDb_part2 ( $pSql_connect, $sql, $vars, $db_type ) {
 
-    global $pDbTables, $pDb_rows_found, $pTrack_sql, $pPrmsTag;
+    global $pDbTables, $p, $pDb_rows_found, $pTrack_sql, $pPrmsTag;
     
     if ( isset ( $pDbTables[$sql] ) ) {
       $save = $pPrmsTag [$p];

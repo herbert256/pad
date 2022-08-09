@@ -29,9 +29,11 @@
 
   $pPair  [$p] = include 'pair.php';
   $pType  [$p] = include 'type_get.php';
+  $pSplit [$p] = include 'split.php';
 
-  if ( $pTrue  [$p] === NULL ) return pIgnore ('true');
-  if ( $pType  [$p] === NULL ) return pIgnore ('type_get');
+  if ( $pPair  [$p] === NULL  ) return pIgnore ('pair');
+  if ( $pType  [$p] === FALSE ) return pIgnore ('type_get');
+  if ( $pSplit [$p] === FALSE ) return pIgnore ('split');
 
   include 'start.php';
 
