@@ -8,8 +8,6 @@
     if ( is_numeric($field) ) 
       return pField_level_nr ($field);
 
-
-
     for ( $i=$p; $i; $i-- )
       if ( array_key_exists ( $field, $pCurrent [$i] ) ) {
         $work = $pCurrent [$i] [$field];
@@ -23,28 +21,10 @@
       elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
     }
 
-    return INF;
-
-    for ( $i=$p; $i; $i-- ) {
-      $work = pField_search ( $pCurrent [$i], $field, $type );
-      if ( $work !== INF )
-        return $work;
-    }
-
-    $work = pField_search ( $GLOBALS, $field, $type );
-    if ( $work !== INF )
-      return $work;
 
     for ( $i=$p; $i; $i-- )
       if ( isset ( $pPrmsTag [$i] [$field] ) )
         return $pPrmsTag [$i] [$field];
-
-    for ( $i=$p; $i; $i-- )
-      if ( $pName[$i] ) {
-        $work = pField_tag ( $pName[$i] . '#' . $field );
-        if ( $work !== INF )
-          return $work;
-      }
 
     return INF;
     
