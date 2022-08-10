@@ -78,5 +78,13 @@
 
   }
 
+  function pFieldDoubleCheck ($first, $seperator, $second) {
+
+    $tag = "$first$seperator$second";
+    
+    if     ( pField_check($tag) ) return pField_value($tag);
+    elseif ( pArray_check($tag) ) return pArray_value($tag); 
+
+  }
 
 ?>

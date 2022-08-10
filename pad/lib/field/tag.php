@@ -30,11 +30,8 @@
           return ( $parm == 'name') ? $key : $value;
     }
 
-    if ( $tag and ! $GLOBALS['pField_double_check'] ) {
-      $chk = "$tag:$field";
-      if ( pField_check($chk) ) return pField_value($chk);
-      if ( pArray_check($chk) ) return pArray_value($chk);   
-    }
+    if ( $tag and ! $GLOBALS['pField_double_check'] )
+      return pFieldDoubleCheck ( $tag, ':', $field );
 
     return INF;
 

@@ -3,10 +3,20 @@
 
   function pField_level ( $field, $type ) {
 
-    global $p, $pCurrent;
+    global $p, $pCurrent, $pPrmsTag;
 
     if ( is_numeric($field) ) 
-      return pField_nr ($field);
+      return pField_level_nr ($field);
+
+    for ( $i=$p; $i; $i-- )
+      if ( isset ( $pCurrent [$i] [$field] ) )
+        if ( is_array ( $pCurrent [$i] [$field] ) ) {
+           if ( $type == 3 or $type == 4)
+            return $pCurrent [$i] [$field];
+        } else {
+           if ( $type == 1 or $type == 42)
+            return $pCurrent [$i] [$field];
+        }
 
     for ( $i=$p; $i; $i-- ) {
 
@@ -20,12 +30,19 @@
 
     }
 
+    for ( $i=$p; $i; $i-- )
+      if ( $pName[$i] ) {
+        $work = pField_tag ( $pName[$i] . '#' . $field );
+        if ( $work !== INF )
+          return $work;
+      }
+
     return INF;
     
   }
 
 
-  function pField_nr ($nr) {
+  function pField_level_nr ($nr) {
 
     global $p, $pPrmsVal;
     

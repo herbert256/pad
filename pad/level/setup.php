@@ -51,7 +51,7 @@
   $pArray       [$p] = FALSE;
   $pText        [$p] = FALSE;
 
-  $pLevelDir    [$p] = $pTraceDir ?? '';
-  $pOccurDir    [$p] = $pTraceDir ?? '';
+  $pLevelDir    [$p] = $pLevelDir [$p-1] ?? $pTraceDir ?? '';
+  $pOccurDir    [$p] = $pOccurDir [$p-1] ?? $pTraceDir ?? '';
 
 ?>

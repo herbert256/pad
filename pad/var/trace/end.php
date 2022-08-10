@@ -18,6 +18,6 @@
       'options' => $pOpts_trace
     ];
 
-  pFile_put_contents ( $pOccurDir [$p] . "/fields/$pFldCnt.json", $pTrace_data );
+  pFile_put_contents ( $pOccurDir [$p] . "/fields/$pFld-$pFldCnt.json", $pTrace_data );
 
 ?>
