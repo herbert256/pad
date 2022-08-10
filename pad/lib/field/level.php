@@ -3,29 +3,37 @@
 
   function pField_level ( $field, $type ) {
 
-    global $p, $pCurrent, $pPrmsTag;
+    global $p, $pCurrent, $pPrmsTag, $pName;
 
     if ( is_numeric($field) ) 
       return pField_level_nr ($field);
 
+
+
     for ( $i=$p; $i; $i-- )
-      if ( isset ( $pCurrent [$i] [$field] ) ) {
+      if ( array_key_exists ( $field, $pCurrent [$i] ) ) {
         $work = $pCurrent [$i] [$field];
         if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
         elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
       }
 
+    if ( array_key_exists ( $field, $GLOBALS ) ) {
+      $work = $GLOBALS [$field];
+      if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
+      elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
+    }
+
+    return INF;
+
     for ( $i=$p; $i; $i-- ) {
-
-      if ( $i == 1 )
-        $work = pField_search ( $GLOBALS, $field, $type );
-      else
-        $work = pField_search ( $pCurrent [$i], $field, $type );
-
+      $work = pField_search ( $pCurrent [$i], $field, $type );
       if ( $work !== INF )
         return $work;
-
     }
+
+    $work = pField_search ( $GLOBALS, $field, $type );
+    if ( $work !== INF )
+      return $work;
 
     for ( $i=$p; $i; $i-- )
       if ( isset ( $pPrmsTag [$i] [$field] ) )

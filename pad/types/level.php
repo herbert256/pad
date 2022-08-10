@@ -1,5 +1,5 @@
 <?php
 
-  return pGet_level_array ($pTag);
+  return pGet_level_array ( $pTag [$p] );
 
 ?>

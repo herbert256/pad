@@ -8,6 +8,7 @@
     elseif ( file_exists     ( PAD . "tags/$type.php"                 ) ) return 'tag_pad';
     elseif ( file_exists     ( PAD . "tags/$type.html"                ) ) return 'tag_pad';
     elseif ( file_exists     ( PAD . "tag/$type.php"                  ) ) return 'parm';
+    elseif ( pChk_level_array ( $type                                  ) ) return 'level';
     elseif ( isset               ( $GLOBALS['pFlagStore'] [$type]     ) ) return 'flag';
     elseif ( isset               ( $GLOBALS['pContentStore'] [$type]  ) ) return 'content';
     elseif ( isset               ( $GLOBALS['pDataStore'] [$type]     ) ) return 'data';
@@ -20,7 +21,6 @@
     elseif ( file_exists     ( APP  . "functions/$type.php"           ) ) return 'function_app';
     elseif ( file_exists     ( PAD . "functions/$type.php"            ) ) return 'function_pad';
     elseif ( function_exists     ( $type                                  ) ) return 'function_php';
-    elseif ( pChk_level_array ( $type                                  ) ) return 'level';
     elseif ( pIs_object       ( $type                                  ) ) return 'object';
     elseif ( pIs_resource     ( $type                                  ) ) return 'resource';
     else                                                                      return FALSE;
