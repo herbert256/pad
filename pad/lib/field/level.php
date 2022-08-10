@@ -9,26 +9,27 @@
       return pField_level_nr ($field);
 
     for ( $i=$p; $i; $i-- )
-      if ( isset ( $pCurrent [$i] [$field] ) )
-        if ( is_array ( $pCurrent [$i] [$field] ) ) {
-           if ( $type == 3 or $type == 4)
-            return $pCurrent [$i] [$field];
-        } else {
-           if ( $type == 1 or $type == 42)
-            return $pCurrent [$i] [$field];
-        }
+      if ( isset ( $pCurrent [$i] [$field] ) ) {
+        $work = $pCurrent [$i] [$field];
+        if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
+        elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
+      }
 
     for ( $i=$p; $i; $i-- ) {
 
       if ( $i == 1 )
         $work = pField_search ( $GLOBALS, $field, $type );
       else
-        $work = pField_search ( $pCurrent[$i], $field, $type );
+        $work = pField_search ( $pCurrent [$i], $field, $type );
 
       if ( $work !== INF )
         return $work;
 
     }
+
+    for ( $i=$p; $i; $i-- )
+      if ( isset ( $pPrmsTag [$i] [$field] ) )
+        return $pPrmsTag [$i] [$field];
 
     for ( $i=$p; $i; $i-- )
       if ( $pName[$i] ) {
