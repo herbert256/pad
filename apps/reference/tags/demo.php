@@ -2,7 +2,7 @@
 
   if ( $pWalk[$p] == 'start' ) {
 
-    $pDemo_source = pColors_string (trim($pContent));
+    $pSourcex = pColors_string (trim($pContent));
 
     $pWalk[$p] = 'end';
 
@@ -13,7 +13,7 @@
   $pContent = 
     '<!-- demo -->' . 
     '<tr>' .
-      '<td style="vertical-align:top">' .  $pDemo_source   . '</td>' .
+      '<td style="vertical-align:top">' .  trim($pSourcex)  . '</td>' .
       '<td style="vertical-align:top">' .  trim($pContent) . '</td>' .
     '</tr>';
  
