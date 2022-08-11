@@ -2,19 +2,19 @@
 
   if ( $pWalk[$p] == 'start' ) {
 
-    $pDemo_source [$p] = $pContent;
+    $pDemo_source = pColors_string (trim($pContent));
 
-    $pad_walk = 'end';
+    $pWalk[$p] = 'end';
 
    return TRUE;
 
   }
 
-  return 
+  $pContent = 
     '<!-- demo -->' . 
     '<tr>' .
-      '<td style="vertical-align:top">' .  pColors_string (trim($pDemo_source [$p])) . '</td>' .
-      '<td style="vertical-align:top">' .  trim($pResult [$p]) .                          '</td>' .
+      '<td style="vertical-align:top">' .  $pDemo_source   . '</td>' .
+      '<td style="vertical-align:top">' .  trim($pContent) . '</td>' .
     '</tr>';
  
 ?>

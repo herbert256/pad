@@ -1,5 +1,5 @@
 <?php
 
-  $xar_null  = NULL;
+  $abc = '123';
 
 ?>

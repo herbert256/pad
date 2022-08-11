@@ -1,6 +1,7 @@
 <?php
 
   $title = $dir;
+  $intro = '';
   
   $show_php = FALSE;
   $staff    = FALSE;

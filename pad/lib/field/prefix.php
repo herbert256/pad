@@ -11,7 +11,7 @@
       return pField_prefix_nr ($prefix, $field);
 
     if ( $prefix == 'PHP' or $prefix === 1 or $prefix === '1' )
-      return pField_search ($GLOBALS, $field, $type);
+      $return = pField_search ($GLOBALS, $field, $type);
 
     $lvl = pField_tag_lvl_base ( $prefix, FALSE );
 
@@ -45,5 +45,35 @@
 
   }
 
+
+  function pField_search ($current, $field, $type) {
+
+    if ( is_object ($current) or is_resource ($current) )
+      $current = (array) $current;
+
+    $names = explode('.', $field);
+
+    foreach ( $names as $name ) {
+
+      if ( ! array_key_exists ( $name, $current ) )
+        return INF;
+
+      if ( is_object ($current[$name]) or is_resource ($current[$name]) )
+        $current [$name] = (array) $current [$name];
+          
+      $current = &$current [$name];
+        
+    }
+
+    if ( ($type == 1 or $type == 2) and is_array($current) )
+      return INF;
+
+    if ( ($type == 3 or $type == 4) and ! is_array($current) )
+      return INF;
+
+    return $current;
+
+  }
+  
 
 ?>

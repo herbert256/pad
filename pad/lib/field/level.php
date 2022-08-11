@@ -21,11 +21,6 @@
       elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
     }
 
-
-    for ( $i=$p; $i; $i-- )
-      if ( isset ( $pPrmsTag [$i] [$field] ) )
-        return $pPrmsTag [$i] [$field];
-
     return INF;
     
   }
