@@ -23,7 +23,6 @@
           'name' => $GLOBALS['pName'][$p],
           'default' => $GLOBALS['pDefault'][$p],
           'walk' => $GLOBALS['pWalk'][$p],
-          't-result' => $GLOBALS['pTagResult'][$p],
           'hit' => $GLOBALS['pHit'][$p],
           'null' => $GLOBALS['pNull'][$p],
           'else' => $GLOBALS['pElse'][$p],

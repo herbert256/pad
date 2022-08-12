@@ -13,16 +13,18 @@
     $pTiming = FALSE;
 
     include PAD . 'level/setup.php'; 
+    include PAD . 'level/inits.php'; 
     $pBetween   = 'fake';
     include PAD . 'level/between.php'; 
     $pType [$p]  = 'true';
     $pPair [$p]  = FALSE;
 
     include PAD . 'level/setup.php'; 
+    include PAD . 'level/inits.php'; 
     $pBetween   = 'fake';
     include PAD . 'level/between.php'; 
     $pType [$p]  = 'true';
-    $pPair [$p]  = FALSE;
+    $pPair [$p]  = TRUE;
                                        $fake_base  = '{' . "$tag";
     if ($kind == 'open' and $options)  $fake_base .= " $options";
                                        $fake_base .= "}$content{else}$false{/$tag";

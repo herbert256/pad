@@ -2,8 +2,6 @@
 
   pTiming_start ('build');
 
-  $pBase[1] = '';
-
   if ( isset ( $_REQUEST['pInclude']) )
     $pBuild_mode = 'include';
 

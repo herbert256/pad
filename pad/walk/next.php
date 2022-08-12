@@ -11,9 +11,9 @@
   if ( $pWalk [$p] ) {
 
     if ( $pArray )
-      $pData [$p] = $pTagResult [$p];
+      $pData [$p] = $pTagResult;
     elseif ( $pText ) 
-      $pBase [$p] = $pTagResult [$p];
+      $pBase [$p] = $pTagResult;
     elseif ( $pElse ) 
       $pBase [$p] = $pFalse [$p];
  

@@ -19,7 +19,7 @@
 
   // Trace the internal working of PAD
 
-  $pTrace = FALSE;  
+  $pTrace = TRUE;  
 
   // Keep track of stuff
 

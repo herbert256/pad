@@ -15,7 +15,9 @@
       $parm  = $temp[2]??'';
     }
 
-    if ( in_array ( $field, ['fields','names','values'] ) )
+    if ( ! $tag )
+      $pIdx = pFieldFirstNonParm  ();
+    elseif ( in_array ( $field, ['fields','names','values'] ) )
       $pIdx = pField_tag_lvl ($tag, TRUE);
     else
       $pIdx = pField_tag_lvl ($tag, FALSE);
@@ -36,6 +38,19 @@
     return INF;
 
   }
+
+
+  function pFieldFirstNonParm  () {
+
+    global $p, $pType;
+
+    for ($i=$p; $i; $i--)
+      if ( $pType[$i] and $pType[$i] <> 'parm' )
+        return $i;
+
+    return $p - 1;
+
+  }  
 
 
 ?>

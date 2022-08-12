@@ -1,7 +1,7 @@
 <?php
 
   $pTag_trace_data ['walk_after'] = $pWalk [$p];
-  $pTag_trace_data ['result']     = $pTagResult [$p];
+  $pTag_trace_data ['result']     = $pTagResult;
   $pTag_trace_data ['content']    = $pTagContent;
   $pTag_trace_data ['globals']    = $GLOBALS;
 

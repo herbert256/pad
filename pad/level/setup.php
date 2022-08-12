@@ -22,7 +22,7 @@
 
   $pData        [$p] = [];
   $pCurrent     [$p] = [];
-  $pKey         [$p] = 1;
+  $pKey         [$p] = 0;
   $pDefault     [$p] = FALSE;
 
   $pWalk        [$p] = '';
@@ -44,7 +44,6 @@
 
   $pTagCnt      [$p] = 0;
  
-  $pTagResult   [$p] = FALSE;
   $pHit         [$p] = FALSE;
   $pNull        [$p] = FALSE;
   $pElse        [$p] = FALSE;

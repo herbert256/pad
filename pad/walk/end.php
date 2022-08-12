@@ -11,9 +11,9 @@
   // if ( $pNull ) 
   //   $pResult [$p] = '';
   // elseif ( $pArray )
-  //   $pData [$p] = $pTagResult [$p];
+  //   $pData [$p] = $pTagResult;
   // elseif ( $pText ) 
-  //   $pResult [$p] = $pTagResult [$p];
+  //   $pResult [$p] = $pTagResult;
   // elseif ( $pElse ) 
   //   $pResult [$p] = $pFalse [$p];
  
