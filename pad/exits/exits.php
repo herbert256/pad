@@ -2,7 +2,7 @@
 
   pTiming_start ('exit');
 
-  $pOutput = $pResult [1];
+  $pOutput = $pResult [0];
 
   $pOutput = str_replace ( 
     [ '&open;', '&close;', '&pipe;', '&eq;', '&comma;'], 

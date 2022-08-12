@@ -1,5 +1,5 @@
 <?php
-    
+
   if ( $pRestart )
     include PAD . 'inits/restart.php';    
     
@@ -17,23 +17,23 @@
 
   $pBetween = substr ( $pHtml [$p], $pStart [$p] + 1, $pEnd [$p]-$pStart [$p] - 1) ;
 
-  include PAD . 'level/setup.php';
-
+  $pN = $p+1;
+    
   include 'between.php';
 
   if     ( $pFirst == '!' ) return pHtml ( include PAD . 'var/raw.php' );
   elseif ( $pFirst == '$' ) return pHtml ( include PAD . 'var/opt.php' );
 
   if     ( ! ctype_alpha ( $pFirst )  ) return pIgnore ('ctype_alpha');
-  elseif ( ! pValid      ( $pTag[$p]) ) return pIgnore ('pValid');
+  elseif ( ! pValid      ( $pTag[$pN]) ) return pIgnore ('pValid');
 
-  $pPair  [$p] = include 'pair.php';
-  $pType  [$p] = include 'type_get.php';
-  $pSplit [$p] = include 'split.php';
+  $pPair  [$pN] = include 'pair.php';
+  $pType  [$pN] = include 'type_get.php';
+  $pSplit [$pN] = include 'split.php';
 
-  if ( $pPair  [$p] === NULL  ) return pIgnore ('pair');
-  if ( $pType  [$p] === FALSE ) return pIgnore ('type_get');
-  if ( $pSplit [$p] === FALSE ) return pIgnore ('split');
+  if ( $pPair  [$pN] === NULL  ) return pIgnore ('pair');
+  if ( $pType  [$pN] === FALSE ) return pIgnore ('type_get');
+  if ( $pSplit [$pN] === FALSE ) return pIgnore ('split');
 
   include 'start.php';
 

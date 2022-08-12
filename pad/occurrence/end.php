@@ -5,6 +5,7 @@
   
   $pResult [$p] .= $pHtml [$p];
 
-  pReset ($p);
+  if ( $p )
+    pReset ($p);
 
 ?>

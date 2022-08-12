@@ -7,4 +7,9 @@
 
   $pWalk        [$p] = 'start';
   
+  $pTagCnt      [$p] = 0;
+  $pOccur [$p] = 0;
+
+  $pResult [$p] = '' ;
+
 ?>

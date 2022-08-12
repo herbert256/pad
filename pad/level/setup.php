@@ -1,7 +1,7 @@
 <?php
   
-  $p++;
-  
+  $pTagCnt      [$p] = 0;
+
   $pTag         [$p] = '';
   $pType        [$p] = '';
 
@@ -33,16 +33,9 @@
   $pStart       [$p] = 0;
   $pEnd         [$p] = 0;
 
-  $pSave_vars   [$p] = [];
-  $pDelete_vars [$p] = [];
-  $pSet_save    [$p] = [];
-  $pSet_delete  [$p] = [];
-
   $pBase        [$p] = '';
   $pHtml        [$p] = '';
   $pResult      [$p] = '';
-
-  $pTagCnt      [$p] = 0;
  
   $pHit         [$p] = FALSE;
   $pNull        [$p] = FALSE;

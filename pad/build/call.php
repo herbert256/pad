@@ -13,25 +13,25 @@
        and (file_exists("$pBuild_now.php") or file_exists("$pBuild_now.html") ) ) {
  
       $pCall = "$pBuild_now.php";
-      $pBase [1] .= include PAD . 'level/call.php';
+      $pBase [0] .= include PAD . 'level/call.php';
 
     } elseif ( is_dir ($pBuild_now) ) {
 
       $pCall = "$pBuild_now/inits.php";
-      $pBase [1] .= include PAD . 'level/call.php';
+      $pBase [0] .= include PAD . 'level/call.php';
 
       $pExits [] = "$pBuild_now/exits.php";
 
     } else {
 
       $pCall = "$pBuild_now.php";
-      $pBase [1] .= include PAD . 'level/call.php';
+      $pBase [0] .= include PAD . 'level/call.php';
 
     }
 
   }
 
   foreach ( array_reverse ($pExits) as $pCall )
-    $pBase [1] .= include PAD . 'level/call.php';
+    $pBase [0] .= include PAD . 'level/call.php';
 
 ?>

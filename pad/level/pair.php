@@ -1,25 +1,25 @@
 <?php
 
-  $pPos = $pEnd [$p-1];
+  $pPos = $pEnd [$p];
 
   while (1) {
 
     do {
 
-      $pPos = strpos($pHtml [$p-1] , '{/' . $pTag [$p], $pPos);
+      $pPos = strpos($pHtml [$p] , '{/' . $pTag [$pN], $pPos);
 
       if ($pPos === FALSE) {
-        $pTrue [$p] = '';
+        $pTrue [$pN] = '';
         return FALSE;
       } 
 
-      $pTrue [$p] = substr($pHtml [$p-1], $pEnd [$p-1]+1, $pPos - $pEnd [$p-1] - 1);
+      $pTrue [$pN] = substr($pHtml [$p], $pEnd [$p]+1, $pPos - $pEnd [$p] - 1);
 
       $pPos++;
 
-    } while ( substr_count($pTrue [$p], '{'.$pTag [$p]) <> substr_count($pTrue [$p], '{/'.$pTag[$p]) );
+    } while ( substr_count($pTrue [$pN], '{'.$pTag [$pN]) <> substr_count($pTrue [$pN], '{/'.$pTag[$pN]) );
 
-    $pPair_check = substr($pHtml [$p-1], $pPos + strlen($pTag[$p]) + 1, 1);
+    $pPair_check = substr($pHtml [$p], $pPos + strlen($pTag[$pN]) + 1, 1);
     if ( ! ($pPair_check == ' ' or $pPair_check == '}' ) )
       continue;
 
@@ -27,18 +27,18 @@
 
   }
  
-  $pTrue [$p]  = substr ( $pTrue [$p], 0, $pPos );
-  $pEnd [$p-1] = strpos ( $pHtml [$p-1], '}', $pPos+2 );
+  $pTrue [$pN]  = substr ( $pTrue [$pN], 0, $pPos );
+  $pEnd [$p] = strpos ( $pHtml [$p], '}', $pPos+2 );
 
-  if ( $pEnd [$p-1] === FALSE )
+  if ( $pEnd [$p] === FALSE )
     return NULL;
 
-  $pBetween = substr ($pHtml [$p-1], $pPos+1, $pEnd [$p-1]-$pPos-1);
+  $pBetween = substr ($pHtml [$p], $pPos+1, $pEnd [$p]-$pPos-1);
   $pWords   = preg_split ("/[\s]+/", $pBetween, 2, PREG_SPLIT_NO_EMPTY);
 
   if ( count ($pWords) > 1 ) {
     include 'between.php';
-    $pPrmsType [$p] = 'close';
+    $pPrmsType [$pN] = 'close';
   }
 
   return TRUE;

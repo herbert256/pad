@@ -1,5 +1,7 @@
 <?php
-  
+
+  $p++;
+    
   $pCnt++;
 
   include 'trace/start.php';

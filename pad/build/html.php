@@ -1,6 +1,6 @@
 <?php
 
-  $pBase [1] .= '{content}';
+  $pBase [0] .= '{content}';
 
   $pBuild_now = substr(APP, 0, -1);
 
@@ -37,7 +37,7 @@
 
     }
 
-    $pBase [1] = str_replace ( '{content}', $pBuild_html, $pBase [1] );
+    $pBase [0] = str_replace ( '{content}', $pBuild_html, $pBase [0] );
 
   }
 

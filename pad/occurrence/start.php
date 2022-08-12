@@ -9,7 +9,7 @@
   if ( $pWalk [$p] <> 'start' )
     $pWalkData  [$p] [] = $pCurrent [$p];
 
-  if ( $p > 1 ) {
+  if ( $p ) {
 
     if ( pIs_default_data ($pData [$p]) ) {
       if ( isset($pPrmsVal [$p][0]) )

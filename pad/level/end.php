@@ -20,6 +20,7 @@
   if ( isset($pPrmsTag [$p] ['callback']) and ! isset($pPrmsTag [$p] ['before']) )
     include PAD . 'callback/exit.php' ;
 
+  if ( $p )
   include PAD . "options/go/end.php";
 
   if ( $pTrace ) 
@@ -27,7 +28,7 @@
 
   $p--;
   
-  if ($p)
+  if ( $p >= 0 )
     pHtml ( $pResult[$p+1]);
   
 ?>
