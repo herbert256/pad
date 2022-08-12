@@ -1,47 +1,36 @@
-<h3>Actions - Combine 2 sequence lists</h3>
+<h3>Actions</h3>
 
 {table}
 
-{demo}{list '5;10;15;20', store='mySequence1'}{/demo}
+{demo}{list '5;10;15;20',  store='mySequence1'} {$list} {/list}{/demo}
+{demo}{list '15;20;25;30', store='mySequence2'} {$list} {/list}{/demo}
 
-{demo}{mySequence1}
+{demo}{mySequence1 append='mySequence2'}
   {$mySequence1}
 {/mySequence1}{/demo}
 
-{demo}{list '15;20;25;30', store='mySequence2}{/demo}
-
-{demo}{mySequence2}
-  {$mySequence2}
-{/mySequence2}{/demo}
-
-{/table}<h4>Actions</h4>{table}
-
-{demo}{sequence 'mySequence1', append='mySequence2'}
+{demo}{mySequence1 prepend='mySequence2'}
   {$mySequence1}
-{/sequence}{/demo}
+{/mySequence1}{/demo}
 
-{demo}{sequence 'mySequence1', prepend='mySequence2'}
+{demo}{mySequence1 combine='mySequence2'}
   {$mySequence1}
-{/sequence}{/demo}
+{/mySequence1}{/demo}
 
-{demo}{sequence 'mySequence1', combine='mySequence2'}
+{demo}{mySequence1 merge='mySequence2'}
   {$mySequence1}
-{/sequence}{/demo}
+{/mySequence1}{/demo}
 
-{demo}{sequence 'mySequence1', merge='mySequence2'}
+{demo}{mySequence1 difference='mySequence2'}
   {$mySequence1}
-{/sequence}{/demo}
+{/mySequence1}{/demo}
 
-{demo}{sequence 'mySequence1', difference='mySequence2'}
+{demo}{mySequence1 intersection='mySequence2'}
   {$mySequence1}
-{/sequence}{/demo}
+{/mySequence1}{/demo}
 
-{demo}{sequence 'mySequence2', difference='mySequence1'}
-  {$mySequence2 }
-{/sequence}{/demo}
-
-{demo}{sequence 'mySequence1', intersection='mySequence2'}
+{demo}{mySequence1 only_other='mySequence2'}
   {$mySequence1}
-{/sequence}{/demo}
+{/mySequence1}{/demo}
 
 {/table}
