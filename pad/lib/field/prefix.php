@@ -10,21 +10,15 @@
     if ( is_numeric($field) )
       return pField_prefix_nr ($prefix, $field);
 
-    if ( $prefix == 'PHP' or $prefix === 1 or $prefix === '1' )
-      $return = pField_search ($GLOBALS, $field, $type);
+    $lvl = pFieldGetLevel ( $prefix, FALSE );
 
-    $lvl = pField_tag_lvl_base ( $prefix, FALSE );
-
-    if ( $lvl == 1 ) 
+    if ( $prefix == 'PHP' or $prefix === 0 or $prefix === '0' or $lvl === 0)
       $return = pField_search ($GLOBALS, $field, $type);
-    elseif ( $lvl ) 
+    else 
       $return = pField_search ($pCurrent [$lvl], $field, $type);
 
-    if ( $return === INF ) {
-      $pField_double_check = TRUE;
+    if ( $return === INF )
       $return = pFieldDoubleCheck ( $prefix, '#', $field ); 
-      $pField_double_check = FALSE;
-    }
 
     return $return;
     
@@ -33,7 +27,7 @@
 
   function pField_prefix_nr ($tag, $nr) {
 
-    $lvl = pField_tag_lvl ($tag, FALSE);
+    $lvl = pFieldGetLevel ($tag);
     $idx = intval ($nr) - 1 ;
 
     global $pPrmsVal;

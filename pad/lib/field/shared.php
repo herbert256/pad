@@ -1,35 +1,13 @@
 <?php
 
 
-  function pField_tag_lvl  ($search, $data) {
+  function pFieldGetLevel  ( $search ) {
 
     global $p, $pName;
 
     for ( $i=$p; $i; $i-- )
       if ( $pName[$i] == $search )
         return $i;
-
-    $return = pField_tag_lvl_base ($search, $data);
-    
-    if ( ! $return === FALSE)
-      return $return;
-
-    if ( isset( $GLOBALS['pDataStore'] [$search]) )
-      return pField_fake_level ( $search, $GLOBALS['pDataStore'] );
-
-    return $GLOBALS ['pad'];
-
-  }  
-
-
-  function pField_tag_lvl_base ($search, $data) {
-
-    global $p, $pDefault, $pName, $pPrmsVal;
-
-    if ( $data and ! isset($pPrmsVal [$p][0]) )
-      for ($i=$p-1; $i; $i--)
-        if ( !$pDefault[$i] )
-          return $i;
 
     if ( trim($search) === '0' or trim($search) == '' )
       return $p;
@@ -40,20 +18,24 @@
     if ( is_numeric($search) ) 
       return $search;
 
-    for ($i=$p; $i; $i--)
-      if ( $pName[$i] == $search)
-        return $i;
+    return $GLOBALS ['p'];
 
-    return FALSE;
+  } 
 
-  }
 
   function pFieldDoubleCheck ($first, $seperator, $second) {
+
+    if ( $GLOBALS ['pField_double_check'] )
+      return ;
+
+    $GLOBALS ['pField_double_check'] = TRUE;
 
     $tag = "$first$seperator$second";
     
     if     ( pField_check($tag) ) return pField_value($tag);
     elseif ( pArray_check($tag) ) return pArray_value($tag); 
+
+    $GLOBALS ['pField_double_check'] = FALSE;
 
   }
 

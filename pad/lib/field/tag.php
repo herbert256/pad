@@ -17,10 +17,8 @@
 
     if ( ! $tag )
       $pIdx = pFieldFirstNonParm  ();
-    elseif ( in_array ( $field, ['fields','names','values'] ) )
-      $pIdx = pField_tag_lvl ($tag, TRUE);
     else
-      $pIdx = pField_tag_lvl ($tag, FALSE);
+      $pIdx = pFieldGetLevel ($tag);
     
     if ( file_exists ( PAD . "tag/".$field.".php" ) )
       return include PAD . "tag/$field.php";
@@ -32,7 +30,7 @@
           return ( $parm == 'name') ? $key : $value;
     }
 
-    if ( $tag and ! $GLOBALS['pField_double_check'] )
+    if ( $tag )
       return pFieldDoubleCheck ( $tag, ':', $field );
 
     return INF;
