@@ -555,7 +555,7 @@
 
     global $pCurrent, $p;
 
-    for ( $search = $p; $search>1; $search-- )
+    for ( $search = $p; $search>=0; $search-- )
       if ( isset ( $pCurrent [$search] [$tag] ) and is_array ( $pCurrent [$search] [$tag]) )
         return TRUE;
 
@@ -567,7 +567,7 @@
 
     global $pCurrent, $p;
 
-    for ( $search = $p; $search>1; $search-- )
+    for ( $search = $p; $search>=0; $search-- )
       if ( isset ( $pCurrent [$search] [$tag] ) and is_array ( $pCurrent [$search] [$tag]) )
         return $pCurrent [$search] [$tag];
 

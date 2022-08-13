@@ -12,6 +12,8 @@
 
   $pResult [$p] = '' ;
   $pHtml [$p] = '' ;
+  $pName [$p] = '' ;
+  $pDone [$p] = [] ;
 
   $pSave_vars   [$p] = [];
   $pDelete_vars [$p] = [];

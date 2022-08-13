@@ -3,10 +3,10 @@
   function pGet_type_lvl ( $type ) {
 
     if     ( ! pValid    ( $type ) )                                       return FALSE;
-    elseif ( file_exists     ( APP . "tags/$type.php"                 ) ) return 'tag_app';
-    elseif ( file_exists     ( APP . "tags/$type.html"                ) ) return 'tag_app';
-    elseif ( file_exists     ( PAD . "tags/$type.php"                 ) ) return 'tag_pad';
-    elseif ( file_exists     ( PAD . "tags/$type.html"                ) ) return 'tag_pad';
+    elseif ( file_exists     ( APP . "tags/$type.php"                 ) ) return 'tag';
+    elseif ( file_exists     ( APP . "tags/$type.html"                ) ) return 'tag';
+    elseif ( file_exists     ( PAD . "tags/$type.php"                 ) ) return 'tag';
+    elseif ( file_exists     ( PAD . "tags/$type.html"                ) ) return 'tag';
     elseif ( file_exists     ( PAD . "tag/$type.php"                  ) ) return 'parm';
     elseif ( pChk_level_array ( $type                                  ) ) return 'level';
     elseif ( isset               ( $GLOBALS['pFlagStore'] [$type]     ) ) return 'flag';
@@ -31,10 +31,10 @@
 
         if ( ! pValid ( $type ) or ! pValid ( $name)  )                                            return FALSE;
     elseif ( pChk_level_array ( $name                               ) and $type == 'level'          ) return TRUE;
-    elseif ( file_exists  ( APP . "tags/$name.php"                 ) and $type == 'tag_app'        ) return TRUE;
-    elseif ( file_exists  ( APP . "tags/$name.html"                ) and $type == 'tag_app'        ) return TRUE;
-    elseif ( file_exists  ( PAD . "tags/$name.php"                 ) and $type == 'tag_pad'        ) return TRUE;
-    elseif ( file_exists  ( PAD . "tags/$name.html"                ) and $type == 'tag_pad'        ) return TRUE;
+    elseif ( file_exists  ( APP . "tags/$name.php"                 ) and $type == 'tag'        ) return TRUE;
+    elseif ( file_exists  ( APP . "tags/$name.html"                ) and $type == 'tag'        ) return TRUE;
+    elseif ( file_exists  ( PAD . "tags/$name.php"                 ) and $type == 'tag'        ) return TRUE;
+    elseif ( file_exists  ( PAD . "tags/$name.html"                ) and $type == 'tag'        ) return TRUE;
     elseif ( file_exists  ( APP . "tags/$name.php"                 ) and $type == 'app'            ) return TRUE;
     elseif ( file_exists  ( APP . "tags/$name.html"                ) and $type == 'app'            ) return TRUE;
     elseif ( file_exists  ( PAD . "tags/$name.php"                 ) and $type == 'pad'            ) return TRUE;
@@ -81,10 +81,10 @@
     elseif ( pChk_level_array ( $type                                  ) ) return 'level';
     elseif ( defined             ( $type                                  ) ) return 'constant';
     elseif ( file_exists         ( PAD . "sequence/actions/$type.php"     ) ) return 'action';
-    elseif ( file_exists         ( APP . "tags/$type.php"                 ) ) return 'tag_app';
-    elseif ( file_exists         ( APP . "tags/$type.html"                ) ) return 'tag_app';
-    elseif ( file_exists         ( PAD . "tags/$type.php"                 ) ) return 'tag_pad';
-    elseif ( file_exists         ( PAD . "tags/$type.html"                ) ) return 'tag_pad';
+    elseif ( file_exists         ( APP . "tags/$type.php"                 ) ) return 'tag';
+    elseif ( file_exists         ( APP . "tags/$type.html"                ) ) return 'tag';
+    elseif ( file_exists         ( PAD . "tags/$type.php"                 ) ) return 'tag';
+    elseif ( file_exists         ( PAD . "tags/$type.html"                ) ) return 'tag';
     elseif ( pIs_object       ( $type                                  ) ) return 'object';
     elseif ( pIs_resource     ( $type                                  ) ) return 'resource';
     else                                                                      return FALSE;
