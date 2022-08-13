@@ -341,8 +341,8 @@
 
     if     ( file_exists ( APP . "functions/$check.php" ) ) return 'app';
     elseif ( file_exists ( PAD . "functions/$check.php" ) ) return 'pad';
-    elseif ( function_exists ( $check                       ) ) return 'php';
-    else                                                        return pError ('Function not found: ' . $check);
+    elseif ( function_exists ( $check                   ) ) return 'php';
+    else                                                    return pError ('Function not found: ' . $check);
 
   }
 
@@ -488,6 +488,8 @@
 
     global $p, $pBetween, $pIgnCnt, $pTrace, $pLevelDir, $pIgnored;
 
+    $p--;
+    
     $pIgnCnt++;
 
     $pIgnored [$pIgnCnt] [] = "$info: $pBetween";
@@ -551,7 +553,7 @@
   }
 
 
-  function pChk_level_array ($tag) {
+  function pChkLevelArray ($tag) {
 
     global $pCurrent, $p;
 

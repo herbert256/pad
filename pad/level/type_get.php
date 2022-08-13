@@ -1,19 +1,19 @@
 <?php
     
-  $pNs = strpos($pTag [$pN], ':');
+  $pNs = strpos($pTag [$p], ':');
 
   if ( $pNs ) {
 
-    $pType [$pN] = substr ($pTag [$pN], 0, $pNs);
-    $pTag  [$pN] = substr ($pTag [$pN], $pNs+1);
+    $pType [$p] = substr ($pTag [$p], 0, $pNs);
+    $pTag  [$p] = substr ($pTag [$p], $pNs+1);
 
-    if ( ! file_exists ( PAD . "types/$pType[$pN].php" ) ) 
-      $pType [$pN] = FALSE;
+    if ( ! file_exists ( PAD . "types/$pType[$p].php" ) ) 
+      $pType [$p] = FALSE;
     
   } else
 
-    $pType [$pN] = pGet_type_lvl ( $pTag [$pN] );
+    $pType [$p] = pGet_type_lvl ( $pTag [$p] );
 
-  return $pType [$pN];  
+  return $pType [$p];  
 
 ?>

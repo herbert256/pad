@@ -10,7 +10,6 @@
   if ( $pTrace )
     pFile_put_contents ("$pTraceDir/html-base.html", $pBase [0] );
   
-  include PAD . 'level/inits.php';
   include PAD . 'occurrence/start.php';
 
   pTiming_end ('build');

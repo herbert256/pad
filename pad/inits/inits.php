@@ -14,6 +14,7 @@
   include 'ids.php';
   include 'vars.php';
   include 'config.php';
+  include 'trace.php';
   include 'nono.php';
   include 'fast.php';
   include 'error.php';
@@ -23,7 +24,6 @@
   include 'cache.php';
   include 'level.php';
   include 'options.php';
-  include 'trace.php';
   include 'parms.php';
 
   $pLib = APP . 'lib';

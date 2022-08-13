@@ -2,8 +2,8 @@
 
   $pFldCnt++;
 
-  $pPipe  = strpos($pBetween, '|');
-  $pSpace = strpos($pBetween, ' ');
+  $pPipe    = strpos ( $pBetween, '|' );
+  $pSpace   = strpos ( $pBetween, ' ' );
 
   if ($pPipe and (!$pSpace or $pPipe < $pSpace) ) {
     

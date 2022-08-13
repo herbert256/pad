@@ -1,5 +1,5 @@
 <?php
 
-  return 'function_php.php';
+  return call_user_func_array ($pTag [$p], $pPrmsVal [$p]);
 
 ?>

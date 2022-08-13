@@ -1,11 +1,8 @@
 <?php
 
-  $p++;
-    
   $pCnt++;
 
   include 'trace/start.php';
-  include 'inits.php';
   include 'parms.php';
 
   $pContent = $pTrue [$p];

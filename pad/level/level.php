@@ -11,29 +11,29 @@
   $pStart [$p] = strrpos ( $pHtml [$p], '{', $pEnd [$p] - strlen($pHtml [$p]) );
   
   if ( $pStart [$p] === FALSE ) {
-    $pHtml [$p] = substr ( $pHtml [$p], 0, $pEnd [$p] ) . '&close;' . substr ( $pHtml [$p], $pEnd [$p] + 1) ;
+    $pHtml [$p] = substr_replace ( $pHtml [$p], '&close;', $pEnd [$p], 1 );
     return;
   }
 
-  $pBetween = substr ( $pHtml [$p], $pStart [$p] + 1, $pEnd [$p]-$pStart [$p] - 1) ;
-
-  $pN = $p+1;
-    
-  include 'between.php';
+  $pBetween = substr ( $pHtml [$p], $pStart [$p] + 1, $pEnd [$p]-$pStart [$p] - 1 ) ;
+  $pFirst   = substr ( $pBetween , 0, 1 );
 
   if     ( $pFirst == '!' ) return pHtml ( include PAD . 'var/raw.php' );
   elseif ( $pFirst == '$' ) return pHtml ( include PAD . 'var/opt.php' );
 
-  if     ( ! ctype_alpha ( $pFirst )  ) return pIgnore ('ctype_alpha');
-  elseif ( ! pValid      ( $pTag[$pN]) ) return pIgnore ('pValid');
+  include 'setup.php';    
+  include 'between.php';
 
-  $pPair  [$pN] = include 'pair.php';
-  $pType  [$pN] = include 'type_get.php';
-  $pSplit [$pN] = include 'split.php';
+  if     ( ! ctype_alpha ( $pFirst )    ) return pIgnore ('ctype_alpha');
+  elseif ( ! pValid      ( $pTag [$p] ) ) return pIgnore ('pValid');
 
-  if ( $pPair  [$pN] === NULL  ) return pIgnore ('pair');
-  if ( $pType  [$pN] === FALSE ) return pIgnore ('type_get');
-  if ( $pSplit [$pN] === FALSE ) return pIgnore ('split');
+  $pPair  [$p] = include 'pair.php';
+  $pType  [$p] = include 'type_get.php';
+  $pSplit [$p] = include 'split.php';
+
+  if ( $pPair  [$p] === NULL  ) return pIgnore ('pair');
+  if ( $pType  [$p] === FALSE ) return pIgnore ('type_get');
+  if ( $pSplit [$p] === FALSE ) return pIgnore ('split');
 
   include 'start.php';
 

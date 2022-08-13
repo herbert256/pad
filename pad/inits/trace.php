@@ -11,22 +11,23 @@
   $pLevelDir [$p] = $pTraceDir; 
   $pOccurDir [$p] = $pTraceDir;
 
-  $pTrace_data_start = [
+  $pTrace_data = [
+    'app'         => $GLOBALS ['app'] ?? '',
+    'page'        => $GLOBALS ['page'] ?? '',
     'sessionID'   => $GLOBALS ['PADSESSID'] ?? '',
     'requestID'   => $GLOBALS ['PADREQID'] ?? '',
     'referenceID' => $GLOBALS ['PADREFID'] ?? '',
-    'app'         => $GLOBALS ['app'] ?? '',
-    'page'        => $GLOBALS ['page'] ?? '',
     'start'       => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0,
     'uri'         => $_SERVER ['REQUEST_URI']     ?? '' ,
     'referer'     => $_SERVER ['HTTP_REFERER']    ?? '' ,
     'remote'      => $_SERVER ['REMOTE_ADDR']     ?? '' ,
-    'agent'       => $_SERVER ['HTTP_USER_AGENT'] ?? ''
+    'agent'       => $_SERVER ['HTTP_USER_AGENT'] ?? '' ,
+    'headers'     => getallheaders() ?? '' ,
+    'request'     => $_REQUEST ?? '' ,
+    'server'      => $_SERVER ?? '' ,
+    'environment' => $_ENV ?? '' 
   ];
        
-  pFile_put_contents ($pTraceDir . "/headers-in.json", getallheaders()        );
-  pFile_put_contents ($pTraceDir . "/start.json",      $pTrace_data_start     );
-  pFile_put_contents ($pTraceDir . "/php.json",        pTrace_get_php_vars () );
-  pFile_put_contents ($pTraceDir . "/request.json",    $_REQUEST              );
+  pFile_put_contents ( $pTraceDir . "/start.json", $pTrace_data );
 
 ?>

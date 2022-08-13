@@ -1,11 +1,11 @@
 <?php
   
-  $pPrmsTag [$pN] = [];
-  $pPrmsVal [$pN] = [];
+  $pPrmsTag [$p] = [];
+  $pPrmsVal [$p] = [];
 
-  if ( ! in_array ( $pTag [$pN], ['if', 'case', 'while', 'until'] )  ) {
+  if ( ! in_array ( $pTag [$p], ['if', 'case', 'while', 'until'] )  ) {
    
-    $pPrms_org = pExplode ($pPrms [$pN], ',');
+    $pPrms_org = pExplode ($pPrms [$p], ',');
     
     foreach ( $pPrms_org as $pV ) {
 
@@ -23,17 +23,17 @@
 
       if ( pValid ($pW[0]) and ! is_numeric($pW[0]) )
         if ( count($pW) == 1 )
-          $pPrmsTag [$pN] [$pW[0]] = TRUE;
+          $pPrmsTag [$p] [$pW[0]] = TRUE;
         else
-          $pPrmsTag [$pN] [$pW[0]] = pEval ( $pW[1] );
+          $pPrmsTag [$p] [$pW[0]] = pEval ( $pW[1] );
       else
-        $pPrmsVal [$pN] [] = pEval ( $pV );
+        $pPrmsVal [$p] [] = pEval ( $pV );
 
     }
  
   }
 
-  $pPrm  [$pN] = $pPrmsVal [$pN][0] ?? '';
-  $pName [$pN] = $pPrmsTag [$pN]['name'] ?? $pTag [$pN];
+  $pPrm  [$p] = $pPrmsVal [$p][0] ?? '';
+  $pName [$p] = $pPrmsTag [$p]['name'] ?? $pTag [$p];
 
 ?>

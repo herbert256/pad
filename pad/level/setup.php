@@ -1,18 +1,18 @@
 <?php
   
-  $pTagCnt      [$p] = 0;
+  $pP = $p;
+  
+  $p++;  
 
   $pTag         [$p] = '';
   $pType        [$p] = '';
 
-  $pPrm         [$p] = ''; 
-
-  $pTagData     [$p] = '';
-  $pTrue        [$p] = '';
-
-  $pFalse       [$p] = '';
   $pPair        [$p] = FALSE;
 
+  $pTrue        [$p] = '';
+  $pFalse       [$p] = '';
+
+  $pPrm         [$p] = ''; 
   $pPrms        [$p] = '';
   $pPrmsType    [$p] = '';
   $pPrmsTag     [$p] = [];
@@ -20,12 +20,13 @@
 
   $pName        [$p] = '';
 
-  $pData        [$p] = [];
+  $pData        [$p] = pDefault_data ();
   $pCurrent     [$p] = [];
-  $pKey         [$p] = 0;
-  $pDefault     [$p] = FALSE;
+  $pKey         [$p] = 1;
+  $pDefault     [$p] = TRUE;
 
-  $pWalk        [$p] = '';
+  $pWalk        [$p] = 'start';
+
   $pWalkData    [$p] = [];
   
   $pDone        [$p] = [];
@@ -43,7 +44,14 @@
   $pArray       [$p] = FALSE;
   $pText        [$p] = FALSE;
 
-  $pLevelDir    [$p] = $pLevelDir [$p-1] ?? $pTraceDir ?? '';
-  $pOccurDir    [$p] = $pOccurDir [$p-1] ?? $pTraceDir ?? '';
+  $pLevelDir    [$p] = $pLevelDir [$p-1] ?? $pTraceDir;
+  $pOccurDir    [$p] = $pOccurDir [$p-1] ?? $pTraceDir;
+
+  $pSave_vars   [$p] = [];
+  $pDelete_vars [$p] = [];
+  $pSet_save    [$p] = [];
+  $pSet_delete  [$p] = [];
+
+  $pTagCnt      [$p] = 0;
 
 ?>

@@ -13,14 +13,12 @@
     $pTiming = FALSE;
 
     include PAD . 'level/setup.php'; 
-    include PAD . 'level/inits.php'; 
     $pBetween   = 'fake';
     include PAD . 'level/between.php'; 
     $pType [$p]  = 'true';
     $pPair [$p]  = FALSE;
 
     include PAD . 'level/setup.php'; 
-    include PAD . 'level/inits.php'; 
     $pBetween   = 'fake';
     include PAD . 'level/between.php'; 
     $pType [$p]  = 'true';
