@@ -30,8 +30,8 @@
 
     global $p, $pPrmsVal;
     
-    if ( isset ( $pPrmsVal[$p-1] [$nr-1] ) )
-      return $pPrmsVal[$p-1] [$nr-1]; 
+    if ( isset ( $pPrmsVal[$p] [$nr-1] ) )
+      return $pPrmsVal[$p] [$nr-1]; 
     else
       return INF;
 

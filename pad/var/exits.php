@@ -1,7 +1,5 @@
   <?php
 
-  $p--;
-
   if ( $pTrace ) 
     include 'trace/end.php';
 

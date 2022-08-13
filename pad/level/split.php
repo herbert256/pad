@@ -31,8 +31,10 @@
 
     $p1 = strpos($pTrue [$p+1], '{else}', ++$p1);
 
-    if ( $p1 === FALSE )
+    if ( $p1 === FALSE ) {
+      $pFalse [$p+1] = '';
       return TRUE;
+    }
     
     $pCheck = substr($pTrue [$p+1],0,$p1);
 

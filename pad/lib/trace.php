@@ -7,34 +7,34 @@
     if ( isset ( $GLOBALS ['p'] ) and $GLOBALS ['p'] > 0 ) {
       for ( $p=$GLOBALS ['p'];  $p>0; $p-- ) {
         $dump [$p] = [
-          'tag' => $GLOBALS['pTag'][$p],
-          'prms' => $GLOBALS['pPrms'][$p],
-          't-type' => $GLOBALS['pType'][$p],
-          'prm' => $GLOBALS['pPrm'][$p],
-          'pair' => $GLOBALS['pPair'][$p],
-          'true' => pDump_short ($GLOBALS['pTrue'][$p]),
-          'false' => pDump_short ($GLOBALS['pFalse'][$p]),
-          'base' => pDump_short ($GLOBALS['pBase'][$p]),
-          'html' => pDump_short ($GLOBALS['pHtml'][$p]),
-          'result' => pDump_short ($GLOBALS['pResult'][$p]),
-          'p-type' => $GLOBALS['pPrmsType'][$p],
-          'flags' => $GLOBALS['pPrmsTag'][$p],
-          'values' => $GLOBALS['pPrmsVal'][$p],
-          'name' => $GLOBALS['pName'][$p],
-          'default' => $GLOBALS['pDefault'][$p],
-          'walk' => $GLOBALS['pWalk'][$p],
-          'hit' => $GLOBALS['pHit'][$p],
-          'null' => $GLOBALS['pNull'][$p],
-          'else' => $GLOBALS['pElse'][$p],
-          'array' => $GLOBALS['pArray'][$p],
-          'text' => $GLOBALS['pText'][$p]
+          'tag' => $GLOBALS['pTag'][$p]??'',
+          'prms' => $GLOBALS['pPrms'][$p]??'',
+          't-type' => $GLOBALS['pType'][$p]??'',
+          'prm' => $GLOBALS['pPrm'][$p]??'',
+          'pair' => $GLOBALS['pPair'][$p]??'',
+          'true' => pDump_short ($GLOBALS['pTrue'][$p]??''),
+          'false' => pDump_short ($GLOBALS['pFalse'][$p]??''),
+          'base' => pDump_short ($GLOBALS['pBase'][$p]??''),
+          'html' => pDump_short ($GLOBALS['pHtml'][$p]??''),
+          'result' => pDump_short ($GLOBALS['pResult'][$p]??''),
+          'p-type' => $GLOBALS['pPrmsType'][$p]??'',
+          'flags' => $GLOBALS['pPrmsTag'][$p]??'',
+          'values' => $GLOBALS['pPrmsVal'][$p]??'',
+          'name' => $GLOBALS['pName'][$p]??'',
+          'default' => $GLOBALS['pDefault'][$p]??'',
+          'walk' => $GLOBALS['pWalk'][$p]??'',
+          'hit' => $GLOBALS['pHit'][$p]??'',
+          'null' => $GLOBALS['pNull'][$p]??'',
+          'else' => $GLOBALS['pElse'][$p]??'',
+          'array' => $GLOBALS['pArray'][$p]??'',
+          'text' => $GLOBALS['pText'][$p]??''
         ];
       } 
     }
 
     if ( isset ( $GLOBALS ['p'] ) and $GLOBALS ['p'] > 0 ) {
       for ( $p=$GLOBALS ['p'];  $p>0; $p-- ) {
-        $dump ['data'] [$p] = $GLOBALS ['pData'] [$p];
+        $dump ['data'] [$p] = $GLOBALS ['pData'] [$p]??'';
       } 
     }
     

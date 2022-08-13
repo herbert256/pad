@@ -11,5 +11,14 @@
   $pOccur [$p] = 0;
 
   $pResult [$p] = '' ;
+  $pHtml [$p] = '' ;
+
+  $pSave_vars   [$p] = [];
+  $pDelete_vars [$p] = [];
+  $pSet_save    [$p] = [];
+  $pSet_delete  [$p] = [];
+
+  $pLevelDir    [$p] = $pLevelDir [$p-1] ?? $pTraceDir ?? '';
+  $pOccurDir    [$p] = $pOccurDir [$p-1] ?? $pTraceDir ?? '';
 
 ?>

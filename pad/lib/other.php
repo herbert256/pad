@@ -251,7 +251,9 @@
 
     global $pHtml, $pStart, $pEnd, $p;
 
-    $pHtml [$p] = substr($pHtml [$p], 0, $pStart [$p])
+    $pHtml [$p] = 
+    substr($pHtml [$p], 0, 
+      $pStart [$p])
                      . $html
                      . substr($pHtml [$p], $pEnd [$p]+1);
     
@@ -485,8 +487,6 @@
   function pIgnore ($info) {
 
     global $p, $pBetween, $pIgnCnt, $pTrace, $pLevelDir, $pIgnored;
-
-    $p--;
 
     $pIgnCnt++;
 
