@@ -44,8 +44,8 @@
   $pArray       [$p] = FALSE;
   $pText        [$p] = FALSE;
 
-  $pLevelDir    [$p] = $pLevelDir [$p-1] ?? $pTraceDir;
-  $pOccurDir    [$p] = $pOccurDir [$p-1] ?? $pTraceDir;
+  $pLevelDir    [$p] = $pOccurDir [$p-1] ?? $pTraceDir;
+  $pOccurDir    [$p] = $pLevelDir [$p];
 
   $pSave_vars   [$p] = [];
   $pDelete_vars [$p] = [];

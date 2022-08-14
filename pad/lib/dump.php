@@ -53,10 +53,14 @@
     pDumpRequest  ();
     pDumpArray    ( "APP variables", $app);
     pDumpArray    ( "PAD variables", $pad);
+    pDumpArray    ( "Level variables", $lvl);
     pDumpSQL      ();
     pDumpHeaders  ();
     pDumpArray    ('Configuration', $cfg );
     pDumpArray    ('PHP', $php);
+
+    echo ( "\n<b>GLOBALS</b>\n" );
+    echo htmlentities ( print_r ( $GLOBALS, TRUE ) );
 
     echo ( "\n</pre></div>" );
 
@@ -69,15 +73,13 @@
 
     $chk3 = ['page','app','PADSESSID','PADREQID','PHPSESSID','PADREFID' ];
 
-    $not  = [ 'pSql_connect', 'pPad_sql_connect', 'GLOBALS', 'pHeaders', 'pFphp', 'pFlvl', 'pFapp', 'pFcfg', 'pFpad', '$pFids', 'pTraceData' ];
+    $not  = [ 'pTag','pType','pPair','pTrue','pFalse','pPrm','pPrms','pPrmsType','pPrmsTag','pPrmsVal','pName','pData','pCurrent','pKey','pDefault','pWalk','pWalkData','pDone','pOccur','pStart','pEnd','pBase','pHtml','pResult','pHit','pNull','pElse','pArray','pText','pLevelDir','pOccurDir','pSave_vars','pDelete_vars','pSet_save','pSet_delete','pTagCnt' ];
 
     $chk1 = ['_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
 
-    $chk2 = ['pTag','pType','pPair','pPrmsType','pPrm','pPrms','pPrmsTag','pPrmsVal','pTrue','pFalse','pBase','pHtml','pResult','pName','pDefault','pWalk','pHit','pNull','pElse','pArray','pText'];
+    $chk2 = ['pTag','pType','pPair','pPrmsType','pPrm','pPrms','pPrmsTag','pPrmsVal','pTrue','pFalse','pBase','pHtml','pResult','pName','pDefault','pWalk','pHit','pNull','pElse','pArray','pText', 'pData'];
 
-    $settings = '';
-    if ( file_exists (PAD . 'config/config.php') )
-      $settings .= pFile_get_contents(PAD . 'config/config.php');
+    $settings = pFile_get_contents(PAD . 'config/config.php');
 
     foreach ($GLOBALS as $key => $value) {
 
@@ -151,12 +153,12 @@
     pDump_field  ( 'myself', $GLOBALS ['pTrace_myself']    );
 
     if ( count ( $GLOBALS ['pTrace_now'] ) )
-      pDumpArray  ( 'now', $GLOBALS ['pTrace_now'], 1 );
+      pDumpArray  ( 'now', $GLOBALS ['pTrace_now']);
 
-    pDumpArray  ( 'parsed', $GLOBALS ['pTrace_parsed'], 1 );
-    pDumpArray  ( 'after',  $GLOBALS ['pTrace_after'],  1 );
-    pDumpArray  ( 'go',     $GLOBALS ['pTrace_go'],     1 );
-    pDumpArray  ( 'result', $GLOBALS ['pEval_result'],       1 );
+    pDumpArray  ( 'parsed', $GLOBALS ['pTrace_parsed']);
+    pDumpArray  ( 'after',  $GLOBALS ['pTrace_after']);
+    pDumpArray  ( 'go',     $GLOBALS ['pTrace_go']);
+    pDumpArray  ( 'result', $GLOBALS ['pEval_result'] );
 
     echo ( "\n\n");
 
@@ -213,11 +215,11 @@
       return;
 
     if ( isset ( $GLOBALS ['p'] ) )
-      for ( $p=$GLOBALS ['p'];  $p>0; $p-- )
+      for ( $p=$GLOBALS ['p'];  $p>=0; $p-- )
         pDumpArray  ("Level: $p", pTraceGetLevel ($p));
 
     if ( isset ( $GLOBALS ['pData'] ) and is_array ( $GLOBALS ['pData'] ) )
-      for ( $lvl=$GLOBALS ['p']; $lvl; $lvl-- )
+      for ( $lvl=$GLOBALS ['p']; $lvl>=0; $lvl-- )
         if ( isset ($GLOBALS ['pData'][$lvl]) )
           pDumpArray  ('Level '.$lvl, $GLOBALS ['pData'][$lvl] );
     
@@ -233,7 +235,7 @@
         if (is_object($GLOBALS[$key]))
           pDump_object ($key, $GLOBALS[$key]);
         elseif (is_array ($GLOBALS[$key]))
-          pDumpArray ($key,  pDump_sanitize ($GLOBALS[$key]), 1);
+          pDumpArray ($key,  pDump_sanitize ($GLOBALS[$key]));
         else
           pDump_field ( $key, $GLOBALS[$key] ); 
 
@@ -277,17 +279,19 @@
   }
 
 
-  function pDumpArray ( $txt, $arr, $x=0) {
+  function pDumpArray ( $txt, $arr) {
 
     if ( ! is_array($arr) ) {
       echo ( "\n  [$txt] => [todo, not array] \n");
       return;
     }
 
-    if ( $x and ! count ($arr )) {
+    if ( ! count ($arr )) {
       echo ( "\n  [$txt] => []");
       return;
     }
+
+    $array = pDump_sanitize ($array);
 
     $p = htmlentities ( print_r ( $arr, TRUE ) ) ;
 

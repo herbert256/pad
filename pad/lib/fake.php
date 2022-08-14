@@ -1,12 +1,48 @@
 <?php
 
+  function pBuild ( $page, $mode='before', $merge='content' ) {
+
+    foreach ($GLOBALS as $key => $val )
+      if ( substr($key, 0, 1) == 'p' )
+        global $$key;
+
+    $Xp         = $p;
+    $XpTraceDir = $pTraceDir;
+    
+    $pCnt++;
+
+    include PAD . 'level/setup.php'; 
+
+    $pTraceDir      = $pOccurDir [$p] . '/build';
+    $pLevelDir [$p] = $pTraceDir;
+    $pOccurDir [$p] = $pTraceDir;
+
+    include PAD . 'level/trace/start.php'; 
+    include PAD . 'occurrence/trace/start.php'; 
+
+    $pBuild_mode  = $mode;
+    $pBuild_merge = $merge;
+
+    include PAD . 'build/build.php'; 
+
+    $pHtml [$p] = $Base [$p];    
+
+    while ( $p > $Xp ) 
+      include PAD . 'level/level.php'; 
+
+    $pTraceDir = $XpTraceDir;
+ 
+    return $pHtml [$Xp+1];
+
+  }
+
   function pFakeXXX ( $contentxx ) {
 
     foreach ($GLOBALS as $key => $val )
       if ( substr($key, 0, 1) == 'p' )
         global $$key;
 
-    $fake_lvl = $p;
+    $Xp = $p;
     
     $pCnt++;
 
@@ -14,78 +50,13 @@
     include PAD . 'level/trace/start.php'; 
     include PAD . 'occurrence/trace/start.php'; 
 
-    $pHtml [$p] = "{true}$contentxx{/true}";    
+    $pHtml [$p] = $contentxx;    
 
-    while ( $p > $fake_lvl ) 
+    while ( $p > $Xp ) 
       include PAD . 'level/level.php'; 
 
- #   $p = $fake_lvl;
-    
-    return $pHtml [$fake_lvl+1];
+    return $pHtml [$Xp+1];
 
-  }
-
-  function pFakex ( $tag='true', $options='', $content='', $false='', $kind='open' ) {
-
-    foreach ($GLOBALS as $key => $val )
-      if ( substr($key, 0, 1) == 'p' )
-        global $$key;
-
-    $fake_lvl       = $p;
-    $fake_timing    = $pTiming;
- 
-    $pTiming = FALSE;
-
-    include PAD . 'level/setup.php'; 
-    include PAD . 'level/setup.php'; 
-
-    if ( $kind == 'open' and !$content and !$false ) {
-                                         $fake_base  = '{' . "$tag";
-      if ($options)                      $fake_base .= " $options";
-                                         $fake_base .= "}";
-   } else {
-                                         $fake_base  = '{' . "$tag";
-      if ($kind == 'open' and $options)  $fake_base .= " $options";
-                                         $fake_base .= "}$content{else}$false{/$tag";
-      if ($kind == 'close' and $options) $fake_base .= " $options";
-                                         $fake_base .= "}";
-    }
-
-    $pBase [$p] = $fake_base ;
-
-    include PAD . 'occurrence/start.php';
-
-    while ( $p > $fake_lvl ) 
-      include PAD . 'level/level.php'; 
-
-    $return = $pHtml [$p];
-
-    $p         = $fake_lvl;
-    $pTiming   = $fake_timing;
-
-    return $pHtml [$fake_lvl+1];
-
-  }
- 
- 
-  function pField_fake_level ( $name, $data ) {
-
-    global $p;
-
-    $pSave = $p;
-
-    $p = 999999;
-    include PAD . 'inits/setup.php';
-  
-    $GLOBALS ['pData']    [$p] = pMake_data ( $fake );
-    $GLOBALS ['pCurrent'] [$p] = reset ( $GLOBALS ['pData'] );
-    $GLOBALS ['pKey']     [$pKey] = key ( $GLOBALS ['pData'] [$p] );
-    $GLOBALS ['pOccur']   [$pKey] = 1;
-
-    $p = $pSave;
-
-    return 9999;
-    
   }
 
 ?>

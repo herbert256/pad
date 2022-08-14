@@ -21,11 +21,11 @@
   }
 
   $pCall = "$pBuild_now.php";
-  $pBase [0] .= include PAD . 'level/call.php';
+  $pBase [$p] .= include PAD . 'level/call.php';
 
   foreach ( array_reverse ($pExits) as $pCall )
     include PAD . 'level/call.php';
 
-  $pBase [0] .= pGet_html ( APP . "pages/$page.html" );
+  $pBase [$p] .= pGet_html ( APP . "pages/$page.html" );
 
 ?>
