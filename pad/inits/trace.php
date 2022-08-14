@@ -8,10 +8,7 @@
   if ( ! $pTrace )
     return;
 
-  $pLevelDir [$p] = $pTraceDir; 
-  $pOccurDir [$p] = $pTraceDir;
-
-  $pTrace_data = [
+  $pTraceData = [
     'app'         => $GLOBALS ['app'] ?? '',
     'page'        => $GLOBALS ['page'] ?? '',
     'sessionID'   => $GLOBALS ['PADSESSID'] ?? '',
@@ -19,15 +16,15 @@
     'referenceID' => $GLOBALS ['PADREFID'] ?? '',
     'start'       => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0,
     'uri'         => $_SERVER ['REQUEST_URI']     ?? '' ,
-    'referer'     => $_SERVER ['HTTP_REFERER']    ?? '' ,
-    'remote'      => $_SERVER ['REMOTE_ADDR']     ?? '' ,
-    'agent'       => $_SERVER ['HTTP_USER_AGENT'] ?? '' ,
-    'headers'     => getallheaders() ?? '' ,
-    'request'     => $_REQUEST ?? '' ,
-    'server'      => $_SERVER ?? '' ,
-    'environment' => $_ENV ?? '' 
   ];
-       
-  pFile_put_contents ( $pTraceDir . "/start.json", $pTrace_data );
+
+
+  pFields ( $pFphp, $pFlvl, $pFapp, $pFcfg, $pFpad, $pFids );
+
+  pFile_put_contents ( $GLOBALS['pTraceDir'] . "/start.json",         $pTraceData );
+  pFile_put_contents ( $GLOBALS['pTraceDir'] . "/headers-in.json", getallheaders() );
+  pFile_put_contents ( $GLOBALS['pTraceDir'] . "/php.json",     $pFphp  );
+  pFile_put_contents ( $GLOBALS['pTraceDir'] . "/ids.json",     $pFids  );
+  pFile_put_contents ( $GLOBALS['pTraceDir'] . "/config.json",  $pFcfg  );
 
 ?>

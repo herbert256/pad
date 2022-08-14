@@ -1,9 +1,13 @@
 <?php
 
-  if ( $p ) {
-    pFile_put_contents ( $pLevelDir [$p] . "/html-result.html", $pResult [$p] );
-    pFile_put_contents ( $pLevelDir [$p] . "/pad-end.json",     pTraceGetVars ()  );
-    pFile_put_contents ( $pLevelDir [$p] . "/app-end.json",     pTrace_get_app_vars ()  );
-  }
+  if ( ! $pTrace )
+    return;
+
+  pFields ( $pFphp, $pFlvl, $pFapp, $pFcfg, $pFpad, $pFids );
+
+  pFile_put_contents ( $pLevelDir [$p] . "/end.json",      pTraceGetLevel ($p) );
+  pFile_put_contents ( $pLevelDir [$p] . "/app-end.json",  $pFapp );
+  pFile_put_contents ( $pLevelDir [$p] . "/pad-end.json",  $pFpad ); 
+  pFile_put_contents ( $pLevelDir [$p] . "/result.html", $pResult [$p] );
   
 ?>

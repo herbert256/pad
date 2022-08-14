@@ -1,7 +1,8 @@
 <?php
 
-  $p  = -1;
-
   include PAD . 'level/setup.php';
+
+  $pLevelDir [$p] .= '/main';
+  $pOccurDir [$p] .= '/main';
 
 ?>

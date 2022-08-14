@@ -12,7 +12,7 @@
 
     $lvl = pFieldGetLevel ( $prefix, FALSE );
 
-    if ( $prefix == 'PHP' or $prefix === 0 or $prefix === '0' or $lvl === 0)
+    if ( $lvl === 0 )
       $return = pField_search ($GLOBALS, $field, $type);
     else 
       $return = pField_search ($pCurrent [$lvl], $field, $type);

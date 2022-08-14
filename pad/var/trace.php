@@ -2,7 +2,7 @@
 
   if ( $pVal == $pVal_base )
 
-    $pTrace_data = [ 
+    $pTraceData = [ 
       'field' => '{' . $pBetween . '}',
       'nr'    => $pFldCnt,
       'value' => $pVal
@@ -10,7 +10,7 @@
 
   else
 
-    $pTrace_data = [ 
+    $pTraceData = [ 
       'field'   => '{' . $pBetween . '}',
       'nr'      => $pFldCnt,
       'from '   => $pVal_base,
@@ -18,6 +18,6 @@
       'options' => $pOpts_trace
     ];
 
-  pFile_put_contents ( $pOccurDir [$p] . "/fields/$pFld-$pFldCnt.json", $pTrace_data );
+  pFile_put_contents ( $pOccurDir [$p] . "/fields/$pFld-$pFldCnt.json", $pTraceData );
 
 ?>

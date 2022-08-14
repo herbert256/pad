@@ -1,21 +1,21 @@
 <?php
 
-  if ( $GLOBALS['pTrace'] )
-    pFile_put_contents ( $GLOBALS['pTraceDir'] . "/headers-out.json", $GLOBALS ['pHeaders'] );
-
   if ( ! $GLOBALS['pTrace'] )
     return;
 
-  $GLOBALS['pTrace_data'] = [
+  $pTraceData = [
     'stop'    => $GLOBALS ['pStop'] ?? '',
     'length'  => $GLOBALS ['pLen'] ?? 0,
     'etag'    => $GLOBALS ['pEtag'] ?? '',
     'time'    => microtime(true) - ($_SERVER ['REQUEST_TIME_FLOAT'] ?? 0),
   ];
 
-  pFile_put_contents ( $GLOBALS['pTraceDir'] . "/end.json",         $GLOBALS['pTrace_data'] );
-  pFile_put_contents ( $GLOBALS['pTraceDir'] . "/html-result.html", $GLOBALS['pResult'][0]  );
-  pFile_put_contents ( $GLOBALS['pTraceDir'] . "/pad.json",         pTraceGetVars ()  );
-  pFile_put_contents ( $GLOBALS['pTraceDir'] . "/app.json",         pTrace_get_app_vars ()  );
+  pFields ( $pFphp, $pFlvl, $pFapp, $pFcfg, $pFpad, $pFids );
+
+  pFile_put_contents ( $GLOBALS['pTraceDir'] . "/end.json",         $pTraceData );
+  pFile_put_contents ( $GLOBALS['pTraceDir'] . "/result.html",  $GLOBALS['pResult'][0] ?? '');
+  pFile_put_contents ( $GLOBALS['pTraceDir'] . "/headers-out.json", $GLOBALS ['pHeaders']  ?? '');
+  pFile_put_contents ( $GLOBALS['pTraceDir'] . "/pad.json",     $pFpad  );
+  pFile_put_contents ( $GLOBALS['pTraceDir'] . "/app.json",     $pFapp  );
  
 ?>

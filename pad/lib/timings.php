@@ -8,8 +8,8 @@
    
     global $pTimingsCnt, $pTimings_start;
 
-    if ( isset ( $pTimings_start [$timing] ) )
-      pError ('tm-oops-1: ' . $timing);
+#    if ( isset ( $pTimings_start [$timing] ) )
+#      pError ('tm-oops-1: ' . $timing);
 
     $pTimingsCnt [$timing] = 1 + ($pTimingsCnt [$timing]??0);
 
@@ -26,7 +26,8 @@
     global $pTimings, $pTimings_start;
 
     if ( ! isset ( $GLOBALS['pTimings_start'] [$timing] ) )
-      pError ('tm-oops-2: ' . $timing);
+      return;
+#      pError ('tm-oops-2: ' . $timing);
 
     $now = microtime(true) - $pTimings_start[$timing];
 

@@ -1,13 +1,16 @@
 <?php
 
-  if ( $p <= 1 )
+  if ( ! $pTrace )
     return;
+
+  $pTraceData = [
+    'key'  => $pKey     [$p],
+    'data' => $pCurrent [$p],
+    'html' => $pHtml    [$p]
+  ];
 
   $pOccurDir [$p] = $pLevelDir [$p] . '/occur-' . $pOccur [$p];
 
-  pFile_put_contents ( $pOccurDir [$p] . "/data.json",      $pCurrent [$p]       );
-  pFile_put_contents ( $pOccurDir [$p] . "/pad.json",       pTraceGetVars () );
-  pFile_put_contents ( $pOccurDir [$p] . "/app.json",       pTrace_get_app_vars () );
-  pFile_put_contents ( $pOccurDir [$p] . "/html-base.html", $pBase [$p]          );
+  pFile_put_contents ( $pOccurDir [$p] . "/start.json",     $pTraceData );
   
 ?>

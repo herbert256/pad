@@ -6,6 +6,8 @@
 
   $pCurrent [$p] = $pData [$p] [$pKey [$p]];
 
+  include 'trace/start.php';
+
   if ( $pWalk [$p] <> 'start' )
     $pWalkData  [$p] [] = $pCurrent [$p];
 
@@ -25,7 +27,5 @@
   if ( isset($pPrmsTag [$p] ['callback']) and ! isset($pPrmsTag [$p] ['before']) )
     include PAD . 'callback/row.php' ;
 
-  if ( $pTrace ) 
-    include 'trace/start.php';
 
 ?>

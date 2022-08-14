@@ -12,13 +12,11 @@
     $pLevelDir [$p-1] = $pTraceDir . '/trace-' . $pCnt; 
     $pOccurDir [$p-1] = $pLevelDir [$p-1];
 
-    pFile_put_contents ( $pLevelDir [$p] . "/pad-start.json", pTraceGetVars ()  );
-    pFile_put_contents ( $pLevelDir [$p] . "/app-start.json", pTrace_get_app_vars ()  );
+    pTraceAll ( $pLevelDir [$p] . "/start" );
   
   } else {
 
-    pFile_put_contents ( $pLevelDir [$p] . "/pad-end.json", pTraceGetVars ()  );
-    pFile_put_contents ( $pLevelDir [$p] . "/app-end.json", pTrace_get_app_vars ()  );
+    pTraceAll ( $pLevelDir [$p] . "/end" );
 
     $pTrace           = $pBackupTrace [$p] ['trace'];
     $pLevelDir [$p-1] = $pBackupTrace [$p] ['level'];

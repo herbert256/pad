@@ -23,7 +23,7 @@
 
   include 'trace/level.php';
 
-  if ( count ($pData [$p] ) )
+  if ( count ( $pData [$p] ) )
     include PAD . 'occurrence/start.php';
   
 ?>

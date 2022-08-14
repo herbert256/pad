@@ -1,6 +1,31 @@
 <?php
 
-  function pFake ( $tag, $options, $content='', $false='', $kind='open' ) {
+  function pFakeXXX ( $contentxx ) {
+
+    foreach ($GLOBALS as $key => $val )
+      if ( substr($key, 0, 1) == 'p' )
+        global $$key;
+
+    $fake_lvl = $p;
+    
+    $pCnt++;
+
+    include PAD . 'level/setup.php'; 
+    include PAD . 'level/trace/start.php'; 
+    include PAD . 'occurrence/trace/start.php'; 
+
+    $pHtml [$p] = "{true}$contentxx{/true}";    
+
+    while ( $p > $fake_lvl ) 
+      include PAD . 'level/level.php'; 
+
+ #   $p = $fake_lvl;
+    
+    return $pHtml [$fake_lvl+1];
+
+  }
+
+  function pFakex ( $tag='true', $options='', $content='', $false='', $kind='open' ) {
 
     foreach ($GLOBALS as $key => $val )
       if ( substr($key, 0, 1) == 'p' )
@@ -8,26 +33,23 @@
 
     $fake_lvl       = $p;
     $fake_timing    = $pTiming;
-    $fake_trace_dir = $pTraceDir;
  
     $pTiming = FALSE;
 
     include PAD . 'level/setup.php'; 
-    $pBetween   = 'fake';
-    include PAD . 'level/between.php'; 
-    $pType [$p]  = 'true';
-    $pPair [$p]  = FALSE;
-
     include PAD . 'level/setup.php'; 
-    $pBetween   = 'fake';
-    include PAD . 'level/between.php'; 
-    $pType [$p]  = 'true';
-    $pPair [$p]  = TRUE;
-                                       $fake_base  = '{' . "$tag";
-    if ($kind == 'open' and $options)  $fake_base .= " $options";
-                                       $fake_base .= "}$content{else}$false{/$tag";
-    if ($kind == 'close' and $options) $fake_base .= " $options";
-                                       $fake_base .= "}";
+
+    if ( $kind == 'open' and !$content and !$false ) {
+                                         $fake_base  = '{' . "$tag";
+      if ($options)                      $fake_base .= " $options";
+                                         $fake_base .= "}";
+   } else {
+                                         $fake_base  = '{' . "$tag";
+      if ($kind == 'open' and $options)  $fake_base .= " $options";
+                                         $fake_base .= "}$content{else}$false{/$tag";
+      if ($kind == 'close' and $options) $fake_base .= " $options";
+                                         $fake_base .= "}";
+    }
 
     $pBase [$p] = $fake_base ;
 
@@ -40,7 +62,6 @@
 
     $p         = $fake_lvl;
     $pTiming   = $fake_timing;
-    $pTraceDir = $fake_trace_dir;
 
     return $pHtml [$fake_lvl+1];
 

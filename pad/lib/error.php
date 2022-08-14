@@ -81,9 +81,6 @@
 
   function pError_go ($error, $file, $line) {
 
-    if ( function_exists ( 'pErrorShort' ) ) 
-      pErrorShort ( "$file:$line $error" );
-
     try {
  
       return pError_try ($error, $file, $line); 

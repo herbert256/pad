@@ -8,7 +8,7 @@
   include "$pBuild_mode.php";
 
   if ( $pTrace )
-    pFile_put_contents ("$pTraceDir/html-base.html", $pBase [0] );
+    pFile_put_contents ("$pTraceDir/base.html", $pBase [0] );
   
   include PAD . 'occurrence/start.php';
 

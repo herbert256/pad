@@ -1,7 +1,7 @@
   <?php
 
   if ( $pTrace ) 
-    include 'trace/end.php';
+    include 'trace.php';
 
   pTiming_end ('var');
 

@@ -27,6 +27,9 @@
 
   $pVal = pField_value ($pFld);
 
-  include 'trace/start.php';
+  $pVal_base = $pVal;
+
+  if ( ! pField_check ( $pFld ) ) 
+      pError ( "Field '$pFld' not found" )
 
 ?>

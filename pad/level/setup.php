@@ -4,8 +4,8 @@
   
   $p++;  
 
-  $pTag         [$p] = '';
-  $pType        [$p] = '';
+  $pTag         [$p] = 'true';
+  $pType        [$p] = 'true';
 
   $pPair        [$p] = FALSE;
 

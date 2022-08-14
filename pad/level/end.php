@@ -21,14 +21,13 @@
     include PAD . 'callback/exit.php' ;
 
   if ( $p )
-  include PAD . "options/go/end.php";
+    include PAD . "options/go/end.php";
 
-  if ( $pTrace ) 
-    include 'trace/end.php';
+  include 'trace/end.php';
 
   $p--;
   
   if ( $p >= 0 )
-    pHtml ( $pResult[$p+1]);
+    pHtml ( $pResult[$p+1] );
   
 ?>

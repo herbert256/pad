@@ -9,14 +9,17 @@
       if ( $pName[$i] == $search )
         return $i;
 
-    if ( trim($search) === '0' or trim($search) == '' )
-      return $p;
+    if ( $search == 'PHP' )
+      return 0;
 
     if ( is_numeric($search) and $search < 0 )
       return $p - abs($search);
 
     if ( is_numeric($search) ) 
       return $search;
+
+    if (trim($search) == '' )
+      return $p;
 
     return $GLOBALS ['p'];
 

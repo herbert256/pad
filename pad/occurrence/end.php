@@ -1,7 +1,6 @@
 <?php
 
-  if ( $pTrace ) 
-    include 'trace/end.php';
+  include 'trace/end.php';
   
   $pResult [$p] .= $pHtml [$p];
 

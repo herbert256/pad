@@ -20,6 +20,7 @@
     } while ( substr_count($pTrue [$p], '{'.$pTag [$p]) <> substr_count($pTrue [$p], '{/'.$pTag[$p]) );
 
     $pPair_check = substr($pHtml [$pP], $pPos + strlen($pTag[$p]) + 1, 1);
+    
     if ( ! ($pPair_check == ' ' or $pPair_check == '}' ) )
       continue;
 

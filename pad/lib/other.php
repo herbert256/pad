@@ -498,7 +498,6 @@
 
     if ( $pTrace ) {
       $trace ['ignored'] = "$info: $pBetween";
-      $trace ['vars']    = pTraceGetVars () ;
       pFile_put_contents ( $pLevelDir [$p] . "/ignore.$pIgnCnt.json", $trace );
     }
     
