@@ -1,6 +1,6 @@
 <?php
 
-  pTiming_start ('var');
+  padTimingStart ('var');
 
   include 'inits.php';
 
@@ -15,7 +15,7 @@
   foreach ( $padData_default_end as $padV )
     $padOpts [] = $padV;
 
-  $padVal = pVar_opts ($padVal, $padOpts);
+  $padVal = padVarOpts ($padVal, $padOpts);
 
   return include 'exits.php';
 

@@ -1,6 +1,6 @@
 <?php
 
-  $padSeq_splice = pExplode ($padSeq_action_value, '|');
+  $padSeq_splice = padExplode ($padSeq_action_value, '|');
 
   array_splice (
     $padSeq_result,

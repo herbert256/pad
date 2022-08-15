@@ -1,6 +1,6 @@
 <?php
 
-  function pMake_data ($input, $content='', $name='') {
+  function padMakeData ($input, $content='', $name='') {
 
     if     ( $input === NULL       ) $data = [];
     elseif ( $input === FALSE      ) $data = [];
@@ -8,38 +8,38 @@
     elseif ( $input === INF        ) $data = [];
     elseif ( $input === TRUE       ) $data = [1 => [] ];
     elseif ( is_array ( $input)    ) $data = $input;
-    elseif ( is_object ( $input)   ) $data = pToArray( $input );
-    elseif ( is_resource ( $input) ) $data = pToArray( $input );
+    elseif ( is_object ( $input)   ) $data = padToArray( $input );
+    elseif ( is_resource ( $input) ) $data = padToArray( $input );
     elseif ( ! $input              ) $data = [];
     else                             $data = trim($input);
 
     if ( is_array ( $data ) )
-      return pData_chk ($data, $name);
+      return padDataChk ($data, $name);
 
     $file = APP . "data/$data";
-    if ( pFile_valid_name ($file) and file_exists ($file) )
-      $data = pFile_get_contents ($file);
+    if ( padFileValidName ($file) and file_exists ($file) )
+      $data = padFileGetContents ($file);
     elseif ( substr ( $data, 0, 7 ) == 'http://' or substr ( $data, 0, 8 ) == 'https://' )
-      $data = pCurl_data ($data);    
+      $data = padCurlData ($data);    
 
-    if ( pCheck_range ( $data ) ) { 
-      $data = pGet_range ( $data );
-      return pData_chk ($data, $name);
+    if ( padCheckRange ( $data ) ) { 
+      $data = padGetRange ( $data );
+      return padDataChk ($data, $name);
     }
 
     if ( substr($data, 0, 1) == '(' and substr($data, -1) == ')' ) {
 
-      $data = pExplode(substr($data, 1, -1), ',');
+      $data = padExplode(substr($data, 1, -1), ',');
 
       foreach ($data as $key => $value)
-        $data[$key] = pEval($value);
+        $data[$key] = padEval($value);
 
-      return pData_chk ($data, $name);
+      return padDataChk ($data, $name);
 
     }
     
     if ( ! $content )
-      $content = pContent_type ($data);
+      $content = padContentType ($data);
 
     $csv = $html = $xml = $json = $yaml = '';
     
@@ -48,8 +48,8 @@
     elseif ( $content == 'xml' )  $xml  = $data;
     elseif ( $content == 'json')  $json = $data;
     elseif ( $content == 'yaml')  $yaml = $data;
-    elseif ( $content == '')      return pData_error ($data, "Not be able to autodetect content type: $data");
-    else                          return pData_error ($data, "Content type '$content' not supported");
+    elseif ( $content == '')      return padDataError ($data, "Not be able to autodetect content type: $data");
+    else                          return padDataError ($data, "Content type '$content' not supported");
 
     $result = [];
   
@@ -75,7 +75,7 @@
             $result [$key1] [$header[$key2]] = trim(str_replace('!!Q!!', '"', urldecode($val2)));
 
       if ( ! is_array($result)  or $result === NULL or $result === FALSE)
-        return pData_error ($data, "CSV conversion error");
+        return padDataError ($data, "CSV conversion error");
 
     }
 
@@ -91,7 +91,7 @@
       $xml->cleanRepair();
 
       if ( $xml === FALSE )
-        return pData_error ($data, "TIDY conversion error (html)");
+        return padDataError ($data, "TIDY conversion error (html)");
   
     }
   
@@ -115,7 +115,7 @@
         $xml->cleanRepair();
         
         if ( $xml === FALSE )
-          return pData_error ($data, "TIDY conversion error (xml)");
+          return padDataError ($data, "TIDY conversion error (xml)");
       
         libxml_use_internal_errors (true);
         $simple_xml = simplexml_load_string ($xml, "SimpleXMLElement", LIBXML_NOERROR | LIBXML_ERR_NONE);
@@ -123,12 +123,12 @@
       }
 
       if ($simple_xml === FALSE)
-        return pData_error ($data, "XML conversion error");
+        return padDataError ($data, "XML conversion error");
   
       $json = json_encode($simple_xml, JSON_PARTIAL_OUTPUT_ON_ERROR);
       
       if ( $json === NULL or $json === FALSE )
-        return pData_error ($data, "JSON error (encode): " . json_last_error() . ' - ' . json_last_error_msg() );
+        return padDataError ($data, "JSON error (encode): " . json_last_error() . ' - ' . json_last_error_msg() );
       
       $json = str_replace('{"@attributes":{', '{"attr":{', $json);
       
@@ -149,12 +149,12 @@
       elseif ($first2 !== FALSE and $last2 !== FALSE and ($first1 === FALSE or $first2 < $first1) )
         $json = substr($json, $first2, ($last2-$first2)+1);
       else
-        return pData_error ($data, "JSON conversion error");
+        return padDataError ($data, "JSON conversion error");
 
       $result = json_decode($json, true);
       
       if ( ! is_array($result) or $result === NULL or $result === FALSE)
-        return pData_error ($data, "JSON error (decode): " . json_last_error() . ' - ' . json_last_error_msg() );
+        return padDataError ($data, "JSON error (decode): " . json_last_error() . ' - ' . json_last_error_msg() );
 
     }
 
@@ -163,16 +163,16 @@
       $result = yaml_parse ($yaml);
 
       if ( ! is_array($result) or $result === NULL or $result === FALSE)
-        return pData_error ($data, "YAML parse error" );
+        return padDataError ($data, "YAML parse error" );
       
     }
 
-    return pData_chk ($result, $name);
+    return padDataChk ($result, $name);
 
   }
   
   
-  function pData_error ($data, $error) {
+  function padDataError ($data, $error) {
 
     global $app, $page, $PADREQID, $padTraceDir, $padTrace;
 
@@ -181,8 +181,8 @@
       $id  = uniqid();
       $padut = [ 'error'=> $error, 'data' => $data ]; 
 
-      pFile_put_contents ( "errors/data/$app/$page/$PADREQID/$id.json", $padut ); 
-      pFile_put_contents ( "$padTraceDir/errors/data/$id.json",  $padut ); 
+      padFilePutContents ( "errors/data/$app/$page/$PADREQID/$id.json", $padut ); 
+      padFilePutContents ( "$padTraceDir/errors/data/$id.json",  $padut ); 
 
     }
 
@@ -190,28 +190,28 @@
     
   }
 
-  function pData_chk ($data,$name) {
+  function padDataChk ($data,$name) {
 
     $result = $data;
 
     if ( ! is_array ($result) )
-      return pDefault_data ();
+      return padDefaultData ();
 
-    if ( pIs_default_data($result) or ! count($result) )
+    if ( padIsDefaultData($result) or ! count($result) )
       return $result;
 
-    $result = pData_chk_simple_array ($result,$name);
-    $result = pData_chk_chk_one      ($result,$name);
-    $result = pData_chk_data_attr    ($result,$name);
-    $result = pData_chk_check_record ($result,$name); 
-    $result = pData_chk_check_array  ($result,$name);
+    $result = padDataChkSimpleArray ($result,$name);
+    $result = padDataChkChkOne      ($result,$name);
+    $result = padDataChkDataAttr    ($result,$name);
+    $result = padDataChkCheckRecord ($result,$name); 
+    $result = padDataChkCheckArray  ($result,$name);
 
     return $result;
 
   }
 
 
-  function pData_chk_simple_array ($data,$name) {
+  function padDataChkSimpleArray ($data,$name) {
 
     $result = $data;
 
@@ -219,7 +219,7 @@
       if ( is_array($padV) or ! is_numeric($padK) )
         return $result;
   
-    $name   = pData_name($name);
+    $name   = padDataName($name);
     $tmp    = $result;
     $result = [];
     
@@ -231,7 +231,7 @@
   }
   
 
-  function pData_chk_check_array ($data,$name) {
+  function padDataChkCheckArray ($data,$name) {
 
     $result = $data;
 
@@ -244,7 +244,7 @@
           return $result;
     }
 
-    $name = pData_name($name);
+    $name = padDataName($name);
 
     foreach ($result as $k => $v) {
       $tmp = $v;
@@ -258,7 +258,7 @@
   }
 
 
-  function pData_chk_check_record ($data,$name) {
+  function padDataChkCheckRecord ($data,$name) {
 
     $result = $data;
     
@@ -275,7 +275,7 @@
 
   }
 
-  function pData_chk_chk_one ($data,$name) {
+  function padDataChkChkOne ($data,$name) {
 
     $result = $data;
 
@@ -302,7 +302,7 @@
   }
 
 
-  function pData_chk_data_attr ($data,$name) {
+  function padDataChkDataAttr ($data,$name) {
 
     $result = $data;
     
@@ -313,7 +313,7 @@
             $result [$k2] = $v2;
           unset ($result [$k]);
         } else
-          $result [$k] = pData_chk_data_attr ( $result [$k], $name );
+          $result [$k] = padDataChkDataAttr ( $result [$k], $name );
 
     return $result;
 
@@ -321,12 +321,12 @@
 
 
 
-  function pData_name ($name) {
+  function padDataName ($name) {
 
     if     ( $name                          ) $return = $name;
     elseif ( $GLOBALS ['padName'] == 'data'    ) $return = $GLOBALS ['padPrm'] [p()];
-    elseif ( pTag_parm ('name')             ) $return = pTag_parm ('name');
-    elseif ( pTag_parm ('toData')           ) $return = pTag_parm ('toData');
+    elseif ( padTagParm ('name')             ) $return = padTagParm ('name');
+    elseif ( padTagParm ('toData')           ) $return = padTagParm ('toData');
     else                                      $return = $GLOBALS ['padName'] [p()];
 
     if (substr($return, 0, 1) == '$')

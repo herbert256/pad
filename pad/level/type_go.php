@@ -7,17 +7,17 @@
 
   $padTagContent = ''; ob_start();
 
-  pTiming_start ('tag');
+  padTimingStart ('tag');
   $padTagResult = include PAD . "types/" . $padType [$pad] . ".php";
-  pTiming_end ('tag');
+  padTimingEnd ('tag');
 
   $padTagContent .= ob_get_clean();
 
   if ( $padTrace )
     include 'trace/tag/after.php';
 
-  if ( is_object   ( $padTagResult ) ) $padTagResult = pToArray( $padTagResult );
-  if ( is_resource ( $padTagResult ) ) $padTagResult = pToArray( $padTagResult );
+  if ( is_object   ( $padTagResult ) ) $padTagResult = padToArray( $padTagResult );
+  if ( is_resource ( $padTagResult ) ) $padTagResult = padToArray( $padTagResult );
 
   if ( $padTagResult === TRUE AND $padTagContent <> '' )
     $padTagResult = $padTagContent;

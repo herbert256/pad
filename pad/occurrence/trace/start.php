@@ -11,6 +11,6 @@
 
   $padOccurDir [$pad] = $padLevelDir [$pad] . '/occur-' . $padOccur [$pad];
 
-  pFile_put_contents ( $padOccurDir [$pad] . "/start.json",     $padTraceData );
+  padFilePutContents ( $padOccurDir [$pad] . "/start.json",     $padTraceData );
   
 ?>

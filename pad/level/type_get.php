@@ -12,7 +12,7 @@
     
   } else
 
-    $padType [$pad] = pGet_type_lvl ( $padTag [$pad] );
+    $padType [$pad] = padGetTypeLvl ( $padTag [$pad] );
 
   return $padType [$pad];  
 

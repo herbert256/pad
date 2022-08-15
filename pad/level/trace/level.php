@@ -3,8 +3,8 @@
   if ( ! $padTrace )
     return;
 
-  pFile_put_contents ( $padLevelDir [$pad] . "/level.json", pTraceGetLevel($pad) ); 
-  pFile_put_contents ( $padLevelDir [$pad] . "/base.html",  $padBase [$pad]     );
-  pFile_put_contents ( $padLevelDir [$pad] . "/data.json",  $padData [$pad]     );
+  padFilePutContents ( $padLevelDir [$pad] . "/level.json", padTraceGetLevel($pad) ); 
+  padFilePutContents ( $padLevelDir [$pad] . "/base.html",  $padBase [$pad]     );
+  padFilePutContents ( $padLevelDir [$pad] . "/data.json",  $padData [$pad]     );
   
 ?>

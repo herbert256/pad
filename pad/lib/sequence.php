@@ -51,7 +51,7 @@
   function padSeq_array_action ($action) {
 
     $array  = $GLOBALS ['padSeq_action_value'];
-    $arrays = pExplode ($array, '|');
+    $arrays = padExplode ($array, '|');
 
     $padarms [] = $GLOBALS ['padSeq_result'];
 

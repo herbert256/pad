@@ -1,6 +1,6 @@
 <?php
 
-    pDump ();
-    pExit ();
+    padDump ();
+    padExit ();
 
 ?>

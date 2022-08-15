@@ -16,7 +16,7 @@
 
         $padSeq_result = include PAD . "sequence/actions/$padSeq_action_name.php";
 
-        pDone ( $padSeq_action_name, TRUE );
+        padDone ( $padSeq_action_name, TRUE );
 
       }
   

@@ -5,7 +5,7 @@
   
   $padAjax++;
 
-  $padUrl = "{$padGo}{$padPrm[$pad]}&pInclude=$padAjax";
+  $padUrl = "{$padGo}{$padPrm[$pad]}&padInclude=$padAjax";
 
   foreach($padPrmsTag [$pad] as $padPair_key => $padPair_value)
     if ( substr($padPair_key, 0, 4) <> 'pad_' and ! is_array($padPair_key) )

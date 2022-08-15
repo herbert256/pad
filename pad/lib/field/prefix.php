@@ -1,33 +1,33 @@
 <?php
 
 
-  function pField_prefix ( $field, $type ) {
+  function padFieldPrefix ( $field, $type ) {
 
     global $pad, $padCurrent, $padField_double_check;
 
     list ( $padrefix, $field ) = explode (':', $field, 2);
 
     if ( is_numeric($field) )
-      return pField_prefix_nr ($padrefix, $field);
+      return padFieldPrefixNr ($padrefix, $field);
 
-    $lvl = pFieldGetLevel ( $padrefix, FALSE );
+    $lvl = padFieldGetLevel ( $padrefix, FALSE );
 
     if ( $lvl === 0 )
-      $return = pField_search ($GLOBALS, $field, $type);
+      $return = padFieldSearch ($GLOBALS, $field, $type);
     else 
-      $return = pField_search ($padCurrent [$lvl], $field, $type);
+      $return = padFieldSearch ($padCurrent [$lvl], $field, $type);
 
     if ( $return === INF )
-      $return = pFieldDoubleCheck ( $padrefix, '#', $field ); 
+      $return = padFieldDoubleCheck ( $padrefix, '#', $field ); 
 
     return $return;
     
   }
 
 
-  function pField_prefix_nr ($tag, $nr) {
+  function padFieldPrefixNr ($tag, $nr) {
 
-    $lvl = pFieldGetLevel ($tag);
+    $lvl = padFieldGetLevel ($tag);
     $idx = intval ($nr) - 1 ;
 
     global $padPrmsVal;
@@ -40,7 +40,7 @@
   }
 
 
-  function pField_search ($current, $field, $type) {
+  function padFieldSearch ($current, $field, $type) {
 
     if ( is_object ($current) or is_resource ($current) )
       $current = (array) $current;

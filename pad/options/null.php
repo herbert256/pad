@@ -1,5 +1,5 @@
 <?php
 
-  return $padFlagStore [ pTag_parm('null') ];
+  return $padFlagStore [ padTagParm('null') ];
 
 ?>

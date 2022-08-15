@@ -1,6 +1,6 @@
 <?php
 
-  $padData [$pad] = pMake_data ( $padData [$pad-1] [$padKey[$pad-1]] );
+  $padData [$pad] = padMakeData ( $padData [$pad-1] [$padKey[$pad-1]] );
     
   foreach ($padData [$pad-1] as $padK => $padV)
     if ( $padK <> [$padKey[$pad-1]] )

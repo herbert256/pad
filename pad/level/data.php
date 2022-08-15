@@ -8,7 +8,7 @@
 
     if     ( $padArray [$pad]        ) $padNow = array_slice ($padTagResult, 0, 1); 
     elseif ( count ($padData [$pad]) ) $padNow = array_slice ($padData [$pad], 0, 1); 
-    else                           $padNow = pDefault_data ();  
+    else                           $padNow = padDefaultData ();  
 
   elseif ( $padArray [$pad] )
 
@@ -18,8 +18,8 @@
 
     $padNow = $padData [$pad];
 
-  $padData [$pad] = pMake_data ( $padNow );   
+  $padData [$pad] = padMakeData ( $padNow );   
 
-  $padDefault [$pad] = pIs_default_data ( $padData [$pad] );
+  $padDefault [$pad] = padIsDefaultData ( $padData [$pad] );
 
 ?>

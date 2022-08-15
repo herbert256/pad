@@ -1,6 +1,6 @@
 <?php
 
-  pTiming_start ('exit');
+  padTimingStart ('exit');
 
   $padOutput = $padResult [0];
 
@@ -19,21 +19,21 @@
   if ( $padRemove_whitespace )
    include 'whitespace.php';
   
-  $padEtag = pMd5 ($padOutput);
+  $padEtag = padMd5 ($padOutput);
 
   if ( $padTrack_file_data )
-    pTrack_file_data ();
+    padTrackFileData ();
 
   if ( $padTrack_db_data )
-    pTrack_db_data ();
+    padTrackDbData ();
 
   $padStop = ( $padEtag_304 and ($padCache_client??'') == $padEtag ) ? 304 : 200;
 
   if ( $padCache and $padCache_server_age )
     include PAD . 'cache/exits.php';
 
-  pTiming_end ('exit');
+  padTimingEnd ('exit');
 
-  pStop ($padStop);
+  padStop ($padStop);
 
 ?>

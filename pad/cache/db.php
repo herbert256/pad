@@ -1,73 +1,73 @@
 <?php
 
 
-  function pCache_init ($url, $etag) {
+  function padCacheInit ($url, $etag) {
     
     global $padCache_db_connect, $padCache_db_host, $padCache_db_user, $padCache_db_password, $padCache_db_database;
     
-    $padCache_db_connect = pDb_connect ( $padCache_db_host, $padCache_db_user, $padCache_db_password, $padCache_db_database );
+    $padCache_db_connect = padDbConnect ( $padCache_db_host, $padCache_db_user, $padCache_db_password, $padCache_db_database );
 
   }
     
 
-  function pCache_db ( $sql, $vars=[] ) {
+  function padCacheDb ( $sql, $vars=[] ) {
     
     global $padCache_db_connect;
 
-    return pDb_part2 ( $padCache_db_connect, $sql, $vars, 'cache' );
+    return padDbPart2 ( $padCache_db_connect, $sql, $vars, 'cache' );
     
   }
 
 
-  function pCache_etag ($etag) {
+  function padCacheEtag ($etag) {
 
-    return pCache_db ( "field age from etag where etag='{0}'", [$etag] );
+    return padCacheDb ( "field age from etag where etag='{0}'", [$etag] );
 
   }
 
   
-  function pCache_url ($url) {
+  function padCacheUrl ($url) {
 
-    return pCache_db ( "record age, etag from url where url='{0}'", [$url] );
-
-  }
-
-
-  function pCache_get ($etag) {
-
-    return pCache_db ( "field data from data where etag='{0}'", [$etag] );
+    return padCacheDb ( "record age, etag from url where url='{0}'", [$url] );
 
   }
 
 
-  function pCache_store ($url, $etag, $data) {
+  function padCacheGet ($etag) {
 
-    pCache_db ( "replace etag values ('{0}', {1})", [$etag,$_SERVER['REQUEST_TIME']] );
+    return padCacheDb ( "field data from data where etag='{0}'", [$etag] );
+
+  }
+
+
+  function padCacheStore ($url, $etag, $data) {
+
+    padCacheDb ( "replace etag values ('{0}', {1})", [$etag,$_SERVER['REQUEST_TIME']] );
 
     if ( ! $GLOBALS ['padCache_server_no_data'] ) {
-      pCache_db ( "replace url  values ('{0}', {1}, '{2}')", [$url,$_SERVER['REQUEST_TIME'],$etag] );
-      pCache_db ( "replace data values ('{0}', '{1}'     )", [$etag,$data] );
+      padCacheDb ( "replace url  values ('{0}', {1}, '{2}')", [$url,$_SERVER['REQUEST_TIME'],$etag] );
+      padCacheDb ( "replace data values ('{0}', '{1}'     )", [$etag,$data] );
     }
 
   }
 
   
-  function pCache_update ($url, $etag) {
+  function padCacheUpdate ($url, $etag) {
 
-    pCache_db ( "update etag set age={0} where etag='{1}'", [$_SERVER['REQUEST_TIME'],$etag] );
+    padCacheDb ( "update etag set age={0} where etag='{1}'", [$_SERVER['REQUEST_TIME'],$etag] );
 
     if ( ! $GLOBALS ['padCache_server_no_data'] )
-      pCache_db ( "update url set age={0} where url='{1}'", [$_SERVER['REQUEST_TIME'],$url] );
+      padCacheDb ( "update url set age={0} where url='{1}'", [$_SERVER['REQUEST_TIME'],$url] );
 
   }
 
 
-  function pCache_delete ($url, $etag) {
+  function padCacheDelete ($url, $etag) {
 
-    pCache_db ( "delete from etag where etag='{0}'", [$etag] );
+    padCacheDb ( "delete from etag where etag='{0}'", [$etag] );
  
     if ( ! $GLOBALS ['padCache_server_no_data'] )
-      pCache_db ( "delete from data where etag='{0}'", [$etag] );
+      padCacheDb ( "delete from data where etag='{0}'", [$etag] );
 
   }
 

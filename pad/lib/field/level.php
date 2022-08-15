@@ -1,12 +1,12 @@
 <?php
 
 
-  function pField_level ( $field, $type ) {
+  function padFieldLevel ( $field, $type ) {
 
     global $pad, $padCurrent, $padPrmsTag, $padName;
 
     if ( is_numeric($field) ) 
-      return pField_level_nr ($field);
+      return padFieldLevelNr ($field);
 
     for ( $i=$pad; $i; $i-- )
       if ( array_key_exists ( $field, $padCurrent [$i] ) ) {
@@ -26,7 +26,7 @@
   }
 
 
-  function pField_level_nr ($nr) {
+  function padFieldLevelNr ($nr) {
 
     global $pad, $padPrmsVal;
     

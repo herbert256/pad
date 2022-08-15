@@ -5,7 +5,7 @@
   else
     $padField_tag = '';
 
-  $padFieldResult = pField_tag ("$padField_tag#$padTag[$pad]");
+  $padFieldResult = padFieldTag ("$padField_tag#$padTag[$pad]");
 
   if ( $padFieldResult === INF )
     return NULL;

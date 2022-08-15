@@ -2,7 +2,7 @@
 
   if ( $padWalk[$pad] == 'start' ) {
 
-    $padSourcex = pColors_string (trim($padContent));
+    $padSourcex = padColorsString (trim($padContent));
 
     $padWalk[$pad] = 'end';
 

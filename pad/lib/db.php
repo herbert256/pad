@@ -5,32 +5,32 @@
     global $padSql_connect, $padSql_host , $padSql_user , $padSql_password , $padSql_database;
     
     if ( ! isset ( $padSql_connect ) ) {
-      pTiming_start ('sql');
-      $padSql_connect = pDb_connect ( $padSql_host , $padSql_user , $padSql_password , $padSql_database );
-      pTiming_end ('sql');
+      padTimingStart ('sql');
+      $padSql_connect = padDbConnect ( $padSql_host , $padSql_user , $padSql_password , $padSql_database );
+      padTimingEnd ('sql');
     }
     
-    return pDb_part2 ($padSql_connect, $sql, $vars, 'app');
+    return padDbPart2 ($padSql_connect, $sql, $vars, 'app');
     
   }
   
   
-  function pDb ( $sql, $vars = [] ) {
+  function padDb ( $sql, $vars = [] ) {
 
     global $padPad_sql_connect, $padPad_sql_host , $padPad_sql_user , $padPad_sql_password , $padPad_sql_database;
     
     if ( ! isset ( $padPad_sql_connect ) ) {
-      pTiming_start ('sql');
-      $padPad_sql_connect = pDb_connect ( $padPad_sql_host , $padPad_sql_user , $padPad_sql_password , $padPad_sql_database );
-      pTiming_end ('sql');
+      padTimingStart ('sql');
+      $padPad_sql_connect = padDbConnect ( $padPad_sql_host , $padPad_sql_user , $padPad_sql_password , $padPad_sql_database );
+      padTimingEnd ('sql');
     }
     
-    return pDb_part2 ($padPad_sql_connect, $sql, $vars, 'pad');
+    return padDbPart2 ($padPad_sql_connect, $sql, $vars, 'pad');
     
   }
 
   
-  function pDb_part2 ( $padSql_connect, $sql, $vars, $db_type ) {
+  function padDbPart2 ( $padSql_connect, $sql, $vars, $db_type ) {
 
     global $pad, $padDb_rows_found, $padTrack_sql, $padPrmsTag;
     
@@ -77,30 +77,30 @@
     if ( $padTrack_sql )
       $padSql_start = microtime(true);
     
-    pTiming_start ('sql');
+    padTimingStart ('sql');
     $query = mysqli_query ( $padSql_connect , $sql );
-    pTiming_end ('sql');
+    padTimingEnd ('sql');
 
     $GLOBALS ['padLast_sql'] = $sql;
     
     if ( ! $query )
-      pError ( 'MySQL-' . mysqli_errno ( $padSql_connect ) . ': ' . mysqli_error ( $padSql_connect ) . ' - '. $sql );
+      padError ( 'MySQL-' . mysqli_errno ( $padSql_connect ) . ': ' . mysqli_error ( $padSql_connect ) . ' - '. $sql );
 
-    pTiming_start ('sql');
+    padTimingStart ('sql');
     $padDb_rows_found = $rows = mysqli_affected_rows($padSql_connect);
-    pTiming_end ('sql');
+    padTimingEnd ('sql');
 
     if ( $rows > 0 and ($command == 'field' or $command == 'record') ) {
-      pTiming_start ('sql');
+      padTimingStart ('sql');
       $fields = mysqli_fetch_assoc ( $query );
       $GLOBALS ['padDb_last_fields'] = $fields;
-      pTiming_end ('sql');
+      padTimingEnd ('sql');
     }
 
     if     ( $command == 'insert'  ) {
-      pTiming_start ('sql');
+      padTimingStart ('sql');
       $return = mysqli_insert_id ( $padSql_connect );
-      pTiming_end ('sql');
+      padTimingEnd ('sql');
       if ( !$return )
         $return = $rows;
     }
@@ -137,10 +137,10 @@
 
     if ( $GLOBALS ['padTrack_sql'] ) {
 
-      $padSql_duration = pDuration ($padSql_start);
+      $padSql_duration = padDuration ($padSql_start);
 
       if ($GLOBALS ['padTrack_sql'])
-        pDb_log ($db_type, $padSql_duration, $padDb_rows_found, pDb_format_sql($sql)) ;
+        padDbLog ($db_type, $padSql_duration, $padDb_rows_found, padDbFormatSql($sql)) ;
       
     }
 
@@ -149,7 +149,7 @@
   }
 
 
-  function pDb_log ($type, $duration, $rows, $sql) {
+  function padDbLog ($type, $duration, $rows, $sql) {
         
     $backTrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS,3);
     extract ( $backTrace[2] );
@@ -164,17 +164,17 @@
     $log = "$start $file:$line rows:$rows time:$duration"
          . "\r\n\r\n$sql\r\n----------------------------------------\r\n";
 
-    pFile_put_contents ("sql/$type.txt", $log, 1);
+    padFilePutContents ("sql/$type.txt", $log, 1);
     
   }
 
 
-  function pDb_connect ( $host, $user, $padassword, $database ) {
+  function padDbConnect ( $host, $user, $padassword, $database ) {
 
     $connect = mysqli_connect ( "p:$host" , $user , $padassword , $database );
     
     if ( ! $connect )
-      return pError ( mysqli_connect_errno ( ) . ' - ' . mysqli_connect_error ( ) );
+      return padError ( mysqli_connect_errno ( ) . ' - ' . mysqli_connect_error ( ) );
       
     mysqli_query($connect, "SET SESSION sql_mode = 'TRADITIONAL'");
     
@@ -182,7 +182,7 @@
     
   }
 
-  function pDb_format_sql ($sql) {
+  function padDbFormatSql ($sql) {
 
     $work = preg_replace('/\s+/', ' ', $sql);
     $work = trim($work);
@@ -207,7 +207,7 @@
   }
 
 
-  function pDb_escape ($inp) {
+  function padDbEscape ($inp) {
 
     if (is_array($inp))
         return array_map (__METHOD__, $inp);

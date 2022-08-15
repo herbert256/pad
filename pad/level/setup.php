@@ -20,7 +20,7 @@
 
   $padName        [$pad] = '';
 
-  $padData        [$pad] = pDefault_data ();
+  $padData        [$pad] = padDefaultData ();
   $padCurrent     [$pad] = [];
   $padKey         [$pad] = 1;
   $padDefault     [$pad] = TRUE;

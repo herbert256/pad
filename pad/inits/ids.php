@@ -1,7 +1,7 @@
 <?php
  
-  $PADSESSID = $PADSESSID ?? $_REQUEST ['PADSESSID'] ?? pRandom_string();
+  $PADSESSID = $PADSESSID ?? $_REQUEST ['PADSESSID'] ?? padRandomString();
   $PADREFID  = $PADREFID  ?? $PADREQID ?? $_REQUEST ['PADREQID'] ?? '';
-  $PADREQID  = $PADREQID  ?? pRandom_string();
+  $PADREQID  = $PADREQID  ?? padRandomString();
 
 ?>

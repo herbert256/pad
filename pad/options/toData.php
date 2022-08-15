@@ -2,7 +2,7 @@
 
   $padStore_name = $padPrmsTag [$pad] ['toData'];
 
-  if ( !$padPair and !$padContent and !pIs_default_data($padData [$pad]) ) {
+  if ( !$padPair and !$padContent and !padIsDefaultData($padData [$pad]) ) {
     $padDataStore [$padStore_name] = $padData [$pad];
     return;
   }

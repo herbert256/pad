@@ -1,7 +1,7 @@
  <?php
 
 
-  function pTrack () {
+  function padTrack () {
   
     return [
         'session'   => $GLOBALS ['PADSESSID'] ?? '',
@@ -24,49 +24,49 @@
   }
 
 
-  function pTrack_file_request () {
+  function padTrackFileRequest () {
     
     $id    = $GLOBALS ['PADREQID'];
-    $track = pTrack ();
-    $json  = pJson ($track);
+    $track = padTrack ();
+    $json  = padJson ($track);
     
-    pFile_put_contents ( "track/$id.json", $json, 1);
+    padFilePutContents ( "track/$id.json", $json, 1);
       
   }
 
 
-  function pTrack_file_data () {
+  function padTrackFileData () {
 
     global $padEtag, $padOutput;
     
     $padContentStore_file = "output/$padEtag.html";
 
     if ( ! file_exists(DATA . "$padContentStore_file") )
-      pFile_put_contents ($padContentStore_file, $padOutput);
+      padFilePutContents ($padContentStore_file, $padOutput);
 
   }
 
 
-  function pTrack_db_session () {
+  function padTrackDbSession () {
 
     $session = $GLOBALS ['PADSESSID'];
     $request = $GLOBALS ['PADREQID'];
 
-    if ( pDb ( "check track_session where session='$session'" ) )
-      pDb ( "update track_session set requests=requests+1 where session='$session'");
+    if ( padDb ( "check track_session where session='$session'" ) )
+      padDb ( "update track_session set requests=requests+1 where session='$session'");
     else
-      pDb ( "insert into track_session values('$session', NOW(), NOW(), 1)" );
+      padDb ( "insert into track_session values('$session', NOW(), NOW(), 1)" );
    
     if ( ! $GLOBALS ['padTrack_db_request'] )
       return;
 
-    pDb ( "insert into track_request
+    padDb ( "insert into track_request
               values('{1}', '{2}', '{3:32}', '{4:32}', NOW(), {5}, '{6}', '{7:32}', '{8}', '{9:1023}', '{10:1023}', '{11:1023}', '{12:1023}')",
       [  1 => $session,
          2 => $request,
          3 => $GLOBALS ['app']  ?? '',
          4 => $GLOBALS ['page'] ?? '',
-         5 => pDuration($_SERVER['REQUEST_TIME_FLOAT'] ?? 0),
+         5 => padDuration($_SERVER['REQUEST_TIME_FLOAT'] ?? 0),
          6 => $GLOBALS ['padLen'] ?? 0,
          7 => $GLOBALS ['padStop'] ?? '',
          8 => $GLOBALS ['padEtag'] ?? '',
@@ -80,14 +80,14 @@
   }
 
 
-  function pTrack_db_data () {
+  function padTrackDbData () {
 
     global $padEtag, $padOutput;
     
-    $etag = pDb ( "check track_data where etag='{1}'", [ 1 => $padEtag ] );
+    $etag = padDb ( "check track_data where etag='{1}'", [ 1 => $padEtag ] );
 
     if ( ! $etag )
-      $session = pDb ( "insert into track_data values('{1}', '{2}')", [ 1 => $padEtag, 2=> $padOutput ] );
+      $session = padDb ( "insert into track_data values('{1}', '{2}')", [ 1 => $padEtag, 2=> $padOutput ] );
 
   }
 

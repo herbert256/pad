@@ -1,5 +1,5 @@
 <?php
       
-  return pError('oops');
+  return padError('oops');
 
 ?>

@@ -1,7 +1,7 @@
 <?php
 
 
-  function pTiming_start ($timing) {
+  function padTimingStart ($timing) {
     
      if ( $GLOBALS ['padExit'] <> 1 or ! $GLOBALS ['padTiming'] )
       return;
@@ -9,7 +9,7 @@
     global $padTimingsCnt, $padTimings_start;
 
 #    if ( isset ( $padTimings_start [$timing] ) )
-#      pError ('tm-oops-1: ' . $timing);
+#      padError ('tm-oops-1: ' . $timing);
 
     $padTimingsCnt [$timing] = 1 + ($padTimingsCnt [$timing]??0);
 
@@ -18,7 +18,7 @@
   }
 
 
-  function pTiming_end ($timing) {
+  function padTimingEnd ($timing) {
 
     if ( $GLOBALS ['padExit'] <> 1 or ! $GLOBALS ['padTiming'] )
       return;
@@ -27,7 +27,7 @@
 
     if ( ! isset ( $GLOBALS ['padTimings_start'] [$timing] ) )
       return;
-#      pError ('tm-oops-2: ' . $timing);
+#      padError ('tm-oops-2: ' . $timing);
 
     $now = microtime(true) - $padTimings_start[$timing];
 
@@ -41,7 +41,7 @@
   }
 
 
-  function pTiming_close () {
+  function padTimingClose () {
 
     if ( ! $GLOBALS ['padTiming'] )
       return;
@@ -49,7 +49,7 @@
     global $padTimings, $padTimings_boot, $padTimings_start, $padTimingsCnt, $padTraceDir;
 
     foreach ( $padTimings_start as $key => $val ) 
-      pTiming_end ($key);
+      padTimingEnd ($key);
 
     $padTimings ['boot'] = $padTimings_boot - $_SERVER['REQUEST_TIME_FLOAT'];
 
@@ -58,12 +58,12 @@
 
     $padTimings ['total'] = (int) ( (microtime(true) - $_SERVER['REQUEST_TIME_FLOAT']) * 1000000 );    
 
-    pHeader ('X-PAD-Timings: ' . json_encode ( $padTimings)       );
-    pHeader ('X-PAD-Counts: '  . json_encode ( $padTimingsCnt) );
+    padHeader ('X-PAD-Timings: ' . json_encode ( $padTimings)       );
+    padHeader ('X-PAD-Counts: '  . json_encode ( $padTimingsCnt) );
 
     if ( $GLOBALS ['padTrace'] ) {
-      pFile_put_contents ( $padTraceDir . "/timings.json", $padTimings       );
-      pFile_put_contents ( $padTraceDir . "/counts.json",  $padTimingsCnt );
+      padFilePutContents ( $padTraceDir . "/timings.json", $padTimings       );
+      padFilePutContents ( $padTraceDir . "/counts.json",  $padTimingsCnt );
     }
 
   }

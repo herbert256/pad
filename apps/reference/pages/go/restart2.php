@@ -1,5 +1,5 @@
 <?php
 
-  pRestart ( 'go/hello' );
+  padRestart ( 'go/hello' );
 
 ?>

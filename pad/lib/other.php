@@ -8,7 +8,7 @@
   }
 
 
-  function pLocal () {
+  function padLocal () {
 
     if ( ! isset($GLOBALS ['padLocal']) )
       return FALSE;
@@ -26,7 +26,7 @@
   }
 
 
-  function pExplode ( $haystack, $limit, $number=0 ) {
+  function padExplode ( $haystack, $limit, $number=0 ) {
 
     if ($number)
       $explode = explode ( $limit, $haystack, $number );
@@ -47,8 +47,8 @@
     }
 
     // if ( isset($GLOBALS ['padTrace']) and $GLOBALS ['padTrace'] ) 
-    //   pFile_put_contents ( 
-    //     $GLOBALS ['padOccurDir'][p()] . '/explode/' . pRandom_string() . '.json',
+    //   padFilePutContents ( 
+    //     $GLOBALS ['padOccurDir'][p()] . '/explode/' . padRandomString() . '.json',
     //     [ $haystack, $limit, array_values ( $explode ) ]
     //   );
 
@@ -57,7 +57,7 @@
   }
 
 
-  function pJson ($data) {
+  function padJson ($data) {
 
     return json_encode ( $data, JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK
 
@@ -66,7 +66,7 @@
   }
 
 
-  function pEmpty_buffers () {
+  function padEmptyBuffers () {
 
     $buffers = ob_get_level ();
 
@@ -76,7 +76,7 @@
   }
 
 
-  function pToArray($xxx) {
+  function padToArray($xxx) {
 
      if ( is_array($xxx) )
        return ($xxx);
@@ -104,7 +104,7 @@
   }
   
       
-  function pHeader ($header) {
+  function padHeader ($header) {
 
     if ( headers_sent () )
       return;
@@ -116,14 +116,14 @@
   }
 
 
-  function pField_name ($padarm) {
+  function padFieldName ($padarm) {
     
     return (substr($padarm, 0, 1) == '$') ? substr($padarm, 1) : $padarm;
 
   }
 
 
-  function pCheck_page ( $app, $page ) {
+  function padCheckPage ( $app, $page ) {
 
     if ( ! preg_match ( '/^[A-Za-z0-9]+$/', $app  ) )    return FALSE;
     if ( trim($app) == '' )                              return FALSE;
@@ -139,7 +139,7 @@
     if ( substr($page, -1) == '/')                       return FALSE;
 
     $location = APPS . "$app/pages";
-    $padart     = pExplode ($page, '/');
+    $padart     = padExplode ($page, '/');
     
     foreach ($padart as $key => $value) {
       
@@ -161,10 +161,10 @@
   }
 
 
-  function pGet_page ( $app, $page ) {
+  function padGetPage ( $app, $page ) {
 
     $location = APPS . "$app/pages";
-    $padart     = pExplode ($page, '/');
+    $padart     = padExplode ($page, '/');
     
     foreach ($padart as $key => $value)
       if ( $key == array_key_last($padart)
@@ -177,7 +177,7 @@
 
   }
   
-  function pClose_html () {
+  function padCloseHtml () {
 
     echo "\r\n";
 
@@ -189,47 +189,47 @@
   }
 
 
-  function pMd5 ($input) {
-    return substr(pBase64(pPack(md5($input))),0,22);
+  function padMd5 ($input) {
+    return substr(padBase64(padPack(md5($input))),0,22);
   }
   
-  function pMd5_unpack ($input) {
-    return pUnpack(pUnbase64 ($input.'=='));
+  function padMd5Unpack ($input) {
+    return padUnpack(padUnbase64 ($input.'=='));
   }
 
-  function pPack ($data) {
+  function padPack ($data) {
     return pack('H*',$data);
   }
 
-  function pUnpack ($data) {
+  function padUnpack ($data) {
     return unpack('H*',$data)[1];
   }
 
-  function pBase64 ($string) {
+  function padBase64 ($string) {
     return strtr(base64_encode($string),'+/','_-');
   }
 
-  function pUnbase64 ($string) {
+  function padUnbase64 ($string) {
     return base64_decode(strtr($string,'_-','+/'));
   }
 
-  function pRandom_string ($len=8) {
+  function padRandomString ($len=8) {
     $random = ceil(($len/4)*3);
     $random = random_bytes($random);
     $random = base64_encode($random);
     $random = substr($random,0,$len);
-    $random = str_replace ( '+', pRandom_char(), $random );
-    $random = str_replace ( '/', pRandom_char(), $random );
+    $random = str_replace ( '+', padRandomChar(), $random );
+    $random = str_replace ( '/', padRandomChar(), $random );
     return $random;
   }
 
-  function pRandom_char () {
+  function padRandomChar () {
     $random = mt_rand(0,61);
     return ($random < 10) ? chr($random+48) : ($random < 36 ? chr($random+55) : chr($random+61));
   }
 
 
-  function pValid ($name) {
+  function padValid ($name) {
 
     if ( trim($name) == '' ) 
       return FALSE;
@@ -242,15 +242,15 @@
   }
 
 
-  function pUnescape ( $string ) {
+  function padUnescape ( $string ) {
     return str_replace ( ['&open;','&close;','&pipe;', '&eq;','&comma;'], ['{','}','|','=',','], $string );
   }
-  function pEscape ( $string ) {
+  function padEscape ( $string ) {
     return str_replace ( ['{','}','|','=',','], ['&open;','&close;','&pipe;', '&eq;', '&comma;'],  $string );
   }
 
 
-  function pHtml ($html) {
+  function padHtml ($html) {
 
     global $padHtml, $padStart, $padEnd, $pad;
 
@@ -264,21 +264,21 @@
   
   
 
-  function pZip ($data) {
+  function padZip ($data) {
 
     return gzencode($data);
 
   }
 
 
-  function pUnzip ($data) {
+  function padUnzip ($data) {
 
     return gzdecode($data);
 
   }
   
   
-  function pDuration ( $start, $end=0 ) {
+  function padDuration ( $start, $end=0 ) {
 
     if ($end)
       $duration = (int) ( ( $end            - $start ) * 1000000 );
@@ -293,7 +293,7 @@
   }
 
 
-  function pBetween ($content, $start, $end) {
+  function padBetween ($content, $start, $end) {
 
     $pad1 = strpos($content, $start);
     
@@ -309,7 +309,7 @@
   }
 
 
-  function pClose_session () {
+  function padCloseSession () {
 
     if ( ! isset($GLOBALS ['padSession_started']) )
       return;
@@ -322,40 +322,40 @@
 
   }
   
-  function pCheck_range ( $input ) {
+  function padCheckRange ( $input ) {
 
-    $padarts = pExplode ($input, '..');
+    $padarts = padExplode ($input, '..');
 
     if ( count ($padarts) == 2 and ctype_alnum($padarts[0]) and ctype_alnum($padarts[1]) )
       return TRUE;
 
   }
 
-  function pGet_range ( $input, $increment=1 ) {
+  function padGetRange ( $input, $increment=1 ) {
 
-    $padarts = pExplode ($input, '..');
+    $padarts = padExplode ($input, '..');
 
     return range ( $padarts[0], $padarts[1], $increment );
 
   }
 
 
-  function pFunction_type ( $check ) {
+  function padFunctionType ( $check ) {
 
     if     ( file_exists ( APP . "functions/$check.php" ) ) return 'app';
     elseif ( file_exists ( PAD . "functions/$check.php" ) ) return 'pad';
     elseif ( function_exists ( $check                   ) ) return 'php';
-    else                                                    return pError ('Function not found: ' . $check);
+    else                                                    return padError ('Function not found: ' . $check);
 
   }
 
 
-  function pFunction_in_tag ( $type, $name, $self, $padarm ) {
+  function padFunctionInTag ( $type, $name, $self, $padarm ) {
 
     if ( $type )
       $fun [1] [0] = $type;
     else
-      $fun [1] [0] = 'function_' . pFunction_type ($name);
+      $fun [1] [0] = 'function_' . padFunctionType ($name);
 
     $fun [1] [1] = 'TYPE';
 
@@ -365,14 +365,14 @@
     foreach ( $padarm as $padK => $padV )
       $fun [2+$padK] [0] = $padV;
 
-    pEval_type (1, 0, $fun, $self, 1, 999999); 
+    padEvalType (1, 0, $fun, $self, 1, 999999); 
 
     return $fun [1] [0];
 
   }
 
  
-  function pMake_flag ( $input ) {
+  function padMakeFlag ( $input ) {
 
     if     ( $input === NULL  )  return FALSE;
     elseif ( $input === FALSE )  return FALSE;
@@ -380,9 +380,9 @@
 
     if ( is_array ($input) or is_object ($input) or is_resource ($input) )  {
 
-      $array = pToArray( $input );
+      $array = padToArray( $input );
 
-      if ( pIs_default_data ( $array )  )
+      if ( padIsDefaultData ( $array )  )
         return FALSE;
 
       if ( count ( $array ) )
@@ -392,7 +392,7 @@
 
     }
  
-    if ( pEval($input) )
+    if ( padEval($input) )
       return TRUE; 
     else
       return FALSE;
@@ -400,44 +400,44 @@
   }
 
 
-  function pMake_content ( $input ) {    
+  function padMakeContent ( $input ) {    
 
     if     ( $input === NULL        )  return '';
     elseif ( $input === FALSE       )  return '';
     elseif ( $input === TRUE        )  return '1';
-    elseif ( is_array ( $input )    )  return pArray_to_string ( $input );
-    elseif ( is_object ( $input )   )  return pArray_to_string ( $input );
-    elseif ( is_resource ( $input ) )  return pArray_to_string ( $input );
+    elseif ( is_array ( $input )    )  return padArrayToString ( $input );
+    elseif ( is_object ( $input )   )  return padArrayToString ( $input );
+    elseif ( is_resource ( $input ) )  return padArrayToString ( $input );
     else                               return $input; 
 
   }
 
-  function pArray_to_string ( $input ) {    
+  function padArrayToString ( $input ) {    
 
-    $array = pMake_array ( $input );
+    $array = padMakeArray ( $input );
 
     foreach ( $array as $key => $value )
-      $array [$key] = pMake_content ( $value );
+      $array [$key] = padMakeContent ( $value );
 
     return trim ( implode (' ', $array) );
 
   }
 
 
- function pMake_array ( $input ) {      
+ function padMakeArray ( $input ) {      
 
     if     ( $input === NULL       )  return [];
     elseif ( $input === FALSE      )  return [];
     elseif ( $input === TRUE       )  return [1 => 1 ];
     elseif ( is_array ( $input)    )  return $input;
-    elseif ( is_object ( $input)   )  return pToArray( $input );
-    elseif ( is_resource ( $input) )  return pToArray( $input );
+    elseif ( is_object ( $input)   )  return padToArray( $input );
+    elseif ( is_resource ( $input) )  return padToArray( $input );
     elseif ( ! trim($input)        )  return [];
     else                              return [1 => trim($input) ];      
 
   }
 
-  function pSet_global ( $name, $value ) {
+  function padSetGlobal ( $name, $value ) {
 
     if ( substr($name, 0, 3) == 'pad' )
       return;
@@ -456,7 +456,7 @@
 
   }
 
-  function xpSet_global ( $name, $value ) {
+  function xpadSetGlobal ( $name, $value ) {
 
     global $pad, $padSave_vars, $padDelete_vars;
     
@@ -473,7 +473,7 @@
   }
 
 
-  function pReset ($lvl) {
+  function padReset ($lvl) {
 
     global $padSave_vars, $padDelete_vars;
 
@@ -490,7 +490,7 @@
   }
 
 
-  function pIgnore ($info) {
+  function padIgnore ($info) {
 
     global $pad, $padBetween, $padIgnCnt, $padTrace, $padLevelDir, $padIgnored;
 
@@ -500,16 +500,16 @@
 
     $padIgnored [$padIgnCnt] [] = "$info: $padBetween";
           
-    pHtml  ( '&open;' . $padBetween . '&close;' );
+    padHtml  ( '&open;' . $padBetween . '&close;' );
 
     if ( $padTrace ) {
       $trace ['ignored'] = "$info: $padBetween";
-      pFile_put_contents ( $padLevelDir [$pad] . "/ignore.$padIgnCnt.json", $trace );
+      padFilePutContents ( $padLevelDir [$pad] . "/ignore.$padIgnCnt.json", $trace );
     }
     
   }
 
-  function pIs_object ($item) {
+  function padIsObject ($item) {
 
     if ( isset ($GLOBALS[$item]) and is_object ($GLOBALS[$item]) )
       return TRUE;
@@ -518,7 +518,7 @@
 
   }
 
-  function pIs_resource ($item) {
+  function padIsResource ($item) {
 
     if ( isset ($GLOBALS[$item]) and is_resource ($GLOBALS[$item]) )
       return TRUE;
@@ -527,11 +527,11 @@
 
   }
 
-  function pAdd_array_to_data ( $array ) {
+  function padAddArrayToData ( $array ) {
 
     global $padData, $pad;
 
-    if ( pIs_default_data ( $padData [$pad] ) )
+    if ( padIsDefaultData ( $padData [$pad] ) )
       $padData [$pad] = $array;
     else
       foreach ( $array as $value )
@@ -539,13 +539,13 @@
 
   }
 
-  function pDefault_data () {
+  function padDefaultData () {
     
     return [ 999 => [] ];
 
   }
 
-  function pIs_default_data ( $data ) {
+  function padIsDefaultData ( $data ) {
     
     if ( ! is_array ( $data )       ) return FALSE;
     if ( count ( $data ) <> 1       ) return FALSE;
@@ -558,7 +558,7 @@
   }
 
 
-  function pChkLevelArray ($tag) {
+  function padChkLevelArray ($tag) {
 
     global $padCurrent, $pad;
 
@@ -570,7 +570,7 @@
 
   }
 
-  function pGet_level_array ($tag) {
+  function padGetLevelArray ($tag) {
 
     global $padCurrent, $pad;
 
@@ -582,14 +582,14 @@
 
 
 
-  function pCheckTag ($tag, $string) {
+  function padCheckTag ($tag, $string) {
 
     return ( substr_count($string, "{" . $tag) == substr_count($string, "{/" . $tag) ) ;
 
   }
   
 
-  function pCheck_value (&$value) {
+  function padCheckValue (&$value) {
 
     if     ($value === NULL)      $value = '';
     elseif ($value === TRUE)      $value = '1';
@@ -601,7 +601,7 @@
   }
 
 
-  function pTrue_false ($analyse) {
+  function padTrueFalse ($analyse) {
 
     if     ( $analyse === NULL         ) return FALSE;
     elseif ( $analyse === FALSE        ) return FALSE;
@@ -624,7 +624,7 @@
   }
 
 
-  function pInfo ($analyse) {
+  function padInfo ($analyse) {
 
     if     ( $analyse === NULL         ) return 'null'; 
     elseif ( $analyse === TRUE         ) return 'true';
@@ -634,20 +634,20 @@
     elseif ( is_array     ( $analyse ) ) return 'array:'       . count             ($analyse);
     elseif ( is_object    ( $analyse ) ) return 'object:'      . get_class         ($analyse);
     elseif ( is_resource  ( $analyse ) ) return 'resource:'    . get_resource_type ($analyse) ;
-    elseif ( is_integer   ( $analyse ) ) return 'integer'      . pInfo_var      ($analyse);
-    elseif ( is_float     ( $analyse ) ) return 'float'        . pInfo_var      ($analyse);
-    elseif ( is_double    ( $analyse ) ) return 'double'       . pInfo_var      ($analyse);
-    elseif ( is_bool      ( $analyse ) ) return 'bool'         . pInfo_var      ($analyse);
-    elseif ( ctype_alpha  ( $analyse ) ) return 'alphabetic'   . pInfo_var      ($analyse);
-    elseif ( ctype_digit  ( $analyse ) ) return 'numeric'      . pInfo_var      ($analyse);
-    elseif ( ctype_xdigit ( $analyse ) ) return 'hexadecimal'  . pInfo_var      ($analyse);
-    elseif ( ctype_alnum  ( $analyse ) ) return 'alphanumeric' . pInfo_var      ($analyse);
-    elseif ( is_string    ( $analyse ) ) return 'string'       . pInfo_var      ($analyse);
-    else                                 return 'other'        . pInfo_var      ($analyse);
+    elseif ( is_integer   ( $analyse ) ) return 'integer'      . padInfoVar      ($analyse);
+    elseif ( is_float     ( $analyse ) ) return 'float'        . padInfoVar      ($analyse);
+    elseif ( is_double    ( $analyse ) ) return 'double'       . padInfoVar      ($analyse);
+    elseif ( is_bool      ( $analyse ) ) return 'bool'         . padInfoVar      ($analyse);
+    elseif ( ctype_alpha  ( $analyse ) ) return 'alphabetic'   . padInfoVar      ($analyse);
+    elseif ( ctype_digit  ( $analyse ) ) return 'numeric'      . padInfoVar      ($analyse);
+    elseif ( ctype_xdigit ( $analyse ) ) return 'hexadecimal'  . padInfoVar      ($analyse);
+    elseif ( ctype_alnum  ( $analyse ) ) return 'alphanumeric' . padInfoVar      ($analyse);
+    elseif ( is_string    ( $analyse ) ) return 'string'       . padInfoVar      ($analyse);
+    else                                 return 'other'        . padInfoVar      ($analyse);
 
   }
 
-  function pInfo_var ($analyse) {
+  function padInfoVar ($analyse) {
 
      $work = $analyse;
      $work = trim(preg_replace('/\s+/', ' ', $work));
@@ -658,7 +658,7 @@
   }
 
 
-  function pTag_parm ($padarm, $default='') {
+  function padTagParm ($padarm, $default='') {
 
     global $pad, $padPrmsTag;
 
@@ -670,14 +670,14 @@
   }
 
 
-  function pDone ($var, $val) {
+  function padDone ($var, $val) {
 
     $GLOBALS ['padDone'] [p()] [$var] = $val;
 
   }   
 
 
-  function pVar_opts ($val, $opts) {
+  function padVarOpts ($val, $opts) {
   
     global $padOpts_trace, $padTrace, $padFldCnt;
 
@@ -694,7 +694,7 @@
       if ($append)   $opt = trim(substr($opt,1));
       if ($padrepend)  $opt = trim(substr($opt,0,-1));
   
-      $now = (substr($opt, 0, 1) == '%') ? sprintf($opt, $val) : pEval ($opt, $val);
+      $now = (substr($opt, 0, 1) == '%') ? sprintf($opt, $val) : padEval ($opt, $val);
      
       if ( $append )                  $val = $val . $now;
       if ( $padrepend )                 $val = $now . $val;
@@ -710,7 +710,7 @@
   }
 
   
-  function pContent_type (&$content) {
+  function padContentType (&$content) {
 
     $content = trim ( $content );
 
@@ -766,7 +766,7 @@
   }
 
 
-  function pArr_to_html ( $arr ) {
+  function padArrToHtml ( $arr ) {
 
       $pad = htmlentities ( print_r ( $arr, TRUE ) ) ;
 
@@ -786,7 +786,7 @@
   }
 
 
-  function pGet_html ($file, $call=false) {
+  function padGetHtml ($file, $call=false) {
 
     global $padBuild_mode;
 
@@ -798,7 +798,7 @@
     if ( $call or $padBuild_mode == 'demand' or $padBuild_mode == 'isolate' )
       $html .= "{call '" . str_replace ( '.html', '.php', $file ) . "'}";    
 
-    $html .= pFile_get_contents ($file);
+    $html .= padFileGetContents ($file);
       
     if ( $padBuild_mode== 'isolate' )
       $html .= '{/isolate}';    
@@ -808,7 +808,7 @@
   }
 
   
-  function pValid_store ($fld) {
+  function padValidStore ($fld) {
 
     if ( substr($fld, 0, 1) == 'p')
       return FALSE;
@@ -824,7 +824,7 @@
 
   }
 
-  function pData_filter_go (&$vars, $start, $end) {
+  function padDataFilterGo (&$vars, $start, $end) {
 
     $now = 0;
     foreach ( $vars as $key => $value ) {

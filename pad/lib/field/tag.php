@@ -1,24 +1,24 @@
 <?php
 
 
-  function pField_tag ($field) {
+  function padFieldTag ($field) {
 
     if ( substr($field, 0, 1) == '#' ) {
-      $temp  = pExplode ($field, '#', 2);
+      $temp  = padExplode ($field, '#', 2);
       $tag   = '';
       $field = $temp[0];
       $padarm  = $temp[1]??'';
     } else {
-      $temp  = pExplode ($field, '#', 3);
+      $temp  = padExplode ($field, '#', 3);
       $tag   = $temp[0];
       $field = $temp[1];
       $padarm  = $temp[2]??'';
     }
 
     if ( ! $tag )
-      $padIdx = pFieldFirstNonParm  ();
+      $padIdx = padFieldFirstNonParm  ();
     else
-      $padIdx = pFieldGetLevel ($tag);
+      $padIdx = padFieldGetLevel ($tag);
     
     if ( file_exists ( PAD . "tag/".$field.".php" ) )
       return include PAD . "tag/$field.php";
@@ -31,14 +31,14 @@
     }
 
     if ( $tag )
-      return pFieldDoubleCheck ( $tag, ':', $field );
+      return padFieldDoubleCheck ( $tag, ':', $field );
 
     return INF;
 
   }
 
 
-  function pFieldFirstNonParm  () {
+  function padFieldFirstNonParm  () {
 
     global $pad, $padType;
 

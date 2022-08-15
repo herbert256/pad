@@ -10,12 +10,12 @@
     'time'    => microtime(true) - ($_SERVER ['REQUEST_TIME_FLOAT'] ?? 0),
   ];
 
-  pTraceFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
+  padTraceFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
 
-  pFile_put_contents ( $GLOBALS ['padTraceDir'] . "/end.json",         $padTraceData );
-  pFile_put_contents ( $GLOBALS ['padTraceDir'] . "/result.html",  $GLOBALS ['padResult'][0] ?? '');
-  pFile_put_contents ( $GLOBALS ['padTraceDir'] . "/headers-out.json", $GLOBALS ['padHeaders']  ?? '');
-  pFile_put_contents ( $GLOBALS ['padTraceDir'] . "/pad.json",     $padFpad  );
-  pFile_put_contents ( $GLOBALS ['padTraceDir'] . "/app.json",     $padFapp  );
+  padFilePutContents ( $GLOBALS ['padTraceDir'] . "/end.json",         $padTraceData );
+  padFilePutContents ( $GLOBALS ['padTraceDir'] . "/result.html",  $GLOBALS ['padResult'][0] ?? '');
+  padFilePutContents ( $GLOBALS ['padTraceDir'] . "/headers-out.json", $GLOBALS ['padHeaders']  ?? '');
+  padFilePutContents ( $GLOBALS ['padTraceDir'] . "/pad.json",     $padFpad  );
+  padFilePutContents ( $GLOBALS ['padTraceDir'] . "/app.json",     $padFapp  );
  
 ?>

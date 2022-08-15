@@ -14,7 +14,7 @@
   else
     $padPrm [$pad]_type = '';      
 
-  $padResult_parm = pField_tag ("$tag#$name#$padPrm [$pad]_type");
+  $padResult_parm = padFieldTag ("$tag#$name#$padPrm [$pad]_type");
 
   if ( $padResult_parm === INF )
     return NULL;

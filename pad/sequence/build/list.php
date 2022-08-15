@@ -10,7 +10,7 @@
 
   $GLOBALS["padSeq_".$padSeq_one. "_list"] = [];
 
-  $padSeq_one_tmp = pExplode ( $padPrmsTag [$pad] [$padSeq_one], ';');
+  $padSeq_one_tmp = padExplode ( $padPrmsTag [$pad] [$padSeq_one], ';');
 
   $padSeq_one_list = [];
   foreach ( $padSeq_one_tmp as $padEntry )
@@ -22,7 +22,7 @@
 
       $GLOBALS["padSeq_".$padSeq_one. "_list"] [$padSeq_one_name] = $padSeq_one_value;
 
-      pDone ( $padSeq_one_name, TRUE );
+      padDone ( $padSeq_one_name, TRUE );
 
       $GLOBALS ["padSeq_$padSeq_one_name"] = $padSeq_one_value;
 

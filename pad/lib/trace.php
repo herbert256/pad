@@ -1,6 +1,6 @@
 <?php
 
-  function pTraceGetLevel ($pad)  {
+  function padTraceGetLevel ($pad)  {
 
     if ( $pad === NULL)
       return [];
@@ -23,11 +23,11 @@
       'prms' => $GLOBALS ['padPrms'] [$pad] ?? '',
       'flags' => $GLOBALS ['padPrmsTag'] [$pad] ?? '',
       'values' => $GLOBALS ['padPrmsVal'] [$pad] ?? '',
-      'true' => pDump_short ($GLOBALS ['padTrue'][$pad]??''),
-      'false' => pDump_short ($GLOBALS ['padFalse'][$pad]??''),
-      'base' => pDump_short ($GLOBALS ['padBase'][$pad]??''),
-      'html' => pDump_short ($GLOBALS ['padHtml'][$pad]??''),
-      'result' => pDump_short ($GLOBALS ['padResult'][$pad]??''),
+      'true' => padDumpShort ($GLOBALS ['padTrue'][$pad]??''),
+      'false' => padDumpShort ($GLOBALS ['padFalse'][$pad]??''),
+      'base' => padDumpShort ($GLOBALS ['padBase'][$pad]??''),
+      'html' => padDumpShort ($GLOBALS ['padHtml'][$pad]??''),
+      'result' => padDumpShort ($GLOBALS ['padResult'][$pad]??''),
       'name' => $GLOBALS ['padName'] [$pad] ?? '',
       'default' => $GLOBALS ['padDefault'] [$pad] ?? '',
       'walk' => $GLOBALS ['padWalk'] [$pad] ?? '',
@@ -41,10 +41,10 @@
   } 
 
 
-  function pTrace_write_error ($error, $type, $count, $vars, $force=0 ) {
+  function padTraceWriteError ($error, $type, $count, $vars, $force=0 ) {
 
     if ( $GLOBALS ['padError_dump'] and ! $GLOBALS ['padTrace'] )
-      return pTrace_write_error_light ($error, $type, $count, $vars);
+      return padTraceWriteErrorLight ($error, $type, $count, $vars);
 
     if ( ! $force and ! $GLOBALS ['padTrace'] )
       return;
@@ -62,38 +62,38 @@
     foreach ($vars as $key => $val)
       $data [$key] = $val;
 
-    pFile_put_contents ( "errors/$PADREQID-$count-$type.json", $data ); 
-    pFile_put_contents ( "$padError_dir/error.json",             $data ); 
+    padFilePutContents ( "errors/$PADREQID-$count-$type.json", $data ); 
+    padFilePutContents ( "$padError_dir/error.json",             $data ); 
     
-    pTraceAll ( $padError_dir );
+    padTraceAll ( $padError_dir );
 
   }
 
 
-  function pTrace_write_error_light ($error, $type, $count, $vars) {
+  function padTraceWriteErrorLight ($error, $type, $count, $vars) {
 
     global $PADREQID;
 
-    pFile_put_contents ( "errors/$PADREQID-$type-$count.html", pDump_get($error) ); 
+    padFilePutContents ( "errors/$PADREQID-$type-$count.html", padDumpGet($error) ); 
 
   }
 
 
-  function pTraceAll ( $dir ) {
+  function padTraceAll ( $dir ) {
 
-    pTraceFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
+    padTraceFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
 
-    pFile_put_contents ( "$dir/pad.json",   $padFpad  );
-    pFile_put_contents ( "$dir/app.json",   $padFapp  );
-    pFile_put_contents ( "$dir/php.json",   $padFphp  );
-    pFile_put_contents ( "$dir/levels.json",$padFlvl  );
-    pFile_put_contents ( "$dir/ids.json",   $padFids  );
-    pFile_put_contents ( "$dir/config.json",$padFcfg  );
+    padFilePutContents ( "$dir/pad.json",   $padFpad  );
+    padFilePutContents ( "$dir/app.json",   $padFapp  );
+    padFilePutContents ( "$dir/php.json",   $padFphp  );
+    padFilePutContents ( "$dir/levels.json",$padFlvl  );
+    padFilePutContents ( "$dir/ids.json",   $padFids  );
+    padFilePutContents ( "$dir/config.json",$padFcfg  );
 
   }
 
 
-  function pTraceFields ( &$php, &$lvl, &$app, &$cfg, &$pad, &$ids ) {
+  function padTraceFields ( &$php, &$lvl, &$app, &$cfg, &$pad, &$ids ) {
 
     $php = $lvl = $app = $cfg = $pad = $ids = [];
 
@@ -105,7 +105,7 @@
 
     $chk2 = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padPrms','padPrmsType','padPrmsTag','padPrmsVal','padName','padData','padCurrent','padKey','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padLevelDir','padOccurDir','padSave_vars','padDelete_vars','padSet_save','padSet_delete','padTagCnt'];
 
-    $settings = pFile_get_contents(PAD . 'config/config.php');
+    $settings = padFileGetContents(PAD . 'config/config.php');
 
     foreach ($GLOBALS as $key => $value) {
 

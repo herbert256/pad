@@ -18,22 +18,22 @@
   $padBetween = substr ( $padHtml [$pad], $padStart [$pad] + 1, $padEnd [$pad]-$padStart [$pad] - 1 ) ;
   $padFirst   = substr ( $padBetween , 0, 1 );
 
-  if     ( $padFirst == '!' ) return pHtml ( include PAD . 'var/raw.php' );
-  elseif ( $padFirst == '$' ) return pHtml ( include PAD . 'var/opt.php' );
+  if     ( $padFirst == '!' ) return padHtml ( include PAD . 'var/raw.php' );
+  elseif ( $padFirst == '$' ) return padHtml ( include PAD . 'var/opt.php' );
 
   include 'setup.php';    
   include 'between.php';
 
-  if     ( ! ctype_alpha ( $padFirst )    ) return pIgnore ('ctype_alpha');
-  elseif ( ! pValid      ( $padTag [$pad] ) ) return pIgnore ('pValid');
+  if     ( ! ctype_alpha ( $padFirst )    ) return padIgnore ('ctype_alpha');
+  elseif ( ! padValid      ( $padTag [$pad] ) ) return padIgnore ('padValid');
 
   $padPair  [$pad] = include 'pair.php';
   $padType  [$pad] = include 'type_get.php';
   $padSplit [$pad] = include 'split.php';
 
-  if ( $padPair  [$pad] === NULL  ) return pIgnore ('pair');
-  if ( $padType  [$pad] === FALSE ) return pIgnore ('type_get');
-  if ( $padSplit [$pad] === FALSE ) return pIgnore ('split');
+  if ( $padPair  [$pad] === NULL  ) return padIgnore ('pair');
+  if ( $padType  [$pad] === FALSE ) return padIgnore ('type_get');
+  if ( $padSplit [$pad] === FALSE ) return padIgnore ('split');
 
   include 'start.php';
 

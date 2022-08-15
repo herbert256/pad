@@ -10,6 +10,6 @@
 
   else
 
-    pError ("There must be one or two parameters for $name");
+    padError ("There must be one or two parameters for $name");
 
 ?>

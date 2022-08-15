@@ -1,6 +1,6 @@
 <?php
 
-  $padSeq_prepend = pExplode ($padSeq_action_value, '|');
+  $padSeq_prepend = padExplode ($padSeq_action_value, '|');
 
   foreach ( $padSeq_prepend as $padSeq_prepend_key ) {
     $padSeq_prepend_reverse = array_reverse($padSequenceStore [$padSeq_prepend_key]);

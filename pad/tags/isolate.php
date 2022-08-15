@@ -7,7 +7,7 @@
     $padIsolate [$pad] = [];
       
     foreach ($GLOBALS as $padK => $padV)
-      if ( pValid_store ($padK) ) {
+      if ( padValidStore ($padK) ) {
         $padIsolate [$pad] [$padK] = TRUE;
         $padTmp = "pad_$pad" . "_$padK";
         $$padTmp = $$padK;

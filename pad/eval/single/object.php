@@ -1,5 +1,5 @@
 <?php
 
-  return pToArray($$name);
+  return padToArray($$name);
 
 ?>

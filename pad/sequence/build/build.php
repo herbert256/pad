@@ -11,6 +11,6 @@
   elseif ( file_exists ( "$padSeq_chk/make.php")     ) $padSeq_build = 'make';
   elseif ( file_exists ( "$padSeq_chk/filter.php")   ) $padSeq_build = 'filter';
   
-  else pError ("No type definition found for '$padSeq_seq'");
+  else padError ("No type definition found for '$padSeq_seq'");
 
 ?>

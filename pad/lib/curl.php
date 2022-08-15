@@ -1,6 +1,6 @@
 <?php
 
-  function pInclude ( $app, $page='index', $query='' ) {
+  function padInclude ( $app, $page='index', $query='' ) {
 
     return pad ( $app, $page, $query, 1 );
     
@@ -8,18 +8,18 @@
 
   function pad ( $app, $page='index', $query='', $include='' ) {
 
-    $result = pComplete ( $app, $page, $query, $include );
+    $result = padComplete ( $app, $page, $query, $include );
 
     return $result ['data'];
     
   }
 
-  function pComplete ( $app, $page='index', $query='', $include='' ) {
+  function padComplete ( $app, $page='index', $query='', $include='' ) {
 
     global $padHost, $padScript;
 
     if ($include)
-      $include = '&pInclude=1';
+      $include = '&padInclude=1';
 
     $input = $output = [];
 
@@ -28,19 +28,19 @@
     $input ['cookies'] ['PADSESSID'] = $GLOBALS ['PADSESSID'];
     $input ['cookies'] ['PADREQID']  = $GLOBALS ['PADREQID'];
     
-    return pCurl ($input);
+    return padCurl ($input);
     
   }
 
-  function pCurl_data ($input) {    
+  function padCurlData ($input) {    
 
-    $curl = pCurl ($input);
+    $curl = padCurl ($input);
     
     return $curl ['data'];
 
   }
 
-  function pCurl ($input) {
+  function padCurl ($input) {
 
     //  Required input parms
     //  - ['url']
@@ -80,8 +80,8 @@
     if ( ! strpos( $input ['url'], '://') ) {
       $file = APP . 'data/' . $input ['url'];
       if ( file_exists ( $file ) ) {
-        $output ['data']    = pFile_get_contents ( $file );   
-        $output ['type']    = pContent_type  ( $output ['data'] );   
+        $output ['data']    = padFileGetContents ( $file );   
+        $output ['type']    = padContentType  ( $output ['data'] );   
         $output ['result']  = '200';
       } else {
         $output ['data']    = '';      
@@ -92,19 +92,19 @@
 
     $options = $input ['options'] ?? [];
  
-    pCurl_opt ($options, 'RETURNTRANSFER', true);
-    pCurl_opt ($options, 'ENCODING',       'gzip' );
-    pCurl_opt ($options, 'FOLLOWLOCATION', true);
-    pCurl_opt ($options, 'HEADER',         true);
-    pCurl_opt ($options, 'USERAGENT',      $_SERVER['HTTP_USER_AGENT'] ?? 'Mozilla/5.0 (X11; CrOS x86_64 13904.77.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.147 Safari/537.36 PAD/10.0');
-    pCurl_opt ($options, 'REFERER',        $GLOBALS ['padLocation'] . $GLOBALS ['page']);
+    padCurlOpt ($options, 'RETURNTRANSFER', true);
+    padCurlOpt ($options, 'ENCODING',       'gzip' );
+    padCurlOpt ($options, 'FOLLOWLOCATION', true);
+    padCurlOpt ($options, 'HEADER',         true);
+    padCurlOpt ($options, 'USERAGENT',      $_SERVER['HTTP_USER_AGENT'] ?? 'Mozilla/5.0 (X11; CrOS x86_64 13904.77.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.147 Safari/537.36 PAD/10.0');
+    padCurlOpt ($options, 'REFERER',        $GLOBALS ['padLocation'] . $GLOBALS ['page']);
 
     if ( isset($input['user']) )
-      pCurl_opt ($options, 'USERPWD', $input['user'] . ":" . $input['$padassword']);
+      padCurlOpt ($options, 'USERPWD', $input['user'] . ":" . $input['$padassword']);
     
     if ( isset($input['post']) ) {
-      pCurl_opt ($options, 'POST', true);
-      pCurl_opt ($options, 'POSTFIELDS', $input ['post']);
+      padCurlOpt ($options, 'POST', true);
+      padCurlOpt ($options, 'POSTFIELDS', $input ['post']);
     }
   
     if ( isset($input['cookies']) ) {
@@ -114,14 +114,14 @@
           $cookies .= '; ';
         $cookies .= $key . '=' . $val;
       }
-      pCurl_opt ($options, 'COOKIE', $cookies);
+      padCurlOpt ($options, 'COOKIE', $cookies);
     }
   
     if ( isset($input['headers']) ) {
       $headers_in = [];
       foreach ( $input['headers'] as $key => $val )
         $headers_in [] = $key . ': ' . $val;
-      pCurl_opt ($options, 'HTTPHEADER', $headers_in);
+      padCurlOpt ($options, 'HTTPHEADER', $headers_in);
     }
 
     $output ['options'] = $options;      
@@ -129,18 +129,18 @@
     $curl = curl_init ( $input ['url'] );
 
     if ($curl === FALSE)
-      return pCurl_error ($output, 'curl_init = FALSE');
+      return padCurlError ($output, 'curl_init = FALSE');
 
     foreach ( $options as $key => $val )
       curl_setopt ( $curl, constant('CURLOPT_'.$key), $val );
   
-    pTiming_start ('curl');
+    padTimingStart ('curl');
     $result          = curl_exec    ($curl);
     $output ['info'] = curl_getinfo ($curl);
-    pTiming_end   ('curl');
+    padTimingEnd   ('curl');
 
     if ($result  === FALSE)
-      return pCurl_error ($output, 'curl_exec = FALSE');
+      return padCurlError ($output, 'curl_exec = FALSE');
     
     if ( isset ( $output ['info'] ['http_code'] ) )
       $output ['result'] = $output ['info'] ['http_code'];
@@ -166,7 +166,7 @@
         elseif ( $header and $value ) {
 
           if ( $header == 'Content-Disposition' and !$file)
-            $file = pBetween ($value, '"', '"');
+            $file = padBetween ($value, '"', '"');
         
           if ( $header == 'Content-Type' )
             if     (strpos ($value, 'html')       !== FALSE) $output ['type'] = 'html';
@@ -204,10 +204,10 @@
     }
 
     if ( ! $output ['type'] )
-      $output ['type'] = pContent_type ( $output ['data'] );
+      $output ['type'] = padContentType ( $output ['data'] );
  
     if ($GLOBALS ['padTrace'])
-      pTrace ( $output );
+      padTrace ( $output );
 
     $GLOBALS ['padCurl_last'] = $output;
 
@@ -215,27 +215,27 @@
     
   }
 
-  function pTrace ( $trace ) {
+  function padTrace ( $trace ) {
 
-    $file = $GLOBALS ['padLevelDir'] [p()]. "/curl_" . pRandom_string(). ".json";
+    $file = $GLOBALS ['padLevelDir'] [p()]. "/curl_" . padRandomString(). ".json";
 
-    pFile_put_contents ($file, pJson ($trace) );
+    padFilePutContents ($file, padJson ($trace) );
 
   }
   
-  function pCurl_opt (&$options, $name, $value) {
+  function padCurlOpt (&$options, $name, $value) {
     
     if ( ! isset ( $options [$name] ) )
       $options [$name] = $value;
 
   }
 
-  function pCurl_error ($output, $error) {
+  function padCurlError ($output, $error) {
 
     $output ['ERROR'] = $error;
 
      if ($GLOBALS ['padTrace'])
-      pTrace ( $output );
+      padTrace ( $output );
 
     $GLOBALS ['padCurl_last'] = $output;
 

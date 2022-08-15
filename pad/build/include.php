@@ -3,7 +3,7 @@
   $padBuild_now = substr(APP, 0, -1);
   
   $padExits     = [];
-  $padBuild_mrg = pExplode ("pages/$page", '/');
+  $padBuild_mrg = padExplode ("pages/$page", '/');
 
   foreach ($padBuild_mrg as $padValue) {
 
@@ -26,6 +26,6 @@
   foreach ( array_reverse ($padExits) as $padCall )
     include PAD . 'level/call.php';
 
-  $padBase [$pad] .= pGet_html ( APP . "pages/$page.html" );
+  $padBase [$pad] .= padGetHtml ( APP . "pages/$page.html" );
 
 ?>

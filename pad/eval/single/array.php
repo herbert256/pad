@@ -1,5 +1,5 @@
 <?php
  
-  return pArray_value ($name, TRUE);
+  return padArrayValue ($name, TRUE);
 
 ?>

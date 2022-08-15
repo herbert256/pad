@@ -7,7 +7,7 @@
 	$padFilter_start = 1;
 	$padFilter_end   = ($padFilter_start + $padFilter_first) - 1;
      
-  pDone ( 'first', TRUE);      
-	pData_filter_go ($padData [$pad], $padFilter_start, $padFilter_end);    
+  padDone ( 'first', TRUE);      
+	padDataFilterGo ($padData [$pad], $padFilter_start, $padFilter_end);    
 
 ?>

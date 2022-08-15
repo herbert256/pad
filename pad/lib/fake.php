@@ -1,7 +1,7 @@
 <?php
 
   
-  function pRestart ( $padRestart ) {
+  function padRestart ( $padRestart ) {
       
     $GLOBALS ['padRestart'] = $padRestart;
 
@@ -10,7 +10,7 @@
   }
 
 
-  function pBuild ( $padBuild, $padMode='include', $padMerge='content', $padInclude=0 ) {
+  function padBuild ( $padBuild, $padMode='include', $padMerge='content', $padInclude=0 ) {
       
     $padBuild_mode  = $padMode;
     $padBuild_merge = $padMerge;
@@ -27,14 +27,14 @@
   }
 
 
-  function pBuild2 ( $padBuild, $padMode='before', $padMerge='content' ) {
+  function padBuild2 ( $padBuild, $padMode='before', $padMerge='content' ) {
 
     foreach ($GLOBALS as $key => $val )
       if ( substr($key, 0, 3) == 'pad' )
         global $$key;
 
     $Xp         = $pad;
-    $XpTraceDir = $padTraceDir;
+    $XpadTraceDir = $padTraceDir;
     
     $padCnt++;
 
@@ -53,14 +53,14 @@
     while ( $pad > $Xp ) 
       include PAD . 'level/level.php'; 
 
-    $padTraceDir = $XpTraceDir;
+    $padTraceDir = $XpadTraceDir;
  
     return $padHtml [$Xp+1];
 
   }
 
 
-  function pContent ( $contentxx ) {
+  function padContent ( $contentxx ) {
 
     foreach ($GLOBALS as $key => $val )
       if ( substr($key, 0, 3) == 'pad' )

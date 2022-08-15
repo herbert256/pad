@@ -5,6 +5,6 @@
     return TRUE;
   }
    
-  return pFunction_in_tag ( $padType, $padTag [$pad], $padContent, $padPrmsVal [$pad] );
+  return padFunctionInTag ( $padType, $padTag [$pad], $padContent, $padPrmsVal [$pad] );
 
 ?>

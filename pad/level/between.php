@@ -9,7 +9,7 @@
 
   if ( $padTrace ) {
     $padBetweenTrace = ['between' => $padBetween, 'tag' => $padTag[$padP], 'prms' => $padPrms[$padP] ];
-    pFile_put_contents ( $padLevelDir [$padP] . "/between/" . $padBtwCnt . ".json", $padBetweenTrace ); 
+    padFilePutContents ( $padLevelDir [$padP] . "/between/" . $padBtwCnt . ".json", $padBetweenTrace ); 
   }
 
 ?>

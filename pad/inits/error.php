@@ -13,11 +13,11 @@
     return;
   }
 
-  set_error_handler          ( 'pError_handler'   );
-  set_exception_handler      ( 'pError_exception' );
-  register_shutdown_function ( 'pError_shutdown'  );
+  set_error_handler          ( 'padErrorHandler'   );
+  set_exception_handler      ( 'padErrorException' );
+  register_shutdown_function ( 'padErrorShutdown'  );
 
-  pError_reporting ( $padError_level );
+  padErrorReporting ( $padError_level );
 
  
 ?>

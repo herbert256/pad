@@ -1,7 +1,7 @@
 <?php
 
   if ( strpos($padPrm [$pad], 'page=') !== FALSE) {
-    $padInclude_call = pInclude ($padPrm [$pad]);
+    $padInclude_call = padInclude ($padPrm [$pad]);
     return $padInclude_call ['data'];
   }
 

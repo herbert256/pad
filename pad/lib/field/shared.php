@@ -1,7 +1,7 @@
 <?php
 
 
-  function pFieldGetLevel  ( $search ) {
+  function padFieldGetLevel  ( $search ) {
 
     global $pad, $padName;
 
@@ -26,7 +26,7 @@
   } 
 
 
-  function pFieldDoubleCheck ($first, $seperator, $second) {
+  function padFieldDoubleCheck ($first, $seperator, $second) {
 
     if ( $GLOBALS ['padField_double_check'] )
       return ;
@@ -35,8 +35,8 @@
 
     $tag = "$first$seperator$second";
     
-    if     ( pField_check($tag) ) return pField_value($tag);
-    elseif ( pArray_check($tag) ) return pArray_value($tag); 
+    if     ( padFieldCheck($tag) ) return padFieldValue($tag);
+    elseif ( padArrayCheck($tag) ) return padArrayValue($tag); 
 
     $GLOBALS ['padField_double_check'] = FALSE;
 

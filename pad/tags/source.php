@@ -1,11 +1,11 @@
 <?php
 
-  if ( pTag_parm ('after') and $padWalk [$pad] == 'start' ) {
+  if ( padTagParm ('after') and $padWalk [$pad] == 'start' ) {
     $padWalk [$pad] = 'end';
     return TRUE;
   }
 
-	$padContent = '{ignore}' . pColors_string ($padContent) . '{/ignore}';
+	$padContent = '{ignore}' . padColorsString ($padContent) . '{/ignore}';
 
 	return TRUE;
 

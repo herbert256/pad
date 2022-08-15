@@ -1,20 +1,20 @@
 <?php
 
 
-  function pGet_parms ( $type, $padarms ) {
+  function padGetParms ( $type, $padarms ) {
 
     foreach ( $padarms as $field => $value )
       if ( (!isset($GLOBALS[$field])) )
-        $GLOBALS [$field] = pGet_parms_2 ( $type, $value );
+        $GLOBALS [$field] = padGetParms2 ( $type, $value );
 
   }
 
 
-  function pGet_parms_2 ( $type, $field ) {
+  function padGetParms2 ( $type, $field ) {
 
     if ( is_array ( $field ) )
       foreach ( $field as $key => $value )
-        $field [$key] = pGet_parms_2 ( $type, $value );
+        $field [$key] = padGetParms2 ( $type, $value );
     else
       $field = trim ($field);
 

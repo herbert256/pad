@@ -32,9 +32,9 @@
   $padDisplay_errors  = ini_set ('display_errors', 0);
   $padError_reporting = error_reporting (E_ALL);
 
-  set_error_handler          ( 'pBoot_error_handler'     );
-  set_exception_handler      ( 'pBoot_exception_handler' );
-  register_shutdown_function ( 'pBoot_shutdown_function' );
+  set_error_handler          ( 'padBootErrorHandler'     );
+  set_exception_handler      ( 'padBootExceptionHandler' );
+  register_shutdown_function ( 'padBootShutdownFunction' );
 
 
   // End Boot error handling 
@@ -47,27 +47,27 @@
 
   // PAD boot error handling functions
  
-  function pBoot_error ( $error ) {
+  function padBootError ( $error ) {
 
     extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
 
-    pBoot_error_go ( $error, $file, $line );
+    padBootErrorGo ( $error, $file, $line );
 
   }
 
-  function pBoot_error_handler ( $type, $error, $file, $line ) {
+  function padBootErrorHandler ( $type, $error, $file, $line ) {
 
-    pBoot_error_go ( $error, $file, $line );
-
-  }
-
-  function pBoot_exception_handler ( $error ) {
-
-    pBoot_error_go ( $error->getMessage(), $error->getFile(), $error->getLine() );
+    padBootErrorGo ( $error, $file, $line );
 
   }
 
-  function pBoot_shutdown_function () {
+  function padBootExceptionHandler ( $error ) {
+
+    padBootErrorGo ( $error->getMessage(), $error->getFile(), $error->getLine() );
+
+  }
+
+  function padBootShutdownFunction () {
 
     if ( isset ( $GLOBALS ['padSkip_boot_shutdown'] ) )
       return;
@@ -75,11 +75,11 @@
     $error = error_get_last ();
  
     if ($error !== NULL)
-      pBoot_error_go ( $error['message'], $error['file'], $error['line'] );
+      padBootErrorGo ( $error['message'], $error['file'], $error['line'] );
  
   }
 
-  function pBoot_error_go ( $error, $file, $line ) {
+  function padBootErrorGo ( $error, $file, $line ) {
 
     $GLOBALS ['padSkip_boot_shutdown'] = TRUE;
     $GLOBALS ['padSkip_shutdown']      = TRUE;
@@ -91,7 +91,7 @@
 
     error_log ( "[PAD] $id - $file:$line $error", 4 );
 
-#    if ( function_exists ( 'pLocal' ) and pLocal () )
+#    if ( function_exists ( 'padLocal' ) and padLocal () )
       echo "$file:$line $error";
 #    else
 #      echo "Error: $id";

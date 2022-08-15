@@ -5,8 +5,8 @@
   $padFilter_start = ( ($padFilter_page-1) * $padFilter_rows ) + 1;
   $padFilter_end   = ($padFilter_start + $padFilter_rows) - 1;
 
-  pDone ( 'page', TRUE);
-  pDone ( 'rows', TRUE); 
-  pData_filter_go ($padData [$pad], $padFilter_start, $padFilter_end);    
+  padDone ( 'page', TRUE);
+  padDone ( 'rows', TRUE); 
+  padDataFilterGo ($padData [$pad], $padFilter_start, $padFilter_end);    
 
 ?>

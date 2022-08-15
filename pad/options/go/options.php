@@ -1,6 +1,6 @@
 <?php
 
-  pTiming_start ('opt');
+  padTimingStart ('opt');
 
   $padOptions_walk = $GLOBALS["padOptions_$padOptions"];
    
@@ -11,7 +11,7 @@
 
     if ( in_array ( $padOption_name, $padOptions_walk ) and ! isset ( $padDone [$pad] [$padOption_name] ) ) {
 
-      pDone ( $padOption_name, TRUE );  
+      padDone ( $padOption_name, TRUE );  
 
       include PAD . "options/$padOption_name.php" ;
 
@@ -23,6 +23,6 @@
   if     ($padOptions == 'start' ) $padBase   [$pad] = $padContent;
   elseif ($padOptions == 'end'   ) $padResult [$pad] = $padContent;
 
-  pTiming_end ('opt');
+  padTimingEnd ('opt');
 
 ?>

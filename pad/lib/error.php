@@ -1,7 +1,7 @@
 <?php
   
 
-  function pErrorShort ( $error ) {
+  function padErrorShort ( $error ) {
 
     $GLOBALS ['padSkip_boot_shutdown'] = TRUE;
     $GLOBALS ['padSkip_shutdown']      = TRUE;
@@ -22,7 +22,7 @@
   }
 
 
-  function pError_reporting ( $level ) {
+  function padErrorReporting ( $level ) {
 
     $none    = (int) 0;
     $error   = (int) $none    | E_ERROR | E_USER_ERROR | E_CORE_ERROR | E_COMPILE_ERROR | E_PARSE;
@@ -35,7 +35,7 @@
   }
 
 
-  function pError ($error) {
+  function padError ($error) {
  
     extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
 
@@ -44,27 +44,27 @@
       return FALSE;
     }
  
-    return pError_go ( 'PAD: ' . $error, $file, $line); 
+    return padErrorGo ( 'PAD: ' . $error, $file, $line); 
  
   }
 
 
-  function pError_handler ( $type, $error, $file, $line ) {
+  function padErrorHandler ( $type, $error, $file, $line ) {
  
     if ( error_reporting() & $type )
-      return pError_go ( 'ERROR: ' . $error, $file, $line );
+      return padErrorGo ( 'ERROR: ' . $error, $file, $line );
  
   }
 
 
-  function pError_exception ( $error ) {
+  function padErrorException ( $error ) {
 
-    return pError_go ( 'EXCEPTION: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
+    return padErrorGo ( 'EXCEPTION: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
  
   }
   
 
-  function pError_shutdown () {
+  function padErrorShutdown () {
 
     if ( isset ( $GLOBALS ['padSkip_shutdown'] ) )
       return;
@@ -74,27 +74,27 @@
     if ( $error === NULL ) 
       return;
   
-    return pError_go ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
+    return padErrorGo ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
   
   }
 
 
-  function pError_go ($error, $file, $line) {
+  function padErrorGo ($error, $file, $line) {
 
     try {
  
-      return pError_try ($error, $file, $line); 
+      return padErrorTry ($error, $file, $line); 
  
     } catch (Exception $e) {
 
-      return pError_error ( $e->getMessage(),$e->getFile(), $e->getLine() );
+      return padErrorError ( $e->getMessage(),$e->getFile(), $e->getLine() );
  
     }
 
   }
 
 
-  function pError_try ($error, $file, $line) {
+  function padErrorTry ($error, $file, $line) {
 
     if ( $GLOBALS ['padError_action'] == 'ignore' ) 
       return FALSE;
@@ -102,7 +102,7 @@
     global $padError_action, $padExit, $PADREQID, $padTrace, $padError_dump, $padError_log, $padErrCnt;
 
     if ( $GLOBALS ['padExit'] <> 1 )
-      return pError_error ($error, $file, $line);
+      return padErrorError ($error, $file, $line);
 
     $GLOBALS ['padExit'] = 2;
 
@@ -121,18 +121,18 @@
       error_log ("[PAD] $PADREQID $error", 4);   
 
     if ( $padTrace or $padError_dump or $padError_action == 'report' )
-      pTrace_write_error ( $error, 'error', $padErrCnt, [], 1);
+      padTraceWriteError ( $error, 'error', $padErrCnt, [], 1);
 
     if ( ! headers_sent () and in_array($padError_action, ['pad', 'stop', 'abort', 'ignore']) )
-      pHeader ('HTTP/1.0 500 Internal Server Error' );
+      padHeader ('HTTP/1.0 500 Internal Server Error' );
 
     if ( $padError_action == 'boot' )
 
-      pBoot_error ( $error, $file, $line );
+      padBootError ( $error, $file, $line );
 
     elseif ( $padError_action == 'abort')
 
-      pExit ();
+      padExit ();
 
     elseif ( $padError_action == 'report' ) {
 
@@ -141,8 +141,8 @@
 
     } elseif ( $padError_action == 'pad' ) {
 
-      if ( pLocal() )
-        pDump ("Error: $PADREQID:  $error");
+      if ( padLocal() )
+        padDump ("Error: $PADREQID:  $error");
       else
         echo "Error: $PADREQID";
 
@@ -150,12 +150,12 @@
 
     }
 
-    pStop (500);
+    padStop (500);
 
   }
  
 
-  function pError_error ($error, $file, $line) {
+  function padErrorError ($error, $file, $line) {
 
     try {
  
@@ -165,10 +165,10 @@
 
       error_log ($error, 4);
 
-      pFile_put_contents ( "errors/$PADREQID.html", pDump_get($error) );
+      padFilePutContents ( "errors/$PADREQID.html", padDumpGet($error) );
 
-      if ( pLocal() )
-        pDump ($error);
+      if ( padLocal() )
+        padDump ($error);
       else
         echo "Error: $PADREQID";
 
@@ -179,7 +179,7 @@
  
     } catch (Exception $e) {
 
-      pBoot_error ( $error, $file, $line );
+      padBootError ( $error, $file, $line );
  
     }     
 

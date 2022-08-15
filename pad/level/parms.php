@@ -5,14 +5,14 @@
 
   if ( ! in_array ( $padTag [$pad], ['if', 'case', 'while', 'until'] )  ) {
    
-    $padPrms_org = pExplode ($padPrms [$pad], ',');
+    $padPrms_org = padExplode ($padPrms [$pad], ',');
     
     foreach ( $padPrms_org as $padV ) {
 
       if ( $padV == 'trace' )
         include 'trace/option.php';
 
-      $padW = pExplode ($padV, '=', 2);
+      $padW = padExplode ($padV, '=', 2);
 
       if ( count($padW) == 2 and substr($padW[0], 0, 1) == '$') {
         $padSet_name  = trim(substr($padW[0], 1));
@@ -21,13 +21,13 @@
         continue;
       } 
 
-      if ( pValid ($padW[0]) and ! is_numeric($padW[0]) )
+      if ( padValid ($padW[0]) and ! is_numeric($padW[0]) )
         if ( count($padW) == 1 )
           $padPrmsTag [$pad] [$padW[0]] = TRUE;
         else
-          $padPrmsTag [$pad] [$padW[0]] = pEval ( $padW[1] );
+          $padPrmsTag [$pad] [$padW[0]] = padEval ( $padW[1] );
       else
-        $padPrmsVal [$pad] [] = pEval ( $padV );
+        $padPrmsVal [$pad] [] = padEval ( $padV );
 
     }
  

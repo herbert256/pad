@@ -1,7 +1,7 @@
 <?php
 
-  if ( ! pValid ($padSet_name) )
-    return pError ("{set} syntax error (1)");
+  if ( ! padValid ($padSet_name) )
+    return padError ("{set} syntax error (1)");
 
   if ( $padTag [$pad] <> 'set' or $padPair [$pad] )
     if ( isset($GLOBALS [$padSet_name]) )
@@ -9,6 +9,6 @@
     else
       $padSet_delete [$pad] [] = $padSet_name;
 
-  $GLOBALS [$padSet_name] = pVar_opts ( '', pExplode($padSet_value, '|') );
+  $GLOBALS [$padSet_name] = padVarOpts ( '', padExplode($padSet_value, '|') );
   
 ?>

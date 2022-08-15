@@ -10,7 +10,7 @@
 
   $join = TRUE;
 
-  function pDir_list ($dir) {
+  function padDirList ($dir) {
 
     if ( substr($dir, -2) == '..' ) return [];
     if ( ! is_dir($dir)           ) return [];

@@ -16,7 +16,7 @@
         $pad2 = $pad3;      
 
       $padCheckTag = substr($padTrue [$pad], $pad1+2, $pad2-$pad1-2);
-      if ( pValid ($padCheckTag) )
+      if ( padValid ($padCheckTag) )
         $padOpenClose [$padCheckTag] = TRUE;
 
     }

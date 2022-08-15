@@ -3,11 +3,11 @@
   if ( ! $padTrace )
     return;
 
-  pTraceFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
+  padTraceFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
 
-  pFile_put_contents ( $padLevelDir [$pad] . "/end.json",      pTraceGetLevel ($pad) );
-  pFile_put_contents ( $padLevelDir [$pad] . "/app-end.json",  $padFapp );
-  pFile_put_contents ( $padLevelDir [$pad] . "/pad-end.json",  $padFpad ); 
-  pFile_put_contents ( $padLevelDir [$pad] . "/result.html",   $padResult [$pad] );
+  padFilePutContents ( $padLevelDir [$pad] . "/end.json",      padTraceGetLevel ($pad) );
+  padFilePutContents ( $padLevelDir [$pad] . "/app-end.json",  $padFapp );
+  padFilePutContents ( $padLevelDir [$pad] . "/pad-end.json",  $padFpad ); 
+  padFilePutContents ( $padLevelDir [$pad] . "/result.html",   $padResult [$pad] );
   
 ?>

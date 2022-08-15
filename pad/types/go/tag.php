@@ -5,7 +5,7 @@
   $padTag_php = '';
 
   if ( file_exists("$padTag_go.html") )
-    $padTagContent .= pGet_html ("$padTag_go.html");
+    $padTagContent .= padGetHtml ("$padTag_go.html");
 
   if ( file_exists("$padTag_go.php") ) {
 

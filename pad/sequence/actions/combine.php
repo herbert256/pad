@@ -1,6 +1,6 @@
 <?php
 
-  $padSeq_merge_list = pExplode ($padSeq_action_value, '|');
+  $padSeq_merge_list = padExplode ($padSeq_action_value, '|');
 
 
   foreach ( $padSeq_merge_list as $padSeq_merge_key ) {

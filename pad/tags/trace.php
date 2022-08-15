@@ -4,23 +4,23 @@
 
     $padWalk [$pad] = 'end';
 
-    $padBackupTrace [$pad] = [];
-    $padBackupTrace [$pad] ['trace'] = $padTrace;
-    $padBackupTrace [$pad] ['level'] = $padLevelDir [$pad-1] ?? '';
-    $padBackupTrace [$pad] ['occur'] = $padOccurDir [$pad-1] ?? '';
+    $padBackupadTrace [$pad] = [];
+    $padBackupadTrace [$pad] ['trace'] = $padTrace;
+    $padBackupadTrace [$pad] ['level'] = $padLevelDir [$pad-1] ?? '';
+    $padBackupadTrace [$pad] ['occur'] = $padOccurDir [$pad-1] ?? '';
 
     $padLevelDir [$pad-1] = $padTraceDir . '/trace-' . $padCnt; 
     $padOccurDir [$pad-1] = $padLevelDir [$pad-1];
 
-    pTraceAll ( $padLevelDir [$pad] . "/start" );
+    padTraceAll ( $padLevelDir [$pad] . "/start" );
   
   } else {
 
-    pTraceAll ( $padLevelDir [$pad] . "/end" );
+    padTraceAll ( $padLevelDir [$pad] . "/end" );
 
-    $padTrace           = $padBackupTrace [$pad] ['trace'];
-    $padLevelDir [$pad-1] = $padBackupTrace [$pad] ['level'];
-    $padOccurDir [$pad-1] = $padBackupTrace [$pad] ['occur'];
+    $padTrace           = $padBackupadTrace [$pad] ['trace'];
+    $padLevelDir [$pad-1] = $padBackupadTrace [$pad] ['level'];
+    $padOccurDir [$pad-1] = $padBackupadTrace [$pad] ['occur'];
  
   } 
 

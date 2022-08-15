@@ -1,7 +1,7 @@
 <?php
 
 
-   function pEval_single ( &$result, $key) {
+   function padEvalSingle ( &$result, $key) {
     
     if ( $GLOBALS ['padTrace'] )
       $trace_data ['before'] = $result[$key];
@@ -18,9 +18,9 @@
 
     if ( is_array($padEval_single) or is_object($padEval_single) or is_resource($padEval_single) ) {
       $result [$key] [0] = '*ARRAY*';
-      $result [$key] [4] = pArray_single ($padEval_single);
+      $result [$key] [4] = padArraySingle ($padEval_single);
     } else {
-      pCheck_value ($padEval_single);
+      padCheckValue ($padEval_single);
       $result [$key] [0] = $padEval_single;
     }
 
@@ -29,13 +29,13 @@
 
     if ( $GLOBALS ['padTrace'] ) {
       $trace_data ['after'] = $result [$key];
-      pEval_trace ('single', $trace_data );
+      padEvalTrace ('single', $trace_data );
     }   
 
   }
 
   
-  function pEval_after ( &$result, $eval ) {
+  function padEvalAfter ( &$result, $eval ) {
  
     global $padFlagStore, $padDataStore, $padContentStore;
 
@@ -54,8 +54,8 @@
       return "Unequal () pairs: $eval";
 
     foreach ($result as $k => $one)
-      if ( $one[1] == 'other' and pValid ($one[0]) ) {
-        $type = pGet_type_eval ( $one[0] );
+      if ( $one[1] == 'other' and padValid ($one[0]) ) {
+        $type = padGetTypeEval ( $one[0] );
         if ( $type !== FALSE ) {
           $result[$k][0] = $one[0];
           $result[$k][1] = 'TYPE';
@@ -66,8 +66,8 @@
 
     foreach ($result as $k => $one)
       if ( $one[1] == 'other' ) {
-        $exp = pExplode ($one[0], ':');
-        if ( count($exp) == 2 and pValid ($exp[0]) and pValid ($exp[1]) ) {
+        $exp = padExplode ($one[0], ':');
+        if ( count($exp) == 2 and padValid ($exp[0]) and padValid ($exp[1]) ) {
           $type = $exp[0];
           if ( file_exists ( PAD . "eval/single/$type.php") or file_exists ( PAD . "eval/parms/$type.php") ) {
             $result[$k][0] = $exp[1];
@@ -79,17 +79,17 @@
       }
 
     foreach ($result as $key => $one)
-      if ( $one[1] == 'TYPE' and pValid ($one[2]) and file_exists ( PAD."eval/single/".$one[2].".php" ) )
-        pEval_single ( $result, $key);
+      if ( $one[1] == 'TYPE' and padValid ($one[2]) and file_exists ( PAD."eval/single/".$one[2].".php" ) )
+        padEvalSingle ( $result, $key);
 
     foreach ($result as $k => $one)
-      if ( $one[1] == 'other' and isset ( pEval_alt [$one[0]] ) ) {
-          $result[$k][0] = pEval_alt [$one[0]];
+      if ( $one[1] == 'other' and isset ( padEval_alt [$one[0]] ) ) {
+          $result[$k][0] = padEval_alt [$one[0]];
           $result[$k][1] = 'OPR';
       } 
 
     foreach ($result as $k => $one)
-      if ( $one[1] == 'other' and in_array ( strtoupper($one[0]), pEval_txt ) ) {
+      if ( $one[1] == 'other' and in_array ( strtoupper($one[0]), padEval_txt ) ) {
           $result[$k][0] = strtoupper($one[0]);
           $result[$k][1] = 'OPR';
       } 
@@ -125,11 +125,11 @@
 
         $result[$k][1] = 'VAL';      
  
-        if ( pField_check ( $one[0] ) ) 
-          $result[$k][0] = pField_value ( $one[0] );
-        elseif ( pArray_check ( $one[0] ) ) {
+        if ( padFieldCheck ( $one[0] ) ) 
+          $result[$k][0] = padFieldValue ( $one[0] );
+        elseif ( padArrayCheck ( $one[0] ) ) {
           $result[$k][0] = '*ARRAY*';
-          $result[$k][4] = pArray_value ( $one[0] );
+          $result[$k][4] = padArrayValue ( $one[0] );
         } else
           $result[$k][0] = $one[0]   ;
 
@@ -138,7 +138,7 @@
             $trace_data ['value'] = $result[$k][4];
           else
             $trace_data ['value'] = $result[$k][0];
-          pEval_trace ('var', $trace_data );
+          padEvalTrace ('var', $trace_data );
         }  
 
       }

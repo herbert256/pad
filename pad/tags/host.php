@@ -6,8 +6,8 @@
   $padPrmsTag [$pad] ['cookies'] ['PADSESSID'] = $GLOBALS ['PADSESSID'];   
   $padPrmsTag [$pad] ['cookies'] ['PADREQID']  = $GLOBALS ['PADREQID'];    
 
-  if ( ! pTag_parm ('complete') )
-    $padPrmsTag [$pad] ['get'] ['pInclude'] = 1;
+  if ( ! padTagParm ('complete') )
+    $padPrmsTag [$pad] ['get'] ['padInclude'] = 1;
 
   return include PAD . 'tags/curl.php';
 

@@ -18,6 +18,6 @@
       'options' => $padOpts_trace
     ];
 
-  pFile_put_contents ( $padOccurDir [$pad] . "/fields/$padFld-$padFldCnt.json", $padTraceData );
+  padFilePutContents ( $padOccurDir [$pad] . "/fields/$padFld-$padFldCnt.json", $padTraceData );
 
 ?>

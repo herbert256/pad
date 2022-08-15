@@ -19,21 +19,21 @@
 
   if ( $padTag [$pad] == 'content') {
 
-    $padStore_data = pMake_content ($padStore_source);
+    $padStore_data = padMakeContent ($padStore_source);
   
   } elseif ( $padTag [$pad] == 'data' ) {
 
-    if ( ! pIs_default_data ( $padData [$pad] ) )
+    if ( ! padIsDefaultData ( $padData [$pad] ) )
       $padStore_data = $padData [$pad];
     elseif ( $padStore_source )
-      $padStore_data = pMake_data ($padStore_source, pTag_parm('type'), $padName [$pad]);
+      $padStore_data = padMakeData ($padStore_source, padTagParm('type'), $padName [$pad]);
     else
       $padStore_data = '';
 
   } elseif ( $padTag [$pad] == 'flag' ) {
 
     if ( $padStore_source )
-      $padStore_data = pMake_flag ($padStore_source);
+      $padStore_data = padMakeFlag ($padStore_source);
     else
       $padStore_data = FALSE;
 
@@ -48,7 +48,7 @@
       'source' => $padStore_source, 
       'result' => $padStore_data
     ];
-    pFile_put_contents ( $padLevelDir [$pad] . "/store.json", $padTraceData ); 
+    padFilePutContents ( $padLevelDir [$pad] . "/store.json", $padTraceData ); 
   }
 
   $padContent = '';

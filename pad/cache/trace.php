@@ -14,6 +14,6 @@
     'now-max'     => ($padCache_max) ? $_SERVER['REQUEST_TIME'] - $padCache_max : 0
   ];
       
-  pFile_put_contents ( $padTraceDir . "/cache.$padCache_stop.json", $padCache_trace );
+  padFilePutContents ( $padTraceDir . "/cache.$padCache_stop.json", $padCache_trace );
 
 ?>

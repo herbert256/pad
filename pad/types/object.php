@@ -1,5 +1,5 @@
 <?php
 
-  return pToArray($padTag[$pad]);
+  return padToArray($padTag[$pad]);
 
 ?>

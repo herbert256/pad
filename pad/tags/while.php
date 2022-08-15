@@ -5,7 +5,7 @@
     return TRUE;
   }
 
-  $padEval = pEval ( $padPrms [$pad]);
+  $padEval = padEval ( $padPrms [$pad]);
 
   $padWrk  = [ $padTagCnt [$pad] => [] ];
 

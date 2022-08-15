@@ -6,10 +6,10 @@
   $padLevelDir [$pad] = $padOccurDir [$pad-1] . '/tag-' . $padCnt . '-' . $padTag [$pad] ;
   $padOccurDir [$pad] = $padLevelDir [$pad];
   
-  pTraceFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
+  padTraceFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
 
-  pFile_put_contents ( $padLevelDir [$pad] . "/start.json",      pTraceGetLevel($pad)  );
-  pFile_put_contents ( $padLevelDir [$pad] . "/app-start.json",  $padFapp );
-  pFile_put_contents ( $padLevelDir [$pad] . "/pad-start.json",  $padFpad ); 
+  padFilePutContents ( $padLevelDir [$pad] . "/start.json",      padTraceGetLevel($pad)  );
+  padFilePutContents ( $padLevelDir [$pad] . "/app-start.json",  $padFapp );
+  padFilePutContents ( $padLevelDir [$pad] . "/pad-start.json",  $padFpad ); 
 
 ?>

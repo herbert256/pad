@@ -5,13 +5,13 @@
   
   while ($padChk !== FALSE) {
 
-    if ( ! pCheckTag ($padTag [$pad], substr($padContent, 0, $padChk)) ) 
+    if ( ! padCheckTag ($padTag [$pad], substr($padContent, 0, $padChk)) ) 
 
       $padChk = strpos($padContent , $padTst, $padChk+$padAdd);
 
     else {
 
-      $padEval = pEval($padEval);
+      $padEval = padEval($padEval);
 
       if ( ($padTag [$pad] == 'if' and $padEval) or ($padTag [$pad] == 'case' and $padBasis == $padEval) ) {
         $padContent = substr ($padContent, 0, $padChk);
@@ -27,7 +27,7 @@
  
   }
 
-  $padEval = pEval($padEval);
+  $padEval = padEval($padEval);
 
   return ( ($padTag [$pad] == 'if' and $padEval) or ($padTag [$pad] == 'case' and $padBasis == $padEval) );
 

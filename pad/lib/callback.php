@@ -1,11 +1,11 @@
 <?php
 
 
-  function pCallback_before_xxx ($padCallback_type) {
+  function padCallbackBeforeXxx ($padCallback_type) {
 
     $padVars_before = [];
     foreach ($GLOBALS as $padK => $padV)
-      if ( pValid_store ($padK) ) { 
+      if ( padValidStore ($padK) ) { 
         $padVars_before [] = $padK;
         $$padK = $padV;
       }
@@ -19,7 +19,7 @@
         unset( $GLOBALS [$padK] );
 
     foreach ($padVars_after as $padK => $padV)
-      if ( pValid_store ($padK) ) {
+      if ( padValidStore ($padK) ) {
         if ( isset( $GLOBALS [$padK] ) )
           unset( $GLOBALS [$padK] );
         $GLOBALS [$padK] = $$padK;
@@ -27,7 +27,7 @@
 
   }
 
-  function pCallback_before_row ( &$padRow_parm ) {
+  function padCallbackBeforeRow ( &$padRow_parm ) {
 
     if ( isset( $GLOBALS ['row'] ) ) {
       $padRow_save = TRUE;
@@ -37,7 +37,7 @@
 
     $padVars_before = [];
     foreach ($GLOBALS as $padK => $padV)
-      if ( $padK <> 'row' and pValid_store ($padK) ) { 
+      if ( $padK <> 'row' and padValidStore ($padK) ) { 
         $padVars_before [] = $padK;
         $$padK = $padV;
       }
@@ -53,7 +53,7 @@
         unset( $GLOBALS [$padK] );
 
     foreach ($padVars_after as $padK => $padV)
-      if ( $padK <> 'row' and pValid_store ($padK) ) {
+      if ( $padK <> 'row' and padValidStore ($padK) ) {
         if ( isset( $GLOBALS [$padK] ) )
           unset( $GLOBALS [$padK] );
         $GLOBALS [$padK] = $padV;

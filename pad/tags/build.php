@@ -4,6 +4,6 @@
   $padMode  = $padPrmsTag ['mode']    ?? $padPrmsVal ['1'] ?? 'before', 
   $padMerge = $padPrmsTag ['merge']   ?? $padPrmsVal ['2'] ?? 'content'
 
-  return pBuild( $padBuild, $padMode, $padMerge); 
+  return padBuild( $padBuild, $padMode, $padMerge); 
 
 ?>

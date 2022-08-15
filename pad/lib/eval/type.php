@@ -1,12 +1,12 @@
  <?php
  
-  function pEval_type ($type, $left, &$result, $myself, $start, $end=999999) {
+  function padEvalType ($type, $left, &$result, $myself, $start, $end=999999) {
 
     $kind = $result [$type] [2];
     $name = $result [$type] [0];
 
     if ( file_exists ( PAD."eval/single/$kind.php" ) ) {
-      pEval_single ( $result, $type);
+      padEvalSingle ( $result, $type);
       return;
     }
 
@@ -58,9 +58,9 @@
   
     if ( is_array($value) or is_object($value) or is_resource($value) ) {
       $result [$type] [0] = '*ARRAY*';
-      $result [$type] [4] = pArray_single ($value);
+      $result [$type] [4] = padArraySingle ($value);
      } else {
-      pCheck_value ($value);
+      padCheckValue ($value);
       $result [$type] [0] = $value;
     }
 
@@ -75,14 +75,14 @@
 
     if ( $GLOBALS ['padTrace'] ) {
       $trace_data ['result'] = $result [$type];
-      pEval_trace  ('type', $trace_data );
+      padEvalTrace  ('type', $trace_data );
     }
 
   }
 
-  function pArray_single ($value) {
+  function padArraySingle ($value) {
 
-    $value = pToArray($value);
+    $value = padToArray($value);
 
     $array = [];
 

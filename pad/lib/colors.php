@@ -1,18 +1,18 @@
 <?php
     
-  function pColors_file ($file) {
+  function padColorsFile ($file) {
 
     if ( ! file_exists($file) )
       return 'xx';
 
     if (substr($file, -5) == '.html')
-      return pColors_string ( pFile_get_contents($file) ) ;
+      return padColorsString ( padFileGetContents($file) ) ;
     else
-      return highlight_string ( pFile_get_contents($file), TRUE ) ;
+      return highlight_string ( padFileGetContents($file), TRUE ) ;
   
   }  
 
-  function pColors_string ($source) { 
+  function padColorsString ($source) { 
     
    $source = highlight_string($source, TRUE);
    $source = str_replace ('@content@', '<font color="black"><b><font color="green">@content@</font></b></font>',  $source);
@@ -63,7 +63,7 @@ go: $end = strpos($source, '}');
       $tag      = substr ($tag, $ns_pos+1);
     } 
 
-    if ( ! pValid ( $tag ) )  {             
+    if ( ! padValid ( $tag ) )  {             
       $source = substr($source, 0, $start) 
                 . '&open;' . $between . '&close;' 
                 . substr($source, $end+1);

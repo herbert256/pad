@@ -24,6 +24,6 @@
   include 'libApp.php';
   include 'build.php';
 
-  pTiming_end ('init');
+  padTimingEnd ('init');
 
 ?>

@@ -1,11 +1,11 @@
 <?php
 
-  pTiming_start ('var');
+  padTimingStart ('var');
 
   include 'inits.php';
 
   $padOpts = $padExpl;
-  $padVal  = pVar_opts ($padVal, $padOpts);
+  $padVal  = padVarOpts ($padVal, $padOpts);
   $padVal  = str_replace ( '}', '&close;', $padVal );
 
   return include 'exits.php';

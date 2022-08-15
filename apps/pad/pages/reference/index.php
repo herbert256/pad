@@ -18,7 +18,7 @@
     if (substr($dir, -2) == '/.')  $dir = substr($dir, 0, -2);
     if (substr($dir, -3) == '/..') $dir = substr($dir, 0, -3);
 
-   if ( $dir and $dir <> '.' and is_dir($padath) and count(pDir_list ($padath)))
+   if ( $dir and $dir <> '.' and is_dir($padath) and count(padDirList ($padath)))
       $dirs [$dir] ['dir'] = $dir;
  
   }

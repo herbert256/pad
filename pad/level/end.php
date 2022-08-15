@@ -28,6 +28,6 @@
   $pad--;
   
   if ( $pad >= 0 )
-    pHtml ( $padResult[$pad+1] );
+    padHtml ( $padResult[$pad+1] );
   
 ?>

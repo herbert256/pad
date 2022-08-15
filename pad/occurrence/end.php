@@ -5,6 +5,6 @@
   $padResult [$pad] .= $padHtml [$pad];
 
   if ( $pad )
-    pReset ($pad);
+    padReset ($pad);
 
 ?>

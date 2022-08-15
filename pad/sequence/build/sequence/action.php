@@ -5,7 +5,7 @@
   else
     $padSeq_parm = $padPrm [$pad];
 
-  $padSeq_parms = pExplode($padSeq_parm, '|');
+  $padSeq_parms = padExplode($padSeq_parm, '|');
 
   $padSeq_seq  = 'pull';
   $padSeq_pull = $padSeq_parms[0]; 

@@ -1,5 +1,5 @@
 <?php
 
-  $padContent .= '{last}' . pTag_parm ('close') . '{/last}';
+  $padContent .= '{last}' . padTagParm ('close') . '{/last}';
 
 ?>

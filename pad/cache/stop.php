@@ -7,8 +7,8 @@
   if ( $padTrace )
     include 'trace.php';
 
-  pTiming_end ('cache');
+  padTimingEnd ('cache');
 
-  pStop ($padStop);
+  padStop ($padStop);
 
 ?>

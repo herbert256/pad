@@ -3,7 +3,7 @@
   if ( $padTrace ) 
     include 'trace.php';
 
-  pTiming_end ('var');
+  padTimingEnd ('var');
 
   return $padVal;
 

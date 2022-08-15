@@ -4,9 +4,9 @@
     $padPrmsTag [$pad] ['url'] = $padPrm [$pad];
 
   if ( ! $padPrmsTag [$pad] ['url'] )
-    return pError ("Curl: No URL given");
+    return padError ("Curl: No URL given");
 
-  $padReturn = pCurl ( $padPrmsTag [$pad]);
+  $padReturn = padCurl ( $padPrmsTag [$pad]);
 
   return $padReturn ['data'];
 

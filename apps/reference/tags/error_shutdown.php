@@ -1,7 +1,7 @@
 <?php
 
-  function pForce_fatal_error () {}
+  function padForceFatalError () {}
 
-  function pForce_fatal_error () {}
+  function padForceFatalError () {}
 
 ?>

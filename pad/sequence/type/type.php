@@ -8,7 +8,7 @@
 
   } elseif ( $padSeq_range and $padSeq_seq <> 'range' ) {
 
-    $padSeq_for = pGet_range ( $padSeq_range, $padSeq_inc );
+    $padSeq_for = padGetRange ( $padSeq_range, $padSeq_inc );
 
     include "for.php";
 

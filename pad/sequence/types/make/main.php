@@ -8,7 +8,7 @@
 
       $GLOBALS ["padSeq_mf_$padSeq_seq"] [$padSeq_opt_name] = $padSeq_opt_value;
 
-      pDone ( $padSeq_opt_name, TRUE );
+      padDone ( $padSeq_opt_name, TRUE );
 
       $GLOBALS ["padSeq_$padSeq_opt_name"] = $padSeq_opt_value;
 

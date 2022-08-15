@@ -4,7 +4,7 @@
     return;
 
   $padSort_args   = [];
-  $padSort_fields = pExplode($padPrmsTag [$pad] ['sort'], ';'); 
+  $padSort_fields = padExplode($padPrmsTag [$pad] ['sort'], ';'); 
 
   if ( $padPrmsTag [$pad] ['sort'] === TRUE or ! count ($padSort_fields)) {
     $padSort_fields = []; 
@@ -20,7 +20,7 @@
     $padSort_sort = '';
     $padSort_flags = 0; 
 
-    $padSort_parms = pExplode($padV, ' ');
+    $padSort_parms = padExplode($padV, ' ');
 
     foreach($padSort_parms as $padK2 => $padV2) {
       if ($padK2==0)

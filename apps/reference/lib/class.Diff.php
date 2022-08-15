@@ -99,8 +99,8 @@ class Diff{
 
     // return the diff of the files
     return self::compare(
-        pFile_get_contents($file1),
-        pFile_get_contents($file2),
+        padFileGetContents($file1),
+        padFileGetContents($file2),
         $compareCharacters);
 
   }

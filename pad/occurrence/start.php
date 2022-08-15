@@ -13,14 +13,14 @@
 
   if ( $pad ) {
 
-    if ( pIs_default_data ($padData [$pad]) ) {
+    if ( padIsDefaultData ($padData [$pad]) ) {
       if ( isset($padPrmsVal [$pad][0]) )
-        pSet_global ( $padName [$pad], $padPrmsVal [$pad][0] );
+        padSetGlobal ( $padName [$pad], $padPrmsVal [$pad][0] );
     } else
-      pSet_global ( $padName [$pad], $padCurrent [$pad] );
+      padSetGlobal ( $padName [$pad], $padCurrent [$pad] );
 
     foreach ( $padCurrent [$pad] as $padK => $padV )
-      pSet_global ( $padK, $padV );
+      padSetGlobal ( $padK, $padV );
 
   }
 

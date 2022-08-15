@@ -11,7 +11,7 @@
     'result' => $padSeqReturn
   ];
 
-  pFile_put_contents ( $padLevelDir [$pad] . "/sequence.json", $padTraceData );
+  padFilePutContents ( $padLevelDir [$pad] . "/sequence.json", $padTraceData );
 
 
 ?>

@@ -1,5 +1,5 @@
 <?php
 
-  pExit ();
+  padExit ();
   
 ?>

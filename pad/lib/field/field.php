@@ -1,20 +1,20 @@
 <?php
 
 
-  function pField_check ($padarm) { return pField ($padarm, 1); } 
-  function pField_value ($padarm) { return pField ($padarm, 2); } 
-  function pArray_check ($padarm) { return pField ($padarm, 3); } 
-  function pArray_value ($padarm) { return pField ($padarm, 4); } 
-  function pField_null  ($padarm) { return pField ($padarm, 5); } 
+  function padFieldCheck ($padarm) { return padField ($padarm, 1); } 
+  function padFieldValue ($padarm) { return padField ($padarm, 2); } 
+  function padArrayCheck ($padarm) { return padField ($padarm, 3); } 
+  function padArrayValue ($padarm) { return padField ($padarm, 4); } 
+  function padFieldNull  ($padarm) { return padField ($padarm, 5); } 
 
 
-  function pField ($padarm, $type) {
+  function padField ($padarm, $type) {
 
     $field = ( substr ( $padarm, 0, 1 ) == '$' ) ? substr ( $padarm, 1 ) : $padarm;
 
-    if     ( strpos ( $field, '#' ) !== FALSE ) $value = pField_tag    ( $field        );
-    elseif ( strpos ( $field, ':' ) !== FALSE ) $value = pField_prefix ( $field, $type );
-    else                                        $value = pField_level  ( $field, $type );
+    if     ( strpos ( $field, '#' ) !== FALSE ) $value = padFieldTag    ( $field        );
+    elseif ( strpos ( $field, ':' ) !== FALSE ) $value = padFieldPrefix ( $field, $type );
+    else                                        $value = padFieldLevel  ( $field, $type );
 
     if     ($type == 1) return ( $value !== NULL and ( $value === INF or ! is_scalar($value) ) ) ? FALSE : TRUE;
     elseif ($type == 2) return ( $value === NULL or    $value === INF or ! is_scalar($value)   ) ? ''    : $value;

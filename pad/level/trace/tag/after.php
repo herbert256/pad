@@ -4,6 +4,6 @@
   $padTag_trace_data ['result']     = $padTagResult;
   $padTag_trace_data ['content']    = $padTagContent;
 
-  pFile_put_contents ( $padLevelDir [$pad] . "/tag." . $padTagCnt [$pad] . '.json',  $padTag_trace_data );
+  padFilePutContents ( $padLevelDir [$pad] . "/tag." . $padTagCnt [$pad] . '.json',  $padTag_trace_data );
   
 ?>

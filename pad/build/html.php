@@ -4,7 +4,7 @@
 
   $padBuild_now = substr(APP, 0, -1);
 
-  $padBuild_mrg = pExplode ("pages/$page", '/');
+  $padBuild_mrg = padExplode ("pages/$page", '/');
 
   foreach ($padBuild_mrg as $padBuild_key => $padBuild_value) {
 
@@ -13,12 +13,12 @@
     if ( $padBuild_key == array_key_last($padBuild_mrg) 
        and (file_exists("$padBuild_now.php") or file_exists("$padBuild_now.html") ) ) {
 
-      $padBuild_html = pGet_html ( "$padBuild_now.html" );
+      $padBuild_html = padGetHtml ( "$padBuild_now.html" );
 
     } elseif ( is_dir ($padBuild_now) ) {
 
-      $padBuild_inits = pGet_html ( "$padBuild_now/inits.html" );
-      $padBuild_exits = pGet_html ( "$padBuild_now/exits.html" );
+      $padBuild_inits = padGetHtml ( "$padBuild_now/inits.html" );
+      $padBuild_exits = padGetHtml ( "$padBuild_now/exits.html" );
 
       if ( strpos($padBuild_inits, '{content}') === FALSE and strpos($padBuild_exits, '{content}') === FALSE  )
         $padBuild_inits .= '{content}';
@@ -33,7 +33,7 @@
 
     } else {
 
-      $padBuild_html = pGet_html ( "$padBuild_now.html" );
+      $padBuild_html = padGetHtml ( "$padBuild_now.html" );
 
     }
 
