@@ -3,9 +3,9 @@
   $padSeq_list      = $padSeq_loop;
   $padSeq_list_last = $padSeq_loop;
 
-  foreach ( $GLOBALS["pSeq_$padSeq_opr_name"."_list"] as $padSeq_list_name => $padSeq_list_value ) {
+  foreach ( $GLOBALS["padSeq_$padSeq_opr_name"."_list"] as $padSeq_list_name => $padSeq_list_value ) {
 
-    pSeq_set ( $padSeq_list_name, $padSeq_list_value );
+    padSeq_set ( $padSeq_list_name, $padSeq_list_value );
 
     $padSeq_loop = $padSeq_list;
 

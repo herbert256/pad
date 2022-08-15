@@ -1,6 +1,6 @@
 <?php
 
-function pSequence_bool_testBool ($n) {
+function padSequence_bool_testBool ($n) {
 
     if ( $n & 1 )
       return FALSE;

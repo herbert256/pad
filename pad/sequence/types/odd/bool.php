@@ -1,6 +1,6 @@
 <?php
 
-  function pSequence_bool_odd( $n ) {
+  function padSequence_bool_odd( $n ) {
 
     if ( $n & 1 )
       return TRUE;

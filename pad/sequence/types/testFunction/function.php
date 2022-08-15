@@ -1,6 +1,6 @@
 <?php
 
-function pSequence_testFunction ($n) {
+function padSequence_testFunction ($n) {
 
   return $n;
 

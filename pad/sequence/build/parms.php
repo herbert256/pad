@@ -29,7 +29,7 @@
   unset ( $padPrmsTag [$pad] ['store'] );
  
   foreach ( $padPrmsTag [$pad] as $padSeq_tag_name => $padSeq_tag_value )
-    if ( ! isset($GLOBALS ["pSeq_$padSeq_tag_name"]) )
-      $GLOBALS ["pSeq_$padSeq_tag_name"] = $padSeq_tag_value;
+    if ( ! isset($GLOBALS ["padSeq_$padSeq_tag_name"]) )
+      $GLOBALS ["padSeq_$padSeq_tag_name"] = $padSeq_tag_value;
 
 ?>

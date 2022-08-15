@@ -10,7 +10,7 @@
 
   elseif ( $padSeq_build == 'function' )
 
-    $padSequence = "pSequence_$padSeq_seq" ($padSeq_loop);
+    $padSequence = "padSequence_$padSeq_seq" ($padSeq_loop);
 
   elseif ( $padSeq_build == 'bool' )
 

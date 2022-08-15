@@ -2,7 +2,7 @@
 
   $padSeq_parm_save = $padSeq_parm;
 
-  foreach ( $GLOBALS ["pSeq_mf_$padSeq_seq"] as $padSeq_opt_name => $padSeq_opt_value ) {
+  foreach ( $GLOBALS ["padSeq_mf_$padSeq_seq"] as $padSeq_opt_name => $padSeq_opt_value ) {
 
     $padSeq_one_done [] = $padSeq_opt_name;
 

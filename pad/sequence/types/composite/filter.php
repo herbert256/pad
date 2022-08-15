@@ -2,6 +2,6 @@
 
   include_once 'bool.php';
 
-  return pSequence_bool_composite ($padSeq_loop);
+  return padSequence_bool_composite ($padSeq_loop);
 
 ?>

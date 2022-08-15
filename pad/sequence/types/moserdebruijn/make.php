@@ -2,6 +2,6 @@
 
   include_once 'function.php';
   
-  return pSequence_moserdebruijn ( $padSeq_loop );
+  return padSequence_moserdebruijn ( $padSeq_loop );
 
 ?>

@@ -1,16 +1,16 @@
 <?php
 
-  $GLOBALS ["pSeq_mf_$padSeq_seq"] = [];
+  $GLOBALS ["padSeq_mf_$padSeq_seq"] = [];
  
   foreach ( $padPrmsTag [$pad] as $padSeq_opt_name => $padSeq_opt_value )
 
     if ( file_exists ( PAD . "sequence/types/$padSeq_opt_name/$padSeq_filter_check.php" ) ) {
 
-      $GLOBALS ["pSeq_mf_$padSeq_seq"] [$padSeq_opt_name] = $padSeq_opt_value;
+      $GLOBALS ["padSeq_mf_$padSeq_seq"] [$padSeq_opt_name] = $padSeq_opt_value;
 
       pDone ( $padSeq_opt_name, TRUE );
 
-      $GLOBALS ["pSeq_$padSeq_opt_name"] = $padSeq_opt_value;
+      $GLOBALS ["padSeq_$padSeq_opt_name"] = $padSeq_opt_value;
 
     }
    

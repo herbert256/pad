@@ -5,7 +5,7 @@
   $padSeq = $padSequence = $padSeq_protectCnt = $padSeq_base = 0;
 
   if ( ! $padSeq_name )                            $padSeq_name = $padSeq_set; 
-  if ( ! isset($GLOBALS ["pSeq_$padSeq_seq"]) ) $GLOBALS ["pSeq_$padSeq_seq"] = $padSeq_parm;
+  if ( ! isset($GLOBALS ["padSeq_$padSeq_seq"]) ) $GLOBALS ["padSeq_$padSeq_seq"] = $padSeq_parm;
   if ( ! isset($padPrmsTag [$pad] ["$padSeq_seq"])   ) $padPrmsTag [$pad] ["$padSeq_seq"]   = $padSeq_parm;
 
   if ( $padSeq_seq == 'make' )

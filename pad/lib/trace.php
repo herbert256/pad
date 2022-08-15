@@ -81,7 +81,7 @@
 
   function pTraceAll ( $dir ) {
 
-    pFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
+    pTraceFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
 
     pFile_put_contents ( "$dir/pad.json",   $padFpad  );
     pFile_put_contents ( "$dir/app.json",   $padFapp  );
@@ -91,5 +91,61 @@
     pFile_put_contents ( "$dir/config.json",$padFcfg  );
 
   }
+
+
+  function pTraceFields ( &$php, &$lvl, &$app, &$cfg, &$pad, &$ids ) {
+
+    $php = $lvl = $app = $cfg = $pad = $ids = [];
+
+    $chk3 = [ 'page','app','PADSESSID','PADREQID','PHPSESSID','PADREFID' ];
+
+    $not  = [ 'GLOBALS', 'padFphp', 'padFlvl', 'padFapp', 'padFcfg', 'padFpad', 'padFids'  ];
+
+    $chk1 = [ '_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
+
+    $chk2 = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padPrms','padPrmsType','padPrmsTag','padPrmsVal','padName','padData','padCurrent','padKey','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padLevelDir','padOccurDir','padSave_vars','padDelete_vars','padSet_save','padSet_delete','padTagCnt'];
+
+    $settings = pFile_get_contents(PAD . 'config/config.php');
+
+    foreach ($GLOBALS as $key => $value) {
+
+      if ( ! in_array ($key, $not) ) {
+
+        if (strpos($settings, '$'.$key.' ') or strpos($settings, '$'.$key.'=') or strpos($settings, '$'.$key."\t"))
+
+          $cfg  [$key] = $value;
+
+        elseif ( in_array ( $key, $chk3 ) )
+          
+          $ids [$key] = $value;
+
+        elseif ( in_array ( $key, $chk1 ) )
+          
+          $php [$key] = $value;
+
+        elseif ( in_array ( $key, $chk2 ) )
+          
+          $lvl [$key] = $value;
+   
+        elseif ( substr($key, 0, 3)  == 'pad' )
+
+          $pad [$key] = $value;
+
+        else
+
+          $app [$key] = $value;
+
+      }
+
+    }
+
+    ksort($app);
+    ksort($cfg);
+    ksort($php);
+    ksort($lvl);
+    ksort($pad);
+
+  }
+
 
 ?>

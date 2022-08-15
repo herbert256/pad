@@ -1,6 +1,6 @@
 <?php
 
-  function pSequence_heptagonal ($n) {
+  function padSequence_heptagonal ($n) {
  
     return ((5 * $n * $n) - (3 * $n)) / 2;
 

@@ -132,8 +132,8 @@ if ( !empty($_GET['FILES']) ) { echo '<h2>files cached</h2>'; files_display(); e
 
 if ( !(isset($_REQUEST['GRAPHS']) && !$_REQUEST['GRAPHS']) && CACHEPREFIX=='opcache_') { graphs_display(); if ( !empty($_REQUEST['GRAPHS']) ) { exit; } }
 
-ob_start(); phpinfo(8); $padhpinfo = ob_get_contents(); ob_end_clean();        // some info is only available via phpinfo? sadly buffering capture has to be used
-if ( !preg_match( '/module\_Zend.(Optimizer\+|OPcache).+?(\<table[^>]*\>.+?\<\/table\>).+?(\<table[^>]*\>.+?\<\/table\>)/is', $padhpinfo, $opcache) ) { }  // todo
+ob_start(); phpinfo(8); $phpinfo = ob_get_contents(); ob_end_clean();        // some info is only available via phpinfo? sadly buffering capture has to be used
+if ( !preg_match( '/module\_Zend.(Optimizer\+|OPcache).+?(\<table[^>]*\>.+?\<\/table\>).+?(\<table[^>]*\>.+?\<\/table\>)/is', $phpinfo, $opcache) ) { }  // todo
 
 if ( function_exists(CACHEPREFIX.'get_configuration') ) { echo '<h2>general</h2>'; $configuration=call_user_func(CACHEPREFIX.'get_configuration'); }
 

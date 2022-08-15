@@ -2,6 +2,6 @@
 
   include_once 'function.php';
   
-  return pSequence_recaman ( $padSeq_loop );
+  return padSequence_recaman ( $padSeq_loop );
 
 ?>

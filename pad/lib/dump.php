@@ -38,22 +38,20 @@
 
   function pDump_vars ($info='') {
 
-   pErrorShort ( $info );
-
-    pFields ( $php, $lvl, $app, $cfg, $xxx, $ids);
+    pTraceFields ( $php, $lvl, $app, $cfg, $pad, $ids);
 
     echo ("<div align=\"left\"><pre>");
 
     if ($info)
       echo ("<hr><b>$info</b><hr><br>");
 
-    pDumpSequence ($xxx);
+    pDumpSequence ($pad);
     pDumpEval     ();
     pDumpStack    ();
     pDumpLevel    ();
     pDumpRequest  ();
     pDumpArray    ( "APP variables", $app);
-    pDumpArray    ( "PAD variables", $xxx);
+    pDumpArray    ( "PAD variables", $pad);
     pDumpArray    ( "Level variables", $lvl);
     pDumpSQL      ();
     pDumpHeaders  ();
@@ -69,75 +67,20 @@
   }
 
 
-  function pFields ( &$php, &$lvl, &$app, &$cfg, &$xxx, &$ids ) {
-
-    $php = $lvl = $app = $cfg = $pad = $ids = [];
-
-    $chk3 = [ 'page','app','PADSESSID','PADREQID','PHPSESSID','PADREFID' ];
-
-    $not  = [ 'GLOBALS', 'padFphp', 'padFlvl', 'padFapp', 'padFcfg', 'padFpad', 'padFids'  ];
-
-    $chk1 = [ '_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
-
-    $chk2 = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padPrms','padPrmsType','padPrmsTag','padPrmsVal','padName','padData','padCurrent','padKey','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padLevelDir','padOccurDir','padSave_vars','padDelete_vars','padSet_save','padSet_delete','padTagCnt'];
-
-    $settings = pFile_get_contents(PAD . 'config/config.php');
-
-    foreach ($GLOBALS as $key => $value) {
-
-      if ( ! in_array ($key, $not) ) {
-
-        if (strpos($settings, '$'.$key.' ') or strpos($settings, '$'.$key.'=') or strpos($settings, '$'.$key."\t"))
-
-          $cfg  [$key] = $value;
-
-        elseif ( in_array ( $key, $chk3 ) )
-          
-          $ids [$key] = $value;
-
-        elseif ( in_array ( $key, $chk1 ) )
-          
-          $php [$key] = $value;
-
-        elseif ( in_array ( $key, $chk2 ) )
-          
-          $lvl [$key] = $value;
-   
-        elseif ( substr($key, 0, 3)  == 'pad' )
-
-          $xxx [$key] = $value;
-
-        else
-
-          $app [$key] = $value;
-
-      }
-
-    }
-
-    ksort($app);
-    ksort($cfg);
-    ksort($php);
-    ksort($lvl);
-    ksort($xxx);
-
-  }
-
-
-  function pDumpSequence ($xxx) {
+  function pDumpSequence ($pad) {
 
     if ( ! isset($GLOBALS ['padIn_sequence'] ) or $GLOBALS ['padIn_sequence'] === FALSE ) 
       return;
 
     $seq = [];
     
-    foreach ( $xxx as $key )
-      if ( substr($key, 0, 7) == 'pSeq') {
-        unset ($xxx[$key]);
+    foreach ( $pad as $key )
+      if ( substr($key, 0, 7) == 'padSeq') {
+        unset ($pad[$key]);
         $seq [] = $key;
       }   
 
-    pDump_fields ($seq, "Sequence variables");
+    pDumpArray("Sequence variables", $seq);
 
     echo ( "\n\n");
 
@@ -155,12 +98,12 @@
     pDump_field  ( 'myself', $GLOBALS ['padTrace_myself']    );
 
     if ( count ( $GLOBALS ['padTrace_now'] ) )
-      pDumpArray  ( 'now', $GLOBALS ['padTrace_now']);
+      pDumpArray ( 'now', $GLOBALS ['padTrace_now']);
 
-    pDumpArray  ( 'parsed', $GLOBALS ['padTrace_parsed']);
-    pDumpArray  ( 'after',  $GLOBALS ['padTrace_after']);
-    pDumpArray  ( 'go',     $GLOBALS ['padTrace_go']);
-    pDumpArray  ( 'result', $GLOBALS ['padEval_result'] );
+    pDumpArray ( 'parsed', $GLOBALS ['padTrace_parsed']);
+    pDumpArray ( 'after',  $GLOBALS ['padTrace_after']);
+    pDumpArray ( 'go',     $GLOBALS ['padTrace_go']);
+    pDumpArray ( 'result', $GLOBALS ['padEval_result'] );
 
     echo ( "\n\n");
 
@@ -194,8 +137,8 @@
 
   function pDumpHeaders () {
 
-                                           pDumpArray  ('Headers-in',  getallheaders());
-    if ( isset ( $GLOBALS ['padHeaders'] ) ) pDumpArray  ('Headers-out', $GLOBALS ['padHeaders'] );
+                                           pDumpArray ('Headers-in',  getallheaders());
+    if ( isset ( $GLOBALS ['padHeaders'] ) ) pDumpArray ('Headers-out', $GLOBALS ['padHeaders'] );
 
   }
 
@@ -203,7 +146,7 @@
   function pDumpRequest () {
 
     if ( isset ( $_REQUEST ) and count ( $_REQUEST ) )
-      pDumpArray  ('Request variables', $_REQUEST);
+      pDumpArray ('Request variables', $_REQUEST);
 
   }
 
@@ -221,24 +164,6 @@
         if ( isset ($GLOBALS ['padData'][$lvl]) )
           pDumpArray ('Level '.$lvl, $GLOBALS ['padData'][$lvl] );
     
-  }
-
-
-  function pDump_fields ($fields, $text) {
-
-    echo ( "\n<b>$text</b>");
-
-    foreach ($fields as $key)
-      if ( isset($GLOBALS[$key]) )
-        if (is_object($GLOBALS[$key]))
-          pDump_object ($key, $GLOBALS[$key]);
-        elseif (is_array ($GLOBALS[$key]))
-          pDumpArray ($key,  pDump_sanitize ($GLOBALS[$key]));
-        else
-          pDump_field ( $key, $GLOBALS[$key] ); 
-
-    echo ( "\n" );
-
   }
 
 

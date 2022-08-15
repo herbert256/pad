@@ -4,7 +4,7 @@
 
 // function that returns
 // n'th bell number
-function pSequence_bell ($n)
+function padSequence_bell ($n)
 {
 
     $bell[0][0] = 1;

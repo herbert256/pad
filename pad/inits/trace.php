@@ -19,7 +19,7 @@
   ];
 
 
-  pFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
+  pTraceFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
 
   pFile_put_contents ( $GLOBALS ['padTraceDir'] . "/start.json",         $padTraceData );
   pFile_put_contents ( $GLOBALS ['padTraceDir'] . "/headers-in.json", getallheaders() );

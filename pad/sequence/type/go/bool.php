@@ -1,7 +1,7 @@
 <?php
 
   if ( ! $padSeq_random )
-    if ( "pSequence_bool_$padSeq_seq"($padSeq_loop) )
+    if ( "padSequence_bool_$padSeq_seq"($padSeq_loop) )
       return $padSeq_loop;
     else
       return FALSE;
@@ -13,11 +13,11 @@
     if ( count ($padSeq_for) )
       $padSeq_loop_bool = $padSeq_for [array_rand($padSeq_for)];
     else
-      $padSeq_loop_bool = pSeq_random ( $padSeq_loop_start, $padSeq_loop_end );
+      $padSeq_loop_bool = padSeq_random ( $padSeq_loop_start, $padSeq_loop_end );
  
     include_once PAD . "sequence/types/$padSeq_seq/bool.php";
 
-    if ( "pSequence_bool_$padSeq_seq"($padSeq_loop_bool) )
+    if ( "padSequence_bool_$padSeq_seq"($padSeq_loop_bool) )
       return $padSeq_loop_bool;
      
     $padSeq_random_try++;

@@ -10,7 +10,7 @@
     'time'    => microtime(true) - ($_SERVER ['REQUEST_TIME_FLOAT'] ?? 0),
   ];
 
-  pFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
+  pTraceFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
 
   pFile_put_contents ( $GLOBALS ['padTraceDir'] . "/end.json",         $padTraceData );
   pFile_put_contents ( $GLOBALS ['padTraceDir'] . "/result.html",  $GLOBALS ['padResult'][0] ?? '');

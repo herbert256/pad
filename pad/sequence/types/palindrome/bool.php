@@ -1,8 +1,8 @@
 <?php
 
-  function pSequence_bool_palindrome ($n) {
+  function padSequence_bool_palindrome ($n) {
 
-    if ( $n == pSeq_reverse($n) )
+    if ( $n == padSeq_reverse($n) )
       return TRUE;
     else
       return FALSE;
