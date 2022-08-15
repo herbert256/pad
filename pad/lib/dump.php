@@ -74,11 +74,11 @@
 
     $seq = [];
     
-    foreach ( $pad as $key )
-      if ( substr($key, 0, 7) == 'padSeq') {
-        unset ($pad[$key]);
-        $seq [] = $key;
-      }   
+    // foreach ( $pad as $key )
+    //   if ( substr($key, 0, 7) == 'padSeq') {
+    //     unset ($pad[$key]);
+    //     $seq [] = $key;
+    //   }   
 
     padDumpArray("Sequence variables", $seq);
 

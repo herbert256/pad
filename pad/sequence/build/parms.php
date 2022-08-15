@@ -12,9 +12,9 @@
   $padSeqRows     = intval ( $padPrmsTag [$pad] ['rows']      ?? 0           );
   $padSeqUnique   = intval ( $padPrmsTag [$pad] ['unique']    ?? 0           );
   $padSeqRandom   = intval ( $padPrmsTag [$pad] ['random']    ?? 0           );
-  $padSeqCnt       = intval ( $padPrmsTag [$pad] ['count']     ?? 0           );
+  $padSeqCnt      = intval ( $padPrmsTag [$pad] ['count']     ?? 0           );
   $padSeqPage     = intval ( $padPrmsTag [$pad] ['page']      ?? 0           );
-  $padSeqName     =          $padName [$pad]      ?? ''; 
+  $padSeqName     =          $padName    [$pad]               ?? ''; 
   $padSeqProtect  =          $padPrmsTag [$pad] ['protect']   ?? 1000; 
   $padSeqSave     =          $padPrmsTag [$pad] ['save']      ?? 100; 
   $padSeqUnique   =          $padPrmsTag [$pad] ['unique']    ?? '';
@@ -29,7 +29,7 @@
   unset ( $padPrmsTag [$pad] ['store'] );
  
   foreach ( $padPrmsTag [$pad] as $padSeqTagName => $padSeqTagValue )
-    if ( ! isset($GLOBALS ["padSeq_$padSeqTagName"]) )
-      $GLOBALS ["padSeq_$padSeqTagName"] = $padSeqTagValue;
+    if ( ! isset ( $GLOBALS [ 'padSeq' . ucfirst($padSeqTagName) ] ) )
+      $GLOBALS [ 'padSeq' . ucfirst($padSeqTagName) ] = $padSeqTagValue;
 
 ?>

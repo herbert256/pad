@@ -2,7 +2,7 @@
 
   padTimingStart ('opt');
 
-  $padOptionsWalk = $GLOBALS["padOptions_$padOptions"];
+  $padOptionsWalk = $GLOBALS [ 'padOptions' . ucfirst($padOptions) ];
    
   if     ( $padOptions == 'start' ) $padContent = $padBase   [$pad];
   elseif ( $padOptions == 'end'   ) $padContent = $padResult [$pad];
@@ -20,8 +20,8 @@
 
     }
 
-  if     ($padOptions == 'start' ) $padBase   [$pad] = $padContent;
-  elseif ($padOptions == 'end'   ) $padResult [$pad] = $padContent;
+  if     ( $padOptions == 'start' ) $padBase   [$pad] = $padContent;
+  elseif ( $padOptions == 'end'   ) $padResult [$pad] = $padContent;
 
   padTimingEnd ('opt');
 
