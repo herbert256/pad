@@ -1,6 +1,33 @@
 <?php
 
-  function pBuild ( $page, $mode='before', $merge='content' ) {
+  
+  function pRestart ( $pRestart ) {
+      
+    $GLOBALS ['pRestart'] = $pRestart;
+
+    return NULL;
+
+  }
+
+
+  function pBuild ( $pBuild, $pMode='include', $pMerge='content', $pInclude=0 ) {
+      
+    $pBuild_mode  = $pMode;
+    $pBuild_merge = $pMerge;
+    $page         = $pBuild;
+   
+    $pNoOccur = TRUE;
+    
+    global $p, $pBase;    
+
+    include PAD . 'build/build.php'; 
+
+    return $pBase [$p];    
+
+  }
+
+
+  function pBuild2 ( $pBuild, $pMode='before', $pMerge='content' ) {
 
     foreach ($GLOBALS as $key => $val )
       if ( substr($key, 0, 1) == 'p' )
@@ -12,20 +39,16 @@
     $pCnt++;
 
     include PAD . 'level/setup.php'; 
-
-    $pTraceDir      = $pOccurDir [$p] . '/build';
-    $pLevelDir [$p] = $pTraceDir;
-    $pOccurDir [$p] = $pTraceDir;
-
     include PAD . 'level/trace/start.php'; 
     include PAD . 'occurrence/trace/start.php'; 
 
-    $pBuild_mode  = $mode;
-    $pBuild_merge = $merge;
+    $pBuild_mode  = $pMode;
+    $pBuild_merge = $pMerge;
+    $page         = $pBuild;
 
     include PAD . 'build/build.php'; 
 
-    $pHtml [$p] = $Base [$p];    
+    $pHtml [$p] = $pBase [$p];    
 
     while ( $p > $Xp ) 
       include PAD . 'level/level.php'; 
@@ -36,7 +59,8 @@
 
   }
 
-  function pFakeXXX ( $contentxx ) {
+
+  function pContent ( $contentxx ) {
 
     foreach ($GLOBALS as $key => $val )
       if ( substr($key, 0, 1) == 'p' )
@@ -58,5 +82,6 @@
     return $pHtml [$Xp+1];
 
   }
+
 
 ?>

@@ -9,14 +9,12 @@
     {/if}
 
     <tr>
-      {if $php_data or $join} 
-        {show_php}
+      {if $show_php or $php_data or $join} 
         <td align="center" bgcolor="#dddddd">
           {if $php_data}
             <font size="-1">{$php_file}</font>
           {/if}
         </td>
-        {/show_php}
       {/if}
       {if $html_data or $join}
         <td align="center" bgcolor="#dddddd">
@@ -29,9 +27,9 @@
     </tr>
 
     <tr>
-      {show_php}
-        {if $php_data or $join}<td style="vertical-align:top">{!php_data}</td>{/if}
-      {/show_php}
+      {if $show_php or $php_data or $join} 
+        <td style="vertical-align:top">{if $php_data}{!php_data}{/if}</td>
+      {/if}
       {if $html_data or $join}<td style="vertical-align:top">{!html_data}</td>{/if}
       <td style="vertical-align:center"><a id="{$item}">{!result}</td>
     </tr>

@@ -30,8 +30,5 @@
 
   if ( strpos($result, '<!-- demo -->' ))
     $demo = TRUE;
-  
-  if ( $php_data )
-    $show_php = TRUE;
 
 ?>

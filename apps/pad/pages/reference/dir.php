@@ -9,6 +9,10 @@
 
   $item = pDir_list ( APPS . "reference/pages/$dir" );
 
+  foreach ( $item as $one )
+    if ( file_exists ( APPS . "reference/pages/$dir/$one.php" ) )
+      $show_php = TRUE;
+
   $pFile = APPS . "reference/pages/$dir/dir.pad";
 
   if ( file_exists($pFile) )

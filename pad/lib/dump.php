@@ -48,7 +48,6 @@
     pDumpSequence ();
     pDumpEval     ();
     pDumpStack    ();
-    pDumpArray    ( "ID's", $ids);
     pDumpLevel    ();
     pDumpRequest  ();
     pDumpArray    ( "APP variables", $app);
@@ -56,6 +55,7 @@
     pDumpArray    ( "Level variables", $lvl);
     pDumpSQL      ();
     pDumpHeaders  ();
+    pDumpArray    ( "ID's", $ids);
     pDumpArray    ('Configuration', $cfg );
     pDumpArray    ('PHP', $php);
 
@@ -71,13 +71,13 @@
 
     $php = $lvl = $app = $cfg = $pad = $ids = [];
 
-    $chk3 = ['page','app','PADSESSID','PADREQID','PHPSESSID','PADREFID' ];
+    $chk3 = [ 'page','app','PADSESSID','PADREQID','PHPSESSID','PADREFID' ];
 
-    $not  = [ 'pTag','pType','pPair','pTrue','pFalse','pPrm','pPrms','pPrmsType','pPrmsTag','pPrmsVal','pName','pData','pCurrent','pKey','pDefault','pWalk','pWalkData','pDone','pOccur','pStart','pEnd','pBase','pHtml','pResult','pHit','pNull','pElse','pArray','pText','pLevelDir','pOccurDir','pSave_vars','pDelete_vars','pSet_save','pSet_delete','pTagCnt' ];
+    $not  = [ 'GLOBALS', 'pFphp', 'pFlvl', 'pFapp', 'pFcfg', 'pFpad', 'pFids'  ];
 
-    $chk1 = ['_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
+    $chk1 = [ '_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
 
-    $chk2 = ['pTag','pType','pPair','pPrmsType','pPrm','pPrms','pPrmsTag','pPrmsVal','pTrue','pFalse','pBase','pHtml','pResult','pName','pDefault','pWalk','pHit','pNull','pElse','pArray','pText', 'pData'];
+    $chk2 = [ 'pTag','pType','pPair','pTrue','pFalse','pPrm','pPrms','pPrmsType','pPrmsTag','pPrmsVal','pName','pData','pCurrent','pKey','pDefault','pWalk','pWalkData','pDone','pOccur','pStart','pEnd','pBase','pHtml','pResult','pHit','pNull','pElse','pArray','pText','pLevelDir','pOccurDir','pSave_vars','pDelete_vars','pSet_save','pSet_delete','pTagCnt'];
 
     $settings = pFile_get_contents(PAD . 'config/config.php');
 
@@ -261,17 +261,13 @@
     foreach ($array as $key => $val)
       if ( $key == 'GLOBALS' )
         $array [$key] = '*** GLOBALS ***';
-      elseif ( $key == 'pData' )
-        $array [$key] = '*** pData ***';
-      elseif ( $key == 'pCurrent' )
-        $array [$key] = '*** pCurrent ***';
       elseif ( is_array ($val) )
         $array [$key] = pDump_sanitize ($val);
       elseif ( is_object($val) )
         $array [$key] = '***object***';
       elseif ( is_resource($val) )
         $array [$key] = '***resource***';
-      elseif ( is_scalar($val) )
+      else
         $array [$key] = pDump_short ( $val );
 
     return $array;
@@ -279,19 +275,21 @@
   }
 
 
-  function pDumpArray ( $txt, $arr) {
+  function pDumpArray ( $txt, $arr ) {
 
     if ( ! is_array($arr) ) {
       echo ( "\n  [$txt] => [todo, not array] \n");
       return;
     }
 
+    echo ( "\n<b>$txt</b>");
+
     if ( ! count ($arr )) {
-      echo ( "\n  [$txt] => []");
+      echo ( "\n  []\n");
       return;
     }
 
-    $array = pDump_sanitize ($array);
+    $arr = pDump_sanitize ($arr);
 
     $p = htmlentities ( print_r ( $arr, TRUE ) ) ;
 
@@ -301,15 +299,7 @@
     $p = preg_replace("/[\n]\s+\)/", "", $p);
     $p = str_replace("&lt;/address&gt;\n", "&lt;/address&gt;", $p);
 
-    if ($x)
-      echo ( "\n  [$txt]");
-    else
-      echo ( "\n<b>$txt</b>");
-
-    if ($x)
-      echo ( "\n" . substr($p, 8, strlen($p) - 11));
-    else
-      echo ( "\n" . substr($p, 8, strlen($p) - 10));
+    echo ( "\n" . substr($p, 8, strlen($p) - 10));
 
   }
 

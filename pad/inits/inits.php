@@ -4,11 +4,7 @@
  
   ob_start();
 
-  set_include_path('');
-
-  $pLib = PAD . 'lib';
-  include 'lib.php';
-
+  include 'libPad.php';
   include 'app.php';
   include 'page.php';
   include 'ids.php';
@@ -25,11 +21,8 @@
   include 'level.php';
   include 'options.php';
   include 'parms.php';
-
-  $pLib = APP . 'lib';
-  include 'lib.php';
-
-  include PAD . 'build/build.php';
+  include 'libApp.php';
+  include 'build.php';
 
   pTiming_end ('init');
 

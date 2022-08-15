@@ -1,0 +1,5 @@
+<?php
+
+  pRestart ( 'go/hello' );
+
+?>
