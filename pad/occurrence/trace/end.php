@@ -1,12 +1,12 @@
 <?php
     
-  if ( ! $pTrace )
+  if ( ! $padTrace )
     return;
 
-  $pTraceData = [
-    'html' => $pHtml [$p]
+  $padTraceData = [
+    'html' => $padHtml [$pad]
   ];
 
-  pFile_put_contents ($pOccurDir [$p] . "/end.json", $pTraceData );
+  pFile_put_contents ($padOccurDir [$pad] . "/end.json", $padTraceData );
 
 ?>

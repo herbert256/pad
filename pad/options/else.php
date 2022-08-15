@@ -1,5 +1,5 @@
 <?php
 
-  return $pContentStore [ pTag_parm ('else') ];
+  return $padContentStore [ pTag_parm ('else') ];
   
 ?>

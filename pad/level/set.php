@@ -1,14 +1,14 @@
 <?php
 
-  if ( ! pValid ($pSet_name) )
+  if ( ! pValid ($padSet_name) )
     return pError ("{set} syntax error (1)");
 
-  if ( $pTag [$p] <> 'set' or $pPair [$p] )
-    if ( isset($GLOBALS [$pSet_name]) )
-      $pSet_save [$p] [$pSet_name] = $GLOBALS [$pSet_name];
+  if ( $padTag [$pad] <> 'set' or $padPair [$pad] )
+    if ( isset($GLOBALS [$padSet_name]) )
+      $padSet_save [$pad] [$padSet_name] = $GLOBALS [$padSet_name];
     else
-      $pSet_delete [$p] [] = $pSet_name;
+      $padSet_delete [$pad] [] = $padSet_name;
 
-  $GLOBALS [$pSet_name] = pVar_opts ( '', pExplode($pSet_value, '|') );
+  $GLOBALS [$padSet_name] = pVar_opts ( '', pExplode($padSet_value, '|') );
   
 ?>

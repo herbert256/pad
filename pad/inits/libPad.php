@@ -2,7 +2,7 @@
 
   set_include_path('');
 
-  $pLib = PAD . 'lib';
+  $padLib = PAD . 'lib';
 
   include 'lib.php';
 

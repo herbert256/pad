@@ -1,5 +1,5 @@
 <?php
 
-  throw new Exception ($pPrm [$p]);
+  throw new Exception ($padPrm [$pad]);
   
 ?>

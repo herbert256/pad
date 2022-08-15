@@ -1,60 +1,60 @@
 <?php
 
-  $pSeq_seq  = 'loop';
-  $pSeq_set  = 'sequence';
-  $pSeq_parm = TRUE;
+  $padSeq_seq  = 'loop';
+  $padSeq_set  = 'sequence';
+  $padSeq_parm = TRUE;
 
-  $pSeq_tmp = $pPrm [$p];
-  if ( $pTag [$p] == 'sequence' and pValid($pSeq_tmp) and isset($pSequenceStore [$pSeq_tmp]) )
+  $padSeq_tmp = $padPrm [$pad];
+  if ( $padTag [$pad] == 'sequence' and pValid($padSeq_tmp) and isset($padSequenceStore [$padSeq_tmp]) )
     return include 'sequence/store.php';
   
-  $pSeq_tmp = $pTag [$p];
-  if ( pValid($pSeq_tmp) and isset($pSequenceStore [$pSeq_tmp]) )
+  $padSeq_tmp = $padTag [$pad];
+  if ( pValid($padSeq_tmp) and isset($padSequenceStore [$padSeq_tmp]) )
     return include 'sequence/store.php';
 
-  $pSeq_tmp = $pTag [$p];
-  if ( file_exists ( PAD . "sequence/types/$pSeq_tmp" ) )  
+  $padSeq_tmp = $padTag [$pad];
+  if ( file_exists ( PAD . "sequence/types/$padSeq_tmp" ) )  
     return include 'sequence/type.php';
 
-  $pSeq_tmp = $pPrmsTag [$p]['type'] ?? '';
-  if ( pValid($pSeq_tmp) and file_exists ( PAD . "sequence/types/$pSeq_tmp" ) )  
+  $padSeq_tmp = $padPrmsTag [$pad]['type'] ?? '';
+  if ( pValid($padSeq_tmp) and file_exists ( PAD . "sequence/types/$padSeq_tmp" ) )  
     return include 'sequence/type.php';
 
-  $pSeq_tmp = array_key_first($pPrmsTag [$p]) ?? '';
-  if ( pValid($pSeq_tmp) and file_exists ( PAD . "sequence/types/$pSeq_tmp" ) )  
+  $padSeq_tmp = array_key_first($padPrmsTag [$pad]) ?? '';
+  if ( pValid($padSeq_tmp) and file_exists ( PAD . "sequence/types/$padSeq_tmp" ) )  
     return include 'sequence/type.php';
 
-  $pSeq_tmp = $pPrm [$p] ?? '';
-  if ( pValid($pSeq_tmp) and file_exists ( PAD . "sequence/types/$pSeq_tmp" ) )  
+  $padSeq_tmp = $padPrm [$pad] ?? '';
+  if ( pValid($padSeq_tmp) and file_exists ( PAD . "sequence/types/$padSeq_tmp" ) )  
     return include 'sequence/type.php';
 
-  $pSeq_tmp = $pTag [$p]?? '';
-  if ( file_exists ( PAD . "sequence/actions/$pSeq_tmp.php" ) )
+  $padSeq_tmp = $padTag [$pad]?? '';
+  if ( file_exists ( PAD . "sequence/actions/$padSeq_tmp.php" ) )
     return include 'sequence/action.php';
 
-  $pSeq_tmp = $pPrmsTag [$p]['type'] ?? '';
-  if ( pValid($pSeq_tmp) and file_exists ( PAD . "sequence/actions/$pSeq_tmp.php" ) )
+  $padSeq_tmp = $padPrmsTag [$pad]['type'] ?? '';
+  if ( pValid($padSeq_tmp) and file_exists ( PAD . "sequence/actions/$padSeq_tmp.php" ) )
     return include 'sequence/action.php';
 
-  $pSeq_tmp = $pPrm [$p] ?? '';
-  if ( pValid($pSeq_tmp) and file_exists ( PAD . "sequence/actions/$pSeq_tmp.php" ) )
+  $padSeq_tmp = $padPrm [$pad] ?? '';
+  if ( pValid($padSeq_tmp) and file_exists ( PAD . "sequence/actions/$padSeq_tmp.php" ) )
    return include 'sequence/action.php';
 
-  $pSeq_tmp = array_key_first($pPrmsTag [$p]) ?? '';
-  if ( $pPrm [$p] == '' and $pTag [$p] == 'sequence' and pValid($pSeq_tmp) and file_exists ( PAD . "sequence/actions/$pSeq_tmp.php" ) )
+  $padSeq_tmp = array_key_first($padPrmsTag [$pad]) ?? '';
+  if ( $padPrm [$pad] == '' and $padTag [$pad] == 'sequence' and pValid($padSeq_tmp) and file_exists ( PAD . "sequence/actions/$padSeq_tmp.php" ) )
     return include 'sequence/action.php';
 
-  $pSeq_tmp = array_key_first($pPrmsTag [$p]) ?? '';
-  if ( pValid($pSeq_tmp) and isset($pSequenceStore [$pSeq_tmp]) )
+  $padSeq_tmp = array_key_first($padPrmsTag [$pad]) ?? '';
+  if ( pValid($padSeq_tmp) and isset($padSequenceStore [$padSeq_tmp]) )
     return include 'sequence/store.php';
  
-  if ( strpos($pPrm [$p], '..') ) {
-    $pSeq_parm = $pPrm [$p];
+  if ( strpos($padPrm [$pad], '..') ) {
+    $padSeq_parm = $padPrm [$pad];
     return include 'sequence/range.php';
   } 
 
-  if ( ctype_digit($pPrm [$p]) ) {
-    $pSeq_parm = "1..$pPrm[$p]";
+  if ( ctype_digit($padPrm [$pad]) ) {
+    $padSeq_parm = "1..$padPrm[$pad]";
     return include 'sequence/range.php';
   } 
 

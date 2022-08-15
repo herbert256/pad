@@ -2,6 +2,6 @@
 
   include_once 'function.php';
   
-  return pSequence_hexagonal( $pSeq_loop );
+  return pSequence_hexagonal( $padSeq_loop );
 
 ?>

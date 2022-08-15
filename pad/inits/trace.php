@@ -1,14 +1,14 @@
 <?php
 
   if ( isset($_REQUEST['pTrace']) )
-    $pTrace = TRUE;
+    $padTrace = TRUE;
 
-  $pTraceDir = "trace/$app-" . str_replace('/', '-', $page) . "/$PADREQID";
+  $padTraceDir = "trace/$app-" . str_replace('/', '-', $page) . "/$PADREQID";
 
-  if ( ! $pTrace )
+  if ( ! $padTrace )
     return;
 
-  $pTraceData = [
+  $padTraceData = [
     'app'         => $GLOBALS ['app'] ?? '',
     'page'        => $GLOBALS ['page'] ?? '',
     'sessionID'   => $GLOBALS ['PADSESSID'] ?? '',
@@ -19,12 +19,12 @@
   ];
 
 
-  pFields ( $pFphp, $pFlvl, $pFapp, $pFcfg, $pFpad, $pFids );
+  pFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
 
-  pFile_put_contents ( $GLOBALS['pTraceDir'] . "/start.json",         $pTraceData );
-  pFile_put_contents ( $GLOBALS['pTraceDir'] . "/headers-in.json", getallheaders() );
-  pFile_put_contents ( $GLOBALS['pTraceDir'] . "/php.json",     $pFphp  );
-  pFile_put_contents ( $GLOBALS['pTraceDir'] . "/ids.json",     $pFids  );
-  pFile_put_contents ( $GLOBALS['pTraceDir'] . "/config.json",  $pFcfg  );
+  pFile_put_contents ( $GLOBALS ['padTraceDir'] . "/start.json",         $padTraceData );
+  pFile_put_contents ( $GLOBALS ['padTraceDir'] . "/headers-in.json", getallheaders() );
+  pFile_put_contents ( $GLOBALS ['padTraceDir'] . "/php.json",     $padFphp  );
+  pFile_put_contents ( $GLOBALS ['padTraceDir'] . "/ids.json",     $padFids  );
+  pFile_put_contents ( $GLOBALS ['padTraceDir'] . "/config.json",  $padFcfg  );
 
 ?>

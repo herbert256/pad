@@ -1,10 +1,10 @@
 <?php
   
-  if ( ! $pTrace )
+  if ( ! $padTrace )
     return;
 
-  pFile_put_contents ( $pLevelDir [$p] . "/level.json", pTraceGetLevel($p) ); 
-  pFile_put_contents ( $pLevelDir [$p] . "/base.html",  $pBase [$p]     );
-  pFile_put_contents ( $pLevelDir [$p] . "/data.json",  $pData [$p]     );
+  pFile_put_contents ( $padLevelDir [$pad] . "/level.json", pTraceGetLevel($pad) ); 
+  pFile_put_contents ( $padLevelDir [$pad] . "/base.html",  $padBase [$pad]     );
+  pFile_put_contents ( $padLevelDir [$pad] . "/data.json",  $padData [$pad]     );
   
 ?>

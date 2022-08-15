@@ -1,19 +1,19 @@
 <?php
 
-  $pSeq_random = TRUE;
+  $padSeq_random = TRUE;
 
-  $pSeq_random_start = $pSeq_loop_start;
-  $pSeq_random_end   = $pSeq_loop_end;
+  $padSeq_random_start = $padSeq_loop_start;
+  $padSeq_random_end   = $padSeq_loop_end;
 
-  if ( $pSeq_min and $pSeq_from == 1 )
-    $pSeq_random_start = $pSeq_min;
+  if ( $padSeq_min and $padSeq_from == 1 )
+    $padSeq_random_start = $padSeq_min;
   
-  if ( $pSeq_max <> PHP_INT_MAX and $pSeq_to == PHP_INT_MAX )
-    $pSeq_random_end = $pSeq_max;
+  if ( $padSeq_max <> PHP_INT_MAX and $padSeq_to == PHP_INT_MAX )
+    $padSeq_random_end = $padSeq_max;
   
-  if ( $pSeq_loop_start == 1 and $pSeq_loop_end == PHP_INT_MAX and ! $pSeq_rows ) {
-    $pSeq_rows = ($pSeq_max - $pSeq_min) + 1;
-    $pSeq_loop_end  = $pSeq_loop_start + $pSeq_rows;
+  if ( $padSeq_loop_start == 1 and $padSeq_loop_end == PHP_INT_MAX and ! $padSeq_rows ) {
+    $padSeq_rows = ($padSeq_max - $padSeq_min) + 1;
+    $padSeq_loop_end  = $padSeq_loop_start + $padSeq_rows;
   }
 
 ?>

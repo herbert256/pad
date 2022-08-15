@@ -1,13 +1,13 @@
 <?php
 
-  $pSeq_prepend = pExplode ($pSeq_action_value, '|');
+  $padSeq_prepend = pExplode ($padSeq_action_value, '|');
 
-  foreach ( $pSeq_prepend as $pSeq_prepend_key ) {
-    $pSeq_prepend_reverse = array_reverse($pSequenceStore [$pSeq_prepend_key]);
-    foreach ($pSeq_prepend_reverse as $pSeq_prepend_value)
-      array_unshift ($pSeq_result, $pSeq_prepend_value);
+  foreach ( $padSeq_prepend as $padSeq_prepend_key ) {
+    $padSeq_prepend_reverse = array_reverse($padSequenceStore [$padSeq_prepend_key]);
+    foreach ($padSeq_prepend_reverse as $padSeq_prepend_value)
+      array_unshift ($padSeq_result, $padSeq_prepend_value);
   }
 
-  return $pSeq_result;
+  return $padSeq_result;
 
 ?>

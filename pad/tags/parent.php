@@ -1,12 +1,12 @@
 <?php
 
-  $pData [$p] = pMake_data ( $pData [$p-1] [$pKey[$p-1]] );
+  $padData [$pad] = pMake_data ( $padData [$pad-1] [$padKey[$pad-1]] );
     
-  foreach ($pData [$p-1] as $pK => $pV)
-    if ( $pK <> [$pKey[$p-1]] )
-      unset ( $pData [$p-1] [$pK] );
+  foreach ($padData [$pad-1] as $padK => $padV)
+    if ( $padK <> [$padKey[$pad-1]] )
+      unset ( $padData [$pad-1] [$padK] );
 
-  if ( count ($pData [$p]) )
+  if ( count ($padData [$pad]) )
     return TRUE;
   else
     return FALSE;

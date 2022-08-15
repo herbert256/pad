@@ -1,23 +1,23 @@
 <?php
 
-  if ( $pVal == $pVal_base )
+  if ( $padVal == $padVal_base )
 
-    $pTraceData = [ 
-      'field' => '{' . $pBetween . '}',
-      'nr'    => $pFldCnt,
-      'value' => $pVal
+    $padTraceData = [ 
+      'field' => '{' . $padBetween . '}',
+      'nr'    => $padFldCnt,
+      'value' => $padVal
     ];
 
   else
 
-    $pTraceData = [ 
-      'field'   => '{' . $pBetween . '}',
-      'nr'      => $pFldCnt,
-      'from '   => $pVal_base,
-      'to'      => $pVal,
-      'options' => $pOpts_trace
+    $padTraceData = [ 
+      'field'   => '{' . $padBetween . '}',
+      'nr'      => $padFldCnt,
+      'from '   => $padVal_base,
+      'to'      => $padVal,
+      'options' => $padOpts_trace
     ];
 
-  pFile_put_contents ( $pOccurDir [$p] . "/fields/$pFld-$pFldCnt.json", $pTraceData );
+  pFile_put_contents ( $padOccurDir [$pad] . "/fields/$padFld-$padFldCnt.json", $padTraceData );
 
 ?>

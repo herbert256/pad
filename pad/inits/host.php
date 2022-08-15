@@ -1,19 +1,19 @@
 <?php
 
-  $pRequest_scheme = $_SERVER ['REQUEST_SCHEME'] ?? 'http';
-  $pHttp_host      = $_SERVER ['HTTP_HOST']      ?? 'localhost';
-  $pServer_port    = $_SERVER ['SERVER_PORT']    ?? 80;
-  $pScript         = $_SERVER ['SCRIPT_NAME']    ?? '/pad.php';
-  $pUri            = $_SERVER ['REQUEST_URI']    ?? '/';
+  $padRequest_scheme = $_SERVER ['REQUEST_SCHEME'] ?? 'http';
+  $padHttp_host      = $_SERVER ['HTTP_HOST']      ?? 'localhost';
+  $padServer_port    = $_SERVER ['SERVER_PORT']    ?? 80;
+  $padScript         = $_SERVER ['SCRIPT_NAME']    ?? '/pad.php';
+  $padUri            = $_SERVER ['REQUEST_URI']    ?? '/';
 
-  if (strpos ( $pHttp_host, ':') === FALSE )
-    if ( ($pRequest_scheme == 'http'  and $pServer_port <> 80) or 
-         ($pRequest_scheme == 'https' and $pServer_port <> 443) )
-      $pHttp_host .= ':' . $pServer_port;
+  if (strpos ( $padHttp_host, ':') === FALSE )
+    if ( ($padRequest_scheme == 'http'  and $padServer_port <> 80) or 
+         ($padRequest_scheme == 'https' and $padServer_port <> 443) )
+      $padHttp_host .= ':' . $padServer_port;
 
-  $pHost     = $pRequest_scheme . '://' . $pHttp_host;
-  $pUri      = $pHost . $pScript . "?app=";
-  $pGo       = $pScript . "?app=$app&page=";
-  $pLocation = $pHost . $pGo;
+  $padHost     = $padRequest_scheme . '://' . $padHttp_host;
+  $padUri      = $padHost . $padScript . "?app=";
+  $padGo       = $padScript . "?app=$app&page=";
+  $padLocation = $padHost . $padGo;
 
 ?>

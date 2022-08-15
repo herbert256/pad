@@ -2,62 +2,62 @@
 
   function db ( $sql, $vars = [] ) {
 
-    global $pSql_connect, $pSql_host , $pSql_user , $pSql_password , $pSql_database;
+    global $padSql_connect, $padSql_host , $padSql_user , $padSql_password , $padSql_database;
     
-    if ( ! isset ( $pSql_connect ) ) {
+    if ( ! isset ( $padSql_connect ) ) {
       pTiming_start ('sql');
-      $pSql_connect = pDb_connect ( $pSql_host , $pSql_user , $pSql_password , $pSql_database );
+      $padSql_connect = pDb_connect ( $padSql_host , $padSql_user , $padSql_password , $padSql_database );
       pTiming_end ('sql');
     }
     
-    return pDb_part2 ($pSql_connect, $sql, $vars, 'app');
+    return pDb_part2 ($padSql_connect, $sql, $vars, 'app');
     
   }
   
   
   function pDb ( $sql, $vars = [] ) {
 
-    global $pPad_sql_connect, $pPad_sql_host , $pPad_sql_user , $pPad_sql_password , $pPad_sql_database;
+    global $padPad_sql_connect, $padPad_sql_host , $padPad_sql_user , $padPad_sql_password , $padPad_sql_database;
     
-    if ( ! isset ( $pPad_sql_connect ) ) {
+    if ( ! isset ( $padPad_sql_connect ) ) {
       pTiming_start ('sql');
-      $pPad_sql_connect = pDb_connect ( $pPad_sql_host , $pPad_sql_user , $pPad_sql_password , $pPad_sql_database );
+      $padPad_sql_connect = pDb_connect ( $padPad_sql_host , $padPad_sql_user , $padPad_sql_password , $padPad_sql_database );
       pTiming_end ('sql');
     }
     
-    return pDb_part2 ($pPad_sql_connect, $sql, $vars, 'pad');
+    return pDb_part2 ($padPad_sql_connect, $sql, $vars, 'pad');
     
   }
 
   
-  function pDb_part2 ( $pSql_connect, $sql, $vars, $db_type ) {
+  function pDb_part2 ( $padSql_connect, $sql, $vars, $db_type ) {
 
-    global $p, $pDb_rows_found, $pTrack_sql, $pPrmsTag;
+    global $pad, $padDb_rows_found, $padTrack_sql, $padPrmsTag;
     
     foreach ( $vars as $i => $replace ) {
 
-      $p1 = strpos($sql, '{'.$i.'}' );
+      $pad1 = strpos($sql, '{'.$i.'}' );
 
-      if ( $p1 !== FALSE )
+      if ( $pad1 !== FALSE )
         if (substr($i, 0, 1) <> 'x')
-          $sql = str_replace('{'.$i.'}', mysqli_real_escape_string($pSql_connect, $replace), $sql);
+          $sql = str_replace('{'.$i.'}', mysqli_real_escape_string($padSql_connect, $replace), $sql);
         else
           $sql = str_replace('{'.$i.'}', $replace, $sql);
 
-      $p1 = strpos($sql, '{'.$i.':' );
+      $pad1 = strpos($sql, '{'.$i.':' );
 
-      if ($p1 !== FALSE) {
+      if ($pad1 !== FALSE) {
 
-        $p2 = strpos($sql, ":", $p1+1);
-        $p3 = strpos($sql, "}", $p1+2);
+        $pad2 = strpos($sql, ":", $pad1+1);
+        $pad3 = strpos($sql, "}", $pad1+2);
 
-        $search = substr($sql, $p1,  ($p3-$p1)+1);
-        $length = substr($sql, $p2+1,($p3-$p2)-1);
+        $search = substr($sql, $pad1,  ($pad3-$pad1)+1);
+        $length = substr($sql, $pad2+1,($pad3-$pad2)-1);
 
         if ( strlen($replace) > $length )
           $replace = substr($replace, 0, $length);
 
-        $sql = str_replace($search, mysqli_real_escape_string($pSql_connect, $replace), $sql);
+        $sql = str_replace($search, mysqli_real_escape_string($padSql_connect, $replace), $sql);
 
       }
 
@@ -74,32 +74,32 @@
     elseif ( $command == 'field'  )  $sql = 'select '        . $split[1] . ' limit 0,1';
     elseif ( $command == 'array'  )  $sql = 'select '        . $split[1];
 
-    if ( $pTrack_sql )
-      $pSql_start = microtime(true);
+    if ( $padTrack_sql )
+      $padSql_start = microtime(true);
     
     pTiming_start ('sql');
-    $query = mysqli_query ( $pSql_connect , $sql );
+    $query = mysqli_query ( $padSql_connect , $sql );
     pTiming_end ('sql');
 
-    $GLOBALS['pLast_sql'] = $sql;
+    $GLOBALS ['padLast_sql'] = $sql;
     
     if ( ! $query )
-      pError ( 'MySQL-' . mysqli_errno ( $pSql_connect ) . ': ' . mysqli_error ( $pSql_connect ) . ' - '. $sql );
+      pError ( 'MySQL-' . mysqli_errno ( $padSql_connect ) . ': ' . mysqli_error ( $padSql_connect ) . ' - '. $sql );
 
     pTiming_start ('sql');
-    $pDb_rows_found = $rows = mysqli_affected_rows($pSql_connect);
+    $padDb_rows_found = $rows = mysqli_affected_rows($padSql_connect);
     pTiming_end ('sql');
 
     if ( $rows > 0 and ($command == 'field' or $command == 'record') ) {
       pTiming_start ('sql');
       $fields = mysqli_fetch_assoc ( $query );
-      $GLOBALS['pDb_last_fields'] = $fields;
+      $GLOBALS ['padDb_last_fields'] = $fields;
       pTiming_end ('sql');
     }
 
     if     ( $command == 'insert'  ) {
       pTiming_start ('sql');
-      $return = mysqli_insert_id ( $pSql_connect );
+      $return = mysqli_insert_id ( $padSql_connect );
       pTiming_end ('sql');
       if ( !$return )
         $return = $rows;
@@ -135,12 +135,12 @@
       $return = '';
 
 
-    if ( $GLOBALS['pTrack_sql'] ) {
+    if ( $GLOBALS ['padTrack_sql'] ) {
 
-      $pSql_duration = pDuration ($pSql_start);
+      $padSql_duration = pDuration ($padSql_start);
 
-      if ($GLOBALS['pTrack_sql'])
-        pDb_log ($db_type, $pSql_duration, $pDb_rows_found, pDb_format_sql($sql)) ;
+      if ($GLOBALS ['padTrack_sql'])
+        pDb_log ($db_type, $padSql_duration, $padDb_rows_found, pDb_format_sql($sql)) ;
       
     }
 
@@ -159,7 +159,7 @@
     $micro = (int) (($now - $sec) * 1000);
     $micro = str_pad($micro, 3, '0', STR_PAD_LEFT);
 
-    $start = date('Y-m-d H:i:s', $sec) . '.' . $micro . ' ' . $GLOBALS['PADREQID'];
+    $start = date('Y-m-d H:i:s', $sec) . '.' . $micro . ' ' . $GLOBALS ['PADREQID'];
 
     $log = "$start $file:$line rows:$rows time:$duration"
          . "\r\n\r\n$sql\r\n----------------------------------------\r\n";
@@ -169,9 +169,9 @@
   }
 
 
-  function pDb_connect ( $host, $user, $password, $database ) {
+  function pDb_connect ( $host, $user, $padassword, $database ) {
 
-    $connect = mysqli_connect ( "p:$host" , $user , $password , $database );
+    $connect = mysqli_connect ( "p:$host" , $user , $padassword , $database );
     
     if ( ! $connect )
       return pError ( mysqli_connect_errno ( ) . ' - ' . mysqli_connect_error ( ) );

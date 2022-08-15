@@ -2,6 +2,6 @@
 
   include_once 'function.php';
   
-  return pSequence_catalan ( $pSeq_loop );
+  return pSequence_catalan ( $padSeq_loop );
 
 ?>

@@ -1,35 +1,35 @@
 <?php
 
-  $pFldCnt++;
+  $padFldCnt++;
 
-  $pPipe    = strpos ( $pBetween, '|' );
-  $pSpace   = strpos ( $pBetween, ' ' );
+  $padPipe    = strpos ( $padBetween, '|' );
+  $padSpace   = strpos ( $padBetween, ' ' );
 
-  if ($pPipe and (!$pSpace or $pPipe < $pSpace) ) {
+  if ($padPipe and (!$padSpace or $padPipe < $padSpace) ) {
     
-    $pFld  = rtrim(substr($pBetween, 1, $pPipe-1));
-    $pExpl = pExplode(substr($pBetween, $pPipe+1), '|');
+    $padFld  = rtrim(substr($padBetween, 1, $padPipe-1));
+    $padExpl = pExplode(substr($padBetween, $padPipe+1), '|');
 
-  } elseif ($pSpace and (!$pPipe or $pSpace < $pPipe) ) {
+  } elseif ($padSpace and (!$padPipe or $padSpace < $padPipe) ) {
 
-    $pFld  = rtrim(substr($pBetween, 1, $pSpace-1));
-    $pExpl = pExplode(substr($pBetween, $pSpace+1), '|');
+    $padFld  = rtrim(substr($padBetween, 1, $padSpace-1));
+    $padExpl = pExplode(substr($padBetween, $padSpace+1), '|');
 
   } else {
 
-    $pFld  = rtrim(substr($pBetween, 1));
-    $pExpl = [];
+    $padFld  = rtrim(substr($padBetween, 1));
+    $padExpl = [];
 
   }
   
-  if ( substr($pFld, 0, 1) == '$' )
-    $pFld = pField_value ($pFld);
+  if ( substr($padFld, 0, 1) == '$' )
+    $padFld = pField_value ($padFld);
 
-  $pVal = pField_value ($pFld);
+  $padVal = pField_value ($padFld);
 
-  $pVal_base = $pVal;
+  $padVal_base = $padVal;
 
-  if ( ! pField_check ( $pFld ) ) 
-      pError ( "Field '$pFld' not found" )
+  if ( ! pField_check ( $padFld ) ) 
+      pError ( "Field '$padFld' not found" )
 
 ?>

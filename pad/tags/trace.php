@@ -1,26 +1,26 @@
 <?php
 
-  if ( $pWalk [$p] == 'start' ) {  
+  if ( $padWalk [$pad] == 'start' ) {  
 
-    $pWalk [$p] = 'end';
+    $padWalk [$pad] = 'end';
 
-    $pBackupTrace [$p] = [];
-    $pBackupTrace [$p] ['trace'] = $pTrace;
-    $pBackupTrace [$p] ['level'] = $pLevelDir [$p-1] ?? '';
-    $pBackupTrace [$p] ['occur'] = $pOccurDir [$p-1] ?? '';
+    $padBackupTrace [$pad] = [];
+    $padBackupTrace [$pad] ['trace'] = $padTrace;
+    $padBackupTrace [$pad] ['level'] = $padLevelDir [$pad-1] ?? '';
+    $padBackupTrace [$pad] ['occur'] = $padOccurDir [$pad-1] ?? '';
 
-    $pLevelDir [$p-1] = $pTraceDir . '/trace-' . $pCnt; 
-    $pOccurDir [$p-1] = $pLevelDir [$p-1];
+    $padLevelDir [$pad-1] = $padTraceDir . '/trace-' . $padCnt; 
+    $padOccurDir [$pad-1] = $padLevelDir [$pad-1];
 
-    pTraceAll ( $pLevelDir [$p] . "/start" );
+    pTraceAll ( $padLevelDir [$pad] . "/start" );
   
   } else {
 
-    pTraceAll ( $pLevelDir [$p] . "/end" );
+    pTraceAll ( $padLevelDir [$pad] . "/end" );
 
-    $pTrace           = $pBackupTrace [$p] ['trace'];
-    $pLevelDir [$p-1] = $pBackupTrace [$p] ['level'];
-    $pOccurDir [$p-1] = $pBackupTrace [$p] ['occur'];
+    $padTrace           = $padBackupTrace [$pad] ['trace'];
+    $padLevelDir [$pad-1] = $padBackupTrace [$pad] ['level'];
+    $padOccurDir [$pad-1] = $padBackupTrace [$pad] ['occur'];
  
   } 
 

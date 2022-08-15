@@ -2,26 +2,26 @@
 
   pTiming_start ('opt');
 
-  $pOptions_walk = $GLOBALS["pOptions_$pOptions"];
+  $padOptions_walk = $GLOBALS["padOptions_$padOptions"];
    
-  if     ( $pOptions == 'start' ) $pContent = $pBase   [$p];
-  elseif ( $pOptions == 'end'   ) $pContent = $pResult [$p];
+  if     ( $padOptions == 'start' ) $padContent = $padBase   [$pad];
+  elseif ( $padOptions == 'end'   ) $padContent = $padResult [$pad];
 
-  foreach ( $pPrmsTag [$p] as $pOption_name => $pV )
+  foreach ( $padPrmsTag [$pad] as $padOption_name => $padV )
 
-    if ( in_array ( $pOption_name, $pOptions_walk ) and ! isset ( $pDone [$p] [$pOption_name] ) ) {
+    if ( in_array ( $padOption_name, $padOptions_walk ) and ! isset ( $padDone [$pad] [$padOption_name] ) ) {
 
-      pDone ( $pOption_name, TRUE );  
+      pDone ( $padOption_name, TRUE );  
 
-      include PAD . "options/$pOption_name.php" ;
+      include PAD . "options/$padOption_name.php" ;
 
-      if ($pTrace)
+      if ($padTrace)
         include 'trace.php';
 
     }
 
-  if     ($pOptions == 'start' ) $pBase   [$p] = $pContent;
-  elseif ($pOptions == 'end'   ) $pResult [$p] = $pContent;
+  if     ($padOptions == 'start' ) $padBase   [$pad] = $padContent;
+  elseif ($padOptions == 'end'   ) $padResult [$pad] = $padContent;
 
   pTiming_end ('opt');
 

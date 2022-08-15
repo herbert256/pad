@@ -2,7 +2,7 @@
 
   include PAD . 'level/setup.php';
 
-  $pLevelDir [$p] .= '/main';
-  $pOccurDir [$p] .= '/main';
+  $padLevelDir [$pad] .= '/main';
+  $padOccurDir [$pad] .= '/main';
 
 ?>

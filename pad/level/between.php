@@ -1,15 +1,15 @@
 <?php
     
-  $pBtwCnt++;
+  $padBtwCnt++;
 
-  $pWords         = preg_split("/[\s]+/", $pBetween, 2, PREG_SPLIT_NO_EMPTY);
-  $pTag [$p]      = trim($pWords[0] ?? '');
-  $pPrms [$p]     = trim($pWords[1] ?? '');
-  $pPrmsType [$p] = ( $pPrms [$p]) ? 'open' : 'none';
+  $padWords         = preg_split("/[\s]+/", $padBetween, 2, PREG_SPLIT_NO_EMPTY);
+  $padTag [$pad]      = trim($padWords[0] ?? '');
+  $padPrms [$pad]     = trim($padWords[1] ?? '');
+  $padPrmsType [$pad] = ( $padPrms [$pad]) ? 'open' : 'none';
 
-  if ( $pTrace ) {
-    $pBetweenTrace = ['between' => $pBetween, 'tag' => $pTag[$pP], 'prms' => $pPrms[$pP] ];
-    pFile_put_contents ( $pLevelDir [$pP] . "/between/" . $pBtwCnt . ".json", $pBetweenTrace ); 
+  if ( $padTrace ) {
+    $padBetweenTrace = ['between' => $padBetween, 'tag' => $padTag[$padP], 'prms' => $padPrms[$padP] ];
+    pFile_put_contents ( $padLevelDir [$padP] . "/between/" . $padBtwCnt . ".json", $padBetweenTrace ); 
   }
 
 ?>

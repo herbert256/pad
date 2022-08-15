@@ -1,12 +1,12 @@
 <?php
 
-  $pFilter_page  = (int) ($pPrmsTag [$p] ['page']  ?? 1);
-  $pFilter_rows  = (int) ($pPrmsTag [$p] ['rows'] ?? 10);
-  $pFilter_start = ( ($pFilter_page-1) * $pFilter_rows ) + 1;
-  $pFilter_end   = ($pFilter_start + $pFilter_rows) - 1;
+  $padFilter_page  = (int) ($padPrmsTag [$pad] ['page']  ?? 1);
+  $padFilter_rows  = (int) ($padPrmsTag [$pad] ['rows'] ?? 10);
+  $padFilter_start = ( ($padFilter_page-1) * $padFilter_rows ) + 1;
+  $padFilter_end   = ($padFilter_start + $padFilter_rows) - 1;
 
   pDone ( 'page', TRUE);
   pDone ( 'rows', TRUE); 
-  pData_filter_go ($pData [$p], $pFilter_start, $pFilter_end);    
+  pData_filter_go ($padData [$pad], $padFilter_start, $padFilter_end);    
 
 ?>

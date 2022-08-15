@@ -1,22 +1,22 @@
 <?php
 
-  if     ( file_exists ( APP . "tags/$name.php"  ) ) $pEval_tag_type= 'app';
-  elseif ( file_exists ( PAD . "tags/$name.php"  ) ) $pEval_tag_type= 'app';
+  if     ( file_exists ( APP . "tags/$name.php"  ) ) $padEval_tag_type= 'app';
+  elseif ( file_exists ( PAD . "tags/$name.php"  ) ) $padEval_tag_type= 'app';
   else                                               return '';
   
-  $pEval_tag_options = '';
+  $padEval_tag_options = '';
 
   if ( $value )
-    $pEval_tag_options = $value;
+    $padEval_tag_options = $value;
   else
-    $pEval_tag_options = '';
+    $padEval_tag_options = '';
  
-  foreach ($parm as $pK => $pV)
-    if ( $pEval_tag_options)
-      $pEval_tag_options .= ", '$pV'";
+  foreach ($padarm as $padK => $padV)
+    if ( $padEval_tag_options)
+      $padEval_tag_options .= ", '$padV'";
     else
-      $pEval_tag_options .= $pV;
+      $padEval_tag_options .= $padV;
 
-  return pTag_as_function ( "$pEval_tag_type:$name", $pEval_tag_options);
+  return pTag_as_function ( "$padEval_tag_type:$name", $padEval_tag_options);
 
 ?>

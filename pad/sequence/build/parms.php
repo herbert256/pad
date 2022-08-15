@@ -1,35 +1,35 @@
 <?php
 
-  $pSeq_from     = intval ( $pPrmsTag [$p] ['from']      ?? 1           );
-  $pSeq_to       = intval ( $pPrmsTag [$p] ['to']        ?? PHP_INT_MAX );
-  $pSeq_min      = intval ( $pPrmsTag [$p] ['min']       ?? 0           );
-  $pSeq_max      = intval ( $pPrmsTag [$p] ['max']       ?? PHP_INT_MAX );
-  $pSeq_start    = intval ( $pPrmsTag [$p] ['start']     ?? 0           );
-  $pSeq_end      = intval ( $pPrmsTag [$p] ['end']       ?? PHP_INT_MAX );
-  $pSeq_low      = intval ( $pPrmsTag [$p] ['low']       ?? 0           );
-  $pSeq_high     = intval ( $pPrmsTag [$p] ['high']      ?? PHP_INT_MAX );
-  $pSeq_inc      = intval ( $pPrmsTag [$p] ['increment'] ?? 1           );
-  $pSeq_rows     = intval ( $pPrmsTag [$p] ['rows']      ?? 0           );
-  $pSeq_unique   = intval ( $pPrmsTag [$p] ['unique']    ?? 0           );
-  $pSeq_random   = intval ( $pPrmsTag [$p] ['random']    ?? 0           );
-  $pSeqCnt       = intval ( $pPrmsTag [$p] ['count']     ?? 0           );
-  $pSeq_page     = intval ( $pPrmsTag [$p] ['page']      ?? 0           );
-  $pSeq_name     =          $pName [$p]      ?? ''; 
-  $pSeq_protect  =          $pPrmsTag [$p] ['protect']   ?? 1000; 
-  $pSeq_save     =          $pPrmsTag [$p] ['save']      ?? 100; 
-  $pSeq_unique   =          $pPrmsTag [$p] ['unique']    ?? '';
-  $pSeq_push     =          $pPrmsTag [$p] ['store']     ?? ''; 
-  $pSeq_pull     =          $pPrmsTag [$p] ['sequence']  ?? '';
-  $pSeq_range    =          $pPrmsTag [$p] ['range']     ?? '';
-  $pSeq_keep     =          $pPrmsTag [$p] ['keep']      ?? '';
-  $pSeq_remove   =          $pPrmsTag [$p] ['remove']    ?? '';
-  $pSeq_make     =          $pPrmsTag [$p] ['make']      ?? '';
-  $pSeq_update   =          $pPrmsTag [$p] ['update']    ?? '';
+  $padSeq_from     = intval ( $padPrmsTag [$pad] ['from']      ?? 1           );
+  $padSeq_to       = intval ( $padPrmsTag [$pad] ['to']        ?? PHP_INT_MAX );
+  $padSeq_min      = intval ( $padPrmsTag [$pad] ['min']       ?? 0           );
+  $padSeq_max      = intval ( $padPrmsTag [$pad] ['max']       ?? PHP_INT_MAX );
+  $padSeq_start    = intval ( $padPrmsTag [$pad] ['start']     ?? 0           );
+  $padSeq_end      = intval ( $padPrmsTag [$pad] ['end']       ?? PHP_INT_MAX );
+  $padSeq_low      = intval ( $padPrmsTag [$pad] ['low']       ?? 0           );
+  $padSeq_high     = intval ( $padPrmsTag [$pad] ['high']      ?? PHP_INT_MAX );
+  $padSeq_inc      = intval ( $padPrmsTag [$pad] ['increment'] ?? 1           );
+  $padSeq_rows     = intval ( $padPrmsTag [$pad] ['rows']      ?? 0           );
+  $padSeq_unique   = intval ( $padPrmsTag [$pad] ['unique']    ?? 0           );
+  $padSeq_random   = intval ( $padPrmsTag [$pad] ['random']    ?? 0           );
+  $padSeqCnt       = intval ( $padPrmsTag [$pad] ['count']     ?? 0           );
+  $padSeq_page     = intval ( $padPrmsTag [$pad] ['page']      ?? 0           );
+  $padSeq_name     =          $padName [$pad]      ?? ''; 
+  $padSeq_protect  =          $padPrmsTag [$pad] ['protect']   ?? 1000; 
+  $padSeq_save     =          $padPrmsTag [$pad] ['save']      ?? 100; 
+  $padSeq_unique   =          $padPrmsTag [$pad] ['unique']    ?? '';
+  $padSeq_push     =          $padPrmsTag [$pad] ['store']     ?? ''; 
+  $padSeq_pull     =          $padPrmsTag [$pad] ['sequence']  ?? '';
+  $padSeq_range    =          $padPrmsTag [$pad] ['range']     ?? '';
+  $padSeq_keep     =          $padPrmsTag [$pad] ['keep']      ?? '';
+  $padSeq_remove   =          $padPrmsTag [$pad] ['remove']    ?? '';
+  $padSeq_make     =          $padPrmsTag [$pad] ['make']      ?? '';
+  $padSeq_update   =          $padPrmsTag [$pad] ['update']    ?? '';
 
-  unset ( $pPrmsTag [$p] ['store'] );
+  unset ( $padPrmsTag [$pad] ['store'] );
  
-  foreach ( $pPrmsTag [$p] as $pSeq_tag_name => $pSeq_tag_value )
-    if ( ! isset($GLOBALS ["pSeq_$pSeq_tag_name"]) )
-      $GLOBALS ["pSeq_$pSeq_tag_name"] = $pSeq_tag_value;
+  foreach ( $padPrmsTag [$pad] as $padSeq_tag_name => $padSeq_tag_value )
+    if ( ! isset($GLOBALS ["pSeq_$padSeq_tag_name"]) )
+      $GLOBALS ["pSeq_$padSeq_tag_name"] = $padSeq_tag_value;
 
 ?>

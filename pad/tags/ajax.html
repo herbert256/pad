@@ -1,16 +1,16 @@
-<div id="padAjax{$pAjax}"></div>
+<div id="padAjax{$padAjax}"></div>
 
 <script>
-  padAjax{$pAjax} = new XMLHttpRequest();
-  padAjax{$pAjax}.onreadystatechange=function() {
-    if (padAjax{$pAjax}.readyState === 4) {
-      if (padAjax{$pAjax}.status === 200) {
-        document.getElementById("padAjax{$pAjax}").innerHTML=padAjax{$pAjax}.responseText;
+  padAjax{$padAjax} = new XMLHttpRequest();
+  padAjax{$padAjax}.onreadystatechange=function() {
+    if (padAjax{$padAjax}.readyState === 4) {
+      if (padAjax{$padAjax}.status === 200) {
+        document.getElementById("padAjax{$padAjax}").innerHTML=padAjax{$padAjax}.responseText;
       } else {
-        document.getElementById("padAjax{$pAjax}").innerHTML=padAjax{$pAjax}.statusText;
+        document.getElementById("padAjax{$padAjax}").innerHTML=padAjax{$padAjax}.statusText;
       }
     }
   }
-  padAjax{$pAjax}.open("GET","{!pUrl}",true);
-  padAjax{$pAjax}.send();
+  padAjax{$padAjax}.open("GET","{!padUrl}",true);
+  padAjax{$padAjax}.send();
 </script>

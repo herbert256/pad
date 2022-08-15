@@ -15,7 +15,7 @@
   
   // Mark the PAD boot time
 
-  $pTimings_boot = microtime(true);
+  $padTimings_boot = microtime(true);
 
 
   // Start settings
@@ -29,8 +29,8 @@
 
   // Start Boot error handling 
 
-  $pDisplay_errors  = ini_set ('display_errors', 0);
-  $pError_reporting = error_reporting (E_ALL);
+  $padDisplay_errors  = ini_set ('display_errors', 0);
+  $padError_reporting = error_reporting (E_ALL);
 
   set_error_handler          ( 'pBoot_error_handler'     );
   set_exception_handler      ( 'pBoot_exception_handler' );
@@ -69,7 +69,7 @@
 
   function pBoot_shutdown_function () {
 
-    if ( isset ( $GLOBALS['pSkip_boot_shutdown'] ) )
+    if ( isset ( $GLOBALS ['padSkip_boot_shutdown'] ) )
       return;
 
     $error = error_get_last ();
@@ -81,13 +81,13 @@
 
   function pBoot_error_go ( $error, $file, $line ) {
 
-    $GLOBALS ['pSkip_boot_shutdown'] = TRUE;
-    $GLOBALS ['pSkip_shutdown']      = TRUE;
+    $GLOBALS ['padSkip_boot_shutdown'] = TRUE;
+    $GLOBALS ['padSkip_shutdown']      = TRUE;
 
     if ( ! headers_sent () )
       header ( 'HTTP/1.0 500 Internal Server Error' );
 
-    $id = $GLOBALS['PADREQID'] ?? uniqid (TRUE);
+    $id = $GLOBALS ['PADREQID'] ?? uniqid (TRUE);
 
     error_log ( "[PAD] $id - $file:$line $error", 4 );
 

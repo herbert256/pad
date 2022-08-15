@@ -1,21 +1,21 @@
 <?php
 
-  if ( isset($pPrmsTag [$p][$pSeq_tmp]) )
-    $pSeq_parm = $pPrmsTag [$p][$pSeq_tmp];
+  if ( isset($padPrmsTag [$pad][$padSeq_tmp]) )
+    $padSeq_parm = $padPrmsTag [$pad][$padSeq_tmp];
   else
-    $pSeq_parm = $pPrm [$p];
+    $padSeq_parm = $padPrm [$pad];
 
-  $pSeq_parms = pExplode($pSeq_parm, '|');
+  $padSeq_parms = pExplode($padSeq_parm, '|');
 
-  $pSeq_seq  = 'pull';
-  $pSeq_pull = $pSeq_parms[0]; 
-  $pSeq_set  = $pSeq_tmp;
+  $padSeq_seq  = 'pull';
+  $padSeq_pull = $padSeq_parms[0]; 
+  $padSeq_set  = $padSeq_tmp;
 
-  unset ( $pSeq_parms[0] );
+  unset ( $padSeq_parms[0] );
 
-  if ( count($pSeq_parms) )
-    $pPrmsTag [$p] [$pSeq_tmp] = implode('|', $pSeq_parms);
+  if ( count($padSeq_parms) )
+    $padPrmsTag [$pad] [$padSeq_tmp] = implode('|', $padSeq_parms);
   else
-    $pPrmsTag [$p] [$pSeq_tmp] = true;
+    $padPrmsTag [$pad] [$padSeq_tmp] = true;
 
 ?>

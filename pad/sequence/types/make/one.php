@@ -1,39 +1,39 @@
 <?php
 
-  $pSeq_parm_save = $pSeq_parm;
+  $padSeq_parm_save = $padSeq_parm;
 
-  foreach ( $GLOBALS ["pSeq_mf_$pSeq_seq"] as $pSeq_opt_name => $pSeq_opt_value ) {
+  foreach ( $GLOBALS ["pSeq_mf_$padSeq_seq"] as $padSeq_opt_name => $padSeq_opt_value ) {
 
-    $pSeq_one_done [] = $pSeq_opt_name;
+    $padSeq_one_done [] = $padSeq_opt_name;
 
-    $pSeq_parm = $pSeq_opt_value;
+    $padSeq_parm = $padSeq_opt_value;
 
-    $pSeq_opt_check = include PAD . "sequence/types/$pSeq_opt_name/$pSeq_filter_check.php"; 
+    $padSeq_opt_check = include PAD . "sequence/types/$padSeq_opt_name/$padSeq_filter_check.php"; 
 
-    if ( $pSeq_seq == 'keep') { 
+    if ( $padSeq_seq == 'keep') { 
     
-      if ( $pSeq_opt_check === FALSE ) {
-        $pSeq_parm = $pSeq_parm_save;
+      if ( $padSeq_opt_check === FALSE ) {
+        $padSeq_parm = $padSeq_parm_save;
         return FALSE;
       }
     
-    } elseif ( $pSeq_seq == 'remove') { 
+    } elseif ( $padSeq_seq == 'remove') { 
     
-      if ( $pSeq_opt_check === TRUE ) {
-        $pSeq_parm = $pSeq_parm_save;
+      if ( $padSeq_opt_check === TRUE ) {
+        $padSeq_parm = $padSeq_parm_save;
         return FALSE;
       }
     
     } else {
 
-      $pSeq_loop = $pSeq_opt_check;
+      $padSeq_loop = $padSeq_opt_check;
     
     }
 
   }
 
-  $pSeq_parm = $pSeq_parm_save;
+  $padSeq_parm = $padSeq_parm_save;
 
-  return $pSeq_loop;
+  return $padSeq_loop;
 
 ?>

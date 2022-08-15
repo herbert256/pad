@@ -1,9 +1,9 @@
 <?php
 
 
-  function pGet_parms ( $type, $parms ) {
+  function pGet_parms ( $type, $padarms ) {
 
-    foreach ( $parms as $field => $value )
+    foreach ( $padarms as $field => $value )
       if ( (!isset($GLOBALS[$field])) )
         $GLOBALS [$field] = pGet_parms_2 ( $type, $value );
 

@@ -1,57 +1,57 @@
 <?php
 
-  if ( $pWalk [$p] == 'start' and ($pTag [$p] == 'data' or $pTag [$p] == 'flag' or $pPrmsType [$p] == 'close' ) ) {
-    $pWalk [$p] = 'end';
+  if ( $padWalk [$pad] == 'start' and ($padTag [$pad] == 'data' or $padTag [$pad] == 'flag' or $padPrmsType [$pad] == 'close' ) ) {
+    $padWalk [$pad] = 'end';
     return TRUE;
   }
 
-  $pStore_name = 'p' . ucwords($pTag[$p]) . 'Store';
+  $padStore_name = 'pad' . ucwords($padTag[$pad]) . 'Store';
 
-  if ( isset ( $pPrmsVal [$p] [0] ) or isset ( $pPrmsVal [$p] [1] ) ) 
-    $pName [$p] = $pPrmsVal [$p] [0];
+  if ( isset ( $padPrmsVal [$pad] [0] ) or isset ( $padPrmsVal [$pad] [1] ) ) 
+    $padName [$pad] = $padPrmsVal [$pad] [0];
 
-  if ( isset ( $pPrmsVal [$p] [1] ) )
-    $pStore_source = $pPrmsVal [$p] [1];  
+  if ( isset ( $padPrmsVal [$pad] [1] ) )
+    $padStore_source = $padPrmsVal [$pad] [1];  
   else
-    $pStore_source = $pContent;
+    $padStore_source = $padContent;
 
-  $pName [$p] = $pName [$p];
+  $padName [$pad] = $padName [$pad];
 
-  if ( $pTag [$p] == 'content') {
+  if ( $padTag [$pad] == 'content') {
 
-    $pStore_data = pMake_content ($pStore_source);
+    $padStore_data = pMake_content ($padStore_source);
   
-  } elseif ( $pTag [$p] == 'data' ) {
+  } elseif ( $padTag [$pad] == 'data' ) {
 
-    if ( ! pIs_default_data ( $pData [$p] ) )
-      $pStore_data = $pData [$p];
-    elseif ( $pStore_source )
-      $pStore_data = pMake_data ($pStore_source, pTag_parm('type'), $pName [$p]);
+    if ( ! pIs_default_data ( $padData [$pad] ) )
+      $padStore_data = $padData [$pad];
+    elseif ( $padStore_source )
+      $padStore_data = pMake_data ($padStore_source, pTag_parm('type'), $padName [$pad]);
     else
-      $pStore_data = '';
+      $padStore_data = '';
 
-  } elseif ( $pTag [$p] == 'flag' ) {
+  } elseif ( $padTag [$pad] == 'flag' ) {
 
-    if ( $pStore_source )
-      $pStore_data = pMake_flag ($pStore_source);
+    if ( $padStore_source )
+      $padStore_data = pMake_flag ($padStore_source);
     else
-      $pStore_data = FALSE;
+      $padStore_data = FALSE;
 
   }
 
-  $GLOBALS [$pStore_name] [$pName [$p]] = $pStore_data;
+  $GLOBALS [$padStore_name] [$padName [$pad]] = $padStore_data;
 
-  if ( $pTrace ) {
-    $pTraceData = [
-      'store'  => $pStore_name, 
-      'entry'  => $pName [$p],
-      'source' => $pStore_source, 
-      'result' => $pStore_data
+  if ( $padTrace ) {
+    $padTraceData = [
+      'store'  => $padStore_name, 
+      'entry'  => $padName [$pad],
+      'source' => $padStore_source, 
+      'result' => $padStore_data
     ];
-    pFile_put_contents ( $pLevelDir [$p] . "/store.json", $pTraceData ); 
+    pFile_put_contents ( $padLevelDir [$pad] . "/store.json", $padTraceData ); 
   }
 
-  $pContent = '';
+  $padContent = '';
 
   return NULL;
 

@@ -70,21 +70,21 @@ go: $end = strpos($source, '}');
       goto go;
     } 
 
-co: $parms  = $words[1] ?? '';
+co: $padarms  = $words[1] ?? '';
 
-    $space  = ($parms) ? ' ' : '';
-    $parms  = str_replace ('<b>&open;<font color="green">', '',  $parms);
-    $parms  = str_replace ('</font>&close;</b>', '',             $parms);
-    $parms  = str_replace (' ', '&nbsp;',                        $parms);
-    $parms  = str_replace ('=', '<font color="black">=</font>',  $parms);
-    $parms  = str_replace ('|', '<font color="black">|</font>',  $parms);
-    $parms  = str_replace ('@', '<font color="black">@</font>',  $parms);
-    $parms  = str_replace ('$', '<font color="black">$</font>',  $parms);
-    $parms  = str_replace (',', '<font color="black">,</font>',  $parms);
+    $space  = ($padarms) ? ' ' : '';
+    $padarms  = str_replace ('<b>&open;<font color="green">', '',  $padarms);
+    $padarms  = str_replace ('</font>&close;</b>', '',             $padarms);
+    $padarms  = str_replace (' ', '&nbsp;',                        $padarms);
+    $padarms  = str_replace ('=', '<font color="black">=</font>',  $padarms);
+    $padarms  = str_replace ('|', '<font color="black">|</font>',  $padarms);
+    $padarms  = str_replace ('@', '<font color="black">@</font>',  $padarms);
+    $padarms  = str_replace ('$', '<font color="black">$</font>',  $padarms);
+    $padarms  = str_replace (',', '<font color="black">,</font>',  $padarms);
 
-    if (substr($parms, -1) == '/') {
+    if (substr($padarms, -1) == '/') {
       $close1='/';
-      $parms=substr($parms, 0, -1);
+      $padarms=substr($padarms, 0, -1);
     } else
       $close1 = '';
 
@@ -99,7 +99,7 @@ co: $parms  = $words[1] ?? '';
 
     $source = substr($source, 0, $start) 
             . '<b>&open;' . $close2 . '<font color="blue">'.$search.$space.'</font><font color="red">' 
-            . $parms
+            . $padarms
             . '</font>'
             . $close1
             . '&close;</b>' 

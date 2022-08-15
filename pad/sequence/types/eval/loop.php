@@ -1,7 +1,7 @@
 <?php
  
-  $pSeq_eval_tbl = pExplode ( $pSeq_parm, '|' );
+  $padSeq_eval_tbl = pExplode ( $padSeq_parm, '|' );
 
-  return pVar_opts ( $pSeq_loop, $pSeq_eval_tbl );
+  return pVar_opts ( $padSeq_loop, $padSeq_eval_tbl );
 
 ?>

@@ -1,21 +1,21 @@
 <?php
 
-  if ( ! file_exists($pCall) )
+  if ( ! file_exists($padCall) )
     return '';
 
   ob_start();
   
   pTiming_start ('app');
-  $pCall_return = include $pCall;
+  $padCall_return = include $padCall;
   pTiming_end ('app');
 
-  if ( is_array($pCall_return) or is_object($pCall_return) or is_resource($pCall_return) )
-    $pCall_return = pMake_content ( $pCall_return );
-  elseif ($pCall_return === 1 or $pCall_return === TRUE or $pCall_return === FALSE or $pCall_return === NULL)
-    $pCall_return = '';
+  if ( is_array($padCall_return) or is_object($padCall_return) or is_resource($padCall_return) )
+    $padCall_return = pMake_content ( $padCall_return );
+  elseif ($padCall_return === 1 or $padCall_return === TRUE or $padCall_return === FALSE or $padCall_return === NULL)
+    $padCall_return = '';
 
-  $pCall_return .= ob_get_clean();
+  $padCall_return .= ob_get_clean();
 
-  return $pCall_return ;
+  return $padCall_return ;
 
 ?>

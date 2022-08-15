@@ -1,13 +1,13 @@
 <?php
 
-  if ( ! $pTrace )
+  if ( ! $padTrace )
     return;
 
-  pFields ( $pFphp, $pFlvl, $pFapp, $pFcfg, $pFpad, $pFids );
+  pFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
 
-  pFile_put_contents ( $pLevelDir [$p] . "/end.json",      pTraceGetLevel ($p) );
-  pFile_put_contents ( $pLevelDir [$p] . "/app-end.json",  $pFapp );
-  pFile_put_contents ( $pLevelDir [$p] . "/pad-end.json",  $pFpad ); 
-  pFile_put_contents ( $pLevelDir [$p] . "/result.html",   $pResult [$p] );
+  pFile_put_contents ( $padLevelDir [$pad] . "/end.json",      pTraceGetLevel ($pad) );
+  pFile_put_contents ( $padLevelDir [$pad] . "/app-end.json",  $padFapp );
+  pFile_put_contents ( $padLevelDir [$pad] . "/pad-end.json",  $padFpad ); 
+  pFile_put_contents ( $padLevelDir [$pad] . "/result.html",   $padResult [$pad] );
   
 ?>

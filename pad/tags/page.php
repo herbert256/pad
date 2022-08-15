@@ -1,6 +1,6 @@
 <?php
 
-  $pOne = APP . "pages/$pPrm [$p]";
+  $padOne = APP . "pages/$padPrm [$pad]";
   
   return include PAD . 'build/one.php';
 

@@ -4,18 +4,18 @@
 
   include 'inits.php';
 
-  $pOpts = [];
+  $padOpts = [];
 
-  foreach ( $pData_default_start as $pV )
-    $pOpts [] = $pV;
+  foreach ( $padData_default_start as $padV )
+    $padOpts [] = $padV;
 
-  foreach ( $pExpl as $pV )
-    $pOpts [] = trim($pV);
+  foreach ( $padExpl as $padV )
+    $padOpts [] = trim($padV);
 
-  foreach ( $pData_default_end as $pV )
-    $pOpts [] = $pV;
+  foreach ( $padData_default_end as $padV )
+    $padOpts [] = $padV;
 
-  $pVal = pVar_opts ($pVal, $pOpts);
+  $padVal = pVar_opts ($padVal, $padOpts);
 
   return include 'exits.php';
 

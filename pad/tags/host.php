@@ -1,13 +1,13 @@
 <?php
 
-  $pPrmsTag [$p] ['url']   = $pLocation . trim($pPrm [$p]);
-  $pPrmsTag [$p] ['cache'] = FALSE;
+  $padPrmsTag [$pad] ['url']   = $padLocation . trim($padPrm [$pad]);
+  $padPrmsTag [$pad] ['cache'] = FALSE;
 
-  $pPrmsTag [$p] ['cookies'] ['PADSESSID'] = $GLOBALS['PADSESSID'];   
-  $pPrmsTag [$p] ['cookies'] ['PADREQID']  = $GLOBALS['PADREQID'];    
+  $padPrmsTag [$pad] ['cookies'] ['PADSESSID'] = $GLOBALS ['PADSESSID'];   
+  $padPrmsTag [$pad] ['cookies'] ['PADREQID']  = $GLOBALS ['PADREQID'];    
 
   if ( ! pTag_parm ('complete') )
-    $pPrmsTag [$p] ['get'] ['pInclude'] = 1;
+    $padPrmsTag [$pad] ['get'] ['pInclude'] = 1;
 
   return include PAD . 'tags/curl.php';
 

@@ -1,61 +1,61 @@
 <?php
 
   
-  function pRestart ( $pRestart ) {
+  function pRestart ( $padRestart ) {
       
-    $GLOBALS ['pRestart'] = $pRestart;
+    $GLOBALS ['padRestart'] = $padRestart;
 
     return NULL;
 
   }
 
 
-  function pBuild ( $pBuild, $pMode='include', $pMerge='content', $pInclude=0 ) {
+  function pBuild ( $padBuild, $padMode='include', $padMerge='content', $padInclude=0 ) {
       
-    $pBuild_mode  = $pMode;
-    $pBuild_merge = $pMerge;
-    $page         = $pBuild;
+    $padBuild_mode  = $padMode;
+    $padBuild_merge = $padMerge;
+    $page         = $padBuild;
    
-    $pNoOccur = TRUE;
+    $padNoOccur = TRUE;
     
-    global $p, $pBase;    
+    global $pad, $padBase;    
 
     include PAD . 'build/build.php'; 
 
-    return $pBase [$p];    
+    return $padBase [$pad];    
 
   }
 
 
-  function pBuild2 ( $pBuild, $pMode='before', $pMerge='content' ) {
+  function pBuild2 ( $padBuild, $padMode='before', $padMerge='content' ) {
 
     foreach ($GLOBALS as $key => $val )
-      if ( substr($key, 0, 1) == 'p' )
+      if ( substr($key, 0, 3) == 'pad' )
         global $$key;
 
-    $Xp         = $p;
-    $XpTraceDir = $pTraceDir;
+    $Xp         = $pad;
+    $XpTraceDir = $padTraceDir;
     
-    $pCnt++;
+    $padCnt++;
 
     include PAD . 'level/setup.php'; 
     include PAD . 'level/trace/start.php'; 
     include PAD . 'occurrence/trace/start.php'; 
 
-    $pBuild_mode  = $pMode;
-    $pBuild_merge = $pMerge;
-    $page         = $pBuild;
+    $padBuild_mode  = $padMode;
+    $padBuild_merge = $padMerge;
+    $page         = $padBuild;
 
     include PAD . 'build/build.php'; 
 
-    $pHtml [$p] = $pBase [$p];    
+    $padHtml [$pad] = $padBase [$pad];    
 
-    while ( $p > $Xp ) 
+    while ( $pad > $Xp ) 
       include PAD . 'level/level.php'; 
 
-    $pTraceDir = $XpTraceDir;
+    $padTraceDir = $XpTraceDir;
  
-    return $pHtml [$Xp+1];
+    return $padHtml [$Xp+1];
 
   }
 
@@ -63,23 +63,23 @@
   function pContent ( $contentxx ) {
 
     foreach ($GLOBALS as $key => $val )
-      if ( substr($key, 0, 1) == 'p' )
+      if ( substr($key, 0, 3) == 'pad' )
         global $$key;
 
-    $Xp = $p;
+    $Xp = $pad;
     
-    $pCnt++;
+    $padCnt++;
 
     include PAD . 'level/setup.php'; 
     include PAD . 'level/trace/start.php'; 
     include PAD . 'occurrence/trace/start.php'; 
 
-    $pHtml [$p] = $contentxx;    
+    $padHtml [$pad] = $contentxx;    
 
-    while ( $p > $Xp ) 
+    while ( $pad > $Xp ) 
       include PAD . 'level/level.php'; 
 
-    return $pHtml [$Xp+1];
+    return $padHtml [$Xp+1];
 
   }
 

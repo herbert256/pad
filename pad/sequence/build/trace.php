@@ -1,17 +1,17 @@
 <?php
 
-  if ( ! $pTrace ) 
+  if ( ! $padTrace ) 
     return;
 
-  $pTraceData = [
-    'seq'    => $pSeq_seq,
-    'set'    => $pSeq_set,
-    'parm'   => $pSeq_parm,
-    'name'   => $pSeq_name,
-    'result' => $pSeqReturn
+  $padTraceData = [
+    'seq'    => $padSeq_seq,
+    'set'    => $padSeq_set,
+    'parm'   => $padSeq_parm,
+    'name'   => $padSeq_name,
+    'result' => $padSeqReturn
   ];
 
-  pFile_put_contents ( $pLevelDir [$p] . "/sequence.json", $pTraceData );
+  pFile_put_contents ( $padLevelDir [$pad] . "/sequence.json", $padTraceData );
 
 
 ?>

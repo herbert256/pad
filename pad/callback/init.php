@@ -1,6 +1,6 @@
 <?php
 
-  $pCallback = "init";
+  $padCallback = "init";
   
   include PAD . 'options/callback.php' ;
   

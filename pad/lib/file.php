@@ -58,14 +58,14 @@
 
   function pFile_chk_dir ( $file ) {
 
-    $pos = strrpos($file, '/');
-    $dir = substr($file, 0, $pos);
+    $pados = strrpos($file, '/');
+    $dir = substr($file, 0, $pados);
     
     if ( ! file_exists($dir) ) {
 
       pTiming_start ('write');
 
-      mkdir ($dir, $GLOBALS['pDir_mode'], true);
+      mkdir ($dir, $GLOBALS ['padDir_mode'], true);
 
       pTiming_end ('write');
 
@@ -81,7 +81,7 @@
       pTiming_start ('write');
       
       touch($file);
-      chmod($file, $GLOBALS['pFile_mode']);
+      chmod($file, $GLOBALS ['padFile_mode']);
       
       pTiming_end ('write');
   

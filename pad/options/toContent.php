@@ -1,9 +1,9 @@
 <?php
 
-  $pStore_name = $pPrmsTag [$p] ['toFlag'];
+  $padStore_name = $padPrmsTag [$pad] ['toFlag'];
 
-  $pContentStore [$pStore_name] = $pResult [$p];
+  $padContentStore [$padStore_name] = $padResult [$pad];
 
-  $pResult [$p] = '';
+  $padResult [$pad] = '';
   
 ?>

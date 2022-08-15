@@ -1,39 +1,39 @@
 <?php
   
-  $pPrmsTag [$p] = [];
-  $pPrmsVal [$p] = [];
+  $padPrmsTag [$pad] = [];
+  $padPrmsVal [$pad] = [];
 
-  if ( ! in_array ( $pTag [$p], ['if', 'case', 'while', 'until'] )  ) {
+  if ( ! in_array ( $padTag [$pad], ['if', 'case', 'while', 'until'] )  ) {
    
-    $pPrms_org = pExplode ($pPrms [$p], ',');
+    $padPrms_org = pExplode ($padPrms [$pad], ',');
     
-    foreach ( $pPrms_org as $pV ) {
+    foreach ( $padPrms_org as $padV ) {
 
-      if ( $pV == 'trace' )
+      if ( $padV == 'trace' )
         include 'trace/option.php';
 
-      $pW = pExplode ($pV, '=', 2);
+      $padW = pExplode ($padV, '=', 2);
 
-      if ( count($pW) == 2 and substr($pW[0], 0, 1) == '$') {
-        $pSet_name  = trim(substr($pW[0], 1));
-        $pSet_value = $pW[1];
+      if ( count($padW) == 2 and substr($padW[0], 0, 1) == '$') {
+        $padSet_name  = trim(substr($padW[0], 1));
+        $padSet_value = $padW[1];
         include PAD . 'level/set.php';
         continue;
       } 
 
-      if ( pValid ($pW[0]) and ! is_numeric($pW[0]) )
-        if ( count($pW) == 1 )
-          $pPrmsTag [$p] [$pW[0]] = TRUE;
+      if ( pValid ($padW[0]) and ! is_numeric($padW[0]) )
+        if ( count($padW) == 1 )
+          $padPrmsTag [$pad] [$padW[0]] = TRUE;
         else
-          $pPrmsTag [$p] [$pW[0]] = pEval ( $pW[1] );
+          $padPrmsTag [$pad] [$padW[0]] = pEval ( $padW[1] );
       else
-        $pPrmsVal [$p] [] = pEval ( $pV );
+        $padPrmsVal [$pad] [] = pEval ( $padV );
 
     }
  
   }
 
-  $pPrm  [$p] = $pPrmsVal [$p][0] ?? '';
-  $pName [$p] = $pPrmsTag [$p]['name'] ?? $pTag [$p];
+  $padPrm  [$pad] = $padPrmsVal [$pad][0] ?? '';
+  $padName [$pad] = $padPrmsTag [$pad]['name'] ?? $padTag [$pad];
 
 ?>

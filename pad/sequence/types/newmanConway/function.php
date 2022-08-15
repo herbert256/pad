@@ -9,14 +9,14 @@ function pSequence_newmanConway ($n) {
 	if ($n == 1 || $n == 2)
 		return 1;
 
-	if ( isset ( $GLOBALS ['pSeq_cache'] [$n] ) )
-		return $GLOBALS ['pSeq_cache'] [$n];
+	if ( isset ( $GLOBALS ['padSeq_cache'] [$n] ) )
+		return $GLOBALS ['padSeq_cache'] [$n];
 
 	$now = pSequence_newmanConway ( pSequence_newmanConway ($n - 1)     )
 	       +
 		   pSequence_newmanConway ( $n - pSequence_newmanConway($n - 1) );
 
-	$GLOBALS ['pSeq_cache'] [$n] = $now;
+	$GLOBALS ['padSeq_cache'] [$n] = $now;
 
 	return $now;
 

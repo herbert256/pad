@@ -1,31 +1,31 @@
 <?php
 
-  $pBuild_now = substr(APP, 0, -1);
+  $padBuild_now = substr(APP, 0, -1);
   
-  $pExits     = [];
-  $pBuild_mrg = pExplode ("pages/$page", '/');
+  $padExits     = [];
+  $padBuild_mrg = pExplode ("pages/$page", '/');
 
-  foreach ($pBuild_mrg as $pValue) {
+  foreach ($padBuild_mrg as $padValue) {
 
-    $pBuild_now .= "/$pValue";
+    $padBuild_now .= "/$padValue";
 
-    if ( is_dir ($pBuild_now) ) {
+    if ( is_dir ($padBuild_now) ) {
 
-      $pCall = "$pBuild_now/inits.php";
+      $padCall = "$padBuild_now/inits.php";
       include PAD . 'level/call.php';
 
-      $pExits [] = "$pBuild_now/exits.php";
+      $padExits [] = "$padBuild_now/exits.php";
 
     }
 
   }
 
-  $pCall = "$pBuild_now.php";
-  $pBase [$p] .= include PAD . 'level/call.php';
+  $padCall = "$padBuild_now.php";
+  $padBase [$pad] .= include PAD . 'level/call.php';
 
-  foreach ( array_reverse ($pExits) as $pCall )
+  foreach ( array_reverse ($padExits) as $padCall )
     include PAD . 'level/call.php';
 
-  $pBase [$p] .= pGet_html ( APP . "pages/$page.html" );
+  $padBase [$pad] .= pGet_html ( APP . "pages/$page.html" );
 
 ?>

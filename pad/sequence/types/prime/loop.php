@@ -1,8 +1,8 @@
 <?php
 
-  if ( gmp_prob_prime ($pSeq_loop) )
-    return $pSeq_loop;
+  if ( gmp_prob_prime ($padSeq_loop) )
+    return $padSeq_loop;
   else
-    return gmp_nextprime ($pSeq_loop);
+    return gmp_nextprime ($padSeq_loop);
 
 ?>

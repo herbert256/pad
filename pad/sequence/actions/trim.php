@@ -1,27 +1,27 @@
 <?php
 
-  if ( ! isset( $pPrmsTag [$p]['both']) and ! isset( $pPrmsTag [$p]['left'])  and !  isset( $pPrmsTag [$p]['right']) )
-    $pPrmsTag [$p]['both'] = TRUE;
+  if ( ! isset( $padPrmsTag [$pad]['both']) and ! isset( $padPrmsTag [$pad]['left'])  and !  isset( $padPrmsTag [$pad]['right']) )
+    $padPrmsTag [$pad]['both'] = TRUE;
 
-  if ( isset( $pPrmsTag [$p]['both']) ) {
-    $pSeq_trucateCnt = pSeq_getCnt ( 'both', 'truncate', 'count');
-    $pSeq_result        = pSeq_truncate  ( $pSeq_result, 'left',  $pSeq_trucateCnt );
-    $pSeq_result        = pSeq_truncate  ( $pSeq_result, 'right', $pSeq_trucateCnt );
+  if ( isset( $padPrmsTag [$pad]['both']) ) {
+    $padSeq_trucateCnt = pSeq_getCnt ( 'both', 'truncate', 'count');
+    $padSeq_result        = pSeq_truncate  ( $padSeq_result, 'left',  $padSeq_trucateCnt );
+    $padSeq_result        = pSeq_truncate  ( $padSeq_result, 'right', $padSeq_trucateCnt );
     pDone ( 'both', TRUE );
   }
 
-  if ( isset( $pPrmsTag [$p]['left']) ) {
-    $pSeq_trucateCnt = pSeq_getCnt ( 'left', 'truncate', 'count');
-    $pSeq_result        = pSeq_truncate  ( $pSeq_result, 'left', $pSeq_trucateCnt );
+  if ( isset( $padPrmsTag [$pad]['left']) ) {
+    $padSeq_trucateCnt = pSeq_getCnt ( 'left', 'truncate', 'count');
+    $padSeq_result        = pSeq_truncate  ( $padSeq_result, 'left', $padSeq_trucateCnt );
     pDone ( 'left', TRUE );
   }
 
-  if ( isset( $pPrmsTag [$p]['right']) ) {
-    $pSeq_trucateCnt = pSeq_getCnt ( 'right', 'truncate', 'count');
-    $pSeq_result        = pSeq_truncate  ( $pSeq_result, 'right', $pSeq_trucateCnt );
+  if ( isset( $padPrmsTag [$pad]['right']) ) {
+    $padSeq_trucateCnt = pSeq_getCnt ( 'right', 'truncate', 'count');
+    $padSeq_result        = pSeq_truncate  ( $padSeq_result, 'right', $padSeq_trucateCnt );
     pDone ( 'right', TRUE );
   }
 
-  return $pSeq_result;
+  return $padSeq_result;
   
 ?>

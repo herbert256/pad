@@ -2,6 +2,6 @@
 
   include_once 'function.php';
   
-  return pSequence_pell( $pSeq_loop );
+  return pSequence_pell( $padSeq_loop );
 
 ?>

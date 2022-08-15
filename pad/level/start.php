@@ -1,29 +1,28 @@
 <?php
 
-  $pCnt++;
+  $padCnt++;
 
   include 'trace/start.php';
   include 'parms.php';
+  include 'inits.php';
 
-  $pContent = $pTrue [$p];
+  $padContent = $padTrue [$pad];
   include 'type_go.php';
-  $pTrue [$p] = $pContent;
+  $padTrue [$pad] = $padContent;
   
   include 'options.php';
   include 'flags.php';
   include 'base.php';
   include 'data.php';
 
-  $pDefault [$p] = pIs_default_data ( $pData [$p] );
-
   include PAD . "options/go/start.php";
   
-  if ( isset($pPrmsTag [$p] ['callback']) and ! isset($pPrmsTag [$p] ['before']))
+  if ( isset($padPrmsTag [$pad] ['callback']) and ! isset($padPrmsTag [$pad] ['before']))
     include PAD . 'callback/init.php' ;
 
   include 'trace/level.php';
 
-  if ( count ( $pData [$p] ) )
+  if ( count ( $padData [$pad] ) )
     include PAD . 'occurrence/start.php';
   
 ?>

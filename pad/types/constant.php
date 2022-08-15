@@ -1,5 +1,5 @@
 <?php
 
-  return constant ( $pTag [$p] );
+  return constant ( $padTag [$pad] );
 
 ?>

@@ -1,19 +1,19 @@
 <?php
 
-  $p = -1;
+  $pad = -1;
 
-  $pTimingsCnt = $pTimings = [];
-  $pErrCnt =$pEvalCnt = $pFldCnt = $pCnt = $pOptCnt = $pErrCnt = $pBtwCnt = $pTypeCnt = $pIgnCnt = 0;
-  $pField_double_check = $pRestart = '';     
+  $padTimingsCnt = $padTimings = [];
+  $padErrCnt =$padEvalCnt = $padFldCnt = $padCnt = $padOptCnt = $padErrCnt = $padBtwCnt = $padTypeCnt = $padIgnCnt = 0;
+  $padField_double_check = $padRestart = '';     
 
-  $pOutput     = '';
-  $pStop       = '000';
-  $pCache_stop = 0;
-  $pEtag       = '';
-  $pExit       = 1;
-  $pLen        = 0;
-  $pTime       = $_SERVER['REQUEST_TIME'];  
+  $padOutput     = '';
+  $padStop       = '000';
+  $padCache_stop = 0;
+  $padEtag       = '';
+  $padExit       = 1;
+  $padLen        = 0;
+  $padTime       = $_SERVER['REQUEST_TIME'];  
 
-  $pErrror_list = [];
+  $padErrror_list = [];
 
 ?>

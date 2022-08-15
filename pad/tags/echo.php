@@ -1,5 +1,5 @@
 <?php
 
-  return pVar_opts ('', pExplode ($pPrms [$p], '|'));
+  return pVar_opts ('', pExplode ($padPrms [$pad], '|'));
 
 ?>

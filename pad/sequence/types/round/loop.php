@@ -1,8 +1,8 @@
 <?php
 
-  if ( ! $pSeq_round )
-    $pSeq_round = 1;
+  if ( ! $padSeq_round )
+    $padSeq_round = 1;
 
-  return round ( $pSeq_loop / $pSeq_round ) * $pSeq_round;
+  return round ( $padSeq_loop / $padSeq_round ) * $padSeq_round;
 
 ?>

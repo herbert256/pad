@@ -1,8 +1,8 @@
 <?php
 
-  if ($pTag [$p] == 'check' ) 
-    return db ( $pTag [$p] . ' ' . $pPrm[$p] ) ? TRUE : FALSE;
+  if ($padTag [$pad] == 'check' ) 
+    return db ( $padTag [$pad] . ' ' . $padPrm[$pad] ) ? TRUE : FALSE;
   else                  
-    return db ( $pTag [$p] . ' ' . $pPrm[$p] );
+    return db ( $padTag [$pad] . ' ' . $padPrm[$pad] );
 
 ?>

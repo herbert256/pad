@@ -174,15 +174,15 @@
   
   function pData_error ($data, $error) {
 
-    global $app, $page, $PADREQID, $pTraceDir, $pTrace;
+    global $app, $page, $PADREQID, $padTraceDir, $padTrace;
 
-    if ( $pTrace ) {
+    if ( $padTrace ) {
 
       $id  = uniqid();
-      $put = [ 'error'=> $error, 'data' => $data ]; 
+      $padut = [ 'error'=> $error, 'data' => $data ]; 
 
-      pFile_put_contents ( "errors/data/$app/$page/$PADREQID/$id.json", $put ); 
-      pFile_put_contents ( "$pTraceDir/errors/data/$id.json",  $put ); 
+      pFile_put_contents ( "errors/data/$app/$page/$PADREQID/$id.json", $padut ); 
+      pFile_put_contents ( "$padTraceDir/errors/data/$id.json",  $padut ); 
 
     }
 
@@ -215,8 +215,8 @@
 
     $result = $data;
 
-    foreach ($result as $pK => $pV)
-      if ( is_array($pV) or ! is_numeric($pK) )
+    foreach ($result as $padK => $padV)
+      if ( is_array($padV) or ! is_numeric($padK) )
         return $result;
   
     $name   = pData_name($name);
@@ -324,10 +324,10 @@
   function pData_name ($name) {
 
     if     ( $name                          ) $return = $name;
-    elseif ( $GLOBALS['pName'] == 'data'    ) $return = $GLOBALS['pPrm'] [p()];
+    elseif ( $GLOBALS ['padName'] == 'data'    ) $return = $GLOBALS ['padPrm'] [p()];
     elseif ( pTag_parm ('name')             ) $return = pTag_parm ('name');
     elseif ( pTag_parm ('toData')           ) $return = pTag_parm ('toData');
-    else                                      $return = $GLOBALS['pName'] [p()];
+    else                                      $return = $GLOBALS ['padName'] [p()];
 
     if (substr($return, 0, 1) == '$')
       $return = substr($return, 1);

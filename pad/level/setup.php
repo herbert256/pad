@@ -1,57 +1,57 @@
 <?php
   
-  $pP = $p;
+  $padP = $pad;
   
-  $p++;  
+  $pad++;  
 
-  $pTag         [$p] = 'true';
-  $pType        [$p] = 'true';
+  $padTag         [$pad] = 'true';
+  $padType        [$pad] = 'true';
 
-  $pPair        [$p] = FALSE;
+  $padPair        [$pad] = FALSE;
 
-  $pTrue        [$p] = '';
-  $pFalse       [$p] = '';
+  $padTrue        [$pad] = '';
+  $padFalse       [$pad] = '';
 
-  $pPrm         [$p] = ''; 
-  $pPrms        [$p] = '';
-  $pPrmsType    [$p] = '';
-  $pPrmsTag     [$p] = [];
-  $pPrmsVal     [$p] = [];
+  $padPrm         [$pad] = ''; 
+  $padPrms        [$pad] = '';
+  $padPrmsType    [$pad] = '';
+  $padPrmsTag     [$pad] = [];
+  $padPrmsVal     [$pad] = [];
 
-  $pName        [$p] = '';
+  $padName        [$pad] = '';
 
-  $pData        [$p] = pDefault_data ();
-  $pCurrent     [$p] = [];
-  $pKey         [$p] = 1;
-  $pDefault     [$p] = TRUE;
+  $padData        [$pad] = pDefault_data ();
+  $padCurrent     [$pad] = [];
+  $padKey         [$pad] = 1;
+  $padDefault     [$pad] = TRUE;
 
-  $pWalk        [$p] = 'start';
+  $padWalk        [$pad] = 'start';
 
-  $pWalkData    [$p] = [];
+  $padWalkData    [$pad] = [];
   
-  $pDone        [$p] = [];
-  $pOccur       [$p] = 0;
-  $pStart       [$p] = 0;
-  $pEnd         [$p] = 0;
+  $padDone        [$pad] = [];
+  $padOccur       [$pad] = 0;
+  $padStart       [$pad] = 0;
+  $padEnd         [$pad] = 0;
 
-  $pBase        [$p] = '';
-  $pHtml        [$p] = '';
-  $pResult      [$p] = '';
+  $padBase        [$pad] = '';
+  $padHtml        [$pad] = '';
+  $padResult      [$pad] = '';
  
-  $pHit         [$p] = FALSE;
-  $pNull        [$p] = FALSE;
-  $pElse        [$p] = FALSE;
-  $pArray       [$p] = FALSE;
-  $pText        [$p] = FALSE;
+  $padHit         [$pad] = FALSE;
+  $padNull        [$pad] = FALSE;
+  $padElse        [$pad] = FALSE;
+  $padArray       [$pad] = FALSE;
+  $padText        [$pad] = FALSE;
 
-  $pLevelDir    [$p] = $pOccurDir [$p-1] ?? $pTraceDir;
-  $pOccurDir    [$p] = $pLevelDir [$p];
+  $padLevelDir    [$pad] = $padOccurDir [$pad-1] ?? $padTraceDir;
+  $padOccurDir    [$pad] = $padLevelDir [$pad];
 
-  $pSave_vars   [$p] = [];
-  $pDelete_vars [$p] = [];
-  $pSet_save    [$p] = [];
-  $pSet_delete  [$p] = [];
+  $padSave_vars   [$pad] = [];
+  $padDelete_vars [$pad] = [];
+  $padSet_save    [$pad] = [];
+  $padSet_delete  [$pad] = [];
 
-  $pTagCnt      [$p] = 0;
+  $padTagCnt      [$pad] = 0;
 
 ?>

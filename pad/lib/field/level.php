@@ -3,14 +3,14 @@
 
   function pField_level ( $field, $type ) {
 
-    global $p, $pCurrent, $pPrmsTag, $pName;
+    global $pad, $padCurrent, $padPrmsTag, $padName;
 
     if ( is_numeric($field) ) 
       return pField_level_nr ($field);
 
-    for ( $i=$p; $i; $i-- )
-      if ( array_key_exists ( $field, $pCurrent [$i] ) ) {
-        $work = $pCurrent [$i] [$field];
+    for ( $i=$pad; $i; $i-- )
+      if ( array_key_exists ( $field, $padCurrent [$i] ) ) {
+        $work = $padCurrent [$i] [$field];
         if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
         elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
       }
@@ -28,10 +28,10 @@
 
   function pField_level_nr ($nr) {
 
-    global $p, $pPrmsVal;
+    global $pad, $padPrmsVal;
     
-    if ( isset ( $pPrmsVal[$p] [$nr-1] ) )
-      return $pPrmsVal[$p] [$nr-1]; 
+    if ( isset ( $padPrmsVal[$pad] [$nr-1] ) )
+      return $padPrmsVal[$pad] [$nr-1]; 
     else
       return INF;
 

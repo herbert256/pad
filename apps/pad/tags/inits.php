@@ -1,9 +1,9 @@
 <?php
 
-  $path = APPS . "reference/pages/" . $pPrm [$p];
+  $padath = APPS . "reference/pages/" . $padPrm [$pad];
 
-  $inits_php  = "$path/inits.php";
-  $inits_html = "$path/inits.html";
+  $inits_php  = "$padath/inits.php";
+  $inits_html = "$padath/inits.html";
 
   $inits = ( file_exists($inits_php) or file_exists($inits_html) );
 

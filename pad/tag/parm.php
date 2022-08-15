@@ -1,9 +1,9 @@
 <?php
 
-  global $pPrmsTag;
+  global $padPrmsTag;
 
-  if ( isset ( $pPrmsTag [$pIdx] [$parm] ) )
-    return $pPrmsTag [$pIdx] [$parm];
+  if ( isset ( $padPrmsTag [$padIdx] [$padarm] ) )
+    return $padPrmsTag [$padIdx] [$padarm];
   else
     return NULL;
 

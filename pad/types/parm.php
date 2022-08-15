@@ -1,15 +1,15 @@
 <?php
 
-  if ( isset($pPrmsVal [$p][0]) )
-    $pField_tag = $pPrmsVal [$p][0];
+  if ( isset($padPrmsVal [$pad][0]) )
+    $padField_tag = $padPrmsVal [$pad][0];
   else
-    $pField_tag = '';
+    $padField_tag = '';
 
-  $pFieldResult = pField_tag ("$pField_tag#$pTag[$p]");
+  $padFieldResult = pField_tag ("$padField_tag#$padTag[$pad]");
 
-  if ( $pFieldResult === INF )
+  if ( $padFieldResult === INF )
     return NULL;
   else
-    return $pFieldResult;
+    return $padFieldResult;
 
 ?>

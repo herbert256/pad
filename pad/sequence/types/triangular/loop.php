@@ -1,15 +1,15 @@
 <?php
 
-  if ( $pSeq_loop < 0 )
+  if ( $padSeq_loop < 0 )
     return false;
  
-  $pSeq_sum = 0;
+  $padSeq_sum = 0;
 
-  for ($pSeq_tri_idx = 0; $pSeq_sum <= $pSeq_loop; $pSeq_tri_idx++) {
-    $pSeq_sum = $pSeq_sum + $pSeq_tri_idx;
-    if ($pSeq_sum == $pSeq_loop)
+  for ($padSeq_tri_idx = 0; $padSeq_sum <= $padSeq_loop; $padSeq_tri_idx++) {
+    $padSeq_sum = $padSeq_sum + $padSeq_tri_idx;
+    if ($padSeq_sum == $padSeq_loop)
       return true;
-    elseif ($pSeq_sum > $pSeq_loop)
+    elseif ($padSeq_sum > $padSeq_loop)
       return false;
   }
 

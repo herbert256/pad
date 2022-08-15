@@ -7,27 +7,27 @@
       $temp  = pExplode ($field, '#', 2);
       $tag   = '';
       $field = $temp[0];
-      $parm  = $temp[1]??'';
+      $padarm  = $temp[1]??'';
     } else {
       $temp  = pExplode ($field, '#', 3);
       $tag   = $temp[0];
       $field = $temp[1];
-      $parm  = $temp[2]??'';
+      $padarm  = $temp[2]??'';
     }
 
     if ( ! $tag )
-      $pIdx = pFieldFirstNonParm  ();
+      $padIdx = pFieldFirstNonParm  ();
     else
-      $pIdx = pFieldGetLevel ($tag);
+      $padIdx = pFieldGetLevel ($tag);
     
     if ( file_exists ( PAD . "tag/".$field.".php" ) )
       return include PAD . "tag/$field.php";
 
-    if ( in_array ( $parm, ['name','value'] ) and $pIdx and isset($GLOBALS['pCurrent'] ) ) {
-      $pos = 1;
-      foreach( $GLOBALS['pCurrent'] [$pIdx] as $key => $value )
-        if ( $pos++ == $field )
-          return ( $parm == 'name') ? $key : $value;
+    if ( in_array ( $padarm, ['name','value'] ) and $padIdx and isset($GLOBALS ['padCurrent'] ) ) {
+      $pados = 1;
+      foreach( $GLOBALS ['padCurrent'] [$padIdx] as $key => $value )
+        if ( $pados++ == $field )
+          return ( $padarm == 'name') ? $key : $value;
     }
 
     if ( $tag )
@@ -40,13 +40,13 @@
 
   function pFieldFirstNonParm  () {
 
-    global $p, $pType;
+    global $pad, $padType;
 
-    for ($i=$p; $i; $i--)
-      if ( $pType[$i] and $pType[$i] <> 'parm' )
+    for ($i=$pad; $i; $i--)
+      if ( $padType[$i] and $padType[$i] <> 'parm' )
         return $i;
 
-    return $p - 1;
+    return $pad - 1;
 
   }  
 

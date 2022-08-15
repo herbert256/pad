@@ -10,27 +10,27 @@
       return;
     }
 
-    $parm = [];
+    $padarm = [];
 
     foreach ( $result as $k => $v )
       if ($k <= $end and $k > $type and $k <= $result [$type] [3] - 1)
         if ( isset($v[4]) )
           foreach ($v[4] as $v2)
-            $parm [] = $v2;
+            $padarm [] = $v2;
         else
-          $parm [] = $v[0];
+          $padarm [] = $v[0];
 
-    if ( ! count($parm) )
+    if ( ! count($padarm) )
       foreach ( $result as $k => $v )
         if ($k <= $end and  $k > $type ) {
           if ( isset($v[4]) ) {
-            $parm = array_values($v[4]);
+            $padarm = array_values($v[4]);
             unset($result[$k]);
           }
           break;
         }
 
-    $count = count($parm);
+    $count = count($padarm);
 
     if ( $left >= $start and isset($result [$left] [4]) ) {
       $value = array_values($result [$left] [4]);
@@ -41,17 +41,17 @@
     } else
       $value = $myself;
    
-    if ( $GLOBALS ['pTrace'] ) {
+    if ( $GLOBALS ['padTrace'] ) {
         $trace_data ['type']   = $result [$type];
         $trace_data ['left']   = $left;
         $trace_data ['start']  = $start;
-        $trace_data ['parm']   = $parm;
+        $trace_data ['parm']   = $padarm;
         $trace_data ['in']     = $value;
     }
    
     $value = include PAD . "eval/parms/$kind.php" ;
     
-    if ( $GLOBALS ['pTrace'] )
+    if ( $GLOBALS ['padTrace'] )
       $trace_data ['out'] = $value;
 
     $result [$type] [1] = 'VAL';
@@ -64,7 +64,7 @@
       $result [$type] [0] = $value;
     }
 
-    foreach ( $result as $key => $parm)
+    foreach ( $result as $key => $padarm)
       if ( $key <= $end and $key > $type and $key <= $result [$type] [3] - 1 )
         unset($result[$key]);
 
@@ -73,7 +73,7 @@
       unset ( $result [$type] [3] );
     }
 
-    if ( $GLOBALS ['pTrace'] ) {
+    if ( $GLOBALS ['padTrace'] ) {
       $trace_data ['result'] = $result [$type];
       pEval_trace  ('type', $trace_data );
     }

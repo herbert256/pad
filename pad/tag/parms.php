@@ -1,8 +1,8 @@
 <?php
 
-  $pTag_parms_result = $GLOBALS['pParms'] [$pIdx] ['PrmsVal'];
-  $pTag_parms_result = pMake_data ($pTag_parms_result, '', 'parm');
+  $padTag_parms_result = $GLOBALS ['padParms'] [$padIdx] ['PrmsVal'];
+  $padTag_parms_result = pMake_data ($padTag_parms_result, '', 'parm');
 
-  return $pTag_parms_result;
+  return $padTag_parms_result;
 
 ?>

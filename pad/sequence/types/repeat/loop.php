@@ -1,5 +1,5 @@
 <?php
 
-  return $pSeq_parm;
+  return $padSeq_parm;
 
 ?>

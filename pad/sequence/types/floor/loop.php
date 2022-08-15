@@ -1,8 +1,8 @@
 <?php  
 
-  if ( ! $pSeq_floor )
-    $pSeq_floor = 1;
+  if ( ! $padSeq_floor )
+    $padSeq_floor = 1;
 
-  return floor ( $pSeq_loop / $pSeq_floor ) * $pSeq_floor;
+  return floor ( $padSeq_loop / $padSeq_floor ) * $padSeq_floor;
 
 ?>

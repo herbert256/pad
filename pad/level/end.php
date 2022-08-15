@@ -1,33 +1,33 @@
 <?php
 
-  if ( count ($pData [$p] ) )
+  if ( count ($padData [$pad] ) )
     include PAD . 'occurrence/end.php';
 
-  if ( next($pData [$p]) !== FALSE )
+  if ( next($padData [$pad]) !== FALSE )
     return include PAD . 'occurrence/start.php';
 
-  if ( $pWalk [$p] == 'next' ) {
+  if ( $padWalk [$pad] == 'next' ) {
     include PAD . 'walk/next.php';
-    if ( $pWalk [$p] == 'next' )
+    if ( $padWalk [$pad] == 'next' )
       return include PAD . 'occurrence/start.php';
   }
 
-  $pOccur [$p] = 0;
+  $padOccur [$pad] = 0;
 
-  if ( $pWalk [$p] == 'end' )
+  if ( $padWalk [$pad] == 'end' )
     include PAD . 'walk/end.php';
 
-  if ( isset($pPrmsTag [$p] ['callback']) and ! isset($pPrmsTag [$p] ['before']) )
+  if ( isset($padPrmsTag [$pad] ['callback']) and ! isset($padPrmsTag [$pad] ['before']) )
     include PAD . 'callback/exit.php' ;
 
-  if ( $p )
+  if ( $pad )
     include PAD . "options/go/end.php";
 
   include 'trace/end.php';
 
-  $p--;
+  $pad--;
   
-  if ( $p >= 0 )
-    pHtml ( $pResult[$p+1] );
+  if ( $pad >= 0 )
+    pHtml ( $padResult[$pad+1] );
   
 ?>

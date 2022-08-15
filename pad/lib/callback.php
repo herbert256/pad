@@ -1,68 +1,68 @@
 <?php
 
 
-  function pCallback_before_xxx ($pCallback_type) {
+  function pCallback_before_xxx ($padCallback_type) {
 
-    $pVars_before = [];
-    foreach ($GLOBALS as $pK => $pV)
-      if ( pValid_store ($pK) ) { 
-        $pVars_before [] = $pK;
-        $$pK = $pV;
+    $padVars_before = [];
+    foreach ($GLOBALS as $padK => $padV)
+      if ( pValid_store ($padK) ) { 
+        $padVars_before [] = $padK;
+        $$padK = $padV;
       }
 
-    include PAD . "callback/$pCallback_type.php";
+    include PAD . "callback/$padCallback_type.php";
 
-    $pVars_after = get_defined_vars ();
+    $padVars_after = get_defined_vars ();
 
-    foreach ($pVars_before as $pK => $pV)
-      if ( isset( $GLOBALS [$pK] ) )
-        unset( $GLOBALS [$pK] );
+    foreach ($padVars_before as $padK => $padV)
+      if ( isset( $GLOBALS [$padK] ) )
+        unset( $GLOBALS [$padK] );
 
-    foreach ($pVars_after as $pK => $pV)
-      if ( pValid_store ($pK) ) {
-        if ( isset( $GLOBALS [$pK] ) )
-          unset( $GLOBALS [$pK] );
-        $GLOBALS [$pK] = $$pK;
+    foreach ($padVars_after as $padK => $padV)
+      if ( pValid_store ($padK) ) {
+        if ( isset( $GLOBALS [$padK] ) )
+          unset( $GLOBALS [$padK] );
+        $GLOBALS [$padK] = $$padK;
       }
 
   }
 
-  function pCallback_before_row ( &$pRow_parm ) {
+  function pCallback_before_row ( &$padRow_parm ) {
 
     if ( isset( $GLOBALS ['row'] ) ) {
-      $pRow_save = TRUE;
-      $pRow_save_store = $GLOBALS ['row'];
+      $padRow_save = TRUE;
+      $padRow_save_store = $GLOBALS ['row'];
     } else
-      $pRow_save = FALSE;
+      $padRow_save = FALSE;
 
-    $pVars_before = [];
-    foreach ($GLOBALS as $pK => $pV)
-      if ( $pK <> 'row' and pValid_store ($pK) ) { 
-        $pVars_before [] = $pK;
-        $$pK = $pV;
+    $padVars_before = [];
+    foreach ($GLOBALS as $padK => $padV)
+      if ( $padK <> 'row' and pValid_store ($padK) ) { 
+        $padVars_before [] = $padK;
+        $$padK = $padV;
       }
 
-    $row = $pRow_parm;  
+    $row = $padRow_parm;  
     include PAD . 'callback/row.php';
-    $pRow_parm = $row;  
+    $padRow_parm = $row;  
 
-    $pVars_after = get_defined_vars();
+    $padVars_after = get_defined_vars();
 
-    foreach ($pVars_before as $pK => $pV)
-      if ( isset( $GLOBALS [$pK] ) )
-        unset( $GLOBALS [$pK] );
+    foreach ($padVars_before as $padK => $padV)
+      if ( isset( $GLOBALS [$padK] ) )
+        unset( $GLOBALS [$padK] );
 
-    foreach ($pVars_after as $pK => $pV)
-      if ( $pK <> 'row' and pValid_store ($pK) ) {
-        if ( isset( $GLOBALS [$pK] ) )
-          unset( $GLOBALS [$pK] );
-        $GLOBALS [$pK] = $pV;
+    foreach ($padVars_after as $padK => $padV)
+      if ( $padK <> 'row' and pValid_store ($padK) ) {
+        if ( isset( $GLOBALS [$padK] ) )
+          unset( $GLOBALS [$padK] );
+        $GLOBALS [$padK] = $padV;
       }
 
-    if ( $pRow_save ) {
+    if ( $padRow_save ) {
       if ( isset( $GLOBALS ['row'] ) )
         unset ( $GLOBALS ['row'] );
-      $GLOBALS ['row'] = $pRow_save_store;
+      $GLOBALS ['row'] = $padRow_save_store;
     }
 
   }

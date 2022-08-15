@@ -1,5 +1,5 @@
 <?php
 
-return $pSeq_loop ** 3;
+return $padSeq_loop ** 3;
 
 ?>

@@ -1,12 +1,12 @@
 <?php
 
-  if ( $pSeq_seq == 'range'   ) return;
-  if ( $pSeq_rows             ) return;
-  if ( $pSeq_to < PHP_INT_MAX ) return;
+  if ( $padSeq_seq == 'range'   ) return;
+  if ( $padSeq_rows             ) return;
+  if ( $padSeq_to < PHP_INT_MAX ) return;
 
-  if ( $pSeq_random and $pSeq_max )
-    $pSeq_to = $pSeq_loop_end = $pSeq_max;
+  if ( $padSeq_random and $padSeq_max )
+    $padSeq_to = $padSeq_loop_end = $padSeq_max;
 
-  $pSeq_rows = $pSeq_save;
+  $padSeq_rows = $padSeq_save;
 
 ?>

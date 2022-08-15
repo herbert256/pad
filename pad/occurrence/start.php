@@ -1,30 +1,30 @@
 <?php
 
-  $pOccur [$p]++;
-  $pHtml  [$p] = $pBase [$p];
-  $pKey   [$p] = key($pData [$p]);
+  $padOccur [$pad]++;
+  $padHtml  [$pad] = $padBase [$pad];
+  $padKey   [$pad] = key($padData [$pad]);
 
-  $pCurrent [$p] = $pData [$p] [$pKey [$p]];
+  $padCurrent [$pad] = $padData [$pad] [$padKey [$pad]];
 
   include 'trace/start.php';
 
-  if ( $pWalk [$p] <> 'start' )
-    $pWalkData  [$p] [] = $pCurrent [$p];
+  if ( $padWalk [$pad] <> 'start' )
+    $padWalkData  [$pad] [] = $padCurrent [$pad];
 
-  if ( $p ) {
+  if ( $pad ) {
 
-    if ( pIs_default_data ($pData [$p]) ) {
-      if ( isset($pPrmsVal [$p][0]) )
-        pSet_global ( $pName [$p], $pPrmsVal [$p][0] );
+    if ( pIs_default_data ($padData [$pad]) ) {
+      if ( isset($padPrmsVal [$pad][0]) )
+        pSet_global ( $padName [$pad], $padPrmsVal [$pad][0] );
     } else
-      pSet_global ( $pName [$p], $pCurrent [$p] );
+      pSet_global ( $padName [$pad], $padCurrent [$pad] );
 
-    foreach ( $pCurrent [$p] as $pK => $pV )
-      pSet_global ( $pK, $pV );
+    foreach ( $padCurrent [$pad] as $padK => $padV )
+      pSet_global ( $padK, $padV );
 
   }
 
-  if ( isset($pPrmsTag [$p] ['callback']) and ! isset($pPrmsTag [$p] ['before']) )
+  if ( isset($padPrmsTag [$pad] ['callback']) and ! isset($padPrmsTag [$pad] ['before']) )
     include PAD . 'callback/row.php' ;
 
 

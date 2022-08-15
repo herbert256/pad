@@ -1,9 +1,9 @@
 <?php
 
-  $pTag_trace_data ['walk_after'] = $pWalk [$p];
-  $pTag_trace_data ['result']     = $pTagResult;
-  $pTag_trace_data ['content']    = $pTagContent;
+  $padTag_trace_data ['walk_after'] = $padWalk [$pad];
+  $padTag_trace_data ['result']     = $padTagResult;
+  $padTag_trace_data ['content']    = $padTagContent;
 
-  pFile_put_contents ( $pLevelDir [$p] . "/tag." . $pTagCnt [$p] . '.json',  $pTag_trace_data );
+  pFile_put_contents ( $padLevelDir [$pad] . "/tag." . $padTagCnt [$pad] . '.json',  $padTag_trace_data );
   
 ?>

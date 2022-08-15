@@ -132,8 +132,8 @@ if ( !empty($_GET['FILES']) ) { echo '<h2>files cached</h2>'; files_display(); e
 
 if ( !(isset($_REQUEST['GRAPHS']) && !$_REQUEST['GRAPHS']) && CACHEPREFIX=='opcache_') { graphs_display(); if ( !empty($_REQUEST['GRAPHS']) ) { exit; } }
 
-ob_start(); phpinfo(8); $phpinfo = ob_get_contents(); ob_end_clean();        // some info is only available via phpinfo? sadly buffering capture has to be used
-if ( !preg_match( '/module\_Zend.(Optimizer\+|OPcache).+?(\<table[^>]*\>.+?\<\/table\>).+?(\<table[^>]*\>.+?\<\/table\>)/is', $phpinfo, $opcache) ) { }  // todo
+ob_start(); phpinfo(8); $padhpinfo = ob_get_contents(); ob_end_clean();        // some info is only available via phpinfo? sadly buffering capture has to be used
+if ( !preg_match( '/module\_Zend.(Optimizer\+|OPcache).+?(\<table[^>]*\>.+?\<\/table\>).+?(\<table[^>]*\>.+?\<\/table\>)/is', $padhpinfo, $opcache) ) { }  // todo
 
 if ( function_exists(CACHEPREFIX.'get_configuration') ) { echo '<h2>general</h2>'; $configuration=call_user_func(CACHEPREFIX.'get_configuration'); }
 
@@ -188,9 +188,9 @@ if (isset($configuration['directives'][$level])) {
     10=>'Remove NOPs'
     );
     echo '<table width="600" border="0" cellpadding="3"><tbody><tr class="h"><th>Pass</th><th>Description</th></tr>';
-    foreach ($levels as $pass=>$description) {
-        $disabled=substr($levelset,$pass-1,1)!=='1' || $pass==4 ? ' white':'';
-        echo '<tr><td class="v center middle'.$disabled.'">'.$pass.'</td><td class="v'.$disabled.'">'.$description.'</td></tr>';
+    foreach ($levels as $padass=>$description) {
+        $disabled=substr($levelset,$padass-1,1)!=='1' || $padass==4 ? ' white':'';
+        echo '<tr><td class="v center middle'.$disabled.'">'.$padass.'</td><td class="v'.$disabled.'">'.$description.'</td></tr>';
     }
     echo '</table>';
 }
@@ -280,14 +280,14 @@ function files_display() {
     else {      
         $files=array(); 
         foreach ($status['scripts'] as $data) { 
-            if ( preg_match('@^[/]([^/]+[/]){'.$group.'}@',$data['full_path'],$path) ) { 
-                if ( empty($files[$path[0]])) { $files[$path[0]]=array('full_path'=>'','files'=>0,'hits'=>0,'memory_consumption'=>0,'last_used_timestamp'=>'','timestamp'=>''); }
-                $files[$path[0]]['full_path']=$path[0];
-                $files[$path[0]]['files']++;
-                $files[$path[0]]['memory_consumption']+=$data['memory_consumption'];                        
-                $files[$path[0]]['hits']+=$data['hits'];
-                if ( $data['last_used_timestamp']>$files[$path[0]]['last_used_timestamp']) {$files[$path[0]]['last_used_timestamp']=$data['last_used_timestamp'];}
-                if ( $data['timestamp']>$files[$path[0]]['timestamp']) {$files[$path[0]]['timestamp']=$data['timestamp'];}                          
+            if ( preg_match('@^[/]([^/]+[/]){'.$group.'}@',$data['full_path'],$padath) ) { 
+                if ( empty($files[$padath[0]])) { $files[$padath[0]]=array('full_path'=>'','files'=>0,'hits'=>0,'memory_consumption'=>0,'last_used_timestamp'=>'','timestamp'=>''); }
+                $files[$padath[0]]['full_path']=$padath[0];
+                $files[$padath[0]]['files']++;
+                $files[$padath[0]]['memory_consumption']+=$data['memory_consumption'];                        
+                $files[$padath[0]]['hits']+=$data['hits'];
+                if ( $data['last_used_timestamp']>$files[$padath[0]]['last_used_timestamp']) {$files[$padath[0]]['last_used_timestamp']=$data['last_used_timestamp'];}
+                if ( $data['timestamp']>$files[$padath[0]]['timestamp']) {$files[$padath[0]]['timestamp']=$data['timestamp'];}                          
             }                   
         }
     }
@@ -338,7 +338,7 @@ function files_display() {
 function graphs_display() {
     $graphs=array();
     $colors=array('green','brown','red');
-    $primes=array(223, 463, 983, 1979, 3907, 7963, 16229, 32531, 65407, 130987);
+    $padrimes=array(223, 463, 983, 1979, 3907, 7963, 16229, 32531, 65407, 130987);
     $configuration=call_user_func(CACHEPREFIX.'get_configuration'); 
     $status=call_user_func(CACHEPREFIX.'get_status');
 
@@ -348,7 +348,7 @@ function graphs_display() {
     $graphs['memory']['wasted']=$status['memory_usage']['wasted_memory'];
 
     $graphs['keys']['total']=$status[CACHEPREFIX.'statistics']['max_cached_keys'];  
-    foreach ($primes as $prime) { if ($prime>=$graphs['keys']['total']) { $graphs['keys']['total']=$prime; break;} }
+    foreach ($padrimes as $padrime) { if ($padrime>=$graphs['keys']['total']) { $graphs['keys']['total']=$padrime; break;} }
     $graphs['keys']['free']=$graphs['keys']['total']-$status[CACHEPREFIX.'statistics']['num_cached_keys'];
     $graphs['keys']['scripts']=$status[CACHEPREFIX.'statistics']['num_cached_scripts'];
     $graphs['keys']['wasted']=$status[CACHEPREFIX.'statistics']['num_cached_keys']-$status[CACHEPREFIX.'statistics']['num_cached_scripts'];
@@ -369,8 +369,8 @@ function graphs_display() {
     echo '<div class="graph"><div class="h">',$caption,'</div><table border="0" cellpadding="0" cellspacing="0">';  
     foreach ($graph as $label=>$value) {
         if ($label=='total') { $key=0; $total=$value; $totaldisplay='<td rowspan="3" class="total"><span>'.($total>999999?round($total/1024/1024).'M':($total>9999?round($total/1024).'K':$total)).'</span><div></div></td>'; continue;}
-        $percent=$total?floor($value*100/$total):''; $percent=!$percent||$percent>99?'':$percent.'%';
-        echo '<tr>',$totaldisplay,'<td class="actual">', ($value>999999?round($value/1024/1024).'M':($value>9999?round($value/1024).'K':$value)),'</td><td class="bar ',$colors[$key],'" height="',$percent,'">',$percent,'</td><td>',$label,'</td></tr>';
+        $padercent=$total?floor($value*100/$total):''; $padercent=!$padercent||$padercent>99?'':$padercent.'%';
+        echo '<tr>',$totaldisplay,'<td class="actual">', ($value>999999?round($value/1024/1024).'M':($value>9999?round($value/1024).'K':$value)),'</td><td class="bar ',$colors[$key],'" height="',$padercent,'">',$padercent,'</td><td>',$label,'</td></tr>';
         $key++; $totaldisplay='';
     }
     echo '</table></div>',"\n";

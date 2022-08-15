@@ -4,8 +4,8 @@
 
   pCallback_before_xxx ('init');
 
-  foreach ( $pData [$p] as $pK => $pV)
-    pCallback_before_row ( $pData [$p] [$pK] );
+  foreach ( $padData [$pad] as $padK => $padV)
+    pCallback_before_row ( $padData [$pad] [$padK] );
 
   pCallback_before_xxx ('exit'); 
 

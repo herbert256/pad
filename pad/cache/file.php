@@ -35,7 +35,7 @@
     
     pCache_put_contents ("url/$url", $etag);
 
-    if ( $GLOBALS['pCache_server_no_data'] )
+    if ( $GLOBALS ['padCache_server_no_data'] )
       pCache_touch ("etag/$etag", $_SERVER['REQUEST_TIME']);
     else
       pCache_put_contents ("etag/$etag", $data);
@@ -60,7 +60,7 @@
 
   function  pCache_exists ( $file ) {
 
-    $file = $GLOBALS ['pCache_file'] . $file;
+    $file = $GLOBALS ['padCache_file'] . $file;
 
     $return = file_exists ($file);
 
@@ -71,7 +71,7 @@
 
   function pCache_get_contents ( $file ) {
 
-    $file = $GLOBALS ['pCache_file'] . $file;
+    $file = $GLOBALS ['padCache_file'] . $file;
 
     $return = pFile_get_contents ($file);
 
@@ -84,7 +84,7 @@
    
     pCache_chk_dir($file);
 
-    $file = $GLOBALS ['pCache_file'] . $file;
+    $file = $GLOBALS ['padCache_file'] . $file;
     
     file_put_contents ($file, $data, LOCK_EX);
     
@@ -95,7 +95,7 @@
 
     pCache_chk_dir ($file);
 
-    $file = $GLOBALS ['pCache_file'] . $file;
+    $file = $GLOBALS ['padCache_file'] . $file;
     
     touch ( $file, $time );
 
@@ -104,17 +104,17 @@
 
   function pCache_chk_dir ($file) {
 
-    $file = $GLOBALS ['pCache_file'] . $file;
+    $file = $GLOBALS ['padCache_file'] . $file;
     $dir  = substr($file, 0, strrpos($file, '/'));
     
     if ( ! file_exists ($dir) )
-      mkdir($dir, $GLOBALS['pDir_mode'], true);
+      mkdir($dir, $GLOBALS ['padDir_mode'], true);
   
   }
 
   function pCache_delete_file ($file) {
 
-    $file = $GLOBALS ['pCache_file'] . $file;
+    $file = $GLOBALS ['padCache_file'] . $file;
     
     if ( file_exists($file) )
       unlink ($file);
@@ -124,7 +124,7 @@
 
   function pCache_time ($file) {
 
-    $file = $GLOBALS ['pCache_file'] . $file;
+    $file = $GLOBALS ['padCache_file'] . $file;
     
     if ( file_exists($file) )
       return filemtime($file);

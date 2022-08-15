@@ -1,50 +1,50 @@
 <?php
 
-  if ( ! count ($pData [$p] ) )
+  if ( ! count ($padData [$pad] ) )
     return;
 
-  $pSort_args   = [];
-  $pSort_fields = pExplode($pPrmsTag [$p] ['sort'], ';'); 
+  $padSort_args   = [];
+  $padSort_fields = pExplode($padPrmsTag [$pad] ['sort'], ';'); 
 
-  if ( $pPrmsTag [$p] ['sort'] === TRUE or ! count ($pSort_fields)) {
-    $pSort_fields = []; 
-    foreach ($pData [$p] as $pV1) {
-      foreach ($pV1 as $pK2 => $pV2) 
-        $pSort_fields [] = $pK2;
+  if ( $padPrmsTag [$pad] ['sort'] === TRUE or ! count ($padSort_fields)) {
+    $padSort_fields = []; 
+    foreach ($padData [$pad] as $padV1) {
+      foreach ($padV1 as $padK2 => $padV2) 
+        $padSort_fields [] = $padK2;
       break;
     }
   }
 
-  foreach ($pSort_fields as $pK => $pV) {
+  foreach ($padSort_fields as $padK => $padV) {
 
-    $pSort_sort = '';
-    $pSort_flags = 0; 
+    $padSort_sort = '';
+    $padSort_flags = 0; 
 
-    $pSort_parms = pExplode($pV, ' ');
+    $padSort_parms = pExplode($padV, ' ');
 
-    foreach($pSort_parms as $pK2 => $pV2) {
-      if ($pK2==0)
-        $pSort_field = $pV2;
-      elseif (strtolower($pV2) == 'asc')
-        $pSort_sort = 'ASC';
-      elseif (strtolower($pV2) == 'desc')
-        $pSort_sort = 'DESC';
+    foreach($padSort_parms as $padK2 => $padV2) {
+      if ($padK2==0)
+        $padSort_field = $padV2;
+      elseif (strtolower($padV2) == 'asc')
+        $padSort_sort = 'ASC';
+      elseif (strtolower($padV2) == 'desc')
+        $padSort_sort = 'DESC';
       else 
-        $pSort_flags = $pSort_flags | constant("SORT_" . strtoupper($pV2) );
+        $padSort_flags = $padSort_flags | constant("SORT_" . strtoupper($padV2) );
     }
 
-    $pSort_args [] = array_column ($pData [$p], $pSort_field);
+    $padSort_args [] = array_column ($padData [$pad], $padSort_field);
 
-    if ($pSort_sort)
-      $pSort_args [] = constant("SORT_$pSort_sort");
+    if ($padSort_sort)
+      $padSort_args [] = constant("SORT_$padSort_sort");
 
-    if ($pSort_flags)
-      $pSort_args [] = $pSort_flags;
+    if ($padSort_flags)
+      $padSort_args [] = $padSort_flags;
 
   }
  
-  $pSort_args [] = &$pData [$p];
+  $padSort_args [] = &$padData [$pad];
 
-  call_user_func_array ('array_multisort', $pSort_args);
+  call_user_func_array ('array_multisort', $padSort_args);
     
 ?>

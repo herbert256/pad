@@ -1,20 +1,20 @@
 <?php
 
-  $p--;
+  $pad--;
 
-  $pData [$p] = $pData[$p+1];
-  reset ( $pData [$p] );
-  $pKey [$p] = key($pData [$p]);
+  $padData [$pad] = $padData[$pad+1];
+  reset ( $padData [$pad] );
+  $padKey [$pad] = key($padData [$pad]);
 
-  $pParent_start = strpos ( $pBase [$p], '{'.$pTag [$p]);
-  $pParent_end   = strpos ( $pBase [$p], "}", $pParent_start) ;
+  $padParent_start = strpos ( $padBase [$pad], '{'.$padTag [$pad]);
+  $padParent_end   = strpos ( $padBase [$pad], "}", $padParent_start) ;
 
-  $pBase [$p] = substr ( $pBase [$p], 0, $pParent_start )
-                       . substr ( $pBase [$p], $pParent_end + 1 );
+  $padBase [$pad] = substr ( $padBase [$pad], 0, $padParent_start )
+                       . substr ( $padBase [$pad], $padParent_end + 1 );
 
-  $pCurrent [$p] = [];
-  $pOccur   [$p] = 0;
-  $pResult  [$p] = '';
-  $pHtml    [$p] = '';
+  $padCurrent [$pad] = [];
+  $padOccur   [$pad] = 0;
+  $padResult  [$pad] = '';
+  $padHtml    [$pad] = '';
 
 ?>

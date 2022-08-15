@@ -1,16 +1,16 @@
 <?php
 
-  if ( ! $pTrace )
+  if ( ! $padTrace )
     return;
 
-  $pTraceData = [
-    'key'  => $pKey     [$p],
-    'data' => $pCurrent [$p],
-    'html' => $pHtml    [$p]
+  $padTraceData = [
+    'key'  => $padKey     [$pad],
+    'data' => $padCurrent [$pad],
+    'html' => $padHtml    [$pad]
   ];
 
-  $pOccurDir [$p] = $pLevelDir [$p] . '/occur-' . $pOccur [$p];
+  $padOccurDir [$pad] = $padLevelDir [$pad] . '/occur-' . $padOccur [$pad];
 
-  pFile_put_contents ( $pOccurDir [$p] . "/start.json",     $pTraceData );
+  pFile_put_contents ( $padOccurDir [$pad] . "/start.json",     $padTraceData );
   
 ?>

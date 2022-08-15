@@ -1,5 +1,5 @@
 <?php
 
-  return $GLOBALS['pFlagStore'] [$name];
+  return $GLOBALS ['padFlagStore'] [$name];
  
 ?>

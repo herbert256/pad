@@ -1,8 +1,8 @@
 <?php
 
-  $pSeq_loop_start = 1;
-  $pSeq_loop  = 1;
-  $pSeq_inc   = 1;
+  $padSeq_loop_start = 1;
+  $padSeq_loop  = 1;
+  $padSeq_inc   = 1;
 
   include "loop.php";    
 

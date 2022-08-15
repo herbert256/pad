@@ -18,7 +18,7 @@
         continue;
       }
       
-      $prev  = (isset($input[$key-1])) ? $input[$key-1] : '';
+      $padrev  = (isset($input[$key-1])) ? $input[$key-1] : '';
       $next  = (isset($input[$key+1])) ? $input[$key+1] : '';
       $next2 = (isset($input[$key+2])) ? $input[$key+2] : '';
       

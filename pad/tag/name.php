@@ -1,7 +1,7 @@
 <?php
 
-  global $pName;
+  global $padName;
 
-  return $pName [$pIdx];
+  return $padName [$padIdx];
  
 ?>

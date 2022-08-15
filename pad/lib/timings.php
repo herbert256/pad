@@ -3,67 +3,67 @@
 
   function pTiming_start ($timing) {
     
-     if ( $GLOBALS['pExit'] <> 1 or ! $GLOBALS['pTiming'] )
+     if ( $GLOBALS ['padExit'] <> 1 or ! $GLOBALS ['padTiming'] )
       return;
    
-    global $pTimingsCnt, $pTimings_start;
+    global $padTimingsCnt, $padTimings_start;
 
-#    if ( isset ( $pTimings_start [$timing] ) )
+#    if ( isset ( $padTimings_start [$timing] ) )
 #      pError ('tm-oops-1: ' . $timing);
 
-    $pTimingsCnt [$timing] = 1 + ($pTimingsCnt [$timing]??0);
+    $padTimingsCnt [$timing] = 1 + ($padTimingsCnt [$timing]??0);
 
-    $pTimings_start [$timing] = microtime(true);
+    $padTimings_start [$timing] = microtime(true);
 
   }
 
 
   function pTiming_end ($timing) {
 
-    if ( $GLOBALS['pExit'] <> 1 or ! $GLOBALS['pTiming'] )
+    if ( $GLOBALS ['padExit'] <> 1 or ! $GLOBALS ['padTiming'] )
       return;
 
-    global $pTimings, $pTimings_start;
+    global $padTimings, $padTimings_start;
 
-    if ( ! isset ( $GLOBALS['pTimings_start'] [$timing] ) )
+    if ( ! isset ( $GLOBALS ['padTimings_start'] [$timing] ) )
       return;
 #      pError ('tm-oops-2: ' . $timing);
 
-    $now = microtime(true) - $pTimings_start[$timing];
+    $now = microtime(true) - $padTimings_start[$timing];
 
-    $pTimings [$timing] = ($pTimings[$timing]??0) + $now ;
+    $padTimings [$timing] = ($padTimings[$timing]??0) + $now ;
     
-    unset($pTimings_start [$timing]);
+    unset($padTimings_start [$timing]);
 
-    foreach ( $pTimings_start as $key => $val ) 
-      $pTimings_start [$key] += $now;
+    foreach ( $padTimings_start as $key => $val ) 
+      $padTimings_start [$key] += $now;
     
   }
 
 
   function pTiming_close () {
 
-    if ( ! $GLOBALS['pTiming'] )
+    if ( ! $GLOBALS ['padTiming'] )
       return;
 
-    global $pTimings, $pTimings_boot, $pTimings_start, $pTimingsCnt, $pTraceDir;
+    global $padTimings, $padTimings_boot, $padTimings_start, $padTimingsCnt, $padTraceDir;
 
-    foreach ( $pTimings_start as $key => $val ) 
+    foreach ( $padTimings_start as $key => $val ) 
       pTiming_end ($key);
 
-    $pTimings ['boot'] = $pTimings_boot - $_SERVER['REQUEST_TIME_FLOAT'];
+    $padTimings ['boot'] = $padTimings_boot - $_SERVER['REQUEST_TIME_FLOAT'];
 
-    foreach ($pTimings as $key => $val)
-      $pTimings [$key] = (int) ( $val * 1000000 );
+    foreach ($padTimings as $key => $val)
+      $padTimings [$key] = (int) ( $val * 1000000 );
 
-    $pTimings ['total'] = (int) ( (microtime(true) - $_SERVER['REQUEST_TIME_FLOAT']) * 1000000 );    
+    $padTimings ['total'] = (int) ( (microtime(true) - $_SERVER['REQUEST_TIME_FLOAT']) * 1000000 );    
 
-    pHeader ('X-PAD-Timings: ' . json_encode ( $pTimings)       );
-    pHeader ('X-PAD-Counts: '  . json_encode ( $pTimingsCnt) );
+    pHeader ('X-PAD-Timings: ' . json_encode ( $padTimings)       );
+    pHeader ('X-PAD-Counts: '  . json_encode ( $padTimingsCnt) );
 
-    if ( $GLOBALS['pTrace'] ) {
-      pFile_put_contents ( $pTraceDir . "/timings.json", $pTimings       );
-      pFile_put_contents ( $pTraceDir . "/counts.json",  $pTimingsCnt );
+    if ( $GLOBALS ['padTrace'] ) {
+      pFile_put_contents ( $padTraceDir . "/timings.json", $padTimings       );
+      pFile_put_contents ( $padTraceDir . "/counts.json",  $padTimingsCnt );
     }
 
   }

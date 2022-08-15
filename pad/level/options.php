@@ -1,24 +1,15 @@
 <?php
 
-  if ( pTag_parm ('content') ) $pTrue [$p] = include PAD . "options/content.php";    
-  if ( pTag_parm ('else')    ) $pFalse   [$p] = include PAD . "options/else.php";    
-
   if ( pTag_parm ('null') ) {
-    $pOpt_flag = include PAD . "options/null.php"; 
-    if ( ! $pOpt_flag ) 
-      $pTagResult = NULL;
+    $padOpt_flag = include PAD . "options/null.php"; 
+    if ( ! $padOpt_flag ) 
+      $padTagResult = NULL;
   }
 
   if ( pTag_parm ('false') ) {
-    $pOpt_flag = include PAD . "options/false.php"; 
-    if ( ! $pOpt_flag ) 
-      $pTagResult = FALSE;
+    $padOpt_flag = include PAD . "options/false.php"; 
+    if ( ! $padOpt_flag ) 
+      $padTagResult = FALSE;
   }
-
-  if ( pTag_parm ('data') )
-    if ( is_array ( $pTagResult ) )
-      $pTagResult = include PAD . "options/data.php";   
-    else
-      $pData [$p] = include PAD . "options/data.php";   
   
 ?>

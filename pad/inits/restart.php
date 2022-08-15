@@ -2,7 +2,7 @@
 
   pEmpty_buffers ();
   
-  $page = $pRestart;
+  $page = $padRestart;
 
   include PAD . 'pad.php';
 

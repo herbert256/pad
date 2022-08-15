@@ -32,97 +32,97 @@
 
     pTiming_start ('eval');
 
-    global $pEvalCnt, $pEval_stepCnt, $pEval_start, $pEval_result, $pTrace;
+    global $padEvalCnt, $padEval_stepCnt, $padEval_start, $padEval_result, $padTrace;
 
-    $GLOBALS ['pTrace_stage']   = 'start';
-    $GLOBALS ['pTrace_eval']    = $eval;
-    $GLOBALS ['pTrace_myself']  = $myself;
-    $GLOBALS ['pTrace_parsed']  = [];
-    $GLOBALS ['pTrace_after']   = [];
-    $GLOBALS ['pTrace_now']     = [];
+    $GLOBALS ['padTrace_stage']   = 'start';
+    $GLOBALS ['padTrace_eval']    = $eval;
+    $GLOBALS ['padTrace_myself']  = $myself;
+    $GLOBALS ['padTrace_parsed']  = [];
+    $GLOBALS ['padTrace_after']   = [];
+    $GLOBALS ['padTrace_now']     = [];
 
-    $pEvalCnt++;
-    $pEval_stepCnt = 0;
-    $pEval_start = $eval;
-    $pEval_result = [];
+    $padEvalCnt++;
+    $padEval_stepCnt = 0;
+    $padEval_start = $eval;
+    $padEval_result = [];
 
     pEval_trace  ('start', [ 'eval' => $eval, 'myself' => $myself ] );
 
-    $pEval_parse = pEval_parse ( $pEval_result, $eval, $myself );
+    $padEval_parse = pEval_parse ( $padEval_result, $eval, $myself );
 
-    if ( $pEval_parse )
-      return pEval_error ($pEval_parse);
-    $GLOBALS ['pTrace_parsed'] = $pEval_result;
+    if ( $padEval_parse )
+      return pEval_error ($padEval_parse);
+    $GLOBALS ['padTrace_parsed'] = $padEval_result;
 
-    pEval_trace  ('parse', $pEval_result );
+    pEval_trace  ('parse', $padEval_result );
 
-    $pEval_after = pEval_after ( $pEval_result, $eval );  
-    if ( $pEval_after )
-      return pEval_error ($pEval_after);
-    $GLOBALS ['pTrace_after'] = $pEval_result;
+    $padEval_after = pEval_after ( $padEval_result, $eval );  
+    if ( $padEval_after )
+      return pEval_error ($padEval_after);
+    $GLOBALS ['padTrace_after'] = $padEval_result;
 
-    pEval_trace  ('after', $pEval_result );
+    pEval_trace  ('after', $padEval_result );
 
-    pEval_go ( $pEval_result, array_key_first($pEval_result), array_key_last($pEval_result), $myself) ;
+    pEval_go ( $padEval_result, array_key_first($padEval_result), array_key_last($padEval_result), $myself) ;
 
-    $GLOBALS ['pTrace_go'] =  $pEval_result;
+    $GLOBALS ['padTrace_go'] =  $padEval_result;
 
-    $key = array_key_first ($pEval_result);
+    $key = array_key_first ($padEval_result);
       
-    if     ( count($pEval_result) < 1        ) return pEval_error("No result back");
-    elseif ( count($pEval_result) > 1        ) return pEval_error("More then one result back");
-    elseif ( isset($pEval_result[$key][4])   ) return pEval_error("Result is an array");
-    elseif ( $pEval_result[$key][1] <> 'VAL' ) return pEval_error("Result is not a value");
+    if     ( count($padEval_result) < 1        ) return pEval_error("No result back");
+    elseif ( count($padEval_result) > 1        ) return pEval_error("More then one result back");
+    elseif ( isset($padEval_result[$key][4])   ) return pEval_error("Result is an array");
+    elseif ( $padEval_result[$key][1] <> 'VAL' ) return pEval_error("Result is not a value");
 
-    pEval_trace  ('end', $pEval_result );
+    pEval_trace  ('end', $padEval_result );
 
-    $GLOBALS ['pTrace_stage'] = 'end';
+    $GLOBALS ['padTrace_stage'] = 'end';
 
     pTiming_end ('eval');
  
-    return $pEval_result [$key] [0];
+    return $padEval_result [$key] [0];
 
   }
 
 
   function pEval_error ($txt) {
 
-    pEval_trace  ('error', [ 'error' => $txt, 'result' => $GLOBALS ['pEval_result'] ] );
+    pEval_trace  ('error', [ 'error' => $txt, 'result' => $GLOBALS ['padEval_result'] ] );
 
-    $GLOBALS ['pTrace_stage'] = 'error';
+    $GLOBALS ['padTrace_stage'] = 'error';
 
-    global $pEvalCnt;
+    global $padEvalCnt;
 
     $data = [
-      'eval'    => $GLOBALS ['pTrace_eval']   ?? '',
-      'myself'  => $GLOBALS ['pTrace_myself'] ?? '',
-      'parsed'  => $GLOBALS ['pTrace_parsed'] ?? '',
-      'after'   => $GLOBALS ['pTrace_after']  ?? '',
-      'result'  => $GLOBALS ['pTrace_result'] ?? ''
+      'eval'    => $GLOBALS ['padTrace_eval']   ?? '',
+      'myself'  => $GLOBALS ['padTrace_myself'] ?? '',
+      'parsed'  => $GLOBALS ['padTrace_parsed'] ?? '',
+      'after'   => $GLOBALS ['padTrace_after']  ?? '',
+      'result'  => $GLOBALS ['padTrace_result'] ?? ''
     ];
  
-    pTrace_write_error ( $txt, 'eval', $pEvalCnt, $data );
+    pTrace_write_error ( $txt, 'eval', $padEvalCnt, $data );
 
     pTiming_end ('eval');
     
     return pError ($txt);
 
-    $GLOBALS ['pTrace_stage'] = 'end';
+    $GLOBALS ['padTrace_stage'] = 'end';
 
   }
 
 
   function pEval_trace ($step, $data) {
 
-    if ( ! $GLOBALS['pTrace'] )
+    if ( ! $GLOBALS ['padTrace'] )
       return;
 
-    global $p, $pEvalCnt, $pEval_stepCnt, $pOccurDir;
+    global $pad, $padEvalCnt, $padEval_stepCnt, $padOccurDir;
 
-    $pEval_stepCnt++;
+    $padEval_stepCnt++;
 
     pFile_put_contents ( 
-      $pOccurDir [$p] . "/eval/$pEvalCnt/$pEval_stepCnt.$step.json",  
+      $padOccurDir [$pad] . "/eval/$padEvalCnt/$padEval_stepCnt.$step.json",  
       $data 
     );
 

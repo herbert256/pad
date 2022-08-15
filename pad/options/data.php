@@ -1,5 +1,5 @@
 <?php
 
-  return $pDataStore [ pTag_parm('data') ];
+  return $padDataStore [ pTag_parm('data') ];
 
 ?>

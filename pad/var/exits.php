@@ -1,10 +1,10 @@
   <?php
 
-  if ( $pTrace ) 
+  if ( $padTrace ) 
     include 'trace.php';
 
   pTiming_end ('var');
 
-  return $pVal;
+  return $padVal;
 
 ?>

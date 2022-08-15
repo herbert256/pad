@@ -1,29 +1,41 @@
 <?php
 
-  function pTraceGetLevel ($p)  {
+  function pTraceGetLevel ($pad)  {
 
+    if ( $pad === NULL)
+      return [];
+
+    if ( $pad < 0 )
+      return [];
+
+    if ( ! isset ( $GLOBALS['pad'] ) or $GLOBALS['pad'] < 0 )
+      return [];
+
+    if ( is_array($pad) )
+      return [];
+    
     return [
-      'tag' => $GLOBALS['pTag'][$p]??'',
-      't-type' => $GLOBALS['pType'][$p]??'',
-      'pair' => $GLOBALS['pPair'][$p]??'',
-      'p-type' => $GLOBALS['pPrmsType'][$p]??'',
-      'prm' => $GLOBALS['pPrm'][$p]??'',
-      'prms' => $GLOBALS['pPrms'][$p]??'',
-      'flags' => $GLOBALS['pPrmsTag'][$p]??'',
-      'values' => $GLOBALS['pPrmsVal'][$p]??'',
-      'true' => pDump_short ($GLOBALS['pTrue'][$p]??''),
-      'false' => pDump_short ($GLOBALS['pFalse'][$p]??''),
-      'base' => pDump_short ($GLOBALS['pBase'][$p]??''),
-      'html' => pDump_short ($GLOBALS['pHtml'][$p]??''),
-      'result' => pDump_short ($GLOBALS['pResult'][$p]??''),
-      'name' => $GLOBALS['pName'][$p]??'',
-      'default' => $GLOBALS['pDefault'][$p]??'',
-      'walk' => $GLOBALS['pWalk'][$p]??'',
-      'hit' => $GLOBALS['pHit'][$p]??'',
-      'null' => $GLOBALS['pNull'][$p]??'',
-      'else' => $GLOBALS['pElse'][$p]??'',
-      'array' => $GLOBALS['pArray'][$p]??'',
-      'text' => $GLOBALS['pText'][$p]??''
+      'tag' => $GLOBALS ['padTag'] [$pad] ?? '',
+      't-type' => $GLOBALS ['padType'] [$pad] ?? '',
+      'pair' => $GLOBALS ['padPair'] [$pad] ?? '',
+      'p-type' => $GLOBALS ['padPrmsType'] [$pad] ?? '',
+      'prm' => $GLOBALS ['padPrm'] [$pad] ?? '',
+      'prms' => $GLOBALS ['padPrms'] [$pad] ?? '',
+      'flags' => $GLOBALS ['padPrmsTag'] [$pad] ?? '',
+      'values' => $GLOBALS ['padPrmsVal'] [$pad] ?? '',
+      'true' => pDump_short ($GLOBALS ['padTrue'][$pad]??''),
+      'false' => pDump_short ($GLOBALS ['padFalse'][$pad]??''),
+      'base' => pDump_short ($GLOBALS ['padBase'][$pad]??''),
+      'html' => pDump_short ($GLOBALS ['padHtml'][$pad]??''),
+      'result' => pDump_short ($GLOBALS ['padResult'][$pad]??''),
+      'name' => $GLOBALS ['padName'] [$pad] ?? '',
+      'default' => $GLOBALS ['padDefault'] [$pad] ?? '',
+      'walk' => $GLOBALS ['padWalk'] [$pad] ?? '',
+      'hit' => $GLOBALS ['padHit'] [$pad] ?? '',
+      'null' => $GLOBALS ['padNull'] [$pad] ?? '',
+      'else' => $GLOBALS ['padElse'] [$pad] ?? '',
+      'array' => $GLOBALS ['padArray'] [$pad] ?? '',
+      'text' => $GLOBALS ['padText'] [$pad]?? ''
     ];
 
   } 
@@ -31,29 +43,29 @@
 
   function pTrace_write_error ($error, $type, $count, $vars, $force=0 ) {
 
-    if ( $GLOBALS['pError_dump'] and ! $GLOBALS['pTrace'] )
+    if ( $GLOBALS ['padError_dump'] and ! $GLOBALS ['padTrace'] )
       return pTrace_write_error_light ($error, $type, $count, $vars);
 
-    if ( ! $force and ! $GLOBALS['pTrace'] )
+    if ( ! $force and ! $GLOBALS ['padTrace'] )
       return;
 
-    global $p, $pOccurDir, $app, $page, $PADREQID;
+    global $pad, $padOccurDir, $app, $page, $PADREQID;
 
-    $pError_dir = $pOccurDir [$p] . "/error-$count-$type";
+    $padError_dir = $padOccurDir [$pad] . "/error-$count-$type";
 
     $data = [];
 
     $data ['error']   = $error;
     $data ['number']  = $count;
-    $data ['dir']     = DATA . $pError_dir;
+    $data ['dir']     = DATA . $padError_dir;
 
     foreach ($vars as $key => $val)
       $data [$key] = $val;
 
     pFile_put_contents ( "errors/$PADREQID-$count-$type.json", $data ); 
-    pFile_put_contents ( "$pError_dir/error.json",             $data ); 
+    pFile_put_contents ( "$padError_dir/error.json",             $data ); 
     
-    pTraceAll ( $pError_dir );
+    pTraceAll ( $padError_dir );
 
   }
 
@@ -69,14 +81,14 @@
 
   function pTraceAll ( $dir ) {
 
-    pFields ( $pFphp, $pFlvl, $pFapp, $pFcfg, $pFpad, $pFids );
+    pFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
 
-    pFile_put_contents ( "$dir/pad.json",   $pFpad  );
-    pFile_put_contents ( "$dir/app.json",   $pFapp  );
-    pFile_put_contents ( "$dir/php.json",   $pFphp  );
-    pFile_put_contents ( "$dir/levels.json",$pFlvl  );
-    pFile_put_contents ( "$dir/ids.json",   $pFids  );
-    pFile_put_contents ( "$dir/config.json",$pFcfg  );
+    pFile_put_contents ( "$dir/pad.json",   $padFpad  );
+    pFile_put_contents ( "$dir/app.json",   $padFapp  );
+    pFile_put_contents ( "$dir/php.json",   $padFphp  );
+    pFile_put_contents ( "$dir/levels.json",$padFlvl  );
+    pFile_put_contents ( "$dir/ids.json",   $padFids  );
+    pFile_put_contents ( "$dir/config.json",$padFcfg  );
 
   }
 

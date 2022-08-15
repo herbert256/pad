@@ -1,18 +1,18 @@
 <?php
 
-  $one = $pPrm [$p];
+  $one = $padPrm [$pad];
   
-  $url = "$pHost$pScript?app=reference&page=$one";
+  $url = "$padHost$padScript?app=reference&page=$one";
 
-  $pFile  = APPS . "reference/pages/$one.pad";
+  $padFile  = APPS . "reference/pages/$one.pad";
   $php_file  = APPS . "reference/pages/$one.php";
   $html_file = APPS . "reference/pages/$one.html";
 
   $dirx = substr($one, 0, strrpos($one, '/')+1 ); 
   $link = str_replace($dirx, '', $one);
 
-  if ( file_exists($pFile) )
-    foreach ( file($pFile, FILE_IGNORE_NEW_LINES) as $line ) {
+  if ( file_exists($padFile) )
+    foreach ( file($padFile, FILE_IGNORE_NEW_LINES) as $line ) {
       $cmd = pExplode ($line, ':');
       if ($cmd[0] == 'php')
          $php_file = APPS . 'reference/' . $cmd[1];

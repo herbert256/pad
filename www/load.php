@@ -1,8 +1,8 @@
  <?php
 
-  $path = '/home/herbert/pad';
+  $padath = '/home/herbert/pad';
 
-    $directory = new RecursiveDirectoryIterator ($path);
+    $directory = new RecursiveDirectoryIterator ($padath);
     $iterator  = new RecursiveIteratorIterator  ($directory);
 
     foreach ($iterator as $loop) {

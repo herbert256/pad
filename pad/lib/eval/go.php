@@ -4,7 +4,7 @@
 
 go: pEval_trace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] );
 
-    $GLOBALS ['pTrace_now'] = [];
+    $GLOBALS ['padTrace_now'] = [];
 
     if  ( count($result) > 1 ) {
  
@@ -16,7 +16,7 @@ go: pEval_trace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] );
            and $s [0] == 'AND' and $s [1] == 'OPR'
          ) {
 
-        if ( $GLOBALS ['pTrace'] ) 
+        if ( $GLOBALS ['padTrace'] ) 
           pEval_trace  ('fast-and', [ 'first' => $f, 'second' => $s ] );
 
         $result = [ 100 => ['0' => '', '1'=> 'VAL' ] ];
@@ -29,7 +29,7 @@ go: pEval_trace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] );
            and $s [0] == 'OR' and $s [1] == 'OPR'
          ) {
 
-        if ( $GLOBALS ['pTrace'] ) 
+        if ( $GLOBALS ['padTrace'] ) 
           pEval_trace  ('fast-or', [ 'first' => $f, 'second' => $s ] );
 
         $result = [ 100 => ['0' => 1, '1'=> 'VAL' ] ];
@@ -99,7 +99,7 @@ go: pEval_trace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] );
        
         if ( $b >= $start ) {
 
-          $GLOBALS ['pTrace_now'] = $result[$b];
+          $GLOBALS ['padTrace_now'] = $result[$b];
 
           if ( $now == 'TYPE' and $result[$b][1] == 'TYPE') {
 
@@ -125,13 +125,13 @@ go: pEval_trace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] );
 
           } 
 
-         $GLOBALS ['pTrace_now'] = [];
+         $GLOBALS ['padTrace_now'] = [];
 
         }
 
         if ( $now == 'TYPE' and $k == array_key_last ($result) and $result[$k][1] == 'TYPE' ) {
 
-          $GLOBALS ['pTrace_now'] = $result[$k];
+          $GLOBALS ['padTrace_now'] = $result[$k];
           
           pEval_type ($k, $b, $result, $myself, $start, $end);
           

@@ -1,10 +1,10 @@
 <?php
 
-  $pFilter_start = $pPrmsTag [$p] ['start'] ?? 1;
-  $pFilter_end   = $pPrmsTag [$p] ['end'] ?? count($pData [$p]);
+  $padFilter_start = $padPrmsTag [$pad] ['start'] ?? 1;
+  $padFilter_end   = $padPrmsTag [$pad] ['end'] ?? count($padData [$pad]);
 
   pDone ( 'start', TRUE);
   pDone ( 'end',   TRUE); 
-  pData_filter_go ($pData [$p], $pFilter_start, $pFilter_end);    
+  pData_filter_go ($padData [$pad], $padFilter_start, $padFilter_end);    
 
 ?>

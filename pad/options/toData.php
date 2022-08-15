@@ -1,17 +1,17 @@
 <?php
 
-  $pStore_name = $pPrmsTag [$p] ['toData'];
+  $padStore_name = $padPrmsTag [$pad] ['toData'];
 
-  if ( !$pPair and !$pContent and !pIs_default_data($pData [$p]) ) {
-    $pDataStore [$pStore_name] = $pData [$p];
+  if ( !$padPair and !$padContent and !pIs_default_data($padData [$pad]) ) {
+    $padDataStore [$padStore_name] = $padData [$pad];
     return;
   }
 
-  if ( $pWalk  [$p] <> 'start' ) 
-    $pDataStore [$pStore_name] = $pWalkData  [$p];
+  if ( $padWalk  [$pad] <> 'start' ) 
+    $padDataStore [$padStore_name] = $padWalkData  [$pad];
   else
-    $pDataStore [$pStore_name] = $pData [$p];
+    $padDataStore [$padStore_name] = $padData [$pad];
 
-  $pResult [$p] = '';
+  $padResult [$pad] = '';
   
 ?>

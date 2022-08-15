@@ -1,16 +1,16 @@
 <?php
 
-  $pSeq_chk = PAD . "sequence/types/$pSeq_seq";
+  $padSeq_chk = PAD . "sequence/types/$padSeq_seq";
 
-  if     ( file_exists ( "$pSeq_chk/order.php")    ) $pSeq_build = 'order';
-  elseif ( file_exists ( "$pSeq_chk/fixed.php")    ) $pSeq_build = 'fixed';
-  elseif ( file_exists ( "$pSeq_chk/bool.php")     ) $pSeq_build = 'bool';
-  elseif ( file_exists ( "$pSeq_chk/function.php") ) $pSeq_build = 'function';
-  elseif ( file_exists ( "$pSeq_chk/main.php")     ) $pSeq_build = 'main';
-  elseif ( file_exists ( "$pSeq_chk/loop.php")     ) $pSeq_build = 'loop';
-  elseif ( file_exists ( "$pSeq_chk/make.php")     ) $pSeq_build = 'make';
-  elseif ( file_exists ( "$pSeq_chk/filter.php")   ) $pSeq_build = 'filter';
+  if     ( file_exists ( "$padSeq_chk/order.php")    ) $padSeq_build = 'order';
+  elseif ( file_exists ( "$padSeq_chk/fixed.php")    ) $padSeq_build = 'fixed';
+  elseif ( file_exists ( "$padSeq_chk/bool.php")     ) $padSeq_build = 'bool';
+  elseif ( file_exists ( "$padSeq_chk/function.php") ) $padSeq_build = 'function';
+  elseif ( file_exists ( "$padSeq_chk/main.php")     ) $padSeq_build = 'main';
+  elseif ( file_exists ( "$padSeq_chk/loop.php")     ) $padSeq_build = 'loop';
+  elseif ( file_exists ( "$padSeq_chk/make.php")     ) $padSeq_build = 'make';
+  elseif ( file_exists ( "$padSeq_chk/filter.php")   ) $padSeq_build = 'filter';
   
-  else pError ("No type definition found for '$pSeq_seq'");
+  else pError ("No type definition found for '$padSeq_seq'");
 
 ?>

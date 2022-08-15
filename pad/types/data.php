@@ -3,6 +3,6 @@
   if ( pTag_parm ('print') )
     include PAD . 'options/print.php';
 
-  return $pDataStore [$pTag [$p]];
+  return $padDataStore [$padTag [$pad]];
  
 ?>

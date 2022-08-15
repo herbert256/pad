@@ -1,5 +1,5 @@
 <?php
 
-  $pSeq_loop = $pSeq_loop + ( ($pSeq-1) * $pSeq_step );
+  $padSeq_loop = $padSeq_loop + ( ($padSeq-1) * $padSeq_step );
 
 ?>

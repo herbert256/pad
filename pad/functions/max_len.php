@@ -1,7 +1,7 @@
 <?php
 
-  if (strlen($value) > $parm[0])
-    return substr($value, 0, $parm[0]);
+  if (strlen($value) > $padarm[0])
+    return substr($value, 0, $padarm[0]);
   else
     return $value;
 

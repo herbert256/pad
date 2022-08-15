@@ -1,7 +1,7 @@
 <?php
 
-  global $pOccur;
+  global $padOccur;
   
-  return $pOccur [$pIdx] - 1;
+  return $padOccur [$padIdx] - 1;
 
 ?>

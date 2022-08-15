@@ -1,21 +1,21 @@
 <?php
 
-  $pWalk [$p] = 'end';
+  $padWalk [$pad] = 'end';
 
-  $pContent = $pResult [$p];
+  $padContent = $padResult [$pad];
   include PAD . "level/type_go.php"; 
-  $pResult [$p] = $pContent;
+  $padResult [$pad] = $padContent;
 
   include PAD . "level/flags.php";
 
-  // if ( $pNull ) 
-  //   $pResult [$p] = '';
-  // elseif ( $pArray )
-  //   $pData [$p] = $pTagResult;
-  // elseif ( $pText ) 
-  //   $pResult [$p] = $pTagResult;
-  // elseif ( $pElse ) 
-  //   $pResult [$p] = $pFalse [$p];
+  // if ( $padNull ) 
+  //   $padResult [$pad] = '';
+  // elseif ( $padArray )
+  //   $padData [$pad] = $padTagResult;
+  // elseif ( $padText ) 
+  //   $padResult [$pad] = $padTagResult;
+  // elseif ( $padElse ) 
+  //   $padResult [$pad] = $padFalse [$pad];
  
 
 ?>

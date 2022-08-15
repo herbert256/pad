@@ -3,14 +3,14 @@
 
   function pErrorShort ( $error ) {
 
-    $GLOBALS ['pSkip_boot_shutdown'] = TRUE;
-    $GLOBALS ['pSkip_shutdown']      = TRUE;
+    $GLOBALS ['padSkip_boot_shutdown'] = TRUE;
+    $GLOBALS ['padSkip_shutdown']      = TRUE;
 
     echo ( "<pre><b>$error</b>\n\n");
     
-    $pDebug_backtrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS);
+    $padDebug_backtrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS);
     
-    foreach ( $pDebug_backtrace as $key => $trace ) {
+    foreach ( $padDebug_backtrace as $key => $trace ) {
       extract ( $trace );
       echo ( "$file:$line - $function\n");
     }
@@ -39,7 +39,7 @@
  
     extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
 
-    if ( $GLOBALS['pError_action'] == 'php' ) { 
+    if ( $GLOBALS ['padError_action'] == 'php' ) { 
       trigger_error("$file:$line $error", E_USER_ERROR);
       return FALSE;
     }
@@ -66,7 +66,7 @@
 
   function pError_shutdown () {
 
-    if ( isset ( $GLOBALS['pSkip_shutdown'] ) )
+    if ( isset ( $GLOBALS ['padSkip_shutdown'] ) )
       return;
 
     $error = error_get_last ();
@@ -96,17 +96,17 @@
 
   function pError_try ($error, $file, $line) {
 
-    if ( $GLOBALS['pError_action'] == 'ignore' ) 
+    if ( $GLOBALS ['padError_action'] == 'ignore' ) 
       return FALSE;
 
-    global $pError_action, $pExit, $PADREQID, $pTrace, $pError_dump, $pError_log, $pErrCnt;
+    global $padError_action, $padExit, $PADREQID, $padTrace, $padError_dump, $padError_log, $padErrCnt;
 
-    if ( $GLOBALS['pExit'] <> 1 )
+    if ( $GLOBALS ['padExit'] <> 1 )
       return pError_error ($error, $file, $line);
 
-    $GLOBALS['pExit'] = 2;
+    $GLOBALS ['padExit'] = 2;
 
-    $pErrCnt++;
+    $padErrCnt++;
 
     $error = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '.', $error);
     $error = preg_replace('/\s+/', ' ', $error);
@@ -115,38 +115,38 @@
     $error = trim($error);
     $error = "$file:$line $error";
 
-    $GLOBALS['pErrror_list'] [] = $error;
+    $GLOBALS ['padErrror_list'] [] = $error;
 
-    if ( $pError_log and $pError_action <> 'boot' ) 
+    if ( $padError_log and $padError_action <> 'boot' ) 
       error_log ("[PAD] $PADREQID $error", 4);   
 
-    if ( $pTrace or $pError_dump or $pError_action == 'report' )
-      pTrace_write_error ( $error, 'error', $pErrCnt, [], 1);
+    if ( $padTrace or $padError_dump or $padError_action == 'report' )
+      pTrace_write_error ( $error, 'error', $padErrCnt, [], 1);
 
-    if ( ! headers_sent () and in_array($pError_action, ['pad', 'stop', 'abort', 'ignore']) )
+    if ( ! headers_sent () and in_array($padError_action, ['pad', 'stop', 'abort', 'ignore']) )
       pHeader ('HTTP/1.0 500 Internal Server Error' );
 
-    if ( $pError_action == 'boot' )
+    if ( $padError_action == 'boot' )
 
       pBoot_error ( $error, $file, $line );
 
-    elseif ( $pError_action == 'abort')
+    elseif ( $padError_action == 'abort')
 
       pExit ();
 
-    elseif ( $pError_action == 'report' ) {
+    elseif ( $padError_action == 'report' ) {
 
-      $pExit = 1;
+      $padExit = 1;
       return FALSE;
 
-    } elseif ( $pError_action == 'pad' ) {
+    } elseif ( $padError_action == 'pad' ) {
 
       if ( pLocal() )
         pDump ("Error: $PADREQID:  $error");
       else
         echo "Error: $PADREQID";
 
-      $GLOBALS ['pSent'] = TRUE;             
+      $GLOBALS ['padSent'] = TRUE;             
 
     }
 
@@ -172,8 +172,8 @@
       else
         echo "Error: $PADREQID";
 
-      $GLOBALS['pSkip_shutdown']      = TRUE;
-      $GLOBALS['pSkip_boot_shutdown'] = TRUE;
+      $GLOBALS ['padSkip_shutdown']      = TRUE;
+      $GLOBALS ['padSkip_boot_shutdown'] = TRUE;
       
       exit;
  

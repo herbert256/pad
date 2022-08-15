@@ -1,12 +1,12 @@
 <?php
 
-  global $pData, $pOccur;
+  global $padData, $padOccur;
   
-  $pWrk = count ( $pData [$pIdx] ) - $pOccur [$pIdx];
+  $padWrk = count ( $padData [$padIdx] ) - $padOccur [$padIdx];
 
-  if ($pWrk < 0)
+  if ($padWrk < 0)
     return 0;
   else 
-    return $pWrk;
+    return $padWrk;
 
 ?>

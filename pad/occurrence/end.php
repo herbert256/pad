@@ -2,9 +2,9 @@
 
   include 'trace/end.php';
   
-  $pResult [$p] .= $pHtml [$p];
+  $padResult [$pad] .= $padHtml [$pad];
 
-  if ( $p )
-    pReset ($p);
+  if ( $pad )
+    pReset ($pad);
 
 ?>

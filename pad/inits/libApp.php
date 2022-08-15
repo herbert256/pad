@@ -1,6 +1,6 @@
 <?php
 
-  $pLib = APP . 'lib';
+  $padLib = APP . 'lib';
  
   include 'lib.php';
 

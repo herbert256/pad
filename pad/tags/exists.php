@@ -1,9 +1,9 @@
 <?php
 
-  if     ( pTag_parm ('app') ) $pExists = APP  . $pPrm [$p];
-  elseif ( pTag_parm ('pad') ) $pExists = PAD . $pPrm [$p];
-  else                            $pExists = APP  . $pPrm [$p];
+  if     ( pTag_parm ('app') ) $padExists = APP  . $padPrm [$pad];
+  elseif ( pTag_parm ('pad') ) $padExists = PAD . $padPrm [$pad];
+  else                            $padExists = APP  . $padPrm [$pad];
 
-  return ( file_exists ($pExists) ) ? TRUE : FALSE;
+  return ( file_exists ($padExists) ) ? TRUE : FALSE;
 
 ?>

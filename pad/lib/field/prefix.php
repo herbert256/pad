@@ -3,22 +3,22 @@
 
   function pField_prefix ( $field, $type ) {
 
-    global $p, $pCurrent, $pField_double_check;
+    global $pad, $padCurrent, $padField_double_check;
 
-    list ( $prefix, $field ) = explode (':', $field, 2);
+    list ( $padrefix, $field ) = explode (':', $field, 2);
 
     if ( is_numeric($field) )
-      return pField_prefix_nr ($prefix, $field);
+      return pField_prefix_nr ($padrefix, $field);
 
-    $lvl = pFieldGetLevel ( $prefix, FALSE );
+    $lvl = pFieldGetLevel ( $padrefix, FALSE );
 
     if ( $lvl === 0 )
       $return = pField_search ($GLOBALS, $field, $type);
     else 
-      $return = pField_search ($pCurrent [$lvl], $field, $type);
+      $return = pField_search ($padCurrent [$lvl], $field, $type);
 
     if ( $return === INF )
-      $return = pFieldDoubleCheck ( $prefix, '#', $field ); 
+      $return = pFieldDoubleCheck ( $padrefix, '#', $field ); 
 
     return $return;
     
@@ -30,10 +30,10 @@
     $lvl = pFieldGetLevel ($tag);
     $idx = intval ($nr) - 1 ;
 
-    global $pPrmsVal;
+    global $padPrmsVal;
     
-    if ( isset ( $pPrmsVal[$lvl] [$idx] ) )
-      return $pPrmsVal[$lvl] [$idx]; 
+    if ( isset ( $padPrmsVal[$lvl] [$idx] ) )
+      return $padPrmsVal[$lvl] [$idx]; 
     else
       return INF;
 

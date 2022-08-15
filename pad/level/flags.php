@@ -1,25 +1,25 @@
 <?php
 
-  if     ( $pTagResult === NULL )   $pNull [$p] = TRUE;
-  elseif ( $pTagResult === INF )    $pNull [$p] = TRUE;
-  elseif ( $pTagResult === NAN )    $pNull [$p] = TRUE;
-  else                                   $pNull [$p] = FALSE;
+  if     ( $padTagResult === NULL )   $padNull [$pad] = TRUE;
+  elseif ( $padTagResult === INF )    $padNull [$pad] = TRUE;
+  elseif ( $padTagResult === NAN )    $padNull [$pad] = TRUE;
+  else                                   $padNull [$pad] = FALSE;
 
-  if     ( is_array($pTagResult) and ! count($pTagResult) ) $pElse [$p] = TRUE;
-  elseif ( is_array($pTagResult) and   count($pTagResult) ) $pElse [$p] = FALSE;
-  elseif ( $pTagResult === FALSE                          )      $pElse [$p] = TRUE;
-  elseif ( $pTagResult === ''                             )      $pElse [$p] = TRUE;
-  else                                                                $pElse [$p] = FALSE;
+  if     ( is_array($padTagResult) and ! count($padTagResult) ) $padElse [$pad] = TRUE;
+  elseif ( is_array($padTagResult) and   count($padTagResult) ) $padElse [$pad] = FALSE;
+  elseif ( $padTagResult === FALSE                          )      $padElse [$pad] = TRUE;
+  elseif ( $padTagResult === ''                             )      $padElse [$pad] = TRUE;
+  else                                                                $padElse [$pad] = FALSE;
 
-  if     ( $pNull [$p] ) $pHit [$p] = FALSE;
-  elseif ( $pElse [$p] ) $pHit [$p] = FALSE;
-  else                   $pHit [$p] = TRUE;
+  if     ( $padNull [$pad] ) $padHit [$pad] = FALSE;
+  elseif ( $padElse [$pad] ) $padHit [$pad] = FALSE;
+  else                   $padHit [$pad] = TRUE;
 
-  if     ( $pHit [$p] and is_array($pTagResult) ) $pArray [$p] = TRUE;
-  else                                                 $pArray [$p] = FALSE;
+  if     ( $padHit [$pad] and is_array($padTagResult) ) $padArray [$pad] = TRUE;
+  else                                                 $padArray [$pad] = FALSE;
 
-  if     ( $pHit [$p] and $pTagResult !== TRUE and is_scalar($pTagResult) ) $pText [$p] = TRUE;
-  else                                                                                $pText [$p] = FALSE;
+  if     ( $padHit [$pad] and $padTagResult !== TRUE and is_scalar($padTagResult) ) $padText [$pad] = TRUE;
+  else                                                                                $padText [$pad] = FALSE;
 
 
 ?>

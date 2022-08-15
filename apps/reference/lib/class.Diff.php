@@ -67,7 +67,7 @@ class Diff{
     $table = self::computeTable($sequence1, $sequence2, $start, $end1, $end2);
 
     // generate the partial diff
-    $partialDiff =
+    $padartialDiff =
         self::generatePartialDiff($table, $sequence1, $sequence2, $start);
 
     // generate the full diff
@@ -75,7 +75,7 @@ class Diff{
     for ($index = 0; $index < $start; $index ++){
       $diff[] = array($sequence1[$index], self::UNMODIFIED);
     }
-    while (count($partialDiff) > 0) $diff[] = array_pop($partialDiff);
+    while (count($padartialDiff) > 0) $diff[] = array_pop($padartialDiff);
     for ($index = $end1 + 1;
         $index < ($compareCharacters ? strlen($sequence1) : count($sequence1));
         $index ++){

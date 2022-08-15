@@ -1,15 +1,15 @@
 <?php
 
-  if ( ! $pTrace )
+  if ( ! $padTrace )
     return;
 
-  $pLevelDir [$p] = $pOccurDir [$p-1] . '/tag-' . $pCnt . '-' . $pTag [$p] ;
-  $pOccurDir [$p] = $pLevelDir [$p];
+  $padLevelDir [$pad] = $padOccurDir [$pad-1] . '/tag-' . $padCnt . '-' . $padTag [$pad] ;
+  $padOccurDir [$pad] = $padLevelDir [$pad];
   
-  pFields ( $pFphp, $pFlvl, $pFapp, $pFcfg, $pFpad, $pFids );
+  pFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
 
-  pFile_put_contents ( $pLevelDir [$p] . "/start.json",      pTraceGetLevel($p)  );
-  pFile_put_contents ( $pLevelDir [$p] . "/app-start.json",  $pFapp );
-  pFile_put_contents ( $pLevelDir [$p] . "/pad-start.json",  $pFpad ); 
+  pFile_put_contents ( $padLevelDir [$pad] . "/start.json",      pTraceGetLevel($pad)  );
+  pFile_put_contents ( $padLevelDir [$pad] . "/app-start.json",  $padFapp );
+  pFile_put_contents ( $padLevelDir [$pad] . "/pad-start.json",  $padFpad ); 
 
 ?>

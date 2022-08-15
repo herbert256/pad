@@ -10,15 +10,15 @@
 
   foreach ($iterator as $dir) {
 
-    $path = $dir->getPathname();
+    $padath = $dir->getPathname();
  
-    $dir = str_replace($reference, '', $path);
+    $dir = str_replace($reference, '', $padath);
     $dir = substr($dir, 1);
 
     if (substr($dir, -2) == '/.')  $dir = substr($dir, 0, -2);
     if (substr($dir, -3) == '/..') $dir = substr($dir, 0, -3);
 
-   if ( $dir and $dir <> '.' and is_dir($path) and count(pDir_list ($path)))
+   if ( $dir and $dir <> '.' and is_dir($padath) and count(pDir_list ($padath)))
       $dirs [$dir] ['dir'] = $dir;
  
   }

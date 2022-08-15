@@ -1,14 +1,14 @@
 <?php
 
-  $pReturn = [];
-  $pI      = 0;
+  $padReturn = [];
+  $padI      = 0;
 
-  foreach ($GLOBALS['pCurrent'] [$pIdx] as $pK => $pV) {
-    $pI++;
-    $pReturn [$pI] ['name']  = $pK;
-    $pReturn [$pI] ['value'] = $pV;
+  foreach ($GLOBALS ['padCurrent'] [$padIdx] as $padK => $padV) {
+    $padI++;
+    $padReturn [$padI] ['name']  = $padK;
+    $padReturn [$padI] ['value'] = $padV;
   }
 
-  return $pReturn;
+  return $padReturn;
 
 ?> 

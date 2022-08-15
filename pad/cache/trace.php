@@ -1,19 +1,19 @@
 <?php
 
-  $pCache_trace = [
-    'stop'        => $pCache_stop,
-    'url'         => $pCache_url,
-    'now-etag'    => $pEtag,
-    'cache-etag'  => $pCache_etag,
-    'client-etag' => $pCache_client,
-    'age'         => $pCache_age,
-    'mod'         => $pCache_mod,
-    'max'         => $pCache_max,
-    'now-age'     => ($pCache_age) ? $_SERVER['REQUEST_TIME'] - $pCache_age : 0,
-    'now-mod'     => ($pCache_mod) ? $_SERVER['REQUEST_TIME'] - $pCache_mod : 0,
-    'now-max'     => ($pCache_max) ? $_SERVER['REQUEST_TIME'] - $pCache_max : 0
+  $padCache_trace = [
+    'stop'        => $padCache_stop,
+    'url'         => $padCache_url,
+    'now-etag'    => $padEtag,
+    'cache-etag'  => $padCache_etag,
+    'client-etag' => $padCache_client,
+    'age'         => $padCache_age,
+    'mod'         => $padCache_mod,
+    'max'         => $padCache_max,
+    'now-age'     => ($padCache_age) ? $_SERVER['REQUEST_TIME'] - $padCache_age : 0,
+    'now-mod'     => ($padCache_mod) ? $_SERVER['REQUEST_TIME'] - $padCache_mod : 0,
+    'now-max'     => ($padCache_max) ? $_SERVER['REQUEST_TIME'] - $padCache_max : 0
   ];
       
-  pFile_put_contents ( $pTraceDir . "/cache.$pCache_stop.json", $pCache_trace );
+  pFile_put_contents ( $padTraceDir . "/cache.$padCache_stop.json", $padCache_trace );
 
 ?>

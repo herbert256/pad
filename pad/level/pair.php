@@ -1,45 +1,45 @@
 <?php
 
-  $pPos = $pEnd [$pP];
+  $padPos = $padEnd [$padP];
 
   while (1) {
 
     do {
 
-      $pPos = strpos($pHtml [$pP] , '{/' . $pTag [$p], $pPos);
+      $padPos = strpos($padHtml [$padP] , '{/' . $padTag [$pad], $padPos);
 
-      if ($pPos === FALSE) {
-        $pTrue [$p] = '';
+      if ($padPos === FALSE) {
+        $padTrue [$pad] = '';
         return FALSE;
       } 
 
-      $pTrue [$p] = substr($pHtml [$pP], $pEnd [$pP]+1, $pPos - $pEnd [$pP] - 1);
+      $padTrue [$pad] = substr($padHtml [$padP], $padEnd [$padP]+1, $padPos - $padEnd [$padP] - 1);
 
-      $pPos++;
+      $padPos++;
 
-    } while ( substr_count($pTrue [$p], '{'.$pTag [$p]) <> substr_count($pTrue [$p], '{/'.$pTag[$p]) );
+    } while ( substr_count($padTrue [$pad], '{'.$padTag [$pad]) <> substr_count($padTrue [$pad], '{/'.$padTag[$pad]) );
 
-    $pPair_check = substr($pHtml [$pP], $pPos + strlen($pTag[$p]) + 1, 1);
+    $padPair_check = substr($padHtml [$padP], $padPos + strlen($padTag[$pad]) + 1, 1);
     
-    if ( ! ($pPair_check == ' ' or $pPair_check == '}' ) )
+    if ( ! ($padPair_check == ' ' or $padPair_check == '}' ) )
       continue;
 
     break;
 
   }
  
-  $pTrue [$p] = substr ( $pTrue [$p], 0, $pPos );
-  $pEnd [$pP] = strpos ( $pHtml [$pP], '}', $pPos+2 );
+  $padTrue [$pad] = substr ( $padTrue [$pad], 0, $padPos );
+  $padEnd [$padP] = strpos ( $padHtml [$padP], '}', $padPos+2 );
 
-  if ( $pEnd [$pP] === FALSE )
+  if ( $padEnd [$padP] === FALSE )
     return NULL;
 
-  $pBetween = substr ($pHtml [$pP], $pPos+1, $pEnd [$pP]-$pPos-1);
-  $pWords   = preg_split ("/[\s]+/", $pBetween, 2, PREG_SPLIT_NO_EMPTY);
+  $padBetween = substr ($padHtml [$padP], $padPos+1, $padEnd [$padP]-$padPos-1);
+  $padWords   = preg_split ("/[\s]+/", $padBetween, 2, PREG_SPLIT_NO_EMPTY);
 
-  if ( count ($pWords) > 1 ) {
+  if ( count ($padWords) > 1 ) {
     include 'between.php';
-    $pPrmsType [$p] = 'close';
+    $padPrmsType [$pad] = 'close';
   }
 
   return TRUE;

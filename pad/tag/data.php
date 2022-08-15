@@ -1,5 +1,5 @@
 <?php
 
-  return $pData [$pIdx];
+  return $padData [$padIdx];
 
 ?> 

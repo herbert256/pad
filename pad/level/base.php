@@ -1,8 +1,8 @@
 <?php
 
-  if     ( $pNull [$p]  ) $pBase [$p] = '';
-  elseif ( $pElse [$p]  ) $pBase [$p] = $pFalse [$p];    
-  elseif ( $pText [$p]  ) $pBase [$p] = $pTagResult;
-  else                    $pBase [$p] = $pTrue [$p];
+  if     ( $padNull [$pad]  ) $padBase [$pad] = '';
+  elseif ( $padElse [$pad]  ) $padBase [$pad] = $padFalse [$pad];    
+  elseif ( $padText [$pad]  ) $padBase [$pad] = $padTagResult;
+  else                    $padBase [$pad] = $padTrue [$pad];
     
 ?>

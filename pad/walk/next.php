@@ -1,23 +1,23 @@
 <?php
      
-  $pWalk [$p] = 'next';
+  $padWalk [$pad] = 'next';
   
-  $pContent = $pBase [$p];
+  $padContent = $padBase [$pad];
   include PAD . "level/type_go.php"; 
-  $pBase [$p] = $pContent;
+  $padBase [$pad] = $padContent;
 
   include PAD . "level/flags.php";
 
-  if ( $pWalk [$p] ) {
+  if ( $padWalk [$pad] ) {
 
-    if ( $pArray )
-      $pData [$p] = $pTagResult;
-    elseif ( $pText ) 
-      $pBase [$p] = $pTagResult;
-    elseif ( $pElse ) 
-      $pBase [$p] = $pFalse [$p];
+    if ( $padArray )
+      $padData [$pad] = $padTagResult;
+    elseif ( $padText ) 
+      $padBase [$pad] = $padTagResult;
+    elseif ( $padElse ) 
+      $padBase [$pad] = $padFalse [$pad];
  
-    reset ( $pData [$p] );
+    reset ( $padData [$pad] );
 
   }
 

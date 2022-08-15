@@ -1,13 +1,13 @@
 <?php
 
-  if ( ! $pNo_no )
+  if ( ! $padNo_no )
     return; 
 
   ob_get_clean();
 
-  $pNo_no = PAD . "$app/pages/$page.php";
+  $padNo_no = PAD . "$app/pages/$page.php";
 
-  if ( ! file_exists ( $pNo_no ) )
+  if ( ! file_exists ( $padNo_no ) )
     pBoot_error ("Page does not exists: $app/$page");
 
   foreach ($GLOBALS as $key => $value)
@@ -23,9 +23,9 @@
   unset($PADREFID);
   unset($PADREQID);
 
-  include $pNo_no;
+  include $padNo_no;
 
-  $pNo_boot_shutdown = TRUE;
+  $padNo_boot_shutdown = TRUE;
 
   exit();
 

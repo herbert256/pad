@@ -1,30 +1,30 @@
 <?php
 
-  $GLOBALS ["pSeq_$pSeq_one" . "_list"] = [];
+  $GLOBALS ["pSeq_$padSeq_one" . "_list"] = [];
 
-  if ( $pSeq_one == $pSeq_seq ) 
+  if ( $padSeq_one == $padSeq_seq ) 
     return;
 
-  if ( ! isset($pPrmsTag [$p] [$pSeq_one]) )
+  if ( ! isset($padPrmsTag [$pad] [$padSeq_one]) )
     return;
 
-  $GLOBALS["pSeq_".$pSeq_one. "_list"] = [];
+  $GLOBALS["pSeq_".$padSeq_one. "_list"] = [];
 
-  $pSeq_one_tmp = pExplode ( $pPrmsTag [$p] [$pSeq_one], ';');
+  $padSeq_one_tmp = pExplode ( $padPrmsTag [$pad] [$padSeq_one], ';');
 
-  $pSeq_one_list = [];
-  foreach ( $pSeq_one_tmp as $pEntry )
-    $pSeq_one_list [$pEntry ] = TRUE;
+  $padSeq_one_list = [];
+  foreach ( $padSeq_one_tmp as $padEntry )
+    $padSeq_one_list [$padEntry ] = TRUE;
 
-  foreach ( $pSeq_one_list as $pSeq_one_name => $pSeq_one_value )
+  foreach ( $padSeq_one_list as $padSeq_one_name => $padSeq_one_value )
 
-    if ($pSeq_one_name <> $pSeq_seq and file_exists (PAD . "sequence/types/$pSeq_one_name/$pSeq_filter_check.php")) {
+    if ($padSeq_one_name <> $padSeq_seq and file_exists (PAD . "sequence/types/$padSeq_one_name/$padSeq_filter_check.php")) {
 
-      $GLOBALS["pSeq_".$pSeq_one. "_list"] [$pSeq_one_name] = $pSeq_one_value;
+      $GLOBALS["pSeq_".$padSeq_one. "_list"] [$padSeq_one_name] = $padSeq_one_value;
 
-      pDone ( $pSeq_one_name, TRUE );
+      pDone ( $padSeq_one_name, TRUE );
 
-      $GLOBALS ["pSeq_$pSeq_one_name"] = $pSeq_one_value;
+      $GLOBALS ["pSeq_$padSeq_one_name"] = $padSeq_one_value;
 
     }
   

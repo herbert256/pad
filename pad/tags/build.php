@@ -1,9 +1,9 @@
 <?php
 
-  $pBuild = $pPrmsTag ['build']   ?? $pPrmsVal ['0']; 
-  $pMode  = $pPrmsTag ['mode']    ?? $pPrmsVal ['1'] ?? 'before', 
-  $pMerge = $pPrmsTag ['merge']   ?? $pPrmsVal ['2'] ?? 'content'
+  $padBuild = $padPrmsTag ['build']   ?? $padPrmsVal ['0']; 
+  $padMode  = $padPrmsTag ['mode']    ?? $padPrmsVal ['1'] ?? 'before', 
+  $padMerge = $padPrmsTag ['merge']   ?? $padPrmsVal ['2'] ?? 'content'
 
-  return pBuild( $pBuild, $pMode, $pMerge); 
+  return pBuild( $padBuild, $padMode, $padMerge); 
 
 ?>

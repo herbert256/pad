@@ -1,20 +1,20 @@
 <?php
 
-  if ( $pWalk[$p] == 'start' ) {
+  if ( $padWalk[$pad] == 'start' ) {
 
-    $pSourcex = pColors_string (trim($pContent));
+    $padSourcex = pColors_string (trim($padContent));
 
-    $pWalk[$p] = 'end';
+    $padWalk[$pad] = 'end';
 
    return TRUE;
 
   }
 
-  $pContent = 
+  $padContent = 
     '<!-- demo -->' . 
     '<tr>' .
-      '<td style="vertical-align:top">' .  trim($pSourcex)  . '</td>' .
-      '<td style="vertical-align:top">' .  trim($pContent) . '</td>' .
+      '<td style="vertical-align:top">' .  trim($padSourcex)  . '</td>' .
+      '<td style="vertical-align:top">' .  trim($padContent) . '</td>' .
     '</tr>';
  
 ?>

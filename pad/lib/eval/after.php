@@ -3,31 +3,31 @@
 
    function pEval_single ( &$result, $key) {
     
-    if ( $GLOBALS ['pTrace'] )
+    if ( $GLOBALS ['padTrace'] )
       $trace_data ['before'] = $result[$key];
 
     $one = $result [$key];
 
     $name  = $one[0];
     $kind  = $one[2];
-    $parm  = [];
+    $padarm  = [];
     $count = 0;
-    $pEval_single = include PAD . "eval/single/$kind.php"; 
+    $padEval_single = include PAD . "eval/single/$kind.php"; 
 
     $result [$key] [1] = 'VAL';
 
-    if ( is_array($pEval_single) or is_object($pEval_single) or is_resource($pEval_single) ) {
+    if ( is_array($padEval_single) or is_object($padEval_single) or is_resource($padEval_single) ) {
       $result [$key] [0] = '*ARRAY*';
-      $result [$key] [4] = pArray_single ($pEval_single);
+      $result [$key] [4] = pArray_single ($padEval_single);
     } else {
-      pCheck_value ($pEval_single);
-      $result [$key] [0] = $pEval_single;
+      pCheck_value ($padEval_single);
+      $result [$key] [0] = $padEval_single;
     }
 
     unset ( $result [$key] [2] );
     unset ( $result [$key] [3] );
 
-    if ( $GLOBALS ['pTrace'] ) {
+    if ( $GLOBALS ['padTrace'] ) {
       $trace_data ['after'] = $result [$key];
       pEval_trace ('single', $trace_data );
     }   
@@ -37,7 +37,7 @@
   
   function pEval_after ( &$result, $eval ) {
  
-    global $pFlagStore, $pDataStore, $pContentStore;
+    global $padFlagStore, $padDataStore, $padContentStore;
 
     $check = 0;
     
@@ -133,7 +133,7 @@
         } else
           $result[$k][0] = $one[0]   ;
 
-        if ( $GLOBALS ['pTrace'] ) {
+        if ( $GLOBALS ['padTrace'] ) {
           if ( isset($result[$k][4]) )
             $trace_data ['value'] = $result[$k][4];
           else

@@ -1,5 +1,5 @@
 <?php
   
-  return pFakeXXX ($pContent);
+  return pFakeXXX ($padContent);
 
 ?>

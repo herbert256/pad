@@ -1,13 +1,13 @@
 <?php
 
-  if ( isset($pPrmsTag [$p] ['from']) )
-    $pSeq_loop_start = $pSeq_from;
+  if ( isset($padPrmsTag [$pad] ['from']) )
+    $padSeq_loop_start = $padSeq_from;
   else
-    $pSeq_loop_start = 1; 
+    $padSeq_loop_start = 1; 
   
-  if ( isset($pPrmsTag [$p] ['to']) )
-    $pSeq_loop_end = $pSeq_to;
+  if ( isset($padPrmsTag [$pad] ['to']) )
+    $padSeq_loop_end = $padSeq_to;
   else 
-    $pSeq_loop_end = PHP_INT_MAX;
+    $padSeq_loop_end = PHP_INT_MAX;
 
 ?>

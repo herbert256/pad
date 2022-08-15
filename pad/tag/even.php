@@ -1,7 +1,7 @@
 <?php
 
-  global $pOccur;
+  global $padOccur;
 
-  return ( $pOccur [$pIdx] % 2 == 0 );
+  return ( $padOccur [$padIdx] % 2 == 0 );
 
 ?>

@@ -1,16 +1,16 @@
 <?php
 
 
-  function pField_check ($parm) { return pField ($parm, 1); } 
-  function pField_value ($parm) { return pField ($parm, 2); } 
-  function pArray_check ($parm) { return pField ($parm, 3); } 
-  function pArray_value ($parm) { return pField ($parm, 4); } 
-  function pField_null  ($parm) { return pField ($parm, 5); } 
+  function pField_check ($padarm) { return pField ($padarm, 1); } 
+  function pField_value ($padarm) { return pField ($padarm, 2); } 
+  function pArray_check ($padarm) { return pField ($padarm, 3); } 
+  function pArray_value ($padarm) { return pField ($padarm, 4); } 
+  function pField_null  ($padarm) { return pField ($padarm, 5); } 
 
 
-  function pField ($parm, $type) {
+  function pField ($padarm, $type) {
 
-    $field = ( substr ( $parm, 0, 1 ) == '$' ) ? substr ( $parm, 1 ) : $parm;
+    $field = ( substr ( $padarm, 0, 1 ) == '$' ) ? substr ( $padarm, 1 ) : $padarm;
 
     if     ( strpos ( $field, '#' ) !== FALSE ) $value = pField_tag    ( $field        );
     elseif ( strpos ( $field, ':' ) !== FALSE ) $value = pField_prefix ( $field, $type );

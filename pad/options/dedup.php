@@ -1,12 +1,12 @@
 <?php
 
-  $pDedup = [];
+  $padDedup = [];
 
-  foreach ( $pData [$p] as $pK => $pV)
-    if ( is_array ($pV) and count($pV) == 1 and isset ( $pV [$pName [$p]] ) )
-      $pDedup [ $pV [$pName [$p]] ] = [ $pName [$p] => $pV [$pName [$p]] ] ;
+  foreach ( $padData [$pad] as $padK => $padV)
+    if ( is_array ($padV) and count($padV) == 1 and isset ( $padV [$padName [$pad]] ) )
+      $padDedup [ $padV [$padName [$pad]] ] = [ $padName [$pad] => $padV [$padName [$pad]] ] ;
 
-  if ( count($pDedup))
-    $pData [$p] = $pDedup;
+  if ( count($padDedup))
+    $padData [$pad] = $padDedup;
 
 ?>

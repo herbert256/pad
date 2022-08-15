@@ -1,28 +1,28 @@
 <?php
 
-  $pTagCnt [$p]++;
+  $padTagCnt [$pad]++;
 
-  if ( $pTrace )
+  if ( $padTrace )
     include 'trace/tag/before.php';
 
-  $pTagContent = ''; ob_start();
+  $padTagContent = ''; ob_start();
 
   pTiming_start ('tag');
-  $pTagResult = include PAD . "types/" . $pType [$p] . ".php";
+  $padTagResult = include PAD . "types/" . $padType [$pad] . ".php";
   pTiming_end ('tag');
 
-  $pTagContent .= ob_get_clean();
+  $padTagContent .= ob_get_clean();
 
-  if ( $pTrace )
+  if ( $padTrace )
     include 'trace/tag/after.php';
 
-  if ( is_object   ( $pTagResult ) ) $pTagResult = pToArray( $pTagResult );
-  if ( is_resource ( $pTagResult ) ) $pTagResult = pToArray( $pTagResult );
+  if ( is_object   ( $padTagResult ) ) $padTagResult = pToArray( $padTagResult );
+  if ( is_resource ( $padTagResult ) ) $padTagResult = pToArray( $padTagResult );
 
-  if ( $pTagResult === TRUE AND $pTagContent <> '' )
-    $pTagResult = $pTagContent;
+  if ( $padTagResult === TRUE AND $padTagContent <> '' )
+    $padTagResult = $padTagContent;
 
-  if ( is_scalar($pTagResult) and strpos($pTagResult , '@content@') !== FALSE )
-    $pTagResult = str_replace('@content@', $pTrue [$p], $pTagResult);
+  if ( is_scalar($padTagResult) and strpos($padTagResult , '@content@') !== FALSE )
+    $padTagResult = str_replace('@content@', $padTrue [$pad], $padTagResult);
 
 ?>

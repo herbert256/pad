@@ -9,7 +9,7 @@
 function pSeq_juggler ($n) {
 
 
-	$GLOBALS ['pSeq_juggler_array'] [] = $n;
+	$GLOBALS ['padSeq_juggler_array'] [] = $n;
 
 	$a = $n;
 

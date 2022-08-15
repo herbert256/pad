@@ -1,6 +1,6 @@
 <?php
 
-  $pCall = APP . "callbacks/" . $GLOBALS['pPrmsTag'] [$GLOBALS['p']] ['callback'];
+  $padCall = APP . "callbacks/" . $GLOBALS ['padPrmsTag'] [p()] ['callback'];
 
   include PAD . 'level/call.php';
 

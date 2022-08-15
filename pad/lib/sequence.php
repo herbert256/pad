@@ -3,12 +3,12 @@
 
   function pSeq_action ( $sequence1, $action, $sequence2 ) {
 
-    $pSeq_result       = $sequence1;
-    $pSeqCnt        = 0;
-    $pSeq_action_value = $action;
-    $pSeq_action_name  = $action;
+    $padSeq_result       = $sequence1;
+    $padSeqCnt        = 0;
+    $padSeq_action_value = $action;
+    $padSeq_action_name  = $action;
     
-    $pSequenceStore [$action] = $sequence2;
+    $padSequenceStore [$action] = $sequence2;
 
     return include PAD . "sequence/actions/$action.php";  
 
@@ -50,19 +50,19 @@
 
   function pSeq_array_action ($action) {
 
-    $array  = $GLOBALS['pSeq_action_value'];
+    $array  = $GLOBALS ['padSeq_action_value'];
     $arrays = pExplode ($array, '|');
 
-    $parms [] = $GLOBALS ['pSeq_result'];
+    $padarms [] = $GLOBALS ['padSeq_result'];
 
     foreach ($arrays as $store)
       if ( $store !== TRUE )
-        if ( isset($GLOBALS['pSequenceStore'] [$store]) )
-          $parms [] = $GLOBALS['pSequenceStore'] [$store];
+        if ( isset($GLOBALS ['padSequenceStore'] [$store]) )
+          $padarms [] = $GLOBALS ['padSequenceStore'] [$store];
         else
-          $parms [] = $store;
+          $padarms [] = $store;
 
-    return call_user_func_array ($action, $parms);
+    return call_user_func_array ($action, $padarms);
 
   }
 
@@ -77,23 +77,23 @@
 
   function pSeq_getCnt ( $first, $second, $third ) {
 
-    global $p, $pPrmsTag, $pSeq_parm;
+    global $pad, $padPrmsTag, $padSeq_parm;
 
-    if ( isset($pPrmsTag [$p][$first])      and $pPrmsTag [$p][$first]  !== TRUE and is_numeric($pPrmsTag [$p][$first]) )
+    if ( isset($padPrmsTag [$pad][$first])      and $padPrmsTag [$pad][$first]  !== TRUE and is_numeric($padPrmsTag [$pad][$first]) )
  
-      return $pPrmsTag [$p][$first];
+      return $padPrmsTag [$pad][$first];
  
-    elseif ( isset($pPrmsTag [$p][$second]) and $pPrmsTag [$p][$second] !== TRUE and is_numeric($pPrmsTag [$p][$second]) )
+    elseif ( isset($padPrmsTag [$pad][$second]) and $padPrmsTag [$pad][$second] !== TRUE and is_numeric($padPrmsTag [$pad][$second]) )
  
-      return $pPrmsTag [$p][$second];
+      return $padPrmsTag [$pad][$second];
  
-    elseif ( isset($pPrmsTag [$p][$third])  and $pPrmsTag [$p][$third]  !== TRUE and is_numeric($pPrmsTag [$p][$third]) )
+    elseif ( isset($padPrmsTag [$pad][$third])  and $padPrmsTag [$pad][$third]  !== TRUE and is_numeric($padPrmsTag [$pad][$third]) )
  
-      return $pPrmsTag [$p][$third];
+      return $padPrmsTag [$pad][$third];
  
-    elseif (                                    $pSeq_parm !== TRUE           and is_numeric($pSeq_parm) )
+    elseif (                                    $padSeq_parm !== TRUE           and is_numeric($padSeq_parm) )
  
-      return $pSeq_parm;
+      return $padSeq_parm;
  
     else
  

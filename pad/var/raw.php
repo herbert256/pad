@@ -4,9 +4,9 @@
 
   include 'inits.php';
 
-  $pOpts = $pExpl;
-  $pVal  = pVar_opts ($pVal, $pOpts);
-  $pVal  = str_replace ( '}', '&close;', $pVal );
+  $padOpts = $padExpl;
+  $padVal  = pVar_opts ($padVal, $padOpts);
+  $padVal  = str_replace ( '}', '&close;', $padVal );
 
   return include 'exits.php';
 

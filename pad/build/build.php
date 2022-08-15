@@ -3,11 +3,11 @@
   pTiming_start ('build');
 
   if ( isset ( $_REQUEST['pInclude']) )
-    $pBuild_mode = 'include';
+    $padBuild_mode = 'include';
 
-  include "$pBuild_mode.php";
+  include "$padBuild_mode.php";
 
-  if ( ! isset ( $pNoOccur) )
+  if ( ! isset ( $padNoOccur) )
     include PAD . 'occurrence/start.php';
 
   pTiming_end ('build');

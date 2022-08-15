@@ -1,5 +1,5 @@
 <?php
 
-  return substr($value, $parm[0] * -1);
+  return substr($value, $padarm[0] * -1);
 
 ?>

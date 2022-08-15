@@ -1,19 +1,19 @@
 <?php
 
-  $pSeqReturn = [];
+  $padSeqReturn = [];
 
-  $pSeqNames = array_unique ( [
-    'sequence', $pSeq_seq, $pSeq_set, $pSeq_name, $pName[$p], $pPrmsTag[$p]['toData']??'' 
+  $padSeqNames = array_unique ( [
+    'sequence', $padSeq_seq, $padSeq_set, $padSeq_name, $padName[$pad], $padPrmsTag[$pad]['toData']??'' 
   ] );
 
-  foreach ($pSeq_result as $pSeqValue) {
+  foreach ($padSeq_result as $padSeqValue) {
 
-     $pSeqRecord = [];
+     $padSeqRecord = [];
 
-     foreach ($pSeqNames as $pSeqName)
-       $pSeqRecord [$pSeqName] = $pSeqValue;
+     foreach ($padSeqNames as $padSeqName)
+       $padSeqRecord [$padSeqName] = $padSeqValue;
 
-     $pSeqReturn [] = $pSeqRecord; 
+     $padSeqReturn [] = $padSeqRecord; 
 
   } 
 

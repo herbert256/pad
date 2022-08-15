@@ -3,14 +3,14 @@
   $escape = '\\';
 
   $expr = '/((?:'.preg_quote($escape, '/').')?(?:'.preg_quote($escape, '/').'|%|_))/';
-  $parts = preg_split($expr, $parm, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+  $padarts = preg_split($expr, $padarm, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
 
   $expr = '/^';
   $lastWasPercent = FALSE;
   
-  foreach ($parts as $part) {
+  foreach ($padarts as $padart) {
     
-      switch ($part) {
+      switch ($padart) {
           case $escape.$escape:
               $expr .= preg_quote($escape, '/');
               break;
@@ -28,11 +28,11 @@
               $expr .= '.';
               break;
           default:
-              $expr .= preg_quote($part, '/');
+              $expr .= preg_quote($padart, '/');
               break;
       }
       
-      $lastWasPercent = $part == '%';
+      $lastWasPercent = $padart == '%';
   }
   
   $expr .= '$/i';

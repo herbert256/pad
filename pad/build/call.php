@@ -1,37 +1,37 @@
 <?php
 
-  $pBuild_now = substr(APP, 0, -1);
+  $padBuild_now = substr(APP, 0, -1);
 
-  $pExits     = [];
-  $pBuild_mrg = pExplode ("pages/$page", '/');
+  $padExits     = [];
+  $padBuild_mrg = pExplode ("pages/$page", '/');
 
-  foreach ($pBuild_mrg as $pBuild_key => $pBuild_value) {
+  foreach ($padBuild_mrg as $padBuild_key => $padBuild_value) {
 
-    $pBuild_now .= "/$pBuild_value";
+    $padBuild_now .= "/$padBuild_value";
 
-    if ( $pBuild_key == array_key_last($pBuild_mrg) 
-       and (file_exists("$pBuild_now.php") or file_exists("$pBuild_now.html") ) ) {
+    if ( $padBuild_key == array_key_last($padBuild_mrg) 
+       and (file_exists("$padBuild_now.php") or file_exists("$padBuild_now.html") ) ) {
  
-      $pCall = "$pBuild_now.php";
-      $pBase [$p] .= include PAD . 'level/call.php';
+      $padCall = "$padBuild_now.php";
+      $padBase [$pad] .= include PAD . 'level/call.php';
 
-    } elseif ( is_dir ($pBuild_now) ) {
+    } elseif ( is_dir ($padBuild_now) ) {
 
-      $pCall = "$pBuild_now/inits.php";
-      $pBase [$p] .= include PAD . 'level/call.php';
+      $padCall = "$padBuild_now/inits.php";
+      $padBase [$pad] .= include PAD . 'level/call.php';
 
-      $pExits [] = "$pBuild_now/exits.php";
+      $padExits [] = "$padBuild_now/exits.php";
 
     } else {
 
-      $pCall = "$pBuild_now.php";
-      $pBase [$p] .= include PAD . 'level/call.php';
+      $padCall = "$padBuild_now.php";
+      $padBase [$pad] .= include PAD . 'level/call.php';
 
     }
 
   }
 
-  foreach ( array_reverse ($pExits) as $pCall )
-    $pBase [$p] .= include PAD . 'level/call.php';
+  foreach ( array_reverse ($padExits) as $padCall )
+    $padBase [$pad] .= include PAD . 'level/call.php';
 
 ?>

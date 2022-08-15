@@ -1,7 +1,7 @@
 <?php
 
-  pDone ( $pSeq_seq,  TRUE );
-  pDone ( $pSeq_name, TRUE );
+  pDone ( $padSeq_seq,  TRUE );
+  pDone ( $padSeq_name, TRUE );
   pDone ( 'from',        TRUE );
   pDone ( 'increment',   TRUE );
   pDone ( 'to',          TRUE );
@@ -25,13 +25,13 @@
   pDone ( 'remove',      TRUE );
   pDone ( 'make',        TRUE );
 
-  foreach ( $pPrmsTag [$p] as $pSeq_tag_name => $pSeq_tag_value ) {
+  foreach ( $padPrmsTag [$pad] as $padSeq_tag_name => $padSeq_tag_value ) {
 
-    if ( file_exists ( PAD . "sequence/types/$pSeq_tag_name/make.php" ) )
-      pDone ( $pSeq_tag_name, TRUE );
+    if ( file_exists ( PAD . "sequence/types/$padSeq_tag_name/make.php" ) )
+      pDone ( $padSeq_tag_name, TRUE );
 
-    if ( file_exists ( PAD . "sequence/types/$pSeq_tag_name/filter.php" ) )
-      pDone ( $pSeq_tag_name, TRUE );
+    if ( file_exists ( PAD . "sequence/types/$padSeq_tag_name/filter.php" ) )
+      pDone ( $padSeq_tag_name, TRUE );
 
   }
 

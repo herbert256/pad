@@ -1,23 +1,23 @@
 <?php
 
-  if ( $pWalk [$p] == 'start' ) {
+  if ( $padWalk [$pad] == 'start' ) {
 
-    $pWalk [$p] = 'end';
+    $padWalk [$pad] = 'end';
     
-    $pIsolate [$p] = [];
+    $padIsolate [$pad] = [];
       
-    foreach ($GLOBALS as $pK => $pV)
-      if ( pValid_store ($pK) ) {
-        $pIsolate [$p] [$pK] = TRUE;
-        $pTmp = "pad_$p" . "_$pK";
-        $$pTmp = $$pK;
+    foreach ($GLOBALS as $padK => $padV)
+      if ( pValid_store ($padK) ) {
+        $padIsolate [$pad] [$padK] = TRUE;
+        $padTmp = "pad_$pad" . "_$padK";
+        $$padTmp = $$padK;
       }
     
   } else {
 
-    foreach ( $pIsolate [$p] as $pK => $pV ) {
-      $pTmp = "pad_$p" . "_$pK";
-      $$pK = $$pTmp;
+    foreach ( $padIsolate [$pad] as $padK => $padV ) {
+      $padTmp = "pad_$pad" . "_$padK";
+      $$padK = $$padTmp;
     }
   
   }

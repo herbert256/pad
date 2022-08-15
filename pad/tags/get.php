@@ -1,10 +1,10 @@
 <?php
 
-  $pGet_app     = $pPrmsVal [$p] [0] ?? pTag_parm ('include');
-  $pGet_page    = $pPrmsVal [$p] [1] ?? pTag_parm ('page');
-  $pGet_query   = $pPrmsVal [$p] [2] ?? pTag_parm ('parms');
-  $pGet_include = $pPrmsVal [$p] [3] ?? pTag_parm ('include');
+  $padGet_app     = $padPrmsVal [$pad] [0] ?? pTag_parm ('include');
+  $padGet_page    = $padPrmsVal [$pad] [1] ?? pTag_parm ('page');
+  $padGet_query   = $padPrmsVal [$pad] [2] ?? pTag_parm ('parms');
+  $padGet_include = $padPrmsVal [$pad] [3] ?? pTag_parm ('include');
 
-  return pad ( $pGet_app, $pGet_page, $pGet_query, $pGet_include ) 
+  return pad ( $padGet_app, $padGet_page, $padGet_query, $padGet_include ) 
  
 ?>

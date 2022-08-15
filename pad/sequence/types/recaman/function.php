@@ -8,17 +8,17 @@ function pSequence_recaman($n)
   $s = array();
   array_push($s, 0);
 
-  $prev = 0;
+  $padrev = 0;
   for ($i = 1; $i < $n; $i++)
   {
-    $curr = $prev - $i;
+    $curr = $padrev - $i;
 
     if($curr < 0 or in_array($curr, $s))
-      $curr = $prev + $i;
+      $curr = $padrev + $i;
 
     array_push($s, $curr);
 
-    $prev = $curr;
+    $padrev = $curr;
   }
 
   return $curr; 

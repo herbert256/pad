@@ -1,55 +1,55 @@
 <?php
 
-  $pOpenClose = [];
-  $pOpenClose [$pTag [$p]] = TRUE;
+  $padOpenClose = [];
+  $padOpenClose [$padTag [$pad]] = TRUE;
 
-  $p1 = strpos($pTrue [$p], '{/', 0);
+  $pad1 = strpos($padTrue [$pad], '{/', 0);
 
-  while ($p1 !== FALSE) {
+  while ($pad1 !== FALSE) {
 
-    $p2 = strpos($pTrue [$p], '}', $p1);
+    $pad2 = strpos($padTrue [$pad], '}', $pad1);
 
-    if ( $p2 !== FALSE ) {
+    if ( $pad2 !== FALSE ) {
 
-      $p3 = strpos($pTrue [$p], ' ', $p1);
-      if ($p3 !== FALSE and $p3 < $p2 )
-        $p2 = $p3;      
+      $pad3 = strpos($padTrue [$pad], ' ', $pad1);
+      if ($pad3 !== FALSE and $pad3 < $pad2 )
+        $pad2 = $pad3;      
 
-      $pCheckTag = substr($pTrue [$p], $p1+2, $p2-$p1-2);
-      if ( pValid ($pCheckTag) )
-        $pOpenClose [$pCheckTag] = TRUE;
+      $padCheckTag = substr($padTrue [$pad], $pad1+2, $pad2-$pad1-2);
+      if ( pValid ($padCheckTag) )
+        $padOpenClose [$padCheckTag] = TRUE;
 
     }
 
-    $p1 = strpos($pTrue [$p], '{/', $p1+1);
+    $pad1 = strpos($padTrue [$pad], '{/', $pad1+1);
 
   }
 
-  $p1 = -1;
+  $pad1 = -1;
 
   while (1) {
 
-    $p1 = strpos($pTrue [$p], '{else}', ++$p1);
+    $pad1 = strpos($padTrue [$pad], '{else}', ++$pad1);
 
-    if ( $p1 === FALSE ) {
-      $pFalse [$p] = '';
+    if ( $pad1 === FALSE ) {
+      $padFalse [$pad] = '';
       return TRUE;
     }
     
-    $pCheck = substr($pTrue [$p],0,$p1);
+    $padCheck = substr($padTrue [$pad],0,$pad1);
 
-    foreach ( $pOpenClose as $pCheckTag => $pDummy )
-      if ( ( substr_count($pCheck, '{'.$pCheckTag.' ' ) + substr_count($pCheck, '{'.$pCheckTag.'}' ) )
+    foreach ( $padOpenClose as $padCheckTag => $padDummy )
+      if ( ( substr_count($padCheck, '{'.$padCheckTag.' ' ) + substr_count($padCheck, '{'.$padCheckTag.'}' ) )
              <> 
-           ( substr_count($pCheck, '{/'.$pCheckTag.' ') + substr_count($pCheck, '{/'.$pCheckTag.'}') ) )
+           ( substr_count($padCheck, '{/'.$padCheckTag.' ') + substr_count($padCheck, '{/'.$padCheckTag.'}') ) )
         continue 2;
 
     break;
 
   }
 
-  $pFalse [$p] = substr ( $pTrue [$p], $p1+6  );
-  $pTrue  [$p] = substr ( $pTrue [$p], 0, $p1 );
+  $padFalse [$pad] = substr ( $padTrue [$pad], $pad1+6  );
+  $padTrue  [$pad] = substr ( $padTrue [$pad], 0, $pad1 );
 
   return TRUE;
 

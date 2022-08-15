@@ -1,7 +1,7 @@
 <?php
 
-  shuffle ( $pSeq_result );
+  shuffle ( $padSeq_result );
 
-  return $pSeq_result;
+  return $padSeq_result;
 
 ?>

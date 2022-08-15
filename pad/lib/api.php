@@ -3,35 +3,35 @@
 
   function pFast_link ($app, $page, $vars ) {
     
-    global $pFast_link, $PADSESSID, $PADREQID, $pHost, $p;
+    global $padFast_link, $PADSESSID, $PADREQID, $padHost, $pad;
   
     $vars ['app']       = $app;
     $vars ['page']      = $page;
     $vars ['PADSESSID'] = $PADSESSID;
     $vars ['PADREFID']  = $PADREQID;
     
-    $fast = pRandom_string ($pFast_link);
+    $fast = pRandom_string ($padFast_link);
   
     pDb (
       "insert into links values('{0}','{1}')",
       [$fast, serialize($vars)]
     );
                         
-    return $pHost . $p . $fast;
+    return $padHost . $pad . $fast;
 
   }
 
 
   function pGo ( $go ) {
 
-    global $pHost, $pScript, $pStop;
+    global $padHost, $padScript, $padStop;
 
-    $parts = pExplode ($go, '://', 2);
+    $padarts = pExplode ($go, '://', 2);
 
-    if ( count ($parts) == 2)
+    if ( count ($padarts) == 2)
       $next = $go;
     else
-      $next = "$pHost$pScript?app=$go";
+      $next = "$padHost$padScript?app=$go";
   
     pHeader ("Location: $next");
     

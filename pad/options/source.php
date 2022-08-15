@@ -1,6 +1,6 @@
 <?php
 
-  $pContent = pColors_string ($pContent);  
+  $padContent = pColors_string ($padContent);  
 
   include PAD . 'options/ignore.php';
 

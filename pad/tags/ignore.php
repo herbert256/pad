@@ -1,6 +1,6 @@
 <?php
 
-  $pContent = pEscape ( $pContent );
+  $padContent = pEscape ( $padContent );
 
   return TRUE;
   
