@@ -4,18 +4,18 @@
   padGetParms ('GET',    $_GET   );
   padGetParms ('COOKIE', $_COOKIE);
 
-  if (count($padSession_vars) ) {
+  if (count($padSessionVars) ) {
 
     if ( ! ini_get('session.auto_start') )
       session_start();
 
     padGetParms ('SESSION', $_SESSION);
     
-    foreach ($padSession_vars as $padVar)
+    foreach ($padSessionVars as $padVar)
       if ( ! isset ($GLOBALS [$padVar]) )
         $GLOBALS [$padVar] = '';
 
-    $padSession_started = TRUE;
+    $padSessionStarted = TRUE;
       
   }
   

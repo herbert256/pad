@@ -1,8 +1,8 @@
 <?php
 
-  $padSeq_loop_start = 1;
-  $padSeq_loop  = 1;
-  $padSeq_inc   = 1;
+  $padSeqLoopStart = 1;
+  $padSeqLoop  = 1;
+  $padSeqInc   = 1;
 
   include "loop.php";    
 

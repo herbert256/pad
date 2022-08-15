@@ -6,13 +6,13 @@
 
   $padOpts = [];
 
-  foreach ( $padData_default_start as $padV )
+  foreach ( $padDataDefaultStart as $padV )
     $padOpts [] = $padV;
 
   foreach ( $padExpl as $padV )
     $padOpts [] = trim($padV);
 
-  foreach ( $padData_default_end as $padV )
+  foreach ( $padDataDefaultEnd as $padV )
     $padOpts [] = $padV;
 
   $padVal = padVarOpts ($padVal, $padOpts);

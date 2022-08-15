@@ -1,11 +1,11 @@
 <?php
 
   if ( isset($padPrmsVal [$pad][0]) )
-    $padField_tag = $padPrmsVal [$pad][0];
+    $padFieldTag = $padPrmsVal [$pad][0];
   else
-    $padField_tag = '';
+    $padFieldTag = '';
 
-  $padFieldResult = padFieldTag ("$padField_tag#$padTag[$pad]");
+  $padFieldResult = padFieldTag ("$padFieldTag#$padTag[$pad]");
 
   if ( $padFieldResult === INF )
     return NULL;

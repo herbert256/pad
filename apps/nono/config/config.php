@@ -1,5 +1,5 @@
 <?php
 
-  $padNo_no = TRUE;
+  $padNoNo = TRUE;
 
 ?>

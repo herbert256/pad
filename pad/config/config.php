@@ -2,7 +2,7 @@
   
   //  Error handling
 
-  $padError_action = 'pad';  // 'pad'    = PAD's own full blown error handler.
+  $padErrorAction = 'pad';  // 'pad'    = PAD's own full blown error handler.
                               // 'boot'   = Use the lightweight PAD boot error handler
                               // 'php'    = Use the PHP defaults (php.ini).
                               // 'stop'   = Stop processing but do the PAD exit handling.
@@ -10,12 +10,12 @@
                               // 'ignore' = Ignore all errors and continue processing.
                               // 'report' = Report the error and continue processing.
  
-  $padError_level  = 'all';  // Kind of errors that will be processed by $padError_action
+  $padErrorLevel  = 'all';  // Kind of errors that will be processed by $padErrorAction
                               // 'none' , 'error' , 'warning' , 'notice' , 'all'
-                              // (not used when $padError_action is 'php' or 'boot')
+                              // (not used when $padErrorAction is 'php' or 'boot')
 
-  $padError_log    = TRUE;  //  Write errors to Apache error log
-  $padError_dump   = TRUE;   //  Dump errors to the DATA directory
+  $padErrorLog    = TRUE;  //  Write errors to Apache error log
+  $padErrorDump   = TRUE;   //  Dump errors to the DATA directory
 
   // Trace the internal working of PAD
 
@@ -23,89 +23,89 @@
 
   // Keep track of stuff
 
-  $padTrack_file_request = FALSE;
-  $padTrack_file_data    = FALSE; 
+  $padTrackFileRequest = FALSE;
+  $padTrackFileData    = FALSE; 
 
-  $padTrack_db_session  = FALSE;
-  $padTrack_db_request  = FALSE;
-  $padTrack_db_data     = FALSE;
+  $padTrackDbSession  = FALSE;
+  $padTrackDbRequest  = FALSE;
+  $padTrackDbData     = FALSE;
   
-  $padTrack_sql         = FALSE;   //  Detail information about every executed SQL statement.
+  $padTrackSql         = FALSE;   //  Detail information about every executed SQL statement.
 
   // Cache settings
   
-  $padCache_server_age       = 0;                    //  Seconds to keep the cache at PAD server side, 
+  $padCacheServerAge       = 0;                    //  Seconds to keep the cache at PAD server side, 
                                                       //  0 to turn of server-side caching
 
-  $padCache_proxy_age        = 0;                    //  How long a proxy is allowed to cache. 
+  $padCacheProxyAge        = 0;                    //  How long a proxy is allowed to cache. 
                                                       //  0 to turn of proxy-side caching
 
-  $padCache_client_age       = 0;                    //  How long the client is allowed to cache.
+  $padCacheClientAge       = 0;                    //  How long the client is allowed to cache.
                                                       //  0 to turn of client-side caching
 
-  // Server-side cache settings ( used wheb $padCache_server_age <> 0 )
+  // Server-side cache settings ( used wheb $padCacheServerAge <> 0 )
 
-  $padCache_server_type      = 'memory';             //  The implementation of the server-side cache: file/db/memory
-  $padCache_server_gzip      = FALSE;                //  Store the cache zipped
-  $padCache_server_no_data   = FALSE;                //  Do not store the data itself, only the etag and timestamp,
+  $padCacheServerType      = 'memory';             //  The implementation of the server-side cache: file/db/memory
+  $padCacheServerGzip      = FALSE;                //  Store the cache zipped
+  $padCacheServerNoData   = FALSE;                //  Do not store the data itself, only the etag and timestamp,
                                                       //  caching based on the client 'etag' & 'modified' HTTP headers.
 
-  $padCache_memory_host      = 'localhost';          //  Used when $padCache_server_type is 'memory'
-  $padCache_memory_port      = '11211';
+  $padCacheMemoryHost      = 'localhost';          //  Used when $padCacheServerType is 'memory'
+  $padCacheMemoryPort      = '11211';
 
-  $padCache_db_host          = 'localhost';          //  Used when $padCache_server_type is 'db'
-  $padCache_db_database      = 'cache';
-  $padCache_db_user          = 'cache';
-  $padCache_db_password      = 'cache';
+  $padCacheDbHost          = 'localhost';          //  Used when $padCacheServerType is 'db'
+  $padCacheDbDatabase      = 'cache';
+  $padCacheDbUser          = 'cache';
+  $padCacheDbPassword      = 'cache';
 
-  $padCache_file             = DATA . 'cache/';   //  Used when $padCache_server_type is 'file'
-  $padCache_file_mode        = 755;
+  $padCacheFile             = DATA . 'cache/';   //  Used when $padCacheServerType is 'file'
+  $padCacheFileMode        = 755;
 
   // SQL parms - PAD internal
 
-  $padPad_sql_host           = '127.0.0.1';
-  $padPad_sql_database       = 'pad';
-  $padPad_sql_user           = 'pad';
-  $padPad_sql_password       = 'pad';
+  $padPadSqlHost           = '127.0.0.1';
+  $padPadSqlDatabase       = 'pad';
+  $padPadSqlUser           = 'pad';
+  $padPadSqlPassword       = 'pad';
 
   // SQL parms - application
 
-  $padSql_host               = '127.0.0.1';
-  $padSql_database           = $app;
-  $padSql_user               = $app;
-  $padSql_password           = $app;
+  $padSqlHost               = '127.0.0.1';
+  $padSqlDatabase           = $app;
+  $padSqlUser               = $app;
+  $padSqlPassword           = $app;
 
   // If pad creates a directory or file.
 
-  $padDir_mode  = 0755;
-  $padFile_mode = 0755;
+  $padDirMode  = 0755;
+  $padFileMode = 0755;
 
   // Default date/time formating
   
-  $padFmt_date      = 'Y-m-d';
-  $padFmt_time      = 'H:i:s';
-  $padFmt_timestamp = 'Y-m-d H:i:s';
+  $padFmtDate      = 'Y-m-d';
+  $padFmtTime      = 'H:i:s';
+  $padFmtTimestamp = 'Y-m-d H:i:s';
   
   // Keep track of vars in a session.
   
-  $padSession_vars = [];
+  $padSessionVars = [];
 
   // How the app parts from ../$app/pages/ are processed.
 
-  $padBuild_mode     = 'before';     // 'isolate'
+  $padBuildMode     = 'before';     // 'isolate'
                                       // 'before'
                                       // 'demand'
                                       // 'include'
   
-  $padBuild_merge    = 'content';    // 'content'
+  $padBuildMerge    = 'content';    // 'content'
                                       // 'end'
     
   // Default {$var} options, there must be a PHP snippet in one of below directories
   // - PAD/functions/
   // - APP/functions/
 
-  $padData_default_start = ['trim', 'white'];
-  $padData_default_end   = ['html', 'nbsp'];
+  $padDataDefaultStart = ['trim', 'white'];
+  $padDataDefaultEnd   = ['html', 'nbsp'];
 
   // Default filter options on the complete output, executed before Tidy
   // Must be a flag from FILTER_UNSAFE_RAW from below page.
@@ -116,8 +116,8 @@
   // lib tidy
 
   $padTidy                   = FALSE;
-  $padTidy_ccsid             = 'utf8'; 
-  $padTidy_config            = [ 
+  $padTidyCcsid             = 'utf8'; 
+  $padTidyConfig            = [ 
                                   'output-html'     => FALSE,
                                   'doctype'         => 'html5',
                                   'wrap'            => 200,
@@ -127,16 +127,16 @@
                                   'replace-color'   => 'yes'
                                 ];
 
-  $padRemove_whitespace      = FALSE;
+  $padRemoveWhitespace      = FALSE;
 
   $padLocal = [ 'localhost', 'penguin.linux.test', '127.0.0.1' ];
   
   // Other settings.
 
-  $padClient_gzip            = FALSE; // Send the result zipped
-  $padEtag_304               = FALSE;  // Send a 304 header, based on the client etag http header
-  $padNo_no                  = FALSE; // No PAD stuff, just plane PHP   
-  $padFast_link              = 32;
+  $padClientGzip            = FALSE; // Send the result zipped
+  $padEtag304               = FALSE;  // Send a 304 header, based on the client etag http header
+  $padNoNo                  = FALSE; // No PAD stuff, just plane PHP   
+  $padFastLink              = 32;
   $padTiming                 = TRUE;
 
 ?>

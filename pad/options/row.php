@@ -1,8 +1,8 @@
 <?php
 
-  $padFilter_start = $padFilter_end = $padPrmsTag [$pad] ['row'];
+  $padFilterStart = $padFilterEnd = $padPrmsTag [$pad] ['row'];
 
   padDone ( 'row', TRUE);  
-  padDataFilterGo ($padData [$pad], $padFilter_start, $padFilter_end);    
+  padDataFilterGo ($padData [$pad], $padFilterStart, $padFilterEnd);    
 
 ?>

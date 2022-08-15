@@ -4,10 +4,10 @@
     return;
 
   $padTraceData = [
-    'seq'    => $padSeq_seq,
-    'set'    => $padSeq_set,
-    'parm'   => $padSeq_parm,
-    'name'   => $padSeq_name,
+    'seq'    => $padSeqSeq,
+    'set'    => $padSeqSet,
+    'parm'   => $padSeqParm,
+    'name'   => $padSeqName,
     'result' => $padSeqReturn
   ];
 

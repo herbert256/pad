@@ -1,7 +1,7 @@
 <?php
 
-  if ( $padSeq_loop == 1 ) return 0;
-  if ( $padSeq_loop == 2 ) return 1; 
+  if ( $padSeqLoop == 1 ) return 0;
+  if ( $padSeqLoop == 2 ) return 1; 
 
   return include 'go.php'; 
 

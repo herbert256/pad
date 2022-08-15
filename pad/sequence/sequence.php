@@ -1,6 +1,6 @@
 <?php
 
-  $padIn_sequence = TRUE;
+  $padInSequence = TRUE;
 
   include 'build/parms.php';
   include 'build/sequence.php';
@@ -12,23 +12,23 @@
   include 'build/done.php';
   include 'build/build.php';  
 
-  if ( $padSeq_build == 'function' ) include_once "types/$padSeq_seq/function.php";
-  if ( $padSeq_build == 'bool'     ) include_once "types/$padSeq_seq/bool.php";
+  if ( $padSeqBuild == 'function' ) include_once "types/$padSeqSeq/function.php";
+  if ( $padSeqBuild == 'bool'     ) include_once "types/$padSeqSeq/bool.php";
 
-  if ( file_exists ( PAD . "sequence/types/$padSeq_seq/init.php" )) 
-    include "types/$padSeq_seq/init.php";
+  if ( file_exists ( PAD . "sequence/types/$padSeqSeq/init.php" )) 
+    include "types/$padSeqSeq/init.php";
       
   include 'type/type.php';
   include 'build/actions.php';
  
-  if ( file_exists ( PAD . "sequence/types/$padSeq_seq/exit.php" ) )   
-    include "types/$padSeq_seq/exit.php";
+  if ( file_exists ( PAD . "sequence/types/$padSeqSeq/exit.php" ) )   
+    include "types/$padSeqSeq/exit.php";
 
   include 'build/push.php';
   include 'build/return.php';
   include 'build/trace.php';
 
-  $padIn_sequence = FALSE;
+  $padInSequence = FALSE;
 
   return $padSeqReturn;
 

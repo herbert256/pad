@@ -1,12 +1,12 @@
 <?php
 
-  if ( $padBuild_mode == 'include' )
-    $padTidy_config ['show-body-only'] = true;
+  if ( $padBuildMode == 'include' )
+    $padTidyConfig ['show-body-only'] = true;
 
-  $padTidy_out = new tidy;
-  $padTidy_out->parseString($padOutput, $padTidy_config, 'utf8');
-  $padTidy_out->cleanRepair();
+  $padTidyOut = new tidy;
+  $padTidyOut->parseString($padOutput, $padTidyConfig, 'utf8');
+  $padTidyOut->cleanRepair();
 
-  $padOutput = $padTidy_out;
+  $padOutput = $padTidyOut;
 
 ?>

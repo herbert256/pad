@@ -1,19 +1,19 @@
 <?php
 
-  if ( $padSeq_action_value === TRUE or ! ctype_digit($padSeq_action_value) )
+  if ( $padSeqActionValue === TRUE or ! ctype_digit($padSeqActionValue) )
     if ( $padSeqCnt )
-      $padSeq_actionCnt = $padSeqCnt;
+      $padSeqActionCnt = $padSeqCnt;
     else
-      $padSeq_actionCnt = 1;
+      $padSeqActionCnt = 1;
   else
-    $padSeq_actionCnt = $padSeq_action_value;    
+    $padSeqActionCnt = $padSeqActionValue;    
 
-  if ( count($padSeq_result) > $padSeq_actionCnt )
-    if ( $padSeq_action_name == 'first')
-      return array_slice ( $padSeq_result, 0, $padSeq_actionCnt );
+  if ( count($padSeqResult) > $padSeqActionCnt )
+    if ( $padSeqActionName == 'first')
+      return array_slice ( $padSeqResult, 0, $padSeqActionCnt );
     else 
-      return array_slice ( $padSeq_result, $padSeq_actionCnt * -1 );
+      return array_slice ( $padSeqResult, $padSeqActionCnt * -1 );
   else
-    return $padSeq_result;
+    return $padSeqResult;
   
 ?>

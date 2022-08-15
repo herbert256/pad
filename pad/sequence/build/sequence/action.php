@@ -1,21 +1,21 @@
 <?php
 
-  if ( isset($padPrmsTag [$pad][$padSeq_tmp]) )
-    $padSeq_parm = $padPrmsTag [$pad][$padSeq_tmp];
+  if ( isset($padPrmsTag [$pad][$padSeqTmp]) )
+    $padSeqParm = $padPrmsTag [$pad][$padSeqTmp];
   else
-    $padSeq_parm = $padPrm [$pad];
+    $padSeqParm = $padPrm [$pad];
 
-  $padSeq_parms = padExplode($padSeq_parm, '|');
+  $padSeqParms = padExplode($padSeqParm, '|');
 
-  $padSeq_seq  = 'pull';
-  $padSeq_pull = $padSeq_parms[0]; 
-  $padSeq_set  = $padSeq_tmp;
+  $padSeqSeq  = 'pull';
+  $padSeqPull = $padSeqParms[0]; 
+  $padSeqSet  = $padSeqTmp;
 
-  unset ( $padSeq_parms[0] );
+  unset ( $padSeqParms[0] );
 
-  if ( count($padSeq_parms) )
-    $padPrmsTag [$pad] [$padSeq_tmp] = implode('|', $padSeq_parms);
+  if ( count($padSeqParms) )
+    $padPrmsTag [$pad] [$padSeqTmp] = implode('|', $padSeqParms);
   else
-    $padPrmsTag [$pad] [$padSeq_tmp] = true;
+    $padPrmsTag [$pad] [$padSeqTmp] = true;
 
 ?>

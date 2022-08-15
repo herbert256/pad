@@ -1,13 +1,13 @@
 <?php
 
-  $padFilter_last = $padPrmsTag [$pad] ['last'];
-  if ( ! $padFilter_last )
-    $padFilter_last = 1;
+  $padFilterLast = $padPrmsTag [$pad] ['last'];
+  if ( ! $padFilterLast )
+    $padFilterLast = 1;
 
-  $padFilter_end   = count($padData [$pad]);
-  $padFilter_start = ($padFilter_end - $padFilter_last) + 1;
+  $padFilterEnd   = count($padData [$pad]);
+  $padFilterStart = ($padFilterEnd - $padFilterLast) + 1;
   
   padDone ( 'last',   TRUE);      
-  padDataFilterGo ($padData [$pad], $padFilter_start, $padFilter_end);    
+  padDataFilterGo ($padData [$pad], $padFilterStart, $padFilterEnd);    
 
 ?>

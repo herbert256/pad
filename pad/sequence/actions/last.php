@@ -1,10 +1,10 @@
 <?php
 
-  if ( count($padSeq_result) > $padSeq_actionCnt )
-    if ( $padSeq_action_name == 'first')
-      return array_slice ( $padSeq_result, 0, $padSeq_actionCnt );
+  if ( count($padSeqResult) > $padSeqActionCnt )
+    if ( $padSeqActionName == 'first')
+      return array_slice ( $padSeqResult, 0, $padSeqActionCnt );
     else 
-      return array_slice ( $padSeq_result, $padSeq_actionCnt * -1 );
+      return array_slice ( $padSeqResult, $padSeqActionCnt * -1 );
   else
     return include 'first.php';
   

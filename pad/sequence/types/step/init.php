@@ -1,5 +1,5 @@
 <?php
 
-  $padSeq_inc = $padSeq_parm;
+  $padSeqInc = $padSeqParm;
 
 ?>

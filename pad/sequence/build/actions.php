@@ -1,22 +1,22 @@
 <?php
   
-  foreach ( $padPrmsTag [$pad] as $padSeq_action_name => $padSeq_action_value )
+  foreach ( $padPrmsTag [$pad] as $padSeqActionName => $padSeqActionValue )
 
-    if ( $padSeq_action_name <> $padSeq_seq )
+    if ( $padSeqActionName <> $padSeqSeq )
 
-      if ( file_exists ( PAD . "sequence/actions/$padSeq_action_name.php" ) ) {
+      if ( file_exists ( PAD . "sequence/actions/$padSeqActionName.php" ) ) {
 
-        if ( $padSeq_action_value === TRUE or ! ctype_digit($padSeq_action_value) )
+        if ( $padSeqActionValue === TRUE or ! ctype_digit($padSeqActionValue) )
           if ( $padSeqCnt )
-            $padSeq_actionCnt = $padSeqCnt;
+            $padSeqActionCnt = $padSeqCnt;
           else
-            $padSeq_actionCnt = 1;
+            $padSeqActionCnt = 1;
         else
-          $padSeq_actionCnt = $padSeq_action_value;    
+          $padSeqActionCnt = $padSeqActionValue;    
 
-        $padSeq_result = include PAD . "sequence/actions/$padSeq_action_name.php";
+        $padSeqResult = include PAD . "sequence/actions/$padSeqActionName.php";
 
-        padDone ( $padSeq_action_name, TRUE );
+        padDone ( $padSeqActionName, TRUE );
 
       }
   

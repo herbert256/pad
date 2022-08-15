@@ -1,26 +1,26 @@
 <?php
 
-  if ( ! $padSeq_random )
-    if ( "padSequence_bool_$padSeq_seq"($padSeq_loop) )
-      return $padSeq_loop;
+  if ( ! $padSeqRandom )
+    if ( "padSequence_bool_$padSeqSeq"($padSeqLoop) )
+      return $padSeqLoop;
     else
       return FALSE;
 
-  $padSeq_random_try = 1;
+  $padSeqRandomTry = 1;
 
-  while ( $padSeq_random_try <= $padSeq_max ) {
+  while ( $padSeqRandomTry <= $padSeqMax ) {
 
-    if ( count ($padSeq_for) )
-      $padSeq_loop_bool = $padSeq_for [array_rand($padSeq_for)];
+    if ( count ($padSeqFor) )
+      $padSeqLoopBool = $padSeqFor [array_rand($padSeqFor)];
     else
-      $padSeq_loop_bool = padSeq_random ( $padSeq_loop_start, $padSeq_loop_end );
+      $padSeqLoopBool = padSeq_random ( $padSeqLoopStart, $padSeqLoopEnd );
  
-    include_once PAD . "sequence/types/$padSeq_seq/bool.php";
+    include_once PAD . "sequence/types/$padSeqSeq/bool.php";
 
-    if ( "padSequence_bool_$padSeq_seq"($padSeq_loop_bool) )
-      return $padSeq_loop_bool;
+    if ( "padSequence_bool_$padSeqSeq"($padSeqLoopBool) )
+      return $padSeqLoopBool;
      
-    $padSeq_random_try++;
+    $padSeqRandomTry++;
     
   }
  

@@ -1,33 +1,33 @@
 <?php
 
-  $padSeq_list      = $padSeq_loop;
-  $padSeq_list_last = $padSeq_loop;
+  $padSeqList      = $padSeqLoop;
+  $padSeqListLast = $padSeqLoop;
 
-  foreach ( $GLOBALS["padSeq_$padSeq_opr_name"."_list"] as $padSeq_list_name => $padSeq_list_value ) {
+  foreach ( $GLOBALS["padSeq_$padSeqOprName"."_list"] as $padSeqListName => $padSeqListValue ) {
 
-    padSeq_set ( $padSeq_list_name, $padSeq_list_value );
+    padSeq_set ( $padSeqListName, $padSeqListValue );
 
-    $padSeq_loop = $padSeq_list;
+    $padSeqLoop = $padSeqList;
 
-    if ( $padSeq_opr_name== 'make' )
-      $padSeq_list = include PAD . "sequence/types/$padSeq_list_name/make.php"; 
+    if ( $padSeqOprName== 'make' )
+      $padSeqList = include PAD . "sequence/types/$padSeqListName/make.php"; 
     else
-      $padSeq_list = include PAD . "sequence/types/$padSeq_list_name/filter.php"; 
+      $padSeqList = include PAD . "sequence/types/$padSeqListName/filter.php"; 
 
-    if     ( $padSeq_opr_name == 'keep'   and $padSeq_list === FALSE ) return FALSE;
-    elseif ( $padSeq_opr_name == 'remove' and $padSeq_list === TRUE  ) return FALSE;
-    elseif ( $padSeq_opr_name == 'keep'   and $padSeq_list === TRUE  ) $padSeq_list = $padSeq_list_last;
-    elseif ( $padSeq_opr_name == 'remove' and $padSeq_list === FALSE ) $padSeq_list = $padSeq_list_last;
-    elseif ( $padSeq_list === NULL                                    ) return NULL;
-    elseif ( $padSeq_list === INF                                     ) return NULL; 
-    elseif ( $padSeq_list === NAN                                     ) return NULL; 
-    elseif ( $padSeq_list === TRUE                                    ) $padSeq_list = $padSeq_list_last;
-    elseif ( $padSeq_list === FALSE                                   ) return FALSE;
+    if     ( $padSeqOprName == 'keep'   and $padSeqList === FALSE ) return FALSE;
+    elseif ( $padSeqOprName == 'remove' and $padSeqList === TRUE  ) return FALSE;
+    elseif ( $padSeqOprName == 'keep'   and $padSeqList === TRUE  ) $padSeqList = $padSeqListLast;
+    elseif ( $padSeqOprName == 'remove' and $padSeqList === FALSE ) $padSeqList = $padSeqListLast;
+    elseif ( $padSeqList === NULL                                    ) return NULL;
+    elseif ( $padSeqList === INF                                     ) return NULL; 
+    elseif ( $padSeqList === NAN                                     ) return NULL; 
+    elseif ( $padSeqList === TRUE                                    ) $padSeqList = $padSeqListLast;
+    elseif ( $padSeqList === FALSE                                   ) return FALSE;
 
-   $padSeq_list_last = $padSeq_list;
+   $padSeqListLast = $padSeqList;
 
   }
 
-  return $padSeq_list;
+  return $padSeqList;
 
 ?>

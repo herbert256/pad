@@ -1,30 +1,30 @@
 <?php
 
-  $GLOBALS ["padSeq_$padSeq_one" . "_list"] = [];
+  $GLOBALS ["padSeq_$padSeqOne" . "_list"] = [];
 
-  if ( $padSeq_one == $padSeq_seq ) 
+  if ( $padSeqOne == $padSeqSeq ) 
     return;
 
-  if ( ! isset($padPrmsTag [$pad] [$padSeq_one]) )
+  if ( ! isset($padPrmsTag [$pad] [$padSeqOne]) )
     return;
 
-  $GLOBALS["padSeq_".$padSeq_one. "_list"] = [];
+  $GLOBALS["padSeq_".$padSeqOne. "_list"] = [];
 
-  $padSeq_one_tmp = padExplode ( $padPrmsTag [$pad] [$padSeq_one], ';');
+  $padSeqOneTmp = padExplode ( $padPrmsTag [$pad] [$padSeqOne], ';');
 
-  $padSeq_one_list = [];
-  foreach ( $padSeq_one_tmp as $padEntry )
-    $padSeq_one_list [$padEntry ] = TRUE;
+  $padSeqOneList = [];
+  foreach ( $padSeqOneTmp as $padEntry )
+    $padSeqOneList [$padEntry ] = TRUE;
 
-  foreach ( $padSeq_one_list as $padSeq_one_name => $padSeq_one_value )
+  foreach ( $padSeqOneList as $padSeqOneName => $padSeqOneValue )
 
-    if ($padSeq_one_name <> $padSeq_seq and file_exists (PAD . "sequence/types/$padSeq_one_name/$padSeq_filter_check.php")) {
+    if ($padSeqOneName <> $padSeqSeq and file_exists (PAD . "sequence/types/$padSeqOneName/$padSeqFilterCheck.php")) {
 
-      $GLOBALS["padSeq_".$padSeq_one. "_list"] [$padSeq_one_name] = $padSeq_one_value;
+      $GLOBALS["padSeq_".$padSeqOne. "_list"] [$padSeqOneName] = $padSeqOneValue;
 
-      padDone ( $padSeq_one_name, TRUE );
+      padDone ( $padSeqOneName, TRUE );
 
-      $GLOBALS ["padSeq_$padSeq_one_name"] = $padSeq_one_value;
+      $GLOBALS ["padSeq_$padSeqOneName"] = $padSeqOneValue;
 
     }
   

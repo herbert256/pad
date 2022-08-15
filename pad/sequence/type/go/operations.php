@@ -1,37 +1,37 @@
 <?php
 
-  $padSeq_operations      = $padSequence;
-  $padSeq_operations_last = $padSequence;
+  $padSeqOperations      = $padSequence;
+  $padSeqOperationsLast = $padSequence;
 
-  foreach ( $padSeq_opr as $padSeq_opr_name => $padSeq_opr_value ) {
+  foreach ( $padSeqOpr as $padSeqOprName => $padSeqOprValue ) {
 
-    if ( in_array($padSeq_opr_name, $padSeq_one_done ) )
+    if ( in_array($padSeqOprName, $padSeqOneDone ) )
       continue;
 
-    $padSeq_chk = PAD . "sequence/types/$padSeq_opr_name";
+    $padSeqChk = PAD . "sequence/types/$padSeqOprName";
 
-    $padSeq_parm_save = $padSeq_parm;
+    $padSeqParmSave = $padSeqParm;
 
-    padSeq_set ( $padSeq_opr_name, $padSeq_opr_value );
+    padSeq_set ( $padSeqOprName, $padSeqOprValue );
 
-    $padSeq_loop = $padSeq_operations;
+    $padSeqLoop = $padSeqOperations;
 
-    if     ( in_array ( $padSeq_opr_name , $padSeq_special_ops ) ) $padSeq_operations = include "list.php";
-    elseif ( file_exists ( "$padSeq_chk/make.php" )           ) $padSeq_operations = include "$padSeq_chk/make.php";
-    elseif ( file_exists ( "$padSeq_chk/filter.php" )         ) $padSeq_operations = include "$padSeq_chk/filter.php";
+    if     ( in_array ( $padSeqOprName , $padSeqSpecialOps ) ) $padSeqOperations = include "list.php";
+    elseif ( file_exists ( "$padSeqChk/make.php" )           ) $padSeqOperations = include "$padSeqChk/make.php";
+    elseif ( file_exists ( "$padSeqChk/filter.php" )         ) $padSeqOperations = include "$padSeqChk/filter.php";
 
-    $padSeq_parm = $padSeq_parm_save;
+    $padSeqParm = $padSeqParmSave;
 
-    if     ( $padSeq_operations === FALSE ) return TRUE;   
-    elseif ( $padSeq_operations === NULL  ) return FALSE;
-    elseif ( $padSeq_operations === INF   ) return FALSE; 
-    elseif ( $padSeq_operations === NAN   ) return FALSE; 
-    elseif ( $padSeq_operations === TRUE  ) $padSeq_operations = $padSeq_operations_last;     
+    if     ( $padSeqOperations === FALSE ) return TRUE;   
+    elseif ( $padSeqOperations === NULL  ) return FALSE;
+    elseif ( $padSeqOperations === INF   ) return FALSE; 
+    elseif ( $padSeqOperations === NAN   ) return FALSE; 
+    elseif ( $padSeqOperations === TRUE  ) $padSeqOperations = $padSeqOperationsLast;     
 
-    $padSeq_operations_last = $padSeq_operations;
+    $padSeqOperationsLast = $padSeqOperations;
    
   }
 
-  return $padSeq_operations;
+  return $padSeqOperations;
 
 ?>

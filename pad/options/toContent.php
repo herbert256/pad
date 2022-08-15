@@ -1,8 +1,8 @@
 <?php
 
-  $padStore_name = $padPrmsTag [$pad] ['toFlag'];
+  $padStoreName = $padPrmsTag [$pad] ['toFlag'];
 
-  $padContentStore [$padStore_name] = $padResult [$pad];
+  $padContentStore [$padStoreName] = $padResult [$pad];
 
   $padResult [$pad] = '';
   

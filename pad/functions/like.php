@@ -3,12 +3,12 @@
   $escape = '\\';
 
   $expr = '/((?:'.preg_quote($escape, '/').')?(?:'.preg_quote($escape, '/').'|%|_))/';
-  $padarts = preg_split($expr, $padarm, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+  $parts = preg_split($expr, $parm, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
 
   $expr = '/^';
   $lastWasPercent = FALSE;
   
-  foreach ($padarts as $padart) {
+  foreach ($parts as $padart) {
     
       switch ($padart) {
           case $escape.$escape:

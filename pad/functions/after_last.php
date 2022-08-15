@@ -1,5 +1,5 @@
 <?php
 
-  return array_pop ( explode ( $padarm[0], $value ) );
+  return array_pop ( explode ( $parm[0], $value ) );
 
 ?>

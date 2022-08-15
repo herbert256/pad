@@ -2,10 +2,10 @@
 
   $padOptCnt++;
 
-  $padOptions_dir = $padLevelDir [$pad] . "/options/$padOption_name-$padOptCnt";
+  $padOptionsDir = $padLevelDir [$pad] . "/options/$padOptionName-$padOptCnt";
 
-  padFilePutContents ( "$padOptions_dir/data.html",    $padData [$pad] );
-  padFilePutContents ( "$padOptions_dir/content.html", $padContent );
-  padFilePutContents ( "$padOptions_dir/base.html",    $padBase [$pad] );
+  padFilePutContents ( "$padOptionsDir/data.html",    $padData [$pad] );
+  padFilePutContents ( "$padOptionsDir/content.html", $padContent );
+  padFilePutContents ( "$padOptionsDir/base.html",    $padBase [$pad] );
 
 ?>

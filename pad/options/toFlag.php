@@ -1,11 +1,11 @@
 <?php
 
-  $padStore_name = $padPrmsTag [$pad] ['toFlag'];
+  $padStoreName = $padPrmsTag [$pad] ['toFlag'];
 
-  if     ( $padNull [$pad]  ) $padFlagStore [$padStore_name] = FALSE;
-  elseif ( $padElse [$pad]  ) $padFlagStore [$padStore_name] = FALSE;
-  elseif ( trim ( $padResult [$pad] ) <> '' ) $padFlagStore [$padStore_name] = TRUE;
-  else                                             $padFlagStore [$padStore_name] = FALSE;
+  if     ( $padNull [$pad]  ) $padFlagStore [$padStoreName] = FALSE;
+  elseif ( $padElse [$pad]  ) $padFlagStore [$padStoreName] = FALSE;
+  elseif ( trim ( $padResult [$pad] ) <> '' ) $padFlagStore [$padStoreName] = TRUE;
+  else                                             $padFlagStore [$padStoreName] = FALSE;
 
   $padResult [$pad] = '';
   

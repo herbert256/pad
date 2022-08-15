@@ -7,10 +7,10 @@
 
   $padUrl = "{$padGo}{$padPrm[$pad]}&padInclude=$padAjax";
 
-  foreach($padPrmsTag [$pad] as $padPair_key => $padPair_value)
-    if ( substr($padPair_key, 0, 4) <> 'pad_' and ! is_array($padPair_key) )
-      if ( $padPair_key )
-        $padUrl .= '&' . $padPair_key . '=' . urlencode($padPair_value);
+  foreach($padPrmsTag [$pad] as $padPairKey => $padPairValue)
+    if ( substr($padPairKey, 0, 4) <> 'pad_' and ! is_array($padPairKey) )
+      if ( $padPairKey )
+        $padUrl .= '&' . $padPairKey . '=' . urlencode($padPairValue);
 
   return TRUE;
 

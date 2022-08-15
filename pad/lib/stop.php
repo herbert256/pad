@@ -6,10 +6,10 @@
     $GLOBALS ['padStop'] = $stop;
     $GLOBALS ['padLen']  = ( $stop == 200 ) ? strlen($GLOBALS ['padOutput']) : 0;
 
-    if ( $GLOBALS ['padTrack_db_session'] or $GLOBALS ['padTrack_db_request'] )
+    if ( $GLOBALS ['padTrackDbSession'] or $GLOBALS ['padTrackDbRequest'] )
       padTrackDbSession ();
 
-    if ( $GLOBALS ['padTrack_file_request'] )
+    if ( $GLOBALS ['padTrackFileRequest'] )
       padTrackFileRequest ();
 
     padCloseSession ();
@@ -23,11 +23,11 @@
     
       if ( $stop == 200 ) {
 
-        if ( $GLOBALS ['padCache_stop'] and $GLOBALS ['padCache_server_gzip'] and $GLOBALS ['padClient_gzip']  )
+        if ( $GLOBALS ['padCacheStop'] and $GLOBALS ['padCacheServerGzip'] and $GLOBALS ['padClientGzip']  )
           echo $GLOBALS ['padOutput'];
-        elseif ( $GLOBALS ['padCache_stop'] and $GLOBALS ['padCache_server_gzip'] and ! $GLOBALS ['padClient_gzip'] )
+        elseif ( $GLOBALS ['padCacheStop'] and $GLOBALS ['padCacheServerGzip'] and ! $GLOBALS ['padClientGzip'] )
           echo padUnzip ( $GLOBALS ['padOutput'] );
-        elseif ( $GLOBALS ['padClient_gzip'] )
+        elseif ( $GLOBALS ['padClientGzip'] )
           echo padZip ( $GLOBALS ['padOutput'] );
         else 
           echo $GLOBALS ['padOutput'];
@@ -50,7 +50,7 @@
       padHeader ('HTTP/1.0 500 Internal Server Error' );
     elseif ( $stop == 304 )
       padHeader ('HTTP/1.1 304 Not Modified');
-    elseif ( $stop == 200 and $GLOBALS ['padClient_gzip'] )
+    elseif ( $stop == 200 and $GLOBALS ['padClientGzip'] )
       padHeader ('Content-Encoding: gzip');
 
     if ( $stop <> 302 and $stop <> 304)
@@ -71,14 +71,14 @@
 
   function padCacheHeaders () {
 
-    if ( $GLOBALS ['padCache_client_age'] )
-      $age = $GLOBALS ['padCache_client_age'] - ($_SERVER['REQUEST_TIME'] - $GLOBALS ['padTime']);
+    if ( $GLOBALS ['padCacheClientAge'] )
+      $age = $GLOBALS ['padCacheClientAge'] - ($_SERVER['REQUEST_TIME'] - $GLOBALS ['padTime']);
     else
       $age = 0;
 
-    if ( $GLOBALS ['padCache_proxy_age'] ) {
+    if ( $GLOBALS ['padCacheProxyAge'] ) {
       $type = 'public';
-      $sage = $GLOBALS ['padCache_proxy_age'] - ($_SERVER['REQUEST_TIME'] - $GLOBALS ['padTime']);
+      $sage = $GLOBALS ['padCacheProxyAge'] - ($_SERVER['REQUEST_TIME'] - $GLOBALS ['padTime']);
     } else {
       $type = 'private';
       $sage = 0;
@@ -101,7 +101,7 @@
   function padExit () {
 
     $GLOBALS ['padSkip_shutdown']      = TRUE;
-    $GLOBALS ['padSkip_boot_shutdown'] = TRUE;
+    $GLOBALS ['padSkipBootShutdown'] = TRUE;
 
     include PAD . 'exits/trace.php';
     

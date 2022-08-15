@@ -6,11 +6,11 @@
   reset ( $padData [$pad] );
   $padKey [$pad] = key($padData [$pad]);
 
-  $padParent_start = strpos ( $padBase [$pad], '{'.$padTag [$pad]);
-  $padParent_end   = strpos ( $padBase [$pad], "}", $padParent_start) ;
+  $padParentStart = strpos ( $padBase [$pad], '{'.$padTag [$pad]);
+  $padParentEnd   = strpos ( $padBase [$pad], "}", $padParentStart) ;
 
-  $padBase [$pad] = substr ( $padBase [$pad], 0, $padParent_start )
-                       . substr ( $padBase [$pad], $padParent_end + 1 );
+  $padBase [$pad] = substr ( $padBase [$pad], 0, $padParentStart )
+                       . substr ( $padBase [$pad], $padParentEnd + 1 );
 
   $padCurrent [$pad] = [];
   $padOccur   [$pad] = 0;

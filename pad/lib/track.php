@@ -39,10 +39,10 @@
 
     global $padEtag, $padOutput;
     
-    $padContentStore_file = "output/$padEtag.html";
+    $padContentStoreFile = "output/$padEtag.html";
 
-    if ( ! file_exists(DATA . "$padContentStore_file") )
-      padFilePutContents ($padContentStore_file, $padOutput);
+    if ( ! file_exists(DATA . "$padContentStoreFile") )
+      padFilePutContents ($padContentStoreFile, $padOutput);
 
   }
 
@@ -57,7 +57,7 @@
     else
       padDb ( "insert into track_session values('$session', NOW(), NOW(), 1)" );
    
-    if ( ! $GLOBALS ['padTrack_db_request'] )
+    if ( ! $GLOBALS ['padTrackDbRequest'] )
       return;
 
     padDb ( "insert into track_request

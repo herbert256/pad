@@ -3,15 +3,15 @@
   if ( ! file_exists($padLib) )
     return;
 
-  $padLib_directory = new RecursiveDirectoryIterator ($padLib);
-  $padLib_iterator  = new RecursiveIteratorIterator  ($padLib_directory);
+  $padLibDirectory = new RecursiveDirectoryIterator ($padLib);
+  $padLibIterator  = new RecursiveIteratorIterator  ($padLibDirectory);
 
-  foreach ( $padLib_iterator as $padLib_one ) {
+  foreach ( $padLibIterator as $padLibOne ) {
 
-    $padLib_file = $padLib_one->getPathname();
+    $padLibFile = $padLibOne->getPathname();
 
-    if ( substr($padLib_file, -4) == '.php' )
-      include_once $padLib_file;
+    if ( substr($padLibFile, -4) == '.php' )
+      include_once $padLibFile;
 
   }
 

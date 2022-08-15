@@ -116,9 +116,9 @@
   }
 
 
-  function padFieldName ($padarm) {
+  function padFieldName ($parm) {
     
-    return (substr($padarm, 0, 1) == '$') ? substr($padarm, 1) : $padarm;
+    return (substr($parm, 0, 1) == '$') ? substr($parm, 1) : $parm;
 
   }
 
@@ -311,10 +311,10 @@
 
   function padCloseSession () {
 
-    if ( ! isset($GLOBALS ['padSession_started']) )
+    if ( ! isset($GLOBALS ['padSessionStarted']) )
       return;
 
-    foreach ( $GLOBALS ['padSession_vars'] as $var )
+    foreach ( $GLOBALS ['padSessionVars'] as $var )
       if ( isset ( $GLOBALS [$var] ) )
         $_SESSION [$var] = $GLOBALS [$var];
 
@@ -324,18 +324,18 @@
   
   function padCheckRange ( $input ) {
 
-    $padarts = padExplode ($input, '..');
+    $parts = padExplode ($input, '..');
 
-    if ( count ($padarts) == 2 and ctype_alnum($padarts[0]) and ctype_alnum($padarts[1]) )
+    if ( count ($parts) == 2 and ctype_alnum($parts[0]) and ctype_alnum($parts[1]) )
       return TRUE;
 
   }
 
   function padGetRange ( $input, $increment=1 ) {
 
-    $padarts = padExplode ($input, '..');
+    $parts = padExplode ($input, '..');
 
-    return range ( $padarts[0], $padarts[1], $increment );
+    return range ( $parts[0], $parts[1], $increment );
 
   }
 
@@ -350,7 +350,7 @@
   }
 
 
-  function padFunctionInTag ( $type, $name, $self, $padarm ) {
+  function padFunctionInTag ( $type, $name, $self, $parm ) {
 
     if ( $type )
       $fun [1] [0] = $type;
@@ -360,9 +360,9 @@
     $fun [1] [1] = 'TYPE';
 
     $fun [1] [2] = $name;
-    $fun [1] [3] = 2 + count($padarm);
+    $fun [1] [3] = 2 + count($parm);
 
-    foreach ( $padarm as $padK => $padV )
+    foreach ( $parm as $padK => $padV )
       $fun [2+$padK] [0] = $padV;
 
     padEvalType (1, 0, $fun, $self, 1, 999999); 
@@ -442,13 +442,13 @@
     if ( substr($name, 0, 3) == 'pad' )
       return;
 
-    global $pad, $padSave_vars, $padDelete_vars;
+    global $pad, $padSaveVars, $padDeleteVars;
     
-    if ( array_key_exists($name, $GLOBALS) and ! array_key_exists ($name, $padSave_vars [$pad]) )
-      $padSave_vars [$pad] [$name] = $GLOBALS [$name];
+    if ( array_key_exists($name, $GLOBALS) and ! array_key_exists ($name, $padSaveVars [$pad]) )
+      $padSaveVars [$pad] [$name] = $GLOBALS [$name];
 
     if ( ! array_key_exists ($name,  $GLOBALS) )
-      $padDelete_vars [$pad] [] = $name;
+      $padDeleteVars [$pad] [] = $name;
     else
       unset ( $GLOBALS [$name] );
 
@@ -458,13 +458,13 @@
 
   function xpadSetGlobal ( $name, $value ) {
 
-    global $pad, $padSave_vars, $padDelete_vars;
+    global $pad, $padSaveVars, $padDeleteVars;
     
-    if ( isset($GLOBALS [$name]) and ! isset ($padSave_vars [$pad] [$name]) )
-      $padSave_vars [$pad] [$name] = $GLOBALS [$name];
+    if ( isset($GLOBALS [$name]) and ! isset ($padSaveVars [$pad] [$name]) )
+      $padSaveVars [$pad] [$name] = $GLOBALS [$name];
 
     if ( ! isset ( $GLOBALS [$name] ) )
-      $padDelete_vars [$pad] [] = $name;
+      $padDeleteVars [$pad] [] = $name;
     else
       unset ( $GLOBALS [$name] );
 
@@ -475,15 +475,15 @@
 
   function padReset ($lvl) {
 
-    global $padSave_vars, $padDelete_vars;
+    global $padSaveVars, $padDeleteVars;
 
-    foreach ( $padSave_vars [$lvl] as $key => $value) {
+    foreach ( $padSaveVars [$lvl] as $key => $value) {
       if ( isset ( $GLOBALS [$key] ) ) 
         unset ($GLOBALS [$key] );
       $GLOBALS [$key]= $value;
     }
 
-    foreach ( $padDelete_vars [$lvl] as $key)
+    foreach ( $padDeleteVars [$lvl] as $key)
       if ( isset ( $GLOBALS [$key] ) )
         unset ( $GLOBALS [$key] );
 
@@ -658,12 +658,12 @@
   }
 
 
-  function padTagParm ($padarm, $default='') {
+  function padTagParm ($parm, $default='') {
 
     global $pad, $padPrmsTag;
 
-    if ( isset ( $padPrmsTag [$pad] [$padarm] ) )
-      return $padPrmsTag [$pad] [$padarm];
+    if ( isset ( $padPrmsTag [$pad] [$parm] ) )
+      return $padPrmsTag [$pad] [$parm];
     else
       return $default;
 
@@ -679,10 +679,10 @@
 
   function padVarOpts ($val, $opts) {
   
-    global $padOpts_trace, $padTrace, $padFldCnt;
+    global $padOptsTrace, $padTrace, $padFldCnt;
 
     if ($padTrace)
-      $padOpts_trace = [];
+      $padOptsTrace = [];
 
     foreach($opts as $opt) {
         
@@ -701,7 +701,7 @@
       if ( ! $append and ! $padrepend ) $val = $now;
 
       if ($padTrace and $val <> $save)
-        $padOpts_trace [$opt] = $val;
+        $padOptsTrace [$opt] = $val;
 
     }
 
@@ -788,19 +788,19 @@
 
   function padGetHtml ($file, $call=false) {
 
-    global $padBuild_mode;
+    global $padBuildMode;
 
     $html = '';
 
-    if ( $padBuild_mode== 'isolate' )
+    if ( $padBuildMode== 'isolate' )
       $html .= '{isolate}';    
 
-    if ( $call or $padBuild_mode == 'demand' or $padBuild_mode == 'isolate' )
+    if ( $call or $padBuildMode == 'demand' or $padBuildMode == 'isolate' )
       $html .= "{call '" . str_replace ( '.html', '.php', $file ) . "'}";    
 
     $html .= padFileGetContents ($file);
       
-    if ( $padBuild_mode== 'isolate' )
+    if ( $padBuildMode== 'isolate' )
       $html .= '{/isolate}';    
 
     return $html;

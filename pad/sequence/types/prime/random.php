@@ -1,15 +1,15 @@
 <?php
 
-  if ( gmp_prob_prime ($padSeq_rand) )
-    return $padSeq_rand;
+  if ( gmp_prob_prime ($padSeqRand) )
+    return $padSeqRand;
 
-  $padSeq_rand = gmp_intval ( gmp_nextprime ($padSeq_rand) );
+  $padSeqRand = gmp_intval ( gmp_nextprime ($padSeqRand) );
 
-  if ( $padSeq_rand <= $padSeq_max )
-    return $padSeq_rand;
-  elseif ( gmp_prob_prime ($padSeq_min ) )
-    return $padSeq_min;
+  if ( $padSeqRand <= $padSeqMax )
+    return $padSeqRand;
+  elseif ( gmp_prob_prime ($padSeqMin ) )
+    return $padSeqMin;
   else
-    return gmp_intval ( gmp_nextprime ( $padSeq_min ) ); 
+    return gmp_intval ( gmp_nextprime ( $padSeqMin ) ); 
 
 ?>

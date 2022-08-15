@@ -1,12 +1,12 @@
 <?php
 
-  if ( $padarmCnt == 1 )
+  if ( $parmCnt == 1 )
   
-    return substr($value, $padarm_1_int);
+    return substr($value, $parm_1_int);
     
-  elseif ( $padarmCnt == 2 )
+  elseif ( $parmCnt == 2 )
 
-    return substr($value, $padarm_1_int, $padarm_2_int);
+    return substr($value, $parm_1_int, $parm_2_int);
 
   else
 

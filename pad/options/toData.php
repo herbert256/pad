@@ -1,16 +1,16 @@
 <?php
 
-  $padStore_name = $padPrmsTag [$pad] ['toData'];
+  $padStoreName = $padPrmsTag [$pad] ['toData'];
 
   if ( !$padPair and !$padContent and !padIsDefaultData($padData [$pad]) ) {
-    $padDataStore [$padStore_name] = $padData [$pad];
+    $padDataStore [$padStoreName] = $padData [$pad];
     return;
   }
 
   if ( $padWalk  [$pad] <> 'start' ) 
-    $padDataStore [$padStore_name] = $padWalkData  [$pad];
+    $padDataStore [$padStoreName] = $padWalkData  [$pad];
   else
-    $padDataStore [$padStore_name] = $padData [$pad];
+    $padDataStore [$padStoreName] = $padData [$pad];
 
   $padResult [$pad] = '';
   

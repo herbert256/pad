@@ -1,39 +1,39 @@
 <?php
 
   if ( file_exists ( APP . "tags/$padTag[$pad].php" ) or file_exists ( APP . "tags/$padTag[$pad].html" ) )
-    $padTag_go = APP;
+    $padTagGo = APP;
   else
-    $padTag_go = PAD;
+    $padTagGo = PAD;
 
-  $padTag_go .= "tags/". $padTag[$pad];
+  $padTagGo .= "tags/". $padTag[$pad];
 
-  $padTag_php = '';
+  $padTagPhp = '';
 
-  if ( file_exists("$padTag_go.html") )
-    $padTagContent .= padGetHtml ("$padTag_go.html");
+  if ( file_exists("$padTagGo.html") )
+    $padTagContent .= padGetHtml ("$padTagGo.html");
 
-  if ( file_exists("$padTag_go.php") ) {
+  if ( file_exists("$padTagGo.php") ) {
 
     ob_start();
 
-    $padTag_php = include "$padTag_go.php";
+    $padTagPhp = include "$padTagGo.php";
 
-    if ( $padTag_php === 1 )
-      $padTag_php = '' ;
+    if ( $padTagPhp === 1 )
+      $padTagPhp = '' ;
 
     $padTagContent .= ob_get_clean() ;
 
   }
 
-  if ( is_array($padTag_php) or is_object($padTag_php) or is_resource($padTag_php) )
-    return $padTag_php;
+  if ( is_array($padTagPhp) or is_object($padTagPhp) or is_resource($padTagPhp) )
+    return $padTagPhp;
 
-  if ( $padTag_php !== TRUE and $padTag_php !== FALSE and $padTag_php !== NULL ) {
-    if ( $padTag_php or $padTagContent )
-      $padTag_php = $padTagContent . $padTag_php;
+  if ( $padTagPhp !== TRUE and $padTagPhp !== FALSE and $padTagPhp !== NULL ) {
+    if ( $padTagPhp or $padTagContent )
+      $padTagPhp = $padTagContent . $padTagPhp;
     $padTagContent = '';
   }
 
-  return $padTag_php;
+  return $padTagPhp;
 
 ?>

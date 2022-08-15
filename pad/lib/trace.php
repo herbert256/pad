@@ -43,7 +43,7 @@
 
   function padTraceWriteError ($error, $type, $count, $vars, $force=0 ) {
 
-    if ( $GLOBALS ['padError_dump'] and ! $GLOBALS ['padTrace'] )
+    if ( $GLOBALS ['padErrorDump'] and ! $GLOBALS ['padTrace'] )
       return padTraceWriteErrorLight ($error, $type, $count, $vars);
 
     if ( ! $force and ! $GLOBALS ['padTrace'] )
@@ -51,21 +51,21 @@
 
     global $pad, $padOccurDir, $app, $page, $PADREQID;
 
-    $padError_dir = $padOccurDir [$pad] . "/error-$count-$type";
+    $padErrorDir = $padOccurDir [$pad] . "/error-$count-$type";
 
     $data = [];
 
     $data ['error']   = $error;
     $data ['number']  = $count;
-    $data ['dir']     = DATA . $padError_dir;
+    $data ['dir']     = DATA . $padErrorDir;
 
     foreach ($vars as $key => $val)
       $data [$key] = $val;
 
     padFilePutContents ( "errors/$PADREQID-$count-$type.json", $data ); 
-    padFilePutContents ( "$padError_dir/error.json",             $data ); 
+    padFilePutContents ( "$padErrorDir/error.json",             $data ); 
     
-    padTraceAll ( $padError_dir );
+    padTraceAll ( $padErrorDir );
 
   }
 
@@ -103,7 +103,7 @@
 
     $chk1 = [ '_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
 
-    $chk2 = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padPrms','padPrmsType','padPrmsTag','padPrmsVal','padName','padData','padCurrent','padKey','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padLevelDir','padOccurDir','padSave_vars','padDelete_vars','padSet_save','padSet_delete','padTagCnt'];
+    $chk2 = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padPrms','padPrmsType','padPrmsTag','padPrmsVal','padName','padData','padCurrent','padKey','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padLevelDir','padOccurDir','padSaveVars','padDeleteVars','padSetSave','padSetDelete','padTagCnt'];
 
     $settings = padFileGetContents(PAD . 'config/config.php');
 

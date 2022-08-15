@@ -3,14 +3,14 @@
 
   function padFastLink ($app, $page, $vars ) {
     
-    global $padFast_link, $PADSESSID, $PADREQID, $padHost, $pad;
+    global $padFastLink, $PADSESSID, $PADREQID, $padHost, $pad;
   
     $vars ['app']       = $app;
     $vars ['page']      = $page;
     $vars ['PADSESSID'] = $PADSESSID;
     $vars ['PADREFID']  = $PADREQID;
     
-    $fast = padRandomString ($padFast_link);
+    $fast = padRandomString ($padFastLink);
   
     padDb (
       "insert into links values('{0}','{1}')",
@@ -26,9 +26,9 @@
 
     global $padHost, $padScript, $padStop;
 
-    $padarts = padExplode ($go, '://', 2);
+    $parts = padExplode ($go, '://', 2);
 
-    if ( count ($padarts) == 2)
+    if ( count ($parts) == 2)
       $next = $go;
     else
       $next = "$padHost$padScript?app=$go";

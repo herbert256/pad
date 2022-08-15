@@ -1,6 +1,6 @@
 <?php
 
-  if ( $padVal == $padVal_base )
+  if ( $padVal == $padValBase )
 
     $padTraceData = [ 
       'field' => '{' . $padBetween . '}',
@@ -13,9 +13,9 @@
     $padTraceData = [ 
       'field'   => '{' . $padBetween . '}',
       'nr'      => $padFldCnt,
-      'from '   => $padVal_base,
+      'from '   => $padValBase,
       'to'      => $padVal,
-      'options' => $padOpts_trace
+      'options' => $padOptsTrace
     ];
 
   padFilePutContents ( $padOccurDir [$pad] . "/fields/$padFld-$padFldCnt.json", $padTraceData );

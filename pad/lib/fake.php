@@ -12,8 +12,8 @@
 
   function padBuild ( $padBuild, $padMode='include', $padMerge='content', $padInclude=0 ) {
       
-    $padBuild_mode  = $padMode;
-    $padBuild_merge = $padMerge;
+    $padBuildMode  = $padMode;
+    $padBuildMerge = $padMerge;
     $page         = $padBuild;
    
     $padNoOccur = TRUE;
@@ -42,8 +42,8 @@
     include PAD . 'level/trace/start.php'; 
     include PAD . 'occurrence/trace/start.php'; 
 
-    $padBuild_mode  = $padMode;
-    $padBuild_merge = $padMerge;
+    $padBuildMode  = $padMode;
+    $padBuildMerge = $padMerge;
     $page         = $padBuild;
 
     include PAD . 'build/build.php'; 

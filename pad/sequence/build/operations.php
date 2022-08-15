@@ -1,16 +1,16 @@
 <?php
 
-  $padSeq_opr = [];
+  $padSeqOpr = [];
 
-  foreach ( $padPrmsTag [$pad] as $padSeq_opr_name => $padSeq_opr_value )
+  foreach ( $padPrmsTag [$pad] as $padSeqOprName => $padSeqOprValue )
 
-    if ( $padSeq_opr_name <> $padSeq_seq )
+    if ( $padSeqOprName <> $padSeqSeq )
     
-      if ( $padSeq_opr_name == 'make' or $padSeq_opr_name == 'keep' or $padSeq_opr_name == 'remove' or 
-           file_exists ( PAD . "sequence/types/$padSeq_opr_name/make.php" ) or 
-           file_exists ( PAD . "sequence/types/$padSeq_opr_name/filter.php" ) 
+      if ( $padSeqOprName == 'make' or $padSeqOprName == 'keep' or $padSeqOprName == 'remove' or 
+           file_exists ( PAD . "sequence/types/$padSeqOprName/make.php" ) or 
+           file_exists ( PAD . "sequence/types/$padSeqOprName/filter.php" ) 
          )
 
-        $padSeq_opr [$padSeq_opr_name] = $padSeq_opr_value;
+        $padSeqOpr [$padSeqOprName] = $padSeqOprValue;
     
 ?>

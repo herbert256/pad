@@ -47,10 +47,10 @@
   $padLevelDir    [$pad] = $padOccurDir [$pad-1] ?? $padTraceDir;
   $padOccurDir    [$pad] = $padLevelDir [$pad];
 
-  $padSave_vars   [$pad] = [];
-  $padDelete_vars [$pad] = [];
-  $padSet_save    [$pad] = [];
-  $padSet_delete  [$pad] = [];
+  $padSaveVars   [$pad] = [];
+  $padDeleteVars [$pad] = [];
+  $padSetSave    [$pad] = [];
+  $padSetDelete  [$pad] = [];
 
   $padTagCnt      [$pad] = 0;
 

@@ -2,42 +2,42 @@
 
   $padBase [$pad] .= '{content}';
 
-  $padBuild_now = substr(APP, 0, -1);
+  $padBuildNow = substr(APP, 0, -1);
 
-  $padBuild_mrg = padExplode ("pages/$page", '/');
+  $padBuildMrg = padExplode ("pages/$page", '/');
 
-  foreach ($padBuild_mrg as $padBuild_key => $padBuild_value) {
+  foreach ($padBuildMrg as $padBuildKey => $padBuildValue) {
 
-    $padBuild_now .= "/$padBuild_value";
+    $padBuildNow .= "/$padBuildValue";
 
-    if ( $padBuild_key == array_key_last($padBuild_mrg) 
-       and (file_exists("$padBuild_now.php") or file_exists("$padBuild_now.html") ) ) {
+    if ( $padBuildKey == array_key_last($padBuildMrg) 
+       and (file_exists("$padBuildNow.php") or file_exists("$padBuildNow.html") ) ) {
 
-      $padBuild_html = padGetHtml ( "$padBuild_now.html" );
+      $padBuildHtml = padGetHtml ( "$padBuildNow.html" );
 
-    } elseif ( is_dir ($padBuild_now) ) {
+    } elseif ( is_dir ($padBuildNow) ) {
 
-      $padBuild_inits = padGetHtml ( "$padBuild_now/inits.html" );
-      $padBuild_exits = padGetHtml ( "$padBuild_now/exits.html" );
+      $padBuildInits = padGetHtml ( "$padBuildNow/inits.html" );
+      $padBuildExits = padGetHtml ( "$padBuildNow/exits.html" );
 
-      if ( strpos($padBuild_inits, '{content}') === FALSE and strpos($padBuild_exits, '{content}') === FALSE  )
-        $padBuild_inits .= '{content}';
+      if ( strpos($padBuildInits, '{content}') === FALSE and strpos($padBuildExits, '{content}') === FALSE  )
+        $padBuildInits .= '{content}';
 
-      if ( $padBuild_merge == 'content' )
-        if ( strpos($padBuild_inits, '{content}') !== FALSE )
-          $padBuild_html = str_replace ( '{content}', "{content}$padBuild_exits", $padBuild_inits );
+      if ( $padBuildMerge == 'content' )
+        if ( strpos($padBuildInits, '{content}') !== FALSE )
+          $padBuildHtml = str_replace ( '{content}', "{content}$padBuildExits", $padBuildInits );
         else
-          $padBuild_html = str_replace ( '{content}', "$padBuild_inits{content}", $padBuild_exits );
+          $padBuildHtml = str_replace ( '{content}', "$padBuildInits{content}", $padBuildExits );
       else
-        $padBuild_html = $padBuild_inits . $padBuild_exits ;
+        $padBuildHtml = $padBuildInits . $padBuildExits ;
 
     } else {
 
-      $padBuild_html = padGetHtml ( "$padBuild_now.html" );
+      $padBuildHtml = padGetHtml ( "$padBuildNow.html" );
 
     }
 
-    $padBase [$pad] = str_replace ( '{content}', $padBuild_html, $padBase [$pad] );
+    $padBase [$pad] = str_replace ( '{content}', $padBuildHtml, $padBase [$pad] );
 
   }
 

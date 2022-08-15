@@ -8,13 +8,13 @@
   $padTag [$pad] = $padPrm [$pad];
 
   if ( isset ($padPrmsTag [$pad] ['type'] ) )                     
-    $padFunction_type = "function_" . $padPrmsTag [$pad] ['type'];                
+    $padFunctionType = "function_" . $padPrmsTag [$pad] ['type'];                
   else
-    $padFunction_type = "function_" . padFunctionType ($padPrm [$pad]);
+    $padFunctionType = "function_" . padFunctionType ($padPrm [$pad]);
 
-  $padFunction_val = $padPrmsVal [$pad];
-  unset ( $padFunction_val [ array_key_first ($padFunction_val) ] );
+  $padFunctionVal = $padPrmsVal [$pad];
+  unset ( $padFunctionVal [ array_key_first ($padFunctionVal) ] );
 
-  return padFunctionInTag ( $padFunction_type, $padPrm [$pad], $padContent, $padFunction_val );
+  return padFunctionInTag ( $padFunctionType, $padPrm [$pad], $padContent, $padFunctionVal );
 
 ?>

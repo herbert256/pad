@@ -1,24 +1,24 @@
 <?php
 
 
-  function padCallbackBeforeXxx ($padCallback_type) {
+  function padCallbackBeforeXxx ($padCallbackType) {
 
-    $padVars_before = [];
+    $padVarsBefore = [];
     foreach ($GLOBALS as $padK => $padV)
       if ( padValidStore ($padK) ) { 
-        $padVars_before [] = $padK;
+        $padVarsBefore [] = $padK;
         $$padK = $padV;
       }
 
-    include PAD . "callback/$padCallback_type.php";
+    include PAD . "callback/$padCallbackType.php";
 
-    $padVars_after = get_defined_vars ();
+    $padVarsAfter = get_defined_vars ();
 
-    foreach ($padVars_before as $padK => $padV)
+    foreach ($padVarsBefore as $padK => $padV)
       if ( isset( $GLOBALS [$padK] ) )
         unset( $GLOBALS [$padK] );
 
-    foreach ($padVars_after as $padK => $padV)
+    foreach ($padVarsAfter as $padK => $padV)
       if ( padValidStore ($padK) ) {
         if ( isset( $GLOBALS [$padK] ) )
           unset( $GLOBALS [$padK] );
@@ -27,42 +27,42 @@
 
   }
 
-  function padCallbackBeforeRow ( &$padRow_parm ) {
+  function padCallbackBeforeRow ( &$padRowParm ) {
 
     if ( isset( $GLOBALS ['row'] ) ) {
-      $padRow_save = TRUE;
-      $padRow_save_store = $GLOBALS ['row'];
+      $padRowSave = TRUE;
+      $padRowSaveStore = $GLOBALS ['row'];
     } else
-      $padRow_save = FALSE;
+      $padRowSave = FALSE;
 
-    $padVars_before = [];
+    $padVarsBefore = [];
     foreach ($GLOBALS as $padK => $padV)
       if ( $padK <> 'row' and padValidStore ($padK) ) { 
-        $padVars_before [] = $padK;
+        $padVarsBefore [] = $padK;
         $$padK = $padV;
       }
 
-    $row = $padRow_parm;  
+    $row = $padRowParm;  
     include PAD . 'callback/row.php';
-    $padRow_parm = $row;  
+    $padRowParm = $row;  
 
-    $padVars_after = get_defined_vars();
+    $padVarsAfter = get_defined_vars();
 
-    foreach ($padVars_before as $padK => $padV)
+    foreach ($padVarsBefore as $padK => $padV)
       if ( isset( $GLOBALS [$padK] ) )
         unset( $GLOBALS [$padK] );
 
-    foreach ($padVars_after as $padK => $padV)
+    foreach ($padVarsAfter as $padK => $padV)
       if ( $padK <> 'row' and padValidStore ($padK) ) {
         if ( isset( $GLOBALS [$padK] ) )
           unset( $GLOBALS [$padK] );
         $GLOBALS [$padK] = $padV;
       }
 
-    if ( $padRow_save ) {
+    if ( $padRowSave ) {
       if ( isset( $GLOBALS ['row'] ) )
         unset ( $GLOBALS ['row'] );
-      $GLOBALS ['row'] = $padRow_save_store;
+      $GLOBALS ['row'] = $padRowSaveStore;
     }
 
   }

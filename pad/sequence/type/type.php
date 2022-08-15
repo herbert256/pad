@@ -1,19 +1,19 @@
 <?php
 
-  if ( $padSeq_pull and $padSeq_seq <> 'pull' ) {
+  if ( $padSeqPull and $padSeqSeq <> 'pull' ) {
 
-    $padSeq_for = $padSequenceStore [$padSeq_pull];
+    $padSeqFor = $padSequenceStore [$padSeqPull];
 
     include "for.php";
 
-  } elseif ( $padSeq_range and $padSeq_seq <> 'range' ) {
+  } elseif ( $padSeqRange and $padSeqSeq <> 'range' ) {
 
-    $padSeq_for = padGetRange ( $padSeq_range, $padSeq_inc );
+    $padSeqFor = padGetRange ( $padSeqRange, $padSeqInc );
 
     include "for.php";
 
   } else
 
-    include "$padSeq_build.php";
+    include "$padSeqBuild.php";
 
 ?>

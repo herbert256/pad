@@ -1,7 +1,7 @@
 <?php
  
-  $padSeq_eval_tbl = padExplode ( $padSeq_parm, '|' );
+  $padSeqEvalTbl = padExplode ( $padSeqParm, '|' );
 
-  return padVarOpts ( $padSeq_loop, $padSeq_eval_tbl );
+  return padVarOpts ( $padSeqLoop, $padSeqEvalTbl );
 
 ?>

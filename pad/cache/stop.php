@@ -1,8 +1,8 @@
 <?php
 
-  $padStop = floor($padCache_stop);
-  $padTime = $padCache_age;
-  $padEtag = $padCache_etag;
+  $padStop = floor($padCacheStop);
+  $padTime = $padCacheAge;
+  $padEtag = $padCacheEtag;
 
   if ( $padTrace )
     include 'trace.php';

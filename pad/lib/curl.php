@@ -200,7 +200,7 @@
     if ( ! $output ['type'] and $file) {
       $pados = strrpos($file, '.');
       if ( ! $pados !==FALSE)
-        $output ['type'] = substr($padarm, $pados+1);
+        $output ['type'] = substr($parm, $pados+1);
     }
 
     if ( ! $output ['type'] )

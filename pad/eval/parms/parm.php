@@ -2,23 +2,23 @@
 
   if ($value)
     $tag = $value;
-  elseif ( isset ( $padarm [0] ) )
-    $tag = $padarm [0];
+  elseif ( isset ( $parm [0] ) )
+    $tag = $parm [0];
   else 
     $tag  = -1;
 
-  if ( $value and isset ( $padarm [0] ) )
-    $padPrm [$pad]_type = $padarm [0];
-  elseif ( isset ( $padarm [1] ) and ! $value )
-    $padPrm [$pad]_type = $padarm [1];
+  if ( $value and isset ( $parm [0] ) )
+    $padPrm [$pad]_type = $parm [0];
+  elseif ( isset ( $parm [1] ) and ! $value )
+    $padPrm [$pad]_type = $parm [1];
   else
     $padPrm [$pad]_type = '';      
 
-  $padResult_parm = padFieldTag ("$tag#$name#$padPrm [$pad]_type");
+  $padResultParm = padFieldTag ("$tag#$name#$padPrm [$pad]_type");
 
-  if ( $padResult_parm === INF )
+  if ( $padResultParm === INF )
     return NULL;
   else
-    return $padResult_parm;
+    return $padResultParm;
   
 ?>

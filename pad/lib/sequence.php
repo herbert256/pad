@@ -3,10 +3,10 @@
 
   function padSeq_action ( $sequence1, $action, $sequence2 ) {
 
-    $padSeq_result       = $sequence1;
+    $padSeqResult       = $sequence1;
     $padSeqCnt        = 0;
-    $padSeq_action_value = $action;
-    $padSeq_action_name  = $action;
+    $padSeqActionValue = $action;
+    $padSeqActionName  = $action;
     
     $padSequenceStore [$action] = $sequence2;
 
@@ -42,7 +42,7 @@
 
   function padSeq_set ( $name, $value ) {
 
-    $GLOBALS ["padSeq_parm"] = $value;
+    $GLOBALS ["padSeqParm"] = $value;
     $GLOBALS ["padSeq_$name"] = $value;
 
   }
@@ -50,19 +50,19 @@
 
   function padSeq_array_action ($action) {
 
-    $array  = $GLOBALS ['padSeq_action_value'];
+    $array  = $GLOBALS ['padSeqActionValue'];
     $arrays = padExplode ($array, '|');
 
-    $padarms [] = $GLOBALS ['padSeq_result'];
+    $parms [] = $GLOBALS ['padSeqResult'];
 
     foreach ($arrays as $store)
       if ( $store !== TRUE )
         if ( isset($GLOBALS ['padSequenceStore'] [$store]) )
-          $padarms [] = $GLOBALS ['padSequenceStore'] [$store];
+          $parms [] = $GLOBALS ['padSequenceStore'] [$store];
         else
-          $padarms [] = $store;
+          $parms [] = $store;
 
-    return call_user_func_array ($action, $padarms);
+    return call_user_func_array ($action, $parms);
 
   }
 
@@ -77,7 +77,7 @@
 
   function padSeq_getCnt ( $first, $second, $third ) {
 
-    global $pad, $padPrmsTag, $padSeq_parm;
+    global $pad, $padPrmsTag, $padSeqParm;
 
     if ( isset($padPrmsTag [$pad][$first])      and $padPrmsTag [$pad][$first]  !== TRUE and is_numeric($padPrmsTag [$pad][$first]) )
  
@@ -91,9 +91,9 @@
  
       return $padPrmsTag [$pad][$third];
  
-    elseif (                                    $padSeq_parm !== TRUE           and is_numeric($padSeq_parm) )
+    elseif (                                    $padSeqParm !== TRUE           and is_numeric($padSeqParm) )
  
-      return $padSeq_parm;
+      return $padSeqParm;
  
     else
  

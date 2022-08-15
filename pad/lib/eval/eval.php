@@ -32,7 +32,7 @@
 
     padTimingStart ('eval');
 
-    global $padEvalCnt, $padEval_stepCnt, $padEval_start, $padEval_result, $padTrace;
+    global $padEvalCnt, $padEvalStepCnt, $padEvalStart, $padEvalResult, $padTrace;
 
     $GLOBALS ['padTrace_stage']   = 'start';
     $GLOBALS ['padTrace_eval']    = $eval;
@@ -42,52 +42,52 @@
     $GLOBALS ['padTrace_now']     = [];
 
     $padEvalCnt++;
-    $padEval_stepCnt = 0;
-    $padEval_start = $eval;
-    $padEval_result = [];
+    $padEvalStepCnt = 0;
+    $padEvalStart = $eval;
+    $padEvalResult = [];
 
     padEvalTrace  ('start', [ 'eval' => $eval, 'myself' => $myself ] );
 
-    $padEval_parse = padEvalParse ( $padEval_result, $eval, $myself );
+    $padEvalParse = padEvalParse ( $padEvalResult, $eval, $myself );
 
-    if ( $padEval_parse )
-      return padEvalError ($padEval_parse);
-    $GLOBALS ['padTrace_parsed'] = $padEval_result;
+    if ( $padEvalParse )
+      return padEvalError ($padEvalParse);
+    $GLOBALS ['padTrace_parsed'] = $padEvalResult;
 
-    padEvalTrace  ('parse', $padEval_result );
+    padEvalTrace  ('parse', $padEvalResult );
 
-    $padEval_after = padEvalAfter ( $padEval_result, $eval );  
-    if ( $padEval_after )
-      return padEvalError ($padEval_after);
-    $GLOBALS ['padTrace_after'] = $padEval_result;
+    $padEvalAfter = padEvalAfter ( $padEvalResult, $eval );  
+    if ( $padEvalAfter )
+      return padEvalError ($padEvalAfter);
+    $GLOBALS ['padTrace_after'] = $padEvalResult;
 
-    padEvalTrace  ('after', $padEval_result );
+    padEvalTrace  ('after', $padEvalResult );
 
-    padEvalGo ( $padEval_result, array_key_first($padEval_result), array_key_last($padEval_result), $myself) ;
+    padEvalGo ( $padEvalResult, array_key_first($padEvalResult), array_key_last($padEvalResult), $myself) ;
 
-    $GLOBALS ['padTrace_go'] =  $padEval_result;
+    $GLOBALS ['padTrace_go'] =  $padEvalResult;
 
-    $key = array_key_first ($padEval_result);
+    $key = array_key_first ($padEvalResult);
       
-    if     ( count($padEval_result) < 1        ) return padEvalError("No result back");
-    elseif ( count($padEval_result) > 1        ) return padEvalError("More then one result back");
-    elseif ( isset($padEval_result[$key][4])   ) return padEvalError("Result is an array");
-    elseif ( $padEval_result[$key][1] <> 'VAL' ) return padEvalError("Result is not a value");
+    if     ( count($padEvalResult) < 1        ) return padEvalError("No result back");
+    elseif ( count($padEvalResult) > 1        ) return padEvalError("More then one result back");
+    elseif ( isset($padEvalResult[$key][4])   ) return padEvalError("Result is an array");
+    elseif ( $padEvalResult[$key][1] <> 'VAL' ) return padEvalError("Result is not a value");
 
-    padEvalTrace  ('end', $padEval_result );
+    padEvalTrace  ('end', $padEvalResult );
 
     $GLOBALS ['padTrace_stage'] = 'end';
 
     padTimingEnd ('eval');
  
-    return $padEval_result [$key] [0];
+    return $padEvalResult [$key] [0];
 
   }
 
 
   function padEvalError ($txt) {
 
-    padEvalTrace  ('error', [ 'error' => $txt, 'result' => $GLOBALS ['padEval_result'] ] );
+    padEvalTrace  ('error', [ 'error' => $txt, 'result' => $GLOBALS ['padEvalResult'] ] );
 
     $GLOBALS ['padTrace_stage'] = 'error';
 
@@ -117,12 +117,12 @@
     if ( ! $GLOBALS ['padTrace'] )
       return;
 
-    global $pad, $padEvalCnt, $padEval_stepCnt, $padOccurDir;
+    global $pad, $padEvalCnt, $padEvalStepCnt, $padOccurDir;
 
-    $padEval_stepCnt++;
+    $padEvalStepCnt++;
 
     padFilePutContents ( 
-      $padOccurDir [$pad] . "/eval/$padEvalCnt/$padEval_stepCnt.$step.json",  
+      $padOccurDir [$pad] . "/eval/$padEvalCnt/$padEvalStepCnt.$step.json",  
       $data 
     );
 

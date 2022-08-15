@@ -1,7 +1,7 @@
 <?php
 
-  $padSeq_range_parms = padExplode ( $padSeq_parm, '..' );
+  $padSeqRangeParms = padExplode ( $padSeqParm, '..' );
 
-  return range ( $padSeq_range_parms[0], $padSeq_range_parms[1], $padSeq_inc );
+  return range ( $padSeqRangeParms[0], $padSeqRangeParms[1], $padSeqInc );
 
 ?>

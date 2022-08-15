@@ -1,6 +1,6 @@
 <?php
 
-  if ( count($_POST) or count($_FILES) or ( !$padCache_server_age and !$padCache_client_age ) ) {
+  if ( count($_POST) or count($_FILES) or ( !$padCacheServerAge and !$padCacheClientAge ) ) {
     $padCache = FALSE;
     return;
   }
@@ -13,49 +13,49 @@
   padTimingStart ('cache');
 
   $padCache        = TRUE;
-  $padCache_url    = padMd5($_SERVER['REQUEST_URI']);
-  $padCache_mod    = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) : 0;
-  $padCache_client = isset($_SERVER['HTTP_IF_NONE_MATCH'])     ? substr($_SERVER['HTTP_IF_NONE_MATCH'], 1, 22) : '';
-  $padCache_max    = $_SERVER['REQUEST_TIME'] - $padCache_server_age;
-  $padCache_age    = 0;
-  $padCache_etag   = '';
+  $padCacheUrl    = padMd5($_SERVER['REQUEST_URI']);
+  $padCacheMod    = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) : 0;
+  $padCacheClient = isset($_SERVER['HTTP_IF_NONE_MATCH'])     ? substr($_SERVER['HTTP_IF_NONE_MATCH'], 1, 22) : '';
+  $padCacheMax    = $_SERVER['REQUEST_TIME'] - $padCacheServerAge;
+  $padCacheAge    = 0;
+  $padCacheEtag   = '';
 
-  include PAD . "cache/$padCache_server_type.php";
+  include PAD . "cache/$padCacheServerType.php";
   
-  padCacheInit ($padCache_url, $padCache_client);
+  padCacheInit ($padCacheUrl, $padCacheClient);
   
-  if ( $padCache_client ) {
+  if ( $padCacheClient ) {
     
-    $padCache_age = padCacheEtag ($padCache_client);
+    $padCacheAge = padCacheEtag ($padCacheClient);
 
-    if ( $padCache_age )
-      $padCache_etag = $padCache_client;
+    if ( $padCacheAge )
+      $padCacheEtag = $padCacheClient;
 
-    if ( $padCache_age >= $padCache_max ) {
-      $padCache_stop = 304.1;
+    if ( $padCacheAge >= $padCacheMax ) {
+      $padCacheStop = 304.1;
       include PAD . 'cache/stop.php';
     }
     
   }
 
-  $url = padCacheUrl ($padCache_url);
+  $url = padCacheUrl ($padCacheUrl);
 
   if ( is_array($url) ) {
 
-    $padCache_age  = $url ['age']  ?? $url [0] ?? 0;
-    $padCache_etag = $url ['etag'] ?? $url [1] ?? '';
+    $padCacheAge  = $url ['age']  ?? $url [0] ?? 0;
+    $padCacheEtag = $url ['etag'] ?? $url [1] ?? '';
 
-    if ( $padCache_mod and $padCache_mod >= $padCache_max and $padCache_age >= $padCache_max ) {
-      $padCache_stop = 304.2;
+    if ( $padCacheMod and $padCacheMod >= $padCacheMax and $padCacheAge >= $padCacheMax ) {
+      $padCacheStop = 304.2;
       include PAD . 'cache/stop.php';
     }
 
-    if ( $padCache_age >= $padCache_max and ! $GLOBALS ['padCache_server_no_data'] ) {
+    if ( $padCacheAge >= $padCacheMax and ! $GLOBALS ['padCacheServerNoData'] ) {
 
-      $padOutput = padCacheGet ($padCache_etag);
+      $padOutput = padCacheGet ($padCacheEtag);
 
       if ( $padOutput ) {
-        $padCache_stop = 200.3;
+        $padCacheStop = 200.3;
         include PAD . 'cache/stop.php';
       }
 

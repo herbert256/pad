@@ -1,7 +1,7 @@
 <?php
   
-  $padSeq_random_work = $padSeq_parm ** rand ( $padSeq_loop_start, $padSeq_loop_end ); 
+  $padSeqRandomWork = $padSeqParm ** rand ( $padSeqLoopStart, $padSeqLoopEnd ); 
 
-  return $padSeq_random_work; 
+  return $padSeqRandomWork; 
 
 ?>

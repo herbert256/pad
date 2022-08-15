@@ -10,18 +10,18 @@
 
     $name  = $one[0];
     $kind  = $one[2];
-    $padarm  = [];
+    $parm  = [];
     $count = 0;
-    $padEval_single = include PAD . "eval/single/$kind.php"; 
+    $padEvalSingle = include PAD . "eval/single/$kind.php"; 
 
     $result [$key] [1] = 'VAL';
 
-    if ( is_array($padEval_single) or is_object($padEval_single) or is_resource($padEval_single) ) {
+    if ( is_array($padEvalSingle) or is_object($padEvalSingle) or is_resource($padEvalSingle) ) {
       $result [$key] [0] = '*ARRAY*';
-      $result [$key] [4] = padArraySingle ($padEval_single);
+      $result [$key] [4] = padArraySingle ($padEvalSingle);
     } else {
-      padCheckValue ($padEval_single);
-      $result [$key] [0] = $padEval_single;
+      padCheckValue ($padEvalSingle);
+      $result [$key] [0] = $padEvalSingle;
     }
 
     unset ( $result [$key] [2] );

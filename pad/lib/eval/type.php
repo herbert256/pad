@@ -10,27 +10,27 @@
       return;
     }
 
-    $padarm = [];
+    $parm = [];
 
     foreach ( $result as $k => $v )
       if ($k <= $end and $k > $type and $k <= $result [$type] [3] - 1)
         if ( isset($v[4]) )
           foreach ($v[4] as $v2)
-            $padarm [] = $v2;
+            $parm [] = $v2;
         else
-          $padarm [] = $v[0];
+          $parm [] = $v[0];
 
-    if ( ! count($padarm) )
+    if ( ! count($parm) )
       foreach ( $result as $k => $v )
         if ($k <= $end and  $k > $type ) {
           if ( isset($v[4]) ) {
-            $padarm = array_values($v[4]);
+            $parm = array_values($v[4]);
             unset($result[$k]);
           }
           break;
         }
 
-    $count = count($padarm);
+    $count = count($parm);
 
     if ( $left >= $start and isset($result [$left] [4]) ) {
       $value = array_values($result [$left] [4]);
@@ -45,7 +45,7 @@
         $trace_data ['type']   = $result [$type];
         $trace_data ['left']   = $left;
         $trace_data ['start']  = $start;
-        $trace_data ['parm']   = $padarm;
+        $trace_data ['parm']   = $parm;
         $trace_data ['in']     = $value;
     }
    
@@ -64,7 +64,7 @@
       $result [$type] [0] = $value;
     }
 
-    foreach ( $result as $key => $padarm)
+    foreach ( $result as $key => $parm)
       if ( $key <= $end and $key > $type and $key <= $result [$type] [3] - 1 )
         unset($result[$key]);
 

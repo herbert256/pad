@@ -19,9 +19,9 @@
 
     } while ( substr_count($padTrue [$pad], '{'.$padTag [$pad]) <> substr_count($padTrue [$pad], '{/'.$padTag[$pad]) );
 
-    $padPair_check = substr($padHtml [$padP], $padPos + strlen($padTag[$pad]) + 1, 1);
+    $padPairCheck = substr($padHtml [$padP], $padPos + strlen($padTag[$pad]) + 1, 1);
     
-    if ( ! ($padPair_check == ' ' or $padPair_check == '}' ) )
+    if ( ! ($padPairCheck == ' ' or $padPairCheck == '}' ) )
       continue;
 
     break;

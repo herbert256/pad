@@ -1,26 +1,26 @@
 <?php
 
-  $padBuild_now = substr(APP, 0, -1);
+  $padBuildNow = substr(APP, 0, -1);
   
   $padExits     = [];
-  $padBuild_mrg = padExplode ("pages/$page", '/');
+  $padBuildMrg = padExplode ("pages/$page", '/');
 
-  foreach ($padBuild_mrg as $padValue) {
+  foreach ($padBuildMrg as $padValue) {
 
-    $padBuild_now .= "/$padValue";
+    $padBuildNow .= "/$padValue";
 
-    if ( is_dir ($padBuild_now) ) {
+    if ( is_dir ($padBuildNow) ) {
 
-      $padCall = "$padBuild_now/inits.php";
+      $padCall = "$padBuildNow/inits.php";
       include PAD . 'level/call.php';
 
-      $padExits [] = "$padBuild_now/exits.php";
+      $padExits [] = "$padBuildNow/exits.php";
 
     }
 
   }
 
-  $padCall = "$padBuild_now.php";
+  $padCall = "$padBuildNow.php";
   $padBase [$pad] .= include PAD . 'level/call.php';
 
   foreach ( array_reverse ($padExits) as $padCall )

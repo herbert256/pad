@@ -6,21 +6,21 @@
   ob_start();
 
   set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
-  $padPhp_error_reporting = error_reporting (0);
+  $padPhpErrorReporting = error_reporting (0);
   try {
-    $padPhp_return = eval ( $padPhp );
+    $padPhpReturn = eval ( $padPhp );
   }
   catch (Throwable $e) {
-    $padPhp_return = FALSE;
+    $padPhpReturn = FALSE;
   }
-  error_reporting ($padPhp_error_reporting);
+  error_reporting ($padPhpErrorReporting);
   restore_error_handler ();
 
-  $padPhp_ob = trim ( ob_get_clean() );
+  $padPhpOb = trim ( ob_get_clean() );
 
-  if ( $padPhp_ob )
-     $padPhp_return .= $padPhp_ob;
+  if ( $padPhpOb )
+     $padPhpReturn .= $padPhpOb;
 
-  return $padPhp_return;
+  return $padPhpReturn;
 
 ?>

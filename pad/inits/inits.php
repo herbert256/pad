@@ -1,6 +1,6 @@
 <?php
 
-  $padTimings_start ['init'] = microtime(true);
+  $padTimingsStart ['init'] = microtime(true);
  
   ob_start();
 

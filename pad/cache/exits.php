@@ -2,24 +2,24 @@
   
   padTimingStart ('cache');
   
-  if ( $padEtag == $padCache_etag )
+  if ( $padEtag == $padCacheEtag )
   
-    padCacheUpdate ($padCache_url, $padEtag);
+    padCacheUpdate ($padCacheUrl, $padEtag);
 
   else {
 
-    if ($padCache_etag)
-      padCacheDelete ($padCache_url, $padCache_etag);
+    if ($padCacheEtag)
+      padCacheDelete ($padCacheUrl, $padCacheEtag);
 
-    if ( $padCache_server_gzip and ! $padClient_gzip )
-      padCacheStore ($padCache_url, $padEtag, padZip($padOutput));
+    if ( $padCacheServerGzip and ! $padClientGzip )
+      padCacheStore ($padCacheUrl, $padEtag, padZip($padOutput));
     else
-      padCacheStore ($padCache_url, $padEtag, $padOutput);
+      padCacheStore ($padCacheUrl, $padEtag, $padOutput);
     
   }
 
   if ( $padTrace ) {
-    $padCache_stop = $padStop + .4;
+    $padCacheStop = $padStop + .4;
     include 'trace.php';
   }
   

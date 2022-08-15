@@ -13,12 +13,12 @@ In
                 - The first parameter when given and if no left value is available
                 - otherwise $myself (eq the value of $var {$var})
 
-  $padarms        An array of the parms, starting at [0]
+  $parms        An array of the parms, starting at [0]
   $count        The number of parameters
 
-  $padarm1        The first parameter
-  $padarm2        The second parameter
-  $padarm3        The third parameter
+  $parm1        The first parameter
+  $parm2        The second parameter
+  $parm3        The third parameter
   etc.
 
 Out

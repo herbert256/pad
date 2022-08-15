@@ -1,8 +1,8 @@
 <?php
 
   if ( strpos($padPrm [$pad], 'page=') !== FALSE) {
-    $padInclude_call = padInclude ($padPrm [$pad]);
-    return $padInclude_call ['data'];
+    $padIncludeCall = padInclude ($padPrm [$pad]);
+    return $padIncludeCall ['data'];
   }
 
   $padOne = APP . "includes/$padPrm[$pad]";

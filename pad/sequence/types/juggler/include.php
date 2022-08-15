@@ -9,7 +9,7 @@
 function padSeq_juggler ($n) {
 
 
-	$GLOBALS ['padSeq_juggler_array'] [] = $n;
+	$GLOBALS ['padSeqJugglerArray'] [] = $n;
 
 	$a = $n;
 

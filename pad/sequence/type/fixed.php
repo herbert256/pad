@@ -1,6 +1,6 @@
 <?php
 
-  $padSeq_for = include PAD . "sequence/types/$padSeq_seq/fixed.php" ;
+  $padSeqFor = include PAD . "sequence/types/$padSeqSeq/fixed.php" ;
 
   include 'for.php';
 

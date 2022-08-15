@@ -3,7 +3,7 @@
 
   function padFieldPrefix ( $field, $type ) {
 
-    global $pad, $padCurrent, $padField_double_check;
+    global $pad, $padCurrent, $padFieldDoubleCheck;
 
     list ( $padrefix, $field ) = explode (':', $field, 2);
 

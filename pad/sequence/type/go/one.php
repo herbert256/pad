@@ -1,15 +1,15 @@
 <?php
 
   $padSeq++;
-  $padSeq_protectCnt++;
+  $padSeqProtectCnt++;
 
-  $padSeq_one_done = [];
+  $padSeqOneDone = [];
 
-  if ( $padSeq_protectCnt > $padSeq_protect                ) return FALSE;
-  if ( $padSeq < $padSeq_low                                ) return TRUE;
-  if ( $padSeq > $padSeq_high                               ) return FALSE;
-  if ( $padSeq_build == 'order' and $padSeq < $padSeq_from ) return TRUE;
-  if ( $padSeq_build == 'order' and $padSeq > $padSeq_to   ) return FALSE;
+  if ( $padSeqProtectCnt > $padSeqProtect                ) return FALSE;
+  if ( $padSeq < $padSeqLow                                ) return TRUE;
+  if ( $padSeq > $padSeqHigh                               ) return FALSE;
+  if ( $padSeqBuild == 'order' and $padSeq < $padSeqFrom ) return TRUE;
+  if ( $padSeqBuild == 'order' and $padSeq > $padSeqTo   ) return FALSE;
 
   $padSequence = include 'sequence.php';
 
@@ -21,22 +21,22 @@
   if     ( $padSequence === TRUE  ) return TRUE;
   elseif ( $padSequence === FALSE ) return FALSE;    
 
-  if ( $padSeq_unique and in_array ($padSequence, $padSeq_result) ) return TRUE;
+  if ( $padSeqUnique and in_array ($padSequence, $padSeqResult) ) return TRUE;
   if ( is_numeric($padSequence) and $padSequence > PHP_INT_MAX     ) return FALSE; 
 
-  $padSeq_base++;
+  $padSeqBase++;
 
-  if ( is_numeric($padSequence) and $padSequence < $padSeq_min ) return TRUE;  
-  if ( is_numeric($padSequence) and $padSequence > $padSeq_max ) return TRUE; 
-  if ( $padSeq_page  and $padSeq_base < $padSeq_page_start     ) return TRUE; 
-  if ( $padSeq_start and $padSeq_base < $padSeq_start          ) return TRUE;
+  if ( is_numeric($padSequence) and $padSequence < $padSeqMin ) return TRUE;  
+  if ( is_numeric($padSequence) and $padSequence > $padSeqMax ) return TRUE; 
+  if ( $padSeqPage  and $padSeqBase < $padSeqPageStart     ) return TRUE; 
+  if ( $padSeqStart and $padSeqBase < $padSeqStart          ) return TRUE;
 
-  $padSeq_result [] = $padSequence;
+  $padSeqResult [] = $padSequence;
 
-  $padSeq_protectCnt = 0;
+  $padSeqProtectCnt = 0;
 
-  if ( $padSeq_rows and count($padSeq_result) >= $padSeq_rows ) return FALSE;
-  if ( $padSeq_end  and $padSeq_base          >= $padSeq_end  ) return FALSE;
+  if ( $padSeqRows and count($padSeqResult) >= $padSeqRows ) return FALSE;
+  if ( $padSeqEnd  and $padSeqBase          >= $padSeqEnd  ) return FALSE;
 
   return TRUE;
 

@@ -28,17 +28,17 @@
 
   function padFieldDoubleCheck ($first, $seperator, $second) {
 
-    if ( $GLOBALS ['padField_double_check'] )
+    if ( $GLOBALS ['padFieldDoubleCheck'] )
       return ;
 
-    $GLOBALS ['padField_double_check'] = TRUE;
+    $GLOBALS ['padFieldDoubleCheck'] = TRUE;
 
     $tag = "$first$seperator$second";
     
     if     ( padFieldCheck($tag) ) return padFieldValue($tag);
     elseif ( padArrayCheck($tag) ) return padArrayValue($tag); 
 
-    $GLOBALS ['padField_double_check'] = FALSE;
+    $GLOBALS ['padFieldDoubleCheck'] = FALSE;
 
   }
 

@@ -1,8 +1,8 @@
 <?php
 
-  if ( ! count ($padarm) and $value )
-    $padarm [0] = $value;
+  if ( ! count ($parm) and $value )
+    $parm [0] = $value;
 
-  return call_user_func_array ($name, $padarm);
+  return call_user_func_array ($name, $parm);
 
 ?>

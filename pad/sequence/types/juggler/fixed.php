@@ -2,24 +2,24 @@
 
 	include_once 'include.php';
 
-	$padSeq_juggler_array = [];
+	$padSeqJugglerArray = [];
 
-	if ( isset($padSeq_juggler) and $padSeq_juggler and is_numeric($padSeq_juggler) )
+	if ( isset($padSeqJuggler) and $padSeqJuggler and is_numeric($padSeqJuggler) )
 
-	  padSeq_juggler ($padSeq_juggler);
+	  padSeq_juggler ($padSeqJuggler);
 
-	elseif ( $padSeq_parm and is_numeric($padSeq_parm) )
+	elseif ( $padSeqParm and is_numeric($padSeqParm) )
 
-	  padSeq_juggler ($padSeq_parm);
+	  padSeq_juggler ($padSeqParm);
 
-	elseif ( count ($padSeq_for) )
+	elseif ( count ($padSeqFor) )
  
- 	  padSeq_juggler ( reset($padSeq_parm) );
+ 	  padSeq_juggler ( reset($padSeqParm) );
 
  	else 
 
- 	  padSeq_juggler ( $padSeq_loop_start );
+ 	  padSeq_juggler ( $padSeqLoopStart );
 
-	return $padSeq_juggler_array;
+	return $padSeqJugglerArray;
 
 ?>

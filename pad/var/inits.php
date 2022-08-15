@@ -27,7 +27,7 @@
 
   $padVal = padFieldValue ($padFld);
 
-  $padVal_base = $padVal;
+  $padValBase = $padVal;
 
   if ( ! padFieldCheck ( $padFld ) ) 
       padError ( "Field '$padFld' not found" )

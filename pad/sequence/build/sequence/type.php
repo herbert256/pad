@@ -1,11 +1,11 @@
 <?php
 
-    $padSeq_seq = $padSeq_tmp;
-    $padSeq_set = $padSeq_tmp;
+    $padSeqSeq = $padSeqTmp;
+    $padSeqSet = $padSeqTmp;
 
-    if ( isset($padPrmsTag [$pad][$padSeq_seq]) )
-      $padSeq_parm = $padPrmsTag [$pad][$padSeq_seq];
+    if ( isset($padPrmsTag [$pad][$padSeqSeq]) )
+      $padSeqParm = $padPrmsTag [$pad][$padSeqSeq];
     else
-      $padSeq_parm = $padPrm [$pad];
+      $padSeqParm = $padPrm [$pad];
 
 ?>

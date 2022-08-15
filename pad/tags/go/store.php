@@ -5,48 +5,48 @@
     return TRUE;
   }
 
-  $padStore_name = 'pad' . ucwords($padTag[$pad]) . 'Store';
+  $padStoreName = 'pad' . ucwords($padTag[$pad]) . 'Store';
 
   if ( isset ( $padPrmsVal [$pad] [0] ) or isset ( $padPrmsVal [$pad] [1] ) ) 
     $padName [$pad] = $padPrmsVal [$pad] [0];
 
   if ( isset ( $padPrmsVal [$pad] [1] ) )
-    $padStore_source = $padPrmsVal [$pad] [1];  
+    $padStoreSource = $padPrmsVal [$pad] [1];  
   else
-    $padStore_source = $padContent;
+    $padStoreSource = $padContent;
 
   $padName [$pad] = $padName [$pad];
 
   if ( $padTag [$pad] == 'content') {
 
-    $padStore_data = padMakeContent ($padStore_source);
+    $padStoreData = padMakeContent ($padStoreSource);
   
   } elseif ( $padTag [$pad] == 'data' ) {
 
     if ( ! padIsDefaultData ( $padData [$pad] ) )
-      $padStore_data = $padData [$pad];
-    elseif ( $padStore_source )
-      $padStore_data = padMakeData ($padStore_source, padTagParm('type'), $padName [$pad]);
+      $padStoreData = $padData [$pad];
+    elseif ( $padStoreSource )
+      $padStoreData = padMakeData ($padStoreSource, padTagParm('type'), $padName [$pad]);
     else
-      $padStore_data = '';
+      $padStoreData = '';
 
   } elseif ( $padTag [$pad] == 'flag' ) {
 
-    if ( $padStore_source )
-      $padStore_data = padMakeFlag ($padStore_source);
+    if ( $padStoreSource )
+      $padStoreData = padMakeFlag ($padStoreSource);
     else
-      $padStore_data = FALSE;
+      $padStoreData = FALSE;
 
   }
 
-  $GLOBALS [$padStore_name] [$padName [$pad]] = $padStore_data;
+  $GLOBALS [$padStoreName] [$padName [$pad]] = $padStoreData;
 
   if ( $padTrace ) {
     $padTraceData = [
-      'store'  => $padStore_name, 
+      'store'  => $padStoreName, 
       'entry'  => $padName [$pad],
-      'source' => $padStore_source, 
-      'result' => $padStore_data
+      'source' => $padStoreSource, 
+      'result' => $padStoreData
     ];
     padFilePutContents ( $padLevelDir [$pad] . "/store.json", $padTraceData ); 
   }

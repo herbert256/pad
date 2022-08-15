@@ -7,21 +7,21 @@
     return FALSE;
   }
 
-  $padExec_out = $padExec_args = [];
+  $padExecOut = $padExecArgs = [];
 
   foreach($padPrmsVal [$pad] as $padK => $padV)
     if ($padK)
-      $padExec_args [$padK] = escapeshellarg ($padV);
+      $padExecArgs [$padK] = escapeshellarg ($padV);
 
-  $padExec_args = implode(" ", $padExec_args);
+  $padExecArgs = implode(" ", $padExecArgs);
   
-  exec ("$padExec $padExec_args", $padExec_out, $padExec_return);
+  exec ("$padExec $padExecArgs", $padExecOut, $padExecReturn);
 
-  if ( $padExec_return ) {
-    padError ("Script $padExec has returned error $padExec_return");
+  if ( $padExecReturn ) {
+    padError ("Script $padExec has returned error $padExecReturn");
     return FALSE;    
   }
 
-  return implode("\n", $padExec_out);
+  return implode("\n", $padExecOut);
   
 ?>

@@ -5,9 +5,9 @@
 
   if ( ! in_array ( $padTag [$pad], ['if', 'case', 'while', 'until'] )  ) {
    
-    $padPrms_org = padExplode ($padPrms [$pad], ',');
+    $padPrmsOrg = padExplode ($padPrms [$pad], ',');
     
-    foreach ( $padPrms_org as $padV ) {
+    foreach ( $padPrmsOrg as $padV ) {
 
       if ( $padV == 'trace' )
         include 'trace/option.php';
@@ -15,8 +15,8 @@
       $padW = padExplode ($padV, '=', 2);
 
       if ( count($padW) == 2 and substr($padW[0], 0, 1) == '$') {
-        $padSet_name  = trim(substr($padW[0], 1));
-        $padSet_value = $padW[1];
+        $padSetName  = trim(substr($padW[0], 1));
+        $padSetValue = $padW[1];
         include PAD . 'level/set.php';
         continue;
       } 

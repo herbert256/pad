@@ -3,48 +3,48 @@
   if ( ! count ($padData [$pad] ) )
     return;
 
-  $padSort_args   = [];
-  $padSort_fields = padExplode($padPrmsTag [$pad] ['sort'], ';'); 
+  $padSortArgs   = [];
+  $padSortFields = padExplode($padPrmsTag [$pad] ['sort'], ';'); 
 
-  if ( $padPrmsTag [$pad] ['sort'] === TRUE or ! count ($padSort_fields)) {
-    $padSort_fields = []; 
+  if ( $padPrmsTag [$pad] ['sort'] === TRUE or ! count ($padSortFields)) {
+    $padSortFields = []; 
     foreach ($padData [$pad] as $padV1) {
       foreach ($padV1 as $padK2 => $padV2) 
-        $padSort_fields [] = $padK2;
+        $padSortFields [] = $padK2;
       break;
     }
   }
 
-  foreach ($padSort_fields as $padK => $padV) {
+  foreach ($padSortFields as $padK => $padV) {
 
-    $padSort_sort = '';
-    $padSort_flags = 0; 
+    $padSortSort = '';
+    $padSortFlags = 0; 
 
-    $padSort_parms = padExplode($padV, ' ');
+    $padSortParms = padExplode($padV, ' ');
 
-    foreach($padSort_parms as $padK2 => $padV2) {
+    foreach($padSortParms as $padK2 => $padV2) {
       if ($padK2==0)
-        $padSort_field = $padV2;
+        $padSortField = $padV2;
       elseif (strtolower($padV2) == 'asc')
-        $padSort_sort = 'ASC';
+        $padSortSort = 'ASC';
       elseif (strtolower($padV2) == 'desc')
-        $padSort_sort = 'DESC';
+        $padSortSort = 'DESC';
       else 
-        $padSort_flags = $padSort_flags | constant("SORT_" . strtoupper($padV2) );
+        $padSortFlags = $padSortFlags | constant("SORT_" . strtoupper($padV2) );
     }
 
-    $padSort_args [] = array_column ($padData [$pad], $padSort_field);
+    $padSortArgs [] = array_column ($padData [$pad], $padSortField);
 
-    if ($padSort_sort)
-      $padSort_args [] = constant("SORT_$padSort_sort");
+    if ($padSortSort)
+      $padSortArgs [] = constant("SORT_$padSortSort");
 
-    if ($padSort_flags)
-      $padSort_args [] = $padSort_flags;
+    if ($padSortFlags)
+      $padSortArgs [] = $padSortFlags;
 
   }
  
-  $padSort_args [] = &$padData [$pad];
+  $padSortArgs [] = &$padData [$pad];
 
-  call_user_func_array ('array_multisort', $padSort_args);
+  call_user_func_array ('array_multisort', $padSortArgs);
     
 ?>

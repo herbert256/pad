@@ -65,7 +65,7 @@
 
       padTimingStart ('write');
 
-      mkdir ($dir, $GLOBALS ['padDir_mode'], true);
+      mkdir ($dir, $GLOBALS ['padDirMode'], true);
 
       padTimingEnd ('write');
 
@@ -81,7 +81,7 @@
       padTimingStart ('write');
       
       touch($file);
-      chmod($file, $GLOBALS ['padFile_mode']);
+      chmod($file, $GLOBALS ['padFileMode']);
       
       padTimingEnd ('write');
   

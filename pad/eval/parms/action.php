@@ -1,5 +1,5 @@
 <?php
  
-  return pSeq_action ( $value, $name, $padarm );
+  return pSeq_action ( $value, $name, $parm );
  
 ?>

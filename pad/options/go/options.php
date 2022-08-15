@@ -2,18 +2,18 @@
 
   padTimingStart ('opt');
 
-  $padOptions_walk = $GLOBALS["padOptions_$padOptions"];
+  $padOptionsWalk = $GLOBALS["padOptions_$padOptions"];
    
   if     ( $padOptions == 'start' ) $padContent = $padBase   [$pad];
   elseif ( $padOptions == 'end'   ) $padContent = $padResult [$pad];
 
-  foreach ( $padPrmsTag [$pad] as $padOption_name => $padV )
+  foreach ( $padPrmsTag [$pad] as $padOptionName => $padV )
 
-    if ( in_array ( $padOption_name, $padOptions_walk ) and ! isset ( $padDone [$pad] [$padOption_name] ) ) {
+    if ( in_array ( $padOptionName, $padOptionsWalk ) and ! isset ( $padDone [$pad] [$padOptionName] ) ) {
 
-      padDone ( $padOption_name, TRUE );  
+      padDone ( $padOptionName, TRUE );  
 
-      include PAD . "options/$padOption_name.php" ;
+      include PAD . "options/$padOptionName.php" ;
 
       if ($padTrace)
         include 'trace.php';

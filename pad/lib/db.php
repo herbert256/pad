@@ -2,37 +2,37 @@
 
   function db ( $sql, $vars = [] ) {
 
-    global $padSql_connect, $padSql_host , $padSql_user , $padSql_password , $padSql_database;
+    global $padSqlConnect, $padSqlHost , $padSqlUser , $padSqlPassword , $padSqlDatabase;
     
-    if ( ! isset ( $padSql_connect ) ) {
+    if ( ! isset ( $padSqlConnect ) ) {
       padTimingStart ('sql');
-      $padSql_connect = padDbConnect ( $padSql_host , $padSql_user , $padSql_password , $padSql_database );
+      $padSqlConnect = padDbConnect ( $padSqlHost , $padSqlUser , $padSqlPassword , $padSqlDatabase );
       padTimingEnd ('sql');
     }
     
-    return padDbPart2 ($padSql_connect, $sql, $vars, 'app');
+    return padDbPart2 ($padSqlConnect, $sql, $vars, 'app');
     
   }
   
   
   function padDb ( $sql, $vars = [] ) {
 
-    global $padPad_sql_connect, $padPad_sql_host , $padPad_sql_user , $padPad_sql_password , $padPad_sql_database;
+    global $padPadSqlConnect, $padPadSqlHost , $padPadSqlUser , $padPadSqlPassword , $padPadSqlDatabase;
     
-    if ( ! isset ( $padPad_sql_connect ) ) {
+    if ( ! isset ( $padPadSqlConnect ) ) {
       padTimingStart ('sql');
-      $padPad_sql_connect = padDbConnect ( $padPad_sql_host , $padPad_sql_user , $padPad_sql_password , $padPad_sql_database );
+      $padPadSqlConnect = padDbConnect ( $padPadSqlHost , $padPadSqlUser , $padPadSqlPassword , $padPadSqlDatabase );
       padTimingEnd ('sql');
     }
     
-    return padDbPart2 ($padPad_sql_connect, $sql, $vars, 'pad');
+    return padDbPart2 ($padPadSqlConnect, $sql, $vars, 'pad');
     
   }
 
   
-  function padDbPart2 ( $padSql_connect, $sql, $vars, $db_type ) {
+  function padDbPart2 ( $padSqlConnect, $sql, $vars, $db_type ) {
 
-    global $pad, $padDb_rows_found, $padTrack_sql, $padPrmsTag;
+    global $pad, $padDbRowsFound, $padTrackSql, $padPrmsTag;
     
     foreach ( $vars as $i => $replace ) {
 
@@ -40,7 +40,7 @@
 
       if ( $pad1 !== FALSE )
         if (substr($i, 0, 1) <> 'x')
-          $sql = str_replace('{'.$i.'}', mysqli_real_escape_string($padSql_connect, $replace), $sql);
+          $sql = str_replace('{'.$i.'}', mysqli_real_escape_string($padSqlConnect, $replace), $sql);
         else
           $sql = str_replace('{'.$i.'}', $replace, $sql);
 
@@ -57,7 +57,7 @@
         if ( strlen($replace) > $length )
           $replace = substr($replace, 0, $length);
 
-        $sql = str_replace($search, mysqli_real_escape_string($padSql_connect, $replace), $sql);
+        $sql = str_replace($search, mysqli_real_escape_string($padSqlConnect, $replace), $sql);
 
       }
 
@@ -74,20 +74,20 @@
     elseif ( $command == 'field'  )  $sql = 'select '        . $split[1] . ' limit 0,1';
     elseif ( $command == 'array'  )  $sql = 'select '        . $split[1];
 
-    if ( $padTrack_sql )
-      $padSql_start = microtime(true);
+    if ( $padTrackSql )
+      $padSqlStart = microtime(true);
     
     padTimingStart ('sql');
-    $query = mysqli_query ( $padSql_connect , $sql );
+    $query = mysqli_query ( $padSqlConnect , $sql );
     padTimingEnd ('sql');
 
     $GLOBALS ['padLast_sql'] = $sql;
     
     if ( ! $query )
-      padError ( 'MySQL-' . mysqli_errno ( $padSql_connect ) . ': ' . mysqli_error ( $padSql_connect ) . ' - '. $sql );
+      padError ( 'MySQL-' . mysqli_errno ( $padSqlConnect ) . ': ' . mysqli_error ( $padSqlConnect ) . ' - '. $sql );
 
     padTimingStart ('sql');
-    $padDb_rows_found = $rows = mysqli_affected_rows($padSql_connect);
+    $padDbRowsFound = $rows = mysqli_affected_rows($padSqlConnect);
     padTimingEnd ('sql');
 
     if ( $rows > 0 and ($command == 'field' or $command == 'record') ) {
@@ -99,7 +99,7 @@
 
     if     ( $command == 'insert'  ) {
       padTimingStart ('sql');
-      $return = mysqli_insert_id ( $padSql_connect );
+      $return = mysqli_insert_id ( $padSqlConnect );
       padTimingEnd ('sql');
       if ( !$return )
         $return = $rows;
@@ -135,12 +135,12 @@
       $return = '';
 
 
-    if ( $GLOBALS ['padTrack_sql'] ) {
+    if ( $GLOBALS ['padTrackSql'] ) {
 
-      $padSql_duration = padDuration ($padSql_start);
+      $padSqlDuration = padDuration ($padSqlStart);
 
-      if ($GLOBALS ['padTrack_sql'])
-        padDbLog ($db_type, $padSql_duration, $padDb_rows_found, padDbFormatSql($sql)) ;
+      if ($GLOBALS ['padTrackSql'])
+        padDbLog ($db_type, $padSqlDuration, $padDbRowsFound, padDbFormatSql($sql)) ;
       
     }
 

@@ -1,11 +1,11 @@
 <?php
 
-  if ( $padSeq_loop == 1 ) return 0;
-  if ( $padSeq_loop == 2 ) return 0; 
-  if ( $padSeq_loop == 3 ) return 1; 
+  if ( $padSeqLoop == 1 ) return 0;
+  if ( $padSeqLoop == 2 ) return 0; 
+  if ( $padSeqLoop == 3 ) return 1; 
  
-  return $padSeq_result [$padSeq_loop - 2] +
-         $padSeq_result [$padSeq_loop - 3] +
-         $padSeq_result [$padSeq_loop - 4];
+  return $padSeqResult [$padSeqLoop - 2] +
+         $padSeqResult [$padSeqLoop - 3] +
+         $padSeqResult [$padSeqLoop - 4];
 
 ?>

@@ -3,9 +3,9 @@
   padTimingStart ('build');
 
   if ( isset ( $_REQUEST['padInclude']) )
-    $padBuild_mode = 'include';
+    $padBuildMode = 'include';
 
-  include "$padBuild_mode.php";
+  include "$padBuildMode.php";
 
   if ( ! isset ( $padNoOccur) )
     include PAD . 'occurrence/start.php';

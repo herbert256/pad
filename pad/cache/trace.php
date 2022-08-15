@@ -1,19 +1,19 @@
 <?php
 
-  $padCache_trace = [
-    'stop'        => $padCache_stop,
-    'url'         => $padCache_url,
+  $padCacheTrace = [
+    'stop'        => $padCacheStop,
+    'url'         => $padCacheUrl,
     'now-etag'    => $padEtag,
-    'cache-etag'  => $padCache_etag,
-    'client-etag' => $padCache_client,
-    'age'         => $padCache_age,
-    'mod'         => $padCache_mod,
-    'max'         => $padCache_max,
-    'now-age'     => ($padCache_age) ? $_SERVER['REQUEST_TIME'] - $padCache_age : 0,
-    'now-mod'     => ($padCache_mod) ? $_SERVER['REQUEST_TIME'] - $padCache_mod : 0,
-    'now-max'     => ($padCache_max) ? $_SERVER['REQUEST_TIME'] - $padCache_max : 0
+    'cache-etag'  => $padCacheEtag,
+    'client-etag' => $padCacheClient,
+    'age'         => $padCacheAge,
+    'mod'         => $padCacheMod,
+    'max'         => $padCacheMax,
+    'now-age'     => ($padCacheAge) ? $_SERVER['REQUEST_TIME'] - $padCacheAge : 0,
+    'now-mod'     => ($padCacheMod) ? $_SERVER['REQUEST_TIME'] - $padCacheMod : 0,
+    'now-max'     => ($padCacheMax) ? $_SERVER['REQUEST_TIME'] - $padCacheMax : 0
   ];
       
-  padFilePutContents ( $padTraceDir . "/cache.$padCache_stop.json", $padCache_trace );
+  padFilePutContents ( $padTraceDir . "/cache.$padCacheStop.json", $padCacheTrace );
 
 ?>

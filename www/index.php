@@ -15,7 +15,7 @@
   
   // Mark the PAD boot time
 
-  $padTimings_boot = microtime(true);
+  $padTimingsBoot = microtime(true);
 
 
   // Start settings
@@ -29,8 +29,8 @@
 
   // Start Boot error handling 
 
-  $padDisplay_errors  = ini_set ('display_errors', 0);
-  $padError_reporting = error_reporting (E_ALL);
+  $padDisplayErrors  = ini_set ('display_errors', 0);
+  $padErrorReporting = error_reporting (E_ALL);
 
   set_error_handler          ( 'padBootErrorHandler'     );
   set_exception_handler      ( 'padBootExceptionHandler' );
@@ -69,7 +69,7 @@
 
   function padBootShutdownFunction () {
 
-    if ( isset ( $GLOBALS ['padSkip_boot_shutdown'] ) )
+    if ( isset ( $GLOBALS ['padSkipBootShutdown'] ) )
       return;
 
     $error = error_get_last ();
@@ -81,7 +81,7 @@
 
   function padBootErrorGo ( $error, $file, $line ) {
 
-    $GLOBALS ['padSkip_boot_shutdown'] = TRUE;
+    $GLOBALS ['padSkipBootShutdown'] = TRUE;
     $GLOBALS ['padSkip_shutdown']      = TRUE;
 
     if ( ! headers_sent () )

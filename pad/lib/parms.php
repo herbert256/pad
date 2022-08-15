@@ -1,9 +1,9 @@
 <?php
 
 
-  function padGetParms ( $type, $padarms ) {
+  function padGetParms ( $type, $parms ) {
 
-    foreach ( $padarms as $field => $value )
+    foreach ( $parms as $field => $value )
       if ( (!isset($GLOBALS[$field])) )
         $GLOBALS [$field] = padGetParms2 ( $type, $value );
 

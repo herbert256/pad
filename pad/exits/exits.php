@@ -16,20 +16,20 @@
   if ( $padTidy )
     include PAD . 'exits/tidy.php';
 
-  if ( $padRemove_whitespace )
+  if ( $padRemoveWhitespace )
    include 'whitespace.php';
   
   $padEtag = padMd5 ($padOutput);
 
-  if ( $padTrack_file_data )
+  if ( $padTrackFileData )
     padTrackFileData ();
 
-  if ( $padTrack_db_data )
+  if ( $padTrackDbData )
     padTrackDbData ();
 
-  $padStop = ( $padEtag_304 and ($padCache_client??'') == $padEtag ) ? 304 : 200;
+  $padStop = ( $padEtag304 and ($padCacheClient??'') == $padEtag ) ? 304 : 200;
 
-  if ( $padCache and $padCache_server_age )
+  if ( $padCache and $padCacheServerAge )
     include PAD . 'cache/exits.php';
 
   padTimingEnd ('exit');

@@ -6,14 +6,14 @@
      if ( $GLOBALS ['padExit'] <> 1 or ! $GLOBALS ['padTiming'] )
       return;
    
-    global $padTimingsCnt, $padTimings_start;
+    global $padTimingsCnt, $padTimingsStart;
 
-#    if ( isset ( $padTimings_start [$timing] ) )
+#    if ( isset ( $padTimingsStart [$timing] ) )
 #      padError ('tm-oops-1: ' . $timing);
 
     $padTimingsCnt [$timing] = 1 + ($padTimingsCnt [$timing]??0);
 
-    $padTimings_start [$timing] = microtime(true);
+    $padTimingsStart [$timing] = microtime(true);
 
   }
 
@@ -23,20 +23,20 @@
     if ( $GLOBALS ['padExit'] <> 1 or ! $GLOBALS ['padTiming'] )
       return;
 
-    global $padTimings, $padTimings_start;
+    global $padTimings, $padTimingsStart;
 
-    if ( ! isset ( $GLOBALS ['padTimings_start'] [$timing] ) )
+    if ( ! isset ( $GLOBALS ['padTimingsStart'] [$timing] ) )
       return;
 #      padError ('tm-oops-2: ' . $timing);
 
-    $now = microtime(true) - $padTimings_start[$timing];
+    $now = microtime(true) - $padTimingsStart[$timing];
 
     $padTimings [$timing] = ($padTimings[$timing]??0) + $now ;
     
-    unset($padTimings_start [$timing]);
+    unset($padTimingsStart [$timing]);
 
-    foreach ( $padTimings_start as $key => $val ) 
-      $padTimings_start [$key] += $now;
+    foreach ( $padTimingsStart as $key => $val ) 
+      $padTimingsStart [$key] += $now;
     
   }
 
@@ -46,12 +46,12 @@
     if ( ! $GLOBALS ['padTiming'] )
       return;
 
-    global $padTimings, $padTimings_boot, $padTimings_start, $padTimingsCnt, $padTraceDir;
+    global $padTimings, $padTimingsBoot, $padTimingsStart, $padTimingsCnt, $padTraceDir;
 
-    foreach ( $padTimings_start as $key => $val ) 
+    foreach ( $padTimingsStart as $key => $val ) 
       padTimingEnd ($key);
 
-    $padTimings ['boot'] = $padTimings_boot - $_SERVER['REQUEST_TIME_FLOAT'];
+    $padTimings ['boot'] = $padTimingsBoot - $_SERVER['REQUEST_TIME_FLOAT'];
 
     foreach ($padTimings as $key => $val)
       $padTimings [$key] = (int) ( $val * 1000000 );

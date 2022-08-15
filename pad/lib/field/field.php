@@ -1,16 +1,16 @@
 <?php
 
 
-  function padFieldCheck ($padarm) { return padField ($padarm, 1); } 
-  function padFieldValue ($padarm) { return padField ($padarm, 2); } 
-  function padArrayCheck ($padarm) { return padField ($padarm, 3); } 
-  function padArrayValue ($padarm) { return padField ($padarm, 4); } 
-  function padFieldNull  ($padarm) { return padField ($padarm, 5); } 
+  function padFieldCheck ($parm) { return padField ($parm, 1); } 
+  function padFieldValue ($parm) { return padField ($parm, 2); } 
+  function padArrayCheck ($parm) { return padField ($parm, 3); } 
+  function padArrayValue ($parm) { return padField ($parm, 4); } 
+  function padFieldNull  ($parm) { return padField ($parm, 5); } 
 
 
-  function padField ($padarm, $type) {
+  function padField ($parm, $type) {
 
-    $field = ( substr ( $padarm, 0, 1 ) == '$' ) ? substr ( $padarm, 1 ) : $padarm;
+    $field = ( substr ( $parm, 0, 1 ) == '$' ) ? substr ( $parm, 1 ) : $parm;
 
     if     ( strpos ( $field, '#' ) !== FALSE ) $value = padFieldTag    ( $field        );
     elseif ( strpos ( $field, ':' ) !== FALSE ) $value = padFieldPrefix ( $field, $type );

@@ -7,12 +7,12 @@
       $temp  = padExplode ($field, '#', 2);
       $tag   = '';
       $field = $temp[0];
-      $padarm  = $temp[1]??'';
+      $parm  = $temp[1]??'';
     } else {
       $temp  = padExplode ($field, '#', 3);
       $tag   = $temp[0];
       $field = $temp[1];
-      $padarm  = $temp[2]??'';
+      $parm  = $temp[2]??'';
     }
 
     if ( ! $tag )
@@ -23,11 +23,11 @@
     if ( file_exists ( PAD . "tag/".$field.".php" ) )
       return include PAD . "tag/$field.php";
 
-    if ( in_array ( $padarm, ['name','value'] ) and $padIdx and isset($GLOBALS ['padCurrent'] ) ) {
+    if ( in_array ( $parm, ['name','value'] ) and $padIdx and isset($GLOBALS ['padCurrent'] ) ) {
       $pados = 1;
       foreach( $GLOBALS ['padCurrent'] [$padIdx] as $key => $value )
         if ( $pados++ == $field )
-          return ( $padarm == 'name') ? $key : $value;
+          return ( $parm == 'name') ? $key : $value;
     }
 
     if ( $tag )

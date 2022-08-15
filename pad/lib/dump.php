@@ -69,7 +69,7 @@
 
   function padDumpSequence ($pad) {
 
-    if ( ! isset($GLOBALS ['padIn_sequence'] ) or $GLOBALS ['padIn_sequence'] === FALSE ) 
+    if ( ! isset($GLOBALS ['padInSequence'] ) or $GLOBALS ['padInSequence'] === FALSE ) 
       return;
 
     $seq = [];
@@ -103,7 +103,7 @@
     padDumpArray ( 'parsed', $GLOBALS ['padTrace_parsed']);
     padDumpArray ( 'after',  $GLOBALS ['padTrace_after']);
     padDumpArray ( 'go',     $GLOBALS ['padTrace_go']);
-    padDumpArray ( 'result', $GLOBALS ['padEval_result'] );
+    padDumpArray ( 'result', $GLOBALS ['padEvalResult'] );
 
     echo ( "\n\n");
 
@@ -112,11 +112,11 @@
 
   function padDumpStack () {
 
-    $padDebug_backtrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS);
+    $padDebugBacktrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS);
 
     echo ( "<b>Stack</b>\n");
     
-    foreach ( $padDebug_backtrace as $key => $trace ) {
+    foreach ( $padDebugBacktrace as $key => $trace ) {
       extract ( $trace );
       echo ( "    $file:$line - $function\n");
     }
@@ -126,11 +126,11 @@
 
   function padDumpSQL () {
 
-    if ( isset ( $GLOBALS ['padSql_connect'     ] ) ) 
-      padDumpObject ('MySQL-App', $GLOBALS ['padSql_connect']      );
+    if ( isset ( $GLOBALS ['padSqlConnect'     ] ) ) 
+      padDumpObject ('MySQL-App', $GLOBALS ['padSqlConnect']      );
     
-    if ( isset ( $GLOBALS ['padPad_sql_connect' ] ) ) 
-      padDumpObject ('MySQL-PAD', $GLOBALS ['padPad_sql_connect']  );
+    if ( isset ( $GLOBALS ['padPadSqlConnect' ] ) ) 
+      padDumpObject ('MySQL-PAD', $GLOBALS ['padPadSqlConnect']  );
 
   }
 
