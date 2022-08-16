@@ -10,7 +10,7 @@
 
   elseif ( $padSeqBuild == 'function' )
 
-    $padSequence = "padSequence_$padSeqSeq" ($padSeqLoop);
+    $padSequence = ( "padSeq" . ucfirst($padSeqSeq) ) ($padSeqLoop);
 
   elseif ( $padSeqBuild == 'bool' )
 

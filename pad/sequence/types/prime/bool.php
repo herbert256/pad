@@ -1,6 +1,6 @@
 <?php
 
-  function padSequence_bool_prime ( $n ) {
+  function padSeqBoolPrime ( $n ) {
 
     if ( gmp_prob_prime ($n) )
       return TRUE;

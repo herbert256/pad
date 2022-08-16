@@ -14,12 +14,12 @@
 
     elseif ( $padSeqInc == 1)
 
-      $padSeqLoop = padSeq_random ( $padSeqLoopStart, $padSeqLoopEnd );
+      $padSeqLoop = padSeqRandom ( $padSeqLoopStart, $padSeqLoopEnd );
 
     else {
 
       $padSeqIncCnt = round ( (($padSeqLoopEnd-$padSeqLoopStart)+1) / $padSeqInc );
-      $padSeqIncCnt = padSeq_random ( 0, $padSeqIncCnt );
+      $padSeqIncCnt = padSeqRandom ( 0, $padSeqIncCnt );
 
       $padSeqLoop = $padSeqLoopStart + ($padSeqIncCnt*$padSeqInc);
 

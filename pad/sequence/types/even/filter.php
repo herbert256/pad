@@ -2,6 +2,6 @@
 
   include_once 'bool.php';
   
-  return padSequence_bool_even( $padSeqLoop );
+  return padSeqBoolEven( $padSeqLoop );
 
 ?>

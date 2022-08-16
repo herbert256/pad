@@ -8,9 +8,9 @@
 
     echo ( "<pre><b>$error</b>\n\n");
     
-    $padDebugBacktrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS);
+    $padBacktrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS);
     
-    foreach ( $padDebugBacktrace as $key => $trace ) {
+    foreach ( $padBacktrace as $key => $trace ) {
       extract ( $trace );
       echo ( "$file:$line - $function\n");
     }

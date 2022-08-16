@@ -6,19 +6,19 @@
 
 	if ( isset($padSeqJuggler) and $padSeqJuggler and is_numeric($padSeqJuggler) )
 
-	  padSeq_juggler ($padSeqJuggler);
+	  padSeqJuggler ($padSeqJuggler);
 
 	elseif ( $padSeqParm and is_numeric($padSeqParm) )
 
-	  padSeq_juggler ($padSeqParm);
+	  padSeqJuggler ($padSeqParm);
 
 	elseif ( count ($padSeqFor) )
  
- 	  padSeq_juggler ( reset($padSeqParm) );
+ 	  padSeqJuggler ( reset($padSeqParm) );
 
  	else 
 
- 	  padSeq_juggler ( $padSeqLoopStart );
+ 	  padSeqJuggler ( $padSeqLoopStart );
 
 	return $padSeqJugglerArray;
 

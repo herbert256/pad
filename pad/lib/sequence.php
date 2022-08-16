@@ -1,7 +1,7 @@
 <?php
 
 
-  function padSeq_action ( $sequence1, $action, $sequence2 ) {
+  function padSeqAction ( $sequence1, $action, $sequence2 ) {
 
     $padSeqResult       = $sequence1;
     $padSeqCnt        = 0;
@@ -15,7 +15,7 @@
   }
 
 
-  function padSeq_random ( $min, $max ) {
+  function padSeqRandom ( $min, $max ) {
 
     $rand = rand ( $min, $max ); 
 
@@ -29,7 +29,7 @@
 
   }
 
-  function padSeq_reverse ( $x ) {
+  function padSeqReverse ( $x ) {
 
    $rev = 0;
     while ($x > 0) {
@@ -40,7 +40,7 @@
 
   }
 
-  function padSeq_set ( $name, $value ) {
+  function padSeqSet ( $name, $value ) {
 
     $GLOBALS ["padSeqParm"] = $value;
     $GLOBALS ["padSeq_$name"] = $value;
@@ -48,7 +48,7 @@
   }
 
 
-  function padSeq_array_action ($action) {
+  function padSeqArrayAction ($action) {
 
     $array  = $GLOBALS ['padSeqActionValue'];
     $arrays = padExplode ($array, '|');
@@ -66,7 +66,7 @@
 
   }
 
-  function padSeq_truncate ( $array, $side, $count ) {
+  function padSeqTruncate ( $array, $side, $count ) {
 
     if ( $side == 'left' )
       return array_slice ($array, $count);
@@ -75,7 +75,7 @@
 
   }
 
-  function padSeq_getCnt ( $first, $second, $third ) {
+  function padSeqGetCnt ( $first, $second, $third ) {
 
     global $pad, $padPrmsTag, $padSeqParm;
 

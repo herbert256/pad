@@ -1,6 +1,6 @@
 <?php
 
-function padSequence_recaman($n)
+function padSeqRecaman($n)
 {
   if($n <= 1)
     return 0;

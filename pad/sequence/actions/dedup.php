@@ -1,5 +1,5 @@
 <?php
 
-  return padSeq_array_action ('array_unique');
+  return padSeqArrayAction ('array_unique');
 
 ?>

@@ -2,6 +2,6 @@
 
   include_once 'function.php';
   
-  return padSequence_newmanConway ( $padSeqLoop );
+  return padSeqNewmanConway ( $padSeqLoop );
 
 ?>

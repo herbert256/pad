@@ -12,7 +12,7 @@
 
     $padSeqParmSave = $padSeqParm;
 
-    padSeq_set ( $padSeqOprName, $padSeqOprValue );
+    padSeqSet ( $padSeqOprName, $padSeqOprValue );
 
     $padSeqLoop = $padSeqOperations;
 

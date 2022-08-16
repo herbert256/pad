@@ -1,7 +1,10 @@
 <?php
 
+
+  $padSeqBoolFunction = 'padSeqBool' . ucfirst($padSeqSeq);
+
   if ( ! $padSeqRandom )
-    if ( "padSequence_bool_$padSeqSeq"($padSeqLoop) )
+    if ( $padSeqBoolFunction ($padSeqLoop) )
       return $padSeqLoop;
     else
       return FALSE;
@@ -13,11 +16,11 @@
     if ( count ($padSeqFor) )
       $padSeqLoopBool = $padSeqFor [array_rand($padSeqFor)];
     else
-      $padSeqLoopBool = padSeq_random ( $padSeqLoopStart, $padSeqLoopEnd );
+      $padSeqLoopBool = padSeqRandom ( $padSeqLoopStart, $padSeqLoopEnd );
  
     include_once PAD . "sequence/types/$padSeqSeq/bool.php";
 
-    if ( "padSequence_bool_$padSeqSeq"($padSeqLoopBool) )
+    if ( $padSeqBoolFunction ($padSeqLoopBool) )
       return $padSeqLoopBool;
      
     $padSeqRandomTry++;

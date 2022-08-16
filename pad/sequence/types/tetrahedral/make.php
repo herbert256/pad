@@ -2,6 +2,6 @@
 
   include_once 'function.php';
   
-  return padSequence_tetrahedral ( $padSeqLoop );
+  return padSeqTetrahedral ( $padSeqLoop );
 
 ?>

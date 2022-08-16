@@ -4,113 +4,57 @@
   $padLibIterator  = new RecursiveIteratorIterator  ($padLibDirectory);
 
   foreach ( $padLibIterator as $padLibOne ) {
+
     $padLibFile = $padLibOne->getPathname();
-    if ( substr($padLibFile, -4) == '.php' ) 
-      $files [] = $padLibFile;
-  }
 
-  foreach ( $files as $file ) {
+    if ( substr($padLibFile, -4) == '.php' ) {
 
-    $data = file_get_contents ( $file );
+      $array = file ($padLibFile);
 
-    $pos =  strpos($data, '$pad');
+      foreach ( $array as $line)
+        if ( strpos($line, 'function') !== FALSE ) {
 
-    while ($pos !== FALSE) {
+          $line = str_replace('function', ' function', $line);
+          $line = str_replace('(', ' (', $line);
+         
+          $parts = preg_split("/[\s]+/", $line, 9, PREG_SPLIT_NO_EMPTY);
 
-      $check01 = strpos($data, ' ',  $pos);  
-      $check02 = strpos($data, '=',  $pos);  
-      $check03 = strpos($data, ',',  $pos);  
-      $check04 = strpos($data, ';',  $pos);  
-      $check05 = strpos($data, ')',  $pos);  
-      $check06 = strpos($data, "\t", $pos);  
-      $check07 = strpos($data, "\r", $pos);  
-      $check08 = strpos($data, "\n", $pos);  
-      $check09 = strpos($data, ']',  $pos);  
-      $check10 = strpos($data, '[',  $pos);  
-      $check11 = strpos($data, "'",  $pos);  
-      $check12 = strpos($data, '"',  $pos);  
-      $check13 = strpos($data, '\\',  $pos);  
-      $check14 = strpos($data, '/',  $pos);  
-      $check15 = strpos($data, '-',  $pos);  
-      $check16 = strpos($data, '.',  $pos);  
-      $check17 = strpos($data, '+',  $pos);  
-      $check18 = strpos($data, '<',  $pos);  
-      $check19 = strpos($data, '>',  $pos);  
-      $check20 = strpos($data, '{',  $pos);  
-      $check21 = strpos($data, '}',  $pos);  
-      $check22 = strpos($data, '?',  $pos);  
-      $check23 = strpos($data, '#',  $pos);  
-      $check24 = strpos($data, '*',  $pos);  
+          if ( $parts[0] == 'function' and substr ($parts[2], 0, 1) === '(' and  substr($parts[1], 0, 11) == 'padSequence') 
 
-      $found = PHP_INT_MAX;
-
-      if ($check01 !== FALSE and $check01 < $found) $found = $check01;
-      if ($check02 !== FALSE and $check02 < $found) $found = $check02;
-      if ($check03 !== FALSE and $check03 < $found) $found = $check03;
-      if ($check04 !== FALSE and $check04 < $found) $found = $check04;
-      if ($check05 !== FALSE and $check05 < $found) $found = $check05;
-      if ($check06 !== FALSE and $check06 < $found) $found = $check06;
-      if ($check07 !== FALSE and $check07 < $found) $found = $check07;
-      if ($check08 !== FALSE and $check08 < $found) $found = $check08;
-      if ($check09 !== FALSE and $check09 < $found) $found = $check09;
-      if ($check10 !== FALSE and $check10 < $found) $found = $check10;
-      if ($check11 !== FALSE and $check11 < $found) $found = $check11;
-      if ($check12 !== FALSE and $check12 < $found) $found = $check12;
-      if ($check13 !== FALSE and $check13 < $found) $found = $check13;
-      if ($check14 !== FALSE and $check14 < $found) $found = $check14;
-      if ($check15 !== FALSE and $check15 < $found) $found = $check15;
-      if ($check16 !== FALSE and $check16 < $found) $found = $check16;
-      if ($check17 !== FALSE and $check17 < $found) $found = $check17;
-      if ($check18 !== FALSE and $check18 < $found) $found = $check18;
-      if ($check19 !== FALSE and $check19 < $found) $found = $check19;
-      if ($check20 !== FALSE and $check20 < $found) $found = $check20;
-      if ($check21 !== FALSE and $check21 < $found) $found = $check21;
-      if ($check22 !== FALSE and $check22 < $found) $found = $check22;
-      if ($check23 !== FALSE and $check23 < $found) $found = $check23;
-      if ($check24 !== FALSE and $check24 < $found) $found = $check24;
-
-      $old = substr($data, $pos, $found - $pos);
-
-      $words = padExplode ($old, '_');
-      $new = $words [0];
-
-      foreach ($words as $key => $value)
-        if ($key)
-          $new .= ucfirst($value);
-
-      if ( $old <> $new )
-        $vars [$old] = $new;
-
-      $pos =  strpos($data, '$pad', $pos+1);
+              $functions [$parts[1]] = 'padSeq' . substr($parts[1], 11);
+                  
+        }
 
     }
 
   }
 
-  arsort($vars);
+  arsort($functions);
+  #dump();
 
-  foreach ( $files as $file ) {
+  $padLibDirectory = new RecursiveDirectoryIterator ('/home/herbert/pad');
+  $padLibIterator  = new RecursiveIteratorIterator  ($padLibDirectory);
 
-    $data = file_get_contents ( $file );
+  foreach ( $padLibIterator as $padLibOne ) {
 
-    foreach ($vars as $old => $new ) {
+    $padLibFile = $padLibOne->getPathname();
 
-      $data = str_replace( $old, $new, $data ) ;
+    if ( substr($padLibFile, -4) == '.php' ) {
 
-      $from = "'" . substr($old, 1) . "'";
-      $to   = "'" . substr($new, 1) . "'";
-      $data = str_replace( $from, $to, $data ) ;
+      $data = file_get_contents( $padLibFile);
 
-      $from = '"' . substr($old, 1) . '"';
-      $to   = '"' . substr($new, 1) . '"';
-      $data = str_replace( $from, $to, $data ) ;
- 
+      foreach ($functions as $old => $new ) {
+
+        $data = str_replace($old, $new, $data ) ;
+
+      }
+
+      $data = file_put_contents( $padLibFile, $data);
+
     }
-
-    $data = file_put_contents( $file, $data);
 
   }
 
-  padDump();
+  dump();
  
 ?>

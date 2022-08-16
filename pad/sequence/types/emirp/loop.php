@@ -6,7 +6,7 @@
   if ( $padSeqLoop < 11 )
     return false;
 
-   $padReverse = padSeq_reverse($padSeqLoop);
+   $padReverse = padSeqReverse($padSeqLoop);
 
   if ( gmp_prob_prime ( $padReverse ) ) 
     return TRUE;

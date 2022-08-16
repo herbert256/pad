@@ -2,6 +2,6 @@
 
   include_once 'function.php';
   
-  return padSequence_caterer ( $padSeqLoop );
+  return padSeqCaterer ( $padSeqLoop );
 
 ?>

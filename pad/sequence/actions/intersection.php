@@ -1,5 +1,5 @@
 <?php
 
-  return padSeq_array_action ('array_intersect');
+  return padSeqArrayAction ('array_intersect');
 
 ?>

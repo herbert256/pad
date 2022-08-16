@@ -4,21 +4,21 @@
     $padPrmsTag [$pad]['both'] = TRUE;
 
   if ( isset( $padPrmsTag [$pad]['both']) ) {
-    $padSeqTrucateCnt = padSeq_getCnt ( 'both', 'truncate', 'count');
-    $padSeqResult        = padSeq_truncate  ( $padSeqResult, 'left',  $padSeqTrucateCnt );
-    $padSeqResult        = padSeq_truncate  ( $padSeqResult, 'right', $padSeqTrucateCnt );
+    $padSeqTrucateCnt = padSeqGetCnt ( 'both', 'truncate', 'count');
+    $padSeqResult        = padSeqTruncate  ( $padSeqResult, 'left',  $padSeqTrucateCnt );
+    $padSeqResult        = padSeqTruncate  ( $padSeqResult, 'right', $padSeqTrucateCnt );
     padDone ( 'both', TRUE );
   }
 
   if ( isset( $padPrmsTag [$pad]['left']) ) {
-    $padSeqTrucateCnt = padSeq_getCnt ( 'left', 'truncate', 'count');
-    $padSeqResult        = padSeq_truncate  ( $padSeqResult, 'left', $padSeqTrucateCnt );
+    $padSeqTrucateCnt = padSeqGetCnt ( 'left', 'truncate', 'count');
+    $padSeqResult        = padSeqTruncate  ( $padSeqResult, 'left', $padSeqTrucateCnt );
     padDone ( 'left', TRUE );
   }
 
   if ( isset( $padPrmsTag [$pad]['right']) ) {
-    $padSeqTrucateCnt = padSeq_getCnt ( 'right', 'truncate', 'count');
-    $padSeqResult        = padSeq_truncate  ( $padSeqResult, 'right', $padSeqTrucateCnt );
+    $padSeqTrucateCnt = padSeqGetCnt ( 'right', 'truncate', 'count');
+    $padSeqResult        = padSeqTruncate  ( $padSeqResult, 'right', $padSeqTrucateCnt );
     padDone ( 'right', TRUE );
   }
 

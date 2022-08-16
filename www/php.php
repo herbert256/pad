@@ -29,14 +29,14 @@
 
     echo "\n<b>[$txt]</b>\n";
 
-    $padrint = htmlentities ( print_r ( $arr, TRUE ) ) ;
+    $print = htmlentities ( print_r ( $arr, TRUE ) ) ;
 
-    $padrint = str_replace  (" =&gt; Array\n" ,"\n",   $padrint);
-    $padrint = str_replace  (")\n\n",          ")\n" , $padrint);
-    $padrint = preg_replace ("/[\n]\s+\(/",    "",     $padrint);
-    $padrint = preg_replace ("/[\n]\s+\)/",    "",     $padrint);
+    $print = str_replace  (" =&gt; Array\n" ,"\n",   $print);
+    $print = str_replace  (")\n\n",          ")\n" , $print);
+    $print = preg_replace ("/[\n]\s+\(/",    "",     $print);
+    $print = preg_replace ("/[\n]\s+\)/",    "",     $print);
 
-    echo substr ( $padrint, 8, strlen($padrint) - 10);
+    echo substr ( $print, 8, strlen($print) - 10);
 
   }
 

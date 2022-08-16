@@ -6,7 +6,7 @@
 // function prints the
 // juggler Sequence
 
-function padSeq_juggler ($n) {
+function padSeqJuggler ($n) {
 
 
 	$GLOBALS ['padSeqJugglerArray'] [] = $n;

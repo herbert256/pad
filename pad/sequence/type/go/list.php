@@ -5,7 +5,7 @@
 
   foreach ( $GLOBALS["padSeq_$padSeqOprName"."_list"] as $padSeqListName => $padSeqListValue ) {
 
-    padSeq_set ( $padSeqListName, $padSeqListValue );
+    padSeqSet ( $padSeqListName, $padSeqListValue );
 
     $padSeqLoop = $padSeqList;
 

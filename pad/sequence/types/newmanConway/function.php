@@ -4,7 +4,7 @@
 
 // Recursive Function to
 // find the n-th element
-function padSequence_newmanConway ($n) {
+function padSeqNewmanConway ($n) {
 
 	if ($n == 1 || $n == 2)
 		return 1;
@@ -12,9 +12,9 @@ function padSequence_newmanConway ($n) {
 	if ( isset ( $GLOBALS ['padSeqCache'] [$n] ) )
 		return $GLOBALS ['padSeqCache'] [$n];
 
-	$now = padSequence_newmanConway ( padSequence_newmanConway ($n - 1)     )
+	$now = padSeqNewmanConway ( padSeqNewmanConway ($n - 1)     )
 	       +
-		   padSequence_newmanConway ( $n - padSequence_newmanConway($n - 1) );
+		   padSeqNewmanConway ( $n - padSeqNewmanConway($n - 1) );
 
 	$GLOBALS ['padSeqCache'] [$n] = $now;
 

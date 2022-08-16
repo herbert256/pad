@@ -8,7 +8,7 @@
 // the maximum number of
 // pieces that can be made
 // form pancake using n cuts
-function padSequence_caterer ($n)
+function padSeqCaterer ($n)
 {
     // Use the formula
     return ($n * ( $n + 1)) / 2 + 1;

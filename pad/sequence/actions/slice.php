@@ -1,5 +1,5 @@
 <?php
 
-  return padSeq_array_action ('array_slice');
+  return padSeqArrayAction ('array_slice');
 
 ?>
