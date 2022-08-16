@@ -8,7 +8,7 @@
 
   $files = $totals = [];
 
-  $bench = ['benchmark', 'overhead', 'get', 'network', 'total', 'boot', 'init', 'build', 'parm','tag', 'var', 'eval', 'opt', 'app', 'read', 'write', 'curl', 'sql', 'cache', 'exit', 'other'];
+  $bench = ['benchmark', 'overhead', 'get', 'network', 'total', 'boot', 'init','tag', 'var', 'eval', 'opt', 'app', 'read', 'write', 'curl', 'sql', 'cache', 'exit', 'other'];
 
   $not = ['benchmark', 'overhead', 'get', 'network', 'total', 'boot', 'init', 'exit', 'other'];
 

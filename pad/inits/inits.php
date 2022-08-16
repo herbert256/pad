@@ -1,7 +1,5 @@
 <?php
 
-  $padTimingsStart ['init'] = microtime(true);
- 
   ob_start();
 
   include 'libPad.php';
@@ -23,7 +21,6 @@
   include 'parms.php';
   include 'libApp.php';
   include 'build.php';
-
-  padTimingEnd ('init');
+  include 'timings.php';
 
 ?>

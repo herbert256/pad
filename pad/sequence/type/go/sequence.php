@@ -29,6 +29,6 @@
   elseif ( $padSequence === INF   ) return FALSE; 
   elseif ( $padSequence === NAN   ) return FALSE; 
   elseif ( $padSequence === TRUE  ) return $padSeqLoop;
-  else                               return $padSequence;
+  else                              return $padSequence;
 
 ?>

@@ -1,7 +1,5 @@
 <?php
 
-  padTimingStart ('build');
-
   if ( isset ( $_REQUEST['padInclude']) )
     $padBuildMode = 'include';
 
@@ -9,7 +7,5 @@
 
   if ( ! isset ( $padNoOccur) )
     include PAD . 'occurrence/start.php';
-
-  padTimingEnd ('build');
 
 ?>
