@@ -1,4 +1,4 @@
-  <?php
+<?php
 
   if ( $padTrace ) 
     include 'trace.php';

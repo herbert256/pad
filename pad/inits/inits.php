@@ -1,7 +1,5 @@
 <?php
 
-  ob_start();
-
   include 'libPad.php';
   include 'app.php';
   include 'page.php';

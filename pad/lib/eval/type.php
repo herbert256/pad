@@ -1,4 +1,4 @@
- <?php
+<?php
  
   function padEvalType ($type, $left, &$result, $myself, $start, $end=999999) {
 

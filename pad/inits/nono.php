@@ -3,8 +3,6 @@
   if ( ! $padNoNo )
     return; 
 
-  ob_get_clean();
-
   $padNoNo = PAD . "$app/pages/$page.php";
 
   if ( ! file_exists ( $padNoNo ) )

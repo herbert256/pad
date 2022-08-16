@@ -1,4 +1,4 @@
- <?php
+<?php
 
   if ( ! $padPrm [$pad] )
     return padError ('First parameter is required ($var)');

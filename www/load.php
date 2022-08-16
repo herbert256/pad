@@ -1,4 +1,4 @@
- <?php
+<?php
 
   $padath = '/home/herbert/pad';
 
@@ -15,4 +15,4 @@
     }
 
 
-?>  
+?>
