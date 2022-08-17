@@ -6,7 +6,7 @@
   foreach ( $padSeqMergeList as $padSeqMergeKey ) {
 
     $padSeqMerge1 = $padSeqResult;
-    $padSeqMerge2 = $padSequenceStore [$padSeqMergeKey];
+    $padSeqMerge2 = $padSeqStore [$padSeqMergeKey];
 
     $padSeqResult = [];
 

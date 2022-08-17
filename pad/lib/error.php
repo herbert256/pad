@@ -4,7 +4,7 @@
   function padErrorShort ( $error ) {
 
     $GLOBALS ['padSkipBootShutdown'] = TRUE;
-    $GLOBALS ['padSkip_shutdown']      = TRUE;
+    $GLOBALS ['padSkipShutdown']      = TRUE;
 
     echo ( "<pre><b>$error</b>\n\n");
     
@@ -66,7 +66,7 @@
 
   function padErrorShutdown () {
 
-    if ( isset ( $GLOBALS ['padSkip_shutdown'] ) )
+    if ( isset ( $GLOBALS ['padSkipShutdown'] ) )
       return;
 
     $error = error_get_last ();
@@ -174,7 +174,7 @@
       else
         echo "Error: $PADREQID";
 
-      $GLOBALS ['padSkip_shutdown']      = TRUE;
+      $GLOBALS ['padSkipShutdown']      = TRUE;
       $GLOBALS ['padSkipBootShutdown'] = TRUE;
       
       exit;

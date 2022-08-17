@@ -1,6 +1,6 @@
 <?php
 
-  $padSequenceStoreGet = '';
+  $padSeqStoreGet = '';
   $padSeqResult = $padSeqFor = $padSeqCache = [];
   $padSeq = $padSequence = $padSeqProtectCnt = $padSeqBase = 0;
 

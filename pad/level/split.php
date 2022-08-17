@@ -31,10 +31,8 @@
 
     $pad1 = strpos($padTrue [$pad], '{else}', ++$pad1);
 
-    if ( $pad1 === FALSE ) {
-      $padFalse [$pad] = '';
-      return TRUE;
-    }
+    if ( $pad1 === FALSE )
+      return;
     
     $padCheck = substr($padTrue [$pad],0,$pad1);
 
@@ -50,7 +48,5 @@
 
   $padFalse [$pad] = substr ( $padTrue [$pad], $pad1+6  );
   $padTrue  [$pad] = substr ( $padTrue [$pad], 0, $pad1 );
-
-  return TRUE;
 
 ?>

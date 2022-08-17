@@ -3,6 +3,6 @@
   if     ( $padNull [$pad]  ) $padBase [$pad] = '';
   elseif ( $padElse [$pad]  ) $padBase [$pad] = $padFalse [$pad];    
   elseif ( $padText [$pad]  ) $padBase [$pad] = $padTagResult;
-  else                    $padBase [$pad] = $padTrue [$pad];
+  else                        $padBase [$pad] = $padTrue [$pad];
     
 ?>

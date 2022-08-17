@@ -15,28 +15,32 @@
     padCloseSession ();
     padEmptyBuffers ();
 
-    if ( ! isset($GLOBALS ['padSent']) ) {
-
-      $GLOBALS ['padSent'] = TRUE;
-
-      padHeaders ($stop);
-    
-      if ( $stop == 200 ) {
-
-        if ( $GLOBALS ['padCacheStop'] and $GLOBALS ['padCacheServerGzip'] and $GLOBALS ['padClientGzip']  )
-          echo $GLOBALS ['padOutput'];
-        elseif ( $GLOBALS ['padCacheStop'] and $GLOBALS ['padCacheServerGzip'] and ! $GLOBALS ['padClientGzip'] )
-          echo padUnzip ( $GLOBALS ['padOutput'] );
-        elseif ( $GLOBALS ['padClientGzip'] )
-          echo padZip ( $GLOBALS ['padOutput'] );
-        else 
-          echo $GLOBALS ['padOutput'];
-
-      }
-
-    }  
+    if ( ! isset($GLOBALS ['padSent']) )
+      padSend ($stop);
 
     padExit ();
+
+  }
+
+
+  function padSend ($stop) {  
+
+    padHeaders ($stop);
+  
+    if ( $stop == 200 ) {
+
+      if ( $GLOBALS ['padCacheStop'] and $GLOBALS ['padCacheServerGzip'] and $GLOBALS ['padClientGzip']  )
+        echo $GLOBALS ['padOutput'];
+      elseif ( $GLOBALS ['padCacheStop'] and $GLOBALS ['padCacheServerGzip'] and ! $GLOBALS ['padClientGzip'] )
+        echo padUnzip ( $GLOBALS ['padOutput'] );
+      elseif ( $GLOBALS ['padClientGzip'] )
+        echo padZip ( $GLOBALS ['padOutput'] );
+      else 
+        echo $GLOBALS ['padOutput'];
+
+    }
+
+    $GLOBALS ['padSent'] = TRUE;
 
   }
 
@@ -100,7 +104,7 @@
 
   function padExit () {
 
-    $GLOBALS ['padSkip_shutdown']      = TRUE;
+    $GLOBALS ['padSkipShutdown']     = TRUE;
     $GLOBALS ['padSkipBootShutdown'] = TRUE;
 
     include PAD . 'exits/trace.php';

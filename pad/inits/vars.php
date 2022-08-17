@@ -8,7 +8,7 @@
 
   $padOutput     = '';
   $padStop       = '000';
-  $padCacheStop = 0;
+  $padCacheStop  = 0;
   $padEtag       = '';
   $padExit       = 1;
   $padLen        = 0;

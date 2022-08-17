@@ -2,6 +2,6 @@
 
   $padCall = "$padPrm[$pad]";
 
-  return include PAD . 'level/call.php';
+  return include PAD . 'build/go.php';
 
 ?>

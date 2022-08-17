@@ -195,10 +195,9 @@
     global $padHtml, $padStart, $padEnd, $pad;
 
     $padHtml [$pad] = 
-    substr($padHtml [$pad], 0, 
-      $padStart [$pad])
-                     . $html
-                     . substr($padHtml [$pad], $padEnd [$pad]+1);
+        substr ( $padHtml [$pad], 0, $padStart [$pad] )
+      . $html
+      . substr ( $padHtml [$pad],    $padEnd [$pad]+1 );
     
   }
   

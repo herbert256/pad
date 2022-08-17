@@ -1,7 +1,7 @@
 <?php
 
 
-  return array_diff ( $padSequenceStore [$padSeqActionValue], $padSeqResult );
+  return array_diff ( $padSeqStore [$padSeqActionValue], $padSeqResult );
 
 
 ?>

@@ -14,8 +14,8 @@
 
     }
    
-  $padSequenceStoreGet = $padSeqParm;
-  $padSeqFor = $padSequenceStore [$padSeqParm];
+  $padSeqStoreGet = $padSeqParm;
+  $padSeqFor = $padSeqStore [$padSeqParm];
 
   if ( ! $padSeqPush and ! $padPair )
     $padSeqPush = $padSeqParm;

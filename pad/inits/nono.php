@@ -9,7 +9,7 @@
     padBootError ("Page does not exists: $app/$page");
 
   foreach ($GLOBALS as $key => $value)
-    if ( substr($key, 0, 3) == 'pad' and $key <> 'pNo_no')
+    if ( substr($key, 0, 3) == 'pad' and $key <> 'padNoNo' )
       unset ( $GLOBALS[$key] );
 
   unset ($page);

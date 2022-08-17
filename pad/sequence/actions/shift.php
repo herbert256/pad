@@ -1,13 +1,13 @@
 <?php
 
-  if ( isset($padSequenceStore [$padSeqPull]) )
-    if ( count($padSequenceStore [$padSeqPull]) > $padSeqActionCnt )
+  if ( isset($padSeqStore [$padSeqPull]) )
+    if ( count($padSeqStore [$padSeqPull]) > $padSeqActionCnt )
       if ( $padSeqActionName == 'shift')
-        $padSequenceStore [$padSeqPull] = array_slice($padSequenceStore [$padSeqPull], $padSeqActionCnt);
+        $padSeqStore [$padSeqPull] = array_slice($padSeqStore [$padSeqPull], $padSeqActionCnt);
       else
-        $padSequenceStore [$padSeqPull] = array_slice($padSequenceStore [$padSeqPull], 0, $padSeqActionCnt * -1);
+        $padSeqStore [$padSeqPull] = array_slice($padSeqStore [$padSeqPull], 0, $padSeqActionCnt * -1);
     else
-      $padSequenceStore [$padSeqPull] = [];
+      $padSeqStore [$padSeqPull] = [];
 
   if ( count($padSeqResult) > $padSeqActionCnt )
     if ( $padSeqActionName == 'shift')

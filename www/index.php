@@ -82,7 +82,7 @@
   function padBootErrorGo ( $error, $file, $line ) {
 
     $GLOBALS ['padSkipBootShutdown'] = TRUE;
-    $GLOBALS ['padSkip_shutdown']      = TRUE;
+    $GLOBALS ['padSkipShutdown']      = TRUE;
 
     if ( ! headers_sent () )
       header ( 'HTTP/1.0 500 Internal Server Error' );

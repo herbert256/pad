@@ -5,11 +5,11 @@
   $padSeqParm = TRUE;
 
   $padSeqTmp = $padPrm [$pad];
-  if ( $padTag [$pad] == 'sequence' and padValid($padSeqTmp) and isset($padSequenceStore [$padSeqTmp]) )
+  if ( $padTag [$pad] == 'sequence' and padValid($padSeqTmp) and isset($padSeqStore [$padSeqTmp]) )
     return include 'sequence/store.php';
   
   $padSeqTmp = $padTag [$pad];
-  if ( padValid($padSeqTmp) and isset($padSequenceStore [$padSeqTmp]) )
+  if ( padValid($padSeqTmp) and isset($padSeqStore [$padSeqTmp]) )
     return include 'sequence/store.php';
 
   $padSeqTmp = $padTag [$pad];
@@ -45,7 +45,7 @@
     return include 'sequence/action.php';
 
   $padSeqTmp = array_key_first($padPrmsTag [$pad]) ?? '';
-  if ( padValid($padSeqTmp) and isset($padSequenceStore [$padSeqTmp]) )
+  if ( padValid($padSeqTmp) and isset($padSeqStore [$padSeqTmp]) )
     return include 'sequence/store.php';
  
   if ( strpos($padPrm [$pad], '..') ) {

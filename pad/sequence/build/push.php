@@ -12,11 +12,11 @@
   if ( $padSeqPush === TRUE ) 
     if ( $padSeqPull and $padSeqPull !== TRUE )
       $padSeqPush = $padSeqPull;
-    elseif ( $padSequenceStoreGet )
-      $padSeqPush = $padSequenceStoreGet;
+    elseif ( $padSeqStoreGet )
+      $padSeqPush = $padSeqStoreGet;
     else
       $padSeqPush = $padSeqName;
 
-  $padSequenceStore [$padSeqPush] = $padSeqResult;
+  $padSeqStore [$padSeqPush] = $padSeqResult;
 
 ?>

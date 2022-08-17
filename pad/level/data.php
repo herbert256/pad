@@ -2,23 +2,19 @@
 
   if ( $padNull [$pad] )
 
-    $padNow = [];
+    $padData [$pad] = [];
 
   elseif ( $padElse [$pad] )
 
-    if     ( $padArray [$pad]        ) $padNow = array_slice ($padTagResult, 0, 1); 
-    elseif ( count ($padData [$pad]) ) $padNow = array_slice ($padData [$pad], 0, 1); 
-    else                           $padNow = padDefaultData ();  
+    if     ( $padArray [$pad]        ) $padData [$pad] = array_slice ($padTagResult, 0, 1); 
+    elseif ( count ($padData [$pad]) ) $padData [$pad] = array_slice ($padData [$pad], 0, 1); 
+    else                               $padData [$pad] = padDefaultData ();  
 
   elseif ( $padArray [$pad] )
 
-    $padNow = $padTagResult;
+    $padData [$pad] = $padTagResult;
 
-  else 
-
-    $padNow = $padData [$pad];
-
-  $padData [$pad] = padMakeData ( $padNow );   
+  $padData [$pad] = padMakeData ( $padData [$pad] );   
 
   $padDefault [$pad] = padIsDefaultData ( $padData [$pad] );
 

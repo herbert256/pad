@@ -8,7 +8,7 @@
     $padSeqActionValue = $action;
     $padSeqActionName  = $action;
     
-    $padSequenceStore [$action] = $sequence2;
+    $padSeqStore [$action] = $sequence2;
 
     return include PAD . "sequence/actions/$action.php";  
 
@@ -57,8 +57,8 @@
 
     foreach ($arrays as $store)
       if ( $store !== TRUE )
-        if ( isset($GLOBALS ['padSequenceStore'] [$store]) )
-          $parms [] = $GLOBALS ['padSequenceStore'] [$store];
+        if ( isset($GLOBALS ['padSeqStore'] [$store]) )
+          $parms [] = $GLOBALS ['padSeqStore'] [$store];
         else
           $parms [] = $store;
 

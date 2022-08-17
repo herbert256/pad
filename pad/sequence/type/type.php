@@ -2,7 +2,7 @@
 
   if ( $padSeqPull and $padSeqSeq <> 'pull' ) {
 
-    $padSeqFor = $padSequenceStore [$padSeqPull];
+    $padSeqFor = $padSeqStore [$padSeqPull];
 
     include "for.php";
 
