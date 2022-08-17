@@ -96,17 +96,24 @@
 
   function padErrorTry ($error, $file, $line) {
 
+    $GLOBALS ['padErrrorList'] [] = $error;
+
     if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
       return FALSE;
 
+    if ( $GLOBALS['padExit'] <> 1 )
+      return padErrorError ($error, $file, $line);
+    else
+      $GLOBALS['padExit'] = 2;
+
     global $padErrorAction, $padExit, $PADREQID, $padTrace, $padErrorDump, $padErrorLog, $padErrCnt;
 
-    if ( $GLOBALS ['padExit'] <> 1 )
-      return padErrorError ($error, $file, $line);
-
-    $GLOBALS ['padExit'] = 2;
-
     $padErrCnt++;
+
+    if ( $padErrorDump or $padErrorAction == 'report' )
+      padFilePutContents ( "errors/$PADREQID-$padErrCnt.html", padDumpGet($error) );
+
+    padErrorTrace ( $error );
 
     $error = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '.', $error);
     $error = preg_replace('/\s+/', ' ', $error);
@@ -115,15 +122,10 @@
     $error = trim($error);
     $error = "$file:$line $error";
 
-    $GLOBALS ['padErrrorList'] [] = $error;
-
     if ( $padErrorLog and $padErrorAction <> 'boot' ) 
       error_log ("[PAD] $PADREQID $error", 4);   
 
-    if ( $padTrace or $padErrorDump or $padErrorAction == 'report' )
-      padTraceWriteError ( $error, 'error', $padErrCnt, [], 1);
-
-    if ( ! headers_sent () and in_array($padErrorAction, ['pad', 'stop', 'abort', 'ignore']) )
+    if ( ! headers_sent () and in_array($padErrorAction, ['pad', 'stop', 'abort']) )
       padHeader ('HTTP/1.0 500 Internal Server Error' );
 
     if ( $padErrorAction == 'boot' )
@@ -165,7 +167,7 @@
 
       error_log ($error, 4);
 
-      padFilePutContents ( "errors/$PADREQID.html", padDumpGet($error) );
+      padFilePutContents ( "errors/$PADREQID-error-in-error.html", padDumpGet($error) );
 
       if ( padLocal() )
         padDump ($error);
@@ -183,6 +185,21 @@
  
     }     
 
+
+  }
+
+
+  function padErrorTrace ( $error ) {
+
+    if ( ! $GLOBALS ['padTrace'] )
+      return;
+
+    global $pad, $padOccurDir;
+
+    $padErrorDir = $padOccurDir [$pad] . "/error";
+
+    padFilePutContents ( "$padErrorDir/err.html", padDumpGet($error) ); 
+    padTraceAll        ( $padErrorDir );
 
   }
 

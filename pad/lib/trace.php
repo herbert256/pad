@@ -41,54 +41,16 @@
   } 
 
 
-  function padTraceWriteError ($error, $type, $count, $vars, $force=0 ) {
-
-    if ( $GLOBALS ['padErrorDump'] and ! $GLOBALS ['padTrace'] )
-      return padTraceWriteErrorLight ($error, $type, $count, $vars);
-
-    if ( ! $force and ! $GLOBALS ['padTrace'] )
-      return;
-
-    global $pad, $padOccurDir, $app, $page, $PADREQID;
-
-    $padErrorDir = $padOccurDir [$pad] . "/error-$count-$type";
-
-    $data = [];
-
-    $data ['error']   = $error;
-    $data ['number']  = $count;
-    $data ['dir']     = DATA . $padErrorDir;
-
-    foreach ($vars as $key => $val)
-      $data [$key] = $val;
-
-    padFilePutContents ( "errors/$PADREQID-$count-$type.json", $data ); 
-    padFilePutContents ( "$padErrorDir/error.json",             $data ); 
-    
-    padTraceAll ( $padErrorDir );
-
-  }
-
-
-  function padTraceWriteErrorLight ($error, $type, $count, $vars) {
-
-    global $PADREQID;
-
-    padFilePutContents ( "errors/$PADREQID-$type-$count.html", padDumpGet($error) ); 
-
-  }
-
-
   function padTraceAll ( $dir ) {
 
     padTraceFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
 
-    padFilePutContents ( "$dir/pad.json",   $padFpad  );
-    padFilePutContents ( "$dir/app.json",   $padFapp  );
-    padFilePutContents ( "$dir/php.json",   $padFphp  );
-    padFilePutContents ( "$dir/levels.json",$padFlvl  );
-    padFilePutContents ( "$dir/ids.json",   $padFids  );
-    padFilePutContents ( "$dir/config.json",$padFcfg  );
+    padFilePutContents ( "$dir/pad.json", $padFpad );
+    padFilePutContents ( "$dir/app.json", $padFapp );
+    padFilePutContents ( "$dir/php.json", $padFphp );
+    padFilePutContents ( "$dir/lvl.json", $padFlvl );
+    padFilePutContents ( "$dir/ids.json", $padFids );
+    padFilePutContents ( "$dir/cfg.json", $padFcfg );
 
   }
 
@@ -97,13 +59,13 @@
 
     $php = $lvl = $app = $cfg = $pad = $ids = [];
 
-    $chk3 = [ 'page','app','PADSESSID','PADREQID','PHPSESSID','PADREFID' ];
-
     $not  = [ 'GLOBALS', 'padFphp', 'padFlvl', 'padFapp', 'padFcfg', 'padFpad', 'padFids'  ];
 
     $chk1 = [ '_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
 
     $chk2 = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padPrms','padPrmsType','padPrmsTag','padPrmsVal','padName','padData','padCurrent','padKey','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padLevelDir','padOccurDir','padSaveVars','padDeleteVars','padSetSave','padSetDelete','padTagCnt'];
+
+    $chk3 = [ 'page','app','PADSESSID','PADREQID','PHPSESSID','PADREFID' ];
 
     $settings = padFileGetContents(PAD . 'config/config.php');
 

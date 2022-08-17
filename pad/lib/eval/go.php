@@ -4,7 +4,7 @@
 
 go: padEvalTrace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] );
 
-    $GLOBALS ['padTrace_now'] = [];
+    $GLOBALS ['padEvalNow'] = [];
 
     if  ( count($result) > 1 ) {
  
@@ -99,7 +99,7 @@ go: padEvalTrace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] );
        
         if ( $b >= $start ) {
 
-          $GLOBALS ['padTrace_now'] = $result[$b];
+          $GLOBALS ['padEvalNow'] = $result[$b];
 
           if ( $now == 'TYPE' and $result[$b][1] == 'TYPE') {
 
@@ -125,13 +125,13 @@ go: padEvalTrace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] );
 
           } 
 
-         $GLOBALS ['padTrace_now'] = [];
+         $GLOBALS ['padEvalNow'] = [];
 
         }
 
         if ( $now == 'TYPE' and $k == array_key_last ($result) and $result[$k][1] == 'TYPE' ) {
 
-          $GLOBALS ['padTrace_now'] = $result[$k];
+          $GLOBALS ['padEvalNow'] = $result[$k];
           
           padEvalType ($k, $b, $result, $myself, $start, $end);
           

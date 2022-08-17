@@ -26,7 +26,7 @@
     }
 
     if ( ! include 'go/one.php')
-        break;
+      break;
 
     $padSeqInit = FALSE;
 

@@ -46,12 +46,6 @@
 
     }
 
-    // if ( isset($GLOBALS ['padTrace']) and $GLOBALS ['padTrace'] ) 
-    //   padFilePutContents ( 
-    //     $GLOBALS ['padOccurDir'][p()] . '/explode/' . padRandomString() . '.json',
-    //     [ $haystack, $limit, array_values ( $explode ) ]
-    //   );
-
     return array_values ( $explode );
     
   }
@@ -122,60 +116,6 @@
 
   }
 
-
-  function padCheckPage ( $app, $page ) {
-
-    if ( ! preg_match ( '/^[A-Za-z0-9]+$/', $app  ) )    return FALSE;
-    if ( trim($app) == '' )                              return FALSE;
-
-    if ( ! is_dir (APPS . $app) )
-      return FALSE;
-
-    if ( ! preg_match ( '/^[A-Za-z0-9\/_]+$/', $page ) ) return FALSE;
-    if ( trim($page) == '' )                             return FALSE;
-
-    if ( strpos($page, '//') !== FALSE)                  return FALSE;
-    if ( substr($page, 0, 1) == '/')                     return FALSE;
-    if ( substr($page, -1) == '/')                       return FALSE;
-
-    $location = APPS . "$app/pages";
-    $padart     = padExplode ($page, '/');
-    
-    foreach ($padart as $key => $value) {
-      
-      if ($value == 'inits') return FALSE;
-      if ($value == 'exits') return FALSE;
-
-      if ( $key == array_key_last($padart)
-            and (file_exists("$location/$value.php") or file_exists("$location/$value.html") ) )
-        return TRUE; 
-      elseif ( is_dir ("$location/$value") )
-        $location.= "/$value";
-      else
-        return FALSE;
-      
-    }
-    
-    return ( file_exists("$location/index.php") or file_exists("$location/index.html") );
-    
-  }
-
-
-  function padGetPage ( $app, $page ) {
-
-    $location = APPS . "$app/pages";
-    $padart     = padExplode ($page, '/');
-    
-    foreach ($padart as $key => $value)
-      if ( $key == array_key_last($padart)
-            and (file_exists("$location/$value.php") or file_exists("$location/$value.html") ) )
-        return $page; 
-      elseif ( is_dir ("$location/$value") )
-        $location.= "/$value";
-   
-    return "$page/index";
-
-  }
   
   function padCloseHtml () {
 
@@ -456,22 +396,6 @@
 
   }
 
-  function xpadSetGlobal ( $name, $value ) {
-
-    global $pad, $padSaveVars, $padDeleteVars;
-    
-    if ( isset($GLOBALS [$name]) and ! isset ($padSaveVars [$pad] [$name]) )
-      $padSaveVars [$pad] [$name] = $GLOBALS [$name];
-
-    if ( ! isset ( $GLOBALS [$name] ) )
-      $padDeleteVars [$pad] [] = $name;
-    else
-      unset ( $GLOBALS [$name] );
-
-    $GLOBALS [$name] = $value;
-
-  }
-
 
   function padReset ($lvl) {
 
@@ -527,17 +451,6 @@
 
   }
 
-  function padAddArrayToData ( $array ) {
-
-    global $padData, $pad;
-
-    if ( padIsDefaultData ( $padData [$pad] ) )
-      $padData [$pad] = $array;
-    else
-      foreach ( $array as $value )
-        $padData [$pad] [] = $value;
-
-  }
 
   function padDefaultData () {
     
@@ -558,7 +471,7 @@
   }
 
 
-  function padChkLevelArray ($tag) {
+  function padChkLevel ($tag) {
 
     global $padCurrent, $pad;
 
@@ -599,64 +512,6 @@
     elseif (is_resource($value))  $value = '';
     
   }
-
-
-  function padTrueFalse ($analyse) {
-
-    if     ( $analyse === NULL         ) return FALSE;
-    elseif ( $analyse === FALSE        ) return FALSE;
-    elseif ( $analyse === NAN          ) return FALSE;
-    elseif ( $analyse === INF          ) return FALSE;
-    elseif ( $analyse === TRUE         ) return TRUE;
-    elseif ( is_object    ( $analyse ) ) return FALSE;
-    elseif ( is_resource  ( $analyse ) ) return FALSE;
-    elseif ( is_array     ( $analyse ) ) 
-      if ( count($analyse) )
-        return TRUE;
-      else
-        return FALSE;
-    else
-      if ( trim($analyse) )
-        return TRUE;
-      else
-        return FALSE;
-
-  }
-
-
-  function padInfo ($analyse) {
-
-    if     ( $analyse === NULL         ) return 'null'; 
-    elseif ( $analyse === TRUE         ) return 'true';
-    elseif ( $analyse === FALSE        ) return 'false';
-    elseif ( $analyse === NAN          ) return 'nan';
-    elseif ( $analyse === INF          ) return 'inf';
-    elseif ( is_array     ( $analyse ) ) return 'array:'       . count             ($analyse);
-    elseif ( is_object    ( $analyse ) ) return 'object:'      . get_class         ($analyse);
-    elseif ( is_resource  ( $analyse ) ) return 'resource:'    . get_resource_type ($analyse) ;
-    elseif ( is_integer   ( $analyse ) ) return 'integer'      . padInfoVar      ($analyse);
-    elseif ( is_float     ( $analyse ) ) return 'float'        . padInfoVar      ($analyse);
-    elseif ( is_double    ( $analyse ) ) return 'double'       . padInfoVar      ($analyse);
-    elseif ( is_bool      ( $analyse ) ) return 'bool'         . padInfoVar      ($analyse);
-    elseif ( ctype_alpha  ( $analyse ) ) return 'alphabetic'   . padInfoVar      ($analyse);
-    elseif ( ctype_digit  ( $analyse ) ) return 'numeric'      . padInfoVar      ($analyse);
-    elseif ( ctype_xdigit ( $analyse ) ) return 'hexadecimal'  . padInfoVar      ($analyse);
-    elseif ( ctype_alnum  ( $analyse ) ) return 'alphanumeric' . padInfoVar      ($analyse);
-    elseif ( is_string    ( $analyse ) ) return 'string'       . padInfoVar      ($analyse);
-    else                                 return 'other'        . padInfoVar      ($analyse);
-
-  }
-
-  function padInfoVar ($analyse) {
-
-     $work = $analyse;
-     $work = trim(preg_replace('/\s+/', ' ', $work));
-     $work = substr($work, 0, 50);
-
-     return ':' . $work;
-
-  }
-
 
   function padTagParm ($parm, $default='') {
 
@@ -810,7 +665,7 @@
   
   function padValidStore ($fld) {
 
-    if ( substr($fld, 0, 1) == 'p')
+    if ( substr($fld, 0,3) == 'pad')
       return FALSE;
 
     if ( in_array ( $fld, ['GLOBALS','_POST','_GET','_COOKIE','_SESSION','_FILES','_SERVER','_REQUEST','_ENV'] ) )

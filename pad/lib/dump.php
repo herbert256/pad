@@ -9,7 +9,7 @@
     padEmptyBuffers ();
     gc_collect_cycles ();
     padCloseHtml    ();
-    padDumpVars     ($info);
+    padDumpGo       ($info);
 
     $GLOBALS ['padSent'] = TRUE;
 
@@ -29,83 +29,68 @@
 
     ob_start();
 
-    padDumpVars ($info);
+    padDumpGo ($info);
 
     return ob_get_clean();
         
   }
 
 
-  function padDumpVars ($info='') {
-
-    padTraceFields ( $php, $lvl, $app, $cfg, $pad, $ids);
+  function padDumpGo ($info='') {
 
     echo ("<div align=\"left\"><pre>");
 
     if ($info)
       echo ("<hr><b>$info</b><hr><br>");
 
-    padDumpSequence ($pad);
-    padDumpadEval     ();
+    padTraceFields ( $php, $lvl, $app, $cfg, $pad, $ids );
+
+    padDumpErrors   ();
     padDumpStack    ();
     padDumpLevel    ();
     padDumpRequest  ();
-    padDumpArray    ( "APP variables", $app);
-    padDumpArray    ( "PAD variables", $pad);
-    padDumpArray    ( "Level variables", $lvl);
+    padDumpArray    ( "APP variables",   $app );
+    padDumpXXX      ( $pad, 'padSeq' );
+    padDumpXXX      ( $pad, 'padEval' );
+    padDumpArray    ( "PAD variables",   $pad );
+    padDumpArray    ( "Level variables", $lvl );
     padDumpSQL      ();
-    padDumpadHeaders  ();
-    padDumpArray    ( "ID's", $ids);
-    padDumpArray    ('Configuration', $cfg );
-    padDumpArray    ('PHP', $php);
-
-    echo ( "\n<b>GLOBALS</b>\n" );
-    echo htmlentities ( print_r ( $GLOBALS, TRUE ) );
+    padDumpHeaders  ();
+    padDumpArray    ( "ID's", $ids );
+    padDumpArray    ( 'Configuration', $cfg );
+    padDumpArray    ( 'PHP', $php );
+    padDumpGlobals  ();
 
     echo ( "\n</pre></div>" );
 
   }
 
 
-  function padDumpSequence ($pad) {
+  function padDumpErrors () {
 
-    if ( ! isset($GLOBALS ['padInSequence'] ) or $GLOBALS ['padInSequence'] === FALSE ) 
+    if ( ! isset ( $GLOBALS ['padErrrorList'] ) )
       return;
 
-    $seq = [];
+    if ( count ( $GLOBALS ['padErrrorList'] ) < 2 )
+      return;
+
+    padDumpArray ( 'Errors', $GLOBALS ['padErrrorList'] );
+
+  }  
+
+
+  function padDumpXXX (&$pad, $prefix) {
+
+    $wrk = [];
     
-    // foreach ( $pad as $key )
-    //   if ( substr($key, 0, 7) == 'padSeq') {
-    //     unset ($pad[$key]);
-    //     $seq [] = $key;
-    //   }   
+    foreach ( $pad as $key => $value )
+      if ( str_starts_with ( $key, $prefix ) ) {
+        unset ($pad[$key]);
+        $wrk [$key] = $value;
+      }   
 
-    padDumpArray("Sequence variables", $seq);
-
-    echo ( "\n\n");
-
-  }
-
-
-  function padDumpadEval () {
-
-    if ( ! isset($GLOBALS ['padTrace_stage'] ) or $GLOBALS ['padTrace_stage'] == 'end' )
-      return;
-
-    echo ( "<b>Eval details</b>\n");
-
-    padDumpField  ( 'eval',   $GLOBALS ['padTrace_eval']      );
-    padDumpField  ( 'myself', $GLOBALS ['padTrace_myself']    );
-
-    if ( count ( $GLOBALS ['padTrace_now'] ) )
-      padDumpArray ( 'now', $GLOBALS ['padTrace_now']);
-
-    padDumpArray ( 'parsed', $GLOBALS ['padTrace_parsed']);
-    padDumpArray ( 'after',  $GLOBALS ['padTrace_after']);
-    padDumpArray ( 'go',     $GLOBALS ['padTrace_go']);
-    padDumpArray ( 'result', $GLOBALS ['padEvalResult'] );
-
-    echo ( "\n\n");
+    if ( count ($wrk) )
+      padDumpArray ( $prefix, $wrk );
 
   }
 
@@ -135,9 +120,9 @@
   }
 
 
-  function padDumpadHeaders () {
+  function padDumpHeaders () {
 
-                                           padDumpArray ('Headers-in',  getallheaders());
+                                             padDumpArray ('Headers-in',  getallheaders());
     if ( isset ( $GLOBALS ['padHeaders'] ) ) padDumpArray ('Headers-out', $GLOBALS ['padHeaders'] );
 
   }
@@ -166,16 +151,30 @@
     
   }
 
+  function padDumpGlobals () {
+
+    echo ( "\n<b>GLOBALS</b>\n" );
+
+    echo htmlentities ( print_r ( $GLOBALS, TRUE ) );
+
+  }
+
 
   function padDumpField ($field, $value) {
+
     echo ( "\n  [$field] => " . htmlentities(padDumpShort($value??''))); 
+  
   }
 
 
   function padDumpShort ($G) {
+  
     if ( $G === NULL)
+  
       $G = '';
+  
     return substr ( preg_replace('/\s+/', ' ', $G ), 0, 100 );
+  
   }  
 
 
@@ -187,9 +186,9 @@
       elseif ( is_array ($val) )
         $array [$key] = padDumpSanitize ($val);
       elseif ( is_object($val) )
-        $array [$key] = '***object***';
+        $array [$key] = padDumpSanitize ( padToArray($array [$key]) );
       elseif ( is_resource($val) )
-        $array [$key] = '***resource***';
+        $array [$key] = padDumpSanitize ( padToArray($array [$key]) );
       else
         $array [$key] = padDumpShort ( $val );
 
@@ -208,7 +207,7 @@
     echo ( "\n<b>$txt</b>");
 
     if ( ! count ($arr )) {
-      echo ( "\n  []\n");
+      echo ( "\n");
       return;
     }
 

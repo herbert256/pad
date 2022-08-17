@@ -1,7 +1,5 @@
 <?php
 
-  $padInSequence = TRUE;
-
   include 'build/parms.php';
   include 'build/sequence.php';
   include 'build/vars.php';
@@ -27,8 +25,6 @@
   include 'build/push.php';
   include 'build/return.php';
   include 'build/trace.php';
-
-  $padInSequence = FALSE;
 
   return $padSeqReturn;
 

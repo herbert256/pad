@@ -1,6 +1,6 @@
 <?php
 
-  $padSeqOperations      = $padSequence;
+  $padSeqOperations     = $padSequence;
   $padSeqOperationsLast = $padSequence;
 
   foreach ( $padSeqOpr as $padSeqOprName => $padSeqOprValue ) {
