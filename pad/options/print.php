@@ -1,10 +1,10 @@
 <?php
 
-  if ( padTagParm ('open')  ) include PAD . 'options/open.php';
+  if ( padTagParm ('open')  ) include 'open.php';
 
   $padContent .= '{$' . $padName [$pad] . '}';
 
-  if ( padTagParm ('glue')  ) include PAD . 'options/glue.php';
-  if ( padTagParm ('close') ) include PAD . 'options/close.php';
+  if ( padTagParm ('glue')  ) include 'glue.php';
+  if ( padTagParm ('close') ) include 'close.php';
 
 ?>

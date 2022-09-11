@@ -3,10 +3,10 @@
   if ( ! $padNoNo )
     return; 
 
-  $padNoNo = PAD . "$app/pages/$page.php";
+  $padNoNo = APP . "/pages/$page.php";
 
   if ( ! file_exists ( $padNoNo ) )
-    padBootError ("Page does not exists: $app/$page");
+    padBootError ("Page does not exists: $padNoNo");
 
   foreach ($GLOBALS as $key => $value)
     if ( substr($key, 0, 3) == 'pad' and $key <> 'padNoNo' )

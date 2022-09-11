@@ -1,6 +1,6 @@
 <?php
 
-  include PAD . 'build/call.php';
-  include PAD . 'build/html.php';
+  include 'call.php';
+  include 'html.php';
 
 ?>

@@ -96,7 +96,7 @@
 
   function padErrorTry ($error, $file, $line) {
 
-    $GLOBALS ['padErrrorList'] [] = $error;
+    $GLOBALS ['padErrrorList'] [] = "$file:$line $error";
 
     if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
       return FALSE;
@@ -174,7 +174,7 @@
       else
         echo "Error: $PADREQID";
 
-      $GLOBALS ['padSkipShutdown']      = TRUE;
+      $GLOBALS ['padSkipShutdown']     = TRUE;
       $GLOBALS ['padSkipBootShutdown'] = TRUE;
       
       exit;

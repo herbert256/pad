@@ -2,6 +2,6 @@
 
   $padContent = padColorsString ($padContent);  
 
-  include PAD . 'options/ignore.php';
+  include 'ignore.php';
 
 ?>

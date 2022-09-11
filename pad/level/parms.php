@@ -17,7 +17,7 @@
       if ( count($padW) == 2 and substr($padW[0], 0, 1) == '$') {
         $padSetName  = trim(substr($padW[0], 1));
         $padSetValue = $padW[1];
-        include PAD . 'level/set.php';
+        include 'set.php';
         continue;
       } 
 

@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'types/object.php';
+  return include 'object.php';
 
 ?>

@@ -91,10 +91,10 @@
 
     error_log ( "[PAD] $id - $file:$line $error", 4 );
 
-#    if ( function_exists ( 'padLocal' ) and padLocal () )
+    if ( function_exists ( 'padLocal' ) and padLocal () )
       echo "$file:$line $error";
-#    else
-#      echo "Error: $id";
+    else
+      echo "Error: $id";
  
     exit;
 

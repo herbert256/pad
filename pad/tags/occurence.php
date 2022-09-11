@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'tags/level.php'; 
+  return include 'level.php'; 
 
 ?>

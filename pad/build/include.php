@@ -12,7 +12,7 @@
     if ( is_dir ($padBuildNow) ) {
 
       $padCall = "$padBuildNow/inits.php";
-      include PAD . 'build/go.php';
+      include 'go.php';
 
       $padExits [] = "$padBuildNow/exits.php";
 
@@ -21,10 +21,10 @@
   }
 
   $padCall = "$padBuildNow.php";
-  $padBase [$pad] .= include PAD . 'build/go.php';
+  $padBase [$pad] .= include 'go.php';
 
   foreach ( array_reverse ($padExits) as $padCall )
-    include PAD . 'build/go.php';
+    include 'go.php';
 
   $padBase [$pad] .= padGetHtml ( APP . "pages/$page.html" );
 

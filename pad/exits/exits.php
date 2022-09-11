@@ -11,13 +11,13 @@
   );
 
   if ( count ($padSanitize) )
-    include PAD . 'exits/sanitize.php';
+    include 'sanitize.php';
  
   if ( $padTidy )
-    include PAD . 'exits/tidy.php';
+    include 'tidy.php';
 
   if ( $padRemoveWhitespace )
-   include 'whitespace.php';
+    include 'whitespace.php';
   
   $padEtag = padMd5 ($padOutput);
 

@@ -15,7 +15,6 @@
   include 'host.php';
   include 'cache.php';
   include 'level.php';
-  include 'options.php';
   include 'parms.php';
   include 'libApp.php';
   include 'build.php';

@@ -9,6 +9,6 @@
   if ( ! padTagParm ('complete') )
     $padPrmsTag [$pad] ['get'] ['padInclude'] = 1;
 
-  return include PAD . 'tags/curl.php';
+  return include 'curl.php';
 
 ?>
