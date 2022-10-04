@@ -32,10 +32,9 @@
   $padDisplayErrors  = ini_set ('display_errors', 0);
   $padErrorReporting = error_reporting (E_ALL);
 
-  set_error_handler          ( 'padBootErrorHandler'     );
-  set_exception_handler      ( 'padBootExceptionHandler' );
-  register_shutdown_function ( 'padBootShutdownFunction' );
-
+  set_error_handler          ( 'padBootHandler'   );
+  set_exception_handler      ( 'padBootException' );
+  register_shutdown_function ( 'padBootShutdown'  );
 
   // End Boot error handling 
   
@@ -51,23 +50,23 @@
 
     extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
 
-    padBootErrorGo ( $error, $file, $line );
+    padBootGo ( $error, $file, $line );
 
   }
 
-  function padBootErrorHandler ( $type, $error, $file, $line ) {
+  function padBootHandler ( $type, $error, $file, $line ) {
 
-    padBootErrorGo ( $error, $file, $line );
-
-  }
-
-  function padBootExceptionHandler ( $error ) {
-
-    padBootErrorGo ( $error->getMessage(), $error->getFile(), $error->getLine() );
+    padBootGo ( $error, $file, $line );
 
   }
 
-  function padBootShutdownFunction () {
+  function padBootException ( $error ) {
+
+    padBootGo ( $error->getMessage(), $error->getFile(), $error->getLine() );
+
+  }
+
+  function padBootShutdown () {
 
     if ( isset ( $GLOBALS ['padSkipBootShutdown'] ) )
       return;
@@ -75,14 +74,14 @@
     $error = error_get_last ();
  
     if ($error !== NULL)
-      padBootErrorGo ( $error['message'], $error['file'], $error['line'] );
+      padBootGo ( $error['message'], $error['file'], $error['line'] );
  
   }
 
-  function padBootErrorGo ( $error, $file, $line ) {
+  function padBootGo ( $error, $file, $line ) {
 
     $GLOBALS ['padSkipBootShutdown'] = TRUE;
-    $GLOBALS ['padSkipShutdown']      = TRUE;
+    $GLOBALS ['padSkipShutdown']     = TRUE;
 
     if ( ! headers_sent () )
       header ( 'HTTP/1.0 500 Internal Server Error' );

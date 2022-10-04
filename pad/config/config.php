@@ -3,18 +3,18 @@
   //  Error handling
 
   $padErrorAction = 'pad';  // 'pad'    = PAD's own full blown error handler.
-                              // 'boot'   = Use the lightweight PAD boot error handler
-                              // 'php'    = Use the PHP defaults (php.ini).
-                              // 'stop'   = Stop processing but do the PAD exit handling.
-                              // 'abort'  = Abort, don't do the PAD exit handling
-                              // 'ignore' = Ignore all errors and continue processing.
-                              // 'report' = Report the error and continue processing.
+                            // 'boot'   = Use the lightweight PAD boot error handler
+                            // 'php'    = Use the PHP defaults (php.ini).
+                            // 'stop'   = Stop processing but do the PAD exit handling.
+                            // 'abort'  = Abort, don't do the PAD exit handling
+                            // 'ignore' = Ignore all errors and continue processing.
+                            // 'report' = Report the error and continue processing.
  
   $padErrorLevel  = 'all';  // Kind of errors that will be processed by $padErrorAction
-                              // 'none' , 'error' , 'warning' , 'notice' , 'all'
-                              // (not used when $padErrorAction is 'php' or 'boot')
+                            // 'none' , 'error' , 'warning' , 'notice' , 'all'
+                            // (not used when $padErrorAction is 'php' or 'boot')
 
-  $padErrorLog    = TRUE;  //  Write errors to Apache error log
+  $padErrorLog    = TRUE;   //  Write errors to Apache error log
   $padErrorDump   = TRUE;   //  Dump errors to the DATA directory
 
   // Trace the internal working of PAD
@@ -26,29 +26,29 @@
   $padTrackFileRequest = FALSE;
   $padTrackFileData    = FALSE; 
 
-  $padTrackDbSession  = FALSE;
-  $padTrackDbRequest  = FALSE;
-  $padTrackDbData     = FALSE;
-  
-  $padTrackSql         = FALSE;   //  Detail information about every executed SQL statement.
+  $padTrackDbSession   = FALSE;
+  $padTrackDbRequest   = FALSE;
+  $padTrackDbData      = FALSE;
+
+  $padTrackSql         = FALSE; 
 
   // Cache settings
   
   $padCacheServerAge       = 0;                    //  Seconds to keep the cache at PAD server side, 
-                                                      //  0 to turn of server-side caching
+                                                   //  0 to turn of server-side caching
 
   $padCacheProxyAge        = 0;                    //  How long a proxy is allowed to cache. 
-                                                      //  0 to turn of proxy-side caching
+                                                   //  0 to turn of proxy-side caching
 
   $padCacheClientAge       = 0;                    //  How long the client is allowed to cache.
-                                                      //  0 to turn of client-side caching
+                                                   //  0 to turn of client-side caching
 
-  // Server-side cache settings ( used wheb $padCacheServerAge <> 0 )
+  // Server-side cache settings ( used when $padCacheServerAge <> 0 )
 
   $padCacheServerType      = 'memory';             //  The implementation of the server-side cache: file/db/memory
   $padCacheServerGzip      = FALSE;                //  Store the cache zipped
-  $padCacheServerNoData   = FALSE;                //  Do not store the data itself, only the etag and timestamp,
-                                                      //  caching based on the client 'etag' & 'modified' HTTP headers.
+  $padCacheServerNoData    = FALSE;                //  Do not store the data itself, only the etag and timestamp,
+                                                   //  caching based on the client 'etag' & 'modified' HTTP headers.
 
   $padCacheMemoryHost      = 'localhost';          //  Used when $padCacheServerType is 'memory'
   $padCacheMemoryPort      = '11211';
@@ -58,7 +58,7 @@
   $padCacheDbUser          = 'cache';
   $padCacheDbPassword      = 'cache';
 
-  $padCacheFile             = DATA . 'cache/';   //  Used when $padCacheServerType is 'file'
+  $padCacheFile            = DATA . 'cache/';      //  Used when $padCacheServerType is 'file'
   $padCacheFileMode        = 755;
 
   // SQL parms - PAD internal

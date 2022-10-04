@@ -66,7 +66,7 @@
  
     } catch (Exception $e) {
 
-      return padErrorError ( $e->getMessage(),$e->getFile(), $e->getLine() );
+      return padBootGo ( $e->getMessage(),$e->getFile(), $e->getLine() );
  
     }
 
@@ -81,7 +81,7 @@
       return FALSE;
 
     if ( $GLOBALS['padExit'] <> 1 )
-      return padErrorError ($error, $file, $line);
+      return padBootGo ($error, $file, $line);
     else
       $GLOBALS['padExit'] = 2;
 
@@ -109,7 +109,7 @@
 
     if ( $padErrorAction == 'boot' )
 
-      padBootError ( $error, $file, $line );
+      padBootGo ( $error, $file, $line );
 
     elseif ( $padErrorAction == 'abort')
 
@@ -132,38 +132,6 @@
     }
 
     padStop (500);
-
-  }
- 
-
-  function padErrorError ($error, $file, $line) {
-
-    try {
- 
-      global $PADREQID;
-
-      $error = "[PAD] $PADREQID Error-in-error: $file:$line $error";
-
-      error_log ($error, 4);
-
-      padFilePutContents ( "errors/$PADREQID-error-in-error.html", padDumpGet($error) );
-
-      if ( padLocal() )
-        padDump ($error);
-      else
-        echo "Error: $PADREQID";
-
-      $GLOBALS ['padSkipShutdown']     = TRUE;
-      $GLOBALS ['padSkipBootShutdown'] = TRUE;
-      
-      exit;
- 
-    } catch (Exception $e) {
-
-      padBootError ( $error, $file, $line );
- 
-    }     
-
 
   }
 
