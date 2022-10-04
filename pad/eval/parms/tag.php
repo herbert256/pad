@@ -1,7 +1,7 @@
 <?php
 
   if     ( file_exists ( APP . "tags/$name.php"  ) ) $padEvalTagType= 'app';
-  elseif ( file_exists ( PAD . "tags/$name.php"  ) ) $padEvalTagType= 'app';
+  elseif ( file_exists ( PAD . "tags/$name.php"  ) ) $padEvalTagType= 'pad';
   else                                               return '';
   
   $padEvalTagOptions = '';

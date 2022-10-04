@@ -15,7 +15,7 @@
     return;
   }
 
-  $padBetween = substr ( $padHtml [$pad], $padStart [$pad] + 1, $padEnd [$pad]-$padStart [$pad] - 1 ) ;
+  $padBetween = substr ( $padHtml [$pad], $padStart [$pad] + 1, $padEnd [$pad] - $padStart [$pad] - 1 ) ;
   $padFirst   = substr ( $padBetween , 0, 1 );
 
   if     ( $padFirst == '!' ) return padHtml ( include PAD . 'var/raw.php' );
@@ -24,17 +24,16 @@
   include 'setup.php';    
   include 'between.php';
 
-  if     ( ! ctype_alpha ( $padFirst )    ) return padIgnore ('ctype_alpha');
-  elseif ( ! padValid      ( $padTag [$pad] ) ) return padIgnore ('padValid');
+  if     ( ! ctype_alpha ( $padFirst )      ) return padIgnore ('ctype_alpha');
+  elseif ( ! padValid    ( $padTag [$pad] ) ) return padIgnore ('padValid');
 
-  $padPair  [$pad] = include 'pair.php';
-  $padType  [$pad] = include 'type_get.php';
-  $padSplit [$pad] = include 'split.php';
+  $padPair [$pad] = include 'pair.php';
+  $padType [$pad] = include 'type.php';
 
   if ( $padPair  [$pad] === NULL  ) return padIgnore ('pair');
-  if ( $padType  [$pad] === FALSE ) return padIgnore ('type_get');
-  if ( $padSplit [$pad] === FALSE ) return padIgnore ('split');
+  if ( $padType  [$pad] === FALSE ) return padIgnore ('type');
 
+  include 'split.php';
   include 'start.php';
 
 ?>

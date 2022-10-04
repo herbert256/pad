@@ -1,9 +1,9 @@
 <?php
 
-  if     ( $padTagResult === NULL )   $padNull [$pad] = TRUE;
-  elseif ( $padTagResult === INF )    $padNull [$pad] = TRUE;
-  elseif ( $padTagResult === NAN )    $padNull [$pad] = TRUE;
-  else                                $padNull [$pad] = FALSE;
+  if     ( $padTagResult === NULL ) $padNull [$pad] = TRUE;
+  elseif ( $padTagResult === INF  ) $padNull [$pad] = TRUE;
+  elseif ( $padTagResult === NAN  ) $padNull [$pad] = TRUE;
+  else                              $padNull [$pad] = FALSE;
 
   if     ( is_array($padTagResult) and ! count($padTagResult) ) $padElse [$pad] = TRUE;
   elseif ( is_array($padTagResult) and   count($padTagResult) ) $padElse [$pad] = FALSE;

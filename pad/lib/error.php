@@ -1,27 +1,6 @@
 <?php
   
-
-  function padErrorShort ( $error ) {
-
-    $GLOBALS ['padSkipBootShutdown'] = TRUE;
-    $GLOBALS ['padSkipShutdown']      = TRUE;
-
-    echo ( "<pre><b>$error</b>\n\n");
-    
-    $padBacktrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS);
-    
-    foreach ( $padBacktrace as $key => $trace ) {
-      extract ( $trace );
-      echo ( "$file:$line - $function\n");
-    }
-    
-    echo "\n" . htmlentities ( print_r ( $GLOBALS, TRUE ) );
-    
-    exit;
- 
-  }
-
-
+  
   function padErrorReporting ( $level ) {
 
     $none    = (int) 0;

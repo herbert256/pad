@@ -7,7 +7,7 @@
   include 'inits.php';
 
   $padContent = $padTrue [$pad];
-  include 'type_go.php';
+  include 'go.php';
   $padTrue [$pad] = $padContent;
   
   include 'options.php';

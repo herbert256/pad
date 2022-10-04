@@ -3,7 +3,7 @@
   $padWalk [$pad] = 'next';
   
   $padContent = $padBase [$pad];
-  include PAD . "level/type_go.php"; 
+  include PAD . "level/go.php"; 
   $padBase [$pad] = $padContent;
 
   include PAD . "level/flags.php";

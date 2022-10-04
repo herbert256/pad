@@ -7,8 +7,6 @@
 
     setCookie ('PADREQID', $PADREQID, time() + (60 * 60 * 24 * 366 * 10) );
 
-    padHeader ("X-PAD-ID: $PADREQID");
-
   }
 
 ?>

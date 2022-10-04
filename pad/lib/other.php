@@ -1,5 +1,12 @@
 <?php
 
+  
+  function padRestart ( $padRestart ) {
+      
+    $GLOBALS ['padRestart'] = $padRestart;
+
+  }
+
 
   function p () {
 

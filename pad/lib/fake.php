@@ -1,85 +1,29 @@
 <?php
 
-  
-  function padRestart ( $padRestart ) {
-      
-    $GLOBALS ['padRestart'] = $padRestart;
+  function padBuild ( $padFakePage,  $padFakeMode='include',  $padFakeMerge='content' ) {
 
-    return NULL;
+    include PAD . 'fake/inits.php'; 
 
-  }
-
-
-  function padBuild ( $padBuild, $padMode='include', $padMerge='content', $padInclude=0 ) {
-      
-    $padBuildMode  = $padMode;
-    $padBuildMerge = $padMerge;
-    $page         = $padBuild;
-   
-    $padNoOccur = TRUE;
-    
-    global $pad, $padBase;    
-
-    include PAD . 'build/build.php'; 
-
-    return $padBase [$pad];    
-
-  }
-
-
-  function padBuild2 ( $padBuild, $padMode='before', $padMerge='content' ) {
-
-    foreach ($GLOBALS as $key => $val )
-      if ( substr($key, 0, 3) == 'pad' )
-        global $$key;
-
-    $Xp         = $pad;
-    $XpadTraceDir = $padTraceDir;
-    
-    $padCnt++;
-
-    include PAD . 'level/setup.php'; 
-    include PAD . 'level/trace/start.php'; 
-    include PAD . 'occurrence/trace/start.php'; 
-
-    $padBuildMode  = $padMode;
-    $padBuildMerge = $padMerge;
-    $page         = $padBuild;
+    $page          = $padFakePage;
+    $padBuildMode  = $padFakeMode;
+    $padBuildMerge = $padFakeMerge;
 
     include PAD . 'build/build.php'; 
 
     $padHtml [$pad] = $padBase [$pad];    
 
-    while ( $pad > $Xp ) 
-      include PAD . 'level/level.php'; 
-
-    $padTraceDir = $XpadTraceDir;
+    return include PAD . 'fake/exits.php'; 
  
-    return $padHtml [$Xp+1];
-
   }
 
 
-  function padContent ( $contentxx ) {
+  function padContent ( $padFakeContent ) {
 
-    foreach ($GLOBALS as $key => $val )
-      if ( substr($key, 0, 3) == 'pad' )
-        global $$key;
+    include PAD . 'fake/inits.php'; 
 
-    $Xp = $pad;
-    
-    $padCnt++;
+    $padHtml [$pad] = $padFakeContent;    
 
-    include PAD . 'level/setup.php'; 
-    include PAD . 'level/trace/start.php'; 
-    include PAD . 'occurrence/trace/start.php'; 
-
-    $padHtml [$pad] = $contentxx;    
-
-    while ( $pad > $Xp ) 
-      include PAD . 'level/level.php'; 
-
-    return $padHtml [$Xp+1];
+    return include PAD . 'fake/exits.php'; 
 
   }
 
