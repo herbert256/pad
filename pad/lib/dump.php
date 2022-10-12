@@ -38,18 +38,18 @@
 
   function padDumpGo ($info='') {
 
-    echo ("<div align=\"left\"><pre>");
+    echo ( "<div align=\"left\"><pre>" );
 
     if ($info)
-      echo ("<hr><b>$info</b><hr><br>");
+      echo ( "<hr><b>$info</b><hr><br>" );
 
-    padTraceFields ( $php, $lvl, $app, $cfg, $pad, $ids );
+    padTraceFields  ( $php, $lvl, $app, $cfg, $pad, $ids );
 
     padDumpErrors   ();
     padDumpStack    ();
     padDumpLevel    ();
     padDumpRequest  ();
-    padDumpArray    ( "APP variables",   $app );
+    padDumpArray    ( "APP variables", $app );
     padDumpXXX      ( $pad, 'padSeq' );
     padDumpXXX      ( $pad, 'padEval' );
     padDumpArray    ( "PAD variables",   $pad );
@@ -61,7 +61,7 @@
     padDumpArray    ( 'PHP', $php );
     padDumpGlobals  ();
 
-    echo ( "\n</pre></div>" );
+    echo ( "</pre></div>" );
 
   }
 

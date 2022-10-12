@@ -23,7 +23,10 @@
       return FALSE;
     }
  
-    return padErrorGo ( 'PAD: ' . $error, $file, $line); 
+    if ( $GLOBALS ['padErrorAction'] == 'boot' )
+      return padBootGo ( $error, $file, $line ); 
+
+    return padErrorGo ( 'PAD: ' . $error, $file, $line ); 
  
   }
 
@@ -87,31 +90,29 @@
 
     global $padErrorAction, $padExit, $PADREQID, $padTrace, $padErrorDump, $padErrorLog, $padErrCnt;
 
-    $padErrCnt++;
-
-    if ( $padErrorDump or $padErrorAction == 'report' )
+    if ( $padErrorDump or $padErrorAction == 'report' ) {
+      $padErrCnt++;
       padFilePutContents ( "errors/$PADREQID-$padErrCnt.html", padDumpGet($error) );
+    }
 
     padErrorTrace ( $error );
 
-    $error = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '.', $error);
-    $error = preg_replace('/\s+/', ' ', $error);
-    if ( strlen($error) > 255 )
-      $error = substr($error, 0, 255);
-    $error = trim($error);
-    $error = "$file:$line $error";
+    if ( $padErrorLog )  {
+      $error = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '.', $error);
+      $error = preg_replace('/\s+/', ' ', $error);
+      if ( strlen($error) > 1024 )
+        $error = substr($error, 0, 1024);
+      $error = trim($error);
+      $error = "$file:$line $error";
+    }
 
-    if ( $padErrorLog and $padErrorAction <> 'boot' ) 
+    if ( $padErrorLog or $padErrorAction == 'pad' ) 
       error_log ("[PAD] $PADREQID $error", 4);   
 
     if ( ! headers_sent () and in_array($padErrorAction, ['pad', 'stop', 'abort']) )
       padHeader ('HTTP/1.0 500 Internal Server Error' );
 
-    if ( $padErrorAction == 'boot' )
-
-      padBootGo ( $error, $file, $line );
-
-    elseif ( $padErrorAction == 'abort')
+    if ( $padErrorAction == 'abort')
 
       padExit ();
 

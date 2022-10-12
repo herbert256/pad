@@ -86,14 +86,13 @@
     if ( ! headers_sent () )
       header ( 'HTTP/1.0 500 Internal Server Error' );
 
-    $id = $GLOBALS ['PADREQID'] ?? uniqid (TRUE);
-
-    error_log ( "[PAD] $id - $file:$line $error", 4 );
-
     if ( function_exists ( 'padLocal' ) and padLocal () )
       echo "$file:$line $error";
-    else
+    else {
+      $id = $GLOBALS ['PADREQID'] ?? uniqid (TRUE);
+      error_log ( "[PAD] $id - $file:$line $error", 4 );
       echo "Error: $id";
+    }
  
     exit;
 

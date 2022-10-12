@@ -3,7 +3,7 @@
   $pad = -1;
 
   $padTimingsCnt = $padTimings = [];
-  $padErrCnt =$padEvalCnt = $padFldCnt = $padCnt = $padOptCnt = $padErrCnt = $padBtwCnt = $padTypeCnt = $padIgnCnt = 0;
+  $padErrCnt =$padEvalCnt = $padFldCnt = $padCnt = $padOptCnt = $padBtwCnt = $padTypeCnt = $padIgnCnt = 0;
   $padFieldDoubleCheck = $padRestart = '';     
 
   $padOutput     = '';
