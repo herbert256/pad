@@ -30,8 +30,6 @@
   $padTrackDbRequest   = FALSE;
   $padTrackDbData      = FALSE;
 
-  $padTrackSql         = FALSE; 
-
   // Cache settings
   
   $padCacheServerAge       = 0;                    //  Seconds to keep the cache at PAD server side, 
@@ -93,12 +91,12 @@
   // How the app parts from ../$app/pages/ are processed.
 
   $padBuildMode     = 'before';     // 'isolate'
-                                      // 'before'
-                                      // 'demand'
-                                      // 'include'
+                                    // 'before'
+                                    // 'demand'
+                                    // 'include'
   
   $padBuildMerge    = 'content';    // 'content'
-                                      // 'end'
+                                    // 'end'
     
   // Default {$var} options, there must be a PHP snippet in one of below directories
   // - PAD/functions/
@@ -115,7 +113,7 @@
 
   // lib tidy
 
-  $padTidy                   = FALSE;
+  $padTidy                  = FALSE;
   $padTidyCcsid             = 'utf8'; 
   $padTidyConfig            = [ 
                                   'output-html'     => FALSE,
@@ -133,16 +131,10 @@
   
   // Other settings.
 
-  $padClientGzip            = FALSE; // Send the result zipped
+  $padClientGzip            = FALSE;  // Send the result zipped
   $padEtag304               = FALSE;  // Send a 304 header, based on the client etag http header
-  $padNoNo                  = FALSE; // No PAD stuff, just plane PHP   
+  $padNoNo                  = FALSE;  // No PAD stuff, just plane PHP   
   $padFastLink              = 32;
-  $padTiming                 = TRUE;
+  $padTiming                = TRUE;
 
-  $padOptionsStart = ['dump', 'track', 'before', 'reverse', 'start', 'end', 'dedup', 'page', 
-                      'rows', 'first', 'last', 'row', 'sort', 'ignore', 'source', 'shuffle', 
-                      'random', 'print', 'dummy', 'parent'];
-                            
-  $padOptionsEnd   = ['toFlag', 'toContent', 'toData'];
-  
 ?>

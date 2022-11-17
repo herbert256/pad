@@ -32,7 +32,7 @@
   
   function padDbPart2 ( $padSqlConnect, $sql, $vars, $db_type ) {
 
-    global $pad, $padDbRowsFound, $padTrackSql, $padPrmsTag;
+    global $pad, $padDbRowsFound, $padTrace, $padPrmsTag;
     
     foreach ( $vars as $i => $replace ) {
 
@@ -74,7 +74,7 @@
     elseif ( $command == 'field'  )  $sql = 'select '        . $split[1] . ' limit 0,1';
     elseif ( $command == 'array'  )  $sql = 'select '        . $split[1];
 
-    if ( $padTrackSql )
+    if ( $padTrace )
       $padSqlStart = microtime(true);
     
     padTimingStart ('sql');
@@ -135,12 +135,12 @@
       $return = '';
 
 
-    if ( $GLOBALS ['padTrackSql'] ) {
+    if ( $padTrace ) {
 
       $padSqlDuration = padDuration ($padSqlStart);
 
       if ($GLOBALS ['padTrackSql'])
-        padDbLog ($db_type, $padSqlDuration, $padDbRowsFound, padDbFormatSql($sql)) ;
+        padDbTrace ($db_type, $padSqlDuration, $padDbRowsFound, padDbFormatSql($sql)) ;
       
     }
 
@@ -149,7 +149,7 @@
   }
 
 
-  function padDbLog ($type, $duration, $rows, $sql) {
+  function padDbTrace ($type, $duration, $rows, $sql) {
         
     $backTrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS,3);
     extract ( $backTrace[2] );
