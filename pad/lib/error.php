@@ -1,6 +1,6 @@
 <?php
   
-  
+
   function padErrorReporting ( $level ) {
 
     $none    = (int) 0;
@@ -31,17 +31,42 @@
   }
 
 
-  function padErrorHandler ( $type, $error, $file, $line ) {
+  function padErrorError ( $type, $error, $file, $line ) {
  
-    if ( error_reporting() & $type )
-      return padErrorGo ( 'ERROR: ' . $error, $file, $line );
+    if ( error_reporting() & $type ) {
+
+      set_error_handler ( 'padErrorErrorError' );
+      padErrorGo ( 'ERROR: ' . $error, $file, $line );
+      restore_error_handler ();
+
+      return FALSE;
+
+    }
+
+    $GLOBALS ['padErrorIgnored'] [] = "$file:$line $error";
  
   }
 
 
-  function padErrorException ( $error ) {
+  function padErrorErrorError ( $type, $error, $file, $line ) {
 
-    return padErrorGo ( 'EXCEPTION: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
+    padErrorDump ("$file:$line ERROR-ERROR: $error");
+ 
+  }
+
+
+  function padErrorException ( $e ) {
+
+    set_exception_handler ( 'adErrorExceptionException' );
+    return padErrorGo ( 'EXCEPTION: ' . $e->getMessage() , $e->getFile(), $e->getLine() );
+    restore_exception_handler ();
+ 
+  }
+
+ 
+  function padErrorExceptionException ( $e ) {
+
+    padErrorDump ( $e->getFile() . ':' . $e->getLine() . ' EXCEPTION-EXCEPTION: ' . $e->getMessage() ); 
  
   }
   
@@ -65,12 +90,12 @@
 
     try {
  
-      return padErrorTry ($error, $file, $line); 
- 
-    } catch (Exception $e) {
+      return padErrorTry ($error, $file, $line);
 
-      return padBootGo ( $e->getMessage(),$e->getFile(), $e->getLine() );
- 
+    } catch (Throwable $e) {
+
+      padErrorDump ( $e->getFile() . ':' . $e->getLine() . ' ERROR-CATCH: ' . $e->getMessage() );
+
     }
 
   }
@@ -84,7 +109,7 @@
       return FALSE;
 
     if ( $GLOBALS['padExit'] <> 1 )
-      return padBootGo ($error, $file, $line);
+      padDump ("ERROR-SECOND: $file:$line $error");
     else
       $GLOBALS['padExit'] = 2;
 
@@ -95,19 +120,14 @@
       padFilePutContents ( "errors/$PADREQID-$padErrCnt.html", padDumpGet($error) );
     }
 
-    padErrorTrace ( $error );
+    padErrorTrace ( $error ); 
 
-    if ( $padErrorLog )  {
-      $error = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '.', $error);
-      $error = preg_replace('/\s+/', ' ', $error);
-      if ( strlen($error) > 1024 )
-        $error = substr($error, 0, 1024);
-      $error = trim($error);
-      $error = "$file:$line $error";
+    $a = 5 / 0;
+
+    if ( $padErrorLog or $padErrorAction == 'pad' ) {
+      $log = "$file:$line " . padMakeSafe ( $error );
+      error_log ("[PAD] $PADREQID $log", 4);   
     }
-
-    if ( $padErrorLog or $padErrorAction == 'pad' ) 
-      error_log ("[PAD] $PADREQID $error", 4);   
 
     if ( ! headers_sent () and in_array($padErrorAction, ['pad', 'stop', 'abort']) )
       padHeader ('HTTP/1.0 500 Internal Server Error' );
@@ -123,16 +143,54 @@
 
     } elseif ( $padErrorAction == 'pad' ) {
 
-      if ( padLocal() )
-        padDump ("Error: $PADREQID:  $error");
-      else
-        echo "Error: $PADREQID";
-
-      $GLOBALS ['padSent'] = TRUE;             
+       padDump ("$PADREQID:  $error");
 
     }
 
     padStop (500);
+
+  }
+
+
+  function padErrorStop ( $info='' ) {
+
+    padErrorLog ( $info );
+    padErrorID ();
+    padStop (500);
+ 
+  }
+
+
+  function padErrorLog ( $info ) {
+
+    $id = $GLOBALS ['PADREQID'] ?? uniqid (TRUE);
+  
+    if ( is_array($info) or is_object($info) )
+      $info = padJson ($info);
+
+    if ( ! $info ) {
+
+      $padDebugBacktrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS);
+
+      foreach ( $padDebugBacktrace as $key => $trace ) {
+        extract ( $trace );
+        $info .= "$file:$line:$function ";
+      }
+
+    }
+
+    $info = padMakeSafe ( $info );
+
+    error_log ( "[PAD] $id - $info", 4 );
+
+  }
+
+
+  function padErrorID () {
+
+    $id = $GLOBALS ['PADREQID'] ?? uniqid (TRUE);
+
+    echo "Error: $id";
 
   }
 
@@ -144,12 +202,22 @@
 
     global $pad, $padOccurDir;
 
-    $padErrorDir = $padOccurDir [$pad] . "/error";
+    $padErrorDir = $padOccurDir [$pad] . "error";
 
     padFilePutContents ( "$padErrorDir/err.html", padDumpGet($error) ); 
     padTraceAll        ( $padErrorDir );
 
   }
 
+
+ function padErrorDump ( $error ) {
+ 
+    $GLOBALS ['padErrrorList'] [] = $error;
+ 
+    padDump ($error);
+
+  }
+
+ 
 
 ?>

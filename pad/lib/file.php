@@ -22,13 +22,15 @@
 
     $file = DATA . $in;
 
-    if ( ! padFileValidName ( $file ) )
+    if ( ! padFileValidName ( $file ) ) {
+      #padDump();
       return padError ("Invalid file name: $file");
+    }
 
     padFileChkDir  ( $file );
     padFileChkFile ( $file );
 
-    if ( is_array($data) )
+    if ( is_array($data) or is_object($data) )
       $data = padJson ($data);
       
     if ($data) {

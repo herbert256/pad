@@ -3,19 +3,44 @@
 
   function padDump ($info='') {
 
-    if ( ! padLocal () )
-      return FALSE ;
+    try {
 
-    padEmptyBuffers ();
-    gc_collect_cycles ();
-    padCloseHtml    ();
-    padDumpGo       ($info);
+      set_error_handler     ( 'padDumpError' );
+      set_exception_handler ( 'padDumpException' );
 
-    $GLOBALS ['padSent'] = TRUE;
+      if ( ! padLocal () )
+        padErrorStop ($info);
 
-    padStop (500);
+      padEmptyBuffers   ();
+      gc_collect_cycles ();
+      padCloseHtml      ();
+      padDumpGo         ($info);
+
+      $GLOBALS ['padSent'] = TRUE;
+
+      padStop (500);
+
+    } catch (Throwable $e) {
+
+      padBootGo ( 'DUMP-CATCH: ' . $e->getMessage() , $e->getFile(), $e->getLine() );
+  
+    }
 
   }   
+
+
+  function padDumpError ( $type, $error, $file, $line ) {
+
+    padBootGo ( 'DUMP-ERROR: ' . $error , $file, $line );
+ 
+  }
+
+
+  function padDumpException ( $error ) {
+
+    padBootGo ( 'DUMP-EXCEPTION: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
+
+  }
 
 
   function padDumpToFile ($file, $info='') {
@@ -38,13 +63,11 @@
 
   function padDumpGo ($info='') {
 
-    echo ( "<div align=\"left\"><pre>" );
-
-    if ($info)
-      echo ( "<hr><b>$info</b><hr><br>" );
-
     padTraceFields  ( $php, $lvl, $app, $cfg, $pad, $ids );
 
+    echo ( "<div align=\"left\"><pre>" );
+
+    padDumpInfo     ( $info );
     padDumpErrors   ();
     padDumpStack    ();
     padDumpLevel    ();
@@ -66,6 +89,21 @@
   }
 
 
+  function padDumpInfo ( $info ) {
+
+    if ( ! $info )
+      return;
+
+    if ( isset ( $GLOBALS ['padErrrorList'] ) and count ( $GLOBALS ['padErrrorList'] ) > 1 )
+      foreach ( $GLOBALS ['padErrrorList'] as $error )
+        if ( padMakeSafe($info) == padMakeSafe($error) )
+          return;
+
+    echo ( "<hr><b>$info</b><hr><br>" ); 
+
+  } 
+
+
   function padDumpErrors () {
 
     if ( ! isset ( $GLOBALS ['padErrrorList'] ) )
@@ -74,7 +112,14 @@
     if ( count ( $GLOBALS ['padErrrorList'] ) < 2 )
       return;
 
-    padDumpArray ( 'Errors', $GLOBALS ['padErrrorList'] );
+    echo ( "<b>Errors</b>\n");
+
+    $errors = array_reverse ( $GLOBALS ['padErrrorList'] );
+
+    foreach ( $errors as $error )
+      echo ( "    $error\n" );
+
+    echo ( "\n" );
 
   }  
 

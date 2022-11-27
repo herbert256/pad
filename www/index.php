@@ -12,11 +12,9 @@
   //
   //  ============================================================================
 
-  
   // Mark the PAD boot time
 
   $padTimingsBoot = microtime(true);
-
 
   // Start settings
 
@@ -25,7 +23,6 @@
   define ( 'DATA', '/home/herbert/data/'     ); // Data locaction, used for logs/cache/errors/etc.
 
   // End settings
-
 
   // Start Boot error handling 
 
@@ -38,11 +35,9 @@
 
   // End Boot error handling 
   
-
   // Go to PAD
   
   include PAD . 'pad.php';
-
 
   // PAD boot error handling functions
  
@@ -97,6 +92,5 @@
     exit;
 
   }  
-
 
 ?>

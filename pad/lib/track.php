@@ -26,24 +26,10 @@
 
   function padTrackFileRequest () {
     
-    $id    = $GLOBALS ['PADREQID'];
-    $track = padTrack ();
-    $json  = padJson ($track);
-    
-    padFilePutContents ( "track/$id.json", $json, 1);
+    $id = $GLOBALS ['PADREQID'];
+
+    padFilePutContents ( "track/$id.json", padTrack() );
       
-  }
-
-
-  function padTrackFileData () {
-
-    global $padEtag, $padOutput;
-    
-    $padContentStoreFile = "output/$padEtag.html";
-
-    if ( ! file_exists(DATA . "$padContentStoreFile") )
-      padFilePutContents ($padContentStoreFile, $padOutput);
-
   }
 
 
@@ -79,6 +65,18 @@
       
   }
 
+
+
+  function padTrackFileData () {
+
+    global $padEtag, $padOutput;
+    
+    $padContentStoreFile = "output/$padEtag.html";
+
+    if ( ! file_exists(DATA . "$padContentStoreFile") )
+      padFilePutContents ($padContentStoreFile, $padOutput);
+
+  }
 
   function padTrackDbData () {
 

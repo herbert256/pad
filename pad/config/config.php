@@ -19,16 +19,16 @@
 
   // Trace the internal working of PAD
 
-  $padTrace = FALSE;  
+  $padTrace = TRUE;  
 
   // Keep track of stuff
 
-  $padTrackFileRequest = FALSE;
-  $padTrackFileData    = FALSE; 
+  $padTrackFileRequest = TRUE;
+  $padTrackFileData    = TRUE; 
 
-  $padTrackDbSession   = FALSE;
-  $padTrackDbRequest   = FALSE;
-  $padTrackDbData      = FALSE;
+  $padTrackDbSession   = TRUE;
+  $padTrackDbRequest   = TRUE;
+  $padTrackDbData      = TRUE;
 
   // Cache settings
   
@@ -44,7 +44,7 @@
   // Server-side cache settings ( used when $padCacheServerAge <> 0 )
 
   $padCacheServerType      = 'memory';             //  The implementation of the server-side cache: file/db/memory
-  $padCacheServerGzip      = FALSE;                //  Store the cache zipped
+  $padCacheServerGzip      = TRUE;                //  Store the cache zipped
   $padCacheServerNoData    = FALSE;                //  Do not store the data itself, only the etag and timestamp,
                                                    //  caching based on the client 'etag' & 'modified' HTTP headers.
 
@@ -113,13 +113,13 @@
 
   // lib tidy
 
-  $padTidy                  = FALSE;
+  $padTidy                  = TRUE;
   $padTidyCcsid             = 'utf8'; 
   $padTidyConfig            = [ 
-                                  'output-html'     => FALSE,
+                                  'output-html'     => TRUE,
                                   'doctype'         => 'html5',
                                   'wrap'            => 200,
-                                  'indent'          => FALSE,
+                                  'indent'          => TRUE,
                                   'tab-size'        => 2,
                                   'vertical-space'  => 'yes',
                                   'replace-color'   => 'yes'
@@ -131,10 +131,10 @@
   
   // Other settings.
 
-  $padClientGzip            = FALSE;  // Send the result zipped
-  $padEtag304               = FALSE;  // Send a 304 header, based on the client etag http header
+  $padClientGzip            = TRUE;  // Send the result zipped
+  $padEtag304               = TRUE;  // Send a 304 header, based on the client etag http header
   $padNoNo                  = FALSE;  // No PAD stuff, just plane PHP   
-  $padFastLink              = 32;
-  $padTiming                = TRUE;
+  $padFastLink              = 32;     // Lenght of the FastLink code in the URL
+  $padTiming                = TRUE;   // Keep Timings of the PAD parts
 
 ?>
