@@ -6,8 +6,8 @@
     $input = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '.', $input);
     $input = preg_replace('/\s+/', ' ', $input);
     
-    if ( strlen($input) > 1024 )
-      $input = substr($input, 0, 1024);
+    if ( strlen($input) > 2048 )
+      $input = substr($input, 0, 2048);
     
     $input = trim($input);
 
@@ -150,11 +150,11 @@
   }
 
 
-  function padMd5 ($input) {
+  function padMD5 ($input) {
     return substr(padBase64(padPack(md5($input))),0,22);
   }
   
-  function padMd5Unpack ($input) {
+  function padMD5Unpack ($input) {
     return padUnpack(padUnbase64 ($input.'=='));
   }
 

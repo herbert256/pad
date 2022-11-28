@@ -1,7 +1,7 @@
 <?php
 
-  $x = $z;
-  
   $title = 'Introduction';
-  
+
+  padDump ('xx');
+
 ?>

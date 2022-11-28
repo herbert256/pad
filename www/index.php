@@ -45,19 +45,19 @@
 
     extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
 
-    padBootGo ( $error, $file, $line );
+    padBootStop ( $error, $file, $line );
 
   }
 
   function padBootHandler ( $type, $error, $file, $line ) {
 
-    padBootGo ( $error, $file, $line );
+    padBootStop ( $error, $file, $line );
 
   }
 
   function padBootException ( $error ) {
 
-    padBootGo ( $error->getMessage(), $error->getFile(), $error->getLine() );
+    padBootStop ( $error->getMessage(), $error->getFile(), $error->getLine() );
 
   }
 
@@ -69,11 +69,11 @@
     $error = error_get_last ();
  
     if ($error !== NULL)
-      padBootGo ( $error['message'], $error['file'], $error['line'] );
+      padBootStop ( $error['message'], $error['file'], $error['line'] );
  
   }
 
-  function padBootGo ( $error, $file, $line ) {
+  function padBootStop ( $error, $file, $line ) {
 
     $GLOBALS ['padSkipBootShutdown'] = TRUE;
     $GLOBALS ['padSkipShutdown']     = TRUE;

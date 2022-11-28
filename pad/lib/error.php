@@ -24,7 +24,7 @@
     }
  
     if ( $GLOBALS ['padErrorAction'] == 'boot' )
-      return padBootGo ( $error, $file, $line ); 
+      return padBootStop ( $error, $file, $line ); 
 
     return padErrorGo ( 'PAD: ' . $error, $file, $line ); 
  
@@ -57,7 +57,7 @@
 
   function padErrorException ( $e ) {
 
-    set_exception_handler ( 'adErrorExceptionException' );
+    set_exception_handler ( 'padErrorExceptionException' );
     return padErrorGo ( 'EXCEPTION: ' . $e->getMessage() , $e->getFile(), $e->getLine() );
     restore_exception_handler ();
  
@@ -103,17 +103,19 @@
 
   function padErrorTry ($error, $file, $line) {
 
-    $GLOBALS ['padErrrorList'] [] = "$file:$line $error";
-
     if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
       return FALSE;
 
     if ( $GLOBALS['padExit'] <> 1 )
-      padDump ("ERROR-SECOND: $file:$line $error");
+      padErrorDump ("$file:$line ERROR-SECOND: $error");
     else
       $GLOBALS['padExit'] = 2;
 
+    $GLOBALS ['padErrrorList'] [] = "$file:$line $error";
+
     global $padErrorAction, $padExit, $PADREQID, $padTrace, $padErrorDump, $padErrorLog, $padErrCnt;
+
+    $error = "$file:$line " . padMakeSafe ( $error );
 
     if ( $padErrorDump or $padErrorAction == 'report' ) {
       $padErrCnt++;
@@ -122,12 +124,8 @@
 
     padErrorTrace ( $error ); 
 
-    $a = 5 / 0;
-
-    if ( $padErrorLog or $padErrorAction == 'pad' ) {
-      $log = "$file:$line " . padMakeSafe ( $error );
-      error_log ("[PAD] $PADREQID $log", 4);   
-    }
+    if ( $padErrorLog or $padErrorAction == 'pad' )
+      error_log ("[PAD] $PADREQID $error", 4); 
 
     if ( ! headers_sent () and in_array($padErrorAction, ['pad', 'stop', 'abort']) )
       padHeader ('HTTP/1.0 500 Internal Server Error' );

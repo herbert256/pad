@@ -19,7 +19,7 @@
   if ( $padRemoveWhitespace )
     include 'whitespace.php';
   
-  $padEtag = padMd5 ($padOutput);
+  $padEtag = padMD5 ($padOutput);
 
   if ( $padTrackFileData )
     padTrackFileData ();

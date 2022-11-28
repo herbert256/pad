@@ -1,19 +1,18 @@
 <?php
 
-  if ( count($_POST) or count($_FILES) or ( !$padCacheServerAge and !$padCacheClientAge ) ) {
-    $padCache = FALSE;
+  if ( !$padCacheServerAge and !$padCacheClientAge ) 
     return;
-  }
 
-  if ( $app == 'pad' ) {
-    $padCache = FALSE;
+  if ( count($_POST) or count($_FILES) )
     return;
-  }
+
+  if ( $app == 'pad' )
+    return;
 
   padTimingStart ('cache');
 
-  $padCache        = TRUE;
-  $padCacheUrl    = padMd5($_SERVER['REQUEST_URI']);
+  $padCache       = TRUE;
+  $padCacheUrl    = padMD5($_SERVER['REQUEST_URI']);
   $padCacheMod    = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) : 0;
   $padCacheClient = isset($_SERVER['HTTP_IF_NONE_MATCH'])     ? substr($_SERVER['HTTP_IF_NONE_MATCH'], 1, 22) : '';
   $padCacheMax    = $_SERVER['REQUEST_TIME'] - $padCacheServerAge;

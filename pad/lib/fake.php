@@ -1,6 +1,7 @@
 <?php
 
-  function padBuild ( $padFakePage,  $padFakeMode='include',  $padFakeMerge='content' ) {
+
+  function padBuild ( $padFakePage,  $padFakeMode='include', $padFakeMerge='content' ) {
 
     include PAD . 'fake/inits.php'; 
 
@@ -17,7 +18,7 @@
   }
 
 
-  function padContent ( $padFakeContent ) {
+  function padFake ( $padFakeContent ) {
 
     include PAD . 'fake/inits.php'; 
 

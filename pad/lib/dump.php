@@ -4,41 +4,49 @@
   function padDump ($info='') {
 
     try {
-
-      set_error_handler     ( 'padDumpError' );
-      set_exception_handler ( 'padDumpException' );
-
-      if ( ! padLocal () )
-        padErrorStop ($info);
-
-      padEmptyBuffers   ();
-      gc_collect_cycles ();
-      padCloseHtml      ();
-      padDumpGo         ($info);
-
-      $GLOBALS ['padSent'] = TRUE;
-
-      padStop (500);
-
-    } catch (Throwable $e) {
-
-      padBootGo ( 'DUMP-CATCH: ' . $e->getMessage() , $e->getFile(), $e->getLine() );
-  
+      padDumpTry ($info);
+    } catch (Throwable $error) {
+      padDumpCatch ($error);
     }
 
   }   
 
 
+  function padDumpTry ($info) {
+
+    set_error_handler     ( 'padDumpError' );
+    set_exception_handler ( 'padDumpException' );
+
+    if ( ! padLocal () )
+      padErrorStop ($info);
+
+    padEmptyBuffers   ();
+    gc_collect_cycles ();
+    padCloseHtml      ();
+    padDumpGo         ($info);
+
+    $GLOBALS ['padSent'] = TRUE;
+
+    padStop (500);
+
+  }  
+
+
   function padDumpError ( $type, $error, $file, $line ) {
 
-    padBootGo ( 'DUMP-ERROR: ' . $error , $file, $line );
+    padBootStop ( 'DUMP-ERROR: ' . $error , $file, $line );
  
   }
 
-
   function padDumpException ( $error ) {
 
-    padBootGo ( 'DUMP-EXCEPTION: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
+    padBootStop ( 'DUMP-EXCEPTION: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
+
+  }
+
+  function padDumpCatch ( $error ) {
+
+    padBootStop ( 'DUMP-CATCH: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
 
   }
 

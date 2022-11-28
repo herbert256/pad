@@ -2,6 +2,8 @@
 
   $pad = -1;
 
+  $padCache = FALSE;
+
   $padTimingsCnt = $padTimings = [];
   $padErrCnt =$padEvalCnt = $padFldCnt = $padCnt = $padOptCnt = $padBtwCnt = $padTypeCnt = $padIgnCnt = 0;
   $padFieldDoubleCheck = $padRestart = '';     
