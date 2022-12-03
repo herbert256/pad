@@ -36,7 +36,7 @@
     if ( error_reporting() & $type ) {
 
       set_error_handler ( 'padErrorErrorError' );
-      padErrorGo ( 'ERROR: ' . $error, $file, $line );
+      padErrorGo ( 'QERROR: ' . $error, $file, $line );
       restore_error_handler ();
 
       return FALSE;
@@ -50,7 +50,7 @@
 
   function padErrorErrorError ( $type, $error, $file, $line ) {
 
-    padErrorDump ("$file:$line ERROR-ERROR: $error");
+    padErrorDump ("$file:$line WERROR-ERROR: $error");
  
   }
 
@@ -81,6 +81,9 @@
     if ( $error === NULL ) 
       return;
   
+    if ( isset ( $GLOBALS ['padDump'] ) )
+      return padDumpProblem ( 'SHUTDOWN: ' . $error['message'], $error['file'], $error['line'] );
+
     return padErrorGo ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
   
   }
@@ -111,51 +114,44 @@
     else
       $GLOBALS['padExit'] = 2;
 
-    $GLOBALS ['padErrrorList'] [] = "$file:$line $error";
-
-    global $padErrorAction, $padExit, $PADREQID, $padTrace, $padErrorDump, $padErrorLog, $padErrCnt;
-
     $error = "$file:$line " . padMakeSafe ( $error );
 
-    if ( $padErrorDump or $padErrorAction == 'report' ) {
-      $padErrCnt++;
-      padFilePutContents ( "errors/$PADREQID-$padErrCnt.html", padDumpGet($error) );
-    }
+    $GLOBALS ['padErrrorList'] [] = $error;
 
-    padErrorTrace ( $error ); 
+    if ( $GLOBALS ['padErrorLog'] or in_array ( $GLOBALS ['padErrorAction'], ['report', 'pad'] ) )
+      padErrorLog ( $error );
 
-    if ( $padErrorLog or $padErrorAction == 'pad' )
-      error_log ("[PAD] $PADREQID $error", 4); 
+    if ( $GLOBALS ['padTrace'] )
+      padErrorTrace ( $error ); 
 
-    if ( ! headers_sent () and in_array($padErrorAction, ['pad', 'stop', 'abort']) )
+    if ( $GLOBALS ['padErrorDump'] or $GLOBALS ['padErrorAction'] == 'report' )
+      padErrorReport ( $error );
+
+    if ( ! headers_sent () and in_array ( $GLOBALS ['padErrorAction'], ['exit', 'stop', 'pad'] ) )
       padHeader ('HTTP/1.0 500 Internal Server Error' );
 
-    if ( $padErrorAction == 'abort')
+    if ( $GLOBALS ['padErrorAction'] == 'exit')
 
       padExit ();
 
-    elseif ( $padErrorAction == 'report' ) {
+    elseif ( $GLOBALS ['padErrorAction'] == 'stop' )
 
-      $padExit = 1;
-      return FALSE;
+      padStop (500);
 
-    } elseif ( $padErrorAction == 'pad' ) {
+    elseif ( $GLOBALS ['padErrorAction'] == 'pad' )
 
-       padDump ("$PADREQID:  $error");
+      padDump ( $error );
 
-    }
+    elseif ( $GLOBALS ['padErrorAction'] == 'report' )
 
-    padStop (500);
+      $GLOBALS ['padExit'] = 1;
 
-  }
+    else
 
+      padBootError ( "ERROR-LOGIC: $error" );
+    
+    return FALSE;
 
-  function padErrorStop ( $info='' ) {
-
-    padErrorLog ( $info );
-    padErrorID ();
-    padStop (500);
- 
   }
 
 
@@ -179,7 +175,7 @@
 
     $info = padMakeSafe ( $info );
 
-    error_log ( "[PAD] $id - $info", 4 );
+    error_log ( "[PAD] $id $info", 4 );
 
   }
 
@@ -193,10 +189,20 @@
   }
 
 
-  function padErrorTrace ( $error ) {
+  function padErrorReport ($error) {
 
-    if ( ! $GLOBALS ['padTrace'] )
-      return;
+    global $padErrCnt;
+
+    $id = $GLOBALS ['PADREQID'] ?? uniqid (TRUE);
+
+    $padErrCnt++;
+    
+    padFilePutContents ( "errors/$id-$padErrCnt.html", padDumpGet($error) );
+
+  }
+
+
+  function padErrorTrace ( $error ) {
 
     global $pad, $padOccurDir;
 
@@ -209,6 +215,8 @@
 
 
  function padErrorDump ( $error ) {
+
+    gc_collect_cycles ();
  
     $GLOBALS ['padErrrorList'] [] = $error;
  

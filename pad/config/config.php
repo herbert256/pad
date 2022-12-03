@@ -5,8 +5,8 @@
   $padErrorAction = 'pad';  // 'pad'    = PAD's own full blown error handler.
                             // 'boot'   = Use the lightweight PAD boot error handler
                             // 'php'    = Use the PHP defaults (php.ini).
-                            // 'stop'   = Stop processing but do the PAD exit handling.
-                            // 'abort'  = Abort, don't do the PAD exit handling
+                            // 'stop'   = Stop processing but do the PAD stop handling.
+                            // 'exit'   = Exit, don't do the PAD stop handling
                             // 'ignore' = Ignore all errors and continue processing.
                             // 'report' = Report the error and continue processing.
  

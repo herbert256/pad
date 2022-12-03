@@ -78,6 +78,10 @@
     $GLOBALS ['padSkipBootShutdown'] = TRUE;
     $GLOBALS ['padSkipShutdown']     = TRUE;
 
+    $buffers = ob_get_level ();
+    for ($i = 1; $i <= $buffers; $i++)
+      ob_get_clean();
+
     if ( ! headers_sent () )
       header ( 'HTTP/1.0 500 Internal Server Error' );
 

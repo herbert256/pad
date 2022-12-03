@@ -84,7 +84,7 @@
     $buffers = ob_get_level ();
 
     for ($i = 1; $i <= $buffers; $i++)
-      $buffer = ob_get_clean();
+      ob_get_clean();
 
   }
 
@@ -140,8 +140,6 @@
 
     echo "\r\n";
 
-    for ($i = 1; $i <= 25; $i++)
-      echo "</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>\r\n";
     for ($i = 1; $i <= 25; $i++)
       echo "</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>\r\n";
 
@@ -451,6 +449,7 @@
     
   }
 
+
   function padIsObject ($item) {
 
     if ( isset ($GLOBALS[$item]) and is_object ($GLOBALS[$item]) )
@@ -459,6 +458,7 @@
       return FALSE;
 
   }
+
 
   function padIsResource ($item) {
 
@@ -475,6 +475,7 @@
     return [ 999 => [] ];
 
   }
+
 
   function padIsDefaultData ( $data ) {
     
@@ -500,6 +501,7 @@
     return FALSE;
 
   }
+
 
   function padGetLevelArray ($tag) {
 
@@ -696,6 +698,7 @@
 
 
   }
+
 
   function padDataFilterGo (&$vars, $start, $end) {
 

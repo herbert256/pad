@@ -1,19 +1,9 @@
 <?php
 
-  padTimingStart ('var');
-
   include 'inits.php';
 
-  $padOpts = [];
-
-  foreach ( $padDataDefaultStart as $padV )
-    $padOpts [] = $padV;
-
-  foreach ( $padExpl as $padV )
-    $padOpts [] = trim($padV);
-
-  foreach ( $padDataDefaultEnd as $padV )
-    $padOpts [] = $padV;
+  $padOpts = array_merge ( $padDataDefaultStart, $padOpts );
+  $padOpts = array_merge ( $padOpts, $padDataDefaultEnd   );
 
   $padVal = padVarOpts ($padVal, $padOpts);
 
