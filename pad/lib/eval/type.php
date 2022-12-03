@@ -1,88 +1,19 @@
 <?php
  
-  function padEvalType ($type, $left, &$result, $myself, $start, $end=999999) {
 
-    $kind = $result [$type] [2];
-    $name = $result [$type] [0];
+  function padEvalType ( $type, $left, &$result, $myself, $start, $end=999999 ) {
 
-    if ( file_exists ( PAD."eval/single/$kind.php" ) ) {
-      padEvalSingle ( $result, $type);
-      return;
-    }
-
-    $parm = [];
-
-    foreach ( $result as $k => $v )
-      if ($k <= $end and $k > $type and $k <= $result [$type] [3] - 1)
-        if ( isset($v[4]) )
-          foreach ($v[4] as $v2)
-            $parm [] = $v2;
-        else
-          $parm [] = $v[0];
-
-    if ( ! count($parm) )
-      foreach ( $result as $k => $v )
-        if ($k <= $end and  $k > $type ) {
-          if ( isset($v[4]) ) {
-            $parm = array_values($v[4]);
-            unset($result[$k]);
-          }
-          break;
-        }
-
-    $count = count($parm);
-
-    if ( $left >= $start and isset($result [$left] [4]) ) {
-      $value = array_values($result [$left] [4]);
-      unset($result [$left]);
-    } elseif ( $left >= $start and $result [$left] [1] == 'VAL') {
-      $value = $result [$left] [0];
-      unset ($result [$left]);
-    } else
-      $value = $myself;
+    if ( file_exists ( PAD . 'eval/single/' . $result [$type] [2] . '.php' ) )
+      padEvalSingle ( $result, result [$type] [2] );
+    else
+      padEvalParms  ( $type, $left, $result, $myself, $start, $end ) ;
    
-    if ( $GLOBALS ['padTrace'] ) {
-        $trace_data ['type']   = $result [$type];
-        $trace_data ['left']   = $left;
-        $trace_data ['start']  = $start;
-        $trace_data ['parm']   = $parm;
-        $trace_data ['in']     = $value;
-    }
-   
-    $value = include PAD . "eval/parms/$kind.php" ;
-    
-    if ( $GLOBALS ['padTrace'] )
-      $trace_data ['out'] = $value;
-
-    $result [$type] [1] = 'VAL';
-  
-    if ( is_array($value) or is_object($value) or is_resource($value) ) {
-      $result [$type] [0] = '*ARRAY*';
-      $result [$type] [4] = padArraySingle ($value);
-     } else {
-      padCheckValue ($value);
-      $result [$type] [0] = $value;
-    }
-
-    foreach ( $result as $key => $parm)
-      if ( $key <= $end and $key > $type and $key <= $result [$type] [3] - 1 )
-        unset($result[$key]);
-
-    if ( $result [$type] [1] == 'VAL' ) {
-      unset ( $result [$type] [2] );
-      unset ( $result [$type] [3] );
-    }
-
-    if ( $GLOBALS ['padTrace'] ) {
-      $trace_data ['result'] = $result [$type];
-      padEvalTrace  ('type', $trace_data );
-    }
-
   }
+
 
   function padArraySingle ($value) {
 
-    $value = padToArray($value);
+    $value = padToArray ($value);
 
     $array = [];
 
@@ -105,5 +36,6 @@
     return $array;
 
   }
+
 
 ?>

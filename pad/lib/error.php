@@ -200,9 +200,9 @@
 
     global $pad, $padOccurDir;
 
-    $padErrorDir = $padOccurDir [$pad] . "error";
+    $padErrorDir = $padOccurDir [$pad] . "/error";
 
-    padFilePutContents ( "$padErrorDir/err.html", padDumpGet($error) ); 
+    padFilePutContents ( "$padErrorDir/error.html", padDumpGet($error) ); 
     padTraceAll        ( $padErrorDir );
 
   }

@@ -74,9 +74,7 @@
 
   function padJson ($data) {
 
-    return json_encode ( $data, JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK
-
-    );
+    return json_encode ( $data, JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK );
 
   }
 
@@ -91,7 +89,7 @@
   }
 
 
-  function padToArray($xxx) {
+  function padToArray ($xxx) {
 
      if ( is_array($xxx) )
        return ($xxx);

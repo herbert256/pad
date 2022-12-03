@@ -19,16 +19,16 @@
 
   // Trace the internal working of PAD
 
-  $padTrace = TRUE;  
+  $padTrace = FALSE;  
 
   // Keep track of stuff
 
-  $padTrackFileRequest = TRUE;
-  $padTrackFileData    = TRUE; 
+  $padTrackFileRequest = FALSE;
+  $padTrackFileData    = FALSE; 
 
-  $padTrackDbSession   = TRUE;
-  $padTrackDbRequest   = TRUE;
-  $padTrackDbData      = TRUE;
+  $padTrackDbSession   = FALSE;
+  $padTrackDbRequest   = FALSE;
+  $padTrackDbData      = FALSE;
 
   // Cache settings
   
@@ -113,7 +113,7 @@
 
   // lib tidy
 
-  $padTidy                  = TRUE;
+  $padTidy                  = FALSE;
   $padTidyCcsid             = 'utf8'; 
   $padTidyConfig            = [ 
                                   'output-html'     => TRUE,
@@ -131,7 +131,7 @@
   
   // Other settings.
 
-  $padClientGzip            = TRUE;  // Send the result zipped
+  $padClientGzip            = FALSE;  // Send the result zipped
   $padEtag304               = TRUE;  // Send a 304 header, based on the client etag http header
   $padNoNo                  = FALSE;  // No PAD stuff, just plane PHP   
   $padFastLink              = 32;     // Lenght of the FastLink code in the URL

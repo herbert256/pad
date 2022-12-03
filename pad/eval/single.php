@@ -1,0 +1,5 @@
+<?php
+ 
+    padEvalSingle ( $result, $type);
+
+?>

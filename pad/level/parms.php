@@ -5,9 +5,9 @@
 
   if ( ! in_array ( $padTag [$pad], ['if', 'case', 'while', 'until'] )  ) {
    
-    $padPrmsOrg = padExplode ($padPrms [$pad], ',');
+    $padPrmsOrg [$pad] = padParseOptions ( $padPrms [$pad] );
     
-    foreach ( $padPrmsOrg as $padV ) {
+    foreach ( $padPrmsOrg [$pad] as $padV ) {
 
       if ( $padV == 'trace' )
         include 'trace/option.php';

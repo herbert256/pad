@@ -29,10 +29,11 @@
   }
 
 
-  padFakeFunction ($tag, $parms) {
+  function padFakeFunction ($tag, $parms) {
 
-    return padFake ( "{$tag $parms}" );
+    return padFake ( '{' . $tag . ' ' . $parms . '}' );
 
   }
+
 
 ?>

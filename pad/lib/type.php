@@ -17,6 +17,7 @@
     elseif ( isset           ( $GLOBALS ['padSeqStore'] [$type]      ) ) return 'store';
     elseif ( padArrayCheck   ( $type                                 ) ) return 'array';
     elseif ( padFieldCheck   ( $type                                 ) ) return 'field';
+    elseif ( padOptionCheck  ( $type                                 ) ) return 'option';
     elseif ( defined         ( $type                                 ) ) return 'constant';
     elseif ( file_exists     ( APP . "functions/$type.php"           ) ) return 'function';
     elseif ( file_exists     ( PAD . "functions/$type.php"           ) ) return 'function';
@@ -40,6 +41,7 @@
     elseif ( isset           ( $GLOBALS ['padSeqStore'] [$type]     ) ) return 'sequence';
     elseif ( file_exists     ( PAD . "tag/$type.php"                ) ) return 'parm';
     elseif ( padArrayCheck   ( $type                                ) ) return 'array';
+    elseif ( padOptionCheck  ( $type                                ) ) return 'option';
     elseif ( padChkLevel     ( $type                                ) ) return 'level';
     elseif ( defined         ( $type                                ) ) return 'constant';
     elseif ( file_exists     ( PAD . "sequence/actions/$type.php"   ) ) return 'action';
