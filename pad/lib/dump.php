@@ -15,23 +15,10 @@
 
   }   
 
-  function padDumpRestore ( $info ) {
-
-    try {
-      restore_error_handler ();
-      restore_exception_handler ();
-    } catch (Throwable $error) {
-      padBootStop ( "$info ||| RESTORE: " . $error->getMessage() , $error->getFile(), $error->getLine() );
-    }
-
-  }   
 
   function padDumpTry ($info) {
 
-    if ( $GLOBALS ['padErrorAction'] <> 'php' )
-      padDumpRestore ( $info);
-
-    set_error_handler     ( 'padDumpError' );
+    set_error_handler     ( 'padDumpError'     );
     set_exception_handler ( 'padDumpException' );
 
     padEmptyBuffers ();
@@ -48,33 +35,41 @@
 
     }
      
-    $GLOBALS ['padSent'] = TRUE;
+    flush();
+     
+    $GLOBALS ['padSent']   = TRUE;
+    $GLOBALS ['padOutput'] = '';
 
     padStop (500);
 
   }  
 
   function padDumpError ( $type, $error, $file, $line ) {
-    padDumpProblem ( 'XERROR: ' . $error , $file, $line );
+    padDumpProblem ( 'DUMP-ERROR: ' . $error , $file, $line );
   }
 
   function padDumpException ( $error ) {
-    padDumpProblem ( 'EXCEPTION: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
+    padDumpProblem ( 'DUMP-EXCEPTION: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
   }
 
   function padDumpCatch ( $error ) {
-    padDumpProblem ( 'CATCH: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
+    padDumpProblem ( 'DUMP-CATCH: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
   }
 
   function padDumpProblem ( $error, $file, $line) {
-xx();
+
     gc_collect_cycles ();
     unset ( $GLOBALS ['padOutput'] );
     unset ( $GLOBALS ['padBase']   );
     unset ( $GLOBALS ['padHtml']   );
     unset ( $GLOBALS ['padResult'] );
     gc_collect_cycles ();
-    padBootStop ( $error . ' ||| ' . $GLOBALS ['padDump'],  $file, $line );
+
+    if ( $GLOBALS ['padDump']  ) $error .= ' ||| ' . $GLOBALS ['padDump'];
+    if ( $GLOBALS ['padError'] ) $error .= ' ||| ' . $GLOBALS ['padError'];
+
+    padBootStop ( $error, $file, $line );
+
   }
 
 
@@ -99,8 +94,6 @@ xx();
   function padDumpGo ($info='') {
 
     padTraceFields  ( $php, $lvl, $app, $cfg, $pad, $ids );
-
-    $a = $c;
 
     echo ( "<div align=\"left\"><pre>" );
 

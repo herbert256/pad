@@ -15,11 +15,11 @@
                             // (not used when $padErrorAction is 'php' or 'boot')
 
   $padErrorLog    = TRUE;   //  Write errors to Apache error log
-  $padErrorDump   = TRUE;   //  Dump errors to the DATA directory
+  $padErrorReport = TRUE;   //  Write errors to the DATA directory
 
   // Trace the internal working of PAD
 
-  $padTrace = FALSE;  
+  $padTrace = TRUE;  
 
   // Keep track of stuff
 

@@ -5,7 +5,7 @@
   $padCache = FALSE;
 
   $padBase = $padHtml = $padResult = $padTimingsCnt = $padTimings = [];
-  $padErrCnt =$padEvalCnt = $padFldCnt = $padCnt = $padOptCnt = $padBtwCnt = $padTypeCnt = $padIgnCnt = 0;
+  $padErrCnt = $padTrcCnt =$padEvalCnt = $padFldCnt = $padCnt = $padOptCnt = $padBtwCnt = $padTypeCnt = $padIgnCnt = 0;
   $padFieldDoubleCheck = $padRestart = '';     
 
   $padOutput     = '';
@@ -15,6 +15,9 @@
   $padExit       = 1;
   $padLen        = 0;
   $padTime       = $_SERVER['REQUEST_TIME'];  
+  $padError      = '';
+  $padDump       = '';
+  $padInOccur    = FALSE;
 
   $padErrrorList = [];
 

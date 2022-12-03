@@ -15,6 +15,8 @@
     padCloseSession ();
     padEmptyBuffers ();
 
+    $a = $d;
+
     if ( ! isset($GLOBALS ['padSent']) )
       padSend ($stop);
 
@@ -27,6 +29,9 @@
 
     padHeaders ($stop);
   
+    if ( ! $GLOBALS ['padOutput'] )
+      return;
+
     if ( $stop == 200 ) {
 
       if ( $GLOBALS ['padCacheStop'] and $GLOBALS ['padCacheServerGzip'] and $GLOBALS ['padClientGzip']  )

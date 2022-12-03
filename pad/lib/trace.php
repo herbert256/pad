@@ -1,5 +1,19 @@
 <?php
 
+
+  function padTraceStack () {
+
+    $stack = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS);
+
+    foreach ( $stack as $key => $one ) {
+      extract ( $one );
+      $trace [] = "$file:$line - $function";
+    }
+
+    return $trace;
+    
+  }
+
   function padTraceGetLevel ($pad)  {
 
     if ( $pad === NULL)

@@ -31,12 +31,12 @@
   }
 
 
-  function padErrorError ( $type, $error, $file, $line ) {
+  function padErrorHandler ( $type, $error, $file, $line ) {
  
     if ( error_reporting() & $type ) {
 
-      set_error_handler ( 'padErrorErrorError' );
-      padErrorGo ( 'QERROR: ' . $error, $file, $line );
+      set_error_handler ( 'padErrorHandlerError' );
+      padErrorGo ( 'ERROR: ' . $error, $file, $line );
       restore_error_handler ();
 
       return FALSE;
@@ -48,9 +48,9 @@
   }
 
 
-  function padErrorErrorError ( $type, $error, $file, $line ) {
+  function padErrorHandlerError ( $type, $error, $file, $line ) {
 
-    padErrorDump ("$file:$line WERROR-ERROR: $error");
+    padErrorDump ("$file:$line ERROR-ERROR: $error");
  
   }
 
@@ -117,6 +117,7 @@
     $error = "$file:$line " . padMakeSafe ( $error );
 
     $GLOBALS ['padErrrorList'] [] = $error;
+    $GLOBALS ['padError']         = $error;
 
     if ( $GLOBALS ['padErrorLog'] or in_array ( $GLOBALS ['padErrorAction'], ['report', 'pad'] ) )
       padErrorLog ( $error );
@@ -124,8 +125,8 @@
     if ( $GLOBALS ['padTrace'] )
       padErrorTrace ( $error ); 
 
-    if ( $GLOBALS ['padErrorDump'] or $GLOBALS ['padErrorAction'] == 'report' )
-      padErrorReport ( $error );
+    if ( $GLOBALS ['padErrorReport'] or $GLOBALS ['padErrorAction'] == 'report' )
+      padErrorReport ( $error ); 
 
     if ( ! headers_sent () and in_array ( $GLOBALS ['padErrorAction'], ['exit', 'stop', 'pad'] ) )
       padHeader ('HTTP/1.0 500 Internal Server Error' );
@@ -138,11 +139,12 @@
 
       padStop (500);
 
-    elseif ( $GLOBALS ['padErrorAction'] == 'pad' )
+    elseif ( $GLOBALS ['padErrorAction'] == 'pad' ) {
 
+      $GLOBALS ['padError'] = '';
       padDump ( $error );
 
-    elseif ( $GLOBALS ['padErrorAction'] == 'report' )
+    } elseif ( $GLOBALS ['padErrorAction'] == 'report' )
 
       $GLOBALS ['padExit'] = 1;
 
@@ -157,7 +159,7 @@
 
   function padErrorLog ( $info ) {
 
-    $id = $GLOBALS ['PADREQID'] ?? uniqid (TRUE);
+    $id = padID ();
   
     if ( is_array($info) or is_object($info) )
       $info = padJson ($info);
@@ -182,34 +184,57 @@
 
   function padErrorID () {
 
-    $id = $GLOBALS ['PADREQID'] ?? uniqid (TRUE);
+    $id = padID ();
 
     echo "Error: $id";
 
   }
 
 
-  function padErrorReport ($error) {
+  function padErrorTrace ( $error ) {
 
-    global $padErrCnt;
+    global $padTraceDir, $padLevelDir, $padOccurDir, $pad, $padTrcCnt, $padInOccur;
 
-    $id = $GLOBALS ['PADREQID'] ?? uniqid (TRUE);
+    $padTrcCnt++;
 
-    $padErrCnt++;
-    
-    padFilePutContents ( "errors/$id-$padErrCnt.html", padDumpGet($error) );
+    $id = padID ();
+
+    if ( $pad > 1 and $padInOccur and isset ($padOccurDir [$pad]) )
+      $dir = $padOccurDir [$pad];
+    elseif ( $pad > 1 and isset ($padLevelDir [$pad]) )
+      $dir = $padLevelDir [$pad];
+    else 
+      $dir = $padTraceDir;
+
+    $dir .= "/error-$padTrcCnt";
+
+    padErrorReportTrace ( $dir, $error );
 
   }
 
 
-  function padErrorTrace ( $error ) {
+  function padErrorReport ( $error ) {
 
-    global $pad, $padOccurDir;
+    global $padTraceDir, $padLevelDir, $pad, $padErrCnt;
 
-    $padErrorDir = $padOccurDir [$pad] . "/error";
+    $padErrCnt++;
 
-    padFilePutContents ( "$padErrorDir/error.html", padDumpGet($error) ); 
-    padTraceAll        ( $padErrorDir );
+    $id = padID ();
+
+    $dir = "errors/$id-"."$padErrCnt";
+
+    padErrorReportTrace ( $dir, $error );
+
+  }
+
+
+  function padErrorReportTrace ( $dir, $error ) {
+
+    $data ['error'] = $error;
+
+    padFilePutContents ( "$dir/error.json", $data ) ; 
+    padFilePutContents ( "$dir/stack.json", padTraceStack () ) ; 
+    padTraceAll        ( $dir );
 
   }
 

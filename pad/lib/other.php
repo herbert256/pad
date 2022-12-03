@@ -1,6 +1,12 @@
 <?php
 
 
+  function padID () {
+
+    return $GLOBALS ['PADREQID'] ?? uniqid (TRUE);
+
+  }
+
   function padMakeSafe ( $input ) {
 
     $input = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '.', $input);

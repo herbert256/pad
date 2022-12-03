@@ -6,6 +6,8 @@
 
   $padCurrent [$pad] = $padData [$pad] [$padKey [$pad]];
 
+  $padInOccur = TRUE;
+  
   include 'trace/start.php';
 
   if ( $padWalk [$pad] <> 'start' )

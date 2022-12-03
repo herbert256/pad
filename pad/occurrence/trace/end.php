@@ -9,4 +9,6 @@
 
   padFilePutContents ($padOccurDir [$pad] . "/end.json", $padTraceData );
 
+  $padOccurDir [$pad] = $padLevelDir [$pad];
+
 ?>
