@@ -1,6 +1,5 @@
 <?php
 
-    padDump ();
-    padExit ();
+    padDumpFromApp ();
 
 ?>

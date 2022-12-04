@@ -1,11 +1,22 @@
 <?php
 
 
+  function padDumpFromApp ($info='') {
+
+    if ( padLocal () ) 
+      return padError ("Dump not allowed: $info");
+
+    padDumpTry ($info);
+
+  } 
+
+
   function padDump ($info='') {
 
-    gc_collect_cycles ();
-
     $GLOBALS ['padDump'] = $info;
+
+    set_error_handler     ( 'padDumpError'     );
+    set_exception_handler ( 'padDumpException' );
 
     try {
       padDumpTry ($info);
@@ -18,10 +29,10 @@
 
   function padDumpTry ($info) {
 
-    set_error_handler     ( 'padDumpError'     );
-    set_exception_handler ( 'padDumpException' );
-
     padEmptyBuffers ();
+
+    if ( ! headers_sent () )
+      header ( 'HTTP/1.0 500 Internal Server Error' );
 
     if ( padLocal () ) {
 

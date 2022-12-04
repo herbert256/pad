@@ -7,9 +7,4 @@
   $padPrms [$pad]     = trim($padWords[1] ?? '');
   $padPrmsType [$pad] = ( $padPrms [$pad]) ? 'open' : 'none';
 
-  if ( $padTrace ) {
-    $padBetweenTrace = ['between' => $padBetween, 'tag' => $padTag[$padP], 'prms' => $padPrms[$padP] ];
-    padFilePutContents ( $padLevelDir [$padP] . "/between/" . $padBtwCnt . ".json", $padBetweenTrace ); 
-  }
-
 ?>

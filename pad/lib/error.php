@@ -81,8 +81,8 @@
     if ( $error === NULL ) 
       return;
   
-    if ( isset ( $GLOBALS ['padDump'] ) )
-      return padDumpProblem ( 'SHUTDOWN: ' . $error['message'], $error['file'], $error['line'] );
+    if ( isset ( $GLOBALS ['padDump'] ) and $GLOBALS ['padDump'] )
+      return padDumpProblem ( 'DUMP-SHUTDOWN: ' . $error['message'], $error['file'], $error['line'] );
 
     return padErrorGo ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
   
@@ -208,7 +208,7 @@
 
     $dir .= "/error-$padTrcCnt";
 
-    padErrorReportTrace ( $dir, $error );
+    padTrace ( $dir, $error );
 
   }
 
@@ -223,18 +223,7 @@
 
     $dir = "errors/$id-"."$padErrCnt";
 
-    padErrorReportTrace ( $dir, $error );
-
-  }
-
-
-  function padErrorReportTrace ( $dir, $error ) {
-
-    $data ['error'] = $error;
-
-    padFilePutContents ( "$dir/error.json", $data ) ; 
-    padFilePutContents ( "$dir/stack.json", padTraceStack () ) ; 
-    padTraceAll        ( $dir );
+    padTrace ( $dir, $error );
 
   }
 

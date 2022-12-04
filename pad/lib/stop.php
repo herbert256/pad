@@ -15,8 +15,6 @@
     padCloseSession ();
     padEmptyBuffers ();
 
-    $a = $d;
-
     if ( ! isset($GLOBALS ['padSent']) )
       padSend ($stop);
 

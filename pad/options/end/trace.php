@@ -4,13 +4,11 @@
   $padPairSave [$pad] = $padPair [$pad];
 
   $padPair [$pad] = TRUE;
-  $padWalk [$pad] = 'start';
+  $padWalk [$pad] = 'end';
 
   include PAD . 'tags/trace.php';
   
   $padWalk [$pad] = $padWalkSave [$pad];
   $padPair [$pad] = $padPairSave [$pad];
-
-  $padEndOptions [$pad] [] = 'trace';
 
 ?>

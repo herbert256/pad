@@ -207,7 +207,7 @@
       $output ['type'] = padContentType ( $output ['data'] );
  
     if ($GLOBALS ['padTrace'])
-      padTrace ( $output );
+      padCurlTrace ( $output );
 
     $GLOBALS ['padCurl_last'] = $output;
 
@@ -215,7 +215,7 @@
     
   }
 
-  function padTrace ( $trace ) {
+  function padCurlTrace ( $trace ) {
 
     $file = $GLOBALS ['padLevelDir'] [p()]. "/curl_" . padRandomString(). ".json";
 
@@ -235,7 +235,7 @@
     $output ['ERROR'] = $error;
 
      if ($GLOBALS ['padTrace'])
-      padTrace ( $output );
+      padCurlTrace ( $output );
 
     $GLOBALS ['padCurl_last'] = $output;
 

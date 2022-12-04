@@ -21,10 +21,10 @@
 
   padTraceFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
 
-  padFilePutContents ( $GLOBALS ['padTraceDir'] . "/start.json",         $padTraceData );
+  padFilePutContents ( $GLOBALS ['padTraceDir'] . "/start.json",      $padTraceData );
   padFilePutContents ( $GLOBALS ['padTraceDir'] . "/headers-in.json", getallheaders() );
-  padFilePutContents ( $GLOBALS ['padTraceDir'] . "/php.json",     $padFphp  );
-  padFilePutContents ( $GLOBALS ['padTraceDir'] . "/ids.json",     $padFids  );
-  padFilePutContents ( $GLOBALS ['padTraceDir'] . "/config.json",  $padFcfg  );
+  padFilePutContents ( $GLOBALS ['padTraceDir'] . "/php.json",        $padFphp  );
+  padFilePutContents ( $GLOBALS ['padTraceDir'] . "/ids.json",        $padFids  );
+  padFilePutContents ( $GLOBALS ['padTraceDir'] . "/config.json",     $padFcfg  );
 
 ?>

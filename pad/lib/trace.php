@@ -1,5 +1,23 @@
 <?php
 
+  function padTrace ( $dir, $trace='' ) {
+
+    if ( $trace ) {
+      $data ['trace'] = $trace;
+      padFilePutContents ( "$dir/trace.json", $data ) ; 
+    }
+
+    padTraceFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
+
+    padFilePutContents ( "$dir/pad.json",    $padFpad );
+    padFilePutContents ( "$dir/app.json",    $padFapp );
+    padFilePutContents ( "$dir/php.json",    $padFphp );
+    padFilePutContents ( "$dir/level.json",  $padFlvl );
+    padFilePutContents ( "$dir/ids.json",    $padFids );
+    padFilePutContents ( "$dir/config.json", $padFcfg );
+    padFilePutContents ( "$dir/stack.json",  padTraceStack () ) ;
+
+  }
 
   function padTraceStack () {
 
@@ -54,20 +72,6 @@
     ];
 
   } 
-
-
-  function padTraceAll ( $dir ) {
-
-    padTraceFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
-
-    padFilePutContents ( "$dir/pad.json", $padFpad );
-    padFilePutContents ( "$dir/app.json", $padFapp );
-    padFilePutContents ( "$dir/php.json", $padFphp );
-    padFilePutContents ( "$dir/lvl.json", $padFlvl );
-    padFilePutContents ( "$dir/ids.json", $padFids );
-    padFilePutContents ( "$dir/cfg.json", $padFcfg );
-
-  }
 
 
   function padTraceFields ( &$php, &$lvl, &$app, &$cfg, &$pad, &$ids ) {

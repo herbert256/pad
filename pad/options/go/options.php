@@ -15,7 +15,7 @@
 
       include PAD . "options/$padOptionName.php" ;
 
-      if ($padTrace)
+      if ( $padOptionName <> 'trace' and $padTrace )
         include 'trace.php';
 
     }

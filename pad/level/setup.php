@@ -51,6 +51,7 @@
   $padDeleteVars [$pad] = [];
   $padSetSave    [$pad] = [];
   $padSetDelete  [$pad] = [];
+  $padEndOptions [$pad] = [];
 
   $padTagCnt      [$pad] = 0;
 
