@@ -2,35 +2,47 @@
 
 {table}
 
-{demo}{list '5;10;15;20',  store='mySequence1'} {$list} {/list}{/demo}
-{demo}{list '15;20;25;30', store='mySequence2'} {$list} {/list}{/demo}
+{demo}{list '5;10;15;20',  name='one'}{/demo}
+{demo}{list '15;20;25;30', name='two'}{/demo}
 
-{demo}{mySequence1 append='mySequence2'}
-  {$mySequence1}
-{/mySequence1}{/demo}
+{demo}{one}
+  {$one}
+{/one}{/demo}
 
-{demo}{mySequence1 prepend='mySequence2'}
-  {$mySequence1}
-{/mySequence1}{/demo}
+{demo}{two}
+  {$two}
+{/two}{/demo}
 
-{demo}{mySequence1 combine='mySequence2'}
-  {$mySequence1}
-{/mySequence1}{/demo}
+{demo}{one append='two'}
+  {$one}
+{/one}{/demo}
 
-{demo}{mySequence1 merge='mySequence2'}
-  {$mySequence1}
-{/mySequence1}{/demo}
+{demo}{one prepend='two'}
+  {$one}
+{/one}{/demo}
 
-{demo}{mySequence1 difference='mySequence2'}
-  {$mySequence1}
-{/mySequence1}{/demo}
+{demo}{one combine='two'}
+  {$one}
+{/one}{/demo}
 
-{demo}{mySequence1 intersection='mySequence2'}
-  {$mySequence1}
-{/mySequence1}{/demo}
+{demo}{one merge='two'}
+  {$one}
+{/one}{/demo}
 
-{demo}{mySequence1 only_other='mySequence2'}
-  {$mySequence1}
-{/mySequence1}{/demo}
+{demo}{one difference='two'}
+  {$one}
+{/one}{/demo}
+
+{demo}{one intersection='two'}
+  {$one}
+{/one}{/demo}
+
+{demo}{one onlyMe='two'}
+  {$one}
+{/one}{/demo}
+
+{demo}{one onlyOther='two'}
+  {$one}
+{/one}{/demo}
 
 {/table}

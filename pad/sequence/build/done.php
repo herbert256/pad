@@ -2,18 +2,8 @@
 
   padDone ( $padSeqSeq,  TRUE );
   padDone ( $padSeqName, TRUE );
-  padDone ( 'from',        TRUE );
   padDone ( 'increment',   TRUE );
-  padDone ( 'to',          TRUE );
   padDone ( 'rows',        TRUE );
-  padDone ( 'min',         TRUE );
-  padDone ( 'max',         TRUE );
-  padDone ( 'unique',      TRUE );
-  padDone ( 'page',        TRUE );
-  padDone ( 'start',       TRUE );
-  padDone ( 'end',         TRUE );
-  padDone ( 'low',         TRUE );
-  padDone ( 'high',        TRUE );
   padDone ( 'random',      TRUE );
   padDone ( 'push',        TRUE );
   padDone ( 'store',       TRUE );
@@ -25,6 +15,21 @@
   padDone ( 'remove',      TRUE );
   padDone ( 'make',        TRUE );
 
+  padDone ( 'from',        TRUE );
+  padDone ( 'to',          TRUE );
+ 
+  padDone ( 'min',         TRUE );
+  padDone ( 'max',         TRUE );
+ 
+  padDone ( 'start',       TRUE );
+  padDone ( 'end',         TRUE );
+
+  padDone ( 'low',         TRUE );
+  padDone ( 'high',        TRUE );
+
+  padDone ( 'unique',      TRUE );
+  padDone ( 'page',        TRUE );
+ 
   foreach ( $padPrmsTag [$pad] as $padSeqTagName => $padSeqTagValue ) {
 
     if ( file_exists ( PAD . "sequence/types/$padSeqTagName/make.php" ) )

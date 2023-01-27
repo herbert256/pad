@@ -12,6 +12,9 @@
 
     $field = ( substr ( $parm, 0, 1 ) == '$' ) ? substr ( $parm, 1 ) : $parm;
 
+    if ( substr ( $field, 0, 1 ) == '-' and strpos ( $field, '#' ) === FALSE )
+      $field .= '#';
+
     if     ( strpos ( $field, '#' ) !== FALSE ) $value = padFieldTag    ( $field        );
     elseif ( strpos ( $field, ':' ) !== FALSE ) $value = padFieldPrefix ( $field, $type );
     else                                        $value = padFieldLevel  ( $field, $type );

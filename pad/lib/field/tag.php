@@ -11,8 +11,8 @@
     } else {
       $temp  = padExplode ($field, '#', 3);
       $tag   = $temp[0];
-      $field = $temp[1];
-      $parm  = $temp[2]??'';
+      $field = $temp[1]??'1';
+      $parm  = $temp[2]??'value';
     }
 
     if ( ! $tag )

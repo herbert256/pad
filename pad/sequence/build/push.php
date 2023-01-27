@@ -3,8 +3,11 @@
   if ( ! $padSeqPush )
     if ($padSeqUpdate )
       $padSeqPush = TRUE;
-    elseif ( ! $padPair and $padSeqPull )
+    elseif ( ! $padPair[$pad] and $padSeqPull )
       $padSeqPush = TRUE;
+
+  if ( ! $padSeqPush and ! $padPair[$pad] )
+    $padSeqPush = TRUE;
 
   if ( ! $padSeqPush )
     return;

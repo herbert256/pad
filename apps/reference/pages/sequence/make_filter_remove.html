@@ -4,6 +4,12 @@
 
 {demo}{range '11..30', store='mySeq'}{/demo}
 
+{demo}{mySeq}
+  {$mySeq}
+{/mySeq}{/demo}
+
+{/table}&nbsp;{table}
+
 {demo}{make 'mySeq', even}
   {$make}
 {/make}{/demo}
@@ -18,17 +24,17 @@
 
 {/table}&nbsp;{table}
 
-{demo}{range '11..30', make='even'}
-  {$range}
-{/range}{/demo}
+{demo}{mySeq make='even'}
+  {$mySeq}
+{/mySeq}{/demo}
 
-{demo}{range '11..30', keep='even'}
-  {$range}
-{/range}{/demo}
+{demo}{mySeq keep='even'}
+  {$mySeq}
+{/mySeq}{/demo}
 
-{demo}{range '11..30', remove='even'}
-  {$range}
-{/range}{/demo}
+{demo}{mySeq remove='even'} 
+  {$mySeq}
+{/mySeq}{/demo}
 
 {/table}
 
