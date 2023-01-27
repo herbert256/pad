@@ -115,7 +115,6 @@
     padDumpRequest  ();
     padDumpArray    ( "APP variables", $app );
     padDumpXXX      ( $pad, 'padSeq' );
-    padDumpXXX      ( $pad, 'padEval' );
     padDumpArray    ( "PAD variables",   $pad );
     padDumpArray    ( "Level variables", $lvl );
     padDumpSQL      ();

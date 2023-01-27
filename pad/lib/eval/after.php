@@ -11,13 +11,13 @@
       if ($one[1] == 'close')
         $check--;
       if ($check < 0)
-        return "Incorrect use of ): $eval";
+        padError ( "Incorrect use of ): $eval" );
       if ($one[1] == 'open')
         $check++;
     }
 
     if ($check <> 0) 
-      return "Unequal () pairs: $eval";
+      padError ("Unequal () pairs: $eval" );
 
     foreach ($result as $k => $one)
       if ( $one[1] == 'other' and padValid ($one[0]) ) {
@@ -85,9 +85,6 @@
 
       if ( $one[1] == '$' ) {
 
-        $trace_data ['index'] = $k;
-        $trace_data ['field'] = $one[0];
-
         $result[$k][1] = 'VAL';      
  
         if ( padFieldCheck ( $one[0] ) ) 
@@ -96,26 +93,16 @@
           $result[$k][0] = '*ARRAY*';
           $result[$k][4] = padArrayValue ( $one[0] );
         } else
-          $result[$k][0] = $one[0]   ;
-
-        if ( $GLOBALS ['padTrace'] ) {
-          if ( isset($result[$k][4]) )
-            $trace_data ['value'] = $result[$k][4];
-          else
-            $trace_data ['value'] = $result[$k][0];
-          padEvalTrace ('var', $trace_data );
-        }  
-
+          padError ( 'Unknow $variable: ' . $one[0] );
+ 
       }
 
     }
 
     foreach ($result as $k => $one)
       if ( $one[1] == 'other' )
-        return 'Unknow eval argument: ' . $one[0];
+        padError ( 'Unknow eval argument: ' . $one[0] );
  
-    return '';
-
   }
 
   

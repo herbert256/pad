@@ -31,13 +31,13 @@
         elseif ($next == 't')
           $next = "\t";
         elseif ( ! in_array ($next, ["'", '"', "\\"]))
-          return "Unsupported \\ char";
+          padError ( "Unsupported \\ char" );
           
         if ($is_str or $is_quote) {
           $result [$i] [0] .= $next;
           $skip=1;
         } else
-          return "Escape \\ char only allowed inside a string";
+          padError ( "Escape \\ char only allowed inside a string" );
       
         continue;
 
@@ -309,8 +309,6 @@
       $result[$i][0] .= $one;
 
     }
-
-    return '';
 
   }
   

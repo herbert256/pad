@@ -7,8 +7,6 @@
 
     $result [$k] [0] = ( $result [$k] [0] ) ? '' : '1';
     
-    padEvalTrace ('not', [ 'start' => $start, 'result' => $result [$k] [0] ] );
-
     unset ($result[$b]);
 
   }
@@ -31,8 +29,6 @@
     }
     else 
       $now = include PAD."sequence/eval/$action.php";
-
-    padEvalTrace  ('array', [ 'left' => $left, 'action' => $action, 'right' => $right, 'result' => $now ] );
 
     return $now;
 
@@ -92,8 +88,6 @@
 
     unset ( $result [$b] );
     unset ( $result [$f] );
-
-    padEvalTrace  ('action', [ 'left' => $left, 'operation' => $opr, 'right' => $right, 'result' => $now ] );
 
   }
   

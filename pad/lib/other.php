@@ -325,9 +325,12 @@
     $fun [1] [3] = 2 + count($parm);
 
     foreach ( $parm as $padK => $padV )
-      $fun [2+$padK] [0] = $padV;
+      $fun [200+($padK*100)] [0] = $padV;
 
-    padEvalType (1, 0, $fun, $self, 1, 999999); 
+    if ( file_exists ( PAD . "eval/single/$name.php" ) )
+      padEvalSingle ( $fun, $name );
+    else
+      padEvalParms ( 1, 0, $fun, $self, 1, 999999 ) ;
 
     return $fun [1] [0];
 
@@ -336,9 +339,10 @@
  
   function padMakeFlag ( $input ) {
 
-    if     ( $input === NULL  )  return FALSE;
-    elseif ( $input === FALSE )  return FALSE;
-    elseif ( $input === TRUE  )  return TRUE;
+    if     ( $input === NULL  )          return FALSE;
+    elseif ( $input === FALSE )          return FALSE;
+    elseif ( $input === TRUE  )          return TRUE;
+    elseif ( strlen(trim($input)) == 0 ) return FALSE;
 
     if ( is_array ($input) or is_object ($input) or is_resource ($input) )  {
 

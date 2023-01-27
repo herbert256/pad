@@ -2,16 +2,17 @@
 
   function padMakeData ($input, $content='', $name='') {
 
-    if     ( $input === NULL       ) $data = [];
-    elseif ( $input === FALSE      ) $data = [];
-    elseif ( $input === NAN        ) $data = [];
-    elseif ( $input === INF        ) $data = [];
-    elseif ( $input === TRUE       ) $data = [1 => [] ];
-    elseif ( is_array ( $input)    ) $data = $input;
-    elseif ( is_object ( $input)   ) $data = padToArray( $input );
-    elseif ( is_resource ( $input) ) $data = padToArray( $input );
-    elseif ( ! $input              ) $data = [];
-    else                             $data = trim($input);
+    if     ( $input === NULL           ) $data = [];
+    elseif ( $input === FALSE          ) $data = [];
+    elseif ( $input === NAN            ) $data = [];
+    elseif ( $input === INF            ) $data = [];
+    elseif ( $input === TRUE           ) $data = [1 => [] ];
+    elseif ( is_array ( $input)        ) $data = $input;
+    elseif ( is_object ( $input)       ) $data = padToArray( $input );
+    elseif ( is_resource ( $input)     ) $data = padToArray( $input );
+    elseif ( ! $input                  ) $data = [];
+    elseif ( strlen(trim($input)) == 0 ) $data = [];
+    else                                 $data = trim($input);
 
     if ( is_array ( $data ) )
       return padDataChk ($data, $name);

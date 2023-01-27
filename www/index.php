@@ -85,7 +85,7 @@
     if ( ! headers_sent () )
       header ( 'HTTP/1.0 500 Internal Server Error' );
 
-    if ( function_exists ( 'padLocal' ) and padLocal () )
+    if ( padBootLocal () )
       echo "$file:$line $error";
     else {
       $id = $GLOBALS ['PADREQID'] ?? uniqid (TRUE);
@@ -96,5 +96,17 @@
     exit;
 
   }  
+
+  function padBootLocal () {
+    
+    $local = [ 'localhost', 'penguin.linux.test', '127.0.0.1' ];
+
+    if ( in_array ( strtolower ( trim ( $_SERVER ['REMOTE_ADDR'] ?? '' ) ), $local ) ) return TRUE;
+    if ( in_array ( strtolower ( trim ( $_SERVER ['SERVER_NAME'] ?? '' ) ), $local ) ) return TRUE;
+    if ( in_array ( strtolower ( trim ( $_SERVER ['HTTP_HOST']   ?? '' ) ), $local ) ) return TRUE;
+
+    return FALSE;
+    
+  }
 
 ?>

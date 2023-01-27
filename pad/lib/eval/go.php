@@ -2,67 +2,7 @@
   
   function padEvalGo (&$result, $start, $end, $myself) {
 
-go: padEvalTrace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] );
-
-    $GLOBALS ['padEvalNow'] = [];
-
-    if  ( count($result) > 1 ) {
- 
-      $f = reset($result);
-      $s = next($result);
- 
-      if ( 
-           ( ( $f [1] == 'VAL' and ! $f [0] ) or ( isset ( $f [4] ) and ! count ( $f [4] ) ) )
-           and $s [0] == 'AND' and $s [1] == 'OPR'
-         ) {
-
-        if ( $GLOBALS ['padTrace'] ) 
-          padEvalTrace  ('fast-and', [ 'first' => $f, 'second' => $s ] );
-
-        $result = [ 100 => ['0' => '', '1'=> 'VAL' ] ];
-        return;
-
-      }
- 
-      if ( 
-           ( ( $f [1] == 'VAL' and $f [0] ) or ( isset ( $f [4] ) and count ( $f [4] ) ) )
-           and $s [0] == 'OR' and $s [1] == 'OPR'
-         ) {
-
-        if ( $GLOBALS ['padTrace'] ) 
-          padEvalTrace  ('fast-or', [ 'first' => $f, 'second' => $s ] );
-
-        $result = [ 100 => ['0' => 1, '1'=> 'VAL' ] ];
-        return;
-
-      }
- 
-    }
-
-    $b = -1;
-
-    foreach ( $result as $k => $t ) {
-
-      if ( $b >= $start and $result[$b][1] == 'VAL' and $result[$k][1] == 'VAL' 
-           and in_array ( substr($result[$k][0], 0, 1), ['-', '+', '.'] ) ) {
-
-        $result[$k-10][0] = substr($result[$k][0], 0, 1);
-        $result[$k-10][1] = 'OPR';
-
-        $result[$k][0] = substr($result[$k][0], 1);
-
-        goto go;
-
-      }
-
-      if ( $b >= $start )
-        break;
-
-      $b=$k;
-
-    }
-
-    $last = $open = FALSE;
+go: $last = $open = FALSE;
 
     foreach ($result as $key => $value) {
 
@@ -99,11 +39,9 @@ go: padEvalTrace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] );
        
         if ( $b >= $start ) {
 
-          $GLOBALS ['padEvalNow'] = $result[$b];
-
           if ( $now == 'TYPE' and $result[$b][1] == 'TYPE') {
 
-            padEvalType ($b, $f, $result, $myself, $start, $end);
+            padEvalParms ($b, $f, $result, $myself, $start, $end);
 
             goto go;
 
@@ -125,15 +63,11 @@ go: padEvalTrace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] );
 
           } 
 
-         $GLOBALS ['padEvalNow'] = [];
-
         }
 
-        if ( $now == 'TYPE' and $k == array_key_last ($result) and $result[$k][1] == 'TYPE' ) {
+        if ( $now == 'TYPE' and $result[$k][1] == 'TYPE' and $k == array_key_last ($result) ) {
 
-          $GLOBALS ['padEvalNow'] = $result[$k];
-          
-          padEvalType ($k, $b, $result, $myself, $start, $end);
+          padEvalParms ($k, $b, $result, $myself, $start, $end);
           
           goto go;
 
@@ -148,15 +82,5 @@ go: padEvalTrace  ('go', ['start' => $start, 'end' => $end, 'go' => $result] );
 
   }
   
-
-  function array_key_next ($array, $key) {
-
-    foreach ($array as $k =>$v )
-      if ( $k > $key )
-        return $k;
-
-    return FALSE;
-
-  }
 
 ?>

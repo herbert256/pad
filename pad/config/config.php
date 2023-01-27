@@ -132,7 +132,7 @@
   // Other settings.
 
   $padClientGzip            = FALSE;  // Send the result zipped
-  $padEtag304               = TRUE;  // Send a 304 header, based on the client etag http header
+  $padEtag304               = TRUE;   // Send a 304 header, based on the client etag http header
   $padNoNo                  = FALSE;  // No PAD stuff, just plane PHP   
   $padFastLink              = 32;     // Lenght of the FastLink code in the URL
   $padTiming                = TRUE;   // Keep Timings of the PAD parts

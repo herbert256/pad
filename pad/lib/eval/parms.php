@@ -36,24 +36,8 @@
     } else
       $value = $myself;
    
-    if ( $GLOBALS ['padTrace'] ) {
-        $trace_data ['type']   = $result [$type];
-        $trace_data ['left']   = $left;
-        $trace_data ['start']  = $start;
-        $trace_data ['parm']   = $parm;
-        $trace_data ['in']     = $value;
-    }
-
-    if ( $GLOBALS ['padTrace'] ) {
-      $trace_data ['result'] = $result [$type];
-      padEvalTrace  ('type-start', $trace_data );
-    }
-   
     $value = include PAD . "eval/parms/$kind.php" ;
     
-    if ( $GLOBALS ['padTrace'] )
-      $trace_data ['out'] = $value;
-
     $result [$type] [1] = 'VAL';
   
     if ( is_array($value) or is_object($value) or is_resource($value) ) {
@@ -71,11 +55,6 @@
     if ( $result [$type] [1] == 'VAL' ) {
       unset ( $result [$type] [2] );
       unset ( $result [$type] [3] );
-    }
-
-    if ( $GLOBALS ['padTrace'] ) {
-      $trace_data ['result'] = $result [$type];
-      padEvalTrace  ('type-end', $trace_data );
     }
 
   }

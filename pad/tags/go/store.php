@@ -25,17 +25,12 @@
 
     if ( ! padIsDefaultData ( $padData [$pad] ) )
       $padStoreData = $padData [$pad];
-    elseif ( $padStoreSource )
-      $padStoreData = padMakeData ($padStoreSource, padTagParm('type'), $padName [$pad]);
     else
-      $padStoreData = '';
+      $padStoreData = padMakeData ($padStoreSource, padTagParm('type'), $padName [$pad]);
 
   } elseif ( $padTag [$pad] == 'flag' ) {
 
-    if ( $padStoreSource )
-      $padStoreData = padMakeFlag ($padStoreSource);
-    else
-      $padStoreData = FALSE;
+    $padStoreData = padMakeFlag ($padStoreSource);
 
   }
 

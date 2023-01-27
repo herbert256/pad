@@ -3,9 +3,6 @@
 
    function padEvalSingle ( &$result, $key) {
     
-    if ( $GLOBALS ['padTrace'] )
-      $trace_data ['before'] = $result[$key];
-
     $one = $result [$key];
 
     $name  = $one[0];
@@ -28,12 +25,34 @@
     unset ( $result [$key] [2] );
     unset ( $result [$key] [3] );
 
-    if ( $GLOBALS ['padTrace'] ) {
-      $trace_data ['after'] = $result [$key];
-      padEvalTrace ('single', $trace_data );
-    }   
+  }
+
+
+  function padArraySingle ($value) {
+
+    $value = padToArray ($value);
+
+    $array = [];
+
+    foreach ( $value as $v1 )
+      if ( ! is_array($v1) )
+        $array [] = $v1;
+      else 
+        foreach ( $v1 as $v2 ) {
+          if ( ! is_array($v2) )
+             $array [] = $v2;
+          else 
+            foreach ( $v2 as $v3 ) {
+              if ( ! is_array($v3) )
+                $array [] = $v3;
+              break;
+            }
+          break;
+        }
+
+    return $array;
 
   }
 
-  
+
 ?>
