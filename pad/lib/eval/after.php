@@ -20,51 +20,57 @@
       padError ("Unequal () pairs: $eval" );
 
     foreach ($result as $k => $one)
-      if ( $one[1] == 'other' and padValid ($one[0]) ) {
-        $type = padGetTypeEval ( $one[0] );
-        if ( $type !== FALSE ) {
-          $result[$k][0] = $one[0];
-          $result[$k][1] = 'TYPE';
-          $result[$k][2] = $type;
-          $result[$k][3] = 0;
-        }
-      }
-
-    foreach ($result as $k => $one)
-      if ( $one[1] == 'other' ) {
-        $exp = padExplode ($one[0], ':');
-        if ( count($exp) == 2 and padValid ($exp[0]) and padValid ($exp[1]) ) {
-          $type = $exp[0];
-          if ( file_exists ( PAD . "eval/single/$type.php") or file_exists ( PAD . "eval/parms/$type.php") ) {
-            $result[$k][0] = $exp[1];
-            $result[$k][1] = 'TYPE';
-            $result[$k][2] = $type;          
-            $result[$k][3] = 0;
-          }
-        }
-      }
-
-    foreach ($result as $key => $one)
-      if ( $one[1] == 'TYPE' and padValid ($one[2]) and file_exists ( PAD."eval/single/".$one[2].".php" ) )
-        padEvalSingle ( $result, $key);
-
-    foreach ($result as $k => $one)
-      if ( $one[1] == 'other' and isset ( padEval_alt [$one[0]] ) ) {
-          $result[$k][0] = padEval_alt [$one[0]];
-          $result[$k][1] = 'OPR';
-      } 
-
-    foreach ($result as $k => $one)
-      if ( $one[1] == 'other' and in_array ( strtoupper($one[0]), padEval_txt ) ) {
-          $result[$k][0] = strtoupper($one[0]);
-          $result[$k][1] = 'OPR';
-      } 
-
-    foreach ($result as $k => $one)
       if ( $one[1] == 'hex' ) {
         $result[$k][0] = hex2bin($one[0]);
         $result[$k][1] = 'VAL';
       }
+
+    foreach ($result as $k => $one)
+
+      if ( $one[1] == 'other' ) {
+
+        $exp = padExplode ($one[0], ':');
+
+        if ( count($exp) == 2 ) {
+          $type = $exp[0];
+          $val  = $exp[1];
+        }
+        else {
+          $type = padGetTypeEval ( $one[0] );
+          $val  = $one[0];
+        }
+
+        if ( padValid ($type) and padValid ($val) ) {
+
+          if ( file_exists ( PAD . "eval/single/$type.php") or file_exists ( PAD . "eval/parms/$type.php" ) ) {
+            $result[$k][0] = $val;
+            $result[$k][1] = 'TYPE';
+            $result[$k][2] = $type;          
+            $result[$k][3] = 0;
+          }
+
+          if ( file_exists ( PAD."eval/single/$type.php" ) )
+            padEvalSingle ( $result, $k );
+
+        }
+
+      }
+
+    foreach ($result as $k => $one)
+
+      if ( $one[1] == 'other' ) {
+
+        if ( isset ( padEval_alt [$one[0]] ) ) {
+          $result[$k][0] = padEval_alt [$one[0]];
+          $result[$k][1] = 'OPR';
+        }
+
+        if ( in_array ( strtoupper($one[0]), padEval_txt ) ) {
+          $result[$k][0] = strtoupper($one[0]);
+          $result[$k][1] = 'OPR';
+        }
+
+      } 
 
     foreach ($result as $k => $one)
 

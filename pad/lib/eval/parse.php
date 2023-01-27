@@ -18,7 +18,6 @@
         continue;
       }
       
-      $padrev  = (isset($input[$key-1])) ? $input[$key-1] : '';
       $next  = (isset($input[$key+1])) ? $input[$key+1] : '';
       $next2 = (isset($input[$key+2])) ? $input[$key+2] : '';
       
@@ -149,7 +148,8 @@
         continue;
 
       }
-     if ($one == '$' and $next == '-' and ctype_xdigit($next2) ) {
+
+      if ($one == '$' and $next == '-' and ctype_xdigit($next2) ) {
 
         $is_var   = TRUE;
         $is_other = FALSE;

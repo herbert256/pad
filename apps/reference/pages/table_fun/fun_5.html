@@ -1,8 +1,8 @@
 <table border='1'>
-  {sequence '1..3', name='row'}
+  {sequence '10..30', increment=10, name='row'}
     <tr>
       {sequence '1..5', name='column'}
-        {cell ($row*10) + $column}
+        {cell $row + $column}
       {/sequence}
     </tr>
   {/sequence}
