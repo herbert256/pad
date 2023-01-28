@@ -7,7 +7,7 @@
     $padType [$pad] = substr ($padTag [$pad], 0, $padNs);
     $padTag  [$pad] = substr ($padTag [$pad], $padNs+1);
 
-    if ( ! file_exists ( PAD . "types/$padType[$pad].php" ) ) 
+    if ( ! file_exists ( PAD . "pad/types/$padType[$pad].php" ) ) 
       $padType [$pad] = FALSE;
     
   } else

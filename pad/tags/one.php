@@ -4,9 +4,9 @@
   
   $url = "$padHost$padScript?app=reference&page=$one";
 
-  $padFile  = PAD . "reference/pages/$one.pad";
-  $php_file  = PAD . "reference/pages/$one.php";
-  $html_file = PAD . "reference/pages/$one.html";
+  $padFile  = PAD . "pad/reference/pages/$one.pad";
+  $php_file  = PAD . "pad/reference/pages/$one.php";
+  $html_file = PAD . "pad/reference/pages/$one.html";
 
   $dirx = substr($one, 0, strrpos($one, '/')+1 ); 
   $link = str_replace($dirx, '', $one);

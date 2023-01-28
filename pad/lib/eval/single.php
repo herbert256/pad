@@ -10,7 +10,7 @@
     $parm  = [];
     $count = 0;
     
-    $padEvalSingle = include PAD . "eval/single/$kind.php"; 
+    $padEvalSingle = include PAD . "pad/eval/single/$kind.php"; 
 
     $result [$key] [1] = 'VAL';
 

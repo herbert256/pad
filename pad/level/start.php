@@ -15,7 +15,7 @@
   include 'base.php';
   include 'data.php';
 
-  include PAD . "options/go/start.php";
+  include PAD . "pad/options/go/start.php";
   
   if ( isset($padPrmsTag [$pad] ['callback']) and ! isset($padPrmsTag [$pad] ['before']))
     include PAD . 'pad/callback/init.php' ;

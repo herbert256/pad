@@ -42,7 +42,7 @@
 
         if ( padValid ($type) and padValid ($val) ) {
 
-          if ( file_exists ( PAD . "eval/single/$type.php") or file_exists ( PAD . "eval/parms/$type.php" ) ) {
+          if ( file_exists ( PAD . "pad/eval/single/$type.php") or file_exists ( PAD . "pad/eval/parms/$type.php" ) ) {
             $result[$k][0] = $val;
             $result[$k][1] = 'TYPE';
             $result[$k][2] = $type;          

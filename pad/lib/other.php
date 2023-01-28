@@ -305,7 +305,7 @@
   function padFunctionType ( $check ) {
 
     if     ( file_exists ( APP . "functions/$check.php" ) ) return 'app';
-    elseif ( file_exists ( PAD . "functions/$check.php" ) ) return 'pad';
+    elseif ( file_exists ( PAD . "pad/functions/$check.php" ) ) return 'pad';
     elseif ( function_exists ( $check                   ) ) return 'php';
     else                                                    return padError ('Function not found: ' . $check);
 
@@ -327,7 +327,7 @@
     foreach ( $parm as $padK => $padV )
       $fun [200+($padK*100)] [0] = $padV;
 
-    if ( file_exists ( PAD . "eval/single/$name.php" ) )
+    if ( file_exists ( PAD . "pad/eval/single/$name.php" ) )
       padEvalSingle ( $fun, $name );
     else
       padEvalParms ( 1, 0, $fun, $self, 1, 999999 ) ;

@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . "sequence/types/make/main.php";
+  return include PAD . "pad/sequence/types/make/main.php";
        
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-  $title     = 'All directories fromt the reference applicaton';
+  $title     = 'Reference';
   $reference = PAD . "reference/pages";
 
   $directory = new RecursiveDirectoryIterator ($reference);

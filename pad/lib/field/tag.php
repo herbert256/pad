@@ -20,8 +20,8 @@
     else
       $padIdx = padFieldGetLevel ($tag);
     
-    if ( file_exists ( PAD . "tag/".$field.".php" ) )
-      return include PAD . "tag/$field.php";
+    if ( file_exists ( PAD . "pad/tag/".$field.".php" ) )
+      return include PAD . "pad/tag/$field.php";
 
     if ( in_array ( $parm, ['name','value'] ) and $padIdx and isset($GLOBALS ['padCurrent'] ) ) {
       $pados = 1;

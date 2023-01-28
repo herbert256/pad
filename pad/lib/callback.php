@@ -10,7 +10,7 @@
         $$padK = $padV;
       }
 
-    include PAD . "callback/$padCallbackType.php";
+    include PAD . "pad/callback/$padCallbackType.php";
 
     $padVarsAfter = get_defined_vars ();
 

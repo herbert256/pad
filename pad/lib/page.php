@@ -17,14 +17,14 @@
     if ( substr($page, -1) == '/')                       return FALSE;
 
     $location = PAD . "$app/pages";
-    $padart     = padExplode ($page, '/');
+    $part     = padExplode ($page, '/');
     
-    foreach ($padart as $key => $value) {
+    foreach ($part as $key => $value) {
       
       if ($value == 'inits') return FALSE;
       if ($value == 'exits') return FALSE;
 
-      if ( $key == array_key_last($padart)
+      if ( $key == array_key_last($part)
             and (file_exists("$location/$value.php") or file_exists("$location/$value.html") ) )
         return TRUE; 
       elseif ( is_dir ("$location/$value") )

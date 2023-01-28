@@ -4,6 +4,5 @@
   
   if ( ! defined ('APP') )
     define ( 'APP', PAD. "$app/" );
-    define ( 'APP', PAD. "$app/" );
 
 ?>

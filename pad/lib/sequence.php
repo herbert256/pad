@@ -10,7 +10,7 @@
     
     $padSeqStore [$action] = $sequence2;
 
-    return include PAD . "sequence/actions/$action.php";  
+    return include PAD . "pad/sequence/actions/$action.php";  
 
   }
 

@@ -18,7 +18,7 @@
   if ( isset($padPrmsTag [$pad] ['callback']) and ! isset($padPrmsTag [$pad] ['before']) )
     include PAD . 'pad/callback/exit.php' ;
 
-  include PAD . "options/go/end.php";
+  include PAD . "pad/options/go/end.php";
 
   include 'trace/end.php';
 

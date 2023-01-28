@@ -3,10 +3,10 @@
   $padWalk [$pad] = 'next';
   
   $padContent = $padBase [$pad];
-  include PAD . "level/go.php"; 
+  include PAD . "pad/level/go.php"; 
   $padBase [$pad] = $padContent;
 
-  include PAD . "level/flags.php";
+  include PAD . "pad/level/flags.php";
 
   if ( $padWalk [$pad] ) {
 

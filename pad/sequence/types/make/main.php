@@ -4,7 +4,7 @@
  
   foreach ( $padPrmsTag [$pad] as $padSeqOptName => $padSeqOptValue )
 
-    if ( file_exists ( PAD . "sequence/types/$padSeqOptName/$padSeqFilterCheck.php" ) ) {
+    if ( file_exists ( PAD . "pad/sequence/types/$padSeqOptName/$padSeqFilterCheck.php" ) ) {
 
       $GLOBALS ["padSeq_mf_$padSeqSeq"] [$padSeqOptName] = $padSeqOptValue;
 
@@ -20,6 +20,6 @@
   if ( ! $padSeqPush and ! $padPair )
     $padSeqPush = $padSeqParm;
 
-  include PAD . "sequence/type/for.php";
+  include PAD . "pad/sequence/type/for.php";
       
 ?>

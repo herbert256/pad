@@ -19,7 +19,7 @@
   $padCacheAge    = 0;
   $padCacheEtag   = '';
 
-  include PAD . "cache/$padCacheServerType.php";
+  include PAD . "pad/cache/$padCacheServerType.php";
   
   padCacheInit ($padCacheUrl, $padCacheClient);
   
