@@ -23,8 +23,8 @@
   $php_data  = ( file_exists($php_file ) ) ? padColorsFile ($php_file ) : '';
   $html_data = ( file_exists($html_file) ) ? padColorsFile ($html_file) : '';
 
-  $php_file  = str_replace(PAD.'reference/', '', $php_file);  
-  $html_file = str_replace(PAD.'reference/', '', $html_file);
+  $php_file  = str_replace(PAD . 'pad/reference/', '', $php_file);  
+  $html_file = str_replace(PAD . 'pad/reference/', '', $html_file);
 
   $result = pad ('reference', $one);
 

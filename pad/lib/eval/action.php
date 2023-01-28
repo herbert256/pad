@@ -23,12 +23,12 @@
     elseif ( $action == '/' ) $action = 'divide';
     elseif ( $action == '%' ) $action = 'mod';
 
-    if ( ! file_exists(PAD."sequence/eval/$action.php") ) {
+    if ( ! file_exists(PAD . "pad/sequence/eval/$action.php") ) {
       padError ("Unsupported array operator: $opr");      
       $now = '';
     }
     else 
-      $now = include PAD."sequence/eval/$action.php";
+      $now = include PAD . "pad/sequence/eval/$action.php";
 
     return $now;
 

@@ -49,7 +49,7 @@
             $result[$k][3] = 0;
           }
 
-          if ( file_exists ( PAD."eval/single/$type.php" ) )
+          if ( file_exists ( PAD . "pad/eval/single/$type.php" ) )
             padEvalSingle ( $result, $k );
 
         }
