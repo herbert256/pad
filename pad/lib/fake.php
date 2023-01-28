@@ -3,28 +3,28 @@
 
   function padBuild ( $padFakePage,  $padFakeMode='include', $padFakeMerge='content' ) {
 
-    include PAD . 'fake/inits.php'; 
+    include PAD . 'pad/fake/inits.php'; 
 
     $page          = $padFakePage;
     $padBuildMode  = $padFakeMode;
     $padBuildMerge = $padFakeMerge;
 
-    include PAD . 'build/build.php'; 
+    include PAD . 'pad/build/build.php'; 
 
     $padHtml [$pad] = $padBase [$pad];    
 
-    return include PAD . 'fake/exits.php'; 
+    return include PAD . 'pad/fake/exits.php'; 
  
   }
 
 
   function padFake ( $padFakeContent ) {
 
-    include PAD . 'fake/inits.php'; 
+    include PAD . 'pad/fake/inits.php'; 
 
     $padHtml [$pad] = $padFakeContent;    
 
-    return include PAD . 'fake/exits.php'; 
+    return include PAD . 'pad/fake/exits.php'; 
 
   }
 

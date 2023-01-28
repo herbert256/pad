@@ -7,6 +7,6 @@
 
   $padOne = APP . "includes/$padPrm[$pad]";
 
-  return include PAD . 'build/one.php';
+  return include PAD . 'pad/build/one.php';
 
 ?>

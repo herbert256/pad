@@ -23,6 +23,6 @@
       padSetGlobal ( $padK, $padV );
 
   if ( isset($padPrmsTag [$pad] ['callback']) and ! isset($padPrmsTag [$pad] ['before']) )
-    include PAD . 'callback/row.php' ;
+    include PAD . 'pad/callback/row.php' ;
 
 ?>

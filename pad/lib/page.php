@@ -6,7 +6,7 @@
     if ( ! preg_match ( '/^[A-Za-z0-9]+$/', $app  ) )    return FALSE;
     if ( trim($app) == '' )                              return FALSE;
 
-    if ( ! is_dir (APPS . $app) )
+    if ( ! is_dir (PAD . $app) )
       return FALSE;
 
     if ( ! preg_match ( '/^[A-Za-z0-9\/_]+$/', $page ) ) return FALSE;
@@ -16,7 +16,7 @@
     if ( substr($page, 0, 1) == '/')                     return FALSE;
     if ( substr($page, -1) == '/')                       return FALSE;
 
-    $location = APPS . "$app/pages";
+    $location = PAD . "$app/pages";
     $padart     = padExplode ($page, '/');
     
     foreach ($padart as $key => $value) {
@@ -41,7 +41,7 @@
 
   function padGetPage ( $app, $page ) {
 
-    $location = APPS . "$app/pages";
+    $location = PAD . "$app/pages";
     $padart     = padExplode ($page, '/');
     
     foreach ($padart as $key => $value)

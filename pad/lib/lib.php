@@ -3,7 +3,7 @@
   function get_reference_files () {
 
     $files     = [];
-    $padath      = APPS . 'reference/pages/';
+    $padath      = PAD . 'reference/pages/';
     $directory = new RecursiveDirectoryIterator ($padath);
     $iterator  = new RecursiveIteratorIterator  ($directory);
 

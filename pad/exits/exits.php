@@ -30,7 +30,7 @@
   $padStop = ( $padEtag304 and ($padCacheClient??'') == $padEtag ) ? 304 : 200;
 
   if ( $padCache and $padCacheServerAge )
-    include PAD . 'cache/exits.php';
+    include PAD . 'pad/cache/exits.php';
 
   padTimingEnd ('exit');
 

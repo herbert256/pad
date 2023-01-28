@@ -1,22 +1,22 @@
 <?php
 
   if ( count ($padData [$pad] ) )
-    include PAD . 'occurrence/end.php';
+    include PAD . 'pad/occurrence/end.php';
 
   if ( next($padData [$pad]) !== FALSE )
-    return include PAD . 'occurrence/start.php';
+    return include PAD . 'pad/occurrence/start.php';
 
   if ( $padWalk [$pad] == 'next' ) {
-    include PAD . 'walk/next.php';
+    include PAD . 'pad/walk/next.php';
     if ( $padWalk [$pad] == 'next' )
-      return include PAD . 'occurrence/start.php';
+      return include PAD . 'pad/occurrence/start.php';
   }
 
   if ( $padWalk [$pad] == 'end' )
-    include PAD . 'walk/end.php';
+    include PAD . 'pad/walk/end.php';
 
   if ( isset($padPrmsTag [$pad] ['callback']) and ! isset($padPrmsTag [$pad] ['before']) )
-    include PAD . 'callback/exit.php' ;
+    include PAD . 'pad/callback/exit.php' ;
 
   include PAD . "options/go/end.php";
 

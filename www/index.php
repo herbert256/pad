@@ -2,7 +2,7 @@
 
   //  ============================================================================
   //  PAD - (P)HP (A)pplication (D)river
-  //  (c) 2004-2022 - Herbert Groot Jebbink - herbert@groot.jebbink.nl
+  //  (c) 2004-2023 - Herbert Groot Jebbink - herbert@groot.jebbink.nl
   //  ============================================================================
   //
   //  This is the PAD startup file, the first file that becomes active.
@@ -18,9 +18,8 @@
 
   // Start settings
 
-  define ( 'PAD',  '/home/herbert/pad/pad/'  ); // Home of PAD itself
-  define ( 'APPS', '/home/herbert/pad/apps/' ); // Home of the PAD applications
-  define ( 'DATA', '/home/herbert/data/'     ); // Data locaction, used for logs/cache/errors/etc.
+  define ( 'PAD',  '/home/herbert/pad/'  ); // Home of PAD itself
+  define ( 'DATA', '/home/herbert/data/' ); // Data locaction, used for logs/cache/errors/etc.
 
   // End settings
 
@@ -37,7 +36,7 @@
   
   // Go to PAD
   
-  include PAD . 'pad.php';
+  include PAD . 'pad/pad.php';
 
   // PAD boot error handling functions
  

@@ -18,11 +18,11 @@
   include PAD . "options/go/start.php";
   
   if ( isset($padPrmsTag [$pad] ['callback']) and ! isset($padPrmsTag [$pad] ['before']))
-    include PAD . 'callback/init.php' ;
+    include PAD . 'pad/callback/init.php' ;
 
   include 'trace/level.php';
 
   if ( count ( $padData [$pad] ) )
-    include PAD . 'occurrence/start.php';
+    include PAD . 'pad/occurrence/start.php';
   
 ?>

@@ -1,7 +1,7 @@
 <?php
 
   if ( $padRestart )
-    include PAD . 'inits/restart.php';    
+    include PAD . 'pad/inits/restart.php';    
     
   $padEnd [$pad] = strpos ( $padHtml [$pad], '}' );
 
@@ -18,8 +18,8 @@
   $padBetween = substr ( $padHtml [$pad], $padStart [$pad] + 1, $padEnd [$pad] - $padStart [$pad] - 1 ) ;
   $padFirst   = substr ( $padBetween , 0, 1 );
 
-  if     ( $padFirst == '!' ) return padHtml ( include PAD . 'var/raw.php' );
-  elseif ( $padFirst == '$' ) return padHtml ( include PAD . 'var/opt.php' );
+  if     ( $padFirst == '!' ) return padHtml ( include PAD . 'pad/var/raw.php' );
+  elseif ( $padFirst == '$' ) return padHtml ( include PAD . 'pad/var/opt.php' );
 
   include 'setup.php';    
   include 'between.php';

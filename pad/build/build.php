@@ -6,6 +6,6 @@
   include "$padBuildMode.php";
 
   if ( ! isset ( $padNoOccur) )
-    include PAD . 'occurrence/start.php';
+    include PAD . 'pad/occurrence/start.php';
 
 ?>

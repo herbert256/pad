@@ -1,6 +1,6 @@
 <?php
 
-  $padath = APPS . "reference/pages/" . $padPrm [$pad];
+  $padath = PAD . "reference/pages/" . $padPrm [$pad];
 
   $inits_php  = "$padath/inits.php";
   $inits_html = "$padath/inits.html";

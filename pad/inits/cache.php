@@ -32,7 +32,7 @@
 
     if ( $padCacheAge >= $padCacheMax ) {
       $padCacheStop = 304.1;
-      include PAD . 'cache/stop.php';
+      include PAD . 'pad/cache/stop.php';
     }
     
   }
@@ -46,7 +46,7 @@
 
     if ( $padCacheMod and $padCacheMod >= $padCacheMax and $padCacheAge >= $padCacheMax ) {
       $padCacheStop = 304.2;
-      include PAD . 'cache/stop.php';
+      include PAD . 'pad/cache/stop.php';
     }
 
     if ( $padCacheAge >= $padCacheMax and ! $GLOBALS ['padCacheServerNoData'] ) {
@@ -55,7 +55,7 @@
 
       if ( $padOutput ) {
         $padCacheStop = 200.3;
-        include PAD . 'cache/stop.php';
+        include PAD . 'pad/cache/stop.php';
       }
 
     }

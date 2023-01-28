@@ -2,6 +2,6 @@
 
   $padCall = APP . "callbacks/" . $GLOBALS ['padPrmsTag'] [p()] ['callback'];
 
-  include PAD . 'build/go.php';
+  include PAD . 'pad/build/go.php';
 
 ?>
