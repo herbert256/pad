@@ -3,10 +3,10 @@
 
   function padOptionCheck ( $option ) {
 
-    global $pad, $padPrmsTag ;
+    global $pad, $padPrm ;
 
     for ( $i=$pad; $i; $i-- )
-      if ( array_key_exists ( $option, $padPrmsTag [$i] ) )
+      if ( array_key_exists ( $option, $padPrm [$i] ) )
         return TRUE;
 
     return FALSE;
@@ -15,11 +15,11 @@
 
   function padOptionGet ( $option ) {
 
-    global $pad, $padPrmsTag ;
+    global $pad, $padPrm ;
 
     for ( $i=$pad; $i; $i-- )
-      if ( array_key_exists ( $option, $padPrmsTag [$i] ) )
-        return $padPrmsTag [$i] [$option];
+      if ( array_key_exists ( $option, $padPrm [$i] ) )
+        return $padPrm [$i] [$option];
 
     return '';
 
@@ -102,7 +102,6 @@
       }
 
     }
-
 
     if ($now)
       $output [] = $now;

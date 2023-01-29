@@ -1,11 +1,11 @@
 <?php
 
-  if ( $padWalk [$pad] == 'start' and $padPrmsType [$pad] == 'close' ) {
+  if ( $padWalk [$pad] == 'start' and $padPrmType [$pad] == 'close' ) {
     $padWalk [$pad] = 'next';
     return TRUE;
   }
 
-  $padEval = padEval ( $padPrms [$pad] );
+  $padEval = padEval ( $padPrm [$pad] [0] );
 
   if ($padTag [$pad] == 'while') { 
     $padWalk [$pad] = ($padEval) ? 'next' : '';

@@ -4,9 +4,9 @@
     return;
 
   $padSortArgs   = [];
-  $padSortFields = padExplode($padPrmsTag [$pad] ['sort'], ';'); 
+  $padSortFields = padExplode($padPrm [$pad] ['sort'], ';'); 
 
-  if ( $padPrmsTag [$pad] ['sort'] === TRUE or ! count ($padSortFields)) {
+  if ( $padPrm [$pad] ['sort'] === TRUE or ! count ($padSortFields)) {
     $padSortFields = []; 
     foreach ($padData [$pad] as $padV1) {
       foreach ($padV1 as $padK2 => $padV2) 

@@ -1,40 +1,40 @@
 <?php
 
-  $padSeqFrom     = intval ( $padPrmsTag [$pad] ['from']      ?? 1           );
-  $padSeqTo       = intval ( $padPrmsTag [$pad] ['to']        ?? PHP_INT_MAX );
+  $padSeqFrom     = intval ( $padPrm [$pad] ['from']      ?? 1           );
+  $padSeqTo       = intval ( $padPrm [$pad] ['to']        ?? PHP_INT_MAX );
   
-  $padSeqMin      = intval ( $padPrmsTag [$pad] ['min']       ?? 0           );
-  $padSeqMax      = intval ( $padPrmsTag [$pad] ['max']       ?? PHP_INT_MAX );
+  $padSeqMin      = intval ( $padPrm [$pad] ['min']       ?? 0           );
+  $padSeqMax      = intval ( $padPrm [$pad] ['max']       ?? PHP_INT_MAX );
   
-  $padSeqStart    = intval ( $padPrmsTag [$pad] ['start']     ?? 0           );
-  $padSeqEnd      = intval ( $padPrmsTag [$pad] ['end']       ?? PHP_INT_MAX );
+  $padSeqStart    = intval ( $padPrm [$pad] ['start']     ?? 0           );
+  $padSeqEnd      = intval ( $padPrm [$pad] ['end']       ?? PHP_INT_MAX );
   
-  $padSeqLow      = intval ( $padPrmsTag [$pad] ['low']       ?? 0           );
-  $padSeqHigh     = intval ( $padPrmsTag [$pad] ['high']      ?? PHP_INT_MAX );
+  $padSeqLow      = intval ( $padPrm [$pad] ['low']       ?? 0           );
+  $padSeqHigh     = intval ( $padPrm [$pad] ['high']      ?? PHP_INT_MAX );
 
-  $padSeqInc      = intval ( $padPrmsTag [$pad] ['increment'] ?? 1           );
-  $padSeqRows     = intval ( $padPrmsTag [$pad] ['rows']      ?? 0           );
-  $padSeqUnique   = intval ( $padPrmsTag [$pad] ['unique']    ?? 0           );
-  $padSeqRandom   = intval ( $padPrmsTag [$pad] ['random']    ?? 0           );
-  $padSeqCnt      = intval ( $padPrmsTag [$pad] ['count']     ?? 0           );
-  $padSeqPage     = intval ( $padPrmsTag [$pad] ['page']      ?? 0           );
+  $padSeqInc      = intval ( $padPrm [$pad] ['increment'] ?? 1           );
+  $padSeqRows     = intval ( $padPrm [$pad] ['rows']      ?? 0           );
+  $padSeqUnique   = intval ( $padPrm [$pad] ['unique']    ?? 0           );
+  $padSeqRandom   = intval ( $padPrm [$pad] ['random']    ?? 0           );
+  $padSeqCnt      = intval ( $padPrm [$pad] ['count']     ?? 0           );
+  $padSeqPage     = intval ( $padPrm [$pad] ['page']      ?? 0           );
   
-  $padSeqProtect  =          $padPrmsTag [$pad] ['protect']   ?? 1000; 
-  $padSeqSave     =          $padPrmsTag [$pad] ['save']      ?? 100; 
-  $padSeqUnique   =          $padPrmsTag [$pad] ['unique']    ?? '';
-  $padSeqPush     =          $padPrmsTag [$pad] ['store']     ?? ''; 
-  $padSeqPull     =          $padPrmsTag [$pad] ['sequence']  ?? '';
-  $padSeqRange    =          $padPrmsTag [$pad] ['range']     ?? '';
-  $padSeqKeep     =          $padPrmsTag [$pad] ['keep']      ?? '';
-  $padSeqRemove   =          $padPrmsTag [$pad] ['remove']    ?? '';
-  $padSeqMake     =          $padPrmsTag [$pad] ['make']      ?? '';
-  $padSeqUpdate   =          $padPrmsTag [$pad] ['update']    ?? '';
+  $padSeqProtect  =          $padPrm [$pad] ['protect']   ?? 1000; 
+  $padSeqSave     =          $padPrm [$pad] ['save']      ?? 100; 
+  $padSeqUnique   =          $padPrm [$pad] ['unique']    ?? '';
+  $padSeqPush     =          $padPrm [$pad] ['store']     ?? ''; 
+  $padSeqPull     =          $padPrm [$pad] ['sequence']  ?? '';
+  $padSeqRange    =          $padPrm [$pad] ['range']     ?? '';
+  $padSeqKeep     =          $padPrm [$pad] ['keep']      ?? '';
+  $padSeqRemove   =          $padPrm [$pad] ['remove']    ?? '';
+  $padSeqMake     =          $padPrm [$pad] ['make']      ?? '';
+  $padSeqUpdate   =          $padPrm [$pad] ['update']    ?? '';
 
   $padSeqName     =          $padName    [$pad]               ?? ''; 
   
-  unset ( $padPrmsTag [$pad] ['store'] );
+  unset ( $padPrm [$pad] ['store'] );
  
-  foreach ( $padPrmsTag [$pad] as $padSeqTagName => $padSeqTagValue )
+  foreach ( $padPrm [$pad] as $padSeqTagName => $padSeqTagValue )
     if ( ! isset ( $GLOBALS [ 'padSeq' . ucfirst($padSeqTagName) ] ) )
       $GLOBALS [ 'padSeq' . ucfirst($padSeqTagName) ] = $padSeqTagValue;
 

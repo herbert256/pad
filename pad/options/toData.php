@@ -1,6 +1,6 @@
 <?php
 
-  $padStoreName = $padPrmsTag [$pad] ['toData'];
+  $padStoreName = $padPrm [$pad] ['toData'];
 
   if ( !$padPair and !$padContent and !padIsDefaultData($padData [$pad]) ) {
     $padDataStore [$padStoreName] = $padData [$pad];

@@ -1,10 +1,10 @@
 <?php
 
-  if ( $padWalk [$pad] == 'start' and $padPrmsType [$pad] == 'close' ) {
+  if ( $padWalk [$pad] == 'start' and $padPrmType [$pad] == 'close' ) {
     $padWalk [$pad] = 'end';
     return TRUE;
   }
    
-  return padFunctionInTag ( $padType, $padTag [$pad], $padContent, $padPrmsVal [$pad] );
+  return padFunctionInTag ( $padType, $padTag [$pad], $padContent, $padPrm [$pad] );
 
 ?>

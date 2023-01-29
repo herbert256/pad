@@ -1,6 +1,6 @@
 <?php
 
-  $padFilterFirst = $padPrmsTag [$pad] ['first'];
+  $padFilterFirst = $padPrm [$pad] ['first'];
   if ( ! $padFilterFirst )
     $padFilterFirst = 1;
 

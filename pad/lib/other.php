@@ -30,6 +30,8 @@
 
   function p () {
 
+    global $pad;
+
     return $GLOBALS ['pad'];
   
   }
@@ -545,10 +547,10 @@
 
   function padTagParm ($parm, $default='') {
 
-    global $pad, $padPrmsTag;
+    global $pad, $padPrm;
 
-    if ( isset ( $padPrmsTag [$pad] [$parm] ) )
-      return $padPrmsTag [$pad] [$parm];
+    if ( isset ( $padPrm [$pad] [$parm] ) )
+      return $padPrm [$pad] [$parm];
     else
       return $default;
 
@@ -557,7 +559,9 @@
 
   function padDone ($var, $val) {
 
-    $GLOBALS ['padDone'] [p()] [$var] = $val;
+    global $pad;
+    
+    $GLOBALS ['padDone'] [$GLOBALS ['pad']] [$var] = $val;
 
   }   
 

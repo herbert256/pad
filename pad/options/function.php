@@ -1,5 +1,5 @@
 <?php
 
-  $padContent = padFunctionInTag ( '', $padPrmsTag [$pad] ['function'], $padContent, [] );
+  $padContent = padFunctionInTag ( '', $padPrm [$pad] ['function'], $padContent, [] );
 
 ?>

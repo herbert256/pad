@@ -30,10 +30,10 @@
     $lvl = padFieldGetLevel ($tag);
     $idx = intval ($nr) - 1 ;
 
-    global $padPrmsVal;
+    global $padPrm;
     
-    if ( isset ( $padPrmsVal[$lvl] [$idx] ) )
-      return $padPrmsVal[$lvl] [$idx]; 
+    if ( isset ( $padPrm [$lvl] [$idx] ) )
+      return $padPrm [$lvl] [$idx]; 
     else
       return INF;
 

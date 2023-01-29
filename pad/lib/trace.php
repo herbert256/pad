@@ -40,7 +40,9 @@
     if ( $pad < 0 )
       return [];
 
-    if ( ! isset ( $GLOBALS['pad'] ) or $GLOBALS['pad'] < 0 )
+    global $pad;
+    
+    if ( ! isset ( $GLOBALS ['pad'] ) or $GLOBALS ['pad'] < 0 )
       return [];
 
     if ( is_array($pad) )
@@ -52,10 +54,6 @@
       'pair' => $GLOBALS ['padPair'] [$pad] ?? '',
       'p-type' => $GLOBALS ['padPrmsType'] [$pad] ?? '',
       'prm' => $GLOBALS ['padPrm'] [$pad] ?? '',
-      'prms' => $GLOBALS ['padPrms'] [$pad] ?? '',
-      'prms-org' => $GLOBALS ['padPrmsOrg'] [$pad] ?? '',
-      'prms-tag' => $GLOBALS ['padPrmsTag'] [$pad] ?? '',
-      'prms-val' => $GLOBALS ['padPrmsVal'] [$pad] ?? '',
       'true' => padDumpShort ($GLOBALS ['padTrue'][$pad]??''),
       'false' => padDumpShort ($GLOBALS ['padFalse'][$pad]??''),
       'base' => padDumpShort ($GLOBALS ['padBase'][$pad]??''),
@@ -82,7 +80,7 @@
 
     $chk1 = [ '_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
 
-    $chk2 = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padPrms','padPrmsType','padPrmsTag','padPrmsVal','padName','padData','padCurrent','padKey','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padLevelDir','padOccurDir','padSaveVars','padDeleteVars','padSetSave','padSetDelete','padTagCnt'];
+    $chk2 = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padPrms','padPrmsType','padPrmsTag','padPrmsTag','padName','padData','padCurrent','padKey','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padLevelDir','padOccurDir','padSaveVars','padDeleteVars','padSetSave','padSetDelete','padTagCnt'];
 
     $chk3 = [ 'page','app','PADSESSID','PADREQID','PHPSESSID','PADREFID' ];
 

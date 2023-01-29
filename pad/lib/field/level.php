@@ -3,7 +3,7 @@
 
   function padFieldLevel ( $field, $type ) {
 
-    global $pad, $padCurrent, $padPrmsTag, $padName;
+    global $pad, $padCurrent, $padPrm, $padName;
 
     if ( is_numeric($field) ) 
       return padFieldLevelNr ($field);
@@ -28,10 +28,10 @@
 
   function padFieldLevelNr ($nr) {
 
-    global $pad, $padPrmsVal;
+    global $pad, $padPrm;
     
-    if ( isset ( $padPrmsVal[$pad] [$nr-1] ) )
-      return $padPrmsVal[$pad] [$nr-1]; 
+    if ( isset ( $padPrm [$pad] [$nr] ) )
+      return $padPrm [$pad] [$nr]; 
     else
       return INF;
 

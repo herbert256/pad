@@ -1,20 +1,20 @@
 <?php
 
-  if ( $padWalk [$pad] == 'start' and $padPrmsType [$pad] == 'close' ) {
+  if ( $padWalk [$pad] == 'start' and $padPrmType [$pad] == 'close' ) {
     $padWalk [$pad] = 'end';
     return TRUE;
   }
 
-  $padTag [$pad] = $padPrm [$pad];
+  $padTag [$pad] = $padPrm [$pad] [0];
 
-  if ( isset ($padPrmsTag [$pad] ['type'] ) )                     
-    $padFunctionType = "function_" . $padPrmsTag [$pad] ['type'];                
+  if ( isset ($padPrm [$pad] ['type'] ) )                     
+    $padFunctionType = "function_" . $padPrm [$pad] ['type'];                
   else
-    $padFunctionType = "function_" . padFunctionType ($padPrm [$pad]);
+    $padFunctionType = "function_" . padFunctionType ($padPrm [$pad] [0]);
 
-  $padFunctionVal = $padPrmsVal [$pad];
+  $padFunctionVal = $padPrm [$pad];
   unset ( $padFunctionVal [ array_key_first ($padFunctionVal) ] );
 
-  return padFunctionInTag ( $padFunctionType, $padPrm [$pad], $padContent, $padFunctionVal );
+  return padFunctionInTag ( $padFunctionType, $padPrm [$pad] [0], $padContent, $padFunctionVal );
 
 ?>

@@ -217,7 +217,9 @@
 
   function padCurlTrace ( $trace ) {
 
-    $file = $GLOBALS ['padLevelDir'] [p()]. "/curl_" . padRandomString(). ".json";
+    global $pad;
+    
+    $file = $GLOBALS ['padLevelDir'] [$GLOBALS ['pad']]. "/curl_" . padRandomString(). ".json";
 
     padFilePutContents ($file, padJson ($trace) );
 

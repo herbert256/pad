@@ -111,6 +111,6 @@
 
   }
 
-  padDump();
+  padDum$GLOBALS ['pad'];
  
 ?>

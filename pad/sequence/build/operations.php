@@ -2,7 +2,7 @@
 
   $padSeqOpr = [];
 
-  foreach ( $padPrmsTag [$pad] as $padSeqOprName => $padSeqOprValue )
+  foreach ( $padPrm [$pad] as $padSeqOprName => $padSeqOprValue )
 
     if ( $padSeqOprName <> $padSeqSeq )
     

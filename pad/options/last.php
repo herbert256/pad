@@ -1,6 +1,6 @@
 <?php
 
-  $padFilterLast = $padPrmsTag [$pad] ['last'];
+  $padFilterLast = $padPrm [$pad] ['last'];
   if ( ! $padFilterLast )
     $padFilterLast = 1;
 

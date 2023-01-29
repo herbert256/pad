@@ -1,6 +1,6 @@
 <?php
   
-  foreach ( $padPrmsTag [$pad] as $padSeqActionName => $padSeqActionValue )
+  foreach ( $padPrm [$pad] as $padSeqActionName => $padSeqActionValue )
 
     if ( $padSeqActionName <> $padSeqSeq )
 

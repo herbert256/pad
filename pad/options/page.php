@@ -1,7 +1,7 @@
 <?php
 
-  $padFilterPage  = (int) ($padPrmsTag [$pad] ['page']  ?? 1);
-  $padFilterRows  = (int) ($padPrmsTag [$pad] ['rows'] ?? 10);
+  $padFilterPage  = (int) ($padPrm [$pad] ['page']  ?? 1);
+  $padFilterRows  = (int) ($padPrm [$pad] ['rows'] ?? 10);
   $padFilterStart = ( ($padFilterPage-1) * $padFilterRows ) + 1;
   $padFilterEnd   = ($padFilterStart + $padFilterRows) - 1;
 

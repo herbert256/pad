@@ -14,15 +14,15 @@
     $padWalkData  [$pad] [] = $padCurrent [$pad];
 
   if ( padIsDefaultData ($padData [$pad]) ) {
-    if ( isset($padPrmsVal [$pad][0]) )
-      padSetGlobal ( $padName [$pad], $padPrmsVal [$pad][0] );
+    if ( isset($padPrm [$pad][1]) )
+      padSetGlobal ( $padName [$pad], $padPrm [$pad][1] );
   } else
     padSetGlobal ( $padName [$pad], $padCurrent [$pad] );
 
     foreach ( $padCurrent [$pad] as $padK => $padV )
       padSetGlobal ( $padK, $padV );
 
-  if ( isset($padPrmsTag [$pad] ['callback']) and ! isset($padPrmsTag [$pad] ['before']) )
+  if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']) )
     include PAD . 'pad/callback/row.php' ;
 
 ?>

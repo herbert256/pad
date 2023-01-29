@@ -5,12 +5,12 @@
   if ( $padSeqOne == $padSeqSeq ) 
     return;
 
-  if ( ! isset($padPrmsTag [$pad] [$padSeqOne]) )
+  if ( ! isset($padPrm [$pad] [$padSeqOne]) )
     return;
 
   $GLOBALS["padSeq_".$padSeqOne. "_list"] = [];
 
-  $padSeqOneTmp = padExplode ( $padPrmsTag [$pad] [$padSeqOne], ';');
+  $padSeqOneTmp = padExplode ( $padPrm [$pad] [$padSeqOne], ';');
 
   $padSeqOneList = [];
   foreach ( $padSeqOneTmp as $padEntry )

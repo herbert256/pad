@@ -15,7 +15,7 @@
   if ( $padWalk [$pad] == 'end' )
     include PAD . 'pad/walk/end.php';
 
-  if ( isset($padPrmsTag [$pad] ['callback']) and ! isset($padPrmsTag [$pad] ['before']) )
+  if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']) )
     include PAD . 'pad/callback/exit.php' ;
 
   include PAD . "pad/options/go/end.php";

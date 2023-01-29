@@ -20,10 +20,12 @@
 
   function padFilePutContents ($in, $data='', $append=0) {
 
+    global $pad;
+    
     $file = DATA . $in;
 
     if ( ! padFileValidName ( $file ) ) {
-      #padDump();
+      #padDum$GLOBALS ['pad'];
       return padError ("Invalid file name: $file");
     }
 

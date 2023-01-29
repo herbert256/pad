@@ -3,7 +3,7 @@
   $padSeqReturn = [];
 
   $padSeqNames = array_unique ( [
-    'sequence', $padSeqSeq, $padSeqSet, $padSeqName, $padName[$pad], $padPrmsTag[$pad]['toData']??'' 
+    'sequence', $padSeqSeq, $padSeqSet, $padSeqName, $padName[$pad], $padPrm [$pad] ['toData']??'' 
   ] );
 
   foreach ($padSeqResult as $padSeqValue) {

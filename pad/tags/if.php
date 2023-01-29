@@ -1,7 +1,7 @@
 <?php
   
   $padTst  = '{elseif';
-  $padEval = $padPrms [$pad];
+  $padEval = $padPrm [$pad] [0];
 
   return include 'go/if_case.php';
 

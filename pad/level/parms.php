@@ -1,16 +1,17 @@
 <?php
   
-  $padPrmsTag [$pad] = [];
-  $padPrmsVal [$pad] = [];
+  $padPrmCnt = 0;
 
   if ( ! in_array ( $padTag [$pad], ['if', 'case', 'while', 'until'] )  ) {
    
-    $padPrmsOrg [$pad] = padParseOptions ( $padPrms [$pad] );
+    $padPrmTmp = padParseOptions ( $padPrm [$pad] [0] );
     
-    foreach ( $padPrmsOrg [$pad] as $padV ) {
+    foreach ( $padPrmTmp as $padV ) {
 
       if ( $padV == 'trace' )
         include 'trace/option.php';
+
+      $padPrmCnt++; 
 
       $padW = padExplode ($padV, '=', 2);
 
@@ -18,22 +19,24 @@
         $padSetName  = trim(substr($padW[0], 1));
         $padSetValue = $padW[1];
         include 'set.php';
+        $padPrm [$pad] [$padPrmCnt]  = $GLOBALS [$padSetName];
+        $padPrm [$pad] [$padSetName] = $GLOBALS [$padSetName];
         continue;
       } 
 
-      if ( padValid ($padW[0]) and ! is_numeric($padW[0]) )
-        if ( count($padW) == 1 )
-          $padPrmsTag [$pad] [$padW[0]] = TRUE;
-        else
-          $padPrmsTag [$pad] [$padW[0]] = padEval ( $padW[1] );
+      if ( padValid ($padW[0]) and ! is_numeric($padW[0]) ) {
+        if ( count($padW) == 1 ) $padPrm [$pad] [$padW[0]] = TRUE;
+        else                     $padPrm [$pad] [$padW[0]] = padEval ( $padW[1] );
+        $padPrm [$pad] [$padPrmCnt] = $padPrm [$pad] [$padW[0]]; 
+      }
       else
-        $padPrmsVal [$pad] [] = padEval ( $padV );
-
+        $padPrm [$pad] [$padPrmCnt] = padEval ( $padV );
+  
     }
  
   }
 
-  $padPrm  [$pad] = $padPrmsVal [$pad][0] ?? '';
-  $padName [$pad] = $padPrmsTag [$pad]['name'] ?? $padTag [$pad];
+  if ( ! isset ( $padPrm [$pad] [1] ) )
+    $padPrm [$pad] [1]  = '';
 
 ?>

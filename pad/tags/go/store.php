@@ -1,17 +1,17 @@
 <?php
 
-  if ( $padWalk [$pad] == 'start' and ($padTag [$pad] == 'data' or $padTag [$pad] == 'flag' or $padPrmsType [$pad] == 'close' ) ) {
+  if ( $padWalk [$pad] == 'start' and ($padTag [$pad] == 'data' or $padTag [$pad] == 'flag' or $padPrmType [$pad] == 'close' ) ) {
     $padWalk [$pad] = 'end';
     return TRUE;
   }
 
   $padStoreName = 'pad' . ucwords($padTag[$pad]) . 'Store';
 
-  if ( isset ( $padPrmsVal [$pad] [0] ) or isset ( $padPrmsVal [$pad] [1] ) ) 
-    $padName [$pad] = $padPrmsVal [$pad] [0];
+  if ( isset ( $padPrm [$pad] [1] ) or isset ( $padPrm [$pad] [2] ) ) 
+    $padName [$pad] = $padPrm [$pad] [1];
 
-  if ( isset ( $padPrmsVal [$pad] [1] ) )
-    $padStoreSource = $padPrmsVal [$pad] [1];  
+  if ( isset ( $padPrm [$pad] [2] ) )
+    $padStoreSource = $padPrm [$pad] [2];  
   else
     $padStoreSource = $padContent;
 

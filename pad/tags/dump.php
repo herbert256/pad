@@ -1,5 +1,5 @@
 <?php
 
-  padDumpFromApp ($padPrm [$pad]);
+  padDumpFromApp ($padPrm [$pad] [0]);
   
 ?>

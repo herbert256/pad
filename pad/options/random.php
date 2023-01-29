@@ -1,6 +1,6 @@
 <?php
 
-  $padRndRandom = ( $padPrmsTag [$pad] ['random'] === TRUE) ? 1 : $padPrmsTag [$pad] ['random'];
+  $padRndRandom = ( $padPrm [$pad] ['random'] === TRUE) ? 1 : $padPrm [$pad] ['random'];
 
   $padRndTemp = [];
 

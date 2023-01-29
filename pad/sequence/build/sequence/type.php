@@ -3,9 +3,9 @@
     $padSeqSeq = $padSeqTmp;
     $padSeqSet = $padSeqTmp;
 
-    if ( isset($padPrmsTag [$pad][$padSeqSeq]) )
-      $padSeqParm = $padPrmsTag [$pad][$padSeqSeq];
+    if ( isset($padPrm [$pad][$padSeqSeq]) )
+      $padSeqParm = $padPrm [$pad][$padSeqSeq];
     else
-      $padSeqParm = $padPrm [$pad];
+      $padSeqParm = $padPrm [$pad] [0];
 
 ?>

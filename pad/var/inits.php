@@ -27,10 +27,6 @@
   if ( substr($padFld, 0, 1) == '$' )
     $padFld = padFieldValue ($padFld);
 
-  $padVal = padFieldValue ($padFld);
-
-  $padValBase = $padVal;
-
   if ( ! padFieldCheck ( $padFld ) ) 
     padError ( "Field '$padFld' not found" )
 

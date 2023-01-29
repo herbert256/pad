@@ -7,7 +7,7 @@
   if     ( $padOptions == 'start' ) $padContent = $padBase   [$pad];
   elseif ( $padOptions == 'end'   ) $padContent = $padResult [$pad];
 
-  foreach ( $padPrmsTag [$pad] as $padOptionName => $padV )
+  foreach ( $padPrm [$pad] as $padOptionName => $padV )
 
     if ( in_array ( $padOptionName, $padOptionsWalk ) and ! isset ( $padDone [$pad] [$padOptionName] ) ) {
 

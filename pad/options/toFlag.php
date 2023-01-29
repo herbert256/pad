@@ -1,6 +1,6 @@
 <?php
 
-  $padStoreName = $padPrmsTag [$pad] ['toFlag'];
+  $padStoreName = $padPrm [$pad] ['toFlag'];
 
   if     ( $padNull [$pad]  ) $padFlagStore [$padStoreName] = FALSE;
   elseif ( $padElse [$pad]  ) $padFlagStore [$padStoreName] = FALSE;

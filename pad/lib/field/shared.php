@@ -21,7 +21,7 @@
     if (trim($search) == '' )
       return $pad;
 
-    return p();
+    return $GLOBALS ['pad'];
 
   } 
 

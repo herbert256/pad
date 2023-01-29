@@ -1,9 +1,9 @@
 <?php
 
-  $padGetApp     = $padPrmsVal [$pad] [0] ?? padTagParm ('include');
-  $padGetPage    = $padPrmsVal [$pad] [1] ?? padTagParm ('page');
-  $padGetQuery   = $padPrmsVal [$pad] [2] ?? padTagParm ('parms');
-  $padGetInclude = $padPrmsVal [$pad] [3] ?? padTagParm ('include');
+  $padGetApp     = $padPrm [$pad] [1] ?? padTagParm ('include');
+  $padGetPage    = $padPrm [$pad] [2] ?? padTagParm ('page');
+  $padGetQuery   = $padPrm [$pad] [3] ?? padTagParm ('parms');
+  $padGetInclude = $padPrm [$pad] [4] ?? padTagParm ('include');
 
   return pad ( $padGetApp, $padGetPage, $padGetQuery, $padGetInclude ) 
  

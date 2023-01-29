@@ -77,19 +77,19 @@
 
   function padSeqGetCnt ( $first, $second, $third ) {
 
-    global $pad, $padPrmsTag, $padSeqParm;
+    global $pad, $padPrm, $padSeqParm;
 
-    if ( isset($padPrmsTag [$pad][$first])      and $padPrmsTag [$pad][$first]  !== TRUE and is_numeric($padPrmsTag [$pad][$first]) )
+    if ( isset($padPrm [$pad][$first])      and $padPrm [$pad][$first]  !== TRUE and is_numeric($padPrm [$pad][$first]) )
  
-      return $padPrmsTag [$pad][$first];
+      return $padPrm [$pad][$first];
  
-    elseif ( isset($padPrmsTag [$pad][$second]) and $padPrmsTag [$pad][$second] !== TRUE and is_numeric($padPrmsTag [$pad][$second]) )
+    elseif ( isset($padPrm [$pad][$second]) and $padPrm [$pad][$second] !== TRUE and is_numeric($padPrm [$pad][$second]) )
  
-      return $padPrmsTag [$pad][$second];
+      return $padPrm [$pad][$second];
  
-    elseif ( isset($padPrmsTag [$pad][$third])  and $padPrmsTag [$pad][$third]  !== TRUE and is_numeric($padPrmsTag [$pad][$third]) )
+    elseif ( isset($padPrm [$pad][$third])  and $padPrm [$pad][$third]  !== TRUE and is_numeric($padPrm [$pad][$third]) )
  
-      return $padPrmsTag [$pad][$third];
+      return $padPrm [$pad][$third];
  
     elseif (                                    $padSeqParm !== TRUE           and is_numeric($padSeqParm) )
  

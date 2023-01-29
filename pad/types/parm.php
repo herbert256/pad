@@ -1,7 +1,7 @@
 <?php
 
-  if ( isset($padPrmsVal [$pad][0]) )
-    $padFieldTag = $padPrmsVal [$pad][0];
+  if ( isset($padPrm [$pad][1]) )
+    $padFieldTag = $padPrm [$pad][1];
   else
     $padFieldTag = '';
 

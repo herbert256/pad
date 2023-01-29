@@ -13,10 +13,10 @@
   $padFalse       [$pad] = '';
 
   $padPrm         [$pad] = ''; 
-  $padPrms        [$pad] = '';
-  $padPrmsType    [$pad] = '';
-  $padPrmsTag     [$pad] = [];
-  $padPrmsVal     [$pad] = [];
+  $padPrm        [$pad] = '';
+  $padPrmType    [$pad] = '';
+  $padPrm     [$pad] = [];
+  $padPrm     [$pad] = [];
 
   $padName        [$pad] = '';
 

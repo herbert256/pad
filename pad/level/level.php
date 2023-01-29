@@ -20,6 +20,7 @@
 
   if     ( $padFirst == '!' ) return padHtml ( include PAD . 'pad/var/raw.php' );
   elseif ( $padFirst == '$' ) return padHtml ( include PAD . 'pad/var/opt.php' );
+  elseif ( $padFirst == '%' ) return padHtml ( include PAD . 'pad/var/parm.php' );
 
   include 'setup.php';    
   include 'between.php';

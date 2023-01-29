@@ -1,12 +1,12 @@
 <?php
 
-  if ( isset( $padSwNow[$padPrms[$pad]]) )
-    $padSwNow  [$padPrms[$pad]]++;
+  if ( isset( $padSwNow[$padPrm [$pad] [0]]) )
+    $padSwNow  [$padPrm [$pad] [0]]++;
   else {
-    $padSwNow  [$padPrms[$pad]] = 0;
-    $padSwVars [$padPrms[$pad]] = array_values($padPrmsVal [$pad]);
+    $padSwNow  [$padPrm [$pad] [0]] = 0;
+    $padSwVars [$padPrm [$pad] [0]] = array_values($padPrm [$pad]);
   }
    
-  return $padSwVars [$padPrms[$pad]] [ $padSwNow [$padPrms[$pad]] % count($padPrmsVal [$pad]) ];
+  return $padSwVars [$padPrm [$pad] [0]] [ $padSwNow [$padPrm [$pad] [0]] % count($padPrm [$pad]) ];
 
 ?>

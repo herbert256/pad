@@ -1,5 +1,5 @@
 <?php
 
-  return padVarOpts ('', padExplode ($padPrms [$pad], '|'));
+  return padVarOpts ('', padExplode ($padPrm [$pad] [0], '|'));
 
 ?>

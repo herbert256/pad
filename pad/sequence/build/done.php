@@ -30,7 +30,7 @@
   padDone ( 'unique',      TRUE );
   padDone ( 'page',        TRUE );
  
-  foreach ( $padPrmsTag [$pad] as $padSeqTagName => $padSeqTagValue ) {
+  foreach ( $padPrm [$pad] as $padSeqTagName => $padSeqTagValue ) {
 
     if ( file_exists ( PAD . "pad/sequence/types/$padSeqTagName/make.php" ) )
       padDone ( $padSeqTagName, TRUE );

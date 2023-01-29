@@ -1,8 +1,8 @@
 <?php
 
-  $padLinkApp  = $padPrmsTag [$pad] ['app']  ?? $app;
-  $padLinkPage = $padPrmsTag [$pad] ['page'] ?? 'index';
-  $padLinkText = $padPrmsTag [$pad] ['text'] ?? $padContent;
+  $padLinkApp  = $padPrm [$pad] ['app']  ?? $app;
+  $padLinkPage = $padPrm [$pad] ['page'] ?? 'index';
+  $padLinkText = $padPrm [$pad] ['text'] ?? $padContent;
 
   padDone ( 'page', TRUE );
 

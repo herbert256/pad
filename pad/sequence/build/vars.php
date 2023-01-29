@@ -6,7 +6,7 @@
 
   if ( ! $padSeqName )                            $padSeqName = $padSeqSet; 
   if ( ! isset($GLOBALS ["padSeq_$padSeqSeq"]) ) $GLOBALS ["padSeq_$padSeqSeq"] = $padSeqParm;
-  if ( ! isset($padPrmsTag [$pad] ["$padSeqSeq"])   ) $padPrmsTag [$pad] ["$padSeqSeq"]   = $padSeqParm;
+  if ( ! isset($padPrm [$pad] ["$padSeqSeq"])   ) $padPrm [$pad] ["$padSeqSeq"]   = $padSeqParm;
 
   if ( $padSeqSeq == 'make' )
     $padSeqFilterCheck = 'make';

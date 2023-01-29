@@ -105,6 +105,15 @@
 
     }
 
+    foreach ( $result as $k => $one ) {
+
+      if ( $one[1] == '%' ) {
+        $result[$k][1] = 'VAL';      
+        $result[$k][0] = padParm ( $one[0], 1 );
+      }
+
+    }
+
     foreach ($result as $k => $one)
       if ( $one[1] == 'other' )
         padError ( 'Unknow eval argument: ' . $one[0] );

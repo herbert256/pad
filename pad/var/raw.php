@@ -2,8 +2,10 @@
 
   include 'inits.php';
 
-  $padVal = padVarOpts ($padVal, $padOpts);
-  $padVal = str_replace ( '}', '&close;', $padVal );
+  if ( ! padFieldCheck ( $padFld ) ) 
+    padError ( "Field '$padFld' not found" );
+  
+  $padVal = padFieldValue ($padFld);
 
   return include 'exits.php';
 

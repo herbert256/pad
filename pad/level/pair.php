@@ -39,7 +39,7 @@
 
   if ( count ($padWords) > 1 ) {
     include 'between.php';
-    $padPrmsType [$pad] = 'close';
+    $padPrmType [$pad] = 'close';
   }
 
   return TRUE;

@@ -1,8 +1,6 @@
 <?php
 
-  $result = padInclude ( $app, "examples/" . $padPrm [$pad] );
-
-  $file = APP . "pages/examples/" . $padPrm [$pad];
+  $file = APP . "pages/examples/" . $padPrm [$pad] [0];
 
   $php    = ( file_exists("$file.php" ) ) ? padColorsFile ("$file.php")  : '';
   $html   = ( file_exists("$file.html") ) ? padColorsFile ("$file.html") : '';

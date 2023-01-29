@@ -17,7 +17,7 @@
 
   include PAD . "pad/options/go/start.php";
   
-  if ( isset($padPrmsTag [$pad] ['callback']) and ! isset($padPrmsTag [$pad] ['before']))
+  if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']))
     include PAD . 'pad/callback/init.php' ;
 
   include 'trace/level.php';

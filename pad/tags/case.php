@@ -1,7 +1,7 @@
 <?php
 
   $padTst     = '{when';
-  $padBasis   = padEval  ($padPrms[$pad]);        
+  $padBasis   = padEval  ($padPrm [$pad] [0]);        
   $padChk     = strpos   ($padContent , $padTst);
   $padPos     = strpos   ($padContent, '}', $padChk);
   $padEval    = substr   ($padContent, $padChk+6, $padPos-($padChk+6));

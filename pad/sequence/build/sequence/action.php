@@ -1,9 +1,9 @@
 <?php
 
-  if ( isset($padPrmsTag [$pad][$padSeqTmp]) )
-    $padSeqParm = $padPrmsTag [$pad][$padSeqTmp];
+  if ( isset($padPrm [$pad][$padSeqTmp]) )
+    $padSeqParm = $padPrm [$pad][$padSeqTmp];
   else
-    $padSeqParm = $padPrm [$pad];
+    $padSeqParm = $padPrm [$pad] [0];
 
   $padSeqParms = padExplode($padSeqParm, '|');
 
@@ -14,8 +14,8 @@
   unset ( $padSeqParms[0] );
 
   if ( count($padSeqParms) )
-    $padPrmsTag [$pad] [$padSeqTmp] = implode('|', $padSeqParms);
+    $padPrm [$pad] [$padSeqTmp] = implode('|', $padSeqParms);
   else
-    $padPrmsTag [$pad] [$padSeqTmp] = true;
+    $padPrm [$pad] [$padSeqTmp] = true;
 
 ?>

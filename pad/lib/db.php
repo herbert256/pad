@@ -32,7 +32,7 @@
   
   function padDbPart2 ( $padSqlConnect, $sql, $vars, $db_type ) {
 
-    global $pad, $padDbRowsFound, $padTrace, $padPrmsTag;
+    global $pad, $padDbRowsFound, $padTrace, $padPrm;
     
     foreach ( $vars as $i => $replace ) {
 

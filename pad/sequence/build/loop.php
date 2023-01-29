@@ -1,11 +1,11 @@
 <?php
 
-  if ( isset($padPrmsTag [$pad] ['from']) )
+  if ( isset($padPrm [$pad] ['from']) )
     $padSeqLoopStart = $padSeqFrom;
   else
     $padSeqLoopStart = 1; 
   
-  if ( isset($padPrmsTag [$pad] ['to']) )
+  if ( isset($padPrm [$pad] ['to']) )
     $padSeqLoopEnd = $padSeqTo;
   else 
     $padSeqLoopEnd = PHP_INT_MAX;
