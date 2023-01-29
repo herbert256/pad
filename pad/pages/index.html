@@ -9,13 +9,29 @@
 
 <h2>Hello World</h2>
 
-<blockquote>Below the classic 'Hello World' {example 'hello'}</blockquote>
+<blockquote>
+  Below the classic 'Hello World'
+  {example 'hello'}
+</blockquote>
 
 <h2>Index</h2>
 
 <ul>
-  <li><a href="{$padGo}examples">Examples</a></li>
-  <li><a href="{$padGo}reference">Reference</a></li>
-  <li><a href="{$padGo}regression">Regression test</a></li>
-  <li><a href="{$padGo}benchmark">Benchmark test</a></li>
+
+  <li><a href="{$padPage}examples">Examples</a></li>
+
+  {appExists 'reference'} 
+    <li><a href="{$padApp}reference">Reference</a></li>
+  {/appExists}
+
+  <li><a href="{$padPage}regression">Regression test</a></li>
+
+  <li><a href="{$padPage}benchmark">Benchmark test</a></li>
+
+  {appExists 'mode'} 
+    {pageExists 'mode'} 
+      <li><a href="{$padPage}mode">Build mode & merge</a></li>
+    {/pageExists}
+  {/appExists}
+
 </ul>

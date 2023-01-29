@@ -9,12 +9,12 @@
 
     <tr>
 
-      <td class="border"><a href="{$padGo}reference/reference&reference={$item}">{$item}</a></td>
+      <td class="border"><a href="{$padPage}reference/reference&reference={$item}">{$item}</a></td>
 
       <td{if $status NE 'ok' and $status NE 'random' and $status NE 'new' } bgcolor="red"{/if}>
 
         {if $status EQ 'error'}
-          <a href="{$padGo}regression/compare&item={$item}">
+          <a href="{$padPage}regression/compare&item={$item}">
         {/if}
 
         {$status}

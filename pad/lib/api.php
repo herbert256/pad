@@ -22,7 +22,7 @@
   }
 
 
-  function padGo ( $go ) {
+  function padPage ( $go ) {
 
     global $padHost, $padScript, $padStop;
 

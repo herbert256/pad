@@ -1,5 +1,7 @@
 <?php
 
+  include 'config.php';
+
   if ( isset ( $_REQUEST['padInclude']) )
     $padBuildMode = 'include';
 
