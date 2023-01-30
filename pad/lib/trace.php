@@ -34,26 +34,15 @@
 
   function padTraceGetLevel ($pad)  {
 
-    if ( $pad === NULL)
+    if ( $pad === NULL or $pad < 0 or ! isset($pad) )
       return [];
 
-    if ( $pad < 0 )
-      return [];
-
-    global $pad;
-    
-    if ( ! isset ( $GLOBALS ['pad'] ) or $GLOBALS ['pad'] < 0 )
-      return [];
-
-    if ( is_array($pad) )
-      return [];
-    
     return [
-      'tag' => $GLOBALS ['padTag'] [$pad] ?? '',
+      'tag'    => $GLOBALS ['padTag'] [$pad] ?? '',
       't-type' => $GLOBALS ['padType'] [$pad] ?? '',
-      'pair' => $GLOBALS ['padPair'] [$pad] ?? '',
+      'pair'   => $GLOBALS ['padPair'] [$pad] ?? '',
       'p-type' => $GLOBALS ['padPrmsType'] [$pad] ?? '',
-      'prm' => $GLOBALS ['padPrm'] [$pad] ?? '',
+      'prm'    => $GLOBALS ['padPrm'] [$pad] ?? '',
       'true' => padDumpShort ($GLOBALS ['padTrue'][$pad]??''),
       'false' => padDumpShort ($GLOBALS ['padFalse'][$pad]??''),
       'base' => padDumpShort ($GLOBALS ['padBase'][$pad]??''),

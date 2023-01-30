@@ -3,7 +3,7 @@
 
   function padDumpFromApp ($info='') {
 
-    if ( padLocal () ) 
+    if ( ! padLocal () ) 
       return padError ("Dump not allowed: $info");
 
     padDumpTry ($info);
@@ -225,14 +225,14 @@
 
     global $pad;
     
-    if ( ! isset ( $GLOBALS ['pad'] ) or $GLOBALS ['pad'] < 0 )
+    if ( ! isset ( $pad ) or $pad < 0 )
       return;
 
-    for ( $lvl=$GLOBALS ['pad']; $lvl>=0; $lvl-- )
+    for ( $lvl=$pad; $lvl>=0; $lvl-- )
       padDumpArray (" Level: $lvl", padTraceGetLevel ($lvl) );
 
     if ( isset ( $GLOBALS ['padData'] ) and is_array ( $GLOBALS ['padData'] ) )
-      for ( $lvl=$GLOBALS ['pad']; $lvl>=0; $lvl-- )
+      for ( $lvl=$pad; $lvl>=0; $lvl-- )
         if ( isset ($GLOBALS ['padData'][$lvl]) )
           padDumpArray ('Level '.$lvl, $GLOBALS ['padData'][$lvl] );
     

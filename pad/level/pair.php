@@ -38,7 +38,7 @@
   $padWords   = preg_split ("/[\s]+/", $padBetween, 2, PREG_SPLIT_NO_EMPTY);
 
   if ( count ($padWords) > 1 ) {
-    include 'between.php';
+    include 'parms.php'; 
     $padPrmType [$pad] = 'close';
   }
 

@@ -1,5 +1,5 @@
 <?php
 
-  return padRestart ( $padPrm [$pad] [0] ); 
+  return padRestart ( $padPrm [$pad] [1] ); 
 
 ?>

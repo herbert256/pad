@@ -46,25 +46,20 @@
 
       $now .= $one;
 
-      if ( $one=="'" and $in_quote ) {
+      if ( $one=="'" and $in_quote )
         continue;
-      }
 
-      if ( $one=='"' and $in_str ) {
+      if ( $one=='"' and $in_str )
         continue;
-      }
 
-      if ( $one==',' and ($in_str or $in_quote or $pair) ) {
+      if ( $one==',' and ($in_str or $in_quote or $pair) )
         continue;
-      }
 
-      if ( $one=='(' and ($in_str or $in_quote) ) {
+      if ( $one=='(' and ($in_str or $in_quote) )
         continue;
-      }
 
-      if ( $one==')' and ($in_str or $in_quote) ) {
+      if ( $one==')' and ($in_str or $in_quote) )
         continue;
-      }
 
       if ( $one==')' and !$pair ) {
         pad_error ("Closing ) without an opening (");

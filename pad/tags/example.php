@@ -1,12 +1,18 @@
 <?php
 
-  $file = APP . "pages/examples/" . $padPrm [$pad] [0];
+  $padExampleApp  = padTagParm ( 'app',  $app );
+  $padExamplePage = padTagParm ( 'page', $padPrm [$pad] [1] );
 
-  $php    = ( file_exists("$file.php" ) ) ? padColorsFile ("$file.php")  : '';
-  $html   = ( file_exists("$file.html") ) ? padColorsFile ("$file.html") : '';
+  $padExampleBase = PAD . $padExampleApp . '/pages/';
+  $padExampleFile = $padExampleBase . $padExamplePage;
+  $padExamplePhp  = "$padExampleFile.php";
+  $padExampleHtml = "$padExampleFile.html";
 
-  $php_file  = ( file_exists("$file.php") )  ? str_replace(APP . "pages/examples/", '', "$file.php")  : '';
-  $html_file = ( file_exists("$file.html") ) ? str_replace(APP . "pages/examples/", '', "$file.html") : '';
+  $php    = ( file_exists($padExamplePhp ) ) ? padColorsFile ($padExamplePhp )  : '';
+  $html   = ( file_exists($padExampleHtml) ) ? padColorsFile ($padExampleHtml) : '';
+
+  $php_file  = ( file_exists($padExamplePhp ) ) ? str_replace($padExampleFile, '', $padExamplePhp  ) : '';
+  $html_file = ( file_exists($padExampleHtml) ) ? str_replace($padExampleFile, '', $padExampleHtml ) : '';
 
   return TRUE;
    

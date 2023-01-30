@@ -24,10 +24,4 @@
 
   }
   
-  if ( substr($padFld, 0, 1) == '$' )
-    $padFld = padFieldValue ($padFld);
-
-  if ( ! padFieldCheck ( $padFld ) ) 
-    padError ( "Field '$padFld' not found" )
-
 ?>

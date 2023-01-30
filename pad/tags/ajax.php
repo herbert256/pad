@@ -2,15 +2,17 @@
 
   if ( ! isset($padAjax) )
     $padAjax = 0;
-  
+
   $padAjax++;
 
-  $padUrl = "{$padPage}{$padPrm [$pad] [0]}&padInclude=$padAjax";
+  $padAjaxApp  = padTagParm ( 'app',  $app );
+  $padAjaxPage = padTagParm ( 'page', $padPrm [$pad] [1] );
+  $padAjaxUrl  = $padApp . $padAjaxApp . '&page=' . $padAjaxPage . '&padInclude=1'; 
 
   foreach($padPrm [$pad] as $padPairKey => $padPairValue)
-    if ( substr($padPairKey, 0, 4) <> 'pad_' and ! is_array($padPairKey) )
-      if ( $padPairKey )
-        $padUrl .= '&' . $padPairKey . '=' . urlencode($padPairValue);
+    if ( padValid ($padPairKey) )
+      if ( $padPairKey <> 'app' and $padPairKey <> 'page' ) 
+        $padAjaxUrl  .= '&' . $padPairKey . '=' . urlencode($padPairValue);
 
   return TRUE;
 

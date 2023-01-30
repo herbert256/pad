@@ -1,6 +1,6 @@
 <?php
 
-  $one = $padPrm [$pad] [0];
+  $one = $padPrm [$pad] [1];
   
   $url = "$padHost$padScript?app=reference&page=$one";
 

@@ -4,19 +4,16 @@
   
   $pad++;  
 
-  $padTag         [$pad] = 'true';
-  $padType        [$pad] = 'true';
+  $padTag         [$pad] = 'n/a';
+  $padType        [$pad] = 'n/a';
 
   $padPair        [$pad] = FALSE;
 
   $padTrue        [$pad] = '';
   $padFalse       [$pad] = '';
 
-  $padPrm         [$pad] = ''; 
-  $padPrm        [$pad] = '';
-  $padPrmType    [$pad] = '';
-  $padPrm     [$pad] = [];
-  $padPrm     [$pad] = [];
+  $padPrm         [$pad] = []; 
+  $padPrmType     [$pad] = '';
 
   $padName        [$pad] = '';
 

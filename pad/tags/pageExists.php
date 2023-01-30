@@ -1,9 +1,9 @@
 <?php
 
-  if  ( ! padValid  ( $padPrm [$pad] [0] ) )                                 
+  if  ( ! padValid  ( $padPrm [$pad] [1] ) )                                 
     return FALSE;
 
-  $padExits = APP . 'pages/' . $padPrm [$pad] [0];
+  $padExits = APP . 'pages/' . $padPrm [$pad] [1];
 
   if ( file_exists ("$padExits.html")       ) return TRUE;
   if ( file_exists ("$padExits.php")        ) return TRUE;

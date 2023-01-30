@@ -199,7 +199,7 @@
     if ( trim($name) == '' ) 
       return FALSE;
 
-    if ( ! preg_match('/^[a-zA-Z_][:#a-zA-Z0-9_]*$/',$name) )
+    if ( ! preg_match('/^[a-zA-Z][:#a-zA-Z0-9_]*$/',$name) )
       return FALSE;
 
     return TRUE;  
@@ -211,7 +211,7 @@
     return str_replace ( ['&open;','&close;','&pipe;', '&eq;','&comma;'], ['{','}','|','=',','], $string );
   }
   function padEscape ( $string ) {
-    return str_replace ( ['{','}','|','=',','], ['&open;','&close;','&pipe;', '&eq;', '&comma;'],  $string );
+    return str_replace ( ['{','}','|','=',','], ['&open;','&close;','&pipe;', '&eq;','&comma;'], $string );
   }
 
 
@@ -442,11 +442,12 @@
   }
 
 
-  function padIgnore ($info) {
+  function padIgnore ($info, $type) {
 
     global $pad, $padBetween, $padIgnCnt, $padTrace, $padLevelDir, $padIgnored;
 
-    $pad--;
+    if ($type)
+      $pad--;
     
     $padIgnCnt++;
 

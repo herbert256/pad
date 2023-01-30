@@ -91,6 +91,11 @@
 
   function padErrorGo ($error, $file, $line) {
 
+    if ( isset ( $_REQUEST['padInclude']) ) {
+      echo "error: $file:$line $error";
+      exit;
+    }
+
     try {
  
       return padErrorTry ($error, $file, $line);

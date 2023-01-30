@@ -77,6 +77,11 @@
     $GLOBALS ['padSkipBootShutdown'] = TRUE;
     $GLOBALS ['padSkipShutdown']     = TRUE;
 
+    if ( isset ( $_REQUEST['padInclude']) ) {
+      echo "boot: $file:$line $error";
+      exit;
+    }
+
     $buffers = ob_get_level ();
     for ($i = 1; $i <= $buffers; $i++)
       ob_get_clean();

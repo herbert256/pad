@@ -14,15 +14,11 @@
       <td{if $status NE 'ok' and $status NE 'random' and $status NE 'new' } bgcolor="red"{/if}>
 
         {if $status EQ 'error'}
-          <a href="{$padPage}regression/compare&item={$item}">
+          <a href="{$padPage}regression/compare&item={$item}">{$status}</a>
+        {else}
+          <a href="{$padApp}reference&page={$item}">{$status}</a>
         {/if}
 
-        {$status}
-  
-        {if $status EQ 'error'}
-          </a>
-        {/if}
-  
       </td>
 
     </tr>

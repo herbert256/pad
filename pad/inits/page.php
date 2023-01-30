@@ -3,7 +3,7 @@
   $page = $page ?? $_REQUEST['page'] ?? 'index';
 
   if ( ! padCheckPage ($app, $page) )
-    padBootError ("Page not found");
+    padBootError ("Page '$page' not found");
 
   $page = padGetPage ($app, $page);
   

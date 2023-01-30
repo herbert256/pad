@@ -1,6 +1,6 @@
 <?php
       
-  include PAD . 'pad/config/' . $padPrm [$pad] [0] . '.php';
+  include PAD . 'pad/config/' . $padPrm [$pad] [1] . '.php';
       
   return '';
     

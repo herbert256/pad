@@ -3,7 +3,7 @@
   function padParm ($fld, $type=0) {
 
     global $pad;
-    
+        
     if ( strpos($fld, '#') === FALSE )
       $tag = '';
     else {
@@ -11,6 +11,9 @@
       $tag = $tmp[0];
       $fld = $tmp[1];
     }
+
+    if ( ! $tag and isset ( $GLOBALS ['padPrm'] [$pad] [$fld] ) )
+      return $GLOBALS ['padPrm'] [$pad] [$fld];
 
     if ( ! $tag )
       if ( $type == 1 )
