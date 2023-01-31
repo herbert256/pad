@@ -19,9 +19,8 @@
   $padFirst   = substr ( $padBetween , 0, 1 );
   $padWords   = preg_split("/[\s]+/", $padBetween, 2, PREG_SPLIT_NO_EMPTY);
 
-  if     ( $padFirst == '!' ) return padHtml ( include PAD . 'pad/var/raw.php' );
-  elseif ( $padFirst == '$' ) return padHtml ( include PAD . 'pad/var/opt.php' );
-  elseif ( $padFirst == '%' ) return padHtml ( include PAD . 'pad/var/parm.php' );
+  if ( padValidFieldName ( $padBetween ) )
+    return include 'var.php';
 
   if ( ! ctype_alpha ( $padFirst ) ) return padIgnore ('ctype_alpha', 0);
   if ( ! padValid ( $padWords[0] ) ) return padIgnore ('padValid', 0);

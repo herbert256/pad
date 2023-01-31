@@ -1,41 +1,25 @@
 <?php
 
 
-  function padFieldPrefix ( $field, $type ) {
+  function padFieldPrefix ( $field, $type, $prefix, $lvl ) {
 
-    global $pad, $padCurrent, $padFieldDoubleCheck;
+    global $pad, $padPrm, $padCurrent;
 
-    list ( $padrefix, $field ) = explode (':', $field, 2);
+    if ( is_numeric($field) ) {
 
-    if ( is_numeric($field) )
-      return padFieldPrefixNr ($padrefix, $field);
+      $lvl = padFieldGetLevel ($prefix);
+      $idx = intval ($field) - 1 ;
 
-    $lvl = padFieldGetLevel ( $padrefix, FALSE );
+      if ( isset ( $padPrm [$lvl] [$idx] ) )
+        return $padPrm [$lvl] [$idx]; 
+      else
+        return INF;
+    }
 
     if ( $lvl === 0 )
-      $return = padFieldSearch ($GLOBALS, $field, $type);
+      return padFieldSearch ($GLOBALS, $field, $type);
     else 
-      $return = padFieldSearch ($padCurrent [$lvl], $field, $type);
-
-    if ( $return === INF )
-      $return = padFieldDoubleCheck ( $padrefix, '#', $field ); 
-
-    return $return;
-    
-  }
-
-
-  function padFieldPrefixNr ($tag, $nr) {
-
-    $lvl = padFieldGetLevel ($tag);
-    $idx = intval ($nr) - 1 ;
-
-    global $padPrm;
-    
-    if ( isset ( $padPrm [$lvl] [$idx] ) )
-      return $padPrm [$lvl] [$idx]; 
-    else
-      return INF;
+      return padFieldSearch ($padCurrent [$lvl], $field, $type);
 
   }
 

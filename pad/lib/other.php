@@ -1,5 +1,63 @@
 <?php
 
+  function padValidFieldName ( $var ) {
+
+    $first = substr ( $var, 0, 1 );
+
+    if ( ! in_array ( $first, ['$','!','&','%'] ) )
+      return FALSE;
+
+    $pipe  = strpos ( $var, '|' );
+    $space = strpos ( $var, ' ' );
+
+    if     ( $pipe  and (!$space or $pipe  < $space) ) $var = rtrim(substr($var, 1, $pipe-1));
+    elseif ( $space and (!$pipe  or $space < $pipe)  ) $var = rtrim(substr($var, 1, $space-1));
+    else                                               $var = rtrim(substr($var, 1));
+
+    if ( ! strlen($var) )
+      return FALSE;
+
+    if ( strpos($var, ':') !== FALSE )
+      list ( $tag, $var ) = explode (':', $var, 2);
+ 
+    if ( strpos($var, '^') !== FALSE ) {
+
+      list ( $p1, $p2 ) = explode ('^', $var, 2);
+
+      if ( ! is_numeric ($p1) ) 
+        return FALSE;
+
+      if ( ! in_array ( $p2, ['name','value'] )  )
+        return FALSE;      
+
+      return TRUE;
+
+    }
+
+    if ( ! padValidName($var) )
+      return FALSE;
+
+    if ( ! $tag )
+      return TRUE;
+
+    if ( substr ( $tag, 0, 1 ) == '-' ) {
+
+      if ( strlen($tag) < 2 )
+        return FALSE;
+
+      if ( ! is_numeric ( substr ( $var, 1 ) ) )
+        return FALSE;
+
+      return TRUE;
+
+    } 
+
+    if ( ! padValidName($tag) )
+      return FALSE;
+
+    return TRUE;
+
+  }
 
   function padID () {
 
@@ -193,6 +251,17 @@
     return ($random < 10) ? chr($random+48) : ($random < 36 ? chr($random+55) : chr($random+61));
   }
 
+  function padValidName ($name) {
+
+    if ( trim($name) == '' ) 
+      return FALSE;
+
+    if ( ! preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/',$name) )
+      return FALSE;
+
+    return TRUE;  
+
+  }
 
   function padValid ($name) {
 
@@ -546,9 +615,12 @@
     
   }
 
+
   function padTagParm ($parm, $default='') {
 
     global $pad, $padPrm;
+
+    padDone ($parm);
 
     if ( isset ( $padPrm [$pad] [$parm] ) )
       return $padPrm [$pad] [$parm];
@@ -558,7 +630,7 @@
   }
 
 
-  function padDone ($var, $val) {
+  function padDone ($var, $val=TRUE) {
 
     global $pad;
     

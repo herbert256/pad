@@ -2,10 +2,10 @@
 
   include 'inits.php';
 
-  if ( ! padParmCheck ( $padFld ) ) 
+  if ( ! padTagCheck ( $padFld ) ) 
     padError ( "Field '$padFld' not found" );
 
-  $padVal = padParmValue ($padFld);
+  $padVal = padTagValue ($padFld);
 
   return include 'exits.php';
 

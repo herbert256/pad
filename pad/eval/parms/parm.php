@@ -8,17 +8,15 @@
     $tag  = -1;
 
   if ( $value and isset ( $parm [0] ) )
-    $padPrmType = $parm [0];
+    $padPrmTypeX = $parm [0];
   elseif ( isset ( $parm [1] ) and ! $value )
-    $padPrmType = $parm [1];
+    $padPrmTypeX = $parm [1];
   else
-    $padPrmType = '';      
+    $padPrmTypeX = '';      
 
-  $padResultParm = padFieldTag ("$tag#$name#$padPrmType");
-
-  if ( $padResultParm === INF )
-    return NULL;
+  if ( $padPrmTypeX )
+    return padTagValue ( "$tag:$name" );
   else
-    return $padResultParm;
+    return padTagValue ( "$tag:$name#$padPrmTypeX" );
   
 ?>

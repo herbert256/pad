@@ -109,7 +109,7 @@
 
       if ( $one[1] == '%' ) {
         $result[$k][1] = 'VAL';      
-        $result[$k][0] = padParm ( $one[0], 1 );
+        $result[$k][0] = padParmValue ( $one[0] );
       }
 
     }

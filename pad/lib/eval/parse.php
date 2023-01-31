@@ -3,7 +3,7 @@
   function padEvalParse (&$result, $eval, $myself='') {
     
     $input  = str_split ( padUnescape($eval) );
-    $is_hex = $is_var = $is_prm = $is_str = $is_quote = $is_num = $is_other = FALSE;
+    $is_hex = $is_var = $is_prm = $is_tag = $is_str = $is_quote = $is_num = $is_other = FALSE;
     $skip   = $i = 0;
     
     foreach ( $input as $key => $one ) {
@@ -149,7 +149,7 @@
 
       }
 
-      if ( $one == '%' and preg_match('/^[a-zA-Z0-9_]/', $next) ) {
+      if ( $one == '%' and preg_match('/^[a-zA-Z0-9_-]/', $next) ) {
 
         $is_prm   = TRUE;
         $is_other = FALSE;
@@ -164,7 +164,37 @@
 
       if ($is_prm) {
       
-        if ($one == '#' ) {
+        if ($one == ':' ) {
+          $result[$i][0] .= $one;
+          continue;
+        } elseif ( preg_match('/^[a-zA-Z0-9_]/', $one) ) {
+          $result[$i][0] .= $one;
+          continue;
+        } 
+
+        $is_prm = FALSE;
+        
+      }
+
+      if ( $one == '&' and preg_match('/^[a-zA-Z0-9_-]/', $next) ) {
+
+        $is_tag   = TRUE;
+        $is_other = FALSE;
+        
+        $i += 100;
+        $result[$i][1] = '%';
+        $result[$i][0] = $next;
+        $skip = 1;
+        continue;
+
+      }
+
+      if ($is_tag) {
+      
+        if ($one == ':' ) {
+          $result[$i][0] .= $one;
+          continue;
+        } elseif ($one == '#' ) {
           $result[$i][0] .= $one;
           continue;
         } elseif ( preg_match('/^[a-zA-Z0-9_]/', $one) ) {

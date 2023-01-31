@@ -1,12 +1,14 @@
 <?php
 
-
   function padFieldLevel ( $field, $type ) {
 
     global $pad, $padCurrent, $padPrm, $padName;
 
-    if ( is_numeric($field) ) 
-      return padFieldLevelNr ($field);
+    if ( is_numeric($field) )
+      if ( isset ( $padPrm [$pad] [$field] ) )
+        return $padPrm [$pad] [$filed]; 
+      else
+        return INF;
 
     for ( $i=$pad; $i; $i-- )
       if ( array_key_exists ( $field, $padCurrent [$i] ) ) {
@@ -23,18 +25,6 @@
 
     return INF;
     
-  }
-
-
-  function padFieldLevelNr ($nr) {
-
-    global $pad, $padPrm;
-    
-    if ( isset ( $padPrm [$pad] [$nr] ) )
-      return $padPrm [$pad] [$nr]; 
-    else
-      return INF;
-
   }
 
 

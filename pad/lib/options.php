@@ -1,30 +1,5 @@
 <?php
 
-
-  function padOptionCheck ( $option ) {
-
-    global $pad, $padPrm ;
-
-    for ( $i=$pad; $i; $i-- )
-      if ( array_key_exists ( $option, $padPrm [$i] ) )
-        return TRUE;
-
-    return FALSE;
-      
-  }
-
-  function padOptionGet ( $option ) {
-
-    global $pad, $padPrm ;
-
-    for ( $i=$pad; $i; $i-- )
-      if ( array_key_exists ( $option, $padPrm [$i] ) )
-        return $padPrm [$i] [$option];
-
-    return '';
-
-  }
-
   function padParseOptions ( $parms ) {
 
     $input  = str_split ( $parms );

@@ -4,15 +4,19 @@
 
   if ( $padNs ) {
 
-    $padType [$pad] = substr ($padTag [$pad], 0, $padNs);
-    $padTag  [$pad] = substr ($padTag [$pad], $padNs+1);
+    $padTypeX = substr ($padTag [$pad], 0, $padNs);
+    $padTagX  = substr ($padTag [$pad], $padNs+1);
 
-    if ( ! file_exists ( PAD . "pad/types/$padType[$pad].php" ) ) 
-      $padType [$pad] = FALSE;
-    
-  } else
+    if ( file_exists ( PAD . "pad/types/$padType[$pad].php" ) and padTypeCheck ( $padTypeX, $padTagX ) )  {
 
-    $padType [$pad] = padGetTypeLvl ( $padTag [$pad] );
+      $padType [$pad] = $padTypeX;
+      $padTag  [$pad] = $padTagX;
+
+      return $padType [$pad]; 
+
+    }
+
+  $padType [$pad] = padTypeGet( $padTag [$pad] );
 
   return $padType [$pad];  
 
