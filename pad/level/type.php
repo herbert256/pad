@@ -16,6 +16,8 @@
 
     }
 
+  }
+
   $padType [$pad] = padTypeGet( $padTag [$pad] );
 
   return $padType [$pad];  

@@ -1,11 +1,11 @@
 <?php
 
-  if ( strpos($padPrm [$pad] [1], 'page=') !== FALSE) {
+  if ( strpos($padPrm [$pad] [0], 'page=') !== FALSE) {
     $padIncludeCall = padInclude ($padPrm [$pad] [1]);
     return $padIncludeCall ['data'];
   }
 
-  $padOne = APP . "includes/$padPrm [$pad] [1]";
+  $padOne = APP . "includes/" . $padPrm [$pad] [1];
 
   return include PAD . 'pad/build/one.php';
 

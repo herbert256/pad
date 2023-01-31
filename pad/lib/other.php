@@ -4,7 +4,10 @@
 
     $first = substr ( $var, 0, 1 );
 
-    if ( ! in_array ( $first, ['$','!','&','%'] ) )
+    if ( in_array ( $first, ['$','!','#','&'] ) )
+      return TRUE;
+
+    if ( ! in_array ( $first, ['$','!','#','&'] ) )
       return FALSE;
 
     $pipe  = strpos ( $var, '|' );
@@ -17,12 +20,14 @@
     if ( ! strlen($var) )
       return FALSE;
 
-    if ( strpos($var, ':') !== FALSE )
+    if ( trpos($var, ':') !== FALSE )
       list ( $tag, $var ) = explode (':', $var, 2);
+    else
+      $tag = '';
  
-    if ( strpos($var, '^') !== FALSE ) {
+    if ( strpos($var, '#') !== FALSE ) {
 
-      list ( $p1, $p2 ) = explode ('^', $var, 2);
+      list ( $p1, $p2 ) = explode ('#', $var, 2);
 
       if ( ! is_numeric ($p1) ) 
         return FALSE;
@@ -34,8 +39,9 @@
 
     }
 
-    if ( ! padValidName($var) )
-      return FALSE;
+    if ( ! ($first == '#' and is_numeric($var)) )
+      if ( ! padValidName($var) )
+        return FALSE;
 
     if ( ! $tag )
       return TRUE;

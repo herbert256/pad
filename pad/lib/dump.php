@@ -110,6 +110,7 @@
 
     padDumpInfo     ( $info );
     padDumpErrors   ();
+    padDumpSource   ();
     padDumpStack    ();
     padDumpLevel    ();
     padDumpRequest  ();
@@ -128,6 +129,13 @@
 
   }
 
+  function padDumpSource (  ) {
+
+    global $pad, $page;
+
+    #echo padInclude ( 'pad', 'example/example', "&exampleApp=$app&examplePage=$page&noResult=1"); 
+
+  }
 
   function padDumpInfo ( $info ) {
 

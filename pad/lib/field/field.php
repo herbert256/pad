@@ -20,38 +20,40 @@
 
     $field = ( substr ( $field, 0, 1 ) == '$' ) ? substr ( $field, 1 ) : $field;
     $field = ( substr ( $field, 0, 1 ) == '!' ) ? substr ( $field, 1 ) : $field;
-    $field = ( substr ( $field, 0, 1 ) == '%' ) ? substr ( $field, 1 ) : $field;
+    $field = ( substr ( $field, 0, 1 ) == '#' ) ? substr ( $field, 1 ) : $field;
     $field = ( substr ( $field, 0, 1 ) == '&' ) ? substr ( $field, 1 ) : $field;
 
     if ( strpos($field, ':' ) !== FALSE )
       list ( $tag, $field ) = explode (':', $field, 2);
+    else
+      $tag = '';
 
     $idx = ( $tag ) ? padFieldGetLevel ($tag) : padFieldFirstNonParm ();
 
-    if     ( $type == 5 ) $value = padParm        ( $field, $idx  );
-    elseif ( $type == 6 ) $value = padParm        ( $field, $idx  );
-    elseif ( $type == 7 ) $value = padTag         ( $field, $idx  );
-    elseif ( $type == 8 ) $value = padTag         ( $field, $idx  );
+    if     ( $type == 5 ) $value = padParm        ( $field, $idx, $type );
+    elseif ( $type == 6 ) $value = padParm        ( $field, $idx, $type );
+    elseif ( $type == 7 ) $value = padTag         ( $field, $idx, $type );
+    elseif ( $type == 8 ) $value = padTag         ( $field, $idx, $type );
     elseif ( $tag       ) $value = padFieldPrefix ( $field, $type, $tag, $idx );
     else                  $value = padFieldLevel  ( $field, $type );
 
     if ( $value === INF and $lvl and ! $tag ) {
       $idx = padFieldFirstNonParm () - 1;
-      if     ( $type == 5 ) $value = padParm ( $field, 0, $idx );
-      elseif ( $type == 6 ) $value = padParm ( $field, 1, $idx ); 
-      elseif ( $type == 7 ) $value = padTag  ( $field, 0, $idx );
-      elseif ( $type == 8 ) $value = padTag  ( $field, 1, $idx );
+      if     ( $type == 5 ) $value = padParm ( $field, $idx, $type );
+      elseif ( $type == 6 ) $value = padParm ( $field, $idx, $type ); 
+      elseif ( $type == 7 ) $value = padTag  ( $field, $idx, $type );
+      elseif ( $type == 8 ) $value = padTag  ( $field, $idx, $type );
     }
 
     if     ($type == 1) return ( $value !== NULL and ( $value === INF or ! is_scalar($value) ) ) ? FALSE : TRUE;
     elseif ($type == 2) return ( $value === NULL or    $value === INF or ! is_scalar($value)   ) ? ''    : $value;
     elseif ($type == 3) return ( $value === NULL or    $value === INF or   is_scalar($value)   ) ? FALSE : TRUE;
     elseif ($type == 4) return ( $value === NULL or    $value === INF or   is_scalar($value)   ) ? []    : $value;
-    elseif ($type == 5) return ( $value === NULL                                               ) ? TRUE  : FALSE;
-    elseif ($type == 6) return ( $value === NULL                                               ) ? ''    : $value;
-    elseif ($type == 7) return ( $value === NULL                                               ) ? TRUE  : FALSE;
-    elseif ($type == 8) return ( $value === NULL                                               ) ? ''    : $value;
-    elseif ($type == 9) return ( $value === NULL                                               ) ? TRUE  : FALSE;
+    elseif ($type == 5) return ( $value === INF                                                ) ? FALSE : TRUE;
+    elseif ($type == 6) return ( $value === INF                                                ) ? ''    : $value;
+    elseif ($type == 7) return ( $value === INF                                                ) ? FALSE : TRUE;
+    elseif ($type == 8) return ( $value === INF                                                ) ? ''    : $value;
+    elseif ($type == 9) return ( $value === INF                                                ) ? TRUE  : FALSE;
 
   }
 

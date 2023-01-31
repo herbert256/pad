@@ -6,7 +6,7 @@
 
     if ( is_numeric($field) )
       if ( isset ( $padPrm [$pad] [$field] ) )
-        return $padPrm [$pad] [$filed]; 
+        return $padPrm [$pad] [$field]; 
       else
         return INF;
 

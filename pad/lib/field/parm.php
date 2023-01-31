@@ -1,11 +1,12 @@
 <?php
 
-  function padParm ($fld, $idx) {
+  function padParm ( $fld, $idx, $type ) {
 
-    global $pad;
-        
     if ( isset ( $GLOBALS ['padPrm'] [$idx] [$fld] ) )
-      return $GLOBALS ['padPrm'] [$idx] [$fld];
+      if ( $type == 7 )
+        return TRUE;
+      else
+        return $GLOBALS ['padPrm'] [$idx] [$fld];
 
     return INF;
 

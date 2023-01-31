@@ -107,9 +107,18 @@
 
     foreach ( $result as $k => $one ) {
 
-      if ( $one[1] == '%' ) {
-        $result[$k][1] = 'VAL';      
-        $result[$k][0] = padParmValue ( $one[0] );
+      if ( $one[1] == '&' ) {
+
+        $result[$k][1] = 'VAL';  
+
+        $tmp = padParmValue ( $one[0], 1 );
+
+        if ( is_array($tmp) ) {
+          $result[$k][0] = '*ARRAY*';
+          $result[$k][4] = $tmp;        
+        } else
+          $result[$k][0] = $tmp;
+
       }
 
     }

@@ -26,12 +26,12 @@
 
   if     ( $padFirst == '!' ) if ( ! padFieldCheck ( $padFld ) )  padError ( "Field '$padFld' not found" );
   elseif ( $padFirst == '$' ) if ( ! padFieldCheck ( $padFld ) )  padError ( "Field '$padFld' not found" );
-  elseif ( $padFirst == '%' ) if ( ! padParmCheck  ( $padFld ) )  padError ( "Field '$padFld' not found" );
+  elseif ( $padFirst == '#' ) if ( ! padParmCheck  ( $padFld ) )  padError ( "Field '$padFld' not found" );
   elseif ( $padFirst == '&' ) if ( ! padTagCheck   ( $padFld ) )  padError ( "Field '$padFld' not found" );
 
   if     ( $padFirst == '!' ) $padVal = padFieldValue ($padFld);
   elseif ( $padFirst == '$' ) $padVal = padFieldValue ($padFld);
-  elseif ( $padFirst == '%' ) $padVal = padParmValue  ($padFld);
+  elseif ( $padFirst == '#' ) $padVal = padParmValue  ($padFld);
   elseif ( $padFirst == '&' ) $padVal = padTagValue   ($padFld);
 
   if ( $padFirst == '$' ) {

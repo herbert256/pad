@@ -10,9 +10,13 @@
 
     $result = [];
 
+    $GLOBALS ['eval_debug_1'] = $eval;
     padEvalParse ( $result, $eval, $myself );
+    $GLOBALS ['eval_debug_2'] = $result;
     padEvalAfter ( $result, $eval );  
+    $GLOBALS ['eval_debug_3'] = $result;
     padEvalGo    ( $result, array_key_first($result), array_key_last($result), $myself) ;
+    $GLOBALS ['eval_debug_4'] = $result;
 
     $key = array_key_first ($result);
       

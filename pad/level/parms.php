@@ -26,12 +26,14 @@
 
       if ( padValid ($padW[0]) and ! is_numeric($padW[0]) ) {
    
-        if ( count($padW) == 1 ) 
-          $padPrm [$pad] [$padW[0]] = TRUE;
-        else                     
-          $padPrm [$pad] [$padW[0]] = padEval ( $padW[1] );
-   
-        $padPrm [$pad] [$padPrmCnt] = $padPrm [$pad] [$padW[0]]; 
+        if ( count($padW) == 1 ) {
+          $padPrm [$pad] [$padW[0]]   = TRUE;
+          $padPrm [$pad] [$padPrmCnt] = $padW[0]; 
+        }
+        else {                    
+          $padPrm [$pad] [$padW[0]]   = padEval ( $padW[1] );
+          $padPrm [$pad] [$padPrmCnt] = $padPrm [$pad] [$padW[0]];
+        }
    
       }
    
