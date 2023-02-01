@@ -1,8 +1,7 @@
 <?php
 
-  $title = "Compare";
+  $title = "Compare: $item";
 
   $old = padFileGetContents ( DATA . "regression/$item.html" );
-  $new = pad ('reference', "$item");
  
 ?>

@@ -8,7 +8,7 @@
   $padTag [$pad]     = trim($padWords[0] ?? '');
   $padPrm [$pad] [0] = trim($padWords[1] ?? '');
   
-  if ( ! in_array ( $padTag [$pad], ['if', 'case', 'while', 'until'] )  ) {
+  if ( ! in_array ( $padTag [$pad], $padNoParmsParse  )  ) {
    
     $padPrmTmp = padParseOptions ( $padPrm [$pad] [0] );
     
@@ -33,6 +33,8 @@
         else {                    
           $padPrm [$pad] [$padW[0]]   = padEval ( $padW[1] );
           $padPrm [$pad] [$padPrmCnt] = $padPrm [$pad] [$padW[0]];
+          if ( $padPrmCnt == 1 )
+            $padPrm [$pad] ['_first_Key_'] = $padW[0];
         }
    
       }

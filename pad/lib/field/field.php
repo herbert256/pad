@@ -1,48 +1,66 @@
 <?php
 
 
-  function padFieldCheck ( $parm)          { return padField ( $parm, 1); } 
-  function padFieldValue ( $parm)          { return padField ( $parm, 2); } 
+  function padFieldCheck ( $parm ) { return padField ( $parm, 1 ); } 
+  function padFieldValue ( $parm ) { return padField ( $parm, 2 ); } 
 
-  function padArrayCheck ( $parm)          { return padField ( $parm, 3); } 
-  function padArrayValue ( $parm)          { return padField ( $parm, 4); } 
+  function padArrayCheck ( $parm ) { return padField ( $parm, 3 ); } 
+  function padArrayValue ( $parm ) { return padField ( $parm, 4 ); } 
   
-  function padParmCheck  ( $parm, $lvl=0 ) { return padField ( $parm, 5, $lvl ); } 
-  function padParmValue  ( $parm, $lvl=0 ) { return padField ( $parm, 6, $lvl ); } 
+  function padParmCheck  ( $parm ) { return padField ( $parm, 5 ); } 
+  function padParmValue  ( $parm ) { return padField ( $parm, 6 ); } 
   
-  function padTagCheck   ( $parm, $lvl=0 ) { return padField ( $parm, 7, $lvl ); } 
+  function padTagCheck   ( $parm, $lvl=0 ) { return padField ( $parm, 7, $lvl) ; } 
   function padTagValue   ( $parm, $lvl=0 ) { return padField ( $parm, 8, $lvl ); } 
 
-  function padFieldNull  ( $parm)          { return padField ( $parm, 9); } 
+  function padFieldNull  ( $parm ) { return padField ( $parm, 9 ); } 
 
 
-  function padField ($field, $type, $lvl=0 ) {
+  function padField ( $field, $type, $lvl=0 ) {
 
     $field = ( substr ( $field, 0, 1 ) == '$' ) ? substr ( $field, 1 ) : $field;
     $field = ( substr ( $field, 0, 1 ) == '!' ) ? substr ( $field, 1 ) : $field;
     $field = ( substr ( $field, 0, 1 ) == '#' ) ? substr ( $field, 1 ) : $field;
     $field = ( substr ( $field, 0, 1 ) == '&' ) ? substr ( $field, 1 ) : $field;
 
-    if ( strpos($field, ':' ) !== FALSE )
-      list ( $tag, $field ) = explode (':', $field, 2);
-    else
-      $tag = '';
+    if ( strpos($field, ':' ) !== FALSE ) {
+      list ( $prefix, $field ) = explode (':', $field, 2);
+      $idx = padFieldGetLevel ($prefix);
+    } else {
+      $prefix = '';
+      if ( in_array ( $type, [5,6] ) )
+        $idx = $GLOBALS ['pad'];
+      elseif ( in_array ( $type, [7,8] ) )
+        if ($lvl)
+          $idx = padFieldFirstNonTag (1);
+        else
+          $idx = padFieldFirstNonTag ();
+      else
+        $idx = $GLOBALS ['pad'];
+    }
 
-    $idx = ( $tag ) ? padFieldGetLevel ($tag) : padFieldFirstNonParm ();
+    $result = padFieldGo ($field, $type, $prefix, $idx);
+
+    if ( $GLOBALS['padTrace'] )
+      include PAD . 'pad/trace/field.php';
+
+    return $result;
+
+  }
+
+
+  function padFieldGo ( $field, $type, $prefix, $idx ) {
 
     if     ( $type == 5 ) $value = padParm        ( $field, $idx, $type );
     elseif ( $type == 6 ) $value = padParm        ( $field, $idx, $type );
     elseif ( $type == 7 ) $value = padTag         ( $field, $idx, $type );
     elseif ( $type == 8 ) $value = padTag         ( $field, $idx, $type );
-    elseif ( $tag       ) $value = padFieldPrefix ( $field, $type, $tag, $idx );
+    elseif ( $prefix    ) $value = padFieldPrefix ( $field, $type, $prefix, $idx );
     else                  $value = padFieldLevel  ( $field, $type );
 
-    if ( $value === INF and $lvl and ! $tag ) {
-      $idx = padFieldFirstNonParm () - 1;
-      if     ( $type == 5 ) $value = padParm ( $field, $idx, $type );
-      elseif ( $type == 6 ) $value = padParm ( $field, $idx, $type ); 
-      elseif ( $type == 7 ) $value = padTag  ( $field, $idx, $type );
-      elseif ( $type == 8 ) $value = padTag  ( $field, $idx, $type );
+    if ( $value === INF and ! $prefix and in_array ( $type, [5,6] ) ) {
+      $idx = $idx - 1;
+      $value = padParm ( $field, $idx, $type );
     }
 
     if     ($type == 1) return ( $value !== NULL and ( $value === INF or ! is_scalar($value) ) ) ? FALSE : TRUE;
@@ -53,22 +71,9 @@
     elseif ($type == 6) return ( $value === INF                                                ) ? ''    : $value;
     elseif ($type == 7) return ( $value === INF                                                ) ? FALSE : TRUE;
     elseif ($type == 8) return ( $value === INF                                                ) ? ''    : $value;
-    elseif ($type == 9) return ( $value === INF                                                ) ? TRUE  : FALSE;
+    elseif ($type == 9) return ( $value === NULL                                               ) ? TRUE  : FALSE;
 
   }
-
-
-  function padFieldFirstNonParm  () {
-
-    global $pad, $padType;
-
-    for ($i=$pad; $i; $i--)
-      if ( $padType[$i] and $padType[$i] <> 'parm' )
-        return $i;
-
-    return $pad - 1;
-
-  }  
 
 
 ?>

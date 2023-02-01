@@ -7,7 +7,10 @@
 
   $padAjaxApp  = padTagParm ( 'app',  $app );
   $padAjaxPage = padTagParm ( 'page', $padPrm [$pad] [1] );
-  $padAjaxUrl  = $padApp . $padAjaxApp . '&page=' . $padAjaxPage . '&padInclude=1'; 
+  $padAjaxUrl  = $padApp . $padAjaxApp . '&page=' . $padAjaxPage; 
+
+  if ( ! isset ( $padPrm [$pad] ['noInclude'] ) )
+    $padAjaxUrl .= '&padInclude=1';
 
   foreach($padPrm [$pad] as $padPairKey => $padPairValue)
     if ( padValid ($padPairKey) )

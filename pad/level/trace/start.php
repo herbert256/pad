@@ -3,7 +3,9 @@
   if ( ! $padTrace )
     return;
 
-  $padLevelDir [$pad] = $padOccurDir [$pad-1] . '/tag-' . $padCnt . '-' . $padTag [$pad] ;
+  $padLevelDir [$pad] = $padOccurDir [$pad-1] . 
+    '/tags/' . $padCnt . '-' . $padTag [$pad] . '-' . $padType [$pad] ;
+
   $padOccurDir [$pad] = $padLevelDir [$pad];
   
   padTraceFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );

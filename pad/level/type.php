@@ -20,6 +20,8 @@
 
   $padType [$pad] = padTypeGet( $padTag [$pad] );
 
+ # echo 'type: ' . $padTag [$pad] . ' ' . $padType [$pad] . '<br>';
+
   return $padType [$pad];  
 
 ?>

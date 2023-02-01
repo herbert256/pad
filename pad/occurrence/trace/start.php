@@ -9,7 +9,7 @@
     'html' => $padHtml    [$pad]
   ];
 
-  $padOccurDir [$pad] = $padLevelDir [$pad] . '/occur-' . $padOccur [$pad];
+  $padOccurDir [$pad] = $padLevelDir [$pad] . '/occurs/' . $padOccur [$pad];
 
   padFilePutContents ( $padOccurDir [$pad] . "/start.json",     $padTraceData );
   

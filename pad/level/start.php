@@ -26,5 +26,5 @@
 
   if ( count ( $padData [$pad] ) )
     include PAD . 'pad/occurrence/start.php';
-  
+
 ?>

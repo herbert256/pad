@@ -7,7 +7,7 @@
     elseif ( file_exists     ( APP . "tags/$type.html"                ) ) return 'app';
     elseif ( file_exists     ( PAD . "pad/tags/$type.php"             ) ) return 'pad';
     elseif ( file_exists     ( PAD . "pad/tags/$type.html"            ) ) return 'pad';
-    elseif ( padTagCheck     ( $type, 1                               ) ) return 'tag';
+    elseif ( padTagCheck     ( $type,                                 ) ) return 'tag';
     elseif ( padChkLevel     ( $type                                  ) ) return 'level';
     elseif ( isset           ( $GLOBALS ['padFlagStore'] [$type]      ) ) return 'flag';
     elseif ( isset           ( $GLOBALS ['padContentStore'] [$type]   ) ) return 'content';
@@ -34,7 +34,7 @@
     elseif ( $type == 'app'      and file_exists     ( APP . "tags/$type.html"                ) ) return TRUE;
     elseif ( $type == 'pad'      and file_exists     ( PAD . "pad/tags/$type.php"             ) ) return TRUE;
     elseif ( $type == 'pad'      and file_exists     ( PAD . "pad/tags/$type.html"            ) ) return TRUE;
-    elseif ( $type == 'tag'      and padTagCheck     ( $type, 1                               ) ) return TRUE;
+    elseif ( $type == 'tag'      and padTagCheck     ( $type,                                 ) ) return TRUE;
     elseif ( $type == 'level'    and padChkLevel     ( $type                                  ) ) return TRUE;
     elseif ( $type == 'flag'     and isset           ( $GLOBALS ['padFlagStore'] [$type]      ) ) return TRUE;
     elseif ( $type == 'content'  and isset           ( $GLOBALS ['padContentStore'] [$type]   ) ) return TRUE;
@@ -66,7 +66,7 @@
     elseif ( isset           ( $GLOBALS ['padContentStore'] [$type]   ) ) return 'content';
     elseif ( isset           ( $GLOBALS ['padDataStore'] [$type]      ) ) return 'data';
     elseif ( isset           ( $GLOBALS ['padSeqStore'] [$type]       ) ) return 'sequence';
-    elseif ( padTagCheck     ( $type, 1                               ) ) return 'tag';
+    elseif ( padTagCheck     ( $type,                                 ) ) return 'tag';
     elseif ( padArrayCheck   ( $type                                  ) ) return 'array';
     elseif ( padParmCheck    ( $type, 1                               ) ) return 'parm';
     elseif ( padChkLevel     ( $type                                  ) ) return 'level';

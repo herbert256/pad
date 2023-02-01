@@ -1,0 +1,45 @@
+<table border=1>
+
+  {departments}
+
+    {first}
+      <tr>
+        {departments:fields}
+          <th>{$name}</th>
+        {/departments:fields}
+      </tr>
+    {/first}
+
+    <tr>
+      {departments:fields}
+        <td> {$value} </td>
+      {/departments:fields}
+    </tr>
+
+  {/departments}
+
+</table>
+
+<p>
+
+<table border=1>
+
+  {departments}
+
+    {first}
+      <tr>
+        {tag:departments:fields}
+          <th>{$name}</th>
+        {/tag:departments:fields}
+      </tr>
+    {/first}
+
+    <tr>
+      {tag:departments:fields}
+        <td> {$value} </td>
+      {/tag:departments:fields}
+    </tr>
+
+  {/departments}
+
+</table>
