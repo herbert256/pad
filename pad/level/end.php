@@ -18,13 +18,22 @@
   if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']) )
     include PAD . 'pad/callback/exit.php' ;
 
+  if ( $padAfter [$pad] )
+    return include 'split/after2.php';
+
+  if ( $padBefore [$pad] == 2 ) 
+    include 'split/before3.php';
+
   include PAD . "pad/options/go/end.php";
 
   include 'trace/end.php';
 
   $pad--;
-  
+
+  if ( $pad >= 0 and $padBefore [$pad] == 1 ) 
+    return include 'split/before2.php';
+
   if ( $pad >= 0 )
     padHtml ( $padResult[$pad+1] );
-  
+
 ?>

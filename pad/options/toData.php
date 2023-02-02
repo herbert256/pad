@@ -8,7 +8,7 @@
   }
 
   if ( $padWalk  [$pad] <> 'start' ) 
-    $padDataStore [$padStoreName] = $padWalkData  [$pad];
+    $padDataStore [$padStoreName] = $padWalkData [$pad];
   else
     $padDataStore [$padStoreName] = $padData [$pad];
 

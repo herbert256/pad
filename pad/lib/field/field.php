@@ -39,7 +39,12 @@
         $idx = $GLOBALS ['pad'];
     }
 
-    $result = padFieldGo ($field, $type, $prefix, $idx);
+    if ( strpos($field, ':') !== FALSE  )
+      list ( $field, $parm ) = explode (':', $field, 2);
+    else
+      $parm  = '';
+
+    $result = padFieldGo ( $type, $prefix, $field, $parm, $idx );
 
     if ( $GLOBALS['padTrace'] )
       include PAD . 'pad/trace/field.php';
@@ -49,12 +54,12 @@
   }
 
 
-  function padFieldGo ( $field, $type, $prefix, $idx ) {
+  function padFieldGo ( $type, $prefix, $field, $parm, $idx ) {
 
     if     ( $type == 5 ) $value = padParm        ( $field, $idx, $type );
     elseif ( $type == 6 ) $value = padParm        ( $field, $idx, $type );
-    elseif ( $type == 7 ) $value = padTag         ( $field, $idx, $type );
-    elseif ( $type == 8 ) $value = padTag         ( $field, $idx, $type );
+    elseif ( $type == 7 ) $value = padTag         ( $field, $idx, $type, $parm);
+    elseif ( $type == 8 ) $value = padTag         ( $field, $idx, $type, $parm );
     elseif ( $prefix    ) $value = padFieldPrefix ( $field, $type, $prefix, $idx );
     else                  $value = padFieldLevel  ( $field, $type );
 

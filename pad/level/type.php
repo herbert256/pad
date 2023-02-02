@@ -1,27 +1,19 @@
 <?php
     
-  $padNs = strpos($padTag [$pad], ':');
+  $padType [$pad] = padTypeGet( $padTag [$pad] );
 
-  if ( $padNs ) {
+  if ( $padType [$pad] )
+    return $padType [$pad];  
 
-    $padTypeX = substr ($padTag [$pad], 0, $padNs);
-    $padTagX  = substr ($padTag [$pad], $padNs+1);
+  if ( strpos($padTag [$pad], ':') !== FALSE ) {
 
-    if ( file_exists ( PAD . "pad/types/$padType[$pad].php" ) and padTypeCheck ( $padTypeX, $padTagX ) )  {
+    list ( $padType [$pad], $padTag [$pad]) = explode (':', $padTag [$pad], 2 );
 
-      $padType [$pad] = $padTypeX;
-      $padTag  [$pad] = $padTagX;
-
-      return $padType [$pad]; 
-
-    }
+    if ( padTypeCheck ( $padType [$pad], $padTag [$pad] ) ) 
+      return $padType [$pad];  
 
   }
 
-  $padType [$pad] = padTypeGet( $padTag [$pad] );
-
- # echo 'type: ' . $padTag [$pad] . ' ' . $padType [$pad] . '<br>';
-
-  return $padType [$pad];  
+  return FALSE;  
 
 ?>

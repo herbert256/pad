@@ -18,11 +18,17 @@
   include 'data.php';
 
   include PAD . "pad/options/go/start.php";
+
+  include 'name.php';
   
   if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']))
     include PAD . 'pad/callback/init.php' ;
 
-  include 'trace/level.php';
+  if ( strpos ( $padBase[$pad], '@start_footer@') !== FALSE )
+    include 'split/after1.php';
+
+  if ( strpos ( $padBase[$pad], '@end_header@') !== FALSE )
+    return include 'split/before1.php';
 
   if ( count ( $padData [$pad] ) )
     include PAD . 'pad/occurrence/start.php';

@@ -50,6 +50,12 @@
   $padSetDelete  [$pad] = [];
   $padEndOptions [$pad] = [];
 
-  $padTagCnt      [$pad] = 0;
+  $padTagCnt     [$pad] = 0;
 
+  $padAfter      [$pad] = 0;
+  $padBefore     [$pad] = 0;
+  $padBeforeData [$pad] = '';
+
+  $padSetName = '';
+  
 ?>

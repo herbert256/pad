@@ -1,6 +1,20 @@
-<p><table border=1>
+{content}
 
-  {departments}
+  <p>
+
+  <table border=1>
+
+    {departments}
+
+      @content@
+
+    {/departments}
+
+  </table>
+
+{/content 'myContent'}
+
+{myContent}
 
     {first}
       <tr>
@@ -16,12 +30,9 @@
       {/fields}
     </tr>
 
-  {/departments}
+{/myContent}
 
-</table><p><table border=1>
-
-  {departments}
-
+{myContent}
     {first 'departments'}
       <tr>
         {fields 'departments'}
@@ -36,11 +47,9 @@
       {/fields}
     </tr>
 
-  {/departments}
+{/myContent}
 
-</table><p><table border=1>
-
-  {departments}
+{myContent}
 
     {first -1}
       <tr>
@@ -56,11 +65,9 @@
       {/fields}
     </tr>
 
-  {/departments}
+{/myContent}
 
-</table><p><table border=1>
-
-  {departments}
+{myContent}
 
     {departments:first}
       <tr>
@@ -76,11 +83,7 @@
       {/departments:fields}
     </tr>
 
-  {/departments}
-
-</table><p><table border=1>
-
-  {departments}
+{myContent}
 
     {tag:departments:first}
       <tr>
@@ -96,6 +99,4 @@
       {/tag:departments:fields}
     </tr>
 
-  {/departments}
-
-</table>
+{/myContent}

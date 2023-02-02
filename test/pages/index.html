@@ -1,11 +1,3 @@
-{range '1..1', name='abc'}
- 
-{first}A{/first}
-{first -1}B{/first}
-{first 'abc'}C{/first}
+{content 'myContent'}|1|@end_header@{$range}|@start_footer@5|{/content}
 
-X
-
-{/range}
-
-{dump}
+{range '2..4', content='myContent'}
