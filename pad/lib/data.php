@@ -324,15 +324,15 @@
 
   function padDataName ($name) {
 
-    global $pad;
+    global $pad, $padPrm, $padTag, $padName;
     
-    if     ( $name                          ) $return = $name;
-    elseif ( $GLOBALS ['padName'] == 'data'    ) $return = $GLOBALS ['padPrm'] [$GLOBALS ['pad']] [1];
-    elseif ( padTagParm ('name')             ) $return = padTagParm ('name');
-    elseif ( padTagParm ('toData')           ) $return = padTagParm ('toData');
-    else                                      $return = $GLOBALS ['padName'] [$GLOBALS ['pad']];
+    if     ( $name                              ) $return = $name;
+    elseif ( isset ($padPrm [$pad] ['name'] )   ) $return = $padPrm [$pad] ['name'];
+    elseif ( isset ($padPrm [$pad] ['toData'] ) ) $return = $padPrm [$pad] ['toData'];
+    elseif ( $padTag [$pad] == 'data '          ) $return = $padPrm [$pad] [1];
+    elseif ( isset ($padTag [$pad] )            ) $return = $padTag [$pad];
 
-    if (substr($return, 0, 1) == '$')
+    if ( substr($return, 0, 1) == '$' )
       $return = substr($return, 1);
 
     return $return;

@@ -3,7 +3,8 @@
   $padSeqReturn = [];
 
   $padSeqNames = array_unique ( [
-    'sequence', $padSeqSeq, $padSeqSet, $padSeqName, $padName[$pad], $padPrm [$pad] ['toData']??'' 
+    'sequence', $padSeqSeq, $padSeqSet, $padSeqName, $padName[$pad], 
+    $padPrm [$pad] ['toData']??'', $padPrm [$pad] ['name']??''  
   ] );
 
   foreach ($padSeqResult as $padSeqValue) {
@@ -11,7 +12,8 @@
      $padSeqRecord = [];
 
      foreach ($padSeqNames as $padSeqName)
-       $padSeqRecord [$padSeqName] = $padSeqValue;
+       if ( $padSeqName)
+         $padSeqRecord [$padSeqName] = $padSeqValue;
 
      $padSeqReturn [] = $padSeqRecord; 
 

@@ -7,8 +7,8 @@
     elseif ( file_exists     ( APP . "tags/$type.html"                ) ) return 'app';
     elseif ( file_exists     ( PAD . "pad/tags/$type.php"             ) ) return 'pad';
     elseif ( file_exists     ( PAD . "pad/tags/$type.html"            ) ) return 'pad';
-    elseif ( file_exists     ( APP . "includes/$type.php"             ) ) return 'include';
-    elseif ( file_exists     ( APP . "includes/$type.html"            ) ) return 'include';
+  #  elseif ( file_exists     ( APP . "includes/$type.php"             ) ) return 'include';
+  #  elseif ( file_exists     ( APP . "includes/$type.html"            ) ) return 'include';
     elseif ( padTagCheck     ( $type,                                 ) ) return 'tag';
     elseif ( padChkLevel     ( $type                                  ) ) return 'level';
     elseif ( isset           ( $GLOBALS ['padFlagStore'] [$type]      ) ) return 'flag';
@@ -37,8 +37,8 @@
     elseif ( $type == 'app'      and file_exists     ( APP . "tags/$type.html"                ) ) return TRUE;
     elseif ( $type == 'pad'      and file_exists     ( PAD . "pad/tags/$type.php"             ) ) return TRUE;
     elseif ( $type == 'pad'      and file_exists     ( PAD . "pad/tags/$type.html"            ) ) return TRUE;
-    elseif ( $type == 'include'  and file_exists     ( APP . "includes/$type.php"             ) ) return TRUE;
-    elseif ( $type == 'include'  and file_exists     ( APP . "includes/$type.html"            ) ) return TRUE;
+   # elseif ( $type == 'include'  and file_exists     ( APP . "includes/$type.php"             ) ) return TRUE;
+   # elseif ( $type == 'include'  and file_exists     ( APP . "includes/$type.html"            ) ) return TRUE;
     elseif ( $type == 'tag'      and padTagCheck     ( $type,                                 ) ) return TRUE;
     elseif ( $type == 'level'    and padChkLevel     ( $type                                  ) ) return TRUE;
     elseif ( $type == 'flag'     and isset           ( $GLOBALS ['padFlagStore'] [$type]      ) ) return TRUE;

@@ -12,19 +12,23 @@
    
     $padPrmTmp = padParseOptions ( $padPrm [$pad] [0] );
     
-    foreach ( $padPrmTmp as $padV ) {
+    foreach ( $padPrmTmp as $padV ) { 
 
       if ( $padV == 'trace' )
         include 'trace/option.php';
 
       $padW = padExplode ($padV, '=', 2);
 
-      if ( count($padW) == 2 and substr($padW[0], 0, 1) == '$' )
-        continue;
-
       $padPrmCnt++; 
 
-      if ( padValid ($padW[0]) and ! is_numeric($padW[0]) ) {
+      if ( count($padW) == 2 and substr($padW[0], 0, 1) == '$' ) {
+
+        $padSetName  = trim(substr($padW[0], 1));
+        $padSetValue = $padW[1];
+
+        include 'set.php';
+
+      } elseif ( padValid ($padW[0]) and ! is_numeric($padW[0]) ) {
    
         if ( count($padW) == 1 ) {
           $padPrm [$pad] [$padW[0]]   = TRUE;

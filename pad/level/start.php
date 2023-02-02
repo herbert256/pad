@@ -5,7 +5,6 @@
   if ( $padTrace )
     include 'trace/start.php';
 
-  include 'set.php';
   include 'inits.php';
 
   $padContent = $padTrue [$pad];

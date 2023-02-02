@@ -1,39 +1,16 @@
 <?php
 
-  if ( ! in_array ( $padTag [$pad], ['if', 'case', 'while', 'until'] )  ) {
-   
-    $padPrmTmp = padParseOptions ( $padPrm [$pad] [0] );
-    
-    foreach ( $padPrmTmp as $padV ) {
+  if ( ! padValidName ($padSetName) )
+    return padError ("Invalid variable name: $padSetName");
 
-      $padW = padExplode ($padV, '=', 2);
+  $padSetValue = padVarOpts ( '', padExplode($padSetValue, '|') );
 
-      if ( count($padW) == 2 and substr($padW[0], 0, 1) == '$') {
+  $padPrm [$pad] [$padPrmCnt]  = $padSetValue;
+  $padPrm [$pad] [$padSetName] = $padSetValue;
 
-        $padPrmCnt++; 
-
-        $padSetName  = trim(substr($padW[0], 1));
-        $padSetValue = $padW[1];
-
-        if ( ! padValid ($padSetName) )
-          padError ("Invalid variable name: $padSetName");
-
-        if ( $padTag [$pad] <> 'set' or $padPair [$pad] )
-          if ( isset($GLOBALS [$padSetName]) )
-            $padSetSave [$pad] [$padSetName] = $GLOBALS [$padSetName];
-          else
-            $padSetDelete [$pad] [] = $padSetName;
-
-        $padSetValue = padVarOpts ( '', padExplode($padSetValue, '|') );
-        
-        $GLOBALS [$padSetName]       = $padSetValue;
-        $padPrm [$pad] [$padPrmCnt]  = $padSetValue;
-        $padPrm [$pad] [$padSetName] = $padSetValue;
-
-      } 
-  
-    }
- 
-  }
+  if ( $padTag [$pad] == 'set' and ! $padPair [$pad] )
+    $GLOBALS [$padSetName] = $padSetValue;
+  else
+    $padSet [$pad] [$padSetName] = $padSetValue;
 
 ?>

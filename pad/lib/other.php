@@ -20,7 +20,7 @@
     if ( ! strlen($var) )
       return FALSE;
 
-    if ( trpos($var, ':') !== FALSE )
+    if ( strpos($var, ':') !== FALSE )
       list ( $tag, $var ) = explode (':', $var, 2);
     else
       $tag = '';
@@ -471,18 +471,18 @@
 
     if     ( $input === NULL       )  return [];
     elseif ( $input === FALSE      )  return [];
-    elseif ( $input === TRUE       )  return [1 => 1 ];
+    elseif ( $input === TRUE       )  return [1 => 1];
     elseif ( is_array ( $input)    )  return $input;
-    elseif ( is_object ( $input)   )  return padToArray( $input );
-    elseif ( is_resource ( $input) )  return padToArray( $input );
+    elseif ( is_object ( $input)   )  return padToArray($input);
+    elseif ( is_resource ( $input) )  return padToArray($input);
     elseif ( ! trim($input)        )  return [];
-    else                              return [1 => trim($input) ];      
+    else                              return [1 => trim($input)];      
 
   }
 
   function padSetGlobal ( $name, $value ) {
 
-    if ( substr($name, 0, 3) == 'pad' )
+    if ( substr($name, 0, 3) == 'pad' or  ! $name )
       return;
 
     global $pad, $padSaveVars, $padDeleteVars;
