@@ -1,5 +1,18 @@
 <?php
 
+
+  function padSplit ( $needle, $haystack ) {
+
+    $array = explode ( $needle, $haystack, 2 );
+
+    if ( count ($array) == 1 )
+      $array [] = '';
+
+    return $array;
+
+  }
+
+
   function padValidFieldName ( $var ) {
 
     $first = substr ( $var, 0, 1 );

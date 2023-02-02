@@ -56,6 +56,8 @@
   
     if ( $csv ) {
       
+      $GLOBALS ['debug-0'] = $csv;
+
       $enc = preg_replace_callback(
           '/"(.*?)"/s',
           function ($field) {
@@ -77,6 +79,8 @@
 
       if ( ! is_array($result)  or $result === NULL or $result === FALSE)
         return padDataError ($data, "CSV conversion error");
+
+     $GLOBALS ['debug-1'] = $result;
 
     }
 
@@ -168,7 +172,13 @@
       
     }
 
-    return padDataChk ($result, $name);
+    $GLOBALS ['debug-2'] = $result;
+
+    $result = padDataChk ($result, $name);
+
+     $GLOBALS ['debug-3'] = $result;
+
+    return $result;
 
   }
   

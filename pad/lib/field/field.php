@@ -23,26 +23,19 @@
     $field = ( substr ( $field, 0, 1 ) == '#' ) ? substr ( $field, 1 ) : $field;
     $field = ( substr ( $field, 0, 1 ) == '&' ) ? substr ( $field, 1 ) : $field;
 
-    if ( strpos($field, ':' ) !== FALSE ) {
+    if ( strpos($field, ':' ) !== FALSE )
       list ( $prefix, $field ) = explode (':', $field, 2);
-      $idx = padFieldGetLevel ($prefix);
-    } else {
+    else 
       $prefix = '';
-      if ( in_array ( $type, [5,6] ) )
-        $idx = $GLOBALS ['pad'];
-      elseif ( in_array ( $type, [7,8] ) )
-        if ($lvl)
-          $idx = padFieldFirstNonTag (1);
-        else
-          $idx = padFieldFirstNonTag ();
-      else
-        $idx = $GLOBALS ['pad'];
-    }
 
-    if ( strpos($field, ':') !== FALSE  )
-      list ( $field, $parm ) = explode (':', $field, 2);
+    if ( $prefix ) 
+      $idx = padFieldGetLevel ($prefix);
+    elseif ( in_array ( $type, [7,8] ) )
+      $idx = ($lvl) ? padFieldFirstNonTag (1) : padFieldFirstNonTag ();
     else
-      $parm  = '';
+      $idx = $GLOBALS ['pad'];
+  
+    list ( $field, $parm ) = padSplit ( ':', $field );
 
     $result = padFieldGo ( $type, $prefix, $field, $parm, $idx );
 
@@ -60,13 +53,8 @@
     elseif ( $type == 6 ) $value = padParm        ( $field, $idx, $type );
     elseif ( $type == 7 ) $value = padTag         ( $field, $idx, $type, $parm);
     elseif ( $type == 8 ) $value = padTag         ( $field, $idx, $type, $parm );
-    elseif ( $prefix    ) $value = padFieldPrefix ( $field, $type, $prefix, $idx );
+    elseif ( $prefix    ) $value = padFieldPrefix ( $field, $idx, $type );
     else                  $value = padFieldLevel  ( $field, $type );
-
-    if ( $value === INF and ! $prefix and in_array ( $type, [5,6] ) ) {
-      $idx = $idx - 1;
-      $value = padParm ( $field, $idx, $type );
-    }
 
     if     ($type == 1) return ( $value !== NULL and ( $value === INF or ! is_scalar($value) ) ) ? FALSE : TRUE;
     elseif ($type == 2) return ( $value === NULL or    $value === INF or ! is_scalar($value)   ) ? ''    : $value;

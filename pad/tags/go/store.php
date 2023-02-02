@@ -10,12 +10,10 @@
   if ( isset ( $padPrm [$pad] [1] ) or isset ( $padPrm [$pad] [2] ) ) 
     $padName [$pad] = $padPrm [$pad] [1];
 
-  if ( isset ( $padPrm [$pad] [2] ) )
+  if ( ! $padContent )
     $padStoreSource = $padPrm [$pad] [2];  
   else
     $padStoreSource = $padContent;
-
-  $padName [$pad] = $padName [$pad];
 
   if ( $padTag [$pad] == 'content') {
 

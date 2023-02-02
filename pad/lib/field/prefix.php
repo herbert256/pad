@@ -1,25 +1,12 @@
 <?php
 
 
-  function padFieldPrefix ( $field, $type, $prefix, $lvl ) {
+  function padFieldPrefix ( $field, $idx, $type ) {
 
-    global $pad, $padPrm, $padCurrent;
-
-    if ( is_numeric($field) ) {
-
-      $lvl = padFieldGetLevel ($prefix);
-      $idx = intval ($field) - 1 ;
-
-      if ( isset ( $padPrm [$lvl] [$idx] ) )
-        return $padPrm [$lvl] [$idx]; 
-      else
-        return INF;
-    }
-
-    if ( $lvl === 0 )
-      return padFieldSearch ($GLOBALS, $field, $type);
+    if ( $idx )
+      return padFieldSearch ( $GLOBALS ['padCurrent'] [$idx], $field, $type );
     else 
-      return padFieldSearch ($padCurrent [$lvl], $field, $type);
+      return padFieldSearch ( $GLOBALS, $field, $type );
 
   }
 
@@ -38,8 +25,8 @@
 
       if ( is_object ($current[$name]) or is_resource ($current[$name]) )
         $current [$name] = (array) $current [$name];
-          
-      $current = &$current [$name];
+         
+       $current = &$current [$name];
         
     }
 

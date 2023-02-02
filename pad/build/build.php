@@ -10,4 +10,6 @@
   if ( ! isset ( $padNoOccur) )
     include PAD . 'pad/occurrence/start.php';
 
+  $padBase [$pad] = '{root}' . $padBase [$pad] . '{/root}';
+
 ?>

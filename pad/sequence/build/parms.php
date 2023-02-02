@@ -30,7 +30,7 @@
   $padSeqMake     =          $padPrm [$pad] ['make']      ?? '';
   $padSeqUpdate   =          $padPrm [$pad] ['update']    ?? '';
 
-  $padSeqName     =          $padName    [$pad]               ?? ''; 
+  $padSeqName     =          $padName [$pad]              ?? ''; 
   
   unset ( $padPrm [$pad] ['store'] );
  

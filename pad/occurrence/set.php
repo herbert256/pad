@@ -2,11 +2,11 @@
 
   $padSetTmp = [];
 
-  if ( padIsDefaultData ($padData [$pad]) ) {
-    if ( isset($padPrm [$pad] [1] ) and padValidName ( $padPrm [$pad] [1] ) )
+  if ( $pad )
+    if ( padIsDefaultData ($padData [$pad]) ) 
       $padSetTmp [ $padName [$pad] ] = $padPrm [$pad] [1];
-  } else
-    $padSetTmp [ $padName [$pad] ] = $padCurrent [$pad];
+    else
+      $padSetTmp [ $padName [$pad] ] = $padCurrent [$pad];
 
   foreach ( $padCurrent [$pad] as $padK => $padV )
     $padSetTmp [$padK] = $padV;

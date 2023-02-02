@@ -10,5 +10,8 @@
 
   $join = TRUE;
 
+  $show_php = FALSE; 
+  $php_data = FALSE;
+
 
 ?>

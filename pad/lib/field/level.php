@@ -14,6 +14,11 @@
             return $value;
     }
 
+    if ( is_numeric($field) ) {
+      if ( array_key_exists ( $field, $padPrm [$pad] ) )
+        return $padPrm [$pad] [$field];
+    }
+
     for ( $i=$pad; $i; $i-- ) {
 
       if ( array_key_exists ( $field, $padCurrent [$i] ) ) {
