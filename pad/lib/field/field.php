@@ -30,6 +30,8 @@
 
     if ( $prefix ) 
       $idx = padFieldGetLevel ($prefix);
+    elseif ( in_array ( $type, [5,6] ) )
+      $idx = $GLOBALS ['pad'] - 1;
     elseif ( in_array ( $type, [7,8] ) )
       $idx = ($lvl) ? padFieldFirstNonTag (1) : padFieldFirstNonTag ();
     else

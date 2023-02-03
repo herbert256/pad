@@ -1,5 +1,5 @@
 <?php
 
-  list ( $padBase [$pad], $padAfter [$pad] ) = explode ( '@start_footer@', $padBase[$pad], 2 );
+  list ( $padBase [$pad], $padAfter [$pad] ) = explode ( '@end@', $padBase[$pad], 2 );
 
 ?>

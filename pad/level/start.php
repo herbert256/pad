@@ -23,10 +23,10 @@
   if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']))
     include PAD . 'pad/callback/init.php' ;
 
-  if ( strpos ( $padBase[$pad], '@start_footer@') !== FALSE )
+  if ( strpos ( $padBase[$pad], '@end@') !== FALSE )
     include 'split/after1.php';
 
-  if ( strpos ( $padBase[$pad], '@end_header@') !== FALSE )
+  if ( strpos ( $padBase[$pad], '@start@') !== FALSE )
     return include 'split/before1.php';
 
   if ( count ( $padData [$pad] ) )

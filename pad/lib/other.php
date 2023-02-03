@@ -287,7 +287,7 @@
     if ( trim($name) == '' ) 
       return FALSE;
 
-    if ( ! preg_match('/^[a-zA-Z][:#a-zA-Z0-9_]*$/',$name) )
+    if ( ! preg_match('/^[a-zA-Z][:#a-zA-Z0-9_\.]*$/',$name) )
       return FALSE;
 
     return TRUE;  
@@ -743,6 +743,8 @@
       $content = substr($content, $first+1, $last-$first);
       return $type;
     }
+
+    return '';
 
   }
 

@@ -17,10 +17,17 @@
     if ( is_array ( $data ) )
       return padDataChk ($data, $name);
 
-    $file = APP . "data/$data";
-    if ( padFileValidName ($file) and file_exists ($file) )
-      $data = padFileGetContents ($file);
-    elseif ( substr ( $data, 0, 7 ) == 'http://' or substr ( $data, 0, 8 ) == 'https://' )
+    if ( padFileValidName ( APP . "data/$data" ) ) {
+      $file = APP . "data/$data";
+      if     ( file_exists ($file)        ) { $data = padFileGetContents ($file);                              }
+      elseif ( file_exists ("$file.xml")  ) { $data = padFileGetContents ("$file.xml");  $content = 'xml';     }
+      elseif ( file_exists ("$file.json") ) { $data = padFileGetContents ("$file.json"); $content = 'json';    }
+      elseif ( file_exists ("$file.yaml") ) { $data = padFileGetContents ("$file.yaml"); $content = 'yaml';    }
+      elseif ( file_exists ("$file.csv")  ) { $data = padFileGetContents ("$file.csv");  $content = 'csv';     }
+      elseif ( file_exists ("$file.php")  ) { $data = include ("$file.php"); return padDataChk ($data, $name); }
+    }
+
+    if ( substr ( $data, 0, 7 ) == 'http://' or substr ( $data, 0, 8 ) == 'https://' )
       $data = padCurlData ($data);    
 
     if ( padCheckRange ( $data ) ) { 
@@ -77,7 +84,7 @@
           foreach (explode(',', $val1) as $key2 => $val2)
             $result [$key1] [$header[$key2]] = trim(str_replace('!!Q!!', '"', urldecode($val2)));
 
-      if ( ! is_array($result)  or $result === NULL or $result === FALSE)
+      if ( ! is_array($result) or $result === NULL or $result === FALSE)
         return padDataError ($data, "CSV conversion error");
 
      $GLOBALS ['debug-1'] = $result;
