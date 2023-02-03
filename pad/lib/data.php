@@ -17,14 +17,12 @@
     if ( is_array ( $data ) )
       return padDataChk ($data, $name);
 
-    if ( padFileValidName ( APP . "data/$data" ) ) {
-      $file = APP . "data/$data";
-      if     ( file_exists ($file)        ) { $data = padFileGetContents ($file);                              }
-      elseif ( file_exists ("$file.xml")  ) { $data = padFileGetContents ("$file.xml");  $content = 'xml';     }
-      elseif ( file_exists ("$file.json") ) { $data = padFileGetContents ("$file.json"); $content = 'json';    }
-      elseif ( file_exists ("$file.yaml") ) { $data = padFileGetContents ("$file.yaml"); $content = 'yaml';    }
-      elseif ( file_exists ("$file.csv")  ) { $data = padFileGetContents ("$file.csv");  $content = 'csv';     }
-      elseif ( file_exists ("$file.php")  ) { $data = include ("$file.php"); return padDataChk ($data, $name); }
+    if ( padIsDataFile ( $data ) ) {
+      if ( ! $name )
+        $name = padTagParm ('name', $data);
+      $data = padGetDataFile ( $data, $content );
+      if ( is_array ( $data ) )
+        return padDataChk ($data, $name);
     }
 
     if ( substr ( $data, 0, 7 ) == 'http://' or substr ( $data, 0, 8 ) == 'https://' )
@@ -179,11 +177,7 @@
       
     }
 
-    $GLOBALS ['debug-2'] = $result;
-
     $result = padDataChk ($result, $name);
-
-     $GLOBALS ['debug-3'] = $result;
 
     return $result;
 

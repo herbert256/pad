@@ -22,8 +22,8 @@
   if ( padValidFieldName ( $padBetween ) )
     return include 'var.php';
 
-  if ( ! ctype_alpha ( $padFirst ) ) return padIgnore ('ctype_alpha', 0);
-  if ( ! padValid ( $padWords[0] ) ) return padIgnore ('padValid', 0);
+  if ( ! ctype_alpha ( $padFirst )    ) return padIgnore ('ctype_alpha', 0);
+  if ( ! padValidTag ( $padWords[0] ) ) return padIgnore ('padValid', 0);
 
   include 'setup.php';    
   include 'parms.php';

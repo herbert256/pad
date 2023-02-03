@@ -15,7 +15,10 @@
   function padColorsString ($source) { 
     
    $source = highlight_string($source, TRUE);
-   $source = str_replace ('@content@', '<font color="black"><b><font color="green">@content@</font></b></font>',  $source);
+
+   $source = str_replace ('@content@', '<font color="black"><b><font color="blue">@content@</font></b></font>',  $source);
+   $source = str_replace ('@start@', '<font color="black"><b><font color="blue">@start@</font></b></font>',  $source);
+   $source = str_replace ('@end@', '<font color="black"><b><font color="blue">@end@</font></b></font>',  $source);
 
 go: $end = strpos($source, '}');
 

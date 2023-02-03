@@ -5,7 +5,7 @@
     return $padIncludeCall ['data'];
   }
 
-  $padOne = APP . "includes/" . $padPrm [$pad] [1];
+  $padOne = APP . "content/" . $padPrm [$pad] [1];
 
   return include PAD . 'pad/build/one.php';
 

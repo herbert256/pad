@@ -1,5 +1,7 @@
 <?php
 
-  return $padContentStore [$padTag [$pad]];
+  $padContentGo = $padTag [$pad];
+
+  return include PAD . 'pad/options/go/content.php';
 
 ?>

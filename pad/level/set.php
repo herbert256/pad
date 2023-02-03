@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! padValidName ($padSetName) )
+  if ( ! padValidVar ($padSetName) )
     return padError ("Invalid variable name: $padSetName");
 
   $padSetValue = padVarOpts ( '', padExplode($padSetValue, '|') );

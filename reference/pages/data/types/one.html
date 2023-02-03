@@ -2,7 +2,7 @@
   <row name="bob" phone="555-1111"/>
 {/data}
 
-{data 'json'}
+{data 'json', type='json'}
   { 
     "name": "json",
     "phone": "555-3425" 
@@ -18,8 +18,8 @@
 {list 'xml;json;yaml'}
   <h4>{$list}</h4>
   <table>
-    {pad data=$list}
+    {tag data='{$list}'}
       {row}
-    {/pad}
+    {/tag}
   </table>
 {/list} 

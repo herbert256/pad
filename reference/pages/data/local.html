@@ -1,19 +1,31 @@
-<table border=1>
+{content 'myContent'}
 
-  <tr>
-    <th> department </th>
-    <th> manager </th>
-    <th> phone </th>
-  </tr>
-
-  {departments}
+  <p><table border=1>
 
     <tr>
-      <td> {$department} </td>
-      <td> {$manager} </td>
-      <td> {$phone} </td>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
     </tr>
 
-  {/departments}
+    @start@
+      <tr>
+        <td> {$department} </td>
+        <td> {$manager} </td>
+        <td> {$phone} </td>
+      </tr>
+    @end@
 
-</table>
+  </table>
+
+{/content}
+
+{xml  'departments', content='myContent'}
+{json 'departments', content='myContent'}
+{yaml 'departments', content='myContent'}
+{csv  'departments', content='myContent'}
+
+{myContent xml='departments'}
+{myContent json='departments'}
+{myContent yaml='departments'}
+{myContent csv='departments'}

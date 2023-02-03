@@ -1,5 +1,5 @@
 <?php
 
-  return $padData [$padIdx];
+  return $GLOBALS ['padData'] [$padIdx];
 
 ?>

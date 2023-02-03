@@ -1,6 +1,49 @@
 <?php
 
 
+  function padIsContentFile ( $file ) {
+
+    $file = APP . "content/$file";
+
+    if ( padFileValidName ( $file ) )
+      if  ( ( file_exists ($file) and ! is_dir($file) ) or 
+        file_exists ("$file.html") or file_exists ("$file.php") )
+        return TRUE;
+
+    return FALSE;
+
+  }
+
+  function padIsDataFile ( $file ) {
+
+    $file = APP . "data/$file";
+
+    if ( padFileValidName ( $file ) )
+      if  ( ( file_exists ($file) and ! is_dir($file) ) 
+        or file_exists ("$file.xml") or file_exists ("$file.json") or file_exists ("$file.yaml") 
+        or file_exists ("$file.csv") or file_exists ("$file.php") )
+        return TRUE;
+
+    return FALSE;
+
+  }
+
+  function padGetDataFile ( $file, &$content ) {
+
+    $file = APP . "data/$file";
+
+    if     ( file_exists ($file)        ) { return padFileGetContents ($file);                              }
+    elseif ( file_exists ("$file.xml")  ) { return padFileGetContents ("$file.xml");  $content = 'xml';     }
+    elseif ( file_exists ("$file.json") ) { return padFileGetContents ("$file.json"); $content = 'json';    }
+    elseif ( file_exists ("$file.yaml") ) { return padFileGetContents ("$file.yaml"); $content = 'yaml';    }
+    elseif ( file_exists ("$file.csv")  ) { return padFileGetContents ("$file.csv");  $content = 'csv';     }
+    elseif ( file_exists ("$file.php")  ) { return include ("$file.php"); }
+
+    return '';
+    
+  }
+
+
   function padSplit ( $needle, $haystack ) {
 
     $array = explode ( $needle, $haystack, 2 );
@@ -53,7 +96,7 @@
     }
 
     if ( ! ($first == '#' and is_numeric($var)) )
-      if ( ! padValidName($var) )
+      if ( ! padValidVar($var) )
         return FALSE;
 
     if ( ! $tag )
@@ -71,7 +114,7 @@
 
     } 
 
-    if ( ! padValidName($tag) )
+    if ( ! padValidVar($tag) )
       return FALSE;
 
     return TRUE;
@@ -270,7 +313,20 @@
     return ($random < 10) ? chr($random+48) : ($random < 36 ? chr($random+55) : chr($random+61));
   }
 
-  function padValidName ($name) {
+
+  function padValid ($name) {
+
+    if ( trim($name) == '' ) 
+      return FALSE;
+
+    if ( ! preg_match('/^[a-zA-Z][:#a-zA-Z0-9_]*$/',$name) )
+      return FALSE;
+
+    return TRUE;  
+
+  }
+
+  function padValidVar ($name) {
 
     if ( trim($name) == '' ) 
       return FALSE;
@@ -282,12 +338,12 @@
 
   }
 
-  function padValid ($name) {
+  function padValidTag ($name) {
 
     if ( trim($name) == '' ) 
       return FALSE;
 
-    if ( ! preg_match('/^[a-zA-Z][:#a-zA-Z0-9_\.]*$/',$name) )
+    if ( ! preg_match('/^[a-zA-Z][a-zA-Z0-9:#_\.\/]*$/',$name) )
       return FALSE;
 
     return TRUE;  
@@ -695,7 +751,9 @@
 
     $content = trim ( $content );
 
-    if ( substr ($content, 0, 5) == '%YAML' )
+    if ( substr ($content, 0, 6) == '&open;') 
+      $type = 'json';
+    elseif ( substr ($content, 0, 5) == '%YAML' )
       $type = 'yaml';
     elseif ( substr ($content, 0, 3) == '---' )
       $type = 'yaml';

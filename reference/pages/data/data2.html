@@ -37,13 +37,14 @@
 {/data}
 
 {list 'xml;json;yaml;csv'}
-  <h4>{$list}</h4>
-  <table>
-    {pad data='{$list}'}
+  <p>
+  <table border=1>
+    <tr><th colspan="2">{$list}</th></tr>
+    {dummy data='{$list}'}
       <tr>
         <td>{$name}</td> 
         <td>{$phone}</td>
       </tr>
-    {/pad}
+    {/dummy}
   </table>
 {/list} 

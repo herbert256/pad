@@ -1,38 +1,5 @@
-<table border=1>
+{repeat 'ABC', rows=5, store='mySeq'}
 
-  <tr>
-    <th> department </th>
-    <th> manager </th>
-    <th> phone </th>
-  </tr>
-
-  {departments}
-
-    <tr>
-      <td> {$department} </td>
-      <td> {$manager} </td>
-      <td> {$phone} </td>
-    </tr>
-
-  {/departments}
-
-</table>
-
-<table border=1>
-
-  <tr>
-    <th> name </th>
-    <th> phone </th>
-  </tr>
-
-  {staff}
-
-    <tr>
-      <td> {$name} </td>
-      <td> {$phone} </td>
-    </tr>
-
-  {/staff}
-
-</table>
-
+{range '1..100', splice='10|-10|mySeq'}
+  {$range}
+{/range}
