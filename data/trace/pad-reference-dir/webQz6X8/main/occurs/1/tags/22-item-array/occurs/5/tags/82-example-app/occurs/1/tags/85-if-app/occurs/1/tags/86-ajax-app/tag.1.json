@@ -1,6 +1,0 @@
-{
-    "walk_before": "start",
-    "walk_after": "start",
-    "result": true,
-    "content": "<div id=\"padAjax{$padAjax}\"></div>\n\n<script>\n  padAjax{$padAjax} = new XMLHttpRequest();\n  padAjax{$padAjax}.onreadystatechange=function() {\n    if (padAjax{$padAjax}.readyState === 4) {\n      if (padAjax{$padAjax}.status === 200) {\n        document.getElementById(\"padAjax{$padAjax}\").innerHTML=padAjax{$padAjax}.responseText;\n      } else {\n        document.getElementById(\"padAjax{$padAjax}\").innerHTML=padAjax{$padAjax}.statusText;\n      }\n    }\n  }\n  padAjax{$padAjax}.open(\"GET\",\"{!padAjaxUrl}\",true);\n  padAjax{$padAjax}.send();\n</script>"
-}

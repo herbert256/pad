@@ -1,5 +1,0 @@
-{
-    "key": 999,
-    "data": {},
-    "html": "{data 'myCSV', type='csv'}\n  name,phone\n  jack,555-3425\n  jim,555-4364\n  joe,555-3422\n  jerry,555-4973\n{/data}\n\n{data}\n  [\n    {myCSV}\n      { \"name\": \"{$name}\", \"phone\": \"{$phone}\" }{notLast},{/notLast}\n    {/myCSV}\n  ]\n{/data 'myJSON'}\n\n{data}\n  <records>\n    {myJSON}\n      <record name=\"{$name}\" phone=\"{$phone}\"/>\n    {/myJSON}\n  </records>\n{/data 'myXML'}\n\n{data}\n  ---\n    {myXML}\n    - name: {$name}\n      phone: {$phone}\n    {/myXML}\n{/data 'myYAML'}\n\n<table>\n  {myYAML}\n    <tr>\n      <td>{$name}</td> \n      <td>{$phone}</td>\n    </tr>\n  {/myYAML}\n</table>"
-}
