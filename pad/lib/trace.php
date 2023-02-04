@@ -41,7 +41,7 @@
       'tag'    => $GLOBALS ['padTag'] [$pad] ?? '',
       't-type' => $GLOBALS ['padType'] [$pad] ?? '',
       'pair'   => $GLOBALS ['padPair'] [$pad] ?? '',
-      'p-type' => $GLOBALS ['padPrmsType'] [$pad] ?? '',
+      'p-type' => $GLOBALS ['padPrmType'] [$pad] ?? '',
       'prm'    => $GLOBALS ['padPrm'] [$pad] ?? '',
       'true' => padDumpShort ($GLOBALS ['padTrue'][$pad]??''),
       'false' => padDumpShort ($GLOBALS ['padFalse'][$pad]??''),
@@ -69,11 +69,11 @@
 
     $chk1 = [ '_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
 
-    $chk2 = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padPrms','padPrmsType','padPrmsTag','padPrmsTag','padName','padData','padCurrent','padKey','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padLevelDir','padOccurDir','padSaveVars','padDeleteVars','padSetSave','padSetDelete','padTagCnt', 'padAfter', 'padBefore', 'padBeforeData', 'padEndOptions', 'padPrmType', 'padSet'];
+    $chk2 = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padName','padData','padCurrent','padKey','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padLevelDir','padOccurDir','padSaveVars','padDeleteVars','padSetSave','padSetDelete','padTagCnt', 'padAfter', 'padBefore', 'padBeforeData', 'padEndOptions', 'padPrmType', 'padSet'];
 
     $chk3 = [ 'page','app','PADSESSID','PADREQID','PHPSESSID','PADREFID' ];
 
-    $settings = padFileGetContents(PAD . 'pad/config/config.php');
+    $settings = padFileGetContents(PAD . 'config/config.php');
 
     foreach ($GLOBALS as $key => $value) {
 

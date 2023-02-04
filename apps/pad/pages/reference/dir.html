@@ -1,0 +1,18 @@
+{$intro}
+
+{demo}
+
+  {item}
+    <h3>{$item}</h3>
+    {example app='reference', page='{$dir}/{$item}', onlyResult} 
+  {/item}
+
+{else}
+
+  {item}
+    {first}  {example app='reference', page='{$dir}/{$item}', skipClose}           {/first}   
+    {middle} {example app='reference', page='{$dir}/{$item}', skipOpen, skipClose} {/middle} 
+    {last}   {example app='reference', page='{$dir}/{$item}', skipOpen}            {/last}     
+  {/item}
+
+{/demo}

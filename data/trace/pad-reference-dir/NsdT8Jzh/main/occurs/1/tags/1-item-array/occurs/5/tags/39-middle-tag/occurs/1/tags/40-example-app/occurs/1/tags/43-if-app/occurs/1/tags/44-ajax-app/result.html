@@ -1,0 +1,16 @@
+<div id="padAjax5"></div>
+
+<script>
+  padAjax5 = new XMLHttpRequest();
+  padAjax5.onreadystatechange=function() &open;
+    if (padAjax5.readyState === 4) &open;
+      if (padAjax5.status === 200) &open;
+        document.getElementById("padAjax5").innerHTML=padAjax5.responseText;
+      &close; else &open;
+        document.getElementById("padAjax5").innerHTML=padAjax5.statusText;
+      &close;
+    &close;
+  &close;
+  padAjax5.open("GET","/index.php?app=reference&page=sequence/intersection&padInclude=1",true);
+  padAjax5.send();
+</script>

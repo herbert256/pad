@@ -2,6 +2,8 @@
   
   global $padData, $padKey;
 
-  return ( (include PAD . "pad/tag/current.php") == 1 );
+  #return ( $padKey [$padIdx] == array_key_first  ( $padData [$padIdx] ) );
+
+  return ( (include PAD . "tag/current.php") == 1 );
 
 ?>

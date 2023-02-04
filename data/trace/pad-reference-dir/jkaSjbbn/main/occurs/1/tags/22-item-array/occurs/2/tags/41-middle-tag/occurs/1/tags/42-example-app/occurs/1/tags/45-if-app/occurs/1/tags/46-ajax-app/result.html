@@ -1,0 +1,16 @@
+<div id="padAjax3"></div>
+
+<script>
+  padAjax3 = new XMLHttpRequest();
+  padAjax3.onreadystatechange=function() &open;
+    if (padAjax3.readyState === 4) &open;
+      if (padAjax3.status === 200) &open;
+        document.getElementById("padAjax3").innerHTML=padAjax3.responseText;
+      &close; else &open;
+        document.getElementById("padAjax3").innerHTML=padAjax3.statusText;
+      &close;
+    &close;
+  &close;
+  padAjax3.open("GET","/index.php?app=reference&page=tag_fields/dyna/dyna2&padInclude=1",true);
+  padAjax3.send();
+</script>

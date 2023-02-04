@@ -1,0 +1,37 @@
+
+  <table border="1" cellpadding="10" cellspacing="0">
+
+
+  <tr>
+    <th bgcolor="#dddddd">PHP <br><font size="-2"> </font></th>
+    <th bgcolor="#dddddd">HTML<br><font size="-2">case/case_nested.html</font></th>
+    
+      <th bgcolor="#dddddd">Result</th>
+    
+  </tr>
+
+  <tr>
+    <td style="vertical-align:top"> </td>
+    <td style="vertical-align:top"><code><span style="color: #000000">
+&lt;p&gt;<br />&nbsp;&nbsp;<b>&open;<font color="blue">case </font><font color="red">100&nbsp;*&nbsp;8</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">when </font><font color="red">600</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">case </font><font color="red">100&nbsp;*&nbsp;8</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">when </font><font color="red">700</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nok<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">when </font><font color="red">800</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nok<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">else</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nok<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;/<font color="blue">case</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">when </font><font color="red">900</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">case </font><font color="red">100&nbsp;*&nbsp;8</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">when </font><font color="red">700</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nok<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">when </font><font color="red">800</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nok<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">else</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nok<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;/<font color="blue">case</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">when </font><font color="red">800</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">case </font><font color="red">100&nbsp;*&nbsp;8</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">when </font><font color="red">700</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nok<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">when </font><font color="red">800</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">case </font><font color="red">100&nbsp;*&nbsp;8</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">when </font><font color="red">700</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nok<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">when </font><font color="red">800</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">else</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nok<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;/<font color="blue">case</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">else</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nok<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;/<font color="blue">case</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;/<font color="blue">case</font><font color="red"></font>&close;</b><br />&lt;/p&gt;</span>
+</code></td>
+    
+      <td style="vertical-align:top"><div id="padAjax6"></div>
+
+<script>
+  padAjax6 = new XMLHttpRequest();
+  padAjax6.onreadystatechange=function() &open;
+    if (padAjax6.readyState === 4) &open;
+      if (padAjax6.status === 200) &open;
+        document.getElementById("padAjax6").innerHTML=padAjax6.responseText;
+      &close; else &open;
+        document.getElementById("padAjax6").innerHTML=padAjax6.statusText;
+      &close;
+    &close;
+  &close;
+  padAjax6.open("GET","/index.php?app=reference&page=case/case_nested&padInclude=1",true);
+  padAjax6.send();
+</script></td> 
+    
+  </tr>
+

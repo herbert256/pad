@@ -13,7 +13,7 @@
 
       padDone ( $padOptionName, TRUE );  
 
-      include PAD . "pad/options/$padOptionName.php" ;
+      include PAD . "options/$padOptionName.php" ;
 
       if ( $padOptionName <> 'trace' and $padTrace )
         include 'trace.php';

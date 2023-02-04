@@ -1,6 +1,6 @@
 <?php
 
-  include PAD . "pad/sequence/build/save.php";
+  include PAD . "sequence/build/save.php";
 
   $padSeqInit = TRUE;
 

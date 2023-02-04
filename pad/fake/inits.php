@@ -9,8 +9,8 @@
   
   $padCnt++;
 
-  include PAD . 'pad/level/setup.php'; 
-  include PAD . 'pad/level/trace/start.php'; 
-  include PAD . 'pad/occurrence/trace/start.php'; 
+  include PAD . 'level/setup.php'; 
+  include PAD . 'level/trace/start.php'; 
+  include PAD . 'occurrence/trace/start.php'; 
 
 ?>

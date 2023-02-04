@@ -110,7 +110,7 @@
     $GLOBALS ['padSkipShutdown']     = TRUE;
     $GLOBALS ['padSkipBootShutdown'] = TRUE;
 
-    include PAD . 'pad/exits/trace.php';
+    include PAD . 'exits/trace.php';
     
     exit;
 

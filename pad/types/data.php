@@ -1,7 +1,7 @@
 <?php
 
   if ( padTagParm ('print') )
-    include PAD . 'pad/options/print.php';
+    include PAD . 'options/print.php';
 
   return $padDataStore [$padTag [$pad]];
  

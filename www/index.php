@@ -18,8 +18,9 @@
 
   // Start settings
 
-  define ( 'PAD',  '/home/herbert/pad/'  ); // Home of PAD itself
-  define ( 'DATA', '/home/herbert/data/' ); // Data locaction, used for logs/cache/errors/etc.
+  define ( 'PAD',   '/home/herbert/pad/pad/'  ); // Home of PAD itself
+  define ( 'APPS',  '/home/herbert/pad/apps/' ); // Home of PAD itself
+  define ( 'DATA',  '/home/herbert/pad/data/' ); // Data locaction, used for logs/cache/errors/etc.
 
   // End settings
 

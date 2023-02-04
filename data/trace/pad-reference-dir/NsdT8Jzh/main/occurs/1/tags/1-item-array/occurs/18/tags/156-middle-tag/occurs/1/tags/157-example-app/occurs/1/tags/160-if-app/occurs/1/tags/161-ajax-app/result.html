@@ -1,0 +1,16 @@
+<div id="padAjax18"></div>
+
+<script>
+  padAjax18 = new XMLHttpRequest();
+  padAjax18.onreadystatechange=function() &open;
+    if (padAjax18.readyState === 4) &open;
+      if (padAjax18.status === 200) &open;
+        document.getElementById("padAjax18").innerHTML=padAjax18.responseText;
+      &close; else &open;
+        document.getElementById("padAjax18").innerHTML=padAjax18.statusText;
+      &close;
+    &close;
+  &close;
+  padAjax18.open("GET","/index.php?app=reference&page=sequence/start_end&padInclude=1",true);
+  padAjax18.send();
+</script>

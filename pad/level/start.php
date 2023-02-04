@@ -16,12 +16,12 @@
   include 'base.php';
   include 'data.php';
 
-  include PAD . "pad/options/go/start.php";
+  include PAD . "options/go/start.php";
 
   include 'name.php';
   
   if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']))
-    include PAD . 'pad/callback/init.php' ;
+    include PAD . 'callback/init.php' ;
 
   if ( strpos ( $padBase[$pad], '@end@') !== FALSE )
     include 'split/after1.php';
@@ -30,6 +30,6 @@
     return include 'split/before1.php';
 
   if ( count ( $padData [$pad] ) )
-    include PAD . 'pad/occurrence/start.php';
+    include PAD . 'occurrence/start.php';
 
 ?>

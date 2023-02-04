@@ -1,0 +1,18 @@
+
+      <td style="vertical-align:top"><div id="padAjax19"></div>
+
+<script>
+  padAjax19 = new XMLHttpRequest();
+  padAjax19.onreadystatechange=function() &open;
+    if (padAjax19.readyState === 4) &open;
+      if (padAjax19.status === 200) &open;
+        document.getElementById("padAjax19").innerHTML=padAjax19.responseText;
+      &close; else &open;
+        document.getElementById("padAjax19").innerHTML=padAjax19.statusText;
+      &close;
+    &close;
+  &close;
+  padAjax19.open("GET","/index.php?app=reference&page=sequence/step_multiple&padInclude=1",true);
+  padAjax19.send();
+</script></td> 
+    

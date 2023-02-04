@@ -4,6 +4,6 @@
   
   $page = $padRestart;
 
-  include PAD . 'pad/pad.php';
+  include PAD . 'pad.php';
 
 ?>

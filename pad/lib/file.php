@@ -22,7 +22,7 @@
 
     global $pad;
     
-    $file = DATA . $in;
+    $file = DATA . str_replace(':', '_', $in);
 
     if ( ! padFileValidName ( $file ) ) {
       #padDum$GLOBALS ['pad'];

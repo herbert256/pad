@@ -1,7 +1,7 @@
 <?php
 
   while ( $pad > $Xp ) 
-    include PAD . 'pad/level/level.php'; 
+    include PAD . 'level/level.php'; 
 
   $padTraceDir = $XpadTraceDir;
 

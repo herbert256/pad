@@ -1,0 +1,35 @@
+
+
+  <tr>
+    <th bgcolor="#dddddd">PHP <br><font size="-2"> </font></th>
+    <th bgcolor="#dddddd">HTML<br><font size="-2">sequence/other.html</font></th>
+    
+      <th bgcolor="#dddddd">Result</th>
+    
+  </tr>
+
+  <tr>
+    <td style="vertical-align:top"> </td>
+    <td style="vertical-align:top"><code><span style="color: #000000">
+&lt;h3&gt;other&lt;/h3&gt;<b>&open;<font color="blue">table</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">sequence </font><font color="red">repeat<font color="black">=</font>'abc'<font color="black">,</font>&nbsp;rows<font color="black">=</font>10</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$repeat</font>&close;</b>&nbsp;<br /><b>&open;/<font color="blue">sequence</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">sequence </font><font color="red">palindrome<font color="black">,</font>&nbsp;rows<font color="black">=</font>10</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$palindrome</font>&close;</b>&nbsp;<br /><b>&open;/<font color="blue">sequence</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b>&nbsp;<br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">sequence </font><font color="red">perfect<font color="black">,</font>&nbsp;rows<font color="black">=</font>5</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$perfect</font>&close;</b>&nbsp;<br /><b>&open;/<font color="blue">sequence</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">sequence </font><font color="red">power<font color="black">=</font>2<font color="black">,</font>&nbsp;rows<font color="black">=</font>10</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$power</font>&close;</b>&nbsp;<br /><b>&open;/<font color="blue">sequence</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b>&nbsp;<br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">sequence </font><font color="red">list<font color="black">=</font>'11;15;33;23;7;123;65;3;123'</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$list</font>&close;</b>&nbsp;<br /><b>&open;/<font color="blue">sequence</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">sequence </font><font color="red">range<font color="black">=</font>'F..Q'</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$range</font>&close;</b>&nbsp;<br /><b>&open;/<font color="blue">sequence</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b>&nbsp;&nbsp;<br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">range </font><font color="red">'1..100'<font color="black">,</font>&nbsp;sum</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$range</font>&close;</b><br /><b>&open;/<font color="blue">range</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">range </font><font color="red">'1..100'<font color="black">,</font>&nbsp;slice<font color="black">=</font>'-30<font color="black">|</font>-10'</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$range</font>&close;</b><br /><b>&open;/<font color="blue">range</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b>&nbsp;<br /><br /><b>&open;<font color="blue">repeat </font><font color="red">'ABC'<font color="black">,</font>&nbsp;rows<font color="black">=</font>5<font color="black">,</font>&nbsp;store<font color="black">=</font>'mySeqX'</font>&close;</b><br /><br /><b>&open;<font color="blue">ToDorange </font><font color="red">'1..100'<font color="black">,</font>&nbsp;splice<font color="black">=</font>'10<font color="black">|</font>-10<font color="black">|</font>mySeqX'</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$range</font>&close;</b><br /><b>&open;/<font color="blue">range</font><font color="red"></font>&close;</b><br /><br /><b>&open;/<font color="blue">table</font><font color="red"></font>&close;</b></span>
+</code></td>
+    
+      <td style="vertical-align:top"><div id="padAjax10"></div>
+
+<script>
+  padAjax10 = new XMLHttpRequest();
+  padAjax10.onreadystatechange=function() &open;
+    if (padAjax10.readyState === 4) &open;
+      if (padAjax10.status === 200) &open;
+        document.getElementById("padAjax10").innerHTML=padAjax10.responseText;
+      &close; else &open;
+        document.getElementById("padAjax10").innerHTML=padAjax10.statusText;
+      &close;
+    &close;
+  &close;
+  padAjax10.open("GET","/index.php?app=reference&page=sequence/other&padInclude=1",true);
+  padAjax10.send();
+</script></td> 
+    
+  </tr>
+

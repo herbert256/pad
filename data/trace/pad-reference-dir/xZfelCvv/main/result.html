@@ -1,0 +1,255 @@
+<html>
+
+  <head>
+    <title>PAD - tag_fields/dyna</title>
+  </head>
+  
+  <body>
+
+    <center>
+
+      <h1>
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+
+      <h2>tag_fields/dyna</h2>
+
+      <table border=0>
+        <tr>
+          <td>  
+            
+
+
+    A    
+   
+       
+
+     
+   B  
+       
+
+     
+   B  
+       
+
+     
+   B  
+       
+
+     
+   
+     C      
+
+
+<hr>
+
+    
+  <table border="1" cellpadding="10" cellspacing="0">
+
+
+  <tr>
+    <th bgcolor="#dddddd">PHP <br><font size="-2"> </font></th>
+    <th bgcolor="#dddddd">HTML<br><font size="-2">tag_fields/dyna/dyna1.html</font></th>
+    
+      <th bgcolor="#dddddd">Result</th>
+    
+  </tr>
+
+  <tr>
+    <td style="vertical-align:top"> </td>
+    <td style="vertical-align:top"><code><span style="color: #000000">
+&lt;table&nbsp;border=1&gt;<br /><br />&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;&nbsp;department&nbsp;&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;&nbsp;manager&nbsp;&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;&nbsp;phone&nbsp;&lt;/th&gt;<br />&nbsp;&nbsp;&lt;/tr&gt;<br /><br />&nbsp;&nbsp;<b>&open;<font color="blue">departments</font><font color="red"></font>&close;</b><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;<b>&open;<font color="green">$department</font>&close;</b>&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;<b>&open;<font color="green">$manager</font>&close;</b>&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;<b>&open;<font color="green">$phone</font>&close;</b>&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br /><br />&nbsp;&nbsp;<b>&open;/<font color="blue">departments</font><font color="red"></font>&close;</b><br /><br />&lt;/table&gt;</span>
+</code></td>
+    
+      <td style="vertical-align:top"><div id="padAjax1"></div>
+
+<script>
+  padAjax1 = new XMLHttpRequest();
+  padAjax1.onreadystatechange=function() &open;
+    if (padAjax1.readyState === 4) &open;
+      if (padAjax1.status === 200) &open;
+        document.getElementById("padAjax1").innerHTML=padAjax1.responseText;
+      &close; else &open;
+        document.getElementById("padAjax1").innerHTML=padAjax1.statusText;
+      &close;
+    &close;
+  &close;
+  padAjax1.open("GET","/index.php?app=reference&page=tag_fields/dyna/dyna1&padInclude=1",true);
+  padAjax1.send();
+</script></td> 
+    
+  </tr>
+
+              
+   
+       
+
+     
+   
+
+  <tr>
+    <th bgcolor="#dddddd">PHP <br><font size="-2"> </font></th>
+    <th bgcolor="#dddddd">HTML<br><font size="-2">tag_fields/dyna/dyna2.html</font></th>
+    
+      <th bgcolor="#dddddd">Result</th>
+    
+  </tr>
+
+  <tr>
+    <td style="vertical-align:top"> </td>
+    <td style="vertical-align:top"><code><span style="color: #000000">
+&lt;table&nbsp;border=1&gt;<br /><br />&nbsp;&nbsp;<b>&open;<font color="blue">departments</font><font color="red"></font>&close;</b><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">first</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;&nbsp;&open;&amp;departments:1:name&close;&nbsp;&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;&nbsp;&open;&amp;departments:2:name&close;&nbsp;&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;&nbsp;&open;&amp;departments:3:name&close;&nbsp;&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;/<font color="blue">first</font><font color="red"></font>&close;</b><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;&open;&amp;departments:1:value&close;&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;&open;&amp;departments:2:value&close;&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;&open;&amp;departments:3:value&close;&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br /><br />&nbsp;&nbsp;<b>&open;/<font color="blue">departments</font><font color="red"></font>&close;</b><br /><br />&lt;/table&gt;</span>
+</code></td>
+    
+      <td style="vertical-align:top"><div id="padAjax2"></div>
+
+<script>
+  padAjax2 = new XMLHttpRequest();
+  padAjax2.onreadystatechange=function() &open;
+    if (padAjax2.readyState === 4) &open;
+      if (padAjax2.status === 200) &open;
+        document.getElementById("padAjax2").innerHTML=padAjax2.responseText;
+      &close; else &open;
+        document.getElementById("padAjax2").innerHTML=padAjax2.statusText;
+      &close;
+    &close;
+  &close;
+  padAjax2.open("GET","/index.php?app=reference&page=tag_fields/dyna/dyna2&padInclude=1",true);
+  padAjax2.send();
+</script></td> 
+    
+  </tr>
+
+  
+       
+
+     
+   
+
+  <tr>
+    <th bgcolor="#dddddd">PHP <br><font size="-2"> </font></th>
+    <th bgcolor="#dddddd">HTML<br><font size="-2">tag_fields/dyna/dyna3.html</font></th>
+    
+      <th bgcolor="#dddddd">Result</th>
+    
+  </tr>
+
+  <tr>
+    <td style="vertical-align:top"> </td>
+    <td style="vertical-align:top"><code><span style="color: #000000">
+&lt;table&nbsp;border=1&gt;<br /><br />&nbsp;&nbsp;<b>&open;<font color="blue">departments</font><font color="red"></font>&close;</b><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">first</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">fields</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;<b>&open;<font color="green">$name</font>&close;</b>&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;/<font color="blue">fields</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;/<font color="blue">first</font><font color="red"></font>&close;</b><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">fields</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;<b>&open;<font color="green">$value</font>&close;</b>&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;/<font color="blue">fields</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br /><br />&nbsp;&nbsp;<b>&open;/<font color="blue">departments</font><font color="red"></font>&close;</b><br /><br />&lt;/table&gt;</span>
+</code></td>
+    
+      <td style="vertical-align:top"><div id="padAjax3"></div>
+
+<script>
+  padAjax3 = new XMLHttpRequest();
+  padAjax3.onreadystatechange=function() &open;
+    if (padAjax3.readyState === 4) &open;
+      if (padAjax3.status === 200) &open;
+        document.getElementById("padAjax3").innerHTML=padAjax3.responseText;
+      &close; else &open;
+        document.getElementById("padAjax3").innerHTML=padAjax3.statusText;
+      &close;
+    &close;
+  &close;
+  padAjax3.open("GET","/index.php?app=reference&page=tag_fields/dyna/dyna3&padInclude=1",true);
+  padAjax3.send();
+</script></td> 
+    
+  </tr>
+
+  
+       
+
+     
+   
+
+  <tr>
+    <th bgcolor="#dddddd">PHP <br><font size="-2"> </font></th>
+    <th bgcolor="#dddddd">HTML<br><font size="-2">tag_fields/dyna/dyna4.html</font></th>
+    
+      <th bgcolor="#dddddd">Result</th>
+    
+  </tr>
+
+  <tr>
+    <td style="vertical-align:top"> </td>
+    <td style="vertical-align:top"><code><span style="color: #000000">
+&lt;table&nbsp;border=1&gt;<br /><br />&nbsp;&nbsp;<b>&open;<font color="blue">departments</font><font color="red"></font>&close;</b><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">first</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">names</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;&nbsp;<b>&open;<font color="green">$name</font>&close;</b>&nbsp;&lt;/th&gt;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;/<font color="blue">names</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;/<font color="blue">first</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">values</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;<b>&open;<font color="green">$value</font>&close;</b>&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;/<font color="blue">values</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br /><br />&nbsp;&nbsp;<b>&open;/<font color="blue">departments</font><font color="red"></font>&close;</b><br /><br />&lt;/table&gt;</span>
+</code></td>
+    
+      <td style="vertical-align:top"><div id="padAjax4"></div>
+
+<script>
+  padAjax4 = new XMLHttpRequest();
+  padAjax4.onreadystatechange=function() &open;
+    if (padAjax4.readyState === 4) &open;
+      if (padAjax4.status === 200) &open;
+        document.getElementById("padAjax4").innerHTML=padAjax4.responseText;
+      &close; else &open;
+        document.getElementById("padAjax4").innerHTML=padAjax4.statusText;
+      &close;
+    &close;
+  &close;
+  padAjax4.open("GET","/index.php?app=reference&page=tag_fields/dyna/dyna4&padInclude=1",true);
+  padAjax4.send();
+</script></td> 
+    
+  </tr>
+
+  
+       
+
+     
+   
+     
+
+  <tr>
+    <th bgcolor="#dddddd">PHP <br><font size="-2"> </font></th>
+    <th bgcolor="#dddddd">HTML<br><font size="-2">tag_fields/dyna/dyna5.html</font></th>
+    
+      <th bgcolor="#dddddd">Result</th>
+    
+  </tr>
+
+  <tr>
+    <td style="vertical-align:top"> </td>
+    <td style="vertical-align:top"><code><span style="color: #000000">
+&lt;p&gt;&lt;table&nbsp;border=1&gt;<br /><br />&nbsp;&nbsp;<b>&open;<font color="blue">departments</font><font color="red"></font>&close;</b><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">first</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">fields</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;<b>&open;<font color="green">$name</font>&close;</b>&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;/<font color="blue">fields</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;/<font color="blue">first</font><font color="red"></font>&close;</b><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">fields</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;<b>&open;<font color="green">$value</font>&close;</b>&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;/<font color="blue">fields</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br /><br />&nbsp;&nbsp;<b>&open;/<font color="blue">departments</font><font color="red"></font>&close;</b><br /><br />&lt;/table&gt;&lt;p&gt;&lt;table&nbsp;border=1&gt;<br /><br />&nbsp;&nbsp;<b>&open;<font color="blue">departments</font><font color="red"></font>&close;</b><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">first </font><font color="red">'departments'</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">fields </font><font color="red">'departments'</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;<b>&open;<font color="green">$name</font>&close;</b>&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;/<font color="blue">fields</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;/<font color="blue">first</font><font color="red"></font>&close;</b><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">fields </font><font color="red">'departments'</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;<b>&open;<font color="green">$value</font>&close;</b>&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;/<font color="blue">fields</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br /><br />&nbsp;&nbsp;<b>&open;/<font color="blue">departments</font><font color="red"></font>&close;</b><br /><br />&lt;/table&gt;&lt;p&gt;&lt;table&nbsp;border=1&gt;<br /><br />&nbsp;&nbsp;<b>&open;<font color="blue">departments</font><font color="red"></font>&close;</b><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">first </font><font color="red">-1</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">fields </font><font color="red">-2</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;<b>&open;<font color="green">$name</font>&close;</b>&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;/<font color="blue">fields</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;/<font color="blue">first</font><font color="red"></font>&close;</b><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">fields </font><font color="red">-1</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;<b>&open;<font color="green">$value</font>&close;</b>&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;/<font color="blue">fields</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br /><br />&nbsp;&nbsp;<b>&open;/<font color="blue">departments</font><font color="red"></font>&close;</b><br /><br />&lt;/table&gt;<br /></span>
+</code></td>
+    
+      <td style="vertical-align:top"><div id="padAjax5"></div>
+
+<script>
+  padAjax5 = new XMLHttpRequest();
+  padAjax5.onreadystatechange=function() &open;
+    if (padAjax5.readyState === 4) &open;
+      if (padAjax5.status === 200) &open;
+        document.getElementById("padAjax5").innerHTML=padAjax5.responseText;
+      &close; else &open;
+        document.getElementById("padAjax5").innerHTML=padAjax5.statusText;
+      &close;
+    &close;
+  &close;
+  padAjax5.open("GET","/index.php?app=reference&page=tag_fields/dyna/dyna5&padInclude=1",true);
+  padAjax5.send();
+</script></td> 
+    
+  </tr>
+
+
+  </table>
+                 
+
+
+
+          </td>
+        </tr>
+      </table>
+
+    </center>
+
+  </body>
+
+</html>

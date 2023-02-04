@@ -1,0 +1,38 @@
+
+
+  <tr>
+    <th bgcolor="#dddddd">PHP <br><font size="-2">case/case_3.php </font></th>
+    <th bgcolor="#dddddd">HTML<br><font size="-2">case/case_3.html</font></th>
+    
+      <th bgcolor="#dddddd">Result</th>
+    
+  </tr>
+
+  <tr>
+    <td style="vertical-align:top"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;$happiness&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">50</span><span style="color: #007700">;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$hours&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">2</span><span style="color: #007700">;<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$beer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">10</span><span style="color: #007700">;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$sausage&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">5</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code> </td>
+    <td style="vertical-align:top"><code><span style="color: #000000">
+&lt;p&gt;<br />&nbsp;&nbsp;<b>&open;<font color="blue">case </font><font color="red"><font color="black">$</font>happiness&nbsp;*&nbsp;<font color="black">$</font>hours</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">when </font><font color="red">(<font color="black">$</font>beer*2)&nbsp;+&nbsp;(<font color="black">$</font>sausage*1)</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bonjour&nbsp;le&nbsp;Monde<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">when </font><font color="red">(<font color="black">$</font>beer*4)&nbsp;+&nbsp;(<font color="black">$</font>sausage*2)</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hallo&nbsp;Wereld<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">when </font><font color="red">(<font color="black">$</font>beer*8)&nbsp;+&nbsp;(<font color="black">$</font>sausage*4)</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hallo&nbsp;Welt<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color="blue">else</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hello&nbsp;World<br />&nbsp;&nbsp;<b>&open;/<font color="blue">case</font><font color="red"></font>&close;</b><br />&lt;/p&gt;</span>
+</code></td>
+    
+      <td style="vertical-align:top"><div id="padAjax3"></div>
+
+<script>
+  padAjax3 = new XMLHttpRequest();
+  padAjax3.onreadystatechange=function() &open;
+    if (padAjax3.readyState === 4) &open;
+      if (padAjax3.status === 200) &open;
+        document.getElementById("padAjax3").innerHTML=padAjax3.responseText;
+      &close; else &open;
+        document.getElementById("padAjax3").innerHTML=padAjax3.statusText;
+      &close;
+    &close;
+  &close;
+  padAjax3.open("GET","/index.php?app=reference&page=case/case_3&padInclude=1",true);
+  padAjax3.send();
+</script></td> 
+    
+  </tr>
+

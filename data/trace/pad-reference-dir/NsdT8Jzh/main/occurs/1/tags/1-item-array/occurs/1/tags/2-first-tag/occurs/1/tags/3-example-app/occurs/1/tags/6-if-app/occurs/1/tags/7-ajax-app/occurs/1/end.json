@@ -1,0 +1,3 @@
+{
+    "html": "<div id=\"padAjax1\"></div>\n\n<script>\n  padAjax1 = new XMLHttpRequest();\n  padAjax1.onreadystatechange=function() &open;\n    if (padAjax1.readyState === 4) &open;\n      if (padAjax1.status === 200) &open;\n        document.getElementById(\"padAjax1\").innerHTML=padAjax1.responseText;\n      &close; else &open;\n        document.getElementById(\"padAjax1\").innerHTML=padAjax1.statusText;\n      &close;\n    &close;\n  &close;\n  padAjax1.open(\"GET\",\"/index.php?app=reference&page=sequence/combine&padInclude=1\",true);\n  padAjax1.send();\n</script>"
+}

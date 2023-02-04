@@ -1,0 +1,5 @@
+{
+    "key": 999,
+    "data": {},
+    "html": "{if ! #skipOpen}\n  <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\">\n{/if}\n\n  <tr>\n    <th bgcolor=\"#dddddd\">PHP <br><font size=\"-2\">{$padExampleFilePhp} </font></th>\n    <th bgcolor=\"#dddddd\">HTML<br><font size=\"-2\">{$padExampleFileHtml}</font></th>\n    {if ! #skipResult}\n      <th bgcolor=\"#dddddd\">Result</th>\n    {/if}\n  </tr>\n\n  <tr>\n    <td style=\"vertical-align:top\">{!padExampleSrcPhp} </td>\n    <td style=\"vertical-align:top\">{!padExampleSrcHtml}</td>\n    {if ! #skipResult}\n      <td style=\"vertical-align:top\">{ajax app='{$padExampleApp}', page='{$padExamplePage}'}</td> \n    {/if}\n  </tr>\n\n{if ! #skipClose}\n  </table>\n{/if}"
+}

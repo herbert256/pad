@@ -1,19 +1,23 @@
 <?php
-    
-  $padTypeResult = padTypeGet( $padTypeCheck );
 
-  if ( $padTypeResult )
-    return $padTypeResult;  
+  $padTypeExplode = padExplode ($padTypeCheck, ':') ;
 
-  if ( strpos($padTypeCheck, ':') !== FALSE ) {
+  if ( count ($padTypeExplode) == 0 or count ($padTypeExplode) > 2 )
+    return FALSE;
 
-    list ( $padTypeResult, $padTypeCheck) = explode (':', $padTypeCheck, 2 );
+  if ( count ($padTypeExplode) == 1 ) {
 
-    if ( padTypeCheck ( $padTypeResult, $padTypeCheck ) ) 
-      return $padTypeResult;  
+    $padTypeResult = padTypeGet( $padTypeCheck );
+
+    return ( $padTypeResult ) ? $padTypeResult : FALSE; 
+
+  } else {
+
+    $padTypeResult = $padTypeExplode [0];
+    $padTypeCheck  = $padTypeExplode [1];
+
+    return ( padTypeCheck ( $padTypeResult, $padTypeCheck ) ) ? $padTypeResult : FALSE; 
 
   }
-
-  return FALSE;  
 
 ?>

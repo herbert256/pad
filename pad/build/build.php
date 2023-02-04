@@ -8,7 +8,7 @@
   include "$padBuildMode.php";
 
   if ( ! isset ( $padNoOccur) )
-    include PAD . 'pad/occurrence/start.php';
+    include PAD . 'occurrence/start.php';
 
   $padBase [$pad] = '{root}' . $padBase [$pad] . '{/root}';
 

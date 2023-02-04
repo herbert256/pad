@@ -1,0 +1,256 @@
+{
+    "pad": 2,
+    "pad1": false,
+    "pad2": 276,
+    "pad3": 277,
+    "padAdd": 7,
+    "padAjax": 1,
+    "padAjaxApp": "reference",
+    "padAjaxPage": "case/case_1",
+    "padAjaxUrl": "/index.php?app=reference&page=case/case_1&padInclude=1",
+    "padApp": "/index.php?app=",
+    "padBetween": "tag:first",
+    "padBuildCfg": {
+        "0": "pages",
+        "1": "reference",
+        "2": "dir"
+    },
+    "padBuildExits": "",
+    "padBuildHtml": "{$intro}\n\n{item}\n  {tag}  A {first}   \n  {middle} B {/middle} \n  {last}   C {/last}     \n{/item}\n\n<hr>\n{item}\n  {first}  {example app='reference', page='{$dir}/{$item}', skipClose}           {tag:first}   \n  {middle} {example app='reference', page='{$dir}/{$item}', skipOpen, skipClose} {/middle} \n  {last}   {example app='reference', page='{$dir}/{$item}', skipOpen}            {/last}     \n{/item}\n\n",
+    "padBuildInits": "{content}",
+    "padBuildKey": 2,
+    "padBuildMrg": {
+        "0": "pages",
+        "1": "reference",
+        "2": "dir"
+    },
+    "padBuildNow": "/home/herbert/pad/pad/pages/reference/dir",
+    "padBuildValue": "dir",
+    "padCache": false,
+    "padCacheStop": 0,
+    "padCall": "/home/herbert/pad/pad/pages/exits.php",
+    "padCallReturn": "",
+    "padCheckTag": "last",
+    "padChk": false,
+    "padCnt": 26,
+    "padContent": "",
+    "padContentStore": null,
+    "padDataStore": null,
+    "padDisplayErrors": 1,
+    "padDump": "",
+    "padErrCnt": 0,
+    "padError": "",
+    "padErrorReporting": 32767,
+    "padErrrorList": {},
+    "padEtag": "",
+    "padEval": "",
+    "padEvalCnt": 0,
+    "padEvalDebug1": "! #skipClose",
+    "padEvalDebug2": {
+        "100": {
+            "0": "!",
+            "1": "OPR"
+        },
+        "200": {
+            "1": "#",
+            "0": "skipClose"
+        }
+    },
+    "padEvalDebug3": {
+        "100": {
+            "0": "!",
+            "1": "OPR"
+        },
+        "200": {
+            "1": "VAL",
+            "0": true
+        }
+    },
+    "padEvalDebug4": {
+        "200": {
+            "1": "VAL",
+            "0": ""
+        }
+    },
+    "padExampleApp": "reference",
+    "padExampleBase": "/home/herbert/pad/reference/pages/",
+    "padExampleFile": "/home/herbert/pad/reference/pages/case/case_1",
+    "padExampleFileHtml": "case/case_1.html",
+    "padExampleFilePhp": "case/case_1.php",
+    "padExampleHtml": "/home/herbert/pad/reference/pages/case/case_1.html",
+    "padExamplePage": "case/case_1",
+    "padExamplePhp": "/home/herbert/pad/reference/pages/case/case_1.php",
+    "padExampleSrcHtml": "<code><span style=\"color: #000000\">\n&lt;p&gt;<br />&nbsp;&nbsp;<b>&open;<font color=\"blue\">case </font><font color=\"red\"><font color=\"black\">$</font>language</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color=\"blue\">when </font><font color=\"red\">'NL'</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hallo&nbsp;Wereld<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color=\"blue\">when </font><font color=\"red\">'FR'</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bonjour&nbsp;le&nbsp;Monde<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color=\"blue\">when </font><font color=\"red\">'DE'</font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hallo&nbsp;Welt<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>&open;<font color=\"blue\">else</font><font color=\"red\"></font>&close;</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hello&nbsp;World<br />&nbsp;&nbsp;<b>&open;/<font color=\"blue\">case</font><font color=\"red\"></font>&close;</b><br />&lt;/p&gt;</span>\n</code>",
+    "padExampleSrcPhp": "<code><span style=\"color: #000000\">\n<span style=\"color: #0000BB\">&lt;?php<br /><br />&nbsp;&nbsp;$language&nbsp;</span><span style=\"color: #007700\">=&nbsp;</span><span style=\"color: #DD0000\">'FR'</span><span style=\"color: #007700\">;<br /><br /></span><span style=\"color: #0000BB\">?&gt;</span>\n</span>\n</code>",
+    "padExit": 1,
+    "padExits": {
+        "0": "/home/herbert/pad/pad/pages/exits.php",
+        "1": "/home/herbert/pad/pad/pages/reference/exits.php"
+    },
+    "padFieldDoubleCheck": "",
+    "padFile": "/home/herbert/pad/reference/pages/case/dir.pad",
+    "padFirst": "t",
+    "padFlagStore": null,
+    "padFld": "padAjax",
+    "padFldCnt": 71,
+    "padHost": "http://penguin.linux.test",
+    "padHttpHost": "penguin.linux.test",
+    "padIgnCnt": 4,
+    "padIgnored": {
+        "1": {
+            "0": "ctype_alpha: \n        document.getElementById(\"padAjax1\").innerHTML=padAjax1.responseText;\n      "
+        },
+        "2": {
+            "0": "ctype_alpha: \n        document.getElementById(\"padAjax1\").innerHTML=padAjax1.statusText;\n      "
+        },
+        "3": {
+            "0": "ctype_alpha: \n      if (padAjax1.status === 200) &open;\n        document.getElementById(\"padAjax1\").innerHTML=padAjax1.responseText;\n      &close; else &open;\n        document.getElementById(\"padAjax1\").innerHTML=padAjax1.statusText;\n      &close;\n    "
+        },
+        "4": {
+            "0": "ctype_alpha: \n    if (padAjax1.readyState === 4) &open;\n      if (padAjax1.status === 200) &open;\n        document.getElementById(\"padAjax1\").innerHTML=padAjax1.responseText;\n      &close; else &open;\n        document.getElementById(\"padAjax1\").innerHTML=padAjax1.statusText;\n      &close;\n    &close;\n  "
+        }
+    },
+    "padInOccur": false,
+    "padK": "first",
+    "padLen": 0,
+    "padLib": "/home/herbert/pad/pad/lib",
+    "padLibDirectory": {},
+    "padLibFile": "/home/herbert/pad/pad/lib/type.php",
+    "padLibIterator": {},
+    "padLibOne": {},
+    "padLocation": "http://penguin.linux.test/index.php?app=pad&page=",
+    "padLogCnt": 0,
+    "padOpenClose": {
+        "first": true
+    },
+    "padOptCnt": 0,
+    "padOptionName": 1,
+    "padOptions": "end",
+    "padOptionsEnd": {
+        "0": "toFlag",
+        "1": "toContent",
+        "2": "toData"
+    },
+    "padOptionsStart": {
+        "0": "track",
+        "1": "before",
+        "2": "reverse",
+        "3": "start",
+        "4": "end",
+        "5": "dedup",
+        "6": "page",
+        "7": "rows",
+        "8": "first",
+        "9": "last",
+        "10": "row",
+        "11": "sort",
+        "12": "ignore",
+        "13": "source",
+        "14": "shuffle",
+        "15": "random",
+        "16": "print",
+        "17": "dummy",
+        "18": "parent",
+        "19": "trace",
+        "20": "xml",
+        "21": "json",
+        "22": "yaml",
+        "23": "csv"
+    },
+    "padOptionsWalk": {
+        "0": "toFlag",
+        "1": "toContent",
+        "2": "toData"
+    },
+    "padOpts": {
+        "0": "trim",
+        "1": "white",
+        "2": "html",
+        "3": "nbsp"
+    },
+    "padOptsTrace": {},
+    "padOutput": "",
+    "padP": 1,
+    "padPage": "/index.php?app=pad&page=",
+    "padPairCheck": "}",
+    "padPairKey": 2,
+    "padPairValue": "case/case_1",
+    "padPipe": false,
+    "padPos": false,
+    "padPrmCnt": 0,
+    "padPrmTmp": {},
+    "padRequestScheme": "http",
+    "padRestart": "",
+    "padScript": "/index.php",
+    "padServerPort": 80,
+    "padSetName": "",
+    "padSetTmp": {
+        "first": ""
+    },
+    "padSkipBootShutdown": true,
+    "padSpace": false,
+    "padStop": 0,
+    "padTagContent": "",
+    "padTagGo": "/home/herbert/pad/pad/tags/if",
+    "padTagParm": {
+        "0": "n/a",
+        "1": "n/a",
+        "2": "n/a",
+        "3": "n/a",
+        "4": "n/a"
+    },
+    "padTagPhp": false,
+    "padTagResult": true,
+    "padTagSave": "first",
+    "padTagTraceData": {
+        "walk_before": "start",
+        "walk_after": "start",
+        "result": true,
+        "content": ""
+    },
+    "padTime": 1675508910,
+    "padTimings": {
+        "read": 0.0007033348083496094,
+        "write": 0.022417545318603516,
+        "app": 0.00021076202392578125,
+        "init": 0.005207061767578125,
+        "eval": 0.0025293827056884766,
+        "var": 0.0012698173522949219,
+        "tag": 0.0012278556823730469,
+        "opt": 0.00012993812561035156
+    },
+    "padTimingsBoot": 1675508910.92337,
+    "padTimingsCnt": {
+        "read": 58,
+        "write": 772,
+        "app": 3,
+        "var": 23,
+        "eval": 88,
+        "tag": 26,
+        "opt": 51
+    },
+    "padTimingsStart": {},
+    "padTraceData": {
+        "html": ""
+    },
+    "padTraceDir": "trace/pad-reference-dir/MaZApmtr",
+    "padTrcCnt": 0,
+    "padTst": "{elseif",
+    "padTypeCheck": "first",
+    "padTypeExplode": {
+        "0": "tag",
+        "1": "first"
+    },
+    "padTypeResult": "tag",
+    "padUri": "/index.php?app=pad&page=reference/dir&dir=case",
+    "padV": "",
+    "padVal": 1,
+    "padValBase": 1,
+    "padW": {
+        "0": "page",
+        "1": "'case/case_1'"
+    },
+    "padWords": {
+        "0": "tag:first"
+    }
+}

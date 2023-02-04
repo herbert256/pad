@@ -1,0 +1,16 @@
+<div id="padAjax20"></div>
+
+<script>
+  padAjax20 = new XMLHttpRequest();
+  padAjax20.onreadystatechange=function() &open;
+    if (padAjax20.readyState === 4) &open;
+      if (padAjax20.status === 200) &open;
+        document.getElementById("padAjax20").innerHTML=padAjax20.responseText;
+      &close; else &open;
+        document.getElementById("padAjax20").innerHTML=padAjax20.statusText;
+      &close;
+    &close;
+  &close;
+  padAjax20.open("GET","/index.php?app=reference&page=sequence/store&padInclude=1",true);
+  padAjax20.send();
+</script>

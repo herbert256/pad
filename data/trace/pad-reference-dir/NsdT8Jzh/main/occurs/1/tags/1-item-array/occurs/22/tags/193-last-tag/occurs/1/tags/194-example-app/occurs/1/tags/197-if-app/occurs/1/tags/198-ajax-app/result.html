@@ -1,0 +1,16 @@
+<div id="padAjax22"></div>
+
+<script>
+  padAjax22 = new XMLHttpRequest();
+  padAjax22.onreadystatechange=function() &open;
+    if (padAjax22.readyState === 4) &open;
+      if (padAjax22.status === 200) &open;
+        document.getElementById("padAjax22").innerHTML=padAjax22.responseText;
+      &close; else &open;
+        document.getElementById("padAjax22").innerHTML=padAjax22.statusText;
+      &close;
+    &close;
+  &close;
+  padAjax22.open("GET","/index.php?app=reference&page=sequence/trim&padInclude=1",true);
+  padAjax22.send();
+</script>

@@ -16,6 +16,6 @@
   include 'set.php';
 
   if ( isset($padPrm [$pad] ['callback']) and ! isset ( $padPrm [$pad] ['before']) )
-    include PAD . 'pad/callback/row.php' ;
+    include PAD . 'callback/row.php' ;
 
 ?>

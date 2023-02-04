@@ -1,0 +1,169 @@
+{
+    "pad": 1,
+    "pad1": false,
+    "padApp": "/index.php?app=",
+    "padBetween": "data",
+    "padBuildCfg": {
+        "0": "pages",
+        "1": "data",
+        "2": "data2"
+    },
+    "padBuildKey": 2,
+    "padBuildMrg": {
+        "0": "pages",
+        "1": "data",
+        "2": "data2"
+    },
+    "padBuildNow": "/home/herbert/pad/reference/pages/data/data2",
+    "padBuildValue": "data2",
+    "padCache": false,
+    "padCacheStop": 0,
+    "padCall": "/home/herbert/pad/reference/pages/exits.php",
+    "padCallReturn": "",
+    "padCnt": 1,
+    "padContentStore": null,
+    "padDataStore": null,
+    "padDisplayErrors": 1,
+    "padDump": "",
+    "padErrCnt": 0,
+    "padError": "",
+    "padErrorReporting": 32767,
+    "padErrrorList": {},
+    "padEtag": "",
+    "padEvalCnt": 0,
+    "padEvalDebug1": "'xml'",
+    "padEvalDebug2": {
+        "100": {
+            "0": "xml",
+            "1": "VAL"
+        }
+    },
+    "padEvalDebug3": {
+        "100": {
+            "0": "xml",
+            "1": "VAL"
+        }
+    },
+    "padEvalDebug4": {
+        "100": {
+            "0": "xml",
+            "1": "VAL"
+        }
+    },
+    "padExit": 1,
+    "padExits": {
+        "0": "/home/herbert/pad/reference/pages/exits.php",
+        "1": "/home/herbert/pad/reference/pages/data/exits.php"
+    },
+    "padFieldDoubleCheck": "",
+    "padFirst": "d",
+    "padFlagStore": null,
+    "padFldCnt": 0,
+    "padHost": "http://penguin.linux.test",
+    "padHttpHost": "penguin.linux.test",
+    "padIgnCnt": 0,
+    "padInOccur": true,
+    "padInclude": 1,
+    "padLen": 0,
+    "padLib": "/home/herbert/pad/reference/lib",
+    "padLibDirectory": {},
+    "padLibFile": "/home/herbert/pad/reference/lib/counter.php",
+    "padLibIterator": {},
+    "padLibOne": {},
+    "padLocation": "http://penguin.linux.test/index.php?app=reference&page=",
+    "padLogCnt": 0,
+    "padOpenClose": {
+        "data": true
+    },
+    "padOptCnt": 0,
+    "padOptionsEnd": {
+        "0": "toFlag",
+        "1": "toContent",
+        "2": "toData"
+    },
+    "padOptionsStart": {
+        "0": "track",
+        "1": "before",
+        "2": "reverse",
+        "3": "start",
+        "4": "end",
+        "5": "dedup",
+        "6": "page",
+        "7": "rows",
+        "8": "first",
+        "9": "last",
+        "10": "row",
+        "11": "sort",
+        "12": "ignore",
+        "13": "source",
+        "14": "shuffle",
+        "15": "random",
+        "16": "print",
+        "17": "dummy",
+        "18": "parent",
+        "19": "trace",
+        "20": "xml",
+        "21": "json",
+        "22": "yaml",
+        "23": "csv"
+    },
+    "padOutput": "",
+    "padP": 0,
+    "padPage": "/index.php?app=reference&page=",
+    "padPairCheck": "}",
+    "padPos": 201,
+    "padPrmCnt": 1,
+    "padPrmTmp": {
+        "0": "'xml'"
+    },
+    "padRequestScheme": "http",
+    "padRestart": "",
+    "padScript": "/index.php",
+    "padServerPort": 80,
+    "padSetName": "",
+    "padSetTmp": {},
+    "padSkipBootShutdown": true,
+    "padStop": 0,
+    "padTagParm": {
+        "0": "n/a",
+        "1": "n/a"
+    },
+    "padTagSave": "data",
+    "padTime": 1675508964,
+    "padTimings": {
+        "read": 5.793571472167969e-5,
+        "write": 0.0005357265472412109,
+        "app": 2.86102294921875e-6,
+        "init": 0.0021758079528808594,
+        "eval": 2.002716064453125e-5
+    },
+    "padTimingsBoot": 1675508964.683257,
+    "padTimingsCnt": {
+        "read": 3,
+        "write": 16,
+        "app": 1,
+        "eval": 1
+    },
+    "padTimingsStart": {},
+    "padTraceData": {
+        "key": 999,
+        "data": {},
+        "html": "{data 'xml'}\n  <data>\n    <row name=\"bob\"   phone=\"555-1111\" />\n    <row name=\"jim\"   phone=\"555-2222\" />\n    <row name=\"joe\"   phone=\"555-3333\" />\n    <row name=\"jerry\" phone=\"555-4444\" />\n  </data>\n{/data}\n\n{data 'json'}\n  [\n    { \"name\": \"bob\",   \"phone\": \"555-5555\" },\n    { \"name\": \"jim\",   \"phone\": \"555-6666\" },\n    { \"name\": \"joe\",   \"phone\": \"555-7777\" },      \n    { \"name\": \"jerry\", \"phone\": \"555-8888\" }\n  ]\n{/data}\n\n{data 'yaml'}\n  ---\n  - name: bob\n    phone: 555-3425\n  - name: jim\n    phone: 555-4364\n  - name: joe\n    phone: 555-3422\n  - name: jerry\n    phone: 555-4973\n{/data}\n\n{data 'csv' , type='csv'}\n  name,phone\n  bob,555-3425\n  jim,555-4364\n  joe,555-3422\n  jerry,555-4973\n{/data}\n\n{list 'xml;json;yaml;csv'}\n  <p>\n  <table border=1>\n    <tr><th colspan=\"2\">{$list}</th></tr>\n    {dummy data='{$list}'}\n      <tr>\n        <td>{$name}</td> \n        <td>{$phone}</td>\n      </tr>\n    {/dummy}\n  </table>\n{/list} "
+    },
+    "padTraceDir": "trace/reference-data-data2/fc7wxUpt",
+    "padTrcCnt": 0,
+    "padTypeCheck": "data",
+    "padTypeExplode": {
+        "0": "data"
+    },
+    "padTypeResult": "pad",
+    "padUri": "/index.php?app=reference&page=data/data2&padInclude=1",
+    "padV": "'xml'",
+    "padValue": "data2",
+    "padW": {
+        "0": "'xml'"
+    },
+    "padWords": {
+        "0": "data"
+    }
+}

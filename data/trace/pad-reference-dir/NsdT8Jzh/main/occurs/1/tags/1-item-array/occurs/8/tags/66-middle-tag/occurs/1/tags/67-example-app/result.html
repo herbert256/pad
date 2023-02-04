@@ -1,0 +1,35 @@
+
+
+  <tr>
+    <th bgcolor="#dddddd">PHP <br><font size="-2"> </font></th>
+    <th bgcolor="#dddddd">HTML<br><font size="-2">sequence/make_filter_remove.html</font></th>
+    
+      <th bgcolor="#dddddd">Result</th>
+    
+  </tr>
+
+  <tr>
+    <td style="vertical-align:top"> </td>
+    <td style="vertical-align:top"><code><span style="color: #000000">
+&lt;h3&gt;make&nbsp;vs&nbsp;keep&nbsp;vs&nbsp;remove&lt;/h3&gt;<br /><br /><b>&open;<font color="blue">table</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">range </font><font color="red">'11..30'<font color="black">,</font>&nbsp;store<font color="black">=</font>'mySeq'</font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">mySeq</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$mySeq</font>&close;</b><br /><b>&open;/<font color="blue">mySeq</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;/<font color="blue">table</font><font color="red"></font>&close;</b>&amp;nbsp;<b>&open;<font color="blue">table</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">make </font><font color="red">'mySeq'<font color="black">,</font>&nbsp;even</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$make</font>&close;</b><br /><b>&open;/<font color="blue">make</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">keep </font><font color="red">'mySeq'<font color="black">,</font>&nbsp;even</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$keep</font>&close;</b><br /><b>&open;/<font color="blue">keep</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">remove </font><font color="red">'mySeq'<font color="black">,</font>&nbsp;even</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$remove</font>&close;</b><br /><b>&open;/<font color="blue">remove</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;/<font color="blue">table</font><font color="red"></font>&close;</b>&amp;nbsp;<b>&open;<font color="blue">table</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">mySeq </font><font color="red">make<font color="black">=</font>'even'</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$mySeq</font>&close;</b><br /><b>&open;/<font color="blue">mySeq</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">mySeq </font><font color="red">keep<font color="black">=</font>'even'</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$mySeq</font>&close;</b><br /><b>&open;/<font color="blue">mySeq</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">mySeq </font><font color="red">remove<font color="black">=</font>'even'</font>&close;</b>&nbsp;<br />&nbsp;&nbsp;<b>&open;<font color="green">$mySeq</font>&close;</b><br /><b>&open;/<font color="blue">mySeq</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;/<font color="blue">table</font><font color="red"></font>&close;</b><br /><br /></span>
+</code></td>
+    
+      <td style="vertical-align:top"><div id="padAjax8"></div>
+
+<script>
+  padAjax8 = new XMLHttpRequest();
+  padAjax8.onreadystatechange=function() &open;
+    if (padAjax8.readyState === 4) &open;
+      if (padAjax8.status === 200) &open;
+        document.getElementById("padAjax8").innerHTML=padAjax8.responseText;
+      &close; else &open;
+        document.getElementById("padAjax8").innerHTML=padAjax8.statusText;
+      &close;
+    &close;
+  &close;
+  padAjax8.open("GET","/index.php?app=reference&page=sequence/make_filter_remove&padInclude=1",true);
+  padAjax8.send();
+</script></td> 
+    
+  </tr>
+

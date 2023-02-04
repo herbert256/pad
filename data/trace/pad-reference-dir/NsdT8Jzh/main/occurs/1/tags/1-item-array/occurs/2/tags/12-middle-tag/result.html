@@ -1,0 +1,36 @@
+ 
+
+  <tr>
+    <th bgcolor="#dddddd">PHP <br><font size="-2"> </font></th>
+    <th bgcolor="#dddddd">HTML<br><font size="-2">sequence/eval.html</font></th>
+    
+      <th bgcolor="#dddddd">Result</th>
+    
+  </tr>
+
+  <tr>
+    <td style="vertical-align:top"> </td>
+    <td style="vertical-align:top"><code><span style="color: #000000">
+&lt;h3&gt;Eval&lt;/h3&gt;<b>&open;<font color="blue">table</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">sequence </font><font color="red">eval<font color="black">=</font>'<font color="black">@</font>&nbsp;*&nbsp;10&nbsp;<font color="black">|</font>&nbsp;<font color="black">@</font>&nbsp;-&nbsp;1'<font color="black">,</font>&nbsp;rows<font color="black">=</font>10</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$eval</font>&close;</b><br /><b>&open;/<font color="blue">sequence</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b>&nbsp;<br /><br /><b>&open;/<font color="blue">table</font><font color="red"></font>&close;</b></span>
+</code></td>
+    
+      <td style="vertical-align:top"><div id="padAjax2"></div>
+
+<script>
+  padAjax2 = new XMLHttpRequest();
+  padAjax2.onreadystatechange=function() &open;
+    if (padAjax2.readyState === 4) &open;
+      if (padAjax2.status === 200) &open;
+        document.getElementById("padAjax2").innerHTML=padAjax2.responseText;
+      &close; else &open;
+        document.getElementById("padAjax2").innerHTML=padAjax2.statusText;
+      &close;
+    &close;
+  &close;
+  padAjax2.open("GET","/index.php?app=reference&page=sequence/eval&padInclude=1",true);
+  padAjax2.send();
+</script></td> 
+    
+  </tr>
+
+ 

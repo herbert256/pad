@@ -1,0 +1,59 @@
+{table}
+
+{demo}{sequence rows=16}
+  {$sequence}  
+{/sequence}{/demo}
+
+{demo}{sequence rows=16, from=8, to=12}
+  {$sequence}  
+{/sequence}{/demo}
+
+{demo}{sequence rows=16, min=8, max=12}
+  {$sequence}  
+{/sequence}{/demo}
+
+{demo}{sequence rows=16, start=8, end=12}
+  {$sequence}  
+{/sequence}{/demo}
+
+{demo}{sequence rows=16, low=8, high=12}
+  {$sequence}  
+{/sequence}{/demo}
+
+{/table}<h3>The same ?</h3>{table}
+
+{demo}{sequence even, rows=32}
+  {$even}  
+{/sequence}{/demo}
+
+{demo}{sequence even, rows=32, min=12, max=20}
+  {$even}  
+{/sequence}{/demo}
+
+{demo}{sequence even, rows=32, from=12, to=20}
+  {$even}  
+{/sequence}{/demo}
+
+{demo}{sequence even, rows=32, start=12, end=20}
+  {$even}  
+{/sequence}{/demo}
+
+{demo}{sequence even, rows=32, low=12, high=20}
+  {$even}  
+{/sequence}{/demo}
+
+{/table}<h3>Not the same !</h3>{table}
+
+{demo}{sequence even, rows=32, from=12, to=20}
+  {$even}  
+{/sequence}{/demo}
+
+{demo}{sequence even, rows=32, from=12, to=20, start=4, end=6}
+  {$even}  
+{/sequence}{/demo}
+
+{demo}{sequence even, rows=32, from=12, to=20, low=4, high=6}
+  {$even}  
+{/sequence}{/demo}
+
+{/table}

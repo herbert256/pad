@@ -1,0 +1,16 @@
+<div id="padAjax8"></div>
+
+<script>
+  padAjax8 = new XMLHttpRequest();
+  padAjax8.onreadystatechange=function() &open;
+    if (padAjax8.readyState === 4) &open;
+      if (padAjax8.status === 200) &open;
+        document.getElementById("padAjax8").innerHTML=padAjax8.responseText;
+      &close; else &open;
+        document.getElementById("padAjax8").innerHTML=padAjax8.statusText;
+      &close;
+    &close;
+  &close;
+  padAjax8.open("GET","/index.php?app=reference&page=sequence/make_filter_remove&padInclude=1",true);
+  padAjax8.send();
+</script>

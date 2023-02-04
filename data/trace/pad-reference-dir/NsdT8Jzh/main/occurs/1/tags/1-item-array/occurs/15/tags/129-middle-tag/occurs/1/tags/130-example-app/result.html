@@ -1,0 +1,35 @@
+
+
+  <tr>
+    <th bgcolor="#dddddd">PHP <br><font size="-2"> </font></th>
+    <th bgcolor="#dddddd">HTML<br><font size="-2">sequence/reverse_sort.html</font></th>
+    
+      <th bgcolor="#dddddd">Result</th>
+    
+  </tr>
+
+  <tr>
+    <td style="vertical-align:top"> </td>
+    <td style="vertical-align:top"><code><span style="color: #000000">
+&lt;h3&gt;actions&nbsp;-&nbsp;single&lt;/h3&gt;<br /><br /><b>&open;<font color="blue">table</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">range </font><font color="red">'A..Z'</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$range</font>&close;</b><br /><b>&open;/<font color="blue">range</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">range </font><font color="red">'A..Z'<font color="black">,</font>&nbsp;reverse</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$range</font>&close;</b><br /><b>&open;/<font color="blue">range</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">range </font><font color="red">'A..Z'<font color="black">,</font>&nbsp;reverse<font color="black">,</font>&nbsp;sort</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$range</font>&close;</b><br /><b>&open;/<font color="blue">range</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;/<font color="blue">table</font><font color="red"></font>&close;</b></span>
+</code></td>
+    
+      <td style="vertical-align:top"><div id="padAjax15"></div>
+
+<script>
+  padAjax15 = new XMLHttpRequest();
+  padAjax15.onreadystatechange=function() &open;
+    if (padAjax15.readyState === 4) &open;
+      if (padAjax15.status === 200) &open;
+        document.getElementById("padAjax15").innerHTML=padAjax15.responseText;
+      &close; else &open;
+        document.getElementById("padAjax15").innerHTML=padAjax15.statusText;
+      &close;
+    &close;
+  &close;
+  padAjax15.open("GET","/index.php?app=reference&page=sequence/reverse_sort&padInclude=1",true);
+  padAjax15.send();
+</script></td> 
+    
+  </tr>
+

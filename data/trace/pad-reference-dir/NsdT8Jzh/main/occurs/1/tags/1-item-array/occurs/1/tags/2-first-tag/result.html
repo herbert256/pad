@@ -1,0 +1,38 @@
+  
+  <table border="1" cellpadding="10" cellspacing="0">
+
+
+  <tr>
+    <th bgcolor="#dddddd">PHP <br><font size="-2"> </font></th>
+    <th bgcolor="#dddddd">HTML<br><font size="-2">sequence/combine.html</font></th>
+    
+      <th bgcolor="#dddddd">Result</th>
+    
+  </tr>
+
+  <tr>
+    <td style="vertical-align:top"> </td>
+    <td style="vertical-align:top"><code><span style="color: #000000">
+&lt;h3&gt;Actions&lt;/h3&gt;<br /><br /><b>&open;<font color="blue">table</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">list </font><font color="red">'5;10;15;20'<font color="black">,</font>&nbsp;&nbsp;name<font color="black">=</font>'one'</font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">list </font><font color="red">'15;20;25;30'<font color="black">,</font>&nbsp;name<font color="black">=</font>'two'</font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">one</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$one</font>&close;</b><br /><b>&open;/<font color="blue">one</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">two</font><font color="red"></font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$two</font>&close;</b><br /><b>&open;/<font color="blue">two</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">one </font><font color="red">append<font color="black">=</font>'two'</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$one</font>&close;</b><br /><b>&open;/<font color="blue">one</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">one </font><font color="red">prepend<font color="black">=</font>'two'</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$one</font>&close;</b><br /><b>&open;/<font color="blue">one</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">one </font><font color="red">combine<font color="black">=</font>'two'</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$one</font>&close;</b><br /><b>&open;/<font color="blue">one</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">one </font><font color="red">merge<font color="black">=</font>'two'</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$one</font>&close;</b><br /><b>&open;/<font color="blue">one</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">one </font><font color="red">difference<font color="black">=</font>'two'</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$one</font>&close;</b><br /><b>&open;/<font color="blue">one</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">one </font><font color="red">intersection<font color="black">=</font>'two'</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$one</font>&close;</b><br /><b>&open;/<font color="blue">one</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">one </font><font color="red">onlyMe<font color="black">=</font>'two'</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$one</font>&close;</b><br /><b>&open;/<font color="blue">one</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">one </font><font color="red">onlyOther<font color="black">=</font>'two'</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$one</font>&close;</b><br /><b>&open;/<font color="blue">one</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b><br /><br /><b>&open;/<font color="blue">table</font><font color="red"></font>&close;</b><br />&nbsp;</span>
+</code></td>
+    
+      <td style="vertical-align:top"><div id="padAjax1"></div>
+
+<script>
+  padAjax1 = new XMLHttpRequest();
+  padAjax1.onreadystatechange=function() &open;
+    if (padAjax1.readyState === 4) &open;
+      if (padAjax1.status === 200) &open;
+        document.getElementById("padAjax1").innerHTML=padAjax1.responseText;
+      &close; else &open;
+        document.getElementById("padAjax1").innerHTML=padAjax1.statusText;
+      &close;
+    &close;
+  &close;
+  padAjax1.open("GET","/index.php?app=reference&page=sequence/combine&padInclude=1",true);
+  padAjax1.send();
+</script></td> 
+    
+  </tr>
+
+           

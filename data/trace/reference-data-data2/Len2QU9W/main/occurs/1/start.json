@@ -1,0 +1,5 @@
+{
+    "key": 999,
+    "data": {},
+    "html": "{data 'xml'}\n  <data>\n    <row name=\"bob\"   phone=\"555-1111\" />\n    <row name=\"jim\"   phone=\"555-2222\" />\n    <row name=\"joe\"   phone=\"555-3333\" />\n    <row name=\"jerry\" phone=\"555-4444\" />\n  </data>\n{/data}\n\n{data 'json'}\n  [\n    { \"name\": \"bob\",   \"phone\": \"555-5555\" },\n    { \"name\": \"jim\",   \"phone\": \"555-6666\" },\n    { \"name\": \"joe\",   \"phone\": \"555-7777\" },      \n    { \"name\": \"jerry\", \"phone\": \"555-8888\" }\n  ]\n{/data}\n\n{data 'yaml'}\n  ---\n  - name: bob\n    phone: 555-3425\n  - name: jim\n    phone: 555-4364\n  - name: joe\n    phone: 555-3422\n  - name: jerry\n    phone: 555-4973\n{/data}\n\n{data 'csv' , type='csv'}\n  name,phone\n  bob,555-3425\n  jim,555-4364\n  joe,555-3422\n  jerry,555-4973\n{/data}\n\n{list 'xml;json;yaml;csv'}\n  <p>\n  <table border=1>\n    <tr><th colspan=\"2\">{$list}</th></tr>\n    {dummy data='{$list}'}\n      <tr>\n        <td>{$name}</td> \n        <td>{$phone}</td>\n      </tr>\n    {/dummy}\n  </table>\n{/list} "
+}

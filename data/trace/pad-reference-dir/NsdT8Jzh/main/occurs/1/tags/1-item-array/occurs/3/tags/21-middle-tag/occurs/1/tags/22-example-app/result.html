@@ -1,0 +1,35 @@
+
+
+  <tr>
+    <th bgcolor="#dddddd">PHP <br><font size="-2"> </font></th>
+    <th bgcolor="#dddddd">HTML<br><font size="-2">sequence/even_odd.html</font></th>
+    
+      <th bgcolor="#dddddd">Result</th>
+    
+  </tr>
+
+  <tr>
+    <td style="vertical-align:top"> </td>
+    <td style="vertical-align:top"><code><span style="color: #000000">
+&lt;h3&gt;even&nbsp;and&nbsp;odd&lt;/h3&gt;<b>&open;<font color="blue">table</font><font color="red"></font>&close;</b><br /><br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">sequence </font><font color="red">even<font color="black">,</font>&nbsp;rows<font color="black">=</font>10</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$even</font>&close;</b>&nbsp;<br /><b>&open;/<font color="blue">sequence</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><b>&open;<font color="blue">demo</font><font color="red"></font>&close;</b><b>&open;<font color="blue">sequence </font><font color="red">odd<font color="black">,</font>&nbsp;rows<font color="black">=</font>10</font>&close;</b><br />&nbsp;&nbsp;<b>&open;<font color="green">$odd</font>&close;</b>&nbsp;<br /><b>&open;/<font color="blue">sequence</font><font color="red"></font>&close;</b><b>&open;/<font color="blue">demo</font><font color="red"></font>&close;</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /><br /><b>&open;/<font color="blue">table</font><font color="red"></font>&close;</b></span>
+</code></td>
+    
+      <td style="vertical-align:top"><div id="padAjax3"></div>
+
+<script>
+  padAjax3 = new XMLHttpRequest();
+  padAjax3.onreadystatechange=function() &open;
+    if (padAjax3.readyState === 4) &open;
+      if (padAjax3.status === 200) &open;
+        document.getElementById("padAjax3").innerHTML=padAjax3.responseText;
+      &close; else &open;
+        document.getElementById("padAjax3").innerHTML=padAjax3.statusText;
+      &close;
+    &close;
+  &close;
+  padAjax3.open("GET","/index.php?app=reference&page=sequence/even_odd&padInclude=1",true);
+  padAjax3.send();
+</script></td> 
+    
+  </tr>
+
