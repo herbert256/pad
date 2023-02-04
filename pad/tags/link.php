@@ -1,10 +1,8 @@
 <?php
 
-  $padLinkApp  = $padPrm [$pad] ['app']  ?? $app;
-  $padLinkPage = $padPrm [$pad] ['page'] ?? 'index';
-  $padLinkText = $padPrm [$pad] ['text'] ?? $padContent;
-
-  padDone ( 'page', TRUE );
+  $padLinkApp  = padTagParm ( 'app',  $app );
+  $padLinkPage = padTagParm ( 'page', 'index' );
+  $padLinkText = padTagParm ( 'text', $padContent );
 
   return "<a href=\"$padHost$padScript?app=$padLinkApp&page=$padLinkPage\">$padLinkText</a>";
 

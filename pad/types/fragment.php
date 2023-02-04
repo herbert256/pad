@@ -1,10 +1,7 @@
 <?php
 
-  $padOne = APP . "content/" . $padTag [$pad];
+  $padContentGo = $padTag [$pad];
 
-  if ( padIsContentFile ($padOne) )
-    return include PAD . 'pad/build/one.php';
-
-  return NULL;
+  return include PAD . 'pad/options/go/content.php';
 
 ?>

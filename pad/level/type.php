@@ -1,16 +1,16 @@
 <?php
     
-  $padType [$pad] = padTypeGet( $padTag [$pad] );
+  $padTypeResult = padTypeGet( $padTypeCheck );
 
-  if ( $padType [$pad] )
-    return $padType [$pad];  
+  if ( $padTypeResult )
+    return $padTypeResult;  
 
-  if ( strpos($padTag [$pad], ':') !== FALSE ) {
+  if ( strpos($padTypeCheck, ':') !== FALSE ) {
 
-    list ( $padType [$pad], $padTag [$pad]) = explode (':', $padTag [$pad], 2 );
+    list ( $padTypeResult, $padTypeCheck) = explode (':', $padTypeCheck, 2 );
 
-    if ( padTypeCheck ( $padType [$pad], $padTag [$pad] ) ) 
-      return $padType [$pad];  
+    if ( padTypeCheck ( $padTypeResult, $padTypeCheck ) ) 
+      return $padTypeResult;  
 
   }
 

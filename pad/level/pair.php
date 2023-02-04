@@ -1,5 +1,7 @@
 <?php
 
+  $padPrmType [$pad] = ( $padPrm [$pad] [1] ) ? 'open' : 'none';
+
   $padPos = $padEnd [$padP];
 
   while (1) {

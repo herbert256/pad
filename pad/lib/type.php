@@ -2,7 +2,7 @@
 
   function padTypeGet ( $type ) {
 
-    if     ( ! padValid       ( $type ) )                                  return FALSE;
+    if     ( ! padValidTag    ( $type ) )                                  return FALSE;
     elseif ( padChkLevel      ( $type                                  ) ) return 'level';
     elseif ( file_exists      ( APP . "tags/$type.php"                 ) ) return 'app';
     elseif ( file_exists      ( APP . "tags/$type.html"                ) ) return 'app';

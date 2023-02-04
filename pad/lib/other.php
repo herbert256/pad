@@ -6,8 +6,7 @@
     $file = APP . "content/$file";
 
     if ( padFileValidName ( $file ) )
-      if  ( ( file_exists ($file) and ! is_dir($file) ) or 
-        file_exists ("$file.html") or file_exists ("$file.php") )
+      if  ( ( file_exists ($file) and ! is_dir($file) ) or file_exists ("$file.html") or file_exists ("$file.php") )
         return TRUE;
 
     return FALSE;
@@ -586,7 +585,9 @@
   }
 
 
-  function padIgnore ($info, $type) {
+  function padIgnore ($info, $type=0) {
+
+    #echo "$info"; exit;
 
     global $pad, $padBetween, $padIgnCnt, $padTrace, $padLevelDir, $padIgnored;
 
