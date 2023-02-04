@@ -123,7 +123,6 @@
     padDumpArray    ( "ID's", $ids );
     padDumpArray    ( 'Configuration', $cfg );
     padDumpArray    ( 'PHP', $php );
-    padDumpGlobals  ();
 
     echo ( "</pre></div>" );
 
@@ -142,7 +141,7 @@
     if ( ! $info )
       return;
 
-    if ( isset ( $GLOBALS ['padErrrorList'] ) and count ( $GLOBALS ['padErrrorList'] ) > 1 )
+    if ( isset ( $GLOBALS ['padErrrorList'] )  )
       foreach ( $GLOBALS ['padErrrorList'] as $error )
         if ( padMakeSafe($info) == padMakeSafe($error) )
           return;
@@ -157,8 +156,14 @@
     if ( ! isset ( $GLOBALS ['padErrrorList'] ) )
       return;
 
-    if ( count ( $GLOBALS ['padErrrorList'] ) < 2 )
+    if ( ! count ( $GLOBALS ['padErrrorList'] )  )
       return;
+    
+    if ( count ( $GLOBALS ['padErrrorList'] ) == 1 )
+      foreach ( $GLOBALS ['padErrrorList'] as $error ) {
+        echo ( "<hr><b>$error</b><hr><br>" ); 
+        return;
+      }
 
     echo ( "<b>Errors</b>\n");
 
@@ -236,11 +241,11 @@
     if ( ! isset ( $pad ) or $pad < 0 )
       return;
 
-    for ( $lvl=$pad; $lvl>=0; $lvl-- )
+    for ( $lvl=$pad; $lvl>0; $lvl-- )
       padDumpArray (" Level: $lvl", padTraceGetLevel ($lvl) );
 
     if ( isset ( $GLOBALS ['padData'] ) and is_array ( $GLOBALS ['padData'] ) )
-      for ( $lvl=$pad; $lvl>=0; $lvl-- )
+      for ( $lvl=$pad; $lvl>0; $lvl-- )
         if ( isset ($GLOBALS ['padData'][$lvl]) )
           padDumpArray ('Level '.$lvl, $GLOBALS ['padData'][$lvl] );
     

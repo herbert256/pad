@@ -1,5 +1,22 @@
 <?php
 
+  function padFixedLenghtLeft ( $string, $length, $filler = ' ' ) {
+
+      if ( strlen($string) < $length) 
+        return str_pad ( $string, $length, $filler, STR_PAD_LEFT );
+      else 
+        return substr ( $string, 0, $length) ;
+
+  }
+
+  function padFixedLenghtRight ( $string, $length, $filler = ' ' ) {
+
+      if ( strlen($string) < $length) 
+        return str_pad ( $string, $length, $filler );
+      else 
+        return substr ( $string, 0, $length) ;
+
+  }
 
   function padIsContentFile ( $file ) {
 

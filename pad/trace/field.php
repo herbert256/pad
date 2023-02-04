@@ -5,7 +5,7 @@
   $padFldCnt++;
 
   $padTraceData = [ 
-    'tag'       => $tag,
+    'tag'       => $prefix,
     'field'     => $field,
     'idx'       => $idx,
     'type'      => $type,

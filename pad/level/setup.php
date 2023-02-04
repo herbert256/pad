@@ -4,7 +4,7 @@
   
   $pad++;  
 
-  $padTag         [$pad] = $padTypeCheck  ?? 'n/a';
+  $padTag         [$pad] = $padTypeCheck  ?? 'n/';
   $padType        [$pad] = $padTypeResult ?? 'n/a';
 
   $padPair        [$pad] = FALSE;

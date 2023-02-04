@@ -3,7 +3,7 @@
   if ( isset($_REQUEST['padTrace']) )
     $padTrace = TRUE;
 
-  $padTraceDir = "trace/$app-" . str_replace('/', '-', $page) . "/$PADREQID";
+  $GLOBALS ['padTraceDir'] = "trace/$app-" . str_replace('/', '-', $page) . "/$PADREQID";
 
   if ( ! $padTrace )
     return;
@@ -15,9 +15,8 @@
     'requestID'   => $GLOBALS ['PADREQID'] ?? '',
     'referenceID' => $GLOBALS ['PADREFID'] ?? '',
     'start'       => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0,
-    'uri'         => $_SERVER ['REQUEST_URI']     ?? '' ,
+    'uri'         => $_SERVER ['REQUEST_URI'] ?? '' ,
   ];
-
 
   padTraceFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
 

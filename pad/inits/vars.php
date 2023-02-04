@@ -5,7 +5,7 @@
   $padCache = FALSE;
 
   $padBase = $padHtml = $padResult = $padTimingsCnt = $padTimings = [];
-  $padErrCnt = $padTrcCnt =$padEvalCnt = $padFldCnt = $padCnt = $padOptCnt = $padIgnCnt = 0;
+  $padErrCnt = $padLogCnt = $padTrcCnt =$padEvalCnt = $padFldCnt = $padCnt = $padOptCnt = $padIgnCnt = 0;
   $padFieldDoubleCheck = $padRestart = '';     
 
   $padOutput     = '';

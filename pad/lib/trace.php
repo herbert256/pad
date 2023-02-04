@@ -69,11 +69,11 @@
 
     $chk1 = [ '_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
 
-    $chk2 = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padPrms','padPrmsType','padPrmsTag','padPrmsTag','padName','padData','padCurrent','padKey','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padLevelDir','padOccurDir','padSaveVars','padDeleteVars','padSetSave','padSetDelete','padTagCnt'];
+    $chk2 = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padPrms','padPrmsType','padPrmsTag','padPrmsTag','padName','padData','padCurrent','padKey','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padLevelDir','padOccurDir','padSaveVars','padDeleteVars','padSetSave','padSetDelete','padTagCnt', 'padAfter', 'padBefore', 'padBeforeData', 'padEndOptions', 'padPrmType', 'padSet'];
 
     $chk3 = [ 'page','app','PADSESSID','PADREQID','PHPSESSID','PADREFID' ];
 
-    $settings = padFileGetContents(PAD . 'config/config.php');
+    $settings = padFileGetContents(PAD . 'pad/config/config.php');
 
     foreach ($GLOBALS as $key => $value) {
 
@@ -91,11 +91,14 @@
           
           $php [$key] = $value;
 
-        elseif ( in_array ( $key, $chk2 ) )
+        elseif ( in_array ( $key, $chk2 ) ) {
+
+          if ( isset($value[0]) and ! $value[0] )
+            unset ($value[0]);
           
           $lvl [$key] = $value;
    
-        elseif ( substr($key, 0, 3)  == 'pad' )
+        } elseif ( substr($key, 0, 3)  == 'pad' )
 
           $pad [$key] = $value;
 
