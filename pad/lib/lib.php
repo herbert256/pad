@@ -3,13 +3,13 @@
   function get_reference_files () {
 
     $files     = [];
-    $padath      = PAD . 'reference/pages/';
-    $directory = new RecursiveDirectoryIterator ($padath);
+    $path      = APPS . 'reference/pages/';
+    $directory = new RecursiveDirectoryIterator ($path);
     $iterator  = new RecursiveIteratorIterator  ($directory);
 
     foreach ($iterator as $loop_info) {
 
-      $file  = str_replace($padath, '', $loop_info->getPathname() );
+      $file  = str_replace($path, '', $loop_info->getPathname() );
       $ext   = substr($file,    strrpos($file, '.')+1 );
       $item  = substr($file, 0, strrpos($file, '.')   );
 

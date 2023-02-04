@@ -37,7 +37,7 @@
   
   // Go to PAD
   
-  include PAD . 'pad/pad.php';
+  include PAD . 'pad.php';
 
   // PAD boot error handling functions
  

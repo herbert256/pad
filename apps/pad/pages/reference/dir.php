@@ -6,9 +6,9 @@
   $staff = FALSE;
   $demo  = FALSE;
 
-  $item = padDirList ( PAD . "reference/pages/$dir" );
+  $item = padDirList ( APPS . "reference/pages/$dir" );
 
-  $padFile = PAD . "reference/pages/$dir/dir.pad";
+  $padFile = APPS . "reference/pages/$dir/dir.pad";
 
   if ( file_exists($padFile) )
     foreach ( file($padFile, FILE_IGNORE_NEW_LINES) as $line ) {
@@ -20,7 +20,7 @@
     }
 
   foreach ( $item as $one )
-    if ( file_exists ( PAD . "reference/pages/$dir/$one.php" ) )
+    if ( file_exists ( APPS . "reference/pages/$dir/$one.php" ) )
       $show_php = TRUE;
 
 ?>

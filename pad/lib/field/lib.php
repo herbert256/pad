@@ -25,8 +25,22 @@
 
   } 
 
+  function padFieldFirstParmTag ($flag=0) {
 
-  function padFieldFirstNonTag  ($flag=0) {
+    global $pad, $padType, $padTag;
+
+    $start = ($flag) ? $pad-1 : $pad;
+
+    for ($i=$start; $i; $i--)
+      if ( $padType[$i] and  $padTag [$i] <> 'if' and $padTag [$i] <> 'case' and $padType[$i] <> 'tag' )
+        return $i;
+
+    return $pad - 1;
+
+  }  
+
+
+  function padFieldFirstNonTag ($flag=0) {
 
     global $pad, $padType;
 

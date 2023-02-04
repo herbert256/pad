@@ -1,7 +1,7 @@
 <?php
 
   $title     = 'Reference';
-  $reference = PAD . "reference/pages";
+  $reference = APPS . "reference/pages";
 
   $directory = new RecursiveDirectoryIterator ($reference);
   $iterator  = new RecursiveIteratorIterator  ($directory);

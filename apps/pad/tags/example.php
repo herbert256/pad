@@ -3,7 +3,7 @@
   $exampleApp  = padTagParm ( 'app',  $app );
   $examplePage = padTagParm ( 'page', $padPrm [$pad] [1] );
 
-  $exampleBase = PAD . $exampleApp . '/pages/';
+  $exampleBase = APPS . $exampleApp . '/pages/';
   $exampleFile = $exampleBase . $examplePage;
 
   $examplePhp  = "$exampleFile.php";

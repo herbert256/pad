@@ -54,6 +54,7 @@
     if ( strpos($file, './') !== FALSE )                  return FALSE;
 
     if ( str_starts_with($file, PAD)  ) return TRUE;
+    if ( str_starts_with($file, APPS)  ) return TRUE;
     if ( str_starts_with($file, DATA) ) return TRUE;
 
     return FALSE;
