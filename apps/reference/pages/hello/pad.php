@@ -1,5 +1,0 @@
-<?php
-
-  $hi = 'Hello World';
-
-?>

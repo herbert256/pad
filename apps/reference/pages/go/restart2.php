@@ -1,5 +1,0 @@
-<?php
-
-  padRestart ( 'go/hello' );
-
-?>
