@@ -1,7 +1,13 @@
 <?php
 
   $padOpenClose = [];
-  $padOpenClose [$padTag [$pad]] = TRUE;
+  
+  if ( $padGiven [$pad] )
+    $padPairTag = $padType [$pad] . ':' . $padTag [$pad];
+  else
+    $padPairTag = $padTag [$pad];
+
+  $padOpenClose [$padPairTag] = TRUE;
 
   $pad1 = strpos($padTrue [$pad], '{/', 0);
 

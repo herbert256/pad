@@ -1,6 +1,6 @@
 <?php
 
-  $padTagGo = PAD;
+  $padTagGo = PAD . 'tags/internal';
 
   return include 'go/tag.php';
 

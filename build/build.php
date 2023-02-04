@@ -6,10 +6,10 @@
     $padBuildMode = 'include';
 
   include "$padBuildMode.php";
+  include 'lib.php';  
 
-  if ( ! isset ( $padNoOccur) )
-    include PAD . 'occurrence/start.php';
+  $padBase [$pad] = "{root}{lib}$padLibData{/lib}" . $padBase [$pad] . '{/root}';
 
-  $padBase [$pad] = '{root}' . $padBase [$pad] . '{/root}';
+  include PAD . 'occurrence/start.php';
 
 ?>

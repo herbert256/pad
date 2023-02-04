@@ -1,6 +1,11 @@
 <?php
 
-  $padPrmType [$pad] = ( $padPrm [$pad] [1] ) ? 'open' : 'none';
+  if ( $padGiven [$pad] )
+    $padPairTag = $padType [$pad] . ':' . $padTag [$pad];
+  else
+    $padPairTag = $padTag [$pad];
+
+  $padPrmType [$pad] = ( $padPrm [$pad] [0] ) ? 'open' : 'none';
 
   $padPos = $padEnd [$padP];
 
@@ -8,7 +13,7 @@
 
     do {
 
-      $padPos = strpos($padHtml [$padP] , '{/' . $padTag [$pad], $padPos);
+      $padPos = strpos($padHtml [$padP] , '{/' . $padPairTag, $padPos);
 
       if ($padPos === FALSE) {
         $padTrue [$pad] = '';
@@ -19,9 +24,9 @@
 
       $padPos++;
 
-    } while ( substr_count($padTrue [$pad], '{'.$padTag [$pad]) <> substr_count($padTrue [$pad], '{/'.$padTag[$pad]) );
+    } while ( substr_count($padTrue [$pad], '{'.$padPairTag) <> substr_count($padTrue [$pad], '{/'.$padPairTag) );
 
-    $padPairCheck = substr($padHtml [$padP], $padPos + strlen($padTag[$pad]) + 1, 1);
+    $padPairCheck = substr($padHtml [$padP], $padPos + strlen($padPairTag) + 1, 1);
     
     if ( ! ($padPairCheck == ' ' or $padPairCheck == '}' ) )
       continue;

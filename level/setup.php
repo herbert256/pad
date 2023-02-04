@@ -7,6 +7,7 @@
   $padTag         [$pad] = $padTypeCheck  ?? 'n/a';
   $padType        [$pad] = $padTypeResult ?? 'n/a';
   $padTagParm     [$pad] = $padTypeParm   ?? 'n/a';
+  $padGiven       [$pad] = $padTypeGiven  ?? FALSE;
 
   $padPair        [$pad] = FALSE;
 
