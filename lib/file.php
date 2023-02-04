@@ -44,6 +44,16 @@
     
   }
 
+  function padFilePutContentsRegression ($in, $data='', $append=0) {
+
+    global $pad;
+    
+    $file = PAD . "regression/$in";
+
+      padTimingEnd ('write');
+    
+  }
+
 
   function padFileValidName ( $file ) {
 
