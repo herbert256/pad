@@ -1,5 +1,48 @@
 <?php
 
+
+  function padOpenCloseOk ( $string, $check) {
+
+    if ( strpos ( $string, $check ) === FALSE )
+      return FALSE;
+
+    list ( $dummy, $string ) = explode ( $check, '.' . $string . '.', 2 );
+
+    $tags = [];
+    
+    $p1 = strpos($string, '{/', 0);
+
+    while ($p1 !== FALSE) {
+
+      $p2 = strpos($string, '}', $p1);
+
+      if ( $p2 !== FALSE ) {
+
+        $p3 = strpos($string, ' ', $p1);
+        if ($p3 !== FALSE and $p3 < $p2 )
+          $p2 = $p3;      
+
+        $tag = substr($string, $p1+2, $p2-$p1-2);
+        if ( padValidTag ($tag) )
+          $tags [$tag] = TRUE;
+
+      }
+
+      $p1 = strpos($string, '{/', $p1+1);
+
+    }
+
+   foreach ( $tags as $tag => $dummy )
+      if ( ( substr_count($string, '{'.$tag.' ' ) + substr_count($string, '{'.$tag.'}' ) )
+             <> 
+           ( substr_count($string, '{/'.$tag.' ') + substr_count($string, '{/'.$tag.'}') ) )
+        return FALSE;
+
+    return TRUE;  
+
+  }
+
+
   function padFixedLenghtLeft ( $string, $length, $filler = ' ' ) {
 
       if ( strlen($string) < $length) 
@@ -161,15 +204,6 @@
       
     $GLOBALS ['padRestart'] = $padRestart;
 
-  }
-
-
-  function p () {
-
-    global $pad;
-
-    return $GLOBALS ['pad'];
-  
   }
 
 

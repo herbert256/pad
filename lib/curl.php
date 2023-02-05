@@ -87,6 +87,7 @@
         $output ['data']    = '';      
         $output ['result']  = '404';
       }
+      $GLOBALS ['padCurlLast'] = $output;
       return $output;
     }
 
@@ -97,7 +98,7 @@
     padCurlOpt ($options, 'FOLLOWLOCATION', true);
     padCurlOpt ($options, 'HEADER',         true);
     padCurlOpt ($options, 'USERAGENT',      $_SERVER['HTTP_USER_AGENT'] ?? 'Mozilla/5.0 (X11; CrOS x86_64 13904.77.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.147 Safari/537.36 PAD/10.0');
-    padCurlOpt ($options, 'REFERER',        $GLOBALS ['padLocation'] . $GLOBALS ['page']);
+    padCurlOpt ($options, 'REFERER',        $GLOBALS ['padPageExternal'] . $GLOBALS ['page']);
 
     if ( isset($input['user']) )
       padCurlOpt ($options, 'USERPWD', $input['user'] . ":" . $input['$padassword']);
@@ -209,7 +210,7 @@
     if ($GLOBALS ['padTrace'])
       padCurlTrace ( $output );
 
-    $GLOBALS ['padCurl_last'] = $output;
+    $GLOBALS ['padCurlLast'] = $output;
 
     return $output;
     

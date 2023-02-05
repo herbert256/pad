@@ -13,6 +13,7 @@
 
     do {
 
+
       $padPos = strpos($padHtml [$padP] , '{/' . $padPairTag, $padPos);
 
       if ($padPos === FALSE) {

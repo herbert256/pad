@@ -123,6 +123,7 @@
     padDumpArray    ( "ID's", $ids );
     padDumpArray    ( 'Configuration', $cfg );
     padDumpArray    ( 'PHP', $php );
+    padDumpGlobals  ();
 
     echo ( "</pre></div>" );
 
@@ -270,10 +271,9 @@
   function padDumpShort ($G) {
   
     if ( $G === NULL)
-  
       $G = '';
   
-    return substr ( preg_replace('/\s+/', ' ', $G ), 0, 100 );
+    return substr ( preg_replace('/\s+/', ' ', $G ), 0, 150 );
   
   }  
 

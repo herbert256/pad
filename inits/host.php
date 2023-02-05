@@ -6,15 +6,16 @@
   $padScript        = $_SERVER ['SCRIPT_NAME']    ?? '/pad.php';
   $padUri           = $_SERVER ['REQUEST_URI']    ?? '/';
 
-  $padApp      = $padScript . "?app=";
-  $padPage     = $padScript . "?app=$app&page=";
-
   if (strpos ( $padHttpHost, ':') === FALSE )
     if ( ($padRequestScheme == 'http'  and $padServerPort <> 80) or 
          ($padRequestScheme == 'https' and $padServerPort <> 443) )
       $padHttpHost .= ':' . $padServerPort;
 
-  $padHost     = $padRequestScheme . '://' . $padHttpHost;
-  $padLocation = $padHost . $padPage;
+  $padHost = $padRequestScheme . '://' . $padHttpHost;
+
+  $padApp          = $padScript . "?app=";
+  $padPage         = $padScript . "?app=$app&page=";
+  $padAppExternal  = $padHost . $padApp;
+  $padPageExternal = $padHost . $padPage;
 
 ?>
