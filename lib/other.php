@@ -8,6 +8,15 @@
 
     list ( $dummy, $string ) = explode ( $check, '.' . $string . '.', 2 );
 
+    $tags = padOpenCloseList ( $string );
+
+    return padOpenCloseCount ( $string, $tags);
+
+  }
+
+
+  function padOpenCloseList ( $string ) {
+
     $tags = [];
     
     $p1 = strpos($string, '{/', 0);
@@ -32,11 +41,26 @@
 
     }
 
+    return $tags;
+
+  }
+
+  function padOpenCloseCount ( $string, $tags ) {
+
    foreach ( $tags as $tag => $dummy )
-      if ( ( substr_count($string, '{'.$tag.' ' ) + substr_count($string, '{'.$tag.'}' ) )
-             <> 
-           ( substr_count($string, '{/'.$tag.' ') + substr_count($string, '{/'.$tag.'}') ) )
+      if ( ! padOpenCloseCountOne ( $string, $tag ) )
         return FALSE;
+
+    return TRUE;  
+
+  }
+
+  function padOpenCloseCountOne ( $string, $tag ) {
+
+    if ( ( substr_count($string, '{'.$tag.' ' ) + substr_count($string, '{'.$tag.'}' ) )
+           <> 
+         ( substr_count($string, '{/'.$tag.' ') + substr_count($string, '{/'.$tag.'}') ) )
+      return FALSE;
 
     return TRUE;  
 

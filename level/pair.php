@@ -25,7 +25,8 @@
 
       $padPos++;
 
-    } while ( substr_count($padTrue [$pad], '{'.$padPairTag) <> substr_count($padTrue [$pad], '{/'.$padPairTag) );
+
+    } while ( ! padOpenCloseCountOne ( $padTrue [$pad], $padPairTag) );
 
     $padPairCheck = substr($padHtml [$padP], $padPos + strlen($padPairTag) + 1, 1);
     
