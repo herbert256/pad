@@ -8,9 +8,6 @@
    
     global $padTimingsCnt, $padTimingsStart;
 
-#    if ( isset ( $padTimingsStart [$timing] ) )
-#      padError ('tm-oops-1: ' . $timing);
-
     $padTimingsCnt [$timing] = 1 + ($padTimingsCnt [$timing]??0);
 
     $padTimingsStart [$timing] = microtime(true);
@@ -27,7 +24,6 @@
 
     if ( ! isset ( $GLOBALS ['padTimingsStart'] [$timing] ) )
       return;
-#      padError ('tm-oops-2: ' . $timing);
 
     $now = microtime(true) - $padTimingsStart[$timing];
 

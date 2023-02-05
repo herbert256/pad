@@ -27,6 +27,8 @@
   if ( substr($padFld, 0, 1) == '$' )
     $padFld = padFieldValue ($padFld);
 
+  $padFirst   = substr ( $padBetween , 0, 1 );
+
   if     ( $padFirst == '!' ) if ( ! padFieldCheck ( $padFld ) )  padError ( "Field '$padFld' not found" );
   elseif ( $padFirst == '$' ) if ( ! padFieldCheck ( $padFld ) )  padError ( "Field '$padFld' not found" );
   elseif ( $padFirst == '#' ) if ( ! padParmCheck  ( $padFld ) )  padError ( "Field '$padFld' not found" );

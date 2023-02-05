@@ -7,6 +7,7 @@
   include 'vars.php';
   include 'config.php';
   include 'trace.php';
+  include 'log.php';
   include 'nono.php';
   include 'fast.php';
   include 'error.php';

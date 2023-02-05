@@ -2,8 +2,8 @@
 
   $padCnt++;
 
-  if ( $padTrace )
-    include 'trace/start.php';
+  if ( $padLog )    include PAD . 'log/level.php';
+  if ( $padTrace )  include 'trace/start.php';
 
   include 'inits.php';
 

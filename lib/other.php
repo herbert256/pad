@@ -70,18 +70,18 @@
   function padFixedLenghtLeft ( $string, $length, $filler = ' ' ) {
 
       if ( strlen($string) < $length) 
-        return str_pad ( $string, $length, $filler, STR_PAD_LEFT );
+        return str_pad ( $string, $length, $filler, STR_PAD_LEFT ) . ' ';
       else 
-        return substr ( $string, 0, $length) ;
+        return substr ( $string, 0, $length) . ' ';
 
   }
 
   function padFixedLenghtRight ( $string, $length, $filler = ' ' ) {
 
       if ( strlen($string) < $length) 
-        return str_pad ( $string, $length, $filler );
+        return str_pad ( $string, $length, $filler ) . ' ';
       else 
-        return substr ( $string, 0, $length) ;
+        return substr ( $string, 0, $length). ' ';
 
   }
 
@@ -662,8 +662,6 @@
 
   function padIgnore ($info, $type=0) {
 
-    #echo "$info"; exit;
-
     global $pad, $padBetween, $padIgnCnt, $padTrace, $padLevelDir, $padIgnored;
 
     if ($type)
@@ -679,6 +677,8 @@
       $trace ['ignored'] = "$info: $padBetween";
       padFilePutContents ( $padLevelDir [$pad] . "/ignore.$padIgnCnt.json", $trace );
     }
+
+    return FALSE;
     
   }
 

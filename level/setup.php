@@ -1,7 +1,5 @@
 <?php
   
-  $padP = $pad;
-  
   $pad++;  
 
   $padTag         [$pad] = $padTypeCheck  ?? 'n/a';
@@ -20,9 +18,10 @@
   $padName        [$pad] = '';
 
   $padData        [$pad] = padDefaultData ();
+  $padDefault     [$pad] = TRUE;
+
   $padCurrent     [$pad] = [];
   $padKey         [$pad] = 1;
-  $padDefault     [$pad] = TRUE;
 
   $padWalk        [$pad] = 'start';
 

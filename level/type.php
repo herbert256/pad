@@ -1,7 +1,7 @@
 <?php
 
-  $padTypeGiven = FALSE;
-
+  $padTypeCheck   = trim ( $padWords[0] ?? '' );
+  $padTypeGiven   = FALSE;
   $padTypeExplode = padExplode ($padTypeCheck, ':') ;
 
   if ( count ($padTypeExplode) == 0 or count ($padTypeExplode) > 2 )
@@ -23,10 +23,13 @@
     $padTypeGiven  = TRUE;
     $padTypeResult = $padTypeExplode [0];
     $padTypeCheck  = $padTypeExplode [1];
-
+      
     $padTypeResult = padTypeCheck ( $padTypeResult, $padTypeCheck ); 
 
   }
+
+  if ( $padTypeResult === FALSE ) 
+    padIgnore ('type');
 
   return $padTypeResult;
 

@@ -49,13 +49,13 @@
     return include 'sequence/range.php';
   } 
 
-  $padSeqTmp = $padPrm [$pad] ['_first_Key_'] ?? '';
+  $padSeqTmp = $padPrm [$pad] ['_first_key_'] ?? '';
   if ( padValid($padSeqTmp) and file_exists ( PAD . "sequence/types/$padSeqTmp" ) )  {
     $padSeqParm = $padPrm [$pad] [1];
     return include 'sequence/type.php';
   }
 
-  $padSeqTmp = $padPrm [$pad] ['_first_Key_'] ?? '';
+  $padSeqTmp = $padPrm [$pad] ['_first_key_'] ?? '';
   if ( padValid($padSeqTmp) and file_exists ( PAD . "sequence/actions/$padSeqTmp.php" ) ) {
      $padSeqParm = $padPrm [$pad] [1];
     return include 'sequence/action.php';
