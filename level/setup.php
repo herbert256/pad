@@ -56,6 +56,6 @@
   $padBefore     [$pad] = 0;
   $padBeforeData [$pad] = '';
 
-  $padSetName = '';
+  $padForceName = '';
   
 ?>

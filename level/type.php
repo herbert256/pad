@@ -1,32 +1,21 @@
 <?php
 
-  $padTypeCheck   = trim ( $padWords[0] ?? '' );
+  $padTypeCheck   = $padWords [0];
+  $padTypeResult  = FALSE;
   $padTypeGiven   = FALSE;
   $padTypeExplode = padExplode ($padTypeCheck, ':') ;
 
-  if ( count ($padTypeExplode) == 0 or count ($padTypeExplode) > 2 )
-    
-    $padTypeResult = FALSE;
-
-  elseif ( count ($padTypeExplode) == 2 and $padTypeExplode [0] == 'int' ) {
-
-    $padTypeGiven  = TRUE;
-    $padTypeResult = 'internal';
-    $padTypeCheck  = $padTypeExplode [1];
-  
-  } elseif ( count ($padTypeExplode) == 1 ) {
+  if ( count ($padTypeExplode) == 1 )
 
     $padTypeResult = padTypeGet( $padTypeCheck );
 
-  } else {
+  elseif ( count ($padTypeExplode) == 2 ) {  // ToDo: moet nog getest worden
 
     $padTypeGiven  = TRUE;
-    $padTypeResult = $padTypeExplode [0];
-    $padTypeCheck  = $padTypeExplode [1];
-      
-    $padTypeResult = padTypeCheck ( $padTypeResult, $padTypeCheck ); 
+    $padTypeCheck  = $padTypeExplode [1];       
+    $padTypeResult = padTypeCheck ( $padTypeExplode [0], $padTypeCheck ); 
 
-  }
+  } 
 
   if ( $padTypeResult === FALSE ) 
     padIgnore ('type');

@@ -1,13 +1,13 @@
 <?php
 
-  $padPairTag        = ( $padGiven [$pad]   ) ? $padType [$pad] . ':' . $padTag [$pad] : $padTag [$pad];
+  $padPairTag        = ( $padGiven [$pad] )   ? $padType [$pad] . ':' . $padTag [$pad] : $padTag [$pad];
   $padPrmType [$pad] = ( $padPrm [$pad] [0] ) ? 'open' : 'none';
-  $padPos            = $padEnd [$pad-1];
+  $padPos            = $padEnd [$pad-1] - 1;
   $padPairCheck      = '';
 
   while ( ! in_array ( $padPairCheck, [' ', '}'] ) ) {
 
-    $padPos = strpos($padHtml [$pad-1] , '{/' . $padPairTag, $padPos);
+    $padPos = strpos($padHtml [$pad-1] , '{/' . $padPairTag, ++$padPos);
 
     if ($padPos === FALSE)
       return TRUE;
@@ -17,8 +17,6 @@
     if ( padOpenCloseCountOne ( $padTrueBase, $padPairTag) )
       $padPairCheck = substr($padHtml [$pad-1], $padPos + strlen($padPairTag) + 2, 1);
     
-    $padPos++;
-
   }
  
   $padTrue [$pad]  = substr ( $padTrueBase, 0, $padPos );

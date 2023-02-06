@@ -2,8 +2,8 @@
 
   if ( isset ( $padPrm [$pad] ['name'] ) )
     $padName [$pad] = $padPrm [$pad] ['name'];
-  elseif ( $padSetName )
-    $padName [$pad] = $padSetName;
+  elseif ( $padForceName )
+    $padName [$pad] = $padForceName;
   else
     $padName [$pad] = $padTag [$pad];
   

@@ -1,9 +1,6 @@
 <?php
 
-  $padLibData = '';
-  
-  $padBuildNow = substr(APP, 0, -1);
-  $padBuildMrg = padExplode ("pages/$page", '/');
+  $padBuildNow = substr(APP, 0, -1);  
 
   foreach ($padBuildMrg as $padBuildKey => $padBuildValue) {
 
@@ -12,9 +9,9 @@
     if ( is_dir ($padBuildNow) ) {
 
       $padCall = "$padBuildNow/_lib.php";
+      $padBase [$pad] .= include 'go.php';
 
-      $padLibData .= include 'go.php';
-      $padLibData .= padGetHtml ( "$padBuildNow/_lib.html" );
+      $padBase [$pad] .= padGetHtml ( "$padBuildNow/_lib.html" );
 
     }
     

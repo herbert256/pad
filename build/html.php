@@ -1,10 +1,7 @@
 <?php
 
   $padBase [$pad] .= '{content}';
-
-  $padBuildNow = substr(APP, 0, -1);
-
-  $padBuildMrg = padExplode ("pages/$page", '/');
+  $padBuildNow     = substr(APP, 0, -1);  
 
   foreach ($padBuildMrg as $padBuildKey => $padBuildValue) {
 

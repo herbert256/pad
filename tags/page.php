@@ -1,7 +1,5 @@
 <?php
-
-  $padOne = APP . "pages/" . $padPrm [$pad] [1];
   
-  return include PAD . 'build/one.php';
+  return padGetHtml ( APP . 'pages/.'  . $padPrm [$pad] [1] . '.html' , TRUE);
 
 ?>

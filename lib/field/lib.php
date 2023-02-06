@@ -31,8 +31,8 @@
 
     $start = ($flag) ? $pad-1 : $pad;
 
-    for ($i=$start; $i; $i--)
-      if ( $padType[$i] and  $padTag [$i] <> 'if' and $padTag [$i] <> 'case' and $padType[$i] <> 'tag' )
+    for ($i=$start; $i; $i--) // ToDo: Array van make en split/after verwerken
+      if ( $padTag [$i] <> 'if' and $padTag [$i] <> 'case' and $padType[$i] <> 'tag' )
         return $i;
 
     return $pad - 1;
@@ -47,7 +47,7 @@
     $start = ($flag) ? $pad-1 : $pad;
 
     for ($i=$start; $i; $i--)
-      if ( $padType[$i] and $padType[$i] <> 'tag' )
+      if ( $padType[$i] <> 'tag' )
         return $i;
 
     return $pad - 1;

@@ -1,34 +1,25 @@
 <?php
 
-  $padBuildNow = substr(APP, 0, -1);
   $padExits    = [];
-  $padBuildMrg = padExplode ("pages/$page", '/');
+  $padBuildNow = substr(APP, 0, -1);  
 
-  foreach ($padBuildMrg as $padBuildKey => $padBuildValue) {
+  foreach ($padBuildMrg as $padValue) {
 
-    $padBuildNow .= "/$padBuildValue";
+    $padBuildNow .= "/$padValue";
 
-    if ( $padBuildKey == array_key_last($padBuildMrg) 
-       and (file_exists("$padBuildNow.php") or file_exists("$padBuildNow.html") ) ) {
- 
-      $padCall = "$padBuildNow.php";
-      $padBase [$pad] .= include 'go.php';
-
-    } elseif ( is_dir ($padBuildNow) ) {
+    if ( is_dir ($padBuildNow) ) {
 
       $padCall = "$padBuildNow/inits.php";
       $padBase [$pad] .= include 'go.php';
 
       $padExits [] = "$padBuildNow/exits.php";
 
-    } else {
-
-      $padCall = "$padBuildNow.php";
-      $padBase [$pad] .= include 'go.php';
-
     }
 
   }
+
+  $padCall = "$padBuildNow.php";
+  $padBase [$pad] .= include 'go.php';
 
   foreach ( array_reverse ($padExits) as $padCall )
     $padBase [$pad] .= include 'go.php';

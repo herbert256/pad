@@ -1,6 +1,6 @@
 <?php
 
-  $padBase  [$pad] = '{after}' . $padAfter [$pad] . '{/after}';
+  $padBase  [$pad] = $padAfter [$pad];
   $padData  [$pad] = padDefaultData ();
 
   $padAfter [$pad] = '';
