@@ -9,15 +9,11 @@
 
   if ( file_exists("$padTagGo.php") ) {
 
-    ob_start();
-
     $padTagPhp = include "$padTagGo.php";
 
     if ( $padTagPhp === 1 )
       $padTagPhp = '' ;
-
-    $padTagContent .= ob_get_clean() ;
-
+    
   }
 
   if ( is_array($padTagPhp) or is_object($padTagPhp) or is_resource($padTagPhp) )
