@@ -12,6 +12,7 @@
   $padTrue        [$pad] = '';
   $padFalse       [$pad] = '';
 
+  $padPrm         [$pad] = []; 
   $padPrmType     [$pad] = '';
 
   $padName        [$pad] = '';
@@ -56,8 +57,5 @@
   $padBeforeData [$pad] = '';
 
   $padForceName = '';
-
-  $padBetween = '';
-  include 'parms.php';
   
 ?>
