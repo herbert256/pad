@@ -2,22 +2,13 @@
 
   $padSw = $padPrm [$pad] [0];
 
-  if ( isset( $padSwNow[$padSw]) ) 
-
+  if ( isset ( $padSwNow [$padSw] ) ) 
     $padSwNow [$padSw]++;
-
-  else {
-
+  else
     $padSwNow [$padSw] = 0;
 
-    $padSwTmp = array_values ( $padPrm [$pad] );
-    unset ( $padSwTmp [0] );
-    $padSwVars [$padSw] = array_values ( $padSwTmp );
+  $padSwIdx = $padSwNow [$padSw] % $padPrm [$pad] ['_parms_'] + 1 ;
 
-  }
-
-  $padSwIdx = $padSwNow [$padSw] % count ( $padSwVars [$padSw] );
-
-  return $padSwVars [$padSw] [$padSwIdx];
+  return $padPrm [$pad] [$padSwIdx];
 
 ?>

@@ -7,6 +7,7 @@
 
   padDone ( 'page', TRUE);
   padDone ( 'rows', TRUE); 
+  
   padDataFilterGo ($padData [$pad], $padFilterStart, $padFilterEnd);    
 
 ?>
