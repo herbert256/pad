@@ -16,10 +16,7 @@
   error_reporting ($padPhpErrorReporting);
   restore_error_handler ();
 
-  $padPhpOb = trim ( ob_get_clean() );
-
-  if ( $padPhpOb )
-     $padPhpReturn .= $padPhpOb;
+  $padPhpReturn .= ob_get_clean();
 
   return $padPhpReturn;
 

@@ -20,6 +20,8 @@
   $padData        [$pad] = padDefaultData ();
   $padDefault     [$pad] = TRUE;
 
+  $padAppOptions  [$pad] = [];
+
   $padCurrent     [$pad] = [];
   $padKey         [$pad] = 1;
 
@@ -48,8 +50,10 @@
   $padSaveVars   [$pad] = [];
   $padDeleteVars [$pad] = [];
   $padSet        [$pad] = [];
-  $padEndOptions [$pad] = [];
 
+  $padEndOptions [$pad] = [];
+  $padOptionsApp [$pad] = [];
+  
   $padTagCnt     [$pad] = 0;
 
   $padAfter      [$pad] = 0;

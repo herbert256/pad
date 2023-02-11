@@ -14,28 +14,31 @@
   
   foreach ( $padPrmTmp as $padV ) { 
 
-    $padW = padExplode ($padV, '=', 2);
+    list ($padParmName, $padParmValue ) = padSplit ('=', $padV);
 
     $padPrmCnt++; 
 
-    if ( count($padW) == 2 and substr($padW[0], 0, 1) == '$' ) {
+    if ( $padParmValue !== '' and substr($padParmName, 0, 1) == '$' ) {
 
-      $padSetName  = trim(substr($padW[0], 1));
-      $padSetValue = $padW[1];
+      $padSetName  = substr($padParmName, 1);
+      $padSetValue = $padParmValue;
 
       include 'set.php';
 
-    } elseif ( padValid ($padW[0]) and ! is_numeric($padW[0]) ) {
- 
-      if ( count($padW) == 1 ) {
-        $padPrm [$pad] [$padW[0]]   = TRUE;
-        $padPrm [$pad] [$padPrmCnt] = $padW[0]; 
+    } elseif ( padValid ($padParmName) and ! is_numeric($padParmName) ) {
+
+      if ( file_exists ( APP . "options/$padParmName.php") )
+        $padOptionsApp [$pad] [] = $padParmName;
+
+      if ( $padParmValue === '' ) {
+        $padPrm [$pad] [$padParmName] = TRUE;
+        $padPrm [$pad] [$padPrmCnt] = $padParmName; 
       }
       else {                    
-        $padPrm [$pad] [$padW[0]]   = padEval ( $padW[1] );
-        $padPrm [$pad] [$padPrmCnt] = $padPrm [$pad] [$padW[0]];
+        $padPrm [$pad] [$padParmName] = padEval ( $padParmValue );
+        $padPrm [$pad] [$padPrmCnt] = $padPrm [$pad] [$padParmName];
         if ( $padPrmCnt == 1 )
-          $padPrm [$pad] ['_first_key_'] = $padW[0];
+          $padPrm [$pad] ['_first_key_'] = $padParmName;
       }
  
     }

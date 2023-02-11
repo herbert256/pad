@@ -18,9 +18,12 @@
 
   include PAD . "options/go/start.php";
 
+  if ( count ( $padOptionsApp [$pad] ) )
+    include PAD . "options/go/app.php";
+
   include 'name.php';
   
-  if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']))
+  if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']) )
     include PAD . 'callback/init.php' ;
 
   if ( padOpenCloseOk ( $padBase[$pad], '@end@', 2 ) )

@@ -134,6 +134,9 @@
     if ( count ($array) == 1 )
       $array [] = '';
 
+    $array [0] = trim($array [0]);
+    $array [1] = trim($array [1]);
+
     return $array;
 
   }
@@ -227,6 +230,8 @@
   function padRestart ( $padRestart ) {
       
     $GLOBALS ['padRestart'] = $padRestart;
+
+    return NULL;
 
   }
 

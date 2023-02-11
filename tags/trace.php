@@ -1,23 +1,14 @@
 <?php
 
-
   if ( ! $padPair [$pad] or $padWalk [$pad] == 'start' ) {
-
     $padTrcCnt++;
-
     $padTraceDirNow = $padTraceDir . '/trace-' . $padTrcCnt;
-
   }
-
 
   if ( ! $padPair [$pad] ) {
-
     padTrace ( $padTraceDirNow );
-
     return NULL;
-
   }
-
 
   if ( $padWalk [$pad] == 'start' ) {  
 
@@ -32,13 +23,13 @@
     $padLevelDir [$pad-1] = $padTraceDirNow; 
     $padOccurDir [$pad-1] = $padTraceDirNow;
 
-    padTrace ( $padLevelDir [$pad] . "/trace-start" );
+    padTrace ( $padLevelDir [$pad] . "/start" );
 
     $padTrace = TRUE;
   
   } else {
 
-    padTrace ( $padLevelDir [$pad] . "/trace-end" );
+    padTrace ( $padLevelDir [$pad] . "/end" );
 
     $padTrace             = $padBackupadTrace [$pad] ['trace'];
     $padLevelDir [$pad-1] = $padBackupadTrace [$pad] ['level'];
@@ -47,6 +38,5 @@
   } 
 
   return TRUE;
-
      
 ?>
