@@ -242,7 +242,7 @@
     if ( ! isset ( $pad ) or $pad < 0 )
       return;
 
-    for ( $lvl=$pad; $lvl>0; $lvl-- )
+    for ( $lvl=$pad; $lvl>=0; $lvl-- )
       padDumpArray (" Level: $lvl", padTraceGetLevel ($lvl) );
 
     if ( isset ( $GLOBALS ['padData'] ) and is_array ( $GLOBALS ['padData'] ) )

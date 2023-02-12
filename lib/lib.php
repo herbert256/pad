@@ -15,8 +15,9 @@
 
       if ( ! strpos($item, '/')             ) continue;
       if ( strpos($item, 'error') !== FALSE ) continue;
-      if ( substr($item,  -5) == 'inits'    ) continue;
-      if ( substr($item,  -5) == 'exits'    ) continue;
+      if ( substr($item,  -4) == '_lib'     ) continue;
+      if ( substr($item,  -6) == '_inits'   ) continue;
+      if ( substr($item,  -6) == '_exits'   ) continue;
       if ( $ext <> 'html' and $ext <> 'php' ) continue;
 
       if ( ! in_array($item, $files) )

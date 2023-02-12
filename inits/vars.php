@@ -18,6 +18,7 @@
   $padError      = '';
   $padDump       = '';
   $padInOccur    = FALSE;
+  $padInclude    = FALSE;
 
   $padErrrorList = [];
 

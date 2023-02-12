@@ -136,7 +136,7 @@
   $padEtag304               = FALSE;   // Send a 304 header, based on the client etag http header
   $padNoNo                  = FALSE;  // No PAD stuff, just plane PHP   
   $padFastLink              = 32;     // Lenght of the FastLink code in the URL
-  $padTiming                = FALSE;   // Keep Timings of the PAD parts
+  $padTiming                = TRUE;   // Keep Timings of the PAD parts
 
   //No parementer parsing for below tags:
   $padNoParmsParse          = [ 'if', 'case', 'while', 'until', 'increment', 'decrement' ];

@@ -1,40 +1,37 @@
 <?php
 
-  $padBase [$pad] .= '@content@';
+  $padBase [$pad] .= '@pad@';
   $padBuildNow     = substr(APP, 0, -1);  
 
   foreach ($padBuildMrg as $padBuildKey => $padBuildValue) {
 
     $padBuildNow .= "/$padBuildValue";
 
-    if ( $padBuildKey == array_key_last($padBuildMrg) 
-       and (file_exists("$padBuildNow.php") or file_exists("$padBuildNow.html") ) ) {
+    if ( $padBuildKey == array_key_last($padBuildMrg) )
 
       $padBuildHtml = padGetHtml ( "$padBuildNow.html" );
 
-    } elseif ( is_dir ($padBuildNow) ) {
+    elseif ( is_dir ($padBuildNow) ) {
 
-      $padBuildInits = padGetHtml ( "$padBuildNow/inits.html" );
-      $padBuildExits = padGetHtml ( "$padBuildNow/exits.html" );
+      $padBuildInits = str_replace ( '@content@', '@pad@', padGetHtml ( "$padBuildNow/_inits.html" ) );
+      $padBuildExits = str_replace ( '@content@', '@pad@', padGetHtml ( "$padBuildNow/_exits.html" ) );
 
-      if ( strpos($padBuildInits, '@content@') === FALSE and strpos($padBuildExits, '@content@') === FALSE  )
-        $padBuildInits .= '@content@';
+      if ( strpos($padBuildInits, '@pad@') === FALSE and strpos($padBuildExits, '@pad@') === FALSE  )
+        $padBuildInits .= '@pad@';
 
       if ( $padBuildMerge == 'content' )
-        if ( strpos($padBuildInits, '@content@') !== FALSE )
-          $padBuildHtml = str_replace ( '@content@', "@content@$padBuildExits", $padBuildInits );
+        if ( strpos($padBuildInits, '@pad@') !== FALSE )
+          $padBuildHtml = str_replace ( '@pad@', "@pad@$padBuildExits", $padBuildInits );
         else
-          $padBuildHtml = str_replace ( '@content@', "$padBuildInits@content@", $padBuildExits );
+          $padBuildHtml = str_replace ( '@pad@', "$padBuildInits@pad@", $padBuildExits );
       else
         $padBuildHtml = $padBuildInits . $padBuildExits ;
 
-    } else {
+    } else
 
       $padBuildHtml = padGetHtml ( "$padBuildNow.html" );
 
-    }
-
-    $padBase [$pad] = str_replace ( '@content@', $padBuildHtml, $padBase [$pad] );
+    $padBase [$pad] = str_replace ( '@pad@', $padBuildHtml, $padBase [$pad] );
 
   }
 

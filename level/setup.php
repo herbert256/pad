@@ -20,8 +20,6 @@
   $padData        [$pad] = padDefaultData ();
   $padDefault     [$pad] = TRUE;
 
-  $padAppOptions  [$pad] = [];
-
   $padCurrent     [$pad] = [];
   $padKey         [$pad] = 1;
 

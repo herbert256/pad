@@ -9,10 +9,10 @@
 
     if ( is_dir ($padBuildNow) ) {
 
-      $padCall = "$padBuildNow/inits.php";
+      $padCall = "$padBuildNow/_inits.php";
       $padBase [$pad] .= include 'go.php';
 
-      $padExits [] = "$padBuildNow/exits.php";
+      $padExits [] = "$padBuildNow/_exits.php";
 
     }
 

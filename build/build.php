@@ -4,7 +4,7 @@
 
   include 'lib.php';  
 
-  if ( isset ( $_REQUEST['padInclude'] ) )
+  if ( $padInclude or isset ( $_REQUEST['padInclude'] ) )
     $padBuildMode = 'include';
 
   include "$padBuildMode.php";
