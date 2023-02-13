@@ -4,8 +4,8 @@
     if ( substr($key, 0, 3) == 'pad' )
       global $$key;
 
-  $Xp           = $pad;
-  $XpadTraceDir = $padTraceDir;
+  unset($key);
+  unset($val);
   
   $padCnt++;
 

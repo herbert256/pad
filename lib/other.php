@@ -97,7 +97,7 @@
 
   }
 
-  function padIsDataFile ( $file ) {
+  function padDataFileCheck ( $file ) {
 
     $file = APP . "data/$file";
 
@@ -111,21 +111,27 @@
 
   }
 
-  function padGetDataFile ( $file, &$content ) {
+  function padDataFileGet ( $file ) {
 
-    $file = APP . "data/$file";
+    $file  = APP . "data/$file";
+    $parts = pathinfo ( $file );
+    $name  = padTagParm ( 'name', $parts ['filename']  ?? '' );
+    $ext   = padTagParm ( 'type', $parts ['extension'] ?? '' );
 
-    if     ( file_exists ($file)        ) { return padFileGetContents ($file);                              }
-    elseif ( file_exists ("$file.xml")  ) { return padFileGetContents ("$file.xml");  $content = 'xml';     }
-    elseif ( file_exists ("$file.json") ) { return padFileGetContents ("$file.json"); $content = 'json';    }
-    elseif ( file_exists ("$file.yaml") ) { return padFileGetContents ("$file.yaml"); $content = 'yaml';    }
-    elseif ( file_exists ("$file.csv")  ) { return padFileGetContents ("$file.csv");  $content = 'csv';     }
-    elseif ( file_exists ("$file.php")  ) { return include ("$file.php"); }
+        if ( file_exists ("$file.xml")  ) { $data = padFileGetContents ("$file.xml");  $ext = 'xml';  }
+    elseif ( file_exists ("$file.json") ) { $data = padFileGetContents ("$file.json"); $ext = 'json'; }
+    elseif ( file_exists ("$file.yaml") ) { $data = padFileGetContents ("$file.yaml"); $ext = 'yaml'; }
+    elseif ( file_exists ("$file.csv")  ) { $data = padFileGetContents ("$file.csv");  $ext = 'csv';  }
+    elseif ( file_exists ("$file.php")  ) { $data = include ("$file.php");                            }
+    elseif ( $ext == 'php'              ) { $data = include ($file);                                  }
+    elseif ( file_exists ($file)        ) { $data = padFileGetContents ($file);                       }
 
-    return '';
-    
+    if ( $name and ! $GLOBALS ['padName'] [$GLOBALS['pad']] )
+      $GLOBALS ['padName'] [$GLOBALS['pad']] = $name;
+
+    return padMakeData ( $data, $ext, $name );
+
   }
-
 
   function padSplit ( $needle, $haystack ) {
 
@@ -411,6 +417,18 @@
       return FALSE;
 
     if ( ! preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/',$name) )
+      return FALSE;
+
+    return TRUE;  
+
+  }
+
+  function padValidType ($name) {
+
+    if ( trim($name) == '' ) 
+      return FALSE;
+
+    if ( ! preg_match('/^[a-zA-Z][a-zA-Z]*$/',$name) )
       return FALSE;
 
     return TRUE;  
@@ -769,6 +787,15 @@
     elseif (is_object($value))    $value = '';
     elseif (is_resource($value))  $value = '';
     
+  }
+
+
+  function padArray ($array) {
+
+    if ( is_array($array) )
+      return $array;
+    else
+      return padExplode ($array, ',');
   }
 
 

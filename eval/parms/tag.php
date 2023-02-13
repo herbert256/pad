@@ -8,6 +8,6 @@
     else
       $padEvalTagOptions .= $padV;
 
-  return padFakeFunction ( $name, $padEvalTagOptions );
+  return padTagAsFunction ( $name, $padEvalTagOptions );
 
 ?>

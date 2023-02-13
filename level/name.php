@@ -1,5 +1,8 @@
 <?php
 
+  if ( $padName [$pad] )
+    return;
+  
   if ( isset ( $padPrm [$pad] ['name'] ) )
     $padName [$pad] = $padPrm [$pad] ['name'];
   elseif ( $padForceName )

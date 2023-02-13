@@ -17,13 +17,8 @@
     if ( is_array ( $data ) )
       return padDataChk ($data, $name);
 
-    if ( padIsDataFile ( $data ) ) {
-      if ( ! $name )
-        $name = padTagParm ('name', $data);
-      $data = padGetDataFile ( $data, $content );
-      if ( is_array ( $data ) )
-        return padDataChk ($data, $name);
-    }
+    if ( padDataFileCheck ( $data ) )
+      return padDataFileGet ( $data );
 
     if ( substr ( $data, 0, 7 ) == 'http://' or substr ( $data, 0, 8 ) == 'https://' )
       $data = padCurlData ($data);    
@@ -47,6 +42,9 @@
     if ( ! $content )
       $content = padContentType ($data);
 
+    if ( ! $content )
+      $content = 'csv';
+
     $csv = $html = $xml = $json = $yaml = '';
     
     if     ( $content == 'csv' )  $csv  = $data;
@@ -54,15 +52,12 @@
     elseif ( $content == 'xml' )  $xml  = $data;
     elseif ( $content == 'json')  $json = $data;
     elseif ( $content == 'yaml')  $yaml = $data;
-    elseif ( $content == '')      return padDataError ($data, "Not be able to autodetect content type: $data");
     else                          return padDataError ($data, "Content type '$content' not supported");
 
     $result = [];
   
     if ( $csv ) {
       
-      $GLOBALS ['debug-0'] = $csv;
-
       $enc = preg_replace_callback(
           '/"(.*?)"/s',
           function ($field) {
@@ -84,8 +79,6 @@
 
       if ( ! is_array($result) or $result === NULL or $result === FALSE)
         return padDataError ($data, "CSV conversion error");
-
-     $GLOBALS ['debug-1'] = $result;
 
     }
 
