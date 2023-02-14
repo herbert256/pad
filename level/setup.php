@@ -2,6 +2,10 @@
   
   $pad++;  
 
+  $padPrm [$pad]     = [];
+  $padPrm [$pad] [0] = '';
+  $padPrm [$pad] [1] = '';
+
   $padTag         [$pad] = $padTypeCheck  ?? 'n/a';
   $padType        [$pad] = $padTypeResult ?? 'n/a';
   $padTagParm     [$pad] = $padTypeParm   ?? 'n/a';
@@ -12,7 +16,6 @@
   $padTrue        [$pad] = '';
   $padFalse       [$pad] = '';
 
-  $padPrm         [$pad] = []; 
   $padPrmType     [$pad] = '';
 
   $padName        [$pad] = '';

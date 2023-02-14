@@ -85,9 +85,19 @@
 
   }
 
+  function padIsPagesFile ( $file ) {
+
+    return padIsXXXFile ( APP . "pages/$file" );
+
+  }
+
   function padIsContentFile ( $file ) {
 
-    $file = APP . "content/$file";
+    return padIsXXXFile ( APP . "content/$file" );
+
+  }
+
+  function padIsXXXFile ( $file ) {;
 
     if ( padFileValidName ( $file ) )
       if  ( ( file_exists ($file) and ! is_dir($file) ) or file_exists ("$file.html") or file_exists ("$file.php") )
@@ -96,7 +106,6 @@
     return FALSE;
 
   }
-
   function padDataFileCheck ( $file ) {
 
     $file = APP . "data/$file";
@@ -965,7 +974,7 @@
     if ( in_array ( $fld, ['GLOBALS','_POST','_GET','_COOKIE','_SESSION','_FILES','_SERVER','_REQUEST','_ENV'] ) )
       return FALSE;
 
-    if ( in_array ( $fld, ['app', 'pad', 'page', 'PADSESSID', 'PADREQID', 'PHPSESSID'] ) )
+    if ( in_array ( $fld, ['app', 'pad', 'page', 'PADSESSID', 'PADREQID', 'PHPSESSID', 'PADREFID'] ) )
       return FALSE;
 
     return TRUE;

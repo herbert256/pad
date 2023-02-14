@@ -18,14 +18,11 @@
 
     $padPrmCnt++; 
 
-    if ( $padParmValue !== '' and substr($padParmName, 0, 1) == '$' ) {
-
-      $padSetName  = substr($padParmName, 1);
-      $padSetValue = $padParmValue;
+    if ( $padParmValue !== '' and substr($padParmName, 0, 1) == '$' ) 
 
       include 'set.php';
 
-    } elseif ( padValid ($padParmName) and ! is_numeric($padParmName) ) {
+    elseif ( padValidVar ($padParmName) ) {
 
       if ( file_exists ( APP . "options/$padParmName.php") )
         $padOptionsApp [$pad] [] = $padParmName;

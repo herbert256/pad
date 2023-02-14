@@ -1,5 +1,8 @@
 <?php
 
+  $padSetName  = substr($padParmName, 1);
+  $padSetValue = $padParmValue;
+
   if ( ! padValidVar ($padSetName) )
     return padError ("Invalid variable name: $padSetName");
 

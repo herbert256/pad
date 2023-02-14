@@ -4,10 +4,14 @@
     if ( substr($key, 0, 3) == 'pad' )
       global $$key;
 
+  global $app;
+  
   unset($key);
   unset($val);
   
   $padCnt++;
+
+  $padRetrieveLevel = $pad;
 
   include PAD . 'level/setup.php'; 
   include PAD . 'level/trace/start.php'; 

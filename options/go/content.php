@@ -1,7 +1,7 @@
 <?php
 
   if ( ! padIsContentFile ($padContentGo) )
-    return padMakeContent (   $padContentGo );
+    return padMakeContent ( $padContentGo );
 
   $padContentGo = APP . "content/$padContentGo";
 

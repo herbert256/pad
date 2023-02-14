@@ -17,6 +17,7 @@
     elseif ( padArrayCheck    ( $item                                ) ) return 'array';
     elseif ( padFieldCheck    ( $item                                ) ) return 'field';
     elseif ( padIsContentFile ( $item                                ) ) return 'fragment';
+    elseif ( padIsPagesFile   ( $item                                ) ) return 'page';
     elseif ( file_exists      ( PAD . "sequence/types/$item"         ) ) return 'sequence';
     elseif ( file_exists      ( PAD . "sequence/actions/$item.php"   ) ) return 'action';
     elseif ( padDataFileCheck ( $item                                ) ) return 'local';      
@@ -39,7 +40,8 @@
     elseif ( $type == 'app'      and file_exists      ( APP . "tags/$item.html"              ) ) return $type;
     elseif ( $type == 'pad'      and file_exists      ( PAD . "tags/$item.php"               ) ) return $type;
     elseif ( $type == 'pad'      and file_exists      ( PAD . "tags/$item.html"              ) ) return $type;
-    elseif ( $type == 'fragment' and padIsContentFile ( APP . "content/$item"                ) ) return $type;
+    elseif ( $type == 'fragment' and padIsContentFile ( $item                                ) ) return $type;
+    elseif ( $type == 'page    ' and padIsPagesFile   ( $item                                ) ) return $type;
     elseif ( $type == 'tag'      and file_exists      ( PAD . "tag/$type.php"                ) ) return $type;
     elseif ( $type == 'level'    and padChkLevel      ( $item                                ) ) return $type;
     elseif ( $type == 'flag'     and isset            ( $GLOBALS ['padFlagStore'] [$item]    ) ) return $type;
