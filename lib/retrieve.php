@@ -1,32 +1,50 @@
 <?php
 
 
-  function padPageInclude ( $page ) {
+  function padPageInclude ( $page, $include=1 ) {
 
-    return padGetHtml ( APP . "pages/$page.html" , TRUE );
+    if ( $include )
+      return padGetHtml ( APP . "pages/$page.html" , TRUE );
+
+    global $pad, $padBase, $padBuildMerge;
+
+    $padBuildModeSave = $GLOBALS['padBuildMode'];
+    $GLOBALS['padBuildMode'] = 'demand';
+
+    $padBuildMrg = padExplode ( "pages/$page", '/' );
+
+    include PAD . 'build/lib.php';
+    include PAD . 'build/html.php';
+
+    $GLOBALS['padBuildMode'] = $padBuildModeSave;
+
+    return '|' . $padBase [$pad] . '|';
 
   }
 
-  function padPageGet ( $page, $parms ) {
+
+  function padPageGet ( $page, $parms=[], $include=1 ) {
 
     $query = '';
     foreach ( $parms as $padK => $padV )
       $query .= "&$padK=" . urlencode($padV);
 
-    return pad ( $GLOBALS['app'], $page, $query, '1' );
+    return pad ( $GLOBALS['app'], $page, $query, $include );
 
   }
 
-  function padPageFunction ( $padRetrievePage, $padRetrieveParms=[] ) {
+
+  function padPageFunction ( $padRetrievePage, $padRetrieveParms=[], $include=1 ) {
 
     include PAD . 'retrieve/inits.php'; 
 
+    foreach ( $padRetrieveParms as $padK => $padV )
+      $$padK = $padV;
+
     $page          = $padRetrievePage;
-    $padBuildMode  = 'include';
+    $padBuildMode  = ($include) ? 'include' : 'before';
     $padBuildMerge = 'content';
 
-    foreach ( get_defined_vars() as $padK => $padV )
-      $$padK = $padV;
     include PAD . 'build/build.php'; 
 
     $padData [$pad]     = [];
