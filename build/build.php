@@ -4,8 +4,9 @@
 
   include 'lib.php';  
 
-  if ( $padInclude or isset ( $_REQUEST['padInclude'] ) )
-    $padBuildMode = 'include';
+  if ( ! isset ( $GLOBALS['padIgnoreInclude'] ) )
+    if ( $padInclude or isset ( $_REQUEST['padInclude'] ) )
+      $padBuildMode = 'include';
 
   include "$padBuildMode.php";
 

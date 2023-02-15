@@ -18,7 +18,7 @@
 
     $GLOBALS['padBuildMode'] = $padBuildModeSave;
 
-    return '|' . $padBase [$pad] . '|';
+    return $padBase [$pad];
 
   }
 
@@ -45,7 +45,9 @@
     $padBuildMode  = ($include) ? 'include' : 'before';
     $padBuildMerge = 'content';
 
+    $GLOBALS['padIgnoreInclude'] = TRUE;
     include PAD . 'build/build.php'; 
+    unset ( $GLOBALS['padIgnoreInclude'] );
 
     $padData [$pad]     = [];
     $padData [$pad] [1] = [];

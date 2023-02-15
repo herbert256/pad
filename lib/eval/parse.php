@@ -150,10 +150,7 @@
 
       if ( $is_prm ) {
       
-        if ($one == ':' ) {
-          $result[$i][0] .= $one;
-          continue;
-        } elseif ( preg_match('/^[a-zA-Z0-9_]/', $one) ) {
+        if ( preg_match('/^[a-zA-Z0-9_:]/', $one) ) {
           $result[$i][0] .= $one;
           continue;
         } 
@@ -177,18 +174,12 @@
 
       if ($is_tag) {
       
-        if ($one == ':' ) {
-          $result[$i][0] .= $one;
-          continue;
-        } elseif ($one == '#' ) {
-          $result[$i][0] .= $one;
-          continue;
-        } elseif ( preg_match('/^[a-zA-Z0-9_]/', $one) ) {
+        if ( preg_match('/^[a-zA-Z0-9_:]/', $one) ) {
           $result[$i][0] .= $one;
           continue;
         } 
 
-        $is_prm = FALSE;
+        $is_tag = FALSE;
         
       }
 
@@ -222,13 +213,7 @@
  
       if ($is_var) {
       
-        if ($one == ':' ) {
-          $result[$i][0] .= $one;
-          continue;
-        } elseif ($one == '#' ) {
-          $result[$i][0] .= $one;
-          continue;
-        } elseif ( preg_match('/^[a-zA-Z0-9_]/', $one) ) {
+        if ( preg_match('/^[a-zA-Z0-9_:]/', $one) ) {
           $result[$i][0] .= $one;
           continue;
         } elseif ($one == '.' and preg_match('/^[a-zA-Z0-9_]/', $next)) {
