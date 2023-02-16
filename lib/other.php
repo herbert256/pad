@@ -67,6 +67,12 @@
   }
 
 
+  function padCheckTag ($tag, $string) {
+
+    return ( substr_count($string, "{".$tag.' ') == substr_count($string, "{/" . $tag.'}') ) ;
+
+  }
+
   function padFixedLenghtLeft ( $string, $length, $filler = ' ' ) {
 
       if ( strlen($string) < $length) 
@@ -780,11 +786,6 @@
 
 
 
-  function padCheckTag ($tag, $string) {
-
-    return ( substr_count($string, "{" . $tag) == substr_count($string, "{/" . $tag) ) ;
-
-  }
   
 
   function padCheckValue (&$value) {
@@ -953,8 +954,11 @@
     if ( $padBuildMode== 'isolate' )
       $html .= '{isolate}';    
 
-    if ( $call or $padBuildMode == 'demand' or $padBuildMode == 'isolate' )
-      $html .= "{call '" . str_replace ( '.html', '.php', $file ) . "'}";    
+    if ( $call or $padBuildMode == 'demand' or $padBuildMode == 'isolate' ) {
+      $php = str_replace ( '.html', '.php', $file );
+      if ( file_exists($php) )
+        $html .= "{call '$php'}";    
+    }
 
     $html .= padFileGetContents ($file);
       

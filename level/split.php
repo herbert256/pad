@@ -1,6 +1,6 @@
 <?php
 
-  $padOpenClose = padOpenCloseList ( $padTrue [$pad]);;
+  $padOpenClose = padOpenCloseList ( $padTrue [$pad]) ;
   
   if ( $padGiven [$pad] )
     $padOpenClose [ $padType [$pad] . ':' . $padTag [$pad] ] = TRUE;

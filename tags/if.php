@@ -1,11 +1,11 @@
 <?php
   
-  $padEval = $padPrm [$pad] [0];
+  $padEval = $padPrm [$pad] [0]; 
   $padChk  = strpos ($padContent, '{elseif');
 
   while ($padChk !== FALSE) {
 
-    if ( ! padCheckTag ($padTag [$pad], substr($padContent, 0, $padChk)) ) 
+    if ( ! padCheckTag ('if', substr($padContent, 0, $padChk)) ) 
 
       $padChk = strpos($padContent , '{elseif', $padChk+7);
 
@@ -17,7 +17,7 @@
       }
 
       $padPos     = strpos($padContent, '}', $padChk); 
-      $padEval    = substr($padContent, $padChk+7+1, $padPos-($padChk+7+1));
+      $padEval    = substr($padContent, $padChk+8, $padPos-($padChk+8));
       $padContent = substr($padContent, $padPos+1);
       $padChk     = strpos($padContent, '{elseif');
 
