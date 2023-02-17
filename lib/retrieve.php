@@ -23,13 +23,58 @@
   }
 
 
-  function padPageGet ( $page, $parms=[], $include=1 ) {
+  function padPageGet ( $page, $parms=[], $include=1, $app=[] ) {
+
+    if ( ! $app )
+      $app = GLOBALS['app'];
 
     $query = '';
     foreach ( $parms as $padK => $padV )
       $query .= "&$padK=" . urlencode($padV);
 
-    return pad ( $GLOBALS['app'], $page, $query, $include );
+    return pad ( $app, $page, $query, $include );
+
+  }
+
+
+  function padPageAjax ( $page, $parms=[], $include=1, $app='' ) {
+
+    if ( ! $app )
+      $app = GLOBALS['app'];
+
+    if ( ! isset($GLOBALS['padAjax']) )
+      $GLOBALS['padAjax'] = 0;
+
+    global $padAjax, $padApp
+      
+    $padAjax++;
+
+    $url = $padApp . $app . '&page=' . $page; 
+
+    foreach ( $parms as $padK => $padV )
+      $url .= "&$padK=" . urlencode($padV);
+
+    if ( $include )
+      $url .= '&padInclude=1';
+
+    return <<< END
+<div id="padAjax{$padAjax}"></div>
+
+<script>
+  padAjax{$padAjax} = new XMLHttpRequest();
+  padAjax{$padAjax}.onreadystatechange=function() {
+    if (padAjax{$padAjax}.readyState === 4) {
+      if (padAjax{$padAjax}.status === 200) {
+        document.getElementById("padAjax{$padAjax}").innerHTML=padAjax{$padAjax}.responseText;
+      } else {
+        document.getElementById("padAjax{$padAjax}").innerHTML=padAjax{$padAjax}.statusText;
+      }
+    }
+  }
+  padAjax{$padAjax}.open("GET","{$url}",true);
+  padAjax{$padAjax}.send();
+</script>
+END;
 
   }
 

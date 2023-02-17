@@ -1,17 +1,19 @@
 <?php
   
-  $padPagePage    = padTagParm ( 'page',    $padPrm [$pad] [1] );
-  $padPageType    = padTagParm ( 'type',    'direct'           );
-  $padPageInclude = padTagParm ( 'include', '1'                );
+  $padPageApp = padTagParm ( 'app',     $app );
+  $padPagePag = padTagParm ( 'page',    $padPrm [$pad] [1] );
+  $padPageTyp = padTagParm ( 'type',    'direct'           );
+  $padPageInc = padTagParm ( 'include', '1'                );
 
-  $padPageParms = [];
+  $padPagePrm = [];
   foreach ( $padPrm [$pad] as $padPageKey => $padPageValue )
     if ( padValidVar ( $padPageKey) and ! in_array ( $padPageKey, ['page', 'type'] ) )
-      $padPageParms [$padPageKey] = $padPageValue;
+      $padPagePrm [$padPageKey] = $padPageValue;
 
-  if     ( $padPageType == 'direct'   ) return padPageInclude  ( $padPagePage, $padPageInclude                );
-  elseif ( $padPageType == 'function' ) return padPageFunction ( $padPagePage, $padPageParms, $padPageInclude );
-  elseif ( $padPageType == 'get'      ) return padPageGet      ( $padPagePage, $padPageParms, $padPageInclude ); 
+  if     ( $padPageTyp == 'direct'   ) return padPageInclude  ( $padPagePag, $padPageInc                           );
+  elseif ( $padPageTyp == 'function' ) return padPageFunction ( $padPagePag, $padPagePrm, $padPageInc              );
+  elseif ( $padPageTyp == 'get'      ) return padPageGet      ( $padPagePag, $padPagePrm, $padPageInc, $padPageApp ); 
+  elseif ( $padPageTyp == 'ajax'     ) return padPageAjax     ( $padPagePag, $padPagePrm, $padPageInc, $padPageApp ); 
    
   return NULL;
    
