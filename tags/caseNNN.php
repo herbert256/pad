@@ -10,7 +10,7 @@
   
   while ($padChk !== FALSE) {
 
-    if ( ! padCheckTag ('case', substr($padContent, 0, $padChk)) ) 
+    if ( ! padCheckTag ($padTag [$pad], substr($padContent, 0, $padChk)) ) 
 
       $padChk = strpos($padContent , '{when', $padChk+5);
 

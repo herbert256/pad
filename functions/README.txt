@@ -2,8 +2,6 @@ PHP snippets for
 - an option of {$var}:              {$var | xxx | yyy } 
 - a function in a PAD eval string:  {if xxx(123) > yyy(456)}
 
-Filenames must be in lowercase
-
 In
 
   $name         The name of the PHP snippet
