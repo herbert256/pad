@@ -45,9 +45,11 @@
     if ( ! isset($GLOBALS['padAjax']) )
       $GLOBALS['padAjax'] = 0;
 
-    global $padAjax, $padApp
+    global $padAjax, $padApp; 
       
     $padAjax++;
+
+    $ajax = str_replace('/', '', "$app$page$padAjax".$GLOBALS['page']);
 
     $url = $padApp . $app . '&page=' . $page; 
 
@@ -58,21 +60,21 @@
       $url .= '&padInclude=1';
 
     return <<< END
-<div id="padAjax{$padAjax}"></div>
+<div id="padAjax{$ajax}"></div>
 
 <script>
-  padAjax{$padAjax} = new XMLHttpRequest();
-  padAjax{$padAjax}.onreadystatechange=function() {
-    if (padAjax{$padAjax}.readyState === 4) {
-      if (padAjax{$padAjax}.status === 200) {
-        document.getElementById("padAjax{$padAjax}").innerHTML=padAjax{$padAjax}.responseText;
+  padAjax{$ajax} = new XMLHttpRequest();
+  padAjax{$ajax}.onreadystatechange=function() {
+    if (padAjax{$ajax}.readyState === 4) {
+      if (padAjax{$ajax}.status === 200) {
+        document.getElementById("padAjax{$ajax}").innerHTML=padAjax{$ajax}.responseText;
       } else {
-        document.getElementById("padAjax{$padAjax}").innerHTML=padAjax{$padAjax}.statusText;
+        document.getElementById("padAjax{$ajax}").innerHTML=padAjax{$ajax}.statusText;
       }
     }
   }
-  padAjax{$padAjax}.open("GET","{$url}",true);
-  padAjax{$padAjax}.send();
+  padAjax{$ajax}.open("GET","{$url}",true);
+  padAjax{$ajax}.send();
 </script>
 END;
 

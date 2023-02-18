@@ -14,11 +14,6 @@ In
   $parms        An array of the parms, starting at [0]
   $count        The number of parameters
 
-  $parm1        The first parameter
-  $parm2        The second parameter
-  $parm3        The third parameter
-  etc.
-
 Out
 
   return xxxx;  The result of the function.

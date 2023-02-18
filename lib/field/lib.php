@@ -40,11 +40,11 @@
   }  
 
 
-  function padFieldFirstNonTag ($flag=0) {
+  function padFieldFirstNonTag ($lvl=0) {
 
     global $pad, $padType;
 
-    $start = ($flag) ? $pad-1 : $pad;
+    $start = $pad-$lvl;
 
     for ($i=$start; $i; $i--)
       if ( $padType[$i] <> 'tag' )

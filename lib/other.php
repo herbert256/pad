@@ -822,6 +822,14 @@
 
   }
 
+  function padTagParmSet ($parm) {
+
+    global $pad, $padPrm;
+
+    return  ( isset ( $padPrm [$pad] [$parm] ) ) ? TRUE : FALSE;
+
+  }
+
 
   function padDone ($var, $val=TRUE) {
 

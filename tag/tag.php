@@ -1,10 +1,7 @@
 <?php
 
-  global $padPrm;
+  global $padTag;
 
-  if ( isset ($padPrm [$padIdx] [$parm] ) )
-    return $padPrm [$padIdx] [$parm];
-  else
-    return NULL;
+  return $padTag [$padIdx];
 
 ?>

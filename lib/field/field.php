@@ -10,8 +10,8 @@
   function padParmCheck  ( $parm ) { return padField ( $parm, 5 ); } 
   function padParmValue  ( $parm ) { return padField ( $parm, 6 ); } 
   
-  function padTagCheck   ( $parm, $lvl=0 ) { return padField ( $parm, 7, $lvl) ; } 
-  function padTagValue   ( $parm, $lvl=0 ) { return padField ( $parm, 8, $lvl ); } 
+  function padTagCheck   ( $parm         ) { return padField ( $parm, 7      ); } 
+  function padTagValue   ( $parm, $lvl=0 ) { return padField ( $parm, 8, $lvl); } 
 
   function padFieldNull  ( $parm ) { return padField ( $parm, 9 ); } 
 
@@ -33,7 +33,7 @@
     elseif ( in_array ( $type, [5,6] ) )
       $idx = padFieldFirstParmTag ();
     elseif ( in_array ( $type, [7,8] ) )
-      $idx = ($lvl) ? padFieldFirstNonTag (1) : padFieldFirstNonTag ();
+      $idx = padFieldFirstNonTag ($lvl);
     else
       $idx = $GLOBALS ['pad'];
   
