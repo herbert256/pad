@@ -9,9 +9,9 @@
  
     for ( $padK=$pad; $padK; $padK-- ) {
       if ( isset ( $padSaveVars [$padK] [$padSetName] ) ) 
-        unset ( $padK, $padSaveVars [$padK] [$padSetName] );
+        unset ( $padSaveVars [$padK] [$padSetName] );
       if ( isset ( $padDeleteVars [$padK] [$padSetName] ) ) 
-        unset ( $padK, $padDeleteVars [$padK] [$padSetName] );
+        unset ( $padDeleteVars [$padK] [$padSetName] );
     }
  
   }
