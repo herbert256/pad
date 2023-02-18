@@ -1,40 +1,45 @@
 <?php
 
-  $padPairTag        = ( $padGiven [$pad] )   ? $padType [$pad] . ':' . $padTag [$pad] : $padTag [$pad];
-  $padPrmType [$pad] = ( $padPrm [$pad] [0] ) ? 'open' : 'none';
-  $padPos            = $padEnd [$pad-1] - 1;
-  $padPairCheck      = '';
+  $padPairSet    = FALSE;
+  $padTrueSet    = '';
+  $padPairTag    = ( $padTypeGiven ) ? $padTypeResult . ':' . $padTypeCheck : $padTypeCheck;
+  $padPrmTypeSet = ( count($padWords) > 1 ) ? 'open' : 'none';
+  $padPos        = $padEnd [$pad] - 1;
+  $padPairCheck  = '';
 
   while ( ! in_array ( $padPairCheck, [' ', '}'] ) ) {
 
-    $padPos = strpos($padHtml [$pad-1] , '{/' . $padPairTag, ++$padPos);
+    $padPos = strpos($padHtml [$pad] , '{/' . $padPairTag, ++$padPos);
 
     if ($padPos === FALSE)
       return TRUE;
 
-    $padTrueBase = substr($padHtml [$pad-1], $padEnd [$pad-1]+1, $padPos - $padEnd [$pad-1] - 1);
+    $padTrueBase = substr($padHtml [$pad], $padEnd [$pad]+1, $padPos - $padEnd [$pad] - 1);
 
     if ( padOpenCloseCountOne ( $padTrueBase, $padPairTag) )
-      $padPairCheck = substr($padHtml [$pad-1], $padPos + strlen($padPairTag) + 2, 1);
+      $padPairCheck = substr($padHtml [$pad], $padPos + strlen($padPairTag) + 2, 1);
     
   }
  
-  $padTrue [$pad]  = substr ( $padTrueBase, 0, $padPos );
-  $padEnd [$pad-1] = strpos ( $padHtml [$pad-1], '}', $padPos+2 );
+  $padTrueSet    = substr ( $padTrueBase, 0, $padPos );
+  $padEnd [$pad] = strpos ( $padHtml [$pad], '}', $padPos+2 );
 
-  if ( $padEnd [$pad-1] === FALSE )
-    return padIgnore ('pair', 1);
+  if ( $padEnd [$pad] === FALSE )
+    return FALSE;
 
-  $padBetween = substr ($padHtml [$pad-1], $padPos+1, $padEnd [$pad-1]-$padPos-1);
-  $padWords   = preg_split ("/[\s]+/", $padBetween, 2, PREG_SPLIT_NO_EMPTY);
+  $padPairSet      = TRUE;
+  $padBetweenCheck = trim ( substr ($padHtml [$pad], $padPos+1, $padEnd [$pad]-$padPos-1) );
+  $padWordsCheck   = preg_split ("/[\s]+/", $padBetweenCheck, 2, PREG_SPLIT_NO_EMPTY);
 
-  if ( count ($padWords) > 1 ) {
-    include 'parms.php'; 
-    $padPrmType [$pad] = 'close';
+  if ( count($padWordsCheck) > 1 and $padPrmTypeSet == 'open' )
+    return padError ("Both open and close parameters given");
+
+  if ( count($padWordsCheck) > 1 ) { 
+    $padBetween    = $padBetweenCheck;  
+    $padWords      = $padWordsCheck;
+    $padPrmTypeSet = 'close';
   }
-
-  $padPair [$pad] = TRUE;
-
+ 
   return TRUE;
 
 ?>

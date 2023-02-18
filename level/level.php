@@ -15,24 +15,19 @@
     return;
   }
 
-  $padBetween = substr ( $padHtml [$pad], $padStart [$pad] + 1, $padEnd [$pad] - $padStart [$pad] - 1 ) ;
+  $padBetween = trim ( substr ( $padHtml [$pad], $padStart [$pad] + 1, $padEnd [$pad] - $padStart [$pad] - 1 ) );
   $padWords   = preg_split ("/[\s]+/", $padBetween, 2, PREG_SPLIT_NO_EMPTY);
 
   if ( padValidFieldName ( $padBetween ) )
     return include 'var.php';
 
   if ( ! ctype_alpha ( $padBetween [0] ) ) return padIgnore ('ctype_alpha');
-  if ( ! padValidTag ( $padWords[0]    ) ) return padIgnore ('padValid');
-
-  if ( ! include 'type.php'  ) 
-    return;
+  if ( ! padValidTag ( $padWords[0]    ) ) return padIgnore ('padValidTag');
+  if ( ! include 'type.php'              ) return padIgnore ('type');
+  if ( ! include 'pair.php'              ) return padIgnore ('pair');;
 
   include 'setup.php';    
   include 'parms.php';
-
-  if ( ! include 'pair.php'  ) 
-    return;
-
   include 'split.php';
   include 'start.php';
 

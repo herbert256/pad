@@ -17,9 +17,6 @@
 
   } 
 
-  if ( $padTypeResult === FALSE ) 
-    padIgnore ('type');
-
   return $padTypeResult;
 
 ?>

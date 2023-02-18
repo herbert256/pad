@@ -6,18 +6,15 @@
   $padPrm [$pad] [0] = '';
   $padPrm [$pad] [1] = '';
 
-  $padTag         [$pad] = $padTypeCheck  ?? 'n/a';
-  $padType        [$pad] = $padTypeResult ?? 'n/a';
-  $padTagParm     [$pad] = $padTypeParm   ?? 'n/a';
-  $padGiven       [$pad] = $padTypeGiven  ?? FALSE;
+  $padTag         [$pad] = $padTypeCheck  ?? '';
+  $padType        [$pad] = $padTypeResult ?? '';
+  $padTagParm     [$pad] = $padTypeParm   ?? '';
+  $padGiven       [$pad] = $padTypeGiven  ?? '';
+  $padPair        [$pad] = $padPairSet    ?? '';
+  $padTrue        [$pad] = $padTrueSet    ?? '';
+  $padPrmType     [$pad] = $padPrmTypeSet ?? '';
 
-  $padPair        [$pad] = FALSE;
-
-  $padTrue        [$pad] = '';
-  $padFalse       [$pad] = '';
-
-  $padPrmType     [$pad] = '';
-
+  $padFalse       [$pad] = '';  
   $padName        [$pad] = '';
 
   $padData        [$pad] = padDefaultData ();

@@ -698,12 +698,9 @@
   }
 
 
-  function padIgnore ($info, $type=0) {
+  function padIgnore ($info) {
 
     global $pad, $padBetween, $padIgnCnt, $padTrace, $padLevelDir, $padIgnored;
-
-    if ($type)
-      $pad--;
     
     $padIgnCnt++;
 

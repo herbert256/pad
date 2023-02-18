@@ -1,15 +1,13 @@
 <?php
 
-  $padPrmCnt = 0;
-  $padWords  = preg_split("/[\s]+/", $padBetween, 2, PREG_SPLIT_NO_EMPTY);
-
   $padPrm [$pad]     = [];
   $padPrm [$pad] [0] = trim($padWords[1] ?? '');
   $padPrm [$pad] [1] = '';
 
   if ( in_array ( $padTag [$pad], $padNoParmsParse  )  )
     return;
-   
+
+  $padPrmCnt = 0;
   $padPrmTmp = padParseOptions ( $padPrm [$pad] [0] );
   
   foreach ( $padPrmTmp as $padV ) { 
@@ -39,7 +37,7 @@
       }
  
     }
- 
+
     else
  
       $padPrm [$pad] [$padPrmCnt] = padEval ( $padV );

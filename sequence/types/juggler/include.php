@@ -8,8 +8,7 @@
 
 function padSeqJuggler ($n) {
 
-
-	$GLOBALS ['padSeqJugglerArray'] [] = $n;
+    $GLOBALS ['padSeqJugglerArray'] [] = $n;
 
 	$a = $n;
 
@@ -35,9 +34,12 @@ function padSeqJuggler ($n) {
 			$b = floor(sqrt($a) * sqrt($a) *
 								sqrt($a));
 
-		echo($b . " ");
+        $GLOBALS ['padSeqJugglerArray'] [] = $b;
+
 		$a = $b;
+
 	}
+
 }
 
 ?>
