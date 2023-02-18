@@ -2,9 +2,16 @@
 
   $padPairSet    = FALSE;
   $padTrueSet    = '';
-  $padPairTag    = ( $padTypeGiven ) ? $padTypeResult . ':' . $padTypeCheck : $padTypeCheck;
   $padPrmTypeSet = ( count($padWords) > 1 ) ? 'open' : 'none';
-  $padPos        = $padEnd [$pad] - 1;
+
+  if ( substr($padBetween, -1) == '/') {
+    $padBetween = substr($padBetween, 0, -1);
+    $padWords   = preg_split ("/[\s]+/", $padBetween, 2, PREG_SPLIT_NO_EMPTY);
+    return TRUE;
+  }
+
+  $padPairTag    = ( $padTypeGiven ) ? $padTypeResult . ':' . $padTypeCheck : $padTypeCheck;
+  $padPos        = $padEnd [$pad];
   $padPairCheck  = '';
 
   while ( ! in_array ( $padPairCheck, [' ', '}'] ) ) {
@@ -28,7 +35,7 @@
     return FALSE;
 
   $padPairSet      = TRUE;
-  $padBetweenCheck = trim ( substr ($padHtml [$pad], $padPos+1, $padEnd [$pad]-$padPos-1) );
+  $padBetweenCheck = substr ($padHtml [$pad], $padPos+1, $padEnd [$pad]-$padPos-1);
   $padWordsCheck   = preg_split ("/[\s]+/", $padBetweenCheck, 2, PREG_SPLIT_NO_EMPTY);
 
   if ( count($padWordsCheck) > 1 and $padPrmTypeSet == 'open' )

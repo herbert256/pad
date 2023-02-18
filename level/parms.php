@@ -16,11 +16,13 @@
 
     $padPrmCnt++; 
 
-    if ( $padParmValue !== '' and substr($padParmName, 0, 1) == '$' ) 
+    if ( $padParmValue !== '' and substr($padParmName, 0, 1) == '$' ) {
 
-      include 'set.php';
+      $padPrm [$pad] [$padPrmCnt] = padVarOpts ( '', padExplode($padParmValue, '|') );
+      $padPrm [$pad] [substr($padParmName,1)] = $padPrm [$pad] [$padPrmCnt];
+      $padSet [$pad] [substr($padParmName,1)] = $padPrm [$pad] [$padPrmCnt];
 
-    elseif ( padValidVar ($padParmName) ) {
+    } elseif ( padValidVar ($padParmName) ) {
 
       if ( file_exists ( APP . "options/$padParmName.php") )
         $padOptionsApp [$pad] [] = $padParmName;
@@ -31,7 +33,7 @@
       }
       else {                    
         $padPrm [$pad] [$padParmName] = padEval ( $padParmValue );
-        $padPrm [$pad] [$padPrmCnt] = $padPrm [$pad] [$padParmName];
+        $padPrm [$pad] [$padPrmCnt]   = $padPrm [$pad] [$padParmName];
         if ( $padPrmCnt == 1 )
           $padPrm [$pad] ['_first_key_'] = $padParmName;
       }
