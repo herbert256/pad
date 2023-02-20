@@ -1,5 +1,5 @@
 <?php
 
-  return range(5, 25);
+  return range(1, 25);
 
 ?>
