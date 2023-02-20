@@ -1,19 +1,23 @@
 <?php
 
-  $padSetName  = substr($padParmName, 1);
-  $padSetValue = $padParmValue;
+  foreach ( $padPrmTmp as $padK => $padV ) { 
 
-  if ( ! padValidVar ($padSetName) )
-    return padError ("Invalid variable name: $padSetName");
+    list ($padSetName, $padSetValue ) = padSplit ('=', $padV);
 
-  $padSetValue = padVarOpts ( '', padExplode($padSetValue, '|') );
+    if ( substr($padSetName, 0, 1) == '$' ) {
 
-  $padPrm [$pad] [$padPrmCnt]  = $padSetValue;
-  $padPrm [$pad] [$padSetName] = $padSetValue;
+      $padSetName = substr($padSetName, 1);
 
-  if ( $padTag [$pad] == 'set' and ! $padPair [$pad] )
-    $GLOBALS [$padSetName] = $padSetValue;
-  else
-    $padSet [$pad] [$padSetName] = $padSetValue;
+      if ( padValidVar ($padSetName) and $padSetValue !== '' ) {
+
+        $padSet [$pad] [$padSetName] = padVarOpts ( '', padExplode($padSetValue, '|') );
+
+        unset ( $padPrmTmp [$padK] ) ;
+    
+      }
+  
+    } 
+
+  }
 
 ?>

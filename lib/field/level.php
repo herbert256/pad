@@ -2,7 +2,7 @@
 
   function padFieldLevel ( $field, $type ) {
 
-    global $pad, $padCurrent, $padPrm, $padName;
+    global $pad, $padCurrent, $padPrm, $padOpt, $padName;
 
     if ( strlen($field) > 1 and substr($field,0,1) == '-' and is_numeric(substr($field,1)) ) {
       $idx = $pad + $field;
@@ -14,10 +14,9 @@
             return $value;
     }
 
-    if ( is_numeric($field) ) {
-      if ( array_key_exists ( $field, $padPrm [$pad] ) )
-        return $padPrm [$pad] [$field];
-    }
+    if ( is_numeric($field) ) 
+      if ( array_key_exists ( $field, $padOpt [$pad] ) )
+        return $padOpt [$pad] [$field];
 
     for ( $i=$pad; $i; $i-- ) {
 

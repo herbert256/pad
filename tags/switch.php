@@ -1,14 +1,15 @@
 <?php
 
-  $padSw = $padPrm [$pad] [0];
+  $padSw = $padOpt [$pad] [0];
 
   if ( isset ( $padSwNow [$padSw] ) ) 
     $padSwNow [$padSw]++;
   else
     $padSwNow [$padSw] = 0;
 
-  $padSwIdx = $padSwNow [$padSw] % $padPrm [$pad] ['_parms_'] + 1 ;
+  $padSwCnt = count ( $padOpt [$pad] ) - 1;
+  $padSwIdx = $padSwNow [$padSw] % $padSwCnt + 1 ;
 
-  return $padPrm [$pad] [$padSwIdx];
+  return $padOpt [$pad] [$padSwIdx];
 
 ?>

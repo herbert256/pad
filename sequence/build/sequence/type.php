@@ -6,6 +6,6 @@
     if ( isset($padPrm [$pad][$padSeqSeq]) )
       $padSeqParm = $padPrm [$pad][$padSeqSeq];
     else
-      $padSeqParm = $padPrm [$pad] [1];
+      $padSeqParm = $padOpt [$pad] [1];
 
 ?>

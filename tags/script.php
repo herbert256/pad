@@ -1,6 +1,6 @@
 <?php
 
-  $padExec = APP . "scripts/" . escapeshellcmd ($padPrm [$pad] [1]);
+  $padExec = APP . "scripts/" . escapeshellcmd ($padOpt [$pad] [1]);
 
   if ( ! file_exists($padExec) ) {
     padError ("Script $padExec not found");
@@ -9,7 +9,7 @@
 
   $padExecOut = $padExecArgs = [];
 
-  foreach($padPrm [$pad] as $padK => $padV)
+  foreach($padOpt [$pad] as $padK => $padV)
     if ($padK)
       $padExecArgs [$padK] = escapeshellarg ($padV);
 

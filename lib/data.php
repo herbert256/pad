@@ -333,7 +333,7 @@
     if     ( $name                              ) $return = $name;
     elseif ( isset ($padPrm [$pad] ['name'] )   ) $return = $padPrm [$pad] ['name'];
     elseif ( isset ($padPrm [$pad] ['toData'] ) ) $return = $padPrm [$pad] ['toData'];
-    elseif ( $padTag [$pad] == 'data '          ) $return = $padPrm [$pad] [1];
+    elseif ( $padTag [$pad] == 'data '          ) $return = $padOpt [$pad] [1];
     elseif ( isset ($padTag [$pad] )            ) $return = $padTag [$pad];
 
     if ( substr($return, 0, 1) == '$' )

@@ -1,6 +1,6 @@
 <?php
   
-  $padEval = $padPrm [$pad] [0]; 
+  $padEval = $padOpt [$pad] [0]; 
   $padChk  = strpos ($padContent, '{elseif');
 
   while ($padChk !== FALSE) {

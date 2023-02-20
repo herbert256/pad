@@ -5,7 +5,7 @@
     return TRUE;
   }
 
-  $padEval = padEval ( $padPrm [$pad] [0] );
+  $padEval = padEval ( $padOpt [$pad] [0] );
 
   if ($padTag [$pad] == 'while') { 
     $padWalk [$pad] = ($padEval) ? 'next' : '';

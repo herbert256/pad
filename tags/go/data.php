@@ -1,7 +1,7 @@
 <?php
 
   $padMakeType = $padTag [$pad];
-  $padMakeFile = $padPrm [$pad] [1];
+  $padMakeFile = $padOpt [$pad] [1];
 
   return include PAD . 'level/make.php';
 

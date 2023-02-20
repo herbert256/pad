@@ -1,6 +1,6 @@
 <?php
 
-  $padCall = $padPrm [$pad] [1];
+  $padCall = $padOpt [$pad] [1];
 
   return include PAD . 'build/go.php';
 

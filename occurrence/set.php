@@ -4,7 +4,7 @@
 
   if ( $pad )
     if ( padIsDefaultData ($padData [$pad]) ) 
-      $padSetTmp [ $padName [$pad] ] = $padPrm [$pad] [1];
+      $padSetTmp [ $padName [$pad] ] = $padOpt [$pad] [1];
     else
       $padSetTmp [ $padName [$pad] ] = $padCurrent [$pad];
 

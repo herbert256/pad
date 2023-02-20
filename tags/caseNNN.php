@@ -1,6 +1,6 @@
 <?php
 
-  $padBasis   = padEval  ($padPrm [$pad] [0]);        
+  $padBasis   = padEval  ($padOpt [$pad] [0]);        
   $padChk     = strpos   ($padContent , '{when');
   
   $padPos     = strpos   ($padContent, '}', $padChk);

@@ -26,9 +26,6 @@
   if ( ! include 'type.php'              ) return padIgnore ('type');
   if ( ! include 'pair.php'              ) return padIgnore ('pair');;
 
-  include 'setup.php';    
-  include 'parms.php';
-  include 'split.php';
   include 'start.php';
 
 ?>

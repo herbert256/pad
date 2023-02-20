@@ -2,6 +2,13 @@
 
   $padCnt++;
 
+  include 'setup.php';    
+
+  if ( ! in_array ( $padTag [$pad], $padNoParmsParse  )  )
+    include 'parms.php';
+  
+  include 'split.php';
+
   if ( $padLog )    include PAD . 'log/level.php';
   if ( $padTrace )  include 'trace/start.php';
 

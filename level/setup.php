@@ -2,52 +2,52 @@
   
   $pad++;  
 
-  $padPrm [$pad]     = [];
-  $padPrm [$pad] [0] = '';
-  $padPrm [$pad] [1] = '';
+  $padOpt        [$pad] = [];
+  $padSet        [$pad] = [];
+  $padPrm        [$pad] = [];
 
-  $padTag         [$pad] = $padTypeCheck  ?? '';
-  $padType        [$pad] = $padTypeResult ?? '';
-  $padTagParm     [$pad] = $padTypeParm   ?? '';
-  $padGiven       [$pad] = $padTypeGiven  ?? '';
-  $padPair        [$pad] = $padPairSet    ?? '';
-  $padTrue        [$pad] = $padTrueSet    ?? '';
-  $padPrmType     [$pad] = $padPrmTypeSet ?? '';
+  $padOpt        [$pad] [0] = trim($padWords[1] ?? '');
+  $padOpt        [$pad] [1] = '';
 
-  $padFalse       [$pad] = '';  
-  $padName        [$pad] = '';
+  $padTag        [$pad] = $padTypeCheck  ?? '';
+  $padType       [$pad] = $padTypeResult ?? '';
+  $padTagParm    [$pad] = $padTypeParm   ?? '';
+  $padGiven      [$pad] = $padTypeGiven  ?? '';
+  $padPair       [$pad] = $padPairSet    ?? '';
+  $padTrue       [$pad] = $padTrueSet    ?? '';
+  $padPrmType    [$pad] = $padPrmTypeSet ?? '';
 
-  $padData        [$pad] = padDefaultData ();
-  $padDefault     [$pad] = TRUE;
+  $padFalse      [$pad] = '';  
+  $padName       [$pad] = '';
 
-  $padCurrent     [$pad] = [];
-  $padKey         [$pad] = 1;
+  $padData       [$pad] = padDefaultData ();
+  $padDefault    [$pad] = TRUE;
+  $padCurrent    [$pad] = [];
+  $padKey        [$pad] = 1;
 
-  $padWalk        [$pad] = 'start';
-
-  $padWalkData    [$pad] = [];
+  $padWalk       [$pad] = 'start';
+  $padWalkData   [$pad] = [];
   
-  $padDone        [$pad] = [];
-  $padOccur       [$pad] = 0;
-  $padStart       [$pad] = 0;
-  $padEnd         [$pad] = 0;
+  $padDone       [$pad] = [];
+  $padOccur      [$pad] = 0;
+  $padStart      [$pad] = 0;
+  $padEnd        [$pad] = 0;
 
-  $padBase        [$pad] = '';
-  $padHtml        [$pad] = '';
-  $padResult      [$pad] = '';
+  $padBase       [$pad] = '';
+  $padHtml       [$pad] = '';
+  $padResult     [$pad] = '';
  
-  $padHit         [$pad] = FALSE;
-  $padNull        [$pad] = FALSE;
-  $padElse        [$pad] = FALSE;
-  $padArray       [$pad] = FALSE;
-  $padText        [$pad] = FALSE;
+  $padHit        [$pad] = FALSE;
+  $padNull       [$pad] = FALSE;
+  $padElse       [$pad] = FALSE;
+  $padArray      [$pad] = FALSE;
+  $padText       [$pad] = FALSE;
 
-  $padLevelDir    [$pad] = $padOccurDir [$pad-1] ?? $padTraceDir;
-  $padOccurDir    [$pad] = $padLevelDir [$pad];
+  $padLevelDir   [$pad] = $padOccurDir [$pad-1] ?? $padTraceDir;
+  $padOccurDir   [$pad] = $padLevelDir [$pad];
 
   $padSaveVars   [$pad] = [];
   $padDeleteVars [$pad] = [];
-  $padSet        [$pad] = [];
 
   $padEndOptions [$pad] = [];
   $padOptionsApp [$pad] = [];

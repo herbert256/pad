@@ -1,6 +1,6 @@
 <?php
 
-  $padField = padFieldName ($padPrm [$pad] [0]);
+  $padField = padFieldName ($padOpt [$pad] [0]);
   
   if ( isset ($GLOBALS[$padField]) )
     $GLOBALS[$padField]++;
