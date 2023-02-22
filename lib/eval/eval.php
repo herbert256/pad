@@ -6,6 +6,9 @@
     if ( strlen(trim($eval)) == 0 )
       return '';
 
+    if ( $GLOBALS['padParse'] )
+      return '1';
+    
     padTimingStart ('eval');
 
     $result = [];

@@ -29,15 +29,19 @@
 
   $padFirst   = substr ( $padBetween , 0, 1 );
 
-  if     ( $padFirst == '!' ) if ( ! padFieldCheck ( $padFld ) )  padError ( "Field '$padFld' not found" );
-  elseif ( $padFirst == '$' ) if ( ! padFieldCheck ( $padFld ) )  padError ( "Field '$padFld' not found" );
-  elseif ( $padFirst == '#' ) if ( ! padParmCheck  ( $padFld ) )  padError ( "Field '$padFld' not found" );
-  elseif ( $padFirst == '&' ) if ( ! padTagCheck   ( $padFld ) )  padError ( "Field '$padFld' not found" );
+  if ( $padParse ) 
+    return include PAD . 'parse/var.php';
+ 
+  if     ( $padFirst == '!' ) if ( ! padFieldCheck ( $padFld ) ) padError ( "Field '$padFld' not found" );
+  elseif ( $padFirst == '$' ) if ( ! padFieldCheck ( $padFld ) ) padError ( "Field '$padFld' not found" );
+  elseif ( $padFirst == '#' ) if ( ! padParmCheck  ( $padFld ) ) padError ( "Field '$padFld' not found" );
+  elseif ( $padFirst == '&' ) if ( ! padTagCheck   ( $padFld ) ) padError ( "Field '$padFld' not found" );
 
   if     ( $padFirst == '!' ) $padVal = padFieldValue ($padFld);
   elseif ( $padFirst == '$' ) $padVal = padFieldValue ($padFld);
   elseif ( $padFirst == '#' ) $padVal = padParmValue  ($padFld);
   elseif ( $padFirst == '&' ) $padVal = padTagValue   ($padFld);
+
 
   if ( $padFirst == '$' ) {
     $padOpts = array_merge ( $padDataDefaultStart, $padOpts );

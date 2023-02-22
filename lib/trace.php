@@ -60,7 +60,6 @@
 
   } 
 
-
   function padTraceFields ( &$php, &$lvl, &$app, &$cfg, &$pad, &$ids ) {
 
     $php = $lvl = $app = $cfg = $pad = $ids = [];

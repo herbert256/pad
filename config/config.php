@@ -21,6 +21,7 @@
 
   $padLog   = FALSE;  
   $padTrace = FALSE;  
+  $padParse = TRUE;  
 
   // Keep track of stuff
 

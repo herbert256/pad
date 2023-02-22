@@ -58,6 +58,10 @@
   $padBefore     [$pad] = 0;
   $padBeforeData [$pad] = '';
 
+  $padParseLevel [$pad] = $padParseLevel [$pad] ?? '';
+  $padParseFalse [$pad] = $padParseFalse [$pad] ?? '';
+  $padParseInfo  [$pad] = $padParseInfo [$pad] ?? '';
+
   $padForceName = '';
   
 ?>

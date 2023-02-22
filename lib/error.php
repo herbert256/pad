@@ -106,6 +106,9 @@
 
   function padErrorTry ($error, $file, $line) {
 
+    if ( $GLOBALS ['padParse'] ) 
+      include PAD . 'parse/error.php';
+
     if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
       return FALSE;
 

@@ -28,6 +28,9 @@
 
   include 'trace/end.php';
 
+  if ($padParse)
+    include PAD . 'parse/levelEnd.php';
+
   $pad--;
 
   if ( $pad >= 0 and $padBefore [$pad] == 1 ) 

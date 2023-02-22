@@ -1,5 +1,8 @@
 <?php
 
+  if ( $padParse )
+    return '';
+
   if ( ! file_exists($padCall) )
     return '';
 

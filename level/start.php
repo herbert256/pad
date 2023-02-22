@@ -9,6 +9,9 @@
   
   include 'split.php';
 
+  if ($padParse)
+    include PAD . 'parse/levelStart.php';
+
   if ( $padLog )    include PAD . 'log/level.php';
   if ( $padTrace )  include 'trace/start.php';
 

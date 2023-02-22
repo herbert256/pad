@@ -1,5 +1,8 @@
 <?php
 
+  if ( $padParse )
+    return;
+  
   if ( padTagParm ('null') ) {
     $padOptFlag = include PAD . "options/null.php"; 
     if ( ! $padOptFlag ) 

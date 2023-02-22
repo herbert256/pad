@@ -1,5 +1,8 @@
 <?php
 
+  if ( $padParse )
+    return;
+
   padTimingStart ('opt');
 
   if ( $padOptions == 'app' )
@@ -29,7 +32,7 @@
 
   if     ( $padOptions == 'start' ) $padBase   [$pad] = $padContent;
   elseif ( $padOptions == 'end'   ) $padResult [$pad] = $padContent;
-  elseif ( $padOptions == 'app' ) $padBase   [$pad] = $padContent;
+  elseif ( $padOptions == 'app'   ) $padBase   [$pad] = $padContent;
 
   padTimingEnd ('opt');
 
