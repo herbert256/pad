@@ -42,6 +42,9 @@
   if ( padOpenCloseOk ( $padBase[$pad], '@start@', 1 ) )
     return include 'split/before1.php';
 
+  if ($padHistory)
+    include PAD . 'history/levelStart.php';
+
   if ( count ( $padData [$pad] ) )
     include PAD . 'occurrence/start.php';
 

@@ -1,10 +1,13 @@
 <?php
   
 
-  function padEval ($eval, $myself='') {
+  function padEval ($eval, $value='') {
+
+    if ( in_array ( $eval, $GLOBALS ['padEvalFast'] ) )
+      return include PAD . "functions/$eval.php";
 
     if ( strlen(trim($eval)) == 0 )
-      return '';
+      return ''; 
 
     if ( $GLOBALS['padParse'] )
       return '1';
@@ -13,18 +16,14 @@
 
     $result = [];
 
-    $GLOBALS ['padEvalDebug1'] = $eval;
-
-    padEvalParse ( $result, $eval, $myself );
-    $GLOBALS ['padEvalDebug2'] = $result;
-    
+    padEvalParse ( $result, $eval, $value );    
     padEvalAfter ( $result, $eval );  
-    $GLOBALS ['padEvalDebug3'] = $result;
-    
-    padEvalGo    ( $result, array_key_first($result), array_key_last($result), $myself) ;
-    $GLOBALS ['padEvalDebug4'] = $result;
+    padEvalGo    ( $result, array_key_first($result), array_key_last($result), $value) ;
 
     $key = array_key_first ($result);
+
+    if ($GLOBALS['padHistory'])
+      include PAD . 'history/eval.php';
       
     if     ( count($result) < 1        ) return padError("No result back: $eval");
     elseif ( count($result) > 1        ) return padError("More then one result back: $eval");

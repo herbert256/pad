@@ -32,6 +32,9 @@
   if ( $padCache and $padCacheServerAge )
     include PAD . 'cache/exits.php';
 
+  if ($padHistory) 
+    include PAD . 'history/stop.php';
+
   padTimingEnd ('exit');
 
   padStop ($padStop);

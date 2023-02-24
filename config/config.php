@@ -19,9 +19,10 @@
 
   // Trace the internal working of PAD
 
-  $padLog   = FALSE;  
-  $padTrace = FALSE;  
-  $padParse = TRUE;  
+  $padLog     = FALSE;  
+  $padTrace   = FALSE;  
+  $padParse   = FALSE;  
+  $padHistory = TRUE;  
 
   // Keep track of stuff
 
@@ -106,6 +107,8 @@
 
   $padDataDefaultStart = ['trim', 'white'];
   $padDataDefaultEnd   = ['html', 'nbsp'];
+
+  $padEvalFast = ['trim', 'white', 'html', 'nbsp'];
 
   // Default filter options on the complete output, executed before Tidy
   // Must be a flag from FILTER_UNSAFE_RAW from below page.

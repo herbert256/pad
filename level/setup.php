@@ -2,6 +2,9 @@
   
   $pad++;  
 
+  if ($padHistory)
+    include PAD . 'history/setup.php';
+
   $padOpt        [$pad] = [];
   $padSet        [$pad] = [];
   $padPrm        [$pad] = [];

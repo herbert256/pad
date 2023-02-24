@@ -1,6 +1,6 @@
 <?php
 
-  if ( $padParse )
+  if ( $GLOBALS['padParse'] )
     return '';
 
   $padCallReturn = include 'one.php';

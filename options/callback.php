@@ -1,6 +1,6 @@
 <?php
 
-  if ( $padParse )
+  if ( $GLOBALS['padParse'] )
     return;
   
   $padCall = APP . "callbacks/" . $GLOBALS ['padPrm'] [$GLOBALS ['pad']] ['callback'];

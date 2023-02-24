@@ -42,7 +42,6 @@
   elseif ( $padFirst == '#' ) $padVal = padParmValue  ($padFld);
   elseif ( $padFirst == '&' ) $padVal = padTagValue   ($padFld);
 
-
   if ( $padFirst == '$' ) {
     $padOpts = array_merge ( $padDataDefaultStart, $padOpts );
     $padOpts = array_merge ( $padOpts, $padDataDefaultEnd   );   
@@ -54,6 +53,9 @@
   if ( $padTrace ) 
     include 'trace/var.php';
 
+  if ( $padHistory ) 
+    include PAD . 'history/var.php';
+ 
   padTimingEnd ('var');
 
   return padHtml ( $padVal );

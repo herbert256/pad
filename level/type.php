@@ -17,6 +17,14 @@
 
   } 
 
+  if ( $padParse and ! $padTypeResult )
+    if ( $padTypeGiven ) 
+      if ( padValidType ( $padTypeExplode [0] ) ) return 'runtime';
+      else                                        return FALSE;
+    else      
+      if ( padValidTag ( $padTypeCheck ) )        return 'runtime';
+      else                                        return FALSE;
+
   return $padTypeResult;
 
 ?>

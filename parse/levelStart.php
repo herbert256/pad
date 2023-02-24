@@ -2,23 +2,24 @@
 
   $padParseCount++;
 
-  $padParseLevel [$pad] = $padParseCount;
-  $padParseFalse [$pad] = $padFalse [$pad];
-  $padParseInfo  [$pad] = 'level';
-
   $padParseResult [$padParseCount] = [
-    'type'   => 'LevelStart', 
-    'parse'  => $padParseLevel [$pad], 
-    'lvl'    => $pad,
     'tag'    => $padTag     [$pad],
     't-type' => $padType    [$pad],
-    'pair'   => $padPair    [$pad],
-    'p-type' => $padPrmType [$pad],
-    'prm'    => $padPrm     [$pad],
-    'true'   => $padTrue    [$pad],
-    'false'  => $padFalse   [$pad]
+    'level'  => $pad,
+    'true'   => str_replace("\n", '', $padTrue    [$pad]),
+    'false'  => str_replace("\n", '', $padFalse   [$pad])
   ];
 
+  $padParseLevel [$pad] = $padParseCount;
+  $padParseInfo  [$pad] = 'true';
+
+  $padParseFalse [$pad] = $padFalse [$pad];
+
+  if ( $padPrmType [$pad] <> 'none' ) {
+    $padParseResult [$padParseCount] ['p-type'] = $padPrmType [$pad];
+    $padParseResult [$padParseCount] ['prm']    = $padPrm     [$pad];
+  }
+    
   include PAD . 'occurrence/start.php'; 
 
 ?>

@@ -8,6 +8,7 @@
   include 'config.php';
   include 'trace.php';
   include 'log.php';
+  include 'parse.php';
   include 'nono.php';
   include 'fast.php';
   include 'error.php';

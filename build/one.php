@@ -1,6 +1,6 @@
 <?php
 
-  if ( $padParse )
+  if ( $GLOBALS['padParse'] )
     return '';
 
   if ( ! file_exists($padCall) )

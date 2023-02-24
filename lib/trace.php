@@ -36,13 +36,16 @@
 
     if ( $pad === NULL or $pad < 0 or ! isset($pad) )
       return [];
+    
 
     return [
       'tag'    => $GLOBALS ['padTag'] [$pad] ?? '',
       't-type' => $GLOBALS ['padType'] [$pad] ?? '',
       'pair'   => $GLOBALS ['padPair'] [$pad] ?? '',
       'p-type' => $GLOBALS ['padPrmType'] [$pad] ?? '',
+      'opt'    => $GLOBALS ['padOpt'] [$pad] ?? '',
       'prm'    => $GLOBALS ['padPrm'] [$pad] ?? '',
+      'set'    => $GLOBALS ['padSet'] [$pad] ?? '',
       'true' => padDumpShort ($GLOBALS ['padTrue'][$pad]??''),
       'false' => padDumpShort ($GLOBALS ['padFalse'][$pad]??''),
       'base' => padDumpShort ($GLOBALS ['padBase'][$pad]??''),

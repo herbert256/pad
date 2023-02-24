@@ -12,6 +12,8 @@
       return include PAD . 'occurrence/start.php';
   }
 
+  $padOccur [$pad] = 0;
+
   if ( $padWalk [$pad] == 'end' )
     include PAD . 'walk/end.php';
 
@@ -30,6 +32,9 @@
 
   if ($padParse)
     include PAD . 'parse/levelEnd.php';
+
+  if ($padHistory)
+    include PAD . 'history/levelEnd.php';
 
   $pad--;
 
