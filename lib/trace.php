@@ -37,10 +37,9 @@
     if ( $pad === NULL or $pad < 0 or ! isset($pad) )
       return [];
     
-
     return [
       'tag'    => $GLOBALS ['padTag'] [$pad] ?? '',
-      't-type' => $GLOBALS ['padType'] [$pad] ?? '',
+      'type'   => $GLOBALS ['padType'] [$pad] ?? '',
       'pair'   => $GLOBALS ['padPair'] [$pad] ?? '',
       'p-type' => $GLOBALS ['padPrmType'] [$pad] ?? '',
       'opt'    => $GLOBALS ['padOpt'] [$pad] ?? '',
@@ -62,6 +61,33 @@
     ];
 
   } 
+
+  function padHstGetLevel ($pad)  {
+
+    return [
+      'tag'    => $GLOBALS ['padTag'] [$pad],
+      'type'   => $GLOBALS ['padType'] [$pad],
+      'pair'   => $GLOBALS ['padPair'] [$pad] ,
+      'p-type' => $GLOBALS ['padPrmType'] [$pad] ,
+      'opt'    => $GLOBALS ['padOpt'] [$pad] ,
+      'prm'    => $GLOBALS ['padPrm'] [$pad] ,
+      'set'    => $GLOBALS ['padSet'] [$pad] ,
+      'true' => $GLOBALS ['padTrue'][$pad],
+      'false' => $GLOBALS ['padFalse'][$pad],
+      'base' => $GLOBALS ['padBase'][$pad],
+      'name' => $GLOBALS ['padName'] [$pad] ,
+      'default' => $GLOBALS ['padDefault'] [$pad] ,
+      'walk' => $GLOBALS ['padWalk'] [$pad] ,
+      'hit' => $GLOBALS ['padHit'] [$pad] ,
+      'null' => $GLOBALS ['padNull'] [$pad] ,
+      'else' => $GLOBALS ['padElse'] [$pad] ,
+      'array' => $GLOBALS ['padArray'] [$pad] ,
+      'text' => $GLOBALS ['padText'] [$pad]
+    ];
+
+  } 
+
+
 
   function padTraceFields ( &$php, &$lvl, &$app, &$cfg, &$pad, &$ids ) {
 

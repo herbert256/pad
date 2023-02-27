@@ -2,7 +2,7 @@
   
   $pad++;  
 
-  if ($padHistory)
+  if ( $padHst )
     include PAD . 'history/setup.php';
 
   $padOpt        [$pad] = [];

@@ -33,7 +33,7 @@
   if ($padParse)
     include PAD . 'parse/levelEnd.php';
 
-  if ($padHistory)
+  if ($padHst)
     include PAD . 'history/levelEnd.php';
 
   $pad--;

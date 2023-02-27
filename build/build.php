@@ -10,8 +10,8 @@
 
   include "$padBuildMode.php";
 
-  if ($padParse)   include PAD . 'parse/build.php';
-  if ($padHistory) include PAD . 'history/build.php';
+  if ($padParse) include PAD . 'parse/build.php';
+  if ($padHst)  include PAD . 'history/build.php';
 
   include PAD . 'occurrence/start.php';
 

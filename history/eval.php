@@ -1,13 +1,17 @@
 <?php
 
-  global $padHistoryResult, $padHistoryLevel, $padOccur, $pad;
+  global $padHstShort , $padHstPnt, $padOccur, $pad;
 
-  $padHistoryResult
-    [ $padHistoryLevel [$pad] ] 
-    [ $padOccur [$pad] ] 
-    [ 'eval'] 
-    []
-    = 
-    [ $eval, $result];
+  if ( $padOccur[$pad] )
+    if ( $padHstShort )
+      $padHstPnt [$pad] ['occurrences'] [$padOccur[$pad]] [ "Eval: $eval" ]  = $result [$key] [0];
+    else
+      $padHstPnt [$pad] ['occurrences'] [$padOccur[$pad]] ['eval'] ["$eval"] = $result [$key] [0];
+  else
+    if ( $padHstShort )
+      $padHstPnt [$pad] [ "Eval: $eval" ]  = $result [$key] [0];
+    else
+      $padHstPnt [$pad] ['eval'] ["$eval"] = $result [$key] [0];
+
 
 ?>

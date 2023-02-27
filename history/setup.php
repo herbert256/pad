@@ -1,11 +1,21 @@
 <?php
-
-  if (! $pad )
-    return;
   
-  $padHistoryCount++;
-  $padHistoryLevel [$pad] = $padHistoryCount;
+  if ( ! $pad )
+    return;
 
-  $padHistoryResult [$padHistoryCount] ['pad'] = $pad;
+  $padHstLvl [$pad] = ( $padHstShort ) ? "Tag: $padTypeCheck-$padCnt" : $padCnt;
 
+  $padHstVar = '$padHstRsl';
+  
+  for ( $padK = 1; $padK < $pad; $padK++ )
+    if ( $padHstShort )
+      $padHstVar .= "['$padHstLvl[$padK]']" . "['occurrences']"  . "[$padOccur[$padK]]"; 
+    else
+      $padHstVar .= "['$padHstLvl[$padK]']" . "['occurrences']"  . "[$padOccur[$padK]]" . "['tags']"; 
+      
+  $padHstVar .= "['$padHstLvl[$pad]']";
+ 
+  eval ( $padHstVar . " = ['result' => ''];" );
+  eval ( '$padHstPnt [$pad] = &' . $padHstVar . ';' );
+ 
 ?>

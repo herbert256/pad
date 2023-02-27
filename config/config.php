@@ -22,7 +22,10 @@
   $padLog     = FALSE;  
   $padTrace   = FALSE;  
   $padParse   = FALSE;  
-  $padHistory = TRUE;  
+  $padHst     = FALSE;
+
+  $padHstShort = TRUE;  
+  $padHstData  = TRUE;  
 
   // Keep track of stuff
 

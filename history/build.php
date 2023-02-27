@@ -1,6 +1,12 @@
 <?php
 
-  $padHistoryLevel  [0]           = 0;
-  $padHistoryResult [0] ['start'] = $padBase [$pad];  
+  $padHstRsl = [];
+  $padHstRsl ['base'] = $padBase [$pad];
+  $padHstRsl ['result'] = '';
+  
+  $padHstLvl = [];  
+  $padHstPnt [0] = &$padHstRsl;
+ 
+  return;
 
 ?>

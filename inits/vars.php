@@ -4,7 +4,7 @@
 
   $padCache = FALSE;
 
-  $padParseCount = $padHistoryCount = 0;
+  $padParseCount = 0;
   
   $padBase = $padHtml = $padResult = $padTimingsCnt = $padTimings = [];
   $padErrCnt = $padLogCnt = $padTrcCnt =$padEvalCnt = $padFldCnt = $padCnt = $padOptCnt = $padIgnCnt = 0;

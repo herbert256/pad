@@ -5,7 +5,7 @@
   $padInOccur = FALSE;
   
   $padResult [$pad] .= $padHtml [$pad];
-
+  
   if ( $pad )
     padReset ($pad);
 

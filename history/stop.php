@@ -1,7 +1,7 @@
 <?php
 
-  $padHistoryFile = "history/$app/$page/" . padFileTimestamp () . ".json";
+  $padHstFile = "history/$app/$page/" . padFileTimestamp () . ".json";
 
-  padFilePutContents ( $padHistoryFile, $padHistoryResult );
+  padFilePutContents ( $padHstFile, $padHstRsl );
 
 ?>

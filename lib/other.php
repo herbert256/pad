@@ -1,6 +1,39 @@
 <?php
 
 
+  function padArrayClean ($haystack) {
+ 
+    foreach ($haystack as $key => $value) {
+
+      if (is_array($value) and count($value) == 0)
+      
+        unset($haystack[$key]);      
+      
+      elseif (empty($haystack[$key]))
+      
+        unset($haystack[$key]);
+      
+      #elseif ( is_array($value) and count($value) == 1 and is_numeric(array_key_first($value)) )
+      
+        #$haystack[$key] = $value[array_key_first($value)];           
+      
+      elseif (is_array($value)) {
+      
+        $haystack[$key] = padArrayClean ($haystack[$key]); 
+      
+        if ( count($value) == 0 )
+      
+          unset($haystack[$key]);   
+
+      }
+    
+    }
+
+    return $haystack;
+
+  }
+
+
   function padFileTimestamp () {
 
     $now   = microtime(true);
@@ -11,6 +44,7 @@
     return date('ymd-His-') . $micro;
 
   }
+
 
   function padOpenCloseOk ( $string, $check) {
 

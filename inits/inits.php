@@ -8,13 +8,13 @@
   include 'config.php';
   include 'trace.php';
   include 'log.php';
-  include 'parse.php';
   include 'nono.php';
   include 'fast.php';
   include 'error.php';
   include 'cookies.php';
   include 'zip.php';
   include 'host.php';
+  include 'parse.php';
   include 'cache.php';
   include 'level.php';
   include 'parms.php';

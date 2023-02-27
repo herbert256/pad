@@ -53,7 +53,7 @@
   if ( $padTrace ) 
     include 'trace/var.php';
 
-  if ( $padHistory ) 
+  if ( $padHst ) 
     include PAD . 'history/var.php';
  
   padTimingEnd ('var');
