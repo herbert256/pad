@@ -1,34 +1,23 @@
 <?php
 
 
-  function padArrayClean ($haystack) {
+  function padArrayClean ( $haystack ) {
  
-    foreach ($haystack as $key => $value) {
+    foreach ( $haystack as $key => $value )
 
-      if (is_array($value) and count($value) == 0)
+      if ( empty ( $haystack [$key] ) )
       
-        unset($haystack[$key]);      
-      
-      elseif (empty($haystack[$key]))
-      
-        unset($haystack[$key]);
-      
-      #elseif ( is_array($value) and count($value) == 1 and is_numeric(array_key_first($value)) )
-      
-        #$haystack[$key] = $value[array_key_first($value)];           
-      
-      elseif (is_array($value)) {
-      
-        $haystack[$key] = padArrayClean ($haystack[$key]); 
-      
-        if ( count($value) == 0 )
-      
-          unset($haystack[$key]);   
+        unset ( $haystack [$key] );         
 
+      elseif ( is_array ( $value ) ) {
+        
+        $haystack [$key] = padArrayClean ( $haystack [$key] ); 
+        
+        if ( count ( $haystack [$key] ) == 0 )
+          unset ( $haystack [$key] );   
+        
       }
-    
-    }
-
+          
     return $haystack;
 
   }
@@ -347,7 +336,7 @@
 
   function padJson ($data) {
 
-    return json_encode ( $data, JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK );
+    return json_encode ( $data, JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK );
 
   }
 
@@ -745,18 +734,17 @@
 
   function padIgnore ($info) {
 
-    global $pad, $padBetween, $padIgnCnt, $padTrace, $padLevelDir, $padIgnored;
+    global $pad, $padBetween, $padIgnCnt, $padTrace, $padLog, $padLevelDir;
     
     $padIgnCnt++;
-
-    $padIgnored [$padIgnCnt] [] = "$info: $padBetween";
           
-    padHtml  ( '&open;' . $padBetween . '&close;' );
+    padHtml ( '&open;' . $padBetween . '&close;' );
 
-    if ( $padTrace ) {
-      $trace ['ignored'] = "$info: $padBetween";
-      padFilePutContents ( $padLevelDir [$pad] . "/ignore.$padIgnCnt.json", $trace );
-    }
+    if ( $padTrace ) 
+      include PAD . 'trace/ignored.php';
+
+    if ( $padLog ) 
+      include PAD . 'log/ignored.php';
 
     return FALSE;
     

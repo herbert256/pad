@@ -1,6 +1,6 @@
 <?php
 
-  if ( $padWalk [$pad] == 'start' and ($padTag [$pad] == 'data' or $padTag [$pad] == 'flag' or $padPrmType [$pad] == 'close' ) ) {
+  if ( $padWalk [$pad] == 'start' and $padPrmType [$pad] == 'close' ) {
     $padWalk [$pad] = 'end';
     return TRUE;
   }

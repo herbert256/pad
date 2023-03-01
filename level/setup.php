@@ -1,9 +1,10 @@
 <?php
   
   $pad++;  
+  $padCnt++;
 
-  if ( $padHst )
-    include PAD . 'history/setup.php';
+  if ( $padLog )
+    include PAD . 'log/setup.php';
 
   $padOpt        [$pad] = [];
   $padSet        [$pad] = [];

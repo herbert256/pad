@@ -20,7 +20,9 @@
   
   }
 
-  if ( $padParse )
-    $padHst = FALSE;
+  if ( $padParse ) {
+    $padLog   = FALSE;
+    $padTrace = FALSE;
+  }
 
  ?>

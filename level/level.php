@@ -22,7 +22,7 @@
     return include 'var.php';
 
   if ( ! ctype_alpha ( $padBetween [0] ) ) return padIgnore ('ctype_alpha');
-  if ( ! padValidTag ( $padWords[0]    ) ) return padIgnore ('padValidTag');
+  if ( ! padValidTag ( $padWords [0]   ) ) return padIgnore ('padValidTag');
   if ( ! include 'type.php'              ) return padIgnore ('type');
   if ( ! include 'pair.php'              ) return padIgnore ('pair');;
 

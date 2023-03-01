@@ -1,6 +1,10 @@
 <?php
 
-  include 'trace/end.php';
+  if ( $padLog )
+    include PAD . 'log/occurEnd.php';
+
+  if ( $padTrace )
+    include 'trace/end.php';
   
   $padInOccur = FALSE;
   

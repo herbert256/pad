@@ -1,6 +1,6 @@
 <?php
 
-  if ( count ($padData [$pad] ) )
+  if ( count ( $padData [$pad] ) )
     include PAD . 'occurrence/end.php';
 
   if ( next($padData [$pad]) !== FALSE )
@@ -27,16 +27,20 @@
     include 'split/before3.php';
 
   include PAD . "options/go/end.php";
+ 
+  if ( $padTrace )
+    include 'trace/end.php';
 
-  include 'trace/end.php';
-
-  if ($padParse)
+  if ( $padParse )
     include PAD . 'parse/levelEnd.php';
 
-  if ($padHst)
-    include PAD . 'history/levelEnd.php';
+  if ( $padLog )
+    include PAD . 'log/levelEnd.php';
 
   $pad--;
+
+  if ( $padLog and $pad >= 0 and count ( $padData [$pad] ) )
+    include PAD . 'log/occurStart.php';
 
   if ( $pad >= 0 and $padBefore [$pad] == 1 ) 
     return include 'split/before2.php';

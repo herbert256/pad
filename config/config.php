@@ -14,18 +14,17 @@
                             // 'none' , 'error' , 'warning' , 'notice' , 'all'
                             // (not used when $padErrorAction is 'php' or 'boot')
 
-  $padErrorLog    = TRUE;   //  Write errors to Apache error log
-  $padErrorReport = TRUE;   //  Write errors to the DATA directory
+  $padErrorLog    = TRUE;   //  Report errors to Apache error log
+  $padErrorReport = TRUE;   //  Report errors to the DATA directory
 
-  // Trace the internal working of PAD
+  // 3 attempts to answer the question "WTF is going on"
 
-  $padLog     = FALSE;  
   $padTrace   = FALSE;  
-  $padParse   = FALSE;  
-  $padHst     = FALSE;
+  $padParse   = FALSE;
+  $padLog     = TRUE;
 
-  $padHstShort = TRUE;  
-  $padHstData  = TRUE;  
+  $padLogShort = TRUE;  
+  $padLogData  = TRUE;  
 
   // Keep track of stuff
 

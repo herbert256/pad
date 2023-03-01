@@ -62,9 +62,11 @@
 
   } 
 
-  function padHstGetLevel ($pad)  {
+  function padLogGetLevel ($pad)  {
 
     return [
+      'pad'    => $GLOBALS ['pad'],
+      'cnt'    => $GLOBALS ['padCnt'],
       'tag'    => $GLOBALS ['padTag'] [$pad],
       'type'   => $GLOBALS ['padType'] [$pad],
       'pair'   => $GLOBALS ['padPair'] [$pad] ,
@@ -72,9 +74,9 @@
       'opt'    => $GLOBALS ['padOpt'] [$pad] ,
       'prm'    => $GLOBALS ['padPrm'] [$pad] ,
       'set'    => $GLOBALS ['padSet'] [$pad] ,
-      'true' => $GLOBALS ['padTrue'][$pad],
-      'false' => $GLOBALS ['padFalse'][$pad],
-      'base' => $GLOBALS ['padBase'][$pad],
+      'true'   => $GLOBALS ['padTrue'][$pad],
+      'false'  => $GLOBALS ['padFalse'][$pad],
+      'base'   => $GLOBALS ['padBase'][$pad],
       'name' => $GLOBALS ['padName'] [$pad] ,
       'default' => $GLOBALS ['padDefault'] [$pad] ,
       'walk' => $GLOBALS ['padWalk'] [$pad] ,

@@ -8,7 +8,14 @@
 
   $padInOccur = TRUE;
   
-  include 'trace/start.php';
+  if ( $padLog )
+    include PAD . 'log/occurStart.php';
+
+  if ( $padLog and $padLogData ) 
+    include PAD . 'log/data.php';
+ 
+  if ( $padTrace )
+    include 'trace/start.php';
 
   if ( $padWalk [$pad] <> 'start' )
     $padWalkData [$pad] [] = $padCurrent [$pad];

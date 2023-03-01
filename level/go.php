@@ -8,10 +8,12 @@
   $padTagContent = ''; ob_start();
 
   padTimingStart ('tag');
+
   if ($padParse)
     $padTagResult = TRUE;
   else
     $padTagResult = include PAD . "types/" . $padType [$pad] . ".php";
+  
   padTimingEnd ('tag');
 
   $padTagContent .= ob_get_clean();

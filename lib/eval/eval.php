@@ -27,8 +27,8 @@
     elseif ( isset($result[$key][4])   ) return padError("Result is an array: $eval");
     elseif ( $result[$key][1] <> 'VAL' ) return padError("Result is not a value: $eval");
 
-   if ($GLOBALS['padHst'])
-      include PAD . 'history/eval.php';
+   if ($GLOBALS['padLog'])
+      include PAD . 'log/eval.php';
       
     padTimingEnd ('eval');
  

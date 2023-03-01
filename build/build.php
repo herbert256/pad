@@ -11,7 +11,7 @@
   include "$padBuildMode.php";
 
   if ($padParse) include PAD . 'parse/build.php';
-  if ($padHst)  include PAD . 'history/build.php';
+  if ($padLog)  include PAD . 'log/build.php';
 
   include PAD . 'occurrence/start.php';
 
