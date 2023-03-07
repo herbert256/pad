@@ -3,7 +3,7 @@
   if ( $GLOBALS['padParse'] )
     return '';
 
-  if ( ! file_exists($padCall) )
+  if ( ! padExists($padCall) )
     return '';
 
   ob_start();

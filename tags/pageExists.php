@@ -5,10 +5,10 @@
 
   $padExits = APP . 'pages/' . $padOpt [$pad] [1];
 
-  if ( file_exists ("$padExits.html")       ) return TRUE;
-  if ( file_exists ("$padExits.php")        ) return TRUE;
-  if ( file_exists ("$padExits/index.html") ) return TRUE;
-  if ( file_exists ("$padExits/index.php")  ) return TRUE;
+  if ( padExists ("$padExits.html")       ) return TRUE;
+  if ( padExists ("$padExits.php")        ) return TRUE;
+  if ( padExists ("$padExits/index.html") ) return TRUE;
+  if ( padExists ("$padExits/index.php")  ) return TRUE;
 
   return FALSE;
 

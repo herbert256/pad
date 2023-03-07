@@ -103,14 +103,14 @@ END;
       if ( padValidStore($padK) )
         $padData [$pad] [1] [$padK] = $padV;
 
-    foreach ( $padRetrieveParms as $padK => $padV )
-      $padData [$pad] [1] [$padK] = $padV;
-
     if ( count ( $padData [$pad] [1] ) ) {
       $padKey     [$pad] = 1;
       $padCurrent [$pad] = $padData [$pad] [1];
-    } else
+    } else {
       $padData [$pad] = padDefaultData ();
+      $padKey     [$pad] = 999;
+      $padCurrent [$pad] = $padData [$pad] [99];
+    }
 
     $padHtml [$pad] = $padBase [$pad];    
 
@@ -132,7 +132,11 @@ END;
 
   function padTagAsFunction ($tag, $parms) {
 
-    return padRetrieveContent ( '{' . $tag . ' ' . $parms . '}' );
+    include PAD . 'retrieve/inits.php'; 
+
+    $padHtml [$pad] = '{' . $tag . ' ' . $parms . '}';    
+
+    return include PAD . 'retrieve/exits.php'; 
 
   }
 

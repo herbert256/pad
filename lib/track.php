@@ -1,12 +1,14 @@
 <?php
 
+  function padTrackFileRequest () {
+    
+    $dir = $GLOBALS ['PADSESSID'];
+    $id  = $GLOBALS ['PADREQID'];
 
-  function padTrack () {
-  
-    return [
+    $track = [
         'session'   => $GLOBALS ['PADSESSID'] ?? '',
         'request'   => $GLOBALS ['PADREQID'] ?? '',
-        'reference' => $GLOBALS ['PADREFID '] ?? '',
+        'reference' => $GLOBALS ['PADREFID'] ?? '',
         'app'       => $GLOBALS ['app'] ?? '',
         'page'      => $GLOBALS ['page'] ?? '',
         'start'     => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0,
@@ -20,15 +22,8 @@
         'agent'     => $_SERVER ['HTTP_USER_AGENT'] ?? '',
         'cookies'   => $_SERVER ['HTTP_COOKIE']     ?? ''
       ];
-      
-  }
 
-
-  function padTrackFileRequest () {
-    
-    $id = $GLOBALS ['PADREQID'];
-
-    padFilePutContents ( "track/$id.json", padTrack() );
+    padFilePutContents ( "track/$dir/$id.json", $track );
       
   }
 
@@ -66,21 +61,16 @@
   }
 
 
+  function padTrackFileData ( $padEtag, $padOutput ) {
 
-  function padTrackFileData () {
-
-    global $padEtag, $padOutput;
-    
     $padContentStoreFile = "output/$padEtag.html";
 
-    if ( ! file_exists(DATA . "$padContentStoreFile") )
+    if ( ! padExists(DATA . "$padContentStoreFile") )
       padFilePutContents ($padContentStoreFile, $padOutput);
 
   }
 
-  function padTrackDbData () {
-
-    global $padEtag, $padOutput;
+  function padTrackDbData ( $padEtag, $padOutput ) {
     
     $etag = padDb ( "check track_data where etag='{1}'", [ 1 => $padEtag ] );
 

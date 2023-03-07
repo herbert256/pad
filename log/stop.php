@@ -32,6 +32,9 @@
 
   function padLogEval ($array) {
 
+    if ( ! is_array($array) )
+      return $array;
+
     foreach ( $array as $key => $value )
 
       if ( $key == 'eval' and is_array($value) ) {
@@ -52,6 +55,9 @@
 
   function padLogFields ($array) {
 
+    if ( ! is_array($array) )
+      return $array;
+
     foreach ( $array as $key => $value )
 
       if ( $key == 'fields' and is_array($value) ) {
@@ -71,6 +77,9 @@
 
 
   function padLogOccur ($array) {
+
+    if ( ! is_array($array) )
+      return $array;
 
     foreach ( $array as $key => $value )
 
@@ -103,9 +112,12 @@
 
   function padLogTags ($array) {
 
+    if ( ! is_array($array) )
+      return $array;
+
     foreach ( $array as $key => $value )
 
-      if ( $key == 'tags' ) {
+      if ( $key == 'tags' and is_array($value) and isset($value['tag']) ) {
 
         foreach ( $value as $key2 => $value2 ) {
 

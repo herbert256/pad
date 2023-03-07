@@ -34,15 +34,8 @@
 
   $GLOBALS [$padStoreName] [$padName [$pad]] = $padStoreData;
 
-  if ( $padTrace ) {
-    $padTraceData = [
-      'store'  => $padStoreName, 
-      'entry'  => $padName [$pad],
-      'source' => $padStoreSource, 
-      'result' => $padStoreData
-    ];
-    padFilePutContents ( $padLevelDir [$pad] . "/store.json", $padTraceData ); 
-  }
+  if ( $padTrace ) include PAD . 'trace/store.php';
+  if ( $padLog )   include PAD . 'log/store.php';
 
   $padContent = '';
 

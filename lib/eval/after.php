@@ -42,14 +42,14 @@
 
         if ( padValid ($type) and padValid ($val) ) {
 
-          if ( file_exists ( PAD . "eval/single/$type.php") or file_exists ( PAD . "eval/parms/$type.php" ) ) {
+          if ( padExists ( PAD . "eval/single/$type.php") or padExists ( PAD . "eval/parms/$type.php" ) ) {
             $result[$k][0] = $val;
             $result[$k][1] = 'TYPE';
             $result[$k][2] = $type;          
             $result[$k][3] = 0;
           }
 
-          if ( file_exists ( PAD . "eval/single/$type.php" ) )
+          if ( padExists ( PAD . "eval/single/$type.php" ) )
             padEvalSingle ( $result, $k );
 
         }

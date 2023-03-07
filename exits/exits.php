@@ -22,10 +22,10 @@
   $padEtag = padMD5 ($padOutput);
 
   if ( $padTrackFileData )
-    padTrackFileData ();
+    padTrackFileData ( $padEtag, $padOutput );
 
   if ( $padTrackDbData )
-    padTrackDbData ();
+    padTrackDbData ( $padEtag, $padOutput );
 
   $padStop = ( $padEtag304 and ($padCacheClient??'') == $padEtag ) ? 304 : 200;
 

@@ -21,12 +21,7 @@
     if ($include)
       $include = '&padInclude=1';
 
-    $input = $output = [];
-
     $input ['url'] = "$padHost$padScript?app=$app&page=$page$query$include";
-
-    $input ['cookies'] ['PADSESSID'] = $GLOBALS ['PADSESSID'];
-    $input ['cookies'] ['PADREQID']  = $GLOBALS ['PADREQID'];
     
     return padCurl ($input);
     
@@ -79,7 +74,7 @@
 
     if ( ! strpos( $input ['url'], '://') ) {
       $file = APP . 'data/' . $input ['url'];
-      if ( file_exists ( $file ) ) {
+      if ( padExists ( $file ) ) {
         $output ['data']    = padFileGetContents ( $file );   
         $output ['type']    = padContentType  ( $output ['data'] );   
         $output ['result']  = '200';
@@ -108,6 +103,11 @@
       padCurlOpt ($options, 'POSTFIELDS', $input ['post']);
     }
   
+    if  ( str_starts_with ( $input ['url'], $GLOBALS['padHost'] ) ) {
+      $input ['cookies'] ['PADSESSID'] = $GLOBALS ['PADSESSID'];
+      $input ['cookies'] ['PADREQID']  = $GLOBALS ['PADREQID'];
+    }
+ 
     if ( isset($input['cookies']) ) {
       $cookies = '';
       foreach ( $input['cookies'] as $key => $val ) {

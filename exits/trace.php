@@ -13,9 +13,9 @@
   padTraceFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );
 
   padFilePutContents ( $GLOBALS ['padTraceDir'] . "/end.json",         $padTraceData );
-  padFilePutContents ( $GLOBALS ['padTraceDir'] . "/result.html",  $GLOBALS ['padResult'][0] ?? '');
-  padFilePutContents ( $GLOBALS ['padTraceDir'] . "/headers-out.json", $GLOBALS ['padHeaders']  ?? '');
-  padFilePutContents ( $GLOBALS ['padTraceDir'] . "/pad.json",     $padFpad  );
-  padFilePutContents ( $GLOBALS ['padTraceDir'] . "/app.json",     $padFapp  );
+  padFilePutContents ( $GLOBALS ['padTraceDir'] . "/result.html",      $GLOBALS ['padResult'][0] ?? '');
+  padFilePutContents ( $GLOBALS ['padTraceDir'] . "/headers-out.json", $GLOBALS ['padHeaders']   ?? '');
+  padFilePutContents ( $GLOBALS ['padTraceDir'] . "/pad.json",         $padFpad  );
+  padFilePutContents ( $GLOBALS ['padTraceDir'] . "/app.json",         $padFapp  );
  
 ?>

@@ -5,7 +5,7 @@
 
   $padNoNo = APP . "/pages/$page.php";
 
-  if ( ! file_exists ( $padNoNo ) )
+  if ( ! padExists ( $padNoNo ) )
     padBootError ("Page does not exists: $padNoNo");
 
   foreach ($GLOBALS as $key => $value)

@@ -4,7 +4,7 @@
 
     if ( $padSeqActionName <> $padSeqSeq )
 
-      if ( file_exists ( PAD . "sequence/actions/$padSeqActionName.php" ) ) {
+      if ( padExists ( PAD . "sequence/actions/$padSeqActionName.php" ) ) {
 
         if ( $padSeqActionValue === TRUE or ! ctype_digit($padSeqActionValue) )
           if ( $padSeqCnt )

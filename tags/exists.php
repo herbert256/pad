@@ -4,6 +4,6 @@
   elseif ( padTagParm ('pad') ) $padExists = PAD . $padOpt [$pad] [1];
   else                          $padExists = APP . $padOpt [$pad] [1];
 
-  return ( file_exists ($padExists) ) ? TRUE : FALSE;
+  return ( padExists ($padExists) ) ? TRUE : FALSE;
 
 ?>

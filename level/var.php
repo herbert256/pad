@@ -37,7 +37,7 @@
   elseif ( $padFirst == '#' ) if ( ! padParmCheck  ( $padFld ) ) padError ( "Field '$padFld' not found" );
   elseif ( $padFirst == '&' ) if ( ! padTagCheck   ( $padFld ) ) padError ( "Field '$padFld' not found" );
 
-  if     ( $padFirst == '!' ) $padVal = padFieldValue ($padFld);
+  if     ( $padFirst == '!' ) $padVal = str_replace ( '}', '&close;', padFieldValue ($padFld) );
   elseif ( $padFirst == '$' ) $padVal = padFieldValue ($padFld);
   elseif ( $padFirst == '#' ) $padVal = padParmValue  ($padFld);
   elseif ( $padFirst == '&' ) $padVal = padTagValue   ($padFld);

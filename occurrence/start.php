@@ -7,6 +7,8 @@
   $padCurrent [$pad] = $padData [$pad] [$padKey [$pad]];
 
   $padInOccur = TRUE;
+
+  include 'split.php';
   
   if ( $padLog )
     include PAD . 'log/occurStart.php';

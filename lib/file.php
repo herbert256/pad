@@ -1,12 +1,27 @@
 <?php
 
 
+  function padExists ( $file ) {
+
+    if ( ! padFileValidName ( $file ) )
+      $return = FALSE;
+    else
+      $return = file_exists ( $file );
+
+    if ( isset($GLOBALS ['padLog']) and $GLOBALS ['padLog'] )
+      include PAD . 'log/exists.php';
+
+    return $return;
+
+  }
+
+
   function padFileGetContents ( $file ) {
 
     if ( ! padFileValidName ( $file ) )
       return padError ("Invalid file name: $file");
     
-    if ( ! file_exists($file) )
+    if ( ! padExists($file) )
       return '';
 
     padTimingStart ('read');
@@ -24,10 +39,8 @@
     
     $file = DATA . str_replace(':', '_', $in);
 
-    if ( ! padFileValidName ( $file ) ) {
-      #padDum$GLOBALS ['pad'];
+    if ( ! padFileValidName ( $file ) )
       return padError ("Invalid file name: $file");
-    }
 
     padFileChkDir  ( $file );
     padFileChkFile ( $file );
@@ -38,19 +51,9 @@
     if ($data) {
       padTimingStart ('write');
       if ($append) file_put_contents ($file, "$data\n", LOCK_EX | FILE_APPEND);
-      else         file_put_contents ($file, $data, LOCK_EX);
+      else         file_put_contents ($file, $data,     LOCK_EX);
       padTimingEnd ('write');
     }
-    
-  }
-
-  function padFilePutContentsRegression ($in, $data='', $append=0) {
-
-    global $pad;
-    
-    $file = PAD . "regression/$in";
-
-      padTimingEnd ('write');
     
   }
 
@@ -64,7 +67,7 @@
     if ( strpos($file, './') !== FALSE )                  return FALSE;
 
     if ( str_starts_with($file, PAD)  ) return TRUE;
-    if ( str_starts_with($file, APPS)  ) return TRUE;
+    if ( str_starts_with($file, APPS) ) return TRUE;
     if ( str_starts_with($file, DATA) ) return TRUE;
 
     return FALSE;
@@ -74,10 +77,9 @@
 
   function padFileChkDir ( $file ) {
 
-    $pados = strrpos($file, '/');
-    $dir = substr($file, 0, $pados);
+    $dir = substr ( $file, 0, strrpos($file, '/') );
     
-    if ( ! file_exists($dir) ) {
+    if ( ! padExists($dir) ) {
 
       padTimingStart ('write');
 
@@ -92,7 +94,7 @@
 
   function padFileChkFile ( $file ) {
 
-    if ( ! file_exists($file) ) {
+    if ( ! padExists($file) ) {
 
       padTimingStart ('write');
       

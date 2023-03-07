@@ -3,8 +3,8 @@
 
   function padSeqAction ( $sequence1, $action, $sequence2 ) {
 
-    $padSeqResult       = $sequence1;
-    $padSeqCnt        = 0;
+    $padSeqResult      = $sequence1;
+    $padSeqCnt         = 0;
     $padSeqActionValue = $action;
     $padSeqActionName  = $action;
     

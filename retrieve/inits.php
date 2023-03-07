@@ -9,12 +9,13 @@
   unset($key);
   unset($val);
   
-  $padCnt++;
-
   $padRetrieveLevel = $pad;
 
   include PAD . 'level/setup.php'; 
-  include PAD . 'level/trace/start.php'; 
-  include PAD . 'occurrence/trace/start.php'; 
+
+  if ( $padTrace ) {
+    include PAD . 'level/trace/start.php'; 
+    include PAD . 'occurrence/trace/start.php'; 
+  }
 
 ?>

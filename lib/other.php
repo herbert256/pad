@@ -140,7 +140,7 @@
   function padIsXXXFile ( $file ) {;
 
     if ( padFileValidName ( $file ) )
-      if  ( ( file_exists ($file) and ! is_dir($file) ) or file_exists ("$file.html") or file_exists ("$file.php") )
+      if  ( ( padExists ($file) and ! is_dir($file) ) or padExists ("$file.html") or padExists ("$file.php") )
         return TRUE;
 
     return FALSE;
@@ -151,9 +151,9 @@
     $file = APP . "data/$file";
 
     if ( padFileValidName ( $file ) )
-      if  ( ( file_exists ($file) and ! is_dir($file) ) 
-        or file_exists ("$file.xml") or file_exists ("$file.json") or file_exists ("$file.yaml") 
-        or file_exists ("$file.csv") or file_exists ("$file.php") )
+      if  ( ( padExists ($file) and ! is_dir($file) ) 
+        or padExists ("$file.xml") or padExists ("$file.json") or padExists ("$file.yaml") 
+        or padExists ("$file.csv") or padExists ("$file.php") )
         return TRUE;
 
     return FALSE;
@@ -167,13 +167,13 @@
     $name  = padTagParm ( 'name', $parts ['filename']  ?? '' );
     $ext   = padTagParm ( 'type', $parts ['extension'] ?? '' );
 
-        if ( file_exists ("$file.xml")  ) { $data = padFileGetContents ("$file.xml");  $ext = 'xml';  }
-    elseif ( file_exists ("$file.json") ) { $data = padFileGetContents ("$file.json"); $ext = 'json'; }
-    elseif ( file_exists ("$file.yaml") ) { $data = padFileGetContents ("$file.yaml"); $ext = 'yaml'; }
-    elseif ( file_exists ("$file.csv")  ) { $data = padFileGetContents ("$file.csv");  $ext = 'csv';  }
-    elseif ( file_exists ("$file.php")  ) { $data = include ("$file.php");                            }
+        if ( padExists ("$file.xml")  ) { $data = padFileGetContents ("$file.xml");  $ext = 'xml';  }
+    elseif ( padExists ("$file.json") ) { $data = padFileGetContents ("$file.json"); $ext = 'json'; }
+    elseif ( padExists ("$file.yaml") ) { $data = padFileGetContents ("$file.yaml"); $ext = 'yaml'; }
+    elseif ( padExists ("$file.csv")  ) { $data = padFileGetContents ("$file.csv");  $ext = 'csv';  }
+    elseif ( padExists ("$file.php")  ) { $data = include ("$file.php");                            }
     elseif ( $ext == 'php'              ) { $data = include ($file);                                  }
-    elseif ( file_exists ($file)        ) { $data = padFileGetContents ($file);                       }
+    elseif ( padExists ($file)        ) { $data = padFileGetContents ($file);                       }
 
     if ( $name and ! $GLOBALS ['padName'] [$GLOBALS['pad']] )
       $GLOBALS ['padName'] [$GLOBALS['pad']] = $name;
@@ -596,8 +596,8 @@
 
   function padFunctionType ( $check ) {
 
-    if     ( file_exists ( APP . "functions/$check.php" ) ) return 'app';
-    elseif ( file_exists ( PAD . "functions/$check.php" ) ) return 'pad';
+    if     ( padExists ( APP . "functions/$check.php" ) ) return 'app';
+    elseif ( padExists ( PAD . "functions/$check.php" ) ) return 'pad';
     elseif ( function_exists ( $check                   ) ) return 'php';
     else                                                    return padError ('Function not found: ' . $check);
 
@@ -619,7 +619,7 @@
     foreach ( $parm as $padK => $padV )
       $fun [200+($padK*100)] [0] = $padV;
 
-    if ( file_exists ( PAD . "eval/single/$name.php" ) )
+    if ( padExists ( PAD . "eval/single/$name.php" ) )
       padEvalSingle ( $fun, $name );
     else
       padEvalParms ( 1, 0, $fun, $self, 1, 999999 ) ;
@@ -994,7 +994,7 @@
 
     if ( $call or $padBuildMode == 'demand' or $padBuildMode == 'isolate' ) {
       $php = str_replace ( '.html', '.php', $file );
-      if ( file_exists($php) )
+      if ( padExists($php) )
         $html .= "{call '$php'}";    
     }
 

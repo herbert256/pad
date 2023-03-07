@@ -4,10 +4,10 @@
 
   $padTagPhp = '';
 
-  if ( file_exists("$padTagGo.html") )
+  if ( padExists("$padTagGo.html") )
     $padTagContent .= padGetHtml ("$padTagGo.html");
 
-  if ( file_exists("$padTagGo.php") ) {
+  if ( padExists("$padTagGo.php") ) {
 
     ob_start();
 

@@ -32,10 +32,10 @@
  
   foreach ( $padPrm [$pad] as $padSeqTagName => $padSeqTagValue ) {
 
-    if ( file_exists ( PAD . "sequence/types/$padSeqTagName/make.php" ) )
+    if ( padExists ( PAD . "sequence/types/$padSeqTagName/make.php" ) )
       padDone ( $padSeqTagName, TRUE );
 
-    if ( file_exists ( PAD . "sequence/types/$padSeqTagName/filter.php" ) )
+    if ( padExists ( PAD . "sequence/types/$padSeqTagName/filter.php" ) )
       padDone ( $padSeqTagName, TRUE );
 
   }

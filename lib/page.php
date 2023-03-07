@@ -21,7 +21,7 @@
       if ($value == '_exits') return FALSE;
 
       if ( $key == array_key_last($part)
-            and (file_exists("$location/$value.php") or file_exists("$location/$value.html") ) )
+            and (padExists("$location/$value.php") or padExists("$location/$value.html") ) )
         return TRUE; 
 
       if ( is_dir ("$location/$value") )
@@ -31,7 +31,7 @@
       
     }
     
-    return ( file_exists("$location/index.php") or file_exists("$location/index.html") );
+    return ( padExists("$location/index.php") or padExists("$location/index.html") );
     
   }
 
@@ -43,7 +43,7 @@
     
     foreach ($part as $key => $value)
       if ( $key == array_key_last($part)
-            and (file_exists("$location/$value.php") or file_exists("$location/$value.html") ) )
+            and (padExists("$location/$value.php") or padExists("$location/$value.html") ) )
         return $page; 
       elseif ( is_dir ("$location/$value") )
         $location.= "/$value";

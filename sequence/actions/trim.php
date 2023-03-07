@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! isset( $padPrm [$pad]['both']) and ! isset( $padPrm [$pad]['left'])  and !  isset( $padPrm [$pad]['right']) )
+  if ( ! isset( $padPrm [$pad]['both']) and ! isset( $padPrm [$pad]['left'])  and ! isset( $padPrm [$pad]['right']) )
     $padPrm [$pad]['both'] = TRUE;
 
   if ( isset( $padPrm [$pad]['both']) ) {
