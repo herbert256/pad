@@ -1,5 +1,7 @@
 <?php
 
-  return padTableGetData ( $padOpt [1] );
+  $padTableName = $padOpt [$pad] [1];
+
+  return include PAD . 'go/table.php';
 
 ?>

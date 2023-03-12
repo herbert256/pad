@@ -1,12 +1,12 @@
 <?php
-
+ 
   function padTableGetData ($table, $page=0, $rows=0, $unionBuild=0) {
 
-    global $padData, $pad, $padPrm, $padKey, $padRelations, $padTables, $padTable, $padDone;
+    global $padData, $pad, $padPrm, $padKey, $padRelations, $padTables, $padTable, $padDone, $padTableTag;
 
     $parms = padTableGetDB ($table);
 
-    $db          = $padPrm [$pad] ['db']          ?? $parms ['db']          ?? '';
+    $db          = $padPrm [$pad] ['db']          ?? $parms ['db']          ?? $table;
     $all         = $padPrm [$pad] ['all']         ?? $parms ['all']         ?? 0;
     $distinct    = $padPrm [$pad] ['distinct']    ?? $parms ['distinct']    ?? 0;
     $distinctrow = $padPrm [$pad] ['distinctrow'] ?? $parms ['distinctrow'] ?? 0;
@@ -59,16 +59,20 @@
         
         $relation = padTableGetDB ($key);
 
-        $first = $relation ['key'];
+        if ( count ( $relation ) ) {
 
-        if ( isset($val['key']) )
-          $second = $val ['key'];
-        else
-          $second = $relation ['key'];
-        
-        for ( $i=$pad-1; $i; $i--)
-          if ( $padTable [$i] ==  $key)
-            padTableGetKeysLevel ($first, $second, $padData [$i] [$padKey[$i]], $where, $hit1);
+          $first = $relation ['key'];
+
+          if ( isset($val['key']) )
+            $second = $val ['key'];
+          else
+            $second = $relation ['key'];
+          
+          for ( $i=$pad-1; $i; $i--)
+            if ( $padTableTag[$i] ==  $key)
+              padTableGetKeysLevel ($first, $second, $padData [$i] [$padKey[$i]], $where, $hit1);
+
+        }
 
       }
 
@@ -83,7 +87,7 @@
           $second = ( isset($val['key']) ) ? $val ['key'] : $relation ['key'];
 
           for ( $i=$pad; $i; $i--)
-            if ( $padTable [$i] ==  $key)
+            if ( $padTableTag [$i] == $key)
               padTableGetKeysLevel ($first, $second, $padData [$i] [$padKey[$i]], $where, $hit2);
   
         }
@@ -102,9 +106,8 @@
 
     $joinSQL = '';
 
-    if ( ! is_array($join) and $join ) {
+    if ( ! is_array($join) and $join )
       $joinSQL = ' natural join ' . $join . ' '; 
-    } 
 
     if ( is_array($join) and count($join) ) {
       if ( ! is_array($join[array_key_first($join)]))
@@ -144,6 +147,7 @@
       $order = $limit = '';
 
     $sql = "$start $fields from $db $joinSQL $where $group $having $unionSQL $order $limit";
+
 
     if ($unionBuild) 
       return "union select $sql";
@@ -209,6 +213,9 @@
     
     global $padTables;
 
+    if ( ! isset ( $padTables [$table] ) )
+      return [];
+    
     $parms = $padTables [$table];
 
     if (isset($parms['base']))
@@ -248,7 +255,7 @@
       else
         $where = 'where ';
       
-      $where .= $v . ' = ' . "'" . padTableescape ($values_parts[$k]) . "'";
+      $where .= $v . ' = ' . "'" . padEscape ($values_parts[$k]) . "'";
 
     }
 
@@ -274,7 +281,7 @@
         else
           $where = 'where ';
   
-        $where .= $parts1[$i] . ' = ' . "'" . padTableescape ($source[$key]??'') . "'";
+        $where .= $parts1[$i] . ' = ' . "'" . padEscape ($source[$key]??'') . "'";
         
         $hit = TRUE;
 

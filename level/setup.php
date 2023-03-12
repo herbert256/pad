@@ -66,7 +66,8 @@
   $padParseFalse [$pad] = $padParseFalse [$pad] ?? '';
   $padParseInfo  [$pad] = $padParseInfo [$pad] ?? '';
 
-  $padTableTag [$pad] = [];
+  $padTableTag [$pad] = '';
+  $padTableTag [$pad] = '';
 
   $padForceName = '';
   

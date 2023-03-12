@@ -1,7 +1,7 @@
 <?php
 
-  $padTableTag [$pad] = $padTag [$pad];
+  $padTableName = $padTag [$pad];
 
-  return padTableGetData ( $padTag [$pad] ) ;
+  return include 'go/table.php';
 
 ?>

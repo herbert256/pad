@@ -149,4 +149,7 @@
   //No parementer parsing for below tags:
   $padNoParmsParse          = [ 'if', 'case', 'while', 'until', 'increment', 'decrement' ];
 
+  $padTables = [];
+  $padRelations = [];
+
 ?>

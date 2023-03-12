@@ -4,7 +4,7 @@
 
   for ( $padK = 1; $padK <= $pad; $padK++ )
     if ( $padTableTag [$padK] )
-      $padTable [$pad] [$pDb [$padK]] = $padData [$padK] [$padKey [$padK]];
+      $padTable [$pad] [$padTableTag[$padK]] = $padCurrent [$padK] ;
 
   #padTableGetInfo ();
   #padTableGetMain ();
