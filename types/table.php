@@ -1,10 +1,7 @@
 <?php
 
-  $padGet [$pad] = $padTag [$pad];
+  $padTableTag [$pad] = $padTag [$pad];
 
-  if ( isset ( $padPrm [$pad] ['union '] ) )
-    return padTable       ( $padTag [$pad] ) ;
-  else
-    return padTableUnion  ( $padTag [$pad] ) ;
+  return padTableGetData ( $padTag [$pad] ) ;
 
 ?>

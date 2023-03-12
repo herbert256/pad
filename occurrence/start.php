@@ -27,4 +27,6 @@
   if ( isset($padPrm [$pad] ['callback']) and ! isset ( $padPrm [$pad] ['before']) )
     include PAD . 'callback/row.php' ;
 
+  include 'table.php';
+
 ?>

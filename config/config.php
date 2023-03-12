@@ -21,11 +21,12 @@
 
   $padTrace   = FALSE;  
   $padParse   = FALSE;
-  $padLog     = FALSE;
+  $padLog     = TRUE;
 
-  $padLogShort = FALSE;  
-  $padLogParse = FALSE;  
-  $padLogData  = FALSE;  
+  $padLogShort  = FALSE;  
+  $padLogExists = FALSE;  
+  $padLogParse  = FALSE;  
+  $padLogData   = TRUE;  
 
   // Keep track of stuff
 

@@ -16,6 +16,8 @@
 
   $padLogNow = &$padLogPnt [$pad];
  
+  $padLogNow ['tag']    = '';
+  $padLogNow ['type']   = '';
   $padLogNow ['base']   = '';
   $padLogNow ['result'] = '';
 
