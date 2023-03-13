@@ -1,19 +1,19 @@
 <?php
 
 
-  function padFieldCheck ( $parm ) { return padField ( $parm, 1 ); } 
-  function padFieldValue ( $parm ) { return padField ( $parm, 2 ); } 
+  function padFieldCheck ( $parm )         { return padField ( $parm, 1       ); } 
+  function padFieldValue ( $parm )         { return padField ( $parm, 2       ); } 
 
-  function padArrayCheck ( $parm ) { return padField ( $parm, 3 ); } 
-  function padArrayValue ( $parm ) { return padField ( $parm, 4 ); } 
+  function padArrayCheck ( $parm )         { return padField ( $parm, 3       ); } 
+  function padArrayValue ( $parm )         { return padField ( $parm, 4       ); } 
   
-  function padParmCheck  ( $parm ) { return padField ( $parm, 5 ); } 
-  function padParmValue  ( $parm ) { return padField ( $parm, 6 ); } 
+  function padParmCheck  ( $parm )         { return padField ( $parm, 5       ); } 
+  function padParmValue  ( $parm )         { return padField ( $parm, 6       ); } 
   
-  function padTagCheck   ( $parm         ) { return padField ( $parm, 7      ); } 
-  function padTagValue   ( $parm, $lvl=0 ) { return padField ( $parm, 8, $lvl); } 
+  function padTagCheck   ( $parm         ) { return padField ( $parm, 7       ); } 
+  function padTagValue   ( $parm, $lvl=0 ) { return padField ( $parm, 8, $lvl ); } 
 
-  function padFieldNull  ( $parm ) { return padField ( $parm, 9 ); } 
+  function padFieldNull  ( $parm )         { return padField ( $parm, 9       ); } 
 
 
   function padField ( $field, $type, $lvl=0 ) {
@@ -53,9 +53,9 @@
 
     if     ( $type == 5 ) $value = padParm        ( $field, $idx, $type );
     elseif ( $type == 6 ) $value = padParm        ( $field, $idx, $type );
-    elseif ( $type == 7 ) $value = padTag         ( $field, $idx, $type, $parm);
+    elseif ( $type == 7 ) $value = padTag         ( $field, $idx, $type, $parm );
     elseif ( $type == 8 ) $value = padTag         ( $field, $idx, $type, $parm );
-    elseif ( $prefix    ) $value = padFieldPrefix ( $field, $idx, $type );
+    elseif ( $prefix    ) $value = padFieldPrefix ( $field, $idx, $type, $prefix );
     else                  $value = padFieldLevel  ( $field, $type );
 
     if     ($type == 1) return ( $value !== NULL and ( $value === INF or ! is_scalar($value) ) ) ? FALSE : TRUE;

@@ -1,11 +1,28 @@
 <?php
 
 
-  function padFieldPrefix ( $field, $idx, $type ) {
+  function padFieldPrefix ( $field, $idx, $type, $prefix ) {
+
+    if ( $prefix and ! is_numeric ( $prefix) ) {
+
+      for ( $key = $GLOBALS ['pad']; $key >=0 ; $key-- ) {
+
+        if ( $GLOBALS ['padName'] [$key] == $prefix)
+          return padFieldSearch ( $GLOBALS ['padCurrent'] [$key], $field, $type );
+
+        if ( isset ( $GLOBALS ['padTable'] [$key] [$prefix] ) )
+          return padFieldSearch ( $GLOBALS ['padTable'] [$key] [$prefix], $field, $type );
+
+      }
+
+      if ( isset ( $GLOBALS [$prefix] ) )
+        return padFieldSearch ( $GLOBALS [$prefix], $field, $type );
+  
+    }
 
     if ( $idx )
       return padFieldSearch ( $GLOBALS ['padCurrent'] [$idx], $field, $type );
-    else 
+    else
       return padFieldSearch ( $GLOBALS, $field, $type );
 
   }

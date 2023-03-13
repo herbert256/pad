@@ -214,11 +214,11 @@
     global $padTables;
 
     if ( ! isset ( $padTables [$table] ) )
-      return [];
+      return [ 'db' => $table ];
     
     $parms = $padTables [$table];
 
-    if (isset($parms['base']))
+    if ( isset($parms['base']) and isset($padTables [$parms['base']]) ) 
       foreach($padTables [$parms['base']] as $key => $value)
         if ( ! isset($parms[$key]) )
           $parms[$key] = $value;

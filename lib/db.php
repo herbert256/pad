@@ -81,7 +81,7 @@
     $query = mysqli_query ( $padSqlConnect , $sql );
     padTimingEnd ('sql');
 
-    $GLOBALS ['padLast_sql'] = $sql;
+    $GLOBALS ['padLastSql'] = $sql;
     
     if ( ! $query )
       padError ( 'MySQL-' . mysqli_errno ( $padSqlConnect ) . ': ' . mysqli_error ( $padSqlConnect ) . ' - '. $sql );
@@ -93,7 +93,7 @@
     if ( $rows > 0 and ($command == 'field' or $command == 'record') ) {
       padTimingStart ('sql');
       $fields = mysqli_fetch_assoc ( $query );
-      $GLOBALS ['padDb_last_fields'] = $fields;
+      $GLOBALS ['padLastFields'] = $fields;
       padTimingEnd ('sql');
     }
 

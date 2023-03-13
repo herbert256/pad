@@ -6,8 +6,8 @@
     if ( $padTableTag [$padK] )
       $padTable [$pad] [$padTableTag[$padK]] = $padCurrent [$padK] ;
 
-  #padTableGetInfo ();
-  #padTableGetMain ();
+  padTableGetInfo ();
+  padTableGetMain ();
   
   foreach ( $padTable [$pad] as $padK => $padV)
     if (  ! isset($GLOBALS [$padK] ) )
