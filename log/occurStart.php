@@ -5,4 +5,7 @@
 
   $padLogNow = &$padLogPnt [$pad] ['occurrences'] [$padOccur[$pad]];
 
+  if ( $padLogData ) 
+    include 'data.php';
+
 ?>

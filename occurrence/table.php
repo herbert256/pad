@@ -2,12 +2,17 @@
 
   $padTable [$pad] = [];
 
-  for ( $padK = 1; $padK <= $pad; $padK++ )
-    if ( $padTableTag [$padK] )
-      $padTable [$pad] [$padTableTag[$padK]] = $padCurrent [$padK] ;
+  if ( $padTableTag [$pad] )
+    $padTable [$pad] [$padTableTag[$pad]] = $padCurrent [$pad];
 
-  padTableGetInfo ();
-  padTableGetMain ();
+  foreach ($padRelations as $key => $val)
+    foreach ($padRelations[$key] as $key2 => $val2)
+      if ( ! isset($padTables [$key2] ) ) {
+        $padTables [$key2] = $padTables [$padRelations[$key] [$key2] ['table']];
+        $padTables [$key2] ['virtual'] = TRUE;
+      }    
+
+  while ( padTableGetInfo () ) ;
   
   foreach ( $padTable [$pad] as $padK => $padV)
     if (  ! isset($GLOBALS [$padK] ) )

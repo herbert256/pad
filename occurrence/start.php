@@ -7,15 +7,10 @@
   $padCurrent [$pad] = $padData [$pad] [$padKey [$pad]];
 
   $padInOccur = TRUE;
-
-  include 'split.php';
   
   if ( $padLog )
     include PAD . 'log/occurStart.php';
 
-  if ( $padLog and $padLogData ) 
-    include PAD . 'log/data.php';
- 
   if ( $padTrace )
     include 'trace/start.php';
 
@@ -23,10 +18,9 @@
     $padWalkData [$pad] [] = $padCurrent [$pad];
 
   include 'set.php';
+  include 'table.php';
 
   if ( isset($padPrm [$pad] ['callback']) and ! isset ( $padPrm [$pad] ['before']) )
     include PAD . 'callback/row.php' ;
-
-  include 'table.php';
 
 ?>

@@ -2,6 +2,6 @@
 
   $padTableTag [$pad] = $padTableName;
   
-  return padTableGetData ( $padTableName );
+  return padTable( $padTableName );
 
 ?>

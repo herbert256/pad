@@ -134,7 +134,6 @@
     else
       $return = '';
 
-
     if ( $padTrace ) {
       $padSqlDuration = padDuration ($padSqlStart);
       padDbTrace ($db_type, $padSqlDuration, $padDbRowsFound, padDbFormatSql($sql)) ;
