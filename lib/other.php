@@ -697,7 +697,7 @@
 
   function padSetGlobal ( $name, $value ) {
 
-    if ( substr($name, 0, 3) == 'pad' or  ! $name )
+    if ( substr($name, 0, 3) == 'pad' or ! $name )
       return;
 
     global $pad, $padSaveVars, $padDeleteVars;

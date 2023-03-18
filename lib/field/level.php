@@ -2,7 +2,7 @@
 
   function padFieldLevel ( $field, $type ) {
 
-    global $pad, $padCurrent, $padPrm, $padOpt, $padName;
+    global $pad, $padCurrent, $padPrm, $padOpt, $padName, $padTable;
 
     if ( strlen($field) > 1 and substr($field,0,1) == '-' and is_numeric(substr($field,1)) ) {
       $idx = $pad + $field;
@@ -27,8 +27,17 @@
         elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
       }
 
-    }
+#      if ( isset ( $padTable [$i] ) )
+#        foreach ( $padTable [$i] as $table => $value) 
+#          if ( array_key_exists ( $field, $value) ) {
+#            $work = $value [$field];
+#            if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
+#            if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
+#            elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
+#          }
 
+    }
+ 
     if ( array_key_exists ( $field, $GLOBALS ) ) {
       $work = $GLOBALS [$field];
       if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
@@ -36,9 +45,16 @@
       elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
     }
 
+ #   foreach ( $GLOBALS as $key => $value ) 
+ #     if ( is_array ($value) and array_key_exists ( $field, $value) ) {
+ #       $work = $value [$field];
+ #       if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
+ #       if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
+ #       elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
+ #     }
+
     return INF;
     
   }
-
 
 ?>

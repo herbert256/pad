@@ -1,4 +1,4 @@
-<?php
+  <?php
  
  
   function padTable ( $table, $unionBuild = 0 ) {
@@ -61,6 +61,7 @@
     return $group;
 
   }
+
 
   function padTableOrder ( $order, $joinSQL, $keys ) {
 
@@ -132,27 +133,56 @@
     $joinSQL = '';
 
     if ( ! is_array($join) and $join )
-      $joinSQL = ' natural join ' . $join . ' '; 
+      $joinSQL = ' join ' . $join . ' '; 
 
     if ( is_array($join) and count($join) ) {
+
       if ( ! is_array($join[array_key_first($join)]))
         $join = [ 0 => $join];
+      
       foreach ($join as $key => $value) {
+
         foreach ($value as $xtype => $table)
           break;
+      
         $joinTable = padTableGetDB ( $table ) ;
         padTableAddFields ($fields, $joinTable ['db'] , $joinTable ['fields'] );
         $joinSQL .= ' ' . $xtype .  ' join ' . $joinTable ['db'] . ' ';
+      
         if ( isset($value ['key']) ) {
           $joinSQL .= ' on ';
-          $joinSQL .= padTableBuildJoinWhere ($value ['key'], $joinTable ['db'], $joinTable ['key']) . ' ';
+          $joinSQL .= padTableJoinAdd ($value ['key'], $joinTable ['db'], $joinTable ['key']) . ' ';
         }
+      
       }
+    
     }
 
     return $joinSQL;
 
   }
+
+
+  function padTableJoinAdd ($keys1, $db, $keys2) {
+
+    $where = '';
+    
+    $values1 = padExplode ($keys1, ',');
+    $values2 = padExplode ($keys2, ',');
+
+    foreach ($values1 as $k => $v) {
+
+      if ($where)
+        $where .= ' and ';
+ 
+      $where .= padTableField($v) . ' = `' . $db . '`.' . padTableField($values2[$k]);
+ 
+    }
+
+    return $where;
+    
+  }
+
 
   function padTableUnion ( $union) {
 
@@ -172,6 +202,7 @@
     return $unionSQL;
 
   }
+
 
   function padTableGo ( $table, $key, $val, &$where ) {
 
@@ -196,15 +227,17 @@
 
   function padTableWhereAdd (&$where, $field, $value) {
 
-   if ( strpos ( $where, $field . ' = ' . "'") !== FALSE )
-     return;
+    $add = padTableField ($field) . ' = ' . "'";
+
+    if ( strpos ( $where, $add ) !== FALSE )
+      return;
 
    if ($where)
       $where .= ' and ';
     else
       $where = 'where ';
 
-    $where .= $field . ' = ' . "'" . padEscape ($value) . "'";
+    $where .= $add . padEscape ($value) . "'";
 
   }
 
@@ -218,30 +251,6 @@
     else
       return  '`' . $parts[0] . '`';
 
-  }
-
-
-  function padTableBuildJoinWhere ($keys1, $db, $keys2) {
-
-    $where = '';
-    
-    $values1 = padExplode ($keys1, ',');
-    $values2 = padExplode ($keys2, ',');
-
-    if ( count($values1) <> count($values2) )
-      pad_error ("Count keys/values does not match");
-
-    foreach ($values1 as $k => $v) {
-
-      if ($where)
-        $where .= ' and ';
- 
-      $where .= padTableField($v) . ' = `' . $db . '`.' . padTableField($values2[$k]);
- 
-    }
-
-    return $where;
-    
   }
 
   
@@ -289,45 +298,47 @@
     
   }
     
+
   function padTableGetInfo () {
     
     global $pad, $padTable, $padTables, $padRelations;
 
     foreach ($padTable [$pad] as $table => $value)
 
-    if ( isset ($padRelations [$table]) )
+      if ( isset ($padRelations [$table]) )
 
-      foreach ( $padRelations [$table] as $rel => $val)
+        foreach ( $padRelations [$table] as $rel => $val)
 
-        if ( ! padTableChk ( $rel ) ) {
-       
-          $relation = padTableGetDB ($rel);
-          $where    = $relation ['where'] ?? '';
-          $parts1   = padExplode ($relation ['key'], ',');
-          $parts2   = ( isset($val['key']) ) ? $val['key'] : $relation ['key'];
-          $parts2   = padExplode ($parts2, ',');
-          
-          foreach($parts2 as $i => $fld) {
-      
-            if ( ! isset ( $fld, $padTable [$pad] [$table] ) )
-              continue 2;
+          if ( ! padTableChk ( $rel ) ) {
+         
+            $relation = padTableGetDB ($rel);
+            $where    = $relation ['where'] ?? '';
+            $parts1   = padExplode ($relation ['key'], ',');
+            $parts2   = ( isset($val['key']) ) ? $val['key'] : $relation ['key'];
+            $parts2   = padExplode ($parts2, ',');
+            
+            foreach($parts2 as $i => $fld) {
+        
+              if ( ! isset ( $fld, $padTable [$pad] [$table] ) )
+                continue 2;
 
-            padTableWhereAdd ($where, $parts1[$i], $padTable [$pad] [$table] [$fld] ?? '');
-             
+              padTableWhereAdd ($where, $parts1[$i], $padTable [$pad] [$table] [$fld] ?? '');
+               
+            }
+
+            if ( $where ) {
+              $padTable [$pad] [$rel] = padTableGet ($relation, $where);
+              return TRUE;
+            }
+
           }
-
-          if ( $where ) {
-            $padTable [$pad] [$rel] = padTableGet ($relation, $where);
-            return TRUE;
-          }
-
-        }
         
     while ( padTableGetInfoGo () );
 
     return FALSE;
 
   }
+    
     
   function padTableGetInfoGo () {
   

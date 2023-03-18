@@ -81,7 +81,7 @@
     $query = mysqli_query ( $padSqlConnect , $sql );
     padTimingEnd ('sql');
 
-    $GLOBALS ['padLastSql'] = $sql;
+    $GLOBALS ['padLastSql'] = padDbFormatSql($sql);
     
     if ( ! $query )
       padError ( 'MySQL-' . mysqli_errno ( $padSqlConnect ) . ': ' . mysqli_error ( $padSqlConnect ) . ' - '. $sql );
@@ -194,8 +194,20 @@
     $work = str_replace(' limit ',    "\r\nlimit     ", $work);
     $work = str_replace(' where ',    "\r\nwhere     ", $work);
     $work = str_replace(' and ',      "\r\n  and     ", $work);
+    $work = str_replace(' or ',       "\r\n   or     ", $work);
     $work = str_replace(' group by ', "\r\ngroup by  ", $work);
     $work = str_replace(' order by ', "\r\norder by  ", $work);
+    $work = str_replace(' union ',    "\r\nunion     ", $work);
+    $work = str_replace(' having ',   "\r\nhaving    ", $work);
+
+    $work = str_replace(" join ",                  "\r\njoin ",               $work);
+    $work = str_replace(" inner\r\njoin ",         "\r\ninner join ",         $work);
+    $work = str_replace(" natural\r\nleft join ",  "\r\nnatural left join ",  $work);
+    $work = str_replace(" natural\r\nright join ", "\r\nnatural right join ", $work);
+    $work = str_replace(" left\r\njoin ",          "\r\nleft join ",          $work);
+    $work = str_replace(" right\r\njoin ",         "\r\nright join ",         $work);
+    $work = str_replace(" natural\r\njoin ",       "\r\nnatural join ",       $work);
+    $work = str_replace(" cross\r\njoin ",         "\r\ncross join ",         $work);
 
     return $work;
 
