@@ -462,11 +462,9 @@
 
   function padValidVar ($name) {
 
-    if ( trim($name) == '' ) 
-      return FALSE;
-
-    if ( ! preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/',$name) )
-      return FALSE;
+    if ( trim($name) == '' )                                 return FALSE;
+    if ( substr($name, 0, 3) == 'pad' )                      return FALSE;
+    if ( ! preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/',$name) )  return FALSE;
 
     return TRUE;  
 
@@ -697,8 +695,11 @@
 
   function padSetGlobal ( $name, $value ) {
 
-    if ( substr($name, 0, 3) == 'pad' or ! $name )
+    if ( ! padValidVar($name) ) 
       return;
+
+    if ( $value === NULL )
+      $value = '';
 
     global $pad, $padSaveVars, $padDeleteVars;
     
@@ -715,19 +716,22 @@
   }
 
 
-  function padReset ($lvl) {
+  function padReset () {
 
-    global $padSaveVars, $padDeleteVars;
+    global $pad, $padSaveVars, $padDeleteVars;
 
-    foreach ( $padSaveVars [$lvl] as $key => $value) {
+    foreach ( $padSaveVars [$pad] as $key => $value) {
       if ( isset ( $GLOBALS [$key] ) ) 
         unset ($GLOBALS [$key] );
-      $GLOBALS [$key]= $value;
+      $GLOBALS [$key] = $value;
     }
 
-    foreach ( $padDeleteVars [$lvl] as $key)
+    foreach ( $padDeleteVars [$pad] as $key)
       if ( isset ( $GLOBALS [$key] ) )
         unset ( $GLOBALS [$key] );
+
+    $padSaveVars   [$pad] = [];
+    $padDeleteVars [$pad] = [];
 
   }
 

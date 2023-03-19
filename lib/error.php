@@ -109,6 +109,9 @@
     if ( $GLOBALS ['padParse'] ) 
       include PAD . 'parse/error.php';
 
+    if ( $GLOBALS ['padLog'] )
+      include PAD . 'log/error.php';
+
     if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
       return FALSE;
 
