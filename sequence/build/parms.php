@@ -19,7 +19,7 @@
   $padSeqCnt      = intval ( $padPrm [$pad] ['count']     ?? 0           );
   $padSeqPage     = intval ( $padPrm [$pad] ['page']      ?? 0           );
   
-  $padSeqProtect  =          $padPrm [$pad] ['protect']   ?? 1000; 
+  $padSeqProtect  =          $padPrm [$pad] ['protect']   ?? 10000; 
   $padSeqSave     =          $padPrm [$pad] ['save']      ?? 100; 
   $padSeqUnique   =          $padPrm [$pad] ['unique']    ?? '';
   $padSeqPush     =          $padPrm [$pad] ['store']     ?? ''; 

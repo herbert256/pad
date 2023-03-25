@@ -6,7 +6,7 @@
   $padSeqStopNext = FALSE;
   $padSeqStartStarted = FALSE;
 
-  if ( ! $padSeqName )                            $padSeqName = $padSeqSet; 
+  if ( ! $padSeqName )                           $padSeqName = $padSeqSet; 
   if ( ! isset($GLOBALS ["padSeq_$padSeqSeq"]) ) $GLOBALS ["padSeq_$padSeqSeq"] = $padSeqParm;
   if ( ! isset($padPrm [$pad] ["$padSeqSeq"])  ) $padPrm [$pad] ["$padSeqSeq"]  = $padSeqParm;
 
