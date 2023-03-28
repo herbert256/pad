@@ -1,5 +1,7 @@
 <?php
 
+  include_once 'lib/sequence.php';
+
   include 'build/parms.php';
   include 'build/sequence.php';
   include 'build/vars.php';
