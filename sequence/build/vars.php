@@ -1,10 +1,9 @@
 <?php
 
+  $padSeq         = $padSequence = $padSeqProtectCnt = $padSeqBase = 0;
   $padSeqStoreGet = '';
-  $padSeqResult = $padSeqFor = $padSeqCache = [];
-  $padSeq = $padSequence = $padSeqProtectCnt = $padSeqBase = 0;
-  $padSeqStopNext = FALSE;
-  $padSeqStartStarted = FALSE;
+  $padSeqResult   = $padSeqFor = $padSeqCache = [];
+  $padSeqStopNext = $padSeqStartStarted = FALSE;
 
   if ( ! $padSeqName )                           $padSeqName = $padSeqSet; 
   if ( ! isset($GLOBALS ["padSeq_$padSeqSeq"]) ) $GLOBALS ["padSeq_$padSeqSeq"] = $padSeqParm;

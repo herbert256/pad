@@ -78,18 +78,16 @@
 
     $error = error_get_last ();
 
-    if ( $error === NULL ) 
-      return;
-  
-    if ( isset ( $GLOBALS ['padDump'] ) and $GLOBALS ['padDump'] )
-      return padDumpProblem ( 'DUMP-SHUTDOWN: ' . $error['message'], $error['file'], $error['line'] );
-
-    return padErrorGo ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
+    if ( $error !== NULL ) 
+      return padErrorGo ( 'SHUTDOWN: ' . $error['message'] , $error['file'], $error['line'] );
   
   }
 
 
   function padErrorGo ($error, $file, $line) {
+
+    if ( $GLOBALS ['padDump'] ?? '' <> '' )
+      padDumpProblem ( 'DUMP-SHUTDOWN: ' . $error['message'], $error['file'], $error['line'] );
 
     try {
  
@@ -153,10 +151,6 @@
     } elseif ( $GLOBALS ['padErrorAction'] == 'report' )
 
       $GLOBALS ['padExit'] = 1;
-
-    else
-
-      padBootError ( "ERROR-LOGIC: $error" );
     
     return FALSE;
 

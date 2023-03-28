@@ -1,17 +1,17 @@
 <?php
 
 
-  function padDumpFromApp ($info='') {
+  function padDumpFromApp ($info='n/a') {
 
     if ( ! padLocal () ) 
-      return padError ("Dump not allowed: $info");
+      padBootError ( "Dump not allowed: $info" );
 
-    padDumpTry ($info);
+    padDump ($info);
 
   } 
 
 
-  function padDump ($info='') {
+  function padDump ($info='n/a') {
 
     $GLOBALS ['padDump'] = $info;
 
@@ -27,7 +27,7 @@
   }   
 
 
-  function padDumpTry ($info) {
+  function padDumpTry ($info='n/a') {
 
     padEmptyBuffers ();
 
@@ -84,14 +84,14 @@
   }
 
 
-  function padDumpToFile ($file, $info='') {
+  function padDumpToFile ($file, $info='n/a') {
 
     padFilePutContents ( $file, padDumpGet ($info) );
         
   }
 
 
-  function padDumpGet ($info='') {
+  function padDumpGet ($info='n/a') {
 
     ob_start();
 
@@ -102,7 +102,7 @@
   }
 
 
-  function padDumpGo ($info='') {
+  function padDumpGo ($info='n/a') {
 
     padTraceFields  ( $php, $lvl, $app, $cfg, $pad, $ids );
 
@@ -139,7 +139,7 @@
 
   function padDumpInfo ( $info ) {
 
-    if ( ! $info )
+    if ( ! $info or $info = 'n/a' )
       return;
 
     if ( isset ( $GLOBALS ['padErrrorList'] )  )

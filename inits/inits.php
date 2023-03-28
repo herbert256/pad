@@ -1,10 +1,10 @@
 <?php
 
   include 'libPad.php';
+  include 'vars.php';
   include 'app.php';
   include 'page.php';
   include 'ids.php';
-  include 'vars.php';
   include 'config.php';
   include 'trace.php';
   include 'nono.php';

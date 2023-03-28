@@ -50,6 +50,8 @@
 
   function padHeaders ($stop) {
 
+x();
+
     if ( headers_sent () )
       return;
 
