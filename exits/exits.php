@@ -4,11 +4,7 @@
 
   $padOutput = $padResult [0];
 
-  $padOutput = str_replace ( 
-    [ '&open;', '&close;', '&pipe;', '&eq;', '&comma;'], 
-    [ '{',      '}',       '|',      '=',     ','], 
-    $padOutput 
-  );
+  $padOutput = padUnescape ( $padOutput );
 
   if ( count ($padSanitize) )
     include 'sanitize.php';

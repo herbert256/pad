@@ -481,6 +481,7 @@
     return TRUE;  
 
   }
+  
 
   function padValidTag ($name) {
 
@@ -560,19 +561,6 @@
     
   }
 
-
-  function padCloseSession () {
-
-    if ( ! isset($GLOBALS ['padSessionStarted']) )
-      return;
-
-    foreach ( $GLOBALS ['padSessionVars'] as $var )
-      if ( isset ( $GLOBALS [$var] ) )
-        $_SESSION [$var] = $GLOBALS [$var];
-
-    session_write_close ();
-
-  }
   
   function padCheckRange ( $input ) {
 
@@ -596,8 +584,8 @@
 
     if     ( padExists ( APP . "functions/$check.php" ) ) return 'app';
     elseif ( padExists ( PAD . "functions/$check.php" ) ) return 'pad';
-    elseif ( function_exists ( $check                   ) ) return 'php';
-    else                                                    return padError ('Function not found: ' . $check);
+    elseif ( function_exists ( $check                 ) ) return 'php';
+    else                                                  return padError ('Function not found: ' . $check);
 
   }
 
@@ -834,15 +822,6 @@
   }
 
 
-  function padArray ($array) {
-
-    if ( is_array($array) )
-      return $array;
-    else
-      return padExplode ($array, ',');
-  }
-
-
   function padTagParm ($parm, $default='') {
 
     global $pad, $padPrm;
@@ -853,14 +832,6 @@
       return $padPrm [$pad] [$parm];
     else
       return $default;
-
-  }
-
-  function padTagParmSet ($parm) {
-
-    global $pad, $padPrm;
-
-    return  ( isset ( $padPrm [$pad] [$parm] ) ) ? TRUE : FALSE;
 
   }
 
@@ -1020,7 +991,7 @@
     if ( in_array ( $fld, ['GLOBALS','_POST','_GET','_COOKIE','_SESSION','_FILES','_SERVER','_REQUEST','_ENV'] ) )
       return FALSE;
 
-    if ( in_array ( $fld, ['app', 'pad', 'page', 'PADSESSID', 'PADREQID', 'PHPSESSID', 'PADREFID'] ) )
+    if ( in_array ( $fld, ['app', 'pad', 'page', 'PADSESSID', 'PADREQID', 'PADREFID'] ) )
       return FALSE;
 
     return TRUE;
