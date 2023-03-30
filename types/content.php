@@ -5,6 +5,6 @@
   if ( isset ( $padContentStore [$padContentGo] ) )
     return $padContentStore [$padContentGo];
   
-  return include PAD . 'options/go/content.php';
+  return include pad . 'options/go/content.php';
 
 ?>

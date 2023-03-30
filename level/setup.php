@@ -4,7 +4,7 @@
   $padCnt++;
 
   if ( $padLog )
-    include PAD . 'log/setup.php';
+    include pad . 'log/setup.php';
 
   $padOpt        [$pad] = [];
   $padSet        [$pad] = [];

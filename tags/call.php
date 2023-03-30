@@ -2,6 +2,6 @@
 
   $padCall = $padOpt [$pad] [1];
 
-  return include PAD . 'build/go.php';
+  return include pad . 'build/go.php';
 
 ?>

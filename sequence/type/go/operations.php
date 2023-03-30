@@ -8,7 +8,7 @@
     if ( in_array($padSeqOprName, $padSeqOneDone ) )
       continue;
 
-    $padSeqChk = PAD . "sequence/types/$padSeqOprName";
+    $padSeqChk = pad . "sequence/types/$padSeqOprName";
 
     $padSeqParmSave = $padSeqParm;
 

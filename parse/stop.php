@@ -1,6 +1,6 @@
 <?php
 
-  $padParseFile = "parse/$app/$page/" . padFileTimestamp () . ".json";
+  $padParseFile = "parse/$padApp/$padPage/" . padFileTimestamp () . ".json";
 
   padFilePutContents ( $padParseFile, $padParseResult );
 

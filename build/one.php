@@ -8,9 +8,9 @@
 
   ob_start();
   
-  padTimingStart ('app');
+  padTimingStart ('padApp');
   $padCallReturn = include $padCall;
-  padTimingEnd ('app');
+  padTimingEnd ('padApp');
 
   if ( $padCallReturn === 1 )
     $padCallReturn = '';

@@ -1,7 +1,7 @@
 <?php
 
-  global $app, $page, $padLogRsl;
+  global $padApp, $padPage, $padLogRsl;
   
-  padFilePutContents ( "log/$app/$page/" . padFileTimestamp() . '.json', $padLogRsl );  
+  padFilePutContents ( "log/$padApp/$padPage/" . padFileTimestamp() . '.json', $padLogRsl );  
 
 ?>

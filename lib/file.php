@@ -9,7 +9,7 @@
       $return = file_exists ( $file );
 
     if ( isset($GLOBALS ['padLog']) and $GLOBALS ['padLog'] )
-      include PAD . 'log/exists.php';
+      include pad . 'log/exists.php';
 
     return $return;
 
@@ -33,11 +33,11 @@
   }
 
 
-  function padFilePutContents ($in, $data='', $append=0) {
+  function padFilePutContents ($in, $data='', $padAppend=0) {
 
     global $pad;
     
-    $file = DATA . str_replace(':', '_', $in);
+    $file = padData . str_replace(':', '_', $in);
 
     if ( ! padFileValidName ( $file ) )
       return padError ("Invalid file name: $file");
@@ -50,7 +50,7 @@
       
     if ($data) {
       padTimingStart ('write');
-      if ($append) file_put_contents ($file, "$data\n", LOCK_EX | FILE_APPEND);
+      if ($padAppend) file_put_contents ($file, "$data\n", LOCK_EX | FILE_padAppEND);
       else         file_put_contents ($file, $data,     LOCK_EX);
       padTimingEnd ('write');
     }
@@ -66,9 +66,9 @@
     if ( strpos($file, '/.') !== FALSE )                  return FALSE;
     if ( strpos($file, './') !== FALSE )                  return FALSE;
 
-    if ( str_starts_with($file, PAD)  ) return TRUE;
-    if ( str_starts_with($file, APPS) ) return TRUE;
-    if ( str_starts_with($file, DATA) ) return TRUE;
+    if ( str_starts_with($file, pad)  ) return TRUE;
+    if ( str_starts_with($file, padApps) ) return TRUE;
+    if ( str_starts_with($file, padData) ) return TRUE;
 
     return FALSE;
 

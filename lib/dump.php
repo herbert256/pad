@@ -104,7 +104,7 @@
 
   function padDumpGo ($info='n/a') {
 
-    padTraceFields  ( $php, $lvl, $app, $cfg, $pad, $ids );
+    padTraceFields  ( $php, $lvl, $padApp, $cfg, $pad, $ids );
 
     echo ( "<div align=\"left\"><pre>" );
 
@@ -114,9 +114,9 @@
     padDumpStack    ();
     padDumpLevel    ();
     padDumpRequest  ();
-    padDumpArray    ( "APP variables", $app );
+    padDumpArray    ( "padApp variables", $padApp );
     padDumpXXX      ( $pad, 'padSeq' );
-    padDumpArray    ( "PAD variables",   $pad );
+    padDumpArray    ( "pad variables",   $pad );
     padDumpArray    ( "Level variables", $lvl );
     padDumpSQL      ();
     padDumpHeaders  ();
@@ -131,9 +131,9 @@
 
   function padDumpSource (  ) {
 
-    global $pad, $page;
+    global $pad, $padPage;
 
-    #echo padInclude ( 'pad', 'example/example', "&exampleApp=$app&examplePage=$page&noResult=1"); 
+    #echo padInclude ( 'pad', 'example/example', "&exampleApp=$padApp&examplePage=$padPage&noResult=1"); 
 
   }
 
@@ -214,7 +214,7 @@
       padDumpObject ('MySQL-App', $GLOBALS ['padSqlConnect']      );
     
     if ( isset ( $GLOBALS ['padPadSqlConnect' ] ) ) 
-      padDumpObject ('MySQL-PAD', $GLOBALS ['padPadSqlConnect']  );
+      padDumpObject ('MySQL-pad', $GLOBALS ['padPadSqlConnect']  );
 
   }
 

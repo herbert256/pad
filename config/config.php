@@ -2,11 +2,11 @@
   
   //  Error handling
 
-  $padErrorAction = 'pad';  // 'pad'    = PAD's own full blown error handler.
-                            // 'boot'   = Use the lightweight PAD boot error handler
+  $padErrorAction = 'pad';  // 'pad'    = pad's own full blown error handler.
+                            // 'boot'   = Use the lightweight pad boot error handler
                             // 'php'    = Use the PHP defaults (php.ini).
-                            // 'stop'   = Stop processing but do the PAD stop handling.
-                            // 'exit'   = Exit, don't do the PAD stop handling
+                            // 'stop'   = Stop processing but do the pad stop handling.
+                            // 'exit'   = Exit, don't do the pad stop handling
                             // 'ignore' = Ignore all errors and continue processing.
                             // 'report' = Report the error and continue processing.
  
@@ -39,7 +39,7 @@
 
   // Cache settings
   
-  $padCacheServerAge       = 0;                    //  Seconds to keep the cache at PAD server side, 
+  $padCacheServerAge       = 0;                    //  Seconds to keep the cache at pad server side, 
                                                    //  0 to turn of server-side caching
 
   $padCacheProxyAge        = 0;                    //  How long a proxy is allowed to cache. 
@@ -63,10 +63,10 @@
   $padCacheDbUser          = 'cache';
   $padCacheDbPassword      = 'cache';
 
-  $padCacheFile            = DATA . 'cache/';      //  Used when $padCacheServerType is 'file'
+  $padCacheFile            = padData . 'cache/';      //  Used when $padCacheServerType is 'file'
   $padCacheFileMode        = 755;
 
-  // SQL parms - PAD internal
+  // SQL parms - pad internal
 
   $padPadSqlHost           = '127.0.0.1';
   $padPadSqlDatabase       = 'pad';
@@ -76,9 +76,9 @@
   // SQL parms - application
 
   $padSqlHost               = '127.0.0.1';
-  $padSqlDatabase           = $app;
-  $padSqlUser               = $app;
-  $padSqlPassword           = $app;
+  $padSqlDatabase           = $padApp;
+  $padSqlUser               = $padApp;
+  $padSqlPassword           = $padApp;
 
   // If pad creates a directory or file.
 
@@ -95,7 +95,7 @@
   
   $padSessionVars = [];
 
-  // How the app parts from ../$app/pages/ are processed.
+  // How the app parts from ../$padApp/pages/ are processed.
 
   $padBuildMode     = 'before';     // 'isolate'
                                     // 'before'
@@ -106,8 +106,8 @@
                                     // 'end'
     
   // Default {$var} options, there must be a PHP snippet in one of below directories
-  // - PAD/functions/
-  // - APP/functions/
+  // - pad/functions/
+  // - padApp/functions/
 
   $padDataDefaultStart = ['trim', 'white'];
   $padDataDefaultEnd   = ['html', 'nbsp'];
@@ -142,9 +142,9 @@
 
   $padClientGzip            = FALSE;  // Send the result zipped
   $padEtag304               = FALSE;  // Send a 304 header, based on the client etag http header
-  $padNoNo                  = FALSE;  // No PAD stuff, just plane PHP   
+  $padNoNo                  = FALSE;  // No pad stuff, just plane PHP   
   $padFastLink              = 32;     // Lenght of the FastLink code in the URL
-  $padTiming                = TRUE;   // Keep Timings of the PAD parts
+  $padTiming                = TRUE;   // Keep Timings of the pad parts
 
   //No parementer parsing for below tags:
   $padNoParmsParse          = [ 'if', 'case', 'while', 'until', 'increment', 'decrement' ];

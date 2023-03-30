@@ -4,7 +4,7 @@
   function padEval ($eval, $value='') {
 
     if ( in_array ( $eval, $GLOBALS ['padEvalFast'] ) )
-      return include PAD . "functions/$eval.php";
+      return include pad . "functions/$eval.php";
 
     if ( strlen(trim($eval)) == 0 )
       return ''; 
@@ -28,7 +28,7 @@
     elseif ( $result[$key][1] <> 'VAL' ) return padError("Result is not a value: $eval");
 
    if ($GLOBALS['padLog'])
-      include PAD . 'log/eval.php';
+      include pad . 'log/eval.php';
       
     padTimingEnd ('eval');
  

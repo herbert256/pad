@@ -91,9 +91,9 @@
 
 
 
-  function padTraceFields ( &$php, &$lvl, &$app, &$cfg, &$pad, &$ids ) {
+  function padTraceFields ( &$php, &$lvl, &$padApp, &$cfg, &$pad, &$ids ) {
 
-    $php = $lvl = $app = $cfg = $pad = $ids = [];
+    $php = $lvl = $padApp = $cfg = $pad = $ids = [];
 
     $not  = [ 'GLOBALS', 'padFphp', 'padFlvl', 'padFapp', 'padFcfg', 'padFpad', 'padFids'  ];
 
@@ -101,9 +101,9 @@
 
     $chk2 = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padName','padData','padCurrent','padKey','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padLevelDir','padOccurDir','padSaveVars','padDeleteVars','padSetSave','padSetDelete','padTagCnt', 'padAfter', 'padBefore', 'padBeforeData', 'padEndOptions', 'padPrmType', 'padSet', 'padGiven'];
 
-    $chk3 = [ 'page','app','PADSESSID','PADREQID','PHPSESSID','PADREFID' ];
+    $chk3 = [ 'padPage','padApp','padSesID','padReqID','PHPSESSID','padRefID' ];
 
-    $settings = padFileGetContents(PAD . 'config/config.php');
+    $settings = padFileGetContents(pad . 'config/config.php');
 
     foreach ($GLOBALS as $key => $value) {
 
@@ -134,13 +134,13 @@
 
         else
 
-          $app [$key] = $value;
+          $padApp [$key] = $value;
 
       }
 
     }
 
-    ksort($app);
+    ksort($padApp);
     ksort($cfg);
     ksort($php);
     ksort($lvl);

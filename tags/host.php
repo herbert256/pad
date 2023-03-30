@@ -1,10 +1,10 @@
 <?php
 
-  $padPrm [$pad] ['url']   = $padPageExternal . trim($padOpt [$pad] [1]);
+  $padPrm [$pad] ['url']   = $padGoPageExternal . trim($padOpt [$pad] [1]);
   $padPrm [$pad] ['cache'] = FALSE;
 
-  $padPrm [$pad] ['cookies'] ['PADSESSID'] = $GLOBALS ['PADSESSID'];   
-  $padPrm [$pad] ['cookies'] ['PADREQID']  = $GLOBALS ['PADREQID'];    
+  $padPrm [$pad] ['cookies'] ['padSesID'] = $GLOBALS ['padSesID'];   
+  $padPrm [$pad] ['cookies'] ['padReqID'] = $GLOBALS ['padReqID'];    
 
   if ( ! padTagParm ('complete') )
     $padPrm [$pad] ['get'] ['padInclude'] = 1;

@@ -3,17 +3,17 @@
   if ( isset($_REQUEST['padTrace']) )
     $padTrace = TRUE;
 
-  $GLOBALS ['padTraceDir'] = "trace/$app-" . str_replace('/', '-', $page) . "/$PADREQID";
+  $GLOBALS ['padTraceDir'] = "trace/$padApp-" . str_replace('/', '-', $padPage) . "/$padReqID";
 
   if ( ! $padTrace )
     return;
 
   $padTraceData = [
-    'app'         => $GLOBALS ['app'] ?? '',
-    'page'        => $GLOBALS ['page'] ?? '',
-    'sessionID'   => $GLOBALS ['PADSESSID'] ?? '',
-    'requestID'   => $GLOBALS ['PADREQID'] ?? '',
-    'referenceID' => $GLOBALS ['PADREFID'] ?? '',
+    'padApp'      => $GLOBALS ['padApp'] ?? '',
+    'padPage'     => $GLOBALS ['padPage'] ?? '',
+    'sessionID'   => $GLOBALS ['padSesID'] ?? '',
+    'requestID'   => $GLOBALS ['padReqID'] ?? '',
+    'referenceID' => $GLOBALS ['padRefID'] ?? '',
     'start'       => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0,
     'uri'         => $_SERVER ['REQUEST_URI'] ?? '' ,
   ];

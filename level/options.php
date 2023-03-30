@@ -4,13 +4,13 @@
     return;
   
   if ( padTagParm ('null') ) {
-    $padOptFlag = include PAD . "options/null.php"; 
+    $padOptFlag = include pad . "options/null.php"; 
     if ( ! $padOptFlag ) 
       $padTagResult = NULL;
   }
 
   if ( padTagParm ('false') ) {
-    $padOptFlag = include PAD . "options/false.php"; 
+    $padOptFlag = include pad . "options/false.php"; 
     if ( ! $padOptFlag ) 
       $padTagResult = FALSE;
   }

@@ -2,8 +2,8 @@
 
   padEmptyBuffers ();
   
-  $page = $padRestart;
+  $padPage = $padRestart;
 
-  include PAD . 'pad.php';
+  include pad . 'pad.php';
  
 ?>

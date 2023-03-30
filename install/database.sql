@@ -1,6 +1,6 @@
 /*
 
-  PAD Database for tracking, caching, etc.
+  pad Database for tracking, caching, etc.
 
 */
 

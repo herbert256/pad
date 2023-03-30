@@ -1,7 +1,7 @@
 <?php
 
   if ( $padLog )
-    include PAD . 'log/occurEnd.php';
+    include pad . 'log/occurEnd.php';
 
   if ( $padTrace )
     include 'trace/end.php';

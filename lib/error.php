@@ -26,7 +26,7 @@
     if ( $GLOBALS ['padErrorAction'] == 'boot' )
       return padBootStop ( $error, $file, $line ); 
 
-    return padErrorGo ( 'PAD: ' . $error, $file, $line ); 
+    return padErrorGo ( 'pad: ' . $error, $file, $line ); 
  
   }
 
@@ -105,10 +105,10 @@
   function padErrorTry ($error, $file, $line) {
 
     if ( $GLOBALS ['padParse'] ) 
-      include PAD . 'parse/error.php';
+      include pad . 'parse/error.php';
 
     if ( $GLOBALS ['padLog'] )
-      include PAD . 'log/error.php';
+      include pad . 'log/error.php';
 
     if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
       return FALSE;
@@ -177,7 +177,7 @@
 
     $info = padMakeSafe ( $info );
 
-    error_log ( "[PAD] $id $info", 4 );
+    error_log ( "[pad] $id $info", 4 );
 
   }
 

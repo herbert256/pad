@@ -13,9 +13,9 @@
 
   $padHost = $padRequestScheme . '://' . $padHttpHost;
 
-  $padApp          = $padScript . "?app=";
-  $padPage         = $padScript . "?app=$app&page=";
-  $padAppExternal  = $padHost . $padApp;
-  $padPageExternal = $padHost . $padPage;
+  $padGoApp          = $padScript . "?padApp=";
+  $padGoPage         = $padScript . "?padApp=$padApp&padPage=";
+  $padGoAppExternal  = $padHost . $padGoApp;
+  $padGoPageExternal = $padHost . $padGoPage;
 
 ?>

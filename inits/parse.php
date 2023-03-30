@@ -4,7 +4,7 @@
     
     $padParseInclude = ( isset($_REQUEST['padInclude']) ) ? '1' : '0';
 
-    $padParseGet = padComplete ($app, $page, '&padParse=1', $padParseInclude);    
+    $padParseGet = padComplete ($padApp, $padPage, '&padParse=1', $padParseInclude);    
 
     if ( $padParseGet ['result'] <> 200 ) {
       echo "<pre>";

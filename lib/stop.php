@@ -53,7 +53,7 @@
     if ( headers_sent () )
       return;
 
-    padHeader ('X-PAD: ' . $GLOBALS ['PADSESSID'] . '-' . $GLOBALS ['PADSESSID']);
+    padHeader ('X-pad: ' . $GLOBALS ['padSesID'] . '-' . $GLOBALS ['padSesID']);
 
     if ( $stop == 500 )
       padHeader ('HTTP/1.0 500 Internal Server Error' );
@@ -112,7 +112,7 @@
     $GLOBALS ['padSkipShutdown']     = TRUE;
     $GLOBALS ['padSkipBootShutdown'] = TRUE;
 
-    include PAD . 'exits/trace.php';
+    include pad . 'exits/trace.php';
     
     exit;
 

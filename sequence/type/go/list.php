@@ -10,9 +10,9 @@
     $padSeqLoop = $padSeqList;
 
     if ( $padSeqOprName== 'make' )
-      $padSeqList = include PAD . "sequence/types/$padSeqListName/make.php"; 
+      $padSeqList = include pad . "sequence/types/$padSeqListName/make.php"; 
     else
-      $padSeqList = include PAD . "sequence/types/$padSeqListName/filter.php"; 
+      $padSeqList = include pad . "sequence/types/$padSeqListName/filter.php"; 
 
     if     ( $padSeqOprName == 'keep'   and $padSeqList === FALSE ) return FALSE;
     elseif ( $padSeqOprName == 'remove' and $padSeqList === TRUE  ) return FALSE;

@@ -82,7 +82,7 @@
       if ($page or $rows) {
 
         if (!$rows) $rows = 10;
-        if (!$page) $page = 1;
+        if (!$page) $padPage = 1;
  
         $offset = ($page-1) * $rows;
         $limit = "limit $offset, $rows";          

@@ -9,7 +9,7 @@
     
     extract ( unserialize ( $padFast ), EXTR_OVERWRITE );
 
-    include PAD . 'config/config.php';
+    include pad . 'config/config.php';
 
   }
   

@@ -5,7 +5,7 @@
 
   foreach ( $padEndOptions[$pad] as $padOptionName ) {
 
-    include PAD . "options/end/$padOptionName.php" ;
+    include pad . "options/end/$padOptionName.php" ;
 
     if ($padTrace)
       include 'trace.php';

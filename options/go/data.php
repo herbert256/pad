@@ -3,6 +3,6 @@
   $padMakeType = $padOptionName;
   $padMakeFile = $padPrm [$pad] [$padOptionName];
 
-  return include PAD . 'level/make.php';
+  return include pad . 'level/make.php';
 
 ?>

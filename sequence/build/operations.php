@@ -7,8 +7,8 @@
     if ( $padSeqOprName <> $padSeqSeq )
     
       if ( $padSeqOprName == 'make' or $padSeqOprName == 'keep' or $padSeqOprName == 'remove' or 
-           padExists ( PAD . "sequence/types/$padSeqOprName/make.php" ) or 
-           padExists ( PAD . "sequence/types/$padSeqOprName/filter.php" ) 
+           padExists ( pad . "sequence/types/$padSeqOprName/make.php" ) or 
+           padExists ( pad . "sequence/types/$padSeqOprName/filter.php" ) 
          )
 
         $padSeqOpr [$padSeqOprName] = $padSeqOprValue;

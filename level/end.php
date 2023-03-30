@@ -1,24 +1,24 @@
 <?php
 
   if ( count ( $padData [$pad] ) )
-    include PAD . 'occurrence/end.php';
+    include pad . 'occurrence/end.php';
 
   if ( next($padData [$pad]) !== FALSE )
-    return include PAD . 'occurrence/start.php';
+    return include pad . 'occurrence/start.php';
 
   if ( $padWalk [$pad] == 'next' ) {
-    include PAD . 'walk/next.php';
+    include pad . 'walk/next.php';
     if ( $padWalk [$pad] == 'next' )
-      return include PAD . 'occurrence/start.php';
+      return include pad . 'occurrence/start.php';
   }
 
   $padOccur [$pad] = 0;
 
   if ( $padWalk [$pad] == 'end' )
-    include PAD . 'walk/end.php';
+    include pad . 'walk/end.php';
 
   if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']) )
-    include PAD . 'callback/exit.php' ;
+    include pad . 'callback/exit.php' ;
 
   if ( $padAfter [$pad] )
     return include 'split/after2.php';
@@ -26,21 +26,21 @@
   if ( $padBefore [$pad] == 2 ) 
     include 'split/before3.php';
 
-  include PAD . "options/go/end.php";
+  include pad . "options/go/end.php";
  
   if ( $padTrace )
     include 'trace/end.php';
 
   if ( $padParse )
-    include PAD . 'parse/levelEnd.php';
+    include pad . 'parse/levelEnd.php';
 
   if ( $padLog )
-    include PAD . 'log/levelEnd.php';
+    include pad . 'log/levelEnd.php';
 
   $pad--;
 
   if ( $padLog and $pad >= 0 and count ( $padData [$pad] ) )
-    include PAD . 'log/occurStart.php';
+    include pad . 'log/occurStart.php';
 
   if ( $pad >= 0 and $padBefore [$pad] == 1 ) 
     return include 'split/before2.php';

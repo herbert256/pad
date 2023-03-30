@@ -1,6 +1,6 @@
 PHP snippets for
 - an option of {$var}:              {$var | xxx | yyy } 
-- a function in a PAD eval string:  {if xxx(123) > yyy(456)}
+- a function in a pad eval string:  {if xxx(123) > yyy(456)}
 
 In
 

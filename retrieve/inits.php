@@ -4,18 +4,18 @@
     if ( substr($key, 0, 3) == 'pad' )
       global $$key;
 
-  global $app;
+  global $padApp;
   
   unset($key);
   unset($val);
   
   $padRetrieveLevel = $pad;
 
-  include PAD . 'level/setup.php'; 
+  include pad . 'level/setup.php'; 
 
   if ( $padTrace ) {
-    include PAD . 'level/trace/start.php'; 
-    include PAD . 'occurrence/trace/start.php'; 
+    include pad . 'level/trace/start.php'; 
+    include pad . 'occurrence/trace/start.php'; 
   }
 
 ?>

@@ -30,7 +30,7 @@
   $padFirst   = substr ( $padBetween , 0, 1 );
 
   if ( $padParse ) 
-    return include PAD . 'parse/var.php';
+    return include pad . 'parse/var.php';
  
   if     ( $padFirst == '!' ) if ( ! padFieldCheck ( $padFld ) ) padError ( "Field '$padFld' not found" );
   elseif ( $padFirst == '$' ) if ( ! padFieldCheck ( $padFld ) ) padError ( "Field '$padFld' not found" );
@@ -54,7 +54,7 @@
     include 'trace/var.php';
 
   if ( $padLog ) 
-    include PAD . 'log/var.php';
+    include pad . 'log/var.php';
  
   padTimingEnd ('var');
 

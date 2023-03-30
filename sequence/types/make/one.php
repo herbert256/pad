@@ -8,7 +8,7 @@
 
     $padSeqParm = $padSeqOptValue;
 
-    $padSeqOptCheck = include PAD . "sequence/types/$padSeqOptName/$padSeqFilterCheck.php"; 
+    $padSeqOptCheck = include pad . "sequence/types/$padSeqOptName/$padSeqFilterCheck.php"; 
 
     if ( $padSeqSeq == 'keep') { 
     

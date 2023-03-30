@@ -1,6 +1,6 @@
 <?php
   
-  $padPageApp = padTagParm ( 'app',     $app );
+  $padPageApp = padTagParm ( 'app',     $padApp );
   $padPagePag = padTagParm ( 'page',    $padOpt [$pad] [1] );
   $padPageTyp = padTagParm ( 'type',    'direct'           );
   $padPageInc = padTagParm ( 'include', '1'                );

@@ -1,8 +1,8 @@
 <?php
 
-  include PAD . 'config/config.php';
+  include pad . 'config/config.php';
 
-  if ( padExists ( APP . 'config/config.php' ) )
-    include APP . 'config/config.php';
+  if ( padExists ( padApp . 'config/config.php' ) )
+    include padApp . 'config/config.php';
 
 ?>

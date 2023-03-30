@@ -1,7 +1,7 @@
 <?php
 
   while ( $pad > $padRetrieveLevel ) 
-    include PAD . 'level/level.php'; 
+    include pad . 'level/level.php'; 
 
   return $padHtml [$pad+1];
 

@@ -18,7 +18,7 @@
     else
       $padSeqLoopBool = padSeqRandom ( $padSeqLoopStart, $padSeqLoopEnd );
  
-    include_once PAD . "sequence/types/$padSeqSeq/bool.php";
+    include_once pad . "sequence/types/$padSeqSeq/bool.php";
 
     if ( $padSeqBoolFunction ($padSeqLoopBool) )
       return $padSeqLoopBool;

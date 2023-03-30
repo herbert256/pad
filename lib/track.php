@@ -2,15 +2,15 @@
 
   function padTrackFileRequest () {
     
-    $dir = $GLOBALS ['PADSESSID'];
-    $id  = $GLOBALS ['PADREQID'];
+    $dir = $GLOBALS ['padSesID'];
+    $id  = $GLOBALS ['padReqID'];
 
     $track = [
-        'session'   => $GLOBALS ['PADSESSID'] ?? '',
-        'request'   => $GLOBALS ['PADREQID'] ?? '',
-        'reference' => $GLOBALS ['PADREFID'] ?? '',
-        'app'       => $GLOBALS ['app'] ?? '',
-        'page'      => $GLOBALS ['page'] ?? '',
+        'session'   => $GLOBALS ['padSesID'] ?? '',
+        'request'   => $GLOBALS ['padReqID'] ?? '',
+        'reference' => $GLOBALS ['padRefID'] ?? '',
+        'padApp'       => $GLOBALS ['padApp'] ?? '',
+        'padPage'      => $GLOBALS ['padPage'] ?? '',
         'start'     => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0,
         'end'       => microtime(true),
         'length'    => $GLOBALS ['padLen'] ?? 0,
@@ -30,8 +30,8 @@
 
   function padTrackDbSession () {
 
-    $session = $GLOBALS ['PADSESSID'];
-    $request = $GLOBALS ['PADREQID'];
+    $session = $GLOBALS ['padSesID'];
+    $request = $GLOBALS ['padReqID'];
 
     if ( padDb ( "check track_session where session='$session'" ) )
       padDb ( "update track_session set requests=requests+1 where session='$session'");
@@ -45,8 +45,8 @@
               values('{1}', '{2}', '{3:32}', '{4:32}', NOW(), {5}, '{6}', '{7:32}', '{8}', '{9:1023}', '{10:1023}', '{11:1023}', '{12:1023}')",
       [  1 => $session,
          2 => $request,
-         3 => $GLOBALS ['app']  ?? '',
-         4 => $GLOBALS ['page'] ?? '',
+         3 => $GLOBALS ['padApp']  ?? '',
+         4 => $GLOBALS ['padPage'] ?? '',
          5 => padDuration($_SERVER['REQUEST_TIME_FLOAT'] ?? 0),
          6 => $GLOBALS ['padLen'] ?? 0,
          7 => $GLOBALS ['padStop'] ?? '',
@@ -63,10 +63,10 @@
 
   function padTrackFileData ( $padEtag, $padOutput ) {
 
-    $padContentStoreFile = "output/$padEtag.html";
+    $file = "output/$padEtag.html";
 
-    if ( ! padExists(DATA . "$padContentStoreFile") )
-      padFilePutContents ($padContentStoreFile, $padOutput);
+    if ( ! padExists(padData . $file) )
+      padFilePutContents ($file, $padOutput);
 
   }
 

@@ -1,14 +1,14 @@
 <?php
 
 
-  function padFastLink ($app, $page, $vars ) {
+  function padFastLink ($padApp, $padPage, $vars ) {
     
-    global $padFastLink, $PADSESSID, $PADREQID, $padHost, $pad;
+    global $padFastLink, $padSesID, $padReqID, $padHost, $pad;
   
-    $vars ['app']       = $app;
-    $vars ['page']      = $page;
-    $vars ['PADSESSID'] = $PADSESSID;
-    $vars ['PADREFID']  = $PADREQID;
+    $vars ['padApp']       = $padApp;
+    $vars ['padPage']      = $padPage;
+    $vars ['padSesID'] = $padSesID;
+    $vars ['padRefID']  = $padReqID;
     
     $fast = padRandomString ($padFastLink);
   
@@ -31,7 +31,7 @@
     if ( count ($parts) == 2)
       $next = $go;
     else
-      $next = "$padHost$padScript?app=$go";
+      $next = "$padHost$padScript?padApp=$go";
   
     padHeader ("Location: $next");
     

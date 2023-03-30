@@ -4,7 +4,7 @@
   function padPageInclude ( $page, $include=1 ) {
 
     if ( $include )
-      return padGetHtml ( APP . "pages/$page.html" , TRUE );
+      return padGetHtml ( padApp . "pages/$page.html" , TRUE );
 
     global $pad, $padBase, $padBuildMerge;
 
@@ -13,8 +13,8 @@
 
     $padBuildMrg = padExplode ( "pages/$page", '/' );
 
-    include PAD . 'build/lib.php';
-    include PAD . 'build/html.php';
+    include pad . 'build/lib.php';
+    include pad . 'build/html.php';
 
     $GLOBALS['padBuildMode'] = $padBuildModeSave;
 
@@ -23,16 +23,16 @@
   }
 
 
-  function padPageGet ( $page, $parms=[], $include=1, $app='' ) {
+  function padPageGet ( $page, $parms=[], $include=1, $padApp='' ) {
 
-    if ( ! $app )
-      $app = GLOBALS['app'];
+    if ( ! $padApp )
+      $padApp = GLOBALS['padApp'];
 
     $query = '';
     foreach ( $parms as $padK => $padV )
       $query .= "&$padK=" . urlencode($padV);
 
-    return pad ( $app, $page, $query, $include );
+    return pad ( $padApp, $page, $query, $include );
 
   }
 
@@ -40,18 +40,18 @@
   function padPageAjax ( $page, $parms=[], $include=1, $app='' ) {
 
     if ( ! $app )
-      $app = GLOBALS['app'];
+      $app = GLOBALS['padApp'];
 
     if ( ! isset($GLOBALS['padAjax']) )
       $GLOBALS['padAjax'] = 0;
 
-    global $padAjax, $padApp; 
+    global $padAjax, $padGoApp; 
       
     $padAjax++;
 
-    $ajax = str_replace('/', '', "$app$page$padAjax".$GLOBALS['page']);
+    $ajax = str_replace('/', '', "$app$page$padAjax".$GLOBALS['padPage']);
 
-    $url = $padApp . $app . '&page=' . $page; 
+    $url = $padGoApp . $app . '&padPage=' . $page; 
 
     foreach ( $parms as $padK => $padV )
       $url .= "&$padK=" . urlencode($padV);
@@ -83,17 +83,17 @@ END;
 
   function padPageFunction ( $padRetrievePage, $padRetrieveParms=[], $include=1 ) {
 
-    include PAD . 'retrieve/inits.php'; 
+    include pad . 'retrieve/inits.php'; 
 
     foreach ( $padRetrieveParms as $padK => $padV )
       $$padK = $padV;
 
-    $page          = $padRetrievePage;
+    $padPage          = $padRetrievePage;
     $padBuildMode  = ($include) ? 'include' : 'before';
     $padBuildMerge = 'content';
 
     $GLOBALS['padIgnoreInclude'] = TRUE;
-    include PAD . 'build/build.php'; 
+    include pad . 'build/build.php'; 
     unset ( $GLOBALS['padIgnoreInclude'] );
 
     $padData [$pad]     = [];
@@ -114,29 +114,29 @@ END;
 
     $padHtml [$pad] = $padBase [$pad];    
 
-    return include PAD . 'retrieve/exits.php'; 
+    return include pad . 'retrieve/exits.php'; 
  
   }
 
 
   function padRetrieveContent ( $padRetrieveContent ) {
 
-    include PAD . 'retrieve/inits.php'; 
+    include pad . 'retrieve/inits.php'; 
 
     $padHtml [$pad] = $padRetrieveContent;    
 
-    return include PAD . 'retrieve/exits.php'; 
+    return include pad . 'retrieve/exits.php'; 
 
   }
 
 
   function padTagAsFunction ($tag, $parms) {
 
-    include PAD . 'retrieve/inits.php'; 
+    include pad . 'retrieve/inits.php'; 
 
     $padHtml [$pad] = '{' . $tag . ' ' . $parms . '}';    
 
-    return include PAD . 'retrieve/exits.php'; 
+    return include pad . 'retrieve/exits.php'; 
 
   }
 

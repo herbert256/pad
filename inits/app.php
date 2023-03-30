@@ -1,8 +1,8 @@
 <?php
 
-  $app = $app ?? $_REQUEST['app'] ?? 'pad';
+  $padApp = $padApp ?? $_REQUEST['app'] ?? $_REQUEST['padApp'] ?? 'pad';
   
-  if ( ! defined ('APP') )
-    define ( 'APP', APPS . "$app/" );
+  if ( ! defined ('padApp') )
+    define ( 'padApp', padApps . "$padApp/" );
 
 ?>

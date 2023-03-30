@@ -42,7 +42,7 @@
     $result = padFieldGo ( $type, $prefix, $field, $parm, $idx );
 
     if ( $GLOBALS['padTrace'] )
-      include PAD . 'trace/field.php';
+      include pad . 'trace/field.php';
 
     return $result;
 

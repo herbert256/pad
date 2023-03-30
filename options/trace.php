@@ -6,7 +6,7 @@
   $padPair [$pad] = TRUE;
   $padWalk [$pad] = 'start';
 
-  include PAD . 'tags/trace.php';
+  include pad . 'tags/trace.php';
   
   $padWalk [$pad] = $padWalkSave [$pad];
   $padPair [$pad] = $padPairSave [$pad];

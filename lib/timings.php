@@ -54,8 +54,8 @@
 
     $padTimings ['total'] = (int) ( (microtime(true) - $_SERVER['REQUEST_TIME_FLOAT']) * 1000000 );    
 
-    padHeader ('X-PAD-Timings: ' . json_encode ( $padTimings)       );
-    padHeader ('X-PAD-Counts: '  . json_encode ( $padTimingsCnt) );
+    padHeader ('X-pad-Timings: ' . json_encode ( $padTimings)       );
+    padHeader ('X-pad-Counts: '  . json_encode ( $padTimingsCnt) );
 
     if ( $GLOBALS ['padTrace'] ) {
       padFilePutContents ( $padTraceDir . "/timings.json", $padTimings       );

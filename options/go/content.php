@@ -3,7 +3,7 @@
   if ( ! padIsContentFile ($padContentGo) )
     return padMakeContent ( $padContentGo );
 
-  $padContentGo = APP . "content/$padContentGo";
+  $padContentGo = padApp . "content/$padContentGo";
 
   if ( substr($padContentGo , -4) == '.php' )
     return "{call '$padContentGo'}";    

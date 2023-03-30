@@ -2,6 +2,6 @@
 
   $padCallback = "init";
   
-  include PAD . 'options/callback.php' ;
+  include pad . 'options/callback.php' ;
   
 ?>

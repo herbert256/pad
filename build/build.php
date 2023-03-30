@@ -1,6 +1,6 @@
 <?php
 
-  $padBuildMrg = padExplode ( "pages/$page", '/' );
+  $padBuildMrg = padExplode ( "pages/$padPage", '/' );
 
   include 'lib.php';  
 
@@ -10,9 +10,9 @@
 
   include "$padBuildMode.php";
 
-  if ($padParse) include PAD . 'parse/build.php';
-  if ($padLog)  include PAD . 'log/build.php';
+  if ($padParse) include pad . 'parse/build.php';
+  if ($padLog)  include pad . 'log/build.php';
 
-  include PAD . 'occurrence/start.php';
+  include pad . 'occurrence/start.php';
 
 ?>

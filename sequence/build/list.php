@@ -18,7 +18,7 @@
 
   foreach ( $padSeqOneList as $padSeqOneName => $padSeqOneValue )
 
-    if ($padSeqOneName <> $padSeqSeq and padExists (PAD . "sequence/types/$padSeqOneName/$padSeqFilterCheck.php")) {
+    if ($padSeqOneName <> $padSeqSeq and padExists (pad . "sequence/types/$padSeqOneName/$padSeqFilterCheck.php")) {
 
       $GLOBALS["padSeq_".$padSeqOne. "_list"] [$padSeqOneName] = $padSeqOneValue;
 

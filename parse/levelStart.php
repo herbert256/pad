@@ -20,6 +20,6 @@
     $padParseResult [$padParseCount] ['prm']    = $padPrm     [$pad];
   }
     
-  include PAD . 'occurrence/start.php'; 
+  include pad . 'occurrence/start.php'; 
 
 ?>

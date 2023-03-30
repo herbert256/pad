@@ -2,6 +2,6 @@
 
   $padContentGo = $padTag [$pad];
 
-  return include PAD . 'options/go/content.php';
+  return include pad . 'options/go/content.php';
 
 ?>

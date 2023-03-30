@@ -6,7 +6,7 @@
   if ( count($_POST) or count($_FILES) )
     return;
 
-  if ( $app == 'pad' )
+  if ( $padApp == 'pad' )
     return;
 
   padTimingStart ('cache');
@@ -19,7 +19,7 @@
   $padCacheAge    = 0;
   $padCacheEtag   = '';
 
-  include PAD . "cache/$padCacheServerType.php";
+  include pad . "cache/$padCacheServerType.php";
   
   padCacheInit ($padCacheUrl, $padCacheClient);
   
@@ -32,7 +32,7 @@
 
     if ( $padCacheAge >= $padCacheMax ) {
       $padCacheStop = 304.1;
-      include PAD . 'cache/stop.php';
+      include pad . 'cache/stop.php';
     }
     
   }
@@ -46,7 +46,7 @@
 
     if ( $padCacheMod and $padCacheMod >= $padCacheMax and $padCacheAge >= $padCacheMax ) {
       $padCacheStop = 304.2;
-      include PAD . 'cache/stop.php';
+      include pad . 'cache/stop.php';
     }
 
     if ( $padCacheAge >= $padCacheMax and ! $GLOBALS ['padCacheServerNoData'] ) {
@@ -55,7 +55,7 @@
 
       if ( $padOutput ) {
         $padCacheStop = 200.3;
-        include PAD . 'cache/stop.php';
+        include pad . 'cache/stop.php';
       }
 
     }

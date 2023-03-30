@@ -1,7 +1,7 @@
 <?php
 
   $padExits    = [];
-  $padBuildNow = substr(APP, 0, -1);  
+  $padBuildNow = substr(padApp, 0, -1);  
 
   foreach ($padBuildMrg as $padValue) {
 

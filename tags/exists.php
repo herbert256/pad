@@ -1,8 +1,8 @@
 <?php
 
-  if     ( padTagParm ('app') ) $padExists = APP . $padOpt [$pad] [1];
-  elseif ( padTagParm ('pad') ) $padExists = PAD . $padOpt [$pad] [1];
-  else                          $padExists = APP . $padOpt [$pad] [1];
+  if     ( padTagParm ('padApp') ) $padExists = padApp . $padOpt [$pad] [1];
+  elseif ( padTagParm ('pad') ) $padExists = pad . $padOpt [$pad] [1];
+  else                          $padExists = padApp . $padOpt [$pad] [1];
 
   return ( padExists ($padExists) ) ? TRUE : FALSE;
 

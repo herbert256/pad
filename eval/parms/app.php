@@ -1,5 +1,5 @@
 <?php
  
-  return include APP . "functions/$name.php";
+  return include padApp . "functions/$name.php";
 
 ?>

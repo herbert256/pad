@@ -6,7 +6,7 @@
 
     if ( padValidVar ($padParmName) ) {
 
-      if ( padExists ( APP . "options/$padParmName.php") )
+      if ( padExists ( padApp . "options/$padParmName.php") )
         $padOptionsApp [$pad] [] = $padParmName;
 
       if ( $padParmValue === '' )

@@ -8,7 +8,7 @@
   include 'split.php';
 
   if ($padParse)
-    include PAD . 'parse/levelStart.php';
+    include pad . 'parse/levelStart.php';
 
   if ( $padTrace )  
     include 'trace/start.php';
@@ -24,15 +24,15 @@
   include 'base.php';
   include 'data.php';
 
-  include PAD . "options/go/start.php";
+  include pad . "options/go/start.php";
 
   if ( count ( $padOptionsApp [$pad] ) )
-    include PAD . "options/go/app.php";
+    include pad . "options/go/app.php";
 
   include 'name.php';
   
   if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']) )
-    include PAD . 'callback/init.php' ;
+    include pad . 'callback/init.php' ;
 
   if ( padOpenCloseOk ( $padBase[$pad], '@end@', 2 ) )
     include 'split/after1.php';
@@ -41,9 +41,9 @@
     return include 'split/before1.php';
 
  if ($padLog)
-    include PAD . 'log/levelStart.php';
+    include pad . 'log/levelStart.php';
 
   if ( count ( $padData [$pad] ) )
-    include PAD . 'occurrence/start.php';
+    include pad . 'occurrence/start.php';
 
 ?>

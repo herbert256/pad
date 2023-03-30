@@ -21,7 +21,7 @@
     if ($include)
       $include = '&padInclude=1';
 
-    $input ['url'] = "$padHost$padScript?app=$app&page=$page$query$include";
+    $input ['url'] = "$padHost$padScript?padApp=$app&padPage=$page$query$include";
     
     return padCurl ($input);
     
@@ -61,8 +61,8 @@
     }
 
     if  ( str_starts_with ( $input ['url'], $GLOBALS['padHost'] ) ) {
-      $input ['cookies'] ['PADSESSID'] = $GLOBALS ['PADSESSID'];
-      $input ['cookies'] ['PADREQID']  = $GLOBALS ['PADREQID'];
+      $input ['cookies'] ['padSesID'] = $GLOBALS ['padSesID'];
+      $input ['cookies'] ['padReqID']  = $GLOBALS ['padReqID'];
     }
     
     $output             = [];
@@ -76,7 +76,7 @@
     $output ['data']    = '';
 
     if ( ! strpos( $input ['url'], '://') ) {
-      $file = APP . 'data/' . $input ['url'];
+      $file = padApp . 'data/' . $input ['url'];
       if ( padExists ( $file ) ) {
         $output ['data']    = padFileGetContents ( $file );   
         $output ['type']    = padContentType  ( $output ['data'] );   
@@ -93,8 +93,8 @@
     padCurlOpt ($options, 'ENCODING',       'gzip' );
     padCurlOpt ($options, 'FOLLOWLOCATION', true);
     padCurlOpt ($options, 'HEADER',         true);
-    padCurlOpt ($options, 'USERAGENT',      $_SERVER['HTTP_USER_AGENT'] ?? 'Mozilla/5.0 (X11; CrOS x86_64 13904.77.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.147 Safari/537.36 PAD/10.0');
-    padCurlOpt ($options, 'REFERER',        $GLOBALS ['padPageExternal'] . $GLOBALS ['page']);
+    padCurlOpt ($options, 'USERAGENT',      $_SERVER['HTTP_USER_AGENT'] ?? 'Mozilla/5.0 (X11; CrOS x86_64 13904.77.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.147 Safari/537.36 pad/10.0');
+    padCurlOpt ($options, 'REFERER',        $GLOBALS ['padGoPageExternal'] . $GLOBALS ['padPage']);
 
     if ( isset($input['user']) )
       padCurlOpt ($options, 'USERPWD', $input['user'] . ":" . $input['$padassword']);

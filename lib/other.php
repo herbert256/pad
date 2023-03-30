@@ -28,7 +28,7 @@
     $now   = microtime(true);
     $sec   = floor($now);
     $micro = (int) (($now - $sec) * 1000000);
-    $micro = str_pad($micro, 6, '0', STR_PAD_LEFT);
+    $micro = str_pad($micro, 6, '0', STR_pad_LEFT);
 
     return date('ymd-His-') . $micro;
 
@@ -110,7 +110,7 @@
   function padFixedLenghtLeft ( $string, $length, $filler = ' ' ) {
 
       if ( strlen($string) < $length) 
-        return str_pad ( $string, $length, $filler, STR_PAD_LEFT ) . ' ';
+        return str_pad ( $string, $length, $filler, STR_pad_LEFT ) . ' ';
       else 
         return substr ( $string, 0, $length) . ' ';
 
@@ -127,13 +127,13 @@
 
   function padIsPagesFile ( $file ) {
 
-    return padIsXXXFile ( APP . "pages/$file" );
+    return padIsXXXFile ( padApp . "pages/$file" );
 
   }
 
   function padIsContentFile ( $file ) {
 
-    return padIsXXXFile ( APP . "content/$file" );
+    return padIsXXXFile ( padApp . "content/$file" );
 
   }
 
@@ -148,7 +148,7 @@
   }
   function padDataFileCheck ( $file ) {
 
-    $file = APP . "data/$file";
+    $file = padApp . "data/$file";
 
     if ( padFileValidName ( $file ) )
       if  ( ( padExists ($file) and ! is_dir($file) ) 
@@ -162,7 +162,7 @@
 
   function padDataFileGet ( $file ) {
 
-    $file  = APP . "data/$file";
+    $file  = padApp . "data/$file";
     $parts = pathinfo ( $file );
     $name  = padTagParm ( 'name', $parts ['filename']  ?? '' );
     $ext   = padTagParm ( 'type', $parts ['extension'] ?? '' );
@@ -264,7 +264,7 @@
 
   function padID () {
 
-    return $GLOBALS ['PADREQID'] ?? uniqid (TRUE);
+    return $GLOBALS ['padReqID'] ?? uniqid (TRUE);
 
   }
 
@@ -582,8 +582,8 @@
 
   function padFunctionType ( $check ) {
 
-    if     ( padExists ( APP . "functions/$check.php" ) ) return 'app';
-    elseif ( padExists ( PAD . "functions/$check.php" ) ) return 'pad';
+    if     ( padExists ( padApp . "functions/$check.php" ) ) return 'padApp';
+    elseif ( padExists ( pad . "functions/$check.php" ) ) return 'pad';
     elseif ( function_exists ( $check                 ) ) return 'php';
     else                                                  return padError ('Function not found: ' . $check);
 
@@ -605,7 +605,7 @@
     foreach ( $parm as $padK => $padV )
       $fun [200+($padK*100)] [0] = $padV;
 
-    if ( padExists ( PAD . "eval/single/$name.php" ) )
+    if ( padExists ( pad . "eval/single/$name.php" ) )
       padEvalSingle ( $fun, $name );
     else
       padEvalParms ( 1, 0, $fun, $self, 1, 999999 ) ;
@@ -733,10 +733,10 @@
     padHtml ( '&open;' . $padBetween . '&close;' );
 
     if ( $padTrace ) 
-      include PAD . 'trace/ignored.php';
+      include pad . 'trace/ignored.php';
 
     if ( $padLog ) 
-      include PAD . 'log/ignored.php';
+      include pad . 'log/ignored.php';
 
     return FALSE;
     
@@ -856,17 +856,17 @@
         
       $save = $val;
 
-      $append  = (substr($opt, 0, 1) == '.');
+      $padAppend  = (substr($opt, 0, 1) == '.');
       $padrepend = (substr($opt, -1)   == '.');
   
-      if ($append)   $opt = trim(substr($opt,1));
+      if ($padAppend)   $opt = trim(substr($opt,1));
       if ($padrepend)  $opt = trim(substr($opt,0,-1));
   
       $now = (substr($opt, 0, 1) == '%') ? sprintf($opt, $val) : padEval ($opt, $val);
      
-      if ( $append )                  $val = $val . $now;
+      if ( $padAppend )                  $val = $val . $now;
       if ( $padrepend )                 $val = $now . $val;
-      if ( ! $append and ! $padrepend ) $val = $now;
+      if ( ! $padAppend and ! $padrepend ) $val = $now;
 
       if ($padTrace and $val <> $save)
         $padOptsTrace [$opt] = $val;
@@ -989,9 +989,6 @@
       return FALSE;
 
     if ( in_array ( $fld, ['GLOBALS','_POST','_GET','_COOKIE','_SESSION','_FILES','_SERVER','_REQUEST','_ENV'] ) )
-      return FALSE;
-
-    if ( in_array ( $fld, ['app', 'pad', 'page', 'PADSESSID', 'PADREQID', 'PADREFID'] ) )
       return FALSE;
 
     return TRUE;

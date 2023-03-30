@@ -12,7 +12,7 @@
   if ($padParse)
     $padTagResult = TRUE;
   else
-    $padTagResult = include PAD . "types/" . $padType [$pad] . ".php";
+    $padTagResult = include pad . "types/" . $padType [$pad] . ".php";
   
   padTimingEnd ('tag');
 

@@ -6,6 +6,6 @@
   $padAfter [$pad] = '';
 
   reset ( $padData [$pad] );
-  include PAD . 'occurrence/start.php';
+  include pad . 'occurrence/start.php';
 
 ?>

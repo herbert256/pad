@@ -10,7 +10,7 @@
       padTimingEnd ('sql');
     }
     
-    return padDbPart2 ($padSqlConnect, $sql, $vars, 'app');
+    return padDbPart2 ($padSqlConnect, $sql, $vars, 'padApp');
     
   }
   
@@ -152,9 +152,9 @@
     $now   = microtime(true);
     $sec   = floor($now);
     $micro = (int) (($now - $sec) * 1000);
-    $micro = str_pad($micro, 3, '0', STR_PAD_LEFT);
+    $micro = str_pad($micro, 3, '0', STR_pad_LEFT);
 
-    $start = date('Y-m-d H:i:s', $sec) . '.' . $micro . ' ' . $GLOBALS ['PADREQID'];
+    $start = date('Y-m-d H:i:s', $sec) . '.' . $micro . ' ' . $GLOBALS ['padReqID'];
 
     $log = "$start $file:$line rows:$rows time:$duration"
          . "\r\n\r\n$sql\r\n----------------------------------------\r\n";

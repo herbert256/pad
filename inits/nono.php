@@ -3,7 +3,7 @@
   if ( ! $padNoNo )
     return; 
 
-  $padNoNo = APP . "/pages/$page.php";
+  $padNoNo = padApp . "/pages/$padPage.php";
 
   if ( ! padExists ( $padNoNo ) )
     padBootError ("Page does not exists: $padNoNo");
@@ -12,14 +12,14 @@
     if ( substr($key, 0, 3) == 'pad' and $key <> 'padNoNo' )
       unset ( $GLOBALS[$key] );
 
-  unset ($page);
-  unset ($app);
+  unset ($padPage);
+  unset ($padApp);
   unset ($key);
   unset ($value);
 
-  unset($PADSESSID);
-  unset($PADREFID);
-  unset($PADREQID);
+  unset($padSesID);
+  unset($padRefID);
+  unset($padReqID);
 
   include $padNoNo;
 

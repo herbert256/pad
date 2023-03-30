@@ -9,7 +9,7 @@
   $padInOccur = TRUE;
   
   if ( $padLog )
-    include PAD . 'log/occurStart.php';
+    include pad . 'log/occurStart.php';
 
   if ( $padTrace )
     include 'trace/start.php';
@@ -21,6 +21,6 @@
   include 'table.php';
 
   if ( isset($padPrm [$pad] ['callback']) and ! isset ( $padPrm [$pad] ['before']) )
-    include PAD . 'callback/row.php' ;
+    include pad . 'callback/row.php' ;
 
 ?>
