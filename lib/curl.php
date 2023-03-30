@@ -52,6 +52,19 @@
     if ( ! is_array($input) )
       $input = [ 'url' => $input ];
 
+    if ( isset($input['get']) ) {
+      $str = ( strpos ($input ['url'], '?' ) === FALSE ) ? '?' : '&';
+      foreach ( $input['get'] as $key => $val ) {
+        $input ['url'] .= $str . $key . '=' . urlencode($val);
+        $str = '&';
+      }
+    }
+
+    if  ( str_starts_with ( $input ['url'], $GLOBALS['padHost'] ) ) {
+      $input ['cookies'] ['PADSESSID'] = $GLOBALS ['PADSESSID'];
+      $input ['cookies'] ['PADREQID']  = $GLOBALS ['PADREQID'];
+    }
+    
     $output             = [];
     $output ['input']   = $input;
     $output ['options'] = [];
@@ -62,26 +75,14 @@
     $output ['cookies'] = [];
     $output ['data']    = '';
 
-    if ( isset($input['get']) ) {
-      $str = ( strpos ($input ['url'], '?' ) === FALSE ) ? '?' : '&';
-      foreach ( $input['get'] as $key => $val ) {
-        $input ['url'] .= $str . $key . '=' . urlencode($val);
-        $str = '&';
-      }
-    }
-
-    $output ['url'] = $input ['url'] ;  
-
     if ( ! strpos( $input ['url'], '://') ) {
       $file = APP . 'data/' . $input ['url'];
       if ( padExists ( $file ) ) {
         $output ['data']    = padFileGetContents ( $file );   
         $output ['type']    = padContentType  ( $output ['data'] );   
         $output ['result']  = '200';
-      } else {
-        $output ['data']    = '';      
+      } else 
         $output ['result']  = '404';
-      }
       $GLOBALS ['padCurlLast'] = $output;
       return $output;
     }
@@ -101,11 +102,6 @@
     if ( isset($input['post']) ) {
       padCurlOpt ($options, 'POST', true);
       padCurlOpt ($options, 'POSTFIELDS', $input ['post']);
-    }
-  
-    if  ( str_starts_with ( $input ['url'], $GLOBALS['padHost'] ) ) {
-      $input ['cookies'] ['PADSESSID'] = $GLOBALS ['PADSESSID'];
-      $input ['cookies'] ['PADREQID']  = $GLOBALS ['PADREQID'];
     }
  
     if ( isset($input['cookies']) ) {
@@ -222,7 +218,7 @@
     
     $file = $GLOBALS ['padLevelDir'] [$GLOBALS ['pad']]. "/curl_" . padRandomString(). ".json";
 
-    padFilePutContents ($file, padJson ($trace) );
+    padFilePutContents ($file, $trace );
 
   }
   
@@ -235,7 +231,8 @@
 
   function padCurlError ($output, $error) {
 
-    $output ['ERROR'] = $error;
+    $output ['ERROR']  = $error;
+    $output ['result'] = '999';
 
      if ($GLOBALS ['padTrace'])
       padCurlTrace ( $output );

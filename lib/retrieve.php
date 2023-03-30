@@ -23,7 +23,7 @@
   }
 
 
-  function padPageGet ( $page, $parms=[], $include=1, $app=[] ) {
+  function padPageGet ( $page, $parms=[], $include=1, $app='' ) {
 
     if ( ! $app )
       $app = GLOBALS['app'];
