@@ -222,10 +222,9 @@
   function padDumpHeaders () {
 
     $out = headers_list ();
-
-                          padDumpArray ('Headers-in',  getallheaders() );
-    if ( count ( $out ) ) padDumpArray ('Headers-out', $out );
-
+                                              padDumpArray ('Headers-in',  getallheaders() );
+    if ( count ( $out )                     ) padDumpArray ('Headers-out', $out );
+    if ( count ( $GLOBALS ['padHeaders']  ) ) padDumpArray ('Headers-PAD', $GLOBALS ['padHeaders']  );
 
   }
 

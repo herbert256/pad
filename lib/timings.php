@@ -47,21 +47,21 @@
     foreach ( $padTimingsStart as $key => $val ) 
       padTimingEnd ($key);
 
-    $padTimings ['boot'] = $padTimingsBoot - $_SERVER['REQUEST_TIME_FLOAT'];
+    $padTimings ['boot']  = $padTimingsBoot - $_SERVER['REQUEST_TIME_FLOAT'];
+    $padTimings ['total'] = microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'];    
 
     foreach ($padTimings as $key => $val)
       $padTimings [$key] = (int) ( $val * 1000000 );
 
-    $padTimings ['total'] = (int) ( (microtime(true) - $_SERVER['REQUEST_TIME_FLOAT']) * 1000000 );    
-
-    padHeader ('X-pad-Timings: ' . json_encode ( $padTimings)       );
-    padHeader ('X-pad-Counts: '  . json_encode ( $padTimingsCnt) );
+    padHeader ('X-PAD-Timings: ' . json_encode ( $padTimings)    );
+    padHeader ('X-PAD-Counts: '  . json_encode ( $padTimingsCnt) );
 
     if ( $GLOBALS ['padTrace'] ) {
-      padFilePutContents ( $padTraceDir . "/timings.json", $padTimings       );
+      padFilePutContents ( $padTraceDir . "/timings.json", $padTimings    );
       padFilePutContents ( $padTraceDir . "/counts.json",  $padTimingsCnt );
     }
 
   }
   
+
 ?>

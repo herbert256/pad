@@ -50,10 +50,7 @@
 
   function padHeaders ($stop) {
 
-    if ( headers_sent () )
-      return;
-
-    padHeader ('X-pad: ' . $GLOBALS ['padSesID'] . '-' . $GLOBALS ['padSesID']);
+    padHeader ('X-PAD: ' . $GLOBALS ['padSesID'] . '-' . $GLOBALS ['padReqID']);
 
     if ( $stop == 500 )
       padHeader ('HTTP/1.0 500 Internal Server Error' );

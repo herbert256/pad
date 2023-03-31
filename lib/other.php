@@ -381,13 +381,11 @@
       
   function padHeader ($header) {
 
-    if ( headers_sent () )
-      return;
+    if ( ! headers_sent () )
+      header ($header);
 
     $GLOBALS ['padHeaders'] [] = $header;
  
-    header ($header);
-  
   }
 
 
