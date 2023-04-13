@@ -1,0 +1,12 @@
+Hello,
+
+With this mail I want to do the first step of a RFC "1. Email internals@lists.php.net to measure reaction to your intended proposal."
+
+I'm in the process of using hrtime(true) instead of microtime(true), for this it would be great if REQUEST_TIME_HR would also exist next to REQUEST_TIME and REQUEST_TIME_FLOAT
+
+The implementation can be done with adding below 2 lines to main/php_variables.c where REQUEST_TIME and REQUEST_TIME_FLOAT are also defined.
+
+	ZVAL_LONG(&tmp, php_hrtime_current());
+	php_register_variable_quick("REQUEST_TIME_HR", sizeof("REQUEST_TIME_HR")-1, &tmp, ht);
+
+With Kind Regards, Herbert

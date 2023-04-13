@@ -75,7 +75,7 @@
     elseif ( $command == 'array'  )  $sql = 'select '        . $split[1];
 
     if ( $padTrace )
-      $padSqlStart = microtime(true);
+      $padSqlStart = hrime(true);
     
     padTimingStart ('sql');
     $query = mysqli_query ( $padSqlConnect , $sql );
@@ -134,35 +134,12 @@
     else
       $return = '';
 
-    if ( $padTrace ) {
-      $padSqlDuration = padDuration ($padSqlStart);
-      padDbTrace ($db_type, $padSqlDuration, $padDbRowsFound, padDbFormatSql($sql)) ;
-    }
+    if ( $padTrace )
+      include pad . 'trace/db.php';
 
     return $return;
 
   }
-
-
-  function padDbTrace ($type, $duration, $rows, $sql) {
-        
-    $backTrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS,3);
-    extract ( $backTrace[2] );
-
-    $now   = microtime(true);
-    $sec   = floor($now);
-    $micro = (int) (($now - $sec) * 1000);
-    $micro = str_pad($micro, 3, '0', STR_pad_LEFT);
-
-    $start = date('Y-m-d H:i:s', $sec) . '.' . $micro . ' ' . $GLOBALS ['padReqID'];
-
-    $log = "$start $file:$line rows:$rows time:$duration"
-         . "\r\n\r\n$sql\r\n----------------------------------------\r\n";
-
-    padFilePutContents ("sql/$type.txt", $log, 1);
-    
-  }
-
 
   function padDbConnect ( $host, $user, $padassword, $database ) {
 

@@ -7,7 +7,7 @@
     'stop'    => $GLOBALS ['padStop'] ?? '',
     'length'  => $GLOBALS ['padLen'] ?? 0,
     'etag'    => $GLOBALS ['padEtag'] ?? '',
-    'time'    => microtime(true) - ($_SERVER ['REQUEST_TIME_FLOAT'] ?? 0),
+    'time'    => padDuration(),
   ];
 
   padTraceFields ( $padFphp, $padFlvl, $padFapp, $padFcfg, $padFpad, $padFids );

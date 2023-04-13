@@ -28,7 +28,7 @@
     $now   = microtime(true);
     $sec   = floor($now);
     $micro = (int) (($now - $sec) * 1000000);
-    $micro = str_pad($micro, 6, '0', STR_pad_LEFT);
+    $micro = str_pad($micro, 6, '0', STR_PAD_LEFT);
 
     return date('ymd-His-') . $micro;
 
@@ -107,24 +107,6 @@
 
   }
 
-  function padFixedLenghtLeft ( $string, $length, $filler = ' ' ) {
-
-      if ( strlen($string) < $length) 
-        return str_pad ( $string, $length, $filler, STR_pad_LEFT ) . ' ';
-      else 
-        return substr ( $string, 0, $length) . ' ';
-
-  }
-
-  function padFixedLenghtRight ( $string, $length, $filler = ' ' ) {
-
-      if ( strlen($string) < $length) 
-        return str_pad ( $string, $length, $filler ) . ' ';
-      else 
-        return substr ( $string, 0, $length). ' ';
-
-  }
-
   function padIsPagesFile ( $file ) {
 
     return padIsXXXFile ( padApp . "pages/$file" );
@@ -146,6 +128,7 @@
     return FALSE;
 
   }
+  
   function padDataFileCheck ( $file ) {
 
     $file = padApp . "data/$file";
@@ -529,17 +512,11 @@
   }
   
   
-  function padDuration ( $start, $end=0 ) {
+  function padDuration () {
 
-    if ($end)
-      $duration = (int) ( ( $end            - $start ) * 1000000 );
-    else
-      $duration = (int) ( ( microtime(true) - $start ) * 1000000 );
+    global $padTimingsBootHR;
 
-    if (!$duration)
-      $duration = 1;
-
-    return $duration;
+    return hrtime(true) - $padTimingsBootHR;
 
   }
 

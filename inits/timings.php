@@ -1,6 +1,6 @@
 <?php
 
-  $padTimingsStart ['init'] = $padTimingsBoot;
+  $padTimingsStart ['init'] = $padTimingsBootHR;
 
   padTimingEnd ('init');
 
