@@ -3,12 +3,12 @@
 
   function padTimingStart ($timing) {
     
-     if ( $GLOBALS ['padExit'] <> 1 or ! $GLOBALS ['padTiming'] )
+     if ( ! $GLOBALS ['padTiming'] or $GLOBALS ['padExit'] <> 1 )
       return;
-   
+
     global $padTimingsCnt, $padTimingsStart;
 
-    $padTimingsCnt [$timing] = 1 + ($padTimingsCnt [$timing]??0);
+    $padTimingsCnt [$timing.'C'] = 1 + ($padTimingsCnt [$timing.'C']??0);
 
     $padTimingsStart [$timing] = hrtime(true);
 
@@ -17,13 +17,10 @@
 
   function padTimingEnd ($timing) {
 
-    if ( $GLOBALS ['padExit'] <> 1 or ! $GLOBALS ['padTiming'] )
+    if ( ! $GLOBALS ['padTiming'] or $GLOBALS ['padExit'] <> 1 or ! isset ( $GLOBALS ['padTimingsStart'] [$timing] ) )
       return;
 
     global $padTimings, $padTimingsStart;
-
-    if ( ! isset ( $GLOBALS ['padTimingsStart'] [$timing] ) )
-      return;
 
     $now = hrtime(true) - $padTimingsStart[$timing];
 
@@ -42,15 +39,12 @@
     if ( ! $GLOBALS ['padTiming'] )
       return;
 
-    global $padTimings, $padTimingsBootTime, $padTimingsBootHR, $padTimingsStart, $padTimingsCnt, $padTraceDir;
+    global $padTimings, $padTimingsBoot, $padTimingsStart, $padTimingsCnt, $padTraceDir;
 
     foreach ( $padTimingsStart as $key => $val ) 
       padTimingEnd ($key);
 
-    $boot = $padTimingsBootTime - $_SERVER ['REQUEST_TIME_FLOAT'];
-
-    $padTimings ['boot'] = (int) ($boot * 1000000000);
-    $padTimings ['pad']  = hrtime(true) - $padTimingsBootHR;    
+    $padTimings ['pad']  = hrtime(true) - $padTimingsBoot;    
 
     foreach ($padTimings as $key => $val)
       $padTimings [$key] = (int) ( $val / 1000 );

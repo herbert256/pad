@@ -514,9 +514,9 @@
   
   function padDuration () {
 
-    global $padTimingsBootHR;
+    global $padTimingsBoot;
 
-    return hrtime(true) - $padTimingsBootHR;
+    return hrtime(true) - $padTimingsBoot;
 
   }
 

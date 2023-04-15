@@ -21,9 +21,9 @@
     if ($include)
       $include = '&padInclude=1';
 
-    $input ['url'] = "$padHost$padScript?padApp=$app&padPage=$page$query$include";
+    $url = "$padHost$padScript?padApp=$app&padPage=$page$query$include";
     
-    return padCurl ($input);
+    return padCurl ($url);
     
   }
 
@@ -49,23 +49,8 @@
     //  - ['headers']
     //  - ['options']
 
-    if ( ! is_array($input) )
-      $input = [ 'url' => $input ];
-
-    if ( isset($input['get']) ) {
-      $str = ( strpos ($input ['url'], '?' ) === FALSE ) ? '?' : '&';
-      foreach ( $input['get'] as $key => $val ) {
-        $input ['url'] .= $str . $key . '=' . urlencode($val);
-        $str = '&';
-      }
-    }
-
-    if  ( str_starts_with ( $input ['url'], $GLOBALS['padHost'] ) ) {
-      $input ['cookies'] ['padSesID'] = $GLOBALS ['padSesID'];
-      $input ['cookies'] ['padReqID']  = $GLOBALS ['padReqID'];
-    }
-    
     $output             = [];
+    $output ['url']     = '';
     $output ['input']   = $input;
     $output ['options'] = [];
     $output ['result']  = '999';  //  200 / 404 / etc
@@ -75,8 +60,26 @@
     $output ['cookies'] = [];
     $output ['data']    = '';
 
-    if ( ! strpos( $input ['url'], '://') ) {
-      $file = padApp . 'data/' . $input ['url'];
+    if ( ! is_array($input) ) {
+      $url   = $input;
+      $input = [];
+    } else {
+      $url = $input ['url'];
+    }
+
+    if ( isset($input['get']) )
+      foreach ( $input['get'] as $key => $val ) 
+        $url = padCurlAddGet ( $url, $key, $val );
+
+    if  ( str_starts_with ( $url, $GLOBALS['padHost'] ) ) {
+      $url = padCurlAddGet ( $url, 'padSesID', $GLOBALS ['padSesID'] );
+      $url = padCurlAddGet ( $url, 'padReqID', $GLOBALS ['padReqID'] );
+    }
+
+    $output ['url'] = $url;
+
+    if ( ! strpos( $url, '://') ) {
+      $file = padApp . 'data/' . $url;
       if ( padExists ( $file ) ) {
         $output ['data']    = padFileGetContents ( $file );   
         $output ['type']    = padContentType  ( $output ['data'] );   
@@ -123,7 +126,7 @@
 
     $output ['options'] = $options;      
 
-    $curl = curl_init ( $input ['url'] );
+    $curl = curl_init ( $url );
 
     if ($curl === FALSE)
       return padCurlError ($output, 'curl_init = FALSE');
@@ -210,6 +213,14 @@
 
     return $output;
     
+  }
+
+  function padCurlAddGet  ($url, $key, $val ) {
+    
+    $str = ( strpos ($url, '?' ) === FALSE ) ? '?' : '&';
+    
+    return $url . $str . $key . '=' . urlencode($val);
+
   }
 
   function padCurlTrace ( $trace ) {

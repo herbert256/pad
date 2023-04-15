@@ -4,11 +4,8 @@
 
     global $padSqlConnect, $padSqlHost , $padSqlUser , $padSqlPassword , $padSqlDatabase;
     
-    if ( ! isset ( $padSqlConnect ) ) {
-      padTimingStart ('sql');
+    if ( ! isset ( $padSqlConnect ) )
       $padSqlConnect = padDbConnect ( $padSqlHost , $padSqlUser , $padSqlPassword , $padSqlDatabase );
-      padTimingEnd ('sql');
-    }
     
     return padDbPart2 ($padSqlConnect, $sql, $vars, 'padApp');
     
@@ -19,11 +16,8 @@
 
     global $padPadSqlConnect, $padPadSqlHost , $padPadSqlUser , $padPadSqlPassword , $padPadSqlDatabase;
     
-    if ( ! isset ( $padPadSqlConnect ) ) {
-      padTimingStart ('sql');
+    if ( ! isset ( $padPadSqlConnect ) )
       $padPadSqlConnect = padDbConnect ( $padPadSqlHost , $padPadSqlUser , $padPadSqlPassword , $padPadSqlDatabase );
-      padTimingEnd ('sql');
-    }
     
     return padDbPart2 ($padPadSqlConnect, $sql, $vars, 'pad');
     
@@ -143,13 +137,17 @@
 
   function padDbConnect ( $host, $user, $padassword, $database ) {
 
+    padTimingStart ('sql');
     $connect = mysqli_connect ( "p:$host" , $user , $padassword , $database );
+    padTimingEnd ('sql');
     
     if ( ! $connect )
       return padError ( mysqli_connect_errno ( ) . ' - ' . mysqli_connect_error ( ) );
       
+    padTimingStart ('sql');
     mysqli_query($connect, "SET SESSION sql_mode = 'TRADITIONAL'");
-    
+    padTimingEnd ('sql');
+     
     return $connect;
     
   }
@@ -160,13 +158,10 @@
     $work = trim($work);
 
     $work = str_replace('select ',    "select    ", $work);
-    $work = str_replace('check ',     "select    1\r\nfrom      ", $work);
-    $work = str_replace('record ',    "select    ", $work);
-    $work = str_replace('field ',     "select    ", $work);
-    $work = str_replace('array ',     "select    ", $work);
     $work = str_replace('insert ',    "insert    ", $work);
     $work = str_replace('delete ',    "delete    ", $work);
     $work = str_replace('update ',    "update    ", $work);
+
     $work = str_replace(' from ',     "\r\nfrom      ", $work);
     $work = str_replace(' limit ',    "\r\nlimit     ", $work);
     $work = str_replace(' where ',    "\r\nwhere     ", $work);
@@ -187,20 +182,6 @@
     $work = str_replace(" cross\r\njoin ",         "\r\ncross join ",         $work);
 
     return $work;
-
-  }
-
-
-  function padDbEscape ($inp) {
-
-    if (is_array($inp))
-        return array_map (__METHOD__, $inp);
-
-    if (!empty($inp) && is_string($inp)) {
-        return str_replace(array('\\', "\0", "\n", "\r", "'", '"', "\x1a"), array('\\\\', '\\0', '\\n', '\\r', "\\'", '\\"', '\\Z'), $inp);
-    }
-
-    return $inp;
 
   }
 
