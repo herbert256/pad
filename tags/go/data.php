@@ -3,6 +3,10 @@
   $padMakeType = $padTag [$pad];
   $padMakeFile = $padOpt [$pad] [1];
 
-  return include pad . 'level/make.php';
+  $padData [$pad] = padMakeData ("$padMakeFile.$padMakeType", $padMakeType, $padMakeFile);
+
+  $padForceName = $padMakeFile;
+
+  return TRUE;
 
 ?>

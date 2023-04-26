@@ -13,7 +13,6 @@
       unset ( $GLOBALS[$key] );
 
   unset ($padPage);
-  unset ($padApp);
   unset ($key);
   unset ($value);
 

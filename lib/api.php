@@ -1,11 +1,10 @@
 <?php
 
 
-  function padFastLink ($padApp, $padPage, $vars ) {
+  function padFastLink ( $padPage, $vars ) {
     
     global $padFastLink, $padSesID, $padReqID, $padHost;
   
-    $vars ['padApp']   = $padApp;
     $vars ['padPage']  = $padPage;
     $vars ['padSesID'] = $padSesID;
     $vars ['padRefID'] = $padReqID;

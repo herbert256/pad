@@ -56,8 +56,8 @@
     if ( strpos($file, '/.') !== FALSE )                  return FALSE;
     if ( strpos($file, './') !== FALSE )                  return FALSE;
 
-    if ( str_starts_with($file, pad)  ) return TRUE;
-    if ( str_starts_with($file, padApps) ) return TRUE;
+    if ( str_starts_with($file, pad)     ) return TRUE;
+    if ( str_starts_with($file, padApp)  ) return TRUE;
     if ( str_starts_with($file, padData) ) return TRUE;
 
     return FALSE;

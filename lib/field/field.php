@@ -68,4 +68,17 @@
   }
 
 
+  function padRawValue ( $parm ) { 
+
+    return str_replace ( '}', '&close;', padFieldValue ($parm) );
+
+  }
+
+ function padRawCheck ( $parm ) { 
+
+    return padFieldCheck ( $parm );
+
+  }
+
+
 ?>

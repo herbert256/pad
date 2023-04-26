@@ -571,8 +571,8 @@
 
   function padFunctionType ( $check ) {
 
-    if     ( padExists ( padApp . "functions/$check.php" ) ) return 'padApp';
-    elseif ( padExists ( pad . "functions/$check.php"    ) ) return 'pad';
+    if     ( padExists ( padApp . "functions/$check.php" ) ) return 'app';
+    elseif ( padExists ( pad    . "functions/$check.php" ) ) return 'pad';
     elseif ( function_exists ( $check                    ) ) return 'php';
     else                                                     return padError ('Function not found: ' . $check);
 
@@ -832,7 +832,7 @@
         
       $save = $val;
 
-      $padAppend  = (substr($opt, 0, 1) == '.');
+      $padAppend = (substr($opt, 0, 1) == '.');
       $padrepend = (substr($opt, -1)   == '.');
   
       if ($padAppend)   $opt = trim(substr($opt,1));
@@ -840,8 +840,8 @@
   
       $now = (substr($opt, 0, 1) == '%') ? sprintf($opt, $val) : padEval ($opt, $val);
      
-      if ( $padAppend )                  $val = $val . $now;
-      if ( $padrepend )                 $val = $now . $val;
+      if ( $padAppend )                    $val = $val . $now;
+      if ( $padrepend )                    $val = $now . $val;
       if ( ! $padAppend and ! $padrepend ) $val = $now;
 
     }

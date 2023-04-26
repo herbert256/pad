@@ -9,7 +9,6 @@
         'session'   => $GLOBALS ['padSesID'] ?? '',
         'request'   => $GLOBALS ['padReqID'] ?? '',
         'reference' => $GLOBALS ['padRefID'] ?? '',
-        'app'       => $GLOBALS ['padApp'] ?? '',
         'page'      => $GLOBALS ['padPage'] ?? '',
         'start'     => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0,
         'time'      => padDuration (),
@@ -42,10 +41,9 @@
       return;
 
     padDb ( "insert into track_request
-              values('{1}', '{2}', '{3:32}', '{4:32}', NOW(), {5}, '{6}', '{7:32}', '{8}', '{9:1023}', '{10:1023}', '{11:1023}', '{12:1023}')",
+              values('{1}', '{2}', '{4:32}', NOW(), {5}, '{6}', '{7:32}', '{8}', '{9:1023}', '{10:1023}', '{11:1023}', '{12:1023}')",
       [  1 => $session,
          2 => $request,
-         3 => $GLOBALS ['padApp']  ?? '',
          4 => $GLOBALS ['padPage'] ?? '',
          5 => padDuration(),
          6 => $GLOBALS ['padLen'] ?? 0,

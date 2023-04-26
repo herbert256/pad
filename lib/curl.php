@@ -1,27 +1,27 @@
 <?php
 
-  function padInclude ( $app, $page='index', $query='' ) {
+  function padInclude ( $page='index', $query='' ) {
 
-    return pad ( $app, $page, $query, 1 );
+    return pad ( $page, $query, 1 );
     
   }
 
-  function pad ( $app, $page='index', $query='', $include='' ) {
+  function pad ( $page='index', $query='', $include='' ) {
 
-    $result = padComplete ( $app, $page, $query, $include );
+    $result = padComplete ( $page, $query, $include );
 
     return $result ['data'];
     
   }
 
-  function padComplete ( $app, $page='index', $query='', $include='' ) {
+  function padComplete ( $page='index', $query='', $include='' ) {
 
     global $padHost, $padScript;
 
     if ($include)
       $include = '&padInclude=1';
 
-    $url = "$padHost$padScript?padApp=$app&padPage=$page$query$include";
+    $url = "$padHost$padScript?padPage=$page$query$include";
     
     return padCurl ($url);
     

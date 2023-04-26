@@ -4,7 +4,6 @@
   
   include 'libPad.php';
   include 'vars.php';
-  include 'app.php';
   include 'page.php';
   include 'ids.php';
   include 'config.php';;

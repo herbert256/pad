@@ -6,9 +6,6 @@
   if ( count($_POST) or count($_FILES) )
     return;
 
-  if ( $padApp == 'pad' )
-    return;
-
   $padCache       = TRUE;
   $padCacheUrl    = padMD5($_SERVER['REQUEST_URI']);
   $padCacheMod    = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) : 0;

@@ -1,7 +1,7 @@
 <?php
 
 
-  function padDumpFromApp ($info='n/a') {
+  function padDumpFromApp ($info='') {
 
     if ( ! padLocal () ) 
       padBootError ( "Dump not allowed: $info" );
@@ -11,9 +11,10 @@
   } 
 
 
-  function padDump ($info='n/a') {
+  function padDump ($info='') {
 
-    $GLOBALS ['padDump'] = $info;
+    $GLOBALS ['padInDump'] = TRUE;
+    $GLOBALS ['padErrrorList'] [] = $info;
 
     set_error_handler     ( 'padDumpError'     );
     set_exception_handler ( 'padDumpException' );
@@ -27,12 +28,14 @@
   }   
 
 
-  function padDumpTry ($info='n/a') {
+  function padDumpTry ($info) {
 
     padEmptyBuffers ();
 
-    if ( ! headers_sent () )
+    if ( ! headers_sent () ) 
       header ( 'HTTP/1.0 500 Internal Server Error' );
+
+    flush();
 
     if ( padLocal () ) {
 
@@ -42,7 +45,7 @@
     } else {
 
       padErrorLog ( "DUMP: $info" );
-      padErrorID ();
+      echo "Error: " . padID ();
 
     }
      
@@ -72,26 +75,34 @@
     gc_collect_cycles ();
     unset ( $GLOBALS ['padOutput'] );
     unset ( $GLOBALS ['padBase']   );
+    unset ( $GLOBALS ['padTrue']   );
+    unset ( $GLOBALS ['padFalse']  );
     unset ( $GLOBALS ['padHtml']   );
     unset ( $GLOBALS ['padResult'] );
+    unset ( $GLOBALS ['padData']   );
     gc_collect_cycles ();
 
-    if ( $GLOBALS ['padDump']  ) $error .= ' ||| ' . $GLOBALS ['padDump'];
-    if ( $GLOBALS ['padError'] ) $error .= ' ||| ' . $GLOBALS ['padError'];
+    padDumpCleanErrors ($info);
+
+    if ( isset ( $GLOBALS ['padErrrorList'] ) )
+      foreach ( $GLOBALS ['padErrrorList'] as $list )
+        $error .= " | " . $list;
 
     padBootStop ( $error, $file, $line );
 
   }
 
 
-  function padDumpToFile ($file, $info='n/a') {
+  function padDumpToFile ($file, $info='') {
+
+    $GLOBALS ['padErrrorList'] [] = $info;
 
     padFilePutContents ( $file, padDumpGet ($info) );
         
   }
 
 
-  function padDumpGet ($info='n/a') {
+  function padDumpGet ($info) {
 
     ob_start();
 
@@ -102,14 +113,13 @@
   }
 
 
-  function padDumpGo ($info='n/a') {
-
-    padDumpFields  ( $php, $lvl, $app, $cfg, $pad, $ids );
+  function padDumpGo ($info) {
 
     echo ( "<div align=\"left\"><pre>" );
 
+    padDumpFields   ( $php, $lvl, $app, $cfg, $pad, $ids );
     padDumpInfo     ( $info );
-    padDumpErrors   ();
+    padDumpErrors   ( $info );
     padDumpStack    ();
     padDumpLevel    ();
     padDumpRequest  ();
@@ -131,41 +141,53 @@
 
   function padDumpInfo ( $info ) {
 
-    if ( ! $info or $info = 'n/a' )
-      return;
-
-    if ( isset ( $GLOBALS ['padErrrorList'] )  )
-      foreach ( $GLOBALS ['padErrrorList'] as $error )
-        if ( padMakeSafe($info) == padMakeSafe($error) )
-          return;
-
-    echo ( "<hr><b>$info</b><hr><br>" ); 
+    if ( $info )
+      echo ( "<hr><b>$info</b><hr><br>" ); 
 
   } 
 
 
-  function padDumpErrors () {
+  function padDumpCleanErrors ($info) {
 
     if ( ! isset ( $GLOBALS ['padErrrorList'] ) )
       return;
 
-    if ( ! count ( $GLOBALS ['padErrrorList'] )  )
+    foreach ( $GLOBALS ['padErrrorList'] as $key => $error )
+      if ( $info == $error )
+        unset ( $GLOBALS ['padErrrorList'] [$key] );
+
+    foreach ( $GLOBALS ['padErrrorList'] as $key1 => $list1 )
+      foreach ( $GLOBALS ['padErrrorList'] as $key2 => $list2 )
+        if ( $key1 <> $key2 and $list1 == $list2 )
+          unset ( $GLOBALS ['padErrrorList'] [$key1] );
+
+  }
+
+
+  function padDumpErrors ($info) {
+
+    if ( ! isset ( $GLOBALS ['padErrrorList'] ) )
       return;
-    
-    if ( count ( $GLOBALS ['padErrrorList'] ) == 1 )
-      foreach ( $GLOBALS ['padErrrorList'] as $error ) {
+
+    padDumpCleanErrors ($info);
+
+    if ( count ( $GLOBALS ['padErrrorList'] ) == 1 ) 
+
+      foreach ( $GLOBALS ['padErrrorList'] as $error ) 
         echo ( "<hr><b>$error</b><hr><br>" ); 
-        return;
-      }
 
-    echo ( "<b>Errors</b>\n");
+    elseif ( count ( $GLOBALS ['padErrrorList'] ) > 1 ) {
 
-    $errors = array_reverse ( $GLOBALS ['padErrrorList'] );
+      echo ( "<b>Errors</b>\n");
 
-    foreach ( $errors as $error )
-      echo ( "    $error\n" );
+      $errors = array_reverse ( $GLOBALS ['padErrrorList'] );
 
-    echo ( "\n" );
+      foreach ( $errors as $error )
+        echo ( "    $error\n" );
+
+      echo ( "\n" );
+
+    }
 
   }  
 
@@ -214,9 +236,11 @@
   function padDumpHeaders () {
 
     $out = headers_list ();
-                                              padDumpArray ('Headers-in',  getallheaders() );
-    if ( count ( $out )                     ) padDumpArray ('Headers-out', $out );
-    if ( count ( $GLOBALS ['padHeaders']  ) ) padDumpArray ('Headers-PAD', $GLOBALS ['padHeaders']  );
+    $pad = $GLOBALS ['padHeaders'] ?? [];
+
+                          padDumpArray ('Headers-in',  getallheaders() );
+    if ( count ( $out ) ) padDumpArray ('Headers-out', $out            );
+    if ( count ( $pad ) ) padDumpArray ('Headers-PAD', $pad            );
 
   }
 
@@ -252,13 +276,6 @@
 
     echo htmlentities ( print_r ( $GLOBALS, TRUE ) );
 
-  }
-
-
-  function padDumpField ($field, $value) {
-
-    echo ( "\n  [$field] => " . htmlentities(padDumpShort($value??''))); 
-  
   }
 
 
@@ -373,7 +390,7 @@
 
     $chk2 = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padName','padData','padCurrent','padKey','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padSaveVars','padDeleteVars','padSetSave','padSetDelete','padTagCnt', 'padAfter', 'padBefore', 'padBeforeData', 'padEndOptions', 'padPrmType', 'padSet', 'padGiven'];
 
-    $chk3 = [ 'padPage','padApp','padSesID','padReqID','PHPSESSID','padRefID' ];
+    $chk3 = [ 'padPage','padSesID','padReqID','PHPSESSID','padRefID' ];
 
     $settings = padFileGetContents(pad . 'config/config.php');
 

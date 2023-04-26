@@ -2,9 +2,9 @@
 
   $padPage = $padPage ?? $_REQUEST['page'] ?? $_REQUEST['padPage'] ?? 'index';
 
-  if ( ! padCheckPage ($padApp, $padPage) )
+  if ( ! padCheckPage ($padPage) )
     padBootError ("Page '$padPage' not found");
 
-  $padPage = padGetPage ($padApp, $padPage);
+  $padPage = padGetPage ($padPage);
   
 ?>

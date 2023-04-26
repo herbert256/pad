@@ -86,8 +86,8 @@
 
   function padErrorGo ($error, $file, $line) {
 
-    if ( $GLOBALS ['padDump'] ?? '' <> '' )
-      padDumpProblem ( 'DUMP-SHUTDOWN: ' . $error['message'], $error['file'], $error['line'] );
+    if ( isset ( $GLOBALS ['padInDump'] ) )
+      padDumpProblem ( 'DUMP-ERROR-GO: ' . $error, $file, $line );
 
     try {
  
@@ -115,14 +115,16 @@
     $error = "$file:$line " . padMakeSafe ( $error );
 
     $GLOBALS ['padErrrorList'] [] = $error;
-    $GLOBALS ['padError']         = $error;
 
     if ( $GLOBALS ['padErrorLog'] or in_array ( $GLOBALS ['padErrorAction'], ['report', 'pad'] ) )
       padErrorLog ( $error );
 
+    if ( $GLOBALS ['padErrorReport'] or in_array ( $GLOBALS ['padErrorAction'], ['report', 'pad'] ) )
+      padErrorReport ( $error );
+
     if ( ! headers_sent () and in_array ( $GLOBALS ['padErrorAction'], ['exit', 'stop', 'pad'] ) )
       padHeader ('HTTP/1.0 500 Internal Server Error' );
-
+    
     if ( $GLOBALS ['padErrorAction'] == 'exit')
 
       padExit ();
@@ -131,12 +133,11 @@
 
       padStop (500);
 
-    elseif ( $GLOBALS ['padErrorAction'] == 'pad' ) {
+    elseif ( $GLOBALS ['padErrorAction'] == 'pad' )
 
-      $GLOBALS ['padError'] = '';
       padDump ( $error );
 
-    } elseif ( $GLOBALS ['padErrorAction'] == 'report' )
+    elseif ( $GLOBALS ['padErrorAction'] == 'report' )
 
       $GLOBALS ['padExit'] = 1;
     
@@ -170,11 +171,12 @@
   }
 
 
-  function padErrorID () {
+  function padErrorReport ( $info ) {
 
-    $id = padID ();
+    global $padPage, $padReqID;
 
-    echo "Error: $id";
+    padDumpToFile ("errors/$padPage/$padReqID.html", $info);
+
 
   }
 

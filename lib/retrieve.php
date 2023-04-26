@@ -23,35 +23,29 @@
   }
 
 
-  function padPageGet ( $page, $parms=[], $include=1, $padApp='' ) {
-
-    if ( ! $padApp )
-      $padApp = GLOBALS['padApp'];
+  function padPageGet ( $page, $parms=[], $include=1) {
 
     $query = '';
     foreach ( $parms as $padK => $padV )
       $query .= "&$padK=" . urlencode($padV);
 
-    return pad ( $padApp, $page, $query, $include );
+    return pad ( $page, $query, $include );
 
   }
 
 
-  function padPageAjax ( $page, $parms=[], $include=1, $app='' ) {
-
-    if ( ! $app )
-      $app = GLOBALS['padApp'];
+  function padPageAjax ( $page, $parms=[], $include=1) {
 
     if ( ! isset($GLOBALS['padAjax']) )
       $GLOBALS['padAjax'] = 0;
 
-    global $padAjax, $padGoApp; 
+    global $padAjax; 
       
     $padAjax++;
 
-    $ajax = str_replace('/', '', "$app$page$padAjax".$GLOBALS['padPage']);
+    $ajax = str_replace('/', '', "$page$padAjax".$GLOBALS['padPage']);
 
-    $url = $padGoApp . $app . '&padPage=' . $page; 
+    $url = '?padPage=' . $page; 
 
     foreach ( $parms as $padK => $padV )
       $url .= "&$padK=" . urlencode($padV);

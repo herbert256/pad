@@ -1,6 +1,6 @@
 <?php
 
-  padDumpToFile ( "track/$padApp/$padPage/" . $GLOBALS ['padReqID'] . '_' . uniqid() . ".html", padContent () );
+  padDumpToFile ( "track/$padPage/" . $GLOBALS ['padReqID'] . '_' . uniqid() . ".html", padContent () );
 
   return NULL;
   

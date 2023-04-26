@@ -23,7 +23,6 @@ ALTER TABLE `track_session` ADD PRIMARY KEY (`session`);
 CREATE TABLE `track_request` (
   `session` char(8) NOT NULL,
   `request` char(8) NOT NULL,  
-  `app` varchar(32) NOT NULL,
   `page` varchar(32) NOT NULL,
   `time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `duration` int(11) NOT NULL,

@@ -2,7 +2,7 @@
   
   //  Error handling
 
-  $padErrorAction = 'pad';  // 'pad'    = pad's own full blown error handler.
+  $padErrorAction = 'pad';  // 'pad'    = PAD's own full blown error handler.
                             // 'boot'   = Use the lightweight pad boot error handler
                             // 'php'    = Use the PHP defaults (php.ini).
                             // 'stop'   = Stop processing but do the pad stop handling.
@@ -65,9 +65,9 @@
   // SQL parms - application
 
   $padSqlHost               = '127.0.0.1';
-  $padSqlDatabase           = $padApp;
-  $padSqlUser               = $padApp;
-  $padSqlPassword           = $padApp;
+  $padSqlDatabase           = 'app';
+  $padSqlUser               = 'app';
+  $padSqlPassword           = 'app';
 
   // If pad creates a directory or file.
 
@@ -84,7 +84,7 @@
   
   $padSessionVars = [];
 
-  // How the app parts from ../$padApp/pages/ are processed.
+  // How the app parts from /pages/ are processed.
 
   $padBuildMode     = 'before';     // 'isolate'
                                     // 'before'
