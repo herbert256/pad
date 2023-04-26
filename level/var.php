@@ -1,9 +1,5 @@
 <?php
 
-  padTimingStart ('var');
-
-  $padFldCnt++;
-
   $padPipe  = strpos ( $padBetween, '|' );
   $padSpace = strpos ( $padBetween, ' ' );
 
@@ -28,9 +24,6 @@
     $padFld = padFieldValue ($padFld);
 
   $padFirst   = substr ( $padBetween , 0, 1 );
-
-  if ( $padParse ) 
-    return include pad . 'parse/var.php';
  
   if     ( $padFirst == '!' ) if ( ! padFieldCheck ( $padFld ) ) padError ( "Field '$padFld' not found" );
   elseif ( $padFirst == '$' ) if ( ! padFieldCheck ( $padFld ) ) padError ( "Field '$padFld' not found" );
@@ -49,14 +42,6 @@
 
   $padValBase = $padVal;
   $padVal = padVarOpts ($padVal, $padOpts);
-
-  if ( $padTrace ) 
-    include 'trace/var.php';
-
-  if ( $padLog ) 
-    include pad . 'log/var.php';
- 
-  padTimingEnd ('var');
 
   return padHtml ( $padVal );
 

@@ -134,11 +134,9 @@
     foreach ( $options as $key => $val )
       curl_setopt ( $curl, constant('CURLOPT_'.$key), $val );
   
-    padTimingStart ('curl');
     $result          = curl_exec    ($curl);
     $output ['info'] = curl_getinfo ($curl);
-    padTimingEnd   ('curl');
-
+    
     if ($result  === FALSE)
       return padCurlError ($output, 'curl_exec = FALSE');
     
@@ -205,9 +203,6 @@
 
     if ( ! $output ['type'] )
       $output ['type'] = padContentType ( $output ['data'] );
- 
-    if ($GLOBALS ['padTrace'])
-      padCurlTrace ( $output );
 
     $GLOBALS ['padCurlLast'] = $output;
 
@@ -222,16 +217,6 @@
     return $url . $str . $key . '=' . urlencode($val);
 
   }
-
-  function padCurlTrace ( $trace ) {
-
-    global $pad;
-    
-    $file = $GLOBALS ['padLevelDir'] [$GLOBALS ['pad']]. "/curl_" . padRandomString(). ".json";
-
-    padFilePutContents ($file, $trace );
-
-  }
   
   function padCurlOpt (&$options, $name, $value) {
     
@@ -244,9 +229,6 @@
 
     $output ['ERROR']  = $error;
     $output ['result'] = '999';
-
-     if ($GLOBALS ['padTrace'])
-      padCurlTrace ( $output );
 
     $GLOBALS ['padCurl_last'] = $output;
 

@@ -17,17 +17,6 @@
   $padErrorLog    = TRUE;   //  Report errors to Apache error log
   $padErrorReport = TRUE;   //  Report errors to the DATA directory
 
-  // 3 attempts to answer the question "WTF is going on"
-
-  $padTrace   = FALSE;  
-  $padParse   = FALSE;
-  $padLog     = FALSE;
-
-  $padLogShort  = FALSE;  
-  $padLogExists = FALSE;  
-  $padLogParse  = FALSE;  
-  $padLogData   = FALSE;  
-
   // Keep track of stuff
 
   $padTrackFileRequest = FALSE;
@@ -144,10 +133,9 @@
   $padEtag304               = FALSE;  // Send a 304 header, based on the client etag http header
   $padNoNo                  = FALSE;  // No pad stuff, just plane PHP   
   $padFastLink              = 32;     // Lenght of the FastLink code in the URL
-  $padTiming                = TRUE;   // Keep Timings of the pad parts
 
   //No parementer parsing for below tags:
-  $padNoParmsParse          = [ 'if', 'case', 'while', 'until', 'increment', 'decrement' ];
+  $padPrmNoParse          = [ 'if', 'case', 'while', 'until', 'increment', 'decrement' ];
 
   $padTables = [];
   $padRelations = [];

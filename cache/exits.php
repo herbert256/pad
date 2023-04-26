@@ -1,7 +1,5 @@
 <?php
   
-  padTimingStart ('cache');
-  
   if ( $padEtag == $padCacheEtag )
   
     padCacheUpdate ($padCacheUrl, $padEtag);
@@ -18,11 +16,4 @@
     
   }
 
-  if ( $padTrace ) {
-    $padCacheStop = $padStop + .4;
-    include 'trace.php';
-  }
-  
-  padTimingEnd ('cache');
-    
 ?>

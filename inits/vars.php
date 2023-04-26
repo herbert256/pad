@@ -1,15 +1,7 @@
 <?php
 
-  $pad = -1;
-
-  $padCache = FALSE;
-
-  $padParseCount = 0;
-  
-  $padBase = $padHtml = $padResult = $padTimingsCnt = $padTimings = [];
-  $padSqlCnt = $padErrCnt = $padTrcCnt =$padEvalCnt = $padFldCnt = $padCnt = $padOptCnt = $padIgnCnt = 0;
-  $padFieldDoubleCheck = $padRestart = '';     
-
+  $pad           = -1;
+  $padRestart    = '';     
   $padOutput     = '';
   $padStop       = '000';
   $padCacheStop  = 0;
@@ -19,9 +11,8 @@
   $padTime       = $_SERVER['REQUEST_TIME'];  
   $padError      = '';
   $padDump       = '';
-  $padInOccur    = FALSE;
   $padInclude    = FALSE;
-
+  $padCache      = FALSE;
   $padErrrorList = [];
 
 ?>

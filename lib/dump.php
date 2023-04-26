@@ -104,19 +104,18 @@
 
   function padDumpGo ($info='n/a') {
 
-    padTraceFields  ( $php, $lvl, $padApp, $cfg, $pad, $ids );
+    padDumpFields  ( $php, $lvl, $app, $cfg, $pad, $ids );
 
     echo ( "<div align=\"left\"><pre>" );
 
     padDumpInfo     ( $info );
     padDumpErrors   ();
-    padDumpSource   ();
     padDumpStack    ();
     padDumpLevel    ();
     padDumpRequest  ();
-    padDumpArray    ( "padApp variables", $padApp );
+    padDumpArray    ( "App variables", $app );
     padDumpXXX      ( $pad, 'padSeq' );
-    padDumpArray    ( "pad variables",   $pad );
+    padDumpArray    ( "PAD variables",   $pad );
     padDumpArray    ( "Level variables", $lvl );
     padDumpSQL      ();
     padDumpHeaders  ();
@@ -129,13 +128,6 @@
 
   }
 
-  function padDumpSource (  ) {
-
-    global $pad, $padPage;
-
-    #echo padInclude ( 'pad', 'example/example', "&exampleApp=$padApp&examplePage=$padPage&noResult=1"); 
-
-  }
 
   function padDumpInfo ( $info ) {
 
@@ -245,7 +237,7 @@
       return;
 
     for ( $lvl=$pad; $lvl>=0; $lvl-- )
-      padDumpArray (" Level: $lvl", padTraceGetLevel ($lvl) );
+      padDumpArray (" Level: $lvl", padDumpGetLevel ($lvl) );
 
     if ( isset ( $GLOBALS ['padData'] ) and is_array ( $GLOBALS ['padData'] ) )
       for ( $lvl=$pad; $lvl>0; $lvl-- )
@@ -336,6 +328,95 @@
     $pad = substr($pad, 0,-1);
 
     echo ( "\n  [$txt] $pad");
+
+  }
+
+
+  function padDumpGetLevel ($pad)  {
+
+    if ( $pad === NULL or $pad < 0 or ! isset($pad) )
+      return [];
+    
+    return [
+      'tag'    => $GLOBALS ['padTag'] [$pad] ?? '',
+      'type'   => $GLOBALS ['padType'] [$pad] ?? '',
+      'pair'   => $GLOBALS ['padPair'] [$pad] ?? '',
+      'p-type' => $GLOBALS ['padPrmType'] [$pad] ?? '',
+      'opt'    => $GLOBALS ['padOpt'] [$pad] ?? '',
+      'prm'    => $GLOBALS ['padPrm'] [$pad] ?? '',
+      'set'    => $GLOBALS ['padSet'] [$pad] ?? '',
+      'true' => padDumpShort ($GLOBALS ['padTrue'][$pad]??''),
+      'false' => padDumpShort ($GLOBALS ['padFalse'][$pad]??''),
+      'base' => padDumpShort ($GLOBALS ['padBase'][$pad]??''),
+      'html' => padDumpShort ($GLOBALS ['padHtml'][$pad]??''),
+      'result' => padDumpShort ($GLOBALS ['padResult'][$pad]??''),
+      'name' => $GLOBALS ['padName'] [$pad] ?? '',
+      'default' => $GLOBALS ['padDefault'] [$pad] ?? '',
+      'walk' => $GLOBALS ['padWalk'] [$pad] ?? '',
+      'hit' => $GLOBALS ['padHit'] [$pad] ?? '',
+      'null' => $GLOBALS ['padNull'] [$pad] ?? '',
+      'else' => $GLOBALS ['padElse'] [$pad] ?? '',
+      'array' => $GLOBALS ['padArray'] [$pad] ?? '',
+      'text' => $GLOBALS ['padText'] [$pad]?? ''
+    ];
+
+  } 
+
+
+  function padDumpFields ( &$php, &$lvl, &$padApp, &$cfg, &$pad, &$ids ) {
+
+    $php = $lvl = $padApp = $cfg = $pad = $ids = [];
+
+    $not  = [ 'GLOBALS', 'padFphp', 'padFlvl', 'padFapp', 'padFcfg', 'padFpad', 'padFids'  ];
+
+    $chk1 = [ '_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
+
+    $chk2 = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padName','padData','padCurrent','padKey','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padSaveVars','padDeleteVars','padSetSave','padSetDelete','padTagCnt', 'padAfter', 'padBefore', 'padBeforeData', 'padEndOptions', 'padPrmType', 'padSet', 'padGiven'];
+
+    $chk3 = [ 'padPage','padApp','padSesID','padReqID','PHPSESSID','padRefID' ];
+
+    $settings = padFileGetContents(pad . 'config/config.php');
+
+    foreach ($GLOBALS as $key => $value) {
+
+      if ( ! in_array ($key, $not) ) {
+
+        if (strpos($settings, '$'.$key.' ') or strpos($settings, '$'.$key.'=') or strpos($settings, '$'.$key."\t"))
+
+          $cfg  [$key] = $value;
+
+        elseif ( in_array ( $key, $chk3 ) )
+          
+          $ids [$key] = $value;
+
+        elseif ( in_array ( $key, $chk1 ) )
+          
+          $php [$key] = $value;
+
+        elseif ( in_array ( $key, $chk2 ) ) {
+
+          if ( isset($value[0]) and ! $value[0] )
+            unset ($value[0]);
+          
+          $lvl [$key] = $value;
+   
+        } elseif ( substr($key, 0, 3)  == 'pad' )
+
+          $pad [$key] = $value;
+
+        else
+
+          $padApp [$key] = $value;
+
+      }
+
+    }
+
+    ksort($padApp);
+    ksort($cfg);
+    ksort($php);
+    ksort($lvl);
+    ksort($pad);
 
   }
 

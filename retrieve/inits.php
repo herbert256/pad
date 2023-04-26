@@ -13,9 +13,4 @@
 
   include pad . 'level/setup.php'; 
 
-  if ( $padTrace ) {
-    include pad . 'level/trace/start.php'; 
-    include pad . 'occurrence/trace/start.php'; 
-  }
-
 ?>

@@ -27,20 +27,8 @@
     include 'split/before3.php';
 
   include pad . "options/go/end.php";
- 
-  if ( $padTrace )
-    include 'trace/end.php';
-
-  if ( $padParse )
-    include pad . 'parse/levelEnd.php';
-
-  if ( $padLog )
-    include pad . 'log/levelEnd.php';
 
   $pad--;
-
-  if ( $padLog and $pad >= 0 and count ( $padData [$pad] ) )
-    include pad . 'log/occurStart.php';
 
   if ( $pad >= 0 and $padBefore [$pad] == 1 ) 
     return include 'split/before2.php';

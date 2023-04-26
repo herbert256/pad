@@ -1,19 +1,11 @@
 <?php
 
   $padOccur [$pad]++;
-  $padHtml  [$pad] = $padBase [$pad];
-  $padKey   [$pad] = key($padData [$pad]);
 
+  $padHtml    [$pad] = $padBase [$pad];
+  $padKey     [$pad] = key($padData [$pad]);
   $padCurrent [$pad] = $padData [$pad] [$padKey [$pad]];
-
-  $padInOccur = TRUE;
   
-  if ( $padLog )
-    include pad . 'log/occurStart.php';
-
-  if ( $padTrace )
-    include 'trace/start.php';
-
   if ( $padWalk [$pad] <> 'start' )
     $padWalkData [$pad] [] = $padCurrent [$pad];
 

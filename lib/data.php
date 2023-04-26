@@ -179,21 +179,10 @@
   
   function padDataError ($data, $error) {
 
-    global $padApp, $padPage, $padReqID, $padTraceDir, $padTrace;
-
-    if ( $padTrace ) {
-
-      $id  = uniqid();
-      $padut = [ 'error'=> $error, 'data' => $data ]; 
-
-      padFilePutContents ( "errors/data/$padApp/$padPage/$padReqID/$id.json", $padut ); 
-      padFilePutContents ( "$padTraceDir/errors/data/$id.json",  $padut ); 
-
-    }
-
-    return [];
+    return padError($error);
     
   }
+
 
   function padDataChk ($data,$name) {
 

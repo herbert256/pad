@@ -70,8 +70,6 @@
     else
       padCacheHeaders ();
 
-    padTimingClose ();
-
   }
 
 
@@ -108,8 +106,6 @@
 
     $GLOBALS ['padSkipShutdown']     = TRUE;
     $GLOBALS ['padSkipBootShutdown'] = TRUE;
-
-    include pad . 'exits/trace.php';
     
     exit;
 

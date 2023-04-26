@@ -8,9 +8,6 @@
     else
       $return = file_exists ( $file );
 
-    if ( isset($GLOBALS ['padLog']) and $GLOBALS ['padLog'] )
-      include pad . 'log/exists.php';
-
     return $return;
 
   }
@@ -24,11 +21,7 @@
     if ( ! padExists($file) )
       return '';
 
-    padTimingStart ('read');
-    $return = file_get_contents ($file);
-    padTimingEnd ('read');
-
-    return $return;    
+    return file_get_contents ($file);
 
   }
 
@@ -48,12 +41,9 @@
     if ( is_array($data) or is_object($data) )
       $data = padJson ($data);
       
-    if ($data) {
-      padTimingStart ('write');
+    if ($data)
       if ($padAppend) file_put_contents ($file, "$data\n", LOCK_EX | FILE_padAppEND);
       else         file_put_contents ($file, $data,     LOCK_EX);
-      padTimingEnd ('write');
-    }
     
   }
 
@@ -79,30 +69,17 @@
 
     $dir = substr ( $file, 0, strrpos($file, '/') );
     
-    if ( ! padExists($dir) ) {
-
-      padTimingStart ('write');
-
+    if ( ! padExists($dir) )
       mkdir ($dir, $GLOBALS ['padDirMode'], true);
-
-      padTimingEnd ('write');
-
-    }
 
   }
 
 
   function padFileChkFile ( $file ) {
 
-    if ( ! padExists($file) ) {
-
-      padTimingStart ('write');
-      
+    if ( ! padExists($file) ) {      
       touch($file);
       chmod($file, $GLOBALS ['padFileMode']);
-      
-      padTimingEnd ('write');
-  
     }
 
   }

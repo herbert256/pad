@@ -104,12 +104,6 @@
 
   function padErrorTry ($error, $file, $line) {
 
-    if ( $GLOBALS ['padParse'] ) 
-      include pad . 'parse/error.php';
-
-    if ( $GLOBALS ['padLog'] )
-      include pad . 'log/error.php';
-
     if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
       return FALSE;
 
@@ -125,12 +119,6 @@
 
     if ( $GLOBALS ['padErrorLog'] or in_array ( $GLOBALS ['padErrorAction'], ['report', 'pad'] ) )
       padErrorLog ( $error );
-
-    if ( $GLOBALS ['padTrace'] )
-      padErrorTrace ( $error ); 
-
-    if ( $GLOBALS ['padErrorReport'] or $GLOBALS ['padErrorAction'] == 'report' )
-      padErrorReport ( $error ); 
 
     if ( ! headers_sent () and in_array ( $GLOBALS ['padErrorAction'], ['exit', 'stop', 'pad'] ) )
       padHeader ('HTTP/1.0 500 Internal Server Error' );
@@ -187,43 +175,6 @@
     $id = padID ();
 
     echo "Error: $id";
-
-  }
-
-
-  function padErrorTrace ( $error ) {
-
-    global $padTraceDir, $padLevelDir, $padOccurDir, $pad, $padTrcCnt, $padInOccur;
-
-    $padTrcCnt++;
-
-    $id = padID ();
-
-    if ( $pad > 1 and $padInOccur and isset ($padOccurDir [$pad]) )
-      $dir = $padOccurDir [$pad];
-    elseif ( $pad > 1 and isset ($padLevelDir [$pad]) )
-      $dir = $padLevelDir [$pad];
-    else 
-      $dir = $padTraceDir;
-
-    $dir .= "/error-$padTrcCnt";
-
-    padTrace ( $dir, $error );
-
-  }
-
-
-  function padErrorReport ( $error ) {
-
-    global $padTraceDir, $padLevelDir, $pad, $padErrCnt;
-
-    $padErrCnt++;
-
-    $id = padID ();
-
-    $dir = "errors/$id-"."$padErrCnt";
-
-    padTrace ( $dir, $error );
 
   }
 

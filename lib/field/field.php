@@ -41,9 +41,6 @@
 
     $result = padFieldGo ( $type, $prefix, $field, $parm, $idx );
 
-    if ( $GLOBALS['padTrace'] )
-      include pad . 'trace/field.php';
-
     return $result;
 
   }

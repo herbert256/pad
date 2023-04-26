@@ -9,8 +9,6 @@
   if ( $padApp == 'pad' )
     return;
 
-  padTimingStart ('cache');
-
   $padCache       = TRUE;
   $padCacheUrl    = padMD5($_SERVER['REQUEST_URI']);
   $padCacheMod    = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) : 0;
@@ -61,7 +59,5 @@
     }
 
   }
-
-  padTimingEnd ('cache');
 
 ?>

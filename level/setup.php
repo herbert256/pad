@@ -1,10 +1,6 @@
 <?php
   
   $pad++;  
-  $padCnt++;
-
-  if ( $padLog )
-    include pad . 'log/setup.php';
 
   $padOpt        [$pad] = [];
   $padSet        [$pad] = [];
@@ -47,9 +43,6 @@
   $padArray      [$pad] = FALSE;
   $padText       [$pad] = FALSE;
 
-  $padLevelDir   [$pad] = $padOccurDir [$pad-1] ?? $padTraceDir;
-  $padOccurDir   [$pad] = $padLevelDir [$pad];
-
   $padSaveVars   [$pad] = [];
   $padDeleteVars [$pad] = [];
 
@@ -62,12 +55,8 @@
   $padBefore     [$pad] = 0;
   $padBeforeData [$pad] = '';
 
-  $padParseLevel [$pad] = $padParseLevel [$pad] ?? '';
-  $padParseFalse [$pad] = $padParseFalse [$pad] ?? '';
-  $padParseInfo  [$pad] = $padParseInfo [$pad] ?? '';
-
-  $padTable    [$pad] = [];
-  $padTableTag [$pad] = '';
+  $padTable      [$pad] = [];
+  $padTableTag   [$pad] = '';
 
   $padForceName = '';
   

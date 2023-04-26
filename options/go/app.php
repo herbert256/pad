@@ -1,6 +1,6 @@
 <?php
 
-  $padOptions = 'padApp';
+  $padOptions = 'app';
 
   include "options.php";
   

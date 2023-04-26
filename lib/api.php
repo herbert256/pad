@@ -3,12 +3,12 @@
 
   function padFastLink ($padApp, $padPage, $vars ) {
     
-    global $padFastLink, $padSesID, $padReqID, $padHost, $pad;
+    global $padFastLink, $padSesID, $padReqID, $padHost;
   
-    $vars ['padApp']       = $padApp;
-    $vars ['padPage']      = $padPage;
+    $vars ['padApp']   = $padApp;
+    $vars ['padPage']  = $padPage;
     $vars ['padSesID'] = $padSesID;
-    $vars ['padRefID']  = $padReqID;
+    $vars ['padRefID'] = $padReqID;
     
     $fast = padRandomString ($padFastLink);
   
@@ -17,7 +17,7 @@
       [$fast, serialize($vars)]
     );
                         
-    return $padHost . $pad . $fast;
+    return "$padHost$padScript?$fast";
 
   }
 

@@ -7,7 +7,7 @@
     if ( ! isset ( $padSqlConnect ) )
       $padSqlConnect = padDbConnect ( $padSqlHost , $padSqlUser , $padSqlPassword , $padSqlDatabase );
     
-    return padDbPart2 ($padSqlConnect, $sql, $vars, 'padApp');
+    return padDbPart2 ($padSqlConnect, $sql, $vars);
     
   }
   
@@ -19,14 +19,14 @@
     if ( ! isset ( $padPadSqlConnect ) )
       $padPadSqlConnect = padDbConnect ( $padPadSqlHost , $padPadSqlUser , $padPadSqlPassword , $padPadSqlDatabase );
     
-    return padDbPart2 ($padPadSqlConnect, $sql, $vars, 'pad');
+    return padDbPart2 ($padPadSqlConnect, $sql, $vars);
     
   }
 
   
-  function padDbPart2 ( $padSqlConnect, $sql, $vars, $db_type ) {
+  function padDbPart2 ( $padSqlConnect, $sql, $vars ) {
 
-    global $pad, $padDbRowsFound, $padTrace, $padPrm;
+    global $pad, $padDbRowsFound, $padPrm;
     
     foreach ( $vars as $i => $replace ) {
 
@@ -67,34 +67,23 @@
     elseif ( $command == 'record' )  $sql = 'select '        . $split[1] . ' limit 0,1';
     elseif ( $command == 'field'  )  $sql = 'select '        . $split[1] . ' limit 0,1';
     elseif ( $command == 'array'  )  $sql = 'select '        . $split[1];
-
-    if ( $padTrace )
-      $padSqlStart = hrime(true);
     
-    padTimingStart ('sql');
     $query = mysqli_query ( $padSqlConnect , $sql );
-    padTimingEnd ('sql');
 
     $GLOBALS ['padLastSql'] = padDbFormatSql($sql);
     
     if ( ! $query )
       padError ( 'MySQL-' . mysqli_errno ( $padSqlConnect ) . ': ' . mysqli_error ( $padSqlConnect ) . ' - '. $sql );
 
-    padTimingStart ('sql');
     $padDbRowsFound = $rows = mysqli_affected_rows($padSqlConnect);
-    padTimingEnd ('sql');
 
     if ( $rows > 0 and ($command == 'field' or $command == 'record') ) {
-      padTimingStart ('sql');
       $fields = mysqli_fetch_assoc ( $query );
       $GLOBALS ['padLastFields'] = $fields;
-      padTimingEnd ('sql');
     }
 
     if     ( $command == 'insert'  ) {
-      padTimingStart ('sql');
       $return = mysqli_insert_id ( $padSqlConnect );
-      padTimingEnd ('sql');
       if ( !$return )
         $return = $rows;
     }
@@ -128,25 +117,18 @@
     else
       $return = '';
 
-    if ( $padTrace )
-      include pad . 'trace/db.php';
-
     return $return;
 
   }
 
   function padDbConnect ( $host, $user, $padassword, $database ) {
 
-    padTimingStart ('sql');
     $connect = mysqli_connect ( "p:$host" , $user , $padassword , $database );
-    padTimingEnd ('sql');
     
     if ( ! $connect )
       return padError ( mysqli_connect_errno ( ) . ' - ' . mysqli_connect_error ( ) );
       
-    padTimingStart ('sql');
     mysqli_query($connect, "SET SESSION sql_mode = 'TRADITIONAL'");
-    padTimingEnd ('sql');
      
     return $connect;
     

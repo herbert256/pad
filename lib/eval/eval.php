@@ -9,11 +9,6 @@
     if ( strlen(trim($eval)) == 0 )
       return ''; 
 
-    if ( $GLOBALS['padParse'] )
-      return '1';
-    
-    padTimingStart ('eval');
-
     $result = [];
 
     padEvalParse ( $result, $eval, $value );    
@@ -27,11 +22,6 @@
     elseif ( isset($result[$key][4])   ) return padError("Result is an array: $eval");
     elseif ( $result[$key][1] <> 'VAL' ) return padError("Result is not a value: $eval");
 
-   if ($GLOBALS['padLog'])
-      include pad . 'log/eval.php';
-      
-    padTimingEnd ('eval');
- 
     return $result [$key] [0];
 
   }  

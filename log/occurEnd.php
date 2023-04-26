@@ -1,5 +1,0 @@
-<?php
-
-  $padLogNow = &$padLogPnt [$pad];
-
-?>

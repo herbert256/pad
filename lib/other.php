@@ -1,6 +1,20 @@
 <?php
 
 
+  function padContent () {
+ 
+    global $pad, $padTrue, $padOpt;
+
+    if ( $padTrue [$pad] )
+      return $padTrue [$pad];
+
+    if ( $padOpt [$pad] [1] )
+      return $padOpt [$pad] [1];
+
+    return '';
+
+  }
+
   function padArrayClean ( $haystack ) {
  
     foreach ( $haystack as $key => $value )
@@ -514,9 +528,9 @@
   
   function padDuration () {
 
-    global $padTimingsBoot;
+    $duration = (int) ( ( microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'] ) * 1000000 );
 
-    return hrtime(true) - $padTimingsBoot;
+    return $duration;
 
   }
 
@@ -558,9 +572,9 @@
   function padFunctionType ( $check ) {
 
     if     ( padExists ( padApp . "functions/$check.php" ) ) return 'padApp';
-    elseif ( padExists ( pad . "functions/$check.php" ) ) return 'pad';
-    elseif ( function_exists ( $check                 ) ) return 'php';
-    else                                                  return padError ('Function not found: ' . $check);
+    elseif ( padExists ( pad . "functions/$check.php"    ) ) return 'pad';
+    elseif ( function_exists ( $check                    ) ) return 'php';
+    else                                                     return padError ('Function not found: ' . $check);
 
   }
 
@@ -701,17 +715,9 @@
 
   function padIgnore ($info) {
 
-    global $pad, $padBetween, $padIgnCnt, $padTrace, $padLog, $padLevelDir;
-    
-    $padIgnCnt++;
-          
+    global $padBetween;
+              
     padHtml ( '&open;' . $padBetween . '&close;' );
-
-    if ( $padTrace ) 
-      include pad . 'trace/ignored.php';
-
-    if ( $padLog ) 
-      include pad . 'log/ignored.php';
 
     return FALSE;
     
@@ -822,11 +828,6 @@
 
   function padVarOpts ($val, $opts) {
   
-    global $padOptsTrace, $padTrace, $padFldCnt;
-
-    if ($padTrace)
-      $padOptsTrace = [];
-
     foreach($opts as $opt) {
         
       $save = $val;
@@ -842,9 +843,6 @@
       if ( $padAppend )                  $val = $val . $now;
       if ( $padrepend )                 $val = $now . $val;
       if ( ! $padAppend and ! $padrepend ) $val = $now;
-
-      if ($padTrace and $val <> $save)
-        $padOptsTrace [$opt] = $val;
 
     }
 

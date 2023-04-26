@@ -2,24 +2,11 @@
 
   $padTagCnt [$pad]++;
 
-  if ( $padTrace )
-    include 'trace/tag/before.php';
-
   $padTagContent = ''; ob_start();
 
-  padTimingStart ('tag');
-
-  if ($padParse)
-    $padTagResult = TRUE;
-  else
-    $padTagResult = include pad . "types/" . $padType [$pad] . ".php";
-  
-  padTimingEnd ('tag');
+  $padTagResult = include pad . "types/" . $padType [$pad] . ".php";
 
   $padTagContent .= ob_get_clean();
-
-  if ( $padTrace )
-    include 'trace/tag/after.php';
 
   if ( is_object   ( $padTagResult ) ) $padTagResult = padToArray( $padTagResult );
   if ( is_resource ( $padTagResult ) ) $padTagResult = padToArray( $padTagResult );

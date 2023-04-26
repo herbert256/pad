@@ -1,7 +1,5 @@
 <?php
 
-  padTimingStart ('exit');
-
   $padOutput = $padResult [0];
 
   $padOutput = padUnescape ( $padOutput );
@@ -27,11 +25,6 @@
 
   if ( $padCache and $padCacheServerAge )
     include pad . 'cache/exits.php';
-
-  if ($padLog) 
-    include pad . 'log/stop.php';
-
-  padTimingEnd ('exit');
 
   padStop ($padStop);
 

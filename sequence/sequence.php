@@ -26,7 +26,6 @@
 
   include 'build/push.php';
   include 'build/return.php';
-  include 'build/trace.php';
 
   return $padSeqReturn;
 

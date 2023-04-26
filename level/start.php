@@ -2,17 +2,10 @@
 
   include 'setup.php';    
 
-  if ( ! in_array ( $padTag [$pad], $padNoParmsParse  )  )
+  if ( ! in_array ( $padTag [$pad], $padPrmNoParse  )  )
     include 'parms.php';
   
   include 'split.php';
-
-  if ($padParse)
-    include pad . 'parse/levelStart.php';
-
-  if ( $padTrace )  
-    include 'trace/start.php';
-
   include 'inits.php';
 
   $padContent = $padTrue [$pad];
@@ -39,9 +32,6 @@
 
   if ( padOpenCloseOk ( $padBase[$pad], '@start@', 1 ) )
     return include 'split/before1.php';
-
- if ($padLog)
-    include pad . 'log/levelStart.php';
 
   if ( count ( $padData [$pad] ) )
     include pad . 'occurrence/start.php';
