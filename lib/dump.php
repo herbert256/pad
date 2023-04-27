@@ -1,6 +1,17 @@
 <?php
 
 
+  function padDumpToFile ($file, $info='') {
+
+    ob_start ();
+
+    padDumpGo ( $info );
+
+    padFilePutContents ( $file, ob_get_clean () );
+        
+  }
+
+
   function padDumpFromApp ($info='') {
 
     if ( ! padLocal () ) 
@@ -13,34 +24,12 @@
 
   function padDump ($info='') {
 
-    $GLOBALS ['padInDump'] = TRUE;
-    $GLOBALS ['padErrrorList'] [] = $info;
+    set_error_handler     ( 'padDumpError' );
+    set_exception_handler ( 'padDumpException' );
 
     try {
 
-       padEmptyBuffers ();
-
-      if ( ! headers_sent () ) 
-        header ( 'HTTP/1.0 500 Internal Server Error' );
-
-      flush();
-
-      if ( padLocal () ) {
-
-        padCloseHtml ();
-        padDumpGo    ($info);
-
-      } else {
-
-        padErrorLog ( "DUMP: $info" );
-        echo "Error: " . padID ();
-
-      }
-       
-      $GLOBALS ['padSent']   = TRUE;
-      $GLOBALS ['padOutput'] = '';
-
-      padStop (500);
+      padDumpTry ($info);
 
     } catch (Throwable $error) {
   
@@ -48,49 +37,67 @@
   
     }
 
+  }
+
+
+  function padDumpError ( $type, $error, $file, $line ) {
+
+    padDumpProblem ( "DUMP-ERROR: $error", $file, $line );
+ 
+  }
+
+
+  function padDumpException ( $e ) {
+
+    padDumpProblem ( 'DUMP-EXCEPTION: ' . $e->getMessage(), $e->getFile(), $e->getLine() ); 
+ 
+  }
+
+
+  function padDumpTry ($info) {
+
+    $GLOBALS ['padInDump'] = TRUE;
+    $GLOBALS ['padErrrorList'] [] = $info;
+
+    if ( ! headers_sent () ) 
+      header ( 'HTTP/1.0 500 Internal Server Error' );
+
+    padCloseHtml ();
+
+    padEmptyBuffers ();
+
+    if ( padLocal () )
+
+      padDumpGo ($info);
+
+    else {
+
+      padErrorLog ( "DUMP: $info" );
+      echo "Error: " . padID ();
+
+    }
+     
+    $GLOBALS ['padSent']   = TRUE;
+    $GLOBALS ['padOutput'] = '';
+
+    padStop (500);
+
   }    
 
 
   function padDumpProblem ( $error, $file, $line) {
 
-    gc_collect_cycles ();
-    unset ( $GLOBALS ['padOutput'] );
-    unset ( $GLOBALS ['padBase']   );
-    unset ( $GLOBALS ['padTrue']   );
-    unset ( $GLOBALS ['padFalse']  );
-    unset ( $GLOBALS ['padHtml']   );
-    unset ( $GLOBALS ['padResult'] );
-    unset ( $GLOBALS ['padData']   );
-    gc_collect_cycles ();
+    $org = $error;
 
     padDumpCleanErrors ($info);
 
     if ( isset ( $GLOBALS ['padErrrorList'] ) )
       foreach ( $GLOBALS ['padErrrorList'] as $list )
-        $error .= " | " . $list;
+        if ( $list <> $org )
+          $error .= " | " . $list;
 
     padBootStop ( $error, $file, $line );
 
-  }
-
-
-  function padDumpToFile ($file, $info='') {
-
-    $GLOBALS ['padErrrorList'] [] = $info;
-
-    padFilePutContents ( $file, padDumpGet ($info) );
-        
-  }
-
-
-  function padDumpGet ($info) {
-
-    ob_start();
-
-    padDumpGo ($info);
-
-    return ob_get_clean();
-        
   }
 
 
@@ -122,6 +129,10 @@
 
   function padDumpInfo ( $info ) {
 
+    if ( isset ( $GLOBALS ['padErrrorList'] ) )
+      if ( in_array ( $info, $GLOBALS ['padErrrorList'] ) )
+        return;
+
     if ( $info )
       echo ( "<hr><b>$info</b><hr><br>" ); 
 
@@ -133,14 +144,7 @@
     if ( ! isset ( $GLOBALS ['padErrrorList'] ) )
       return;
 
-    foreach ( $GLOBALS ['padErrrorList'] as $key => $error )
-      if ( $info == $error )
-        unset ( $GLOBALS ['padErrrorList'] [$key] );
-
-    foreach ( $GLOBALS ['padErrrorList'] as $key1 => $list1 )
-      foreach ( $GLOBALS ['padErrrorList'] as $key2 => $list2 )
-        if ( $key1 <> $key2 and $list1 == $list2 )
-          unset ( $GLOBALS ['padErrrorList'] [$key1] );
+    $GLOBALS ['padErrrorList'] = array_unique ( $GLOBALS ['padErrrorList'] );
 
   }
 
@@ -361,56 +365,48 @@
   } 
 
 
-  function padDumpFields ( &$php, &$lvl, &$padApp, &$cfg, &$pad, &$ids ) {
+  function padDumpFields ( &$php, &$lvl, &$app, &$cfg, &$pad, &$ids ) {
 
-    $php = $lvl = $padApp = $cfg = $pad = $ids = [];
-
-    $not  = [ 'GLOBALS', 'padFphp', 'padFlvl', 'padFapp', 'padFcfg', 'padFpad', 'padFids'  ];
+    $php = $lvl = $app = $cfg = $pad = $ids = [];
 
     $chk1 = [ '_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
 
     $chk2 = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padName','padData','padCurrent','padKey','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padSaveVars','padDeleteVars','padSetSave','padSetDelete','padTagCnt', 'padAfter', 'padBefore', 'padBeforeData', 'padEndOptions', 'padPrmType', 'padSet', 'padGiven'];
 
-    $chk3 = [ 'padPage','padSesID','padReqID','PHPSESSID','padRefID' ];
+    $chk3 = [ 'padPage','padSesID','padReqID','padRefID','PHPSESSID' ];
 
     $settings = padFileGetContents(pad . 'config/config.php');
 
-    foreach ($GLOBALS as $key => $value) {
+    foreach ($GLOBALS as $key => $value)
 
-      if ( ! in_array ($key, $not) ) {
+      if (strpos($settings, '$'.$key.' ') or strpos($settings, '$'.$key.'=') or strpos($settings, '$'.$key."\t"))
 
-        if (strpos($settings, '$'.$key.' ') or strpos($settings, '$'.$key.'=') or strpos($settings, '$'.$key."\t"))
+        $cfg  [$key] = $value;
 
-          $cfg  [$key] = $value;
+      elseif ( in_array ( $key, $chk3 ) )
+        
+        $ids [$key] = $value;
 
-        elseif ( in_array ( $key, $chk3 ) )
-          
-          $ids [$key] = $value;
+      elseif ( in_array ( $key, $chk1 ) )
+        
+        $php [$key] = $value;
 
-        elseif ( in_array ( $key, $chk1 ) )
-          
-          $php [$key] = $value;
+      elseif ( in_array ( $key, $chk2 ) ) {
 
-        elseif ( in_array ( $key, $chk2 ) ) {
+        if ( isset($value[0]) and ! $value[0] )
+          unset ($value[0]);
+        
+        $lvl [$key] = $value;
+ 
+      } elseif ( substr($key, 0, 3)  == 'pad' )
 
-          if ( isset($value[0]) and ! $value[0] )
-            unset ($value[0]);
-          
-          $lvl [$key] = $value;
-   
-        } elseif ( substr($key, 0, 3)  == 'pad' )
+        $pad [$key] = $value;
 
-          $pad [$key] = $value;
+      else
 
-        else
+        $app [$key] = $value;
 
-          $padApp [$key] = $value;
-
-      }
-
-    }
-
-    ksort($padApp);
+    ksort($app);
     ksort($cfg);
     ksort($php);
     ksort($lvl);

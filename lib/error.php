@@ -26,7 +26,7 @@
     if ( $GLOBALS ['padErrorAction'] == 'boot' )
       return padBootStop ( $error, $file, $line ); 
 
-    return padErrorGo ( 'pad: ' . $error, $file, $line ); 
+    return padErrorGo ( 'PAD: ' . $error, $file, $line ); 
  
   }
 
@@ -90,7 +90,7 @@
       return FALSE;
 
     if ( isset ( $GLOBALS ['padInDump'] ) )
-      padDumpProblem ( 'DUMP-ERROR: ' . $error, $file, $line );
+      padDumpProblem ( 'ERROR-DUMP: ' . $error, $file, $line );
 
     try {
  
@@ -116,20 +116,20 @@
 
     $GLOBALS ['padErrrorList'] [] = $error;
 
-    if ( $GLOBALS ['padErrorLog'] or in_array ( $GLOBALS ['padErrorAction'], ['report', 'pad'] ) )
+    if ( $GLOBALS ['padErrorLog'] or $GLOBALS ['padErrorAction'] == 'report' )
       padErrorLog ( $error );
 
-    if ( $GLOBALS ['padErrorReport'] or in_array ( $GLOBALS ['padErrorAction'], ['report', 'pad'] ) )
+    if ( $GLOBALS ['padErrorReport'] or $GLOBALS ['padErrorAction'] == 'report' )
       padErrorReport ( $error );
 
-    if ( ! headers_sent () and in_array ( $GLOBALS ['padErrorAction'], ['exit', 'stop', 'pad'] ) )
-      padHeader ('HTTP/1.0 500 Internal Server Error' );
-    
-    if ( $GLOBALS ['padErrorAction'] == 'exit')
+    if ( $GLOBALS ['padErrorAction'] == 'exit') {
+
+      if ( ! headers_sent () )
+        padHeader ('HTTP/1.0 500 Internal Server Error' );
 
       padExit ();
 
-    elseif ( $GLOBALS ['padErrorAction'] == 'stop' )
+    } elseif ( $GLOBALS ['padErrorAction'] == 'stop' )
 
       padStop (500);
 
@@ -154,7 +154,7 @@
     if ( ! $info )
       $info = padErrorAddStack ();
 
-    error_log ( '[pad] ' . padID () . padMakeSafe ( $info ), 4 );
+    error_log ( '[PAD] ' . padID () . padMakeSafe ( $info ), 4 );
 
   }
 
@@ -169,8 +169,6 @@
 
 
   function padErrorDump ( $error ) {
-
-    gc_collect_cycles ();
  
     $GLOBALS ['padErrrorList'] [] = $error;
  
