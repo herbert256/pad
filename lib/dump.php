@@ -16,59 +16,40 @@
     $GLOBALS ['padInDump'] = TRUE;
     $GLOBALS ['padErrrorList'] [] = $info;
 
-    set_error_handler     ( 'padDumpError'     );
-    set_exception_handler ( 'padDumpException' );
-
     try {
-      padDumpTry ($info);
+
+       padEmptyBuffers ();
+
+      if ( ! headers_sent () ) 
+        header ( 'HTTP/1.0 500 Internal Server Error' );
+
+      flush();
+
+      if ( padLocal () ) {
+
+        padCloseHtml ();
+        padDumpGo    ($info);
+
+      } else {
+
+        padErrorLog ( "DUMP: $info" );
+        echo "Error: " . padID ();
+
+      }
+       
+      $GLOBALS ['padSent']   = TRUE;
+      $GLOBALS ['padOutput'] = '';
+
+      padStop (500);
+
     } catch (Throwable $error) {
-      padDumpCatch ($error);
+  
+      padDumpProblem ( 'DUMP-CATCH: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
+  
     }
 
-  }   
+  }    
 
-
-  function padDumpTry ($info) {
-
-    padEmptyBuffers ();
-
-    if ( ! headers_sent () ) 
-      header ( 'HTTP/1.0 500 Internal Server Error' );
-
-    flush();
-
-    if ( padLocal () ) {
-
-      padCloseHtml ();
-      padDumpGo    ($info);
-
-    } else {
-
-      padErrorLog ( "DUMP: $info" );
-      echo "Error: " . padID ();
-
-    }
-     
-    flush();
-     
-    $GLOBALS ['padSent']   = TRUE;
-    $GLOBALS ['padOutput'] = '';
-
-    padStop (500);
-
-  }  
-
-  function padDumpError ( $type, $error, $file, $line ) {
-    padDumpProblem ( 'DUMP-ERROR: ' . $error , $file, $line );
-  }
-
-  function padDumpException ( $error ) {
-    padDumpProblem ( 'DUMP-EXCEPTION: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
-  }
-
-  function padDumpCatch ( $error ) {
-    padDumpProblem ( 'DUMP-CATCH: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
-  }
 
   function padDumpProblem ( $error, $file, $line) {
 

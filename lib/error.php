@@ -86,8 +86,11 @@
 
   function padErrorGo ($error, $file, $line) {
 
+    if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
+      return FALSE;
+
     if ( isset ( $GLOBALS ['padInDump'] ) )
-      padDumpProblem ( 'DUMP-ERROR-GO: ' . $error, $file, $line );
+      padDumpProblem ( 'DUMP-ERROR: ' . $error, $file, $line );
 
     try {
  
@@ -104,13 +107,10 @@
 
   function padErrorTry ($error, $file, $line) {
 
-    if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
-      return FALSE;
-
     if ( $GLOBALS['padExit'] <> 1 )
       padErrorDump ("$file:$line ERROR-SECOND: $error");
-    else
-      $GLOBALS['padExit'] = 2;
+
+    $GLOBALS['padExit'] = 2;
 
     $error = "$file:$line " . padMakeSafe ( $error );
 
@@ -147,26 +147,14 @@
 
 
   function padErrorLog ( $info ) {
-
-    $id = padID ();
   
     if ( is_array($info) or is_object($info) )
       $info = padJson ($info);
 
-    if ( ! $info ) {
+    if ( ! $info )
+      $info = padErrorAddStack ();
 
-      $padDebugBacktrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS);
-
-      foreach ( $padDebugBacktrace as $key => $trace ) {
-        extract ( $trace );
-        $info .= "$file:$line:$function ";
-      }
-
-    }
-
-    $info = padMakeSafe ( $info );
-
-    error_log ( "[pad] $id $info", 4 );
+    error_log ( '[pad] ' . padID () . padMakeSafe ( $info ), 4 );
 
   }
 
@@ -177,11 +165,10 @@
 
     padDumpToFile ("errors/$padPage/$padReqID.html", $info);
 
-
   }
 
 
- function padErrorDump ( $error ) {
+  function padErrorDump ( $error ) {
 
     gc_collect_cycles ();
  
@@ -190,6 +177,21 @@
     padDump ($error);
 
   }
+
+
+  function padErrorAddStack () {
+  
+    $info = '';
+
+    foreach ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS) as $key => $trace ) 
+      if ( $key > 0 and $key < 4 ) {
+        extract ( $trace );
+        $info .= "$file:$line:$function ";
+      }
+
+    return trim($info);
+
+  }  
 
  
 ?>
