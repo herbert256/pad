@@ -21,20 +21,26 @@
   }
 
 
-  function padPage ( $go ) {
+  function padRedirect ( $go, $vars=[] ) {
 
-    global $padHost, $padScript, $padStop;
+    global $padGoPageExternal;
 
-    $parts = padExplode ($go, '://', 2);
-
-    if ( count ($parts) == 2)
-      $next = $go;
-    else
-      $next = "$padHost$padScript?padApp=$go";
+    foreach ( $vars as $padK => $padV ) 
+      $go .= "&$padK=" . urlencode($padV);
   
-    padHeader ("Location: $next");
+    padHeader ("Location: $padGoPageExternal$go");
     
     padStop (302);
+
+  }
+
+
+  function padRestart ( $go, $vars=[] ) {
+
+    $GLOBALS ['padRestart']     = $go;
+    $GLOBALS ['padRestartVars'] = $vars;
+
+    return NULL;
 
   }
 

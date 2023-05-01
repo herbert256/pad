@@ -60,12 +60,10 @@
     $output ['cookies'] = [];
     $output ['data']    = '';
 
-    if ( ! is_array($input) ) {
-      $url   = $input;
+    $url = ( is_array($input) ) ? $input ['url'] : $input;
+
+    if ( ! is_array($input) ) 
       $input = [];
-    } else {
-      $url = $input ['url'];
-    }
 
     if ( isset($input['get']) )
       foreach ( $input['get'] as $key => $val ) 
@@ -100,7 +98,7 @@
     padCurlOpt ($options, 'REFERER',        $GLOBALS ['padGoPageExternal'] . $GLOBALS ['padPage']);
 
     if ( isset($input['user']) )
-      padCurlOpt ($options, 'USERPWD', $input['user'] . ":" . $input['$padassword']);
+      padCurlOpt ($options, 'USERPWD', $input['user'] . ":" . $input['password']);
     
     if ( isset($input['post']) ) {
       padCurlOpt ($options, 'POST', true);

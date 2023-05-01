@@ -121,9 +121,9 @@
 
   }
 
-  function padDbConnect ( $host, $user, $padassword, $database ) {
+  function padDbConnect ( $host, $user, $password, $database ) {
 
-    $connect = mysqli_connect ( "p:$host" , $user , $padassword , $database );
+    $connect = mysqli_connect ( "p:$host" , $user , $password , $database );
     
     if ( ! $connect )
       return padError ( mysqli_connect_errno ( ) . ' - ' . mysqli_connect_error ( ) );

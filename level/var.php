@@ -22,8 +22,6 @@
 
   if ( substr($padFld, 0, 1) == '$' )
     $padFld = padFieldValue ($padFld);
-
-  $padFirst = substr ( $padBetween , 0, 1 );
  
   if ( ! in_array('noError', $padOpts) )
     if     ( $padFirst == '!' ) { if ( ! padRawCheck   ( $padFld ) ) padError ( "Field '$padFld' not found" ); }

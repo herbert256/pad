@@ -22,10 +22,7 @@
       if ( padExists ( padApp . "options/$padPrmName.php") )
         $padOptionsApp [$pad] [] = $padPrmName;
 
-      if ( $padPrmValue === '' )
-        $padPrm [$pad] [$padPrmName] = TRUE;
-      else
-        $padPrm [$pad] [$padPrmName] = padEval ( $padPrmValue );
+      $padPrm [$pad] [$padPrmName] = ( $padPrmValue === '' ) ? TRUE : padEval ( $padPrmValue );
 
       continue;
 

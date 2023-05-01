@@ -130,23 +130,13 @@
   function padDumpInfo ( $info ) {
 
     if ( isset ( $GLOBALS ['padErrrorList'] ) )
-      if ( in_array ( $info, $GLOBALS ['padErrrorList'] ) )
+      if ( $info and in_array ( $info, $GLOBALS ['padErrrorList'] ) )
         return;
 
     if ( $info )
       echo ( "<hr><b>$info</b><hr><br>" ); 
 
   } 
-
-
-  function padDumpCleanErrors ($info) {
-
-    if ( ! isset ( $GLOBALS ['padErrrorList'] ) )
-      return;
-
-    $GLOBALS ['padErrrorList'] = array_unique ( $GLOBALS ['padErrrorList'] );
-
-  }
 
 
   function padDumpErrors ($info) {
@@ -175,6 +165,16 @@
     }
 
   }  
+
+
+  function padDumpCleanErrors ($info) {
+
+    if ( ! isset ( $GLOBALS ['padErrrorList'] ) )
+      return;
+
+    $GLOBALS ['padErrrorList'] = array_unique ( $GLOBALS ['padErrrorList'] );
+
+  }
 
 
   function padDumpXXX (&$pad, $prefix) {

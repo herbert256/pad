@@ -37,17 +37,6 @@
   }
 
 
-  function padFileTimestamp () {
-
-    $now   = microtime(true);
-    $sec   = floor($now);
-    $micro = (int) (($now - $sec) * 1000000);
-    $micro = str_pad($micro, 6, '0', STR_PAD_LEFT);
-
-    return date('ymd-His-') . $micro;
-
-  }
-
 
   function padOpenCloseOk ( $string, $check) {
 
@@ -169,7 +158,7 @@
     elseif ( padExists ("$file.yaml") ) { $data = padFileGetContents ("$file.yaml"); $ext = 'yaml'; }
     elseif ( padExists ("$file.csv")  ) { $data = padFileGetContents ("$file.csv");  $ext = 'csv';  }
     elseif ( padExists ("$file.php")  ) { $data = include ("$file.php");                            }
-    elseif ( $ext == 'php'              ) { $data = include ($file);                                  }
+    elseif ( $ext == 'php'            ) { $data = include ($file);                                  }
     elseif ( padExists ($file)        ) { $data = padFileGetContents ($file);                       }
 
     if ( $name and ! $GLOBALS ['padName'] [$GLOBALS['pad']] )
@@ -194,76 +183,12 @@
   }
 
 
-  function padValidFieldName ( $var ) {
-
-    $first = substr ( $var, 0, 1 );
-
-    if ( in_array ( $first, ['$','!','#','&'] ) )
-      return TRUE;
-
-    if ( ! in_array ( $first, ['$','!','#','&'] ) )
-      return FALSE;
-
-    $pipe  = strpos ( $var, '|' );
-    $space = strpos ( $var, ' ' );
-
-    if     ( $pipe  and (!$space or $pipe  < $space) ) $var = rtrim(substr($var, 1, $pipe-1));
-    elseif ( $space and (!$pipe  or $space < $pipe)  ) $var = rtrim(substr($var, 1, $space-1));
-    else                                               $var = rtrim(substr($var, 1));
-
-    if ( ! strlen($var) )
-      return FALSE;
-
-    if ( strpos($var, ':') !== FALSE )
-      list ( $tag, $var ) = explode (':', $var, 2);
-    else
-      $tag = '';
- 
-    if ( strpos($var, '#') !== FALSE ) {
-
-      list ( $p1, $p2 ) = explode ('#', $var, 2);
-
-      if ( ! is_numeric ($p1) ) 
-        return FALSE;
-
-      if ( ! in_array ( $p2, ['name','value'] )  )
-        return FALSE;      
-
-      return TRUE;
-
-    }
-
-    if ( ! ($first == '#' and is_numeric($var)) )
-      if ( ! padValidVar($var) )
-        return FALSE;
-
-    if ( ! $tag )
-      return TRUE;
-
-    if ( substr ( $tag, 0, 1 ) == '-' ) {
-
-      if ( strlen($tag) < 2 )
-        return FALSE;
-
-      if ( ! is_numeric ( substr ( $var, 1 ) ) )
-        return FALSE;
-
-      return TRUE;
-
-    } 
-
-    if ( ! padValidVar($tag) )
-      return FALSE;
-
-    return TRUE;
-
-  }
-
   function padID () {
 
     return $GLOBALS ['padReqID'] ?? uniqid (TRUE);
 
   }
+
 
   function padMakeSafe ( $input ) {
 
@@ -276,14 +201,6 @@
     $input = trim($input);
 
     return $input;
-
-  }
-  
-  function padRestart ( $padRestart ) {
-      
-    $GLOBALS ['padRestart'] = $padRestart;
-
-    return NULL;
 
   }
 
@@ -788,9 +705,6 @@
   }
 
 
-
-  
-
   function padCheckValue (&$value) {
 
     if     ($value === NULL)      $value = '';
@@ -830,19 +744,17 @@
   
     foreach($opts as $opt) {
         
-      $save = $val;
-
-      $padAppend = (substr($opt, 0, 1) == '.');
-      $padrepend = (substr($opt, -1)   == '.');
+      $padAppend  = (substr($opt, 0, 1) == '.');
+      $padPrepend = (substr($opt, -1)   == '.');
   
       if ($padAppend)   $opt = trim(substr($opt,1));
-      if ($padrepend)  $opt = trim(substr($opt,0,-1));
+      if ($padPrepend)  $opt = trim(substr($opt,0,-1));
   
       $now = (substr($opt, 0, 1) == '%') ? sprintf($opt, $val) : padEval ($opt, $val);
      
-      if ( $padAppend )                    $val = $val . $now;
-      if ( $padrepend )                    $val = $now . $val;
-      if ( ! $padAppend and ! $padrepend ) $val = $now;
+      if ( $padAppend )                     $val = $val . $now;
+      if ( $padPrepend )                    $val = $now . $val;
+      if ( ! $padAppend and ! $padPrepend ) $val = $now;
 
     }
 

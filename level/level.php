@@ -16,9 +16,10 @@
   }
 
   $padBetween = substr ( $padHtml [$pad], $padStart [$pad] + 1, $padEnd [$pad] - $padStart [$pad] - 1 );
+  $padFirst   = substr ( $padBetween , 0, 1 );
   $padWords   = preg_split ("/[\s]+/", $padBetween, 2, PREG_SPLIT_NO_EMPTY);
 
-  if ( padValidFieldName ( $padBetween ) )
+  if ( in_array ( $padFirst, ['$','!','#','&'] ) )  
     return include 'var.php';
 
   if ( ! ctype_alpha ( $padBetween [0] ) ) return padIgnore ('ctype_alpha');

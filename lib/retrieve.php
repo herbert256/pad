@@ -23,66 +23,14 @@
   }
 
 
-  function padPageGet ( $page, $parms=[], $include=1) {
-
-    $query = '';
-    foreach ( $parms as $padK => $padV )
-      $query .= "&$padK=" . urlencode($padV);
-
-    return pad ( $page, $query, $include );
-
-  }
-
-
-  function padPageAjax ( $page, $parms=[], $include=1) {
-
-    if ( ! isset($GLOBALS['padAjax']) )
-      $GLOBALS['padAjax'] = 0;
-
-    global $padAjax; 
-      
-    $padAjax++;
-
-    $ajax = str_replace('/', '', "$page$padAjax".$GLOBALS['padPage']);
-
-    $url = '?padPage=' . $page; 
-
-    foreach ( $parms as $padK => $padV )
-      $url .= "&$padK=" . urlencode($padV);
-
-    if ( $include )
-      $url .= '&padInclude=1';
-
-    return <<< END
-<div id="padAjax{$ajax}"></div>
-
-<script>
-  padAjax{$ajax} = new XMLHttpRequest();
-  padAjax{$ajax}.onreadystatechange=function() {
-    if (padAjax{$ajax}.readyState === 4) {
-      if (padAjax{$ajax}.status === 200) {
-        document.getElementById("padAjax{$ajax}").innerHTML=padAjax{$ajax}.responseText;
-      } else {
-        document.getElementById("padAjax{$ajax}").innerHTML=padAjax{$ajax}.statusText;
-      }
-    }
-  }
-  padAjax{$ajax}.open("GET","{$url}",true);
-  padAjax{$ajax}.send();
-</script>
-END;
-
-  }
-
-
-  function padPageFunction ( $padRetrievePage, $padRetrieveParms=[], $include=1 ) {
+  function padPageFunction ( $page, $parms=[], $include=1 ) {
 
     include pad . 'retrieve/inits.php'; 
 
-    foreach ( $padRetrieveParms as $padK => $padV )
+    foreach ( $parms as $padK => $padV )
       $$padK = $padV;
 
-    $padPage          = $padRetrievePage;
+    $padPage       = $page;
     $padBuildMode  = ($include) ? 'include' : 'before';
     $padBuildMerge = 'content';
 
@@ -101,7 +49,7 @@ END;
       $padKey     [$pad] = 1;
       $padCurrent [$pad] = $padData [$pad] [1];
     } else {
-      $padData [$pad] = padDefaultData ();
+      $padData    [$pad] = padDefaultData ();
       $padKey     [$pad] = 999;
       $padCurrent [$pad] = $padData [$pad] [99];
     }
@@ -113,17 +61,6 @@ END;
   }
 
 
-  function padRetrieveContent ( $padRetrieveContent ) {
-
-    include pad . 'retrieve/inits.php'; 
-
-    $padHtml [$pad] = $padRetrieveContent;    
-
-    return include pad . 'retrieve/exits.php'; 
-
-  }
-
-
   function padTagAsFunction ($tag, $parms) {
 
     include pad . 'retrieve/inits.php'; 
@@ -131,6 +68,50 @@ END;
     $padHtml [$pad] = '{' . $tag . ' ' . $parms . '}';    
 
     return include pad . 'retrieve/exits.php'; 
+
+  }
+
+
+  function padPageGet ( $page, $parms=[], $include=1) {
+
+    $query = '';
+    foreach ( $parms as $key => $val )
+      $query .= "&$key=" . urlencode($val);
+
+    return pad ( $page, $query, $include );
+
+  }
+
+
+  function padPageAjax ( $page, $parms=[], $include=1) {
+
+    $ajax = 'padAjax' . padRandomString(8);
+    $url  = $GLOBALS ['padScript'] . '?padPage=' . $page; 
+
+    foreach ( $parms as $padK => $padV )
+      $url .= "&$padK=" . urlencode($padV);
+
+    if ( $include )
+      $url .= '&padInclude=1';
+
+    return <<< END
+<div id="{$ajax}"></div>
+
+<script>
+  {$ajax} = new XMLHttpRequest();
+  {$ajax}.onreadystatechange=function() {
+    if ({$ajax}.readyState === 4) {
+      if ({$ajax}.status === 200) {
+        document.getElementById("{$ajax}").innerHTML={$ajax}.responseText;
+      } else {
+        document.getElementById("{$ajax}").innerHTML={$ajax}.statusText;
+      }
+    }
+  }
+  {$ajax}.open("GET","{$url}",true);
+  {$ajax}.send();
+</script>
+END;
 
   }
 

@@ -8,9 +8,9 @@
   $expr = '/^';
   $lastWasPercent = FALSE;
   
-  foreach ($parts as $padart) {
+  foreach ($parts as $part) {
     
-      switch ($padart) {
+      switch ($part) {
           case $escape.$escape:
               $expr .= preg_quote($escape, '/');
               break;
@@ -28,11 +28,11 @@
               $expr .= '.';
               break;
           default:
-              $expr .= preg_quote($padart, '/');
+              $expr .= preg_quote($part, '/');
               break;
       }
       
-      $lastWasPercent = $padart == '%';
+      $lastWasPercent = $part == '%';
   }
   
   $expr .= '$/i';

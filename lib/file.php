@@ -4,11 +4,9 @@
   function padExists ( $file ) {
 
     if ( ! padFileValidName ( $file ) )
-      $return = FALSE;
+      return FALSE;
     else
-      $return = file_exists ( $file );
-
-    return $return;
+      return file_exists ( $file );
 
   }
 
@@ -26,7 +24,7 @@
   }
 
 
-  function padFilePutContents ($in, $data='', $padAppend=0) {
+  function padFilePutContents ($in, $data='', $append=0) {
 
     global $pad;
     
@@ -42,7 +40,7 @@
       $data = padJson ($data);
       
     if ($data)
-      if ($padAppend) file_put_contents ($file, "$data\n", LOCK_EX | FILE_padAppEND);
+      if ($append) file_put_contents ($file, "$data\n", LOCK_EX | FILE_APPEND);
       else         file_put_contents ($file, $data,     LOCK_EX);
     
   }
