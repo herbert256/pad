@@ -1,6 +1,6 @@
 <?php
-   
-  $padPag1Typ = 'ajax';
+  
+  $padPagTyp = 'include';
 
   return include 'go/page.php';
    

@@ -1,6 +1,17 @@
 <?php
 
 
+  function padTagAsFunction ($tag, $parms) {
+
+    include pad . 'page/inits.php'; 
+
+    $padHtml [$pad] = '{' . $tag . ' ' . $parms . '}';    
+
+    return include pad . 'page/exits.php'; 
+
+  }
+
+
   function padContent () {
  
     global $pad, $padTrue, $padOpt;
@@ -426,7 +437,6 @@
       . substr ( $padHtml [$pad],    $padEnd [$pad]+1 );
     
   }
-  
   
 
   function padZip ($data) {

@@ -1,8 +1,6 @@
 <?php
   
-  $padPagePag = padTagParm ( 'page',    $padOpt [$pad] [1] );
-  $padPageTyp = padTagParm ( 'type',    'direct'           );
-  $padPageInc = padTagParm ( 'include', '1'                );
+  $padPagTyp = padTagParm ( 'type', 'nested');
    
   return include 'go/page.php';
    

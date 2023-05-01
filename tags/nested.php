@@ -1,6 +1,6 @@
 <?php
-   
-  $padPag1Typ = 'ajax';
+  
+  $padPagTyp = 'nested';
 
   return include 'go/page.php';
    
