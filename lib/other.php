@@ -1,6 +1,15 @@
 <?php
 
 
+  function padAddGet ($url, $key, $val ) {
+    
+    $str = ( strpos ($url, '?' ) === FALSE ) ? '?' : '&';
+    
+    return $url . $str . $key . '=' . urlencode($val);
+
+  }
+
+
   function padTagAsFunction ($tag, $parms) {
 
     include pad . 'page/inits.php'; 

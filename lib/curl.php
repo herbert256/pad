@@ -21,7 +21,7 @@
     if ($include)
       $include = '&padInclude=1';
 
-    $url = "$padHost$padScript?padPage=$page$query$include";
+    $url = "$padHost$padScript?$page$query$include";
     
     return padCurl ($url);
     
@@ -67,11 +67,11 @@
 
     if ( isset($input['get']) )
       foreach ( $input['get'] as $key => $val ) 
-        $url = padCurlAddGet ( $url, $key, $val );
+        $url = padAddGet ( $url, $key, $val );
 
     if  ( str_starts_with ( $url, $GLOBALS['padHost'] ) ) {
-      $url = padCurlAddGet ( $url, 'padSesID', $GLOBALS ['padSesID'] );
-      $url = padCurlAddGet ( $url, 'padReqID', $GLOBALS ['padReqID'] );
+      $url = padAddGet ( $url, 'padSesID', $GLOBALS ['padSesID'] );
+      $url = padAddGet ( $url, 'padReqID', $GLOBALS ['padReqID'] );
     }
 
     $output ['url'] = $url;
@@ -206,14 +206,6 @@
 
     return $output;
     
-  }
-
-  function padCurlAddGet  ($url, $key, $val ) {
-    
-    $str = ( strpos ($url, '?' ) === FALSE ) ? '?' : '&';
-    
-    return $url . $str . $key . '=' . urlencode($val);
-
   }
   
   function padCurlOpt (&$options, $name, $value) {

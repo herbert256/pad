@@ -21,14 +21,27 @@
   }
 
 
-  function padRedirect ( $go, $vars=[] ) {
+  function padRedirect ( $go, $vars=[], $include ) {
 
-    global $padGoPageExternal;
+    global $padHost, $padGoPageExternal;
 
     foreach ( $vars as $padK => $padV ) 
       $go .= "&$padK=" . urlencode($padV);
+
+    if ( $include )
+      $go .= '&padInclude=1';
+
+    if ( ! strpos($go, '://') )
+      $go = $padGoPageExternal . $go;
   
-    padHeader ("Location: $padGoPageExternal$go");
+    $go = str_replace('SELF://', "$padHost/", $go);
+
+    if  ( str_starts_with ( $go, $padHost ) ) {
+      $go = padAddGet ( $go, 'padSesID', $GLOBALS ['padSesID'] );
+      $go = padAddGet ( $go, 'padReqID', $GLOBALS ['padReqID'] );
+    }    
+
+    padHeader ("Location: $go");
     
     padStop (302);
 

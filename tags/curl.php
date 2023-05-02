@@ -6,8 +6,16 @@
   if ( ! $padPrm [$pad] ['url'] )
     return padError ("Curl: No URL given");
 
-  $padReturn = padCurl ( $padPrm [$pad]);
+  foreach ( $padSet [$pad] as $padK => $padV )
+    $padPrm [$pad] ['url'] = padAddGet ($padPrm [$pad] ['url'], $padK, $padV );
 
-  return $padReturn ['data'];
+  $padPrm [$pad] ['url'] = str_replace('SELF://', "$padHost/", $padPrm [$pad] ['url']);
+
+  $padCurl = padCurl ( $padPrm [$pad]);
+
+  if ( $padCurl ['result'] <> '200' )
+    padError ( "Curl failed: " . $padCurl ['result'] );
+
+  return $padCurl ['data'];
 
 ?>

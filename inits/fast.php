@@ -1,6 +1,7 @@
 <?php
-    
-  if ( isset($_SERVER['QUERY_STRING']) and $_SERVER['QUERY_STRING'] and strpos($_SERVER['QUERY_STRING'], '=') === FALSE ) {
+
+  if ( ! isset ( $padPageSet ) and isset ( $_SERVER['QUERY_STRING'] ) and    
+       $_SERVER['QUERY_STRING'] and strpos ( $_SERVER['QUERY_STRING'], '=' ) === FALSE ) {
 
     $padFast = padDb ( "field vars from links where link = '{1}'", [ 1 => $_SERVER['QUERY_STRING'] ] );
 
@@ -12,5 +13,7 @@
     include pad . 'config/config.php';
 
   }
+
+  unset ( $padPageSet );
   
 ?>

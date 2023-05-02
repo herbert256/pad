@@ -3,6 +3,6 @@
   $padLinkPage = padTagParm ( 'page', 'index' );
   $padLinkText = padTagParm ( 'text', $padContent );
 
-  return "<a href=\"$padHost$padScript?padPage=$padLinkPage\">$padLinkText</a>";
+  return "<a href=\"$padHost$padScript?$padLinkPage\">$padLinkText</a>";
 
 ?>

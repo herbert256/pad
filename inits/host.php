@@ -6,6 +6,8 @@
   $padScript        = $_SERVER ['SCRIPT_NAME']    ?? '/pad.php';
   $padUri           = $_SERVER ['REQUEST_URI']    ?? '/';
 
+  $padScript = str_replace('index.php', '', $padScript);
+
   if (strpos ( $padHttpHost, ':') === FALSE )
     if ( ($padRequestScheme == 'http'  and $padServerPort <> 80) or 
          ($padRequestScheme == 'https' and $padServerPort <> 443) )
@@ -13,7 +15,7 @@
 
   $padHost = $padRequestScheme . '://' . $padHttpHost;
 
-  $padGoPage         = $padScript . "?padPage=";
+  $padGoPage         = $padScript . "?";
   $padGoPageExternal = $padHost . $padGoPage;
 
 ?>
