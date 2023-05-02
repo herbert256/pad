@@ -1,7 +1,7 @@
 <?php
 
 
-  function padCheckPage ( $page ) {
+  function padPageCheck ( $page ) {
 
     if ( ! preg_match ( '/^[a-zA-Z][a-zA-Z0-9_\/]*$/', $page ) )  return FALSE;
     if ( trim($page) == '' )                                      return FALSE;
@@ -33,7 +33,7 @@
   }
 
 
-  function padGetPage ( $page ) {
+  function padPageSet ( $page ) {
 
     $location = padApp . "pages";
     $part     = padExplode ($page, '/');
@@ -90,23 +90,10 @@ END;
 
   function padPageBuild ( $page, $parms=[] ) {
 
-           include pad . 'page/pad.php'; 
-    return include pad . 'page/build.php'; 
-
-  }
-
-
-  function padPagePad ( $page, $parms=[] ) {
-
     include pad . 'page/inits.php'; 
+    include pad . 'page/build.php'; 
 
-    if ( $include )
-      $padHtml [$pad] = padPageInclude ( $page );   
-    else 
-      $padHtml [$pad] = include pad . 'page/build.php'; 
-    
-    include pad . 'page/data.php'; 
-
+    $padHtml [$pad] = $padBase [$pad];    
 
     return include pad . 'page/exits.php'; 
  

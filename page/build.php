@@ -1,13 +1,31 @@
 <?php
 
-  global $pad, $padBase;
+  $padIncludeSet     = $padInclude;
+  $padBuildModeSet   = $padBuildMode;
+  $padBuildMergeSet  = $padBuildMerge; 
 
   $padPage = $page;
 
-  $GLOBALS['padIgnoreInclude'] = TRUE;
   include pad . 'build/build.php'; 
-  unset ( $GLOBALS['padIgnoreInclude'] );
 
-  return $padBase [$pad];
+  $padData [$pad]     = [];
+  $padData [$pad] [1] = [];
+
+  foreach ( get_defined_vars() as $padK => $padV )
+    if ( padValidStore($padK) )
+      $padData [$pad] [1] [$padK] = $padV;
+
+  if ( count ( $padData [$pad] [1] ) ) {
+    $padKey     [$pad] = 1;
+    $padCurrent [$pad] = $padData [$pad] [1];
+  } else {
+    $padData    [$pad] = padDefaultData ();
+    $padKey     [$pad] = 999;
+    $padCurrent [$pad] = $padData [$pad] [99];
+  }
+
+  unset ( $padIncludeSet    );
+  unset ( $padBuildModeSet  );
+  unset ( $padBuildMergeSet ); 
 
 ?>

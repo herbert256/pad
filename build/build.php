@@ -1,6 +1,8 @@
 <?php
 
-  $padInclude    = $padIncludeSet    ?? $_REQUEST['padInclude']    ?? $padInclude ?? 0;
+  $padBuildModeSave = $padBuildMode;
+
+  $padInclude    = $padIncludeSet    ?? $_REQUEST['padInclude']    ?? $padInclude;
   $padBuildMode  = $padBuildModeSet  ?? $_REQUEST['padBuildMode']  ?? $padBuildMode;
   $padBuildMerge = $padBuildMergeSet ?? $_REQUEST['padBuildMerge'] ?? $padBuildMerge;  
 
@@ -12,5 +14,7 @@
   include 'lib.php';  
   include "$padBuildMode.php";
   include pad . 'occurrence/start.php';
+
+  $padBuildMode = $padBuildModeSave;
 
 ?>
