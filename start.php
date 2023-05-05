@@ -49,8 +49,8 @@
 
   function padBootStop ( $error, $file, $line ) {
 
-    $GLOBALS ['padSkipBootShutdown'] = TRUE;
     $GLOBALS ['padSkipShutdown']     = TRUE;
+    $GLOBALS ['padSkipBootShutdown'] = TRUE;
 
     $j = ob_get_level (); 
     for ( $i = 1; $i <= $j; $i++ ) 
@@ -59,7 +59,7 @@
     if ( ! headers_sent () )
       header ( 'HTTP/1.0 500 Internal Server Error' );
 
-    if ( 1 or function_exists('padLocal') and padLocal () )
+    if ( 1 or (function_exists('padLocal') and padLocal () ) )
  
       echo "\n<pre>$file:$line $error</pre>";
  

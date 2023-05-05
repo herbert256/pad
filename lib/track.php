@@ -8,7 +8,7 @@
     $track = [
         'session'   => $GLOBALS ['padSesID'] ?? '',
         'request'   => $GLOBALS ['padReqID'] ?? '',
-        'reference' => $GLOBALS ['padRefID'] ?? '',
+        '' => $GLOBALS ['padRefID'] ?? '',
         'page'      => $GLOBALS ['padPage'] ?? '',
         'start'     => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0,
         'time'      => padDuration (),
