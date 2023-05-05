@@ -7,22 +7,20 @@
     $padIsolate [$pad] = [];
       
     foreach ($GLOBALS as $padK => $padV)
-      if ( padValidStore ($padK) ) {
-        $padIsolate [$pad] [$padK] = TRUE;
-        $padTmp = "pad_$pad" . "_$padK";
-        $$padTmp = $$padK;
-      }
+      if ( padValidStore ($padK) )
+        $padIsolate [$pad] [$padK] = $GLOBALS [$padK];
     
   } else {
 
-    foreach ( $padIsolate [$pad] as $padK => $padV ) {
-      $padTmp = "pad_$pad" . "_$padK";
-      $$padK = $$padTmp;
-    }
+    foreach ($GLOBALS as $padK => $padV)
+      if ( padValidStore ($padK) and ! in_array($padK, $padIsolate [$pad]) )
+        unset ( $GLOBALS[$padK] );
+
+    foreach ( $padIsolate [$pad] as $padK => $padV )
+      $GLOBALS [$padK] = $padIsolate [$pad] [$padK];
   
   }
 
   return TRUE;
-    
 
 ?>

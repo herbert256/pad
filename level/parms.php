@@ -1,5 +1,7 @@
 <?php
 
+  $padOptCnt = 0;
+
   $padPrmParse = padParseOptions ( $padOpt [$pad] [0] );
 
   foreach ( $padPrmParse as $padK => $padV ) {
@@ -28,7 +30,8 @@
 
     }
 
-    $padOpt [$pad] [$padK+1] = padEval ( $padV );
+    $padOptCnt++;
+    $padOpt [$pad] [$padOptCnt] = padEval ( $padV );
 
   }
 

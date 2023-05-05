@@ -133,7 +133,7 @@
       if ( $info and in_array ( $info, $GLOBALS ['padErrrorList'] ) )
         return;
 
-    if ( $info )
+    if ( trim($info) )
       echo ( "<hr><b>$info</b><hr><br>" ); 
 
   } 
@@ -171,6 +171,10 @@
 
     if ( ! isset ( $GLOBALS ['padErrrorList'] ) )
       return;
+
+    foreach ( $GLOBALS ['padErrrorList'] as $key => $error ) 
+      if ( ! trim($error) )
+        unset ( $GLOBALS ['padErrrorList'] [$key] ) ;
 
     $GLOBALS ['padErrrorList'] = array_unique ( $GLOBALS ['padErrrorList'] );
 

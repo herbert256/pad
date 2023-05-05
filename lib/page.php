@@ -100,6 +100,27 @@ END;
   }
 
 
+  function padQuarantine ( $content, $parms=[] ) {
+
+    include pad . 'page/inits.php'; 
+
+    $padHtml [$pad] = $content;    
+
+    return include pad . 'page/exits.php'; 
+
+  }
+
+
+  function padTagAsFunction ( $tag, $parms ) {
+
+    include pad . 'page/inits.php'; 
+
+    $padHtml [$pad] = '{' . $tag . ' ' . $parms . '}';    
+
+    return include pad . 'page/exits.php'; 
+
+  }
+
   function padPageGet ( $page, $parms=[], $qry ) {
 
     $url = $GLOBALS['padGoPageExternal'] . $page . $qry;

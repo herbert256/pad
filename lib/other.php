@@ -10,17 +10,6 @@
   }
 
 
-  function padTagAsFunction ($tag, $parms) {
-
-    include pad . 'page/inits.php'; 
-
-    $padHtml [$pad] = '{' . $tag . ' ' . $parms . '}';    
-
-    return include pad . 'page/exits.php'; 
-
-  }
-
-
   function padContent () {
  
     global $pad, $padTrue, $padOpt;
@@ -34,6 +23,7 @@
     return '';
 
   }
+
 
   function padArrayClean ( $haystack ) {
  
@@ -55,7 +45,6 @@
     return $haystack;
 
   }
-
 
 
   function padOpenCloseOk ( $string, $check) {
