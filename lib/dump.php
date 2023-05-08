@@ -109,6 +109,7 @@
     padDumpInfo     ( $info );
     padDumpErrors   ( $info );
     padDumpStack    ();
+    padDumpCatch    ();
     padDumpLevel    ();
     padDumpRequest  ();
     padDumpArray    ( "App variables", $app );
@@ -181,6 +182,37 @@
   }
 
 
+  function padDumpCatch ( ) {
+
+    if ( ! isset ( $GLOBALS ['padErrorCatch'] ) )
+      return;
+
+    global $padErrorCatch;
+
+    padDumpCatchStack ( $padErrorCatch->getTrace() );
+
+    $pad = htmlentities ( print_r ( $padErrorCatch, TRUE ) ) ;
+    $pad = preg_replace("/[\n]\(/", "", $pad);
+    $pad = preg_replace("/[\n]\\)/", "", $pad);
+    $pad = substr($pad, 0,-1);
+
+    echo ( "\n<b>Exception</b>\n  $pad\n");
+
+  } 
+
+
+  function padDumpCatchStack ( $stack ) {
+
+    echo ( "<b>Stack</b>\n");
+    
+    foreach ( $stack as $key => $trace ) {
+      extract ( $trace );
+      echo ( "    $file:$line - $function\n");
+    }
+    
+  } 
+
+
   function padDumpXXX (&$pad, $prefix) {
 
     $wrk = [];
@@ -198,6 +230,9 @@
 
 
   function padDumpStack () {
+
+    if ( isset ( $GLOBALS ['padErrorCatch'] ) )
+      return;
 
     $padDebugBacktrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS);
 
@@ -326,9 +361,9 @@
   }
 
 
-  function padDumpObject ( $txt, $arr) {
+  function padDumpObject ( $txt, $obj) {
 
-    $pad = htmlentities ( print_r ( $arr, TRUE ) ) ;
+    $pad = htmlentities ( print_r ( $obj, TRUE ) ) ;
     $pad = preg_replace("/[\n]\(/", "", $pad);
     $pad = preg_replace("/[\n]\\)/", "", $pad);
     $pad = substr($pad, 0,-1);

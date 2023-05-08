@@ -1,5 +1,6 @@
 <?php
 
+  $padPageSave       = $padPage;
   $padIncludeSave    = $padInclude;
   $padBuildModeSave  = $padBuildMode;
   $padBuildMergeSave = $padBuildMerge;  
@@ -17,6 +18,7 @@
   elseif ( $padPagTyp == 'build'   ) $padRet = padPageBuild   ( $padPagPag, $padPagPrm              ); 
   elseif ( $padPagTyp == 'get'     ) $padRet = padPageGet     ( $padPagPag, $padPagPrm, $padPagQry  );
 
+  $padPage       = $padPageSave;
   $padInclude    = $padIncludeSave;
   $padBuildMode  = $padBuildModeSave;
   $padBuildMerge = $padBuildMergeSave;  

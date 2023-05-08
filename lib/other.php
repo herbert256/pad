@@ -819,7 +819,7 @@
     }
 
     $first = strpos ($content, '([');
-    $last  = strpos ($content, '}]');
+    $last  = strpos ($content, '])');
     if ($first !== FALSE and $last !== FALSE and $first < $last ) {
       $type = 'json';
       $content = substr($content, $first+1, $last-$first);

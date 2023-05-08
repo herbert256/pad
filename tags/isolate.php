@@ -1,25 +1,11 @@
 <?php
 
   if ( $padWalk [$pad] == 'start' ) {
-
+    include pad . 'isolate/start.php';
     $padWalk [$pad] = 'end';
-    
-    $padIsolate [$pad] = [];
-      
-    foreach ($GLOBALS as $padK => $padV)
-      if ( padValidStore ($padK) )
-        $padIsolate [$pad] [$padK] = $GLOBALS [$padK];
-    
-  } else {
-
-    foreach ($GLOBALS as $padK => $padV)
-      if ( padValidStore ($padK) and ! in_array($padK, $padIsolate [$pad]) )
-        unset ( $GLOBALS[$padK] );
-
-    foreach ( $padIsolate [$pad] as $padK => $padV )
-      $GLOBALS [$padK] = $padIsolate [$pad] [$padK];
-  
   }
+  else 
+    include pad . 'isolate/end.php';
 
   return TRUE;
 

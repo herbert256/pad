@@ -57,6 +57,8 @@
 
   function padErrorException ( $e ) {
 
+    $GLOBALS ['padErrorCatch'] = $e;
+
     set_exception_handler ( 'padErrorExceptionException' );
     return padErrorGo ( 'EXCEPTION: ' . $e->getMessage() , $e->getFile(), $e->getLine() );
     restore_exception_handler ();
@@ -65,6 +67,8 @@
 
  
   function padErrorExceptionException ( $e ) {
+
+    $GLOBALS ['padErrorCatch'] = $e;
 
     padErrorDump ( $e->getFile() . ':' . $e->getLine() . ' EXCEPTION-EXCEPTION: ' . $e->getMessage() ); 
  

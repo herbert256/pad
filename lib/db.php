@@ -23,7 +23,21 @@
     
   }
 
-  
+ 
+  function padDbConnect ( $host, $user, $password, $database ) {
+
+    $connect = mysqli_connect ( "$host" , $user , $password , $database );
+    
+    if ( ! $connect )
+      return padError ( mysqli_connect_errno ( ) . ' - ' . mysqli_connect_error ( ) );
+      
+    mysqli_query($connect, "SET SESSION sql_mode = 'TRADITIONAL'");
+     
+    return $connect;
+    
+  }
+
+
   function padDbPart2 ( $padSqlConnect, $sql, $vars ) {
 
     global $pad, $padDbRowsFound, $padPrm;
@@ -67,13 +81,15 @@
     elseif ( $command == 'record' )  $sql = 'select '        . $split[1] . ' limit 0,1';
     elseif ( $command == 'field'  )  $sql = 'select '        . $split[1] . ' limit 0,1';
     elseif ( $command == 'array'  )  $sql = 'select '        . $split[1];
-    
-    $query = mysqli_query ( $padSqlConnect , $sql );
 
-    $GLOBALS ['padLastSql'] = padDbFormatSql($sql);
-    
+ #   try {
+      $query = mysqli_query ( $padSqlConnect , $sql );
+  #  } catch (Throwable $e) {
+  #    padError ( 'SQL: ' . $e->getMessage() . ' / ' . $sql);
+  #  }
+
     if ( ! $query )
-      padError ( 'MySQL-' . mysqli_errno ( $padSqlConnect ) . ': ' . mysqli_error ( $padSqlConnect ) . ' - '. $sql );
+      padError ( 'SQL: ' . mysqli_errno ( $padSqlConnect ) . ': ' . mysqli_error ( $padSqlConnect ) . ' / '. $sql );
 
     $padDbRowsFound = $rows = mysqli_affected_rows($padSqlConnect);
 
@@ -121,50 +137,5 @@
 
   }
 
-  function padDbConnect ( $host, $user, $password, $database ) {
-
-    $connect = mysqli_connect ( "p:$host" , $user , $password , $database );
-    
-    if ( ! $connect )
-      return padError ( mysqli_connect_errno ( ) . ' - ' . mysqli_connect_error ( ) );
-      
-    mysqli_query($connect, "SET SESSION sql_mode = 'TRADITIONAL'");
-     
-    return $connect;
-    
-  }
-
-  function padDbFormatSql ($sql) {
-
-    $work = preg_replace('/\s+/', ' ', $sql);
-    $work = trim($work);
-
-    $work = str_replace('select ',    "select    ", $work);
-    $work = str_replace('insert ',    "insert    ", $work);
-    $work = str_replace('delete ',    "delete    ", $work);
-    $work = str_replace('update ',    "update    ", $work);
-
-    $work = str_replace(' from ',     "\r\nfrom      ", $work);
-    $work = str_replace(' limit ',    "\r\nlimit     ", $work);
-    $work = str_replace(' where ',    "\r\nwhere     ", $work);
-    $work = str_replace(' and ',      "\r\n  and     ", $work);
-    $work = str_replace(' or ',       "\r\n   or     ", $work);
-    $work = str_replace(' group by ', "\r\ngroup by  ", $work);
-    $work = str_replace(' order by ', "\r\norder by  ", $work);
-    $work = str_replace(' union ',    "\r\nunion     ", $work);
-    $work = str_replace(' having ',   "\r\nhaving    ", $work);
-
-    $work = str_replace(" join ",                  "\r\njoin ",               $work);
-    $work = str_replace(" inner\r\njoin ",         "\r\ninner join ",         $work);
-    $work = str_replace(" natural\r\nleft join ",  "\r\nnatural left join ",  $work);
-    $work = str_replace(" natural\r\nright join ", "\r\nnatural right join ", $work);
-    $work = str_replace(" left\r\njoin ",          "\r\nleft join ",          $work);
-    $work = str_replace(" right\r\njoin ",         "\r\nright join ",         $work);
-    $work = str_replace(" natural\r\njoin ",       "\r\nnatural join ",       $work);
-    $work = str_replace(" cross\r\njoin ",         "\r\ncross join ",         $work);
-
-    return $work;
-
-  }
 
 ?>

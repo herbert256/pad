@@ -21,7 +21,7 @@
   } else {
     $padData    [$pad] = padDefaultData ();
     $padKey     [$pad] = 999;
-    $padCurrent [$pad] = $padData [$pad] [99];
+    $padCurrent [$pad] = $padData [$pad] [999];
   }
 
   unset ( $padIncludeSet    );

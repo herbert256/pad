@@ -28,6 +28,9 @@
 
   include pad . "options/go/end.php";
 
+  if ( isset ( $padPrm [$pad] ['isolate'] ) )    
+    include pad . 'isolate/end.php';
+
   $pad--;
 
   if ( $pad >= 0 and $padBefore [$pad] == 1 ) 

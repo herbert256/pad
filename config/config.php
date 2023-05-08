@@ -130,14 +130,14 @@
   // Other settings.
 
   $padClientGzip            = FALSE;  // Send the result zipped
-  $padEtag304               = FALSE;  // Send a 304 header, based on the client etag http header
+  $padEtag304               = TRUE;   // Send a 304 header, based on the client etag http header
   $padNoNo                  = FALSE;  // No pad stuff, just plane PHP   
   $padFastLink              = 32;     // Lenght of the FastLink code in the URL
 
-  //No parementer parsing for below tags:
+  //No paramenter parsing for below tags:
   $padPrmNoParse          = [ 'if', 'case', 'while', 'until', 'increment', 'decrement' ];
 
-  $padTables = [];
+  $padTables    = [];
   $padRelations = [];
 
 ?>

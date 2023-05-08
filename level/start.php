@@ -1,10 +1,13 @@
 <?php
 
   include 'setup.php';    
-
+ 
   if ( ! in_array ( $padTag [$pad], $padPrmNoParse  )  )
     include 'parms.php';
-  
+
+  if ( isset ( $padPrm [$pad] ['isolate'] ) )
+    include pad . 'isolate/start.php';
+   
   include 'split.php';
 
   if ( padTagParm ('content') ) $padTrue  [$pad] = include pad . "options/content.php";    
