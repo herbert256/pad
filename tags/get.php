@@ -1,7 +1,7 @@
 <?php
 
-  $padPagTyp = 'get';
+  $padExtTyp = 'get';
    
-  return include 'go/page.php';
+  return include 'go/external.php';
     
 ?>

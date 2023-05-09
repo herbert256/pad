@@ -1,7 +1,15 @@
 <?php
   
-  $padPagTyp = 'include';
+  $padIncPage = padTagParm ( 'page', $padOpt [$pad] [1] );
+  $padIncHtml = padApp . "pages/$padIncPage.html";
+  $padIncPhp  = str_replace ( '.html', '.php', $padIncHtml);
+  $padIncRet  = '';
 
-  return include 'go/page.php';
-   
+  if ( padExists($padIncPhp) )
+    $padIncRet.= "{call '$padIncPhp'}";    
+
+  $padIncRet .= padFileGetContents ($padIncHtml);
+      
+  return $padIncRet;
+
 ?>

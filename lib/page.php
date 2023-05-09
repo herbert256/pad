@@ -50,14 +50,11 @@
   }
 
 
-  function padPageAjax ( $page, $parms=[], $qry ) {
+  function padPageAjax ( $page, $qry ) {
 
     $ajax = 'padAjax' . padRandomString(8);
  
-    $url = $GLOBALS ['padGoPage'] . $page . $qry;
-
-    foreach ( $parms as $padK => $padV )
-      $url .= "&$padK=" . urlencode($padV);
+    $url = $GLOBALS ['padGo'] . $page . $qry;
 
     return <<< END
 <div id="{$ajax}"></div>
@@ -80,36 +77,18 @@ END;
 
   }
 
+  function padPageGet ( $page, $qry ) {
 
-  function padPageInclude ( $page ) {
+    $url = $GLOBALS['padGoExt'] . $page . $qry;
+    
+    $return = padCurlData ($url);
 
-    return padGetHtml ( padApp . "pages/$page.html" , TRUE );
+    $return = str_replace('}', '&close;', $return);
 
-  }
-
-
-  function padPageBuild ( $page, $parms=[] ) {
-
-    include pad . 'page/inits.php'; 
-    include pad . 'page/build.php'; 
-
-    $padHtml [$pad] = $padBase [$pad];    
-
-    return include pad . 'page/exits.php'; 
- 
-  }
-
-
-  function padQuarantine ( $content, $parms=[] ) {
-
-    include pad . 'page/inits.php'; 
-
-    $padHtml [$pad] = $content;    
-
-    return include pad . 'page/exits.php'; 
+    return $return;
 
   }
-
+  
 
   function padTagAsFunction ( $tag, $parms ) {
 
@@ -118,17 +97,6 @@ END;
     $padHtml [$pad] = '{' . $tag . ' ' . $parms . '}';    
 
     return include pad . 'page/exits.php'; 
-
-  }
-
-  function padPageGet ( $page, $parms=[], $qry ) {
-
-    $url = $GLOBALS['padGoPageExternal'] . $page . $qry;
-
-    foreach ( $parms as $key => $val )
-      $url .= "&$key=" . urlencode($val);
-    
-    return padCurlData ($url);
 
   }
 

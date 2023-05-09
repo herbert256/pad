@@ -18,6 +18,9 @@
  
     extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
 
+#    if ( $GLOBALS ['padErrorThrow'] ) 
+#      throw new ErrorException($error, 0, 0, $file, $line);
+
     if ( $GLOBALS ['padErrorAction'] == 'php' ) { 
       trigger_error("$file:$line $error", E_USER_ERROR);
       return FALSE;
@@ -34,6 +37,9 @@
   function padErrorHandler ( $type, $error, $file, $line ) {
  
     if ( error_reporting() & $type ) {
+
+      if ( $GLOBALS ['padErrorThrow'] ) 
+        throw new ErrorException ($error, 0, $type, $file, $line);
 
       set_error_handler ( 'padErrorHandlerError' );
       padErrorGo ( 'ERROR: ' . $error, $file, $line );

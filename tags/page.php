@@ -1,7 +1,7 @@
 <?php
   
-  $padPagTyp = padTagParm ( 'type', 'nested');
+  $padPagTyp = padTagParm ( 'type', 'get' );
    
-  return include 'go/page.php';
+  return include "$padPagTyp.php";
    
 ?>

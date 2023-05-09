@@ -1,6 +1,6 @@
 <?php
 
-  $padPrm [$pad] ['url']   = $padGoPageExternal . trim($padOpt [$pad] [1]);
+  $padPrm [$pad] ['url']   = $padGoExt . trim($padOpt [$pad] [1]);
   $padPrm [$pad] ['cache'] = FALSE;
 
   $padPrm [$pad] ['cookies'] ['padSesID'] = $GLOBALS ['padSesID'];   

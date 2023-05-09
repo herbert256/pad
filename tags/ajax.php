@@ -1,7 +1,7 @@
 <?php
    
-  $padPagTyp = 'ajax';
+  $padExtTyp = 'ajax';
 
-  return include 'go/page.php';
+  return include 'go/external.php';
    
 ?>

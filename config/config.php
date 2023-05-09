@@ -16,6 +16,7 @@
 
   $padErrorLog    = TRUE;   //  Report errors to Apache error log
   $padErrorReport = TRUE;   //  Report errors to the DATA directory
+  $padErrorThrow  = TRUE;   //  Throw exception on error
 
   // Keep track of stuff
 

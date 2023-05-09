@@ -23,7 +23,7 @@
 
   function padRedirect ( $go, $vars=[], $include ) {
 
-    global $padHost, $padGoPageExternal;
+    global $padHost, $padGoExt;
 
     foreach ( $vars as $padK => $padV ) 
       $go .= "&$padK=" . urlencode($padV);
@@ -32,7 +32,7 @@
       $go .= '&padInclude=1';
 
     if ( ! strpos($go, '://') )
-      $go = $padGoPageExternal . $go;
+      $go = $padGoExt . $go;
   
     $go = str_replace('SELF://', "$padHost/", $go);
 

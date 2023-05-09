@@ -595,6 +595,7 @@
 
   }
 
+
   function padSetGlobal ( $name, $value ) {
 
     if ( ! padValidVar($name) ) 
@@ -637,6 +638,55 @@
 
   }
 
+  function padBuildSet () {
+
+    global $pad, $padSet, $padSaveVarsAssemble, $padDeleteVarsAssemble;
+
+    $padSaveVarsAssemble [$pad] = $padDeleteVarsAssemble [$pad] = [];
+
+    foreach ( $padSet [$pad] as $name => $value ) {
+
+      if ( ! padValidVar($name) ) 
+        continue;
+
+      if ( $value === NULL )
+        $value = '';
+
+      if ( array_key_exists($name, $GLOBALS) and ! array_key_exists ($name, $padSaveVarsAssemble [$pad]) )
+        $padSaveVarsAssemble [$pad] [$name] = $GLOBALS [$name];
+
+      if ( ! array_key_exists ($name,  $GLOBALS) )
+        $padDeleteVarsAssemble [$pad] [] = $name;
+      else
+        unset ( $GLOBALS [$name] );
+
+      $GLOBALS [$name] = $value;
+
+    }
+      
+    $padSet [$pad] = [];
+
+  }
+
+
+  function padBuildReset () {
+
+    global $pad, $padSaveVarsAssemble, $padDeleteVarsAssemble;
+
+    foreach ( $padSaveVarsAssemble [$pad] as $key => $value) {
+      if ( isset ( $GLOBALS [$key] ) ) 
+        unset ($GLOBALS [$key] );
+      $GLOBALS [$key] = $value;
+    }
+
+    foreach ( $padDeleteVarsAssemble [$pad] as $key)
+      if ( isset ( $GLOBALS [$key] ) )
+        unset ( $GLOBALS [$key] );
+
+    $padSaveVarsAssemble   [$pad] = [];
+    $padDeleteVarsAssemble [$pad] = [];
+
+  }
 
   function padIgnore ($info) {
 
