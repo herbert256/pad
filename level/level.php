@@ -27,10 +27,6 @@
   if ( ! include 'type.php'              ) return padIgnore ('type');
   if ( ! include 'pair.php'              ) return padIgnore ('pair');;
 
-  try {
-    include 'start.php';
-  } catch (Throwable $padErrorCatch) {
-    padError ( 'Exeption inside tag {' . $padBetween . '}');
-  }
+  include 'start.php';
 
 ?>

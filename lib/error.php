@@ -18,8 +18,9 @@
  
     extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
 
-#    if ( $GLOBALS ['padErrorThrow'] ) 
-#      throw new ErrorException($error, 0, 0, $file, $line);
+    $file     = $file     ?? '???';
+    $line     = $line     ?? '???';
+    $function = $function ?? '???';
 
     if ( $GLOBALS ['padErrorAction'] == 'php' ) { 
       trigger_error("$file:$line $error", E_USER_ERROR);
@@ -37,9 +38,6 @@
   function padErrorHandler ( $type, $error, $file, $line ) {
  
     if ( error_reporting() & $type ) {
-
-      if ( $GLOBALS ['padErrorThrow'] ) 
-        throw new ErrorException ($error, 0, $type, $file, $line);
 
       set_error_handler ( 'padErrorHandlerError' );
       padErrorGo ( 'ERROR: ' . $error, $file, $line );
@@ -63,18 +61,20 @@
 
   function padErrorException ( $e ) {
 
-    $GLOBALS ['padErrorCatch'] = $e;
+    $GLOBALS ['padExceptions'] [] = $e;
 
     set_exception_handler ( 'padErrorExceptionException' );
-    return padErrorGo ( 'EXCEPTION: ' . $e->getMessage() , $e->getFile(), $e->getLine() );
+    padErrorGo ( 'EXCEPTION: ' . $e->getMessage() , $e->getFile(), $e->getLine() );
     restore_exception_handler ();
  
+    return FALSE;
+    
   }
 
  
   function padErrorExceptionException ( $e ) {
 
-    $GLOBALS ['padErrorCatch'] = $e;
+    $GLOBALS ['padExceptions'] [] = $e;
 
     padErrorDump ( $e->getFile() . ':' . $e->getLine() . ' EXCEPTION-EXCEPTION: ' . $e->getMessage() ); 
  
@@ -171,9 +171,27 @@
 
   function padErrorReport ( $info ) {
 
-    global $padPage, $padReqID;
+    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
+    $errorReporting = error_reporting (0);
 
-    padDumpToFile ("errors/$padPage/$padReqID.html", $info);
+    try {
+
+      ob_start ();
+      padDumpGo ( $info );
+      $dump = ob_get_clean ();
+
+    } catch (Throwable $e) {
+  
+      $dump = $info . "\n\n" . $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage(); 
+
+    }
+
+    restore_error_handler ();
+    error_reporting ( $errorReporting );
+
+    $id = $GLOBALS ['padReqID'] ?? uniqid(TRUE);
+
+    padFilePutContents ( 'errors/' . $id . '.html', $dump );
 
   }
 

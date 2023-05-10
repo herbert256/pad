@@ -1,7 +1,7 @@
 <?php
 
 
-  function padDumpToFile ($file, $info='') {
+  function padDumpToFile ( $file, $info='' ) {
 
     ob_start ();
 
@@ -33,6 +33,8 @@
 
     } catch (Throwable $error) {
   
+      $GLOBALS ['padExceptions'] [] = $error;
+
       padDumpProblem ( 'DUMP-CATCH: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
   
     }
@@ -87,9 +89,9 @@
 
   function padDumpProblem ( $error, $file, $line) {
 
-    $org = $error;
+    padDumpCleanErrors ();
 
-    padDumpCleanErrors ($info);
+    $org = $error;
 
     if ( isset ( $GLOBALS ['padErrrorList'] ) )
       foreach ( $GLOBALS ['padErrrorList'] as $list )
@@ -105,23 +107,23 @@
 
     echo ( "<div align=\"left\"><pre>" );
 
-    padDumpFields   ( $php, $lvl, $app, $cfg, $pad, $ids );
-    padDumpInfo     ( $info );
-    padDumpErrors   ( $info );
-    padDumpStack    ();
-    padDumpCatch    ();
-    padDumpLevel    ();
-    padDumpRequest  ();
-    padDumpArray    ( "App variables", $app );
-    padDumpXXX      ( $pad, 'padSeq' );
-    padDumpArray    ( "PAD variables",   $pad );
-    padDumpArray    ( "Level variables", $lvl );
-    padDumpSQL      ();
-    padDumpHeaders  ();
-    padDumpArray    ( "ID's", $ids );
-    padDumpArray    ( 'Configuration', $cfg );
-    padDumpArray    ( 'PHP', $php );
-    padDumpGlobals  ();
+    padDumpFields    ( $php, $lvl, $app, $cfg, $pad, $ids );
+    padDumpInfo      ( $info );
+    padDumpErrors    ( $info );
+    padDumpStack     ();
+    padDumpExeptions ();
+    padDumpLines     ( "ID's", $ids );
+    padDumpLevel     ();
+    padDumpRequest   ();
+    padDumpLines     ( "App variables", $app );
+    padDumpXXX       ( $pad, 'padSeq' );
+    padDumpLines     ( "PAD variables",   $pad );
+    padDumpLines     ( "Level variables", $lvl );
+    padDumpSQL       ();
+    padDumpHeaders   ();
+    padDumpLines     ( 'Configuration', $cfg );
+    padDumpLines     ( 'PHP', $php );
+    padDumpGlobals   ();
 
     echo ( "</pre></div>" );
 
@@ -168,7 +170,7 @@
   }  
 
 
-  function padDumpCleanErrors ($info) {
+  function padDumpCleanErrors () {
 
     if ( ! isset ( $GLOBALS ['padErrrorList'] ) )
       return;
@@ -182,34 +184,32 @@
   }
 
 
-  function padDumpCatch ( ) {
+  function padDumpStack () {
 
-    if ( ! isset ( $GLOBALS ['padErrorCatch'] ) )
+    if ( isset ( $GLOBALS ['padExceptions'] ) )
+      $info = ' - debug_backtrace()';
+    else
+      $info = '';
+
+    padDumpStackGo ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS), $info );
+
+    if ( ! isset ( $GLOBALS ['padExceptions'] ) )
       return;
 
-    global $padErrorCatch;
+    foreach ( $GLOBALS ['padExceptions'] as $exception )
+      padDumpStackGo ( $exception->getTrace(), ' - exception' );
 
-    padDumpCatchStack ( $padErrorCatch->getTrace() );
-
-    $pad = htmlentities ( print_r ( $padErrorCatch, TRUE ) ) ;
-    $pad = preg_replace("/[\n]\(/", "", $pad);
-    $pad = preg_replace("/[\n]\\)/", "", $pad);
-    $pad = substr($pad, 0,-1);
-
-    echo ( "\n<b>Exception</b>\n  $pad\n");
-
-  } 
+  }
 
 
-  function padDumpCatchStack ( $stack ) {
+  function padDumpExeptions ( ) {
 
-    echo ( "<b>Stack</b>\n");
-    
-    foreach ( $stack as $key => $trace ) {
-      extract ( $trace );
-      echo ( "    $file:$line - $function\n");
-    }
-    
+    if ( ! isset ( $GLOBALS ['padExceptions'] ) )
+      return;
+
+    foreach ( $GLOBALS ['padExceptions'] as $exception )
+      padDumpLines ( 'Exception', $exception );
+
   } 
 
 
@@ -224,35 +224,18 @@
       }   
 
     if ( count ($wrk) )
-      padDumpArray ( $prefix, $wrk );
+      padDumpLines ( $prefix, $wrk );
 
-  }
-
-
-  function padDumpStack () {
-
-    if ( isset ( $GLOBALS ['padErrorCatch'] ) )
-      return;
-
-    $padDebugBacktrace = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS);
-
-    echo ( "<b>Stack</b>\n");
-    
-    foreach ( $padDebugBacktrace as $key => $trace ) {
-      extract ( $trace );
-      echo ( "    $file:$line - $function\n");
-    }
-    
   }
 
 
   function padDumpSQL () {
 
     if ( isset ( $GLOBALS ['padSqlConnect'     ] ) ) 
-      padDumpObject ('MySQL-App', $GLOBALS ['padSqlConnect']      );
+      padDumpLines ('MySQL-App', $GLOBALS ['padSqlConnect']      );
     
     if ( isset ( $GLOBALS ['padPadSqlConnect' ] ) ) 
-      padDumpObject ('MySQL-pad', $GLOBALS ['padPadSqlConnect']  );
+      padDumpLines ('MySQL-pad', $GLOBALS ['padPadSqlConnect']  );
 
   }
 
@@ -262,9 +245,9 @@
     $out = headers_list ();
     $pad = $GLOBALS ['padHeaders'] ?? [];
 
-                          padDumpArray ('Headers-in',  getallheaders() );
-    if ( count ( $out ) ) padDumpArray ('Headers-out', $out            );
-    if ( count ( $pad ) ) padDumpArray ('Headers-PAD', $pad            );
+                          padDumpLines ('Headers-in',  getallheaders() );
+    if ( count ( $out ) ) padDumpLines ('Headers-out', $out            );
+    if ( count ( $pad ) ) padDumpLines ('Headers-PAD', $pad            );
 
   }
 
@@ -272,7 +255,7 @@
   function padDumpRequest () {
 
     if ( isset ( $_REQUEST ) and count ( $_REQUEST ) )
-      padDumpArray ('Request variables', $_REQUEST);
+      padDumpLines ('Request variables', $_REQUEST);
 
   }
 
@@ -285,91 +268,13 @@
       return;
 
     for ( $lvl=$pad; $lvl>=0; $lvl-- )
-      padDumpArray (" Level: $lvl", padDumpGetLevel ($lvl) );
+      padDumpLines (" Level: $lvl", padDumpGetLevel ($lvl) );
 
     if ( isset ( $GLOBALS ['padData'] ) and is_array ( $GLOBALS ['padData'] ) )
       for ( $lvl=$pad; $lvl>0; $lvl-- )
         if ( isset ($GLOBALS ['padData'][$lvl]) )
-          padDumpArray ('Level '.$lvl, $GLOBALS ['padData'][$lvl] );
+          padDumpLines ('Level '.$lvl, $GLOBALS ['padData'][$lvl] );
     
-  }
-
-  function padDumpGlobals () {
-
-    echo ( "\n<b>GLOBALS</b>\n" );
-
-    echo htmlentities ( print_r ( $GLOBALS, TRUE ) );
-
-  }
-
-
-  function padDumpShort ($G) {
-  
-    if ( $G === NULL)
-      $G = '';
-  
-    return substr ( preg_replace('/\s+/', ' ', $G ), 0, 150 );
-  
-  }  
-
-
-  function padDumpSanitize ($array) {
-
-    foreach ($array as $key => $val)
-      if ( $key == 'GLOBALS' )
-        $array [$key] = '*** GLOBALS ***';
-      elseif ( is_array ($val) )
-        $array [$key] = padDumpSanitize ($val);
-      elseif ( is_object($val) )
-        $array [$key] = padDumpSanitize ( padToArray($array [$key]) );
-      elseif ( is_resource($val) )
-        $array [$key] = padDumpSanitize ( padToArray($array [$key]) );
-      else
-        $array [$key] = padDumpShort ( $val );
-
-    return $array;
-
-  }
-
-
-  function padDumpArray ( $txt, $arr ) {
-
-    if ( ! is_array($arr) ) {
-      echo ( "\n  [$txt] => [todo, not array] \n");
-      return;
-    }
-
-    echo ( "\n<b>$txt</b>");
-
-    if ( ! count ($arr )) {
-      echo ( "\n");
-      return;
-    }
-
-    $arr = padDumpSanitize ($arr);
-
-    $pad = htmlentities ( print_r ( $arr, TRUE ) ) ;
-
-    $pad = str_replace(" =&gt; Array\n" ,"\n", $pad);
-    $pad = str_replace(")\n\n" ,")\n", $pad);
-    $pad = preg_replace("/[\n]\s+\(/", "", $pad);
-    $pad = preg_replace("/[\n]\s+\)/", "", $pad);
-    $pad = str_replace("&lt;/address&gt;\n", "&lt;/address&gt;", $pad);
-
-    echo ( "\n" . substr($pad, 8, strlen($pad) - 10));
-
-  }
-
-
-  function padDumpObject ( $txt, $obj) {
-
-    $pad = htmlentities ( print_r ( $obj, TRUE ) ) ;
-    $pad = preg_replace("/[\n]\(/", "", $pad);
-    $pad = preg_replace("/[\n]\\)/", "", $pad);
-    $pad = substr($pad, 0,-1);
-
-    echo ( "\n  [$txt] $pad");
-
   }
 
 
@@ -452,6 +357,87 @@
     ksort($pad);
 
   }
+
+
+  function padDumpClean ( &$array ) {
+
+    foreach ( $array as $key => $value )
+      if ( is_array ($value) ) 
+         padDumpClean ( $array [$key] );
+      elseif ( is_scalar ($value) )
+        $array [$key] = padDumpShort ($value);
+
+  }
+
+
+  function padDumpGlobals ( ) {
+
+    echo ( "\n<b>GLOBALS</b>\n");
+
+    echo htmlentities ( print_r ( $GLOBALS, TRUE ) );
+ 
+  }
+
+
+  function padDumpLines ( $info, $source ) {
+
+    if ( is_array ($source) and ! count($source) )
+      return;
+
+    if ( is_array($source) )
+      padDumpClean ($source);
+
+    echo ( "\n<b>$info</b>\n");
+
+    $lines = explode ( "\n", htmlentities ( print_r ( $source, TRUE ) ) );
+
+    foreach ( $lines as $value )  {
+
+      if ( ! trim($value)          ) continue;
+      if ( trim($value) == '('     ) continue;
+      if ( trim($value) == ')'     ) continue;
+      if ( trim($value) == 'Array' ) continue;
+
+      $value = str_replace ( '=&gt; Array', '', $value );
+
+      echo "  $value\n";
+   
+    }
+
+  } 
+
+
+  function padDumpStackGo ( $stack, $info ) {
+
+    echo ( "<b>Stack$info</b>\n");
+    
+    foreach ( $stack as $key => $trace ) {
+
+      extract ( $trace );
+
+      $file     = $file     ?? '???';
+      $line     = $line     ?? '???';
+      $function = $function ?? '???';
+
+      echo ( "    $file:$line - $function\n");
+
+      unset ($file);
+      unset ($line);
+      unset ($function);
+
+    }
+    
+  } 
+
+
+  function padDumpShort ($G) {
+  
+    if ( $G === NULL)
+      $G = '';
+  
+    return substr ( preg_replace('/\s+/', ' ', $G ), 0, 150 );
+  
+  }  
 
 
 ?>
