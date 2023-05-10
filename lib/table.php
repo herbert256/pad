@@ -1,4 +1,4 @@
-  <?php
+<?php
  
  
   function padTable ( $table, $unionBuild = 0 ) {

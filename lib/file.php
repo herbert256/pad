@@ -11,6 +11,16 @@
   }
 
 
+  function padIsDir ( $dir ) {
+
+    if ( ! padFileValidName ( $dir ) )
+      return FALSE;
+    else
+      return is_dir ( $dir );
+
+  }
+
+
   function padFileGetContents ( $file ) {
 
     if ( ! padFileValidName ( $file ) )

@@ -13,7 +13,6 @@
       padTrackFileRequest ();
 
     padCloseSession ();
-    padEmptyBuffers ();
 
     if ( ! isset($GLOBALS ['padSent']) )
       padSend ($stop);
