@@ -1,6 +1,6 @@
 <?php
   
-  $padIncPage = padTagParm ( 'page', $padOpt [$pad] [1] );
+  $padIncPage = padPageGetName ();
   $padIncHtml = padApp . "pages/$padIncPage.html";
   $padIncPhp  = str_replace ( '.html', '.php', $padIncHtml);
   $padIncRet  = '';

@@ -10,7 +10,4 @@
     if ( isset ( $GLOBALS [$padK] ) )
       unset ( $GLOBALS [$padK] );
 
-  $padSaveVarsAssemble   [$pad] = [];
-  $padDeleteVarsAssemble [$pad] = [];
-
 ?>

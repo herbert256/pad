@@ -133,7 +133,7 @@
 
   function padIsXXXFile ( $file ) {;
 
-    if ( padFileValidName ( $file ) )
+    if ( padValidFile ( $file ) )
       if  ( ( padExists ($file) and ! is_dir($file) ) or padExists ("$file.html") or padExists ("$file.php") )
         return TRUE;
 
@@ -145,7 +145,7 @@
 
     $file = padApp . "data/$file";
 
-    if ( padFileValidName ( $file ) )
+    if ( padValidFile ( $file ) )
       if  ( ( padExists ($file) and ! is_dir($file) ) 
         or padExists ("$file.xml") or padExists ("$file.json") or padExists ("$file.yaml") 
         or padExists ("$file.csv") or padExists ("$file.php") )
@@ -369,54 +369,6 @@
   }
 
 
-  function padValid ($name) {
-
-    if ( trim($name) == '' ) 
-      return FALSE;
-
-    if ( ! preg_match('/^[a-zA-Z][:#a-zA-Z0-9_]*$/',$name) )
-      return FALSE;
-
-    return TRUE;  
-
-  }
-
-  function padValidVar ($name) {
-
-    if ( trim($name) == '' )                                 return FALSE;
-    if ( substr($name, 0, 3) == 'pad' )                      return FALSE;
-    if ( ! preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/',$name) )  return FALSE;
-
-    return TRUE;  
-
-  }
-
-  function padValidType ($name) {
-
-    if ( trim($name) == '' ) 
-      return FALSE;
-
-    if ( ! preg_match('/^[a-zA-Z][a-zA-Z]*$/',$name) )
-      return FALSE;
-
-    return TRUE;  
-
-  }
-  
-
-  function padValidTag ($name) {
-
-    if ( trim($name) == '' ) 
-      return FALSE;
-
-    if ( ! preg_match('/^[a-zA-Z][a-zA-Z0-9:#_\.\/]*$/',$name) )
-      return FALSE;
-
-    return TRUE;  
-
-  }
-
-
   function padUnescape ( $string ) {
     return str_replace ( ['&open;','&close;','&pipe;', '&eq;','&comma;'], ['{','}','|','=',','], $string );
   }
@@ -504,6 +456,17 @@
   }
 
 
+  function padTagAsFunction ( $tag, $parms ) {
+
+    include pad . 'page/inits.php'; 
+
+    $padHtml [$pad] = '{' . $tag . ' ' . $parms . '}';    
+
+    return include pad . 'page/exits.php'; 
+
+  }
+
+  
   function padFunctionInTag ( $type, $name, $self, $parm ) {
 
     if ( $type )

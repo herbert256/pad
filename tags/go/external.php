@@ -3,7 +3,8 @@
   $padExtIncl = padTagParm ( 'include', $padInclude        );
   $padExtMode = padTagParm ( 'mode',    $padBuildMode      );
   $padExtMrg  = padTagParm ( 'merge',   $padBuildMerge     );
-  $padExtPag  = padTagParm ( 'page',    $padOpt [$pad] [1] );
+
+  $padExtPag  = padPageGetName ();
   
   $padExtQry  = "&padInclude=$padExtIncl&padBuildMode=$padExtMode&padBuildMerge=$$padExtMrg";
 

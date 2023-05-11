@@ -3,7 +3,7 @@
 
   function padExists ( $file ) {
 
-    if ( ! padFileValidName ( $file ) )
+    if ( ! padValidFile ( $file ) )
       return FALSE;
     else
       return file_exists ( $file );
@@ -13,7 +13,7 @@
 
   function padIsDir ( $dir ) {
 
-    if ( ! padFileValidName ( $dir ) )
+    if ( ! padValidFile ( $dir ) )
       return FALSE;
     else
       return is_dir ( $dir );
@@ -23,7 +23,7 @@
 
   function padFileGetContents ( $file ) {
 
-    if ( ! padFileValidName ( $file ) )
+    if ( ! padValidFile ( $file ) )
       return padError ("Invalid file name: $file");
     
     if ( ! padExists($file) )
@@ -40,7 +40,7 @@
     
     $file = padData . str_replace(':', '_', $in);
 
-    if ( ! padFileValidName ( $file ) )
+    if ( ! padValidFile ( $file ) )
       return padError ("Invalid file name: $file");
 
     padFileChkDir  ( $file );
@@ -53,23 +53,6 @@
       if ($append) file_put_contents ($file, "$data\n", LOCK_EX | FILE_APPEND);
       else         file_put_contents ($file, $data,     LOCK_EX);
     
-  }
-
-
-  function padFileValidName ( $file ) {
-
-    if ( ! preg_match ('/^[A-Za-z0-9\.\/_-]+$/', $file) ) return FALSE;
-    if ( strpos($file, '//') !== FALSE )                  return FALSE;
-    if ( strpos($file, '..') !== FALSE )                  return FALSE;
-    if ( strpos($file, '/.') !== FALSE )                  return FALSE;
-    if ( strpos($file, './') !== FALSE )                  return FALSE;
-
-    if ( str_starts_with($file, pad)     ) return TRUE;
-    if ( str_starts_with($file, padApp)  ) return TRUE;
-    if ( str_starts_with($file, padData) ) return TRUE;
-
-    return FALSE;
-
   }
 
 

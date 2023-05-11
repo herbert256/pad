@@ -1,22 +1,59 @@
 <?php
 
 
+  function padPageGetName () {
+
+    global $pad, $padPage, $padOpt;
+
+    $now = $padPage;
+    $new = padTagParm ( 'page', $padOpt [$pad] [1] ); 
+
+    if ( ! $now ) return 'examples';
+    if ( ! $new ) return 'examples';
+
+    if ( str_starts_with ( $new, '/') ) {
+      $chk = substr($new, 1);    
+      if ( padPageCheck ( $chk ) )
+        return padPageSet ( $chk );
+    }
+
+    if ( str_starts_with ( $new, './') ) {
+      $chk = substr($now, 0, strrpos($now, '/')) . '/' . substr ( $new, 2);
+      if ( padPageCheck ( $chk ) )
+        return padPageSet ( $chk );
+    }
+
+    if ( strrpos($now, '/') !== FALSE ) {
+      $chk = substr($now, 0, strrpos($now, '/')) . '/' . $new;
+      if ( padPageCheck ( $chk ) )
+         return padPageSet ( $chk );
+     }
+     
+    if ( strrpos($now, '/') === FALSE ) {
+      $chk = $new;
+      if ( padPageCheck ( $chk ) )
+         return padPageSet ( $chk ); 
+    }
+
+    $chk = $new;
+    if ( padPageCheck ( $chk ) )
+      return padPageSet ( $chk ); 
+
+    return padPageSet ( 'examples' );
+  
+  }
+
+
   function padPageCheck ( $page ) {
 
-    if ( ! preg_match ( '/^[a-zA-Z][a-zA-Z0-9_\/]*$/', $page ) )  return FALSE;
-    if ( trim($page) == '' )                                      return FALSE;
-    if ( strpos($page, '//') !== FALSE)                           return FALSE;
-    if ( substr($page, -1) == '/')                                return FALSE;
+    if ( ! padValidPage ($page) )
+      return FALSE;
 
     $location = padApp . "pages";
     $part     = padExplode ($page, '/');
     
     foreach ($part as $key => $value) {
       
-      if ($value == '_lib')   return FALSE;
-      if ($value == '_inits') return FALSE;
-      if ($value == '_exits') return FALSE;
-
       if ( $key == array_key_last($part)
             and (padExists("$location/$value.php") or padExists("$location/$value.html") ) )
         return TRUE; 
@@ -77,6 +114,7 @@ END;
 
   }
 
+
   function padPageGet ( $page, $qry ) {
 
     $url = $GLOBALS['padGoExt'] . $page . $qry;
@@ -89,16 +127,5 @@ END;
 
   }
   
-
-  function padTagAsFunction ( $tag, $parms ) {
-
-    include pad . 'page/inits.php'; 
-
-    $padHtml [$pad] = '{' . $tag . ' ' . $parms . '}';    
-
-    return include pad . 'page/exits.php'; 
-
-  }
-
 
 ?>
