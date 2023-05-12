@@ -8,8 +8,8 @@
     $now = $padPage;
     $new = padTagParm ( 'page', $padOpt [$pad] [1] ); 
 
-    if ( ! $now ) return 'examples';
-    if ( ! $new ) return 'examples';
+    if ( ! $now ) return 'examples/dummy';
+    if ( ! $new ) return 'examples/dummy';
 
     if ( str_starts_with ( $new, '/') ) {
       $chk = substr($new, 1);    
@@ -39,7 +39,7 @@
     if ( padPageCheck ( $chk ) )
       return padPageSet ( $chk ); 
 
-    return padPageSet ( 'examples' );
+    return 'examples/dummy';
   
   }
 
