@@ -5,6 +5,6 @@
   if ( isset ( $padDataStore [$padCheck] ) )
     return $padDataStore [$padCheck];
 
-  return padMakeData ( $padCheck );
+  return padData ( $padCheck );
 
 ?>

@@ -1,7 +1,7 @@
 <?php
 
   $padTagParmsResult = $GLOBALS ['padPrm'] [$padIdx];
-  $padTagParmsResult = padMakeData ($padTagParmsResult, '', 'parm');
+  $padTagParmsResult = padData ($padTagParmsResult, '', 'parm');
 
   return $padTagParmsResult;
 

@@ -1,6 +1,6 @@
 <?php
 
-  function padMakeData ($input, $content='', $name='') {
+  function padData ($input, $content='', $name='') {
 
     if     ( $input === NULL           ) $data = [];
     elseif ( $input === FALSE          ) $data = [];

@@ -24,7 +24,7 @@
     if ( ! padIsDefaultData ( $padData [$pad] ) )
       $padStoreData = $padData [$pad];
     else
-      $padStoreData = padMakeData ($padStoreSource, padTagParm('type'), $padName [$pad]);
+      $padStoreData = padData ($padStoreSource, padTagParm('type'), $padName [$pad]);
 
   } elseif ( $padTag [$pad] == 'flag' ) {
 

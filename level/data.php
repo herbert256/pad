@@ -14,7 +14,7 @@
 
     $padData [$pad] = $padTagResult;
 
-  $padData [$pad] = padMakeData ( $padData [$pad] );   
+  $padData [$pad] = padData ( $padData [$pad] );   
 
   $padDefault [$pad] = padIsDefaultData ( $padData [$pad] );
 

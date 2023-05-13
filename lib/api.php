@@ -21,7 +21,7 @@
   }
 
 
-  function padRedirect ( $go, $vars=[], $include ) {
+  function padRedirect ( $go, $vars=[], $include='' ) {
 
     global $padHost, $padGoExt;
 

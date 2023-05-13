@@ -173,7 +173,7 @@
     if ( $name and ! $GLOBALS ['padName'] [$GLOBALS['pad']] )
       $GLOBALS ['padName'] [$GLOBALS['pad']] = $name;
 
-    return padMakeData ( $data, $ext, $name );
+    return padData ( $data, $ext, $name );
 
   }
 

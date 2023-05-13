@@ -1,15 +1,19 @@
 <?php
 
 
-  function padPageGetName () {
+  function padPageGetName ( $page = '' ) {
 
     global $pad, $padPage, $padOpt;
 
     $now = $padPage;
-    $new = padTagParm ( 'page', $padOpt [$pad] [1] ); 
 
-    if ( ! $now ) return 'examples/dummy';
-    if ( ! $new ) return 'examples/dummy';
+    if ( $page )
+      $new = $page;
+    else
+      $new = padTagParm ( 'page', $padOpt [$pad] [1] ); 
+
+    if ( ! $new ) 
+      return 'examples/dummy';
 
     if ( str_starts_with ( $new, '/') ) {
       $chk = substr($new, 1);    
