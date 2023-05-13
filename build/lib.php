@@ -6,8 +6,14 @@
 
     $padBuildNow .= "/$padBuildValue";
 
-    if ( is_dir ($padBuildNow) )
-      $padBase [$pad] .= padGetHtml ( "$padBuildNow/_lib.html", TRUE );
+    if ( is_dir ($padBuildNow) ) {
+
+      if ( padExists ("$padBuildNow/_lib.php") )
+        include_once "$padBuildNow/_lib.php";
+
+      $padBase [$pad] .= padGetHtml ( "$padBuildNow/_lib.html", FALSE );
+ 
+    }
     
   }
 
