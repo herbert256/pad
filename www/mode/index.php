@@ -12,9 +12,11 @@
   //
   //  ============================================================================
 
-  define ( 'pad',     '/home/herbert/pad/'           ); // Home of PAD itself
-  define ( 'padApp',  '/home/herbert/pad/apps/mode/' ); // The PAD application files
-  define ( 'padData', '/home/herbert/data/'          ); // Data locaction, used for logs/cache/errors/etc.
+  $home = ( $_SERVER ['HTTP_HOST'] == 'penguin.linux.test' ) ? 'home' : 'Users';
+
+  define ( 'pad',     "/$home/herbert/pad/"           ); // Home of PAD itself
+  define ( 'padApp',  "/$home/herbert/pad/apps/mode/" ); // The PAD application files
+  define ( 'padData', "/$home/herbert/data/"          ); // Data locaction, used for logs/cache/errors/etc.
   
   include pad . 'start.php';
 

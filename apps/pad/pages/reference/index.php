@@ -79,6 +79,7 @@
  
     }
 
+    ksort ( $items );
     return $items;
 
   }

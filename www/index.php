@@ -12,10 +12,7 @@
   //
   //  ============================================================================
 
-  if ( $_SERVER ['HTTP_HOST'] == 'penguin.linux.test' )
-    $home = 'home';
-  else
-    $home = 'Users';
+  $home = ( $_SERVER ['HTTP_HOST'] == 'penguin.linux.test' ) ? 'home' : 'Users';
 
   define ( 'pad',     "/$home/herbert/pad/"          ); // Home of PAD itself
   define ( 'padApp',  "/$home/herbert/pad/apps/pad/" ); // The PAD application files
