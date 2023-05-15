@@ -4,7 +4,6 @@
   include pad . 'page/set_start.php';
   include pad . 'page/seq_start.php';
   include pad . 'page/setup.php';
-  include pad . 'level/setup.php';
 
   $padBase  [$pad] = $padTrue  [$pad-1];    
   $padTrue  [$pad] = $padTrue  [$pad-1];   

@@ -4,8 +4,6 @@
   $padBuildModeSet   = $padBuildMode;
   $padBuildMergeSet  = $padBuildMerge; 
 
-  $padPage = $page;
-
   include pad . 'build/build.php'; 
 
   $padData [$pad]     = [];

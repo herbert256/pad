@@ -601,55 +601,48 @@
 
   }
 
-  function padBuildSet () {
+  function padSetSet ( $name, $value ) {
 
-    global $pad, $padSet, $padSaveVarsAssemble, $padDeleteVarsAssemble;
+    if ( ! padValidVar($name) ) 
+      return;
 
-    $padSaveVarsAssemble [$pad] = $padDeleteVarsAssemble [$pad] = [];
+    if ( $value === NULL )
+      $value = '';
 
-    foreach ( $padSet [$pad] as $name => $value ) {
+    global $pad, $padSaveSet, $padDeleteSet;
+    
+    if ( array_key_exists($name, $GLOBALS) and ! array_key_exists ($name, $padSaveSet [$pad]) )
+      $padSaveSet [$pad] [$name] = $GLOBALS [$name];
 
-      if ( ! padValidVar($name) ) 
-        continue;
+    if ( ! array_key_exists ($name,  $GLOBALS) )
+      $padDeleteSet [$pad] [] = $name;
+    else
+      unset ( $GLOBALS [$name] );
 
-      if ( $value === NULL )
-        $value = '';
-
-      if ( array_key_exists($name, $GLOBALS) and ! array_key_exists ($name, $padSaveVarsAssemble [$pad]) )
-        $padSaveVarsAssemble [$pad] [$name] = $GLOBALS [$name];
-
-      if ( ! array_key_exists ($name,  $GLOBALS) )
-        $padDeleteVarsAssemble [$pad] [] = $name;
-      else
-        unset ( $GLOBALS [$name] );
-
-      $GLOBALS [$name] = $value;
-
-    }
-      
-    $padSet [$pad] = [];
+    $GLOBALS [$name] = $value;
 
   }
 
 
-  function padBuildReset () {
+  function padSetReset () {
 
-    global $pad, $padSaveVarsAssemble, $padDeleteVarsAssemble;
+    global $pad, $padSaveSet, $padDeleteSet;
 
-    foreach ( $padSaveVarsAssemble [$pad] as $key => $value) {
+    foreach ( $padSaveSet [$pad] as $key => $value) {
       if ( isset ( $GLOBALS [$key] ) ) 
         unset ($GLOBALS [$key] );
       $GLOBALS [$key] = $value;
     }
 
-    foreach ( $padDeleteVarsAssemble [$pad] as $key)
+    foreach ( $padDeleteSet [$pad] as $key)
       if ( isset ( $GLOBALS [$key] ) )
         unset ( $GLOBALS [$key] );
 
-    $padSaveVarsAssemble   [$pad] = [];
-    $padDeleteVarsAssemble [$pad] = [];
+    $padSaveSet   [$pad] = [];
+    $padDeleteSet [$pad] = [];
 
   }
+
 
   function padIgnore ($info) {
 

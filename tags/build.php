@@ -1,27 +1,12 @@
 <?php
  
-  if ( $padWalk [$pad] == 'start' ) {
+include pad . 'page/start.php';
+include pad . 'build/build.php';    
 
-    padBuildSet ();
+$pad--;
 
-    include pad . 'page/start.php';
-    include pad . 'level/setup.php';
-    include pad . 'build/build.php';    
+include pad . 'page/end.php'; 
 
-    $pad--;
-
-    include pad . 'page/end.php'; 
-
-    $padWalk [$pad] = 'end';
-
-    return $padBase [$pad+1];
-
-  } else {
-
-    padBuildReset ();
-
-    return TRUE;
-
-  }
+return $padBase [$pad+1];
 
 ?>

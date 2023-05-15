@@ -12,4 +12,6 @@
   $padTrueSet    = '';
   $padPrmTypeSet = 'none';
 
+  include pad . 'level/setup.php';
+
 ?>
