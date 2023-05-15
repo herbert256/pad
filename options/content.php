@@ -1,10 +1,16 @@
 <?php
 
-  $padContentGo = padTagParm('content');
+  if ( ! padIsContentFile ($padContentGo) )
+    return padMakeContent ( $padContentGo );
 
-  if ( isset ( $padContentStore [$padContentGo] ) )
-    return $padContentStore [$padContentGo];
-  
-  return include 'go/content.php';
+  $padContentGo = padApp . "content/$padContentGo";
+
+  if ( substr($padContentGo , -4) == '.php' )
+    return "{call '$padContentGo'}";    
+
+  if ( substr($padContentGo , -5) == '.html' )
+    return padFileGetContents ($padContentGo);    
+
+  return padGetHtml ( "$padContentGo.html" , TRUE);
 
 ?>

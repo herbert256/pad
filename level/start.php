@@ -22,10 +22,10 @@
   include 'base.php';
   include 'data.php';
 
-  include pad . "options/go/start.php";
+  include pad . "options/start.php";
 
   if ( count ( $padOptionsApp [$pad] ) )
-    include pad . "options/go/app.php";
+    include pad . "options/app.php";
 
   include 'name.php';
   

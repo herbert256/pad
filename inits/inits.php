@@ -6,7 +6,7 @@
   include 'ids.php';
   include 'config.php';;
   include 'nono.php';
-  include 'fast.php';
+  #include 'fast.php';
   include 'error.php';
   include 'cookies.php';
   include 'zip.php';

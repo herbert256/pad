@@ -16,7 +16,7 @@ mysql < /home/$usr/pad/install/database.sql
 mysql < /home/$usr/pad/cache/cache.sql
 
 mysql < /home/$usr/pad/apps/pad/config/demo.sql
-mysql < /home/$usr/pad/apps/pad/pages/miscellaneous/ClassicModels/database/classicmodels.sql
+mysql < /home/$usr/pad/apps/pad/miscellaneous/ClassicModels/database/classicmodels.sql
 
 service apache2 stop
 service apache2 start

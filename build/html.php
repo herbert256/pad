@@ -1,7 +1,7 @@
 <?php
 
   $padBase [$pad] .= '@pad@';
-  $padBuildNow     = substr(padApp, 0, -1);  
+  $padBuildNow     = $padBuildBas;  
 
   foreach ($padBuildMrg as $padBuildKey => $padBuildValue) {
 
@@ -11,7 +11,7 @@
 
       $padBuildHtml = padGetHtml ( "$padBuildNow.html" );
 
-    elseif ( is_dir ($padBuildNow) ) {
+    else {
 
       $padBuildInits = str_replace ( '@content@', '@pad@', padGetHtml ( "$padBuildNow/_inits.html" ) );
       $padBuildExits = str_replace ( '@content@', '@pad@', padGetHtml ( "$padBuildNow/_exits.html" ) );
@@ -27,12 +27,12 @@
       else
         $padBuildHtml = $padBuildInits . $padBuildExits ;
 
-    } else
-
-      $padBuildHtml = padGetHtml ( "$padBuildNow.html" );
+    } 
 
     $padBase [$pad] = str_replace ( '@pad@', $padBuildHtml, $padBase [$pad] );
 
   }
+
+  $padBuildHtml = '';
 
 ?>

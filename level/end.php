@@ -26,7 +26,7 @@
   if ( $padBefore [$pad] == 2 ) 
     include 'split/before3.php';
 
-  include pad . "options/go/end.php";
+   include pad . "options/end.php";
 
   if ( isset ( $padPrm [$pad] ['isolate'] ) )    
     include pad . 'isolate/end.php';

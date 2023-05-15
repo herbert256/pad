@@ -1,10 +1,12 @@
 <?php
 
-  $padCheck = padTagParm('data');
+  $padMakeType = $padOptionName;
+  $padMakeFile = $padPrm [$pad] [$padOptionName];
 
-  if ( isset ( $padDataStore [$padCheck] ) )
-    return $padDataStore [$padCheck];
+  $padData [$pad] = padData ("$padMakeFile.$padMakeType", $padMakeType, $padMakeFile);
 
-  return padData ( $padCheck );
+  $padForceName = $padMakeFile;
+
+  return TRUE;
 
 ?>

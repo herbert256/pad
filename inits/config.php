@@ -2,7 +2,7 @@
 
   include pad . 'config/config.php';
 
-  if ( padExists ( padApp . 'config/config.php' ) )
-    include padApp . 'config/config.php';
+  if ( padExists ( padApp . '_config/config.php' ) )
+    include padApp . '_config/config.php';
 
 ?>

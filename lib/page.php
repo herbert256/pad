@@ -53,38 +53,38 @@
     if ( ! padValidPage ($page) )
       return FALSE;
 
-    $location = padApp . "pages";
+    $location = padApp;
     $part     = padExplode ($page, '/');
-    
+
     foreach ($part as $key => $value) {
       
       if ( $key == array_key_last($part)
-            and (padExists("$location/$value.php") or padExists("$location/$value.html") ) )
+            and (padExists("$location$value.php") or padExists("$location$value.html") ) )
         return TRUE; 
 
-      if ( is_dir ("$location/$value") )
-        $location.= "/$value";
+      if ( is_dir ("$location$value") )
+        $location .= "$value/";
       else
         return FALSE;
       
     }
     
-    return ( padExists("$location/index.php") or padExists("$location/index.html") );
+    return ( padExists("$location"."index.php") or padExists("$location"."index.html") );
     
   }
 
 
   function padPageSet ( $page ) {
 
-    $location = padApp . "pages";
+    $location = padApp;
     $part     = padExplode ($page, '/');
     
     foreach ($part as $key => $value)
       if ( $key == array_key_last($part)
-            and (padExists("$location/$value.php") or padExists("$location/$value.html") ) )
+            and (padExists("$location$value.php") or padExists("$location$value.html") ) )
         return $page; 
-      elseif ( is_dir ("$location/$value") )
-        $location.= "/$value";
+      elseif ( is_dir ("$location$value") )
+        $location.= "$value/";
    
     return "$page/index";
 

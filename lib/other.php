@@ -121,7 +121,7 @@
 
   function padIsPagesFile ( $file ) {
 
-    return padIsXXXFile ( padApp . "pages/$file" );
+    return padIsXXXFile ( padApp . $file );
 
   }
 
@@ -858,6 +858,8 @@
 
 
   function padGetHtml ($file, $call=false) {
+
+#    echo "$file<br>";
 
     global $padBuildMode;
 

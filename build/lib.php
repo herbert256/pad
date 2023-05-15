@@ -1,6 +1,6 @@
 <?php
 
-  $padBuildNow = substr(padApp, 0, -1);  
+  $padBuildNow = $padBuildBas;  
 
   foreach ($padBuildMrg as $padBuildKey => $padBuildValue) {
 

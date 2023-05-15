@@ -102,11 +102,24 @@
 
   }
 
+  function padDumpXdebug ( ) {
+
+    if ( ! isset ( $GLOBALS ['padExceptions'] ) )
+      return;
+
+    foreach ( $GLOBALS ['padExceptions'] as $exception )
+      if ( isset ( $exception->xdebug_message ) )
+        echo '<table>' . $exception->xdebug_message . '</table>' ;
+
+  } 
+
 
   function padDumpGo ($info) {
 
+
     echo ( "<div align=\"left\"><pre>" );
 
+    padDumpXdebug ( );
     padDumpFields    ( $php, $lvl, $app, $cfg, $pad, $ids );
     padDumpInfo      ( $info );
     padDumpErrors    ( $info );
@@ -315,7 +328,7 @@
 
     $chk1 = [ '_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
 
-    $chk2 = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padName','padData','padCurrent','padKey','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padSaveVars','padDeleteVars','padSetSave','padSetDelete','padTagCnt', 'padAfter', 'padBefore', 'padBeforeData', 'padEndOptions', 'padPrmType', 'padSet', 'padGiven'];
+    $chk2 = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padName','padData','padCurrent','padKey','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padSaveVars','padDeleteVars','padSetSave','padSetDelete','padTagCnt','padAfter','padBefore','padBeforeData','padPrmType','padSet','padGiven'];
 
     $chk3 = [ 'padPage','padSesID','padReqID','padRefID','PHPSESSID' ];
 

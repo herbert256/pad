@@ -4,10 +4,10 @@
 
     if     ( ! padValidTag    ( $item ) )                                return FALSE;
     elseif ( padChkLevel      ( $item                                ) ) return 'level';
-    elseif ( padExists        ( padApp . "tags/$item.php"            ) ) return 'app';
-    elseif ( padExists        ( padApp . "tags/$item.html"           ) ) return 'app';
-    elseif ( padExists        ( pad . "tags/$item.php"               ) ) return 'pad';
-    elseif ( padExists        ( pad . "tags/$item.html"              ) ) return 'pad';
+    elseif ( padExists        ( padApp . "_tags/$item.php"           ) ) return 'app';
+    elseif ( padExists        ( padApp . "_tags/$item.html"          ) ) return 'app';
+    elseif ( padExists        ( pad . "_tags/$item.php"              ) ) return 'pad';
+    elseif ( padExists        ( pad . "_tags/$item.html"             ) ) return 'pad';
     elseif ( isset            ( $GLOBALS ['padFlagStore']    [$item] ) ) return 'flag';
     elseif ( isset            ( $GLOBALS ['padContentStore'] [$item] ) ) return 'content';
     elseif ( isset            ( $GLOBALS ['padDataStore']    [$item] ) ) return 'data';
@@ -22,8 +22,8 @@
     elseif ( padExists        ( pad . "sequence/actions/$item.php"   ) ) return 'action';
     elseif ( padDataFileCheck ( $item                                ) ) return 'local';      
     elseif ( defined          ( $item                                ) ) return 'constant';
-    elseif ( padExists        ( padApp . "functions/$item.php"       ) ) return 'function';
-    elseif ( padExists        ( pad . "functions/$item.php"          ) ) return 'function';
+    elseif ( padExists        ( padApp . "_functions/$item.php"      ) ) return 'function';
+    elseif ( padExists        ( pad . "_functions/$item.php"         ) ) return 'function';
     elseif ( function_exists  ( $item                                ) ) return 'php';
     elseif ( padParmCheck     ( $item                                ) ) return 'parm';
     elseif ( padIsObject      ( $item                                ) ) return 'object';
@@ -36,10 +36,10 @@
 
     if     ( ! padValidType                           ( $type                                ) ) return FALSE;
     if     (                       ! padExists        ( pad . "types/$type.php"              ) ) return FALSE;
-    elseif ( $type == 'app'      and padExists        ( padApp . "tags/$item.php"            ) ) return $type;
-    elseif ( $type == 'app'      and padExists        ( padApp . "tags/$item.html"           ) ) return $type;
-    elseif ( $type == 'pad'      and padExists        ( pad . "tags/$item.php"               ) ) return $type;
-    elseif ( $type == 'pad'      and padExists        ( pad . "tags/$item.html"              ) ) return $type;
+    elseif ( $type == 'app'      and padExists        ( padApp . "_tags/$item.php"           ) ) return $type;
+    elseif ( $type == 'app'      and padExists        ( padApp . "_tags/$item.html"          ) ) return $type;
+    elseif ( $type == 'pad'      and padExists        ( pad . "_tags/$item.php"              ) ) return $type;
+    elseif ( $type == 'pad'      and padExists        ( pad . "_tags/$item.html"             ) ) return $type;
     elseif ( $type == 'fragment' and padIsContentFile ( $item                                ) ) return $type;
     elseif ( $type == 'page'     and padIsPagesFile   ( $item                                ) ) return $type;
     elseif ( $type == 'tag'      and padExists        ( pad . "tag/$type.php"                ) ) return $type;
@@ -55,8 +55,8 @@
     elseif ( $type == 'field'    and padFieldCheck    ( $item                                ) ) return $type;
     elseif ( $type == 'parm'     and padParmCheck     ( $item                                ) ) return $type;
     elseif ( $type == 'constant' and defined          ( $item                                ) ) return $type;
-    elseif ( $type == 'function' and padExists        ( padApp . "functions/$item.php"       ) ) return $type;
-    elseif ( $type == 'function' and padExists        ( pad . "functions/$item.php"          ) ) return $type;
+    elseif ( $type == 'function' and padExists        ( padApp . "_functions/$item.php"      ) ) return $type;
+    elseif ( $type == 'function' and padExists        ( pad . "_functions/$item.php"         ) ) return $type;
     elseif ( $type == 'php'      and function_exists  ( $item                                ) ) return $type;
     elseif ( $type == 'object'   and padIsObject      ( $item                                ) ) return $type;
     elseif ( $type == 'resource' and padIsResource    ( $item                                ) ) return $type;
@@ -68,8 +68,8 @@
   function padGetTypeEval ( $type ) {
 
         if ( ! padValid      ( $type                                  ) ) return FALSE;
-    elseif ( padExists       ( padApp . "functions/$type.php"         ) ) return 'app';
-    elseif ( padExists       ( pad . "functions/$type.php"            ) ) return 'pad';
+    elseif ( padExists       ( padApp . "_functions/$type.php"        ) ) return 'app';
+    elseif ( padExists       ( pad . "_functions/$type.php"           ) ) return 'pad';
     elseif ( function_exists ( $type                                  ) ) return 'php';
     elseif ( padFieldCheck   ( $type                                  ) ) return 'field';
     elseif ( isset           ( $GLOBALS ['padFlagStore'] [$type]      ) ) return 'flag';
@@ -82,10 +82,10 @@
     elseif ( padChkLevel     ( $type                                  ) ) return 'level';
     elseif ( defined         ( $type                                  ) ) return 'constant';
     elseif ( padExists       ( pad . "sequence/actions/$type.php"     ) ) return 'action';
-    elseif ( padExists       ( padApp . "tags/$type.php"              ) ) return 'ToDo';
-    elseif ( padExists       ( padApp . "tags/$type.html"             ) ) return 'ToDo';
-    elseif ( padExists       ( pad . "tags/$type.php"                 ) ) return 'ToDo';
-    elseif ( padExists       ( pad . "tags/$type.html"                ) ) return 'ToDo';
+    elseif ( padExists       ( padApp . "_tags/$type.php"             ) ) return 'ToDo';
+    elseif ( padExists       ( padApp . "_tags/$type.html"            ) ) return 'ToDo';
+    elseif ( padExists       ( pad . "_tags/$type.php"                ) ) return 'ToDo';
+    elseif ( padExists       ( pad . "_tags/$type.html"               ) ) return 'ToDo';
     elseif ( padIsObject     ( $type                                  ) ) return 'object';
     elseif ( padIsResource   ( $type                                  ) ) return 'resource';
     else                                                                  return FALSE;

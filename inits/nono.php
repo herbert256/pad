@@ -3,7 +3,7 @@
   if ( ! $padNoNo )
     return; 
 
-  $padNoNo = padApp . "/pages/$padPage.php";
+  $padNoNo = padApp . "$padPage.php";
 
   if ( ! padExists ( $padNoNo ) )
     padBootError ("Page does not exists: $padNoNo");

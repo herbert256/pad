@@ -2,6 +2,6 @@
 
   include 'call.php';
 
-  $padBase [$pad] .= padGetHtml ( padApp . "pages/$padPage.html" );
+  $padBase [$pad] .= padGetHtml ( padApp . "$padPage.html" );
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-  $padTagGo .= "tags/". $padTag [$pad];
+  $padTagGo .= "_tags/". $padTag [$pad];
 
   $padTagPhp = '';
 

@@ -84,13 +84,13 @@
 
     if ( $html ) {
     
-      $tidy_options = [
+      $tidyoptions = [
         'output-xml'   => true,
         'force-output' => true
       ];
 
       $xml = new tidy;
-      $xml->parseString($data, $tidy_options, 'utf8');
+      $xml->parseString($data, $tidyoptions, 'utf8');
       $xml->cleanRepair();
 
       if ( $xml === FALSE )
@@ -107,14 +107,14 @@
     
       if ( $simple_xml === FALSE and ! $html ) {
         
-         $tidy_options = [
+         $tidyoptions = [
           'input-xml'    => true,
           'output-xml'   => true,
           'force-output' => true
         ];
         
         $xml = new tidy;
-        $xml->parseString($xml, $tidy_options, 'utf8');
+        $xml->parseString($xml, $tidyoptions, 'utf8');
         $xml->cleanRepair();
         
         if ( $xml === FALSE )
