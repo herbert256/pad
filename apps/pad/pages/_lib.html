@@ -1,0 +1,19 @@
+{content 'block'}
+  <table border=0>
+    <tr>
+      <td>  
+        @content@
+      </td>
+    </tr>
+  </table>
+{/content}
+
+{content 'examples'}
+  {example '{$examples}', skipNames{notFirst},skipOpen,skipHeader{/notFirst}{notLast},skipClose{/notLast}}
+{/content}
+
+{content 'code'}
+  {sequence {$count}}
+    {example 'code/{$name}_{$sequence}', skipNames{notFirst},skipOpen,skipHeader{/notFirst}{notLast},skipClose{/notLast}}
+  {/sequence}
+{/content}

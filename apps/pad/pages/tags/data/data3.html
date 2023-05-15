@@ -1,0 +1,40 @@
+{data 'csv'}
+  name,phone
+  jack,555-3425
+  jim,555-4364
+  joe,555-3422
+  jerry,555-4973
+{/data}
+
+{data}
+  [
+    {csv}
+      { "name": "{$name}", "phone": "{$phone}" }{notLast},{/notLast}
+    {/csv}
+  ]
+{/data 'json'}
+
+{data}
+  <records>
+    {json}
+      <record name="{$name}" phone="{$phone}"/>
+    {/json}
+  </records>
+{/data 'xml'}
+
+{data}
+  ---
+    {xml}
+    - name: {$name}
+      phone: {$phone}
+    {/xml}
+{/data 'yaml'}
+
+<table>
+  {yaml}
+    <tr>
+      <td>{$name}</td> 
+      <td>{$phone}</td>
+    </tr>
+  {/yaml}
+</table>

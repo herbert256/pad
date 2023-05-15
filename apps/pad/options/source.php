@@ -1,0 +1,5 @@
+<?php
+
+  $padContent = padColorsString ($padContent);  
+
+?>

@@ -1,0 +1,35 @@
+<html>
+
+  <head>
+    <title>PAD - {$title}</title>
+  </head>
+  
+  <body>
+
+    <center>
+
+      <h1>
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+
+      {parts}
+        {if $link}<a href="{$padGo}{$link}">{/if}{$part}{if $link}</a>{/if}
+        {notLast}/{/notLast}
+      {/parts}
+
+      <p>
+        {block}
+          <center>
+            <h2>{$title}</h2>
+            <hr>
+            <p>@content@</p>
+            <hr>
+          </center>
+        {/block}
+      </p>
+
+    </center>
+
+  </body>
+
+</html>

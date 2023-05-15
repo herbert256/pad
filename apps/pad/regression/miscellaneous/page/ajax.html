@@ -1,0 +1,70 @@
+{page/hello type='ajax', include=1, $color='red'} <hr>
+{page/hello type='ajax', include=0, $color='red'} <hr>
+
+<div id="padAjaxrAybYxUn"></div>
+
+<script>
+  padAjaxrAybYxUn = new XMLHttpRequest();
+  padAjaxrAybYxUn.onreadystatechange=function() {
+    if (padAjaxrAybYxUn.readyState === 4) {
+      if (padAjaxrAybYxUn.status === 200) {
+        document.getElementById("padAjaxrAybYxUn").innerHTML=padAjaxrAybYxUn.responseText;
+      } else {
+        document.getElementById("padAjaxrAybYxUn").innerHTML=padAjaxrAybYxUn.statusText;
+      }
+    }
+  }
+  padAjaxrAybYxUn.open("GET","/?miscellaneous/page/hello&padInclude=1&padBuildMode=before&padBuildMerge=$content&color=red",true);
+  padAjaxrAybYxUn.send();
+</script> <hr>
+<div id="padAjaxn8YsoSeY"></div>
+
+<script>
+  padAjaxn8YsoSeY = new XMLHttpRequest();
+  padAjaxn8YsoSeY.onreadystatechange=function() {
+    if (padAjaxn8YsoSeY.readyState === 4) {
+      if (padAjaxn8YsoSeY.status === 200) {
+        document.getElementById("padAjaxn8YsoSeY").innerHTML=padAjaxn8YsoSeY.responseText;
+      } else {
+        document.getElementById("padAjaxn8YsoSeY").innerHTML=padAjaxn8YsoSeY.statusText;
+      }
+    }
+  }
+  padAjaxn8YsoSeY.open("GET","/?miscellaneous/page/hello&padInclude=0&padBuildMode=before&padBuildMerge=$content&color=red",true);
+  padAjaxn8YsoSeY.send();
+</script> <hr>
+
+<div id="padAjaxUB5cYIxt"></div>
+
+<script>
+  padAjaxUB5cYIxt = new XMLHttpRequest();
+  padAjaxUB5cYIxt.onreadystatechange=function() {
+    if (padAjaxUB5cYIxt.readyState === 4) {
+      if (padAjaxUB5cYIxt.status === 200) {
+        document.getElementById("padAjaxUB5cYIxt").innerHTML=padAjaxUB5cYIxt.responseText;
+      } else {
+        document.getElementById("padAjaxUB5cYIxt").innerHTML=padAjaxUB5cYIxt.statusText;
+      }
+    }
+  }
+  padAjaxUB5cYIxt.open("GET","/?miscellaneous/page/hello&padInclude=1&padBuildMode=before&padBuildMerge=$content&color=red",true);
+  padAjaxUB5cYIxt.send();
+</script> <hr>
+<div id="padAjaxcCU3ddhB"></div>
+
+<script>
+  padAjaxcCU3ddhB = new XMLHttpRequest();
+  padAjaxcCU3ddhB.onreadystatechange=function() {
+    if (padAjaxcCU3ddhB.readyState === 4) {
+      if (padAjaxcCU3ddhB.status === 200) {
+        document.getElementById("padAjaxcCU3ddhB").innerHTML=padAjaxcCU3ddhB.responseText;
+      } else {
+        document.getElementById("padAjaxcCU3ddhB").innerHTML=padAjaxcCU3ddhB.statusText;
+      }
+    }
+  }
+  padAjaxcCU3ddhB.open("GET","/?miscellaneous/page/hello&padInclude=0&padBuildMode=before&padBuildMerge=$content&color=red",true);
+  padAjaxcCU3ddhB.send();
+</script>
+
+<!-- PAD: NO REGRESSION -->

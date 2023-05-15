@@ -1,0 +1,23 @@
+<style>
+  th, td     { font-size: 14px; }
+  blockquote { margin-left: 10px; margin-right: 0px; }
+</style>
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr>
+    <td>mode='before',  merge='content' </td>
+    <td>mode='before',  merge='end'     </td>
+    <td>mode='demand',  merge='content' </td>
+    <td>mode='demand',  merge='end'     </td>
+    <td>mode='isolate', merge='content' </td>
+    <td>mode='isolate', merge='end'     </td>
+  </tr>      
+  <tr>
+    <td>{curl 'SELF://mode/?level1/level2/page', $mode='before', $merge='content'} </td>
+    <td>{curl 'SELF://mode/?level1/level2/page', $mode='before', $merge='end'}     </td>
+    <td>{curl 'SELF://mode/?level1/level2/page', $mode='demand', $merge='content'} </td>
+    <td>{curl 'SELF://mode/?level1/level2/page', $mode='demand', $merge='end'}     </td>
+    <td>{curl 'SELF://mode/?level1/level2/page', $mode='isolate', $merge='content'} </td>
+    <td>{curl 'SELF://mode/?level1/level2/page', $mode='isolate', $merge='end'}     </td>
+  </tr>
+</table>

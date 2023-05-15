@@ -1,0 +1,32 @@
+<table border="1" cellpadding="3" cellspacing="3">
+
+  <tr>
+    <th>page</th>
+    <th>status</th>
+  </tr>
+      
+  {files}
+
+    <tr>
+
+      <td class="border"><a href="{$padGo}{$item}">{$item}</a></td>
+
+      {if not $status in ['ok','random','new','skip','test']}
+        <td bgcolor="red">
+      {else}
+        <td>
+      {/if}
+
+      {if $status eq 500}
+        <a href="{$padGo}{$item}">500</a>
+      {else}
+        <a href="{$padGo}development/compare&item={$item}">{$status}</a>
+      {/if}
+
+      </td>
+
+    </tr>
+
+  {/files}
+  
+</table>

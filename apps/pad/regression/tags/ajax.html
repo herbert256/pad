@@ -1,0 +1,78 @@
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+</span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000"></span></code></td></tr>
+
+{page/hello type='ajax', include=1, $color='red'} <hr>
+{page/hello type='ajax', include=0, $color='red'} <hr>
+
+<div id="padAjax2yIwcGnb"></div>
+
+<script>
+  padAjax2yIwcGnb = new XMLHttpRequest();
+  padAjax2yIwcGnb.onreadystatechange=function() {
+    if (padAjax2yIwcGnb.readyState === 4) {
+      if (padAjax2yIwcGnb.status === 200) {
+        document.getElementById("padAjax2yIwcGnb").innerHTML=padAjax2yIwcGnb.responseText;
+      } else {
+        document.getElementById("padAjax2yIwcGnb").innerHTML=padAjax2yIwcGnb.statusText;
+      }
+    }
+  }
+  padAjax2yIwcGnb.open("GET","/?examples/dummy&padInclude=1&padBuildMode=before&padBuildMerge=$content&color=red",true);
+  padAjax2yIwcGnb.send();
+</script> <hr>
+<div id="padAjax9EilOmr6"></div>
+
+<script>
+  padAjax9EilOmr6 = new XMLHttpRequest();
+  padAjax9EilOmr6.onreadystatechange=function() {
+    if (padAjax9EilOmr6.readyState === 4) {
+      if (padAjax9EilOmr6.status === 200) {
+        document.getElementById("padAjax9EilOmr6").innerHTML=padAjax9EilOmr6.responseText;
+      } else {
+        document.getElementById("padAjax9EilOmr6").innerHTML=padAjax9EilOmr6.statusText;
+      }
+    }
+  }
+  padAjax9EilOmr6.open("GET","/?examples/dummy&padInclude=0&padBuildMode=before&padBuildMerge=$content&color=red",true);
+  padAjax9EilOmr6.send();
+</script> <hr>
+
+<div id="padAjax9Uk47CWf"></div>
+
+<script>
+  padAjax9Uk47CWf = new XMLHttpRequest();
+  padAjax9Uk47CWf.onreadystatechange=function() {
+    if (padAjax9Uk47CWf.readyState === 4) {
+      if (padAjax9Uk47CWf.status === 200) {
+        document.getElementById("padAjax9Uk47CWf").innerHTML=padAjax9Uk47CWf.responseText;
+      } else {
+        document.getElementById("padAjax9Uk47CWf").innerHTML=padAjax9Uk47CWf.statusText;
+      }
+    }
+  }
+  padAjax9Uk47CWf.open("GET","/?examples/dummy&padInclude=1&padBuildMode=before&padBuildMerge=$content&color=red",true);
+  padAjax9Uk47CWf.send();
+</script> <hr>
+<div id="padAjaxwxbhWXMi"></div>
+
+<script>
+  padAjaxwxbhWXMi = new XMLHttpRequest();
+  padAjaxwxbhWXMi.onreadystatechange=function() {
+    if (padAjaxwxbhWXMi.readyState === 4) {
+      if (padAjaxwxbhWXMi.status === 200) {
+        document.getElementById("padAjaxwxbhWXMi").innerHTML=padAjaxwxbhWXMi.responseText;
+      } else {
+        document.getElementById("padAjaxwxbhWXMi").innerHTML=padAjaxwxbhWXMi.statusText;
+      }
+    }
+  }
+  padAjaxwxbhWXMi.open("GET","/?examples/dummy&padInclude=0&padBuildMode=before&padBuildMerge=$content&color=red",true);
+  padAjaxwxbhWXMi.send();
+</script>
+
+<!-- PAD: NO REGRESSION -->
+
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+</span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000"></span></code></td></tr>

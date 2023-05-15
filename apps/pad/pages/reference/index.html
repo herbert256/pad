@@ -1,0 +1,30 @@
+<blockquote>
+
+{block}
+
+  {types}
+
+    <h3>
+      {if $link}
+        <a href="{$padGo}{$ref}">{$type|ucwords}</a>
+      {else}
+        {$type|ucwords}
+      {/if}
+    </h3>
+
+    <blockquote>
+        {items '{!type}', '{$ref}', '{$dir}', '{$kind}'}
+          {if $link}
+            <a href="{$padGo}{$ref}/{$item}">{$item}</a>
+          {else}
+            {$item}
+          {/if}
+          &nbsp; 
+        {/items}
+    </blockquote>
+
+  {/types}
+
+{/block}
+
+</blockquote>
