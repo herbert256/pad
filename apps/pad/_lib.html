@@ -17,3 +17,9 @@
     {example 'code/{$name}_{$sequence}', skipNames{notFirst},skipOpen,skipHeader{/notFirst}{notLast},skipClose{/notLast}}
   {/sequence}
 {/content}
+
+{content 'dir'}
+  {dirList '{$1}'}
+    {example '{$item}', skipNames{notFirst},skipOpen,skipHeader{/notFirst}{notLast},skipClose{/notLast}}
+  {/dirList}
+{/content}

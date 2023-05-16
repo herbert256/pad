@@ -5,6 +5,7 @@
 
   $padContentGo = padApp . "content/$padContentGo";
 
+
   if ( substr($padContentGo , -4) == '.php' )
     return "{call '$padContentGo'}";    
 

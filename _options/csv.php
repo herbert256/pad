@@ -1,5 +1,5 @@
 <?php
 
-  return include 'go/data.php';
+  return include pad . 'options/data.php';
 
 ?>

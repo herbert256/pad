@@ -2,6 +2,6 @@
   
   $padPagTyp = padTagParm ( 'type', 'get' );
    
-  return include "$padPagTyp.php";
+  return include pad . "page/$padPagTyp.php";
    
 ?>

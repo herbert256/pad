@@ -3,7 +3,7 @@
   $skipNames = FALSE;
   
   $examplePage  = padPageGetName ();
-  $exampleTitle = substr($examplePage, strrpos($examplePage, '/'));
+  $exampleTitle = substr($examplePage, strrpos($examplePage, '/') + 1);
   $exampleTitle = padTagParm ( 'title', $exampleTitle );
 
   if ( isset ( $padPrm [$pad] ['onlyResult'] ) )

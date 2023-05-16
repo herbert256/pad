@@ -5,7 +5,8 @@
 
     foreach ( $parms as $field => $value )
       if ( (!isset($GLOBALS[$field])) )
-        $GLOBALS [$field] = padGetParms2 ( $type, $value );
+        if ( padValidVar ($field) )
+          $GLOBALS [$field] = padGetParms2 ( $type, $value );
 
   }
 
