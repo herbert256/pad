@@ -1,6 +1,6 @@
 <?php
   
-  $padPagTyp = padTagParm ( 'type', 'get' );
+  $padPagTyp = padTagParm ( 'type', 'sandbox' );
    
   return include pad . "page/$padPagTyp.php";
    

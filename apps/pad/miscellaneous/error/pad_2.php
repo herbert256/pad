@@ -1,5 +1,5 @@
 <?php
 
-  padError ( 'PAD Error from application' );
+  padError ( 'Pad error from PHP' );
 
 ?>

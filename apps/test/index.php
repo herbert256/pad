@@ -1,6 +1,6 @@
 <?php 
 
-    $source = '/Users/herbert/Books/';
+    $source = '/Users/herbert/Books/bewerkt/';
  
     $files = [];
 
@@ -25,21 +25,14 @@
       $name  = $parts1 [0];
       $title = $parts1 [1];
 
-      $names  [$name]  [$title] = TRUE;
-      $titles [$title] [$name] = TRUE;
+      $new = "/Users/herbert/Books/target/$name - $title.epub";
 
+      echo "$path  ==>  $new<br>";
+
+      rename($path, $new); 
+  
     }
 
-      foreach ($titles as $key => $value)
-        if ( count ($value) > 1 )
-          if ( file_exists ( "/Users/herbert/Books/_titles/$key.epub") )
-            unlink ("/Users/herbert/Books/_titles/$key.epub");
-
-      foreach ($titles as $key => $value)
-        if ( count ($value) > 1 )
-          $dups [$key] = $value;
-
-
-    dump();
+    exit;
 
 ?>
