@@ -1,5 +1,5 @@
 <?php
 
-  $title = 'Start';
+  $title = 'Home';
 
 ?>

@@ -127,7 +127,7 @@
 
   function padIsContentFile ( $file ) {
 
-    return padIsXXXFile ( padApp . "content/$file" );
+    return padIsXXXFile ( padApp . "_content/$file" );
 
   }
 
@@ -143,7 +143,7 @@
   
   function padDataFileCheck ( $file ) {
 
-    $file = padApp . "data/$file";
+    $file = padApp . "_data/$file";
 
     if ( padValidFile ( $file ) )
       if  ( ( padExists ($file) and ! is_dir($file) ) 
@@ -157,7 +157,7 @@
 
   function padDataFileGet ( $file ) {
 
-    $file  = padApp . "data/$file";
+    $file  = padApp . "_data/$file";
     $parts = pathinfo ( $file );
     $name  = padTagParm ( 'name', $parts ['filename']  ?? '' );
     $ext   = padTagParm ( 'type', $parts ['extension'] ?? '' );

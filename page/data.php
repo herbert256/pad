@@ -1,5 +1,0 @@
-<?php
-
-  $padData [$pad] = padDefaultData ();
-
-?>

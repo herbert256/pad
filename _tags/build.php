@@ -1,12 +1,12 @@
 <?php
- 
-include pad . 'page/start.php';
-include pad . 'build/build.php';    
 
-$pad--;
+  include pad . 'page/set_start.php';
+  include pad . 'page/start.php';
+  include pad . 'build/build.php';   
+  include pad . 'page/level.php'; 
+  include pad . 'page/set_start.php';
+  include pad . 'page/end.php';
 
-include pad . 'page/end.php'; 
-
-return $padBase [$pad+1];
+  return $padHtml [$pad+1];
 
 ?>

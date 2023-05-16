@@ -109,8 +109,11 @@
 
       if ( strpos($item, 'error') !== FALSE  ) continue;
       if ( strpos($item, 'todo')  !== FALSE  ) continue;
+      if ( strpos($item, 'test')  !== FALSE  ) continue;
       if ( substr($item, 0, 1) == '_'        ) continue;
       if ( $ext <> 'html' and $ext <> 'php'  ) continue;
+      if ( $item == 'tags/restart'           ) continue;
+      if ( $item == 'tags/rediect'           ) continue;
       if ( $item == 'development/ok'         ) continue;
       if ( $item == 'development/big'        ) continue;
       if ( $item == 'development/regression' ) continue;

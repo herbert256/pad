@@ -1,0 +1,20 @@
+Include an other page in the current page.
+
+{table}
+
+{demo}{page '/hello', type='include',          $color='green'}{/demo}
+{demo}{page '/hello', type='build',   include, $color='pink'}{/demo}
+{demo}{page '/hello', type='get',     include, $color='red'}{/demo}
+{demo}{page '/hello', type='sandbox', include, $color='purple'}{/demo}
+{demo}{page '/hello', type='ajax',    include, $color='blue'}{/demo}
+ 
+{demo}{page '/hello', type='build',   $color='pink'}{/demo}
+{demo}{page '/hello', type='get',     $color='red'}{/demo}
+{demo}{page '/hello', type='sandbox', $color='purple'}{/demo}
+{demo}{page '/hello', type='ajax',    $color='blue'}{/demo}
+
+{/table}
+
+{example '/hello'}
+
+<!-- PAD: NO REGRESSION -->

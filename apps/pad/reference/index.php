@@ -65,7 +65,7 @@
 
       if ( substr ( $item, 0, 1 ) == '_' ) continue;
       if ( $item == 'todo' )               continue;
-      if ( $item == 'code' )               scontinue;
+      if ( $item == 'code' )               continue;
 
       $items [$item] ['item'] = $item;
 

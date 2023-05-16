@@ -1,6 +1,6 @@
 <?php
 
-  $padCall = padApp . "callbacks/" . $GLOBALS ['padPrm'] [$GLOBALS ['pad']] ['callback'];
+  $padCall = padApp . "_callbacks/" . $GLOBALS ['padPrm'] [$GLOBALS ['pad']] ['callback'];
 
   include pad . 'build/go.php';
 

@@ -1,9 +1,15 @@
-{include 'hello',            $color='green'}   <hr>
-{build   'hello', include=1, $color='pink'}    <hr>
-{get     'hello', include=1, $color='purple'}  <hr>
-{sandbox 'hello', include=1, $color='blue'}   <hr>
+{table}
+
+{demo}{include 'hello',          $color='green'}{/demo}
+{demo}{build   'hello', include, $color='pink'}{/demo}
+{demo}{get     'hello', include, $color='purple'}{/demo}
+{demo}{sandbox 'hello', include, $color='blue'}{/demo}
  
-{build   'hello', include=0, $color='pink'}    <hr>
-{get     'hello', include=0, $color='blue'}    <hr>
-{sandbox 'hello', include=0, $color='purple'}  
+{demo}{build   'hello', $color='pink'}{/demo}
+{demo}{get     'hello', $color='blue'}{/demo}
+{demo}{sandbox 'hello', $color='purple'}{/demo}
+
+{/table}
+
+{example '/hello'}
  

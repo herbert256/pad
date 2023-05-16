@@ -1,14 +1,10 @@
-{demo}
+{table}
 
-{page/hello type='ajax', include=1, $color='red'} <hr>
-{page/hello type='ajax', include=0, $color='red'} <hr>
+	{demo}{ajax '/hello', include, $color='red'}{/demo}
+	{demo}{ajax '/hello', $color='blue'}{/demo}
 
-{page 'hello', type='ajax', include=1, $color='red'} <hr>
-{page 'hello', type='ajax', include=0, $color='red'} <hr>
+{/table}
 
-{ajax 'hello', include=1, $color='red'} <hr>
-{ajax 'hello', include=0, $color='red'}
+{example '/hello'}
 
 <!-- PAD: NO REGRESSION -->
-
-{demo}
