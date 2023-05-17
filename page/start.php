@@ -1,15 +1,17 @@
 <?php
 
-  $padPageInsert [$pad]       = $padPage;
-  $padIncludeInsert [$pad]    = $padInclude;
-  $padBuildModeInsert [$pad]  = $padBuildMode;
+  $padPageInsert       [$pad] = $padPage;
+  $padDirInsert        [$pad] = $padDir;
+  $padIncludeInsert    [$pad] = $padInclude;
+  $padBuildModeInsert  [$pad] = $padBuildMode;
   $padBuildMergeInsert [$pad] = $padBuildMerge;  
  
   $padPage           = padPageGetName ();
+  $padDir            = padDir ($padPage);
   
-  $padIncludeSet     = padTagParm ( 'include', $padInclude        );
-  $padBuildModeSet   = padTagParm ( 'mode',    $padBuildMode      );
-  $padBuildMergeSet  = padTagParm ( 'merge',   $padBuildMerge     );
+  $padIncludeSet     = padTagParm ( 'include', $padInclude    );
+  $padBuildModeSet   = padTagParm ( 'mode',    $padBuildMode  );
+  $padBuildMergeSet  = padTagParm ( 'merge',   $padBuildMerge );
   
   include 'setup.php';
 

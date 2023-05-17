@@ -1,12 +1,11 @@
 <?php
-   
+  
+   $padLevelVars = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padName','padData','padCurrent','pad$padK','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padSaveVars','padDeleteVars','padSetSave','padSetDelete','padTagCnt','padAfter','padBefore','padBeforeData','padPrmType','padSet','padGiven','padDeleteSet','padOpt','padOptionsApp','padSaveSet','padTable','padTableTag'];
+
   $GLOBALS ['padFunctionSave'] [$GLOBALS['pad']] = [];
 
-  foreach ($GLOBALS as $key => $val )
-    if ( substr($key, 0, 3) == 'pad' )
-      if ( is_array ( $GLOBALS [$key]  ) and isset ( $GLOBALS [$key] [$GLOBALS['pad']] ) )
-         continue;
-      elseif ( $key <> 'padFunctionSave' )
-         $GLOBALS ['padFunctionSave'] [$GLOBALS['pad']] [$key] = $GLOBALS [$key];
+  foreach ($GLOBALS as $padK => $padV )
+    if ( substr($padK, 0, 3) == 'pad' and ! in_array($padK, $padLevelVars) and $padK <> 'padFunctionSave' )
+      $GLOBALS ['padFunctionSave'] [$GLOBALS['pad']] [$padK] = $GLOBALS [$padK];
 
 ?>

@@ -1,17 +1,6 @@
 <?php
 
 
-  function padDumpToFile ( $file, $info='' ) {
-
-    ob_start ();
-
-    padDumpGo ( $info );
-
-    padFilePutContents ( $file, ob_get_clean () );
-        
-  }
-
-
   function padDumpFromApp ($info='') {
 
     if ( ! padLocal () ) 
@@ -102,29 +91,17 @@
 
   }
 
-  function padDumpXdebug ( ) {
-
-    if ( ! isset ( $GLOBALS ['padExceptions'] ) )
-      return;
-
-    foreach ( $GLOBALS ['padExceptions'] as $exception )
-      if ( isset ( $exception->xdebug_message ) )
-        echo '<table>' . $exception->xdebug_message . '</table>' ;
-
-  } 
-
 
   function padDumpGo ($info) {
 
-
     echo ( "<div align=\"left\"><pre>" );
 
-    padDumpXdebug ( );
-    padDumpFields    ( $php, $lvl, $app, $cfg, $pad, $ids );
+    padDumpFields    ( $php, $lvl, $app, $cfg, $pad, $ids, $exc );
+    padDumpXdebug    ();
     padDumpInfo      ( $info );
     padDumpErrors    ( $info );
     padDumpStack     ();
-    padDumpExeptions ();
+    padDumpExeptions ( $exc );
     padDumpLines     ( "ID's", $ids );
     padDumpLevel     ();
     padDumpRequest   ();
@@ -136,6 +113,8 @@
     padDumpHeaders   ();
     padDumpLines     ( 'Configuration', $cfg );
     padDumpLines     ( 'PHP', $php );
+    padDumpFiles     ();
+    padDumpFunctions ();
     padDumpGlobals   ();
 
     echo ( "</pre></div>" );
@@ -215,13 +194,12 @@
   }
 
 
-  function padDumpExeptions ( ) {
+  function padDumpExeptions ( $exc ) {
 
-    if ( ! isset ( $GLOBALS ['padExceptions'] ) )
+    if ( ! count ( $exc ) )
       return;
 
-    foreach ( $GLOBALS ['padExceptions'] as $exception )
-      padDumpLines ( 'Exception', $exception );
+    padDumpLines ( 'Exceptions', $exc );
 
   } 
 
@@ -322,13 +300,90 @@
   } 
 
 
-  function padDumpFields ( &$php, &$lvl, &$app, &$cfg, &$pad, &$ids ) {
+  function padDumpGlobals ( ) {
 
-    $php = $lvl = $app = $cfg = $pad = $ids = [];
+    echo ( "\n<b>GLOBALS</b>\n");
+
+    echo htmlentities ( print_r ( $GLOBALS, TRUE ) );
+ 
+  }
+
+
+  function padDumpFunctions () {
+  
+    $functions = get_defined_functions ();
+
+    padDumpLines ( 'Functions', $functions ['user'] );
+    
+  }  
+
+
+  function padDumpFiles () {
+  
+    padDumpLines ( 'Included files', get_included_files () );
+    
+  }  
+
+
+  function padDumpXdebug ( ) {
+
+    if ( ! isset ( $GLOBALS ['padExceptions'] ) )
+      return;
+
+    foreach ( $GLOBALS ['padExceptions'] as $exception )
+      if ( isset ( $exception->xdebug_message ) )
+        echo '<table>' . $exception->xdebug_message . '</table>' ;
+
+  } 
+
+
+  function padDumpXinfo () {
+    
+    if ( ! function_exists ( 'xdebug_info' ) )
+      return;
+
+    xdebug_info ();
+
+  }
+
+
+  function padDumpPhpInfo () {
+    
+     phpinfo();
+
+  }
+
+
+  function padDumpStackGo ( $stack, $info ) {
+
+    echo ( "<b>Stack$info</b>\n");
+    
+    foreach ( $stack as $key => $trace ) {
+
+      extract ( $trace );
+
+      $file     = $file     ?? '???';
+      $line     = $line     ?? '???';
+      $function = $function ?? '???';
+
+      echo ( "    $file:$line - $function\n");
+
+      unset ($file);
+      unset ($line);
+      unset ($function);
+
+    }
+    
+  } 
+
+
+  function padDumpFields ( &$php, &$lvl, &$app, &$cfg, &$pad, &$ids, &$exc ) {
+
+    $php = $lvl = $app = $cfg = $pad = $ids = $exc = [];
 
     $chk1 = [ '_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
 
-    $chk2 = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padName','padData','padCurrent','padKey','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padSaveVars','padDeleteVars','padSetSave','padSetDelete','padTagCnt','padAfter','padBefore','padBeforeData','padPrmType','padSet','padGiven'];
+    $chk2 = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padName','padData','padCurrent','padKey','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padSaveVars','padDeleteVars','padSetSave','padSetDelete','padTagCnt','padAfter','padBefore','padBeforeData','padPrmType','padSet','padGiven','padDeleteSet','padOpt','padOptionsApp','padSaveSet','padTable','padTableTag'];
 
     $chk3 = [ 'padPage','padSesID','padReqID','padRefID','PHPSESSID' ];
 
@@ -339,6 +394,10 @@
       if (strpos($settings, '$'.$key.' ') or strpos($settings, '$'.$key.'=') or strpos($settings, '$'.$key."\t"))
 
         $cfg  [$key] = $value;
+
+      elseif ( $key === 'padExceptions' )
+        
+        $exc [$key] = $value;
 
       elseif ( in_array ( $key, $chk3 ) )
         
@@ -383,13 +442,14 @@
   }
 
 
-  function padDumpGlobals ( ) {
-
-    echo ( "\n<b>GLOBALS</b>\n");
-
-    echo htmlentities ( print_r ( $GLOBALS, TRUE ) );
- 
-  }
+  function padDumpShort ($G) {
+  
+    if ( $G === NULL)
+      $G = '';
+  
+    return substr ( preg_replace('/\s+/', ' ', $G ), 0, 150 );
+  
+  }  
 
 
   function padDumpLines ( $info, $source ) {
@@ -420,37 +480,68 @@
   } 
 
 
-  function padDumpStackGo ( $stack, $info ) {
+  function padDumpToDir ( $info ) {
 
-    echo ( "<b>Stack$info</b>\n");
-    
-    foreach ( $stack as $key => $trace ) {
+    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
+    $errorReporting = error_reporting (0);
 
-      extract ( $trace );
+    try {
 
-      $file     = $file     ?? '???';
-      $line     = $line     ?? '???';
-      $function = $function ?? '???';
+      $id = $GLOBALS ['padPage'] . '/' . $GLOBALS ['padReqID'] . '-' . padRandomString();
 
-      echo ( "    $file:$line - $function\n");
+      padDumpToDir ( $info, "dumps/$id" ); 
 
-      unset ($file);
-      unset ($line);
-      unset ($function);
+    } catch (Throwable $e) {
+
+      $error = $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage(); 
+
+      padFilePutContents ( "dumps/$id/oops.txt", "$info\n\n$error" );
 
     }
-    
-  } 
+
+    restore_error_handler ();
+    error_reporting ( $errorReporting );
+
+  }
 
 
-  function padDumpShort ($G) {
-  
-    if ( $G === NULL)
-      $G = '';
-  
-    return substr ( preg_replace('/\s+/', ' ', $G ), 0, 150 );
-  
-  }  
+  function padDumpToDirGo ( $info, $dir ) {
+
+    padDumpFields ( $php, $lvl, $app, $cfg, $pad, $ids, $exc );
+
+    ob_start (); padDumpInfo      ( $info );                    padDumpToDirOne ( 'info',        ob_get_clean (), $dir );
+    ob_start (); padDumpErrors    ( $info );                    padDumpToDirOne ( 'errors',      ob_get_clean (), $dir );
+    ob_start (); padDumpStack     ();                           padDumpToDirOne ( 'stack',       ob_get_clean (), $dir );
+    ob_start (); padDumpExeptions ( $exc );                     padDumpToDirOne ( 'exception',   ob_get_clean (), $dir );
+    ob_start (); padDumpLines     ( "ID's", $ids );             padDumpToDirOne ( 'ids',         ob_get_clean (), $dir );
+    ob_start (); padDumpLevel     ();                           padDumpToDirOne ( 'level',       ob_get_clean (), $dir );
+    ob_start (); padDumpRequest   ();                           padDumpToDirOne ( 'request',     ob_get_clean (), $dir );
+    ob_start (); padDumpLines     ( "App variables", $app );    padDumpToDirOne ( 'app-vars',    ob_get_clean (), $dir );
+    ob_start (); padDumpXXX       ( $pad, 'padSeq' );           padDumpToDirOne ( 'sequence',    ob_get_clean (), $dir );
+    ob_start (); padDumpFiles     ();                           padDumpToDirOne ( 'files',       ob_get_clean (), $dir );
+    ob_start (); padDumpFunctions ();                           padDumpToDirOne ( 'functions',   ob_get_clean (), $dir );
+    ob_start (); padDumpLines     ( "PAD variables",   $pad );  padDumpToDirOne ( 'pad-vars',    ob_get_clean (), $dir );
+    ob_start (); padDumpLines     ( "Level variables", $lvl );  padDumpToDirOne ( 'level-vars',  ob_get_clean (), $dir );
+    ob_start (); padDumpSQL       ();                           padDumpToDirOne ( 'sql',         ob_get_clean (), $dir );
+    ob_start (); padDumpHeaders   ();                           padDumpToDirOne ( 'headers',     ob_get_clean (), $dir );
+    ob_start (); padDumpLines     ( 'Configuration', $cfg );    padDumpToDirOne ( 'config',      ob_get_clean (), $dir );
+    ob_start (); padDumpLines     ( 'PHP', $php );              padDumpToDirOne ( 'php-vars',    ob_get_clean (), $dir );
+    ob_start (); padDumpPhpInfo   ();                           padDumpToDirOne ( 'php-info',    ob_get_clean (), $dir );
+    ob_start (); padDumpXinfo     ();                           padDumpToDirOne ( 'xdebug-info', ob_get_clean (), $dir );
+    ob_start (); padDumpXdebug    ();                           padDumpToDirOne ( 'xdebug-exc',  ob_get_clean (), $dir );
+    ob_start (); padDumpGlobals   ();                           padDumpToDirOne ( 'globals',     ob_get_clean (), $dir );
+
+  }
+
+
+  function padDumpToDirOne ( $file, $txt, $dir ) {
+
+    if ( ! trim ( $txt ) )
+      return;
+
+    padFilePutContents ( "$dir/$file.html", "<pre>$txt</pre>" );
+
+  }
 
 
 ?>

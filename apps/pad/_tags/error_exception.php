@@ -1,5 +1,5 @@
 <?php
 
-  throw new Exception ( "PAD warning test" );
+  throw new Exception ( "PAD exception test" );
   
 ?>

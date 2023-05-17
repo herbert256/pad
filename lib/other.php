@@ -1,5 +1,14 @@
 <?php
 
+   
+  function padDir ($page) {
+
+    if ( str_contains ( $page, '/') )
+      return substr ( $page, 0, strrpos ($page, '/') );
+    else
+      return '';
+
+  }
 
   function padAddGet ($url, $key, $val ) {
     

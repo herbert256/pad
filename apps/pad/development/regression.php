@@ -3,7 +3,9 @@
   $title = "Regression test";
   $files = [];
 
-  foreach ( padPages () as $item ) {
+  foreach ( padPages () as $page ) {
+
+    $item = $page ['item'];
 
     $curl  = padComplete ($item, '', 1);
     $store = padApp . "_regression/$item.html";
@@ -19,10 +21,10 @@
     if ( $status == 'new' ) {
       padFileChkDir     ( $store );
       padFileChkFile    ( $store );
-      file_put_contents ( $store, $curl ['data'], LOCK_EX) ;
+      file_put_contents ( $store, $curl ['data'], LOCK_EX ) ;
     }
 
-    $files [$item] ['item'] = $item;
+    $files [$item] ['item']  = $item;
     $files [$item] ['status'] = $status;
 
   }

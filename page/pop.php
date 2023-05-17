@@ -5,5 +5,7 @@
       unset ( $GLOBALS [$key] );
     $GLOBALS [$key] = $val;
   }
+
+  $GLOBALS ['padFunctionSave'] [$GLOBALS['pad']] = [];
    
 ?>

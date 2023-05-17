@@ -2,9 +2,9 @@
 
   $skipNames = FALSE;
   
-  $examplePage  = padPageGetName ();
-  $exampleTitle = substr($examplePage, strrpos($examplePage, '/') + 1);
-  $exampleTitle = padTagParm ( 'title', $exampleTitle );
+  $examplePage   = padPageGetName ();
+  $exampleTitle  = substr($examplePage, strrpos($examplePage, '/') + 1);
+  $exampleLayout = 'horizontal';
 
   if ( isset ( $padPrm [$pad] ['onlyResult'] ) )
     return TRUE;
@@ -19,6 +19,11 @@
 
   $exampleSrcPhp  = ( padExists($examplePhp ) ) ? padColorsFile ($examplePhp ) : '';
   $exampleSrcHtml = ( padExists($exampleHtml) ) ? padColorsFile ($exampleHtml) : '';
+
+  $exampleLayout = ( strpos($exampleSrcHtml, '&lt;padVertical&gt;' ) ) ? 'vertical' : $exampleLayout;
+  $exampleLayout = ( padTagParm ( 'vertical')                        ) ? 'vertical' : $exampleLayout;
+
+  $exampleSrcHtml = str_replace ( '&lt;padVertical&gt;', '', $exampleSrcHtml);    
 
   $exampleFilePhp  = ( padExists($examplePhp ) ) ? str_replace(padApp, '', $examplePhp  ) : '';
   $exampleFileHtml = ( padExists($exampleHtml) ) ? str_replace(padApp, '', $exampleHtml ) : '';

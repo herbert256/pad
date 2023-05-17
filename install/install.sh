@@ -20,3 +20,6 @@ mysql < /home/$usr/pad/apps/pad/miscellaneous/ClassicModels/database/classicmode
 
 service apache2 stop
 service apache2 start
+
+cd /var/home/$usr/www
+ln -s ../../data data

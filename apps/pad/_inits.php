@@ -6,4 +6,6 @@
   $title = str_replace ( '_', ' ', $title );
   $title = ucwords ( $title );
 
+  $showTitle = TRUE;
+
 ?>

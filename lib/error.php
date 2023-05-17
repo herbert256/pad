@@ -96,6 +96,8 @@
 
   function padErrorGo ($error, $file, $line) {
 
+    $GLOBALS ['padErrrorList'] [] = "$file:$line " . padMakeSafe ( $error );
+
     if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
       return FALSE;
 
@@ -124,13 +126,11 @@
 
     $error = "$file:$line " . padMakeSafe ( $error );
 
-    $GLOBALS ['padErrrorList'] [] = $error;
-
     if ( $GLOBALS ['padErrorLog'] or $GLOBALS ['padErrorAction'] == 'report' )
       padErrorLog ( $error );
 
     if ( $GLOBALS ['padErrorReport'] or $GLOBALS ['padErrorAction'] == 'report' )
-      padErrorReport ( $error );
+      padDumpToDir ( $error );
 
     if ( $GLOBALS ['padErrorAction'] == 'exit') {
 
@@ -143,11 +143,11 @@
 
       padStop (500);
 
-    elseif ( $GLOBALS ['padErrorAction'] == 'pad' )
+    elseif ( $GLOBALS ['padErrorAction'] == 'pad' ) {
 
       padDump ( $error );
 
-    elseif ( $GLOBALS ['padErrorAction'] == 'report' )
+    } elseif ( $GLOBALS ['padErrorAction'] == 'report' )
 
       $GLOBALS ['padExit'] = 1;
     
@@ -169,36 +169,9 @@
   }
 
 
-  function padErrorReport ( $info ) {
-
-    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
-    $errorReporting = error_reporting (0);
-
-    try {
-
-      ob_start ();
-      padDumpGo ( $info );
-      $dump = ob_get_clean ();
-
-    } catch (Throwable $e) {
-  
-      $dump = $info . "\n\n" . $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage(); 
-
-    }
-
-    restore_error_handler ();
-    error_reporting ( $errorReporting );
-
-    $id = $GLOBALS ['padReqID'] ?? uniqid(TRUE);
-
-    padFilePutContents ( 'errors/' . $id . '.html', $dump );
-
-  }
-
-
   function padErrorDump ( $error ) {
- 
-    $GLOBALS ['padErrrorList'] [] = $error;
+
+    $GLOBALS ['padErrrorList'] [] = padMakeSafe ( $error );
  
     padDump ($error);
 

@@ -8,7 +8,7 @@
 
 {if #onlyResult} 
 
-  {page '{$examplePage}', include}
+  {page '{$examplePage}', type='sandbox', include}
 
 {else}
 
@@ -16,37 +16,28 @@
     <table border="1" cellpadding="10" cellspacing="0">
   {/if}
 
-{if ! #skipHeader}
-    <tr>
-      {if ! #skipPhp}
-        <th bgcolor="#dddddd">
-          PHP
-          {if ! #skipNames}
-            <br><font size="-2">{$exampleFilePhp} </font>
-          {/if}
-        </th>
-      {/if}
-      {if ! #skipHtml}
-        <th bgcolor="#dddddd">
-          HTML
-          {if ! #skipNames}
-            <br><font size="-2">{$exampleFileHtml}</font>
-          {/if}
-        </th>
-      {/if}
-      {if ! #skipResult}
-        <th bgcolor="#dddddd">
-          {if #withLink}
-            <a href="{$padGo}{$dir}/{$item}">
-          {/if}
-          Result
-          {if #withLink}
-            </a>
-          {/if}
-        </th>
-      {/if}
-    </tr>
-{/if}
+
+  {if $exampleLayout  eq 'horizontal' }
+
+    {if ! #skipHeader}
+        <tr>
+        {if ! #skipPhp}
+          <th bgcolor="#dddddd">
+            PHP {if ! #skipNames}<br><font size="-2">{$exampleFilePhp}</font>{/if}
+          </th>
+        {/if}
+        {if ! #skipHtml}
+          <th bgcolor="#dddddd">
+            HTML {if ! #skipNames}<br><font size="-2">{$exampleFileHtml}</font>{/if}
+          </th>
+        {/if}
+        {if ! #skipResult}
+          <th bgcolor="#dddddd">
+            {if #withLink}<a href="{$padGo}{$dir}/{$item}">{/if}Result{if #withLink}</a>{/if}
+          </th>
+        {/if}
+      </tr>
+    {/if}
 
     <tr>
       {if ! #skipPhp}
@@ -56,9 +47,53 @@
         <td style="vertical-align:top">{!exampleSrcHtml}</td>
       {/if}
       {if ! #skipResult}
-        <td style="vertical-align:top">{page '{$examplePage}', include}</td>
+        <td style="vertical-align:top">{page '{$examplePage}', type='sandbox', include}</td>
       {/if}
     </tr>
+
+  {else}
+
+    {if ! #skipPhp}
+      {if ! #skipHeader}
+        <tr>
+          <th bgcolor="#dddddd">
+            PHP {if ! #skipNames}<br><font size="-2">{$exampleFilePhp} </font>{/if}
+          </th>
+        </tr>
+      {/if}
+      <tr>
+        <td style="vertical-align:top">{!exampleSrcPhp} </td>       
+      <tr>
+    {/if}
+
+    {if ! #skipHtml}
+      {if ! #skipHeader}
+        <tr>
+          <th bgcolor="#dddddd">
+            HTML {if ! #skipNames}<br><font size="-2">{$exampleFileHtml}</font>{/if}
+          </th>
+        </tr>
+      {/if}
+      <tr>
+        <td style="vertical-align:top">{!exampleSrcHtml}</td>
+      </tr>
+    {/if}
+
+    {if ! #skipResult}
+      {if ! #skipHeader}
+        <tr>
+          <th bgcolor="#dddddd">
+            {if #withLink}<a href="{$padGo}{$dir}/{$item}">{/if}Result{if #withLink}</a>{/if}
+          </th>
+        </tr>
+      {/if}
+      <tr>
+        <td style="vertical-align:top">{page '{$examplePage}', type='sandbox', include}</td>
+      </tr>
+    {/if}
+
+  {/if}
+
 
   {if ! #skipClose}
     </table>

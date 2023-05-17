@@ -12,14 +12,8 @@
   {example '{$examples}', skipNames{notFirst},skipOpen,skipHeader{/notFirst}{notLast},skipClose{/notLast}}
 {/content}
 
-{content 'code'}
-  {sequence {$count}}
-    {example 'code/{$name}_{$sequence}', skipNames{notFirst},skipOpen,skipHeader{/notFirst}{notLast},skipClose{/notLast}}
-  {/sequence}
-{/content}
-
-{content 'dir'}
-  {dirList '{$1}'}
+{content 'thisDir'}
+  {dirList '{$padDir}'}
     {example '{$item}', skipNames{notFirst},skipOpen,skipHeader{/notFirst}{notLast},skipClose{/notLast}}
   {/dirList}
 {/content}

@@ -12,10 +12,6 @@
     padBootError ("Page '$padPage' not found");
 
   $padPage = padPageSet ($padPage);
-
-  if ( str_contains($padPage, '/') )
-    $padDir = substr ( $padPage, 0, strrpos ($padPage, '/') );
-  else
-    $padDir = '';
+  $padDir  = padDir ($padPage);
 
 ?>

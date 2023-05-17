@@ -1,15 +1,6 @@
-{padBigFiles}
-  <div><span><center><table border="0"><tr><td>
-      <br><hr><b>{$padBigItem}</b><hr><br>
-      {case $big}
-        {when 'ajax'}
-          {ajax 'ajax', $ajax='{$padBigItem}', include}
-        {when 'example'}
-          {example '{$padBigItem}', {$padBigOnlyResult}}
-        {when 'sandbox'}
-          {sandbox '{$padBigItem}', include}
-        {when 'get'}
-          {get '{$padBigItem}', include}
-      {/case}
-  </td></tr></table></center></span></div>
-{/padBigFiles}
+{padPages}
+
+    <br><hr><b>{$item}</b><hr>
+    {page '{$item}', type='{$big}', include}
+
+{/padPages}
