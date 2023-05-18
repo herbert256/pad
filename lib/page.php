@@ -184,13 +184,9 @@ END;
 
   function padPageGet ( $page, $qry ) {
 
-    $url = $GLOBALS['padGoExt'] . $page . $qry;
-    
-    $return = padCurlData ($url);
-
-    $return = str_replace('}', '&close;', $return);
-
-    return $return;
+    $curl = padCurl ( $GLOBALS['padGoExt'] . $page . $qry );
+ 
+    return str_replace ( '}', '&close;', str_replace('}', '&close;', $curl ['data'] ) );
 
   }
   

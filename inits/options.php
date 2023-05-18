@@ -5,6 +5,6 @@
                       'random', 'print', 'dummy', 'parent', 'trace',
                       'xml', 'json', 'yaml', 'csv'];
                             
-  $padOptionsEnd   = ['toFlag', 'toContent', 'toData'];
+  $padOptionsEnd   = ['toFlag', 'toContent', 'toData', 'tidy'];
   
 ?>

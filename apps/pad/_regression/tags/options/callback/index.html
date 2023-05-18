@@ -1,249 +1,67 @@
 <p>It's possible to put a PHP file in the directory 'callbacks' that is called from the called back at the processing of a pad tag.</p>
-
-
-
- 
-
-
-
-  
-    <table border="1" cellpadding="10" cellspacing="0">
-  
-
-
-  
-
-    
-        <tr>
-        
-          <th bgcolor="#dddddd">
-            PHP <br><font size="-2"></font>
-          </th>
-        
-        
-          <th bgcolor="#dddddd">
-            HTML <br><font size="-2">tags/options/callback/before.html</font>
-          </th>
-        
-        
-          <th bgcolor="#dddddd">
-            Result
-          </th>
-        
-      </tr>
-    
-
-    <tr>
-      
-        <td style="vertical-align:top"> </td>
-      
-      
-        <td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">
+PHP <br><font size="-2"></font>
+</th>
+<th bgcolor="#dddddd">
+HTML <br><font size="-2">tags/options/callback/before.html</font>
+</th>
+<th bgcolor="#dddddd">
+RESULT
+</th>
+</tr>
+<tr>
+<td style="vertical-align:top"> </td>
+<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 &lt;table&nbsp;border=1&gt;<br /><br />&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Name&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Salary&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Bonus&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Total&lt;/th&gt;<br />&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;<b>{<font color="blue">staff </font><font color="red">callback<font color="black">=</font>'before.php'<font color="black">,</font>&nbsp;before</font>}</b><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="blue">first</font><font color="red"></font>}</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;Totals&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<b>{<font color="green">$salaryTotal&nbsp;%.2f</font>}</b>&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<b>{<font color="green">$bonusTotal&nbsp;&nbsp;%.2f</font>}</b>&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<b>{<font color="green">$totalTotal&nbsp;&nbsp;%.2f</font>}</b>&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>{/<font color="blue">first</font><font color="red"></font>}</b><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&nbsp;align="right"&nbsp;bgcolor="<b>{<font color="blue">switch </font><font color="red">'yellow'<font color="black">,</font>&nbsp;'pink'</font>}</b>"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&nbsp;align="left"&gt;<b>{<font color="green">$name&nbsp;capitalize</font>}</b>&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<b>{<font color="green">$salary&nbsp;%.2f</font>}</b>&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<b>{<font color="green">$bonus&nbsp;&nbsp;%.2f</font>}</b>&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<b>{<font color="green">$total&nbsp;&nbsp;%.2f</font>}</b>&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br /><br />&nbsp;&nbsp;<b>{/<font color="blue">staff</font><font color="red"></font>}</b><br />&nbsp;<br />&lt;/table&gt;</span>
 </code></td>
-      
-      
-        <td style="vertical-align:top">
-
-
-
-<table border=1>
-
-  <tr>
-    <th>Name</th>
-    <th>Salary</th>
-    <th>Bonus</th>
-    <th>Total</th>
-  </tr>
-  
-  
-
-    
-      <tr>
-        <td>Totals</td>
-        <td>15000.00</td>
-        <td>1500.00</td>
-        <td>16500.00</td>
-      </tr>
-    
-
-    <tr align="right" bgcolor="yellow">
-      <td align="left">Joe</td>
-      <td>1000.00</td>
-      <td>500.00</td>
-      <td>1500.00</td>
-    </tr>
-
-  
-
-    
-
-    <tr align="right" bgcolor="pink">
-      <td align="left">Jim</td>
-      <td>2000.00</td>
-      <td>400.00</td>
-      <td>2400.00</td>
-    </tr>
-
-  
-
-    
-
-    <tr align="right" bgcolor="yellow">
-      <td align="left">John</td>
-      <td>3000.00</td>
-      <td>300.00</td>
-      <td>3300.00</td>
-    </tr>
-
-  
-
-    
-
-    <tr align="right" bgcolor="pink">
-      <td align="left">Jack</td>
-      <td>4000.00</td>
-      <td>200.00</td>
-      <td>4200.00</td>
-    </tr>
-
-  
-
-    
-
-    <tr align="right" bgcolor="yellow">
-      <td align="left">Jerry</td>
-      <td>5000.00</td>
-      <td>100.00</td>
-      <td>5100.00</td>
-    </tr>
-
-  
- 
-</table></td>
-      
-    </tr>
-
-  
-
-
-  
-
-          
-
-
- 
-
-
-
-  
-
-
-  
-
-    
-        <tr>
-        
-          <th bgcolor="#dddddd">
-            PHP <br><font size="-2"></font>
-          </th>
-        
-        
-          <th bgcolor="#dddddd">
-            HTML <br><font size="-2">tags/options/callback/demand.html</font>
-          </th>
-        
-        
-          <th bgcolor="#dddddd">
-            Result
-          </th>
-        
-      </tr>
-    
-
-    <tr>
-      
-        <td style="vertical-align:top"> </td>
-      
-      
-        <td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<td style="vertical-align:top"><div id="padAjax5wjRZZsN"></div>
+<script>
+padAjax5wjRZZsN = new XMLHttpRequest();
+padAjax5wjRZZsN.onreadystatechange=function() {
+if (padAjax5wjRZZsN.readyState === 4) {
+if (padAjax5wjRZZsN.status === 200) {
+document.getElementById("padAjax5wjRZZsN").innerHTML=padAjax5wjRZZsN.responseText;
+} else {
+document.getElementById("padAjax5wjRZZsN").innerHTML=padAjax5wjRZZsN.statusText;
+}
+}
+}
+padAjax5wjRZZsN.open("GET","/?tags/options/callback/before&padInclude&padBuildMode=include&padBuildMerge=content",true);
+padAjax5wjRZZsN.send();
+</script></td>
+</tr>
+<tr>
+<th bgcolor="#dddddd">
+PHP <br><font size="-2"></font>
+</th>
+<th bgcolor="#dddddd">
+HTML <br><font size="-2">tags/options/callback/demand.html</font>
+</th>
+<th bgcolor="#dddddd">
+RESULT
+</th>
+</tr>
+<tr>
+<td style="vertical-align:top"> </td>
+<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 &lt;table&nbsp;border=1&gt;<br /><br />&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Name&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Salary&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Bonus&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Total&lt;/th&gt;<br />&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;<b>{<font color="blue">staff </font><font color="red">callback<font color="black">=</font>'demand.php'<font color="black">,</font>&nbsp;demand</font>}</b><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&nbsp;align="right"&nbsp;bgcolor="<b>{<font color="blue">switch </font><font color="red">'yellow'<font color="black">,</font>&nbsp;'pink'</font>}</b>"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&nbsp;align="left"&gt;<b>{<font color="green">$name&nbsp;capitalize</font>}</b>&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<b>{<font color="green">$salary&nbsp;%.2f</font>}</b>&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<b>{<font color="green">$bonus&nbsp;&nbsp;%.2f</font>}</b>&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<b>{<font color="green">$total&nbsp;&nbsp;%.2f</font>}</b>&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br /><br />&nbsp;&nbsp;<b>{/<font color="blue">staff</font><font color="red"></font>}</b><br /><br />&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;Totals&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<b>{<font color="green">$salaryTotal&nbsp;%.2f</font>}</b>&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<b>{<font color="green">$bonusTotal&nbsp;&nbsp;%.2f</font>}</b>&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<b>{<font color="green">$totalTotal&nbsp;&nbsp;%.2f</font>}</b>&lt;/td&gt;<br />&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;<br />&lt;/table&gt;</span>
 </code></td>
-      
-      
-        <td style="vertical-align:top">
-
-
-
-<table border=1>
-
-  <tr>
-    <th>Name</th>
-    <th>Salary</th>
-    <th>Bonus</th>
-    <th>Total</th>
-  </tr>
-  
-  
-
-    <tr align="right" bgcolor="pink">
-      <td align="left">Joe</td>
-      <td>1000.00</td>
-      <td>500.00</td>
-      <td>1500.00</td>
-    </tr>
-
-  
-
-    <tr align="right" bgcolor="yellow">
-      <td align="left">Jim</td>
-      <td>2000.00</td>
-      <td>400.00</td>
-      <td>2400.00</td>
-    </tr>
-
-  
-
-    <tr align="right" bgcolor="pink">
-      <td align="left">John</td>
-      <td>3000.00</td>
-      <td>300.00</td>
-      <td>3300.00</td>
-    </tr>
-
-  
-
-    <tr align="right" bgcolor="yellow">
-      <td align="left">Jack</td>
-      <td>4000.00</td>
-      <td>200.00</td>
-      <td>4200.00</td>
-    </tr>
-
-  
-
-    <tr align="right" bgcolor="pink">
-      <td align="left">Jerry</td>
-      <td>5000.00</td>
-      <td>100.00</td>
-      <td>5100.00</td>
-    </tr>
-
-  
-
-  <tr>
-    <td>Totals</td>
-    <td>15000.00</td>
-    <td>1500.00</td>
-    <td>16500.00</td>
-  </tr>
- 
-</table></td>
-      
-    </tr>
-
-  
-
-
-  
-    </table>
+<td style="vertical-align:top"><div id="padAjaxhu2jrYZz"></div>
+<script>
+padAjaxhu2jrYZz = new XMLHttpRequest();
+padAjaxhu2jrYZz.onreadystatechange=function() {
+if (padAjaxhu2jrYZz.readyState === 4) {
+if (padAjaxhu2jrYZz.status === 200) {
+document.getElementById("padAjaxhu2jrYZz").innerHTML=padAjaxhu2jrYZz.responseText;
+} else {
+document.getElementById("padAjaxhu2jrYZz").innerHTML=padAjaxhu2jrYZz.statusText;
+}
+}
+}
+padAjaxhu2jrYZz.open("GET","/?tags/options/callback/demand&padInclude&padBuildMode=include&padBuildMerge=content",true);
+padAjaxhu2jrYZz.send();
+</script></td>
+</tr>
+</table>

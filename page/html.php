@@ -1,7 +1,5 @@
 <?php
 
-  $padReturn = padFileGetContents ( padApp . padPageGetName () . '.html' );
-
-  return padPageAddSet ( $padSet [$pad], $padReturn );
+  return padFileGetContents ( padApp . padPageGetName () . '.html' );
 
 ?>

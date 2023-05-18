@@ -108,7 +108,13 @@
   // Must be a flag from FILTER_UNSAFE_RAW from below page.
   // https://www.php.net/manual/en/filter.filters.sanitize.php
   
-  $padSanitize = ['STRIP_LOW', 'ENCODE_HIGH'];
+  $padOutputSanitize         = [ 'STRIP_LOW', 'ENCODE_HIGH' ];
+  $padOutputTabToSpace       = TRUE;
+  $padOutputTrim             = TRUE;
+  $padOutputRemoveWhitespace = FALSE;
+  $padOutputNoEmptyLines     = TRUE;
+  $padOutputNoIndent         = TRUE;
+  $padOutputNoNewLines       = FALSE;
 
   // lib tidy
 

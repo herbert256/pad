@@ -9,7 +9,6 @@
   $padLen        = 0;
   $padTime       = $_SERVER['REQUEST_TIME'];  
   $padInclude    = FALSE;
-
   $padCache      = FALSE;
   $padCacheStop  = 0;
 

@@ -1,106 +1,58 @@
 <table border="1" cellpadding="10" cellspacing="0">
-  
-
-
-  
-
-    
-        <tr>
-        
-          <th bgcolor="#dddddd">
-            PHP 
-          </th>
-        
-        
-          <th bgcolor="#dddddd">
-            HTML 
-          </th>
-        
-        
-          <th bgcolor="#dddddd">
-            Result
-          </th>
-        
-      </tr>
-    
-
-    <tr>
-      
-        <td style="vertical-align:top"> </td>
-      
-      
-        <td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<tr>
+<th bgcolor="#dddddd">
+PHP <br><font size="-2"></font>
+</th>
+<th bgcolor="#dddddd">
+HTML <br><font size="-2">tags/if/if_1.html</font>
+</th>
+<th bgcolor="#dddddd">
+RESULT
+</th>
+</tr>
+<tr>
+<td style="vertical-align:top"> </td>
+<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 &lt;p&gt;<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;<b>{<font color="blue">if </font><font color="red">5&nbsp;gt&nbsp;3</font>}</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yes<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="blue">else</font><font color="red"></font>}</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no<br />&nbsp;&nbsp;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br />&nbsp;&nbsp;<br />&nbsp;&nbsp;<b>{<font color="blue">if </font><font color="red">3&nbsp;gt&nbsp;5</font>}</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="blue">else</font><font color="red"></font>}</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yes<br />&nbsp;&nbsp;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br />&nbsp;&nbsp;<br />&lt;/p&gt;<br /></span>
 </code></td>
-      
-      
-        <td style="vertical-align:top">
-
-
-
-<p>
-  
-  
-      yes
-    
-  
-  
-      yes
-  
-  
-</p>
-</td>
-      
-    </tr>
-
-  
-
-
-  
-
-
-
-
- 
-
-
-
-  
-
-
-  
-
-    
-
-    <tr>
-      
-        <td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<td style="vertical-align:top"><div id="padAjaxIcCRWTzK"></div>
+<script>
+padAjaxIcCRWTzK = new XMLHttpRequest();
+padAjaxIcCRWTzK.onreadystatechange=function() {
+if (padAjaxIcCRWTzK.readyState === 4) {
+if (padAjaxIcCRWTzK.status === 200) {
+document.getElementById("padAjaxIcCRWTzK").innerHTML=padAjaxIcCRWTzK.responseText;
+} else {
+document.getElementById("padAjaxIcCRWTzK").innerHTML=padAjaxIcCRWTzK.statusText;
+}
+}
+}
+padAjaxIcCRWTzK.open("GET","/?tags/if/if_1&padInclude&padBuildMode=include&padBuildMerge=content",true);
+padAjaxIcCRWTzK.send();
+</script></td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 <span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;$fruit&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'apple'</span><span style="color: #007700">;<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$color&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'green'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
 </span>
 </code> </td>
-      
-      
-        <td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 &lt;p&gt;<br />&nbsp;&nbsp;<b>{<font color="blue">if </font><font color="red"><font color="black">$</font>fruit&nbsp;eq&nbsp;'banana'</font>}</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="blue">if </font><font color="red"><font color="black">$</font>color&nbsp;eq&nbsp;'pink'</font>}</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;b&gt;&nbsp;A&nbsp;pink&nbsp;banana&nbsp;&lt;/b&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="blue">else</font><font color="red"></font>}</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;b&gt;&nbsp;Not&nbsp;a&nbsp;pink&nbsp;banana&nbsp;&lt;/b&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br />&nbsp;&nbsp;<b>{<font color="blue">else</font><font color="red"></font>}</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="blue">if </font><font color="red"><font color="black">$</font>color&nbsp;eq&nbsp;'green'</font>}</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;b&gt;&nbsp;An&nbsp;<b>{<font color="green">$fruit</font>}</b>&nbsp;is&nbsp;<b>{<font color="green">$color</font>}</b>&lt;/b&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="blue">else</font><font color="red"></font>}</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;b&gt;&nbsp;Not&nbsp;a&nbsp;green&nbsp;fruit&nbsp;&lt;/b&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br />&nbsp;&nbsp;<b>{/<font color="blue">if</font><font color="red"></font>}</b><br />&lt;/p&gt;</span>
 </code></td>
-      
-      
-        <td style="vertical-align:top">
-
-
-
-<p>
-  
-    
-      <b> An apple is green</b>
-    
-  
-</p></td>
-      
-    </tr>
-
-  
-
-
-  
-    </table>
+<td style="vertical-align:top"><div id="padAjaxR57c3DYl"></div>
+<script>
+padAjaxR57c3DYl = new XMLHttpRequest();
+padAjaxR57c3DYl.onreadystatechange=function() {
+if (padAjaxR57c3DYl.readyState === 4) {
+if (padAjaxR57c3DYl.status === 200) {
+document.getElementById("padAjaxR57c3DYl").innerHTML=padAjaxR57c3DYl.responseText;
+} else {
+document.getElementById("padAjaxR57c3DYl").innerHTML=padAjaxR57c3DYl.statusText;
+}
+}
+}
+padAjaxR57c3DYl.open("GET","/?tags/if/if_2&padInclude&padBuildMode=include&padBuildMerge=content",true);
+padAjaxR57c3DYl.send();
+</script></td>
+</tr>
+</table>

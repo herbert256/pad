@@ -7,7 +7,7 @@
   if ( $padLocalExt == 'php' ) {
 
     $padCall      = $padLocalFile;
-    $padLocalData = include pad . 'build/go.php';
+    $padLocalData = include pad . 'build/one.php';
     $padLocalExt  = '';
 
   } else

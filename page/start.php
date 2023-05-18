@@ -7,9 +7,8 @@
   $padBuildMergeInsert [$pad] = $padBuildMerge;  
  
   $padPage           = padPageGetName ();
-  $padDir            = padDir ($padPage);
-  
-  $padIncludeSet     = padTagParm ( 'include', $padInclude    );
+  $padDir            = padDir ($padPage);  
+  $padIncludeSet     = padTagParm ( 'include', FALSE          );
   $padBuildModeSet   = padTagParm ( 'mode',    $padBuildMode  );
   $padBuildMergeSet  = padTagParm ( 'merge',   $padBuildMerge );
   

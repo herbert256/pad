@@ -7,10 +7,10 @@
 
     $item = $page ['item'];
 
-    $curl  = padComplete ($item, '', 1);
+    $curl  = getPage ($item);
     $store = padApp . "_regression/$item.html";
   
-    if     ( $curl ['result'] <> 200 )                              $status = $curl ['result'] ;
+    if     ( $curl ['result'] <> 200 )                              $status = 'error' ;
     elseif ( ! padExists ($store) )                                 $status = 'new';
     elseif ( strrpos($store, 'random') )                            $status = 'random' ;
     elseif ( strrpos($store, 'test') )                              $status = 'test' ;

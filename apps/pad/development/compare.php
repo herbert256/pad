@@ -3,6 +3,7 @@
   $item = $item ?? 'examples/hello';
 
   $old = padFileGetContents ( padApp . "_regression/$item.html" );
-  $new = padInclude ($item);
- 
+  $new = getPage ($item);
+  $new = $new ['data'];
+
 ?>

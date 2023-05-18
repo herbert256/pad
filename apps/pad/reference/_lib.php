@@ -30,7 +30,9 @@
       $dir = $ref;
     
     if ( $type == 'eval types' ) {
-      $items = array_merge ( items ('', 'eval', 'eval/single', 'pad'), items ('', '', 'eval/parms', 'pad') );
+      $one   = items ('n/a', 'eval', 'eval/single', 'pad');
+      $two   = items ('n/a', 'eval', 'eval/parms',  'pad') ;
+      $items = array_merge ( $one, $two );
       ksort ($items);
       return $items;
     }

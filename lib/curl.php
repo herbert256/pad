@@ -1,42 +1,5 @@
 <?php
 
-  function padInclude ( $page='index', $query='' ) {
-
-    return pad ( $page, $query, 1 );
-    
-  }
-
-  function pad ( $page='index', $query='', $include='' ) {
-
-    $result = padComplete ( $page, $query, $include );
-
-    return $result ['data'];
-    
-  }
-
-  function padComplete ( $page='index', $query='', $include='' ) {
-
-    if ( isset ( $GLOBALS ['padDemoMode'] ) ) 
-      return padDemoMode ( $page );
-
-    global $padHost, $padScript;
-
-    if ($include)
-      $include = '&padInclude=1';
-
-    $url = "$padHost$padScript?$page$query$include";
-    
-    return padCurl ($url);
-    
-  }
-
-  function padCurlData ($input) {    
-
-    $curl = padCurl ($input);
-    
-    return $curl ['data'];
-
-  }
 
   function padCurl ($input) {
 
@@ -72,16 +35,16 @@
       foreach ( $input['get'] as $key => $val ) 
         $url = padAddGet ( $url, $key, $val );
 
-    if  ( str_starts_with ( $url, $GLOBALS['padHost'] ) ) {
+    if ( str_starts_with ( strtolower ( $url ), strtolower ( $GLOBALS['padHost'] ) ) ) {
+
+      $url = padAddGet ( $url, 'padSesID', $GLOBALS ['padSesID'] );
+      $url = padAddGet ( $url, 'padReqID', $GLOBALS ['padReqID'] );
 
       if ( isset ( $GLOBALS ['padDemoMode'] ) ) {
         $output ['result'] = '200';
         $output ['data']   = padDemoMode( $url );
         return $output;
       }
-
-      $url = padAddGet ( $url, 'padSesID', $GLOBALS ['padSesID'] );
-      $url = padAddGet ( $url, 'padReqID', $GLOBALS ['padReqID'] );
  
     }
 
@@ -146,7 +109,7 @@
     $result          = curl_exec    ($curl);
     $output ['info'] = curl_getinfo ($curl);
     
-    if ($result  === FALSE)
+    if ($result === FALSE)
       return padCurlError ($output, 'curl_exec = FALSE');
     
     if ( isset ( $output ['info'] ['http_code'] ) )
@@ -231,7 +194,7 @@
     $output ['ERROR']  = $error;
     $output ['result'] = '999';
 
-    $GLOBALS ['padCurl_last'] = $output;
+    $GLOBALS ['padCurlLast'] = $output;
 
     return $output;
 

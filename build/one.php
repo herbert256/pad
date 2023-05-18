@@ -13,7 +13,10 @@
   if ( $padCallReturn === 1 )
     $padCallReturn = '';
 
-  $padCallReturn .= ob_get_clean();
+  if ( is_array ($padCallReturn) )
+    ob_get_clean();
+  else
+    $padCallReturn .= ob_get_clean();
 
   return $padCallReturn ;
 

@@ -1,16 +1,20 @@
 <table border="1" cellpadding="10" cellspacing="0">
 
   <tr>
-    <th bgcolor="#dddddd">old</th>
+    {if $old ne $new}
+      <th bgcolor="#dddddd">old</th>
+    {/if}
     <th bgcolor="#dddddd">
-      <a href="{$padGo}{$item}&padInclude=1">go</a>
+      <a href="{$padGo}{$item}&padInclude">go</a>
       &nbsp;
       <a href="{$padGo}development/ok&item={$item}">ok</a>
     </th>
   </tr>
 
   <tr>
-    <td>{!old}</tb>
+    {if $old ne $new}
+      <td>{!old}</tb>
+    {/if}
     <td>{!new}</td>
   </tr>
       

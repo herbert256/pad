@@ -21,15 +21,12 @@
   }
 
 
-  function padRedirect ( $go, $vars=[], $include='' ) {
+  function padRedirect ( $go, $vars=[] ) {
 
     global $padHost, $padGoExt;
 
     foreach ( $vars as $padK => $padV ) 
       $go .= "&$padK=" . urlencode($padV);
-
-    if ( $include )
-      $go .= '&padInclude=1';
 
     if ( ! strpos($go, '://') )
       $go = $padGoExt . $go;

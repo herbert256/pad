@@ -1,6 +1,64 @@
 <?php
 
 
+ function padTidyOutput ( $data ) {
+
+    if ( $GLOBALS ['padBuildMode'] == 'include' )
+      return $padTidyFragment ( $data );
+
+   $config = $GLOBALS ['padTidyConfig'];
+
+   return padTidy ( $data, $config );
+
+ }
+
+
+ function padTidyFragment ( $data ) {
+
+   $config = $GLOBALS ['padTidyConfig'];
+
+   $config ['show-body-only'] = true;
+
+   return padTidy ( $data, $config );
+
+ }
+
+
+ function padTidy ( $data, $config ) {
+
+   $tidy = new tidy;
+   $tidy->parseString($data, $config, 'utf8');
+   $tidy->cleanRepair();
+
+   return $tidy->value;
+
+ }
+
+
+ function padAddSet ( $set, $content ) {
+
+    if ( count ( $set ) ) {
+    
+      $open = '{pad ';
+      $close = '{/pad}';
+
+      foreach ( $set as $key => $val )
+        if ( $open == '{pad ' )
+          $open .= " \$$key='$val'";
+        else
+          $open  = ",\$$key='$val'";
+
+      $open .= '}';
+
+    } else 
+
+      $open = $close = '';
+
+    return "$open$content$close";
+
+  }
+
+
   function padDemoMode ( $page ) {
 
     $store = padApp . "_regression/$page.html";

@@ -1,5 +1,15 @@
 <?php
 
+
+  function getPage ( $page ) {
+
+    global $padHost, $padScript;
+
+    return padCurl ( "$padHost$padScript?$page&padInclude" );
+    
+  }
+
+
   function dirList ($dir) {
 
     $list = [];
@@ -33,6 +43,7 @@
 
   }
 
+
   function recursivePages () {
 
     $directory = new RecursiveDirectoryIterator ( padApp );
@@ -61,6 +72,7 @@
     return $pages;
 
   }
+
 
   function padPages ( ) {
 
@@ -98,5 +110,6 @@
     return $files;
 
   }
+
 
 ?>

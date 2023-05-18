@@ -4,15 +4,11 @@
 
   $padOutput = padUnescape ( $padOutput );
 
-  if ( count ($padSanitize) )
-    include 'sanitize.php';
- 
-  if ( $padTidy )
+  include 'output.php';
+   
+  if ( $padTidy or strpos( $padOutput, '@tidy@' ) !== FALSE )
     include 'tidy.php';
-
-  if ( $padRemoveWhitespace )
-    include 'whitespace.php';
-  
+ 
   $padEtag = padMD5 ($padOutput);
 
   if ( $padTrackFileData )

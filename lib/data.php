@@ -21,8 +21,16 @@
     if ( $check )
       return padDataFileData ( $check );
 
-    if ( substr ( $data, 0, 7 ) == 'http://' or substr ( $data, 0, 8 ) == 'https://' )
-      $data = padCurlData ($data);    
+    if ( str_starts_with ( strtolower ( $data ), 'http:' ) or str_starts_with ( strtolower ( $data ), 'https:' )  ) {
+
+      $curl = padCurl ($data);
+ 
+      if ( str_starts_with ( $curl ['result'],  '2' ) )
+        return padData ( $curl [$data], $curl ['type'], $name );
+      else
+        return [];    
+ 
+    }
 
     if ( padCheckRange ( $data ) ) { 
       $data = padGetRange ( $data );
@@ -338,7 +346,7 @@
 
     foreach ( padDirs () as $key => $value ) {
 
-      $file = substr (padApp, 0, -1) . $value . "_include/$check";
+      $file = substr (padApp, 0, -1) . $value . "_includes/$check";
 
       if ( padExists ($file) and ! is_dir($file) ) return $file;
       if ( padExists ("$file.php")               ) return "$file.php";

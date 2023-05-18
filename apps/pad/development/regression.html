@@ -1,32 +1,24 @@
-<table border="1" cellpadding="3" cellspacing="3">
+{files}
 
-  <tr>
-    <th>page</th>
-    <th>status</th>
-  </tr>
-      
-  {files}
+  {if $status eq 'error'}
+    <font size="+1"><b>
+  {/if}
 
-    <tr>
+  <a 
 
-      <td class="border"><a href="{$padGo}{$item}">{$item}</a></td>
+    {if $status eq 'error'} 
+      style="color:black;background-color: #f44336;"
+    {else}
+      style="color:blue;"
+    {/if} 
 
-      {if not $status in ['ok','random','new','skip','test']}
-        <td bgcolor="red">
-      {else}
-        <td>
-      {/if}
+    href="{$padGo}development/compare&item={$item}">{item}</a>
 
-      {if $status eq 500}
-        <a href="{$padGo}{$item}">500</a>
-      {else}
-        <a href="{$padGo}development/compare&item={$item}">{$status}</a>
-      {/if}
 
-      </td>
+  {if $status eq 'error'}
+    </b></font>
+  {/if}
 
-    </tr>
+  &nbsp; &nbsp;
 
-  {/files}
-  
-</table>
+{/files}

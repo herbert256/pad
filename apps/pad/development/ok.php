@@ -2,7 +2,7 @@
 
     $item = $item ?? 'examples/hello';
     
-    $curl  = padComplete ($item, '', 1);
+    $curl  = getPage ($item);
     $store = padApp . "_regression/$item.html";
 
     file_put_contents ($store, $curl ['data'], LOCK_EX);

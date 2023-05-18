@@ -1,290 +1,234 @@
 <p>Include an other page in the current page, 8 ways of doing this.</p>
-
 <hr><p>3 ways that only work in 'include' mode</p>
-
 <p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tr>
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
 <tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 <b>{<font color="blue">page </font><font color="red">'hello'<font color="black">,</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type<font color="black">=</font>'include'<font color="black">,</font>&nbsp;<font color="black">$</font>color<font color="black">=</font>'orange'</font>}</b></span>
 </code></td><td style="vertical-align:top"><code><span style="color: #000000"><h3>
-  <font color="orange">
-    Hello&nbsp;World&nbsp;!
-  </font>
+<font color="orange">
+Hello&nbsp;World&nbsp;!
+</font>
 </h3></span></code></td></tr>
 <tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 <b>{<font color="blue">page </font><font color="red">'hello/php'<font color="black">,</font>&nbsp;&nbsp;type<font color="black">=</font>'php'<font color="black">,</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="black">$</font>color<font color="black">=</font>'red'</font>}</b></span>
 </code></td><td style="vertical-align:top"><code><span style="color: #000000"><h3>
-  <font color="red">
-    Hello World !
-  </font>
+<font color="red">
+Hello World !
+</font>
 </h3></span></code></td></tr>
 <tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 <b>{<font color="blue">page </font><font color="red">'hello/html'<font color="black">,</font>&nbsp;type<font color="black">=</font>'html'<font color="black">,</font>&nbsp;&nbsp;&nbsp;&nbsp;<font color="black">$</font>color<font color="black">=</font>'blue'</font>}</b></span>
 </code></td><td style="vertical-align:top"><code><span style="color: #000000"><h3>
-  <font color="blue">
-    Hello World !
-  </font>
+<font color="blue">
+Hello World !
+</font>
 </h3></span></code></td></tr>
-
-
-  </table>
+</table>
 </p>
-
-
 <hr><p>5 ways that work in both 'include' and 'full' mode</p>
-
 <p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tr>
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
 <tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 <b>{<font color="blue">page </font><font color="red">'hello'<font color="black">,</font>&nbsp;type<font color="black">=</font>'build'<font color="black">,</font>&nbsp;&nbsp;&nbsp;&nbsp;include<font color="black">,</font>&nbsp;<font color="black">$</font>color<font color="black">=</font>'pink'</font>}</b></span>
 </code></td><td style="vertical-align:top"><code><span style="color: #000000"><h3>
-  <font color="pink">
-    Hello&nbsp;World&nbsp;!
-  </font>
+<font color="pink">
+Hello&nbsp;World&nbsp;!
+</font>
 </h3></span></code></td></tr>
 <tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 <b>{<font color="blue">page </font><font color="red">'hello'<font color="black">,</font>&nbsp;type<font color="black">=</font>'get'<font color="black">,</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;include<font color="black">,</font>&nbsp;<font color="black">$</font>color<font color="black">=</font>'red'</font>}</b></span>
 </code></td><td style="vertical-align:top"><code><span style="color: #000000"><h3>
-  <font color="red">
-    Hello&nbsp;World&nbsp;!
-  </font>
+<font color="red">
+Hello&nbsp;World&nbsp;!
+</font>
 </h3></span></code></td></tr>
 <tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 <b>{<font color="blue">page </font><font color="red">'hello'<font color="black">,</font>&nbsp;type<font color="black">=</font>'sandbox'<font color="black">,</font>&nbsp;&nbsp;include<font color="black">,</font>&nbsp;<font color="black">$</font>color<font color="black">=</font>'purple'</font>}</b></span>
 </code></td><td style="vertical-align:top"><code><span style="color: #000000"><h3>
-  <font color="purple">
-    Hello&nbsp;World&nbsp;!
-  </font>
+<font color="purple">
+Hello&nbsp;World&nbsp;!
+</font>
 </h3></span></code></td></tr>
 <tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 <b>{<font color="blue">page </font><font color="red">'hello'<font color="black">,</font>&nbsp;type<font color="black">=</font>'ajax'<font color="black">,</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;include<font color="black">,</font>&nbsp;<font color="black">$</font>color<font color="black">=</font>'blue'</font>}</b></span>
-</code></td><td style="vertical-align:top"><code><span style="color: #000000"><div id="padAjaxQwZY1HxS"></div>
-
+</code></td><td style="vertical-align:top"><code><span style="color: #000000"><div id="padAjax6V7EIR8U"></div>
 <script>
-  padAjaxQwZY1HxS = new XMLHttpRequest();
-  padAjaxQwZY1HxS.onreadystatechange=function() {
-    if (padAjaxQwZY1HxS.readyState === 4) {
-      if (padAjaxQwZY1HxS.status === 200) {
-        document.getElementById("padAjaxQwZY1HxS").innerHTML=padAjaxQwZY1HxS.responseText;
-      } else {
-        document.getElementById("padAjaxQwZY1HxS").innerHTML=padAjaxQwZY1HxS.statusText;
-      }
-    }
-  }
-  padAjaxQwZY1HxS.open("GET","/?hello/index&padInclude=1&padBuildMode=before&padBuildMerge=$content&color=blue",true);
-  padAjaxQwZY1HxS.send();
+padAjax6V7EIR8U = new XMLHttpRequest();
+padAjax6V7EIR8U.onreadystatechange=function() {
+if (padAjax6V7EIR8U.readyState === 4) {
+if (padAjax6V7EIR8U.status === 200) {
+document.getElementById("padAjax6V7EIR8U").innerHTML=padAjax6V7EIR8U.responseText;
+} else {
+document.getElementById("padAjax6V7EIR8U").innerHTML=padAjax6V7EIR8U.statusText;
+}
+}
+}
+padAjax6V7EIR8U.open("GET","/?hello/index&padInclude&padBuildMode=include&padBuildMerge=content&color=blue",true);
+padAjax6V7EIR8U.send();
 </script></span></code></td></tr>
 <tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 <b>{<font color="blue">page </font><font color="red">'hello'<font color="black">,</font>&nbsp;type<font color="black">=</font>'function'<font color="black">,</font>&nbsp;include<font color="black">,</font>&nbsp;<font color="black">$</font>color<font color="black">=</font>'orange'</font>}</b></span>
 </code></td><td style="vertical-align:top"><code><span style="color: #000000"><h3>
-  <font color="orange">
-    Hello&nbsp;World&nbsp;!
-  </font>
+<font color="orange">
+Hello&nbsp;World&nbsp;!
+</font>
 </h3></span></code></td></tr>
- 
 <tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 <b>{<font color="blue">page </font><font color="red">'hello'<font color="black">,</font>&nbsp;type<font color="black">=</font>'build'<font color="black">,</font>&nbsp;&nbsp;&nbsp;&nbsp;<font color="black">$</font>color<font color="black">=</font>'pink'</font>}</b></span>
 </code></td><td style="vertical-align:top"><code><span style="color: #000000"><h3>
-  <font color="pink">
-    Hello&nbsp;World&nbsp;!
-  </font>
+<font color="pink">
+Hello&nbsp;World&nbsp;!
+</font>
 </h3></span></code></td></tr>
 <tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 <b>{<font color="blue">page </font><font color="red">'hello'<font color="black">,</font>&nbsp;type<font color="black">=</font>'get'<font color="black">,</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="black">$</font>color<font color="black">=</font>'red'</font>}</b></span>
 </code></td><td style="vertical-align:top"><code><span style="color: #000000"><h3>
-  <font color="red">
-    Hello&nbsp;World&nbsp;!
-  </font>
+<font color="red">
+Hello&nbsp;World&nbsp;!
+</font>
 </h3></span></code></td></tr>
 <tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 <b>{<font color="blue">page </font><font color="red">'hello'<font color="black">,</font>&nbsp;type<font color="black">=</font>'sandbox'<font color="black">,</font>&nbsp;&nbsp;<font color="black">$</font>color<font color="black">=</font>'purple'</font>}</b></span>
 </code></td><td style="vertical-align:top"><code><span style="color: #000000"><h3>
-  <font color="purple">
-    Hello&nbsp;World&nbsp;!
-  </font>
+<font color="purple">
+Hello&nbsp;World&nbsp;!
+</font>
 </h3></span></code></td></tr>
 <tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 <b>{<font color="blue">page </font><font color="red">'hello'<font color="black">,</font>&nbsp;type<font color="black">=</font>'ajax'<font color="black">,</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="black">$</font>color<font color="black">=</font>'blue'</font>}</b></span>
-</code></td><td style="vertical-align:top"><code><span style="color: #000000"><div id="padAjaxTnP8fIZc"></div>
-
+</code></td><td style="vertical-align:top"><code><span style="color: #000000"><div id="padAjax0cDR5DJ8"></div>
 <script>
-  padAjaxTnP8fIZc = new XMLHttpRequest();
-  padAjaxTnP8fIZc.onreadystatechange=function() {
-    if (padAjaxTnP8fIZc.readyState === 4) {
-      if (padAjaxTnP8fIZc.status === 200) {
-        document.getElementById("padAjaxTnP8fIZc").innerHTML=padAjaxTnP8fIZc.responseText;
-      } else {
-        document.getElementById("padAjaxTnP8fIZc").innerHTML=padAjaxTnP8fIZc.statusText;
-      }
-    }
-  }
-  padAjaxTnP8fIZc.open("GET","/?hello/index&padInclude=1&padBuildMode=before&padBuildMerge=$content&color=blue",true);
-  padAjaxTnP8fIZc.send();
+padAjax0cDR5DJ8 = new XMLHttpRequest();
+padAjax0cDR5DJ8.onreadystatechange=function() {
+if (padAjax0cDR5DJ8.readyState === 4) {
+if (padAjax0cDR5DJ8.status === 200) {
+document.getElementById("padAjax0cDR5DJ8").innerHTML=padAjax0cDR5DJ8.responseText;
+} else {
+document.getElementById("padAjax0cDR5DJ8").innerHTML=padAjax0cDR5DJ8.statusText;
+}
+}
+}
+padAjax0cDR5DJ8.open("GET","/?hello/index&padBuildMode=include&padBuildMerge=content&color=blue",true);
+padAjax0cDR5DJ8.send();
 </script></span></code></td></tr>
 <tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 <b>{<font color="blue">page </font><font color="red">'hello'<font color="black">,</font>&nbsp;type<font color="black">=</font>'function'<font color="black">,</font>&nbsp;<font color="black">$</font>color<font color="black">=</font>'orange'</font>}</b></span>
 </code></td><td style="vertical-align:top"><code><span style="color: #000000"><h3>
-  <font color="orange">
-    Hello&nbsp;World&nbsp;!
-  </font>
+<font color="orange">
+Hello&nbsp;World&nbsp;!
+</font>
 </h3></span></code></td></tr>
-
-
-  </table>
+</table>
 </p>
-
-
 <hr><p>The included pages</p>
-
-
-
- 
-
-
-
-  
-    <table border="1" cellpadding="10" cellspacing="0">
-  
-
-
-    <tr>
-      
-        <th bgcolor="#dddddd">
-          PHP
-          
-            <br><font size="-2">hello/index.php </font>
-          
-        </th>
-      
-      
-        <th bgcolor="#dddddd">
-          HTML
-          
-            <br><font size="-2">hello/index.html</font>
-          
-        </th>
-      
-      
-    </tr>
-
-
-    <tr>
-      
-        <td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">
+PHP <br><font size="-2">hello/index.php</font>
+</th>
+<th bgcolor="#dddddd">
+HTML <br><font size="-2">hello/index.html</font>
+</th>
+<th bgcolor="#dddddd">
+RESULT
+</th>
+</tr>
+<tr>
+<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 <span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;$color&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$color&nbsp;</span><span style="color: #007700">??&nbsp;</span><span style="color: #DD0000">'black'</span><span style="color: #007700">;<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$hi&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Hello&nbsp;World&nbsp;!'</span><span style="color: #007700">;<br />&nbsp;&nbsp;<br /></span><span style="color: #0000BB">?&gt;</span>
 </span>
 </code> </td>
-      
-      
-        <td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 &lt;h3&gt;<br />&nbsp;&nbsp;&lt;font&nbsp;color="<b>{<font color="green">$color</font>}</b>"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="green">$hi</font>}</b><br />&nbsp;&nbsp;&lt;/font&gt;<br />&lt;/h3&gt;</span>
 </code></td>
-      
-      
-    </tr>
-
-  
-
-
-
-
- 
-
-
-
-  
-
-
-    <tr>
-      
-        <th bgcolor="#dddddd">
-          PHP
-          
-            <br><font size="-2">hello/php.php </font>
-          
-        </th>
-      
-      
-        <th bgcolor="#dddddd">
-          HTML
-          
-            <br><font size="-2"></font>
-          
-        </th>
-      
-      
-    </tr>
-
-
-    <tr>
-      
-        <td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<td style="vertical-align:top"><div id="padAjaxf6vXRU2N"></div>
+<script>
+padAjaxf6vXRU2N = new XMLHttpRequest();
+padAjaxf6vXRU2N.onreadystatechange=function() {
+if (padAjaxf6vXRU2N.readyState === 4) {
+if (padAjaxf6vXRU2N.status === 200) {
+document.getElementById("padAjaxf6vXRU2N").innerHTML=padAjaxf6vXRU2N.responseText;
+} else {
+document.getElementById("padAjaxf6vXRU2N").innerHTML=padAjaxf6vXRU2N.statusText;
+}
+}
+}
+padAjaxf6vXRU2N.open("GET","/?hello/index&padInclude&padBuildMode=include&padBuildMerge=content",true);
+padAjaxf6vXRU2N.send();
+</script></td>
+</tr>
+<tr>
+<th bgcolor="#dddddd">
+PHP <br><font size="-2">hello/php.php</font>
+</th>
+<th bgcolor="#dddddd">
+HTML <br><font size="-2"></font>
+</th>
+<th bgcolor="#dddddd">
+RESULT
+</th>
+</tr>
+<tr>
+<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 <span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;$color&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$color&nbsp;</span><span style="color: #007700">??&nbsp;</span><span style="color: #DD0000">'black'</span><span style="color: #007700">;<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$hi&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'Hello&nbsp;World&nbsp;!'</span><span style="color: #007700">;<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;echo&nbsp;&lt;&lt;&lt;&nbsp;END<br /></span><span style="color: #DD0000">&lt;h3&gt;<br />&nbsp;&nbsp;&lt;font&nbsp;color="</span><span style="color: #007700">{</span><span style="color: #0000BB">$color</span><span style="color: #007700">}</span><span style="color: #DD0000">"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">{</span><span style="color: #0000BB">$hi</span><span style="color: #007700">}</span><span style="color: #DD0000"><br />&nbsp;&nbsp;&lt;/font&gt;<br />&lt;/h3&gt;<br /></span><span style="color: #007700">END;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
 </span>
 </code> </td>
-      
-      
-        <td style="vertical-align:top"></td>
-      
-      
-    </tr>
-
-  
-
-
-
-
- 
-
-
-
-  
-
-
-    <tr>
-      
-        <th bgcolor="#dddddd">
-          PHP
-          
-            <br><font size="-2"> </font>
-          
-        </th>
-      
-      
-        <th bgcolor="#dddddd">
-          HTML
-          
-            <br><font size="-2">hello/html.html</font>
-          
-        </th>
-      
-      
-    </tr>
-
-
-    <tr>
-      
-        <td style="vertical-align:top"> </td>
-      
-      
-        <td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<td style="vertical-align:top"></td>
+<td style="vertical-align:top"><div id="padAjax5Z5VQfIM"></div>
+<script>
+padAjax5Z5VQfIM = new XMLHttpRequest();
+padAjax5Z5VQfIM.onreadystatechange=function() {
+if (padAjax5Z5VQfIM.readyState === 4) {
+if (padAjax5Z5VQfIM.status === 200) {
+document.getElementById("padAjax5Z5VQfIM").innerHTML=padAjax5Z5VQfIM.responseText;
+} else {
+document.getElementById("padAjax5Z5VQfIM").innerHTML=padAjax5Z5VQfIM.statusText;
+}
+}
+}
+padAjax5Z5VQfIM.open("GET","/?hello/php&padInclude&padBuildMode=include&padBuildMerge=content",true);
+padAjax5Z5VQfIM.send();
+</script></td>
+</tr>
+<tr>
+<th bgcolor="#dddddd">
+PHP <br><font size="-2"></font>
+</th>
+<th bgcolor="#dddddd">
+HTML <br><font size="-2">hello/html.html</font>
+</th>
+<th bgcolor="#dddddd">
+RESULT
+</th>
+</tr>
+<tr>
+<td style="vertical-align:top"> </td>
+<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
 &lt;h3&gt;<br />&nbsp;&nbsp;&lt;font&nbsp;color="<b>{<font color="green">$color</font>}</b>"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;Hello&nbsp;World&nbsp;!<br />&nbsp;&nbsp;&lt;/font&gt;<br />&lt;/h3&gt;</span>
 </code></td>
-      
-      
-    </tr>
-
-  
-    </table>
+<td style="vertical-align:top"><div id="padAjaxLCCtjlZO"></div>
+<script>
+padAjaxLCCtjlZO = new XMLHttpRequest();
+padAjaxLCCtjlZO.onreadystatechange=function() {
+if (padAjaxLCCtjlZO.readyState === 4) {
+if (padAjaxLCCtjlZO.status === 200) {
+document.getElementById("padAjaxLCCtjlZO").innerHTML=padAjaxLCCtjlZO.responseText;
+} else {
+document.getElementById("padAjaxLCCtjlZO").innerHTML=padAjaxLCCtjlZO.statusText;
+}
+}
+}
+padAjaxLCCtjlZO.open("GET","/?hello/html&padInclude&padBuildMode=include&padBuildMerge=content",true);
+padAjaxLCCtjlZO.send();
+</script></td>
+</tr>
+</table>
+<!-- PAD: NO REGRESSION -->
