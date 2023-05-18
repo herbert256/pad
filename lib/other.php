@@ -1,6 +1,37 @@
 <?php
 
-   
+
+  function padDemoMode ( $page ) {
+
+    $store = padApp . "_regression/$page.html";
+
+    if ( padExists ($store) )
+      return padFileGetContents($store);
+    else
+      return "NO HTTP REQUESTS ALLOWED IN DEMO MODE";
+
+  }    
+
+
+  function padDirs () {
+
+    $padIncDirs  = padExplode ( $GLOBALS ['padDir'], '/' );
+    $padIncDir   = '';
+    $padIncCheck = [];
+    
+    foreach ( $padIncDirs as $padK => $padV ) {
+      $padIncDir .= "$padV/";
+      $padIncCheck [] = '/' . $padIncDir;
+    }
+
+    $padIncCheck    = array_reverse ($padIncCheck);
+    $padIncCheck [] = '/';
+
+    return $padIncCheck;
+
+  }
+
+
   function padDir ($page) {
 
     if ( str_contains ( $page, '/') )
@@ -128,19 +159,10 @@
 
   }
 
+
   function padIsPagesFile ( $file ) {
 
-    return padIsXXXFile ( padApp . $file );
-
-  }
-
-  function padIsContentFile ( $file ) {
-
-    return padIsXXXFile ( padApp . "_content/$file" );
-
-  }
-
-  function padIsXXXFile ( $file ) {;
+    $file =  padApp . $file ;
 
     if ( padValidFile ( $file ) )
       if  ( ( padExists ($file) and ! is_dir($file) ) or padExists ("$file.html") or padExists ("$file.php") )
@@ -149,42 +171,7 @@
     return FALSE;
 
   }
-  
-  function padDataFileCheck ( $file ) {
 
-    $file = padApp . "_data/$file";
-
-    if ( padValidFile ( $file ) )
-      if  ( ( padExists ($file) and ! is_dir($file) ) 
-        or padExists ("$file.xml") or padExists ("$file.json") or padExists ("$file.yaml") 
-        or padExists ("$file.csv") or padExists ("$file.php") )
-        return TRUE;
-
-    return FALSE;
-
-  }
-
-  function padDataFileGet ( $file ) {
-
-    $file  = padApp . "_data/$file";
-    $parts = pathinfo ( $file );
-    $name  = padTagParm ( 'name', $parts ['filename']  ?? '' );
-    $ext   = padTagParm ( 'type', $parts ['extension'] ?? '' );
-
-        if ( padExists ("$file.xml")  ) { $data = padFileGetContents ("$file.xml");  $ext = 'xml';  }
-    elseif ( padExists ("$file.json") ) { $data = padFileGetContents ("$file.json"); $ext = 'json'; }
-    elseif ( padExists ("$file.yaml") ) { $data = padFileGetContents ("$file.yaml"); $ext = 'yaml'; }
-    elseif ( padExists ("$file.csv")  ) { $data = padFileGetContents ("$file.csv");  $ext = 'csv';  }
-    elseif ( padExists ("$file.php")  ) { $data = include ("$file.php");                            }
-    elseif ( $ext == 'php'            ) { $data = include ($file);                                  }
-    elseif ( padExists ($file)        ) { $data = padFileGetContents ($file);                       }
-
-    if ( $name and ! $GLOBALS ['padName'] [$GLOBALS['pad']] )
-      $GLOBALS ['padName'] [$GLOBALS['pad']] = $name;
-
-    return padData ( $data, $ext, $name );
-
-  }
 
   function padSplit ( $needle, $haystack ) {
 

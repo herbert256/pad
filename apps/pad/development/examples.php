@@ -1,5 +1,7 @@
 <?php
 
+  $padDemoMode = TRUE;
+
   $showTitle = FALSE;
   
   function dirsExample () {
@@ -15,6 +17,9 @@
 
         $path = $one->getPathname() ;
         $dir  = str_replace ( padApp, '', $path );
+
+        if ( strpos($path, '/_includes/') !== FALSE)
+          continue;
 
         if ( substr($dir, -2) == '/.'  ) $dir = substr($dir, 0, -2);
         if ( substr($dir, -3) == '/..' ) $dir = substr($dir, 0, -3);

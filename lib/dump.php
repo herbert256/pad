@@ -91,6 +91,21 @@
 
   }
 
+  function dump () {
+
+    echo ( "<div align=\"left\"><pre>" );
+
+    padDumpFields    ( $php, $lvl, $app, $cfg, $pad, $ids, $exc );
+    padDumpLines     ( "App variables", $app );
+    padDumpLevel     ();
+    padDumpLines     ( "Level variables", $lvl );
+    padDumpLines     ( "PAD variables",   $pad );
+
+    echo ( "</pre></div>" );
+
+    padExit ();
+
+  }
 
   function padDumpGo ($info) {
 
@@ -487,15 +502,11 @@
 
     try {
 
-      $id = $GLOBALS ['padPage'] . '/' . $GLOBALS ['padReqID'] . '-' . padRandomString();
-
-      padDumpToDir ( $info, "dumps/$id" ); 
+      padDumpToDirGo ( $info, "dumps/" . $GLOBALS ['padPage'] . '/' . $GLOBALS ['padReqID'] . '-' . padRandomString()); 
 
     } catch (Throwable $e) {
 
-      $error = $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage(); 
-
-      padFilePutContents ( "dumps/$id/oops.txt", "$info\n\n$error" );
+      padFilePutContents ( "dumps/$id/oops.txt", "$info\n\n" . $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage() );
 
     }
 

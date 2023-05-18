@@ -16,6 +16,9 @@
 
   function padComplete ( $page='index', $query='', $include='' ) {
 
+    if ( isset ( $GLOBALS ['padDemoMode'] ) ) 
+      return padDemoMode ( $page );
+
     global $padHost, $padScript;
 
     if ($include)
@@ -70,8 +73,16 @@
         $url = padAddGet ( $url, $key, $val );
 
     if  ( str_starts_with ( $url, $GLOBALS['padHost'] ) ) {
+
+      if ( isset ( $GLOBALS ['padDemoMode'] ) ) {
+        $output ['result'] = '200';
+        $output ['data']   = padDemoMode( $url );
+        return $output;
+      }
+
       $url = padAddGet ( $url, 'padSesID', $GLOBALS ['padSesID'] );
       $url = padAddGet ( $url, 'padReqID', $GLOBALS ['padReqID'] );
+ 
     }
 
     $output ['url'] = $url;

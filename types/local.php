@@ -1,5 +1,7 @@
 <?php
 
-  return padDataFileGet ( $padTag [$pad] );
- 
+  $padLocalFile = padDataFileName ( $padTag [$pad] ) ;
+
+  return include 'go/local.php';
+
 ?>

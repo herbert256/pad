@@ -12,16 +12,7 @@
       {/if}
     </h3>
 
-    <blockquote>
-        {items '{!type}', '{$ref}', '{$dir}', '{$kind}'}
-          {if $link}
-            <a href="{$padGo}{$ref}/{$item}">{$item}</a>
-          {else}
-            {$item}
-          {/if}
-          &nbsp; 
-        {/items}
-    </blockquote>
+    {include 'items'}
 
   {/types}
 

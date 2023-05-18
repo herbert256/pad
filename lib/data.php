@@ -17,8 +17,9 @@
     if ( is_array ( $data ) )
       return padDataChk ($data, $name);
 
-    if ( padDataFileCheck ( $data ) )
-      return padDataFileGet ( $data );
+    $check = padDataFileName ( $data );
+    if ( $check )
+      return padDataFileData ( $check );
 
     if ( substr ( $data, 0, 7 ) == 'http://' or substr ( $data, 0, 8 ) == 'https://' )
       $data = padCurlData ($data);    
@@ -332,5 +333,49 @@
 
   }
 
+
+  function padInclFileName ( $check ) {
+
+    foreach ( padDirs () as $key => $value ) {
+
+      $file = substr (padApp, 0, -1) . $value . "_include/$check";
+
+      if ( padExists ($file) and ! is_dir($file) ) return $file;
+      if ( padExists ("$file.php")               ) return "$file.php";
+      if ( padExists ("$file.html")              ) return "$file.html";
+
+    }
+
+    return '';
+
+  }
+
+
+  function padDataFileName ( $check ) {
+
+    foreach ( padDirs () as $key => $value ) {
+
+      $file = substr (padApp, 0, -1) . $value . "_data/$check";
+
+      if ( padExists ($file) and ! is_dir($file) ) return $file;
+      if ( padExists ("$file.xml")               ) return "$file.xml";
+      if ( padExists ("$file.json")              ) return "$file.json";
+      if ( padExists ("$file.yaml")              ) return "$file.yaml";
+      if ( padExists ("$file.csv")               ) return "$file.csv";
+      if ( padExists ("$file.php")               ) return "$file.php";
+
+    }
+
+    return '';
+
+  }
+
+
+ function padDataFileData ( $padLocalFile ) {
   
+    return include pad . 'types/go/local.php';
+
+  }
+  
+
 ?>
