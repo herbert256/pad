@@ -159,6 +159,7 @@
     $ajax = 'padAjax' . padRandomString(8);
  
     $url = $GLOBALS ['padGo'] . $page . $qry;
+    $url = padAddIds ( $url );
 
     return <<< END
 <div id="{$ajax}"></div>
@@ -185,8 +186,11 @@ END;
   function padPageGet ( $page, $qry ) {
 
     $curl = padCurl ( $GLOBALS['padGoExt'] . $page . $qry );
+
+    if ( ! str_starts_with( $curl ['result'], '2') )
+      return padError ("Curl failed: $url");
  
-    return str_replace ( '}', '&close;', str_replace('}', '&close;', $curl ['data'] ) );
+    return $curl ['data'];
 
   }
   

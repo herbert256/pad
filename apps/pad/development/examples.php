@@ -1,92 +1,64 @@
 <?php
 
-  $padDemoMode = TRUE;
-
   $showTitle = FALSE;
-  
-  function dirsExample () {
 
-    $directory = new RecursiveDirectoryIterator ( padApp );
-    $iterator  = new RecursiveIteratorIterator  ( $directory );
+  $dirs = [];
 
-    $dirs = [];
+  $source = padApp;
 
-    foreach ($iterator as $one)
+  $directory = new RecursiveDirectoryIterator ( $source    );
+  $iterator  = new RecursiveIteratorIterator  ( $directory );
 
-     if ( $one->isDir() ) {
+  foreach ($iterator as $one) {
 
-        $path = $one->getPathname() ;
-        $dir  = str_replace ( padApp, '', $path );
+    $path = $one->getPathname();
+    $item = str_replace ($source, '', $path);
+    $file = substr($item,    strrpos($item, '/')+1 );
+    $dir  = substr($item, 0, strrpos($item, '/') );
 
-        if ( strpos($path, '/_includes/') !== FALSE)
-          continue;
+    if ( ! $dir                           ) continue;
+    if ( isset ($dirs [$dir])             ) continue;
+    if ( strpos($path, '/_')              ) continue;
+    if ( strpos($path, '/development/')   ) continue;
+    if ( strpos($path, '/todo/')          ) continue;
+    if ( substr($path, -1) == '.'         ) continue;
+    
+    $dirs [$dir] ['dir']   = $dir;
+    $dirs [$dir] ['files'] = one ($dir);
+ 
+  }
 
-        if ( substr($dir, -2) == '/.'  ) $dir = substr($dir, 0, -2);
-        if ( substr($dir, -3) == '/..' ) $dir = substr($dir, 0, -3);
+  ksort($dirs);
 
-        if ( ! isset ($dirs [$dir]) and substr($dir, -1) <> '.' and substr($dir, 0, 1) <> '_' ) {
-          $dirs [$dir] ['dir']   = $dir;
-          $dirs [$dir] ['files'] = dirExample ($dir);
-        } 
+  function one ($dir) {
 
-      }
+    $files = [];
 
-    ksort($dirs);
+    $directory = new DirectoryIterator ( padApp . $dir );
+    $iterator  = new IteratorIterator  ( $directory );
 
-    return $dirs;
+    foreach ( $iterator as $one ) {
+
+      $path = $one->getPathname();
+      $item = substr($path, strrpos($path, '/')+1 );
+      $ext  = substr($item,    strrpos($item, '.')+1);
+      $file = substr($item, 0, strrpos($item, '.') );
+
+      if ( $file == 'index')
+        return [ $file => ['file' => $file] ];
+
+      if ( $one->isDir()                    ) continue;
+      if ( isset ($files [$file])           ) continue;
+      if ( strpos($path, '/_')              ) continue;
+      if ( $ext <> 'html' and $ext <> 'php' ) continue;
+
+      $files [$file] ['file'] = $file;      
+
+    }
+
+    return $files;
 
   }
 
-  function dirExample ($dir) {
-
-    $list = [];
-
-    $dir = padApp . $dir;
-
-    $directory = new DirectoryIterator ( $dir       );
-    $iterator  = new IteratorIterator  ( $directory );
-
-    foreach ( $iterator as $loop ) {
-
-      if ( $loop->isDir() )
-        continue;
-
-      $one   = $loop->getPathname();
-      $file  = str_replace($dir,  '', $one );
-      $ext   = substr($file,    strrpos($file, '.')+1 );
-      $item  = substr($file, 1, strrpos($file, '.')-1 );
   
-      if ( $item == 'index' )
-        return [ 'file' => ' index', 'onlyResult' => ',onlyResult', 'skipResult' => '' ]; 
-
-      if ( isset ($list [$item] )           ) continue;
-             if ( substr($item, -4) == 'todo'      ) continue;
-      if ( substr($item, 0, 1) == '_'       ) continue;
-      if ( $ext <> 'html' and $ext <> 'php' ) continue;
-
-      $html = ( padExists("$dir/$item.html") ) ? file_get_contents("$dir/$item.html") : '';
-
-      if ( strpos($html, '{restart')  !== false ) continue;  
-      if ( strpos($html, '{redirect') !== false ) continue;  
-
-      $list [$item] ['file'] = $item;
-
-      if ( strpos($html, '{demo') !== false )  
-        $list [$item] ['onlyResult'] = ',onlyResult';
-      else
-        $list [$item] ['onlyResult'] = '';
-
-      if ( substr($item, 0, 1) == '_' ) 
-        $list [$item] ['skipResult'] = ',skipResult';
-      else
-        $list [$item] ['skipResult'] = '';
-      
-    }
-
-    ksort($list);
-
-    return $list;
-
-  } 
-
 ?>

@@ -3,12 +3,12 @@
 {/if}
 
 {if #withTitle}
-  <br><hr><h3>{$exampleTitle}</h3>
+  <h3>{$exampleTitle}</h3>
 {/if} 
 
 {if #onlyResult} 
 
-  {page '{$examplePage}', type='sandbox', include}
+  {page '{$examplePage}', type='sandbox', include, ignore}
 
 {else}
 
@@ -47,7 +47,7 @@
         <td style="vertical-align:top">{!exampleSrcHtml}</td>
       {/if}
       {if ! #skipResult}
-        <td style="vertical-align:top">{page '{$examplePage}', type='sandbox', include}</td>
+        <td style="vertical-align:top">{page '{$examplePage}', type='sandbox', include, ignore}</td>
       {/if}
     </tr>
 
@@ -88,7 +88,7 @@
         </tr>
       {/if}
       <tr>
-        <td style="vertical-align:top">{page '{$examplePage}', type='sandbox', include}</td>
+        <td style="vertical-align:top">{page '{$examplePage}', type='sandbox', include, ignore}</td>
       </tr>
     {/if}
 

@@ -1,6 +1,14 @@
 <?php
 
+ function padAddIds ( $url ) {
 
+    $url = padAddGet ( $url, 'padSesID', $GLOBALS ['padSesID'] );
+    $url = padAddGet ( $url, 'padReqID', $GLOBALS ['padReqID'] );
+
+    return $url;
+
+  }
+      
  function padTidyOutput ( $data ) {
 
     if ( $GLOBALS ['padBuildMode'] == 'include' )

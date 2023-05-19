@@ -35,31 +35,26 @@
       foreach ( $input['get'] as $key => $val ) 
         $url = padAddGet ( $url, $key, $val );
 
-    if ( str_starts_with ( strtolower ( $url ), strtolower ( $GLOBALS['padHost'] ) ) ) {
-
-      $url = padAddGet ( $url, 'padSesID', $GLOBALS ['padSesID'] );
-      $url = padAddGet ( $url, 'padReqID', $GLOBALS ['padReqID'] );
-
-      if ( isset ( $GLOBALS ['padDemoMode'] ) ) {
-        $output ['result'] = '200';
-        $output ['data']   = padDemoMode( $url );
-        return $output;
-      }
- 
-    }
+    if ( str_starts_with ( strtolower ( $url ), strtolower ( $GLOBALS['padHost'] ) ) )
+      $url = padAddIds ( $url );
 
     $output ['url'] = $url;
 
     if ( ! strpos( $url, '://') ) {
-      $file = padApp . 'data/' . $url;
-      if ( padExists ( $file ) ) {
-        $output ['data']    = padFileGetContents ( $file );   
-        $output ['type']    = padContentType  ( $output ['data'] );   
-        $output ['result']  = '200';
+
+      $check = padDataFileName ( $url );
+    
+      if ( $check ) {
+        $output ['url']    = $check;
+        $output ['data']   = padDataFileData ( $check );   
+        $output ['type']   = padContentType   ( $output ['data'] );   
+        $output ['result'] = '200';
       } else 
-        $output ['result']  = '404';
+        $output ['result'] = '404';
+
       $GLOBALS ['padCurlLast'] = $output;
       return $output;
+
     }
 
     $options = $input ['options'] ?? [];
@@ -98,20 +93,34 @@
 
     $output ['options'] = $options;      
 
-    $curl = curl_init ( $url );
+    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
+    $errorReporting = error_reporting (0);
 
-    if ($curl === FALSE)
-      return padCurlError ($output, 'curl_init = FALSE');
+    try {
 
-    foreach ( $options as $key => $val )
-      curl_setopt ( $curl, constant('CURLOPT_'.$key), $val );
-  
-    $result          = curl_exec    ($curl);
-    $output ['info'] = curl_getinfo ($curl);
+      $curl = curl_init ( $url );
+
+      if ($curl === FALSE)
+        return padCurlError ($output, 'curl_init = FALSE');
+
+      foreach ( $options as $key => $val )
+        curl_setopt ( $curl, constant('CURLOPT_'.$key), $val );
     
-    if ($result === FALSE)
-      return padCurlError ($output, 'curl_exec = FALSE');
-    
+      $result          = curl_exec    ($curl);
+      $output ['info'] = curl_getinfo ($curl);
+      
+      if ($result === FALSE)
+        return padCurlError ($output, 'curl_exec = FALSE');
+
+    } catch (Throwable $e) {
+
+      return padCurlError ( $output,  $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage() );
+
+    }
+
+    restore_error_handler ();
+    error_reporting ( $errorReporting );
+
     if ( isset ( $output ['info'] ['http_code'] ) )
       $output ['result'] = $output ['info'] ['http_code'];
     else

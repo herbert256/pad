@@ -1,17 +1,21 @@
-<p>
+{dirs}
 
-  {dirsExample}
+  {files}
 
-    {files}
+<p><table style="border-style: dotted;" cellspacing="15"><tr><td>
 
-     <br><hr>
+<center>
+    <h3>{$dir}/{$file}
+    <a href="">go</a>
+    <a href="">details</a>
+    </h3>
 
-      {example '{$dir}/{$file}' {$onlyResult} {$skipResult} , type='get', showPageName, withLinks}
+    {page 'example', type='ajax', include, $example='/{$dir}/{$file}'}
 
-    {/files}
+</center>
 
-  {/dirsExample}
+</td></tr></table>
 
-  {track 'Big Test - Examples'}
+  {/files}
 
-</p>
+{/dirs}

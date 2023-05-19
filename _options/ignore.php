@@ -1,5 +1,5 @@
 <?php
 
-  $padBase [$pad] = '{ignore}' . $padBase [$pad] . '{/ignore}';    
+  $padContent = '{ignore}' . $padContent . '{/ignore}';    
   
 ?>

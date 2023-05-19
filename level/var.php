@@ -20,8 +20,14 @@
 
   }
 
-  if ( substr($padFld, 0, 1) == '$' )
+  if ( ! padValidVar2 ($padFld))
+    return padIgnore ( "Field '$padFld' not a valid name" );
+
+  if ( substr($padFld, 0, 1) == '$' ) {
     $padFld = padFieldValue ($padFld);
+    if ( ! padValidVar2 ($padFld))
+      return padIgnore ( "Field '$padFld' not a valid name" );
+  }
  
   if ( ! in_array('noError', $padOpts) )
     if     ( $padFirst == '!' ) { if ( ! padRawCheck   ( $padFld ) ) padError ( "Field '$padFld' not found" ); }

@@ -1,14 +1,9 @@
 <?php
 
-  $padExtPag = padPageGetName ();
-
-  if ( isset ( $GLOBALS ['padDemoMode'] ) ) 
-    return padDemoMode ( $padExtPag );
-
+  $padExtPag  = padPageGetName ();
   $padExtIncl = ( padTagParm ( 'include' ) ) ? '&padInclude' : '';
   $padExtMode = padTagParm ( 'mode',  $padBuildMode  );
   $padExtMrg  = padTagParm ( 'merge', $padBuildMerge );  
-
   $padExtQry  = "$padExtIncl&padBuildMode=$padExtMode&padBuildMerge=$padExtMrg";
 
   foreach ( $padSet [$pad] as $padK => $padV )
