@@ -1,0 +1,13 @@
+{set $abc = '123'}
+
+<p>{$abc}</p>
+
+{isolate}
+
+  {set $abc = '456'}
+
+  <p>{$abc}</p>
+
+{/isolate}
+
+<p>{$abc}</p>

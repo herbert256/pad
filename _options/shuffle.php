@@ -1,0 +1,5 @@
+<?php
+
+  shuffle ( $padData [$pad] );
+
+?>

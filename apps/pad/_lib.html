@@ -1,0 +1,19 @@
+{content 'block'}
+  <table border=0>
+    <tr>
+      <td>  
+        @content@
+      </td>
+    </tr>
+  </table>
+{/content}
+
+{content 'examples'}
+  {example '{$examples}', skipNames{notFirst},skipOpen,skipHeader{/notFirst}{notLast},skipClose{/notLast}}
+{/content}
+
+{content 'thisDir'}
+  {dirList '{$padDir}'}
+    {example '{$item}', skipNames{notFirst},skipOpen,skipHeader{/notFirst}{notLast},skipClose{/notLast}}
+  {/dirList}
+{/content}

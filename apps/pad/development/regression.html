@@ -1,0 +1,24 @@
+{files}
+
+  {if $status eq 'error'}
+    <font size="+1"><b>
+  {/if}
+
+  <a 
+
+    {if $status eq 'error'} 
+      style="color:black;background-color: #f44336;"
+    {else}
+      style="color:blue;"
+    {/if} 
+
+    href="{$padGo}development/compare&item={$item}">{item}</a>
+
+
+  {if $status eq 'error'}
+    </b></font>
+  {/if}
+
+  &nbsp; &nbsp;
+
+{/files}
