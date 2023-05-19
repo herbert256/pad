@@ -6,11 +6,11 @@
 
 <center>
     <h3>{$dir}/{$file}
-    <a href="">go</a>
-    <a href="">details</a>
+    <a href="{$padGo}{$dir}/{$file}">go</a>
+    <a href="{$padGo}development/compare&item={$dir}/{$file}">details</a>
     </h3>
 
-    {page 'example', type='ajax', include, $example='/{$dir}/{$file}'}
+    {page 'example', type='{$exampleType}', include, $example='/{$dir}/{$file}'}
 
 </center>
 

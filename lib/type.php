@@ -40,7 +40,7 @@
     elseif ( $type == 'app'      and padExists        ( padApp . "_tags/$item.html"          ) ) return $type;
     elseif ( $type == 'pad'      and padExists        ( pad . "_tags/$item.php"              ) ) return $type;
     elseif ( $type == 'pad'      and padExists        ( pad . "_tags/$item.html"             ) ) return $type;
-    elseif ( $type == 'include'  and ppadInclFileName ( $item                                ) ) return $type;
+    elseif ( $type == 'include'  and padInclFileName  ( $item                                ) ) return $type;
     elseif ( $type == 'page'     and padIsPagesFile   ( $item                                ) ) return $type;
     elseif ( $type == 'tag'      and padExists        ( pad . "tag/$type.php"                ) ) return $type;
     elseif ( $type == 'level'    and padChkLevel      ( $item                                ) ) return $type;

@@ -131,6 +131,10 @@ co: $parms  = $words[1] ?? '';
     } else
       $close2 = '';
 
+    $parts = padExplode ($search, ':');
+    if (count ($parts) == 2 )
+      $search = '<font color="purple">' . $parts[0] . '</font><font color="black"><b>:</b></font>' . $parts[1];
+        
     $search = str_replace ('#', '<font color="black"><b><font color="black">#</font></b></font>',  $search);
 
     $source = substr($source, 0, $start) 

@@ -1,0 +1,41 @@
+{table}{demo}
+
+{content 'foo'}
+  This is from content
+{/content}
+
+{data 'foo'}
+  [
+    { "foo": "This is a json array - 1" },
+    { "foo": "This is a json array - 2" },
+    { "foo": "This is a json array - 3" }
+  ]
+{/data}
+
+{/demo}{demo}
+
+<h3>From the &open;content&close; tag</h3>
+
+{content:foo}
+
+<h3>From the _includes directory</h3>
+
+{include:foo}
+
+<h3>From a PHP function</h3>
+
+{php:foo}
+
+<h3>From a PHP array</h3>
+
+{array:foo}
+  {$foo} <br>
+{/array:foo}
+
+<h3>From the &open;data&close; tag</h3>
+
+{data:foo $flaflip='abc'}
+  {$foo} <br>
+{/data:foo}
+
+{/demo}{/table}

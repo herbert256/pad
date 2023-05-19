@@ -1,5 +1,7 @@
 <?php
 
+  set_time_limit(30);
+
   $showTitle = FALSE;
 
   $dirs = [];
@@ -50,6 +52,8 @@
       if ( $one->isDir()                    ) continue;
       if ( isset ($files [$file])           ) continue;
       if ( strpos($path, '/_')              ) continue;
+      if ( strpos($path, 'restart')         ) continue;
+      if ( strpos($path, 'redirect')        ) continue;
       if ( $ext <> 'html' and $ext <> 'php' ) continue;
 
       $files [$file] ['file'] = $file;      
