@@ -1,5 +1,0 @@
-<?php
-
-  $padOutput = padTidyOutput ( $padOutput );
-
-?>

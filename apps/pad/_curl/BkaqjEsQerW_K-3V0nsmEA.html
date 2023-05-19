@@ -1,3 +1,0 @@
-<p>
-Hallo Welt
-</p>
