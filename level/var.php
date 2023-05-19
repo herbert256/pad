@@ -20,14 +20,17 @@
 
   }
 
+  if ( ! padValidVar ($padFld))
+    return padIgnore ( "Field '$padFld' not a valid name" );
+
   if ( substr($padFld, 0, 1) == '$' )
     $padFld = padFieldValue ($padFld);
  
   if ( ! in_array('noError', $padOpts) )
-    if     ( $padFirst == '!' ) { if ( ! padRawCheck   ( $padFld ) ) padError ( "Field '$padFld' not found" ); }
-    elseif ( $padFirst == '$' ) { if ( ! padFieldCheck ( $padFld ) ) padError ( "Field '$padFld' not found" ); }
-    elseif ( $padFirst == '#' ) { if ( ! padParmCheck  ( $padFld ) ) padError ( "Field '$padFld' not found" ); }
-    elseif ( $padFirst == '&' ) { if ( ! padTagCheck   ( $padFld ) ) padError ( "Field '$padFld' not found" ); }
+    if     ( $padFirst == '!' ) { if ( ! padRawCheck   ( $padFld ) ) return padError ( "Field '$padFld' not found" ); }
+    elseif ( $padFirst == '$' ) { if ( ! padFieldCheck ( $padFld ) ) return padError ( "Field '$padFld' not found" ); }
+    elseif ( $padFirst == '#' ) { if ( ! padParmCheck  ( $padFld ) ) return padError ( "Field '$padFld' not found" ); }
+    elseif ( $padFirst == '&' ) { if ( ! padTagCheck   ( $padFld ) ) return padError ( "Field '$padFld' not found" ); }
 
   if     ( $padFirst == '!' ) $padVal = padRawValue   ($padFld);
   elseif ( $padFirst == '$' ) $padVal = padFieldValue ($padFld);

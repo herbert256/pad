@@ -1,0 +1,82 @@
+<p> 
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">sequence </font><font color="red">list<font color="black">=</font>'5;10;15;20'<font color="black">,</font>&nbsp;&nbsp;name<font color="black">=</font>'one'</font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000"></span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">sequence </font><font color="red">list<font color="black">=</font>'15;20;25;30'<font color="black">,</font>&nbsp;name<font color="black">=</font>'two'</font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000"></span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">one</font><font color="red"></font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$one</font>}</b><br /><b>{/<font color="blue">one</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">5
+10
+15
+20</span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">two</font><font color="red"></font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$two</font>}</b><br /><b>{/<font color="blue">two</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">15
+20
+25
+30</span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">one </font><font color="red">append<font color="black">=</font>'two'</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$one</font>}</b><br /><b>{/<font color="blue">one</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">5
+10
+15
+20
+15
+20
+25
+30</span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">one </font><font color="red">prepend<font color="black">=</font>'two'</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$one</font>}</b><br /><b>{/<font color="blue">one</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">15
+20
+25
+30
+5
+10
+15
+20</span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">one </font><font color="red">combine<font color="black">=</font>'two'</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$one</font>}</b><br /><b>{/<font color="blue">one</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">5
+10
+15
+15
+20
+20
+25
+30</span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">one </font><font color="red">merge<font color="black">=</font>'two'</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$one</font>}</b><br /><b>{/<font color="blue">one</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">5
+10
+15
+20
+25
+30</span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">one </font><font color="red">difference<font color="black">=</font>'two'</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$one</font>}</b><br /><b>{/<font color="blue">one</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">5
+10
+25
+30</span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">one </font><font color="red">intersection<font color="black">=</font>'two'</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$one</font>}</b><br /><b>{/<font color="blue">one</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">15
+20</span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">one </font><font color="red">onlyMe<font color="black">=</font>'two'</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$one</font>}</b><br /><b>{/<font color="blue">one</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">5
+10</span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">one </font><font color="red">onlyOther<font color="black">=</font>'two'</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$one</font>}</b><br /><b>{/<font color="blue">one</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">25
+30</span></code></td></tr>
+</table>
+</p>

@@ -1,7 +1,5 @@
 <?php
 
-  $padDemoMode = TRUE;
-
   $showTitle = FALSE;
   
   function dirsExample () {
@@ -60,7 +58,7 @@
         return [ 'file' => ' index', 'onlyResult' => ',onlyResult', 'skipResult' => '' ]; 
 
       if ( isset ($list [$item] )           ) continue;
-             if ( substr($item, -4) == 'todo'      ) continue;
+      if ( substr($item, -4) == 'todo'      ) continue;
       if ( substr($item, 0, 1) == '_'       ) continue;
       if ( $ext <> 'html' and $ext <> 'php' ) continue;
 
@@ -71,16 +69,6 @@
 
       $list [$item] ['file'] = $item;
 
-      if ( strpos($html, '{demo') !== false )  
-        $list [$item] ['onlyResult'] = ',onlyResult';
-      else
-        $list [$item] ['onlyResult'] = '';
-
-      if ( substr($item, 0, 1) == '_' ) 
-        $list [$item] ['skipResult'] = ',skipResult';
-      else
-        $list [$item] ['skipResult'] = '';
-      
     }
 
     ksort($list);

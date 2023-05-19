@@ -1,0 +1,1437 @@
+<div align="left"><pre><table><tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> ParseError: syntax error, unexpected token "}" in /Users/herbert/pad/apps/pad/development/example.php on line <i>3</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0000</td><td bgcolor='#eeeeec' align='right'>361288</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/Users/herbert/pad/www/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0000</td><td bgcolor='#eeeeec' align='right'>361864</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'/Users/herbert/pad/start.php</font> )</td><td title='/Users/herbert/pad/www/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>21</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.0000</td><td bgcolor='#eeeeec' align='right'>363440</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'/Users/herbert/pad/pad.php</font> )</td><td title='/Users/herbert/pad/start.php' bgcolor='#eeeeec'>.../start.php<b>:</b>11</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.0000</td><td bgcolor='#eeeeec' align='right'>363704</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'/Users/herbert/pad/inits/inits.php</font> )</td><td title='/Users/herbert/pad/pad.php' bgcolor='#eeeeec'>.../pad.php<b>:</b>3</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>5</td><td bgcolor='#eeeeec' align='center'>0.0002</td><td bgcolor='#eeeeec' align='right'>389472</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'/Users/herbert/pad/inits/build.php</font> )</td><td title='/Users/herbert/pad/inits/inits.php' bgcolor='#eeeeec'>.../inits.php<b>:</b>18</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>6</td><td bgcolor='#eeeeec' align='center'>0.0002</td><td bgcolor='#eeeeec' align='right'>389800</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'/Users/herbert/pad/build/build.php</font> )</td><td title='/Users/herbert/pad/inits/build.php' bgcolor='#eeeeec'>.../build.php<b>:</b>6</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>7</td><td bgcolor='#eeeeec' align='center'>0.0003</td><td bgcolor='#eeeeec' align='right'>391312</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'/Users/herbert/pad/build/include.php</font> )</td><td title='/Users/herbert/pad/build/build.php' bgcolor='#eeeeec'>.../build.php<b>:</b>19</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>8</td><td bgcolor='#eeeeec' align='center'>0.0003</td><td bgcolor='#eeeeec' align='right'>391584</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'/Users/herbert/pad/build/call.php</font> )</td><td title='/Users/herbert/pad/build/include.php' bgcolor='#eeeeec'>.../include.php<b>:</b>3</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>9</td><td bgcolor='#eeeeec' align='center'>0.0003</td><td bgcolor='#eeeeec' align='right'>392352</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'/Users/herbert/pad/build/go.php</font> )</td><td title='/Users/herbert/pad/build/call.php' bgcolor='#eeeeec'>.../call.php<b>:</b>22</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>10</td><td bgcolor='#eeeeec' align='center'>0.0003</td><td bgcolor='#eeeeec' align='right'>392640</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'/Users/herbert/pad/build/one.php</font> )</td><td title='/Users/herbert/pad/build/go.php' bgcolor='#eeeeec'>.../go.php<b>:</b>3</td></tr>
+</table><hr><b>/Users/herbert/pad/apps/pad/development/example.php:3 EXCEPTION: syntax error, unexpected token "}"</b><hr><br><b>Stack - debug_backtrace()</b>
+    /Users/herbert/pad/lib/dump.php:118 - padDumpStack
+    /Users/herbert/pad/lib/dump.php:62 - padDumpGo
+    /Users/herbert/pad/lib/dump.php:21 - padDumpTry
+    /Users/herbert/pad/lib/error.php:148 - padDump
+    /Users/herbert/pad/lib/error.php:109 - padErrorTry
+    /Users/herbert/pad/lib/error.php:67 - padErrorGo
+    ???:??? - padErrorException
+<b>Stack - exception</b>
+    /Users/herbert/pad/build/go.php:3 - include
+    /Users/herbert/pad/build/call.php:22 - include
+    /Users/herbert/pad/build/include.php:3 - include
+    /Users/herbert/pad/build/build.php:19 - include
+    /Users/herbert/pad/inits/build.php:6 - include
+    /Users/herbert/pad/inits/inits.php:18 - include
+    /Users/herbert/pad/pad.php:3 - include
+    /Users/herbert/pad/start.php:11 - include
+    /Users/herbert/pad/www/index.php:21 - include
+
+<b>Exceptions</b>
+      [padExceptions] 
+              [0] =&gt; ParseError Object
+                      [message:protected] =&gt; syntax error, unexpected token &quot;}&quot;
+                      [string:Error:private] =&gt; 
+                      [code:protected] =&gt; 0
+                      [file:protected] =&gt; /Users/herbert/pad/apps/pad/development/example.php
+                      [line:protected] =&gt; 3
+                      [trace:Error:private] 
+                              [0] 
+                                      [file] =&gt; /Users/herbert/pad/build/go.php
+                                      [line] =&gt; 3
+                                      [function] =&gt; include
+                              [1] 
+                                      [file] =&gt; /Users/herbert/pad/build/call.php
+                                      [line] =&gt; 22
+                                      [args] 
+                                              [0] =&gt; /Users/herbert/pad/build/go.php
+                                      [function] =&gt; include
+                              [2] 
+                                      [file] =&gt; /Users/herbert/pad/build/include.php
+                                      [line] =&gt; 3
+                                      [args] 
+                                              [0] =&gt; /Users/herbert/pad/build/call.php
+                                      [function] =&gt; include
+                              [3] 
+                                      [file] =&gt; /Users/herbert/pad/build/build.php
+                                      [line] =&gt; 19
+                                      [args] 
+                                              [0] =&gt; /Users/herbert/pad/build/include.php
+                                      [function] =&gt; include
+                              [4] 
+                                      [file] =&gt; /Users/herbert/pad/inits/build.php
+                                      [line] =&gt; 6
+                                      [args] 
+                                              [0] =&gt; /Users/herbert/pad/build/build.php
+                                      [function] =&gt; include
+                              [5] 
+                                      [file] =&gt; /Users/herbert/pad/inits/inits.php
+                                      [line] =&gt; 18
+                                      [args] 
+                                              [0] =&gt; /Users/herbert/pad/inits/build.php
+                                      [function] =&gt; include
+                              [6] 
+                                      [file] =&gt; /Users/herbert/pad/pad.php
+                                      [line] =&gt; 3
+                                      [args] 
+                                              [0] =&gt; /Users/herbert/pad/inits/inits.php
+                                      [function] =&gt; include
+                              [7] 
+                                      [file] =&gt; /Users/herbert/pad/start.php
+                                      [line] =&gt; 11
+                                      [args] 
+                                              [0] =&gt; /Users/herbert/pad/pad.php
+                                      [function] =&gt; include
+                              [8] 
+                                      [file] =&gt; /Users/herbert/pad/www/index.php
+                                      [line] =&gt; 21
+                                      [args] 
+                                              [0] =&gt; /Users/herbert/pad/start.php
+                                      [function] =&gt; include
+                      [previous:Error:private] =&gt; 
+                      [xdebug_message] =&gt; &lt;tr&gt;&lt;th align=&#039;left&#039; bgcolor=&#039;#f57900&#039; colspan=&quot;5&quot;&gt;&lt;span style=&#039;background-color: #cc0000; color: #fce94f; font-size: x-large;&#039;&gt;( ! )&lt;/span&gt; ParseError: syntax error, unexpected token &quot;}&quot; in /Users/herbert/pad/apps/pad/development/example.php on line &lt;i&gt;3&lt;/i&gt;&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;th align=&#039;left&#039; bgcolor=&#039;#e9b96e&#039; colspan=&#039;5&#039;&gt;Call Stack&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;th align=&#039;center&#039; bgcolor=&#039;#eeeeec&#039;&gt;#&lt;/th&gt;&lt;th align=&#039;left&#039; bgcolor=&#039;#eeeeec&#039;&gt;Time&lt;/th&gt;&lt;th align=&#039;left&#039; bgcolor=&#039;#eeeeec&#039;&gt;Memory&lt;/th&gt;&lt;th align=&#039;left&#039; bgcolor=&#039;#eeeeec&#039;&gt;Function&lt;/th&gt;&lt;th align=&#039;left&#039; bgcolor=&#039;#eeeeec&#039;&gt;Location&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;1&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;0.0000&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;right&#039;&gt;361288&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039;&gt;{main}(  )&lt;/td&gt;&lt;td title=&#039;/Users/herbert/pad/www/index.php&#039; bgcolor=&#039;#eeeeec&#039;&gt;.../index.php&lt;b&gt;:&lt;/b&gt;0&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;2&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;0.0000&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;right&#039;&gt;361864&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039;&gt;include( &lt;font color=&#039;#00bb00&#039;&gt;&#039;/Users/herbert/pad/start.php&lt;/font&gt; )&lt;/td&gt;&lt;td title=&#039;/Users/herbert/pad/www/index.php&#039; bgcolor=&#039;#eeeeec&#039;&gt;.../index.php&lt;b&gt;:&lt;/b&gt;21&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;3&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;0.0000&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;right&#039;&gt;363440&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039;&gt;include( &lt;font color=&#039;#00bb00&#039;&gt;&#039;/Users/herbert/pad/pad.php&lt;/font&gt; )&lt;/td&gt;&lt;td title=&#039;/Users/herbert/pad/start.php&#039; bgcolor=&#039;#eeeeec&#039;&gt;.../start.php&lt;b&gt;:&lt;/b&gt;11&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;4&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;0.0000&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;right&#039;&gt;363704&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039;&gt;include( &lt;font color=&#039;#00bb00&#039;&gt;&#039;/Users/herbert/pad/inits/inits.php&lt;/font&gt; )&lt;/td&gt;&lt;td title=&#039;/Users/herbert/pad/pad.php&#039; bgcolor=&#039;#eeeeec&#039;&gt;.../pad.php&lt;b&gt;:&lt;/b&gt;3&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;5&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;0.0002&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;right&#039;&gt;389472&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039;&gt;include( &lt;font color=&#039;#00bb00&#039;&gt;&#039;/Users/herbert/pad/inits/build.php&lt;/font&gt; )&lt;/td&gt;&lt;td title=&#039;/Users/herbert/pad/inits/inits.php&#039; bgcolor=&#039;#eeeeec&#039;&gt;.../inits.php&lt;b&gt;:&lt;/b&gt;18&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;6&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;0.0002&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;right&#039;&gt;389800&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039;&gt;include( &lt;font color=&#039;#00bb00&#039;&gt;&#039;/Users/herbert/pad/build/build.php&lt;/font&gt; )&lt;/td&gt;&lt;td title=&#039;/Users/herbert/pad/inits/build.php&#039; bgcolor=&#039;#eeeeec&#039;&gt;.../build.php&lt;b&gt;:&lt;/b&gt;6&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;7&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;0.0003&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;right&#039;&gt;391312&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039;&gt;include( &lt;font color=&#039;#00bb00&#039;&gt;&#039;/Users/herbert/pad/build/include.php&lt;/font&gt; )&lt;/td&gt;&lt;td title=&#039;/Users/herbert/pad/build/build.php&#039; bgcolor=&#039;#eeeeec&#039;&gt;.../build.php&lt;b&gt;:&lt;/b&gt;19&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;8&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;0.0003&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;right&#039;&gt;391584&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039;&gt;include( &lt;font color=&#039;#00bb00&#039;&gt;&#039;/Users/herbert/pad/build/call.php&lt;/font&gt; )&lt;/td&gt;&lt;td title=&#039;/Users/herbert/pad/build/include.php&#039; bgcolor=&#039;#eeeeec&#039;&gt;.../include.php&lt;b&gt;:&lt;/b&gt;3&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;9&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;0.0003&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;right&#039;&gt;392352&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039;&gt;include( &lt;font color=&#039;#00bb00&#039;&gt;&#039;/Users/herbert/pad/build/go.php&lt;/font&gt; )&lt;/td&gt;&lt;td title=&#039;/Users/herbert/pad/build/call.php&#039; bgcolor=&#039;#eeeeec&#039;&gt;.../call.php&lt;b&gt;:&lt;/b&gt;22&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;10&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;0.0003&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;right&#039;&gt;392640&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039;&gt;include( &lt;font color=&#039;#00bb00&#039;&gt;&#039;/Users/herbert/pad/build/one.php&lt;/font&gt; )&lt;/td&gt;&lt;td title=&#039;/Users/herbert/pad/build/go.php&#039; bgcolor=&#039;#eeeeec&#039;&gt;.../go.php&lt;b&gt;:&lt;/b&gt;3&lt;/td&gt;&lt;/tr&gt;
+
+<b>ID's</b>
+      [padPage] =&gt; development/example
+      [padSesID] =&gt; WZxaKdmP
+      [padRefID] =&gt; eQDM3Jhz
+      [padReqID] =&gt; wI1JQtzq
+
+<b> Level: 0</b>
+      [tag] =&gt; 
+      [type] =&gt; 
+      [pair] =&gt; 
+      [p-type] =&gt; 
+      [opt] 
+              [0] =&gt; 
+              [1] =&gt; 
+      [prm] 
+      [set] 
+      [true] =&gt; 
+      [false] =&gt; 
+      [base] =&gt; {content &#039;block&#039;} &lt;table border=0&gt; &lt;tr&gt; &lt;td&gt; @content@ &lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; {/content} {content &#039;examples&#039;} {example &#039;{$examples}&#039;, skipNames{notFirst
+      [html] =&gt; 
+      [result] =&gt; 
+      [name] =&gt; 
+      [default] =&gt; 1
+      [walk] =&gt; start
+      [hit] =&gt; 
+      [null] =&gt; 
+      [else] =&gt; 
+      [array] =&gt; 
+      [text] =&gt; 
+
+<b>Request variables</b>
+      [development/example] =&gt; 
+      [padInclude] =&gt; 
+      [padSesID] =&gt; WZxaKdmP
+      [padReqID] =&gt; eQDM3Jhz
+
+<b>App variables</b>
+      [showTitle] =&gt; 1
+      [title] =&gt; Example
+
+<b>PAD variables</b>
+      [pad] =&gt; 0
+      [padBuildBas] =&gt; /Users/herbert/pad/apps
+      [padBuildKey] =&gt; 2
+      [padBuildMrg] 
+              [0] =&gt; pad
+              [1] =&gt; development
+              [2] =&gt; example
+      [padBuildNow] =&gt; /Users/herbert/pad/apps/pad/development/example
+      [padBuildPos] =&gt; 23
+      [padBuildValue] =&gt; example
+      [padCache] =&gt; 
+      [padCacheStop] =&gt; 0
+      [padCall] =&gt; /Users/herbert/pad/apps/pad/development/example.php
+      [padCallReturn] =&gt; 
+      [padDir] =&gt; development
+      [padDisplayErrors] =&gt; 1
+      [padErrorReporting] =&gt; 32767
+      [padErrrorList] 
+              [0] =&gt; /Users/herbert/pad/apps/pad/development/example.php:3 EXCEPTION: syntax error, unexpected token &quot;}&quot;
+              [1] =&gt; /Users/herbert/pad/apps/pad/development/example.php:3 EXCEPTION: syntax error, unexpected token &quot;}&quot;
+      [padEtag] =&gt; 
+      [padExit] =&gt; 2
+      [padExits] 
+              [0] =&gt; /Users/herbert/pad/apps/pad/_exits.php
+              [1] =&gt; /Users/herbert/pad/apps/pad/development/_exits.php
+      [padForceName] =&gt; 
+      [padGo] =&gt; /?
+      [padGoExt] =&gt; http://localhost:8080/?
+      [padHome] =&gt; Users
+      [padHost] =&gt; http://localhost:8080
+      [padHttpHost] =&gt; localhost:8080
+      [padInDump] =&gt; 1
+      [padInclude] =&gt; 1
+      [padLen] =&gt; 0
+      [padLib] =&gt; /Users/herbert/pad/apps/pad/_lib
+      [padLibDirectory] =&gt; RecursiveDirectoryIterator Object
+              [pathName:SplFileInfo:private] =&gt; 
+              [glob:DirectoryIterator:private] =&gt; 
+              [subPathName:RecursiveDirectoryIterator:private] =&gt; 
+      [padLibFile] =&gt; /Users/herbert/pad/apps/pad/_lib/lib.php
+      [padLibIterator] =&gt; RecursiveIteratorIterator Object
+      [padLibOne] =&gt; SplFileInfo Object
+              [pathName:SplFileInfo:private] =&gt; /Users/herbert/pad/apps/pad/_lib/lib.php
+              [fileName:SplFileInfo:private] =&gt; lib.php
+      [padOptionsEnd] 
+              [0] =&gt; toFlag
+              [1] =&gt; toContent
+              [2] =&gt; toData
+              [3] =&gt; tidy
+      [padOptionsStart] 
+              [0] =&gt; track
+              [1] =&gt; before
+              [2] =&gt; reverse
+              [3] =&gt; start
+              [4] =&gt; end
+              [5] =&gt; dedup
+              [6] =&gt; page
+              [7] =&gt; rows
+              [8] =&gt; first
+              [9] =&gt; last
+              [10] =&gt; row
+              [11] =&gt; sort
+              [12] =&gt; ignore
+              [13] =&gt; shuffle
+              [14] =&gt; random
+              [15] =&gt; print
+              [16] =&gt; dummy
+              [17] =&gt; parent
+              [18] =&gt; trace
+              [19] =&gt; xml
+              [20] =&gt; json
+              [21] =&gt; yaml
+              [22] =&gt; csv
+      [padOutput] =&gt; 
+      [padRequestScheme] =&gt; http
+      [padRestart] =&gt; 
+      [padScript] =&gt; /
+      [padServerPort] =&gt; 8080
+      [padSkipBootShutdown] =&gt; 1
+      [padStop] =&gt; 000
+      [padTime] =&gt; 1684454538
+      [padUri] =&gt; /?development/example&amp;padInclude&amp;padSesID=WZxaKdmP&amp;padReqID=eQDM3Jhz
+      [padValue] =&gt; example
+
+<b>Level variables</b>
+      [padAfter] 
+      [padArray] 
+      [padBase] 
+              [0] =&gt; {content &#039;block&#039;} &lt;table border=0&gt; &lt;tr&gt; &lt;td&gt; @content@ &lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; {/content} {content &#039;examples&#039;} {example &#039;{$examples}&#039;, skipNames{notFirst
+      [padBefore] 
+      [padBeforeData] 
+      [padCurrent] 
+      [padData] 
+              [0] 
+                      [999] 
+      [padDefault] 
+              [0] =&gt; 1
+      [padDeleteSet] 
+      [padDeleteVars] 
+      [padDone] 
+      [padElse] 
+      [padEnd] 
+      [padFalse] 
+      [padGiven] 
+      [padHit] 
+      [padHtml] 
+      [padKey] 
+              [0] =&gt; 1
+      [padName] 
+      [padNull] 
+      [padOccur] 
+      [padOpt] 
+              [0] 
+                      [0] =&gt; 
+                      [1] =&gt; 
+      [padOptionsApp] 
+      [padPair] 
+      [padPrm] 
+      [padPrmType] 
+      [padResult] 
+      [padSaveSet] 
+      [padSaveVars] 
+      [padSet] 
+      [padStart] 
+      [padTable] 
+      [padTableTag] 
+      [padTag] 
+      [padTagCnt] 
+      [padText] 
+      [padTrue] 
+      [padType] 
+      [padWalk] 
+              [0] =&gt; start
+      [padWalkData] 
+
+<b>Headers-in</b>
+      [Host] =&gt; localhost:8080
+      [User-Agent] =&gt; Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36
+      [Accept] =&gt; */*
+      [Accept-Encoding] =&gt; gzip
+      [Referer] =&gt; http://localhost:8080/?development/regression
+
+<b>Headers-out</b>
+      [0] =&gt; X-Powered-By: PHP/8.2.6
+      [1] =&gt; Set-Cookie: padSesID=WZxaKdmP; expires=Thu, 26 May 2033 00:02:18 GMT; Max-Age=316224000
+      [2] =&gt; Set-Cookie: padReqID=wI1JQtzq; expires=Thu, 26 May 2033 00:02:18 GMT; Max-Age=316224000
+      [3] =&gt; Content-type: text/html; charset=UTF-8
+
+<b>Configuration</b>
+      [padBuildMerge] =&gt; content
+      [padBuildMode] =&gt; include
+      [padCacheClientAge] =&gt; 0
+      [padCacheDbDatabase] =&gt; cache
+      [padCacheDbHost] =&gt; localhost
+      [padCacheDbPassword] =&gt; cache
+      [padCacheDbUser] =&gt; cache
+      [padCacheFile] =&gt; /Users/herbert/data/cache/
+      [padCacheFileMode] =&gt; 755
+      [padCacheMemoryHost] =&gt; localhost
+      [padCacheMemoryPort] =&gt; 11211
+      [padCacheProxyAge] =&gt; 0
+      [padCacheServerAge] =&gt; 0
+      [padCacheServerGzip] =&gt; 1
+      [padCacheServerNoData] =&gt; 
+      [padCacheServerType] =&gt; memory
+      [padClientGzip] =&gt; 
+      [padDataDefaultEnd] 
+              [0] =&gt; html
+              [1] =&gt; nbsp
+      [padDataDefaultStart] 
+              [0] =&gt; trim
+              [1] =&gt; white
+      [padDirMode] =&gt; 493
+      [padErrorAction] =&gt; pad
+      [padErrorLevel] =&gt; all
+      [padErrorLog] =&gt; 1
+      [padErrorReport] =&gt; 1
+      [padErrorThrow] =&gt; 1
+      [padEtag304] =&gt; 1
+      [padEvalFast] 
+              [0] =&gt; trim
+              [1] =&gt; white
+              [2] =&gt; html
+              [3] =&gt; nbsp
+      [padFastLink] =&gt; 32
+      [padFileMode] =&gt; 493
+      [padFmtDate] =&gt; Y-m-d
+      [padFmtTime] =&gt; H:i:s
+      [padFmtTimestamp] =&gt; Y-m-d H:i:s
+      [padLocal] 
+              [0] =&gt; localhost
+              [1] =&gt; penguin.linux.test
+              [2] =&gt; 127.0.0.1
+      [padNoNo] =&gt; 
+      [padOutputNoEmptyLines] =&gt; 1
+      [padOutputNoIndent] =&gt; 1
+      [padOutputNoNewLines] =&gt; 
+      [padOutputRemoveWhitespace] =&gt; 
+      [padOutputSanitize] 
+              [0] =&gt; STRIP_LOW
+              [1] =&gt; ENCODE_HIGH
+      [padOutputTabToSpace] =&gt; 1
+      [padOutputTrim] =&gt; 1
+      [padPadSqlDatabase] =&gt; pad
+      [padPadSqlHost] =&gt; 127.0.0.1
+      [padPadSqlPassword] =&gt; pad
+      [padPadSqlUser] =&gt; pad
+      [padPrmNoParse] 
+              [0] =&gt; if
+              [1] =&gt; case
+              [2] =&gt; while
+              [3] =&gt; until
+              [4] =&gt; increment
+              [5] =&gt; decrement
+      [padRelations] 
+      [padRemoveWhitespace] =&gt; 
+      [padSessionVars] 
+      [padSqlDatabase] =&gt; demo
+      [padSqlHost] =&gt; 127.0.0.1
+      [padSqlPassword] =&gt; demo
+      [padSqlUser] =&gt; demo
+      [padTables] 
+      [padTidy] =&gt; 
+      [padTidyCcsid] =&gt; utf8
+      [padTidyConfig] 
+              [output-html] =&gt; 1
+              [doctype] =&gt; html5
+              [wrap] =&gt; 200
+              [indent] =&gt; 1
+              [tab-size] =&gt; 2
+              [vertical-space] =&gt; yes
+              [replace-color] =&gt; yes
+      [padTrackDbData] =&gt; 
+      [padTrackDbRequest] =&gt; 
+      [padTrackDbSession] =&gt; 
+      [padTrackFileData] =&gt; 
+      [padTrackFileRequest] =&gt; 
+
+<b>PHP</b>
+      [_COOKIE] 
+      [_ENV] 
+      [_FILES] 
+      [_GET] 
+              [development/example] =&gt; 
+              [padInclude] =&gt; 
+              [padSesID] =&gt; WZxaKdmP
+              [padReqID] =&gt; eQDM3Jhz
+      [_POST] 
+      [_REQUEST] 
+              [development/example] =&gt; 
+              [padInclude] =&gt; 
+              [padSesID] =&gt; WZxaKdmP
+              [padReqID] =&gt; eQDM3Jhz
+      [_SERVER] 
+              [HTTP_HOST] =&gt; localhost:8080
+              [HTTP_USER_AGENT] =&gt; Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36
+              [HTTP_ACCEPT] =&gt; */*
+              [HTTP_ACCEPT_ENCODING] =&gt; gzip
+              [HTTP_REFERER] =&gt; http://localhost:8080/?development/regression
+              [PATH] =&gt; /opt/homebrew/bin:/opt/homebrew/sbin:/usr/bin:/bin:/usr/sbin:/sbin
+              [SERVER_SIGNATURE] =&gt; 
+              [SERVER_SOFTWARE] =&gt; Apache/2.4.57 (Unix) PHP/8.2.6
+              [SERVER_NAME] =&gt; localhost
+              [SERVER_ADDR] =&gt; 127.0.0.1
+              [SERVER_PORT] =&gt; 8080
+              [REMOTE_ADDR] =&gt; 127.0.0.1
+              [DOCUMENT_ROOT] =&gt; /Users/herbert/pad/www
+              [REQUEST_SCHEME] =&gt; http
+              [CONTEXT_PREFIX] =&gt; 
+              [CONTEXT_DOCUMENT_ROOT] =&gt; /Users/herbert/pad/www
+              [SERVER_ADMIN] =&gt; you@example.com
+              [SCRIPT_FILENAME] =&gt; /Users/herbert/pad/www/index.php
+              [REMOTE_PORT] =&gt; 55498
+              [GATEWAY_INTERFACE] =&gt; CGI/1.1
+              [SERVER_PROTOCOL] =&gt; HTTP/1.1
+              [REQUEST_METHOD] =&gt; GET
+              [QUERY_STRING] =&gt; development/example&amp;padInclude&amp;padSesID=WZxaKdmP&amp;padReqID=eQDM3Jhz
+              [REQUEST_URI] =&gt; /?development/example&amp;padInclude&amp;padSesID=WZxaKdmP&amp;padReqID=eQDM3Jhz
+              [SCRIPT_NAME] =&gt; /index.php
+              [PHP_SELF] =&gt; /index.php
+              [REQUEST_TIME_FLOAT] =&gt; 1684454538.4962
+              [REQUEST_TIME] =&gt; 1684454538
+
+<b>Included files</b>
+      [0] =&gt; /Users/herbert/pad/www/index.php
+      [1] =&gt; /Users/herbert/pad/start.php
+      [2] =&gt; /Users/herbert/pad/pad.php
+      [3] =&gt; /Users/herbert/pad/inits/inits.php
+      [4] =&gt; /Users/herbert/pad/inits/libPad.php
+      [5] =&gt; /Users/herbert/pad/inits/lib.php
+      [6] =&gt; /Users/herbert/pad/lib/stop.php
+      [7] =&gt; /Users/herbert/pad/lib/dump.php
+      [8] =&gt; /Users/herbert/pad/lib/type.php
+      [9] =&gt; /Users/herbert/pad/lib/file.php
+      [10] =&gt; /Users/herbert/pad/lib/track.php
+      [11] =&gt; /Users/herbert/pad/lib/curl.php
+      [12] =&gt; /Users/herbert/pad/lib/field/parm.php
+      [13] =&gt; /Users/herbert/pad/lib/field/prefix.php
+      [14] =&gt; /Users/herbert/pad/lib/field/tag.php
+      [15] =&gt; /Users/herbert/pad/lib/field/field.php
+      [16] =&gt; /Users/herbert/pad/lib/field/level.php
+      [17] =&gt; /Users/herbert/pad/lib/field/lib.php
+      [18] =&gt; /Users/herbert/pad/lib/other.php
+      [19] =&gt; /Users/herbert/pad/lib/parms.php
+      [20] =&gt; /Users/herbert/pad/lib/error.php
+      [21] =&gt; /Users/herbert/pad/lib/db.php
+      [22] =&gt; /Users/herbert/pad/lib/data.php
+      [23] =&gt; /Users/herbert/pad/lib/options.php
+      [24] =&gt; /Users/herbert/pad/lib/valid.php
+      [25] =&gt; /Users/herbert/pad/lib/page.php
+      [26] =&gt; /Users/herbert/pad/lib/api.php
+      [27] =&gt; /Users/herbert/pad/lib/eval/const.php
+      [28] =&gt; /Users/herbert/pad/lib/eval/eval.php
+      [29] =&gt; /Users/herbert/pad/lib/eval/action.php
+      [30] =&gt; /Users/herbert/pad/lib/eval/after.php
+      [31] =&gt; /Users/herbert/pad/lib/eval/go.php
+      [32] =&gt; /Users/herbert/pad/lib/eval/parms.php
+      [33] =&gt; /Users/herbert/pad/lib/eval/single.php
+      [34] =&gt; /Users/herbert/pad/lib/eval/parse.php
+      [35] =&gt; /Users/herbert/pad/lib/table.php
+      [36] =&gt; /Users/herbert/pad/lib/callback.php
+      [37] =&gt; /Users/herbert/pad/inits/vars.php
+      [38] =&gt; /Users/herbert/pad/inits/page.php
+      [39] =&gt; /Users/herbert/pad/inits/ids.php
+      [40] =&gt; /Users/herbert/pad/inits/config.php
+      [41] =&gt; /Users/herbert/pad/config/config.php
+      [42] =&gt; /Users/herbert/pad/apps/pad/_config/config.php
+      [43] =&gt; /Users/herbert/pad/inits/nono.php
+      [44] =&gt; /Users/herbert/pad/inits/error.php
+      [45] =&gt; /Users/herbert/pad/inits/cookies.php
+      [46] =&gt; /Users/herbert/pad/inits/zip.php
+      [47] =&gt; /Users/herbert/pad/inits/host.php
+      [48] =&gt; /Users/herbert/pad/inits/cache.php
+      [49] =&gt; /Users/herbert/pad/inits/level.php
+      [50] =&gt; /Users/herbert/pad/level/setup.php
+      [51] =&gt; /Users/herbert/pad/inits/parms.php
+      [52] =&gt; /Users/herbert/pad/inits/options.php
+      [53] =&gt; /Users/herbert/pad/inits/build.php
+      [54] =&gt; /Users/herbert/pad/apps/pad/_lib/colors.php
+      [55] =&gt; /Users/herbert/pad/apps/pad/_lib/lib.php
+      [56] =&gt; /Users/herbert/pad/build/build.php
+      [57] =&gt; /Users/herbert/pad/build/lib.php
+      [58] =&gt; /Users/herbert/pad/apps/pad/_lib.php
+      [59] =&gt; /Users/herbert/pad/build/include.php
+      [60] =&gt; /Users/herbert/pad/build/call.php
+      [61] =&gt; /Users/herbert/pad/build/go.php
+      [62] =&gt; /Users/herbert/pad/build/one.php
+      [63] =&gt; /Users/herbert/pad/apps/pad/_inits.php
+
+<b>Functions</b>
+      [0] =&gt; padbooterror
+      [1] =&gt; padboothandler
+      [2] =&gt; padbootexception
+      [3] =&gt; padbootshutdown
+      [4] =&gt; padbootstop
+      [5] =&gt; padstop
+      [6] =&gt; padsend
+      [7] =&gt; padheaders
+      [8] =&gt; padcacheheaders
+      [9] =&gt; padexit
+      [10] =&gt; padclosesession
+      [11] =&gt; paddumpfromapp
+      [12] =&gt; paddump
+      [13] =&gt; paddumperror
+      [14] =&gt; paddumpexception
+      [15] =&gt; paddumptry
+      [16] =&gt; paddumpproblem
+      [17] =&gt; dump
+      [18] =&gt; paddumpgo
+      [19] =&gt; paddumpcurl
+      [20] =&gt; paddumpinfo
+      [21] =&gt; paddumperrors
+      [22] =&gt; paddumpcleanerrors
+      [23] =&gt; paddumpstack
+      [24] =&gt; paddumpexeptions
+      [25] =&gt; paddumpxxx
+      [26] =&gt; paddumpsql
+      [27] =&gt; paddumpheaders
+      [28] =&gt; paddumprequest
+      [29] =&gt; paddumplevel
+      [30] =&gt; paddumpgetlevel
+      [31] =&gt; paddumpglobals
+      [32] =&gt; paddumpfunctions
+      [33] =&gt; paddumpfiles
+      [34] =&gt; paddumpxdebug
+      [35] =&gt; paddumpxinfo
+      [36] =&gt; paddumpphpinfo
+      [37] =&gt; paddumpstackgo
+      [38] =&gt; paddumpfields
+      [39] =&gt; paddumpclean
+      [40] =&gt; paddumpshort
+      [41] =&gt; paddumplines
+      [42] =&gt; paddumptodir
+      [43] =&gt; paddumptodirgo
+      [44] =&gt; paddumptodirone
+      [45] =&gt; padtypeget
+      [46] =&gt; padtypecheck
+      [47] =&gt; padgettypeeval
+      [48] =&gt; padexists
+      [49] =&gt; padisdir
+      [50] =&gt; padfilegetcontents
+      [51] =&gt; padfileputcontents
+      [52] =&gt; padfilechkdir
+      [53] =&gt; padfilechkfile
+      [54] =&gt; padtrackfilerequest
+      [55] =&gt; padtrackdbsession
+      [56] =&gt; padtrackfiledata
+      [57] =&gt; padtrackdbdata
+      [58] =&gt; padcurl
+      [59] =&gt; padcurlopt
+      [60] =&gt; padcurlerror
+      [61] =&gt; padparm
+      [62] =&gt; padfieldprefix
+      [63] =&gt; padfieldsearch
+      [64] =&gt; padtag
+      [65] =&gt; padfieldcheck
+      [66] =&gt; padfieldvalue
+      [67] =&gt; padarraycheck
+      [68] =&gt; padarrayvalue
+      [69] =&gt; padparmcheck
+      [70] =&gt; padparmvalue
+      [71] =&gt; padtagcheck
+      [72] =&gt; padtagvalue
+      [73] =&gt; padfieldnull
+      [74] =&gt; padfield
+      [75] =&gt; padfieldgo
+      [76] =&gt; padrawvalue
+      [77] =&gt; padrawcheck
+      [78] =&gt; padfieldlevel
+      [79] =&gt; padfieldgetlevel
+      [80] =&gt; padfieldfirstparmtag
+      [81] =&gt; padfieldfirstnontag
+      [82] =&gt; padtidyoutput
+      [83] =&gt; padtidyfragment
+      [84] =&gt; padtidy
+      [85] =&gt; padaddset
+      [86] =&gt; padaddids
+      [87] =&gt; paddemomode
+      [88] =&gt; paddirs
+      [89] =&gt; paddir
+      [90] =&gt; padaddget
+      [91] =&gt; padcontent
+      [92] =&gt; padarrayclean
+      [93] =&gt; padopencloseok
+      [94] =&gt; padopencloselist
+      [95] =&gt; padopenclosecount
+      [96] =&gt; padopenclosecountone
+      [97] =&gt; padchecktag
+      [98] =&gt; padispagesfile
+      [99] =&gt; padsplit
+      [100] =&gt; padid
+      [101] =&gt; padmakesafe
+      [102] =&gt; padlocal
+      [103] =&gt; padexplode
+      [104] =&gt; padjson
+      [105] =&gt; pademptybuffers
+      [106] =&gt; padtoarray
+      [107] =&gt; padheader
+      [108] =&gt; padfieldname
+      [109] =&gt; padclosehtml
+      [110] =&gt; padmd5
+      [111] =&gt; padmd5unpack
+      [112] =&gt; padpack
+      [113] =&gt; padunpack
+      [114] =&gt; padbase64
+      [115] =&gt; padunbase64
+      [116] =&gt; padrandomstring
+      [117] =&gt; padrandomchar
+      [118] =&gt; padunescape
+      [119] =&gt; padescape
+      [120] =&gt; padhtml
+      [121] =&gt; padzip
+      [122] =&gt; padunzip
+      [123] =&gt; padduration
+      [124] =&gt; padbetween
+      [125] =&gt; padcheckrange
+      [126] =&gt; padgetrange
+      [127] =&gt; padfunctiontype
+      [128] =&gt; padtagasfunction
+      [129] =&gt; padfunctionintag
+      [130] =&gt; padmakeflag
+      [131] =&gt; padmakecontent
+      [132] =&gt; padarraytostring
+      [133] =&gt; padmakearray
+      [134] =&gt; padsetglobal
+      [135] =&gt; padreset
+      [136] =&gt; padsetset
+      [137] =&gt; padsetreset
+      [138] =&gt; padignore
+      [139] =&gt; padisobject
+      [140] =&gt; padisresource
+      [141] =&gt; paddefaultdata
+      [142] =&gt; padisdefaultdata
+      [143] =&gt; padchklevel
+      [144] =&gt; padgetlevelarray
+      [145] =&gt; padcheckvalue
+      [146] =&gt; padtagparm
+      [147] =&gt; paddone
+      [148] =&gt; padvaropts
+      [149] =&gt; padcontenttype
+      [150] =&gt; padarrtohtml
+      [151] =&gt; padgethtml
+      [152] =&gt; padvalidstore
+      [153] =&gt; paddatafiltergo
+      [154] =&gt; padgetparms
+      [155] =&gt; padgetparms2
+      [156] =&gt; paderrorreporting
+      [157] =&gt; paderror
+      [158] =&gt; paderrorhandler
+      [159] =&gt; paderrorhandlererror
+      [160] =&gt; paderrorexception
+      [161] =&gt; paderrorexceptionexception
+      [162] =&gt; paderrorshutdown
+      [163] =&gt; paderrorgo
+      [164] =&gt; paderrortry
+      [165] =&gt; paderrorlog
+      [166] =&gt; paderrordump
+      [167] =&gt; paderroraddstack
+      [168] =&gt; db
+      [169] =&gt; paddb
+      [170] =&gt; paddbconnect
+      [171] =&gt; paddbpart2
+      [172] =&gt; paddata
+      [173] =&gt; paddataerror
+      [174] =&gt; paddatachk
+      [175] =&gt; paddatachksimplearray
+      [176] =&gt; paddatachkcheckarray
+      [177] =&gt; paddatachkcheckrecord
+      [178] =&gt; paddatachkchkone
+      [179] =&gt; paddatachkdataattr
+      [180] =&gt; paddataname
+      [181] =&gt; padinclfilename
+      [182] =&gt; paddatafilename
+      [183] =&gt; paddatafiledata
+      [184] =&gt; padparseoptions
+      [185] =&gt; padvalid
+      [186] =&gt; padvalidfile
+      [187] =&gt; padvalidpage
+      [188] =&gt; padvalidvar
+      [189] =&gt; padvalidtype
+      [190] =&gt; padvalidtag
+      [191] =&gt; padpageaddset
+      [192] =&gt; padpageinsidefunction
+      [193] =&gt; padpagegetname
+      [194] =&gt; padpagecheck
+      [195] =&gt; padpageset
+      [196] =&gt; padpageajax
+      [197] =&gt; padpageget
+      [198] =&gt; padfastlink
+      [199] =&gt; padredirect
+      [200] =&gt; padrestart
+      [201] =&gt; padeval
+      [202] =&gt; padevalnot
+      [203] =&gt; padevalactionarray
+      [204] =&gt; padevalaction
+      [205] =&gt; padevalafter
+      [206] =&gt; padevalgo
+      [207] =&gt; padevalparms
+      [208] =&gt; padevalsingle
+      [209] =&gt; padarraysingle
+      [210] =&gt; padevalparse
+      [211] =&gt; padtable
+      [212] =&gt; padtablestart
+      [213] =&gt; padtablegroup
+      [214] =&gt; padtableorder
+      [215] =&gt; padtablelimit
+      [216] =&gt; padtablewhere
+      [217] =&gt; padtablejoin
+      [218] =&gt; padtablejoinadd
+      [219] =&gt; padtableunion
+      [220] =&gt; padtablego
+      [221] =&gt; padtablewhereadd
+      [222] =&gt; padtablefield
+      [223] =&gt; padtableaddfields
+      [224] =&gt; padtablegetdb
+      [225] =&gt; padtablegetinfo
+      [226] =&gt; padtablegetinfogo
+      [227] =&gt; padtablechk
+      [228] =&gt; padtableget
+      [229] =&gt; padcallbackbeforexxx
+      [230] =&gt; padcallbackbeforerow
+      [231] =&gt; padhighlight
+      [232] =&gt; padcolorsfile
+      [233] =&gt; padcolorsstring
+      [234] =&gt; getpage
+      [235] =&gt; dirlist
+      [236] =&gt; recursivepages
+      [237] =&gt; padpages
+      [238] =&gt; reflink
+      [239] =&gt; parts
+
+<b>GLOBALS</b>
+Array
+(
+    [_GET] =&gt; Array
+        (
+            [development/example] =&gt; 
+            [padInclude] =&gt; 
+            [padSesID] =&gt; WZxaKdmP
+            [padReqID] =&gt; eQDM3Jhz
+        )
+
+    [_POST] =&gt; Array
+        (
+        )
+
+    [_COOKIE] =&gt; Array
+        (
+        )
+
+    [_FILES] =&gt; Array
+        (
+        )
+
+    [_ENV] =&gt; Array
+        (
+        )
+
+    [_REQUEST] =&gt; Array
+        (
+            [development/example] =&gt; 
+            [padInclude] =&gt; 
+            [padSesID] =&gt; WZxaKdmP
+            [padReqID] =&gt; eQDM3Jhz
+        )
+
+    [_SERVER] =&gt; Array
+        (
+            [HTTP_HOST] =&gt; localhost:8080
+            [HTTP_USER_AGENT] =&gt; Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36
+            [HTTP_ACCEPT] =&gt; */*
+            [HTTP_ACCEPT_ENCODING] =&gt; gzip
+            [HTTP_REFERER] =&gt; http://localhost:8080/?development/regression
+            [PATH] =&gt; /opt/homebrew/bin:/opt/homebrew/sbin:/usr/bin:/bin:/usr/sbin:/sbin
+            [SERVER_SIGNATURE] =&gt; 
+            [SERVER_SOFTWARE] =&gt; Apache/2.4.57 (Unix) PHP/8.2.6
+            [SERVER_NAME] =&gt; localhost
+            [SERVER_ADDR] =&gt; 127.0.0.1
+            [SERVER_PORT] =&gt; 8080
+            [REMOTE_ADDR] =&gt; 127.0.0.1
+            [DOCUMENT_ROOT] =&gt; /Users/herbert/pad/www
+            [REQUEST_SCHEME] =&gt; http
+            [CONTEXT_PREFIX] =&gt; 
+            [CONTEXT_DOCUMENT_ROOT] =&gt; /Users/herbert/pad/www
+            [SERVER_ADMIN] =&gt; you@example.com
+            [SCRIPT_FILENAME] =&gt; /Users/herbert/pad/www/index.php
+            [REMOTE_PORT] =&gt; 55498
+            [GATEWAY_INTERFACE] =&gt; CGI/1.1
+            [SERVER_PROTOCOL] =&gt; HTTP/1.1
+            [REQUEST_METHOD] =&gt; GET
+            [QUERY_STRING] =&gt; development/example&amp;padInclude&amp;padSesID=WZxaKdmP&amp;padReqID=eQDM3Jhz
+            [REQUEST_URI] =&gt; /?development/example&amp;padInclude&amp;padSesID=WZxaKdmP&amp;padReqID=eQDM3Jhz
+            [SCRIPT_NAME] =&gt; /index.php
+            [PHP_SELF] =&gt; /index.php
+            [REQUEST_TIME_FLOAT] =&gt; 1684454538.4962
+            [REQUEST_TIME] =&gt; 1684454538
+        )
+
+    [padHome] =&gt; Users
+    [padDisplayErrors] =&gt; 1
+    [padErrorReporting] =&gt; 32767
+    [pad] =&gt; 0
+    [padLib] =&gt; /Users/herbert/pad/apps/pad/_lib
+    [padLibDirectory] =&gt; RecursiveDirectoryIterator Object
+        (
+            [pathName:SplFileInfo:private] =&gt; 
+            [glob:DirectoryIterator:private] =&gt; 
+            [subPathName:RecursiveDirectoryIterator:private] =&gt; 
+        )
+
+    [padLibIterator] =&gt; RecursiveIteratorIterator Object
+        (
+        )
+
+    [padLibOne] =&gt; SplFileInfo Object
+        (
+            [pathName:SplFileInfo:private] =&gt; /Users/herbert/pad/apps/pad/_lib/lib.php
+            [fileName:SplFileInfo:private] =&gt; lib.php
+        )
+
+    [padLibFile] =&gt; /Users/herbert/pad/apps/pad/_lib/lib.php
+    [padRestart] =&gt; 
+    [padOutput] =&gt; 
+    [padStop] =&gt; 000
+    [padEtag] =&gt; 
+    [padExit] =&gt; 2
+    [padLen] =&gt; 0
+    [padTime] =&gt; 1684454538
+    [padInclude] =&gt; 1
+    [padCache] =&gt; 
+    [padCacheStop] =&gt; 0
+    [padPage] =&gt; development/example
+    [padDir] =&gt; development
+    [padSesID] =&gt; WZxaKdmP
+    [padRefID] =&gt; eQDM3Jhz
+    [padReqID] =&gt; wI1JQtzq
+    [padErrorAction] =&gt; pad
+    [padErrorLevel] =&gt; all
+    [padErrorLog] =&gt; 1
+    [padErrorReport] =&gt; 1
+    [padErrorThrow] =&gt; 1
+    [padTrackFileRequest] =&gt; 
+    [padTrackFileData] =&gt; 
+    [padTrackDbSession] =&gt; 
+    [padTrackDbRequest] =&gt; 
+    [padTrackDbData] =&gt; 
+    [padCacheServerAge] =&gt; 0
+    [padCacheProxyAge] =&gt; 0
+    [padCacheClientAge] =&gt; 0
+    [padCacheServerType] =&gt; memory
+    [padCacheServerGzip] =&gt; 1
+    [padCacheServerNoData] =&gt; 
+    [padCacheMemoryHost] =&gt; localhost
+    [padCacheMemoryPort] =&gt; 11211
+    [padCacheDbHost] =&gt; localhost
+    [padCacheDbDatabase] =&gt; cache
+    [padCacheDbUser] =&gt; cache
+    [padCacheDbPassword] =&gt; cache
+    [padCacheFile] =&gt; /Users/herbert/data/cache/
+    [padCacheFileMode] =&gt; 755
+    [padPadSqlHost] =&gt; 127.0.0.1
+    [padPadSqlDatabase] =&gt; pad
+    [padPadSqlUser] =&gt; pad
+    [padPadSqlPassword] =&gt; pad
+    [padSqlHost] =&gt; 127.0.0.1
+    [padSqlDatabase] =&gt; demo
+    [padSqlUser] =&gt; demo
+    [padSqlPassword] =&gt; demo
+    [padDirMode] =&gt; 493
+    [padFileMode] =&gt; 493
+    [padFmtDate] =&gt; Y-m-d
+    [padFmtTime] =&gt; H:i:s
+    [padFmtTimestamp] =&gt; Y-m-d H:i:s
+    [padSessionVars] =&gt; Array
+        (
+        )
+
+    [padBuildMode] =&gt; include
+    [padBuildMerge] =&gt; content
+    [padDataDefaultStart] =&gt; Array
+        (
+            [0] =&gt; trim
+            [1] =&gt; white
+        )
+
+    [padDataDefaultEnd] =&gt; Array
+        (
+            [0] =&gt; html
+            [1] =&gt; nbsp
+        )
+
+    [padEvalFast] =&gt; Array
+        (
+            [0] =&gt; trim
+            [1] =&gt; white
+            [2] =&gt; html
+            [3] =&gt; nbsp
+        )
+
+    [padOutputSanitize] =&gt; Array
+        (
+            [0] =&gt; STRIP_LOW
+            [1] =&gt; ENCODE_HIGH
+        )
+
+    [padOutputTabToSpace] =&gt; 1
+    [padOutputTrim] =&gt; 1
+    [padOutputRemoveWhitespace] =&gt; 
+    [padOutputNoEmptyLines] =&gt; 1
+    [padOutputNoIndent] =&gt; 1
+    [padOutputNoNewLines] =&gt; 
+    [padTidy] =&gt; 
+    [padTidyCcsid] =&gt; utf8
+    [padTidyConfig] =&gt; Array
+        (
+            [output-html] =&gt; 1
+            [doctype] =&gt; html5
+            [wrap] =&gt; 200
+            [indent] =&gt; 1
+            [tab-size] =&gt; 2
+            [vertical-space] =&gt; yes
+            [replace-color] =&gt; yes
+        )
+
+    [padRemoveWhitespace] =&gt; 
+    [padLocal] =&gt; Array
+        (
+            [0] =&gt; localhost
+            [1] =&gt; penguin.linux.test
+            [2] =&gt; 127.0.0.1
+        )
+
+    [padClientGzip] =&gt; 
+    [padEtag304] =&gt; 1
+    [padNoNo] =&gt; 
+    [padFastLink] =&gt; 32
+    [padPrmNoParse] =&gt; Array
+        (
+            [0] =&gt; if
+            [1] =&gt; case
+            [2] =&gt; while
+            [3] =&gt; until
+            [4] =&gt; increment
+            [5] =&gt; decrement
+        )
+
+    [padTables] =&gt; Array
+        (
+        )
+
+    [padRelations] =&gt; Array
+        (
+        )
+
+    [padSkipBootShutdown] =&gt; 1
+    [padRequestScheme] =&gt; http
+    [padHttpHost] =&gt; localhost:8080
+    [padServerPort] =&gt; 8080
+    [padScript] =&gt; /
+    [padUri] =&gt; /?development/example&amp;padInclude&amp;padSesID=WZxaKdmP&amp;padReqID=eQDM3Jhz
+    [padHost] =&gt; http://localhost:8080
+    [padGo] =&gt; /?
+    [padGoExt] =&gt; http://localhost:8080/?
+    [padOpt] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [0] =&gt; 
+                    [1] =&gt; 
+                )
+
+        )
+
+    [padSet] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padPrm] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padTag] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padType] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padGiven] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padPair] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padTrue] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padPrmType] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padFalse] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padName] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padData] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [999] =&gt; Array
+                        (
+                        )
+
+                )
+
+        )
+
+    [padDefault] =&gt; Array
+        (
+            [0] =&gt; 1
+        )
+
+    [padCurrent] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padKey] =&gt; Array
+        (
+            [0] =&gt; 1
+        )
+
+    [padWalk] =&gt; Array
+        (
+            [0] =&gt; start
+        )
+
+    [padWalkData] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padDone] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padOccur] =&gt; Array
+        (
+            [0] =&gt; 0
+        )
+
+    [padStart] =&gt; Array
+        (
+            [0] =&gt; 0
+        )
+
+    [padEnd] =&gt; Array
+        (
+            [0] =&gt; 0
+        )
+
+    [padBase] =&gt; Array
+        (
+            [0] =&gt; {content &#039;block&#039;}
+  &lt;table border=0&gt;
+    &lt;tr&gt;
+      &lt;td&gt;  
+        @content@
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+{/content}
+
+{content &#039;examples&#039;}
+  {example &#039;{$examples}&#039;, skipNames{notFirst},skipOpen,skipHeader{/notFirst}{notLast},skipClose{/notLast}}
+{/content}
+
+{content &#039;thisDir&#039;}
+  {dirList &#039;{$padDir}&#039;}
+    {example &#039;{$item}&#039;, skipNames{notFirst},skipOpen,skipHeader{/notFirst}{notLast},skipClose{/notLast}}
+  {/dirList}
+{/content}
+        )
+
+    [padHtml] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padResult] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padHit] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padNull] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padElse] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padArray] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padText] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padSaveVars] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padDeleteVars] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padSaveSet] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padDeleteSet] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padOptionsApp] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padTagCnt] =&gt; Array
+        (
+            [0] =&gt; 0
+        )
+
+    [padAfter] =&gt; Array
+        (
+            [0] =&gt; 0
+        )
+
+    [padBefore] =&gt; Array
+        (
+            [0] =&gt; 0
+        )
+
+    [padBeforeData] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padTable] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padTableTag] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padForceName] =&gt; 
+    [padOptionsStart] =&gt; Array
+        (
+            [0] =&gt; track
+            [1] =&gt; before
+            [2] =&gt; reverse
+            [3] =&gt; start
+            [4] =&gt; end
+            [5] =&gt; dedup
+            [6] =&gt; page
+            [7] =&gt; rows
+            [8] =&gt; first
+            [9] =&gt; last
+            [10] =&gt; row
+            [11] =&gt; sort
+            [12] =&gt; ignore
+            [13] =&gt; shuffle
+            [14] =&gt; random
+            [15] =&gt; print
+            [16] =&gt; dummy
+            [17] =&gt; parent
+            [18] =&gt; trace
+            [19] =&gt; xml
+            [20] =&gt; json
+            [21] =&gt; yaml
+            [22] =&gt; csv
+        )
+
+    [padOptionsEnd] =&gt; Array
+        (
+            [0] =&gt; toFlag
+            [1] =&gt; toContent
+            [2] =&gt; toData
+            [3] =&gt; tidy
+        )
+
+    [padBuildNow] =&gt; /Users/herbert/pad/apps/pad/development/example
+    [padBuildPos] =&gt; 23
+    [padBuildBas] =&gt; /Users/herbert/pad/apps
+    [padBuildMrg] =&gt; Array
+        (
+            [0] =&gt; pad
+            [1] =&gt; development
+            [2] =&gt; example
+        )
+
+    [padBuildValue] =&gt; example
+    [padBuildKey] =&gt; 2
+    [padExits] =&gt; Array
+        (
+            [0] =&gt; /Users/herbert/pad/apps/pad/_exits.php
+            [1] =&gt; /Users/herbert/pad/apps/pad/development/_exits.php
+        )
+
+    [padValue] =&gt; example
+    [padCall] =&gt; /Users/herbert/pad/apps/pad/development/example.php
+    [padCallReturn] =&gt; 
+    [title] =&gt; Example
+    [showTitle] =&gt; 1
+    [padExceptions] =&gt; Array
+        (
+            [0] =&gt; ParseError Object
+                (
+                    [message:protected] =&gt; syntax error, unexpected token &quot;}&quot;
+                    [string:Error:private] =&gt; 
+                    [code:protected] =&gt; 0
+                    [file:protected] =&gt; /Users/herbert/pad/apps/pad/development/example.php
+                    [line:protected] =&gt; 3
+                    [trace:Error:private] =&gt; Array
+                        (
+                            [0] =&gt; Array
+                                (
+                                    [file] =&gt; /Users/herbert/pad/build/go.php
+                                    [line] =&gt; 3
+                                    [function] =&gt; include
+                                )
+
+                            [1] =&gt; Array
+                                (
+                                    [file] =&gt; /Users/herbert/pad/build/call.php
+                                    [line] =&gt; 22
+                                    [args] =&gt; Array
+                                        (
+                                            [0] =&gt; /Users/herbert/pad/build/go.php
+                                        )
+
+                                    [function] =&gt; include
+                                )
+
+                            [2] =&gt; Array
+                                (
+                                    [file] =&gt; /Users/herbert/pad/build/include.php
+                                    [line] =&gt; 3
+                                    [args] =&gt; Array
+                                        (
+                                            [0] =&gt; /Users/herbert/pad/build/call.php
+                                        )
+
+                                    [function] =&gt; include
+                                )
+
+                            [3] =&gt; Array
+                                (
+                                    [file] =&gt; /Users/herbert/pad/build/build.php
+                                    [line] =&gt; 19
+                                    [args] =&gt; Array
+                                        (
+                                            [0] =&gt; /Users/herbert/pad/build/include.php
+                                        )
+
+                                    [function] =&gt; include
+                                )
+
+                            [4] =&gt; Array
+                                (
+                                    [file] =&gt; /Users/herbert/pad/inits/build.php
+                                    [line] =&gt; 6
+                                    [args] =&gt; Array
+                                        (
+                                            [0] =&gt; /Users/herbert/pad/build/build.php
+                                        )
+
+                                    [function] =&gt; include
+                                )
+
+                            [5] =&gt; Array
+                                (
+                                    [file] =&gt; /Users/herbert/pad/inits/inits.php
+                                    [line] =&gt; 18
+                                    [args] =&gt; Array
+                                        (
+                                            [0] =&gt; /Users/herbert/pad/inits/build.php
+                                        )
+
+                                    [function] =&gt; include
+                                )
+
+                            [6] =&gt; Array
+                                (
+                                    [file] =&gt; /Users/herbert/pad/pad.php
+                                    [line] =&gt; 3
+                                    [args] =&gt; Array
+                                        (
+                                            [0] =&gt; /Users/herbert/pad/inits/inits.php
+                                        )
+
+                                    [function] =&gt; include
+                                )
+
+                            [7] =&gt; Array
+                                (
+                                    [file] =&gt; /Users/herbert/pad/start.php
+                                    [line] =&gt; 11
+                                    [args] =&gt; Array
+                                        (
+                                            [0] =&gt; /Users/herbert/pad/pad.php
+                                        )
+
+                                    [function] =&gt; include
+                                )
+
+                            [8] =&gt; Array
+                                (
+                                    [file] =&gt; /Users/herbert/pad/www/index.php
+                                    [line] =&gt; 21
+                                    [args] =&gt; Array
+                                        (
+                                            [0] =&gt; /Users/herbert/pad/start.php
+                                        )
+
+                                    [function] =&gt; include
+                                )
+
+                        )
+
+                    [previous:Error:private] =&gt; 
+                    [xdebug_message] =&gt; &lt;tr&gt;&lt;th align=&#039;left&#039; bgcolor=&#039;#f57900&#039; colspan=&quot;5&quot;&gt;&lt;span style=&#039;background-color: #cc0000; color: #fce94f; font-size: x-large;&#039;&gt;( ! )&lt;/span&gt; ParseError: syntax error, unexpected token &quot;}&quot; in /Users/herbert/pad/apps/pad/development/example.php on line &lt;i&gt;3&lt;/i&gt;&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th align=&#039;left&#039; bgcolor=&#039;#e9b96e&#039; colspan=&#039;5&#039;&gt;Call Stack&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;th align=&#039;center&#039; bgcolor=&#039;#eeeeec&#039;&gt;#&lt;/th&gt;&lt;th align=&#039;left&#039; bgcolor=&#039;#eeeeec&#039;&gt;Time&lt;/th&gt;&lt;th align=&#039;left&#039; bgcolor=&#039;#eeeeec&#039;&gt;Memory&lt;/th&gt;&lt;th align=&#039;left&#039; bgcolor=&#039;#eeeeec&#039;&gt;Function&lt;/th&gt;&lt;th align=&#039;left&#039; bgcolor=&#039;#eeeeec&#039;&gt;Location&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;1&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;0.0000&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;right&#039;&gt;361288&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039;&gt;{main}(  )&lt;/td&gt;&lt;td title=&#039;/Users/herbert/pad/www/index.php&#039; bgcolor=&#039;#eeeeec&#039;&gt;.../index.php&lt;b&gt;:&lt;/b&gt;0&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;2&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;0.0000&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;right&#039;&gt;361864&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039;&gt;include( &lt;font color=&#039;#00bb00&#039;&gt;&#039;/Users/herbert/pad/start.php&lt;/font&gt; )&lt;/td&gt;&lt;td title=&#039;/Users/herbert/pad/www/index.php&#039; bgcolor=&#039;#eeeeec&#039;&gt;.../index.php&lt;b&gt;:&lt;/b&gt;21&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;3&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;0.0000&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;right&#039;&gt;363440&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039;&gt;include( &lt;font color=&#039;#00bb00&#039;&gt;&#039;/Users/herbert/pad/pad.php&lt;/font&gt; )&lt;/td&gt;&lt;td title=&#039;/Users/herbert/pad/start.php&#039; bgcolor=&#039;#eeeeec&#039;&gt;.../start.php&lt;b&gt;:&lt;/b&gt;11&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;4&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;0.0000&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;right&#039;&gt;363704&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039;&gt;include( &lt;font color=&#039;#00bb00&#039;&gt;&#039;/Users/herbert/pad/inits/inits.php&lt;/font&gt; )&lt;/td&gt;&lt;td title=&#039;/Users/herbert/pad/pad.php&#039; bgcolor=&#039;#eeeeec&#039;&gt;.../pad.php&lt;b&gt;:&lt;/b&gt;3&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;5&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;0.0002&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;right&#039;&gt;389472&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039;&gt;include( &lt;font color=&#039;#00bb00&#039;&gt;&#039;/Users/herbert/pad/inits/build.php&lt;/font&gt; )&lt;/td&gt;&lt;td title=&#039;/Users/herbert/pad/inits/inits.php&#039; bgcolor=&#039;#eeeeec&#039;&gt;.../inits.php&lt;b&gt;:&lt;/b&gt;18&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;6&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;0.0002&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;right&#039;&gt;389800&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039;&gt;include( &lt;font color=&#039;#00bb00&#039;&gt;&#039;/Users/herbert/pad/build/build.php&lt;/font&gt; )&lt;/td&gt;&lt;td title=&#039;/Users/herbert/pad/inits/build.php&#039; bgcolor=&#039;#eeeeec&#039;&gt;.../build.php&lt;b&gt;:&lt;/b&gt;6&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;7&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;0.0003&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;right&#039;&gt;391312&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039;&gt;include( &lt;font color=&#039;#00bb00&#039;&gt;&#039;/Users/herbert/pad/build/include.php&lt;/font&gt; )&lt;/td&gt;&lt;td title=&#039;/Users/herbert/pad/build/build.php&#039; bgcolor=&#039;#eeeeec&#039;&gt;.../build.php&lt;b&gt;:&lt;/b&gt;19&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;8&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;0.0003&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;right&#039;&gt;391584&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039;&gt;include( &lt;font color=&#039;#00bb00&#039;&gt;&#039;/Users/herbert/pad/build/call.php&lt;/font&gt; )&lt;/td&gt;&lt;td title=&#039;/Users/herbert/pad/build/include.php&#039; bgcolor=&#039;#eeeeec&#039;&gt;.../include.php&lt;b&gt;:&lt;/b&gt;3&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;9&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;0.0003&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;right&#039;&gt;392352&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039;&gt;include( &lt;font color=&#039;#00bb00&#039;&gt;&#039;/Users/herbert/pad/build/go.php&lt;/font&gt; )&lt;/td&gt;&lt;td title=&#039;/Users/herbert/pad/build/call.php&#039; bgcolor=&#039;#eeeeec&#039;&gt;.../call.php&lt;b&gt;:&lt;/b&gt;22&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;10&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;center&#039;&gt;0.0003&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039; align=&#039;right&#039;&gt;392640&lt;/td&gt;&lt;td bgcolor=&#039;#eeeeec&#039;&gt;include( &lt;font color=&#039;#00bb00&#039;&gt;&#039;/Users/herbert/pad/build/one.php&lt;/font&gt; )&lt;/td&gt;&lt;td title=&#039;/Users/herbert/pad/build/go.php&#039; bgcolor=&#039;#eeeeec&#039;&gt;.../go.php&lt;b&gt;:&lt;/b&gt;3&lt;/td&gt;&lt;/tr&gt;
+
+                )
+
+        )
+
+    [padErrrorList] =&gt; Array
+        (
+            [0] =&gt; /Users/herbert/pad/apps/pad/development/example.php:3 EXCEPTION: syntax error, unexpected token &quot;}&quot;
+        )
+
+    [padInDump] =&gt; 1
+)
+</pre></div>

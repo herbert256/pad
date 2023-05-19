@@ -111,12 +111,13 @@
 
     echo ( "<div align=\"left\"><pre>" );
 
-    padDumpFields    ( $php, $lvl, $app, $cfg, $pad, $ids, $exc );
+    padDumpFields    ( $php, $lvl, $app, $cfg, $pad, $ids, $exc, $crl );
     padDumpXdebug    ();
     padDumpInfo      ( $info );
     padDumpErrors    ( $info );
     padDumpStack     ();
     padDumpExeptions ( $exc );
+    padDumpCurl      ( $crl );
     padDumpLines     ( "ID's", $ids );
     padDumpLevel     ();
     padDumpRequest   ();
@@ -136,6 +137,14 @@
 
   }
 
+  function padDumpCurl ( $curl ) {
+
+    if ( ! isset ( $GLOBALS ['padCurlLast'] ) )
+      return;
+
+    padDumpLines ( 'Last Curl', $curl );
+
+  }
 
   function padDumpInfo ( $info ) {
 
@@ -392,9 +401,9 @@
   } 
 
 
-  function padDumpFields ( &$php, &$lvl, &$app, &$cfg, &$pad, &$ids, &$exc ) {
+  function padDumpFields ( &$php, &$lvl, &$app, &$cfg, &$pad, &$ids, &$exc, &$crl ) {
 
-    $php = $lvl = $app = $cfg = $pad = $ids = $exc = [];
+    $php = $lvl = $app = $cfg = $pad = $ids = $exc = $crl = [];
 
     $chk1 = [ '_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
 
@@ -410,9 +419,21 @@
 
         $cfg  [$key] = $value;
 
-      elseif ( $key === 'padExceptions' )
+      elseif ( $key == 'padExceptions' )
         
         $exc [$key] = $value;
+
+      elseif ( $key == 'padSqlConnect' )
+        
+        $ignored [$key] = $value;
+
+      elseif ( $key == 'padPadSqlConnect' )
+        
+        $ignored [$key] = $value;
+
+      elseif ( $key == 'padCurlLast' )
+        
+        $crl [$key] = $value;
 
       elseif ( in_array ( $key, $chk3 ) )
         
@@ -518,7 +539,7 @@
 
   function padDumpToDirGo ( $info, $dir ) {
 
-    padDumpFields ( $php, $lvl, $app, $cfg, $pad, $ids, $exc );
+    padDumpFields ( $php, $lvl, $app, $cfg, $pad, $ids, $exc, $crl );
 
     ob_start (); padDumpInfo      ( $info );                    padDumpToDirOne ( 'info',        ob_get_clean (), $dir );
     ob_start (); padDumpErrors    ( $info );                    padDumpToDirOne ( 'errors',      ob_get_clean (), $dir );
@@ -541,6 +562,7 @@
     ob_start (); padDumpXinfo     ();                           padDumpToDirOne ( 'xdebug-info', ob_get_clean (), $dir );
     ob_start (); padDumpXdebug    ();                           padDumpToDirOne ( 'xdebug-exc',  ob_get_clean (), $dir );
     ob_start (); padDumpGlobals   ();                           padDumpToDirOne ( 'globals',     ob_get_clean (), $dir );
+    ob_start (); padDumpCurl      ( $crl );                     padDumpToDirOne ( 'curl',        ob_get_clean (), $dir );
 
   }
 

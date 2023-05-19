@@ -44,9 +44,8 @@
   
   function padValidVar ($name) {
 
-    if ( trim($name) == '' )                                 return FALSE;
-    if ( substr($name, 0, 3) == 'pad' )                      return FALSE;
-    if ( ! preg_match('/^[a-zA-Z_][a-zA-Z0-9_]*$/',$name) )  return FALSE;
+    if ( trim($name) == '' )                                           return FALSE;
+    if ( ! preg_match('/^[a-zA-Z0-9\$][a-zA-Z0-9:#_\.\$]*$/',$name) )  return FALSE;
 
     return TRUE;  
 

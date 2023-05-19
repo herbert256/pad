@@ -1,50 +1,3 @@
-{content 'php_header'}
-  {if ! #skipPhp}
-    <th bgcolor="#dddddd">
-      PHP {if ! #skipNames}<br><font size="-2">{$exampleFilePhp}</font>{/if}
-    </th>
-  {/if}
-{/content}
-
-{content 'html_header'}
-  {if ! #skipHtml}
-    <th bgcolor="#dddddd">
-      HTML {if ! #skipNames}<br><font size="-2">{$exampleFileHtml}</font>{/if}
-    </th>
-  {/if}
-{/content}
-
-{content 'result_header'}
-  {if ! #skipResult}
-    <th bgcolor="#dddddd">
-      {if #withLinks}
-        <a href="{$padGo}{$dir}/{$item}">go</a>
-        <a href="{$padGo}development/compare&item={$dir}/{$item}">show</a>
-      {else}
-        RESULT
-      {/if}
-    </th>
-  {/if}
-{/content}
-
-{content 'php_data'}
-  {if ! #skipPhp}
-    <td style="vertical-align:top">{!exampleSrcPhp} </td>
-  {/if}
-{/content}
-
-{content 'html_data'}
-  {if ! #skipHtml}
-    <td style="vertical-align:top">{!exampleSrcHtml}</td>
-  {/if}
-{/content}
-
-{content 'result_data'}
-  {if ! #skipResult}
-    <td style="vertical-align:top">{page '{$examplePage}', type='ajax', include}</td>
-  {/if}
-{/content}
-
 {if #showPageName}
   <h3>{$examplePage}</h3>
 {/if}
@@ -55,7 +8,7 @@
 
 {if #onlyResult} 
 
-  {page '{$examplePage}', type='ajax', include}
+<!--ONLLY-->{page '{$examplePage}', type='sandbox', include, ignore}
 
 {else}
 
@@ -63,20 +16,39 @@
     <table border="1" cellpadding="10" cellspacing="0">
   {/if}
 
-  {if $exampleLayout eq 'horizontal' }
+
+  {if $exampleLayout  eq 'horizontal' }
 
     {if ! #skipHeader}
-      <tr>
-        {php_header}
-        {html_header}
-        {result_header}
+        <tr>
+        {if ! #skipPhp}
+          <th bgcolor="#dddddd">
+            PHP {if ! #skipNames}<br><font size="-2">{$exampleFilePhp}</font>{/if}
+          </th>
+        {/if}
+        {if ! #skipHtml}
+          <th bgcolor="#dddddd">
+            HTML {if ! #skipNames}<br><font size="-2">{$exampleFileHtml}</font>{/if}
+          </th>
+        {/if}
+        {if ! #skipResult}
+          <th bgcolor="#dddddd">
+            {if #withLink}<a href="{$padGo}{$dir}/{$item}">{/if}Result{if #withLink}</a>{/if}
+          </th>
+        {/if}
       </tr>
     {/if}
 
     <tr>
-      {php_data}
-      {html_data}
-      {result_data}
+      {if ! #skipPhp}
+<!--PHP--><td style="vertical-align:top">{!exampleSrcPhp|ignore} </td>
+      {/if}
+      {if ! #skipHtml}
+<!--HTML--><td style="vertical-align:top">{!exampleSrcHtml|ignore}</td>
+      {/if}
+      {if ! #skipResult}
+<!--RESULT--><td style="vertical-align:top">{page '{$examplePage}', type='sandbox', include, ignore}</td>
+      {/if}
     </tr>
 
   {else}
@@ -84,33 +56,39 @@
     {if ! #skipPhp}
       {if ! #skipHeader}
         <tr>
-          {php_header}
+          <th bgcolor="#dddddd">
+            PHP {if ! #skipNames}<br><font size="-2">{$exampleFilePhp} </font>{/if}
+          </th>
         </tr>
       {/if}
       <tr>
-        {php_data}
-      </tr>
+<!--PHP--><td style="vertical-align:top">{!exampleSrcPhp|ignore}</td>       
+      <tr>
     {/if}
 
     {if ! #skipHtml}
       {if ! #skipHeader}
         <tr>
-          {html_header}
+          <th bgcolor="#dddddd">
+            HTML {if ! #skipNames}<br><font size="-2">{$exampleFileHtml}</font>{/if}
+          </th>
         </tr>
       {/if}
       <tr>
-        {html_data}
+<!--HTML--><td style="vertical-align:top">{!exampleSrcHtml|ignore}</td>
       </tr>
     {/if}
 
     {if ! #skipResult}
       {if ! #skipHeader}
         <tr>
-          {result_header}
+          <th bgcolor="#dddddd">
+            {if #withLink}<a href="{$padGo}{$dir}/{$item}">{/if}Result{if #withLink}</a>{/if}
+          </th>
         </tr>
       {/if}
       <tr>
-        {result_data}
+<!--RESULT--><td style="vertical-align:top">{page '{$examplePage}', type='sandbox', include, ignore}</td>
       </tr>
     {/if}
 

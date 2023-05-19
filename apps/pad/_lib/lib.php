@@ -1,11 +1,18 @@
 <?php
 
 
-  function getPage ( $page ) {
+  function getPage ( $page, $ignoreErrors=0 ) {
 
     global $padHost, $padScript;
 
-    return padCurl ( "$padHost$padScript?$page&padInclude" );
+    $url  = "$padHost$padScript?$page&padInclude";
+    $curl = padCurl ($url);
+
+    if ( ! $ignoreErrors )
+      if ( ! str_starts_with ( $curl ['result'], '2') )
+        padError ("Curl failed: $url");
+
+    return $curl;
     
   }
 
@@ -87,20 +94,15 @@
       $ext   = substr($file,    strrpos($file, '.')+1 );
       $item  = substr($file, 0, strrpos($file, '.')   );
 
-      if ( strpos($item, 'error') !== FALSE  ) continue;
-      if ( strpos($item, 'todo')  !== FALSE  ) continue;
-      if ( strpos($item, 'test')  !== FALSE  ) continue;
-      if ( strpos($item, '/_')    !== FALSE  ) continue;
-      if ( substr($item, 0, 1) == '_'        ) continue;
-      if ( $ext <> 'html' and $ext <> 'php'  ) continue;
-      if ( $item == 'hello/html'             ) continue;
-      if ( $item == 'tags/restart'           ) continue;
-      if ( $item == 'tags/rediect'           ) continue;
-      if ( $item == 'development/ok'         ) continue;
-      if ( $item == 'development/big'        ) continue;
-      if ( $item == 'development/regression' ) continue;
-      if ( $item == 'development/examples'   ) continue;
-   
+      if ( strpos($item, 'error') !== FALSE       ) continue;
+      if ( strpos($item, 'todo')  !== FALSE       ) continue;
+      if ( strpos($item, 'test')  !== FALSE       ) continue;
+      if ( strpos($item, '/_')    !== FALSE       ) continue;
+      if ( strpos($file, 'development') !== FALSE ) continue;
+      if ( substr($item, 0, 1) == '_'             ) continue;
+      if ( $ext <> 'html' and $ext <> 'php'       ) continue;
+      if ( $item == 'hello/html'                  ) continue;
+         
       $files [$item] ['item'] = $item;
 
     }

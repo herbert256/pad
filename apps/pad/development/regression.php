@@ -7,7 +7,7 @@
 
     $item = $page ['item'];
 
-    $curl  = getPage ($item);
+    $curl  = getPage ($item, 1);
     $store = padApp . "_regression/$item.html";
   
     if     ( $curl ['result'] <> 200 )                              $status = 'error' ;

@@ -59,14 +59,31 @@
   }
 
 
-  function padDemoMode ( $page ) {
+ function padAddIds ( $url ) {
 
-    $store = padApp . "_regression/$page.html";
+    $url = padAddGet ( $url, 'padSesID', $GLOBALS ['padSesID'] );
+    $url = padAddGet ( $url, 'padReqID', $GLOBALS ['padReqID'] );
 
-    if ( padExists ($store) )
-      return padFileGetContents($store);
-    else
-      return "NO HTTP REQUESTS ALLOWED IN DEMO MODE";
+    return $url;
+
+  }
+ 
+
+  function padDemoMode ( $md5, $type, $data='' ) {
+
+    $store = padApp . "_curl/$md5.html";
+
+    if ( $type == 'get')
+      if ( padExists ($store) )
+        return padFileGetContents($store);
+      else
+        return "No HTTP in demo mode.";
+
+    if ( ! padExists ($store) ) {
+      padFileChkDir     ( $store );
+      padFileChkFile    ( $store );
+      file_put_contents ( $store, $data, LOCK_EX ) ;
+    }
 
   }    
 

@@ -154,15 +154,19 @@
   }
 
 
-  function padPageAjax ( $page, $qry ) {
+  function padPageAjax ( $url ) {
+
+    if ( isset ( $GLOBALS ['padDemoMode'] ) ) {
+      $md5 = padMD5 ($url) ;
+      return "<div>" . padDemoMode ( $md5, 'get' ) . "</div>";
+    }
+
+    $url = padAddIds ( $url );
 
     $ajax = 'padAjax' . padRandomString(8);
  
-    $url = $GLOBALS ['padGo'] . $page . $qry;
-
     return <<< END
 <div id="{$ajax}"></div>
-
 <script>
   {$ajax} = new XMLHttpRequest();
   {$ajax}.onreadystatechange=function() {
@@ -182,11 +186,21 @@ END;
   }
 
 
-  function padPageGet ( $page, $qry ) {
+  function padPageGet ( $url ) {
 
-    $curl = padCurl ( $GLOBALS['padGoExt'] . $page . $qry );
+    $md5 = padMD5 ($url) ;
  
-    return str_replace ( '}', '&close;', str_replace('}', '&close;', $curl ['data'] ) );
+    if ( isset ( $GLOBALS ['padDemoMode'] ) )
+      return padDemoMode ( $md5, 'get' );
+    
+    $curl = padCurl ( $url );
+
+    if ( ! str_starts_with( $curl ['result'], '2') )
+      padError ("Curl failed: $url");
+ 
+    padDemoMode ( $md5, 'store', $curl ['data'] );
+
+    return $curl ['data'] ;
 
   }
   

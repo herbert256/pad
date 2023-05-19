@@ -1,0 +1,283 @@
+<p> 
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">sequence </font><font color="red">random<font color="black">,</font>&nbsp;rows<font color="black">=</font>3</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$random</font>}</b>&nbsp;<br /><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">3378943564191321890 
+2842675252491602101 
+7702741646820122841</span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">sequence </font><font color="red">random<font color="black">,</font>&nbsp;max<font color="black">=</font>100<font color="black">,</font>&nbsp;rows<font color="black">=</font>10</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$random</font>}</b>&nbsp;<br /><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">69 
+24 
+40 
+44 
+2 
+67 
+80 
+8 
+99 
+85</span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">sequence </font><font color="red">random<font color="black">,</font>&nbsp;min<font color="black">=</font>11<font color="black">,</font>&nbsp;max<font color="black">=</font>13<font color="black">,</font>&nbsp;rows<font color="black">=</font>20</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$random</font>}</b>&nbsp;<br /><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">11 
+13 
+11 
+13 
+12 
+11 
+13 
+13 
+12 
+11 
+13 
+12 
+11 
+13 
+11 
+12 
+12 
+13 
+12 
+13</span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">range </font><font color="red">'11..20'<font color="black">,</font>&nbsp;random<font color="black">,</font>&nbsp;rows<font color="black">=</font>10</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$range</font>}</b>&nbsp;<br /><b>{/<font color="blue">range</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">20 
+12 
+15 
+12 
+19 
+18 
+18 
+18 
+20 
+13</span></code></td></tr>
+</table>
+</p>
+<h3>Random vs shuffle</h3>
+<p> 
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">range </font><font color="red">'A..Z'</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$range</font>}</b><br /><b>{/<font color="blue">range</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">A
+B
+C
+D
+E
+F
+G
+H
+I
+J
+K
+L
+M
+N
+O
+P
+Q
+R
+S
+T
+U
+V
+W
+X
+Y
+Z</span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">range </font><font color="red">'A..Z'<font color="black">,</font>&nbsp;shuffle</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$range</font>}</b><br /><b>{/<font color="blue">range</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">N
+F
+B
+O
+M
+X
+C
+P
+D
+K
+U
+W
+L
+G
+Z
+A
+I
+Y
+Q
+T
+R
+V
+J
+H
+S
+E</span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">range </font><font color="red">'A..Z'<font color="black">,</font>&nbsp;shuffle<font color="black">,</font>&nbsp;sort</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$range</font>}</b><br /><b>{/<font color="blue">range</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">A
+B
+C
+D
+E
+F
+G
+H
+I
+J
+K
+L
+M
+N
+O
+P
+Q
+R
+S
+T
+U
+V
+W
+X
+Y
+Z</span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">range </font><font color="red">'A..Z'<font color="black">,</font>&nbsp;random</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$range</font>}</b><br /><b>{/<font color="blue">range</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">S
+Z
+U
+F
+E
+L
+S
+W
+L
+N
+J
+P
+G
+R
+R
+J
+W
+G
+H
+G
+M
+G
+D
+N
+P
+X</span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">range </font><font color="red">'A..Z'<font color="black">,</font>&nbsp;random<font color="black">,</font>&nbsp;sort</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$range</font>}</b><br /><b>{/<font color="blue">range</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">A
+C
+E
+E
+E
+F
+F
+F
+H
+H
+H
+I
+N
+N
+N
+R
+R
+S
+T
+U
+U
+X
+X
+X
+X
+Z</span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">range </font><font color="red">'A..Z'<font color="black">,</font>&nbsp;random<font color="black">,</font>&nbsp;unique<font color="black">,</font>&nbsp;sort</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$range</font>}</b><br /><b>{/<font color="blue">range</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">C
+E
+F
+G
+H
+I
+K
+L
+M
+N
+Q
+S
+T
+U
+X
+Y
+Z</span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">range </font><font color="red">'A..Z'<font color="black">,</font>&nbsp;reverse</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$range</font>}</b><br /><b>{/<font color="blue">range</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">Z
+Y
+X
+W
+V
+U
+T
+S
+R
+Q
+P
+O
+N
+M
+L
+K
+J
+I
+H
+G
+F
+E
+D
+C
+B
+A</span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">range </font><font color="red">'A..Z'<font color="black">,</font>&nbsp;reverse<font color="black">,</font>&nbsp;sort</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$range</font>}</b><br /><b>{/<font color="blue">range</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000">A
+B
+C
+D
+E
+F
+G
+H
+I
+J
+K
+L
+M
+N
+O
+P
+Q
+R
+S
+T
+U
+V
+W
+X
+Y
+Z</span></code></td></tr>
+</table>
+</p>

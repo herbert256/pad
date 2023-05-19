@@ -6,12 +6,10 @@
 
      <br><hr>
 
-      {example '{$dir}/{$file}' {$onlyResult} {$skipResult} , type='get', showPageName, withLinks}
+      {page 'example', type='ajax', include, $item='{$dir}/{$file}'}
 
     {/files}
 
   {/dirsExample}
-
-  {track 'Big Test - Examples'}
 
 </p>

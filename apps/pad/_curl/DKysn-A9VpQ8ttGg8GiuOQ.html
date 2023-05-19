@@ -1,0 +1,206 @@
+<p> 
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">content </font><font color="red">'myContent'</font>}</b><br />&nbsp;&nbsp;&lt;table&nbsp;border=1&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;&nbsp;volume&nbsp;&nbsp;&nbsp;&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;&nbsp;edition&nbsp;&nbsp;&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;&nbsp;file&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="black"><b><font color="blue">@<b>start</b>@</font></b></font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;<b>{<font color="green">$volume</font>}</b>&nbsp;&nbsp;&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;<b>{<font color="green">$edition</font>}</b>&nbsp;&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;<b>{<font color="green">$file</font>}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="black"><b><font color="blue">@<b>end</b>@</font></b></font><br />&nbsp;&nbsp;&lt;/table&gt;<br /><b>{/<font color="blue">content</font><font color="red"></font>}</b><br /><br /><b>{<font color="blue">data </font><font color="red">'myData'</font>}</b><br />&nbsp;&nbsp;[&nbsp;{&nbsp;"volume":&nbsp;55,&nbsp;"edition":&nbsp;3,&nbsp;"file":&nbsp;"file1.xml"&nbsp;&nbsp;},<br />&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;"volume":&nbsp;33,&nbsp;"edition":&nbsp;1,&nbsp;"file":&nbsp;"file2.xml"&nbsp;&nbsp;},<br />&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;"volume":&nbsp;55,&nbsp;"edition":&nbsp;2,&nbsp;"file":&nbsp;"file11.xml"&nbsp;},<br />&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;"volume":&nbsp;33,&nbsp;"edition":&nbsp;3,&nbsp;"file":&nbsp;"file12.xml"&nbsp;},<br />&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;"volume":&nbsp;55,&nbsp;"edition":&nbsp;1,&nbsp;"file":&nbsp;"file21.xml"&nbsp;},<br />&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;"volume":&nbsp;33,&nbsp;"edition":&nbsp;2,&nbsp;"file":&nbsp;"file8.xml"&nbsp;&nbsp;}&nbsp;]<br /><b>{/<font color="blue">data</font><font color="red"></font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000"></span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">myContent </font><font color="red">data<font color="black">=</font>'myData'</font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000"><table border=1>
+<tr>
+<th> volume   </th>
+<th> edition  </th>
+<th> file     </th>
+</tr>
+<tr>
+<td> 55   </td>
+<td> 3  </td>
+<td> file1.xml     </td>
+</tr>    
+<tr>
+<td> 33   </td>
+<td> 1  </td>
+<td> file2.xml     </td>
+</tr>    
+<tr>
+<td> 55   </td>
+<td> 2  </td>
+<td> file11.xml     </td>
+</tr>    
+<tr>
+<td> 33   </td>
+<td> 3  </td>
+<td> file12.xml     </td>
+</tr>    
+<tr>
+<td> 55   </td>
+<td> 1  </td>
+<td> file21.xml     </td>
+</tr>    
+<tr>
+<td> 33   </td>
+<td> 2  </td>
+<td> file8.xml     </td>
+</tr>    
+</table></span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">myContent </font><font color="red">data<font color="black">=</font>'myData'<font color="black">,</font>&nbsp;sort<font color="black">=</font>'volume;edition'</font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000"><table border=1>
+<tr>
+<th> volume   </th>
+<th> edition  </th>
+<th> file     </th>
+</tr>
+<tr>
+<td> 33   </td>
+<td> 1  </td>
+<td> file2.xml     </td>
+</tr>    
+<tr>
+<td> 33   </td>
+<td> 2  </td>
+<td> file8.xml     </td>
+</tr>    
+<tr>
+<td> 33   </td>
+<td> 3  </td>
+<td> file12.xml     </td>
+</tr>    
+<tr>
+<td> 55   </td>
+<td> 1  </td>
+<td> file21.xml     </td>
+</tr>    
+<tr>
+<td> 55   </td>
+<td> 2  </td>
+<td> file11.xml     </td>
+</tr>    
+<tr>
+<td> 55   </td>
+<td> 3  </td>
+<td> file1.xml     </td>
+</tr>    
+</table></span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">myContent </font><font color="red">data<font color="black">=</font>'myData'<font color="black">,</font>&nbsp;sort<font color="black">=</font>'volume&nbsp;DESC;&nbsp;edition&nbsp;DESC'</font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000"><table border=1>
+<tr>
+<th> volume   </th>
+<th> edition  </th>
+<th> file     </th>
+</tr>
+<tr>
+<td> 55   </td>
+<td> 3  </td>
+<td> file1.xml     </td>
+</tr>    
+<tr>
+<td> 55   </td>
+<td> 2  </td>
+<td> file11.xml     </td>
+</tr>    
+<tr>
+<td> 55   </td>
+<td> 1  </td>
+<td> file21.xml     </td>
+</tr>    
+<tr>
+<td> 33   </td>
+<td> 3  </td>
+<td> file12.xml     </td>
+</tr>    
+<tr>
+<td> 33   </td>
+<td> 2  </td>
+<td> file8.xml     </td>
+</tr>    
+<tr>
+<td> 33   </td>
+<td> 1  </td>
+<td> file2.xml     </td>
+</tr>    
+</table></span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">myContent </font><font color="red">data<font color="black">=</font>'myData'<font color="black">,</font>&nbsp;sort<font color="black">=</font>'file'</font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000"><table border=1>
+<tr>
+<th> volume   </th>
+<th> edition  </th>
+<th> file     </th>
+</tr>
+<tr>
+<td> 55   </td>
+<td> 3  </td>
+<td> file1.xml     </td>
+</tr>    
+<tr>
+<td> 55   </td>
+<td> 2  </td>
+<td> file11.xml     </td>
+</tr>    
+<tr>
+<td> 33   </td>
+<td> 3  </td>
+<td> file12.xml     </td>
+</tr>    
+<tr>
+<td> 33   </td>
+<td> 1  </td>
+<td> file2.xml     </td>
+</tr>    
+<tr>
+<td> 55   </td>
+<td> 1  </td>
+<td> file21.xml     </td>
+</tr>    
+<tr>
+<td> 33   </td>
+<td> 2  </td>
+<td> file8.xml     </td>
+</tr>    
+</table></span></code></td></tr>
+<tr><td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">myContent </font><font color="red">data<font color="black">=</font>'myData'<font color="black">,</font>&nbsp;sort<font color="black">=</font>'file&nbsp;NATURAL'</font>}</b></span>
+</code></td><td style="vertical-align:top"><code><span style="color: #000000"><table border=1>
+<tr>
+<th> volume   </th>
+<th> edition  </th>
+<th> file     </th>
+</tr>
+<tr>
+<td> 55   </td>
+<td> 3  </td>
+<td> file1.xml     </td>
+</tr>    
+<tr>
+<td> 33   </td>
+<td> 1  </td>
+<td> file2.xml     </td>
+</tr>    
+<tr>
+<td> 33   </td>
+<td> 2  </td>
+<td> file8.xml     </td>
+</tr>    
+<tr>
+<td> 55   </td>
+<td> 2  </td>
+<td> file11.xml     </td>
+</tr>    
+<tr>
+<td> 33   </td>
+<td> 3  </td>
+<td> file12.xml     </td>
+</tr>    
+<tr>
+<td> 55   </td>
+<td> 1  </td>
+<td> file21.xml     </td>
+</tr>    
+</table></span></code></td></tr>
+</table>
+</p>
