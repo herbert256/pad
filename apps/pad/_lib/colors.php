@@ -18,16 +18,16 @@
       return 'xxx';
 
     if (substr($file, -5) == '.html')
-      return padColorsString ( padFileGetContents($file) ) ;
+      return padColorsString ( trim(padFileGetContents($file)) ) ;
     else
-      return padHighLight ( padFileGetContents($file) ) ;
+      return padHighLight ( trim(padFileGetContents($file)) ) ;
   
   }  
 
 
   function padColorsString ($source) { 
 
-   $source = padHighLight ($source);
+   $source = padHighLight (trim($source));
 
    $source = str_replace ('@content@', '<font color="black"><b><font color="blue">@<b>content</b>@</font></b></font>', $source);
    $source = str_replace ('@start@',   '<font color="black"><b><font color="blue">@<b>start</b>@</font></b></font>',   $source);

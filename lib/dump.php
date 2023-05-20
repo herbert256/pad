@@ -117,14 +117,14 @@
     padDumpErrors    ( $info );
     padDumpStack     ();
     padDumpExeptions ( $exc );
-    padDumpCurl      ( $crl );
-    padDumpLines     ( "ID's", $ids );
     padDumpLevel     ();
     padDumpRequest   ();
     padDumpLines     ( "App variables", $app );
     padDumpXXX       ( $pad, 'padSeq' );
     padDumpLines     ( "PAD variables",   $pad );
     padDumpLines     ( "Level variables", $lvl );
+    padDumpCurl      ( $crl );
+    padDumpLines     ( "ID's", $ids );
     padDumpSQL       ();
     padDumpHeaders   ();
     padDumpLines     ( 'Configuration', $cfg );

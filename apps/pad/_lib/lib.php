@@ -1,6 +1,48 @@
 <?php
 
 
+  function getExta ( $base ) {
+
+    $file = "$base.extra";
+
+    if ( ! padExists ( $file ) )
+      return [];
+
+    $data = file_get_contents ($file);
+    $array = padExplode ( $data , ',');
+
+    return $array;
+
+  }
+
+
+  function getExtaFiles ($dir) {
+
+    if ( ! padIsDir ( $dir) )
+      return [];
+
+    $files = [];
+
+    $dir = new RecursiveDirectoryIterator ( $dir );
+    $dir = new RecursiveIteratorIterator  ( $dir );
+
+    foreach ( $dir as $one ) {
+
+      $path = $one->getPathname();
+      $file = str_replace ( padApp, '', $path );
+
+      if ( substr ( $path, -1   ) == '.'        ) continue;
+      if (  str_ends_with ( $file, '.DS_Store') ) continue;
+
+      $files [] = $file;
+
+    }
+
+    return $files;
+
+  }
+
+
   function onlyResult ( $file ) {
 
     $html = ( padExists( $file ) ) ? file_get_contents( $file ) : ''; 

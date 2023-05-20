@@ -18,8 +18,16 @@
   $padContent = 
     '<tr>' .
     $padDemoSourcePHP .
-      '<td style="vertical-align:top">' .  trim($padSourcex)  . '</td>' .
-      '<td style="vertical-align:top"><code><span style="color: #000000">' . trim($padContent) . '</span></code></td>' .
+      '<td style="vertical-align:top">' .
+      '<!-- START DEMO SOURCE -->' .  
+      trim($padSourcex)  . 
+      '<!-- END DEMO SOURCE -->' .  
+      '</td>' .
+      '<td style="vertical-align:top"><code><span style="color: #000000">' . 
+      '<!-- START DEMO RESULT -->' .  
+      trim($padContent) . 
+      '<!-- END DEMO RESULT -->' .  
+      '</span></code></td>' .
     '</tr>';
 
 ?>
