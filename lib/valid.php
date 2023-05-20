@@ -14,7 +14,6 @@
   function padValidFile ( $file ) {
 
     if ( ! preg_match ('/^[A-Za-z0-9\.\/_-]+$/', $file) ) return FALSE;
-    if ( strpos($file, '//') !== FALSE )                  return FALSE;
     if ( strpos($file, '..') !== FALSE )                  return FALSE;
     if ( strpos($file, '/.') !== FALSE )                  return FALSE;
     if ( strpos($file, './') !== FALSE )                  return FALSE;

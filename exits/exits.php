@@ -2,6 +2,9 @@
 
   $padOutput = $padResult [0];
 
+  if ( padExists ( padApp . '_shutup.php' ) )
+    include padApp . '_shutup.php';
+
   $padOutput = padUnescape ( $padOutput );
 
   include 'output.php';

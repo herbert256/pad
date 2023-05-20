@@ -15,9 +15,15 @@
         </h1>
 
         {parts}
-          {if $link}<a href="{$padGo}{$link}">{/if}{$part}{if $link}</a>{/if} {notLast}/{/notLast}
+          <table style="margin:0;" border="0" cellpadding="0" cellspacing="0"><tr><td>
+            <hr style="margin:0;">
+            @start@
+              {if $link}<a href="{$padGo}{$link}">{/if}{$part}{if $link}</a>{/if} {notLast}/{/notLast}
+            @end@
+            <hr style="margin-top:3;">
+          </td></tr></table>
         {/parts}
-
+        
         {showTitle}<h2>{$title}</h2><hr>{/showTitle}
 
         @content@

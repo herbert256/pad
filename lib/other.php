@@ -1,5 +1,16 @@
 <?php
 
+
+  function padSave ( $in ) {
+
+    $in = str_replace ('//',  '/', $in );
+    $in = str_replace ('/./', '/', $in );
+
+    return $in;
+        
+  }
+
+
  function padAddIds ( $url ) {
 
     $url = padAddGet ( $url, 'padSesID', $GLOBALS ['padSesID'] );
@@ -8,6 +19,7 @@
     return $url;
 
   }
+
       
  function padTidyOutput ( $data ) {
 
@@ -98,14 +110,29 @@
   }
 
 
-  function padDir ($page) {
+  function padDir () {
 
-    if ( str_contains ( $page, '/') )
-      return substr ( $page, 0, strrpos ($page, '/') );
+    global $padPage;
+
+    if ( str_contains ( $padPage, '/') )
+      return substr ( $padPage, 0, strrpos ($padPage, '/') );
     else
       return '';
 
   }
+
+
+  function padPath () {
+
+    global $padDir;
+
+    if ( ! $padDir )
+      return substr ( padApp, -1 );
+    else
+      return padApp . $padDir;
+
+  }
+
 
   function padAddGet ($url, $key, $val ) {
     
@@ -529,27 +556,20 @@
   }
 
   
-  function padFunctionInTag ( $type, $name, $self, $parm ) {
+  function padFunctionInTag ( $name, $value, $ops ) {
+  
+    $parms = [];
+   
+    foreach ( $ops as $key => $value )
+      if ( $key > 0)
+        $parms [] = $value;
+   
+    $count = count ( $parms );
 
-    if ( $type )
-      $fun [1] [0] = $type;
+    if ( padExists ( padApp . "_functions/$name.php" ) )
+      return include padApp . "_functions/$name.php";
     else
-      $fun [1] [0] = 'function_' . padFunctionType ($name);
-
-    $fun [1] [1] = 'TYPE';
-
-    $fun [1] [2] = $name;
-    $fun [1] [3] = 2 + count($parm);
-
-    foreach ( $parm as $padK => $padV )
-      $fun [200+($padK*100)] [0] = $padV;
-
-    if ( padExists ( pad . "eval/single/$name.php" ) )
-      padEvalSingle ( $fun, $name );
-    else
-      padEvalParms ( 1, 0, $fun, $self, 1, 999999 ) ;
-
-    return $fun [1] [0];
+      return include pad . "_functions/$name.php";
 
   }
 

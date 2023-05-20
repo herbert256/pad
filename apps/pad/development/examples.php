@@ -2,7 +2,7 @@
 
   set_time_limit(30);
 
-  $showTitle = FALSE;
+  $title = "All PAD pages with the example tag";
 
   $dirs = [];
 

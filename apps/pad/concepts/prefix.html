@@ -1,41 +1,61 @@
-{table}{demo}
+{table withPHP}{demo}
 
 {content 'foo'}
   This is from content
 {/content}
 
 {data 'foo'}
-  [
-    { "foo": "This is a json array - 1" },
+  [ { "foo": "This is a json array - 1" },
     { "foo": "This is a json array - 2" },
-    { "foo": "This is a json array - 3" }
-  ]
+    { "foo": "This is a json array - 3" } ]
 {/data}
 
 {/demo}{demo}
 
 <h3>From the &open;content&close; tag</h3>
 
-{content:foo}
+  {content:foo}
 
 <h3>From the _includes directory</h3>
 
-{include:foo}
+  {include:foo}
 
-<h3>From a PHP function</h3>
+<h3>From a PHP function </h3>
 
-{php:foo}
+  {php:foo}
+
+<h3>From an application tag</h3>
+
+  {app:foo}
+
+<h3>From an own function</h3>
+
+  {function:foo}
 
 <h3>From a PHP array</h3>
 
-{array:foo}
-  {$foo} <br>
-{/array:foo}
+  {array:foo}
+    {$foo} <br>
+  {/array:foo}
 
 <h3>From the &open;data&close; tag</h3>
 
-{data:foo $flaflip='abc'}
-  {$foo} <br>
-{/data:foo}
+  {data:foo}
+    {$foo} <br>
+  {/data:foo}
+
+<h3>From the local _data directory</h3>
+
+  {local:foo}
+    {$foo} <br>
+  {/local:foo}
 
 {/demo}{/table}
+
+{extra}
+  _tags/foo.php,
+  _functions/foo.php,
+  concepts/_includes/foo.html,
+  concepts/_data/foo.xml
+{/extra}
+

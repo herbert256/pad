@@ -1,6 +1,6 @@
 <?php
   
-  include 'libPad.php';
+  include 'lib.php';
   include 'vars.php';
   include 'page.php';
   include 'ids.php';

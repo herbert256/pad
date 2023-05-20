@@ -12,6 +12,7 @@
     padBootError ("Page '$padPage' not found");
 
   $padPage = padPageSet ($padPage);
-  $padDir  = padDir ($padPage);
+  $padDir  = padDir ();
+  $padPath = padPath ();
 
 ?>

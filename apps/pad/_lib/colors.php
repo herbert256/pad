@@ -15,7 +15,7 @@
   function padColorsFile ($file) {
 
     if ( ! padExists($file) )
-      return 'xx';
+      return 'xxx';
 
     if (substr($file, -5) == '.html')
       return padColorsString ( padFileGetContents($file) ) ;

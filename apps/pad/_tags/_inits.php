@@ -1,9 +1,7 @@
 <?php
 
-  $path = PAD . "pad/" . $padOpt [$pad] [1];
-
-  $inits_php  = "$path/_inits.php";
-  $inits_html = "$path/_inits.html";
+  $inits_php  = padApp . "$padDir/_inits.php";
+  $inits_html = padApp . "$padDir/_inits.html";
 
   $inits = ( padExists($inits_php) or padExists($inits_html) );
 

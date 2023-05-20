@@ -1,10 +1,9 @@
 <?php
 
-  if ( ! file_exists($padLib) )
-    return;
+  set_include_path('');
 
-  $padLibDirectory = new RecursiveDirectoryIterator ($padLib);
-  $padLibIterator  = new RecursiveIteratorIterator  ($padLibDirectory);
+  $padLibDirectory = new RecursiveDirectoryIterator ( pad . 'lib' );
+  $padLibIterator  = new RecursiveIteratorIterator  ( $padLibDirectory );
 
   foreach ( $padLibIterator as $padLibOne ) {
 
