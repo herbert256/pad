@@ -1,5 +1,21 @@
 <?php
 
+  function diff ( $old, $new ) {
+
+    $diff = Diff::toTable(Diff::compare($old,$new));   
+    $diff = str_replace('</span><br></td>', '</span></td>', $diff);   
+    $diff = str_replace('<span></span><br><span> </span>', '', $diff);
+    $diff = str_replace('<span></span>', '', $diff);
+    $diff = str_replace('<span> </span>', '', $diff);
+    $diff = str_replace('<span> ', '<span>', $diff);
+    $diff = str_replace('<table class="diff">', '', $diff);
+    $diff = str_replace('</table>', '', $diff);
+    $diff = str_replace('<span>', '', $diff);
+    $diff = str_replace('</span>', '', $diff);
+
+    return $diff;
+
+  }
 
   function getExta ( $base ) {
 
@@ -69,6 +85,17 @@
     return $curl;
     
   }
+
+
+  function getPageData ( $page ) {
+
+    $curl = getPage ($page);
+
+    return $curl ['data'];
+    
+  }
+
+
 
 
   function dirList ($dir) {
@@ -178,6 +205,9 @@
     if ( $padPage == 'reference/reference' )
       return TRUE;
 
+    if ( $padPage == 'reference/show' )
+      return TRUE;
+
     if ($padPage == 'index' or $padPage == 'reference/index' )
       return FALSE;
 
@@ -196,18 +226,13 @@
 
   function parts ( ) {
  
-    global $padPage;
-
-    $source  = ( $padPage == 'reference/reference' ) ? $GLOBALS['reference'] : $padPage;
-    $refLink = refLink();
-    
-    if ( $padPage == 'index')
+    if ( $GLOBALS['padPage'] == 'index')
       return [];
 
     $parts ['home'] ['part'] = 'home';
     $parts ['home'] ['link'] = 'index';    
 
-    if ( $padPage == 'reference/index') {
+    if ( $GLOBALS['padPage'] == 'reference/index') {
 
       $parts ['ref'] ['part'] = 'reference';
       $parts ['ref'] ['link'] = '';    
@@ -216,27 +241,34 @@
 
     } 
 
+    $refLink = refLink();
+        
     if ( $refLink ) {
-
       $parts ['ref'] ['part'] = 'reference';
       $parts ['ref'] ['link'] = 'reference/index'; 
-
     }  
 
-    $work = str_replace ( '/index', '', $source ); 
-    $work = padExplode ( str_replace ( '/index', '', $source ), '/' );
+    if     ( $GLOBALS['padPage'] == 'reference/reference' )  $source = $GLOBALS['reference'];
+    elseif ( $GLOBALS['padPage'] == 'reference/show' )       $source = $GLOBALS['item'];
+    else                                                     $source = $GLOBALS['padPage'];
+
+    $source = str_replace ( '/index', '', $source ); 
+    $source = padExplode ( $source, '/' );
+
     $link = '';
 
-    foreach ( $work as $key => $part ) {
+    foreach ( $source as $key => $part ) {
           
       $link = ($link) ? "$link/$part" : $part;
 
       $parts [$key] ['part'] = $part;
  
-      if ( $refLink and $key <> array_key_last ($work))
+      if ( $refLink and $key <> array_key_last ($source))
         $parts [$key] ['link'] = "reference/reference&reference=$link";
+      elseif ( $key == array_key_last ($source) ) 
+        $parts [$key] ['link'] = '';
       else
-        $parts [$key] ['link'] = ( $key == array_key_last ($work) ) ? '' : $link;
+        $parts [$key] ['link'] =  $link;
    
     }
 

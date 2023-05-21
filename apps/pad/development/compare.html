@@ -1,16 +1,38 @@
-<p>
-  {xlines}
-    <b><font size="+1">
+
+<style>
+
+  .diffDeleted {
+      background-color: red;
+      font-family: monospace;
+      font-size: 75%;
+  }
+
+  .diffUnmodified {
+      background-color: white;
+      font-family: monospace;
+      font-size: 75%;
+  }
+
+  .diffInserted {
+      background-color: green;
+      font-family: monospace;
+      font-size: 75%;
+  }
+
+</style>
+
+<h2>
       {$item}
-      &nbsp; &nbsp;
+      &nbsp; 
+      (
       <a href="{$padGo}{$item}&padInclude">go</a>
       {if $old ne $new}
-        &nbsp; | &nbsp;
+      &nbsp;
         <a href="{$padGo}development/ok&item={$item}">ok</a>
       {/if}
-    </font></b>
-  {/xlines}
-</p>
+      )
+
+</h2>
 
 {demoMode}
 
@@ -29,17 +51,21 @@
       {/demoModeLines}
     </table>
 
-    <br><hr><br>
-    
-    <p>
-      {example '{$item}', skipResult}
-    </p>
+    <p><br><hr><br>{hrlines}
+    <font size="+2"><b>Difference between old and new</b></font>
+    {/hrlines}</p>
 
-    <br><hr><br>
-    <p>
-      <hr>
-      {page '{$item}', include}
-    </p>
+    <table border="1" cellpadding="5" cellspacing="0">
+      {compare}
+      {!diff}
+      {/compare}
+    </table>
+    
+    <p><br><hr><br>{hrlines}
+    <font size="+2"><b>The complete page</b></font>
+    {/hrlines}</p>
+
+    {page '{$item}', include}
 
 {else}
 
@@ -54,6 +80,7 @@
         <td>{!old}</tb>
         <td>{!new}</td>
       </tr>
+      {!diff}
       <tr>
         <td bgcolor="#dddddd" align="center"><font size="+1"><b>PHP source</b></font></td>
         <td bgcolor="#dddddd" align="center"><font size="+1"><b>HTML layout</b></font></td>

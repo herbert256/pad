@@ -3,15 +3,24 @@
   $padContentGo = padTagParm('content');
   
   if ( isset ( $padContentStore [$padContentGo] ) )
-    return $padContentStore [$padContentGo];
 
-  $padIncPage = padInclFileName ( $padContentGo );
+     $padContentData = $padContentStore [$padContentGo];
 
-  if ( $padIncPage ) {
-    $padIncPage = str_replace (padApp, '',  $padIncPage);
-    return include pad . '_tags/go/include.php';
+   else { 
+
+    $padIncPage = padInclFileName ( $padContentGo );
+
+    if ( $padIncPage ) {
+
+      $padIncPage     = str_replace (padApp, '',  $padIncPage);
+      $padContentData = include pad . '_tags/go/include.php';
+
+    } else 
+
+      $padContentData = padMakeContent ( $padContentGo );
+
   }
 
-  return padMakeContent ( $padContentGo );
+  return $padContentData;
 
 ?>

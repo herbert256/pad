@@ -24,7 +24,7 @@
  function padTidyOutput ( $data ) {
 
     if ( $GLOBALS ['padBuildMode'] == 'include' )
-      return $padTidyFragment ( $data );
+      return padTidyFragment ( $data );
 
    $config = $GLOBALS ['padTidyConfig'];
 

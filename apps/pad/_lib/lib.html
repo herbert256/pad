@@ -1,12 +1,10 @@
-{content 'block'}
-  <table border=0>
+{content 'block'}<table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
     <tr>
       <td>  
         @content@
       </td>
     </tr>
-  </table>
-{/content}
+  </table>{/content}
 
 {content 'examples'}
   {example '{$examples}', skipNames{notFirst},skipOpen,skipHeader{/notFirst}{notLast},skipClose{/notLast}}
@@ -16,16 +14,4 @@
   {dirList '{$padDir}'}
     {example '{$item}', skipNames{notFirst},skipOpen,skipHeader{/notFirst}{notLast},skipClose{/notLast}}
   {/dirList}
-{/content}
-
-{content 'xlines'}
-  <table style="margin:0;" border="0" cellpadding="0" cellspacing="0">
-    <tr>
-      <td>
-        <hr style="margin:0;">
-          @content@
-        <hr style="margin-top:3;">
-      </td>
-    </tr>
-  </table>
 {/content}
