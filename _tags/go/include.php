@@ -6,11 +6,14 @@
   if ( str_ends_with ( $padIncPage, '.html') )
     $padIncPage = substr ( $padIncPage, 0, -5 );
 
-  $padIncReturn  = "{call '" . padApp . "$padIncPage.php" . "'}";
-  $padIncReturn .= padFileGetContents ( padApp . "$padIncPage.html" );
+  $padIncPHP  = padApp . "$padIncPage.php";
+  $padIncHTML = padApp . "$padIncPage.html";
 
-  $padIncReturn = str_replace ('@contect@', $padContent, $padIncReturn);
+  $padIncReturn = padFileGetContents ( $padIncHTML ) ;
   
-  return $padIncReturn;
+  if ( padExists ($padIncPHP) )
+    return "{call '$padIncPHP'}$padIncReturn{/call}";
+  else
+    return $padIncReturn;
 
 ?>

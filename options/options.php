@@ -15,10 +15,12 @@
 
       padDone ( $padOptionName, TRUE );  
 
-    if ( $padOptions == 'app' )
-      include padApp . "_options/$padOptionName.php" ;
-    else
-      include pad . "_options/$padOptionName.php" ;
+      if ( $padOptions == 'app' )
+        $padCall = padApp . "_options/$padOptionName.php" ;
+      else
+        $padCall = pad . "_options/$padOptionName.php" ;
+
+      include pad . 'call/call.php';
 
     }
 

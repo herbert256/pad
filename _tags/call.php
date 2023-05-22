@@ -2,6 +2,16 @@
 
    $padCall = $padOpt [$pad] [1];
 
-  return include pad . 'build/go.php';
+   $padCallReturn = include pad . 'call/any.php';
+
+    if ( is_array ($padCallReturn) or is_object ($padCallReturn) or is_resource ($padCallReturn) ) 
+      return $padCallReturn;
+
+    if ( $padCallReturn === TRUE or $padCallReturn === FALSE or $padCallReturn === NULL ) 
+      return $padCallReturn;
+
+   $padContent = $padCallReturn . $padContent;
+
+   return TRUE;
 
 ?>

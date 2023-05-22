@@ -10,16 +10,17 @@
     $parm  = [];
     $count = 0;
     
-    $padEvalSingle = include pad . "eval/single/$kind.php"; 
+    $padCall = pad . "eval/single/$kind.php" ;
+    $single  = include pad . "call/any.php" ;
 
     $result [$key] [1] = 'VAL';
 
-    if ( is_array($padEvalSingle) or is_object($padEvalSingle) or is_resource($padEvalSingle) ) {
+    if ( is_array($single) or is_object($single) or is_resource($single) ) {
       $result [$key] [0] = '*ARRAY*';
-      $result [$key] [4] = padArraySingle ($padEvalSingle);
+      $result [$key] [4] = padArraySingle ($single);
     } else {
-      padCheckValue ($padEvalSingle);
-      $result [$key] [0] = $padEvalSingle;
+      padCheckValue ($single);
+      $result [$key] [0] = $single;
     }
 
     unset ( $result [$key] [2] );

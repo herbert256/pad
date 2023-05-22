@@ -2,23 +2,10 @@
 
   $padTagGo .= "_tags/". $padTag [$pad];
 
-  $padTagPhp = '';
+  $padTagContent = padFileGetContents ("$padTagGo.html");
 
-  if ( padExists("$padTagGo.html") )
-    $padTagContent .= padGetHtml ("$padTagGo.html");
-
-  if ( padExists("$padTagGo.php") ) {
-
-    ob_start();
-
-    $padTagPhp = include "$padTagGo.php";
-
-    if ( $padTagPhp === 1 )
-      $padTagPhp = '' ;
-
-    $padTagContent .= ob_get_clean() ;
-
-  }
+  $padCall   = "$padTagGo.php";
+  $padTagPhp = include pad . 'call/any.php';
 
   if ( is_array($padTagPhp) or is_object($padTagPhp) or is_resource($padTagPhp) )
     return $padTagPhp;

@@ -594,9 +594,11 @@
     $count = count ( $parms );
 
     if ( padExists ( padApp . "_functions/$name.php" ) )
-      return include padApp . "_functions/$name.php";
+      $padCall = padApp . "_functions/$name.php";
     else
-      return include pad . "_functions/$name.php";
+      $padCall = pad  . "_functions/$name.php";
+
+    return include pad . 'call/any.php';
 
   }
 
@@ -966,29 +968,25 @@
   }
 
 
-  function padGetHtml ($file, $call=false) {
-
-#    echo "$file<br>";
+  function padGetHtml ( $file ) {
 
     global $padBuildMode;
 
-    $html = '';
+    $html = padFileGetContents ($file);
 
-    if ( $padBuildMode== 'isolate' )
-      $html .= '{isolate}';    
-
-    if ( $call or $padBuildMode == 'demand' or $padBuildMode == 'isolate' ) {
+    if ( $padBuildMode == 'demand' or $padBuildMode == 'isolate' ) {
       $php = str_replace ( '.html', '.php', $file );
       if ( padExists($php) )
-        $html .= "{call '$php'}";    
-    }
+        $out = "{call '$php'}$html{/call}";    
+      else
+        $out = $html;
+    } else 
+       $out = $html;
+        
+    if ( $padBuildMode == 'isolate' )
+      $out = "{isolate}$out{/isolate}";    
 
-    $html .= padFileGetContents ($file);
-      
-    if ( $padBuildMode== 'isolate' )
-      $html .= '{/isolate}';    
-
-    return $html;
+    return $out;
 
   }
 
