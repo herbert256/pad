@@ -15,7 +15,7 @@
       $file = $loop_info->getPathname() ;
       $ext  = substr($file, strrpos($file, '.')+1 );
 
-      if ( $ext <> 'php' ) 
+      if ( $ext <> 'php' and $ext <> 'php' ) 
         continue;
 
       $old = file_get_contents($file);
