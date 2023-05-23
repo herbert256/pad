@@ -1,15 +1,16 @@
 <?php
 
-  $item    = padPageGetName ($item);
-  $title   = $item;
-  $new     = getPageData ($item);
-  $old     = padFileGetContents ( padApp . "_regression/$item.html" );
-  $html    = padFileGetContents ( padApp . "$item.html" );
-  $diff    = diff ( $old, $new );
-  $changed = FALSE;
+  $item  = padPageGetName ($item);
+  $title = $item;
+  $new   = getPageData ($item);
+  $old   = padFileGetContents ( padApp . "_regression/$item.html" );
+  $html  = padFileGetContents ( padApp . "$item.html" );
+  $diff  = diff ( $old, $new );
 
-  if ( $old == $new OR strpos ( $html, '<!-- PAD: NO REGRESSION -->' ) !== FALSE )
+  if ( $old == $new OR strpos ( $new, '<!-- PAD: NO REGRESSION -->' ) !== FALSE ) {
+    $changed = FALSE;
     return;
+  }
 
   $changed = TRUE;
 
@@ -23,24 +24,23 @@
   while ( strpos($check, '<!-- START DEMO RESULT -->') ) 
     $oldRes [] = trim ( padCut ( $check, '<!-- START DEMO RESULT -->', '<!-- END DEMO RESULT -->' ) );
 
-  $html = padFileGetContents ( padApp . "$item.html" );
-  while ( strpos($html, '{demo}') )
-    $newSrc [] = trim ( padCut ( $html, '{demo}', '{/demo}' ) );
-
   $check = $new;
   while ( strpos($check, '<!-- START DEMO SOURCE -->') ) 
     $newSrc [] = trim ( padCut ( $check, '<!-- START DEMO SOURCE -->', '<!-- END DEMO SOURCE -->' ) );
 
   $demoMode = FALSE;
 
-  if ( count($oldRes) and count ($oldRes) == count($newRes) and count($oldRes) == count($newSrc)) 
-   foreach ( $oldRes as $key => $value ) 
-      if ( $oldRes [$key] <> $newRes [$key] and strpos ($newSrc [$key], 'random') === FALSE and strpos ($newSrc [$key], 'shuffle') === FALSE ) {
+  if ( count($oldRes) and count ($oldRes) == count($newRes) and count($oldRes) == count($newSrc)) {
+   foreach ( $oldRes as $key => $value ) {
+     if ( strpos ($newSrc [$key], 'random') === FALSE and strpos ($newSrc [$key], 'shuffle') === FALSE ) {}
+       if ( $oldRes [$key] <> $newRes [$key] ) {
         $demoMode = TRUE;
         $compare   [$key] ['diff']   = diff ( $oldRes [$key], $newRes [$key] );
         $demoLines [$key] ['newSrc'] = $newSrc [$key];
         $demoLines [$key] ['oldRes'] = $oldRes [$key];
         $demoLines [$key] ['newRes'] = $newRes [$key];
       }
+    }
+  }
 
 ?>

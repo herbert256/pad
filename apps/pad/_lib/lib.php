@@ -13,7 +13,8 @@
       $ext   = substr($file,    strrpos($file, '.')+1 );
       $item  = substr($file, 0, strrpos($file, '.')   );
       $dir   = substr($item, 0, strrpos($item, '/')   );
-
+      $file  = substr($item,    strrpos($item, '/')+1 );
+ 
       if ( ! $dir                           ) continue;
       if ( strpos($path, 'error')           ) continue;
       if ( strpos($path, 'todo')            ) continue;    
@@ -23,7 +24,9 @@
       if ( $item == 'tags/restart'          ) continue;
       if ( $item == 'tags/rediect'          ) continue;
 
-      $files [$item] ['item']  = $item;
+      $files [$item] ['item'] = $item;
+      $files [$item] ['dir']  = $dir;
+      $files [$item] ['file'] = $file;
     
     }
 
@@ -34,49 +37,21 @@
   }
 
 
-  function padPagesIndex () {
+  function padPagesFiltered () {
 
-    $padLoop = $padPages = padPages ();
+    $work = $result = padPages ();
 
-    $directory = new RecursiveDirectoryIterator (padApp);
-    $iterator  = new RecursiveIteratorIterator  ($directory);
+    foreach ( $work as $one )
+      if ( $one ['file'] == 'index' )
+        foreach ($result as $key => $value )
+          if ( $value ['dir'] == $one ['dir'] and $value ['file'] <> 'index')
+            unset ( $result [$key] );
 
-    foreach ($iterator as $one ) {
-
-      $path  = $one->getPathname();
-      $file  = str_replace(padApp, '', $path );
-      $ext   = substr($file,    strrpos($file, '.')+1 );
-      $item  = substr($file, 0, strrpos($file, '.')   );
-      $dir   = substr($item, 0, strrpos($item, '/')   );
-
-      if ( ! $dir                           ) continue;
-      if ( strpos($path, 'error')           ) continue;
-      if ( strpos($path, 'todo')            ) continue;    
-      if ( strpos($path, '/_')              ) continue;
-      if ( $ext <> 'html' and $ext <> 'php' ) continue;
-      if ( $item == 'hello/html'            ) continue;
-      if ( $item == 'tags/restart'          ) continue;
-      if ( $item == 'tags/rediect'          ) continue;
-
-      $dirs [$dir] = true;
-    
-    }
-
-    ksort ($dirs);
-
-    return $dirs;
+    return $result;
 
   }
 
 
-
-
-
-
-
-
-
-    
   function diff ( $old, $new ) {
 
     $diff = Diff::toTable(Diff::compare($old,$new));   
@@ -234,7 +209,8 @@
 
 
   function parts ( ) {
- 
+
+    global $padPage; 
     if ( $GLOBALS['padPage'] == 'index')
       return [];
 
@@ -253,9 +229,22 @@
     $refLink = refLink();
         
     if ( $refLink ) {
+
       $parts ['ref'] ['part'] = 'reference';
       $parts ['ref'] ['link'] = 'references'; 
+ 
+    } elseif ( ! strpos( $padPage, '/') and $padPage <> 'index' and $padPage <> 'development' ) {
+
+      $parts ['dev'] ['part'] = 'development';
+      $parts ['dev'] ['link'] = 'development'; 
+
+      $parts ['now'] ['part'] = $padPage;
+      $parts ['now'] ['link'] = ''; 
+
+      return $parts;
+
     }  
+
 
     if     ( $GLOBALS['padPage'] == 'reference' ) $source = $GLOBALS['reference'];
     elseif ( $GLOBALS['padPage'] == 'show' )      $source = $GLOBALS['item'];
