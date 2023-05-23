@@ -1,0 +1,22 @@
+{dirs}
+
+  {files}
+
+    <hr>
+    <h3><a href="{$padGo}show&item={$dir}/{$file}">{$dir}/{$file}</a></h3>
+
+    <table style="border-style: dashed; dotted;" cellspacing="15"><tr><td>
+
+      <center>
+
+          {page 'one', type='{$exampleType}', include, ignore, $one='{$dir}/{$file}'}
+
+      </center>
+
+      </td></tr></table>
+
+      <br>
+
+  {/files}
+
+{/dirs}

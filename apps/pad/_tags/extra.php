@@ -1,7 +1,5 @@
 <?php
 
-  if ( $padPage == 'reference/index' ) return NULL;
-
   $extraFiles = [];
 
   $item = padTagParm ('item');

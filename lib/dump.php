@@ -283,13 +283,11 @@
     if ( ! isset ( $pad ) or $pad < 0 )
       return;
 
-    for ( $lvl=$pad; $lvl>=0; $lvl-- )
-      padDumpLines (" Level: $lvl", padDumpGetLevel ($lvl) );
-
-    if ( isset ( $GLOBALS ['padData'] ) and is_array ( $GLOBALS ['padData'] ) )
-      for ( $lvl=$pad; $lvl>0; $lvl-- )
-        if ( isset ($GLOBALS ['padCurrent'][$lvl]) )
-          padDumpLines ('Level '.$lvl, $GLOBALS ['padCurrent'][$lvl] );
+    for ( $lvl=$pad; $lvl>=0; $lvl-- ) {
+      padDumpLines ("Level: $lvl", padDumpGetLevel ($lvl) );
+      if ( isset ($GLOBALS ['padData'][$lvl]) )
+        padDumpLines ('', $GLOBALS ['padData'][$lvl] );
+    }
     
   }
 
@@ -302,6 +300,7 @@
     return [
       'tag'    => $GLOBALS ['padTag'] [$pad] ?? '',
       'type'   => $GLOBALS ['padType'] [$pad] ?? '',
+      'name' => $GLOBALS ['padName'] [$pad] ?? '',
       'pair'   => $GLOBALS ['padPair'] [$pad] ?? '',
       'p-type' => $GLOBALS ['padPrmType'] [$pad] ?? '',
       'opt'    => $GLOBALS ['padOpt'] [$pad] ?? '',
@@ -312,9 +311,7 @@
       'false' => padDumpShort ($GLOBALS ['padFalse'][$pad]??''),
       'base' => padDumpShort ($GLOBALS ['padBase'][$pad]??''),
       'html' => padDumpShort ($GLOBALS ['padHtml'][$pad]??''),
-      'result' => padDumpShort ($GLOBALS ['padResult'][$pad]??''),
-      'name' => $GLOBALS ['padName'] [$pad] ?? '',
-      'default' => $GLOBALS ['padDefault'] [$pad] ?? ''
+      'result' => padDumpShort ($GLOBALS ['padResult'][$pad]??'')
     ];
 
   } 
@@ -490,7 +487,8 @@
     if ( is_array($source) )
       padDumpClean ($source);
 
-    echo ( "\n<b>$info</b>\n");
+    if ($info)
+      echo ( "\n<b>$info</b>\n");
 
     $lines = explode ( "\n", htmlentities ( print_r ( $source, TRUE ) ) );
 

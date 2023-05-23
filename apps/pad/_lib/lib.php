@@ -1,5 +1,82 @@
 <?php
 
+
+  function padPages () {
+
+    $directory = new RecursiveDirectoryIterator (padApp);
+    $iterator  = new RecursiveIteratorIterator  ($directory);
+
+    foreach ($iterator as $one ) {
+
+      $path  = $one->getPathname();
+      $file  = str_replace(padApp, '', $path );
+      $ext   = substr($file,    strrpos($file, '.')+1 );
+      $item  = substr($file, 0, strrpos($file, '.')   );
+      $dir   = substr($item, 0, strrpos($item, '/')   );
+
+      if ( ! $dir                           ) continue;
+      if ( strpos($path, 'error')           ) continue;
+      if ( strpos($path, 'todo')            ) continue;    
+      if ( strpos($path, '/_')              ) continue;
+      if ( $ext <> 'html' and $ext <> 'php' ) continue;
+      if ( $item == 'hello/html'            ) continue;
+      if ( $item == 'tags/restart'          ) continue;
+      if ( $item == 'tags/rediect'          ) continue;
+
+      $files [$item] ['item']  = $item;
+    
+    }
+
+    ksort ($files);
+
+    return $files;
+
+  }
+
+
+  function padPagesIndex () {
+
+    $padLoop = $padPages = padPages ();
+
+    $directory = new RecursiveDirectoryIterator (padApp);
+    $iterator  = new RecursiveIteratorIterator  ($directory);
+
+    foreach ($iterator as $one ) {
+
+      $path  = $one->getPathname();
+      $file  = str_replace(padApp, '', $path );
+      $ext   = substr($file,    strrpos($file, '.')+1 );
+      $item  = substr($file, 0, strrpos($file, '.')   );
+      $dir   = substr($item, 0, strrpos($item, '/')   );
+
+      if ( ! $dir                           ) continue;
+      if ( strpos($path, 'error')           ) continue;
+      if ( strpos($path, 'todo')            ) continue;    
+      if ( strpos($path, '/_')              ) continue;
+      if ( $ext <> 'html' and $ext <> 'php' ) continue;
+      if ( $item == 'hello/html'            ) continue;
+      if ( $item == 'tags/restart'          ) continue;
+      if ( $item == 'tags/rediect'          ) continue;
+
+      $dirs [$dir] = true;
+    
+    }
+
+    ksort ($dirs);
+
+    return $dirs;
+
+  }
+
+
+
+
+
+
+
+
+
+    
   function diff ( $old, $new ) {
 
     $diff = Diff::toTable(Diff::compare($old,$new));   
@@ -16,6 +93,7 @@
     return $diff;
 
   }
+
 
   function getExta ( $base ) {
 
@@ -78,9 +156,8 @@
     $url  = "$padHost$padScript?$page&padInclude";
     $curl = padCurl ($url);
 
-    if ( ! $ignoreErrors )
-      if ( ! str_starts_with ( $curl ['result'], '2') )
-        return padError ("Curl failed: $url");
+    if ( ! $ignoreErrors and ! str_starts_with ( $curl ['result'], '2') )
+      return padError ("Curl failed: $url");
 
     return $curl;
     
@@ -94,8 +171,6 @@
     return $curl ['data'];
     
   }
-
-
 
 
   function dirList ($dir) {
@@ -132,83 +207,17 @@
   }
 
 
-  function recursivePages () {
-
-    $directory = new RecursiveDirectoryIterator ( padApp );
-    $iterator  = new RecursiveIteratorIterator  ( $directory );
-
-    $pages = [];
-
-    foreach ($iterator as $one) {
-
-      $ext = $one->getExtension();
-
-      if ( $ext == 'html' or $ext == 'php' ) { 
-
-        $file = str_replace ( padApp, '', $one->getPathname() );
-        $page = substr($file, 0, strrpos($file, '.')   );
-
-        if ( substr ($page, 0, 1) <> '_' )
-          $pages [$page] ['page'] = $page;
-
-      }
-
-    }
-
-    ksort($pages);
-
-    return $pages;
-
-  }
-
-
-
-  function padPages ( ) {
-
-    $files = [];
-
-    $directory = new RecursiveDirectoryIterator (padApp);
-    $iterator  = new RecursiveIteratorIterator  ($directory);
-
-    foreach ($iterator as $loop_info) {
-
-      $file  = str_replace(padApp, '', $loop_info->getPathname() );
-      $ext   = substr($file,    strrpos($file, '.')+1 );
-      $item  = substr($file, 0, strrpos($file, '.')   );
-
-      if ( strpos($item, 'error') !== FALSE       ) continue;
-      if ( strpos($item, 'todo')  !== FALSE       ) continue;
-      if ( strpos($item, 'development') !== FALSE ) continue;
-      if ( strpos($item, 'test')  !== FALSE       ) continue;
-      if ( strpos($item, '/_')    !== FALSE       ) continue;
-      if ( substr($item, 0, 1) == '_'             ) continue;
-      if ( $ext <> 'html' and $ext <> 'php'       ) continue;
-      if ( $item == 'hello/html'                  ) continue;
-      if ( $item == 'tags/restart'                ) continue;
-      if ( $item == 'tags/rediect'                ) continue;
-   
-      $files [$item] ['item'] = $item;
-
-    }
-
-    ksort ($files);
-
-    return $files;
-
-  }
-
-
   function refLink () {
 
     global $padPage;
 
-    if ( $padPage == 'reference/reference' )
+    if ( $padPage == 'reference' )
       return TRUE;
 
-    if ( $padPage == 'reference/show' )
+    if ( $padPage == 'show' )
       return TRUE;
 
-    if ($padPage == 'index' or $padPage == 'reference/index' )
+    if ($padPage == 'index' or $padPage == 'index' )
       return FALSE;
 
     $types = padData ('references');
@@ -232,7 +241,7 @@
     $parts ['home'] ['part'] = 'home';
     $parts ['home'] ['link'] = 'index';    
 
-    if ( $GLOBALS['padPage'] == 'reference/index') {
+    if ( $GLOBALS['padPage'] == 'references') {
 
       $parts ['ref'] ['part'] = 'reference';
       $parts ['ref'] ['link'] = '';    
@@ -245,12 +254,12 @@
         
     if ( $refLink ) {
       $parts ['ref'] ['part'] = 'reference';
-      $parts ['ref'] ['link'] = 'reference/index'; 
+      $parts ['ref'] ['link'] = 'references'; 
     }  
 
-    if     ( $GLOBALS['padPage'] == 'reference/reference' )  $source = $GLOBALS['reference'];
-    elseif ( $GLOBALS['padPage'] == 'reference/show' )       $source = $GLOBALS['item'];
-    else                                                     $source = $GLOBALS['padPage'];
+    if     ( $GLOBALS['padPage'] == 'reference' ) $source = $GLOBALS['reference'];
+    elseif ( $GLOBALS['padPage'] == 'show' )      $source = $GLOBALS['item'];
+    else                                          $source = $GLOBALS['padPage'];
 
     $source = str_replace ( '/index', '', $source ); 
     $source = padExplode ( $source, '/' );
@@ -264,7 +273,7 @@
       $parts [$key] ['part'] = $part;
  
       if ( $refLink and $key <> array_key_last ($source))
-        $parts [$key] ['link'] = "reference/reference&reference=$link";
+        $parts [$key] ['link'] = "reference&reference=$link";
       elseif ( $key == array_key_last ($source) ) 
         $parts [$key] ['link'] = '';
       else
@@ -273,6 +282,96 @@
     }
 
     return $parts;
+
+  }
+
+
+  function getReferences () {
+
+    $references = padData ('references.json');
+
+    foreach ( $references as $key => $type ) {
+
+      $index = padApp . $type['ref'] . '/index';
+
+      if ( padExists ("$index.php") or padExists ("$index.html") )
+        $references [$key] ['link'] = TRUE;
+      else
+        $references [$key] ['link'] = FALSE;
+
+    }
+
+    return $references;
+
+  }
+
+
+  function refs ($type, $ref, $dir, $kind) {
+
+    if ( !$type )
+      return [];
+    
+    if ($kind == 'ref')
+      $dir = $ref;
+    
+    if ( $type == 'eval types' ) {
+      $one   = refs ('n/a', 'eval', 'eval/single', 'pad');
+      $two   = refs ('n/a', 'eval', 'eval/parms',  'pad') ;
+      $items = array_merge ( $one, $two );
+      ksort ($items);
+      return $items;
+    }
+
+    $manual = padApp . $ref;
+
+    if ( $kind == 'pad' )
+      $source = pad . $dir;
+    else
+      $source = $manual;
+
+    $directory = new DirectoryIterator ( $source );
+    $iterator  = new IteratorIterator  ( $directory );
+
+    $items = [];
+    
+    foreach ($iterator as $one) {
+
+      $ext  = $one->getExtension();
+      $file = $one->getFilename();
+
+      if ( $kind == 'pad' and $type <>  'sequences' )
+        if ( $ext <> 'html' and $ext <> 'php' ) 
+          continue;
+
+      if ( $file == '.'  ) continue;
+      if ( $file == '..' ) continue;
+
+      if ( $kind == 'ref' and $one->isDir() )
+        $item = $one->getBasename();
+      elseif ( $type == 'sequences' )
+        $item = $one->getBasename();
+      else
+        $item = substr($file, 0, strrpos($file, '.')   );
+
+      if ( substr ( $item, 0, 1 ) == '_' ) continue;
+      if ( $item == 'todo' )               continue;
+      if ( $item == 'code' )               continue;
+
+      $items [$item] ['item'] = $item;
+
+      $check = "$manual/$item";
+
+      if ( $kind == 'ref' )
+        $items [$item] ['link'] = TRUE;
+      elseif ( padExists ("$check.php") or padExists ("$check.html") or padIsDir ($check) )
+        $items [$item] ['link'] = TRUE;
+      else
+        $items [$item] ['link'] = FALSE;
+ 
+    }
+
+    ksort ( $items );
+    return $items;
 
   }
 

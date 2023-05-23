@@ -1,11 +1,11 @@
 <?php
 
-  trimPhp ( pad    );
-  trimPhp ( padApp );
+  trimFiles ( pad    );
+  trimFiles ( padApp );
 
   echo 'done';
 
-  function trimPhp ( $path ) {
+  function trimFiles ( $path ) {
 
     $directory = new RecursiveDirectoryIterator ($path);
     $iterator  = new RecursiveIteratorIterator  ($directory);
@@ -15,7 +15,7 @@
       $file = $loop_info->getPathname() ;
       $ext  = substr($file, strrpos($file, '.')+1 );
 
-      if ( $ext <> 'php' and $ext <> '.html' ) 
+      if ( $ext <> 'php' and $ext <> 'html' ) 
         continue;
 
       $old = file_get_contents($file);

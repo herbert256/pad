@@ -2,9 +2,6 @@
 
   include 'call.php';
 
-  if ( ! padExists ( $padCall ) )
-    return '';
-
   if ( trim ( $padCallOB ) ) {
 
     if ( is_array ($padCallPHP) or is_object ($padCallPHP) or is_resource ($padCallPHP) ) 
