@@ -44,7 +44,7 @@
     $padVarDefined = get_defined_vars();
 
     if ( ! isset ( $padVarDefined [$padFld] ) )
-      return padError ( "Field '$padFld' not found" );  
+      return padError ( "Field '$padFld' not found (1)" );  
 
     $padVal    = $padVarDefined [$padFld];
     $padValSet = TRUE;
@@ -52,7 +52,7 @@
   }
 
   if ( ! $padVarFound and ! $padVarDefined )
-    return padError ( "Field '$padFld' not found" ); 
+    return padError ( "Field '$padFld' not found (2)" ); 
 
   if ( ! $padVarSet )
     if     ( $padFirst == '!' ) $padVal = padRawValue   ($padFld);

@@ -13,6 +13,7 @@
       unset ( $GLOBALS [$padK] );
 
     $GLOBALS [$padK] = $padV;
+    global $$padK;
 
   }
       

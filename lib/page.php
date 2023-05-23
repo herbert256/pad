@@ -1,9 +1,9 @@
 <?php
 
 
-  function padPageInsideFunction ( $padFunctionParms ) {
+  function padPageInsideFunction ( ) {
 
-    include pad . 'page/push.php';
+    $GLOBALS ['padPageInsideFunction'] = TRUE;
 
     foreach ( $GLOBALS as $key => $val ) 
       if ( substr($key, 0, 6) == 'padSeq' ) 
@@ -15,27 +15,13 @@
 
     unset($key);
     unset($val);
+    
+    $padPageFunctionResult = include pad . 'page/sandbox.php';
 
-    include pad . 'page/reset.php';
-    include pad . 'page/start.php';
+    unset ($GLOBALS ['padPageInsideFunction']);    
+    
+    return $padPageFunctionResult;     
 
-    if ( count ($padFunctionParms) ) {
-      $padData    [$pad]     = [];
-      $padData    [$pad] [1] = $padFunctionParms;
-      $padDefault [$pad]     = FALSE;
-    }
-
-    include pad . 'build/build.php';   
-
-    foreach ( get_defined_vars () as $padK => $padV )
-      if ( substr($padK, 0, 3) <> 'pad' and ! isset ( $padCurrent [$pad] [$padK] ) )
-        $padCurrent [$pad] [$padK] = $padV;
-
-    include pad . 'page/level.php'; 
-    include pad . 'page/end.php';
-    include pad . 'page/pop.php';
-
-    return $padHtml [$pad+1];
   
   }
  

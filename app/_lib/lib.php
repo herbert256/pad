@@ -18,12 +18,12 @@
       if ( ! $dir                           ) continue;
       if ( strpos($path, 'error')           ) continue;
       if ( strpos($path, 'todo')            ) continue;    
+      if ( strpos($path, 'restart')         ) continue;
+      if ( strpos($path, 'redirect')        ) continue;
       if ( strpos($path, '/_')              ) continue;
       if ( $ext <> 'html' and $ext <> 'php' ) continue;
       if ( $item == 'hello/html'            ) continue;
-      if ( $item == 'tags/restart'          ) continue;
-      if ( $item == 'tags/rediect'          ) continue;
-
+ 
       $files [$item] ['item'] = $item;
       $files [$item] ['dir']  = $dir;
       $files [$item] ['file'] = $file;

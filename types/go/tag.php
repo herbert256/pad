@@ -7,7 +7,7 @@
   $padCall   = "$padTagGo.php";
   $padTagPhp = include pad . 'call/any.php';
 
-  if ( is_array($padTagPhp) or is_object($padTagPhp) or is_resource($padTagPhp) )
+  if ( is_array($padTagPhp) )
     return $padTagPhp;
 
   if ( $padTagPhp !== TRUE and $padTagPhp !== FALSE and $padTagPhp !== NULL )

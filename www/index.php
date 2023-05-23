@@ -14,9 +14,9 @@
 
   $padHome = ( $_SERVER ['HTTP_HOST'] == 'penguin.linux.test' ) ? 'home' : 'Users';
 
-  define ( 'pad',     "/$padHome/herbert/pad/"          ); // Home of PAD itself
-  define ( 'padApp',  "/$padHome/herbert/pad/apps/pad/" ); // The PAD application files
-  define ( 'padData', "/$padHome/herbert/data/"         ); // Data locaction, used for logs/cache/errors/etc.
+  define ( 'pad',     "/$padHome/herbert/pad/"     ); // Home of PAD itself
+  define ( 'padApp',  "/$padHome/herbert/pad/app/" ); // The PAD application files
+  define ( 'padData', "/$padHome/herbert/data/"    ); // Data locaction, used for logs/cache/errors/etc.
   
   include pad . 'start.php';
 
