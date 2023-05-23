@@ -14,13 +14,14 @@
   if ( padTagParm ('else')    ) $padFalse [$pad] = include pad . "_options/else.php";    
   if ( padTagParm ('data')    ) $padData  [$pad] = include pad . "_options/data.php";   
 
+  include 'set.php';
+
   $padContent = $padTrue [$pad];
   include 'go.php';
   $padTrue [$pad] = $padContent;
   
   include 'flags.php';
   include 'base.php';
-  include 'set.php';
   include 'data.php';
 
   include pad . "options/start.php";

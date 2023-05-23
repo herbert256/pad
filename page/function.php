@@ -1,5 +1,5 @@
 <?php
 
-  return padPageInsideFunction ( $padSet [$pad] );
+  return padPageInsideFunction ( $padSetLvl [$pad] );
 
 ?>

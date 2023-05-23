@@ -3,20 +3,10 @@
   if ( $padPair [$pad] )
     return padError ("{set ...} can not be used as a open/close tag");
 
-  foreach ( $padSet [$pad] as $padSetName => $padSetValue ) {
-
+  foreach ( $padSetLvl [$pad] as $padSetName => $padSetValue )
     $GLOBALS [$padSetName] = $padSetValue;
- 
-    for ( $padK=$pad; $padK; $padK-- ) {
-      if ( isset ( $padSaveVars [$padK] [$padSetName] ) ) 
-        unset ( $padSaveVars [$padK] [$padSetName] );
-      if ( isset ( $padDeleteVars [$padK] [$padSetName] ) ) 
-        unset ( $padDeleteVars [$padK] [$padSetName] );
-    }
- 
-  }
 
-  $padSet [$pad] = [];
+  $padSaveLvl [$pad] = $padDeleteLvl [$pad] = [];
 
   return TRUE;
   

@@ -2,7 +2,7 @@
 
   $padSaveVarsAssemble [$pad] = $padDeleteVarsAssemble [$pad] = [];
 
-  foreach ( $padSet [$pad] as $padK => $padV ) {
+  foreach ( $padSetLvl [$pad] as $padK => $padV ) {
 
     if ( array_key_exists($padK, $GLOBALS) and ! array_key_exists ($padK, $padSaveVarsAssemble [$pad]) )
       $padSaveVarsAssemble [$pad] [$padK] = $GLOBALS [$padK];
@@ -12,10 +12,10 @@
     else
       unset ( $GLOBALS [$padK] );
 
-    $GLOBALS [$padK] = $padSet [$pad] [$padK];
+    $GLOBALS [$padK] = $padV;
 
   }
       
-  $padSet [$pad] = [];
+  $padSetLvL [$pad] = [];
 
 ?>

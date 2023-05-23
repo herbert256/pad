@@ -1,7 +1,5 @@
 <?php
 
-  $showTitle = FALSE;
-
   $htmlOld = padApp . "_regression/$item.html";
   $htmlNew = padApp . "$item.html";
 

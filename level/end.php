@@ -26,11 +26,14 @@
   if ( $padBefore [$pad] == 2 ) 
     include 'split/before3.php';
 
-   include pad . "options/end.php";
+  include pad . "options/end.php";
 
   if ( isset ( $padPrm [$pad] ['isolate'] ) )    
     include pad . 'isolate/end.php';
 
+  padResetLvl ($pad);
+
+  
   $pad--;
 
   if ( $pad >= 0 and $padBefore [$pad] == 1 ) 

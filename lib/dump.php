@@ -100,6 +100,7 @@
     padDumpLevel     ();
     padDumpLines     ( "Level variables", $lvl );
     padDumpLines     ( "PAD variables",   $pad );
+    padDumpStack     ();
 
     echo ( "</pre></div>" );
 
@@ -116,10 +117,10 @@
     padDumpInfo      ( $info );
     padDumpErrors    ( $info );
     padDumpStack     ();
-    padDumpExeptions ( $exc );
     padDumpLevel     ();
-    padDumpRequest   ();
     padDumpLines     ( "App variables", $app );
+    padDumpExeptions ( $exc );
+    padDumpRequest   ();
     padDumpXXX       ( $pad, 'padSeq' );
     padDumpLines     ( "PAD variables",   $pad );
     padDumpLines     ( "Level variables", $lvl );
@@ -287,8 +288,8 @@
 
     if ( isset ( $GLOBALS ['padData'] ) and is_array ( $GLOBALS ['padData'] ) )
       for ( $lvl=$pad; $lvl>0; $lvl-- )
-        if ( isset ($GLOBALS ['padData'][$lvl]) )
-          padDumpLines ('Level '.$lvl, $GLOBALS ['padData'][$lvl] );
+        if ( isset ($GLOBALS ['padCurrent'][$lvl]) )
+          padDumpLines ('Level '.$lvl, $GLOBALS ['padCurrent'][$lvl] );
     
   }
 
@@ -305,20 +306,15 @@
       'p-type' => $GLOBALS ['padPrmType'] [$pad] ?? '',
       'opt'    => $GLOBALS ['padOpt'] [$pad] ?? '',
       'prm'    => $GLOBALS ['padPrm'] [$pad] ?? '',
-      'set'    => $GLOBALS ['padSet'] [$pad] ?? '',
+      'set-lvl' => $GLOBALS ['padSetLvl'] [$pad] ?? '',
+      'set-occ' => $GLOBALS ['padSetOcc'] [$pad] ?? '',
       'true' => padDumpShort ($GLOBALS ['padTrue'][$pad]??''),
       'false' => padDumpShort ($GLOBALS ['padFalse'][$pad]??''),
       'base' => padDumpShort ($GLOBALS ['padBase'][$pad]??''),
       'html' => padDumpShort ($GLOBALS ['padHtml'][$pad]??''),
       'result' => padDumpShort ($GLOBALS ['padResult'][$pad]??''),
       'name' => $GLOBALS ['padName'] [$pad] ?? '',
-      'default' => $GLOBALS ['padDefault'] [$pad] ?? '',
-      'walk' => $GLOBALS ['padWalk'] [$pad] ?? '',
-      'hit' => $GLOBALS ['padHit'] [$pad] ?? '',
-      'null' => $GLOBALS ['padNull'] [$pad] ?? '',
-      'else' => $GLOBALS ['padElse'] [$pad] ?? '',
-      'array' => $GLOBALS ['padArray'] [$pad] ?? '',
-      'text' => $GLOBALS ['padText'] [$pad]?? ''
+      'default' => $GLOBALS ['padDefault'] [$pad] ?? ''
     ];
 
   } 
@@ -407,8 +403,6 @@
 
     $chk1 = [ '_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
 
-    $chk2 = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padName','padData','padCurrent','padKey','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padSaveVars','padDeleteVars','padSetSave','padSetDelete','padTagCnt','padAfter','padBefore','padBeforeData','padPrmType','padSet','padGiven','padDeleteSet','padOpt','padOptionsApp','padSaveSet','padTable','padTableTag'];
-
     $chk3 = [ 'padPage','padSesID','padReqID','padRefID','PHPSESSID' ];
 
     $settings = padFileGetContents(pad . 'config/config.php');
@@ -443,7 +437,7 @@
         
         $php [$key] = $value;
 
-      elseif ( in_array ( $key, $chk2 ) ) {
+      elseif ( in_array ( $key, $GLOBALS['padLevelVars'] ) ) {
 
         if ( isset($value[0]) and ! $value[0] )
           unset ($value[0]);

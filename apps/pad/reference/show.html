@@ -1,3 +1,11 @@
-{getPageData '{$item}', ignore}
+{ok}
+
+  {getPageData '{$item}', ignore}
+
+{else}
+
+  {page 'development/compare', $item='{$item}', include}
+
+{/ok}
 
 {extra item='/{$item}'}

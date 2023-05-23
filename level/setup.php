@@ -3,8 +3,10 @@
   $pad++;  
 
   $padOpt        [$pad] = [];
-  $padSet        [$pad] = [];
   $padPrm        [$pad] = [];
+
+  $padSetLvl     [$pad] = [];
+  $padSetOcc     [$pad] = [];
 
   $padOpt        [$pad] [0] = trim($padWords[1] ?? '');
   $padOpt        [$pad] [1] = '';
@@ -42,11 +44,11 @@
   $padArray      [$pad] = FALSE;
   $padText       [$pad] = FALSE;
 
-  $padSaveVars   [$pad] = [];
-  $padDeleteVars [$pad] = [];
+  $padSaveLvl    [$pad] = [];
+  $padDeleteLvl  [$pad] = [];
 
-  $padSaveSet   [$pad] = [];
-  $padDeleteSet [$pad] = [];
+  $padSaveOcc   [$pad] = [];
+  $padDeleteOcc [$pad] = [];
 
   $padOptionsApp [$pad] = [];
   

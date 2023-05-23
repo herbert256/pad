@@ -1,29 +1,5 @@
 <?php
 
-  function padPageAddSet ( $set, $content ) {
-
-    if ( count ( $set ) ) {
-    
-      $open = '{pad ';
-      $close = '{/pad}';
-
-      foreach ( $set as $key => $val )
-        if ( $open == '{pad ' )
-          $open .= " \$$key='$val'";
-        else
-          $open  = ",\$$key='$val'";
-
-      $open .= '}';
-
-    } else 
-
-      $open = $close = '';
-
-    return "$open$content$close";
-
-  }
-
-
 
   function padPageInsideFunction ( $padFunctionParms ) {
 

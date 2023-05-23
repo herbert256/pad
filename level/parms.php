@@ -6,14 +6,25 @@
 
   foreach ( $padPrmParse as $padK => $padV ) {
 
-    list ($padPrmName, $padPrmValue ) = padSplit ('=', $padV);
+    list ($padPrmName, $padPrmValue ) = padSplit ('=', trim($padV));
 
     if ( substr($padPrmName, 0, 1) == '$' ) {
 
       $padSetName = substr($padPrmName, 1);
 
       if ( padValidVar ($padSetName) and $padPrmValue !== '' ) {
-        $padSet [$pad] [$padSetName] = padVarOpts ( '', padExplode($padPrmValue, '|') );
+        $padSetLvl [$pad] [$padSetName] = padVarOpts ( '', padExplode($padPrmValue, '|') );
+        continue;
+      }
+  
+    }
+
+    if ( substr($padPrmName, 0, 1) == '%' ) {
+
+      $padSetName = substr($padPrmName, 1);
+
+      if ( padValidVar ($padSetName) ) {
+        $padSetOcc [$pad] [$padSetName] = $padPrmValue;
         continue;
       }
   

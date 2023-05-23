@@ -7,6 +7,6 @@ file_put_contents ($store, $curl ['data'], LOCK_EX);
 
 $padRestart = $item;
 
-padRedirect ( "development/compare&item=$item" );
+padRedirect ( "reference/show&item=$item" );
 
 ?>

@@ -2,13 +2,7 @@
 
   $padSetTmp = [];
 
-  if ( padIsDefaultData ($padData [$pad]) ) 
-    $padSetTmp [ $padName [$pad] ] = $padOpt [$pad] [1];
-  else
-    $padSetTmp [ $padName [$pad] ] = $padCurrent [$pad];
-
-  foreach ( $padCurrent [$pad] as $padK => $padV )
-    $padSetTmp [$padK] = $padV;
+  $padSetTmp [ $padName [$pad] ] = $padOpt [$pad] [1];
 
   foreach ( $padTable [$pad] as $padK => $padV)
     foreach ( $padV as $padK2 => $padV2)
@@ -18,11 +12,13 @@
     if ( ! isset($GLOBALS [$padK] ) )
       $padSetTmp [$padK] = $padV;
 
-  foreach ( $padSet [$pad] as $padK => $padV )
+  foreach ( $padSetOcc [$pad] as $padK => $padV )
+    $padCurrent [$pad] [$padK] = padVarOpts ( '', padExplode($padV, '|') );
+
+  foreach ( $padCurrent [$pad] as $padK => $padV )
     $padSetTmp [$padK] = $padV;
 
   foreach ( $padSetTmp as $padK => $padV )
-    padSetGlobal ( $padK, $padV );
-
+    padSetGlobalOcc ( $padK, $padV );
 
 ?>

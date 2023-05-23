@@ -9,6 +9,8 @@
 
     $curl  = getPage ($item, 1);
     $store = padApp . "_regression/$item.html";
+
+    file_put_contents ( padApp . "_regression/_now.txt", $item, LOCK_EX ) ;
   
     if     ( $curl ['result'] <> 200 )                              $status = 'error' ;
     elseif ( ! padExists ($store) )                                 $status = 'new';

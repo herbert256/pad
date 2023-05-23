@@ -1,8 +1,20 @@
+{content 'oldNew'}
+
+  <td bgcolor="#dddddd" align="center">
+    <font size="+1"><b>OLD</b></font>
+  </td>
+      
+  <td bgcolor="#dddddd" align="center">
+    <font size="+1"><b>NEW</b></font> &nbsp; 
+    <a href="{$padGo}development/ok&item={$item}">ok</a>
+  </td>
+
+{/content}
 
 <style>
 
   .diffDeleted {
-      background-color: red;
+      background-color: OrangeRed;
       font-family: monospace;
       font-size: 75%;
   }
@@ -14,33 +26,19 @@
   }
 
   .diffInserted {
-      background-color: green;
+      background-color: Chartreuse;
       font-family: monospace;
       font-size: 75%;
   }
 
 </style>
 
-<h2>
-      {$item}
-      &nbsp; 
-      (
-      <a href="{$padGo}{$item}&padInclude">go</a>
-      {if $old ne $new}
-      &nbsp;
-        <a href="{$padGo}development/ok&item={$item}">ok</a>
-      {/if}
-      )
-
-</h2>
-
 {demoMode}
 
     <table border="1" cellpadding="10" cellspacing="0">
       <tr>
         <td bgcolor="#dddddd" align="center"><font size="+1"><b>SRC</b></font></td>
-        <td bgcolor="#dddddd" align="center"><font size="+1"><b>OLD</b></font></td>
-        <td bgcolor="#dddddd" align="center"><font size="+1"><b>NEW</b></font></td>
+        {oldNew}
       </tr>
       {demoModeLines}
         <tr>
@@ -69,31 +67,24 @@
 
 {else}
 
-  {if $old ne $new}
-
-    <table border="1" cellpadding="10" cellspacing="0">
-      <tr>
-        <td bgcolor="#dddddd" align="center"><font size="+1"><b>OLD</b></font></td>
-        <td bgcolor="#dddddd" align="center"><font size="+1"><b>NEW</b></font></td>
-      </tr>
-      <tr>
-        <td>{!old}</tb>
-        <td>{!new}</td>
-      </tr>
-      {!diff}
-      <tr>
-        <td bgcolor="#dddddd" align="center"><font size="+1"><b>PHP source</b></font></td>
-        <td bgcolor="#dddddd" align="center"><font size="+1"><b>HTML layout</b></font></td>
-      </tr>
-      {example '{$item}', skipResult, skipHeader, skipOpen, skipClose}
-    </table>
-
-  {else}
-
-    {example '{$item}' {$onlyResult}}
-
-  {/if}
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+        {oldNew}
+    </tr>
+    <tr>
+      <td>{!old}</tb>
+      <td>{!new}</td>
+    </tr>
+    <tr>
+      <td bgcolor="#dddddd" align="center"><font size="+1"><b>Old Source</b></font></td>
+      <td bgcolor="#dddddd" align="center"><font size="+1"><b>New Source</b></font></td>
+    </tr>
+    {!diff}
+    <tr>
+      <td bgcolor="#dddddd" align="center"><font size="+1"><b>PHP source</b></font></td>
+      <td bgcolor="#dddddd" align="center"><font size="+1"><b>HTML layout</b></font></td>
+    </tr>
+    {example '{$item}', skipResult, skipHeader, skipOpen, skipClose}
+  </table>
 
 {/demoMode}
-
-{extra item='{$item}'}

@@ -23,9 +23,6 @@
 
   function padFileGetContents ( $file ) {
 
-    if ( ! padValidFile ( $file ) )
-      return padError ("Invalid file name: $file");
-    
     if ( ! padExists($file) )
       return '';
 

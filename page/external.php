@@ -6,7 +6,7 @@
   $padExtMrg  = padTagParm ( 'merge', $padBuildMerge );  
   $padExtQry  = "$padExtIncl&padBuildMode=$padExtMode&padBuildMerge=$padExtMrg";
 
-  foreach ( $padSet [$pad] as $padK => $padV )
+  foreach ( $padSetLvl [$pad] as $padK => $padV )
     $padExtQry .= "&$padK=" . urlencode($padV);
 
       if ( $padExtTyp == 'ajax' ) return padPageAjax ( $padExtPag, $padExtQry ); 

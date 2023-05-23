@@ -108,6 +108,7 @@ co: $parms  = $words[1] ?? '';
     $parms  = str_replace ('|', '<font color="black">|</font>',  $parms);
     $parms  = str_replace ('@', '<font color="black">@</font>',  $parms);
     $parms  = str_replace ('$', '<font color="black">$</font>',  $parms);
+    $parms  = str_replace ('%', '<font color="black">%</font>',  $parms);
     $parms  = str_replace (',', '<font color="black">,</font>',  $parms);
     $parms  = str_replace ('&open;', '<font color="black">&open;</font>',  $parms);
     $parms  = str_replace ('&close;', '<font color="black">&close;</font>',  $parms);
@@ -136,6 +137,7 @@ co: $parms  = $words[1] ?? '';
       $search = '<font color="purple">' . $parts[0] . '</font><font color="black"><b>:</b></font>' . $parts[1];
         
     $search = str_replace ('#', '<font color="black"><b><font color="black">#</font></b></font>',  $search);
+    $sparms = str_replace ('%', '<font color="black"><b><font color="black">%</font></b></font>',  $parms);
 
     $source = substr($source, 0, $start) 
             . '<b>&open;' . $close2 . '<font color="blue">'.$search.$space.'</font><font color="red">' 

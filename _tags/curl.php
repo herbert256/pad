@@ -6,7 +6,7 @@
   if ( ! $padPrm [$pad] ['url'] )
     return padError ("Curl: No URL given");
 
-  foreach ( $padSet [$pad] as $padK => $padV )
+  foreach ( $padSetLvl [$pad] as $padK => $padV )
     $padPrm [$pad] ['url'] = padAddGet ($padPrm [$pad] ['url'], $padK, $padV );
 
   $padPrm [$pad] ['url'] = str_replace('SELF://', "$padHost/", $padPrm [$pad] ['url']);

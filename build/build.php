@@ -1,5 +1,7 @@
 <?php
 
+  $padBuildModeSave = $padBuildMode;
+
   if     ( isset ( $padIncludeSet          ) ) $padInclude = $padIncludeSet;
   elseif ( isset ( $_REQUEST['padInclude'] ) ) $padInclude = TRUE;
 
@@ -19,4 +21,6 @@
   include pad . "build/$padBuildMode.php";
   include pad . 'occurrence/start.php';
 
+  $padBuildMode = $padBuildModeSave;
+  
 ?>

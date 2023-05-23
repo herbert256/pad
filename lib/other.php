@@ -55,28 +55,7 @@
  }
 
 
- function padAddSet ( $set, $content ) {
 
-    if ( count ( $set ) ) {
-    
-      $open = '{pad ';
-      $close = '{/pad}';
-
-      foreach ( $set as $key => $val )
-        if ( $open == '{pad ' )
-          $open .= " \$$key='$val'";
-        else
-          $open  = ",\$$key='$val'";
-
-      $open .= '}';
-
-    } else 
-
-      $open = $close = '';
-
-    return "$open$content$close";
-
-  }
 
 
   function padDemoMode ( $page ) {
@@ -670,7 +649,7 @@
   }
 
 
-  function padSetGlobal ( $name, $value ) {
+  function padSetGlobalLvl ( $name, $value ) {
 
     if ( ! padValidVar($name) ) 
       return;
@@ -678,13 +657,35 @@
     if ( $value === NULL )
       $value = '';
 
-    global $pad, $padSaveVars, $padDeleteVars;
+    global $pad, $padSaveLvl, $padDeleteLvl;
     
-    if ( array_key_exists($name, $GLOBALS) and ! array_key_exists ($name, $padSaveVars [$pad]) )
-      $padSaveVars [$pad] [$name] = $GLOBALS [$name];
+    if ( array_key_exists($name, $GLOBALS) and ! array_key_exists ($name, $padSaveLvl [$pad]) )
+      $padSaveLvl [$pad] [$name] = $GLOBALS [$name];
 
     if ( ! array_key_exists ($name,  $GLOBALS) )
-      $padDeleteVars [$pad] [] = $name;
+      $padDeleteLvl [$pad] [] = $name;
+    else
+      unset ( $GLOBALS [$name] );
+
+    $GLOBALS [$name] = $value;
+
+  }
+
+  function padSetGlobalOcc ( $name, $value ) {
+
+    if ( ! padValidVar($name) ) 
+      return;
+
+    if ( $value === NULL )
+      $value = '';
+
+    global $pad, $padSaveOcc, $padDeleteOcc;
+    
+    if ( array_key_exists($name, $GLOBALS) and ! array_key_exists ($name, $padSaveOcc [$pad]) )
+      $padSaveOcc [$pad] [$name] = $GLOBALS [$name];
+
+    if ( ! array_key_exists ($name,  $GLOBALS) )
+      $padDeleteOcc [$pad] [] = $name;
     else
       unset ( $GLOBALS [$name] );
 
@@ -693,22 +694,36 @@
   }
 
 
-  function padReset () {
+  function padResetLvl () {
 
-    global $pad, $padSaveVars, $padDeleteVars;
+    global $pad, $padSaveLvl, $padDeleteLvl;
 
-    foreach ( $padSaveVars [$pad] as $key => $value) {
+    foreach ( $padSaveLvl [$pad] as $key => $value) {
       if ( isset ( $GLOBALS [$key] ) ) 
         unset ($GLOBALS [$key] );
       $GLOBALS [$key] = $value;
     }
 
-    foreach ( $padDeleteVars [$pad] as $key)
+    foreach ( $padDeleteLvl [$pad] as $key)
       if ( isset ( $GLOBALS [$key] ) )
         unset ( $GLOBALS [$key] );
 
-    $padSaveVars   [$pad] = [];
-    $padDeleteVars [$pad] = [];
+  }
+
+
+  function padResetOcc () {
+
+    global $pad, $padSaveOcc, $padDeleteOcc;
+
+    foreach ( $padSaveOcc [$pad] as $key => $value) {
+      if ( isset ( $GLOBALS [$key] ) ) 
+        unset ($GLOBALS [$key] );
+      $GLOBALS [$key] = $value;
+    }
+
+    foreach ( $padDeleteOcc [$pad] as $key)
+      if ( isset ( $GLOBALS [$key] ) )
+        unset ( $GLOBALS [$key] );
 
   }
 
