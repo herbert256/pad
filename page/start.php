@@ -13,7 +13,5 @@
   $padIncludeSet     = padTagParm ( 'include', FALSE          );
   $padBuildModeSet   = padTagParm ( 'mode',    $padBuildMode  );
   $padBuildMergeSet  = padTagParm ( 'merge',   $padBuildMerge );
-  
-  include 'setup.php';
 
 ?>

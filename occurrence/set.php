@@ -21,4 +21,8 @@
   foreach ( $padSetTmp as $padK => $padV )
     padSetGlobalOcc ( $padK, $padV );
 
+  if ( count ( $GLOBALS ['padBanaan'] ) )
+     foreach ( $padSetTmp as $padK => $padV )
+       global $$padK;
+
 ?>

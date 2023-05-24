@@ -3,7 +3,7 @@
   if  ( ! padValid  ( $padOpt [$pad] [1] ) )                                 
     return FALSE;
 
-  $padExits = padApp . $padOpt [$pad] [1];
+  $padExits = padApp . padPageGetName ($padOpt [$pad] [1] );
 
   if ( padExists ("$padExits.html")       ) return TRUE;
   if ( padExists ("$padExits.php")        ) return TRUE;

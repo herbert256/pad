@@ -13,10 +13,10 @@
   if ( is_object   ( $padCallPHP ) ) $padCallPHP = padToArray( $padCallPHP );
   if ( is_resource ( $padCallPHP ) ) $padCallPHP = padToArray( $padCallPHP );
 
-  if ( isset ($GLOBALS ['padPageInsideFunction'] ) )
+  if ( count ( $GLOBALS ['padBanaan'] ) )
     foreach ( get_defined_vars() as $padK => $padV )
       if ( padValidStore ($padK)  and ! isset ($GLOBALS [$padK] ) )
-        $GLOBALS [$padK] = $padV;
+        global $$padK;
 
   if ( $padCallPHP === 1 )
     $padCallPHP = '';

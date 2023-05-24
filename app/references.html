@@ -5,11 +5,7 @@
   {getReferences}
 
     <h3>
-      {if $link}
-        <a href="{$padGo}{$ref}">{$type|ucwords}</a>
-      {else}
-        {$type|ucwords}
-      {/if}
+        <a href="{$padGo}reference&reference={$ref}">{$type|ucwords}</a>
     </h3>
 
     {getRefs}

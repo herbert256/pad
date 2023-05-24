@@ -123,11 +123,17 @@
   $padTidyConfig            = [ 
                                   'output-html'     => TRUE,
                                   'doctype'         => 'html5',
-                                  'wrap'            => 200,
+                                  'wrap'            => 0,
                                   'indent'          => TRUE,
                                   'tab-size'        => 2,
                                   'vertical-space'  => 'yes',
-                                  'replace-color'   => 'yes'
+                                  'replace-color'   => 'yes',
+                                  'markup'          => 'yes',
+                                  'omit-optional-tags' => 'yes',
+                                  'clean'              => 'yes',
+                                  'drop-empty-elements' => 'yes',
+                                  'merge-spans' => 'yes',
+                                  'merge-divs' => 'yes'
                                 ];
 
   $padRemoveWhitespace      = FALSE;

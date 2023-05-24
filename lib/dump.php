@@ -285,8 +285,8 @@
 
     for ( $lvl=$pad; $lvl>=0; $lvl-- ) {
       padDumpLines ("Level: $lvl", padDumpGetLevel ($lvl) );
-      if ( isset ($GLOBALS ['padData'][$lvl]) )
-        padDumpLines ('', $GLOBALS ['padData'][$lvl] );
+      if ( isset ($GLOBALS ['padCurrent'][$lvl]) )
+        padDumpLines ('   Current', $GLOBALS ['padCurrent'][$lvl] );
     }
     
   }

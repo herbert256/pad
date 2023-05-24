@@ -3,6 +3,8 @@
  
   function padStop ($stop) {
 
+    # $GLOBALS ['padOutput'] = '<!-- start -->' . $GLOBALS ['padOutput'] . '<!-- end -->';
+
     $GLOBALS ['padStop'] = $stop;
     $GLOBALS ['padLen']  = ( $stop == 200 ) ? strlen($GLOBALS ['padOutput']) : 0;
 

@@ -139,9 +139,9 @@
   }
 
 
-  function getPageData ( $page ) {
+  function getPageData ( $page, $ignoreErrors=0  ) {
 
-    $curl = getPage ($page);
+    $curl = getPage ($page, 1);
 
     return $curl ['data'];
     
@@ -189,7 +189,7 @@
     if ( $padPage == 'reference' )
       return TRUE;
 
-    if ( $padPage == 'show' )
+    if ( str_starts_with ($padPage, 'show' ) )
       return TRUE;
 
     if ($padPage == 'index' or $padPage == 'index' )
@@ -211,13 +211,14 @@
   function parts ( ) {
 
     global $padPage; 
-    if ( $GLOBALS['padPage'] == 'index')
+
+    if ( $padPage == 'index')
       return [];
 
     $parts ['home'] ['part'] = 'home';
     $parts ['home'] ['link'] = 'index';    
 
-    if ( $GLOBALS['padPage'] == 'references') {
+    if ( $padPage == 'references') {
 
       $parts ['ref'] ['part'] = 'reference';
       $parts ['ref'] ['link'] = '';    
@@ -246,9 +247,9 @@
     }  
 
 
-    if     ( $GLOBALS['padPage'] == 'reference' ) $source = $GLOBALS['reference'];
-    elseif ( $GLOBALS['padPage'] == 'show' )      $source = $GLOBALS['item'];
-    else                                          $source = $GLOBALS['padPage'];
+    if     ( $padPage == 'reference'             ) $source = $GLOBALS['reference'];
+    elseif ( str_starts_with ($padPage, 'show' ) ) $source = $GLOBALS['item'];
+    else                                           $source = $padPage;
 
     $source = str_replace ( '/index', '', $source ); 
     $source = padExplode ( $source, '/' );

@@ -1,9 +1,14 @@
 <?php
 
 
-  function padPageInsideFunction ( ) {
+  function padPageBanaan ( ) {
 
-    $GLOBALS ['padPageInsideFunction'] = TRUE;
+    return include pad . 'page/appel.php';
+
+  }
+
+
+  function padPageInsideFunction ( ) {
 
     foreach ( $GLOBALS as $key => $val ) 
       if ( substr($key, 0, 6) == 'padSeq' ) 
@@ -17,8 +22,6 @@
     unset($val);
     
     $padPageFunctionResult = include pad . 'page/sandbox.php';
-
-    unset ($GLOBALS ['padPageInsideFunction']);    
     
     return $padPageFunctionResult;     
 
@@ -38,7 +41,7 @@
       $new = padTagParm ( 'page', $padOpt [$pad] [1] ); 
 
     if ( ! $new ) 
-      return 'examples/dummy';
+      return '';
 
     if ( str_starts_with ( $new, '/') ) {
       $chk = substr($new, 1);    
@@ -68,7 +71,7 @@
     if ( padPageCheck ( $chk, 0 ) )
       return padPageSet ( $chk ); 
 
-    return 'examples/dummy';
+    return '';
   
   }
 
