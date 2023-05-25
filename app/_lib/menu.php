@@ -5,10 +5,8 @@
 
     global $padPage;
 
-    if ( $padPage == 'reference/index'       ) return TRUE;
-    if ( $padPage == 'reference/reference'   ) return TRUE;
-    if ( str_starts_with ($padPage, 'show' ) ) return TRUE;
-    if ( $padPage == 'index'                 ) return FALSE;
+    if ( str_starts_with ($padPage, 'reference' ) ) return TRUE;
+    if ( $padPage == 'index'                      ) return FALSE;
 
     $types = padData ('references.json');
 
@@ -49,9 +47,10 @@
 
     }  
 
-    if     ( $padPage == 'reference/reference'   ) $source = $GLOBALS['reference'];
-    elseif ( str_starts_with ($padPage, 'show' ) ) $source = $GLOBALS['item'];
-    else                                           $source = $padPage;
+    if     ( strpos ($padPage, '/show/' )      ) $source = 'development/regression/show';
+    elseif ( $padPage == 'reference/reference' ) $source = $GLOBALS['reference'];
+    elseif ( $padPage == 'reference/show'      ) $source = $GLOBALS['item'];
+    else                                         $source = $padPage;
 
     $source = str_replace ( '/index', '', $source ); 
     $source = padExplode ( $source, '/' );

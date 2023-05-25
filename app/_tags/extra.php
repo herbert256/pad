@@ -17,7 +17,7 @@
 
   $sources = padExplode ( $padContent, ',');
 
-  $sources = array_merge ($sources, getExta      ( $basePage )            );
+  $sources = array_merge ($sources, getExtra     ( $basePage )            );
   $sources = array_merge ($sources, getExtaFiles ( "$baseDir/_lib" )      );
   $sources = array_merge ($sources, getExtaFiles ( "$baseDir/_data" )     );
   $sources = array_merge ($sources, getExtaFiles ( "$baseDir/_includes" ) );

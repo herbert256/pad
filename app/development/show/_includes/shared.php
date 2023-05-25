@@ -1,10 +1,6 @@
 <?php
 
-  $item = $item ?? 'examples/hello';
-
-  $item  = padPageGetName ($item);
-  $url   = "$padHost$padScript?$item&padInclude";
-  $curl  = padCurl ($url);
+  $curl = padCurl ( "$padHost$padScript?$item&padInclude" );
 
   if ( ! str_starts_with ( $curl ['result'], '2') )
     padRedirect ($item);
@@ -14,7 +10,6 @@
   $old   = padFileGetContents ( padApp . "_regression/$item.html" );
  
   $oldRes = $newRes = $newSrc = [];
-
   $check = $old;
   while ( strpos($check, '<!-- START DEMO RESULT -->') ) 
     $oldRes [] = trim ( padCut ( $check, '<!-- START DEMO RESULT -->', '<!-- END DEMO RESULT -->' ) );

@@ -7,9 +7,11 @@
       foreach ( $oldRes as $key => $value ) 
         if ( strpos ($newSrc [$key], 'random') === FALSE and strpos ($newSrc [$key], 'shuffle') === FALSE ) 
           if ( $oldRes [$key] <> $newRes [$key] )
-            padRedirect ("show/demo&item=$item");
+            padRedirect ("development/show/demo&item=$item");
 
   if ( $old <> $new and ! strpos ( $new, '<!-- PAD: NO REGRESSION -->' ) !== FALSE )
-    padRedirect ("show/changed&item=$item");
+    padRedirect ("development/show/changed&item=$item");
 
+  $showTitle = FALSE;
+  
 ?>

@@ -1,6 +1,20 @@
 <?php
 
 
+  function go ( $item ) {
+
+    $data = trim ( padFileGetContents ( padApp . "$item.html" ) );
+
+    if ( ! str_starts_with( $data, '@go@') )
+      return '';
+
+    $parts = padExplode ( $data, '@');
+
+    return $parts [1];
+
+  }
+
+
   function diff ( $old, $new ) {
 
     $diff = Diff::toTable(Diff::compare($old,$new));   
@@ -19,7 +33,7 @@
   }
 
 
-  function getExta ( $base ) {
+  function getExtra ( $base ) {
 
     $file = "$base.extra";
 
@@ -27,6 +41,7 @@
       return [];
 
     $data = file_get_contents ($file);
+    $data = str_replace ( "\n", ',', $data);
     $array = padExplode ( $data , ',');
 
     return $array;
