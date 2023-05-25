@@ -1,5 +1,7 @@
 <?php
 
+  $reference = $reference ?? 'tags';
+  
   $title = $reference;  
 
   $type = $ref = $dir = $kind = '';
