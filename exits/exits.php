@@ -5,9 +5,6 @@
   $padOutput = padUnescape ( $padOutput );
 
   include 'output.php';
-   
-  if ( $padTidy or strpos( $padOutput, '@tidy@' ) !== FALSE )
-    include 'tidy.php';
  
   $padEtag = padMD5 ($padOutput);
 

@@ -91,11 +91,12 @@
 
   }
 
-  function dump () {
+  function dump ($info='') {
 
     echo ( "<div align=\"left\"><pre>" );
 
     padDumpFields    ( $php, $lvl, $app, $cfg, $pad, $ids, $exc, $crl );
+    padDumpInfo      ( $info );
     padDumpLines     ( "App variables", $app );
     padDumpLevel     ();
     padDumpLines     ( "Level variables", $lvl );
@@ -108,6 +109,18 @@
 
   }
 
+  function padDumpBusy () {
+
+    if ( ! isset ( $GLOBALS ['padBusy'] ) )
+      return;
+
+    if ( ! $GLOBALS ['padBusy'] ) 
+      return;
+
+    echo ( 'Busy with: <b>' . $GLOBALS ['padBusy'] . '</b><br><br>' ); 
+
+  }
+
   function padDumpGo ($info) {
 
     echo ( "<div align=\"left\"><pre>" );
@@ -116,6 +129,7 @@
     padDumpXdebug    ();
     padDumpInfo      ( $info );
     padDumpErrors    ( $info );
+    padDumpBusy      ();
     padDumpStack     ();
     padDumpLevel     ();
     padDumpLines     ( "App variables", $app );
@@ -297,13 +311,34 @@
     if ( $pad === NULL or $pad < 0 or ! isset($pad) )
       return [];
     
+    $opt = $GLOBALS ['padOpt'] [$pad] ?? [];
+    $tag = $GLOBALS ['padTag'] [$pad] ?? '';
+     
+    $prm = '';
+    if ( isset ( $opt[0]) ) {
+      $prm = $opt[0];
+      unset ( $opt[0] );
+      if ( isset ( $opt[1]) ) 
+        unset ( $opt[1] );
+    }
+
+    global $padHtml, $padStart, $padEnd;
+
+    $before = substr ( $padHtml [$pad], 0, $padStart [$pad] );
+    $after  = substr ( $padHtml [$pad],    $padEnd [$pad]+1 );
+
+    if ( strlen($before) > 100)
+      $before = substr($before, -100);
+
+    if ( strlen($after) > 100)
+      $after = substr($after, 0, 100);
+
     return [
-      'tag'    => $GLOBALS ['padTag'] [$pad] ?? '',
+      'tag'    => '{' . "$tag $prm" . '}',
       'type'   => $GLOBALS ['padType'] [$pad] ?? '',
       'name' => $GLOBALS ['padName'] [$pad] ?? '',
       'pair'   => $GLOBALS ['padPair'] [$pad] ?? '',
-      'p-type' => $GLOBALS ['padPrmType'] [$pad] ?? '',
-      'opt'    => $GLOBALS ['padOpt'] [$pad] ?? '',
+      'opt'    => $opt,
       'prm'    => $GLOBALS ['padPrm'] [$pad] ?? '',
       'set-lvl' => $GLOBALS ['padSetLvl'] [$pad] ?? '',
       'set-occ' => $GLOBALS ['padSetOcc'] [$pad] ?? '',
@@ -311,7 +346,9 @@
       'false' => padDumpShort ($GLOBALS ['padFalse'][$pad]??''),
       'base' => padDumpShort ($GLOBALS ['padBase'][$pad]??''),
       'html' => padDumpShort ($GLOBALS ['padHtml'][$pad]??''),
-      'result' => padDumpShort ($GLOBALS ['padResult'][$pad]??'')
+      'result' => padDumpShort ($GLOBALS ['padResult'][$pad]??''),
+      'before'    => $before,
+      'after'    => $after
     ];
 
   } 

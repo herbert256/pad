@@ -1,7 +1,38 @@
+
+
 {block}
 
   {getRefs}
 
-  {page '{$reference}/index', type='ajax', include, optional}
+  <center>
+
+    {getReference '{!type}', '{$ref}', '{$dir}', '{$kind}', '1'}
+
+
+      {notGo '{$ref}/{$item}'}
+
+
+      {if $link}
+
+
+    <table style="border-style: dashed; dotted;" cellspacing="20"><tr><td>
+
+      <center>
+
+        <h3><a href="{$padGo}reference/show&item={$ref}/{$item}">{$item}</a></h3>
+        {page 'reference/show', $item='{$ref}/{$item}', type='ajax', include, ignore, $skipTitle=1, $noExtraFiles=1}
+
+      </center>
+
+      </td></tr></table>
+
+      <br><br><br>
+      {/if}
+
+      {/notGo}
+
+    {/getReference}
+
+  </center>
 
 {/block}

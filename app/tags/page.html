@@ -1,26 +1,22 @@
-<p>Include an other page in the current page, 6 ways of doing this.</p>
-
-<hr><p>3 ways that only work in 'include' mode</p>
+<p>Include an other page in the current page, 5 ways of doing this.</p>
 
 {table}
 
-{demo}{page 'hello',      type='include', $color='orange'}{/demo}
+{demo}
+{page 'hello', type='include', include, $color='oran'}
+{page 'hello', type='build',   include, $color='orange'}
+{page 'hello', type='get',     include, $color='red'}
+{page 'hello', type='sandbox', include, $color='purple'}
+{page 'hello', type='ajax',    include, $color='blue'}
+{/demo}
 
-{/table}
-
-<hr><p>5 ways that work in both 'include' and 'full' mode</p>
-
-{table}
-
-{demo}{page 'hello', type='build',    include, $color='pink'}{/demo}
-{demo}{page 'hello', type='get',      include, $color='red'}{/demo}
-{demo}{page 'hello', type='sandbox',  include, $color='purple'}{/demo}
-{demo}{page 'hello', type='ajax',     include, $color='blue'}{/demo}
- 
-{demo}{page 'hello', type='build',             $color='pink'}{/demo}
-{demo}{page 'hello', type='get',               $color='red'}{/demo}
-{demo}{page 'hello', type='sandbox',           $color='purple'}{/demo}
-{demo}{page 'hello', type='ajax',              $color='blue'}{/demo}
+{demo}
+{page 'hello', type='include', $color='green'}
+{page 'hello', type='build',   $color='orange'}
+{page 'hello', type='get',     $color='red'}
+{page 'hello', type='sandbox', $color='purple'}
+{page 'hello', type='ajax',    $color='blue'}
+{/demo}
 
 {/table}
 

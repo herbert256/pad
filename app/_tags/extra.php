@@ -2,6 +2,9 @@
 
   $extraFiles = [];
 
+  if ( isset ($noExtraFiles) )
+    return;
+  
   $item = padTagParm ('item');
   $page = padPageGetName ($item);
   $dir  = substr($page, 0, strrpos($page, '/')   );

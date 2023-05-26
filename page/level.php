@@ -1,10 +1,10 @@
 <?php
 
-  $padPageLevel [] = $pad;
+  $GLOBALS['padPageLevel'] [] = $pad;
 
-  while ( $pad >= end ( $padPageLevel ) ) 
+  while ( $pad >= end ( $GLOBALS['padPageLevel'] ) ) 
     include pad . 'level/level.php'; 
 
-  array_pop ( $padPageLevel );
+  array_pop ( $GLOBALS['padPageLevel'] );
 
 ?>

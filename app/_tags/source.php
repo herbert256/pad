@@ -6,10 +6,11 @@
   }
 
   if ( ! $padContent and $padOpt [$pad] [1] ) 
-    return padColorsFile ( padApp . $padOpt [$pad] [1] ) ;
+    $padReturn = padColorsFile ( padApp . $padOpt [$pad] [1] ) ;
+  else
+    $padReturn = padColorsString ( $padContent ) ;
 
-	$padContent = '{ignore}' . padColorsString ($padContent) . '{/ignore}';
+	return str_replace ( '}', '&close', $padReturn );
 
-	return TRUE;
 
 ?>

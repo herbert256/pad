@@ -16,6 +16,7 @@
   }
 
   $padBetween = substr ( $padHtml [$pad], $padStart [$pad] + 1, $padEnd [$pad] - $padStart [$pad] - 1 );
+  $padBusy    = "$padPage --> {" . $padBetween . '}';
   $padFirst   = substr ( $padBetween , 0, 1 );
   $padWords   = preg_split ("/[\s]+/", $padBetween, 2, PREG_SPLIT_NO_EMPTY);
 

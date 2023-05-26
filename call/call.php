@@ -16,7 +16,7 @@
   if ( count ( $GLOBALS ['padBanaan'] ) )
     foreach ( get_defined_vars() as $padK => $padV )
       if ( padValidStore ($padK)  and ! isset ($GLOBALS [$padK] ) )
-        global $$padK;
+         $padBanaanAdd [$GLOBALS['pad']] [$padK] = $padV;
 
   if ( $padCallPHP === 1 )
     $padCallPHP = '';

@@ -21,6 +21,7 @@
       if ( strpos($path, 'redirect')        ) continue;
       if ( strpos($path, '/development/')   ) continue;
       if ( strpos($path, '/reference/')     ) continue;
+      if ( strpos($path, '.settings.')      ) continue;
       if ( strpos($path, '/_')              ) continue;
       if ( $ext <> 'html' and $ext <> 'php' ) continue;
       if ( $item == 'hello/html'            ) continue;

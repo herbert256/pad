@@ -15,6 +15,11 @@
       global $$padK;
  
   foreach ( $GLOBALS as $padK => $padV )
+    if ( substr($padK, 0, 3) == 'pad' and $padK <> 'padK' and $padK <> 'padV' )
+      if ( ! in_array($padK, $padLevelVars) ) 
+      $padBanaanPAD [$pad] [$padK] = $padV;
+
+  foreach ( $GLOBALS as $padK => $padV )
     if ( padValidStore ($padK) ) {
       $padBanaanGlobal [$pad] [$padK] = $padV;
       unset ( $GLOBALS [$padK] );
@@ -76,14 +81,18 @@
      $GLOBALS [$padK] = $padV;
   }
 
+  foreach ($GLOBALS as $padK => $padV )
+    if ( substr($padK, 0, 3) == 'pad' and $padK <> 'padK' )
+      if  ( ! in_array($padK, $padLevelVars) and ! isset ( $padBanaanPAD [$pad] [$padK] ) ) 
+        unset ( $GLOBALS [$padK] ); 
+
+  foreach ( $GLOBALS as $padK => $padV) 
+    if ( substr($padK, 0, 6) == 'padSeq' )
+      unset ( $GLOBALS [$padK] );
+ 
+  foreach ( $padBanaanSEQ [$pad] as $padK => $padV) 
+      $GLOBALS [$padK] = $padPageSeq [$pad] [$padK];
+
   return $padHtml [$pad+1];
-
-  $padContentSave = $padContent;
-  $padContent = $padHtml [$pad+1];
-
-  include pad . 'exits/output.php';
-
-  $padContentReturn = $padContent;
-  $padContent = $padContentSave;
 
 ?>

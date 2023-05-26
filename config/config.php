@@ -107,15 +107,9 @@
   // Default filter options on the complete output, executed before Tidy
   // Must be a flag from FILTER_UNSAFE_RAW from below page.
   // https://www.php.net/manual/en/filter.filters.sanitize.php
-  
-  $padOutputSanitize         = [ 'STRIP_LOW', 'ENCODE_HIGH' ];
-  $padOutputTabToSpace       = TRUE;
-  $padOutputTrim             = TRUE;
-  $padOutputRemoveWhitespace = FALSE;
-  $padOutputNoEmptyLines     = TRUE;
-  $padOutputNoIndent         = TRUE;
-  $padOutputNoNewLines       = FALSE;
 
+  $padOutputSanitize         = [ 'STRIP_LOW', 'ENCODE_HIGH' ];
+  
   // lib tidy
 
   $padTidy                  = FALSE;
@@ -136,7 +130,14 @@
                                   'merge-divs' => 'yes'
                                 ];
 
-  $padRemoveWhitespace      = FALSE;
+  // Basic formatting
+                                
+  $padOutputTabToSpace       = TRUE;
+  $padOutputTrim             = TRUE;
+  $padOutputRemoveWhitespace = FALSE;
+  $padOutputNoEmptyLines     = TRUE;
+  $padOutputNoIndent         = TRUE;
+  $padOutputNoNewLines       = FALSE;
 
   $padLocal = [ 'localhost', 'penguin.linux.test', '127.0.0.1' ];
   

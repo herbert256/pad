@@ -60,6 +60,7 @@
 
   $padTable      [$pad] = [];
   $padTableTag   [$pad] = '';
+  $padBanaanAdd  [$pad] = [];
 
   $padForceName = '';
   

@@ -10,7 +10,7 @@
   }
 
 
-  function getReference ($type, $ref, $dir, $kind) {
+  function getReference ($type, $ref, $dir, $kind, $onlyLinks=0) {
 
     if ( !$type )
       return [];
@@ -40,15 +40,13 @@
     
     foreach ($iterator as $one) {
 
+      $path = $one->getPathname();
       $ext  = $one->getExtension();
       $file = $one->getFilename();
 
       if ( $kind == 'pad' and $type <>  'sequences' )
         if ( $ext <> 'html' and $ext <> 'php' ) 
           continue;
-
-      if ( $file == '.'  ) continue;
-      if ( $file == '..' ) continue;
 
       if ( $kind == 'ref' and $one->isDir() )
         $item = $one->getBasename();
@@ -57,9 +55,12 @@
       else
         $item = substr($file, 0, strrpos($file, '.')   );
 
-      if ( substr ( $item, 0, 1 ) == '_' ) continue;
-      if ( $item == 'todo' )               continue;
-      if ( $item == 'code' )               continue;
+      if ( $file == '.'                   ) continue;
+      if ( $file == '..'                  ) continue;
+      if ( strpos ( $path, '.settings.' ) ) continue;
+      if ( substr ( $item, 0, 1 ) == '_'  ) continue;
+      if ( $item == 'todo'                ) continue;
+      if ( $item == 'code'                ) continue;
 
       $items [$item] ['item'] = $item;
 
@@ -73,7 +74,7 @@
         $items [$item] ['link'] = FALSE;
  
     }
-
+   
     ksort ( $items );
     return $items;
 

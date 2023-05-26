@@ -63,6 +63,10 @@
   if ( $padFirst == '$' )
     $padOpts = array_merge ( $padDataDefaultStart, $padOpts, $padDataDefaultEnd   );   
 
-  return padHtml ( padVarOpts ($padVal, $padOpts) );
+  padHtml ( padVarOpts ($padVal, $padOpts) );
+
+  $padBusy = '';
+
+  return;
 
 ?>

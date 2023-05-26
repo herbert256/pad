@@ -6,6 +6,14 @@
   include pad . 'page/level.php'; 
   include pad . 'page/end.php';
 
-  return $padHtml [$pad+1];
+  $padContentSave = $padContent;
+  $padContent = $padHtml [$pad+1];
+
+  include pad . 'exits/output.php';
+
+  $padContentReturn = $padContent;
+  $padContent = $padContentSave;
+ 
+  return $padContentReturn;
 
 ?>

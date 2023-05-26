@@ -2,9 +2,18 @@
 
   $skipNames = FALSE;
   
+  $exampleType   = 'sandbox';
+
   $examplePage   = padPageGetName ();
   $exampleTitle  = substr($examplePage, strrpos($examplePage, '/') + 1);
   $exampleLayout = 'horizontal';
+
+  $exampleType = padTagParm ( 'type' );
+  
+  if ( ! $exampleType )
+    if     ( strpos($examplePage, 'restart')  !== FALSE ) $exampleType = 'ajax';
+    elseif ( strpos($examplePage, 'redirect') !== FALSE ) $exampleType = 'ajax';
+    else                                                  $exampleType = 'sandbox';
 
   if ( isset ( $padPrm [$pad] ['onlyResult'] ) )
     return TRUE;

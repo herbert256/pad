@@ -11,9 +11,9 @@
   $padInclude    = FALSE;
   $padCache      = FALSE;
   $padCacheStop  = 0;
+  $padBanaan    = [];
+  $padPageLevel = [];
 
-  $padLevelVars = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padName','padData','padCurrent','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padSaveVars','padDeleteVars','padSetSave','padSetDelete','padTagCnt','padAfter','padBefore','padBeforeData','padPrmType','padSet','padGiven','padDeleteSet','padOpt','padOptionsApp','padSaveSet','padTable','padTableTag','padBanaanPAD','padBanaanGlobal','padBanaanSEQ','padBanaan','padSaveLvl','padSaveOcc','padSetLvl','padSetOcc'];
-
-  $padBanaan = [];
+  $padLevelVars = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padName','padData','padCurrent','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padHtml','padResult','padHit','padNull','padElse','padArray','padText','padSaveVars','padDeleteVars','padSetSave','padSetDelete','padTagCnt','padAfter','padBefore','padBeforeData','padPrmType','padSet','padGiven','padDeleteSet','padOpt','padOptionsApp','padSaveSet','padTable','padTableTag','padBanaanPAD','padBanaanGlobal','padBanaanSEQ','padBanaan','padSaveLvl','padSaveOcc','padSetLvl','padSetOcc','padBanaanAdd'];
 
 ?>

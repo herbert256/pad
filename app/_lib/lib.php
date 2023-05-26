@@ -14,6 +14,12 @@
 
   }
 
+  function notGo ( $item ) {
+
+    return ( ! go ($item) );
+
+  }
+
 
   function diff ( $old, $new ) {
 
