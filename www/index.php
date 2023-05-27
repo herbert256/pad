@@ -15,8 +15,10 @@
   if     ( strpos ( $_SERVER ['HTTP_USER_AGENT'], 'Linux'    ) ) $padHome = '/home/herbert';
   elseif ( strpos ( $_SERVER ['HTTP_USER_AGENT'], 'Windows'  ) ) $padHome = 'C:\Users\herbe';
   elseif ( strpos ( $_SERVER ['HTTP_USER_AGENT'], 'MacOs'    ) ) $padHome = '/Users/herbert';
-  elseif ( strpos ( $_SERVER ['HTTP_USER_AGENT'], 'ChromeOs' ) ) $padHome = '/home/herbert';
+  elseif ( strpos ( $_SERVER ['HTTP_USER_AGENT'], 'CrOS'     ) ) $padHome = '/home/herbert';
   else                                                           $padHome = '/oops/not/home';
+
+  $padHome = substr ( $_SERVER ['DOCUMENT_ROOT'], 0, strpos ( $_SERVER ['DOCUMENT_ROOT'], '/pad/www') );
 
   define ( 'pad',     "$padHome/pad/"     ); // Home of PAD itself
   define ( 'padApp',  "$padHome/pad/app/" ); // The PAD application files
