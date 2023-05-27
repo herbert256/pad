@@ -394,7 +394,7 @@ return $result;
 
  function padDataFileData ( $padLocalFile ) {
   
-    return include pad . 'types/go/local.php';
+    return include 'types/go/local.php';
 
   }
   

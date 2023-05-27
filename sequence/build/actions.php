@@ -14,7 +14,7 @@
         else
           $padSeqActionCnt = $padSeqActionValue;    
 
-        $padSeqResult = include pad . "sequence/actions/$padSeqActionName.php";
+        $padSeqResult = include "sequence/actions/$padSeqActionName.php";
 
         padDone ( $padSeqActionName, TRUE );
 

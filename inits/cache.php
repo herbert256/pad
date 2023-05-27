@@ -14,7 +14,7 @@
   $padCacheAge    = 0;
   $padCacheEtag   = '';
 
-  include pad . "cache/$padCacheServerType.php";
+  include "cache/$padCacheServerType.php";
   
   padCacheInit ($padCacheUrl, $padCacheClient);
   
@@ -27,7 +27,7 @@
 
     if ( $padCacheAge >= $padCacheMax ) {
       $padCacheStop = 304.1;
-      include pad . 'cache/stop.php';
+      include 'cache/stop.php';
     }
     
   }
@@ -41,7 +41,7 @@
 
     if ( $padCacheMod and $padCacheMod >= $padCacheMax and $padCacheAge >= $padCacheMax ) {
       $padCacheStop = 304.2;
-      include pad . 'cache/stop.php';
+      include 'cache/stop.php';
     }
 
     if ( $padCacheAge >= $padCacheMax and ! $GLOBALS ['padCacheServerNoData'] ) {
@@ -50,7 +50,7 @@
 
       if ( $padOutput ) {
         $padCacheStop = 200.3;
-        include pad . 'cache/stop.php';
+        include 'cache/stop.php';
       }
 
     }

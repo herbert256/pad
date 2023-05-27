@@ -4,6 +4,6 @@
 
   #return ( $padKey [$padIdx] == array_key_first  ( $padData [$padIdx] ) );
 
-  return ( (include pad . "tag/current.php") == 1 );
+  return ( (include "tag/current.php") == 1 );
 
 ?>

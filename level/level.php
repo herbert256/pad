@@ -1,12 +1,12 @@
 <?php
 
   if ( $padRestart )
-    include pad . 'inits/restart.php';    
+    include 'inits/restart.php';    
     
   $padEnd [$pad] = strpos ( $padHtml [$pad], '}' );
 
   if ( $padEnd [$pad] === FALSE )
-    return include 'end.php';
+    return include 'level/end.php';
 
   $padStart [$pad] = strrpos ( $padHtml [$pad], '{', $padEnd [$pad] - strlen($padHtml [$pad]) );
   
@@ -21,13 +21,13 @@
   $padWords   = preg_split ("/[\s]+/", $padBetween, 2, PREG_SPLIT_NO_EMPTY);
 
   if ( in_array ( $padFirst, ['$','!','#','&'] ) )  
-    return include 'var.php';
+    return include 'level/var.php';
 
   if ( ! ctype_alpha ( $padBetween [0] ) ) return padIgnore ('ctype_alpha');
   if ( ! padValidTag ( $padWords [0]   ) ) return padIgnore ('padValidTag');
-  if ( ! include 'type.php'              ) return padIgnore ('type');
-  if ( ! include 'pair.php'              ) return padIgnore ('pair');;
+  if ( ! include 'level/type.php'              ) return padIgnore ('type');
+  if ( ! include 'level/pair.php'              ) return padIgnore ('pair');;
 
-  include 'start.php';
+  include 'level/start.php';
 
 ?>

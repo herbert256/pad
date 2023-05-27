@@ -12,6 +12,6 @@
 
   }
   
-  return include pad . "page/$padPagTyp.php";
+  return include "page/$padPagTyp.php";
    
 ?>

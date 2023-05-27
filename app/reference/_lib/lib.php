@@ -40,7 +40,7 @@
     
     foreach ($iterator as $one) {
 
-      $path = $one->getPathname();
+      $path = padCorrectPath ( $one->getPathname() );
       $ext  = $one->getExtension();
       $file = $one->getFilename();
 

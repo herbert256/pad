@@ -1,5 +1,5 @@
 <?php
 
-  return include 'object.php';
+  return include 'types/object.php';
 
 ?>

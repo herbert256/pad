@@ -2,6 +2,6 @@
   
   $padIncPage = padPageGetName ();
 
-  return include pad . '_tags/go/include.php';
+  return include '_tags/go/include.php';
 
 ?>

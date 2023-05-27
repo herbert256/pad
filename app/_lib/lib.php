@@ -55,7 +55,7 @@
   }
 
 
-  function getExtaFiles ($dir) {
+  function getExtraFiles ($dir) {
 
     if ( ! padIsDir ( $dir) )
       return [];
@@ -67,7 +67,7 @@
 
     foreach ( $dir as $one ) {
 
-      $path = $one->getPathname();
+      $path = padCorrectPath ( $one->getPathname() );
       $file = str_replace ( padApp, '', $path );
 
       if ( substr ( $path, -1   ) == '.'        ) continue;
@@ -133,7 +133,7 @@
       if ( $loop->isDir() )
         continue;
 
-      $one   = $loop->getPathname();
+      $one   = padCorrectPath ( $loop->getPathname() );
       $file  = str_replace($dir,  '', $one );
       $ext   = substr($file,    strrpos($file, '.')+1 );
       $item  = substr($file, 1, strrpos($file, '.')-1 );

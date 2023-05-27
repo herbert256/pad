@@ -1,7 +1,7 @@
 <?php
 
   if ( count($_GET) )
-    $padPage = $padPage ?? array_key_first ($_GET);
+    $padPage = $padPage ?? padCorrectPath ( array_key_first ($_GET) );
   else
     $padPage = $padPage ?? 'index' ;
 

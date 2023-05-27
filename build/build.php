@@ -17,9 +17,9 @@
   $padBuildMrg = substr     ( $padBuildNow, $padBuildPos+1) . '/' . $padPage; 
   $padBuildMrg = padExplode ( $padBuildMrg , '/' );
 
-  include pad . 'build/lib.php';  
-  include pad . "build/$padBuildMode.php";
-  include pad . 'occurrence/start.php';
+  include 'build/lib.php';  
+  include "build/$padBuildMode.php";
+  include 'occurrence/start.php';
 
   $padBuildMode = $padBuildModeSave;
   

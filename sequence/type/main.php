@@ -1,5 +1,5 @@
 <?php
 
-  include pad . "sequence/types/$padSeqSeq/main.php";
+  include "sequence/types/$padSeqSeq/main.php";
 
 ?>

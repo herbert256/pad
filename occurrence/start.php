@@ -9,10 +9,10 @@
   if ( $padWalk [$pad] <> 'start' )
     $padWalkData [$pad] [] = $padCurrent [$pad];
 
-  include 'table.php';
-  include 'set.php';
+  include 'occurrence/table.php';
+  include 'occurrence/set.php';
 
   if ( isset($padPrm [$pad] ['callback']) and ! isset ( $padPrm [$pad] ['before']) )
-    include pad . 'callback/row.php' ;
+    include 'callback/row.php' ;
 
 ?>

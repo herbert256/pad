@@ -21,9 +21,9 @@
   $sources = padExplode ( $padContent, ',');
 
   $sources = array_merge ($sources, getExtra     ( $basePage )            );
-  $sources = array_merge ($sources, getExtaFiles ( "$baseDir/_lib" )      );
-  $sources = array_merge ($sources, getExtaFiles ( "$baseDir/_data" )     );
-  $sources = array_merge ($sources, getExtaFiles ( "$baseDir/_includes" ) );
+  $sources = array_merge ($sources, getExtraFiles ( "$baseDir/_lib" )      );
+  $sources = array_merge ($sources, getExtraFiles ( "$baseDir/_data" )     );
+  $sources = array_merge ($sources, getExtraFiles ( "$baseDir/_includes" ) );
 
   foreach ( $sources as $source ) {
     if     ( substr ($source, -4) == '.php')  $extraFiles [$source] ['php']   = $source;

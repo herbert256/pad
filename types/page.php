@@ -2,6 +2,6 @@
 
   $padOpt [$pad] [1] = $padTag [$pad];
 
-  return include pad . 'tags/page.php';
+  return include 'tags/page.php';
 
 ?>

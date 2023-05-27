@@ -9,7 +9,7 @@
     
     foreach ($iterator as $one) {
 
-      $path  = $one->getPathname();
+      $path  = padCorrectPath ( $one->getPathname() );
       $file  = str_replace(padApp, '', $path );
       $ext   = substr($file,    strrpos($file, '.')+1 );
       $item  = substr($file, 0, strrpos($file, '.')   );

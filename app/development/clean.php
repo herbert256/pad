@@ -12,7 +12,7 @@
 
     foreach ($iterator as $loop_info) {
 
-      $file = $loop_info->getPathname() ;
+      $file = padCorrectPath ( $loop_info->getPathname() );
       $ext  = substr($file, strrpos($file, '.')+1 );
 
       if ( $ext <> 'php' and $ext <> 'html' ) 

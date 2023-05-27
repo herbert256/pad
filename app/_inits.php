@@ -1,8 +1,8 @@
 <?php
   
-  $one       = $one ?? 'hello/index';
-  $item      = $item ?? 'hello/index';
-  $reference = $reference ?? 'tags/properties';
+  $one       = padCorrectPath ( $one       ?? 'hello/index'     );
+  $item      = padCorrectPath ( $item      ?? 'hello/index'     );
+  $reference = padCorrectPath ( $reference ?? 'tags/properties' );
 
   if     ( $padPage == 'reference/reference'   ) $title = $reference;
   elseif ( $padPage == 'reference/show'        ) $title = $item;

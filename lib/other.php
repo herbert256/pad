@@ -1,5 +1,11 @@
 <?php
 
+  function padCorrectPath ( $in ) {
+
+    return str_replace ('\\',  '/', $in );
+        
+  }
+
 
   function padSave ( $in ) {
 
@@ -553,11 +559,11 @@
 
   function padTagAsFunction ( $tag, $parms ) {
 
-    include pad . 'page/inits.php'; 
+    include 'page/inits.php'; 
 
     $padHtml [$pad] = '{' . $tag . ' ' . $parms . '}';    
 
-    return include pad . 'page/exits.php'; 
+    return include 'page/exits.php'; 
 
   }
 
@@ -577,7 +583,7 @@
     else
       $padCall = pad  . "_functions/$name.php";
 
-    return include pad . 'call/any.php';
+    return include 'call/any.php';
 
   }
 

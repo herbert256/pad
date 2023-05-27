@@ -8,7 +8,7 @@
 
   if ( count ( $padData [$pad] ) ) {
     reset ( $padData [$pad] );
-    include pad . 'occurrence/start.php';
+    include 'occurrence/start.php';
   }
 
 ?>

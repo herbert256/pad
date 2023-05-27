@@ -12,6 +12,6 @@
 
   $padRetrieveLevel = $pad;
 
-  include pad . 'level/setup.php'; 
+  include 'level/setup.php'; 
 
 ?>

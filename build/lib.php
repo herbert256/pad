@@ -13,7 +13,7 @@
 
       foreach ( $padLibIterator as $padLibOne ) {
 
-        $padLibFile = $padLibOne->getPathname();
+        $padLibFile = str_replace ('\\', '/', $padLibOne->getPathname() );
 
         if ( substr($padLibFile, -4) == '.php' )
           include_once $padLibFile;

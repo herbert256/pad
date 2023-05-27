@@ -18,6 +18,6 @@
   if ( isset ( $padSqlConnect) )
     $padSqlConnectInsert [$pad] = $padSqlConnect;
    
-  include 'reset.php';
+  include 'page/reset.php';
 
 ?>

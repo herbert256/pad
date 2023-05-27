@@ -1,5 +1,5 @@
 <?php
 
-  include pad . 'level/setup.php';
+  include 'level/setup.php';
 
 ?>

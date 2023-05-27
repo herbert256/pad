@@ -3,7 +3,7 @@
 
   function padPageBanaan ( ) {
 
-    return include pad . 'page/appel.php';
+    return include 'page/appel.php';
 
   }
 
@@ -21,7 +21,7 @@
     unset($key);
     unset($val);
     
-    $padPageFunctionResult = include pad . 'page/sandbox.php';
+    $padPageFunctionResult = include 'page/sandbox.php';
     
     return $padPageFunctionResult;     
 

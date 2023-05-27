@@ -28,7 +28,7 @@
       $now = '';
     }
     else 
-      $now = include pad . "sequence/eval/$action.php";
+      $now = include "sequence/eval/$action.php";
 
     return $now;
 

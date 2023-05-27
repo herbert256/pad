@@ -2,6 +2,6 @@
    
   $padExtTyp = 'ajax';
 
-  return include 'external.php';
+  return include 'page/external.php';
    
 ?>

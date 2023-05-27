@@ -20,6 +20,6 @@
   if ( ! $padSeqPush and ! $padPair )
     $padSeqPush = $padSeqParm;
 
-  include pad . "sequence/type/for.php";
+  include "sequence/type/for.php";
       
 ?>

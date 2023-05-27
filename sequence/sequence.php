@@ -1,31 +1,31 @@
 <?php
 
-  include_once 'lib/sequence.php';
+  include_once 'sequence/lib/sequence.php';
 
-  include 'build/parms.php';
-  include 'build/sequence.php';
-  include 'build/vars.php';
-  include 'build/loop.php';
-  include 'build/lists.php';
-  include 'build/operations.php';
-  include 'build/page.php';
-  include 'build/done.php';
-  include 'build/build.php';  
+  include 'sequence/build/parms.php';
+  include 'sequence/build/sequence.php';
+  include 'sequence/build/vars.php';
+  include 'sequence/build/loop.php';
+  include 'sequence/build/lists.php';
+  include 'sequence/build/operations.php';
+  include 'sequence/build/page.php';
+  include 'sequence/build/done.php';
+  include 'sequence/build/build.php';  
 
-  if ( $padSeqBuild == 'function' ) include_once "types/$padSeqSeq/function.php";
-  if ( $padSeqBuild == 'bool'     ) include_once "types/$padSeqSeq/bool.php";
+  if ( $padSeqBuild == 'function' ) include_once "sequence/types/$padSeqSeq/function.php";
+  if ( $padSeqBuild == 'bool'     ) include_once "sequence/types/$padSeqSeq/bool.php";
 
   if ( padExists ( pad . "sequence/types/$padSeqSeq/init.php" )) 
-    include "types/$padSeqSeq/init.php";
+    include "sequence/types/$padSeqSeq/init.php";
       
-  include 'type/type.php';
-  include 'build/actions.php';
+  include 'sequence/type/type.php';
+  include 'sequence/build/actions.php';
  
   if ( padExists ( pad . "sequence/types/$padSeqSeq/exit.php" ) )   
-    include "types/$padSeqSeq/exit.php";
+    include "sequence/types/$padSeqSeq/exit.php";
 
-  include 'build/push.php';
-  include 'build/return.php';
+  include 'sequence/build/push.php';
+  include 'sequence/build/return.php';
 
   return $padSeqReturn;
 

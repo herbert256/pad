@@ -2,6 +2,6 @@
 
   $padTagGo = pad;
 
-  return include 'go/tag.php';
+  return include 'types/go/tag.php';
 
 ?>

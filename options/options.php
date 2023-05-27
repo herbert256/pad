@@ -20,7 +20,7 @@
       else
         $padCall = pad . "_options/$padOptionName.php" ;
 
-      include pad . 'call/call.php';
+      include 'call/call.php';
 
     }
 

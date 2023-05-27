@@ -1,5 +1,5 @@
 <?php
  
-  return include pad . "_functions/$name.php";
+  return include "_functions/$name.php";
 
 ?>

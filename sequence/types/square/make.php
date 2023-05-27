@@ -1,5 +1,5 @@
 <?php
 
-  return include 'loop.php';
+  return include 'sequence/types/square/loop.php';
 
 ?>

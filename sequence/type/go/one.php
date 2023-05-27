@@ -12,12 +12,12 @@
   if ( $padSeqBuild == 'order' and $padSeq < $padSeqFrom ) return TRUE;
   if ( $padSeqBuild == 'order' and $padSeq > $padSeqTo   ) return FALSE;
 
-  $padSequence = include 'sequence.php';
+  $padSequence = include 'sequence/type/go/sequence.php';
 
   if     ( $padSequence === TRUE  ) return TRUE;
   elseif ( $padSequence === FALSE ) return FALSE;   
 
-  $padSequence = include 'operations.php';
+  $padSequence = include 'sequence/type/go/operations.php';
 
   if     ( $padSequence === TRUE  ) return TRUE;
   elseif ( $padSequence === FALSE ) return FALSE;    

@@ -1,5 +1,5 @@
 <?php
 
-  return include 'date.php';
+  return include '_functions/date.php';
 
 ?>

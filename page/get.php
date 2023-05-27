@@ -2,6 +2,6 @@
 
   $padExtTyp = 'get';
    
-  return include 'external.php';
+  return include 'page/external.php';
 
 ?>

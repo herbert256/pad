@@ -37,7 +37,7 @@
       $value = $myself;
    
     $padCall = pad . "eval/parms/$kind.php" ;
-    $value   = include pad . "call/any.php" ;
+    $value   = include "call/any.php" ;
     
     $result [$type] [1] = 'VAL';
   

@@ -6,7 +6,7 @@
       if ( $type == 7 ) 
         return 1;
       else
-        return include pad . "tag/$field.php";
+        return include "tag/$field.php";
 
     if ( in_array ( $parm, ['name','value'] ) ) {
 

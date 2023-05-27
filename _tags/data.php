@@ -1,5 +1,5 @@
 <?php
 
-  return include 'go/store.php';
+  return include '_tags/go/store.php';
 
 ?>

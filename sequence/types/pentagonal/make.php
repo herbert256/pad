@@ -1,5 +1,5 @@
 <?php
 
-  return include 'loop.php';
+  return include 'lsequence/type/pentagonal/oop.php';
 
 ?>

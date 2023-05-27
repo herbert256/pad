@@ -43,17 +43,17 @@
     unset ($padSqlConnect);
   }
 
-  include pad . 'page/start.php';
-  include pad . 'page/setup.php';
+  include 'page/start.php';
+  include 'page/setup.php';
   
   array_push ( $GLOBALS ['padBanaan'], $padPage );
 
-  include pad . 'build/build.php';
-  include pad . 'page/level.php';   
+  include 'build/build.php';
+  include 'page/level.php';   
 
   array_pop  ( $GLOBALS ['padBanaan'] );
 
-  include pad . 'page/end.php';
+  include 'page/end.php';
 
   if ( isset ( $padSqlConnectInsert [$pad]) ) {
     $padSqlConnect = $padSqlConnectInsert [$pad];

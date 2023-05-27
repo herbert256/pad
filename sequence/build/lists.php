@@ -1,12 +1,12 @@
 <?php
 
   $padSeqOne = 'keep';
-  include 'list.php';
+  include 'sequence/build/list.php';
 
   $padSeqOne = 'make';
-  include 'list.php';
+  include 'sequence/build/list.php';
 
   $padSeqOne = 'remove';
-  include 'list.php';
+  include 'sequence/build/list.php';
   
 ?>
