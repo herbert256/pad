@@ -12,12 +12,19 @@
   //
   //  ============================================================================
 
-  if     ( strpos ( $_SERVER ['HTTP_USER_AGENT'], 'Linux'     ) ) $padHome = '/home/herbert';
-  elseif ( strpos ( $_SERVER ['HTTP_USER_AGENT'], 'Windows'   ) ) $padHome = '/xampp';
-  elseif ( strpos ( $_SERVER ['HTTP_USER_AGENT'], 'Macintosh' ) ) $padHome = '/Users/herbert';
-  elseif ( strpos ( $_SERVER ['HTTP_USER_AGENT'], 'CrOS'      ) ) $padHome = '/home/herbert';
-  else                                                            
-    $padHome = substr ( $_SERVER ['DOCUMENT_ROOT'], 0, strpos ( $_SERVER ['DOCUMENT_ROOT'], '/pad/www') );
+  $padUname = strtolower ( php_uname('s') );
+  $padOS    = strtolower ( PHP_OS );
+
+  if     ( $padUname == 'linux'             ) $padHome = '/home/herbert';
+  elseif ( $padUname == 'windows'           ) $padHome = '/xampp';
+  elseif ( $padUname == 'darwin'            ) $padHome = '/Users/herbert';
+  elseif ( $padUname == 'cros'              ) $padHome = '/home/herbert';
+  elseif ( PHP_OS    == 'linux'             ) $padHome = '/home/herbert';
+  elseif ( PHP_OS    == 'windows'           ) $padHome = '/xampp';
+  elseif ( PHP_OS    == 'darwin'            ) $padHome = '/Users/herbert';
+  elseif ( PHP_OS    == 'cros'              ) $padHome = '/home/herbert';
+  elseif ( str_starts_with (PHP_OS, 'win' ) ) $padHome = '/xampp';
+  else                                        $padHome = '/oops/pad/not/found';
 
   define ( 'pad',     "$padHome/pad/"     ); // Home of PAD itself
   define ( 'padApp',  "$padHome/pad/app/" ); // The PAD application files
