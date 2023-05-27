@@ -12,11 +12,11 @@
   //
   //  ============================================================================
 
-  if     ( strpos ( $_SERVER ['HTTP_USER_AGENT'], 'Linux'    ) ) $padHome = '/home/herbert';
-  elseif ( strpos ( $_SERVER ['HTTP_USER_AGENT'], 'Windows'  ) ) $padHome = 'C:\Users\herbe';
-  elseif ( strpos ( $_SERVER ['HTTP_USER_AGENT'], 'MacOs'    ) ) $padHome = '/Users/herbert';
-  elseif ( strpos ( $_SERVER ['HTTP_USER_AGENT'], 'CrOS'     ) ) $padHome = '/home/herbert';
-  else                                                           $padHome = '/oops/not/home';
+  if     ( strpos ( $_SERVER ['HTTP_USER_AGENT'], 'Linux'     ) ) $padHome = '/home/herbert';
+  elseif ( strpos ( $_SERVER ['HTTP_USER_AGENT'], 'Windows'   ) ) $padHome = 'C:\Users\herbe';
+  elseif ( strpos ( $_SERVER ['HTTP_USER_AGENT'], 'Macintosh' ) ) $padHome = '/Users/herbert';
+  elseif ( strpos ( $_SERVER ['HTTP_USER_AGENT'], 'CrOS'      ) ) $padHome = '/home/herbert';
+  else                                                            $padHome = '/oops/not/home';
 
   $padHome = substr ( $_SERVER ['DOCUMENT_ROOT'], 0, strpos ( $_SERVER ['DOCUMENT_ROOT'], '/pad/www') );
 
