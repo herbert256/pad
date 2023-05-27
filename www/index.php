@@ -12,11 +12,15 @@
   //
   //  ============================================================================
 
-  $padHome = ( $_SERVER ['HTTP_HOST'] == 'penguin.linux.test' ) ? 'home' : 'Users';
+  if     ( strpos ( $_SERVER ['HTTP_USER_AGENT'], 'Linux'    ) ) $padHome = '/home/herbert';
+  elseif ( strpos ( $_SERVER ['HTTP_USER_AGENT'], 'Windows'  ) ) $padHome = 'C:\Users\herbe';
+  elseif ( strpos ( $_SERVER ['HTTP_USER_AGENT'], 'MacOs'    ) ) $padHome = '/Users/herbert';
+  elseif ( strpos ( $_SERVER ['HTTP_USER_AGENT'], 'ChromeOs' ) ) $padHome = '/home/herbert';
+  else                                                           $padHome = '/oops/not/home';
 
-  define ( 'pad',     "/$padHome/herbert/pad/"     ); // Home of PAD itself
-  define ( 'padApp',  "/$padHome/herbert/pad/app/" ); // The PAD application files
-  define ( 'padData', "/$padHome/herbert/data/"    ); // Data locaction, used for logs/cache/errors/etc.
+  define ( 'pad',     "$padHome/pad/"     ); // Home of PAD itself
+  define ( 'padApp',  "$padHome/pad/app/" ); // The PAD application files
+  define ( 'padData', "$padHome/data/"    ); // Data locaction, used for logs/cache/errors/etc.
   
   include pad . 'start.php';
 
