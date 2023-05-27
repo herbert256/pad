@@ -1,14 +1,22 @@
 <?php
   
+  $one       = $one ?? 'hello/index';
+  $item      = $item ?? 'hello/index';
+  $reference = $reference ?? 'tags/properties';
+
   if     ( $padPage == 'reference/reference'   ) $title = $reference;
   elseif ( $padPage == 'reference/show'        ) $title = $item;
   else                                           $title = $padPage;
 
-  if ( isset ($skipTitle) ) {
+  if ( strpos($title, '/docs/')  ) 
 
     $showTitle = FALSE;
 
-  } else { 
+  elseif ( isset ($skipTitle) ) 
+
+    $showTitle = FALSE;
+
+  else { 
 
     $title = str_replace ( '/index', '', $title );
     $title = padExplode ( $title, '/' );

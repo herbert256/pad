@@ -193,6 +193,19 @@
   }
 
 
+  function padDataForcePad ($data) {
+
+    $result = [];
+
+    foreach ( $data as $name => $value) {
+$result [$name] ['name'] = $name;      
+$result [$name] ['value'] = $value;      
+    }
+
+return $result;
+  }
+
+
   function padDataChk ($data,$name) {
 
     $result = $data;

@@ -2,8 +2,10 @@
 
   $padReturn = [];
 
-  foreach ( $padData [$padIdx] as $padK => $padV)
-    $padReturn [] ['key'] = $padK;
+  foreach ( $GLOBALS['padData'] [$padIdx] as $padK => $padV) {
+    $padReturn [$padK] ['name'] = $padK;
+    $padReturn [$padK] ['value'] = padDataForcePad ($padV);
+  }
 
   return $padReturn;
 

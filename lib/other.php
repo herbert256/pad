@@ -963,25 +963,39 @@
   }
 
 
-  function padArrToHtml ( $arr ) {
+  function padArrToHtml ( $var ) {
 
-      $pad = htmlentities ( print_r ( $arr, TRUE ) ) ;
-
-      $pad = str_replace(" =&gt; Array\n" ,"\n", $pad);
-      $pad = str_replace(")\n\n" ,")\n", $pad);
-
-      $pad = preg_replace("/[\n]\s+\(/", "", $pad);
-      $pad = preg_replace("/[\n]\s+\)/", "", $pad);
-
-      $pad = '<pre>'.substr($pad, 8, strlen($pad) - 10).'</pre>';
-
-      $pad = str_replace('{', '&open;',  $pad);
-      $pad = str_replace('}', '&close;', $pad);
-
-      return "<table border=1><tr><td>$pad</td></tr></table>";
-      
+    return padVarToTxt ( $var );
+  
   }
 
+  function padVarToTxt ( $source ) {
+
+    if ( is_array ($source) and ! count($source) )
+      return;
+
+    if ( is_array($source) )
+      padDumpClean ($source);
+
+    $return = '';
+    $lines  = explode ( "\n", htmlentities ( print_r ( $source, TRUE ) ) );
+
+    foreach ( $lines as $value )  {
+
+      if ( ! trim($value)          ) continue;
+      if ( trim($value) == '('     ) continue;
+      if ( trim($value) == ')'     ) continue;
+      if ( trim($value) == 'Array' ) continue;
+
+      $value = str_replace ( '=&gt; Array', '', $value );
+
+      $return .= "  $value\n";
+   
+    }
+
+    return '<pre>' . trim($return) . '</pre>';
+
+  } 
 
   function padGetHtml ( $file ) {
 

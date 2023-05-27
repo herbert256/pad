@@ -86,10 +86,11 @@
 
     $html = ( padExists( $file ) ) ? file_get_contents( $file ) : ''; 
 
-    if ( strpos($html, '{demo') !== false or str_ends_with($file, 'index.html'))  
-      return ',onlyResult';
-    else
-      return '';
+    if ( strpos($html, '{present') !== false ) return ',onlyResult';
+    if ( strpos($html, '{demo')    !== false ) return ',onlyResult';
+    if ( str_ends_with($file, 'index.html')  ) return ',onlyResult';
+
+    return '';
 
   }
 

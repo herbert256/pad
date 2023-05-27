@@ -2,8 +2,8 @@
 
   global $padPrm;
 
-  if ( isset ( $padPrm [$padIdx] [$parm] ) )
-    return $padPrm [$padIdx] [$parm];
+  if ( isset ( $padOpt [$padIdx] [$parm] ) )
+    return $padOpt [$padIdx] [$parm];
   else
     return NULL;
 

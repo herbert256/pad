@@ -1,15 +1,23 @@
-<blockquote><blockquote>
+<blockquote>
 
 {block}
 
   {pad data='references'}
 
+    {range '1..{$lvl}'}
+      <blockquote>
+    {/range}
+
     <h3><a href="{$padGo}reference/reference&reference={$ref}">{$type|ucwords}</a></h3>
 
     {getRefs}
+
+    {range '1..{$lvl}'}
+      </blockquote>
+    {/range}
 
   {/pad}
 
 {/block}
 
-</blockquote></blockquote>
+</blockquote>

@@ -53,6 +53,7 @@
     else                                         $source = $padPage;
 
     $source = str_replace ( '/index', '', $source ); 
+    $source = str_replace ( '/docs', '', $source ); 
     $source = padExplode ( $source, '/' );
 
     $link = '';

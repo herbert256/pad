@@ -55,12 +55,12 @@
       else
         $item = substr($file, 0, strrpos($file, '.')   );
 
+      if ( ! $item                        ) continue;
       if ( $file == '.'                   ) continue;
       if ( $file == '..'                  ) continue;
       if ( strpos ( $path, '.settings.' ) ) continue;
+      if ( strpos ( $path, '/docs/' )     ) continue;
       if ( substr ( $item, 0, 1 ) == '_'  ) continue;
-      if ( $item == 'todo'                ) continue;
-      if ( $item == 'code'                ) continue;
 
       $items [$item] ['item'] = $item;
 
