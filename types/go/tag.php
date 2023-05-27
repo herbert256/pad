@@ -7,8 +7,10 @@
   $padCall   = "$padTagGo.php";
   $padTagPhp = include 'call/any.php';
 
-  if ( is_array($padTagPhp) )
+  if ( is_array($padTagPhp) ) {
+    $padContent .= $padTagContent;
     return $padTagPhp;
+  }
 
   if ( $padTagPhp !== TRUE and $padTagPhp !== FALSE and $padTagPhp !== NULL )
     return $padTagContent . $padTagPhp;
