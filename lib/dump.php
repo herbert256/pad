@@ -508,8 +508,12 @@
 
   function padDumpShort ($G) {
   
+
     if ( $G === NULL)
       $G = '';
+  
+    if ( is_array ($G) )
+      $G = ' !!! array as input for padDumpShort !!!';
   
     return substr ( preg_replace('/\s+/', ' ', $G ), 0, 150 );
   
@@ -550,14 +554,16 @@
     set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
     $errorReporting = error_reporting (0);
 
+    $id = $GLOBALS ['padPage'] . '/' . $GLOBALS ['padReqID'] . '-' . padRandomString();
+
     try {
 
-      padDumpToDirGo ( $info, "dumps/" . $GLOBALS ['padPage'] . '/' . $GLOBALS ['padReqID'] . '-' . padRandomString()); 
+      padDumpToDirGo ( $info, "dumps/$id"); 
 
     } catch (Throwable $e) {
 
       padFilePutContents ( "dumps/$id/oops.txt", "$info\n\n" . $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage() );
-
+  
     }
 
     restore_error_handler ();
