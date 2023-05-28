@@ -7,11 +7,16 @@
 
     $padBuildNow .= "/$padBuildValue";
 
-    if ( $padBuildKey == array_key_last($padBuildMrg) )
+    if ( $padBuildKey == array_key_last($padBuildMrg) ) {
 
       $padBuildHtml = padGetHtml ( "$padBuildNow.html" );
 
-    else {
+      if ( count ( $padBuildArray ) ) { 
+        if ( strpos ( $padBuildHtml, '@start@') === FALSE )  $padBuildHtml = "@start@$padBuildHtml";
+        if ( strpos ( $padBuildHtml, '@end@')   === FALSE )  $padBuildHtml = "$padBuildHtml@end@";
+      }
+
+    } else {
 
       $padBuildInits = str_replace ( '@content@', '@pad@', padGetHtml ( "$padBuildNow/_inits.html" ) );
       $padBuildExits = str_replace ( '@content@', '@pad@', padGetHtml ( "$padBuildNow/_exits.html" ) );

@@ -19,7 +19,14 @@
   }
 
   $padCall = "$padBuildNow.php";
-  $padBase [$pad] .= include 'call/string.php';
+  $padCallReturn = include 'call/any.php';
+
+  if ( is_array ($padCallReturn) ) {
+    $padBuildArray   = padData ( $padCallReturn);
+    $padBuildArrayOB = $padCallOB;
+  }
+  else
+    $padBase [$pad] .= $padCallReturn;    
 
   foreach ( array_reverse ($padExits) as $padCall )
     $padBase [$pad] .= include 'call/string.php';

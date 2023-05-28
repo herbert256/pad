@@ -126,7 +126,7 @@
     echo ( "<div align=\"left\"><pre>" );
 
     padDumpFields    ( $php, $lvl, $app, $cfg, $pad, $ids, $exc, $crl );
-    padDumpXdebug    ();
+    #padDumpXdebug    ();
     padDumpInfo      ( $info );
     padDumpErrors    ( $info );
     padDumpBusy      ();

@@ -2,6 +2,8 @@
 
 {demo}
 
+{sequence type='prime', rows=10, name='foo'}
+
 {content 'foo'}
   This is from content
 {/content}
@@ -12,43 +14,65 @@
     { "foo": "This is a json array - 3" } ]
 {/data}
 
-{/demo}{demo}<h3>From the &open;content&close; tag </h3>
-
-  {content:foo}
-
-{/demo}{demo}<h3>From the _includes directory</h3>
-
-  {include:foo}
-
-{/demo}{demo}<h3>From a PHP function !</h3>
-
-  {php:foo}
+{flag 'foo'}1{/flag}
 
 {/demo}{demo}<h3>From an application tag</h3>
 
-  {app:foo}
+{app:foo}
+
+{/demo}{demo}<h3>From a PAD tag</h3>
+
+{pad:include 'foo'}
+
+{/demo}{demo}<h3>From the &open;content&close; tag </h3>
+
+{content:foo}
+
+{/demo}{demo}<h3>From a PHP function !</h3>
+
+{php:foo}
 
 {/demo}{demo}<h3>From an own function </h3>
 
-  {function:foo}
+{function:foo}
+
+{/demo}{demo}<h3>From an defined flag</h3>
+
+{flag:foo}
+  Flag 'foo' is true
+{else}
+  Flag 'foo' is false
+{/flag:foo}
+
+{/demo}{demo}<h3>From the sequence store</h3>
+
+{store:foo}
+  {$foo}
+{/store:foo}
 
 {/demo}{demo}<h3>From a PHP array</h3>
 
-  {array:foo}
-    {$foo} <br>
-  {/array:foo}
+{array:foo}
+  {$foo} <br>
+{/array:foo}
+
+{/demo}{demo}<h3>A defined constant</h3>
+
+{constant:foo}
+  {$foo} <br>
+{/constant:foo}
 
 {/demo}{demo}<h3>From the &open;data&close; tag</h3>
 
-  {data:foo}
-    {$foo} <br>
-  {/data:foo}
+{data:foo}
+  {$foo} <br>
+{/data:foo}
 
 {/demo}{demo}<h3>From the local _data directory</h3>
 
-  {local:foo}
-    {$foo} <br>
-  {/local:foo}
+{local:foo}
+  {$foo} <br>
+{/local:foo}
 
 {/demo}
 

@@ -18,8 +18,8 @@
     if ( $kind == 'ref' )
       $dir = $ref;
     
-    if ( $type == 'eval types' ) {
-      $one   = getReference  ('n/a', 'eval', 'eval/single', 'pad');
+    if ( $type == 'Function types' ) {
+      $one   = getReference ('n/a', 'eval', 'eval/single', 'pad');
       $two   = getReference ('n/a', 'eval', 'eval/parms',  'pad') ;
       $items = array_merge ( $one, $two );
       ksort ($items);
@@ -60,6 +60,7 @@
       if ( $file == '..'                  ) continue;
       if ( strpos ( $path, '.settings.' ) ) continue;
       if ( strpos ( $path, '/docs/' )     ) continue;
+      if ( strpos ( $path, '/intro/' )    ) continue;
       if ( substr ( $item, 0, 1 ) == '_'  ) continue;
 
       $items [$item] ['item'] = $item;

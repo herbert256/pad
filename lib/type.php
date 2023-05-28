@@ -16,8 +16,6 @@
     elseif ( padExists        ( pad . "tag/$item.php"                ) ) return 'tag';
     elseif ( padArrayCheck    ( $item                                ) ) return 'array';
     elseif ( padFieldCheck    ( $item                                ) ) return 'field';
-    elseif ( padInclFileName  ( $item                                ) ) return 'include';
-    elseif ( padIsPagesFile   ( $item                                ) ) return 'page';
     elseif ( padExists        ( pad . "sequence/types/$item"         ) ) return 'sequence';
     elseif ( padExists        ( pad . "sequence/actions/$item.php"   ) ) return 'action';
     elseif ( padDataFileName  ( $item                                ) ) return 'local';      
@@ -25,9 +23,7 @@
     elseif ( padExists        ( padApp . "_functions/$item.php"      ) ) return 'function';
     elseif ( padExists        ( pad . "_functions/$item.php"         ) ) return 'function';
     elseif ( function_exists  ( $item                                ) ) return 'php';
-    elseif ( padParmCheck     ( $item                                ) ) return 'parm';
     elseif ( padIsObject      ( $item                                ) ) return 'object';
-    elseif ( padIsResource    ( $item                                ) ) return 'resource';
     else                                                                 return FALSE;
 
   }
@@ -40,8 +36,6 @@
     elseif ( $type == 'app'      and padExists        ( padApp . "_tags/$item.html"          ) ) return $type;
     elseif ( $type == 'pad'      and padExists        ( pad . "_tags/$item.php"              ) ) return $type;
     elseif ( $type == 'pad'      and padExists        ( pad . "_tags/$item.html"             ) ) return $type;
-    elseif ( $type == 'include'  and padInclFileName  ( $item                                ) ) return $type;
-    elseif ( $type == 'page'     and padIsPagesFile   ( $item                                ) ) return $type;
     elseif ( $type == 'tag'      and padExists        ( pad . "tag/$type.php"                ) ) return $type;
     elseif ( $type == 'level'    and padChkLevel      ( $item                                ) ) return $type;
     elseif ( $type == 'flag'     and isset            ( $GLOBALS ['padFlagStore'] [$item]    ) ) return $type;
@@ -53,13 +47,11 @@
     elseif ( $type == 'local'    and padDataFileName  ( $item                                ) ) return $type;
     elseif ( $type == 'array'    and padArrayCheck    ( $item                                ) ) return $type;
     elseif ( $type == 'field'    and padFieldCheck    ( $item                                ) ) return $type;
-    elseif ( $type == 'parm'     and padParmCheck     ( $item                                ) ) return $type;
     elseif ( $type == 'constant' and defined          ( $item                                ) ) return $type;
     elseif ( $type == 'function' and padExists        ( padApp . "_functions/$item.php"      ) ) return $type;
     elseif ( $type == 'function' and padExists        ( pad . "_functions/$item.php"         ) ) return $type;
     elseif ( $type == 'php'      and function_exists  ( $item                                ) ) return $type;
     elseif ( $type == 'object'   and padIsObject      ( $item                                ) ) return $type;
-    elseif ( $type == 'resource' and padIsResource    ( $item                                ) ) return $type;
     elseif ( $type == 'table'    and isset            ( $GLOBALS ['padTables'] [$item]       ) ) return $type;
     else                                                                                         return FALSE;
 

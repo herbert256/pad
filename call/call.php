@@ -10,6 +10,7 @@
   $padCallPHP = include $padCall;
   $padCallOB  = ob_get_clean();
 
+
   if ( is_object   ( $padCallPHP ) ) $padCallPHP = padToArray( $padCallPHP );
   if ( is_resource ( $padCallPHP ) ) $padCallPHP = padToArray( $padCallPHP );
 

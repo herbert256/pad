@@ -1,4 +1,4 @@
-{getRefs}
+{include 'getRefs'}
 
 {if $reference eq 'sequences'}
 
@@ -8,31 +8,35 @@
 
   <br>
 
-  {exists '{$ref}/docs'}
+    {getDocs '{$ref}/intro'}
 
-  {getDocs '{$ref}'}
+      {page '{$item}', type='build', include}
 
-    <table style="border-style: dashed; dotted;" cellspacing="20">
+      <br>
 
-      <tr>
+    {/getDocs}
 
-        <td align="center">
+    {getDocs '{$ref}/docs'}
 
-          <h3><a href="{$padGo}reference/show&item={$item}">{$item}</a></h3>
-          
-          {page 'reference/show', $item='{$item}', type='ajax', include, ignore, $skipTitle=1, $noExtraFiles=1}
+      <table style="border-style: dashed; dotted;" cellspacing="20">
 
-         </td>
-       
-       </tr>
+        <tr>
 
-    </table>
+          <td align="center">
 
-    <br><br><br>
+            <h3><a href="{$padGo}reference/show&item={$item}">{$item}</a></h3>
+            
+            {page 'reference/show', $item='{$item}', type='ajax', include, ignore, $skipTitle=1, $noExtraFiles=1}
 
-  {/getDocs}
+           </td>
+         
+         </tr>
 
-  {/exists}
+      </table>
+
+      <br><br><br>
+
+    {/getDocs}
 
    <br>
 

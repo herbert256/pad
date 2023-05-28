@@ -5,7 +5,7 @@
   if ( isset ($noExtraFiles) )
     return;
   
-  $item = padTagParm ('item');
+  $item = padTagParm ( 'item', $padOpt [$pad] [1] );
   $page = padPageGetName ($item);
   $dir  = substr($page, 0, strrpos($page, '/')   );
 

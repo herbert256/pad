@@ -1,5 +1,8 @@
 <?php
 
+  $padBuildArray = [];
+  $padBuildArrayOB = [];
+
   $padBuildModeSave = $padBuildMode;
 
   if     ( isset ( $padIncludeSet          ) ) $padInclude = $padIncludeSet;
@@ -19,6 +22,13 @@
 
   include 'build/lib.php';  
   include "build/$padBuildMode.php";
+
+  if ( count ( $padBuildArray ) ) {
+    $padBase [$pad] = $padBuildArrayOB . $padBase [$pad];
+    $padBase [$pad] = str_replace ( '@start@', "{padBuildArray}",  $padBase [$pad] );
+    $padBase [$pad] = str_replace ( '@end@',   '{/padBuildArray}', $padBase [$pad] );
+  } 
+
   include 'occurrence/start.php';
 
   $padBuildMode = $padBuildModeSave;

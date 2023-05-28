@@ -1,8 +1,23 @@
 <?php
 
+  function getDocsx ( $dir ) {
+
+    return getDocsIntro ( $dir . '/docs' ) ;
+
+  }
+
+  function getIntro ( $dir ) {
+
+    return getDocsIntro ( $dir . '/intro' ) ;
+
+  }
+
   function getDocs ( $dir ) {
 
-    $directory = new RecursiveDirectoryIterator ( padApp . $dir . '/docs' );
+    if ( ! padIsDir ( padApp . $dir ) )
+      return [];
+
+    $directory = new RecursiveDirectoryIterator ( padApp . $dir  );
     $iterator  = new RecursiveIteratorIterator  ( $directory );
 
     $items = [];
@@ -29,5 +44,6 @@
     return $items;
 
   }
+
 
 ?>
