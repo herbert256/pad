@@ -1,5 +1,10 @@
 <?php
 
+  $files = [];
+  
+  if ( ! isset ( $fromMenu ) )
+    return;
+
   $title = "Regression test";
 
   foreach ( padPages () as $one ) {

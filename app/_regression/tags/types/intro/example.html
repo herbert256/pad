@@ -1,34 +1,145 @@
 <hr>
 <p>It can sometimes really be confusing that a tag can have many origins, to prevent this confusion it is possible to give a prefix that says what the origin must be.</p>
 <p>Below a few examples</p>
-<div id="padAjaxoz3ZG89b"></div>
-<script>
-padAjaxoz3ZG89b = new XMLHttpRequest();
-padAjaxoz3ZG89b.onreadystatechange=function() {
-if (padAjaxoz3ZG89b.readyState === 4) {
-if (padAjaxoz3ZG89b.status === 200) {
-document.getElementById("padAjaxoz3ZG89b").innerHTML=padAjaxoz3ZG89b.responseText;
-} else {
-document.getElementById("padAjaxoz3ZG89b").innerHTML=padAjaxoz3ZG89b.statusText;
-}
-}
-}
-padAjaxoz3ZG89b.open("GET","/?concepts/prefix/index&padInclude&padBuildMode=before&padBuildMerge=content&padSesID=avHoz7s1&padReqID=AafFHS47",true);
-padAjaxoz3ZG89b.send();
-</script>
-<div id="padAjaxNBvnOO8i"></div>
-<script>
-padAjaxNBvnOO8i = new XMLHttpRequest();
-padAjaxNBvnOO8i.onreadystatechange=function() {
-if (padAjaxNBvnOO8i.readyState === 4) {
-if (padAjaxNBvnOO8i.status === 200) {
-document.getElementById("padAjaxNBvnOO8i").innerHTML=padAjaxNBvnOO8i.responseText;
-} else {
-document.getElementById("padAjaxNBvnOO8i").innerHTML=padAjaxNBvnOO8i.statusText;
-}
-}
-}
-padAjaxNBvnOO8i.open("GET","/?todo/extra&padInclude&padBuildMode=before&padBuildMerge=content&padSesID=avHoz7s1&padReqID=AafFHS47",true);
-padAjaxNBvnOO8i.send();
-</script>
-<!-- PAD: NO REGRESSION -->
+<p> 
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">PHP</th>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top" rowspan="12"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;</span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">foo&nbsp;</span><span style="color: #007700">()&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #DD0000">"This&nbsp;is&nbsp;a&nbsp;function"</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">$foo&nbsp;</span><span style="color: #007700">=&nbsp;[&nbsp;</span><span style="color: #DD0000">'This&nbsp;is&nbsp;a&nbsp;PHP&nbsp;array&nbsp;-&nbsp;1'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'This&nbsp;is&nbsp;a&nbsp;PHP&nbsp;array&nbsp;-&nbsp;2'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'This&nbsp;is&nbsp;a&nbsp;PHP&nbsp;array&nbsp;-&nbsp;3'<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">];<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">define&nbsp;</span><span style="color: #007700">(&nbsp;</span><span style="color: #DD0000">'foo'</span><span style="color: #007700">,&nbsp;[&nbsp;</span><span style="color: #DD0000">'This&nbsp;is&nbsp;a&nbsp;constant&nbsp;-&nbsp;1'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'This&nbsp;is&nbsp;a&nbsp;constant&nbsp;-&nbsp;2'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">'This&nbsp;is&nbsp;a&nbsp;constant&nbsp;-&nbsp;3'<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">]&nbsp;);<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></td><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">sequence </font><font color="red">type<font color="black">=</font>'prime'<font color="black">,</font>&nbsp;rows<font color="black">=</font>10<font color="black">,</font>&nbsp;name<font color="black">=</font>'foo'</font>}</b><br /><br /><b>{<font color="blue">content </font><font color="red">'foo'</font>}</b><br />&nbsp;&nbsp;This&nbsp;is&nbsp;from&nbsp;content<br /><b>{/<font color="blue">content</font><font color="red"></font>}</b><br /><br /><b>{<font color="blue">data </font><font color="red">'foo'</font>}</b><br />&nbsp;&nbsp;[&nbsp;{&nbsp;"foo":&nbsp;"This&nbsp;is&nbsp;a&nbsp;json&nbsp;array&nbsp;-&nbsp;1"&nbsp;},<br />&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;"foo":&nbsp;"This&nbsp;is&nbsp;a&nbsp;json&nbsp;array&nbsp;-&nbsp;2"&nbsp;},<br />&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;"foo":&nbsp;"This&nbsp;is&nbsp;a&nbsp;json&nbsp;array&nbsp;-&nbsp;3"&nbsp;}&nbsp;]<br /><b>{/<font color="blue">data</font><font color="red"></font>}</b><br /><br /><b>{<font color="blue">flag </font><font color="red">'foo'</font>}</b>1<b>{/<font color="blue">flag</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+&lt;h3&gt;From&nbsp;an&nbsp;application&nbsp;tag&lt;/h3&gt;<br /><br /><b>{<font color="blue"><font color="purple">app</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From an application tag</h3>
+From a own {tag}<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+&lt;h3&gt;From&nbsp;a&nbsp;PAD&nbsp;tag&lt;/h3&gt;<br /><br /><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>include </font><font color="red">'foo'</font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From a PAD tag</h3>
+This is from an include<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+&lt;h3&gt;From&nbsp;the&nbsp;&amp;open;content&amp;close;&nbsp;tag&nbsp;&lt;/h3&gt;<br /><br /><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From the {content} tag </h3>
+This is from content<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+&lt;h3&gt;From&nbsp;a&nbsp;PHP&nbsp;function&nbsp;!&lt;/h3&gt;<br /><br /><b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From a PHP function !</h3>
+This is a function<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+&lt;h3&gt;From&nbsp;an&nbsp;own&nbsp;function&nbsp;&lt;/h3&gt;<br /><br /><b>{<font color="blue"><font color="purple">function</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From an own function </h3>
+From a own function<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+&lt;h3&gt;From&nbsp;an&nbsp;defined&nbsp;flag&lt;/h3&gt;<br /><br /><b>{<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br />&nbsp;&nbsp;Flag&nbsp;'foo'&nbsp;is&nbsp;true<br /><b>{<font color="blue">else</font><font color="red"></font>}</b><br />&nbsp;&nbsp;Flag&nbsp;'foo'&nbsp;is&nbsp;false<br /><b>{/<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From an defined flag</h3>
+Flag 'foo' is true<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+&lt;h3&gt;From&nbsp;the&nbsp;sequence&nbsp;store&lt;/h3&gt;<br /><br /><b>{<font color="blue"><font color="purple">store</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$foo</font>}</b><br /><b>{/<font color="blue"><font color="purple">store</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From the sequence store</h3>
+2
+3
+5
+7
+11
+13
+17
+19
+23
+29<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+&lt;h3&gt;From&nbsp;a&nbsp;PHP&nbsp;array&lt;/h3&gt;<br /><br /><b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$foo</font>}</b>&nbsp;&lt;br&gt;<br /><b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From a PHP array</h3>
+This&nbsp;is&nbsp;a&nbsp;PHP&nbsp;array&nbsp;-&nbsp;1 <br>
+This&nbsp;is&nbsp;a&nbsp;PHP&nbsp;array&nbsp;-&nbsp;2 <br>
+This&nbsp;is&nbsp;a&nbsp;PHP&nbsp;array&nbsp;-&nbsp;3 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+&lt;h3&gt;A&nbsp;defined&nbsp;constant&lt;/h3&gt;<br /><br /><b>{<font color="blue"><font color="purple">constant</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$foo</font>}</b>&nbsp;&lt;br&gt;<br /><b>{/<font color="blue"><font color="purple">constant</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>A defined constant</h3>
+This&nbsp;is&nbsp;a&nbsp;constant&nbsp;-&nbsp;1 <br>
+This&nbsp;is&nbsp;a&nbsp;constant&nbsp;-&nbsp;2 <br>
+This&nbsp;is&nbsp;a&nbsp;constant&nbsp;-&nbsp;3 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+&lt;h3&gt;From&nbsp;the&nbsp;&amp;open;data&amp;close;&nbsp;tag&lt;/h3&gt;<br /><br /><b>{<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$foo</font>}</b>&nbsp;&lt;br&gt;<br /><b>{/<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From the {data} tag</h3>
+This&nbsp;is&nbsp;a&nbsp;json&nbsp;array&nbsp;-&nbsp;1 <br>
+This&nbsp;is&nbsp;a&nbsp;json&nbsp;array&nbsp;-&nbsp;2 <br>
+This&nbsp;is&nbsp;a&nbsp;json&nbsp;array&nbsp;-&nbsp;3 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+&lt;h3&gt;From&nbsp;the&nbsp;local&nbsp;_data&nbsp;directory&lt;/h3&gt;<br /><br /><b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$foo</font>}</b>&nbsp;&lt;br&gt;<br /><b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From the local _data directory</h3>
+From&nbsp;the&nbsp;local&nbsp;_data&nbsp;directory&nbsp;-&nbsp;1 <br>
+From&nbsp;the&nbsp;local&nbsp;_data&nbsp;directory&nbsp;-&nbsp;2 <br>
+From&nbsp;the&nbsp;local&nbsp;_data&nbsp;directory&nbsp;-&nbsp;3 <br><!-- END DEMO RESULT --></span></code></td></tr>
+</table>
+</p>
+<p> 
+<h2>Extra files used</h2>
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#bbbbbb">PHP</th>
+<th bgcolor="#bbbbbb">HTML</th>
+<th bgcolor="#bbbbbb">OTHER</th>
+</tr>
+<tr>
+<td bgcolor="#eeeeee">_functions/foo.php</td>
+<td bgcolor="#eeeeee"></td>
+<td bgcolor="#eeeeee"></td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;</span><span style="color: #007700">return&nbsp;</span><span style="color: #DD0000">"From&nbsp;a&nbsp;own&nbsp;function"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></td>
+<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+</span>
+</code></td>
+<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+</span>
+</code></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee">_tags/foo.php</td>
+<td bgcolor="#eeeeee"></td>
+<td bgcolor="#eeeeee"></td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;</span><span style="color: #007700">return&nbsp;</span><span style="color: #DD0000">"From&nbsp;a&nbsp;own&nbsp;{open&closetag{close&close"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></td>
+<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+</span>
+</code></td>
+<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+</span>
+</code></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee"></td>
+<td bgcolor="#eeeeee"></td>
+<td bgcolor="#eeeeee">concepts/prefix/_data/foo.xml</td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+</span>
+</code></td>
+<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+</span>
+</code></td>
+<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+&lt;xml&gt;<br />&nbsp;&nbsp;&lt;line&nbsp;foo="From&nbsp;the&nbsp;local&nbsp;_data&nbsp;directory&nbsp;-&nbsp;1"&nbsp;/&gt;<br />&nbsp;&nbsp;&lt;line&nbsp;foo="From&nbsp;the&nbsp;local&nbsp;_data&nbsp;directory&nbsp;-&nbsp;2"&nbsp;/&gt;<br />&nbsp;&nbsp;&lt;line&nbsp;foo="From&nbsp;the&nbsp;local&nbsp;_data&nbsp;directory&nbsp;-&nbsp;3"&nbsp;/&gt;<br />&lt;/xml&gt;</span>
+</code></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee"></td>
+<td bgcolor="#eeeeee">concepts/prefix/_includes/foo.html</td>
+<td bgcolor="#eeeeee"></td>
+</tr>
+<tr>
+<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+</span>
+</code></td>
+<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+This&nbsp;is&nbsp;from&nbsp;an&nbsp;include</span>
+</code></td>
+<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+</span>
+</code></td>
+</tr>
+</table>
+</p>
+<!-- PAD: ONLYRESULT -->

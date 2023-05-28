@@ -9,6 +9,6 @@ file_put_contents ($store, $curl ['data'], LOCK_EX);
 
 $padRestart = $item;
 
-padRedirect ( "development/regression" );
+padRedirect ( "development" );
 
 ?>

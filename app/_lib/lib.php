@@ -86,11 +86,23 @@
 
     $html = ( padExists( $file ) ) ? file_get_contents( $file ) : ''; 
 
-    if ( strpos($html, '{present') !== false ) return ',onlyResult';
-    if ( strpos($html, '{demo')    !== false ) return ',onlyResult';
-    if ( str_ends_with($file, 'index.html')  ) return ',onlyResult';
+    if ( strpos($html, '<!-- PAD: ONLYRESULT -->') !== false ) return ',onlyResult';
+    if ( strpos($html, '{present')                 !== false ) return ',onlyResult';
+    if ( strpos($html, '{demo')                    !== false ) return ',onlyResult';
+    if ( str_ends_with($file, 'index.html')                  ) return ',onlyResult';
 
     return '';
+
+  }
+
+  function layout ( $file ) {
+
+    $html = ( padExists( $file ) ) ? file_get_contents( $file ) : ''; 
+
+    if ( strpos($html, '<!-- PAD: VERTICAL -->') !== false ) 
+      return 'vertical';
+    else
+      return 'horizontal';
 
   }
 

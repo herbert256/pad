@@ -6,7 +6,7 @@
   <h3>{$exampleTitle}</h3>
 {/if} 
 
-{if #onlyResult} 
+{if #onlyResult or $exampleOnlyResult} 
 
   {page '{$examplePage}', type='{$exampleType}', include, ignore}
 
@@ -16,8 +16,7 @@
     <table border="1" cellpadding="10" cellspacing="0">
   {/if}
 
-
-  {if $exampleLayout  eq 'horizontal' }
+  {if $exampleLayout eq 'horizontal' }
 
     {if ! #skipHeader}
         <tr>

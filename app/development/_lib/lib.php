@@ -14,10 +14,7 @@
       $dir   = substr($item, 0, strrpos($item, '/')   );
       $file  = substr($item,    strrpos($item, '/')+1 );
  
-      if ( ! $dir                                  ) continue;
-      if ( strpos($path, 'development/all')        ) continue;
-      if ( strpos($path, 'development/ok')         ) continue;
-      if ( strpos($path, 'development/regression') ) continue;
+      if ( ! $dir                           ) continue;
       if ( strpos($path, 'error')           ) continue;
       if ( strpos($path, 'restart')         ) continue;
       if ( strpos($path, 'redirect')        ) continue;
@@ -27,9 +24,6 @@
       if ( $item == 'hello/html'            ) continue;
       if ( go ( $item )                     ) continue;
 
-#      if ( strpos($path, '/development/')   ) continue;
-#      if ( strpos($path, '/reference/')     ) continue;
- 
       $files [$item] ['item'] = $item;
       $files [$item] ['dir']  = $dir;
       $files [$item] ['file'] = $file;

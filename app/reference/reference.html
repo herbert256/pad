@@ -26,7 +26,7 @@
 
             <h3><a href="{$padGo}reference/show&item={$item}">{$item}</a></h3>
             
-            {page 'reference/show', $item='{$item}', type='ajax', include, ignore, $skipTitle=1, $noExtraFiles=1}
+            {page 'reference/show', $item='{$item}', type='get', include, ignore, $skipTitle=1, $noExtraFiles=1}
 
            </td>
          
@@ -54,7 +54,7 @@
 
               <h3><a href="{$padGo}reference/show&item={$ref}/{$item}">{$item}</a></h3>
               
-              {page 'reference/show', $item='{$ref}/{$item}', type='ajax', include, ignore, $skipTitle=1, $noExtraFiles=1}
+              {page 'reference/show', $item='{$ref}/{$item}', type='get', include, ignore, $skipTitle=1, $noExtraFiles=1}
 
              </td>
            
@@ -71,4 +71,3 @@
   {/getReference}
 
 {/if}
-<!-- PAD: NO REGRESSION -->
