@@ -16,10 +16,10 @@
   }
 
   $padBetween = substr ( $padHtml [$pad], $padStart [$pad] + 1, $padEnd [$pad] - $padStart [$pad] - 1 );
-  $padBusy    = "$padPage --> {" . $padBetween . '}';
   $padFirst   = substr ( $padBetween , 0, 1 );
   $padWords   = preg_split ("/[\s]+/", $padBetween, 2, PREG_SPLIT_NO_EMPTY);
 
+  $padBusy       = "$padPage --> {" . $padBetween . '}';
   $padHistory [] = "Busy: $padBusy";
 
   if ( in_array ( $padFirst, ['$','!','#','&'] ) )  
@@ -27,8 +27,8 @@
 
   if ( ! ctype_alpha ( $padBetween [0] ) ) return padIgnore ('ctype_alpha');
   if ( ! padValidTag ( $padWords [0]   ) ) return padIgnore ('padValidTag');
-  if ( ! include pad . 'level/type.php'              ) return padIgnore ('type');
-  if ( ! include pad . 'level/pair.php'              ) return padIgnore ('pair');;
+  if ( ! include pad . 'level/type.php'  ) return padIgnore ('type');
+  if ( ! include pad . 'level/pair.php'  ) return padIgnore ('pair');;
 
   include pad . 'level/start.php';
 

@@ -1,6 +1,6 @@
 {content 'myContent'}
 
-  <h3>{&departments:tag}</h3>
+  <h3>{&departments:option:data}</h3>
 
   <table border=1>
 
@@ -22,9 +22,9 @@
 
 {/content}
 
-{departments/departments      content='myContent'}
-{departments/departments.php  content='myContent'}
-{departments/departments.csv  content='myContent'}
-{departments/departments.xml  content='myContent'}
-{departments/departments.json content='myContent'}
-{departments/departments.yaml content='myContent'}
+{pad data='departments/departments',      content='myContent'}
+{pad data='departments/departments.php',  content='myContent'}
+{pad data='departments/departments.csv',  content='myContent'}
+{pad data='departments/departments.xml',  content='myContent'}
+{pad data='departments/departments.json', content='myContent'}
+{pad data='departments/departments.yaml', content='myContent'}
