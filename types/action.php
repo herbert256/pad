@@ -1,5 +1,5 @@
 <?php
 
-  return include 'types/sequence.php'; 
+  return include pad . 'types/sequence.php'; 
 
 ?>

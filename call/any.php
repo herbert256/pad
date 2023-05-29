@@ -1,6 +1,9 @@
 <?php
 
-  include 'call/call.php';
+  if ( ! padExists ( $padCall ) )
+    return '';
+  
+  include pad . 'call/_call.php';
 
   if ( trim ( $padCallOB ) ) 
 

@@ -1,15 +1,13 @@
 <?php
 
-  include 'page/start.php';
-  include 'page/setup.php';
-  include 'build/build.php';   
-  include 'page/level.php'; 
-  include 'page/end.php';
+  include pad . 'page/setup.php';
+  include pad . 'build/build.php';   
+  include pad . 'page/level.php'; 
 
   $padContentSave = $padContent;
   $padContent = $padHtml [$pad+1];
 
-  include 'exits/output.php';
+  include pad . 'exits/output.php';
 
   $padContentReturn = $padContent;
   $padContent = $padContentSave;

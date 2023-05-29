@@ -1,5 +1,5 @@
 <?php
 
-  return include 'shift.php';
+  return include pad . 'sequence/actions/shift.php';
   
 ?>

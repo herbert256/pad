@@ -4,7 +4,7 @@
 
   $padOutput = padUnescape ( $padOutput );
 
-  include 'exits/output.php';
+  include pad . 'exits/output.php';
  
   $padEtag = padMD5 ($padOutput);
 
@@ -17,7 +17,7 @@
   $padStop = ( $padEtag304 and ($padCacheClient??'') == $padEtag ) ? 304 : 200;
 
   if ( $padCache and $padCacheServerAge )
-    include 'cache/exits.php';
+    include pad . 'cache/exits.php';
 
   padStop ($padStop);
 

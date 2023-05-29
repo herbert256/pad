@@ -1,6 +1,6 @@
 <?php
 
-  include '_includes/shared.php';
+  include padApp . 'development/show/_includes/shared.php';
 
   $compare = $demoLines = [];
   

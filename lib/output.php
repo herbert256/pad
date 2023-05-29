@@ -20,7 +20,7 @@
     }
 
     if ( $padTidy or strpos( $padOutput, '@tidy@' ) !== FALSE )
-      include 'exits/tidy.php';
+      include pad . 'exits/tidy.php';
 
     if ( $padOutputTabToSpace )
       $padOutput = str_replace ( "\t", '', $padOutput );

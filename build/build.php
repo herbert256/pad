@@ -1,36 +1,31 @@
 <?php
 
-  $padBuildArray = [];
-  $padBuildArrayOB = [];
+  include pad . 'build/dirs.php';
 
-  $padBuildModeSave = $padBuildMode;
+  $padBuildLib = include pad . 'build/lib.php';  
 
-  if     ( isset ( $padIncludeSet          ) ) $padInclude = $padIncludeSet;
-  elseif ( isset ( $_REQUEST['padInclude'] ) ) $padInclude = TRUE;
+  if ( isset ($padInclude) or isset ( $_REQUEST ['padInclude'] ) ) 
+    $padBuildBase = '@pad@';
+  else 
+    $padBuildBase = include pad . 'build/base.php';
 
-  $padBuildMode  = $padBuildModeSet  ?? $_REQUEST['padBuildMode']  ?? $padBuildMode;
-  $padBuildMerge = $padBuildMergeSet ?? $_REQUEST['padBuildMerge'] ?? $padBuildMerge;  
+  $padBuildPath = padApp . $padPage;
+  $padBuildHtml = padFileGetContents ( "$padBuildPath.html" );
+  $padBuildCall = include pad . 'build/call.php';
+
+  $padBuildTrue  = $padBuildHtml;
+  $padBuildFalse = include pad . 'build/false.php';
+
+  if     ( $padBuildCall === TRUE  ) $padBuild = $padBuildOB . $padBuildTrue;
+  elseif ( $padBuildCall === FALSE ) $padBuild = $padBuildOB . $padBuildFalse;
+  elseif ( $padBuildCall === NULL  ) $padBuild = '';
+  else                               $padBuild = $padBuildOB . $padBuildCall . $padBuildTrue;
+
+  if ( count ( $padBuildArray ) ) 
+    include pad . 'build/array.php';
  
-  if ( $padInclude ) 
-    $padBuildMode = 'include';
+  $padBase [$pad] = $padBuildLib . str_replace ( '@pad@', $padBuild, $padBuildBase );;
 
-  $padBuildNow = substr     ( padApp, 0, -1);  
-  $padBuildPos = strrpos    ( $padBuildNow, '/');  
-  $padBuildBas = substr     ( $padBuildNow, 0, $padBuildPos);  
-  $padBuildMrg = substr     ( $padBuildNow, $padBuildPos+1) . '/' . $padPage; 
-  $padBuildMrg = padExplode ( $padBuildMrg , '/' );
-
-  include 'build/lib.php';  
-  include "build/$padBuildMode.php";
-
-  if ( count ( $padBuildArray ) ) {
-    $padBase [$pad] = $padBuildArrayOB . $padBase [$pad];
-    $padBase [$pad] = str_replace ( '@start@', "{padBuildArray}",  $padBase [$pad] );
-    $padBase [$pad] = str_replace ( '@end@',   '{/padBuildArray}', $padBase [$pad] );
-  } 
-
-  include 'occurrence/start.php';
-
-  $padBuildMode = $padBuildModeSave;
-  
+  include pad . 'occurrence/start.php';
+   
 ?>

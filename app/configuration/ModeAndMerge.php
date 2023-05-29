@@ -1,5 +1,0 @@
-<?php
-
-  $title = '$padBuildMode & $padBuildMerge';
-
-?>

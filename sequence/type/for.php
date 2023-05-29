@@ -11,7 +11,7 @@
     if ( $padSeqRandom )
       $padSeqLoop = $padSeqFor [array_rand($padSeqFor)] ;
 
-    if ( ! include 'sequence/type/go/one.php')
+    if ( ! include pad . 'sequence/type/go/one.php')
         break;
 
    $padSeqInit = FALSE;

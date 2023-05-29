@@ -5,4 +5,6 @@
   $padSqlUser      = 'demo';
   $padSqlPassword  = 'demo';
 
+ function abc () { $a=1;}
+ 
 ?>

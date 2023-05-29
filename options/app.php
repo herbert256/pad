@@ -2,6 +2,6 @@
 
   $padOptions = 'app';
 
-  include "options.php";
+  include pad . 'options/options.php';
   
 ?>

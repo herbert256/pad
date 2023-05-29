@@ -4,7 +4,7 @@
 
   $padExtraContent = '';
 
-  $padTagResult = include "types/" . $padType [$pad] . ".php";
+  $padTagResult = include pad . "types/" . $padType [$pad] . ".php";
 
   if ( is_scalar($padTagResult) and strpos($padTagResult , '@content@') !== FALSE )
     $padTagResult = str_replace('@content@', $padTrue [$pad], $padTagResult);

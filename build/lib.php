@@ -1,30 +1,28 @@
 <?php
 
-  $padBuildNow = $padBuildBas;  
+  $padBuildLib = '';
 
-  foreach ($padBuildMrg as $padBuildValue) {
+  foreach ( $padBuildDirs as $padBuildDir )
 
-    $padBuildNow .= "/$padBuildValue";
-    
-    if ( is_dir ($padBuildNow) and is_dir ("$padBuildNow/_lib") ) {
+    if ( is_dir ("$padBuildDir/_lib") ) {
 
-      $padLibDirectory = new RecursiveDirectoryIterator ("$padBuildNow/_lib");
+      $padLibDirectory = new RecursiveDirectoryIterator ("$padBuildDir/_lib");
       $padLibIterator  = new RecursiveIteratorIterator  ($padLibDirectory);
 
       foreach ( $padLibIterator as $padLibOne ) {
 
-        $padLibFile = str_replace ('\\', '/', $padLibOne->getPathname() );
+        $padCall = $padLibOne->getPathname();
 
-        if ( substr($padLibFile, -4) == '.php' )
-          include_once $padLibFile;
-
-        if ( substr($padLibFile, -5) == '.html' )
-          $padBase [$pad] .= padFileGetContents ( $padLibFile );
+        if ( substr($padCall, -4) == '.php' ) 
+          $padBuildLib .= include pad . 'call/string_once.php';
+ 
+        if ( substr($padCall, -5) == '.html' )
+          $padBuildLib .= padFileGetContents ( $padCall );
 
       }
 
     }
     
-  }
+  return $padBuildLib;
 
 ?>

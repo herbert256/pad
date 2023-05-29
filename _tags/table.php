@@ -2,6 +2,6 @@
 
   $padTableName = $padOpt [$pad] [1];
 
-  return include '_tags/go/table.php';
+  return include pad . '_tags/go/table.php';
 
 ?>

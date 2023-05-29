@@ -1,19 +1,17 @@
 <?php
 
-  include 'page/push.php';
-  include 'page/save.php';
-  include 'page/seq_start.php';
-  include 'page/set_start.php';
-  include 'page/start.php';
-  include 'page/setup.php';
-  include 'build/build.php';   
-  include 'page/level.php'; 
-  include 'page/current.php'; 
-  include 'page/seq_end.php';
-  include 'page/set_end.php';
-  include 'page/restore.php';
-  include 'page/end.php';
-  include 'page/pop.php';
+  include pad . 'page/push.php';
+  include pad . 'page/save.php';
+  include pad . 'page/seq_start.php';
+  include pad . 'page/set_start.php';
+  include pad . 'page/setup.php';
+  include pad . 'build/build.php';   
+  include pad . 'page/level.php'; 
+  include pad . 'page/current.php'; 
+  include pad . 'page/seq_end.php';
+  include pad . 'page/set_end.php';
+  include pad . 'page/restore.php';
+  include pad . 'page/pop.php';
 
   return $padHtml [$pad+1];
  

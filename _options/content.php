@@ -13,7 +13,7 @@
     if ( $padIncPage ) {
 
       $padIncPage     = str_replace (padApp, '',  $padIncPage);
-      $padContentData = include '_tags/go/include.php';
+      $padContentData = include pad . '_tags/go/include.php';
 
     } else 
 

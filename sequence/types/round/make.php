@@ -1,5 +1,5 @@
 <?php
 
-	return include 'sequence/type/round/loop.php';
+	return include pad . 'sequence/type/round/loop.php';
 
 ?>

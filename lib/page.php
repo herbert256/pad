@@ -3,31 +3,10 @@
 
   function padPageBanaan ( ) {
 
-    return include 'page/appel.php';
+    return include pad . 'page/appel.php';
 
   }
 
-
-  function padPageInsideFunction ( ) {
-
-    foreach ( $GLOBALS as $key => $val ) 
-      if ( substr($key, 0, 6) == 'padSeq' ) 
-        unset ( $GLOBALS [$key] );
- 
-    foreach ($GLOBALS as $key => $val )
-      if ( substr($key, 0, 3) == 'pad' )
-        global $$key;
-
-    unset($key);
-    unset($val);
-    
-    $padPageFunctionResult = include 'page/sandbox.php';
-    
-    return $padPageFunctionResult;     
-
-  
-  }
- 
 
   function padPageGetName ( $page = '' ) {
 
@@ -153,7 +132,7 @@ END;
     $curl = padCurl ( $GLOBALS['padGoExt'] . $page . $qry );
 
     if ( ! str_starts_with( $curl ['result'], '2') )
-      return padError ("Curl failed: $url");
+      return padError ("Curl failed: " . $curl['url'] );
  
     return $curl ['data'];
 

@@ -4,6 +4,6 @@
   $padSeqLoop      = 1;
   $padSeqInc       = 1;
 
-  include "loop.php";    
+  include pad . "sequence/type/loop.php";    
 
 ?>

@@ -1,5 +1,5 @@
 <?php
   
-  return include 'sequence/types/power/loop.php';
+  return include pad . 'sequence/types/power/loop.php';
 
 ?>

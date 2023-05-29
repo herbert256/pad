@@ -1,17 +1,26 @@
 <?php
   
+  $padPageInsert [$pad] = $padPage;
+  $padDirInsert  [$pad] = $padDir;
+  $padPathInsert [$pad] = $padPath;
+ 
+  $padPage = padPageGetName ();
+  $padDir  = padDir ();  
+  $padPath = padPath ();  
+
+  if ( padTagParm ( 'include' ) )
+    $padInclude = TRUE;
+
   $padPagTyp = padTagParm ( 'type', 'sandbox' );
   
-  if ( padTagParm ('optional') ) {
+  $padPageResult = include pad . "page/$padPagTyp.php";
 
-    $padPagTarget = padTagParm ( 'page', $padOpt [1] );
-    $padPagTarget = padPageGetName ();
+  $padPage = $padPageInsert [$pad];
+  $padDir  = $padDirInsert  [$pad];
+  $padPath = $padPathInsert [$pad];
 
-    if ( ! $padPagTarget )
-      return NULL;
-
-  }
-  
-  return include "page/$padPagTyp.php";
+  unset ( $padInclude );
    
+  return $padPageResult;
+
 ?>

@@ -3,6 +3,8 @@
 
   function padExists ( $file ) {
 
+    return file_exists ( $file );
+    
     if ( ! padValidFile ( $file ) )
       return FALSE;
     else
@@ -25,6 +27,8 @@
 
     if ( ! padExists($file) )
       return '';
+
+    $GLOBALS ['padHistory'] [] = "GetFile: $file";
 
     return file_get_contents ($file);
 

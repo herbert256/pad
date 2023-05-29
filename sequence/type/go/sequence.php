@@ -2,7 +2,7 @@
 
  if ( padExists ( pad . "sequence/types/$padSeqSeq/one.php" ) ) 
   
-    $padSequence = include "sequence/types/$padSeqSeq/one.php";
+    $padSequence = include pad . "sequence/types/$padSeqSeq/one.php";
 
   elseif ( $padSeqBuild == 'fixed' ) 
 
@@ -14,15 +14,15 @@
 
   elseif ( $padSeqBuild == 'bool' )
 
-    $padSequence = include "bool.php";
+    $padSequence = include pad . "sequence/type/go/bool.php";
 
   elseif ( $padSeqRandom and padExists ( pad . "sequence/types/$padSeqSeq/random.php") )
 
-    $padSequence = include "sequence/types/$padSeqSeq/random.php" ;
+    $padSequence = include pad . "sequence/types/$padSeqSeq/random.php" ;
 
   else
 
-    $padSequence = include "sequence/types/$padSeqSeq/$padSeqBuild.php";
+    $padSequence = include pad . "sequence/types/$padSeqSeq/$padSeqBuild.php";
 
   if     ( $padSequence === NULL  ) return FALSE;
   elseif ( $padSequence === FALSE ) return TRUE;   

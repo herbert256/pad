@@ -1,5 +1,5 @@
 <?php
 
-  include 'build/build.php';
+  include pad . 'build/build.php';
 
 ?>

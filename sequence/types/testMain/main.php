@@ -1,5 +1,5 @@
 <?php
 
-  include "sequence/type/loop.php";
+  include pad . "sequence/type/loop.php";
 
 ?>

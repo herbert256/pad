@@ -29,7 +29,7 @@
       
  function padTidyOutput ( $data ) {
 
-    if ( $GLOBALS ['padBuildMode'] == 'include' )
+    if ( isset ( $_REQUEST ['padInclude'] ) )
       return padTidyFragment ( $data );
 
    $config = $GLOBALS ['padTidyConfig'];
@@ -559,11 +559,11 @@
 
   function padTagAsFunction ( $tag, $parms ) {
 
-    include 'page/inits.php'; 
+    include pad . 'page/inits.php'; 
 
     $padHtml [$pad] = '{' . $tag . ' ' . $parms . '}';    
 
-    return include 'page/exits.php'; 
+    return include pad . 'page/exits.php'; 
 
   }
 
@@ -583,7 +583,7 @@
     else
       $padCall = pad  . "_functions/$name.php";
 
-    return include 'call/any.php';
+    return include pad . 'call/any.php';
 
   }
 
@@ -1002,28 +1002,6 @@
     return '<pre>' . trim($return) . '</pre>';
 
   } 
-
-  function padGetHtml ( $file ) {
-
-    global $padBuildMode;
-
-    $html = padFileGetContents ($file);
-
-    if ( $padBuildMode == 'demand' or $padBuildMode == 'isolate' ) {
-      $php = str_replace ( '.html', '.php', $file );
-      if ( padExists($php) )
-        $out = "{call '$php'}$html{/call}";    
-      else
-        $out = $html;
-    } else 
-       $out = $html;
-        
-    if ( $padBuildMode == 'isolate' )
-      $out = "{isolate}$out{/isolate}";    
-
-    return $out;
-
-  }
 
   
   function padValidStore ($fld) {

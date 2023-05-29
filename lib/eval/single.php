@@ -11,7 +11,7 @@
     $count = 0;
     
     $padCall = pad . "eval/single/$kind.php" ;
-    $single  = include "call/any.php" ;
+    $single  = include pad . "call/any.php" ;
 
     $result [$key] [1] = 'VAL';
 

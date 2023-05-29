@@ -13,6 +13,6 @@
 
   }
 
-  include 'pad.php';
+  include pad . 'pad.php';
  
 ?>

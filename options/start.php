@@ -2,6 +2,6 @@
 
   $padOptions = 'start';
 
-  include "options.php";
+  include pad . 'options/options.php';
   
 ?>

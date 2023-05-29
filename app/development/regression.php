@@ -1,9 +1,7 @@
 <?php
 
-  $files = [];
-  
   if ( ! isset ( $fromMenu ) )
-    return;
+    return NULL;
 
   $title = "Regression test";
 

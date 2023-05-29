@@ -1,10 +1,10 @@
 <?php
 
-  include 'config/config.php';
+  include pad . 'config/config.php';
 
   if ( padExists ( padApp . '_config/config.php' ) ) {
     $padCall = padApp . '_config/config.php';
-    include 'call/call.php';
+    include pad . 'call/call.php';
   }
 
 ?>

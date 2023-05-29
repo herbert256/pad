@@ -4,16 +4,16 @@
 
     $padSeqFor = $padSeqStore [$padSeqPull];
 
-    include "for.php";
+    include pad . "sequence/type/for.php";
 
   } elseif ( $padSeqRange and $padSeqSeq <> 'range' ) {
 
     $padSeqFor = padGetRange ( $padSeqRange, $padSeqInc );
 
-    include "for.php";
+    include pad . "sequence/type/for.php";
 
   } else
 
-    include "$padSeqBuild.php";
+    include pad . "sequence/type/$padSeqBuild.php";
 
 ?>

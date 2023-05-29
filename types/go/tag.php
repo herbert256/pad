@@ -5,7 +5,7 @@
   $padTagContent = padFileGetContents ("$padTagGo.html");
 
   $padCall   = "$padTagGo.php";
-  $padTagPhp = include 'call/any.php';
+  $padTagPhp = include pad . 'call/any.php';
 
   if ( is_array($padTagPhp) ) {
     $padContent .= $padTagContent;

@@ -3,9 +3,9 @@
   $padWalk [$pad] = 'end';
 
   $padContent = $padResult [$pad];
-  include "level/go.php"; 
+  include pad . "level/go.php"; 
   $padResult [$pad] = $padContent;
 
-  include "level/flags.php"; 
+  include pad . "level/flags.php"; 
   
 ?>

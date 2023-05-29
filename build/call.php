@@ -1,34 +1,34 @@
 <?php
 
-  $padExits    = [];
-  $padBuildNow = $padBuildBas;  
+  foreach ( $padBuildDirs as $padCall ) {
+    $padCall .= '/_inits.php';
+    $padBuildHtml .= include pad . 'call/build.php';
+  }
 
-  foreach ($padBuildMrg as $padValue) {
+  $padCall = "$padBuildPath.php";
+  include pad . 'call/call.php';
 
-    $padBuildNow .= "/$padValue";
+  if ( $padCallPHP === 1 ) 
+    $padCallPHP = '';
 
-    if ( is_dir ($padBuildNow) ) {
+  $padBuildOB = $padCallOB;
 
-      $padCall = "$padBuildNow/_inits.php";
-      $padBase [$pad] .= include 'call/string.php';
+  if ( is_array ( $padCallPHP ) )
+    $padBuildArray = padData ( $padCallPHP);
+  else
+    $padBuildArray = [];
 
-      $padExits [] = "$padBuildNow/_exits.php";
-
+  if ( $padCallPHP !== NULL)
+    foreach ( array_reverse ($padBuildDirs) as $padCall ) {
+      $padCall .= '/_exits.php';
+      $padBuildHtml .= include pad . 'call/build.php';
     }
 
-  }
-
-  $padCall = "$padBuildNow.php";
-  $padCallReturn = include 'call/any.php';
-
-  if ( is_array ($padCallReturn) ) {
-    $padBuildArray   = padData ( $padCallReturn);
-    $padBuildArrayOB = $padCallOB;
-  }
-  else
-    $padBase [$pad] .= $padCallReturn;    
-
-  foreach ( array_reverse ($padExits) as $padCall )
-    $padBase [$pad] .= include 'call/string.php';
+  if     ( $padCallPHP === TRUE       ) return TRUE;
+  elseif ( $padCallPHP === FALSE      ) return FALSE;
+  elseif ( $padCallPHP === NULL       ) return NULL;
+  elseif ( ! is_array ( $padCallPHP ) ) return $padCallPHP;
+  elseif ( count ( $padCallPHP )      ) return TRUE;
+  else                                  return FALSE;
 
 ?>

@@ -4,7 +4,7 @@
   function padEval ($eval, $value='') {
 
     if ( in_array ( $eval, $GLOBALS ['padEvalFast'] ) )
-      return include "_functions/$eval.php";
+      return include pad . "_functions/$eval.php";
 
     if ( strlen(trim($eval)) == 0 )
       return ''; 

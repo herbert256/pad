@@ -85,15 +85,6 @@
   
   $padSessionVars = [];
 
-  // How the app parts from /pages/ are processed.
-
-  $padBuildMode     = 'before';     // 'isolate'
-                                    // 'before'
-                                    // 'demand'
-                                    // 'include'
-  
-  $padBuildMerge    = 'content';    // 'content'
-                                    // 'end'
     
   // Default {$var} options, there must be a PHP snippet in one of below directories
   // - pad/functions/

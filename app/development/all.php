@@ -1,9 +1,7 @@
 <?php
 
-  $exampleType = $exampleType ?? 'ajax';
-  
   if ( ! isset ( $fromMenu ) )
-    return FALSE;
+    return NULL;
 
   set_time_limit(3);
 

@@ -23,8 +23,6 @@
   define ( 'padApp',  "$padHome/pad/app/" ); // The PAD application files
   define ( 'padData', "$padHome/data/"    ); // Data locaction, used for logs/cache/errors/etc.
   
-  set_include_path ( pad );
-
-  include 'start.php';
+  include pad . 'start.php';
 
 ?>
