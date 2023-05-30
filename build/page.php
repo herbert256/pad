@@ -1,22 +1,34 @@
 <?php
 
-  $padBuildHtml  = ''
-  $padBuildArray = [];
-  $padBuildPath  = padApp . $padPage;
-  $padBuildCall  = include pad . 'build/call.php';
+  $padBuildHtml = '';
+ 
+  foreach ( $padBuildDirs as $padCall ) {
+    $padCall .= '/_inits.php';
+    $padBuildHtml .= include pad . 'call/stringNoOne.php';
+  }
 
-  $padBuildHtml  = $padBuildOB . $padBuildHtml . padFileGetContents ( "$padBuildPath.html" );
+  $padCall = padApp . "$padPage.php";
+  include pad . 'call/callNoOne.php';
 
-  padTrueFalse ( $padBuildHtml , $padBuildTrue, $padBuildFalse );
+  if ( $padCallPHP === NULL )
+    return '';
 
-  if     ( $padBuildCall === TRUE  ) $padBuildPage = $padBuildTrue;
-  elseif ( $padBuildCall === FALSE ) $padBuildPage = $padBuildFalse;
-  elseif ( $padBuildCall === NULL  ) $padBuildPage =  '';
-  else                               $padBuildPage = $padBuildCall . $padBuildTrue;
+  $padBuildHtml .= $padCallOB;
 
-  if ( count ( $padBuildArray ) ) 
-    include pad . 'build/array.php';
+  if     ( is_array ( $padCallPHP ) ) $padBuild = padData ( $padCallPHP );
+  elseif ( $padCallPHP === FALSE    ) $padBuild = [];
+  else                                $padBuild = padDefaultData();
+ 
+  if ( ! is_array ($padCallPHP) and $padCallPHP !== TRUE and $padCallPHP !== FALSE )
+    $padBuildHtml .= $padCallPHP;
 
-  return $padBuildPage;
+  $padBuildHtml .= padFileGetContents ( padApp . "$padPage.html" );
+
+  foreach ( array_reverse ($padBuildDirs) as $padCall ) {
+    $padCall .= '/_exits.php';
+    $padBuildHtml .= include pad . 'call/stringNoOne.php';
+  }
+
+  return "{padBuild}$padBuildHtml{/padBuild}";
 
 ?>

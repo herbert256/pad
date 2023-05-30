@@ -1,7 +1,7 @@
 <?php
 
 
-  function padTrueFalse ( $input, &$true, &$false ) {
+  function padSetTrueFalse ( $input, &$true, &$false ) {
 
     $true  = $input;
     $false = '';
@@ -14,14 +14,12 @@
       if  ( padOpenCloseCount ( substr ( $true, 0, $pos ), $list) ) {
         $false = substr ( $true, $pos+6  );
         $true  = substr ( $true, 0, $pos );
-        return TRUE;
+        return;
       }
   
       $pos = strpos ( $true, '{else}', $pos+1);
 
     }
-
-    return FALSE;
 
   }
 
