@@ -8,7 +8,7 @@
   if ( ! is_array($padTagPhp) and $padTagPhp !== TRUE and $padTagPhp !== FALSE and $padTagPhp !== NULL )
     $padTagAdd .= $padTagPhp;
   else
-    $padTagAdd = '';
+   $padTagAdd = '';
  
   $padTagContent = $padCallOB . $padTagAdd . padFileGetContents ("$padTagGo.html");
 
@@ -23,12 +23,7 @@
   if ( $padTagTrueFalse === FALSE )
     $padFalse [$pad] .= $padTagFalse;
 
-if ( is_array ( $padTagPhp ) ) {
-  $padData [$pad] = $padTagPhp;
-  
-}
-
-  if ( $padTagPhp === TRUE AND $padTagTrue <> '' )
+  if ( $padTagPhp === TRUE AND $padTagTrue )
     return $padTagTrue;
 
   return $padTagPhp;
