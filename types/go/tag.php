@@ -2,22 +2,20 @@
 
   $padTagGo .= "_tags/". $padTag [$pad];
 
-  $padTagContent = padFileGetContents ("$padTagGo.html");
+  $padCall = "$padTagGo.php";
+  include pad . 'call/callNoOne.php';
 
-  $padCall   = "$padTagGo.php";
-  $padTagPhp = include pad . 'call/any.php';
+  $padTagContent = $padCallOB . padFileGetContents ("$padTagGo.html") ;
 
-  if ( is_array($padTagPhp) ) {
-    $padContent .= $padTagContent;
-    return $padTagPhp;
-  }
+  padTrueFalse ( $padTagContent , $padTagTrue, $padTagFalse );
 
-  if ( $padTagPhp !== TRUE and $padTagPhp !== FALSE and $padTagPhp !== NULL )
-    return $padTagContent . $padTagPhp;
+  if     ( $padCallPHP === TRUE       ) $padContent     = $padTagTrue  . $padContent;
+  elseif ( $padCallPHP === FALSE      ) $padElse [$pad] = $padTagFalse . $padElse [$pad];
+  elseif ( $padCallPHP === NULL       ) $padContent     = '';
+  elseif ( ! is_array ( $padCallPHP ) ) $padContent     = $padCallPHP  . $padTagTrue . $padContent;
+  elseif ( count ( $padCallPHP )      ) $padContent     = $padTagTrue  . $padContent;
+  else                                  $padElse [$pad] = $padTagFalse . $padElse [$pad];
 
-  if ( $padTagPhp === TRUE AND $padTagContent <> '' )
-    return $padTagContent;
-
-  return $padTagPhp;
+  return $padCallPHP;
 
 ?>

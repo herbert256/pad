@@ -7,8 +7,8 @@
   function padArrayCheck ( $parm )         { return padField ( $parm, 3       ); } 
   function padArrayValue ( $parm )         { return padField ( $parm, 4       ); } 
   
-  function padParmCheck  ( $parm )         { return padField ( $parm, 5       ); } 
-  function padParmValue  ( $parm )         { return padField ( $parm, 6       ); } 
+  function padOptCheck  ( $parm )         { return padField ( $parm, 5       ); } 
+  function padOptValue  ( $parm )         { return padField ( $parm, 6       ); } 
   
   function padTagCheck   ( $parm         ) { return padField ( $parm, 7       ); } 
   function padTagValue   ( $parm, $lvl=0 ) { return padField ( $parm, 8, $lvl ); } 

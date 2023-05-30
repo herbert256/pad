@@ -2,7 +2,9 @@
 
   $padCallPHP = $padCallOB = '';
 
-  if ( padExists ( $padCall ) )
-    include pad . 'call/_call.php';
+  if ( ! padExists ( $padCall ) )
+    return;
+
+  include pad . 'call/_call.php';
 
 ?>

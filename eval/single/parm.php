@@ -1,5 +1,5 @@
 <?php
  
-  return padParmValue ($name, 1);
+  return padOptValue ($name, 1);
 
 ?>

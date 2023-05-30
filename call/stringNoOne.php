@@ -1,9 +1,11 @@
 <?php
 
+  $padCallPHP = $padCallOB = '';
+
   if ( ! padExists ( $padCall ) )
     return '';
 
-  include pad . 'call/_once.php';
+  include pad . 'call/_call.php'
 
   if     ( is_array($padCallPHP) ) $padCallPHP = padMakeContent ( $padCallPHP );
   elseif ( $padCallPHP === TRUE  ) $padCallPHP = '';

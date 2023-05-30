@@ -1,9 +1,9 @@
 <?php
 
-  if ( strpos ( $padBuild, '@start@') === FALSE ) $padBuild = "@start@$padBuild";
-  if ( strpos ( $padBuild, '@end@')   === FALSE ) $padBuild = "$padBuild@end@";
+  if ( strpos ( $padBuildPage, '@start@') === FALSE ) $padBuildPage = "@start@$padBuildPage";
+  if ( strpos ( $padBuildPage, '@end@')   === FALSE ) $padBuildPage = "$padBuildPage@end@";
 
-  $padBuild = str_replace ( '@start@', "{padBuildArray}",  $padBuild );
-  $padBuild = str_replace ( '@end@',   '{/padBuildArray}', $padBuild );
+  $padBuildPage = str_replace ( '@start@', "{padBuildArray}",  $padBuildPage );
+  $padBuildPage = str_replace ( '@end@',   '{/padBuildArray}', $padBuildPage );
     
 ?>

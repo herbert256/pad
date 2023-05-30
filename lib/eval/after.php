@@ -111,7 +111,7 @@
 
         $result[$k][1] = 'VAL';  
 
-        $tmp = padParmValue ( $one[0], 1 );
+        $tmp = padOptValue ( $one[0], 1 );
 
         if ( is_array($tmp) ) {
           $result[$k][0] = '*ARRAY*';

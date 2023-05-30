@@ -1,9 +1,9 @@
 <?php
 
-  $curl = padCurl ( "$padHost$padScript?$item&padInclude" );
+  $curl = getPage ($item, 1);
 
   if ( ! str_starts_with ( $curl ['result'], '2') )
-    padRedirect ($item);
+    padRedirect ("$item&noShow=1");
 
   $title = $item;
   $new   = $curl ['data'];

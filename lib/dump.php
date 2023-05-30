@@ -453,6 +453,8 @@
 
     $chk3 = [ 'padPage','padSesID','padReqID','padRefID','PHPSESSID' ];
 
+    $chk4 = [ 'padOptionsEnd','padOptionsStart','padLevelVars' ];
+
     $settings = padFileGetContents(pad . 'config/config.php');
 
     foreach ($GLOBALS as $key => $value)
@@ -484,6 +486,10 @@
       elseif ( in_array ( $key, $chk3 ) )
         
         $ids [$key] = $value;
+
+      elseif ( in_array ( $key, $chk4 ) )
+        
+        $cfg [$key] = $value;
 
       elseif ( in_array ( $key, $chk1 ) )
         
@@ -617,7 +623,8 @@
     ob_start (); padDumpXdebug    ();                          padDumpFile ( 'xdebug-exc',  ob_get_clean (), $dir );
     ob_start (); padDumpGlobals   ();                          padDumpFile ( 'globals',     ob_get_clean (), $dir );
     ob_start (); padDumpCurl      ( $crl );                    padDumpFile ( 'curl',        ob_get_clean (), $dir );
-
+    ob_start (); padDumpHistory   ();                          padDumpFile ( 'history',     ob_get_clean (), $dir );
+   
   }
 
 

@@ -2,6 +2,9 @@
 
   $padBuildBase = '@pad@';
 
+  if ( isset ($padInclude) or isset ( $_REQUEST ['padInclude'] ) ) 
+    return $padBuildBase;
+
   foreach ( $padBuildDirs as $padBuildDir ) {
 
     $padBuildInit = str_replace ( '@content@', '@pad@', padFileGetContents ( "$padBuildDir/_inits.html" ) );

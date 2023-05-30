@@ -64,13 +64,23 @@
 
       $parts [$key] ['part'] = $part;
  
-      if ( $refLink and $key <> array_key_last ($source))
+      if ( $refLink and $key <> array_key_last ($source)) {
+
         $parts [$key] ['link'] = "reference/reference&reference=$link";
-      elseif ( $key == array_key_last ($source) ) 
+
+      } elseif ( $key == array_key_last ($source) ) {
+
         $parts [$key] ['link'] = '';
-      else
+
+      } else {
+
         $parts [$key] ['link'] =  $link;
-   
+
+        if ( $part == 'regression')
+          $parts [$key] ['link'] .= '&fromMenu=1';
+
+      }
+
     }
 
     return $parts;

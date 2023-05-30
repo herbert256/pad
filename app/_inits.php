@@ -1,5 +1,8 @@
 <?php
-  
+
+  if ( inDocumentation () and ! isset ($_REQUEST['noShow']) and ! isset ($_REQUEST['padInclude']) )
+    padRedirect ("reference/show&item=$padPage");
+
   $one       = padCorrectPath ( $one       ?? 'hello/index'     );
   $item      = padCorrectPath ( $item      ?? 'hello/index'     );
   $reference = padCorrectPath ( $reference ?? 'tags/properties' );

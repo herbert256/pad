@@ -12,12 +12,12 @@
   //
   //  ============================================================================
 
-  $padUname = strtolower ( php_uname('s') );
+  $padOS = substr ( strtolower ( php_uname('s') ), 0, 3);
 
-  if     ( str_starts_with ( $padUname, 'linux'  ) ) $padHome = '/home/herbert';
-  elseif ( str_starts_with ( $padUname, 'darwin' ) ) $padHome = '/Users/herbert';
-  elseif ( str_starts_with ( $padUname, 'win'    ) ) $padHome = '/xampp';
-  else                                               $padHome = '/oops/not/found';
+  if     ( $padOS == 'lin' ) $padHome = '/home/herbert';
+  elseif ( $padOS == 'dar' ) $padHome = '/Users/herbert';
+  elseif ( $padOS == 'win' ) $padHome = '/xampp';
+  else                       $padHome = '/oops/no/os/found';
 
   define ( 'pad',     "$padHome/pad/"     ); // Home of PAD itself
   define ( 'padApp',  "$padHome/pad/app/" ); // The PAD application files

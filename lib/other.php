@@ -1,5 +1,31 @@
 <?php
 
+
+  function padTrueFalse ( $input, &$true, &$false ) {
+
+    $true  = $input;
+    $false = '';
+
+    $list = padOpenCloseList ( $true ) ;
+    $pos  = strpos ( $true, '{else}');
+
+    while ( $pos !== FALSE) {
+      
+      if  ( padOpenCloseCount ( substr ( $true, 0, $pos ), $list) ) {
+        $false = substr ( $true, $pos+6  );
+        $true  = substr ( $true, 0, $pos );
+        return TRUE;
+      }
+  
+      $pos = strpos ( $true, '{else}', $pos+1);
+
+    }
+
+    return FALSE;
+
+  }
+
+
   function padCorrectPath ( $in ) {
 
     return str_replace ('\\',  '/', $in );
