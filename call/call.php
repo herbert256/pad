@@ -7,4 +7,6 @@
 
   include pad . 'call/_call.php';
 
+  return $padCallOB;
+
 ?>

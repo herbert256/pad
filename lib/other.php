@@ -1,7 +1,7 @@
 <?php
 
 
-  function padSetTrueFalse ( $input, &$true, &$false ) {
+  function padGetTrueFalse ( $input, &$true, &$false ) {
 
     $true  = $input;
     $false = '';

@@ -14,7 +14,7 @@
 
     if ( is_array ($padCallPHP) or $padCallPHP === TRUE or $padCallPHP === FALSE or $padCallPHP === NULL ) {
 
-      $todo=1;// ToDo: What to do with $padCallOB in this case ?
+      $todo=1; // ToDo: What to do with $padCallOB in this case ?
       
     } else
 

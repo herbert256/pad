@@ -1,25 +1,35 @@
 <?php
 
-
   $padTagGo .= "_tags/". $padTag [$pad];
-
-  $padTagContent = padFileGetContents ("$padTagGo.html");
 
   $padCall   = "$padTagGo.php";
   $padTagPhp = include pad . 'call/anyNoOne.php';
 
-  $padTagContent = $padCallOB . $padTagContent;
+  if ( ! is_array($padTagPhp) and $padTagPhp !== TRUE and $padTagPhp !== FALSE and $padTagPhp !== NULL )
+    $padTagAdd .= $padTagPhp;
+  else
+    $padTagAdd = '';
+ 
+  $padTagContent = $padCallOB . $padTagAdd . padFileGetContents ("$padTagGo.html");
 
-  if ( is_array($padTagPhp) ) {
-    $padContent .= $padTagContent;
-    return $padTagPhp;
-  }
+  padGetTrueFalse ( $padTagContent, $padTagTrue, $padTagFalse );
 
-  if ( $padTagPhp !== TRUE and $padTagPhp !== FALSE and $padTagPhp !== NULL )
-    return $padTagContent . $padTagPhp;
+  if     ( $padTagPhp === TRUE       ) $padTagTrueFalse = TRUE;
+  elseif ( $padTagPhp === FALSE      ) $padTagTrueFalse = FALSE;
+  elseif ( ! is_array ( $padTagPhp ) ) $padTagTrueFalse = TRUE;
+  elseif ( count ( $padTagPhp )      ) $padTagTrueFalse = TRUE;
+  else                                 $padTagTrueFalse = FALSE;
 
-  if ( $padTagPhp === TRUE AND $padTagContent <> '' )
-    return $padTagContent;
+  if ( $padTagTrueFalse === FALSE )
+    $padFalse [$pad] .= $padTagFalse;
+
+if ( is_array ( $padTagPhp ) ) {
+  $padData [$pad] = $padTagPhp;
+  
+}
+
+  if ( $padTagPhp === TRUE AND $padTagTrue <> '' )
+    return $padTagTrue;
 
   return $padTagPhp;
 

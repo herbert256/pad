@@ -6,7 +6,7 @@
   $padBuildBase = include pad . 'build/base.php';
   $padBuildPage = include pad . 'build/page.php';
 
-  $padBase [$pad] = $padBuildLib . str_replace ( '@pad@', $padBuildPage, $padBuildBase );;
+  $padBase [$pad] = $padBuildLib . str_replace ( '@pad@', $padBuildPage, $padBuildBase );
 
   include pad . 'occurrence/start.php';
 

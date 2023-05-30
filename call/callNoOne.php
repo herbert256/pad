@@ -10,4 +10,6 @@
   if ($padCallPHP === 1)
     $padCallPHP = '';
 
+  return $padCallOB;
+
 ?>

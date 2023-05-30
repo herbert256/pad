@@ -8,12 +8,10 @@
   }
 
   $padCall = padApp . "$padPage.php";
-  include pad . 'call/callNoOne.php';
+  $padBuildHtml .= include pad . 'call/callNoOne.php';
 
   if ( $padCallPHP === NULL )
     return '';
-
-  $padBuildHtml .= $padCallOB;
 
   if     ( is_array ( $padCallPHP ) ) $padBuild = padData ( $padCallPHP );
   elseif ( $padCallPHP === FALSE    ) $padBuild = [];
