@@ -1,0 +1,32 @@
+{duration 'regression'}
+
+  {files}
+
+    {if $status eq 'error'}
+      <font size="+1"><b>
+    {/if}
+
+    <a 
+
+      {if $status eq 'error'} 
+        style="color:black;background-color: #f44336;"
+      {else}
+        style="color:blue;"
+      {/if} 
+
+      href="{$padGo}development/show&item={$item}">{item}</a>
+
+
+    {if $status eq 'error'}
+      </b></font>
+    {/if}
+
+    &nbsp; &nbsp;
+
+  {/files}
+
+{/duration}
+
+{durationGet}
+
+<!-- PAD: NO REGRESSION -->

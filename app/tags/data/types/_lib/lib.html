@@ -1,0 +1,15 @@
+{content 'row'}
+  <tr>
+    <td>{$name}</td> 
+    <td>{$phone}</td>
+  </tr>
+{/content}
+
+{content 'show'} 
+  <h4>{$1}</h4>
+  <table border=1>
+    {pad data='{$1}'}
+      {row}
+    {/pad}
+  </table>
+{/content}

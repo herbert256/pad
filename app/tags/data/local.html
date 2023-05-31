@@ -1,0 +1,30 @@
+{content 'myContent'}
+
+  <h3>{&departments:option:data}</h3>
+
+  <table border=1>
+
+    <tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    @start@
+      <tr>
+        <td> {$department} </td>
+        <td> {$manager} </td>
+        <td> {$phone} </td>
+      </tr>
+    @end@
+
+  </table>
+
+{/content}
+
+{pad data='departments/departments',      content='myContent'}
+{pad data='departments/departments.php',  content='myContent'}
+{pad data='departments/departments.csv',  content='myContent'}
+{pad data='departments/departments.xml',  content='myContent'}
+{pad data='departments/departments.json', content='myContent'}
+{pad data='departments/departments.yaml', content='myContent'}

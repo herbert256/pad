@@ -1,0 +1,29 @@
+<p>Include an other page in the current page, 5 ways of doing this.</p>
+
+{table}
+
+{demo}
+{page 'hello', type='include', include, $color='oran'}
+{page 'hello', type='build',   include, $color='orange'}
+{page 'hello', type='get',     include, $color='red'}
+{page 'hello', type='sandbox', include, $color='purple'}
+{page 'hello', type='ajax',    include, $color='blue'}
+{/demo}
+
+{demo}
+{page 'hello', type='include', $color='green'}
+{page 'hello', type='build',   $color='orange'}
+{page 'hello', type='get',     $color='red'}
+{page 'hello', type='sandbox', $color='purple'}
+{page 'hello', type='ajax',    $color='blue'}
+{/demo}
+
+{/table}
+
+<hr><p>The included pages</p>
+
+{example 'hello',      skipResult, skipClose}
+{example 'hello/php',  skipResult, skipOpen, skipClose}
+{example 'hello/html', skipResult, skipOpen}
+
+<!-- PAD: NO REGRESSION -->

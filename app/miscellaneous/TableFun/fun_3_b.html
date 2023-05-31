@@ -1,0 +1,12 @@
+{data 'row'   } [1,2,3]     {/data}
+{data 'column'} [1,2,3,4,5] {/data}
+
+<table border='1'>
+  {row}
+    <tr>
+      {column}
+        {cell ($row*10) + $column} 
+      {/column}
+    </tr>
+  {/row}
+</table>

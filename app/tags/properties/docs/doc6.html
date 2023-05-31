@@ -1,0 +1,30 @@
+<h2>keys</h2>
+
+{block}
+  Normally the keys of a PAD data collection are numbered 0..N,<br> 
+  but sometimes they have other values.
+{/block}
+
+<br>
+
+{present}
+<table border="1">
+  {myData}
+    {first}
+      {keys} 
+        <tr>
+          <td>{$name}</td>
+          {value}
+            <td>
+              {fields}
+                {$name}: {$value} 
+                <br>
+              {/fields}
+            </td>
+          {/value}
+        </tr>
+      {/keys}
+    {/first}
+  {/myData}
+</table>
+{/present}

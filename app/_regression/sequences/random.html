@@ -1,0 +1,285 @@
+<p> 
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">sequence </font><font color="red">random<font color="black">,</font>&nbsp;rows<font color="black">=</font>3</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$random</font>}</b>&nbsp;<br /><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->7713868836831610591 
+5419796180197148497 
+3903137196286242443<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">sequence </font><font color="red">random<font color="black">,</font>&nbsp;max<font color="black">=</font>100<font color="black">,</font>&nbsp;rows<font color="black">=</font>10</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$random</font>}</b>&nbsp;<br /><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->95 
+16 
+99 
+48 
+32 
+67 
+26 
+24 
+50 
+54<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">sequence </font><font color="red">random<font color="black">,</font>&nbsp;min<font color="black">=</font>11<font color="black">,</font>&nbsp;max<font color="black">=</font>13<font color="black">,</font>&nbsp;rows<font color="black">=</font>20</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$random</font>}</b>&nbsp;<br /><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->13 
+12 
+11 
+11 
+12 
+11 
+12 
+13 
+13 
+11 
+12 
+13 
+12 
+13 
+11 
+13 
+13 
+12 
+11 
+11<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">range </font><font color="red">'11..20'<font color="black">,</font>&nbsp;random<font color="black">,</font>&nbsp;rows<font color="black">=</font>10</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$range</font>}</b>&nbsp;<br /><b>{/<font color="blue">range</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11 
+18 
+15 
+17 
+17 
+14 
+11 
+11 
+20 
+19<!-- END DEMO RESULT --></span></code></td></tr>
+</table>
+</p>
+<h3>Random vs shuffle</h3>
+<p> 
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">range </font><font color="red">'A..Z'</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$range</font>}</b><br /><b>{/<font color="blue">range</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->A
+B
+C
+D
+E
+F
+G
+H
+I
+J
+K
+L
+M
+N
+O
+P
+Q
+R
+S
+T
+U
+V
+W
+X
+Y
+Z<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">range </font><font color="red">'A..Z'<font color="black">,</font>&nbsp;shuffle</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$range</font>}</b><br /><b>{/<font color="blue">range</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->L
+K
+E
+Z
+A
+Y
+Q
+W
+F
+J
+B
+S
+R
+M
+G
+N
+X
+P
+O
+D
+I
+V
+U
+H
+T
+C<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">range </font><font color="red">'A..Z'<font color="black">,</font>&nbsp;shuffle<font color="black">,</font>&nbsp;sort</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$range</font>}</b><br /><b>{/<font color="blue">range</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->A
+B
+C
+D
+E
+F
+G
+H
+I
+J
+K
+L
+M
+N
+O
+P
+Q
+R
+S
+T
+U
+V
+W
+X
+Y
+Z<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">range </font><font color="red">'A..Z'<font color="black">,</font>&nbsp;random</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$range</font>}</b><br /><b>{/<font color="blue">range</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->M
+B
+I
+K
+I
+N
+K
+H
+F
+F
+F
+Y
+P
+F
+M
+R
+Y
+S
+R
+D
+U
+B
+U
+J
+N
+Q<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">range </font><font color="red">'A..Z'<font color="black">,</font>&nbsp;random<font color="black">,</font>&nbsp;sort</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$range</font>}</b><br /><b>{/<font color="blue">range</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->A
+A
+B
+B
+H
+I
+J
+K
+K
+M
+O
+P
+Q
+Q
+R
+R
+S
+T
+T
+U
+U
+W
+X
+X
+Y
+Z<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">range </font><font color="red">'A..Z'<font color="black">,</font>&nbsp;random<font color="black">,</font>&nbsp;unique<font color="black">,</font>&nbsp;sort</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$range</font>}</b><br /><b>{/<font color="blue">range</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->A
+C
+D
+E
+G
+H
+I
+J
+L
+N
+O
+Q
+R
+S
+T
+U
+V
+W
+Y<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">range </font><font color="red">'A..Z'<font color="black">,</font>&nbsp;reverse</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$range</font>}</b><br /><b>{/<font color="blue">range</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Z
+Y
+X
+W
+V
+U
+T
+S
+R
+Q
+P
+O
+N
+M
+L
+K
+J
+I
+H
+G
+F
+E
+D
+C
+B
+A<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">range </font><font color="red">'A..Z'<font color="black">,</font>&nbsp;reverse<font color="black">,</font>&nbsp;sort</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green">$range</font>}</b><br /><b>{/<font color="blue">range</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->A
+B
+C
+D
+E
+F
+G
+H
+I
+J
+K
+L
+M
+N
+O
+P
+Q
+R
+S
+T
+U
+V
+W
+X
+Y
+Z<!-- END DEMO RESULT --></span></code></td></tr>
+</table>
+</p>

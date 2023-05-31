@@ -1,0 +1,66 @@
+{table}
+
+{demo}{range '4..16', name='myRange'}{/demo}
+
+{demo}{sequence 'myRange', power=2}
+  {$myRange}  
+{/sequence}{/demo}   
+
+{demo}{power 2, sequence='myRange'}
+  {$power}  
+{/power}{/demo}   
+
+{demo}{myRange power=2}
+  {$myRange}  
+{/myRange}{/demo}   
+
+{/table}
+
+<table border=0><tr><td>
+
+{table}
+
+{demo}{range '1..3', name='one'}{/demo}
+{demo}{range '4..6', name='two'}{/demo}
+
+{demo}{one} {$one} {/one}{/demo}
+{demo}{two} {$two} {/two}{/demo}
+
+{demo}{one append='two'} {$one} {/one}{/demo}
+
+{demo}{one} {$one} {/one}{/demo}
+{demo}{two} {$two} {/two}{/demo}
+
+{/table} 
+</td><td>&nbsp;</td><td>
+{table}
+
+{demo}{range '1..3', name='one'}{/demo}
+{demo}{range '4..6', name='two'}{/demo}
+
+{demo}{one} {$one} {/one}{/demo}
+{demo}{two} {$two} {/two}{/demo}
+
+{demo}{one append='two'} {/demo}
+
+{demo}{one} {$one} {/one}{/demo}
+{demo}{two} {$two} {/two}{/demo}
+ 
+{/table} 
+</td><td>&nbsp;</td><td>
+{table}
+
+{demo}{range '1..3', name='one'}{/demo}
+{demo}{range '4..6', name='two'}{/demo}
+
+{demo}{one} {$one} {/one}{/demo}
+{demo}{two} {$two} {/two}{/demo}
+
+{demo}{one append='two', name='two'} {/demo}
+
+{demo}{one} {$one} {/one}{/demo}
+{demo}{two} {$two} {/two}{/demo}
+
+{/table}
+ 
+</td></tr></table>
