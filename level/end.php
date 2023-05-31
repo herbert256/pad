@@ -32,7 +32,6 @@
     include pad . 'isolate/end.php';
 
   padResetLvl ($pad);
-
   
   $pad--;
 

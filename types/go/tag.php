@@ -2,20 +2,11 @@
 
   $padTagGo .= "_tags/". $padTag [$pad];
 
-  $padTagContent = padFileGetContents ("$padTagGo.html");
+  $padCall = "$padTagGo.php";
+  include pad . 'call/callNoOne.php';
 
-  $padCall   = "$padTagGo.php";
-  $padTagPhp = include pad . 'call/anyNoOne.php';
+  $padTagContent = $padCallOB . padFileGetContents ("$padTagGo.html");
 
-  if ( is_array($padTagPhp) )
-    return $padTagPhp;
-
-  if ( $padTagPhp !== TRUE and $padTagPhp !== FALSE and $padTagPhp !== NULL )
-    return $padTagContent . $padTagPhp;
-
-  if ( $padTagPhp === TRUE AND $padTagContent <> '' )
-    return $padTagContent;
-
-  return $padTagPhp;
+  return $padCallPHP;
 
 ?>
