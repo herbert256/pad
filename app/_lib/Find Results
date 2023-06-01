@@ -1,0 +1,129 @@
+Searching 1165 files for "@con"
+
+~/pad/app/tags/properties/option.html:
+    1: @go@concepts/options_variables_parameters@
+
+~/pad/app/tags/properties/options.html:
+    1: @go@concepts/options_variables_parameters@
+
+~/pad/app/tags/properties/parameter.html:
+    1: @go@concepts/options_variables_parameters@
+
+~/pad/app/tags/properties/parameters.html:
+    1: @go@concepts/options_variables_parameters@
+
+~/pad/app/tags/properties/variable.html:
+    1: @go@concepts/options_variables_parameters@
+
+~/pad/app/tags/properties/variables.html:
+    1: @go@concepts/options_variables_parameters@
+
+6 matches across 6 files
+
+
+Searching 1162 files for "@start@"
+
+~/pad/app/_includes/menu.html:
+    2    {include 'lineOpen'}
+    3    <font size="-1">
+    4:   @start@
+    5      {if $link}<a href="{$padGo}{$link}">{/if}{$part}{if $link}</a>{/if} {notLast}/{/notLast}
+    6    @end@
+
+~/pad/app/_lib/colors.php:
+   31  
+   32     $source = str_replace ('@cargo@', '<font color="black"><b><font color="blue">xx@<b>cargo</b>@</font></b></font>', $source);
+   33:    $source = str_replace ('@start@',   '<font color="black"><b><font color="blue">@<b>start</b>@</font></b></font>',   $source);
+   34     $source = str_replace ('@end@',     '<font color="black"><b><font color="blue">@<b>end</b>@</font></b></font>',     $source);
+   35     $source = str_replace ('@tidy@',    '<font color="black"><b><font color="blue">@<b>tidy</b>@</font></b></font>',   $source);
+
+~/pad/app/_tags/durationGet.html:
+    2    <table border=1>
+    3  
+    4:   @start@
+    5  
+    6      <tr>
+
+~/pad/app/_tags/extra.html:
+   13        </tr>
+   14     
+   15:       @start@
+   16  
+   17          <tr>
+
+~/pad/app/_tags/z12.html:
+    1  <h3>Hello World 1</h3>
+    2  
+    3: @start@
+    4    <h3>Hello World {$hi}</h3>
+    5  @end@
+
+~/pad/app/_tags/z25.html:
+    1  <h3>Hello World 3</h3>
+    2  
+    3: @start@
+    4    <h3>Hello World {$hi}</h3>
+    5  @end@
+
+~/pad/app/concepts/php_and_html/z12.html:
+    1  <h3>Hello World 1</h3>
+    2  
+    3: @start@
+    4    <h3>Hello World {$hi}</h3>
+    5  @end@
+
+~/pad/app/concepts/php_and_html/z25.html:
+    1  <h3>Hello World 3</h3>
+    2  
+    3: @start@
+    4    <h3>Hello World {$hi}</h3>
+    5  @end@
+
+~/pad/app/tags/content/index.html:
+   82        <th>Phone</th>
+   83      </tr>
+   84:     @start@
+   85        <tr>
+   86          <td>{$name}</td> 
+   ..
+  126          <th> Phone </th>
+  127        </tr>
+  128:       @start@
+  129          <tr>
+  130            <td bgcolor="{$color1}"> {$name}  </td>
+  ...
+  147          <th> Phone </th>
+  148        </tr>
+  149:       @start@
+  150          <tr>
+  151            <td bgcolor="{$1}"> {$name}  </td>
+
+~/pad/app/tags/data/local.html:
+   11      </tr>
+   12  
+   13:     @start@
+   14        <tr>
+   15          <td> {$department} </td>
+
+~/pad/app/tags/options/sort.html:
+    8        <th> file     </th>
+    9      </tr>
+   10:     @start@
+   11        <tr>
+   12          <td> {$volume}   </td>
+
+~/pad/level/start.php:
+   38      include pad . 'level/split/after1.php';
+   39  
+   40:   if ( padOpenCloseOk ( $padBase[$pad], '@start@') )
+   41      return include pad . 'level/split/before1.php';
+   42  
+
+~/pad/level/split/before1.php:
+    3    $padBefore [$pad] = 1;
+    4  
+    5:   list ( $padHtml[$pad], $padBase[$pad] ) = explode ( '@start@', $padBase[$pad], 2 );
+    6  
+    7    $padHtml[$pad] = '{true}' . $padHtml[$pad] . '{/true}';
+
+15 matches across 13 files

@@ -1,0 +1,57 @@
+{table}{demo}
+
+{content 'myContent'}
+  This is the true cargo from the called tag. <br>
+{else}
+  This is the false cargo from the called tag. <br>
+{/content}
+
+{/demo}{demo}
+
+{myContent cargo='replace', true}
+  This is the true base cargo <br>
+{else}
+  This is the false base cargo <br>
+{/myContent}
+
+{/demo}{demo}
+
+{myContent cargo='top', true}
+  This is the true base cargo <br>
+{else}
+  This is the false base cargo <br>
+{/myContent}
+
+{/demo}{demo}
+
+{myContent cargo='bottom', true}
+  This is the true base cargo <br>
+{else}
+  This is the false base cargo <br>
+{/myContent}
+
+{/demo}{demo}
+
+{myContent cargo='replace', false}
+  This is the true base cargo <br>
+{else}
+  This is the false base cargo <br>
+{/myContent}
+
+{/demo}{demo}
+
+{myContent cargo='top', false}
+  This is the true base cargo <br>
+{else}
+  This is the false base cargo <br>
+{/myContent}
+
+{/demo}{demo}
+
+{myContent cargo='bottom', false}
+  This is the true base cargo <br>
+{else}
+  This is the false base cargo <br>
+{/myContent}
+
+{/demo}{/table}

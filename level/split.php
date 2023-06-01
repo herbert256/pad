@@ -1,5 +1,7 @@
 <?php
 
+  $padCargo = $padTrue [$pad];
+
   $padOpenClose = padOpenCloseList ( $padTrue [$pad]) ;
   
   if ( $padGiven [$pad] )

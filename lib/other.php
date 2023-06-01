@@ -1,6 +1,21 @@
 <?php
 
 
+  function padCargo ( $base, $new ) {
+
+    $merge = padTagParm ('cargo');
+
+    if     ( strpos ( $new, '@cargo@'  ) !== FALSE ) return str_replace ( '@cargo@', $base, $new );
+    elseif ( strpos ( $base, '@cargo@' ) !== FALSE ) return str_replace ( '@cargo@', $new, $base );
+    elseif ( $merge == 'replace'                   ) return $new;
+    elseif ( $merge == 'top'                       ) return $new . $base;
+    elseif ( $merge == 'bottom'                    ) return $base . $new;
+    elseif ( $new                                  ) return $new;
+    else                                             return $base;
+
+  }
+
+
   function padGetTrueFalse ( $input, &$true, &$false ) {
 
     $true  = $input;
@@ -468,10 +483,16 @@
 
 
   function padUnescape ( $string ) {
-    return str_replace ( ['&open;','&close;','&pipe;', '&eq;','&comma;'], ['{','}','|','=',','], $string );
+
+    return str_replace ( [ '&open;','&close;','&pipe;', '&eq;','&comma;','&pickup;' ], 
+                         [ '{',     '}','     |',       '=',   ',',      '@'       ], 
+                         $string );
   }
   function padEscape ( $string ) {
-    return str_replace ( ['{','}','|','=',','], ['&open;','&close;','&pipe;', '&eq;','&comma;'], $string );
+
+    return str_replace ( ['{','}','|','=',',','@'], 
+                         ['&open;','&close;','&pipe;', '&eq;','&comma;','&pickup;'], 
+                         $string );
   }
 
 

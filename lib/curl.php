@@ -35,8 +35,10 @@
       foreach ( $input['get'] as $key => $val ) 
         $url = padAddGet ( $url, $key, $val );
 
-    if ( str_starts_with ( strtolower ( $url ), strtolower ( $GLOBALS['padHost'] ) ) )
-      $url = padAddIds ( $url );
+    if ( str_starts_with ( strtolower ( $url ), strtolower ( $GLOBALS['padHost'] ) ) ) {
+      $input ['cookies'] ['padSesID'] = $GLOBALS ['padSesID'];
+      $input ['cookies'] ['padReqID'] = $GLOBALS ['padReqID'];
+    }
 
     $output ['url'] = $url;
 

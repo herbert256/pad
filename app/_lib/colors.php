@@ -3,6 +3,8 @@
 
   function padHighLight ($source) {
 
+    $source = padUnescape ($source);
+
     return str_replace(
              '<code>', 
              '<code style="font-family:courier new,courier,monospace;font-size:12px;">', 
@@ -29,7 +31,7 @@
 
    $source = padHighLight (trim($source));
 
-   $source = str_replace ('@content@', '<font color="black"><b><font color="blue">@<b>content</b>@</font></b></font>', $source);
+   $source = str_replace ('@cargo@', '<font color="black"><b><font color="blue">@<b>cargo</b>@</font></b></font>', $source);
    $source = str_replace ('@start@',   '<font color="black"><b><font color="blue">@<b>start</b>@</font></b></font>',   $source);
    $source = str_replace ('@end@',     '<font color="black"><b><font color="blue">@<b>end</b>@</font></b></font>',     $source);
    $source = str_replace ('@tidy@',    '<font color="black"><b><font color="blue">@<b>tidy</b>@</font></b></font>',   $source);
