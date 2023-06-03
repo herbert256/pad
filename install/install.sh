@@ -10,16 +10,16 @@ fi
 sed -i "s/var\/www/home\/$usr/g"                 /etc/apache2/apache2.conf
 sed -i "s/var\/www\/html/home\/$usr\/pad\/www/g" /etc/apache2/sites-enabled/000-default.conf
 
-chmod 755 /home/$usr/pad/apps/pad/scripts/*
+chmod 755 /home/$usr/pad/app/_scripts/*
 
 mysql < /home/$usr/pad/install/database.sql
 mysql < /home/$usr/pad/cache/cache.sql
 
-mysql < /home/$usr/pad/apps/pad/config/demo.sql
-mysql < /home/$usr/pad/apps/pad/miscellaneous/ClassicModels/database/classicmodels.sql
+mysql < /home/$usr/pad/app/_config/demo.sql
+mysql < /home/$usr/pad/app/miscellaneous/ClassicModels/database/classicmodels.sql
 
 service apache2 stop
 service apache2 start
 
-cd /var/home/$usr/www
+cd /home/$usr/pad/www
 ln -s ../../data data
