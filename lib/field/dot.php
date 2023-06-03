@@ -1,11 +1,26 @@
 <?php
 
-
   function padDot ( $field, $type ) {
 
     global $pad;
 
+    $names = padExplode ( $field, ':' , 2);
+
+    if ( count ($names) == 2 ) {
+      $todo = TRUE;
+      // sequence / table / global / current / data
+    }
+
     $names = padExplode ( $field, '.' );
+    $check = $names[0] ?? '';
+
+    if ( count ($names) == 2 )
+      if ( isset( $GLOBALS['padSeqStore'] [$check] ) {
+        if ( strpos($name, '<') !== FALSE or strpos($name, '>') !== FALSE or $name == '*' )  {
+          $store = $names[0];
+          unset ($names[0]);
+          return padDotSearch ( $GLOBALS['padSeqStore'] [$store], $names, $type)
+        }
 
     if ( count ( $names ) == 1 )
       return INF;
@@ -39,6 +54,32 @@
   }
 
 
+  function padDotGetIdx ($current, $name) {
+
+    $start = ( strpos($name, '<') !== FALSE );
+  
+    if ( $start )
+      $parts = padExplode ($name, '<');
+    else
+      $parts = padExplode ($name, '>');
+
+    $key   = intval ($parts[0] ?? 1);
+    $keys  = array_keys ( $current );
+    $count = count ($keys);
+
+    if ( $key < 1 or $key > $count )
+      return INF;
+
+    if ( $start )
+      $idx = $key - 1;
+    else
+      $idx = count ($keys) - $key;
+
+    return $keys [$idx];
+
+  }
+
+
   function padDotSearch ( $current, $names, $type) {
   
     if ( is_object ($current) or is_resource ($current) )
@@ -52,13 +93,21 @@
       if ( $name == '*')
         return padDotAny ( $key, $current, $type, $names );
 
-      if ( $name == '<') {
+     if ( $name == '<') {
         $current = &$current [array_key_first($current)];
         continue;
       }
 
       if ( $name == '>') {
         $current = &$current [array_key_last($current)];
+        continue;
+      }
+
+      if ( strpos($name, '<') !== FALSE  or strpos($name, '>') !== FALSE )  {
+        $idx = padDotGetIdx($current, $name);
+        if ($idx === INF)
+          return INF;
+        $current = &$current [$idx];
         continue;
       }
 
