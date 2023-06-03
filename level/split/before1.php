@@ -4,6 +4,6 @@
 
   list ( $padHtml[$pad], $padBase[$pad] ) = explode ( '@start@', $padBase[$pad], 2 );
 
-  $padHtml[$pad] = '{true}' . $padHtml[$pad] . '{/true}';
+  $padHtml[$pad] = '{pad}' . $padHtml[$pad] . '{/pad}';
    
 ?>

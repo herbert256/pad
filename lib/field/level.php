@@ -2,6 +2,9 @@
 
   function padFieldLevel ( $field, $type ) {
 
+    if ( strpos ( $field, '.') !== FALSE ) 
+      return padDot ( $field, $type);
+
     global $pad, $padCurrent, $padPrm, $padOpt, $padName, $padTable;
 
     if ( strlen($field) > 1 and substr($field,0,1) == '-' and is_numeric(substr($field,1)) ) {
