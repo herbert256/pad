@@ -1,29 +1,18 @@
-{range '25..100', name='myRange'}
+{pad name='cool', abc=123, 'fiets', $abc='banaan', $go='nuts', xyz=789, 12*15}
 
-{dump}
+  1 - {$tag.cool.option.xyz} <br>
+  2 - {$tag.option.xyz} <br>
+  3 - {$tag.cool.xyz} <br>
+  4 - {$tag.xyz} <br>
+  5 - {$option.xyz} <br>
+  6 - {$cool.option.xyz} <br>
+  7 - {$cool.xyz} <br>
+  8 - {$xyz} <br>
 
-<pre>
+<hr>
 
-10 = {$a.b.c.1}   <br>
-100 = {$a.b.c.10}   <br>
-<br>
-10 = {$a.b.c.<}   <br>
-250 = {$a.b.c.>}   <br>
+  1 - {$tag.option.<} <br>
+  2 - {$tag.option.*} <br>
+  3 - {$tag.option.>} <br>
 
-<br>
-10 = {$a.b.c.<1}   <br>
-250 = {$a.b.c.>1}   <br>
-
-<br>
-10 = {$a.b.c.1<}   <br>
-250 = {$a.b.c.1>}   <br>
-
-<br>
-20 = {$a.b.c.2<}   <br>
-240 = {$a.b.c.2>}   <br>
-
-<br>
-250 = {$a.b.c.25<}   <br>
-10 = {$a.b.c.25>}   <br>
-
-</pre>
+{/pad}

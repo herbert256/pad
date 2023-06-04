@@ -1,50 +1,55 @@
 <?php
 
+
   function padDot ( $field, $type ) {
 
-    global $pad;
+    global $pad, $padCurrent, $padTable, $padSeqStore, $padDataStore, $padName;
+    global $padOpt, $padPrm, $padSetLvl;
 
-    $names = padExplode ( $field, ':' , 2);
+    $parts = padExplode ( $field, '.', 2 );
+    $name  = $parts [0];
 
-    if ( count ($names) == 2 ) {
-      $todo = TRUE;
-      // sequence / table / global / current / data
+    if ( padExists ( pad . "dots/$name.php" )  ) {
+      $field = $parts [1];
+      return padDotPrefix ( $name, $field, $type );
     }
-
-    $names = padExplode ( $field, '.' );
-    $check = $names[0] ?? '';
-
-    if ( count ($names) == 2 )
-      if ( isset( $GLOBALS['padSeqStore'] [$check] ) {
-        if ( strpos($name, '<') !== FALSE or strpos($name, '>') !== FALSE or $name == '*' )  {
-          $store = $names[0];
-          unset ($names[0]);
-          return padDotSearch ( $GLOBALS['padSeqStore'] [$store], $names, $type)
-        }
-
-    if ( count ( $names ) == 1 )
-      return INF;
  
-    $first = array_shift($names);
+    for ( $i=$pad; $i >=0; $i-- ) {
 
-    for ( $i=$pad; $i; $i-- ) {
-
-      if ( isset ( $padCurrent [$i] [$first] ) ) {
-        $current = padDotSearch ( $padCurrent [$i] [$first], $names, $type ); 
+      if ( isset ( $padCurrent [$i] [$name] ) ) {
+        $current = padDotPrefix ( 'current', $field, $type );
         if ( $current !== INF ) 
           return $current;
       }
 
-      if ( isset ( $padTable [$i] [$first] ) ) {
-        $current = padDotSearch ( $padTable [$i] [$first], $names, $type ); 
+      if ( $padName [$i] == $name ) {
+        $current = padDotPrefix ( 'tag', $field, $type );
+        if ( $current !== INF ) 
+          return $current;
+      }
+
+      if ( isset ( $padTable [$i] [$name] ) ) {
+        $current = padDotPrefix ( 'table', $field, $type ); 
         if ( $current !== INF ) 
           return $current;
       }
 
     }
 
-    if ( isset ( $GLOBALS [$first] ) ) {
-      $current = padDotSearch ( $GLOBALS [$first], $names, $type ); 
+    if ( isset ( $padSeqStore [$name] ) ) {
+      $current = padDotPrefix ( 'sequence', $field, $type );
+      if ( $current !== INF ) 
+        return $current;
+    }
+
+    if ( isset ( $padDataStore [$name] ) ) {
+      $current =  padDotPrefix ( 'data', $field, $type );
+      if ( $current !== INF ) 
+        return $current;
+    }
+ 
+    if ( isset ( $GLOBALS [$name] ) ) {
+      $current = padDotPrefix ( 'global', $field, $type ); 
       if ( $current !== INF ) 
         return $current;
     }
@@ -54,29 +59,20 @@
   }
 
 
-  function padDotGetIdx ($current, $name) {
+  function padDotPrefix ( $prefix, $field, $type ) {
 
-    $start = ( strpos($name, '<') !== FALSE );
-  
-    if ( $start )
-      $parts = padExplode ($name, '<');
-    else
-      $parts = padExplode ($name, '>');
+    global $pad, $padCurrent, $padTable, $padSeqStore, $padDataStore, $padName;
+    global $padOpt, $padPrm, $padSetLvl;
+    
+    $names = padExplode ( $field, '.' ); 
+    $name  = array_shift ($names);
 
-    $key   = intval ($parts[0] ?? 1);
-    $keys  = array_keys ( $current );
-    $count = count ($keys);
+    $first  = $names [0] ?? '';
+    $second = $names [1] ?? '';
+    $third  = $names [2] ?? '';
 
-    if ( $key < 1 or $key > $count )
-      return INF;
-
-    if ( $start )
-      $idx = $key - 1;
-    else
-      $idx = count ($keys) - $key;
-
-    return $keys [$idx];
-
+    return include pad . "dots/$prefix.php";
+   
   }
 
 
@@ -153,6 +149,59 @@
 
     return INF;
 
+  }
+
+
+  function padDotGetValue ($current, $name) {
+
+    if ( ! is_array ($current) or ! count ($current) )
+      return INF;
+
+    if ( array_key_exists( $name, $current) )
+      return $current [$name];
+
+    if ( $name == '<' )
+      return $current [ array_key_first($current) ] ;
+
+    if ( $name == '>' )
+      return $current [ array_key_last($current) ] ;
+
+    if ( $name == '*' )
+      return $current [ array_rand ( $current ) ];
+
+    if ( strpos($name, '<') !== FALSE or strpos($name, '>') !== FALSE  ) {
+      $key = padDotGetIdx ($current, $name);
+      if ( $key !== INF)
+        return $current [$key];
+    }
+
+    return INF;
+
+  }
+
+
+  function padDotGetIdx ($current, $name) {
+
+    $start = ( strpos($name, '<') !== FALSE );
+  
+    if ( $start )
+      $parts = padExplode ($name, '<');
+    else
+      $parts = padExplode ($name, '>');
+
+    $key   = intval ($parts[0] ?? 1);
+    $keys  = array_keys ( $current );
+    $count = count ($keys);
+
+    if ( $key < 1 or $key > $count )
+      return INF;
+
+    if ( $start )
+      $idx = $key - 1;
+    else
+      $idx = count ($keys) - $key;
+
+    return $keys [$idx];
 
   }
 

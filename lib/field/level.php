@@ -55,6 +55,19 @@
         elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
       }
 
+    global $pad, $padOpt, $padPrm, $padSetLvl;
+
+    for ( $i=$pad; $i >= 0; $i-- ) {
+
+      if ( array_key_exists ( $field, $padPrm [$i] ) ) {
+        $work = $padPrm [$i] [$field];
+        if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
+        if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
+        elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
+      }
+
+    } 
+
     return INF;
     
   }
