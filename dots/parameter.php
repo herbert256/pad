@@ -1,27 +1,37 @@
 <?php
 
-  if ( count ($names) == 1 ) {
 
-    $item = $names [0];
+  if ( $name )
 
-    for ( $i=$pad; $i >= 0; $i-- ) 
-      if ( array_key_exists ( $padOpt [$i] [$item] ) )
-        return $padOpt [$i] [$item];
+    for ( $i=$pad; $i >= 0; $i-- )
+
+      if ( $padName [$i] == $name ) {
+
+        $padOptDot = $padOpt [$i];
+        unset ( $padOptDot [0] );  
+
+        $current = padDotSearch ( $padOptDot, $names, $type );
+
+        if ( $current !== INF ) 
+          return $current;
+
+      }
+
+
+  for ( $i=$pad; $i >= 0; $i-- ) {
+
+    $padOptDot = $padOpt [$i];
+    unset ( $padOptDot [0] );  
+
+    $current = padDotSearch ( $padOptDot, $names, $type );
+
+    if ( $current !== INF ) 
+      return $current;
 
   }
 
-  if ( count ($names) == 2 ) {
-
-    $tag  = $names [0];
-    $item = $names [1];
-
-    for ( $i=$pad; $i >= 0; $i-- ) 
-      if ( $padName [$i] == $tag )
-        if ( array_key_exists ( $padOpt [$i] [$item] ) )
-          return $padOpt [$i] [$item];
-
-  }
 
   return INF;
+
 
 ?>

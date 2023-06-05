@@ -33,27 +33,16 @@
     if ( is_object ($current) or is_resource ($current) )
       $current = (array) $current;
 
-    $names = explode('.', $field);
-
-    foreach ( $names as $name ) {
-
-      if ( ! array_key_exists ( $name, $current ) )
-        return INF;
-
-      if ( is_object ($current[$name]) or is_resource ($current[$name]) )
-        $current [$name] = (array) $current [$name];
-         
-       $current = &$current [$name];
-        
-    }
-
-    if ( ($type == 1 or $type == 2) and is_array($current) )
+    if ( ! array_key_exists($field, $current ) )
       return INF;
 
-    if ( ($type == 3 or $type == 4) and ! is_array($current) )
+    if ( ($type == 1 or $type == 2) and is_array($current[$field]) )
       return INF;
 
-    return $current;
+    if ( ($type == 3 or $type == 4) and ! is_array($current[$field]) )
+      return INF;
+
+    return $current [$field];
 
   }
   

@@ -1,8 +1,12 @@
 <?php
 
-  if ( ! isset ( $padDataStore [$name] ) )
-    return INF;
+  if ( $name ) {
 
-  return padDotSearch ( $padDataStore [$name], $names, $type);
+    return padDotSearch ( $padDataStore [$name], $names, $type );
+
+  }
+
+ return padDotSearch ( $padDataStore, $names, $type );
+
 
 ?>

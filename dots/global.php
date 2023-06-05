@@ -1,8 +1,14 @@
 <?php
 
-  if ( ! isset ( $GLOBALS [$name] ) )
-    return INF;
+  if ( $name ) {
 
-  return padDotSearch ( $GLOBALS [$name], $names, $type );
-  
+    if ( ! isset ( $GLOBALS [$name] ) )
+      return INF;
+
+    return padDotSearch ( $GLOBALS [$name], $names, $type );
+
+  }
+
+ return padDotSearch ( $GLOBALS, $names, $type );
+
 ?>

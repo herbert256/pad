@@ -1,13 +1,13 @@
 <?php
 
   if ( $name )
-    
+
     for ( $i=$pad; $i >= 0; $i-- )
 
       if ( $padName [$i] == $name ) {
 
-        $current = include pad . "dots/go/table.php";
-        
+        $current = padDotSearch ( $padData [$i], $names, $type );
+
         if ( $current !== INF ) 
           return $current;
 
@@ -15,7 +15,7 @@
 
   for ( $i=$pad; $i >= 0; $i-- ) {
 
-    $current = include pad . "dots/go/table.php";
+    $current = padDotSearch ( $padData [$i], $names, $type );
 
     if ( $current !== INF ) 
       return $current;

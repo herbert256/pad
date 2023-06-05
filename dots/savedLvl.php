@@ -1,21 +1,21 @@
 <?php
 
   if ( $name )
-    
-    for ( $i=$pad; $i >= 0; $i-- )
+
+    for ( $i=0; $i <= $pad; $i++ )
 
       if ( $padName [$i] == $name ) {
 
-        $current = include pad . "dots/go/table.php";
-        
+        $current = padDotSearch ( $padSaveLvl [$i], $names, $type );
+
         if ( $current !== INF ) 
           return $current;
 
       }
 
-  for ( $i=$pad; $i >= 0; $i-- ) {
+  for ( $i=0; $i <= $pad; $i++ ) {
 
-    $current = include pad . "dots/go/table.php";
+    $current = padDotSearch ( $padSaveLvl [$i], $names, $type );
 
     if ( $current !== INF ) 
       return $current;

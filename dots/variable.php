@@ -1,24 +1,24 @@
 <?php
 
-  if ( count ($names) == 1 ) {
+  if ( $name )
 
-    $item = $names [0];
+    for ( $i=$pad; $i >= 0; $i-- )
 
-    for ( $i=$pad; $i >= 0; $i-- ) 
-      if ( array_key_exists ( $padSetLvl [$i] [$item] ) )
-        return $padSetLvl [$i] [$item];
+      if ( $padName [$i] == $name ) {
 
-  }
+        $current = padDotSearch ( $padSetLvl [$i], $names, $type );
 
-  if ( count ($names) == 2 ) {
+        if ( $current !== INF ) 
+          return $current;
 
-    $tag  = $names [0];
-    $item = $names [1];
+      }
 
-    for ( $i=$pad; $i >= 0; $i-- ) 
-      if ( $padName [$i] == $tag )
-        if ( array_key_exists ( $padSetLvl [$i] [$item] ) )
-          return $padSetLvl [$i] [$item];
+  for ( $i=$pad; $i >= 0; $i-- ) {
+
+    $current = padDotSearch ( $padSetLvl [$i], $names, $type );
+
+    if ( $current !== INF ) 
+      return $current;
 
   }
 

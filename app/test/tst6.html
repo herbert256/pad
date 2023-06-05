@@ -1,0 +1,56 @@
+{pad name='cool', abc=123, 'fiets', $abc='banaan', $go='nuts', xyz=789, 12*15, 34}
+
+<h3>Variable</h3>
+
+  1 - {$tag.cool.variable.go} <br>
+  2 - {$tag.variable.go} <br>
+  3 - {$tag.cool.go} <br>
+  4 - {$tag.go} <br>
+  5 - {$variable.go} <br>
+  6 - {go@variable} <br>
+  6 - {go@variable:cool} <br>
+  6 - {go@variable:cool} <br>
+  7 - {go@cool} <br>
+  8 - {$go} <br>
+
+ <br>
+
+  1 - {$tag.variable.<} <br>
+  2 - {$tag.variable.*} <br>
+  3 - {$tag.variable.>} <br>
+
+<h3>parameter</h3>
+
+  1 - {$tag.cool.parameter.2} <br>
+  2 - {$tag.parameter.2} <br>
+  3 - {$tag.cool.2} <br>
+  4 - {$tag.2} <br>
+  5 - {$parameter.2} <br>
+  6 - {$cool.parameter.2} <br>
+  7 - {$cool.2} <br>
+  8 - {$2} <br>
+
+ <br>
+
+  1 - {$tag.parameter.<} <br>
+  2 - {$tag.parameter.*} <br>
+  3 - {$tag.parameter.>} <br>
+
+<h3>Option</h3>
+
+  1 - {$tag.cool.option.xyz} <br>
+  2 - {$tag.option.xyz} <br>
+  3 - {$tag.cool.xyz} <br>
+  4 - {$tag.xyz} <br>
+  5 - {$option.xyz} <br>
+  6 - {$cool.option.xyz} <br>
+  7 - {$cool.xyz} <br>
+  8 - {$xyz} <br>
+
+ <br>
+
+  1 - {$tag.option.<} <br>
+  2 - {$tag.option.*} <br>
+  3 - {$tag.option.>} <br>
+
+{/pad}

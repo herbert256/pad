@@ -2,7 +2,7 @@
 
   function padFieldLevel ( $field, $type ) {
 
-    if ( strpos ( $field, '.') !== FALSE ) 
+    if ( strpos ( $field, '.') !== FALSE or strpos ( $field, '@') !== FALSE) 
       return padDot ( $field, $type);
 
     global $pad, $padCurrent, $padPrm, $padOpt, $padName, $padTable;

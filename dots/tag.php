@@ -1,20 +1,17 @@
 <?php
 
-  for ( $i=$pad; $i >= 0; $i-- ) {
+  if ( $name )
+    
+    for ( $i=$pad; $i >= 0; $i-- )
 
-    if ( $padName [$i] == $name ) {
+      if ( $padName [$i] == $name ) {
 
-      $current = include pad . "dots/go/tag.php";
-      
-      if ( $current !== INF ) 
-        return $current;
+        $current = include pad . "dots/go/tag.php";
+        
+        if ( $current !== INF ) 
+          return $current;
 
-    }
-
-  }
-
-  $second = $first;
-  $first  = $name;
+      }
 
   for ( $i=$pad; $i >= 0; $i-- ) {
 

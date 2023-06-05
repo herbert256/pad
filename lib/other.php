@@ -294,6 +294,9 @@
 
     $array = explode ( $needle, $haystack, 2 );
 
+    if ( count ($array) == 0 )
+      $array [] = '';
+
     if ( count ($array) == 1 )
       $array [] = '';
 
@@ -1044,7 +1047,7 @@
    
     }
 
-    return '<pre>' . trim($return) . '</pre>';
+    return '<table><tr></td><pre>' . trim($return) . '</pre></td></tr></table>';
 
   } 
 

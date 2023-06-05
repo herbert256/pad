@@ -1,8 +1,5 @@
 <?php
 
-  if ( $second and padExists ( pad . "dots/tag/$first.php" ) ) 
-    return include pad . "dots/tag/$first.php";
-
   $current = padDotSearch ( $padCurrent [$i], $names, $type ); 
   if ( $current !== INF ) 
     return $current;
@@ -11,15 +8,22 @@
   if ( $current !== INF ) 
     return $current;
 
-  $current = padDotSearch ( $padPrm [$i], [ 0 => $first ], $type ); 
+  $current = padDotSearch ( $padPrm [$i], $names, $type ); 
   if ( $current !== INF ) 
     return $current;
 
-  $current = padDotSearch ( $padOpt [$i], [ 0 => $first ], $type ); 
+  $padOptDot = $padOpt [$i];
+  unset ( $padOptDot [0] );
+
+  $current = padDotSearch ( $padOptDot, $names, $type ); 
   if ( $current !== INF ) 
     return $current;
 
-  $current = padDotSearch ( $padSetLvl [$i], [ 0 => $first ], $type ); 
+  $current = padDotSearch ( $padSetLvl [$i], $names, $type ); 
+  if ( $current !== INF ) 
+    return $current;      
+
+  $current = padDotSearch ( $padData [$i], $names, $type ); 
   if ( $current !== INF ) 
     return $current;
 
