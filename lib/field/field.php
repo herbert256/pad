@@ -23,10 +23,7 @@
     $field = ( substr ( $field, 0, 1 ) == '#' ) ? substr ( $field, 1 ) : $field;
     $field = ( substr ( $field, 0, 1 ) == '&' ) ? substr ( $field, 1 ) : $field;
 
-    if ( str_contains ( $field, '.' ) or str_contains ( $field, '@' ) or 
-         str_contains ( $field, '<' ) or str_contains ( $field, '>' ) or 
-         str_contains ( $field, '*' ) ) 
-
+    if ( str_contains ( $field, '.' ) or str_contains ( $field, '@' ) ) 
       return padFieldGo ( $type, '', $field, '', 0, 1 );
 
     if ( strpos($field, ':' ) !== FALSE )

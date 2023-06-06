@@ -70,7 +70,7 @@
     elseif ( isset           ( $GLOBALS ['padSeqStore'] [$type]       ) ) return 'sequence';
     elseif ( padTagCheck     ( $type,                                 ) ) return 'tag';
     elseif ( padArrayCheck   ( $type                                  ) ) return 'array';
-    elseif ( padOptCheck    ( $type, 1                               ) ) return 'parm';
+    elseif ( padOptCheck     ( $type, 1                               ) ) return 'parm';
     elseif ( padChkLevel     ( $type                                  ) ) return 'level';
     elseif ( defined         ( $type                                  ) ) return 'constant';
     elseif ( padExists       ( pad . "sequence/actions/$type.php"     ) ) return 'action';

@@ -11,6 +11,7 @@
     
   }
 
+
   function padDot ( $field, $type ) {
 
     global $pad, $padCurrent, $padTable, $padSeqStore, $padDataStore, $padName;
@@ -28,8 +29,6 @@
       $name = $kind;
  
     }
-
-    $names = padExplode ( $field, '.' ); 
 
     if ( ! $name )
       return padDotPlain ( $names, $type );
@@ -85,6 +84,18 @@
   }
 
 
+  function padDotKind ( $kind, $name, $names, $type ) {
+
+    global $pad, $padCurrent, $padTable, $padSeqStore, $padDataStore, $padName;
+    global $padOpt, $padPrm, $padSetLvl;
+
+    $current = include pad . "dots/$kind.php";
+   
+    return padDotReturn ( $current, $type );
+  
+  }
+
+
   function padDotPlain ( $names, $type ) {
 
     global $pad, $padCurrent, $padTable, $padSeqStore, $padDataStore, $padName, $padData;
@@ -115,22 +126,12 @@
     if ( $current !== INF ) 
       return $current;
 
-    $current = padDotFind ( $GLOBALS, $names, $type ); 
-    if ( $current !== INF ) 
-      return $current;
+    return padDotFind ( $GLOBALS, $names, $type ); 
   
-    return INF;
-
   }
 
 
   function padDotFind ( $current, $names, $type ) {
-
-    if ( is_object ($current) or is_resource ($current) )
-      $current = (array) $current;
-
-    if ( ! is_array ($current) ) 
-      return INF;
 
     foreach ( $current as $value ) {
 
@@ -155,46 +156,19 @@
     
   }
 
-  function padDotKind ( $kind, $name, $names, $type ) {
-
-    global $pad, $padCurrent, $padTable, $padSeqStore, $padDataStore, $padName;
-    global $padOpt, $padPrm, $padSetLvl;
-
-    $first  = $names [0] ?? '';
-    $second = $names [1] ?? '';
-    $third  = $names [2] ?? '';
-
-    $current = include pad . "dots/$kind.php";
-   
-    return padDotReturn ( $current, $type );
-  
-  }
-
 
   function padDotSearch ( $current, $names, $type ) {
-  
-    if ( is_object ($current) or is_resource ($current) )
-      $current = (array) $current;
-
-    if ( ! is_array ($current) ) 
-      return INF;
 
     foreach ( $names as $key => $name ) {
+
+      $current = padDotCheck ($current);
+      if ( $current === INF )
+        return INF;
 
       if ( $name == '*' )
         return padDotAny ( $key, $current, $names, $type );
 
-     if ( $name == '<')  {
-        $current = &$current [array_key_first($current)];
-        continue;
-      }
-
-      if ( $name == '>' ) {
-        $current = &$current [array_key_last($current)];
-        continue;
-      }
-
-      if ( strpos($name, '<') !== FALSE  or strpos($name, '>') !== FALSE )  {
+      if ( str_contains ($name, '<') or str_contains ($name, '>')  )  {
         $idx = padDotGetIdx($current, $name, $type);
         if ($idx === INF)
           return INF;
@@ -202,12 +176,9 @@
         continue;
       }
 
-      if ( ! is_array ($current) or ! array_key_exists ( $name, $current ) )
+      if ( ! array_key_exists ( $name, $current ) )
         return INF;
 
-      if ( is_object ($current[$name]) or is_resource ($current[$name]) )
-        $current[$name] = (array) $current[$name];
-      
       $current = &$current [$name];
         
     }
@@ -218,12 +189,6 @@
 
 
   function padDotAny ( $key, $current, $names, $type ) {
-
-    if ( is_object ($current) or is_resource ($current) )
-      $current = (array) $current;
-
-    if ( ! is_array ($current) or ! count ($current) ) 
-      return INF;
 
     $rest = [];
     foreach ( $names as $key2 => $name2 ) 
@@ -249,12 +214,9 @@
 
   function padDotGetIdx ($current, $name, $type ) {
 
-    $start = ( strpos($name, '<') !== FALSE );
+    $start = ( str_contains ($name, '<') );
   
-    if ( $start )
-      $parts = padExplode ($name, '<');
-    else
-      $parts = padExplode ($name, '>');
+    $parts = ( $start ) ? padExplode ($name, '<') : padExplode ($name, '>');
 
     $key   = intval ($parts[0] ?? 1);
     $keys  = array_keys ( $current );
@@ -263,13 +225,22 @@
     if ( $key < 1 or $key > $count )
       return INF;
 
-    if ( $start )
-      $idx = $key - 1;
-    else
-      $idx = count ($keys) - $key;
+    $idx = ( $start ) ? $key - 1 : count ($keys) - $key;
 
     return $keys [$idx];
 
+  }
+
+
+  function padDotCheck ($current) {
+
+    if ( is_object ($current) or is_resource ($current) )
+      $current = (array) $current;
+
+    if ( ! is_array ($current) or ! count ($current) ) 
+      return INF;
+
+    return $current;
   }
 
 
