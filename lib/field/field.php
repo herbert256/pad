@@ -26,25 +26,19 @@
     if ( str_contains ( $field, '.' ) or str_contains ( $field, '@' ) ) 
       return padFieldGo ( $type, '', $field, '', 0, 1 );
 
-    if ( strpos($field, ':' ) !== FALSE )
+    if ( str_contains ($field, ':' ) )
       list ( $prefix, $field ) = explode (':', $field, 2);
     else 
-       $prefix = '';
+      $prefix = '';
 
-    if ( $prefix ) 
-      $idx = padFieldGetLevel ($prefix);
-    elseif ( in_array ( $type, [5,6] ) )
-      $idx = padFieldFirstParmTag ();
-    elseif ( in_array ( $type, [7,8] ) )
-      $idx = padFieldFirstNonTag ($lvl);
-    else
-      $idx = $GLOBALS ['pad'];
+    if     ( $prefix                   ) $idx = padFieldGetLevel ($prefix);
+    elseif ( in_array ( $type, [5,6] ) ) $idx = padFieldFirstParmTag ();
+    elseif ( in_array ( $type, [7,8] ) ) $idx = padFieldFirstNonTag ($lvl);
+    else                                 $idx = $GLOBALS ['pad'];
   
     list ( $field, $parm ) = padSplit ( ':', $field );
 
-    $result = padFieldGo ( $type, $prefix, $field, $parm, $idx, 0 );
-
-    return $result;
+    return padFieldGo ( $type, $prefix, $field, $parm, $idx, 0 );
 
   }
 

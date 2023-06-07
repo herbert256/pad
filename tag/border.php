@@ -2,7 +2,7 @@
 
   return ( 
     (include pad . "tag/first.php")
-    or
+      or
     (include pad . "tag/last.php")
   );
 

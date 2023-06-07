@@ -16,6 +16,20 @@
 
     global $pad, $padCurrent, $padTable, $padSeqStore, $padDataStore, $padName;
 
+    if ( strlen($field) > 1 and substr($field,0,1) == '-' and is_numeric(substr($field,1)) ) {
+      $idx = $pad + $field;
+      if ( $type == 1 and $idx and isset ($padCurrent [$idx]) )
+        return TRUE;
+      if ( $type == 2 and $idx and isset ($padCurrent [$idx]) and is_array ($padCurrent [$idx]) )
+        foreach ($padCurrent [$idx] as $value)
+          if ( is_scalar($value) )
+            return $value;
+    }
+
+    if ( is_numeric($field) ) 
+      if ( array_key_exists ( $field, $padOpt [$pad] ) )
+        return $padOpt [$pad] [$field];
+
     list ( $field, $kind ) = padSplit ( '@', $field );
     list ( $kind,  $name ) = padSplit ( ':', $kind  );
 
@@ -103,10 +117,32 @@
 
     for ( $i=$pad; $i >= 0; $i-- ) {
 
-      $current = include pad . "dots/go/tag.php";
-      
+      $current = padDotSearch ( $padCurrent [$i], $names, $type ); 
       if ( $current !== INF ) 
-        return  $current;
+        return $current;
+
+      $current = padDotSearch ( $padTable [$i], $names, $type ); 
+      if ( $current !== INF ) 
+        return $current;
+
+    }
+
+    $current = padDotSearch ( $GLOBALS, $names, $type ); 
+    if ( $current !== INF ) 
+      return $current;
+
+    for ( $i=$pad; $i >= 0; $i-- ) {
+
+      $padOptDot = $padOpt [$i];
+      unset ( $padOptDot [0] );
+
+      $current = padDotSearch ( $padData [$i], $names, $type ); 
+      if ( $current !== INF ) 
+        return $current;
+
+      $current = padDotSearch ( $padOptDot, $names, $type ); 
+      if ( $current !== INF ) 
+        return $current;
 
     }
 
@@ -122,9 +158,14 @@
     if ( $current !== INF ) 
       return $current;
 
-    $current = padDotSearch ( $GLOBALS, $names, $type ); 
-    if ( $current !== INF ) 
-      return $current;
+    for ( $i=$pad; $i >= 0; $i-- ) {
+
+      $current = padDotSearch ( $padPrm [$i], $names, $type ); 
+      if ( $current !== INF ) 
+        return $current;
+
+    }
+
 
     return padDotFind ( $GLOBALS, $names, $type ); 
   
@@ -241,6 +282,7 @@
       return INF;
 
     return $current;
+
   }
 
 

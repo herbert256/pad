@@ -22,13 +22,12 @@
   $padBusy       = "$padPage --> {" . $padBetween . '}';
   $padHistory [] = "Busy: $padBusy";
 
-  if ( in_array ( $padFirst, ['$','!','#','&'] ) )  
-    return include pad . 'level/var.php';
-
-  if ( ! ctype_alpha ( $padBetween [0] ) ) return padIgnore ('ctype_alpha');
-  if ( ! padValidTag ( $padWords [0]   ) ) return padIgnore ('padValidTag');
-  if ( ! include pad . 'level/type.php'  ) return padIgnore ('type');
-  if ( ! include pad . 'level/pair.php'  ) return padIgnore ('pair');;
+  if ( str_contains ( $padWords [0], '@' )       ) return include pad . 'level/at.php';
+  if ( in_array ( $padFirst, ['$','!','#','&'] ) ) return include pad . 'level/var.php';
+  if ( ! ctype_alpha ( $padBetween [0] )         ) return padIgnore ('ctype_alpha');
+  if ( ! padValidTag ( $padWords [0]   )         ) return padIgnore ('padValidTag');
+  if ( ! include pad . 'level/type.php'          ) return padIgnore ('type');
+  if ( ! include pad . 'level/pair.php'          ) return padIgnore ('pair');;
 
   include pad . 'level/start.php';
 

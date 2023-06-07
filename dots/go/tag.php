@@ -8,7 +8,11 @@
   if ( $current !== INF ) 
     return $current;
 
-  $current = padDotSearch ( $padPrm [$i], $names, $type ); 
+  $current = padDotSearch ( $padSetLvl [$i], $names, $type ); 
+  if ( $current !== INF ) 
+    return $current;      
+
+  $current = padDotSearch ( $padData [$i], $names, $type ); 
   if ( $current !== INF ) 
     return $current;
 
@@ -19,11 +23,7 @@
   if ( $current !== INF ) 
     return $current;
 
-  $current = padDotSearch ( $padSetLvl [$i], $names, $type ); 
-  if ( $current !== INF ) 
-    return $current;      
-
-  $current = padDotSearch ( $padData [$i], $names, $type ); 
+  $current = padDotSearch ( $padPrm [$i], $names, $type ); 
   if ( $current !== INF ) 
     return $current;
 

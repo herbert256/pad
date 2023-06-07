@@ -52,7 +52,7 @@
         elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
       }
 
-    global $pad, $padOpt, $padPrm, $padSetLvl;
+    global $pad, $padPrm;
 
     for ( $i=$pad; $i >= 0; $i-- ) {
 
