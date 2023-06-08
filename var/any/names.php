@@ -13,7 +13,7 @@
     }
 
     if ( $padName [$i] == $name ) {
-      $current = include pad . 'at/tag.php';
+      $current = include pad . 'var/at/tag.php';
       if ( $current !== INF ) 
         return $current;
     }

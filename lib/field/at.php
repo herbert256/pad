@@ -16,8 +16,10 @@
 
     if ( padExists ( pad . "var/at/$kind.php" ) )
       return include pad . "var/at/$kind.php";
-    else
-      return include pad . 'var/name.php';
+
+    $name = $kind;
+    
+    return include pad . 'var/name.php';
 
   }
 

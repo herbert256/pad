@@ -24,8 +24,6 @@
       if ( array_key_exists ( $check, $padPrm [$i] ) )
         return $padPrm [$i] [$check];
 
-$GLOBALS['x']=$names;
-x();
       if ( array_key_exists ( $check, $padSetLvl [$i] ) )
         return $padSetLvl [$i] [$check];
 
