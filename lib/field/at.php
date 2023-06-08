@@ -3,54 +3,21 @@
 
   function padAt ( $field ) {
 
+    global $pad, $padCurrent, $padData, $padTable, $padSeqStore, $padDataStore, $padName;
+    global $padOpt, $padPrm, $padSetLvl;
+
     list ( $field, $kind ) = padSplit ( '@', $field );
     list ( $kind,  $name ) = padSplit ( ':', $kind  );
 
+    if ( ! $kind )
+      $kind = 'any';
+
     $names = padExplode ( $field, '.' ); 
 
-    if ( ! $kind or $kind == 'any' )
-      return padAny ( $field, $names );
-
-    global $pad, $padCurrent, $padTable, $padSeqStore, $padDataStore, $padName, $padOpt, $padPrm, $padSetLvl;
-
-    if ( padExists ( pad . "at/$kind.php" ) )
-      return include pad . "at/$kind.php";
-
-    for ( $i=$pad; $i >=0; $i-- ) {
-
-      if ( isset ( $padTable [$i] [$kind] ) ) {
-        $current = include pad . 'at/tbl.php';
-        if ( $current !== INF ) 
-          return $current;
-      }
-
-      if ( $padName [$i] == $kind ) {
-        $current = include pad . 'at/tag.php';
-        if ( $current !== INF ) 
-          return $current;
-      }
-
-    }
-
-    if ( isset ( $padSeqStore [$kind] ) ) {
-      $current = padAtSearch ( $padSeqStore [$kind], $names );
-      if ( $current !== INF ) 
-        return $current;
-    }
-
-    if ( isset ( $padDataStore [$kind] ) ) {
-      $current = padAtSearch ( $padDataStore [$kind], $names );
-      if ( $current !== INF ) 
-        return $current;
-    }
- 
-    if ( isset ( $GLOBALS [$kind] ) ) {
-      $current = padAtSearch ( $GLOBALS [$kind], $names );
-      if ( $current !== INF ) 
-        return $current;
-    }
-
-    return INF;
+    if ( padExists ( pad . "var/at/$kind.php" ) )
+      return include pad . "var/at/$kind.php";
+    else
+      return include pad . 'var/name.php';
 
   }
 
@@ -131,6 +98,53 @@
     $idx = ( $start ) ? $key - 1 : count ($keys) - $key;
 
     return $keys [$idx];
+
+  }
+
+
+  function padAtNamesFind ( $current, $names ) {
+
+    $check = padAtSearch ( $current, $names );
+    if ( $check !== INF)
+      return $check;
+
+    foreach ( $current as $key => $value ) {
+
+      if ( is_object ($value) or is_resource ($value) )
+        $value = (array) $value;
+
+      if ( is_array ($value) and ! str_starts_with ($key, 'pad') ) {
+        $check = padAtNamesFind ( $value, $names );
+        if ( $check !== INF )
+          return $check;
+      }
+
+    }
+
+    return INF;
+
+  }
+
+
+  function padAtOneFind( $current, $one ) {
+
+    if ( array_key_exists ( $one, $current) )
+      return $current [$one];
+
+    foreach ( $current as $key => $value ) {
+
+      if ( is_object ($value) or is_resource ($value) )
+        $value = (array) $value;
+
+      if ( is_array ($value) and ! str_starts_with ($key, 'pad') ) {
+        $check = padAtOneFind ( $value, $one );
+        if ( $check !== INF )
+          return $check;
+      }
+
+    }
+
+    return INF;
 
   }
 

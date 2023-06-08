@@ -43,7 +43,6 @@
 
   if ( count($padWordsCheck) > 1 ) { 
     $padBetween    = $padBetweenCheck;  
-    $padBusy       = "$padPage --> {/" . $padBetween . '}';
     $padWords      = $padWordsCheck;
     $padPrmTypeSet = 'close';
   }

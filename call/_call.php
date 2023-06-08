@@ -1,7 +1,5 @@
 <?php
 
-  $padHistory [] = "Call: $padCall";
-
   ob_start();
   $padCallPHP = include $padCall;
   $padCallOB  = ob_get_clean();

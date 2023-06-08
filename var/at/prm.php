@@ -5,7 +5,9 @@
     if ( $name and $padName [$i] <> $name )
       continue;
 
-    $current = padAtSearch ( $padOpt [$i], $names );
+    $padOptAt = $padOpt [$i];
+    unset ( $padOptAt [0] );
+    $current = padAtSearch ( $padOptAt, $names );
     if ( $current !== INF ) 
       return $current;
 

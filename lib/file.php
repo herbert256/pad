@@ -28,8 +28,6 @@
     if ( ! padExists($file) )
       return '';
 
-    $GLOBALS ['padHistory'] [] = "GetFile: $file";
-
     return file_get_contents ($file);
 
   }

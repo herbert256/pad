@@ -19,12 +19,8 @@
   $padFirst   = substr ( $padBetween , 0, 1 );
   $padWords   = preg_split ("/[\s]+/", $padBetween, 2, PREG_SPLIT_NO_EMPTY);
 
-  $padBusy       = "$padPage --> {" . $padBetween . '}';
-  $padHistory [] = "Busy: $padBusy";
-
-  if ( str_contains ( $padWords [0], '.' )       ) return include pad . 'level/at.php';
-  if ( str_contains ( $padWords [0], '@' )       ) return include pad . 'level/at.php';
-  if ( in_array ( $padFirst, ['$','!','#','&'] ) ) return include pad . 'level/var.php';
+  if ( in_array ( $padFirst, ['$','!','#','&'] ) ) 
+    return include pad . 'var/var.php';
   
   if ( ! ctype_alpha ( $padBetween [0] )         ) return padIgnore ('ctype_alpha');
   if ( ! padValidTag ( $padWords [0]   )         ) return padIgnore ('padValidTag');

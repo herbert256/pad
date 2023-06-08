@@ -18,11 +18,6 @@
 
   function padField ( $field, $type, $lvl=0 ) {
 
-    $field = ( substr ( $field, 0, 1 ) == '$' ) ? substr ( $field, 1 ) : $field;
-    $field = ( substr ( $field, 0, 1 ) == '!' ) ? substr ( $field, 1 ) : $field;
-    $field = ( substr ( $field, 0, 1 ) == '#' ) ? substr ( $field, 1 ) : $field;
-    $field = ( substr ( $field, 0, 1 ) == '&' ) ? substr ( $field, 1 ) : $field;
-
     if ( str_contains ($field, ':' ) )
       list ( $prefix, $field ) = explode (':', $field, 2);
     else 
