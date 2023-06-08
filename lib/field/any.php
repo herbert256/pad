@@ -12,7 +12,21 @@
 
   function padAnyOne ( $one ) {
 
-    global $pad, $padCurrent, $padTable, $padSeqStore, $padDataStore, $padName, $padOpt, $padPrm, $padSetLvl;
+    global $pad, $padCurrent, $padTable, $padSeqStore, $padDataStore, $padName, $padOpt, $padPrm, $padSetLvl, $padData;
+
+    if ( strlen($one) > 1 and substr($one,0,1) == '-' and is_numeric(substr($one,1)) ) {
+      $idx = $pad + $one;
+      if ( $type == 1 and $idx and isset ($padCurrent [$idx]) )
+        return TRUE;
+      if ( $type == 2 and $idx and isset ($padCurrent [$idx]) and is_array ($padCurrent [$idx]) )
+        foreach ($padCurrent [$idx] as $value)
+          if ( is_scalar($value) )
+            return $value;
+    }
+
+    if ( is_numeric($one) ) 
+      if ( array_key_exists ( $one, $padOpt [$pad] ) )
+        return $padOpt [$pad] [$one];
 
     for ( $i=$pad; $i >=0; $i-- ) {
 
@@ -76,15 +90,55 @@
 
   function padAnyNames ( $names ) {
 
-    global $pad, $padCurrent, $padTable, $padSeqStore, $padDataStore, $padName, $padOpt, $padPrm, $padSetLvl;
+    $keep = $names;
+
+    global $pad, $padCurrent, $padData, $padName, $padSeqStore, $padTable, $padDataStore;
+
+    $name = array_shift ($names);
 
     for ( $i=$pad; $i >=0; $i-- ) {
 
-      $check = padAnyNamesFind  ( $padCurrent [$i], $one );
+      if ( isset ( $padTable [$i] [$name] ) ) {
+        $current = padAtSearch ( $padTable [$i] [$name], $names );
+        if ( $current !== INF ) 
+          return $current;
+      }
+
+      if ( $padName [$i] == $name ) {
+        $current = include pad . 'at/tag.php';
+        if ( $current !== INF ) 
+          return $current;
+      }
+
+    }
+
+    if ( isset ( $padSeqStore [$name] ) ) {
+      $current = padAtSearch ( $padSeqStore [$name], $names );
+      if ( $current !== INF ) 
+        return $current;
+    }
+
+    if ( isset ( $padDataStore [$name] ) ) {
+      $current = padAtSearch ( $padDataStore [$name], $names );
+      if ( $current !== INF ) 
+        return $current;
+    }
+ 
+    if ( isset ( $GLOBALS [$name] ) ) {
+      $current = padAtSearch ( $GLOBALS [$name], $names );
+      if ( $current !== INF ) 
+        return $current;
+    }
+
+    $names = $keep;
+    
+    for ( $i=$pad; $i >=0; $i-- ) {
+
+      $check = padAnyNamesFind  ( $padCurrent [$i], $names );
       if ( $check !== INF )
         return $check;
 
-      $check = padAnyNamesFind  ( $padData [$i], $one );
+      $check = padAnyNamesFind  ( $padData [$i], $names );
       if ( $check !== INF )
         return $check;
 
@@ -93,7 +147,6 @@
     $check = padAnyNamesFind ( $GLOBALS, $names );
     if ( $check !== INF )
       return $check;
-
     return INF;   
 
   }

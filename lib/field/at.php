@@ -16,24 +16,15 @@
     if ( padExists ( pad . "at/$kind.php" ) )
       return include pad . "at/$kind.php";
 
-    return padAtName ( $kind, $names );
-
-  }
-
-
-  function padAtName ( $name, $names ) {
-
-    global $pad, $padCurrent, $padTable, $padSeqStore, $padDataStore, $padName, $padOpt, $padPrm, $padSetLvl;
- 
     for ( $i=$pad; $i >=0; $i-- ) {
 
-      if ( isset ( $padTable [$i] [$name] ) ) {
+      if ( isset ( $padTable [$i] [$kind] ) ) {
         $current = include pad . 'at/tbl.php';
         if ( $current !== INF ) 
           return $current;
       }
 
-      if ( $padName [$i] == $name ) {
+      if ( $padName [$i] == $kind ) {
         $current = include pad . 'at/tag.php';
         if ( $current !== INF ) 
           return $current;
@@ -41,20 +32,20 @@
 
     }
 
-    if ( isset ( $padSeqStore [$name] ) ) {
-      $current = padAtSearch ( $padSeqStore [$name], $names );
+    if ( isset ( $padSeqStore [$kind] ) ) {
+      $current = padAtSearch ( $padSeqStore [$kind], $names );
       if ( $current !== INF ) 
         return $current;
     }
 
-    if ( isset ( $padDataStore [$name] ) ) {
-      $current = padAtSearch ( $padDataStore [$name], $names );
+    if ( isset ( $padDataStore [$kind] ) ) {
+      $current = padAtSearch ( $padDataStore [$kind], $names );
       if ( $current !== INF ) 
         return $current;
     }
  
-    if ( isset ( $GLOBALS [$name] ) ) {
-      $current = padAtSearch ( $GLOBALS [$name], $names );
+    if ( isset ( $GLOBALS [$kind] ) ) {
+      $current = padAtSearch ( $GLOBALS [$kind], $names );
       if ( $current !== INF ) 
         return $current;
     }

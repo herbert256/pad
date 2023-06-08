@@ -57,13 +57,24 @@
     if ( trim($name) == '' ) 
       return FALSE;
 
-    if ( ! preg_match('/^[a-zA-Z0-9\-\$\<\>\*\@][a-zA-Z0-9:#_\.\<\>\*\@]*$/',$name) )
+    if ( ! preg_match('/^[a-zA-Z0-9\-\$][a-zA-Z0-9:#_]*$/',$name) )
       return FALSE;
 
     return TRUE;  
 
   }
 
+  function padValidVarAt ($name) {
+
+    if ( trim($name) == '' ) 
+      return FALSE;
+
+    if ( ! preg_match('/^[a-zA-Z0-9\-\$\<\>\*][a-zA-Z0-9:#_\.\<\>\*\@]*$/',$name) )
+      return FALSE;
+
+    return TRUE;  
+
+  }
 
   function padValidType ($name) {
 
@@ -83,7 +94,7 @@
     if ( trim($name) == '' ) 
       return FALSE;
 
-    if ( ! preg_match('/^[a-zA-Z][a-zA-Z0-9:#_\.\/]*$/',$name) )
+    if ( ! preg_match('/^[a-zA-Z][a-zA-Z0-9:#_]*$/',$name) )
       return FALSE;
 
     return TRUE;  

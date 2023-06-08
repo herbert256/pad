@@ -9,6 +9,14 @@
 
   }
 
- return padAtSearch ( $GLOBALS, $names );
+  $check = padAtSearch ( $GLOBALS, $names );
+  if ( $check <> INF )
+    return $check;
+
+  $check = padAnyNamesFind ( $GLOBALS, $names );
+  if ( $check !== INF )
+    return $check;
+
+ return INF;
 
 ?>

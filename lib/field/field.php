@@ -23,9 +23,6 @@
     $field = ( substr ( $field, 0, 1 ) == '#' ) ? substr ( $field, 1 ) : $field;
     $field = ( substr ( $field, 0, 1 ) == '&' ) ? substr ( $field, 1 ) : $field;
 
-    if ( str_contains ( $field, '.' ) or str_contains ( $field, '@' ) ) 
-      return padFieldGo ( $type, '', $field, '', 0, 1 );
-
     if ( str_contains ($field, ':' ) )
       list ( $prefix, $field ) = explode (':', $field, 2);
     else 
@@ -38,15 +35,7 @@
   
     list ( $field, $parm ) = padSplit ( ':', $field );
 
-    return padFieldGo ( $type, $prefix, $field, $parm, $idx, 0 );
-
-  }
-
-
-  function padFieldGo ( $type, $prefix, $field, $parm, $idx, $dot ) {
-
-    if     ( $dot       ) $value = padDot         ( $field, $type );
-    elseif ( $type == 5 ) $value = padParm        ( $field, $idx, $type );
+    if     ( $type == 5 ) $value = padParm        ( $field, $idx, $type );
     elseif ( $type == 6 ) $value = padParm        ( $field, $idx, $type );
     elseif ( $type == 7 ) $value = padTag         ( $field, $idx, $type, $parm );
     elseif ( $type == 8 ) $value = padTag         ( $field, $idx, $type, $parm );

@@ -1,27 +1,25 @@
 <?php
 
+  $padIdx = 0;
+
   if ( $name )
-    
-    for ( $i=$pad; $i >= 0; $i-- )
-
+    for ( $i=$pad; $i; $i-- )
       if ( $padName [$i] == $name ) {
+        $padIdx = $i;
+        break;
+      }
+  
+  global $padTag, $padType;
 
-        $current = include pad . "at/go/tag.php";
-        
-        if ( $current !== INF ) 
-          return $current;
-
+  if ( ! $padIdx )
+    for ($i=$pad; $i; $i--) 
+      if ( $padTag [$i] <> 'if' and $padTag [$i] <> 'case' and $padType[$i] <> 'tag' ) {
+        $padIdx = $i;
+        break;
       }
 
-  for ( $i=$pad; $i >= 0; $i-- ) {
+  list ( $tag, $parm ) = padSplit ( ':', $names[0] );
 
-    $current = include pad . "at/go/tag.php";
-
-    if ( $current !== INF ) 
-      return $current;
-
-  }
-
-  return INF;
+  return include pad . "tag/$tag.php";
 
 ?>
