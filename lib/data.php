@@ -144,6 +144,8 @@
       
       $json = str_replace('{"@attributes":{', '{"attr":{', $json);
       
+      $GLOBALS ['padLastDataXml'] = $simple_xml;
+           
     }
   
     if ( $json ) {
@@ -164,6 +166,8 @@
         return padDataError ($data, "JSON conversion error");
 
       $result = json_decode($json, true);
+
+      $GLOBALS ['padLastDataJson'] = $result;
       
       if ( ! is_array($result) or $result === NULL or $result === FALSE)
         return padDataError ($data, "JSON error (decode): " . json_last_error() . ' - ' . json_last_error_msg() );
@@ -198,11 +202,12 @@
     $result = [];
 
     foreach ( $data as $name => $value) {
-$result [$name] ['name'] = $name;      
-$result [$name] ['value'] = $value;      
+      $result [$name] ['name'] = $name;      
+      $result [$name] ['value'] = $value;      
     }
 
-return $result;
+    return $result;
+ 
   }
 
 
@@ -339,9 +344,10 @@ return $result;
 
   function padDataName ($name) {
 
-    global $pad, $padPrm, $padTag, $padName;
+    global $pad, $padPrm, $padTag, $padName, $padForceDataName;
     
     if     ( $name                              ) $return = $name;
+    elseif ( $padForceDataName                  ) $return = $padForceDataName;
     elseif ( isset ($padPrm [$pad] ['name'] )   ) $return = $padPrm [$pad] ['name'];
     elseif ( isset ($padPrm [$pad] ['toData'] ) ) $return = $padPrm [$pad] ['toData'];
     elseif ( $padTag [$pad] == 'data '          ) $return = $padOpt [$pad] [1];

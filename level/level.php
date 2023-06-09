@@ -21,6 +21,8 @@
 
   if ( in_array ( $padFirst, ['$','!','#','&'] ) ) 
     return include pad . 'var/var.php';
+
+  $padHistory [] = "Busy: " .  $padWords [0];
   
   if ( ! ctype_alpha ( $padBetween [0] )         ) return padIgnore ('ctype_alpha');
   if ( ! padValidTag ( $padWords [0]   )         ) return padIgnore ('padValidTag');

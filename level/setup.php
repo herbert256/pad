@@ -59,6 +59,7 @@
   $padTable      [$pad] = [];
   $padTableTag   [$pad] = '';
 
-  $padForceName = '';
+  $padForceTagName  = '';
+  $padForceDataName = '';
   
 ?>

@@ -1,60 +1,47 @@
 <?php
 
-  $keep = $names;
+  for ( $i=$pad; $i; $i-- ) {
 
-  $name = array_shift ($names);
+    $check = padAtSearch ( $padCurrent [$i], $names );
+    if ( $check !== INF ) 
+      return $check;
 
-  for ( $i=$pad; $i >=0; $i-- ) {
-
-    if ( isset ( $padTable [$i] [$name] ) ) {
-      $current = padAtSearch ( $padTable [$i] [$name], $names );
-      if ( $current !== INF ) 
-        return $current;
-    }
-
-    if ( $padName [$i] == $name ) {
-      $current = include pad . 'var/at/tag.php';
-      if ( $current !== INF ) 
-        return $current;
+    foreach ( $padTable [$i] as $value ) {
+      $check = padAtSearch ( $value, $names );
+      if ( $check !== INF ) 
+        return $check;
     }
 
   }
 
-  if ( isset ( $padSeqStore [$name] ) ) {
-    $current = padAtSearch ( $padSeqStore [$name], $names );
-    if ( $current !== INF ) 
-      return $current;
-  }
-
-  if ( isset ( $padDataStore [$name] ) ) {
-    $current = padAtSearch ( $padDataStore [$name], $names );
-    if ( $current !== INF ) 
-      return $current;
-  }
-
-  if ( isset ( $GLOBALS [$name] ) ) {
-    $current = padAtSearch ( $GLOBALS [$name], $names );
-    if ( $current !== INF ) 
-      return $current;
-  }
-
-  $names = $keep;
-  
-  for ( $i=$pad; $i >=0; $i-- ) {
-
-    $check = padAtNamesFind  ( $padCurrent [$i], $names );
-    if ( $check !== INF )
-      return $check;
-
-    $check = padAtNamesFind  ( $padData [$i], $names );
-    if ( $check !== INF )
-      return $check;
-
-  }
-
-  $check = padAtNamesFind ( $GLOBALS, $names );
-  if ( $check !== INF )
+  $check = padAtSearch ( $padDataStore, $names );
+  if ( $check !== INF ) 
     return $check;
-  return INF;   
+
+  $check = padAtSearch ( $padSeqStore, $names );
+  if ( $check !== INF ) 
+    return $check;
+
+  $check = padAtSearch ( $GLOBALS, $names );
+  if ( $check !== INF ) 
+    return $check;
+
+  for ( $i=$pad; $i; $i-- ) {
+
+    $check = padFindNames ( $padCurrent [$i], $names );
+    if ( $check !== INF ) 
+      return $check;
+
+    $check = padFindNames ( $padData [$i], $names );
+    if ( $check !== INF ) 
+      return $check;
+
+  }
+
+  $check = padFindNames ( $padDataStore, $names );
+  if ( $check !== INF ) 
+    return $check;
+
+  return padFindNames ( $GLOBALS, $names );
 
 ?>

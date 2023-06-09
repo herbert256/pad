@@ -1,0 +1,46 @@
+{pad name='cool', abc=123, 'fiets', $abc='banaan', $go='nuts', xyz=789, 12*15, 34}
+
+<h3>variables</h3>
+
+  2 - {$go@tag.cool} <br>
+  4 - {$go@variables.cool} <br>
+  5 - {$go@cool} <br>
+  6 - {$go} <br>
+
+  1 - {$go@tag} <br>
+  3 - {$go@variables} <br>
+
+<br>
+
+  1 - {$<@variables.cool} <br>
+  2 - {$>@variables.cool} <br>
+
+<h3>options</h3>
+
+  1 - {$xyz@tag} <br>
+  2 - {$xyz@tag.cool} <br>
+  3 - {$xyz@options} <br>
+  4 - {$xyz@options.cool} <br>
+  5 - {$xyz@cool} <br>
+  6 - {$xyz} <br>
+
+<br>
+
+  1 - {$<@options.cool} <br>
+  2 - {$>@options.cool} <br>
+
+<h3>parameters</h3>
+
+  1 - {$2@tag} <br>
+  2 - {$2@tag.cool} <br>
+  3 - {$2@parameters} <br>
+  4 - {$2@parameters.cool} <br>
+  5 - {$2@cool} <br>
+  6 - {$2} <br>
+
+<br>    
+
+  1 - {$<@parameters.cool} <br>
+  2 - {$>@parameters.cool} <br>
+
+{/pad}

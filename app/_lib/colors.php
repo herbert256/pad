@@ -92,7 +92,7 @@ go: $end = strpos($source, '}');
       $tag  = substr ($tag, $ns_pos+1);
     } 
 
-    if ( ! padValid ( $tag ) )  {             
+    if ( ! padValidTag ( $tag ) )  {             
       $source = substr($source, 0, $start) 
                 . '&open;' . $between . '&close;' 
                 . substr($source, $end+1);
@@ -139,6 +139,7 @@ co: $parms  = $words[1] ?? '';
       $search = '<font color="purple">' . $parts[0] . '</font><font color="black"><b>:</b></font>' . $parts[1];
         
     $search = str_replace ('#', '<font color="black"><b><font color="black">#</font></b></font>',  $search);
+    $search = str_replace ('@', '<font color="black"><b><font color="red">@</font></b></font>',  $search);
     $sparms = str_replace ('%', '<font color="black"><b><font color="black">%</font></b></font>',  $parms);
 
     $source = substr($source, 0, $start) 

@@ -10,7 +10,7 @@
   else
     $padReturn = padColorsString ( $padContent ) ;
 
-	return str_replace ( '}', '&close', $padReturn );
+	return str_replace ( '}', '&close;', $padReturn );
 
 
 ?>

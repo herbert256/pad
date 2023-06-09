@@ -26,7 +26,7 @@
   if ( array_key_exists ( $field, $GLOBALS ) ) 
     return $GLOBALS [$field];
 
-  for ( $i=$pad; $i >=0; $i-- ) {
+  for ( $i=$pad; $i; $i-- ) {
 
     $padOptAt = $padOpt [$i];
     unset ( $padOptAt [0] );

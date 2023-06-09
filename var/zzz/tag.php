@@ -1,5 +1,7 @@
 <?php
 
+  if ( ! $padIdx ) {
+
   $padIdx = 0;
 
   if ( $name )
@@ -18,7 +20,9 @@
         break;
       }
 
-  list ( $tag, $parm ) = padSplit ( ':', $names[0] );
+  }
+
+  list ( $tag, $parm ) = padSplit ( '.', $names[0] );
 
   return include pad . "tag/$tag.php";
 

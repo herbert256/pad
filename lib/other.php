@@ -1,6 +1,16 @@
 <?php
 
 
+  function padAtCheck ( $item ) {
+
+    if ( str_contains($item, '@') ) 
+      return TRUE;
+    
+    return FALSE;
+
+  }
+
+
   function padCargo ( $base, $new ) {
 
     $merge = padTagParm ('cargo');
@@ -827,6 +837,8 @@
   function padIgnore ($info) {
 
     global $padBetween;
+
+    $GLOBALS ['padHistory'] [] = "Ignore: $info: $padBetween";
               
     padHtml ( '&open;' . $padBetween . '&close;' );
 

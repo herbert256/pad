@@ -1,7 +1,6 @@
 <?php
 
-  $abc = '123';
-
-  $klm ['xyz'] = '789';
+#  $data = padData ('bakery.xml');
+#  dump();
 
 ?>

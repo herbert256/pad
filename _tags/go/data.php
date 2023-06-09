@@ -5,7 +5,7 @@
 
   $padData [$pad] = padData ("$padMakeFile.$padMakeType", $padMakeType, $padMakeFile);
 
-  $padForceName = $padMakeFile;
+  $padForceTagName = $padMakeFile;
 
   return TRUE;
 

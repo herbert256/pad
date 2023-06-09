@@ -1,6 +1,8 @@
 <?php
 
   include pad . 'level/setup.php';    
+
+  $padHistory [] = "Start: " .  $padTag [$pad];
  
   if ( ! in_array ( $padTag [$pad], $padPrmNoParse  )  )
     include pad . 'level/parms.php';

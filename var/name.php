@@ -1,19 +1,29 @@
 <?php
 
-  for ( $i=$pad; $i >=0; $i-- ) {
+  for ( $i=$pad; $i; $i-- ) 
 
     if ( isset ( $padTable [$i] [$name] ) ) {
-      $current = include pad . 'var/at/tbl.php';
+      $current = include pad . 'var/table.php';
       if ( $current !== INF ) 
         return $current;
     }
 
-    if ( $padName [$i] == $name ) {
-      $current = include pad . 'var/at/tag.php';
-      if ( $current !== INF ) 
-        return $current;
-    }
+  for ( $i=$pad; $i; $i-- ) {
 
+    $check = padFindName ( $padCurrent [$i], $name, $names );
+    if ( $check !== INF ) 
+      return $check;
+
+    $check = padFindName ( $padData [$i], $name, $names );
+    if ( $check !== INF ) 
+      return $check;
+
+  } 
+
+  if ( isset ( $padDataStore [$name] ) ) {
+    $current = padFindNames ( $padDataStore [$name], $names );
+    if ( $current !== INF ) 
+      return $current;
   }
 
   if ( isset ( $padSeqStore [$name] ) ) {
@@ -22,18 +32,6 @@
       return $current;
   }
 
-  if ( isset ( $padDataStore [$name] ) ) {
-    $current = padAtSearch ( $padDataStore [$name], $names );
-    if ( $current !== INF ) 
-      return $current;
-  }
-
-  if ( isset ( $GLOBALS [$name] ) ) {
-    $current = padAtSearch ( $GLOBALS [$name], $names );
-    if ( $current !== INF ) 
-      return $current;
-  }
-
-  return INF;
+  return padFindName ( $GLOBALS, $name, $names );
 
 ?>
