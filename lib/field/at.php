@@ -6,7 +6,27 @@
     global $pad, $padCurrent, $padData, $padTable, $padSeqStore, $padDataStore, $padName;
     global $padOpt, $padPrm, $padSetLvl;
 
-    global $a, $b, $c;
+    padAtSet ( $field, $kind, $name );
+
+    $names = padExplode ( $field, '.' ); 
+
+    $GLOBALS ['padForceTagName']  = end ($names);
+    $GLOBALS ['padForceDataName'] = end ($names);
+
+    if ( $kind ) {
+
+      $i = padAtIdx ( $type, $name );
+
+      return include pad . "var/at/$kind.php";
+
+    } else
+    
+      return include pad . 'var/name.php';
+
+  }
+
+
+  function padAtSet ( &$field, &$kind, &$name ) {
 
     list ( $field, $after ) = padSplit ( '@', $field );
     list ( $first, $second) = padSplit ( '.', $after  );
@@ -19,6 +39,11 @@
     } elseif ( ! $second ) {
   
       if ( padIsTag ($first) ) {
+
+        $kind = 'tag';
+        $name = $first;            
+
+      } elseif ( padIsLevel ($first) ) {
 
         $kind = 'tag';
         $name = $first;            
@@ -51,13 +76,13 @@
       $kind = $first;
       $name = $second;            
  
-    } elseif ( padIsTag ($first) and padExists ( pad . "tag/$second.php" ) ) {
+    } elseif ( padExists ( pad . "tag/$second.php" ) ) {
  
       $kind  = 'properties';
       $name  = $first;     
       $field = "$second.$field";    
  
-    } elseif ( padIsTag ($second) and padExists ( pad . "tag/$first.php" ) ) {
+    } elseif ( padExists ( pad . "tag/$first.php" ) ) {
  
       $kind  = 'properties';
       $name  = $second;            
@@ -65,37 +90,10 @@
  
     } else
 
-      return INF;
-
-    $names = padExplode ( $field, '.' ); 
-
-    $GLOBALS ['padForceTagName']  = end ($names);
-    $GLOBALS ['padForceDataName'] = end ($names);
-
-    if ( $kind ) {
-
-      if     ( $name         ) $i = padGetIdxName   ($name);
-      elseif ( $type == 'tag') $i = padGetIdxNoName ();
-      else                     $i = $pad;
-
-      return include pad . "var/at/$kind.php";
-
-    } elseif ( $name ) {
-    
-      return include pad . 'var/name.php';
-
-    } else {
-
-      return padError ("oops");
-
-    }
+      return padError ("Logic error");
 
   }
 
-  function padFindLevel ( $me ) {
-
-
-  }
 
   function padAtSearch ( $current, $names ) {
 
@@ -108,10 +106,10 @@
         return INF;
 
       if ( $name == '*' )
-        return padAtAny ( $key, $current, $names );
+        return padAtSearchAny ( $key, $current, $names );
 
       if ( str_contains ($name, '<') or str_contains ($name, '>')  )  {
-        $idx = padAtGetIdx($current, $name);
+        $idx = padAtSearchIdx ($current, $name);
         if ($idx === INF)
           return INF;
         $current = &$current [$idx];
@@ -130,7 +128,7 @@
   }
 
 
-  function padAtAny ( $key, $current, $names ) {
+  function padAtSearchAny ( $key, $current, $names ) {
 
     $rest = [];
     foreach ( $names as $key2 => $name2 ) 
@@ -154,7 +152,7 @@
   }
 
 
-  function padAtGetIdx ($current, $name ) {
+  function padAtSearchIdx ($current, $name ) {
 
     $start = ( str_contains ($name, '<') );
   
@@ -174,30 +172,6 @@
   }
 
 
-  function padFindNames ( $current, $names ) {
-
-    $check = padAtSearch ( $current, $names );
-    if ( $check !== INF)
-      return $check;
-
-    foreach ( $current as $key => $value ) {
-
-      if ( is_object ($value) or is_resource ($value) )
-        $value = (array) $value;
-
-      if ( is_array ($value) and ! str_starts_with ($key, 'pad') ) {
-        $check = padFindNames ( $value, $names );
-        if ( $check !== INF )
-          return $check;
-      }
-
-    }
-
-    return INF;
-
-  }
-
-
   function padFindName ( $current, $name, $names ) {
 
     if ( array_key_exists ($name, $current) ) {
@@ -213,6 +187,30 @@
 
       if ( is_array ($value) and ! str_starts_with ($key, 'pad') ) {
         $check = padFindName ( $value, $name, $names );
+        if ( $check !== INF )
+          return $check;
+      }
+
+    }
+
+    return INF;
+
+  }
+
+
+  function padFindNames ( $current, $names ) {
+
+    $check = padAtSearch ( $current, $names );
+    if ( $check !== INF)
+      return $check;
+
+    foreach ( $current as $key => $value ) {
+
+      if ( is_object ($value) or is_resource ($value) )
+        $value = (array) $value;
+
+      if ( is_array ($value) and ! str_starts_with ($key, 'pad') ) {
+        $check = padFindNames ( $value, $names );
         if ( $check !== INF )
           return $check;
       }
@@ -253,13 +251,46 @@
 
     for ( $i=$pad; $i; $i-- ) 
       if ( $padName [$i] == $name )
-        return TRUE;
+        return $i;
 
     return FALSE;
 
   }
 
-  function padGetIdxName ($name) {
+
+  function padIsLevel ( $field ) {
+
+    global $pad;
+
+    if ( strlen($field) > 1 and substr($field,0,1) == '-' and is_numeric(substr($field,1)) ) {
+      $idx = $pad + $field;
+      if ( $idx > 0 and $idx <= $pad )
+        return $idx;
+    }
+
+    if ( is_numeric($field) ) 
+      if ($field > 0 and $field <= $pad )
+        return $field;
+
+    return FALSE;
+
+  }
+
+
+  function padAtIdx ( $type, $name ) {
+
+    global $pad;
+
+    if     ( $name and padIsTag   ($name) ) return padIsTag       ($name); 
+    elseif ( $name and padIsLevel ($name) ) return padIsLevel     ($name); 
+    elseif ( $name                        ) return padAtIdxName   ($name);
+    elseif ( $type == 'tag'               ) return padAtIdxNoName (1);
+    else                                    return padAtIdxNoName (0);
+
+  }
+
+
+  function padAtIdxName ($name) {
 
     global $pad, $padName;
 
@@ -271,11 +302,12 @@
 
   }
 
-  function padGetIdxNoName () {
+
+  function padAtIdxNoName ( $start=0 ) {
 
     global $pad, $padName, $padType, $padTag;
 
-    for ( $i=$pad-1; $i; $i-- ) {
+    for ( $i=$pad-$start; $i; $i-- ) {
 
       if ( $padTag [$i] == 'if' or $padTag [$i] == 'case' )
         continue;
