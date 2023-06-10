@@ -1,6 +1,6 @@
 <?php
   
-  function padEvalParseStart ( $next, $next2 ) {
+  function padParseStart ( $next, $next2 ) {
 
     if ( $next == '-' and ctype_xdigit($next2) )         return TRUE;
     if ( preg_match('/^[a-zA-Z0-9_]/', $next))           return TRUE;
@@ -14,19 +14,18 @@
 
   }
 
-  function padEvalParseValid ( $one, $next, $next2, $prev ) {
+  function padAtValidParse ( $one, $next, $next2 ) {
 
-    if ( ctype_alpha($one) or ctype_digit($one) )                  return TRUE;
-    if ( in_array($one, ['_',':'] ) )                              return TRUE;
-    if ( $one == '.' and preg_match('/^[a-zA-Z0-9_]/', $next ) )   return TRUE; 
-    if ( $one == '.' and in_array($next, ['<','>','*'] ) )         return TRUE;
-    if ( $one == '*' and in_array($next, ['.','@'] ) )             return TRUE;
-    if ( $one == '<' and in_array($next, ['.','@'] ) )             return TRUE;
-    if ( $one == '>' and in_array($next, ['.','@'] ) )             return TRUE;
-    if ( $one == '@' and ctype_alpha($next) )                      return TRUE;
-    if ( $one == '<' and ctype_digit($next) )                      return TRUE;
-    if ( $one == '>' and ctype_digit($next) )                      return TRUE;
-    if ( $one == '-' and in_array($prev, ['.','@'] ) )             return TRUE;
+    if ( ctype_alpha($one) or ctype_digit($one) )                                   return TRUE;
+    if ( in_array($one, ['_',':'] ) )                                               return TRUE;
+    if ( $one == '.' and preg_match('/^[a-zA-Z0-9_]/', $next ) )                    return TRUE; 
+    if ( $one == '.' and in_array($next, ['<','>','*'] ) )                          return TRUE;
+    if ( $one == '*' and in_array($next, ['.','@'] ) )                              return TRUE;
+    if ( $one == '@' and ctype_alpha($next) )                                       return TRUE;
+    if ( $one == '<' and in_array($next, ['.','@'] ) )                              return TRUE;
+    if ( $one == '<' and ( ctype_digit($next) and in_array($next2, ['.','@'] )  ) ) return TRUE;
+    if ( $one == '>' and in_array($next, ['.','@'] ) )                              return TRUE;
+    if ( $one == '>' and ( ctype_digit($next) and in_array($next2, ['.','@'] )  ) ) return TRUE;
 
     return FALSE;
 
@@ -52,10 +51,9 @@
       
       $next  = (isset($input[$key+1])) ? $input[$key+1] : '';
       $next2 = (isset($input[$key+2])) ? $input[$key+2] : '';
-      $prev  = (isset($result [$i] [0]) and $result [$i] [0]) ? substr($result [$i] [0],0,1) : ''; 
-    
+      
       if ( $is_var )
-        if ( padEvalParseValid ( $one, $next, $next2, $prev )  ) {
+        if ( padAtValidParse ( $one, $next, $next2 ) ) {
           $result[$i][0] .= $one;
           continue;         
         } else {
@@ -82,7 +80,7 @@
         continue;
 
       }
-      
+
       if ($one=="'" and ! $is_quote) {
         
         if (!$is_str) {
@@ -123,7 +121,7 @@
       
       if ($is_str or $is_quote) {
       
-        $result [$i] [0] .= $one;
+        $result [$i] [0].= $one;
         
         continue;
 
@@ -224,17 +222,15 @@
         
       }
 
-
-
-      if ($one == '$' and padEvalParseStart ( $next, $next2 ) ) {
+      if ( $one == '$'  and padAtStart ( $next, $next2 ) ) {
 
         $is_var   = TRUE;
         $is_other = FALSE;
-        $skip = 1;
+        $skip = 2;
         
         $i += 100;
         $result[$i][1] = '$';
-        $result[$i][0] = $next;
+        $result[$i][0] = '-' . $next2;
 
         continue;
 

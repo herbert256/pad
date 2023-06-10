@@ -91,7 +91,19 @@
 
       if ( $one[1] == '$' ) {
 
-        $result[$k][1] = 'VAL';      
+        $result[$k][1] = 'VAL';   
+
+        if ( str_contains ( $one[0], '@' ) ) {
+          $tmp = padAt ( $one[0] );
+          if ( $tmp === INF )
+            padError ( 'Unknow $variable: ' . $one[0] );
+          if ( is_array ( $tmp ) ) {
+            $result[$k][0] = '*ARRAY*';
+            $result[$k][4] = $tmp;
+          }
+          else
+            $result[$k][0] = $tmp;
+        }   
  
         if ( padFieldCheck ( $one[0] ) ) 
           $result[$k][0] = padFieldValue ( $one[0] );

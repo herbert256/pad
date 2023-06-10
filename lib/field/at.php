@@ -13,14 +13,11 @@
     $GLOBALS ['padForceTagName']  = end ($names);
     $GLOBALS ['padForceDataName'] = end ($names);
 
-    if ( $kind ) {
+    $i = padAtIdx ( $type, $name );
 
-      $i = padAtIdx ( $type, $name );
-
+    if ( $kind )
       return include pad . "var/at/$kind.php";
-
-    } else
-    
+    else
       return include pad . 'var/name.php';
 
   }
@@ -245,6 +242,18 @@
   }
 
 
+  function padAtIdx ( $type, $name ) {
+
+    global $pad;
+
+    if     ( $name and padIsTag   ($name) ) return padIsTag       ($name); 
+    elseif ( $name and padIsLevel ($name) ) return padIsLevel     ($name); 
+    elseif ( $type == 'tag'               ) return padAtIdxNoName (1);
+    else                                    return padAtIdxNoName (0);
+
+  }
+
+
   function padIsTag ($name) {
 
     global $pad, $padName;
@@ -273,32 +282,6 @@
         return $field;
 
     return FALSE;
-
-  }
-
-
-  function padAtIdx ( $type, $name ) {
-
-    global $pad;
-
-    if     ( $name and padIsTag   ($name) ) return padIsTag       ($name); 
-    elseif ( $name and padIsLevel ($name) ) return padIsLevel     ($name); 
-    elseif ( $name                        ) return padAtIdxName   ($name);
-    elseif ( $type == 'tag'               ) return padAtIdxNoName (1);
-    else                                    return padAtIdxNoName (0);
-
-  }
-
-
-  function padAtIdxName ($name) {
-
-    global $pad, $padName;
-
-    for ( $i=$pad; $i; $i-- ) 
-      if ( $padName [$i] == $name )
-        return $i;
-
-    return $pad;
 
   }
 
