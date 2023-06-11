@@ -1,58 +1,94 @@
-<table border=1>
-  {staff}
-    {first@staff}
-      <tr>
-        {fields@staff}
-          <th>{$name}</th>
-        {/fields@staff}
-      </tr>
-    {/first@staff}
-    <tr>
-      {fields@staff}
-        <td> {$value} </td>
-      {/fields@staff }
-    </tr>
-  {/staff}
-</table>
+{pad name='cool', abc=123, 'fiets', $abc='banaan', $go='nuts', xyz=789, 12*15, 34}
 
-<table border=1>
-  {staff}
+<h3>variables</h3>
 
-      <tr>
-        {fields@staff}
-          <th>1 - {$name}</th>
-        {/fields@staff}
-      </tr>      
-      <tr>
-        {fields@tag}
-          <th>2 - {$name}</th>
-        {/fields@tag}
-      </tr>      
-      <tr>
-        {fields@properties}
-          <th>3 - {$name}</th>
-        {/fields@properties}
-      </tr>
-      <tr>
-        {fields@tag.staff}
-          <th>4 - {$name}</th>
-        {/fields@tag.staff}
-      </tr>
-      <tr>
-        {fields@staff.tag}
-          <th>5 - {$name}</th>
-        {/fields@staff.tag}
-      </tr>
-      <tr>
-        {fields@staff.properties}
-          <th>6 - {$name}</th>
-        {/fields@staff.properties}
-      </tr>
-      <tr>
-        {fields@properties.staff}
-          <th>7 - {$name}</th>
-        {/fields@properties.staff}
-      </tr>
+  1 - {$go} <br>
+  2 - {$go@cool} <br>
+  3 - {$go@cool.variables} <br>
+  4 - {$go@tag} <br>
+  5 - {$go@variables} <br>
 
-  {/staff}
-</table>
+<br>
+
+  1 - {$<@variables} <br>
+  2 - {$<@cool.variables} <br>
+
+<br>
+
+  1 - {$>@variables} <br>
+  2 - {$>@cool.variables} <br>
+
+<br>
+
+  <table border="1">
+    <th>name</th>
+    <th>value</th>
+    {@cool.variables}
+      <tr>
+        <td>{$name}</td>
+        <td>{$value}</td>
+      </tr>
+    {/@cool.variables}
+  </table>
+
+  <h3>options</h3>
+
+    1 - {$xyz} <br>
+    2 - {$xyz@tag} <br>
+    3 - {$xyz@tag.cool} <br>
+    4 - {$xyz@cool.tag} <br>
+    5 - {$xyz@options} <br>
+    6 - {$xyz@options.cool} <br>
+    7 - {$xyz@cool.options} <br>
+    8 - {$xyz@cool} <br>
+    9 - {$option.xyz@cool} <br> 
+   10 - {$xyz@cool.option} <br> 
+   11 - {$xyz@option.cool} <br> 
+   12 - {$xyz@option} <br> 
+
+<br>
+
+  1 - {$<@options.cool} <br>
+  2 - {$>@options.cool} <br>
+
+<br>
+
+  <table border="1">
+    <th>name</th>
+    <th>value</th>
+    {options@cool}
+      <tr>
+        <td>{$name}</td>
+        <td>{$value}</td>
+      </tr>
+    {/options@cool}
+  </table>
+  
+<h3>parameters</h3>
+
+  1 - {$2@tag} <br>
+  2 - {$2@tag.cool} <br>
+  3 - {$2@parameters} <br>
+  4 - {$2@parameters.cool} <br>
+  5 - {$2@cool} <br>
+  6 - {$2} <br>
+
+<br>    
+
+  1 - {$<@parameters.cool} <br>
+  2 - {$>@parameters.cool} <br>
+
+<br>
+
+  <table border="1">
+    <th>name</th>
+    <th>value</th>
+    {parameters@cool}
+      <tr>
+        <td>{$name}</td>
+        <td>{$value}</td>
+      </tr>
+    {/parameters@cool}
+  </table>
+
+{/pad}

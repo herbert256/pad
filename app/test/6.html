@@ -1,68 +1,56 @@
 <table border=1>
   {staff}
-    {first@staff}
+    {@first}
       <tr>
-        {fields@staff}
+        {@fields}
           <th>{$name}</th>
-        {/fields@staff}
+        {/@fields}
       </tr>
-    {/first@staff}
+    {/@first}
     <tr>
-      {fields@staff.properties}
+      {@fields}
         <td> {$value} </td>
-      {/fields@staff.properties}
+      {/@fields}
     </tr>
   {/staff}
 </table>
 
-<br>
+<hr>
 
 <table border=1>
   {staff}
-    {first@staff}
- 
+    {@staff.first}
       <tr>
-        {fields@staff}
-          <th>1 - {$name}</th>
-        {/fields@staff}
-      </tr>      
- 
-      <tr>
-        {fields@tag}
-          <th>2 - {$name}</th>
-        {/fields@tag}
-      </tr>      
- 
-      <tr>
-        {fields@properties}
-          <th>3 - {$name}</th>
-        {/fields@properties}
+        {@staff.fields}
+          <th>{$name}</th>
+        {/@staff.fields}
       </tr>
- 
-      <tr>
-        {fields@tag.staff}
-          <th>4 - {$name}</th>
-        {/fields@tag.staff}
-      </tr>
- 
-      <tr>
-        {fields@staff.tag}
-          <th>5 - {$name}</th>
-        {/fields@staff.tag}
-      </tr>
- 
-      <tr>
-        {fields@staff.properties}
-          <th>6 - {$name}</th>
-        {/fields@staff.properties}
-      </tr>
- 
-      <tr>
-        {fields@properties.staff}
-          <th>7 - {$name}</th>
-        {/fields@properties.staff}
-      </tr>
+    {/@staff.first}
+    <tr>
+      {@staff.fields}
+        <td> {$value} </td>
+      {/@staff.fields}
+    </tr>
+  {/staff}
+</table>
 
-    {/first@staff}
+<hr>
+
+<table border=1>
+  {staff}
+    {true}
+      {@first}
+        <tr>
+          {@-3.fields}
+            <th>{$name}</th>
+          {/@-3.fields}
+        </tr>
+      {/@first}
+      <tr>
+        {@-2.fields}
+          <td> {$value} </td>
+        {/@-2.fields}
+      </tr>
+    {/true}
   {/staff}
 </table>

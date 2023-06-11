@@ -1,13 +1,5 @@
 <?php
 
-  $tag  = $names [0] ?? '';
-  $parm = $names [1] ?? '';;
-
-  if ( padExists ( pad . "tag/$tag.php" )) {
-    $padIdx = $i;
-    return include pad . "tag/$tag.php";
-  }
-
   $current = padAtSearch ( $padCurrent [$i], $names );
   if ( $current !== INF ) 
     return $current;

@@ -6,44 +6,58 @@
     global $pad, $padCurrent, $padData, $padTable, $padSeqStore, $padDataStore, $padName;
     global $padOpt, $padPrm, $padSetLvl;
 
-    padAtSet ( $field, $kind, $name );
+    padAtSet ( $field, $kind, $name, $property );
 
     $names = padExplode ( $field, '.' ); 
 
-    $GLOBALS ['padForceTagName']  = end ($names);
-    $GLOBALS ['padForceDataName'] = end ($names);
+    padAtForceName ( $names, $name, $property );
 
     $i = padAtIdx ( $type, $name );
 
-    if ( $kind )
-      return include pad . "var/at/$kind.php";
-    else
-      return include pad . 'var/name.php';
+    if     ( $property )  return include pad . "var/property.php";
+    elseif ( $kind     )  return include pad . "var/at/$kind.php";
+    else                  return include pad . 'var/name.php';
 
   }
 
 
-  function padAtSet ( &$field, &$kind, &$name ) {
+  function padAtForceName ( $names, $name, $property ) {
+
+    if ( count ($names) )
+      $forceName = end ($names);
+    elseif ( $property )
+      $forceName = $property;
+    else
+      $forceName = $name;
+
+    $GLOBALS ['padForceTagName']  = $forceName;
+    $GLOBALS ['padForceDataName'] = $forceName;
+
+  }
+
+
+  function padAtSet ( &$field, &$kind, &$name, &$property ) {
 
     list ( $field, $after ) = padSplit ( '@', $field );
     list ( $first, $second) = padSplit ( '.', $after  );
-
-    if ( ! $first ) {
-
-      $kind = 'any';
-      $name = '';
+    
+    $kind     = 'any';
+    $name     = $first;
+    $property = '';
   
-    } elseif ( ! $second ) {
+    if ( $second and padExists ( pad . "var/at/$second.php" ) )
+ 
+      $kind = $second;
+   
+    elseif ( $second and padExists ( pad . "tag/$second.php" ) )
+
+      $property = $second;
+
+    elseif ( $first and ! $second ) {
   
-      if ( padIsTag ($first) ) {
+      if ( padIsTag ($first) or padIsLevel ($first) ) {
 
         $kind = 'tag';
-        $name = $first;            
-
-      } elseif ( padIsLevel ($first) ) {
-
-        $kind = 'tag';
-        $name = $first;            
 
       } elseif ( padExists ( pad . "var/at/$first.php" ) ) {
 
@@ -52,44 +66,14 @@
 
       } elseif ( padExists ( pad . "tag/$first.php") ) {
 
-        $kind  = 'properties';
-        $name  = '';            
-        $field = "$first.$field";
-
-      } else {
-
-        $kind = '';
-        $name = $first;         
+        $property = $first;
+        $name     = '';            
 
       }
-  
-    } elseif ( padExists ( pad . "var/at/$second.php" ) ) {
- 
-      $kind = $second;
-      $name = $first;            
- 
-    } elseif ( padExists ( pad . "var/at/$first.php" ) ) {
- 
-      $kind = $first;
-      $name = $second;            
- 
-    } elseif ( padExists ( pad . "tag/$second.php" ) ) {
- 
-      $kind  = 'properties';
-      $name  = $first;     
-      $field = "$second.$field";    
- 
-    } elseif ( padExists ( pad . "tag/$first.php" ) ) {
- 
-      $kind  = 'properties';
-      $name  = $second;            
-      $field = "$first.$field";
- 
-    } else
 
-      return padError ("Logic error");
-
-  }
+    }
+        
+  } 
 
 
   function padAtSearch ( $current, $names ) {

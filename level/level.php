@@ -22,13 +22,11 @@
   if ( in_array ( $padFirst, ['$','!','#','&'] ) ) 
     return include pad . 'var/var.php';
 
-  $padHistory [] = "Busy: " .  $padWords [0];
-  
-  if ( ! ctype_alpha ( $padBetween [0] )         ) return padIgnore ('ctype_alpha');
-  if ( ! padValidTag ( $padWords [0]   )         ) return padIgnore ('padValidTag');
-  if ( ! include pad . 'level/type.php'          ) return padIgnore ('type');
-  if ( ! include pad . 'level/pair.php'          ) return padIgnore ('pair');;
+  if ( ! padValidFirstChar ( $padFirst ) ) return padIgnore ('first char');
+  if ( ! padValidTag ( $padWords [0]   ) ) return padIgnore ('valid tag');
+  if ( ! include pad . 'level/type.php'  ) return padIgnore ('type');
+  if ( ! include pad . 'level/pair.php'  ) return padIgnore ('pair');;
 
   include pad . 'level/start.php';
-
+ 
 ?>

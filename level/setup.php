@@ -42,6 +42,7 @@
   $padNull       [$pad] = FALSE;
   $padElse       [$pad] = FALSE;
   $padArray      [$pad] = FALSE;
+  $padCount      [$pad] = FALSE;
   $padText       [$pad] = FALSE;
 
   $padSaveLvl    [$pad] = [];

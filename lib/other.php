@@ -1,6 +1,16 @@
 <?php
 
 
+  function padValidFirstChar ($char) {
+
+    if ( $char == '@'         ) return TRUE;
+    if ( ctype_alpha ( $char) ) return TRUE;
+
+    return FALSE;
+ 
+  }
+
+
   function padAtCheck ( $item ) {
 
     if ( str_contains($item, '@') ) 

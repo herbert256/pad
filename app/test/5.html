@@ -2,90 +2,33 @@
 
 <h3>variables</h3>
 
-  2 - {$go@tag.cool} <br>
-  4 - {$go@variables.cool} <br>
-  5 - {$go@cool} <br>
-  6 - {$go} <br>
-
-  1 - {$go@tag} <br>
-  3 - {$go@variables} <br>
+  1 - {$go} <br>
+  2 - {$go@cool} <br>
+  3 - {$go@cool.variables} <br>
+  4 - {$go@tag} <br>
+  5 - {$go@variables} <br>
 
 <br>
 
-  1 - {$<@variables.cool} <br>
-  2 - {$>@variables.cool} <br>
+  1 - {$<@variables} <br>
+  2 - {$<@cool.variables} <br>
 
 <br>
 
-  <table border="1">
-    <th>name</th>
-    <th>value</th>
-    {variables@cool}
-      <tr>
-        <td>{$name}</td>
-        <td>{$value}</td>
-      </tr>
-    {/variables@cool}
-  </table>
-
-  <h3>options</h3>
-
-    1 - {$xyz} <br>
-    2 - {$xyz@tag} <br>
-    3 - {$xyz@tag.cool} <br>
-    4 - {$xyz@cool.tag} <br>
-    5 - {$xyz@options} <br>
-    6 - {$xyz@options.cool} <br>
-    7 - {$xyz@cool.options} <br>
-    8 - {$xyz@cool} <br>
-    9 - {$option.xyz@cool} <br> 
-   10 - {$xyz@cool.option} <br> 
-   11 - {$xyz@option.cool} <br> 
-   12 - {$xyz@option} <br> 
-
-<br>
-
-  1 - {$<@options.cool} <br>
-  2 - {$>@options.cool} <br>
+  1 - {$>@variables} <br>
+  2 - {$>@cool.variables} <br>
 
 <br>
 
   <table border="1">
     <th>name</th>
     <th>value</th>
-    {options@cool}
+    {@cool.variables}
       <tr>
         <td>{$name}</td>
         <td>{$value}</td>
       </tr>
-    {/options@cool}
+    {/@cool.variables}
   </table>
   
-<h3>parameters</h3>
-
-  1 - {$2@tag} <br>
-  2 - {$2@tag.cool} <br>
-  3 - {$2@parameters} <br>
-  4 - {$2@parameters.cool} <br>
-  5 - {$2@cool} <br>
-  6 - {$2} <br>
-
-<br>    
-
-  1 - {$<@parameters.cool} <br>
-  2 - {$>@parameters.cool} <br>
-
-<br>
-
-  <table border="1">
-    <th>name</th>
-    <th>value</th>
-    {parameters@cool}
-      <tr>
-        <td>{$name}</td>
-        <td>{$value}</td>
-      </tr>
-    {/parameters@cool}
-  </table>
-
 {/pad}

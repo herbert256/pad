@@ -18,4 +18,6 @@
 
   $padDefault [$pad] = padIsDefaultData ( $padData [$pad] );
 
+  $padCount [$pad] = count ( $padData [$pad] );
+
 ?>
