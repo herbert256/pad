@@ -93,20 +93,26 @@
         $current = (array) $current;
 
       if ( ! is_array ($current) or ! count ($current) ) 
+
         return INF;
 
-      if ( $name == '*' )
+      elseif ( $name == '*' )
+        
         return padAtSearchAny ( $key, $current, $names );
 
-      if ( str_contains ($name, '<') or str_contains ($name, '>')  )  {
-        $idx = padAtSearchIdx ($current, $name);
+      elseif ( str_contains ($name, '<') or str_contains ($name, '>') or str_contains ($name, '=')  )  {
+        
+        $idx = padAtSearchCondition ( $current, $name );
+        
         if ($idx === INF)
           return INF;
+        
         $current = &$current [$idx];
+        
         continue;
-      }
 
-      if ( ! array_key_exists ( $name, $current ) )
+      } elseif ( ! array_key_exists ( $name, $current ) )
+        
         return INF;
 
       $current = &$current [$name];
@@ -142,7 +148,46 @@
   }
 
 
-  function padAtSearchIdx ($current, $name ) {
+  function padAtSearchCondition ( $current, $name ) {
+
+    if     ( str_contains($name, '<>') ) $parts = padExplode ( $name, '<>', 2 );
+    elseif ( str_contains($name, '<=') ) $parts = padExplode ( $name, '<=', 2 );
+    elseif ( str_contains($name, '>=') ) $parts = padExplode ( $name, '>=', 2 );
+    elseif ( str_contains($name, '<')  ) $parts = padExplode ( $name, '<',  2 );
+    elseif ( str_contains($name, '>')  ) $parts = padExplode ( $name, '>',  2 );
+    elseif ( str_contains($name, '=')  ) $parts = padExplode ( $name, '=',  2 );
+
+    if ( count($parts) < 2 )
+      return padAtSearchIdx ( $current, $name );
+
+    $before = $parts [0];
+    $after  = padEval ( $parts [1] );
+
+    $GLOBALS ['padHistory'] [] = "At-condition: $before ... $after";
+
+    foreach ( $current as $key => $value ) {
+
+      $GLOBALS ['padHistory'] [] = "At-condition-key: $before ... $after -- $key";
+      $GLOBALS ['aaa'] = $current;
+
+      if ( ! isset ( $current [$key] [$before] ) )
+        continue;
+
+      if     ( str_contains($name, '<>') ) { if ( $current [$key] [$before] <> $after ) return $key; }
+      elseif ( str_contains($name, '<=') ) { if ( $current [$key] [$before] <= $after ) return $key; }
+      elseif ( str_contains($name, '>=') ) { if ( $current [$key] [$before] >= $after ) return $key; }
+      elseif ( str_contains($name, '<')  ) { if ( $current [$key] [$before] <  $after ) return $key; }
+      elseif ( str_contains($name, '>')  ) { if ( $current [$key] [$before] >  $after ) return $key; }
+      elseif ( str_contains($name, '=')  ) { if ( $current [$key] [$before] == $after ) return $key; }
+    
+    }
+
+    return INF;
+
+  }
+  
+
+  function padAtSearchIdx ( $current, $name ) {
 
     $start = ( str_contains ($name, '<') );
   

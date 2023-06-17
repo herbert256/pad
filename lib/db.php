@@ -93,10 +93,8 @@
 
     $padDbRowsFound = $rows = mysqli_affected_rows($padSqlConnect);
 
-    if ( $rows > 0 and ($command == 'field' or $command == 'record') ) {
+    if ( $rows > 0 and ($command == 'field' or $command == 'record') )
       $fields = mysqli_fetch_assoc ( $query );
-      $GLOBALS ['padLastFields'] = $fields;
-    }
 
     if     ( $command == 'insert'  ) {
       $return = mysqli_insert_id ( $padSqlConnect );

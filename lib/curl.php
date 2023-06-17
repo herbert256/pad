@@ -187,8 +187,6 @@
     if ( ! $output ['type'] )
       $output ['type'] = padContentType ( $output ['data'] );
 
-    $GLOBALS ['padCurlLast'] = $output;
-
     return $output;
     
   }

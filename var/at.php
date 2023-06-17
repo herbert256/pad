@@ -1,7 +1,7 @@
 <?php
 
     if ( ! padValidVarAt ($padFld) )
-      return padIgnore ( "Field '$padFld' not a valid name" );
+      return padIgnore ( "@ Field '$padFld' not a valid name" );
 
     $padVal = padAt ( $padFld, 'var' );
 
