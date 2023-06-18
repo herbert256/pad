@@ -1,5 +1,5 @@
 <?php
 
-  $abc = padData ('mondial.xml');
+  $abc = padData ('mondial.xml'); 
 
 ?>

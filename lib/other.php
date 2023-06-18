@@ -1,7 +1,83 @@
 <?php
 
 
+  function padXmlToArrayIterator ( $xml ) {
+
+    $arr = array();
+
+    for( $xml->rewind(); $xml->valid(); $xml->next() ) {
+
+      $val = trim ( strval ( $xml->current() ) );
+      $idx = $xml->key();
+      $cnt = ( array_key_exists ($idx, $arr) ) ? array_key_last ($arr [$idx]) + 1 : 0;
+
+      if ( ! $xml->hasChildren() and ! count ($xml->current()->attributes()) ) 
+
+        $arr [$idx] [$cnt] = $val;
+
+      else {
+
+        if ( $val )
+          $arr [$idx] [$cnt] [$idx] = $val;
+
+        foreach ( $xml->current()-> attributes() as $key => $val)
+          if ( isset ( $arr [$idx] [$cnt] [$key] ) )
+            $arr [$idx] [$cnt] ['_'.$key] = strval($val);
+          else
+            $arr [$idx] [$cnt] [$key] = strval($val);
+        
+        if ( $xml->hasChildren() )
+          $arr [$idx] [$cnt] ['_children'] = padXmlToArrayIterator ($xml->current());
+
+      }
+
+    }
+
+    return $arr;
+
+  }
+
+
+  function padXmlToArrayCheck ( $arr ) {
+
+    foreach ( $arr as $key => $val ) 
+      if ( is_array ($val) )
+        if ( count($val) == 1 and isset ($val[0]) and ! is_array ($val[0]) )
+          $arr [$key] = $val [0];
+        else
+          $arr [$key] = padXmlToArrayCheck ( $arr [$key] ); 
+
+    foreach ( $arr as $key => $val ) 
+      if ( $key == '_children') {
+        unset ( $arr [$key] );
+        foreach ( $val as $key2 => $val2)
+          if ( isset ( $arr [$key2] ) )
+            $arr [$key2.'_'] = $val2;
+          else
+            $arr [$key2] = $val2;
+      }
+
+    return $arr;
+  
+  }
+
+
+  function padDataForcePad ($data) {
+
+    $result = [];
+
+    foreach ( $data as $name => $value) {
+      $result [$name] ['name'] = $name;      
+      $result [$name] ['value'] = $value;      
+    }
+
+    return $result;
+ 
+  }
+
+
   function padValidFirstChar ($char) {
+
 
     if ( $char == '@'         ) return TRUE;
     if ( ctype_alpha ( $char) ) return TRUE;
@@ -592,7 +668,7 @@
           return substr ($content, $pad1, $pad2-$pad1);
     }
     
-    return "";
+    return '';
     
   }
 
@@ -983,7 +1059,9 @@
 
     $content = trim ( $content );
 
-    if ( substr ($content, 0, 6) == '&open;') 
+    if ( substr($content, 0, 1) == '(' and substr($content, -1) == ')' )
+      $type = 'list';
+    elseif ( substr ($content, 0, 6) == '&open;') 
       $type = 'json';
     elseif ( substr ($content, 0, 5) == '%YAML' )
       $type = 'yaml';
@@ -1034,7 +1112,18 @@
       return $type;
     }
 
-    return '';
+    $parts = padExplode ($content, '..');
+    if ( count ($parts) == 2 and ctype_alnum($parts[0]) and ctype_alnum($parts[1]) )
+      return 'range';
+
+    if ( str_starts_with ( strtolower ( $content ), 'http:' ) 
+      or str_starts_with ( strtolower ( $content ), 'https:' )  )
+      return 'curl';
+
+    if ( padDataFileName ( $content ) )
+      return 'file';
+
+    return 'csv';
 
   }
 

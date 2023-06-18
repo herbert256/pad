@@ -1,5 +1,6 @@
 <?php
 
+
   function padData ($input, $content='', $name='') {
 
     if     ( $input === NULL           ) $data = [];
@@ -16,67 +17,16 @@
 
     if ( is_array ( $data ) )
       return padDataChk ($data, $name);
-
-    $check = padDataFileName ( $data );
-    if ( $check )
-      return padDataFileData ( $check );
-
-    if ( str_starts_with ( strtolower ( $data ), 'http:' ) or str_starts_with ( strtolower ( $data ), 'https:' )  ) {
-
-      $curl = padCurl ($data);
- 
-      if ( str_starts_with ( $curl ['result'],  '2' ) )
-        return padData ( $curl [$data], $curl ['type'], $name );
-      else
-        return [];    
- 
-    }
-
-    if ( padCheckRange ( $data ) ) { 
-      $data = padGetRange ( $data );
-      return padDataChk ($data, $name);
-    }
-
-    if ( substr($data, 0, 1) == '(' and substr($data, -1) == ')' ) {
-
-      $data = padExplode(substr($data, 1, -1), ',');
-
-      foreach ($data as $key => $value)
-        $data[$key] = padEval($value);
-
-      return padDataChk ($data, $name);
-
-    }
     
     if ( ! $content )
       $content = padContentType ($data);
 
-    if ( ! $content )
-      $content = 'csv';
-
-    $function = 'pad' . ucwords($content) . 'ToArray';
-
-    $result = $function ($data) ;
-    $result = padDataChk ($result, $name);
-
-    return $result;
+    $result = include pad . "data/$content.php";
+    
+    return padDataChk ( $result, $name );
 
   }
-
-
-  function padDataForcePad ($data) {
-
-    $result = [];
-
-    foreach ( $data as $name => $value) {
-      $result [$name] ['name'] = $name;      
-      $result [$name] ['value'] = $value;      
-    }
-
-    return $result;
- 
-  }
-
+  
 
   function padDataChk ($data,$name) {
 
