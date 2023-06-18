@@ -163,12 +163,7 @@
     $before = $parts [0];
     $after  = padEval ( $parts [1] );
 
-    $GLOBALS ['padHistory'] [] = "At-condition: $before ... $after";
-
     foreach ( $current as $key => $value ) {
-
-      $GLOBALS ['padHistory'] [] = "At-condition-key: $before ... $after -- $key";
-      $GLOBALS ['aaa'] = $current;
 
       if ( ! isset ( $current [$key] [$before] ) )
         continue;

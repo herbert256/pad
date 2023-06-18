@@ -8,6 +8,9 @@
     if ( ! in_array('noError', $padOpts) and $padVal === INF )
       padError ("Field '$padFld' not found");
 
+    if ( $padVal === INF )
+      $padVal = '';
+ 
     return $padVal;
     
 ?>

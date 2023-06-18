@@ -31,20 +31,6 @@
   }
 
 
-  function padDumpError ( $type, $error, $file, $line ) {
-
-    padDumpProblem ( "DUMP-ERROR: $error", $file, $line );
- 
-  }
-
-
-  function padDumpException ( $e ) {
-
-    padDumpProblem ( 'DUMP-EXCEPTION: ' . $e->getMessage(), $e->getFile(), $e->getLine() ); 
- 
-  }
-
-
   function padDumpTry ($info) {
 
     $GLOBALS ['padInDump'] = TRUE;
@@ -76,6 +62,20 @@
   }    
 
 
+  function padDumpError ( $type, $error, $file, $line ) {
+
+    padDumpProblem ( "DUMP-ERROR: $error", $file, $line );
+ 
+  }
+
+
+  function padDumpException ( $e ) {
+
+    padDumpProblem ( 'DUMP-EXCEPTION: ' . $e->getMessage(), $e->getFile(), $e->getLine() ); 
+ 
+  }
+
+
   function padDumpProblem ( $error, $file, $line) {
 
     padDumpCleanErrors ();
@@ -90,6 +90,7 @@
     padBootStop ( $error, $file, $line );
 
   }
+
 
   function dump ($info='') {
 
@@ -109,26 +110,6 @@
 
   }
 
-  function padDumpHistory () {
-
-    if ( ! isset ( $GLOBALS ['padHistory'] ) )
-      return;
-
-    padDumpLines ( "History", $GLOBALS ['padHistory'] );
-
-  }
-
-  function padDumpBusy () {
-
-    if ( ! isset ( $GLOBALS ['padBusy'] ) )
-      return;
-
-    if ( ! $GLOBALS ['padBusy'] ) 
-      return;
-
-    echo ( 'Busy with: <b>' . $GLOBALS ['padBusy'] . '</b><br><br>' ); 
-
-  }
 
   function padDumpGo ($info) {
 
@@ -163,6 +144,30 @@
 
   }
 
+
+  function padDumpHistory () {
+
+    if ( ! isset ( $GLOBALS ['padHistory'] ) )
+      return;
+
+    padDumpLines ( "History", $GLOBALS ['padHistory'] );
+
+  }
+
+
+  function padDumpBusy () {
+
+    if ( ! isset ( $GLOBALS ['padBusy'] ) )
+      return;
+
+    if ( ! $GLOBALS ['padBusy'] ) 
+      return;
+
+    echo ( 'Busy with: <b>' . $GLOBALS ['padBusy'] . '</b><br><br>' ); 
+
+  }
+
+
   function padDumpCurl ( $curl ) {
 
     if ( ! isset ( $GLOBALS ['padCurlLast'] ) )
@@ -172,6 +177,7 @@
 
   }
 
+
   function padDumpInfo ( $info ) {
 
     if ( isset ( $GLOBALS ['padErrrorList'] ) )
@@ -179,7 +185,7 @@
         return;
 
     if ( trim($info) )
-      echo ( "<hr><b>$info</b><hr><br>" ); 
+      echo ( "<hr><b>" . htmlentities($info) . "</b><hr><br>" ); 
 
   } 
 
@@ -194,7 +200,7 @@
     if ( count ( $GLOBALS ['padErrrorList'] ) == 1 ) 
 
       foreach ( $GLOBALS ['padErrrorList'] as $error ) 
-        echo ( "<hr><b>$error</b><hr><br>" ); 
+        echo ( "<hr><b>" . htmlentities($error) . "</b><hr><br>" ); 
 
     elseif ( count ( $GLOBALS ['padErrrorList'] ) > 1 ) {
 
@@ -203,7 +209,7 @@
       $errors = array_reverse ( $GLOBALS ['padErrrorList'] );
 
       foreach ( $errors as $error )
-        echo ( "    $error\n" );
+        echo ( "    " . htmlentities($error) . "\n" );
 
       echo ( "\n" );
 

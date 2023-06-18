@@ -49,7 +49,7 @@
       if ( $check ) {
         $output ['url']    = $check;
         $output ['data']   = padDataFileData ( $check );   
-        $output ['type']   = padContentType   ( $output ['data'] );   
+        $output ['type']   = padContentType  ( $output ['data'] );   
         $output ['result'] = '200';
       } else 
         $output ['result'] = '404';
