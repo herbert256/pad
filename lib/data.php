@@ -1,7 +1,7 @@
 <?php
 
 
-  function padData ($input, $content='', $name='') {
+  function padData ( $input, $content='', $name='' ) {
 
     if     ( $input === NULL           ) $data = [];
     elseif ( $input === FALSE          ) $data = [];
@@ -15,39 +15,21 @@
     elseif ( strlen(trim($input)) == 0 ) $data = [];
     else                                 $data = trim ( $input );
 
-    if ( is_array ( $data ) )
-      return padDataChk ($data, $name);
+    if ( ! is_array ( $data ) ) {    
+      $type = padContentType ( $data, $content );
+      $data = include pad . "data/$type.php";
+    }
     
-    if ( ! $content )
-      $content = padContentType ($data);
+    $data = padDataChkSimpleArray ($data,$name);
+    $data = padDataChkChkOne      ($data,$name);   
+    $data = padDataChkDataAttr    ($data,$name);
+    $data = padDataChkCheckRecord ($data,$name); 
+    $data = padDataChkCheckArray  ($data,$name);
 
-    $result = include pad . "data/$content.php";
-    
-    return padDataChk ( $result, $name );
+    return $data;
 
   }
   
-
-  function padDataChk ($data,$name) {
-
-    $result = $data;
-
-    if ( ! is_array ($result) )
-      return padDefaultData ();
-
-    if ( padIsDefaultData($result) or ! count($result) )
-      return $result;
-
-    $result = padDataChkSimpleArray ($result,$name);
-    $result = padDataChkChkOne      ($result,$name);
-    $result = padDataChkDataAttr    ($result,$name);
-    $result = padDataChkCheckRecord ($result,$name); 
-    $result = padDataChkCheckArray  ($result,$name);
-
-    return $result;
-
-  }
-
 
   function padDataChkSimpleArray ($data,$name) {
 
@@ -174,50 +156,6 @@
       $return = substr($return, 1);
 
     return $return;
-
-  }
-
-
-  function padInclFileName ( $check ) {
-
-    foreach ( padDirs () as $key => $value ) {
-
-      $file = substr (padApp, 0, -1) . $value . "_includes/$check";
-
-      if ( padExists ($file) and ! is_dir($file) ) return $file;
-      if ( padExists ("$file.php")               ) return "$file.php";
-      if ( padExists ("$file.html")              ) return "$file.html";
-
-    }
-
-    return '';
-
-  }
-
-
-  function padDataFileName ( $check ) {
-
-    foreach ( padDirs () as $key => $value ) {
-
-      $file = substr (padApp, 0, -1) . $value . "_data/$check";
-
-      if ( padExists ($file) and ! is_dir($file) ) return $file;
-      if ( padExists ("$file.xml")               ) return "$file.xml";
-      if ( padExists ("$file.json")              ) return "$file.json";
-      if ( padExists ("$file.yaml")              ) return "$file.yaml";
-      if ( padExists ("$file.csv")               ) return "$file.csv";
-      if ( padExists ("$file.php")               ) return "$file.php";
-
-    }
-
-    return '';
-
-  }
-
-
- function padDataFileData ( $padLocalFile ) {
-  
-    return include pad . 'types/go/local.php';
 
   }
   

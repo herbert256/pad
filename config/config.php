@@ -129,8 +129,6 @@
   $padOutputNoEmptyLines     = TRUE;
   $padOutputNoIndent         = TRUE;
   $padOutputNoNewLines       = FALSE;
-
-  $padLocal = [ 'localhost', 'penguin.linux.test', '127.0.0.1' ];
   
   // Other settings.
 

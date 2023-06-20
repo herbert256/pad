@@ -32,6 +32,17 @@
       return $current;
   }
 
-  return padFindName ( $GLOBALS, $name, $names );
+  $current = padFindName ( $GLOBALS, $name, $names );
+  if ( $current !== INF ) 
+    return $current;
+
+  if ( padDataFileName ( $name ) ) {
+    $padDataStore [$name] = padData ( padDataFileData ( padDataFileName($name) ) );
+    $current = padFindNames ( $padDataStore [$name], $names );
+    if ( $current !== INF ) 
+      return $current;
+  }
+
+  return INF;
 
 ?>

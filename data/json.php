@@ -1,6 +1,6 @@
 <?php
 
-  $data = str_replace(['&open;', '&close;'], ['{', '}'], $data );
+  $data = str_replace ( ['&open;', '&close;'], ['{', '}'], $data );
 
   $first1 = strpos  ($data, '{');
   $last1  = strrpos ($data, '}');
@@ -17,7 +17,7 @@
 
   $result = json_decode($data, true);
   
-  if ( ! is_array($result) or $result === NULL or $result === FALSE)
+  if ( ! is_array($result) or $result === NULL or $result === FALSE )
     return padError ( "JSON error (decode): " . json_last_error() . ' - ' . json_last_error_msg() );
 
   return $result;

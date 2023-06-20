@@ -1,5 +1,5 @@
 <?php
 
-    padDumpFromApp ();
+    padDump ();
 
 ?>

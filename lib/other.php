@@ -1,64 +1,47 @@
 <?php
 
 
-  function padXmlToArrayIterator ( $xml ) {
+  function padInclFileName ( $check ) {
 
-    $arr = array();
+    foreach ( padDirs () as $key => $value ) {
 
-    for( $xml->rewind(); $xml->valid(); $xml->next() ) {
+      $file = substr (padApp, 0, -1) . $value . "_includes/$check";
 
-      $val = trim ( strval ( $xml->current() ) );
-      $idx = $xml->key();
-      $cnt = ( array_key_exists ($idx, $arr) ) ? array_key_last ($arr [$idx]) + 1 : 0;
-
-      if ( ! $xml->hasChildren() and ! count ($xml->current()->attributes()) ) 
-
-        $arr [$idx] [$cnt] = $val;
-
-      else {
-
-        if ( $val )
-          $arr [$idx] [$cnt] [$idx] = $val;
-
-        foreach ( $xml->current()-> attributes() as $key => $val)
-          if ( isset ( $arr [$idx] [$cnt] [$key] ) )
-            $arr [$idx] [$cnt] ['_'.$key] = strval($val);
-          else
-            $arr [$idx] [$cnt] [$key] = strval($val);
-        
-        if ( $xml->hasChildren() )
-          $arr [$idx] [$cnt] ['_children'] = padXmlToArrayIterator ($xml->current());
-
-      }
+      if ( padExists ($file) and ! is_dir($file) ) return $file;
+      if ( padExists ("$file.php")               ) return "$file.php";
+      if ( padExists ("$file.html")              ) return "$file.html";
 
     }
 
-    return $arr;
+    return '';
 
   }
 
 
-  function padXmlToArrayCheck ( $arr ) {
+  function padDataFileName ( $check ) {
 
-    foreach ( $arr as $key => $val ) 
-      if ( is_array ($val) )
-        if ( count($val) == 1 and isset ($val[0]) and ! is_array ($val[0]) )
-          $arr [$key] = $val [0];
-        else
-          $arr [$key] = padXmlToArrayCheck ( $arr [$key] ); 
+    foreach ( padDirs () as $key => $value ) {
 
-    foreach ( $arr as $key => $val ) 
-      if ( $key == '_children') {
-        unset ( $arr [$key] );
-        foreach ( $val as $key2 => $val2)
-          if ( isset ( $arr [$key2] ) )
-            $arr [$key2.'_'] = $val2;
-          else
-            $arr [$key2] = $val2;
-      }
+      $file = substr (padApp, 0, -1) . $value . "_data/$check";
 
-    return $arr;
+      if ( padExists ($file) and ! is_dir($file) ) return $file;
+      if ( padExists ("$file.xml")               ) return "$file.xml";
+      if ( padExists ("$file.json")              ) return "$file.json";
+      if ( padExists ("$file.yaml")              ) return "$file.yaml";
+      if ( padExists ("$file.csv")               ) return "$file.csv";
+      if ( padExists ("$file.php")               ) return "$file.php";
+
+    }
+
+    return '';
+
+  }
+
+
+ function padDataFileData ( $padLocalFile ) {
   
+    return include pad . 'types/go/local.php';
+
   }
 
 
@@ -77,7 +60,6 @@
 
 
   function padValidFirstChar ($char) {
-
 
     if ( $char == '@'         ) return TRUE;
     if ( ctype_alpha ( $char) ) return TRUE;
@@ -426,23 +408,6 @@
   }
 
 
-  function padLocal () {
-
-    if ( ! isset($GLOBALS ['padLocal']) )
-      return FALSE;
-    
-    $host = strtolower(trim($_SERVER['HTTP_HOST']??''));
-    $ip   = $_SERVER ['REMOTE_ADDR'] ?? '';
-    $name = $_SERVER ['SERVER_NAME'] ?? '';
-
-    if ( in_array ( $host, $GLOBALS ['padLocal'] ) ) return TRUE;
-    if ( in_array ( $ip,   $GLOBALS ['padLocal'] ) ) return TRUE;
-    if ( in_array ( $name, $GLOBALS ['padLocal'] ) ) return TRUE;
-
-    return FALSE;
-    
-  }
-
 
   function padExplode ( $haystack, $limit, $number=0 ) {
 
@@ -488,10 +453,10 @@
 
   function padToArray ($xxx) {
 
-     if ( is_array($xxx) )
-       return ($xxx);
+    if ( is_array($xxx) )
+      return ($xxx);
 
-    set_error_handler ( function ($s, $m, $f, $l) { $array = []; } );
+    set_error_handler ( function ($s, $m, $f, $l) { return; } );
     $error_level = error_reporting(0);
 
     $array = [];
@@ -1055,9 +1020,12 @@
   }
 
   
-  function padContentType (&$content) {
+  function padContentType ( &$content, $type = '' ) {
 
     $content = trim ( $content );
+
+    if ( $type and padExists ( pad . "data/$type.php") )
+      return $type;
 
     if ( substr($content, 0, 1) == '(' and substr($content, -1) == ')' )
       $type = 'list';
@@ -1127,12 +1095,6 @@
 
   }
 
-
-  function padArrToHtml ( $var ) {
-
-    return padVarToTxt ( $var );
-  
-  }
 
   function padVarToTxt ( $source ) {
 

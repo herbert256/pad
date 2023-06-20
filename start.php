@@ -59,7 +59,7 @@
     if ( ! headers_sent () )
       header ( 'HTTP/1.0 500 Internal Server Error' );
 
-    if ( 1 or (function_exists('padLocal') and padLocal () ) )
+    if ( padLocal () )
  
       echo "\n<pre>$file:$line $error</pre>";
  
@@ -73,6 +73,25 @@
  
     exit;
 
+  }
+
+
+  function padLocal () {
+
+    $local  = [ 'localhost', 'penguin.linux.test', '127.0.0.1' ];
+
+    $server = [ 
+      $_SERVER ['HTTP_HOST']   ?? '',  
+      $_SERVER ['REMOTE_ADDR'] ?? '', 
+      $_SERVER ['SERVER_NAME'] ?? ''
+    ];
+
+    foreach ( $local as $check )
+      if ( in_array( $check, $server) )
+        return TRUE;
+
+    return FALSE;
+    
   }
 
 
