@@ -1,5 +1,0 @@
-<?php
-
-  $demoMode = TRUE;
-  
-?>

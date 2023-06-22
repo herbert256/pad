@@ -224,8 +224,6 @@
         
       }
 
-
-
       if ($one == '$' and padEvalParseStart ( $next, $next2 ) ) {
 
         $is_var   = TRUE;
