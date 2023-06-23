@@ -14,7 +14,7 @@
 
     $i = padAtIdx ( $type, $name );
 
-    $first = $names [0] ?? '';
+    $first  = $names [0] ?? '';
     $second = $names [1] ?? '';
 
     $GLOBALS ['padHistory'] [] = "At: $field kind=$kind name=$name property=$property first=$first second=$second index=$i";
