@@ -1,6 +1,6 @@
 <?php
 
-  $check  = padDataFileName ( $data );
+  $check = padDataFileName ( $data );
 
   return padDataFileData ( $check );
 

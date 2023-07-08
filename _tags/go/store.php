@@ -13,7 +13,7 @@
   if ( ! $padContent )
     $padStoreSource = $padOpt [$pad] [2];  
   elseif ($padTag [$pad] == 'content' and $padWalk [$pad] == 'start')
-    $padStoreSource = $padCargo;
+    $padStoreSource = $padcontent;
   else
     $padStoreSource = $padContent;
 

@@ -1,6 +1,6 @@
 <?php
 
-  $padCargo = $padTrue [$pad];
+  $padcontent = $padTrue [$pad];
 
   $padOpenClose = padOpenCloseList ( $padTrue [$pad]) ;
   

@@ -35,7 +35,7 @@
   else                                    $padTagTrueFalse = FALSE;
 
   if ( $padTagContent )
-    if ( $padTagTrueFalse ) $padContent      = padCargo ( $padContent,      $padTagTrue  );
-    else                    $padFalse [$pad] = padCargo ( $padFalse [$pad], $padTagFalse );
+    if ( $padTagTrueFalse ) $padContent      = padContent ( $padContent,      $padTagTrue  );
+    else                    $padFalse [$pad] = padContent ( $padFalse [$pad], $padTagFalse );
 
 ?>

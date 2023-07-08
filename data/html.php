@@ -12,7 +12,7 @@
   if ( $xml === FALSE )
     return padError ( "TIDY conversion error");
 
-  $data = $xml;
+  $data = trim($xml->value);
 
   return include pad . 'data/xml.php';
 

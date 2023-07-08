@@ -1,6 +1,6 @@
 <?php
 
-  padDumpToDir( padContent () );
+  padDumpToDir ( padContent2 () );
 
   return NULL;
   

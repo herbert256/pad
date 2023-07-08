@@ -79,17 +79,17 @@
   }
 
 
-  function padCargo ( $base, $new ) {
+  function padContent ( $base, $new ) {
 
-    $merge = padTagParm ('cargo');
+    $merge = padTagParm ('merge');
 
-    if     ( strpos ( $new, '@cargo@'  ) !== FALSE ) return str_replace ( '@cargo@', $base, $new );
-    elseif ( strpos ( $base, '@cargo@' ) !== FALSE ) return str_replace ( '@cargo@', $new, $base );
-    elseif ( $merge == 'replace'                   ) return $new;
-    elseif ( $merge == 'top'                       ) return $new . $base;
-    elseif ( $merge == 'bottom'                    ) return $base . $new;
-    elseif ( $new                                  ) return $new;
-    else                                             return $base;
+    if     ( strpos ( $new, '@content@'  ) !== FALSE ) return str_replace ( '@content@', $base, $new );
+    elseif ( strpos ( $base, '@content@' ) !== FALSE ) return str_replace ( '@content@', $new, $base );
+    elseif ( $merge == 'replace'                     ) return $new;
+    elseif ( $merge == 'bottom'                      ) return $new . $base;
+    elseif ( $merge == 'top'                         ) return $base . $new;
+    elseif ( $new                                    ) return $new;
+    else                                               return $base;
 
   }
 
@@ -245,7 +245,7 @@
   }
 
 
-  function padContent () {
+  function padContent2 () {
  
     global $pad, $padTrue, $padOpt;
 

@@ -4,8 +4,8 @@
 
     $input = str_replace ( '&nbsp;', ' ', $data );
 
-    if ( str_starts_with($input, '<?xml') )
-      $input = substr ( $input, strpos($input, '>') + 1 );
+    if ( str_starts_with($input, '<!') ) $input = substr ( $input, strpos($input, '>') + 1 );
+    if ( str_starts_with($input, '<?') ) $input = substr ( $input, strpos($input, '>') + 1 );
 
     $input = "<x>$input</x>";
 
@@ -48,7 +48,10 @@
     if ( is_array($arr) and count ($arr) == 1 and isset ($arr[0]) and is_array ($arr[0]) )
       $arr = $arr [0];
 
-    return padXmlToArrayCheck ( $arr );
+    $arr = padXmlToArrayCheck ( $arr );
+#    $arr = padXmlToArrayNoOne ( $arr );
+
+    return $arr;
 
   }
 
@@ -107,6 +110,20 @@
             $arr [$key2.'_'] = $val2;
           else
             $arr [$key2] = $val2;
+      }
+
+    return $arr;
+  
+  }
+
+
+  function padXmlToArrayNoOne ( $arr ) {
+
+    foreach ( $arr as $key => $val ) 
+      if ( is_array ($val) ) {
+        if ( count($val) == 1 and isset ($val[0]) and is_array ($val[0]) )
+          $arr [$key] = $val [0];
+        $arr [$key] = padXmlToArrayNoOne ( $arr [$key] );
       }
 
     return $arr;
