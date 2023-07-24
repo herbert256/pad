@@ -10,6 +10,7 @@
     elseif ( padExists        ( pad . "_tags/$item.html"             ) ) return 'pad';
     elseif ( isset            ( $GLOBALS ['padFlagStore']    [$item] ) ) return 'flag';
     elseif ( isset            ( $GLOBALS ['padContentStore'] [$item] ) ) return 'content';
+    elseif ( padContentCheck  ( $item                                ) ) return 'content';
     elseif ( isset            ( $GLOBALS ['padDataStore']    [$item] ) ) return 'data';
     elseif ( isset            ( $GLOBALS ['padSeqStore']     [$item] ) ) return 'store';      
     elseif ( isset            ( $GLOBALS ['padTables']       [$item] ) ) return 'table';
@@ -41,6 +42,7 @@
     elseif ( $type == 'level'    and padChkLevel      ( $item                                ) ) return $type;
     elseif ( $type == 'flag'     and isset            ( $GLOBALS ['padFlagStore'] [$item]    ) ) return $type;
     elseif ( $type == 'content'  and isset            ( $GLOBALS ['padContentStore'] [$item] ) ) return $type;
+    elseif ( $type == 'content'  and padContentCheck  ( $item                                ) ) return $type;
     elseif ( $type == 'data'     and isset            ( $GLOBALS ['padDataStore'] [$item]    ) ) return $type;
     elseif ( $type == 'sequence' and padExists        ( pad . "sequence/types/$item"         ) ) return $type;
     elseif ( $type == 'action'   and padExists        ( pad . "sequence/actions/$item.php"   ) ) return $type;

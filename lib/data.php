@@ -1,7 +1,7 @@
 <?php
 
 
-  function padData ( $input, $content='', $name='' ) {
+  function padData ( $input, $type='', $name='' ) {
 
     if     ( $input === NULL           ) $data = [];
     elseif ( $input === FALSE          ) $data = [];
@@ -16,7 +16,8 @@
     else                                 $data = trim ( $input );
 
     if ( ! is_array ( $data ) ) {    
-      $type = padContentType ( $data, $content );
+      if ( ! $type )
+        $type = padContentType ( $data );
       $data = include pad . "data/$type.php";
     }
     

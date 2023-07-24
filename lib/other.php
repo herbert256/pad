@@ -1,6 +1,52 @@
 <?php
 
 
+  function padContentCheck ( $content ) {
+
+    foreach ( padDirs () as $key => $value ) {
+
+      $file = substr (padApp, 0, -1) . $value . "_content/$content.html";
+
+      if ( padExists ($file) ) 
+        return TRUE;
+
+    }
+
+    return FALSE;
+
+  }  
+
+
+  function padContentData ( $content ) {
+
+    foreach ( padDirs () as $key => $value ) {
+
+      $file = substr (padApp, 0, -1) . $value . "_content/$content.html";
+
+      if ( padExists ($file) ) 
+        return padFileGetContents ($file);
+
+    }
+
+    return '';
+
+  }  
+
+
+  function padArrayNoOne ( $arr ) {
+
+    if ( count ($arr) == 1 and isset ($arr[0]) and is_array ($arr[0]) )
+      $arr = $arr [0];
+
+    foreach ( $arr as $key => $val ) 
+      if ( is_array ($val) )
+        $arr [$key] = padArrayNoOne ( $arr [$key] );
+
+    return $arr;
+  
+  }
+
+
   function padInclFileName ( $check ) {
 
     foreach ( padDirs () as $key => $value ) {
@@ -1020,12 +1066,9 @@
   }
 
   
-  function padContentType ( &$content, $type = '' ) {
+  function padContentType ( &$content ) {
 
     $content = trim ( $content );
-
-    if ( $type and padExists ( pad . "data/$type.php") )
-      return $type;
 
     if ( substr($content, 0, 1) == '(' and substr($content, -1) == ')' )
       $type = 'list';
