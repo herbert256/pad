@@ -1,13 +1,6 @@
 <?php
 
 
-  function padPageBanaan ( ) {
-
-    return include pad . 'page/appel.php';
-
-  }
-
-
   function padPageGetName ( $page = '' ) {
 
     global $pad, $padPage, $padOpt;

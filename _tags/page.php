@@ -11,9 +11,9 @@
   if ( padTagParm ( 'include' ) )
     $padInclude = TRUE;
 
-  $padPagTyp = padTagParm ( 'type', 'sandbox' );
+  $padPagTyp = padTagParm ( 'type', 'include' );
   
-  $padPageResult = include pad . "page/$padPagTyp.php";
+  $padPageResult = include pad . "page/types/$padPagTyp.php";
 
   $padPage = $padPageInsert [$pad];
   $padDir  = $padDirInsert  [$pad];
