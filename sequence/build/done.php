@@ -18,9 +18,6 @@
   padDone ( 'to',          TRUE );
   padDone ( 'min',         TRUE );
   padDone ( 'max',         TRUE );
-  padDone ( 'start',       TRUE );
-  padDone ( 'end',         TRUE );
-  padDone ( 'low',         TRUE );
   padDone ( 'high',        TRUE );
   padDone ( 'unique',      TRUE );
   padDone ( 'page',        TRUE );

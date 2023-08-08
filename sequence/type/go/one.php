@@ -7,8 +7,6 @@
 
   if ( $padSeqStopNext                                   ) return FALSE;
   if ( $padSeqProtectCnt > $padSeqProtect                ) return FALSE;
-  if ( $padSeq < $padSeqLow                              ) return TRUE;
-  if ( $padSeq > $padSeqHigh                             ) return FALSE;
   if ( $padSeqBuild == 'order' and $padSeq < $padSeqFrom ) return TRUE;
   if ( $padSeqBuild == 'order' and $padSeq > $padSeqTo   ) return FALSE;
 
@@ -28,12 +26,12 @@
 
     if ( $padSequence > PHP_INT_MAX  ) return FALSE; 
 
-    if ( ! $padSeqStartStarted) {
-      if ( $padSeqStart and $padSequence < $padSeqStart  ) {return TRUE;}
-      if ( $padSeqStart and $padSequence >= $padSeqStart ) {$padSeqStartStarted=TRUE;}
+    if ( ! $padSeqMinStarted) {
+      if ( $padSeqMin and $padSequence < $padSeqMin  ) {return TRUE;}
+      if ( $padSeqMin and $padSequence >= $padSeqMin ) {$padSeqMinStarted=TRUE;}
     }
 
-    if ( $padSeqEnd and $padSequence >= $padSeqEnd ) $padSeqStopNext = TRUE;
+    if ( $padSeqMax and $padSequence >= $padSeqMax ) $padSeqStopNext = TRUE;
 
   } 
 

@@ -1,5 +1,5 @@
 <?php
 
-  $padContent .= '{first}' . padTagParm ('open') . '{/first}';
+  $padContent = '{first}' . padTagParm ('open') . '{/first}' . $padContent;
 
 ?>

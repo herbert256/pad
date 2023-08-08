@@ -5,13 +5,7 @@
   
   $padSeqMin      = intval ( $padPrm [$pad] ['min']       ?? 0           );
   $padSeqMax      = intval ( $padPrm [$pad] ['max']       ?? PHP_INT_MAX );
-  
-  $padSeqStart    = intval ( $padPrm [$pad] ['start']     ?? 0           );
-  $padSeqEnd      = intval ( $padPrm [$pad] ['end']       ?? PHP_INT_MAX );
-  
-  $padSeqLow      = intval ( $padPrm [$pad] ['low']       ?? 0           );
-  $padSeqHigh     = intval ( $padPrm [$pad] ['high']      ?? PHP_INT_MAX );
-
+    
   $padSeqInc      = intval ( $padPrm [$pad] ['increment'] ?? 1           );
   $padSeqRows     = intval ( $padPrm [$pad] ['rows']      ?? 0           );
   $padSeqUnique   = intval ( $padPrm [$pad] ['unique']    ?? 0           );

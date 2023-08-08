@@ -3,7 +3,7 @@
   $padSeq         = $padSequence = $padSeqProtectCnt = $padSeqBase = 0;
   $padSeqStoreGet = '';
   $padSeqResult   = $padSeqFor = $padSeqCache = [];
-  $padSeqStopNext = $padSeqStartStarted = FALSE;
+  $padSeqStopNext = $padSeqMinStarted = FALSE;
 
   if ( ! $padSeqName )                           $padSeqName = $padSeqSet; 
   if ( ! isset($GLOBALS ["padSeq_$padSeqSeq"]) ) $GLOBALS ["padSeq_$padSeqSeq"] = $padSeqParm;
