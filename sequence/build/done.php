@@ -16,9 +16,6 @@
   padDone ( 'make',        TRUE );
   padDone ( 'from',        TRUE );
   padDone ( 'to',          TRUE );
-  padDone ( 'min',         TRUE );
-  padDone ( 'max',         TRUE );
-  padDone ( 'high',        TRUE );
   padDone ( 'unique',      TRUE );
   padDone ( 'page',        TRUE );
  

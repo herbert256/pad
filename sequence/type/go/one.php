@@ -21,25 +21,11 @@
   elseif ( $padSequence === FALSE ) return FALSE;    
 
   if ( $padSeqUnique and in_array ($padSequence, $padSeqResult) ) return TRUE;
-
-  if ( is_numeric($padSequence) ) {
-
-    if ( $padSequence > PHP_INT_MAX  ) return FALSE; 
-
-    if ( ! $padSeqMinStarted) {
-      if ( $padSeqMin and $padSequence < $padSeqMin  ) {return TRUE;}
-      if ( $padSeqMin and $padSequence >= $padSeqMin ) {$padSeqMinStarted=TRUE;}
-    }
-
-    if ( $padSeqMax and $padSequence >= $padSeqMax ) $padSeqStopNext = TRUE;
-
-  } 
+  if ( is_numeric($padSequence) and $padSequence > PHP_INT_MAX  ) return FALSE; 
 
   $padSeqBase++;
 
   if ( $padSeqPage  and $padSeqBase < $padSeqPageStart        ) return TRUE; 
-  if ( is_numeric($padSequence) and $padSequence < $padSeqMin ) return TRUE;  
-  if ( is_numeric($padSequence) and $padSequence > $padSeqMax ) return TRUE; 
 
   $padSeqResult [] = $padSequence;
 

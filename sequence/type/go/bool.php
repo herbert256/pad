@@ -11,7 +11,7 @@
 
   $padSeqRandomTry = 1;
 
-  while ( $padSeqRandomTry <= $padSeqMax ) {
+  while ( $padSeqRandomTry <= $padSeqTo ) {
 
     if ( count ($padSeqFor) )
       $padSeqLoopBool = $padSeqFor [array_rand($padSeqFor)];

@@ -3,9 +3,6 @@
   $padSeqFrom     = intval ( $padPrm [$pad] ['from']      ?? 1           );
   $padSeqTo       = intval ( $padPrm [$pad] ['to']        ?? PHP_INT_MAX );
   
-  $padSeqMin      = intval ( $padPrm [$pad] ['min']       ?? 0           );
-  $padSeqMax      = intval ( $padPrm [$pad] ['max']       ?? PHP_INT_MAX );
-    
   $padSeqInc      = intval ( $padPrm [$pad] ['increment'] ?? 1           );
   $padSeqRows     = intval ( $padPrm [$pad] ['rows']      ?? 0           );
   $padSeqUnique   = intval ( $padPrm [$pad] ['unique']    ?? 0           );

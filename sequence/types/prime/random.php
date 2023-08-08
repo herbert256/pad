@@ -5,11 +5,11 @@
 
   $padSeqRand = gmp_intval ( gmp_nextprime ($padSeqRand) );
 
-  if ( $padSeqRand <= $padSeqMax )
+  if ( $padSeqRand <= $padSeqTo )
     return $padSeqRand;
-  elseif ( gmp_prob_prime ($padSeqMin ) )
-    return $padSeqMin;
+  elseif ( gmp_prob_prime ($padSeqFrom ) )
+    return $padSeqFrom;
   else
-    return gmp_intval ( gmp_nextprime ( $padSeqMin ) ); 
+    return gmp_intval ( gmp_nextprime ( $padSeqFrom ) ); 
 
 ?>
