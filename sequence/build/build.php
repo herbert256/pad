@@ -1,6 +1,6 @@
 <?php
 
-  $padSeqChk = pad . "sequence/types/$padSeqSeq";
+  $padSeqChk = "$padSeqType";
 
   if     ( padExists ( "$padSeqChk/order.php")    ) $padSeqBuild = 'order';
   elseif ( padExists ( "$padSeqChk/fixed.php")    ) $padSeqBuild = 'fixed';

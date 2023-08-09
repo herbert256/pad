@@ -1,7 +1,5 @@
 <?php
 
-  $padSeqInit = TRUE;
-
   if ( count ($padSeqFor) and is_array(reset($padSeqFor)) )
     foreach ( $padSeqFor as $padK => $padV )
       $padSeqFor [$padK] = reset($padV);
@@ -13,8 +11,6 @@
 
     if ( ! include pad . 'sequence/type/go/one.php')
         break;
-
-   $padSeqInit = FALSE;
 
   }
 

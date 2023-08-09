@@ -4,7 +4,7 @@
  
   foreach ( $padPrm [$pad] as $padSeqOptName => $padSeqOptValue )
 
-    if ( padExists ( pad . "sequence/types/$padSeqOptName/$padSeqFilterCheck.php" ) ) {
+    if ( padExists ( "$padSeqTypes/$padSeqOptName/$padSeqFilterCheck.php" ) ) {
 
       $GLOBALS ["padSeq_mf_$padSeqSeq"] [$padSeqOptName] = $padSeqOptValue;
 

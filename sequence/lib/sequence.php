@@ -1,6 +1,5 @@
 <?php
 
-
   function padSeqAction ( $sequence1, $action, $sequence2 ) {
 
     $padSeqResult      = $sequence1;

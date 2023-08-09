@@ -21,10 +21,10 @@
  
   foreach ( $padPrm [$pad] as $padSeqTagName => $padSeqTagValue ) {
 
-    if ( padExists ( pad . "sequence/types/$padSeqTagName/make.php" ) )
+    if ( padExists ( "$padSeqTypes/$padSeqTagName/make.php" ) )
       padDone ( $padSeqTagName, TRUE );
 
-    if ( padExists ( pad . "sequence/types/$padSeqTagName/filter.php" ) )
+    if ( padExists ( "$padSeqTypes/$padSeqTagName/filter.php" ) )
       padDone ( $padSeqTagName, TRUE );
 
   }

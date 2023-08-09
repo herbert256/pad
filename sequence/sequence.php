@@ -1,5 +1,7 @@
 <?php
 
+  $padSeqTypes = pad . 'sequence/types';
+
   include_once pad . 'sequence/lib/sequence.php';
 
   include pad . 'sequence/build/parms.php';
@@ -12,17 +14,17 @@
   include pad . 'sequence/build/done.php';
   include pad . 'sequence/build/build.php';  
 
-  if ( $padSeqBuild == 'function' ) include_once pad . "sequence/types/$padSeqSeq/function.php";
-  if ( $padSeqBuild == 'bool'     ) include_once pad . "sequence/types/$padSeqSeq/bool.php";
+  if ( $padSeqBuild == 'function' ) include_once "$padSeqType/function.php";
+  if ( $padSeqBuild == 'bool'     ) include_once "$padSeqType/bool.php";
 
-  if ( padExists ( pad . "sequence/types/$padSeqSeq/init.php" )) 
-    include pad . "sequence/types/$padSeqSeq/init.php";
+  if ( padExists ( "$padSeqType/init.php" )) 
+    include "$padSeqType/init.php";
       
   include pad . 'sequence/type/type.php';
   include pad . 'sequence/build/actions.php';
  
-  if ( padExists ( pad . "sequence/types/$padSeqSeq/exit.php" ) )   
-    include pad . "sequence/types/$padSeqSeq/exit.php";
+  if ( padExists ( "$padSeqType/exit.php" ) )   
+    include "$padSeqType/exit.php";
 
   include pad . 'sequence/build/push.php';
   include pad . 'sequence/build/return.php';

@@ -20,18 +20,20 @@
   if     ( $padSequence === TRUE  ) return TRUE;
   elseif ( $padSequence === FALSE ) return FALSE;    
 
-  if ( $padSeqUnique and in_array ($padSequence, $padSeqResult) ) return TRUE;
-  if ( is_numeric($padSequence) and $padSequence > PHP_INT_MAX  ) return FALSE; 
+  if ( $padSeqUnique and in_array ($padSequence, $padSeqResult) ) 
+    return TRUE;
 
   $padSeqBase++;
 
-  if ( $padSeqPage  and $padSeqBase < $padSeqPageStart        ) return TRUE; 
+  if ( $padSeqPage and $padSeqBase < $padSeqPageStart ) 
+    return TRUE; 
 
   $padSeqResult [] = $padSequence;
 
   $padSeqProtectCnt = 0;
 
-  if ( $padSeqRows and count($padSeqResult) >= $padSeqRows ) return FALSE;
+  if ( $padSeqRows and count($padSeqResult) >= $padSeqRows ) 
+    return FALSE;
 
   return TRUE;
 

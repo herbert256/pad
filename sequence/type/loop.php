@@ -1,7 +1,5 @@
 <?php
 
-  $padSeqInit = TRUE;
-
   $padSeqGo = $padSeqLoopStart;
 
   while ( $padSeqGo <= $padSeqLoopEnd ) {
@@ -25,8 +23,6 @@
 
     if ( ! include pad . 'sequence/type/go/one.php')
       break;
-
-    $padSeqInit = FALSE;
 
     $padSeqGo = $padSeqGo + $padSeqInc;
 

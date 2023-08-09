@@ -4,6 +4,6 @@
   if ( $padSeqLoop == 2 ) return 0; 
   if ( $padSeqLoop == 3 ) return 2; 
 
-  return include pad . "sequence/types/fibonacci/go.php"; 
+  return include "$padSeqTypes/fibonacci/go.php"; 
 
 ?>

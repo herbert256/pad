@@ -4,6 +4,7 @@
   $padSeqStoreGet = '';
   $padSeqResult   = $padSeqFor = $padSeqCache = [];
   $padSeqStopNext = $padSeqFromStarted = FALSE;
+  $padSeqType     = "$padSeqTypes/$padSeqSeq";
 
   if ( ! $padSeqName )                           $padSeqName = $padSeqSet; 
   if ( ! isset($GLOBALS ["padSeq_$padSeqSeq"]) ) $GLOBALS ["padSeq_$padSeqSeq"] = $padSeqParm;
