@@ -1,10 +1,6 @@
 <?php
 
- if ( padExists ( "$padSeqType/one.php" ) ) 
-  
-    $padSequence = include "$padSeqType/one.php";
-
-  elseif ( $padSeqBuild == 'fixed' ) 
+  if ( $padSeqBuild == 'fixed' ) 
 
     $padSequence = $padSeqLoop;
 

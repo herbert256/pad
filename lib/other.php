@@ -1,6 +1,18 @@
 <?php
 
 
+  function padSpecialValue ( $value ) {
+
+    if     ( $value === FALSE ) return TRUE;  
+    elseif ( $value === TRUE  ) return TRUE;     
+    elseif ( $value === NULL  ) return TRUE;   
+    elseif ( $value === INF   ) return TRUE;   
+    elseif ( $value === NAN   ) return TRUE;   
+    else                        return FALSE; 
+
+  }
+
+
   function padContentCheck ( $content ) {
 
     foreach ( padDirs () as $key => $value ) {

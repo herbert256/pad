@@ -1,36 +1,28 @@
 <?php
 
-  $padSeqOperations     = $padSequence;
-  $padSeqOperationsLast = $padSequence;
+  $padSeqParmSave = $padSeqParm;
+  $padSeqLoopSave = $padSeqLoop;
 
-  foreach ( $padSeqOpr as $padSeqOprName => $padSeqOprValue ) {
+  $padSeqOprSeq = $padSequence;
+  $padSeqOprLst = $padSequence;
 
-    if ( in_array($padSeqOprName, $padSeqOneDone ) )
-      continue;
+  foreach ( $padSeqOprGo as $padSeqOprName => $padSeqOprVal ) {
 
-    $padSeqChk = "$padSeqTypes/$padSeqOprName";
+    padSeqSet ( $padSeqOprName, $padSeqOprVal );
 
-    $padSeqParmSave = $padSeqParm;
+    if ( in_array ( $padSeqOprName, $padSeqOpr ) ) 
+      $padSeqOprSeq = include pad . 'sequence/type/go/operations/mkr.php';
+    else
+      $padSeqOprSeq = include pad . 'sequence/type/go/operations/other.php';
 
-    padSeqSet ( $padSeqOprName, $padSeqOprValue );
+    if ( $padSeqOprSeq === TRUE ) 
+      return TRUE;
 
-    $padSeqLoop = $padSeqOperations;
+   }
 
-    if     ( padExists ( "$padSeqChk/make.php" )   ) $padSeqOperations = include "$padSeqChk/make.php";
-    elseif ( padExists ( "$padSeqChk/filter.php" ) ) $padSeqOperations = include "$padSeqChk/filter.php";
+  $padSeqParm = $padSeqParmSave;
+  $padSeqLoop = $padSeqLoopSave;
 
-    $padSeqParm = $padSeqParmSave;
-
-    if     ( $padSeqOperations === FALSE ) return TRUE;   
-    elseif ( $padSeqOperations === NULL  ) return FALSE;
-    elseif ( $padSeqOperations === INF   ) return FALSE; 
-    elseif ( $padSeqOperations === NAN   ) return FALSE; 
-    elseif ( $padSeqOperations === TRUE  ) $padSeqOperations = $padSeqOperationsLast;     
-
-    $padSeqOperationsLast = $padSeqOperations;
-   
-  }
-
-  return $padSeqOperations;
+  return $padSeqOprSeq;
 
 ?>

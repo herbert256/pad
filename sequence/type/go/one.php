@@ -15,14 +15,10 @@
   if     ( $padSequence === TRUE  ) return TRUE;
   elseif ( $padSequence === FALSE ) return FALSE;   
 
-  $padSequence = include pad . 'sequence/type/go/mkr.php';
-
-  if ( $padSequence === TRUE ) return TRUE;    
-
   $padSequence = include pad . 'sequence/type/go/operations.php';
 
-  if     ( $padSequence === TRUE  ) return TRUE;
-  elseif ( $padSequence === FALSE ) return FALSE;    
+  if ( $padSequence === TRUE ) 
+    return TRUE;
 
   if ( $padSeqUnique and in_array ($padSequence, $padSeqResult) ) 
     return TRUE;

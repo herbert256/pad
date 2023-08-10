@@ -1,18 +1,28 @@
 <?php
 
+  $padSeqOprGo = [];
 
-  $padSeqOpr = [];
+  foreach ( $padPrm [$pad] as $padSeqOprName => $padSeqOprVal ) {
 
-  foreach ( $padPrm [$pad] as $padSeqOprName => $padSeqOprValue )
+    if ( $padSeqOprName == $padSeqSeq ) 
+      return;
 
-    if ( $padSeqOprName <> $padSeqSeq )
+    if ( in_array ( $padSeqOprName, $padSeqOpr ) ) {
 
-      if ( ! in_array ( $padSeqOprName , $padSeqMkr ) )
-    
-        if ( padExists ( "$padSeqTypes/$padSeqOprName/make.php" ) or 
-             padExists ( "$padSeqTypes/$padSeqOprName/filter.php" ) 
-           )
+      $padSeqOprArr = padExplode ( $padSeqOprVal, ';');
 
-          $padSeqOpr [$padSeqOprName] = $padSeqOprValue;
+      foreach ( $padSeqOprArr as $padSeqOprOne ) {
+
+        $padSeqOprPrm = padExplode ( $padSeqOprOne, '=');
+
+        $padSeqOprGo [$padSeqOprName] [$padSeqOprPrm[0]] = $padSeqOprPrm [1] ?? '';
+
+      }
+
+    } elseif ( padExists ( "$padSeqTypes/$padSeqOprName/make.php" ) )
+
+      $padSeqOprGo [$padSeqOprName] = $padSeqOprVal;
+
+  }
     
 ?>

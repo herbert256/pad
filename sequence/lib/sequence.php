@@ -41,8 +41,10 @@
 
   function padSeqSet ( $name, $value ) {
 
-    $GLOBALS ["padSeqParm"] = $value;
-    $GLOBALS ["padSeq_$name"] = $value;
+    $GLOBALS ["padSeqParm"]  = $value;
+    $GLOBALS ["padSeq$name"] = $value;
+
+    padDone ( $name );
 
   }
 

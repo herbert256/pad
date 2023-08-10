@@ -25,6 +25,9 @@
   
   unset ( $padPrm [$pad] ['store'] );
  
+  if ( ! $padSeqPull and isset ( $padSeqStore [$padOpt[$pad][1]] ) )
+    $padSeqPull = $padOpt[$pad][1] ;
+
   foreach ( $padPrm [$pad] as $padSeqTagName => $padSeqTagValue )
     if ( ! isset ( $GLOBALS [ 'padSeq' . ucfirst($padSeqTagName) ] ) )
       $GLOBALS [ 'padSeq' . ucfirst($padSeqTagName) ] = $padSeqTagValue;
