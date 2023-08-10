@@ -1,14 +1,11 @@
 <?php
 
-  $padSeqTypes = pad . 'sequence/types';
-
-  include_once pad . 'sequence/lib/sequence.php';
-
+  include pad . 'sequence/build/inits.php';
   include pad . 'sequence/build/parms.php';
   include pad . 'sequence/build/sequence.php';
   include pad . 'sequence/build/vars.php';
   include pad . 'sequence/build/loop.php';
-  include pad . 'sequence/build/lists.php';
+  include pad . 'sequence/build/mkr.php';
   include pad . 'sequence/build/operations.php';
   include pad . 'sequence/build/page.php';
   include pad . 'sequence/build/done.php';

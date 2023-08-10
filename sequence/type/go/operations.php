@@ -16,9 +16,8 @@
 
     $padSeqLoop = $padSeqOperations;
 
-    if     ( in_array ( $padSeqOprName , $padSeqSpecialOps ) ) $padSeqOperations = include pad . "sequence/type/go/list.php";
-    elseif ( padExists ( "$padSeqChk/make.php" )             ) $padSeqOperations = include "$padSeqChk/make.php";
-    elseif ( padExists ( "$padSeqChk/filter.php" )           ) $padSeqOperations = include "$padSeqChk/filter.php";
+    if     ( padExists ( "$padSeqChk/make.php" )   ) $padSeqOperations = include "$padSeqChk/make.php";
+    elseif ( padExists ( "$padSeqChk/filter.php" ) ) $padSeqOperations = include "$padSeqChk/filter.php";
 
     $padSeqParm = $padSeqParmSave;
 

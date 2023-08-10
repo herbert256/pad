@@ -15,8 +15,6 @@
   else
     $padSeqFilterCheck = 'filter';
 
-  $padSeqSpecialOps = ['make', 'keep', 'remove'];
-
   $padName [$pad] = $padSeqName;
 
 ?>
