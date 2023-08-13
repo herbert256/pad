@@ -1,5 +1,8 @@
 <?php
 
+  if ( isset ( $padPrm [$pad] ['random'] ) )
+    $padSeqLoop = padSeqRandomLoop ( $padSeqFor, $padSeqLoopStart, $padSeqLoopEnd, $padSeqInc );
+
   if ( $padSeqBuild == 'fixed' ) 
 
     $padSequence = $padSeqLoop;
@@ -11,10 +14,6 @@
   elseif ( $padSeqBuild == 'bool' )
 
     $padSequence = include pad . "sequence/type/go/bool.php";
-
-  elseif ( $padSeqRandom and padExists ( "$padSeqType/random.php") )
-
-    $padSequence = include "$padSeqType/random.php" ;
 
   else
 

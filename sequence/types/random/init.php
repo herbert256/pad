@@ -1,13 +1,12 @@
 <?php
 
-  $padSeqRandom = TRUE;
-
   $padSeqRandomStart = $padSeqLoopStart;
   $padSeqRandomEnd   = $padSeqLoopEnd;
 
-  if ( $padSeqLoopStart == 1 and $padSeqLoopEnd == PHP_INT_MAX and ! $padSeqRows ) {
-    $padSeqRows = ($padSeqTo - $padSeqFrom) + 1;
-    $padSeqLoopEnd  = $padSeqLoopStart + $padSeqRows;
-  }
+  if ( $padSeqRandomStart == 1 and $padSeqMin <> PHP_INT_MIN ) 
+    $padSeqRandomStart = $padSeqMin;
+
+  if ( $padSeqRandomEnd == PHP_INT_MAX and $padSeqMax <> PHP_INT_MAX ) 
+    $padSeqRandomEnd = $padSeqMax;
 
 ?>

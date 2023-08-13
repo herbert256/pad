@@ -1,5 +1,5 @@
 <?php
 
-  return include pad . 'sequence/type/floor/loop.php';
+  return include pad . 'sequence/types/floor/loop.php';
 
 ?>

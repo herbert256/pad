@@ -11,29 +11,7 @@
 
   }
   
-  
-  function padEvalActionArray ( $left, $opr, $right ) {
-
-    $action = strtolower ($opr);
-
-    if     ( $action == '+' ) $action = 'append';
-    elseif ( $action == '.' ) $action = 'append';
-    elseif ( $action == '-' ) $action = 'minus';
-    elseif ( $action == '*' ) $action = 'multiple';
-    elseif ( $action == '/' ) $action = 'divide';
-    elseif ( $action == '%' ) $action = 'mod';
-
-    if ( ! padExists(pad . "sequence/eval/$action.php") ) {
-      padError ("Unsupported array operator: $opr");      
-      $now = '';
-    }
-    else 
-      $now = include pad . "sequence/eval/$action.php";
-
-    return $now;
-
-  }
-  
+   
   function padEvalAction ( &$result, $k, $b, $f ) {
 
     $left  = $result [$f] [0];
@@ -42,8 +20,8 @@
 
     if ( isset ( $result [$f] [4] ) )
       
-      $now = padEvalActionArray ($result [$f] [4], $result [$b] [0], $result [$k] [4] ?? [] );
- 
+      padError ("Unsupported array operator: $opr");   
+
     else {
 
       if     ( $opr == 'LT'  ) $now = ($left <   $right) ? 1 : '';

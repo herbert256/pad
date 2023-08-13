@@ -1,10 +1,9 @@
 <?php
 
-  $padSeqParmSave = $padSeqParm;
-  $padSeqLoopSave = $padSeqLoop;
-
-  $padSeqOprSeq = $padSequence;
-  $padSeqOprLst = $padSequence;
+  $padSeqOprParmSave = $padSeqParm;
+  $padSeqOprLoopSave = $padSeqLoop;
+  $padSeqOprSeq      = $padSequence;
+  $padSeqOprLst      = $padSequence;
 
   foreach ( $padSeqOprGo as $padSeqOprName => $padSeqOprVal ) {
 
@@ -15,13 +14,16 @@
     else
       $padSeqOprSeq = include pad . 'sequence/type/go/operations/other.php';
 
-    if ( $padSeqOprSeq === TRUE ) 
+    if ( $padSeqOprSeq === TRUE ) {
+      $padSeqParm = $padSeqOprParmSave;
+      $padSeqLoop = $padSeqOprLoopSave;
       return TRUE;
+    }
 
    }
 
-  $padSeqParm = $padSeqParmSave;
-  $padSeqLoop = $padSeqLoopSave;
+  $padSeqParm = $padSeqOprParmSave;
+  $padSeqLoop = $padSeqOprLoopSave;
 
   return $padSeqOprSeq;
 

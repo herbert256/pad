@@ -695,21 +695,25 @@
     
   }
 
-  
-  function padCheckRange ( $input ) {
-
-    $parts = padExplode ($input, '..');
-
-    if ( count ($parts) == 2 and ctype_alnum($parts[0]) and ctype_alnum($parts[1]) )
-      return TRUE;
-
-  }
 
   function padGetRange ( $input, $increment=1 ) {
 
     $parts = padExplode ($input, '..');
 
     return range ( $parts[0], $parts[1], $increment );
+
+  }
+
+
+  function padGetList ( $list ) {
+
+    $list = explode ( ';', $list );
+
+    foreach ( $list as $key => $value)
+      if ( is_numeric ($value) )
+        $list [$key] = intval($value);
+
+    return $list;
 
   }
 

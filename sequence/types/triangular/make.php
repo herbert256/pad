@@ -1,5 +1,5 @@
 <?php
   
-	return include pad . 'sequence/type/triangular/loop.php';
+	return include pad . 'sequence/types/triangular/loop.php';
   
 ?>

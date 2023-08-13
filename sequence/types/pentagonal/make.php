@@ -1,5 +1,5 @@
 <?php
 
-  return include pad . 'lsequence/type/pentagonal/oop.php';
+  return include pad . 'lsequence/types/pentagonal/oop.php';
 
 ?>

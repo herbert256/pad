@@ -4,14 +4,8 @@
     foreach ( $padSeqFor as $padK => $padV )
       $padSeqFor [$padK] = reset($padV);
 
-  foreach ( $padSeqFor as $padSeqLoop ) {
-
-    if ( $padSeqRandom )
-      $padSeqLoop = $padSeqFor [array_rand($padSeqFor)] ;
-
+  foreach ( $padSeqFor as $padSeqLoop )
     if ( ! include pad . 'sequence/type/go/one.php')
         break;
-
-  }
  
 ?>

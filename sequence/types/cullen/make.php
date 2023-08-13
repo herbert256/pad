@@ -1,5 +1,5 @@
 <?php
 
-  return include pad . 'sequence/type/cullen/loop.php';
+  return include pad . 'sequence/types/cullen/loop.php';
 
 ?>

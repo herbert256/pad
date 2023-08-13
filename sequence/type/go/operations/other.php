@@ -2,8 +2,13 @@
 
   $padSeqLoop = $padSeqOprSeq;
 
-  $padSeqOprSeq = include "$padSeqTypes/$padSeqOprName/make.php";
+  $padSeqOprCall = $padSeqOprType [$padSeqOprName];
 
+   if ( $padSeqOprCall == 'function' )
+     $padSeqOprSeq  = ( 'padSeq' . ucfirst($padSeqOprName) ) ($padSeqLoop);
+   else
+    $padSeqOprSeq = include "$padSeqTypes/$padSeqOprName/$padSeqOprCall.php"; 
+ 
   if ( padSpecialValue ( $padSeqOprSeq ) ) 
     $padSeqOprSeq = $padSeqOprLst;  
   else                                        
