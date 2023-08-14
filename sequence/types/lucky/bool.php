@@ -4,12 +4,12 @@
     $counter = 2;
      
     if($counter > $n)
-        return 1;
+        return TRUE;
 
     $x =  (int) $n;
 
     if ( $x % $counter == 0 )
-        return 0;
+        return FALSE;
      
     $next_position = $n - ($n / $counter);
      

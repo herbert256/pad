@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! $padSeqPush and ( $padSeqUpdate or ! $padPair[$pad] ) )
+  if ( ! $padSeqPush and ! $padPair[$pad] )
     $padSeqPush = TRUE;
 
   if ( ! $padSeqPush )

@@ -10,7 +10,6 @@
   include pad . 'sequence/inits/vars.php';
   include pad . 'sequence/inits/loop.php';
   include pad . 'sequence/inits/operations.php';
-  include pad . 'sequence/inits/page.php';
   include pad . 'sequence/inits/done.php';
   include pad . 'sequence/inits/type.php';  
 

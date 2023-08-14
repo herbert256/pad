@@ -5,7 +5,7 @@
       $padSeqFor [$padK] = reset($padV);
 
   foreach ( $padSeqFor as $padSeqLoop )
-    if ( ! include pad . 'sequence/type/go/one.php')
+    if ( ! include pad . 'sequence/one.php')
         break;
  
 ?>

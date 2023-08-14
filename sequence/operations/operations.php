@@ -10,9 +10,9 @@
     padSeqSet ( $padSeqOprName, $padSeqOprVal );
 
     if ( in_array ( $padSeqOprName, $padSeqOpr ) ) 
-      $padSeqOprSeq = include pad . 'sequence/type/go/operations/mkr.php';
+      $padSeqOprSeq = include pad . 'sequence/operations/mkr.php';
     else
-      $padSeqOprSeq = include pad . 'sequence/type/go/operations/other.php';
+      $padSeqOprSeq = include pad . 'sequence/operations/other.php';
 
     if ( $padSeqOprSeq === TRUE ) {
       $padSeqParm = $padSeqOprParmSave;

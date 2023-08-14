@@ -1,9 +1,9 @@
 <?php
 
 
-  function padSeqRandomLoop ( $for, $start, $end, $inc ) {
+  function padSeqRandom ( $for, $start, $end, $inc ) {
 
-    if ( count ( $for) )
+    if ( is_array ( $for ) and count ( $for ) )
       return $for [array_rand($for)];
 
     $loop = rand ( $start, $end );
@@ -25,7 +25,6 @@
     if     ( padExists ( "$check/function.php") ) return 'function';
     elseif ( padExists ( "$check/make.php")     ) return 'make';
     elseif ( padExists ( "$check/loop.php")     ) return 'loop';
-    elseif ( padExists ( "$check/loop.php")     ) return 'bool';
     else                                          return '';
 
   }

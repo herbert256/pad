@@ -5,7 +5,7 @@
   $padSeqOprCall = $padSeqOprType [$padSeqOprName];
 
    if ( $padSeqOprCall == 'function' )
-     $padSeqOprSeq  = ( 'padSeq' . ucfirst($padSeqOprName) ) ($padSeqLoop);
+     $padSeqOprSeq = ( 'padSeq' . ucfirst($padSeqOprName) ) ($padSeqLoop);
    else
     $padSeqOprSeq = include "$padSeqTypes/$padSeqOprName/$padSeqOprCall.php"; 
  

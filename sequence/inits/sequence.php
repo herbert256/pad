@@ -1,14 +1,10 @@
 <?php
 
-  $padSeqSeq  = 'loop';
-  $padSeqSet  = 'sequence';
-  $padSeqParm = TRUE;
   $padSeqNext = pad . 'sequence/inits/sequence';
 
   $padSeqChk = [ $padTag [$pad], 
                  $padOpt [$pad] [1], 
-                 array_key_first($padPrm [$pad]) ?? '', 
-                 $padPrm [$pad]['type'] ?? '' 
+                 array_key_first($padPrm [$pad]) ?? ''
                ];
      
   foreach ( $padSeqChk as $padSeqTmp )
@@ -18,6 +14,10 @@
       elseif ( padExists ( pad . "sequence/actions/$padSeqTmp.php" ) ) return include "$padSeqNext/action.php";
       elseif ( strpos($padSeqTmp, '..')                              ) return include "$padSeqNext/range.php";
       elseif ( strpos($padSeqTmp, ';')                               ) return include "$padSeqNext/list.php";
+
+  $padSeqSeq  = 'loop';
+  $padSeqSet  = 'sequence';
+  $padSeqParm = TRUE;
   
   if ( ctype_digit($padOpt [$pad] [1]) ) {
     $padSeqSeq = 'range';
