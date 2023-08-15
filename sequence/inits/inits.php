@@ -1,5 +1,8 @@
 <?php
 
+  if ( ! isset ( $padSeqStore ) )
+    $padSeqStore = [];
+
   $padSeqOpr   = ['make', 'keep', 'remove'];
   $padSeqTypes = pad . 'sequence/types';
 

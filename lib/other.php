@@ -607,13 +607,14 @@
   function padUnescape ( $string ) {
 
     return str_replace ( [ '&open;','&close;','&pipe;', '&eq;','&comma;','&pickup;' ], 
-                         [ '{',     '}','     |',       '=',   ',',      '@'       ], 
+                         [ '{',     '}',      '|',      '=',   ',',      '@'        ], 
                          $string );
   }
+  
   function padEscape ( $string ) {
 
-    return str_replace ( ['{','}','|','=',',','@'], 
-                         ['&open;','&close;','&pipe;', '&eq;','&comma;','&pickup;'], 
+    return str_replace ( [ '{',     '}',      '|',      '=',    ',',     '@'        ], 
+                         [ '&open;','&close;','&pipe;', '&eq;','&comma;','&pickup;' ], 
                          $string );
   }
 

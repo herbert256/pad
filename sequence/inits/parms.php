@@ -20,10 +20,8 @@
   $padSeqList     =          $padPrm [$pad] ['list']      ?? '';
 
   $padSeqName     =          $padName [$pad]              ?? ''; 
-  
-  unset ( $padPrm [$pad] ['store'] );
- 
-  if ( ! $padSeqPull and isset ( $padSeqStore [$padOpt[$pad][1]] ) )
+   
+  if ( ! $padSeqPull and $padOpt[$pad][1] and isset ( $padSeqStore [$padOpt[$pad][1]] ) )
     $padSeqPull = $padOpt[$pad][1] ;
 
   if ( ! $padSeqRange and strpos ( $padOpt[$pad][1], '..') )

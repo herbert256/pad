@@ -1,6 +1,7 @@
 <?php
 
   function padSeqBoolLucky ($n) {
+    
     $counter = 2;
      
     if($counter > $n)
