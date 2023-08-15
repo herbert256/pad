@@ -5,9 +5,9 @@
   if ( padExists ( "$padSeqType/init.php" )) 
     include "$padSeqType/init.php";
       
-  if     ( $padSeqPull  and $padSeqSeq <> 'pull'  ) $padSeqFor = $padSeqStore [$padSeqPull];
-  elseif ( $padSeqRange and $padSeqSeq <> 'range' ) $padSeqFor = padGetRange ( $padSeqRange, $padSeqInc );
-  elseif ( $padSeqList  and $padSeqSeq <> 'list'  ) $padSeqFor = padGetList ( $padSeqList );
+  if     ( $padSeqPull  ) $padSeqFor = $padSeqStore [$padSeqPull];
+  elseif ( $padSeqRange ) $padSeqFor = padGetRange ( $padSeqRange, $padSeqInc );
+  elseif ( $padSeqList  ) $padSeqFor = padGetList ( $padSeqList );
 
   if ( $padSeqFor !== FALSE )
     include pad . "sequence/builds/for.php";

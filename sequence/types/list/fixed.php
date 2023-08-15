@@ -1,5 +1,5 @@
 <?php
 
-  return explode(';', $padSeqParm);
+  return padGetList ( $padSeqParm );
   
 ?>
