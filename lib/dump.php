@@ -106,8 +106,8 @@
     if ( ! isset ( $GLOBALS ['padHistory'] ) )
       return;
 
-    if ( count ( $GLOBALS ['padHistory'] ) > 10 )
-      padDumpLines ( "History", array_slice ( $GLOBALS ['padHistory'], -10 ) );
+    if ( count ( $GLOBALS ['padHistory'] ) > 15 )
+      padDumpLines ( "History", array_slice ( $GLOBALS ['padHistory'], -15 ) );
     else  
       padDumpLines ( "History", $GLOBALS ['padHistory'] );
 
