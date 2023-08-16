@@ -9,15 +9,16 @@
     }
 
   $padTablesInsert       [$pad] = $padTables       ?? [];
-  $padRelationsInsert    [$pad] = $padRelations    ?? [];
-  
+  $padRelationsInsert    [$pad] = $padRelations    ?? [];  
   $padDataStoreInsert    [$pad] = $padDataStore    ?? [];
   $padContentStoreInsert [$pad] = $padContentStore ?? [];
   $padFlagStoreInsert    [$pad] = $padFlagStore    ?? [];
-   
-  if ( isset ( $padSqlConnect) )
-    $padSqlConnectInsert [$pad] = $padSqlConnect;
-   
-  include pad . 'page/reset.php';
 
+  $padTables = $padRelations = $padDataStore = $padContentStore = $padFlagStore = [];
+   
+  if ( isset ( $padSqlConnect) ) {
+    $padSqlConnectInsert [$pad] = $padSqlConnect;
+    unset ($padSqlConnect);
+  }
+   
 ?>

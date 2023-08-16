@@ -1,7 +1,7 @@
 <?php
    
-  $padExtTyp = 'ajax';
+  include pad . 'page/external.php';
 
-  return include pad . 'page/external.php';
+  return padPageAjax ( $padExtPag, $padExtQry );
    
 ?>

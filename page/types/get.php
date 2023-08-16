@@ -1,7 +1,7 @@
 <?php
 
-  $padExtTyp = 'get';
-   
-  return include pad . 'page/external.php';
+  include pad . 'page/external.php';
+
+  return padPageGet ( $padExtPag, $padExtQry );
 
 ?>
