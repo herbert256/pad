@@ -10,7 +10,7 @@
 
   if     ( $padSeqBuild == 'fixed'    ) $padSequence = $padSeqLoop;
   elseif ( $padSeqBuild == 'function' ) $padSequence = ( 'padSeq'     . ucfirst($padSeqSeq) ) ($padSeqLoop);
-  elseif ( $padSeqBuild == 'bool'     ) $padSequence = ( 'padSeqBool' . ucfirst($padSeqSeq) ) ($padSeqLoop) ;
+  elseif ( $padSeqBuild == 'bool'     ) $padSequence = ( 'padSeqBool' . ucfirst($padSeqSeq) ) ($padSeqLoop);
   else                                  $padSequence = include "$padSeqType/$padSeqBuild.php";
 
   if     ( $padSequence === FALSE ) return TRUE;   
@@ -26,8 +26,12 @@
   }
 
   if ( is_numeric ($padSequence) and $padSequence < $padSeqMin  ) return TRUE;
-  if ( is_numeric ($padSequence) and $padSequence > $padSeqMax  ) return $padSeqRandom ;
+  if ( is_numeric ($padSequence) and $padSequence > $padSeqMax  ) return $padSeqRandom;
   if ( $padSeqUnique and in_array ($padSequence, $padSeqResult) ) return TRUE;
+
+  $padSeqSkipCnt++;
+
+  if ( $padSeqSkip and $padSeqSkipCnt <= $padSeqSkip )            return TRUE;
 
   $padSeqResult [] = $padSequence;
 

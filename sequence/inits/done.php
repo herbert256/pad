@@ -16,6 +16,7 @@
   padDone ( 'min',         TRUE );
   padDone ( 'max',         TRUE );
   padDone ( 'unique',      TRUE );
+  padDone ( 'skip',        TRUE );
  
   foreach ( $padPrm [$pad] as $padSeqTagName => $padSeqTagValue )
     if ( padSeqMakeType ("$padSeqTypes/$padSeqTagName/") ) 

@@ -1,4 +1,6 @@
 <?php
+
+#  return include pad . "_tags/get.php";
   
   $padPageInsert [$pad] = $padPage;
   $padDirInsert  [$pad] = $padDir;

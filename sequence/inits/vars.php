@@ -1,8 +1,9 @@
 <?php
 
-  $padSeq       = 0;
-  $padSeqResult = $padSeqCache = [];
-  $padSeqType   = "$padSeqTypes/$padSeqSeq";
+  $padSeq        = 0;
+  $padSeqSkipCnt = 0;
+  $padSeqResult  = $padSeqBase = $padSeqCache = [];
+  $padSeqType    = "$padSeqTypes/$padSeqSeq";
   
   if ( ! $padSeqName )                           
     $padSeqName = $padSeqSet; 
