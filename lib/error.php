@@ -101,20 +101,18 @@
 
       if ( $GLOBALS ['padErrorAction'] == 'exit') {
 
-        if ( ! headers_sent () )
-          padHeader ('HTTP/1.0 500 Internal Server Error' );
-
+        padHeader ('HTTP/1.0 500 Internal Server Error' );
         padExit ();
 
       } elseif ( $GLOBALS ['padErrorAction'] == 'stop' )
 
         padStop (500);
 
-      elseif ( $GLOBALS ['padErrorAction'] == 'pad' ) {
+      elseif ( $GLOBALS ['padErrorAction'] == 'pad' )
 
         padDump ( $error );
 
-      } elseif ( $GLOBALS ['padErrorAction'] == 'report' )
+      elseif ( $GLOBALS ['padErrorAction'] == 'report' )
 
         $GLOBALS ['padExit'] = 1;
       

@@ -728,17 +728,6 @@
 
   }
 
-
-  function padTagAsFunction ( $tag, $parms ) {
-
-    include pad . 'page/inits.php'; 
-
-    $padHtml [$pad] = '{' . $tag . ' ' . $parms . '}';    
-
-    return include pad . 'page/exits.php'; 
-
-  }
-
   
   function padFunctionInTag ( $name, $value, $ops ) {
   

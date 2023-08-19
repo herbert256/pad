@@ -1,6 +1,6 @@
 <?php
 
-  include pad . 'page/external.php';
+  include pad . '_tags/page/external.php';
 
   return padPageGet ( $padExtPag, $padExtQry );
 

@@ -78,10 +78,6 @@
     elseif ( padChkLevel     ( $type                                  ) ) return 'level';
     elseif ( defined         ( $type                                  ) ) return 'constant';
     elseif ( padExists       ( pad . "sequence/actions/$type.php"     ) ) return 'action';
-    elseif ( padExists       ( padApp . "_tags/$type.php"             ) ) return 'tags';
-    elseif ( padExists       ( padApp . "_tags/$type.html"            ) ) return 'tags';
-    elseif ( padExists       ( pad . "_tags/$type.php"                ) ) return 'tags';
-    elseif ( padExists       ( pad . "_tags/$type.html"               ) ) return 'tags';
     elseif ( padInclFileName ( $type                                  ) ) return 'include';
     elseif ( padDataFileName ( $type                                  ) ) return 'local';      
     elseif ( padIsObject     ( $type                                  ) ) return 'object';
