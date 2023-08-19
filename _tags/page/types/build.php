@@ -1,8 +1,8 @@
 <?php
 
-  include pad . '_tags/page/setup.php';
+  include pad . '_tags/page/lib/setup.php';
   include pad . 'build/build.php';   
-  include pad . '_tags/page/level.php'; 
+  include pad . '_tags/page/lib/level.php'; 
 
   return $padContent;
 

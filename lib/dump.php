@@ -19,41 +19,10 @@
 
       padEmptyBuffers ();
 
-      if ( padLocal () ) {
-
-        echo ( "<div align=\"left\"><pre>" );
-
-        padDumpFields    ( $php, $lvl, $app, $cfg, $pad, $ids, $exc );
-        padDumpInfo      ( $info );
-        padDumpErrors    ( $info );
-        padDumpHistShort ();
-        padDumpStack     ();
-        padDumpLevel     ();
-        padDumpLines     ( "App variables", $app );
-        padDumpExeptions ( $exc );
-        padDumpRequest   ();
-        padDumpXXX       ( $pad, 'padSeq' );
-        padDumpXXX       ( $pad, 'padBuild' );
-        padDumpLines     ( "PAD variables",   $pad );
-        padDumpLines     ( "Level variables", $lvl );
-        padDumpLines     ( "ID's", $ids );
-        padDumpSQL       ();
-        padDumpHeaders   ();
-        padDumpHistory   ();
-        padDumpLines     ( 'Configuration', $cfg );
-        padDumpLines     ( 'PHP', $php );
-        padDumpFiles     ();
-        padDumpFunctions ();
-        padDumpGlobals   ();
-
-        echo ( "</pre></div>" );
-
-      } else {
-
-        padErrorLog ( "DUMP: $info" );
-        echo "Error: " . padID ();
-
-      }
+      if ( padLocal () )
+        padDumpLocal ( $info );
+      else
+        padDumpRemote ( $info );
        
       $GLOBALS ['padSent']   = TRUE;
       $GLOBALS ['padOutput'] = '';
@@ -67,6 +36,47 @@
       padDumpProblem ( 'DUMP-CATCH: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
   
     }
+
+  }
+
+
+  function padDumpLocal ( $info ) {
+
+    echo ( "<div align=\"left\"><pre>" );
+
+    padDumpFields    ( $php, $lvl, $app, $cfg, $pad, $ids, $exc );
+    padDumpInfo      ( $info );
+    padDumpErrors    ( $info );
+    padDumpHistShort ();
+    padDumpStack     ();
+    padDumpLevel     ();
+    padDumpLines     ( "App variables", $app );
+    padDumpExeptions ( $exc );
+    padDumpRequest   ();
+    padDumpXXX       ( $pad, 'padSeq' );
+    padDumpXXX       ( $pad, 'padBuild' );
+    padDumpLines     ( "PAD variables",   $pad );
+    padDumpLines     ( "Level variables", $lvl );
+    padDumpLines     ( "ID's", $ids );
+    padDumpSQL       ();
+    padDumpHeaders   ();
+    padDumpHistory   ();
+    padDumpLines     ( 'Configuration', $cfg );
+    padDumpLines     ( 'PHP', $php );
+    padDumpFiles     ();
+    padDumpFunctions ();
+    padDumpGlobals   ();
+
+    echo ( "</pre></div>" );
+ 
+  }
+
+
+  function padDumpRemote ( $info ) {
+
+    padErrorLog ( "DUMP: $info" );
+        
+    echo "Error: " . padID ();
 
   }
 
@@ -424,12 +434,12 @@
   } 
 
 
-  function padDumpToDir ( $info ) {
+  function padDumpToDir ( $info = '' ) {
 
     set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
     $errorReporting = error_reporting (0);
 
-    $id = $GLOBALS ['padPage'] . '/' . $GLOBALS ['padReqID'] . '-' . padRandomString();
+    $dir = "dumps/" . $GLOBALS ['padPage'] . '/' . $GLOBALS ['padReqID'] . '-' . padRandomString();
 
     try {
 
@@ -458,7 +468,10 @@
 
     } catch (Throwable $e) {
 
-      padFilePutContents ( "dumps/$id/oops.txt", "$info\n\n" . $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage() );
+      padFilePutContents ( "$dir/oops.txt", 
+                           "$info\n\n" . 
+                           $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage() 
+                         );
   
     }
 

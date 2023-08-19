@@ -1,10 +1,12 @@
 <?php
 
-  include pad . '_tags/page/start.php';
-  include pad . '_tags/page/setup.php';
+  include pad . '_tags/page/lib/start.php';
+  include pad . '_tags/page/lib/setup.php';
+
   include pad . 'build/build.php';   
-  include pad . '_tags/page/level.php'; 
-  include pad . '_tags/page/end.php';
+  
+  include pad . '_tags/page/lib/level.php'; 
+  include pad . '_tags/page/lib/end.php';
 
   return $padHtml [$pad+1];
  
