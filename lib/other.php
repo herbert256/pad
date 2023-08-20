@@ -1,6 +1,18 @@
 <?php
 
 
+  function padSingleValue ( $value ) {
+
+    if ( is_array        ( $value ) or
+         is_object       ( $value ) or
+         is_resource     ( $value ) or 
+         padSpecialValue ( $value ) )
+      return FALSE;
+
+    return TRUE;
+
+  }
+
   function padSpecialValue ( $value ) {
 
     if     ( $value === FALSE ) return TRUE;  

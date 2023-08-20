@@ -2,6 +2,6 @@
 
   $padSeqInc = $padSeqParm;
 
-  $padSeqLoopStart = ceil ( $padSeqLoopStart / $padSeqParm) * $padSeqParm;
+  $padSeqStart = ceil ( $padSeqStart / $padSeqParm) * $padSeqParm;
 
 ?>

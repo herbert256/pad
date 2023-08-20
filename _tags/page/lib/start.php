@@ -1,6 +1,6 @@
 <?php
   
-  $padPagePad [$pad] = $padPageApp [$pad] = $padPageSave [$pad] = $padPageDelete [$pad] = [];
+  $padPagePad [$pad] = $padPageApp [$pad] = [];
 
   foreach ($GLOBALS as $padK => $padV ) {
 
@@ -15,8 +15,6 @@
 
   }
 
-  $padTables = $padRelations = $padDataStore = $padContentStore = $padFlagStore = $padSeqStore = [];
-
   foreach ( $padSetLvl [$pad] as $padK => $padV ) {
 
     if ( array_key_exists ($padK,  $GLOBALS) )
@@ -25,6 +23,8 @@
     $GLOBALS [$padK] = $padV;
 
   }
+
+  $padTables = $padRelations = $padDataStore = $padContentStore = $padFlagStore = $padSeqStore = [];
    
   if ( isset ( $padSqlConnect ) )
     unset ( $padSqlConnect );

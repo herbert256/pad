@@ -1,7 +1,7 @@
 <?php
 
-  $padSeqRandomStart = $padSeqLoopStart;
-  $padSeqRandomEnd   = $padSeqLoopEnd;
+  $padSeqRandomStart = $padSeqStart;
+  $padSeqRandomEnd   = $padSeqEnd;
 
   if ( $padSeqRandomStart == 1 and $padSeqMin <> PHP_INT_MIN ) 
     $padSeqRandomStart = $padSeqMin;

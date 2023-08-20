@@ -1,13 +1,13 @@
 <?php
 
   if ( isset($padPrm [$pad] ['from']) )
-    $padSeqLoopStart = $padSeqFrom;
+    $padSeqStart = $padSeqFrom;
   else
-    $padSeqLoopStart = 1; 
+    $padSeqStart = 1; 
   
   if ( isset($padPrm [$pad] ['to']) )
-    $padSeqLoopEnd = $padSeqTo;
+    $padSeqEnd = $padSeqTo;
   else 
-    $padSeqLoopEnd = PHP_INT_MAX;
+    $padSeqEnd = PHP_INT_MAX;
 
 ?>

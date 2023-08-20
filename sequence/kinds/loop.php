@@ -1,8 +1,8 @@
 <?php
 
-  $padSeqGo = $padSeqLoopStart;
+  $padSeqGo = $padSeqStart;
 
-  while ( $padSeqGo <= $padSeqLoopEnd ) {
+  while ( $padSeqGo <= $padSeqEnd ) {
 
     $padSeqLoop = $padSeqGo;
 

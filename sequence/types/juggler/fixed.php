@@ -18,7 +18,7 @@
 
  	else 
 
- 	  padSeqJuggler ( $padSeqLoopStart );
+ 	  padSeqJuggler ( $padSeqStart );
 
 	return $padSeqJugglerArray;
 

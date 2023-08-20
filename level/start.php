@@ -26,7 +26,7 @@
   include pad . 'level/base.php';
   include pad . 'level/data.php';
 
- $padHistory [] = "Result: hit=$padHit[$pad] else=$padElse[$pad] array=$padArray[$pad] count=$padCount[$pad] null=$padNull[$pad]" ;
+  $padHistory [] = "Result: hit=$padHit[$pad] else=$padElse[$pad] array=$padArray[$pad] count=$padCount[$pad] null=$padNull[$pad]" ;
 
   include pad . "options/start.php";
 

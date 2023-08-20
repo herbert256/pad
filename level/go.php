@@ -1,17 +1,27 @@
 <?php
 
   $padTagContent = '';
-  $padTagResult  = include pad . "types/" . $padType [$pad] . ".php";
 
-  if ( $padTagResult === NULL )
-    return;
+  ob_start();
+  $padTagResult = include pad . "types/" . $padType [$pad] . ".php";
+  $padTagOb     = ob_get_clean();
+
+  if ( $padTagOb and is_array ( $padTagResult ) and count ( $padTagResult ) )
+    return padError ('Both OB and an array returned by a PAD tag');
 
   if     ( is_object   ( $padTagResult ) ) $padTagResult = padToArray( $padTagResult );
   elseif ( is_resource ( $padTagResult ) ) $padTagResult = padToArray( $padTagResult );
   elseif ( $padTagResult === INF         ) $padTagResult = NULL;
   elseif ( $padTagResult === NAN         ) $padTagResult = NULL;
 
-  if ( ! is_array ($padTagResult) and $padTagResult !== TRUE and $padTagResult !== FALSE ) {
+  if ( $padTagOb ) {
+    $padTagContent .= $padTagOb;
+    if ( padSingleValue ( $padTagResult ) )
+      $padTagContent .= $padTagResult;
+    $padTagResult = TRUE;
+  }
+
+  if ( padSingleValue ( $padTagResult ) ) {
     $padTagContent .= $padTagResult;
     $padTagResult = TRUE;
   }

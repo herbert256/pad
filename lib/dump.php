@@ -8,8 +8,7 @@
 
     try {
 
-      $GLOBALS ['padInDump'] = TRUE;
-
+      $GLOBALS ['padInDump']        = TRUE;
       $GLOBALS ['padErrrorList'] [] = $info;
 
       if ( ! headers_sent () ) 
@@ -328,21 +327,21 @@
       $after = substr($after, 0, 100);
 
     return [
-      'tag'    => $tag,
-      'type'   => $GLOBALS ['padType'] [$pad] ?? '',
-      'name' => $GLOBALS ['padName'] [$pad] ?? '',
-      'pair'   => $GLOBALS ['padPair'] [$pad] ?? '',
-      'opt'    => $opt,
-      'prm'    => $GLOBALS ['padPrm'] [$pad] ?? '',
+      'tag'     => $tag,
+      'type'    => $GLOBALS ['padType'] [$pad] ?? '',
+      'name'    => $GLOBALS ['padName'] [$pad] ?? '',
+      'pair'    => $GLOBALS ['padPair'] [$pad] ?? '',
+      'opt'     => $opt,
+      'prm'     => $GLOBALS ['padPrm'] [$pad] ?? '',
       'set-lvl' => $GLOBALS ['padSetLvl'] [$pad] ?? '',
       'set-occ' => $GLOBALS ['padSetOcc'] [$pad] ?? '',
-      'true' => padDumpShort ($GLOBALS ['padTrue'][$pad]??''),
-      'false' => padDumpShort ($GLOBALS ['padFalse'][$pad]??''),
-      'base' => padDumpShort ($GLOBALS ['padBase'][$pad]??''),
-      'html' => padDumpShort ($GLOBALS ['padHtml'][$pad]??''),
-      'result' => padDumpShort ($GLOBALS ['padResult'][$pad]??''),
-      'before'    => $before,
-      'after'    => $after
+      'true'    => padDumpShort ($GLOBALS ['padTrue'][$pad]??''),
+      'false'   => padDumpShort ($GLOBALS ['padFalse'][$pad]??''),
+      'base'    => padDumpShort ($GLOBALS ['padBase'][$pad]??''),
+      'html'    => padDumpShort ($GLOBALS ['padHtml'][$pad]??''),
+      'result'  => padDumpShort ($GLOBALS ['padResult'][$pad]??''),
+      'before'  => $before,
+      'after'   => $after
     ];
 
   } 
