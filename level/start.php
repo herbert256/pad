@@ -7,9 +7,6 @@
   if ( ! in_array ( $padTag [$pad], $padPrmNoParse  )  )
     include pad . 'level/parms.php';
 
-  if ( isset ( $padPrm [$pad] ['isolate'] ) )
-    include pad . 'isolate/start.php';
-   
   include pad . 'level/split.php';
 
   if ( padTagParm ('content') ) $padTrue  [$pad] = include pad . "_options/content.php";    

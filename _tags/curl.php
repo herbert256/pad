@@ -3,9 +3,6 @@
   if ( ! isset ($padPrm [$pad] ['url']) )
     $padPrm [$pad] ['url'] = $padOpt [$pad] [1];
 
-  if ( ! $padPrm [$pad] ['url'] )
-    return padError ("Curl: No URL given");
-
   foreach ( $padSetLvl [$pad] as $padK => $padV )
     $padPrm [$pad] ['url'] = padAddGet ($padPrm [$pad] ['url'], $padK, $padV );
 
