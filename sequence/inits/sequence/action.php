@@ -1,6 +1,6 @@
 <?php
 
-  if ( isset($padPrm [$pad][$padSeqTmp]) )
+  if ( isset ( $padPrm [$pad] [$padSeqTmp]) )
     $padSeqParm = $padPrm [$pad][$padSeqTmp];
   else
     $padSeqParm = $padOpt [$pad] [1];

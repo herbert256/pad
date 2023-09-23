@@ -106,7 +106,7 @@
 
       } elseif ( $GLOBALS ['padErrorAction'] == 'stop' )
 
-        padStop (500);
+        padStop (500, $error);
 
       elseif ( $GLOBALS ['padErrorAction'] == 'pad' )
 

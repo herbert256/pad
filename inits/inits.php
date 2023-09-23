@@ -11,10 +11,10 @@
   include pad . 'inits/cookies.php';
   include pad . 'inits/zip.php';
   include pad . 'inits/host.php';
-  include pad . 'inits/cache.php';
+  include pad . 'cache/cache.php';
   include pad . 'inits/level.php';
   include pad . 'inits/parms.php';
   include pad . 'inits/options.php';
-  include pad . 'inits/build.php';
+  include pad . 'build/build.php';
 
 ?>

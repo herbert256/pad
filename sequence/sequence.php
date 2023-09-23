@@ -1,9 +1,6 @@
 <?php
 
   include pad . 'sequence/inits/inits.php';
-
-  if ( padExists ( "$padSeqType/init.php" )) 
-    include "$padSeqType/init.php";
       
   if     ( $padSeqPull  ) $padSeqFor = $padSeqStore [$padSeqPull];
   elseif ( $padSeqRange ) $padSeqFor = padGetRange ( $padSeqRange, $padSeqInc );

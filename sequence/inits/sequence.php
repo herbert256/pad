@@ -15,13 +15,14 @@
       elseif ( strpos($padSeqTmp, '..')                              ) return include "$padSeqNext/range.php";
       elseif ( strpos($padSeqTmp, ';')                               ) return include "$padSeqNext/list.php";
 
-  $padSeqSeq  = 'loop';
   $padSeqSet  = 'sequence';
-  $padSeqParm = TRUE;
-  
+
   if ( ctype_digit($padOpt [$pad] [1]) ) {
     $padSeqSeq = 'range';
     $padSeqParm = "1.." . $padOpt [$pad] [1];
-  } 
+  } else {
+    $padSeqSeq  = 'loop';
+    $padSeqParm = TRUE;
+  }
 
 ?>

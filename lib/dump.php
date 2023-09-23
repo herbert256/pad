@@ -26,7 +26,7 @@
       $GLOBALS ['padSent']   = TRUE;
       $GLOBALS ['padOutput'] = '';
 
-      padStop (500);
+      padStop (500, $info);
 
     } catch (Throwable $error) {
   
@@ -49,6 +49,7 @@
     padDumpHistShort ();
     padDumpStack     ();
     padDumpLevel     ();
+    padDumpInput     ();
     padDumpLines     ( "App variables", $app );
     padDumpExeptions ( $exc );
     padDumpRequest   ();
@@ -78,6 +79,7 @@
     echo "Error: " . padID ();
 
   }
+
 
 
   function padDumpError ( $type, $error, $file, $line ) {
@@ -392,7 +394,6 @@
 
   function padDumpShort ($G) {
   
-
     if ( $G === NULL)
       $G = '';
   
@@ -402,6 +403,13 @@
     return substr ( preg_replace('/\s+/', ' ', $G ), 0, 150 );
   
   }  
+
+
+  function padDumpInput ( ) {
+
+    padDumpLines ( 'Input', file_get_contents('php://input') );
+
+  }
 
 
   function padDumpLines ( $info, $source ) {
@@ -464,6 +472,7 @@
       ob_start (); padDumpPhpInfo   ();                 padDumpFile ( 'php-info',    ob_get_clean (), $dir );
       ob_start (); padDumpGlobals   ();                 padDumpFile ( 'globals',     ob_get_clean (), $dir );
       ob_start (); padDumpHistory   ();                 padDumpFile ( 'history',     ob_get_clean (), $dir );
+      ob_start (); padDumpInput     ();                 padDumpFile ( 'input',       ob_get_clean (), $dir );
 
     } catch (Throwable $e) {
 

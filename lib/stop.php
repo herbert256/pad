@@ -1,7 +1,10 @@
 <?php
 
  
-  function padStop ($stop, $next='') {
+  function padStop ($stop, $info='', $time=0, $etag=0) {
+
+    if ( $time ) $GLOBALS ['padTime'] = $time;
+    if ( $etag ) $GLOBALS ['padEtag'] = $etag;
 
     $GLOBALS ['padStop'] = $stop;
     $GLOBALS ['padLen']  = ( $stop == 200 ) ? strlen($GLOBALS ['padOutput']) : 0;

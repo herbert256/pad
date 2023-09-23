@@ -12,15 +12,21 @@
   }
 
   foreach ( $padPageApp [$pad] as $padK => $padV ) {
+
     if ( isset ( $GLOBALS [$padK] ) ) 
       unset ( $GLOBALS [$padK] );
+
     $GLOBALS [$padK] = $padV;
+  
   }
 
   foreach ( $padPagePad [$pad] as $padK => $padV ) {
+  
     if ( isset ( $GLOBALS [$padK] ) ) 
       unset ( $GLOBALS [$padK] );
+  
     $GLOBALS [$padK] = $padV;
+  
   }
 
 ?>

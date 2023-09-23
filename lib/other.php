@@ -194,16 +194,6 @@
   }
 
 
-  function padSave ( $in ) {
-
-    $in = str_replace ('//',  '/', $in );
-    $in = str_replace ('/./', '/', $in );
-
-    return $in;
-        
-  }
-
-
  function padAddIds ( $url ) {
 
     $url = padAddGet ( $url, 'padSesID', $GLOBALS ['padSesID'] );
