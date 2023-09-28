@@ -52,10 +52,7 @@
         elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
       }
 
-    global $pad, $padPrm;
-
-    for ( $i=$pad; $i >= 0; $i-- ) {
-
+    for ( $i=$pad; $i >= 0; $i-- )
       if ( array_key_exists ( $field, $padPrm [$i] ) ) {
         $work = $padPrm [$i] [$field];
         if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
@@ -63,7 +60,13 @@
         elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
       }
 
-    } 
+    for ( $i=$pad; $i >= 0; $i-- )      
+      if ( array_key_exists ( $field, $padOpt [$i] ) ) {
+        $work = $padOpt [$i] [$field];
+        if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
+        if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
+        elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
+      }
 
     return INF;
     

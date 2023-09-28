@@ -16,7 +16,6 @@
 
   $padErrorLog    = TRUE;   //  Report errors to Apache error log
   $padErrorReport = TRUE;   //  Report errors to the DATA directory
-  $padErrorThrow  = TRUE;   //  Throw exception on error
 
   // Keep track of stuff
 
@@ -41,7 +40,7 @@
   // Server-side cache settings ( used when $padCacheServerAge <> 0 )
 
   $padCacheServerType      = 'memory';             //  The implementation of the server-side cache: file/db/memory
-  $padCacheServerGzip      = TRUE;                //  Store the cache zipped
+  $padCacheServerGzip      = TRUE;                 //  Store the cache zipped
   $padCacheServerNoData    = FALSE;                //  Do not store the data itself, only the etag and timestamp,
                                                    //  caching based on the client 'etag' & 'modified' HTTP headers.
 
@@ -99,7 +98,7 @@
   // Must be a flag from FILTER_UNSAFE_RAW from below page.
   // https://www.php.net/manual/en/filter.filters.sanitize.php
 
-  $padOutputSanitize         = [ 'STRIP_LOW', 'ENCODE_HIGH' ];
+  $padOutputSanitize        = [ 'STRIP_LOW', 'ENCODE_HIGH' ];
   
   // lib tidy
 
@@ -119,7 +118,7 @@
                                   'drop-empty-elements' => 'yes',
                                   'merge-spans' => 'yes',
                                   'merge-divs' => 'yes'
-                                ];
+                              ];
 
   // Basic formatting
                                 
@@ -138,7 +137,7 @@
   $padFastLink              = 32;     // Lenght of the FastLink code in the URL
 
   //No paramenter parsing for below tags:
-  $padPrmNoParse          = [ 'if', 'case', 'while', 'until', 'increment', 'decrement' ];
+  $padPrmNoParse            = [ 'if', 'case', 'while', 'until', 'increment', 'decrement' ];
 
   $padTables    = [];
   $padRelations = [];

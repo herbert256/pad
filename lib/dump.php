@@ -46,7 +46,6 @@
     padDumpFields    ( $php, $lvl, $app, $cfg, $pad, $ids, $exc );
     padDumpInfo      ( $info );
     padDumpErrors    ( $info );
-    padDumpHistShort ();
     padDumpStack     ();
     padDumpLevel     ();
     padDumpInput     ();
@@ -60,7 +59,6 @@
     padDumpLines     ( "ID's", $ids );
     padDumpSQL       ();
     padDumpHeaders   ();
-    padDumpHistory   ();
     padDumpLines     ( 'Configuration', $cfg );
     padDumpLines     ( 'PHP', $php );
     padDumpFiles     ();
@@ -108,29 +106,6 @@
           $error .= "\n" . $list;
 
     padBootStop ( $error, $file, $line );
-
-  }
-
-
-  function padDumpHistShort () {
-
-    if ( ! isset ( $GLOBALS ['padHistory'] ) )
-      return;
-
-    if ( count ( $GLOBALS ['padHistory'] ) > 15 )
-      padDumpLines ( "History", array_slice ( $GLOBALS ['padHistory'], -15 ) );
-    else  
-      padDumpLines ( "History", $GLOBALS ['padHistory'] );
-
-  }
-
-
-  function padDumpHistory () {
-
-    if ( ! isset ( $GLOBALS ['padHistory'] ) )
-      return;
-
-    padDumpLines ( "History", $GLOBALS ['padHistory'] );
 
   }
 
@@ -471,7 +446,6 @@
       ob_start (); padDumpLines     ( 'PHP', $php );    padDumpFile ( 'php-vars',    ob_get_clean (), $dir );
       ob_start (); padDumpPhpInfo   ();                 padDumpFile ( 'php-info',    ob_get_clean (), $dir );
       ob_start (); padDumpGlobals   ();                 padDumpFile ( 'globals',     ob_get_clean (), $dir );
-      ob_start (); padDumpHistory   ();                 padDumpFile ( 'history',     ob_get_clean (), $dir );
       ob_start (); padDumpInput     ();                 padDumpFile ( 'input',       ob_get_clean (), $dir );
 
     } catch (Throwable $e) {
@@ -522,10 +496,6 @@
         $exc [$key] = $value;
 
       elseif ( $key == 'padSqlConnect' )
-        
-        $ignored [$key] = $value;
-
-      elseif ( $key == 'padHistory' )
         
         $ignored [$key] = $value;
 

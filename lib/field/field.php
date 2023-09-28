@@ -37,11 +37,6 @@
     elseif ( $prefix    ) $value = padFieldPrefix ( $field, $idx, $type, $prefix );
     else                  $value = padFieldLevel  ( $field, $type );
 
-    if ( is_array ( $value ) )
-      $GLOBALS ['padHistory'] [] = "Field: $field - (array)";
-    else
-      $GLOBALS ['padHistory'] [] = "Field: $field - $value";
-
     if     ($type == 1) return ( $value !== NULL and ( $value === INF or ! is_scalar($value) ) ) ? FALSE : TRUE;
     elseif ($type == 2) return ( $value === NULL or    $value === INF or ! is_scalar($value)   ) ? ''    : $value;
     elseif ($type == 3) return ( $value === NULL or    $value === INF or   is_scalar($value)   ) ? FALSE : TRUE;

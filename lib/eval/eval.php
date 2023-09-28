@@ -22,8 +22,6 @@
     elseif ( isset($result[$key][4])   ) return padError("Result is an array: $eval");
     elseif ( $result[$key][1] <> 'VAL' ) return padError("Result is not a value: $eval");
 
-    $GLOBALS ['padHistory'] [] = "Eval: $eval - " . $result [$key] [0];
-
     return $result [$key] [0];
 
   }  

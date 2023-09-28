@@ -943,8 +943,6 @@
 
     global $padBetween;
 
-    $GLOBALS ['padHistory'] [] = "Ignore: $info: $padBetween";
-              
     padHtml ( '&open;' . $padBetween . '&close;' );
 
     return FALSE;

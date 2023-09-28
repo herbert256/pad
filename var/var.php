@@ -1,7 +1,5 @@
 <?php
 
-  $padHistory [] = "Variabel: {" .  $padBetween . '}';
-
   $padPipe  = strpos ( $padBetween, '|' );
   $padSpace = strpos ( $padBetween, ' ' );
 

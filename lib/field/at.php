@@ -17,8 +17,6 @@
     $first  = $names [0] ?? '';
     $second = $names [1] ?? '';
 
-    $GLOBALS ['padHistory'] [] = "At: $field kind=$kind name=$name property=$property first=$first second=$second index=$i";
-
     if     ( $property )  return include pad . "var/property.php";
     elseif ( $kind     )  return include pad . "var/at/$kind.php";
     else                  return include pad . 'var/name.php'; 
@@ -44,7 +42,7 @@
   function padAtSet ( &$field, &$kind, &$name, &$property ) {
 
     list ( $field, $after ) = padSplit ( '@', $field );
-    list ( $first, $second) = padSplit ( '.', $after  );
+    list ( $first, $second) = padSplit ( '.', $after );
     
     $kind     = 'any';
     $name     = $first;

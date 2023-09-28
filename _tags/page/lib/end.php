@@ -6,8 +6,7 @@
       unset ( $GLOBALS [$padK] );
 
     if ( substr($padK, 0, 3) == 'pad' and ! in_array($padK, $padLevelVars) and ! in_array($padK, $padPagePad[$pad]) ) 
-      if ( $padK <> 'padHistory' )
-        unset ( $GLOBALS [$padK] );
+      unset ( $GLOBALS [$padK] );
 
   }
 

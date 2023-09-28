@@ -5,8 +5,7 @@
   foreach ($GLOBALS as $padK => $padV ) {
 
     if ( substr($padK, 0, 3) == 'pad' and ! in_array($padK, $padLevelVars) and $padK <> 'padK' and $padK <> 'padV' ) 
-      if ( $padK <> 'padHistory' )
-        $padPagePad [$pad] [$padK] = $GLOBALS [$padK];
+      $padPagePad [$pad] [$padK] = $GLOBALS [$padK];
  
     if ( padValidStore ($padK) ) {
       $padPageApp [$pad] [$padK] = $GLOBALS [$padK];

@@ -1,8 +1,6 @@
 <?php
 
   include pad . 'level/setup.php';    
-
-  $padHistory [] = "Start: {" .  $padBetween . '}';
  
   if ( ! in_array ( $padTag [$pad], $padPrmNoParse  )  )
     include pad . 'level/parms.php';
@@ -22,8 +20,6 @@
   include pad . 'level/flags.php';
   include pad . 'level/base.php';
   include pad . 'level/data.php';
-
-  $padHistory [] = "Result: hit=$padHit[$pad] else=$padElse[$pad] array=$padArray[$pad] count=$padCount[$pad] null=$padNull[$pad]" ;
 
   include pad . "options/start.php";
 
