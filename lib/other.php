@@ -896,48 +896,6 @@
 
   }
 
-  function padSetSet ( $name, $value ) {
-
-    if ( ! padValidVar($name) ) 
-      return;
-
-    if ( $value === NULL )
-      $value = '';
-
-    global $pad, $padSaveSet, $padDeleteSet;
-    
-    if ( array_key_exists($name, $GLOBALS) and ! array_key_exists ($name, $padSaveSet [$pad]) )
-      $padSaveSet [$pad] [$name] = $GLOBALS [$name];
-
-    if ( ! array_key_exists ($name,  $GLOBALS) )
-      $padDeleteSet [$pad] [] = $name;
-    else
-      unset ( $GLOBALS [$name] );
-
-    $GLOBALS [$name] = $value;
-
-  }
-
-
-  function padSetReset () {
-
-    global $pad, $padSaveSet, $padDeleteSet;
-
-    foreach ( $padSaveSet [$pad] as $key => $value) {
-      if ( isset ( $GLOBALS [$key] ) ) 
-        unset ($GLOBALS [$key] );
-      $GLOBALS [$key] = $value;
-    }
-
-    foreach ( $padDeleteSet [$pad] as $key)
-      if ( isset ( $GLOBALS [$key] ) )
-        unset ( $GLOBALS [$key] );
-
-    $padSaveSet   [$pad] = [];
-    $padDeleteSet [$pad] = [];
-
-  }
-
 
   function padIgnore ($info) {
 
@@ -1014,14 +972,15 @@
   }
 
 
-  function padCheckValue (&$value) {
+  function padCheckValue ($value) {
 
-    if     ($value === NULL)      $value = '';
-    elseif ($value === TRUE)      $value = '1';
-    elseif ($value === FALSE)     $value = '';
-    elseif (is_array($value))     $value = '';
-    elseif (is_object($value))    $value = '';
-    elseif (is_resource($value))  $value = '';
+    if     ($value === NULL)      return '';
+    elseif ($value === TRUE)      return '1';
+    elseif ($value === FALSE)     return '';
+    elseif (is_array($value))     return '';
+    elseif (is_object($value))    return '';
+    elseif (is_resource($value))  return '';
+    else                          return $value;                       
     
   }
 

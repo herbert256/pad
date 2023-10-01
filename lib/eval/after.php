@@ -5,26 +5,6 @@
  
     global $padFlagStore, $padDataStore, $padContentStore;
 
-    $check = 0;
-    
-    foreach($result as $one) {
-      if ($one[1] == 'close')
-        $check--;
-      if ($check < 0)
-        padError ( "Incorrect use of ): $eval" );
-      if ($one[1] == 'open')
-        $check++;
-    }
-
-    if ($check <> 0) 
-      padError ("Unequal () pairs: $eval" );
-
-    foreach ($result as $k => $one)
-      if ( $one[1] == 'hex' ) {
-        $result[$k][0] = hex2bin($one[0]);
-        $result[$k][1] = 'VAL';
-      }
-
     foreach ($result as $k => $one)
 
       if ( $one[1] == 'other' ) {
@@ -33,26 +13,31 @@
 
         if ( count($exp) == 2 ) {
           $type = $exp[0];
-          $val  = $exp[1];
+          $name = $exp[1];
         }
         else {
           $type = padGetTypeEval ( $one[0] );
-          $val  = $one[0];
+          $name = $one[0];
         }
 
-        if ( padValid ($type) and padValid ($val) ) {
+        if ( padValid ($type) and padValid ($name) )
 
-          if ( padExists ( pad . "eval/single/$type.php") or padExists ( pad . "eval/parms/$type.php" ) ) {
-            $result[$k][0] = $val;
+          if ( padExists ( pad . "eval/single/$type.php") ) {            
+
+            $padCall = pad . "eval/single/$type.php" ;
+            $single  = include pad . "call/any.php" ;
+
+            $result [$k] [1] = 'VAL';
+            $result [$k] [0] = padCheckValue ($single);
+
+          } elseif ( padExists ( pad . "eval/parms/$type.php" ) ) {
+
+            $result[$k][0] = $name;
             $result[$k][1] = 'TYPE';
             $result[$k][2] = $type;          
             $result[$k][3] = 0;
+     
           }
-
-          if ( padExists ( pad . "eval/single/$type.php" ) )
-            padEvalSingle ( $result, $k );
-
-        }
 
       }
 
@@ -61,103 +46,49 @@
       if ( $one[1] == 'other' ) {
 
         if ( isset ( padEval_alt [$one[0]] ) ) {
+
           $result[$k][0] = padEval_alt [$one[0]];
           $result[$k][1] = 'OPR';
-        }
-
-        if ( in_array ( strtoupper($one[0]), padEval_txt ) ) {
+        
+        } elseif ( in_array ( strtoupper($one[0]), padEval_txt ) ) {
+          
           $result[$k][0] = strtoupper($one[0]);
           $result[$k][1] = 'OPR';
-        }
 
-      } 
-
-    foreach ($result as $k => $one)
-
-      if ( $one[1] == 'other' and defined ( $one[0] ) ) {
+        } else {
 
           $result[$k][1] = 'VAL';
-        
-          if ( is_array ( constant ( $one[0] ) )) {
-            $result[$k][0] = '*ARRAY*';
-            $result[$k][4] = constant ( $one[0] );
-          }
-          else
-            $result[$k][0] = constant ( $one[0] );
- 
+          $result[$k][0] = constant ( $one[0] );
+
         }
 
-    foreach ( $result as $k => $one ) {
-
-      if ( $one[1] == '$' ) {
+      } elseif ( $one[1] == '$' ) {
 
         $result[$k][1] = 'VAL';   
 
-        if ( str_contains ( $one[0], '@' ) ) {
-          $tmp = padAt ( $one[0] );
-          if ( $tmp === INF )
-            padError ( 'Unknow $variable: ' . $one[0] );
-          if ( is_array ( $tmp ) ) {
-            $result[$k][0] = '*ARRAY*';
-            $result[$k][4] = $tmp;
-          }
-          else
-            $result[$k][0] = $tmp;
-        }   
- 
-        if ( padFieldCheck ( $one[0] ) ) 
+        if ( str_contains ( $one[0], '@' ) )
+          $result[$k][0] = padAt ( $one[0] );
+        else  
           $result[$k][0] = padFieldValue ( $one[0] );
-        elseif ( padArrayCheck ( $one[0] ) ) {
-          $result[$k][0] = '*ARRAY*';
-          $result[$k][4] = padArrayValue ( $one[0] );
-        } else
-          padError ( 'Unknow $variable: ' . $one[0] );
  
-      }
-
-    }
-
-    foreach ( $result as $k => $one ) {
-
-      if ( $one[1] == '#' ) {
+      } elseif ( $one[1] == '&' ) {
 
         $result[$k][1] = 'VAL';  
+        $result[$k][0] = padTagValue ( $one[0], 1 );
 
-        $tmp = padOptValue ( $one[0], 1 );
-
-        if ( is_array($tmp) ) {
-          $result[$k][0] = '*ARRAY*';
-          $result[$k][4] = $tmp;        
-        } else
-          $result[$k][0] = $tmp;
-
-      }
-
-    }
-
-    foreach ( $result as $k => $one ) {
-
-      if ( $one[1] == '&' ) {
-
-        $result[$k][1] = 'VAL';  
-
-        $tmp = padTagValue ( $one[0], 1 );
-
-        if ( is_array($tmp) ) {
-          $result[$k][0] = '*ARRAY*';
-          $result[$k][4] = $tmp;        
-        } else
-          $result[$k][0] = $tmp;
-
-      }
-
-    }
-
-    foreach ($result as $k => $one)
-      if ( $one[1] == 'other' )
-        padError ( 'Unknow eval argument: ' . $one[0] );
+      } elseif ( $one[1] == '#' ) {
  
+        $result[$k][1] = 'VAL';  
+        $result[$k][0] = padOptValue ( $one[0], 1 );
+ 
+      } elseif ( $one[1] == 'hex' ) {
+
+        $result[$k][1] = 'VAL';
+        $result[$k][0] = hex2bin($one[0]);
+
+      }
+
   }
 
-  
+
 ?>

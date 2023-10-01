@@ -81,7 +81,6 @@
     elseif ( padInclFileName ( $type                                  ) ) return 'include';
     elseif ( padDataFileName ( $type                                  ) ) return 'local';      
     elseif ( padIsObject     ( $type                                  ) ) return 'object';
-    elseif ( padIsResource   ( $type                                  ) ) return 'resource';
  
     else                                                                  return FALSE;
 

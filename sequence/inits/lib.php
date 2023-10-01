@@ -30,6 +30,21 @@
   }
 
 
+  function padSeqFilterType ( $check ) {
+
+    if     ( padExists ( "$check/bool.php")     ) return 'bool';
+    elseif ( padExists ( "$check/order.php")    ) return 'order';
+    elseif ( padExists ( "$check/fixed.php")    ) return 'fixed';
+    elseif ( padExists ( "$check/jump.php")     ) return 'jump';
+    elseif ( padExists ( "$check/function.php") ) return 'function';
+    elseif ( padExists ( "$check/loop.php")     ) return 'loop';
+    elseif ( padExists ( "$check/make.php")     ) return 'make';
+    elseif ( padExists ( "$check/filter.php")   ) return 'filter';
+    else                                          return 'none';
+
+  }
+
+
   function padSeqAction ( $sequence1, $action, $sequence2 ) {
 
     $padSeqResult      = $sequence1;
@@ -108,7 +123,7 @@
  
       return $padPrm [$pad][$third];
  
-    elseif (                                    $padSeqParm !== TRUE           and is_numeric($padSeqParm) )
+    elseif (                                     $padSeqParm !== TRUE            and is_numeric($padSeqParm) )
  
       return $padSeqParm;
  
