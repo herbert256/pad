@@ -6,9 +6,6 @@
   $padTagResult = include pad . "types/" . $padType [$pad] . ".php";
   $padTagOb     = ob_get_clean();
 
-  if ( $padTagOb and is_array ( $padTagResult ) and count ( $padTagResult ) )
-    return padError ('Both OB and an array returned by a PAD tag');
-
   if     ( is_object   ( $padTagResult ) ) $padTagResult = padToArray( $padTagResult );
   elseif ( is_resource ( $padTagResult ) ) $padTagResult = padToArray( $padTagResult );
   elseif ( $padTagResult === INF         ) $padTagResult = NULL;
@@ -29,7 +26,6 @@
   if ( padTagParm ('true')  ) $padTagResult = include pad . '_options/true.php';
   if ( padTagParm ('false') ) $padTagResult = include pad . '_options/false.php';
   if ( padTagParm ('null')  ) $padTagResult = include pad . '_options/null.php';
-  if ( padTagParm ('hello') ) $padTagResult = include pad . '_options/hello.php';
   if ( padTagParm ('array') ) $padTagResult = include pad . '_options/array.php';
   if ( padTagParm ('empty') ) $padTagResult = include pad . '_options/empty.php';
 

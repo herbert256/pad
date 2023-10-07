@@ -72,6 +72,8 @@
 
   function padSeqSet ( $name, $value ) {
 
+    $name = ucfirst ($name);
+
     $GLOBALS ["padSeqParm"]  = $value;
     $GLOBALS ["padSeq$name"] = $value;
 

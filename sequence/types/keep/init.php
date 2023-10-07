@@ -1,25 +1,19 @@
 <?php
 
-  $padSeqFilter = $padSeqFilterType = [];
+  $padSeqFilter = [];
 
   foreach ( $padPrm [$pad] as $padSeqFilterName => $padSeqFilterVal )
 
-    if ( $padSeqFilterName <> $padSeqSeq ) {
+    if ( $padSeqFilterName <> $padSeqSeq and padExists ( "$padSeqTypes/$padSeqFilterName/bool.php" ) ) {
 
-      $padSeqFilterTmp = padSeqFilterType ( $padSeqFilterName );
+      $padSeqFilter [$padSeqFilterName] = $padSeqFilterVal;
 
-      if ( $padSeqFilterTmp <> 'none' ) {
+      include_once "$padSeqTypes/$padSeqFilterName/bool.php";
 
-        $padSeqFilter     [$padSeqFilterName] = $padSeqFilterVal;
-        $padSeqFilterType [$padSeqFilterName] = $padSeqFilterTmp;
+      if ( isset ( $padSeqOprGo [$padSeqFilterName] ) )
+        unset ( $padSeqOprGo [$padSeqFilterName] );
 
-        if ( $padSeqFilterTmp == 'bool' or $padSeqFilterTmp == 'function' ) 
-          include_once "$padSeqTypes/$padSeqFilterName/$padSeqFilterTmp.php";
-
-        if ( isset ( $padSeqOprGo [$padSeqFilterName] ) )
-          unset ( $padSeqOprGo [$padSeqFilterName] );
-
-      }
+      padDone ( $padSeqFilterName );
 
     }
 
