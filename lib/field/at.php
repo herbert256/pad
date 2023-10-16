@@ -10,9 +10,17 @@
 
     $names = padExplode ( $field, '.' ); 
 
-    padAtForceName ( $names, $name, $property );
+    if     ( count ($names) ) $forceName = end ($names);
+    elseif ( $property )      $forceName = $property;
+    else                      $forceName = $name;
 
-    $i = padAtIdx ( $type, $name );
+    $GLOBALS ['padForceTagName']  = $forceName;
+    $GLOBALS ['padForceDataName'] = $forceName;
+
+    if     ( $name and padIsTag   ($name) ) $i = padIsTag       ($name); 
+    elseif ( $name and padIsLevel ($name) ) $i = padIsLevel     ($name); 
+    elseif ( $type == 'tag'               ) $i = padAtIdxNoName (1);
+    else                                    $i = padAtIdxNoName (0);
 
     $first  = $names [0] ?? '';
     $second = $names [1] ?? '';
@@ -20,21 +28,6 @@
     if     ( $property )  return include pad . "var/property.php";
     elseif ( $kind     )  return include pad . "var/at/$kind.php";
     else                  return include pad . 'var/name.php'; 
-
-  }
-
-
-  function padAtForceName ( $names, $name, $property ) {
-
-    if ( count ($names) )
-      $forceName = end ($names);
-    elseif ( $property )
-      $forceName = $property;
-    else
-      $forceName = $name;
-
-    $GLOBALS ['padForceTagName']  = $forceName;
-    $GLOBALS ['padForceDataName'] = $forceName;
 
   }
 
@@ -269,18 +262,6 @@
     }
 
     return INF;
-
-  }
-
-
-  function padAtIdx ( $type, $name ) {
-
-    global $pad;
-
-    if     ( $name and padIsTag   ($name) ) return padIsTag       ($name); 
-    elseif ( $name and padIsLevel ($name) ) return padIsLevel     ($name); 
-    elseif ( $type == 'tag'               ) return padAtIdxNoName (1);
-    else                                    return padAtIdxNoName (0);
 
   }
 

@@ -25,6 +25,9 @@
 
   function padFileGetContents ( $file ) {
 
+    if ( is_dir ($file) )
+      return $file;
+
     if ( ! padExists($file) )
       return '';
 

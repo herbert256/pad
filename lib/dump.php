@@ -168,25 +168,23 @@
 
     echo "<br>";
     
-    padDumpStackGo ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS), '' );
+    padDumpStackGo ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS) );
 
     if ( isset ( $GLOBALS ['padExceptions'] ) )
       foreach ( $GLOBALS ['padExceptions'] as $exception )
-        padDumpStackGo ( $exception->getTrace(), ' - exception' );
+        padDumpStackGo ( $exception->getTrace() );
 
   }
 
 
-  function padDumpStackGo ( $stack, $info ) {
+  function padDumpStackGo ( $stack ) {
 
-    echo ( "<b>Stack$info</b>\n");
-    
     foreach ( $stack as $key => $trace ) {
 
       extract ( $trace );
 
-      $file     = $file     ?? '???';
-      $line     = $line     ?? '???';
+      $file     = $file     ?? $GLOBALS['padErrorFile'] ?? '???';
+      $line     = $line     ?? $GLOBALS['padErrorLine'] ?? '???';
       $function = $function ?? '???';
 
       echo ( "    $file:$line - $function\n");
@@ -386,8 +384,17 @@
 
   }
 
+  function padDumpInputRaw ( ) {
+
+    echo file_get_contents('php://input');
+
+  }
+
 
   function padDumpLines ( $info, $source ) {
+
+    if ( padSingleValue ( $source ) )
+      $source = trim ( $source );
 
     if ( is_array ($source) and ! count($source) )
       return;
@@ -446,7 +453,8 @@
       ob_start (); padDumpLines     ( 'PHP', $php );    padDumpFile ( 'php-vars',    ob_get_clean (), $dir );
       ob_start (); padDumpPhpInfo   ();                 padDumpFile ( 'php-info',    ob_get_clean (), $dir );
       ob_start (); padDumpGlobals   ();                 padDumpFile ( 'globals',     ob_get_clean (), $dir );
-      ob_start (); padDumpInput     ();                 padDumpFile ( 'input',       ob_get_clean (), $dir );
+
+      padDumpFile ( 'input', file_get_contents('php://input'), $dir );
 
     } catch (Throwable $e) {
 
@@ -468,7 +476,12 @@
     if ( ! trim ( $txt ) )
       return;
 
-    padFilePutContents ( "$dir/$file.html", "<pre>$txt</pre>" );
+    $txt = trim ( $txt );
+
+    if ( $txt[0] == '<' and $txt[-1] == '>' )
+      padFilePutContents ( "$dir/$file.xml", $txt );
+    else
+      padFilePutContents ( "$dir/$file.html", "<pre>$txt</pre>" );
 
   }
 

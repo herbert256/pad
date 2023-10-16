@@ -76,6 +76,9 @@
 
   function padErrorGo ($error, $file, $line) {
 
+    $GLOBALS['padErrorFile'] = $file;
+    $GLOBALS['padErrorLine'] = $line;
+
     if ( $GLOBALS['padExit'] <> 1 )
       padErrorDump ("$file:$line ERROR-SECOND: $error");
     

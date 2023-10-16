@@ -1,9 +1,7 @@
 <?php
 
-  if ( $padWalk [$pad] == 'start' and $padPrmType [$pad] == 'close' ) {
-    $padWalk [$pad] = 'next';
+  if ( padStartAndClose () )
     return TRUE;
-  }
 
   $padEval = padEval ( $padOpt [$pad] [0] );
 

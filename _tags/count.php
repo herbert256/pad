@@ -1,5 +1,8 @@
 <?php
 
-  return count ( padFieldValue ( $padOpt [$pad] [1] ) );
+  if ( count ( $GLOBALS [ $padOpt [$pad] [1] ] ) == 0 )
+    return FALSE;
+  else
+    return TRUE;
 
 ?>

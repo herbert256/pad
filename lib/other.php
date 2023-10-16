@@ -1,6 +1,20 @@
 <?php
 
 
+  function padStartAndClose ( ) {
+
+    global $pad, $padWalk, $padPrmType;
+
+    if ( $padWalk [$pad] == 'start' and $padPrmType [$pad] == 'close' ) {
+      $padWalk [$pad] = 'next';
+      return TRUE;
+    }
+
+    return FALSE;
+
+  }
+
+
   function padSingleValue ( $value ) {
 
     if ( is_array        ( $value ) or
@@ -717,16 +731,6 @@
         $list [$key] = intval($value);
 
     return $list;
-
-  }
-
-
-  function padFunctionType ( $check ) {
-
-    if     ( padExists ( padApp . "functions/$check.php" ) ) return 'app';
-    elseif ( padExists ( pad    . "functions/$check.php" ) ) return 'pad';
-    elseif ( function_exists ( $check                    ) ) return 'php';
-    else                                                     return padError ('Function not found: ' . $check);
 
   }
 
