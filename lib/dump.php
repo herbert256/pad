@@ -26,7 +26,7 @@
       $GLOBALS ['padSent']   = TRUE;
       $GLOBALS ['padOutput'] = '';
 
-      padStop (500, $info);
+      padStop (500);
 
     } catch (Throwable $error) {
   
@@ -384,12 +384,6 @@
 
   }
 
-  function padDumpInputRaw ( ) {
-
-    echo file_get_contents('php://input');
-
-  }
-
 
   function padDumpLines ( $info, $source ) {
 
@@ -425,10 +419,10 @@
 
   function padDumpToDir ( $info = '' ) {
 
+    $dir = "dumps/" . $GLOBALS ['padPage'] . '/' . $GLOBALS ['padReqID'] . '-' . padRandomString();
+
     set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
     $errorReporting = error_reporting (0);
-
-    $dir = "dumps/" . $GLOBALS ['padPage'] . '/' . $GLOBALS ['padReqID'] . '-' . padRandomString();
 
     try {
 
@@ -454,7 +448,7 @@
       ob_start (); padDumpPhpInfo   ();                 padDumpFile ( 'php-info',    ob_get_clean (), $dir );
       ob_start (); padDumpGlobals   ();                 padDumpFile ( 'globals',     ob_get_clean (), $dir );
 
-      padDumpFile ( 'input', file_get_contents('php://input'), $dir );
+      padDumpInputToFile ( 'input', $dir )  ( 'input', file_get_contents('php://input'), $dir );
 
     } catch (Throwable $e) {
 
@@ -473,15 +467,27 @@
 
   function padDumpFile ( $file, $txt, $dir ) {
 
-    if ( ! trim ( $txt ) )
-      return;
-
     $txt = trim ( $txt );
 
-    if ( $txt[0] == '<' and $txt[-1] == '>' )
-      padFilePutContents ( "$dir/$file.xml", $txt );
-    else
+    if ( $txt )
       padFilePutContents ( "$dir/$file.html", "<pre>$txt</pre>" );
+
+  }
+
+
+  function padDumpInputToFile ( $file, $dir ) {
+
+    $txt = trim ( file_get_contents('php://input') );
+    
+    if ( ! $txt )
+      return;
+
+    $type = padContentType ( $txt );
+
+    if ( $type == 'csv' )
+      $type = 'txt';
+
+    padFilePutContents ( "$dir/$file.$type", "<pre>$txt</pre>" );
 
   }
 

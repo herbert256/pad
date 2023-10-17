@@ -9,5 +9,4 @@
   elseif ( $padCallPHP === INF         ) $padCallPHP = NULL;
   elseif ( $padCallPHP === NAN         ) $padCallPHP = NULL;
 
-
  ?>

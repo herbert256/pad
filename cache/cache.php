@@ -18,7 +18,7 @@
     $padCacheAge = padCacheEtag ($padCacheClient);
 
     if ( $padCacheAge and $padCacheAge >= $padCacheMax )
-      padStop ( 304, 'cache-client', $padCacheAge, $padCacheClient );
+      padStop ( 304, $padCacheAge, $padCacheClient );
     
   }
 
@@ -30,14 +30,14 @@
     $padCacheEtag = $url ['etag'] ?? $url [1] ?? '';
 
     if ( $padCacheMod and $padCacheMod >= $padCacheMax and $padCacheAge >= $padCacheMax ) 
-      padStop ( 304, 'cache-modified', $padCacheAge, $padCacheEtag );
+      padStop ( 304, $padCacheAge, $padCacheEtag );
 
     if ( $padCacheAge >= $padCacheMax and ! $GLOBALS ['padCacheServerNoData'] ) {
 
       $padOutput = padCacheGet ($padCacheEtag);
 
       if ( $padOutput )
-        padStop ( 200, 'cache-data', $padCacheAge, $padCacheEtag );
+        padStop ( 200, $padCacheAge, $padCacheEtag );
 
     }
 

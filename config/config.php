@@ -3,14 +3,14 @@
   //  Error handling
 
   $padErrorAction = 'pad';  // 'pad'    = PAD's own full blown error handler.
-                            // 'boot'   = Use the lightweight pad boot error handler
+                            // 'boot'   = Use the lightweight PAD boot error handler
                             // 'php'    = Use the PHP defaults (php.ini).
-                            // 'stop'   = Stop processing but do the pad stop handling.
-                            // 'exit'   = Exit, don't do the pad stop handling
+                            // 'stop'   = Stop processing but do PAD pad stop handling.
+                            // 'exit'   = Exit, don't do the PAD stop handling
                             // 'ignore' = Ignore all errors and continue processing.
                             // 'report' = Report the error and continue processing.
  
-  $padErrorLevel  = 'all';  // Kind of errors that will be processed by $padErrorAction
+  $padErrorLevel  = 'all';  // Kind of PHP errors that will be processed by $padErrorAction
                             // 'none' , 'error' , 'warning' , 'notice' , 'all'
                             // (not used when $padErrorAction is 'php' or 'boot')
 
@@ -19,12 +19,12 @@
 
   // Keep track of stuff
 
-  $padTrackFileRequest = FALSE;
-  $padTrackFileData    = FALSE; 
+  $padTrackFileRequest = TRUE;
+  $padTrackFileData    = TRUE; 
 
-  $padTrackDbSession   = FALSE;
-  $padTrackDbRequest   = FALSE;
-  $padTrackDbData      = FALSE;
+  $padTrackDbSession   = TRUE;
+  $padTrackDbRequest   = TRUE;
+  $padTrackDbData      = TRUE;
 
   // Cache settings
   

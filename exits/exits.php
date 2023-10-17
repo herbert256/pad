@@ -19,6 +19,6 @@
   if ( $padCache and $padCacheServerAge )
     include pad . 'cache/exits.php';
 
-  padStop ($padStop, 'normal');
+  padStop ($padStop);
 
 ?>

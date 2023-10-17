@@ -23,7 +23,7 @@
     $function = $function ?? '???';
 
     if ( $GLOBALS ['padErrorAction'] == 'php' ) { 
-      trigger_error("$file:$line $error", E_USER_ERROR);
+      trigger_error ("$file:$line $error", E_USER_ERROR);
       return FALSE;
     }
  
@@ -37,13 +37,8 @@
 
   function padErrorHandler ( $type, $error, $file, $line ) {
  
-    if ( error_reporting() & $type ) {
-
-      padErrorGo ( 'ERROR: ' . $error, $file, $line );
-
-      return FALSE;
-
-    }
+    if ( error_reporting() & $type )
+      return padErrorGo ( 'ERROR: ' . $error, $file, $line );
 
     $GLOBALS ['padErrorIgnored'] [] = "$file:$line $error";
  
@@ -54,10 +49,8 @@
 
     $GLOBALS ['padExceptions'] [] = $e;
 
-    padErrorGo ( 'EXCEPTION: ' . $e->getMessage() , $e->getFile(), $e->getLine() );
- 
-    return FALSE;
-    
+    return padErrorGo ( 'EXCEPTION: ' . $e->getMessage() , $e->getFile(), $e->getLine() );
+     
   }
 
 
@@ -76,50 +69,40 @@
 
   function padErrorGo ($error, $file, $line) {
 
-    $GLOBALS['padErrorFile'] = $file;
-    $GLOBALS['padErrorLine'] = $line;
+    if ( $GLOBALS ['padErrorAction'] == 'exit') {
+      padHeader ('HTTP/1.0 500 Internal Server Error' );
+      padExit ();
+    }
+ 
+    if ( isset ( $GLOBALS ['padInDump'] ) )
+      padDumpProblem ( 'ERROR-DUMP: ' . $error, $file, $line );
+
+    $GLOBALS['padErrorError'] = $error;
+    $GLOBALS['padErrorFile']  = $file;
+    $GLOBALS['padErrorLine']  = $line;
+
+    $error = "$file:$line " . padMakeSafe ( $error );
+
+    $GLOBALS ['padErrrorList'] [] = $error; 
 
     if ( $GLOBALS['padExit'] <> 1 )
-      padErrorDump ("$file:$line ERROR-SECOND: $error");
+      padErrorDump ("ERROR-SECOND: $error");
     
     $GLOBALS['padExit'] = 2;
 
     try {
-
-      $GLOBALS ['padErrrorList'] [] = "$file:$line " . padMakeSafe ( $error ); 
-
-      if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
-        return FALSE;
-
-      if ( isset ( $GLOBALS ['padInDump'] ) )
-        padDumpProblem ( 'ERROR-DUMP: ' . $error, $file, $line );
-
-      $error = "$file:$line " . padMakeSafe ( $error );
-
+ 
       if ( $GLOBALS ['padErrorLog'] or $GLOBALS ['padErrorAction'] == 'report' )
         padErrorLog ( $error );
 
       if ( $GLOBALS ['padErrorReport'] or $GLOBALS ['padErrorAction'] == 'report' )
         padDumpToDir ( $error );
 
-      if ( $GLOBALS ['padErrorAction'] == 'exit') {
+      if ( $GLOBALS ['padErrorAction'] == 'stop' )
+        padStop ( 500 );
 
-        padHeader ('HTTP/1.0 500 Internal Server Error' );
-        padExit ();
-
-      } elseif ( $GLOBALS ['padErrorAction'] == 'stop' )
-
-        padStop (500, $error);
-
-      elseif ( $GLOBALS ['padErrorAction'] == 'pad' )
-
+      if ( $GLOBALS ['padErrorAction'] == 'pad' )
         padDump ( $error );
-
-      elseif ( $GLOBALS ['padErrorAction'] == 'report' )
-
-        $GLOBALS ['padExit'] = 1;
-      
-      return FALSE;
 
     } catch (Throwable $e) {
 
@@ -128,6 +111,10 @@
       padErrorDump ( $e->getFile() . ':' . $e->getLine() . ' ERROR-CATCH: ' . $e->getMessage() );
 
     }
+
+    $GLOBALS ['padExit'] = 1;
+      
+    return FALSE;
 
   }
 

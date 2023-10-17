@@ -1,7 +1,7 @@
 <?php
 
  
-  function padStop ($stop, $info='', $time=0, $etag=0) {
+   function padStop ($stop, $time=0, $etag=0) {
 
     if ( $time ) $GLOBALS ['padTime'] = $time;
     if ( $etag ) $GLOBALS ['padEtag'] = $etag;
