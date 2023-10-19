@@ -45,11 +45,11 @@
   }
 
 
-  function padErrorException ( $e ) {
+  function padErrorException ( $error ) {
 
-    $GLOBALS ['padExceptions'] [] = $e;
+    $GLOBALS ['padErrorException'] = $error;
 
-    return padErrorGo ( 'EXCEPTION: ' . $e->getMessage() , $e->getFile(), $e->getLine() );
+    return padErrorGo ( 'EXCEPTION: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
      
   }
 
@@ -73,9 +73,11 @@
       padHeader ('HTTP/1.0 500 Internal Server Error' );
       padExit ();
     }
- 
-    if ( isset ( $GLOBALS ['padInDump'] ) )
-      padDumpProblem ( 'ERROR-DUMP: ' . $error, $file, $line );
+
+    if ( $GLOBALS['padExit'] <> 1 )
+      padErrorStop ( "ERROR-SECOND: $error", $file, $line);
+    
+    $GLOBALS['padExit'] = 2;
 
     $GLOBALS['padErrorError'] = $error;
     $GLOBALS['padErrorFile']  = $file;
@@ -84,11 +86,6 @@
     $error = "$file:$line " . padMakeSafe ( $error );
 
     $GLOBALS ['padErrrorList'] [] = $error; 
-
-    if ( $GLOBALS['padExit'] <> 1 )
-      padErrorDump ("ERROR-SECOND: $error");
-    
-    $GLOBALS['padExit'] = 2;
 
     try {
  
@@ -106,9 +103,7 @@
 
     } catch (Throwable $e) {
 
-      $GLOBALS ['padExceptions'] [] = $e;
-
-      padErrorDump ( $e->getFile() . ':' . $e->getLine() . ' ERROR-CATCH: ' . $e->getMessage() );
+      padErrorStop ( 'ERROR-CATCH: ' . $e->getMessage(), $e->getFile(), $e->getLine() );
 
     }
 
@@ -129,11 +124,18 @@
   }
 
 
-  function padErrorDump ( $error ) {
+  function padErrorStop ( $error, $file, $line) {
 
-    $GLOBALS ['padErrrorList'] [] = padMakeSafe ( $error );
- 
-    padDump ($error);
+    if ( isset ( $GLOBALS ['padErrrorList'] ) ) {
+
+      $GLOBALS ['padErrrorList'] = array_unique ( $GLOBALS ['padErrrorList'] );
+
+      foreach ( $GLOBALS ['padErrrorList'] as $list )
+        $error .= "\n" . $list;
+
+    }
+
+    padBootStop ( $error, $file, $line );
 
   }
 

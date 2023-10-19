@@ -8,33 +8,51 @@
 
     try {
 
-      $GLOBALS ['padInDump']        = TRUE;
-      $GLOBALS ['padErrrorList'] [] = $info;
-
-      if ( ! headers_sent () ) 
-        header ( 'HTTP/1.0 500 Internal Server Error' );
-
-      padCloseHtml ();
-
-      padEmptyBuffers ();
-
-      if ( padLocal () )
-        padDumpLocal ( $info );
-      else
-        padDumpRemote ( $info );
-       
-      $GLOBALS ['padSent']   = TRUE;
-      $GLOBALS ['padOutput'] = '';
-
-      padStop (500);
+      padDumpGo ( $info );
 
     } catch (Throwable $error) {
   
-      $GLOBALS ['padExceptions'] [] = $error;
-
-      padDumpProblem ( 'DUMP-CATCH: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
+      padErrorStop ( 'DUMP-CATCH: ' . $error->getMessage(), $error->getFile(), $error->getLine() );
   
     }
+
+  }
+
+
+  function padDumpError ( $type, $error, $file, $line ) {
+
+    padErrorStop ( "DUMP-ERROR: $error", $file, $line );
+ 
+  }
+
+
+  function padDumpException ( $error ) {
+
+    padErrorStop ( 'DUMP-EXCEPTION: ' . $error->getMessage(), $error->getFile(), $error->getLine() ); 
+ 
+  }
+
+
+  function padDumpGo ( $info ) {
+
+    $GLOBALS ['padErrrorList'] [] = $info;
+
+    if ( ! headers_sent () ) 
+      header ( 'HTTP/1.0 500 Internal Server Error' );
+
+    padCloseHtml ();
+
+    padEmptyBuffers ();
+
+    if ( padLocal () )
+      padDumpLocal ( $info );
+    else
+      padDumpRemote ( $info );
+     
+    $GLOBALS ['padSent']   = TRUE;
+    $GLOBALS ['padOutput'] = '';
+
+    padStop (500);
 
   }
 
@@ -43,14 +61,13 @@
 
     echo ( "<div align=\"left\"><pre>" );
 
-    padDumpFields    ( $php, $lvl, $app, $cfg, $pad, $ids, $exc );
+    padDumpFields    ( $php, $lvl, $app, $cfg, $pad, $ids );
     padDumpInfo      ( $info );
     padDumpErrors    ( $info );
     padDumpStack     ();
     padDumpLevel     ();
     padDumpInput     ();
     padDumpLines     ( "App variables", $app );
-    padDumpExeptions ( $exc );
     padDumpRequest   ();
     padDumpXXX       ( $pad, 'padSeq' );
     padDumpXXX       ( $pad, 'padBuild' );
@@ -79,37 +96,6 @@
   }
 
 
-
-  function padDumpError ( $type, $error, $file, $line ) {
-
-    padDumpProblem ( "DUMP-ERROR: $error", $file, $line );
- 
-  }
-
-
-  function padDumpException ( $e ) {
-
-    padDumpProblem ( 'DUMP-EXCEPTION: ' . $e->getMessage(), $e->getFile(), $e->getLine() ); 
- 
-  }
-
-
-  function padDumpProblem ( $error, $file, $line) {
-
-    padDumpCleanErrors ();
-
-    $org = $error;
-
-    if ( isset ( $GLOBALS ['padErrrorList'] ) )
-      foreach ( $GLOBALS ['padErrrorList'] as $list )
-        if ( $list <> $org )
-          $error .= "\n" . $list;
-
-    padBootStop ( $error, $file, $line );
-
-  }
-
-
   function padDumpInfo ( $info ) {
 
     if ( isset ( $GLOBALS ['padErrrorList'] ) )
@@ -127,7 +113,7 @@
     if ( ! isset ( $GLOBALS ['padErrrorList'] ) )
       return;
 
-    padDumpCleanErrors ($info);
+    $GLOBALS ['padErrrorList'] = array_unique ( $GLOBALS ['padErrrorList'] );
 
     if ( count ( $GLOBALS ['padErrrorList'] ) == 1 ) 
 
@@ -150,29 +136,14 @@
   }  
 
 
-  function padDumpCleanErrors () {
-
-    if ( ! isset ( $GLOBALS ['padErrrorList'] ) )
-      return;
-
-    foreach ( $GLOBALS ['padErrrorList'] as $key => $error ) 
-      if ( ! trim($error) )
-        unset ( $GLOBALS ['padErrrorList'] [$key] ) ;
-
-    $GLOBALS ['padErrrorList'] = array_unique ( $GLOBALS ['padErrrorList'] );
-
-  }
-
-
   function padDumpStack () {
 
     echo "<br>";
     
     padDumpStackGo ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS) );
 
-    if ( isset ( $GLOBALS ['padExceptions'] ) )
-      foreach ( $GLOBALS ['padExceptions'] as $exception )
-        padDumpStackGo ( $exception->getTrace() );
+    if ( isset ( $GLOBALS ['padErrorException'] ) )
+      padDumpStackGo ( $GLOBALS['padErrorException']->getTrace() );
 
   }
 
@@ -195,16 +166,6 @@
 
     }
     
-  } 
-
-
-  function padDumpExeptions ( $exc ) {
-
-    if ( ! count ( $exc ) )
-      return;
-
-    padDumpLines ( 'Exceptions', $exc );
-
   } 
 
 
@@ -426,12 +387,11 @@
 
     try {
 
-      padDumpFields ( $php, $lvl, $app, $cfg, $pad, $ids, $exc );
+      padDumpFields ( $php, $lvl, $app, $cfg, $pad, $ids );
 
       ob_start (); padDumpInfo      ( $info );          padDumpFile ( 'info',        ob_get_clean (), $dir );
       ob_start (); padDumpErrors    ( $info );          padDumpFile ( 'errors',      ob_get_clean (), $dir );
       ob_start (); padDumpStack     ();                 padDumpFile ( 'stack',       ob_get_clean (), $dir );
-      ob_start (); padDumpExeptions ( $exc );           padDumpFile ( 'exception',   ob_get_clean (), $dir );
       ob_start (); padDumpLines     ( "ID's", $ids );   padDumpFile ( 'ids',         ob_get_clean (), $dir );
       ob_start (); padDumpLevel     ();                 padDumpFile ( 'level',       ob_get_clean (), $dir );
       ob_start (); padDumpRequest   ();                 padDumpFile ( 'request',     ob_get_clean (), $dir );
@@ -492,7 +452,7 @@
   }
 
 
-  function padDumpFields ( &$php, &$lvl, &$app, &$cfg, &$pad, &$ids, &$exc ) {
+  function padDumpFields ( &$php, &$lvl, &$app, &$cfg, &$pad, &$ids ) {
 
     $php = $lvl = $app = $cfg = $pad = $ids = $exc = [];
 
@@ -509,10 +469,6 @@
       if (strpos($settings, '$'.$key.' ') or strpos($settings, '$'.$key.'=') or strpos($settings, '$'.$key."\t"))
 
         $cfg  [$key] = $value;
-
-      elseif ( $key == 'padExceptions' )
-        
-        $exc [$key] = $value;
 
       elseif ( $key == 'padSqlConnect' )
         
