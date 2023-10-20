@@ -16,6 +16,8 @@
   
     }
 
+    padStop (500);
+
   }
 
 
@@ -51,8 +53,6 @@
      
     $GLOBALS ['padSent']   = TRUE;
     $GLOBALS ['padOutput'] = '';
-
-    padStop (500);
 
   }
 

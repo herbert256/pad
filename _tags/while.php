@@ -1,6 +1,6 @@
 <?php
 
-  if ( padStartAndClose () )
+  if ( padStartAndClose ('next') )
     return TRUE;
 
   $padEval = padEval ( $padOpt [$pad] [0] );

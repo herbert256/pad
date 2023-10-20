@@ -82,11 +82,7 @@
     elseif ( $command == 'field'  )  $sql = 'select '        . $split[1] . ' limit 0,1';
     elseif ( $command == 'array'  )  $sql = 'select '        . $split[1];
 
- #   try {
-      $query = mysqli_query ( $padSqlConnect , $sql );
-  #  } catch (Throwable $e) {
-  #    padError ( 'SQL: ' . $e->getMessage() . ' / ' . $sql);
-  #  }
+    $query = mysqli_query ( $padSqlConnect , $sql );
 
     if ( ! $query )
       padError ( 'SQL: ' . mysqli_errno ( $padSqlConnect ) . ': ' . mysqli_error ( $padSqlConnect ) . ' / '. $sql );

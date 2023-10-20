@@ -7,11 +7,11 @@
       if ( substr($padK, 0, 3) == 'pad' )
         global $$padK;
       
-    include pad . '_tags/page/start.php';
-    include pad . '_tags/page/setup.php';
+    include pad . 'page/start.php';
+    include pad . 'page/setup.php';
     include pad . 'build/build.php';   
-    include pad . '_tags/page/level.php'; 
-    include pad . '_tags/page/end.php';
+    include pad . 'page/level.php'; 
+    include pad . 'page/end.php';
 
     return $padHtml [$pad+1];
 

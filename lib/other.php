@@ -1,12 +1,12 @@
 <?php
 
 
-  function padStartAndClose ( ) {
+  function padStartAndClose ( $go ) {
 
     global $pad, $padWalk, $padPrmType;
 
     if ( $padWalk [$pad] == 'start' and $padPrmType [$pad] == 'close' ) {
-      $padWalk [$pad] = 'next';
+      $padWalk [$pad] = $go;
       return TRUE;
     }
 

@@ -39,8 +39,6 @@
  
     if ( error_reporting() & $type )
       return padErrorGo ( 'ERROR: ' . $error, $file, $line );
-
-    $GLOBALS ['padErrorIgnored'] [] = "$file:$line $error";
  
   }
 
@@ -69,31 +67,33 @@
 
   function padErrorGo ($error, $file, $line) {
 
-    if ( $GLOBALS ['padErrorAction'] == 'exit') {
-      padHeader ('HTTP/1.0 500 Internal Server Error' );
-      padExit ();
-    }
-
     if ( $GLOBALS['padExit'] <> 1 )
       padErrorStop ( "ERROR-SECOND: $error", $file, $line);
-    
+
     $GLOBALS['padExit'] = 2;
-
-    $GLOBALS['padErrorError'] = $error;
-    $GLOBALS['padErrorFile']  = $file;
-    $GLOBALS['padErrorLine']  = $line;
-
-    $error = "$file:$line " . padMakeSafe ( $error );
-
-    $GLOBALS ['padErrrorList'] [] = $error; 
+    
+    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
+    $reporting = error_reporting (0);
 
     try {
  
+      $error = "$file:$line " . padMakeSafe ( $error );
+
+      $GLOBALS ['padErrrorList'] [] = $error; 
+
+      $GLOBALS['padErrorFile']  = $file;
+      $GLOBALS['padErrorLine']  = $line;
+
       if ( $GLOBALS ['padErrorLog'] or $GLOBALS ['padErrorAction'] == 'report' )
         padErrorLog ( $error );
 
       if ( $GLOBALS ['padErrorReport'] or $GLOBALS ['padErrorAction'] == 'report' )
         padDumpToDir ( $error );
+
+      if ( $GLOBALS ['padErrorAction'] == 'exit') {
+        padHeader ('HTTP/1.0 500 Internal Server Error' );
+        padExit ();
+      }
 
       if ( $GLOBALS ['padErrorAction'] == 'stop' )
         padStop ( 500 );
@@ -107,6 +107,9 @@
 
     }
 
+    error_reporting ($reporting);
+    restore_error_handler ();
+
     $GLOBALS ['padExit'] = 1;
       
     return FALSE;
@@ -114,28 +117,128 @@
   }
 
 
-  function padErrorLog ( $info ) {
-  
-    if ( is_array($info) or is_object($info) )
-      $info = padJson ($info);
 
-    error_log ( '[PAD] ' . padID () . padMakeSafe ( $info ), 4 );
+  function padErrorCheck ( $type, $info ) {
+
+    $md5 = md5 ( trim($info) );
+
+    if ( isset ( $GLOBALS["padErrorCheck_$type"] ) and isset ( $GLOBALS["padErrorCheck_$type"] [$md5] ) )
+      return TRUE;
+
+    $GLOBALS["padErrorCheck_$type"] [$md5] = TRUE;
+
+    return FALSE;
+
+  }
+
+
+  function padErrorLog ( $info ) {
+
+    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
+    $reporting = error_reporting (0);
+
+    try {
+
+      padErrorLogGo ( $info );
+    
+    } catch (Throwable $e) {
+    
+      padErrorLogCatch ( $info, $e );
+    
+    }
+
+    error_reporting ($reporting);
+    restore_error_handler ();
+
+  }
+
+
+  function padErrorLogGo ( $info ) {
+
+    $log = '[PAD] ' . padID () . ' - ' . padMakeSafe ( $info );
+
+    if ( ! padErrorCheck ( 'log', $log )  )
+      error_log ( $log, 4 );
+
+  }
+
+
+  function padErrorLogCatch ( $info, $e ) {
+
+    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
+    $reporting = error_reporting (0);
+
+    try {
+
+      padFilePutContents ( 'error_log.txt', padID () . ' - ' . $info,  true );
+
+      $log = $e->getFile() . ':' .  $e->getLine() . ' ERROR-LOG: ' . $e->getMessage();
+
+      if ( ! padErrorCheck ( 'catch', $log ) ) 
+        padFilePutContents ( 'error_log.txt', padID () . ' - ' . $log, true );
+    
+    } catch (Throwable $e) {
+    
+      // giving up
+    
+    }
+
+    error_reporting ($reporting);
+    restore_error_handler ();
+
 
   }
 
 
   function padErrorStop ( $error, $file, $line) {
 
-    if ( isset ( $GLOBALS ['padErrrorList'] ) ) {
+    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
+    error_reporting (0);
 
-      $GLOBALS ['padErrrorList'] = array_unique ( $GLOBALS ['padErrrorList'] );
+    try {
 
+      padErrorStopGo ( $error, $file, $line);
+    
+    } catch (Throwable $e) {
+    
+      padErrorStopCatch ( $error, $file, $line, $e );
+    
+    }
+
+    $GLOBALS ['padSkipShutdown']     = TRUE;
+    $GLOBALS ['padSkipBootShutdown'] = TRUE;
+
+    exit;
+
+  }
+
+
+  function padErrorStopGo ( $error, $file, $line ) {
+
+    if ( $GLOBALS ['padErrorLog'] )
+      padErrorLog ( "$file:$line $error" );
+
+    if ( isset ( $GLOBALS ['padErrrorList'] ) )
       foreach ( $GLOBALS ['padErrrorList'] as $list )
         $error .= "\n" . $list;
 
-    }
-
     padBootStop ( $error, $file, $line );
+
+  }
+
+
+  function padErrorStopCatch ( $error, $file, $line, $e ) {
+
+    $id = $GLOBALS ['padReqID'] ?? uniqid (TRUE);
+
+    if ( isset ( $GLOBALS ['padErrrorList'] ) )
+      foreach ( $GLOBALS ['padErrrorList'] as $list )
+        padErrorLog ( $list );
+
+    padErrorLog ( "$file:$line $error");
+    padErrorLog ( $e->getFile() . ':' .  $e->getLine() . ' ERROR-STOP: ' . $e->getMessage() );
+
+    echo "Error: $id";
 
   }
 

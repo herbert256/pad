@@ -28,18 +28,27 @@
     
   }
  
-  $padTrueSet    = substr ( $padTrueBase, 0, $padPos );
-  $padEnd [$pad] = strpos ( $padHtml [$pad], '}', $padPos+2 );
+  $padTrueSet = substr ( $padTrueBase, 0, $padPos );
+
+  $padPos2 = $padPos;
+x:
+
+  $padEnd [$pad] = strpos ( $padHtml [$pad], '}', $padPos2+1 );
 
   if ( $padEnd [$pad] === FALSE )
-    return FALSE;
+    fobj();
+    #return FALSE;
 
-  $padPairSet      = TRUE;
   $padBetweenCheck = substr ($padHtml [$pad], $padPos+1, $padEnd [$pad]-$padPos-1);
-  $padWordsCheck   = preg_split ("/[\s]+/", $padBetweenCheck, 2, PREG_SPLIT_NO_EMPTY);
 
-  if ( count($padWordsCheck) > 1 and $padPrmTypeSet == 'open' )
-    return padError ("Both open and close parameters given");
+  if ( substr_count($padBetweenCheck, '{') <> substr_count($padBetweenCheck, '}') ) {
+    $padPos2 = $padEnd [$pad] + 1;
+    goto x;
+  }
+
+  $padPairSet = TRUE;
+
+  $padWordsCheck = preg_split ("/[\s]+/", $padBetweenCheck, 2, PREG_SPLIT_NO_EMPTY);
 
   if ( count($padWordsCheck) > 1 ) { 
     $padBetween    = $padBetweenCheck;  
