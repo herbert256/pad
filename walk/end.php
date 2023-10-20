@@ -3,7 +3,7 @@
   if ( $padOpt [$pad] [0] and substr_count( $padOpt [$pad] [0], '{' ) and substr_count( $padOpt [$pad] [0], '}' ) ) {
 
     $padPad = $padOpt [$pad] [0];
-    include pad . "page/entry/pad.php";
+    include pad . "pad/entry/pad.php";
     $padOpt [$pad] [0] = $padPad;
     include pad . "level/parms.php";
     

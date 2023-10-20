@@ -1,8 +1,8 @@
 <?php
 
-  include pad . 'page/lib/setup.php';
+  include pad . 'pad/lib/setup.php';
   include pad . 'build/build.php';   
-  include pad . 'page/lib/level.php'; 
+  include pad . 'pad/lib/level.php'; 
 
   return $padContent;
 

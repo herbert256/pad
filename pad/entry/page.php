@@ -12,7 +12,7 @@
     $padInclude = TRUE;
 
   $padPageType   = padTagParm ( 'type', 'include' );  
-  $padPageResult = include pad . "page/types/$padPageType.php";
+  $padPageResult = include pad . "pad/types/$padPageType.php";
 
   $padPage = $padPagePage [$pad];
   $padDir  = $padPageDir  [$pad];

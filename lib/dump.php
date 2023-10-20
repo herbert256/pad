@@ -158,7 +158,7 @@
       $line     = $line     ?? $GLOBALS['padErrorLine'] ?? '???';
       $function = $function ?? '???';
 
-      echo ( "    $file:$line - $function\n");
+      echo ( "$file:$line - $function\n");
 
       unset ($file);
       unset ($line);

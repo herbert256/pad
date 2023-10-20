@@ -1,6 +1,6 @@
 <?php
    
-  include pad . 'page/lib/external.php';
+  include pad . 'pad/lib/external.php';
 
   return padPageAjax ( $padExtPag, $padExtQry );
    
