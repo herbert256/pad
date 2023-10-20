@@ -25,7 +25,6 @@
   if ( ! padValidFirstChar ( $padFirst ) ) return padIgnore ('first char');
   if ( ! padValidTag ( $padWords [0]   ) ) return padIgnore ('valid tag');
   if ( ! include pad . 'level/type.php'  ) return padIgnore ('type');
-  if ( ! include pad . 'level/pair.php'  ) return padIgnore ('pair');;
 
   include pad . 'level/start.php';
  

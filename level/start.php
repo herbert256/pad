@@ -1,5 +1,6 @@
 <?php
 
+  include pad . 'level/tag.php';
   include pad . 'level/setup.php';    
  
   if ( ! in_array ( $padTag [$pad], $padPrmNoParse  )  )

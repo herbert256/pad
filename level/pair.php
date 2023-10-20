@@ -1,52 +1,20 @@
 <?php
 
-  $padPairSet    = FALSE;
-  $padTrueSet    = '';
-  $padPrmTypeSet = ( count($padWords) > 1 ) ? 'open' : 'none';
-
-  if ( substr($padBetween, -1) == '/') {
-    $padBetween = substr($padBetween, 0, -1);
-    $padWords   = preg_split ("/[\s]+/", $padBetween, 2, PREG_SPLIT_NO_EMPTY);
-    return TRUE;
-  }
-
-  $padPairTag    = ( $padTypeGiven ) ? $padTypeResult . ':' . $padTypeCheck : $padTypeCheck;
-  $padPos        = $padEnd [$pad];
-  $padPairCheck  = '';
-
-  while ( ! in_array ( $padPairCheck, [' ', '}'] ) ) {
-
-    $padPos = strpos($padHtml [$pad] , '{/' . $padPairTag, ++$padPos);
-
-    if ($padPos === FALSE)
-      return TRUE;
-
-    $padTrueBase = substr($padHtml [$pad], $padEnd [$pad]+1, $padPos - $padEnd [$pad] - 1);
-
-    if ( padOpenCloseCountOne ( $padTrueBase, $padPairTag) )
-      $padPairCheck = substr($padHtml [$pad], $padPos + strlen($padPairTag) + 2, 1);
-    
-  }
- 
   $padTrueSet = substr ( $padTrueBase, 0, $padPos );
-
-  $padPos2 = $padPos;
-x:
-
-  $padEnd [$pad] = strpos ( $padHtml [$pad], '}', $padPos2+1 );
-
-  if ( $padEnd [$pad] === FALSE )
-    fobj();
-    #return FALSE;
-
-  $padBetweenCheck = substr ($padHtml [$pad], $padPos+1, $padEnd [$pad]-$padPos-1);
-
-  if ( substr_count($padBetweenCheck, '{') <> substr_count($padBetweenCheck, '}') ) {
-    $padPos2 = $padEnd [$pad] + 1;
-    goto x;
-  }
-
   $padPairSet = TRUE;
+
+  $padEnd [$pad] = $padPos;
+
+  do {
+
+    $padEnd [$pad] = strpos ( $padHtml [$pad], '}', $padEnd [$pad] + 1 );
+
+    if ( $padEnd [$pad] === FALSE )
+      padError ("Closing } not found");
+
+    $padBetweenCheck = substr ($padHtml [$pad], $padPos+1, $padEnd [$pad]-$padPos-1);
+
+  } while ( substr_count($padBetweenCheck, '{') <> substr_count($padBetweenCheck, '}') );
 
   $padWordsCheck = preg_split ("/[\s]+/", $padBetweenCheck, 2, PREG_SPLIT_NO_EMPTY);
 
@@ -55,7 +23,5 @@ x:
     $padWords      = $padWordsCheck;
     $padPrmTypeSet = 'close';
   }
- 
-  return TRUE;
 
 ?>
