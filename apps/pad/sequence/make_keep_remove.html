@@ -1,0 +1,29 @@
+{table}
+
+{demo}
+{sequence from=10, to=20, name='mySeq'}
+{/demo}
+
+{demo}
+{mySeq}
+  {$mySeq}
+{/mySeq}
+{/demo}
+
+{demo}
+{mySeq make='even'}
+  {$mySeq}
+{/mySeq}
+{/demo}
+{demo}
+
+{mySeq keep='even'}
+  {$mySeq}
+{/mySeq}
+{/demo}
+
+{demo}{mySeq remove='even'}
+  {$mySeq}
+{/mySeq}{/demo}
+
+{/table}

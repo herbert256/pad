@@ -1,0 +1,123 @@
+<p>Include an other page in the current page, 5 ways of doing this.</p>
+<p> 
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">page </font><font color="red">'hello'</font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>
+<font color="black">
+Hello&nbsp;World&nbsp;!
+</font>
+</h3><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">page </font><font color="red">'hello'<font color="black">,</font>&nbsp;type<font color="black">=</font>'include'<font color="black">,</font>&nbsp;include<font color="black">,</font>&nbsp;<font color="black">$</font>color<font color="black">=</font>'green'</font>}</b><br /><b>{<font color="blue">page </font><font color="red">'hello'<font color="black">,</font>&nbsp;type<font color="black">=</font>'build'<font color="black">,</font>&nbsp;&nbsp;&nbsp;include<font color="black">,</font>&nbsp;<font color="black">$</font>color<font color="black">=</font>'orange'</font>}</b><br /><b>{<font color="blue">page </font><font color="red">'hello'<font color="black">,</font>&nbsp;type<font color="black">=</font>'get'<font color="black">,</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;include<font color="black">,</font>&nbsp;<font color="black">$</font>color<font color="black">=</font>'red'</font>}</b><br /><b>{<font color="blue">page </font><font color="red">'hello'<font color="black">,</font>&nbsp;type<font color="black">=</font>'sandbox'<font color="black">,</font>&nbsp;include<font color="black">,</font>&nbsp;<font color="black">$</font>color<font color="black">=</font>'purple'</font>}</b><br /><b>{<font color="blue">page </font><font color="red">'hello'<font color="black">,</font>&nbsp;type<font color="black">=</font>'ajax'<font color="black">,</font>&nbsp;&nbsp;&nbsp;&nbsp;include<font color="black">,</font>&nbsp;<font color="black">$</font>color<font color="black">=</font>'blue'</font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>
+<font color="green">
+Hello&nbsp;World&nbsp;!
+</font>
+</h3>
+<h3>
+<font color="orange">
+Hello&nbsp;World&nbsp;!
+</font>
+</h3>
+<h3>
+<font color="red">
+Hello&nbsp;World&nbsp;!
+</font>
+</h3>
+<h3>
+<font color="purple">
+Hello&nbsp;World&nbsp;!
+</font>
+</h3>
+<div id="padAjaxkPWI2CwU"></div>
+<script>
+padAjaxkPWI2CwU = new XMLHttpRequest();
+padAjaxkPWI2CwU.onreadystatechange=function() {
+if (padAjaxkPWI2CwU.readyState === 4) {
+if (padAjaxkPWI2CwU.status === 200) {
+document.getElementById("padAjaxkPWI2CwU").innerHTML=padAjaxkPWI2CwU.responseText;
+} else {
+document.getElementById("padAjaxkPWI2CwU").innerHTML=padAjaxkPWI2CwU.statusText;
+}
+}
+}
+padAjaxkPWI2CwU.open("GET","/?hello/index&padInclude&color=blue&padSesID=YQGLTIBw&padReqID=JoF8UNSA",true);
+padAjaxkPWI2CwU.send();
+</script><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">page </font><font color="red">'hello'<font color="black">,</font>&nbsp;type<font color="black">=</font>'include'<font color="black">,</font>&nbsp;<font color="black">$</font>color<font color="black">=</font>'green'</font>}</b><br /><b>{<font color="blue">page </font><font color="red">'hello'<font color="black">,</font>&nbsp;type<font color="black">=</font>'build'<font color="black">,</font>&nbsp;&nbsp;&nbsp;<font color="black">$</font>color<font color="black">=</font>'orange'</font>}</b><br /><b>{<font color="blue">page </font><font color="red">'hello'<font color="black">,</font>&nbsp;type<font color="black">=</font>'get'<font color="black">,</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="black">$</font>color<font color="black">=</font>'red'</font>}</b><br /><b>{<font color="blue">page </font><font color="red">'hello'<font color="black">,</font>&nbsp;type<font color="black">=</font>'sandbox'<font color="black">,</font>&nbsp;<font color="black">$</font>color<font color="black">=</font>'purple'</font>}</b><br /><b>{<font color="blue">page </font><font color="red">'hello'<font color="black">,</font>&nbsp;type<font color="black">=</font>'ajax'<font color="black">,</font>&nbsp;&nbsp;&nbsp;&nbsp;<font color="black">$</font>color<font color="black">=</font>'blue'</font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>
+<font color="green">
+Hello&nbsp;World&nbsp;!
+</font>
+</h3>
+<h3>
+<font color="orange">
+Hello&nbsp;World&nbsp;!
+</font>
+</h3>
+<html>
+<head>
+<title>PAD - Hello</title>
+</head>
+<body>
+<table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+<tr>
+<td>  
+<center>
+<h1>
+PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+</h1>
+<table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<hr style="margin:0; border: 1px solid black;">
+<font size="-1">
+<a href="/?index">home</a> 
+/
+hello 
+</font>
+<hr style="margin: 2; margin-left:0; margin-right: 0; margin-bottom: 0; border: 1px solid black;">
+</td>
+</tr>
+</table>
+<h2>Hello</h2>
+<h3>
+<font color="red">
+Hello&nbsp;World&nbsp;!
+</font>
+</h3>
+</center>
+</td>
+</tr>
+</table>
+</body>
+</html>
+<h3>
+<font color="purple">
+Hello&nbsp;World&nbsp;!
+</font>
+</h3>
+<div id="padAjaxjF4LseY4"></div>
+<script>
+padAjaxjF4LseY4 = new XMLHttpRequest();
+padAjaxjF4LseY4.onreadystatechange=function() {
+if (padAjaxjF4LseY4.readyState === 4) {
+if (padAjaxjF4LseY4.status === 200) {
+document.getElementById("padAjaxjF4LseY4").innerHTML=padAjaxjF4LseY4.responseText;
+} else {
+document.getElementById("padAjaxjF4LseY4").innerHTML=padAjaxjF4LseY4.statusText;
+}
+}
+}
+padAjaxjF4LseY4.open("GET","/?hello/index&color=blue&padSesID=YQGLTIBw&padReqID=JoF8UNSA",true);
+padAjaxjF4LseY4.send();
+</script><!-- END DEMO RESULT --></span></code></td></tr>
+</table>
+</p>
+<!-- PAD: NO REGRESSION -->

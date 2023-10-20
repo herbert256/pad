@@ -1,0 +1,12 @@
+{table}
+
+{demo}{multiple 2,  rows=50, store='mySequence1'}{/demo}
+{demo}{multiple 3,  rows=34, store='mySequence2'}{/demo}
+{demo}{multiple 5,  rows=20, store='mySequence3'}{/demo}
+{demo}{multiple 10, rows=10, store='mySequence4'}{/demo}
+
+{demo}{range '1..100', intersection='mySequence1|mySequence2|mySequence3|mySequence4'}
+  {$range}
+{/range}{/demo}
+
+{/table}

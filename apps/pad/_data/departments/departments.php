@@ -1,0 +1,11 @@
+<?php
+
+  return [    
+    [ 'department' => 'IT',       'manager' => 'Bob',   'phone' => '555-1111' ],
+    [ 'department' => 'Kitchen',  'manager' => 'Jim',   'phone' => '555-2222' ],
+    [ 'department' => 'Helpdesk', 'manager' => 'Joe',   'phone' => '555-3333' ],
+    [ 'department' => 'Sales',    'manager' => 'Steve', 'phone' => '555-4444' ],
+    [ 'department' => 'Build',    'manager' => 'Jerry', 'phone' => '555-7777' ]
+  ];
+
+?>

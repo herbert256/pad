@@ -1,0 +1,90 @@
+{table}
+
+{demo}{range '1..25', store='mySeq'}
+{/demo} 
+
+{demo}{mySeq}
+  {$mySeq}
+{/mySeq}{/demo} 
+
+{demo}{mySeq slice='5'}
+  {$mySeq}
+{/mySeq}{/demo} 
+
+{demo}{mySeq splice='5'}
+  {$mySeq}
+{/mySeq}{/demo} 
+
+{demo}{mySeq slice='-5'}
+  {$mySeq}
+{/mySeq}{/demo} 
+
+{demo}{mySeq splice='-5'}
+  {$mySeq}
+{/mySeq}{/demo} 
+
+{demo}{mySeq slice='5|5'}
+  {$mySeq}
+{/mySeq}{/demo} 
+
+{demo}{mySeq splice='5|5'}
+  {$mySeq}
+{/mySeq}{/demo} 
+
+{demo}{mySeq slice='5|-5'}
+  {$mySeq}
+{/mySeq}{/demo} 
+
+{demo}{mySeq splice='5|-5'}
+  {$mySeq}
+{/mySeq}{/demo} 
+
+{demo}{mySeq slice='-15|5'}
+  {$mySeq}
+{/mySeq}{/demo} 
+
+{demo}{mySeq splice='-15|5'}
+  {$mySeq}
+{/mySeq}{/demo} 
+
+{demo}{mySeq slice='-15|-5'}
+  {$mySeq}
+{/mySeq}{/demo} 
+
+{demo}{mySeq splice='-15|-5'}
+  {$mySeq}
+{/mySeq}{/demo} 
+
+{/table}{table}
+
+{demo}{range '1..25', store='mySeq'}
+{/demo} 
+
+{demo}{range 'A..J', store='mySplice'}
+{/demo} 
+
+{demo}{mySeq}
+  {$mySeq}
+{/mySeq}{/demo} 
+
+{demo}{mySplice}
+  {$mySplice}
+{/mySplice}{/demo} 
+
+{demo}{mySeq splice='0|5|mySplice'}
+  {$mySeq}
+{/mySeq}{/demo} 
+
+{demo}{mySeq splice='-5|5|mySplice'}
+  {$mySeq}
+{/mySeq}{/demo} 
+
+{demo}{mySeq splice='-15|5|mySplice'}
+  {$mySeq}
+{/mySeq}{/demo} 
+
+{demo}{mySeq splice='-15|-5|mySplice'}
+  {$mySeq}
+{/mySeq}{/demo} 
+
+{/table}

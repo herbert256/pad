@@ -1,0 +1,87 @@
+<p> 
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">show</font><font color="red"></font>}</b><br /><br />&nbsp;&nbsp;<b>{<font color="blue">loop </font><font color="red">from<font color="black">=</font>1<font color="black">,</font>&nbsp;to<font color="black">=</font>5</font>}</b><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;<b>{<font color="blue">first</font><font color="red"></font>}</b>&nbsp;&nbsp;X&nbsp;<b>{/<font color="blue">first</font><font color="red"></font>}</b>&nbsp;&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;<b>{<font color="blue">middle</font><font color="red"></font>}</b>&nbsp;X&nbsp;<b>{/<font color="blue">middle</font><font color="red"></font>}</b>&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;<b>{<font color="blue">last</font><font color="red"></font>}</b>&nbsp;&nbsp;&nbsp;X&nbsp;<b>{/<font color="blue">last</font><font color="red"></font>}</b>&nbsp;&nbsp;&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;<b>{<font color="blue">border</font><font color="red"></font>}</b>&nbsp;X&nbsp;<b>{/<font color="blue">border</font><font color="red"></font>}</b>&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br /><br />&nbsp;&nbsp;<b>{/<font color="blue">loop</font><font color="red"></font>}</b><br /><br /><b>{/<font color="blue">show</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
+<tr>
+<th> first  </th>
+<th> middle </th>
+<th> last   </th>
+<th> border </th>
+</tr>
+<tr>
+<td>   X   </td>
+<td>  </td>
+<td>    </td>
+<td>  X  </td>
+</tr>
+<tr>
+<td>   </td>
+<td>  X  </td>
+<td>    </td>
+<td>  </td>
+</tr>
+<tr>
+<td>   </td>
+<td>  X  </td>
+<td>    </td>
+<td>  </td>
+</tr>
+<tr>
+<td>   </td>
+<td>  X  </td>
+<td>    </td>
+<td>  </td>
+</tr>
+<tr>
+<td>   </td>
+<td>  </td>
+<td>    X    </td>
+<td>  X  </td>
+</tr>
+</table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">show</font><font color="red"></font>}</b><br /><br />&nbsp;&nbsp;<b>{<font color="blue">set </font><font color="red"><font color="black">$</font>loop&nbsp;<font color="black">=</font>&nbsp;1</font>}</b><br /><br />&nbsp;&nbsp;<b>{<font color="blue">while </font><font color="red"><font color="black">$</font>loop&nbsp;LE&nbsp;5</font>}</b><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;<b>{<font color="blue">first</font><font color="red"></font>}</b>&nbsp;&nbsp;X&nbsp;<b>{/<font color="blue">first</font><font color="red"></font>}</b>&nbsp;&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;<b>{<font color="blue">middle</font><font color="red"></font>}</b>&nbsp;X&nbsp;<b>{/<font color="blue">middle</font><font color="red"></font>}</b>&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;<b>{<font color="blue">last</font><font color="red"></font>}</b>&nbsp;&nbsp;&nbsp;X&nbsp;<b>{/<font color="blue">last</font><font color="red"></font>}</b>&nbsp;&nbsp;&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;&nbsp;<b>{<font color="blue">border</font><font color="red"></font>}</b>&nbsp;X&nbsp;<b>{/<font color="blue">border</font><font color="red"></font>}</b>&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="blue">set </font><font color="red"><font color="black">$</font>loop&nbsp;<font color="black">=</font>&nbsp;<font color="black">$</font>loop&nbsp;+&nbsp;1</font>}</b><br /><br />&nbsp;&nbsp;<b>{/<font color="blue">while</font><font color="red"></font>}</b><br /><br /><b>{/<font color="blue">show</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
+<tr>
+<th> first  </th>
+<th> middle </th>
+<th> last   </th>
+<th> border </th>
+</tr>
+<tr>
+<td>   X   </td>
+<td>  </td>
+<td>    X    </td>
+<td>  X  </td>
+</tr>
+<tr>
+<td>   </td>
+<td>  </td>
+<td>    X    </td>
+<td>  X  </td>
+</tr>
+<tr>
+<td>   </td>
+<td>  </td>
+<td>    X    </td>
+<td>  X  </td>
+</tr>
+<tr>
+<td>   </td>
+<td>  </td>
+<td>    X    </td>
+<td>  X  </td>
+</tr>
+<tr>
+<td>   </td>
+<td>  </td>
+<td>    X    </td>
+<td>  X  </td>
+</tr>
+</table><!-- END DEMO RESULT --></span></code></td></tr>
+</table>
+</p>

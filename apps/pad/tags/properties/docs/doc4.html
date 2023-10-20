@@ -1,0 +1,78 @@
+{table}
+
+{demo}
+<table border=1>
+  {staff}
+    {first}
+      <tr>
+        <th> {&staff:1:name} </th>
+        <th> {&staff:2:name} </th>
+        <th> {&staff:3:name} </th>
+        <th> {&staff:4:name} </th>
+      </tr>
+    {/first}
+    <tr>
+      <td> {&staff:1:value} </td>
+      <td> {&staff:2:value} </td>
+      <td> {&staff:3:value} </td>
+      <td> {&staff:4:value} </td>
+    </tr>
+  {/staff}
+</table>
+{/demo}{demo}
+
+<table border=1>
+  {staff}
+    {first}
+      <tr>
+        {fields}
+          <th>{$name}</th>
+        {/fields}
+      </tr>
+    {/first}
+    <tr>
+      {fields}
+        <td> {$value} </td>
+      {/fields}
+    </tr>
+  {/staff}
+</table>
+{/demo}{demo}
+
+<table border=1>
+  {staff}
+    {first 'staff'}
+      <tr>
+        {fields 'staff'}
+          <th>{$name}</th>
+        {/fields}
+      </tr>
+    {/first}
+    <tr>
+      {fields 'staff'}
+        <td> {$value} </td>
+      {/fields}
+    </tr>
+  {/staff}
+</table>
+
+{/demo}{demo}
+
+<table border=1>
+  {staff}
+    {first -1}
+      <tr>
+        {fields -2}
+          <th>{$name}</th>
+        {/fields}
+      </tr>
+    {/first}
+    <tr>
+      {fields -1}
+        <td> {$value} </td>
+      {/fields}
+    </tr>
+  {/staff}
+</table>{/demo}
+
+{/table}

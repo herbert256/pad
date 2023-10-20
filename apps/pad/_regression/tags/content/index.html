@@ -1,0 +1,257 @@
+<p> 
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">content </font><font color="red">'hello'</font>}</b><br />&nbsp;&nbsp;&lt;p&gt;&nbsp;Hello&nbsp;World&nbsp;&lt;/p&gt;<br /><b>{/<font color="blue">content</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">hello</font><font color="red"></font>}</b><br /><b>{<font color="blue">hello</font><font color="red"></font>}</b><br /><b>{<font color="blue">hello</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><p> Hello World </p>
+<p> Hello World </p>
+<p> Hello World </p><!-- END DEMO RESULT --></span></code></td></tr>
+</table>
+</p><p> 
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">set </font><font color="red"><font color="black">$</font>abc&nbsp;<font color="black">=</font>&nbsp;10</font>}</b><br /><br /><b>{<font color="blue">content </font><font color="red">'myContent'</font>}</b><br />&nbsp;&nbsp;&lt;p&gt;&nbsp;<b>{<font color="green"><font color="red">$</font>abc</font>}</b>&nbsp;&lt;/p&gt;<br /><b>{/<font color="blue">content</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">increment </font><font color="red"><font color="black">$</font>abc</font>}</b>&nbsp;<b>{<font color="blue">myContent</font><font color="red"></font>}</b><br /><b>{<font color="blue">increment </font><font color="red"><font color="black">$</font>abc</font>}</b>&nbsp;<b>{<font color="blue">myContent</font><font color="red"></font>}</b><br /><b>{<font color="blue">increment </font><font color="red"><font color="black">$</font>abc</font>}</b>&nbsp;<b>{<font color="blue">myContent</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><p> 11 </p>
+<p> 12 </p>
+<p> 13 </p><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">set </font><font color="red"><font color="black">$</font>abc&nbsp;<font color="black">=</font>&nbsp;10</font>}</b><br /><br /><b>{<font color="blue">content</font><font color="red"></font>}</b><br />&nbsp;&nbsp;&lt;p&gt;&nbsp;<b>{<font color="green"><font color="red">$</font>abc</font>}</b>&nbsp;&lt;/p&gt;<br /><b>{/<font color="blue">content </font><font color="red">'myContent'</font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">increment </font><font color="red"><font color="black">$</font>abc</font>}</b>&nbsp;<b>{<font color="blue">myContent</font><font color="red"></font>}</b><br /><b>{<font color="blue">increment </font><font color="red"><font color="black">$</font>abc</font>}</b>&nbsp;<b>{<font color="blue">myContent</font><font color="red"></font>}</b><br /><b>{<font color="blue">increment </font><font color="red"><font color="black">$</font>abc</font>}</b>&nbsp;<b>{<font color="blue">myContent</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><p> 10 </p>
+<p> 10 </p>
+<p> 10 </p><!-- END DEMO RESULT --></span></code></td></tr>
+</table>
+</p><p> 
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">content </font><font color="red">'color'</font>}</b><br />&nbsp;&nbsp;&lt;p&gt;&nbsp;&lt;font&nbsp;color="<b>{<font color="green"><font color="red">$</font>color</font>}</b>"&gt;&nbsp;Hello&nbsp;World&nbsp;&lt;/font&gt;&nbsp;&lt;/p&gt;<br /><b>{/<font color="blue">content</font><font color="red"></font>}</b><br /><br /><b>{<font color="blue">color </font><font color="red">data<font color="black">=</font>'("red"<font color="black">,</font>"green"<font color="black">,</font>"blue")'</font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><p> <font color="red"> Hello World </font> </p>
+<p> <font color="green"> Hello World </font> </p>
+<p> <font color="blue"> Hello World </font> </p><!-- END DEMO RESULT --></span></code></td></tr>
+</table>
+</p><p> 
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">data </font><font color="red">'myData'</font>}</b><br />&nbsp;&nbsp;[<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="purple">&nbsp;"name"</font><b><font color="black">:</font></b><font color="orange">&nbsp;"joe",&nbsp;&nbsp;&nbsp;"phone"</font><b><font color="black">:</font></b><font color="green">&nbsp;"555-3425"&nbsp;</font>}</b>,<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="purple">&nbsp;"name"</font><b><font color="black">:</font></b><font color="orange">&nbsp;"jim",&nbsp;&nbsp;&nbsp;"phone"</font><b><font color="black">:</font></b><font color="green">&nbsp;"555-2364"&nbsp;</font>}</b>,<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="purple">&nbsp;"name"</font><b><font color="black">:</font></b><font color="orange">&nbsp;"jack",&nbsp;&nbsp;"phone"</font><b><font color="black">:</font></b><font color="green">&nbsp;"555-3422"&nbsp;</font>}</b>,<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="purple">&nbsp;"name"</font><b><font color="black">:</font></b><font color="orange">&nbsp;"jerry",&nbsp;"phone"</font><b><font color="black">:</font></b><font color="green">&nbsp;"555-4973"&nbsp;</font>}</b><br />&nbsp;&nbsp;]<br /><b>{/<font color="blue">data</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">content </font><font color="red">'myContent'</font>}</b><br />&nbsp;&nbsp;&lt;table&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Name&lt;/th&gt;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Phone&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="black"><b><font color="blue">@<b>start</b>@</font></b></font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="black"><b><font color="blue">@<b>end</b>@</font></b></font><br />&nbsp;&nbsp;&lt;/table&gt;<br /><b>{/<font color="blue">content</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">myData </font><font color="red">content<font color="black">=</font>'myContent'</font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table>
+<tr>
+<th>Name</th> 
+<th>Phone</th>
+</tr>
+<tr>
+<td>joe</td> 
+<td>555-3425</td>
+</tr>
+<tr>
+<td>jim</td> 
+<td>555-2364</td>
+</tr>
+<tr>
+<td>jack</td> 
+<td>555-3422</td>
+</tr>
+<tr>
+<td>jerry</td> 
+<td>555-4973</td>
+</tr>
+</table><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">myContent </font><font color="red">data<font color="black">=</font>'myData'</font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table>
+<tr>
+<th>Name</th> 
+<th>Phone</th>
+</tr>
+<tr>
+<td>joe</td> 
+<td>555-3425</td>
+</tr>
+<tr>
+<td>jim</td> 
+<td>555-2364</td>
+</tr>
+<tr>
+<td>jack</td> 
+<td>555-3422</td>
+</tr>
+<tr>
+<td>jerry</td> 
+<td>555-4973</td>
+</tr>
+</table><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">pad </font><font color="red">content<font color="black">=</font>'myContent'<font color="black">,</font>&nbsp;data<font color="black">=</font>'myData'</font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table>
+<tr>
+<th>Name</th> 
+<th>Phone</th>
+</tr>
+<tr>
+<td>joe</td> 
+<td>555-3425</td>
+</tr>
+<tr>
+<td>jim</td> 
+<td>555-2364</td>
+</tr>
+<tr>
+<td>jack</td> 
+<td>555-3422</td>
+</tr>
+<tr>
+<td>jerry</td> 
+<td>555-4973</td>
+</tr>
+</table><!-- END DEMO RESULT --></span></code></td></tr>
+</table>
+</p><p> 
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">data </font><font color="red">'myData'</font>}</b><br />&nbsp;&nbsp;[<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="purple">&nbsp;"name"</font><b><font color="black">:</font></b><font color="orange">&nbsp;"joe",&nbsp;&nbsp;&nbsp;"phone"</font><b><font color="black">:</font></b><font color="green">&nbsp;"555-3425"&nbsp;</font>}</b>,<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="purple">&nbsp;"name"</font><b><font color="black">:</font></b><font color="orange">&nbsp;"jim",&nbsp;&nbsp;&nbsp;"phone"</font><b><font color="black">:</font></b><font color="green">&nbsp;"555-2364"&nbsp;</font>}</b>,<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="purple">&nbsp;"name"</font><b><font color="black">:</font></b><font color="orange">&nbsp;"jack",&nbsp;&nbsp;"phone"</font><b><font color="black">:</font></b><font color="green">&nbsp;"555-3422"&nbsp;</font>}</b>,<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="purple">&nbsp;"name"</font><b><font color="black">:</font></b><font color="orange">&nbsp;"jerry",&nbsp;"phone"</font><b><font color="black">:</font></b><font color="green">&nbsp;"555-4973"&nbsp;</font>}</b><br />&nbsp;&nbsp;]<br /><b>{/<font color="blue">data</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">content </font><font color="red">'myContent'</font>}</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;table&nbsp;border=1&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;&nbsp;Name&nbsp;&nbsp;&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;&nbsp;Phone&nbsp;&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="black"><b><font color="blue">@<b>start</b>@</font></b></font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&nbsp;bgcolor="<b>{<font color="green"><font color="red">$</font>color1</font>}</b>"&gt;&nbsp;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&nbsp;&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&nbsp;bgcolor="<b>{<font color="green"><font color="red">$</font>color2</font>}</b>"&gt;&nbsp;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="black"><b><font color="blue">@<b>end</b>@</font></b></font><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/table&gt;<br /><b>{/<font color="blue">content</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">myContent </font><font color="red">data<font color="black">=</font>'myData'<font color="black">,</font>&nbsp;<font color="black">$</font>color1<font color="black">=</font>'orange'<font color="black">,</font>&nbsp;<font color="black">$</font>color2<font color="black">=</font>'yellow'</font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
+<tr>
+<th> Name  </th>
+<th> Phone </th>
+</tr>
+<tr>
+<td bgcolor="orange"> joe  </td>
+<td bgcolor="yellow"> 555-3425 </td>
+</tr>
+<tr>
+<td bgcolor="orange"> jim  </td>
+<td bgcolor="yellow"> 555-2364 </td>
+</tr>
+<tr>
+<td bgcolor="orange"> jack  </td>
+<td bgcolor="yellow"> 555-3422 </td>
+</tr>
+<tr>
+<td bgcolor="orange"> jerry  </td>
+<td bgcolor="yellow"> 555-4973 </td>
+</tr>
+</table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">content </font><font color="red">'myContent'</font>}</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;table&nbsp;border=1&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;&nbsp;Name&nbsp;&nbsp;&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;&nbsp;Phone&nbsp;&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="black"><b><font color="blue">@<b>start</b>@</font></b></font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&nbsp;bgcolor="<b>{<font color="green"><font color="red">$</font>1</font>}</b>"&gt;&nbsp;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&nbsp;&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&nbsp;bgcolor="<b>{<font color="green"><font color="red">$</font>2</font>}</b>"&gt;&nbsp;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&nbsp;&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="black"><b><font color="blue">@<b>end</b>@</font></b></font><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/table&gt;<br /><b>{/<font color="blue">content</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">myContent </font><font color="red">data<font color="black">=</font>'myData'<font color="black">,</font>&nbsp;'orange'<font color="black">,</font>&nbsp;'yellow'</font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
+<tr>
+<th> Name  </th>
+<th> Phone </th>
+</tr>
+<tr>
+<td bgcolor="orange"> joe  </td>
+<td bgcolor="yellow"> 555-3425 </td>
+</tr>
+<tr>
+<td bgcolor="orange"> jim  </td>
+<td bgcolor="yellow"> 555-2364 </td>
+</tr>
+<tr>
+<td bgcolor="orange"> jack  </td>
+<td bgcolor="yellow"> 555-3422 </td>
+</tr>
+<tr>
+<td bgcolor="orange"> jerry  </td>
+<td bgcolor="yellow"> 555-4973 </td>
+</tr>
+</table><!-- END DEMO RESULT --></span></code></td></tr>
+</table>
+</p><p> 
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">content </font><font color="red">'myContent'</font>}</b><br />&nbsp;&nbsp;Before&lt;br&gt;<br />&nbsp;&nbsp;<font color="black"><b><font color="blue">@<b>content</b>@</font></b></font><br />&nbsp;&nbsp;After&lt;br&gt;<br /><b>{/<font color="blue">content</font><font color="red"></font>}</b><br /><br /><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br />&nbsp;&nbsp;This&nbsp;will&nbsp;be&nbsp;inserted&nbsp;&lt;br&gt;<br /><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Before<br>
+This will be inserted <br>
+After<br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">content </font><font color="red">'myContent'</font>}</b><br />&nbsp;&nbsp;This&nbsp;will&nbsp;be&nbsp;inserted&nbsp;&lt;br&gt;<br /><b>{/<font color="blue">content</font><font color="red"></font>}</b><br /><br /><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br />&nbsp;&nbsp;Before&nbsp;&lt;br&gt;<br />&nbsp;&nbsp;<font color="black"><b><font color="blue">@<b>content</b>@</font></b></font><br />&nbsp;&nbsp;After&nbsp;&lt;br&gt;<br /><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Before <br>
+This will be inserted <br>
+After <br><!-- END DEMO RESULT --></span></code></td></tr>
+</table>
+</p><p> 
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">content </font><font color="red">'myContent'</font>}</b><br />&nbsp;&nbsp;This&nbsp;is&nbsp;my&nbsp;content.&lt;br&gt;<br /><b>{/<font color="blue">content</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">myContent</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is my content.<br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">myContent</font><font color="red"></font>}</b><br />&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;base&nbsp;content.&nbsp;&lt;br&gt;<br /><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is my content.<br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">myContent </font><font color="red">merge<font color="black">=</font>'replace'</font>}</b><br />&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;base&nbsp;content.&nbsp;&lt;br&gt;<br /><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is my content.<br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">myContent </font><font color="red">merge<font color="black">=</font>'top'</font>}</b><br />&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;base&nbsp;content.&nbsp;&lt;br&gt;<br /><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is the base content. <br>
+This is my content.<br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">myContent </font><font color="red">merge<font color="black">=</font>'bottom'</font>}</b><br />&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;base&nbsp;content.&nbsp;&lt;br&gt;<br /><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is my content.<br>
+This is the base content. <br><!-- END DEMO RESULT --></span></code></td></tr>
+</table>
+</p><p> 
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">content </font><font color="red">'myContent'</font>}</b><br />&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;true&nbsp;content&nbsp;from&nbsp;the&nbsp;called&nbsp;tag.&nbsp;&lt;br&gt;<br /><b>{<font color="blue">else</font><font color="red"></font>}</b><br />&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;false&nbsp;content&nbsp;from&nbsp;the&nbsp;called&nbsp;tag.&nbsp;&lt;br&gt;<br /><b>{/<font color="blue">content</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">myContent </font><font color="red">merge<font color="black">=</font>'replace'<font color="black">,</font>&nbsp;true</font>}</b><br />&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;true&nbsp;base&nbsp;content&nbsp;&lt;br&gt;<br /><b>{<font color="blue">else</font><font color="red"></font>}</b><br />&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;false&nbsp;base&nbsp;content&nbsp;&lt;br&gt;<br /><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is the true content from the called tag. <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">myContent </font><font color="red">merge<font color="black">=</font>'top'<font color="black">,</font>&nbsp;true</font>}</b><br />&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;true&nbsp;base&nbsp;content&nbsp;&lt;br&gt;<br /><b>{<font color="blue">else</font><font color="red"></font>}</b><br />&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;false&nbsp;base&nbsp;content&nbsp;&lt;br&gt;<br /><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is the true base content <br>
+This is the true content from the called tag. <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">myContent </font><font color="red">merge<font color="black">=</font>'bottom'<font color="black">,</font>&nbsp;true</font>}</b><br />&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;true&nbsp;base&nbsp;content&nbsp;&lt;br&gt;<br /><b>{<font color="blue">else</font><font color="red"></font>}</b><br />&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;false&nbsp;base&nbsp;content&nbsp;&lt;br&gt;<br /><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is the true content from the called tag. <br>
+This is the true base content <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">myContent </font><font color="red">merge<font color="black">=</font>'replace'<font color="black">,</font>&nbsp;false</font>}</b><br />&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;true&nbsp;base&nbsp;content&nbsp;&lt;br&gt;<br /><b>{<font color="blue">else</font><font color="red"></font>}</b><br />&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;false&nbsp;base&nbsp;content&nbsp;&lt;br&gt;<br /><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is the false content from the called tag. <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">myContent </font><font color="red">merge<font color="black">=</font>'top'<font color="black">,</font>&nbsp;false</font>}</b><br />&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;true&nbsp;base&nbsp;content&nbsp;&lt;br&gt;<br /><b>{<font color="blue">else</font><font color="red"></font>}</b><br />&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;false&nbsp;base&nbsp;content&nbsp;&lt;br&gt;<br /><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is the false base content <br>
+This is the false content from the called tag. <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
+<b>{<font color="blue">myContent </font><font color="red">merge<font color="black">=</font>'bottom'<font color="black">,</font>&nbsp;false</font>}</b><br />&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;true&nbsp;base&nbsp;content&nbsp;&lt;br&gt;<br /><b>{<font color="blue">else</font><font color="red"></font>}</b><br />&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;false&nbsp;base&nbsp;content&nbsp;&lt;br&gt;<br /><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></span>
+</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is the false content from the called tag. <br>
+This is the false base content <br><!-- END DEMO RESULT --></span></code></td></tr>
+</table>
+</p>

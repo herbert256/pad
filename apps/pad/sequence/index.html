@@ -1,0 +1,47 @@
+{data 'list'}
+  ('intro','syntax','even_odd','step_multiple','figurate','named','store','first_last','shift_pop','slice_splice','trim','print','eval','make_keep_remove','make','keep_remove','random','prime_or_not','combine','intersection','loop_source','other')
+{/data}
+
+<center>
+
+  <hr>
+  <h3><a id="top">Index</a></h3> 
+  {list}
+      <a href="#{$list}">{$list}</a> &nbsp;
+  {/list}
+
+  <hr>  
+  <h3><a id="sequences">Sequences</a></h3> 
+  {getReference 'sequence', 'sequence', 'sequence/types', 'pad'}
+    {if $link}
+      <a href="{$padGo}sequence/{$item}&noShow=1">{$item}</a>
+    {else}
+      {$item}
+    {/if}
+    &nbsp; 
+  {/getReference}
+
+  <hr>  
+  <h3><a id="actions">Actions</a></h3> 
+  {getReference 'sequence actions', 'sequence/actions', 'sequence/actions', 'pad'}
+    {if $link}
+      <a href="{$padGo}sequence/actions/{$item}&noShow=1">{$item}</a>
+    {else}
+      {$item}
+    {/if}
+    &nbsp; 
+  {/getReference}
+
+  <hr>
+  {list}
+    {sandbox}
+      <h3><a id="{$list}">{$list}</a></h3>  
+      {example '{$list}', onlyResult}
+      <font size="-1"> <a href="#top">top</a></font>
+      <br><hr>
+    {/sandbox}
+  {/list}
+
+</center>
+
+<!-- PAD: NO REGRESSION -->

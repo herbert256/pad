@@ -1,0 +1,13 @@
+{set $abc = '123'}
+
+<p>{$abc}</p>
+
+{sandbox}
+
+  {set $abc = '456'}
+
+  <p>{$abc}</p>
+
+{/sandbox}
+
+<p>{$abc}</p>

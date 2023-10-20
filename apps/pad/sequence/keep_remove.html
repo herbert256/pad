@@ -1,0 +1,49 @@
+{table}
+
+{demo}
+{sequence from=5, to=50, name='mySeq'}
+{/demo}
+
+{demo}
+{keep 'mySeq' , even}
+  {$keep}
+{/keep}
+{/demo}
+
+{demo}
+{keep 'mySeq', multiple=5}
+  {$keep}
+{/keep}
+{/demo}
+
+{demo}
+{keep 'mySeq', even, multiple=5}
+  {$keep}
+{/keep}
+{/demo}
+
+{/table}{table}
+
+{demo}
+{sequence from=5, to=50, name='mySeq'}
+{/demo}
+
+{demo}
+{remove 'mySeq' , even}
+  {$remove}
+{/remove}
+{/demo}
+
+{demo}
+{remove 'mySeq', multiple=5}
+  {$remove}
+{/remove}
+{/demo}
+
+{demo}
+{remove 'mySeq', even, multiple=5}
+  {$remove}
+{/remove}
+{/demo}
+
+{/table}

@@ -1,0 +1,26 @@
+{data 'abc'}
+  (
+    'abc',
+    'klm',
+    'xyz'
+  )
+{/data}
+
+{data 'lines'}
+  (
+    'regel 1',
+    'regel 2',
+    'regel 3'
+  )
+{/data}
+
+{abc}
+
+  {file}
+    
+{lines}{!lines}
+{/lines}
+
+  {/file 'sloop/{$abc}.txt'}
+
+{/abc}
