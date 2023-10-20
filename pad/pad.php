@@ -8,7 +8,7 @@
   set_exception_handler      ( 'padBootException' );
   register_shutdown_function ( 'padBootShutdown'  );
   
-  include pad . 'pad.php';
+  include pad . 'pad/entry/start.php';
 
  
   function padBootError ( $error ) {

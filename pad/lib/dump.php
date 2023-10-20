@@ -201,9 +201,14 @@
     $out = headers_list ();
     $pad = $GLOBALS ['padHeaders'] ?? [];
 
-                          padDumpLines ('Headers-in',  getallheaders() );
-    if ( count ( $out ) ) padDumpLines ('Headers-out', $out            );
-    if ( count ( $pad ) ) padDumpLines ('Headers-PAD', $pad            );
+    if ( function_exists ('getallheaders') )
+      $hdr = getallheaders();
+    else
+      $hdr = [];
+
+    if ( count ( $hdr ) ) padDumpLines ('Headers-in',  $hdr );
+    if ( count ( $out ) ) padDumpLines ('Headers-out', $out );
+    if ( count ( $pad ) ) padDumpLines ('Headers-PAD', $pad );
 
   }
 
@@ -408,7 +413,7 @@
       ob_start (); padDumpPhpInfo   ();                 padDumpFile ( 'php-info',    ob_get_clean (), $dir );
       ob_start (); padDumpGlobals   ();                 padDumpFile ( 'globals',     ob_get_clean (), $dir );
 
-      padDumpInputToFile ( 'input', $dir )  ( 'input', file_get_contents('php://input'), $dir );
+      padDumpInputToFile ( 'input', $dir ) ;
 
     } catch (Throwable $e) {
 
@@ -437,7 +442,7 @@
 
   function padDumpInputToFile ( $file, $dir ) {
 
-    $txt = trim ( file_get_contents('php://input') );
+    $txt = trim ( file_get_contents('php://input') ?? '' );
     
     if ( ! $txt )
       return;
