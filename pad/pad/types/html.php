@@ -1,5 +1,5 @@
 <?php
 
-  return padFileGetContents ( padApp . padPageGetName () . '.html' );
+  return padFileGetContents ( padApp . padPageGetName () . '.pad' );
 
 ?>

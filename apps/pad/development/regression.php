@@ -1,17 +1,20 @@
 <?php
 
-  #if ( ! isset ( $fromMenu ) )
-   # return NULL;
+  if ( ! isset ( $fromMenu ) )
+    return NULL;
 
   $title = "Regression test";
 
   foreach ( padPages () as $one ) {
 
-    $item = $one ['item'];
+    $item  = $one ['item'];
+    $store = padApp . "_regression/$item.pad";
+    $now   = padApp . "_regression/_now.txt";
+
+    file_put_contents ($now, $item, LOCK_EX);
 
     $curl  = getPage ($item, 1);
-    $store = padApp . "_regression/$item.html";
-  
+
     if     ( $curl ['result'] <> 200 )                              $status = 'error' ;
     elseif ( ! padExists ($store) )                                 $status = 'new';
     elseif ( strrpos($store, 'random') )                            $status = 'random' ;

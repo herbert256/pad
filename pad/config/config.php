@@ -19,12 +19,12 @@
 
   // Keep track of stuff
 
-  $padTrackFileRequest = TRUE;
-  $padTrackFileData    = TRUE; 
+  $padTrackFileRequest = FALSE;
+  $padTrackFileData    = FALSE; 
 
-  $padTrackDbSession   = TRUE;
-  $padTrackDbRequest   = TRUE;
-  $padTrackDbData      = TRUE;
+  $padTrackDbSession   = FALSE;
+  $padTrackDbRequest   = FALSE;
+  $padTrackDbData      = FALSE;
 
   // Cache settings
   

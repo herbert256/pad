@@ -22,7 +22,7 @@
 
   function go ( $item ) {
 
-    $data = trim ( padFileGetContents ( padApp . "$item.html" ) );
+    $data = trim ( padFileGetContents ( padApp . "$item.pad" ) );
 
     if ( ! str_starts_with( $data, '@go@') )
       return '';
@@ -108,7 +108,7 @@
     if ( strpos($html, '<!-- PAD: ONLYRESULT -->') !== false ) return ',onlyResult';
     if ( strpos($html, '{present')                 !== false ) return ',onlyResult';
     if ( strpos($html, '{demo')                    !== false ) return ',onlyResult';
-    if ( str_ends_with($file, 'index.html')                  ) return ',onlyResult';
+    if ( str_ends_with($file, 'index.pad')                  ) return ',onlyResult';
 
     return '';
 

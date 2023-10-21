@@ -61,7 +61,7 @@
 
   function padTrackFileData ( $padEtag, $padOutput ) {
 
-    $file = "output/$padEtag.html";
+    $file = "output/$padEtag.pad";
 
     if ( ! padExists(padData . $file) )
       padFilePutContents ($file, $padOutput);

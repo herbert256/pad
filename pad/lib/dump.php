@@ -435,7 +435,7 @@
     $txt = trim ( $txt );
 
     if ( $txt )
-      padFilePutContents ( "$dir/$file.html", "<pre>$txt</pre>" );
+      padFilePutContents ( "$dir/$file.pad", "<pre>$txt</pre>" );
 
   }
 

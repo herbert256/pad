@@ -16,7 +16,7 @@
         if ( substr($padCall, -4) == '.php' ) 
           $padBuildLib .= include pad . 'call/stringOnce.php';
  
-        if ( substr($padCall, -5) == '.html' )
+        if ( substr($padCall, -5) == '.pad' )
           $padBuildLib .= padFileGetContents ( $padCall );
 
       }

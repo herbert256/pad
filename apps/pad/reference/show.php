@@ -4,7 +4,7 @@
   
   $target = padApp . $item;
 
-  if ( padIsDir ($target) and ! padExists ("$target/index.php") and ! padExists ("$target/index.html") ) {
+  if ( padIsDir ($target) and ! padExists ("$target/index.php") and ! padExists ("$target/index.pad") ) {
 
     if ( padExists ( "$target/.settings.php" ) )
       include  "$target/.settings.php";
@@ -14,7 +14,7 @@
     $show = dirList ($dir);
 
     foreach ($show as $key => $value)
-      $show [$key] ['onlyResult'] = onlyResult ( padApp . $value ['item'] . '.html' );
+      $show [$key] ['onlyResult'] = onlyResult ( padApp . $value ['item'] . '.pad' );
 
   } else { 
 
@@ -30,7 +30,7 @@
     if ( $go )
       padRedirect ( "reference/show&item=$go" );
     
-    $onlyResult = onlyResult ( padApp . $item . '.html' );
+    $onlyResult = onlyResult ( padApp . $item . '.pad' );
 
   }
 

@@ -1,7 +1,7 @@
 <?php
     
 $curl  = getPage ($item);
-$store = padApp . "_regression/$item.html";
+$store = padApp . "_regression/$item.pad";
 
 padFileChkDir     ( $store );
 padFileChkFile    ( $store );

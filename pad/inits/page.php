@@ -1,12 +1,14 @@
 <?php
 
-  $padPage = $padPage ?? 'index';
+  if     ( isset($padPage) )                $padPage = $padPage;
+  elseif ( count($_GET) )                   $padPage = array_key_first ($_GET);
+  elseif ( isset ( $_SERVER['argv'] [1] ) ) $padPage = $_SERVER['argv'] [1];
+  else                                      $padPage = 'index';
 
-  if ( count($_GET) )
-    $padPage = padCorrectPath ( array_key_first ($_GET) );
+  $padPage = padCorrectPath ( $padPage );
 
-  if ( ! count($_GET) and isset ( $_SERVER['argv'] [1] ) )
-    $padPage = padCorrectPath ( $_SERVER['argv'] [1] );
+  if ( str_ends_with($padPage, '.pad') ) $padPage = str_replace('.pad', '', $padPage);
+  if ( str_ends_with($padPage, '.php')  ) $padPage = str_replace('.php',  '', $padPage);
 
   if ( ! padPageCheck ($padPage) )
     padBootError ("Page '$padPage' not found");

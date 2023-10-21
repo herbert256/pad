@@ -7,8 +7,8 @@
 
   foreach ( $padBuildDirs as $padBuildDir ) {
 
-    $padBuildInit = str_replace ( '@content@', '@pad@', padFileGetContents ( "$padBuildDir/_inits.html" ) );
-    $padBuildExit = str_replace ( '@content@', '@pad@', padFileGetContents ( "$padBuildDir/_exits.html" ) );
+    $padBuildInit = str_replace ( '@content@', '@pad@', padFileGetContents ( "$padBuildDir/_inits.pad" ) );
+    $padBuildExit = str_replace ( '@content@', '@pad@', padFileGetContents ( "$padBuildDir/_exits.pad" ) );
 
     if ( strpos($padBuildInit, '@pad@') === FALSE and strpos($padBuildExit, '@pad@') === FALSE  )
       $padBuildInit .= '@pad@';

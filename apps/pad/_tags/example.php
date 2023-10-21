@@ -4,14 +4,14 @@
   $exampleTitle      = substr($examplePage, strrpos($examplePage, '/') + 1);
   $exampleFile       = padApp . $examplePage;
   $exampleType       = padTagParm ( 'type', 'sandbox' );
-  $exampleLayout     = padTagParm ( 'layout' , layout ("$exampleFile.html") );
-  $exampleOnlyResult = onlyResult ( "$exampleFile.html" );
+  $exampleLayout     = padTagParm ( 'layout' , layout ("$exampleFile.pad") );
+  $exampleOnlyResult = onlyResult ( "$exampleFile.pad" );
 
   $examplePhpGiven  = padTagParm ( 'php' );
   $exampleHtmlGiven = padTagParm ( 'html' );
 
   $examplePhp       = ( $examplePhpGiven )  ? padApp . $examplePhpGiven  : "$exampleFile.php";
-  $exampleHtml      = ( $exampleHtmlGiven ) ? padApp . $exampleHtmlGiven : "$exampleFile.html";
+  $exampleHtml      = ( $exampleHtmlGiven ) ? padApp . $exampleHtmlGiven : "$exampleFile.pad";
 
   $exampleSrcPhp    = ( padExists($examplePhp ) ) ? padColorsFile ($examplePhp ) : '';
   $exampleSrcHtml   = ( padExists($exampleHtml) ) ? padColorsFile ($exampleHtml) : '';

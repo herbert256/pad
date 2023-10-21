@@ -1,6 +1,21 @@
 <?php
 
 
+  function padCloseWithPath () {
+
+    global $pad, $padOpt;
+
+    if ( $padOpt [$pad] [0] and 
+         substr_count ( $padOpt [$pad] [0], '{' ) and 
+         substr_count ( $padOpt [$pad] [0], '}' ) ) 
+
+      return TRUE;
+
+    return FALSE;
+
+  }
+
+
   function padStartAndClose ( $go ) {
 
     global $pad, $padWalk, $padPrmType;
@@ -21,11 +36,13 @@
          is_object       ( $value ) or
          is_resource     ( $value ) or 
          padSpecialValue ( $value ) )
+
       return FALSE;
 
     return TRUE;
 
   }
+
 
   function padSpecialValue ( $value ) {
 
@@ -43,7 +60,7 @@
 
     foreach ( padDirs () as $key => $value ) {
 
-      $file = substr (padApp, 0, -1) . $value . "_content/$content.html";
+      $file = substr (padApp, 0, -1) . $value . "_content/$content.pad";
 
       if ( padExists ($file) ) 
         return TRUE;
@@ -59,7 +76,7 @@
 
     foreach ( padDirs () as $key => $value ) {
 
-      $file = substr (padApp, 0, -1) . $value . "_content/$content.html";
+      $file = substr (padApp, 0, -1) . $value . "_content/$content.pad";
 
       if ( padExists ($file) ) 
         return padFileGetContents ($file);
@@ -93,7 +110,7 @@
 
       if ( padExists ($file) and ! is_dir($file) ) return $file;
       if ( padExists ("$file.php")               ) return "$file.php";
-      if ( padExists ("$file.html")              ) return "$file.html";
+      if ( padExists ("$file.pad")              ) return "$file.pad";
 
     }
 
@@ -257,7 +274,7 @@
 
   function padDemoMode ( $page ) {
 
-    $store = padApp . "_regression/$page.html";
+    $store = padApp . "_regression/$page.pad";
 
     if ( padExists ($store) )
       return padFileGetContents($store);
@@ -434,7 +451,7 @@
     $file =  padApp . $file ;
 
     if ( padValidFile ( $file ) )
-      if  ( ( padExists ($file) and ! is_dir($file) ) or padExists ("$file.html") or padExists ("$file.php") )
+      if  ( ( padExists ($file) and ! is_dir($file) ) or padExists ("$file.pad") or padExists ("$file.php") )
         return TRUE;
 
     return FALSE;

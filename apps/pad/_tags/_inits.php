@@ -1,7 +1,7 @@
 <?php
 
   $inits_php  = padApp . "$padDir/_inits.php";
-  $inits_html = padApp . "$padDir/_inits.html";
+  $inits_html = padApp . "$padDir/_inits.pad";
 
   $inits = ( padExists($inits_php) or padExists($inits_html) );
 

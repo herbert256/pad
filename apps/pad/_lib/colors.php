@@ -19,7 +19,7 @@
     if ( ! padExists($file) )
       return $file;
 
-    if (substr($file, -5) == '.html')
+    if (substr($file, -5) == '.pad')
       return padColorsString ( trim(padFileGetContents($file)) ) ;
     else
       return padHighLight ( trim(padFileGetContents($file)) ) ;

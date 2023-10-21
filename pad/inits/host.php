@@ -15,7 +15,7 @@
 
   $padHost = $padRequestScheme . '://' . $padHttpHost;
 
-  $padGo         = $padScript . "?";
+  $padGo    = $padScript . "?";
   $padGoExt = $padHost . $padGo;
 
 ?>

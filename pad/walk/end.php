@@ -1,13 +1,7 @@
 <?php
 
-  if ( $padOpt [$pad] [0] and substr_count( $padOpt [$pad] [0], '{' ) and substr_count( $padOpt [$pad] [0], '}' ) ) {
-
-    $padPad = $padOpt [$pad] [0];
-    include pad . "pad/entry/pad.php";
-    $padOpt [$pad] [0] = $padPad;
-    include pad . "level/parms.php";
-    
-  }
+  if ( padCloseWithPath () )
+    include pad . 'walk/parse_opt.php';
 
   $padWalk [$pad] = 'end';
 
