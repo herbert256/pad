@@ -8,7 +8,7 @@ fi
 export usr=herbert
 
 sed -i "s/var\/www/home\/$usr/g"                 /etc/apache2/apache2.conf
-sed -i "s/var\/www\/html/home\/$usr\/pad\/www/g" /etc/apache2/sites-enabled/000-default.conf
+sed -i "s/var\/www\/pad/home\/$usr\/pad\/www/g" /etc/apache2/sites-enabled/000-default.conf
 
 chmod 755 ~$usr/pad/apps/pad/_scripts/*
 

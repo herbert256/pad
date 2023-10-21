@@ -2,7 +2,7 @@
 
   $padBefore [$pad] = 2;
 
-  padHtml ('');
+  padPad ('');
 
   $padBeforeData [$pad] = $padResult [$pad+1];
 

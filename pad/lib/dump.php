@@ -42,7 +42,7 @@
     if ( ! headers_sent () ) 
       header ( 'HTTP/1.0 500 Internal Server Error' );
 
-    padCloseHtml ();
+    padClosePad ();
 
     padEmptyBuffers ();
 
@@ -256,10 +256,10 @@
     if ($tag)
       $tag = '{' . "$tag $prm" . '}';
 
-    global $padHtml, $padStart, $padEnd;
+    global $padPad, $padStart, $padEnd;
 
-    $before = substr ( $padHtml [$pad], 0, $padStart [$pad] );
-    $after  = substr ( $padHtml [$pad],    $padEnd [$pad]+1 );
+    $before = substr ( $padPad [$pad], 0, $padStart [$pad] );
+    $after  = substr ( $padPad [$pad],    $padEnd [$pad]+1 );
 
     if ( strlen($before) > 100)
       $before = substr($before, -100);
@@ -279,7 +279,7 @@
       'true'    => padDumpShort ($GLOBALS ['padTrue'][$pad]??''),
       'false'   => padDumpShort ($GLOBALS ['padFalse'][$pad]??''),
       'base'    => padDumpShort ($GLOBALS ['padBase'][$pad]??''),
-      'html'    => padDumpShort ($GLOBALS ['padHtml'][$pad]??''),
+      'pad'    => padDumpShort ($GLOBALS ['padPad'][$pad]??''),
       'result'  => padDumpShort ($GLOBALS ['padResult'][$pad]??''),
       'before'  => $before,
       'after'   => $after

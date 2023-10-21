@@ -24,7 +24,7 @@
         </td>' .
       '</tr>' .
 
-      '<tr><th bgcolor="#dddddd">HTML</th></tr>' .
+      '<tr><th bgcolor="#dddddd">PAD</th></tr>' .
 
       '<tr>' .
         '<td style="vertical-align:top">' . 

@@ -31,6 +31,6 @@
   if ( $padFirst == '$' )
     $padOpts = array_merge ( $padDataDefaultStart, $padOpts, $padDataDefaultEnd );   
 
-  padHtml ( padVarOpts ($padVal, $padOpts) );
+  padPad ( padVarOpts ($padVal, $padOpts) );
 
 ?>

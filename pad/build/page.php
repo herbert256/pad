@@ -1,14 +1,14 @@
 <?php
 
-  $padBuildHtml = '';
+  $padBuildPad = '';
  
   foreach ( $padBuildDirs as $padCall ) {
     $padCall .= '/_inits.php';
-    $padBuildHtml .= include pad . 'call/stringNoOne.php';
+    $padBuildPad .= include pad . 'call/stringNoOne.php';
   }
 
   $padCall = padApp . "$padPage.php";
-  $padBuildHtml .= include pad . 'call/callNoOne.php';
+  $padBuildPad .= include pad . 'call/callNoOne.php';
 
   if ( $padCallPHP === NULL )
     return '';
@@ -18,15 +18,15 @@
   else                                $padBuild = padDefaultData();
  
   if ( ! is_array ($padCallPHP) and $padCallPHP !== TRUE and $padCallPHP !== FALSE )
-    $padBuildHtml .= $padCallPHP;
+    $padBuildPad .= $padCallPHP;
 
-  $padBuildHtml .= padFileGetContents ( padApp . "$padPage.pad" );
+  $padBuildPad .= padFileGetContents ( padApp . "$padPage.pad" );
 
   foreach ( array_reverse ($padBuildDirs) as $padCall ) {
     $padCall .= '/_exits.php';
-    $padBuildHtml .= include pad . 'call/stringNoOne.php';
+    $padBuildPad .= include pad . 'call/stringNoOne.php';
   }
 
-  return "{padBuild}$padBuildHtml{/padBuild}";
+  return "{padBuild}$padBuildPad{/padBuild}";
 
 ?>

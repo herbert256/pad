@@ -15,7 +15,7 @@
       $file = padCorrectPath ( $loop_info->getPathname() );
       $ext  = substr($file, strrpos($file, '.')+1 );
 
-      if ( $ext <> 'php' and $ext <> 'html' ) 
+      if ( $ext <> 'php' and $ext <> 'pad' ) 
         continue;
 
       $old = file_get_contents($file);

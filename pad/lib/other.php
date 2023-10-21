@@ -587,7 +587,7 @@
   }
 
   
-  function padCloseHtml () {
+  function padClosePad () {
 
     echo "\r\n";
 
@@ -652,14 +652,14 @@
   }
 
 
-  function padHtml ($html) {
+  function padPad ($value) {
 
-    global $padHtml, $padStart, $padEnd, $pad;
+    global $padPad, $padStart, $padEnd, $pad;
 
-    $padHtml [$pad] = 
-        substr ( $padHtml [$pad], 0, $padStart [$pad] )
-      . $html
-      . substr ( $padHtml [$pad],    $padEnd [$pad]+1 );
+    $padPad [$pad] = 
+        substr ( $padPad [$pad], 0, $padStart [$pad] )
+      . $value
+      . substr ( $padPad [$pad],    $padEnd [$pad]+1 );
     
   }
   
@@ -922,7 +922,7 @@
 
     global $padBetween;
 
-    padHtml ( '&open;' . $padBetween . '&close;' );
+    padPad ( '&open;' . $padBetween . '&close;' );
 
     return FALSE;
     
@@ -1069,14 +1069,14 @@
     elseif ( strpos ( $content, '<!DOCTYPE') !== FALSE ) {
       $open   = strpos  ($content, '<!DOCTYPE');
       $close  = strpos  ($content, '>', $open);
-      $check  = stripos ($content, 'html', $open);
+      $check  = stripos ($content, 'pad', $open);
       if ($check !== FALSE and $check < $close )
-        $type = 'html';
+        $type = 'pad';
       else
         $type = 'xml';
     }
-    elseif ( substr ($content, 9, 5) == '<html' )
-      $type = 'html';
+    elseif ( substr ($content, 9, 5) == '<pad' )
+      $type = 'pad';
     elseif ( substr($content, 0, 1) == '<')
       $type = 'xml';
     elseif ( substr($content, 0, 1) == '{')

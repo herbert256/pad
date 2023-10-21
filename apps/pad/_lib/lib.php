@@ -103,11 +103,11 @@
 
   function onlyResult ( $file ) {
 
-    $html = ( padExists( $file ) ) ? file_get_contents( $file ) : ''; 
+    $pad = ( padExists( $file ) ) ? file_get_contents( $file ) : ''; 
 
-    if ( strpos($html, '<!-- PAD: ONLYRESULT -->') !== false ) return ',onlyResult';
-    if ( strpos($html, '{present')                 !== false ) return ',onlyResult';
-    if ( strpos($html, '{demo')                    !== false ) return ',onlyResult';
+    if ( strpos($pad, '<!-- PAD: ONLYRESULT -->') !== false ) return ',onlyResult';
+    if ( strpos($pad, '{present')                 !== false ) return ',onlyResult';
+    if ( strpos($pad, '{demo')                    !== false ) return ',onlyResult';
     if ( str_ends_with($file, 'index.pad')                  ) return ',onlyResult';
 
     return '';
@@ -116,9 +116,9 @@
 
   function layout ( $file ) {
 
-    $html = ( padExists( $file ) ) ? file_get_contents( $file ) : ''; 
+    $pad = ( padExists( $file ) ) ? file_get_contents( $file ) : ''; 
 
-    if ( strpos($html, '<!-- PAD: VERTICAL -->') !== false ) 
+    if ( strpos($pad, '<!-- PAD: VERTICAL -->') !== false ) 
       return 'vertical';
     else
       return 'horizontal';
@@ -171,7 +171,7 @@
 
       if ( substr($item, -4) == 'todo'      ) continue;
       if ( $item == 'index'                 ) continue;
-      if ( $ext <> 'html' and $ext <> 'php' ) continue;
+      if ( $ext <> 'pad' and $ext <> 'php' ) continue;
 
       $list [$item] ['item'] = $item;
       

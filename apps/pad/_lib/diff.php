@@ -236,7 +236,7 @@ class Diff{
 
   }
 
-  /* Returns a diff as an HTML string, where unmodified lines are contained
+  /* Returns a diff as an PAD string, where unmodified lines are contained
    * within 'span' elements, deletions are contained within 'del' elements, and
    * insertions are contained within 'ins' elements. The parameters are:
    *
@@ -244,47 +244,47 @@ class Diff{
    * $separator - the separator between lines; this optional parameter defaults
    *              to '<br>'
    */
-  public static function toHTML($diff, $separator = '<br>'){
+  public static function toPAD($diff, $separator = '<br>'){
 
-    // initialise the HTML
-    $html = '';
+    // initialise the PAD
+    $pad = '';
 
     // loop over the lines in the diff
     foreach ($diff as $line){
 
-      // extend the HTML with the line
+      // extend the PAD with the line
       switch ($line[1]){
         case self::UNMODIFIED : $element = 'span'; break;
         case self::DELETED    : $element = 'del';  break;
         case self::INSERTED   : $element = 'ins';  break;
       }
-      $html .=
+      $pad .=
           '<' . $element . '>'
-          . htmlspecialchars($line[0])
+          . padspecialchars($line[0])
           . '</' . $element . '>';
 
-      // extend the HTML with the separator
-      $html .= $separator;
+      // extend the PAD with the separator
+      $pad .= $separator;
 
     }
 
-    // return the HTML
-    return $html;
+    // return the PAD
+    return $pad;
 
   }
 
-  /* Returns a diff as an HTML table. The parameters are:
+  /* Returns a diff as an PAD table. The parameters are:
    *
    * $diff        - the diff array
-   * $indentation - indentation to add to every line of the generated HTML; this
+   * $indentation - indentation to add to every line of the generated PAD; this
    *                optional parameter defaults to ''
    * $separator   - the separator between lines; this optional parameter
    *                defaults to '<br>'
    */
   public static function toTable($diff, $indentation = '', $separator = '<br>'){
 
-    // initialise the HTML
-    $html = $indentation . "<table class=\"diff\">\n";
+    // initialise the PAD
+    $pad = $indentation . "<table class=\"diff\">\n";
 
     // loop over the lines in the diff
     $index = 0;
@@ -321,8 +321,8 @@ class Diff{
 
       }
 
-      // extend the HTML with the new row
-      $html .=
+      // extend the PAD with the new row
+      $pad .=
           $indentation
           . "  <tr>\n"
           . $indentation
@@ -346,8 +346,8 @@ class Diff{
 
     }
 
-    // return the HTML
-    return $html . $indentation . "</table>\n";
+    // return the PAD
+    return $pad . $indentation . "</table>\n";
 
   }
 
@@ -355,7 +355,7 @@ class Diff{
    * parameters are:
    *
    * $diff        - the diff array
-   * $indentation - indentation to add to every line of the generated HTML
+   * $indentation - indentation to add to every line of the generated PAD
    * $separator   - the separator between lines
    * $index       - the current index, passes by reference
    * $type        - the type of line
@@ -363,21 +363,21 @@ class Diff{
   private static function getCellContent(
       $diff, $indentation, $separator, &$index, $type){
 
-    // initialise the HTML
-    $html = '';
+    // initialise the PAD
+    $pad = '';
 
-    // loop over the matching lines, adding them to the HTML
+    // loop over the matching lines, adding them to the PAD
     while ($index < count($diff) && $diff[$index][1] == $type){
-      $html .=
+      $pad .=
           '<span>'
-          . htmlspecialchars($diff[$index][0])
+          . padspecialchars($diff[$index][0])
           . '</span>'
           . $separator;
       $index ++;
     }
 
-    // return the HTML
-    return $html;
+    // return the PAD
+    return $pad;
 
   }
 

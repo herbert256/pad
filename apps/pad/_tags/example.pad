@@ -25,9 +25,9 @@
             PHP {if ! #skipNames}<br><font size="-2">{$exampleFilePhp}</font>{/if}
           </th>
         {/if}
-        {if ! #skipHtml}
+        {if ! #skipPad}
           <th bgcolor="#dddddd">
-            HTML {if ! #skipNames}<br><font size="-2">{$exampleFileHtml}</font>{/if}
+            PAD {if ! #skipNames}<br><font size="-2">{$exampleFilePad}</font>{/if}
           </th>
         {/if}
         {if ! #skipResult}
@@ -42,8 +42,8 @@
       {if ! #skipPhp}
         <td style="vertical-align:top">{!exampleSrcPhp} </td>
       {/if}
-      {if ! #skipHtml}
-        <td style="vertical-align:top">{!exampleSrcHtml}</td>
+      {if ! #skipPad}
+        <td style="vertical-align:top">{!exampleSrcPad}</td>
       {/if}
       {if ! #skipResult}
         <td style="vertical-align:top">{page '{$examplePage}', type='{$exampleType}', include, ignore}</td>
@@ -65,16 +65,16 @@
       <tr>
     {/if}
 
-    {if ! #skipHtml}
+    {if ! #skipPad}
       {if ! #skipHeader}
         <tr>
           <th bgcolor="#dddddd">
-            HTML {if ! #skipNames}<br><font size="-2">{$exampleFileHtml}</font>{/if}
+            PAD {if ! #skipNames}<br><font size="-2">{$exampleFilePad}</font>{/if}
           </th>
         </tr>
       {/if}
       <tr>
-        <td style="vertical-align:top">{!exampleSrcHtml}</td>
+        <td style="vertical-align:top">{!exampleSrcPad}</td>
       </tr>
     {/if}
 

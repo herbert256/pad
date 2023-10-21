@@ -35,7 +35,7 @@
   $padEnd        [$pad] = 0;
 
   $padBase       [$pad] = '';
-  $padHtml       [$pad] = '';
+  $padPad       [$pad] = '';
   $padResult     [$pad] = '';
  
   $padHit        [$pad] = FALSE;

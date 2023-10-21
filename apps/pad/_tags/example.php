@@ -8,16 +8,16 @@
   $exampleOnlyResult = onlyResult ( "$exampleFile.pad" );
 
   $examplePhpGiven  = padTagParm ( 'php' );
-  $exampleHtmlGiven = padTagParm ( 'html' );
+  $examplePadGiven = padTagParm ( 'pad' );
 
   $examplePhp       = ( $examplePhpGiven )  ? padApp . $examplePhpGiven  : "$exampleFile.php";
-  $exampleHtml      = ( $exampleHtmlGiven ) ? padApp . $exampleHtmlGiven : "$exampleFile.pad";
+  $examplePad      = ( $examplePadGiven ) ? padApp . $examplePadGiven : "$exampleFile.pad";
 
   $exampleSrcPhp    = ( padExists($examplePhp ) ) ? padColorsFile ($examplePhp ) : '';
-  $exampleSrcHtml   = ( padExists($exampleHtml) ) ? padColorsFile ($exampleHtml) : '';
+  $exampleSrcPad   = ( padExists($examplePad) ) ? padColorsFile ($examplePad) : '';
 
   $exampleFilePhp   = ( padExists($examplePhp ) ) ? str_replace(padApp, '', $examplePhp  ) : '';
-  $exampleFileHtml  = ( padExists($exampleHtml) ) ? str_replace(padApp, '', $exampleHtml ) : '';
+  $exampleFilePad  = ( padExists($examplePad) ) ? str_replace(padApp, '', $examplePad ) : '';
 
   return TRUE;
    

@@ -20,8 +20,8 @@
       if ( strpos($path, 'redirect')        ) continue;
       if ( strpos($path, '.settings.')      ) continue;
       if ( strpos($path, '/_')              ) continue;
-      if ( $ext <> 'html' and $ext <> 'php' ) continue;
-      if ( $item == 'hello/html'            ) continue;
+      if ( $ext <> 'pad' and $ext <> 'php' ) continue;
+      if ( $item == 'hello/pad'            ) continue;
       if ( go ( $item )                     ) continue;
 
       $files [$item] ['path'] = $path;

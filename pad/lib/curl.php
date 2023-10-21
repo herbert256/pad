@@ -20,7 +20,7 @@
     $output ['input']   = $input;
     $output ['options'] = [];
     $output ['result']  = '999';  //  200 / 404 / etc
-    $output ['type']    = '';     //  'xml' , 'html' , 'json' , 'yaml' , 'csv' , ''
+    $output ['type']    = '';     //  'xml' , 'pad' , 'json' , 'yaml' , 'csv' , ''
     $output ['info']    = [];
     $output ['headers'] = [];
     $output ['cookies'] = [];
@@ -65,7 +65,7 @@
     padCurlOpt ($options, 'ENCODING',       'gzip' );
     padCurlOpt ($options, 'FOLLOWLOCATION', true);
     padCurlOpt ($options, 'HEADER',         true);
-    padCurlOpt ($options, 'USERAGENT',      $_SERVER['HTTP_USER_AGENT'] ?? 'Mozilla/5.0 (X11; CrOS x86_64 13904.77.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.147 Safari/537.36 pad/10.0');
+    padCurlOpt ($options, 'USERAGENT',      $_SERVER['HTTP_USER_AGENT'] ?? 'Mozilla/5.0 (X11; CrOS x86_64 13904.77.0) AppleWebKit/537.36 (KPAD, like Gecko) Chrome/91.0.4472.147 Safari/537.36 pad/10.0');
     padCurlOpt ($options, 'REFERER',        $GLOBALS ['padGoExt'] . $GLOBALS ['padPage']);
 
     if ( isset($input['user']) )
@@ -150,7 +150,7 @@
             $file = padBetween ($value, '"', '"');
         
           if ( $header == 'Content-Type' )
-            if     (strpos ($value, 'html')       !== FALSE) $output ['type'] = 'html';
+            if     (strpos ($value, 'pad')       !== FALSE) $output ['type'] = 'pad';
             elseif (strpos ($value, 'xml')        !== FALSE) $output ['type'] = 'xml';
             elseif (strpos ($value, 'json')       !== FALSE) $output ['type'] = 'json';
             elseif (strpos ($value, 'javascript') !== FALSE) $output ['type'] = 'json';

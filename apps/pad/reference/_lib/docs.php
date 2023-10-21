@@ -29,7 +29,7 @@
       $ext   = substr($file,    strrpos($file, '.')+1 );
       $item  = substr($file, 0, strrpos($file, '.')   );
  
-      if ( $ext <> 'html' and $ext <> 'php' ) continue;
+      if ( $ext <> 'pad' and $ext <> 'php' ) continue;
       if ( ! $item                          ) continue;
       if ( $file == '.'                     ) continue;
       if ( $file == '..'                    ) continue;

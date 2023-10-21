@@ -1,7 +1,7 @@
 <?php
     
     
-  $padResult [$pad] .= $padHtml [$pad];
+  $padResult [$pad] .= $padPad [$pad];
   
   padResetOcc ($pad);
 

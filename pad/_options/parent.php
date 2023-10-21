@@ -15,6 +15,6 @@
   $padCurrent [$pad] = [];
   $padOccur   [$pad] = 0;
   $padResult  [$pad] = '';
-  $padHtml    [$pad] = '';
+  $padPad    [$pad] = '';
 
 ?>

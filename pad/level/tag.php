@@ -16,15 +16,15 @@
 
   while ( ! in_array ( $padPairCheck, [' ', '}'] ) ) {
 
-    $padPos = strpos($padHtml [$pad] , '{/' . $padPairTag, ++$padPos);
+    $padPos = strpos($padPad [$pad] , '{/' . $padPairTag, ++$padPos);
 
     if ($padPos === FALSE)
       return;
 
-    $padTrueBase = substr($padHtml [$pad], $padEnd [$pad]+1, $padPos - $padEnd [$pad] - 1);
+    $padTrueBase = substr($padPad [$pad], $padEnd [$pad]+1, $padPos - $padEnd [$pad] - 1);
 
     if ( padOpenCloseCountOne ( $padTrueBase, $padPairTag) )
-      $padPairCheck = substr($padHtml [$pad], $padPos + strlen($padPairTag) + 2, 1);
+      $padPairCheck = substr($padPad [$pad], $padPos + strlen($padPairTag) + 2, 1);
     
   }
 

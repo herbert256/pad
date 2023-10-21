@@ -13,7 +13,7 @@
     include pad . 'pad/level.php'; 
     include pad . 'pad/end.php';
 
-    return $padHtml [$pad+1];
+    return $padPad [$pad+1];
 
   }
 
@@ -124,9 +124,9 @@
   {$ajax}.onreadystatechange=function() {
     if ({$ajax}.readyState === 4) {
       if ({$ajax}.status === 200) {
-        document.getElementById("{$ajax}").innerHTML={$ajax}.responseText;
+        document.getElementById("{$ajax}").innerPAD={$ajax}.responseText;
       } else {
-        document.getElementById("{$ajax}").innerHTML={$ajax}.statusText;
+        document.getElementById("{$ajax}").innerPAD={$ajax}.statusText;
       }
     }
   }

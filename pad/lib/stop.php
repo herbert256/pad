@@ -62,7 +62,7 @@
       padHeader ('Content-Encoding: gzip');
 
     if ( $stop <> 302 and $stop <> 304)
-      padHeader ('Content-Type: text/html; charset=UTF-8');
+      padHeader ('Content-Type: text/pad; charset=UTF-8');
 
     if ( $stop == 200 and $GLOBALS ['padLen'] )
       padHeader ('Content-Length: ' . $GLOBALS ['padLen']);

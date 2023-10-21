@@ -48,7 +48,7 @@
       $file = $one->getFilename();
 
       if ( $kind == 'pad' and $type <>  'sequence' )
-        if ( $ext <> 'html' and $ext <> 'php' ) 
+        if ( $ext <> 'pad' and $ext <> 'php' ) 
           continue;
 
       if ( $kind == 'ref' and $one->isDir() )

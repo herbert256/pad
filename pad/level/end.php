@@ -36,6 +36,6 @@
     return include pad . 'level/split/before2.php';
 
   if ( $pad >= 0 )
-    padHtml ( $padResult[$pad+1] );
+    padPad ( $padResult[$pad+1] );
 
 ?>
