@@ -37,15 +37,20 @@
     elseif ( $prefix    ) $value = padFieldPrefix ( $field, $idx, $type, $prefix );
     else                  $value = padFieldLevel  ( $field, $type );
 
-    if     ($type == 1) return ( $value !== NULL and ( $value === INF or ! is_scalar($value) ) ) ? FALSE : TRUE;
-    elseif ($type == 2) return ( $value === NULL or    $value === INF or ! is_scalar($value)   ) ? ''    : $value;
-    elseif ($type == 3) return ( $value === NULL or    $value === INF or   is_scalar($value)   ) ? FALSE : TRUE;
-    elseif ($type == 4) return ( $value === NULL or    $value === INF or   is_scalar($value)   ) ? []    : $value;
-    elseif ($type == 5) return ( $value === INF                                                ) ? FALSE : TRUE;
-    elseif ($type == 6) return ( $value === INF                                                ) ? ''    : $value;
-    elseif ($type == 7) return ( $value === INF                                                ) ? FALSE : TRUE;
-    elseif ($type == 8) return ( $value === INF                                                ) ? ''    : $value;
-    elseif ($type == 9) return ( $value === NULL                                               ) ? TRUE  : FALSE;
+    if     ($type == 1) $return = ( $value !== NULL and ( $value === INF or ! is_scalar($value) ) ) ? FALSE : TRUE;
+    elseif ($type == 2) $return = ( $value === NULL or    $value === INF or ! is_scalar($value)   ) ? ''    : $value;
+    elseif ($type == 3) $return = ( $value === NULL or    $value === INF or   is_scalar($value)   ) ? FALSE : TRUE;
+    elseif ($type == 4) $return = ( $value === NULL or    $value === INF or   is_scalar($value)   ) ? []    : $value;
+    elseif ($type == 5) $return = ( $value === INF                                                ) ? FALSE : TRUE;
+    elseif ($type == 6) $return = ( $value === INF                                                ) ? ''    : $value;
+    elseif ($type == 7) $return = ( $value === INF                                                ) ? FALSE : TRUE;
+    elseif ($type == 8) $return = ( $value === INF                                                ) ? ''    : $value;
+    elseif ($type == 9) $return = ( $value === NULL                                               ) ? TRUE  : FALSE;
+
+    if ( $GLOBALS ['padTraceTypes'] ['field'] )
+      include pad . 'trace/field.php';    
+
+    return $return;
 
   }
 

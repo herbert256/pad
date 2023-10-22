@@ -484,13 +484,16 @@
   }
 
 
-  function padMakeSafe ( $input ) {
+  function padMakeSafe ( $input, $len=2048 ) {
+
+    if ( is_array($input) or is_object($input) )
+      $input = padJson ($input);
 
     $input = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '.', $input);
     $input = preg_replace('/\s+/', ' ', $input);
     
-    if ( strlen($input) > 2048 )
-      $input = substr($input, 0, 2048);
+    if ( strlen($input) > $len )
+      $input = substr ( $input, 0, $len );
     
     $input = trim($input);
 
@@ -525,9 +528,23 @@
   }
 
 
-  function padJson ($data) {
+  function padJson ( $data ) {
 
-    return json_encode ( $data, JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK );
+    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
+    $reporting = error_reporting (0);
+
+    try {
+
+      return json_encode ( $data, JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK );
+    
+    } catch (Throwable $e) {
+
+      return '';
+
+    }
+
+    error_reporting ($reporting);
+    restore_error_handler ();    
 
   }
 

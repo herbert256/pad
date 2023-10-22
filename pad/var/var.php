@@ -1,5 +1,5 @@
 <?php
-
+  
   $padPipe  = strpos ( $padBetween, '|' );
   $padSpace = strpos ( $padBetween, ' ' );
 
@@ -20,6 +20,9 @@
 
   }
 
+  if ( $padTraceTypes ['var'] )
+    include pad . 'trace/lvl_start.php';   
+
   if ( substr($padFld, 0, 1) == '$' ) 
     $padFld = padFieldValue ( substr($padFld,1) );
 
@@ -31,6 +34,11 @@
   if ( $padFirst == '$' )
     $padOpts = array_merge ( $padDataDefaultStart, $padOpts, $padDataDefaultEnd );   
 
-  padPad ( padVarOpts ($padVal, $padOpts) );
+  $padVal = padVarOpts ($padVal, $padOpts);
+
+  if ( $padTraceTypes ['var'] )
+    include pad . 'trace/lvl_end.php';   
+
+  padPad ( $padVal );
 
 ?>

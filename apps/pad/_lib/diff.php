@@ -260,7 +260,7 @@ class Diff{
       }
       $pad .=
           '<' . $element . '>'
-          . padspecialchars($line[0])
+          . htmlspecialchars($line[0])
           . '</' . $element . '>';
 
       // extend the PAD with the separator
@@ -370,7 +370,7 @@ class Diff{
     while ($index < count($diff) && $diff[$index][1] == $type){
       $pad .=
           '<span>'
-          . padspecialchars($diff[$index][0])
+          . htmlspecialchars($diff[$index][0])
           . '</span>'
           . $separator;
       $index ++;

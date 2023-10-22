@@ -29,13 +29,16 @@
   $padWalk       [$pad] = 'start';
   $padWalkData   [$pad] = [];
   
+  $padDbgLvl [$pad] = '';
+  $padDbgOcc [$pad] = '';
+
   $padDone       [$pad] = [];
   $padOccur      [$pad] = 0;
   $padStart      [$pad] = 0;
   $padEnd        [$pad] = 0;
 
   $padBase       [$pad] = '';
-  $padPad       [$pad] = '';
+  $padPad        [$pad] = '';
   $padResult     [$pad] = '';
  
   $padHit        [$pad] = FALSE;
@@ -48,8 +51,8 @@
   $padSaveLvl    [$pad] = [];
   $padDeleteLvl  [$pad] = [];
 
-  $padSaveOcc   [$pad] = [];
-  $padDeleteOcc [$pad] = [];
+  $padSaveOcc    [$pad] = [];
+  $padDeleteOcc  [$pad] = [];
 
   $padOptionsApp [$pad] = [];
   
@@ -62,5 +65,8 @@
 
   $padForceTagName  = '';
   $padForceDataName = '';
+
+  if ( $padTraceTypes ['level'] )
+    include pad . 'trace/lvl_start.php';    
   
 ?>

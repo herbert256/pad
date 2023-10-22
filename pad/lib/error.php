@@ -172,20 +172,19 @@
 
       padFilePutContents ( 'error_log.txt', padID () . ' - ' . $info,  true );
 
-      $log = $e->getFile() . ':' .  $e->getLine() . ' ERROR-LOG: ' . $e->getMessage();
+      $log = $e->getFile() . ':' .  $e->getLine() . ' LOG-ERROR: ' . $e->getMessage();
 
       if ( ! padErrorCheck ( 'catch', $log ) ) 
         padFilePutContents ( 'error_log.txt', padID () . ' - ' . $log, true );
     
     } catch (Throwable $e) {
-    
+
       // giving up
-    
+  
     }
 
     error_reporting ($reporting);
     restore_error_handler ();
-
 
   }
 
@@ -196,6 +195,9 @@
     error_reporting (0);
 
     try {
+
+      if ( ! isset ( $GLOBALS ['padDumpToDir'] ) )
+        padDumpToDir ( "$file:$line $error" );
 
       padErrorStopGo ( $error, $file, $line);
     

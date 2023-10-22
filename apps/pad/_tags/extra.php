@@ -12,11 +12,11 @@
   $basePage = padApp . $page;
   $baseDir  = padApp . $dir;
 
-  $pad = padFileGetContents ("$basePage.pad");
+  $html = padFileGetContents ("$basePage.pad");
 
-  if ( strpos($pad, '{staff')       !== FALSE ) $extraFiles ['staff'] ['php'] = '_data/staff.xml';
-  if ( strpos($pad, '{files')       !== FALSE ) $extraFiles ['staff'] ['php'] = '_data/files.json';
-  if ( strpos($pad, '{departments') !== FALSE ) $extraFiles ['staff'] ['php'] = '_data/departments.xml';
+  if ( strpos($html, '{staff')       !== FALSE ) $extraFiles ['staff'] ['php'] = '_data/staff.xml';
+  if ( strpos($html, '{files')       !== FALSE ) $extraFiles ['staff'] ['php'] = '_data/files.json';
+  if ( strpos($html, '{departments') !== FALSE ) $extraFiles ['staff'] ['php'] = '_data/departments.xml';
 
   $sources = padExplode ( $padContent, ',');
 

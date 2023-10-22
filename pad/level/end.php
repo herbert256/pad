@@ -26,9 +26,12 @@
   if ( $padBefore [$pad] == 2 ) 
     include pad . 'level/split/before3.php';
 
-  include pad . "options/end.php";
+  include pad . 'options/end.php';
 
   padResetLvl ($pad);
+
+  if ( $padTraceTypes ['level'] )
+    include pad . 'trace/lvl_end.php';    
   
   $pad--;
 

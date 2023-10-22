@@ -2,7 +2,7 @@
 
   include pad . 'level/tag.php';
   include pad . 'level/setup.php';    
- 
+
   if ( ! in_array ( $padTag [$pad], $padPrmNoParse  )  )
     include pad . 'level/parms.php';
 
@@ -22,13 +22,16 @@
   include pad . 'level/base.php';
   include pad . 'level/data.php';
 
-  include pad . "options/start.php";
+  if ( $padTraceTypes ['level'] )
+    include pad . 'trace/lvl_info.php';    
+
+  include pad . 'options/start.php';
 
   if ( count ( $padOptionsApp [$pad] ) )
-    include pad . "options/app.php";
+    include pad . 'options/app.php';
 
   include pad . 'level/name.php';
-  
+
   if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']) )
     include pad . 'callback/init.php' ;
 

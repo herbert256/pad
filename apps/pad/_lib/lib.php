@@ -169,8 +169,8 @@
       $ext   = substr($file,    strrpos($file, '.')+1 );
       $item  = substr($file, 1, strrpos($file, '.')-1 );
 
-      if ( substr($item, -4) == 'todo'      ) continue;
-      if ( $item == 'index'                 ) continue;
+      if ( substr($item, -4) == 'todo'     ) continue;
+      if ( $item == 'index'                ) continue;
       if ( $ext <> 'pad' and $ext <> 'php' ) continue;
 
       $list [$item] ['item'] = $item;

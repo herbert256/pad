@@ -26,6 +26,15 @@
   $padTrackDbRequest   = FALSE;
   $padTrackDbData      = FALSE;
 
+  // Trace the working of PAD
+
+  $padTraceTypes ['parse'] = TRUE;
+  $padTraceTypes ['level'] = TRUE;
+  $padTraceTypes ['occur'] = TRUE;
+  $padTraceTypes ['var']   = TRUE;
+  $padTraceTypes ['field'] = TRUE;
+  $padTraceTypes ['eval']  = TRUE;
+
   // Cache settings
   
   $padCacheServerAge       = 0;                    //  Seconds to keep the cache at pad server side, 
