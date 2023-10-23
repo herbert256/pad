@@ -34,6 +34,7 @@
   $padTraceTypes ['var']   = TRUE;
   $padTraceTypes ['field'] = TRUE;
   $padTraceTypes ['eval']  = TRUE;
+  $padTraceTypes ['error'] = TRUE;
 
   // Cache settings
   

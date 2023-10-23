@@ -1,5 +1,5 @@
 <?php
 
-  padTrace ( 'level', 'start', 'var=' . $padFld . 'options=' . padJson($padOpts) );
+  padTrace ( 'var', 'start', 'var=' . $padFld . ' options=' . padJson($padOpts) );
 
 ?>

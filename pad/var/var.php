@@ -21,7 +21,7 @@
   }
 
   if ( $padTraceTypes ['var'] )
-    include pad . 'trace/lvl_start.php';   
+    include pad . 'trace/var_start.php';   
 
   if ( substr($padFld, 0, 1) == '$' ) 
     $padFld = padFieldValue ( substr($padFld,1) );
@@ -37,7 +37,7 @@
   $padVal = padVarOpts ($padVal, $padOpts);
 
   if ( $padTraceTypes ['var'] )
-    include pad . 'trace/lvl_end.php';   
+    include pad . 'trace/var_end.php';   
 
   padPad ( $padVal );
 

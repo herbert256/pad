@@ -14,9 +14,9 @@
 
   $html = padFileGetContents ("$basePage.pad");
 
-  if ( strpos($html, '{staff')       !== FALSE ) $extraFiles ['staff'] ['php'] = '_data/staff.xml';
-  if ( strpos($html, '{files')       !== FALSE ) $extraFiles ['staff'] ['php'] = '_data/files.json';
-  if ( strpos($html, '{departments') !== FALSE ) $extraFiles ['staff'] ['php'] = '_data/departments.xml';
+  if ( strpos($html, '{staff')       !== FALSE ) $extraFiles ['x1'] ['php'] = '_data/staff.xml';
+  if ( strpos($html, '{files')       !== FALSE ) $extraFiles ['x2'] ['php'] = '_data/files.json';
+  if ( strpos($html, '{departments') !== FALSE ) $extraFiles ['x3'] ['php'] = '_data/departments.xml';
 
   $sources = padExplode ( $padContent, ',');
 
@@ -28,16 +28,16 @@
 
   foreach ( $sources as $source ) {
     if     ( substr ($source, -4) == '.php')  $extraFiles [$source] ['php']   = $source;
-    elseif ( substr ($source, -4) == '.pad')  $extraFiles [$source] ['pad']   = $source;
+    elseif ( substr ($source, -4) == '.pad')  $extraFiles [$source] ['data']   = $source;
     else                                      $extraFiles [$source] ['other'] = $source;
   }
 
   if ( padExists ( "$baseDir/_inits.php" ) ) $extraFiles ['inits'] ['php'] = "$dir/_inits.php";
-  if ( padExists ( "$baseDir/_inits.pad" ) ) $extraFiles ['inits'] ['pad'] = "$dir/_inits.pad";
+  if ( padExists ( "$baseDir/_inits.pad" ) ) $extraFiles ['inits'] ['data'] = "$dir/_inits.pad";
 
   foreach ($extraFiles as $key => $value ) {
     if ( ! isset ( $extraFiles [$key] ['php'] )   ) $extraFiles [$key] ['php']   = '';
-    if ( ! isset ( $extraFiles [$key] ['pad'] )   ) $extraFiles [$key] ['pad']   = '';
+    if ( ! isset ( $extraFiles [$key] ['data'] )   ) $extraFiles [$key] ['data']   = '';
     if ( ! isset ( $extraFiles [$key] ['other'] ) ) $extraFiles [$key] ['other'] = '';
   }
 

@@ -79,6 +79,9 @@
  
       $error = "$file:$line " . padMakeSafe ( $error );
 
+      if ( $GLOBALS ['padTraceTypes'] ['error'] )
+        include pad . 'trace/error.php';    
+
       $GLOBALS ['padErrrorList'] [] = $error; 
 
       $GLOBALS['padErrorFile']  = $file;

@@ -37,8 +37,11 @@
 
 go: $end = strpos($source, '}');
 
-    if ( $end === FALSE )
+    if ( $end === FALSE ) {
+      #$source = str_replace ('{', '&open;', $source);
+      #$source = str_replace ('}', '&close;', $source);
       return $source;
+    }
 
     $start = strrpos ($source, '{', $end - strlen($source));
     
