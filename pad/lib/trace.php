@@ -1,14 +1,28 @@
 <?php
 
 
+  function padTraceGo ( $file, $trace ) {
+
+    $file = str_replace ( '@', '_', $file );
+    $file = str_replace ( "'", '_', $file );
+    $file = str_replace ( '=', '_', $file );
+
+    padFilePutContents ( $file, $trace, true );
+
+  }
+
   function padTrace ( $type, $event, $info ) {
 
     if ( ! isset ( $GLOBALS ['padTraceTypes'] [$type] ) )
       return;
 
-    global $pad, $padTrace, $padOccur, $padPage, $padReqID;
+    global $padTrace, $padTraceId, $padTraceTypes;
+    global $pad, $padOccur, $padTag, $padPage, $padReqID ;
  
     $padTrace++;
+
+    if ( $type == 'level' and $event == 'start' ) 
+      $padTraceId [$pad] = $padTrace;
 
     if ( $event == 'start' ) {
       if     ( $type == 'level' ) $GLOBALS ['padTraceLevel'] [$pad] = $padTrace;
@@ -21,21 +35,47 @@
     elseif ( isset ( $GLOBALS ["padTrace$type"] ) ) $id = $GLOBALS ["padTrace$type"];
     else                                            $id = $padTrace;                                       
 
-    padFilePutContents ( 
+    $trace = sprintf ( '%-8s',  $pad . '/' . $padOccur [$pad] )
+           . sprintf ( '%-8s',  $id    )
+           . sprintf ( '%-10s', $type  )
+           . sprintf ( '%-10s', $event )
+           . padMakeSafe ( $info, 80 );  
 
-      "trace/$padPage/$padReqID.txt",
+    $location = "trace/$padPage/$padReqID";
 
-        sprintf ( '%-8s',  $pad . '/' . $padOccur [$pad] )
-      . sprintf ( '%-8s',  $id    )
-      . sprintf ( '%-10s', $type  )
-      . sprintf ( '%-10s', $event )
-      . padMakeSafe ( $info, 80 ),  
+    if ( $padTraceTypes ['global'] )
+      if ( $padTraceTypes ['tree'] )
+        padTraceGo ( "$location/global.txt", $trace );
+      else
+        padTraceGo ( "$location.txt", $trace );
 
-      true
+    if ( ! $padTraceTypes ['tree'] )
+      return;
 
-    );
+    for ( $i = 0; $i <= $pad; $i++ ) {
+      if ( $i > 0 )
+        $location .= '/' . $padTraceId [$i] . '-' . $padTag [$i];
+      if ( $padOccur [$i] <> 0 and $padTraceTypes ['occur'] )
+        $location .= '/' . $padOccur [$i];
+      if ( $padTraceTypes ['nested'] )
+        padTraceGo ( "$location/trace.txt", $trace );
+    }
+
+    if ( $padTraceTypes ['types'] )
+      padTraceGo ( "$location/$type.txt", $trace );
+
+    if ( $padTraceTypes ['local'] )
+      padTraceGo ( "$location/local.txt", $trace );
+
+    if ( $type == 'error' ) {
+      padDumpToDir ( $info, $location );
+      echo "ERROR -> $info<br>";
+      echo "ERROR -> $location";
+      padExit ();
+    }
+
+    $GLOBALS ['padTraceDir'] = $location;
 
   }
-
   
 ?>

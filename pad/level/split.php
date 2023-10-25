@@ -1,5 +1,8 @@
 <?php
 
+  if ( $padTraceTypes ['content'] )
+    $padTraceContent = $padTrue [$pad];
+
   $padcontent = $padTrue [$pad];
 
   $padOpenClose = padOpenCloseList ( $padTrue [$pad]) ;

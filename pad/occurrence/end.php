@@ -4,6 +4,4 @@
   
   padResetOcc ($pad);
 
-  $padInOccur = FALSE;
-
 ?>

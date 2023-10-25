@@ -28,9 +28,6 @@
 
   $padWalk       [$pad] = 'start';
   $padWalkData   [$pad] = [];
-  
-  $padDbgLvl [$pad] = '';
-  $padDbgOcc [$pad] = '';
 
   $padDone       [$pad] = [];
   $padOccur      [$pad] = 0;
@@ -66,7 +63,9 @@
   $padForceTagName  = '';
   $padForceDataName = '';
 
+  $padTraceId [$pad] = 0;
+  
   if ( $padTraceTypes ['level'] )
     include pad . 'trace/lvl_start.php';    
-  
+
 ?>

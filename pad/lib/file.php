@@ -42,6 +42,10 @@
     
     $file = padData . str_replace(':', '_', $in);
 
+    $file = str_replace ( '@', '_', $file );
+    $file = str_replace ( "'", '_', $file );
+    $file = str_replace ( '=', '_', $file );
+
     if ( ! padValidFile ( $file ) )
       return padError ("Invalid file name: $file");
 

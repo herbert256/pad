@@ -28,14 +28,34 @@
 
   // Trace the working of PAD
 
-  $padTraceTypes ['parse'] = TRUE;
-  $padTraceTypes ['level'] = TRUE;
-  $padTraceTypes ['occur'] = TRUE;
-  $padTraceTypes ['var']   = TRUE;
-  $padTraceTypes ['field'] = TRUE;
-  $padTraceTypes ['eval']  = TRUE;
-  $padTraceTypes ['error'] = TRUE;
+  $padTraceTypes ['global'] = TRUE;
 
+  $padTraceTypes ['tree']     = TRUE;
+  $padTraceTypes ['occur']    = FALSE;
+  $padTraceTypes ['nested']   = FALSE;
+  $padTraceTypes ['local']    = TRUE;
+  $padTraceTypes ['types']    = FALSE;
+  
+  $padTraceTypes ['store']    = FALSE;
+  $padTraceTypes ['sequence'] = FALSE;
+
+  $padTraceTypes ['level']    = TRUE;
+  $padTraceTypes ['start']    = TRUE;
+  $padTraceTypes ['end']      = FALSE;
+  $padTraceTypes ['flags']    = FALSE;
+  $padTraceTypes ['true']     = FALSE;
+  $padTraceTypes ['false']    = FALSE;
+  $padTraceTypes ['data']     = FALSE;
+  $padTraceTypes ['content']  = FALSE;
+
+  $padTraceTypes ['build']    = FALSE;
+  $padTraceTypes ['parse']    = FALSE;
+  $padTraceTypes ['var']      = FALSE;
+  $padTraceTypes ['field']    = FALSE;
+  $padTraceTypes ['eval']     = FALSE;
+
+  $padTraceTypes ['error']    = TRUE;
+  
   // Cache settings
   
   $padCacheServerAge       = 0;                    //  Seconds to keep the cache at pad server side, 

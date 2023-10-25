@@ -36,6 +36,9 @@
 
   $GLOBALS [$padStoreName] [$padName [$pad]] = $padStoreData;
 
+  if ( $padTraceTypes ['store'] and $padTraceTypes ['tree'] )
+    padFilePutContents ( "$padTraceDir/store.pad", $padStoreData );
+
   $padContent = '';
 
   return NULL;

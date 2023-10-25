@@ -1,8 +1,6 @@
 <?php
 
-  $padOccur   [$pad]++;
-
-  $padInOccur = TRUE;
+  $padOccur [$pad]++;
 
   $padPad     [$pad] = $padBase [$pad];
   $padKey     [$pad] = key($padData [$pad]);
