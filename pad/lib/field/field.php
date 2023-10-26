@@ -47,7 +47,7 @@
     elseif ($type == 8) $return = ( $value === INF                                                ) ? ''    : $value;
     elseif ($type == 9) $return = ( $value === NULL                                               ) ? TRUE  : FALSE;
 
-    if ( $GLOBALS ['padTraceTypes'] ['field'] )
+    if ( $GLOBALS ['padTrace'] )
       include pad . 'trace/field.php';    
 
     return $return;

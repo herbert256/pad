@@ -30,7 +30,7 @@
 
   padResetLvl ($pad);
 
-  if ( $padTraceTypes ['level'] )
+  if ( $padTrace )
     include pad . 'trace/lvl_end.php';    
   
   $pad--;

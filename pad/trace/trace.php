@@ -11,10 +11,8 @@
 
   }
 
-  function padTrace ( $type, $event, $info ) {
 
-    if ( ! isset ( $GLOBALS ['padTraceTypes'] [$type] ) )
-      return;
+  function padTrace ( $type, $event, $info='' ) {
 
     global $padTrace, $padTraceId, $padTraceTypes;
     global $pad, $padOccur, $padTag, $padPage, $padReqID ;
@@ -30,15 +28,18 @@
       else                        $GLOBALS ["padTrace$type"]        = $padTrace;
     }
 
-    if     ( $type == 'level' )                     $id = $GLOBALS ['padTraceLevel'] [$pad];
-    elseif ( $type == 'occur' )                     $id = $GLOBALS ['padTraceOccur'] [$pad];
-    elseif ( isset ( $GLOBALS ["padTrace$type"] ) ) $id = $GLOBALS ["padTrace$type"];
+    $prefix = ( $pad < 0 ) ? '0/0' : '/' . $padOccur [$pad];
+
+    if     ( $pad < 0         )                     $id = $padTrace;
+    elseif ( $type == 'level' )                     $id = $GLOBALS ['padTraceLevel'] [$pad] ?? 0;
+    elseif ( $type == 'occur' )                     $id = $GLOBALS ['padTraceOccur'] [$pad] ?? 0;
+    elseif ( isset ( $GLOBALS ["padTrace$type"] ) ) $id = $GLOBALS ["padTrace$type"]        ?? 0;
     else                                            $id = $padTrace;                                       
 
-    $trace = sprintf ( '%-8s',  $pad . '/' . $padOccur [$pad] )
-           . sprintf ( '%-8s',  $id    )
-           . sprintf ( '%-10s', $type  )
-           . sprintf ( '%-10s', $event )
+    $trace = sprintf ( '%-8s',  $prefix )
+           . sprintf ( '%-8s',  $id     )
+           . sprintf ( '%-10s', $type   )
+           . sprintf ( '%-10s', $event  )
            . padMakeSafe ( $info, 80 );  
 
     $location = "trace/$padPage/$padReqID";
@@ -68,10 +69,8 @@
       padTraceGo ( "$location/local.txt", $trace );
 
     if ( $type == 'error' ) {
-      padDumpToDir ( $info, $location );
-      echo "ERROR -> $info<br>";
-      echo "ERROR -> $location";
-      padExit ();
+      $id = uniqid ();
+      padDumpToDir ( $info, "$location/ERROR-$id" );
     }
 
     $GLOBALS ['padTraceDir'] = $location;

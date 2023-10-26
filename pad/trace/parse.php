@@ -1,5 +1,8 @@
 <?php
 
+  if ( ! $padTraceTypes ['parse'] )
+    return;
+
   if (  $padStart [$pad] > 50 ) {
     $padTraceStart = $padStart [$pad] - 50;
     $padTraceEnd   = 50;

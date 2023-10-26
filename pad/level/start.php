@@ -22,7 +22,7 @@
   include pad . 'level/base.php';
   include pad . 'level/data.php';
 
-  if ( $padTraceTypes ['level'] )
+  if ( $padTrace )
     include pad . 'trace/lvl_info.php';    
 
   include pad . 'options/start.php';

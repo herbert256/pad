@@ -65,7 +65,7 @@
 
   $padTraceId [$pad] = 0;
   
-  if ( $padTraceTypes ['level'] )
+  if ( $padTrace )
     include pad . 'trace/lvl_start.php';    
 
 ?>

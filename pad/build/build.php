@@ -8,8 +8,8 @@
 
   $padBase [$pad] = $padBuildLib . str_replace ( '@pad@', $padBuildPage, $padBuildBase );
 
-  if ( $padTraceTypes ['build'] )
-    padTrace ( 'build', 'info', $padBase [$pad] ); 
+  if ( $padTrace )
+    include pad . 'trace/build.php';
 
   include pad . 'occurrence/start.php';
 

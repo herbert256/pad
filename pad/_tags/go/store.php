@@ -36,8 +36,8 @@
 
   $GLOBALS [$padStoreName] [$padName [$pad]] = $padStoreData;
 
-  if ( $padTraceTypes ['store'] and $padTraceTypes ['tree'] )
-    padFilePutContents ( "$padTraceDir/store.pad", $padStoreData );
+  if ( $padTrace )
+    include pad . 'trace/store.php';
 
   $padContent = '';
 

@@ -24,8 +24,7 @@
 
   } 
 
-  if ( $padTraceTypes ['sequence'] )
-    if ( $padTraceTypes ['level'] and $padTraceTypes ['tree'] )
-      padFilePutContents ( "$padTraceDir/sequence.json", $padSeqReturn );
+  if ( $padTrace )
+    include pad . 'trace/sequence.php';
 
 ?>

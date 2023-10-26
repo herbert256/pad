@@ -3,8 +3,8 @@
 
   function padDump ( $info='' ) {
 
-    set_error_handler     ( 'padDumpError' );
-    set_exception_handler ( 'padDumpException' );
+    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
+    $reporting = error_reporting (0);
 
     try {
 
@@ -12,26 +12,12 @@
 
     } catch (Throwable $error) {
   
-      padErrorStop ( 'DUMP-CATCH: ' . $error->getMessage(), $error->getFile(), $error->getLine() );
+      padErrorStop ( 'DUMP-CATCH: ' . $error->getMessage(), $error->getFile(), $error->getLine(), $info );
   
     }
 
     padStop (500);
 
-  }
-
-
-  function padDumpError ( $type, $error, $file, $line ) {
-
-    padErrorStop ( "DUMP-ERROR: $error", $file, $line );
- 
-  }
-
-
-  function padDumpException ( $error ) {
-
-    padErrorStop ( 'DUMP-EXCEPTION: ' . $error->getMessage(), $error->getFile(), $error->getLine() ); 
- 
   }
 
 

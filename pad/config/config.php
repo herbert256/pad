@@ -28,6 +28,8 @@
 
   // Trace the working of PAD
 
+  $padTrace = TRUE;
+
   $padTraceTypes ['global'] = TRUE;
 
   $padTraceTypes ['tree']     = TRUE;

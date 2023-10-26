@@ -1,5 +1,6 @@
 <?php
 
-  $padTraceCount = $padTraceCountLevel = $padTraceCountOccur = $padTraceCountVar = $padTraceCountEval = 0; 
+  if ( $padTrace )
+    include pad . 'trace/start.php';
 
 ?>

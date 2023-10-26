@@ -1,5 +1,7 @@
 <?php
 
+  return;
+  
   if ( padPageCheck ($padPage) )
     return;
 

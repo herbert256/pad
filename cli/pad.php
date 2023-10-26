@@ -6,8 +6,9 @@
   //  =============================================================================
   //
   //  This is the PAD startup file for CLI
-
-  //  php pad.php <page>
+  // 
+  //
+  //  usage: php pad.php <page>
   //
   //  <page> is without '.php' or '.pad' extension
   //
