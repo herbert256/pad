@@ -64,5 +64,38 @@
   
   }
 
- 
+
+  function padErrorExit ( $error ) {
+    
+    padEmptyBuffers ();
+
+    if ( ! headers_sent () )
+      header ( 'HTTP/1.0 500 Internal Server Error' );
+
+    if ( padLocal () )
+      echo "\n<pre>$error</pre>";
+    else
+      echo 'Error: ' . padID ();
+
+    $GLOBALS ['padSkipShutdown']     = TRUE;
+    $GLOBALS ['padSkipBootShutdown'] = TRUE;
+
+    exit;
+  
+  }
+
+
+  function padErrorLogCheck ( $type, $info ) {
+
+    $md5 = md5 ( trim($info) );
+
+    if ( isset ( $GLOBALS["padErrorCheck_$type"] ) and isset ( $GLOBALS["padErrorCheck_$type"] [$md5] ) )
+      return TRUE;
+
+    $GLOBALS["padErrorCheck_$type"] [$md5] = TRUE;
+
+    return FALSE;
+
+  }
+
 ?>

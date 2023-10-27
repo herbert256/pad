@@ -12,6 +12,7 @@
   $padCacheStop  = 0;
   $padPageLevel  = [];
   $padTrace      = 0;
+  $padInTrace    = FALSE;
   
   $padFlagStore = $padSeqStore = $padDataStore = $padSeqStore = [];
 

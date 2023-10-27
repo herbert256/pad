@@ -49,28 +49,12 @@
       if ( ! padErrorLogCheck ( 'catch', $log ) ) 
         padFilePutContents ( 'error_log.txt', padID () . ' - ' . $log, true );
     
-    } catch (Throwable $e) {
-
-      // giving up
+    } catch (Throwable $ignored) {
   
     }
 
     error_reporting ($reporting);
     restore_error_handler ();
-
-  }
-
-
-  function padErrorLogCheck ( $type, $info ) {
-
-    $md5 = md5 ( trim($info) );
-
-    if ( isset ( $GLOBALS["padErrorCheck_$type"] ) and isset ( $GLOBALS["padErrorCheck_$type"] [$md5] ) )
-      return TRUE;
-
-    $GLOBALS["padErrorCheck_$type"] [$md5] = TRUE;
-
-    return FALSE;
 
   }
 

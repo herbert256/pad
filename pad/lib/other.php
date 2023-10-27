@@ -1,6 +1,28 @@
 <?php
 
 
+  function padEmptyBuffers () {
+
+    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
+    $reporting = error_reporting (0);
+
+    try {
+
+      $j = ob_get_level (); 
+     
+      for ( $i = 1; $i <= $j; $i++ ) 
+        ob_get_clean ();
+
+    } catch (Throwable $ignored) {
+
+    }
+
+    error_reporting ($reporting);
+    restore_error_handler ();
+
+  }
+
+
   function padCloseWithPath () {
 
     global $pad, $padOpt;
@@ -545,16 +567,6 @@
 
     error_reporting ($reporting);
     restore_error_handler ();    
-
-  }
-
-
-  function padEmptyBuffers () {
-
-    $buffers = ob_get_level ();
-
-    for ($i = 1; $i <= $buffers; $i++)
-      ob_get_clean();
 
   }
 

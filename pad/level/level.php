@@ -19,7 +19,7 @@
   $padFirst   = substr ( $padBetween , 0, 1 );
   $padWords   = preg_split ("/[\s]+/", $padBetween, 2, PREG_SPLIT_NO_EMPTY);
 
-  if ( $padTraceTypes ['parse'] )
+  if ( $padTrace )
     include pad . 'trace/parse.php';  
 
   if ( in_array ( $padFirst, ['$','!','#','&'] ) ) 

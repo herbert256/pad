@@ -18,6 +18,8 @@
 
       padDumpToDirGo ( $info, $dir );
 
+      unset ( $GLOBALS ['padDumpToDir'] );
+
     } catch (Throwable $e) {
 
       padDumpToDirCatch ( $info, $e, $dir );

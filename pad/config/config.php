@@ -28,33 +28,33 @@
 
   // Trace the working of PAD
 
-  $padTrace = TRUE;
+  $padTrace = FALSE;
 
-  $padTraceTypes ['global'] = TRUE;
+  $padTraceTypes ['global']   = TRUE;
 
   $padTraceTypes ['tree']     = TRUE;
-  $padTraceTypes ['occur']    = FALSE;
-  $padTraceTypes ['nested']   = FALSE;
+  $padTraceTypes ['occur']    = TRUE;
+  $padTraceTypes ['nested']   = TRUE;
   $padTraceTypes ['local']    = TRUE;
-  $padTraceTypes ['types']    = FALSE;
+  $padTraceTypes ['types']    = TRUE;
   
-  $padTraceTypes ['store']    = FALSE;
-  $padTraceTypes ['sequence'] = FALSE;
+  $padTraceTypes ['store']    = TRUE;
+  $padTraceTypes ['sequence'] = TRUE;
 
   $padTraceTypes ['level']    = TRUE;
   $padTraceTypes ['start']    = TRUE;
-  $padTraceTypes ['end']      = FALSE;
-  $padTraceTypes ['flags']    = FALSE;
-  $padTraceTypes ['true']     = FALSE;
-  $padTraceTypes ['false']    = FALSE;
-  $padTraceTypes ['data']     = FALSE;
-  $padTraceTypes ['content']  = FALSE;
+  $padTraceTypes ['end']      = TRUE;
+  $padTraceTypes ['flags']    = TRUE;
+  $padTraceTypes ['true']     = TRUE;
+  $padTraceTypes ['false']    = TRUE;
+  $padTraceTypes ['data']     = TRUE;
+  $padTraceTypes ['content']  = TRUE;
 
-  $padTraceTypes ['build']    = FALSE;
-  $padTraceTypes ['parse']    = FALSE;
-  $padTraceTypes ['var']      = FALSE;
-  $padTraceTypes ['field']    = FALSE;
-  $padTraceTypes ['eval']     = FALSE;
+  $padTraceTypes ['build']    = TRUE;
+  $padTraceTypes ['parse']    = TRUE;
+  $padTraceTypes ['var']      = TRUE;
+  $padTraceTypes ['field']    = TRUE;
+  $padTraceTypes ['eval']     = TRUE;
 
   $padTraceTypes ['error']    = TRUE;
   

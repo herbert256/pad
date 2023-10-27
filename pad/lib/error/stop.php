@@ -67,40 +67,55 @@
   }
 
 
-  function padErrorStopCatchGo ( $error, $file, $line, $e, $org ) {
+  function padErrorStopCatchGo ( $error, $file, $line, $e, $error1 ) {
 
     if ( isset ( $GLOBALS ['padErrrorList'] ) )
       foreach ( $GLOBALS ['padErrrorList'] as $list )
         padErrorLog ( $list );
 
-    padErrorLog ( $org );
-    padErrorLog ( "$file:$line $error");
-    padErrorLog ( $e->getFile() . ':' .  $e->getLine() . ' ERROR-STOP: ' . $e->getMessage() );
+    $error2 = "$file:$line $error";
+    $error3 = $e->getFile() . ':' .  $e->getLine() . ' ERROR-STOP: ' . $e->getMessage() ;
 
-    echo "Error: " . padID ();
+    padErrorLog ( $error1 );
+    padErrorLog ( $error2 );
+    padErrorLog ( $error3 );
+
+    padErrorExit ( "$error1\n$error2\n$error3" );
 
   }
 
 
-  function padErrorStopCatchCatch ( $error, $file, $line, $e, $e2, $org ) {
+  function padErrorStopCatchCatch ( $error, $file, $line, $e1, $e2, $org ) {
 
     set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
     error_reporting (0);
 
     try {   
 
-      $file = 'oops/' . padID () . '.txt';
-      
-      padFilePutContents ( $file, $org, TRUE );
-      padFilePutContents ( $file, "$file:$line $error", TRUE );
-      padFilePutContents ( $file, $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage(), TRUE );
-      padFilePutContents ( $file, $e2->getFile() . ':' . $e2->getLine() . ' ' . $e2->getMessage(), TRUE );
+      padFilePutContents ( 'oops.txt', $org, TRUE );
+      padFilePutContents ( 'oops.txt', "$file:$line $error", TRUE );
+      padFilePutContents ( 'oops.txt', $e1->getFile() . ':' . $e1->getLine() . ' ' . $e2->getMessage(), TRUE );
+      padFilePutContents ( 'oops.txt', $e2->getFile() . ':' . $e2->getLine() . ' ' . $e2->getMessage(), TRUE );
 
-    } catch (Throwable $e2 ) {
+      padErrorExit ( 'Internal error, see oops.txt' );
 
-      echo 'oops';
+    } catch (Throwable $ignored ) {
+
+      padErrorStopCatchCatchCatch ();
     
     }
+
+  }
+
+
+  function padErrorStopCatchCatchCatch ( ) {
+
+    echo 'oops (2)';
+
+    $GLOBALS ['padSkipShutdown']     = TRUE;
+    $GLOBALS ['padSkipBootShutdown'] = TRUE;
+
+    exit;
 
   }
 
