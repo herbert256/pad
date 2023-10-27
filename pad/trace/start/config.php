@@ -1,6 +1,6 @@
 <?php
 
-  include_once pad . 'trace/trace.php';
+  include pad . 'trace/lib/inits.php';
 
   $padTrace = 0;
   

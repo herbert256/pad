@@ -1,6 +1,13 @@
 <?php
   
 
+  function padErrorLogFile ( $info ) {
+  
+    padFilePutContents ( 'error_log.txt', padID () . ' - ' . $info,  true );
+
+  }
+
+
   function padErrorLog ( $info ) {
 
     if ( ! $info )
@@ -42,12 +49,12 @@
 
     try {
 
-      padFilePutContents ( 'error_log.txt', padID () . ' - ' . $info,  true );
+      padErrorLogFile ( $info );
 
       $log = $e->getFile() . ':' .  $e->getLine() . ' LOG-ERROR: ' . $e->getMessage();
 
       if ( ! padErrorLogCheck ( 'catch', $log ) ) 
-        padFilePutContents ( 'error_log.txt', padID () . ' - ' . $log, true );
+        padErrorLogFile ( $log );
     
     } catch (Throwable $ignored) {
   

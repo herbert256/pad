@@ -13,7 +13,7 @@
   if ( ! $padContent )
     $padStoreSource = $padOpt [$pad] [2];  
   elseif ($padTag [$pad] == 'content' and $padWalk [$pad] == 'start')
-    $padStoreSource = $padcontent;
+    $padStoreSource = $padTrue [$pad];
   else
     $padStoreSource = $padContent;
 
@@ -37,7 +37,7 @@
   $GLOBALS [$padStoreName] [$padName [$pad]] = $padStoreData;
 
   if ( $padTrace )
-    include pad . 'trace/store.php';
+    include pad . 'trace/files/store.php';
 
   $padContent = '';
 

@@ -1,6 +1,6 @@
 <?php
 
   if ( $padTrace )
-    include pad . 'trace/start.php';
+    include pad . 'trace/start/config.php';
 
 ?>

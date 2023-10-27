@@ -107,7 +107,7 @@
   function padExit () {
 
     if ( isset ( $GLOBALS ['padTrace'] ) and $GLOBALS ['padTrace'] )
-      include pad . 'trace/end.php';    
+      include pad . 'trace/end/config.php';    
 
     $GLOBALS ['padSkipShutdown']     = TRUE;
     $GLOBALS ['padSkipBootShutdown'] = TRUE;

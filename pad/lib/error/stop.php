@@ -92,12 +92,12 @@
 
     try {   
 
-      padFilePutContents ( 'oops.txt', $org, TRUE );
-      padFilePutContents ( 'oops.txt', "$file:$line $error", TRUE );
-      padFilePutContents ( 'oops.txt', $e1->getFile() . ':' . $e1->getLine() . ' ' . $e2->getMessage(), TRUE );
-      padFilePutContents ( 'oops.txt', $e2->getFile() . ':' . $e2->getLine() . ' ' . $e2->getMessage(), TRUE );
+      padErrorLogFile ( $org );
+      padErrorLogFile ( "$file:$line $error" );
+      padErrorLogFile ( $e1->getFile() . ':' . $e1->getLine() . ' ' . $e1->getMessage() );
+      padErrorLogFile ( $e2->getFile() . ':' . $e2->getLine() . ' ' . $e2->getMessage() );
 
-      padErrorExit ( 'Internal error, see oops.txt' );
+      padErrorExit ( 'Internal error, see error_log.txt' );
 
     } catch (Throwable $ignored ) {
 

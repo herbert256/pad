@@ -16,14 +16,4 @@
   if ( $padTraceTypes ['false'] )
     padTrace ( 'level', 'false', $padFalse [$pad] ); 
 
-  if ( ! $padTraceTypes ['tree'] )
-    return;
-
-  if ( $padTraceTypes ['content'] )
-    padFilePutContents ( "$padTraceDir/content.pad", $padTraceContent );
-
-  if ( $padTraceTypes ['data'] )
-    if ( ! padIsDefaultData ( $padData [$pad] ) )
-      padFilePutContents ( "$padTraceDir/data.json",   $padData [$pad] );
-
 ?>

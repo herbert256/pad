@@ -5,7 +5,7 @@
   $padErrorAction = 'pad';  // 'pad'    = PAD's own full blown error handler.
                             // 'boot'   = Use the lightweight PAD boot error handler
                             // 'php'    = Use the PHP defaults (php.ini).
-                            // 'stop'   = Stop processing but do PAD pad stop handling.
+                            // 'stop'   = Stop processing but do the PAD stop handling.
                             // 'exit'   = Exit, don't do the PAD stop handling
                             // 'ignore' = Ignore all errors and continue processing.
                             // 'report' = Report the error and continue processing.
@@ -26,37 +26,9 @@
   $padTrackDbRequest   = FALSE;
   $padTrackDbData      = FALSE;
 
-  // Trace the working of PAD
+   // Trace the working of PAD
 
-  $padTrace = FALSE;
-
-  $padTraceTypes ['global']   = TRUE;
-
-  $padTraceTypes ['tree']     = TRUE;
-  $padTraceTypes ['occur']    = TRUE;
-  $padTraceTypes ['nested']   = TRUE;
-  $padTraceTypes ['local']    = TRUE;
-  $padTraceTypes ['types']    = TRUE;
-  
-  $padTraceTypes ['store']    = TRUE;
-  $padTraceTypes ['sequence'] = TRUE;
-
-  $padTraceTypes ['level']    = TRUE;
-  $padTraceTypes ['start']    = TRUE;
-  $padTraceTypes ['end']      = TRUE;
-  $padTraceTypes ['flags']    = TRUE;
-  $padTraceTypes ['true']     = TRUE;
-  $padTraceTypes ['false']    = TRUE;
-  $padTraceTypes ['data']     = TRUE;
-  $padTraceTypes ['content']  = TRUE;
-
-  $padTraceTypes ['build']    = TRUE;
-  $padTraceTypes ['parse']    = TRUE;
-  $padTraceTypes ['var']      = TRUE;
-  $padTraceTypes ['field']    = TRUE;
-  $padTraceTypes ['eval']     = TRUE;
-
-  $padTraceTypes ['error']    = TRUE;
+  include pad . 'trace/config/trace.php';
   
   // Cache settings
   
