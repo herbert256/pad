@@ -7,8 +7,8 @@
     return;
 
   if ( $return )
-    padTrace ( 'exists', 'true', $file );
+    padTrace ( 'exists', 'true',  $file );
   else
-    padTrace ( 'exists', 'true', $file );
+    padTrace ( 'exists', 'false', $file );
    
 ?>

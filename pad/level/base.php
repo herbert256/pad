@@ -6,6 +6,6 @@
   else                       $padBase [$pad] = $padTrue [$pad];
 
   if ( $padTraceActive )
-    include pad . 'trace/files/base.php';  
+    include pad . 'trace/items/base.php';  
 
 ?>

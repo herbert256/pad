@@ -150,7 +150,7 @@
             $file = padBetween ($value, '"', '"');
         
           if ( $header == 'Content-Type' )
-            if     (strpos ($value, 'pad')       !== FALSE) $output ['type'] = 'pad';
+            if     (strpos ($value, 'html')       !== FALSE) $output ['type'] = 'html';
             elseif (strpos ($value, 'xml')        !== FALSE) $output ['type'] = 'xml';
             elseif (strpos ($value, 'json')       !== FALSE) $output ['type'] = 'json';
             elseif (strpos ($value, 'javascript') !== FALSE) $output ['type'] = 'json';
@@ -188,8 +188,8 @@
       $output ['type'] = padContentType ( $output ['data'] );
 
     if ( $GLOBALS ['padTraceActive'] )
-      include pad . 'trace/specials/sql.php';
-    
+      include pad . 'trace/items/curl.php';
+
     return $output;
     
   }

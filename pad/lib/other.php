@@ -508,10 +508,10 @@
 
   function padMakeSafe ( $input, $len=2048 ) {
 
-    if ( is_array($input) or is_object($input) )
+    if ( is_array($input) or is_object($input) ) 
       $input = padJson ($input);
 
-    $input = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '.', $input);
+    $input = preg_replace('/[\x00-\x1F\x7F-\xFF]/', ' ', $input);
     $input = preg_replace('/\s+/', ' ', $input);
     
     if ( strlen($input) > $len )

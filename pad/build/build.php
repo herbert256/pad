@@ -9,7 +9,7 @@
   $padBase [$pad] = $padBuildLib . str_replace ( '@pad@', $padBuildPage, $padBuildBase );
 
   if ( $padTraceActive )
-    include pad . 'trace/lines/build.php';
+    include pad . 'trace/items/build.php';
 
   include pad . 'occurrence/start.php';
 

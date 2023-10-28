@@ -8,6 +8,11 @@
 
   include pad . 'level/split.php';
 
+  if ( $padTraceActive ) {
+    include pad . 'trace/items/true.php';      
+    include pad . 'trace/items/false.php';      
+  }
+
   if ( padTagParm ('content') ) $padTrue  [$pad] = include pad . "_options/content.php";    
   if ( padTagParm ('else')    ) $padFalse [$pad] = include pad . "_options/else.php";    
   if ( padTagParm ('data')    ) $padData  [$pad] = include pad . "_options/data.php";   
@@ -21,9 +26,6 @@
   include pad . 'level/flags.php';
   include pad . 'level/base.php';
   include pad . 'level/data.php';
-
-  if ( $padTraceActive )
-    include pad . 'trace/lines/info.php';    
 
   include pad . 'options/start.php';
 

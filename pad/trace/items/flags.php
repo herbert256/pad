@@ -10,10 +10,4 @@
       ' count=' . count ( $padData [$pad] )
     );
 
-  if ( $padTraceTypes ['true'] )
-    padTrace ( 'level', 'true',  $padTrue  [$pad] ); 
-
-  if ( $padTraceTypes ['false'] )
-    padTrace ( 'level', 'false', $padFalse [$pad] ); 
-
 ?>

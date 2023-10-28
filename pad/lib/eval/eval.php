@@ -7,7 +7,7 @@
       return include pad . "_functions/$eval.php";
 
     if ( $GLOBALS ['padTraceActive'] )
-      include pad . 'trace/lines/eval_start.php';
+      include pad . 'trace/items/eval_start.php';
 
     if ( strlen(trim($eval)) == 0 )
       return ''; 
@@ -25,7 +25,7 @@
     elseif ( $result[$key][1] <> 'VAL' ) return padError("Result is not a value: $eval");
 
     if ( $GLOBALS ['padTraceActive'] )
-      include pad . 'trace/lines/eval_end.php';
+      include pad . 'trace/items/eval_end.php';
 
     return $result [$key] [0];
 

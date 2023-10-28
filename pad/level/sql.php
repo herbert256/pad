@@ -7,7 +7,7 @@
 
     padTrace ( 'sql', 'file', $input ); 
 
-    $file = "sql-" . $GLOBALS ['padTrace'];
+    $file = "sql/" . $GLOBALS ['padTrace'];
     $data = [ 'input' => $input, 'vars' => $vars, 'sql' => $sql, 'result' => $return ];
 
     padTraceFile ( $file, 'json',  $data );

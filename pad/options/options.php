@@ -14,13 +14,16 @@
     if ( in_array ( $padOptionName, $padOptionsWalk ) and ! isset ( $padDone [$pad] [$padOptionName] ) ) {
 
       padDone ( $padOptionName, TRUE );  
-
+ 
       if ( $padOptions == 'app' )
         $padCall = padApp . "_options/$padOptionName.php" ;
       else
         $padCall = pad . "_options/$padOptionName.php" ;
 
       include pad . 'call/call.php';
+
+      if ( $padTraceActive )
+        include pad . 'trace/items/options.php';       
 
     }
 

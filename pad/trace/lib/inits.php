@@ -34,7 +34,7 @@
     $padTraceTree = TRUE;
   elseif ( $padTraceTypes ['base'] or $padTraceTypes ['result'] ) 
     $padTraceTree = TRUE;
-  elseif ( $padTraceTypes ['types-global'] or  $padTraceTypes ['types-local'] ) 
+  elseif ( $padTraceTypes ['types-global'] or $padTraceTypes ['types-local'] ) 
     $padTraceTree = TRUE;
 
   if ( $padTraceTypes ['nested'] ) 
@@ -44,7 +44,7 @@
     $padTraceTypes ['nested'] = TRUE;
 
   if ( $padTraceTree and $padTraceTypes ['dumps'] )
-    padDumpToDir ( '', $padTraceLocation . "/START" );
+    padDumpToDir ( '', $padTraceLocation . "/start" );
 
   $padTraceId [$pad] = $padTrace + 1;
 

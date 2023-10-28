@@ -31,9 +31,11 @@
   $padTrace = TRUE;
 
   $padTraceTypes ['global']   = TRUE;
-
   $padTraceTypes ['nested']   = TRUE;
   $padTraceTypes ['local']    = TRUE;
+
+  $padTraceTypes ['types-global'] = TRUE;
+  $padTraceTypes ['types-local']  = TRUE;
 
   $padTraceTypes ['store']    = TRUE;
   $padTraceTypes ['sequence'] = TRUE;
@@ -41,16 +43,13 @@
   $padTraceTypes ['content']  = TRUE;
   $padTraceTypes ['base']     = TRUE;
   $padTraceTypes ['result']   = TRUE;
-
   $padTraceTypes ['occur']    = TRUE;
   $padTraceTypes ['xml']      = TRUE;
-
   $padTraceTypes ['start']    = TRUE;
   $padTraceTypes ['end']      = TRUE;
   $padTraceTypes ['flags']    = TRUE;
   $padTraceTypes ['true']     = TRUE;
   $padTraceTypes ['false']    = TRUE;
-
   $padTraceTypes ['build']    = TRUE;
   $padTraceTypes ['parse']    = TRUE;
   $padTraceTypes ['var']      = TRUE;
@@ -60,11 +59,10 @@
   $padTraceTypes ['call']     = TRUE;
   $padTraceTypes ['exists']   = TRUE;
   $padTraceTypes ['sql']      = TRUE;
+  $padTraceTypes ['get']      = TRUE;
   $padTraceTypes ['curl']     = TRUE;
   $padTraceTypes ['dumps']    = TRUE;
-
-  $padTraceTypes ['types-global'] = TRUE;
-  $padTraceTypes ['types-local']  = TRUE;
+  $padTraceTypes ['options']  = TRUE;
       
   // Cache settings
   
