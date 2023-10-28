@@ -1,15 +1,9 @@
 <?php
-
-  padTrace ( 'trace', 'end' );
   
-  padDumpToDir ( '', padTraceDir () . "/END" );
+  include pad . 'trace/lib/exits.php';
 
-  $padTraceBase  = $padTrace;
-
-  $padTrace      = $padTraceSaveTrace [$pad];
-  $padTraceTypes = $padTraceSaveTypes [$pad];
-  $padTraceTree  = $padTraceSaveTree  [$pad]
-  $padTraceStart = $padTraceSaveStart [$pad];
+  $padTraceBase = $padTrace;
+  $padTrace     = FALSE;
   
   return TRUE;
   

@@ -46,4 +46,7 @@
 
   }
 
+  if ( $padTraceActive )
+    include pad . 'trace/lines/parms.php';
+
 ?>

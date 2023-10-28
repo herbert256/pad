@@ -22,8 +22,8 @@
   include pad . 'level/base.php';
   include pad . 'level/data.php';
 
-  if ( $padTrace )
-    include pad . 'trace/lines/lvl_info.php';    
+  if ( $padTraceActive )
+    include pad . 'trace/lines/info.php';    
 
   include pad . 'options/start.php';
 

@@ -1,5 +1,8 @@
 <?php
 
+  if ( $padTraceActive )
+    include pad . 'trace/lines/call.php';
+
   ob_start();
   $padCallPHP = include_once $padCall;
   $padCallOB  = ob_get_clean();

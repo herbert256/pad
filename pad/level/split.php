@@ -1,6 +1,6 @@
 <?php
  
-  if ( $padTrace )
+  if ( $padTraceActive )
     include pad . 'trace/files/content.php';
 
   $padOpenClose = padOpenCloseList ( $padTrue [$pad] ) ;

@@ -24,7 +24,7 @@
 
   } 
 
-  if ( $padTrace )
+  if ( $padTraceActive )
     include pad . 'trace/files/sequence.php';
 
 ?>

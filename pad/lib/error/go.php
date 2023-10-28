@@ -39,7 +39,7 @@
 
   function padErrorGoGo ( $error ) {
 
-    if ( $GLOBALS ['padTrace'] )
+    if ( $GLOBALS ['padTraceActive'] )
       include pad . 'trace/lib/error.php';    
 
     $GLOBALS ['padErrrorList'] [] = $error; 

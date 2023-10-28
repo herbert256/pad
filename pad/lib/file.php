@@ -3,12 +3,27 @@
 
   function padExists ( $file ) {
 
+    if ( $GLOBALS ['padTraceActive'] and $GLOBALS ['padTraceTypes'] ['exists'] ) {
+
+      $return = file_exists ( $file );
+
+      include pad . 'trace/lines/exists.php';
+      
+      return $return;
+    
+    }
+
     return file_exists ( $file );
     
     if ( ! padValidFile ( $file ) )
       return FALSE;
     else
       return file_exists ( $file );
+
+  }
+
+  function padExistsTrace ( $file ) {
+
 
   }
 

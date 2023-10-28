@@ -20,7 +20,7 @@
 
   }
 
-  if ( $padTrace )
+  if ( $padTraceActive )
     include pad . 'trace/lines/var_start.php';   
 
   if ( substr($padFld, 0, 1) == '$' ) 
@@ -36,7 +36,7 @@
 
   $padVal = padVarOpts ($padVal, $padOpts);
 
-  if ( $padTrace )
+  if ( $padTraceActive )
     include pad . 'trace/lines/var_end.php';   
 
   padPad ( $padVal );

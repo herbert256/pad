@@ -41,6 +41,8 @@
   function padDbPart2 ( $padSqlConnect, $sql, $vars ) {
 
     global $pad, $padDbRowsFound, $padPrm;
+
+    $input = $sql;
     
     foreach ( $vars as $i => $replace ) {
 
@@ -126,6 +128,9 @@
     }
     else
       $return = '';
+
+    if ( $GLOBALS ['padTraceActive'] )
+      include pad . 'trace/specials/sql.php';
 
     return $return;
 

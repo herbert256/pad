@@ -6,6 +6,9 @@
     if ( in_array ( $eval, $GLOBALS ['padEvalFast'] ) )
       return include pad . "_functions/$eval.php";
 
+    if ( $GLOBALS ['padTraceActive'] )
+      include pad . 'trace/lines/eval_start.php';
+
     if ( strlen(trim($eval)) == 0 )
       return ''; 
 
@@ -20,6 +23,9 @@
     if     ( count($result) < 1        ) return padError("No result back: $eval");
     elseif ( count($result) > 1        ) return padError("More then one result back: $eval");
     elseif ( $result[$key][1] <> 'VAL' ) return padError("Result is not a value: $eval");
+
+    if ( $GLOBALS ['padTraceActive'] )
+      include pad . 'trace/lines/eval_end.php';
 
     return $result [$key] [0];
 

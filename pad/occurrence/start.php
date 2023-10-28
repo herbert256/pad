@@ -5,6 +5,9 @@
   $padPad     [$pad] = $padBase [$pad];
   $padKey     [$pad] = key($padData [$pad]);
   $padCurrent [$pad] = $padData [$pad] [$padKey [$pad]];
+
+  if ( $padTraceActive )
+    include pad . 'trace/lines/occur_start.php';  
   
   if ( $padWalk [$pad] <> 'start' )
     $padWalkData [$pad] [] = $padCurrent [$pad];

@@ -22,14 +22,50 @@
   $padTrackFileRequest = FALSE;
   $padTrackFileData    = FALSE; 
 
-  $padTrackDbSession   = FALSE;
-  $padTrackDbRequest   = FALSE;
-  $padTrackDbData      = FALSE;
+  $padTrackDbSession   = TRUE;
+  $padTrackDbRequest   = TRUE;
+  $padTrackDbData      = TRUE;
 
    // Trace the working of PAD
 
-  include pad . 'trace/config/trace.php';
-  
+  $padTrace = TRUE;
+
+  $padTraceTypes ['global']   = TRUE;
+
+  $padTraceTypes ['nested']   = TRUE;
+  $padTraceTypes ['local']    = TRUE;
+
+  $padTraceTypes ['store']    = TRUE;
+  $padTraceTypes ['sequence'] = TRUE;
+  $padTraceTypes ['data']     = TRUE;
+  $padTraceTypes ['content']  = TRUE;
+  $padTraceTypes ['base']     = TRUE;
+  $padTraceTypes ['result']   = TRUE;
+
+  $padTraceTypes ['occur']    = TRUE;
+  $padTraceTypes ['xml']      = TRUE;
+
+  $padTraceTypes ['start']    = TRUE;
+  $padTraceTypes ['end']      = TRUE;
+  $padTraceTypes ['flags']    = TRUE;
+  $padTraceTypes ['true']     = TRUE;
+  $padTraceTypes ['false']    = TRUE;
+
+  $padTraceTypes ['build']    = TRUE;
+  $padTraceTypes ['parse']    = TRUE;
+  $padTraceTypes ['var']      = TRUE;
+  $padTraceTypes ['field']    = TRUE;
+  $padTraceTypes ['eval']     = TRUE;
+  $padTraceTypes ['parms']    = TRUE;
+  $padTraceTypes ['call']     = TRUE;
+  $padTraceTypes ['exists']   = TRUE;
+  $padTraceTypes ['sql']      = TRUE;
+  $padTraceTypes ['curl']     = TRUE;
+  $padTraceTypes ['dumps']    = TRUE;
+
+  $padTraceTypes ['types-global'] = TRUE;
+  $padTraceTypes ['types-local']  = TRUE;
+      
   // Cache settings
   
   $padCacheServerAge       = 0;                    //  Seconds to keep the cache at pad server side, 
@@ -110,7 +146,7 @@
   $padTidyCcsid             = 'utf8'; 
   $padTidyConfig            = [ 
                                   'output-pad'     => TRUE,
-                                  'doctype'         => 'pad5',
+                                  'doctype'         => 'html5',
                                   'wrap'            => 0,
                                   'indent'          => TRUE,
                                   'tab-size'        => 2,
@@ -141,6 +177,7 @@
   $padFastLink              = 32;     // Lenght of the FastLink code in the URL
 
   //No paramenter parsing for below tags:
+
   $padPrmNoParse            = [ 'if', 'case', 'while', 'until', 'increment', 'decrement' ];
 
   $padTables    = [];

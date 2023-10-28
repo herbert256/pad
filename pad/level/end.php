@@ -30,8 +30,12 @@
 
   padResetLvl ($pad);
 
-  if ( $padTrace )
-    include pad . 'trace/lines/lvl_end.php';    
+  $padOccur [$pad] = 0;
+
+  if ( $padTraceActive ) {
+    include pad . 'trace/lines/end.php';    
+    include pad . 'trace/files/result.php';  
+  }
   
   $pad--;
 

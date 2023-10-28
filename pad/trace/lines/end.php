@@ -1,5 +1,6 @@
 <?php
 
-  padTrace ( 'pad', 'end' );
-
+  if ( $padTraceTypes ['end'] )
+    padTrace ( 'level', 'end', $padResult[$pad] );
+   
 ?>

@@ -187,6 +187,9 @@
     if ( ! $output ['type'] )
       $output ['type'] = padContentType ( $output ['data'] );
 
+    if ( $GLOBALS ['padTraceActive'] )
+      include pad . 'trace/specials/sql.php';
+    
     return $output;
     
   }

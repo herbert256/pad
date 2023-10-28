@@ -36,7 +36,7 @@
 
   $GLOBALS [$padStoreName] [$padName [$pad]] = $padStoreData;
 
-  if ( $padTrace )
+  if ( $padTraceActive )
     include pad . 'trace/files/store.php';
 
   $padContent = '';
