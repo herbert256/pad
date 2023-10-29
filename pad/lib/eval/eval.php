@@ -3,11 +3,11 @@
 
   function padEval ( $eval, $value='' ) {
 
-    if ( $GLOBALS ['padTraceActive'] )
-      return padEvalTrace ( $eval, $value );
-
     if ( in_array ( $eval, $GLOBALS ['padEvalFast'] ) )
       return include pad . "_functions/$eval.php";
+
+    if ( $GLOBALS ['padTraceActive'] )
+      return padEvalTrace ( $eval, $value );
 
     $result = [];
 

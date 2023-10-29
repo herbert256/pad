@@ -31,31 +31,40 @@
   $padTrace = TRUE;
 
   $padTraceTypes ['local']    = TRUE;
-  $padTraceTypes ['store']    = TRUE;
-  $padTraceTypes ['sequence'] = TRUE;
-  $padTraceTypes ['data']     = TRUE;
+  $padTraceTypes ['occur']    = TRUE; 
+
+  $padTraceTypes ['files']    = FALSE;
+  $padTraceTypes ['types']    = FALSE;
+
+  $padTraceTypes ['dumps']    = FALSE;
+
+  $padTraceTypes ['build']    = TRUE;
+
+  $padTraceTypes ['parse']    = TRUE;
+
+  $padTraceTypes ['parms']    = TRUE;
+  $padTraceTypes ['options']  = TRUE;
   $padTraceTypes ['content']  = TRUE;
-  $padTraceTypes ['base']     = TRUE;
-  $padTraceTypes ['result']   = TRUE;
-  $padTraceTypes ['occur']    = TRUE;
-  $padTraceTypes ['xml']      = TRUE;
   $padTraceTypes ['flags']    = TRUE;
   $padTraceTypes ['true']     = TRUE;
   $padTraceTypes ['false']    = TRUE;
-  $padTraceTypes ['build']    = TRUE;
-  $padTraceTypes ['parse']    = TRUE;
+  $padTraceTypes ['base']     = TRUE;
+  $padTraceTypes ['data']     = TRUE;
+
+  $padTraceTypes ['store']    = TRUE;
+  $padTraceTypes ['sequence'] = TRUE;
+
+  $padTraceTypes ['result']   = TRUE;
+
   $padTraceTypes ['var']      = TRUE;
   $padTraceTypes ['field']    = TRUE;
+
   $padTraceTypes ['eval']     = TRUE;
-  $padTraceTypes ['parms']    = TRUE;
   $padTraceTypes ['call']     = TRUE;
-  $padTraceTypes ['exists']   = TRUE;
+  $padTraceTypes ['exists']   = FALSE;
   $padTraceTypes ['sql']      = TRUE;
   $padTraceTypes ['get']      = TRUE;
   $padTraceTypes ['curl']     = TRUE;
-  $padTraceTypes ['dumps']    = TRUE;
-  $padTraceTypes ['options']  = TRUE;
-  $padTraceTypes ['types']    = TRUE;
       
   // Cache settings
   

@@ -81,6 +81,9 @@
 
   function padTraceFile ( $type, $extension, $data ) {  
 
+    if ( ! $GLOBALS ['padTraceTypes'] ['files'] )
+      return;
+
     global $padTrace, $padTraceDir, $padTraceActive;
 
     $padTraceActive = FALSE;
