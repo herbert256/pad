@@ -3,7 +3,9 @@
   include_once pad . 'trace/lib/trace.php';
 
   $padTrace        = $padTraceBase ?? 0;
-  $padTraceDirBase = "trace/$padPage/$padReqID"; 
+  
+  $padTraceDirBase = padFileCorrect ( "trace/$padPage/$padReqID" ); 
+
   $padTraceDir     = $padTraceDirBase;
 
   if ( $padTraceTypes ['dumps'] )

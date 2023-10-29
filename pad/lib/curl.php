@@ -95,7 +95,7 @@
 
     $output ['options'] = $options;      
 
-    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
+    set_error_handler ( 'padErrorThrow' );
     $errorReporting = error_reporting (0);
 
     try {

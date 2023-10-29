@@ -7,4 +7,8 @@
     ' parm=' . $padPrmType [$pad]
   );
 
+  $padTraceLevelDir [$pad] = padData . $padTraceDir;
+
+  $padTraceChilds [$pad] = 0;
+
 ?>

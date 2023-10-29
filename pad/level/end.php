@@ -33,8 +33,8 @@
   $padOccur [$pad] = 0;
 
   if ( $padTraceActive ) {
-    include pad . 'trace/items/end.php';    
     include pad . 'trace/items/result.php';  
+    include pad . 'trace/items/end.php';    
   }
   
   $pad--;

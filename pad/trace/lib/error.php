@@ -1,7 +1,6 @@
 <?php
 
-  set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
-  $reporting = error_reporting (0);
+  set_error_handler ( 'padErrorThrow' );
 
   try {
 

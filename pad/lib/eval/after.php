@@ -1,7 +1,7 @@
 <?php
 
   
-  function padEvalAfter ( &$result, $eval ) {
+  function padEvalAfter ( &$result ) {
  
     global $padFlagStore, $padDataStore, $padContentStore;
 

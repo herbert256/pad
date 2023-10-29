@@ -30,32 +30,32 @@
 
   $padTrace = TRUE;
 
-  $padTraceTypes ['local']    = FALSE;
-  $padTraceTypes ['store']    = FALSE;
-  $padTraceTypes ['sequence'] = FALSE;
-  $padTraceTypes ['data']     = FALSE;
-  $padTraceTypes ['content']  = FALSE;
-  $padTraceTypes ['base']     = FALSE;
-  $padTraceTypes ['result']   = FALSE;
-  $padTraceTypes ['occur']    = FALSE;
-  $padTraceTypes ['xml']      = FALSE;
-  $padTraceTypes ['flags']    = FALSE;
-  $padTraceTypes ['true']     = FALSE;
-  $padTraceTypes ['false']    = FALSE;
-  $padTraceTypes ['build']    = FALSE;
-  $padTraceTypes ['parse']    = FALSE;
-  $padTraceTypes ['var']      = FALSE;
-  $padTraceTypes ['field']    = FALSE;
-  $padTraceTypes ['eval']     = FALSE;
-  $padTraceTypes ['parms']    = FALSE;
-  $padTraceTypes ['call']     = FALSE;
-  $padTraceTypes ['exists']   = FALSE;
-  $padTraceTypes ['sql']      = FALSE;
-  $padTraceTypes ['get']      = FALSE;
-  $padTraceTypes ['curl']     = FALSE;
-  $padTraceTypes ['dumps']    = FALSE;
-  $padTraceTypes ['options']  = FALSE;
-  $padTraceTypes ['types']    = FALSE;
+  $padTraceTypes ['local']    = TRUE;
+  $padTraceTypes ['store']    = TRUE;
+  $padTraceTypes ['sequence'] = TRUE;
+  $padTraceTypes ['data']     = TRUE;
+  $padTraceTypes ['content']  = TRUE;
+  $padTraceTypes ['base']     = TRUE;
+  $padTraceTypes ['result']   = TRUE;
+  $padTraceTypes ['occur']    = TRUE;
+  $padTraceTypes ['xml']      = TRUE;
+  $padTraceTypes ['flags']    = TRUE;
+  $padTraceTypes ['true']     = TRUE;
+  $padTraceTypes ['false']    = TRUE;
+  $padTraceTypes ['build']    = TRUE;
+  $padTraceTypes ['parse']    = TRUE;
+  $padTraceTypes ['var']      = TRUE;
+  $padTraceTypes ['field']    = TRUE;
+  $padTraceTypes ['eval']     = TRUE;
+  $padTraceTypes ['parms']    = TRUE;
+  $padTraceTypes ['call']     = TRUE;
+  $padTraceTypes ['exists']   = TRUE;
+  $padTraceTypes ['sql']      = TRUE;
+  $padTraceTypes ['get']      = TRUE;
+  $padTraceTypes ['curl']     = TRUE;
+  $padTraceTypes ['dumps']    = TRUE;
+  $padTraceTypes ['options']  = TRUE;
+  $padTraceTypes ['types']    = TRUE;
       
   // Cache settings
   
@@ -114,11 +114,10 @@
   // Keep track of vars in a session.
   
   $padSessionVars = [];
-
     
   // Default {$var} options, there must be a PHP snippet in one of below directories
-  // - pad/functions/
-  // - padApp/functions/
+  // - pad/_functions/
+  // - padApp/_functions/
 
   $padDataDefaultStart = ['trim', 'white'];
   $padDataDefaultEnd   = ['html', 'nbsp'];

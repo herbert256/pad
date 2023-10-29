@@ -3,7 +3,7 @@
 
   function padErrorStop ( $error, $file, $line, $org='' ) {
 
-    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
+    set_error_handler ( 'padErrorThrow' );
     error_reporting (0);
 
     try {
@@ -51,7 +51,7 @@
 
   function padErrorStopCatch ( $error, $file, $line, $e, $org ) {
 
-    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
+    set_error_handler ( 'padErrorThrow' );
     error_reporting (0);
 
     try {   
@@ -87,7 +87,7 @@
 
   function padErrorStopCatchCatch ( $error, $file, $line, $e1, $e2, $org ) {
 
-    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
+    set_error_handler ( 'padErrorThrow' );
     error_reporting (0);
 
     try {   
@@ -101,21 +101,14 @@
 
     } catch (Throwable $ignored ) {
 
-      padErrorStopCatchCatchCatch ();
+      echo 'oops';
+
+      $GLOBALS ['padSkipShutdown']     = TRUE;
+      $GLOBALS ['padSkipBootShutdown'] = TRUE;
+
+      exit;
     
     }
-
-  }
-
-
-  function padErrorStopCatchCatchCatch ( ) {
-
-    echo 'oops (2)';
-
-    $GLOBALS ['padSkipShutdown']     = TRUE;
-    $GLOBALS ['padSkipBootShutdown'] = TRUE;
-
-    exit;
 
   }
 

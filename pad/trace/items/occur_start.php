@@ -1,5 +1,8 @@
 <?php
 
+  for ( $padI = $pad; $padI; $padI-- )
+    $padTraceChilds[$padI]++;
+
   if ( ! $padTraceTypes ['occur'] )
     return;
 

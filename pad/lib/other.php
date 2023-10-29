@@ -3,8 +3,7 @@
 
   function padEmptyBuffers () {
 
-    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
-    $reporting = error_reporting (0);
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -17,7 +16,6 @@
 
     }
 
-    error_reporting ($reporting);
     restore_error_handler ();
 
   }
@@ -552,8 +550,7 @@
 
   function padJson ( $data ) {
 
-    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
-    $reporting = error_reporting (0);
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -565,7 +562,6 @@
 
     }
 
-    error_reporting ($reporting);
     restore_error_handler ();    
 
   }

@@ -8,8 +8,7 @@
  
     $GLOBALS ['padDumpToDir'] = TRUE;
 
-    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
-    $reporting = error_reporting (0);
+    set_error_handler ( 'padErrorThrow' );
 
     if ( ! $dir )
       $dir = "dumps/" . $GLOBALS ['padPage'] . '/' . $GLOBALS ['padReqID'] . '-' . padRandomString();
@@ -26,7 +25,6 @@
 
     }
 
-    error_reporting ($reporting);
     restore_error_handler ();
 
   }
@@ -62,8 +60,7 @@
 
   function padDumpToDirCatch ( $info, $e, $dir ) {
 
-    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
-    $reporting = error_reporting (0);
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -78,7 +75,6 @@
   
     }
 
-    error_reporting ($reporting);
     restore_error_handler ();
 
   }  
@@ -86,8 +82,7 @@
 
   function padDumpToDirCatchCatch ( $info, $e1, $e2 ) {
 
-    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
-    $reporting = error_reporting (0);
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -103,7 +98,6 @@
   
     }
 
-    error_reporting ($reporting);
     restore_error_handler ();
 
   }  

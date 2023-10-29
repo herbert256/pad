@@ -5,9 +5,8 @@
 
   ob_start();
 
-  set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
-  $padPhpErrorReporting = error_reporting (0);
-
+  set_error_handler ( 'padErrorThrow' );
+  
   try {
     $padPhpReturn = eval ( $padPhp );
   }
@@ -15,7 +14,6 @@
     $padPhpReturn = FALSE;
   }
 
-  error_reporting ($padPhpErrorReporting);
   restore_error_handler ();
 
   if ( $padPhpReturn !== FALSE )

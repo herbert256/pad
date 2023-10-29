@@ -3,6 +3,9 @@
 
   function padErrorGo ($error, $file, $line) {
 
+    if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
+      return FALSE;
+
     if ( $GLOBALS['padExit'] <> 1 )
       padErrorStop ( "ERROR-SECOND: $error", $file, $line);
 
@@ -14,8 +17,7 @@
 
     $error = "$file:$line " . padMakeSafe ( $error );
 
-    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
-    $reporting = error_reporting (0);
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -27,7 +29,6 @@
 
     }
 
-    error_reporting ($reporting);
     restore_error_handler ();
 
     $GLOBALS ['padExit'] = 1;
@@ -66,8 +67,7 @@
 
   function padErrorGoCatch ( $e, $error ) {
     
-    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
-    $reporting = error_reporting (0);
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -79,7 +79,6 @@
 
     }
 
-    error_reporting ($reporting);
     restore_error_handler ();
 
   }
@@ -87,8 +86,7 @@
 
   function padErrorGoCatchCatch ( $e3, $e2, $error1 ) {
     
-    set_error_handler ( function ($s, $m, $f, $l) { throw new ErrorException ($m, 0, $s, $f, $l); } );
-    $reporting = error_reporting (0);
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -103,21 +101,14 @@
 
     } catch (Throwable $ignored) {
 
-      padErrorGoCatchCatchCatch ();
+      echo 'oops';
+
+      $GLOBALS ['padSkipShutdown']     = TRUE;
+      $GLOBALS ['padSkipBootShutdown'] = TRUE;
+      
+      exit;
 
     }
-
-  }
-
-  
-  function padErrorGoCatchCatchCatch ( ) {
-
-    echo 'oops (1)';
-
-    $GLOBALS ['padSkipShutdown']     = TRUE;
-    $GLOBALS ['padSkipBootShutdown'] = TRUE;
-    
-    exit;
 
   }
 

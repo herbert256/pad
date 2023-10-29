@@ -38,6 +38,17 @@
   }
 
 
+  function padFileCorrect ( $file ) {
+
+    $file = str_replace ( '@', '_', $file );
+    $file = str_replace ( "'", '_', $file );
+    $file = str_replace ( '=', '_', $file );
+
+    return $file;
+
+  }
+
+
   function padFileGetContents ( $file ) {
 
     if ( $GLOBALS ['padTraceActive'] )
@@ -60,9 +71,7 @@
     
     $file = padData . str_replace(':', '_', $in);
 
-    $file = str_replace ( '@', '_', $file );
-    $file = str_replace ( "'", '_', $file );
-    $file = str_replace ( '=', '_', $file );
+    $file = padFileCorrect ( $file );
 
     if ( ! padValidFile ( $file ) )
       return padError ("Invalid file name: $file");

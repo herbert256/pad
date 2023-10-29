@@ -85,16 +85,9 @@
   }
 
 
-  function padErrorLogCheck ( $type, $info ) {
+  function padErrorThrow ($s, $m, $f, $l) { 
 
-    $md5 = md5 ( trim($info) );
-
-    if ( isset ( $GLOBALS["padErrorCheck_$type"] ) and isset ( $GLOBALS["padErrorCheck_$type"] [$md5] ) )
-      return TRUE;
-
-    $GLOBALS["padErrorCheck_$type"] [$md5] = TRUE;
-
-    return FALSE;
+    throw new ErrorException ($m, 0, $s, $f, $l); 
 
   }
 
