@@ -984,8 +984,22 @@
 
   }
 
-
   function padIsDefaultData ( $data ) {
+    
+    if ( ! is_array ( $data ) ) return FALSE;
+    if ( count ( $data ) <> 1 ) return FALSE;
+
+    $key = array_key_first ( $data );
+
+    if ( ! is_array ( $data [$key] ) ) return FALSE;
+    if ( count ( $data [$key] )      ) return FALSE;
+    
+    return TRUE;
+
+  }
+
+
+  function padIsDefaultData2 ( $data ) {
     
     if ( ! is_array ( $data )       ) return FALSE;
     if ( count ( $data ) <> 1       ) return FALSE;

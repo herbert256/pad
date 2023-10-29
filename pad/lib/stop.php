@@ -104,19 +104,6 @@
   }
 
 
-  function padExit () {
-
-    if ( $GLOBALS ['padTraceActive'] )
-      include pad . 'trace/end/config.php';    
-
-    $GLOBALS ['padSkipShutdown']     = TRUE;
-    $GLOBALS ['padSkipBootShutdown'] = TRUE;
-    
-    exit;
-
-  }
-
-
   function padCloseSession () {
 
     if ( ! isset($GLOBALS ['padSessionStarted']) )
@@ -127,6 +114,19 @@
         $_SESSION [$var] = $GLOBALS [$var];
 
     session_write_close ();
+
+  }
+
+
+  function padExit () {
+
+    if ( $GLOBALS ['padTraceActive'] )
+      include pad . 'trace/end/config.php';    
+
+    $GLOBALS ['padSkipShutdown']     = TRUE;
+    $GLOBALS ['padSkipBootShutdown'] = TRUE;
+    
+    exit;
 
   }
 

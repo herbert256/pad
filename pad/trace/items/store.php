@@ -5,7 +5,6 @@
 
   padTrace ( 'store', $padName [$pad], $padStoreData ); 
 
-  if ( $GLOBALS ['padTraceTree'] )
-    padTraceFile ( 'store', 'txt', $padStoreData );
+  padTraceFile ( 'store', 'txt', $padStoreData );
 
 ?>

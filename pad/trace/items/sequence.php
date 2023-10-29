@@ -5,7 +5,6 @@
 
   padTrace ( 'sequence', $padSeqSeq, $padSeqResult ); 
 
-  if ( $padTraceTree )
-    padTraceFile ( 'sequence', 'json', $padSeqReturn );
+  padTraceFile ( 'sequence', 'json', $padSeqReturn );
 
 ?>

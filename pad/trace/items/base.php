@@ -5,7 +5,7 @@
 
   padTrace ( 'level', 'base',  $padBase [$pad] ); 
 
-  if ( $padTraceTree and $padBase [$pad] )
+  if ( $padBase [$pad] and strlen ( $padBase [$pad] ) > 50 )
     padTraceFile ( 'base', 'pad', $padBase [$pad] );
 
 ?>

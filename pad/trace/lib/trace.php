@@ -3,14 +3,11 @@
 
   function padTrace ( $type, $event, $info='' ) {
 
-    if ( $GLOBALS ['padInTrace'] )
-      return;
-
-    $GLOBALS ['padInTrace'] = TRUE;
-
-    global $pad, $padOccur, $padPage, $padReqID;
-    global $padTrace, $padTraceTypes, $padTraceTree, $padTraceLocation;
+    global $pad, $padOccur, $padTag, $padWalk, $padData;
+    global $padTrace, $padTraceId, $padTraceTypes, $padTraceDirBase, $padTraceDir, $padTraceStart, $padTraceActive;
  
+    $padTraceActive = FALSE;
+
     $padTrace++;
 
     if ( $event == 'start' ) {
@@ -19,128 +16,81 @@
       else                        $GLOBALS ["padTraceX$type"]       = $padTrace;
     }
 
-    $prefix = ( $pad < 0 ) ? '0/0' : $pad . '/' . $padOccur [$pad];
+    $prefix = $pad;  
+    
+    if ( isset ( $padOccur ) and isset ( $padOccur [$pad] ) and $padOccur [$pad] )
+      $prefix .= '/' . $padOccur [$pad];
 
     if     ( $type == 'level' )                      $id = $GLOBALS ['padTraceId']    [$pad] ?? 0;
     elseif ( $type == 'occur' )                      $id = $GLOBALS ['padTraceOccur'] [$pad] ?? 0;
     elseif ( isset ( $GLOBALS ["padTraceX$type"] ) ) $id = $GLOBALS ["padTraceX$type"]       ?? 0;
-    else                                             $id = $padTrace;                                       
+    else                                             $id = $padTrace;       
 
-    $location = $padTraceLocation;
+    if ( $id == $padTrace )
+      $id = '';
 
-    $trace = sprintf ( '%-8s',  $prefix )
-           . sprintf ( '%-8s',  $id     )
-           . sprintf ( '%-10s', $type   )
-           . sprintf ( '%-10s', $event  )
+    $trace = sprintf ( '%-7s',  $prefix   )
+           . sprintf ( '%-7s',  $padTrace )
+           . sprintf ( '%-7s',  $id       )
+           . sprintf ( '%-10s', $type     )
+           . sprintf ( '%-10s', $event    )
            . padMakeSafe ( $info, 80 );  
 
-    if ( $padTraceTypes ['global'] ) 
-      padTraceGlobal ( $location, $trace );
+    $padTraceDir = $padTraceDirBase;
 
-    if ( $padTraceTree ) 
-      padTraceTree ( $location, $trace, $type );
+    padTraceTreeGo ( $padTraceDir, $type, $trace );
 
-    $GLOBALS ['padInTrace'] = FALSE;
+    for ( $i = $padTraceStart; $i <= $pad; $i++ ) {
+
+      if ( $i == 0 )
+        $padTraceDir .= '/page' ;
+      else
+        $padTraceDir .= '/' . $padTraceId [$i] . '-' . $padTag [$i];
+
+      padTraceTreeGo ( $padTraceDir, $type, $trace );
+    
+      if ( $padOccur [$i] and $padTraceTypes ['occur'] ) {
+
+        if ( $padWalk [$i] <> 'next' and padIsDefaultData ( $padData [$i] ) )
+          continue;
+
+        $padTraceDir .= '/' . $padOccur [$i];
+        padTraceTreeGo ( $padTraceDir, $type, $trace );
+ 
+      }
+  
+    }
+
+
+    if ( $padTraceTypes ['local'] )
+      padTraceGo ( "$padTraceDir/local.txt", $trace );
+
+    $padTraceActive = TRUE;
+
+  }
+
+
+  function padTraceTreeGo ( $location, $type, $trace ) {  
+
+    padTraceGo ( "$location/trace.txt", $trace );
+
+    if ( $GLOBALS ['padTraceTypes'] ['types'] )
+      padTraceGo ( "$location/types/$type.txt", $trace );
 
   }
 
 
   function padTraceFile ( $type, $extension, $data ) {  
 
-    padFilePutContents ( padTraceDir () . "/files/$type.$extension", $data );
+    global $padTrace, $padTraceDir, $padTraceActive;
 
-  }
+    $padTraceActive = FALSE;
 
-
-  function padTraceGlobal ( $location, $trace ) {  
-
-    global $padTraceTypes, $padTraceTree;
-
-    $file = ( $padTraceTypes ['nested'] ) ? 'global' : 'trace';
-
-    if ( $padTraceTree )
-      padTraceGo ( "$location/$file.txt", $trace );
-    else
-      padTraceGo ( "$location.txt", $trace );
-
-  }
-
-
-  function padTraceTree ( $location, $trace, $type ) {  
-
-    global $pad, $padTraceTypes, $padTraceStart;
-
-    $base = $location;
-
-    if ( $padTraceTypes ['types-global'] )
-      padTraceGo ( "$location/types/$type.txt", $trace );
-
-    if ( $padTraceStart > $pad ) {
-
-      padTraceNested ( $location, $padTraceTypes, $trace );
-
-    } else {
-
-      for ( $i = $padTraceStart; $i <= $pad; $i++ ) {
-
-        $location .= padTraceDirOne ( $i );
-        
-        padTraceNested ( $location, $padTraceTypes, $trace );
-      
-      }
-
-    }
-
-    if ( $padTraceTypes ['types-local'] and $base <> $location )
-      padTraceGo ( "$location/types/$type.txt", $trace );
-
-    if ( $padTraceTypes ['local'] )
-      if ( $padTraceTypes ['global'] or $padTraceTypes ['nested'] )
-        padTraceGo ( "$location/local.txt", $trace );
-      else
-        padTraceGo ( "$location/trace.txt", $trace );
-
-  }
-
-
- function padTraceNested ( $location, $types, $trace ) {  
-
-    if ( $types ['nested'] )
-      padTraceGo ( "$location/trace.txt", $trace );
-
-  }
-
-
-  function padTraceDir () {  
-
-    global $pad, $padPage, $padReqID, $padTraceStart, $padTraceLocation;
-
-    $dir = $padTraceLocation;
-
-    for ( $i = $padTraceStart; $i <= $pad; $i++ )
-      $dir .= padTraceDirOne ( $i );
-
-    return $dir;
-
-  }  
-
-
-  function padTraceDirOne ( $i ) {  
-
-    global $padOccur, $padTag, $padTraceId, $padTraceTypes, $padWalk, $padData;
-
-    $dir = '';
-
-    if ( $i > 0 )
-      $dir .= '/' . $padTraceId [$i] . '-' . $padTag [$i];
+    padFilePutContents ( "$padTraceDir/files/$padTrace-$type.$extension", $data );
     
-    if ( $padOccur [$i] and $padTraceTypes ['occur'] )
-      if ( $padWalk [$i] == 'next' or ! padIsDefaultData ($padData [$i] ) )
-        $dir .= '/' . $padOccur [$i];
-    
-    return $dir;
+    $padTraceActive = TRUE;
 
-  } 
+  }
 
 
   function padTraceGo ( $file, $trace ) {

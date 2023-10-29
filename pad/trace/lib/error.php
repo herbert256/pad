@@ -5,20 +5,13 @@
 
   try {
 
-    if ( $GLOBALS ['padTraceTree'] )
-      $padTraceErrorDir = padTraceDir () . '/ERROR';
-    else
-      $padTraceErrorDir = 'ERRORS/' . uniqid ();
+    padDumpToDir ( $error, $GLOBALS ['padTraceDir'] . '/ERROR' );
 
-    padDumpToDir ( $error, $padTraceErrorDir );
-
-    padErrorExit ( "Error while in trace\n\n$error\n\n" . padData . $padTraceErrorDir );
+    padErrorExit ( "Error while in trace\n\n$error\n\n" . $GLOBALS ['padTraceDir'] . '/ERROR' );
 
   } catch ( Throwable $e ) {
 
-    echo $e->getMessage() . ' ' . $e->getFile() . ' ' .  $e->getLine();
-
-    echo "$error";
+    echo '<pre>' . $e->getFile() . ':' .  $e->getLine() . ' ' . $e->getMessage() . "\n\n$error";
 
     $GLOBALS ['padSkipShutdown']     = TRUE;
     $GLOBALS ['padSkipBootShutdown'] = TRUE;
