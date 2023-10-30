@@ -49,17 +49,23 @@
 
       padTraceTreeGo ( $padTraceDir, $type, $trace );
     
-      if ( $padOccur [$i] and $padTraceTypes ['occur'] ) {
+      if ( $padTraceTypes ['occur'] == 'never' )
+ 
+        continue;
+ 
+      elseif ( $padTraceTypes ['occur'] == 'always' ) 
 
+        padTraceOccur ( $padOccur [$i], $type, $trace )
+ 
+      elseif ( $padTraceTypes ['occur'] == 'smart' ) {
+ 
         if ( $padWalk [$i] <> 'next' and padIsDefaultData ( $padData [$i] ) )
           continue;
-
-        $padTraceDir .= '/' . $padOccur [$i];
-        padTraceTreeGo ( $padTraceDir, $type, $trace );
+ 
+        if ( $padOccur [$i] )
+          padTraceOccur ( $padOccur [$i], $type, $trace );
  
       }
-  
-    }
 
     if ( $padTraceTypes ['local'] )
       padFilePutContents ( "$padTraceDir/local.txt", $trace, true );
@@ -69,26 +75,45 @@
   }
 
 
+  function padTraceOccur ( $occur, $type, $trace ) {  
+
+    global $padTraceDir;
+
+    $padTraceDir .= '/' . $occur;
+    
+    padTraceTreeGo ( $padTraceDir, $type, $trace );
+
+  }
+
+
   function padTraceTreeGo ( $location, $type, $trace ) {  
+
+    global $padTraceTypes, $padTraceTypesDir;
 
     padFilePutContents  ( "$location/trace.txt", $trace, true );
 
-    if ( $GLOBALS ['padTraceTypes'] ['types'] )
-      padFilePutContents ( "$location/types/$type.txt", $trace, true );
+    if ( $padTraceTypes ['types'] )
+      if ( $padTraceTypesDir )
+        padFilePutContents ( "$location/types/$type.txt", $trace, true );
+      else
+        padFilePutContents ( "$location/$type.txt", $trace, true );
 
   }
 
 
   function padTraceFile ( $type, $extension, $data ) {  
 
-    if ( ! $GLOBALS ['padTraceTypes'] ['files'] )
-      return;
+    global $padTrace, $padTraceDir, $padTraceActive, $padTraceTypes, $padTraceFilesDir;
 
-    global $padTrace, $padTraceDir, $padTraceActive;
+    if ( ! $padTraceTypes ['files'] )
+      return;
 
     $padTraceActive = FALSE;
 
-    padFilePutContents ( "$padTraceDir/files/$padTrace-$type.$extension", $data );
+    if ( $padTraceFilesDir )
+      padFilePutContents ( "$padTraceDir/files/$padTrace-$type.$extension", $data );
+    else
+      padFilePutContents ( "$padTraceDir/$padTrace-$type.$extension", $data );
     
     $padTraceActive = TRUE;
 

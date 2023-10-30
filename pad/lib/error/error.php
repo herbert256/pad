@@ -85,10 +85,20 @@
   }
 
 
-  function padErrorThrow ($s, $m, $f, $l) { 
+  function padErrorThrow ( $severity, $message, $filename, $lineno ) {
 
-    throw new ErrorException ($m, 0, $s, $f, $l); 
+    throw new ErrorException ( $message, 0, $severity, $filename, $lineno );
 
   }
+
+
+  function padThrow ( $message ) {
+
+    throw new Exception ( $message );
+
+  }
+
+
+
 
 ?>

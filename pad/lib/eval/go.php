@@ -5,6 +5,9 @@
 
 go: $last = $open = FALSE;
 
+    if ( $GLOBALS ['padTraceActive'] )
+      include pad . 'trace/items/eval/go.php';
+
     foreach ($result as $key => $value) {
 
       if ( $key >= $start and $value[1] == 'open')
