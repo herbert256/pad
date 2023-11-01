@@ -13,7 +13,7 @@
       padTrackDbSession ();
 
     if ( $GLOBALS ['padTrackFileRequest'] )
-      padTrackFileRequest ();
+      padTrackFileRequestEnd ();
 
     padCloseSession ();
 

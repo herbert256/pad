@@ -1,6 +1,6 @@
 <?php
 
-  if ( $padTraceTypes ['flags'] )
+  if ( $padTraceItems ['flags'] )
     padTrace ( 'level', 'flags', 
       ' hit='   . $padHit   [$pad] . 
       ' else='  . $padElse  [$pad] . 

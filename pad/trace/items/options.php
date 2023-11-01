@@ -1,6 +1,6 @@
 <?php
 
-  if ( $padTraceTypes ['options'] )
+  if ( $padTraceItems ['options'] )
     padTrace ( 'option', $padOptionName, "type ==> $padOptions" );
 
 ?>

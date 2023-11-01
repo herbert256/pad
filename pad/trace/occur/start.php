@@ -3,15 +3,20 @@
   for ( $padI = $pad; $padI; $padI-- )
     $padTraceChilds[$padI]++;
 
-  if ( ! $padTraceTypes ['occur'] )
-    return;
+  $padTraceOccurs[$pad]++;
 
   padTrace ( 'occur', 'start', $padBase [$pad] );
 
-  if ( $padTraceTypes ['base'] and $padBase [$pad] and strlen ( $padBase [$pad] ) > 50 )
+  $padTraceOccurHasDir  [$pad] [$padOccur[$pad]] = FALSE; 
+  $padTraceOccurDirName [$pad] [$padOccur[$pad]] = $padTraceDir; 
+
+ if ( ! $padTraceItems ['occur'] )
+    return;
+ 
+  if ( $padTraceItems ['base'] and $padBase [$pad] and strlen ( $padBase [$pad] ) > 50 )
     padTraceFile ( 'occ-base', 'pad', $padBase [$pad] );   
 
-  if ( $padTraceTypes ['data'] ) {
+  if ( $padTraceItems ['data'] ) {
 
     if ( padIsDefaultData ( $padBase [$pad] ) )
       return;

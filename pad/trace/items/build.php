@@ -1,9 +1,9 @@
 <?php
 
-  if ( $padTraceTypes ['build'] )
+  if ( $padTraceItems ['build'] )
     padTrace ( 'build', 'info', $padBase [$pad] ); 
 
-  if ( $padTraceTypes ['base'] )
+  if ( $padTraceItems ['base'] )
     padTraceFile ( 'base', 'pad', $padBase [$pad] );
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! $padTraceTypes ['parse'] )
+  if ( ! $padTraceItems ['parse'] )
     return;
 
   if (  $padStart [$pad] > 50 ) {

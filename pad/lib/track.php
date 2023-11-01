@@ -1,20 +1,34 @@
 <?php
 
-  function padTrackFileRequest () {
+
+  function padTrackFileRequestStart () {
     
     $dir = $GLOBALS ['padSesID'];
     $id  = $GLOBALS ['padReqID'];
 
-    $track = [
+    padFilePutContents ( "track/$dir/$id-start.json", padSessionInfoStart () );
+      
+  }
+
+
+  function padTrackFileRequestEnd () {
+    
+    $dir = $GLOBALS ['padSesID'];
+    $id  = $GLOBALS ['padReqID'];
+
+    padFilePutContents ( "track/$dir/$id-end.json", padSessionInfoEnd () );
+      
+  }
+
+
+  function padSessionInfoStart () {
+
+    return [
         'session'   => $GLOBALS ['padSesID'] ?? '',
         'request'   => $GLOBALS ['padReqID'] ?? '',
-        '' => $GLOBALS ['padRefID'] ?? '',
+        'parent'    => $GLOBALS ['padRefID'] ?? '',
         'page'      => $GLOBALS ['padPage'] ?? '',
         'start'     => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0,
-        'time'      => padDuration (),
-        'length'    => $GLOBALS ['padLen'] ?? 0,
-        'stop'      => $GLOBALS ['padStop'] ?? '',
-        'etag'      => $GLOBALS ['padEtag'] ?? '',
         'uri'       => $_SERVER ['REQUEST_URI']     ?? '' ,
         'referer'   => $_SERVER ['HTTP_REFERER']    ?? '' ,
         'remote'    => $_SERVER ['REMOTE_ADDR']     ?? '' ,
@@ -22,8 +36,18 @@
         'cookies'   => $_SERVER ['HTTP_COOKIE']     ?? ''
       ];
 
-    padFilePutContents ( "track/$dir/$id.json", $track );
-      
+  }
+
+
+  function padSessionInfoEnd () {
+
+    return [
+        'time'      => padDuration (),
+        'length'    => $GLOBALS ['padLen'] ?? 0,
+        'stop'      => $GLOBALS ['padStop'] ?? '',
+        'etag'      => $GLOBALS ['padEtag'] ?? ''
+      ];
+
   }
 
 

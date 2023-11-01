@@ -30,9 +30,6 @@
 
   $padTrace = TRUE;
 
-  if ( $padTrace )
-    include pad . 'config/trace.php';
-
   // Cache settings
   
   $padCacheServerAge       = 0;                    //  Seconds to keep the cache at pad server side, 

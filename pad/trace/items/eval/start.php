@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! $GLOBALS ['padTraceTypes'] ['eval'] )
+  if ( ! $GLOBALS ['padTraceItems'] ['eval'] )
     return;
 
   global $padTraceEvalShort, $padTraceEval;

@@ -7,7 +7,7 @@
   $padCurrent [$pad] = $padData [$pad] [$padKey [$pad]];
 
   if ( $padTraceActive )
-    include pad . 'trace/items/occur_start.php';  
+    include pad . 'trace/occur/start.php';  
   
   if ( $padWalk [$pad] <> 'start' )
     $padWalkData [$pad] [] = $padCurrent [$pad];

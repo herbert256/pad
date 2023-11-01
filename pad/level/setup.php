@@ -66,6 +66,6 @@
   $padTraceId [$pad] = 0;
   
   if ( $padTraceActive )
-    include pad . 'trace/items/start.php';    
+    include pad . 'trace/level/start.php';    
 
 ?>

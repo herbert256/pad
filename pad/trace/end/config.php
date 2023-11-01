@@ -1,6 +1,6 @@
 <?php
 
-  global $padTrace, $padTraceTypes, $padTraceDir, $padTraceActive;
+  global $padTrace, $padTraceItems, $padTraceDir, $padTraceActive;
 
   include pad . 'trace/lib/exits.php';
 

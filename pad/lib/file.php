@@ -3,7 +3,7 @@
 
   function padExists ( $file ) {
 
-    if ( $GLOBALS ['padTraceActive'] and $GLOBALS ['padTraceTypes'] ['exists'] ) {
+    if ( $GLOBALS ['padTraceActive'] and $GLOBALS ['padTraceItems'] ['exists'] ) {
 
       $return = file_exists ( $file );
 

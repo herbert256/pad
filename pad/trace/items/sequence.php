@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! $padTraceTypes ['sequence'] )
+  if ( ! $padTraceItems ['sequence'] )
     return;
 
   padTrace ( 'sequence', $padSeqSeq, $padSeqResult ); 

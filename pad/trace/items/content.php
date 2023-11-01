@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! $padTraceTypes ['content'] )
+  if ( ! $padTraceItems ['content'] )
     return;
 
   padTrace ( 'level', 'content', $padTrue [$pad] ); 

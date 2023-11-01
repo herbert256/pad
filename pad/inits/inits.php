@@ -12,6 +12,7 @@
   include pad . 'inits/zip.php';
   include pad . 'inits/host.php';
   include pad . 'inits/trace.php';
+  include pad . 'inits/track.php';
   include pad . 'cache/cache.php';
   include pad . 'inits/level.php';
   include pad . 'inits/parms.php';

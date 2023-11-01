@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! $GLOBALS ['padTraceTypes'] ['sql'] )
+  if ( ! $GLOBALS ['padTraceItems'] ['sql'] )
     return;
 
   padTrace ( 'sql', 'file', $input ); 
