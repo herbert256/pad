@@ -1,10 +1,12 @@
 <?php
 
 
-  function padEval ( $eval, $value ) {
+  function padEval ( $eval, $value='' ) {
 
     if ( in_array ( $eval, $GLOBALS ['padEvalFast'] ) )
       return include pad . "_functions/$eval.php";
+
+    return padEval2 ( $eval, $value );
 
     set_error_handler ( 'padErrorThrow' );
 
@@ -64,7 +66,7 @@
   }  
   
 
-  function padEvalTraceCatch ( $e, $eval ) {
+  function padEvalCatch ( $e, $eval ) {
 
     include pad . 'trace/items/eval/error.php';
 

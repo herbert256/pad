@@ -1,5 +1,8 @@
 <?php
 
+  $padTraceOccurHasDir  [$pad] [$padOccur[$pad]] = FALSE; 
+  $padTraceOccurDirName [$pad] [$padOccur[$pad]] = $padTraceDir; 
+
   for ( $padI = $pad; $padI; $padI-- )
     $padTraceChilds[$padI]++;
 
@@ -7,16 +10,13 @@
 
   padTrace ( 'occur', 'start', $padBase [$pad] );
 
-  $padTraceOccurHasDir  [$pad] [$padOccur[$pad]] = FALSE; 
-  $padTraceOccurDirName [$pad] [$padOccur[$pad]] = $padTraceDir; 
-
- if ( ! $padTraceItems ['occur'] )
+ if ( ! $padTraceOccur )
     return;
  
-  if ( $padTraceItems ['base'] and $padBase [$pad] and strlen ( $padBase [$pad] ) > 50 )
+  if ( $padTraceBase and $padBase [$pad] and strlen ( $padBase [$pad] ) > 50 )
     padTraceFile ( 'occ-base', 'pad', $padBase [$pad] );   
 
-  if ( $padTraceItems ['data'] ) {
+  if ( $padTraceData ) {
 
     if ( padIsDefaultData ( $padBase [$pad] ) )
       return;

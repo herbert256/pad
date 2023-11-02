@@ -1,13 +1,12 @@
 <?php
 
-  if ( ! $GLOBALS ['padTraceItems'] ['eval'] )
+  if ( ! $GLOBALS ['padTraceEval'] )
     return;
   
-  global $padTraceEvalShort, $padTraceEval;
+  global $padTraceEvalData;
 
   padTrace ( 'eval', 'end', 'result=' . $result [$key] [0] );
 
-  if ( ! $padTraceEvalShort )
-    padTraceFile ( 'eval', 'pad', $padTraceEval );
+  padTraceFile ( 'eval', 'pad', $padTraceEvalData );
 
 ?>

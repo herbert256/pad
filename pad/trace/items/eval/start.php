@@ -1,12 +1,13 @@
 <?php
 
-  if ( ! $GLOBALS ['padTraceItems'] ['eval'] )
+  if ( ! $GLOBALS ['padTraceEval'] )
     return;
 
-  global $padTraceEvalShort, $padTraceEval;
+  global $padTraceEvalData;
 
-  $padTraceEval ['eval'] = $eval;
-  $padTraceEval ['value'] = $value;
+  $padTraceEvalData           = [];
+  $padTraceEvalData ['eval']  = $eval;
+  $padTraceEvalData ['value'] = $value;
   
   padTrace ( 'eval', 'start', "eval=$eval" );
 

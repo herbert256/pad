@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! $GLOBALS ['padTraceItems'] ['curl'] )
+  if ( ! $GLOBALS ['padTraceCurl'] )
     return;
 
   padTrace ( 'curl', 'file', $url ); 

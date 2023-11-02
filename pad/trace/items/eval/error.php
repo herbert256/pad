@@ -1,14 +1,16 @@
 <?php
 
-  if ( ! $GLOBALS ['padTraceItems'] ['eval'] )
+  if ( ! $GLOBALS ['padTraceEval'] )
     return;
   
-  global $padTraceEvalShort, $padTraceEval;
+  global $padTraceEvalData;
 
-  $error = $e->getFile() . ':' .  $e->getLine() . ' LOG-ERROR: ' . $e->getMessage()
+  $error = $e->getFile() . ':' .  $e->getLine() . $e->getMessage();
+
+  $padTraceEvalData ['error'] = $error;
 
   padTrace ( 'eval', 'error', $error );
 
-  padTraceFile ( 'eval-error', 'pad', $padTraceEval );
+  padTraceFile ( 'eval-error', 'json', $padTraceEvalData );
 
 ?>

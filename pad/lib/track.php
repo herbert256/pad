@@ -42,6 +42,8 @@
   function padSessionInfoEnd () {
 
     return [
+        'session'   => $GLOBALS ['padSesID'] ?? '',
+        'request'   => $GLOBALS ['padReqID'] ?? '',
         'time'      => padDuration (),
         'length'    => $GLOBALS ['padLen'] ?? 0,
         'stop'      => $GLOBALS ['padStop'] ?? '',

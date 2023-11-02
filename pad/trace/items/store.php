@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! $GLOBALS ['padTraceItems'] ['store'] )
+  if ( ! $GLOBALS ['padTraceStore'] )
     return;
 
   padTrace ( 'store', $padName [$pad], $padStoreData ); 

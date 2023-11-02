@@ -9,7 +9,7 @@
 
   $padTraceDir     = $padTraceDirBase;
 
-  if ( $padTraceItems ['dumps'] )
+  if ( $padTraceDumps )
     padDumpToDir ( '', $padTraceDir . "/start" );
 
   $padTraceId [$pad] = $padTrace + 1;
@@ -18,8 +18,8 @@
 
   padTrace ( 'trace', 'start' );
 
-  if ( $padTraceItems ['session'] )
-    foreach ( padTrackFileRequestStart () as $padK => $padV )
+  if ( $padTraceSession )
+    foreach ( padSessionInfoStart () as $padK => $padV )
       padTrace ( 'session', $padK, $padV );
 
 ?>

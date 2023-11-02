@@ -4,12 +4,13 @@
   function padTrace ( $type, $event, $info='' ) {
 
     global $pad, $padOccur;
-    global $padTrace, $padTraceItems, $padTraceDir, $padTraceActive, $padTraceLevel, $padTraceOccur;
+    global $padTrace, $padTraceDir, $padTraceActive, $padTraceLevel, $padTraceOccur;
     global $padTraceId, $padOccurId;
 
     $padTraceActive = FALSE;
 
     $padTrace++;
+    $padTrace=80;
 
     if ( $event == 'start' ) {
       if     ( $type == 'level' ) $padTraceId [$pad]          = $padTrace;
@@ -52,7 +53,7 @@
 
   function padTraceActive () {
 
-    $padTraceActive = TRUE;
+    $GLOBALS ['padTraceActive'] = TRUE;
 
   }
 
@@ -60,8 +61,8 @@
   function padTraceTree ( $type, $trace, $mode ) {
 
     global $pad, $padOccur, $padTag, $padWalk, $padData;
-    global $padTrace, $padTraceId, $padTraceItems, $padTraceDirBase, $padTraceDir, $padTraceStart, $padTraceActive;
-    global $padTraceTrace, $padTraceLevelDir, $padTraceOccurDir;
+    global $padTrace, $padTraceId, $padTraceDirBase, $padTraceDir, $padTraceStart, $padTraceActive;
+    global $padTraceLocal, $padTraceTrace, $padTraceLevelDir, $padTraceOccurDir;
 
     $padTraceDir = $padTraceDirBase;
 
@@ -70,14 +71,17 @@
 
     for ( $i = $padTraceStart; $i <= $pad; $i++ ) {
  
-      if ( $padTraceLevelDir )
+      if ( $padTraceLevelDir ) {
+
         if ( $i == 0 )
           $padTraceDir .= '/page' ;
         else
           $padTraceDir .= '/' . $padTraceId [$i] . '-' .  padFileCorrect ( $padTag [$i] );
 
-      if ( $mode == 'trace' )
-        padTraceTreeGo ( $padTraceDir, $type, $trace );
+        if ( $mode == 'trace' )
+          padTraceTreeGo ( $padTraceDir, $type, $trace );
+
+      }
     
       if ( $padTraceOccurDir == 'never' )
  
@@ -85,7 +89,7 @@
  
       elseif ( $padTraceOccurDir == 'always' ) 
 
-        padTraceOccur ( $padOccur [$i], $type, $trace, $mode )
+        padTraceOccur ( $padOccur [$i], $type, $trace, $mode );
  
       elseif ( $padTraceOccurDir == 'smart' ) {
  
@@ -99,7 +103,7 @@
 
     }
 
-    if ( $mode == 'trace' and $padTracelocal and ( $padTraceLevelDir or $padTraceOccurDir ) )
+    if ( $mode == 'trace' and $padTraceLocal and ( $padTraceLevelDir or $padTraceOccurDir ) )
       if ( $padTraceTrace)
         padFilePutContents ( "$padTraceDir/local.txt", $trace, true );
       else
@@ -124,7 +128,7 @@
 
   function padTraceTreeGo ( $location, $type, $trace ) {  
 
-    global $padTraceTrace, $padTraceItems, $padTraceTypesDir, $padTraceTypesDir;
+    global $padTraceTrace, $padTraceTypes, $padTraceTypesDir;
  
     if ( $padTraceTrace )
       padFilePutContents ( "$location/trace.txt", $trace, true );
@@ -133,14 +137,14 @@
       if ( $padTraceTypesDir )
         padFilePutContents ( "$location/types/$type.txt", $trace, true );
       else
-        padFilePutContents ( "$location/$type.txt", $trace, true );
+        padFilePutContents ( "$location/type-$type.txt", $trace, true );
 
   }
 
 
   function padTraceFile ( $type, $extension, $data ) {  
 
-    global $padTrace, $padTraceDir, $padTraceActive, $padTraceItems, $padTraceFiles, $padTraceFilesDir;
+    global $padTrace, $padTraceDir, $padTraceActive, $padTraceFiles, $padTraceFilesDir;
 
     if ( ! $padTraceFiles )
       return;

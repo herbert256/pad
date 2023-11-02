@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! $GLOBALS ['padTraceItems'] ['exists'] )
+  if ( ! $GLOBALS ['padTraceExists'] )
     return;
 
   if ( strpos ( '/trace/', $file ) )

@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! $padTraceItems ['data'] )
+  if ( ! $padTraceData )
     return;
 
   padTrace ( 'level', 'data', $padData [$pad] );

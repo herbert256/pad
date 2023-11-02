@@ -1,7 +1,7 @@
 <?php
 
-  if ( $padTraceItems ['session'] )
-    foreach ( padTrackFileRequestEnd () as $padK => $padV )
+  if ( $padTraceSession )
+    foreach ( padSessionInfoEnd () as $padK => $padV )
       padTrace ( 'session', $padK, $padV );
 
   padTrace ( 'trace', 'end' );
@@ -11,7 +11,7 @@
  if ( $padTraceTace or $padTracelocal )
     padTraceCheckLocal ( $padTraceDirBase );
 
-  if ( $padTraceItems ['dumps'] )
+  if ( $padTraceDumps )
     padDumpToDir ( '', $padTraceDir . "/end" );
 
 ?>

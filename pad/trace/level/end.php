@@ -4,7 +4,7 @@
 
   padTrace ( 'level', 'end', $padResult[$pad] );
 
-  if ( ( $padTraceTace or $padTracelocal ) and $padTraceLevelDir )
+  if ( ( $padTraceTrace or $padTracelocal ) and $padTraceLevelDir )
     padTraceCheckLocal ( $padTraceLevelDirName [$pad] );
 
   if ( $pad and $padTraceLevelDir ) 

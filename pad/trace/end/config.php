@@ -1,10 +1,9 @@
 <?php
 
-  global $padTrace, $padTraceItems, $padTraceDir, $padTraceActive;
+  global $padTrace, $padTraceSession, $padTraceDir, $padTraceActive, $padTraceTace, $padTracelocal, $padTraceDumps;
 
   include pad . 'trace/lib/exits.php';
 
   $padTraceBase = $padTrace;
-  $padTrace     = FALSE;
 
 ?>

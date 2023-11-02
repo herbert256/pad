@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! $padTraceItems ['parse'] )
+  if ( ! $padTraceParms )
     return;
 
   foreach ( $padOpt [$pad] as $padK => $padV )
