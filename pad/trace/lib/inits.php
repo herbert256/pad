@@ -1,9 +1,10 @@
 <?php
   
+  if ( ! isset ( $padTraceLine ) )
+    $padTraceLine = 0;
+
   include_once pad . 'trace/lib/trace.php';
   include      pad . 'trace/config/config.php';
-
-  $padTrace        = $padTraceBase ?? 0;
   
   $padTraceDirBase = padFileCorrect ( "trace/$padPage/$padReqID" ); 
 

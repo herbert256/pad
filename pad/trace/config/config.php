@@ -1,13 +1,4 @@
 <?php
-
-  $padTraceTrace    = TRUE;
-  $padTraceLocal    = FALSE;
-  
-  $padTraceLevel    = TRUE;       
-  $padTraceOccur    = TRUE;
-
-  $padTraceLevelDir = FALSE;       
-  $padTraceOccurDir = 'never';     // 'never', 'smart', 'always'
   
   $padTraceTypes    = FALSE;       
   $padTraceFiles    = FALSE;       

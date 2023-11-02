@@ -1,10 +1,16 @@
 <?php
 
+  if ( $pad == 0 )
+    $padTraceLevelDir [$pad] = $padTraceBase .'/page' ;
+  else
+    $padTraceLevelDir [$pad] = $padTraceLevelDir [$pad-1] . '/' . $padTraceId [$i] . '-' .  padFileCorrect ( $padTag [$i] );
+
+  if ( $pad == )
   $padTraceId           [$pad] = 0;
   $padTraceOccurId      [$pad] = 0;
   $padTraceChilds       [$pad] = 0;
   $padTraceOccurs       [$pad] = 0;
-  $padTraceLevelDirName [$pad] = $padTraceDir;
+  $padTraceLevelDir     [$pad] = '';
   $padTraceOccurDirName [$pad] = [];
   $padTraceOccurHasDir  [$pad] = [];
 
