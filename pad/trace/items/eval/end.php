@@ -5,8 +5,9 @@
   
   global $padTraceEvalData;
 
-  padTrace ( 'eval', 'end', 'result=' . $result [$key] [0] );
+  $padTraceEvalData ['result'] = $result [$key] [0];
 
-  padTraceFile ( 'eval', 'pad', $padTraceEvalData );
+  padTrace ( 'eval', 'result', $result [$key] [0] );
+  padTrace ( 'eval', 'end',    $padTraceEvalData );
 
 ?>

@@ -1,5 +1,8 @@
 <?php
 
+  global $padTraceSession, $padTraceActive;
+  global $padTraceDumps, $padTraceBase;
+ 
   if ( $padTraceSession )
     foreach ( padSessionInfoEnd () as $padK => $padV )
       padTrace ( 'session', $padK, $padV );
@@ -8,8 +11,7 @@
 
   $padTraceActive = FALSE;
 
- if ( $padTraceTace or $padTracelocal )
-    padTraceCheckLocal ( $padTraceDirBase );
+  padTraceCheckLocal ( $padTraceBase );
 
   if ( $padTraceDumps )
     padDumpToDir ( '', $padTraceBase . "/end" );

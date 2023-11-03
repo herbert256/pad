@@ -1,32 +1,32 @@
 <?php
   
-  $padTraceMore     = FALSE;       
+  $padTraceMore     = TRUE;       
 
-  $padTraceTypes    = FALSE;       
-  $padTraceTypesDir = FALSE;       
+  $padTraceTypes    = TRUE;       
+  $padTraceTypesDir = TRUE;       
   
-  $padTraceDumps    = FALSE;
+  $padTraceDumps    = TRUE;
   
-  $padTraceSession  = FALSE;
-  $padTraceBuild    = FALSE;
-  $padTraceParse    = FALSE;
-  $padTraceParms    = FALSE;
-  $padTraceOptions  = FALSE;
-  $padTraceContent  = FALSE;
-  $padTraceFlags    = FALSE;
-  $padTraceTrue     = FALSE;
-  $padTraceFalse    = FALSE;
-  $padTraceBase     = FALSE;
-  $padTraceData     = FALSE;
-  $padTraceStore    = FALSE;
-  $padTraceSequence = FALSE;
-  $padTraceVar      = FALSE;
-  $padTraceField    = FALSE;
-  $padTraceEval     = FALSE;
-  $padTraceCall     = FALSE;
-  $padTraceExists   = FALSE;
-  $padTraceSql      = FALSE;
-  $padTraceGet      = FALSE;
-  $padTraceCurl     = FALSE;
+  $padTraceSession  = TRUE;
+  $padTraceBuild    = TRUE;
+  $padTraceParse    = TRUE;
+  $padTraceParms    = TRUE;
+  $padTraceOptions  = TRUE;
+  $padTraceContent  = TRUE;
+  $padTraceFlags    = TRUE;
+  $padTraceTrue     = TRUE;
+  $padTraceFalse    = TRUE;
+  $padTracePad      = TRUE;
+  $padTraceData     = TRUE;
+  $padTraceStore    = TRUE;
+  $padTraceSequence = TRUE;
+  $padTraceVar      = TRUE;
+  $padTraceField    = TRUE;
+  $padTraceEval     = TRUE;
+  $padTraceCall     = TRUE;
+  $padTraceExists   = TRUE;
+  $padTraceSql      = TRUE;
+  $padTraceGet      = TRUE;
+  $padTraceCurl     = TRUE;
 
 ?>

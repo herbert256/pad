@@ -47,8 +47,8 @@
 
     global $pad;
 
-    $file1 = pad . $dir . '/trace.txt';
-    $file2 = pad . $dir . '/local.txt';
+    $file1 = padData . $dir . '/trace.txt';
+    $file2 = padData . $dir . '/local.txt';
 
     if ( ! file_exists ( $file1 ) or ! file_exists ( $file2 ) )
       return;

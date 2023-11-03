@@ -17,6 +17,9 @@
 
     padCloseSession ();
 
+    if ( $GLOBALS ['padTraceActive'] )
+      include pad . 'trace/end/config.php';   
+    
     if ( ! isset($GLOBALS ['padSent']) )
       padSend ($stop);
 
@@ -118,10 +121,7 @@
   }
 
 
-  function padExit () {
-
-    if ( $GLOBALS ['padTraceActive'] )
-      include pad . 'trace/end/config.php';    
+  function padExit () { 
 
     $GLOBALS ['padSkipShutdown']     = TRUE;
     $GLOBALS ['padSkipBootShutdown'] = TRUE;

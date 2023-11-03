@@ -35,11 +35,6 @@
       foreach ( $input['get'] as $key => $val ) 
         $url = padAddGet ( $url, $key, $val );
 
-    if ( str_starts_with ( strtolower ( $url ), strtolower ( $GLOBALS['padHost'] ) ) ) {
-      $input ['cookies'] ['padSesID'] = $GLOBALS ['padSesID'];
-      $input ['cookies'] ['padReqID'] = $GLOBALS ['padReqID'];
-    }
-
     $output ['url'] = $url;
 
     if ( ! strpos( $url, '://') ) {
@@ -47,16 +42,28 @@
       $check = padDataFileName ( $url );
     
       if ( $check ) {
-        $output ['url']    = $check;
+
+        $output ['url']    = "file://$check";
         $output ['data']   = padDataFileData ( $check );   
         $output ['type']   = padContentType  ( $output ['data'] );   
         $output ['result'] = '200';
-      } else 
-        $output ['result'] = '404';
 
-      $GLOBALS ['padCurlLast'] = $output;
-      return $output;
+        $GLOBALS ['padCurlLast'] = $output;
 
+        return $output;
+
+      } 
+
+    }
+
+    if ( ! strpos( $url, '://') ) {
+      $url = $GLOBALS ['padHost'] . $GLOBALS ['padGo']  . $url;
+      $output ['url'] = $url;
+    }
+
+    if ( str_starts_with ( strtolower ( $url ), strtolower ( $GLOBALS['padHost'] ) ) ) {
+      $input ['cookies'] ['padSesID'] = $GLOBALS ['padSesID'];
+      $input ['cookies'] ['padReqID'] = $GLOBALS ['padReqID'];
     }
 
     $options = $input ['options'] ?? [];
@@ -65,7 +72,7 @@
     padCurlOpt ($options, 'ENCODING',       'gzip' );
     padCurlOpt ($options, 'FOLLOWLOCATION', true);
     padCurlOpt ($options, 'HEADER',         true);
-    padCurlOpt ($options, 'USERAGENT',      $_SERVER['HTTP_USER_AGENT'] ?? 'Mozilla/5.0 (X11; CrOS x86_64 13904.77.0) AppleWebKit/537.36 (KPAD, like Gecko) Chrome/91.0.4472.147 Safari/537.36 pad/10.0');
+    padCurlOpt ($options, 'USERAGENT',      $_SERVER['HTTP_USER_AGENT'] ?? 'Mozilla/5.0 (X11; CrOS x86_64 13904.77.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.147 Safari/537.36 pad/10.0');
     padCurlOpt ($options, 'REFERER',        $GLOBALS ['padGoExt'] . $GLOBALS ['padPage']);
 
     if ( isset($input['user']) )
@@ -189,6 +196,8 @@
 
     if ( $GLOBALS ['padTraceActive'] )
       include pad . 'trace/items/curl.php';
+
+    $GLOBALS ['padCurlLast'] = $output;
 
     return $output;
     

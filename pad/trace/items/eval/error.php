@@ -10,7 +10,6 @@
   $padTraceEvalData ['error'] = $error;
 
   padTrace ( 'eval', 'error', $error );
-
-  padTraceFile ( 'eval-error', 'json', $padTraceEvalData );
+  padTrace ( 'eval', 'end',   $padTraceEvalData );
 
 ?>

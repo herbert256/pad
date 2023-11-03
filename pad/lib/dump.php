@@ -56,6 +56,7 @@
     padDumpRequest   ();
     padDumpXXX       ( $pad, 'padSeq' );
     padDumpXXX       ( $pad, 'padBuild' );
+    padDumpCurl      ( $pad );
     padDumpLines     ( "PAD variables",   $pad );
     padDumpLines     ( "Level variables", $lvl );
     padDumpLines     ( "ID's", $ids );
@@ -70,6 +71,20 @@
     echo ( "</pre></div>" );
  
   }
+
+
+  function padDumpCurl ( &$pad ) {
+
+    if ( isset ( $GLOBALS ['padCurlLast'] ) ) {
+  
+      padDumpLines ( "Last Curl",  $GLOBALS ['padCurlLast'] );
+
+      unset ( $pad ['padLastCurl'] );
+
+    }
+
+  }
+
 
 
   function padDumpRemote ( $info ) {

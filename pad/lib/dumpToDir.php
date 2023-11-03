@@ -43,6 +43,7 @@
     ob_start (); padDumpLevel     ();                 padDumpFile ( 'level',       ob_get_clean (), $dir );
     ob_start (); padDumpRequest   ();                 padDumpFile ( 'request',     ob_get_clean (), $dir );
     ob_start (); padDumpLines     ( "App", $app );    padDumpFile ( 'app-vars',    ob_get_clean (), $dir );
+    ob_start (); padDumpCurl      ( $pad );           padDumpFile ( 'last-curl',   ob_get_clean (), $dir );
     ob_start (); padDumpXXX       ( $pad, 'padSeq' ); padDumpFile ( 'sequence',    ob_get_clean (), $dir );
     ob_start (); padDumpFiles     ();                 padDumpFile ( 'files',       ob_get_clean (), $dir );
     ob_start (); padDumpFunctions ();                 padDumpFile ( 'functions',   ob_get_clean (), $dir );

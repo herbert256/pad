@@ -6,7 +6,7 @@
 
     $padTraceErrorDir = padDumpToDir ( $error );
 
-    padErrorExit ( "Error while in trace\n\n$error\n\n" . $padTraceErrorDir );
+    padErrorExit ( "Error while in trace\n\n$error\n\n" . padData . $padTraceErrorDir );
 
   } catch ( Throwable $e ) {
 
