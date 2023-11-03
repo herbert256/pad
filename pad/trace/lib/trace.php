@@ -52,12 +52,11 @@
       $occur = $padOccur [$pad-1];
       $add   = "/$line-" . padFileCorrect ( $padTag [$pad] );
 
-      if ( $padTraceOccur [$pad-1] [$occur] )
-        $padTraceLevel [$pad] = $padTraceOccur [$pad-1] [$occur] . $add;
-      else
-        $padTraceLevel [$pad] = $padTraceLevel [$pad-1]          . $add;
+      $padTraceLevel [$pad] = $padTraceOccur [$pad-1] [$occur] . $add;
 
     }
+
+    $padTraceOccur [$pad] [0] = $padTraceLevel [$pad] . '/0';
 
   }
 
@@ -68,11 +67,6 @@
     global $padTraceLevel, $padTraceOccur;
 
     $occur = $padOccur [$pad];
-
-    $padTraceOccur [$pad] [$occur] = '';
-
-    if ( $padWalk [$pad] <> 'next' and padIsDefaultData ( $padData [$pad] ) )
-      return;
 
     $padTraceOccur [$pad] [$occur] = $padTraceLevel [$pad] . "/$occur";
     
