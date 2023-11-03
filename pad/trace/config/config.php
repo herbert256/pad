@@ -1,10 +1,9 @@
 <?php
   
-  $padTraceTypes    = FALSE;       
-  $padTraceFiles    = FALSE;       
+  $padTraceMore     = FALSE;       
 
+  $padTraceTypes    = FALSE;       
   $padTraceTypesDir = FALSE;       
-  $padTraceFilesDir = FALSE;       
   
   $padTraceDumps    = FALSE;
   
@@ -21,7 +20,6 @@
   $padTraceData     = FALSE;
   $padTraceStore    = FALSE;
   $padTraceSequence = FALSE;
-  $padTraceResult   = FALSE;
   $padTraceVar      = FALSE;
   $padTraceField    = FALSE;
   $padTraceEval     = FALSE;

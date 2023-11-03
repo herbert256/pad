@@ -4,14 +4,13 @@
     $padTraceLine = 0;
 
   include_once pad . 'trace/lib/trace.php';
+  include_once pad . 'trace/lib/lib.php';
   include      pad . 'trace/config/config.php';
   
-  $padTraceDirBase = padFileCorrect ( "trace/$padPage/$padReqID" ); 
-
-  $padTraceDir     = $padTraceDirBase;
+  $padTraceBase = "trace/$padPage/$padReqID"; 
 
   if ( $padTraceDumps )
-    padDumpToDir ( '', $padTraceDir . "/start" );
+    padDumpToDir ( '', $padTraceBase . "/start" );
 
   $padTraceId [$pad] = $padTrace + 1;
 

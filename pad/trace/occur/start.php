@@ -1,18 +1,16 @@
 <?php
 
-  $padTraceOccurHasDir  [$pad] [$padOccur[$pad]] = FALSE; 
-  $padTraceOccurDirName [$pad] [$padOccur[$pad]] = $padTraceDir; 
-
   for ( $padI = $pad; $padI; $padI-- )
-    $padTraceChilds[$padI]++;
+    $padTraceLevelChilds[$padI]++;
 
-  $padTraceOccurs[$pad]++;
+  $padTraceOccurChilds [$pad] [$padOccur[$pad]] = 0;;
+
+  if ( $pad > 0)
+    for ( $padI = $pad-1; $padI; $padI-- )
+      $padTraceOccurChilds[$padI][$padOccur[$padI]]++;
 
   padTrace ( 'occur', 'start', $padBase [$pad] );
 
- if ( ! $padTraceOccur )
-    return;
- 
   if ( $padTraceBase and $padBase [$pad] and strlen ( $padBase [$pad] ) > 50 )
     padTraceFile ( 'occ-base', 'pad', $padBase [$pad] );   
 

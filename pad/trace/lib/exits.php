@@ -12,6 +12,6 @@
     padTraceCheckLocal ( $padTraceDirBase );
 
   if ( $padTraceDumps )
-    padDumpToDir ( '', $padTraceDir . "/end" );
+    padDumpToDir ( '', $padTraceBase . "/end" );
 
 ?>

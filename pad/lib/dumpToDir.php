@@ -8,10 +8,10 @@
  
     $GLOBALS ['padDumpToDir'] = TRUE;
 
-    set_error_handler ( 'padErrorThrow' );
-
     if ( ! $dir )
       $dir = "dumps/" . $GLOBALS ['padPage'] . '/' . $GLOBALS ['padReqID'] . '-' . padRandomString();
+
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -25,7 +25,9 @@
 
     }
 
-    restore_error_handler ();
+    restore_error_handler (); 
+
+    return $dir;
 
   }
 

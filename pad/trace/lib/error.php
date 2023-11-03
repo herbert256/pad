@@ -4,9 +4,9 @@
 
   try {
 
-    padDumpToDir ( $error, $GLOBALS ['padTraceDir'] . '/ERROR' );
+    $padTraceErrorDir = padDumpToDir ( $error );
 
-    padErrorExit ( "Error while in trace\n\n$error\n\n" . $GLOBALS ['padTraceDir'] . '/ERROR' );
+    padErrorExit ( "Error while in trace\n\n$error\n\n" . $padTraceErrorDir );
 
   } catch ( Throwable $e ) {
 

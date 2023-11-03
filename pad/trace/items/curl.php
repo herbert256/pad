@@ -5,6 +5,4 @@
 
   padTrace ( 'curl', 'file', $url ); 
 
-  padTraceFile ( 'curl', 'json',  $output );
-
 ?>
