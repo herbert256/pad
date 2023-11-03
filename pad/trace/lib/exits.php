@@ -16,4 +16,6 @@
   if ( $padTraceDumps )
     padDumpToDir ( '', $padTraceBase . "/end" );
 
+  return TRUE;
+
 ?>

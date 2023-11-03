@@ -1,5 +1,5 @@
 <?php
-
+ 
   include pad . 'level/tag.php';
   include pad . 'level/setup.php';    
 
@@ -26,7 +26,6 @@
   include pad . 'level/flags.php';
   include pad . 'level/base.php';
   include pad . 'level/data.php';
-
   include pad . 'options/start.php';
 
   if ( count ( $padOptionsApp [$pad] ) )

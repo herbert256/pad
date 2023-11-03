@@ -29,7 +29,7 @@
   include pad . 'options/end.php';
 
   padResetLvl ($pad);
-
+ 
   if ( $padTraceActive ) 
     include pad . 'trace/level/end.php';    
   

@@ -1,20 +1,20 @@
 <?php
+
+  include pad . 'trace/config/config.php';
+
+  $padTraceBase = "trace/$padPage/$padReqID"; 
+
+  if ( $padTraceDumps )
+    padDumpToDir ( '', $padTraceBase . "/start" );
   
   if ( ! isset ( $padTraceLine ) )
     $padTraceLine = 0;
 
   include_once pad . 'trace/lib/trace.php';
   include_once pad . 'trace/lib/lib.php';
-  include      pad . 'trace/config/config.php';
-  
-  $padTraceBase = "trace/$padPage/$padReqID"; 
 
-  if ( $padTraceDumps )
-    padDumpToDir ( '', $padTraceBase . "/start" );
-
-  $padTraceId [$pad] = $padTrace + 1;
-
-  $padTraceActive = TRUE;
+  $padTraceLevelChilds [$pad] = 0;
+  $padTraceOccurChilds [$pad] = [];
 
   padTrace ( 'trace', 'start' );
 

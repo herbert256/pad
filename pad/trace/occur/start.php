@@ -2,11 +2,11 @@
 
   $padTraceOccurChilds [$pad] [$padOccur[$pad]] = 0;;
 
-  for ( $padI = $pad; $padI; $padI-- )
+  for ( $padI = $pad; $padI >= $padTraceStart; $padI-- )
     $padTraceLevelChilds [$padI] ++;
 
   if ( $pad > 0)
-    for ( $padI = $pad-1; $padI; $padI-- )
+    for ( $padI = $pad-1; $padI >= $padTraceStart; $padI-- )
       if ( $padOccur [$padI] )
         $padTraceOccurChilds[$padI][$padOccur[$padI]]++;
 

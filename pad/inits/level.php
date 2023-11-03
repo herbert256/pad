@@ -1,6 +1,6 @@
 <?php
 
-  $padTypeCheck = 'boot';
+  $padTypeCheck = 'pad';
 
   include pad . 'level/setup.php';
 

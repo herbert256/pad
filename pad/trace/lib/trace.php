@@ -32,9 +32,21 @@
     elseif ( $type == 'occur' ) $padTraceOccurId [$pad]     = $line;
     else                        $GLOBALS ["padTraceX$type"] = $line;
 
-    if     ( $type == 'level' ) padTraceStartLevel ( $line );
+    if     ( $type == 'trace' ) padTraceStartTrace ( $line );
+    elseif ( $type == 'level' ) padTraceStartLevel ( $line );
     elseif ( $type == 'occur' ) padTraceStartOccur ( $line );
    
+  }
+
+
+ function padTraceStartTrace ( $line ) {  
+    
+    global $pad, $padTag;
+    global $padTraceLevel, $padTraceBase;
+
+    $padTraceLevel [$pad]     = "$padTraceBase/$line-" . padFileCorrect ( $padTag [$pad] );
+    $padTraceOccur [$pad] [0] = $padTraceLevel [$pad] . "/0";
+    
   }
 
 
@@ -43,18 +55,12 @@
     global $pad, $padOccur, $padTag;
     global $padTraceLevel, $padTraceOccur, $padTraceBase;
 
-    if ( $pad == 0 )
+    if ( $pad > 0 )
+      $padTraceLevel [$pad] = $padTraceOccur [$pad-1] [$padOccur[$pad-1]];
+    else
+      $padTraceLevel [$pad] = $padTraceBase;
 
-      $padTraceLevel [$pad] = $padTraceBase .'/page' ;
-
-    else {
-
-      $occur = $padOccur [$pad-1];
-      $add   = "/$line-" . padFileCorrect ( $padTag [$pad] );
-
-      $padTraceLevel [$pad] = $padTraceOccur [$pad-1] [$occur] . $add;
-
-    }
+    $padTraceLevel [$pad] .= "/$line-" . padFileCorrect ( $padTag [$pad] );
 
     $padTraceOccur [$pad] [0] = $padTraceLevel [$pad] . '/0';
 

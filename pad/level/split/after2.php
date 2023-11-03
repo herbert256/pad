@@ -5,7 +5,7 @@
 
   $padAfter [$pad] = '';
 
-  $padOccur [$pad] = 9998;
+  $padOccur [$pad] = 998;
 
   reset ( $padData [$pad] );
   include pad . 'occurrence/start.php';
