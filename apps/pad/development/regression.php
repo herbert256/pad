@@ -10,6 +10,10 @@
     $item  = $one ['item'];
     $store = padApp . "_regression/$item.pad";
     $now   = padApp . "_regression/_now.txt";
+    $check = padApp . "$item.pad";
+
+    if ( strpos ( padFileGetContents($check), '<!-- PAD: SKIP REGRESSION -->') )
+      continue;
 
     file_put_contents ($now, $item, LOCK_EX);
 
@@ -28,7 +32,7 @@
       file_put_contents ( $store, $curl ['data'], LOCK_EX ) ;
     }
 
-    $files [$item] ['item']  = $item;
+    $files [$item] ['item']   = $item;
     $files [$item] ['status'] = $status;
 
   }

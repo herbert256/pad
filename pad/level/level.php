@@ -1,7 +1,7 @@
 <?php
 
   if ( $padRestart )
-    include pad . 'inits/restart.php';    
+    include pad . 'pad/entry/restart.php';    
     
   $padEnd [$pad] = strpos ( $padPad [$pad], '}' );
 

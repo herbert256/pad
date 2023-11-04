@@ -1,7 +1,8 @@
 <?php
-
-  padEmptyBuffers ();
   
+  if ( $padTraceActive)
+    include pad . "trace/entry/restart.php";
+ 
   $padPage = $padRestart;
 
   if ( isset($padRestartVars) ) {
@@ -14,5 +15,5 @@
   }
 
   include pad . 'pad/entry/start.php';
- 
+  
 ?>

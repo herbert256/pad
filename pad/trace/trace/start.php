@@ -2,7 +2,7 @@
 
   include pad . 'trace/config/config.php';
 
-  $padTraceBase = "trace/$padPage/$padReqID"; 
+  $padTraceBase = "trace/$padPage/$padReqID-" . padRandomString (8); 
 
   if ( ! isset ( $padTraceLine ) )
     $padTraceLine = 0;
