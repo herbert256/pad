@@ -1,5 +1,7 @@
 <?php
 
+  include pad . 'trace/store/start.php';
+
   $padTraceType  = 'config'; 
   $padTraceStart = 0;
  

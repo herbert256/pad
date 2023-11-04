@@ -102,7 +102,7 @@
 
   function padTraceTrace ( &$trace, $type, $event ) {
 
-    global $pad, $padOccur;
+    global $pad, $padOccur, $padTraces;
     global $padTraceLine, $padTraceId, $padTraceOccurId;
 
     $prefix = $pad;  
@@ -119,11 +119,12 @@
     if ( ! $id or $id == $padTraceLine )
       $id = '';
 
-    $trace = sprintf ( '%-7s',  $prefix )
-           . sprintf ( '%-7s',  $line   )
-           . sprintf ( '%-7s',  $id     )
-           . sprintf ( '%-10s', $type   )
-           . sprintf ( '%-10s', $event  );
+    $trace = sprintf ( '%-4s',  $padTraces    )
+           . sprintf ( '%-7s',  $prefix       )
+           . sprintf ( '%-7s',  $padTraceLine )
+           . sprintf ( '%-7s',  $id           )
+           . sprintf ( '%-10s', $type         )
+           . sprintf ( '%-10s', $event        );
 
   }
 
@@ -135,10 +136,10 @@
     if ( is_array ( $info ) )
       $info = padJson ( $info );
 
-    $trace .= padMakeSafe ( $info, 80 );
+    $trace .= padMakeSafe ( $info, 60 );
 
     if ( $padTraceMore )
-      if ( strlen ( $trace ) < 120 )
+      if ( strlen ( $trace ) < 105 )
         $info = '';
       else 
         $trace .= ' <more>';
