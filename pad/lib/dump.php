@@ -46,7 +46,7 @@
 
     echo ( "<div align=\"left\"><pre>" );
 
-    padDumpFields    ( $php, $lvl, $app, $cfg, $pad, $ids );
+    padDumpFields    ( $php, $lvl, $app, $cfg, $pad, $ids, $trc, $err );
     padDumpInfo      ( $info );
     padDumpErrors    ();
     padDumpStack     ();
@@ -58,7 +58,9 @@
     padDumpXXX       ( $pad, 'padBuild' );
     padDumpCurl      ( $pad );
     padDumpLines     ( "PAD variables",   $pad );
+    padDumpLines     ( "Trace variables", $trc );
     padDumpLines     ( "Level variables", $lvl );
+    padDumpLines     ( "Error variables", $err );
     padDumpLines     ( "ID's", $ids );
     padDumpSQL       ();
     padDumpHeaders   ();
@@ -373,9 +375,9 @@
   } 
 
 
-  function padDumpFields ( &$php, &$lvl, &$app, &$cfg, &$pad, &$ids ) {
+  function padDumpFields ( &$php, &$lvl, &$app, &$cfg, &$pad, &$ids, &$trc, &$err ) {
 
-    $php = $lvl = $app = $cfg = $pad = $ids = $exc = [];
+    $php = $lvl = $app = $cfg = $pad = $ids = $exc = $err = $trc = [];
 
     $chk1 = [ '_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
 
@@ -390,6 +392,14 @@
       if (strpos($settings, '$'.$key.' ') or strpos($settings, '$'.$key.'=') or strpos($settings, '$'.$key."\t"))
 
         $cfg  [$key] = $value;
+
+      elseif ( substr($key, 0, 8)  == 'padTrace' )
+
+        $trc [$key] = $value;
+
+      elseif ( substr($key, 0, 8)  == 'padError' )
+
+        $err [$key] = $value;
 
       elseif ( $key == 'padSqlConnect' )
         

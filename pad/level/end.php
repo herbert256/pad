@@ -29,6 +29,9 @@
   include pad . 'options/end.php';
 
   padResetLvl ($pad);
+
+  if ( count ( $padOptionsCallback [$pad] ) )
+    include pad . 'options/callback.php';
  
   if ( $padTraceActive ) 
     include pad . 'trace/level/end.php';    

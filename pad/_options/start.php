@@ -5,6 +5,7 @@
 
   padDone ( 'start', TRUE);
   padDone ( 'end',   TRUE); 
+  
   padDataFilterGo ($padData [$pad], $padFilterStart, $padFilterEnd);    
 
 ?>

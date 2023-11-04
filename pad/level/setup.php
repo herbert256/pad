@@ -50,8 +50,6 @@
 
   $padSaveOcc    [$pad] = [];
   $padDeleteOcc  [$pad] = [];
-
-  $padOptionsApp [$pad] = [];
   
   $padAfter      [$pad] = 0;
   $padBefore     [$pad] = 0;
@@ -59,6 +57,9 @@
 
   $padTable      [$pad] = [];
   $padTableTag   [$pad] = '';
+
+  $padOptionsAppStart [$pad] = [];
+  $padOptionsCallback [$pad] = [];
 
   $padForceTagName  = '';
   $padForceDataName = '';

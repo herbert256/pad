@@ -15,10 +15,7 @@
     if ( $GLOBALS ['padTrackFileRequest'] )
       padTrackFileRequestEnd ();
 
-    padCloseSession ();
-
-    if ( $GLOBALS ['padTraceActive'] )
-      include pad . 'trace/end/config.php';   
+    padCloseSession ();  
     
     if ( ! isset($GLOBALS ['padSent']) )
       padSend ($stop);

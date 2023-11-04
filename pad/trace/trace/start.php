@@ -4,9 +4,6 @@
 
   $padTraceBase = "trace/$padPage/$padReqID"; 
 
-  if ( $padTraceDumps )
-    padDumpToDir ( '', $padTraceBase . "/start" );
-  
   if ( ! isset ( $padTraceLine ) )
     $padTraceLine = 0;
 
@@ -16,7 +13,13 @@
   $padTraceLevelChilds [$pad] = 0;
   $padTraceOccurChilds [$pad] = [];
 
+  $padTraceSkipLevel = 0;
+  $padTraceMaxLevel  = 0;
+
   padTrace ( 'trace', 'start' );
+
+  if ( $padTraceDumps ) 
+    padTraceDump ( 'start' );
 
   if ( $padTraceSession )
     foreach ( padSessionInfoStart () as $padK => $padV )

@@ -33,7 +33,7 @@
     if ( padValidVar ($padPrmName) ) {
 
       if ( padExists ( padApp . "options/$padPrmName.php") )
-        $padOptionsApp [$pad] [] = $padPrmName;
+        $padOptionsAppStart [$pad] [] = $padPrmName;
 
       $padPrm [$pad] [$padPrmName] = ( $padPrmValue === '' ) ? TRUE : padEval ( $padPrmValue );
 

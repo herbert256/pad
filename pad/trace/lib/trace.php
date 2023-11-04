@@ -3,7 +3,13 @@
 
   function padTrace ( $type, $event, $info='' ) {
 
-    global $padTraceActive, $padTraceLine, $padTraceBase;
+    global $pad, $padTraceActive, $padTraceLine, $padTraceBase, $padTraceSkipLevel, $padTraceMaxLevel;
+
+    if ( $padTraceSkipLevel and $padTraceSkipLevel == $pad and $type == 'level' )
+      return;
+
+    if ( $padTraceMaxLevel and $padTraceMaxLevel > $pad )
+      return;
 
     $padTraceActive = FALSE;
 
@@ -41,11 +47,25 @@
 
  function padTraceStartTrace ( $line ) {  
     
-    global $pad, $padTag;
-    global $padTraceLevel, $padTraceBase;
+    global $pad, $padTag, $padOccur;
+    global $padTraceLevel, $padTraceOccur, $padTraceBase, $padTraceType;
 
-    $padTraceLevel [$pad]     = "$padTraceBase/$line-" . padFileCorrect ( $padTag [$pad] );
-    $padTraceOccur [$pad] [0] = $padTraceLevel [$pad] . "/0";
+    if ( $padTraceType == 'config') {
+
+      $padTraceLevel [$pad]     = $padTraceBase;
+      $padTraceOccur [$pad] [0] = $padTraceBase;
+    
+    } else {
+
+      $last = $padOccur [$pad-1] ?? 0;
+
+      $padTraceLevel [$pad]     = "$padTraceBase/$line-" . padFileCorrect ( $padTag [$pad] );
+      $padTraceOccur [$pad] [0] = $padTraceLevel [$pad] . "/0";
+
+      $padTraceLevel [$pad-1]         = $padTraceBase;
+      $padTraceOccur [$pad-1] [$last] = $padTraceBase;
+
+    }
     
   }
 
@@ -53,13 +73,14 @@
   function padTraceStartLevel ( $line ) {  
 
     global $pad, $padOccur, $padTag;
-    global $padTraceLevel, $padTraceOccur, $padTraceBase;
+    global $padTraceLevel, $padTraceOccur, $padTraceBase, $padTraceStart, $padTraceType;
 
-    if ( $pad > 0 )
-      $padTraceLevel [$pad] = $padTraceOccur [$pad-1] [$padOccur[$pad-1]];
-    else
-      $padTraceLevel [$pad] = $padTraceBase;
+    if ( $padTraceType == 'option' and $pad == $padTraceStart )
+      return; 
 
+    $last = $padOccur [$pad-1] ?? 0;
+
+    $padTraceLevel [$pad]  = $padTraceOccur [$pad-1] [$last];
     $padTraceLevel [$pad] .= "/$line-" . padFileCorrect ( $padTag [$pad] );
 
     $padTraceOccur [$pad] [0] = $padTraceLevel [$pad] . '/0';
@@ -95,7 +116,7 @@
     elseif ( isset ( $GLOBALS ["padTraceX$type"] ) ) $id = $GLOBALS ["padTraceX$type"] ?? 0;
     else                                             $id = $padTraceLine;       
 
-    if ( $id == $padTraceLine )
+    if ( ! $id or $id == $padTraceLine )
       $id = '';
 
     $trace = sprintf ( '%-7s',  $prefix )

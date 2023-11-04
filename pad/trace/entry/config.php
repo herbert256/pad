@@ -1,7 +1,8 @@
 <?php
 
+  $padTraceType  = 'config'; 
   $padTraceStart = 0;
  
-  include pad . 'trace/lib/inits.php';
+  include pad . 'trace/trace/start.php';
 
 ?>

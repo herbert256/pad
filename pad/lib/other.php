@@ -290,8 +290,6 @@
 
 
 
-
-
   function padDemoMode ( $page ) {
 
     $store = padApp . "_regression/$page.pad";

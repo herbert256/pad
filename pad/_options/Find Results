@@ -1,0 +1,38 @@
+Searching 1237 files for "padOptionsApp" (case sensitive)
+
+~/pad/pad/inits/vars.php:
+   18    $padFlagStore = $padSeqStore = $padDataStore = $padSeqStore = [];
+   19  
+   20:   $padLevelVars = [ 'padTag','padType','padPair','padTrue','padFalse','padPrm','padName','padData','padCurrent','padDefault','padWalk','padWalkData','padDone','padOccur','padStart','padEnd','padBase','padPad','padResult','padHit','padNull','padElse','padArray','padText','padSaveVars','padDeleteVars','padSetSave','padSetDelete','padTagCnt','padAfter','padBefore','padBeforeData','padPrmType','padSet','padGiven','padDeleteSet','padOpt','padOptionsAppStart','padSaveSet','padTable','padTableTag','padSaveLvl','padSaveOcc','padSetLvl','padSetOcc','padDeleteOcc','padDeleteLvl','padPagePad','padPageApp','padCount','padKey','padTraceId','padTraceOccurId','padTraceLevelChilds','padTraceOccurChilds','padTraceOccur','padTraceLevel'
+   21    ];
+   22  
+
+~/pad/pad/level/parms.php:
+   34  
+   35        if ( padExists ( padApp . "options/$padPrmName.php") )
+   36:         $padOptionsAppStart [$pad] [] = $padPrmName;
+   37  
+   38        $padPrm [$pad] [$padPrmName] = ( $padPrmValue === '' ) ? TRUE : padEval ( $padPrmValue );
+
+~/pad/pad/level/setup.php:
+   59    $padTableTag   [$pad] = '';
+   60  
+   61:   $padOptionsAppStart [$pad] = [];
+   62    $padOptionsCallback [$pad] = [];
+   63  
+
+~/pad/pad/level/start.php:
+   29    include pad . 'options/start.php';
+   30  
+   31:   if ( count ( $padOptionsAppStart [$pad] ) )
+   32      include pad . 'options/app.php';
+   33  
+
+~/pad/pad/options/options.php:
+    1  <?php
+    2  
+    3:   if     ( $padOptions == 'app'      ) $padOptionsWalk = $padOptionsAppStart [$pad];
+    4    elseif ( $padOptions == 'callback' ) $padOptionsWalk = $padOptionsCallback [$pad];
+    5    else                                 $padOptionsWalk = $GLOBALS [ 'padOptions' . ucfirst($padOptions) ];
+
+5 matches across 5 files

@@ -26,10 +26,11 @@
   include pad . 'level/flags.php';
   include pad . 'level/base.php';
   include pad . 'level/data.php';
-  include pad . 'options/start.php';
 
-  if ( count ( $padOptionsApp [$pad] ) )
+  if ( count ( $padOptionsAppStart [$pad] ) )
     include pad . 'options/app.php';
+
+  include pad . 'options/start.php';
 
   include pad . 'level/name.php';
 

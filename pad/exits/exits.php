@@ -19,6 +19,9 @@
   if ( $padCache and $padCacheServerAge )
     include pad . 'cache/exits.php';
 
+  if ( $padTraceActive )
+    include pad . 'trace/exit/config.php'; 
+
   padStop ($padStop);
 
 ?>

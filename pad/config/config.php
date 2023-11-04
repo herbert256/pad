@@ -28,7 +28,7 @@
 
    // Trace the working of PAD
 
-  $padTrace = FALSE;
+  $padTrace = TRUE;
 
   // Cache settings
   

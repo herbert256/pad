@@ -1,34 +1,37 @@
 <?php
 
-  if ( $padOptions == 'app' )
-    $padOptionsWalk = $padOptionsApp [$pad];
-  else
-    $padOptionsWalk = $GLOBALS [ 'padOptions' . ucfirst($padOptions) ];
+  if     ( $padOptions == 'app'      ) $padOptionsWalk = $padOptionsAppStart [$pad];
+  elseif ( $padOptions == 'callback' ) $padOptionsWalk = $padOptionsCallback [$pad];
+  else                                 $padOptionsWalk = $GLOBALS [ 'padOptions' . ucfirst($padOptions) ];
    
-  if     ( $padOptions == 'start' ) $padContent = $padBase   [$pad];
-  elseif ( $padOptions == 'end'   ) $padContent = $padResult [$pad];
-  elseif ( $padOptions == 'app'   ) $padContent = $padBase   [$pad];
-
+  if     ( $padOptions == 'start'    ) $padContent = $padBase   [$pad];
+  elseif ( $padOptions == 'end'      ) $padContent = $padResult [$pad];
+  elseif ( $padOptions == 'app'      ) $padContent = $padBase   [$pad];
+  elseif ( $padOptions == 'callback' ) $padContent = $padResult [$pad];
+ 
   foreach ( $padPrm [$pad] as $padOptionName => $padV )
 
-    if ( in_array ( $padOptionName, $padOptionsWalk ) and ! isset ( $padDone [$pad] [$padOptionName] ) ) {
+    if ( in_array ( $padOptionName, $padOptionsWalk ) )
 
-      padDone ( $padOptionName, TRUE );  
- 
-      if ( $padOptions == 'app' )
-        $padCall = padApp . "_options/$padOptionName.php" ;
-      else
-        $padCall = pad . "_options/$padOptionName.php" ;
+      if ( $padOptions == 'callback' or ! isset ( $padDone [$pad] [$padOptionName] ) ) {
 
-      include pad . 'call/call.php';
+        padDone ( $padOptionName, TRUE );  
+   
+        if ( $padOptions == 'app' )
+          $padCall = padApp . "_options/$padOptionName.php" ;
+        else
+          $padCall = pad . "_options/$padOptionName.php" ;
 
-      if ( $padTraceActive )
-        include pad . 'trace/items/options.php';       
+        include pad . 'call/call.php';
 
-    }
+        if ( $padTraceActive )
+          include pad . 'trace/items/options.php';       
 
-  if     ( $padOptions == 'start' ) $padBase   [$pad] = $padContent;
-  elseif ( $padOptions == 'end'   ) $padResult [$pad] = $padContent;
-  elseif ( $padOptions == 'app'   ) $padBase   [$pad] = $padContent;
+      }
+
+  if     ( $padOptions == 'start'    ) $padBase   [$pad] = $padContent;
+  elseif ( $padOptions == 'end'      ) $padResult [$pad] = $padContent;
+  elseif ( $padOptions == 'app'      ) $padBase   [$pad] = $padContent;
+  elseif ( $padOptions == 'callback' ) $padResult [$pad] = $padContent;
 
 ?>

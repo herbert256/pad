@@ -34,10 +34,11 @@
 
   function padDumpToDirGo ( $info, $dir ) {
 
-    padDumpFields ( $php, $lvl, $app, $cfg, $pad, $ids );
+    padDumpFields ( $php, $lvl, $app, $cfg, $pad, $ids, $trc, $err );
 
     ob_start (); padDumpInfo      ( $info );          padDumpFile ( 'info',        ob_get_clean (), $dir );
-    ob_start (); padDumpErrors    ();                 padDumpFile ( 'errors',      ob_get_clean (), $dir );
+    ob_start (); padDumpErrors    ();                 padDumpFile ( 'error',       ob_get_clean (), $dir );
+    ob_start (); padDumpLines     ( "Error", $err );  padDumpFile ( 'error-extra', ob_get_clean (), $dir );
     ob_start (); padDumpStack     ();                 padDumpFile ( 'stack',       ob_get_clean (), $dir );
     ob_start (); padDumpLines     ( "ID's", $ids );   padDumpFile ( 'ids',         ob_get_clean (), $dir );
     ob_start (); padDumpLevel     ();                 padDumpFile ( 'level',       ob_get_clean (), $dir );
@@ -48,6 +49,7 @@
     ob_start (); padDumpFiles     ();                 padDumpFile ( 'files',       ob_get_clean (), $dir );
     ob_start (); padDumpFunctions ();                 padDumpFile ( 'functions',   ob_get_clean (), $dir );
     ob_start (); padDumpLines     ( "PAD",   $pad );  padDumpFile ( 'pad-vars',    ob_get_clean (), $dir );
+    ob_start (); padDumpLines     ( "Trace", $trc );  padDumpFile ( 'trace',       ob_get_clean (), $dir );
     ob_start (); padDumpLines     ( "Level", $lvl );  padDumpFile ( 'level-vars',  ob_get_clean (), $dir );
     ob_start (); padDumpSQL       ();                 padDumpFile ( 'sql',         ob_get_clean (), $dir );
     ob_start (); padDumpHeaders   ();                 padDumpFile ( 'headers',     ob_get_clean (), $dir );

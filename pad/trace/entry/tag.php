@@ -1,7 +1,12 @@
 <?php
 
+  include pad . 'trace/store/start.php';
+
+  $padTraceType  = 'tag'; 
   $padTraceStart = $pad;
 
-  include pad . 'trace/lib/inits.php';
+  include pad . 'trace/trace/start.php';
+
+  $padTraceSkipLevel = $pad;
 
 ?>

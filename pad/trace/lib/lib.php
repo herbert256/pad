@@ -32,13 +32,51 @@
 
   }
 
+  function padTraceDump ( $type ) {
 
-  function padTraceChilds ( $dir, $childs ) {
+    global $pad;
+    global $padTraceActive, $padTraceDumps, $padTraceType, $padTraceBase, $padTraceLevel;
+
+    $padTraceActive = FALSE;
+
+    if ( $padTraceType == 'config' )
+      padDumpToDir ( '', $padTraceBase . "/$type" );
+    else
+      padDumpToDir ( '', $padTraceLevel [$pad] . "/$type" );
   
+    $padTraceActive = TRUE;
+
+  }
+
+
+
+  function padTraceChilds ( $dir, &$childs, $type ) {
+  
+    global $pad, $padOccur, $padTraceLevel, $padTraceOccur;
+
     if ( ! $dir or ! $childs )
       return;
 
-    rename ( padData . $dir, padData . $dir . '-' . $childs );
+    $new  = $dir . '-' . $childs;
+    $from = padData . $dir;
+    $to   = padData . $new;
+
+    if ( ! file_exists ( $from ) or file_exists ( $to) )
+      return;
+
+    rename ( $from, $to );
+
+    if ( $type == 'level' ) {
+      $padTraceLevel [$pad]     = $new;
+      $padTraceOccur [$pad] [0] = "$new/0";
+    }
+
+    if ( $type == 'occur' ) {
+      $occur = $padOccur [$pad] ?? 0;
+      $padTraceOccur [$pad] [$occur] = $new;
+    }
+
+    $childs = 0;
 
   }
 

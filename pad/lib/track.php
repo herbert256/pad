@@ -24,11 +24,11 @@
   function padSessionInfoStart () {
 
     return [
+        'start'     => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0,
         'session'   => $GLOBALS ['padSesID'] ?? '',
         'request'   => $GLOBALS ['padReqID'] ?? '',
         'parent'    => $GLOBALS ['padRefID'] ?? '',
         'page'      => $GLOBALS ['padPage'] ?? '',
-        'start'     => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0,
         'uri'       => $_SERVER ['REQUEST_URI']     ?? '' ,
         'referer'   => $_SERVER ['HTTP_REFERER']    ?? '' ,
         'remote'    => $_SERVER ['REMOTE_ADDR']     ?? '' ,
@@ -44,10 +44,11 @@
     return [
         'session'   => $GLOBALS ['padSesID'] ?? '',
         'request'   => $GLOBALS ['padReqID'] ?? '',
-        'time'      => padDuration (),
+        'duration'  => padDuration (),
         'length'    => $GLOBALS ['padLen'] ?? 0,
         'stop'      => $GLOBALS ['padStop'] ?? '',
-        'etag'      => $GLOBALS ['padEtag'] ?? ''
+        'etag'      => $GLOBALS ['padEtag'] ?? '',
+        'end'       => microtime(true)
       ];
 
   }

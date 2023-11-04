@@ -1,8 +1,8 @@
 <?php
   
-  $padTraceMore     = TRUE;       
+  $padTraceMore     = FALSE;       
 
-  $padTraceTypes    = TRUE;       
+  $padTraceTypes    = FALSE;       
   $padTraceTypesDir = TRUE;       
   
   $padTraceDumps    = TRUE;
