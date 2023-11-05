@@ -2,24 +2,20 @@
 
   $padTraceOccurChilds [$pad] [$padOccur[$pad]] = 0;;
 
-  for ( $padI = $pad; $padI >= $padTraceStart; $padI-- )
+  for ( $padI = $pad; $padI >= $padTraceGo; $padI-- )
     $padTraceLevelChilds [$padI] ++;
 
   if ( $pad > 0)
-    for ( $padI = $pad-1; $padI >= $padTraceStart; $padI-- )
+    for ( $padI = $pad-1; $padI >= $padTraceGo; $padI-- )
       if ( $padOccur [$padI] )
         $padTraceOccurChilds[$padI][$padOccur[$padI]]++;
 
-  padTrace ( 'occur', 'start', $padBase [$pad] );
+  padTraceSet ( 'occur', 'start' );
 
-  if ( $padTraceData ) {
+  if ( $padTraceStartOcc )
+    padTrace ( 'occur', 'start', $padBase [$pad] );
 
-    if ( padIsDefaultData ( $padBase [$pad] ) )
-      return;
-
-    if ( count ( $padData [$pad] ) )
-      padTrace ( 'occur', 'data', $padCurrent [$pad] );   
-
-  }
+  if ( $padTraceDataOcc )
+    padTrace ( 'occur', 'data', $padCurrent [$pad] );   
 
 ?>

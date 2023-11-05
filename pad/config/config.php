@@ -108,7 +108,7 @@
   $padTidy                  = FALSE;
   $padTidyCcsid             = 'utf8'; 
   $padTidyConfig            = [ 
-                                  'output-pad'     => TRUE,
+                                  'output-html'     => TRUE,
                                   'doctype'         => 'html5',
                                   'wrap'            => 0,
                                   'indent'          => TRUE,

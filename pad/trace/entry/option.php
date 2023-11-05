@@ -3,7 +3,7 @@
   include pad . 'trace/store/start.php';
 
   $padTraceType  = 'option'; 
-  $padTraceStart = $pad; 
+  $padTraceGo = $pad; 
 
   include pad . 'trace/trace/start.php';
 

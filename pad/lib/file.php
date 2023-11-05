@@ -94,7 +94,7 @@
     $dir = substr ( $file, 0, strrpos($file, '/') );
     
     if ( ! padExists($dir) )
-      mkdir ($dir, $GLOBALS ['padDirMode'], true);
+      mkdir ($dir, $GLOBALS ['padDirMode'], true );
 
   }
 

@@ -4,7 +4,7 @@
   include pad . 'trace/store/start.php';
 
   $padTraceType  = 'restart'; 
-  $padTraceStart = $pad;
+  $padTraceGo = $pad;
  
   include pad . 'trace/trace/start.php';
 

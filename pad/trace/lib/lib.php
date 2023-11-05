@@ -1,6 +1,18 @@
 <?php
 
 
+  function padDefaultOccur ( ) {
+
+    global $pad, $padWalk, $padData;
+
+    if ( $padWalk [$pad] <> 'next' and padIsDefaultData ( $padData [$pad] ) )
+      return TRUE;
+
+    return FALSE;
+
+
+  }
+
   function padTraceStatus ( $dir ) {
   
     global $pad, $padNull, $padHit, $padElse, $padData;

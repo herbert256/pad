@@ -1,8 +1,20 @@
 <?php
 
-  padTrace           ( 'level', 'end', $padResult [$pad] );
-  padTraceStatus     ( $padTraceLevel [$pad] );
-  padTraceCheckLocal ( $padTraceLevel [$pad] );
-  padTraceChilds     ( $padTraceLevel [$pad], $padTraceLevelChilds[$pad], 'level' );
+  if ( $padTraceEndLvl )
+    padTrace ( 'level', 'result', $padResult [$pad] );
+
+  if ( $padTraceEndLvl )
+    padTrace ( 'level', 'end' );
+
+  if ( $padTraceStatus )
+    padTraceStatus ( $padTraceLevel [$pad] );
+
+  if ( $padTraceLocalChk )
+    padTraceCheckLocal ( $padTraceLevel [$pad] );
+  
+  if ( $padTraceChilds )
+    padTraceChilds ( $padTraceLevel [$pad], $padTraceLevelChilds[$pad], 'level' );
+
+  padTraceSet ( 'level', 'end' );
   
 ?>
