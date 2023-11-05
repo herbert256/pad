@@ -1,7 +1,7 @@
 <?php
 
 
-  function padTraceXml ( $xml, $id, $type, $event ) {
+  function padTraceXml ( $trace, $info, $id, $type, $event ) {
 
     global $padTraceXmlLines;
 
@@ -14,7 +14,7 @@
       padTraceXmlWrite ( "<$type>", 'start' );
 
     if ( $padTraceXmlLines )
-      padTraceXmlLine ( $xml, $type, $event, $id );
+      padTraceXmlLine ( $trace, $info, $type, $event, $id );
 
     if ( $event == 'end' )
       padTraceXmlWrite ( "</$type>", 'end' );
@@ -35,73 +35,85 @@
     if ( $type == 'occur' )
       $go = $padTraceOccurTag [$pad] [$occur];
 
-    if     ( $type == 'trace' and $event == 'start'         ) $xml = '<trace>';
-    elseif ( $type == 'trace' and $event == 'end'           ) $xml = '</trace>';
-    elseif ( $type == 'level' and $event == 'start'         ) $xml = "<$tag>";
-    elseif ( $type == 'level' and $event == 'end'           ) $xml = "</$tag>";
-    elseif ( $type == 'occur' and $event == 'start' and $go ) $xml = "<occur-$occur>";
-    elseif ( $type == 'occur' and $event == 'end'   and $go ) $xml = "</occur-$occur>";
+    if     ( $type == 'trace' and $event == 'start'         ) $info = '<trace>';
+    elseif ( $type == 'trace' and $event == 'end'           ) $info = '</trace>';
+    elseif ( $type == 'level' and $event == 'start'         ) $info = "<$tag level=\"$pad\">";
+    elseif ( $type == 'level' and $event == 'end'           ) $info = "</$tag>";
+    elseif ( $type == 'occur' and $event == 'start' and $go ) $info = "<occur nr=\"$occur\">";
+    elseif ( $type == 'occur' and $event == 'end'   and $go ) $info = "</occur>";
 
     else return;
 
-    padTraceXmlWrite ( $xml, $event );
+    padTraceXmlWrite ( $info, $event );
 
   }
 
 
-  function padTraceXmlLine ( $xml, $type, $event, $id ) {
+  function padTraceXmlLine ( $trace, $info, $type, $event, $id ) {
 
     global $padTraceXmlNoEmpty;
 
-    if ( ! $xml and $padTraceXmlNoEmpty )
+    if ( ! $info and $padTraceXmlNoEmpty )
       return;
 
     if ( $event == 'start' or $event == 'end' ) {
 
-      if ( $xml )
-        padTraceXmlLineInParent ( $xml, $event );
+      if ( $info )
+        padTraceXmlLineInParent ( $info, $event );
 
     } else {
 
       if ( $id )
-        padTraceXmlLineInParent ( $xml, $event );
+        padTraceXmlLineInParent ( $info, $event );
       else
-        padTraceXmlIndependedLine ( $xml, $type, $event);
+        padTraceXmlIndependedLine ( $info, $type, $event );
 
     }
 
   }
 
 
-  function padTraceXmlIndependedLine ( $xml, $type, $event ) {
+  function padTraceXmlIndependedLine ( $info, $type, $event ) {
 
-    global $padTraceLine, $padTraceXmlLines;
+    padTraceXmlLineWrite ( "$type event=\"$event\"", $info );
 
-    $id = padTraceXmlId ( $xml );
+  }
 
-    $xml = htmlspecialchars ( $xml );
-    $xml = "<$type event=\"$event\" value=\"$xml\" $id/>";      
+
+  function padTraceXmlLineInParent ( $info, $event ) {
+
+    padTraceXmlLineWrite ( $event, $info );
+
+  }
+
+
+  function padTraceXmlLineWrite ( $xml, $info ) {
+
+    global $padTraceLine, $padTraceBase;
+
+    $extra = ' ';
  
-    padTraceXmlWrite ( $xml );
+    if ( strlen ( $info ) > 30 ) {
+
+      $extra = " more=\"$padTraceLine\" ";
+
+      $file = "$padTraceBase/more/$padTraceLine.txt";
+
+      if ( ! padExists ( padData . $file ) ) 
+        padFilePutContents ( $file, $info );
+
+      $info = substr ( $info, 0, 30 );
+   
+    }
+
+    $info = htmlspecialchars ( $info );
+    
+    padTraceXmlWrite ( "<$xml value=\"$info\"$extra/>" );
 
   }
 
 
-  function padTraceXmlLineInParent ( $xml, $event ) {
-
-    global $padTraceLine ;
-
-    $id = padTraceXmlId ( $xml );
-
-    $xml = htmlspecialchars ( $xml );
-    $xml = "<$event value=\"$xml\" $id/>";
-
-    padTraceXmlWrite ( $xml );
-
-  }
-
-
-  function padTraceXmlWrite ( $xml, $action='' ) {
+  function padTraceXmlWrite ( $info, $action='' ) {
 
     global $padTraceBase, $padTraceSpaces, $padTraceActive;
 
@@ -111,29 +123,13 @@
     $spaces = str_repeat ( ' ', $padTraceSpaces );
     
     $padTraceActive = FALSE;
-    padFilePutContents ( $padTraceBase . '/trace.xml', $spaces . $xml, true );
+    padFilePutContents ( $padTraceBase . '/trace.xml', $spaces . $info, true );
     $padTraceActive = TRUE;
 
     if ( $action == 'start' ) 
       $padTraceSpaces = $padTraceSpaces + 2;
   
   }
-
-
-  function padTraceXmlId ( $xml ) {
-
-    global $padTraceLine, $padTraceXmlId;
-
-    if ( $padTraceXmlId or str_ends_with( ' <more>', $xml) )
-      return "id=\"$padTraceLine\"";
-    else
-      return '';
-  
-    return $xml;
-
-  }
-
-
 
 
 ?>

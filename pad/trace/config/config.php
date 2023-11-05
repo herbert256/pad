@@ -1,20 +1,15 @@
 <?php
   
   $padTraceTrace       = FALSE;
-  $padTraceTree        = FALSE;
-  
-  $padTraceLocal       = FALSE;       
-  $padTraceLocalChk    = FALSE;       
-  
+  $padTraceTree        = FALSE;  
+  $padTraceLocal       = FALSE;
+
+  $padTraceMore        = FALSE;
+
   $padTraceMkDir       = FALSE;
   $padTraceStructure   = FALSE;
 
   $padTraceXml         = TRUE;
-  $padTraceXmlLines    = TRUE;
-  $padTraceXmlId       = TRUE;
-  $padTraceXmlOcc      = FALSE;
-  $padTraceXmlOccSmart = TRUE;
-  $padTraceXmlNoEmpty  = TRUE;
 
   $padTraceAddLine     = FALSE;
 
@@ -23,8 +18,7 @@
 
   $padTraceStatus      = FALSE;
   $padTraceChilds      = FALSE;
-
-  $padTraceMore        = FALSE;
+  $padTraceLocalChk    = FALSE;       
 
   $padTraceTypes       = FALSE;       
   $padTraceTypesDir    = FALSE;       
@@ -50,10 +44,11 @@
   $padTraceFalse       = TRUE;
   $padTraceLevelBase   = TRUE;
 
-  $padTraceFlags       = FALSE;
+  $padTraceFlags       = TRUE;
  
-  $padTraceDataLvl     = FALSE;
-  $padTraceDataOcc     = FALSE;
+  $padTraceDataLvl     = TRUE;
+  $padTraceDataOcc     = TRUE;
+  $padTraceNoDefault   = TRUE;
 
   $padTraceResultLvl   = TRUE;
   $padTraceResultOcc   = TRUE;

@@ -25,7 +25,7 @@
   padTraceSet ( 'trace', 'end' );
 
   if ( $padTraceXml )
-    include pad . 'trace/trace/xml.php';
+    include pad . 'trace/xml/end.php';
   
   $padTraceActive = FALSE;
 

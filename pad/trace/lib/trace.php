@@ -15,13 +15,13 @@
     if ( ! ( $event == 'start' and ( $type == 'trace' or $type == 'level' or $type == 'occur' ) ) )
       $padTraceLine++;
 
-    padTraceInfo ( $trace, $info, $short, $id, $type, $event );
+    padTraceInfo ( $trace, $info, $id, $type, $event );
 
-    if ( $padTraceMore  ) padTraceMore  ( $info, $type, $event );
+    if ( $padTraceMore  ) padTraceMore  ( $trace, $info );
     if ( $padTraceTrace ) padTraceTrace ( $type, $trace );
     if ( $padTraceTree  ) padTraceTree  ( $type, $trace );
     if ( $padTraceLocal ) padTraceLocal ( $trace );
-    if ( $padTraceXml   ) padTraceXml   ( $short, $id, $type, $event );
+    if ( $padTraceXml   ) padTraceXml   ( $trace, $info, $id, $type, $event );
    
     $padTraceActive = TRUE;
 
@@ -57,28 +57,26 @@
   }
 
 
-  function padTraceMore ( $info, $type, $event ) {
-
-    if ( ! $info )
-      return;
+  function padTraceMore ( $trace, $info ) {
 
     global $padTraceBase, $padTraceLine;
 
-    padFilePutContents ( "$padTraceBase/more/$padTraceLine-$type-$event.txt", $info );
+    $file = "$padTraceBase/more/$padTraceLine.txt";
+
+    if ( str_ends_with ( $trace, ' <more>' ) and ! padExists ( padData . $file ) ) 
+      padFilePutContents ( $file, $info );
 
   }
 
 
-  function padTraceInfo ( &$trace, &$info, &$short, &$id, $type, $event ) {
+  function padTraceInfo ( &$trace, &$info, &$id, $type, $event ) {
 
     global $pad, $padOccur;
-    global $padTraceLine, $padTraceId, $padTraceMore, $padTraceOccurId, $padTraceXml;
+    global $padTraceLine, $padTraceId, $padTraceOccurId;
 
     $prefix = $pad;  
     if ( $pad >= 0 and $padOccur [$pad] )
       $prefix .= '/' . $padOccur [$pad];
-
-    $line = $padTraceLine;
 
     if     ( $type == 'level' )                      $id = $padTraceId [$pad]          ?? 0;
     elseif ( $type == 'occur' )                      $id = $padTraceOccurId [$pad]     ?? 0;
@@ -94,19 +92,12 @@
            . sprintf ( '%-10s', $type         )
            . sprintf ( '%-10s', $event        );
 
-    if ( is_array ( $info ) )
-      $info = padJson ( $info );
+    $info = padMakeSafe ( $info );
 
-    $save = padMakeSafe ( $info );
-
-    if ( strlen ( $save ) > 70 and $padTraceMore ) {
-      $short  = substr ( $save, 0, 63 ) . ' <more>';
-      $trace .= $short;
-    } else {
-      $short  = $save;
-      $trace .= $save;
-      $info   = '';
-    }
+    if ( strlen ( $info ) > 70 ) 
+      $trace .= substr ( $info, 0, 63 ) . ' <more>';
+    else
+      $trace .= $info;
 
   }
 

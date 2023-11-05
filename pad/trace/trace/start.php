@@ -14,7 +14,7 @@
   include_once pad . 'trace/lib/set.php';
 
   if ( $padTraceXml )
-    include_once pad . 'trace/lib/xml.php';
+    include_once pad . 'trace/xml/start.php';
 
   $padTraceLevelChilds [$pad] = 0;
   $padTraceOccurChilds [$pad] = [];
