@@ -1,8 +1,7 @@
 <?php
 
-  if ( $padTraceEndLvl )
-    padTrace ( 'level', 'result', $padResult [$pad] );
-
+  include pad . 'trace/items/result.php';   
+  
   if ( $padTraceEndLvl )
     padTrace ( 'level', 'end' );
 

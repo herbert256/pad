@@ -21,7 +21,4 @@
   if     ( $padHit [$pad] and $padTagResult !== TRUE and is_scalar($padTagResult) ) $padText [$pad] = TRUE;
   else                                                                              $padText [$pad] = FALSE;
  
-  if ( $padTraceActive )
-    include pad . 'trace/items/flags.php';    
-
 ?>

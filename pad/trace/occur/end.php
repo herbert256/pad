@@ -1,7 +1,6 @@
 <?php
 
-  if ( $padTraceResultOcc )
-    padTrace ( 'occur', 'result', $padPad [$pad] );
+  include pad . 'trace/items/resultOcc.php';     
 
   if ( $padTraceEndOcc )
     padTrace ( 'occur', 'end' );

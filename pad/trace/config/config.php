@@ -39,19 +39,19 @@
   $padTraceEndLvl      = FALSE;
   $padTraceEndOcc      = FALSE;
   
-  $padTraceContent     = TRUE;
-  $padTraceTrue        = TRUE;
-  $padTraceFalse       = TRUE;
-  $padTraceLevelBase   = TRUE;
+  $padTraceContent     = FALSE;
+  $padTraceTrue        = FALSE;
+  $padTraceFalse       = FALSE;
+  $padTraceLevelBase   = FALSE;
+  $padTraceResultLvl   = FALSE;
+  $padTraceResultOcc   = FALSE;
+  $padTraceNoDouble    = FALSE;
 
   $padTraceFlags       = TRUE;
  
-  $padTraceDataLvl     = TRUE;
-  $padTraceDataOcc     = TRUE;
+  $padTraceDataLvl     = FALSE;
+  $padTraceDataOcc     = FALSE;
   $padTraceNoDefault   = TRUE;
-
-  $padTraceResultLvl   = TRUE;
-  $padTraceResultOcc   = TRUE;
   
   $padTraceStore       = FALSE;
   $padTraceSequence    = FALSE;

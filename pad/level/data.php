@@ -20,7 +20,4 @@
 
   $padCount [$pad] = count ( $padData [$pad] );
 
-  if ( $padTraceActive )
-    include pad . 'trace/items/data.php'; 
-
 ?>

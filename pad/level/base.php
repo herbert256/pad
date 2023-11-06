@@ -5,7 +5,4 @@
   elseif ( $padText [$pad] ) $padBase [$pad] = $padTagResult;
   else                       $padBase [$pad] = $padTrue [$pad];
 
-  if ( $padTraceActive )
-    include pad . 'trace/items/base.php';  
-
 ?>

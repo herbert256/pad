@@ -64,7 +64,4 @@
   $padForceTagName  = '';
   $padForceDataName = '';
 
-  if ( $padTraceActive )
-    include pad . 'trace/level/start.php';    
-
 ?>

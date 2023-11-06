@@ -2,8 +2,8 @@
 
   include pad . 'trace/store/start.php';
 
-  $padTraceType  = 'option'; 
-  $padTraceGo = $pad; 
+  $padTraceType = 'option'; 
+  $padTraceGo   = $pad; 
 
   include pad . 'trace/trace/start.php';
 

@@ -1,8 +1,5 @@
 <?php
  
-  if ( $padTraceActive )
-    include pad . 'trace/items/content.php';
-
   $padOpenClose = padOpenCloseList ( $padTrue [$pad] ) ;
   
   if ( $padGiven [$pad] )
