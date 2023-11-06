@@ -6,5 +6,6 @@
   $padTraceXmlOccSmart = TRUE;
   $padTraceXmlNoEmpty  = TRUE;
   $padTraceXmlMore     = TRUE;
+  $padTraceXmlTidy     = TRUE;
 
 ?>

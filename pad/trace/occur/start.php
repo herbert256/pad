@@ -16,9 +16,6 @@
   if ( $padTraceStartOcc ) 
     padTrace ( 'occur', 'start', $padBase [$pad] );
 
-  padTrace ( 'occur', 'dummy', $padOccur[$pad] );
-  padTrace ( 'abc', 'dummy', $padOccur[$pad] );
-
   if ( $padTraceDataOcc ) {
 
     if ( $padTraceNoDefault and ! count ( $padCurrent [$pad] ) )

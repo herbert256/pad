@@ -1,5 +1,7 @@
 <?php
 
+  padTraceOccClose ();
+  
   include pad . 'trace/items/result.php';   
   
   if ( $padTraceEndLvl )

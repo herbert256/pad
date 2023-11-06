@@ -23,6 +23,8 @@
   if ( $padAfter [$pad] )
     return include pad . 'level/split/after2.php';
 
+  padTraceOccClose ();
+
   if ( $padBefore [$pad] == 2 ) 
     include pad . 'level/split/before3.php';
 

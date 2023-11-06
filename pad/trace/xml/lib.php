@@ -1,13 +1,30 @@
 <?php
 
 
+  function padTraceOccClose () {
+
+      global $pad, $padTraceOccClose;
+
+      if ( ! isset ( $padTraceOccClose ) or ! isset ( $padTraceOccClose [$pad] ) )
+        return;
+
+      if ( $padTraceOccClose [$pad] ) {
+        $padTraceOccClose [$pad] = FALSE;
+        padTraceXmlWrite ( '</occurs>', 'end' );
+      }
+
+  }
+
   function padTraceXml ( $trace, $info, $id, $type, $event ) {
 
-    global $padTraceXmlLines;
+    global $pad, $padTraceXmlLines, $padTraceOccClose;
 
     if ( ( $type == 'trace' or $type == 'level' or $type == 'occur' ) and 
          ( $event == 'start' or $event == 'end' ) )
       return;
+
+    if ( $type == 'level' )
+      padTraceOccClose ();
 
     if ( $event == 'start' )
       padTraceXmlWrite ( "<$type>", 'start' );
@@ -49,13 +66,15 @@
 
   function padTraceXmlLevelStart () {
 
-    global $pad, $padTag, $padTraceOccurs, $padTraceOccurs, $padWalk, $padData;
+    global $pad, $padTag, $padTraceOccOpen, $padTraceOccClose, $padWalk, $padData;
 
     if ( $padWalk [$pad] == 'next' or count ( $padData [$pad] ) > 1 )
-      $padTraceOccurs [$pad] = TRUE;
+      $padTraceOccOpen [$pad] = TRUE;
     else 
-      $padTraceOccurs [$pad] = FALSE;
-   
+      $padTraceOccOpen [$pad] = FALSE;
+
+    $padTraceOccClose [$pad] = FALSE;
+
     $tag     = $padTag [$pad];
     $type    = $GLOBALS ['padTypeResult'] ?? '';
     $pair    = $GLOBALS ['padPairSet']    ?? '';
@@ -69,22 +88,18 @@
           . '>';
 
     padTraceXmlWrite ( $info, 'start' );
-
-    if ( $padTraceOccurs [$pad] )
-      padTraceXmlWrite ( '<occurs>', 'start' );
   
   }
 
 
   function padTraceXmlLevelEnd () {
 
-    global $pad, $padTag, $padTraceOccurs;
+    global $pad, $padTag;
 
     $tag = $padTag [$pad];
 
-    if ( $padTraceOccurs [$pad] )
-      padTraceXmlWrite ( '</occurs>', 'end' );
-
+    padTraceOccClose ();
+  
     padTraceXmlWrite ( "</$tag>", 'end' );
 
   }
@@ -108,12 +123,18 @@
 
   function padTraceXmlOccurStartGo ( $occur ) {
 
-    global $pad, $padOccur, $padTraceOccurWritten;
+    global $pad, $padOccur, $padTraceOccurWritten, $padTraceOccOpen, $padTraceOccClose;
 
     $occur = $padOccur [$pad];
 
     $padTraceOccurWritten [$pad] [$occur] = TRUE;
-    
+
+    if ( $padTraceOccOpen [$pad] ) {
+      $padTraceOccOpen  [$pad] = FALSE;
+      $padTraceOccClose [$pad] = TRUE;
+      padTraceXmlWrite ( '<occurs>', 'start' );
+    }
+
     padTraceXmlWrite ( "<occur nr=\"$occur\">", 'start' );
 
   }
