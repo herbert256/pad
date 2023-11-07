@@ -5,7 +5,9 @@
 
   $padBase [$pad] = $padTrue [$pad-1];    
 
+  $padOccurTypeSet = 'sandbox';  
   include pad . 'occurrence/start.php'; 
+
   include pad . 'pad/lib/level.php'; 
   include pad . 'pad/lib/end.php';
 

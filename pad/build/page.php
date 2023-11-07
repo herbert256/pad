@@ -13,9 +13,9 @@
   if ( $padCallPHP === NULL )
     return '';
 
-  if     ( is_array ( $padCallPHP ) ) $padBuild = padData ( $padCallPHP );
-  elseif ( $padCallPHP === FALSE    ) $padBuild = [];
-  else                                $padBuild = padDefaultData();
+  if     ( is_array ( $padCallPHP ) ) $padBuildData = padData ( $padCallPHP );
+  elseif ( $padCallPHP === FALSE    ) $padBuildData = [];
+  else                                $padBuildData = padDefaultData();
  
   if ( ! is_array ($padCallPHP) and $padCallPHP !== TRUE and $padCallPHP !== FALSE )
     $padBuildPad .= $padCallPHP;
@@ -27,6 +27,6 @@
     $padBuildPad .= include pad . 'call/stringNoOne.php';
   }
 
-  return "{pad}$padBuildPad{/pad}";
+  return "{build}$padBuildPad{/build}";
   
 ?>

@@ -1,14 +1,14 @@
 <?php
 
-  $padBefore [$pad] = 2;
+  $padBase [$pad] = $padBeforeBase [$pad];
+  $padData [$pad] = $padBeforeData [$pad];
 
-  padPad ('');
+  $padBeforeBase [$pad] = '';
+  $padBeforeData [$pad] = [];
 
-  $padBeforeData [$pad] = $padResult [$pad+1];
-
-  if ( count ( $padData [$pad] ) ) {
-    reset ( $padData [$pad] );
-    include pad . 'occurrence/start.php';
-  }
+  reset ( $padData [$pad] );
+  
+  $padOccurTypeSet = 'between';  
+  include pad . 'occurrence/start.php';
 
 ?>

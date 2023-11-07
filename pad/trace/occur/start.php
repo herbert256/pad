@@ -2,7 +2,9 @@
 
   padTraceXmlInitsOpened ();
 
-  $padTraceXmlWhere = 'occurs';
+  if ( $padTraceXmlWhere [$pad] <> 'occurs' ) 
+    padTraceShowOccurs ();
+
 
   $padTraceOccurChilds  [$pad] [$padOccur[$pad]] = 0;
   $padTraceOccurWritten [$pad] [$padOccur[$pad]] = FALSE;
@@ -16,10 +18,12 @@
 
   }
 
-  if ( $padTraceXmlWhere <> 'occurs' ) 
-    include pad . 'trace/occur/first.php';
+  $padTraceXmlWhere [$pad] = 'occurs';
 
   padTraceSet ( 'occur', 'start' );
+
+  padTrace ( 'occur', 'dummy', 'This will be in every occur - 1'); 
+  padTrace ( 'dummy', 'dummy', 'This will be in every occur - 2'); 
 
   if ( $padTraceStartOcc ) 
     padTrace ( 'occur', 'start', $padBase [$pad] );

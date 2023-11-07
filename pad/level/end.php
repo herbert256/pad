@@ -3,13 +3,17 @@
   if ( count ( $padData [$pad] ) )
     include pad . 'occurrence/end.php';
 
-  if ( next($padData [$pad]) !== FALSE )
+  if ( next($padData [$pad]) !== FALSE ) {
+    $padOccurTypeSet = 'loop';  
     return include pad . 'occurrence/start.php';
+  }
 
   if ( $padWalk [$pad] == 'next' ) {
     include pad . 'walk/next.php';
-    if ( $padWalk [$pad] == 'next' )
+    if ( $padWalk [$pad] == 'next' ) {
+      $padOccurTypeSet = 'next';  
       return include pad . 'occurrence/start.php';
+    }
   }
 
   if ( $padBeforeBase [$pad] ) 
@@ -23,6 +27,8 @@
   if ( $padTraceActive )
     include pad . 'trace/level/exits.php'; 
 
+  padTrace ( 'dummy', 'dummy', 'This will be in the exits'); 
+
   if ( $padWalk [$pad] == 'end' )
     include pad . 'walk/end.php';
 
@@ -31,18 +37,15 @@
 
   include pad . 'options/end.php';
 
-  padResetLvl ($pad);
-
   if ( count ( $padOptionsCallback [$pad] ) )
     include pad . 'options/callback.php';
  
   if ( $padTraceActive ) 
     include pad . 'trace/level/end.php';    
   
-  $pad--;
+  padResetLvl ($pad);
 
-  if ( $pad >= 0 and $padBefore [$pad] == 1 ) 
-    return include pad . 'level/split/before2.php';
+  $pad--;
 
   if ( $pad >= 0 )
     padPad ( $padResult[$pad+1] );

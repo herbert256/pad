@@ -2,9 +2,12 @@
 
   $padOccur [$pad]++;
 
-  $padPad     [$pad] = $padBase [$pad];
-  $padKey     [$pad] = key($padData [$pad]);
-  $padCurrent [$pad] = $padData [$pad] [$padKey [$pad]];
+  $padPad       [$pad] = $padBase [$pad];
+  $padKey       [$pad] = key($padData [$pad]);
+  $padCurrent   [$pad] = $padData [$pad] [$padKey [$pad]];
+  $padOccurType [$pad] = $padOccurTypeSet;;
+
+  $padOccurTypeSet  = 'default';
 
   if ( $padTraceActive )
     include pad . 'trace/occur/start.php';  

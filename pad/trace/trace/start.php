@@ -20,11 +20,11 @@
 
   padTraceInit ( $pad );
 
-  $padTraceXmlWhere = 'boot';
+  $padTraceXmlWhere [$pad] = 'boot';
 
   padTraceSet ( 'trace', 'start' );
 
-  $padTraceXmlWhere = 'inits';
+  $padTraceXmlWhere [$pad] = 'inits';
 
   if ( $padTraceOpenClose )
     padTrace ( 'trace', 'start' );

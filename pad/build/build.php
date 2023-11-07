@@ -14,6 +14,7 @@
     include pad . 'trace/level/start.php';
   }
 
+  $padOccurTypeSet = 'build';  
   include pad . 'occurrence/start.php';
 
 ?>

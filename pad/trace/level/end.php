@@ -1,8 +1,6 @@
 <?php
 
-  padTraceOccClose ();
-
-  $padTraceXmlWhere = 'exits';
+  $padTraceXmlWhere [$pad] = 'exits';
   
   include pad . 'trace/items/result.php';   
   
@@ -22,14 +20,8 @@
   padTraceXmlOccurOpened ();
   padTraceXmlExitsOpened ();
 
-  padTraceSet ( 'level', 'end' );
+  $padTraceXmlWhere [$pad] = 'level-end';
 
-  if ( $pad == 0 )
-    $padTraceXmlWhere = 'exits';
-  else
-    if ( $padOccur [$pad-1] == 0 )
-      $padTraceXmlWhere = 'inits';
-    else
-      $padTraceXmlWhere = 'occurs';
+  padTraceSet ( 'level', 'end' );
 
 ?>

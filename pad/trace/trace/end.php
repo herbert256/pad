@@ -22,6 +22,12 @@
   if ( $padTraceDumps ) 
     padTraceDump ( 'end' );
 
+  padTraceXmlInitsOpened ();
+  padTraceXmlOccurOpened ();
+  padTraceXmlExitsOpened ();
+
+  $padTraceXmlWhere [$pad] = 'trace-end';
+
   padTraceSet ( 'trace', 'end' );
 
   if ( $padTraceXml and $padTraceXmlTidy )

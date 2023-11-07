@@ -7,10 +7,6 @@
   
   $padTraceXmlInitsExits = TRUE;
 
-  $padTraceXmlOccurs     = FALSE; 
-  $padTraceXmlOcc        = TRUE;
-  $padTraceXmlOccSmart   = TRUE;
-  
   $padTraceXmlTidy       = TRUE;
 
 ?>

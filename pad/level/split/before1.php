@@ -1,9 +1,13 @@
 <?php
 
-  $padBefore [$pad] = 1;
+  list ( $padBase [$pad], $padBeforeBase [$pad] ) = explode ( '@start@', $padBase [$pad], 2 );
 
-  list ( $padPad [$pad], $padBase [$pad] ) = explode ( '@start@', $padBase [$pad], 2 );
+  $padBeforeData [$pad] = $padData [$pad]; 
+  $padData [$pad]       = padDefaultData ();
 
-  $padPad [$pad] = '{splitBefore}' . $padPad [$pad] . '{/splitBefore}';
+  reset ( $padData [$pad] );
+
+  $padOccurTypeSet = 'before';  
+  include pad . 'occurrence/start.php';
    
 ?>

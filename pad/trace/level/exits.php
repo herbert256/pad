@@ -3,8 +3,6 @@
   padTraceXmlInitsOpened ();
   padTraceXmlOccurOpened ();
 
-  $padTraceXmlWhere = 'exits';
-
-  padTraceOccClose ();
+  $padTraceXmlWhere [$pad] = 'exits';
   
 ?>

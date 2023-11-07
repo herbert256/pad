@@ -30,6 +30,7 @@
   $padWalkData   [$pad] = [];
 
   $padDone       [$pad] = [];
+  $padOccurType  [$pad] = '';
   $padOccur      [$pad] = 0;
   $padStart      [$pad] = 0;
   $padEnd        [$pad] = 0;
@@ -51,9 +52,9 @@
   $padSaveOcc    [$pad] = [];
   $padDeleteOcc  [$pad] = [];
   
-  $padAfter      [$pad] = 0;
-  $padBefore     [$pad] = 0;
-  $padBeforeData [$pad] = '';
+  $padAfterBase  [$pad] = '';
+  $padBeforeBase [$pad] = [];
+  $padBeforeData [$pad] = [];
 
   $padTable      [$pad] = [];
   $padTableTag   [$pad] = '';

@@ -1,5 +1,9 @@
 <?php
  
+  if ( $padTraceActive )
+    padTraceXmlInitsOpened ();
+
+
   include pad . 'level/tag.php';
   include pad . 'level/setup.php';    
 
@@ -44,7 +48,9 @@
   if ( padOpenCloseOk ( $padBase[$pad], '@start@') )
     return include pad . 'level/split/before1.php';
 
-  if ( count ( $padData [$pad] ) and $padBase [$pad] )
+  if ( count ( $padData [$pad] ) and $padBase [$pad] ) {
+    $padOccurTypeSet = 'start';  
     include pad . 'occurrence/start.php';
+  }
 
 ?>
