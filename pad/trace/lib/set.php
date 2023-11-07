@@ -57,9 +57,6 @@
       $padTraceLevel [$pad]     = $padTraceBase         . padTraceSetAdd ( $line );
       $padTraceOccur [$pad] [0] = $padTraceLevel [$pad] . padTraceSetAddOccur ( 0 );
 
-      $padTraceLevel [$pad-1]         = $padTraceBase;
-      $padTraceOccur [$pad-1] [$last] = $padTraceBase;
-
     }
     
     padTraceSetGo ( $padTraceLevel [$pad] );
@@ -77,7 +74,9 @@
 
     $last = $padOccur [$pad-1] ?? 0;
 
-    $padTraceLevel [$pad]     = $padTraceOccur [$pad-1] [$last] . padTraceSetAdd ( $line );
+    $padTraceLevel [$pad]     = $padTraceOccur 
+    [$pad-1] 
+    [$last] . padTraceSetAdd ( $line );
     $padTraceOccur [$pad] [0] = $padTraceLevel [$pad]           . padTraceSetAddOccur ( 0 );
 
     padTraceSetGo ( $padTraceLevel [$pad] );

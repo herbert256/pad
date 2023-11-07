@@ -10,6 +10,7 @@
 
   if ( $padTraceActive ) {
     include pad . 'trace/items/build.php';
+    $padOccur [$pad-1] = 1;
     include pad . 'trace/level/start.php';
   }
 

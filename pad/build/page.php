@@ -27,9 +27,6 @@
     $padBuildPad .= include pad . 'call/stringNoOne.php';
   }
 
-  if ( ! padIsDefaultData ( $padBuild ) )
-    return "{padBuild}$padBuildPad{/padBuild}";
-  else
-    return $padBuildPad;
-
+  return "{pad}$padBuildPad{/pad}";
+  
 ?>

@@ -12,21 +12,22 @@
       return include pad . 'occurrence/start.php';
   }
 
+  if ( $padBeforeBase [$pad] ) 
+    return include pad . 'level/split/before2.php';
+
+  if ( $padAfterBase [$pad] )
+    return include pad . 'level/split/after2.php';
+
   $padOccur [$pad] = 0;
+
+  if ( $padTraceActive )
+    include pad . 'trace/level/exits.php'; 
 
   if ( $padWalk [$pad] == 'end' )
     include pad . 'walk/end.php';
 
   if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']) )
     include pad . 'callback/exit.php' ;
-
-  if ( $padAfter [$pad] )
-    return include pad . 'level/split/after2.php';
-
-  padTraceOccClose ();
-
-  if ( $padBefore [$pad] == 2 ) 
-    include pad . 'level/split/before3.php';
 
   include pad . 'options/end.php';
 

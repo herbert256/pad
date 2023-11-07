@@ -1,6 +1,39 @@
 <?php
 
 
+  function padTraceInit ( $level ) {
+
+    $GLOBALS ['padTraceXmlWhere'] = 'inits';
+
+    $GLOBALS ['padTraceXmlInitsOpened'] [$level] = FALSE;
+    $GLOBALS ['padTraceXmlOccurOpened'] [$level] = FALSE;
+    $GLOBALS ['padTraceXmlExitsOpened'] [$level] = FALSE;
+    
+    $GLOBALS ['padTraceXmlInitsClosed'] [$level] = FALSE;
+    $GLOBALS ['padTraceXmlOccurClosed'] [$level] = FALSE;
+    $GLOBALS ['padTraceXmlExitsClosed'] [$level] = FALSE;
+
+    $GLOBALS ['padTraceOccOpen']        [$level] = FALSE;
+    $GLOBALS ['padTraceOccClose']       [$level] = FALSE;
+    
+    $GLOBALS ['padTraceLevelChilds']    [$level] = 0;
+    
+    $GLOBALS ['padTraceLevel']          [$level] = $GLOBALS ['padTraceBase'];
+
+    $GLOBALS ['padTraceOccurWritten']   [$level] = [];
+    $GLOBALS ['padTraceOccurWritten']   [$level] [0] = FALSE;
+    $GLOBALS ['padTraceOccurWritten']   [$level] [1] = FALSE;
+    
+    $GLOBALS ['padTraceOccurChilds']    [$level] = [];
+    $GLOBALS ['padTraceOccurChilds']    [$level] [0] = 0;
+    $GLOBALS ['padTraceOccurChilds']    [$level] [1] = 0;
+        
+    $GLOBALS ['padTraceOccur']          [$level] = [];
+    $GLOBALS ['padTraceOccur']          [$level] [0] = $GLOBALS ['padTraceBase'];
+    $GLOBALS ['padTraceOccur']          [$level] [1] = $GLOBALS ['padTraceBase'];
+ 
+  }
+
 
   function padTraceStatus ( $dir ) {
   

@@ -1,11 +1,9 @@
 <?php
 
-  $padBase  [$pad] = $padAfter [$pad];
-  $padData  [$pad] = padDefaultData ();
+  $padBase [$pad] = $padAfterBase [$pad];
+  $padData [$pad] = padDefaultData ();
 
-  $padAfter [$pad] = '';
-
-  $padOccur [$pad] = 998;
+  $padAfterBase [$pad] = '';
 
   reset ( $padData [$pad] );
   include pad . 'occurrence/start.php';

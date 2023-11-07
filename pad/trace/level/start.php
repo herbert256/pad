@@ -1,8 +1,17 @@
 <?php
 
-  $padTraceLevelChilds  [$pad] = 0;
-  $padTraceOccurChilds  [$pad] = [];
-  $padTraceOccurWritten [$pad] = [];
+  padTraceInit ( $pad );
+
+  if ( $padTraceXmlInitsOpened [$pad] and ! $padTraceXmlInitsClosed [$pad] )
+    if ( $padOccur [$pad-1] <> 0 )
+      padTraceXmlInitsOpened ();
+
+  padTraceXmlExitsOpened ();  
+
+  if ( $padOccur [$pad-1] == 0 )
+    $padTraceXmlWhere = 'inits';
+  else
+    $padTraceXmlWhere = 'occurs';
 
   padTraceSet ( 'level', 'start' );
 
@@ -12,14 +21,6 @@
       ' type=' . $padType    [$pad] . 
       ' pair=' . $padPair    [$pad] . 
       ' parm=' . $padPrmType [$pad]
-    );
-
-  include pad . 'trace/items/data.php';      
-  include pad . 'trace/items/flags.php';      
-
-  include pad . 'trace/items/content.php';      
-  include pad . 'trace/items/true.php';      
-  include pad . 'trace/items/false.php';      
-  include pad . 'trace/items/base.php';      
+    );  
 
 ?>

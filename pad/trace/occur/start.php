@@ -1,15 +1,23 @@
 <?php
 
-  $padTraceOccurChilds  [$pad] [$padOccur[$pad]] = 0;;
+  padTraceXmlInitsOpened ();
+
+  $padTraceXmlWhere = 'occurs';
+
+  $padTraceOccurChilds  [$pad] [$padOccur[$pad]] = 0;
   $padTraceOccurWritten [$pad] [$padOccur[$pad]] = FALSE;
 
-  for ( $padI = $pad; $padI >= $padTraceGo; $padI-- )
+  for ( $padI = $pad; $padI >= $padTraceGo; $padI-- ) {
+
     $padTraceLevelChilds [$padI] ++;
 
-  if ( $pad > 0)
-    for ( $padI = $pad-1; $padI >= $padTraceGo; $padI-- )
-      if ( $padOccur [$padI] )
-        $padTraceOccurChilds[$padI][$padOccur[$padI]]++;
+    if ( $padOccur [$padI] )
+       $padTraceOccurChilds[$padI][$padOccur[$padI]]++;
+
+  }
+
+  if ( $padTraceXmlWhere <> 'occurs' ) 
+    include pad . 'trace/occur/first.php';
 
   padTraceSet ( 'occur', 'start' );
 
