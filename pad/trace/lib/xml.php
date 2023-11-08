@@ -35,14 +35,14 @@
 
   function padTraceXmlTraceStart () {
 
-    padTraceXmlWrite ( '<trace>', 'start' );
+    padTraceXmlWrite ( '<pad>', 'start' );
 
   }
 
 
   function padTraceXmlTraceEnd () {
 
-    padTraceXmlWrite ( '</trace>', 'end' );
+    padTraceXmlWrite ( '</pad>', 'end' );
 
   }
 
@@ -51,12 +51,18 @@
 
     global $pad, $padTag;
 
+    if ( $pad == 0 )
+      return;
+
     $tag     = $padTag [$pad];
+
     $type    = $GLOBALS ['padTypeResult'] ?? '';
     $pair    = $GLOBALS ['padPairSet']    ?? '';
     $prmType = $GLOBALS ['padPrmTypeSet'] ?? '';
+    $parm    = $GLOBALS ['padOpt'] [$pad] [0];
 
     $info = "<$tag" 
+          . " parm=\"$parm\""
           . " level=\"$pad\""
           . " type=\"$type\""
           . " pair=\"$pair\""
@@ -72,8 +78,15 @@
 
     global $pad, $padTag;
 
+    if ( $pad == 0 )
+      return; 
+
     $tag = $padTag [$pad];
-  
+
+    padTraceXmlInitsOpened ();
+    padTraceXmlOccurOpened ();
+    padTraceXmlExitsOpened ();
+      
     padTraceXmlWrite ( "</$tag>", 'end' );
 
   }
@@ -82,9 +95,13 @@
   function padTraceXmlOccurStart () {
 
     global $pad, $padOccur, $padOccurType;
+    global $padTraceNoOneOccur, $padTraceShowOccurs;
 
     $occur = $padOccur [$pad];
     $type  = $padOccurType [$pad];
+
+    if ( $padTraceNoOneOccur  and ! $padTraceShowOccurs [$pad] )
+      return;
 
     padTraceXmlWrite ( "<occur nr=\"$occur\" type=\"$type\" >", 'start' );
 
@@ -92,6 +109,12 @@
 
 
   function padTraceXmlOccurEnd () {
+
+    global $pad;
+    global $padTraceNoOneOccur, $padTraceShowOccurs;
+
+    if ( $padTraceNoOneOccur  and ! $padTraceShowOccurs [$pad] )
+      return;
 
     padTraceXmlWrite ( "</occur>", 'end' );
 
@@ -182,7 +205,8 @@
 
   function padTraceXmlWrite ( $info, $action='', $initsExits=TRUE ) {
 
-    global $pad, $padTraceBase, $padTraceSpaces, $padTraceActive, $padTraceXmlWhere;
+    global $pad, $padPage, $padReqID;
+    global $padTraceBase, $padTraceSpaces, $padTraceActive, $padTraceXmlWhere, $padTraceXmlFile;
 
     $where = $padTraceXmlWhere [$pad];
 
@@ -192,13 +216,10 @@
     if ( $action == 'end' ) 
       $padTraceSpaces = $padTraceSpaces - 2;
 
-    if ( $padTraceSpaces >= 0 )
-      $spaces = str_repeat ( ' ', $padTraceSpaces );
-    else
-      $spaces = '???';
+    $spaces = str_repeat ( ' ', $padTraceSpaces );
     
     $padTraceActive = FALSE;
-    padFilePutContents ( $padTraceBase . '/trace.xml', $spaces . "$info", true );
+    padFilePutContents ( $padTraceXmlFile, "$spaces$info", true );
     $padTraceActive = TRUE;
 
     if ( $action == 'start' ) 
@@ -210,7 +231,7 @@
    function padTraceXmlInitsExits () {
 
     global $pad;
-    global $padTraceXmlInitsExits, $padTraceXmlWhere, $padTraceXmlExitsOpened;
+    global $padTraceXmlInitsExits, $padTraceXmlWhere, $padTraceShowOccurs;
     global $padTraceXmlInitsOpened, $padTraceXmlOccurOpened, $padTraceXmlExitsOpened;
 
     if ( ! $padTraceXmlInitsExits )
@@ -226,7 +247,7 @@
       padTraceXmlInitsOpened ();
 
       $padTraceXmlOccurOpened [$pad] = TRUE;
-      if ( $padTraceXmlExitsOpened )
+      if ( $padTraceShowOccurs [$pad] )
         padTraceXmlWrite ( '<occurs>', 'start', FALSE );
 
     } elseif ( $padTraceXmlWhere [$pad] == 'exits' and ! $padTraceXmlExitsOpened [$pad] ) {
@@ -258,13 +279,13 @@
   function padTraceXmlOccurOpened () {
 
     global $pad;
-    global $padTraceXmlOccurOpened, $padTraceXmlOccurClosed, $padTraceXmlExitsOpened;
+    global $padTraceXmlOccurOpened, $padTraceXmlOccurClosed, $padTraceShowOccurs;
 
     if ( $padTraceXmlOccurOpened [$pad] and ! $padTraceXmlOccurClosed [$pad] ) {
 
       $padTraceXmlOccurClosed [$pad] = TRUE;
       
-      if ( $padTraceXmlExitsOpened )
+      if ( $padTraceShowOccurs [$pad] )
         padTraceXmlWrite ( '</occurs>', 'end', FALSE );
     
     }
@@ -287,13 +308,13 @@
 
   function padTraceShowOccurs () {
   
-    global $pad, $padWalk, $padData, $padBase;
+    global $pad, $padWalk, $padData, $padBeforeBase, $padAfterBase ;
     global $padTraceShowOccurs;
 
-    if ( $padWalk [$pad] == 'next'                 or 
-         count ( $padData [$pad] ) > 1             or 
-         padOpenCloseOk ( $padBase[$pad], '@end@') or 
-         padOpenCloseOk ( $padBase[$pad], '@start@')  )
+    if ( $padWalk [$pad] == 'next'      or 
+         count ( $padData [$pad] ) > 1  or 
+         $padBeforeBase [$pad]          or 
+         $padAfterBase  [$pad] )
 
       $padTraceShowOccurs [$pad] = TRUE;
 

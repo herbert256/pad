@@ -14,6 +14,7 @@
   $padTraceMaxLevel  = 0;
 
   $padTraceBase = "trace/$padPage/$padReqID-" . padRandomString (8); 
+  $padTraceXmlFile   = "xml/$padPage/$padReqID" . '.xml'; 
 
   if ( ! isset ( $padTraceLine ) )
     $padTraceLine = 0;
@@ -25,6 +26,8 @@
   padTraceSet ( 'trace', 'start' );
 
   $padTraceXmlWhere [$pad] = 'inits';
+
+  padTrace ( 'dummy', 'dummy', 'After trace start'); 
 
   if ( $padTraceOpenClose )
     padTrace ( 'trace', 'start' );

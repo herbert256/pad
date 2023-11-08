@@ -4,6 +4,8 @@
 
   padTraceXmlExitsOpened ();  
 
+  $padTraceXmlWhere [$pad] = 'level-start';
+
   padTraceSet ( 'level', 'start' );
 
   $padTraceXmlWhere [$pad] = 'inits';

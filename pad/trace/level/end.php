@@ -16,10 +16,6 @@
   if ( $padTraceChilds )
     padTraceChilds ( $padTraceLevel [$pad], $padTraceLevelChilds[$pad], 'level' );
 
-  padTraceXmlInitsOpened ();
-  padTraceXmlOccurOpened ();
-  padTraceXmlExitsOpened ();
-
   $padTraceXmlWhere [$pad] = 'level-end';
 
   padTraceSet ( 'level', 'end' );

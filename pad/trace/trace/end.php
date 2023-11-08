@@ -26,6 +26,8 @@
   padTraceXmlOccurOpened ();
   padTraceXmlExitsOpened ();
 
+  padTrace ( 'dummy', 'dummy', 'Before trace end'); 
+
   $padTraceXmlWhere [$pad] = 'trace-end';
 
   padTraceSet ( 'trace', 'end' );

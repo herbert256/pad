@@ -4,15 +4,17 @@
     'input-xml'           => true,
     'output-xml'          => true,
     'force-output'        => true,
+    'add-xml-decl'        => FALSE,
     'indent'              => TRUE,
-    'add-xml-decl'        => true,
     'tab-size'            => 2,
-    'vertical-space'      => 'yes',
+    'indent-spaces'       => 2,
+    'vertical-space'      => 'no',
+    'wrap'                => 0,
     'clean'               => 'yes',
     'drop-empty-elements' => 'yes'
   ];
 
-  $data = padFileGetContents ( padData . "$padTraceBase/trace.xml" );
+  $data = padFileGetContents ( padData . $padTraceXmlFile );
 
   $xml = new tidy;
   $xml->parseString($data, $tidyoptions, 'utf8');
@@ -23,6 +25,6 @@
 
   $data = trim($xml->value);
 
-  padFilePutContents ( "$padTraceBase/tidy.xml", $data);
+  padFilePutContents ( $padTraceXmlFile, $data );
 
 ?>

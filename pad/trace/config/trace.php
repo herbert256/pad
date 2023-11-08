@@ -30,7 +30,7 @@
   $padTraceSession     = FALSE;
   $padTraceBuild       = FALSE;
   
-  $padTraceParse       = FALSE;
+  $padTraceParse       = TRUE;
   $padTraceParms       = FALSE;
   $padTraceOptions     = FALSE;
 

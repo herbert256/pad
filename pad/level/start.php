@@ -1,17 +1,13 @@
 <?php
- 
-  if ( $padTraceActive )
-    padTraceXmlInitsOpened ();
-
 
   include pad . 'level/tag.php';
   include pad . 'level/setup.php';    
 
-  if ( $padTraceActive )
-    include pad . 'trace/level/start.php';      
-
   if ( ! in_array ( $padTag [$pad], $padPrmNoParse  )  )
     include pad . 'level/parms.php';
+
+  if ( $padTraceActive )
+    include pad . 'trace/level/start.php';    
 
   include pad . 'level/split.php';
 

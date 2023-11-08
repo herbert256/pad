@@ -27,8 +27,6 @@
   if ( $padTraceActive )
     include pad . 'trace/level/exits.php'; 
 
-  padTrace ( 'dummy', 'dummy', 'This will be in the exits'); 
-
   if ( $padWalk [$pad] == 'end' )
     include pad . 'walk/end.php';
 
