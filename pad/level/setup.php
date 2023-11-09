@@ -59,6 +59,9 @@
   $padTable      [$pad] = [];
   $padTableTag   [$pad] = '';
 
+  $padXmlTag     [$pad] = '';
+  $padXmlOcc     [$pad] = 'set';
+
   $padOptionsAppStart [$pad] = [];
   $padOptionsCallback [$pad] = [];
 

@@ -27,6 +27,6 @@
     $padBuildPad .= include pad . 'call/stringNoOne.php';
   }
 
-  return "{build}$padBuildPad{/build}";
+  return "{padBuildData}$padBuildPad{/padBuildData}";
   
 ?>

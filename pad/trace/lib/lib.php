@@ -3,16 +3,6 @@
 
   function padTraceInit ( $level ) {
 
-    $GLOBALS ['padTraceXmlWhere']       [$level] = 'inits';
-
-    $GLOBALS ['padTraceXmlInitsOpened'] [$level] = FALSE;
-    $GLOBALS ['padTraceXmlOccurOpened'] [$level] = FALSE;
-    $GLOBALS ['padTraceXmlExitsOpened'] [$level] = FALSE;
-    
-    $GLOBALS ['padTraceXmlInitsClosed'] [$level] = FALSE;
-    $GLOBALS ['padTraceXmlOccurClosed'] [$level] = FALSE;
-    $GLOBALS ['padTraceXmlExitsClosed'] [$level] = FALSE;
-
     $GLOBALS ['padTraceShowOccurs']     [$level] = FALSE;
     
     $GLOBALS ['padTraceLevelChilds']    [$level] = 0;

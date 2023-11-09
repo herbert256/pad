@@ -22,18 +22,7 @@
   if ( $padTraceDumps ) 
     padTraceDump ( 'end' );
 
-  padTraceXmlInitsOpened ();
-  padTraceXmlOccurOpened ();
-  padTraceXmlExitsOpened ();
-
-  padTrace ( 'dummy', 'dummy', 'Before trace end'); 
-
-  $padTraceXmlWhere [$pad] = 'trace-end';
-
   padTraceSet ( 'trace', 'end' );
-
-  if ( $padTraceXml and $padTraceXmlTidy )
-    include pad . 'trace/trace/tidy.php';
   
   $padTraceActive = FALSE;
 

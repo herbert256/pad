@@ -12,7 +12,7 @@
   function padTraceSetStart ( $type ) {  
 
     global $pad;
-    global $padTraceId, $padTraceOccurId, $padTraceLine, $padTraceXml;
+    global $padTraceId, $padTraceOccurId, $padTraceLine;
 
     $padTraceLine++;
 
@@ -24,18 +24,12 @@
     elseif ( $type == 'level' ) padTraceSetLevel ( $padTraceLine );
     elseif ( $type == 'occur' ) padTraceSetOccur ( $padTraceLine );
    
-    if ( $padTraceXml )      
-      padTraceXmlSet ( $type, 'start' );
 
   }
 
 
   function padTraceSetEnd ( $type ) {  
 
-    global $padTraceXml;
-
-    if ( $padTraceXml )      
-      padTraceXmlSet ( $type, 'end' );
    
   }
 

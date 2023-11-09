@@ -2,13 +2,7 @@
 
   padTraceInit ( $pad );
 
-  padTraceXmlExitsOpened ();  
-
-  $padTraceXmlWhere [$pad] = 'level-start';
-
   padTraceSet ( 'level', 'start' );
-
-  $padTraceXmlWhere [$pad] = 'inits';
 
   if ( $padTraceStartLvl )
     padTrace ( 'level', 'start', 

@@ -24,9 +24,6 @@
 
   $padOccur [$pad] = 0;
 
-  if ( $padTraceActive )
-    include pad . 'trace/level/exits.php'; 
-
   if ( $padWalk [$pad] == 'end' )
     include pad . 'walk/end.php';
 
@@ -40,6 +37,9 @@
  
   if ( $padTraceActive ) 
     include pad . 'trace/level/end.php';    
+  
+  if ( $padXml ) 
+    include pad . 'xml/level/end.php';    
   
   padResetLvl ($pad);
 

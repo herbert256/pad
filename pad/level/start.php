@@ -41,6 +41,9 @@
   if ( padOpenCloseOk ( $padBase[$pad], '@end@') )
     include pad . 'level/split/after1.php';
 
+  if ( $padXml ) 
+    include pad . 'xml/level/start.php';    
+
   if ( padOpenCloseOk ( $padBase[$pad], '@start@') )
     return include pad . 'level/split/before1.php';
 

@@ -21,4 +21,7 @@
   if ( isset($padPrm [$pad] ['callback']) and ! isset ( $padPrm [$pad] ['before']) )
     include pad . 'callback/row.php' ;
 
+  if ( $padXml ) 
+    include pad . 'xml/occur/start.php';      
+
 ?>

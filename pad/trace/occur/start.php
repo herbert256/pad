@@ -1,10 +1,5 @@
 <?php
 
-  padTraceXmlInitsOpened ();
-
-  if ( $padOccur[$pad] == 1 ) 
-    padTraceShowOccurs ();
-
   $padTraceOccurChilds  [$pad] [$padOccur[$pad]] = 0;
   $padTraceOccurWritten [$pad] [$padOccur[$pad]] = FALSE;
 
@@ -16,8 +11,6 @@
        $padTraceOccurChilds[$padI][$padOccur[$padI]]++;
 
   }
-
-  $padTraceXmlWhere [$pad] = 'occurs';
 
   padTraceSet ( 'occur', 'start' );
 

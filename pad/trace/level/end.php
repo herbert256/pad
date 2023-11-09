@@ -1,7 +1,5 @@
 <?php
 
-  $padTraceXmlWhere [$pad] = 'exits';
-  
   include pad . 'trace/items/result.php';   
   
   if ( $padTraceEndLvl )
@@ -15,8 +13,6 @@
   
   if ( $padTraceChilds )
     padTraceChilds ( $padTraceLevel [$pad], $padTraceLevelChilds[$pad], 'level' );
-
-  $padTraceXmlWhere [$pad] = 'level-end';
 
   padTraceSet ( 'level', 'end' );
 

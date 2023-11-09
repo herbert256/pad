@@ -9,8 +9,6 @@
   $padTraceMkDir       = FALSE;
   $padTraceStructure   = FALSE;
 
-  $padTraceXml         = TRUE;
-
   $padTraceAddLine     = FALSE;
 
   $padTraceAddOccur    = FALSE;
