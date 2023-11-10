@@ -1,8 +1,5 @@
 <?php
-  
-  if ( $padTraceActive)
-    include pad . "trace/entry/restart.php";
- 
+   
   $padPage = $padRestart;
 
   if ( isset($padRestartVars) ) {

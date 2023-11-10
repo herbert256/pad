@@ -2,15 +2,22 @@
 
   include pad . 'trace/items/resultOcc.php';     
 
-  if ( $padTraceEndOcc )
-    padTrace ( 'occur', 'end' );
+  if ( ! isset ( $padTraceLevel [$pad] ) ) padTraceSet ( $pad );
+  if ( ! $padTraceLevel [$pad]           ) padTraceSet ( $pad );
+
+  $padI = $padOccur [$pad] ?? 0;
+
+  if ( ! isset ($padTraceOccurChilds [$pad]         ) ) $padTraceOccurChilds [$pad] [$padI] = 0;
+  if ( ! isset ($padTraceOccurChilds [$pad] [$padI] ) ) $padTraceOccurChilds [$pad] [$padI] = 0;
+
+  padTrace ( 'occur', 'end' );
 
   if ( $padTraceLocalChk )
-    padTraceCheckLocal ( $padTraceOccur [$pad] [$padOccur[$pad]] );
+    padTraceCheckLocal ( $padTraceLevel [$pad] . "/$padI" );
   
   if ( $padTraceChilds )
-    padTraceChilds ( $padTraceOccur [$pad] [$padOccur[$pad]], $padTraceOccurChilds[$pad] [$padOccur[$pad]], 'occur' );
+    padTraceChilds ( $padTraceLevel [$pad] . "/$padI", $padTraceOccurChilds [$pad] [$padI], 'occur' );
 
-  padTraceSet ( 'occur', 'end' );
+  $padTraceOccurChilds [$pad] [$padI] = 0;
    
 ?>

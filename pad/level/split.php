@@ -1,5 +1,7 @@
 <?php
  
+  $padPadStart [$pad] = $padTrue [$pad];
+
   $padOpenClose = padOpenCloseList ( $padTrue [$pad] ) ;
   
   if ( $padGiven [$pad] )

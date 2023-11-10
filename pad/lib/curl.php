@@ -1,6 +1,7 @@
 <?php
 
 
+
   function padCurl ($input) {
 
     //  Required input parms
@@ -100,45 +101,24 @@
       padCurlOpt ($options, 'HTTPHEADER', $headers_in);
     }
 
+    $output ['url']     = $url;      
     $output ['options'] = $options;      
 
-    set_error_handler ( 'padErrorThrow' );
-    $errorReporting = error_reporting (0);
-
-    try {
-
-      $curl = curl_init ( $url );
-
-      if ($curl === FALSE)
-        return padCurlError ($output, 'curl_init = FALSE');
-
-      foreach ( $options as $key => $val )
-        curl_setopt ( $curl, constant('CURLOPT_'.$key), $val );
-    
-      $result          = curl_exec    ($curl);
-      $output ['info'] = curl_getinfo ($curl);
-      
-      if ($result === FALSE)
-        return padCurlError ($output, 'curl_exec = FALSE');
-
-    } catch (Throwable $e) {
-
-      return padCurlError ( $output,  $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage() );
-
-    }
-
-    restore_error_handler ();
-    error_reporting ( $errorReporting );
+    if ( function_exists ( 'curl_init' ) )
+      padCurlCurl ( $output );
+    else
+      padCurlNoCurl ( $output );
 
     if ( isset ( $output ['info'] ['http_code'] ) )
       $output ['result'] = $output ['info'] ['http_code'];
     else
       $output ['result'] = 'xxx';
 
+    $file = '';
+
     if ( isset($output ['info']['header_size']) and $output ['info']['header_size'] > 0 ) {
         
-      $file = '';
-      $headers = explode( "\r\n", substr ( $result, 0, $output ['info'] ['header_size'] ) );
+      $headers = explode( "\r\n", substr ( $output ['result'], 0, $output ['info'] ['header_size'] ) );
 
       foreach ($headers as $key => $val) {
         
@@ -181,9 +161,9 @@
     }
 
     if ( isset($output ['info']['header_size']) )
-      $output ['data'] = trim(substr($result, $output ['info']['header_size']));
+      $output ['data'] = trim(substr($output ['result'], $output ['info']['header_size']));
     else
-      $output ['data'] = trim($result);
+      $output ['data'] = trim($output ['result']);
 
     if ( ! $output ['type'] and $file) {
       $pados = strrpos($file, '.');
@@ -210,6 +190,40 @@
 
   }
 
+
+  function padCurlCurl ( &$output ) {
+
+    set_error_handler ( 'padErrorThrow' );
+    $errorReporting = error_reporting (0);
+
+    try {
+
+      $curl = curl_init ( $output ['url'] );
+
+      if ($curl === FALSE)
+        return padCurlError ($output, 'curl_init = FALSE');
+
+      foreach ( $output ['options'] as $key => $val )
+        curl_setopt ( $curl, constant('CURLOPT_'.$key), $val );
+    
+      $output ['result'] = curl_exec    ($curl);
+      $output ['info']   = curl_getinfo ($curl);
+      
+      if ( $output ['result'] === FALSE )
+        return padCurlError ($output, 'curl_exec = FALSE');
+
+    } catch (Throwable $e) {
+
+      return padCurlError ( $output,  $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage() );
+
+    }
+
+    restore_error_handler ();
+    error_reporting ( $errorReporting );
+
+  }
+
+
   function padCurlError ($output, $error) {
 
     $output ['ERROR']  = $error;
@@ -220,5 +234,14 @@
     return $output;
 
   }
+
+
+  function padCurlNoCurl ( &$output ) {
+
+    $output ['result'] = 'xxx banaan xxx';
+    $output ['info']   = [];
+
+  }
+
 
 ?>

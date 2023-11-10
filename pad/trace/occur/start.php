@@ -1,22 +1,27 @@
 <?php
 
-  $padTraceOccurChilds  [$pad] [$padOccur[$pad]] = 0;
-  $padTraceOccurWritten [$pad] [$padOccur[$pad]] = FALSE;
+  padTrace ( 'occur', 'start', $padBase [$pad] );
 
   for ( $padI = $pad; $padI >= $padTraceGo; $padI-- ) {
 
+    if ( ! isset ( $padTraceLevelChilds [$padI] ) ) 
+      $padTraceLevelChilds [$padI] = 0;
+
     $padTraceLevelChilds [$padI] ++;
 
-    if ( $padOccur [$padI] )
-       $padTraceOccurChilds[$padI][$padOccur[$padI]]++;
+    $padJ = $padOccur [$padI] ?? 0;
+
+    if ( $padJ) { 
+
+       if ( ! isset ($padTraceOccurChilds [$padI]         ) ) $padTraceOccurChilds [$padI] [$padJ] = 0;
+       if ( ! isset ($padTraceOccurChilds [$padI] [$padJ] ) ) $padTraceOccurChilds [$padI] [$padJ] = 0;
+
+       $padTraceOccurChilds [$padI] [$padJ] ++;
+
+    }
 
   }
-
-  padTraceSet ( 'occur', 'start' );
-
-  if ( $padTraceStartOcc ) 
-    padTrace ( 'occur', 'start', $padBase [$pad] );
-
+ 
   if ( $padTraceDataOcc ) {
 
     if ( $padTraceNoDefault and ! count ( $padCurrent [$pad] ) )

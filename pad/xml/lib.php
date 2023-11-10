@@ -1,19 +1,6 @@
 <?php
 
 
-  function padXmlStatus ($pad) {
-
-    global $padNull, $padData, $padBase; 
-
-    if     ( $padNull [$pad]                        ) return 'null';
-    elseif ( ! count ( $padData [$pad] )            ) return 'no-data';
-    elseif ( ! $padBase [$pad]                      ) return 'no-base';
-    elseif ( ! padIsDefaultData ( $padData [$pad] ) ) return 'ok-' . count ( $padData [$pad] );
-    else                                              return 'ok';
-
-  }
-
-
   function padXmlOccurs ( $pad ) {
 
     global $padWalk, $padData, $padBeforeBase, $padAfterBase;

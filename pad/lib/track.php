@@ -1,6 +1,32 @@
 <?php
 
 
+  function padTrackFileCall () {
+    
+    $session = $GLOBALS ['padSesID'];
+    $request = $GLOBALS ['padReqID'];
+
+    if ( function_exists ('getallheaders') )
+      $headers = getallheaders();
+    else
+      $headers = [];
+
+    padFilePutContents ( "call/$session-$request.json",  [
+        'get'     => $_GET ??    '',
+        'post'    => $_POST ??   '',
+        'cookies' => $_COOKIE ?? '',
+        'input'   => file_get_contents('php://input') ?? '',
+        'headers' => $headers,
+        'files '  => $_FILES ?? '',
+        'server'  => $_SERVER ?? '',
+        'request' => $_REQUEST ?? '',
+        'session' => $_SESSION ?? '',
+        '_ENV'    => $_ENV ?? '',
+        'getenv'  => getenv () ?? '' ] );
+      
+  }
+
+
   function padTrackFileRequestStart () {
     
     $dir = $GLOBALS ['padSesID'];

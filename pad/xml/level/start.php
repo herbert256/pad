@@ -11,10 +11,17 @@
     return;
 
   $padXmlParms = [
-    'parm'   => $padOpt  [$pad] [0],
-    'status' => padXmlStatus ($pad),
-    'type'   => $padType [$pad]
+    'type'    => $padType [$pad],
+    'parm'    => $padOpt  [$pad] [0],
+    'status'  => padStatus ($pad),
+    'base'    => padBase ($pad),
+    'content' => strlen ( $padPadStart [$pad] ),
+    'default' => $padDefault [$pad]
   ];
+
+  if ( ! $padNull [$pad] )
+    if ( ! padIsDefaultData ( $padData [$pad] ) )
+      $padXmlParms ['count'] = count ( $padData [$pad] );
 
   padXmlWriteOpen ( $padXmlTag [$pad], $padXmlParms );
 

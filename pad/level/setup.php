@@ -35,6 +35,7 @@
   $padStart      [$pad] = 0;
   $padEnd        [$pad] = 0;
 
+  $padPadStart   [$pad] = '';
   $padBase       [$pad] = '';
   $padPad        [$pad] = '';
   $padResult     [$pad] = '';

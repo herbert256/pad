@@ -1,8 +1,10 @@
 <?php
 
+  if ( ! isset ( $padTraceLine ) )
+    $padTraceLine = 1;
+
   include_once pad . 'trace/lib/trace.php';
   include_once pad . 'trace/lib/lib.php';
-  include_once pad . 'trace/lib/set.php';
 
   include pad . 'trace/config/trace.php';
 
@@ -12,18 +14,15 @@
 
   $padTraceBase = "trace/$padPage/$padReqID-" . padRandomString (8); 
 
-  if ( ! isset ( $padTraceLine ) )
-    $padTraceLine = 0;
+  $padTraceLevel = [];
 
-  padTraceInit ( $pad );
+  $padTraceLevelChilds = [];
+  $padTraceOccurChilds = [];
 
-  padTraceSet ( 'trace', 'start' );
-
-  if ( $padTraceOpenClose )
-    padTrace ( 'trace', 'start' );
+  padTrace ( 'trace', 'start' );
 
   if ( $padTraceDumps ) 
-    padTraceDump ( 'start' );
+    padTraceDump ( 'dump-start' );
 
   if ( $padTraceSession )
     foreach ( padSessionInfoStart () as $padK => $padV )

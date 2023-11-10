@@ -5,6 +5,7 @@
   include pad . 'inits/page.php';
   include pad . 'inits/ids.php';
   include pad . 'inits/config.php';
+  include pad . 'inits/call.php';
   include pad . 'inits/nono.php';
   include pad . 'inits/fast.php';
   include pad . 'inits/error.php';

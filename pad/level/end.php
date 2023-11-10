@@ -22,7 +22,7 @@
   if ( $padAfterBase [$pad] )
     return include pad . 'level/split/after2.php';
 
-  $padOccur [$pad] = 0;
+  $padOccur [$pad] = 999;
 
   if ( $padWalk [$pad] == 'end' )
     include pad . 'walk/end.php';
