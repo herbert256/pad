@@ -42,4 +42,31 @@
   }
 
 
+
+  function padXmlStatus ($pad) {
+
+    global $padNull, $padData, $padBase; 
+
+    if     ( $padNull [$pad]                               ) return 'null';
+    elseif ( count ( $padData [$pad] ) and $padBase [$pad] ) return 'yes';
+    elseif ( ! count ( $padData [$pad] )                   ) return 'no-data';
+    elseif ( ! $padBase [$pad]                             ) return 'no-base';
+    else                                                     return '???';
+
+  }
+
+
+  function padXmlBase ($pad) {
+
+    global $padBase, $padPadStart, $padTrue, $padFalse; 
+
+    if     ( ! $padBase [$pad]                      ) return 'empty';
+    elseif ( $padBase [$pad] == $padPadStart [$pad] ) return 'content';
+    elseif ( $padBase [$pad] == $padTrue [$pad]     ) return 'true';
+    elseif ( $padBase [$pad] == $padFalse [$pad]    ) return 'false';
+    else                                              return 'other';
+
+  }
+
+
 ?>

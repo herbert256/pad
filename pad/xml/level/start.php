@@ -13,8 +13,8 @@
   $padXmlParms = [
     'type'    => $padType [$pad],
     'parm'    => $padOpt  [$pad] [0],
-    'status'  => padStatus ($pad),
-    'base'    => padBase ($pad),
+    'status'  => padXmlStatus ($pad),
+    'base'    => padXmlBase ($pad),
     'content' => strlen ( $padPadStart [$pad] ),
     'default' => $padDefault [$pad]
   ];

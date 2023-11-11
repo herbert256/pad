@@ -1,6 +1,6 @@
 <?php
   
-  $padTraceOnlyDirs    = TRUE;
+  $padTraceOnlyDirs    = FALSE;
 
   $padTraceTrace       = TRUE;
   $padTraceTree        = TRUE;  
@@ -13,9 +13,9 @@
   $padTraceAddLine     = TRUE;
   $padTraceLocalChk    = TRUE;       
 
-  $padTraceDeleteEmpty = TRUE;
+  $padTraceDeleteEmpty = FALSE;
 
-  $padTraceOccurs      = 'smart';  // never / always / smart
+  $padTraceOccurs      = 'always';  // never / always / smart
   $padTraceInitsExits  = FALSE;
   $padTraceHideDefault = TRUE;
 

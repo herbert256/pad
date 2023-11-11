@@ -23,14 +23,14 @@
   $padTrackFileRequest = FALSE;
   $padTrackFileData    = FALSE; 
 
-  $padTrackDbSession   = TRUE;
-  $padTrackDbRequest   = TRUE;
-  $padTrackDbData      = TRUE;
+  $padTrackDbSession   = FALSE;
+  $padTrackDbRequest   = FALSE;
+  $padTrackDbData      = FALSE;
 
    // Trace the working of PAD
 
-  $padTrace = TRUE;
-  $padXml   = FALSE;
+  $padTrace = FALSE;
+  $padXml   = TRUE;
 
   // Cache settings
   
