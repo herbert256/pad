@@ -1,17 +1,27 @@
 <?php
   
+  $padTraceOnlyDirs    = TRUE;
+
   $padTraceTrace       = TRUE;
   $padTraceTree        = TRUE;  
   $padTraceLocal       = TRUE;
   $padTraceTypes       = FALSE;
   $padTraceMore        = FALSE;
 
-  $padTraceStatus      = TRUE;
+  $padTraceStatus      = FALSE;
   $padTraceChilds      = TRUE;
+  $padTraceAddLine     = TRUE;
   $padTraceLocalChk    = TRUE;       
+
+  $padTraceDeleteEmpty = TRUE;
+
+  $padTraceOccurs      = 'smart';  // never / always / smart
+  $padTraceInitsExits  = FALSE;
+  $padTraceHideDefault = TRUE;
 
   $padTraceTypesDir    = TRUE;       
   $padTraceDumps       = FALSE;
+  $padTraceRequest     = FALSE;
 
   $padTraceSession     = TRUE;
   $padTraceBuild       = TRUE;

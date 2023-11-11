@@ -5,15 +5,15 @@
   if ( ! isset ( $padTraceLevel [$pad] ) ) padTraceSet ( $pad );
   if ( ! $padTraceLevel [$pad]           ) padTraceSet ( $pad );
 
-  padTrace ( 'level', 'end' );
-
   if ( $padTraceStatus )
     padTraceStatus ( );
 
   if ( $padTraceLocalChk ) {
     padTraceCheckLocal ( $padTraceLevel [$pad] . '/0'     );
+    padTraceCheckLocal ( $padTraceLevel [$pad] . '/inits' );
     padTraceCheckLocal ( $padTraceLevel [$pad]            );
-    padTraceCheckLocal ( $padTraceLevel [$pad] . '/999' );
+    padTraceCheckLocal ( $padTraceLevel [$pad] . '/99999' );
+    padTraceCheckLocal ( $padTraceLevel [$pad] . '/exits' );
   }
   
   if ( ! isset ( $padTraceLevelChilds [$pad] ) ) 
@@ -21,6 +21,9 @@
 
   if ( $padTraceChilds ) 
     padTraceChilds ( $padTraceLevel [$pad], $padTraceLevelChilds [$pad], 'level' );
+
+  if ( $pad > 0 and $padTraceDeleteEmpty and $padTraceLevel [$pad] and ! $padTraceLevelChilds [$pad] )
+    padTraceDdeleteDir ( padData . "$padTraceBase" . $padTraceLevel [$pad] . '/' ); 
 
   $padTraceLevel [$pad] = '';
 

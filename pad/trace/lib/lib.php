@@ -1,28 +1,69 @@
 <?php
 
 
+  function padTraceDdeleteDir( $dir ) {
+
+    $files = glob($dir . '*', GLOB_MARK);
+  
+    foreach ($files as $file)
+        if (is_dir($file))
+           padTraceDdeleteDir($file);
+        else
+            unlink($file);
+  
+    rmdir($dir);
+
+  }
+
+
+  function padTraceDefault ( $pad ) {
+
+    global $padWalk, $padData, $padBeforeBase, $padAfterBase;
+
+    if ( $pad == 0 )
+      return TRUE;
+
+    if ( ! isset ( $padWalk [$pad] ) or ! isset ( $padData [$pad] ) )
+      return FALSE;
+
+    if ( ! isset ( $padBeforeBase [$pad] ) or ! isset ( $padAfterBase [$pad] ) )
+      return FALSE;
+
+    if ( $padWalk [$pad] == 'next'      
+      or count ( $padData [$pad] ) > 1   
+      or $padBeforeBase [$pad]           
+      or $padAfterBase  [$pad] )
+
+      return FALSE;
+
+    return TRUE;
+
+  }
+
+
   function padTraceSet ( $pad ) {  
 
     global $padOccur, $padTag;
-    global $padTraceLevel, $padTraceGo, $padTraceType;
-    global $padTraceLine, $padTraceLevelChilds, $padTraceOccurChilds;
+    global $padTraceLevel, $padTraceGo, $padTraceType, $padTraceAddLine;
+    global $padTraceId, $padTraceLine, $padTraceLevelChilds, $padTraceOccurChilds;
 
     if ( $pad < 0 ) {
       $padTraceLevel [$pad] = '';
       return;
     }
     
-    $last  = $pad - 1;
-    $occur = $padOccur [$last] ?? 0;
-    $tag   = $padTag [$pad] ?? "NoTag-$pad";
+    $last = $pad - 1;
+    $tag  = $padTag [$pad] ?? "NoTag";
+    $add  = padTraceOccur ( $pad-1 );
+    $line = ($padTraceAddLine) ? "$padTraceLine-" : '';
 
-    $add = ( $pad > 0 ) ? "/$occur" : '';
-
-    $padTraceLevel [$pad]  = $padTraceLevel [$last] ?? "NoPrev-$pad";
-    $padTraceLevel [$pad] .= "$add/$padTraceLine-" . padFileCorrect ( $tag );
+    $padTraceLevel [$pad]  = $padTraceLevel [$last] ?? "NoPrev";
+    $padTraceLevel [$pad] .= "/$add$line" . padFileCorrect ( $tag );
   
     $padTraceLevelChilds [$pad] = 0;
     $padTraceOccurChilds [$pad] = [];
+
+    $padTraceId [$pad] = $padTraceLine;
 
   }
 

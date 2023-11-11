@@ -1,8 +1,17 @@
 <?php
 
 
-  function padTrackFileCall () {
+  function padTrackFileCall ( $file = '' ) {
     
+    if ( ! $file ) {
+
+      $session = $GLOBALS ['padSesID'];
+      $request = $GLOBALS ['padReqID'];
+
+      $file = "call/$session-$request.json";
+
+    }
+
     $session = $GLOBALS ['padSesID'];
     $request = $GLOBALS ['padReqID'];
 
@@ -11,7 +20,7 @@
     else
       $headers = [];
 
-    padFilePutContents ( "call/$session-$request.json",  [
+    padFilePutContents ( $file,  [
         'get'     => $_GET ??    '',
         'post'    => $_POST ??   '',
         'cookies' => $_COOKIE ?? '',

@@ -67,7 +67,7 @@
     if ( ! $id or $id == $padTraceLine )
       $id = '';
 
-    $trace = sprintf ( '%-7s',  $prefix       )
+    $trace = sprintf ( '%-9s',  $prefix       )
            . sprintf ( '%-7s',  $padTraceLine )
            . sprintf ( '%-7s',  $id           )
            . sprintf ( '%-10s', $type         )
@@ -131,16 +131,17 @@
 
   function padTraceWrite ( $pad, $location, $trace, $type='line' ) {  
 
-    global $padTraceLevel, $padTraceBase, $padOccur;
+    global $padOccur, $padTraceLevel,  $padTraceBase, $padTraceOnlyDirs ;
 
     if ( ! isset ( $padTraceLevel [$pad] ) ) padTraceSet ( $pad );
     if ( ! $padTraceLevel [$pad]           ) padTraceSet ( $pad );
 
-    $occur = $padOccur [$pad] ?? 0;
-
-    $add = ( $pad < 0 ) ? '' : $padTraceLevel [$pad] . "/$occur/";
+    $add = ( $pad < 0 ) ? '' : $padTraceLevel [$pad] . '/' . padTraceOccur ( $pad );
 
     $target = "$padTraceBase/$add$location";
+
+    if ( $padTraceOnlyDirs )
+      return padTraceOnlyDirs ( padData . $target, $type );
 
     if ( $type == 'file' and padExists ( padData . $target ) )
       return;
@@ -149,6 +150,44 @@
       padFilePutContents ( $target, $trace, TRUE );
     else
       padFilePutContents ( $target, $trace, FALSE );
+
+  }
+
+
+  function padTraceOnlyDirs ( $file, $type ) {
+
+    if ( $type == 'file' )
+      return;
+
+    padFileChkDir ( $file );    
+
+  }
+
+
+  function padTraceOccur ( $pad ) {  
+
+    global $padOccur;
+    global $padTraceOccurs, $padTraceInitsExits, $padTraceDefault, $padTraceHideDefault;
+
+    if ( $pad < 0 or $padTraceOccurs == 'never' )
+      return '';
+
+    $occur = $padOccur [$pad] ?? 0;
+
+    if ( $padTraceOccurs == 'always' ) 
+      if     ( $occur == 0     ) return 'inits/';
+      elseif ( $occur == 99999 ) return 'exits/';
+      else                       return "$occur/";
+
+    if (   $padTraceInitsExits and $occur == 0     ) return 'inits/';
+    elseif (   $padTraceInitsExits and $occur == 99999 ) return 'exits/';
+    elseif ( ! $padTraceInitsExits and $occur == 0     ) return '';
+    elseif ( ! $padTraceInitsExits and $occur == 99999 ) return '';
+
+    if ( $padTraceHideDefault and $occur == 1 and padTraceDefault ( $pad ) ) 
+      return '';
+
+    return "$occur/";
 
   }
 
