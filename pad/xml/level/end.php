@@ -9,4 +9,7 @@
   $padXmlTag [$pad] = '';
   $padXmlOcc [$pad] = '';
 
+  $padXmlOb        = '';
+  $padXmlTagReturn = 'vlaflip';
+
 ?>

@@ -16,8 +16,12 @@
     'status'  => padXmlStatus ($pad),
     'base'    => padXmlBase ($pad),
     'content' => strlen ( $padPadStart [$pad] ),
-    'default' => $padDefault [$pad]
+    'default' => $padDefault [$pad],
+    'return'  => $padXmlTagReturn
   ];
+
+  if ( $padXmlOb )
+    $padXmlParms ['ob'] = $padXmlOb;
 
   if ( ! $padNull [$pad] )
     if ( ! padIsDefaultData ( $padData [$pad] ) )

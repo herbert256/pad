@@ -6,6 +6,9 @@
   $padTagResult = include pad . "types/" . $padType [$pad] . ".php";
   $padTagOb     = ob_get_clean();
 
+  if ( $padXml ) 
+    include pad . 'xml/level/go.php';
+
   if     ( is_object   ( $padTagResult ) ) $padTagResult = padToArray( $padTagResult );
   elseif ( is_resource ( $padTagResult ) ) $padTagResult = padToArray( $padTagResult );
   elseif ( $padTagResult === INF         ) $padTagResult = NULL;

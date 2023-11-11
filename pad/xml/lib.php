@@ -22,6 +22,9 @@
   function padXmlWriteOpen ( $xml, $parms=[] ) {
 
     global $padXmlFile;
+
+    if ( $GLOBALS['padTraceActive'] )
+      $parms ['trace'] = $GLOBALS['padTraceLine'];
     
     $more = '';
     foreach ( $parms as $key => $value )
@@ -49,21 +52,26 @@
 
     if     ( $padNull [$pad]                               ) return 'null';
     elseif ( count ( $padData [$pad] ) and $padBase [$pad] ) return 'yes';
-    elseif ( ! count ( $padData [$pad] )                   ) return 'no-data';
-    elseif ( ! $padBase [$pad]                             ) return 'no-base';
-    else                                                     return '???';
+    elseif ( ! count ( $padData [$pad] )                   ) return 'no';
+    elseif ( ! $padBase [$pad]                             ) return 'no';
+    else                                                     return 'other';
 
   }
 
 
   function padXmlBase ($pad) {
 
-    global $padBase, $padPadStart, $padTrue, $padFalse; 
+    global $padBase, $padPadStart, $padTrue, $padFalse, $padXmlOb, $padXmlTagReturn, $padXmlTagResult, $padXmlTrue, $padXmlFalse, $padText; 
 
     if     ( ! $padBase [$pad]                      ) return 'empty';
     elseif ( $padBase [$pad] == $padPadStart [$pad] ) return 'content';
-    elseif ( $padBase [$pad] == $padTrue [$pad]     ) return 'true';
-    elseif ( $padBase [$pad] == $padFalse [$pad]    ) return 'false';
+    elseif ( $padBase [$pad] == $padXmlTrue         ) return 'true';
+    elseif ( $padBase [$pad] == $padXmlFalse        ) return 'false';
+    elseif ( $padBase [$pad] == $padXmlOb           ) return 'ob';
+    elseif ( $padXmlTagReturn == 'value' and
+             $padBase [$pad] == $padXmlTagResult    ) return 'return';
+    elseif ( $padText [$pad] and
+             $padBase [$pad] == $padXmlTagResult    ) return 'text';
     else                                              return 'other';
 
   }
