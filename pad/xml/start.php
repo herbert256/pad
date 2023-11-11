@@ -10,6 +10,8 @@
   $padXmlTag [$pad] = '';
   $padXmlOcc [$pad] = '';
 
+  $padXmlTagReturn = '';
+
   padXmlWriteOpen ( 'pad' );
 
 ?>

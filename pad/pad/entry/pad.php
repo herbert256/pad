@@ -1,5 +1,7 @@
 <?php
 
+  $padEntryType = 'pad';
+
   include pad . 'pad/lib/setup.php';
 
   $padBase [$pad] = $padCode;    

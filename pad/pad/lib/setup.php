@@ -1,11 +1,13 @@
 <?php
 
-  $padBetween   = 'true';
-  $padWords     = [];
-  $padWords [0] = 'true';
+  $padEntryType = 'entry-' . $padEntryType;
 
-  $padTypeCheck  = 'true';
-  $padTypeResult = 'pad';
+  $padBetween   = $padEntryType;
+  $padWords     = [];
+  $padWords [0] = $padEntryType;
+
+  $padTypeCheck  = $padEntryType;
+  $padTypeResult = 'internal';
   $padTypeGiven  = FALSE;
   $padPairSet    = FALSE;
   $padTrueSet    = '';

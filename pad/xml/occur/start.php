@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! isset ( $padXmlTag [$pad] ) or ! $padXmlTag [$pad] ) 
+  if ( ! isset ( $padXmlTag [$pad] ) or ! $padXmlTag [$pad] )
     include pad . 'xml/level/start.php';
 
   if ( ! $padXmlOcc [$pad] )

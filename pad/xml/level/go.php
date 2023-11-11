@@ -1,11 +1,11 @@
 <?php
 
-  $padXmlOb = strlen ($padTagOb);
 
-  $padXmlTagResult = $padTagResult;
-
-  $padXmlTrue  = $padTrue [$pad];
-  $padXmlFalse = $padFalse [$pad];
+  $padXmlTagContent = $padContent;
+  $padXmlOb         = $padTagOb;
+  $padXmlTagResult  = $padTagResult;
+  $padXmlTrue       = $padTrue [$pad];
+  $padXmlFalse      = $padFalse [$pad];
 
   if     ( is_object   ( $padTagResult ) ) $padXmlTagReturn = 'object';
   elseif ( is_resource ( $padTagResult ) ) $padXmlTagReturn = 'resource';

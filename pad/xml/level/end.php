@@ -10,6 +10,6 @@
   $padXmlOcc [$pad] = '';
 
   $padXmlOb        = '';
-  $padXmlTagReturn = 'vlaflip';
+  $padXmlTagReturn = '';
 
 ?>

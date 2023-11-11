@@ -11,7 +11,9 @@
   if ( padTagParm ( 'include' ) )
     $padInclude = TRUE;
 
-  $padPageType   = padTagParm ( 'type', 'include' );  
+  $padPageType  = padTagParm ( 'type', 'include' );  
+  $padEntryType = "page-$padPageType-$padPage";
+
   $padPageResult = include pad . "pad/types/$padPageType.php";
   
   $padPage = $padPagePage [$pad];

@@ -1,7 +1,7 @@
 <?php
 
 
-  function padDumpToDir ( $info, $dir='' ) {
+  function padDumpToDir ( $info='', $dir='' ) {
 
     if ( isset ( $GLOBALS ['padDumpToDir'] ) )
       return;

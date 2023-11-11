@@ -45,34 +45,10 @@
   }
 
 
-
   function padXmlStatus ($pad) {
 
     global $padNull, $padData, $padBase; 
 
-    if     ( $padNull [$pad]                               ) return 'null';
-    elseif ( count ( $padData [$pad] ) and $padBase [$pad] ) return 'yes';
-    elseif ( ! count ( $padData [$pad] )                   ) return 'no';
-    elseif ( ! $padBase [$pad]                             ) return 'no';
-    else                                                     return 'other';
-
-  }
-
-
-  function padXmlBase ($pad) {
-
-    global $padBase, $padPadStart, $padTrue, $padFalse, $padXmlOb, $padXmlTagReturn, $padXmlTagResult, $padXmlTrue, $padXmlFalse, $padText; 
-
-    if     ( ! $padBase [$pad]                      ) return 'empty';
-    elseif ( $padBase [$pad] == $padPadStart [$pad] ) return 'content';
-    elseif ( $padBase [$pad] == $padXmlTrue         ) return 'true';
-    elseif ( $padBase [$pad] == $padXmlFalse        ) return 'false';
-    elseif ( $padBase [$pad] == $padXmlOb           ) return 'ob';
-    elseif ( $padXmlTagReturn == 'value' and
-             $padBase [$pad] == $padXmlTagResult    ) return 'return';
-    elseif ( $padText [$pad] and
-             $padBase [$pad] == $padXmlTagResult    ) return 'text';
-    else                                              return 'other';
 
   }
 

@@ -1,31 +1,16 @@
 <?php
-
-  if ( $padTag [$pad] == 'padBuildData' )
-    $padXmlTag [$pad] = str_replace ( '/', '-', $padPage );
-  else
-    $padXmlTag [$pad] = $padTag [$pad];
-
+  
   $padXmlOcc [$pad] = '';
 
   if ( $pad == 0 )
     return;
 
-  $padXmlParms = [
-    'type'    => $padType [$pad],
-    'parm'    => $padOpt  [$pad] [0],
-    'status'  => padXmlStatus ($pad),
-    'base'    => padXmlBase ($pad),
-    'content' => strlen ( $padPadStart [$pad] ),
-    'default' => $padDefault [$pad],
-    'return'  => $padXmlTagReturn
-  ];
+  $padXmlTag [$pad] = include pad . 'xml/level/tag.php';
 
-  if ( $padXmlOb )
-    $padXmlParms ['ob'] = $padXmlOb;
-
-  if ( ! $padNull [$pad] )
-    if ( ! padIsDefaultData ( $padData [$pad] ) )
-      $padXmlParms ['count'] = count ( $padData [$pad] );
+  if ( str_starts_with ( $padTag [$pad], 'entry') ) 
+    $padXmlParms = include pad . 'xml/level/entry.php';
+  else
+    $padXmlParms = include pad . 'xml/level/parms.php';
 
   padXmlWriteOpen ( $padXmlTag [$pad], $padXmlParms );
 

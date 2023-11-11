@@ -1,5 +1,7 @@
 <?php
 
+  $padEntryType = 'sandbox';
+
   include pad . 'pad/lib/start.php';
   include pad . 'pad/lib/setup.php';
 
