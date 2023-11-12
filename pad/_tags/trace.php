@@ -4,11 +4,11 @@
 
     $padWalk [$pad] = 'end';
     
-    include pad . 'trace/entry/tag.php';
+    include pad . 'trace/trace/entry/tag.php';
     
   } else {
 
-    include pad . 'trace/exit/tag.php';
+    include pad . 'trace/trace/exit/tag.php';
 
   }
 

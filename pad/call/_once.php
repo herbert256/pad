@@ -1,7 +1,7 @@
 <?php
 
   if ( $padTraceActive )
-    include pad . 'trace/items/call.php';
+    include pad . 'trace/trace/items/call.php';
 
   ob_start();
   $padCallPHP = include_once $padCall;

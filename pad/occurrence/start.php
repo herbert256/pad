@@ -2,13 +2,18 @@
 
   $padOccur [$pad]++;
 
+  $padOccurStart [$pad] [$padOccur[$pad]] = TRUE;
+
   $padPad       [$pad] = $padBase [$pad];
   $padKey       [$pad] = key($padData [$pad]);
   $padCurrent   [$pad] = $padData [$pad] [$padKey [$pad]];
-  $padOccurType [$pad] = $padOccurTypeSet;;
+  $padOccurType [$pad] = $padOccurTypeSet;
 
   if ( $padTraceActive )
-    include pad . 'trace/occur/start.php';  
+    include pad . 'trace/trace/occur/start.php';  
+
+  if ( $padTraceTree )
+    include pad . 'trace/tree/occur/start.php';  
   
   if ( $padWalk [$pad] <> 'start' )
     $padWalkData [$pad] [] = $padCurrent [$pad];
@@ -18,8 +23,5 @@
 
   if ( isset($padPrm [$pad] ['callback']) and ! isset ( $padPrm [$pad] ['before']) )
     include pad . 'callback/row.php' ;
-
-  if ( $padXml ) 
-    include pad . 'xml/occur/start.php';      
 
 ?>

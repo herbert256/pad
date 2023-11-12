@@ -60,13 +60,15 @@
   $padTable      [$pad] = [];
   $padTableTag   [$pad] = '';
 
-  $padXmlTag     [$pad] = '';
-  $padXmlOcc     [$pad] = 'set';
+  $padOccurStart [$pad] = [];
 
   $padOptionsAppStart [$pad] = [];
   $padOptionsCallback [$pad] = [];
 
   $padForceTagName  = '';
   $padForceDataName = '';
+
+  if ( $padTraceTree )
+    include pad . 'trace/tree/level/start.php';  
 
 ?>

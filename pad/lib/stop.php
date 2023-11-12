@@ -17,8 +17,8 @@
 
     padCloseSession ();  
 
-    if ( $GLOBALS ['padXml'] ) 
-      include pad . 'xml/end.php'; 
+    if ( $GLOBALS ['padTraceTree'] )
+      include pad . 'trace/tree/end.php';  
     
     if ( ! isset($GLOBALS ['padSent']) )
       padSend ($stop);

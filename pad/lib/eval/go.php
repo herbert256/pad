@@ -6,7 +6,7 @@
 go: $last = $open = FALSE;
 
     if ( $GLOBALS ['padTraceActive'] )
-      include pad . 'trace/items/eval/go.php';
+      include pad . 'trace/trace/items/eval/go.php';
 
     foreach ($result as $key => $value) {
 

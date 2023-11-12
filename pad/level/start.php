@@ -7,7 +7,7 @@
     include pad . 'level/parms.php';
 
   if ( $padTraceActive )
-    include pad . 'trace/level/start.php';    
+    include pad . 'trace/trace/level/start.php';    
 
   include pad . 'level/split.php';
 
@@ -26,7 +26,7 @@
   include pad . 'level/data.php';
 
   if ( $padTraceActive )
-    include pad . 'trace/level/info.php';    
+    include pad . 'trace/trace/level/info.php';    
 
   if ( count ( $padOptionsAppStart [$pad] ) )
     include pad . 'options/app.php';
@@ -41,8 +41,8 @@
   if ( padOpenCloseOk ( $padBase[$pad], '@end@') )
     include pad . 'level/split/after1.php';
 
-  if ( $padXml ) 
-    include pad . 'xml/level/start.php';    
+  if ( $padTraceTree ) 
+    include pad . 'trace/tree/level/info.php';  
 
   if ( padOpenCloseOk ( $padBase[$pad], '@start@') )
     return include pad . 'level/split/before1.php';

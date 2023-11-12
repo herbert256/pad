@@ -1,0 +1,10 @@
+<?php
+
+  include pad . 'trace/trace/store/start.php';
+
+  $padTraceType = 'config'; 
+  $padTraceGo   = 0;
+ 
+  include pad . 'trace/trace/trace/start.php';
+
+?>

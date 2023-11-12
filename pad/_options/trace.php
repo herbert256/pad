@@ -4,13 +4,13 @@
 
     $padOptionsCallback [$pad] [] = 'trace';
 
-    include pad . 'trace/entry/option.php';
+    include pad . 'trace/trace/entry/option.php';
 
   }
 
   if ( $padOptions == 'callback' ) {
 
-    include pad . 'trace/exit/option.php';
+    include pad . 'trace/trace/exit/option.php';
 
   }
 
