@@ -5,10 +5,10 @@
   $padTraceTrace       = TRUE;
   $padTraceAll         = TRUE;  
   $padTraceLocal       = TRUE;
-  $padTraceTypes       = FALSE;
-  $padTraceMore        = FALSE;
+  $padTraceTypes       = TRUE;
+  $padTraceMore        = TRUE;
 
-  $padTraceStatus      = FALSE;
+  $padTraceStatus      = TRUE;
   $padTraceChilds      = TRUE;
   $padTraceAddLine     = TRUE;
   $padTraceLocalChk    = TRUE;       
@@ -16,12 +16,12 @@
   $padTraceDeleteEmpty = FALSE;
 
   $padTraceOccurs      = 'always';  // never / always / smart
-  $padTraceInitsExits  = FALSE;
-  $padTraceHideDefault = TRUE;
+  $padTraceInitsExits  = TRUE;
+  $padTraceHideDefault = FALSE;
 
   $padTraceTypesDir    = TRUE;       
-  $padTraceDumps       = FALSE;
-  $padTraceRequest     = FALSE;
+  $padTraceDumps       = TRUE;
+  $padTraceRequest     = TRUE;
 
   $padTraceSession     = TRUE;
   $padTraceBuild       = TRUE;

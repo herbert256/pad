@@ -1,8 +1,8 @@
 <?php
 
-  $padTreeOcc = $padOccur     [$pad];
   $padTreeLvl = $padTreeLevel [$pad];
-  
+  $padTreeOcc = $padOccur     [$pad];
+ 
   $padTree [$padTreeLvl] ['occurs'] [$padTreeOcc] ['size'] = strlen ( $padPad [$pad] );
 
   $padEventType = 'occur-end';

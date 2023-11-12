@@ -1,32 +1,28 @@
 <?php
 
-  function padTreePrint () {
 
-    global $padTreeFile;
+  function padTree () {
 
-    padFilePutContents ( "$padTreeFile/tree.json",   $GLOBALS ['padTree'],   true );
-    padFilePutContents ( "$padTreeFile/events.json", $GLOBALS ['padEvents'], true );
+    global $padEvents;
 
-    foreach ( $GLOBALS ['padEvents'] as $key => $event ) {
+    foreach ( $padEvents as $key => $event ) {
 
-      if     ( $event ['event_type'] == 'level-start' ) padTreePrintLevel ( $event, 'start' );
-      elseif ( $event ['event_type'] == 'level-end'   ) padTreePrintLevel ( $event, 'end'   );
-      elseif ( $event ['event_type'] == 'occur-start' ) padTreePrintOccur ( $event, 'start' );
-      elseif ( $event ['event_type'] == 'occur-end'   ) padTreePrintOccur ( $event, 'end'   );
+      if     ( $event ['event'] == 'level-start' ) padTreeLevel ( $event, 'start' );
+      elseif ( $event ['event'] == 'level-end'   ) padTreeLevel ( $event, 'end'   );
+      elseif ( $event ['event'] == 'occur-start' ) padTreeOccur ( $event, 'start' );
+      elseif ( $event ['event'] == 'occur-end'   ) padTreeOccur ( $event, 'end'   );
 
     }
 
   }
 
 
-  function padTreePrintLevel ( $event, $action ) {
+  function padTreeLevel ( $event, $action ) {
 
     global $padTree;
 
     extract ( $event );
-    extract ( $padTree [$event_tree] );
-
-    $count = count ($occurs);
+    extract ( $padTree [$tree] );
 
     $parms = [
       'size'   => $size,
@@ -36,27 +32,21 @@
       'type'   => $type
     ];
 
-    if ( ! $childs and $action == 'start')
-      padTreeWriteLine ( $tag, $parms );
-    elseif ( $action == 'start' )
-      padTreeWriteOpen ( $tag, $parms );
-    else
-      padTreeWriteClose ( $tag );
+    padTreeGo ( $childs, $action, $tag, $parms );
 
   }
 
 
-  function padTreePrintOccur ( $event, $action ) {
+  function padTreeOccur ( $event, $action ) {
 
     global $padTree;
 
     extract ( $event );
-    extract ( $padTree [$event_tree] );
+    extract ( $padTree [$tree]  );
+    extract ( $occurs  [$occur] );
 
     if ( count ($occurs) < 2)
       return;
-
-    extract ( $occurs [$event_occur] );
 
     $parms = [
       'size' => $size,
@@ -65,22 +55,29 @@
     ];
 
     if ( $id == 1 and $action == 'start' )
-      padTreeWriteOpen ( 'occurs' );
+      padTreeOpen ( 'occurs' );
 
-    if ( ! $childs and $action == 'start' ) 
-      padTreeWriteLine ( 'occur', $parms );
-    elseif ( $action == 'start' )
-      padTreeWriteOpen ( 'occur', $parms );
-    else
-      padTreeWriteClose ( 'occur' );
+    padTreeGo ( $childs, $action, 'occur', $parms );
 
     if ( $id == count ($occurs) and $action == 'end' )
-      padTreeWriteClose ( 'occurs' );
+      padTreeClose ( 'occurs' );
 
   }
 
 
-  function padTreeWriteOpen ( $xml, $parms=[] ) {
+  function padTreeGo ( $childs, $action, $tag, $parms ) {
+
+    if ( ! $childs and $action == 'start')
+      padTreeLine ( $tag, $parms );
+    elseif ( $action == 'start' )
+      padTreeOpen ( $tag, $parms );
+    else
+      padTreeClose ( $tag );
+
+  }
+
+
+  function padTreeOpen ( $xml, $parms=[] ) {
   
     $more = padTreeMore ( $parms );
 
@@ -89,7 +86,7 @@
   }
 
 
-  function padTreeWriteLine ( $xml, $parms=[] ) {
+  function padTreeLine ( $xml, $parms=[] ) {
   
     $more = padTreeMore ( $parms );
  
@@ -98,9 +95,18 @@
   }
 
 
-  function padTreeWriteClose ( $xml ) {
+  function padTreeClose ( $xml ) {
   
     padTreeWrite ( "</$xml>" );
+  
+  }
+
+
+  function padTreeWrite ( $xml ) {
+  
+    global $padTreeFile;
+
+    padFilePutContents ( $padTreeFile, $xml, true );
   
   }
 
@@ -120,12 +126,47 @@
   }
 
 
-  function padTreeWrite ( $xml ) {
-  
+  function padTreeTidy () {
+
     global $padTreeFile;
 
-    padFilePutContents ( "$padTreeFile/tree.xml", $xml, true );
-  
+    $options = [
+      'input-xml'           => true,
+      'output-xml'          => true,
+      'force-output'        => true,
+      'add-xml-decl'        => false,
+      'indent'              => true,
+      'tab-size'            => 2,
+      'indent-spaces'       => 2,
+      'vertical-space'      => 'no',
+      'wrap'                => 0,
+      'clean'               => 'yes',
+      'drop-empty-elements' => 'yes'
+    ];
+
+    $tidy = new tidy;
+    $tidy->parseString ( padFileGetContents ( padData . $padTreeFile ), $options, 'utf8' );
+    $tidy->cleanRepair();
+
+    if ( $tidy === FALSE )
+      return padError ( "TIDY conversion error");
+
+    padFilePutContents ( $padTreeFile , $tidy->value );
+
+  }
+ 
+
+  function padCounter ( $file ) {
+
+    if ( ! file_exists ( padData . $file) )
+      padFilePutContents ( $file , '0' );
+
+    $now = padFileGetContents ( padData . $file );
+
+    $now ++;
+
+    padFilePutContents ( $file , $now );  
+
   }
 
 

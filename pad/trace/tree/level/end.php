@@ -1,7 +1,7 @@
 <?php
 
-  $padTreeOcc = $padOccur     [$pad];
   $padTreeLvl = $padTreeLevel [$pad];
+  $padTreeOcc = $padOccur     [$pad];
 
   $padTree [$padTreeLvl] ['size'] = strlen ( $padResult [$pad] );
 

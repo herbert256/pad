@@ -1,10 +1,12 @@
 <?php
   
   $padTreeId++;
+  $padTreeLevel [$pad] = $padTreeId;
 
-  $padTreeLevel [$pad] = $padTreeLvl = $padTreeId;
+  $padTreeLvl = $padTreeLevel [$pad];
+  $padTreeOcc = $padOccur     [$pad];
 
-  $padTreeTag = ( $padTag [$pad] == 'padBuildData' ) ? $padPage : $padTag [$pad];
+  $padTreeTag = ( $padTag [$pad] == 'padBuildData' ) ? "page-$padPage" : $padTag [$pad];
 
   $padTree [$padTreeLvl] ['tag']  = str_replace ( '/', '-', $padTreeTag );
   $padTree [$padTreeLvl] ['level']  = $pad;

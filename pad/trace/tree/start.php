@@ -2,13 +2,10 @@
   
   include_once pad . 'trace/tree/lib.php';
 
-  $padTreeFile = "tree/$padPage/$padReqID/";
-
-  $padTreeId = 0;
-
   $padTree      = [];
+  $padTreeId    = 0;
   $padTreeLevel = [];
-
-  $padEvents = [];
+  $padEvents    = [];
+  $padTreeFile  = "tree/$padPage/$padReqID.xml";
 
 ?>

@@ -1,7 +1,7 @@
 <?php
 
-  $padTreeOcc = $padOccur     [$pad];
   $padTreeLvl = $padTreeLevel [$pad];
+  $padTreeOcc = $padOccur     [$pad];
 
   $padTree [$padTreeLvl] ['occurs'] [$padTreeOcc] ['id']     = $padTreeOcc;
   $padTree [$padTreeLvl] ['occurs'] [$padTreeOcc] ['childs'] = 0;

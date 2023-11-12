@@ -30,7 +30,7 @@
    // Trace the working of PAD
 
   $padTrace     = FALSE;
-  $padTraceTree = TRUE;
+  $padTraceTree = FALSE;
 
   // Cache settings
   

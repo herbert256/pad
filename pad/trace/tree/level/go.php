@@ -1,11 +1,14 @@
 <?php
 
+  $padTreeLvl = $padTreeLevel [$pad];
+  $padTreeOcc = $padOccur     [$pad];
+  
   $padTreeTagContent = $padContent;
   $padTreeOb         = $padTagOb;
   $padTreeTagResult  = $padTagResult;
   $padTreeTrue       = $padTrue [$pad];
   $padTreeFalse      = $padFalse [$pad];
-
+  
   if     ( is_object   ( $padTagResult ) ) $padTreeTagReturn = 'object';
   elseif ( is_resource ( $padTagResult ) ) $padTreeTagReturn = 'resource';
   elseif ( is_array    ( $padTagResult ) ) $padTreeTagReturn = 'array';
