@@ -1,31 +1,33 @@
 <?php
   
-  $padXmlId++;
-  $padXmlLevel [$pad] = $padXmlId;
+  $padXmlTag = ( $padTag [$pad] == 'padBuildData' ) ? "page-$padPage" : $padTag [$pad];
+
+  $padXmlNew = [];
+  $padXmlNew ['tag']    = str_replace ( '/', '-', $padXmlTag );
+  $padXmlNew ['level']  = $pad;
+  $padXmlNew ['occurs'] = [];
+  $padXmlNew ['parms']  = [];
+  $padXmlNew ['type']   = $padType [$pad];
+  $padXmlNew ['childs'] = FALSE;
+  $padXmlNew ['size']   = 0;
+  $padXmlNew ['raw']    = $padOpt [$pad] [0];
+
+  $padXml [] = $padXmlNew;
+
+  $padXmlLevel [$pad] = array_key_last ( $padXml );
 
   $padXmlLvl = $padXmlLevel [$pad];
   $padXmlOcc = $padOccur    [$pad];
-
-  $padXmlTag = ( $padTag [$pad] == 'padBuildData' ) ? "page-$padPage" : $padTag [$pad];
-
-  $padXml [$padXmlLvl] ['tag']     = str_replace ( '/', '-', $padXmlTag );
-  $padXml [$padXmlLvl] ['level']   = $pad;
-  $padXml [$padXmlLvl] ['occurs']  = [];
-  $padXml [$padXmlLvl] ['parms']   = [];
-  $padXml [$padXmlLvl] ['type']    = $padType [$pad];
-  $padXml [$padXmlLvl] ['childs']  = 0;
-  $padXml [$padXmlLvl] ['size']    = 0;
-  $padXml [$padXmlLvl] ['raw']     = $padOpt [$pad] [0];
 
   if ( $pad > 0 ) {
 
     $padXmlParent    = $padXmlLevel [$pad-1];
     $padXmlParentOcc = $padOccur [$pad-1];
     
-    $padXml [$padXmlParent] ['childs'] ++;
+    $padXml [$padXmlParent] ['childs'] = TRUE;
 
     if ( $padXmlParentOcc > 0 and $padXmlParentOcc < 99999 )
-      $padXml [$padXmlParent] ['occurs'] [$padXmlParentOcc] ['childs'] ++;
+      $padXml [$padXmlParent] ['occurs'] [$padXmlParentOcc] ['childs'] = TRUE;
 
   }
 

@@ -5,4 +5,7 @@
   elseif ( $padText [$pad] ) $padBase [$pad] = $padTagResult;
   else                       $padBase [$pad] = $padTrue [$pad];
 
+  if ( $padBuildXml )
+    include pad . 'xml/files/level_base.php';
+
 ?>

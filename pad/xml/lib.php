@@ -34,12 +34,14 @@
     $options ['result'] = $result;
 
     if ( $count > 1 ) 
-      $padXml [$tree] ['childs'] ++;
+      $padXml [$tree] ['childs'] = TRUE;
     else
       $options ['parm'] = $raw;
     
     if ( $type   <> 'pad'     ) $options ['type']   = $type;
     if ( $source <> 'content' ) $options ['source'] = $source;
+
+    $options ['id'] = $tree;
 
     if ( $padXml [$tree] ['childs'] )
       padXmlOpen ( $tag, $options );
@@ -94,11 +96,11 @@
       padXmlOpen ( 'occurs' );
 
     if ( ! $childs and $action == 'start')
-      padXmlLine ( $tag, $parms );
+      padXmlLine ( 'occur', $parms );
     elseif ( $action == 'start' )
-      padXmlOpen ( $tag, $parms );
+      padXmlOpen ( 'occur', $parms );
     else
-      padXmlClose ( $tag );
+      padXmlClose ( 'occur' );
 
     if ( $id == count ($occurs) and $action == 'end' )
       padXmlClose ( 'occurs' );
@@ -135,7 +137,7 @@
   
     global $padXmlFile;
 
-    padFilePutContents ( $padXmlFile, $xml, true );
+    padFilePutContents ( "$padXmlFile/tree.xml", $xml, true );
   
   }
 
@@ -149,8 +151,6 @@
         $more .= " $key=\"" . htmlspecialchars($value) . '"';
 
     return $more;
- 
-    padXmlWrite ( "<$xml$more/>" );
   
   }
 
@@ -173,7 +173,7 @@
       'drop-empty-elements' => 'yes'
     ];
 
-    $data = padFileGetContents ( padData . $padXmlFile );
+    $data = padFileGetContents ( padData . "$padXmlFile/tree.xml" );
 
     $tidy = new tidy;
     $tidy->parseString ( $data, $options, 'utf8' );
@@ -182,9 +182,7 @@
     if ( $tidy === FALSE )
       return padError ( "TIDY conversion error");
 
-    padFilePutContents ( "$padXmlFile.xml" , $tidy->value );
-
-    unlink ( padData . $padXmlFile );
+    padFilePutContents ( "$padXmlFile/tidy.xml" , $tidy->value );
 
   }
  

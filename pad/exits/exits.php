@@ -14,6 +14,9 @@
   if ( $padTrackDbData )
     padTrackDbData ( $padEtag, $padOutput );
 
+  if ( $padBuildXml )
+    padFilePutContents ( "$padXmlFile/result.pad" , $padOutput );
+
   $padStop = ( $padEtag304 and ($padCacheClient??'') == $padEtag ) ? 304 : 200;
 
   if ( $padCache and $padCacheServerAge )
