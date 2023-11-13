@@ -1,0 +1,12 @@
+<blockquote>
+  <p>Some random examples of PAD constructs, for a quick topview what PAD can do.</p>
+</blockquote>
+
+{pad data="('if','case','while','php','funx','content_and_data')", name='demo'}
+
+<blockquote> 
+  <h3>{$demo | replace ('_', ' ') | ucwords }</h3>
+  {page 'examples/{$demo}', include}
+</blockquote> 
+
+{/pad}

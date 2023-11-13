@@ -1,6 +1,6 @@
 <?php
 
-  if ( $padTraceTree )
-    include pad . 'trace/tree/start.php';
+  if ( $padBuildXml )
+    include pad . 'xml/start.php';
 
 ?>

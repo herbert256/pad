@@ -3,17 +3,8 @@
 
   function padTrackFileCall ( $file = '' ) {
     
-    if ( ! $file ) {
-
-      $session = $GLOBALS ['padSesID'];
-      $request = $GLOBALS ['padReqID'];
-
-      $file = "call/$session-$request.json";
-
-    }
-
-    $session = $GLOBALS ['padSesID'];
-    $request = $GLOBALS ['padReqID'];
+    if ( ! $file )
+      $file = "call/" . $GLOBALS['padPage'] . '/'. hrtime (true) . '.json';
 
     if ( function_exists ('getallheaders') )
       $headers = getallheaders();

@@ -47,6 +47,6 @@
   }
 
   if ( $padTraceActive )
-    include pad . 'trace/trace/items/parms.php';
+    include pad . 'trace/items/parms.php';
 
 ?>

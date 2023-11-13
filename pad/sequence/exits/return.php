@@ -25,6 +25,6 @@
   } 
 
   if ( $padTraceActive )
-    include pad . 'trace/trace/items/sequence.php';
+    include pad . 'trace/items/sequence.php';
 
 ?>

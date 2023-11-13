@@ -6,8 +6,8 @@
   $padTagResult = include pad . "types/" . $padType [$pad] . ".php";
   $padTagOb     = ob_get_clean();
 
-  if ( $padTraceTree ) 
-    include pad . 'trace/tree/level/go.php';
+  if ( $padBuildXml ) 
+    include pad . 'xml/level/go.php';
 
   if     ( is_object   ( $padTagResult ) ) $padTagResult = padToArray( $padTagResult );
   elseif ( is_resource ( $padTagResult ) ) $padTagResult = padToArray( $padTagResult );

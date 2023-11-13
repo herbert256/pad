@@ -10,10 +10,10 @@
   $padOccurType [$pad] = $padOccurTypeSet;
 
   if ( $padTraceActive )
-    include pad . 'trace/trace/occur/start.php';  
+    include pad . 'trace/occur/start.php';  
 
-  if ( $padTraceTree )
-    include pad . 'trace/tree/occur/start.php';  
+  if ( $padBuildXml )
+    include pad . 'xml/occur/start.php';  
   
   if ( $padWalk [$pad] <> 'start' )
     $padWalkData [$pad] [] = $padCurrent [$pad];

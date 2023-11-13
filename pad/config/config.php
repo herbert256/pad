@@ -3,7 +3,7 @@
   //  Error handling
 
   $padErrorAction = 'pad';  // 'pad'    = PAD's own full blown error handler.
-                            // 'boot'   = Use the lightweight PAD boot error handler
+                            // 'boot'   = Keep using the lightweight PAD boot error handler
                             // 'php'    = Use the PHP defaults (php.ini).
                             // 'stop'   = Stop processing but do the PAD stop handling.
                             // 'exit'   = Exit, don't do the PAD stop handling
@@ -19,18 +19,22 @@
 
   // Keep track of stuff
 
-  $padTrackFileCall    = FALSE;
-  $padTrackFileRequest = FALSE;
-  $padTrackFileData    = FALSE; 
+  $padTrackFileCall    = FALSE;   // HTTP details of each call in the data directory
+  $padTrackFileRequest = FALSE;   // Request info in the data directory
+  $padTrackFileData    = FALSE;   // Complete result page in the directory
 
-  $padTrackDbSession   = FALSE;
-  $padTrackDbRequest   = FALSE;
-  $padTrackDbData      = FALSE;
+  $padTrackDbSession   = FALSE;   // Session info in the PAD database
+  $padTrackDbRequest   = FALSE;   // Request info in the PAD database
+  $padTrackDbData      = FALSE;   // Complete result page in the PAD database
 
    // Trace the working of PAD
 
-  $padTrace     = FALSE;
-  $padTraceTree = FALSE;
+  $padTrace        = FALSE;
+  $padTraceProfile = 'default';
+
+   // Build a XML file with the PAD structure
+
+  $padBuildXml = FALSE;
 
   // Cache settings
   

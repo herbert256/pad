@@ -138,7 +138,7 @@ co: $parms  = $words[1] ?? '';
     $parms  = str_replace ('</font>', '',             $parms);
     $parms  = str_replace ('</b>', '',             $parms);
     $parms  = str_replace (' ', '&nbsp;',                        $parms);
-    $parms  = str_replace ('=', '<font color="black">=</font>',  $parms);
+    $parms  = str_replace ('=ToDo', '<font color="black">=</font>',  $parms);
     $parms  = str_replace ('|', '<font color="black">|</font>',  $parms);
     $parms  = str_replace ('@', '<font color="black">@</font>',  $parms);
     $parms  = str_replace ('$', '<font color="black">$</font>',  $parms);

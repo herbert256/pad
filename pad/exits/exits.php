@@ -20,7 +20,7 @@
     include pad . 'cache/exits.php';
 
   if ( $padTraceActive )
-    include pad . 'trace/trace/exit/config.php'; 
+    include pad . 'trace/exit/config.php'; 
 
   padStop ($padStop);
 

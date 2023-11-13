@@ -5,9 +5,8 @@
   foreach ( $GLOBALS as $padK => $padV ) {
 
     if ( substr($padK, 0, 3) == 'pad' and ! in_array($padK, $padLevelVars) )
-      if ( $padK <> 'padK' and $padK <> 'padV' and $padK <> 'padEvents' ) 
-        if (substr($padK, 0, 8) <> 'padTrace' ) 
-          if (substr($padK, 0, 7) <> 'padTree' ) 
+      if ( $padK <> 'padK' and $padK <> 'padV' ) 
+        if ( substr($padK, 0, 8) <> 'padTrace' and substr($padK, 0, 6) <> 'padXml' ) 
             $padPagePad [$pad] [$padK] = $GLOBALS [$padK];
  
     if ( padValidStore ($padK) ) {

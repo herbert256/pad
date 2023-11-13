@@ -9,9 +9,10 @@
   $padBase [$pad] = $padBuildLib . str_replace ( '@pad@', $padBuildPage, $padBuildBase );
 
   if ( $padTraceActive ) {
-    include pad . 'trace/trace/items/build.php';
+    include pad . 'trace/items/build.php';
     $padOccur [$pad-1] = 1;
-    include pad . 'trace/trace/level/start.php';
+    include pad . 'trace/level/start.php';
+    include pad . 'trace/level/info.php';  
   }
 
   $padOccurTypeSet = 'build';  

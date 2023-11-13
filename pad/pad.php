@@ -78,7 +78,7 @@
 
   function padLocal () {
 
-    $local  = [ 'localhost', 'penguin.linux.test', '127.0.0.1' ];
+    $local = [ 'localhost', 'penguin.linux.test', '127.0.0.1' ];
 
     $server = [ 
       $_SERVER ['HTTP_HOST']   ?? '',  
