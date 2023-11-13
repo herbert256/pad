@@ -202,13 +202,24 @@
 
   function padContent ( $base, $new ) {
 
+    global $pad, $padDouble;
+
     $merge = padTagParm ('merge');
+
+    if ( $base and $new )
+      if     ( strpos ( $new, '@content@'  ) !== FALSE ) $padDouble [$pad] = 'dbl-mrg-new';
+      elseif ( strpos ( $base, '@content@' ) !== FALSE ) $padDouble [$pad] = 'dbl-mrg-base';
+      elseif ( $merge == 'replace'                     ) $padDouble [$pad] = 'dbl-new';
+      elseif ( $merge == 'bottom'                      ) $padDouble [$pad] = 'dbl-bottom';
+      elseif ( $merge == 'top'                         ) $padDouble [$pad] = 'dbl-top';
+      elseif ( $new                                    ) $padDouble [$pad] = 'dbl-new';
+      else                                               $padDouble [$pad] = 'dbl-base';
 
     if     ( strpos ( $new, '@content@'  ) !== FALSE ) return str_replace ( '@content@', $base, $new );
     elseif ( strpos ( $base, '@content@' ) !== FALSE ) return str_replace ( '@content@', $new, $base );
     elseif ( $merge == 'replace'                     ) return $new;
-    elseif ( $merge == 'bottom'                      ) return $new . $base;
-    elseif ( $merge == 'top'                         ) return $base . $new;
+    elseif ( $merge == 'bottom'                      ) return $base . $new;
+    elseif ( $merge == 'top'                         ) return $new . $base;
     elseif ( $new                                    ) return $new;
     else                                               return $base;
 

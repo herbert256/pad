@@ -47,6 +47,8 @@
   $padCount      [$pad] = FALSE;
   $padText       [$pad] = FALSE;
 
+  $padDouble     [$pad] = '';
+
   $padSaveLvl    [$pad] = [];
   $padDeleteLvl  [$pad] = [];
 

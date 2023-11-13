@@ -6,7 +6,7 @@
   $padTmp = $padBase [$pad];
 
   if     ( ! $padTmp                                                   ) return '';
- 
+  elseif ( $padDouble [$pad]                                           ) return $padDouble [$pad];
   elseif ( $padTmp == $padPadStart [$pad]                              ) return 'content';
   elseif ( $padTmp == $padXmlTrue                                      ) return 'true';
   elseif ( $padTmp == $padXmlFalse                                     ) return 'false';
@@ -42,7 +42,6 @@
            $padTmp == $padTagContent . $padXmlOb . $padTagResult       ) return 'true+ob+result-4';
 
   elseif ( $padTmp == $padTagContent                                   ) return 'tagContent-2';
-  elseif ( $padTmp == $padContent                                      ) return 'content-2';
   elseif ( $padXmlTagReturn == 'value' and $padTmp == $padTagResult    ) return 'tagResult-2';
   elseif ( $padXmlTagReturn == 'value' and $padTmp == $padXmlTagResult ) return 'tagResult-3';
 
@@ -51,6 +50,7 @@
 
   elseif ( str_starts_with ( $padTag [$pad], 'entry')                  ) return 'entry';
   elseif ( padOpenCloseOk ( $padTmp, '@start@' )                       ) return 'before_@start@';
+  elseif ( $padTmp == $padContent                                      ) return 'content-2';
 
   else                                                                   return 'WTF';
 

@@ -6,4 +6,6 @@
   $padXml [$padXmlLvl] ['result'] = $padXmlTagReturn;
   $padXml [$padXmlLvl] ['source'] = include pad . 'xml/level/status.php';
 
+  # padCounter ( $padXml [$padXmlLvl] ['source'] );
+
 ?>

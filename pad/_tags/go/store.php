@@ -19,8 +19,11 @@
 
   if ( $padTag [$pad] == 'content') {
 
-    $padStoreData = padMakeContent ($padStoreSource);
-  
+    if ( $padWalk [$pad] == 'start' )
+      $padStoreData = $padPadStart [$pad];
+    else
+      $padStoreData = padMakeContent ($padStoreSource);
+
   } elseif ( $padTag [$pad] == 'data' ) {
 
     if ( ! padIsDefaultData ( $padData [$pad] ) )

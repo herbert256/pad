@@ -7,8 +7,8 @@
 
     foreach ( $padXmlEvents as $key => $event ) {
 
-      if     ( $event ['event'] == 'level-start' ) padXmlLevel ( $event, 'start' );
-      elseif ( $event ['event'] == 'level-end'   ) padXmlLevel ( $event, 'end'   );
+      if     ( $event ['event'] == 'level-start' ) padXmlLevelStart ( $event );
+      elseif ( $event ['event'] == 'level-end'   ) padXmlLevelEnd   ( $event );
       elseif ( $event ['event'] == 'occur-start' ) padXmlOccur ( $event, 'start' );
       elseif ( $event ['event'] == 'occur-end'   ) padXmlOccur ( $event, 'end'   );
 
@@ -17,22 +17,58 @@
   }
 
 
-  function padXmlLevel ( $event, $action ) {
+  function padXmlLevelStart ( $event ) {
 
     global $padXml;
 
     extract ( $event );
     extract ( $padXml [$tree] );
 
-    $parms = [
-      'size'   => $size,
-      'result' => $result,
-      'source' => $source,
-      'parm'   => $parm,
-      'type'   => $type
-    ];
+    $count = 0;
+    foreach ( $parms as $list )
+      foreach ( $list as $value )
+        $count++;
 
-    padXmlGo ( $childs, $action, $tag, $parms );
+    $options            = [];
+    $options ['size']   = $size;
+    $options ['result'] = $result;
+
+    if ( $count > 1 ) 
+      $padXml [$tree] ['childs'] ++;
+    else
+      $options ['parm'] = $raw;
+    
+    if ( $type   <> 'pad'     ) $options ['type']   = $type;
+    if ( $source <> 'content' ) $options ['source'] = $source;
+
+    if ( $padXml [$tree] ['childs'] )
+      padXmlOpen ( $tag, $options );
+    else
+      padXmlLine ( $tag, $options );
+
+    if ( $count > 1 ) {
+
+      padXmlOpen ( 'parms' );
+
+      foreach ( $parms as $type => $list )
+        foreach ( $list as $name => $value )
+          padXmlLine ( "parm type=\"$type\" name=\"$name\" value=\"" .  htmlentities($value). '"' );
+
+       padXmlClose ( 'parms' );
+   
+    }
+
+  }
+
+  function padXmlLevelEnd ( $event ) {
+
+    global $padXml;
+
+    extract ( $event );
+    extract ( $padXml [$tree] );
+
+    if ( $childs )
+      padXmlClose ( $tag );
 
   }
 
@@ -57,22 +93,15 @@
     if ( $id == 1 and $action == 'start' )
       padXmlOpen ( 'occurs' );
 
-    padXmlGo ( $childs, $action, 'occur', $parms );
-
-    if ( $id == count ($occurs) and $action == 'end' )
-      padXmlClose ( 'occurs' );
-
-  }
-
-
-  function padXmlGo ( $childs, $action, $tag, $parms ) {
-
     if ( ! $childs and $action == 'start')
       padXmlLine ( $tag, $parms );
     elseif ( $action == 'start' )
       padXmlOpen ( $tag, $parms );
     else
       padXmlClose ( $tag );
+
+    if ( $id == count ($occurs) and $action == 'end' )
+      padXmlClose ( 'occurs' );
 
   }
 
@@ -144,28 +173,35 @@
       'drop-empty-elements' => 'yes'
     ];
 
+    $data = padFileGetContents ( padData . $padXmlFile );
+
     $tidy = new tidy;
-    $tidy->parseString ( padFileGetContents ( padData . $padXmlFile ), $options, 'utf8' );
+    $tidy->parseString ( $data, $options, 'utf8' );
     $tidy->cleanRepair();
 
     if ( $tidy === FALSE )
       return padError ( "TIDY conversion error");
 
-    padFilePutContents ( $padXmlFile , $tidy->value );
+    padFilePutContents ( "$padXmlFile.xml" , $tidy->value );
+
+    unlink ( padData . $padXmlFile );
 
   }
  
 
   function padCounter ( $file ) {
 
-    if ( ! file_exists ( padData . $file) )
+    if ( ! $file )
+      return;
+
+    if ( ! file_exists ( padData . "/counters/$file" ) )
       padFilePutContents ( $file , '0' );
 
-    $now = padFileGetContents ( padData . $file );
+    $now = padFileGetContents ( padData . "/counters/$file" );
 
     $now ++;
 
-    padFilePutContents ( $file , $now );  
+    padFilePutContents ( "/counters/$file" , $now );  
 
   }
 
