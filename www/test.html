@@ -1,0 +1,19 @@
+wtf
+
+
+<div id="banaan"></div>
+
+<script>
+  banaan = new XMLHttpRequest();
+  banaan.onreadystatechange=function() {
+    if (banaan.readyState === 4) {
+      if (banaan.status === 200) {
+        document.getElementById("banaan").innerHTML=banaan.responseText;
+      } else {
+        document.getElementById("banaan").innerHTML=banaan.statusText;
+      }
+    }
+  }
+  banaan.open("GET","http://localhost:8080/?hello",true);
+  banaan.send();
+</script>

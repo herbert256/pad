@@ -18,10 +18,11 @@
       if ( strpos($path, 'error')           ) continue;
       if ( strpos($path, 'restart')         ) continue;
       if ( strpos($path, 'redirect')        ) continue;
+      if ( strpos($path, '/deep/')        ) continue;
       if ( strpos($path, '.settings.')      ) continue;
       if ( strpos($path, '/_')              ) continue;
-      if ( $ext <> 'pad' and $ext <> 'php' ) continue;
-      if ( $item == 'hello/pad'            ) continue;
+      if ( $ext <> 'pad' and $ext <> 'php'  ) continue;
+      if ( $item == 'hello/pad'             ) continue;
       if ( go ( $item )                     ) continue;
 
       $files [$item] ['path'] = $path;

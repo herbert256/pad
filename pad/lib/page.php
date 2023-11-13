@@ -113,7 +113,7 @@
 
     $ajax = 'padAjax' . padRandomString(8);
  
-    $url = $GLOBALS ['padGo'] . $page . $qry;
+    $url = $GLOBALS ['padHost'] . $GLOBALS ['padGo'] . $page . $qry;
     $url = padAddIds ( $url );
 
     return <<< END
@@ -124,9 +124,9 @@
   {$ajax}.onreadystatechange=function() {
     if ({$ajax}.readyState === 4) {
       if ({$ajax}.status === 200) {
-        document.getElementById("{$ajax}").innerPAD={$ajax}.responseText;
+        document.getElementById("{$ajax}").innerHTML={$ajax}.responseText;
       } else {
-        document.getElementById("{$ajax}").innerPAD={$ajax}.statusText;
+        document.getElementById("{$ajax}").innerHTML={$ajax}.statusText;
       }
     }
   }
