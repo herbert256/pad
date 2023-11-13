@@ -1,23 +1,12 @@
 <?php
- 
-  if ( $padTraceSession )
-    foreach ( padSessionInfoEnd () as $padK => $padV )
-      padTrace ( 'session', $padK, $padV );
-
-   if ( $padTraceStartEnd )
-     padTrace ( 'trace', 'end' );
-
-  $padTraceSkipLevel = 0;
-  $padTraceMaxLevel  = 0;
 
   if ($padTraceLocalChk )
     padTraceCheckLocal ( $padTraceBase );
 
-  if ( $padTraceDumps ) 
-    padTraceDump ( 'dump-end' );
+  $padTraceSkipLevel = 0;
+  $padTraceMaxLevel  = 0;
   
   $padTraceLevel [$pad] = '';
 
-  $padTraceActive = FALSE;
 
 ?>

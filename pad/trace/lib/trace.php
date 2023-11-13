@@ -4,8 +4,11 @@
   function padTrace ( $type, $event, $info='' ) {
 
     global $pad, $padOccur;
-    global $padTraceMore, $padTraceRoot, $padTraceTree, $padTraceLocal;
-    global $padTraceActive, $padTraceLine, $padTraceTypes, $padTraceId, $padTraceOccurId;
+    global $padTraceMore, $padTraceRoot, $padTraceTree, $padTraceLocal, $padTraceSkipLevel;
+    global $padTraceActive, $padTraceLine, $padTraceTypes, $padTraceId, $padTraceOccurId, $padTraceMaxLevel;
+
+    if ( $padTraceSkipLevel and $padTraceSkipLevel == $pad ) return;
+    if ( $padTraceMaxLevel  and $padTraceMaxLevel  >  $pad ) return;
 
     if ( padTraceSkip ( $type ) )
       return;
@@ -39,7 +42,7 @@
     global $pad;
     global $padTraceSkipLevel, $padTraceMaxLevel;
 
-    if ( $padTraceSkipLevel and $padTraceSkipLevel == $pad and $type == 'level' )
+    if ( $padTraceSkipLevel and $padTraceSkipLevel == $pad )
       return TRUE;
 
     if ( $padTraceMaxLevel and $padTraceMaxLevel > $pad )
@@ -131,12 +134,18 @@
 
   function padTraceWrite ( $pad, $location, $trace, $type='line' ) {  
 
-    global $padOccur, $padTraceLevel,  $padTraceBase, $padTraceOnlyDirs ;
+    global $padOccur, $padTraceLevel,  $padTraceBase, $padTraceOnlyDirs, $padTraceSkipLevel, $padTraceMaxLevel ;
+
+    if ( $padTraceSkipLevel and $padTraceSkipLevel == $pad ) return;
+    if ( $padTraceMaxLevel  and $padTraceMaxLevel  >  $pad ) return;
 
     if ( ! isset ( $padTraceLevel [$pad] ) ) padTraceSet ( $pad );
     if ( ! $padTraceLevel [$pad]           ) padTraceSet ( $pad );
 
-    $add = ( $pad < 0 ) ? '' : $padTraceLevel [$pad] . '/' . padTraceOccur ( $pad );
+    if ( $pad < 0 or $padTraceLevel [$pad] == '*SKIP*' ) 
+      $add = '';
+    else
+      $add = $padTraceLevel [$pad] . '/' . padTraceOccur ( $pad );
 
     $target = "$padTraceBase/$add$location";
 

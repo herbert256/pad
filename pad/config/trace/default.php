@@ -2,7 +2,7 @@
   
   $padTraceOnlyDirs    = FALSE;
   $padTraceNoDouble    = TRUE;
-  $padTraceNoDefault   = FALSE;
+  $padTraceNoDefault   = TRUE;
   $padTraceDeleteEmpty = FALSE;
 
   $padTraceRoot        = TRUE;
@@ -20,7 +20,7 @@
   $padTraceAddLine     = TRUE;
   $padTraceLocalChk    = TRUE;       
 
-  $padTraceOccurs      = 'always';  // never / always / smart
+  $padTraceOccurs      = 'smart';  // never / always / smart
   $padTraceInitsExits  = FALSE;
 
   $padTraceTypesDir    = TRUE;       

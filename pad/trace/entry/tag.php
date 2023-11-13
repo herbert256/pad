@@ -2,11 +2,15 @@
 
   include pad . 'trace/store/start.php';
 
+  if ( $padOpt [$pad] [1] )
+    $padTraceProfile = $padOpt [$pad] [1];
+
   $padTraceType = 'tag'; 
   $padTraceGo   = $pad;
 
   include pad . 'trace/trace/start.php';
 
-  $padTraceSkipLevel = $pad;
+  $padTraceLevel [$pad] = "*SKIP*";;
+  $padTraceSkipLevel    = $pad;
 
 ?>

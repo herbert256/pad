@@ -60,7 +60,11 @@
     $add  = padTraceOccur ( $pad-1 );
     $line = ($padTraceAddLine) ? "$padTraceLine-" : '';
 
-    $padTraceLevel [$pad]  = $padTraceLevel [$last] ?? "NoPrev";
+    $padTraceLevel [$pad] = $padTraceLevel [$last] ?? "NoPrev";
+
+    if ( $padTraceLevel [$pad] == '*SKIP*' )
+      $padTraceLevel [$pad] = '';
+ 
     $padTraceLevel [$pad] .= "/$add$line" . padFileCorrect ( $tag );
   
     $padTraceLevelChilds [$pad] = 0;

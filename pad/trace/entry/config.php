@@ -7,4 +7,17 @@
  
   include pad . 'trace/trace/start.php';
 
+  if ( $padTraceStartEnd and $padTraceType <> 'tag' )
+    padTrace ( 'trace', 'start' );
+
+  if ( $padTraceRequest )
+    padTrackFileCall ( "$padTraceBase/request.json" );
+
+  if ( $padTraceDumps ) 
+    padTraceDump ( 'dump-start' );
+
+  if ( $padTraceSession )
+    foreach ( padSessionInfoStart () as $padK => $padV )
+      padTrace ( 'session', $padK, $padV );
+
 ?>
