@@ -1,6 +1,6 @@
 <?php
 
   if ( $padTrackFileCall )
-    padTrackFileCall ();
+    padTrackFileCallInit ();
 
 ?>

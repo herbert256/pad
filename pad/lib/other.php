@@ -207,8 +207,8 @@
     $merge = padTagParm ('merge');
 
     if ( $base and $new )
-      if     ( strpos ( $new, '@content@'  ) !== FALSE ) $padDouble [$pad] = 'dbl-mrg-new';
-      elseif ( strpos ( $base, '@content@' ) !== FALSE ) $padDouble [$pad] = 'dbl-mrg-base';
+      if     ( strpos ( $new, '@content@'  ) !== FALSE ) $padDouble [$pad] = 'mrg-new';
+      elseif ( strpos ( $base, '@content@' ) !== FALSE ) $padDouble [$pad] = 'mrg-base';
       elseif ( $merge == 'replace'                     ) $padDouble [$pad] = 'dbl-new';
       elseif ( $merge == 'bottom'                      ) $padDouble [$pad] = 'dbl-bottom';
       elseif ( $merge == 'top'                         ) $padDouble [$pad] = 'dbl-top';

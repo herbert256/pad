@@ -36,7 +36,7 @@
     if ( $count > 1 ) 
       $padXml [$tree] ['childs'] = TRUE;
     else
-      $options ['parm'] = $raw;
+      $options ['parm'] = $parm;
     
     if ( $type   <> 'pad'     ) $options ['type']   = $type;
     if ( $source <> 'content' ) $options ['source'] = $source;

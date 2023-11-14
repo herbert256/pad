@@ -12,7 +12,8 @@
   $padXmlNew ['tag']       = str_replace ( '/', '-', $padXmlTag );
   $padXmlNew ['level']     = $pad;
   $padXmlNew ['type']      = $padType [$pad];
-  $padXmlNew ['raw']       = $padOpt [$pad] [0];
+  $padXmlNew ['parm']      = $padOpt [$pad] [0];
+  $padXmlNew ['parms']     = [];
   $padXmlNew ['parentID']  = $padXmlParent;
   $padXmlNew ['parentOCC'] = $padXmlParentOcc;
 
@@ -34,12 +35,11 @@
 
   }
 
-  $padXml [$padXmlLvl] ['occurs']    = [];
-  $padXml [$padXmlLvl] ['parms']     = [];
-  $padXml [$padXmlLvl] ['childs']    = FALSE;
-  $padXml [$padXmlLvl] ['size']      = 0;
-  $padXml [$padXmlLvl] ['result']    = '';
-  $padXml [$padXmlLvl] ['source']    = '';
+  $padXml [$padXmlLvl] ['occurs'] = [];
+  $padXml [$padXmlLvl] ['childs'] = FALSE;
+  $padXml [$padXmlLvl] ['size']   = 0;
+  $padXml [$padXmlLvl] ['result'] = '';
+  $padXml [$padXmlLvl] ['source'] = '';
   
   $padXmlEventType = 'level-start';
   include pad . 'xml/event.php';

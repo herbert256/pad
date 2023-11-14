@@ -23,8 +23,8 @@
               . sprintf ( '%-15s', $padTag [$pad] )
               . ' ';
 
-  if ( $pad > 1)
-    for ( $padI = $pad-1; $padI > 0; $padI-- )
+  if ( $pad > 0 )
+    for ( $padI = $pad-1; $padI >= 0; $padI-- )
       $padXmlLine .= $padTag [$padI] . ' ';
 
   padFilePutContents ( "$padXmlFile/events.txt", substr ( $padXmlLine, 0, 110 ), true );

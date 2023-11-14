@@ -6,6 +6,9 @@
 
   include pad . 'exits/output.php';
  
+  if ( $padTrackFileCall )
+    padTrackFileCallExit ();
+
   $padEtag = padMD5 ($padOutput);
 
   if ( $padTrackFileData )

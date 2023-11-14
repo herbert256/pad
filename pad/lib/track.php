@@ -1,10 +1,14 @@
 <?php
 
 
-  function padTrackFileCall ( $file = '' ) {
+  function padTrackFileCallInit ( $file = '' ) {
     
+    global $padTrackCallId;
+
+    $padTrackCallId = hrtime (true);
+
     if ( ! $file )
-      $file = "call/" . $GLOBALS['padPage'] . '/'. hrtime (true) . '.json';
+      $file = "call/" . $GLOBALS['padPage'] . "/$padTrackCallId-enter.json";
 
     if ( function_exists ('getallheaders') )
       $headers = getallheaders();
@@ -23,6 +27,20 @@
         'session' => $_SESSION ?? '',
         '_ENV'    => $_ENV ?? '',
         'getenv'  => getenv () ?? '' ] );
+      
+  }
+
+  function padTrackFileCallExit ( $file = '' ) {
+
+    global $padTrackCallId, $padOutput;
+
+    if ( ! $file )
+      $file = "call/" . $GLOBALS['padPage'] . "/$padTrackCallId-exit.json";
+
+    padFilePutContents ( $file,  [
+        'headers' => headers_list () ?? [],
+        'output'  => $padOutput      ?? ''
+      ] );
       
   }
 

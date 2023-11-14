@@ -123,6 +123,9 @@
 
   function padExit () { 
 
+    if ( $GLOBALS ['padTrackFileCall'] )
+      padTrackFileCallExit ();
+
     $GLOBALS ['padSkipShutdown']     = TRUE;
     $GLOBALS ['padSkipBootShutdown'] = TRUE;
     
