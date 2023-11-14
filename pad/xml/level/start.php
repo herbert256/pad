@@ -2,15 +2,19 @@
   
   $padXmlTag = ( $padTag [$pad] == 'padBuildData' ) ? "page-$padPage" : $padTag [$pad];
 
-  $padXmlNew = [];
-  $padXmlNew ['tag']    = str_replace ( '/', '-', $padXmlTag );
-  $padXmlNew ['level']  = $pad;
-  $padXmlNew ['occurs'] = [];
-  $padXmlNew ['parms']  = [];
-  $padXmlNew ['type']   = $padType [$pad];
-  $padXmlNew ['childs'] = FALSE;
-  $padXmlNew ['size']   = 0;
-  $padXmlNew ['raw']    = $padOpt [$pad] [0];
+  $padXmlParent = $padXmlParentOcc = 0;
+  if ( $pad > 0 ) {
+    $padXmlParent    = $padXmlLevel [$pad-1];
+    $padXmlParentOcc = $padOccur [$pad-1];
+  }
+
+  $padXmlNew               = [];
+  $padXmlNew ['tag']       = str_replace ( '/', '-', $padXmlTag );
+  $padXmlNew ['level']     = $pad;
+  $padXmlNew ['type']      = $padType [$pad];
+  $padXmlNew ['raw']       = $padOpt [$pad] [0];
+  $padXmlNew ['parentID']  = $padXmlParent;
+  $padXmlNew ['parentOCC'] = $padXmlParentOcc;
 
   $padXml [] = $padXmlNew;
 
@@ -19,11 +23,10 @@
   $padXmlLvl = $padXmlLevel [$pad];
   $padXmlOcc = $padOccur    [$pad];
 
+  padFilePutContents ( "$padXmlFile/levels/$padXmlLvl/level-entry.json", $padXmlNew );
+
   if ( $pad > 0 ) {
 
-    $padXmlParent    = $padXmlLevel [$pad-1];
-    $padXmlParentOcc = $padOccur [$pad-1];
-    
     $padXml [$padXmlParent] ['childs'] = TRUE;
 
     if ( $padXmlParentOcc > 0 and $padXmlParentOcc < 99999 )
@@ -31,8 +34,12 @@
 
   }
 
-  $padXml [$padXmlLvl] ['result'] = '';
-  $padXml [$padXmlLvl] ['source'] = '';
+  $padXml [$padXmlLvl] ['occurs']    = [];
+  $padXml [$padXmlLvl] ['parms']     = [];
+  $padXml [$padXmlLvl] ['childs']    = FALSE;
+  $padXml [$padXmlLvl] ['size']      = 0;
+  $padXml [$padXmlLvl] ['result']    = '';
+  $padXml [$padXmlLvl] ['source']    = '';
   
   $padXmlEventType = 'level-start';
   include pad . 'xml/event.php';

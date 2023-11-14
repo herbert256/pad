@@ -34,7 +34,7 @@
 
    // Build a XML file with the PAD structure
 
-  $padBuildXml = FALSE;
+  $padBuildXml = TRUE;
 
   // Cache settings
   

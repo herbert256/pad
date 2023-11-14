@@ -1,6 +1,7 @@
 <?php
 
   $padEntryType = 'entry-' . $padEntryType;
+  $padEntryType = 'PAD';
 
   $padBetween   = $padEntryType;
   $padWords     = [];

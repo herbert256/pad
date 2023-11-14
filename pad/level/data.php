@@ -20,7 +20,4 @@
 
   $padCount [$pad] = count ( $padData [$pad] );
 
-  if ( $padBuildXml )
-    include pad . 'xml/files/level_data.php';
-
 ?>
