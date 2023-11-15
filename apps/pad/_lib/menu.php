@@ -28,6 +28,8 @@
     if ( $padPage == 'index' ) {
       $parts ['home'] ['part'] = 'home';
       $parts ['home'] ['link'] = '';       
+      $parts ['man']  ['part'] = 'manual';
+      $parts ['man']  ['link'] = 'manual';  
       $parts ['ref']  ['part'] = 'reference';
       $parts ['ref']  ['link'] = 'reference';  
       $parts ['dev']  ['part'] = 'development';
