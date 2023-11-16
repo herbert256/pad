@@ -1,6 +1,6 @@
 <?php
 
-  $padEntryType = 'start';
+  $padStartType = 'start';
 
                       include pad . 'inits/inits.php';
   while ( $pad >= 0 ) include pad . 'level/level.php'; 

@@ -1,36 +1,37 @@
+{if $manual}
+
+<h3>{$manual}</h3>
+
+{page '{$manual}', type='get', include}
+
+{/if}
+
 {block}
 
 <h3>Main Concepts</h3>
 <ul>
-  <li><a href="{$padGo}manual/concept">The PAD concept</a></li>
-  <li><a href="{$padGo}examples">examples</a></li>
-  <li><a href="{$padGo}manual/tags">Tags</a></li>
-  <li><a href="{$padGo}manual/lvlocc">Levels and occurrences</a></li>
-  <li><a href="{$padGo}manual/functions">Functions</a></li>
-  <li><a href="{$padGo}tags/content">&open;content&close;</a></li>
-  <li><a href="{$padGo}tags/data">&open;data&close;</a></li>
-  <li><a href="{$padGo}manual/combined">&open;content&close; and &open;data&close; combined</a></li>
-  <li><a href="{$padGo}concepts/level_vars_vs_occurence_vars">level_vars_vs_occurence_vars</a></li>
-  <li><a href="{$padGo}concepts/walk">options_variables_parameters</a></li>
-  <li><a href="{$padGo}concepts/php_and_html">php_and_html</a></li>
-  <li><a href="{$padGo}concepts/prefix">prefix</a></li>
-  <li><a href="{$padGo}concepts/tag_return_values">tag_return_values</a></li>
-  <li><a href="{$padGo}concepts/walk">walk</a></li>
-</ul>
-
-<h3>SQL select wrapper</h3>
-<ul>
-  <li><a href="{$padGo}manual/sql">Introduction</a></li>
-  <li><a href="{$padGo}reference/show&item=tags/field">&open;field&close;</a></li>
-  <li><a href="{$padGo}reference/show&item=tags/record">&open;record&close;</a></li>
-  <li><a href="{$padGo}reference/show&item=tags/array">&open;array&close;</a></li>
-  <li><a href="{$padGo}reference/show&item=tags/check">&open;check&close; </a></li>
+  <li><a href="{$padGo}manual&manual=manual/concept">The PAD concept</a></li>
+  <li><a href="{$padGo}manual&manual=examples">examples</a></li>
+  <li><a href="{$padGo}manual&manual=manual/tags">Tags</a></li>
+  <li><a href="{$padGo}manual&manual=manual/lvlocc">Levels and occurrences</a></li>
+  <li><a href="{$padGo}manual&manual=manual/functions">Functions</a></li>
+  <li><a href="{$padGo}manual&manual=manual/eval">eval</a></li>
+  <li><a href="{$padGo}manual&manual=tags/content">&open;content&close;</a></li>
+  <li><a href="{$padGo}manual&manual=tags/data">&open;data&close;</a></li>
+  <li><a href="{$padGo}manual&manual=manual/combined">&open;content&close; and &open;data&close; combined</a></li>
+  <li><a href="{$padGo}manual&manual=concepts/level_vars_vs_occurence_vars">level_vars_vs_occurence_vars</a></li>
+  <li><a href="{$padGo}manual&manual=concepts/walk">options_variables_parameters</a></li>
+  <li><a href="{$padGo}manual&manual=concepts/php_and_html">php_and_html</a></li>
+  <li><a href="{$padGo}manual&manual=concepts/prefix">prefix</a></li>
+  <li><a href="{$padGo}manual&manual=concepts/tag_return_values">tag_return_values</a></li>
+  <li><a href="{$padGo}manual&manual=concepts/walk">walk</a></li>
 </ul>
 
 <h3>Miscellaneous</h3>
 <ul>
-  <li><a href="{$padGo}miscellaneous/TableFun">TableFun</a></li>
-  <li><a href="{$padGo}miscellaneous/ClassicModels">ClassicModels</a></li>
+  <li><a href="{$padGo}manual&manual=manual/sql">Introduction</a></li>
+  <li><a href="{$padGo}manual&manual=miscellaneous/TableFun">TableFun</a></li>
+  <li><a href="{$padGo}manual&manual=miscellaneous/ClassicModels">ClassicModels</a></li>
 </ul>
 
 {/block}

@@ -1,5 +1,5 @@
 <?php
 
-  return include pad . "pad/entry/sandbox.php";
+  return include pad . "start/sandbox.php";
 
 ?>

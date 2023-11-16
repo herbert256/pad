@@ -1,6 +1,6 @@
 <?php
 
-  include pad . 'pad/lib/external.php';
+  include pad . 'start/lib/external.php';
 
   return padPageGet ( $padExtPag, $padExtQry );
 

@@ -11,8 +11,8 @@
 
   }
 
-  $padEntryType = 'restart';
+  $padStartType = 'restart';
 
-  include pad . 'pad/entry/start.php';
+  include pad . 'start/pad.php';
   
 ?>

@@ -2,7 +2,7 @@
 
   $padCode = $padOpt [$pad] [0];
 
-  include pad . "pad/entry/pad.php";
+  include pad . "start/code.php";
 
   $padOpt [$pad] [0] = $padCode;
 
