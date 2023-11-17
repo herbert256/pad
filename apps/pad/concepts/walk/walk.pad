@@ -1,10 +1,20 @@
+
+{block}
+<p>
+Normally all the occurences for a level are retrieved and placed in a internal table before
+the processing takes place.<br>
+When this table is processed PAD knows for example when it is handling the last Occurence.<br>
+The below example with the {tag 'sequence'} tag does do that:
+</p>
+{/block}
+
 {table}
 
 {demo}
 
 {show}
 
-  {loop from=1, to=5}
+  {sequence '1..5'}
 
     <tr>
       <td> {first}  X {/first}  </td>
@@ -13,11 +23,24 @@
       <td> {border} X {/border} </td>
     </tr>
 
-  {/loop}
+  {/sequence}
 
 {/show}
 
-{/demo}{demo}
+{/demo}
+
+{/table}
+
+{block}
+<p>
+  But some PAD tags use the PAD construct 'walking', then the occurences are processed one by one.<br>
+  The tags {tag 'while'} &amp; {tag 'until'} are an example of this.<br>
+  This 'walking' construct breaks the special pad tags like {tag 'last'} & {tag 'border'} that give information about a {tag 'tag'}
+</p>
+{/block}
+
+{table}
+{demo}
 
 {show}
 

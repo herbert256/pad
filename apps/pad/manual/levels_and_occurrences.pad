@@ -1,0 +1,26 @@
+<p>
+  {block}
+    PAD is data driven.
+    <br><br>
+    The PAD data concepts are named Level and Occurence
+    <br><br>
+    Below example: <br>
+    - Is two levels deep <br>
+    - The level 'row' has 3 occurences<br>
+    - The level 'column' has 5 occurences<br>
+  {/block}
+  {example 'manual/lvlocc_parts/1', skipNames}
+</p>
+
+{block}
+  If not specifield for a PAD tag then default every PAD tag has 1 occurence.
+  <br><br>
+  Just for fun, the above example implemented in a few different ways below.
+{/block}
+
+<p> 
+{sequence '2..6', name='xxx'}
+  {example 'manual/lvlocc_parts/{xxx}', skipNames{notFirst},skipOpen,skipHeader{/notFirst}{notLast},skipClose{/notLast}}
+{/sequence}
+</p> 
+

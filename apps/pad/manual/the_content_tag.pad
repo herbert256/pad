@@ -1,0 +1,76 @@
+{block}
+    With the <b>&open;content&close;</b> tag it is possible to define content for later use.
+{/block}  
+
+{table}{demo}
+
+{content 'hello'}
+  <p> Hello World </p>
+{/content}
+
+{/demo}{demo}
+
+{hello}
+{hello}
+{hello}
+
+{/demo}{/table}
+
+<p><hr>Merge content with content</p>
+
+{table}{demo}
+
+{content 'myContent'}
+  Before <br>
+  @content@
+  After <br>
+{/content}
+
+{myContent}
+  This will be inserted <br>
+{/myContent}
+
+{/demo}{/table}
+
+<hr>
+{block}
+<p>
+If <b>&open;content 'xxx'&close;</b> is used, then the content will not be processed before it is stored in the content store</p>
+
+<p>If <b>&open;/content 'xxx'&close;</b> is used, then the content will be processed before it is stored in the content store</p>
+
+{/block}
+
+{table}{demo}
+
+{set $abc = 10}
+
+{content 'myContent'}
+  <p> {$abc} </p>
+{/content}
+
+{increment $abc} {myContent}
+{increment $abc} {myContent}
+{increment $abc} {myContent}
+{/demo}
+
+{demo}
+{set $abc = 10}
+
+{content}
+  <p> {$abc} </p>
+{/content 'myContent'}
+
+{increment $abc} {myContent}
+{increment $abc} {myContent}
+{increment $abc} {myContent}
+
+{/demo}{/table}
+
+<br><hr><br>
+
+<p>
+  <a href="{$padGo}reference/show&item=tags/content">
+    See the &open;content&close; page in the reference section for more examples
+  </a>
+</p>

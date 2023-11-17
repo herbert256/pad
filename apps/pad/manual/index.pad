@@ -1,37 +1,48 @@
-{if $manual}
+{if $manual} 
 
-<h3>{$manual}</h3>
+  {page 'manual/{$manual}', type='sandbox', include}
 
-{page '{$manual}', type='get', include}
+  <br><hr><br>
 
 {/if}
 
 {block}
 
-<h3>Main Concepts</h3>
+<table valign="top"><tr><td valign="top">
+
+<h3 align=center>Basic Concepts</h3>
+
 <ul>
-  <li><a href="{$padGo}manual&manual=manual/concept">The PAD concept</a></li>
-  <li><a href="{$padGo}manual&manual=examples">examples</a></li>
-  <li><a href="{$padGo}manual&manual=manual/tags">Tags</a></li>
-  <li><a href="{$padGo}manual&manual=manual/lvlocc">Levels and occurrences</a></li>
-  <li><a href="{$padGo}manual&manual=manual/functions">Functions</a></li>
-  <li><a href="{$padGo}manual&manual=manual/eval">eval</a></li>
-  <li><a href="{$padGo}manual&manual=tags/content">&open;content&close;</a></li>
-  <li><a href="{$padGo}manual&manual=tags/data">&open;data&close;</a></li>
-  <li><a href="{$padGo}manual&manual=manual/combined">&open;content&close; and &open;data&close; combined</a></li>
-  <li><a href="{$padGo}manual&manual=concepts/level_vars_vs_occurence_vars">level_vars_vs_occurence_vars</a></li>
-  <li><a href="{$padGo}manual&manual=concepts/walk">options_variables_parameters</a></li>
-  <li><a href="{$padGo}manual&manual=concepts/php_and_html">php_and_html</a></li>
-  <li><a href="{$padGo}manual&manual=concepts/prefix">prefix</a></li>
-  <li><a href="{$padGo}manual&manual=concepts/tag_return_values">tag_return_values</a></li>
-  <li><a href="{$padGo}manual&manual=concepts/walk">walk</a></li>
+  <li><a href="{$padGo}manual&manual=levels_and_occurrences">Levels and occurrences</a></li>
+  <li><a href="{$padGo}manual&manual=the_content_tag">The content tag</a></li>
+  <li><a href="{$padGo}manual&manual=the_data_tag">The data tag</a></li>
+  <li><a href="{$padGo}manual&manual=content_and_data_combined">Content and data combined</a></li>
+  <li><a href="{$padGo}manual&manual=php_and_html">PHP and HTML</a></li>
 </ul>
 
-<h3>Miscellaneous</h3>
+</td><td>&nbsp;&nbsp;</td><td valign="top">
+
+<h3 align=center>Advanced concepts</h3>
 <ul>
-  <li><a href="{$padGo}manual&manual=manual/sql">Introduction</a></li>
-  <li><a href="{$padGo}manual&manual=miscellaneous/TableFun">TableFun</a></li>
-  <li><a href="{$padGo}manual&manual=miscellaneous/ClassicModels">ClassicModels</a></li>
+  <li><a href="{$padGo}manual&manual=level_and_occurrence_variables">Level and occurrence variables</a></li>
+  <li><a href="{$padGo}manual&manual=prefix">Prefix</a></li>
+  <li><a href="{$padGo}manual&manual=walking">Walking</a></li>
+  <li><a href="{$padGo}manual&manual=escape">Escaping special PAD chars</a></li>
+  <li><a href="{$padGo}manual&manual=tag_return_values">Tag return values</a></li>
+  <li><a href="{$padGo}manual&manual=manual/functions">Functions</a></li>
+  <li><a href="{$padGo}manual&manual=manual/eval">eval</a></li>
 </ul>
+
+</td><td>&nbsp;&nbsp;</td><td valign="top">
+
+<h3 align=center>Miscellaneous</h3>
+<ul>
+  <li><a href="{$padGo}manual&manual=sql">SQL wrapper</a></li>
+  <li><a href="{$padGo}manual&manual=fun">TableFun</a></li>
+  <li><a href="{$padGo}manual&manual=ClassicModels">ClassicModels</a></li>
+  <li><a href="{$padGo}manual&manual=examples">examples</a></li>
+</ul>
+
+</td></tr></table>
 
 {/block}

@@ -31,4 +31,7 @@
   
   }
 
+  if ( ! isset ( $manual ) ) 
+    $manual    = '';
+
 ?>

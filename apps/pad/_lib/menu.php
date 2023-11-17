@@ -23,7 +23,7 @@
 
   function parts ( ) {
 
-    global $padPage; 
+    global $padPage, $manual; 
 
     if ( $padPage == 'index' ) {
       $parts ['home'] ['part'] = 'home';
@@ -42,7 +42,26 @@
     $parts ['home'] ['part'] = 'home';
     $parts ['home'] ['link'] = 'index';    
 
-    if ( $padPage == 'reference/index') {
+    if ( $padPage == 'manual/index') {
+
+      if ( ! $manual ) {
+
+        $parts ['man']  ['part'] = 'manual';
+        $parts ['man']  ['link'] = '';  
+
+        return $parts;
+
+      }
+
+      $parts ['man']  ['part'] = 'manual';
+      $parts ['man']  ['link'] = 'manual';  
+
+      $parts ['now']  ['part'] = $manual;
+      $parts ['now']  ['link'] = '';  
+
+      return $parts;
+
+    } elseif ( $padPage == 'reference/index') {
 
       $parts ['ref'] ['part'] = 'reference';
       $parts ['ref'] ['link'] = '';    
