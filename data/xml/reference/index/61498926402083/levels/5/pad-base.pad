@@ -1,0 +1,25 @@
+<table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+    <tr>
+      <td>  
+        
+
+  {true data='references'}
+
+    {range '1..{$lvl}'}
+      <blockquote>
+    {/range}
+
+    <h3><a href="{$padGo}reference/reference&reference={$ref}">{$type|ucwords}</a></h3>
+
+    {include 'getRefs'}
+
+    {range '1..{$lvl}'}
+      </blockquote>
+    {/range}
+
+  {/true}
+
+
+      </td>
+    </tr>
+  </table>

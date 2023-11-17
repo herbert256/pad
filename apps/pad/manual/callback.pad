@@ -1,0 +1,11 @@
+{block}
+<p>
+It's possible to put a PHP file in the directory '_callbacks' that is called back at the processing of a pad tag.<br>
+- With option 'before' the callback happens for every occurrence before the processing of the ocurrences.<br>
+- With option 'demand' the callback happens during the processing of the occurrences.
+
+</p>
+{/block}
+
+{example 'callback/before', php='_callbacks/before.php', skipClose}          
+{example 'callback/demand', php='_callbacks/demand.php', skipOpen}

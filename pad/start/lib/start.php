@@ -6,7 +6,8 @@
 
     if ( substr($padK, 0, 3) == 'pad' and ! in_array($padK, $padLevelVars) )
       if ( $padK <> 'padK' and $padK <> 'padV' ) 
-        if ( substr($padK, 0, 8) <> 'padTrace' and substr($padK, 0, 6) <> 'padXml' ) 
+        if ( $padK <> 'padOptionHits' and $padK <> 'padTagHits') 
+          if ( substr($padK, 0, 8) <> 'padTrace' and substr($padK, 0, 6) <> 'padXml' ) 
             $padPagePad [$pad] [$padK] = $GLOBALS [$padK];
  
     if ( padValidStore ($padK) ) {

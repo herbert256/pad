@@ -5,9 +5,9 @@
     if     ( ! padValidTag    ( $item ) )                                return FALSE;
     elseif ( padChkLevel      ( $item                                ) ) return 'level';
     elseif ( padExists        ( padApp . "_tags/$item.php"           ) ) return 'app';
-    elseif ( padExists        ( padApp . "_tags/$item.pad"          ) ) return 'app';
+    elseif ( padExists        ( padApp . "_tags/$item.pad"           ) ) return 'app';
     elseif ( padExists        ( pad . "_tags/$item.php"              ) ) return 'pad';
-    elseif ( padExists        ( pad . "_tags/$item.pad"             ) ) return 'pad';
+    elseif ( padExists        ( pad . "_tags/$item.pad"              ) ) return 'pad';
     elseif ( isset            ( $GLOBALS ['padFlagStore']    [$item] ) ) return 'flag';
     elseif ( isset            ( $GLOBALS ['padContentStore'] [$item] ) ) return 'content';
     elseif ( padContentCheck  ( $item                                ) ) return 'content';
@@ -35,9 +35,9 @@
     if     ( ! padValidType                           ( $type                                ) ) return FALSE;
     if     (                       ! padExists        ( pad . "types/$type.php"              ) ) return FALSE;
     elseif ( $type == 'app'      and padExists        ( padApp . "_tags/$item.php"           ) ) return $type;
-    elseif ( $type == 'app'      and padExists        ( padApp . "_tags/$item.pad"          ) ) return $type;
+    elseif ( $type == 'app'      and padExists        ( padApp . "_tags/$item.pad"           ) ) return $type;
     elseif ( $type == 'pad'      and padExists        ( pad . "_tags/$item.php"              ) ) return $type;
-    elseif ( $type == 'pad'      and padExists        ( pad . "_tags/$item.pad"             ) ) return $type;
+    elseif ( $type == 'pad'      and padExists        ( pad . "_tags/$item.pad"              ) ) return $type;
     elseif ( $type == 'tag'      and padExists        ( pad . "tag/$type.php"                ) ) return $type;
     elseif ( $type == 'level'    and padChkLevel      ( $item                                ) ) return $type;
     elseif ( $type == 'flag'     and isset            ( $GLOBALS ['padFlagStore'] [$item]    ) ) return $type;

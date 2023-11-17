@@ -1,0 +1,31 @@
+{content 'block'}<table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+    <tr>
+      <td>  
+        @content@
+      </td>
+    </tr>
+  </table>{/content}
+
+{content 'examples'}
+  {example '{$examples}', skipNames{notFirst},skipOpen,skipHeader{/notFirst}{notLast},skipClose{/notLast}}
+{/content}
+
+{content 'thisDir'}
+  {dirList '{$padDir}'}
+    {example '{$item}', skipNames{notFirst},skipOpen,skipHeader{/notFirst}{notLast},skipClose{/notLast}}
+  {/dirList}
+{/content}{content 'cell'} 
+  <td {if $cell EQ 23} bgcolor="red" {/if} >
+    {$cell}
+  </td>
+{/content}{padBuildData}<table border='1'>
+  {row}
+    <tr>
+      {set $col = 1}
+      {while $col LE 5}
+        {cell $row + $col}
+        {increment $col}
+      {/while}
+    </tr>
+  {/row}
+</table>{/padBuildData}

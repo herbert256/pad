@@ -1,4 +1,6 @@
 <?php
+
+  padXmlXref ( 'tags', $padType [$pad], $padTag [$pad] );
   
   $padXmlTag = ( $padTag [$pad] == 'padBuildData' ) ? "page-$padPage" : $padTag [$pad];
 

@@ -16,4 +16,7 @@
   foreach ( $padSetOcc [$pad] as $padK => $padV )
     $padXml [$padXmlLvl] ['parms'] ['occ'] [$padK] = $padV;
 
+  foreach ( $padPrm [$pad] as $padK => $padV )
+    padXmlXref ( 'options', $padK );
+
 ?>

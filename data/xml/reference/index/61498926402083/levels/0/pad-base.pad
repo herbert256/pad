@@ -1,0 +1,39 @@
+{content 'block'}<table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+    <tr>
+      <td>  
+        @content@
+      </td>
+    </tr>
+  </table>{/content}
+
+{content 'examples'}
+  {example '{$examples}', skipNames{notFirst},skipOpen,skipHeader{/notFirst}{notLast},skipClose{/notLast}}
+{/content}
+
+{content 'thisDir'}
+  {dirList '{$padDir}'}
+    {example '{$item}', skipNames{notFirst},skipOpen,skipHeader{/notFirst}{notLast},skipClose{/notLast}}
+  {/dirList}
+{/content}{padBuildData}<blockquote>
+
+{block}
+
+  {true data='references'}
+
+    {range '1..{$lvl}'}
+      <blockquote>
+    {/range}
+
+    <h3><a href="{$padGo}reference/reference&reference={$ref}">{$type|ucwords}</a></h3>
+
+    {include 'getRefs'}
+
+    {range '1..{$lvl}'}
+      </blockquote>
+    {/range}
+
+  {/true}
+
+{/block}
+
+</blockquote>{/padBuildData}

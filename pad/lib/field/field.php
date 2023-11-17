@@ -15,8 +15,15 @@
 
   function padFieldNull  ( $parm )         { return padField ( $parm, 9       ); } 
 
-
+  
   function padField ( $field, $type, $lvl=0 ) {
+
+    if ( $GLOBALS ['padBuildXml'] ) {
+      if ( $type == 2 ) padXmlXref ( 'fields', 'var',    $field );
+      if ( $type == 4 ) padXmlXref ( 'fields', 'array',  $field );
+      if ( $type == 6 ) padXmlXref ( 'fields', 'option', $field );
+      if ( $type == 8 ) padXmlXref ( 'fields', 'tag',    $field );
+    }
 
     if ( str_contains ($field, ':' ) )
       list ( $prefix, $field ) = explode (':', $field, 2);

@@ -1,6 +1,29 @@
 <?php
 
 
+  function padXmlXref ( $dir1, $dir2, $dir3='' ) {
+
+    global $padPage;
+
+    $dir = padApp . "xref/$dir1/$dir2";
+
+    if ( $dir3 )
+      $dir .= "/$dir3";
+
+    $dir  = padFileCorrect ( $dir );
+
+    if ( ! file_exists ( $dir ) )
+      mkdir ( $dir, 0777, TRUE );
+
+    $file = "$dir/" . padFileCorrect ( str_replace ( '/' , '_', $padPage ) ) . '.hit';
+
+    if ( ! file_exists ( $file ) )
+      touch ( $file, 0777, TRUE );
+
+  }
+
+
+
   function padXml () {
 
     global $padXmlEvents;

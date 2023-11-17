@@ -1,0 +1,136 @@
+[
+    {
+        "tag": "getReference",
+        "level": 4,
+        "type": "php",
+        "parm": "'tag properties', 'tags/properties', 'tag', 'pad'",
+        "parms": {
+            "opt": {
+                "1": "tag properties",
+                "2": "tags/properties",
+                "3": "tag",
+                "4": "pad"
+            }
+        },
+        "parentID": 6,
+        "parentOCC": 1,
+        "occurs": {
+            "1": {
+                "id": 1,
+                "type": "start",
+                "childs": true,
+                "size": 100
+            },
+            "2": {
+                "id": 2,
+                "type": "loop",
+                "childs": true,
+                "size": 98
+            },
+            "3": {
+                "id": 3,
+                "type": "loop",
+                "childs": true,
+                "size": 102
+            },
+            "4": {
+                "id": 4,
+                "type": "loop",
+                "childs": true,
+                "size": 0
+            }
+        },
+        "childs": true,
+        "size": 0,
+        "result": "array",
+        "source": "content"
+    },
+    {
+        "tag": "include",
+        "level": 3,
+        "type": "pad",
+        "parm": "'getRefs'",
+        "parms": {
+            "opt": {
+                "1": "getRefs"
+            }
+        },
+        "parentID": 5,
+        "parentOCC": 1,
+        "occurs": {
+            "1": {
+                "id": 1,
+                "type": "start",
+                "childs": true,
+                "size": 0
+            }
+        },
+        "childs": true,
+        "size": 0,
+        "result": "value",
+        "source": "tagResult"
+    },
+    {
+        "tag": "if",
+        "level": 2,
+        "type": "pad",
+        "parm": "$reference eq 'sequence'",
+        "parms": [],
+        "parentID": 4,
+        "parentOCC": 1,
+        "occurs": {
+            "1": {
+                "id": 1,
+                "type": "start",
+                "childs": true,
+                "size": 0
+            }
+        },
+        "childs": true,
+        "size": 0,
+        "result": "false",
+        "source": "false"
+    },
+    {
+        "tag": "page-reference-reference",
+        "level": 1,
+        "type": "array",
+        "parm": "",
+        "parms": [],
+        "parentID": 0,
+        "parentOCC": 1,
+        "occurs": {
+            "1": {
+                "id": 1,
+                "type": "start",
+                "childs": true,
+                "size": 0
+            }
+        },
+        "childs": true,
+        "size": 0,
+        "result": "array",
+        "source": "content"
+    },
+    {
+        "tag": "pad",
+        "level": 0,
+        "type": "pad",
+        "parm": "",
+        "parms": [],
+        "parentID": 0,
+        "parentOCC": 0,
+        "occurs": {
+            "1": {
+                "id": 1,
+                "type": "build",
+                "childs": true,
+                "size": 0
+            }
+        },
+        "childs": true,
+        "size": 0,
+        "result": "",
+        "source": ""
+    }
+]

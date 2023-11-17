@@ -1,5 +1,5 @@
 <?php
-
+  
   $padOutput = $padResult [0];
 
   $padOutput = padUnescape ( $padOutput );
