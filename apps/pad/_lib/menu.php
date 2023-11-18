@@ -37,6 +37,56 @@
       return $parts;
     }
 
+    if ( $padPage == 'development/xref' ) {
+
+      $parts ['home'] ['part'] = 'home';
+      $parts ['home'] ['link'] = 'index';       
+
+      $parts ['dev']  ['part'] = 'development';
+      $parts ['dev']  ['link'] = 'development';
+
+      if ( $GLOBALS ['xref'] or $GLOBALS ['go'] ) {
+        $parts ['x']  ['part'] = 'cross reference';
+        $parts ['x']  ['link'] = 'development/xref';
+      } else {
+        $parts ['x']  ['part'] = 'cross reference';
+        $parts ['x']  ['link'] = '';
+      }     
+
+      if ( $GLOBALS ['xref'] ) {
+
+        $plode = padExplode ( $GLOBALS ['xref'], '/' );
+        $key   = array_key_last ($plode);
+        $last  = $plode [$key];
+
+        unset ( $plode [$key] );
+
+        $xref = '';
+
+        foreach ( $plode as $key => $value ) {
+          $xref .= "/$value";
+          $parts ["x$key"] ['part'] = $value;
+          $parts ["x$key"] ['link'] = "development/xref&xref=$xref";
+        }
+
+        $parts ['lst']  ['part'] = $last;
+
+        if ( $GLOBALS ['go'] ) 
+          $parts ['lst']  ['link'] = "development/xref&xref=$xref/$last";
+        else   
+          $parts ['lst']  ['link'] = '';     
+
+      }
+
+      if ( $GLOBALS ['go'] ) {
+        $parts ['go']  ['part'] = substr ( $GLOBALS ['go'], 1 );
+        $parts ['go']  ['link'] = '';     
+      } 
+
+      return $parts;
+    
+    }
+
     $refLink = refLink();
 
     $parts ['home'] ['part'] = 'home';

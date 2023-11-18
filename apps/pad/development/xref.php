@@ -1,11 +1,12 @@
 <?php
 
-  if ( ! isset ( $xref ) )
-    $xref = '';
+  if ( ! isset ( $xref ) ) $xref = '';
+  if ( ! isset ( $go   ) ) $go = '';
 
   $title = 'cross reference';
-  if ( $xref )
-    $title .= ' - ' . str_replace ('/', ' ', $xref);
+
+  if ( $xref ) $title .= ' - ' . substr ( str_replace ('/', '-', $xref), 1 );
+  if ( $go   ) $title .= ' - ' . $go;
 
   $dirs = [];
   $pages = [];
