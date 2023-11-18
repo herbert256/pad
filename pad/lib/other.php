@@ -20,14 +20,16 @@
 
   function padXref ( $dir1, $dir2, $dir3='' ) {
 
+    if ( $dir1 == 'tags'   and $dir2 == 'tag'      ) padXref ( 'properties', $dir3 );
+    if ( $dir1 == 'fields' and $dir2 == 'tag'      ) padXref ( 'properties', $dir3 );
+    if ( $dir1 == 'at'     and $dir2 == 'property' ) padXref ( 'properties', $dir3 );
+ 
     global $padPage;
 
     $dir = padApp . "xref/$dir1/$dir2";
 
     if ( $dir3 )
-      $dir .= "/$dir3";
-
-    $dir = padFileCorrect ( $dir );
+      $dir .= "/" . str_replace ( '/' , '@', padFileCorrect ($dir3 ) );
 
     $file = "$dir/" .  str_replace ( '/' , '@', padFileCorrect ($padPage ) ) . '.hit';
 

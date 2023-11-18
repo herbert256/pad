@@ -3,8 +3,11 @@
 
   function padEval ( $eval, $value='' ) {
 
-    if ( in_array ( $eval, $GLOBALS ['padEvalFast'] ) )
+    if ( in_array ( $eval, $GLOBALS ['padEvalFast'] ) ) {
+      if ( $GLOBALS ['padXref'] ) 
+        padXref ( 'functions', 'pad' , $eval );
       return include pad . "_functions/$eval.php";
+    }
 
     return padEval2 ( $eval, $value );
 

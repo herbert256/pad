@@ -1,14 +1,17 @@
 <?php
 
   if ( ! isset ( $xref ) ) $xref = '';
-  if ( ! isset ( $go   ) ) $go = '';
+  if ( ! isset ( $go   ) ) $go   = '';
 
   $title = 'cross reference';
 
   if ( $xref ) $title .= ' - ' . substr ( str_replace ('/', '-', $xref), 1 );
-  if ( $go   ) $title .= ' - ' . $go;
+  if ( $go   ) $title .= ' - ' . substr ( $go, 1);
 
-  $dirs = [];
+  if ( $go )
+    return TRUE;
+
+  $dirs  = [];
   $pages = [];
 
   $list = scandir ( padApp . 'xref' . $xref );

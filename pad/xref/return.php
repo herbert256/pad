@@ -1,5 +1,8 @@
 <?php
 
-  padXref ( 'return', $padXml [$padXmlLvl] ['result']);
+  if ( $padXmlTagReturn )
+    padXref ( 'return', $padXmlTagReturn );
+  else
+    padXref ( 'return', 'NONE' );
 
 ?>

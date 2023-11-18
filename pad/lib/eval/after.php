@@ -24,6 +24,9 @@
 
           if ( padExists ( pad . "eval/single/$type.php") ) {            
 
+            if ( $GLOBALS ['padXref'] ) 
+              padXref ( 'functions', $type, $name );
+
             $padCall = pad . "eval/single/$type.php" ;
             $single  = include pad . "call/any.php" ;
 
@@ -31,6 +34,9 @@
             $result [$k] [0] = padCheckValue ($single);
 
           } elseif ( padExists ( pad . "eval/parms/$type.php" ) ) {
+
+            if ( $GLOBALS ['padXref'] ) 
+              padXref ( 'functions', $type, $name );
 
             $result[$k][0] = $name;
             $result[$k][1] = 'TYPE';

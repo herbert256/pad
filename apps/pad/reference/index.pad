@@ -2,15 +2,29 @@
 
 {block}
 
-  {true data='references'}
+  {true data='xref'}
 
     {range '1..{$lvl}'}
       <blockquote>
     {/range}
 
-    <h3><a href="{$padGo}reference/reference&reference={$ref}">{$type|ucwords}</a></h3>
+    <h3><a href="{$padGo}reference/xref&xref=/{$xref}&for={$type|url}&xbase={$dir|url}&xmain=1">{$type}</a></h3>
 
-    {include 'getRefs'}
+    <blockquote>
+
+      {getXref '{!type}', '{$xref}', '{$dir}'}
+
+        {if $link}
+          <a href="{$padGo}reference/xref&xref={$link}&for={$type|url}&xbase={$dir|url}&xitem={$item}">{$item}</a>
+        {else}
+          {$item}
+        {/if}
+
+        &nbsp; 
+
+      {/getXref}
+            
+    </blockquote>
 
     {range '1..{$lvl}'}
       </blockquote>

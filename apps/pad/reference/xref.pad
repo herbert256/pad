@@ -1,0 +1,37 @@
+{if $xgo}
+
+  {example '{$xgo}' }
+
+{else}
+
+<blockquote>
+<blockquote>
+
+  {block}
+
+
+    {dirs}
+
+      <a href="{$padGo}reference/xref&xref={$xref}/{$dir}&for={$for|url}&xitem={$xitem}&xnext={$dir}&xmain={$xmain}">{$dir}</a> 
+
+&nbsp;
+&nbsp;
+
+    {/dirs}
+
+    {pages}
+
+      <a 
+        href="{$padGo}reference/xref&xgo=/{$page}&xref={$xref}&for={$for|url}&xitem={$xitem}&xnext={$xnext}&xmain={$xmain}">{$page}
+      </a> 
+
+      <br>
+
+    {/pages}
+
+  {/block}
+
+</blockquote>
+</blockquote>
+
+{/if}

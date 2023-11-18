@@ -19,7 +19,7 @@
     return FALSE;
 
   }
-
+  
 
   function parts ( ) {
 
@@ -27,7 +27,13 @@
 
     if ( $padPage == 'index' ) {
       $parts ['home'] ['part'] = 'home';
-      $parts ['home'] ['link'] = '';       
+      $parts ['home'] ['link'] = '';    
+    } else {
+      $parts ['home'] ['part'] = 'home';
+      $parts ['home'] ['link'] = 'index';             
+    }   
+
+    if ( $padPage == 'index' ) {
       $parts ['man']  ['part'] = 'manual';
       $parts ['man']  ['link'] = 'manual';  
       $parts ['ref']  ['part'] = 'reference';
@@ -37,10 +43,68 @@
       return $parts;
     }
 
-    if ( $padPage == 'develop/xref' ) {
+    if ( $padPage == 'reference/xref' ) {
 
-      $parts ['home'] ['part'] = 'home';
-      $parts ['home'] ['link'] = 'index';       
+      $parts ['dev']  ['part'] = 'reference';
+      $parts ['dev']  ['link'] = 'reference';
+
+      if ( $GLOBALS ['xgo'] ) {
+
+        if ( $GLOBALS ['xmain'] ) {
+          $parts ['xm']  ['part'] = strtolower ( $GLOBALS ['for'] );
+          $parts ['xm']  ['link'] = 'xxx';
+        }
+
+        if ( $GLOBALS ['xitem'] ) {
+          $parts ['xi']  ['part'] = $GLOBALS ['xitem'];
+          $parts ['xi']  ['link'] = $GLOBALS ['xitem'];
+        }
+
+        if ( $GLOBALS ['xnext'] ) {
+          $parts ['xn']  ['part'] = $GLOBALS ['xnext'];
+          $parts ['xn']  ['link'] = $GLOBALS ['xnext'];
+        }
+
+        $parts ['x']  ['part'] = $GLOBALS ['xgo'];
+        $parts ['x']  ['link'] = '';
+      
+      } elseif ( $GLOBALS ['xnext'] ) {
+
+        if ( $GLOBALS ['xmain'] ) {
+          $parts ['xm']  ['part'] = strtolower ( $GLOBALS ['for'] );
+          $parts ['xm']  ['link'] = 'xxx';
+        }
+
+        if ( $GLOBALS ['xitem'] ) {
+          $parts ['xi']  ['part'] = $GLOBALS ['xitem'];
+          $parts ['xi']  ['link'] = $GLOBALS ['xitem'];
+        }
+
+        $parts ['xn']  ['part'] = $GLOBALS ['xnext'];
+        $parts ['xn']  ['link'] = '';
+
+      } elseif ( $GLOBALS ['xitem'] ) {
+
+        if ( $GLOBALS ['xmain'] ) {
+          $parts ['xm']  ['part'] = strtolower ( $GLOBALS ['for'] );
+          $parts ['xm']  ['link'] = 'xxx';
+        }
+
+        $parts ['xi']  ['part'] = $GLOBALS ['xitem'];
+        $parts ['xi']  ['link'] = '';
+      
+      } elseif ( $GLOBALS ['xmain'] ) {
+
+        $parts ['xm']  ['part'] = strtolower ( $GLOBALS ['for'] );
+        $parts ['xm']  ['link'] = '';
+        
+      }
+
+      return $parts;
+    
+    }
+
+    if ( $padPage == 'develop/xref' ) {
 
       $parts ['dev']  ['part'] = 'develop';
       $parts ['dev']  ['link'] = 'develop';
@@ -88,9 +152,6 @@
     }
 
     $refLink = refLink();
-
-    $parts ['home'] ['part'] = 'home';
-    $parts ['home'] ['link'] = 'index';    
 
     if ( $padPage == 'manual/index') {
 
