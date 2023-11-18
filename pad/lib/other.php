@@ -29,13 +29,15 @@
 
     $dir = padFileCorrect ( $dir );
 
+    $file = "$dir/" .  str_replace ( '/' , '@', padFileCorrect ($padPage ) ) . '.hit';
+
+    if ( file_exists ( $file ) )
+      return;
+
     if ( ! file_exists ( $dir ) )
       mkdir ( $dir, 0777, TRUE );
 
-    $file = "$dir/" .  str_replace ( '/' , '@', padFileCorrect ($padPage ) ) . '.hit';
-
-    if ( ! file_exists ( $file ) )
-      touch ( $file, 0777, TRUE );
+    touch ( $file, 0777, TRUE );
 
   }
 

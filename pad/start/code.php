@@ -2,6 +2,9 @@
 
   $padStartType = 'pad';
 
+  if ( $padXref ) 
+    padXref ( 'start', $padStartType );
+
   include pad . 'start/lib/setup.php';
 
   $padBase [$pad] = $padCode;    

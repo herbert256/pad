@@ -2,6 +2,9 @@
 
   $padStartType = 'sandbox';
 
+  if ( $padXref ) 
+    padXref ( 'start', $padStartType );
+
   include pad . 'start/lib/start.php';
   include pad . 'start/lib/setup.php';
 

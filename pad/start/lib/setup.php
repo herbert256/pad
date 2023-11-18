@@ -1,13 +1,13 @@
 <?php
 
-  $padStartType = 'entry-' . $padStartType;
-  $padStartType = 'PAD';
+  if ( $padXref ) 
+    include pad . 'xref/setup.php';
 
-  $padBetween   = $padStartType;
+  $padBetween   = 'PAD';
   $padWords     = [];
-  $padWords [0] = $padStartType;
+  $padWords [0] = 'PAD';
 
-  $padTypeCheck  = $padStartType;
+  $padTypeCheck  = 'PAD';
   $padTypeResult = 'internal';
   $padTypeGiven  = FALSE;
   $padPairSet    = FALSE;

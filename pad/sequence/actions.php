@@ -12,6 +12,9 @@
       else
         $padSeqActionCnt = $padSeqActionValue;    
 
+      if ( $padXref ) 
+        padXref ( 'sequences', 'actions', $padSeqActionName );
+
       $padSeqResult = include pad . "sequence/actions/$padSeqActionName.php";
 
       padDone ( $padSeqActionName, TRUE );

@@ -19,5 +19,8 @@
   elseif ( $padTagResult === NAN         ) $padXmlTagReturn = 'nan';
   elseif ( strlen ($padTagResult ) == 0  ) $padXmlTagReturn = 'empty';
   else                                     $padXmlTagReturn = 'value';
+
+  if ( $padXref ) 
+    include pad . 'xref/return.php';  
   
 ?>

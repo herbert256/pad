@@ -13,6 +13,9 @@
 
   $padStartType = 'restart';
 
+  if ( $padXref ) 
+    padXref ( 'start', $padStartType );
+
   include pad . 'start/pad.php';
   
 ?>

@@ -9,8 +9,8 @@
   $padXml [$padXmlLvl] ['occurs'] [$padXmlOcc] ['size']   = 0;
 
   if ( ! $padDefault [$pad] ) {
-    padFilePutContents ( "$padXmlDir/levels/$padXmlLvl/$padXmlOcc/data.json",    $padCurrent [$pad] );
-    padFilePutContents ( "$padXmlDir/levels/$padXmlLvl/$padXmlOcc/pad-base.pad", $padPad     [$pad] );
+    padFilePutContents ( "$padXmlDir/details/$padXmlLvl/$padXmlOcc/data.json",    $padCurrent [$pad] );
+    padFilePutContents ( "$padXmlDir/details/$padXmlLvl/$padXmlOcc/pad-base.pad", $padPad     [$pad] );
   }
 
 ?>

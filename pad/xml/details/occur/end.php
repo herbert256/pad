@@ -6,6 +6,6 @@
   $padXml [$padXmlLvl] ['occurs'] [$padXmlOcc] ['size'] = strlen ( $padPad [$pad] );
 
   if ( ! $padDefault [$pad] )
-    padFilePutContents ( "$padXmlDir/levels/$padXmlLvl/$padXmlOcc/pad-end.pad", $padPad [$pad] );
+    padFilePutContents ( "$padXmlDir/details/$padXmlLvl/$padXmlOcc/pad-end.pad", $padPad [$pad] );
 
 ?>

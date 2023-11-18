@@ -18,11 +18,9 @@
   $padCurrent   [$pad] = $padData [$pad] [$padKey [$pad]];
   $padOccurType [$pad] = $padOccurTypeSet;
 
-  if ( $padTraceActive )
-    include pad . 'trace/occur/start.php';  
-
-  if ( $padXmlBuild )
-    include pad . 'xml/occur/start.php';  
+  if ( $padTraceActive ) include pad . 'trace/occur/start.php';  
+  if ( $padXmlBuild    ) include pad . 'xml/occur/start.php';  
+  if ( $padXref        ) include pad . 'xref/occur.php';  
   
   if ( $padWalk [$pad] <> 'start' )
     $padWalkData [$pad] [] = $padCurrent [$pad];

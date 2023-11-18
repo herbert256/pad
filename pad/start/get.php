@@ -1,5 +1,10 @@
 <?php
 
+  $padStartType = 'get';
+
+  if ( $padXref ) 
+    padXref ( 'start', $padStartType );
+
   $padPagePage    = $padGet;
   $padPageInclude = TRUE;
   $padPageType    = 'sandbox';

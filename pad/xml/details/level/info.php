@@ -1,15 +1,9 @@
 <?php
 
-  $padXmlLvl = $padXmlLevel [$pad];
-  $padXmlOcc = $padOccur     [$pad];
-
-  padFilePutContents ( "$padXmlDir/levels/$padXmlLvl/pad-base.pad", $padBase [$pad] );
+  padFilePutContents ( "$padXmlDir/details/$padXmlLvl/pad-base.pad", $padBase [$pad] );
 
   if ( ! padIsDefaultData ( $padData [$pad] ) )
-    padFilePutContents ( "$padXmlDir/levels/$padXmlLvl/data.json", $padData [$pad] );
-
-  $padXml [$padXmlLvl] ['result'] = $padXmlTagReturn;
-  $padXml [$padXmlLvl] ['source'] = include pad . 'tree/level/status.php';
+    padFilePutContents ( "$padXmlDir/details/$padXmlLvl/data.json", $padData [$pad] );
 
   $padXmlInfo = [
     'xml'     => $padXml [$padXmlLvl],
@@ -23,6 +17,6 @@
     'count'   => $padCount [$pad]
   ];
 
-  padFilePutContents ( "$padXmlDir/levels/$padXmlLvl/level-info.json", $padXmlInfo );
+  padFilePutContents ( "$padXmlDir/details/$padXmlLvl/level-info.json", $padXmlInfo );
 
 ?>

@@ -19,7 +19,7 @@
 
   function padXmlLevelStart ( $event ) {
 
-    global $padXml;
+    global $padXml, $padXmlDetails;
 
     extract ( $event );
     extract ( $padXml [$tree] );
@@ -41,7 +41,10 @@
     if ( $type   <> 'pad'     ) $options ['type']   = $type;
     if ( $source <> 'content' ) $options ['source'] = $source;
 
-    $options ['id'] = $tree;
+    if ( $padXmlDetails ) {
+      $options ['id']     = $tree;
+      $options ['parent'] = $parent;
+    }
 
     if ( $padXml [$tree] ['childs'] )
       padXmlOpen ( $tag, $options );
