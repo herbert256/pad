@@ -5,9 +5,10 @@
   if ( $padOccur [$pad] == 1 ) {
     $padDefault [$pad] = FALSE;
     if ( ! $padAfterBase [$pad] and ! $padBeforeData [$pad] )
-      if ( $padWalk [$pad] == 'start' )
-        if ( padDefaultData () )
-          $padDefault [$pad] = TRUE;
+      if ( ! $padEndBase [$pad] and ! $padStartData [$pad] )
+        if ( $padWalk [$pad] == 'start' )
+          if ( padDefaultData () )
+            $padDefault [$pad] = TRUE;
   }
 
   $padOccurStart [$pad] [$padOccur[$pad]] = TRUE;

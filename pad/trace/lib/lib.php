@@ -21,12 +21,15 @@
 
   function padTraceDefault ( $pad ) {
 
-    global $padWalk, $padData, $padBeforeBase, $padAfterBase;
+    global $padWalk, $padData, $padBeforeBase, $padAfterBase, $padStartBase, $padEndBase;
 
     if ( $pad == 0 )
       return TRUE;
 
     if ( ! isset ( $padWalk [$pad] ) or ! isset ( $padData [$pad] ) )
+      return FALSE;
+
+    if ( ! isset ( $padStartBase [$pad] ) or ! isset ( $padEndBase [$pad] ) )
       return FALSE;
 
     if ( ! isset ( $padBeforeBase [$pad] ) or ! isset ( $padAfterBase [$pad] ) )
@@ -35,7 +38,9 @@
     if ( $padWalk [$pad] == 'next'      
       or count ( $padData [$pad] ) > 1   
       or $padBeforeBase [$pad]           
-      or $padAfterBase  [$pad] )
+      or $padAfterBase  [$pad] 
+      or $padStartBase  [$pad]           
+      or $padEndBase    [$pad] )
 
       return FALSE;
 

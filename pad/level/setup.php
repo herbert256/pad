@@ -59,6 +59,10 @@
   $padBeforeBase [$pad] = [];
   $padBeforeData [$pad] = [];
 
+  $padEndBase    [$pad] = '';
+  $padStartBase  [$pad] = [];
+  $padStartData  [$pad] = [];
+
   $padTable      [$pad] = [];
   $padTableTag   [$pad] = '';
 
