@@ -4,12 +4,16 @@
 		"selected_items":
 		[
 			[
-				"re",
-				"regression"
+				"str",
+				"str_replace"
 			],
 			[
-				"str",
-				"strpos"
+				"str_en",
+				"str_ends_with()"
+			],
+			[
+				"re",
+				"regression"
 			],
 			[
 				"str_e",
@@ -510,10 +514,6 @@
 			[
 				"padDumpF",
 				"padDumpFunctions"
-			],
-			[
-				"padDat",
-				"padData"
 			]
 		]
 	},
@@ -553,33 +553,45 @@
 	"expanded_folders":
 	[
 		"/Users/herbert/pad/apps/pad",
-		"/Users/herbert/pad/apps/pad/development",
-		"/Users/herbert/pad/apps/pad/development/_lib",
-		"/Users/herbert/pad/apps/pad/extra",
-		"/Users/herbert/pad/apps/pad/scan",
 		"/Users/herbert/pad/pad",
 		"/Users/herbert/pad/pad/config",
-		"/Users/herbert/pad/pad/xml",
-		"/Users/herbert/pad/pad/xml/level",
-		"/Users/herbert/pad/data",
-		"/Users/herbert/pad/data/hits"
+		"/Users/herbert/pad/pad/level",
+		"/Users/herbert/pad/pad/xref"
 	],
 	"file_history":
 	[
-		"/Users/herbert/pad/pad/lib/file.php",
-		"/Users/herbert/pad/pad/xml/end.php",
-		"/Users/herbert/pad/pad/xml/level/start.php",
-		"/Users/herbert/pad/pad/xml/level/parms.php",
-		"/Users/herbert/pad/pad/config/config.php",
-		"/Users/herbert/pad/pad/exits/exits.php",
-		"/Users/herbert/pad/pad/start/lib/start.php",
 		"/Users/herbert/pad/pad/level/setup.php",
 		"/Users/herbert/pad/pad/level/parms.php",
-		"/Users/herbert/pad/apps/pad/development/all.php",
-		"/Users/herbert/pad/apps/pad/development/regression.php",
-		"/Users/herbert/pad/apps/pad/scan/scan.php",
-		"/Users/herbert/pad/apps/pad/scan/index.php",
+		"/Users/herbert/pad/pad/xref/tag.php",
+		"/Users/herbert/pad/pad/xref/parms.php",
+		"/Users/herbert/pad/pad/xref/at.php",
+		"/Users/herbert/pad/pad/lib/field/at.php",
+		"/Users/herbert/pad/pad/lib/field/field.php",
+		"/Users/herbert/pad/pad/xref/field.php",
 		"/Users/herbert/pad/pad/lib/other.php",
+		"/Users/herbert/pad/pad/config/config.php",
+		"/Users/herbert/pad/pad/xml/lib.php",
+		"/Users/herbert/pad/apps/pad/development/xref.php",
+		"/Users/herbert/pad/apps/pad/development/example.pad",
+		"/Users/herbert/pad/apps/pad/development/example.php",
+		"/Users/herbert/pad/pad/xml/level/example.php",
+		"/Users/herbert/pad/apps/pad/development/index.pad",
+		"/Users/herbert/pad/apps/pad/development/xref.pad",
+		"/Users/herbert/pad/apps/pad/development/page.pad",
+		"/Users/herbert/pad/pad/_tags/end.php",
+		"/Users/herbert/pad/pad/lib/eval/after.php",
+		"/Users/herbert/pad/pad/types/at.php",
+		"/Users/herbert/pad/pad/var/at.php",
+		"/Users/herbert/pad/apps/pad/development/regression.php",
+		"/Users/herbert/pad/pad/lib/file.php",
+		"/Users/herbert/pad/pad/xml/level/start.php",
+		"/Users/herbert/pad/pad/xml/level/parms.php",
+		"/Users/herbert/pad/apps/pad/scan/scan.php",
+		"/Users/herbert/pad/pad/xml/end.php",
+		"/Users/herbert/pad/pad/exits/exits.php",
+		"/Users/herbert/pad/pad/start/lib/start.php",
+		"/Users/herbert/pad/apps/pad/development/all.php",
+		"/Users/herbert/pad/apps/pad/scan/index.php",
 		"/Users/herbert/pad/apps/pad/_lib/lib.php",
 		"/Users/herbert/pad/pad/lib/type.php",
 		"/Users/herbert/pad/apps/pad/manual/options_variables_parameters.pad",
@@ -642,7 +654,6 @@
 		"/Users/herbert/pad/apps/pad/vars/at/docs/9.pad",
 		"/Users/herbert/pad/pad/start/lib/content.php",
 		"/Users/herbert/pad/pad/start/code.php",
-		"/Users/herbert/pad/apps/pad/development/index.pad",
 		"/Users/herbert/pad/pad/start/types/get.php",
 		"/Users/herbert/pad/pad/pad.php",
 		"/Users/herbert/pad/apps/pad/development/show/_includes/shared.php",
@@ -676,28 +687,11 @@
 		"/Users/herbert/pad/apps/pad/_regression/deep/three.pad",
 		"/Users/herbert/pad/apps/pad/_regression/deep/two.pad",
 		"/Users/herbert/pad/pad/start/function.php",
-		"/Users/herbert/pad/pad/_tags/page.php",
-		"/Users/herbert/pad/pad/_tags/sandbox.php",
-		"/Users/herbert/pad/pad/level/level.php",
-		"/Users/herbert/pad/apps/pad/manual/eval.pad",
-		"/Users/herbert/pad/apps/pad/index.pad",
-		"/Users/herbert/pad/apps/pad/concepts/tag_return_values_2/index.pad",
-		"/Users/herbert/pad/apps/pad/concepts/tag_return_values/extra/get.php",
-		"/Users/herbert/pad/apps/pad/manual/sql.pad",
-		"/Users/herbert/pad/apps/pad/examples/hello.pad",
-		"/Users/herbert/pad/apps/pad/_tags/example.php",
-		"/Users/herbert/pad/apps/pad/_tags/example.pad",
-		"/Users/herbert/pad/apps/pad/_data/departments/departments.csv",
-		"/Users/herbert/pad/apps/pad/manual/combined.pad",
-		"/Users/herbert/pad/apps/pad/manual/lvlocc.pad",
-		"/Users/herbert/pad/apps/pad/_data/references.json",
-		"/Users/herbert/pad/pad/inits/call.php",
-		"/Users/herbert/pad/pad/lib/stop.php",
-		"/Users/herbert/pad/pad/lib/track.php"
+		"/Users/herbert/pad/pad/_tags/page.php"
 	],
 	"find":
 	{
-		"height": 38.0
+		"height": 26.0
 	},
 	"find_in_files":
 	{
@@ -833,6 +827,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"case/case",
+			"dfgh",
+			"vvv",
 			"examples/case",
 			"{sequence",
 			"tag php",
@@ -957,10 +954,7 @@
 			"<true type=\"pad\" status=\"yes\" base=\"XML_PROBLEM_003\"",
 			"! #skipResult",
 			"<true type=\"pad\" status=\"yes\" base=\"XML_PROBLEM_003\"",
-			"XML_PROBLEM_003",
-			"true-2",
-			"false-2",
-			"ontent-2"
+			"XML_PROBLEM_003"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1206,7 +1200,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 575.0,
+	"side_bar_width": 291.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

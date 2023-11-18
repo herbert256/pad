@@ -18,12 +18,8 @@
   
   function padField ( $field, $type, $lvl=0 ) {
 
-    if ( $GLOBALS ['padBuildXml'] ) {
-      if ( $type == 2 ) padXmlXref ( 'fields', 'var',    $field );
-      if ( $type == 4 ) padXmlXref ( 'fields', 'array',  $field );
-      if ( $type == 6 ) padXmlXref ( 'fields', 'option', $field );
-      if ( $type == 8 ) padXmlXref ( 'fields', 'tag',    $field );
-    }
+    if ( $GLOBALS ['padXref'] ) 
+      include pad . 'xref/field.php';
 
     if ( str_contains ($field, ':' ) )
       list ( $prefix, $field ) = explode (':', $field, 2);
