@@ -17,7 +17,7 @@
 
     padCloseSession ();  
 
-    if ( $GLOBALS ['padBuildXml'] )
+    if ( $GLOBALS ['padXmlBuild'] )
       include pad . 'xml/end.php';  
     
     if ( ! isset($GLOBALS ['padSent']) )

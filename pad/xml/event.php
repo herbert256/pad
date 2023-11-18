@@ -27,6 +27,6 @@
     for ( $padI = $pad-1; $padI >= 0; $padI-- )
       $padXmlLine .= $padTag [$padI] . ' ';
 
-  padFilePutContents ( "$padXmlFile/events.txt", substr ( $padXmlLine, 0, 110 ), true );
+  padFilePutContents ( "$padXmlDir/events.txt", substr ( $padXmlLine, 0, 110 ), true );
 
 ?>

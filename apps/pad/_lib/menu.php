@@ -32,22 +32,22 @@
       $parts ['man']  ['link'] = 'manual';  
       $parts ['ref']  ['part'] = 'reference';
       $parts ['ref']  ['link'] = 'reference';  
-      $parts ['dev']  ['part'] = 'development';
-      $parts ['dev']  ['link'] = 'development';
+      $parts ['dev']  ['part'] = 'develop';
+      $parts ['dev']  ['link'] = 'develop';
       return $parts;
     }
 
-    if ( $padPage == 'development/xref' ) {
+    if ( $padPage == 'develop/xref' ) {
 
       $parts ['home'] ['part'] = 'home';
       $parts ['home'] ['link'] = 'index';       
 
-      $parts ['dev']  ['part'] = 'development';
-      $parts ['dev']  ['link'] = 'development';
+      $parts ['dev']  ['part'] = 'develop';
+      $parts ['dev']  ['link'] = 'develop';
 
       if ( $GLOBALS ['xref'] or $GLOBALS ['go'] ) {
         $parts ['x']  ['part'] = 'cross reference';
-        $parts ['x']  ['link'] = 'development/xref';
+        $parts ['x']  ['link'] = 'develop/xref';
       } else {
         $parts ['x']  ['part'] = 'cross reference';
         $parts ['x']  ['link'] = '';
@@ -66,13 +66,13 @@
         foreach ( $plode as $key => $value ) {
           $xref .= "/$value";
           $parts ["x$key"] ['part'] = $value;
-          $parts ["x$key"] ['link'] = "development/xref&xref=$xref";
+          $parts ["x$key"] ['link'] = "develop/xref&xref=$xref";
         }
 
         $parts ['lst']  ['part'] = $last;
 
         if ( $GLOBALS ['go'] ) 
-          $parts ['lst']  ['link'] = "development/xref&xref=$xref/$last";
+          $parts ['lst']  ['link'] = "develop/xref&xref=$xref/$last";
         else   
           $parts ['lst']  ['link'] = '';     
 
@@ -125,7 +125,7 @@
 
     }  
 
-    if     ( strpos ($padPage, '/show/' )      ) $source = 'development/regression/show';
+    if     ( strpos ($padPage, '/show/' )      ) $source = 'develop/regression/show';
     elseif ( $padPage == 'reference/reference' ) $source = $GLOBALS['reference'];
     elseif ( $padPage == 'reference/show'      ) $source = $GLOBALS['item'];
     else                                         $source = $padPage;

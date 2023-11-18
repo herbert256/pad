@@ -1,6 +1,23 @@
 <?php
 
 
+  function padCounter ( $file ) {
+
+    if ( ! $file )
+      return;
+
+    if ( ! file_exists ( padData . "/counters/$file" ) )
+      padFilePutContents ( $file , '0' );
+
+    $now = padFileGetContents ( padData . "/counters/$file" );
+
+    $now ++;
+
+    padFilePutContents ( "/counters/$file" , $now );  
+
+  }
+
+
   function padXref ( $dir1, $dir2, $dir3='' ) {
 
     global $padPage;

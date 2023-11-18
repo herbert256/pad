@@ -21,7 +21,7 @@
   if ( $padTraceActive )
     include pad . 'trace/occur/start.php';  
 
-  if ( $padBuildXml )
+  if ( $padXmlBuild )
     include pad . 'xml/occur/start.php';  
   
   if ( $padWalk [$pad] <> 'start' )

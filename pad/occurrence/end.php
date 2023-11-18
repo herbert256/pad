@@ -5,7 +5,7 @@
   if ( $padTraceActive and $padBase [$pad] )
     include pad . 'trace/occur/end.php';  
   
-  if ( $padBuildXml )
+  if ( $padXmlBuild )
     include pad . 'xml/occur/end.php';  
      
   padResetOcc ($pad);

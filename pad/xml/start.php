@@ -6,6 +6,6 @@
   $padXmlLevel  = [];
   $padXmlEvents = [];
 
-  $padXmlFile   = "xml/$padPage/" . hrtime (true);
+  $padXmlDir   = "xml/$padPage/" . hrtime (true);
 
 ?>

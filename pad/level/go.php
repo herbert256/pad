@@ -6,7 +6,7 @@
   $padTagResult = include pad . "types/" . $padType [$pad] . ".php";
   $padTagOb     = ob_get_clean();
 
-  if ( $padBuildXml ) 
+  if ( $padXmlBuild ) 
     include pad . 'xml/level/go.php';
 
   if     ( is_object   ( $padTagResult ) ) $padTagResult = padToArray( $padTagResult );

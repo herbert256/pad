@@ -32,11 +32,12 @@
   $padTrace        = FALSE;
   $padTraceProfile = 'default';
 
-   // Build a XML file with the PAD structure
+   // Build the XML tree
 
-  $padBuildXml = FALSE;
+  $padXmlBuild   = FALSE;
+  $padXmlDetails = FALSE;
 
-   // Build the xref 
+   // For the xref page from the develop section of the PAD menu
 
   $padXref = TRUE;
 

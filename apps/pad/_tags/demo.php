@@ -34,7 +34,6 @@
     $secondFile .= '</td>';
   }
 
-
   $padContent = 
     '<tr>' .
       $firstFile .

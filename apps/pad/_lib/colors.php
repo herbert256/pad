@@ -31,8 +31,6 @@
    $source = padHighLight (trim($source));
 
    $source = str_replace ('@content@', '<font color="black"><b><font color="blue">@<b>content</b>@</font></b></font>', $source);
-   $source = str_replace ('@start@', '<font color="black"><b><font color="blue">@<b>start</b>@</font></b></font>', $source);
-   $source = str_replace ('@end@',   '<font color="black"><b><font color="blue">@<b>end</b>@</font></b></font>',   $source);
    $source = str_replace ('@tidy@',  '<font color="black"><b><font color="blue">@<b>tidy</b>@</font></b></font>',  $source);
 
 go: $end = strpos($source, '}');

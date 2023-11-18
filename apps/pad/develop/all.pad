@@ -1,0 +1,26 @@
+{duration 'all'}
+
+{padPagesFiltered}
+
+    <hr>
+    <h3><a href="{$padGo}develop/show&item={$dir}/{$file}">{$item}</a></h3>
+
+    <table style="border-style: dashed; dotted;" cellspacing="15"><tr><td>
+
+      <center>
+
+          {page 'develop/show/one', type='{$exampleType}', include, ignore, $one='{$item}'}
+
+      </center>
+
+      </td></tr></table>
+
+      <br><br>
+
+{/padPagesFiltered}
+
+{/duration}
+
+{durationGet}
+
+<!-- PAD: SKIP REGRESSION -->

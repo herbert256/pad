@@ -135,9 +135,9 @@
 
   function padXmlWrite ( $xml ) {
   
-    global $padXmlFile;
+    global $padXmlDir;
 
-    padFilePutContents ( "$padXmlFile/tree.xml", $xml, true );
+    padFilePutContents ( "$padXmlDir/tree.xml", $xml, true );
   
   }
 
@@ -157,7 +157,7 @@
 
   function padXmlTidy () {
 
-    global $padXmlFile;
+    global $padXmlDir;
 
     $options = [
       'input-xml'           => true,
@@ -173,7 +173,7 @@
       'drop-empty-elements' => 'yes'
     ];
 
-    $data = padFileGetContents ( padData . "$padXmlFile/tree.xml" );
+    $data = padFileGetContents ( padData . "$padXmlDir/tree.xml" );
 
     $tidy = new tidy;
     $tidy->parseString ( $data, $options, 'utf8' );
@@ -182,24 +182,7 @@
     if ( $tidy === FALSE )
       return padError ( "TIDY conversion error");
 
-    padFilePutContents ( "$padXmlFile/tidy.xml" , $tidy->value );
-
-  }
- 
-
-  function padCounter ( $file ) {
-
-    if ( ! $file )
-      return;
-
-    if ( ! file_exists ( padData . "/counters/$file" ) )
-      padFilePutContents ( $file , '0' );
-
-    $now = padFileGetContents ( padData . "/counters/$file" );
-
-    $now ++;
-
-    padFilePutContents ( "/counters/$file" , $now );  
+    padFilePutContents ( "$padXmlDir/tidy.xml" , $tidy->value );
 
   }
 

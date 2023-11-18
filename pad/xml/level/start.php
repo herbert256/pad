@@ -1,6 +1,4 @@
 <?php
-
-  padXmlXref ( 'tags', $padType [$pad], $padTag [$pad] );
   
   $padXmlTag = ( $padTag [$pad] == 'padBuildData' ) ? "page-$padPage" : $padTag [$pad];
 
@@ -25,8 +23,6 @@
 
   $padXmlLvl = $padXmlLevel [$pad];
   $padXmlOcc = $padOccur    [$pad];
-
-  padFilePutContents ( "$padXmlFile/levels/$padXmlLvl/level-entry.json", $padXmlNew );
 
   if ( $pad > 0 ) {
 

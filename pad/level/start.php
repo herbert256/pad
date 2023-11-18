@@ -38,7 +38,7 @@
   if ( padOpenCloseOk ( $padBase[$pad], '@end@') ) include pad . 'level/split/after1.php';
   if ( padOpenCloseOk ( $padBase[$pad], '{end}') ) include pad . 'level/start_end/end1.php';
 
-  if ( $padBuildXml ) 
+  if ( $padXmlBuild ) 
     include pad . 'xml/level/info.php';  
 
   if ( padOpenCloseOk ( $padBase[$pad], '@start@') ) return include pad . 'level/split/before1.php';

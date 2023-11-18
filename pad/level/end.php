@@ -36,7 +36,7 @@
     include pad . 'options/callback.php';
  
   if ( $padTraceActive ) include pad . 'trace/level/end.php';    
-  if ( $padBuildXml    ) include pad . 'xml/level/end.php';  
+  if ( $padXmlBuild    ) include pad . 'xml/level/end.php';  
   
   padResetLvl ($pad);
 
