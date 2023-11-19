@@ -20,6 +20,15 @@
 
   }
   
+  function forLink () {
+
+    return 'reference/xref'
+    . '&xref='  . ($GLOBALS ['xref'] ?? '')
+    . '&for='   . urlencode(($GLOBALS ['for'] ?? ''))
+    . '&xmain=' . ($GLOBALS ['xmain'] ?? '')
+    . '&xitem=' . ($GLOBALS ['xitem'] ?? '');
+
+  }
 
   function parts ( ) {
 
@@ -52,7 +61,7 @@
 
         if ( $GLOBALS ['xmain'] ) {
           $parts ['xm']  ['part'] = strtolower ( $GLOBALS ['for'] );
-          $parts ['xm']  ['link'] = 'xxx';
+          $parts ['xm']  ['link'] = forLink ();
         }
 
         if ( $GLOBALS ['xitem'] ) {
@@ -72,7 +81,7 @@
 
         if ( $GLOBALS ['xmain'] ) {
           $parts ['xm']  ['part'] = strtolower ( $GLOBALS ['for'] );
-          $parts ['xm']  ['link'] = 'xxx';
+          $parts ['xm']  ['link'] = forLink ();
         }
 
         if ( $GLOBALS ['xitem'] ) {
@@ -87,7 +96,7 @@
 
         if ( $GLOBALS ['xmain'] ) {
           $parts ['xm']  ['part'] = strtolower ( $GLOBALS ['for'] );
-          $parts ['xm']  ['link'] = 'xxx';
+          $parts ['xm']  ['link'] = forLink ();
         }
 
         $parts ['xi']  ['part'] = $GLOBALS ['xitem'];

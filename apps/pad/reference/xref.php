@@ -2,7 +2,6 @@
 
   if ( ! isset ( $xgo   ) ) $xgo   = '';
   if ( ! isset ( $xmain ) ) $xmain = '';
-  if ( ! isset ( $xbase ) ) $xbase = '';
   if ( ! isset ( $xitem ) ) $xitem = '';
   if ( ! isset ( $xnext ) ) $xnext = '';
 
@@ -13,7 +12,7 @@
 
   if ( $xgo ) {
 
-    $source = padFileGetContents ( padApp . $xgo . '.pad' );
+go: $source = padFileGetContents ( padApp . $xgo . '.pad' );
 
     $showPage = ( str_contains ( $source, '{demo}' ) or str_contains ( $source, '{example' )  );
 
@@ -34,14 +33,9 @@
     elseif ( str_ends_with ( $file, '.hit' ) ) $pages [$file] ['page'] = substr (str_replace ('@', '/', $file), 0, -4);
     else                                       $dirs  [$file] ['dir']  = $file; 
 
-  if ( $xbase and count ( $dirs ) ) {
-
-    $xbase = pad . $xbase;
-
-    foreach ( $dirs as $file => $dir )
-      if ( ! file_exists ("$xbase/$file.php") and ! file_exists ("$xbase/$file.pad") and ! file_exists ("$xbase/$file") )
-        unset ( $dirs [$file] );
-
+  if ( count ($pages) == 1) {
+    $xgo = $pages [$file] ['page'] ;
+    goto go;
   }
 
 ?>

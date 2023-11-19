@@ -37,7 +37,7 @@
   $padXmlBuild   = TRUE;
   $padXmlDetails = FALSE;
 
-   // For the xref page from the develop section of the PAD menu
+   // For the xref pages
 
   $padXref        = TRUE;
   $padXrefReverse = TRUE;
