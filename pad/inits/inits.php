@@ -13,7 +13,8 @@
   include pad . 'inits/zip.php';
   include pad . 'inits/host.php';
   include pad . 'inits/trace.php';
-  include pad . 'inits/tree.php';
+  include pad . 'inits/xref.php';
+  include pad . 'inits/xml.php';
   include pad . 'inits/track.php';
   include pad . 'cache/cache.php';
   include pad . 'inits/level.php';

@@ -11,12 +11,52 @@
 {/demo}{demo}
 
 {hello}
+
 {hello}
+
 {hello}
 
 {/demo}{/table}
 
-<p><hr>Merge content with content</p>
+<hr><h4>Open or close tag</h4>
+
+{block}
+<p>If <b>&open;content 'xxx'&close;</b> is used, then the content will not be processed before it is stored in the content store</p>
+<p>If <b>&open;/content 'xxx'&close;</b> is used, then the content will be processed before it is stored in the content store</p>
+{/block}
+
+{table}{demo}
+
+{set $abc = 10}
+
+{content 'myContent'}
+  {$abc} <br>
+{/content}
+
+{/demo}{demo}
+
+{increment $abc} {myContent}
+{increment $abc} {myContent}
+{increment $abc} {myContent}
+
+{/demo}{demo}
+
+{set $abc = 10}
+
+{content}
+  {$abc} <br>
+{/content 'myContent'}
+
+{/demo}{demo}
+
+{increment $abc} {myContent}
+{increment $abc} {myContent}
+{increment $abc} {myContent}
+
+{/demo}{/table}
+
+
+<hr><h4>Merge content with content</h4>
 
 {table}{demo}
 
@@ -26,51 +66,75 @@
   After <br>
 {/content}
 
+{/demo}{demo}
+
 {myContent}
   This will be inserted <br>
 {/myContent}
 
 {/demo}{/table}
 
-<hr>
+{table}{demo}
+
+{content 'myContent'}
+  This will be inserted <br>
+{/content}
+
+{/demo}{demo}
+
+{myContent}
+  Before <br>
+  @content@
+  After <br>
+{/myContent}
+
+{/demo}{/table}
+
+<hr><h4>More merging content</h4>
+
 {block}
-<p>
-If <b>&open;content 'xxx'&close;</b> is used, then the content will not be processed before it is stored in the content store</p>
-
-<p>If <b>&open;/content 'xxx'&close;</b> is used, then the content will be processed before it is stored in the content store</p>
-
+The options 'true' & 'false' are for testing purposes, they change the behavior of the current tag.</p>
 {/block}
 
 {table}{demo}
 
-{set $abc = 10}
-
 {content 'myContent'}
-  <p> {$abc} </p>
+  This is the true content from the called tag. <br>
+@else@
+  This is the false content from the called tag. <br>
 {/content}
 
-{increment $abc} {myContent}
-{increment $abc} {myContent}
-{increment $abc} {myContent}
-{/demo}
+{/demo}{demo}
 
-{demo}
-{set $abc = 10}
+{myContent merge='top', true}
+  This is the true base content <br>
+@else@
+  This is the false base content <br>
+{/myContent}
 
-{content}
-  <p> {$abc} </p>
-{/content 'myContent'}
+{/demo}{demo}
 
-{increment $abc} {myContent}
-{increment $abc} {myContent}
-{increment $abc} {myContent}
+{myContent merge='bottom', true}
+  This is the true base content <br>
+@else@
+  This is the false base content <br>
+{/myContent}
+
+{/demo}{demo}
+
+{myContent merge='top', false}
+  This is the true base content <br>
+@else@
+  This is the false base content <br>
+{/myContent}
+
+{/demo}{demo}
+
+{myContent merge='bottom', false}
+  This is the true base content <br>
+@else@
+  This is the false base content <br>
+{/myContent}
 
 {/demo}{/table}
 
-<br><hr><br>
-
-<p>
-  <a href="{$padGo}reference/show&item=tags/content">
-    See the &open;content&close; page in the reference section for more examples
-  </a>
-</p>

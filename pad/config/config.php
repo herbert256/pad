@@ -39,7 +39,8 @@
 
    // For the xref page from the develop section of the PAD menu
 
-  $padXref = TRUE;
+  $padXref        = TRUE;
+  $padXrefReverse = TRUE;
 
   // Cache settings
   

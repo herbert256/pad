@@ -18,7 +18,10 @@
   }
 
 
-  function padXref ( $dir1, $dir2, $dir3='' ) {
+  function padXref ( $dir1, $dir2, $dir3='', $reverse=FALSE ) {
+
+    if ( $GLOBALS ['padXrefReverse'] and ! $reverse )
+      padXref ( $dir1, $dir2, $dir3, TRUE );
 
     if ( $dir1 == 'tags'   and $dir2 == 'tag'      ) padXref ( 'properties', $dir3 );
     if ( $dir1 == 'fields' and $dir2 == 'tag'      ) padXref ( 'properties', $dir3 );
@@ -26,7 +29,10 @@
  
     global $padPage;
 
-    $dir = padApp . "xref/$dir1/$dir2";
+    if ( ! $reverse )
+      $dir = padApp . "xref/$dir1/$dir2";
+    else
+      $dir = padData . "xref/$padPage/$dir1/$dir2"; 
 
     if ( $dir3 )
       $dir .= "/" . str_replace ( '/' , '@', padFileCorrect ($dir3 ) );
@@ -39,7 +45,8 @@
     if ( ! file_exists ( $dir ) )
       mkdir ( $dir, 0777, TRUE );
 
-    touch ( $file, 0777, TRUE );
+    if ( ! $reverse )
+      touch ( $file, 0777, TRUE );
 
   }
 

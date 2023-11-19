@@ -1,5 +1,5 @@
 <?php
 
-  padXref ( $padPageStart, $padPageType, $padPagePage );
+  padXref ( $padPageStart, $padPageType );
 
 ?>

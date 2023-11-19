@@ -15,11 +15,11 @@
 {block}
   If not specifield for a PAD tag then default every PAD tag has 1 occurence.
   <br><br>
-  Just for fun, the above example implemented in a few different ways below.
+  Just for fun, below the above example implemented in a few different ways.
 {/block}
 
 <p> 
-{sequence '2..6', name='xxx'}
+{sequence '2..5', name='xxx'}
   {example 'manual/lvlocc_parts/{xxx}', skipNames{notFirst},skipOpen,skipHeader{/notFirst}{notLast},skipClose{/notLast}}
 {/sequence}
 </p>
