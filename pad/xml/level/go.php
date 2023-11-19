@@ -21,6 +21,6 @@
   else                                     $padXmlTagReturn = 'value';
 
   if ( $padXref ) 
-    include pad . 'xref/return.php';  
+    include pad . 'xref/items/return.php';  
   
 ?>

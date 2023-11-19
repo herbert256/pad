@@ -1,7 +1,7 @@
 <?php
 
   if ( $padXref ) 
-    include pad . 'xref/start.php';
+    include pad . 'xref/items/start.php';
   
   list ( $padBase [$pad], $padStartBase [$pad] ) = explode ( '@start@', $padBase [$pad], 2 );
 

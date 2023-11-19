@@ -26,7 +26,7 @@
     $second = $names [1] ?? '';
 
     if ( $GLOBALS ['padXref'] ) 
-      include pad . 'xref/at.php';
+      include pad . 'xref/items/at.php';
 
     if     ( $property )  return include pad . "var/property.php";
     elseif ( $kind     )  return include pad . "var/at/$kind.php";

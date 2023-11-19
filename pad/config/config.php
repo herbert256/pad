@@ -34,13 +34,13 @@
 
    // Build the XML tree
 
-  $padXmlBuild   = TRUE;
+  $padXmlBuild   = FALSE;
   $padXmlDetails = FALSE;
 
    // For the xref pages
 
-  $padXref        = TRUE;
-  $padXrefReverse = TRUE;
+  $padXref        = FALSE;
+  $padXrefReverse = FALSE;
 
   // Cache settings
   

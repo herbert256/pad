@@ -5,6 +5,9 @@
   if ( ! isset ( $xitem ) ) $xitem = '';
   if ( ! isset ( $xnext ) ) $xnext = '';
 
+  if ( ! isset ($for) )
+    return;
+
   $title = $for;
 
   if ( $xitem ) $title .= " - $xitem";

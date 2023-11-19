@@ -1,6 +1,6 @@
 <?php
 
-    if ( $GLOBALS ['padTrackFileRequest'] )
-      padTrackFileRequestStart ();
+  if ( $GLOBALS ['padTrackFileRequest'] )
+    padTrackFileRequestStart ();
 
 ?>

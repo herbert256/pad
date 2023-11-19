@@ -1,7 +1,7 @@
 <?php
 
   if ( $padXref ) 
-    include pad . 'xref/page.php';
+    include pad . 'xref/items/page.php';
 
   $padPageSavePage [$pad] = $padPage;
   $padPageSaveDir  [$pad] = $padDir;

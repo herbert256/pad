@@ -48,18 +48,32 @@
 go: $end = strpos($source, '}');
 
     if ( $end === FALSE ) {
-      #$source = str_replace ('{', '&open;', $source);
-      #$source = str_replace ('}', '&close;', $source);
+      $source = str_replace ('{', '&open;', $source);
+      $source = str_replace ('}', '&close;', $source);
       return $source;
     }
 
     $start = strrpos ($source, '{', $end - strlen($source));
-    
+
     if ( $start === FALSE ) {
       $source = substr($source, 0, $end)
               . '&close;'
               . substr($source, $end+1);
       goto go;
+    }
+
+    if ( substr ($source, $start+1, 6) == '&nbsp;' ) {
+      $source = substr($source, 0, $start)
+              . '&open;'
+              . substr($source, $start+1);
+      goto go;      
+    }
+
+    if ( $source [$start+1] == "\t" ) {
+      $source = substr($source, 0, $start)
+              . '&open;'
+              . substr($source, $start+1);
+      goto go;      
     }
 
     $between = substr($source, $start+1, $end-$start-1);
@@ -144,16 +158,14 @@ go: $end = strpos($source, '}');
 co: $parms  = $words[1] ?? '';
 
     $space  = ($parms) ? ' ' : '';
-    $parms  = str_replace ('<font color="green">', '',  $parms);
-    $parms  = str_replace ('</font>', '',             $parms);
-    $parms  = str_replace ('</b>', '',             $parms);
     $parms  = str_replace (' ', '&nbsp;',                        $parms);
-    $parms  = str_replace ('=ToDo', '<font color="black">=</font>',  $parms);
+
     $parms  = str_replace ('|', '<font color="black">|</font>',  $parms);
     $parms  = str_replace ('@', '<font color="black">@</font>',  $parms);
     $parms  = str_replace ('$', '<font color="black">$</font>',  $parms);
     $parms  = str_replace ('%', '<font color="black">%</font>',  $parms);
     $parms  = str_replace (',', '<font color="black">,</font>',  $parms);
+
     $parms  = str_replace ('&open;', '<font color="black">&open;</font>',  $parms);
     $parms  = str_replace ('&close;', '<font color="black">&close;</font>', $parms);
 
@@ -161,7 +173,7 @@ co: $parms  = $words[1] ?? '';
     if ( count($x) == 2 ) {
       $y = padExplode($x[1], '<font color="black">&close;</font>', 2);
       if ( count($y) == 2 ) 
-        $parms = $x[0] . '<font color="black">&open;</font><font color="green">$'  . $y[0] . '</font><font color="black">&close;</font>' . $y[1];
+        $parms = $x[0] . '<font color="black">&open;</font><font color="green">$' . $y[0] . '</font><font color="black">&close;</font>' . $y[1];
     }
 
     if (substr($parms, -1) == '/') {
