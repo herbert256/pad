@@ -1,8 +1,12 @@
 {if $xgo}
 
-  {example '{$xgo}' }
+  {showPage}
+    {page '{$xgo}' }
+  @else@
+    {example '{$xgo}' }
+  {/showPage}
 
-{else}
+@else@
 
 <blockquote>
 <blockquote>
@@ -22,7 +26,7 @@
     {pages}
 
       <a 
-        href="{$padGo}reference/xref&xgo=/{$page}&xref={$xref}&for={$for|url}&xitem={$xitem}&xnext={$xnext}&xmain={$xmain}">{$page}
+        href="{$padGo}reference/xref&xgo={$page}&for={$for|url}&xitem={$xitem}&xnext={$xnext}&xmain={$xmain}">{$page}
       </a> 
 
       <br>

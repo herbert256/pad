@@ -9,7 +9,7 @@
   else
     $padOpenClose [ $padTag [$pad] ] = TRUE;
 
-  $padPos = strpos ( $padTrue [$pad], '{else}');
+  $padPos = strpos ( $padTrue [$pad], '@else@');
 
   while ( $padPos !== FALSE) {
     
@@ -21,7 +21,7 @@
       return;
     }
 
-    $padPos = strpos ( $padTrue [$pad], '{else}', $padPos+1);
+    $padPos = strpos ( $padTrue [$pad], '@else@', $padPos+1);
 
   }
 

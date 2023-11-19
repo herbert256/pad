@@ -35,14 +35,14 @@
   if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']) )
     include pad . 'callback/init.php' ;
 
-  if ( padOpenCloseOk ( $padBase[$pad], '@end@') ) include pad . 'level/split/after1.php';
-  if ( padOpenCloseOk ( $padBase[$pad], '{end}') ) include pad . 'level/start_end/end1.php';
+  if ( padOpenCloseOk ( $padBase[$pad], '@end@') ) 
+    include pad . 'level/start_end/end1.php';
 
   if ( $padXmlBuild ) 
     include pad . 'xml/level/info.php';  
 
-  if ( padOpenCloseOk ( $padBase[$pad], '@start@') ) return include pad . 'level/split/before1.php';
-  if ( padOpenCloseOk ( $padBase[$pad], '{start}') ) return include pad . 'level/start_end/start1.php';
+  if ( padOpenCloseOk ( $padBase[$pad], '@start@') ) 
+    return include pad . 'level/start_end/start1.php';
 
   if ( count ( $padData [$pad] ) and $padBase [$pad] ) {
     $padOccurTypeSet = 'start';  

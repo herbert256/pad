@@ -63,12 +63,12 @@
       <th>Name</th> 
       <th>Phone</th>
     </tr>
-    {start}
+    @start@
       <tr>
         <td>{$name}</td> 
         <td>{$phone}</td>
       </tr>
-    {end}
+    @end@
   </table>
 {/content}
 
@@ -104,12 +104,12 @@
         <th> Name  </th>
         <th> Phone </th>
       </tr>
-      {start}
+      @start@
         <tr>
           <td bgcolor="{$color1}"> {$name}  </td>
           <td bgcolor="{$color2}"> {$phone} </td>
         </tr>
-      {end}
+      @end@
     </table>
 {/content}
 
@@ -125,12 +125,12 @@
         <th> Name  </th>
         <th> Phone </th>
       </tr>
-      {start}
+      @start@
         <tr>
           <td bgcolor="{$1}"> {$name}  </td>
           <td bgcolor="{$2}"> {$phone} </td>
         </tr>
-      {end}
+      @end@
     </table>
 {/content}
 
@@ -194,7 +194,7 @@
 
 {content 'myContent'}
   This is the true content from the called tag. <br>
-{else}
+@else@
   This is the false content from the called tag. <br>
 {/content}
 
@@ -202,7 +202,7 @@
 
 {myContent merge='top', true}
   This is the true base content <br>
-{else}
+@else@
   This is the false base content <br>
 {/myContent}
 
@@ -210,7 +210,7 @@
 
 {myContent merge='bottom', true}
   This is the true base content <br>
-{else}
+@else@
   This is the false base content <br>
 {/myContent}
 
@@ -218,7 +218,7 @@
 
 {myContent merge='top', false}
   This is the true base content <br>
-{else}
+@else@
   This is the false base content <br>
 {/myContent}
 
@@ -226,7 +226,7 @@
 
 {myContent merge='bottom', false}
   This is the true base content <br>
-{else}
+@else@
   This is the false base content <br>
 {/myContent}
 

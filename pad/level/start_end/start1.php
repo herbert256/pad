@@ -3,7 +3,7 @@
   if ( $padXref ) 
     include pad . 'xref/start.php';
   
-  list ( $padBase [$pad], $padStartBase [$pad] ) = explode ( '{start}', $padBase [$pad], 2 );
+  list ( $padBase [$pad], $padStartBase [$pad] ) = explode ( '@start@', $padBase [$pad], 2 );
 
   $padStartData [$pad] = $padData [$pad]; 
   $padData [$pad]      = padDefaultData ();

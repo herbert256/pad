@@ -1,16 +1,16 @@
 {parts}
   {include 'lineOpen'}
   <font size="-1">
-  {start}
+  @start@
     {if $link}<a href="{$padGo}{$link}">{/if}{$part}{if $link}</a>{/if} 
     {notLast}
     {if $padPage EQ 'index'}
        &nbsp; | &nbsp;
-    {else}
+    @else@
       /
     {/if}
     {/notLast}
-  {end}
+  @end@
 </font>
   {include 'lineClose'}
 {/parts}

@@ -15,24 +15,8 @@
     if ( strpos ( padFileGetContents($check), 'PAD: SKIP REGRESSION') )
       continue;
 
-    file_put_contents ($now, $item, LOCK_EX);
-
     $old = padFileGetContents($store);
-
-    if ( $type == 'curl' ) {
-
-      $new = getPageData ($item, 1);
-
-    } else {
-
-      if ( strpos ( padFileGetContents($check), 'PAD: NO ALL') ) continue;
-      if ( strpos ( $check, 'develop') !== FALSE           ) continue;
-
-      $padGet = $item;
-      $new    = include pad . 'start/get.php';
-      $new = trim ($new);
-
-    }
+    $new = getPageData ($item, 1);
 
     if     ( ! padExists ($store) )               $status = 'new';
     elseif ( strrpos($store, 'random') )          $status = 'random' ;

@@ -26,12 +26,24 @@
   
   }  
   
+  function padColorsKind ( $kind, &$source ) {
+
+    $source = str_replace ( 
+      "@$kind@", 
+      '<b><font color="black">@</font><font color="purple">' . $kind . '</font><font color="black">@</font></b>', 
+      $source); 
+
+  } 
+
   function padColorsString ($source) { 
 
    $source = padHighLight (trim($source));
 
-   $source = str_replace ('@content@', '<font color="black"><b><font color="blue">@<b>content</b>@</font></b></font>', $source);
-   $source = str_replace ('@tidy@',  '<font color="black"><b><font color="blue">@<b>tidy</b>@</font></b></font>',  $source);
+   padColorsKind ( 'content', $source ); 
+   padColorsKind ( 'tidy',    $source ); 
+   padColorsKind ( 'else',    $source ); 
+   padColorsKind ( 'start',   $source ); 
+   padColorsKind ( 'end',     $source ); 
 
 go: $end = strpos($source, '}');
 

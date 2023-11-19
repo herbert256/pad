@@ -275,7 +275,7 @@
     $false = '';
 
     $list = padOpenCloseList ( $true ) ;
-    $pos  = strpos ( $true, '{else}');
+    $pos  = strpos ( $true, '@else@');
 
     while ( $pos !== FALSE) {
       
@@ -285,7 +285,7 @@
         return;
       }
   
-      $pos = strpos ( $true, '{else}', $pos+1);
+      $pos = strpos ( $true, '@else@', $pos+1);
 
     }
 

@@ -12,8 +12,15 @@
   if ( $xnext ) $title .= " - $xnext";
 
   if ( $xgo ) {
+
+    $source = padFileGetContents ( padApp . $xgo . '.pad' );
+
+    $showPage = ( str_contains ( $source, '{demo}' ) or str_contains ( $source, '{example' )  );
+
     $title .= " - $xgo";
+    
     return TRUE;
+ 
   }
 
   $dirs  = [];

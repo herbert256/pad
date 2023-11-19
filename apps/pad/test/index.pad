@@ -1,42 +1,38 @@
-<h3> Test 1 </h3>
+{block}
+<p>
+The tag {tag 'myArray'} is an array with 3 occurrences.
+</p>
+{/block}
 
-{myArray1}
+{table}
 
-  <p> Before the first occurence </p>
+{demo}
 
-  {start}
-    <p> For every occurence </p>
-  {end}
+{data 'myArray'}
+  [1,2,3]
+{/data}
 
-  <p> After the last occurence </p>
+{/demo}{demo}
 
-  {else}
-
-  <p> No occurences al all </p>
-
-{/myArray1}
-
-<h3> Test 2 </h3>
-
-{count 'myArray1'}
+{myArray}
 
   <p> Before the first occurence </p>
 
-  {myArray1}
-      <p> For every occurence </p>
-  {/myArray1}
+@start@
+  <p> For every occurence </p>
+@end@
 
   <p> After the last occurence </p>
 
-{else}
+@else@
 
-  <p> No occurences al all </p>
+  <p> No occurences at all </p>
 
-{/count}
+{/myArray}
 
-<h3> Test 3 </h3>
+{/demo}{demo}
 
-{myArray1}
+{myArray}
 
   {first}
     <p> Before the first occurence </p>
@@ -48,8 +44,104 @@
     <p> After the last occurence </p>
   {/last}
 
-  {else}
+@else@
 
-  <p> No occurences al all </p>
+  <p> No occurences at all </p>
 
-{/myArray1}
+{/myArray}
+
+{/demo}{demo}
+
+{count 'myArray'}
+
+  <p> Before the first occurence </p>
+
+  {myArray}
+    <p> For every occurence </p>
+  {/myArray}
+
+  <p> After the last occurence </p>
+
+@else@
+
+  <p> No occurences at all </p>
+
+{/count}
+
+{/demo}
+
+{/table}
+
+{block}
+<p>
+The tag {tag 'myArray'} is an empty array.
+</p>
+{/block}
+
+{table}
+
+{demo}
+
+{data 'myArray'}
+ []
+{/data}
+
+{/demo}{demo}
+
+{myArray}
+
+  <p> Before the first occurence </p>
+
+@start@
+  <p> For every occurence </p>
+@end@
+
+  <p> After the last occurence </p>
+
+@else@
+
+  <p> No occurences at all </p>
+
+{/myArray}
+
+{/demo}{demo}
+
+{myArray}
+
+  {first}
+    <p> Before the first occurence </p>
+  {/first}
+
+  <p> For every occurence </p>
+
+  {last}
+    <p> After the last occurence </p>
+  {/last}
+
+@else@
+
+  <p> No occurences at all </p>
+
+{/myArray}
+
+{/demo}{demo}
+
+{count 'myArray'}
+
+  <p> Before the first occurence </p>
+
+  {myArray}
+    <p> For every occurence </p>
+  {/myArray}
+
+  <p> After the last occurence </p>
+
+@else@
+
+  <p> No occurences at all </p>
+
+{/count}
+
+{/demo}
+
+{/table}
