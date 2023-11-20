@@ -14,7 +14,7 @@
   $dirs  = [];
   $pages = [];
 
-  $list = scandir ( padApp . 'xref' . $xref );
+  $list = scandir ( padData . 'xref' . $xref );
 
   foreach ( $list as $file )
     if     ( $file == '.'                    ) continue;

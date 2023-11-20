@@ -9,16 +9,15 @@
   $padXmlLvl = $padXmlLevel [$pad];
   $padXmlOcc = $padOccur    [$pad];
 
-  $padXmlP1 = ( $padXmlOcc == 0 or $padXmlOcc == 99999 ) ? '' : $padXmlOcc;
-  $padXmlP2 = str_replace ( 'level-', '', $padXmlEventType ); 
-  $padXmlP2 = str_replace ( 'occur-', '', $padXmlP2 ); 
+  $padXmlP1 = str_replace ( 'level-', '', $padXmlEventType ); 
+  $padXmlP1 = str_replace ( 'occur-', '', $padXmlP1 ); 
 
-  $padXmlP3 = $pad;
+  $padXmlP2 = $pad;
   if ( $padXmlOcc <> 0 and $padXmlOcc <> 99999 )
-    $padXmlP3 .= "/$padXmlOcc";
+    $padXmlP2 .= "/$padXmlOcc";
 
-  $padXmlLine = sprintf ( '%-7s',  $padXmlP2      )
-              . sprintf ( '%-7s',  $padXmlP3      )
+  $padXmlLine = sprintf ( '%-7s',  $padXmlP1      )
+              . sprintf ( '%-7s',  $padXmlP2      )
               . sprintf ( '%-7s',  $padXmlLvl     )
               . sprintf ( '%-15s', $padTag [$pad] )
               . ' ';

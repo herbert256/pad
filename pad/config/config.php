@@ -27,19 +27,20 @@
   $padTrackDbRequest   = FALSE;   // Request info in the PAD database
   $padTrackDbData      = FALSE;   // Complete result page in the PAD database
 
-   // Trace the working of PAD
+  // Trace the working of PAD
 
   $padTrace        = FALSE;
   $padTraceProfile = 'default';
 
-   // Build the XML tree
+  // Build the XML tree
 
-  $padXmlBuild   = FALSE;
-  $padXmlDetails = FALSE;
+  $padXml        = TRUE;
+  $padXmlDetails = TRUE;
 
-   // For the xref pages
+  // Collection for the xref pages
 
-  $padXref        = FALSE;
+  $padXrefManual  = FALSE;
+  $padXrefDevelop = FALSE;
   $padXrefReverse = FALSE;
 
   // Cache settings

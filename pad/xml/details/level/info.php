@@ -6,7 +6,7 @@
     padFilePutContents ( "$padXmlDir/details/$padXmlLvl/data.json", $padData [$pad] );
 
   $padXmlInfo = [
-    'xml'     => $padXml [$padXmlLvl],
+    'xml'     => $padXmlTree [$padXmlLvl],
     'name'    => $padName [$pad],
     'null'    => $padNull [$pad],
     'else'    => $padElse [$pad],

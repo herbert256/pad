@@ -1,8 +1,11 @@
 <?php
 
   $showTitle = TRUE;
+
+  if ( ! isset ( $manual ) ) 
+    $manual = '';
  
   if ( $manual )
-    $title = str_replace ( '_', ' ', ucfirst ( $manual ) );
+    $title = $manual;
 
 ?>

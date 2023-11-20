@@ -75,7 +75,7 @@
   $padForceDataName = '';
 
   if ( $padTraceActive ) include pad . 'trace/level/start.php';
-  if ( $padXmlBuild    ) include pad . 'xml/level/start.php';  
+  if ( $padXml    ) include pad . 'xml/level/start.php';  
   if ( $padXref        ) include pad . 'xref/items/tag.php';
 
 ?>

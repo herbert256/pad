@@ -1,8 +1,7 @@
 <?php
 
-  if ( $padXml [$padXmlLvl] ['source'] )
-    padXref ( 'status', $padXml [$padXmlLvl] ['source'] );
-  else
-    padXref ( 'status', 'NONE' );
+  $padXrefStatus = include pad . 'xref/status.php';
+
+  padXref ( 'status', $padXrefStatus );
 
 ?>

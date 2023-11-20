@@ -8,9 +8,9 @@
   $padXmlParent    = $padXmlLevel [$pad-1];
   $padXmlParentOcc = $padOccur [$pad-1];
 
-  $padXml [$padXmlParent] ['childs'] = TRUE;
+  $padXmlTree [$padXmlParent] ['childs'] = TRUE;
 
   if ( $padXmlParentOcc > 0 and $padXmlParentOcc < 99999 )
-    $padXml [$padXmlParent] ['occurs'] [$padXmlParentOcc] ['childs'] = TRUE;
+    $padXmlTree [$padXmlParent] ['occurs'] [$padXmlParentOcc] ['childs'] = TRUE;
 
 ?>

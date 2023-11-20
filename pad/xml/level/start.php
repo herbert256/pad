@@ -10,23 +10,23 @@
   $padXmlNew ['type']   = $padType [$pad];
   $padXmlNew ['parm']   = $padOpt [$pad] [0];
   $padXmlNew ['parms']  = [];
-  $padXmlNew ['parOcc']  = $padXmlParentOcc;
   $padXmlNew ['occurs'] = [];
   $padXmlNew ['childs'] = FALSE;
   $padXmlNew ['size']   = 0;
   $padXmlNew ['result'] = '';
   $padXmlNew ['source'] = '';
 
-  $padXml [] = $padXmlNew;
+  $padXmlTree [] = $padXmlNew;
 
-  $padXmlLevel [$pad] = array_key_last ( $padXml );
+  $padXmlLevel [$pad] = array_key_last ( $padXmlTree );
 
   $padXmlLvl = $padXmlLevel [$pad];
   $padXmlOcc = $padOccur    [$pad];
 
   if ( $padXmlDetails) {
-    $padXml [$padXmlLvl] ['id']     = $padXmlLevel;
-    $padXml [$padXmlLvl] ['parent'] = $padXmlParent;
+    $padXmlTree [$padXmlLvl] ['id']        = $padXmlLvl;
+    $padXmlTree [$padXmlLvl] ['parent']    = $padXmlParent;
+    $padXmlTree [$padXmlLvl] ['parentOcc'] = $padXmlParentOcc;
   }
   
   $padXmlEventType = 'level-start';

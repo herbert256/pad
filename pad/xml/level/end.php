@@ -3,12 +3,12 @@
   $padXmlLvl = $padXmlLevel [$pad];
   $padXmlOcc = $padOccur    [$pad];
 
-  $padXml [$padXmlLvl] ['size'] = strlen ( $padResult [$pad] );
+  $padXmlTree [$padXmlLvl] ['size'] = strlen ( $padResult [$pad] );
 
   $padXmlEventType = 'level-end';
   include pad . 'xml/event.php';
 
   if ( $padXmlDetails )
-    include pad . 'xml/details/level/start.php';   
+    include pad . 'xml/details/level/end.php';   
 
 ?>

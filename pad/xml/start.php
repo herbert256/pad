@@ -2,10 +2,9 @@
   
   include_once pad . 'xml/lib.php';
 
-  $padXml       = [];
+  $padXmlTree   = [];
   $padXmlLevel  = [];
   $padXmlEvents = [];
-
-  $padXmlDir   = "xml/$padPage/" . hrtime (true);
+  $padXmlDir    = "xml/$padPage/" . hrtime (true);
 
 ?>

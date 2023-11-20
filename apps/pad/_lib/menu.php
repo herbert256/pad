@@ -23,16 +23,35 @@
   function forLink () {
 
     return 'reference/xref'
-    . '&xref='  . ($GLOBALS ['xref'] ?? '')
-    . '&for='   . urlencode(($GLOBALS ['for'] ?? ''))
-    . '&xmain=' . ($GLOBALS ['xmain'] ?? '')
-    . '&xitem=' . ($GLOBALS ['xitem'] ?? '');
+    . '&first='  . ($GLOBALS ['first'] )
+    . '&for='    . urlencode(($GLOBALS ['for'] ))
+    . '&xitem='  . ($GLOBALS ['xitem'] );
+
+  }  
+
+  function itemLink () {
+
+    if ( ! $GLOBALS ['second'] )
+      return '';
+
+    return forLink ();
 
   }
 
+  function secondLink () {
+
+    if ( ! $GLOBALS ['go'] )
+      return '';
+
+    return forLink () . '&second='  . $GLOBALS ['second'] ;
+
+  }  
+
   function parts ( ) {
 
-    global $padPage, $manual; 
+    global $padPage, $manual, $parts; 
+
+    $parts = [];
 
     if ( $padPage == 'index' ) {
       $parts ['home'] ['part'] = 'home';
@@ -43,71 +62,36 @@
     }   
 
     if ( $padPage == 'index' ) {
-      $parts ['man']  ['part'] = 'manual';
-      $parts ['man']  ['link'] = 'manual';  
-      $parts ['ref']  ['part'] = 'reference';
-      $parts ['ref']  ['link'] = 'reference';  
-      $parts ['dev']  ['part'] = 'develop';
-      $parts ['dev']  ['link'] = 'develop';
+      $parts ['man'] ['part'] = 'manual';
+      $parts ['man'] ['link'] = 'manual';  
+      $parts ['ref'] ['part'] = 'reference';
+      $parts ['ref'] ['link'] = 'reference';  
+      $parts ['dev'] ['part'] = 'develop';
+      $parts ['dev'] ['link'] = 'develop';
       return $parts;
     }
 
     if ( $padPage == 'reference/xref' ) {
 
-      $parts ['dev']  ['part'] = 'reference';
-      $parts ['dev']  ['link'] = 'reference';
+      $parts ['d'] ['part'] = 'reference';
+      $parts ['d'] ['link'] = 'reference';
 
-      if ( $GLOBALS ['xgo'] ) {
+      $parts ['f'] ['part'] = strtolower ( $GLOBALS ['for'] );
+      $parts ['f'] ['link'] = '';
 
-        if ( $GLOBALS ['xmain'] ) {
-          $parts ['xm']  ['part'] = strtolower ( $GLOBALS ['for'] );
-          $parts ['xm']  ['link'] = forLink ();
-        }
+      $parts ['i'] ['part'] = $GLOBALS ['xitem'];
+      $parts ['i'] ['link'] = itemLink ();
 
-        if ( $GLOBALS ['xitem'] ) {
-          $parts ['xi']  ['part'] = $GLOBALS ['xitem'];
-          $parts ['xi']  ['link'] = $GLOBALS ['xitem'];
-        }
-
-        if ( $GLOBALS ['xnext'] ) {
-          $parts ['xn']  ['part'] = $GLOBALS ['xnext'];
-          $parts ['xn']  ['link'] = $GLOBALS ['xnext'];
-        }
-
-        $parts ['x']  ['part'] = $GLOBALS ['xgo'];
-        $parts ['x']  ['link'] = '';
-      
-      } elseif ( $GLOBALS ['xnext'] ) {
-
-        if ( $GLOBALS ['xmain'] ) {
-          $parts ['xm']  ['part'] = strtolower ( $GLOBALS ['for'] );
-          $parts ['xm']  ['link'] = forLink ();
-        }
-
-        if ( $GLOBALS ['xitem'] ) {
-          $parts ['xi']  ['part'] = $GLOBALS ['xitem'];
-          $parts ['xi']  ['link'] = $GLOBALS ['xitem'];
-        }
-
-        $parts ['xn']  ['part'] = $GLOBALS ['xnext'];
-        $parts ['xn']  ['link'] = '';
-
-      } elseif ( $GLOBALS ['xitem'] ) {
-
-        if ( $GLOBALS ['xmain'] ) {
-          $parts ['xm']  ['part'] = strtolower ( $GLOBALS ['for'] );
-          $parts ['xm']  ['link'] = forLink ();
-        }
-
-        $parts ['xi']  ['part'] = $GLOBALS ['xitem'];
-        $parts ['xi']  ['link'] = '';
-      
-      } elseif ( $GLOBALS ['xmain'] ) {
-
-        $parts ['xm']  ['part'] = strtolower ( $GLOBALS ['for'] );
-        $parts ['xm']  ['link'] = '';
-        
+      if ( $GLOBALS ['second'] ) {
+        $parts ['s'] ['part'] = $GLOBALS ['second'];
+        $parts ['s'] ['link'] = secondLink ();
       }
+
+      if ( $GLOBALS ['go'] ) {
+        $parts ['g'] ['part'] = $GLOBALS ['go'];
+        $parts ['g'] ['link'] = '';
+      
+      } 
 
       return $parts;
     
@@ -115,15 +99,15 @@
 
     if ( $padPage == 'develop/xref' ) {
 
-      $parts ['dev']  ['part'] = 'develop';
-      $parts ['dev']  ['link'] = 'develop';
+      $parts ['dev'] ['part'] = 'develop';
+      $parts ['dev'] ['link'] = 'develop';
 
       if ( $GLOBALS ['xref'] or $GLOBALS ['go'] ) {
-        $parts ['x']  ['part'] = 'cross reference';
-        $parts ['x']  ['link'] = 'develop/xref';
+        $parts ['x'] ['part'] = 'cross reference';
+        $parts ['x'] ['link'] = 'develop/xref';
       } else {
-        $parts ['x']  ['part'] = 'cross reference';
-        $parts ['x']  ['link'] = '';
+        $parts ['x'] ['part'] = 'cross reference';
+        $parts ['x'] ['link'] = '';
       }     
 
       if ( $GLOBALS ['xref'] ) {
@@ -142,18 +126,18 @@
           $parts ["x$key"] ['link'] = "develop/xref&xref=$xref";
         }
 
-        $parts ['lst']  ['part'] = $last;
+        $parts ['lst'] ['part'] = $last;
 
         if ( $GLOBALS ['go'] ) 
-          $parts ['lst']  ['link'] = "develop/xref&xref=$xref/$last";
+          $parts ['lst'] ['link'] = "develop/xref&xref=$xref/$last";
         else   
-          $parts ['lst']  ['link'] = '';     
+          $parts ['lst'] ['link'] = '';     
 
       }
 
       if ( $GLOBALS ['go'] ) {
-        $parts ['go']  ['part'] = substr ( $GLOBALS ['go'], 1 );
-        $parts ['go']  ['link'] = '';     
+        $parts ['go'] ['part'] = substr ( $GLOBALS ['go'], 1 );
+        $parts ['go'] ['link'] = '';     
       } 
 
       return $parts;
@@ -166,18 +150,18 @@
 
       if ( ! $manual ) {
 
-        $parts ['man']  ['part'] = 'manual';
-        $parts ['man']  ['link'] = '';  
+        $parts ['man'] ['part'] = 'manual';
+        $parts ['man'] ['link'] = '';  
 
         return $parts;
 
       }
 
-      $parts ['man']  ['part'] = 'manual';
-      $parts ['man']  ['link'] = 'manual';  
+      $parts ['man'] ['part'] = 'manual';
+      $parts ['man'] ['link'] = 'manual';  
 
-      $parts ['now']  ['part'] = $manual;
-      $parts ['now']  ['link'] = '';  
+      $parts ['now'] ['part'] = $manual;
+      $parts ['now'] ['link'] = '';  
 
       return $parts;
 

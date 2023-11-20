@@ -47,7 +47,7 @@
   }
 
   if ( $padTraceActive ) include pad . 'trace/items/parms.php';
-  if ( $padXmlBuild    ) include pad . 'xml/level/parms.php';  
+  if ( $padXml    ) include pad . 'xml/level/parms.php';  
   if ( $padXref        ) include pad . 'xref/items/parms.php';
 
 ?>

@@ -215,6 +215,9 @@
       elseif ( $new                                    ) $padDouble [$pad] = 'dbl-new';
       else                                               $padDouble [$pad] = 'dbl-base';
 
+    if ( $GLOBALS ['padXref'] and  ( $base and $new ) )
+      padXref ( 'double', $padDouble [$pad] );
+
     if     ( strpos ( $new, '@content@'  ) !== FALSE ) return str_replace ( '@content@', $base, $new );
     elseif ( strpos ( $base, '@content@' ) !== FALSE ) return str_replace ( '@content@', $new, $base );
     elseif ( $merge == 'replace'                     ) return $new;

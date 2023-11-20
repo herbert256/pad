@@ -1,6 +1,6 @@
 <?php
 
-  if ( $padXmlBuild )
+  if ( $padXml )
     include pad . 'xml/start.php';
 
 ?>

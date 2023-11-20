@@ -1,25 +1,25 @@
 <?php
 
-  if ( ! isset ( $xgo   ) ) $xgo   = '';
-  if ( ! isset ( $xmain ) ) $xmain = '';
-  if ( ! isset ( $xitem ) ) $xitem = '';
-  if ( ! isset ( $xnext ) ) $xnext = '';
+  if ( ! isset ( $go    ) ) $go   = '';
+  if ( ! isset ( $first  ) ) $first = '';
+  if ( ! isset ( $second ) ) $second = '';
+  if ( ! isset ( $xitem  ) ) $xitem = '';
 
   if ( ! isset ($for) )
     return;
 
   $title = $for;
 
-  if ( $xitem ) $title .= " - $xitem";
-  if ( $xnext ) $title .= " - $xnext";
+  if ( $xitem  ) $title .= " - $xitem";
+  if ( $second ) $title .= " - $second";
 
-  if ( $xgo ) {
+  if ( $go ) {
 
-go: $source = padFileGetContents ( padApp . $xgo . '.pad' );
+go: $source = padFileGetContents ( padApp . $go . '.pad' );
 
     $showPage = ( str_contains ( $source, '{demo}' ) or str_contains ( $source, '{example' )  );
 
-    $title .= " - $xgo";
+    $title .= " - $go";
     
     return TRUE;
  
@@ -28,7 +28,11 @@ go: $source = padFileGetContents ( padApp . $xgo . '.pad' );
   $dirs  = [];
   $pages = [];
 
-  $list = scandir ( padApp . 'xref' . $xref );
+  $xref = $first;
+  if ($second)
+    $xref .= "/$second";
+
+  $list = scandir ( padApp . '_xref' . $xref );
 
   foreach ( $list as $file )
     if     ( $file == '.'                    ) continue;
@@ -36,8 +40,8 @@ go: $source = padFileGetContents ( padApp . $xgo . '.pad' );
     elseif ( str_ends_with ( $file, '.hit' ) ) $pages [$file] ['page'] = substr (str_replace ('@', '/', $file), 0, -4);
     else                                       $dirs  [$file] ['dir']  = $file; 
 
-  if ( count ($pages) == 1) {
-    $xgo = $pages [$file] ['page'] ;
+  if ( count ($pages) == 1 ) {
+    $go = $pages [$file] ['page'] ;
     goto go;
   }
 

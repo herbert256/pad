@@ -19,10 +19,10 @@
 
   function padXmlLevelStart ( $event ) {
 
-    global $padXml, $padXmlDetails;
+    global $padXmlTree, $padXmlDetails;
 
     extract ( $event );
-    extract ( $padXml [$tree] );
+    extract ( $padXmlTree [$tree] );
 
     $count = 0;
     foreach ( $parms as $list )
@@ -34,7 +34,7 @@
     $options ['result'] = $result;
 
     if ( $count > 1 ) 
-      $padXml [$tree] ['childs'] = TRUE;
+      $padXmlTree [$tree] ['childs'] = TRUE;
     else
       $options ['parm'] = $parm;
     
@@ -42,11 +42,12 @@
     if ( $source <> 'content' ) $options ['source'] = $source;
 
     if ( $padXmlDetails ) {
-      $options ['id']     = $tree;
-      $options ['parent'] = $parent;
+      $options ['id']        = $tree;
+      $options ['parent']    = $parent;
+      $options ['parentOcc'] = $parentOcc;
     }
 
-    if ( $padXml [$tree] ['childs'] )
+    if ( $padXmlTree [$tree] ['childs'] )
       padXmlOpen ( $tag, $options );
     else
       padXmlLine ( $tag, $options );
@@ -67,10 +68,10 @@
 
   function padXmlLevelEnd ( $event ) {
 
-    global $padXml;
+    global $padXmlTree;
 
     extract ( $event );
-    extract ( $padXml [$tree] );
+    extract ( $padXmlTree [$tree] );
 
     if ( $childs )
       padXmlClose ( $tag );
@@ -80,10 +81,10 @@
 
   function padXmlOccur ( $event, $action ) {
 
-    global $padXml;
+    global $padXmlTree;
 
     extract ( $event );
-    extract ( $padXml [$tree]  );
+    extract ( $padXmlTree [$tree]  );
     extract ( $occurs  [$occur] );
 
     if ( count ($occurs) < 2)
@@ -140,7 +141,7 @@
   
     global $padXmlDir;
 
-    padFilePutContents ( "$padXmlDir/tree.xml", $xml, true );
+    padFilePutContents ( "$padXmlDir/xml-raw.xml", $xml, true );
   
   }
 
@@ -176,7 +177,7 @@
       'drop-empty-elements' => 'yes'
     ];
 
-    $data = padFileGetContents ( padData . "$padXmlDir/tree.xml" );
+    $data = padFileGetContents ( padData . "$padXmlDir/xml-raw.xml" );
 
     $tidy = new tidy;
     $tidy->parseString ( $data, $options, 'utf8' );
@@ -185,7 +186,7 @@
     if ( $tidy === FALSE )
       return padError ( "TIDY conversion error");
 
-    padFilePutContents ( "$padXmlDir/tidy.xml" , $tidy->value );
+    padFilePutContents ( "$padXmlDir/xml-tidy.xml" , $tidy->value );
 
   }
 

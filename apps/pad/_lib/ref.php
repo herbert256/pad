@@ -46,7 +46,7 @@
 
       $items [$item] ['item'] = $item;
 
-      if ( padIsDir ( padApp . "/xref/$xref/$item" ) )
+      if ( padIsDir ( padApp . "_xref/$xref/$item" ) )
         $items [$item] ['link'] = "/$xref/$item";
       else
         $items [$item] ['link'] = '';

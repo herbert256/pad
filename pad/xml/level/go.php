@@ -1,7 +1,4 @@
 <?php
-
-  $padXmlLvl = $padXmlLevel [$pad];
-  $padXmlOcc = $padOccur     [$pad];
   
   $padXmlTagContent = $padContent;
   $padXmlOb         = $padTagOb;
@@ -19,8 +16,5 @@
   elseif ( $padTagResult === NAN         ) $padXmlTagReturn = 'nan';
   elseif ( strlen ($padTagResult ) == 0  ) $padXmlTagReturn = 'empty';
   else                                     $padXmlTagReturn = 'value';
-
-  if ( $padXref ) 
-    include pad . 'xref/items/return.php';  
   
 ?>

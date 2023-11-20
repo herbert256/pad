@@ -18,7 +18,7 @@
 
         <br><hr width="75%">
 
-        {showTitle}<h2>{$title}</h2>{/showTitle}
+        {showTitle}<h2>{$title | replace ( '_', ' ') | ucfirst }</h2>{/showTitle}
 
         @content@
 
