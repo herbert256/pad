@@ -126,7 +126,7 @@
 
     global $pad, $padOccur;
 
-    $xref .= trim ( ' ' . padXrefXref ( $dir1, $dir2, $dir3 ) );
+    $xref = trim ( $xref . ' ' . padXrefXref ( $dir1, $dir2, $dir3 ) );
 
     $occur = $padOccur [$pad] ?? 0;
 
