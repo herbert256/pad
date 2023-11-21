@@ -8,8 +8,8 @@
     if ( $padXrefReverse ) padXrefReverse ( $dir1, $dir2, $dir3 );
     if ( $padXrefDevelop ) padXrefDevelop ( $dir1, $dir2, $dir3 );
 
-    if ( $padXml   and $padXmlXref   ) padXrefXml  ( $dir1, $dir2, $dir3 );
-    if ( $padTrace and $padTraceXref ) padXmlTrace ( $dir1, $dir2, $dir3 );
+    if ( $padXml   and $padXmlXref   ) padXrefXml   ( $dir1, $dir2, $dir3 );
+    if ( $padTrace and $padTraceXref ) padXrefTrace ( $dir1, $dir2, $dir3 );
 
     if ( $dir1 == 'tags'   and $dir2 == 'tag'         ) padXref ( 'properties', $dir3 );
     if ( $dir1 == 'fields' and $dir2 == 'tag'         ) padXref ( 'properties', $dir3 );
@@ -87,7 +87,7 @@
 
     $occur = $padOccur [$pad] ?? 0;
 
-    padXrefOther ( padData . "reverse/$padPage", 0, $dir1, $dir2, $dir3 );
+    padXrefOther ( "reverse/$padPage", 0, $dir1, $dir2, $dir3 );
 
   } 
 

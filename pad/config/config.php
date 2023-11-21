@@ -29,7 +29,7 @@
 
   // Trace the working of PAD
 
-  $padTrace        = FALSE;
+  $padTrace        = TRUE;
   $padTraceProfile = 'all';
 
   // Build the XML tree
