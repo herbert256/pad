@@ -162,7 +162,7 @@
 
   }
 
-
+ 
   function padTraceOnlyDirs ( $file, $type ) {
 
     if ( $type == 'file' )

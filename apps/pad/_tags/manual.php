@@ -1,11 +1,25 @@
 <?php
 
   $manualLink = $padOpt [$pad] [1];
-  $manualText = $padOpt [$pad] [2] ?? $manualLink;
+  $manualText = $manualLink;
 
-  $manualText = str_replace ( '_', ' ', $manualText);
-  $manualText = ucfirst ( $manualText );
+  if ( isset ( $padOpt [$pad] [2] ) )
+    $extra = $padOpt [$pad] [2];
+  else
+    $extra = '';
 
-  return '<a href="' .  $padGo . 'manual&manual=' . $manualLink . '">' . $manualText . '</a>';
+  $manualText .= $extra;
+  $manualText  = str_replace ( '_', ' ', $manualText);
+  $manualText  = ucfirst ( $manualText );
+
+  return 
+      '<a href="' 
+    .  $padGo 
+    . 'manual&manual=' 
+    . $manualLink 
+    . '&extra=' . urlencode ($extra)
+    . '">' 
+    . $manualText 
+    . '</a>';
 
 ?>

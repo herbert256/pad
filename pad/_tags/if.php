@@ -1,6 +1,7 @@
 <?php
   
-  $padEval = $padOpt [$pad] [0]; 
+  $padEval = '"' . $padOpt [$pad] [1] . '"';
+   
   $padChk  = strpos ($padContent, '{elseif');
 
   while ($padChk !== FALSE) {

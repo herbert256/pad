@@ -1,36 +1,23 @@
 <?php
 
 
-  function padEval ( $eval, $value='' ) {
+  function padEvalFast ( $eval, $value ) {
 
-    if ( in_array ( $eval, $GLOBALS ['padEvalFast'] ) ) {
-      if ( $GLOBALS ['padXref'] ) 
-        padXref ( 'functions', 'pad' , $eval );
+    if ( $GLOBALS ['padXref'] ) 
+      include pad . 'xref/items/fast.php';
+
+    if ( $GLOBALS ['padTraceActive'] )
+      return include pad . 'trace/items/eval/fast.php';
+    else
       return include pad . "_functions/$eval.php";
-    }
-
-    return padEval2 ( $eval, $value );
-
-    set_error_handler ( 'padErrorThrow' );
-
-    try {
-
-      $return = padEval2 ( $eval, $value );
-    
-    } catch (Throwable $e) {
-    
-      $return = padEvalCatch ( $e, $eval );
-    
-    }
-
-    restore_error_handler ();
-
-    return $return;
 
   }  
 
 
-  function padEval2 ( $eval, $value ) {
+  function padEval ( $eval, $value='' ) {
+
+    if ( in_array ( $eval, $GLOBALS ['padEvalFast'] ) )
+      return padEvalFast ( $eval, $value );
 
     if ( $GLOBALS ['padTraceActive'] )
       include pad . 'trace/items/eval/start.php';

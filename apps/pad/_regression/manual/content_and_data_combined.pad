@@ -5,47 +5,21 @@
 <th bgcolor="#dddddd">RESULT</th>
 </tr>
 <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-<b>{<font color="blue">data </font><font color="red">'myData'</font>}</b><br />&nbsp;&nbsp;(&nbsp;"red",&nbsp;"green",&nbsp;"blue"&nbsp;)&nbsp;<br /><b>{/<font color="blue">data</font><font color="red"></font>}</b><br /><br /><b>{<font color="blue">content </font><font color="red">'myContent'</font>}</b><br />&nbsp;&nbsp;&lt;b&gt;&nbsp;&lt;font&nbsp;color="<b>{<font color="green"><font color="red">$</font>myData</font>}</b>"&gt;&nbsp;Hello&nbsp;World&nbsp;&lt;/font&gt;&nbsp;&lt;/b&gt;&nbsp;&lt;br&gt;<br /><b>{/<font color="blue">content</font><font color="red"></font>}</b></span>
+<b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myData<font color="black">'</font></font>}</b><br />&nbsp;&nbsp;(&nbsp;"red",&nbsp;"green",&nbsp;"blue"&nbsp;)&nbsp;<br /><b>{/<font color="blue">data</font><font color="red"></font>}</b><br /><br /><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br />&nbsp;&nbsp;&lt;b&gt;&nbsp;&lt;font&nbsp;color="<b>{<font color="green"><font color="red">$</font>myData</font>}</b>"&gt;&nbsp;Hello&nbsp;World&nbsp;&lt;/font&gt;&nbsp;&lt;/b&gt;&nbsp;&lt;br&gt;<br /><b>{/<font color="blue">content</font><font color="red"></font>}</b></span>
 </code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-<b>{<font color="blue">myContent </font><font color="red">data='myData'</font>}</b></span>
+<b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font></font>}</b></span>
 </code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><b> <font color="red"> Hello World </font> </b> <br>
 <b> <font color="green"> Hello World </font> </b> <br>
 <b> <font color="blue"> Hello World </font> </b> <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-<b>{<font color="blue">myData </font><font color="red">content='myContent'&nbsp;</font>}</b></span>
-</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><b> <font color="red"> Hello World </font> </b> <br>
-<b> <font color="green"> Hello World </font> </b> <br>
-<b> <font color="blue"> Hello World </font> </b> <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-<b>{<font color="blue">pad </font><font color="red">content='myContent'<font color="black">,</font>&nbsp;data='myData'</font>}</b></span>
+<b>{<font color="blue">myData </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font> </font>}</b></span>
 </code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><b> <font color="red"> Hello World </font> </b> <br>
 <b> <font color="green"> Hello World </font> </b> <br>
 <b> <font color="blue"> Hello World </font> </b> <br><!-- END DEMO RESULT --></span></code></td></tr>
 </table>
 </p>
-<br><hr><br>
-<table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-<tr>
-<td>  
-<h3>Intermezzo: What does the <b>{pad}</b> tag do ?</h3>
-Below the internal PHP code for the <b>{pad}</b> tag. That is not so much ))
-<p>
-<table border="1" cellpadding="10" cellspacing="0">
-<tr>
-<td style="vertical-align:top"><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;</span><span style="color: #007700">return&nbsp;</span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br />&nbsp;&nbsp;<br /></span><span style="color: #0000BB">?&gt;</span>
-</span>
-</code> </td>
-</tr>
-</table>
-</p>
-The <b>{pad}</b> tag is used in this manual for general PAD possibilities.
-<br>
-Things that can be used with every PAD tag.
-</td>
-</tr>
-</table>
 <br><hr>
 <h3><b>{start}</b> and <b>{end}</b></h3>
-Use <b>{start}</b> and <b>{end}</b> to repeat only a part od a stored Content;
+Use <b>{start}</b> and <b>{end}</b> to repeat only a part odf a stored Content;
 <p> 
 <table border="1" cellpadding="10" cellspacing="0">
 <tr>
@@ -53,13 +27,13 @@ Use <b>{start}</b> and <b>{end}</b> to repeat only a part od a stored Content;
 <th bgcolor="#dddddd">RESULT</th>
 </tr>
 <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-<b>{<font color="blue">data </font><font color="red">'myData'</font>}</b><br />&nbsp;&nbsp;[<br />&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;"name":&nbsp;"joe",&nbsp;&nbsp;&nbsp;"phone":&nbsp;"555-3425"&nbsp;},<br />&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;"name":&nbsp;"jim",&nbsp;&nbsp;&nbsp;"phone":&nbsp;"555-2364"&nbsp;},<br />&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;"name":&nbsp;"jack",&nbsp;&nbsp;"phone":&nbsp;"555-3422"&nbsp;},<br />&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;"name":&nbsp;"jerry",&nbsp;"phone":&nbsp;"555-4973"&nbsp;}<br />&nbsp;&nbsp;]<br /><b>{/<font color="blue">data</font><font color="red"></font>}</b></span>
+<b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myData<font color="black">'</font></font>}</b><br />&nbsp;&nbsp;[<br />&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;"name":&nbsp;"joe",&nbsp;&nbsp;&nbsp;"phone":&nbsp;"555-3425"&nbsp;},<br />&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;"name":&nbsp;"jim",&nbsp;&nbsp;&nbsp;"phone":&nbsp;"555-2364"&nbsp;},<br />&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;"name":&nbsp;"jack",&nbsp;&nbsp;"phone":&nbsp;"555-3422"&nbsp;},<br />&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;"name":&nbsp;"jerry",&nbsp;"phone":&nbsp;"555-4973"&nbsp;}<br />&nbsp;&nbsp;]<br /><b>{/<font color="blue">data</font><font color="red"></font>}</b></span>
 </code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
 <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-<b>{<font color="blue">content </font><font color="red">'myContent'</font>}</b><br />&nbsp;&nbsp;&lt;table&nbsp;border="1"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Name&lt;/th&gt;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Phone&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br />&nbsp;&nbsp;&lt;/table&gt;<br /><b>{/<font color="blue">content</font><font color="red"></font>}</b></span>
+<b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br />&nbsp;&nbsp;&lt;table&nbsp;border="1"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Name&lt;/th&gt;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Phone&lt;/th&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br />&nbsp;&nbsp;&lt;/table&gt;<br /><b>{/<font color="blue">content</font><font color="red"></font>}</b></span>
 </code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
 <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-<b>{<font color="blue">pad </font><font color="red">content='myContent'<font color="black">,</font>&nbsp;data='myData'</font>}</b></span>
+<b>{<font color="blue">pad </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b></span>
 </code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
 <tr>
 <th>Name</th> 

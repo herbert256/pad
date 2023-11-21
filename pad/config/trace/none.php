@@ -10,6 +10,8 @@
   $padTraceLocal       = FALSE;
   $padTraceTypes       = FALSE;
   $padTraceMore        = FALSE;
+  $padTraceXref        = FALSE;
+
 
   $padTraceStartEnd    = FALSE;
   $padTraceStartEndLvl = FALSE;

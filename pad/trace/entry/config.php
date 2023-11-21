@@ -1,5 +1,7 @@
 <?php
 
+  set_time_limit ( 900 );
+
   include pad . 'trace/store/start.php';
 
   $padTraceType = 'config'; 
@@ -11,7 +13,7 @@
     padTrace ( 'trace', 'start' );
 
   if ( $padTraceRequest )
-    padTrackFileCall ( "$padTraceBase/request.json" );
+    padTrackFileCallInit ( "$padTraceBase/request.json" );
 
   if ( $padTraceDumps ) 
     padTraceDump ( 'dump-start' );

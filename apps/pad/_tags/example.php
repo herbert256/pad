@@ -10,7 +10,7 @@
   $examplePhpGiven = padTagParm ( 'php' );
   $examplePadGiven = padTagParm ( 'pad' );
 
-  $examplePhp      = ( $examplePhpGiven ) ? padApp . $examplePhpGiven  : "$exampleFile.php";
+  $examplePhp      = ( $examplePhpGiven ) ? padApp . $examplePhpGiven : "$exampleFile.php";
   $examplePad      = ( $examplePadGiven ) ? padApp . $examplePadGiven : "$exampleFile.pad";
 
   $exampleSrcPhp   = ( padExists($examplePhp) ) ? padColorsFile ($examplePhp) : '';

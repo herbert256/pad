@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"f",
+				"file_exists"
+			],
+			[
+				"fil",
+				"file_exists"
+			],
+			[
+				"ex",
+				"extra"
+			],
+			[
+				"seq",
+				"sequence"
+			],
+			[
 				"G",
 				"GLOBALS"
 			],
@@ -232,10 +248,6 @@
 				"padOccur"
 			],
 			[
-				"f",
-				"file_exists"
-			],
-			[
 				"unl",
 				"unlink()"
 			],
@@ -294,10 +306,6 @@
 			[
 				"is_i",
 				"is_int()"
-			],
-			[
-				"seq",
-				"sequences"
 			],
 			[
 				"padSeqMkr",
@@ -506,19 +514,41 @@
 			[
 				"marg",
 				"margin-bottom"
-			],
-			[
-				"le",
-				"left"
-			],
-			[
-				"in_arr",
-				"in_array()"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"contents": "  function padXrefTrace ( $dir1, $dir2, $dir3 ) {\n\n    global $pad, $padPage, $padTraceBase, $padXmlLevel, $padOccur, $padXmlDetails, $padTraceLine;\n\n    padTrace ( 'xref', $dir1, \"$dir2 $dir3\" );\n\n    $occur = $padOccur [$pad] ?? 0;\n\n    $xref = \"$dir1-$dir2\";\n    if ( $dir3)\n      $xref .= \"-$dir3\";\n\n    padFilePutContents ( \"$padTraceBase/xref.txt\", \"$pad/$occur $padTraceLine $xref\", true );\n\n    padXrefOther ( $padTraceBase, $padTraceLine, $dir1, $dir2, $dir3 );\n\n  } \n\n\n  function padXrefOther ( $other, $number, $dir1, $dir2, $dir3 ) {\n\n    global $pad, $padOccur;\n\n    $dir = padData . $other . \"/xref/$dir1/$dir2\";\n\n    if ( $dir3 )\n      $dir .= \"/\" . str_replace ( '/' , '@', padFileCorrect ($dir3 ) );\n\n    $occur = $padOccur [$pad] ?? 0;\n\n    $file = \"$dir/$pad-$occur-$number\";\n\n    if ( file_exists ( $file ) )\n      return;\n\n    if ( ! file_exists ( $dir ) )\n      mkdir ( $dir, 0777, TRUE );\n\n    touch ( $file, 0777, TRUE );\n\n  } \n",
+			"settings":
+			{
+				"buffer_size": 952,
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+				[
+					1,
+					1,
+					"paste",
+					null,
+					"AQAAAAAAAAAAAAAAuAMAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		},
+		{
+			"file": "/Users/herbert/pad/pad/trace/trace/start.php",
+			"settings":
+			{
+				"buffer_size": 543,
+				"line_ending": "Unix"
+			},
+			"undo_stack":
+			[
+			]
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -552,10 +582,79 @@
 	},
 	"expanded_folders":
 	[
+		"/Users/herbert/pad/apps/pad",
+		"/Users/herbert/pad/pad",
+		"/Users/herbert/pad/pad/config",
+		"/Users/herbert/pad/pad/config/trace",
+		"/Users/herbert/pad/pad/inits",
+		"/Users/herbert/pad/pad/level",
+		"/Users/herbert/pad/pad/trace",
+		"/Users/herbert/pad/pad/trace/lib",
+		"/Users/herbert/pad/pad/trace/trace",
+		"/Users/herbert/pad/pad/xml",
+		"/Users/herbert/pad/pad/xref",
+		"/Users/herbert/pad/data"
 	],
 	"file_history":
 	[
+		"/Users/herbert/pad/pad/lib/other.php",
 		"/Users/herbert/pad/pad/config/config.php",
+		"/Users/herbert/pad/pad/xref/lib.php",
+		"/Users/herbert/pad/pad/lib/file.php",
+		"/Users/herbert/pad/pad/inits/xref.php",
+		"/Users/herbert/pad/pad/config/trace/all.php",
+		"/Users/herbert/pad/pad/config/trace/default.php",
+		"/Users/herbert/pad/pad/config/trace/none.php",
+		"/Users/herbert/pad/pad/level/setup.php",
+		"/Users/herbert/pad/pad/types/include.php",
+		"/Users/herbert/pad/pad/inits/page.php",
+		"/Users/herbert/pad/apps/pad/_inits.pad",
+		"/Users/herbert/pad/pad/lib/type.php",
+		"/Users/herbert/pad/apps/pad/manual/constructs/start_end.pad",
+		"/Users/herbert/pad/apps/pad/manual/content_and_data_combined.pad",
+		"/Users/herbert/pad/apps/pad/manual/index.pad",
+		"/Users/herbert/pad/apps/pad/manual/the_data_tag.pad",
+		"/Users/herbert/pad/apps/pad/source.php",
+		"/Users/herbert/pad/apps/pad/_tags/exampleAjax.pad",
+		"/Users/herbert/pad/pad/lib/page.php",
+		"/Users/herbert/pad/apps/pad/_tags/example.php",
+		"/Users/herbert/pad/apps/pad/_tags/example.pad",
+		"/Users/herbert/pad/apps/pad/manual/what_does_the_pad_tag_do.pad",
+		"/Users/herbert/pad/apps/pad/_tags/manual.php",
+		"/Users/herbert/pad/apps/pad/manual/else.pad",
+		"/Users/herbert/pad/apps/pad/manual/index.php",
+		"/Users/herbert/pad/apps/pad/manual/the_@xxx@_constructs.pad",
+		"/Users/herbert/pad/apps/pad/_lib/colors.php",
+		"/Users/herbert/pad/pad/xref/items/functions.php",
+		"/Users/herbert/pad/pad/xref/items/fast.php",
+		"/Users/herbert/pad/pad/_tags/if.php",
+		"/Users/herbert/pad/pad/lib/eval/Find Results",
+		"/Users/herbert/pad/pad/lib/eval/eval.php",
+		"/Users/herbert/pad/pad/sequence/sequence.php",
+		"/Users/herbert/pad/pad/trace/items/eval/fast.php",
+		"/Users/herbert/pad/pad/trace/entry/config.php",
+		"/Users/herbert/pad/pad/trace/lib/lib.php",
+		"/Users/herbert/pad/pad/trace/lib/trace.php",
+		"/Users/herbert/pad/pad/inits/call.php",
+		"/Users/herbert/pad/pad/lib/track.php",
+		"/Users/herbert/pad/pad/xref/items/action.php",
+		"/Users/herbert/pad/pad/sequence/actions.php",
+		"/Users/herbert/pad/pad/xref/items/sequence.php",
+		"/Users/herbert/pad/pad/lib/eval/after.php",
+		"/Users/herbert/pad/pad/xref/items/entry.php",
+		"/Users/herbert/pad/pad/start/code.php",
+		"/Users/herbert/pad/pad/start/get.php",
+		"/Users/herbert/pad/pad/start/page.php",
+		"/Users/herbert/pad/pad/start/restart.php",
+		"/Users/herbert/pad/pad/start/sandbox.php",
+		"/Users/herbert/pad/pad/xref/items/start.php",
+		"/Users/herbert/pad/pad/xref/items/double.php",
+		"/Users/herbert/pad/pad/xref/items/else.php",
+		"/Users/herbert/pad/pad/xref/items/content.php",
+		"/Users/herbert/pad/pad/constructs/end.php",
+		"/Users/herbert/pad/apps/pad/_data/xref.json",
+		"/Users/herbert/pad/data/dumps/miscellaneous/TableFun/fun_9/TrhT5JJs-KmOYIfG6/error-extra.html",
+		"/Users/herbert/pad/pad/inits/trace.php",
 		"/Users/herbert/pad/pad/xml/end.php",
 		"/Users/herbert/pad/pad/xml/level/start.php",
 		"/Users/herbert/pad/data/xml/index/178715775656708/details/6/level-info.json",
@@ -568,7 +667,6 @@
 		"/Users/herbert/pad/pad/level/go.php",
 		"/Users/herbert/pad/pad/level/base.php",
 		"/Users/herbert/pad/pad/xref/status.php",
-		"/Users/herbert/pad/pad/lib/other.php",
 		"/Users/herbert/pad/pad/xref/items/status.php",
 		"/Users/herbert/pad/pad/xml/occur/start.php",
 		"/Users/herbert/pad/apps/pad/_lib/menu.php",
@@ -584,36 +682,26 @@
 		"/Users/herbert/pad/pad/xref/items/tag.php",
 		"/Users/herbert/pad/pad/xml/level/go.php",
 		"/Users/herbert/pad/pad/level/parms.php",
-		"/Users/herbert/pad/pad/level/setup.php",
 		"/Users/herbert/pad/pad/level/start.php",
 		"/Users/herbert/pad/pad/lib/stop.php",
 		"/Users/herbert/pad/pad/occurrence/end.php",
 		"/Users/herbert/pad/pad/occurrence/start.php",
 		"/Users/herbert/pad/pad/build/build.php",
-		"/Users/herbert/pad/pad/inits/xref.php",
-		"/Users/herbert/pad/pad/xref/lib.php",
 		"/Users/herbert/pad/apps/pad/_lib/ref.php",
 		"/Users/herbert/pad/pad/xref/items/return.php",
 		"/Users/herbert/pad/apps/pad/develop/_inits.php",
 		"/Users/herbert/pad/apps/pad/_inits.php",
-		"/Users/herbert/pad/apps/pad/_inits.pad",
 		"/Users/herbert/pad/apps/pad/reference/xref.php",
-		"/Users/herbert/pad/apps/pad/manual/index.php",
 		"/Users/herbert/pad/apps/pad/reference/index.pad",
 		"/Users/herbert/pad/apps/pad/manual/3_ways_to_make_a_table.pad",
-		"/Users/herbert/pad/apps/pad/manual/index.pad",
 		"/Users/herbert/pad/apps/pad/reference/xref.pad",
-		"/Users/herbert/pad/apps/pad/manual/the_@xxx@_constructs.pad",
 		"/Users/herbert/pad/apps/pad/reference/index2.pad",
 		"/Users/herbert/pad/apps/pad/reference/index1.pad",
-		"/Users/herbert/pad/pad/config/trace/default.php",
 		"/Users/herbert/pad/apps/pad/reference/_includes/getRefs.pad",
 		"/Users/herbert/pad/pad/lib/options.php",
 		"/Users/herbert/pad/apps/pad/develop/xref.php",
-		"/Users/herbert/pad/apps/pad/_tags/manual.php",
 		"/Users/herbert/pad/pad/inits/track.php",
 		"/Users/herbert/pad/pad/xref/start.php",
-		"/Users/herbert/pad/apps/pad/_lib/colors.php",
 		"/Users/herbert/pad/apps/pad/vars/at/docs/3.pad",
 		"/Users/herbert/pad/apps/pad/manual/PHP_and_HTML.pad",
 		"/Users/herbert/pad/pad/level/split.php",
@@ -624,7 +712,6 @@
 		"/Users/herbert/pad/pad/start/lib/page.php",
 		"/Users/herbert/pad/pad/start/lib/setup.php",
 		"/Users/herbert/pad/apps/pad/develop/_lib/lib.php",
-		"/Users/herbert/pad/apps/pad/_data/xref.json",
 		"/Users/herbert/pad/pad/xref/tag.php",
 		"/Users/herbert/pad/apps/pad/manual/the_content_tag.pad",
 		"/Users/herbert/pad/apps/pad/manual/levels_and_occurrences.pad",
@@ -637,56 +724,11 @@
 		"/Users/herbert/wsl2-phpxx/install.cmd",
 		"/Users/herbert/pad/pad/xref/page.php",
 		"/Users/herbert/pad/apps/pad/develop/regression.php",
-		"/Users/herbert/pad/apps/pad/test/index.pad",
-		"/Users/herbert/pad/apps/pad/develop/ok.php",
-		"/Users/herbert/pad/apps/pad/develop/index.pad",
-		"/Users/herbert/pad/pad/_tags/count.php",
-		"/Users/herbert/pad/apps/pad/_lib/lib.php",
-		"/Users/herbert/pad/pad/xref/end.php",
-		"/Users/herbert/pad/pad/xref/else.php",
-		"/Users/herbert/pad/apps/pad/sequence/index.pad",
-		"/Users/herbert/pad/apps/pad/tags/array/array.pad",
-		"/Users/herbert/pad/apps/pad/tags/array/array2.pad",
-		"/Users/herbert/pad/apps/pad/tags/case/case_1.pad",
-		"/Users/herbert/pad/apps/pad/tags/case/case_2.pad",
-		"/Users/herbert/pad/apps/pad/tags/check/check.pad",
-		"/Users/herbert/pad/apps/pad/tags/check/check2.pad",
-		"/Users/herbert/pad/apps/pad/tags/content/index.pad",
-		"/Users/herbert/pad/apps/pad/tags/data/local.pad",
-		"/Users/herbert/pad/apps/pad/tags/options/sort.pad",
-		"/Users/herbert/pad/apps/pad/tags/if/if_1.pad",
-		"/Users/herbert/pad/apps/pad/tags/if/if_2.pad",
-		"/Users/herbert/pad/apps/pad/tags/record/record.pad",
-		"/Users/herbert/pad/apps/pad/tags/record/record2.pad",
-		"/Users/herbert/pad/apps/pad/vars/at/docs/7.pad",
-		"/Users/herbert/pad/apps/pages/z31.pad",
-		"/Users/herbert/pad/apps/pages/z32.pad",
-		"/Users/herbert/pad/apps/pages/z33.pad",
-		"/Users/herbert/pad/apps/pages/z41.pad",
-		"/Users/herbert/pad/apps/pages/z42.pad",
-		"/Users/herbert/pad/apps/pad/_includes/menu.pad",
-		"/Users/herbert/pad/apps/pad/_regression/manual/content_and_data_combined.pad",
-		"/Users/herbert/pad/apps/pad/_tags/durationGet.pad",
-		"/Users/herbert/pad/apps/pad/_tags/extra.pad",
-		"/Users/herbert/pad/apps/pad/_tags/z12.pad",
-		"/Users/herbert/pad/apps/pad/_tags/z25.pad",
-		"/Users/herbert/pad/apps/pad/concepts/php_and_html/z12.pad",
-		"/Users/herbert/pad/apps/pad/concepts/php_and_html/z25.pad",
-		"/Users/herbert/pad/apps/pad/examples/content_and_data.pad",
-		"/Users/herbert/pad/apps/pad/manual/content_and_data_combined.pad",
-		"/Users/herbert/pad/apps/pad/manual/lvlocc_parts/6.pad",
-		"/Users/herbert/pad/apps/pad/_tags/example.pad",
-		"/Users/herbert/pad/apps/pad/_tags/z31.pad",
-		"/Users/herbert/pad/apps/pad/_tags/z32.pad",
-		"/Users/herbert/pad/apps/pad/_tags/z33.pad",
-		"/Users/herbert/pad/apps/pad/_tags/z41.pad",
-		"/Users/herbert/pad/apps/pad/_tags/z42.pad",
-		"/Users/herbert/pad/apps/pad/concepts/php_and_html/z31.pad",
-		"/Users/herbert/pad/apps/pad/concepts/php_and_html/z32.pad"
+		"/Users/herbert/pad/apps/pad/test/index.pad"
 	],
 	"find":
 	{
-		"height": 38.0
+		"height": 26.0
 	},
 	"find_in_files":
 	{
@@ -828,6 +870,22 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"padFilePutContents",
+			"hrlines",
+			"lineClose",
+			"_include",
+			"type='{$exampleType}'",
+			"page",
+			"nbsp",
+			"else",
+			"xref/items/function",
+			"adTraceProfile",
+			"*SKIP*",
+			"padXref (",
+			"@content@",
+			"execution",
+			"error-extra",
+			"padTrackFileCall",
 			"padXml [",
 			"page",
 			"padXrefTagReturn",
@@ -939,23 +997,7 @@
 			"'trace/trace/",
 			"trace/level/start",
 			"padTraceTrace",
-			"padTraceRoot",
-			"padTraceTrace",
-			"padTraceDeleteEmpty",
-			"padTraceHideDefault",
-			"TRUE",
-			"padTraceXml",
-			"padTraceAll",
-			"_functions",
-			"padTraceTree",
-			"padEvent",
-			"padTree",
-			"trace/tree",
-			"padPadStart",
-			"@start@",
-			"padTagResult",
-			"content-2",
-			"return-2"
+			"padTraceRoot"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -963,6 +1005,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"padFileLog",
+			"type='ajax'",
 			"padXrefReturn",
 			"padXml",
 			"padXrefReturn",
@@ -1088,9 +1132,7 @@
 			"<html>",
 			"</html>",
 			"</pad>",
-			"<pad>",
-			"htmlentities",
-			"Pad"
+			"<pad>"
 		],
 		"reverse": false,
 		"scrollbar_highlights": true,
@@ -1105,6 +1147,68 @@
 		{
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"selected": true,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 952,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								952,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/herbert/pad/pad/trace/trace/start.php",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 543,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								59,
+								46
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"stack_multiselect": false,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -1201,7 +1305,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 351.0,
+	"side_bar_width": 245.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

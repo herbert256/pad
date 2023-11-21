@@ -3,7 +3,7 @@
   $padStartType = 'page';
 
   if ( $padXref ) 
-    padXref ( 'start', $padStartType );
+    include pad . 'xref/items/entry.php';
 
   $padPagePage    = padPageGetName ();
   $padPageInclude = padTagParm ( 'include' );

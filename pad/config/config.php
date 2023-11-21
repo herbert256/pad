@@ -30,18 +30,19 @@
   // Trace the working of PAD
 
   $padTrace        = FALSE;
-  $padTraceProfile = 'default';
+  $padTraceProfile = 'all';
 
   // Build the XML tree
 
   $padXml        = TRUE;
   $padXmlDetails = TRUE;
+  $padXmlXref    = TRUE;
 
   // Collection for the xref pages
 
-  $padXrefManual  = FALSE;
-  $padXrefDevelop = FALSE;
-  $padXrefReverse = FALSE;
+  $padXrefManual  = TRUE;
+  $padXrefDevelop = TRUE;
+  $padXrefReverse = TRUE;
 
   // Cache settings
   

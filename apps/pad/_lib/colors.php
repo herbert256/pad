@@ -154,19 +154,19 @@ go: $end = strpos($source, '}');
                 . substr($source, $end+1);
       goto go;
     } 
-
+  
 co: $parms  = $words[1] ?? '';
 
     $space  = ($parms) ? ' ' : '';
-    $parms  = str_replace (' ', '&nbsp;',                        $parms);
 
+    $parms  = str_replace ("'", '<font color="black">\'</font>',  $parms);
     $parms  = str_replace ('|', '<font color="black">|</font>',  $parms);
     $parms  = str_replace ('@', '<font color="black">@</font>',  $parms);
-    $parms  = str_replace ('$', '<font color="black">$</font>',  $parms);
+    $parms  = str_replace ('$', '<font color="red">$</font>',  $parms);
     $parms  = str_replace ('%', '<font color="black">%</font>',  $parms);
     $parms  = str_replace (',', '<font color="black">,</font>',  $parms);
 
-    $parms  = str_replace ('&open;', '<font color="black">&open;</font>',  $parms);
+    $parms  = str_replace ('&open;',  '<font color="black">&open;</font>',  $parms);
     $parms  = str_replace ('&close;', '<font color="black">&close;</font>', $parms);
 
     $x = padExplode($parms, '<font color="black">&open;</font><font color="black">$</font>', 2);

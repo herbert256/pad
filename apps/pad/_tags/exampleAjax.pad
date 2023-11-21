@@ -1,0 +1,105 @@
+{if #showPageName}
+  <h3>{$examplePage}</h3>
+{/if}
+
+{if #withTitle}
+  <h3>{$exampleTitle}</h3>
+{/if} 
+
+{if #onlyResult or $exampleOnlyResult} 
+
+  {page '{$examplePage}', type='ajax', include, ignore}
+
+@else@
+
+  {if ! #skipOpen}
+    <table border="1" cellpadding="10" cellspacing="0">
+  {/if}
+
+  {if $exampleLayout eq 'horizontal' }
+
+    {if ! #skipHeader}
+        <tr>
+        {if ! #skipPhp}
+          <th bgcolor="#dddddd">
+            PHP {if ! #skipNames}<br><font size="-2">{$exampleFilePhp}</font>{/if}
+          </th>
+        {/if}
+        {if ! #skipPad}
+          <th bgcolor="#dddddd">
+            HTML {if ! #skipNames}<br><font size="-2">{$exampleFilePad}</font>{/if}
+          </th>
+        {/if}
+        {if ! #skipResult}
+          <th bgcolor="#dddddd">
+            {if #withLink}<a href="{$padGo}{$dir}/{$item}">{/if}Result{if #withLink}</a>{/if}
+          </th>
+        {/if}
+      </tr>
+    {/if}
+
+    <tr>
+      {if ! #skipPhp}
+        <td style="vertical-align:top">
+          {page 'source', $item='{$examplePage}.php', type='ajax', include, ignore}
+        </td>
+      {/if}
+      {if ! #skipPad}
+        <td style="vertical-align:top">
+          {page 'source', $item='{$examplePage}.pad', type='ajax', include, ignore}
+        </td>
+      {/if}
+      {if ! #skipResult}
+        <td style="vertical-align:top">{page '{$examplePage}', type='ajax', include, ignore}</td>
+      {/if}
+    </tr>
+
+  @else@
+
+    {if ! #skipPhp}
+      {if ! #skipHeader}
+        <tr>
+          <th bgcolor="#dddddd">
+            PHP {if ! #skipNames}<br><font size="-2">{$exampleFilePhp} </font>{/if}
+          </th>
+        </tr>
+      {/if}
+      <tr>
+        <td style="vertical-align:top">{!exampleSrcPhp} </td>       
+      <tr>
+    {/if}
+
+    {if ! #skipPad}
+      {if ! #skipHeader}
+        <tr>
+          <th bgcolor="#dddddd">
+            HTML {if ! #skipNames}<br><font size="-2">{$exampleFilePad}</font>{/if}
+          </th>
+        </tr>
+      {/if}
+      <tr>
+        <td style="vertical-align:top">{!exampleSrcPad}</td>
+      </tr>
+    {/if}
+
+    {if ! #skipResult}
+      {if ! #skipHeader}
+        <tr>
+          <th bgcolor="#dddddd">
+            {if #withLink}<a href="{$padGo}{$dir}/{$item}">{/if}Result{if #withLink}</a>{/if}
+          </th>
+        </tr>
+      {/if}
+      <tr>
+        <td style="vertical-align:top">{page '{$examplePage}', type='ajax', include, ignore}</td>
+      </tr>
+    {/if}
+
+  {/if}
+
+
+  {if ! #skipClose}
+    </table>
+  {/if}
+
+{/if}

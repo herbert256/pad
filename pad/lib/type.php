@@ -19,7 +19,8 @@
     elseif ( padFieldCheck    ( $item                                ) ) return 'field';
     elseif ( padExists        ( pad . "sequence/types/$item"         ) ) return 'sequence';
     elseif ( padExists        ( pad . "sequence/actions/$item.php"   ) ) return 'action';
-    elseif ( padDataFileName  ( $item                                ) ) return 'local';      
+    elseif ( padDataFileName  ( $item                                ) ) return 'local';    
+    elseif ( padInclFileName  ( $item                                ) ) return 'include';
     elseif ( defined          ( $item                                ) ) return 'constant';
     elseif ( padExists        ( padApp . "_functions/$item.php"      ) ) return 'function';
     elseif ( padExists        ( pad . "_functions/$item.php"         ) ) return 'function';
@@ -48,6 +49,7 @@
     elseif ( $type == 'action'   and padExists        ( pad . "sequence/actions/$item.php"   ) ) return $type;
     elseif ( $type == 'store'    and isset            ( $GLOBALS ['padSeqStore'] [$item]     ) ) return $type;
     elseif ( $type == 'local'    and padDataFileName  ( $item                                ) ) return $type;
+    elseif ( $type == 'include'  and padInclFileName  ( $item                                ) ) return $type;
     elseif ( $type == 'array'    and padArrayCheck    ( $item                                ) ) return $type;
     elseif ( $type == 'field'    and padFieldCheck    ( $item                                ) ) return $type;
     elseif ( $type == 'constant' and defined          ( $item                                ) ) return $type;

@@ -17,4 +17,6 @@
   $padDir  = padDir ();
   $padPath = padPath ();
 
+  $padStartPage = $padPage;
+
 ?>

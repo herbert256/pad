@@ -1,6 +1,21 @@
 <?php
 
 
+  function padInsideOther () {
+
+    global $padTag, $pad;
+
+    for ( $i=$pad; $i; $i--) {
+      if ( $padTag [$i] == 'include' ) return TRUE;
+      if ( $padTag [$i] == 'page'    ) return TRUE;
+      if ( $padTag [$i] == 'example' ) return TRUE;
+    }
+
+    return FALSE;
+
+  }
+
+
   function padEmptyBuffers () {
 
     set_error_handler ( 'padErrorThrow' );
@@ -130,7 +145,7 @@
 
       if ( padExists ($file) and ! is_dir($file) ) return $file;
       if ( padExists ("$file.php")               ) return "$file.php";
-      if ( padExists ("$file.pad")              ) return "$file.pad";
+      if ( padExists ("$file.pad")               ) return "$file.pad";
 
     }
 
@@ -215,8 +230,10 @@
       elseif ( $new                                    ) $padDouble [$pad] = 'dbl-new';
       else                                               $padDouble [$pad] = 'dbl-base';
 
-    if ( $GLOBALS ['padXref'] and  ( $base and $new ) )
-      padXref ( 'double', $padDouble [$pad] );
+    if ( $GLOBALS ['padXref'] ) {
+      include pad . 'xref/items/double.php';
+      include pad . 'xref/items/content.php';
+    }
 
     if     ( strpos ( $new, '@content@'  ) !== FALSE ) return str_replace ( '@content@', $base, $new );
     elseif ( strpos ( $base, '@content@' ) !== FALSE ) return str_replace ( '@content@', $new, $base );

@@ -50,7 +50,7 @@
     $dir = $GLOBALS ['padSesID'];
     $id  = $GLOBALS ['padReqID'];
 
-    padFilePutContents ( "track/$dir/$id-start.json", padSessionInfoStart () );
+    padFilePutContents ( "track/$dir/$id-init.json", padSessionInfoStart () );
       
   }
 
@@ -60,7 +60,7 @@
     $dir = $GLOBALS ['padSesID'];
     $id  = $GLOBALS ['padReqID'];
 
-    padFilePutContents ( "track/$dir/$id-end.json", padSessionInfoEnd () );
+    padFilePutContents ( "track/$dir/$id-exit.json", padSessionInfoEnd () );
       
   }
 
