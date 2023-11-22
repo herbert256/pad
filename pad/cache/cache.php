@@ -1,5 +1,10 @@
 <?php
 
+  if ( ! $padCache )
+    return;
+
+  include pad . 'config/cache.php';
+  
   if ( ( ! $padCacheServerAge and ! $padCacheClientAge ) or count($_POST) or count($_FILES) )
     return;
 

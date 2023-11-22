@@ -1,6 +1,6 @@
 <?php
 
- 
+
    function padStop ($stop, $time=0, $etag=0) {
 
     if ( $time ) $GLOBALS ['padTime'] = $time;
@@ -9,16 +9,10 @@
     $GLOBALS ['padStop'] = $stop;
     $GLOBALS ['padLen']  = ( $stop == 200 ) ? strlen($GLOBALS ['padOutput']) : 0;
 
-    if ( $GLOBALS ['padTrackDbSession'] or $GLOBALS ['padTrackDbRequest'] )
-      padTrackDbSession ();
-
-    if ( $GLOBALS ['padTrackFileRequest'] )
-      padTrackFileRequestEnd ();
-
     padCloseSession ();  
 
-    if ( $GLOBALS ['padXml'] )
-      include pad . 'xml/end.php';  
+    if ( padTail )
+      include pad . 'tail/events/end.php';  
     
     if ( ! isset($GLOBALS ['padSent']) )
       padSend ($stop);
@@ -123,8 +117,8 @@
 
   function padExit () { 
 
-    if ( $GLOBALS ['padTrackFileCall'] )
-      padTrackFileCallExit ();
+    if ( padTail )
+      include pad . 'tail/events/exit.php';  
 
     $GLOBALS ['padSkipShutdown']     = TRUE;
     $GLOBALS ['padSkipBootShutdown'] = TRUE;

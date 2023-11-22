@@ -4,10 +4,10 @@
   function padEvalFast ( $eval, $value ) {
 
     if ( $GLOBALS ['padXref'] ) 
-      include pad . 'xref/items/fast.php';
+      include pad . 'tail/types/xref/items/fast.php';
 
     if ( $GLOBALS ['padTraceActive'] )
-      return include pad . 'trace/items/eval/fast.php';
+      return include pad . 'tail/types/trace/items/eval/fast.php';
     else
       return include pad . "_functions/$eval.php";
 
@@ -20,7 +20,7 @@
       return padEvalFast ( $eval, $value );
 
     if ( $GLOBALS ['padTraceActive'] )
-      include pad . 'trace/items/eval/start.php';
+      include pad . 'tail/types/trace/items/eval/start.php';
 
     if ( strlen(trim($eval)) == 0 )
       return ''; 
@@ -30,17 +30,17 @@
     padEvalParse ( $result, $eval, $value );    
  
     if ( $GLOBALS ['padTraceActive'] )
-      include pad . 'trace/items/eval/parse.php';
+      include pad . 'tail/types/trace/items/eval/parse.php';
 
     padEvalAfter ( $result );  
  
     if ( $GLOBALS ['padTraceActive'] )
-      include pad . 'trace/items/eval/after.php';
+      include pad . 'tail/types/trace/items/eval/after.php';
 
     padEvalGo ( $result, array_key_first($result), array_key_last($result), $value) ;
  
     if ( $GLOBALS ['padTraceActive'] )
-      include pad . 'trace/items/eval/go.php';
+      include pad . 'tail/types/trace/items/eval/go.php';
 
     $key = array_key_first ($result);
 
@@ -49,7 +49,7 @@
     elseif ( $result[$key][1] <> 'VAL' ) padThrow ("Result is not a value: $eval");
 
     if ( $GLOBALS ['padTraceActive'] )
-      include pad . 'trace/items/eval/end.php';
+      include pad . 'tail/types/trace/items/eval/end.php';
 
     return $result [$key] [0];
 
@@ -58,7 +58,7 @@
 
   function padEvalCatch ( $e, $eval ) {
 
-    include pad . 'trace/items/eval/error.php';
+    include pad . 'tail/types/trace/items/eval/error.php';
 
     return $eval;
 

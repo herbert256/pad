@@ -8,7 +8,7 @@
                             // 'stop'   = Stop processing but do the PAD stop handling.
                             // 'exit'   = Exit, don't do the PAD stop handling
                             // 'ignore' = Ignore all errors and continue processing.
-                            // 'report' = Report the error and continue processing.
+                            // 'report' = Report errors and continue processing.
  
   $padErrorLevel  = 'all';  // Kind of PHP errors that will be processed by $padErrorAction
                             // 'none' , 'error' , 'warning' , 'notice' , 'all'
@@ -17,61 +17,18 @@
   $padErrorLog    = TRUE;   //  Report errors to Apache error log
   $padErrorReport = TRUE;   //  Report errors to the DATA directory
 
-  // Keep track of stuff
+  // The working of PAD and Big Brother
+  // If one or more are set to TRUE then the config file tail.php will be read. 
 
-  $padTrackFileCall    = FALSE;   // HTTP details of each call in the data directory
-  $padTrackFileRequest = FALSE;   // Request info in the data directory
-  $padTrackFileData    = FALSE;   // Complete result page in the directory
-
-  $padTrackDbSession   = FALSE;   // Session info in the PAD database
-  $padTrackDbRequest   = FALSE;   // Request info in the PAD database
-  $padTrackDbData      = FALSE;   // Complete result page in the PAD database
-
-  // Trace the working of PAD
-
-  $padTrace        = FALSE;
-  $padTraceProfile = 'all';
-
-  // Build the XML tree
-
-  $padXml        = FALSE;
-  $padXmlDetails = FALSE;
-  $padXmlXref    = FALSE;
-
-  // Collection for the xref pages
-
-  $padXrefManual  = FALSE;
-  $padXrefDevelop = FALSE;
-  $padXrefReverse = FALSE;
+  $padRequest = FALSE;    // Log the details of the HTTP(s) request 
+  $padTrace   = FALSE;    // Trace the internal working of PAD
+  $padTrack   = FALSE;    // Big Brother, session and request information of the client
+  $padXml     = TRUE;     // Build a XML file of the structure of the PAD page
+  $padXref    = FALSE;    // Build the <app>_xref and <data>xref directories
 
   // Cache settings
   
-  $padCacheServerAge = 0;   //  Seconds to keep the cache at pad server side, 
-                            //  0 to turn of server-side caching
-
-  $padCacheProxyAge  = 0;   //  How long a proxy is allowed to cache. 
-                            //  0 to turn of proxy-side caching
-
-  $padCacheClientAge = 0;   //  How long the client is allowed to cache.
-                            //  0 to turn of client-side caching
-
-  // Server-side cache settings ( used when $padCacheServerAge <> 0 )
-
-  $padCacheServerType      = 'memory';            //  The implementation of the server-side cache: file/db/memory
-  $padCacheServerGzip      = TRUE;                //  Store the cache zipped
-  $padCacheServerNoData    = FALSE;               //  Do not store the data itself, only the etag and timestamp,
-                                                  //  caching based on the client 'etag' & 'modified' HTTP headers.
-
-  $padCacheMemoryHost      = 'localhost';         //  Used when $padCacheServerType is 'memory'
-  $padCacheMemoryPort      = '11211';
-
-  $padCacheDbHost          = 'localhost';         //  Used when $padCacheServerType is 'db'
-  $padCacheDbDatabase      = 'cache';
-  $padCacheDbUser          = 'cache';
-  $padCacheDbPassword      = 'cache';
-
-  $padCacheFile            = padData . 'cache/';  //  Used when $padCacheServerType is 'file'
-  $padCacheFileMode        = 755;
+  $padCache = FALSE;
 
   // SQL parms - pad internal
 
@@ -90,7 +47,7 @@
   // If pad creates a directory or file.
 
   $padDirMode  = 0755;
-  $padFileMode = 0755;
+  $padFileMode = 0644;
 
   // Default date/time formating
   
@@ -120,23 +77,6 @@
   // lib tidy
 
   $padTidy                  = FALSE;
-  $padTidyCcsid             = 'utf8'; 
-  $padTidyConfig            = [ 
-                                  'output-html'         => TRUE,
-                                  'doctype'             => 'html5',
-                                  'wrap'                => 0,
-                                  'indent'              => TRUE,
-                                  'tab-size'            => 2,
-                                  'vertical-space'      => 'no',
-                                  'indent-spaces'       => 2,
-                                  'replace-color'       => 'yes',
-                                  'markup'              => 'yes',
-                                  'omit-optional-tags'  => 'yes',
-                                  'clean'               => 'yes',
-                                  'drop-empty-elements' => 'yes',
-                                  'merge-spans'         => 'yes',
-                                  'merge-divs'          => 'yes'
-                              ];
 
   // Basic formatting
                                 
@@ -154,9 +94,9 @@
   $padNoNo                  = FALSE;  // No pad stuff, just plane PHP   
   $padFastLink              = 32;     // Lenght of the FastLink code in the URL
 
-  //No paramenter parsing for below tags:
+  //No parameter parsing for below tags:
 
-  $padPrmNoParse            = [ 'if', 'case', 'while', 'until', 'increment', 'decrement' ];
+  $padPrmNoParse = [ 'if', 'case', 'while', 'until', 'increment', 'decrement' ];
 
   $padTables    = [];
   $padRelations = [];

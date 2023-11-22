@@ -25,7 +25,7 @@
           if ( padExists ( pad . "eval/single/$type.php") ) {            
 
             if ( $GLOBALS ['padXref'] )
-              include pad . 'xref/items/functions.php'; 
+              include pad . 'tail/types/xref/items/functions.php'; 
 
             $padCall = pad . "eval/single/$type.php" ;
             $single  = include pad . "call/any.php" ;
@@ -36,7 +36,7 @@
           } elseif ( padExists ( pad . "eval/parms/$type.php" ) ) {
 
             if ( $GLOBALS ['padXref'] ) 
-              include pad . 'xref/items/functions.php'; 
+              include pad . 'tail/types/xref/items/functions.php'; 
 
             $result[$k][0] = $name;
             $result[$k][1] = 'TYPE';

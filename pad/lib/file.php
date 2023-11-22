@@ -7,7 +7,7 @@
 
       $return = file_exists ( $file );
 
-      include pad . 'trace/items/exists.php';
+      include pad . 'tail/types/trace/items/exists.php';
       
       return $return;
     
@@ -53,7 +53,7 @@
   function padFileGetContents ( $file ) {
 
     if ( $GLOBALS ['padTraceActive'] )
-      include pad . 'trace/items/get.php';
+      include pad . 'tail/types/trace/items/get.php';
 
     if ( is_dir ($file) )
       return $file;
@@ -86,25 +86,6 @@
     if ($data)
       if ($append) file_put_contents ($file, "$data\n", LOCK_EX | FILE_APPEND);
       else         file_put_contents ($file, $data,     LOCK_EX);
-    
-  }
-
-
-  function padFileLog ( $in, $data ) {
-
-    $file = padData . $in;
-
-    $dir = substr ( $file, 0, strrpos($file, '/') );
-    
-    if ( ! file_exists ($dir) )
-      mkdir ($dir, $GLOBALS ['padDirMode'], true );
-
-    if ( ! file_exists ($file) ) {      
-      touch($file);
-      chmod($file, $GLOBALS ['padFileMode']);
-    }
-
-    file_put_contents ($file, "$data\n", LOCK_EX | FILE_APPEND);
     
   }
 

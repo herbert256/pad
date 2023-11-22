@@ -6,16 +6,7 @@
 
   include pad . 'exits/output.php';
  
-  if ( $padTrackFileCall )
-    padTrackFileCallExit ();
-
   $padEtag = padMD5 ($padOutput);
-
-  if ( $padTrackFileData )
-    padTrackFileData ( $padEtag, $padOutput );
-
-  if ( $padTrackDbData )
-    padTrackDbData ( $padEtag, $padOutput );
  
   $padStop = ( $padEtag304 and ($padCacheClient??'') == $padEtag ) ? 304 : 200;
 
@@ -23,7 +14,7 @@
     include pad . 'cache/exits.php';
 
   if ( $padTraceActive )
-    include pad . 'trace/exit/config.php'; 
+    include pad . 'tail/types/trace/exit/config.php'; 
 
   padStop ($padStop);
 

@@ -46,8 +46,8 @@
 
   }
 
-  if ( $padTraceActive ) include pad . 'trace/items/parms.php';
-  if ( $padXml    ) include pad . 'xml/level/parms.php';  
-  if ( $padXref        ) include pad . 'xref/items/parms.php';
+  if ( $padTraceActive ) include pad . 'tail/types/trace/items/parms.php';
+  if ( $padXml    ) include pad . 'tail/types/xml/level/parms.php';  
+  if ( $padXref        ) include pad . 'tail/types/xref/items/parms.php';
 
 ?>

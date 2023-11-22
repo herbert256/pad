@@ -231,8 +231,8 @@
       else                                               $padDouble [$pad] = 'dbl-base';
 
     if ( $GLOBALS ['padXref'] ) {
-      include pad . 'xref/items/double.php';
-      include pad . 'xref/items/content.php';
+      include pad . 'tail/types/xref/items/double.php';
+      include pad . 'tail/types/xref/items/content.php';
     }
 
     if     ( strpos ( $new, '@content@'  ) !== FALSE ) return str_replace ( '@content@', $base, $new );

@@ -7,7 +7,7 @@
   elseif ( $padSeqList  ) $padSeqFor = padGetList ( $padSeqList );
 
   if ( $padXref )
-    include pad . 'xref/items/sequence.php'; 
+    include pad . 'tail/types/xref/items/sequence.php'; 
 
   if ( $padSeqFor !== FALSE )
     include pad . "sequence/builds/for.php";

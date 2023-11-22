@@ -74,8 +74,8 @@
   $padForceTagName  = '';
   $padForceDataName = '';
 
-  if ( $padTraceActive ) include pad . 'trace/level/start.php';
-  if ( $padXml         ) include pad . 'xml/level/start.php';  
-  if ( $padXref        ) include pad . 'xref/items/tag.php';
+  if ( $padTraceActive ) include pad . 'tail/types/trace/level/start.php';
+  if ( $padXml         ) include pad . 'tail/types/xml/level/start.php';  
+  if ( $padXref        ) include pad . 'tail/types/xref/items/tag.php';
 
 ?>
