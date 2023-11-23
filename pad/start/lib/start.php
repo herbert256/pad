@@ -8,7 +8,8 @@
       if ( $padK <> 'padK' and $padK <> 'padV' ) 
         if ( $padK <> 'padOptionHits' and $padK <> 'padTagHits') 
           if ( substr($padK, 0, 8) <> 'padTrace' and substr($padK, 0, 6) <> 'padXml' ) 
-            $padPagePad [$pad] [$padK] = $GLOBALS [$padK];
+            if ( substr($padK, 0, 7) <> 'padTail' and substr($padK, 0, 7) <> 'padXref' ) 
+              $padPagePad [$pad] [$padK] = $GLOBALS [$padK];
  
     if ( padValidStore ($padK) ) {
       $padPageApp [$pad] [$padK] = $GLOBALS [$padK];

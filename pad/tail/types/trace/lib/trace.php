@@ -4,7 +4,7 @@
   function padTrace ( $type, $event, $info='' ) {
 
     global $pad, $padOccur;
-    global $padTraceMore, $padTraceRoot, $padTraceTree, $padTraceLocal, $padTraceSkipLevel;
+    global $padTraceMore, $padTraceRoot, $padTraceTree, $padTraceLocal, $padTraceSkipLevel, $padTailNoTrace;
     global $padTraceActive, $padTraceLine, $padTraceTypes, $padTraceId, $padTraceOccurId, $padTraceMaxLevel;
 
     if ( $padTraceSkipLevel and $padTraceSkipLevel == $pad ) return;
@@ -16,6 +16,11 @@
     $padTraceActive = FALSE;
 
     $padTraceLine++;
+
+    padTail ( 'trace',  $type, $event, $info );
+
+    if ( $padTailNoTrace )
+      return;
 
     $occur = $padOccur [$pad] ?? 0;
 

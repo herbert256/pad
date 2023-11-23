@@ -24,7 +24,7 @@
   $padTrace   = FALSE;    // Trace the internal working of PAD
   $padTrack   = FALSE;    // Big Brother, session and request information of the client
   $padXml     = TRUE;     // Build a XML file of the structure of the PAD page
-  $padXref    = FALSE;    // Build the <app>_xref and <data>xref directories
+  $padXref    = TRUE;     // Build the <app>_xref and <data>xref directories
 
   // Cache settings
   

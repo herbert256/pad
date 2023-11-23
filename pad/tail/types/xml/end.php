@@ -1,5 +1,8 @@
 <?php
  
+  if ( $GLOBALS ['padTailNoXml'] )
+    return;
+
   padXml     ();
   padXmlTidy ();
 

@@ -13,8 +13,10 @@
 
   $dirs  = [];
   $pages = [];
+  $list  = [];
 
-  $list = scandir ( padData . 'xref' . $xref );
+  if ( file_exists ( padData . 'xref' . $xref) )
+    $list = scandir ( padData . 'xref' . $xref ); 
 
   foreach ( $list as $file )
     if     ( $file == '.'                    ) continue;

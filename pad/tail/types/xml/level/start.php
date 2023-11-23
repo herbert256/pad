@@ -21,7 +21,7 @@
   $padXmlLevel [$pad] = array_key_last ( $padXmlTree );
 
   $padXmlLvl = $padXmlLevel [$pad];
-  $padXmlOcc = $padOccur    [$pad];
+  $padXmlOcc = $padOccur    [$pad]; 
 
   if ( $padXmlDetails) {
     $padXmlTree [$padXmlLvl] ['id']        = $padXmlLvl;

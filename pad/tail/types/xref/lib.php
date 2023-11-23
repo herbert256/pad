@@ -3,13 +3,20 @@
 
   function padXref ( $dir1, $dir2, $dir3='' ) {
 
-    global $padXrefDevelop, $padXrefReverse, $padXml, $padXmlXref, $padTrace, $padTraceXref;
+    global $padTailNoXref, $padXrefDevelop, $padXrefReverse, $padXml, $padXrefXml, $padTrace, $padXrefTrace, $padXrefId;
+
+    $padXrefId++;
+
+    padTail ( 'xref', $dir1, $dir2, $dir3 );
+
+    if ( $padTailNoXref )
+      return;
 
     if ( $padXrefReverse ) padXrefReverse ( $dir1, $dir2, $dir3 );
     if ( $padXrefDevelop ) padXrefDevelop ( $dir1, $dir2, $dir3 );
 
-    if ( $padXml   and $padXmlXref   ) padXrefXml   ( $dir1, $dir2, $dir3 );
-    if ( $padTrace and $padTraceXref ) padXrefTrace ( $dir1, $dir2, $dir3 );
+    if ( $padXml   and $padXrefXml   ) padXrefXml   ( $dir1, $dir2, $dir3 );
+    if ( $padTrace and $padXrefTrace ) padXrefTrace ( $dir1, $dir2, $dir3 );
 
     if ( $dir1 == 'tags'   and $dir2 == 'tag'         ) padXref ( 'properties', $dir3 );
     if ( $dir1 == 'fields' and $dir2 == 'tag'         ) padXref ( 'properties', $dir3 );
@@ -72,9 +79,9 @@
     $dir .= "/$dir1/$dir2";
 
     if ( $dir3 )
-      $dir .= "/" . str_replace ( '/' , '@', padTailCorrect ($dir3 ) );
+      $dir .= "/" . str_replace ( '/' , '@', padFileCorrect ($dir3 ) );
 
-    $file = "$dir/" .  str_replace ( '/' , '@', padTailCorrect ($padPage ) ) . '.hit';
+    $file = "$dir/" .  str_replace ( '/' , '@', padFileCorrect ($padPage ) ) . '.hit';
 
     padXrefFile ( $dir, $file );
 
@@ -94,19 +101,17 @@
 
   function padXrefXml ( $dir1, $dir2, $dir3 ) {
 
-    global $pad, $padPage, $padXmlDir, $padXmlLevel, $padOccur, $padXmlDetails;
+    global $pad, $padPage, $padXmlDir, $padXmlLevel, $padOccur, $padXmlDetails, $padTailId;
 
     $padXmlLvl = $padXmlLevel [$pad] ?? 0;
     $padXmlOcc = $padOccur    [$pad] ?? 0;
 
     $xref = padXrefXref ( $dir1, $dir2, $dir3 );
-
-    if ( $padXmlDetails ) 
-      padTailLine ( "$padXmlDir/details/$padXmlLvl/xref.txt", "$padXmlOcc $xref" );
-
-    $padXmlLvl = $padXmlLevel [$pad] ?? 0;
-
-    padXrefOther ( "$padXmlDir/xref", $padXmlLvl, $dir1, $dir2, $dir3, $padXmlLvl );   
+ 
+    if ( $padXmlDetails ) {
+      padTailLine  ( "$padXmlDir/$padTailId/details/$padXmlLvl/xref.txt", "$padXmlOcc $xref" );
+      padXrefOther ( "$padXmlDir/$padTailId/xref", $padXmlLvl, $dir1, $dir2, $dir3, $padXmlLvl );   
+    }
 
   } 
 
@@ -135,7 +140,7 @@
     $dir = padData . $other . "/$dir1/$dir2";
 
     if ( $dir3 )
-      $dir .= "/" . str_replace ( '/' , '@', padTailCorrect ($dir3 ) );
+      $dir .= "/" . str_replace ( '/' , '@', padFileCorrect ($dir3 ) );
 
     $occur = $padOccur [$pad] ?? 0;
 

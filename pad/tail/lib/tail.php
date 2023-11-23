@@ -1,10 +1,54 @@
 <?php
 
 
+  function padTailPadOccur () {
+
+    global $pad, $padOccur;
+
+    $return = $pad;
+
+    $occur = $padOccur [$pad] ?? 0;
+
+    if ( $occur <> 0 and $occur <> 99999 )
+      $return .= "/$occur";
+
+    return $return;
+
+  }
+
+
+  function padTail ( $parm1, $parm2='', $parm3='', $parm4='' ) {
+
+    global $padTailCnt, $pad, $padOccur, $padTail, $padTailId, $padXrefId, $padTraceLine, $padXmlId;
+
+    if ( ! $padTail )
+      return;
+
+    $padTailCnt++;
+
+    $line = sprintf ( '%-7s',  $padTailCnt )
+          . sprintf ( '%-8s', padTailPadOccur () )
+          . sprintf ( '%-14s', "$padTraceLine/$padXrefId/$padXmlId" )
+          . sprintf ( '%-15s', $parm1 )
+          . padMakeSafe ( "$parm2 $parm3 $parm4", 100 );
+
+    padTailLine ( "tail/" . $padTailId . '.txt', $line );
+
+  }
+
+
   function padTailPut ( $in, $data, $append=0 ) {
 
     if ( $append ) padTailLine ( $in, $data );
     else           padTailFile ( $in, $data );
+
+  }
+
+
+  function padTailExists ( $file ) {
+
+    return file_exists ( $file );
+
   }
 
 
@@ -12,7 +56,7 @@
 
     padTailCheck ( $in );
 
-    file_put_contents ( padData . $in, "$data\n", LOCK_EX | FILE_APPEND);
+    file_put_contents ( padData . $in, $data . "\n", LOCK_EX | FILE_APPEND );
     
   }
 
