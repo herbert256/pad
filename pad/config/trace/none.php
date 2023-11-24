@@ -21,11 +21,10 @@
   $padTraceAddLine     = FALSE;
   $padTraceLocalChk    = FALSE;       
 
-  $padTraceOccurs      = 'never';  // never / always / smart
-  $padTraceInitsExits  = FALSE;
+  $padTraceOccurs      = FALSE;
+  $padTraceOccursSmart = FALSE;
 
   $padTraceTypesDir    = FALSE;       
-  $padTraceDumps       = FALSE;
   $padTraceRequest     = FALSE;
 
   $padTraceSession     = FALSE;

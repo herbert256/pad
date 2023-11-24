@@ -1,12 +1,14 @@
 <?php
  
-  if ( $GLOBALS ['padTailNoXml'] )
+ global $padTailDir, $padTailMetaNoXml, $padXmlDetails, $padXmlTree;
+
+  if ( $padTailMetaNoXml )
     return;
 
   padXml     ();
   padXmlTidy ();
 
-  if ( $GLOBALS ['padXmlDetails'] )
-    padTailPut ( $GLOBALS ['padXmlDir'] . '/' . $GLOBALS ['padTailId'] . '/tree.json' , $GLOBALS ['padXmlTree'] );
+  if ( $padXmlDetails )
+    padTailPut ( "$padTailDir/xml/tree.json" , $padXmlTree );
 
 ?>

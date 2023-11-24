@@ -1,9 +1,9 @@
 <?php
 
-  padTailPut ( "$padXmlDir/$padTailId/details/$padXmlLvl/pad-base.pad", $padBase [$pad] );
+  padTailPut ( "$padTailDir/xml/details/$padXmlLvl/pad-base.pad", $padBase [$pad] );
 
   if ( ! padIsDefaultData ( $padData [$pad] ) )
-    padTailPut ( "$padXmlDir/$padTailId/details/$padXmlLvl/data.json", $padData [$pad] );
+    padTailPut ( "$padTailDir/xml/details/$padXmlLvl/data.json", $padData [$pad] );
 
   $padXmlInfo = [
     'xml'     => $padXmlTree [$padXmlLvl],
@@ -17,6 +17,6 @@
     'count'   => $padCount [$pad]
   ];
 
-  padTailPut ( "$padXmlDir/$padTailId/details/$padXmlLvl/level-info.json", $padXmlInfo );
+  padTailPut ( "$padTailDir/xml/details/$padXmlLvl/level-info.json", $padXmlInfo );
 
 ?>

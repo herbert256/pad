@@ -17,15 +17,16 @@
   $padTraceStartEndOcc = TRUE;
 
   $padTraceStatus      = FALSE;
-  $padTraceChilds      = TRUE;
+  $padTraceChilds      = FALSE;
   $padTraceAddLine     = TRUE;
   $padTraceLocalChk    = TRUE;       
 
-  $padTraceOccurs      = 'smart';  // never / always / smart
+  $padTraceOccurs      = TRUE;
+  $padTraceOccursSmart = TRUE;
+
   $padTraceInitsExits  = FALSE;
 
   $padTraceTypesDir    = TRUE;       
-  $padTraceDumps       = FALSE;
   $padTraceRequest     = TRUE;
 
   $padTraceSession     = TRUE;

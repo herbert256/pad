@@ -129,10 +129,14 @@
 
   function padXmlOpen ( $xml, $parms=[] ) {
   
+    global $padXmlDepth;
+
     $more = padXmlMore ( $parms );
 
     padXmlWrite ( "<$xml$more>" );
-  
+
+    $padXmlDepth++;
+      
   }
 
 
@@ -146,6 +150,10 @@
 
 
   function padXmlClose ( $xml ) {
+
+    global $padXmlDepth;
+
+    $padXmlDepth--;
   
     padXmlWrite ( "</$xml>" );
   
@@ -154,12 +162,14 @@
 
   function padXmlWrite ( $xml ) {
   
-    global $padXmlDir, $padXmlDetails, $padTailId;
+    global $padTailDir, $padXmlDetails, $padTailId, $padXmlDepth;
+
+    $spaces = str_repeat ( ' ', $padXmlDepth * 2 );
 
     if ( $padXmlDetails )
-      padTailPut ( "$padXmlDir/$padTailId/base.xml", $xml, true );
+      padTailPut ( "$padTailDir/xml/tree.xml", "$spaces$xml", true );
     else
-      padTailPut ( "$padXmlDir/$padTailId.xml", $xml, true );
+      padTailPut ( "$padTailDir/tree.xml", "$spaces$xml", true );
   
   }
 
@@ -179,7 +189,7 @@
 
   function padXmlTidy () {
 
-    global $padXmlDir, $padXmlDetails, $padTailId, $padXmlTidy;
+    global $padTailDir, $padXmlDetails, $padTailId, $padXmlTidy;
 
     if ( ! $padXmlTidy )
       return;
@@ -199,9 +209,9 @@
     ];
 
     if ( $padXmlDetails )
-      $data = padTailGet ( padData . "$padXmlDir/$padTailId/base.xml" );
+      $data = padTailGet ( padData . "$padTailDir/xml/tree.xml" );
     else
-      $data = padTailGet ( padData . "$padXmlDir/$padTailId.xml" );
+      $data = padTailGet ( padData . "$padTailDir/tree.xml" );
 
     $tidy = new tidy;
     $tidy->parseString ( $data, $options, 'utf8' );
@@ -211,9 +221,9 @@
       return padError ( "TIDY conversion error");
 
     if ( $padXmlDetails )
-      $data = padTailPut ( "$padXmlDir/$padTailId/tidy.xml", $tidy->value );
+      $data = padTailPut ( "$padTailDir/xml/tree-tidy.xml", $tidy->value );
     else
-      $data = padTailPut ( "$padXmlDir/$padTailId.xml", $tidy->value );
+      $data = padTailPut ( "$padTailDir/tree-tidy.xml", $tidy->value );
 
   }
 

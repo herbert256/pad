@@ -1,7 +1,7 @@
 <?php
 
 
-  function padTraceDdeleteDir( $dir ) {
+  function padTraceDeleteDir( $dir ) {
 
     if ( ! file_exists ( $dir ) )
       return;
@@ -10,7 +10,7 @@
   
     foreach ($files as $file)
         if (is_dir($file))
-           padTraceDdeleteDir($file);
+           padTraceDeleteDir($file);
         else
             unlink($file);
   
@@ -70,7 +70,7 @@
     if ( $padTraceLevel [$pad] == '*SKIP*' )
       $padTraceLevel [$pad] = '';
  
-    $padTraceLevel [$pad] .= "/$add$line" . padTailCorrect ( $tag );
+    $padTraceLevel [$pad] .= "/$add$line" . padFileCorrect ( $tag );
   
     $padTraceLevelChilds [$pad] = 0;
     $padTraceOccurChilds [$pad] = [];
@@ -113,32 +113,15 @@
 
   }
 
-  function padTraceDump ( $type ) {
-
-    global $pad;
-    global $padTraceActive, $padTraceDumps, $padTraceType, $padTraceBase, $padTraceLevel;
-
-    $padTraceActive = FALSE;
-
-    if ( $padTraceType == 'config' )
-      padDumpToDir ( '', $padTraceBase . "/$type" );
-    else
-      padDumpToDir ( '', $padTraceLevel [$pad] . "/$type" );
-  
-    $padTraceActive = TRUE;
-
-  }
-
-
 
   function padTraceChilds ( $dir, &$childs, $type ) {
   
-    global $pad, $padOccur, $padTraceLevel, $padTraceBase;
+    global $pad, $padOccur, $padTraceLevel, $padTailDir;
 
     if ( ! $dir or ! $childs )
       return;
 
-    $dir = "$padTraceBase/$dir";
+    $dir = "$padTailDir/trace$dir";
 
     $new  = $dir . '-' . $childs;
     $from = padData . $dir;
@@ -154,10 +137,10 @@
 
   function padTraceCheckLocal ( $dir ) {
 
-    global $pad, $padTraceBase;
+    global $pad, $padTailDir;
 
-    $file1 = padData . "$padTraceBase/$dir/trace.txt";
-    $file2 = padData . "$padTraceBase/$dir/local.txt";
+    $file1 = padData . "$padTailDir/trace/$dir/trace.txt";
+    $file2 = padData . "$padTailDir/trace/$dir/local.txt";
 
     if ( ! file_exists ( $file1 ) or ! file_exists ( $file2 ) )
       return;

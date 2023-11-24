@@ -1,6 +1,39 @@
 <?php
 
 
+  function padSessionStart () {
+
+    return [
+        'start'     => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0,
+        'session'   => $GLOBALS ['padSesID'] ?? '',
+        'request'   => $GLOBALS ['padReqID'] ?? '',
+        'parent'    => $GLOBALS ['padRefID'] ?? '',
+        'page'      => $GLOBALS ['padPage'] ?? '',
+        'uri'       => $_SERVER ['REQUEST_URI']     ?? '' ,
+        'referer'   => $_SERVER ['HTTP_REFERER']    ?? '' ,
+        'remote'    => $_SERVER ['REMOTE_ADDR']     ?? '' ,
+        'agent'     => $_SERVER ['HTTP_USER_AGENT'] ?? '',
+        'cookies'   => $_SERVER ['HTTP_COOKIE']     ?? ''
+      ];
+
+  }
+
+
+  function padSessionEnd () {
+
+    return [
+        'session'   => $GLOBALS ['padSesID'] ?? '',
+        'request'   => $GLOBALS ['padReqID'] ?? '',
+        'duration'  => padDuration (),
+        'length'    => $GLOBALS ['padLen'] ?? 0,
+        'stop'      => $GLOBALS ['padStop'] ?? '',
+        'etag'      => $GLOBALS ['padEtag'] ?? '',
+        'end'       => microtime(true)
+      ];
+
+  }
+
+
   function padInsideOther () {
 
     global $padTag, $pad;

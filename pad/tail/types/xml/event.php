@@ -17,7 +17,7 @@
 
   padTail ( 'xml', $padXmlP1, substr ( $padXmlEventType, 0, 5 ), $padTag [$pad] );
 
-  if ( $padTailNoXml )
+  if ( $padTailMetaNoXml )
     return;
 
   $padXmlP2 = $pad;
@@ -36,6 +36,6 @@
       $padXmlLine .= $padTag [$padI] . ' ';
 
   if ( $padXmlDetails)
-    padTailPut ( "$padXmlDir/$padTailId/events.txt", substr ( $padXmlLine, 0, 110 ), true );
+    padTailPut ( "$padTailDir/xml/events.txt", substr ( $padXmlLine, 0, 110 ), true );
 
 ?>

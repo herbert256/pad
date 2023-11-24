@@ -1,5 +1,5 @@
 <?php
   
-  padTailPut ( "$padXmlDir/$padTailId/details/$padXmlLvl/level-entry.json", $padXmlNew );
+  padTailPut ( "$padTailDir/xml/details/$padXmlLvl/level-entry.json", $padXmlNew );
 
 ?>

@@ -26,7 +26,7 @@
     padTraceChilds ( $padTraceLevel [$pad], $padTraceLevelChilds [$pad], 'level' );
 
   if ( $pad > 0 and $padTraceDeleteEmpty and $padTraceLevel [$pad] and ! $padTraceLevelChilds [$pad] )
-    padTraceDdeleteDir ( padData . "$padTraceBase" . $padTraceLevel [$pad] . '/' ); 
+    padTraceDeleteDir ( padData . "$padTailDir/trace" . $padTraceLevel [$pad] . '/' ); 
 
   $padTraceLevel [$pad] = '';
 

@@ -3,8 +3,8 @@
 
   function padTrace ( $type, $event, $info='' ) {
 
-    global $pad, $padOccur;
-    global $padTraceMore, $padTraceRoot, $padTraceTree, $padTraceLocal, $padTraceSkipLevel, $padTailNoTrace;
+    global $pad, $padOccur, $padTailMetaNoTrace;
+    global $padTraceMore, $padTraceRoot, $padTraceTree, $padTraceLocal, $padTraceSkipLevel;
     global $padTraceActive, $padTraceLine, $padTraceTypes, $padTraceId, $padTraceOccurId, $padTraceMaxLevel;
 
     if ( $padTraceSkipLevel and $padTraceSkipLevel == $pad ) return;
@@ -19,7 +19,7 @@
 
     padTail ( 'trace',  $type, $event, $info );
 
-    if ( $padTailNoTrace )
+    if ( $padTailMetaNoTrace )
       return;
 
     $occur = $padOccur [$pad] ?? 0;
@@ -139,7 +139,7 @@
 
   function padTraceWrite ( $pad, $location, $trace, $type='line' ) {  
 
-    global $padOccur, $padTraceLevel,  $padTraceBase, $padTraceOnlyDirs, $padTraceSkipLevel, $padTraceMaxLevel ;
+    global $padOccur, $padTraceLevel,  $padTailDir, $padTraceOnlyDirs, $padTraceSkipLevel, $padTraceMaxLevel ;
 
     if ( $padTraceSkipLevel and $padTraceSkipLevel == $pad ) return;
     if ( $padTraceMaxLevel  and $padTraceMaxLevel  >  $pad ) return;
@@ -152,7 +152,7 @@
     else
       $add = $padTraceLevel [$pad] . '/' . padTraceOccur ( $pad );
 
-    $target = "$padTraceBase/$add$location";
+    $target = "$padTailDir/trace/$add$location";
 
     if ( $padTraceOnlyDirs )
       return padTraceOnlyDirs ( padData . $target, $type );
@@ -181,7 +181,7 @@
   function padTraceOccur ( $pad ) {  
 
     global $padOccur;
-    global $padTraceOccurs, $padTraceInitsExits, $padTraceDefault, $padTraceHideDefault;
+    global $padTraceOccurs, $padTraceOccursSmart, $padTraceInitsExits, $padTraceDefault, $padTraceHideDefault;
 
     if ( $pad < 0 )
       return '';
@@ -191,8 +191,8 @@
     if     ( $padTraceInitsExits and $occur == 0     ) return 'inits/';
     elseif ( $padTraceInitsExits and $occur == 99999 ) return 'exits/';
 
-    if ( $padTraceOccurs == 'always' ) return "$occur/";
-    if ( $padTraceOccurs == 'never'  ) return '';
+    if ( ! $padTraceOccurs      ) return '';
+    if ( ! $padTraceOccursSmart ) return "$occur/";
 
     if     ( $occur == 0              ) return '';
     elseif ( $occur == 99999          ) return '';

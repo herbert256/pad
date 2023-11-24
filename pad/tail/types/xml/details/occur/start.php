@@ -9,8 +9,8 @@
   $padXmlTree [$padXmlLvl] ['occurs'] [$padXmlOcc] ['size']   = 0;
 
   if ( ! $padDefault [$pad] ) {
-    padTailPut ( "$padXmlDir/$padTailId/details/$padXmlLvl/$padXmlOcc/data.json",    $padCurrent [$pad] );
-    padTailPut ( "$padXmlDir/$padTailId/details/$padXmlLvl/$padXmlOcc/base.pad", $padPad     [$pad] );
+    padTailPut ( "$padTailDir/xml/details/$padXmlLvl/$padXmlOcc/data.json", $padCurrent [$pad] );
+    padTailPut ( "$padTailDir/xml/details/$padXmlLvl/$padXmlOcc/base.pad",  $padPad     [$pad] );
   }
 
 ?>
