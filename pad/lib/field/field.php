@@ -18,7 +18,7 @@
   
   function padField ( $field, $type, $lvl=0 ) {
 
-    if ( $GLOBALS ['padXref'] ) 
+    if ( padXref ) 
       include pad . 'tail/types/xref/items/field.php';
 
     if ( str_contains ($field, ':' ) )

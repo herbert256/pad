@@ -3,7 +3,7 @@
 
   function padTrace ( $type, $event, $info='' ) {
 
-    global $pad, $padOccur, $padTailMetaNoTrace;
+    global $pad, $padOccur;
     global $padTraceMore, $padTraceRoot, $padTraceTree, $padTraceLocal, $padTraceSkipLevel;
     global $padTraceActive, $padTraceLine, $padTraceTypes, $padTraceId, $padTraceOccurId, $padTraceMaxLevel;
 
@@ -18,9 +18,6 @@
     $padTraceLine++;
 
     padTail ( 'trace',  $type, $event, $info );
-
-    if ( $padTailMetaNoTrace )
-      return;
 
     $occur = $padOccur [$pad] ?? 0;
 
@@ -139,7 +136,7 @@
 
   function padTraceWrite ( $pad, $location, $trace, $type='line' ) {  
 
-    global $padOccur, $padTraceLevel,  $padTailDir, $padTraceOnlyDirs, $padTraceSkipLevel, $padTraceMaxLevel ;
+    global $padOccur, $padTraceLevel,  $padTailDir, $padTraceLines, $padTraceSkipLevel, $padTraceMaxLevel ;
 
     if ( $padTraceSkipLevel and $padTraceSkipLevel == $pad ) return;
     if ( $padTraceMaxLevel  and $padTraceMaxLevel  >  $pad ) return;
@@ -154,8 +151,8 @@
 
     $target = "$padTailDir/trace/$add$location";
 
-    if ( $padTraceOnlyDirs )
-      return padTraceOnlyDirs ( padData . $target, $type );
+    if ( ! $padTraceLines )
+      return padTraceCheckDir ( padData . $target, $type );
 
     if ( $type == 'file' and padExists ( padData . $target ) )
       return;
@@ -168,7 +165,7 @@
   }
 
  
-  function padTraceOnlyDirs ( $file, $type ) {
+  function padTraceCheckDir ( $file, $type ) {
 
     if ( $type == 'file' )
       return;

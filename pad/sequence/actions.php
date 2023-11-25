@@ -12,7 +12,7 @@
       else
         $padSeqActionCnt = $padSeqActionValue;    
 
-      if ( $padXref ) 
+      if ( padXref ) 
         include pad . 'tail/types/xref/items/action.php';
 
       $padSeqResult = include pad . "sequence/actions/$padSeqActionName.php";

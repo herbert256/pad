@@ -8,7 +8,6 @@
   $padExit        = 1;
   $padLen         = 0;
   $padTime        = $_SERVER['REQUEST_TIME'];  
-  $padCache       = FALSE;
   $padCacheStop   = 0;
   $padPageLevel   = [];
   $padTraceActive = FALSE;

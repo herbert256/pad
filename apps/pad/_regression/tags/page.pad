@@ -1,139 +1,208 @@
 <p>Include an other page in the current page, 5 ways of doing this.</p>
+
 <p> 
-<table border="1" cellpadding="10" cellspacing="0">
-<tr>
-<th bgcolor="#dddddd">HTML</th>
-<th bgcolor="#dddddd">RESULT</th>
-</tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-<b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font></font>}</b></span>
-</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>
-<font color="black">
-Hello&nbsp;World&nbsp;!
-</font>
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>
+  <font color="black">
+    Hello&nbsp;World&nbsp;!
+  </font>
 </h3><!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-<b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>include<font color="black">'</font><font color="black">,</font> include<font color="black">,</font> <font color="red">$</font>color=<font color="black">'</font>green<font color="black">'</font></font>}</b><br /><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>build<font color="black">'</font><font color="black">,</font>   include<font color="black">,</font> <font color="red">$</font>color=<font color="black">'</font>orange<font color="black">'</font></font>}</b><br /><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>get<font color="black">'</font><font color="black">,</font>     include<font color="black">,</font> <font color="red">$</font>color=<font color="black">'</font>red<font color="black">'</font></font>}</b><br /><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>sandbox<font color="black">'</font><font color="black">,</font> include<font color="black">,</font> <font color="red">$</font>color=<font color="black">'</font>purple<font color="black">'</font></font>}</b><br /><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>ajax<font color="black">'</font><font color="black">,</font>    include<font color="black">,</font> <font color="red">$</font>color=<font color="black">'</font>blue<font color="black">'</font></font>}</b></span>
-</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>
-<font color="green">
-Hello&nbsp;World&nbsp;!
-</font>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>include<font color="black">'</font><font color="black">,</font> include<font color="black">,</font> <font color="red">$</font>color=<font color="black">'</font>green<font color="black">'</font></font>}</b>
+<b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>build<font color="black">'</font><font color="black">,</font>   include<font color="black">,</font> <font color="red">$</font>color=<font color="black">'</font>orange<font color="black">'</font></font>}</b>
+<b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>get<font color="black">'</font><font color="black">,</font>     include<font color="black">,</font> <font color="red">$</font>color=<font color="black">'</font>red<font color="black">'</font></font>}</b>
+<b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>sandbox<font color="black">'</font><font color="black">,</font> include<font color="black">,</font> <font color="red">$</font>color=<font color="black">'</font>purple<font color="black">'</font></font>}</b>
+<b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>ajax<font color="black">'</font><font color="black">,</font>    include<font color="black">,</font> <font color="red">$</font>color=<font color="black">'</font>blue<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>
+  <font color="green">
+    Hello&nbsp;World&nbsp;!
+  </font>
+</h3>
+
+
+
+
+<h3>
+  <font color="orange">
+    Hello&nbsp;World&nbsp;!
+  </font>
 </h3>
 <h3>
-<font color="orange">
-Hello&nbsp;World&nbsp;!
-</font>
+  <font color="red">
+    Hello&nbsp;World&nbsp;!
+  </font>
 </h3>
+
+
+
+
 <h3>
-<font color="red">
-Hello&nbsp;World&nbsp;!
-</font>
+  <font color="purple">
+    Hello&nbsp;World&nbsp;!
+  </font>
 </h3>
-<h3>
-<font color="purple">
-Hello&nbsp;World&nbsp;!
-</font>
-</h3>
-<div id="padAjaxDFWi1sXw"></div>
+<div id="padAjaxypPeWODB"></div>
+
 <script>
-padAjaxDFWi1sXw = new XMLHttpRequest();
-padAjaxDFWi1sXw.onreadystatechange=function() {
-if (padAjaxDFWi1sXw.readyState === 4) {
-if (padAjaxDFWi1sXw.status === 200) {
-document.getElementById("padAjaxDFWi1sXw").innerHTML=padAjaxDFWi1sXw.responseText;
-} else {
-document.getElementById("padAjaxDFWi1sXw").innerHTML=padAjaxDFWi1sXw.statusText;
-}
-}
-}
-padAjaxDFWi1sXw.open("GET","http://localhost:8080/?hello/index&padInclude&color=blue&padSesID=YQGLTIBw&padReqID=nE9bGexL",true);
-padAjaxDFWi1sXw.send();
+  padAjaxypPeWODB = new XMLHttpRequest();
+  padAjaxypPeWODB.onreadystatechange=function() {
+    if (padAjaxypPeWODB.readyState === 4) {
+      if (padAjaxypPeWODB.status === 200) {
+        document.getElementById("padAjaxypPeWODB").innerHTML=padAjaxypPeWODB.responseText;
+      } else {
+        document.getElementById("padAjaxypPeWODB").innerHTML=padAjaxypPeWODB.statusText;
+      }
+    }
+  }
+  padAjaxypPeWODB.open("GET","http://localhost:8080/?hello/index&padInclude&color=blue&padSesID=YQGLTIBw&padReqID=pfdJhAQq",true);
+  padAjaxypPeWODB.send();
 </script><!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-<b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>include<font color="black">'</font><font color="black">,</font> <font color="red">$</font>color=<font color="black">'</font>green<font color="black">'</font></font>}</b><br /><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>build<font color="black">'</font><font color="black">,</font>   <font color="red">$</font>color=<font color="black">'</font>orange<font color="black">'</font></font>}</b><br /><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>get<font color="black">'</font><font color="black">,</font>     <font color="red">$</font>color=<font color="black">'</font>red<font color="black">'</font></font>}</b><br /><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>sandbox<font color="black">'</font><font color="black">,</font> <font color="red">$</font>color=<font color="black">'</font>purple<font color="black">'</font></font>}</b><br /><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>ajax<font color="black">'</font><font color="black">,</font>    <font color="red">$</font>color=<font color="black">'</font>blue<font color="black">'</font></font>}</b></span>
-</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>
-<font color="green">
-Hello&nbsp;World&nbsp;!
-</font>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>include<font color="black">'</font><font color="black">,</font> <font color="red">$</font>color=<font color="black">'</font>green<font color="black">'</font></font>}</b>
+<b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>build<font color="black">'</font><font color="black">,</font>   <font color="red">$</font>color=<font color="black">'</font>orange<font color="black">'</font></font>}</b>
+<b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>get<font color="black">'</font><font color="black">,</font>     <font color="red">$</font>color=<font color="black">'</font>red<font color="black">'</font></font>}</b>
+<b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>sandbox<font color="black">'</font><font color="black">,</font> <font color="red">$</font>color=<font color="black">'</font>purple<font color="black">'</font></font>}</b>
+<b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>ajax<font color="black">'</font><font color="black">,</font>    <font color="red">$</font>color=<font color="black">'</font>blue<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>
+  <font color="green">
+    Hello&nbsp;World&nbsp;!
+  </font>
 </h3>
+
+
+
+
 <h3>
-<font color="orange">
-Hello&nbsp;World&nbsp;!
-</font>
+  <font color="orange">
+    Hello&nbsp;World&nbsp;!
+  </font>
 </h3>
 <html>
-<head>
-<title>PAD - hello</title>
-</head>
-<body>
-<table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-<tr>
-<td>  
-<center>
-<h1>
-PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
-</h1>
-<table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-<tr>
-<td>
-<hr style="margin:0; border: 1px solid black;">
-<font size="-1">
-<a href="/?index">home</a> 
-/
-hello 
+
+  <head>
+    <title>PAD - hello</title>
+  </head>
+  
+  <body>
+
+    <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+    <tr>
+      <td>  
+        
+
+      <center>
+
+        <h1>
+          PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+        </h1>
+
+        
+  <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>
+      <hr style="margin:0; border: 1px solid black;">
+  <font size="-1">
+  
+    <a href="/?index">home</a> 
+    
+    
+      /
+    
+    
+  
+    hello 
+    
+  
 </font>
-<hr style="margin: 2; margin-left:0; margin-right: 0; margin-bottom: 0; border: 1px solid black;">
-</td>
-</tr>
+  <hr style="margin: 2; margin-left:0; margin-right: 0; margin-bottom: 0; border: 1px solid black;">
+    </td>
+  </tr>
 </table>
-<br><hr width="75%">
-<h2>Hello</h2>
-<h3>
-<font color="red">
-Hello&nbsp;World&nbsp;!
-</font>
+
+
+        <br><hr width="75%">
+
+        <h2>Hello</h2>
+
+        <h3>
+  <font color="red">
+    Hello&nbsp;World&nbsp;!
+  </font>
 </h3>
-<br><hr width="75%"><br>
-<table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-<tr>
-<td>
-<hr style="margin:0; border: 1px solid black;">
-<font size="-1">
-<a href="/?index">home</a> 
-/
-hello 
+
+        <br><hr width="75%"><br>
+
+        
+  <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>
+      <hr style="margin:0; border: 1px solid black;">
+  <font size="-1">
+  
+    <a href="/?index">home</a> 
+    
+    
+      /
+    
+    
+  
+    hello 
+    
+  
 </font>
-<hr style="margin: 2; margin-left:0; margin-right: 0; margin-bottom: 0; border: 1px solid black;">
-</td>
-</tr>
+  <hr style="margin: 2; margin-left:0; margin-right: 0; margin-bottom: 0; border: 1px solid black;">
+    </td>
+  </tr>
 </table>
-<p><font size="-3">(c) 2003-2023 Herbert Groot Jebbink</font></p>
-</center>
-</td>
-</tr>
-</table>
-</body>
+
+
+        <p><font size="-3">(c) 2003-2023 Herbert Groot Jebbink</font></p>
+
+      </center>
+
+    
+      </td>
+    </tr>
+  </table>
+
+  </body>
+
 </html>
+
+
+
+
 <h3>
-<font color="purple">
-Hello&nbsp;World&nbsp;!
-</font>
+  <font color="purple">
+    Hello&nbsp;World&nbsp;!
+  </font>
 </h3>
-<div id="padAjaxupsloITn"></div>
+<div id="padAjaxgrWOW4gC"></div>
+
 <script>
-padAjaxupsloITn = new XMLHttpRequest();
-padAjaxupsloITn.onreadystatechange=function() {
-if (padAjaxupsloITn.readyState === 4) {
-if (padAjaxupsloITn.status === 200) {
-document.getElementById("padAjaxupsloITn").innerHTML=padAjaxupsloITn.responseText;
-} else {
-document.getElementById("padAjaxupsloITn").innerHTML=padAjaxupsloITn.statusText;
-}
-}
-}
-padAjaxupsloITn.open("GET","http://localhost:8080/?hello/index&color=blue&padSesID=YQGLTIBw&padReqID=nE9bGexL",true);
-padAjaxupsloITn.send();
+  padAjaxgrWOW4gC = new XMLHttpRequest();
+  padAjaxgrWOW4gC.onreadystatechange=function() {
+    if (padAjaxgrWOW4gC.readyState === 4) {
+      if (padAjaxgrWOW4gC.status === 200) {
+        document.getElementById("padAjaxgrWOW4gC").innerHTML=padAjaxgrWOW4gC.responseText;
+      } else {
+        document.getElementById("padAjaxgrWOW4gC").innerHTML=padAjaxgrWOW4gC.statusText;
+      }
+    }
+  }
+  padAjaxgrWOW4gC.open("GET","http://localhost:8080/?hello/index&color=blue&padSesID=YQGLTIBw&padReqID=pfdJhAQq",true);
+  padAjaxgrWOW4gC.send();
 </script><!-- END DEMO RESULT --></span></code></td></tr>
-</table>
+
+
+  </table>
 </p>
+
 <!-- PAD: NO REGRESSION -->

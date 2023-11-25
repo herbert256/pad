@@ -5,6 +5,6 @@
     return TRUE;
   }
 
-  $padContent = padTidyFragment( $padContent );
+  $padContent = padTidy ( $padContent, TRUE );
 
 ?>

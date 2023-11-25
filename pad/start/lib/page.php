@@ -1,6 +1,6 @@
 <?php
 
-  if ( $padXref ) 
+  if ( padXref ) 
     include pad . 'tail/types/xref/items/page.php';
 
   $padPageSavePage [$pad] = $padPage;

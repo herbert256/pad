@@ -1,6 +1,6 @@
 <?php
 
-  if ( $padXref ) 
+  if ( padXref ) 
     include pad . 'tail/types/xref/items/setup.php';
 
   $padBetween   = 'PAD';

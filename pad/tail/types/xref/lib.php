@@ -3,14 +3,11 @@
 
   function padXref ( $dir1, $dir2, $dir3='' ) {
 
-    global $padTailMetaNoXref, $padXrefTail, $padXrefDevelop, $padXrefXml, $padXrefTrace, $padXrefId, $padXrefManual;
+    global $padXrefTail, $padXrefDevelop, $padXrefXml, $padXrefTrace, $padXrefId, $padXrefManual;
 
     $padXrefId++;
 
     padTail ( 'xref', $dir1, $dir2, $dir3 );
-
-    if ( $padTailMetaNoXref )
-      return;
 
     if ( $padXrefTail    ) padXrefTail    ( $dir1, $dir2, $dir3 );
     if ( $padXrefManual  ) padXrefManual  ( $dir1, $dir2, $dir3 );
@@ -129,7 +126,7 @@
     
     $target = $padTraceLevel [$pad] ?? 0;
   
-    padXrefLine ( "trace/$target", $dir1, $dir2, $dir3 );
+    padXrefLine ( "trace/$target/xref", $dir1, $dir2, $dir3 );
  
   } 
 

@@ -5,7 +5,7 @@
   elseif ( $padText [$pad] ) $padBase [$pad] = $padTagResult;
   else                       $padBase [$pad] = $padTrue [$pad];
 
-  if ( $padXref ) 
+  if ( padXref ) 
     include pad . 'tail/types/xref/items/status.php';  
 
 ?>

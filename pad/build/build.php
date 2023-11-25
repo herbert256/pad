@@ -8,7 +8,7 @@
 
   $padBase [$pad] = $padBuildLib . str_replace ( '@pad@', $padBuildPage, $padBuildBase );
 
-  if ( $padXml )
+  if ( padXml )
     include pad . 'tail/types/xml/build.php';
 
   if ( $padTraceActive ) {

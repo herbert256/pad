@@ -25,7 +25,7 @@
  
   if ( $padTraceDataOcc ) {
 
-    if ( $padTraceNoDefault and ! count ( $padCurrent [$pad] ) )
+    if ( ! $padTraceDefault and ! count ( $padCurrent [$pad] ) )
       return;
     
     padTrace ( 'occur', 'occ-data', $padCurrent [$pad] );   

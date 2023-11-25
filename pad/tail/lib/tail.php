@@ -92,12 +92,30 @@
     $dir = substr ( $file, 0, strrpos($file, '/') );
     
     if ( ! file_exists ($dir) )
-      mkdir ($dir, $GLOBALS ['padDirMode'], true );
+      padTailMkDir ( $dir );
 
     if ( ! file_exists ($file) ) {      
       touch($file);
       chmod($file, $GLOBALS ['padFileMode']);
     }
+    
+  }
+
+
+  function padTailMkDir( $dir ) {
+
+   set_error_handler ( 'padErrorThrow' );
+
+    try {
+
+      mkdir ($dir, $GLOBALS ['padDirMode'], true );
+
+    } catch (Throwable $e) {
+
+  
+    }
+
+    restore_error_handler ();  
     
   }
 
@@ -119,28 +137,41 @@
     else
       $headers = [];
 
+    $input = file_get_contents('php://input') ?? '';
+
     padTailPut ( $file,  [
+        'input'   => $input,
+        'headers' => $headers,
         'get'     => $_GET ??    '',
         'post'    => $_POST ??   '',
         'cookies' => $_COOKIE ?? '',
-        'input'   => file_get_contents('php://input') ?? '',
-        'headers' => $headers,
         'files '  => $_FILES ?? '',
         'server'  => $_SERVER ?? '',
-        'request' => $_REQUEST ?? '',
         'session' => $_SESSION ?? '',
-        '_ENV'    => $_ENV ?? '',
-        'getenv'  => getenv () ?? '' ] );
+        'getenv'  => getenv () ?? '' , 
+        'request' => $_REQUEST ?? '' ] );
+
+    if ( $input ) {
+      $file = str_replace ( 'entry.json', 'input.txt', $file );
+      padTailPut ( $file,  $input );
+    }
       
   }
 
 
   function padTailRequestExit ( $file ) {
 
+    global $padOutput;
+
     padTailPut ( $file,  [
         'headers' => headers_list () ?? [],
         'output'  => $GLOBALS ['padOutput'] ?? ''
       ] );
+
+    if ( $padOutput ) {
+      $file = str_replace ( 'exit.json', 'output.txt', $file );
+      padTailPut ( $file,  $padOutput );
+    }
       
   }
 

@@ -1,31 +1,23 @@
 <?php
     
 
-  function padHighLight ($source) {
+  function padHighLight ( $source ) {
 
-    $source = padUnescape ($source);
-
-    return str_replace(
-             '<code>', 
-             '<code style="font-family:courier new,courier,monospace;font-size:12px;">', 
-               highlight_string ($source, TRUE)
-           );
+    return highlight_string ( padUnescape ($source), TRUE );
 
   }
 
 
-  function padColorsFile ($file) {
-
-    if ( ! padExists($file) )
-      return $file;
+  function padColorsFile ( $file ) {
 
     if (substr($file, -4) == '.pad')
-      return padColorsString ( trim(padFileGetContents($file)) ) ;
+      return padColorsString ( padFileGetContents ($file) ) ;
     else
-      return padHighLight ( trim(padFileGetContents($file)) ) ;
+      return padHighLight    ( padFileGetContents ($file) ) ;
   
   }  
   
+
   function padColorsKind ( $kind, &$source ) {
 
     $source = str_replace ( 
@@ -35,9 +27,10 @@
 
   } 
 
-  function padColorsString ($source) { 
 
-   $source = padHighLight (trim($source));
+  function padColorsString ( $source ) { 
+
+   $source = padHighLight ( trim ( $source ) );
 
    padColorsKind ( 'content', $source ); 
    padColorsKind ( 'tidy',    $source ); 
@@ -48,7 +41,7 @@
 go: $end = strpos($source, '}');
 
     if ( $end === FALSE ) {
-      $source = str_replace ('{', '&open;', $source);
+      $source = str_replace ('{', '&open;',  $source);
       $source = str_replace ('}', '&close;', $source);
       return $source;
     }

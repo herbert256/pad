@@ -4,16 +4,11 @@
   function padSessionStart () {
 
     return [
-        'start'     => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0,
         'session'   => $GLOBALS ['padSesID'] ?? '',
         'request'   => $GLOBALS ['padReqID'] ?? '',
         'parent'    => $GLOBALS ['padRefID'] ?? '',
         'page'      => $GLOBALS ['padPage'] ?? '',
-        'uri'       => $_SERVER ['REQUEST_URI']     ?? '' ,
-        'referer'   => $_SERVER ['HTTP_REFERER']    ?? '' ,
-        'remote'    => $_SERVER ['REMOTE_ADDR']     ?? '' ,
-        'agent'     => $_SERVER ['HTTP_USER_AGENT'] ?? '',
-        'cookies'   => $_SERVER ['HTTP_COOKIE']     ?? ''
+        'start'     => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0
       ];
 
   }
@@ -24,9 +19,9 @@
     return [
         'session'   => $GLOBALS ['padSesID'] ?? '',
         'request'   => $GLOBALS ['padReqID'] ?? '',
+        'stop'      => $GLOBALS ['padStop'] ?? '',
         'duration'  => padDuration (),
         'length'    => $GLOBALS ['padLen'] ?? 0,
-        'stop'      => $GLOBALS ['padStop'] ?? '',
         'etag'      => $GLOBALS ['padEtag'] ?? '',
         'end'       => microtime(true)
       ];
@@ -263,7 +258,7 @@
       elseif ( $new                                    ) $padDouble [$pad] = 'dbl-new';
       else                                               $padDouble [$pad] = 'dbl-base';
 
-    if ( $GLOBALS ['padXref'] ) {
+    if ( padXref ) {
       include pad . 'tail/types/xref/items/double.php';
       include pad . 'tail/types/xref/items/content.php';
     }
@@ -319,51 +314,25 @@
   }
 
       
- function padTidyOutput ( $data ) {
+  function padTidy ( $data, $fragment=FALSE ) {
 
-    if ( isset ( $_REQUEST ['padInclude'] ) )
-      return padTidyFragment ( $data );
+    include pad . 'config/tidy.php';
 
-   $config = $GLOBALS ['padTidyConfig'];
+    if ( isset ( $_REQUEST ['padInclude'] ) or $fragment )
+      $padTidyConfig ['show-body-only'] = true;
 
-   return padTidy ( $data, $config );
+    $tidy = new tidy;
+    $tidy->parseString($data, $padTidyConfig, 'utf8');
+    $tidy->cleanRepair();
 
- }
+    $GLOBALS ['lastTidy'] = $tidy;
 
-
- function padTidyFragment ( $data ) {
-
-   $config = $GLOBALS ['padTidyConfig'];
-
-   $config ['show-body-only'] = true;
-
-   return padTidy ( $data, $config );
-
- }
-
-
- function padTidy ( $data, $config ) {
-
-   $tidy = new tidy;
-   $tidy->parseString($data, $config, 'utf8');
-   $tidy->cleanRepair();
-
-   return $tidy->value;
-
- }
-
-
-
-  function padDemoMode ( $page ) {
-
-    $store = padApp . "_regression/$page.pad";
-
-    if ( padExists ($store) )
-      return padFileGetContents($store);
+    if ( $tidy->value === NULL ) 
+      return $data;
     else
-      return "NO HTTP REQUESTS ALLOWED IN DEMO MODE";
+      return $tidy->value;
 
-  }    
+  }  
 
 
   function padDirs () {

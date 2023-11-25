@@ -1,5 +1,5 @@
 <?php
       
-  $padContent = padTidyFragment ($padContent);
+  $padContent = padTidy ( $padContent, TRUE );
 
 ?>

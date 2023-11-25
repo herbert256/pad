@@ -122,9 +122,6 @@
 
     $GLOBALS ['padSkipShutdown']     = TRUE;
     $GLOBALS ['padSkipBootShutdown'] = TRUE;
-
-
-    xxx();
     
     exit;
 

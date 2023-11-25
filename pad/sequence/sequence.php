@@ -6,7 +6,7 @@
   elseif ( $padSeqRange ) $padSeqFor = padGetRange ( $padSeqRange, $padSeqInc );
   elseif ( $padSeqList  ) $padSeqFor = padGetList ( $padSeqList );
 
-  if ( $padXref )
+  if ( padXref )
     include pad . 'tail/types/xref/items/sequence.php'; 
 
   if ( $padSeqFor !== FALSE )

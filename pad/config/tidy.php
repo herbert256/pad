@@ -4,7 +4,7 @@
   
   $padTidyConfig = [ 
     'output-html'         => TRUE,
-    'doctype'             => 'html5',
+    'doctype'             => 'loose',
     'wrap'                => 0,
     'indent'              => TRUE,
     'tab-size'            => 2,
@@ -16,6 +16,8 @@
     'clean'               => 'yes',
     'drop-empty-elements' => 'yes',
     'merge-spans'         => 'yes',
+    'force-output'        => true,
+    'show-warnings'       => FALSE,
     'merge-divs'          => 'yes'
   ];
 

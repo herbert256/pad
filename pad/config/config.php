@@ -17,15 +17,10 @@
   $padErrorLog    = TRUE;   //  Report errors to Apache error log
   $padErrorReport = TRUE;   //  Report errors to the DATA directory
 
-  // The working of PAD and Big Brother
-  // If one or more are set to TRUE then the config file tail.php will be read. 
+  // Tail:  tail/track/trace/xref etc
+  // If set then the config file with the same name will be load from the sub folder tail 
 
-  $padRequest = FALSE;    // Log the details of the HTTP(s) request 
-  $padTrack   = FALSE;    // Big Brother, session and request information of the client
-
-  $padTrace   = FALSE;     // Trace the internal working of PAD
-  $padXml     = FALSE;     // Build a XML file of the structure of the PAD page
-  $padXref    = FALSE;     // Build the <app>_xref and <data>xref directories
+  $padTail = '';
 
   // Cache settings
   
@@ -77,15 +72,15 @@
   
   // lib tidy
 
-  $padTidy                  = FALSE;
+  $padTidy                   = FALSE;
 
-  // Basic formatting
+  // myTidy ( a very basic & buggy implementation of Tidy )
                                 
-  $padOutputTabToSpace       = TRUE;
-  $padOutputTrim             = TRUE;
+  $padOutputTabToSpace       = FALSE;
+  $padOutputTrim             = FALSE;
   $padOutputRemoveWhitespace = FALSE;
-  $padOutputNoEmptyLines     = TRUE;
-  $padOutputNoIndent         = TRUE;
+  $padOutputNoEmptyLines     = FALSE;
+  $padOutputNoIndent         = FALSE;
   $padOutputNoNewLines       = FALSE;
   
   // Other settings.
@@ -94,10 +89,6 @@
   $padEtag304               = TRUE;   // Send a 304 header, based on the client etag http header
   $padNoNo                  = FALSE;  // No pad stuff, just plane PHP   
   $padFastLink              = 32;     // Lenght of the FastLink code in the URL
-
-  //No parameter parsing for below tags:
-
-  $padPrmNoParse = [ 'if', 'case', 'while', 'until', 'increment', 'decrement' ];
 
   $padTables    = [];
   $padRelations = [];

@@ -4,17 +4,18 @@
     
   $padXmlTag = ( $padTag [$pad] == 'padBuildData' ) ? "page-$padPage" : $padTag [$pad];
 
-  $padXmlNew            = [];
-  $padXmlNew ['tag']    = str_replace ( '/', '-', $padXmlTag );
-  $padXmlNew ['level']  = $pad;
-  $padXmlNew ['type']   = $padType [$pad];
-  $padXmlNew ['parm']   = $padOpt [$pad] [0];
-  $padXmlNew ['parms']  = [];
-  $padXmlNew ['occurs'] = [];
-  $padXmlNew ['childs'] = FALSE;
-  $padXmlNew ['size']   = 0;
-  $padXmlNew ['result'] = '';
-  $padXmlNew ['source'] = '';
+  $padXmlNew             = [];
+  $padXmlNew ['tag']     = str_replace ( '/', '-', $padXmlTag );
+  $padXmlNew ['level']   = $pad;
+  $padXmlNew ['type']    = $padType [$pad];
+  $padXmlNew ['parm']    = $padOpt [$pad] [0];
+  $padXmlNew ['parms']   = [];
+  $padXmlNew ['occurs']  = [];
+  $padXmlNew ['childs']  = FALSE;
+  $padXmlNew ['written'] = FALSE;
+  $padXmlNew ['size']    = 0;
+  $padXmlNew ['result']  = '';
+  $padXmlNew ['source']  = '';
 
   $padXmlTree [] = $padXmlNew;
 

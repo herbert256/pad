@@ -1,148 +1,273 @@
 <p> 
-<table border="1" cellpadding="10" cellspacing="0">
-<tr>
-<th bgcolor="#dddddd">HTML</th>
-<th bgcolor="#dddddd">RESULT</th>
-</tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-<b>{<font color="blue">sequence </font><font color="red">from=5<font color="black">,</font> to=50<font color="black">,</font> name=<font color="black">'</font>mySeq<font color="black">'</font></font>}</b></span>
-</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-<b>{<font color="blue">keep </font><font color="red"><font color="black">'</font>mySeq<font color="black">'</font> <font color="black">,</font> even</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green"><font color="red">$</font>keep</font>}</b><br /><b>{/<font color="blue">keep</font><font color="red"></font>}</b></span>
-</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->6
-8
-10
-12
-14
-16
-18
-20
-22
-24
-26
-28
-30
-32
-34
-36
-38
-40
-42
-44
-46
-48
-50<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-<b>{<font color="blue">keep </font><font color="red"><font color="black">'</font>mySeq<font color="black">'</font><font color="black">,</font> multiple=5</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green"><font color="red">$</font>keep</font>}</b><br /><b>{/<font color="blue">keep</font><font color="red"></font>}</b></span>
-</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->5
-10
-15
-20
-25
-30
-35
-40
-45
-50<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-<b>{<font color="blue">keep </font><font color="red"><font color="black">'</font>mySeq<font color="black">'</font><font color="black">,</font> even<font color="black">,</font> multiple=5</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green"><font color="red">$</font>keep</font>}</b><br /><b>{/<font color="blue">keep</font><font color="red"></font>}</b></span>
-</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->10
-20
-30
-40
-50<!-- END DEMO RESULT --></span></code></td></tr>
-</table>
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">from=5<font color="black">,</font> to=50<font color="black">,</font> name=<font color="black">'</font>mySeq<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">keep </font><font color="red"><font color="black">'</font>mySeq<font color="black">'</font> <font color="black">,</font> even</font>}</b>
+  <b>{<font color="green"><font color="red">$</font>keep</font>}</b>
+<b>{/<font color="blue">keep</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->6
+
+  8
+
+  10
+
+  12
+
+  14
+
+  16
+
+  18
+
+  20
+
+  22
+
+  24
+
+  26
+
+  28
+
+  30
+
+  32
+
+  34
+
+  36
+
+  38
+
+  40
+
+  42
+
+  44
+
+  46
+
+  48
+
+  50<!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">keep </font><font color="red"><font color="black">'</font>mySeq<font color="black">'</font><font color="black">,</font> multiple=5</font>}</b>
+  <b>{<font color="green"><font color="red">$</font>keep</font>}</b>
+<b>{/<font color="blue">keep</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->5
+
+  10
+
+  15
+
+  20
+
+  25
+
+  30
+
+  35
+
+  40
+
+  45
+
+  50<!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">keep </font><font color="red"><font color="black">'</font>mySeq<font color="black">'</font><font color="black">,</font> even<font color="black">,</font> multiple=5</font>}</b>
+  <b>{<font color="green"><font color="red">$</font>keep</font>}</b>
+<b>{/<font color="blue">keep</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->10
+
+  20
+
+  30
+
+  40
+
+  50<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </table>
 </p><p> 
-<table border="1" cellpadding="10" cellspacing="0">
-<tr>
-<th bgcolor="#dddddd">HTML</th>
-<th bgcolor="#dddddd">RESULT</th>
-</tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-<b>{<font color="blue">sequence </font><font color="red">from=5<font color="black">,</font> to=50<font color="black">,</font> name=<font color="black">'</font>mySeq<font color="black">'</font></font>}</b></span>
-</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-<b>{<font color="blue">remove </font><font color="red"><font color="black">'</font>mySeq<font color="black">'</font> <font color="black">,</font> even</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green"><font color="red">$</font>remove</font>}</b><br /><b>{/<font color="blue">remove</font><font color="red"></font>}</b></span>
-</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->5
-7
-9
-11
-13
-15
-17
-19
-21
-23
-25
-27
-29
-31
-33
-35
-37
-39
-41
-43
-45
-47
-49<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-<b>{<font color="blue">remove </font><font color="red"><font color="black">'</font>mySeq<font color="black">'</font><font color="black">,</font> multiple=5</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green"><font color="red">$</font>remove</font>}</b><br /><b>{/<font color="blue">remove</font><font color="red"></font>}</b></span>
-</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->6
-7
-8
-9
-11
-12
-13
-14
-16
-17
-18
-19
-21
-22
-23
-24
-26
-27
-28
-29
-31
-32
-33
-34
-36
-37
-38
-39
-41
-42
-43
-44
-46
-47
-48
-49<!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-<b>{<font color="blue">remove </font><font color="red"><font color="black">'</font>mySeq<font color="black">'</font><font color="black">,</font> even<font color="black">,</font> multiple=5</font>}</b><br />&nbsp;&nbsp;<b>{<font color="green"><font color="red">$</font>remove</font>}</b><br /><b>{/<font color="blue">remove</font><font color="red"></font>}</b></span>
-</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->7
-9
-11
-13
-17
-19
-21
-23
-27
-29
-31
-33
-37
-39
-41
-43
-47
-49<!-- END DEMO RESULT --></span></code></td></tr>
-</table>
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">from=5<font color="black">,</font> to=50<font color="black">,</font> name=<font color="black">'</font>mySeq<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">remove </font><font color="red"><font color="black">'</font>mySeq<font color="black">'</font> <font color="black">,</font> even</font>}</b>
+  <b>{<font color="green"><font color="red">$</font>remove</font>}</b>
+<b>{/<font color="blue">remove</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->5
+
+  7
+
+  9
+
+  11
+
+  13
+
+  15
+
+  17
+
+  19
+
+  21
+
+  23
+
+  25
+
+  27
+
+  29
+
+  31
+
+  33
+
+  35
+
+  37
+
+  39
+
+  41
+
+  43
+
+  45
+
+  47
+
+  49<!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">remove </font><font color="red"><font color="black">'</font>mySeq<font color="black">'</font><font color="black">,</font> multiple=5</font>}</b>
+  <b>{<font color="green"><font color="red">$</font>remove</font>}</b>
+<b>{/<font color="blue">remove</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->6
+
+  7
+
+  8
+
+  9
+
+  11
+
+  12
+
+  13
+
+  14
+
+  16
+
+  17
+
+  18
+
+  19
+
+  21
+
+  22
+
+  23
+
+  24
+
+  26
+
+  27
+
+  28
+
+  29
+
+  31
+
+  32
+
+  33
+
+  34
+
+  36
+
+  37
+
+  38
+
+  39
+
+  41
+
+  42
+
+  43
+
+  44
+
+  46
+
+  47
+
+  48
+
+  49<!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">remove </font><font color="red"><font color="black">'</font>mySeq<font color="black">'</font><font color="black">,</font> even<font color="black">,</font> multiple=5</font>}</b>
+  <b>{<font color="green"><font color="red">$</font>remove</font>}</b>
+<b>{/<font color="blue">remove</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->7
+
+  9
+
+  11
+
+  13
+
+  17
+
+  19
+
+  21
+
+  23
+
+  27
+
+  29
+
+  31
+
+  33
+
+  37
+
+  39
+
+  41
+
+  43
+
+  47
+
+  49<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </table>
 </p>

@@ -16,7 +16,7 @@
     if  ( padOpenCloseCount ( substr ( $padTrue [$pad], 0, $padPos ), $padOpenClose) ) {
       $padFalse [$pad] = substr ( $padTrue [$pad], $padPos+6  );
       $padTrue  [$pad] = substr ( $padTrue [$pad], 0, $padPos );
-      if ( $padXref ) 
+      if ( padXref ) 
         include pad . 'tail/types/xref/items/else.php';
       return;
     }

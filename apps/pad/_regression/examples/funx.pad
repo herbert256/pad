@@ -1,124 +1,251 @@
 <p> 
-<table border="1" cellpadding="10" cellspacing="0">
-<tr>
-<th bgcolor="#dddddd">HTML</th>
-<th bgcolor="#dddddd">RESULT</th>
-</tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-<b>{<font color="blue">content </font><font color="red"><font color="black">'</font>cell<font color="black">'</font></font>}</b>&nbsp;<br />&nbsp;&nbsp;&lt;td&nbsp;<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>cell EQ 23</font>}</b>&nbsp;bgcolor="red"&nbsp;<b>{/<font color="blue">if</font><font color="red"></font>}</b>&nbsp;&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="green"><font color="red">$</font>cell</font>}</b><br />&nbsp;&nbsp;&lt;/td&gt;<br /><b>{/<font color="blue">content</font><font color="red"></font>}</b></span>
-</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-<b>{<font color="blue">data </font><font color="red"><font color="black">'</font>row<font color="black">'</font>   </font>}</b>&nbsp;[1,2,3]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{/<font color="blue">data</font><font color="red"></font>}</b><br /><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>column<font color="black">'</font></font>}</b>&nbsp;[1,2,3,4,5]&nbsp;<b>{/<font color="blue">data</font><font color="red"></font>}</b></span>
-</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-&lt;table&nbsp;border='1'&gt;<br />&nbsp;&nbsp;<b>{<font color="blue">row</font><font color="red"></font>}</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="blue">column</font><font color="red"></font>}</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="blue">cell </font><font color="red">(<font color="red">$</font>row*10) + <font color="red">$</font>column</font>}</b>&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{/<font color="blue">column</font><font color="red"></font>}</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;<b>{/<font color="blue">row</font><font color="red"></font>}</b><br />&lt;/table&gt;</span>
-</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border='1'>
-<tr>
-<td  >
-11
-</td>
-<td  >
-12
-</td>
-<td  >
-13
-</td>
-<td  >
-14
-</td>
-<td  >
-15
-</td>
-</tr>
-<tr>
-<td  >
-21
-</td>
-<td  >
-22
-</td>
-<td  bgcolor="red"  >
-23
-</td>
-<td  >
-24
-</td>
-<td  >
-25
-</td>
-</tr>
-<tr>
-<td  >
-31
-</td>
-<td  >
-32
-</td>
-<td  >
-33
-</td>
-<td  >
-34
-</td>
-<td  >
-35
-</td>
-</tr>
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>cell<font color="black">'</font></font>}</b> 
+  &lt;td <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>cell EQ 23</font>}</b> bgcolor="red" <b>{/<font color="blue">if</font><font color="red"></font>}</b> &gt;
+    <b>{<font color="green"><font color="red">$</font>cell</font>}</b>
+  &lt;/td&gt;
+<b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>row<font color="black">'</font>   </font>}</b> [1,2,3]     <b>{/<font color="blue">data</font><font color="red"></font>}</b>
+<b>{<font color="blue">data </font><font color="red"><font color="black">'</font>column<font color="black">'</font></font>}</b> [1,2,3,4,5] <b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border='1'&gt;
+  <b>{<font color="blue">row</font><font color="red"></font>}</b>
+    &lt;tr&gt;
+      <b>{<font color="blue">column</font><font color="red"></font>}</b>
+        <b>{<font color="blue">cell </font><font color="red">(<font color="red">$</font>row*10) + <font color="red">$</font>column</font>}</b> 
+      <b>{/<font color="blue">column</font><font color="red"></font>}</b>
+    &lt;/tr&gt;
+  <b>{/<font color="blue">row</font><font color="red"></font>}</b>
+&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border='1'>
+  
+    <tr>
+      
+         
+  <td  >
+    11
+  </td>
+ 
+      
+         
+  <td  >
+    12
+  </td>
+ 
+      
+         
+  <td  >
+    13
+  </td>
+ 
+      
+         
+  <td  >
+    14
+  </td>
+ 
+      
+         
+  <td  >
+    15
+  </td>
+ 
+      
+    </tr>
+  
+    <tr>
+      
+         
+  <td  >
+    21
+  </td>
+ 
+      
+         
+  <td  >
+    22
+  </td>
+ 
+      
+         
+  <td  bgcolor="red"  >
+    23
+  </td>
+ 
+      
+         
+  <td  >
+    24
+  </td>
+ 
+      
+         
+  <td  >
+    25
+  </td>
+ 
+      
+    </tr>
+  
+    <tr>
+      
+         
+  <td  >
+    31
+  </td>
+ 
+      
+         
+  <td  >
+    32
+  </td>
+ 
+      
+         
+  <td  >
+    33
+  </td>
+ 
+      
+         
+  <td  >
+    34
+  </td>
+ 
+      
+         
+  <td  >
+    35
+  </td>
+ 
+      
+    </tr>
+  
 </table><!-- END DEMO RESULT --></span></code></td></tr>
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><code style="font-family:courier new,courier,monospace;font-size:12px;"><span style="color: #000000">
-&lt;table&nbsp;border='1'&gt;<br />&nbsp;&nbsp;<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>10..30<font color="black">'</font><font color="black">,</font> increment=10<font color="black">,</font> name=<font color="black">'</font>row<font color="black">'</font></font>}</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>column<font color="black">'</font></font>}</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{<font color="blue">cell </font><font color="red"><font color="red">$</font>row + <font color="red">$</font>column</font>}</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;<br />&nbsp;&nbsp;<b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br />&lt;/table&gt;</span>
-</code><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border='1'>
-<tr>
-<td  >
-11
-</td>
-<td  >
-12
-</td>
-<td  >
-13
-</td>
-<td  >
-14
-</td>
-<td  >
-15
-</td>
-</tr>
-<tr>
-<td  >
-21
-</td>
-<td  >
-22
-</td>
-<td  bgcolor="red"  >
-23
-</td>
-<td  >
-24
-</td>
-<td  >
-25
-</td>
-</tr>
-<tr>
-<td  >
-31
-</td>
-<td  >
-32
-</td>
-<td  >
-33
-</td>
-<td  >
-34
-</td>
-<td  >
-35
-</td>
-</tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border='1'&gt;
+  <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>10..30<font color="black">'</font><font color="black">,</font> increment=10<font color="black">,</font> name=<font color="black">'</font>row<font color="black">'</font></font>}</b>
+    &lt;tr&gt;
+      <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>column<font color="black">'</font></font>}</b>
+        <b>{<font color="blue">cell </font><font color="red"><font color="red">$</font>row + <font color="red">$</font>column</font>}</b>
+      <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>
+    &lt;/tr&gt;
+  <b>{/<font color="blue">sequence</font><font color="red"></font>}</b>
+&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border='1'>
+  
+    <tr>
+      
+         
+  <td  >
+    11
+  </td>
+
+      
+         
+  <td  >
+    12
+  </td>
+
+      
+         
+  <td  >
+    13
+  </td>
+
+      
+         
+  <td  >
+    14
+  </td>
+
+      
+         
+  <td  >
+    15
+  </td>
+
+      
+    </tr>
+  
+    <tr>
+      
+         
+  <td  >
+    21
+  </td>
+
+      
+         
+  <td  >
+    22
+  </td>
+
+      
+         
+  <td  bgcolor="red"  >
+    23
+  </td>
+
+      
+         
+  <td  >
+    24
+  </td>
+
+      
+         
+  <td  >
+    25
+  </td>
+
+      
+    </tr>
+  
+    <tr>
+      
+         
+  <td  >
+    31
+  </td>
+
+      
+         
+  <td  >
+    32
+  </td>
+
+      
+         
+  <td  >
+    33
+  </td>
+
+      
+         
+  <td  >
+    34
+  </td>
+
+      
+         
+  <td  >
+    35
+  </td>
+
+      
+    </tr>
+  
 </table><!-- END DEMO RESULT --></span></code></td></tr>
-</table>
+
+
+  </table>
 </p>

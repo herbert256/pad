@@ -40,29 +40,28 @@
     
     if ( $type   <> 'pad'     ) $options ['type']   = $type;
     if ( $source <> 'content' ) $options ['source'] = $source;
-
-    if ( $padXmlDetails ) {
-      $options ['id']        = $tree;
-      $options ['parent']    = $parent;
-      $options ['parentOcc'] = $parentOcc;
-    }
+    if ( $padXmlDetails       ) $options ['id'] = $tree;
 
     if ( $padXmlTree [$tree] ['childs'] )
       padXmlOpen ( $tag, $options );
     else
       padXmlLine ( $tag, $options );
 
-    if ( $count > 1 ) {
-
-      padXmlOpen ( 'parms' );
-
-      foreach ( $parms as $type => $list )
-        foreach ( $list as $name => $value )
-          padXmlLine ( "parm type=\"$type\" name=\"$name\" value=\"" .  htmlentities($value). '"' );
-
-       padXmlClose ( 'parms' );
+    if ( $count > 1 )
+      padXmlLevelParms ( $parms );
    
-    }
+  }
+
+
+  function padXmlLevelParms ( $parms ) {  
+
+    padXmlOpen ( 'parms' );
+
+    foreach ( $parms as $type => $list )
+      foreach ( $list as $name => $value )
+        padXmlLine ( "parm type=\"$type\" name=\"$name\" value=\"" .  htmlentities($value). '"' );
+
+     padXmlClose ( 'parms' );
 
   }
 
@@ -73,8 +72,8 @@
     extract ( $event );
     extract ( $padXmlTree [$tree] );
 
-    if ( $childs )
-      padXmlClose ( $tag );
+    if ( $written ) padXmlClose ( 'occurs' );
+    if ( $childs  ) padXmlClose ( $tag );
 
   }
 
@@ -96,16 +95,17 @@
       'type' => $type
     ];
 
-    if ( $id == 1 )
+    if ( $id == 1 ) {
       padXmlOpen ( 'occurs' );
+      $padXmlTree [$tree] ['written'] = TRUE;
+    }
 
-    if ( ! $childs )
-      padXmlLine ( 'occur', $parms );
-    else
+    if ( $childs )
       padXmlOpen ( 'occur', $parms );
+    else
+      padXmlLine ( 'occur', $parms );
 
   }
-
 
 
   function padXmlOccurEnd ( $event ) {
@@ -119,10 +119,8 @@
     if ( count ($occurs) < 2)
       return;
 
-    padXmlClose ( 'occur' );
-
-    if ( $id == count ($occurs) )
-      padXmlClose ( 'occurs' );
+    if ( $childs )
+     padXmlClose ( 'occur' );
 
   }  
 
@@ -144,7 +142,7 @@
   
     $more = padXmlMore ( $parms );
  
-    padXmlWrite ( "<$xml$more/>" );
+    padXmlWrite ( "<$xml$more />" );
   
   }
 
@@ -164,7 +162,10 @@
   
     global $padTailDir, $padXmlDetails, $padTailId, $padXmlDepth;
 
-    $spaces = str_repeat ( ' ', $padXmlDepth * 2 );
+    if ( $padXmlDepth > 0 )
+      $spaces = str_repeat ( ' ', $padXmlDepth * 2 );
+    else
+      $spaces = '';
 
     if ( $padXmlDetails )
       padTailPut ( "$padTailDir/xml/tree.xml", "$spaces$xml", true );
@@ -180,7 +181,7 @@
 
     foreach ( $parms as $key => $value )
       if ( $value )
-        $more .= " $key=\"" . htmlspecialchars($value) . '"';
+        $more .= " $key=\"" . str_replace ( '&#039;', "'", htmlspecialchars ($value) ) . '"';
 
     return $more;
   

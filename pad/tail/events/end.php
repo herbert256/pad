@@ -3,7 +3,7 @@
   global $padTraceDir;
   
   if ( $GLOBALS ['padTrack'] ) include pad . 'tail/types/track/end.php';
-  if ( $GLOBALS ['padXml']   ) include pad . 'tail/types/xml/end.php';
+  if ( padXml                ) include pad . 'tail/types/xml/end.php';
   if ( $GLOBALS ['padTrace'] ) include pad . 'tail/types/trace/exit/config.php';
                                include pad . 'tail/types/tail/end.php';
 

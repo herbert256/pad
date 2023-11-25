@@ -1,9 +1,6 @@
 <?php
  
- global $padTailDir, $padTailMetaNoXml, $padXmlDetails, $padXmlTree;
-
-  if ( $padTailMetaNoXml )
-    return;
+  global $padTailDir, $padXmlDetails, $padXmlTree;
 
   padXml     ();
   padXmlTidy ();

@@ -3,7 +3,7 @@
 
   function padEvalFast ( $eval, $value ) {
 
-    if ( $GLOBALS ['padXref'] ) 
+    if ( padXref ) 
       include pad . 'tail/types/xref/items/fast.php';
 
     if ( $GLOBALS ['padTraceActive'] )

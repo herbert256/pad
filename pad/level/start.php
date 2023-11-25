@@ -2,10 +2,7 @@
 
   include pad . 'level/tag.php';
   include pad . 'level/setup.php';    
-
-  #if ( ! in_array ( $padTag [$pad], $padPrmNoParse  )  )
-    include pad . 'level/parms.php';    
-
+  include pad . 'level/parms.php';    
   include pad . 'level/split.php';
 
   if ( padTagParm ('content') ) $padTrue  [$pad] = include pad . "_options/content.php";    
@@ -38,7 +35,7 @@
   if ( padOpenCloseOk ( $padBase[$pad], '@end@') ) 
     include pad . 'level/start_end/end1.php';
 
-  if ( $padXml ) 
+  if ( padXml ) 
     include pad . 'tail/types/xml/level/info.php';  
 
   if ( padOpenCloseOk ( $padBase[$pad], '@start@') ) 

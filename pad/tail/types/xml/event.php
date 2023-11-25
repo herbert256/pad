@@ -17,9 +17,6 @@
 
   padTail ( 'xml', $padXmlP1, substr ( $padXmlEventType, 0, 5 ), $padTag [$pad] );
 
-  if ( $padTailMetaNoXml )
-    return;
-
   $padXmlP2 = $pad;
   if ( $padXmlOcc <> 0 and $padXmlOcc <> 99999 )
     $padXmlP2 .= "/$padXmlOcc";
