@@ -21,9 +21,9 @@
   $padXmlDetails       = FALSE;
   $padXmlTidy          = FALSE;
   
-  $padXref             = TRUE;       // Build the <app>_xref and <data>xref directories
+  $padXref             = FALSE;       // Build the <app>_xref and <data>xref directories
   $padXrefTail         = FALSE;
-  $padXrefManual       = TRUE;
+  $padXrefManual       = FALSE;
   $padXrefDevelop      = FALSE;
   $padXrefXml          = FALSE;
   $padXrefTrace        = FALSE;
