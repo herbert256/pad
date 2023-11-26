@@ -140,7 +140,6 @@
     $input = file_get_contents('php://input') ?? '';
 
     padTailPut ( $file,  [
-        'input'   => $input,
         'headers' => $headers,
         'get'     => $_GET ??    '',
         'post'    => $_POST ??   '',
@@ -163,9 +162,11 @@
 
     global $padOutput;
 
+    flush();
+
     padTailPut ( $file,  [
-        'headers' => headers_list () ?? [],
-        'output'  => $GLOBALS ['padOutput'] ?? ''
+        'http'    => http_response_code (),
+        'headers' => headers_list () ?? []
       ] );
 
     if ( $padOutput ) {

@@ -6,7 +6,7 @@
   $padTailOutput       = FALSE;   
   $padTailDump         = FALSE;   
 
-  $padRequest          = FALSE;       // Log the details of the HTTP(s) request 
+  $padRequest          = TRUE;       // Log the details of the HTTP(s) request 
 
   $padTrack            = FALSE;       // Big Brother, session and request information of the client
  
@@ -21,9 +21,9 @@
   $padXmlDetails       = FALSE;
   $padXmlTidy          = FALSE;
   
-  $padXref             = FALSE;       // Build the <app>_xref and <data>xref directories
+  $padXref             = TRUE;       // Build the <app>_xref and <data>xref directories
   $padXrefTail         = FALSE;
-  $padXrefManual       = FALSE;
+  $padXrefManual       = TRUE;
   $padXrefDevelop      = FALSE;
   $padXrefXml          = FALSE;
   $padXrefTrace        = FALSE;

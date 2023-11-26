@@ -60,7 +60,19 @@
 
   function padXrefManual3 ( $dir1, $dir2, $dir3 ) {
 
-    padXrefManualDevelop ( padApp . '_xref', $dir1, $dir2, $dir3 );
+    $explode1 = padExplode ( $dir2, ':' );
+    $explode2 = padExplode ( $dir3, ':' );
+
+    if ( $dir2 and $dir3 )
+      foreach ($explode1 as $value1)
+        foreach ($explode2 as $value2)
+          if ( ctype_alpha ( $value1 ) and ctype_alpha ( $value2) )
+            padXrefManualDevelop ( padApp . '_xref', $dir1, $value1, $value2 );
+
+    if ( $dir2 and ! $dir3 )
+      foreach ($explode1 as $value1)
+          if ( ctype_alpha ( $value1 ) )
+            padXrefManualDevelop ( padApp . '_xref', $dir1, $value1, $dir3 );
 
   }
 

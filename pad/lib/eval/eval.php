@@ -16,7 +16,7 @@
 
   function padEval ( $eval, $value='' ) {
 
-    if ( in_array ( $eval, $GLOBALS ['padEvalFast'] ) )
+    if ( file_exists( "_functions/$eval.php" ) )
       return padEvalFast ( $eval, $value );
 
     if ( $GLOBALS ['padTraceActive'] )

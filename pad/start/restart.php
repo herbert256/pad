@@ -1,5 +1,7 @@
 <?php
    
+  padEmptyBuffers ();
+   
   $padPage = $padRestart;
 
   if ( isset($padRestartVars) ) {

@@ -1,6 +1,15 @@
 <?php
 
 
+  function padTimeStamp () {
+
+    $now = DateTime::createFromFormat('U.u', sprintf('%.6f', microtime(TRUE)));
+  
+    return $now->format('YmdHisu');
+
+  }
+
+
   function padSessionStart () {
 
     return [
@@ -15,15 +24,28 @@
 
 
   function padSessionEnd () {
+  
+    $CpuStart = $GLOBALS ['padStatsCpuStart'];
+    $CpuEnd   = getrusage ();
+    
+    $user = 
+       ( $CpuEnd   ['ru_utime.tv_sec'] * 1000000 + $CpuEnd   ['ru_utime.tv_usec'] )
+    -  ( $CpuStart ['ru_utime.tv_sec'] * 1000000 + $CpuStart ['ru_utime.tv_usec'] );
+
+    $system = 
+       ( $CpuEnd   ['ru_stime.tv_sec'] * 1000000 + $CpuEnd   ['ru_stime.tv_usec'] )
+    -  ( $CpuStart ['ru_stime.tv_sec'] * 1000000 + $CpuStart ['ru_stime.tv_usec'] );
 
     return [
         'session'   => $GLOBALS ['padSesID'] ?? '',
         'request'   => $GLOBALS ['padReqID'] ?? '',
         'stop'      => $GLOBALS ['padStop'] ?? '',
+        'end'       => microtime(true),
         'duration'  => padDuration (),
+        'system'    => $system,
+        'user'      => $user,
         'length'    => $GLOBALS ['padLen'] ?? 0,
-        'etag'      => $GLOBALS ['padEtag'] ?? '',
-        'end'       => microtime(true)
+        'etag'      => $GLOBALS ['padEtag'] ?? ''
       ];
 
   }
@@ -50,10 +72,13 @@
 
     try {
 
+      $o = '';
       $j = ob_get_level (); 
      
       for ( $i = 1; $i <= $j; $i++ ) 
-        ob_get_clean ();
+        $o .= ob_get_clean ();
+
+      return $o;
 
     } catch (Throwable $ignored) {
 

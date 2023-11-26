@@ -1,39 +1,17 @@
 <?php
+  
+  $padLen = ( $padStop == 200 ) ? strlen ( $padOutput ) : 0;
 
-  if ( count ($padOutputSanitize) ) {
+  $padIllegal = padEmptyBuffers ();
 
-    // Default filter options on the complete output, executed before Tidy
-    // Must be a flag from FILTER_UNSAFE_RAW from below page.
-    // https://www.php.net/manual/en/filter.filters.sanitize.php
+  if ( trim ( $padIllegal ) )
+    return padError ( "Illegal output: '$padIllegal'" );
 
-    $padSanitizeFlags = 0;
+  if ( $padOutputType <> 'web' and $padCacheStop and $padCacheServerGzip )
+    $padOutput = padUnzip ( $padOutput );
 
-    foreach ( $padOutputSanitize as $padK )
-      $padSanitizeFlags = $padSanitizeFlags | (int) "FILTER_FLAG_$padK";
+  include pad . "output/$padOutputType.php";
 
-    $padOutput = filter_var ( $padOutput, FILTER_UNSAFE_RAW, $padSanitizeFlags );
-
-  }
-
-  if ( $padTidy or strpos( $padOutput, '@tidy@' ) !== FALSE )
-    include pad . 'exits/tidy.php';
-
-  if ( $padOutputTabToSpace )
-    $padOutput = str_replace ( "\t", '', $padOutput );
-
-  if ( $padOutputTrim )
-    $padOutput = trim ($padOutput);
-
-  if ( $padOutputRemoveWhitespace ) 
-    $padOutput = trim(preg_replace('/>\s+</', '><', $padOutput));
-
-  if ( $padOutputNoEmptyLines ) 
-    $padOutput = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $padOutput);
-
-  if ( $padOutputNoIndent ) 
-    $padOutput = preg_replace('/^ +/m', '', $padOutput);
-
-  if ( $padOutputNoNewLines )
-    $padOutput = str_replace ( ["\n", "\r"], '', $padOutput);
+  padStop ( $padStop );
 
 ?>

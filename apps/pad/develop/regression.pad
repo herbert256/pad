@@ -1,32 +1,26 @@
-{duration 'regression'}
+{files}
 
-  {files}
+  {if $status eq 'error'}
+    <font size="+1"><b>
+  {/if}
 
-    {if $status eq 'error'}
-      <font size="+1"><b>
-    {/if}
+  <a 
 
-    <a 
+    {if $status eq 'error'} 
+      style="color:black;background-color: #f44336;"
+    @else@
+      style="color:blue;"
+    {/if} 
 
-      {if $status eq 'error'} 
-        style="color:black;background-color: #f44336;"
-      @else@
-        style="color:blue;"
-      {/if} 
-
-      href="{$padGo}develop/show&item={$item}">{item}</a>
+    href="{$padGo}develop/show&item={$item}">{item}</a>
 
 
-    {if $status eq 'error'}
-      </b></font>
-    {/if}
+  {if $status eq 'error'}
+    </b></font>
+  {/if}
 
-    &nbsp; &nbsp;
+  &nbsp; &nbsp;
 
-  {/files}
-
-{/duration}
-
-{durationGet}
+{/files}
 
 <!-- PAD: NO REGRESSION -->

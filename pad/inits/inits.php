@@ -1,6 +1,7 @@
 <?php
-  
+
   include pad . 'inits/lib.php';
+  include pad . 'inits/clean.php';
   include pad . 'inits/vars.php';
   include pad . 'inits/page.php';
   include pad . 'inits/ids.php';
