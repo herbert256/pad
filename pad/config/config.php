@@ -20,7 +20,7 @@
   // Tail:  tail/track/trace/xref etc
   // If set then the config file with the same name will be load from the sub folder tail 
 
-  $padTail = 'none';
+  $padTail = '';
 
   // Where the output goes
   // A config file with the same name will be load from the sub folder output
@@ -104,11 +104,11 @@
 
   // myTidy ( a very basic & buggy implementation of Tidy )
                                 
-  $padOutputTabToSpace       = FALSE;
-  $padOutputTrim             = FALSE;
-  $padOutputRemoveWhitespace = FALSE;
-  $padOutputNoEmptyLines     = FALSE;
-  $padOutputNoIndent         = FALSE;
+  $padOutputTabToSpace       = TRUE;
+  $padOutputTrim             = TRUE;
+  $padOutputRemoveWhitespace = FALSE;  
+  $padOutputNoIndent         = TRUE;
+  $padOutputNoEmptyLines     = TRUE;
   $padOutputNoNewLines       = FALSE;
   
   // Other settings.

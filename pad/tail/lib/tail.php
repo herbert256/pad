@@ -162,11 +162,19 @@
 
     global $padOutput;
 
-    flush();
+    $phpHeaders = headers_list ()         ?? [];
+    $padHeaders = $GLOBALS ['padHeaders'] ?? [];
+
+    foreach ( $padHeaders as $header ) {
+      $key = array_search ( $header, $phpHeaders );
+      if ( $key !== FALSE )
+        unset ( $phpHeaders [$key] );
+    }
 
     padTailPut ( $file,  [
-        'http'    => http_response_code (),
-        'headers' => headers_list () ?? []
+        'http'       => http_response_code () ?? 'null',
+        'phpHeaders' => $phpHeaders,
+        'padHeaders' => $padHeaders
       ] );
 
     if ( $padOutput ) {

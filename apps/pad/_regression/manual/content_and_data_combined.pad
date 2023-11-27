@@ -1,97 +1,48 @@
 <p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myData<font color="black">'</font></font>}</b>
-  ( "red", "green", "blue" ) 
-<b>{/<font color="blue">data</font><font color="red"></font>}</b>
-
-<b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b>
-  &lt;b&gt; &lt;font color="<b>{<font color="green"><font color="red">$</font>myData</font>}</b>"&gt; Hello World &lt;/font&gt; &lt;/b&gt; &lt;br&gt;
-<b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><b> <font color="red"> Hello World </font> </b> <br>
-
-  <b> <font color="green"> Hello World </font> </b> <br>
-
-  <b> <font color="blue"> Hello World </font> </b> <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myData </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font> </font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><b> <font color="red"> Hello World </font> </b> <br>
-
-  <b> <font color="green"> Hello World </font> </b> <br>
-
-  <b> <font color="blue"> Hello World </font> </b> <br><!-- END DEMO RESULT --></span></code></td></tr>
-  </table>
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myData<font color="black">'</font></font>}</b><br>  ( "red", "green", "blue" ) <br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  &lt;b&gt; &lt;font color="<b>{<font color="green"><font color="red">$</font>myData</font>}</b>"&gt; Hello World &lt;/font&gt; &lt;/b&gt; &lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><b> <font color="red"> Hello World </font> </b> <br>
+<b> <font color="green"> Hello World </font> </b> <br>
+<b> <font color="blue"> Hello World </font> </b> <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myData </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font> </font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><b> <font color="red"> Hello World </font> </b> <br>
+<b> <font color="green"> Hello World </font> </b> <br>
+<b> <font color="blue"> Hello World </font> </b> <br><!-- END DEMO RESULT --></span></code></td></tr>
+</table>
 </p>
-
 <br><hr>
-
 <h3><b>{start}</b> and <b>{end}</b></h3>
-
 Use <b>{start}</b> and <b>{end}</b> to repeat only a part odf a stored Content;
-
 <p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myData<font color="black">'</font></font>}</b>
-  [
-    { "name": "joe",   "phone": "555-3425" },
-    { "name": "jim",   "phone": "555-2364" },
-    { "name": "jack",  "phone": "555-3422" },
-    { "name": "jerry", "phone": "555-4973" }
-  ]
-<b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b>
-  &lt;table border="1"&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Name&lt;/th&gt; 
-      &lt;th&gt;Phone&lt;/th&gt;
-    &lt;/tr&gt;
-    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b>
-      &lt;tr&gt;
-        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt; 
-        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;
-      &lt;/tr&gt;
-    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b>
-  &lt;/table&gt;
-<b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
-
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myData<font color="black">'</font></font>}</b><br>  [<br>    { "name": "joe",   "phone": "555-3425" },<br>    { "name": "jim",   "phone": "555-2364" },<br>    { "name": "jack",  "phone": "555-3422" },<br>    { "name": "jerry", "phone": "555-4973" }<br>  ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  &lt;table border="1"&gt;<br>    &lt;tr&gt;<br>      &lt;th&gt;Name&lt;/th&gt; <br>      &lt;th&gt;Phone&lt;/th&gt;<br>    &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt; <br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br>  &lt;/table&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
 <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
-    <tr>
-      <th>Name</th> 
-      <th>Phone</th>
-    </tr>
-    
-      <tr>
-        <td>joe</td> 
-        <td>555-3425</td>
-      </tr>
-    
-      <tr>
-        <td>jim</td> 
-        <td>555-2364</td>
-      </tr>
-    
-      <tr>
-        <td>jack</td> 
-        <td>555-3422</td>
-      </tr>
-    
-      <tr>
-        <td>jerry</td> 
-        <td>555-4973</td>
-      </tr>
-    
-  </table><!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </table>
+<tr>
+<th>Name</th> 
+<th>Phone</th>
+</tr>
+<tr>
+<td>joe</td> 
+<td>555-3425</td>
+</tr>
+<tr>
+<td>jim</td> 
+<td>555-2364</td>
+</tr>
+<tr>
+<td>jack</td> 
+<td>555-3422</td>
+</tr>
+<tr>
+<td>jerry</td> 
+<td>555-4973</td>
+</tr>
+</table><!-- END DEMO RESULT --></span></code></td></tr>
+</table>
 </p>

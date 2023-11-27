@@ -1,6 +1,28 @@
 <?php
 
 
+  function padFileName ( $withDir ) {
+
+    global $padFileDir, $padFileName, $padFileTimeStamp, $padFileUniqId, $padFileExtension;
+
+    if ( $withDir )
+      $name = "$padFileDir/$padFileName";
+    else
+      $name = $padFileName;
+
+    if ( $padFileTimeStamp )
+      $name .= '_' . padTimeStamp ();
+
+    if ( $padFileUniqId )
+      $name .= '_' . padRandomString ( $padFileUniqId );
+
+    $name .= '.' . $padFileExtension;
+
+    return $name;
+
+  }
+
+
   function padTimeStamp () {
 
     $now = DateTime::createFromFormat('U.u', sprintf('%.6f', microtime(TRUE)));

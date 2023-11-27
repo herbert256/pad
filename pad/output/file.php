@@ -1,17 +1,6 @@
 <?php
 
-  if ( $padCacheStop and $padCacheServerGzip )
-    $padOutput = padUnzip ( $padOutput ) ;
-
-  $padFile = "$padFileDir/$padFileName";
-
-  if ( $padFileTimeStamp )
-    $padFile .= '_' . padTimeStamp ();
-
-  if ( $padFileUniqId )
-    $padFile .= '_' . padRandomString ( $padFileUniqId );
-
-  $padFile .= '.' . $padFileExtension;
+  $padFile = padFileName ( TRUE );
 
   padFilePutContents ( $padFile, $padOutput );
 

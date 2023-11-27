@@ -39,6 +39,24 @@
   }
 
 
+  function padDownLoadHeaders ( $contentType, $fileName, $lenght ) {
+
+    global $padSent, $padStop;
+
+    if ( isset ( $padSent ) )
+      padError ( "Content already sent with download" );
+
+    if ( $padStop <> 200 )
+      padError ( "HTTP status not 200 with download" );
+
+    padHeader ( "Content-Type: $contentType");
+    padHeader ( "Content-Transfer-Encoding: Binary"); 
+    padHeader ( "Content-Disposition: attachment; filename=\"$fileName\""); 
+    padHeader ( "Content-Length: $lenght");
+
+  }
+
+
   function padWebNoHeaders ( $stop ) {
 
     if ( $stop == 500 )
@@ -60,7 +78,7 @@
       padHeader ('Content-Encoding: gzip');
 
     if ( $stop <> 302 and $stop <> 304 )
-      padHeader ('Content-Type: ' . $GLOBALS ['padWebContentType'] );
+      padHeader ('Content-Type: ' . $GLOBALS ['padContentType'] );
 
     if ( $stop == 200 and $GLOBALS ['padLen'] )
       padHeader ('Content-Length: ' . $GLOBALS ['padLen']);

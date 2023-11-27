@@ -1,1429 +1,766 @@
 <p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b>
-  &lt;table border=1 valign=center&gt;
-    &lt;tr&gt;
-      &lt;th&gt;        &lt;/th&gt;
-      &lt;th&gt; first  &lt;/th&gt;
-      &lt;th&gt; border &lt;/th&gt;
-      &lt;th&gt; middle &lt;/th&gt;
-      &lt;th&gt; last   &lt;/th&gt;
-      &lt;th&gt; even   &lt;/th&gt;
-      &lt;th&gt; odd    &lt;/th&gt;
-    &lt;/tr&gt;
-    <b>{<font color="blue">staff</font><font color="red"></font>}</b>
-      <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b>
-    <b>{/<font color="blue">staff</font><font color="red"></font>}</b>
-  &lt;/table&gt;
-<b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b>
-    &lt;tr&gt;
-      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>              &lt;/td&gt;
-      &lt;td&gt; <b>{<font color="blue">first</font><font color="red"></font>}</b>  X <b>{/<font color="blue">first</font><font color="red"></font>}</b>  &lt;/td&gt;
-      &lt;td&gt; <b>{<font color="blue">border</font><font color="red"></font>}</b> X <b>{/<font color="blue">border</font><font color="red"></font>}</b> &lt;/td&gt;
-      &lt;td&gt; <b>{<font color="blue">middle</font><font color="red"></font>}</b> X <b>{/<font color="blue">middle</font><font color="red"></font>}</b> &lt;/td&gt;
-      &lt;td&gt; <b>{<font color="blue">last</font><font color="red"></font>}</b>   X <b>{/<font color="blue">last</font><font color="red"></font>}</b>   &lt;/td&gt;
-      &lt;td&gt; <b>{<font color="blue">even</font><font color="red"></font>}</b>   X <b>{/<font color="blue">even</font><font color="red"></font>}</b>   &lt;/td&gt;
-      &lt;td&gt; <b>{<font color="blue">odd</font><font color="red"></font>}</b>    X <b>{/<font color="blue">odd</font><font color="red"></font>}</b>    &lt;/td&gt;
-    &lt;/tr&gt;
-<b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
-    <tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
-    </tr>
-    
-      
-    <tr>
-      <td> joe              </td>
-      <td>   X   </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    </td>
-      <td>    </td>
-      <td>     X     </td>
-    </tr>
-
-    
-      
-    <tr>
-      <td> jim              </td>
-      <td>   </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>    X    </td>
-      <td>     </td>
-    </tr>
-
-    
-      
-    <tr>
-      <td> john              </td>
-      <td>   </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>    </td>
-      <td>     X     </td>
-    </tr>
-
-    
-      
-    <tr>
-      <td> jack              </td>
-      <td>   </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>    </td>
-      <td>    X    </td>
-      <td>     </td>
-    </tr>
-
-    
-      
-    <tr>
-      <td> jerry              </td>
-      <td>   </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    X    </td>
-      <td>    </td>
-      <td>     X     </td>
-    </tr>
-
-    
-  </table><!-- END DEMO RESULT --></span></code></td></tr>
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b>
-    <b>{<font color="blue">true</font><font color="red"></font>}</b>
-      &lt;tr&gt;
-        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                      &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="blue">first </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>  X <b>{/<font color="blue">first</font><font color="red"></font>}</b>  &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="blue">border </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b> X <b>{/<font color="blue">border</font><font color="red"></font>}</b> &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="blue">middle </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b> X <b>{/<font color="blue">middle</font><font color="red"></font>}</b> &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="blue">last </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>   X <b>{/<font color="blue">last</font><font color="red"></font>}</b>   &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="blue">even </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>   X <b>{/<font color="blue">even</font><font color="red"></font>}</b>   &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="blue">odd </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>    X <b>{/<font color="blue">odd</font><font color="red"></font>}</b>    &lt;/td&gt;
-      &lt;/tr&gt;
-    <b>{/<font color="blue">true</font><font color="red"></font>}</b>
-<b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
-    <tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
-    </tr>
-    
-      
-    
-      <tr>
-        <td> joe                      </td>
-        <td>   X   </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    </td>
-        <td>    </td>
-        <td>     X     </td>
-      </tr>
-    
-
-    
-      
-    
-      <tr>
-        <td> jim                      </td>
-        <td>   </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>    </td>
-        <td>    X    </td>
-        <td>     </td>
-      </tr>
-    
-
-    
-      
-    
-      <tr>
-        <td> john                      </td>
-        <td>   </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>    </td>
-        <td>    </td>
-        <td>     X     </td>
-      </tr>
-    
-
-    
-      
-    
-      <tr>
-        <td> jack                      </td>
-        <td>   </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>    </td>
-        <td>    X    </td>
-        <td>     </td>
-      </tr>
-    
-
-    
-      
-    
-      <tr>
-        <td> jerry                      </td>
-        <td>   </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X    </td>
-        <td>    </td>
-        <td>     X     </td>
-      </tr>
-    
-
-    
-  </table><!-- END DEMO RESULT --></span></code></td></tr>
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b>
-    <b>{<font color="blue">true</font><font color="red"></font>}</b>
-      &lt;tr&gt; 
-        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                 &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="blue">first </font><font color="red">-2</font>}</b>  X <b>{/<font color="blue">first</font><font color="red"></font>}</b>  &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="blue">border </font><font color="red">-2</font>}</b> X <b>{/<font color="blue">border</font><font color="red"></font>}</b> &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="blue">middle </font><font color="red">-2</font>}</b> X <b>{/<font color="blue">middle</font><font color="red"></font>}</b> &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="blue">last </font><font color="red">-2</font>}</b>   X <b>{/<font color="blue">last</font><font color="red"></font>}</b>   &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="blue">even </font><font color="red">-2</font>}</b>   X <b>{/<font color="blue">even</font><font color="red"></font>}</b>   &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="blue">odd </font><font color="red">-2</font>}</b>    X <b>{/<font color="blue">odd</font><font color="red"></font>}</b>    &lt;/td&gt;
-      &lt;/tr&gt;
-    <b>{/<font color="blue">true</font><font color="red"></font>}</b>
-<b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
-    <tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
-    </tr>
-    
-      
-    
-      <tr> 
-        <td> joe                 </td>
-        <td>   X   </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    </td>
-        <td>    </td>
-        <td>     X     </td>
-      </tr>
-    
-
-    
-      
-    
-      <tr> 
-        <td> jim                 </td>
-        <td>   </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>    </td>
-        <td>    X    </td>
-        <td>     </td>
-      </tr>
-    
-
-    
-      
-    
-      <tr> 
-        <td> john                 </td>
-        <td>   </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>    </td>
-        <td>    </td>
-        <td>     X     </td>
-      </tr>
-    
-
-    
-      
-    
-      <tr> 
-        <td> jack                 </td>
-        <td>   </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>    </td>
-        <td>    X    </td>
-        <td>     </td>
-      </tr>
-    
-
-    
-      
-    
-      <tr> 
-        <td> jerry                 </td>
-        <td>   </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X    </td>
-        <td>    </td>
-        <td>     X     </td>
-      </tr>
-    
-
-    
-  </table><!-- END DEMO RESULT --></span></code></td></tr>
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b>
-    &lt;tr&gt;
-      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>              &lt;/td&gt;
-      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;first</font>}</b>  X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;
-      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;border</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;
-      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;middle</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;
-      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;last</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;
-      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;even</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;
-      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;odd</font>}</b>    X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;
-    &lt;/tr&gt;
-<b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
-    <tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
-    </tr>
-    
-      
-    <tr>
-      <td> joe              </td>
-      <td>   X  </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>  </td>
-      <td>  </td>
-      <td>     X  </td>
-    </tr>
-
-    
-      
-    <tr>
-      <td> jim              </td>
-      <td>  </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    X  </td>
-      <td>  </td>
-    </tr>
-
-    
-      
-    <tr>
-      <td> john              </td>
-      <td>  </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>  </td>
-      <td>     X  </td>
-    </tr>
-
-    
-      
-    <tr>
-      <td> jack              </td>
-      <td>  </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    X  </td>
-      <td>  </td>
-    </tr>
-
-    
-      
-    <tr>
-      <td> jerry              </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    X  </td>
-      <td>  </td>
-      <td>     X  </td>
-    </tr>
-
-    
-  </table><!-- END DEMO RESULT --></span></code></td></tr>
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b>
-    &lt;tr&gt;
-      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                    &lt;/td&gt;
-      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff:first</font>}</b>  X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;
-      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff:border</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;
-      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff:middle</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;
-      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff:last</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;
-      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff:even</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;
-      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff:odd</font>}</b>    X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;
-    &lt;/tr&gt;
-<b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
-    <tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
-    </tr>
-    
-      
-    <tr>
-      <td> joe                    </td>
-      <td>   X  </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>  </td>
-      <td>  </td>
-      <td>     X  </td>
-    </tr>
-
-    
-      
-    <tr>
-      <td> jim                    </td>
-      <td>  </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    X  </td>
-      <td>  </td>
-    </tr>
-
-    
-      
-    <tr>
-      <td> john                    </td>
-      <td>  </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>  </td>
-      <td>     X  </td>
-    </tr>
-
-    
-      
-    <tr>
-      <td> jack                    </td>
-      <td>  </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    X  </td>
-      <td>  </td>
-    </tr>
-
-    
-      
-    <tr>
-      <td> jerry                    </td>
-      <td>  </td>
-      <td>  X  </td>
-      <td>  </td>
-      <td>    X  </td>
-      <td>  </td>
-      <td>     X  </td>
-    </tr>
-
-    
-  </table><!-- END DEMO RESULT --></span></code></td></tr>
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b>
-    <b>{<font color="blue">true</font><font color="red"></font>}</b>
-      &lt;tr&gt;
-        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                 &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2:first</font>}</b>  X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2:border</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2:middle</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2:last</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2:even</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2:odd</font>}</b>    X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;
-      &lt;/tr&gt;
-    <b>{/<font color="blue">true</font><font color="red"></font>}</b>
-<b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
-    <tr>
-      <th>        </th>
-      <th> first  </th>
-      <th> border </th>
-      <th> middle </th>
-      <th> last   </th>
-      <th> even   </th>
-      <th> odd    </th>
-    </tr>
-    
-      
-    
-      <tr>
-        <td> joe                 </td>
-        <td>   X  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>     X  </td>
-      </tr>
-    
-
-    
-      
-    
-      <tr>
-        <td> jim                 </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X  </td>
-        <td>  </td>
-      </tr>
-    
-
-    
-      
-    
-      <tr>
-        <td> john                 </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>  </td>
-        <td>     X  </td>
-      </tr>
-    
-
-    
-      
-    
-      <tr>
-        <td> jack                 </td>
-        <td>  </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X  </td>
-        <td>  </td>
-      </tr>
-    
-
-    
-      
-    
-      <tr>
-        <td> jerry                 </td>
-        <td>  </td>
-        <td>  X  </td>
-        <td>  </td>
-        <td>    X  </td>
-        <td>  </td>
-        <td>     X  </td>
-      </tr>
-    
-
-    
-  </table><!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </table>
-</p>
-
-
-
-
-<p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b>
-    &lt;table border=1&gt;
-      &lt;tr&gt;
-        &lt;th&gt;         &lt;/th&gt;
-        &lt;th&gt; name    &lt;/th&gt;
-        &lt;th&gt; count   &lt;/th&gt;
-        &lt;th&gt; key     &lt;/th&gt;
-        &lt;th&gt; current &lt;/th&gt;
-        &lt;th&gt; done    &lt;/th&gt;
-        &lt;th&gt; remain  &lt;/th&gt;
-      &lt;/tr&gt;
-    <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b>
-  &lt;/table&gt;
-<b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b>
-  <b>{<font color="blue">staff</font><font color="red"></font>}</b>
-      &lt;tr&gt;
-        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>      &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="green"><font color="red">&</font>name</font>}</b>      &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="green"><font color="red">&</font>count</font>}</b>     &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="green"><font color="red">&</font>key</font>}</b>       &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="green"><font color="red">&</font>current</font>}</b>   &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="green"><font color="red">&</font>done</font>}</b>      &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="green"><font color="red">&</font>remaining</font>}</b> &lt;/td&gt;   
-      &lt;/tr&gt;
-  <b>{/<font color="blue">staff</font><font color="red"></font>}</b>
-<b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
-      <tr>
-        <th>         </th>
-        <th> name    </th>
-        <th> count   </th>
-        <th> key     </th>
-        <th> current </th>
-        <th> done    </th>
-        <th> remain  </th>
-      </tr>
-    
-  
-      <tr>
-        <td> joe      </td>
-        <td> staff      </td>
-        <td> 5     </td>
-        <td> 0       </td>
-        <td> 1   </td>
-        <td> 0      </td>
-        <td> 4 </td>   
-      </tr>
-  
-      <tr>
-        <td> jim      </td>
-        <td> staff      </td>
-        <td> 5     </td>
-        <td> 1       </td>
-        <td> 2   </td>
-        <td> 1      </td>
-        <td> 3 </td>   
-      </tr>
-  
-      <tr>
-        <td> john      </td>
-        <td> staff      </td>
-        <td> 5     </td>
-        <td> 2       </td>
-        <td> 3   </td>
-        <td> 2      </td>
-        <td> 2 </td>   
-      </tr>
-  
-      <tr>
-        <td> jack      </td>
-        <td> staff      </td>
-        <td> 5     </td>
-        <td> 3       </td>
-        <td> 4   </td>
-        <td> 3      </td>
-        <td> 1 </td>   
-      </tr>
-  
-      <tr>
-        <td> jerry      </td>
-        <td> staff      </td>
-        <td> 5     </td>
-        <td> 4       </td>
-        <td> 5   </td>
-        <td> 4      </td>
-        <td> 0 </td>   
-      </tr>
-  
-
-  </table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b>
-  <b>{<font color="blue">staff</font><font color="red"></font>}</b>
-    <b>{<font color="blue">true</font><font color="red"></font>}</b>
-      <b>{<font color="blue">true</font><font color="red"></font>}</b>
-        &lt;tr&gt;
-          &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>         &lt;/td&gt;
-          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2</font><b><font color="black">:</font></b><font color="green">name</font>}</b>      &lt;/td&gt;
-          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2</font><b><font color="black">:</font></b><font color="green">count</font>}</b>     &lt;/td&gt;
-          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2</font><b><font color="black">:</font></b><font color="green">key</font>}</b>       &lt;/td&gt;
-          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2</font><b><font color="black">:</font></b><font color="green">current</font>}</b>   &lt;/td&gt;
-          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2</font><b><font color="black">:</font></b><font color="green">done</font>}</b>      &lt;/td&gt;
-          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2</font><b><font color="black">:</font></b><font color="green">remaining</font>}</b> &lt;/td&gt; 
-        &lt;/tr&gt;
-      <b>{/<font color="blue">true</font><font color="red"></font>}</b>
-    <b>{/<font color="blue">true</font><font color="red"></font>}</b>
-  <b>{/<font color="blue">staff</font><font color="red"></font>}</b>
-<b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
-      <tr>
-        <th>         </th>
-        <th> name    </th>
-        <th> count   </th>
-        <th> key     </th>
-        <th> current </th>
-        <th> done    </th>
-        <th> remain  </th>
-      </tr>
-    
-  
-    
-      
-        <tr>
-          <td> joe         </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 0       </td>
-          <td> 1   </td>
-          <td> 0      </td>
-          <td> 4 </td> 
-        </tr>
-      
-    
-  
-    
-      
-        <tr>
-          <td> jim         </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 1       </td>
-          <td> 2   </td>
-          <td> 1      </td>
-          <td> 3 </td> 
-        </tr>
-      
-    
-  
-    
-      
-        <tr>
-          <td> john         </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 2       </td>
-          <td> 3   </td>
-          <td> 2      </td>
-          <td> 2 </td> 
-        </tr>
-      
-    
-  
-    
-      
-        <tr>
-          <td> jack         </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 3       </td>
-          <td> 4   </td>
-          <td> 3      </td>
-          <td> 1 </td> 
-        </tr>
-      
-    
-  
-    
-      
-        <tr>
-          <td> jerry         </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 4       </td>
-          <td> 5   </td>
-          <td> 4      </td>
-          <td> 0 </td> 
-        </tr>
-      
-    
-  
-
-  </table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b>
-  <b>{<font color="blue">staff</font><font color="red"></font>}</b>
-    <b>{<font color="blue">true</font><font color="red"></font>}</b>
-      <b>{<font color="blue">true</font><font color="red"></font>}</b>
-        &lt;tr&gt;
-          &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>            &lt;/td&gt;
-          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="green">name</font>}</b>      &lt;/td&gt;
-          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="green">count</font>}</b>     &lt;/td&gt;
-          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="green">key</font>}</b>       &lt;/td&gt;
-          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="green">current</font>}</b>   &lt;/td&gt;
-          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="green">done</font>}</b>      &lt;/td&gt;
-          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="green">remaining</font>}</b> &lt;/td&gt;   
-        &lt;/tr&gt;
-      <b>{/<font color="blue">true</font><font color="red"></font>}</b>
-    <b>{/<font color="blue">true</font><font color="red"></font>}</b>
-  <b>{/<font color="blue">staff</font><font color="red"></font>}</b>
-<b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
-      <tr>
-        <th>         </th>
-        <th> name    </th>
-        <th> count   </th>
-        <th> key     </th>
-        <th> current </th>
-        <th> done    </th>
-        <th> remain  </th>
-      </tr>
-    
-  
-    
-      
-        <tr>
-          <td> joe            </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 0       </td>
-          <td> 1   </td>
-          <td> 0      </td>
-          <td> 4 </td>   
-        </tr>
-      
-    
-  
-    
-      
-        <tr>
-          <td> jim            </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 1       </td>
-          <td> 2   </td>
-          <td> 1      </td>
-          <td> 3 </td>   
-        </tr>
-      
-    
-  
-    
-      
-        <tr>
-          <td> john            </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 2       </td>
-          <td> 3   </td>
-          <td> 2      </td>
-          <td> 2 </td>   
-        </tr>
-      
-    
-  
-    
-      
-        <tr>
-          <td> jack            </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 3       </td>
-          <td> 4   </td>
-          <td> 3      </td>
-          <td> 1 </td>   
-        </tr>
-      
-    
-  
-    
-      
-        <tr>
-          <td> jerry            </td>
-          <td> staff      </td>
-          <td> 5     </td>
-          <td> 4       </td>
-          <td> 5   </td>
-          <td> 4      </td>
-          <td> 0 </td>   
-        </tr>
-      
-    
-  
-
-  </table><!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </table>
-</p>
-
-
-
-
-<p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
-
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border=1&gt;
-  <b>{<font color="blue">staff</font><font color="red"></font>}</b>
-    <b>{<font color="blue">first</font><font color="red"></font>}</b>
-      &lt;tr&gt;
-        &lt;th&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="orange">1</font><b><font color="black">:</font></b><font color="green">name</font>}</b> &lt;/th&gt;
-        &lt;th&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="orange">2</font><b><font color="black">:</font></b><font color="green">name</font>}</b> &lt;/th&gt;
-        &lt;th&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="orange">3</font><b><font color="black">:</font></b><font color="green">name</font>}</b> &lt;/th&gt;
-        &lt;th&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="orange">4</font><b><font color="black">:</font></b><font color="green">name</font>}</b> &lt;/th&gt;
-      &lt;/tr&gt;
-    <b>{/<font color="blue">first</font><font color="red"></font>}</b>
-    &lt;tr&gt;
-      &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="orange">1</font><b><font color="black">:</font></b><font color="green">value</font>}</b> &lt;/td&gt;
-      &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="orange">2</font><b><font color="black">:</font></b><font color="green">value</font>}</b> &lt;/td&gt;
-      &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="orange">3</font><b><font color="black">:</font></b><font color="green">value</font>}</b> &lt;/td&gt;
-      &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="orange">4</font><b><font color="black">:</font></b><font color="green">value</font>}</b> &lt;/td&gt;
-    &lt;/tr&gt;
-  <b>{/<font color="blue">staff</font><font color="red"></font>}</b>
-&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
-  
-    
-      <tr>
-        <th> name </th>
-        <th> salary </th>
-        <th> bonus </th>
-        <th> phone </th>
-      </tr>
-    
-    <tr>
-      <td> joe </td>
-      <td> 1000 </td>
-      <td> 500 </td>
-      <td> 555-1111 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> jim </td>
-      <td> 2000 </td>
-      <td> 400 </td>
-      <td> 555-2222 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> john </td>
-      <td> 3000 </td>
-      <td> 300 </td>
-      <td> 555-3333 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> jack </td>
-      <td> 4000 </td>
-      <td> 200 </td>
-      <td> 555-4444 </td>
-    </tr>
-  
-    
-    <tr>
-      <td> jerry </td>
-      <td> 5000 </td>
-      <td> 100 </td>
-      <td> 555-5555 </td>
-    </tr>
-  
-</table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border=1&gt;
-  <b>{<font color="blue">staff</font><font color="red"></font>}</b>
-    <b>{<font color="blue">first</font><font color="red"></font>}</b>
-      &lt;tr&gt;
-        <b>{<font color="blue">fields</font><font color="red"></font>}</b>
-          &lt;th&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/th&gt;
-        <b>{/<font color="blue">fields</font><font color="red"></font>}</b>
-      &lt;/tr&gt;
-    <b>{/<font color="blue">first</font><font color="red"></font>}</b>
-    &lt;tr&gt;
-      <b>{<font color="blue">fields</font><font color="red"></font>}</b>
-        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b> &lt;/td&gt;
-      <b>{/<font color="blue">fields</font><font color="red"></font>}</b>
-    &lt;/tr&gt;
-  <b>{/<font color="blue">staff</font><font color="red"></font>}</b>
-&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
-  
-    
-      <tr>
-        
-          <th>name</th>
-        
-          <th>salary</th>
-        
-          <th>bonus</th>
-        
-          <th>phone</th>
-        
-      </tr>
-    
-    <tr>
-      
-        <td> joe </td>
-      
-        <td> 1000 </td>
-      
-        <td> 500 </td>
-      
-        <td> 555-1111 </td>
-      
-    </tr>
-  
-    
-    <tr>
-      
-        <td> jim </td>
-      
-        <td> 2000 </td>
-      
-        <td> 400 </td>
-      
-        <td> 555-2222 </td>
-      
-    </tr>
-  
-    
-    <tr>
-      
-        <td> john </td>
-      
-        <td> 3000 </td>
-      
-        <td> 300 </td>
-      
-        <td> 555-3333 </td>
-      
-    </tr>
-  
-    
-    <tr>
-      
-        <td> jack </td>
-      
-        <td> 4000 </td>
-      
-        <td> 200 </td>
-      
-        <td> 555-4444 </td>
-      
-    </tr>
-  
-    
-    <tr>
-      
-        <td> jerry </td>
-      
-        <td> 5000 </td>
-      
-        <td> 100 </td>
-      
-        <td> 555-5555 </td>
-      
-    </tr>
-  
-</table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border=1&gt;
-  <b>{<font color="blue">staff</font><font color="red"></font>}</b>
-    <b>{<font color="blue">first </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>
-      &lt;tr&gt;
-        <b>{<font color="blue">fields </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>
-          &lt;th&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/th&gt;
-        <b>{/<font color="blue">fields</font><font color="red"></font>}</b>
-      &lt;/tr&gt;
-    <b>{/<font color="blue">first</font><font color="red"></font>}</b>
-    &lt;tr&gt;
-      <b>{<font color="blue">fields </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>
-        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b> &lt;/td&gt;
-      <b>{/<font color="blue">fields</font><font color="red"></font>}</b>
-    &lt;/tr&gt;
-  <b>{/<font color="blue">staff</font><font color="red"></font>}</b>
-&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
-  
-    
-      <tr>
-        
-          <th>name</th>
-        
-          <th>salary</th>
-        
-          <th>bonus</th>
-        
-          <th>phone</th>
-        
-      </tr>
-    
-    <tr>
-      
-        <td> joe </td>
-      
-        <td> 1000 </td>
-      
-        <td> 500 </td>
-      
-        <td> 555-1111 </td>
-      
-    </tr>
-  
-    
-    <tr>
-      
-        <td> jim </td>
-      
-        <td> 2000 </td>
-      
-        <td> 400 </td>
-      
-        <td> 555-2222 </td>
-      
-    </tr>
-  
-    
-    <tr>
-      
-        <td> john </td>
-      
-        <td> 3000 </td>
-      
-        <td> 300 </td>
-      
-        <td> 555-3333 </td>
-      
-    </tr>
-  
-    
-    <tr>
-      
-        <td> jack </td>
-      
-        <td> 4000 </td>
-      
-        <td> 200 </td>
-      
-        <td> 555-4444 </td>
-      
-    </tr>
-  
-    
-    <tr>
-      
-        <td> jerry </td>
-      
-        <td> 5000 </td>
-      
-        <td> 100 </td>
-      
-        <td> 555-5555 </td>
-      
-    </tr>
-  
-</table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border=1&gt;
-  <b>{<font color="blue">staff</font><font color="red"></font>}</b>
-    <b>{<font color="blue">first </font><font color="red">-1</font>}</b>
-      &lt;tr&gt;
-        <b>{<font color="blue">fields </font><font color="red">-2</font>}</b>
-          &lt;th&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/th&gt;
-        <b>{/<font color="blue">fields</font><font color="red"></font>}</b>
-      &lt;/tr&gt;
-    <b>{/<font color="blue">first</font><font color="red"></font>}</b>
-    &lt;tr&gt;
-      <b>{<font color="blue">fields </font><font color="red">-1</font>}</b>
-        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b> &lt;/td&gt;
-      <b>{/<font color="blue">fields</font><font color="red"></font>}</b>
-    &lt;/tr&gt;
-  <b>{/<font color="blue">staff</font><font color="red"></font>}</b>
-&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
-  
-    
-      <tr>
-        
-          <th>name</th>
-        
-          <th>salary</th>
-        
-          <th>bonus</th>
-        
-          <th>phone</th>
-        
-      </tr>
-    
-    <tr>
-      
-        <td> joe </td>
-      
-        <td> 1000 </td>
-      
-        <td> 500 </td>
-      
-        <td> 555-1111 </td>
-      
-    </tr>
-  
-    
-    <tr>
-      
-        <td> jim </td>
-      
-        <td> 2000 </td>
-      
-        <td> 400 </td>
-      
-        <td> 555-2222 </td>
-      
-    </tr>
-  
-    
-    <tr>
-      
-        <td> john </td>
-      
-        <td> 3000 </td>
-      
-        <td> 300 </td>
-      
-        <td> 555-3333 </td>
-      
-    </tr>
-  
-    
-    <tr>
-      
-        <td> jack </td>
-      
-        <td> 4000 </td>
-      
-        <td> 200 </td>
-      
-        <td> 555-4444 </td>
-      
-    </tr>
-  
-    
-    <tr>
-      
-        <td> jerry </td>
-      
-        <td> 5000 </td>
-      
-        <td> 100 </td>
-      
-        <td> 555-5555 </td>
-      
-    </tr>
-  
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  &lt;table border=1 valign=center&gt;<br>    &lt;tr&gt;<br>      &lt;th&gt;        &lt;/th&gt;<br>      &lt;th&gt; first  &lt;/th&gt;<br>      &lt;th&gt; border &lt;/th&gt;<br>      &lt;th&gt; middle &lt;/th&gt;<br>      &lt;th&gt; last   &lt;/th&gt;<br>      &lt;th&gt; even   &lt;/th&gt;<br>      &lt;th&gt; odd    &lt;/th&gt;<br>    &lt;/tr&gt;<br>    <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>      <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b><br>    <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>  &lt;/table&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>              &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">first</font><font color="red"></font>}</b>  X <b>{/<font color="blue">first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">border</font><font color="red"></font>}</b> X <b>{/<font color="blue">border</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">middle</font><font color="red"></font>}</b> X <b>{/<font color="blue">middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">last</font><font color="red"></font>}</b>   X <b>{/<font color="blue">last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">even</font><font color="red"></font>}</b>   X <b>{/<font color="blue">even</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">odd</font><font color="red"></font>}</b>    X <b>{/<font color="blue">odd</font><font color="red"></font>}</b>    &lt;/td&gt;<br>    &lt;/tr&gt;<br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
+<tr>
+<th>        </th>
+<th> first  </th>
+<th> border </th>
+<th> middle </th>
+<th> last   </th>
+<th> even   </th>
+<th> odd    </th>
+</tr>
+<tr>
+<td> joe              </td>
+<td>   X   </td>
+<td>  X  </td>
+<td>  </td>
+<td>    </td>
+<td>    </td>
+<td>     X     </td>
+</tr>
+<tr>
+<td> jim              </td>
+<td>   </td>
+<td>  </td>
+<td>  X  </td>
+<td>    </td>
+<td>    X    </td>
+<td>     </td>
+</tr>
+<tr>
+<td> john              </td>
+<td>   </td>
+<td>  </td>
+<td>  X  </td>
+<td>    </td>
+<td>    </td>
+<td>     X     </td>
+</tr>
+<tr>
+<td> jack              </td>
+<td>   </td>
+<td>  </td>
+<td>  X  </td>
+<td>    </td>
+<td>    X    </td>
+<td>     </td>
+</tr>
+<tr>
+<td> jerry              </td>
+<td>   </td>
+<td>  X  </td>
+<td>  </td>
+<td>    X    </td>
+<td>    </td>
+<td>     X     </td>
+</tr>
 </table><!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </table>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>    <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                      &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">first </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>  X <b>{/<font color="blue">first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">border </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b> X <b>{/<font color="blue">border</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">middle </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b> X <b>{/<font color="blue">middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">last </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>   X <b>{/<font color="blue">last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">even </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>   X <b>{/<font color="blue">even</font><font color="red"></font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">odd </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b>    X <b>{/<font color="blue">odd</font><font color="red"></font>}</b>    &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
+<tr>
+<th>        </th>
+<th> first  </th>
+<th> border </th>
+<th> middle </th>
+<th> last   </th>
+<th> even   </th>
+<th> odd    </th>
+</tr>
+<tr>
+<td> joe                      </td>
+<td>   X   </td>
+<td>  X  </td>
+<td>  </td>
+<td>    </td>
+<td>    </td>
+<td>     X     </td>
+</tr>
+<tr>
+<td> jim                      </td>
+<td>   </td>
+<td>  </td>
+<td>  X  </td>
+<td>    </td>
+<td>    X    </td>
+<td>     </td>
+</tr>
+<tr>
+<td> john                      </td>
+<td>   </td>
+<td>  </td>
+<td>  X  </td>
+<td>    </td>
+<td>    </td>
+<td>     X     </td>
+</tr>
+<tr>
+<td> jack                      </td>
+<td>   </td>
+<td>  </td>
+<td>  X  </td>
+<td>    </td>
+<td>    X    </td>
+<td>     </td>
+</tr>
+<tr>
+<td> jerry                      </td>
+<td>   </td>
+<td>  X  </td>
+<td>  </td>
+<td>    X    </td>
+<td>    </td>
+<td>     X     </td>
+</tr>
+</table><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>    <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      &lt;tr&gt; <br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                 &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">first </font><font color="red">-2</font>}</b>  X <b>{/<font color="blue">first</font><font color="red"></font>}</b>  &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">border </font><font color="red">-2</font>}</b> X <b>{/<font color="blue">border</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">middle </font><font color="red">-2</font>}</b> X <b>{/<font color="blue">middle</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">last </font><font color="red">-2</font>}</b>   X <b>{/<font color="blue">last</font><font color="red"></font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">even </font><font color="red">-2</font>}</b>   X <b>{/<font color="blue">even</font><font color="red"></font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">odd </font><font color="red">-2</font>}</b>    X <b>{/<font color="blue">odd</font><font color="red"></font>}</b>    &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
+<tr>
+<th>        </th>
+<th> first  </th>
+<th> border </th>
+<th> middle </th>
+<th> last   </th>
+<th> even   </th>
+<th> odd    </th>
+</tr>
+<tr> 
+<td> joe                 </td>
+<td>   X   </td>
+<td>  X  </td>
+<td>  </td>
+<td>    </td>
+<td>    </td>
+<td>     X     </td>
+</tr>
+<tr> 
+<td> jim                 </td>
+<td>   </td>
+<td>  </td>
+<td>  X  </td>
+<td>    </td>
+<td>    X    </td>
+<td>     </td>
+</tr>
+<tr> 
+<td> john                 </td>
+<td>   </td>
+<td>  </td>
+<td>  X  </td>
+<td>    </td>
+<td>    </td>
+<td>     X     </td>
+</tr>
+<tr> 
+<td> jack                 </td>
+<td>   </td>
+<td>  </td>
+<td>  X  </td>
+<td>    </td>
+<td>    X    </td>
+<td>     </td>
+</tr>
+<tr> 
+<td> jerry                 </td>
+<td>   </td>
+<td>  X  </td>
+<td>  </td>
+<td>    X    </td>
+<td>    </td>
+<td>     X     </td>
+</tr>
+</table><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>              &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;first</font>}</b>  X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;border</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;middle</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;last</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;even</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;odd</font>}</b>    X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
+<tr>
+<th>        </th>
+<th> first  </th>
+<th> border </th>
+<th> middle </th>
+<th> last   </th>
+<th> even   </th>
+<th> odd    </th>
+</tr>
+<tr>
+<td> joe              </td>
+<td>   X  </td>
+<td>  X  </td>
+<td>  </td>
+<td>  </td>
+<td>  </td>
+<td>     X  </td>
+</tr>
+<tr>
+<td> jim              </td>
+<td>  </td>
+<td>  </td>
+<td>  X  </td>
+<td>  </td>
+<td>    X  </td>
+<td>  </td>
+</tr>
+<tr>
+<td> john              </td>
+<td>  </td>
+<td>  </td>
+<td>  X  </td>
+<td>  </td>
+<td>  </td>
+<td>     X  </td>
+</tr>
+<tr>
+<td> jack              </td>
+<td>  </td>
+<td>  </td>
+<td>  X  </td>
+<td>  </td>
+<td>    X  </td>
+<td>  </td>
+</tr>
+<tr>
+<td> jerry              </td>
+<td>  </td>
+<td>  X  </td>
+<td>  </td>
+<td>    X  </td>
+<td>  </td>
+<td>     X  </td>
+</tr>
+</table><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                    &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff:first</font>}</b>  X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff:border</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff:middle</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff:last</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff:even</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;staff:odd</font>}</b>    X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
+<tr>
+<th>        </th>
+<th> first  </th>
+<th> border </th>
+<th> middle </th>
+<th> last   </th>
+<th> even   </th>
+<th> odd    </th>
+</tr>
+<tr>
+<td> joe                    </td>
+<td>   X  </td>
+<td>  X  </td>
+<td>  </td>
+<td>  </td>
+<td>  </td>
+<td>     X  </td>
+</tr>
+<tr>
+<td> jim                    </td>
+<td>  </td>
+<td>  </td>
+<td>  X  </td>
+<td>  </td>
+<td>    X  </td>
+<td>  </td>
+</tr>
+<tr>
+<td> john                    </td>
+<td>  </td>
+<td>  </td>
+<td>  X  </td>
+<td>  </td>
+<td>  </td>
+<td>     X  </td>
+</tr>
+<tr>
+<td> jack                    </td>
+<td>  </td>
+<td>  </td>
+<td>  X  </td>
+<td>  </td>
+<td>    X  </td>
+<td>  </td>
+</tr>
+<tr>
+<td> jerry                    </td>
+<td>  </td>
+<td>  X  </td>
+<td>  </td>
+<td>    X  </td>
+<td>  </td>
+<td>     X  </td>
+</tr>
+</table><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>    <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                 &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2:first</font>}</b>  X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2:border</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2:middle</font>}</b> X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2:last</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2:even</font>}</b>   X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="blue">if </font><font color="red">&amp;-2:odd</font>}</b>    X <b>{/<font color="blue">if</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1 valign=center>
+<tr>
+<th>        </th>
+<th> first  </th>
+<th> border </th>
+<th> middle </th>
+<th> last   </th>
+<th> even   </th>
+<th> odd    </th>
+</tr>
+<tr>
+<td> joe                 </td>
+<td>   X  </td>
+<td>  X  </td>
+<td>  </td>
+<td>  </td>
+<td>  </td>
+<td>     X  </td>
+</tr>
+<tr>
+<td> jim                 </td>
+<td>  </td>
+<td>  </td>
+<td>  X  </td>
+<td>  </td>
+<td>    X  </td>
+<td>  </td>
+</tr>
+<tr>
+<td> john                 </td>
+<td>  </td>
+<td>  </td>
+<td>  X  </td>
+<td>  </td>
+<td>  </td>
+<td>     X  </td>
+</tr>
+<tr>
+<td> jack                 </td>
+<td>  </td>
+<td>  </td>
+<td>  X  </td>
+<td>  </td>
+<td>    X  </td>
+<td>  </td>
+</tr>
+<tr>
+<td> jerry                 </td>
+<td>  </td>
+<td>  X  </td>
+<td>  </td>
+<td>    X  </td>
+<td>  </td>
+<td>     X  </td>
+</tr>
+</table><!-- END DEMO RESULT --></span></code></td></tr>
+</table>
 </p>
-
-
-
-
+<p> 
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>    &lt;table border=1&gt;<br>      &lt;tr&gt;<br>        &lt;th&gt;         &lt;/th&gt;<br>        &lt;th&gt; name    &lt;/th&gt;<br>        &lt;th&gt; count   &lt;/th&gt;<br>        &lt;th&gt; key     &lt;/th&gt;<br>        &lt;th&gt; current &lt;/th&gt;<br>        &lt;th&gt; done    &lt;/th&gt;<br>        &lt;th&gt; remain  &lt;/th&gt;<br>      &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b><br>  &lt;/table&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>      &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&</font>name</font>}</b>      &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&</font>count</font>}</b>     &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&</font>key</font>}</b>       &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&</font>current</font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&</font>done</font>}</b>      &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">&</font>remaining</font>}</b> &lt;/td&gt;   <br>      &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
+<tr>
+<th>         </th>
+<th> name    </th>
+<th> count   </th>
+<th> key     </th>
+<th> current </th>
+<th> done    </th>
+<th> remain  </th>
+</tr>
+<tr>
+<td> joe      </td>
+<td> staff      </td>
+<td> 5     </td>
+<td> 0       </td>
+<td> 1   </td>
+<td> 0      </td>
+<td> 4 </td>   
+</tr>
+<tr>
+<td> jim      </td>
+<td> staff      </td>
+<td> 5     </td>
+<td> 1       </td>
+<td> 2   </td>
+<td> 1      </td>
+<td> 3 </td>   
+</tr>
+<tr>
+<td> john      </td>
+<td> staff      </td>
+<td> 5     </td>
+<td> 2       </td>
+<td> 3   </td>
+<td> 2      </td>
+<td> 2 </td>   
+</tr>
+<tr>
+<td> jack      </td>
+<td> staff      </td>
+<td> 5     </td>
+<td> 3       </td>
+<td> 4   </td>
+<td> 3      </td>
+<td> 1 </td>   
+</tr>
+<tr>
+<td> jerry      </td>
+<td> staff      </td>
+<td> 5     </td>
+<td> 4       </td>
+<td> 5   </td>
+<td> 4      </td>
+<td> 0 </td>   
+</tr>
+</table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      <b>{<font color="blue">true</font><font color="red"></font>}</b><br>        &lt;tr&gt;<br>          &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>         &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2</font><b><font color="black">:</font></b><font color="green">name</font>}</b>      &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2</font><b><font color="black">:</font></b><font color="green">count</font>}</b>     &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2</font><b><font color="black">:</font></b><font color="green">key</font>}</b>       &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2</font><b><font color="black">:</font></b><font color="green">current</font>}</b>   &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2</font><b><font color="black">:</font></b><font color="green">done</font>}</b>      &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>-2</font><b><font color="black">:</font></b><font color="green">remaining</font>}</b> &lt;/td&gt; <br>        &lt;/tr&gt;<br>      <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
+<tr>
+<th>         </th>
+<th> name    </th>
+<th> count   </th>
+<th> key     </th>
+<th> current </th>
+<th> done    </th>
+<th> remain  </th>
+</tr>
+<tr>
+<td> joe         </td>
+<td> staff      </td>
+<td> 5     </td>
+<td> 0       </td>
+<td> 1   </td>
+<td> 0      </td>
+<td> 4 </td> 
+</tr>
+<tr>
+<td> jim         </td>
+<td> staff      </td>
+<td> 5     </td>
+<td> 1       </td>
+<td> 2   </td>
+<td> 1      </td>
+<td> 3 </td> 
+</tr>
+<tr>
+<td> john         </td>
+<td> staff      </td>
+<td> 5     </td>
+<td> 2       </td>
+<td> 3   </td>
+<td> 2      </td>
+<td> 2 </td> 
+</tr>
+<tr>
+<td> jack         </td>
+<td> staff      </td>
+<td> 5     </td>
+<td> 3       </td>
+<td> 4   </td>
+<td> 3      </td>
+<td> 1 </td> 
+</tr>
+<tr>
+<td> jerry         </td>
+<td> staff      </td>
+<td> 5     </td>
+<td> 4       </td>
+<td> 5   </td>
+<td> 4      </td>
+<td> 0 </td> 
+</tr>
+</table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      <b>{<font color="blue">true</font><font color="red"></font>}</b><br>        &lt;tr&gt;<br>          &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>            &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="green">name</font>}</b>      &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="green">count</font>}</b>     &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="green">key</font>}</b>       &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="green">current</font>}</b>   &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="green">done</font>}</b>      &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="green">remaining</font>}</b> &lt;/td&gt;   <br>        &lt;/tr&gt;<br>      <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
+<tr>
+<th>         </th>
+<th> name    </th>
+<th> count   </th>
+<th> key     </th>
+<th> current </th>
+<th> done    </th>
+<th> remain  </th>
+</tr>
+<tr>
+<td> joe            </td>
+<td> staff      </td>
+<td> 5     </td>
+<td> 0       </td>
+<td> 1   </td>
+<td> 0      </td>
+<td> 4 </td>   
+</tr>
+<tr>
+<td> jim            </td>
+<td> staff      </td>
+<td> 5     </td>
+<td> 1       </td>
+<td> 2   </td>
+<td> 1      </td>
+<td> 3 </td>   
+</tr>
+<tr>
+<td> john            </td>
+<td> staff      </td>
+<td> 5     </td>
+<td> 2       </td>
+<td> 3   </td>
+<td> 2      </td>
+<td> 2 </td>   
+</tr>
+<tr>
+<td> jack            </td>
+<td> staff      </td>
+<td> 5     </td>
+<td> 3       </td>
+<td> 4   </td>
+<td> 3      </td>
+<td> 1 </td>   
+</tr>
+<tr>
+<td> jerry            </td>
+<td> staff      </td>
+<td> 5     </td>
+<td> 4       </td>
+<td> 5   </td>
+<td> 4      </td>
+<td> 0 </td>   
+</tr>
+</table><!-- END DEMO RESULT --></span></code></td></tr>
+</table>
+</p>
+<p> 
+<table border="1" cellpadding="10" cellspacing="0">
+<tr>
+<th bgcolor="#dddddd">HTML</th>
+<th bgcolor="#dddddd">RESULT</th>
+</tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">first</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;th&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="orange">1</font><b><font color="black">:</font></b><font color="green">name</font>}</b> &lt;/th&gt;<br>        &lt;th&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="orange">2</font><b><font color="black">:</font></b><font color="green">name</font>}</b> &lt;/th&gt;<br>        &lt;th&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="orange">3</font><b><font color="black">:</font></b><font color="green">name</font>}</b> &lt;/th&gt;<br>        &lt;th&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="orange">4</font><b><font color="black">:</font></b><font color="green">name</font>}</b> &lt;/th&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">first</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="orange">1</font><b><font color="black">:</font></b><font color="green">value</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="orange">2</font><b><font color="black">:</font></b><font color="green">value</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="orange">3</font><b><font color="black">:</font></b><font color="green">value</font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="purple"><font color="red">&</font>staff</font><b><font color="black">:</font></b><font color="orange">4</font><b><font color="black">:</font></b><font color="green">value</font>}</b> &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
+<tr>
+<th> name </th>
+<th> salary </th>
+<th> bonus </th>
+<th> phone </th>
+</tr>
+<tr>
+<td> joe </td>
+<td> 1000 </td>
+<td> 500 </td>
+<td> 555-1111 </td>
+</tr>
+<tr>
+<td> jim </td>
+<td> 2000 </td>
+<td> 400 </td>
+<td> 555-2222 </td>
+</tr>
+<tr>
+<td> john </td>
+<td> 3000 </td>
+<td> 300 </td>
+<td> 555-3333 </td>
+</tr>
+<tr>
+<td> jack </td>
+<td> 4000 </td>
+<td> 200 </td>
+<td> 555-4444 </td>
+</tr>
+<tr>
+<td> jerry </td>
+<td> 5000 </td>
+<td> 100 </td>
+<td> 555-5555 </td>
+</tr>
+</table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">first</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        <b>{<font color="blue">fields</font><font color="red"></font>}</b><br>          &lt;th&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/th&gt;<br>        <b>{/<font color="blue">fields</font><font color="red"></font>}</b><br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">first</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">fields</font><font color="red"></font>}</b><br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b> &lt;/td&gt;<br>      <b>{/<font color="blue">fields</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
+<tr>
+<th>name</th>
+<th>salary</th>
+<th>bonus</th>
+<th>phone</th>
+</tr>
+<tr>
+<td> joe </td>
+<td> 1000 </td>
+<td> 500 </td>
+<td> 555-1111 </td>
+</tr>
+<tr>
+<td> jim </td>
+<td> 2000 </td>
+<td> 400 </td>
+<td> 555-2222 </td>
+</tr>
+<tr>
+<td> john </td>
+<td> 3000 </td>
+<td> 300 </td>
+<td> 555-3333 </td>
+</tr>
+<tr>
+<td> jack </td>
+<td> 4000 </td>
+<td> 200 </td>
+<td> 555-4444 </td>
+</tr>
+<tr>
+<td> jerry </td>
+<td> 5000 </td>
+<td> 100 </td>
+<td> 555-5555 </td>
+</tr>
+</table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">first </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b><br>      &lt;tr&gt;<br>        <b>{<font color="blue">fields </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b><br>          &lt;th&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/th&gt;<br>        <b>{/<font color="blue">fields</font><font color="red"></font>}</b><br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">first</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">fields </font><font color="red"><font color="black">'</font>staff<font color="black">'</font></font>}</b><br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b> &lt;/td&gt;<br>      <b>{/<font color="blue">fields</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
+<tr>
+<th>name</th>
+<th>salary</th>
+<th>bonus</th>
+<th>phone</th>
+</tr>
+<tr>
+<td> joe </td>
+<td> 1000 </td>
+<td> 500 </td>
+<td> 555-1111 </td>
+</tr>
+<tr>
+<td> jim </td>
+<td> 2000 </td>
+<td> 400 </td>
+<td> 555-2222 </td>
+</tr>
+<tr>
+<td> john </td>
+<td> 3000 </td>
+<td> 300 </td>
+<td> 555-3333 </td>
+</tr>
+<tr>
+<td> jack </td>
+<td> 4000 </td>
+<td> 200 </td>
+<td> 555-4444 </td>
+</tr>
+<tr>
+<td> jerry </td>
+<td> 5000 </td>
+<td> 100 </td>
+<td> 555-5555 </td>
+</tr>
+</table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">first </font><font color="red">-1</font>}</b><br>      &lt;tr&gt;<br>        <b>{<font color="blue">fields </font><font color="red">-2</font>}</b><br>          &lt;th&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/th&gt;<br>        <b>{/<font color="blue">fields</font><font color="red"></font>}</b><br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">first</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">fields </font><font color="red">-1</font>}</b><br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b> &lt;/td&gt;<br>      <b>{/<font color="blue">fields</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
+<tr>
+<th>name</th>
+<th>salary</th>
+<th>bonus</th>
+<th>phone</th>
+</tr>
+<tr>
+<td> joe </td>
+<td> 1000 </td>
+<td> 500 </td>
+<td> 555-1111 </td>
+</tr>
+<tr>
+<td> jim </td>
+<td> 2000 </td>
+<td> 400 </td>
+<td> 555-2222 </td>
+</tr>
+<tr>
+<td> john </td>
+<td> 3000 </td>
+<td> 300 </td>
+<td> 555-3333 </td>
+</tr>
+<tr>
+<td> jack </td>
+<td> 4000 </td>
+<td> 200 </td>
+<td> 555-4444 </td>
+</tr>
+<tr>
+<td> jerry </td>
+<td> 5000 </td>
+<td> 100 </td>
+<td> 555-5555 </td>
+</tr>
+</table><!-- END DEMO RESULT --></span></code></td></tr>
+</table>
+</p>
 <h2>keys</h2>
-
 <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-    <tr>
-      <td>  
-        
-  Normally the keys of a PAD data collection are numbered 0..N,<br> 
-  but sometimes they have other values.
-
-      </td>
-    </tr>
-  </table>
-
+<tr>
+<td>  
+Normally the keys of a PAD data collection are numbered 0..N,<br> 
+but sometimes they have other values.
+</td>
+</tr>
+</table>
 <br>
-
-<table border="1" cellpadding="10" cellspacing="0"><tr><th bgcolor="#dddddd">PHP</th></tr><tr><td style="vertical-align:top"><code><span style="color: #000000"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php
-
-  $myData </span><span style="color: #007700">= [  
-    </span><span style="color: #DD0000">'abc' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'department' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'IT'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'manager' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'   </span><span style="color: #007700">],
-    </span><span style="color: #DD0000">'def' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'department' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Kitchen'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'manager' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Jim'   </span><span style="color: #007700">],
-    </span><span style="color: #DD0000">'ghi' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'department' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Helpdesk'</span><span style="color: #007700">, </span><span style="color: #DD0000">'manager' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Joe'   </span><span style="color: #007700">],
-    </span><span style="color: #DD0000">'jkl' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'department' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Sales'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'manager' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Steve' </span><span style="color: #007700">],
-    </span><span style="color: #DD0000">'mno' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'department' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Build'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'manager' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Jerry' </span><span style="color: #007700">]
-  ];
-
-</span><span style="color: #0000BB">?&gt;</span></code></pre></span></code>
-        </td></tr><tr><th bgcolor="#dddddd">PAD</th></tr><tr><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border="1"&gt;
-  <b>{<font color="blue">myData</font><font color="red"></font>}</b>
-    <b>{<font color="blue">first</font><font color="red"></font>}</b>
-      <b>{<font color="blue">keys</font><font color="red"></font>}</b> 
-        &lt;tr&gt;
-          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;
-          <b>{<font color="blue">value</font><font color="red"></font>}</b>
-            &lt;td&gt;
-              <b>{<font color="blue">fields</font><font color="red"></font>}</b>
-                <b>{<font color="green"><font color="red">$</font>name</font>}</b>: <b>{<font color="green"><font color="red">$</font>value</font>}</b> 
-                &lt;br&gt;
-              <b>{/<font color="blue">fields</font><font color="red"></font>}</b>
-            &lt;/td&gt;
-          <b>{/<font color="blue">value</font><font color="red"></font>}</b>
-        &lt;/tr&gt;
-      <b>{/<font color="blue">keys</font><font color="red"></font>}</b>
-    <b>{/<font color="blue">first</font><font color="red"></font>}</b>
-  <b>{/<font color="blue">myData</font><font color="red"></font>}</b>
-&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></span></code>
-        </td></tr><tr><th bgcolor="#dddddd">RESULT</th></tr><tr><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
-  
-    
-       
-        <tr>
-          <td>abc</td>
-          
-            <td>
-              
-                name: department 
-                <br>
-              
-                value: IT 
-                <br>
-              
-            </td>
-          
-            <td>
-              
-                name: manager 
-                <br>
-              
-                value: Bob 
-                <br>
-              
-            </td>
-          
-        </tr>
-       
-        <tr>
-          <td>def</td>
-          
-            <td>
-              
-                name: department 
-                <br>
-              
-                value: Kitchen 
-                <br>
-              
-            </td>
-          
-            <td>
-              
-                name: manager 
-                <br>
-              
-                value: Jim 
-                <br>
-              
-            </td>
-          
-        </tr>
-       
-        <tr>
-          <td>ghi</td>
-          
-            <td>
-              
-                name: department 
-                <br>
-              
-                value: Helpdesk 
-                <br>
-              
-            </td>
-          
-            <td>
-              
-                name: manager 
-                <br>
-              
-                value: Joe 
-                <br>
-              
-            </td>
-          
-        </tr>
-       
-        <tr>
-          <td>jkl</td>
-          
-            <td>
-              
-                name: department 
-                <br>
-              
-                value: Sales 
-                <br>
-              
-            </td>
-          
-            <td>
-              
-                name: manager 
-                <br>
-              
-                value: Steve 
-                <br>
-              
-            </td>
-          
-        </tr>
-       
-        <tr>
-          <td>mno</td>
-          
-            <td>
-              
-                name: department 
-                <br>
-              
-                value: Build 
-                <br>
-              
-            </td>
-          
-            <td>
-              
-                name: manager 
-                <br>
-              
-                value: Jerry 
-                <br>
-              
-            </td>
-          
-        </tr>
-      
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
+<table border="1" cellpadding="10" cellspacing="0"><tr><th bgcolor="#dddddd">PHP</th></tr><tr><td style="vertical-align:top"><code><span style="color: #000000"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $myData </span><span style="color: #007700">= [  <br>    </span><span style="color: #DD0000">'abc' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'department' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'IT'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'manager' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'   </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'def' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'department' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Kitchen'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'manager' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Jim'   </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'ghi' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'department' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Helpdesk'</span><span style="color: #007700">, </span><span style="color: #DD0000">'manager' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Joe'   </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'jkl' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'department' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Sales'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'manager' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Steve' </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'mno' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'department' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Build'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'manager' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Jerry' </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre></span></code>
+</td></tr><tr><th bgcolor="#dddddd">PAD</th></tr><tr><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border="1"&gt;<br>  <b>{<font color="blue">myData</font><font color="red"></font>}</b><br>    <b>{<font color="blue">first</font><font color="red"></font>}</b><br>      <b>{<font color="blue">keys</font><font color="red"></font>}</b> <br>        &lt;tr&gt;<br>          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>          <b>{<font color="blue">value</font><font color="red"></font>}</b><br>            &lt;td&gt;<br>              <b>{<font color="blue">fields</font><font color="red"></font>}</b><br>                <b>{<font color="green"><font color="red">$</font>name</font>}</b>: <b>{<font color="green"><font color="red">$</font>value</font>}</b> <br>                &lt;br&gt;<br>              <b>{/<font color="blue">fields</font><font color="red"></font>}</b><br>            &lt;/td&gt;<br>          <b>{/<font color="blue">value</font><font color="red"></font>}</b><br>        &lt;/tr&gt;<br>      <b>{/<font color="blue">keys</font><font color="red"></font>}</b><br>    <b>{/<font color="blue">first</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">myData</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></span></code>
+</td></tr><tr><th bgcolor="#dddddd">RESULT</th></tr><tr><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+<tr>
+<td>abc</td>
+<td>
+name: department 
+<br>
+value: IT 
+<br>
+</td>
+<td>
+name: manager 
+<br>
+value: Bob 
+<br>
+</td>
+</tr>
+<tr>
+<td>def</td>
+<td>
+name: department 
+<br>
+value: Kitchen 
+<br>
+</td>
+<td>
+name: manager 
+<br>
+value: Jim 
+<br>
+</td>
+</tr>
+<tr>
+<td>ghi</td>
+<td>
+name: department 
+<br>
+value: Helpdesk 
+<br>
+</td>
+<td>
+name: manager 
+<br>
+value: Joe 
+<br>
+</td>
+</tr>
+<tr>
+<td>jkl</td>
+<td>
+name: department 
+<br>
+value: Sales 
+<br>
+</td>
+<td>
+name: manager 
+<br>
+value: Steve 
+<br>
+</td>
+</tr>
+<tr>
+<td>mno</td>
+<td>
+name: department 
+<br>
+value: Build 
+<br>
+</td>
+<td>
+name: manager 
+<br>
+value: Jerry 
+<br>
+</td>
+</tr>
 </table><!-- END DEMO RESULT --></span></code>
-        </td></tr></table>
+</td></tr></table>

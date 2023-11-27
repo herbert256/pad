@@ -16,7 +16,7 @@
   }
 
   if ( $padOutputTabToSpace )
-    $padOutput = str_replace ( "\t", ' ', $padOutput );
+    $padOutput = str_replace ( "\t", '??', $padOutput );
 
   if ( $padOutputTrim )
     $padOutput = trim ($padOutput);
@@ -24,11 +24,11 @@
   if ( $padOutputRemoveWhitespace ) 
     $padOutput = trim(preg_replace('/>\s+</', '><', $padOutput));
 
-  if ( $padOutputNoEmptyLines ) 
-    $padOutput = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $padOutput);
-
   if ( $padOutputNoIndent ) 
     $padOutput = preg_replace('/^ +/m', '', $padOutput);
+
+  if ( $padOutputNoEmptyLines ) 
+    $padOutput = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $padOutput);
 
   if ( $padOutputNoNewLines )
     $padOutput = str_replace ( ["\n", "\r"], '', $padOutput);

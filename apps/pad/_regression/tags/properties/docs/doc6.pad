@@ -1,186 +1,90 @@
 <h2>keys</h2>
-
 <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
-    <tr>
-      <td>  
-        
-  Normally the keys of a PAD data collection are numbered 0..N,<br> 
-  but sometimes they have other values.
-
-      </td>
-    </tr>
-  </table>
-
+<tr>
+<td>  
+Normally the keys of a PAD data collection are numbered 0..N,<br> 
+but sometimes they have other values.
+</td>
+</tr>
+</table>
 <br>
-
-<table border="1" cellpadding="10" cellspacing="0"><tr><th bgcolor="#dddddd">PHP</th></tr><tr><td style="vertical-align:top"><code><span style="color: #000000"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php
-
-  $myData </span><span style="color: #007700">= [  
-    </span><span style="color: #DD0000">'abc' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'department' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'IT'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'manager' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'   </span><span style="color: #007700">],
-    </span><span style="color: #DD0000">'def' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'department' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Kitchen'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'manager' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Jim'   </span><span style="color: #007700">],
-    </span><span style="color: #DD0000">'ghi' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'department' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Helpdesk'</span><span style="color: #007700">, </span><span style="color: #DD0000">'manager' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Joe'   </span><span style="color: #007700">],
-    </span><span style="color: #DD0000">'jkl' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'department' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Sales'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'manager' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Steve' </span><span style="color: #007700">],
-    </span><span style="color: #DD0000">'mno' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'department' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Build'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'manager' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Jerry' </span><span style="color: #007700">]
-  ];
-
-</span><span style="color: #0000BB">?&gt;</span></code></pre></span></code>
-        </td></tr><tr><th bgcolor="#dddddd">PAD</th></tr><tr><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border="1"&gt;
-  <b>{<font color="blue">myData</font><font color="red"></font>}</b>
-    <b>{<font color="blue">first</font><font color="red"></font>}</b>
-      <b>{<font color="blue">keys</font><font color="red"></font>}</b> 
-        &lt;tr&gt;
-          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;
-          <b>{<font color="blue">value</font><font color="red"></font>}</b>
-            &lt;td&gt;
-              <b>{<font color="blue">fields</font><font color="red"></font>}</b>
-                <b>{<font color="green"><font color="red">$</font>name</font>}</b>: <b>{<font color="green"><font color="red">$</font>value</font>}</b> 
-                &lt;br&gt;
-              <b>{/<font color="blue">fields</font><font color="red"></font>}</b>
-            &lt;/td&gt;
-          <b>{/<font color="blue">value</font><font color="red"></font>}</b>
-        &lt;/tr&gt;
-      <b>{/<font color="blue">keys</font><font color="red"></font>}</b>
-    <b>{/<font color="blue">first</font><font color="red"></font>}</b>
-  <b>{/<font color="blue">myData</font><font color="red"></font>}</b>
-&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></span></code>
-        </td></tr><tr><th bgcolor="#dddddd">RESULT</th></tr><tr><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
-  
-    
-       
-        <tr>
-          <td>abc</td>
-          
-            <td>
-              
-                name: department 
-                <br>
-              
-                value: IT 
-                <br>
-              
-            </td>
-          
-            <td>
-              
-                name: manager 
-                <br>
-              
-                value: Bob 
-                <br>
-              
-            </td>
-          
-        </tr>
-       
-        <tr>
-          <td>def</td>
-          
-            <td>
-              
-                name: department 
-                <br>
-              
-                value: Kitchen 
-                <br>
-              
-            </td>
-          
-            <td>
-              
-                name: manager 
-                <br>
-              
-                value: Jim 
-                <br>
-              
-            </td>
-          
-        </tr>
-       
-        <tr>
-          <td>ghi</td>
-          
-            <td>
-              
-                name: department 
-                <br>
-              
-                value: Helpdesk 
-                <br>
-              
-            </td>
-          
-            <td>
-              
-                name: manager 
-                <br>
-              
-                value: Joe 
-                <br>
-              
-            </td>
-          
-        </tr>
-       
-        <tr>
-          <td>jkl</td>
-          
-            <td>
-              
-                name: department 
-                <br>
-              
-                value: Sales 
-                <br>
-              
-            </td>
-          
-            <td>
-              
-                name: manager 
-                <br>
-              
-                value: Steve 
-                <br>
-              
-            </td>
-          
-        </tr>
-       
-        <tr>
-          <td>mno</td>
-          
-            <td>
-              
-                name: department 
-                <br>
-              
-                value: Build 
-                <br>
-              
-            </td>
-          
-            <td>
-              
-                name: manager 
-                <br>
-              
-                value: Jerry 
-                <br>
-              
-            </td>
-          
-        </tr>
-      
-    
-  
-    
-  
-    
-  
-    
-  
-    
-  
+<table border="1" cellpadding="10" cellspacing="0"><tr><th bgcolor="#dddddd">PHP</th></tr><tr><td style="vertical-align:top"><code><span style="color: #000000"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $myData </span><span style="color: #007700">= [  <br>    </span><span style="color: #DD0000">'abc' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'department' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'IT'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'manager' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'   </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'def' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'department' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Kitchen'</span><span style="color: #007700">,  </span><span style="color: #DD0000">'manager' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Jim'   </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'ghi' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'department' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Helpdesk'</span><span style="color: #007700">, </span><span style="color: #DD0000">'manager' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Joe'   </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'jkl' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'department' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Sales'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'manager' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Steve' </span><span style="color: #007700">],<br>    </span><span style="color: #DD0000">'mno' </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'department' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Build'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'manager' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Jerry' </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre></span></code>
+</td></tr><tr><th bgcolor="#dddddd">PAD</th></tr><tr><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border="1"&gt;<br>  <b>{<font color="blue">myData</font><font color="red"></font>}</b><br>    <b>{<font color="blue">first</font><font color="red"></font>}</b><br>      <b>{<font color="blue">keys</font><font color="red"></font>}</b> <br>        &lt;tr&gt;<br>          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>          <b>{<font color="blue">value</font><font color="red"></font>}</b><br>            &lt;td&gt;<br>              <b>{<font color="blue">fields</font><font color="red"></font>}</b><br>                <b>{<font color="green"><font color="red">$</font>name</font>}</b>: <b>{<font color="green"><font color="red">$</font>value</font>}</b> <br>                &lt;br&gt;<br>              <b>{/<font color="blue">fields</font><font color="red"></font>}</b><br>            &lt;/td&gt;<br>          <b>{/<font color="blue">value</font><font color="red"></font>}</b><br>        &lt;/tr&gt;<br>      <b>{/<font color="blue">keys</font><font color="red"></font>}</b><br>    <b>{/<font color="blue">first</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">myData</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></span></code>
+</td></tr><tr><th bgcolor="#dddddd">RESULT</th></tr><tr><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+<tr>
+<td>abc</td>
+<td>
+name: department 
+<br>
+value: IT 
+<br>
+</td>
+<td>
+name: manager 
+<br>
+value: Bob 
+<br>
+</td>
+</tr>
+<tr>
+<td>def</td>
+<td>
+name: department 
+<br>
+value: Kitchen 
+<br>
+</td>
+<td>
+name: manager 
+<br>
+value: Jim 
+<br>
+</td>
+</tr>
+<tr>
+<td>ghi</td>
+<td>
+name: department 
+<br>
+value: Helpdesk 
+<br>
+</td>
+<td>
+name: manager 
+<br>
+value: Joe 
+<br>
+</td>
+</tr>
+<tr>
+<td>jkl</td>
+<td>
+name: department 
+<br>
+value: Sales 
+<br>
+</td>
+<td>
+name: manager 
+<br>
+value: Steve 
+<br>
+</td>
+</tr>
+<tr>
+<td>mno</td>
+<td>
+name: department 
+<br>
+value: Build 
+<br>
+</td>
+<td>
+name: manager 
+<br>
+value: Jerry 
+<br>
+</td>
+</tr>
 </table><!-- END DEMO RESULT --></span></code>
-        </td></tr></table>
+</td></tr></table>

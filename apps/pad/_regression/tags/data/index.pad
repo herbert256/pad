@@ -1,691 +1,316 @@
 <table border="1" cellpadding="10" cellspacing="0">
-  
-
-  
-
-    
-        <tr>
-        
-          <th bgcolor="#dddddd">
-            PHP 
-          </th>
-        
-        
-          <th bgcolor="#dddddd">
-            HTML 
-          </th>
-        
-        
-          <th bgcolor="#dddddd">
-            Result
-          </th>
-        
-      </tr>
-    
-
-    <tr>
-      
-        <td style="vertical-align:top"> </td>
-      
-      
-        <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myData<font color="black">'</font></font>}</b>
-  [
-    { "name": "joe",   "phone": "555-3425" },
-    { "name": "jim",   "phone": "555-2364" },
-    { "name": "jack",  "phone": "555-3422" },
-    { "name": "jerry", "phone": "555-4973" }
-  ]
-<b>{/<font color="blue">data</font><font color="red"></font>}</b>
-
-&lt;table&gt;
-  <b>{<font color="blue">myData</font><font color="red"></font>}</b>
-    &lt;tr&gt;
-      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt; 
-      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;
-    &lt;/tr&gt;  
-  <b>{/<font color="blue">myData</font><font color="red"></font>}</b>
-&lt;/table&gt;</code></pre></td>
-      
-      
-        <td style="vertical-align:top">
-
-
-
-
-
+<tr>
+<th bgcolor="#dddddd">
+PHP 
+</th>
+<th bgcolor="#dddddd">
+HTML 
+</th>
+<th bgcolor="#dddddd">
+Result
+</th>
+</tr>
+<tr>
+<td style="vertical-align:top"> </td>
+<td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myData<font color="black">'</font></font>}</b><br>  [<br>    { "name": "joe",   "phone": "555-3425" },<br>    { "name": "jim",   "phone": "555-2364" },<br>    { "name": "jack",  "phone": "555-3422" },<br>    { "name": "jerry", "phone": "555-4973" }<br>  ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br>&lt;table&gt;<br>  <b>{<font color="blue">myData</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt; <br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;  <br>  <b>{/<font color="blue">myData</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
+<td style="vertical-align:top">
 <table>
-  
-    <tr>
-      <td>joe</td> 
-      <td>555-3425</td>
-    </tr>  
-  
-    <tr>
-      <td>jim</td> 
-      <td>555-2364</td>
-    </tr>  
-  
-    <tr>
-      <td>jack</td> 
-      <td>555-3422</td>
-    </tr>  
-  
-    <tr>
-      <td>jerry</td> 
-      <td>555-4973</td>
-    </tr>  
-  
+<tr>
+<td>joe</td> 
+<td>555-3425</td>
+</tr>  
+<tr>
+<td>jim</td> 
+<td>555-2364</td>
+</tr>  
+<tr>
+<td>jack</td> 
+<td>555-3422</td>
+</tr>  
+<tr>
+<td>jerry</td> 
+<td>555-4973</td>
+</tr>  
 </table></td>
-      
-    </tr>
-
-  
-
-
-  
-
-
-  
-    
-
- 
-
-
-
-  
-
-  
-
-    
-
-    <tr>
-      
-        <td style="vertical-align:top"> </td>
-      
-      
-        <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>xml<font color="black">'</font></font>}</b>
-  &lt;data&gt;
-    &lt;row name="bob"   phone="555-1111" /&gt;
-    &lt;row name="jim"   phone="555-2222" /&gt;
-    &lt;row name="joe"   phone="555-3333" /&gt;
-    &lt;row name="jerry" phone="555-4444" /&gt;
-  &lt;/data&gt;
-<b>{/<font color="blue">data</font><font color="red"></font>}</b>
-
-<b>{<font color="blue">data </font><font color="red"><font color="black">'</font>json<font color="black">'</font></font>}</b>
-  [
-    { "name": "bob",   "phone": "555-5555" },
-    { "name": "jim",   "phone": "555-6666" },
-    { "name": "joe",   "phone": "555-7777" },      
-    { "name": "jerry", "phone": "555-8888" }
-  ]
-<b>{/<font color="blue">data</font><font color="red"></font>}</b>
-
-<b>{<font color="blue">data </font><font color="red"><font color="black">'</font>yaml<font color="black">'</font></font>}</b>
-  ---
-  - name: bob
-    phone: 555-3425
-  - name: jim
-    phone: 555-4364
-  - name: joe
-    phone: 555-3422
-  - name: jerry
-    phone: 555-4973
-<b>{/<font color="blue">data</font><font color="red"></font>}</b>
-
-<b>{<font color="blue">data </font><font color="red"><font color="black">'</font>csv<font color="black">'</font></font>}</b>
-  name,phone
-  bob,555-3425
-  jim,555-4364
-  joe,555-3422
-  jerry,555-4973
-<b>{/<font color="blue">data</font><font color="red"></font>}</b>
-
-<b>{<font color="blue">data </font><font color="red"><font color="black">'</font>list<font color="black">'</font></font>}</b>
-  ('xml', 'json', 'yaml', 'csv')
-<b>{/<font color="blue">data</font><font color="red"></font>}</b>
-
-<b>{<font color="blue">list</font><font color="red"></font>}</b>
-  &lt;p&gt;
-  &lt;table border=1&gt;
-    &lt;tr&gt;&lt;th colspan="2"&gt;<b>{<font color="green"><font color="red">$</font>list</font>}</b>&lt;/th&gt;&lt;/tr&gt;
-    <b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>list</font><font color="black">}</font></b><font color="black">'</font></font>}</b>
-      &lt;tr&gt;
-        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt; 
-        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;
-      &lt;/tr&gt;
-    <b>{/<font color="blue">pad</font><font color="red"></font>}</b>
-  &lt;/table&gt;
-<b>{/<font color="blue">list</font><font color="red"></font>}</b></code></pre></td>
-      
-      
-        <td style="vertical-align:top">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <p>
-  <table border=1>
-    <tr><th colspan="2">xml</th></tr>
-    
-      <tr>
-        <td>bob</td> 
-        <td>555-1111</td>
-      </tr>
-    
-      <tr>
-        <td>jim</td> 
-        <td>555-2222</td>
-      </tr>
-    
-      <tr>
-        <td>joe</td> 
-        <td>555-3333</td>
-      </tr>
-    
-      <tr>
-        <td>jerry</td> 
-        <td>555-4444</td>
-      </tr>
-    
-  </table>
-
-  <p>
-  <table border=1>
-    <tr><th colspan="2">json</th></tr>
-    
-      <tr>
-        <td>bob</td> 
-        <td>555-5555</td>
-      </tr>
-    
-      <tr>
-        <td>jim</td> 
-        <td>555-6666</td>
-      </tr>
-    
-      <tr>
-        <td>joe</td> 
-        <td>555-7777</td>
-      </tr>
-    
-      <tr>
-        <td>jerry</td> 
-        <td>555-8888</td>
-      </tr>
-    
-  </table>
-
-  <p>
-  <table border=1>
-    <tr><th colspan="2">yaml</th></tr>
-    
-      <tr>
-        <td>bob</td> 
-        <td>555-3425</td>
-      </tr>
-    
-      <tr>
-        <td>jim</td> 
-        <td>555-4364</td>
-      </tr>
-    
-      <tr>
-        <td>joe</td> 
-        <td>555-3422</td>
-      </tr>
-    
-      <tr>
-        <td>jerry</td> 
-        <td>555-4973</td>
-      </tr>
-    
-  </table>
-
-  <p>
-  <table border=1>
-    <tr><th colspan="2">csv</th></tr>
-    
-      <tr>
-        <td>bob</td> 
-        <td>555-3425</td>
-      </tr>
-    
-      <tr>
-        <td>jim</td> 
-        <td>555-4364</td>
-      </tr>
-    
-      <tr>
-        <td>joe</td> 
-        <td>555-3422</td>
-      </tr>
-    
-      <tr>
-        <td>jerry</td> 
-        <td>555-4973</td>
-      </tr>
-    
-  </table>
+</tr>
+<tr>
+<td style="vertical-align:top"> </td>
+<td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>xml<font color="black">'</font></font>}</b><br>  &lt;data&gt;<br>    &lt;row name="bob"   phone="555-1111" /&gt;<br>    &lt;row name="jim"   phone="555-2222" /&gt;<br>    &lt;row name="joe"   phone="555-3333" /&gt;<br>    &lt;row name="jerry" phone="555-4444" /&gt;<br>  &lt;/data&gt;<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>json<font color="black">'</font></font>}</b><br>  [<br>    { "name": "bob",   "phone": "555-5555" },<br>    { "name": "jim",   "phone": "555-6666" },<br>    { "name": "joe",   "phone": "555-7777" },      <br>    { "name": "jerry", "phone": "555-8888" }<br>  ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>yaml<font color="black">'</font></font>}</b><br>  ---<br>  - name: bob<br>    phone: 555-3425<br>  - name: jim<br>    phone: 555-4364<br>  - name: joe<br>    phone: 555-3422<br>  - name: jerry<br>    phone: 555-4973<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>csv<font color="black">'</font></font>}</b><br>  name,phone<br>  bob,555-3425<br>  jim,555-4364<br>  joe,555-3422<br>  jerry,555-4973<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>list<font color="black">'</font></font>}</b><br>  ('xml', 'json', 'yaml', 'csv')<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">list</font><font color="red"></font>}</b><br>  &lt;p&gt;<br>  &lt;table border=1&gt;<br>    &lt;tr&gt;&lt;th colspan="2"&gt;<b>{<font color="green"><font color="red">$</font>list</font>}</b>&lt;/th&gt;&lt;/tr&gt;<br>    <b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>list</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt; <br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">pad</font><font color="red"></font>}</b><br>  &lt;/table&gt;<br><b>{/<font color="blue">list</font><font color="red"></font>}</b></code></pre></td>
+<td style="vertical-align:top">
+<p>
+<table border=1>
+<tr><th colspan="2">xml</th></tr>
+<tr>
+<td>bob</td> 
+<td>555-1111</td>
+</tr>
+<tr>
+<td>jim</td> 
+<td>555-2222</td>
+</tr>
+<tr>
+<td>joe</td> 
+<td>555-3333</td>
+</tr>
+<tr>
+<td>jerry</td> 
+<td>555-4444</td>
+</tr>
+</table>
+<p>
+<table border=1>
+<tr><th colspan="2">json</th></tr>
+<tr>
+<td>bob</td> 
+<td>555-5555</td>
+</tr>
+<tr>
+<td>jim</td> 
+<td>555-6666</td>
+</tr>
+<tr>
+<td>joe</td> 
+<td>555-7777</td>
+</tr>
+<tr>
+<td>jerry</td> 
+<td>555-8888</td>
+</tr>
+</table>
+<p>
+<table border=1>
+<tr><th colspan="2">yaml</th></tr>
+<tr>
+<td>bob</td> 
+<td>555-3425</td>
+</tr>
+<tr>
+<td>jim</td> 
+<td>555-4364</td>
+</tr>
+<tr>
+<td>joe</td> 
+<td>555-3422</td>
+</tr>
+<tr>
+<td>jerry</td> 
+<td>555-4973</td>
+</tr>
+</table>
+<p>
+<table border=1>
+<tr><th colspan="2">csv</th></tr>
+<tr>
+<td>bob</td> 
+<td>555-3425</td>
+</tr>
+<tr>
+<td>jim</td> 
+<td>555-4364</td>
+</tr>
+<tr>
+<td>joe</td> 
+<td>555-3422</td>
+</tr>
+<tr>
+<td>jerry</td> 
+<td>555-4973</td>
+</tr>
+</table>
 </td>
-      
-    </tr>
-
-  
-
-
-  
-
-
-  
-    
-
- 
-
-
-
-  
-
-  
-
-    
-
-    <tr>
-      
-        <td style="vertical-align:top"> </td>
-      
-      
-        <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>csv<font color="black">'</font></font>}</b>
-  name,phone
-  jack,555-3425
-  jim,555-4364
-  joe,555-3422
-  jerry,555-4973
-<b>{/<font color="blue">data</font><font color="red"></font>}</b>
-
-<b>{<font color="blue">data</font><font color="red"></font>}</b>
-  [
-    <b>{<font color="blue">csv</font><font color="red"></font>}</b>
-      { "name": "<b>{<font color="green"><font color="red">$</font>name</font>}</b>", "phone": "<b>{<font color="green"><font color="red">$</font>phone</font>}</b>" }<b>{<font color="blue">notLast</font><font color="red"></font>}</b>,<b>{/<font color="blue">notLast</font><font color="red"></font>}</b>
-    <b>{/<font color="blue">csv</font><font color="red"></font>}</b>
-  ]
-<b>{/<font color="blue">data </font><font color="red"><font color="black">'</font>json<font color="black">'</font></font>}</b>
-
-<b>{<font color="blue">data</font><font color="red"></font>}</b>
-  &lt;records&gt;
-    <b>{<font color="blue">json</font><font color="red"></font>}</b>
-      &lt;record name="<b>{<font color="green"><font color="red">$</font>name</font>}</b>" phone="<b>{<font color="green"><font color="red">$</font>phone</font>}</b>"/&gt;
-    <b>{/<font color="blue">json</font><font color="red"></font>}</b>
-  &lt;/records&gt;
-<b>{/<font color="blue">data </font><font color="red"><font color="black">'</font>xml<font color="black">'</font></font>}</b>
-
-<b>{<font color="blue">data</font><font color="red"></font>}</b>
-  ---
-    <b>{<font color="blue">xml</font><font color="red"></font>}</b>
-    - name: <b>{<font color="green"><font color="red">$</font>name</font>}</b>
-      phone: <b>{<font color="green"><font color="red">$</font>phone</font>}</b>
-    <b>{/<font color="blue">xml</font><font color="red"></font>}</b>
-<b>{/<font color="blue">data </font><font color="red"><font color="black">'</font>yaml<font color="black">'</font></font>}</b>
-
-&lt;table&gt;
-  <b>{<font color="blue">yaml</font><font color="red"></font>}</b>
-    &lt;tr&gt;
-      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt; 
-      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;
-    &lt;/tr&gt;
-  <b>{/<font color="blue">yaml</font><font color="red"></font>}</b>
-&lt;/table&gt;</code></pre></td>
-      
-      
-        <td style="vertical-align:top">
-
-
-
-
-
-
-
-
-
-
-
+</tr>
+<tr>
+<td style="vertical-align:top"> </td>
+<td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>csv<font color="black">'</font></font>}</b><br>  name,phone<br>  jack,555-3425<br>  jim,555-4364<br>  joe,555-3422<br>  jerry,555-4973<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data</font><font color="red"></font>}</b><br>  [<br>    <b>{<font color="blue">csv</font><font color="red"></font>}</b><br>      { "name": "<b>{<font color="green"><font color="red">$</font>name</font>}</b>", "phone": "<b>{<font color="green"><font color="red">$</font>phone</font>}</b>" }<b>{<font color="blue">notLast</font><font color="red"></font>}</b>,<b>{/<font color="blue">notLast</font><font color="red"></font>}</b><br>    <b>{/<font color="blue">csv</font><font color="red"></font>}</b><br>  ]<br><b>{/<font color="blue">data </font><font color="red"><font color="black">'</font>json<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">data</font><font color="red"></font>}</b><br>  &lt;records&gt;<br>    <b>{<font color="blue">json</font><font color="red"></font>}</b><br>      &lt;record name="<b>{<font color="green"><font color="red">$</font>name</font>}</b>" phone="<b>{<font color="green"><font color="red">$</font>phone</font>}</b>"/&gt;<br>    <b>{/<font color="blue">json</font><font color="red"></font>}</b><br>  &lt;/records&gt;<br><b>{/<font color="blue">data </font><font color="red"><font color="black">'</font>xml<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">data</font><font color="red"></font>}</b><br>  ---<br>    <b>{<font color="blue">xml</font><font color="red"></font>}</b><br>    - name: <b>{<font color="green"><font color="red">$</font>name</font>}</b><br>      phone: <b>{<font color="green"><font color="red">$</font>phone</font>}</b><br>    <b>{/<font color="blue">xml</font><font color="red"></font>}</b><br><b>{/<font color="blue">data </font><font color="red"><font color="black">'</font>yaml<font color="black">'</font></font>}</b><br><br>&lt;table&gt;<br>  <b>{<font color="blue">yaml</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt; <br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">yaml</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
+<td style="vertical-align:top">
 <table>
-  
-    <tr>
-      <td>jack</td> 
-      <td>555-3425</td>
-    </tr>
-  
-    <tr>
-      <td>jim</td> 
-      <td>555-4364</td>
-    </tr>
-  
-    <tr>
-      <td>joe</td> 
-      <td>555-3422</td>
-    </tr>
-  
-    <tr>
-      <td>jerry</td> 
-      <td>555-4973</td>
-    </tr>
-  
+<tr>
+<td>jack</td> 
+<td>555-3425</td>
+</tr>
+<tr>
+<td>jim</td> 
+<td>555-4364</td>
+</tr>
+<tr>
+<td>joe</td> 
+<td>555-3422</td>
+</tr>
+<tr>
+<td>jerry</td> 
+<td>555-4973</td>
+</tr>
 </table></td>
-      
-    </tr>
-
-  
-
-
-  
-
-
-  
-    
-
- 
-
-
-
-  
-
-  
-
-    
-
-    <tr>
-      
-        <td style="vertical-align:top"> </td>
-      
-      
-        <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b>
-
-  &lt;h3&gt;<b>{<font color="purple"><font color="red">&</font>departments</font><b><font color="black">:</font></b><font color="orange">option</font><b><font color="black">:</font></b><font color="green">data</font>}</b>&lt;/h3&gt;
-
-  &lt;table border=1&gt;
-
-    &lt;tr&gt;
-      &lt;th&gt; department &lt;/th&gt;
-      &lt;th&gt; manager &lt;/th&gt;
-      &lt;th&gt; phone &lt;/th&gt;
-    &lt;/tr&gt;
-
-    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b>
-      &lt;tr&gt;
-        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>department</font>}</b> &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>manager</font>}</b> &lt;/td&gt;
-        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;
-      &lt;/tr&gt;
-    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b>
-
-  &lt;/table&gt;
-
-<b>{/<font color="blue">content</font><font color="red"></font>}</b>
-
-<b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments<font color="black">'</font><font color="black">,</font>      content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b>
-<b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.php<font color="black">'</font><font color="black">,</font>  content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b>
-<b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.csv<font color="black">'</font><font color="black">,</font>  content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b>
-<b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.xml<font color="black">'</font><font color="black">,</font>  content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b>
-<b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.yaml<font color="black">'</font><font color="black">,</font> content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b></code></pre></td>
-      
-      
-        <td style="vertical-align:top">
-
-
-
-
-
-
-
-  <h3>departments/departments</h3>
-
-  <table border=1>
-
-    <tr>
-      <th> department </th>
-      <th> manager </th>
-      <th> phone </th>
-    </tr>
-
-    
-      <tr>
-        <td> IT </td>
-        <td> Bob </td>
-        <td> 555-1111 </td>
-      </tr>
-    
-      <tr>
-        <td> Kitchen </td>
-        <td> Jim </td>
-        <td> 555-2222 </td>
-      </tr>
-    
-      <tr>
-        <td> Helpdesk </td>
-        <td> Joe </td>
-        <td> 555-3333 </td>
-      </tr>
-    
-      <tr>
-        <td> Sales </td>
-        <td> Steve </td>
-        <td> 555-4444 </td>
-      </tr>
-    
-      <tr>
-        <td> Build </td>
-        <td> Jerry </td>
-        <td> 555-8888 </td>
-      </tr>
-    
-
-  </table>
-
-
-
-
-  <h3>departments/departments.php</h3>
-
-  <table border=1>
-
-    <tr>
-      <th> department </th>
-      <th> manager </th>
-      <th> phone </th>
-    </tr>
-
-    
-      <tr>
-        <td> IT </td>
-        <td> Bob </td>
-        <td> 555-1111 </td>
-      </tr>
-    
-      <tr>
-        <td> Kitchen </td>
-        <td> Jim </td>
-        <td> 555-2222 </td>
-      </tr>
-    
-      <tr>
-        <td> Helpdesk </td>
-        <td> Joe </td>
-        <td> 555-3333 </td>
-      </tr>
-    
-      <tr>
-        <td> Sales </td>
-        <td> Steve </td>
-        <td> 555-4444 </td>
-      </tr>
-    
-      <tr>
-        <td> Build </td>
-        <td> Jerry </td>
-        <td> 555-7777 </td>
-      </tr>
-    
-
-  </table>
-
-
-
-
-  <h3>departments/departments.csv</h3>
-
-  <table border=1>
-
-    <tr>
-      <th> department </th>
-      <th> manager </th>
-      <th> phone </th>
-    </tr>
-
-    
-      <tr>
-        <td> IT </td>
-        <td> Bob </td>
-        <td> 555-1111 </td>
-      </tr>
-    
-      <tr>
-        <td> Kitchen </td>
-        <td> Jim </td>
-        <td> 555-2222 </td>
-      </tr>
-    
-      <tr>
-        <td> Helpdesk </td>
-        <td> Joe </td>
-        <td> 555-3333 </td>
-      </tr>
-    
-      <tr>
-        <td> Sales </td>
-        <td> Steve </td>
-        <td> 555-4444 </td>
-      </tr>
-    
-      <tr>
-        <td> Build </td>
-        <td> Jerry </td>
-        <td> 555-5555 </td>
-      </tr>
-    
-
-  </table>
-
-
-
-
-  <h3>departments/departments.xml</h3>
-
-  <table border=1>
-
-    <tr>
-      <th> department </th>
-      <th> manager </th>
-      <th> phone </th>
-    </tr>
-
-    
-      <tr>
-        <td> IT </td>
-        <td> Bob </td>
-        <td> 555-1111 </td>
-      </tr>
-    
-      <tr>
-        <td> Kitchen </td>
-        <td> Jim </td>
-        <td> 555-2222 </td>
-      </tr>
-    
-      <tr>
-        <td> Helpdesk </td>
-        <td> Joe </td>
-        <td> 555-3333 </td>
-      </tr>
-    
-      <tr>
-        <td> Sales </td>
-        <td> Steve </td>
-        <td> 555-4444 </td>
-      </tr>
-    
-      <tr>
-        <td> Build </td>
-        <td> Jerry </td>
-        <td> 555-8888 </td>
-      </tr>
-    
-
-  </table>
-
-
-
-
-  <h3>departments/departments.yaml</h3>
-
-  <table border=1>
-
-    <tr>
-      <th> department </th>
-      <th> manager </th>
-      <th> phone </th>
-    </tr>
-
-    
-      <tr>
-        <td> IT </td>
-        <td> Bob </td>
-        <td> 555-1111 </td>
-      </tr>
-    
-      <tr>
-        <td> Kitchen </td>
-        <td> Jim </td>
-        <td> 555-2222 </td>
-      </tr>
-    
-      <tr>
-        <td> Helpdesk </td>
-        <td> Joe </td>
-        <td> 555-3333 </td>
-      </tr>
-    
-      <tr>
-        <td> Sales </td>
-        <td> Steve </td>
-        <td> 555-4444 </td>
-      </tr>
-    
-      <tr>
-        <td> Build </td>
-        <td> Jerry </td>
-        <td> 555-9999 </td>
-      </tr>
-    
-
-  </table>
-
+</tr>
+<tr>
+<td style="vertical-align:top"> </td>
+<td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><br>  &lt;h3&gt;<b>{<font color="purple"><font color="red">&</font>departments</font><b><font color="black">:</font></b><font color="orange">option</font><b><font color="black">:</font></b><font color="green">data</font>}</b>&lt;/h3&gt;<br><br>  &lt;table border=1&gt;<br><br>    &lt;tr&gt;<br>      &lt;th&gt; department &lt;/th&gt;<br>      &lt;th&gt; manager &lt;/th&gt;<br>      &lt;th&gt; phone &lt;/th&gt;<br>    &lt;/tr&gt;<br><br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>department</font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>manager</font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br><br>  &lt;/table&gt;<br><br><b>{/<font color="blue">content</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments<font color="black">'</font><font color="black">,</font>      content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.php<font color="black">'</font><font color="black">,</font>  content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.csv<font color="black">'</font><font color="black">,</font>  content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.xml<font color="black">'</font><font color="black">,</font>  content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.yaml<font color="black">'</font><font color="black">,</font> content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b></code></pre></td>
+<td style="vertical-align:top">
+<h3>departments/departments</h3>
+<table border=1>
+<tr>
+<th> department </th>
+<th> manager </th>
+<th> phone </th>
+</tr>
+<tr>
+<td> IT </td>
+<td> Bob </td>
+<td> 555-1111 </td>
+</tr>
+<tr>
+<td> Kitchen </td>
+<td> Jim </td>
+<td> 555-2222 </td>
+</tr>
+<tr>
+<td> Helpdesk </td>
+<td> Joe </td>
+<td> 555-3333 </td>
+</tr>
+<tr>
+<td> Sales </td>
+<td> Steve </td>
+<td> 555-4444 </td>
+</tr>
+<tr>
+<td> Build </td>
+<td> Jerry </td>
+<td> 555-8888 </td>
+</tr>
+</table>
+<h3>departments/departments.php</h3>
+<table border=1>
+<tr>
+<th> department </th>
+<th> manager </th>
+<th> phone </th>
+</tr>
+<tr>
+<td> IT </td>
+<td> Bob </td>
+<td> 555-1111 </td>
+</tr>
+<tr>
+<td> Kitchen </td>
+<td> Jim </td>
+<td> 555-2222 </td>
+</tr>
+<tr>
+<td> Helpdesk </td>
+<td> Joe </td>
+<td> 555-3333 </td>
+</tr>
+<tr>
+<td> Sales </td>
+<td> Steve </td>
+<td> 555-4444 </td>
+</tr>
+<tr>
+<td> Build </td>
+<td> Jerry </td>
+<td> 555-7777 </td>
+</tr>
+</table>
+<h3>departments/departments.csv</h3>
+<table border=1>
+<tr>
+<th> department </th>
+<th> manager </th>
+<th> phone </th>
+</tr>
+<tr>
+<td> IT </td>
+<td> Bob </td>
+<td> 555-1111 </td>
+</tr>
+<tr>
+<td> Kitchen </td>
+<td> Jim </td>
+<td> 555-2222 </td>
+</tr>
+<tr>
+<td> Helpdesk </td>
+<td> Joe </td>
+<td> 555-3333 </td>
+</tr>
+<tr>
+<td> Sales </td>
+<td> Steve </td>
+<td> 555-4444 </td>
+</tr>
+<tr>
+<td> Build </td>
+<td> Jerry </td>
+<td> 555-5555 </td>
+</tr>
+</table>
+<h3>departments/departments.xml</h3>
+<table border=1>
+<tr>
+<th> department </th>
+<th> manager </th>
+<th> phone </th>
+</tr>
+<tr>
+<td> IT </td>
+<td> Bob </td>
+<td> 555-1111 </td>
+</tr>
+<tr>
+<td> Kitchen </td>
+<td> Jim </td>
+<td> 555-2222 </td>
+</tr>
+<tr>
+<td> Helpdesk </td>
+<td> Joe </td>
+<td> 555-3333 </td>
+</tr>
+<tr>
+<td> Sales </td>
+<td> Steve </td>
+<td> 555-4444 </td>
+</tr>
+<tr>
+<td> Build </td>
+<td> Jerry </td>
+<td> 555-8888 </td>
+</tr>
+</table>
+<h3>departments/departments.yaml</h3>
+<table border=1>
+<tr>
+<th> department </th>
+<th> manager </th>
+<th> phone </th>
+</tr>
+<tr>
+<td> IT </td>
+<td> Bob </td>
+<td> 555-1111 </td>
+</tr>
+<tr>
+<td> Kitchen </td>
+<td> Jim </td>
+<td> 555-2222 </td>
+</tr>
+<tr>
+<td> Helpdesk </td>
+<td> Joe </td>
+<td> 555-3333 </td>
+</tr>
+<tr>
+<td> Sales </td>
+<td> Steve </td>
+<td> 555-4444 </td>
+</tr>
+<tr>
+<td> Build </td>
+<td> Jerry </td>
+<td> 555-9999 </td>
+</tr>
+</table>
 </td>
-      
-    </tr>
-
-  
-
-
-  
-    </table>
+</tr>
+</table>

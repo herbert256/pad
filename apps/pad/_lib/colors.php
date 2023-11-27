@@ -3,7 +3,11 @@
 
   function padHighLight ( $source ) {
 
-    return highlight_string ( padUnescape ($source), TRUE );
+    $source = padUnescape ( $source );
+    $source = highlight_string ( $source, TRUE );
+    $source = str_replace ( "\n", '<br>', $source );
+
+    return $source;
 
   }
 
