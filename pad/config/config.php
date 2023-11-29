@@ -100,9 +100,28 @@
   
   // lib tidy
 
-  $padTidy                   = FALSE;
+  $padTidy       = FALSE;
+  $padTidyCcsid  = 'utf8'; 
+  $padTidyConfig = [ 
+    'output-html'         => TRUE,
+    'doctype'             => 'loose',
+    'wrap'                => 0,
+    'indent'              => TRUE,
+    'tab-size'            => 2,
+    'vertical-space'      => 'no',
+    'indent-spaces'       => 2,
+    'replace-color'       => 'yes',
+    'markup'              => 'yes',
+    'omit-optional-tags'  => 'yes',
+    'clean'               => 'yes',
+    'drop-empty-elements' => 'yes',
+    'merge-spans'         => 'yes',
+    'force-output'        => true,
+    'show-warnings'       => FALSE,
+    'merge-divs'          => 'yes'
+  ];
 
-  // myTidy ( a very basic & buggy implementation of Tidy )
+  // myTidy ( a very basic & buggy implementation of formatting the output HTML )
                                 
   $padOutputTabToSpace       = TRUE;
   $padOutputTrim             = TRUE;

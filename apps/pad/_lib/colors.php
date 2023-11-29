@@ -1,7 +1,7 @@
 <?php
     
 
-  function padHighLight ( $source ) {
+  function padColorsHighLight ( $source ) {
 
     $source = padUnescape ( $source );
     $source = highlight_string ( $source, TRUE );
@@ -15,9 +15,9 @@
   function padColorsFile ( $file ) {
 
     if (substr($file, -4) == '.pad')
-      return padColorsString ( padFileGetContents ($file) ) ;
+      return padColorsString    ( padFileGetContents ($file) ) ;
     else
-      return padHighLight    ( padFileGetContents ($file) ) ;
+      return padColorsHighLight ( padFileGetContents ($file) ) ;
   
   }  
   
@@ -34,7 +34,7 @@
 
   function padColorsString ( $source ) { 
 
-   $source = padHighLight ( trim ( $source ) );
+   $source = padColorsHighLight ( trim ( $source ) );
 
    padColorsKind ( 'content', $source ); 
    padColorsKind ( 'tidy',    $source ); 
@@ -44,100 +44,36 @@
 
 go: $end = strpos($source, '}');
 
-    if ( $end === FALSE ) {
-      $source = str_replace ('{', '&open;',  $source);
-      $source = str_replace ('}', '&close;', $source);
+    if ( $end === FALSE )
       return $source;
-    }
 
     $start = strrpos ($source, '{', $end - strlen($source));
 
     if ( $start === FALSE ) {
-      $source = substr($source, 0, $end)
-              . '&close;'
-              . substr($source, $end+1);
+      $source = substr($source, 0, $end) . '&close;' . substr($source, $end+1);
       goto go;
     }
 
-    if ( substr ($source, $start+1, 6) == '&nbsp;' ) {
-      $source = substr($source, 0, $start)
-              . '&open;'
-              . substr($source, $start+1);
-      goto go;      
-    }
-
-    if ( $source [$start+1] == "\t" ) {
-      $source = substr($source, 0, $start)
-              . '&open;'
-              . substr($source, $start+1);
+    if ( ctype_space ( $source [$start+1] ) ) {
+      $source = substr($source, 0, $start) . '&open;' . substr($source, $start+1);      
       goto go;      
     }
 
     $between = substr($source, $start+1, $end-$start-1);
     $char    = substr($between, 0, 1);
     $words   = preg_split ("/[\s]+/", $between, 2, PREG_SPLIT_NO_EMPTY);
+    $tag     = trim($words[0] ?? '');
+    $search  = $tag;
  
     if ( $char == '$' or $char == '!'  or $char == '#'  or $char == '&' ) {
-
-      $between = str_replace ('$', '<font color="red">$</font>', $between);
-      $between = str_replace ('!', '<font color="red">!</font>', $between);
-      $between = str_replace ('#', '<font color="red">#</font>', $between);
-      $between = str_replace ('&amp;', '<font color="red">&</font>', $between);
-
-      $parts = padExplode ($between, '@', 2);
-
-      if ( count ( $parts ) == 2 )
-  
-         $source = substr($source, 0, $start) 
-                  . '<b>&open;<font color="green">' 
-                  . $parts[0]
-                  . '</font><b><font color="black">@</font></b><font color="purple">' 
-                  . $parts[1]
-                  . '</font>&close;</b>' 
-                  . substr($source, $end+1);      
-  
-      else { 
-
-        $parts = padExplode ($between, ':', 3);
-
-        if ( count ( $parts ) == 3 )
-          $source = substr($source, 0, $start) 
-                  . '<b>&open;<font color="purple">' 
-                  . $parts[0]
-                  . '</font><b><font color="black">:</font></b><font color="orange">' 
-                  . $parts[1]
-                  . '</font><b><font color="black">:</font></b><font color="green">' 
-                  . $parts[2]
-                  . '</font>&close;</b>' 
-                  . substr($source, $end+1);      
-        elseif ( count ( $parts ) == 2 )
-          $source = substr($source, 0, $start) 
-                  . '<b>&open;<font color="purple">' 
-                  . $parts[0]
-                  . '</font><b><font color="black">:</font></b><font color="green">' 
-                  . $parts[1]
-                  . '</font>&close;</b>' 
-                  . substr($source, $end+1);      
-        else
-          $source = substr($source, 0, $start) 
-                  . '<b>&open;<font color="green">' 
-                  . $between 
-                  . '</font>&close;</b>' 
-                  . substr($source, $end+1);   
-
-      }
-
+      padColorsField ( $source, $start, $end, $between );
       goto go;
- 
     }
 
-    $check  = str_replace('&nbsp;',  ' ', $between);
-    $words  = preg_split("/[\s]+/", $check, 2, PREG_SPLIT_NO_EMPTY);
-    $tag    = trim($words[0] ?? '');
-    $search = $tag;
-
-    if ( $char == '/' )      
-      goto co;
+    if ( $char == '/' ) {
+      padColorsTag ( $source, $start, $end, $between, $words, $search );
+      goto go;
+    }     
 
     $ns_pos = strpos($tag, ':');
     if ($ns_pos) {
@@ -145,14 +81,74 @@ go: $end = strpos($source, '}');
       $tag  = substr ($tag, $ns_pos+1);
     } 
 
-    if ( ! padValidTag ( $tag ) )  {             
-      $source = substr($source, 0, $start) 
-                . '&open;' . $between . '&close;' 
-                . substr($source, $end+1);
-      goto go;
+    if ( ! padValidTag ( $tag ) )  {        
+      $source = substr($source, 0, $start) . '&open;' . substr($source, $start+1);      
+      goto go;       
     } 
   
-co: $parms  = $words[1] ?? '';
+    padColorsTag ( $source, $start, $end, $between, $words, $search );
+
+    goto go;
+
+  }
+
+
+  function padColorsField ( &$source, $start, $end, $between ) { 
+
+    $between = str_replace ('$', '<font color="red">$</font>', $between);
+    $between = str_replace ('!', '<font color="red">!</font>', $between);
+    $between = str_replace ('#', '<font color="red">#</font>', $between);
+    $between = str_replace ('&amp;', '<font color="red">&</font>', $between);
+
+    $parts = padExplode ($between, '@', 2);
+
+    if ( count ( $parts ) == 2 )
+
+       $source = substr($source, 0, $start) 
+                . '<b>&open;<font color="green">' 
+                . $parts[0]
+                . '</font><b><font color="black">@</font></b><font color="purple">' 
+                . $parts[1]
+                . '</font>&close;</b>' 
+                . substr($source, $end+1);      
+
+    else { 
+
+      $parts = padExplode ($between, ':', 3);
+
+      if ( count ( $parts ) == 3 )
+        $source = substr($source, 0, $start) 
+                . '<b>&open;<font color="purple">' 
+                . $parts[0]
+                . '</font><b><font color="black">:</font></b><font color="orange">' 
+                . $parts[1]
+                . '</font><b><font color="black">:</font></b><font color="green">' 
+                . $parts[2]
+                . '</font>&close;</b>' 
+                . substr($source, $end+1);      
+      elseif ( count ( $parts ) == 2 )
+        $source = substr($source, 0, $start) 
+                . '<b>&open;<font color="purple">' 
+                . $parts[0]
+                . '</font><b><font color="black">:</font></b><font color="green">' 
+                . $parts[1]
+                . '</font>&close;</b>' 
+                . substr($source, $end+1);      
+      else
+        $source = substr($source, 0, $start) 
+                . '<b>&open;<font color="green">' 
+                . $between 
+                . '</font>&close;</b>' 
+                . substr($source, $end+1);   
+
+    }
+
+  }   
+
+
+  function padColorsTag ( &$source, $start, $end, $between, $words, $search ) { 
+
+    $parms  = $words[1] ?? '';
 
     $space  = ($parms) ? ' ' : '';
 
@@ -165,13 +161,6 @@ co: $parms  = $words[1] ?? '';
 
     $parms  = str_replace ('&open;',  '<font color="black">&open;</font>',  $parms);
     $parms  = str_replace ('&close;', '<font color="black">&close;</font>', $parms);
-
-    $x = padExplode($parms, '<font color="black">&open;</font><font color="black">$</font>', 2);
-    if ( count($x) == 2 ) {
-      $y = padExplode($x[1], '<font color="black">&close;</font>', 2);
-      if ( count($y) == 2 ) 
-        $parms = $x[0] . '<font color="black">&open;</font><font color="green">$' . $y[0] . '</font><font color="black">&close;</font>' . $y[1];
-    }
 
     if (substr($parms, -1) == '/') {
       $close1='/';
@@ -201,8 +190,7 @@ co: $parms  = $words[1] ?? '';
             . '&close;</b>' 
             . substr($source, $end+1);
 
-    goto go;
-
   }
+
 
 ?>

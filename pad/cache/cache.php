@@ -1,17 +1,16 @@
 <?php
 
-  $padCacheClient = isset($_SERVER['HTTP_IF_NONE_MATCH']) ? substr($_SERVER['HTTP_IF_NONE_MATCH'], 1, 22) : '';
-  
-  if ( ( ! $padCacheServerAge and ! $padCacheClientAge ) or count($_POST) or count($_FILES) ) {
-    $padCache = FALSE;
-    return;
-  }
+  $padCacheClientEtag = isset($_SERVER['HTTP_IF_NONE_MATCH'])     ? substr($_SERVER['HTTP_IF_NONE_MATCH'], 1, 22) : '';
+  $padCacheClientDate = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) : 0;
 
-  $padCache       = TRUE;
-  $padCacheUrl    = padMD5($_SERVER['REQUEST_URI']);
-  $padCacheMod    = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) : 0;
-  $padCacheClient = isset($_SERVER['HTTP_IF_NONE_MATCH'])     ? substr($_SERVER['HTTP_IF_NONE_MATCH'], 1, 22) : '';
-  $padCacheMax    = $_SERVER['REQUEST_TIME'] - $padCacheServerAge;
+  $padCache = FALSE;
+
+  if ( ! $padCacheServerAge            ) return; 
+  if ( count($_POST) or count($_FILES) ) return;
+
+  $padCache    = TRUE;
+  $padCacheUrl = padMD5($_SERVER['REQUEST_URI']);
+  $padCacheMax = $_SERVER['REQUEST_TIME'] - $padCacheServerAge;
 
   include pad . "cache/types/$padCacheServerType.php";
   
@@ -23,9 +22,8 @@
 
     if ( $padCacheAge and $padCacheAge >= $padCacheMax ) {
       $padStop = 304;
-      $padTime = $padCacheAge;
       $padEtag = $padCacheClient;
-      include pad . 'exits/output.php';
+      include pad . 'cache/hit.php';
     }
     
   }
@@ -37,11 +35,10 @@
     $padCacheAge  = $url ['age']  ?? $url [0] ?? 0;
     $padCacheEtag = $url ['etag'] ?? $url [1] ?? '';
 
-    if ( $padCacheMod and $padCacheMod >= $padCacheMax and $padCacheAge >= $padCacheMax ) {
+    if ( $padCacheClientDate and $padCacheClientDate >= $padCacheMax and $padCacheAge >= $padCacheMax ) {
       $padStop = 304;
-      $padTime = $padCacheAge;
       $padEtag = $padCacheEtag;
-      include pad . 'exits/output.php';
+      include pad . 'cache/hit.php';    
     }
 
     if ( $padCacheAge >= $padCacheMax and ! $GLOBALS ['padCacheServerNoData'] ) {
@@ -50,9 +47,8 @@
 
       if ( $padOutput ) {
         $padStop = 200;
-        $padTime = $padCacheAge;
         $padEtag = $padCacheEtag;
-        include pad . 'exits/output.php';
+        include pad . 'cache/hit.php';
       }
 
     }

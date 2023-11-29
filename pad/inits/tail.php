@@ -19,9 +19,9 @@
 
     }
 
-  }
+    if ( padTail )
+      include pad . 'tail/events/start.php';
 
-  if ( padTail )
-    include pad . 'tail/events/start.php';
+  }
 
 ?>

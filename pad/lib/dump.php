@@ -27,9 +27,12 @@
     if ( ! headers_sent () ) 
       header ( 'HTTP/1.0 500 Internal Server Error' );
 
-    padClosePad ();
-
     padEmptyBuffers ();
+
+    echo "\r\n";
+
+    for ($i = 1; $i <= 25; $i++)
+      echo "</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>\r\n";
 
     if ( padLocal () )
       padDumpLocal ( $info );

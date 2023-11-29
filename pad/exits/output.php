@@ -7,10 +7,10 @@
   if ( trim ( $padIllegal ) )
     return padError ( "Illegal output: '$padIllegal'" );
 
-  if ( $padOutputType <> 'web' and $padCacheStop and $padCacheServerGzip )
+  if ( $padOutputType <> 'web' and $padCacheStop and $padCacheServerGzip and $padStop == 200 )
     $padOutput = padUnzip ( $padOutput );
 
-  include pad . "output/$padOutputType.php";
+  include pad . "exits/output/$padOutputType.php";
 
   padStop ( $padStop );
 

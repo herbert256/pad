@@ -198,20 +198,6 @@
   }  
 
 
-  function padArrayNoOne ( $arr ) {
-
-    if ( count ($arr) == 1 and isset ($arr[0]) and is_array ($arr[0]) )
-      $arr = $arr [0];
-
-    foreach ( $arr as $key => $val ) 
-      if ( is_array ($val) )
-        $arr [$key] = padArrayNoOne ( $arr [$key] );
-
-    return $arr;
-  
-  }
-
-
   function padInclFileName ( $check ) {
 
     foreach ( padDirs () as $key => $value ) {
@@ -363,13 +349,15 @@
       
   function padTidy ( $data, $fragment=FALSE ) {
 
-    include pad . 'config/tidy.php';
+    $config = $GLOBALS ['padTidyConfig'];
 
-    if ( isset ( $_REQUEST ['padInclude'] ) or $fragment )
-      $padTidyConfig ['show-body-only'] = true;
+    if ( $fragment 
+         or isset ( $_REQUEST ['padInclude'] ) 
+         or isset ( $GLOBALS  ['padInclude']  ) )
+      $config ['show-body-only'] = true;
 
     $tidy = new tidy;
-    $tidy->parseString($data, $padTidyConfig, 'utf8');
+    $tidy->parseString($data, $config, 'utf8');
     $tidy->cleanRepair();
 
     $GLOBALS ['lastTidy'] = $tidy;
@@ -449,28 +437,6 @@
   }
 
 
-  function padArrayClean ( $haystack ) {
- 
-    foreach ( $haystack as $key => $value )
-
-      if ( empty ( $haystack [$key] ) )
-      
-        unset ( $haystack [$key] );         
-
-      elseif ( is_array ( $value ) ) {
-        
-        $haystack [$key] = padArrayClean ( $haystack [$key] ); 
-        
-        if ( count ( $haystack [$key] ) == 0 )
-          unset ( $haystack [$key] );   
-        
-      }
-          
-    return $haystack;
-
-  }
-
-
   function padOpenCloseOk ( $string, $check) {
 
     if ( strpos ( $string, $check ) === FALSE )
@@ -540,19 +506,6 @@
   function padCheckTag ($tag, $string) {
 
     return ( substr_count($string, "{".$tag.' ') == substr_count($string, "{/" . $tag.'}') ) ;
-
-  }
-
-
-  function padIsPagesFile ( $file ) {
-
-    $file =  padApp . $file ;
-
-    if ( padValidFile ( $file ) )
-      if  ( ( padExists ($file) and ! is_dir($file) ) or padExists ("$file.pad") or padExists ("$file.php") )
-        return TRUE;
-
-    return FALSE;
 
   }
 
@@ -636,7 +589,7 @@
     
     } catch (Throwable $e) {
 
-      return '';
+      return '{}';
 
     }
 
@@ -689,16 +642,6 @@
 
   }
 
-  
-  function padClosePad () {
-
-    echo "\r\n";
-
-    for ($i = 1; $i <= 25; $i++)
-      echo "</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>\r\n";
-
-  }
-
 
   function padMD5 ($input) {
     return substr(padBase64(padPack(md5($input))),0,22);
@@ -747,6 +690,7 @@
                          $string );
   }
   
+
   function padEscape ( $string ) {
 
     return str_replace ( [ '{',     '}',      '|',      '=',    ',',     '@'    ], 
@@ -786,33 +730,6 @@
     $duration = (int) ( ( microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'] ) * 1000000 );
 
     return $duration;
-
-  }
-
-
-  function padCut (&$content, $start, $end) {
-
-    $cut = '';
-
-    $p1 = strpos($content, $start);
-    $p2 = strpos($content, $end);
-  
-    if ( $p1 !== FALSE and $p2 !== FALSE and $p1 < $p2 ) {
-
-      $part1 = substr ($content, 0, $p1);
-      $part2 = substr ($content, $p2+strlen($end) );
-
-      $p1 += strlen($start);
-
-      $cut     = substr ($content, $p1, $p2-$p1);      
-      $content = $part1 . $part2;
-
-      return $cut;
-
-    } 
-
-    $content = '';
-    return '';
 
   }
 
@@ -909,35 +826,7 @@
     if     ( $input === NULL        )  return '';
     elseif ( $input === FALSE       )  return '';
     elseif ( $input === TRUE        )  return '1';
-    elseif ( is_array ( $input )    )  return padArrayToString ( $input );
-    elseif ( is_object ( $input )   )  return padArrayToString ( $input );
-    elseif ( is_resource ( $input ) )  return padArrayToString ( $input );
     else                               return $input; 
-
-  }
-
-  function padArrayToString ( $input ) {    
-
-    $array = padMakeArray ( $input );
-
-    foreach ( $array as $key => $value )
-      $array [$key] = padMakeContent ( $value );
-
-    return trim ( implode (' ', $array) );
-
-  }
-
-
- function padMakeArray ( $input ) {      
-
-    if     ( $input === NULL       )  return [];
-    elseif ( $input === FALSE      )  return [];
-    elseif ( $input === TRUE       )  return [1 => 1];
-    elseif ( is_array ( $input)    )  return $input;
-    elseif ( is_object ( $input)   )  return padToArray($input);
-    elseif ( is_resource ( $input) )  return padToArray($input);
-    elseif ( ! trim($input)        )  return [];
-    else                              return [1 => trim($input)];      
 
   }
 
@@ -1032,31 +921,12 @@
   }
 
 
-  function padIsObject ($item) {
-
-    if ( isset ($GLOBALS[$item]) and is_object ($GLOBALS[$item]) )
-      return TRUE;
-    else
-      return FALSE;
-
-  }
-
-
-  function padIsResource ($item) {
-
-    if ( isset ($GLOBALS[$item]) and is_resource ($GLOBALS[$item]) )
-      return TRUE;
-    else
-      return FALSE;
-
-  }
-
-
   function padDefaultData () {
     
     return [ 999 => [] ];
 
   }
+
 
   function padIsDefaultData ( $data ) {
     
@@ -1068,19 +938,6 @@
     if ( ! is_array ( $data [$key] ) ) return FALSE;
     if ( count ( $data [$key] )      ) return FALSE;
     
-    return TRUE;
-
-  }
-
-
-  function padIsDefaultData2 ( $data ) {
-    
-    if ( ! is_array ( $data )       ) return FALSE;
-    if ( count ( $data ) <> 1       ) return FALSE;
-    if ( ! isset ( $data [999] )    ) return FALSE;
-    if ( ! is_array ( $data [999] ) ) return FALSE;
-    if ( count ( $data [999] )      ) return FALSE;
-
     return TRUE;
 
   }
@@ -1192,8 +1049,8 @@
       else
         $type = 'xml';
     }
-    elseif ( substr ($content, 9, 5) == '<pad' )
-      $type = 'pad';
+    elseif ( substr ($content, 9, 5) == '<html' )
+      $type = 'html';
     elseif ( substr($content, 0, 1) == '<')
       $type = 'xml';
     elseif ( substr($content, 0, 1) == '{')
