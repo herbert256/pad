@@ -1,8 +1,5 @@
 <?php
 
-  $padCacheClientEtag = isset($_SERVER['HTTP_IF_NONE_MATCH'])     ? substr($_SERVER['HTTP_IF_NONE_MATCH'], 1, 22) : '';
-  $padCacheClientDate = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) : 0;
-
   $padCache = FALSE;
 
   if ( ! $padCacheServerAge            ) return; 
@@ -35,7 +32,7 @@
     $padCacheAge  = $url ['age']  ?? $url [0] ?? 0;
     $padCacheEtag = $url ['etag'] ?? $url [1] ?? '';
 
-    if ( $padCacheClientDate and $padCacheClientDate >= $padCacheMax and $padCacheAge >= $padCacheMax ) {
+    if ( $padClientDate and $padClientDate >= $padCacheMax and $padCacheAge >= $padCacheMax ) {
       $padStop = 304;
       $padEtag = $padCacheEtag;
       include pad . 'cache/hit.php';    

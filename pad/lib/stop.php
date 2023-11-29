@@ -5,10 +5,7 @@
 
     padCloseSession ();  
 
-    $output = padEmptyBuffers ();
-
-    if ( trim($output) )
-      return padError ( "Illegal output: '$output'" );
+    padEmptyBuffers ();
 
     if ( $GLOBALS ['padOutputType'] == 'web' )
       padWebHeaders ( $stop );
@@ -33,8 +30,6 @@
 
 
   function padExit () { 
-
-    flush();
 
     if ( padTail )
       include pad . 'tail/events/exit.php';  

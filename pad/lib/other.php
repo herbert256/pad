@@ -111,6 +111,16 @@
   }
 
 
+  function padCheckBuffers () {
+
+    $output = padEmptyBuffers ();
+
+    if ( trim($output) )
+      return padError ( "Illegal output: '$output'" );
+
+  }
+
+
   function padCloseWithPath () {
 
     global $pad, $padOpt;

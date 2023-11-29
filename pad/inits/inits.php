@@ -10,7 +10,7 @@
   include pad . 'inits/fast.php';
   include pad . 'inits/error.php';
   include pad . 'inits/cookies.php';
-  include pad . 'inits/zip.php';
+  include pad . 'inits/client.php';
   include pad . 'inits/host.php';
   include pad . 'inits/tail.php';
   include pad . 'cache/cache.php';

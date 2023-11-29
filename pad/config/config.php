@@ -92,12 +92,6 @@
   $padDataDefaultStart = ['trim', 'white'];
   $padDataDefaultEnd   = ['html', 'nbsp'];
 
-  // Default filter options on the complete output, executed before Tidy
-  // Must be a flag from FILTER_UNSAFE_RAW from below page.
-  // https://www.php.net/manual/en/filter.filters.sanitize.php
-
-  $padOutputSanitize        = [ 'STRIP_LOW', 'ENCODE_HIGH' ];
-  
   // lib tidy
 
   $padTidy       = FALSE;
@@ -121,14 +115,18 @@
     'merge-divs'          => 'yes'
   ];
 
-  // myTidy ( a very basic & buggy implementation of formatting the output HTML )
-                                
-  $padOutputTabToSpace       = TRUE;
-  $padOutputTrim             = TRUE;
-  $padOutputRemoveWhitespace = FALSE;  
-  $padOutputNoIndent         = TRUE;
-  $padOutputNoEmptyLines     = TRUE;
-  $padOutputNoNewLines       = FALSE;
+  // myTidy
+  // A basic & buggy implementation of formatting the output HTML 
+  // Only used when $padTidy is FALSE
+
+  $padMyTidy                 = FALSE;
+  $padMyTidySanitize         = [ 'STRIP_LOW', 'ENCODE_HIGH' ];
+  $padMyTidyTabToSpace       = TRUE;
+  $padMyTidyTrim             = TRUE;
+  $padMyTidyRemoveWhitespace = FALSE;  
+  $padMyTidyNoIndent         = TRUE;
+  $padMyTidyNoEmptyLines     = TRUE;
+  $padMyTidyNoNewLines       = FALSE;
   
   // Other settings.
 

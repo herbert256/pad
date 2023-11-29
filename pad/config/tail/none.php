@@ -6,7 +6,7 @@
   $padTailOutput       = FALSE;   
   $padTailDump         = FALSE;   
 
-  $padRequest          = TRUE;       // Log the details of the HTTP(s) request 
+  $padRequest          = FALSE;       // Log the details of the HTTP(s) request 
 
   $padTrack            = FALSE;       // Big Brother, session and request information of the client
  

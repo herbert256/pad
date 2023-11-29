@@ -1,43 +1,42 @@
 <?php
   
 
-  function padWebSend ($stop) {  
+  function padWebSend ( $stop ) {  
 
-    if ( ! $GLOBALS ['padOutput'] )
-      return;
+    if ( ! $GLOBALS ['padOutput']       ) return;
+    if ( isset ( $GLOBALS ['padSent'] ) ) return;
 
-    if ( $stop == 200 ) {
+    if ( $GLOBALS ['padCacheStop'] == 200 ) {
 
-      if ( $GLOBALS ['padCacheStop'] and $GLOBALS ['padCacheServerGzip'] and $GLOBALS ['padClientGzip']  )
-        echo $GLOBALS ['padOutput'];
-      elseif ( $GLOBALS ['padCacheStop'] and $GLOBALS ['padCacheServerGzip'] and ! $GLOBALS ['padClientGzip'] )
-        echo padUnzip ( $GLOBALS ['padOutput'] );
-      elseif ( $GLOBALS ['padClientGzip'] )
-        echo padZip  ( $GLOBALS ['padOutput'] );
-      else 
-        echo $GLOBALS ['padOutput'];
+      if ( $GLOBALS ['padCacheServerGzip'] and ! $GLOBALS ['padClientGzip'] )
+        $output = padUnzip ( $GLOBALS ['padOutput'] );
+      elseif ( ! $GLOBALS ['padCacheServerGzip'] and $GLOBALS ['padClientGzip'] )
+        $output = padZip ( $GLOBALS ['padOutput'] );
+      else
+        $output = $GLOBALS ['padOutput'];
+   
+    } elseif ( $stop == 200 ) {
 
+      if ( $GLOBALS ['padClientGzip'] )
+        $output = padZip ( $GLOBALS ['padOutput'] );
+      else
+        $output = $GLOBALS ['padOutput'];
+   
     }
+
+    $GLOBALS ['padLen'] = strlen ( $output );
+
+    padWebHeaders ( $stop );
 
     $GLOBALS ['padSent'] = TRUE;
 
-  }
-
-
-  function padWebHeaders ( $stop ) {
-
-    global $padWebNoHeaders, $padSent;
-
-    if ( isset ( $padSent ) )
-      return;
-
-    if ( $padWebNoHeaders )
-      padWebNoHeaders  ( $stop );
-    else
-      padWebPadHeaders ( $stop );
+    if ( $stop == 200 ) {
+      echo $output;
+      flush ();
+      ignore_user_abort(true);
+    }
 
   }
-
 
   function padDownLoadHeaders ( $contentType, $fileName, $lenght ) {
 
@@ -53,6 +52,20 @@
     padHeader ( "Content-Transfer-Encoding: Binary"); 
     padHeader ( "Content-Disposition: attachment; filename=\"$fileName\""); 
     padHeader ( "Content-Length: $lenght");
+
+  }
+
+  function padWebHeaders ( $stop ) {
+
+    global $padWebNoHeaders, $padSent;
+
+    if ( isset ( $padSent ) )
+      return;
+
+    if ( $padWebNoHeaders )
+      padWebNoHeaders  ( $stop );
+    else
+      padWebPadHeaders ( $stop );
 
   }
 

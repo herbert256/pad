@@ -3,9 +3,7 @@
   $padOutput = $padResult [0];
   $padOutput = padUnescape ( $padOutput );
 
-  include pad . 'exits/myTidy.php';
-
-  if ( $padTidy or strpos( $padOutput, '@tidy@' ) !== FALSE )
+  if ( $padTidy or $padMyTidy )
     include pad . 'exits/tidy.php';
  
   $padEtag = padMD5 ($padOutput);

@@ -2,12 +2,9 @@
   
   $padLen = ( $padStop == 200 ) ? strlen ( $padOutput ) : 0;
 
-  $padIllegal = padEmptyBuffers ();
+  padCheckBuffers ();
 
-  if ( trim ( $padIllegal ) )
-    return padError ( "Illegal output: '$padIllegal'" );
-
-  if ( $padOutputType <> 'web' and $padCacheStop and $padCacheServerGzip and $padStop == 200 )
+  if ( $padOutputType <> 'web' and $padCacheStop == 200 and $padCacheServerGzip )
     $padOutput = padUnzip ( $padOutput );
 
   include pad . "exits/output/$padOutputType.php";
