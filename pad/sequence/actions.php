@@ -2,7 +2,7 @@
   
   foreach ( $padPrm [$pad] as $padSeqActionName => $padSeqActionValue )
 
-    if ( $padSeqActionName <> $padSeqSeq and padExists ( pad . "sequence/actions/$padSeqActionName.php" ) ) {
+    if ( $padSeqActionName <> $padSeqSeq and file_exists ( pad . "sequence/actions/$padSeqActionName.php" ) ) {
 
       if ( $padSeqActionValue === TRUE or ! ctype_digit($padSeqActionValue) )
         if ( $padSeqCnt )

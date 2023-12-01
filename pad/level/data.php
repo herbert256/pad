@@ -14,10 +14,10 @@
 
     $padData [$pad] = $padTagResult;
 
-  $padData [$pad] = padData ( $padData [$pad] );   
-
-  $padDefault [$pad] = padIsDefaultData ( $padData [$pad] );
-
+  $padData [$pad]  = padData ( $padData [$pad] );   
   $padCount [$pad] = count ( $padData [$pad] );
+
+  if ( padTail )
+    include pad . 'tail/events/default.php';
 
 ?>

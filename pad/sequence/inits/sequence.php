@@ -10,8 +10,8 @@
   foreach ( $padSeqChk as $padSeqTmp )
     if ( $padSeqTmp )
       if     ( isset($padSeqStore [$padSeqTmp])                      ) return include "$padSeqNext/store.php";
-      elseif ( padExists ( "$padSeqTypes/$padSeqTmp" )               ) return include "$padSeqNext/type.php";
-      elseif ( padExists ( pad . "sequence/actions/$padSeqTmp.php" ) ) return include "$padSeqNext/action.php";
+      elseif ( file_exists ( "$padSeqTypes/$padSeqTmp" )               ) return include "$padSeqNext/type.php";
+      elseif ( file_exists ( pad . "sequence/actions/$padSeqTmp.php" ) ) return include "$padSeqNext/action.php";
       elseif ( strpos($padSeqTmp, '..')                              ) return include "$padSeqNext/range.php";
       elseif ( strpos($padSeqTmp, ';')                               ) return include "$padSeqNext/list.php";
 

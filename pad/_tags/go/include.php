@@ -11,7 +11,7 @@
 
   $padIncReturn = padFileGetContents ( $padIncPAD ) ;
   
-  if ( padExists ($padIncPHP) )
+  if ( file_exists ($padIncPHP) )
     return "{call '$padIncPHP'}$padIncReturn{/call}";
   else
     return $padIncReturn;

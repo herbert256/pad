@@ -50,7 +50,7 @@
     elseif ($type == 8) $return = ( $value === INF                                                ) ? ''    : $value;
     elseif ($type == 9) $return = ( $value === NULL                                               ) ? TRUE  : FALSE;
 
-    if ( $GLOBALS ['padTraceActive'] )
+    if ( padTrace )
       include pad . 'tail/events/field.php';    
 
     return $return;

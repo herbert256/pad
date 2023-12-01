@@ -13,11 +13,11 @@
   $examplePhp      = ( $examplePhpGiven ) ? padApp . $examplePhpGiven : "$exampleFile.php";
   $examplePad      = ( $examplePadGiven ) ? padApp . $examplePadGiven : "$exampleFile.pad";
 
-  $exampleSrcPhp   = ( padExists($examplePhp) ) ? padColorsFile ($examplePhp) : '';
-  $exampleSrcPad   = ( padExists($examplePad) ) ? padColorsFile ($examplePad) : '';
+  $exampleSrcPhp   = ( file_exists($examplePhp) ) ? padColorsFile ($examplePhp) : '';
+  $exampleSrcPad   = ( file_exists($examplePad) ) ? padColorsFile ($examplePad) : '';
 
-  $exampleFilePhp  = ( padExists($examplePhp) ) ? str_replace(padApp, '', $examplePhp) : '';
-  $exampleFilePad  = ( padExists($examplePad) ) ? str_replace(padApp, '', $examplePad) : '';
+  $exampleFilePhp  = ( file_exists($examplePhp) ) ? str_replace(padApp, '', $examplePhp) : '';
+  $exampleFilePad  = ( file_exists($examplePad) ) ? str_replace(padApp, '', $examplePad) : '';
 
   return TRUE;
    

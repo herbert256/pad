@@ -22,7 +22,6 @@
   $padName       [$pad] = '';
 
   $padData       [$pad] = padDefaultData ();
-  $padDefault    [$pad] = TRUE;
   $padCurrent    [$pad] = [];
   $padKey        [$pad] = 1;
 
@@ -47,18 +46,12 @@
   $padCount      [$pad] = FALSE;
   $padText       [$pad] = FALSE;
 
-  $padDouble     [$pad] = '';
-
   $padSaveLvl    [$pad] = [];
   $padDeleteLvl  [$pad] = [];
 
   $padSaveOcc    [$pad] = [];
   $padDeleteOcc  [$pad] = [];
   
-  $padAfterBase  [$pad] = '';
-  $padBeforeBase [$pad] = [];
-  $padBeforeData [$pad] = [];
-
   $padEndBase    [$pad] = '';
   $padStartBase  [$pad] = [];
   $padStartData  [$pad] = [];
@@ -74,8 +67,7 @@
   $padForceTagName  = '';
   $padForceDataName = '';
 
-  if ( $padTraceActive ) include pad . 'tail/types/trace/level/start.php';
-  if ( padXml         ) include pad . 'tail/types/xml/level/start.php';  
-  if ( padXref        ) include pad . 'tail/types/xref/items/tag.php';
+  if ( padTail )
+    include pad . 'tail/events/setup.php';
 
 ?>

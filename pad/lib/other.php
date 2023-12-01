@@ -176,7 +176,7 @@
 
       $file = substr (padApp, 0, -1) . $value . "_content/$content.pad";
 
-      if ( padExists ($file) ) 
+      if ( file_exists ($file) ) 
         return TRUE;
 
     }
@@ -192,7 +192,7 @@
 
       $file = substr (padApp, 0, -1) . $value . "_content/$content.pad";
 
-      if ( padExists ($file) ) 
+      if ( file_exists ($file) ) 
         return padFileGetContents ($file);
 
     }
@@ -208,9 +208,9 @@
 
       $file = substr (padApp, 0, -1) . $value . "_includes/$check";
 
-      if ( padExists ($file) and ! is_dir($file) ) return $file;
-      if ( padExists ("$file.php")               ) return "$file.php";
-      if ( padExists ("$file.pad")               ) return "$file.pad";
+      if ( file_exists ($file) and ! is_dir($file) ) return $file;
+      if ( file_exists ("$file.php")               ) return "$file.php";
+      if ( file_exists ("$file.pad")               ) return "$file.pad";
 
     }
 
@@ -225,12 +225,12 @@
 
       $file = substr (padApp, 0, -1) . $value . "_data/$check";
 
-      if ( padExists ($file) and ! is_dir($file) ) return $file;
-      if ( padExists ("$file.xml")               ) return "$file.xml";
-      if ( padExists ("$file.json")              ) return "$file.json";
-      if ( padExists ("$file.yaml")              ) return "$file.yaml";
-      if ( padExists ("$file.csv")               ) return "$file.csv";
-      if ( padExists ("$file.php")               ) return "$file.php";
+      if ( file_exists ($file) and ! is_dir($file) ) return $file;
+      if ( file_exists ("$file.xml")               ) return "$file.xml";
+      if ( file_exists ("$file.json")              ) return "$file.json";
+      if ( file_exists ("$file.yaml")              ) return "$file.yaml";
+      if ( file_exists ("$file.csv")               ) return "$file.csv";
+      if ( file_exists ("$file.php")               ) return "$file.php";
 
     }
 
@@ -282,23 +282,10 @@
 
   function padContent ( $base, $new ) {
 
-    global $pad, $padDouble;
-
     $merge = padTagParm ('merge');
 
-    if ( $base and $new )
-      if     ( strpos ( $new, '@content@'  ) !== FALSE ) $padDouble [$pad] = 'mrg-new';
-      elseif ( strpos ( $base, '@content@' ) !== FALSE ) $padDouble [$pad] = 'mrg-base';
-      elseif ( $merge == 'replace'                     ) $padDouble [$pad] = 'dbl-new';
-      elseif ( $merge == 'bottom'                      ) $padDouble [$pad] = 'dbl-bottom';
-      elseif ( $merge == 'top'                         ) $padDouble [$pad] = 'dbl-top';
-      elseif ( $new                                    ) $padDouble [$pad] = 'dbl-new';
-      else                                               $padDouble [$pad] = 'dbl-base';
-
-    if ( padXref ) {
-      include pad . 'tail/types/xref/items/double.php';
-      include pad . 'tail/types/xref/items/content.php';
-    }
+    if ( padTail ) 
+      include pad . 'tail/events/double.php';
 
     if     ( strpos ( $new, '@content@'  ) !== FALSE ) return str_replace ( '@content@', $base, $new );
     elseif ( strpos ( $base, '@content@' ) !== FALSE ) return str_replace ( '@content@', $new, $base );
@@ -786,7 +773,7 @@
    
     $count = count ( $parms );
 
-    if ( padExists ( padApp . "_functions/$name.php" ) )
+    if ( file_exists ( padApp . "_functions/$name.php" ) )
       $padCall = padApp . "_functions/$name.php";
     else
       $padCall = pad  . "_functions/$name.php";

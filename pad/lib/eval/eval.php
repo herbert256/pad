@@ -6,7 +6,7 @@
     if ( padXref ) 
       include pad . 'tail/types/xref/items/fast.php';
 
-    if ( $GLOBALS ['padTraceActive'] )
+    if ( padTrace )
       return include pad . 'tail/events/eval/fast.php';
     else
       return include pad . "_functions/$eval.php";
@@ -19,7 +19,7 @@
     if ( file_exists( "_functions/$eval.php" ) )
       return padEvalFast ( $eval, $value );
 
-    if ( $GLOBALS ['padTraceActive'] )
+    if ( padTrace )
       include pad . 'tail/events/eval/start.php';
 
     if ( strlen(trim($eval)) == 0 )
@@ -29,17 +29,17 @@
 
     padEvalParse ( $result, $eval, $value );    
  
-    if ( $GLOBALS ['padTraceActive'] )
+    if ( padTrace )
       include pad . 'tail/events/eval/parse.php';
 
     padEvalAfter ( $result );  
  
-    if ( $GLOBALS ['padTraceActive'] )
+    if ( padTrace )
       include pad . 'tail/events/eval/after.php';
 
     padEvalGo ( $result, array_key_first($result), array_key_last($result), $value) ;
  
-    if ( $GLOBALS ['padTraceActive'] )
+    if ( padTrace )
       include pad . 'tail/events/eval/go.php';
 
     $key = array_key_first ($result);
@@ -48,7 +48,7 @@
     elseif ( count($result) > 1        ) padThrow ("More then one result back: $eval");
     elseif ( $result[$key][1] <> 'VAL' ) padThrow ("Result is not a value: $eval");
 
-    if ( $GLOBALS ['padTraceActive'] )
+    if ( padTrace )
       include pad . 'tail/events/eval/end.php';
 
     return $result [$key] [0];

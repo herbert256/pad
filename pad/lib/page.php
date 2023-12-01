@@ -77,7 +77,7 @@
     foreach ($part as $key => $value) {
       
       if ( $key == array_key_last($part)
-            and (padExists("$location$value.php") or padExists("$location$value.pad") ) )
+            and (file_exists("$location$value.php") or file_exists("$location$value.pad") ) )
         return TRUE; 
 
       if ( is_dir ("$location$value") )
@@ -87,7 +87,7 @@
       
     }
     
-    return ( padExists("$location"."index.php") or padExists("$location"."index.pad") );
+    return ( file_exists("$location"."index.php") or file_exists("$location"."index.pad") );
     
   }
 
@@ -99,7 +99,7 @@
     
     foreach ($part as $key => $value)
       if ( $key == array_key_last($part)
-            and (padExists("$location$value.php") or padExists("$location$value.pad") ) )
+            and (file_exists("$location$value.php") or file_exists("$location$value.pad") ) )
         return $page; 
       elseif ( is_dir ("$location$value") )
         $location.= "$value/";

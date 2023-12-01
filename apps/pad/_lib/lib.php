@@ -62,7 +62,7 @@
 
     $file = "$base.extra";
 
-    if ( ! padExists ( $file ) )
+    if ( ! file_exists ( $file ) )
       return [];
 
     $data = file_get_contents ($file);
@@ -103,7 +103,7 @@
 
   function onlyResult ( $file ) {
 
-    $pad = ( padExists( $file ) ) ? file_get_contents( $file ) : ''; 
+    $pad = ( file_exists( $file ) ) ? file_get_contents( $file ) : ''; 
 
     if ( strpos($pad, '<!-- PAD: ONLYRESULT -->') !== false ) return ',onlyResult';
     if ( strpos($pad, '{present')                 !== false ) return ',onlyResult';
@@ -116,7 +116,7 @@
 
   function layout ( $file ) {
 
-    $pad = ( padExists( $file ) ) ? file_get_contents( $file ) : ''; 
+    $pad = ( file_exists( $file ) ) ? file_get_contents( $file ) : ''; 
 
     if ( strpos($pad, '<!-- PAD: VERTICAL -->') !== false ) 
       return 'vertical';

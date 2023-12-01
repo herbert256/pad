@@ -16,4 +16,7 @@
   foreach ( $padSetOcc [$pad] as $padK => $padV )
     padTrace ( 'parm', 'occ',  "$padK ==> $padV" );
 
+  if ( padXml  ) include pad . 'tail/types/xml/level/parms.php';  
+  if ( padXref ) include pad . 'tail/types/xref/items/parms.php';
+
 ?>

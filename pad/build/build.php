@@ -11,13 +11,9 @@
   if ( padXml )
     include pad . 'tail/types/xml/build.php';
 
-  if ( $padTraceActive ) {
+  if ( padTrace )
     include pad . 'tail/events/build.php';
-    $padOccur [$pad-1] = 1;
-    include pad . 'tail/types/trace/level/start.php';
-    include pad . 'tail/types/trace/level/info.php';  
-  }
-
+ 
   $padOccurTypeSet = 'build';  
   include pad . 'occurrence/start.php';
 

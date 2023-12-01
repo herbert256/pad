@@ -121,7 +121,7 @@
 
       if ( $kind == 'ref' )
         $items [$item] ['link'] = TRUE;
-      elseif ( padExists ("$check.php") or padExists ("$check.pad") or padIsDir ($check) )
+      elseif ( file_exists ("$check.php") or file_exists ("$check.pad") or padIsDir ($check) )
         $items [$item] ['link'] = TRUE;
       else
         $items [$item] ['link'] = FALSE;
@@ -146,7 +146,7 @@
 
       if (strpos($settings, '$'.$key.' ') or strpos($settings, '$'.$key.'=') or strpos($settings, '$'.$key."\t")) {
         $cfg [$key] ['item'] = $key;
-        $cfg [$key] ['link'] = ( padExists ( padApp . "configuration/$key.pad" ) ) ;
+        $cfg [$key] ['link'] = ( file_exists ( padApp . "configuration/$key.pad" ) ) ;
       }
 
     ksort($cfg);

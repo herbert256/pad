@@ -3,7 +3,7 @@
   if ( $padTraceStartEndOcc )
     padTrace ( 'occur', 'start' );
 
-  for ( $padI = $pad; $padI >= $padTraceGo; $padI-- ) {
+  for ( $padI = $pad; $padI >= 0; $padI-- ) {
 
     if ( ! isset ( $padTraceLevelChilds [$padI] ) ) 
       $padTraceLevelChilds [$padI] = 0;

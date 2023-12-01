@@ -2,15 +2,6 @@
 
   $padOccur [$pad]++;
 
-  if ( $padOccur [$pad] == 1 ) {
-    $padDefault [$pad] = FALSE;
-    if ( ! $padAfterBase [$pad] and ! $padBeforeData [$pad] )
-      if ( ! $padEndBase [$pad] and ! $padStartData [$pad] )
-        if ( $padWalk [$pad] == 'start' )
-          if ( padDefaultData () )
-            $padDefault [$pad] = TRUE;
-  }
-
   $padOccurStart [$pad] [$padOccur[$pad]] = TRUE;
 
   $padPad       [$pad] = $padBase [$pad];
@@ -18,10 +9,9 @@
   $padCurrent   [$pad] = $padData [$pad] [$padKey [$pad]];
   $padOccurType [$pad] = $padOccurTypeSet;
 
-  if ( $padTraceActive ) include pad . 'tail/types/trace/occur/start.php';  
-  if ( padXml    ) include pad . 'tail/types/xml/occur/start.php';  
-  if ( padXref        ) include pad . 'tail/types/xref/items/occur.php';  
-  
+  if ( padTail )
+    include pad . 'tail/events/occurStart.php';
+
   if ( $padWalk [$pad] <> 'start' )
     $padWalkData [$pad] [] = $padCurrent [$pad];
 

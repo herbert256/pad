@@ -32,7 +32,7 @@
 
     if ( padValidVar ($padPrmName) ) {
 
-      if ( padExists ( padApp . "options/$padPrmName.php") )
+      if ( file_exists ( padApp . "options/$padPrmName.php") )
         $padOptionsAppStart [$pad] [] = $padPrmName;
 
       $padPrm [$pad] [$padPrmName] = ( $padPrmValue === '' ) ? TRUE : padEval ( $padPrmValue );
@@ -46,8 +46,7 @@
 
   }
 
-  if ( $padTraceActive ) include pad . 'tail/events/parms.php';
-  if ( padXml    ) include pad . 'tail/types/xml/level/parms.php';  
-  if ( padXref        ) include pad . 'tail/types/xref/items/parms.php';
+  if ( padTail ) 
+    include pad . 'tail/events/parms.php';
 
 ?>

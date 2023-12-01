@@ -2,7 +2,7 @@
 
   $padExec = padApp . "_scripts/" . escapeshellcmd ($padOpt [$pad] [1]);
 
-  if ( ! padExists($padExec) ) {
+  if ( ! file_exists($padExec) ) {
     padError ("Script $padExec not found");
     return FALSE;
   }

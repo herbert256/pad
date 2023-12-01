@@ -19,7 +19,7 @@
   if ( $padSeqBuild == 'function' ) include_once "$padSeqType/function.php";
   if ( $padSeqBuild == 'bool'     ) include_once "$padSeqType/bool.php";
 
-  if ( padExists ( "$padSeqType/init.php" )) 
+  if ( file_exists ( "$padSeqType/init.php" )) 
     include "$padSeqType/init.php";
 
 ?>

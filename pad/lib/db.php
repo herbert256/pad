@@ -129,7 +129,7 @@
     else
       $return = '';
 
-    if ( $GLOBALS ['padTraceActive'] )
+    if ( padTrace )
       include pad . 'tail/events/sql.php';
 
     return $return;

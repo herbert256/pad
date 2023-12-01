@@ -69,7 +69,7 @@
 
     $file = "track/data/$padEtag.pad";
 
-    if ( ! padExists(padData . $file) )
+    if ( ! file_exists(padData . $file) )
       padTailPut ($file, $padOutput);
 
   }

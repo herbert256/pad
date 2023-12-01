@@ -22,7 +22,7 @@
 
         if ( padValid ($type) and padValid ($name) )
 
-          if ( padExists ( pad . "eval/single/$type.php") ) {            
+          if ( file_exists ( pad . "eval/single/$type.php") ) {            
 
             if ( padXref )
               include pad . 'tail/types/xref/items/functions.php'; 
@@ -33,7 +33,7 @@
             $result [$k] [1] = 'VAL';
             $result [$k] [0] = padCheckValue ($single);
 
-          } elseif ( padExists ( pad . "eval/parms/$type.php" ) ) {
+          } elseif ( file_exists ( pad . "eval/parms/$type.php" ) ) {
 
             if ( padXref ) 
               include pad . 'tail/types/xref/items/functions.php'; 

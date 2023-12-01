@@ -44,11 +44,11 @@
     $name     = $first;
     $property = '';
   
-    if ( $second and padExists ( pad . "var/at/$second.php" ) )
+    if ( $second and file_exists ( pad . "var/at/$second.php" ) )
  
       $kind = $second;
    
-    elseif ( $second and padExists ( pad . "tag/$second.php" ) )
+    elseif ( $second and file_exists ( pad . "tag/$second.php" ) )
 
       $property = $second;
 
@@ -58,12 +58,12 @@
 
         $kind = 'tag';
 
-      } elseif ( padExists ( pad . "var/at/$first.php" ) ) {
+      } elseif ( file_exists ( pad . "var/at/$first.php" ) ) {
 
         $kind = $first;
         $name = '';            
 
-      } elseif ( padExists ( pad . "tag/$first.php") ) {
+      } elseif ( file_exists ( pad . "tag/$first.php") ) {
 
         $property = $first;
         $name     = '';            
@@ -313,7 +313,7 @@
       if ( $padType[$i] == 'tag' )
         continue;
 
-      if ( $padType[$i] == 'at' and padExists ( pad . 'tag/' .  $padName[$i] . '.php' ) )
+      if ( $padType[$i] == 'at' and file_exists ( pad . 'tag/' .  $padName[$i] . '.php' ) )
         continue;
       
       return $i;

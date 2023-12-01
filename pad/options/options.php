@@ -24,7 +24,7 @@
 
         include pad . 'call/call.php';
 
-        if ( $padTraceActive )
+        if ( padTrace )
           include pad . 'tail/events/options.php';       
 
       }

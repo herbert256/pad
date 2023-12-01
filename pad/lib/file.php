@@ -1,33 +1,6 @@
 <?php
 
 
-  function padExists ( $file ) {
-
-    if ( $GLOBALS ['padTraceActive'] and $GLOBALS ['padTraceExists'] ) {
-
-      $return = file_exists ( $file );
-
-      include pad . 'tail/events/exists.php';
-      
-      return $return;
-    
-    }
-
-    return file_exists ( $file );
-    
-    if ( ! padValidFile ( $file ) )
-      return FALSE;
-    else
-      return file_exists ( $file );
-
-  }
-
-  function padExistsTrace ( $file ) {
-
-
-  }
-
-
   function padIsDir ( $dir ) {
 
     if ( ! padValidFile ( $dir ) )
@@ -52,13 +25,13 @@
 
   function padFileGetContents ( $file ) {
 
-    if ( $GLOBALS ['padTraceActive'] )
+    if ( padTrace )
       include pad . 'tail/events/get.php';
 
     if ( is_dir ($file) )
       return $file;
 
-    if ( ! padExists($file) )
+    if ( ! file_exists($file) )
       return '';
 
     return file_get_contents ($file);
@@ -94,7 +67,7 @@
 
     $dir = substr ( $file, 0, strrpos($file, '/') );
     
-    if ( ! padExists($dir) )
+    if ( ! file_exists($dir) )
       mkdir ($dir, $GLOBALS ['padDirMode'], true );
 
   }
@@ -102,7 +75,7 @@
 
   function padFileChkFile ( $file ) {
 
-    if ( ! padExists($file) ) {      
+    if ( ! file_exists($file) ) {      
       touch($file);
       chmod($file, $GLOBALS ['padFileMode']);
     }

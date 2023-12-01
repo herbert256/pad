@@ -40,9 +40,6 @@
 
   function padErrorGoGo ( $error ) {
 
-    if ( $GLOBALS ['padTraceActive'] )
-      include pad . 'tail/types/trace/error/error.php';    
-
     $GLOBALS ['padErrrorList'] [] = $error; 
 
     if ( $GLOBALS ['padErrorLog'] or $GLOBALS ['padErrorAction'] == 'report' )

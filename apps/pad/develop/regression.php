@@ -18,7 +18,7 @@
     $old = padFileGetContents($store);
     $new = getPageData ($item, 1);
 
-    if     ( ! padExists ($store) )               $status = 'new';
+    if     ( ! file_exists ($store) )               $status = 'new';
     elseif ( strrpos($store, 'random') )          $status = 'random' ;
     elseif ( strpos($new, 'PAD: NO REGRESSION') ) $status = 'skip' ;
     elseif ( $old == $new                       ) $status = 'ok';

@@ -36,7 +36,7 @@
 
     $GLOBALS ['padSkipShutdown']     = TRUE;
     $GLOBALS ['padSkipBootShutdown'] = TRUE;
-    
+
     exit;
 
   }

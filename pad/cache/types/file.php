@@ -62,7 +62,7 @@
 
     $file = $GLOBALS ['padCacheFile'] . $file;
 
-    $return = padExists ($file);
+    $return = file_exists ($file);
 
     return $return;    
 
@@ -107,7 +107,7 @@
     $file = $GLOBALS ['padCacheFile'] . $file;
     $dir  = substr($file, 0, strrpos($file, '/'));
     
-    if ( ! padExists ($dir) )
+    if ( ! file_exists ($dir) )
       mkdir($dir, $GLOBALS ['padDirMode'], true);
   
   }
@@ -116,7 +116,7 @@
 
     $file = $GLOBALS ['padCacheFile'] . $file;
     
-    if ( padExists($file) )
+    if ( file_exists($file) )
       unlink ($file);
 
   }
@@ -126,7 +126,7 @@
 
     $file = $GLOBALS ['padCacheFile'] . $file;
     
-    if ( padExists($file) )
+    if ( file_exists($file) )
       return filemtime($file);
 
     return 0;

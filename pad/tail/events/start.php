@@ -13,7 +13,7 @@
                      include pad . 'tail/types/tail/start.php';
   if ( $padStats   ) include pad . 'tail/types/stats/start.php';
   if ( $padRequest ) include pad . 'tail/types/request/start.php';
-  if ( $padTrace   ) include pad . 'tail/types/trace/entry/config.php';
+  if ( padTrace    ) include pad . 'tail/types/trace/start.php';
   if ( $padTrack   ) include pad . 'tail/types/track/start.php';
   if ( padXml      ) include pad . 'tail/types/xml/start.php';
   if ( padXref     ) include pad . 'tail/types/xref/start.php';

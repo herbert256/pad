@@ -24,7 +24,7 @@
 
   } 
 
-  if ( $padTraceActive )
+  if ( padTrace )
     include pad . 'tail/events/sequence.php';
 
 ?>

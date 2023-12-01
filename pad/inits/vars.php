@@ -10,7 +10,6 @@
   $padTime        = $_SERVER['REQUEST_TIME'];  
   $padCacheStop   = 0;
   $padPageLevel   = [];
-  $padTraceActive = FALSE;
 
   $padFlagStore = $padSeqStore = $padDataStore = $padSeqStore = [];
 

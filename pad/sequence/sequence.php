@@ -16,7 +16,7 @@
 
   include pad . 'sequence/actions.php';
  
-  if ( padExists ( "$padSeqType/exit.php" ) )   
+  if ( file_exists ( "$padSeqType/exit.php" ) )   
     include "$padSeqType/exit.php";    
 
   include pad . 'sequence/exits/exits.php';

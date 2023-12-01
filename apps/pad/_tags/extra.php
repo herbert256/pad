@@ -32,8 +32,8 @@
     else                                      $extraFiles [$source] ['other'] = $source;
   }
 
-  if ( padExists ( "$baseDir/_inits.php" ) ) $extraFiles ['inits'] ['php'] = "$dir/_inits.php";
-  if ( padExists ( "$baseDir/_inits.pad" ) ) $extraFiles ['inits'] ['data'] = "$dir/_inits.pad";
+  if ( file_exists ( "$baseDir/_inits.php" ) ) $extraFiles ['inits'] ['php'] = "$dir/_inits.php";
+  if ( file_exists ( "$baseDir/_inits.pad" ) ) $extraFiles ['inits'] ['data'] = "$dir/_inits.pad";
 
   foreach ($extraFiles as $key => $value ) {
     if ( ! isset ( $extraFiles [$key] ['php'] )   ) $extraFiles [$key] ['php']   = '';

@@ -1,8 +1,8 @@
 <?php
 
-  if ( padTagParm ('pad') ) $padExists = pad    . $padOpt [$pad] [1];
-  else                      $padExists = padApp . $padOpt [$pad] [1];
+  if ( padTagParm ('pad') ) $file_exists = pad    . $padOpt [$pad] [1];
+  else                      $file_exists = padApp . $padOpt [$pad] [1];
 
-  return ( padExists ($padExists) ) ? TRUE : FALSE;
+  return ( file_exists ($file_exists) ) ? TRUE : FALSE;
 
 ?>

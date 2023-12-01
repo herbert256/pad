@@ -4,7 +4,7 @@
 
   foreach ( $padPrm [$pad] as $padSeqFilterName => $padSeqFilterVal )
 
-    if ( $padSeqFilterName <> $padSeqSeq and padExists ( "$padSeqTypes/$padSeqFilterName/bool.php" ) ) {
+    if ( $padSeqFilterName <> $padSeqSeq and file_exists ( "$padSeqTypes/$padSeqFilterName/bool.php" ) ) {
 
       $padSeqFilter [$padSeqFilterName] = $padSeqFilterVal;
 

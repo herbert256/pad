@@ -19,9 +19,6 @@
   include pad . 'level/base.php';
   include pad . 'level/data.php';
 
-  if ( $padTraceActive )
-    include pad . 'tail/types/trace/level/info.php';    
-
   if ( count ( $padOptionsAppStart [$pad] ) )
     include pad . 'options/app.php';
 
@@ -35,8 +32,8 @@
   if ( padOpenCloseOk ( $padBase[$pad], '@end@') ) 
     include pad . 'level/start_end/end1.php';
 
-  if ( padXml ) 
-    include pad . 'tail/types/xml/level/info.php';  
+  if ( padTail ) 
+    include pad . 'tail/events/levelStart.php';  
 
   if ( padOpenCloseOk ( $padBase[$pad], '@start@') ) 
     return include pad . 'level/start_end/start1.php';

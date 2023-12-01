@@ -1,6 +1,6 @@
 <?php
 
-  if ( $padTraceActive )
+  if ( padTrace )
     include pad . 'tail/events/call.php';
 
   ob_start();

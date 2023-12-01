@@ -1,13 +1,13 @@
 <?php
 
-  if     ( padExists ( "$padSeqType/order.php")    ) $padSeqBuild = 'order';
-  elseif ( padExists ( "$padSeqType/fixed.php")    ) $padSeqBuild = 'fixed';
-  elseif ( padExists ( "$padSeqType/jump.php")     ) $padSeqBuild = 'jump';
-  elseif ( padExists ( "$padSeqType/function.php") ) $padSeqBuild = 'function';
-  elseif ( padExists ( "$padSeqType/loop.php")     ) $padSeqBuild = 'loop';
-  elseif ( padExists ( "$padSeqType/make.php")     ) $padSeqBuild = 'make';
-  elseif ( padExists ( "$padSeqType/bool.php")     ) $padSeqBuild = 'bool';
-  elseif ( padExists ( "$padSeqType/filter.php")   ) $padSeqBuild = 'filter';
+  if     ( file_exists ( "$padSeqType/order.php")    ) $padSeqBuild = 'order';
+  elseif ( file_exists ( "$padSeqType/fixed.php")    ) $padSeqBuild = 'fixed';
+  elseif ( file_exists ( "$padSeqType/jump.php")     ) $padSeqBuild = 'jump';
+  elseif ( file_exists ( "$padSeqType/function.php") ) $padSeqBuild = 'function';
+  elseif ( file_exists ( "$padSeqType/loop.php")     ) $padSeqBuild = 'loop';
+  elseif ( file_exists ( "$padSeqType/make.php")     ) $padSeqBuild = 'make';
+  elseif ( file_exists ( "$padSeqType/bool.php")     ) $padSeqBuild = 'bool';
+  elseif ( file_exists ( "$padSeqType/filter.php")   ) $padSeqBuild = 'filter';
   else                                               $padSeqBuild = 'none';
 
 ?>

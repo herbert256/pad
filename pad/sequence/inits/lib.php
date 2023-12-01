@@ -22,9 +22,9 @@
 
   function padSeqMakeType ( $check ) {
 
-    if     ( padExists ( "$check/function.php") ) return 'function';
-    elseif ( padExists ( "$check/make.php")     ) return 'make';
-    elseif ( padExists ( "$check/loop.php")     ) return 'loop';
+    if     ( file_exists ( "$check/function.php") ) return 'function';
+    elseif ( file_exists ( "$check/make.php")     ) return 'make';
+    elseif ( file_exists ( "$check/loop.php")     ) return 'loop';
     else                                          return '';
 
   }
@@ -32,14 +32,14 @@
 
   function padSeqFilterType ( $check ) {
 
-    if     ( padExists ( "$check/bool.php")     ) return 'bool';
-    elseif ( padExists ( "$check/order.php")    ) return 'order';
-    elseif ( padExists ( "$check/fixed.php")    ) return 'fixed';
-    elseif ( padExists ( "$check/jump.php")     ) return 'jump';
-    elseif ( padExists ( "$check/function.php") ) return 'function';
-    elseif ( padExists ( "$check/loop.php")     ) return 'loop';
-    elseif ( padExists ( "$check/make.php")     ) return 'make';
-    elseif ( padExists ( "$check/filter.php")   ) return 'filter';
+    if     ( file_exists ( "$check/bool.php")     ) return 'bool';
+    elseif ( file_exists ( "$check/order.php")    ) return 'order';
+    elseif ( file_exists ( "$check/fixed.php")    ) return 'fixed';
+    elseif ( file_exists ( "$check/jump.php")     ) return 'jump';
+    elseif ( file_exists ( "$check/function.php") ) return 'function';
+    elseif ( file_exists ( "$check/loop.php")     ) return 'loop';
+    elseif ( file_exists ( "$check/make.php")     ) return 'make';
+    elseif ( file_exists ( "$check/filter.php")   ) return 'filter';
     else                                          return 'none';
 
   }

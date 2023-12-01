@@ -6,8 +6,8 @@
   $padTagResult = include pad . "types/" . $padType [$pad] . ".php";
   $padTagOb     = ob_get_clean();
 
-  if ( padXml  ) include pad . 'tail/types/xml/level/go.php';
-  if ( padXref ) include pad . 'tail/types/xref/go.php';  
+  if ( padTail ) 
+    include pad . 'tail/events/go.php';
 
   if     ( is_object   ( $padTagResult ) ) $padTagResult = padToArray( $padTagResult );
   elseif ( is_resource ( $padTagResult ) ) $padTagResult = padToArray( $padTagResult );
@@ -25,12 +25,6 @@
     $padTagContent .= $padTagResult;
     $padTagResult = TRUE;
   }
-
-  if ( padTagParm ('true')  ) $padTagResult = include pad . '_options/true.php';
-  if ( padTagParm ('false') ) $padTagResult = include pad . '_options/false.php';
-  if ( padTagParm ('null')  ) $padTagResult = include pad . '_options/null.php';
-  if ( padTagParm ('array') ) $padTagResult = include pad . '_options/array.php';
-  if ( padTagParm ('empty') ) $padTagResult = include pad . '_options/empty.php';
 
   if ( $padTagResult === NULL )
     return;
