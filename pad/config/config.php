@@ -20,7 +20,7 @@
   // Tail:  tail/track/trace/xref etc
   // If set then the config file with the same name will be load from the sub folder tail 
 
-  $padTail = 'all';
+  $padTail = '';
 
   // Where the output goes
   // A config file with the same name will be load from the sub folder output
