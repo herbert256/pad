@@ -9,7 +9,7 @@
     if ($padCacheEtag)
       padCacheDelete ($padCacheUrl, $padCacheEtag);
 
-    if ( $padCacheServerGzip and ! $padClientGzip )
+    if ( $padCacheServerGzip )
       padCacheStore ($padCacheUrl, $padEtag, padZip($padOutput));
     else
       padCacheStore ($padCacheUrl, $padEtag, $padOutput);

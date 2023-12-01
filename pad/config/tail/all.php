@@ -28,6 +28,8 @@
   $padXrefXml          = TRUE;
   $padXrefTrace        = TRUE;
 
+  $padStats            = TRUE;
+
   $padTrace            = TRUE;       // Trace the internal working of PAD
   
   $padTraceLines       = TRUE;

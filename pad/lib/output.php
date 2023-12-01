@@ -10,14 +10,14 @@
 
       if ( $GLOBALS ['padCacheServerGzip'] and ! $GLOBALS ['padClientGzip'] )
         $output = padUnzip ( $GLOBALS ['padOutput'] );
-      elseif ( ! $GLOBALS ['padCacheServerGzip'] and $GLOBALS ['padClientGzip'] )
+      elseif ( ! $GLOBALS ['padCacheServerGzip'] and $GLOBALS ['padGzip'] and $GLOBALS ['padClientGzip'] )
         $output = padZip ( $GLOBALS ['padOutput'] );
       else
         $output = $GLOBALS ['padOutput'];
    
     } elseif ( $stop == 200 ) {
 
-      if ( $GLOBALS ['padClientGzip'] )
+      if ( $GLOBALS ['padGzip'] and $GLOBALS ['padClientGzip'] )
         $output = padZip ( $GLOBALS ['padOutput'] );
       else
         $output = $GLOBALS ['padOutput'];
@@ -84,20 +84,19 @@
 
     padHeader ('X-PAD: ' . $GLOBALS ['padSesID'] . '-' . $GLOBALS ['padReqID']);
 
-    if ( $stop == 500 or $stop == 304 )
-      padWebNoHeaders ($stop);
+    padWebNoHeaders ($stop);
     
-    if ( $stop == 200 and $GLOBALS ['padClientGzip'] )
-      padHeader ('Content-Encoding: gzip');
+    if ( $stop == 200 and $GLOBALS ['padGzip'] and $GLOBALS ['padClientGzip'] )
+      padHeader ( 'Content-Encoding: gzip' );
 
     if ( $stop <> 302 and $stop <> 304 )
-      padHeader ('Content-Type: ' . $GLOBALS ['padContentType'] );
+      padHeader ( 'Content-Type: ' . $GLOBALS ['padContentType'] );
 
     if ( $stop == 200 and $GLOBALS ['padLen'] )
-      padHeader ('Content-Length: ' . $GLOBALS ['padLen']);
+      padHeader ( 'Content-Length: ' . strlen ( $GLOBALS ['padOutput'] ) );
     
-    if ( ( $stop <> 200 and $stop <> 304 ) )
-      padHeader ('Cache-Control: no-cache, no-store');
+    if ( ! isset ( $GLOBALS ['padCacheClientAge'] ) or ( $stop <> 200 and $stop <> 304 ) )
+      padHeader ( 'Cache-Control: no-cache, no-store' );
     else
       padWebCacheHeaders ();
 

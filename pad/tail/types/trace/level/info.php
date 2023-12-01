@@ -1,10 +1,10 @@
 <?php
 
-  include pad . 'tail/types/trace/items/data.php';      
-  include pad . 'tail/types/trace/items/flags.php';      
-  include pad . 'tail/types/trace/items/content.php';      
-  include pad . 'tail/types/trace/items/true.php';      
-  include pad . 'tail/types/trace/items/false.php';      
-  include pad . 'tail/types/trace/items/base.php';      
+  include pad . 'tail/events/data.php';      
+  include pad . 'tail/events/flags.php';      
+  include pad . 'tail/events/content.php';      
+  include pad . 'tail/events/true.php';      
+  include pad . 'tail/events/false.php';      
+  include pad . 'tail/events/base.php';      
 
 ?>

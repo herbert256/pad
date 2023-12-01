@@ -87,6 +87,9 @@
 
   function padErrorThrow ( $severity, $message, $filename, $lineno ) {
 
+    if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
+      return FALSE;
+
     throw new ErrorException ( $message, 0, $severity, $filename, $lineno );
 
   }
@@ -94,11 +97,12 @@
 
   function padThrow ( $message ) {
 
+    if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
+      return FALSE;
+
     throw new Exception ( $message );
 
   }
-
-
 
 
 ?>

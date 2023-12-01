@@ -12,7 +12,7 @@
     include pad . 'tail/types/xml/build.php';
 
   if ( $padTraceActive ) {
-    include pad . 'tail/types/trace/items/build.php';
+    include pad . 'tail/events/build.php';
     $padOccur [$pad-1] = 1;
     include pad . 'tail/types/trace/level/start.php';
     include pad . 'tail/types/trace/level/info.php';  

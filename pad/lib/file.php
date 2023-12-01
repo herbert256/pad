@@ -7,7 +7,7 @@
 
       $return = file_exists ( $file );
 
-      include pad . 'tail/types/trace/items/exists.php';
+      include pad . 'tail/events/exists.php';
       
       return $return;
     
@@ -53,7 +53,7 @@
   function padFileGetContents ( $file ) {
 
     if ( $GLOBALS ['padTraceActive'] )
-      include pad . 'tail/types/trace/items/get.php';
+      include pad . 'tail/events/get.php';
 
     if ( is_dir ($file) )
       return $file;

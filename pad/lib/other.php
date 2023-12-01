@@ -47,28 +47,22 @@
 
   function padSessionEnd () {
   
-    $CpuStart = $GLOBALS ['padStatsCpuStart'];
-    $CpuEnd   = getrusage ();
-    
-    $user = 
-       ( $CpuEnd   ['ru_utime.tv_sec'] * 1000000 + $CpuEnd   ['ru_utime.tv_usec'] )
-    -  ( $CpuStart ['ru_utime.tv_sec'] * 1000000 + $CpuStart ['ru_utime.tv_usec'] );
-
-    $system = 
-       ( $CpuEnd   ['ru_stime.tv_sec'] * 1000000 + $CpuEnd   ['ru_stime.tv_usec'] )
-    -  ( $CpuStart ['ru_stime.tv_sec'] * 1000000 + $CpuStart ['ru_stime.tv_usec'] );
-
-    return [
+    $session = [
         'session'   => $GLOBALS ['padSesID'] ?? '',
         'request'   => $GLOBALS ['padReqID'] ?? '',
         'stop'      => $GLOBALS ['padStop'] ?? '',
         'end'       => microtime(true),
-        'duration'  => padDuration (),
-        'system'    => $system,
-        'user'      => $user,
         'length'    => $GLOBALS ['padLen'] ?? 0,
         'etag'      => $GLOBALS ['padEtag'] ?? ''
       ];
+
+    if ( isset ( $GLOBALS ['padStatsUser'] ) ) {
+        $session ['duration'] = padDuration ();
+        $session ['system']   = $GLOBALS ['padStatsSystem'];
+        $session ['user']     = $GLOBALS ['padStatsUser'];
+    }
+
+    return $session;
 
   }
 

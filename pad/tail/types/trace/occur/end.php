@@ -1,6 +1,6 @@
 <?php
 
-  include pad . 'tail/types/trace/items/resultOcc.php';     
+  include pad . 'tail/events/resultOcc.php';     
 
   if ( ! isset ( $padTraceLevel [$pad] ) ) padTraceSet ( $pad );
   if ( ! $padTraceLevel [$pad]           ) padTraceSet ( $pad );

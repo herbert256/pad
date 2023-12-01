@@ -1,11 +1,15 @@
 <?php
 
-  $padCache = FALSE;
+  include pad . 'config/cache.php';
 
-  if ( ! $padCacheServerAge            ) return; 
-  if ( count($_POST) or count($_FILES) ) return;
+  if ( isset ( $_SERVER['REQUEST_METHOD'] ) and $_SERVER['REQUEST_METHOD'] <> 'GET' )
+    $padCache = FALSE; ;
+  elseif ( ! $padCacheServerAge ) $padCache = FALSE; 
+    $padCache = FALSE; ;
 
-  $padCache    = TRUE;
+  if ( ! $padCache )
+    return;
+
   $padCacheUrl = padMD5($_SERVER['REQUEST_URI']);
   $padCacheMax = $_SERVER['REQUEST_TIME'] - $padCacheServerAge;
 

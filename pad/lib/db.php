@@ -130,7 +130,7 @@
       $return = '';
 
     if ( $GLOBALS ['padTraceActive'] )
-      include pad . 'tail/types/trace/items/sql.php';
+      include pad . 'tail/events/sql.php';
 
     return $return;
 

@@ -20,41 +20,16 @@
   // Tail:  tail/track/trace/xref etc
   // If set then the config file with the same name will be load from the sub folder tail 
 
-  $padTail = '';
+  $padTail = 'all';
 
   // Where the output goes
   // A config file with the same name will be load from the sub folder output
 
-  $padOutputType = 'web';   // web/file/ftp/email/download
+  $padOutputType = 'web'; // web/file/ftp/email/download
 
   // Cache settings
   
-  $padCacheServerAge = 0;   //  Seconds to keep the cache at pad server side, 
-                            //  0 to turn of server-side caching
-
-  $padCacheProxyAge  = 0;   //  How long a proxy is allowed to cache. 
-                            //  0 to turn of proxy-side caching
-
-  $padCacheClientAge = 0;   //  How long the client is allowed to cache.
-                            //  0 to turn of client-side caching
-
-  // Server-side cache settings ( used when $padCacheServerAge <> 0 )
-
-  $padCacheServerType      = 'memory';            //  The implementation of the server-side cache: file/db/memory
-  $padCacheServerGzip      = TRUE;                //  Store the cache zipped
-  $padCacheServerNoData    = FALSE;               //  Do not store the data itself, only the etag and timestamp,
-                                                  //  caching based on the client 'etag' & 'modified' HTTP headers.
-
-  $padCacheMemoryHost      = 'localhost';         //  Used when $padCacheServerType is 'memory'
-  $padCacheMemoryPort      = '11211';
-
-  $padCacheDbHost          = 'localhost';         //  Used when $padCacheServerType is 'db'
-  $padCacheDbDatabase      = 'cache';
-  $padCacheDbUser          = 'cache';
-  $padCacheDbPassword      = 'cache';
-
-  $padCacheFile            = padData . 'cache/';  //  Used when $padCacheServerType is 'file'
-  $padCacheFileMode        = 755;
+  $padCache = FALSE;  
 
   // SQL parms - pad internal
 
@@ -89,52 +64,23 @@
   // - pad/_functions/
   // - padApp/_functions/
 
-  $padDataDefaultStart = ['trim', 'white'];
-  $padDataDefaultEnd   = ['html', 'nbsp'];
+  $padDataDefaultStart = [];
+  $padDataDefaultEnd   = ['html'];
 
-  // lib tidy
+  // Formatting the output
 
-  $padTidy       = FALSE;
-  $padTidyCcsid  = 'utf8'; 
-  $padTidyConfig = [ 
-    'output-html'         => TRUE,
-    'doctype'             => 'loose',
-    'wrap'                => 0,
-    'indent'              => TRUE,
-    'tab-size'            => 2,
-    'vertical-space'      => 'no',
-    'indent-spaces'       => 2,
-    'replace-color'       => 'yes',
-    'markup'              => 'yes',
-    'omit-optional-tags'  => 'yes',
-    'clean'               => 'yes',
-    'drop-empty-elements' => 'yes',
-    'merge-spans'         => 'yes',
-    'force-output'        => true,
-    'show-warnings'       => FALSE,
-    'merge-divs'          => 'yes'
-  ];
-
-  // myTidy
-  // A basic & buggy implementation of formatting the output HTML 
-  // Only used when $padTidy is FALSE
-
-  $padMyTidy                 = FALSE;
-  $padMyTidySanitize         = [ 'STRIP_LOW', 'ENCODE_HIGH' ];
-  $padMyTidyTabToSpace       = TRUE;
-  $padMyTidyTrim             = TRUE;
-  $padMyTidyRemoveWhitespace = FALSE;  
-  $padMyTidyNoIndent         = TRUE;
-  $padMyTidyNoEmptyLines     = TRUE;
-  $padMyTidyNoNewLines       = FALSE;
-  
-  // Other settings.
-
-  $padClientGzip            = FALSE;  // Send the result zipped
-  $padNoNo                  = FALSE;  // No pad stuff, just plane PHP   
-  $padFastLink              = 32;     // Lenght of the FastLink code in the URL
+  $padTidy   = FALSE;
+  $padMyTidy = FALSE;
 
   $padTables    = [];
   $padRelations = [];
+
+    // Other settings.
+
+  $padGzip      = FALSE;  // Send the result zipped
+  $padCookies   = FALSE;  // Send the result zipped
+  $padNoNo      = FALSE;  // No pad stuff, just plane PHP   
+  $padFastLink  = 32;     // Lenght of the FastLink code in the URL
+
 
 ?>

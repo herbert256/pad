@@ -51,7 +51,7 @@
     elseif ($type == 9) $return = ( $value === NULL                                               ) ? TRUE  : FALSE;
 
     if ( $GLOBALS ['padTraceActive'] )
-      include pad . 'tail/types/trace/items/field.php';    
+      include pad . 'tail/events/field.php';    
 
     return $return;
 

@@ -13,7 +13,7 @@
   include pad . 'inits/client.php';
   include pad . 'inits/host.php';
   include pad . 'inits/tail.php';
-  include pad . 'cache/cache.php';
+  include pad . 'inits/cache.php';
   include pad . 'inits/level.php';
   include pad . 'inits/parms.php';
   include pad . 'inits/options.php';
