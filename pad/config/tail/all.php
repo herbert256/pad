@@ -91,7 +91,6 @@
   $padTraceField       = TRUE;
   $padTraceEval        = TRUE;
   $padTraceCall        = TRUE;
-  $padTraceExists      = TRUE;
   $padTraceSql         = TRUE;
   $padTraceGet         = TRUE;
   $padTraceCurl        = TRUE;

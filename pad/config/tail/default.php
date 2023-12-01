@@ -1,6 +1,6 @@
 <?php
   
-  $padTailMeta         = TRUE;        // Keep a meta tail log for trace/xml/xref events.
+  $padTailMeta         = FALSE;        // Keep a meta tail log for trace/xml/xref events.
   $padTailRequest      = TRUE;   
   $padTailSession      = TRUE;   
   $padTailOutput       = TRUE;   
@@ -30,7 +30,7 @@
 
   $padStats            = FALSE;
 
-  $padTrace            = FALSE;       // Trace the internal working of PAD
+  $padTrace            = TRUE;       // Trace the internal working of PAD
     
   $padTraceLines       = TRUE;
   $padTraceDouble      = FALSE;
@@ -49,7 +49,7 @@
   $padTraceStartEndOcc = TRUE;
 
   $padTraceStatus      = FALSE;
-  $padTraceChilds      = FALSE;
+  $padTraceChilds      = TRUE;
   $padTraceAddLine     = TRUE;
   $padTraceLocalChk    = TRUE;       
 
@@ -91,7 +91,6 @@
   $padTraceField       = TRUE;
   $padTraceEval        = TRUE;
   $padTraceCall        = TRUE;
-  $padTraceExists      = TRUE;
   $padTraceSql         = TRUE;
   $padTraceGet         = TRUE;
   $padTraceCurl        = TRUE;
