@@ -4,7 +4,7 @@
   $padXrefOb         = $padTagOb;
   $padXrefTagResult  = $padTagResult;
   $padXrefTrue       = $padBase [$pad];
-  $padXrefFalse      = $padFalse [$pad];
+  $padXrefFalse      = $padFalse;
   
   if     ( is_object   ( $padTagResult ) ) $padXrefReturn = 'object';
   elseif ( is_resource ( $padTagResult ) ) $padXrefReturn = 'resource';

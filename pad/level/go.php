@@ -46,7 +46,7 @@
 
   if ( $padTagContent )
     if ( $padTagTrueFalse ) $padContent      = padContent ( $padContent,      $padTagTrue  );
-    else                    $padFalse [$pad] = padContent ( $padFalse [$pad], $padTagFalse );
+    else                    $padFalse = padContent ( $padFalse, $padTagFalse );
 
   $padBase [$pad] = $padContent;
   

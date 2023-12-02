@@ -273,8 +273,6 @@
       'prm'     => $GLOBALS ['padPrm'] [$pad] ?? '',
       'set-lvl' => $GLOBALS ['padSetLvl'] [$pad] ?? '',
       'set-occ' => $GLOBALS ['padSetOcc'] [$pad] ?? '',
-      'true'    => padDumpShort ($GLOBALS ['padTrue'][$pad]??''),
-      'false'   => padDumpShort ($GLOBALS ['padFalse'][$pad]??''),
       'base'    => padDumpShort ($GLOBALS ['padBase'][$pad]??''),
       'pad'     => padDumpShort ($GLOBALS ['padPad'][$pad]??''),
       'result'  => padDumpShort ($GLOBALS ['padResult'][$pad]??'')

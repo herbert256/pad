@@ -3,6 +3,6 @@
   if ( ! $padTraceFalse )
     return;
 
-  padTrace ( 'level', 'false',  $padFalse [$pad] ); 
+  padTrace ( 'level', 'false',  $padFalse ); 
 
 ?>

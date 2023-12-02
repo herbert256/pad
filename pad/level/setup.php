@@ -18,7 +18,6 @@
   $padBase       [$pad] = $padBaseSet    ?? '';
   $padPrmType    [$pad] = $padPrmTypeSet ?? '';
 
-  $padFalse      [$pad] = '';  
   $padName       [$pad] = '';
 
   $padData       [$pad] = padDefaultData ();
@@ -65,6 +64,8 @@
 
   $padForceTagName  = '';
   $padForceDataName = '';
+  $padFalse         = '';  
+
 
   if ( padTail )
     include pad . 'tail/events/setup.php';

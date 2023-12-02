@@ -298,7 +298,7 @@
 
     if ( $padResult [$pad] and $padBase [$pad] )
       if     ( $padBase [$pad] == $padBase  [$pad] )     return $type . '-true';
-      elseif ( $padBase [$pad] == $padFalse [$pad] )     return $type . '-else';
+      elseif ( $padBase [$pad] == $padFalse )     return $type . '-else';
 
     if     ( ! $padResult [$pad] and ! $padBase [$pad] ) return $type . '-no-base';
     elseif ( $padResult [$pad]                         ) return $type . '-result';
