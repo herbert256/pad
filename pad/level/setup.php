@@ -15,7 +15,7 @@
   $padType       [$pad] = $padTypeResult ?? '';
   $padGiven      [$pad] = $padTypeGiven  ?? '';
   $padPair       [$pad] = $padPairSet    ?? '';
-  $padTrue       [$pad] = $padTrueSet    ?? '';
+  $padTrue       [$pad] = $padBaseSet    ?? '';
   $padPrmType    [$pad] = $padPrmTypeSet ?? '';
 
   $padFalse      [$pad] = '';  

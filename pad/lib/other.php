@@ -1,13 +1,16 @@
 <?php
 
-
   function padContentMerge ( &$true, &$false, $new, $condition ) {
+
+    if ( ! $new ) return;
 
     padBeforeAfter ( $new, $newTrue, $newFalse, '@else@' ) ;
 
     $merge = padTagParm ('merge', 'top');
 
     if ( $condition ) {
+
+      if ( ! $newTrue ) return;
 
       padBeforeAfter ( $true,    $oneBefore, $oneAfter, '@content@' ) ;
       padBeforeAfter ( $newTrue, $twoBefore, $twoAfter, '@content@' ) ;
@@ -17,6 +20,8 @@
       elseif ( $merge == 'bottom'  ) $true = $oneBefore . $twoBefore . $oneAfter . $twoAfter;
 
     } else {
+
+      if ( ! $newFalse ) return;
 
       padBeforeAfter ( $false,    $oneBefore, $oneAfter, '@content@' ) ;
       padBeforeAfter ( $newFalse, $twoBefore, $twoAfter, '@content@' ) ;
@@ -52,7 +57,6 @@
     $after  = '';
 
   }
-
 
   function padFileName ( $withDir ) {
 
@@ -329,6 +333,47 @@
       return TRUE;
     
     return FALSE;
+
+  }
+
+
+  function padContent ( $base, $new ) {
+
+    $merge = padTagParm ('merge');
+
+    if ( padTail ) 
+      include pad . 'tail/events/double.php';
+
+    if     ( strpos ( $new, '@content@'  ) !== FALSE ) return str_replace ( '@content@', $base, $new );
+    elseif ( strpos ( $base, '@content@' ) !== FALSE ) return str_replace ( '@content@', $new, $base );
+    elseif ( $merge == 'replace'                     ) return $new;
+    elseif ( $merge == 'bottom'                      ) return $base . $new;
+    elseif ( $merge == 'top'                         ) return $new . $base;
+    elseif ( $new                                    ) return $new;
+    else                                               return $base;
+
+  }
+
+
+  function padGetTrueFalse ( $input, &$true, &$false ) {
+
+    $true  = $input;
+    $false = '';
+
+    $list = padOpenCloseList ( $true ) ;
+    $pos  = strpos ( $true, '@else@');
+
+    while ( $pos !== FALSE) {
+      
+      if  ( padOpenCloseCount ( substr ( $true, 0, $pos ), $list) ) {
+        $false = substr ( $true, $pos+6  );
+        $true  = substr ( $true, 0, $pos );
+        return;
+      }
+  
+      $pos = strpos ( $true, '@else@', $pos+1);
+
+    }
 
   }
 

@@ -11,7 +11,7 @@
   $padTypeResult = 'internal';
   $padTypeGiven  = FALSE;
   $padPairSet    = FALSE;
-  $padTrueSet    = '';
+  $padBaseSet    = '';
   $padPrmTypeSet = 'none';
 
   include pad . 'level/setup.php';

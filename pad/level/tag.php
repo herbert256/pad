@@ -1,7 +1,7 @@
 <?php
 
   $padPairSet    = FALSE;
-  $padTrueSet    = '';
+  $padBaseSet    = '';
   $padPrmTypeSet = ( count($padWords) > 1 ) ? 'open' : 'none';
 
   if ( substr($padBetween, -1) == '/') {
