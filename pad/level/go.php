@@ -1,5 +1,7 @@
 <?php
 
+  $padContent = $padBase [$pad];
+
   $padTagContent = '';
 
   ob_start();
@@ -46,4 +48,6 @@
     if ( $padTagTrueFalse ) $padContent      = padContent ( $padContent,      $padTagTrue  );
     else                    $padFalse [$pad] = padContent ( $padFalse [$pad], $padTagFalse );
 
+  $padBase [$pad] = $padContent;
+  
 ?>

@@ -3,7 +3,7 @@
   $padXrefTagContent = $padContent;
   $padXrefOb         = $padTagOb;
   $padXrefTagResult  = $padTagResult;
-  $padXrefTrue       = $padTrue [$pad];
+  $padXrefTrue       = $padBase [$pad];
   $padXrefFalse      = $padFalse [$pad];
   
   if     ( is_object   ( $padTagResult ) ) $padXrefReturn = 'object';

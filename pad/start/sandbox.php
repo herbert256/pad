@@ -8,7 +8,7 @@
   include pad . 'start/lib/start.php';
   include pad . 'start/lib/setup.php';
 
-  $padBase [$pad] = $padTrue [$pad-1];    
+  $padBase [$pad] = $padBase [$pad-1];    
 
   $padOccurTypeSet = 'sandbox';  
   include pad . 'occurrence/start.php'; 

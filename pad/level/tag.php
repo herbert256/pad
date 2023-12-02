@@ -21,9 +21,9 @@
     if ($padPos === FALSE)
       return;
 
-    $padTrueBase = substr($padPad [$pad], $padEnd [$pad]+1, $padPos - $padEnd [$pad] - 1);
+    $padBaseBase = substr($padPad [$pad], $padEnd [$pad]+1, $padPos - $padEnd [$pad] - 1);
 
-    if ( padOpenCloseCountOne ( $padTrueBase, $padPairTag) )
+    if ( padOpenCloseCountOne ( $padBaseBase, $padPairTag) )
       $padPairCheck = substr($padPad [$pad], $padPos + strlen($padPairTag) + 2, 1);
     
   }

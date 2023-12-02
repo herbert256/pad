@@ -1,6 +1,6 @@
 <?php
 
-  $padBaseSet = substr ( $padTrueBase, 0, $padPos );
+  $padBaseSet = substr ( $padBaseBase, 0, $padPos );
   $padPairSet = TRUE;
 
   $padEnd [$pad] = $padPos;

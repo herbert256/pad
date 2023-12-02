@@ -3,9 +3,9 @@
   if ( ! $padTraceTrue )
     return;
 
-  if ( !$padTraceDouble and $padTraceContent and $padTrue [$pad] == $padPadStart [$pad] )
+  if ( !$padTraceDouble and $padTraceContent and $padBase [$pad] == $padPadStart [$pad] )
     return;
 
-  padTrace ( 'level', 'true',  $padTrue [$pad] ); 
+  padTrace ( 'level', 'true',  $padBase [$pad] ); 
 
 ?>

@@ -294,10 +294,10 @@
 
   function padTraceStatusGo ( $type ) {
 
-    global $pad, $padResult, $padBase, $padTrue, $padFalse;
+    global $pad, $padResult, $padBase, $padBase, $padFalse;
 
     if ( $padResult [$pad] and $padBase [$pad] )
-      if     ( $padBase [$pad] == $padTrue  [$pad] )     return $type . '-true';
+      if     ( $padBase [$pad] == $padBase  [$pad] )     return $type . '-true';
       elseif ( $padBase [$pad] == $padFalse [$pad] )     return $type . '-else';
 
     if     ( ! $padResult [$pad] and ! $padBase [$pad] ) return $type . '-no-base';

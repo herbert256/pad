@@ -15,7 +15,7 @@
   $padType       [$pad] = $padTypeResult ?? '';
   $padGiven      [$pad] = $padTypeGiven  ?? '';
   $padPair       [$pad] = $padPairSet    ?? '';
-  $padTrue       [$pad] = $padBaseSet    ?? '';
+  $padBase       [$pad] = $padBaseSet    ?? '';
   $padPrmType    [$pad] = $padPrmTypeSet ?? '';
 
   $padFalse      [$pad] = '';  
@@ -35,7 +35,6 @@
   $padEnd        [$pad] = 0;
 
   $padPadStart   [$pad] = '';
-  $padBase       [$pad] = '';
   $padPad        [$pad] = '';
   $padResult     [$pad] = '';
  

@@ -13,7 +13,7 @@
 
   elseif ( $padXrefOb and $padTmp == $padPadStart [$pad] . $padXrefOb     ) return 'content+ob';
   elseif ( $padXrefOb and $padTmp == $padXrefTrue . $padXrefOb            ) return 'true+ob';
-  elseif ( $padXrefOb and $padTmp == $padTrue [$pad] . $padXrefOb         ) return 'true+ob-2';
+  elseif ( $padXrefOb and $padTmp == $padBase [$pad] . $padXrefOb         ) return 'true+ob-2';
   elseif ( $padXrefOb and $padTmp == $padXrefFalse . $padXrefOb           ) return 'false+ob';
   elseif ( $padXrefOb and $padTmp == $padFalse [$pad] . $padXrefOb        ) return 'false+ob-2';
   elseif ( $padXrefOb and $padTmp == $padXrefTagContent . $padXrefOb      ) return 'tagContent+ob';
@@ -42,7 +42,7 @@
   elseif ( $padXrefReturn == 'value' and $padTmp == $padTagResult         ) return 'tagResult-2';
   elseif ( $padXrefReturn == 'value' and $padTmp == $padXrefTagResult     ) return 'tagResult-3';
 
-  elseif ( $padTmp == $padTrue [$pad]                                     ) return 'true-2';
+  elseif ( $padTmp == $padBase [$pad]                                     ) return 'true-2';
   elseif ( $padTmp == $padFalse [$pad]                                    ) return 'false-2';
 
   elseif ( str_starts_with ( $padTag [$pad], 'entry')                     ) return 'entry';

@@ -472,10 +472,10 @@
 
   function padContent2 () {
  
-    global $pad, $padTrue, $padOpt;
+    global $pad, $padBase, $padOpt;
 
-    if ( $padTrue [$pad] )
-      return $padTrue [$pad];
+    if ( $padBase [$pad] )
+      return $padBase [$pad];
 
     if ( $padOpt [$pad] [1] )
       return $padOpt [$pad] [1];

@@ -10,7 +10,7 @@
   $padParentEnd   = strpos ( $padBase [$pad], "}", $padParentStart) ;
 
   $padBase [$pad] = substr ( $padBase [$pad], 0, $padParentStart )
-                       . substr ( $padBase [$pad], $padParentEnd + 1 );
+                  . substr ( $padBase [$pad], $padParentEnd + 1 );
 
   $padCurrent [$pad] = [];
   $padOccur   [$pad] = 0;

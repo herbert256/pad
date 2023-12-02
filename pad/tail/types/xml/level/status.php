@@ -16,7 +16,7 @@
 
   elseif ( $padXmlOb and $padTmp == $padPadStart [$pad] . $padXmlOb    ) return 'content+ob';
   elseif ( $padXmlOb and $padTmp == $padXmlTrue . $padXmlOb            ) return 'true+ob';
-  elseif ( $padXmlOb and $padTmp == $padTrue [$pad] . $padXmlOb        ) return 'true+ob-2';
+  elseif ( $padXmlOb and $padTmp == $padBase [$pad] . $padXmlOb        ) return 'true+ob-2';
   elseif ( $padXmlOb and $padTmp == $padXmlFalse . $padXmlOb           ) return 'false+ob';
   elseif ( $padXmlOb and $padTmp == $padFalse [$pad] . $padXmlOb       ) return 'false+ob-2';
   elseif ( $padXmlOb and $padTmp == $padXmlTagContent . $padXmlOb      ) return 'tagContent+ob';
@@ -45,7 +45,7 @@
   elseif ( $padXmlTagReturn == 'value' and $padTmp == $padTagResult    ) return 'tagResult-2';
   elseif ( $padXmlTagReturn == 'value' and $padTmp == $padXmlTagResult ) return 'tagResult-3';
 
-  elseif ( $padTmp == $padTrue [$pad]                                  ) return 'true-2';
+  elseif ( $padTmp == $padBase [$pad]                                  ) return 'true-2';
   elseif ( $padTmp == $padFalse [$pad]                                 ) return 'false-2';
 
   elseif ( str_starts_with ( $padTag [$pad], 'entry')                  ) return 'entry';
