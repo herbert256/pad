@@ -1,16 +1,35 @@
 <?php
 
+
+  function padContentX ( $base, $new ) {
+
+    $merge = padTagParm ( 'merge', 'top' );
+
+    if     ( $merge == 'replace' ) return $new;
+    elseif ( $merge == 'bottom'  ) return $base . $new;
+    elseif ( $merge == 'top'     ) return $new . $base;
+
+  }
+
   function padContentMerge ( &$true, &$false, $new, $condition ) {
 
-    if ( ! $new ) return;
-
     padBeforeAfter ( $new, $newTrue, $newFalse, '@else@' ) ;
+
+    if ( $condition ) {
+       if ( strpos ( $true, '@content@' ) === FALSE and strpos ( $newTrue, '@content@' ) === FALSE ) {
+          $true = padContentX ( $true, $newTrue );
+          return;
+       }
+    } else {
+       if ( strpos ( $false, '@content@' ) === FALSE and strpos ( $newFalse, '@content@' ) === FALSE ) {
+          $false = padContentX ( $false, $newFalse );
+          return;
+       }
+    }
 
     $merge = padTagParm ('merge', 'top');
 
     if ( $condition ) {
-
-      if ( ! $newTrue ) return;
 
       padBeforeAfter ( $true,    $oneBefore, $oneAfter, '@content@' ) ;
       padBeforeAfter ( $newTrue, $twoBefore, $twoAfter, '@content@' ) ;
@@ -20,8 +39,6 @@
       elseif ( $merge == 'bottom'  ) $true = $oneBefore . $twoBefore . $oneAfter . $twoAfter;
 
     } else {
-
-      if ( ! $newFalse ) return;
 
       padBeforeAfter ( $false,    $oneBefore, $oneAfter, '@content@' ) ;
       padBeforeAfter ( $newFalse, $twoBefore, $twoAfter, '@content@' ) ;

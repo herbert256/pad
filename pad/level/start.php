@@ -5,7 +5,7 @@
   include pad . 'level/parms.php';    
   include pad . 'level/split.php';
 
-  if ( padTagParm ('content') ) $padBase  [$pad] = include pad . "_options/content.php";    
+ # if ( padTagParm ('content') ) $padBase  [$pad] = include pad . "_options/content.php";    
   if ( padTagParm ('else')    ) $padFalse = include pad . "_options/else.php";    
   if ( padTagParm ('data')    ) $padData  [$pad] = include pad . "_options/data.php";   
 
