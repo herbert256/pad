@@ -2,7 +2,7 @@
     With the <b>&open;content&close;</b> tag it is possible to define content for later use.
 {/block}  
 
-{table}{demo}
+{table}{demo} 
 
 {content 'hello'}
   <p> Hello World </p>
@@ -55,8 +55,7 @@
 
 {/demo}{/table}
 
-
-<hr><h4>Merge content with content</h4>
+<hr><h4>Merge content with content - part 1</h4>
 
 {table}{demo}
 
@@ -78,6 +77,112 @@
 
 {content 'myContent'}
   This will be inserted <br>
+{/content}
+
+{/demo}{demo}
+
+{myContent}
+  Before <br>
+  @content@
+  After <br>
+{/myContent}
+
+{/demo}{/table}
+
+<hr><h4>Merge content with content - part 2</h4>
+
+If not given, 'top' will be used for 'merge'
+
+{table}{demo}
+
+{content 'myContent'}
+  This is my content.<br>
+{/content}
+
+{/demo}{demo}
+
+{myContent}
+
+{/demo}{demo}
+
+{myContent merge='replace'}
+  This is the base content. <br>
+{/myContent}
+
+{/demo}{demo}
+
+{myContent merge='top'}
+  This is the base content. <br>
+{/myContent}
+
+{/demo}{demo}
+
+{myContent merge='bottom'}
+  This is the base content. <br>
+{/myContent}
+
+{/demo}{/table}
+
+<hr><h4>Merge content with content - part 3</h4>
+
+If not given, 'top' will be used for 'merge'
+
+{table}{demo}
+
+{content 'myContent'}
+  This is the true content. <br>
+@else@
+  This is the false content. <br>
+{/content}
+
+{/demo}{demo}
+
+{true content='myContent', merge='top'}
+  This is the true base content <br>
+@else@
+  This is the false base content <br>
+{/true}
+
+{/demo}{demo}
+
+{true content='myContent', merge='bottom'}
+  This is the true base content <br>
+@else@
+  This is the false base content <br>
+{/true}
+
+{/demo}{demo}
+
+{false content='myContent', merge='top'}
+  This is the true base content <br>
+@else@
+  This is the false base content <br>
+{/false}
+
+{/demo}{demo}
+
+{false content='myContent', merge='bottom'}
+  This is the true base content <br>
+@else@
+  This is the false base content <br>
+{/false}
+
+{/demo}{/table}
+
+<hr><h4>Merge content with content - part 4</h4>
+
+If not given, 'top' will be used for 'merge'
+
+{page 'manual/triple'}
+
+<hr><h4>Merge content with content - part 5</h4>
+
+{table}{demo}
+
+{content 'myContent'}
+  Before <br>
+  @content@
+  After <br>
 {/content}
 
 {/demo}{demo}

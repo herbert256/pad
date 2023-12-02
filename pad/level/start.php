@@ -1,11 +1,11 @@
 <?php
-
+ 
   include pad . 'level/tag.php';
   include pad . 'level/setup.php';    
   include pad . 'level/parms.php';    
   include pad . 'level/split.php';
 
-  if ( padTagParm ('content') ) $padTrue  [$pad] = include pad . "_options/content.php";    
+#  if ( padTagParm ('content') ) $padTrue  [$pad] = include pad . "_options/content.php";    
   if ( padTagParm ('else')    ) $padFalse [$pad] = include pad . "_options/else.php";    
   if ( padTagParm ('data')    ) $padData  [$pad] = include pad . "_options/data.php";   
 
@@ -14,8 +14,7 @@
   $padContent = $padTrue [$pad];
   include pad . 'level/go.php';
   $padTrue [$pad] = $padContent;
-  
-  include pad . 'level/flags.php';
+
   include pad . 'level/base.php';
   include pad . 'level/data.php';
 

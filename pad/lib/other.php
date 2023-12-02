@@ -1,6 +1,59 @@
 <?php
 
 
+  function padContentMerge ( &$true, &$false, $new, $condition ) {
+
+    padBeforeAfter ( $new, $newTrue, $newFalse, '@else@' ) ;
+
+    $merge = padTagParm ('merge', 'top');
+
+    if ( $condition ) {
+
+      padBeforeAfter ( $true,    $oneBefore, $oneAfter, '@content@' ) ;
+      padBeforeAfter ( $newTrue, $twoBefore, $twoAfter, '@content@' ) ;
+
+      if     ( $merge == 'replace' ) $true = $twoBefore . $twoAfter;
+      elseif ( $merge == 'top'     ) $true = $twoBefore . $oneBefore . $twoAfter . $oneAfter;
+      elseif ( $merge == 'bottom'  ) $true = $oneBefore . $twoBefore . $oneAfter . $twoAfter;
+
+    } else {
+
+      padBeforeAfter ( $false,    $oneBefore, $oneAfter, '@content@' ) ;
+      padBeforeAfter ( $newFalse, $twoBefore, $twoAfter, '@content@' ) ;
+
+      if     ( $merge == 'replace' ) $false = $twoBefore . $twoAfter;
+      elseif ( $merge == 'top'     ) $false = $twoBefore . $oneBefore . $twoAfter . $oneAfter;
+      elseif ( $merge == 'bottom'  ) $false = $oneBefore . $twoBefore . $oneAfter . $twoAfter;
+
+    }
+
+  }
+
+
+  function padBeforeAfter ( $input, &$before, &$after, $type ) {
+
+    $len  = strlen ( $type );
+    $list = padOpenCloseList ( $input ) ;
+    $pos  = strpos ( $input, $type );
+
+    while ( $pos !== FALSE) {
+      
+      if  ( padOpenCloseCount ( substr ( $input, 0, $pos ), $list ) ) {
+        $before = substr ( $input, 0, $pos );
+        $after  = substr ( $input, $pos+$len  );
+        return;
+      }
+  
+      $pos = strpos ( $input, $type, $pos+1 );
+
+    }
+
+    $before = $input;
+    $after  = '';
+
+  }
+
+
   function padFileName ( $withDir ) {
 
     global $padFileDir, $padFileName, $padFileTimeStamp, $padFileUniqId, $padFileExtension;
@@ -276,47 +329,6 @@
       return TRUE;
     
     return FALSE;
-
-  }
-
-
-  function padContent ( $base, $new ) {
-
-    $merge = padTagParm ('merge');
-
-    if ( padTail ) 
-      include pad . 'tail/events/double.php';
-
-    if     ( strpos ( $new, '@content@'  ) !== FALSE ) return str_replace ( '@content@', $base, $new );
-    elseif ( strpos ( $base, '@content@' ) !== FALSE ) return str_replace ( '@content@', $new, $base );
-    elseif ( $merge == 'replace'                     ) return $new;
-    elseif ( $merge == 'bottom'                      ) return $base . $new;
-    elseif ( $merge == 'top'                         ) return $new . $base;
-    elseif ( $new                                    ) return $new;
-    else                                               return $base;
-
-  }
-
-
-  function padGetTrueFalse ( $input, &$true, &$false ) {
-
-    $true  = $input;
-    $false = '';
-
-    $list = padOpenCloseList ( $true ) ;
-    $pos  = strpos ( $true, '@else@');
-
-    while ( $pos !== FALSE) {
-      
-      if  ( padOpenCloseCount ( substr ( $true, 0, $pos ), $list) ) {
-        $false = substr ( $true, $pos+6  );
-        $true  = substr ( $true, 0, $pos );
-        return;
-      }
-  
-      $pos = strpos ( $true, '@else@', $pos+1);
-
-    }
 
   }
 

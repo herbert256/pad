@@ -29,16 +29,7 @@
   if ( $padTagResult === NULL )
     return;
 
-  padGetTrueFalse ( $padTagContent , $padTagTrue, $padTagFalse );
-
-  if     ( $padTagResult === TRUE       ) $padTagTrueFalse = TRUE;
-  elseif ( $padTagResult === FALSE      ) $padTagTrueFalse = FALSE;
-  elseif ( ! is_array ( $padTagResult ) ) $padTagTrueFalse = TRUE;
-  elseif ( count ( $padTagResult )      ) $padTagTrueFalse = TRUE;
-  else                                    $padTagTrueFalse = FALSE;
-
-  if ( $padTagContent )
-    if ( $padTagTrueFalse ) $padContent      = padContent ( $padContent,      $padTagTrue  );
-    else                    $padFalse [$pad] = padContent ( $padFalse [$pad], $padTagFalse );
+  include pad . 'level/flags.php';
+  include pad . 'level/merge.php';
 
 ?>
