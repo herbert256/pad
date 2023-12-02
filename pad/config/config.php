@@ -25,7 +25,7 @@
   // Where the output goes
   // A config file with the same name will be load from the sub folder output
 
-  $padOutputType = 'web'; // web/file/ftp/email/download
+  $padOutputType = 'web'; // web/file/download
 
   // Cache settings
   
