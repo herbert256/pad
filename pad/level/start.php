@@ -5,9 +5,8 @@
   include pad . 'level/parms.php';    
   include pad . 'level/split.php';
 
-#  if ( padTagParm ('content') ) $padTrue  [$pad] = include pad . "_options/content.php";    
-  if ( padTagParm ('else')    ) $padFalse [$pad] = include pad . "_options/else.php";    
-  if ( padTagParm ('data')    ) $padData  [$pad] = include pad . "_options/data.php";   
+  if ( padTagParm ('else') ) $padFalse [$pad] = include pad . "_options/else.php";    
+  if ( padTagParm ('data') ) $padData  [$pad] = include pad . "_options/data.php";   
 
   include pad . 'level/set.php';
  
@@ -22,7 +21,6 @@
     include pad . 'options/app.php';
 
   include pad . 'options/start.php';
-
   include pad . 'level/name.php';
 
   if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']) )

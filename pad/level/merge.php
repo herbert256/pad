@@ -6,7 +6,7 @@
   if ( padTagParm ('content') ) {
     $padContentOption = padTagParm('content');
     $padContentData   = $padContentStore [$padContentOption];
-    padContentMerge ( $padContent, $padFalse [$pad], $padContentData, $padHit [$pad]);
+    padContentMerge ( $padContent, $padFalse [$pad], $padContentData, $padHit [$pad] );
   }
 
 ?>
