@@ -1,6 +1,6 @@
 <?php
 
-if ( 1 <> 1 ) {
+if ( 1 <> 2 ) {
 
   if ( $padTagContent )
     padContentMerge ( $padContent, $padFalse, $padTagContent, $padHit [$pad] );
@@ -10,8 +10,8 @@ if ( 1 <> 1 ) {
   padBeforeAfter ( $padTagContent, $padTagTrue, $padTagFalse, '@else@' );
 
   if ( $padTagContent )
-    if ( $padHit [$pad] ) $padContent = padContent ( $padContent,      $padTagTrue  );
-    else                  $padFalse   = padContent ( $padFalse, $padTagFalse );
+    if ( $padHit [$pad] ) $padContent = padContent ( $padContent, $padTagTrue  );
+    else                  $padFalse   = padContent ( $padFalse,   $padTagFalse );
 
 }
 

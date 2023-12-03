@@ -23,7 +23,7 @@
     $padTagResult = TRUE;
   }
 
-  if ( padSingleValue ( $padTagResult ) ) {
+  if ( padSingleValue ( $padTagResult ) and $padTagResult <> $padContent ) {
     $padTagContent .= $padTagResult;
     $padTagResult = TRUE;
   }

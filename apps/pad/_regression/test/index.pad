@@ -1,12 +1,16 @@
-{data 'row'   } [1,2,3]     {/data}
-{data 'column'} [1,2,3,4,5] {/data}
+<div id="padAjaxejOOp52P"></div>
 
-<table border='1'>
-  {row}
-    <tr>
-      {column}
-        {cell ($row*10) + $column} 
-      {/column}
-    </tr>
-  {/row}
-</table>
+<script>
+  padAjaxejOOp52P = new XMLHttpRequest();
+  padAjaxejOOp52P.onreadystatechange=function() {
+    if (padAjaxejOOp52P.readyState === 4) {
+      if (padAjaxejOOp52P.status === 200) {
+        document.getElementById("padAjaxejOOp52P").innerHTML=padAjaxejOOp52P.responseText;
+      } else {
+        document.getElementById("padAjaxejOOp52P").innerHTML=padAjaxejOOp52P.statusText;
+      }
+    }
+  }
+  padAjaxejOOp52P.open("GET","http://localhost/?test/one&padInclude&padSesID=MzFLKnzN&padReqID=UC0wsLA3",true);
+  padAjaxejOOp52P.send();
+</script>
