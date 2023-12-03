@@ -1,25 +1,12 @@
 <?php
 
-if ( 1 <> 2 ) {
-
   if ( $padTagContent )
-    padContentMerge ( $padContent, $padFalse, $padTagContent, $padHit [$pad] );
-
-} else {
-
-  padBeforeAfter ( $padTagContent, $padTagTrue, $padTagFalse, '@else@' );
-
-  if ( $padTagContent )
-    if ( $padHit [$pad] ) $padContent = padContent ( $padContent, $padTagTrue  );
-    else                  $padFalse   = padContent ( $padFalse,   $padTagFalse );
-
-}
+    padContentMerge ( $padContent, $padFalse, $padTagContent, $padHit [$pad], $padTag [$pad] );
 
   if ( padTagParm ('content') ) {
     $padContentOption = padTagParm('content');
     $padContentData   = $padContentStore [$padContentOption];
-    padContentMerge ( $padContent, $padFalse, $padContentData, $padHit [$pad] );
+    padContentMerge ( $padContent, $padFalse, $padContentData, $padHit [$pad], $padContentOption );
   }
-
 
 ?>

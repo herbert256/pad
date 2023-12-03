@@ -180,7 +180,7 @@
     }  
 
     if     ( strpos ($padPage, '/show/' )      ) $source = 'develop/regression/show';
-    elseif ( $padPage == 'reference/reference' ) $source = $GLOBALS['reference'];
+    elseif ( $padPage == 'reference/index' ) $source = $GLOBALS['reference'];
     elseif ( $padPage == 'reference/show'      ) $source = $GLOBALS['item'];
     else                                         $source = $padPage;
 
@@ -198,7 +198,7 @@
  
       if ( $refLink and $key <> array_key_last ($source)) {
 
-        $parts [$key] ['link'] = "reference/reference&reference=$link";
+        $parts [$key] ['link'] = "reference/index`&reference=$link";
 
       } elseif ( $key == array_key_last ($source) ) {
 

@@ -25,7 +25,7 @@
 
 {myContent}
     <tr>
-      <td> name              </td>
+      <td> {$name}              </td>
       <td> {first}  X {/first}  </td>
       <td> {border} X {/border} </td>
       <td> {middle} X {/middle} </td>
@@ -42,7 +42,7 @@
 {myContent}
     {true}
       <tr>
-        <td> name                      </td>
+        <td> {$name}                      </td>
         <td> {first 'staff'}  X {/first}  </td>
         <td> {border 'staff'} X {/border} </td>
         <td> {middle 'staff'} X {/middle} </td>
@@ -60,7 +60,7 @@
 {myContent}
     {true}
       <tr> 
-        <td> name                 </td>
+        <td> {$name}                 </td>
         <td> {first -2}  X {/first}  </td>
         <td> {border -2} X {/border} </td>
         <td> {middle -2} X {/middle} </td>
@@ -76,7 +76,7 @@
 {demo}
 {myContent}
     <tr>
-      <td> name              </td>
+      <td> {$name}              </td>
       <td> {if &first}  X {/if} </td>
       <td> {if &border} X {/if} </td>
       <td> {if &middle} X {/if} </td>
@@ -91,7 +91,7 @@
 {demo}
 {myContent}
     <tr>
-      <td> name                    </td>
+      <td> {$name}                    </td>
       <td> {if &staff:first}  X {/if} </td>
       <td> {if &staff:border} X {/if} </td>
       <td> {if &staff:middle} X {/if} </td>
@@ -107,7 +107,7 @@
 {myContent}
     {true}
       <tr>
-        <td> name                 </td>
+        <td> {$name}                 </td>
         <td> {if &-2:first}  X {/if} </td>
         <td> {if &-2:border} X {/if} </td>
         <td> {if &-2:middle} X {/if} </td>
