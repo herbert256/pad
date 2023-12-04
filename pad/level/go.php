@@ -23,7 +23,7 @@
     $padTagResult = TRUE;
   }
 
-  if ( padSingleValue ( $padTagResult ) ) {
+  if ( padSingleValue ( $padTagResult ) and $padTagResult <> $padContent ) {
     $padTagContent .= $padTagResult;
     $padTagResult = TRUE;
   }
@@ -31,22 +31,8 @@
   if ( $padTagResult === NULL )
     return;
 
-  #include pad . 'level/flags.php';
-  #include pad . 'level/merge.php';
-  
-  #return;
-
-  padGetTrueFalse ( $padTagContent , $padTagTrue, $padTagFalse );
-
-  if     ( $padTagResult === TRUE       ) $padTagTrueFalse = TRUE;
-  elseif ( $padTagResult === FALSE      ) $padTagTrueFalse = FALSE;
-  elseif ( ! is_array ( $padTagResult ) ) $padTagTrueFalse = TRUE;
-  elseif ( count ( $padTagResult )      ) $padTagTrueFalse = TRUE;
-  else                                    $padTagTrueFalse = FALSE;
-
-  if ( $padTagContent )
-    if ( $padTagTrueFalse ) $padContent      = padContent ( $padContent,      $padTagTrue  );
-    else                    $padFalse = padContent ( $padFalse, $padTagFalse );
+  include pad . 'level/flags.php';
+  include pad . 'level/merge.php';
 
   $padBase [$pad] = $padContent;
   

@@ -1,0 +1,16 @@
+<div id="padAjaxejOOp52P"></div>
+
+<script>
+  padAjaxejOOp52P = new XMLHttpRequest();
+  padAjaxejOOp52P.onreadystatechange=function() {
+    if (padAjaxejOOp52P.readyState === 4) {
+      if (padAjaxejOOp52P.status === 200) {
+        document.getElementById("padAjaxejOOp52P").innerHTML=padAjaxejOOp52P.responseText;
+      } else {
+        document.getElementById("padAjaxejOOp52P").innerHTML=padAjaxejOOp52P.statusText;
+      }
+    }
+  }
+  padAjaxejOOp52P.open("GET","http://localhost/?test/one&padInclude&padSesID=MzFLKnzN&padReqID=UC0wsLA3",true);
+  padAjaxejOOp52P.send();
+</script>
