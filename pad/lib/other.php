@@ -1,5 +1,43 @@
 <?php
 
+
+  function padContentSet ( $base, $new, $name ) {
+
+	  if ( str_contains ( $base, '@content@' ) or str_contains ( $base, "@$name:content@" ) ) {
+		
+	    $result = str_replace ( '@content@',       $new, $base   );
+	    $result = str_replace ( "@$name:content@", $new, $result );
+		
+    } elseif ( str_contains ( $new, '@content@' ) or str_contains ( $new, "@$name:content@" ) ) {
+		
+  	    $result = str_replace ( '@content@',        $base, $new    );
+	    $result = str_replace ( "@$name:content@",  $base, $result );
+		
+	  } else {
+
+      $merge = padTagParm ( 'merge', 'replace' );
+
+      if     ( $merge == 'bottom'  ) $result = $base . $new;
+      elseif ( $merge == 'top'     ) $result = $new . $base;
+      else                           $result = $new;
+	
+	  }
+
+    return $result;
+	  
+  }
+
+
+  function padContentMerge ( &$true, &$false, $new, $condition, $name ) {
+
+    padBeforeAfter ( $new, $newTrue, $newFalse, '@else@' ) ;
+
+    if ( $condition ) $true  = padContentSet ( $true,  $newTrue,  $name );
+    else              $false = padContentSet ( $false, $newFalse, $name );
+
+  }
+
+  
   function padContentX ( $base, $new ) {
 
     $merge = padTagParm ( 'merge', 'replace' );
@@ -10,7 +48,7 @@
 
   }
 
-  function padContentMerge ( &$true, &$false, $new, $condition, $name ) {
+  function padContentMergeOld ( &$true, &$false, $new, $condition, $name ) {
 
     padBeforeAfter ( $new, $newTrue, $newFalse, '@else@' ) ;
 
