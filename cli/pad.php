@@ -20,9 +20,9 @@
   elseif ( $padOS == 'win' ) $padHome = '/xampp/pad';
   else                       $padHome = '/home/herbert/pad';
 
-  define ( 'pad',     "$padHome/pad/"  );   // Home of PAD itself
-  define ( 'padApp',  "$padHome/cli/"  );   // The application files
-  define ( 'padData', "$padHome/data/" );   // Data locaction, used for logs/cache/errors/etc.
+  define ( 'pad',     "/workspaces/pad/pad/"  );   // Home of PAD itself
+  define ( 'padApp',  "/workspaces/pad/cli/"  );   // The application files
+  define ( 'padData', "/workspaces/data/" );   // Data locaction, used for logs/cache/errors/etc.
   
   include pad . 'pad.php';
 
