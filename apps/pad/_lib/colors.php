@@ -20,32 +20,41 @@
       return padColorsHighLight ( padFileGetContents ($file) ) ;
   
   }  
-  
 
-  function padColorsKind ( $kind, &$source ) {
 
-    $source = str_replace ( 
-      "@$kind@", 
-      '<b><font color="black">@</font><font color="purple">' . $kind . '</font><font color="black">@</font></b>', 
-      $source); 
+  function padColorsAt ( &$source ) {
 
-  } 
+   while ( padBetween ( $source, '@', '@', $before, $between, $after ) ) {
 
+    if ( ! padValidTag ($between) ) {
+      $source = "$before&at;$between&at;$after";
+      continue;
+    }
+
+    $parts = padExplode ($between, ':', 2); 
+
+    if ( count ( $parts ) == 2 ) 
+      $between = '<font color="red">' 
+                . $parts[0]
+                . '</font><b><font color="black">:</font></b>' 
+                . $parts[1];
+
+     $source = $before . '<b><font color="black">&at;</font><font color="purple">' . $between . '</font><font color="black">&at;</font></b>' . $after;
+
+   }
+
+  }
 
   function padColorsString ( $source ) { 
 
    $source = padColorsHighLight ( trim ( $source ) );
 
-   padColorsKind ( 'content', $source ); 
-   padColorsKind ( 'tidy',    $source ); 
-   padColorsKind ( 'else',    $source ); 
-   padColorsKind ( 'start',   $source ); 
-   padColorsKind ( 'end',     $source ); 
-
 go: $end = strpos($source, '}');
 
-    if ( $end === FALSE )
+    if ( $end === FALSE ) {
+      padColorsAt ( $source );
       return $source;
+    }
 
     $start = strrpos ($source, '{', $end - strlen($source));
 

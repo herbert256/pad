@@ -154,7 +154,7 @@
         elseif ( $header and $value ) {
 
           if ( $header == 'Content-Disposition' and !$file)
-            $file = padBetween ($value, '"', '"');
+            padBetween ($value, '"', '"', $before, $file, $after);
         
           if ( $header == 'Content-Type' )
             if     (strpos ($value, 'html')       !== FALSE) $output ['type'] = 'html';

@@ -35,65 +35,6 @@
 
   }
 
-  
-  function padContentX ( $base, $new ) {
-
-    $merge = padTagParm ( 'merge', 'replace' );
-
-    if     ( $merge == 'replace' ) return $new;
-    elseif ( $merge == 'bottom'  ) return $base . $new;
-    elseif ( $merge == 'top'     ) return $new . $base;
-
-  }
-
-  function padContentMergeOld ( &$true, &$false, $new, $condition, $name ) {
-
-    padBeforeAfter ( $new, $newTrue, $newFalse, '@else@' ) ;
-
-    if ( $condition ) {
-       if ( strpos ( $true, 'content@' ) === FALSE and strpos ( $newTrue, 'content@' ) === FALSE ) {
-          $true = padContentX ( $true, $newTrue );
-          return;
-       }
-    } else {
-       if ( strpos ( $false, 'content@' ) === FALSE and strpos ( $newFalse, 'content@' ) === FALSE ) {
-          $false = padContentX ( $false, $newFalse );
-          return;
-       }
-    }
-
-    if ( $condition ) {
-
-      padBeforeAfter ( $true, $oneBefore, $oneAfter, '@content@' ) ;
-
-      if ( $oneBefore and $oneAfter )
-        $true = $oneBefore . $newTrue . $oneAfter;
-      
-      if ( strpos ( $newTrue, '@content@' ) !== FALSE  )
-        $true = str_replace ( '@content@', $true, $newTrue );
-
-      if ( strpos ( $newTrue, "@$name:content@" ) !== FALSE  )
-        $true = str_replace ( "@$name:content@", $true, $newTrue );
-
-
-    } else {
-
-      padBeforeAfter ( $false, $oneBefore, $oneAfter, '@content@' ) ;
-
-      if ( $oneBefore and $oneAfter )
-        $false = $oneBefore . $newAfter . $oneAfter;
-
-      if ( strpos ( $newFalse, '@content@' ) !== FALSE  )
-        $false = str_replace ( '@content@', $false, $newFalse );
-
-      if ( strpos ( $newFalse, "@$name:content@" ) !== FALSE  )
-        $false = str_replace ( "@$name:content@", $false, $newFalse );
-
-    }
-
-  }
-
-
   function padBeforeAfter ( $input, &$before, &$after, $type ) {
 
     $len  = strlen ( $type );
@@ -823,20 +764,27 @@
   }
 
 
-  function padBetween ($content, $start, $end) {
+  function padBetween ( $string, $open, $close, &$before, &$between, &$after ) {
 
-    $pad1 = strpos($content, $start);
-    
-    if ( $pad1 !== FALSE ) {
-      $pad1 += strlen($start);
-      $pad2 = strpos($content, $end, $pad1);
-        if ( $pad2 !== FALSE)
-          return substr ($content, $pad1, $pad2-$pad1);
-    }
-    
-    return '';
-    
-  }
+    $before = $between = $after = 'XXX';
+  
+    $p1 = strpos ( $string, $open         );
+    $p2 = strpos ( $string, $close, $p1+1 );
+
+    if ( $p1 === FALSE or $p2 === FALSE )
+      return FALSE;
+
+    if ( $p1 )
+      $before  = substr ( $string, 0, $p1 ); 
+
+    $between = substr ( $string, $p1+1, ($p2-$p1) - 1 );
+
+    if ( $p2 < strlen ( $string ) )
+      $after = substr ( $string, $p2+1 );
+
+    return TRUE;
+
+  } 
 
 
   function padGetRange ( $input, $increment=1 ) {
