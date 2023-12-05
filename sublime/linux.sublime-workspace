@@ -23,6 +23,30 @@
 	},
 	"buffers":
 	[
+		{
+			"contents": "  <?php\n\n  $padContent    = $padBase [$pad];\n  $padTagContent = '';\n\n  ob_start();\n  $padTagResult = include pad . \"types/\" . $padType [$pad] . \".php\";\n  $padTagContent .= ob_get_clean();\n\n  if ( padTail ) \n    include pad . 'tail/events/go.php';\n\n  if ( padSingleValue ( $padTagResult ) ) {\n    $padTagContent .= $padTagResult;\n    $padTagResult = TRUE;\n  }\n\n  include pad . 'level/flags.php';\n  include pad . 'level/merge.php';\n\n  $padBase [$pad] = $padContent;\n  \n?>",
+			"file": "/home/herbert/pad/pad/level/go.php",
+			"file_size": 489,
+			"file_write_time": 133462212346739207,
+			"settings":
+			{
+				"buffer_size": 469,
+				"line_ending": "Windows"
+			},
+			"undo_stack":
+			[
+				[
+					1,
+					1,
+					"insert",
+					{
+						"characters": "  "
+					},
+					"AgAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAACAAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/"
+				]
+			]
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -56,11 +80,8 @@
 	},
 	"expanded_folders":
 	[
-		"/home/herbert/pad/apps/pad",
-		"/home/herbert/pad/apps/pad/_lib",
 		"/home/herbert/pad/pad",
-		"/home/herbert/pad/pad/level",
-		"/home/herbert/pad/data"
+		"/home/herbert/pad/pad/level"
 	],
 	"file_history":
 	[
@@ -288,6 +309,38 @@
 		{
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "/home/herbert/pad/pad/level/go.php",
+					"selected": true,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 469,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2,
+								2
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				}
 			]
 		}
 	],
