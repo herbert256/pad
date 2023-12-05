@@ -7,8 +7,6 @@
 
   $padTagContent = $padCallOB . padFileGetContents ("$padTagGo.pad");
 
-
-
   return $padCallPHP;
 
 ?>

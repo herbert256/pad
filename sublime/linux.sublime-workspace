@@ -19,290 +19,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "/home/herbert/pad/apps/pad/tags/properties/docs/doc1.pad",
-			"settings":
-			{
-				"buffer_size": 2569,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			},
-			"undo_stack":
-			[
-				[
-					3,
-					1,
-					"insert",
-					{
-						"characters": "mycon"
-					},
-					"BQAAABYBAAAAAAAAFwEAAAAAAAAAAAAAFwEAAAAAAAAYAQAAAAAAAAAAAAAYAQAAAAAAABkBAAAAAAAAAAAAABkBAAAAAAAAGgEAAAAAAAAAAAAAGgEAAAAAAAAbAQAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAFgEAAAAAAAAWAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					4,
-					1,
-					"insert",
-					{
-						"characters": "t"
-					},
-					"AQAAABsBAAAAAAAAHAEAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAGwEAAAAAAAAbAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					5,
-					4,
-					"left_delete",
-					null,
-					"BAAAABsBAAAAAAAAGwEAAAAAAAABAAAAdBoBAAAAAAAAGgEAAAAAAAABAAAAbhkBAAAAAAAAGQEAAAAAAAABAAAAbxgBAAAAAAAAGAEAAAAAAAABAAAAYw",
-					"AQAAAAAAAAABAAAAHAEAAAAAAAAcAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					6,
-					1,
-					"insert",
-					{
-						"characters": "Con"
-					},
-					"AwAAABgBAAAAAAAAGQEAAAAAAAAAAAAAGQEAAAAAAAAaAQAAAAAAAAAAAAAaAQAAAAAAABsBAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAGAEAAAAAAAAYAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					7,
-					1,
-					"insert",
-					{
-						"characters": "tent"
-					},
-					"BAAAABsBAAAAAAAAHAEAAAAAAAAAAAAAHAEAAAAAAAAdAQAAAAAAAAAAAAAdAQAAAAAAAB4BAAAAAAAAAAAAAB4BAAAAAAAAHwEAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAGwEAAAAAAAAbAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					8,
-					1,
-					"insert",
-					{
-						"characters": ":"
-					},
-					"AQAAAB8BAAAAAAAAIAEAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAHwEAAAAAAAAfAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					34,
-					9,
-					"left_delete",
-					null,
-					"CQAAAB8BAAAAAAAAHwEAAAAAAAABAAAAOh4BAAAAAAAAHgEAAAAAAAABAAAAdB0BAAAAAAAAHQEAAAAAAAABAAAAbhwBAAAAAAAAHAEAAAAAAAABAAAAZRsBAAAAAAAAGwEAAAAAAAABAAAAdBoBAAAAAAAAGgEAAAAAAAABAAAAbhkBAAAAAAAAGQEAAAAAAAABAAAAbxgBAAAAAAAAGAEAAAAAAAABAAAAQxcBAAAAAAAAFwEAAAAAAAABAAAAeQ",
-					"AQAAAAAAAAABAAAAIAEAAAAAAAAgAQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					35,
-					1,
-					"left_delete",
-					null,
-					"AQAAABYBAAAAAAAAFgEAAAAAAAABAAAAbQ",
-					"AQAAAAAAAAABAAAAFwEAAAAAAAAXAQAAAAAAAAAAAAAAAPC/"
-				]
-			]
-		},
-		{
-			"file": "/home/herbert/pad/pad/level/merge.php",
-			"settings":
-			{
-				"buffer_size": 378,
-				"line_ending": "Windows"
-			},
-			"undo_stack":
-			[
-			]
-		},
-		{
-			"contents": "<?php\n\n  function padContentX ( $base, $new ) {\n\n    $merge = padTagParm ( 'merge', 'replace' );\n\n    if     ( $merge == 'replace' ) return $new;\n    elseif ( $merge == 'bottom'  ) return $base . $new;\n    elseif ( $merge == 'top'     ) return $new . $base;\n\n  }\n\n  function padContentMerge ( &$true, &$false, $new, $condition, $name ) {\n\n    padBeforeAfter ( $new, $newTrue, $newFalse, '@else@' ) ;\n\n    if ( $condition ) {\n       if ( strpos ( $true, 'content@' ) === FALSE and strpos ( $newTrue, 'content@' ) === FALSE ) {\n          $true = padContentX ( $true, $newTrue );\n          return;\n       }\n    } else {\n       if ( strpos ( $false, 'content@' ) === FALSE and strpos ( $newFalse, 'content@' ) === FALSE ) {\n          $false = padContentX ( $false, $newFalse );\n          return;\n       }\n    }\n\n    if ( $condition ) {\n\n      padBeforeAfter ( $true, $oneBefore, $oneAfter, '@content@' ) ;\n\n      if ( $oneBefore and $oneAfter )\n        $true = $oneBefore . $newTrue . $oneAfter;\n      \n      if ( strpos ( $newTrue, '@content@' ) !== FALSE  )\n        $true = str_replace ( '@content@', $true, $newTrue );\n\n      if ( strpos ( $newTrue, \"@$name:content@\" ) !== FALSE  )\n        $true = str_replace ( \"@$name:content@\", $true, $newTrue );\n\n    } else {\n\n      padBeforeAfter ( $false, $oneBefore, $oneAfter, '@content@' ) ;\n\n      if ( $oneBefore and $oneAfter )\n        $false = $oneBefore . $newAfter . $oneAfter;\n\n      if ( strpos ( $newFalse, '@content@' ) !== FALSE  )\n        $false = str_replace ( '@content@', $false, $newFalse );\n\n      if ( strpos ( $newFalse, \"@$name:content@\" ) !== FALSE  )\n        $false = str_replace ( \"@$name:content@\", $false, $newFalse );\n\n    }\n\n  }\n\n\n  function padBeforeAfter ( $input, &$before, &$after, $type ) {\n\n    $len  = strlen ( $type );\n    $list = padOpenCloseList ( $input ) ;\n    $pos  = strpos ( $input, $type );\n\n    while ( $pos !== FALSE) {\n      \n      if  ( padOpenCloseCount ( substr ( $input, 0, $pos ), $list ) ) {\n        $before = substr ( $input, 0, $pos );\n        $after  = substr ( $input, $pos+$len  );\n        return;\n      }\n  \n      $pos = strpos ( $input, $type, $pos+1 );\n\n    }\n\n    $before = $input;\n    $after  = '';\n\n  }\n\n  function padFileName ( $withDir ) {\n\n    global $padFileDir, $padFileName, $padFileTimeStamp, $padFileUniqId, $padFileExtension;\n\n    if ( $withDir )\n      $name = \"$padFileDir/$padFileName\";\n    else\n      $name = $padFileName;\n\n    if ( $padFileTimeStamp )\n      $name .= '_' . padTimeStamp ();\n\n    if ( $padFileUniqId )\n      $name .= '_' . padRandomString ( $padFileUniqId );\n\n    $name .= '.' . $padFileExtension;\n\n    return $name;\n\n  }\n\n\n  function padTimeStamp () {\n\n    $now = DateTime::createFromFormat('U.u', sprintf('%.6f', microtime(TRUE)));\n  \n    return $now->format('YmdHisu');\n\n  }\n\n\n  function padSessionStart () {\n\n    return [\n        'session'   => $GLOBALS ['padSesID'] ?? '',\n        'request'   => $GLOBALS ['padReqID'] ?? '',\n        'parent'    => $GLOBALS ['padRefID'] ?? '',\n        'page'      => $GLOBALS ['padPage'] ?? '',\n        'start'     => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0\n      ];\n\n  }\n\n\n  function padSessionEnd () {\n  \n    $session = [\n        'session'   => $GLOBALS ['padSesID'] ?? '',\n        'request'   => $GLOBALS ['padReqID'] ?? '',\n        'stop'      => $GLOBALS ['padStop'] ?? '',\n        'end'       => microtime(true),\n        'length'    => $GLOBALS ['padLen'] ?? 0,\n        'etag'      => $GLOBALS ['padEtag'] ?? ''\n      ];\n\n    if ( isset ( $GLOBALS ['padStatsUser'] ) ) {\n        $session ['duration'] = padDuration ();\n        $session ['system']   = $GLOBALS ['padStatsSystem'];\n        $session ['user']     = $GLOBALS ['padStatsUser'];\n    }\n\n    return $session;\n\n  }\n\n\n  function padInsideOther () {\n\n    global $padTag, $pad;\n\n    for ( $i=$pad; $i; $i--) {\n      if ( $padTag [$i] == 'include' ) return TRUE;\n      if ( $padTag [$i] == 'page'    ) return TRUE;\n      if ( $padTag [$i] == 'example' ) return TRUE;\n    }\n\n    return FALSE;\n\n  }\n\n\n  function padEmptyBuffers () {\n\n    set_error_handler ( 'padErrorThrow' );\n\n    try {\n\n      $o = '';\n      $j = ob_get_level (); \n     \n      for ( $i = 1; $i <= $j; $i++ ) \n        $o .= ob_get_clean ();\n\n      return $o;\n\n    } catch (Throwable $ignored) {\n\n    }\n\n    restore_error_handler ();\n\n  }\n\n\n  function padCheckBuffers () {\n\n    $output = padEmptyBuffers ();\n\n    if ( trim($output) )\n      return padError ( \"Illegal output: '$output'\" );\n\n  }\n\n\n  function padCloseWithPath () {\n\n    global $pad, $padOpt;\n\n    if ( $padOpt [$pad] [0] and \n         substr_count ( $padOpt [$pad] [0], '{' ) and \n         substr_count ( $padOpt [$pad] [0], '}' ) ) \n\n      return TRUE;\n\n    return FALSE;\n\n  }\n\n\n  function padStartAndClose ( $go ) {\n\n    global $pad, $padWalk, $padPrmType;\n\n    if ( $padWalk [$pad] == 'start' and $padPrmType [$pad] == 'close' ) {\n      $padWalk [$pad] = $go;\n      return TRUE;\n    }\n\n    return FALSE;\n\n  }\n\n\n  function padSingleValue ( $value ) {\n\n    if ( is_array        ( $value ) or\n         is_object       ( $value ) or\n         is_resource     ( $value ) or \n         padSpecialValue ( $value ) )\n\n      return FALSE;\n\n    return TRUE;\n\n  }\n\n\n  function padSpecialValue ( $value ) {\n\n    if     ( $value === FALSE ) return TRUE;  \n    elseif ( $value === TRUE  ) return TRUE;     \n    elseif ( $value === NULL  ) return TRUE;   \n    elseif ( $value === INF   ) return TRUE;   \n    elseif ( $value === NAN   ) return TRUE;   \n    else                        return FALSE; \n\n  }\n\n\n  function padContentCheck ( $content ) {\n\n    foreach ( padDirs () as $key => $value ) {\n\n      $file = substr (padApp, 0, -1) . $value . \"_content/$content.pad\";\n\n      if ( file_exists ($file) ) \n        return TRUE;\n\n    }\n\n    return FALSE;\n\n  }  \n\n\n  function padContentData ( $content ) {\n\n    foreach ( padDirs () as $key => $value ) {\n\n      $file = substr (padApp, 0, -1) . $value . \"_content/$content.pad\";\n\n      if ( file_exists ($file) ) \n        return padFileGetContents ($file);\n\n    }\n\n    return '';\n\n  }  \n\n\n  function padInclFileName ( $check ) {\n\n    foreach ( padDirs () as $key => $value ) {\n\n      $file = substr (padApp, 0, -1) . $value . \"_includes/$check\";\n\n      if ( file_exists ($file) and ! is_dir($file) ) return $file;\n      if ( file_exists (\"$file.php\")               ) return \"$file.php\";\n      if ( file_exists (\"$file.pad\")               ) return \"$file.pad\";\n\n    }\n\n    return '';\n\n  }\n\n\n  function padDataFileName ( $check ) {\n\n    foreach ( padDirs () as $key => $value ) {\n\n      $file = substr (padApp, 0, -1) . $value . \"_data/$check\";\n\n      if ( file_exists ($file) and ! is_dir($file) ) return $file;\n      if ( file_exists (\"$file.xml\")               ) return \"$file.xml\";\n      if ( file_exists (\"$file.json\")              ) return \"$file.json\";\n      if ( file_exists (\"$file.yaml\")              ) return \"$file.yaml\";\n      if ( file_exists (\"$file.csv\")               ) return \"$file.csv\";\n      if ( file_exists (\"$file.php\")               ) return \"$file.php\";\n\n    }\n\n    return '';\n\n  }\n\n\n function padDataFileData ( $padLocalFile ) {\n  \n    return include pad . 'types/go/local.php';\n\n  }\n\n\n  function padDataForcePad ($data) {\n\n    $result = [];\n\n    foreach ( $data as $name => $value) {\n      $result [$name] ['name'] = $name;      \n      $result [$name] ['value'] = $value;      \n    }\n\n    return $result;\n \n  }\n\n\n  function padValidFirstChar ($char) {\n\n    if ( $char == '@'         ) return TRUE;\n    if ( ctype_alpha ( $char) ) return TRUE;\n\n    return FALSE;\n \n  }\n\n\n  function padAtCheck ( $item ) {\n\n    if ( str_contains($item, '@') ) \n      return TRUE;\n    \n    return FALSE;\n\n  }\n\n\n  function padGetTrueFalse ( $input, &$true, &$false ) {\n\n    $true  = $input;\n    $false = '';\n\n    $list = padOpenCloseList ( $true ) ;\n    $pos  = strpos ( $true, '@else@');\n\n    while ( $pos !== FALSE) {\n      \n      if  ( padOpenCloseCount ( substr ( $true, 0, $pos ), $list) ) {\n        $false = substr ( $true, $pos+6  );\n        $true  = substr ( $true, 0, $pos );\n        return;\n      }\n  \n      $pos = strpos ( $true, '@else@', $pos+1);\n\n    }\n\n  }\n\n\n  function padCorrectPath ( $in ) {\n\n    return str_replace ('\\\\',  '/', $in );\n        \n  }\n\n\n function padAddIds ( $url ) {\n\n    $url = padAddGet ( $url, 'padSesID', $GLOBALS ['padSesID'] );\n    $url = padAddGet ( $url, 'padReqID', $GLOBALS ['padReqID'] );\n\n    return $url;\n\n  }\n\n      \n  function padTidy ( $data, $fragment=FALSE ) {\n\n    $config = $GLOBALS ['padTidyConfig'];\n\n    if ( $fragment \n         or isset ( $_REQUEST ['padInclude'] ) \n         or isset ( $GLOBALS  ['padInclude']  ) )\n      $config ['show-body-only'] = true;\n\n    $tidy = new tidy;\n    $tidy->parseString($data, $config, 'utf8');\n    $tidy->cleanRepair();\n\n    $GLOBALS ['lastTidy'] = $tidy;\n\n    if ( $tidy->value === NULL ) \n      return $data;\n    else\n      return $tidy->value;\n\n  }  \n\n\n  function padDirs () {\n\n    $padIncDirs  = padExplode ( $GLOBALS ['padDir'], '/' );\n    $padIncDir   = '';\n    $padIncCheck = [];\n    \n    foreach ( $padIncDirs as $padK => $padV ) {\n      $padIncDir .= \"$padV/\";\n      $padIncCheck [] = '/' . $padIncDir;\n    }\n\n    $padIncCheck    = array_reverse ($padIncCheck);\n    $padIncCheck [] = '/';\n\n    return $padIncCheck;\n\n  }\n\n\n  function padDir () {\n\n    global $padPage;\n\n    if ( str_contains ( $padPage, '/') )\n      return substr ( $padPage, 0, strrpos ($padPage, '/') );\n    else\n      return '';\n\n  }\n\n\n  function padPath () {\n\n    global $padDir;\n\n    if ( ! $padDir )\n      return substr ( padApp, -1 );\n    else\n      return padApp . $padDir;\n\n  }\n\n\n  function padAddGet ($url, $key, $val ) {\n    \n    $str = ( strpos ($url, '?' ) === FALSE ) ? '?' : '&';\n    \n    return $url . $str . $key . '=' . urlencode($val);\n\n  }\n\n\n  function padContent2 () {\n \n    global $pad, $padBase, $padOpt;\n\n    if ( $padBase [$pad] )\n      return $padBase [$pad];\n\n    if ( $padOpt [$pad] [1] )\n      return $padOpt [$pad] [1];\n\n    return '';\n\n  }\n\n\n  function padOpenCloseOk ( $string, $check) {\n\n    if ( strpos ( $string, $check ) === FALSE )\n      return FALSE;\n\n    list ( $dummy, $string ) = explode ( $check, '.' . $string . '.', 2 );\n\n    $tags = padOpenCloseList ( $string );\n\n    return padOpenCloseCount ( $string, $tags);\n\n  }\n\n\n  function padOpenCloseList ( $string ) {\n\n    $tags = [];\n    \n    $p1 = strpos($string, '{/', 0);\n\n    while ($p1 !== FALSE) {\n\n      $p2 = strpos($string, '}', $p1);\n\n      if ( $p2 !== FALSE ) {\n\n        $p3 = strpos($string, ' ', $p1);\n        if ($p3 !== FALSE and $p3 < $p2 )\n          $p2 = $p3;      \n\n        $tag = substr($string, $p1+2, $p2-$p1-2);\n        if ( padValidTag ($tag) )\n          $tags [$tag] = TRUE;\n\n      }\n\n      $p1 = strpos($string, '{/', $p1+1);\n\n    }\n\n    return $tags;\n\n  }\n\n  function padOpenCloseCount ( $string, $tags ) {\n\n   foreach ( $tags as $tag => $dummy )\n      if ( ! padOpenCloseCountOne ( $string, $tag ) )\n        return FALSE;\n\n    return TRUE;  \n\n  }\n\n  function padOpenCloseCountOne ( $string, $tag ) {\n\n    if ( ( substr_count($string, '{'.$tag.' ' ) + substr_count($string, '{'.$tag.'}' ) )\n           <> \n         ( substr_count($string, '{/'.$tag.' ') + substr_count($string, '{/'.$tag.'}') ) )\n      return FALSE;\n\n    return TRUE;  \n\n  }\n\n\n  function padCheckTag ($tag, $string) {\n\n    return ( substr_count($string, \"{\".$tag.' ') == substr_count($string, \"{/\" . $tag.'}') ) ;\n\n  }\n\n\n  function padSplit ( $needle, $haystack ) {\n\n    $array = explode ( $needle, $haystack, 2 );\n\n    if ( count ($array) == 0 )\n      $array [] = '';\n\n    if ( count ($array) == 1 )\n      $array [] = '';\n\n    $array [0] = trim($array [0]);\n    $array [1] = trim($array [1]);\n\n    return $array;\n\n  }\n\n\n  function padID () {\n\n    return $GLOBALS ['padReqID'] ?? uniqid (TRUE);\n\n  }\n\n\n  function padMakeSafe ( $input, $len=2048 ) {\n\n    if ( is_array($input) or is_object($input) ) \n      $input = padJson ($input);\n\n    $input = preg_replace('/[\\x00-\\x1F\\x7F-\\xFF]/', ' ', $input);\n    $input = preg_replace('/\\s+/', ' ', $input);\n    \n    if ( strlen($input) > $len )\n      $input = substr ( $input, 0, $len );\n    \n    $input = trim($input);\n\n    return $input;\n\n  }\n\n\n\n  function padExplode ( $haystack, $limit, $number=0 ) {\n\n    if ($number)\n      $explode = explode ( $limit, $haystack, $number );\n    else\n      $explode = explode ( $limit, $haystack );\n    \n    foreach ($explode as $key => $value ) {\n\n      $explode[$key] = trim($value);\n    \n      if ( $limit == '|' ) $explode [$key] = str_replace ( '&pipe;',  '|', $explode [$key] );\n      if ( $limit == '=' ) $explode [$key] = str_replace ( '&eq;',    '=', $explode [$key] );\n      if ( $limit == ',' ) $explode [$key] = str_replace ( '&comma;', ',', $explode [$key] );\n    \n      if ( $explode[$key] === '' )\n        unset ( $explode[$key] );\n\n    }\n\n    return array_values ( $explode );\n    \n  }\n\n\n  function padJson ( $data ) {\n\n    set_error_handler ( 'padErrorThrow' );\n\n    try {\n\n      return json_encode ( $data, JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK );\n    \n    } catch (Throwable $e) {\n\n      return '{}';\n\n    }\n\n    restore_error_handler ();    \n\n  }\n\n\n  function padToArray ($xxx) {\n\n    if ( is_array($xxx) )\n      return ($xxx);\n\n    set_error_handler ( function ($s, $m, $f, $l) { return; } );\n    $error_level = error_reporting(0);\n\n    $array = [];\n\n    try {\n      $array = (array) $xxx;\n    }\n    catch (Throwable $e) {\n      $array = [];\n    }\n    \n    if     ( $array === NULL     )  $array = [];\n    elseif ( ! is_array ($array) )  $array = [];\n\n    error_reporting($error_level);\n    restore_error_handler();\n\n    return $array;\n    \n  }\n  \n      \n  function padHeader ($header) {\n\n    if ( ! headers_sent () )\n      header ($header);\n\n    $GLOBALS ['padHeaders'] [] = $header;\n \n  }\n\n\n  function padFieldName ($parm) {\n    \n    return (substr($parm, 0, 1) == '$') ? substr($parm, 1) : $parm;\n\n  }\n\n\n  function padMD5 ($input) {\n    return substr(padBase64(padPack(md5($input))),0,22);\n  }\n  \n  function padMD5Unpack ($input) {\n    return padUnpack(padUnbase64 ($input.'=='));\n  }\n\n  function padPack ($data) {\n    return pack('H*',$data);\n  }\n\n  function padUnpack ($data) {\n    return unpack('H*',$data)[1];\n  }\n\n  function padBase64 ($string) {\n    return strtr(base64_encode($string),'+/','_-');\n  }\n\n  function padUnbase64 ($string) {\n    return base64_decode(strtr($string,'_-','+/'));\n  }\n\n  function padRandomString ($len=8) {\n    $random = ceil(($len/4)*3);\n    $random = random_bytes($random);\n    $random = base64_encode($random);\n    $random = substr($random,0,$len);\n    $random = str_replace ( '+', padRandomChar(), $random );\n    $random = str_replace ( '/', padRandomChar(), $random );\n    return $random;\n  }\n\n  function padRandomChar () {\n    $random = mt_rand(0,61);\n    return ($random < 10) ? chr($random+48) : ($random < 36 ? chr($random+55) : chr($random+61));\n  }\n\n\n  function padUnescape ( $string ) {\n\n    return str_replace ( [ '&open;','&close;','&pipe;', '&eq;','&comma;','&at;' ], \n                         [ '{',     '}',      '|',      '=',   ',',      '@'    ], \n                         $string );\n  }\n  \n\n  function padEscape ( $string ) {\n\n    return str_replace ( [ '{',     '}',      '|',      '=',    ',',     '@'    ], \n                         [ '&open;','&close;','&pipe;', '&eq;','&comma;','&at;' ], \n                         $string );\n  }\n\n\n  function padPad ($value) {\n\n    global $padPad, $padStart, $padEnd, $pad;\n\n    $padPad [$pad] = \n        substr ( $padPad [$pad], 0, $padStart [$pad] )\n      . $value\n      . substr ( $padPad [$pad],    $padEnd [$pad]+1 );\n    \n  }\n  \n\n  function padZip ($data) {\n\n    return gzencode($data);\n\n  }\n\n\n  function padUnzip ($data) {\n\n    return gzdecode($data);\n\n  }\n  \n  \n  function padDuration () {\n\n    $duration = (int) ( ( microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'] ) * 1000000 );\n\n    return $duration;\n\n  }\n\n\n  function padBetween ($content, $start, $end) {\n\n    $pad1 = strpos($content, $start);\n    \n    if ( $pad1 !== FALSE ) {\n      $pad1 += strlen($start);\n      $pad2 = strpos($content, $end, $pad1);\n        if ( $pad2 !== FALSE)\n          return substr ($content, $pad1, $pad2-$pad1);\n    }\n    \n    return '';\n    \n  }\n\n\n  function padGetRange ( $input, $increment=1 ) {\n\n    $parts = padExplode ($input, '..');\n\n    return range ( $parts[0], $parts[1], $increment );\n\n  }\n\n\n  function padGetList ( $list ) {\n\n    $list = explode ( ';', $list );\n\n    foreach ( $list as $key => $value)\n      if ( is_numeric ($value) )\n        $list [$key] = intval($value);\n\n    return $list;\n\n  }\n\n  \n  function padFunctionInTag ( $name, $value, $ops ) {\n  \n    $parms = [];\n   \n    foreach ( $ops as $key => $value )\n      if ( $key > 0)\n        $parms [] = $value;\n   \n    $count = count ( $parms );\n\n    if ( file_exists ( padApp . \"_functions/$name.php\" ) )\n      $padCall = padApp . \"_functions/$name.php\";\n    else\n      $padCall = pad  . \"_functions/$name.php\";\n\n    return include pad . 'call/any.php';\n\n  }\n\n \n  function padMakeFlag ( $input ) {\n\n    if     ( $input === NULL  )          return FALSE;\n    elseif ( $input === FALSE )          return FALSE;\n    elseif ( $input === TRUE  )          return TRUE;\n    elseif ( strlen(trim($input)) == 0 ) return FALSE;\n\n    if ( is_array ($input) or is_object ($input) or is_resource ($input) )  {\n\n      $array = padToArray( $input );\n\n      if ( padIsDefaultData ( $array )  )\n        return FALSE;\n\n      if ( count ( $array ) )\n        return TRUE; \n      else\n        return FALSE;\n\n    }\n \n    if ( padEval($input) )\n      return TRUE; \n    else\n      return FALSE;\n\n  }\n\n\n  function padMakeContent ( $input ) {    \n\n    if     ( $input === NULL        )  return '';\n    elseif ( $input === FALSE       )  return '';\n    elseif ( $input === TRUE        )  return '1';\n    else                               return $input; \n\n  }\n\n\n  function padSetGlobalLvl ( $name, $value ) {\n\n    if ( ! padValidVar($name) ) \n      return;\n\n    if ( $value === NULL )\n      $value = '';\n\n    global $pad, $padSaveLvl, $padDeleteLvl;\n    \n    if ( array_key_exists($name, $GLOBALS) and ! array_key_exists ($name, $padSaveLvl [$pad]) )\n      $padSaveLvl [$pad] [$name] = $GLOBALS [$name];\n\n    if ( ! array_key_exists ($name,  $GLOBALS) )\n      $padDeleteLvl [$pad] [] = $name;\n    else\n      unset ( $GLOBALS [$name] );\n\n    $GLOBALS [$name] = $value;\n\n  }\n\n  function padSetGlobalOcc ( $name, $value ) {\n\n    if ( ! padValidVar($name) ) \n      return;\n\n    if ( $value === NULL )\n      $value = '';\n\n    global $pad, $padSaveOcc, $padDeleteOcc;\n    \n    if ( array_key_exists($name, $GLOBALS) and ! array_key_exists ($name, $padSaveOcc [$pad]) )\n      $padSaveOcc [$pad] [$name] = $GLOBALS [$name];\n\n    if ( ! array_key_exists ($name,  $GLOBALS) )\n      $padDeleteOcc [$pad] [] = $name;\n    else\n      unset ( $GLOBALS [$name] );\n\n    $GLOBALS [$name] = $value;\n\n  }\n\n\n  function padResetLvl () {\n\n    global $pad, $padSaveLvl, $padDeleteLvl;\n\n    foreach ( $padSaveLvl [$pad] as $key => $value) {\n      if ( isset ( $GLOBALS [$key] ) ) \n        unset ($GLOBALS [$key] );\n      $GLOBALS [$key] = $value;\n    }\n\n    foreach ( $padDeleteLvl [$pad] as $key)\n      if ( isset ( $GLOBALS [$key] ) )\n        unset ( $GLOBALS [$key] );\n\n  }\n\n\n  function padResetOcc () {\n\n    global $pad, $padSaveOcc, $padDeleteOcc;\n\n    foreach ( $padSaveOcc [$pad] as $key => $value) {\n      if ( isset ( $GLOBALS [$key] ) ) \n        unset ($GLOBALS [$key] );\n      $GLOBALS [$key] = $value;\n    }\n\n    foreach ( $padDeleteOcc [$pad] as $key)\n      if ( isset ( $GLOBALS [$key] ) )\n        unset ( $GLOBALS [$key] );\n\n  }\n\n\n  function padIgnore ($info) {\n\n    global $padBetween;\n\n    padPad ( '&open;' . $padBetween . '&close;' );\n\n    return FALSE;\n    \n  }\n\n\n  function padDefaultData () {\n    \n    return [ 999 => [] ];\n\n  }\n\n\n  function padIsDefaultData ( $data ) {\n    \n    if ( ! is_array ( $data ) ) return FALSE;\n    if ( count ( $data ) <> 1 ) return FALSE;\n\n    $key = array_key_first ( $data );\n\n    if ( ! is_array ( $data [$key] ) ) return FALSE;\n    if ( count ( $data [$key] )      ) return FALSE;\n    \n    return TRUE;\n\n  }\n\n\n  function padChkLevel ($tag) {\n\n    global $padCurrent, $pad;\n\n    for ( $search = $pad; $search>=0; $search-- )\n      if ( isset ( $padCurrent [$search] [$tag] ) and is_array ( $padCurrent [$search] [$tag]) )\n        return TRUE;\n\n    return FALSE;\n\n  }\n\n\n  function padGetLevelArray ($tag) {\n\n    global $padCurrent, $pad;\n\n    for ( $search = $pad; $search>=0; $search-- )\n      if ( isset ( $padCurrent [$search] [$tag] ) and is_array ( $padCurrent [$search] [$tag]) )\n        return $padCurrent [$search] [$tag];\n\n  }\n\n\n  function padCheckValue ($value) {\n\n    if     ($value === NULL)      return '';\n    elseif ($value === TRUE)      return '1';\n    elseif ($value === FALSE)     return '';\n    elseif (is_array($value))     return '';\n    elseif (is_object($value))    return '';\n    elseif (is_resource($value))  return '';\n    else                          return $value;                       \n    \n  }\n\n\n  function padTagParm ($parm, $default='') {\n\n    global $pad, $padPrm;\n\n    padDone ($parm);\n\n    if ( isset ( $padPrm [$pad] [$parm] ) )\n      return $padPrm [$pad] [$parm];\n    else\n      return $default;\n\n  }\n\n\n  function padDone ($var, $val=TRUE) {\n\n    global $pad;\n    \n    $GLOBALS ['padDone'] [$GLOBALS ['pad']] [$var] = $val;\n\n  }   \n\n\n  function padVarOpts ($val, $opts) {\n  \n    foreach($opts as $opt) {\n        \n      $padAppend  = (substr($opt, 0, 1) == '.');\n      $padPrepend = (substr($opt, -1)   == '.');\n  \n      if ($padAppend)   $opt = trim(substr($opt,1));\n      if ($padPrepend)  $opt = trim(substr($opt,0,-1));\n  \n      $now = (substr($opt, 0, 1) == '%') ? sprintf($opt, $val) : padEval ($opt, $val);\n     \n      if ( $padAppend )                     $val = $val . $now;\n      if ( $padPrepend )                    $val = $now . $val;\n      if ( ! $padAppend and ! $padPrepend ) $val = $now;\n\n    }\n\n    return $val;\n    \n  }\n\n  \n  function padContentType ( &$content ) {\n\n    $content = trim ( $content );\n\n    if ( substr($content, 0, 1) == '(' and substr($content, -1) == ')' )\n      $type = 'list';\n    elseif ( substr ($content, 0, 6) == '&open;') \n      $type = 'json';\n    elseif ( substr ($content, 0, 5) == '%YAML' )\n      $type = 'yaml';\n    elseif ( substr ($content, 0, 3) == '---' )\n      $type = 'yaml';\n    elseif ( substr ( $content, 0, 5) == '<?xml')\n      $type = 'xml';\n    elseif ( strpos ( $content, '<!DOCTYPE') !== FALSE ) {\n      $open   = strpos  ($content, '<!DOCTYPE');\n      $close  = strpos  ($content, '>', $open);\n      $check  = stripos ($content, 'pad', $open);\n      if ($check !== FALSE and $check < $close )\n        $type = 'pad';\n      else\n        $type = 'xml';\n    }\n    elseif ( substr ($content, 9, 5) == '<html' )\n      $type = 'html';\n    elseif ( substr($content, 0, 1) == '<')\n      $type = 'xml';\n    elseif ( substr($content, 0, 1) == '{')\n      $type = 'json';\n    elseif ( substr($content, 0, 1) == '[')\n      $type = 'json';\n    elseif ( substr($content, 0, 1) == '(')\n      $type = 'json';\n    elseif ( substr($content, -1) == ')')\n      $type = 'json';\n    else\n      $type = '';\n      \n    if ( $type )\n      return $type;\n\n    $first = strpos ($content, '({');\n    $last  = strpos ($content, '})');\n    if ($first !== FALSE and $last !== FALSE and $first < $last ) {\n      $type = 'json';\n      $content = substr($content, $first+1, $last-$first);\n      return $type;\n    }\n\n    $first = strpos ($content, '([');\n    $last  = strpos ($content, '])');\n    if ($first !== FALSE and $last !== FALSE and $first < $last ) {\n      $type = 'json';\n      $content = substr($content, $first+1, $last-$first);\n      return $type;\n    }\n\n    $parts = padExplode ($content, '..');\n    if ( count ($parts) == 2 and ctype_alnum($parts[0]) and ctype_alnum($parts[1]) )\n      return 'range';\n\n    if ( str_starts_with ( strtolower ( $content ), 'http:' ) \n      or str_starts_with ( strtolower ( $content ), 'https:' )  )\n      return 'curl';\n\n    if ( padDataFileName ( $content ) )\n      return 'file';\n\n    return 'csv';\n\n  }\n\n\n  function padVarToTxt ( $source ) {\n\n    if ( is_array ($source) and ! count($source) )\n      return;\n\n    if ( is_array($source) )\n      padDumpClean ($source);\n\n    $return = '';\n    $lines  = explode ( \"\\n\", htmlentities ( print_r ( $source, TRUE ) ) );\n\n    foreach ( $lines as $value )  {\n\n      if ( ! trim($value)          ) continue;\n      if ( trim($value) == '('     ) continue;\n      if ( trim($value) == ')'     ) continue;\n      if ( trim($value) == 'Array' ) continue;\n\n      $value = str_replace ( '=&gt; Array', '', $value );\n\n      $return .= \"  $value\\n\";\n   \n    }\n\n    return '<table><tr></td><pre>' . trim($return) . '</pre></td></tr></table>';\n\n  } \n\n  \n  function padValidStore ($fld) {\n\n    if ( substr($fld, 0,3) == 'pad')\n      return FALSE;\n\n    if ( in_array ( $fld, ['GLOBALS','_POST','_GET','_COOKIE','_SESSION','_FILES','_SERVER','_REQUEST','_ENV'] ) )\n      return FALSE;\n\n    return TRUE;\n\n\n  }\n\n\n  function padDataFilterGo (&$vars, $start, $end) {\n\n    $now = 0;\n    foreach ( $vars as $key => $value ) {\n      $now++;\n      if ($now < $start or $now > $end)\n        unset($vars [$key]);\n    }\n\n  }\n\n  \n?>",
-			"file": "/home/herbert/pad/pad/lib/other.php",
-			"file_size": 26655,
-			"file_write_time": 133460670602436557,
-			"settings":
-			{
-				"buffer_size": 25445,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			},
-			"undo_stack":
-			[
-				[
-					4,
-					5,
-					"left_delete",
-					null,
-					"BQAAAJMGAAAAAAAAkwYAAAAAAAABAAAAcpIGAAAAAAAAkgYAAAAAAAABAAAAZZEGAAAAAAAAkQYAAAAAAAABAAAAdJAGAAAAAAAAkAYAAAAAAAABAAAAZo8GAAAAAAAAjwYAAAAAAAABAAAAQQ",
-					"AQAAAAAAAAABAAAAlAYAAAAAAACUBgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					5,
-					1,
-					"insert",
-					{
-						"characters": "Tru"
-					},
-					"AwAAAI8GAAAAAAAAkAYAAAAAAAAAAAAAkAYAAAAAAACRBgAAAAAAAAAAAACRBgAAAAAAAJIGAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAjwYAAAAAAACPBgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					6,
-					1,
-					"insert",
-					{
-						"characters": "e"
-					},
-					"AQAAAJIGAAAAAAAAkwYAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAkgYAAAAAAACSBgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					7,
-					4,
-					"left_delete",
-					null,
-					"BAAAAJIGAAAAAAAAkgYAAAAAAAABAAAAZZEGAAAAAAAAkQYAAAAAAAABAAAAdZAGAAAAAAAAkAYAAAAAAAABAAAAco8GAAAAAAAAjwYAAAAAAAABAAAAVA",
-					"AQAAAAAAAAABAAAAkwYAAAAAAACTBgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					8,
-					1,
-					"insert",
-					{
-						"characters": "Fa"
-					},
-					"AgAAAI8GAAAAAAAAkAYAAAAAAAAAAAAAkAYAAAAAAACRBgAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAjwYAAAAAAACPBgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					10,
-					1,
-					"insert_completion",
-					{
-						"completion": "newFalse",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "newFalse"
-					},
-					"AgAAAIwGAAAAAAAAjAYAAAAAAAAFAAAAbmV3RmGMBgAAAAAAAJQGAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAkQYAAAAAAACRBgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					14,
-					3,
-					"left_delete",
-					null,
-					"AwAAAAsGAAAAAAAACwYAAAAAAAABAAAAcgoGAAAAAAAACgYAAAAAAAABAAAAZQkGAAAAAAAACQYAAAAAAAABAAAAdA",
-					"AQAAAAAAAAABAAAADAYAAAAAAAAMBgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					15,
-					2,
-					"left_delete",
-					null,
-					"AgAAAAgGAAAAAAAACAYAAAAAAAABAAAAZgcGAAAAAAAABwYAAAAAAAABAAAAQQ",
-					"AQAAAAAAAAABAAAACQYAAAAAAAAJBgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					16,
-					1,
-					"insert",
-					{
-						"characters": "F"
-					},
-					"AQAAAAcGAAAAAAAACAYAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAABwYAAAAAAAAHBgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					17,
-					1,
-					"insert_completion",
-					{
-						"completion": "newFalse",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "newFalse"
-					},
-					"AgAAAAQGAAAAAAAABAYAAAAAAAAEAAAAbmV3RgQGAAAAAAAADAYAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAACAYAAAAAAAAIBgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					22,
-					5,
-					"left_delete",
-					null,
-					"BQAAALEFAAAAAAAAsQUAAAAAAAABAAAAcrAFAAAAAAAAsAUAAAAAAAABAAAAZa8FAAAAAAAArwUAAAAAAAABAAAAdK4FAAAAAAAArgUAAAAAAAABAAAAZq0FAAAAAAAArQUAAAAAAAABAAAAQQ",
-					"AQAAAAAAAAABAAAAsgUAAAAAAACyBQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					23,
-					1,
-					"insert",
-					{
-						"characters": "F"
-					},
-					"AQAAAK0FAAAAAAAArgUAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAArQUAAAAAAACtBQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					24,
-					1,
-					"insert_completion",
-					{
-						"completion": "newFalse",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "newFalse"
-					},
-					"AgAAAKoFAAAAAAAAqgUAAAAAAAAEAAAAbmV3RqoFAAAAAAAAsgUAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAArgUAAAAAAACuBQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					26,
-					5,
-					"left_delete",
-					null,
-					"BQAAAC0GAAAAAAAALQYAAAAAAAABAAAAciwGAAAAAAAALAYAAAAAAAABAAAAZSsGAAAAAAAAKwYAAAAAAAABAAAAdCoGAAAAAAAAKgYAAAAAAAABAAAAZikGAAAAAAAAKQYAAAAAAAABAAAAQQ",
-					"AQAAAAAAAAABAAAALgYAAAAAAAAuBgAAAAAAAAAAAAAAAG1A"
-				],
-				[
-					27,
-					1,
-					"insert",
-					{
-						"characters": "F"
-					},
-					"AQAAACkGAAAAAAAAKgYAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAKQYAAAAAAAApBgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					28,
-					1,
-					"insert_completion",
-					{
-						"completion": "newFalse",
-						"format": "text",
-						"keep_prefix": false,
-						"must_insert": false,
-						"trigger": "newFalse"
-					},
-					"AgAAACYGAAAAAAAAJgYAAAAAAAAEAAAAbmV3RiYGAAAAAAAALgYAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAKgYAAAAAAAAqBgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					31,
-					1,
-					"left_delete",
-					null,
-					"AQAAAOEEAAAAAAAA4QQAAAAAAAABAAAACg",
-					"AQAAAAAAAAABAAAA4gQAAAAAAADiBAAAAAAAAAAAAAAAAPC/"
-				]
-			]
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -336,21 +52,23 @@
 	},
 	"expanded_folders":
 	[
-		"/home/herbert/pad/apps/pad",
-		"/home/herbert/pad/apps/pad/vars",
 		"/home/herbert/pad/pad",
-		"/home/herbert/pad/pad/level",
+		"/home/herbert/pad/pad/_tags",
 		"/home/herbert/pad/data"
 	],
 	"file_history":
 	[
-		"/home/herbert/pad/apps/pad/develop/_inits.php",
-		"/home/herbert/pad/pad/level/merge.php",
+		"/home/herbert/pad/pad/types/go/tag.php",
+		"/home/herbert/pad/apps/pad/manual/the_content_tag.pad",
+		"/home/herbert/pad/pad/level/go.php",
 		"/home/herbert/pad/pad/lib/other.php",
-		"/home/herbert/pad/apps/pad/_lib/menu.php",
+		"/home/herbert/pad/pad/level/merge.php",
 		"/home/herbert/pad/apps/pad/test.pad",
 		"/home/herbert/pad/apps/pad/tags/properties/docs/doc1.pad",
-		"/home/herbert/pad/pad/level/go.php",
+		"/home/herbert/pad/apps/pad/tags/properties/docs/doc2.pad",
+		"/home/herbert/pad/pad/build/base.php",
+		"/home/herbert/pad/apps/pad/develop/_inits.php",
+		"/home/herbert/pad/apps/pad/_lib/menu.php",
 		"/home/herbert/pad/pad/config/config.php",
 		"/home/herbert/pad/apps/pad/test/index.pad",
 		"/home/herbert/pad/pad/config/tail/none.php",
@@ -439,7 +157,6 @@
 		"/home/herbert/pad/pad/level/flags.php",
 		"/home/herbert/pad/apps/pad/manual/triple.php",
 		"/home/herbert/pad/apps/pad/manual/triple.pad",
-		"/home/herbert/pad/apps/pad/manual/the_content_tag.pad",
 		"/home/herbert/pad/pad/_options/else.php",
 		"/home/herbert/scripts/repos.sh",
 		"/home/herbert/root/install/php/pecl_xdebug",
@@ -457,6 +174,8 @@
 		"height": 104.0,
 		"where_history":
 		[
+			"",
+			"/home/herbert/pad/pad/build,<project filters>",
 			""
 		]
 	},
@@ -465,6 +184,9 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"padTagContent",
+			"<table border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\">",
+			"@content@",
 			"reference/reference",
 			"name",
 			"&open;$name&close;",
@@ -544,100 +266,6 @@
 		{
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/home/herbert/pad/apps/pad/tags/properties/docs/doc1.pad",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2569,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								278,
-								278
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/home/herbert/pad/pad/level/merge.php",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 378,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/home/herbert/pad/pad/lib/other.php",
-					"selected": true,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 25445,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1249,
-								1249
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 385.5,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"stack_multiselect": false,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -680,7 +308,7 @@
 	"project": "linux.sublime-project",
 	"replace":
 	{
-		"height": 72.0
+		"height": 52.0
 	},
 	"save_all_on_build": true,
 	"select_file":

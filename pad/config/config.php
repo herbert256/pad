@@ -82,5 +82,4 @@
   $padNoNo      = FALSE;  // No pad stuff, just plane PHP   
   $padFastLink  = 32;     // Lenght of the FastLink code in the URL
 
-
 ?>
