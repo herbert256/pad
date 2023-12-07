@@ -17,7 +17,7 @@
       $padFalse = substr ( $padBase [$pad], $padPos+6  );
       $padBase  [$pad] = substr ( $padBase [$pad], 0, $padPos );
       if ( padXref ) 
-        include pad . 'tail/types/xref/items/else.php';
+        include pad . 'info/types/xref/items/else.php';
       return;
     }
 

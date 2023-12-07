@@ -1,7 +1,7 @@
 <?php
 
   if ( padXref ) 
-    include pad . 'tail/types/xref/items/setup.php';
+    include pad . 'info/types/xref/items/setup.php';
 
   $padBetween   = 'PAD';
   $padWords     = [];

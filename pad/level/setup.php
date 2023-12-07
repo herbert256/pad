@@ -67,7 +67,7 @@
   $padFalse         = '';  
 
 
-  if ( padTail )
-    include pad . 'tail/events/setup.php';
+  if ( padInfo )
+    include pad . 'info/events/setup.php';
 
 ?>

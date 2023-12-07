@@ -21,7 +21,7 @@
   }
 
   if ( padTrace )
-    include pad . 'tail/events/var_start.php';   
+    include pad . 'info/events/var_start.php';   
 
   if ( substr($padFld, 0, 1) == '$' ) 
     $padFld = padFieldValue ( substr($padFld,1) );
@@ -37,7 +37,7 @@
   $padVal = padVarOpts ($padVal, $padOpts);
 
   if ( padTrace )
-    include pad . 'tail/events/var_end.php';   
+    include pad . 'info/events/var_end.php';   
 
   padPad ( $padVal );
 

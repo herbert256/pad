@@ -5,8 +5,8 @@
 
   include pad . "config/output/$padOutputType.php";
 
-  if ( $padTail ) 
-    include pad . "config/tail/$padTail.php";
+  if ( $padInfo ) 
+    include pad . "config/info/$padInfo.php";
 
   if ( file_exists ( padApp . '_config/config.php' ) ) 
     include padApp . '_config/config.php';

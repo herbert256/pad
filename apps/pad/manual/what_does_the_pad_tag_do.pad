@@ -1,25 +1,22 @@
 {block}
-  <p>Below the internal PHP code for the <b>&open;pad&close;</b> tag. That is not so much ))</p>
+  <p>This manual will use the {tag 'pad'} tag for general PAD features.
+  <p>Below the internal PHP code for the {tag 'pad'} tag. That is not so much ))</p>
   <p>{example 'manual/true', skipHeader, skipPad, skipResult}</p>
-  The <b>&open;pad&close;</b> tag is used in this manual for general PAD possibilities.
-  <br><br>
-  As the PAD tag does not do anything itself, it must be given content and/or data. 
+  <p>As the {tag 'pad'} tag does not do anything itself, it must be given content & data. 
   <br>(if no data is assigned, then it will have default 1 occurence)
 {/block}
 
 {table}{demo}
 
-{data 'myColor'}
-  ( "red", "green", "blue" ) 
-{/data}
-
-{content 'myContent'}
-  <b> <font color="{$myColor}"> Hello World </font> </b> <br>
-{/content}
+{pad $myColor='red'}
+  <b> <font color="{$myColor}"> Hallo Wereld </font> </b> <br>
+{/pad}
 
 {/demo}{demo}
 
-{pad content='myContent', data='myColor'}
+{data 'myColor'}
+  ( "red", "green", "blue" ) 
+{/data}
 
 {/demo}{demo}
 
@@ -29,7 +26,16 @@
 
 {/demo}{demo}
 
+{content 'myContent'}
+  <b> <font color="{$myColor}"> Hello World </font> </b> <br>
+{/content}
+
+{/demo}{demo}
+
 {pad content='myContent', $myColor='purple'}
 
+{/demo}{demo}
+
+{pad content='myContent', data='myColor'}
 
 {/demo}{/table}

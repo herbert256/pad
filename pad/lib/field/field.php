@@ -19,7 +19,7 @@
   function padField ( $field, $type, $lvl=0 ) {
 
     if ( padXref ) 
-      include pad . 'tail/types/xref/items/field.php';
+      include pad . 'info/types/xref/items/field.php';
 
     if ( str_contains ($field, ':' ) )
       list ( $prefix, $field ) = explode (':', $field, 2);
@@ -51,7 +51,7 @@
     elseif ($type == 9) $return = ( $value === NULL                                               ) ? TRUE  : FALSE;
 
     if ( padTrace )
-      include pad . 'tail/events/field.php';    
+      include pad . 'info/events/field.php';    
 
     return $return;
 

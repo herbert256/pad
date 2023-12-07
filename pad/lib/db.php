@@ -130,7 +130,7 @@
       $return = '';
 
     if ( padTrace )
-      include pad . 'tail/events/sql.php';
+      include pad . 'info/events/sql.php';
 
     return $return;
 

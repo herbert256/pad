@@ -16,7 +16,7 @@
   $padStartType = 'restart';
 
   if ( padXref ) 
-    include pad . 'tail/types/xref/items/entry.php';
+    include pad . 'info/types/xref/items/entry.php';
 
   include pad . 'start/pad.php';
   

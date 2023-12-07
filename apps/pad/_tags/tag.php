@@ -1,5 +1,7 @@
 <?php
 
-  return '<b>&open;' . $padOpt [$pad] [1] . '&close;</b>';
+  $tagClose = ( padTagParm ('close') ) ? '/' : '';
+
+  return '<b>&open;' . $tagClose . $padOpt [$pad] [1] . '&close;</b>';
 
 ?>

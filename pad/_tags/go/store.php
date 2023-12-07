@@ -40,7 +40,7 @@
   $GLOBALS [$padStoreName] [$padName [$pad]] = $padStoreData;
 
   if ( padTrace )
-    include pad . 'tail/events/store.php';
+    include pad . 'info/events/store.php';
 
   $padContent = '';
 

@@ -4,6 +4,6 @@
   elseif ( $padElse [$pad] ) $padBase [$pad] = $padFalse; 
 
   if ( padXref ) 
-    include pad . 'tail/types/xref/items/status.php';  
+    include pad . 'info/types/xref/items/status.php';  
 
 ?>

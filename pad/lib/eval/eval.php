@@ -4,10 +4,10 @@
   function padEvalFast ( $eval, $value ) {
 
     if ( padXref ) 
-      include pad . 'tail/types/xref/items/fast.php';
+      include pad . 'info/types/xref/items/fast.php';
 
     if ( padTrace )
-      return include pad . 'tail/events/eval/fast.php';
+      return include pad . 'info/events/eval/fast.php';
     else
       return include pad . "_functions/$eval.php";
 
@@ -20,7 +20,7 @@
       return padEvalFast ( $eval, $value );
 
     if ( padTrace )
-      include pad . 'tail/events/eval/start.php';
+      include pad . 'info/events/eval/start.php';
 
     if ( strlen(trim($eval)) == 0 )
       return ''; 
@@ -30,17 +30,17 @@
     padEvalParse ( $result, $eval, $value );    
  
     if ( padTrace )
-      include pad . 'tail/events/eval/parse.php';
+      include pad . 'info/events/eval/parse.php';
 
     padEvalAfter ( $result );  
  
     if ( padTrace )
-      include pad . 'tail/events/eval/after.php';
+      include pad . 'info/events/eval/after.php';
 
     padEvalGo ( $result, array_key_first($result), array_key_last($result), $value) ;
  
     if ( padTrace )
-      include pad . 'tail/events/eval/go.php';
+      include pad . 'info/events/eval/go.php';
 
     $key = array_key_first ($result);
 
@@ -49,7 +49,7 @@
     elseif ( $result[$key][1] <> 'VAL' ) padThrow ("Result is not a value: $eval");
 
     if ( padTrace )
-      include pad . 'tail/events/eval/end.php';
+      include pad . 'info/events/eval/end.php';
 
     return $result [$key] [0];
 
@@ -58,7 +58,7 @@
 
   function padEvalCatch ( $e, $eval ) {
 
-    include pad . 'tail/events/eval/error.php';
+    include pad . 'info/events/eval/error.php';
 
     return $eval;
 

@@ -26,7 +26,7 @@
   function padFileGetContents ( $file ) {
 
     if ( padTrace )
-      include pad . 'tail/events/get.php';
+      include pad . 'info/events/get.php';
 
     if ( is_dir ($file) )
       return $file;

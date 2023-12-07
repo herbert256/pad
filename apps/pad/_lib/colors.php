@@ -5,7 +5,8 @@
 
     $source = padUnescape ( $source );
     $source = highlight_string ( $source, TRUE );
-    $source = str_replace ( "\n", '<br>', $source );
+    $source = str_replace ( "\r\n", '<br>', $source );
+    $source = str_replace ( "\n",   '<br>', $source );
 
     return $source;
 
@@ -107,6 +108,7 @@ go: $end = strpos($source, '}');
     $between = str_replace ('$', '<font color="red">$</font>', $between);
     $between = str_replace ('!', '<font color="red">!</font>', $between);
     $between = str_replace ('#', '<font color="red">#</font>', $between);
+    $between = str_replace (':', '<font color="black">:</font>', $between);
     $between = str_replace ('&amp;', '<font color="red">&</font>', $between);
 
     $parts = padExplode ($between, '@', 2);
@@ -161,6 +163,7 @@ go: $end = strpos($source, '}');
 
     $space  = ($parms) ? ' ' : '';
 
+    $parms  = str_replace (":", '<font color="black">:</font>',  $parms);
     $parms  = str_replace ("'", '<font color="black">\'</font>',  $parms);
     $parms  = str_replace ('|', '<font color="black">|</font>',  $parms);
     $parms  = str_replace ('@', '<font color="black">@</font>',  $parms);

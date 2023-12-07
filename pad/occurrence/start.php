@@ -9,8 +9,8 @@
   $padCurrent   [$pad] = $padData [$pad] [$padKey [$pad]];
   $padOccurType [$pad] = $padOccurTypeSet;
 
-  if ( padTail )
-    include pad . 'tail/events/occurStart.php';
+  if ( padInfo )
+    include pad . 'info/events/occurStart.php';
 
   if ( $padWalk [$pad] <> 'start' )
     $padWalkData [$pad] [] = $padCurrent [$pad];

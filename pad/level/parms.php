@@ -46,7 +46,7 @@
 
   }
 
-  if ( padTail ) 
-    include pad . 'tail/events/parms.php';
+  if ( padInfo ) 
+    include pad . 'info/events/parms.php';
 
 ?>

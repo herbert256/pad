@@ -1,9 +1,6 @@
 <?php
 
   $extraFiles = [];
-
-  if ( isset ($noExtraFiles) )
-    return;
   
   $item = padTagParm ( 'item', $padOpt [$pad] [1] );
   $page = padPageGetName ($item);
@@ -28,16 +25,16 @@
 
   foreach ( $sources as $source ) {
     if     ( substr ($source, -4) == '.php')  $extraFiles [$source] ['php']   = $source;
-    elseif ( substr ($source, -4) == '.pad')  $extraFiles [$source] ['data']   = $source;
+    elseif ( substr ($source, -4) == '.pad')  $extraFiles [$source] ['data']  = $source;
     else                                      $extraFiles [$source] ['other'] = $source;
   }
 
-  if ( file_exists ( "$baseDir/_inits.php" ) ) $extraFiles ['inits'] ['php'] = "$dir/_inits.php";
+  if ( file_exists ( "$baseDir/_inits.php" ) ) $extraFiles ['inits'] ['php']  = "$dir/_inits.php";
   if ( file_exists ( "$baseDir/_inits.pad" ) ) $extraFiles ['inits'] ['data'] = "$dir/_inits.pad";
 
   foreach ($extraFiles as $key => $value ) {
     if ( ! isset ( $extraFiles [$key] ['php'] )   ) $extraFiles [$key] ['php']   = '';
-    if ( ! isset ( $extraFiles [$key] ['data'] )   ) $extraFiles [$key] ['data']   = '';
+    if ( ! isset ( $extraFiles [$key] ['data'] )  ) $extraFiles [$key] ['data']  = '';
     if ( ! isset ( $extraFiles [$key] ['other'] ) ) $extraFiles [$key] ['other'] = '';
   }
 

@@ -17,10 +17,10 @@
   $padErrorLog    = TRUE;   //  Report errors to Apache error log
   $padErrorReport = TRUE;   //  Report errors to the DATA directory
 
-  // Tail:  tail/track/trace/xref etc
+  // Tail:  info/track/trace/xref etc
   // If set then the config file with the same name will be load from the sub folder tail 
 
-  $padTail = '';
+  $padInfo = 'xref';
 
   // Where the output goes
   // A config file with the same name will be load from the sub folder output

@@ -3,7 +3,7 @@
   $padStartType = 'sandbox';
 
   if ( padXref ) 
-    include pad . 'tail/types/xref/items/entry.php';
+    include pad . 'info/types/xref/items/entry.php';
 
   include pad . 'start/lib/start.php';
   include pad . 'start/lib/setup.php';

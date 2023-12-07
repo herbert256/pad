@@ -1,7 +1,7 @@
 <?php
 
   if ( padTrace )
-    include pad . 'tail/events/call.php';
+    include pad . 'info/events/call.php';
 
   ob_start();
   $padCallPHP = include_once $padCall;

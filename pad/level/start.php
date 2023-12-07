@@ -28,8 +28,8 @@
   if ( padOpenCloseOk ( $padBase[$pad], '@end@') ) 
     include pad . 'level/start_end/end1.php';
 
-  if ( padTail ) 
-    include pad . 'tail/events/levelStart.php';  
+  if ( padInfo ) 
+    include pad . 'info/events/levelStart.php';  
 
   if ( padOpenCloseOk ( $padBase[$pad], '@start@') ) 
     return include pad . 'level/start_end/start1.php';

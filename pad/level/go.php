@@ -7,8 +7,8 @@
   $padTagResult = include pad . "types/" . $padType [$pad] . ".php";
   $padTagContent .= ob_get_clean();
 
-  if ( padTail ) 
-    include pad . 'tail/events/go.php';
+  if ( padInfo ) 
+    include pad . 'info/events/go.php';
 
   if ( padSingleValue ( $padTagResult ) ) {
     $padTagContent .= $padTagResult;

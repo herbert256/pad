@@ -9,10 +9,10 @@
   $padBase [$pad] = $padBuildLib . str_replace ( '@pad@', $padBuildPage, $padBuildBase );
 
   if ( padXml )
-    include pad . 'tail/types/xml/build.php';
+    include pad . 'info/types/xml/build.php';
 
   if ( padTrace )
-    include pad . 'tail/events/build.php';
+    include pad . 'info/events/build.php';
  
   $padOccurTypeSet = 'build';  
   include pad . 'occurrence/start.php';

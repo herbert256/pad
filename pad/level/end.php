@@ -33,8 +33,8 @@
   if ( count ( $padOptionsCallback [$pad] ) )
     include pad . 'options/callback.php';
  
-  if ( padTail ) 
-    include pad . 'tail/events/levelEnd.php';    
+  if ( padInfo ) 
+    include pad . 'info/events/levelEnd.php';    
   
   padResetLvl ($pad);
 

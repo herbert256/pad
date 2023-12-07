@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"padParm",
+				"padTagParm"
+			],
+			[
 				"strpo",
 				"strpos()"
 			],
@@ -23,30 +27,6 @@
 	},
 	"buffers":
 	[
-		{
-			"contents": "  <?php\n\n  $padContent    = $padBase [$pad];\n  $padTagContent = '';\n\n  ob_start();\n  $padTagResult = include pad . \"types/\" . $padType [$pad] . \".php\";\n  $padTagContent .= ob_get_clean();\n\n  if ( padTail ) \n    include pad . 'tail/events/go.php';\n\n  if ( padSingleValue ( $padTagResult ) ) {\n    $padTagContent .= $padTagResult;\n    $padTagResult = TRUE;\n  }\n\n  include pad . 'level/flags.php';\n  include pad . 'level/merge.php';\n\n  $padBase [$pad] = $padContent;\n  \n?>",
-			"file": "/home/herbert/pad/pad/level/go.php",
-			"file_size": 489,
-			"file_write_time": 133462212346739207,
-			"settings":
-			{
-				"buffer_size": 469,
-				"line_ending": "Windows"
-			},
-			"undo_stack":
-			[
-				[
-					1,
-					1,
-					"insert",
-					{
-						"characters": "  "
-					},
-					"AgAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAACAAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/"
-				]
-			]
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -80,22 +60,45 @@
 	},
 	"expanded_folders":
 	[
-		"/home/herbert/pad/pad",
-		"/home/herbert/pad/pad/level"
+		"/home/herbert/pad/apps/pad",
+		"/home/herbert/pad/apps/pad/_lib",
+		"/home/herbert/pad/apps/pad/manual",
+		"/home/herbert/pad/apps/pad/tags",
+		"/home/herbert/pad/apps/pad/tags/properties",
+		"/home/herbert/pad/apps/pad/tags/properties/docs",
+		"/home/herbert/pad/pad"
 	],
 	"file_history":
 	[
+		"/home/herbert/pad/apps/pad/tags/properties/docs/docx-2.pad",
+		"/home/herbert/pad/apps/pad/tags/properties/docs/doc1.pad",
+		"/home/herbert/pad/apps/pad/_lib/colors.php",
+		"/home/herbert/pad/apps/pad/manual/properties.pad",
+		"/home/herbert/pad/apps/pad/tags/properties/docs/docx.pad",
+		"/home/herbert/pad/apps/pad/manual/tags.pad",
+		"/home/herbert/pad/apps/pad/manual/index.pad",
+		"/home/herbert/pad/apps/pad/manual/php_and_html.pad",
+		"/home/herbert/pad/apps/pad/manual/name.pad",
+		"/home/herbert/pad/apps/pad/manual/lvlocc_parts/5.pad",
+		"/home/herbert/pad/apps/pad/manual/options_variables_parameters.pad",
+		"/home/herbert/pad/pad/lib/other.php",
+		"/home/herbert/pad/apps/pad/_tags/tag.php",
+		"/home/herbert/pad/apps/pad/manual/what_does_the_pad_tag_do.pad",
+		"/home/herbert/pad/apps/pad/manual/the_data_tag.pad",
+		"/home/herbert/pad/apps/pad/_tags/extra.php",
+		"/home/herbert/pad/apps/pad/concepts/prefix/index.extra",
+		"/home/herbert/pad/apps/pad/tags/sandbox.pad",
+		"/home/herbert/pad/pad/_tags/foo.php",
+		"/home/herbert/pad/apps/pad/concepts/prefix/index.pad",
+		"/home/herbert/pad/pad/level/go.php",
 		"/home/herbert/pad/pad/lib/curl.php",
 		"/home/herbert/pad/pad/lib/valid.php",
-		"/home/herbert/pad/pad/lib/other.php",
 		"/home/herbert/pad/apps/pad/_lib/lib.php",
-		"/home/herbert/pad/apps/pad/_lib/colors.php",
 		"/home/herbert/pad/pad/lib/field/at.php",
 		"/home/herbert/pad/pad/_tags/call.php",
 		"/home/herbert/pad/pad/lib/data.php",
 		"/home/herbert/pad/pad/call/_once.php",
 		"/home/herbert/pad/pad/call/_call.php",
-		"/home/herbert/pad/pad/level/go.php",
 		"/home/herbert/pad/apps/pad/test/one.pad",
 		"/home/herbert/pad/apps/abc/_lib/lib.pad",
 		"/home/herbert/pad/apps/abc/one.pad",
@@ -108,7 +111,6 @@
 		"/home/herbert/pad/apps/pad/manual/the_content_tag.pad",
 		"/home/herbert/pad/pad/level/merge.php",
 		"/home/herbert/pad/apps/pad/test.pad",
-		"/home/herbert/pad/apps/pad/tags/properties/docs/doc1.pad",
 		"/home/herbert/pad/apps/pad/tags/properties/docs/doc2.pad",
 		"/home/herbert/pad/pad/build/base.php",
 		"/home/herbert/pad/apps/pad/develop/_inits.php",
@@ -195,14 +197,7 @@
 		"/home/herbert/pad/old/lib/other.php",
 		"/home/herbert/pad/pad/level/flags.php",
 		"/home/herbert/pad/apps/pad/manual/triple.php",
-		"/home/herbert/pad/apps/pad/manual/triple.pad",
-		"/home/herbert/pad/pad/_options/else.php",
-		"/home/herbert/scripts/repos.sh",
-		"/home/herbert/root/install/php/pecl_xdebug",
-		"/home/herbert/root/install/php/php_make",
-		"/home/herbert/root/install/google",
-		"/home/herbert/scripts/install/pad.sh",
-		"/home/herbert/pad/pad/install/install.sh"
+		"/home/herbert/pad/apps/pad/manual/triple.pad"
 	],
 	"find":
 	{
@@ -223,6 +218,11 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"_exits",
+			"index.extra",
+			"noExtraFiles",
+			"{",
+			"}",
 			"is_resource",
 			"is_object",
 			"isobject",
@@ -274,6 +274,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"&open;",
+			"&close;",
 			"{$name}",
 			"name",
 			"&close;",
@@ -309,38 +311,6 @@
 		{
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/home/herbert/pad/pad/level/go.php",
-					"selected": true,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 469,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2,
-								2
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"stack_multiselect": false,
-					"type": "text"
-				}
 			]
 		}
 	],

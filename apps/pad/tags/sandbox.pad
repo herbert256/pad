@@ -1,13 +1,10 @@
 {set $abc = 123}
 
-<p>abc<p><hr style='margin-bottom:-0em'>{$abc}<hr style='margin-top:-0em'>
+<p>{$abc}<p>
 
 {sandbox}
-
-{set $abc = 456}
-
-<p>klm<p><hr style='margin-bottom:-0em'>{$abc}<hr style='margin-top:-0em'>
-
+  {set $abc = 456}
+  <p>{$abc}<p>
 {/sandbox}
 
-<p>xyz<p><hr style='margin-bottom:-0em'>{$abc}<hr style='margin-top:-0em'>
+<p>{$abc}<p>

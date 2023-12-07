@@ -1,6 +1,6 @@
 {if $manual} 
 
-  {page 'manual/{$manual}', type='sandbox', include}
+  {block}{page 'manual/{$manual}', type='sandbox', include}{/block}
 
   <br><hr><br>
 
@@ -15,20 +15,19 @@
 <h3 align=center>Basic Concepts</h3>
 
 <ul>
+  <li>{manual 'tags'}         </li>
   <li>{manual 'levels_and_occurrences'}         </li>
+  <li>{manual 'what_does_the_pad_tag_do', ' ?'} </li>
   <li>{manual 'the_content_tag'}                </li>
   <li>{manual 'the_data_tag'}                   </li>
-  <li>{manual 'content_and_data_combined'}      </li>
-  <li>{manual 'PHP_and_HTML'}                   </li>
+  <li>{manual 'php_and_html'}                   </li>
   <li>{manual 'else'}                           </li>
-  <li>{manual 'what_does_the_pad_tag_do', ' ?'} </li>
 </ul>
 
 </td><td>&nbsp;&nbsp;</td><td valign="top">
 
 <h3 align=center>Advanced concepts</h3>
 <ul>
-  <li>{manual 'level_and_occurrence_variables'} </li>
   <li>{manual 'prefix'}                         </li>
   <li>{manual 'walking}                         </li>
   <li>{manual 'properties'}                     </li>
@@ -36,6 +35,7 @@
   <li>{manual 'callback'}                       </li>
   <li>{manual 'escaping_special_PAD_chars'}     </li>
   <li>{manual 'tag_return_values'}              </li>
+  <li>{manual 'level_and_occurrence_variables'} </li>
 </ul>
 
 </td><td>&nbsp;&nbsp;</td><td valign="top">
