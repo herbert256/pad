@@ -1,5 +1,8 @@
 <?php
 
+  if ( ! $padXmlParms )
+    return;
+  
   $padXmlLvl = $padXmlLevel [$pad];
   $padXmlOcc = $padOccur    [$pad];
 

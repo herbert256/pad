@@ -1,24 +1,5 @@
 <?php
 
- function inDocumentation () {
-
-    global $padPage;
-
-    if ( ! count ($_REQUEST) )
-      return FALSE;
-
-    $types = padData ('references.json');
-    $first = array_key_first ($_REQUEST);
-
-    foreach ( $types as $key => $value ) 
-      if ( str_starts_with ( $first, $value ['ref'] ) )
-        return TRUE;
-
-
-    return FALSE;
-
-  }
-
 
   function go ( $item ) {
 
