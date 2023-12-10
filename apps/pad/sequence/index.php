@@ -1,5 +1,5 @@
 <?php
 
-  $demoMode = TRUE;
-  
+  set_time_limit ( 3000 );
+
 ?>

@@ -3,6 +3,8 @@
   if ( ! isset ( $padSeqStore ) )
     $padSeqStore = [];
 
+  set_time_limit ( 5 );
+
   $padSeqOpr   = ['make', 'keep', 'remove'];
   $padSeqTypes = pad . 'sequence/types';
 

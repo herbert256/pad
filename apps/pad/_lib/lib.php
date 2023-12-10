@@ -1,26 +1,6 @@
 <?php
 
 
-  function go ( $item ) {
-
-    $data = trim ( padFileGetContents ( padApp . "$item.pad" ) );
-
-    if ( ! str_starts_with( $data, '@go@') )
-      return '';
-
-    $parts = padExplode ( $data, '@');
-
-    return $parts [1];
-
-  }
-
-  function notGo ( $item ) {
-
-    return ( ! go ($item) );
-
-  }
-
-
   function diff ( $old, $new ) {
 
     $diff = Diff::toTable(Diff::compare($old,$new));   

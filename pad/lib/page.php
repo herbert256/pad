@@ -19,7 +19,7 @@
 
 
 
-  function padPageGetName ( $page = '' ) {
+  function padPageGetName ( $page = '' ) { 
 
     global $pad, $padPage, $padOpt;
 
@@ -32,6 +32,9 @@
 
     if ( ! $new ) 
       return '';
+
+    if ( padPageCheck ( $new ) )
+      return padPageSet ( $new );
 
     if ( str_starts_with ( $new, '/') ) {
       $chk = substr($new, 1);    
