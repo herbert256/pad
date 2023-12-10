@@ -12,7 +12,8 @@
   if ( $old <> $new and ! strpos ( $new, '<!-- PAD: NO REGRESSION -->' ) !== FALSE )
     padRedirect ("develop/show/changed&item=$item");
 
-  $showTitle = FALSE;
+  $showTitle = TRUE;
+  $title     = $item;
   
   // <!-- PAD: NO ALL -->
   

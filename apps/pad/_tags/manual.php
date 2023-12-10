@@ -15,7 +15,7 @@
   return 
       '<a href="' 
     .  $padGo 
-    . 'manual&manual=' 
+    . 'manual/go&go=' 
     . $manualLink 
     . '&extra=' . urlencode ($extra)
     . '">' 

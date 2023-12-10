@@ -1,16 +1,43 @@
-{parts}
-  {include 'lineOpen'}
-  <font size="-1">
-  @start@
+{include 'lineOpen'}
+
+<font size="-1">
+
+  {if $padPage == 'index'}
+    home
+  @else@
+    <a href="/?index">home</a> 
+  {/if}
+    
+  &nbsp; | &nbsp;
+
+  {if $padPage == 'manual/index'}
+    manual
+  @else@
+    <a href="/?manual">manual</a> 
+  {/if}
+    
+  &nbsp; | &nbsp;
+
+  {if $padPage == 'reference/index'}
+    reference
+  @else@
+    <a href="/?reference">reference</a> 
+  {/if}
+    
+  &nbsp; | &nbsp;
+
+  {if $padPage == 'develop/develop'}
+    develop
+  @else@
+    <a href="/?develop">develop</a> 
+  {/if}
+     
+  {parts}
+    {first} &nbsp; &nbsp; &nbsp; {/first}
     {if $link}<a href="{$padGo}{$link}">{/if}{$part}{if $link}</a>{/if} 
-    {notLast}
-    {if $padPage EQ 'index'}
-       &nbsp; | &nbsp;
-    @else@
-      /
-    {/if}
-    {/notLast}
-  @end@
+    {notLast} / {/notLast}
+  {/parts}
+
 </font>
-  {include 'lineClose'}
-{/parts}
+
+{include 'lineClose'}

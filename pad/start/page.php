@@ -7,7 +7,7 @@
 
   $padPagePage    = padPageGetName ();
   $padPageInclude = padTagParm ( 'include' );
-  $padPageType    = padTagParm ( 'type', 'include' );
+  $padPageType    = padTagParm ( 'type', 'ajax' );
   $padPageStart   = 'page';
 
   return include pad . "start/lib/page.php";

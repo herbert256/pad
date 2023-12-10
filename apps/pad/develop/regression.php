@@ -7,20 +7,24 @@
 
   foreach ( padPages () as $one ) {
 
-    $item  = $one ['item'];
-    $store = padApp . "_regression/$item.pad";
-    $now   = padApp . "_regression/_now.txt";
-    $check = padApp . "$item.pad";
+    $item   = $one ['item'];
+    $store  = padApp . "_regression/$item.pad";
+    $now    = padApp . "_regression/_now.txt";
+    $check  = padApp . "$item.pad";
+    $source = padFileGetContents($check);
 
-    if ( strpos ( padFileGetContents($check), 'PAD: SKIP REGRESSION') )
+    if ( strpos ( $source, 'PAD: SKIP REGRESSION') )
       continue;
 
     $old = padFileGetContents($store);
     $new = getPageData ($item, 1);
 
-    if     ( ! file_exists ($store) )               $status = 'new';
-    elseif ( strrpos($store, 'random') )          $status = 'random' ;
+    if     ( ! file_exists ($store)             ) $status = 'new';
+    elseif ( strrpos($store, 'random')          ) $status = 'random' ;
     elseif ( strpos($new, 'PAD: NO REGRESSION') ) $status = 'skip' ;
+    elseif ( strpos($source, '{example')        ) $status = 'skip' ;
+    elseif ( strpos($source, '{page')           ) $status = 'skip' ;
+    elseif ( strpos($new, 'padAjax')            ) $status = 'skip' ;
     elseif ( $old == $new                       ) $status = 'ok';
     else                                          $status = 'error';
 

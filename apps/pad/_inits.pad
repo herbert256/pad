@@ -5,32 +5,27 @@
   </head>
   
   <body>
+  
+    <center>
+      <h1>
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      {include 'menu'}
+      <br><hr width="75%">
+    </center>
 
     {block}
-
       <center>
-
-        <h1>
-          PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
-        </h1>
-
-        {include 'menu'}
-
-        <br><hr width="75%">
-
         {showTitle}<h2>{$title | replace ( '_', ' ') | ucfirst }</h2>{/showTitle}
-
         @content@
-
-        <br><hr width="75%"><br>
-
-        {include 'menu'}
-
-        <p><font size="-3">(c) 2003-2023 Herbert Groot Jebbink</font></p>
-
       </center>
-
     {/block}
+
+    <center>
+      <br><hr width="75%"><br>
+      {include 'menu'}
+      <p><font size="-3">(c) 2003-2023 Herbert Groot Jebbink</font></p>
+    </center>
 
   </body>
 

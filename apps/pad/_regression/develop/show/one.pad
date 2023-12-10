@@ -1,5 +1,16 @@
-<h3>
-  <font color="black">
-    Hello World !
-  </font>
-</h3>
+<div id="padAjaxnQXHY78y"></div>
+
+<script>
+  padAjaxnQXHY78y = new XMLHttpRequest();
+  padAjaxnQXHY78y.onreadystatechange=function() {
+    if (padAjaxnQXHY78y.readyState === 4) {
+      if (padAjaxnQXHY78y.status === 200) {
+        document.getElementById("padAjaxnQXHY78y").innerHTML=padAjaxnQXHY78y.responseText;
+      } else {
+        document.getElementById("padAjaxnQXHY78y").innerHTML=padAjaxnQXHY78y.statusText;
+      }
+    }
+  }
+  padAjaxnQXHY78y.open("GET","http://localhost/?hello/index&padSesID=MzFLKnzN&padReqID=SS6OQVOq",true);
+  padAjaxnQXHY78y.send();
+</script>

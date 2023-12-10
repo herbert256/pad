@@ -30,11 +30,22 @@
 
   <center>
 
-    <h3>
-  <font color="black">
-    Hello World !
-  </font>
-</h3>
+    <div id="padAjaxIyfTqGFB"></div>
+
+<script>
+  padAjaxIyfTqGFB = new XMLHttpRequest();
+  padAjaxIyfTqGFB.onreadystatechange=function() {
+    if (padAjaxIyfTqGFB.readyState === 4) {
+      if (padAjaxIyfTqGFB.status === 200) {
+        document.getElementById("padAjaxIyfTqGFB").innerHTML=padAjaxIyfTqGFB.responseText;
+      } else {
+        document.getElementById("padAjaxIyfTqGFB").innerHTML=padAjaxIyfTqGFB.statusText;
+      }
+    }
+  }
+  padAjaxIyfTqGFB.open("GET","http://localhost/?hello/index&padSesID=MzFLKnzN&padReqID=RiYmSgb2",true);
+  padAjaxIyfTqGFB.send();
+</script>
 
   </center>
 

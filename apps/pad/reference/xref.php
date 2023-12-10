@@ -1,32 +1,15 @@
 <?php
 
-  if ( ! isset ( $go    ) ) $go   = '';
-  if ( ! isset ( $first  ) ) $first = '';
+  if ( ! isset ( $for    ) ) $for    = 'tags';
+  if ( ! isset ( $first  ) ) $first  = '';
   if ( ! isset ( $second ) ) $second = '';
-  if ( ! isset ( $xitem  ) ) $xitem = '';
+  if ( ! isset ( $xitem  ) ) $xitem  = '';
 
-  if ( ! isset ($for) )
-    return;
-
-  $title = $for;
-
+                 $title  = $for;
   if ( $xitem  ) $title .= " - $xitem";
   if ( $second ) $title .= " - $second";
 
-  if ( $go ) {
-
-go: $source = padFileGetContents ( padApp . $go . '.pad' );
-
-    $showPage = ( str_contains ( $source, '{demo}' ) or str_contains ( $source, '{example' )  );
-
-    $title .= " - $go";
-    
-    return TRUE;
- 
-  }
-
-  $dirs  = [];
-  $pages = [];
+  $dirs = $pages = [];
 
   $xref = $first;
   if ($second)
@@ -40,9 +23,12 @@ go: $source = padFileGetContents ( padApp . $go . '.pad' );
     elseif ( str_ends_with ( $file, '.hit' ) ) $pages [$file] ['page'] = substr (str_replace ('@', '/', $file), 0, -4);
     else                                       $dirs  [$file] ['dir']  = $file; 
 
-  if ( count ($pages) == 1 ) {
-    $go = $pages [$file] ['page'] ;
-    goto go;
-  }
-
+  if ( count ($pages) == 1 )
+    padRedirect ( $go = 'reference/go',
+                  [ 'go'     => $pages [$file] ['page'],
+                    'first'  => $first,
+                    'second' => $second,
+                    'xitem'  => $xitem,
+                    'for'    => $for ] );
+ 
 ?>

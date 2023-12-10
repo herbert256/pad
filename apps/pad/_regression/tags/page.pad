@@ -11,11 +11,22 @@
     </tr>
     
 
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>
-  <font color="black">
-    Hello World !
-  </font>
-</h3><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><div id="padAjaxxieSwuol"></div>
+
+<script>
+  padAjaxxieSwuol = new XMLHttpRequest();
+  padAjaxxieSwuol.onreadystatechange=function() {
+    if (padAjaxxieSwuol.readyState === 4) {
+      if (padAjaxxieSwuol.status === 200) {
+        document.getElementById("padAjaxxieSwuol").innerHTML=padAjaxxieSwuol.responseText;
+      } else {
+        document.getElementById("padAjaxxieSwuol").innerHTML=padAjaxxieSwuol.statusText;
+      }
+    }
+  }
+  padAjaxxieSwuol.open("GET","http://localhost/?hello/index&padSesID=MzFLKnzN&padReqID=DDRg9JgW",true);
+  padAjaxxieSwuol.send();
+</script><!-- END DEMO RESULT --></span></code></td></tr>
 
 <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>include<font color="black">'</font><font color="black">,</font> include<font color="black">,</font> <font color="red">$</font>color=<font color="black">'</font>green<font color="black">'</font></font>}</b><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>build<font color="black">'</font><font color="black">,</font>   include<font color="black">,</font> <font color="red">$</font>color=<font color="black">'</font>orange<font color="black">'</font></font>}</b><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>get<font color="black">'</font><font color="black">,</font>     include<font color="black">,</font> <font color="red">$</font>color=<font color="black">'</font>red<font color="black">'</font></font>}</b><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>sandbox<font color="black">'</font><font color="black">,</font> include<font color="black">,</font> <font color="red">$</font>color=<font color="black">'</font>purple<font color="black">'</font></font>}</b><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>ajax<font color="black">'</font><font color="black">,</font>    include<font color="black">,</font> <font color="red">$</font>color=<font color="black">'</font>blue<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>
   <font color="green">
@@ -37,21 +48,21 @@
     Hello World !
   </font>
 </h3>
-<div id="padAjaxqWFRJIcT"></div>
+<div id="padAjaxdpUAmn7T"></div>
 
 <script>
-  padAjaxqWFRJIcT = new XMLHttpRequest();
-  padAjaxqWFRJIcT.onreadystatechange=function() {
-    if (padAjaxqWFRJIcT.readyState === 4) {
-      if (padAjaxqWFRJIcT.status === 200) {
-        document.getElementById("padAjaxqWFRJIcT").innerHTML=padAjaxqWFRJIcT.responseText;
+  padAjaxdpUAmn7T = new XMLHttpRequest();
+  padAjaxdpUAmn7T.onreadystatechange=function() {
+    if (padAjaxdpUAmn7T.readyState === 4) {
+      if (padAjaxdpUAmn7T.status === 200) {
+        document.getElementById("padAjaxdpUAmn7T").innerHTML=padAjaxdpUAmn7T.responseText;
       } else {
-        document.getElementById("padAjaxqWFRJIcT").innerHTML=padAjaxqWFRJIcT.statusText;
+        document.getElementById("padAjaxdpUAmn7T").innerHTML=padAjaxdpUAmn7T.statusText;
       }
     }
   }
-  padAjaxqWFRJIcT.open("GET","http://localhost/?hello/index&padInclude&color=blue&padSesID=MzFLKnzN&padReqID=jF9j4JpA",true);
-  padAjaxqWFRJIcT.send();
+  padAjaxdpUAmn7T.open("GET","http://localhost/?hello/index&padInclude&color=blue&padSesID=MzFLKnzN&padReqID=DDRg9JgW",true);
+  padAjaxdpUAmn7T.send();
 </script><!-- END DEMO RESULT --></span></code></td></tr>
 
 <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>include<font color="black">'</font><font color="black">,</font> <font color="red">$</font>color=<font color="black">'</font>green<font color="black">'</font></font>}</b><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>build<font color="black">'</font><font color="black">,</font>   <font color="red">$</font>color=<font color="black">'</font>orange<font color="black">'</font></font>}</b><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>get<font color="black">'</font><font color="black">,</font>     <font color="red">$</font>color=<font color="black">'</font>red<font color="black">'</font></font>}</b><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>sandbox<font color="black">'</font><font color="black">,</font> <font color="red">$</font>color=<font color="black">'</font>purple<font color="black">'</font></font>}</b><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>hello<font color="black">'</font><font color="black">,</font> type=<font color="black">'</font>ajax<font color="black">'</font><font color="black">,</font>    <font color="red">$</font>color=<font color="black">'</font>blue<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>
@@ -71,84 +82,115 @@
   </head>
   
   <body>
+  
+    <center>
+      <h1>
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>
+      <hr style="margin:0; border: 1px solid black;">
+
+<font size="-1">
+
+  
+    <a href="/?index">home</a> 
+  
+    
+  &nbsp; | &nbsp;
+
+  
+    <a href="/?manual">manual</a> 
+  
+    
+  &nbsp; | &nbsp;
+
+  
+    <a href="/?reference">reference</a> 
+  
+    
+  &nbsp; | &nbsp;
+
+  
+    <a href="/?develop">develop</a> 
+  
+     
+  
+     &nbsp; &nbsp; &nbsp; 
+    hello/index 
+    
+  
+
+</font>
+
+<hr style="margin: 2; margin-left:0; margin-right: 0; margin-bottom: 0; border: 1px solid black;">
+    </td>
+  </tr>
+</table>
+      <br><hr width="75%">
+    </center>
 
     <table border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
   <tr>
     <td>
-
       <center>
-
-        <h1>
-          PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
-        </h1>
-
-        
-  <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td>
-      <hr style="margin:0; border: 1px solid black;">
-  <font size="-1">
-  
-    <a href="/?index">home</a> 
-    
-    
-      /
-    
-    
-  
-    hello 
-    
-  
-</font>
-  <hr style="margin: 2; margin-left:0; margin-right: 0; margin-bottom: 0; border: 1px solid black;">
-    </td>
-  </tr>
-</table>
-
-
-        <br><hr width="75%">
-
         <h2>Hello</h2>
-
         <h3>
   <font color="red">
     Hello World !
   </font>
 </h3>
+      </center>
+    </td>
+  </tr>
+</table>
 
-        <br><hr width="75%"><br>
-
-        
-  <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+    <center>
+      <br><hr width="75%"><br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td>
       <hr style="margin:0; border: 1px solid black;">
-  <font size="-1">
+
+<font size="-1">
+
   
     <a href="/?index">home</a> 
+  
     
+  &nbsp; | &nbsp;
+
+  
+    <a href="/?manual">manual</a> 
+  
     
-      /
+  &nbsp; | &nbsp;
+
+  
+    <a href="/?reference">reference</a> 
+  
     
+  &nbsp; | &nbsp;
+
+  
+    <a href="/?develop">develop</a> 
+  
+     
+  
+     &nbsp; &nbsp; &nbsp; 
+    hello/index 
     
   
-    hello 
-    
-  
+
 </font>
-  <hr style="margin: 2; margin-left:0; margin-right: 0; margin-bottom: 0; border: 1px solid black;">
+
+<hr style="margin: 2; margin-left:0; margin-right: 0; margin-bottom: 0; border: 1px solid black;">
     </td>
   </tr>
 </table>
-
-
-        <p><font size="-3">(c) 2003-2023 Herbert Groot Jebbink</font></p>
-
-      </center>
-
-    </td>
-  </tr>
-</table>
+      <p><font size="-3">(c) 2003-2023 Herbert Groot Jebbink</font></p>
+    </center>
 
   </body>
 
@@ -158,21 +200,21 @@
     Hello World !
   </font>
 </h3>
-<div id="padAjaxl4aIH8EV"></div>
+<div id="padAjaxkccHEm0H"></div>
 
 <script>
-  padAjaxl4aIH8EV = new XMLHttpRequest();
-  padAjaxl4aIH8EV.onreadystatechange=function() {
-    if (padAjaxl4aIH8EV.readyState === 4) {
-      if (padAjaxl4aIH8EV.status === 200) {
-        document.getElementById("padAjaxl4aIH8EV").innerHTML=padAjaxl4aIH8EV.responseText;
+  padAjaxkccHEm0H = new XMLHttpRequest();
+  padAjaxkccHEm0H.onreadystatechange=function() {
+    if (padAjaxkccHEm0H.readyState === 4) {
+      if (padAjaxkccHEm0H.status === 200) {
+        document.getElementById("padAjaxkccHEm0H").innerHTML=padAjaxkccHEm0H.responseText;
       } else {
-        document.getElementById("padAjaxl4aIH8EV").innerHTML=padAjaxl4aIH8EV.statusText;
+        document.getElementById("padAjaxkccHEm0H").innerHTML=padAjaxkccHEm0H.statusText;
       }
     }
   }
-  padAjaxl4aIH8EV.open("GET","http://localhost/?hello/index&color=blue&padSesID=MzFLKnzN&padReqID=jF9j4JpA",true);
-  padAjaxl4aIH8EV.send();
+  padAjaxkccHEm0H.open("GET","http://localhost/?hello/index&color=blue&padSesID=MzFLKnzN&padReqID=DDRg9JgW",true);
+  padAjaxkccHEm0H.send();
 </script><!-- END DEMO RESULT --></span></code></td></tr>
 
 

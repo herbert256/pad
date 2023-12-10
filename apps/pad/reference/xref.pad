@@ -1,37 +1,25 @@
-{if $go}
+<blockquote>
 
-  {showPage}
-    {page '{$go}' }
-  @else@
-    {example '{$go}' }
-  {/showPage}
+  {block}
 
-@else@
+    {dirs}
 
-  <blockquote>
+      <a href="{$padGo}reference/xref&for={$for|url}&xitem={$xitem}&first={$first}&second={$dir}">{$dir}</a> 
 
-    {block}
+      &nbsp; &nbsp;
 
-      {dirs}
+    {/dirs}
 
-        <a href="{$padGo}reference/xref&for={$for|url}&xitem={$xitem}&first={$first}&second={$dir}">{$dir}</a> 
+    {pages}
 
-        &nbsp; &nbsp;
+      <a 
+        href="{$padGo}reference/go&for={$for|url}&xitem={$xitem}&first={$first}&second={$second}&go={$page}">{$page}
+      </a> 
 
-      {/dirs}
+      <br>
 
-      {pages}
+    {/pages}
 
-        <a 
-          href="{$padGo}reference/xref&for={$for|url}&xitem={$xitem}&first={$first}&second={$second}&go={$page}">{$page}
-        </a> 
+  {/block}
 
-        <br>
-
-      {/pages}
-
-    {/block}
-
-  </blockquote>
-
-{/if}
+</blockquote>

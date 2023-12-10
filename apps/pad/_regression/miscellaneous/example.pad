@@ -31,11 +31,22 @@
         <td style="vertical-align:top"><pre><code style="color: #000000">&lt;p&gt;<br>  <b>{<font color="blue">case </font><font color="red"><font color="red">$</font>language</font>}</b><br>    <b>{<font color="blue">when </font><font color="red"><font color="black">'</font>ES<font color="black">'</font></font>}</b><br>      Hola Mundo<br>    <b>{<font color="blue">when </font><font color="red"><font color="black">'</font>NL<font color="black">'</font></font>}</b><br>      Hallo Wereld<br>    <b>{<font color="blue">when </font><font color="red"><font color="black">'</font>FR<font color="black">'</font></font>}</b><br>      Bonjour le Monde<br>    <b>{<font color="blue">when </font><font color="red"><font color="black">'</font>DE<font color="black">'</font></font>}</b><br>      Hallo Welt<br>    <b>{<font color="blue">when </font><font color="red"><font color="black">'</font>IT<font color="black">'</font></font>}</b><br>      Ciao Mondo<br>    <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>      Hello World<br>  <b>{/<font color="blue">case</font><font color="red"></font>}</b><br>&lt;/p&gt;</code></pre></td>
       
       
-        <td style="vertical-align:top"><p>
-  
-      Bonjour le Monde
-    
-</p></td>
+        <td style="vertical-align:top"><div id="padAjaxhDVxcFAi"></div>
+
+<script>
+  padAjaxhDVxcFAi = new XMLHttpRequest();
+  padAjaxhDVxcFAi.onreadystatechange=function() {
+    if (padAjaxhDVxcFAi.readyState === 4) {
+      if (padAjaxhDVxcFAi.status === 200) {
+        document.getElementById("padAjaxhDVxcFAi").innerHTML=padAjaxhDVxcFAi.responseText;
+      } else {
+        document.getElementById("padAjaxhDVxcFAi").innerHTML=padAjaxhDVxcFAi.statusText;
+      }
+    }
+  }
+  padAjaxhDVxcFAi.open("GET","http://localhost/?examples/case&padInclude&padSesID=MzFLKnzN&padReqID=I6JvmeG3",true);
+  padAjaxhDVxcFAi.send();
+</script></td>
       
     </tr>
 

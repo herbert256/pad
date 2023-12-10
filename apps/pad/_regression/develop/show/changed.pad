@@ -64,11 +64,22 @@
 
   <center>
 
-    <h3>
-  <font color="black">
-    Hello World !
-  </font>
-</h3>
+    <div id="padAjaxsMsMJgwX"></div>
+
+<script>
+  padAjaxsMsMJgwX = new XMLHttpRequest();
+  padAjaxsMsMJgwX.onreadystatechange=function() {
+    if (padAjaxsMsMJgwX.readyState === 4) {
+      if (padAjaxsMsMJgwX.status === 200) {
+        document.getElementById("padAjaxsMsMJgwX").innerHTML=padAjaxsMsMJgwX.responseText;
+      } else {
+        document.getElementById("padAjaxsMsMJgwX").innerHTML=padAjaxsMsMJgwX.statusText;
+      }
+    }
+  }
+  padAjaxsMsMJgwX.open("GET","http://localhost/?hello/index&padSesID=MzFLKnzN&padReqID=H8AEoygk",true);
+  padAjaxsMsMJgwX.send();
+</script>
 
   </center>
 
