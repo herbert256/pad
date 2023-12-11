@@ -12,7 +12,7 @@
 
 {if #onlyResult or $exampleOnlyResult} 
 
-  {page '{$examplePage}', ignore}
+  {page '{$examplePage}', type='{$exampleType}', include, ignore}
 
 @else@
 
@@ -50,7 +50,7 @@
         <td style="vertical-align:top">{!exampleSrcPad}</td>
       {/if}
       {if ! #skipResult}
-        <td style="vertical-align:top">{page '{$examplePage}', include, ignore}</td>
+        <td style="vertical-align:top">{page '{$examplePage}', type='{$exampleType}', include, ignore}</td>
       {/if}
     </tr>
 
@@ -91,7 +91,7 @@
         </tr>
       {/if}
       <tr>
-        <td style="vertical-align:top">{page '{$examplePage}', include, ignore}</td>
+        <td style="vertical-align:top">{page '{$examplePage}', type='{$exampleType}', include, ignore}</td>
       </tr>
     {/if}
 

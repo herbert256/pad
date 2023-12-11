@@ -1,5 +1,7 @@
 <?php
 
+  set_time_limit ( 5 );
+
   include pad . 'inits/lib.php';
   include pad . 'inits/clean.php';
   include pad . 'inits/vars.php';

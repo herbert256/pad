@@ -44,6 +44,7 @@
       if ( strpos($path, 'error')           ) continue;
       if ( strpos($path, 'restart')         ) continue;
       if ( strpos($path, 'redirect')        ) continue;
+      if ( strpos($path, 'index')           ) continue;
       if ( strpos($path, '/deep/')          ) continue;
       if ( strpos($path, '/_')              ) continue;
       if ( $ext <> 'pad' and $ext <> 'php'  ) continue;
@@ -61,27 +62,5 @@
     return $files;
 
   }
-
-
-  function padPagesFiltered () {
-
-    $work = $result = padPages ();
-
-    foreach ( $work as $one ) {
-
-      if ( $one ['file'] == 'index' )
-        foreach ($result as $key => $value )
-          if ( $value ['dir'] == $one ['dir'] and $value ['file'] <> 'index')
-            unset ( $result [$key] );
-
-      if ( strpos ( file_get_contents ( $one ['path'] ), '<!-- PAD: NO ALL -->') ) 
-        unset ( $result [$one['item']] );
- 
-    }
-
-    return $result;
-
-  }
-
 
 ?>

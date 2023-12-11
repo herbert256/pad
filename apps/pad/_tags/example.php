@@ -3,7 +3,7 @@
   $examplePage       = padPageGetName ();
   $exampleTitle      = substr($examplePage, strrpos($examplePage, '/') + 1);
   $exampleFile       = padApp . $examplePage;
-  $exampleType       = padTagParm ( 'type', 'sandbox' );
+  $exampleType       = padTagParm ( 'type', 'ajax' );
   $exampleLayout     = padTagParm ( 'layout' , layout ("$exampleFile.pad") );
   $exampleOnlyResult = onlyResult ( "$exampleFile.pad" );
 

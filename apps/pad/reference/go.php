@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! isset ( $go     ) ) $go     = 'examples/hello';
+  if ( ! isset ( $go     ) ) $go     = 'hello/hello';
   if ( ! isset ( $first  ) ) $first  = '';
   if ( ! isset ( $second ) ) $second = '';
   if ( ! isset ( $xitem  ) ) $xitem  = '';
