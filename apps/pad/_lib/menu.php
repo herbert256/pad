@@ -19,6 +19,13 @@
 
     } 
 
+    if ( $padPage == 'manual/index' and $manual ) {
+      
+      $parts ['now'] ['part'] = $manual;
+      $parts ['now'] ['link'] = '';  
+
+    } 
+
     if ( str_starts_with ( $padPage, 'develop/') and $padPage <> 'develop/index') {
  
       if ( str_starts_with ( $padPage, 'develop/show') ) {
@@ -48,14 +55,6 @@
 
     if ( $padPage == 'develop/xref' ) {
 
-      if ( $GLOBALS ['xref'] or $GLOBALS ['go'] ) {
-        $parts ['x'] ['part'] = 'cross reference';
-        $parts ['x'] ['link'] = 'develop/xref';
-      } else {
-        $parts ['x'] ['part'] = 'cross reference';
-        $parts ['x'] ['link'] = '';
-      }     
-
       if ( $GLOBALS ['xref'] ) {
 
         $plode = padExplode ( $GLOBALS ['xref'], '/' );
@@ -74,18 +73,6 @@
 
       }
     
-    }
-
-    if ( $padPage == 'manual/index' and $manual ) {
-      
-      $parts ['now'] ['part'] = $manual;
-      $parts ['now'] ['link'] = '';  
-
-    } 
-
-    if ( isset ( $_REQUEST ['go'] ) ) {
-      $parts ['go'] ['part'] = $_REQUEST ['go'];
-      $parts ['go'] ['link'] = '';   
     }
 
     return $parts;

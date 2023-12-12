@@ -44,6 +44,9 @@
       if ( strpos($path, 'error')           ) continue;
       if ( strpos($path, 'restart')         ) continue;
       if ( strpos($path, 'redirect')        ) continue;
+      if ( strpos($path, 'manual/')           ) continue;
+      if ( strpos($path, 'reference/')           ) continue;
+      if ( strpos($path, 'develop/')           ) continue;
       if ( strpos($path, 'index')           ) continue;
       if ( strpos($path, '/deep/')          ) continue;
       if ( strpos($path, '/_')              ) continue;
