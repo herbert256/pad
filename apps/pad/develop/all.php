@@ -3,11 +3,19 @@
   if ( ! isset ( $fromMenu ) )
     return NULL;
 
-  $pagesAll = padPages ();
+  $pagesAll = padList ();
 
-  foreach ( $pagesAll as $key => $one )
-    if ( str_contains ( file_get_contents ( $one ['path'] ), '<!-- PAD: NO ALL -->') ) 
-      unset ( $pagesAll [$key] );
+  foreach ( $pagesAll as $key => $one ) {
+
+    if ( padFileContains ( $one ['path'], 'NO ALL') ) unset ( $pagesAll [$key] );
+    if ( strpos ( $one ['path'], 'restart')         ) unset ( $pagesAll [$key] );
+    if ( strpos ( $one ['path'], 'redirect')        ) unset ( $pagesAll [$key] );
+    if ( strpos ( $one ['path'], 'manual/')         ) unset ( $pagesAll [$key] );
+    if ( strpos ( $one ['path'], 'reference/')      ) unset ( $pagesAll [$key] );
+    if ( strpos ( $one ['path'], 'develop/')        ) unset ( $pagesAll [$key] );
+    if ( strpos ( $one ['path'], '/deep/')          ) unset ( $pagesAll [$key] );
+
+  }
 
   set_time_limit ( 30 );
 

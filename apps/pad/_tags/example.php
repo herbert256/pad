@@ -19,6 +19,10 @@
   $exampleFilePhp  = ( file_exists($examplePhp) ) ? str_replace(padApp, '', $examplePhp) : '';
   $exampleFilePad  = ( file_exists($examplePad) ) ? str_replace(padApp, '', $examplePad) : '';
 
+  if ( isset ( $_SERVER ['HTTP_REFERER'] ) )
+    if ( str_contains ( $_SERVER ['HTTP_REFERER'] , 'develop/all&fromMenu=1' ) )
+      $exampleType = 'get';
+
   return TRUE;
    
 ?>

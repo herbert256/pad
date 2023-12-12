@@ -40,19 +40,47 @@
       $dir   = substr($item, 0, strrpos($item, '/')   );
       $file  = substr($item,    strrpos($item, '/')+1 );
  
-      if ( ! $dir                           ) continue;
-      if ( strpos($path, 'error')           ) continue;
       if ( strpos($path, 'restart')         ) continue;
       if ( strpos($path, 'redirect')        ) continue;
-      if ( strpos($path, 'manual/')           ) continue;
-      if ( strpos($path, 'reference/')           ) continue;
-      if ( strpos($path, 'develop/')           ) continue;
+      if ( strpos($path, 'manual/')         ) continue;
+      if ( strpos($path, 'reference/')      ) continue;
+      if ( strpos($path, 'develop/')        ) continue;
       if ( strpos($path, 'index')           ) continue;
       if ( strpos($path, '/deep/')          ) continue;
-      if ( strpos($path, '/_')              ) continue;
-      if ( $ext <> 'pad' and $ext <> 'php'  ) continue;
-      if ( $item == 'hello/pad'             ) continue;
+
       
+      $files [$item] ['path'] = $path;
+      $files [$item] ['item'] = $item;
+      $files [$item] ['dir']  = $dir;
+      $files [$item] ['file'] = $file;
+    
+    }
+
+    ksort ($files);
+
+    return $files;
+
+  }
+
+  function padList () {
+
+    $directory = new RecursiveDirectoryIterator (padApp);
+    $iterator  = new RecursiveIteratorIterator  ($directory);
+
+    foreach ($iterator as $one ) {
+
+      $path  = padCorrectPath ( $one->getPathname() );
+      $file  = str_replace(padApp, '', $path );
+      $ext   = substr($file,    strrpos($file, '.')+1 );
+      $item  = substr($file, 0, strrpos($file, '.')   );
+      $dir   = substr($item, 0, strrpos($item, '/')   );
+      $file  = substr($item,    strrpos($item, '/')+1 );
+
+      if ( strpos($path, '/_')             ) continue;
+      if ( $ext <> 'pad' and $ext <> 'php' ) continue;
+      if ( strpos($path, 'error')          ) continue;      
+      if ( strpos($path, 'test')           ) continue;      
+
       $files [$item] ['path'] = $path;
       $files [$item] ['item'] = $item;
       $files [$item] ['dir']  = $dir;

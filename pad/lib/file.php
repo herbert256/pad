@@ -1,6 +1,16 @@
 <?php
 
 
+  function padFileContains ( $file, $string ) {
+
+    if ( str_contains ( file_get_contents ( $file ), "<!-- PAD: $string -->") ) 
+      return TRUE;
+
+    return FALSE;
+
+  }
+
+
   function padIsDir ( $dir ) {
 
     if ( ! padValidFile ( $dir ) )
