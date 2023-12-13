@@ -378,6 +378,8 @@
 
   function padDumpFields ( &$php, &$lvl, &$app, &$cfg, &$pad, &$ids, &$trc, &$err ) {
 
+    include_once pad . 'inits/levelVars.php';
+    
     $php = $lvl = $app = $cfg = $pad = $ids = $exc = $err = $trc = [];
 
     $chk1 = [ '_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];

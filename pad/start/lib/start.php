@@ -1,4 +1,6 @@
 <?php
+
+  include_once pad . 'inits/levelVars.php';
   
   $padPagePad [$pad] = $padPageApp [$pad] = [];
 

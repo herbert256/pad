@@ -38,9 +38,11 @@
 
   }
 
-  $check = padFindNames ( $padDataStore, $names );
-  if ( $check !== INF ) 
-    return $check;
+  if ( isset ($padDataStore) ) {   
+    $check = padFindNames ( $padDataStore, $names );
+    if ( $check !== INF ) 
+      return $check;
+  }
 
   return padFindNames ( $GLOBALS, $names );
 

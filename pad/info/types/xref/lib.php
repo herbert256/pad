@@ -79,7 +79,7 @@
 
   function padXrefDevelop ( $dir1, $dir2, $dir3 ) {
 
-    padXrefManualDevelop ( padData . 'xref', $dir1, $dir2, $dir3 );
+    padXrefManualDevelop ( padApp . '_xref/develop', $dir1, $dir2, $dir3 );
 
   }
 
