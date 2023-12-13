@@ -2,13 +2,12 @@
 
   if ( $padTraceFlags )
     padTrace ( 'level', 'flags', 
-      ' hit='   . $padHit   [$pad] . 
-      ' else='  . $padElse  [$pad] . 
-      ' null='  . $padNull  [$pad] . 
-      ' array=' . $padArray [$pad] . 
-      ' text='  . $padText  [$pad] . 
-      ' default='  . $padDefault  [$pad] . 
-      ' count=' . count ( $padData [$pad] )
+      ' hit='     . $padHit   [$pad] . 
+      ' else='    . $padElse  [$pad] . 
+      ' null='    . $padNull  [$pad] . 
+      ' array='   . $padArray [$pad] . 
+      ' default=' . $padDefault  [$pad] . 
+      ' count='   . count ( $padData [$pad] )
     );
 
 ?>

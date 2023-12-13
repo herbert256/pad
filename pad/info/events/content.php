@@ -3,6 +3,6 @@
   if ( ! $padTraceContent )
     return;
 
-  padTrace ( 'level', 'content', $padPadStart [$pad] ); 
+  padTrace ( 'level', 'content', $padBase [$pad] ); 
 
 ?>

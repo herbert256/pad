@@ -18,7 +18,4 @@
   if     ( $padHit [$pad] and is_array($padTagResult) ) $padArray [$pad] = TRUE;
   else                                                  $padArray [$pad] = FALSE;
 
-  if     ( $padHit [$pad] and $padTagResult !== TRUE and is_scalar($padTagResult) ) $padText [$pad] = TRUE;
-  else                                                                              $padText [$pad] = FALSE;
- 
 ?>

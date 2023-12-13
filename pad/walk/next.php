@@ -10,7 +10,7 @@
 
   if ( $padWalk [$pad] ) {
 
-    if ( $padArray ) 
+    if ( $padArray [$pad] ) 
       $padData [$pad] = $padTagResult;
  
     reset ( $padData [$pad] );

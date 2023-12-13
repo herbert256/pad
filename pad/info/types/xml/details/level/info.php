@@ -12,7 +12,6 @@
     'else'    => $padElse [$pad],
     'hit'     => $padHit [$pad],
     'array'   => $padArray [$pad],
-    'text'    => $padText  [$pad],
     'default' => $padDefault [$pad],
     'count'   => $padCount [$pad]
   ];

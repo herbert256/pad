@@ -452,21 +452,6 @@
   }
 
 
-  function padContent2 () {
- 
-    global $pad, $padBase, $padOpt;
-
-    if ( $padBase [$pad] )
-      return $padBase [$pad];
-
-    if ( $padOpt [$pad] [1] )
-      return $padOpt [$pad] [1];
-
-    return '';
-
-  }
-
-
   function padOpenCloseOk ( $string, $check) {
 
     if ( strpos ( $string, $check ) === FALSE )
@@ -1134,35 +1119,6 @@
     return 'csv';
 
   }
-
-
-  function padVarToTxt ( $source ) {
-
-    if ( is_array ($source) and ! count($source) )
-      return;
-
-    if ( is_array($source) )
-      padDumpClean ($source);
-
-    $return = '';
-    $lines  = explode ( "\n", htmlentities ( print_r ( $source, TRUE ) ) );
-
-    foreach ( $lines as $value )  {
-
-      if ( ! trim($value)          ) continue;
-      if ( trim($value) == '('     ) continue;
-      if ( trim($value) == ')'     ) continue;
-      if ( trim($value) == 'Array' ) continue;
-
-      $value = str_replace ( '=&gt; Array', '', $value );
-
-      $return .= "  $value\n";
-   
-    }
-
-    return '<table><tr></td><pre>' . trim($return) . '</pre></td></tr></table>';
-
-  } 
 
   
   function padValidStore ($fld) {

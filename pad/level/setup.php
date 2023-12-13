@@ -33,7 +33,6 @@
   $padStart      [$pad] = 0;
   $padEnd        [$pad] = 0;
 
-  $padPadStart   [$pad] = '';
   $padPad        [$pad] = '';
   $padResult     [$pad] = '';
  
@@ -42,7 +41,6 @@
   $padElse       [$pad] = FALSE;
   $padArray      [$pad] = FALSE;
   $padCount      [$pad] = FALSE;
-  $padText       [$pad] = FALSE;
 
   $padSaveLvl    [$pad] = [];
   $padDeleteLvl  [$pad] = [];
@@ -65,7 +63,6 @@
   $padForceTagName  = '';
   $padForceDataName = '';
   $padFalse         = '';  
-
 
   if ( padInfo )
     include pad . 'info/events/setup.php';

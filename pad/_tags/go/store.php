@@ -20,7 +20,7 @@
   if ( $padTag [$pad] == 'content') {
 
     if ( $padWalk [$pad] == 'start' )
-      $padStoreData = $padPadStart [$pad];
+      $padStoreData = $padBase [$pad];
     else
       $padStoreData = padMakeContent ($padStoreSource);
 
