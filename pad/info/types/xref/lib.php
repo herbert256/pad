@@ -117,10 +117,10 @@
   
   function padXrefXml ( $dir1, $dir2, $dir3 ) {
 
-    global $pad, $padXml, $padXmlLevel, $padXmlDetails;
+    global $pad, $padXml, $padXmlLevel;
   
-    if ( ! $padXml        ) return;
-    if ( ! $padXmlDetails ) return;
+    if ( ! $padXml ) 
+      return;
  
     $target = $padXmlLevel [$pad] ?? 0;
   
@@ -152,7 +152,7 @@
     else
       $xref = padFileCorrect ($dir2 );
   
-    padInfoLine ( "$padInfoDir/$target/$dir1/$xref.txt", padInfoIds () );
+    padInfoPut ( "$padInfoDir/$target/$dir1/$xref.txt", padInfoIds () );
 
   }
 

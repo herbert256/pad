@@ -8,7 +8,4 @@
   $padXmlEventType = 'level-end';
   include pad . 'info/types/xml/event.php';
 
-  if ( $padXmlDetails )
-    include pad . 'info/types/xml/details/level/end.php';   
-
 ?>

@@ -11,7 +11,4 @@
   $padXmlEventType = 'occur-start';
   include pad . 'info/types/xml/event.php';
 
-  if ( $padXmlDetails )
-    include pad . 'info/types/xml/details/occur/start.php';
-
 ?>

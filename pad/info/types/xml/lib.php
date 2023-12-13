@@ -19,10 +19,15 @@
 
   function padXmlLevelStart ( $event ) {
 
-    global $padXmlTree, $padXmlDetails;
+    global $padXmlTree, $padXmlShowEmpty;
 
     extract ( $event );
     extract ( $padXmlTree [$tree] );
+
+    if ( ! $size and ! $padXmlShowEmpty ) {
+      $padXmlTree [$tree] ['SKIP'] = TRUE;
+      return;
+    }
 
     $count = 0;
     foreach ( $parms as $list )
@@ -40,7 +45,6 @@
     
     if ( $type   <> 'pad'     ) $options ['type']   = $type;
     if ( $source <> 'content' ) $options ['source'] = $source;
-    if ( $padXmlDetails       ) $options ['id'] = $tree;
 
     if ( $padXmlTree [$tree] ['childs'] )
       padXmlOpen ( $tag, $options );
@@ -71,6 +75,9 @@
 
     extract ( $event );
     extract ( $padXmlTree [$tree] );
+
+    if ( isset ($padXmlTree [$tree] ['SKIP'] ) )
+      return;
 
     if ( $written ) padXmlClose ( 'occurs' );
     if ( $childs  ) padXmlClose ( $tag );
@@ -160,17 +167,14 @@
 
   function padXmlWrite ( $xml ) {
   
-    global $padInfoDir, $padXmlDetails, $padInfoId, $padXmlDepth;
+    global $padInfoDir, $padInfoId, $padXmlDepth;
 
     if ( $padXmlDepth > 0 )
       $spaces = str_repeat ( ' ', $padXmlDepth * 2 );
     else
       $spaces = '';
 
-    if ( $padXmlDetails )
-      padInfoPut ( "$padInfoDir/xml/tree.xml", "$spaces$xml", true );
-    else
-      padInfoPut ( "$padInfoDir/tree.xml", "$spaces$xml", true );
+    padInfoPut ( "$padInfoDir/tree.xml", "$spaces$xml", true );
   
   }
 
@@ -190,7 +194,7 @@
 
   function padXmlTidy () {
 
-    global $padInfoDir, $padXmlDetails, $padInfoId, $padXmlTidy;
+    global $padInfoDir, $padInfoId, $padXmlTidy;
 
     if ( ! $padXmlTidy )
       return;
@@ -209,10 +213,7 @@
       'drop-empty-elements' => 'yes'
     ];
 
-    if ( $padXmlDetails )
-      $data = padInfoGet ( padData . "$padInfoDir/xml/tree.xml" );
-    else
-      $data = padInfoGet ( padData . "$padInfoDir/tree.xml" );
+    $data = padInfoGet ( padData . "$padInfoDir/tree.xml" );
 
     $tidy = new tidy;
     $tidy->parseString ( $data, $options, 'utf8' );
@@ -221,10 +222,7 @@
     if ( $tidy === FALSE )
       return padError ( "TIDY conversion error");
 
-    if ( $padXmlDetails )
-      $data = padInfoPut ( "$padInfoDir/xml/tree-tidy.xml", $tidy->value );
-    else
-      $data = padInfoPut ( "$padInfoDir/tree-tidy.xml", $tidy->value );
+    $data = padInfoFile ( "$padInfoDir/tree.xml", $tidy->value );
 
   }
 

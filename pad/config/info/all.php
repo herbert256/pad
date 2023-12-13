@@ -20,9 +20,9 @@
   $padTrackDbRequest   = TRUE;       // Request info in the PAD database
   $padTrackDbData      = TRUE;       // Complete result page in the PAD database
 
-  $padXmlParms         = FALSE;
-  $padXmlDetails       = FALSE;
+  $padXmlParms         = TRUE;
   $padXmlTidy          = TRUE;
+  $padXmlShowEmpty     = TRUE;
   
   $padXrefTail         = TRUE;
   $padXrefManual       = TRUE;

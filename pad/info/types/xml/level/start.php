@@ -23,17 +23,8 @@
 
   $padXmlLvl = $padXmlLevel [$pad];
   $padXmlOcc = $padOccur    [$pad]; 
-
-  if ( $padXmlDetails) {
-    $padXmlTree [$padXmlLvl] ['id']        = $padXmlLvl;
-    $padXmlTree [$padXmlLvl] ['parent']    = $padXmlParent;
-    $padXmlTree [$padXmlLvl] ['parentOcc'] = $padXmlParentOcc;
-  }
   
   $padXmlEventType = 'level-start';
   include pad . 'info/types/xml/event.php';
-
-  if ( $padXmlDetails )
-    include pad . 'info/types/xml/details/level/start.php';
 
 ?>
