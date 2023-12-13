@@ -1,80 +1,16 @@
-It can get confusing because a PAD tag can be so many things, 
-<p> 
-  <table border="1" cellpadding="10" cellspacing="0">
-    <tr>
-      
-      
-      
-      <th bgcolor="#dddddd">HTML</th>
-      <th bgcolor="#dddddd">RESULT</th>
-    </tr>
-    
+<div id="padAjax8OKcw0Hu"></div>
 
-<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From an pad tag&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From an pad tag</h3>
-
-An example PAD tag<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From an application tag &lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">app</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From an application tag </h3>
-
-From a own {tag}<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From the <b>{<font color="blue">content</font><font color="red"></font>}</b> tag &lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From the {content} tag </h3>
-
-
-  This is from content<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From a PHP function !&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From a PHP function !</h3>
-
-This is a function<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From an own PAD function &lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">function</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From an own PAD function </h3>
-
-From a own function<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From an defined flag&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  Flag 'foo' is true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  Flag 'foo' is false<br><b>{/<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From an defined flag</h3>
-
-
-  Flag 'foo' is true<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From the sequence store&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">store</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b><br><b>{/<font color="blue"><font color="purple">store</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From the sequence store</h3>
-
-
-  2
-
-  3
-
-  5
-
-  7
-
-  11
-
-  13
-
-  17
-
-  19
-
-  23
-
-  29<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From a PHP array&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From a PHP array</h3>
-
-
-  This is a PHP array - 1 <br>
-
-  This is a PHP array - 2 <br>
-
-  This is a PHP array - 3 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;A defined constant&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">constant</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">constant</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>A defined constant</h3>
-
-
-  This is a constant - 1 <br>
-
-  This is a constant - 2 <br>
-
-  This is a constant - 3 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From the <b>{<font color="blue">data</font><font color="red"></font>}</b> tag&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From the {data} tag</h3>
-
-
-  This is a json array - 1 <br>
-
-  This is a json array - 2 <br>
-
-  This is a json array - 3 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From the local _data directory&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From the local _data directory</h3>
-
-
-  From the _data directory - 1 <br>
-
-  From the _data directory - 2 <br>
-
-  From the _data directory - 3 <br><!-- END DEMO RESULT --></span></code></td></tr>
-
-
-  </table>
-</p>
+<script>
+  padAjax8OKcw0Hu = new XMLHttpRequest();
+  padAjax8OKcw0Hu.onreadystatechange=function() {
+    if (padAjax8OKcw0Hu.readyState === 4) {
+      if (padAjax8OKcw0Hu.status === 200) {
+        document.getElementById("padAjax8OKcw0Hu").innerHTML=padAjax8OKcw0Hu.responseText;
+      } else {
+        document.getElementById("padAjax8OKcw0Hu").innerHTML=padAjax8OKcw0Hu.statusText;
+      }
+    }
+  }
+  padAjax8OKcw0Hu.open("GET","http://localhost/?prefix/index&padInclude&padSesID=MzFLKnzN&padReqID=e94UWbQJ",true);
+  padAjax8OKcw0Hu.send();
+</script>
