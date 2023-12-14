@@ -1,20 +1,22 @@
-{pagesAll}
+{padListFiltered}
+
+  {block}
 
     <hr>
     <h3><a href="{$padGo}develop/show&item={$dir}/{$file}">{$item}</a></h3>
 
-    <table style="border-style: dashed; dotted;" cellspacing="15"><tr><td>
+    {if $allType eq 'example'}
+      {example '{$item}'}
+    @else@
+      <table style="border-style: dashed; dotted;" cellspacing="15">
+        <tr>
+          <td><center>{page '{$item}', type='{$allType}', include, ignore}</center></td>
+        </tr>
+      </table>
+    {/if}
 
-      <center>
+  {/block}
 
-          {get 'develop/show/one', type='{$exampleType}', include, ignore, $one='{$item}'}
-
-      </center>
-
-      </td></tr></table>
-
-      <br><br>
-
-{/pagesAll}
+{/padListFiltered}
 
 <!-- PAD: SKIP REGRESSION -->

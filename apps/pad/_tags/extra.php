@@ -1,6 +1,8 @@
 <?php
 
-  $extraFiles = [];
+  if ( isset ( $_SERVER ['HTTP_REFERER'] ) )
+    if ( str_contains ( $_SERVER ['HTTP_REFERER'] , 'develop/page' ) )
+      return NULL;
   
   $page = $padOpt [$pad] [1] ;
   $dir  = substr($page, 0, strrpos($page, '/')   );

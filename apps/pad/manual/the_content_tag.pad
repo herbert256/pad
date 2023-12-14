@@ -2,21 +2,7 @@
     With the <b>&open;content&close;</b> tag it is possible to define content for later use.
 {/block}  
 
-{table}{demo} 
-
-{content 'hello'}
-  <p> Hello World </p>
-{/content}
-
-{/demo}{demo}
-
-{hello}
-
-{hello}
-
-{hello}
-
-{/demo}{/table}
+{get 'content/1'}
 
 <hr><h4>Open or close tag</h4>
 
@@ -25,204 +11,30 @@
 <p>If <b>&open;/content 'xxx'&close;</b> is used, then the content will be processed before it is stored in the content store</p>
 {/block}
 
-{table}{demo}
-
-{set $abc = 10}
-
-{content 'myContent'}
-  {$abc} <br>
-{/content}
-
-{/demo}{demo}
-
-{increment $abc} {myContent}
-{increment $abc} {myContent}
-{increment $abc} {myContent}
-
-{/demo}{demo}
-
-{set $abc = 10}
-
-{content}
-  {$abc} <br>
-{/content 'myContent'}
-
-{/demo}{demo}
-
-{increment $abc} {myContent}
-{increment $abc} {myContent}
-{increment $abc} {myContent}
-
-{/demo}{/table}
+{get 'content/2'}
 
 <hr><h4>Merge content with content - part 1</h4>
 
-{table}{demo}
-
-{content 'myContent'}
-  Before <br>
-  @content@
-  After <br>
-{/content}
-
-{/demo}{demo}
-
-{myContent}
-  This will be inserted <br>
-{/myContent}
-
-{/demo}{/table}
-
-{table}{demo}
-
-{content 'myContent'}
-  This will be inserted <br>
-{/content}
-
-{/demo}{demo}
-
-{myContent}
-  Before <br>
-  @content@
-  After <br>
-{/myContent}
-
-{/demo}{/table}
+{get 'content/3'}
 
 <hr><h4>Merge content with content - part 2</h4>
 
-If not given, 'replace' will be used for 'merge'
-
-{table}{demo}
-
-{content 'myContent'}
-  This is my content.<br>
-{/content}
-
-{/demo}{demo}
-
-{myContent}
-
-{/demo}{demo}
-
-{myContent}
-  This is the base content. <br>
-{/myContent}
-
-{/demo}{demo}
-
-{myContent merge='replace'}
-  This is the base content. <br>
-{/myContent}
-
-{/demo}{demo}
-
-{myContent merge='top'}
-  This is the base content. <br>
-{/myContent}
-
-{/demo}{demo}
-
-{myContent merge='bottom'}
-  This is the base content. <br>
-{/myContent}
-
-{/demo}{/table}
+{get 'content/4'}
 
 <hr><h4>Merge content with content - part 3</h4>
 
 If not given, 'replace' will be used for 'merge'
 
-{table}{demo}
-
-{content 'myContent'}
-  This is the true content. <br>
-@else@
-  This is the false content. <br>
-{/content}
-
-{/demo}{demo}
-
-{true content='myContent', merge='replace'}
-  This is the true base content <br>
-@else@
-  This is the false base content <br>
-{/true}
-
-{/demo}{demo}
-
-{true content='myContent', merge='top'}
-  This is the true base content <br>
-@else@
-  This is the false base content <br>
-{/true}
-
-{/demo}{demo}
-
-{true content='myContent', merge='bottom'}
-  This is the true base content <br>
-@else@
-  This is the false base content <br>
-{/true}
-
-{/demo}{demo}
-
-{false content='myContent', merge='replace'}
-  This is the true base content <br>
-@else@
-  This is the false base content <br>
-{/false}
-
-{/demo}{demo}
-
-{false content='myContent', merge='top'}
-  This is the true base content <br>
-@else@
-  This is the false base content <br>
-{/false}
-
-{/demo}{demo}
-
-{false content='myContent', merge='bottom'}
-  This is the true base content <br>
-@else@
-  This is the false base content <br>
-{/false}
-
-{/demo}{/table}
+{get 'content/5'}
 
 <hr><h4>Merge content with content - part 4</h4>
 
 If not given, 'replace' will be used for 'merge'
 
-{get 'manual/triple'}
+{get 'content/6'}
 
-<hr><h4>Merge content with content - part xxx</h4>
+<hr><h4>Merge content with content - part 5</h4>
 
 Combine {at 'else'} with {at 'content'}
 
-{table}{demo}
-
-{content 'myContent'}
-  true: This is the @content@ content. <br>
-@else@
-  false: This is the @content@ content. <br>
-{/content}
-
-{/demo}{demo}
-
-{true content='myContent'}
-  true
-@else@
-  false
-{/true}
-
-{/demo}{demo}
-
-{false content='myContent'}
-  true
-@else@
-  false
-{/false}
-
-{/demo}{/table}
+{get 'content/7'}

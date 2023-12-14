@@ -15,6 +15,4 @@
   $showTitle = TRUE;
   $title     = $item;
   
-  // <!-- PAD: NO ALL -->
-  
 ?>

@@ -1,0 +1,33 @@
+{table}{demo}
+
+{pad $myColor='red'}
+  <b> <font color="{$myColor}"> Hallo Wereld </font> </b> <br>
+{/pad}
+
+{/demo}{demo}
+
+{data 'myColor'}
+  ( "red", "green", "blue" ) 
+{/data}
+
+{/demo}{demo}
+
+{pad data='myColor'}
+  <b> <font color="{$myColor}"> Hallo Wereld </font> </b> <br>
+{/pad}
+
+{/demo}{demo}
+
+{content 'myContent'}
+  <b> <font color="{$myColor}"> Hello World </font> </b> <br>
+{/content}
+
+{/demo}{demo}
+
+{pad content='myContent', $myColor='purple'}
+
+{/demo}{demo}
+
+{pad content='myContent', data='myColor'}
+
+{/demo}{/table}

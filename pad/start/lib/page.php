@@ -14,8 +14,6 @@
   if ( $padPageInclude )
     $padInclude = TRUE;
 
-  $padStartType = "$padPageStart-$padPageType-$padPagePage";
-
   $padPageResult = include pad . "start/types/$padPageType.php";
   
   $padPage = $padPageSavePage [$pad];

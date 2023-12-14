@@ -700,8 +700,8 @@
 
   function padUnescape ( $string ) {
 
-    return str_replace ( [ '&open;','&close;','&pipe;', '&eq;','&comma;','&at;' ], 
-                         [ '{',     '}',      '|',      '=',   ',',      '@'    ], 
+    return str_replace ( [ '&open;','&close;','&pipe;', '&eq;','&comma;','&at;', '&else;' ], 
+                         [ '{',     '}',      '|',      '=',   ',',      '@',    '@else@' ], 
                          $string );
   }
   

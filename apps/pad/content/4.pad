@@ -1,0 +1,35 @@
+{table}{demo}
+
+{content 'myContent'}
+  This is my content.<br>
+{/content}
+
+{/demo}{demo}
+
+{myContent}
+
+{/demo}{demo}
+
+{myContent}
+  This is the base content. <br>
+{/myContent}
+
+{/demo}{demo}
+
+{myContent merge='replace'}
+  This is the base content. <br>
+{/myContent}
+
+{/demo}{demo}
+
+{myContent merge='top'}
+  This is the base content. <br>
+{/myContent}
+
+{/demo}{demo}
+
+{myContent merge='bottom'}
+  This is the base content. <br>
+{/myContent}
+
+{/demo}{/table}

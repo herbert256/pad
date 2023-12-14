@@ -3,8 +3,11 @@
 
   function padFileContains ( $file, $string ) {
 
-    if ( str_contains ( file_get_contents ( $file ), "<!-- PAD: $string -->") ) 
-      return TRUE;
+    $file = str_replace ( '.php', '.pad', $file );
+
+    if ( file_exists( $file ) ) 
+      if ( str_contains ( file_get_contents ( $file ), $string ) ) 
+        return TRUE;
 
     return FALSE;
 

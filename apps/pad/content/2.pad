@@ -1,0 +1,29 @@
+{table}{demo}
+
+{set $abc = 10}
+
+{content 'myContent'}
+  {$abc} <br>
+{/content}
+
+{/demo}{demo}
+
+{increment $abc} {myContent}
+{increment $abc} {myContent}
+{increment $abc} {myContent}
+
+{/demo}{demo}
+
+{set $abc = 10}
+
+{content}
+  {$abc} <br>
+{/content 'myContent'}
+
+{/demo}{demo}
+
+{increment $abc} {myContent}
+{increment $abc} {myContent}
+{increment $abc} {myContent}
+
+{/demo}{/table}

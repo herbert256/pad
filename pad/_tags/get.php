@@ -1,11 +1,9 @@
 <?php
+ 
+  $padPagePage    = $padOpt [$pad] [1];
+  $padPageInclude = TRUE;
+  $padPageType    = 'sandbox';
 
-  $padExtPag = $padOpt [$pad] [1] ;
-  $padExtQry = '&padInclude';
-
-  foreach ( $padSetLvl [$pad] as $padK => $padV )
-    $padExtQry .= "&$padK=" . urlencode($padV);
-
-  return padEscape ( padPageGet ( $padExtPag, $padExtQry ) );
+  return padEscape ( include pad . "start/lib/page.php" );
 
 ?>

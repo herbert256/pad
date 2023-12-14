@@ -1,5 +1,0 @@
-<?php
-
-  padXref ( 'setup', $padStartType );
-
-?>

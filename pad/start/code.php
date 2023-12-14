@@ -1,10 +1,5 @@
 <?php
 
-  $padStartType = 'pad';
-
-  if ( padXref ) 
-    include pad . 'info/types/xref/items/entry.php';
-
   include pad . 'start/lib/setup.php';
 
   $padBase [$pad] = $padCode;    
