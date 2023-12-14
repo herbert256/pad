@@ -2,8 +2,7 @@
 
   $extraFiles = [];
   
-  $item = padTagParm ( 'item', $padOpt [$pad] [1] );
-  $page = padPageGetName ($item);
+  $page = $padOpt [$pad] [1] ;
   $dir  = substr($page, 0, strrpos($page, '/')   );
 
   $basePage = padApp . $page;

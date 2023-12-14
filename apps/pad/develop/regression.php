@@ -23,7 +23,7 @@
     elseif ( strrpos($store, 'random')          ) $status = 'random' ;
     elseif ( strpos($new, 'PAD: NO REGRESSION') ) $status = 'skip' ;
     elseif ( strpos($source, '{example')        ) $status = 'skip' ;
-    elseif ( strpos($source, '{page')           ) $status = 'skip' ;
+    elseif ( strpos($source, '{get')           ) $status = 'skip' ;
     elseif ( strpos($new, 'padAjax')            ) $status = 'skip' ;
     elseif ( $old == $new                       ) $status = 'ok';
     else                                          $status = 'error';

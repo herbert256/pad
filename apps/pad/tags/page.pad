@@ -1,23 +1,24 @@
-<p>Include an other page in the current page, 4 ways of doing this.</p>
+<p>Include an other page in the current page, 5 ways of doing this.</p>
 
 {table}
 
 {demo}
-{page 'hello'}
+{page 'hello/index'}
 {/demo}
 
 {demo}
-{page 'hello', type='include', include, $color='green'}
-{page 'hello', type='build',   include, $color='orange'}
-{page 'hello', type='get',     include, $color='red'}
-{page 'hello', type='ajax',    include, $color='blue'}
+{page 'hello/index', type='include', include, $color='green'}
+{page 'hello/index', type='build',   include, $color='orange'}
+{page 'hello/index', type='sandbox', include, $color='purple'}
+{page 'hello/index', type='get',     include, $color='red'}
+{page 'hello/index', type='ajax',    include, $color='blue'}
 {/demo}
 
 {demo}
-{page 'hello', type='include', $color='green'}
-{page 'hello', type='build',   $color='orange'}
-{page 'hello', type='get',     $color='red'}
-{page 'hello', type='ajax',    $color='blue'}
+{page 'hello/index', type='build',   $color='orange'}
+{page 'hello/index', type='sandbox', $color='purple'}
+{page 'hello/index', type='get',     $color='red'}
+{page 'hello/index', type='ajax',    $color='blue'}
 {/demo}
 
 {/table}

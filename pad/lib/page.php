@@ -18,57 +18,6 @@
   }
 
 
-
-  function padPageGetName ( $page = '' ) { 
-
-    global $pad, $padPage, $padOpt;
-
-    $now = $padPage;
-
-    if ( $page )
-      $new = $page;
-    else
-      $new = padTagParm ( 'page', $padOpt [$pad] [1] ); 
-
-    if ( ! $new ) 
-      return '';
-
-    if ( padPageCheck ( $new ) )
-      return padPageSet ( $new );
-
-    if ( str_starts_with ( $new, '/') ) {
-      $chk = substr($new, 1);    
-      if ( padPageCheck ( $chk, 0 ) )
-        return padPageSet ( $chk );
-    }
-
-    if ( str_starts_with ( $new, './') ) {
-      $chk = substr($now, 0, strrpos($now, '/')) . '/' . substr ( $new, 2);
-      if ( padPageCheck ( $chk, 0 ) )
-        return padPageSet ( $chk );
-    }
-
-    if ( strrpos($now, '/') !== FALSE ) {
-      $chk = substr($now, 0, strrpos($now, '/')) . '/' . $new;
-      if ( padPageCheck ( $chk, 0 ) )
-         return padPageSet ( $chk );
-     }
-     
-    if ( strrpos($now, '/') === FALSE ) {
-      $chk = $new;
-      if ( padPageCheck ( $chk, 0 ) )
-         return padPageSet ( $chk ); 
-    }
-
-    $chk = $new;
-    if ( padPageCheck ( $chk, 0 ) )
-      return padPageSet ( $chk ); 
-
-    return '';
-  
-  }
-
-
   function padPageCheck ( $page, $check=1 ) {
 
     if ( $check and ! padValidPage ($page) )
