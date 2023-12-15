@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! $padOutput or $padSent )
+  if ( ! $padOutput or isset ( $padSent ) )
     return;
 
   echo $padOutput;
