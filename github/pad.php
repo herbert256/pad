@@ -14,9 +14,9 @@
   //
   //  =============================================================================
 
-  define ( 'pad',     "/home/herbert/pad/pad/"      );   // Home of PAD itself
-  define ( 'padApp',  "/home/herbert/pad/cli/"      );   // The application files
-  define ( 'padData', "/home/herbert/pad/cli/data/" );   // Data locaction, used for logs/cache/errors/etc.
+  define ( 'pad',     "/workspaces/pad/pad/"    );   // Home of PAD itself
+  define ( 'padApp',  "/workspaces/pad/github/" );   // The application files
+  define ( 'padData', "/workspaces/data/"       );   // Data locaction, used for logs/cache/errors/etc.
   
   include pad . 'pad.php';
 
