@@ -4,5 +4,5 @@
   $padSqlDatabase  = 'demo';
   $padSqlUser      = 'demo';
   $padSqlPassword  = 'demo';
- 
+
 ?>

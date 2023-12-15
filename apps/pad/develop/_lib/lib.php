@@ -27,7 +27,8 @@
 
   }
 
-  function padList () {
+
+  function padList ( $filter = 1 ) {
 
     $directory = new RecursiveDirectoryIterator (padApp);
     $iterator  = new RecursiveIteratorIterator  ($directory);
@@ -43,11 +44,14 @@
 
       if ( strpos($path, '/_')             ) continue;
       if ( $ext <> 'pad' and $ext <> 'php' ) continue;
-      if ( strpos($path, 'error')          ) continue;      
-      if ( strpos($path, 'test')           ) continue;      
-      if ( strpos($path, 'restart')        ) continue;      
-      if ( strpos($path, 'redirect')       ) continue;      
-      if ( strpos($path, 'deept')          ) continue;      
+
+      if ( $filter ) {
+        if ( strpos($path, 'error')          ) continue;      
+        if ( strpos($path, 'test')           ) continue;      
+        if ( strpos($path, 'restart')        ) continue;      
+        if ( strpos($path, 'redirect')       ) continue;      
+        if ( strpos($path, 'deep')           ) continue;  
+      }    
 
       $files [$item] ['path'] = $path;
       $files [$item] ['item'] = $item;
@@ -67,7 +71,6 @@
 
     foreach ( padList () as $one ) {
 
-      if ( str_contains ( $one ['path'], 'deep')        ) continue;
       if ( str_contains ( $one ['path'], 'develop')     ) continue;
       if ( str_contains ( $one ['path'], 'manual')      ) continue;
       if ( str_contains ( $one ['path'], 'reference')   ) continue;

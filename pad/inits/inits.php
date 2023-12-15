@@ -19,6 +19,6 @@
   include pad . 'inits/level.php';
   include pad . 'inits/parms.php';
   include pad . 'inits/options.php';
-  include pad . 'build/build.php';
+  include pad . 'inits/app.php';
 
 ?>

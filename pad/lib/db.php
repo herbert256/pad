@@ -2,15 +2,15 @@
 
   function db ( $sql, $vars = [] ) {
 
-    global $padSqlConnect, $padSqlHost , $padSqlUser , $padSqlPassword , $padSqlDatabase;
+    global $padSqlConnect, $padSqlHost, $padSqlUser, $padSqlPassword, $padSqlDatabase;
     
     if ( ! isset ( $padSqlConnect ) )
-      $padSqlConnect = padDbConnect ( $padSqlHost , $padSqlUser , $padSqlPassword , $padSqlDatabase );
-    
-    return padDbPart2 ($padSqlConnect, $sql, $vars);
+      $padSqlConnect = padDbConnect ( $padSqlHost, $padSqlUser, $padSqlPassword, $padSqlDatabase );
+
+    return padDbPart2 ( $padSqlConnect, $sql, $vars );
     
   }
-  
+
   
   function padDb ( $sql, $vars = [] ) {
 

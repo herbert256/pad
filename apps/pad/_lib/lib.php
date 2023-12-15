@@ -91,7 +91,7 @@
 
     global $padHost, $padScript;
 
-    $url  = "$padHost$padScript?$page&padInclude&noShow=1";
+    $url  = "$padHost$padScript?$page&padInclude";
     $curl = padCurl ($url);
 
     if ( ! $ignoreErrors and ! str_starts_with ( $curl ['result'], '2') )
@@ -102,9 +102,9 @@
   }
 
 
-  function getPageData ( $page, $ignoreErrors=0  ) {
+  function getPageData ( $page, $ignoreErrors=0 ) {
 
-    $curl = getPage ($page, 1);
+    $curl = getPage ( $page, $ignoreErrors );
 
     return $curl ['data'];
     

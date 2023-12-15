@@ -31,16 +31,29 @@
 
     echo "\r\n";
 
-    for ($i = 1; $i <= 25; $i++)
-      echo "</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>\r\n";
+    if ( $GLOBALS ['padOutputType'] == 'web' )
+      for ($i = 1; $i <= 25; $i++)
+          echo "</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>\r\n";
 
-    if ( padLocal () )
+    if ( $GLOBALS ['padOutputType'] == 'console' )
+      padDumpConsole ( $info );      
+    elseif ( padLocal () )
       padDumpLocal ( $info );
     else
       padDumpRemote ( $info );
      
     $GLOBALS ['padSent']   = TRUE;
     $GLOBALS ['padOutput'] = '';
+
+  }
+
+
+  function padDumpConsole ( $info ) {
+
+    echo padMakeSafe ("Error: $info", 100);
+    
+    echo "\nDir  : " . padDumpToDir ( $info );
+    echo "\n";
 
   }
 
@@ -78,24 +91,9 @@
   }
 
 
-  function padDumpCurl ( &$pad ) {
-
-    if ( isset ( $GLOBALS ['padCurlLast'] ) ) {
-  
-      padDumpLines ( "Last Curl",  $GLOBALS ['padCurlLast'] );
-
-      unset ( $pad ['padLastCurl'] );
-
-    }
-
-  }
-
-
-
   function padDumpRemote ( $info ) {
 
-    if ( ! isset ( $GLOBALS ['padDumpToDir'] ) )
-      padDumpToDir ( $info );
+    padDumpToDir ( $info );
 
     padErrorLog ( "DUMP: $info" );
         
@@ -114,6 +112,19 @@
       echo ( "<hr><b>" . htmlentities($info) . "</b><hr><br>" ); 
 
   } 
+
+
+  function padDumpCurl ( &$pad ) {
+
+    if ( isset ( $GLOBALS ['padCurlLast'] ) ) {
+  
+      padDumpLines ( "Last Curl",  $GLOBALS ['padCurlLast'] );
+
+      unset ( $pad ['padLastCurl'] );
+
+    }
+
+  }
 
 
   function padDumpErrors () {

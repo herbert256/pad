@@ -3,21 +3,19 @@
 
   function padDumpToDir ( $info='', $dir='' ) {
 
-    if ( isset ( $GLOBALS ['padDumpToDir'] ) )
-      return;
+    if ( isset ( $GLOBALS ['padDumpToDirDone'] ) )
+      return $GLOBALS ['padDumpToDirDone'];
  
-    $GLOBALS ['padDumpToDir'] = TRUE;
-
     if ( ! $dir )
-      $dir = "dumps/" . $GLOBALS ['padPage'] . '/' . $GLOBALS ['padReqID'] . '-' . padRandomString();
+      $dir = "dumps/" . $GLOBALS ['padPage'] . '/' . $GLOBALS ['padReqID'];
+
+    $GLOBALS ['padDumpToDirDone'] = $dir;
 
     set_error_handler ( 'padErrorThrow' );
 
     try {
 
       padDumpToDirGo ( $info, $dir );
-
-      unset ( $GLOBALS ['padDumpToDir'] );
 
     } catch (Throwable $e) {
 

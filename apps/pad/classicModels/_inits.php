@@ -1,11 +1,4 @@
 <?php
-
-  $padSqlHost      = '127.0.0.1';
-  $padSqlDatabase  = 'classicmodels';
-  $padSqlUser      = 'classicmodels';
-  $padSqlPassword  = 'classicmodels';
-
-  // $padTables
   
   $padTables ['customers'] = [ 'db' => 'customers',    'key' => 'customerNumber', 'order' => 'customerName'];
   $padTables ['employees'] = [ 'db' => 'employees',    'key' => 'employeeNumber', 'order' => 'lastName,firstName'];
@@ -38,5 +31,5 @@
   $padRelations ['customers'] ['sales']      = [ 'table' => 'employees', 'key' => 'salesRepEmployeeNumber' ];
   $padRelations ['employees'] ['managers']   = [ 'table' => 'employees', 'key' => 'reportsTo'              ];
   $padRelations ['managers']  ['bosses']     = [ 'table' => 'employees', 'key' => 'reportsTo'              ];
-  
-?>
+ 
+ ?>
