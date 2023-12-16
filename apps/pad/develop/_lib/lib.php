@@ -46,11 +46,11 @@
       if ( $ext <> 'pad' and $ext <> 'php' ) continue;
 
       if ( $filter ) {
-        if ( strpos($path, 'error')          ) continue;      
-        if ( strpos($path, 'test')           ) continue;      
-        if ( strpos($path, 'restart')        ) continue;      
-        if ( strpos($path, 'redirect')       ) continue;      
-        if ( strpos($path, 'deep')           ) continue;  
+        if ( strpos($path, 'error')    ) continue;      
+        if ( strpos($path, 'test')     ) continue;      
+        if ( strpos($path, 'restart')  ) continue;      
+        if ( strpos($path, 'redirect') ) continue;      
+        if ( strpos($path, 'deep')     ) continue;  
       }    
 
       $files [$item] ['path'] = $path;
