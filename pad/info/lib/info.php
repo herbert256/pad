@@ -1,7 +1,7 @@
 <?php
 
 
-  function padErrorInfoError ($error, $file, $line) {
+  function padInfoError ($error, $file, $line) {
 
     set_error_handler ( 'padErrorThrow' );
 

@@ -158,11 +158,9 @@
     $file = "$padInfoPage/tree";
 
     for ( $lvl=0; $lvl<=$pad; $lvl++ ) {
-      $l = $padLvlIds [$pad] ?? 0;
-      $o = $padOccur  [$pad] ?? 0;
-      if ( $lvl > 0 ) 
-        $file .= "/lvl/$l/occ";
-      $file .= "/$o";
+      $l = $padLvlIds [$lvl] ?? 0;
+      $o = $padOccur  [$lvl] ?? 0; 
+      $file .= "/L-$l/O-$o";
     }
 
     $file .= "/$dir1/$dir2";    

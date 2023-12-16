@@ -12,7 +12,8 @@
   $padMainRequest      = TRUE;   
   $padMainSession      = TRUE;   
   $padMainOutput       = TRUE;   
-  $padMainDump         = TRUE;   
+  $padMainDump         = TRUE;  
+  $padMainError        = TRUE;  
 
   $padTrackFileRequest = TRUE;       // Request info in the data directory
   $padTrackFileData    = TRUE;       // Complete result page in the directory
