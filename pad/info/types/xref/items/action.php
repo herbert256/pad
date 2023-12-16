@@ -1,5 +1,5 @@
 <?php
 
-  padXref ( 'sequences', 'types', $padSeqSeq );
+  padXref ( 'sequences', 'actions', $padSeqActionName );
 
 ?>

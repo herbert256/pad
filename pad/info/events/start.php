@@ -8,15 +8,10 @@
   $padXmlId     = 0;
   $padXrefId    = 0;
 
-  if ( isset ( $_REQUEST['padInclude'] ) )
-    $padInfoPage = "pages/$padStartPage/include";
-  else
-    $padInfoPage = "pages/$padStartPage/complete";    
+  if ( isset ( $_REQUEST['padInclude'] ) ) $padInfoPage = "pages/$padStartPage/include";
+  else                                     $padInfoPage = "pages/$padStartPage/complete";
 
   $padInfoDir = "$padInfoPage/$padInfoId";
-
-  if ( ! file_exists ( padData . $padInfoPage ) )
-    mkdir ( padData . $padInfoPage, 0777, TRUE );  
 
   if ( $padMain    ) include pad . 'info/types/main/start.php';
   if ( $padStats   ) include pad . 'info/types/stats/start.php';
@@ -25,8 +20,5 @@
   if ( $padTrack   ) include pad . 'info/types/track/start.php';
   if ( padXml      ) include pad . 'info/types/xml/start.php';
   if ( padXref     ) include pad . 'info/types/xref/start.php';
-
-  if ( padInfoExists ( padApp . 'config/info.php' ) )
-    include padApp . 'config/info.php';
   
 ?>

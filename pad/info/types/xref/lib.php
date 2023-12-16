@@ -4,7 +4,7 @@
   function padXref ( $dir1, $dir2, $dir3='' ) {
 
     global $padXrefId;
-    global $padXrefInfo, $padXrefTypes, $padXrefXml, $padXrefTrace, $padXrefPage, $padXrefManual;
+    global $padXrefInfo, $padXrefDevelop, $padXrefXml, $padXrefTrace, $padXrefPage, $padXrefManual;
 
     $padXrefId++;
 
@@ -15,7 +15,7 @@
 
     if ( $padXrefInfo    ) padXrefInfo    ( $dir1, $dir2, $dir3 );
     if ( $padXrefManual  ) padXrefManual  ( $dir1, $dir2, $dir3 );
-    if ( $padXrefTypes   ) padXrefTypes   ( $dir1, $dir2, $dir3 );
+    if ( $padXrefDevelop ) padXrefTypes   ( $dir1, $dir2, $dir3 );
     if ( $padXrefPage    ) padXrefPage    ( $dir1, $dir2, $dir3 );
     if ( $padXrefXml     ) padXrefXml     ( $dir1, $dir2, $dir3 );
     if ( $padXrefTrace   ) padXrefTrace   ( $dir1, $dir2, $dir3 );
@@ -25,8 +25,8 @@
   
   function padXrefManual ( $dir1, $dir2, $dir3 ) {
    
-    if ( $dir1 == 'tag'       and $dir2 == 'tag'       ) padXrefManual2 ( 'properties', $dir3 );
-    if ( $dir1 == 'field'     and $dir2 == 'tag'       ) padXrefManual2 ( 'properties', $dir3 );
+    if ( $dir1 == 'tag'        and $dir2 == 'tag'      ) padXrefManual2 ( 'properties', $dir3 );
+    if ( $dir1 == 'field'      and $dir2 == 'tag'      ) padXrefManual2 ( 'properties', $dir3 );
     if ( $dir1 == 'at'         and $dir2 == 'property' ) padXrefManual2 ( 'properties', $dir3 );
     if ( $dir1 == 'tag'                                ) padXrefManual2 ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'constructs'                         ) padXrefManual2 ( $dir1, $dir2, $dir3 );
@@ -34,6 +34,7 @@
     if ( $dir1 == 'properties'                         ) padXrefManual2 ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'functions'                          ) padXrefManual2 ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'sequences'  and $dir2 == 'types'    ) padXrefManual2 ( $dir1, $dir2, $dir3 );
+    if ( $dir1 == 'sequences'  and $dir2 == 'builds'   ) padXrefManual2 ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'sequences'  and $dir2 == 'actions'  ) padXrefManual2 ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'at'         and $dir2 == 'kind'     ) padXrefManual2 ( $dir1, $dir2, $dir3 );
   
@@ -55,6 +56,7 @@
     if ( $dir1 == 'tag'        and $dir2 <> 'pad'     ) return padXrefManual3 ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'functions'  and $dir2 <> 'pad'     ) return padXrefManual3 ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'sequences'  and $dir2 == 'actions' ) return padXrefManual3 ( $dir1, $dir2, $dir3 );
+    if ( $dir1 == 'sequences'  and $dir2 == 'builds'  ) return padXrefManual3 ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'at'         and $dir2 == 'kind'    ) return padXrefManual3 ( $dir1, $dir2, $dir3 );
 
     if (   $dir3 and strpos ( $padXrefPageSource, $dir3 ) === FALSE ) return;

@@ -27,7 +27,7 @@
   
   $padXrefInfo         = TRUE;
   $padXrefManual       = TRUE;
-  $padXrefTypes        = TRUE;
+  $padXrefDevelop      = TRUE;
   $padXrefPage         = TRUE;
   $padXrefXml          = TRUE;
   $padXrefTrace        = TRUE;

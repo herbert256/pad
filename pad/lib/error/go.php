@@ -3,7 +3,7 @@
 
   function padErrorGo ($error, $file, $line) {
 
-    if ( padInfo and $GLOBALS ['padMainError'] )
+    if ( padInfo and isset ($GLOBALS ['padMainError']) and $GLOBALS ['padMainError'] )
       padInfoError ($error, $file, $line);
 
     if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 

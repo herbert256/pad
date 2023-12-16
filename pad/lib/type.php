@@ -64,8 +64,8 @@
   function padGetTypeEval ( $type ) {
 
         if ( ! padValid      ( $type                                  ) ) return FALSE;
-    elseif ( file_exists       ( padApp . "_functions/$type.php"        ) ) return 'app';
-    elseif ( file_exists       ( pad . "_functions/$type.php"           ) ) return 'pad';
+    elseif ( file_exists     ( padApp . "_functions/$type.php"        ) ) return 'app';
+    elseif ( file_exists     ( pad . "_functions/$type.php"           ) ) return 'pad';
     elseif ( function_exists ( $type                                  ) ) return 'php';
     elseif ( padFieldCheck   ( $type                                  ) ) return 'field';
     elseif ( isset           ( $GLOBALS ['padFlagStore'] [$type]      ) ) return 'flag';
@@ -77,10 +77,9 @@
     elseif ( padOptCheck     ( $type, 1                               ) ) return 'parm';
     elseif ( padChkLevel     ( $type                                  ) ) return 'level';
     elseif ( defined         ( $type                                  ) ) return 'constant';
-    elseif ( file_exists       ( pad . "sequence/actions/$type.php"     ) ) return 'action';
+    elseif ( file_exists     ( pad . "sequence/actions/$type.php"     ) ) return 'action';
     elseif ( padInclFileName ( $type                                  ) ) return 'include';
     elseif ( padDataFileName ( $type                                  ) ) return 'local';      
- 
     else                                                                  return FALSE;
 
   } 

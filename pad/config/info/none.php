@@ -27,7 +27,7 @@
   
   $padXrefInfo         = FALSE;
   $padXrefManual       = FALSE;
-  $padXrefTypes        = FALSE;
+  $padXrefDevelop      = FALSE;
   $padXrefPage         = FALSE;
   $padXrefXml          = FALSE;
   $padXrefTrace        = FALSE;
