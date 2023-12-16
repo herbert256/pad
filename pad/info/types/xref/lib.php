@@ -47,9 +47,9 @@
     if ( padInsideOther()                             ) return;
     if ( $padPage <> $padStartPage                    ) return;
     if ( ! str_ends_with ( padApp, '/pad/' )          ) return;
-    if ( str_contains ( $padStartPage, 'develop/'   ) ) return;
-    if ( str_contains ( $padStartPage, 'reference/' ) ) return;
-    if ( str_contains ( $padStartPage, 'manual/'    ) ) return;
+    if ( str_contains ( $padStartPage, 'develop'    ) ) return;
+    if ( str_contains ( $padStartPage, 'reference'  ) ) return;
+    if ( str_contains ( $padStartPage, 'manual'     ) ) return;
     if ( ! isset ( $_REQUEST['padInclude']          ) ) return;
 
     if ( $dir1 == 'tag'        and $dir2 <> 'pad'     ) return padXrefManual3 ( $dir1, $dir2, $dir3 );

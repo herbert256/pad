@@ -18,6 +18,6 @@
   $padPath = padPath ();
 
   if ( ! isset ( $padStartPage) )
-    $padStartPage = $padPage
+    $padStartPage = $padPage;
 
 ?>
