@@ -3,6 +3,8 @@
   $pad++;  
   $padLvlId++;
 
+  $padLvlIds     [$pad] = $padLvlId;
+
   $padOpt        [$pad] = [];
   $padPrm        [$pad] = [];
 

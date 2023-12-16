@@ -167,14 +167,14 @@
 
   function padXmlWrite ( $xml ) {
   
-    global $padInfoDir, $padInfoId, $padXmlDepth;
+    global $padXmlFile, $padInfoId, $padXmlDepth;
 
     if ( $padXmlDepth > 0 )
       $spaces = str_repeat ( ' ', $padXmlDepth * 2 );
     else
       $spaces = '';
 
-    padInfoLine ( "$padInfoDir/tree.xml", "$spaces$xml", true );
+    padInfoLine ( $padXmlFile, "$spaces$xml", true );
   
   }
 
@@ -194,11 +194,11 @@
 
   function padXmlTidy () {
 
-    global $padInfoDir, $padInfoId, $padXmlTidy;
+    global $padInfoPage, $padXmlTidy;
 
     if ( ! $padXmlTidy )
       return;
-
+    
     $options = [
       'input-xml'           => true,
       'output-xml'          => true,
@@ -213,7 +213,7 @@
       'drop-empty-elements' => 'yes'
     ];
 
-    $data = padInfoGet ( padData . "$padInfoDir/tree.xml" );
+    $data = padInfoGet ( padData . "$padInfoPage/xml.xml" );
 
     $tidy = new tidy;
     $tidy->parseString ( $data, $options, 'utf8' );
@@ -222,7 +222,7 @@
     if ( $tidy === FALSE )
       return padError ( "TIDY conversion error");
 
-    $data = padInfoFile ( "$padInfoDir/tree.xml", $tidy->value );
+    $data = padInfoFile ( "$padInfoPage/xml.xml", $tidy->value );
 
   }
 

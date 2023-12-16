@@ -17,6 +17,7 @@
   $padDir  = padDir ();
   $padPath = padPath ();
 
-  $padStartPage = $padPage;
+  if ( ! isset ( $padStartPage) )
+    $padStartPage = $padPage
 
 ?>

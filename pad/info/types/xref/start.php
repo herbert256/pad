@@ -4,6 +4,6 @@
     
   $padXrefDepth      = 0;
   $padXrefXmlEvents  = [];
-  $padXrefPageSource = padInfoGet ( padApp . $padPage . '.pad' );
+  $padXrefPageSource = padInfoGet ( padApp . $padStartPage . '.pad' );
 
 ?>

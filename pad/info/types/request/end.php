@@ -1,7 +1,5 @@
 <?php
 
-  global $padInfoId;
-
-  padMainRequestExit ( "request/$padInfoId-exit.json" );
+  padMainRequestExit ( "$padInfoDir/request-exit.json" );
 
 ?>

@@ -15,8 +15,8 @@
   $pages = [];
   $list  = [];
 
-  if ( file_exists ( padData . 'xref/develop' . $xref) )
-    $list = scandir ( padData . 'xref/develop' . $xref ); 
+  if ( file_exists ( padData . 'develop/xref' . $xref) )
+    $list = scandir ( padData . 'develop/xref' . $xref ); 
 
   foreach ( $list as $file ) {
 
@@ -25,9 +25,8 @@
 
     if ( str_contains ( $file, '-hit' ) ) {
 
-      $file = str_replace ('@', '/', $file);
-      $file = dirname ($file);
       $file = substr ($file, 0, -4);
+      $file = str_replace ('@', '/', $file);
 
       $pages [$file] ['page'] = $file;
 

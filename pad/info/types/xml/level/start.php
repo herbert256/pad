@@ -2,7 +2,7 @@
 
   include pad . 'info/types/xml/level/parent.php';
     
-  $padXmlTag = ( $padTag [$pad] == 'padBuildData' ) ? "page-$padPage" : $padTag [$pad];
+  $padXmlTag = ( $padTag [$pad] == 'padBuildData' ) ? "page-$padStartPage" : $padTag [$pad];
 
   $padXmlNew             = [];
   $padXmlNew ['tag']     = str_replace ( '/', '-', $padXmlTag );

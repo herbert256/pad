@@ -2,8 +2,6 @@
 
   include_once pad . 'info/types/request/lib.php';
 
-  global $padInfoId;
-
-  padMainRequestInit ( "request/$padInfoId-entry.json" );
+  padMainRequestInit ( "$padInfoDir/request-entry.json" );
 
 ?>

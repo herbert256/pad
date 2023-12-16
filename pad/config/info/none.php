@@ -13,6 +13,7 @@
   $padMainSession      = FALSE;   
   $padMainOutput       = FALSE;   
   $padMainDump         = FALSE;   
+  $padMainError        = FALSE;   
 
   $padTrackFileRequest = FALSE;       // Request info in the data directory
   $padTrackFileData    = FALSE;       // Complete result page in the directory
@@ -26,7 +27,8 @@
   
   $padXrefInfo         = FALSE;
   $padXrefManual       = FALSE;
-  $padXrefDevelop      = FALSE;
+  $padXrefTypes        = FALSE;
+  $padXrefPage         = FALSE;
   $padXrefXml          = FALSE;
   $padXrefTrace        = FALSE;
 

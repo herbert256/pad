@@ -1,14 +1,22 @@
 <?php
-
+ 
   include_once pad . 'info/lib/info.php';
 
   $padInfoId    = hrtime (true);
-  $padInfoDir   = "info/$padPage/$padInfoId";
-
   $padInfoCnt   = 0;
   $padTraceLine = 0;
   $padXmlId     = 0;
   $padXrefId    = 0;
+
+  if ( isset ( $_REQUEST['padInclude'] ) )
+    $padInfoPage = "pages/$padStartPage/include";
+  else
+    $padInfoPage = "pages/$padStartPage/complete";    
+
+  $padInfoDir = "$padInfoPage/$padInfoId";
+
+  if ( ! file_exists ( padData . $padInfoPage ) )
+    mkdir ( padData . $padInfoPage, 0777, TRUE );  
 
   if ( $padMain    ) include pad . 'info/types/main/start.php';
   if ( $padStats   ) include pad . 'info/types/stats/start.php';

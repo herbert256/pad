@@ -18,7 +18,7 @@
               values('{1}', '{2}', '{4:32}', NOW(), {5}, '{6}', '{7:32}', '{8}', '{9:1023}', '{10:1023}', '{11:1023}', '{12:1023}')",
       [  1 => $session,
          2 => $request,
-         4 => $GLOBALS ['padPage'] ?? '',
+         4 => $GLOBALS ['padStartPage'] ?? '',
          5 => padDuration(),
          6 => $GLOBALS ['padLen'] ?? 0,
          7 => $GLOBALS ['padStop'] ?? '',
@@ -47,18 +47,18 @@
 
   function padTrackFileRequestStart () {
 
-    global $padInfoId, $padInfoDir;
+    global $padInfoDir;
 
-    padInfoFile ( "track/request/$padInfoId-entry.json", padSessionStart () );
+    padInfoFile ( "$padInfoDir/track-entry.json", padSessionStart () );
 
   }
 
 
   function padTrackFileRequestEnd () {
 
-    global $padInfoId, $padInfoDir;
+    global $padInfoDir;
 
-    padInfoFile ( "track/request/$padInfoId-exit.json", padSessionEnd () );
+    padInfoFile ( "$padInfoDir/track-exit.json", padSessionEnd () );
 
   }
 
@@ -67,7 +67,7 @@
 
     global $padEtag, $padInfoDir, $padOutput;
 
-    $file = "track/data/$padEtag.pad";
+    $file = "$padInfoDir/track-data.pad";
 
     if ( ! file_exists(padData . $file) )
       padInfoFile ($file, $padOutput);

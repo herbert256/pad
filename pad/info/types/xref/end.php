@@ -1,5 +1,6 @@
 <?php
 
-padXrefTree () 
+  if ( $GLOBALS ['padXrefXml'] )
+    padXrefXmlMake () 
 
 ?>

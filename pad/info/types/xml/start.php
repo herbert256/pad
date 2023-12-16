@@ -4,9 +4,10 @@
 
   $padXmlDepth  = 0;
 
-  
   $padXmlTree   = [];
   $padXmlLevel  = [];
   $padXmlEvents = [];
+
+  $padXmlFile = "$padInfoPage/xml.xml";
 
 ?>

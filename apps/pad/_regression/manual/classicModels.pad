@@ -18,27 +18,27 @@
 
   
 
-    
-        <tr>
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">classicModels/_inits.php</font>
+            </th>
+          
+          
+          
+        </tr>
+      
+
+      <tr>
         
-          <th bgcolor="#dddddd">
-            PHP <br><font size="-2">classicModels/_inits.php</font>
-          </th>
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  <br>  $padTables </span><span style="color: #007700">[</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customers'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerName'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padTables </span><span style="color: #007700">[</span><span style="color: #DD0000">'employees'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employees'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employeeNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'lastName,firstName'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padTables </span><span style="color: #007700">[</span><span style="color: #DD0000">'offices'</span><span style="color: #007700">]   = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'offices'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'officeCode'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padTables </span><span style="color: #007700">[</span><span style="color: #DD0000">'details'</span><span style="color: #007700">]   = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderdetails'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderNumber,productCode'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderLineNumber'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padTables </span><span style="color: #007700">[</span><span style="color: #DD0000">'orders'</span><span style="color: #007700">]    = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orders'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderNumber'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padTables </span><span style="color: #007700">[</span><span style="color: #DD0000">'payments'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'payments'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber,checkNumber'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padTables </span><span style="color: #007700">[</span><span style="color: #DD0000">'lines'</span><span style="color: #007700">]     = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'productlines'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'productLine'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padTables </span><span style="color: #007700">[</span><span style="color: #DD0000">'products'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'products'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'productCode'</span><span style="color: #007700">];<br><br>  </span><span style="color: #FF8000">// Relations between PAD tables, the key of *relation* must be in $padTables<br>  // $padRelations [*base*]  [*relation*]    = [];<br><br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'products'</span><span style="color: #007700">]  [</span><span style="color: #DD0000">'lines'</span><span style="color: #007700">]      = [];<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'payments'</span><span style="color: #007700">]  [</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">]  = [];<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'orders'</span><span style="color: #007700">]    [</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">]  = [];<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'details'</span><span style="color: #007700">]   [</span><span style="color: #DD0000">'orders'</span><span style="color: #007700">]     = [];<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'details'</span><span style="color: #007700">]   [</span><span style="color: #DD0000">'products'</span><span style="color: #007700">]   = [];<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'employees'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'offices'</span><span style="color: #007700">]    = [];<br><br>  </span><span style="color: #FF8000">// Relations between PAD tables, the key of *relation* is an other field in *base*<br>  // $padRelations [*base*]  [*relation*] = [ 'key' =&gt; *keyField*];<br>  //<br>  // All keys of *relation* must be given, use 'n/a' if it does not exists in *base* for a partly relation<br><br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'employees'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'salesRepEmployeeNumber'</span><span style="color: #007700">];<br>  <br>  </span><span style="color: #FF8000">// Virtual tables<br>  <br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'sales'</span><span style="color: #007700">]      = [ </span><span style="color: #DD0000">'table' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employees'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'salesRepEmployeeNumber' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'employees'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'managers'</span><span style="color: #007700">]   = [ </span><span style="color: #DD0000">'table' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employees'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'reportsTo'              </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'managers'</span><span style="color: #007700">]  [</span><span style="color: #DD0000">'bosses'</span><span style="color: #007700">]     = [ </span><span style="color: #DD0000">'table' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employees'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'reportsTo'              </span><span style="color: #007700">];<br> <br> </span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
         
         
         
       </tr>
+
     
-
-    <tr>
-      
-        <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  <br>  $padTables </span><span style="color: #007700">[</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customers'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerName'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padTables </span><span style="color: #007700">[</span><span style="color: #DD0000">'employees'</span><span style="color: #007700">] = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employees'</span><span style="color: #007700">,    </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employeeNumber'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'lastName,firstName'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padTables </span><span style="color: #007700">[</span><span style="color: #DD0000">'offices'</span><span style="color: #007700">]   = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'offices'</span><span style="color: #007700">,      </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'officeCode'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padTables </span><span style="color: #007700">[</span><span style="color: #DD0000">'details'</span><span style="color: #007700">]   = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderdetails'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderNumber,productCode'</span><span style="color: #007700">, </span><span style="color: #DD0000">'order' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderLineNumber'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padTables </span><span style="color: #007700">[</span><span style="color: #DD0000">'orders'</span><span style="color: #007700">]    = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orders'</span><span style="color: #007700">,       </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'orderNumber'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padTables </span><span style="color: #007700">[</span><span style="color: #DD0000">'payments'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'payments'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'customerNumber,checkNumber'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padTables </span><span style="color: #007700">[</span><span style="color: #DD0000">'lines'</span><span style="color: #007700">]     = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'productlines'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'productLine'</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padTables </span><span style="color: #007700">[</span><span style="color: #DD0000">'products'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'db' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'products'</span><span style="color: #007700">,     </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'productCode'</span><span style="color: #007700">];<br><br>  </span><span style="color: #FF8000">// Relations between PAD tables, the key of *relation* must be in $padTables<br>  // $padRelations [*base*]  [*relation*]    = [];<br><br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'products'</span><span style="color: #007700">]  [</span><span style="color: #DD0000">'lines'</span><span style="color: #007700">]      = [];<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'payments'</span><span style="color: #007700">]  [</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">]  = [];<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'orders'</span><span style="color: #007700">]    [</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">]  = [];<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'details'</span><span style="color: #007700">]   [</span><span style="color: #DD0000">'orders'</span><span style="color: #007700">]     = [];<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'details'</span><span style="color: #007700">]   [</span><span style="color: #DD0000">'products'</span><span style="color: #007700">]   = [];<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'employees'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'offices'</span><span style="color: #007700">]    = [];<br><br>  </span><span style="color: #FF8000">// Relations between PAD tables, the key of *relation* is an other field in *base*<br>  // $padRelations [*base*]  [*relation*] = [ 'key' =&gt; *keyField*];<br>  //<br>  // All keys of *relation* must be given, use 'n/a' if it does not exists in *base* for a partly relation<br><br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'employees'</span><span style="color: #007700">]  = [ </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'salesRepEmployeeNumber'</span><span style="color: #007700">];<br>  <br>  </span><span style="color: #FF8000">// Virtual tables<br>  <br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'customers'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'sales'</span><span style="color: #007700">]      = [ </span><span style="color: #DD0000">'table' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employees'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'salesRepEmployeeNumber' </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'employees'</span><span style="color: #007700">] [</span><span style="color: #DD0000">'managers'</span><span style="color: #007700">]   = [ </span><span style="color: #DD0000">'table' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employees'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'reportsTo'              </span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$padRelations </span><span style="color: #007700">[</span><span style="color: #DD0000">'managers'</span><span style="color: #007700">]  [</span><span style="color: #DD0000">'bosses'</span><span style="color: #007700">]     = [ </span><span style="color: #DD0000">'table' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'employees'</span><span style="color: #007700">, </span><span style="color: #DD0000">'key' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'reportsTo'              </span><span style="color: #007700">];<br> <br> </span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
-      
-      
-      
-    </tr>
-
-  
 
   
     </table>
@@ -62,35 +62,35 @@
 
   
 
-    
-        <tr>
-        
-          <th bgcolor="#dddddd">
-            PHP <br><font size="-2"></font>
-          </th>
-        
-        
-          <th bgcolor="#dddddd">
-            HTML <br><font size="-2">classicModels/offices.pad</font>
-          </th>
-        
-        
-          <th bgcolor="#dddddd">
-            Result
-          </th>
-        
-      </tr>
-    
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">classicModels/offices.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
 
-    <tr>
-      
-        <td style="vertical-align:top"> </td>
-      
-      
-        <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;<br>      <br>      &lt;table border=1&gt;<br>        <b>{<font color="blue">offices </font><font color="red">sort</font>}</b><br>          <b>{<font color="blue">employees</font><font color="red"></font>}</b><br>            &lt;tr&gt;<br>              &lt;td&gt; <b>{<font color="green"><font color="red">$</font>city</font>}</b> &lt;/td&gt;<br>              &lt;td&gt; <b>{<font color="green"><font color="red">$</font>lastName</font>}</b>, <b>{<font color="green"><font color="red">$</font>firstName</font>}</b> &lt;/td&gt;<br>            &lt;/tr&gt;<br>          <b>{/<font color="blue">employees</font><font color="red"></font>}</b><br>        <b>{/<font color="blue">offices</font><font color="red"></font>}</b><br>      &lt;/table&gt;<br>      <br>    &lt;/td&gt; &lt;td&gt; &amp;nbsp; &lt;/td&gt; &lt;td&gt;<br><br>      &lt;table border=1&gt;<br>        <b>{<font color="blue">employees</font><font color="red"></font>}</b><br>          <b>{<font color="blue">offices</font><font color="red"></font>}</b><br>            &lt;tr&gt;<br>              &lt;td&gt; <b>{<font color="green"><font color="red">$</font>lastName</font>}</b>, <b>{<font color="green"><font color="red">$</font>firstName</font>}</b> &lt;/td&gt;<br>              &lt;td&gt; <b>{<font color="green"><font color="red">$</font>city</font>}</b> &lt;/td&gt;<br>            &lt;/tr&gt;<br>          <b>{/<font color="blue">offices</font><font color="red"></font>}</b><br>        <b>{/<font color="blue">employees</font><font color="red"></font>}</b><br>      &lt;/table&gt;<br><br>    &lt;/td&gt;<br>  &lt;/tr&gt;<br>&lt;/table&gt;</code></pre></td>
-      
-      
-        <td style="vertical-align:top"><table>
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;<br>      <br>      &lt;table border=1&gt;<br>        <b>{<font color="blue">offices </font><font color="red">sort</font>}</b><br>          <b>{<font color="blue">employees</font><font color="red"></font>}</b><br>            &lt;tr&gt;<br>              &lt;td&gt; <b>{<font color="green"><font color="red">$</font>city</font>}</b> &lt;/td&gt;<br>              &lt;td&gt; <b>{<font color="green"><font color="red">$</font>lastName</font>}</b>, <b>{<font color="green"><font color="red">$</font>firstName</font>}</b> &lt;/td&gt;<br>            &lt;/tr&gt;<br>          <b>{/<font color="blue">employees</font><font color="red"></font>}</b><br>        <b>{/<font color="blue">offices</font><font color="red"></font>}</b><br>      &lt;/table&gt;<br>      <br>    &lt;/td&gt; &lt;td&gt; &amp;nbsp; &lt;/td&gt; &lt;td&gt;<br><br>      &lt;table border=1&gt;<br>        <b>{<font color="blue">employees</font><font color="red"></font>}</b><br>          <b>{<font color="blue">offices</font><font color="red"></font>}</b><br>            &lt;tr&gt;<br>              &lt;td&gt; <b>{<font color="green"><font color="red">$</font>lastName</font>}</b>, <b>{<font color="green"><font color="red">$</font>firstName</font>}</b> &lt;/td&gt;<br>              &lt;td&gt; <b>{<font color="green"><font color="red">$</font>city</font>}</b> &lt;/td&gt;<br>            &lt;/tr&gt;<br>          <b>{/<font color="blue">offices</font><font color="red"></font>}</b><br>        <b>{/<font color="blue">employees</font><font color="red"></font>}</b><br>      &lt;/table&gt;<br><br>    &lt;/td&gt;<br>  &lt;/tr&gt;<br>&lt;/table&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top"><table>
   <tr>
     <td>
       
@@ -397,10 +397,10 @@
     </td>
   </tr>
 </table></td>
-      
-    </tr>
+        
+      </tr>
 
-  
+    
 
   
     </table>
@@ -423,35 +423,35 @@
 
   
 
-    
-        <tr>
-        
-          <th bgcolor="#dddddd">
-            PHP <br><font size="-2"></font>
-          </th>
-        
-        
-          <th bgcolor="#dddddd">
-            HTML <br><font size="-2">classicModels/employees_1.pad</font>
-          </th>
-        
-        
-          <th bgcolor="#dddddd">
-            Result
-          </th>
-        
-      </tr>
-    
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">classicModels/employees_1.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
 
-    <tr>
-      
-        <td style="vertical-align:top"> </td>
-      
-      
-        <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table border=1&gt;<br>  &lt;tr&gt; <br>    &lt;td&gt; employee &lt;/td&gt;<br>    &lt;td&gt; manager &lt;/td&gt;<br>    &lt;td&gt; boss &lt;/td&gt;<br>  &lt;/tr&gt;<br>  <b>{<font color="blue">employees</font><font color="red"></font>}</b> <br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="purple"><font color="red">$</font>employees<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>lastName</font>}</b>, <br>           <b>{<font color="purple"><font color="red">$</font>employees<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>firstName</font>}</b>  <br>           (<b>{<font color="purple"><font color="red">$</font>employees<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>employeeNumber</font>}</b>) <br>      &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="purple"><font color="red">$</font>managers<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>lastName | noError</font>}</b>,  <br>           <b>{<font color="purple"><font color="red">$</font>managers<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>firstName | noError</font>}</b>   <br>           (<b>{<font color="purple"><font color="red">$</font>managers<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>employeeNumber | noError</font>}</b>)  <br>      &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="purple"><font color="red">$</font>bosses<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>lastName | noError</font>}</b>,    <br>           <b>{<font color="purple"><font color="red">$</font>bosses<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>firstName | noError</font>}</b>     <br>           (<b>{<font color="purple"><font color="red">$</font>bosses<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>employeeNumber | noError</font>}</b>)   <br>     &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">employees</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
-      
-      
-        <td style="vertical-align:top"><table border=1>
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table border=1&gt;<br>  &lt;tr&gt; <br>    &lt;td&gt; employee &lt;/td&gt;<br>    &lt;td&gt; manager &lt;/td&gt;<br>    &lt;td&gt; boss &lt;/td&gt;<br>  &lt;/tr&gt;<br>  <b>{<font color="blue">employees</font><font color="red"></font>}</b> <br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="purple"><font color="red">$</font>employees<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>lastName</font>}</b>, <br>           <b>{<font color="purple"><font color="red">$</font>employees<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>firstName</font>}</b>  <br>           (<b>{<font color="purple"><font color="red">$</font>employees<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>employeeNumber</font>}</b>) <br>      &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="purple"><font color="red">$</font>managers<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>lastName | noError</font>}</b>,  <br>           <b>{<font color="purple"><font color="red">$</font>managers<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>firstName | noError</font>}</b>   <br>           (<b>{<font color="purple"><font color="red">$</font>managers<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>employeeNumber | noError</font>}</b>)  <br>      &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="purple"><font color="red">$</font>bosses<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>lastName | noError</font>}</b>,    <br>           <b>{<font color="purple"><font color="red">$</font>bosses<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>firstName | noError</font>}</b>     <br>           (<b>{<font color="purple"><font color="red">$</font>bosses<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>employeeNumber | noError</font>}</b>)   <br>     &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">employees</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top"><table border=1>
   <tr> 
     <td> employee </td>
     <td> manager </td>
@@ -804,10 +804,10 @@
     </tr>
   
 </table></td>
-      
-    </tr>
+        
+      </tr>
 
-  
+    
 
   
     </table>
@@ -830,35 +830,35 @@
 
   
 
-    
-        <tr>
-        
-          <th bgcolor="#dddddd">
-            PHP <br><font size="-2"></font>
-          </th>
-        
-        
-          <th bgcolor="#dddddd">
-            HTML <br><font size="-2">classicModels/employees_2.pad</font>
-          </th>
-        
-        
-          <th bgcolor="#dddddd">
-            Result
-          </th>
-        
-      </tr>
-    
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">classicModels/employees_2.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
 
-    <tr>
-      
-        <td style="vertical-align:top"> </td>
-      
-      
-        <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table border=1&gt; <br>  &lt;tr&gt;<br>    &lt;td&gt; employee &lt;/td&gt;<br>    &lt;td&gt; manager &lt;/td&gt;<br>    &lt;td&gt; boss &lt;/td&gt;<br>  &lt;/tr&gt;<br>  <b>{<font color="blue">employees</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>lastName</font>}</b>, <b>{<font color="green"><font color="red">$</font>firstName</font>}</b> (<b>{<font color="green"><font color="red">$</font>employeeNumber</font>}</b>) &lt;/td&gt;<br>      <b>{<font color="blue">managers</font><font color="red"></font>}</b><br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>lastName</font>}</b>, <b>{<font color="green"><font color="red">$</font>firstName</font>}</b> (<b>{<font color="green"><font color="red">$</font>employeeNumber</font>}</b>) &lt;/td&gt;<br>          <b>{<font color="blue">bosses</font><font color="red"></font>}</b><br>            &lt;td&gt; <b>{<font color="green"><font color="red">$</font>lastName</font>}</b>, <b>{<font color="green"><font color="red">$</font>firstName</font>}</b> (<b>{<font color="green"><font color="red">$</font>employeeNumber</font>}</b>) &lt;/td&gt;<br>          <b>{/<font color="blue">bosses</font><font color="red"></font>}</b><br>      <b>{/<font color="blue">managers</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">employees</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
-      
-      
-        <td style="vertical-align:top"><table border=1> 
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table border=1&gt; <br>  &lt;tr&gt;<br>    &lt;td&gt; employee &lt;/td&gt;<br>    &lt;td&gt; manager &lt;/td&gt;<br>    &lt;td&gt; boss &lt;/td&gt;<br>  &lt;/tr&gt;<br>  <b>{<font color="blue">employees</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>lastName</font>}</b>, <b>{<font color="green"><font color="red">$</font>firstName</font>}</b> (<b>{<font color="green"><font color="red">$</font>employeeNumber</font>}</b>) &lt;/td&gt;<br>      <b>{<font color="blue">managers</font><font color="red"></font>}</b><br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>lastName</font>}</b>, <b>{<font color="green"><font color="red">$</font>firstName</font>}</b> (<b>{<font color="green"><font color="red">$</font>employeeNumber</font>}</b>) &lt;/td&gt;<br>          <b>{<font color="blue">bosses</font><font color="red"></font>}</b><br>            &lt;td&gt; <b>{<font color="green"><font color="red">$</font>lastName</font>}</b>, <b>{<font color="green"><font color="red">$</font>firstName</font>}</b> (<b>{<font color="green"><font color="red">$</font>employeeNumber</font>}</b>) &lt;/td&gt;<br>          <b>{/<font color="blue">bosses</font><font color="red"></font>}</b><br>      <b>{/<font color="blue">managers</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">employees</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top"><table border=1> 
   <tr>
     <td> employee </td>
     <td> manager </td>
@@ -1087,10 +1087,10 @@
     </tr>
   
 </table></td>
-      
-    </tr>
+        
+      </tr>
 
-  
+    
 
   
     </table>
@@ -1113,35 +1113,35 @@
 
   
 
-    
-        <tr>
-        
-          <th bgcolor="#dddddd">
-            PHP <br><font size="-2"></font>
-          </th>
-        
-        
-          <th bgcolor="#dddddd">
-            HTML <br><font size="-2">classicModels/orders.pad</font>
-          </th>
-        
-        
-          <th bgcolor="#dddddd">
-            Result
-          </th>
-        
-      </tr>
-    
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">classicModels/orders.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
 
-    <tr>
-      
-        <td style="vertical-align:top"> </td>
-      
-      
-        <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>customerNumber = 495</font>}</b><br><br>&lt;table border=1&gt;<br> <br>  <b>{<font color="blue">customers</font><font color="red"></font>}</b><br><br>    <b>{<font color="blue">orders</font><font color="red"></font>}</b><br><br>        <b>{<font color="blue">details</font><font color="red"></font>}</b><br>    <br>          <b>{<font color="blue">products</font><font color="red"></font>}</b><br>    <br>            <b>{<font color="blue">lines</font><font color="red"></font>}</b><br><br>              &lt;tr&gt;<br>                &lt;td&gt; <b>{<font color="green"><font color="red">$</font>customerNumber</font>}</b>  &lt;/td&gt;<br>                &lt;td&gt; <b>{<font color="green"><font color="red">$</font>customerName</font>}</b>    &lt;/td&gt;<br>                &lt;td&gt; <b>{<font color="green"><font color="red">$</font>orderNumber</font>}</b>     &lt;/td&gt;<br>                &lt;td&gt; <b>{<font color="green"><font color="red">$</font>orderDate</font>}</b>       &lt;/td&gt;<br>                &lt;td&gt; <b>{<font color="green"><font color="red">$</font>orderLineNumber</font>}</b> &lt;/td&gt;<br>                &lt;td&gt; <b>{<font color="green"><font color="red">$</font>productName</font>}</b>     &lt;/td&gt;<br>                &lt;td&gt; <b>{<font color="green"><font color="red">$</font>productLine</font>}</b>     &lt;/td&gt;<br>              &lt;/tr&gt;<br>    <br>            <b>{/<font color="blue">lines</font><font color="red"></font>}</b><br>          <br>          <b>{/<font color="blue">products</font><font color="red"></font>}</b><br>    <br>        <b>{/<font color="blue">details</font><font color="red"></font>}</b><br>        <br>    <b>{/<font color="blue">orders</font><font color="red"></font>}</b><br>    <br>  <b>{/<font color="blue">customers</font><font color="red"></font>}</b><br><br>&lt;/table&gt;</code></pre></td>
-      
-      
-        <td style="vertical-align:top">
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>customerNumber = 495</font>}</b><br><br>&lt;table border=1&gt;<br> <br>  <b>{<font color="blue">customers</font><font color="red"></font>}</b><br><br>    <b>{<font color="blue">orders</font><font color="red"></font>}</b><br><br>        <b>{<font color="blue">details</font><font color="red"></font>}</b><br>    <br>          <b>{<font color="blue">products</font><font color="red"></font>}</b><br>    <br>            <b>{<font color="blue">lines</font><font color="red"></font>}</b><br><br>              &lt;tr&gt;<br>                &lt;td&gt; <b>{<font color="green"><font color="red">$</font>customerNumber</font>}</b>  &lt;/td&gt;<br>                &lt;td&gt; <b>{<font color="green"><font color="red">$</font>customerName</font>}</b>    &lt;/td&gt;<br>                &lt;td&gt; <b>{<font color="green"><font color="red">$</font>orderNumber</font>}</b>     &lt;/td&gt;<br>                &lt;td&gt; <b>{<font color="green"><font color="red">$</font>orderDate</font>}</b>       &lt;/td&gt;<br>                &lt;td&gt; <b>{<font color="green"><font color="red">$</font>orderLineNumber</font>}</b> &lt;/td&gt;<br>                &lt;td&gt; <b>{<font color="green"><font color="red">$</font>productName</font>}</b>     &lt;/td&gt;<br>                &lt;td&gt; <b>{<font color="green"><font color="red">$</font>productLine</font>}</b>     &lt;/td&gt;<br>              &lt;/tr&gt;<br>    <br>            <b>{/<font color="blue">lines</font><font color="red"></font>}</b><br>          <br>          <b>{/<font color="blue">products</font><font color="red"></font>}</b><br>    <br>        <b>{/<font color="blue">details</font><font color="red"></font>}</b><br>        <br>    <b>{/<font color="blue">orders</font><font color="red"></font>}</b><br>    <br>  <b>{/<font color="blue">customers</font><font color="red"></font>}</b><br><br>&lt;/table&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
 
 <table border=1>
  
@@ -1520,10 +1520,10 @@
   
 
 </table></td>
-      
-    </tr>
+        
+      </tr>
 
-  
+    
 
   
     </table>

@@ -3,7 +3,8 @@
 
   function padXref ( $dir1, $dir2, $dir3='' ) {
 
-    global $padXrefInfo, $padXrefDevelop, $padXrefXml, $padXrefTrace, $padXrefId, $padXrefManual;
+    global $padXrefId;
+    global $padXrefInfo, $padXrefTypes, $padXrefXml, $padXrefTrace, $padXrefPage, $padXrefManual;
 
     $padXrefId++;
 
@@ -14,7 +15,8 @@
 
     if ( $padXrefInfo    ) padXrefInfo    ( $dir1, $dir2, $dir3 );
     if ( $padXrefManual  ) padXrefManual  ( $dir1, $dir2, $dir3 );
-    if ( $padXrefDevelop ) padXrefDevelop ( $dir1, $dir2, $dir3 );
+    if ( $padXrefTypes   ) padXrefTypes   ( $dir1, $dir2, $dir3 );
+    if ( $padXrefPage    ) padXrefPage    ( $dir1, $dir2, $dir3 );
     if ( $padXrefXml     ) padXrefXml     ( $dir1, $dir2, $dir3 );
     if ( $padXrefTrace   ) padXrefTrace   ( $dir1, $dir2, $dir3 );
  
@@ -40,13 +42,15 @@
 
   function padXrefManual2 ( $dir1, $dir2, $dir3='' ) {
 
-    global $padPage, $padXrefPageSource, $padXrefManual, $padStartPage;
+    global $padPage, $padXrefPageSource, $padStartPage;
 
-    if ( padInsideOther()                        ) return;
-    if ( $padStartPage <> $padPage               ) return;
-    if ( ! str_ends_with ( padApp, '/pad/' )     ) return;
-    if ( str_contains ( $padPage, 'develop/'   ) ) return;
-    if ( str_contains ( $padPage, 'reference/' ) ) return;
+    if ( padInsideOther()                             ) return;
+    if ( $padPage <> $padStartPage                    ) return;
+    if ( ! str_ends_with ( padApp, '/pad/' )          ) return;
+    if ( str_contains ( $padStartPage, 'develop/'   ) ) return;
+    if ( str_contains ( $padStartPage, 'reference/' ) ) return;
+    if ( str_contains ( $padStartPage, 'manual/'    ) ) return;
+    if ( ! isset ( $_REQUEST['padInclude']          ) ) return;
 
     if ( $dir1 == 'tag'        and $dir2 <> 'pad'     ) return padXrefManual3 ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'functions'  and $dir2 <> 'pad'     ) return padXrefManual3 ( $dir1, $dir2, $dir3 );
@@ -82,7 +86,7 @@
 
   function padXrefManual4 ( $dir, $dir1, $dir2, $dir3 ) {
 
-    global $padPage;
+    global $padStartPage;
 
     $dir .= "/$dir1/$dir2";
 
@@ -92,7 +96,7 @@
     if ( ! file_exists ( $dir ) )
       mkdir ( $dir, 0777, TRUE );
 
-    $file = "$dir/" .  str_replace ( '/' , '@', padFileCorrect ($padPage ) ) . '.hit';
+    $file = "$dir/" .  str_replace ( '/' , '@', padFileCorrect ($padStartPage ) ) . '.hit';
 
     if ( ! file_exists ( $file ) )
       touch ( $file );
@@ -124,16 +128,16 @@
   }
 
 
-  function padXrefDevelop ( $dir1, $dir2, $dir3 ) {
+  function padXrefTypes ( $dir1, $dir2, $dir3 ) {
 
-    global $pad, $padPage, $padLvlId;
+    global $pad, $padStartPage, $padLvlId, $padXrefFile;
 
-    $file = "xref/$dir1/$dir2";
+    $file = "develop/xref/$dir1/$dir2";
 
     if ( $dir3 !== '' )
       $file .= "/" . str_replace ( '/' , '@', padFileCorrect ($dir3 ) );
 
-    $file .= "/" .  str_replace ( '/' , '@', padFileCorrect ($padPage ) ) . "-hit/$padLvlId.json";
+    $file .= "/" .  str_replace ( '/' , '@', padFileCorrect ($padStartPage ) ) . "-hit/$padLvlId.json";
 
     if ( file_exists ( padData . $file ) )
       return;
@@ -146,10 +150,45 @@
   }
 
 
+  function padXrefPage ( $dir1, $dir2, $dir3 ) {
+
+    global $pad, $padPad, $padLvlIds, $padOccur;
+    global $padInfoPage, $padCurrent, $padBase, $padData, $padResult;
+
+    $file = "$padInfoPage/tree";
+
+    for ( $lvl=0; $lvl<=$pad; $lvl++ ) {
+      $l = $padLvlIds [$pad] ?? 0;
+      $o = $padOccur  [$pad] ?? 0;
+      if ( $lvl > 0 ) 
+        $file .= "/lvl/$l/occ";
+      $file .= "/$o";
+    }
+
+    $file .= "/$dir1/$dir2";    
+    if ( $dir3 !== '' )
+      $file .= "/" . str_replace ( '/' , '@', padFileCorrect ($dir3 ) );
+
+    $file .= ".json";
+
+    if ( file_exists ( padData . $file ) )
+      return;
+
+    $data = [
+      'now-data'    => $padCurrent [$pad],
+      'now-content' => $padPad     [$pad],
+      'data'        => $padData    [$pad],
+      'base'        => $padBase    [$pad],
+      'result'      => $padResult  [$pad]
+    ];
+
+    padInfoFile ( $file, $data );
+
+  }
+
+
   function padXrefInfo ( $dir1, $dir2, $dir3 ) {
 
-    global $padInfoDir;
-    
     padXrefLine ( 'xref', $dir1, $dir2, $dir3 );
 
   }
@@ -183,7 +222,7 @@
   }
 
 
- function padXrefTree () {
+  function padXrefXmlMake () {
 
     global $padXrefEvents;
 
@@ -298,14 +337,14 @@
 
   function padXrefWrite ( $xml ) {
   
-    global $padInfoDir, $padXrefDepth;
+    global $padInfoPage, $padXrefDepth;
 
     if ( $padXrefDepth > 0 )
       $spaces = str_repeat ( ' ', $padXrefDepth * 2 );
     else
       $spaces = '';
 
-    padInfoLine ( "$padInfoDir/xref.xml", "$spaces$xml", true );
+    padInfoLine ( "$padInfoPage/xref.xml", "$spaces$xml", true );
   
   }
 

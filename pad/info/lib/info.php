@@ -1,6 +1,27 @@
 <?php
 
 
+  function padErrorInfoError ($error, $file, $line) {
+
+    set_error_handler ( 'padErrorThrow' );
+
+    try {
+
+      padDumpToDir ( "$file:$line $error", $GLOBALS ['padInfoDir'] . '/ERROR');
+
+      unset ( $GLOBALS ['padDumpToDirDone'] );
+    
+    } catch (Throwable $e) {
+    
+      // ignore
+
+    }
+
+    restore_error_handler ();   
+
+  }
+
+
   function padInfo ( $parm1, $parm2='', $parm3='', $parm4='' ) {
 
     global $padInfoCnt, $padMain, $padMainMeta, $padInfoDir;
