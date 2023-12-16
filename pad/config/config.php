@@ -20,7 +20,7 @@
   // Tail:  info/track/trace/xref etc
   // If set then a config file with the same name will be load from the sub folder info 
 
-  $padInfo = 'all';
+  $padInfo = '';
 
   // Where the output goes
   // A config file with the same name will be load from the sub folder output
