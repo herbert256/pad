@@ -174,7 +174,7 @@
     else
       $spaces = '';
 
-    padInfoPut ( "$padInfoDir/tree.xml", "$spaces$xml", true );
+    padInfoLine ( "$padInfoDir/tree.xml", "$spaces$xml", true );
   
   }
 

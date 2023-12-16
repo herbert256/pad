@@ -49,7 +49,7 @@
 
     global $padInfoId, $padInfoDir;
 
-    padInfoPut ( "track/request/$padInfoId-entry.json", padSessionStart () );
+    padInfoFile ( "track/request/$padInfoId-entry.json", padSessionStart () );
 
   }
 
@@ -58,7 +58,7 @@
 
     global $padInfoId, $padInfoDir;
 
-    padInfoPut ( "track/request/$padInfoId-exit.json", padSessionEnd () );
+    padInfoFile ( "track/request/$padInfoId-exit.json", padSessionEnd () );
 
   }
 
@@ -70,7 +70,7 @@
     $file = "track/data/$padEtag.pad";
 
     if ( ! file_exists(padData . $file) )
-      padInfoPut ($file, $padOutput);
+      padInfoFile ($file, $padOutput);
 
   }
 

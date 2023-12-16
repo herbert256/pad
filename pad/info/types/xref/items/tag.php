@@ -1,5 +1,5 @@
 <?php
 
-  padXref ( 'tags', $padType [$pad], $padTag [$pad] );
+  padXref ( 'tag', $padType [$pad], $padTag [$pad] );
 
 ?>

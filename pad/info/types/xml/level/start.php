@@ -16,6 +16,8 @@
   $padXmlNew ['size']    = 0;
   $padXmlNew ['result']  = '';
   $padXmlNew ['source']  = '';
+  $padXmlNew ['start']   = [];
+  $padXmlNew ['end']     = [];
 
   $padXmlTree [] = $padXmlNew;
 

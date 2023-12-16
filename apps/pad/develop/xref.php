@@ -15,13 +15,28 @@
   $pages = [];
   $list  = [];
 
-  if ( file_exists ( padApp . '_xref/develop' . $xref) )
-    $list = scandir ( padApp . '_xref/develop' . $xref ); 
+  if ( file_exists ( padData . 'xref/develop' . $xref) )
+    $list = scandir ( padData . 'xref/develop' . $xref ); 
 
-  foreach ( $list as $file )
-    if     ( $file == '.'                    ) continue;
-    elseif ( $file == '..'                   ) continue;
-    elseif ( str_ends_with ( $file, '.hit' ) ) $pages [$file] ['page'] = substr (str_replace ('@', '/', $file), 0, -4);
-    else                                       $dirs  [$file] ['dir']  = $file; 
+  foreach ( $list as $file ) {
+
+    if ( $file == '.'  ) continue;
+    if ( $file == '..' ) continue;
+
+    if ( str_contains ( $file, '-hit' ) ) {
+
+      $file = str_replace ('@', '/', $file);
+      $file = dirname ($file);
+      $file = substr ($file, 0, -4);
+
+      $pages [$file] ['page'] = $file;
+
+      continue;
+
+    }
+    
+    $dirs [$file] ['dir']  = $file; 
+
+  }
 
 ?>

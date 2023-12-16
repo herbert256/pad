@@ -2,11 +2,11 @@
 
   {block}
 
-    <hr>
+    <br><br>
     <h3><a href="{$padGo}develop/show&item={$dir}/{$file}">{$item}</a></h3>
 
     {if $allType eq 'example'}
-      {example '{$item}'}
+      {example '{$item}', skipWhenEmpty, skipNames}
     @else@
       <table style="border-style: dashed; dotted;" cellspacing="15">
         <tr>

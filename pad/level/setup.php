@@ -1,6 +1,7 @@
 <?php
   
   $pad++;  
+  $padLvlId++;
 
   $padOpt        [$pad] = [];
   $padPrm        [$pad] = [];

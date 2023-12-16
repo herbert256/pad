@@ -1,6 +1,7 @@
 <?php
 
   $pad            = -1;
+  $padLvlId       = 0;
   $padRestart     = '';     
   $padOutput      = '';
   $padStop        = '000';

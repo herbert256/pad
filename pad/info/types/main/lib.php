@@ -4,7 +4,7 @@
 
     global $padInfoDir;
 
-    padInfoPut ( "$padInfoDir/pad-entry.json", padSessionStart () );
+    padInfoFile ( "$padInfoDir/pad-entry.json", padSessionStart () );
 
   }
 
@@ -13,7 +13,7 @@
 
     global $padInfoDir;
 
-    padInfoPut ( "$padInfoDir/pad-exit.json", padSessionEnd () );
+    padInfoFile ( "$padInfoDir/pad-exit.json", padSessionEnd () );
 
   }
 
@@ -22,7 +22,7 @@
 
     global $padInfoDir, $padOutput;
 
-    padInfoPut ("$padInfoDir/output.pad", $padOutput);
+    padInfoFile ("$padInfoDir/output.pad", $padOutput);
 
   }
 

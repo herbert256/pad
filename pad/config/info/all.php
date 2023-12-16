@@ -24,7 +24,7 @@
   $padXmlTidy          = TRUE;
   $padXmlShowEmpty     = TRUE;
   
-  $padXrefTail         = TRUE;
+  $padXrefInfo         = TRUE;
   $padXrefManual       = TRUE;
   $padXrefDevelop      = TRUE;
   $padXrefXml          = TRUE;

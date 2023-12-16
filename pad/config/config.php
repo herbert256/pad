@@ -18,9 +18,9 @@
   $padErrorReport = TRUE;   //  Report errors to the DATA directory
 
   // Tail:  info/track/trace/xref etc
-  // If set then the config file with the same name will be load from the sub folder tail 
+  // If set then a config file with the same name will be load from the sub folder info 
 
-  $padInfo = '';
+  $padInfo = 'xref';
 
   // Where the output goes
   // A config file with the same name will be load from the sub folder output

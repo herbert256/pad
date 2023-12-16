@@ -3,13 +3,16 @@
 
   function padXref ( $dir1, $dir2, $dir3='' ) {
 
-    global $padXrefTail, $padXrefDevelop, $padXrefXml, $padXrefTrace, $padXrefId, $padXrefManual;
+    global $padXrefInfo, $padXrefDevelop, $padXrefXml, $padXrefTrace, $padXrefId, $padXrefManual;
 
     $padXrefId++;
 
+    if ( $dir2 === FALSE ) $dir2 = '0';
+    if ( $dir3 === FALSE ) $dir3 = '0';
+
     padInfo ( 'xref', $dir1, $dir2, $dir3 );
 
-    if ( $padXrefTail    ) padXrefTail    ( $dir1, $dir2, $dir3 );
+    if ( $padXrefInfo    ) padXrefInfo    ( $dir1, $dir2, $dir3 );
     if ( $padXrefManual  ) padXrefManual  ( $dir1, $dir2, $dir3 );
     if ( $padXrefDevelop ) padXrefDevelop ( $dir1, $dir2, $dir3 );
     if ( $padXrefXml     ) padXrefXml     ( $dir1, $dir2, $dir3 );
@@ -20,10 +23,10 @@
   
   function padXrefManual ( $dir1, $dir2, $dir3 ) {
    
-    if ( $dir1 == 'tags'       and $dir2 == 'tag'      ) padXrefManual2 ( 'properties', $dir3 );
-    if ( $dir1 == 'fields'     and $dir2 == 'tag'      ) padXrefManual2 ( 'properties', $dir3 );
+    if ( $dir1 == 'tag'       and $dir2 == 'tag'       ) padXrefManual2 ( 'properties', $dir3 );
+    if ( $dir1 == 'field'     and $dir2 == 'tag'       ) padXrefManual2 ( 'properties', $dir3 );
     if ( $dir1 == 'at'         and $dir2 == 'property' ) padXrefManual2 ( 'properties', $dir3 );
-    if ( $dir1 == 'tags'                               ) padXrefManual2 ( $dir1, $dir2, $dir3 );
+    if ( $dir1 == 'tag'                                ) padXrefManual2 ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'constructs'                         ) padXrefManual2 ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'parms'      and $dir2 == 'options'  ) padXrefManual2 ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'properties'                         ) padXrefManual2 ( $dir1, $dir2, $dir3 );
@@ -45,7 +48,7 @@
     if ( str_contains ( $padPage, 'develop/'   ) ) return;
     if ( str_contains ( $padPage, 'reference/' ) ) return;
 
-    if ( $dir1 == 'tags'       and $dir2 <> 'pad'     ) return padXrefManual3 ( $dir1, $dir2, $dir3 );
+    if ( $dir1 == 'tag'        and $dir2 <> 'pad'     ) return padXrefManual3 ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'functions'  and $dir2 <> 'pad'     ) return padXrefManual3 ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'sequences'  and $dir2 == 'actions' ) return padXrefManual3 ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'at'         and $dir2 == 'kind'    ) return padXrefManual3 ( $dir1, $dir2, $dir3 );
@@ -67,66 +70,89 @@
       foreach ($explode1 as $value1)
         foreach ($explode2 as $value2)
           if ( ctype_alpha ( $value1 ) and ctype_alpha ( $value2) )
-            padXrefManualDevelop ( padApp . '_xref', $dir1, $value1, $value2 );
+            padXrefManual4 ( padApp . '_xref', $dir1, $value1, $value2 );
 
     if ( $dir2 and ! $dir3 )
       foreach ($explode1 as $value1)
           if ( ctype_alpha ( $value1 ) )
-            padXrefManualDevelop ( padApp . '_xref', $dir1, $value1, $dir3 );
+            padXrefManual4 ( padApp . '_xref', $dir1, $value1, $dir3 );
+
+  }
+
+
+  function padXrefManual4 ( $dir, $dir1, $dir2, $dir3 ) {
+
+    global $padPage;
+
+    $dir .= "/$dir1/$dir2";
+
+    if ( $dir3 !== '' )
+      $dir .= "/" . str_replace ( '/' , '@', padFileCorrect ($dir3 ) );
+
+    if ( ! file_exists ( $dir ) )
+      mkdir ( $dir, 0777, TRUE );
+
+    $file = "$dir/" .  str_replace ( '/' , '@', padFileCorrect ($padPage ) ) . '.hit';
+
+    if ( ! file_exists ( $file ) )
+      touch ( $file );
+
+  }
+
+
+  function padXrefXml ( $dir1, $dir2, $dir3 ) { 
+
+    global $pad, $padXrefLevel, $padOccur, $padXrefTree;
+
+    $padXrefLvl = $padXrefLevel [$pad] ?? 0;
+    $padXrefOcc = $padOccur     [$pad] ?? 0;
+
+    if ( is_array ($dir3) )
+      $dir3 = "ARRAY";
+
+    $xref = "$dir1 $dir2";
+    if ( $dir3 !== '' )
+      $xref .= " $dir3";
+
+    if     ( $padXrefOcc == 0)
+      $padXrefTree [$padXrefLvl] ['start'] [] = $xref;
+    elseif ( $padXrefOcc == 99999)
+      $padXrefTree [$padXrefLvl] ['end']  [] = $xref;
+    else
+      $padXrefTree [$padXrefLvl] ['occurs'] [$padXrefOcc] ['xref'] [] = $xref;
 
   }
 
 
   function padXrefDevelop ( $dir1, $dir2, $dir3 ) {
 
-    padXrefManualDevelop ( padApp . '_xref/develop', $dir1, $dir2, $dir3 );
+    global $pad, $padPage, $padLvlId;
 
-  }
+    $file = "xref/$dir1/$dir2";
 
+    if ( $dir3 !== '' )
+      $file .= "/" . str_replace ( '/' , '@', padFileCorrect ($dir3 ) );
 
-  function padXrefManualDevelop ( $dir, $dir1, $dir2, $dir3 ) {
+    $file .= "/" .  str_replace ( '/' , '@', padFileCorrect ($padPage ) ) . "-hit/$padLvlId.json";
 
-    global $padPage;
-
-    $dir .= "/$dir1/$dir2";
-
-    if ( $dir3 )
-      $dir .= "/" . str_replace ( '/' , '@', padFileCorrect ($dir3 ) );
-
-    $file = "$dir/" .  str_replace ( '/' , '@', padFileCorrect ($padPage ) ) . '.hit';
-
-    if ( file_exists ( $file ) )
+    if ( file_exists ( padData . $file ) )
       return;
 
-    if ( ! file_exists ( $dir ) )
-      mkdir ( $dir, 0777, TRUE );
+    for ( $lvl=$pad; $lvl>=0; $lvl-- ) 
+      $data [$lvl] = padDumpGetLevel ($lvl) ;
 
-    touch ( $file, 0777, TRUE );
+    padInfoFile ( $file, $data );
 
   }
 
 
-  function padXrefTail ( $dir1, $dir2, $dir3 ) {
+  function padXrefInfo ( $dir1, $dir2, $dir3 ) {
 
     global $padInfoDir;
     
     padXrefLine ( 'xref', $dir1, $dir2, $dir3 );
 
   }
-  
-  
-  function padXrefXml ( $dir1, $dir2, $dir3 ) {
-
-    global $pad, $padXml, $padXmlLevel;
-  
-    if ( ! $padXml ) 
-      return;
- 
-    $target = $padXmlLevel [$pad] ?? 0;
-  
-    padXrefLine ( "xml/details/$target", $dir1, $dir2, $dir3 );
-  
-  } 
 
 
   function padXrefTrace ( $dir1, $dir2, $dir3 ) {
@@ -152,9 +178,136 @@
     else
       $xref = padFileCorrect ($dir2 );
   
-    padInfoPut ( "$padInfoDir/$target/$dir1/$xref.txt", padInfoIds () );
+    padInfoLine ( "$padInfoDir/$target/$dir1/$xref.txt", padInfoIds () );
 
   }
 
+
+ function padXrefTree () {
+
+    global $padXrefEvents;
+
+    foreach ( $padXrefEvents as $key => $event ) {
+
+      if     ( $event ['event'] == 'level-start' ) padXrefLevelStart ( $event );
+      elseif ( $event ['event'] == 'level-end'   ) padXrefLevelEnd   ( $event );
+      elseif ( $event ['event'] == 'occur-start' ) padXrefOccurStart ( $event );
+      elseif ( $event ['event'] == 'occur-end'   ) padXrefOccurEnd   ( $event );
+
+    }
+
+  }
+
+
+  function padXrefLevelStart ( $event ) {
+
+    global $padXrefTree;
+
+    extract ( $event );
+    extract ( $padXrefTree [$tree]  );
+
+    padXrefOpen ( 'level' );
+    padXrefOpen ( 'properties' );
     
+    foreach ( $start as $line )
+      padXrefParts ( $line );
+
+    padXrefClose ( 'properties' );
+
+    if ( count ($occurs) > 1)
+      padXrefOpen ( 'occurs' );
+
+  }
+
+
+  function padXrefLevelEnd ( $event ) {
+
+    global $padXrefTree;
+
+    extract ( $event );
+    extract ( $padXrefTree [$tree]  );
+
+    if ( count ($occurs) > 1)
+      padXrefClose ( 'occurs' );
+
+    if ( count ($end) ) {
+      padXrefOpen ( 'result' );
+      foreach ( $end as $line )
+        padXrefParts ( $line );
+      padXrefClose ( 'result' );
+    }
+
+    padXrefClose ( 'level' );
+
+  }
+
+
+  function padXrefOccurStart ( $event ) {
+
+    global $padXrefTree;
+
+    extract ( $event );
+    extract ( $padXrefTree [$tree]  );
+    extract ( $occurs [$occur] );
+
+    padXrefOpen ( 'occur' ); 
+
+    foreach ( $xref as $line )
+      padXrefParts ( $line );
+
+  }
+
+  function padXrefParts ( $line ) {
+
+    $parts = preg_split ("/[\s]+/", $line, 3, PREG_SPLIT_NO_EMPTY);
+
+    if     ( count ($parts) == 3 ) padXrefWrite ( "<$parts[0] $parts[1]=\"$parts[2]\" />" );
+    elseif ( count ($parts) == 2 ) padXrefWrite ( "<$parts[0] value=\"$parts[1]\" />" );
+    elseif ( count ($parts) == 1 ) padXrefWrite ( "<$parts[0] />" );
+
+  }
+
+  function padXrefOccurEnd ( $event ) {
+
+    padXrefClose ( 'occur' );
+
+  }
+
+
+  function padXrefOpen ( $xml ) {
+  
+    global $padXrefDepth;
+
+    padXrefWrite ( "<$xml>" );
+
+    $padXrefDepth++;
+      
+  }
+
+
+  function padXrefClose ( $xml ) {
+
+    global $padXrefDepth;
+
+    $padXrefDepth--;
+  
+    padXrefWrite ( "</$xml>" );
+  
+  }
+
+
+  function padXrefWrite ( $xml ) {
+  
+    global $padInfoDir, $padXrefDepth;
+
+    if ( $padXrefDepth > 0 )
+      $spaces = str_repeat ( ' ', $padXrefDepth * 2 );
+    else
+      $spaces = '';
+
+    padInfoLine ( "$padInfoDir/xref.xml", "$spaces$xml", true );
+  
+  }
+
+ 
 ?>

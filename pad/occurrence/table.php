@@ -2,7 +2,7 @@
 
   $padTable [$pad] = [];
 
-  if ( $padTableTag [$pad] )
+  if ( isset ($padTableTag [$pad]) and $padTableTag [$pad] )
     $padTable [$pad] [$padTableTag[$pad]] = $padCurrent [$pad];
 
   foreach ($padRelations as $padK => $padV)

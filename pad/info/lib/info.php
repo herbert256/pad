@@ -49,14 +49,6 @@
   }
 
 
-  function padInfoPut ( $in, $data, $append=0 ) {
-
-    if ( $append ) padInfoLine ( $in, $data );
-    else           padInfoFile ( $in, $data );
-
-  }
-
-
   function padInfoExists ( $file ) {
 
     return file_exists ( $file );
@@ -139,7 +131,7 @@
 
     $input = file_get_contents('php://input') ?? '';
 
-    padInfoPut ( $file,  [
+    padInfoFile( $file,  [
         'headers' => $headers,
         'get'     => $_GET ??    '',
         'post'    => $_POST ??   '',
@@ -152,7 +144,7 @@
 
     if ( $input ) {
       $file = str_replace ( 'entry.json', 'input.txt', $file );
-      padInfoPut ( $file,  $input );
+      padInfoFile ( $file,  $input );
     }
       
   }
@@ -171,7 +163,7 @@
         unset ( $phpHeaders [$key] );
     }
 
-    padInfoPut ( $file,  [
+    padInfoFile ( $file,  [
         'http'       => http_response_code () ?? 'null',
         'phpHeaders' => $phpHeaders,
         'padHeaders' => $padHeaders
@@ -179,7 +171,7 @@
 
     if ( $padOutput ) {
       $file = str_replace ( 'exit.json', 'output.txt', $file );
-      padInfoPut ( $file,  $padOutput );
+      padInfoFile ( $file,  $padOutput );
     }
       
   }

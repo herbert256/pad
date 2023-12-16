@@ -81,6 +81,8 @@
 
     if ( strpos($pad, '<!-- PAD: VERTICAL -->') !== false ) 
       return 'vertical';
+    elseif ( strpos($pad, '<!-- PAD: ABOVE -->') !== false ) 
+      return 'above';
     else
       return 'horizontal';
 

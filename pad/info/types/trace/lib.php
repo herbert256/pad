@@ -154,9 +154,9 @@
       return;
 
     if ( $type == 'line' )
-      padInfoPut ( $target, $trace, TRUE );
+      padInfoLine ( $target, $trace );
     else
-      padInfoPut ( $target, $trace, FALSE );
+      padInfoFile ( $target, $trace );
 
   }
 

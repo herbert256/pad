@@ -18,6 +18,11 @@
   $exampleFilePhp  = ( file_exists($examplePhp) ) ? str_replace(padApp, '', $examplePhp) : '';
   $exampleFilePad  = ( file_exists($examplePad) ) ? str_replace(padApp, '', $examplePad) : '';
 
+  if ( padTagParm ( 'skipWhenEmpty' ) ) {
+    if ( ! padFileGetContents ( $examplePhp ) ) $padPrm [$pad] ['skipPhp'] = TRUE;
+    if ( ! padFileGetContents ( $examplePad ) ) $padPrm [$pad] ['skipPad'] = TRUE;
+  }
+
   return TRUE;
    
 ?>
