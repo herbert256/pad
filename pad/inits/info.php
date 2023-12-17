@@ -25,7 +25,7 @@
     }
 
     if ( padInfo )
-      include pad . 'info/events/start.php';
+      include pad . 'info/start.php';
 
   }
 

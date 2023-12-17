@@ -1,6 +1,6 @@
 <?php
 
-  global $pad, $padTraceLocalChk, $padInfoDir, $padTraceSkipLevel, $padTraceMaxLevel, $padTraceLevel;
+  global $pad, $padTraceLocalChk, $padInfoDir, $padTraceSkipLevel, $padTraceMaxLevel, $padTraceLevel, $padTraceDir;
 
   if ( $GLOBALS ['padTraceSession'] )
     foreach ( padSessionEnd () as $padK => $padV )

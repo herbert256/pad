@@ -1,7 +1,5 @@
 <?php
 
-  global $padTraceDir;
-
   if ( $GLOBALS ['padStats']   ) include pad . 'info/types/stats/end.php';
   if ( $GLOBALS ['padTrack']   ) include pad . 'info/types/track/end.php';
   if ( $GLOBALS ['padXml']     ) include pad . 'info/types/xml/end.php';

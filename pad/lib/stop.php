@@ -32,7 +32,7 @@
   function padExit () { 
 
     if ( padInfo )
-      include pad . 'info/events/end.php';  
+      include pad . 'info/end.php';  
 
     $GLOBALS ['padSkipShutdown']     = TRUE;
     $GLOBALS ['padSkipBootShutdown'] = TRUE;

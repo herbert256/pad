@@ -1,6 +1,6 @@
 <?php
  
-  include_once pad . 'info/lib/info.php';
+  include_once pad . 'info/lib.php';
 
   $padInfoId    = hrtime (true);
   $padInfoCnt   = 0;
@@ -8,10 +8,10 @@
   $padXmlId     = 0;
   $padXrefId    = 0;
 
-  if ( isset ( $_REQUEST['padInclude'] ) ) $padInfoPage = "pages/$padStartPage/include";
-  else                                     $padInfoPage = "pages/$padStartPage/complete";
-
-  $padInfoDir = "$padInfoPage/$padInfoId";
+  if ( isset ( $_REQUEST['padInclude'] ) ) 
+    $padInfoDir = "pages/$padStartPage/include/$padInfoId";
+  else                                     
+    $padInfoDir = "pages/$padStartPage/complete/$padInfoId";
 
   if ( $padMain    ) include pad . 'info/types/main/start.php';
   if ( $padStats   ) include pad . 'info/types/stats/start.php';

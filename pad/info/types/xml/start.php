@@ -3,14 +3,9 @@
   include_once pad . 'info/types/xml/lib.php';
 
   $padXmlDepth  = 0;
-
   $padXmlTree   = [];
   $padXmlLevel  = [];
   $padXmlEvents = [];
-
-  $padXmlFile = "$padInfoPage/xml.xml";
-
-  if ( file_exists ( $padXmlFile) )
-    unlink ( $padXmlFile );
+  $padXmlFile   = "$padInfoDir/xml.xml";
 
 ?>

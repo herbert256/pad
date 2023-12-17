@@ -43,7 +43,7 @@
 
   function padXrefManual2 ( $dir1, $dir2, $dir3='' ) {
 
-    global $padPage, $padXrefPageSource, $padStartPage;
+    global $padPage, $padXrefSource, $padStartPage;
 
     if ( padInsideOther()                             ) return;
     if ( $padPage <> $padStartPage                    ) return;
@@ -59,8 +59,8 @@
     if ( $dir1 == 'sequences'  and $dir2 == 'builds'  ) return padXrefManual3 ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'at'         and $dir2 == 'kind'    ) return padXrefManual3 ( $dir1, $dir2, $dir3 );
 
-    if (   $dir3 and strpos ( $padXrefPageSource, $dir3 ) === FALSE ) return;
-    if ( ! $dir3 and strpos ( $padXrefPageSource, $dir2 ) === FALSE ) return;
+    if (   $dir3 and strpos ( $padXrefSource, $dir3 ) === FALSE ) return;
+    if ( ! $dir3 and strpos ( $padXrefSource, $dir2 ) === FALSE ) return;
  
     padXrefManual3 ( $dir1, $dir2, $dir3 );
 
@@ -155,9 +155,9 @@
   function padXrefPage ( $dir1, $dir2, $dir3 ) {
 
     global $pad, $padPad, $padLvlIds, $padOccur;
-    global $padInfoPage, $padCurrent, $padBase, $padData, $padResult;
+    global $padInfoDir, $padCurrent, $padBase, $padData, $padResult;
 
-    $file = "$padInfoPage/tree";
+    $file = "$padInfoDir/tree";
 
     for ( $lvl=0; $lvl<=$pad; $lvl++ ) {
       $l = $padLvlIds [$lvl] ?? 0;

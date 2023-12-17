@@ -167,7 +167,7 @@
 
   function padXmlWrite ( $xml ) {
   
-    global $padXmlFile, $padInfoId, $padXmlDepth;
+    global $padXmlFile, $padXmlDepth;
 
     if ( $padXmlDepth > 0 )
       $spaces = str_repeat ( ' ', $padXmlDepth * 2 );

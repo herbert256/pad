@@ -8,9 +8,6 @@
 
   $padBase [$pad] = $padBuildLib . str_replace ( '@pad@', $padBuildPage, $padBuildBase );
 
-  if ( padXml )
-    include pad . 'info/types/xml/build.php';
-
   if ( padTrace )
     include pad . 'info/events/build.php';
  
