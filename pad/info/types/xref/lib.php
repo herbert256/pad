@@ -337,14 +337,14 @@
 
   function padXrefWrite ( $xml ) {
   
-    global $padInfoPage, $padXrefDepth;
+    global $padXrefFile , $padXrefDepth;
 
     if ( $padXrefDepth > 0 )
       $spaces = str_repeat ( ' ', $padXrefDepth * 2 );
     else
       $spaces = '';
 
-    padInfoLine ( "$padInfoPage/xref.xml", "$spaces$xml", true );
+    padInfoLine ( $padXrefFile, "$spaces$xml", true );
   
   }
 

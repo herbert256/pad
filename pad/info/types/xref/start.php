@@ -6,4 +6,9 @@
   $padXrefXmlEvents  = [];
   $padXrefPageSource = padInfoGet ( padApp . $padStartPage . '.pad' );
 
+  $padXrefFile = "$padInfoPage/xref.xml";
+
+  if ( file_exists ( $padXrefFile ) )
+    unlink ( $padXrefFile );
+
 ?>

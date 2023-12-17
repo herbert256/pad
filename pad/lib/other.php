@@ -57,8 +57,8 @@
     if ( padXref ) {
       if ( $condition ) padXref ( 'merge', 'true', $name );
       else              padXref ( 'merge', 'false', $name );
-      if ( $condition ) padContentSetXref ( $true,  $newTrue,  $name );
-      else              padContentSetXref ( $false, $newFalse, $name );
+      if ( $condition ) padContentSetXref  ( $true,  $newTrue,  $name );
+      else              padContentSetXref  ( $false, $newFalse, $name );
     }
 
     if ( $condition ) $true  = padContentSet ( $true,  $newTrue,  $name );
@@ -203,7 +203,7 @@
   }
 
 
-  function padCloseWithPath () {
+  function padCloseWithPad () {
 
     global $pad, $padOpt;
 

@@ -3,7 +3,7 @@
   if ( ! isset ( $fromMenu ) )
     return NULL;
 
-  set_time_limit ( 30 );
+  set_time_limit ( 300 );
 
   $title = $allType;
 

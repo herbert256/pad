@@ -194,7 +194,7 @@
 
   function padXmlTidy () {
 
-    global $padInfoPage, $padXmlTidy;
+    global $padXmlFile, $padXmlTidy;
 
     if ( ! $padXmlTidy )
       return;
@@ -213,7 +213,7 @@
       'drop-empty-elements' => 'yes'
     ];
 
-    $data = padInfoGet ( padData . "$padInfoPage/xml.xml" );
+    $data = padInfoGet ( padData . $padXmlFile );
 
     $tidy = new tidy;
     $tidy->parseString ( $data, $options, 'utf8' );
@@ -222,7 +222,7 @@
     if ( $tidy === FALSE )
       return padError ( "TIDY conversion error");
 
-    $data = padInfoFile ( "$padInfoPage/xml.xml", $tidy->value );
+    $data = padInfoFile ( $padXmlFile, $tidy->value );
 
   }
 

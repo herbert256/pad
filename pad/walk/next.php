@@ -1,6 +1,6 @@
 <?php
      
-  if ( padCloseWithPath () )
+  if ( padCloseWithPad () )
     include pad . 'walk/parse_opt.php';
 
   if ( padXref )

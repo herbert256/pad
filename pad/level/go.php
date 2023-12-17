@@ -4,12 +4,8 @@
   $padTagContent = '';
 
   ob_start();
-
-  $padTagResult = include pad . "types/" . $padType [$pad] . ".php";
-  
-  if ( padXref )
-    include pad . 'info/types/xref/items/result.php';
-
+  $padTagResult   = include pad . "types/" . $padType [$pad] . ".php";
+  $padTagOrg      = $padTagResult;
   $padTagContent .= ob_get_clean();
 
   if ( padSingleValue ( $padTagResult ) ) {
@@ -19,8 +15,8 @@
 
   include pad . 'level/flags.php';
 
-  if ( padXref )
-    include pad . 'info/types/xref/items/flags.php';
+  if ( padInfo )
+    include pad . 'info/events/go.php';
 
   if ( $padTagContent )
     padContentMerge ( $padContent, $padFalse, $padTagContent, $padHit [$pad], $padTag [$pad] );

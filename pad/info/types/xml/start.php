@@ -10,4 +10,7 @@
 
   $padXmlFile = "$padInfoPage/xml.xml";
 
+  if ( file_exists ( $padXmlFile) )
+    unlink ( $padXmlFile );
+
 ?>
