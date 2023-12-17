@@ -6,6 +6,5 @@
   $padXmlTree   = [];
   $padXmlLevel  = [];
   $padXmlEvents = [];
-  $padXmlFile   = "$padInfoDir/xml.xml";
 
 ?>

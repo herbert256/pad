@@ -1,6 +1,5 @@
 <?php
   
-  $padMain    = FALSE;  // Main information about a PAD request
   $padRequest = FALSE;  // Log the details of the HTTP(s) request 
   $padTrack   = FALSE;  // Big Brother, session and request information of the client
   $padXml     = TRUE;   // Build a XML file of the structure of the PAD page 

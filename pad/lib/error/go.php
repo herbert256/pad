@@ -1,34 +1,17 @@
 <?php
 
 
-  function padErrorGo ($error, $file, $line) {
-
-    if ( padInfo and isset ($GLOBALS ['padMainError']) and $GLOBALS ['padMainError'] )
-      padInfoError ($error, $file, $line);
-
-    if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
-      return FALSE;
-
-    if ( $GLOBALS['padExit'] <> 1 )
-      padErrorStop ( "ERROR-SECOND: $error", $file, $line);
-
-    $GLOBALS['padExit'] = 2;
-    
-    $GLOBALS['padErrorFile']  = $file;
-    $GLOBALS['padErrorLine']  = $line;
-    $GLOBALS['padErrorError'] = $error;
-
-    $error = "$file:$line " . padMakeSafe ( $error );
+  function padErrorGo ( $error, $file, $line ) {
 
     set_error_handler ( 'padErrorThrow' );
 
     try {
 
-      padErrorGoGo ( $error );
+      padErrorGoGo ( $error, $file, $line );
  
     } catch (Throwable $e) {
 
-      padErrorGoCatch ( $e, $error );
+      padErrorGoCatch ( $e, $error, $file, $line );
 
     }
 
@@ -41,9 +24,28 @@
   }
 
 
-  function padErrorGoGo ( $error ) {
+  function padErrorGoGo ( $error, $file, $line ) {
+
+    if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
+      return FALSE;
+
+    if ( $GLOBALS['padExit'] <> 1 ) {
+      restore_error_handler ();
+      padErrorStop ( "ERROR-SECOND: $error", $file, $line);
+    }
+
+    $GLOBALS['padExit'] = 2;
+    
+    $GLOBALS['padErrorFile']  = $file;
+    $GLOBALS['padErrorLine']  = $line;
+    $GLOBALS['padErrorError'] = $error;
+
+    $error = "$file:$line " . padMakeSafe ( $error );
 
     $GLOBALS ['padErrrorList'] [] = $error; 
+
+    if ( padInfo and function_exists ( 'padInfoError' ) )
+      padInfoError ($error, $file, $line);
 
     if ( $GLOBALS ['padErrorLog'] or $GLOBALS ['padErrorAction'] == 'report' )
       padErrorLog ( $error );
@@ -65,7 +67,7 @@
   }
 
 
-  function padErrorGoCatch ( $e, $error ) {
+  function padErrorGoCatch ( $e, $error, $file, $line ) {
     
     set_error_handler ( 'padErrorThrow' );
 

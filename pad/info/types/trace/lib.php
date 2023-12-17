@@ -6,7 +6,7 @@
 
     global $pad, $padOccur;
     global $padTraceMore, $padTraceRoot, $padTraceTree, $padTraceLocal, $padTraceSkipLevel;
-    global $padTraceLine, $padTraceTypes, $padTraceId, $padTraceOccurId, $padTraceMaxLevel;
+    global $padTraceId, $padTraceTypes, $padTraceIds, $padTraceOccurId, $padTraceMaxLevel;
 
     if ( $padTraceSkipLevel and $padTraceSkipLevel == $pad ) return;
     if ( $padTraceMaxLevel  and $padTraceMaxLevel  >  $pad ) return;
@@ -14,20 +14,18 @@
     if ( padTraceSkip ( $type ) )
       return;
     
-    $padTraceLine++;
-
-    padInfo ( 'trace',  $type, $event, $info );
+    $padTraceId++;
 
     $occur = $padOccur [$pad] ?? 0;
 
     if ( $event == 'start' )
-      if     ( $type == 'level' ) $padTraceId [$pad]          = $padTraceLine;
-      elseif ( $type == 'occur' ) $padTraceOccurId [$pad]     = $padTraceLine;
-      else                        $GLOBALS ["padTraceX$type"] = $padTraceLine;
+      if     ( $type == 'level' ) $padTraceIds [$pad]          = $padTraceId;
+      elseif ( $type == 'occur' ) $padTraceOccurId [$pad]     = $padTraceId;
+      else                        $GLOBALS ["padTraceX$type"] = $padTraceId;
 
     padTraceInfo ( $trace, $info, $id, $type, $event );
 
-    if ( $padTraceMore  ) padTraceMore  ( $trace, $info, $padTraceLine );
+    if ( $padTraceMore  ) padTraceMore  ( $trace, $info, $padTraceId );
     if ( $padTraceRoot  ) padTraceRoot  ( $trace );
     if ( $padTraceTree  ) padTraceTree  ( $trace );
     if ( $padTraceLocal ) padTraceLocal ( $trace );
@@ -55,22 +53,22 @@
   function padTraceInfo ( &$trace, &$info, &$id, $type, $event ) {
 
     global $pad, $padOccur;
-    global $padTraceLine, $padTraceId, $padTraceOccurId;
+    global $padTraceId, $padTraceIds, $padTraceOccurId;
 
     $prefix = $pad;  
     if ( $pad >= 0 and $padOccur [$pad] )
       $prefix .= '/' . $padOccur [$pad];
 
-    if     ( $type == 'level' )                      $id = $padTraceId [$pad]          ?? 0;
+    if     ( $type == 'level' )                      $id = $padTraceIds [$pad]         ?? 0;
     elseif ( $type == 'occur' )                      $id = $padTraceOccurId [$pad]     ?? 0;
     elseif ( isset ( $GLOBALS ["padTraceX$type"] ) ) $id = $GLOBALS ["padTraceX$type"] ?? 0;
-    else                                             $id = $padTraceLine;       
+    else                                             $id = $padTraceId;       
 
-    if ( ! $id or $id == $padTraceLine )
+    if ( ! $id or $id == $padTraceId )
       $id = '';
 
     $trace = sprintf ( '%-9s',  $prefix       )
-           . sprintf ( '%-7s',  $padTraceLine )
+           . sprintf ( '%-7s',  $padTraceId )
            . sprintf ( '%-7s',  $id           )
            . sprintf ( '%-10s', $type         )
            . sprintf ( '%-10s', $event        );
@@ -145,7 +143,7 @@
     else
       $add = $padTraceLevel [$pad] . '/' . padTraceOccur ( $pad );
 
-    $target = "$padInfoDir/trace/$add$location";
+    $target = "trace/$add$location";
 
     if ( ! $padTraceLines )
       return padTraceCheckDir ( padData . $target, $type );
@@ -248,7 +246,7 @@
 
     global $padOccur, $padTag;
     global $padTraceLevel, $padTraceType, $padTraceAddLine;
-    global $padTraceId, $padTraceLine, $padTraceLevelChilds, $padTraceOccurChilds;
+    global $padTraceIds, $padTraceId, $padTraceLevelChilds, $padTraceOccurChilds;
 
     if ( $pad < 0 ) {
       $padTraceLevel [$pad] = '';
@@ -258,7 +256,7 @@
     $last = $pad - 1;
     $tag  = $padTag [$pad] ?? "NoTag";
     $add  = padTraceOccur ( $pad-1 );
-    $line = ($padTraceAddLine) ? "$padTraceLine-" : '';
+    $line = ($padTraceAddLine) ? "$padTraceId-" : '';
 
     $padTraceLevel [$pad] = $padTraceLevel [$last] ?? "NoPrev";
 
@@ -270,7 +268,7 @@
     $padTraceLevelChilds [$pad] = 0;
     $padTraceOccurChilds [$pad] = [];
 
-    $padTraceId [$pad] = $padTraceLine;
+    $padTraceIds [$pad] = $padTraceId;
 
   }
 

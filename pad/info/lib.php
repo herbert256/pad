@@ -22,34 +22,12 @@
   }
 
 
-  function padInfo ( $parm1, $parm2='', $parm3='', $parm4='' ) {
-
-    global $padInfoCnt, $padMain, $padMainMeta, $padInfoDir;
-
-    if ( ! $padMain or ! $padMainMeta )
-      return;
-
-    $padInfoCnt++;
-
-    $extra = padMakeSafe ( $parm3) . ' ' . padMakeSafe ( $parm4 );
-
-    $line = padInfoIds ()
-          . sprintf ( '%-15s', padMakeSafe ( $parm1 ) )
-          . sprintf ( '%-15s', padMakeSafe ( $parm2 ) )
-          . substr ( $extra, 0, 100 );
-
-    padInfoLine ( "$padInfoDir/info.txt", $line );
-
-  }
-
-
   function padInfoIds () {
 
-    global $padInfoCnt,$padXrefId, $padTraceLine, $padXmlId;
+    global $padXrefId, $padTraceId, $padXmlId;
 
-    return sprintf ( '%-7s',  $padInfoCnt )
-         . sprintf ( '%-9s',  padInfoPadOccur () )
-         . sprintf ( '%-16s', "$padTraceLine/$padXrefId/$padXmlId" );
+    return sprintf ( '%-9s',  padInfoPadOccur () )
+         . sprintf ( '%-16s', "$padTraceId/$padXrefId/$padXmlId" );
 
   }
 
@@ -70,30 +48,33 @@
   }
 
 
-  function padInfoExists ( $file ) {
-
-    return file_exists ( $file );
-
-  }
-
-
   function padInfoLine ( $in, $data ) {
 
-    padInfoCheck ( $in );
-
-    file_put_contents ( padData . $in, $data . "\n", LOCK_EX | FILE_APPEND );
+    padInfoWrite ( $in, $data, 1); 
     
   }
 
 
   function padInfoFile ( $in, $data ) {
+    
+    padInfoWrite ( $in, $data, 0); 
+    
+  }
 
-    padInfoCheck ( $in );
+
+  function padInfoWrite ( $in, $data, $append=0 ) {
+
+    global $padInfoDir;
+
+    padInfoCheck ( "$padInfoDir/$in" );
 
     if ( is_array($data) or is_object($data) )
       $data = padJson ($data);
     
-    file_put_contents ( padData . $in, "$data\n", LOCK_EX );
+    if ( $append)
+      file_put_contents ( padData . "$padInfoDir/$in", $data . "\n", LOCK_EX | FILE_APPEND );
+    else
+      file_put_contents ( padData . "$padInfoDir/$in", "$data",      LOCK_EX );
     
   }
 
@@ -108,8 +89,8 @@
       padInfoMkDir ( $dir );
 
     if ( ! file_exists ($file) ) {      
-      touch($file);
-      chmod($file, $GLOBALS ['padFileMode']);
+      touch ($file);
+      chmod ($file, $GLOBALS ['padFileMode']);
     }
     
   }
@@ -124,7 +105,6 @@
       mkdir ($dir, $GLOBALS ['padDirMode'], true );
 
     } catch (Throwable $e) {
-
   
     }
 
@@ -141,61 +121,5 @@
     return file_get_contents ($file);
 
   }
-
-
-  function padMainRequestInit ( $file ) {
-
-   if ( function_exists ('getallheaders') )
-      $headers = getallheaders();
-    else
-      $headers = [];
-
-    $input = file_get_contents('php://input') ?? '';
-
-    padInfoFile( $file,  [
-        'headers' => $headers,
-        'get'     => $_GET ??    '',
-        'post'    => $_POST ??   '',
-        'cookies' => $_COOKIE ?? '',
-        'files '  => $_FILES ?? '',
-        'server'  => $_SERVER ?? '',
-        'session' => $_SESSION ?? '',
-        'getenv'  => getenv () ?? '' , 
-        'request' => $_REQUEST ?? '' ] );
-
-    if ( $input ) {
-      $file = str_replace ( 'entry.json', 'input.txt', $file );
-      padInfoFile ( $file,  $input );
-    }
-      
-  }
-
-
-  function padMainRequestExit ( $file ) {
-
-    global $padOutput;
-
-    $phpHeaders = headers_list ()         ?? [];
-    $padHeaders = $GLOBALS ['padHeaders'] ?? [];
-
-    foreach ( $padHeaders as $header ) {
-      $key = array_search ( $header, $phpHeaders );
-      if ( $key !== FALSE )
-        unset ( $phpHeaders [$key] );
-    }
-
-    padInfoFile ( $file,  [
-        'http'       => http_response_code () ?? 'null',
-        'phpHeaders' => $phpHeaders,
-        'padHeaders' => $padHeaders
-      ] );
-
-    if ( $padOutput ) {
-      $file = str_replace ( 'exit.json', 'output.txt', $file );
-      padInfoFile ( $file,  $padOutput );
-    }
-      
-  }
-
 
 ?>

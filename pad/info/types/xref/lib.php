@@ -11,8 +11,6 @@
     if ( $dir2 === FALSE ) $dir2 = '0';
     if ( $dir3 === FALSE ) $dir3 = '0';
 
-    padInfo ( 'xref', $dir1, $dir2, $dir3 );
-
     if ( $padXrefInfo    ) padXrefInfo    ( $dir1, $dir2, $dir3 );
     if ( $padXrefManual  ) padXrefManual  ( $dir1, $dir2, $dir3 );
     if ( $padXrefDevelop ) padXrefTypes   ( $dir1, $dir2, $dir3 );
@@ -155,9 +153,9 @@
   function padXrefPage ( $dir1, $dir2, $dir3 ) {
 
     global $pad, $padPad, $padLvlIds, $padOccur;
-    global $padInfoDir, $padCurrent, $padBase, $padData, $padResult;
+    global $padCurrent, $padBase, $padData, $padResult;
 
-    $file = "$padInfoDir/tree";
+    $file = 'tree';
 
     for ( $lvl=0; $lvl<=$pad; $lvl++ ) {
       $l = $padLvlIds [$lvl] ?? 0;
@@ -217,7 +215,7 @@
     else
       $xref = padFileCorrect ($dir2 );
   
-    padInfoLine ( "$padInfoDir/$target/$dir1/$xref.txt", padInfoIds () );
+    padInfoLine ( "$target/$dir1/$xref.txt", padInfoIds () );
 
   }
 
@@ -337,14 +335,14 @@
 
   function padXrefWrite ( $xml ) {
   
-    global $padXrefFile , $padXrefDepth;
+    global $padXrefDepth;
 
     if ( $padXrefDepth > 0 )
       $spaces = str_repeat ( ' ', $padXrefDepth * 2 );
     else
       $spaces = '';
 
-    padInfoLine ( $padXrefFile, "$spaces$xml", true );
+    padInfoLine ( 'xref.xml', "$spaces$xml", true );
   
   }
 

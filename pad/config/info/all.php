@@ -1,19 +1,11 @@
 <?php
   
-  $padMain             = TRUE;       // Main information about a PAD request
   $padRequest          = TRUE;       // Log the details of the HTTP(s) request 
   $padTrack            = TRUE;       // Big Brother, session and request information of the client
   $padXml              = TRUE;       // Build a XML file of the structure of the PAD page 
   $padXref             = TRUE;       // Build the <app>_xref and <data>xref directories
   $padStats            = TRUE;       // Keep runtime statistics about time and cpu used
   $padTrace            = TRUE;       // Trace the internal working of PAD
-
-  $padMainMeta         = TRUE;       // Keep a meta tail log for trace/xml/xref events. 
-  $padMainRequest      = TRUE;   
-  $padMainSession      = TRUE;   
-  $padMainOutput       = TRUE;   
-  $padMainDump         = TRUE;  
-  $padMainError        = TRUE;  
 
   $padTrackFileRequest = TRUE;       // Request info in the data directory
   $padTrackFileData    = TRUE;       // Complete result page in the directory

@@ -47,30 +47,21 @@
 
   function padTrackFileRequestStart () {
 
-    global $padInfoDir;
-
-    padInfoFile ( "$padInfoDir/track-entry.json", padSessionStart () );
+    padInfoFile ( "track/entry.json", padSessionStart () );
 
   }
 
 
   function padTrackFileRequestEnd () {
 
-    global $padInfoDir;
-
-    padInfoFile ( "$padInfoDir/track-exit.json", padSessionEnd () );
+    padInfoFile ( "track/exit.json", padSessionEnd () );
 
   }
 
 
   function padTrackFileData ( ) {
 
-    global $padEtag, $padInfoDir, $padOutput;
-
-    $file = "$padInfoDir/track-data.pad";
-
-    if ( ! file_exists(padData . $file) )
-      padInfoFile ($file, $padOutput);
+    padInfoFile ( 'track/data.pad', $GLOBALS ['padOutput'] );
 
   }
 

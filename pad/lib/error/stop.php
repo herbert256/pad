@@ -26,7 +26,7 @@
 
   function padErrorStopGo ( $error, $file, $line, $org ) {
 
-    if ( ! isset ( $GLOBALS ['padDumpToDir'] ) )
+    if ( ! isset ( $GLOBALS ['padDumpToDirDone'] ) )
       if ( $org )
         padDumpToDir ( "$org\n\n$file:$line $error" );
       else
