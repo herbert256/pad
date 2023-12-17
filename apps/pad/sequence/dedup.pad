@@ -1,0 +1,17 @@
+{table}
+
+{demo}{sequence random, min=11, max=13, rows=20, name='mySeq'}{/demo}
+
+{demo}{sequence 'mySeq'}
+  {$mySeq}  
+{/sequence}{/demo}   
+
+{demo}{dedup 'mySeq'}{/demo}
+
+{demo}{sequence 'mySeq'}
+  {$mySeq}  
+{/sequence}{/demo}   
+
+{/table}
+
+<!-- PAD: NO REGRESSION -->

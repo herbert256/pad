@@ -24,4 +24,11 @@
   if ( file_exists ( "$padSeqType/init.php" )) 
     include "$padSeqType/init.php";
 
+  $padSeqSetName = 'padSeq' . ucfirst($padSeqSeq); 
+  if ( ! isset ( $GLOBALS [$padSeqSetName] ) )
+    $$padSeqSetName = $padSeqParm;
+
+  if ( is_integer ($GLOBALS [$padSeqSetName]) )
+    $GLOBALS [$padSeqSetName] = (int) $GLOBALS [$padSeqSetName];
+
 ?>

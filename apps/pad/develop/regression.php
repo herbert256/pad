@@ -18,14 +18,18 @@
     if ( strpos ( $source, 'PAD: SKIP REGRESSION') )
       continue;
 
-    $old = padFileGetContents($store);
-    $new = getPageData ($item, 1);
+    $old   = padFileGetContents($store);
+    $curl  = getPage ($item ,1);
+    $good  = str_starts_with ( $curl ['result'], '2');
+    $new   = $curl ['data'] ?? '';
 
-    if     ( ! file_exists ($store)             ) $status = 'new';
+    if     ( ! $good                            ) $status = 'error';
+    elseif ( ! file_exists ($store)             ) $status = 'new';
     elseif ( strrpos($store, 'random')          ) $status = 'random' ;
     elseif ( strpos($new, 'PAD: NO REGRESSION') ) $status = 'skip' ;
     elseif ( strpos($source, '{example')        ) $status = 'skip' ;
     elseif ( strpos($source, '{get')            ) $status = 'skip' ;
+    elseif ( strpos($source, '{ajax')           ) $status = 'skip' ;
     elseif ( strpos($new, 'padAjax')            ) $status = 'skip' ;
     elseif ( $old == $new                       ) $status = 'ok';
     else                                          $status = 'error';
