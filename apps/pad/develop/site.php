@@ -21,7 +21,7 @@
   $pagesList ['dev']  ['item'] = 'develop/index';
   $pagesList ['xref'] ['item'] = 'develop/xref';
 
-  set_time_limit ( 30 );
+  set_time_limit ( 300 );
 
   $showTitle = FALSE;
 

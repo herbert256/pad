@@ -27,7 +27,8 @@
     if ( ! headers_sent () ) 
       header ( 'HTTP/1.0 500 Internal Server Error' );
 
-    padEmptyBuffers ();
+    if ( ! isset ( $GLOBALS ['padNoEmptyBuffers'] ) )
+      padEmptyBuffers ();
 
     echo "\r\n";
 
@@ -62,21 +63,22 @@
 
     echo ( "<div align=\"left\"><pre>" );
 
-    padDumpFields    ( $php, $lvl, $app, $cfg, $pad, $ids, $trc, $err );
     padDumpInfo      ( $info );
     padDumpErrors    ();
     padDumpStack     ();
     padDumpLevel     ();
     padDumpInput     ();
-    padDumpLines     ( "App variables", $app );
     padDumpRequest   ();
-    padDumpXXX       ( $pad, 'padSeq' );
+    
+    padDumpFields    ( $php, $lvl, $app, $cfg, $pad, $ids, $trc);
+
+    padDumpLines     ( "App variables", $app );
+    padDumpXXX       ( $pad, 'padSeq' ); 
     padDumpXXX       ( $pad, 'padBuild' );
     padDumpCurl      ( $pad );
     padDumpLines     ( "PAD variables",   $pad );
     padDumpLines     ( "Trace variables", $trc );
     padDumpLines     ( "Level variables", $lvl );
-    padDumpLines     ( "Error variables", $err );
     padDumpLines     ( "ID's", $ids );
     padDumpSQL       ();
     padDumpHeaders   ();
@@ -387,19 +389,19 @@
   } 
 
 
-  function padDumpFields ( &$php, &$lvl, &$app, &$cfg, &$pad, &$ids, &$trc, &$err ) {
+  function padDumpFields ( &$php, &$lvl, &$app, &$cfg, &$pad, &$ids, &$trc ) {
 
     include_once pad . 'inits/levelVars.php';
     
-    $php = $lvl = $app = $cfg = $pad = $ids = $exc = $err = $trc = [];
+    $php = $lvl = $app = $cfg = $pad = $ids = $exc = $trc = [];
 
     $chk1 = [ '_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
 
     $chk3 = [ 'padPage','padSesID','padReqID','padRefID','PHPSESSID' ];
 
     $chk4 = [ 'padOptionsEnd','padOptionsStart','padLevelVars' ];
-
-    $settings = padFileGetContents(pad . 'config/config.php');
+    
+    $settings = file_get_contents ( pad . 'config/config.php' );
 
     foreach ($GLOBALS as $key => $value)
 
@@ -407,13 +409,17 @@
 
         $cfg  [$key] = $value;
 
-      elseif ( substr($key, 0, 8)  == 'padTrace' )
+      elseif ( substr($key, 0, 6)  == 'padXml' )
 
         $trc [$key] = $value;
 
-      elseif ( substr($key, 0, 8)  == 'padError' )
+      elseif ( substr($key, 0, 7)  == 'padXref' )
 
-        $err [$key] = $value;
+        $trc [$key] = $value;
+
+      elseif ( substr($key, 0, 8)  == 'padTrace' )
+
+        $trc [$key] = $value;
 
       elseif ( $key == 'padSqlConnect' )
         

@@ -27,6 +27,7 @@
 
   }
 
+
   function padCallbackBeforeRow ( &$padRowParm ) {
 
     if ( isset( $GLOBALS ['row'] ) ) {

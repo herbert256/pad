@@ -2,12 +2,12 @@
 
 
   function padDumpToDir ( $info='', $dir='' ) {
-
-    if ( isset ( $GLOBALS ['padDumpToDirDone'] ) )
-      return $GLOBALS ['padDumpToDirDone'];
  
     if ( ! $dir )
       $dir = "dumps/" . $GLOBALS ['padPage'] . '/' . $GLOBALS ['padReqID'];
+
+    if ( isset ( $GLOBALS ['padDumpToDirDone'] ) )
+      return padDumpToDirDone ( $info, $dir );
 
     $GLOBALS ['padDumpToDirDone'] = $dir;
 
@@ -32,28 +32,28 @@
 
   function padDumpToDirGo ( $info, $dir ) {
 
-    padDumpFields ( $php, $lvl, $app, $cfg, $pad, $ids, $trc, $err );
-
     ob_start (); padDumpInfo      ( $info );          padDumpFile ( 'info',        ob_get_clean (), $dir );
     ob_start (); padDumpErrors    ();                 padDumpFile ( 'error',       ob_get_clean (), $dir );
-    ob_start (); padDumpLines     ( "Error", $err );  padDumpFile ( 'error-extra', ob_get_clean (), $dir );
     ob_start (); padDumpStack     ();                 padDumpFile ( 'stack',       ob_get_clean (), $dir );
-    ob_start (); padDumpLines     ( "ID's", $ids );   padDumpFile ( 'ids',         ob_get_clean (), $dir );
-    ob_start (); padDumpLevel     ();                 padDumpFile ( 'level',       ob_get_clean (), $dir );
     ob_start (); padDumpRequest   ();                 padDumpFile ( 'request',     ob_get_clean (), $dir );
+    ob_start (); padDumpSQL       ();                 padDumpFile ( 'sql',         ob_get_clean (), $dir );
+    ob_start (); padDumpHeaders   ();                 padDumpFile ( 'headers',     ob_get_clean (), $dir );
+    ob_start (); padDumpPhpInfo   ();                 padDumpFile ( 'php-info',    ob_get_clean (), $dir );
+    ob_start (); padDumpLevel     ();                 padDumpFile ( 'level',       ob_get_clean (), $dir );
+    ob_start (); padDumpFiles     ();                 padDumpFile ( 'files',       ob_get_clean (), $dir );
+    ob_start (); padDumpFunctions ();                 padDumpFile ( 'functions',   ob_get_clean (), $dir );
+  
+    padDumpFields ( $php, $lvl, $app, $cfg, $pad, $ids, $trc);
+
+    ob_start (); padDumpLines     ( "ID's", $ids );   padDumpFile ( 'ids',         ob_get_clean (), $dir );
     ob_start (); padDumpLines     ( "App", $app );    padDumpFile ( 'app-vars',    ob_get_clean (), $dir );
     ob_start (); padDumpCurl      ( $pad );           padDumpFile ( 'last-curl',   ob_get_clean (), $dir );
     ob_start (); padDumpXXX       ( $pad, 'padSeq' ); padDumpFile ( 'sequence',    ob_get_clean (), $dir );
-    ob_start (); padDumpFiles     ();                 padDumpFile ( 'files',       ob_get_clean (), $dir );
-    ob_start (); padDumpFunctions ();                 padDumpFile ( 'functions',   ob_get_clean (), $dir );
     ob_start (); padDumpLines     ( "PAD",   $pad );  padDumpFile ( 'pad-vars',    ob_get_clean (), $dir );
     ob_start (); padDumpLines     ( "Trace", $trc );  padDumpFile ( 'trace',       ob_get_clean (), $dir );
     ob_start (); padDumpLines     ( "Level", $lvl );  padDumpFile ( 'level-vars',  ob_get_clean (), $dir );
-    ob_start (); padDumpSQL       ();                 padDumpFile ( 'sql',         ob_get_clean (), $dir );
-    ob_start (); padDumpHeaders   ();                 padDumpFile ( 'headers',     ob_get_clean (), $dir );
     ob_start (); padDumpLines     ( 'Config', $cfg ); padDumpFile ( 'config',      ob_get_clean (), $dir );
     ob_start (); padDumpLines     ( 'PHP', $php );    padDumpFile ( 'php-vars',    ob_get_clean (), $dir );
-    ob_start (); padDumpPhpInfo   ();                 padDumpFile ( 'php-info',    ob_get_clean (), $dir );
     ob_start (); padDumpGlobals   ();                 padDumpFile ( 'globals',     ob_get_clean (), $dir );
 
     padDumpInputToFile ( 'input', $dir ) ;
@@ -99,6 +99,35 @@
 
       // giving up
   
+    }
+
+    restore_error_handler ();
+
+  }  
+
+
+  function padDumpToDirDone ( $info, $dir ) {
+
+    if ( $dir !== $GLOBALS ['padDumpToDirDone'] )
+      padDumpToDirDoneGo ( $info, $dir, $GLOBALS ['padDumpToDirDone'] );
+
+    return $GLOBALS ['padDumpToDirDone'];
+
+  }
+
+
+  function padDumpToDirDoneGo ( $info, $dir, $done ) {
+
+    set_error_handler ( 'padErrorThrow' );
+
+    try {
+
+      padFilePutContents ( "$dir/error.txt", padData . "$info\n\n$done" );   
+    
+    } catch (Throwable $e ) {
+
+      // Ignore errors
+      
     }
 
     restore_error_handler ();

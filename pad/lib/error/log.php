@@ -10,7 +10,10 @@
 
     try {
 
-      padErrorLogGo ( $info );
+      $log = '[PAD] ' . padID () . ' ' . padMakeSafe ( $info, 200 );
+
+      if ( padErrorLogCheck ( 'log', $log )  )
+        xerror_log ( $log, 4 );
     
     } catch (Throwable $e) {
     
@@ -23,28 +26,18 @@
   }
 
 
-  function padErrorLogGo ( $info ) {
-
-    $log = '[PAD] ' . padID () . ' ' . padMakeSafe ( $info, 200 );
-
-    if ( padErrorLogCheck ( 'log', $log )  )
-      error_log ( $log, 4 );
-
-  }
-
-
   function padErrorLogCatch ( $error, $e ) {
 
     set_error_handler ( 'padErrorThrow' );
 
     try {
 
-      padErrorLogFile ( $error );
+      xpadErrorLogFile ( $error );
       padErrorLogFile ( $e->getFile() . ':' .  $e->getLine() . ' LOG-ERROR: ' . $e->getMessage() );
     
     } catch (Throwable $e2) {
 
-      // padErrorLogCatchCatch ( $error, $e, $e2 );
+      padErrorLogCatchCatch ( $error, $e, $e2 );
   
     }
 
@@ -52,36 +45,52 @@
 
   }
 
-  function padErrorLogCatchCatch ( $error1, $e2, $e3 ) {
+
+  function padErrorLogCatchCatch ( $e1, $e2, $e3 ) {
 
     set_error_handler ( 'padErrorThrow' );
 
     try {
 
-      $error2 = $e2->getFile() . ':' . $e2->getLine() . $e3->getMessage();
-      $error3 = $e3->getFile() . ':' . $e3->getLine() . $e3->getMessage();
+      if ( padLocal () ) {
 
-      padErrorExit ( "Error log not working\n\n$error1\n$error2\n$error3" );
+        echo "<pre>\n\n";
+        echo "$e1\n\n";
+        echo $e2->getFile() . ':' .  $e2->getLine() . ' LOG-ERROR: ' . $e2->getMessage() . "\n\n";
+        echo $e3->getFile() . ':' .  $e3->getLine() . ' LOG-ERROR: ' . $e3->getMessage() . "\n\n";
+        echo "</pre>";
 
-    } catch ( Throwable $ignored ) {
+        $GLOBALS ['padNoEmptyBuffers'];
 
-      echo 'oops';
+      }
+    
+    } catch (Throwable $e2) {
 
-      $GLOBALS ['padSkipShutdown']     = TRUE;
-      $GLOBALS ['padSkipBootShutdown'] = TRUE;
-      
-      exit;
-
+      // Ignore errors
+  
     }
+
+    restore_error_handler ();
 
   }
 
+
   function padErrorLogFile ( $info ) {
 
-    $log = padID () . ' - ' . padMakeSafe ( $info );
+    set_error_handler ( 'padErrorThrow' );
 
-    if ( padErrorLogCheck ( 'file', $log ) )
-      padFilePutContents ( 'error_log.txt', $log, true );
+    try {
+
+      $log = padID () . ' - ' . padMakeSafe ( $info );
+
+      if ( padErrorLogCheck ( 'file', $log ) )
+        padFilePutContents ( 'error_log.txt', $log, true );
+
+    } catch (Throwable $e2) {
+
+      // Ignore errors
+  
+    }
 
   }
 

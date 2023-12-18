@@ -26,11 +26,10 @@
 
   function padErrorStopGo ( $error, $file, $line, $org ) {
 
-    if ( ! isset ( $GLOBALS ['padDumpToDirDone'] ) )
-      if ( $org )
-        padDumpToDir ( "$org\n\n$file:$line $error" );
-      else
-        padDumpToDir ( "$file:$line $error" );
+    if ( $org )
+      padDumpToDir ( "STOP: $org\n\n$file:$line $error" );
+    else
+      padDumpToDir ( "STOP: $file:$line $error" );
 
     if ( $GLOBALS ['padErrorLog'] ) {
       padErrorLog ( $org );
@@ -39,9 +38,10 @@
 
     if ( isset ( $GLOBALS ['padErrrorList'] ) )
       foreach ( $GLOBALS ['padErrrorList'] as $list )
-        $error .= "\n" . $list;
+        if ( ! str_contains ( $error, $list ) )
+         $error .= "\n" . $list;
 
-    if ( $org )
+    if ( $org and ! str_contains ( $error, $org ) )
       $error .= "\n" . $org;
 
     padBootStop ( $error, $file, $line );

@@ -8,12 +8,10 @@
     try {
 
       padDumpToDir ( "$file:$line $error", $GLOBALS ['padInfoDir'] . '/ERROR');
-
-      unset ( $GLOBALS ['padDumpToDirDone'] );
     
     } catch (Throwable $e) {
     
-      // ignore
+      // Ignore errors
 
     }
 
@@ -48,33 +46,36 @@
   }
 
 
-  function padInfoLine ( $in, $data ) {
+  function padInfoLine ( $file, $data ) {
 
-    padInfoWrite ( $in, $data, 1); 
+    padInfoWrite ( $file, $data, 1 ); 
     
   }
 
 
-  function padInfoFile ( $in, $data ) {
+  function padInfoFile ( $file, $data ) {
     
-    padInfoWrite ( $in, $data, 0); 
+    padInfoWrite ( $file, $data, 0 ); 
     
   }
 
 
-  function padInfoWrite ( $in, $data, $append=0 ) {
+  function padInfoWrite ( $file, $data, $append=0, $add=1 ) {
 
     global $padInfoDir;
-
-    padInfoCheck ( "$padInfoDir/$in" );
 
     if ( is_array($data) or is_object($data) )
       $data = padJson ($data);
     
+    if ( $add )
+      $file = "$padInfoDir/$file";
+
+    padInfoCheck ( $file );
+
     if ( $append)
-      file_put_contents ( padData . "$padInfoDir/$in", $data . "\n", LOCK_EX | FILE_APPEND );
+      file_put_contents ( padData . $file, $data . "\n", LOCK_EX | FILE_APPEND );
     else
-      file_put_contents ( padData . "$padInfoDir/$in", "$data",      LOCK_EX );
+      file_put_contents ( padData . $file, $data,        LOCK_EX );
     
   }
 
@@ -121,5 +122,6 @@
     return file_get_contents ($file);
 
   }
+
 
 ?>

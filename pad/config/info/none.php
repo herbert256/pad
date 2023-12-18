@@ -85,6 +85,7 @@
   $padTraceCall        = FALSE;
   $padTraceSql         = FALSE;
   $padTraceGet         = FALSE;
+  $padTracePut         = FALSE;
   $padTraceCurl        = FALSE;
 
 ?>

@@ -1,17 +1,8 @@
 <?php
 
-  $CpuStart = $GLOBALS ['padStatsCpuStart'];
-  $CpuEnd   = getrusage ();
-  
-  $GLOBALS ['padStatsUser'] = 
-     ( $CpuEnd   ['ru_utime.tv_sec'] * 1000000 + $CpuEnd   ['ru_utime.tv_usec'] )
-  -  ( $CpuStart ['ru_utime.tv_sec'] * 1000000 + $CpuStart ['ru_utime.tv_usec'] );
+  if ( ! function_exists ( 'padStatsEnd') )
+    return;
 
-  $GLOBALS ['padStatsSystem'] = 
-     ( $CpuEnd   ['ru_stime.tv_sec'] * 1000000 + $CpuEnd   ['ru_stime.tv_usec'] )
-  -  ( $CpuStart ['ru_stime.tv_sec'] * 1000000 + $CpuStart ['ru_stime.tv_usec'] );
-
-  if ( padTrace )
-    include pad . 'info/events/stats.php';
-     
+  padStatsEnd ();
+ 
 ?>

@@ -1,5 +1,8 @@
 <?php
 
+  if ( ! function_exists ( 'padTrace') )
+    return;
+
   global $pad, $padTraceLocalChk, $padInfoDir, $padTraceSkipLevel, $padTraceMaxLevel, $padTraceLevel, $padTraceDir;
 
   if ( $GLOBALS ['padTraceSession'] )

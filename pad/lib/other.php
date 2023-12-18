@@ -172,6 +172,9 @@
 
   function padEmptyBuffers () {
 
+    if ( isset ( $GLOBALS ['padNoEmptyBuffers'] ) )
+      return;
+
     set_error_handler ( 'padErrorThrow' );
 
     try {

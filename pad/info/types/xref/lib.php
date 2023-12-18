@@ -145,7 +145,7 @@
     for ( $lvl=$pad; $lvl>=0; $lvl-- ) 
       $data [$lvl] = padDumpGetLevel ($lvl) ;
 
-    padInfoFile ( $file, $data );
+    padInfoWrite ( $file, $data, 0, 0 );
 
   }
 

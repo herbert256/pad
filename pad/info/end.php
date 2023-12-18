@@ -7,7 +7,7 @@
   if ( $GLOBALS ['padRequest'] ) include pad . 'info/types/request/end.php';
   if ( $GLOBALS ['padXref']    ) include pad . 'info/types/xref/end.php';
 
-  if ( file_exists ( padData . $padInfoDir ) )
-    padDumpToDir ( '', "$padInfoDir/dump" );    
+  if     ( ! isset ($padInfoDir) )                 padDumpToDir ( 'padInfoDir not set' ); 
+  elseif ( file_exists ( padData . $padInfoDir ) ) padDumpToDir ( '', "$padInfoDir/dump" );    
 
 ?>

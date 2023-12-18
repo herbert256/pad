@@ -47,7 +47,7 @@
     if ( padInfo and function_exists ( 'padInfoError' ) )
       padInfoError ($error, $file, $line);
 
-    if ( $GLOBALS ['padErrorLog'] or $GLOBALS ['padErrorAction'] == 'report' )
+    if ( $GLOBALS ['padErrorLog'] or $GLOBALS ['padErrorAction'] == 'report' ) 
       padErrorLog ( $error );
 
     if ( $GLOBALS ['padErrorReport'] or $GLOBALS ['padErrorAction'] == 'report' )
