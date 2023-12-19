@@ -11,7 +11,7 @@ CREATE TABLE `track_session` (
   `start` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `end`   timestamp ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `requests` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 ALTER TABLE `track_session` ADD PRIMARY KEY (`session`);
 
@@ -28,21 +28,21 @@ CREATE TABLE `track_request` (
   `ref` varchar(1023) NOT NULL,
   `ip` varchar(1023) NOT NULL,
   `agent` varchar(1023) NOT NULL
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 ALTER TABLE `track_request` ADD PRIMARY KEY (`session`, `request`);
 
 CREATE TABLE `track_data` (
   `etag` char(22) NOT NULL,
   `data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 ALTER TABLE `track_data` ADD PRIMARY KEY (`etag`);
 
 CREATE TABLE `links` (
   `link` varchar(64) NOT NULL,
   `vars` text NOT NULL
-) ENGINE=InnoDB;
+) ENGINE=MyISAM;
 
 ALTER TABLE `links` ADD PRIMARY KEY (`link`);
 

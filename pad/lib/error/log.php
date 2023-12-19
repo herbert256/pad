@@ -13,7 +13,7 @@
       $log = '[PAD] ' . padID () . ' ' . padMakeSafe ( $info, 200 );
 
       if ( padErrorLogCheck ( 'log', $log )  )
-        xerror_log ( $log, 4 );
+        error_log ( $log, 4 );
     
     } catch (Throwable $e) {
     
@@ -32,7 +32,7 @@
 
     try {
 
-      xpadErrorLogFile ( $error );
+      padErrorLogFile ( $error );
       padErrorLogFile ( $e->getFile() . ':' .  $e->getLine() . ' LOG-ERROR: ' . $e->getMessage() );
     
     } catch (Throwable $e2) {
@@ -53,15 +53,9 @@
     try {
 
       if ( padLocal () ) {
-
-        echo "<pre>\n\n";
-        echo "$e1\n\n";
-        echo $e2->getFile() . ':' .  $e2->getLine() . ' LOG-ERROR: ' . $e2->getMessage() . "\n\n";
-        echo $e3->getFile() . ':' .  $e3->getLine() . ' LOG-ERROR: ' . $e3->getMessage() . "\n\n";
-        echo "</pre>";
-
-        $GLOBALS ['padNoEmptyBuffers'];
-
+        padErrorConsole ( $e1 );
+        padErrorConsole ( $e2->getFile() . ':' .  $e2->getLine() . ' LOG-ERROR: ' . $e2->getMessage() );
+        padErrorConsole ( $e3->getFile() . ':' .  $e3->getLine() . ' LOG-ERROR-CATCH: ' . $e3->getMessage() );
       }
     
     } catch (Throwable $e2) {
@@ -84,7 +78,25 @@
       $log = padID () . ' - ' . padMakeSafe ( $info );
 
       if ( padErrorLogCheck ( 'file', $log ) )
-        padFilePutContents ( 'error_log.txt', $log, true );
+        xpadFilePutContents ( 'error_log.txt', $log, true );
+
+    } catch (Throwable $e) {
+
+      padErrorLogFileCatch ( $e, $info );
+  
+    }
+
+  }
+
+
+  function padErrorLogFileCatch ( $e, $info ) {
+
+    set_error_handler ( 'padErrorThrow' );
+
+    try {
+
+      padErrorConsole ( $info );
+      padErrorConsole ( $e->getFile() . ':' .  $e->getLine() . ' FILE-CATCH: ' . $e->getMessage() );
 
     } catch (Throwable $e2) {
 
@@ -93,6 +105,7 @@
     }
 
   }
+
 
 
   function padErrorLogCheck ( $type, $info ) {

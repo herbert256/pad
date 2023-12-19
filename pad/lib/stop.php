@@ -5,8 +5,7 @@
 
     padCloseSession ();  
 
-    if ( ! isset ( $GLOBALS ['padNoEmptyBuffers'] ) )
-      padEmptyBuffers ();
+    padEmptyBuffers ();
 
     if ( $GLOBALS ['padOutputType'] == 'web' )
       padWebHeaders ( $stop );

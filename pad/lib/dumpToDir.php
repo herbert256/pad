@@ -4,7 +4,7 @@
   function padDumpToDir ( $info='', $dir='' ) {
  
     if ( ! $dir )
-      $dir = "dumps/" . $GLOBALS ['padPage'] . '/' . $GLOBALS ['padReqID'];
+      $dir = "dumps/" . $GLOBALS ['padPage'] . '/' . hrtime (true);
 
     if ( isset ( $GLOBALS ['padDumpToDirDone'] ) )
       return padDumpToDirDone ( $info, $dir );
@@ -35,6 +35,7 @@
     ob_start (); padDumpInfo      ( $info );          padDumpFile ( 'info',        ob_get_clean (), $dir );
     ob_start (); padDumpErrors    ();                 padDumpFile ( 'error',       ob_get_clean (), $dir );
     ob_start (); padDumpStack     ();                 padDumpFile ( 'stack',       ob_get_clean (), $dir );
+    ob_start (); padDumpBuffer    ();                 padDumpFile ( 'buffer',      ob_get_clean (), $dir );
     ob_start (); padDumpRequest   ();                 padDumpFile ( 'request',     ob_get_clean (), $dir );
     ob_start (); padDumpSQL       ();                 padDumpFile ( 'sql',         ob_get_clean (), $dir );
     ob_start (); padDumpHeaders   ();                 padDumpFile ( 'headers',     ob_get_clean (), $dir );

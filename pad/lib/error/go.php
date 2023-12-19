@@ -29,10 +29,8 @@
     if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
       return FALSE;
 
-    if ( $GLOBALS['padExit'] <> 1 ) {
-      restore_error_handler ();
+    if ( $GLOBALS['padExit'] <> 1 )
       padErrorStop ( "ERROR-SECOND: $error", $file, $line);
-    }
 
     $GLOBALS['padExit'] = 2;
     
@@ -73,11 +71,11 @@
 
     try {
 
-      padErrorStop ( 'ERROR-CATCH: ' . $e->getMessage(), $e->getFile(), $e->getLine(), $error );
+      padErrorStop ( 'ERROR-CATCH: ' . $e->getMessage(), $e->getFile(), $e->getLine(), "$file:$line $error" );
  
     } catch (Throwable $e2) {
 
-      padErrorGoCatchCatch ( $e2, $e, $error );
+      padErrorGoCatchCatch ( $e2, $e, "$file:$line $error" );
 
     }
 

@@ -27,7 +27,6 @@
     if ( ! headers_sent () ) 
       header ( 'HTTP/1.0 500 Internal Server Error' );
 
-    if ( ! isset ( $GLOBALS ['padNoEmptyBuffers'] ) )
       padEmptyBuffers ();
 
     echo "\r\n";
@@ -67,7 +66,8 @@
     padDumpErrors    ();
     padDumpStack     ();
     padDumpLevel     ();
-    padDumpInput     ();
+    padDumpInput     ();    
+    padDumpBuffer    ();
     padDumpRequest   ();
     
     padDumpFields    ( $php, $lvl, $app, $cfg, $pad, $ids, $trc);
@@ -356,6 +356,13 @@
 
   }
 
+  function padDumpBuffer ( ) {
+
+    padDumpLines ( 'Output buffer', $GLOBALS ['padBuffer'] );
+    $GLOBALS ['padBuffer'] = '';
+
+  }
+
 
   function padDumpLines ( $info, $source ) {
 
@@ -363,6 +370,8 @@
       $source = trim ( $source );
 
     if ( is_array ($source) and ! count($source) )
+      return;
+    elseif ( ! $source )
       return;
 
     if ( is_array($source) )

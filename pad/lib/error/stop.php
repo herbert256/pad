@@ -36,7 +36,7 @@
       padErrorLog ( "$file:$line $error" );
     }
 
-    if ( isset ( $GLOBALS ['padErrrorList'] ) )
+    if ( isset ( $GLOBALS ['padErrrorList'] ) ) 
       foreach ( $GLOBALS ['padErrrorList'] as $list )
         if ( ! str_contains ( $error, $list ) )
          $error .= "\n" . $list;
@@ -94,8 +94,8 @@
 
       padErrorLogFile ( $org );
       padErrorLogFile ( "$file:$line $error" );
-      padErrorLogFile ( $e1->getFile() . ':' . $e1->getLine() . ' ' . $e1->getMessage() );
-      padErrorLogFile ( $e2->getFile() . ':' . $e2->getLine() . ' ' . $e2->getMessage() );
+      padErrorLogFile ( $e1->getFile() . ':' . $e1->getLine() . ' STOP-CATCH: ' . $e1->getMessage() );
+      padErrorLogFile ( $e2->getFile() . ':' . $e2->getLine() . ' STOP-CATCH-CATCH: ' . $e2->getMessage() );
 
       padErrorExit ( 'Internal error, see error_log.txt' );
 

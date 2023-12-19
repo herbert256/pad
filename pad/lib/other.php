@@ -172,20 +172,18 @@
 
   function padEmptyBuffers () {
 
-    if ( isset ( $GLOBALS ['padNoEmptyBuffers'] ) )
-      return;
+    global $padBuffer;
 
     set_error_handler ( 'padErrorThrow' );
 
     try {
 
-      $o = '';
       $j = ob_get_level (); 
      
       for ( $i = 1; $i <= $j; $i++ ) 
-        $o .= ob_get_clean ();
+        $padBuffer .= ob_get_clean ();
 
-      return $o;
+      return $padBuffer;
 
     } catch (Throwable $ignored) {
 

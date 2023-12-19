@@ -65,26 +65,6 @@
   }
 
 
-  function padErrorExit ( $error ) {
-    
-    padEmptyBuffers ();
-
-    if ( ! headers_sent () )
-      header ( 'HTTP/1.0 500 Internal Server Error' );
-
-    if ( padLocal () )
-      echo "\n<pre>$error</pre>";
-    else
-      echo 'Error: ' . padID ();
-
-    $GLOBALS ['padSkipShutdown']     = TRUE;
-    $GLOBALS ['padSkipBootShutdown'] = TRUE;
-
-    exit;
-  
-  }
-
-
   function padErrorThrow ( $severity, $message, $filename, $lineno ) {
 
     if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
@@ -101,6 +81,28 @@
       return FALSE;
 
     throw new Exception ( $message );
+
+  }
+
+
+  function padErrorConsole ( $info ) {
+
+    if ( ! $info )
+      return;
+
+    set_error_handler ( 'padErrorThrow' );
+
+    try {
+
+      echo "<pre>\n$info</pre>";
+    
+    } catch (Throwable $e) {
+    
+      // Ignore errors
+    
+    }
+
+    restore_error_handler ();
 
   }
 

@@ -11,5 +11,6 @@
   $padTime        = $_SERVER['REQUEST_TIME'];  
   $padCacheStop   = 0;
   $padPageLevel   = [];
+  $padBuffer      = '';
 
 ?>
