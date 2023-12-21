@@ -9,9 +9,9 @@
 
       padDumpGo ( $info );
 
-    } catch (Throwable $error) {
+    } catch (Throwable $e) {
   
-      padErrorStop ( 'DUMP-CATCH: ' . $error->getMessage(), $error->getFile(), $error->getLine(), $info );
+      padErrorStop ( 'DUMP-CATCH: ' . $e->getMessage(), $e->getFile(), $e->getLine(), $info );
   
     }
 
@@ -27,7 +27,7 @@
     if ( ! headers_sent () ) 
       header ( 'HTTP/1.0 500 Internal Server Error' );
 
-      padEmptyBuffers ();
+    padEmptyBuffers ();
 
     echo "\r\n";
 
@@ -359,7 +359,6 @@
   function padDumpBuffer ( ) {
 
     padDumpLines ( 'Output buffer', $GLOBALS ['padBuffer'] );
-    $GLOBALS ['padBuffer'] = '';
 
   }
 

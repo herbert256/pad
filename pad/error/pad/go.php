@@ -26,9 +26,6 @@
 
   function padErrorGoGo ( $error, $file, $line ) {
 
-    if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
-      return FALSE;
-
     if ( $GLOBALS['padExit'] <> 1 )
       padErrorStop ( "ERROR-SECOND: $error", $file, $line);
 
@@ -45,22 +42,13 @@
     if ( padInfo and function_exists ( 'padInfoError' ) )
       padInfoError ($error, $file, $line);
 
-    if ( $GLOBALS ['padErrorLog'] or $GLOBALS ['padErrorAction'] == 'report' ) 
+    if ( $GLOBALS ['padErrorLog'] ) 
       padErrorLog ( $error );
 
-    if ( $GLOBALS ['padErrorReport'] or $GLOBALS ['padErrorAction'] == 'report' )
+    if ( $GLOBALS ['padErrorReport'] )
       padDumpToDir ( $error );
 
-    if ( $GLOBALS ['padErrorAction'] == 'exit') {
-      padHeader ('HTTP/1.0 500 Internal Server Error' );
-      padExit ();
-    }
-
-    if ( $GLOBALS ['padErrorAction'] == 'stop' )
-      padStop ( 500 );
-
-    if ( $GLOBALS ['padErrorAction'] == 'pad' )
-      padDump ( $error );
+    padDump ( $error );
 
   }
 
@@ -71,7 +59,12 @@
 
     try {
 
-      padErrorStop ( 'ERROR-CATCH: ' . $e->getMessage(), $e->getFile(), $e->getLine(), "$file:$line $error" );
+      padErrorStop ( 
+        'ERROR-CATCH: ' . $e->getMessage(), 
+        $e->getFile(), 
+        $e->getLine(), 
+        "$file:$line $error" 
+      );
  
     } catch (Throwable $e2) {
 
@@ -103,8 +96,7 @@
 
       echo 'oops';
 
-      $GLOBALS ['padSkipShutdown']     = TRUE;
-      $GLOBALS ['padSkipBootShutdown'] = TRUE;
+      $GLOBALS ['padSkipShutdown'] = TRUE;
       
       exit;
 

@@ -8,7 +8,7 @@
   $padPage = padCorrectPath ( $padPage );
 
   if ( str_ends_with($padPage, '.pad') ) $padPage = str_replace('.pad', '', $padPage);
-  if ( str_ends_with($padPage, '.php')  ) $padPage = str_replace('.php',  '', $padPage);
+  if ( str_ends_with($padPage, '.php') ) $padPage = str_replace('.php', '', $padPage);
 
   if ( ! padPageCheck ($padPage) )
     padBootError ("Page '$padPage' not found");

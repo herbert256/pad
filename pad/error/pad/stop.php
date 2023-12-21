@@ -16,8 +16,7 @@
     
     }
 
-    $GLOBALS ['padSkipShutdown']     = TRUE;
-    $GLOBALS ['padSkipBootShutdown'] = TRUE;
+    $GLOBALS ['padSkipShutdown'] = TRUE;
 
     exit;
 
@@ -92,19 +91,18 @@
 
     try {   
 
-      padErrorLogFile ( $org );
-      padErrorLogFile ( "$file:$line $error" );
-      padErrorLogFile ( $e1->getFile() . ':' . $e1->getLine() . ' STOP-CATCH: ' . $e1->getMessage() );
-      padErrorLogFile ( $e2->getFile() . ':' . $e2->getLine() . ' STOP-CATCH-CATCH: ' . $e2->getMessage() );
+      padErrorFile ( $org );
+      padErrorFile ( "$file:$line $error" );
+      padErrorFile ( $e1->getFile() . ':' . $e1->getLine() . ' STOP-CATCH: ' . $e1->getMessage() );
+      padErrorFile ( $e2->getFile() . ':' . $e2->getLine() . ' STOP-CATCH-CATCH: ' . $e2->getMessage() );
 
       padErrorExit ( 'Internal error, see error_log.txt' );
 
     } catch (Throwable $ignored ) {
-
+      
       echo 'oops';
 
-      $GLOBALS ['padSkipShutdown']     = TRUE;
-      $GLOBALS ['padSkipBootShutdown'] = TRUE;
+      $GLOBALS ['padSkipShutdown'] = TRUE;
 
       exit;
     

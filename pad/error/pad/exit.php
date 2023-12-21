@@ -4,7 +4,6 @@
   function padErrorExit ( $error ) {
 
     set_error_handler ( 'padErrorThrow' );
-    error_reporting (0);
 
     try {
 
@@ -16,8 +15,7 @@
     
     }
 
-    $GLOBALS ['padSkipShutdown']     = TRUE;
-    $GLOBALS ['padSkipBootShutdown'] = TRUE;
+    $GLOBALS ['padSkipShutdown'] = TRUE;
 
     exit;
 

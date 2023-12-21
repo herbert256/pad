@@ -29,13 +29,12 @@
   }
 
 
-  function padExit () { 
+  function padExit ( $noInfo = FALSE ) { 
 
-    if ( padInfo )
+    if ( padInfo and ! $noInfo )
       include pad . 'info/end.php';  
 
-    $GLOBALS ['padSkipShutdown']     = TRUE;
-    $GLOBALS ['padSkipBootShutdown'] = TRUE;
+    $GLOBALS ['padSkipShutdown'] = TRUE;
 
     exit;
 
