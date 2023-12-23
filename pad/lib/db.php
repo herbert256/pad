@@ -1,5 +1,6 @@
 <?php
 
+
   function db ( $sql, $vars = [] ) {
 
     global $padSqlConnect, $padSqlHost, $padSqlUser, $padSqlPassword, $padSqlDatabase;

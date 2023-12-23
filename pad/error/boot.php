@@ -26,7 +26,7 @@
 
   function padBootShutdown () {
 
-    if ( isset ( $GLOBALS ['padSkipShutdown'] ) )
+    if ( isset ( $GLOBALS ['padSkipShutdown'] ) or isset ( $GLOBALS ['padSkipBootShutdown'] ) )
       return;
 
     $error = error_get_last ();
@@ -65,7 +65,7 @@
 
   function padBootStopGo ( $error, $file, $line ) {
 
-    $GLOBALS ['padSkipShutdown'] = TRUE;
+    $GLOBALS ['padSkipShutdown'] = $GLOBALS ['padSkipBootShutdown'] = TRUE;
 
     $j = ob_get_level (); 
     for ( $i = 1; $i <= $j; $i++ ) 

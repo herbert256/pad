@@ -1,13 +1,48 @@
 <?php
 
 
-  function padInfoError ($error, $file, $line) {
+  function padSessionStart () {
 
-    set_error_handler ( 'padErrorThrow' );
+    return [
+        'session'   => $GLOBALS ['padSesID'] ?? '',
+        'request'   => $GLOBALS ['padReqID'] ?? '',
+        'parent'    => $GLOBALS ['padRefID'] ?? '',
+        'page'      => $GLOBALS ['padPage'] ?? '',
+        'start'     => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0
+      ];
+
+  }
+
+
+  function padSessionEnd () {
+  
+    $session = [
+        'session'   => $GLOBALS ['padSesID'] ?? '',
+        'request'   => $GLOBALS ['padReqID'] ?? '',
+        'stop'      => $GLOBALS ['padStop'] ?? '',
+        'end'       => microtime(true),
+        'length'    => $GLOBALS ['padLen'] ?? 0,
+        'etag'      => $GLOBALS ['padEtag'] ?? ''
+      ];
+
+    if ( isset ( $GLOBALS ['padStatsUser'] ) ) {
+        $session ['duration'] = padDuration ();
+        $session ['system']   = $GLOBALS ['padStatsSystem'];
+        $session ['user']     = $GLOBALS ['padStatsUser'];
+    }
+
+    return $session;
+
+  }
+
+
+  function padInfoError ( $error ) {
+
+    set_error_handler ( 'padThrow' );
 
     try {
 
-      padDumpToDir ( "$file:$line $error", $GLOBALS ['padInfoDir'] . '/ERROR');
+      padDumpToDir ( $error, $GLOBALS ['padInfoDir'] . '/ERROR');
     
     } catch (Throwable $e) {
     
@@ -99,7 +134,7 @@
 
   function padInfoMkDir( $dir ) {
 
-   set_error_handler ( 'padErrorThrow' );
+   set_error_handler ( 'padThrow' );
 
     try {
 

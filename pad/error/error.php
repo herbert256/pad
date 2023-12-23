@@ -1,8 +1,9 @@
 <?php
   
-  include_once pad . "error/$padErrorAction/lib.php";
+  include pad . "error/$padErrorAction/lib.php";
+  include pad . "error/lib.php";
 
-  padErrorReporting   ();
+  padErrorReporting   ( $padErrorLevel );
   padErrorRestoreBoot ();
 
   set_error_handler          ( 'padErrorHandler'   );

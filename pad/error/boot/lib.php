@@ -1,8 +1,8 @@
 <?php
   
-  function padError ($error) {
+  function padErrorGo ( $error, $file, $line ) {
  
-    return padBootStop ( $error, $file, $line ); 
+    padBootStop ( $error, $file, $line ); 
 
   }
 

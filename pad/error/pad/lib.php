@@ -1,36 +1,40 @@
 <?php
-  
-  
-  include pad . 'error/pad/set.php';
-  include pad . 'error/pad/go.php';
-  include pad . 'error/pad/log.php';
-  include pad . 'error/pad/file.php';
-  include pad . 'error/pad/console.php';
-  include pad . 'error/pad/stop.php';
-  include pad . 'error/pad/exit.php';
 
 
-  function padError ($error) {
- 
-    extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
+  function padErrorGo ( $error, $file, $line ) {
 
-    return padErrorGo ( 'PAD: ' . $error, $file, $line ); 
- 
+    set_error_handler ( 'padThrow' );
+
+    try {
+
+      if ( isset ( $GLOBALS ['padErrorGo'] ) )
+        throw new Exception ( "$file:$line $error" );
+
+      $GLOBALS ['padErrorGo']   = TRUE;
+      $GLOBALS ['padErrorFile'] = $file;
+      $GLOBALS ['padErrorLine'] = $line;
+
+      $error = "$file:$line " . padMakeSafe ( $error );
+
+      if ( padInfo and function_exists ( 'padInfoError' ) )
+        padInfoError ( $error );
+
+      if ( $GLOBALS ['padErrorLog'] ) 
+        error_log ( $error, 4 );
+
+      if ( $GLOBALS ['padErrorReport'] )
+        padDumpToDir ( $error );
+
+      padDump ( $error );
+   
+    } catch (Throwable $e) {
+
+      include pad . 'error/stop.php';
+
+    }
+      
+    padExit ( TRUE );
+
   }
-
-
-  function padErrorCheck ( $type, $info ) {
-
-    $md5 = md5 ( trim($info) );
-
-    if ( isset ( $GLOBALS["padErrorCheck_$type"] ) and isset ( $GLOBALS["padErrorCheck_$type"] [$md5] ) )
-      return FALSE;
-
-    $GLOBALS["padErrorCheck_$type"] [$md5] = TRUE;
-
-    return TRUE;
-
-  }
-
 
 ?>

@@ -1,46 +1,41 @@
 <?php
 
 
-  function padDump ( $info='' ) {
+  function padDump ( $error='' ) {
 
-    set_error_handler ( 'padErrorThrow' );
+    set_error_handler ( 'padThrow' );
 
     try {
 
-      padDumpGo ( $info );
+      padDumpGo ( $error );
 
     } catch (Throwable $e) {
   
-      padErrorStop ( 'DUMP-CATCH: ' . $e->getMessage(), $e->getFile(), $e->getLine(), $info );
+      include pad . 'error/stop.php';
   
     }
 
-    padStop (500);
+    restore_error_handler ();
+
+    padStop ( 500 );
 
   }
 
 
   function padDumpGo ( $info ) {
 
-    $GLOBALS ['padErrrorList'] [] = $info;
-
     if ( ! headers_sent () ) 
       header ( 'HTTP/1.0 500 Internal Server Error' );
 
     padEmptyBuffers ();
 
-    echo "\r\n";
-
     if ( $GLOBALS ['padOutputType'] == 'web' )
       for ($i = 1; $i <= 25; $i++)
           echo "</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>\r\n";
 
-    if ( $GLOBALS ['padOutputType'] == 'console' )
-      padDumpConsole ( $info );      
-    elseif ( padLocal () )
-      padDumpLocal ( $info );
-    else
-      padDumpRemote ( $info );
+    if     ( $GLOBALS ['padOutputType'] == 'console' )  padDumpConsole ( $info );      
+    elseif ( padLocal () )                              padDumpLocal   ( $info );
+    else                                                padDumpRemote  ( $info );
      
     $GLOBALS ['padSent']   = TRUE;
     $GLOBALS ['padOutput'] = '';
@@ -63,7 +58,6 @@
     echo ( "<div align=\"left\"><pre>" );
 
     padDumpInfo      ( $info );
-    padDumpErrors    ();
     padDumpStack     ();
     padDumpLevel     ();
     padDumpInput     ();    
@@ -95,9 +89,8 @@
 
   function padDumpRemote ( $info ) {
 
-    padDumpToDir ( $info );
-
-    padErrorLog ( "DUMP: $info" );
+    if ( ! isset ( $GLOBALS ['padDumpToDirDone'] ) ) 
+      padDumpToDir ( $info );
         
     echo "Error: " . padID ();
 
@@ -105,10 +98,6 @@
 
 
   function padDumpInfo ( $info ) {
-
-    if ( isset ( $GLOBALS ['padErrrorList'] ) )
-      if ( $info and in_array ( $info, $GLOBALS ['padErrrorList'] ) )
-        return;
 
     if ( trim($info) )
       echo ( "<hr><b>" . htmlentities($info) . "</b><hr><br>" ); 
@@ -127,34 +116,6 @@
     }
 
   }
-
-
-  function padDumpErrors () {
-
-    if ( ! isset ( $GLOBALS ['padErrrorList'] ) )
-      return;
-
-    $GLOBALS ['padErrrorList'] = array_unique ( $GLOBALS ['padErrrorList'] );
-
-    if ( count ( $GLOBALS ['padErrrorList'] ) == 1 ) 
-
-      foreach ( $GLOBALS ['padErrrorList'] as $error ) 
-        echo ( "<hr><b>" . htmlentities($error) . "</b><hr><br>" ); 
-
-    elseif ( count ( $GLOBALS ['padErrrorList'] ) > 1 ) {
-
-      echo ( "<b>Errors</b>\n");
-
-      $errors = array_reverse ( $GLOBALS ['padErrrorList'] );
-
-      foreach ( $errors as $error )
-        echo ( "    " . htmlentities($error) . "\n" );
-
-      echo ( "\n" );
-
-    }
-
-  }  
 
 
   function padDumpStack () {
@@ -469,6 +430,168 @@
     ksort($php);
     ksort($lvl);
     ksort($pad);
+
+  }
+
+  function padDumpToDir ( $info='', $dir='' ) {
+ 
+    if ( ! $dir )
+      $dir = "dumps/" . $GLOBALS ['padPage'] . '/' . hrtime (true);
+
+    if ( isset ( $GLOBALS ['padDumpToDirDone'] ) )
+      return padDumpToDirDone ( $info, $dir );
+
+    $GLOBALS ['padDumpToDirDone'] = $dir;
+
+    set_error_handler ( 'padThrow' );
+
+    try {
+
+      padDumpToDirGo ( $info );
+
+    } catch (Throwable $e) {
+
+      padDumpToDirCatch ( $info, $e, $dir );
+
+    }
+
+    restore_error_handler (); 
+
+    return $dir;
+
+  }
+
+
+  function padDumpToDirDone ( $info, $dir ) {
+
+    if ( $dir !== $GLOBALS ['padDumpToDirDone'] )
+      padDumpToDirDoneGo ( $info, $dir, $GLOBALS ['padDumpToDirDone'] );
+
+    return $GLOBALS ['padDumpToDirDone'];
+
+  }
+
+
+  function padDumpToDirDoneGo ( $info, $dir, $done ) {
+
+    set_error_handler ( 'padThrow' );
+
+    try {
+
+      padFilePutContents ( "$dir/error.txt", padData . "$info\n\n$done" );   
+    
+    } catch (Throwable $e ) {
+
+      // Ignore errors
+      
+    }
+
+    restore_error_handler ();
+
+  }  
+
+
+  function padDumpToDirGo ( $info ) {
+
+    ob_start (); padDumpInfo      ( $info );          padDumpFile ( 'error',     ob_get_clean () );
+    ob_start (); padDumpStack     ();                 padDumpFile ( 'stack',     ob_get_clean () );
+    ob_start (); padDumpBuffer    ();                 padDumpFile ( 'buffer',    ob_get_clean () );
+    ob_start (); padDumpRequest   ();                 padDumpFile ( 'request',   ob_get_clean () );
+    ob_start (); padDumpSQL       ();                 padDumpFile ( 'sql',       ob_get_clean () );
+    ob_start (); padDumpHeaders   ();                 padDumpFile ( 'headers',   ob_get_clean () );
+    ob_start (); padDumpPhpInfo   ();                 padDumpFile ( 'php-info',  ob_get_clean () );
+    ob_start (); padDumpLevel     ();                 padDumpFile ( 'level',     ob_get_clean () );
+    ob_start (); padDumpFiles     ();                 padDumpFile ( 'files',     ob_get_clean () );
+    ob_start (); padDumpFunctions ();                 padDumpFile ( 'functions', ob_get_clean () );
+  
+    padDumpFields ( $php, $lvl, $app, $cfg, $pad, $ids, $trc);
+
+    ob_start (); padDumpLines     ( "ID's", $ids );   padDumpFile ( 'ids',       ob_get_clean () );
+    ob_start (); padDumpLines     ( "App", $app );    padDumpFile ( 'app-vars',  ob_get_clean () );
+    ob_start (); padDumpCurl      ( $pad );           padDumpFile ( 'last-curl', ob_get_clean () );
+    ob_start (); padDumpXXX       ( $pad, 'padSeq' ); padDumpFile ( 'sequence',  ob_get_clean () );
+    ob_start (); padDumpLines     ( "PAD",   $pad );  padDumpFile ( 'pad-vars',  ob_get_clean () );
+    ob_start (); padDumpLines     ( "Trace", $trc );  padDumpFile ( 'trace',     ob_get_clean () );
+    ob_start (); padDumpLines     ( "Level", $lvl );  padDumpFile ( 'lvl-vars',  ob_get_clean () );
+    ob_start (); padDumpLines     ( 'Config', $cfg ); padDumpFile ( 'config',    ob_get_clean () );
+    ob_start (); padDumpLines     ( 'PHP', $php );    padDumpFile ( 'php-vars',  ob_get_clean () );
+    ob_start (); padDumpGlobals   ();                 padDumpFile ( 'globals',   ob_get_clean () );
+
+    padDumpInputToFile ( 'input', $dir ) ;
+
+  }
+
+
+  function padDumpToDirCatch ( $info, $e, $dir ) {
+
+    set_error_handler ( 'padThrow' );
+
+    try {
+
+      padFilePutContents ( "$dir/oops.txt", 
+                           "$info\n\n" . 
+                           $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage() 
+                         );
+   
+    } catch (Throwable $e2) {
+
+      padDumpToDirCatchCatch ( $info, $e, $e2 );
+  
+    }
+
+    restore_error_handler ();
+
+  }  
+
+
+  function padDumpToDirCatchCatch ( $info, $e1, $e2 ) {
+
+    set_error_handler ( 'padThrow' );
+
+    try {
+
+      gc_collect_cycles();
+
+      error_log ( 'DIR-CATCH: ' . $info, 4 );
+      error_log ( $e1->getFile() . ':' . $e1->getLine()  . ' DIR-CATCH: ' . $e1->getMessage(), 4 );
+      error_log ( $e2->getFile() . ':' . $e2->getLine()  . ' DIR-CATCH: ' . $e2->getMessage(), 4 );
+
+    } catch (Throwable $e2) {
+
+      // giving up
+  
+    }
+
+    restore_error_handler ();
+
+  }  
+
+
+  function padDumpFile ( $file, $txt ) {
+
+    $dir = $GLOBALS ['padDumpToDirDone'];
+
+    $txt = trim ( $txt );
+
+    if ( $txt )
+      padFilePutContents ( "$dir/$file.html", "<pre>$txt</pre>" );
+
+  }
+
+
+  function padDumpInputToFile ( $file, $dir ) {
+
+    $txt = trim ( file_get_contents('php://input') ?? '' );
+    
+    if ( ! $txt )
+      return;
+
+    $type = padContentType ( $txt );
+
+    if ( $type == 'csv' )
+      $type = 'txt';
+
+    padFilePutContents ( "$dir/$file.$type", "<pre>$txt</pre>" );
 
   }
 

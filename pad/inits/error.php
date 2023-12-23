@@ -1,5 +1,5 @@
 <?php
   
-    include pad . "error/$padErrorAction/error.php";
+    include pad . "error/init.php";
  
 ?>

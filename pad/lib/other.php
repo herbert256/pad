@@ -68,6 +68,17 @@
   }
 
 
+  function padThrow ( $severity, $message, $filename, $lineno ) {
+
+    if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
+      return FALSE;
+
+    if ( error_reporting() & $severity )
+      throw new ErrorException ( $message, 0, $severity, $filename, $lineno );
+
+  }
+
+
   function padBeforeAfter ( $input, &$before, &$after, $type ) {
 
     $len  = strlen ( $type );
@@ -90,6 +101,7 @@
     $after  = '';
 
   }
+
 
   function padFileName ( $withDir ) {
 
@@ -122,40 +134,6 @@
   }
 
 
-  function padSessionStart () {
-
-    return [
-        'session'   => $GLOBALS ['padSesID'] ?? '',
-        'request'   => $GLOBALS ['padReqID'] ?? '',
-        'parent'    => $GLOBALS ['padRefID'] ?? '',
-        'page'      => $GLOBALS ['padPage'] ?? '',
-        'start'     => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0
-      ];
-
-  }
-
-
-  function padSessionEnd () {
-  
-    $session = [
-        'session'   => $GLOBALS ['padSesID'] ?? '',
-        'request'   => $GLOBALS ['padReqID'] ?? '',
-        'stop'      => $GLOBALS ['padStop'] ?? '',
-        'end'       => microtime(true),
-        'length'    => $GLOBALS ['padLen'] ?? 0,
-        'etag'      => $GLOBALS ['padEtag'] ?? ''
-      ];
-
-    if ( isset ( $GLOBALS ['padStatsUser'] ) ) {
-        $session ['duration'] = padDuration ();
-        $session ['system']   = $GLOBALS ['padStatsSystem'];
-        $session ['user']     = $GLOBALS ['padStatsUser'];
-    }
-
-    return $session;
-
-  }
-
 
   function padInsideOther () {
 
@@ -176,7 +154,7 @@
 
     global $padBuffer;
 
-    set_error_handler ( 'padErrorThrow' );
+    set_error_handler ( 'padThrow' );
 
     try {
 
@@ -371,29 +349,6 @@
   }
 
 
-  function padGetTrueFalse ( $input, &$true, &$false ) {
-
-    $true  = $input;
-    $false = '';
-
-    $list = padOpenCloseList ( $true ) ;
-    $pos  = strpos ( $true, '@else@');
-
-    while ( $pos !== FALSE) {
-      
-      if  ( padOpenCloseCount ( substr ( $true, 0, $pos ), $list) ) {
-        $false = substr ( $true, $pos+6  );
-        $true  = substr ( $true, 0, $pos );
-        return;
-      }
-  
-      $pos = strpos ( $true, '@else@', $pos+1);
-
-    }
-
-  }
-
-
   function padCorrectPath ( $in ) {
 
     return str_replace ('\\',  '/', $in );
@@ -530,6 +485,7 @@
 
   }
 
+
   function padOpenCloseCount ( $string, $tags ) {
 
    foreach ( $tags as $tag => $dummy )
@@ -539,6 +495,7 @@
     return TRUE;  
 
   }
+
 
   function padOpenCloseCountOne ( $string, $tag ) {
 
@@ -630,19 +587,21 @@
 
   function padJson ( $data ) {
 
-    set_error_handler ( 'padErrorThrow' );
+    set_error_handler ( 'padThrow' );
 
     try {
 
-      return json_encode ( $data, JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK );
+      $return = json_encode ( $data, JSON_PRETTY_PRINT | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK );
     
     } catch (Throwable $e) {
 
-      return '{}';
+      $return = '{}';
 
     }
 
     restore_error_handler ();    
+
+    return $return;
 
   }
 
@@ -785,7 +744,7 @@
 
   function padBetween ( $string, $open, $close, &$before, &$between, &$after ) {
 
-    $before = $between = $after = 'XXX';
+    $before = $between = $after = '';
   
     $p1 = strpos ( $string, $open         );
     $p2 = strpos ( $string, $close, $p1+1 );
@@ -908,6 +867,7 @@
     $GLOBALS [$name] = $value;
 
   }
+
 
   function padSetGlobalOcc ( $name, $value ) {
 

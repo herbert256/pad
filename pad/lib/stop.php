@@ -31,7 +31,7 @@
 
   function padExit ( $noInfo = FALSE ) { 
 
-    if ( padInfo and ! $noInfo )
+    if ( defined ( 'padInfo' ) and padInfo and ! $noInfo )
       include pad . 'info/end.php';  
 
     $GLOBALS ['padSkipShutdown'] = TRUE;

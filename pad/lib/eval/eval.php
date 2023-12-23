@@ -1,19 +1,6 @@
 <?php
 
 
-  function padEvalFast ( $eval, $value ) {
-
-    if ( padXref ) 
-      include pad . 'info/types/xref/items/fast.php';
-
-    if ( padTrace )
-      return include pad . 'info/events/eval/fast.php';
-    else
-      return include pad . "_functions/$eval.php";
-
-  }  
-
-
   function padEval ( $eval, $value='' ) {
 
     if ( file_exists( "_functions/$eval.php" ) )
@@ -44,9 +31,9 @@
 
     $key = array_key_first ($result);
 
-    if     ( count($result) < 1        ) padThrow ("No result back: $eval");
-    elseif ( count($result) > 1        ) padThrow ("More then one result back: $eval");
-    elseif ( $result[$key][1] <> 'VAL' ) padThrow ("Result is not a value: $eval");
+    if     ( count($result) < 1        ) padError ("No result back: $eval");
+    elseif ( count($result) > 1        ) padError ("More then one result back: $eval");
+    elseif ( $result[$key][1] <> 'VAL' ) padError ("Result is not a value: $eval");
 
     if ( padTrace )
       include pad . 'info/events/eval/end.php';
@@ -56,13 +43,17 @@
   }  
   
 
-  function padEvalCatch ( $e, $eval ) {
+  function padEvalFast ( $eval, $value ) {
 
-    include pad . 'info/events/eval/error.php';
+    if ( padXref ) 
+      include pad . 'info/types/xref/items/fast.php';
 
-    return $eval;
+    if ( padTrace )
+      return include pad . 'info/events/eval/fast.php';
+    else
+      return include pad . "_functions/$eval.php";
 
-  } 
+  }  
 
 
 ?>
