@@ -1,5 +1,6 @@
 <?php
 
+
   set_error_handler ( 'padThrow' );
 
   try {
@@ -16,8 +17,6 @@
     padErrorStopCatch ( $error, $e, $e3 );
 
   }
-
-  restore_error_handler ();
   
   padError500 ();
 
@@ -42,8 +41,6 @@
       padErrorStopCatchCatch ( $error1, $e2, $e3, $e4 );
 
     }
-
-    restore_error_handler ();
     
     padError500 ();
 
@@ -73,8 +70,6 @@
 
     }
 
-    restore_error_handler ();
-    
     padError500 ();
 
   }
@@ -98,8 +93,6 @@
       // Ignoring errors
 
     }
-
-    restore_error_handler ();
     
     padError500 ();
 

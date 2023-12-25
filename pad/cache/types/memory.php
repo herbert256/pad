@@ -17,7 +17,6 @@
     return $GLOBALS ['padCache_mem']->get("x$etag");
   }
 
-
   function padCacheStore ($url, $etag, $data) {
 
     $GLOBALS ['padCache_mem']->set($etag, $_SERVER['REQUEST_TIME'], $GLOBALS ['padCacheServerAge']);
@@ -29,7 +28,6 @@
     
   }
 
-  
   function padCacheUpdate ($url, $etag) {
 
     $GLOBALS ['padCache_mem']->set($etag, $_SERVER['REQUEST_TIME'], $GLOBALS ['padCacheServerAge']);
@@ -41,7 +39,6 @@
 
   }
 
-
   function padCacheDelete ($url, $etag) {
 
     $GLOBALS ['padCache_mem']->delete($etag);
@@ -50,6 +47,5 @@
       $GLOBALS ['padCache_mem']->delete("x$etag");
 
   }
-
 
 ?>
