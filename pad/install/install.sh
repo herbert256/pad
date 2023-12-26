@@ -11,3 +11,6 @@ export usr=herbert
 /home/$usr/pad/pad/install/data.sh
 /home/$usr/pad/pad/install/apache.sh
 /home/$usr/pad/pad/install/scripts.sh
+
+service apache2 stop
+service apache2 start

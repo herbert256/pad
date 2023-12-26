@@ -1,7 +1,7 @@
 <?php
   
   $padRequest          = FALSE;       // Log the details of the HTTP(s) request 
-  $padTrack            = FALSE;       // Big Brother, session and request information of the client
+  $padTrack            = FALSE;       // PAD Session and output
   $padXml              = FALSE;       // Build a XML file of the structure of the PAD page 
   $padXref             = TRUE;        // Build the <app>_xref and <data>xref directories
   $padStats            = FALSE;       // Keep runtime statistics about time and cpu used
@@ -9,9 +9,8 @@
 
   $padXrefInfo         = FALSE;
   $padXrefTrace        = FALSE;
-
-  $padXrefManual       = TRUE;
-  $padXrefDevelop      = TRUE;
+  $padXrefManual       = FALSE;
+  $padXrefDevelop      = FALSE;
   $padXrefPage         = FALSE;
   $padXrefXml          = FALSE;
 

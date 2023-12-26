@@ -13,7 +13,7 @@
 
     if ( $padXrefInfo    ) padXrefInfo    ( $dir1, $dir2, $dir3 );
     if ( $padXrefManual  ) padXrefManual  ( $dir1, $dir2, $dir3 );
-    if ( $padXrefDevelop ) padXrefTypes   ( $dir1, $dir2, $dir3 );
+    if ( $padXrefDevelop ) padXrefDevelop ( $dir1, $dir2, $dir3 );
     if ( $padXrefPage    ) padXrefPage    ( $dir1, $dir2, $dir3 );
     if ( $padXrefXml     ) padXrefXml     ( $dir1, $dir2, $dir3 );
     if ( $padXrefTrace   ) padXrefTrace   ( $dir1, $dir2, $dir3 );
@@ -128,7 +128,7 @@
   }
 
 
-  function padXrefTypes ( $dir1, $dir2, $dir3 ) {
+  function padXrefDevelop ( $dir1, $dir2, $dir3 ) {
 
     global $pad, $padStartPage, $padLvlId, $padXrefFile;
 

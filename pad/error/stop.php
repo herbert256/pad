@@ -206,8 +206,6 @@
     
     }
 
-    restore_error_handler ();
-
     padError500 ();
 
   }
@@ -228,8 +226,6 @@
   
     }
 
-    restore_error_handler ();
-    
     padError500 ();
 
   }

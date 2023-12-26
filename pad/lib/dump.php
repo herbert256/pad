@@ -517,7 +517,7 @@
     ob_start (); padDumpLines     ( 'PHP', $php );    padDumpFile ( 'php-vars',  ob_get_clean () );
     ob_start (); padDumpGlobals   ();                 padDumpFile ( 'globals',   ob_get_clean () );
 
-    padDumpInputToFile ( 'input', $dir ) ;
+    padDumpInputToFile () ;
 
   }
 
@@ -579,7 +579,7 @@
   }
 
 
-  function padDumpInputToFile ( $file, $dir ) {
+  function padDumpInputToFile () {
 
     $txt = trim ( file_get_contents('php://input') ?? '' );
     
@@ -591,7 +591,7 @@
     if ( $type == 'csv' )
       $type = 'txt';
 
-    padFilePutContents ( "$dir/$file.$type", "<pre>$txt</pre>" );
+    padFilePutContents ( GLOBALS ['padDumpToDirDone'] . "/input.$type", $txt );
 
   }
 
