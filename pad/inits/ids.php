@@ -4,4 +4,6 @@
   $padRefID = $padRefID ?? $padReqID ?? $_COOKIE ['padReqID'] ?? $_REQUEST ['padReqID'] ?? '';
   $padReqID = $padReqID ?? padRandomString();
 
+  $padLog = hrtime ( TRUE );
+
 ?>

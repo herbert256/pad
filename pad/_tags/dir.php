@@ -1,6 +1,6 @@
 <?php
 
-  $padDir = $padOpt [$pad] [1];
+  $padDir = $padParm;
 
   return scandir($padDir);
 

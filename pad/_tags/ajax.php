@@ -1,6 +1,6 @@
 <?php
 
-  $padExtPag = $padOpt [$pad] [1] ;
+  $padExtPag = $padParm ;
   $padExtQry = '&padInclude';
 
   foreach ( $padSetLvl [$pad] as $padK => $padV )

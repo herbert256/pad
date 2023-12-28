@@ -8,9 +8,9 @@
   $padXrefNew ['end']    = [];
   $padXrefNew ['occurs'] = [];
 
-  $padXrefTree [] = $padXrefNew;
+  $padXrefStore [] = $padXrefNew;
 
-  $padXrefLevel [$pad] = array_key_last ( $padXrefTree );
+  $padXrefLevel [$pad] = array_key_last ( $padXrefStore );
 
   $padXrefLvl = $padXrefLevel [$pad];
   $padXrefOcc = $padOccur     [$pad]; 

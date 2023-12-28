@@ -34,6 +34,28 @@
   }
 
 
+  function padTraceError ( $error ) {
+
+    if ( ! function_exists ( 'padTrace') )
+      return;
+
+    set_error_handler ( 'padThrow' );
+
+    try {
+
+      padDumpToDir ( $error, $GLOBALS ['padTraceDir'] . '/ERROR');
+    
+    } catch (Throwable $e) {
+    
+      // Ignore errors
+
+    }
+
+    restore_error_handler ();   
+
+  }
+
+
   function padTraceSkip ( $type ) {
 
     global $pad;
@@ -130,7 +152,11 @@
 
   function padTraceWrite ( $pad, $location, $trace, $type='line' ) {  
 
-    global $padOccur, $padTraceLevel,  $padInfoDir, $padTraceLines, $padTraceSkipLevel, $padTraceMaxLevel ;
+    global $padOccur, $padTraceDir;
+    global $padTraceLevel, $padTraceLines, $padTraceSkipLevel, $padTraceMaxLevel ;
+
+    if ( ! $padTraceLines and $type == 'line' )
+      return;
 
     if ( $padTraceSkipLevel and $padTraceSkipLevel == $pad ) return;
     if ( $padTraceMaxLevel  and $padTraceMaxLevel  >  $pad ) return;
@@ -138,15 +164,12 @@
     if ( ! isset ( $padTraceLevel [$pad] ) ) padTraceSet ( $pad );
     if ( ! $padTraceLevel [$pad]           ) padTraceSet ( $pad );
 
-    if ( $pad < 0 or $padTraceLevel [$pad] == '*SKIP*' ) 
+    if ( $pad < 0 ) 
       $add = '';
     else
       $add = $padTraceLevel [$pad] . '/' . padTraceOccur ( $pad );
 
-    $target = "trace/$add$location";
-
-    if ( ! $padTraceLines )
-      return padTraceCheckDir ( padData . $target, $type );
+    $target = "$padTraceDir/$add$location";
 
     if ( $type == 'file' and file_exists ( padData . $target ) )
       return;
@@ -259,9 +282,6 @@
     $line = ($padTraceAddLine) ? "$padTraceId-" : '';
 
     $padTraceLevel [$pad] = $padTraceLevel [$last] ?? "NoPrev";
-
-    if ( $padTraceLevel [$pad] == '*SKIP*' )
-      $padTraceLevel [$pad] = '';
  
     $padTraceLevel [$pad] .= "/$add$line" . padFileCorrect ( $tag );
   
@@ -296,7 +316,7 @@
 
     if ( $padResult [$pad] and $padBase [$pad] )
       if     ( $padBase [$pad] == $padBase  [$pad] )     return $type . '-true';
-      elseif ( $padBase [$pad] == $padFalse )     return $type . '-else';
+      elseif ( $padBase [$pad] == $padFalse )            return $type . '-else';
 
     if     ( ! $padResult [$pad] and ! $padBase [$pad] ) return $type . '-no-base';
     elseif ( $padResult [$pad]                         ) return $type . '-result';
@@ -307,12 +327,12 @@
 
   function padTraceChilds ( $dir, &$childs, $type ) {
   
-    global $pad, $padOccur, $padTraceLevel, $padInfoDir;
+    global $pad, $padOccur, $padTraceLevel, $padTraceDir;
 
     if ( ! $dir or ! $childs )
       return;
 
-    $dir = "$padInfoDir/trace$dir";
+    $dir = "$padTraceDir/$dir";
 
     $new  = $dir . '-' . $childs;
     $from = padData . $dir;
@@ -328,10 +348,10 @@
 
   function padTraceCheckLocal ( $dir ) {
 
-    global $pad, $padInfoDir;
+    global $pad, $padTraceDir;
 
-    $file1 = padData . "$padInfoDir/trace/$dir/trace.txt";
-    $file2 = padData . "$padInfoDir/trace/$dir/local.txt";
+    $file1 = padData . "$padTraceDir/$dir/trace.txt";
+    $file2 = padData . "$padTraceDir/$dir/local.txt";
 
     if ( ! file_exists ( $file1 ) or ! file_exists ( $file2 ) )
       return;

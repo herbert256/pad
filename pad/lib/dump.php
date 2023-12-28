@@ -436,7 +436,7 @@
   function padDumpToDir ( $info='', $dir='' ) {
  
     if ( ! $dir )
-      $dir = "dumps/" . $GLOBALS ['padPage'] . '/' . hrtime (true);
+      $dir = "dumps/" . $GLOBALS ['padPage'] . '/' . $GLOBALS ['padLog'];
 
     if ( isset ( $GLOBALS ['padDumpToDirDone'] ) )
       return padDumpToDirDone ( $info, $dir );

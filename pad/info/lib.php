@@ -1,70 +1,6 @@
 <?php
 
 
-  function padSessionStart () {
-
-    return [
-        'session'   => $GLOBALS ['padSesID'] ?? '',
-        'request'   => $GLOBALS ['padReqID'] ?? '',
-        'parent'    => $GLOBALS ['padRefID'] ?? '',
-        'page'      => $GLOBALS ['padPage'] ?? '',
-        'start'     => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0
-      ];
-
-  }
-
-
-  function padSessionEnd () {
-  
-    $session = [
-        'session'   => $GLOBALS ['padSesID'] ?? '',
-        'request'   => $GLOBALS ['padReqID'] ?? '',
-        'stop'      => $GLOBALS ['padStop'] ?? '',
-        'end'       => microtime(true),
-        'length'    => $GLOBALS ['padLen'] ?? 0,
-        'etag'      => $GLOBALS ['padEtag'] ?? ''
-      ];
-
-    if ( isset ( $GLOBALS ['padStatsUser'] ) ) {
-        $session ['duration'] = padDuration ();
-        $session ['system']   = $GLOBALS ['padStatsSystem'];
-        $session ['user']     = $GLOBALS ['padStatsUser'];
-    }
-
-    return $session;
-
-  }
-
-
-  function padInfoError ( $error ) {
-
-    set_error_handler ( 'padThrow' );
-
-    try {
-
-      padDumpToDir ( $error, $GLOBALS ['padInfoDir'] . '/ERROR');
-    
-    } catch (Throwable $e) {
-    
-      // Ignore errors
-
-    }
-
-    restore_error_handler ();   
-
-  }
-
-
-  function padInfoIds () {
-
-    global $padXrefId, $padTraceId, $padXmlId;
-
-    return sprintf ( '%-9s',  padInfoPadOccur () )
-         . sprintf ( '%-16s', "$padTraceId/$padXrefId/$padXmlId" );
-
-  }
-
-
   function padInfoPadOccur () {
 
     global $pad, $padOccur;
@@ -95,19 +31,16 @@
   }
 
 
-  function padInfoWrite ( $file, $data, $append=0, $add=1 ) {
-
-    global $padInfoDir;
+  function padInfoWrite ( $file, $data, $append=0 ) {
 
     if ( is_array($data) or is_object($data) )
       $data = padJson ($data);
-    
-    if ( $add )
-      $file = "$padInfoDir/$file";
+
+    $file = padFileCorrect($file);
 
     padInfoCheck ( $file );
 
-    if ( $append)
+    if ( $append )
       file_put_contents ( padData . $file, $data . "\n", LOCK_EX | FILE_APPEND );
     else
       file_put_contents ( padData . $file, $data,        LOCK_EX );
@@ -141,6 +74,7 @@
       mkdir ($dir, $GLOBALS ['padDirMode'], true );
 
     } catch (Throwable $e) {
+
   
     }
 

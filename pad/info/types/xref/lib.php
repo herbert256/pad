@@ -4,17 +4,17 @@
   function padXref ( $dir1, $dir2, $dir3='' ) {
 
     global $padXrefId;
-    global $padXrefInfo, $padXrefDevelop, $padXrefXml, $padXrefTrace, $padXrefPage, $padXrefManual;
+    global $padXrefXref, $padXrefDevelop, $padXrefXml, $padXrefTrace, $padXrefTree, $padXrefManual;
 
     $padXrefId++;
 
     if ( $dir2 === FALSE ) $dir2 = '0';
     if ( $dir3 === FALSE ) $dir3 = '0';
 
-    if ( $padXrefInfo    ) padXrefInfo    ( $dir1, $dir2, $dir3 );
+    if ( $padXrefXref    ) padXrefXref    ( $dir1, $dir2, $dir3 );
     if ( $padXrefManual  ) padXrefManual  ( $dir1, $dir2, $dir3 );
     if ( $padXrefDevelop ) padXrefDevelop ( $dir1, $dir2, $dir3 );
-    if ( $padXrefPage    ) padXrefPage    ( $dir1, $dir2, $dir3 );
+    if ( $padXrefTree    ) padXrefTree    ( $dir1, $dir2, $dir3 );
     if ( $padXrefXml     ) padXrefXml     ( $dir1, $dir2, $dir3 );
     if ( $padXrefTrace   ) padXrefTrace   ( $dir1, $dir2, $dir3 );
  
@@ -106,7 +106,7 @@
 
   function padXrefXml ( $dir1, $dir2, $dir3 ) { 
 
-    global $pad, $padXrefLevel, $padOccur, $padXrefTree;
+    global $pad, $padXrefLevel, $padOccur, $padXrefStore;
 
     $padXrefLvl = $padXrefLevel [$pad] ?? 0;
     $padXrefOcc = $padOccur     [$pad] ?? 0;
@@ -119,48 +119,58 @@
       $xref .= " $dir3";
 
     if     ( $padXrefOcc == 0)
-      $padXrefTree [$padXrefLvl] ['start'] [] = $xref;
+      $padXrefStore [$padXrefLvl] ['start'] [] = $xref;
     elseif ( $padXrefOcc == 99999)
-      $padXrefTree [$padXrefLvl] ['end']  [] = $xref;
+      $padXrefStore [$padXrefLvl] ['end']  [] = $xref;
     else
-      $padXrefTree [$padXrefLvl] ['occurs'] [$padXrefOcc] ['xref'] [] = $xref;
+      $padXrefStore [$padXrefLvl] ['occurs'] [$padXrefOcc] ['xref'] [] = $xref;
 
   }
 
 
   function padXrefDevelop ( $dir1, $dir2, $dir3 ) {
 
-    global $pad, $padStartPage, $padLvlId, $padXrefFile;
+    global $padStartPage, $padLvlId, $padXrefFile;
 
-    $file = "develop/xref/$dir1/$dir2";
+    $file = "xref/develop/$dir1/$dir2";
 
     if ( $dir3 !== '' )
-      $file .= "/" . str_replace ( '/' , '@', padFileCorrect ($dir3 ) );
+      $file .= "/" . str_replace ( '/' , '@', $dir3 );
 
-    $file .= "/" .  str_replace ( '/' , '@', padFileCorrect ($padStartPage ) ) . "-hit/$padLvlId.json";
+    $file .= "/" .  str_replace ( '/' , '@', $padStartPage ) . "-hit/$padLvlId.json";
 
     if ( file_exists ( padData . $file ) )
       return;
 
-    for ( $lvl=$pad; $lvl>=0; $lvl-- ) 
-      $data [$lvl] = padDumpGetLevel ($lvl) ;
-
-    padInfoWrite ( $file, $data, 0, 0 );
+    padInfoFile ( $file, padXrefData () );
 
   }
 
 
-  function padXrefPage ( $dir1, $dir2, $dir3 ) {
+  function padXrefData () {
 
-    global $pad, $padPad, $padLvlIds, $padOccur;
+    global $pad;
+
+    for ( $lvl=$pad; $lvl>=0; $lvl-- ) 
+      $data [$lvl] = padDumpGetLevel ($lvl) ;
+
+    return $data;
+
+  }
+
+
+  function padXrefTree ( $dir1, $dir2, $dir3 ) {
+
+    global $pad, $padPad, $padLvlIds, $padOccur, $padStartPage, $padTag;
     global $padCurrent, $padBase, $padData, $padResult;
 
-    $file = 'tree';
+    $file = padXrefLocation () . "tree";
 
     for ( $lvl=0; $lvl<=$pad; $lvl++ ) {
       $l = $padLvlIds [$lvl] ?? 0;
       $o = $padOccur  [$lvl] ?? 0; 
-      $file .= "/L-$l/O-$o";
+      $t = $padTag    [$lvl] ?? 0;
+      $file .= "/L-$t/O-$o";
     }
 
     $file .= "/$dir1/$dir2";    
@@ -172,27 +182,35 @@
     if ( file_exists ( padData . $file ) )
       return;
 
-    $data = [
-      'now-data'    => $padCurrent [$pad],
-      'now-content' => $padPad     [$pad],
-      'data'        => $padData    [$pad],
-      'base'        => $padBase    [$pad],
-      'result'      => $padResult  [$pad]
-    ];
-
-    padInfoFile ( $file, $data );
+    padInfoFile ( $file, padXrefData () );
 
   }
 
 
-  function padXrefInfo ( $dir1, $dir2, $dir3 ) {
+  function padXrefXref ( $dir1, $dir2, $dir3 ) {
 
-    padXrefLine ( 'xref', $dir1, $dir2, $dir3 );
+    global $padXrefId, $padStartPage;
+
+    if ( $dir3 )
+      $xref = "$dir2/$dir3";
+    else
+      $xref = $dir2;
+  
+    padInfoFile ( padXrefLocation () . "xref/$dir1/$xref-$padXrefId.txt", padXrefData () );    
 
   }
 
 
-  function padXrefTrace ( $dir1, $dir2, $dir3 ) {
+  function padXrefLocation () {
+
+    global $padStartPage;
+
+    return "xref/$padStartPage/";
+
+  }
+
+
+  function padXrefTrace ( $dir1, $dir2, $dir3 ) { 
 
     global $pad, $padTrace, $padTraceLevel;
   
@@ -200,24 +218,15 @@
       return;
     
     $target = $padTraceLevel [$pad] ?? 0;
+
+    if ( $dir3 )
+      $xref = "$dir1/dir2/$dir3";
+    else
+      $xref = "$dir1/$dir2";
   
-    padXrefLine ( "trace/$target/xref", $dir1, $dir2, $dir3 );
+    padTraceWrite ( $pad, 'xref', $xref );
  
   } 
-
-
-  function padXrefLine ( $target, $dir1, $dir2, $dir3 ) {
-
-    global $padInfoDir;
-  
-    if ( $dir3 )
-      $xref = "$dir2/" . padFileCorrect ($dir3 );
-    else
-      $xref = padFileCorrect ($dir2 );
-  
-    padInfoLine ( "$target/$dir1/$xref.txt", padInfoIds () );
-
-  }
 
 
   function padXrefXmlMake () {
@@ -238,10 +247,10 @@
 
   function padXrefLevelStart ( $event ) {
 
-    global $padXrefTree;
+    global $padXrefStore;
 
     extract ( $event );
-    extract ( $padXrefTree [$tree]  );
+    extract ( $padXrefStore [$tree]  );
 
     padXrefOpen ( 'level' );
     padXrefOpen ( 'properties' );
@@ -259,10 +268,10 @@
 
   function padXrefLevelEnd ( $event ) {
 
-    global $padXrefTree;
+    global $padXrefStore;
 
     extract ( $event );
-    extract ( $padXrefTree [$tree]  );
+    extract ( $padXrefStore [$tree]  );
 
     if ( count ($occurs) > 1)
       padXrefClose ( 'occurs' );
@@ -281,10 +290,10 @@
 
   function padXrefOccurStart ( $event ) {
 
-    global $padXrefTree;
+    global $padXrefStore;
 
     extract ( $event );
-    extract ( $padXrefTree [$tree]  );
+    extract ( $padXrefStore [$tree]  );
     extract ( $occurs [$occur] );
 
     padXrefOpen ( 'occur' ); 
@@ -335,14 +344,14 @@
 
   function padXrefWrite ( $xml ) {
   
-    global $padXrefDepth;
+    global $padXrefDepth, $padLog;
 
     if ( $padXrefDepth > 0 )
       $spaces = str_repeat ( ' ', $padXrefDepth * 2 );
     else
       $spaces = '';
 
-    padInfoLine ( 'xref.xml', "$spaces$xml", true );
+    padInfoLine ( padXrefLocation () . "xref.xml", "$spaces$xml", true );
   
   }
 

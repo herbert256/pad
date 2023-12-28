@@ -10,7 +10,4 @@
   if ( isset ( $padSetConfig ) and count ( $padSetConfig ) ) 
     include_once pad . "inits/configSet.php";
 
-  if ( file_exists ( "output/lib/$padOutputType.php" ) )
-    include_once pad . "output/lib/$padOutputType.php";
-
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-  $examplePage       = $padOpt [$pad] [1] ;
+  $examplePage       = $padParm ;
   $exampleTitle      = substr($examplePage, strrpos($examplePage, '/') + 1);
   $exampleFile       = padApp . $examplePage;
   $exampleLayout     = padTagParm ( 'layout' , layout ("$exampleFile.pad") );

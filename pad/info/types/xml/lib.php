@@ -167,14 +167,14 @@
 
   function padXmlWrite ( $xml ) {
   
-    global $padXmlDepth;
+    global $padXmlDepth, $padStartPage;
 
     if ( $padXmlDepth > 0 )
       $spaces = str_repeat ( ' ', $padXmlDepth * 2 );
     else
       $spaces = '';
 
-    padInfoLine ( 'xml.xml', "$spaces$xml", true );
+    padInfoLine ( "xml/$padStartPage.xml", "$spaces$xml", true );
   
   }
 
@@ -194,7 +194,7 @@
 
   function padXmlTidy () {
 
-    global $padInfoDir, $padXmlTidy;
+    global $padXmlTidy, $padStartPage;
 
     if ( ! $padXmlTidy )
       return;
@@ -213,7 +213,7 @@
       'drop-empty-elements' => 'yes'
     ];
 
-    $data = padInfoGet ( padData . "$padInfoDir/xml.xml" );
+    $data = padInfoGet ( padData . "xml/$padStartPage.xml" );
 
     $tidy = new tidy;
     $tidy->parseString ( $data, $options, 'utf8' );
@@ -222,7 +222,7 @@
     if ( $tidy === FALSE )
       return padError ( "TIDY conversion error");
 
-    $data = padInfoFile ( 'xml.xml', $tidy->value );
+    $data = padInfoFile ( "xml/$padStartPage.xml", $tidy->value );
 
   }
 

@@ -40,11 +40,11 @@
       file_put_contents ( $store, $new, LOCK_EX ) ;
     }
 
-    $files [$item] ['item']   = $item;
-    $files [$item] ['status'] = $status;
+    $list [$item] ['item']   = $item;
+    $list [$item] ['status'] = $status;
 
   }
     
-  ksort ($files);
+  ksort ($list);
 
 ?>

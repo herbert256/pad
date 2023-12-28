@@ -1,5 +1,5 @@
 <?php
                  
-  return db ( $padTag [$pad] . ' ' . $padOpt [$pad] [1] );
+  return db ( $padTag [$pad] . ' ' . $padParm );
 
 ?>

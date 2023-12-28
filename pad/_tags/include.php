@@ -1,6 +1,6 @@
 <?php
   
-  $padIncPage = padTagParm ( 'include', $padOpt [$pad] [1] );
+  $padIncPage = padTagParm ( 'include', $padParm );
   $padIncPage = padInclFileName ($padIncPage);
   $padIncPage = str_replace (padApp, '',  $padIncPage);
   

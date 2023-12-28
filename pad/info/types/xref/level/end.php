@@ -7,7 +7,7 @@
   $padXrefOcc = $padOccur     [$pad];
  
   if ( strlen ( $padResult [$pad] ) )
-    $padXrefTree [$padXrefLvl] ['end'] [] = 'size ' . strlen ( $padResult [$pad] );
+    $padXrefStore [$padXrefLvl] ['end'] [] = 'size ' . strlen ( $padResult [$pad] );
 
   $padXrefEventType = 'level-end';
   include pad . 'info/types/xref/event.php';

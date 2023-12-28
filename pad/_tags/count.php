@@ -1,12 +1,12 @@
 <?php
 
-  if ( isset ( $padDataStore [ $padOpt [$pad] [1] ] ) )
-    if ( count ( $padDataStore [ $padOpt [$pad] [1] ] ) == 0 )
+  if ( isset ( $padDataStore [ $padParm ] ) )
+    if ( count ( $padDataStore [ $padParm ] ) == 0 )
       return FALSE;
     else
       return TRUE;
 
-  if ( count ( $GLOBALS [ $padOpt [$pad] [1] ] ) == 0 )
+  if ( count ( $GLOBALS [ $padParm ] ) == 0 )
     return FALSE;
   else
     return TRUE;

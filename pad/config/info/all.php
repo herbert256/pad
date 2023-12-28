@@ -1,6 +1,5 @@
 <?php
   
-  $padRequest          = TRUE;       // Log the details of the HTTP(s) request 
   $padTrack            = TRUE;       // Big Brother, session and request information of the client
   $padXml              = TRUE;       // Build a XML file of the structure of the PAD page 
   $padXref             = TRUE;       // Build the <app>_xref and <data>xref directories
@@ -17,10 +16,10 @@
   $padXmlTidy          = TRUE;
   $padXmlShowEmpty     = TRUE;
   
-  $padXrefInfo         = TRUE;
+  $padXrefXref         = TRUE;
   $padXrefManual       = TRUE;
   $padXrefDevelop      = TRUE;
-  $padXrefPage         = TRUE;
+  $padXrefTree         = TRUE;
   $padXrefXml          = TRUE;
   $padXrefTrace        = TRUE;
   

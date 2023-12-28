@@ -1,7 +1,7 @@
 <?php
 
   $padMakeType = $padTag [$pad];
-  $padMakeFile = $padOpt [$pad] [1];
+  $padMakeFile = $padParm;
 
   $padData [$pad] = padData ("$padMakeFile.$padMakeType", $padMakeType, $padMakeFile);
 
