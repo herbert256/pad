@@ -15,7 +15,7 @@
   if ($second)
     $xref .= "/$second";
 
-  $list = scandir ( padApp . '_xref' . $xref );
+  $list = scandir ( padApp . '_xref/manual' . $xref );
 
   foreach ( $list as $file )
     if     ( $file == '.'                    ) continue;
