@@ -91,4 +91,26 @@
   }
 
 
+  function padInfoDelete ( $dir ) {
+
+    if ( ! file_exists ( $dir ) )
+      return;
+
+    $loop = opendir ( $dir );
+
+    while ( ( $file = readdir ( $loop ) ) !== FALSE )
+
+      if ( $file <> '.' and $file <> '..' )
+        if ( is_dir ( "$dir/$file" ) )
+          padInfoDelete ( "$dir/$file" );
+        else
+          unlink ( "$dir/$file" ) ;
+        
+    closedir ( $loop );
+
+    rmdir ( $dir );
+
+  }
+
+
 ?>

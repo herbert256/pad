@@ -7,10 +7,10 @@
   $padTrace            = FALSE;       // Trace the internal working of PAD
 
   $padXrefXref         = FALSE;
-  $padXrefTrace        = FALSE;
-  $padXrefManual       = TRUE;
-  $padXrefDevelop      = TRUE;
+  $padXrefPage         = FALSE;
+  $padXrefSite         = TRUE;
   $padXrefTree         = FALSE;
   $padXrefXml          = FALSE;
+  $padXrefTrace        = FALSE;
 
 ?>

@@ -2,7 +2,7 @@
 
   include_once pad . 'info/types/xref/lib.php';
     
-  $padXrefId    = 0;
+  $padXrefId     = 0;
   $padXrefDepth  = 0;
   $padXrefEvents = [];
   $padXrefSource = padInfoGet ( padApp . $padStartPage . '.pad' );

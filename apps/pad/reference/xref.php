@@ -20,7 +20,7 @@
   foreach ( $list as $file )
     if     ( $file == '.'                    ) continue;
     elseif ( $file == '..'                   ) continue;
-    elseif ( str_ends_with ( $file, '.hit' ) ) $pages [$file] ['page'] = substr (str_replace ('@', '/', $file), 0, -4);
+    elseif ( str_ends_with ( $file, '.txt' ) ) $pages [$file] ['page'] = substr (str_replace ('@', '/', $file), 0, -4);
     else                                       $dirs  [$file] ['dir']  = $file; 
 
   if ( count ($pages) == 1 )
