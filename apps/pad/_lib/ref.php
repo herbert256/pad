@@ -44,10 +44,14 @@
       if ( $file == '.'                   ) continue;
       if ( $file == '..'                  ) continue;
 
-      $items [$item] ['item'] = $item;
+      $items [$item] ['item']  = $item;
+      $items [$item] ['dir']   = '';
+      $items [$item] ['pages'] = '';
 
-      if ( padIsDir ( padApp . "_xref/manual/$xref/$item" ) or file_exists ( padApp . "_xref/manual/$xref/$item.txt" ) )
-        $items [$item] ['link'] = "/$xref/manual/$item";
+      if     ( padIsDir ( padApp . "_xref/manual/$xref/$item" ) )
+        $items [$item] ['dir'] = "$xref/$item";
+      elseif ( file_exists ( padApp . "_xref/manual/$xref/$item.txt" ) )
+        $items [$item] ['pages'] = "$xref/$item.txt";
       else
         $items [$item] ['link'] = '';
  

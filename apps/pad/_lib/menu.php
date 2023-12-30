@@ -44,12 +44,12 @@
       $parts ['f'] ['link'] = '';
 
       $parts ['i'] ['part'] = $GLOBALS ['xitem'];
-      $parts ['i'] ['link'] = itemLink ();
+      $parts ['i'] ['link'] = '';
 
-      if ( $GLOBALS ['second'] ) {
-        $parts ['s'] ['part'] = $GLOBALS ['second'];
-        $parts ['s'] ['link'] = secondLink ();
-      }
+ #     if ( $GLOBALS ['second'] ) {
+ #       $parts ['s'] ['part'] = $GLOBALS ['second'];
+ #       $parts ['s'] ['link'] = secondLink ();
+ #     }
     
     }
 

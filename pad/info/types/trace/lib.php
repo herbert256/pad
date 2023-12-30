@@ -289,7 +289,7 @@
 
     $padTraceLevel [$pad] = $padTraceLevel [$last] ?? "NoPrev";
  
-    $padTraceLevel [$pad] .= "/$add$line" . padFileCorrect ( $tag );
+    $padTraceLevel [$pad] .= "/$add$line$tag";
   
     $padTraceLevelChilds [$pad] = 0;
     $padTraceOccurChilds [$pad] = [];

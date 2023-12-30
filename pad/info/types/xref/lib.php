@@ -23,16 +23,21 @@
   }
 
 
-  function padXrefXref ( $dir1, $dir2, $dir3 ) {
+  function padXrefXref ( $dir1, $dir2, $dir3, $type='xref' ) {
 
-    global $padStartPage, $padLvlId, $padXrefFile;
+    global $padStartPage, $padXrefId;
 
-    $file = "xref/xref/$dir1/$dir2";
+    if ( $type == 'xref' )
+      $file = "xref/xref/";
+    else
+      $file = padXrefLocation ();
+
+    $file .= "$dir1/$dir2";
 
     if ( $dir3 !== '' )
-      $file .= "/" . str_replace ( '/' , '@', $dir3 );
+      $file .= "/$dir3";
 
-    $file .= "/" .  str_replace ( '/' , '@', $padStartPage ) . "-page/$padLvlId";
+    $file .= "/" .  str_replace ( '/' , '@', $padStartPage ) . "-page/$padXrefId";
 
     padXrefData ( $file );
 
@@ -41,14 +46,7 @@
 
   function padXrefPage ( $dir1, $dir2, $dir3 ) {
 
-    global $padXrefId, $padStartPage;
-
-    if ( $dir3 )
-      $xref = "$dir2/$dir3";
-    else
-      $xref = $dir2;
-  
-    padXrefData ( padXrefLocation () . "xref/$dir1/$xref-$padXrefId" );    
+    padXrefXref ( $dir1, $dir2, $dir3, 'page' );
 
   }
 
@@ -71,6 +69,7 @@
     if ( $dir1 == 'at'         and $dir2 == 'kind'     ) padXrefManual ( $dir1, $dir2, $dir3 );
   
   }
+
 
   function padXrefManual ( $dir1, $dir2, $dir3='' ) {
 
@@ -98,28 +97,9 @@
   }
 
 
-  function padXrefManual2x ( $dir1, $dir2, $dir3 ) {
-
-    padXrefDevelopManual ( 'manual', $dir1, $dir2, $dir3 );
-
-  }
-
-
   function padXrefManual2 ( $dir1, $dir2, $dir3 ) {
 
-    $explode1 = padExplode ( $dir2, ':' );
-    $explode2 = padExplode ( $dir3, ':' );
-
-    if ( $dir2 and $dir3 )
-      foreach ($explode1 as $value1)
-        foreach ($explode2 as $value2)
-          if ( ctype_alpha ( $value1 ) and ctype_alpha ( $value2) )
-            padXrefDevelopManual ( 'manual', $dir1, $value1, $value2 );
-
-    if ( $dir2 and ! $dir3 )
-      foreach ($explode1 as $value1)
-        if ( ctype_alpha ( $value1 ) )
-          padXrefDevelopManual ( 'manual', $dir1, $value1, $dir3 );
+    padXrefDevelopManual ( 'manual', $dir1, $dir2, $dir3 );
 
   }
 
@@ -136,9 +116,15 @@
     $file = "_xref/$type/$dir1/$dir2";
 
     if ( $dir3 !== '' )
-      $file .= "/" . str_replace ( '/' , '@', $dir3 );
+      $file .= "/$dir3";
 
-    padInfoLine ( "$file.txt",  $GLOBALS ['padStartPage'], 1 );
+    $target = padApp . "$file.txt";
+    $page   = $GLOBALS ['padStartPage'];
+
+    if ( file_exists ($target) and in_array ( $page, file ( $target, FILE_IGNORE_NEW_LINES  ) ) )
+      return;
+
+    padInfoLine ( "$file.txt", $page, 1 );
 
   }
 

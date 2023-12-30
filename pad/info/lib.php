@@ -36,8 +36,6 @@
     if ( is_array($data) or is_object($data) )
       $data = padJson ($data);
 
-    $file = padFileCorrect ($file);
-
     if ( ! $append and file_exists ($file) )
       return;
 
