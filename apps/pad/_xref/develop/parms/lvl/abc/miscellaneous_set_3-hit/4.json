@@ -1,0 +1,45 @@
+{
+    "2": {
+        "tag": "{set $abc = 789}",
+        "type": "pad",
+        "name": "",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": {
+            "abc": 789
+        },
+        "set-occ": [],
+        "base": "",
+        "pad": "",
+        "result": ""
+    },
+    "1": {
+        "tag": "{pad $abc = 456}",
+        "type": "pad",
+        "name": "pad",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": {
+            "abc": 456
+        },
+        "set-occ": [],
+        "base": " {$abc} {set $abc = 789} {$abc} ",
+        "pad": " 456 {set $abc = 789} {$abc} ",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{set $abc = 123} {$abc} {pad $abc = 456} {$abc} {set $abc = 789} {$abc} {/pad} {$abc}",
+        "pad": " 123 {pad $abc = 456} {$abc} {set $abc = 789} {$abc} {/pad} {$abc}",
+        "result": ""
+    }
+}

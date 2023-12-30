@@ -1,0 +1,57 @@
+{
+    "3": {
+        "tag": "{sequence composite, rows=20}",
+        "type": "pad",
+        "name": "composite",
+        "pair": true,
+        "opt": [],
+        "prm": {
+            "composite": true,
+            "rows": 20
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {$composite} ",
+        "pad": " {$composite} ",
+        "result": " 4 6 8 9 10 12 14 15 16 18 20 21 22 24 25 26 27 28 30 "
+    },
+    "2": {
+        "tag": "{demo}",
+        "type": "app",
+        "name": "demo",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{sequence composite, rows=20} {$composite} {/sequence}",
+        "pad": "{sequence composite, rows=20} {$composite} {/sequence}",
+        "result": ""
+    },
+    "1": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESULT</th> </tr> <tr><td style=\"ve",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{table} {demo}{sequence prime, rows=20} {$prime} {/sequence}{/demo} {demo}{sequence emirp, rows=20} {$emirp} {/sequence}{/demo} {demo}{sequence compos",
+        "pad": "{table} {demo}{sequence prime, rows=20} {$prime} {/sequence}{/demo} {demo}{sequence emirp, rows=20} {$emirp} {/sequence}{/demo} {demo}{sequence compos",
+        "result": ""
+    }
+}

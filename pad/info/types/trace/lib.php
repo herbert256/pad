@@ -142,10 +142,16 @@
 
     global $pad, $padTraceTypesDir;
 
+    if ( $pad > -1 )
+      if ( $padTraceTypesDir )
+        padTraceWrite ( $pad, "/types/$type.txt", $trace ); 
+      else
+        padTraceWrite ( $pad, "/types-$type.txt", $trace ); 
+
     if ( $padTraceTypesDir )
-      padTraceWrite ( $pad, "/types/$type.txt", $trace ); 
+      padTraceWrite ( -1, "/types/$type.txt", $trace ); 
     else
-      padTraceWrite ( $pad, "/types-$type.txt", $trace ); 
+      padTraceWrite ( -1, "/types-$type.txt", $trace ); 
 
   }
 

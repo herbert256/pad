@@ -1,0 +1,54 @@
+{
+    "3": {
+        "tag": "{pad $myColor='red'}",
+        "type": "pad",
+        "name": "",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <b> <font color=\"{$myColor}\"> Hallo Wereld </font> </b> <br> ",
+        "pad": "",
+        "result": ""
+    },
+    "2": {
+        "tag": "{demo}",
+        "type": "app",
+        "name": "demo",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {pad $myColor='red'} <b> <font color=\"{$myColor}\"> Hallo Wereld </font> </b> <br> {/pad} ",
+        "pad": " {pad $myColor='red'} <b> <font color=\"{$myColor}\"> Hallo Wereld </font> </b> <br> {/pad} ",
+        "result": ""
+    },
+    "1": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESULT</th> </tr> {demo} {pad $myCo",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{table}{demo} {pad $myColor='red'} <b> <font color=\"{$myColor}\"> Hallo Wereld </font> </b> <br> {/pad} {/demo}{demo} {data 'myColor'} ( \"red\", \"green\"",
+        "pad": "{table}{demo} {pad $myColor='red'} <b> <font color=\"{$myColor}\"> Hallo Wereld </font> </b> <br> {/pad} {/demo}{demo} {data 'myColor'} ( \"red\", \"green\"",
+        "result": ""
+    }
+}

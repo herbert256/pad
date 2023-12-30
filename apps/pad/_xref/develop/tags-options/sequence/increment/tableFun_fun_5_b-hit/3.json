@@ -1,0 +1,31 @@
+{
+    "1": {
+        "tag": "{sequence '10..30', increment=10, name='row'}",
+        "type": "pad",
+        "name": "",
+        "pair": true,
+        "opt": [],
+        "prm": {
+            "increment": 10,
+            "name": "row"
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <tr> {sequence '1..5', name='column'} {cell $row + $column} {/sequence} </tr> ",
+        "pad": "",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{content 'cell'} <td {if $cell EQ 23} bgcolor=\"red\" {/if} > {$cell} </td> {/content}<table border='1'> {sequence '10..30', increment=10, name='row'} <",
+        "pad": "<table border='1'> {sequence '10..30', increment=10, name='row'} <tr> {sequence '1..5', name='column'} {cell $row + $column} {/sequence} </tr> {/seque",
+        "result": ""
+    }
+}

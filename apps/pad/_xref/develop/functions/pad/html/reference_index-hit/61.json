@@ -1,0 +1,72 @@
+{
+    "4": {
+        "tag": "{if $link}",
+        "type": "pad",
+        "name": "if",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {$item} ",
+        "pad": " {$item} ",
+        "result": ""
+    },
+    "3": {
+        "tag": "{getXref 'Tag options', 'parms/options', '_options'}",
+        "type": "php",
+        "name": "getXref",
+        "pair": true,
+        "opt": {
+            "2": "parms/options",
+            "3": "_options"
+        },
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {if $link} <a href=\"{$padGo}reference/xref&first={$link}&for={$type|url}&xitem={$item}\">{$item}</a> @else@ {$item} {/if} &nbsp; ",
+        "pad": " {if $link} <a href=\"{$padGo}reference/xref&first={$link}&for={$type|url}&xitem={$item}\">{$item}</a> @else@ {$item} {/if} &nbsp; ",
+        "result": " before &nbsp; callback &nbsp; close &nbsp; content &nbsp; data &nbsp; dedup &nbsp; "
+    },
+    "2": {
+        "tag": "{true data='xref'}",
+        "type": "pad",
+        "name": "xref",
+        "pair": true,
+        "opt": [],
+        "prm": {
+            "data": "xref"
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {range '1..{$lvl}'} <blockquote> {/range} <h3>{$type}</h3> <blockquote> {getXref '{!type}', '{$xref}', '{$dir}'} {if $link} <a href=\"{$padGo}referenc",
+        "pad": " <blockquote> <blockquote> <h3>Tag options</h3> <blockquote> {getXref 'Tag options', 'parms/options', '_options'} {if $link} <a href=\"{$padGo}referenc",
+        "result": " <blockquote> <h3>Tags</h3> <blockquote> ajax &nbsp; array &nbsp; call &nbsp; case &nbsp; check &nbsp; close &nbsp; content &nbsp; count &nbsp; curl &"
+    },
+    "1": {
+        "tag": "{block}",
+        "type": "content",
+        "name": "block",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<table with=\"95%\" border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\"> <tr> <td> {true data='xref'} {ra",
+        "pad": "<table with=\"95%\" border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\"> <tr> <td> {true data='xref'} {ra",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<blockquote> {block} {true data='xref'} {range '1..{$lvl}'} <blockquote> {/range} <h3>{$type}</h3> <blockquote> {getXref '{!type}', '{$xref}', '{$dir}",
+        "pad": "<blockquote> {block} {true data='xref'} {range '1..{$lvl}'} <blockquote> {/range} <h3>{$type}</h3> <blockquote> {getXref '{!type}', '{$xref}', '{$dir}",
+        "result": ""
+    }
+}

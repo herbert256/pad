@@ -1,0 +1,54 @@
+{
+    "3": {
+        "tag": "{range 'A..Z', shuffle}",
+        "type": "sequence",
+        "name": "",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {$range} ",
+        "pad": "",
+        "result": ""
+    },
+    "2": {
+        "tag": "{demo}",
+        "type": "app",
+        "name": "demo",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{range 'A..Z', shuffle} {$range} {/range }",
+        "pad": "{range 'A..Z', shuffle} {$range} {/range }",
+        "result": ""
+    },
+    "1": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESULT</th> </tr> <tr><td style=\"ve",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{table} {demo}{sequence random, rows=3} {$random} {/sequence}{/demo} {demo}{sequence random, max=100, rows=10} {$random} {/sequence}{/demo} {demo}{seq",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESULT</th> </tr> <tr><td style=\"ve",
+        "result": ""
+    }
+}

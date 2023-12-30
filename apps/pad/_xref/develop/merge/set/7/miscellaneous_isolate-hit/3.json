@@ -1,0 +1,28 @@
+{
+    "1": {
+        "tag": "{sandbox}",
+        "type": "pad",
+        "name": "",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {set $abc = '456'} <p>{$abc}</p> ",
+        "pad": " <p>456</p> ",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{set $abc = '123'} <p>{$abc}</p> {sandbox} {set $abc = '456'} <p>{$abc}</p> {/sandbox} <p>{$abc}</p>",
+        "pad": " <p>123</p> {sandbox} {set $abc = '456'} <p>{$abc}</p> {/sandbox} <p>{$abc}</p>",
+        "result": ""
+    }
+}

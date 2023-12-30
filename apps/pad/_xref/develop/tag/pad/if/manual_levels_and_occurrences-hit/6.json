@@ -1,0 +1,44 @@
+{
+    "2": {
+        "tag": "{if #onlyResult or $exampleOnlyResult}",
+        "type": "pad",
+        "name": "",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {get '{$examplePage}'} @else@ {if ! #skipOpen} <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {/if} {case $exampleLayout} {when 'above'} {if ! #",
+        "pad": "",
+        "result": ""
+    },
+    "1": {
+        "tag": "{example 'lvl_occ/1', skipNames, center}",
+        "type": "app",
+        "name": "example",
+        "pair": false,
+        "opt": [],
+        "prm": {
+            "skipNames": true,
+            "center": true
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{if #center} <center> {/if} {if #withTitle} <h3>{$exampleTitle}</h3> {/if} {if #onlyResult or $exampleOnlyResult} {get '{$examplePage}'} @else@ {if ! ",
+        "pad": " <center> {if #onlyResult or $exampleOnlyResult} {get '{$examplePage}'} @else@ {if ! #skipOpen} <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {/",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> {block} PAD is data driven. <br><br> The PAD data concepts are named Level and Occurence <br><br> Below example: <br> - Is two levels deep <br> - ",
+        "pad": "<p> <table with=\"95%\" border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\"> <tr> <td> PAD is data driven",
+        "result": ""
+    }
+}

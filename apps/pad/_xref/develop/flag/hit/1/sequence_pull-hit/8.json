@@ -1,0 +1,41 @@
+{
+    "2": {
+        "tag": "{demo}",
+        "type": "app",
+        "name": "",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{sequence list='15;20;25;30', name='two'}",
+        "pad": "",
+        "result": ""
+    },
+    "1": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESULT</th> </tr> <tr><td style=\"ve",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{table} {demo}{sequence list='5;10;15;20', name='one'}{/demo} {demo}{sequence list='15;20;25;30', name='two'}{/demo} {demo}{pull 'one'} {$one} {/pull}",
+        "pad": "{table} {demo}{sequence list='5;10;15;20', name='one'}{/demo} {demo}{sequence list='15;20;25;30', name='two'}{/demo} {demo}{pull 'one'} {$one} {/pull}",
+        "result": ""
+    }
+}

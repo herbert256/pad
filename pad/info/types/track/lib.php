@@ -111,9 +111,9 @@
       "track/$padLog.json", 
         [ 'in'      => json_decode ( padInfoGet ( padData . "track/$padLog-entry.json" ) ), 
           'out'     => json_decode ( padInfoGet ( padData . "track/$padLog-exit.json"  ) ),
+          'session' => $_SESSION ?? '',
           'server'  => $_SERVER ?? '',
           'getenv'  => getenv () ?? '' , 
-          'session' => $_SESSION ?? '',
           'request' => $_REQUEST ?? ''
         ] 
     );

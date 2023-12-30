@@ -1,0 +1,41 @@
+{
+    "2": {
+        "tag": "{demo}",
+        "type": "app",
+        "name": "demo",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{sequence emirp, rows=20} {$emirp} {/sequence}",
+        "pad": " 11 13 17 31 37 71 73 79 97 101 107 113 131 149 151 157 167 179 181 191 ",
+        "result": " 11 13 17 31 37 71 73 79 97 101 107 113 131 149 151 157 167 179 181 191 "
+    },
+    "1": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESULT</th> </tr> <tr><td style=\"ve",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{table} {demo}{sequence prime, rows=20} {$prime} {/sequence}{/demo} {demo}{sequence emirp, rows=20} {$emirp} {/sequence}{/demo} {demo}{sequence compos",
+        "pad": "{table} {demo}{sequence prime, rows=20} {$prime} {/sequence}{/demo} {demo}{sequence emirp, rows=20} {$emirp} {/sequence}{/demo} {demo}{sequence compos",
+        "result": ""
+    }
+}

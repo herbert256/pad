@@ -1,0 +1,72 @@
+{
+    "4": {
+        "tag": "{call '/home/herbert/pad/apps/pad/hello/index.php'}",
+        "type": "pad",
+        "name": "call",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<h3> <font color=\"{$color}\"> {$hi} </font> </h3>",
+        "pad": "<h3> <font color=\"green\"> {$hi} </font> </h3>",
+        "result": ""
+    },
+    "3": {
+        "tag": "{page 'hello/index', type='include', include, $color='green'}",
+        "type": "pad",
+        "name": "page",
+        "pair": false,
+        "opt": [],
+        "prm": {
+            "type": "include",
+            "include": true
+        },
+        "set-lvl": {
+            "color": "green"
+        },
+        "set-occ": [],
+        "base": "{call '/home/herbert/pad/apps/pad/hello/index.php'}<h3> <font color=\"{$color}\"> {$hi} </font> </h3>{/call}",
+        "pad": "{call '/home/herbert/pad/apps/pad/hello/index.php'}<h3> <font color=\"{$color}\"> {$hi} </font> </h3>{/call}",
+        "result": ""
+    },
+    "2": {
+        "tag": "{demo}",
+        "type": "app",
+        "name": "demo",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {page 'hello/index', type='include', include, $color='green'} {page 'hello/index', type='build', include, $color='orange'} {page 'hello/index', type=",
+        "pad": " {page 'hello/index', type='include', include, $color='green'} {page 'hello/index', type='build', include, $color='orange'} {page 'hello/index', type=",
+        "result": ""
+    },
+    "1": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESULT</th> </tr> <tr><td style=\"ve",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p>Include an other page in the current page, 5 ways of doing this.</p> {table} {demo} {page 'hello/index'} {/demo} {demo} {page 'hello/index', type='",
+        "pad": "<p>Include an other page in the current page, 5 ways of doing this.</p> {table} {demo} {page 'hello/index'} {/demo} {demo} {page 'hello/index', type='",
+        "result": ""
+    }
+}

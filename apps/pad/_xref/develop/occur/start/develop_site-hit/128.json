@@ -1,0 +1,93 @@
+{
+    "6": {
+        "tag": "{ajax 'manual/sequences'}",
+        "type": "pad",
+        "name": "ajax",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<div id=\"padAjaxc4ZeDpwq\"></div> <script> padAjaxc4ZeDpwq = new XMLHttpRequest(); padAjaxc4ZeDpwq.onreadystatechange=function() { if (padAjaxc4ZeDpwq.",
+        "pad": "<div id=\"padAjaxc4ZeDpwq\"></div> <script> padAjaxc4ZeDpwq = new XMLHttpRequest(); padAjaxc4ZeDpwq.onreadystatechange=function() { if (padAjaxc4ZeDpwq.",
+        "result": ""
+    },
+    "5": {
+        "tag": "{if $type eq 'sandbox'}",
+        "type": "pad",
+        "name": "if",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {ajax '{$item}'} ",
+        "pad": " {ajax 'manual/sequences'} ",
+        "result": ""
+    },
+    "4": {
+        "tag": "{block}",
+        "type": "content",
+        "name": "block",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<table with=\"95%\" border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\"> <tr> <td> {if $type eq 'sandbox'",
+        "pad": "<table with=\"95%\" border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\"> <tr> <td> {if $type eq 'sandbox'",
+        "result": ""
+    },
+    "3": {
+        "tag": "{if $type eq 'complete'}",
+        "type": "pad",
+        "name": "if",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <br><br> {hrlines}<h1 style=\"margin:0;\">{$item}</h1>{/hrlines} <br> {block} {if $type eq 'sandbox'} {get '{$item}'} @else@ {ajax '{$item}'} {/if} {/b",
+        "pad": " <br><br> <table style=\"margin:0; margin-bottom:0; margin-top:0;\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\"> <tr> <td> <hr style=\"margin:0; border: 1",
+        "result": ""
+    },
+    "2": {
+        "tag": "{pagesList}",
+        "type": "array",
+        "name": "pagesList",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {if $type eq 'complete'} <br><br> {page '{$item}', type='get', ignore} <br><br><hr><br> @else@ <br><br> {hrlines}<h1 style=\"margin:0;\">{$item}</h1>{/",
+        "pad": " {if $type eq 'complete'} <br><br> {page '{$item}', type='get', ignore} <br><br><hr><br> @else@ <br><br> {hrlines}<h1 style=\"margin:0;\">{$item}</h1>{/",
+        "result": " <br><br> <table style=\"margin:0; margin-bottom:0; margin-top:0;\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\"> <tr> <td> <hr style=\"margin:0; border: 1"
+    },
+    "1": {
+        "tag": "{block}",
+        "type": "content",
+        "name": "block",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<table with=\"95%\" border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\"> <tr> <td> <center> {showTitle}<h",
+        "pad": "<table with=\"95%\" border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\"> <tr> <td> <center> {pagesList} {",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<html> <head> <title>PAD - {$title}</title> </head> <body> <center> <h1> PAD - <font color=\"red\">P</font>HP <font color=\"red\">A</font>pplication <font",
+        "pad": "<html> <head> <title>PAD - site</title> </head> <body> <center> <h1> PAD - <font color=\"red\">P</font>HP <font color=\"red\">A</font>pplication <font col",
+        "result": ""
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "1": {
+        "tag": "{until $abc GT 10}",
+        "type": "pad",
+        "name": "until",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {$abc} {increment $abc} ",
+        "pad": 7,
+        "result": " 1 2 3 4 5 6 7 "
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{set $abc = 1} {until $abc GT 10} {$abc} {increment $abc} {/until}",
+        "pad": " {until $abc GT 10} {$abc} {increment $abc} {/until}",
+        "result": ""
+    }
+}

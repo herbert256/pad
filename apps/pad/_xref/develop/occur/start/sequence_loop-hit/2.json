@@ -1,0 +1,28 @@
+{
+    "1": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{table} {demo}{loop rows=10} {$loop} {/loop}{/demo} {demo}{loop from=1, to=10} {$loop} {/loop}{/demo} {/table}",
+        "pad": "{table} {demo}{loop rows=10} {$loop} {/loop}{/demo} {demo}{loop from=1, to=10} {$loop} {/loop}{/demo} {/table}",
+        "result": ""
+    }
+}

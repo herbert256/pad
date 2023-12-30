@@ -1,0 +1,54 @@
+{
+    "3": {
+        "tag": "{cell}",
+        "type": "field",
+        "name": "cell",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": 11,
+        "pad": 11,
+        "result": ""
+    },
+    "2": {
+        "tag": "{cols}",
+        "type": "level",
+        "name": "cols",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {cell} ",
+        "pad": " {cell} ",
+        "result": ""
+    },
+    "1": {
+        "tag": "{rows}",
+        "type": "array",
+        "name": "rows",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <tr> {cols} {cell} {/cols} </tr> ",
+        "pad": " <tr> {cols} {cell} {/cols} </tr> ",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<table border='1'> {rows} <tr> {cols} {cell} {/cols} </tr> {/rows} </table>",
+        "pad": "<table border='1'> {rows} <tr> {cols} {cell} {/cols} </tr> {/rows} </table>",
+        "result": ""
+    }
+}

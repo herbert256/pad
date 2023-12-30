@@ -1,0 +1,59 @@
+{
+    "3": {
+        "tag": "{cell $row + $column}",
+        "type": "content",
+        "name": "cell",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <td {if $cell EQ 23} bgcolor=\"red\" {/if} > {$cell} </td> ",
+        "pad": " <td {if $cell EQ 23} bgcolor=\"red\" {/if} > {$cell} </td> ",
+        "result": ""
+    },
+    "2": {
+        "tag": "{sequence '1..5', name='column'}",
+        "type": "pad",
+        "name": "range",
+        "pair": true,
+        "opt": [],
+        "prm": {
+            "name": "column"
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {cell $row + $column} ",
+        "pad": " {cell $row + $column} ",
+        "result": " <td > 21 </td> <td > 22 </td> <td bgcolor=\"red\" > 23 </td> <td > 24 </td> "
+    },
+    "1": {
+        "tag": "{sequence '10..30', increment=10, name='row'}",
+        "type": "pad",
+        "name": "range",
+        "pair": true,
+        "opt": [],
+        "prm": {
+            "increment": 10,
+            "name": "row"
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <tr> {sequence '1..5', name='column'} {cell $row + $column} {/sequence} </tr> ",
+        "pad": " <tr> {sequence '1..5', name='column'} {cell $row + $column} {/sequence} </tr> ",
+        "result": " <tr> <td > 11 </td> <td > 12 </td> <td > 13 </td> <td > 14 </td> <td > 15 </td> </tr> "
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{content 'cell'} <td {if $cell EQ 23} bgcolor=\"red\" {/if} > {$cell} </td> {/content}<table border='1'> {sequence '10..30', increment=10, name='row'} <",
+        "pad": "<table border='1'> {sequence '10..30', increment=10, name='row'} <tr> {sequence '1..5', name='column'} {cell $row + $column} {/sequence} </tr> {/seque",
+        "result": ""
+    }
+}

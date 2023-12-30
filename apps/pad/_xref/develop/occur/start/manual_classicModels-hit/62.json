@@ -1,0 +1,56 @@
+{
+    "3": {
+        "tag": "{if ! #skipOpen}",
+        "type": "pad",
+        "name": "if",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> ",
+        "pad": " <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> ",
+        "result": ""
+    },
+    "2": {
+        "tag": "{if #onlyResult or $exampleOnlyResult}",
+        "type": "pad",
+        "name": "if",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {if ! #skipOpen} <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {/if} {case $exampleLayout} {when 'above'} {if ! #skipPhp} {if ! #skipHeader} <t",
+        "pad": " {if ! #skipOpen} <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {/if} {case $exampleLayout} {when 'above'} {if ! #skipPhp} {if ! #skipHeader} <t",
+        "result": ""
+    },
+    "1": {
+        "tag": "{example 'classicModels/employees_2', withTitle}",
+        "type": "app",
+        "name": "example",
+        "pair": false,
+        "opt": [],
+        "prm": {
+            "withTitle": true
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{if #center} <center> {/if} {if #withTitle} <h3>{$exampleTitle}</h3> {/if} {if #onlyResult or $exampleOnlyResult} {get '{$examplePage}'} @else@ {if ! ",
+        "pad": " <h3>employees_2</h3> {if #onlyResult or $exampleOnlyResult} {get '{$examplePage}'} @else@ {if ! #skipOpen} <table border=\"1\" cellpadding=\"10\" cellspa",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<center> <p>Some PAD pages based on the Classic Models database as found on <a href=\"https://www.mysqltutorial.org/mysql-sample-database.aspx\">http://",
+        "pad": "<center> <p>Some PAD pages based on the Classic Models database as found on <a href=\"https://www.mysqltutorial.org/mysql-sample-database.aspx\">http://",
+        "result": ""
+    }
+}

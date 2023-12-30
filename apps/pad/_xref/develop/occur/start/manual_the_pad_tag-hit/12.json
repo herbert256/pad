@@ -1,0 +1,84 @@
+{
+    "5": {
+        "tag": "{if ! #skipPhp}",
+        "type": "pad",
+        "name": "if",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <td style=\"vertical-align:top\">{!exampleSrcPhp} </td> ",
+        "pad": " <td style=\"vertical-align:top\">{!exampleSrcPhp} </td> ",
+        "result": ""
+    },
+    "4": {
+        "tag": "{case $exampleLayout}",
+        "type": "pad",
+        "name": "case",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {if ! #skipHeader} <tr> {if ! #skipPhp} <th bgcolor=\"#dddddd\"> PHP {if ! #skipNames}<br><font size=\"-2\">{$exampleFilePhp}</font>{/if} </th> {/if} {if",
+        "pad": " <tr> {if ! #skipPhp} <td style=\"vertical-align:top\">{!exampleSrcPhp} </td> {/if} {if ! #skipPad} <td style=\"vertical-align:top\">{!exampleSrcPad}</td>",
+        "result": ""
+    },
+    "3": {
+        "tag": "{if #onlyResult or $exampleOnlyResult}",
+        "type": "pad",
+        "name": "if",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {if ! #skipOpen} <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {/if} {case $exampleLayout} {when 'above'} {if ! #skipPhp} {if ! #skipHeader} <t",
+        "pad": " <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {case $exampleLayout} {when 'above'} {if ! #skipPhp} {if ! #skipHeader} <tr> <th bgcolor=\"#dddddd",
+        "result": ""
+    },
+    "2": {
+        "tag": "{example 'miscellaneous/true', skipHeader, skipPad, skipResult}",
+        "type": "app",
+        "name": "example",
+        "pair": false,
+        "opt": [],
+        "prm": {
+            "skipHeader": true,
+            "skipPad": true,
+            "skipResult": true
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{if #center} <center> {/if} {if #withTitle} <h3>{$exampleTitle}</h3> {/if} {if #onlyResult or $exampleOnlyResult} {get '{$examplePage}'} @else@ {if ! ",
+        "pad": " {if #onlyResult or $exampleOnlyResult} {get '{$examplePage}'} @else@ {if ! #skipOpen} <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {/if} {case",
+        "result": ""
+    },
+    "1": {
+        "tag": "{block}",
+        "type": "content",
+        "name": "block",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<table with=\"95%\" border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\"> <tr> <td> <p>This manual will us",
+        "pad": "<table with=\"95%\" border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\"> <tr> <td> <p>This manual will us",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{block} <p>This manual will use the {tag 'pad'} tag for general PAD features. <p>Below the internal PHP code for the {tag 'pad'} tag. That is not so m",
+        "pad": "{block} <p>This manual will use the {tag 'pad'} tag for general PAD features. <p>Below the internal PHP code for the {tag 'pad'} tag. That is not so m",
+        "result": ""
+    }
+}

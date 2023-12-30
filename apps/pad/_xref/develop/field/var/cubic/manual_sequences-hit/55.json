@@ -1,0 +1,151 @@
+{
+    "10": {
+        "tag": "{sequence cubic, rows=15}",
+        "type": "pad",
+        "name": "cubic",
+        "pair": true,
+        "opt": [],
+        "prm": {
+            "cubic": true,
+            "rows": 15
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {$cubic} ",
+        "pad": " {$cubic} ",
+        "result": " 1 8 27 64 125 216 343 512 729 1000 1331 1728 2197 2744 "
+    },
+    "9": {
+        "tag": "{demo}",
+        "type": "app",
+        "name": "demo",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{sequence cubic, rows=15} {$cubic} {/sequence}",
+        "pad": "{sequence cubic, rows=15} {$cubic} {/sequence}",
+        "result": ""
+    },
+    "8": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESULT</th> </tr> <tr><td style=\"ve",
+        "result": ""
+    },
+    "7": {
+        "tag": "{PAD}",
+        "type": "internal",
+        "name": "",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{table} {demo}{sequence gnomonic, rows=15} {$gnomonic} {/sequence}{/demo} {demo}{sequence triangular, rows=15} {$triangular} {/sequence}{/demo} {demo}",
+        "pad": "{table} {demo}{sequence gnomonic, rows=15} {$gnomonic} {/sequence}{/demo} {demo}{sequence triangular, rows=15} {$triangular} {/sequence}{/demo} {demo}",
+        "result": ""
+    },
+    "6": {
+        "tag": "{get 'sequence/figurate'}",
+        "type": "pad",
+        "name": "",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "",
+        "pad": "",
+        "result": ""
+    },
+    "5": {
+        "tag": "{if #onlyResult or $exampleOnlyResult}",
+        "type": "pad",
+        "name": "if",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {get '{$examplePage}'} ",
+        "pad": " {get 'sequence/figurate'} ",
+        "result": ""
+    },
+    "4": {
+        "tag": "{example 'sequence/figurate', onlyResult, include}",
+        "type": "app",
+        "name": "example",
+        "pair": false,
+        "opt": [],
+        "prm": {
+            "onlyResult": true,
+            "include": true
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{if #center} <center> {/if} {if #withTitle} <h3>{$exampleTitle}</h3> {/if} {if #onlyResult or $exampleOnlyResult} {get '{$examplePage}'} @else@ {if ! ",
+        "pad": " {if #onlyResult or $exampleOnlyResult} {get '{$examplePage}'} @else@ {if ! #skipOpen} <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {/if} {case",
+        "result": ""
+    },
+    "3": {
+        "tag": "{PAD}",
+        "type": "internal",
+        "name": "",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <h3><a id=\"{$list}\">{$list}</a></h3> {example 'sequence/{$list}', onlyResult, include} <font size=\"-1\"> <a href=\"#top\">top</a></font> <br><hr> ",
+        "pad": " <h3><a id=\"figurate\">figurate</a></h3> {example 'sequence/figurate', onlyResult, include} <font size=\"-1\"> <a href=\"#top\">top</a></font> <br><hr> ",
+        "result": ""
+    },
+    "2": {
+        "tag": "{sandbox}",
+        "type": "pad",
+        "name": "",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <h3><a id=\"{$list}\">{$list}</a></h3> {example 'sequence/{$list}', onlyResult, include} <font size=\"-1\"> <a href=\"#top\">top</a></font> <br><hr> ",
+        "pad": "",
+        "result": ""
+    },
+    "1": {
+        "tag": "{list}",
+        "type": "data",
+        "name": "list",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {sandbox} <h3><a id=\"{$list}\">{$list}</a></h3> {example 'sequence/{$list}', onlyResult, include} <font size=\"-1\"> <a href=\"#top\">top</a></font> <br><",
+        "pad": " {sandbox} <h3><a id=\"{$list}\">{$list}</a></h3> {example 'sequence/{$list}', onlyResult, include} <font size=\"-1\"> <a href=\"#top\">top</a></font> <br><",
+        "result": " <h3><a id=\"intro\">intro</a></h3> <p> <table border&eq;\"1\" cellpadding&eq;\"10\" cellspacing&eq;\"0\"> <tr> <th bgcolor&eq;\"#dddddd\">HTML</th> <th bgcolor"
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{block} <p>The Sequences sub system of PAD, many many ways to get a sequence of numbers.</p> {/block} {data 'list'} ('intro','syntax','even_odd','step",
+        "pad": "<table with=\"95%\" border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\"> <tr> <td> <p>The Sequences sub s",
+        "result": ""
+    }
+}

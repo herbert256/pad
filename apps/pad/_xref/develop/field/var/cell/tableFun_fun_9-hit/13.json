@@ -1,0 +1,54 @@
+{
+    "3": {
+        "tag": "{cell $row + $col}",
+        "type": "content",
+        "name": "cell",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <td {if $cell EQ 23} bgcolor=\"red\" {/if} > {$cell} </td> ",
+        "pad": " <td > {$cell} </td> ",
+        "result": ""
+    },
+    "2": {
+        "tag": "{while $col LE 5}",
+        "type": "pad",
+        "name": "while",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {cell $row + $col} {increment $col} ",
+        "pad": " {cell $row + $col} {increment $col} ",
+        "result": " <td > 11 </td> <td > 12 </td> "
+    },
+    "1": {
+        "tag": "{row}",
+        "type": "array",
+        "name": "row",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <tr> {set $col = 1} {while $col LE 5} {cell $row + $col} {increment $col} {/while} </tr> ",
+        "pad": " <tr> {while $col LE 5} {cell $row + $col} {increment $col} {/while} </tr> ",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{content 'cell'} <td {if $cell EQ 23} bgcolor=\"red\" {/if} > {$cell} </td> {/content}<table border='1'> {row} <tr> {set $col = 1} {while $col LE 5} {ce",
+        "pad": "<table border='1'> {row} <tr> {set $col = 1} {while $col LE 5} {cell $row + $col} {increment $col} {/while} </tr> {/row} </table>",
+        "result": ""
+    }
+}

@@ -1,0 +1,125 @@
+{
+    "8": {
+        "tag": "{first}",
+        "type": "tag",
+        "name": "first",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <tr> <td>Totals</td> <td>{$salaryTotal %.2f}</td> <td>{$bonusTotal %.2f}</td> <td>{$totalTotal %.2f}</td> </tr> ",
+        "pad": " <tr> <td>Totals</td> <td>{$salaryTotal %.2f}</td> <td>{$bonusTotal %.2f}</td> <td>{$totalTotal %.2f}</td> </tr> ",
+        "result": ""
+    },
+    "7": {
+        "tag": "{staff callback='before.php', before}",
+        "type": "local",
+        "name": "staff",
+        "pair": true,
+        "opt": [],
+        "prm": {
+            "callback": "before.php",
+            "before": true
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {first} <tr> <td>Totals</td> <td>{$salaryTotal %.2f}</td> <td>{$bonusTotal %.2f}</td> <td>{$totalTotal %.2f}</td> </tr> {/first} <tr align=\"right\" bg",
+        "pad": " {first} <tr> <td>Totals</td> <td>{$salaryTotal %.2f}</td> <td>{$bonusTotal %.2f}</td> <td>{$totalTotal %.2f}</td> </tr> {/first} <tr align=\"right\" bg",
+        "result": ""
+    },
+    "6": {
+        "tag": "{PAD}",
+        "type": "internal",
+        "name": "",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<table border=1> <tr> <th>Name</th> <th>Salary</th> <th>Bonus</th> <th>Total</th> </tr> {staff callback='before.php', before} {first} <tr> <td>Totals<",
+        "pad": "<table border=1> <tr> <th>Name</th> <th>Salary</th> <th>Bonus</th> <th>Total</th> </tr> {staff callback='before.php', before} {first} <tr> <td>Totals<",
+        "result": ""
+    },
+    "5": {
+        "tag": "{get 'callback/before'}",
+        "type": "pad",
+        "name": "",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "",
+        "pad": "",
+        "result": ""
+    },
+    "4": {
+        "tag": "{if ! #skipResult}",
+        "type": "pad",
+        "name": "if",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <td style=\"vertical-align:top\">{get '{$examplePage}'}</td> ",
+        "pad": " <td style=\"vertical-align:top\">{get 'callback/before'}</td> ",
+        "result": ""
+    },
+    "3": {
+        "tag": "{case $exampleLayout}",
+        "type": "pad",
+        "name": "case",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {if ! #skipHeader} <tr> {if ! #skipPhp} <th bgcolor=\"#dddddd\"> PHP {if ! #skipNames}<br><font size=\"-2\">{$exampleFilePhp}</font>{/if} </th> {/if} {if",
+        "pad": " <tr> <th bgcolor=\"#dddddd\"> PHP <br><font size=\"-2\">_callbacks/before.php</font> </th> <th bgcolor=\"#dddddd\"> HTML <br><font size=\"-2\">callback/befor",
+        "result": ""
+    },
+    "2": {
+        "tag": "{if #onlyResult or $exampleOnlyResult}",
+        "type": "pad",
+        "name": "if",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {if ! #skipOpen} <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {/if} {case $exampleLayout} {when 'above'} {if ! #skipPhp} {if ! #skipHeader} <t",
+        "pad": " <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {case $exampleLayout} {when 'above'} {if ! #skipPhp} {if ! #skipHeader} <tr> <th bgcolor=\"#dddddd",
+        "result": ""
+    },
+    "1": {
+        "tag": "{example 'callback/before', php='_callbacks/before.php', skipClose}",
+        "type": "app",
+        "name": "example",
+        "pair": false,
+        "opt": [],
+        "prm": {
+            "php": "_callbacks/before.php",
+            "skipClose": true
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{if #center} <center> {/if} {if #withTitle} <h3>{$exampleTitle}</h3> {/if} {if #onlyResult or $exampleOnlyResult} {get '{$examplePage}'} @else@ {if ! ",
+        "pad": " {if #onlyResult or $exampleOnlyResult} {get '{$examplePage}'} @else@ {if ! #skipOpen} <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {/if} {case",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{block} <p> It's possible to put a PHP file in the directory '_callbacks' that is called back at the processing of a pad tag.<br> - With option 'befor",
+        "pad": "<table with=\"95%\" border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\"> <tr> <td> <p> It's possible to p",
+        "result": ""
+    }
+}

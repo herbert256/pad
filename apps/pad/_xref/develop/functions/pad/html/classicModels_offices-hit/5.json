@@ -1,0 +1,43 @@
+{
+    "2": {
+        "tag": "{employees}",
+        "type": "table",
+        "name": "employees",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <tr> <td> {$city} </td> <td> {$lastName}, {$firstName} </td> </tr> ",
+        "pad": " <tr> <td> NYC </td> <td> Vanauf, {$firstName} </td> </tr> ",
+        "result": " <tr> <td> NYC </td> <td> Tseng, Foon Yue </td> </tr> "
+    },
+    "1": {
+        "tag": "{offices sort}",
+        "type": "table",
+        "name": "offices",
+        "pair": true,
+        "opt": [],
+        "prm": {
+            "sort": true
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {employees} <tr> <td> {$city} </td> <td> {$lastName}, {$firstName} </td> </tr> {/employees} ",
+        "pad": " {employees} <tr> <td> {$city} </td> <td> {$lastName}, {$firstName} </td> </tr> {/employees} ",
+        "result": " <tr> <td> San Francisco </td> <td> Bow, Anthony </td> </tr> <tr> <td> San Francisco </td> <td> Firrelli, Jeff </td> </tr> <tr> <td> San Francisco </t"
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<table> <tr> <td> <table border=1> {offices sort} {employees} <tr> <td> {$city} </td> <td> {$lastName}, {$firstName} </td> </tr> {/employees} {/office",
+        "pad": "<table> <tr> <td> <table border=1> {offices sort} {employees} <tr> <td> {$city} </td> <td> {$lastName}, {$firstName} </td> </tr> {/employees} {/office",
+        "result": ""
+    }
+}

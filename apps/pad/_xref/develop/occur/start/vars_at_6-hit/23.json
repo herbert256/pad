@@ -1,0 +1,67 @@
+{
+    "4": {
+        "tag": "{@staff.fields}",
+        "type": "at",
+        "name": "fields",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <td> {$value} </td> ",
+        "pad": " <td> {$value} </td> ",
+        "result": ""
+    },
+    "3": {
+        "tag": "{staff}",
+        "type": "local",
+        "name": "staff",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {@staff.first} <tr> {@staff.fields} <th> {$name} </th> {/@staff.fields} </tr> {/@staff.first} <tr> {@staff.fields} <td> {$value} </td> {/@staff.field",
+        "pad": " <tr> <th> name </th> <th> salary </th> <th> bonus </th> <th> phone </th> </tr> <tr> {@staff.fields} <td> {$value} </td> {/@staff.fields} </tr> ",
+        "result": ""
+    },
+    "2": {
+        "tag": "{demo}",
+        "type": "app",
+        "name": "demo",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <table border=1> {staff} {@staff.first} <tr> {@staff.fields} <th> {$name} </th> {/@staff.fields} </tr> {/@staff.first} <tr> {@staff.fields} <td> {$va",
+        "pad": " <table border=1> {staff} {@staff.first} <tr> {@staff.fields} <th> {$name} </th> {/@staff.fields} </tr> {/@staff.first} <tr> {@staff.fields} <td> {$va",
+        "result": ""
+    },
+    "1": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESULT</th> </tr> <tr><td style=\"ve",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{table}{demo} <table border=1> {staff} {@first} <tr> {@fields} <th> {$name} </th> {/@fields} </tr> {/@first} <tr> {@fields} <td> {$value} </td> {/@fie",
+        "pad": "{table}{demo} <table border=1> {staff} {@first} <tr> {@fields} <th> {$name} </th> {/@fields} </tr> {/@first} <tr> {@fields} <td> {$value} </td> {/@fie",
+        "result": ""
+    }
+}

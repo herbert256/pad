@@ -1,0 +1,95 @@
+{
+    "6": {
+        "tag": "{get 'hello/hello'}",
+        "type": "pad",
+        "name": "",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "",
+        "pad": "<h3> Hello World ! </h3>",
+        "result": ""
+    },
+    "5": {
+        "tag": "{if ! #skipResult}",
+        "type": "pad",
+        "name": "if",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <td style=\"vertical-align:top\">{get '{$examplePage}'}</td> ",
+        "pad": " <td style=\"vertical-align:top\">{get 'hello/hello'}</td> ",
+        "result": ""
+    },
+    "4": {
+        "tag": "{case $exampleLayout}",
+        "type": "pad",
+        "name": "case",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {if ! #skipHeader} <tr> {if ! #skipPhp} <th bgcolor=\"#dddddd\"> PHP {if ! #skipNames}<br><font size=\"-2\">{$exampleFilePhp}</font>{/if} </th> {/if} {if",
+        "pad": " <tr> <th bgcolor=\"#dddddd\"> PHP <br><font size=\"-2\">hello/hello.php</font> </th> <th bgcolor=\"#dddddd\"> HTML <br><font size=\"-2\">hello/hello.pad</fon",
+        "result": ""
+    },
+    "3": {
+        "tag": "{if #onlyResult or $exampleOnlyResult}",
+        "type": "pad",
+        "name": "if",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {if ! #skipOpen} <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {/if} {case $exampleLayout} {when 'above'} {if ! #skipPhp} {if ! #skipHeader} <t",
+        "pad": " <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {case $exampleLayout} {when 'above'} {if ! #skipPhp} {if ! #skipHeader} <tr> <th bgcolor=\"#dddddd",
+        "result": ""
+    },
+    "2": {
+        "tag": "{example 'hello/hello', type='ajax'}",
+        "type": "app",
+        "name": "example",
+        "pair": false,
+        "opt": [],
+        "prm": {
+            "type": "ajax"
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{if #center} <center> {/if} {if #withTitle} <h3>{$exampleTitle}</h3> {/if} {if #onlyResult or $exampleOnlyResult} {get '{$examplePage}'} @else@ {if ! ",
+        "pad": " {if #onlyResult or $exampleOnlyResult} {get '{$examplePage}'} @else@ {if ! #skipOpen} <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {/if} {case",
+        "result": ""
+    },
+    "1": {
+        "tag": "{showPage}",
+        "type": "field",
+        "name": "showPage",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {example '{$go}', type='ajax' } ",
+        "pad": " {example 'hello/hello', type='ajax' } ",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{showPage} {get '{$go}' } @else@ {example '{$go}', type='ajax' } {/showPage}",
+        "pad": "{showPage} {get '{$go}' } @else@ {example '{$go}', type='ajax' } {/showPage}",
+        "result": ""
+    }
+}

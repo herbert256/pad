@@ -1,0 +1,54 @@
+{
+    "3": {
+        "tag": "{notLast}",
+        "type": "tag",
+        "name": "",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " / ",
+        "pad": "",
+        "result": ""
+    },
+    "2": {
+        "tag": "{border@current}",
+        "type": "at",
+        "name": "border",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {$country.id=$country.name@data.mondial} {notLast} / {/notLast} ",
+        "pad": " Germany {notLast} / {/notLast} ",
+        "result": " Belgium / "
+    },
+    "1": {
+        "tag": "{country.id='f0_325'@mondial}",
+        "type": "at",
+        "name": "mondial",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <h3>{$name}</h3> {border@current} {$country.id=$country.name@data.mondial} {notLast} / {/notLast} {/border@current} ",
+        "pad": " <h3>Netherlands</h3> {border@current} {$country.id=$country.name@data.mondial} {notLast} / {/notLast} {/border@current} ",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{country.id='f0_325'@mondial} <h3>{$name}</h3> {border@current} {$country.id=$country.name@data.mondial} {notLast} / {/notLast} {/border@current} {/co",
+        "pad": "{country.id='f0_325'@mondial} <h3>{$name}</h3> {border@current} {$country.id=$country.name@data.mondial} {notLast} / {/notLast} {/border@current} {/co",
+        "result": ""
+    }
+}

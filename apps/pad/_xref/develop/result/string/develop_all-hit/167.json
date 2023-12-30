@@ -1,0 +1,84 @@
+{
+    "5": {
+        "tag": "{page 'lvl_occ/3', type='sandbox', include, ignore}",
+        "type": "pad",
+        "name": "",
+        "pair": false,
+        "opt": [],
+        "prm": {
+            "type": "sandbox",
+            "include": true,
+            "ignore": true
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "",
+        "pad": " <table border='1'> <tr> <td>11</td> <td>12</td> <td>13</td> <td>14</td> <td>15</td> </tr> <tr> <td>21</td> <td>22</td> <td>23</td> <td>24</td> <td>25",
+        "result": ""
+    },
+    "4": {
+        "tag": "{if $allType eq 'example'}",
+        "type": "pad",
+        "name": "if",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <table style=\"border-style: dashed; dotted;\" cellspacing=\"15\"> <tr> <td><center>{page '{$item}', type='{$allType}', include, ignore}</center></td> </",
+        "pad": " <table style=\"border-style: dashed; dotted;\" cellspacing=\"15\"> <tr> <td><center>{page 'lvl_occ/3', type='sandbox', include, ignore}</center></td> </t",
+        "result": ""
+    },
+    "3": {
+        "tag": "{block}",
+        "type": "content",
+        "name": "block",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<table with=\"95%\" border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\"> <tr> <td> <br><br> <h3><a href=\"",
+        "pad": "<table with=\"95%\" border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\"> <tr> <td> <br><br> <h3><a href=\"",
+        "result": ""
+    },
+    "2": {
+        "tag": "{padListFiltered}",
+        "type": "php",
+        "name": "padListFiltered",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {block} <br><br> <h3><a href=\"{$padGo}develop/show&item={$dir}/{$file}\">{$item}</a></h3> {if $allType eq 'example'} {example '{$item}', skipWhenEmpty",
+        "pad": " {block} <br><br> <h3><a href=\"{$padGo}develop/show&item={$dir}/{$file}\">{$item}</a></h3> {if $allType eq 'example'} {example '{$item}', skipWhenEmpty",
+        "result": " <table with=\"95%\" border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\"> <tr> <td> <br><br> <h3><a href="
+    },
+    "1": {
+        "tag": "{block}",
+        "type": "content",
+        "name": "block",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<table with=\"95%\" border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\"> <tr> <td> <center> {showTitle}<h",
+        "pad": "<table with=\"95%\" border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\"> <tr> <td> <center> <h2>Sandbox</",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<html> <head> <title>PAD - {$title}</title> </head> <body> <center> <h1> PAD - <font color=\"red\">P</font>HP <font color=\"red\">A</font>pplication <font",
+        "pad": "<html> <head> <title>PAD - sandbox</title> </head> <body> <center> <h1> PAD - <font color=\"red\">P</font>HP <font color=\"red\">A</font>pplication <font ",
+        "result": ""
+    }
+}

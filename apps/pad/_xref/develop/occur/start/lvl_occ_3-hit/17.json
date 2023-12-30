@@ -1,0 +1,41 @@
+{
+    "2": {
+        "tag": "{column}",
+        "type": "data",
+        "name": "column",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <td>{echo ($row*10) + $column}</td> ",
+        "pad": " <td>{echo ($row*10) + $column}</td> ",
+        "result": ""
+    },
+    "1": {
+        "tag": "{row}",
+        "type": "data",
+        "name": "row",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <tr> {column} <td>{echo ($row*10) + $column}</td> {/column} </tr> ",
+        "pad": " <tr> {column} <td>{echo ($row*10) + $column}</td> {/column} </tr> ",
+        "result": " <tr> <td>11</td> <td>12</td> <td>13</td> <td>14</td> <td>15</td> </tr> <tr> <td>21</td> <td>22</td> <td>23</td> <td>24</td> <td>25</td> </tr> "
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{data 'row' } [1,2,3] {/data} {data 'column'} [1,2,3,4,5] {/data} <table border='1'> {row} <tr> {column} <td>{echo ($row*10) + $column}</td> {/column}",
+        "pad": " <table border='1'> {row} <tr> {column} <td>{echo ($row*10) + $column}</td> {/column} </tr> {/row} </table>",
+        "result": ""
+    }
+}

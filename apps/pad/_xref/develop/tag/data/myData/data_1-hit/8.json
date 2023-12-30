@@ -1,0 +1,54 @@
+{
+    "3": {
+        "tag": "{myData}",
+        "type": "data",
+        "name": "",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <tr> <td>{$name}</td> <td>{$phone}</td> </tr> ",
+        "pad": "",
+        "result": ""
+    },
+    "2": {
+        "tag": "{demo}",
+        "type": "app",
+        "name": "demo",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {data 'myData'} [ { \"name\": \"joe\", \"phone\": \"555-3425\" }, { \"name\": \"jim\", \"phone\": \"555-2364\" }, { \"name\": \"jack\", \"phone\": \"555-3422\" }, { \"name\": ",
+        "pad": " <table border=\"1\"> {myData} <tr> <td>{$name}</td> <td>{$phone}</td> </tr> {/myData} </table> ",
+        "result": ""
+    },
+    "1": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESULT</th> </tr> {demo} {data 'myD",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{table}{demo} {data 'myData'} [ { \"name\": \"joe\", \"phone\": \"555-3425\" }, { \"name\": \"jim\", \"phone\": \"555-2364\" }, { \"name\": \"jack\", \"phone\": \"555-3422\" ",
+        "pad": "{table}{demo} {data 'myData'} [ { \"name\": \"joe\", \"phone\": \"555-3425\" }, { \"name\": \"jim\", \"phone\": \"555-2364\" }, { \"name\": \"jack\", \"phone\": \"555-3422\" ",
+        "result": ""
+    }
+}

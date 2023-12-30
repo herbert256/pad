@@ -1,0 +1,56 @@
+{
+    "3": {
+        "tag": "{cell $-2 + $-1}",
+        "type": "content",
+        "name": "cell",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <td {if $cell EQ 23} bgcolor=\"red\" {/if} > {$cell} </td> ",
+        "pad": " <td {if $cell EQ 23} bgcolor=\"red\" {/if} > {$cell} </td> ",
+        "result": ""
+    },
+    "2": {
+        "tag": "{sequence '1..5'}",
+        "type": "pad",
+        "name": "range",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {cell $-2 + $-1} ",
+        "pad": " {cell $-2 + $-1} ",
+        "result": ""
+    },
+    "1": {
+        "tag": "{sequence '10..30', increment=10}",
+        "type": "pad",
+        "name": "range",
+        "pair": true,
+        "opt": [],
+        "prm": {
+            "increment": 10
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <tr> {sequence '1..5'} {cell $-2 + $-1} {/sequence} </tr> ",
+        "pad": " <tr> {sequence '1..5'} {cell $-2 + $-1} {/sequence} </tr> ",
+        "result": " <tr> <td > 11 </td> <td > 12 </td> <td > 13 </td> <td > 14 </td> <td > 15 </td> </tr> "
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{content 'cell'} <td {if $cell EQ 23} bgcolor=\"red\" {/if} > {$cell} </td> {/content}<table border='1'> {sequence '10..30', increment=10} <tr> {sequenc",
+        "pad": "<table border='1'> {sequence '10..30', increment=10} <tr> {sequence '1..5'} {cell $-2 + $-1} {/sequence} </tr> {/sequence} </table>",
+        "result": ""
+    }
+}

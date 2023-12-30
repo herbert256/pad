@@ -1,0 +1,41 @@
+{
+    "2": {
+        "tag": "{if #secondFile}",
+        "type": "pad",
+        "name": "",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <th bgcolor=\"#dddddd\">{#secondFile}</th> ",
+        "pad": "",
+        "result": ""
+    },
+    "1": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #secondFile} <th bgcolor=\"#dddddd\">{#secondFile}</th> {/if} {if #withPHP} <th bgcolor",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{table} {demo}{range '4..16', name='myRange'}{/demo} {demo}{sequence 'myRange', power=2} {$myRange} {/sequence}{/demo} {demo}{power 2, sequence='myRan",
+        "pad": "{table} {demo}{range '4..16', name='myRange'}{/demo} {demo}{sequence 'myRange', power=2} {$myRange} {/sequence}{/demo} {demo}{power 2, sequence='myRan",
+        "result": ""
+    }
+}

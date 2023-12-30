@@ -1,0 +1,48 @@
+{
+    "2": {
+        "tag": "{get 'develop/show/one', include, ignore, $one='hello/index'}",
+        "type": "pad",
+        "name": "",
+        "pair": false,
+        "opt": [],
+        "prm": {
+            "include": true,
+            "ignore": true
+        },
+        "set-lvl": {
+            "one": "hello/index"
+        },
+        "set-occ": [],
+        "base": "",
+        "pad": " <h3> <font color&eq;\"black\"> Hello World ! </font> </h3> ",
+        "result": ""
+    },
+    "1": {
+        "tag": "{include 'base', noHeader}",
+        "type": "pad",
+        "name": "include",
+        "pair": false,
+        "opt": [],
+        "prm": {
+            "noHeader": true
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<br> {if ! #noHeader} <h2>{$title}</h2> {/if} <table style=\"border-style: dashed; dotted;\" cellspacing=\"15\"><tr><td> <center> {get 'develop/show/one',",
+        "pad": "<br> <table style=\"border-style: dashed; dotted;\" cellspacing=\"15\"><tr><td> <center> {get 'develop/show/one', include, ignore, $one='hello/index'} </c",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{include 'base', noHeader}",
+        "pad": "{include 'base', noHeader}",
+        "result": ""
+    }
+}

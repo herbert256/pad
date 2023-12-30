@@ -1,0 +1,80 @@
+{
+    "5": {
+        "tag": "{lines}",
+        "type": "table",
+        "name": "lines",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <tr> <td> {$customerNumber} </td> <td> {$customerName} </td> <td> {$orderNumber} </td> <td> {$orderDate} </td> <td> {$orderLineNumber} </td> <td> {$p",
+        "pad": " <tr> <td> {$customerNumber} </td> <td> {$customerName} </td> <td> {$orderNumber} </td> <td> {$orderDate} </td> <td> {$orderLineNumber} </td> <td> {$p",
+        "result": ""
+    },
+    "4": {
+        "tag": "{products}",
+        "type": "table",
+        "name": "products",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {lines} <tr> <td> {$customerNumber} </td> <td> {$customerName} </td> <td> {$orderNumber} </td> <td> {$orderDate} </td> <td> {$orderLineNumber} </td> ",
+        "pad": " {lines} <tr> <td> {$customerNumber} </td> <td> {$customerName} </td> <td> {$orderNumber} </td> <td> {$orderDate} </td> <td> {$orderLineNumber} </td> ",
+        "result": ""
+    },
+    "3": {
+        "tag": "{details}",
+        "type": "table",
+        "name": "details",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {products} {lines} <tr> <td> {$customerNumber} </td> <td> {$customerName} </td> <td> {$orderNumber} </td> <td> {$orderDate} </td> <td> {$orderLineNum",
+        "pad": " {products} {lines} <tr> <td> {$customerNumber} </td> <td> {$customerName} </td> <td> {$orderNumber} </td> <td> {$orderDate} </td> <td> {$orderLineNum",
+        "result": ""
+    },
+    "2": {
+        "tag": "{orders}",
+        "type": "table",
+        "name": "orders",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {details} {products} {lines} <tr> <td> {$customerNumber} </td> <td> {$customerName} </td> <td> {$orderNumber} </td> <td> {$orderDate} </td> <td> {$or",
+        "pad": " {details} {products} {lines} <tr> <td> {$customerNumber} </td> <td> {$customerName} </td> <td> {$orderNumber} </td> <td> {$orderDate} </td> <td> {$or",
+        "result": ""
+    },
+    "1": {
+        "tag": "{customers}",
+        "type": "table",
+        "name": "customers",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {orders} {details} {products} {lines} <tr> <td> {$customerNumber} </td> <td> {$customerName} </td> <td> {$orderNumber} </td> <td> {$orderDate} </td> ",
+        "pad": " {orders} {details} {products} {lines} <tr> <td> {$customerNumber} </td> <td> {$customerName} </td> <td> {$orderNumber} </td> <td> {$orderDate} </td> ",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{set $customerNumber = 495} <table border=1> {customers} {orders} {details} {products} {lines} <tr> <td> {$customerNumber} </td> <td> {$customerName} ",
+        "pad": " <table border=1> {customers} {orders} {details} {products} {lines} <tr> <td> {$customerNumber} </td> <td> {$customerName} </td> <td> {$orderNumber} <",
+        "result": ""
+    }
+}

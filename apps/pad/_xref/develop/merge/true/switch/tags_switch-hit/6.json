@@ -1,0 +1,43 @@
+{
+    "2": {
+        "tag": "{switch 'pink' , 'orange'}",
+        "type": "pad",
+        "name": "",
+        "pair": false,
+        "opt": {
+            "2": "orange"
+        },
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "",
+        "pad": "",
+        "result": ""
+    },
+    "1": {
+        "tag": "{users}",
+        "type": "array",
+        "name": "users",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <tr bgcolor=\"{switch 'pink' , 'orange'}\"> <td>{$name}</td> <td>{$phone}</td> </tr> ",
+        "pad": " <tr bgcolor=\"{switch 'pink' , 'orange'}\"> <td>{$name}</td> <td>{$phone}</td> </tr> ",
+        "result": " <tr bgcolor=\"pink\"> <td>bob</td> <td>555-3425</td> </tr> <tr bgcolor=\"orange\"> <td>jim</td> <td>555-4364</td> </tr> <tr bgcolor=\"pink\"> <td>joe</td> "
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<table border=\"1\"> {users} <tr bgcolor=\"{switch 'pink' , 'orange'}\"> <td>{$name}</td> <td>{$phone}</td> </tr> {/users} </table>",
+        "pad": "<table border=\"1\"> {users} <tr bgcolor=\"{switch 'pink' , 'orange'}\"> <td>{$name}</td> <td>{$phone}</td> </tr> {/users} </table>",
+        "result": ""
+    }
+}

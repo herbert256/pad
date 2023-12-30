@@ -1,0 +1,67 @@
+{
+    "4": {
+        "tag": "{demo}",
+        "type": "app",
+        "name": "demo",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {data 'myArray'} [] {/data} ",
+        "pad": " {data 'myArray'} [] {/data} ",
+        "result": ""
+    },
+    "3": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESULT</th> </tr> {demo} {data 'myA",
+        "result": ""
+    },
+    "2": {
+        "tag": "{PAD}",
+        "type": "internal",
+        "name": "",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{table}{demo} {data 'myArray'} [] {/data} {/demo}{demo} {content 'nothing'} Nothing to see here {/content} {/demo}{demo} {myArray else='nothing'} Occu",
+        "pad": "{table}{demo} {data 'myArray'} [] {/data} {/demo}{demo} {content 'nothing'} Nothing to see here {/content} {/demo}{demo} {myArray else='nothing'} Occu",
+        "result": ""
+    },
+    "1": {
+        "tag": "{get 'constructs/else_3'}",
+        "type": "pad",
+        "name": "",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "",
+        "pad": "",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "When the result of a PAD tag is false the part after {at 'else'} is used. {get 'constructs/else_1'} <hr>The else context can also be given with the 'e",
+        "pad": "When the result of a PAD tag is false the part after <b>&at;</b><b>else</b><b>&at;</b> is used. <p> <table border&eq;\"1\" cellpadding&eq;\"10\" cellspaci",
+        "result": ""
+    }
+}

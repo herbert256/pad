@@ -1,0 +1,56 @@
+{
+    "3": {
+        "tag": "{sequence list='11;15;33;23;7;123;65;3;123'}",
+        "type": "pad",
+        "name": "list",
+        "pair": true,
+        "opt": [],
+        "prm": {
+            "list": "11;15;33;23;7;123;65;3;123"
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {$list} ",
+        "pad": " {$list} ",
+        "result": " 11 15 33 23 7 123 65 3 "
+    },
+    "2": {
+        "tag": "{demo}",
+        "type": "app",
+        "name": "demo",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{sequence list='11;15;33;23;7;123;65;3;123'} {$list} {/sequence}",
+        "pad": "{sequence list='11;15;33;23;7;123;65;3;123'} {$list} {/sequence}",
+        "result": ""
+    },
+    "1": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESULT</th> </tr> <tr><td style=\"ve",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{table} {demo}{sequence repeat='abc', rows=10} {$repeat} {/sequence}{/demo} {demo}{sequence lucky, rows=20} {$lucky} {/sequence}{/demo} {demo}{sequenc",
+        "pad": "{table} {demo}{sequence repeat='abc', rows=10} {$repeat} {/sequence}{/demo} {demo}{sequence lucky, rows=20} {$lucky} {/sequence}{/demo} {demo}{sequenc",
+        "result": ""
+    }
+}

@@ -1,0 +1,67 @@
+{
+    "4": {
+        "tag": "{if #firstFile}",
+        "type": "pad",
+        "name": "",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <th bgcolor=\"#dddddd\">{#firstFile}</th> ",
+        "pad": "",
+        "result": ""
+    },
+    "3": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "result": ""
+    },
+    "2": {
+        "tag": "{PAD}",
+        "type": "internal",
+        "name": "",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{content 'myContent'} <table border=1 valign=center> <tr> <th> </th> <th> first </th> <th> border </th> <th> middle </th> <th> last </th> <th> even </",
+        "pad": " {table} {demo} {myContent} {staff} <tr> <td> {$name} </td> <td> {first} X {/first} </td> <td> {border} X {/border} </td> <td> {middle} X {/middle} </",
+        "result": ""
+    },
+    "1": {
+        "tag": "{get 'properties/doc1'}",
+        "type": "pad",
+        "name": "",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "",
+        "pad": "",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "Tag properties give information about a tag, they can be used: <p><table border=0> <tr><td>- as a pad tag </td><td>{source}{first} ... {/first}{/sourc",
+        "pad": "Tag properties give information about a tag, they can be used: <p><table border=0> <tr><td>- as a pad tag </td><td><pre><code style=\"color: #000000\"><",
+        "result": ""
+    }
+}

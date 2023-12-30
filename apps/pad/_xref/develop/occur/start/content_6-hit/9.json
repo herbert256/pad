@@ -1,0 +1,59 @@
+{
+    "3": {
+        "tag": "{myFunction content='myContent', merge='replace'}",
+        "type": "php",
+        "name": "myFunction",
+        "pair": true,
+        "opt": [],
+        "prm": {
+            "content": "myContent",
+            "merge": "replace"
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " This is content from the &open;content&close; tag <br> ",
+        "pad": " This is content from the &open;content&close; tag <br> ",
+        "result": ""
+    },
+    "2": {
+        "tag": "{demo}",
+        "type": "app",
+        "name": "demo",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {myFunction content='myContent', merge='replace'} This is the base content <br> {/myFunction} ",
+        "pad": " {myFunction content='myContent', merge='replace'} This is the base content <br> {/myFunction} ",
+        "result": ""
+    },
+    "1": {
+        "tag": "{table withPHP}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": {
+            "withPHP": true
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">PHP</th> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESU",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{table withPHP}{demo} {content 'myContent'} This is content from the &open;content&close; tag <br> {/content} {/demo}{demo} {myFunction content='myCon",
+        "pad": "{table withPHP}{demo} {content 'myContent'} This is content from the &open;content&close; tag <br> {/content} {/demo}{demo} {myFunction content='myCon",
+        "result": ""
+    }
+}

@@ -1,0 +1,56 @@
+{
+    "3": {
+        "tag": "{hexagonal rows=15}",
+        "type": "sequence",
+        "name": "hexagonal",
+        "pair": true,
+        "opt": [],
+        "prm": {
+            "rows": 15
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {$hexagonal} ",
+        "pad": " {$hexagonal} ",
+        "result": " 1 6 15 28 45 66 91 120 153 190 231 276 325 378 "
+    },
+    "2": {
+        "tag": "{demo}",
+        "type": "app",
+        "name": "demo",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{hexagonal rows=15} {$hexagonal} {/hexagonal}",
+        "pad": "{hexagonal rows=15} {$hexagonal} {/hexagonal}",
+        "result": ""
+    },
+    "1": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESULT</th> </tr> <tr><td style=\"ve",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{table} {demo}{sequence gnomonic, rows=15} {$gnomonic} {/sequence}{/demo} {demo}{sequence triangular, rows=15} {$triangular} {/sequence}{/demo} {demo}",
+        "pad": "{table} {demo}{sequence gnomonic, rows=15} {$gnomonic} {/sequence}{/demo} {demo}{sequence triangular, rows=15} {$triangular} {/sequence}{/demo} {demo}",
+        "result": ""
+    }
+}

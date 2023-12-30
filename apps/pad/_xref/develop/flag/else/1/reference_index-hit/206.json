@@ -1,0 +1,72 @@
+{
+    "4": {
+        "tag": "{if $link}",
+        "type": "pad",
+        "name": "",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <a href=\"{$padGo}reference/xref&first={$link}&for={$type|url}&xitem={$item}\">{$item}</a> ",
+        "pad": "",
+        "result": ""
+    },
+    "3": {
+        "tag": "{getXref 'Sequences', 'sequences/types', 'sequence/types'}",
+        "type": "php",
+        "name": "getXref",
+        "pair": true,
+        "opt": {
+            "2": "sequences/types",
+            "3": "sequence/types"
+        },
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {if $link} <a href=\"{$padGo}reference/xref&first={$link}&for={$type|url}&xitem={$item}\">{$item}</a> @else@ {$item} {/if} &nbsp; ",
+        "pad": " {if $link} <a href=\"{$padGo}reference/xref&first={$link}&for={$type|url}&xitem={$item}\">{$item}</a> @else@ {$item} {/if} &nbsp; ",
+        "result": " antiprime &nbsp; bell &nbsp; biquadratic &nbsp; catalan &nbsp; caterer &nbsp; ceil &nbsp; composite &nbsp; cubic &nbsp; "
+    },
+    "2": {
+        "tag": "{true data='xref'}",
+        "type": "pad",
+        "name": "xref",
+        "pair": true,
+        "opt": [],
+        "prm": {
+            "data": "xref"
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {range '1..{$lvl}'} <blockquote> {/range} <h3>{$type}</h3> <blockquote> {getXref '{!type}', '{$xref}', '{$dir}'} {if $link} <a href=\"{$padGo}referenc",
+        "pad": " <blockquote> <h3>Sequences</h3> <blockquote> {getXref 'Sequences', 'sequences/types', 'sequence/types'} {if $link} <a href=\"{$padGo}reference/xref&fi",
+        "result": " <blockquote> <h3>Tags</h3> <blockquote> ajax &nbsp; array &nbsp; call &nbsp; case &nbsp; check &nbsp; close &nbsp; content &nbsp; count &nbsp; curl &"
+    },
+    "1": {
+        "tag": "{block}",
+        "type": "content",
+        "name": "block",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<table with=\"95%\" border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\"> <tr> <td> {true data='xref'} {ra",
+        "pad": "<table with=\"95%\" border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\"> <tr> <td> {true data='xref'} {ra",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<blockquote> {block} {true data='xref'} {range '1..{$lvl}'} <blockquote> {/range} <h3>{$type}</h3> <blockquote> {getXref '{!type}', '{$xref}', '{$dir}",
+        "pad": "<blockquote> {block} {true data='xref'} {range '1..{$lvl}'} <blockquote> {/range} <h3>{$type}</h3> <blockquote> {getXref '{!type}', '{$xref}', '{$dir}",
+        "result": ""
+    }
+}

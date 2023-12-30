@@ -3,8 +3,7 @@
 
   function padXref ( $dir1, $dir2, $dir3='' ) {
 
-    global $padXrefId;
-    global $padXrefXref, $padXrefDevelop, $padXrefXml, $padXrefTrace, $padXrefTree, $padXrefManual;
+    global $padXrefId, $padXrefXref, $padXrefDevelop, $padXrefXml, $padXrefTrace, $padXrefTree, $padXrefManual;
 
     $padXrefId++;
 
@@ -74,32 +73,37 @@
       foreach ($explode1 as $value1)
         foreach ($explode2 as $value2)
           if ( ctype_alpha ( $value1 ) and ctype_alpha ( $value2) )
-            padXrefManual4 ( padApp . '_xref', $dir1, $value1, $value2 );
+            padXrefDevelopManual ( 'manual', ".hit", $dir1, $value1, $value2 );
 
     if ( $dir2 and ! $dir3 )
       foreach ($explode1 as $value1)
-          if ( ctype_alpha ( $value1 ) )
-            padXrefManual4 ( padApp . '_xref', $dir1, $value1, $dir3 );
+        if ( ctype_alpha ( $value1 ) )
+          padXrefDevelopManual ( 'manual', ".hit", $dir1, $value1, $dir3 );
 
   }
 
 
-  function padXrefManual4 ( $dir, $dir1, $dir2, $dir3 ) {
+  function padXrefDevelop ( $dir1, $dir2, $dir3 ) {
 
-    global $padStartPage;
+    global $padLvlId;
 
-    $dir .= "/$dir1/$dir2";
+    padXrefDevelopManual ( 'develop', "-hit/$padLvlId.json", $dir1, $dir2, $dir3 );
+
+  }
+
+
+  function padXrefDevelopManual ( $type, $hit, $dir1, $dir2, $dir3 ) {
+
+    global $padStartPage, $padLvlId, $padXrefFile;
+
+    $file = "_xref/$type/$dir1/$dir2";
 
     if ( $dir3 !== '' )
-      $dir .= "/" . str_replace ( '/' , '@', padFileCorrect ($dir3 ) );
+      $file .= "/" . str_replace ( '/' , '@', $dir3 );
 
-    if ( ! file_exists ( $dir ) )
-      mkdir ( $dir, 0777, TRUE );
+    $file .= "/" .  str_replace ( '/' , '@', $padStartPage ) . $hit;
 
-    $file = "$dir/" .  str_replace ( '/' , '@', padFileCorrect ($padStartPage ) ) . '.hit';
-
-    if ( ! file_exists ( $file ) )
-      touch ( $file );
+    padInfoFile ( $file, padXrefData (), 1 );
 
   }
 
@@ -124,25 +128,6 @@
       $padXrefStore [$padXrefLvl] ['end']  [] = $xref;
     else
       $padXrefStore [$padXrefLvl] ['occurs'] [$padXrefOcc] ['xref'] [] = $xref;
-
-  }
-
-
-  function padXrefDevelop ( $dir1, $dir2, $dir3 ) {
-
-    global $padStartPage, $padLvlId, $padXrefFile;
-
-    $file = "xref/develop/$dir1/$dir2";
-
-    if ( $dir3 !== '' )
-      $file .= "/" . str_replace ( '/' , '@', $dir3 );
-
-    $file .= "/" .  str_replace ( '/' , '@', $padStartPage ) . "-hit/$padLvlId.json";
-
-    if ( file_exists ( padData . $file ) )
-      return;
-
-    padInfoFile ( $file, padXrefData () );
 
   }
 
@@ -175,14 +160,9 @@
 
     $file .= "/$dir1/$dir2";    
     if ( $dir3 !== '' )
-      $file .= "/" . str_replace ( '/' , '@', padFileCorrect ($dir3 ) );
+      $file .= "/" . str_replace ( '/' , '@', $dir3 );
 
-    $file .= ".json";
-
-    if ( file_exists ( padData . $file ) )
-      return;
-
-    padInfoFile ( $file, padXrefData () );
+    padInfoFile ( "$file.json", padXrefData () );
 
   }
 
@@ -196,7 +176,7 @@
     else
       $xref = $dir2;
   
-    padInfoFile ( padXrefLocation () . "xref/$dir1/$xref-$padXrefId.txt", padXrefData () );    
+    padInfoFile ( padXrefLocation () . "xref/$dir1/$xref-$padXrefId.json", padXrefData () );    
 
   }
 
@@ -303,6 +283,7 @@
 
   }
 
+
   function padXrefParts ( $line ) {
 
     $parts = preg_split ("/[\s]+/", $line, 3, PREG_SPLIT_NO_EMPTY);
@@ -312,6 +293,7 @@
     elseif ( count ($parts) == 1 ) padXrefWrite ( "<$parts[0] />" );
 
   }
+
 
   function padXrefOccurEnd ( $event ) {
 

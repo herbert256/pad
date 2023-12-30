@@ -8,4 +8,7 @@
   $padXmlLevel  = [];
   $padXmlEvents = [];
 
+  if ( file_exists ( padData . "xml/$padStartPage.xml" ) )
+    unlink ( padData . "xml/$padStartPage.xml" ) ;
+
 ?>

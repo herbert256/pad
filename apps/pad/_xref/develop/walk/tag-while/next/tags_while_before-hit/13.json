@@ -1,0 +1,28 @@
+{
+    "1": {
+        "tag": "{while $abc LE 10}",
+        "type": "pad",
+        "name": "while",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {$abc} {set $abc = $abc + 1} ",
+        "pad": 10,
+        "result": " 1 2 3 4 5 6 7 8 9 10 "
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{set $abc = 1} {while $abc LE 10} {$abc} {set $abc = $abc + 1} {/while}",
+        "pad": " {while $abc LE 10} {$abc} {set $abc = $abc + 1} {/while}",
+        "result": ""
+    }
+}

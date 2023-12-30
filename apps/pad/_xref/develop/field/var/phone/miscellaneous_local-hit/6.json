@@ -1,0 +1,31 @@
+{
+    "1": {
+        "tag": "{pad data='departments/departments.xml',  content='myContent'}",
+        "type": "pad",
+        "name": "departments",
+        "pair": false,
+        "opt": [],
+        "prm": {
+            "data": "departments/departments.xml",
+            "content": "myContent"
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <tr> <td> {$department} </td> <td> {$manager} </td> <td> {$phone} </td> </tr> ",
+        "pad": " <tr> <td> Build </td> <td> Jerry </td> <td> {$phone} </td> </tr> ",
+        "result": " <h3>departments/departments.xml</h3> <table border=1> <tr> <th> department </th> <th> manager </th> <th> phone </th> </tr> <tr> <td> IT </td> <td> Bo"
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{content 'myContent'} <h3>{&departments:option:data}</h3> <table border=1> <tr> <th> department </th> <th> manager </th> <th> phone </th> </tr> @start",
+        "pad": " <h3>departments/departments</h3> <table border=1> <tr> <th> department </th> <th> manager </th> <th> phone </th> </tr> <tr> <td> IT </td> <td> Bob </",
+        "result": ""
+    }
+}

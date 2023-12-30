@@ -1,0 +1,41 @@
+{
+    "2": {
+        "tag": "{demo}",
+        "type": "app",
+        "name": "demo",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{sequence perfect, rows=5} {$perfect} {/sequence}",
+        "pad": "{sequence perfect, rows=5} {$perfect} {/sequence}",
+        "result": ""
+    },
+    "1": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESULT</th> </tr> <tr><td style=\"ve",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{table} {demo}{sequence repeat='abc', rows=10} {$repeat} {/sequence}{/demo} {demo}{sequence lucky, rows=20} {$lucky} {/sequence}{/demo} {demo}{sequenc",
+        "pad": "{table} {demo}{sequence repeat='abc', rows=10} {$repeat} {/sequence}{/demo} {demo}{sequence lucky, rows=20} {$lucky} {/sequence}{/demo} {demo}{sequenc",
+        "result": ""
+    }
+}

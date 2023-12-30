@@ -1,0 +1,41 @@
+{
+    "2": {
+        "tag": "{increment $abc}",
+        "type": "pad",
+        "name": "",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "",
+        "pad": "",
+        "result": ""
+    },
+    "1": {
+        "tag": "{until $abc GT 10}",
+        "type": "pad",
+        "name": "until",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {$abc} {increment $abc} ",
+        "pad": " 1 {increment $abc} ",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{set $abc = 1} {until $abc GT 10} {$abc} {increment $abc} {/until}",
+        "pad": " {until $abc GT 10} {$abc} {increment $abc} {/until}",
+        "result": ""
+    }
+}

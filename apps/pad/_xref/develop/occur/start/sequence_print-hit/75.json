@@ -1,0 +1,73 @@
+{
+    "4": {
+        "tag": "{notLast}",
+        "type": "tag",
+        "name": "notLast",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": ",",
+        "pad": ",",
+        "result": ""
+    },
+    "3": {
+        "tag": "{sequence range='a..k', print, open='(', glue=',', close=')'}",
+        "type": "pad",
+        "name": "range",
+        "pair": false,
+        "opt": [],
+        "prm": {
+            "range": "a..k",
+            "print": true,
+            "open": "(",
+            "glue": ",",
+            "close": ")"
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{first}({/first}{$range}{notLast},{/notLast}{last}){/last}",
+        "pad": "j{notLast},{/notLast}{last}){/last}",
+        "result": "(a,b,c,d,e,f,g,h,i,"
+    },
+    "2": {
+        "tag": "{demo}",
+        "type": "app",
+        "name": "demo",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {sequence range='a..k', print, open='(', glue=',', close=')'} ",
+        "pad": " {sequence range='a..k', print, open='(', glue=',', close=')'} ",
+        "result": ""
+    },
+    "1": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESULT</th> </tr> <tr><td style=\"ve",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{table} {demo} {sequence range='a..k', print} {/demo} {demo} {sequence range='a..k', print, open='(', close=')'} {/demo} {demo} {sequence range='a..k'",
+        "pad": "{table} {demo} {sequence range='a..k', print} {/demo} {demo} {sequence range='a..k', print, open='(', close=')'} {/demo} {demo} {sequence range='a..k'",
+        "result": ""
+    }
+}

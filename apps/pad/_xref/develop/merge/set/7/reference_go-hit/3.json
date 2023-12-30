@@ -1,0 +1,43 @@
+{
+    "2": {
+        "tag": "{example 'hello/hello', type='ajax'}",
+        "type": "app",
+        "name": "",
+        "pair": false,
+        "opt": [],
+        "prm": {
+            "type": "ajax"
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "",
+        "pad": "",
+        "result": ""
+    },
+    "1": {
+        "tag": "{showPage}",
+        "type": "field",
+        "name": "showPage",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {example '{$go}', type='ajax' } ",
+        "pad": " {example 'hello/hello', type='ajax' } ",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{showPage} {get '{$go}' } @else@ {example '{$go}', type='ajax' } {/showPage}",
+        "pad": "{showPage} {get '{$go}' } @else@ {example '{$go}', type='ajax' } {/showPage}",
+        "result": ""
+    }
+}

@@ -1,0 +1,80 @@
+{
+    "5": {
+        "tag": "{true}",
+        "type": "pad",
+        "name": "true",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <tr> <td> {$name} </td> <td> {if &staff:first} X {/if} </td> <td> {if &staff:border} X {/if} </td> <td> {if &staff:middle} X {/if} </td> <td> {if &st",
+        "pad": " <tr> <td> {$name} </td> <td> {if &staff:first} X {/if} </td> <td> {if &staff:border} X {/if} </td> <td> {if &staff:middle} X {/if} </td> <td> {if &st",
+        "result": ""
+    },
+    "4": {
+        "tag": "{staff}",
+        "type": "local",
+        "name": "staff",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {true} <tr> <td> {$name} </td> <td> {if &staff:first} X {/if} </td> <td> {if &staff:border} X {/if} </td> <td> {if &staff:middle} X {/if} </td> <td> ",
+        "pad": " {true} <tr> <td> {$name} </td> <td> {if &staff:first} X {/if} </td> <td> {if &staff:border} X {/if} </td> <td> {if &staff:middle} X {/if} </td> <td> ",
+        "result": " <tr> <td> joe </td> <td> X </td> <td> X </td> <td> </td> <td> </td> <td> </td> <td> X </td> </tr> <tr> <td> jim </td> <td> </td> <td> </td> <td> X </"
+    },
+    "3": {
+        "tag": "{myContent}",
+        "type": "content",
+        "name": "myContent",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <table border=1 valign=center> <tr> <th> </th> <th> first </th> <th> border </th> <th> middle </th> <th> last </th> <th> even </th> <th> odd </th> </",
+        "pad": " <table border=1 valign=center> <tr> <th> </th> <th> first </th> <th> border </th> <th> middle </th> <th> last </th> <th> even </th> <th> odd </th> </",
+        "result": ""
+    },
+    "2": {
+        "tag": "{demo}",
+        "type": "app",
+        "name": "demo",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {myContent} {staff} {true} <tr> <td> {$name} </td> <td> {if &staff:first} X {/if} </td> <td> {if &staff:border} X {/if} </td> <td> {if &staff:middle}",
+        "pad": " {myContent} {staff} {true} <tr> <td> {$name} </td> <td> {if &staff:first} X {/if} </td> <td> {if &staff:border} X {/if} </td> <td> {if &staff:middle}",
+        "result": ""
+    },
+    "1": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESULT</th> </tr> <tr><td style=\"ve",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{content 'myContent'} <table border=1 valign=center> <tr> <th> </th> <th> first </th> <th> border </th> <th> middle </th> <th> last </th> <th> even </",
+        "pad": " {table}{demo} {myContent} {staff} {true} <tr> <td> {$name} </td> <td> {first 'staff'} X {/first} </td> <td> {border 'staff'} X {/border} </td> <td> {",
+        "result": ""
+    }
+}

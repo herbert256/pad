@@ -1,0 +1,121 @@
+{
+    "8": {
+        "tag": "{offices}",
+        "type": "table",
+        "name": "offices",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <tr> <td> {$lastName}, {$firstName} </td> <td> {$city} </td> </tr> ",
+        "pad": " <tr> <td> Thompson, Leslie </td> <td> {$city} </td> </tr> ",
+        "result": ""
+    },
+    "7": {
+        "tag": "{employees}",
+        "type": "table",
+        "name": "employees",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {offices} <tr> <td> {$lastName}, {$firstName} </td> <td> {$city} </td> </tr> {/offices} ",
+        "pad": " {offices} <tr> <td> {$lastName}, {$firstName} </td> <td> {$city} </td> </tr> {/offices} ",
+        "result": " <tr> <td> Bondur, Gerard </td> <td> Paris </td> </tr> <tr> <td> Bondur, Loui </td> <td> Paris </td> </tr> <tr> <td> Bott, Larry </td> <td> London </t"
+    },
+    "6": {
+        "tag": "{PAD}",
+        "type": "internal",
+        "name": "",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<table> <tr> <td> <table border=1> {offices sort} {employees} <tr> <td> {$city} </td> <td> {$lastName}, {$firstName} </td> </tr> {/employees} {/office",
+        "pad": "<table> <tr> <td> <table border=1> <tr> <td> San Francisco </td> <td> Bow, Anthony </td> </tr> <tr> <td> San Francisco </td> <td> Firrelli, Jeff </td>",
+        "result": ""
+    },
+    "5": {
+        "tag": "{get 'classicModels/offices'}",
+        "type": "pad",
+        "name": "",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "",
+        "pad": "",
+        "result": ""
+    },
+    "4": {
+        "tag": "{if ! #skipResult}",
+        "type": "pad",
+        "name": "if",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <td style=\"vertical-align:top\">{get '{$examplePage}'}</td> ",
+        "pad": " <td style=\"vertical-align:top\">{get 'classicModels/offices'}</td> ",
+        "result": ""
+    },
+    "3": {
+        "tag": "{case $exampleLayout}",
+        "type": "pad",
+        "name": "case",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {if ! #skipHeader} <tr> {if ! #skipPhp} <th bgcolor=\"#dddddd\"> PHP {if ! #skipNames}<br><font size=\"-2\">{$exampleFilePhp}</font>{/if} </th> {/if} {if",
+        "pad": " <tr> <th bgcolor=\"#dddddd\"> PHP <br><font size=\"-2\"></font> </th> <th bgcolor=\"#dddddd\"> HTML <br><font size=\"-2\">classicModels/offices.pad</font> </",
+        "result": ""
+    },
+    "2": {
+        "tag": "{if #onlyResult or $exampleOnlyResult}",
+        "type": "pad",
+        "name": "if",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {if ! #skipOpen} <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {/if} {case $exampleLayout} {when 'above'} {if ! #skipPhp} {if ! #skipHeader} <t",
+        "pad": " <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {case $exampleLayout} {when 'above'} {if ! #skipPhp} {if ! #skipHeader} <tr> <th bgcolor=\"#dddddd",
+        "result": ""
+    },
+    "1": {
+        "tag": "{example 'classicModels/offices',     withTitle}",
+        "type": "app",
+        "name": "example",
+        "pair": false,
+        "opt": [],
+        "prm": {
+            "withTitle": true
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{if #center} <center> {/if} {if #withTitle} <h3>{$exampleTitle}</h3> {/if} {if #onlyResult or $exampleOnlyResult} {get '{$examplePage}'} @else@ {if ! ",
+        "pad": " <h3>offices</h3> {if #onlyResult or $exampleOnlyResult} {get '{$examplePage}'} @else@ {if ! #skipOpen} <table border=\"1\" cellpadding=\"10\" cellspacing",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<center> <p>Some PAD pages based on the Classic Models database as found on <a href=\"https://www.mysqltutorial.org/mysql-sample-database.aspx\">http://",
+        "pad": "<center> <p>Some PAD pages based on the Classic Models database as found on <a href=\"https://www.mysqltutorial.org/mysql-sample-database.aspx\">http://",
+        "result": ""
+    }
+}

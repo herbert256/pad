@@ -1,0 +1,41 @@
+{
+    "2": {
+        "tag": "{demo}",
+        "type": "app",
+        "name": "demo",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{mySeq shift} {$mySeq} {/mySeq}",
+        "pad": 11,
+        "result": 11
+    },
+    "1": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESULT</th> </tr> <tr><td style=\"ve",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{table} {demo}{range '11..40', store='mySeq'}{/demo} {demo}{mySeq} {$mySeq} {/mySeq}{/demo} {demo}{mySeq shift} {$mySeq} {/mySeq}{/demo} {demo}{mySeq ",
+        "pad": "{table} {demo}{range '11..40', store='mySeq'}{/demo} {demo}{mySeq} {$mySeq} {/mySeq}{/demo} {demo}{mySeq shift} {$mySeq} {/mySeq}{/demo} {demo}{mySeq ",
+        "result": ""
+    }
+}

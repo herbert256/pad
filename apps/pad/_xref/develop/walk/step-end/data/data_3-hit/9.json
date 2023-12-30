@@ -1,0 +1,54 @@
+{
+    "3": {
+        "tag": "{data 'myCsv'}",
+        "type": "pad",
+        "name": "data",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " name,phone {myJson} {$name}, {$phone} {/myJson} ",
+        "pad": " name,phone bob, 555-5555 jim, 555-6666 joe, 555-7777 jerry, 555-8888 ",
+        "result": " name,phone bob, 555-5555 jim, 555-6666 joe, 555-7777 jerry, 555-8888 "
+    },
+    "2": {
+        "tag": "{demo}",
+        "type": "app",
+        "name": "demo",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {data 'myJson'} [ { \"name\": \"bob\", \"phone\": \"555-5555\" }, { \"name\": \"jim\", \"phone\": \"555-6666\" }, { \"name\": \"joe\", \"phone\": \"555-7777\" }, { \"name\": \"",
+        "pad": " {data} name,phone {myJson} {$name}, {$phone} {/myJson} {/data 'myCsv'} {data} <records> {myCsv} <record name=\"{$name}\" phone=\"{$phone}\"/> {/myCsv} </",
+        "result": ""
+    },
+    "1": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESULT</th> </tr> {demo} {data 'myJ",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{table}{demo} {data 'myJson'} [ { \"name\": \"bob\", \"phone\": \"555-5555\" }, { \"name\": \"jim\", \"phone\": \"555-6666\" }, { \"name\": \"joe\", \"phone\": \"555-7777\" }",
+        "pad": "{table}{demo} {data 'myJson'} [ { \"name\": \"bob\", \"phone\": \"555-5555\" }, { \"name\": \"jim\", \"phone\": \"555-6666\" }, { \"name\": \"joe\", \"phone\": \"555-7777\" }",
+        "result": ""
+    }
+}

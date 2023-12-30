@@ -1,0 +1,57 @@
+{
+    "3": {
+        "tag": "{if ! #skipClose}",
+        "type": "pad",
+        "name": "if",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " </table> ",
+        "pad": " </table> ",
+        "result": ""
+    },
+    "2": {
+        "tag": "{if #onlyResult or $exampleOnlyResult}",
+        "type": "pad",
+        "name": "if",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {if ! #skipOpen} <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {/if} {case $exampleLayout} {when 'above'} {if ! #skipPhp} {if ! #skipHeader} <t",
+        "pad": " <tr> <th bgcolor=\"#dddddd\"> PHP <br><font size=\"-2\">_callbacks/demand.php</font> </th> <th bgcolor=\"#dddddd\"> HTML <br><font size=\"-2\">callback/deman",
+        "result": ""
+    },
+    "1": {
+        "tag": "{example 'callback/demand', php='_callbacks/demand.php', skipOpen}",
+        "type": "app",
+        "name": "example",
+        "pair": false,
+        "opt": [],
+        "prm": {
+            "php": "_callbacks/demand.php",
+            "skipOpen": true
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{if #center} <center> {/if} {if #withTitle} <h3>{$exampleTitle}</h3> {/if} {if #onlyResult or $exampleOnlyResult} {get '{$examplePage}'} @else@ {if ! ",
+        "pad": " {if #onlyResult or $exampleOnlyResult} {get '{$examplePage}'} @else@ {if ! #skipOpen} <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {/if} {case",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{block} <p> It's possible to put a PHP file in the directory '_callbacks' that is called back at the processing of a pad tag.<br> - With option 'befor",
+        "pad": "<table with=\"95%\" border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\"> <tr> <td> <p> It's possible to p",
+        "result": ""
+    }
+}

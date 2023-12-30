@@ -1,0 +1,93 @@
+{
+    "6": {
+        "tag": "{true}",
+        "type": "pad",
+        "name": "",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <tr> <td> {$name} </td> <td> {&staff:name} </td> <td> {&staff:count} </td> <td> {&staff:key} </td> <td> {&staff:current} </td> <td> {&staff:done} </t",
+        "pad": "",
+        "result": ""
+    },
+    "5": {
+        "tag": "{true}",
+        "type": "pad",
+        "name": "true",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {true} <tr> <td> {$name} </td> <td> {&staff:name} </td> <td> {&staff:count} </td> <td> {&staff:key} </td> <td> {&staff:current} </td> <td> {&staff:do",
+        "pad": " {true} <tr> <td> {$name} </td> <td> {&staff:name} </td> <td> {&staff:count} </td> <td> {&staff:key} </td> <td> {&staff:current} </td> <td> {&staff:do",
+        "result": ""
+    },
+    "4": {
+        "tag": "{staff}",
+        "type": "local",
+        "name": "staff",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {true} {true} <tr> <td> {$name} </td> <td> {&staff:name} </td> <td> {&staff:count} </td> <td> {&staff:key} </td> <td> {&staff:current} </td> <td> {&s",
+        "pad": " {true} {true} <tr> <td> {$name} </td> <td> {&staff:name} </td> <td> {&staff:count} </td> <td> {&staff:key} </td> <td> {&staff:current} </td> <td> {&s",
+        "result": " <tr> <td> joe </td> <td> staff </td> <td> 5 </td> <td> 0 </td> <td> 1 </td> <td> 0 </td> <td> 4 </td> </tr> <tr> <td> jim </td> <td> staff </td> <td>"
+    },
+    "3": {
+        "tag": "{myContent}",
+        "type": "content",
+        "name": "myContent",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <table border=1> <tr> <th> </th> <th> name </th> <th> count </th> <th> key </th> <th> current </th> <th> done </th> <th> remain </th> </tr> {staff} {",
+        "pad": " <table border=1> <tr> <th> </th> <th> name </th> <th> count </th> <th> key </th> <th> current </th> <th> done </th> <th> remain </th> </tr> {staff} {",
+        "result": ""
+    },
+    "2": {
+        "tag": "{demo}",
+        "type": "app",
+        "name": "demo",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {myContent} {staff} {true} {true} <tr> <td> {$name} </td> <td> {&staff:name} </td> <td> {&staff:count} </td> <td> {&staff:key} </td> <td> {&staff:cur",
+        "pad": " {myContent} {staff} {true} {true} <tr> <td> {$name} </td> <td> {&staff:name} </td> <td> {&staff:count} </td> <td> {&staff:key} </td> <td> {&staff:cur",
+        "result": ""
+    },
+    "1": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESULT</th> </tr> <tr><td style=\"ve",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{content 'myContent'} <table border=1> <tr> <th> </th> <th> name </th> <th> count </th> <th> key </th> <th> current </th> <th> done </th> <th> remain ",
+        "pad": " {table} {demo} {myContent} {staff} <tr> <td> {$name} </td> <td> {&name} </td> <td> {&count} </td> <td> {&key} </td> <td> {&current} </td> <td> {&done",
+        "result": ""
+    }
+}

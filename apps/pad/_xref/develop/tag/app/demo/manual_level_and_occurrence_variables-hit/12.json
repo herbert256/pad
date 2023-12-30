@@ -1,0 +1,67 @@
+{
+    "4": {
+        "tag": "{demo}",
+        "type": "app",
+        "name": "",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <table border=1> <tr> <th>Name</th> <th>Salary</th> <th>Bonus</th> <th>Total</th> </tr> {staff %total = $salary + $bonus} <tr align=\"right\"> <td alig",
+        "pad": "",
+        "result": ""
+    },
+    "3": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESULT</th> </tr> <tr><td style=\"ve",
+        "result": ""
+    },
+    "2": {
+        "tag": "{PAD}",
+        "type": "internal",
+        "name": "",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{table}{demo} {set $range = 10} <table border=1> <tr> <th>Level</th> <th>Occurence</th> </tr> {sequence range='1..5', $abc=$range, %xyz=$range} <tr> <",
+        "pad": "{table}{demo} {set $range = 10} <table border=1> <tr> <th>Level</th> <th>Occurence</th> </tr> {sequence range='1..5', $abc=$range, %xyz=$range} <tr> <",
+        "result": ""
+    },
+    "1": {
+        "tag": "{get 'miscellaneous/level_and_occurrence_variables'}",
+        "type": "pad",
+        "name": "",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "",
+        "pad": "",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{block} $xxx variables are set once at the beginning of a level<br> %xxx variables are set on every occurence inside a level<br> {/block} {get 'miscel",
+        "pad": "<table with=\"95%\" border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\"> <tr> <td> $xxx variables are set",
+        "result": ""
+    }
+}

@@ -1,0 +1,98 @@
+{
+    "6": {
+        "tag": "{get 'lvl_occ/2'}",
+        "type": "pad",
+        "name": "",
+        "pair": false,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "",
+        "pad": "",
+        "result": ""
+    },
+    "5": {
+        "tag": "{if ! #skipResult}",
+        "type": "pad",
+        "name": "if",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " <td style=\"vertical-align:top\">{get '{$examplePage}'}</td> ",
+        "pad": " <td style=\"vertical-align:top\">{get 'lvl_occ/2'}</td> ",
+        "result": ""
+    },
+    "4": {
+        "tag": "{case $exampleLayout}",
+        "type": "pad",
+        "name": "case",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {if ! #skipHeader} <tr> {if ! #skipPhp} <th bgcolor=\"#dddddd\"> PHP {if ! #skipNames}<br><font size=\"-2\">{$exampleFilePhp}</font>{/if} </th> {/if} {if",
+        "pad": " <tr> <th bgcolor=\"#dddddd\"> PHP </th> <th bgcolor=\"#dddddd\"> HTML </th> <th bgcolor=\"#dddddd\"> Result </th> </tr> <tr> <td style=\"vertical-align:top\"",
+        "result": ""
+    },
+    "3": {
+        "tag": "{if #onlyResult or $exampleOnlyResult}",
+        "type": "pad",
+        "name": "if",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {if ! #skipOpen} <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {/if} {case $exampleLayout} {when 'above'} {if ! #skipPhp} {if ! #skipHeader} <t",
+        "pad": " <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {case $exampleLayout} {when 'above'} {if ! #skipPhp} {if ! #skipHeader} <tr> <th bgcolor=\"#dddddd",
+        "result": ""
+    },
+    "2": {
+        "tag": "{example 'lvl_occ/2', skipNames,skipClose}",
+        "type": "app",
+        "name": "example",
+        "pair": false,
+        "opt": [],
+        "prm": {
+            "skipNames": true,
+            "skipClose": true
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{if #center} <center> {/if} {if #withTitle} <h3>{$exampleTitle}</h3> {/if} {if #onlyResult or $exampleOnlyResult} {get '{$examplePage}'} @else@ {if ! ",
+        "pad": " {if #onlyResult or $exampleOnlyResult} {get '{$examplePage}'} @else@ {if ! #skipOpen} <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {/if} {case",
+        "result": ""
+    },
+    "1": {
+        "tag": "{sequence '2..5', name='xxx'}",
+        "type": "pad",
+        "name": "range",
+        "pair": true,
+        "opt": [],
+        "prm": {
+            "name": "xxx"
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {example 'lvl_occ/{xxx}', skipNames{notFirst},skipOpen,skipHeader{/notFirst}{notLast},skipClose{/notLast}} ",
+        "pad": " {example 'lvl_occ/2', skipNames,skipClose} ",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> {block} PAD is data driven. <br><br> The PAD data concepts are named Level and Occurence <br><br> Below example: <br> - Is two levels deep <br> - ",
+        "pad": "<p> <table with=\"95%\" border=\"0\" align=\"center\" style=\"margin-top: 0; margin-bottom: 0;\" cellspacing=\"0\" cellpadding=\"0\"> <tr> <td> PAD is data driven",
+        "result": ""
+    }
+}

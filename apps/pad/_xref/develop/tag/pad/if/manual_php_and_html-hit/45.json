@@ -1,0 +1,46 @@
+{
+    "2": {
+        "tag": "{if #onlyResult or $exampleOnlyResult}",
+        "type": "pad",
+        "name": "",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {get '{$examplePage}'} @else@ {if ! #skipOpen} <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {/if} {case $exampleLayout} {when 'above'} {if ! #",
+        "pad": "",
+        "result": ""
+    },
+    "1": {
+        "tag": "{example 'php_and_html/z02', skipNames,skipOpen,skipHeader,skipClose}",
+        "type": "app",
+        "name": "example",
+        "pair": false,
+        "opt": [],
+        "prm": {
+            "skipNames": true,
+            "skipOpen": true,
+            "skipHeader": true,
+            "skipClose": true
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{if #center} <center> {/if} {if #withTitle} <h3>{$exampleTitle}</h3> {/if} {if #onlyResult or $exampleOnlyResult} {get '{$examplePage}'} @else@ {if ! ",
+        "pad": " {if #onlyResult or $exampleOnlyResult} {get '{$examplePage}'} @else@ {if ! #skipOpen} <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> {/if} {case",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "A PAD page is a combination of a PHP file and/or HTML file, the home page did already show below example. <center><p>{example 'hello/hello', skipNames",
+        "pad": "A PAD page is a combination of a PHP file and/or HTML file, the home page did already show below example. <center><p> <table border=\"1\" cellpadding=\"1",
+        "result": ""
+    }
+}

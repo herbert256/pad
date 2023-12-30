@@ -1,0 +1,56 @@
+{
+    "3": {
+        "tag": "{one merge='two'}",
+        "type": "store",
+        "name": "one",
+        "pair": true,
+        "opt": [],
+        "prm": {
+            "merge": "two"
+        },
+        "set-lvl": [],
+        "set-occ": [],
+        "base": " {$one} ",
+        "pad": " {$one} ",
+        "result": " 5 10 15 20 25 "
+    },
+    "2": {
+        "tag": "{demo}",
+        "type": "app",
+        "name": "demo",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{one merge='two'} {$one} {/one}",
+        "pad": "{one merge='two'} {$one} {/one}",
+        "result": ""
+    },
+    "1": {
+        "tag": "{table}",
+        "type": "app",
+        "name": "table",
+        "pair": true,
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> {if #firstFile} <th bgcolor=\"#dddddd\">{#firstFile}</th> {/if} {if #secondFile} <th bgcolo",
+        "pad": "<p> <table border=\"1\" cellpadding=\"10\" cellspacing=\"0\"> <tr> <th bgcolor=\"#dddddd\">HTML</th> <th bgcolor=\"#dddddd\">RESULT</th> </tr> <tr><td style=\"ve",
+        "result": ""
+    },
+    "0": {
+        "tag": "{pad}",
+        "type": "pad",
+        "name": "",
+        "pair": "",
+        "opt": [],
+        "prm": [],
+        "set-lvl": [],
+        "set-occ": [],
+        "base": "{table} {demo}{sequence list='5;10;15;20', name='one'}{/demo} {demo}{sequence list='15;20;25;30', name='two'}{/demo} {demo}{one} {$one} {/one}{/demo} ",
+        "pad": "{table} {demo}{sequence list='5;10;15;20', name='one'}{/demo} {demo}{sequence list='15;20;25;30', name='two'}{/demo} {demo}{one} {$one} {/one}{/demo} ",
+        "result": ""
+    }
+}
