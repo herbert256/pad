@@ -924,7 +924,7 @@
   }
 
 
-  function padIgnore ($info) {
+  function padIgnore ( $info ) {
 
     global $padBetween;
 

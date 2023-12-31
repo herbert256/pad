@@ -1,22 +1,19 @@
 <?php
 
-  $now   = str_replace ( '.txt', '', substr ( $pages, strrpos($pages, '/') + 1 ) );
+  if ( ! isset ( $pages ) ) $pages = 'tag/pad/pad.txt';
+  if ( ! isset ( $for   ) ) $for   = 'tags';
+  if ( ! isset ( $base  ) ) $base  = '';
+  if ( ! isset ( $item  ) ) $item  = 'pad';
 
-  $pages = file ( padApp . "_xref/manual/$pages" );
-  $pages = array_unique ($pages);
-
-  if ( ! isset ( $for    ) ) $for    = 'tags';
-  if ( ! isset ( $xitem  ) ) $xitem  = 'pad';
-
-                 $title  = $for;
-  if ( $xitem  ) $title .= " - $xitem";
-                 $title .= " - $now";
+  $pages = array_unique ( file ( padApp . "_xref/manual/$pages", FILE_IGNORE_NEW_LINES ) );
 
   if ( count ($pages) == 1 )
-    padRedirect ( $go = 'reference/go',
-                  [ 'go'     => $pages [0],
-                    'xitem'  => $xitem,
-                    'for'    => $for,
-                    'now'    => $now ] );
- 
+    padRedirect ( 'reference/go',
+                  [ 'go'    => $pages [0],
+                    'item'  => $item,
+                    'for'   => $for ] );
+
+  $title = "$for - $item";
+
+
 ?>

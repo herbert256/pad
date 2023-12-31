@@ -13,8 +13,8 @@
     if ( is_array ($dir3) )
       $dir3 = "ARRAY";
 
-    if ( $padXrefXref  ) padXrefXref  ( $dir1, $dir2, $dir3 );
-    if ( $padXrefPage  ) padXrefPage  ( $dir1, $dir2, $dir3 );
+    if ( $padXrefXref  ) padXrefXref  ( $dir1, $dir2, $dir3, 'xref' );
+    if ( $padXrefPage  ) padXrefXref  ( $dir1, $dir2, $dir3, 'page' );
     if ( $padXrefSite  ) padXrefSite  ( $dir1, $dir2, $dir3 );
     if ( $padXrefTree  ) padXrefTree  ( $dir1, $dir2, $dir3 );
     if ( $padXrefXml   ) padXrefXml   ( $dir1, $dir2, $dir3 );
@@ -23,37 +23,31 @@
   }
 
 
-  function padXrefXref ( $dir1, $dir2, $dir3, $type='xref' ) {
+  function padXrefXref ( $dir1, $dir2, $dir3, $type ) {
 
     global $padStartPage, $padXrefId;
 
     if ( $type == 'xref' )
       $file = "xref/xref/";
     else
-      $file = padXrefLocation ();
+      $file = padXrefLocation () . 'xref/';
 
-    $file .= "$dir1/$dir2";
+    $file .= "$dir1/$dir2/";
 
     if ( $dir3 !== '' )
-      $file .= "/$dir3";
+      $file .= "$dir3/";
 
-    $file .= "/" .  str_replace ( '/' , '@', $padStartPage ) . "-page/$padXrefId";
+    if ( $type == 'xref' )
+      $file .= str_replace ( '/' , '@', $padStartPage ) . "-page";
 
-    padXrefData ( $file );
+    padXrefData ( "$file/$padXrefId" );
 
   } 
-
-
-  function padXrefPage ( $dir1, $dir2, $dir3 ) {
-
-    padXrefXref ( $dir1, $dir2, $dir3, 'page' );
-
-  }
 
   
   function padXrefSite ( $dir1, $dir2, $dir3 ) {
 
-    padXrefDevelop ( $dir1, $dir2, $dir3 );
+    padXrefGo ( $dir1, $dir2, $dir3, 'develop' );
    
     if ( $dir1 == 'tag'        and $dir2 == 'tag'      ) padXrefManual ( 'properties', $dir3 );
     if ( $dir1 == 'field'      and $dir2 == 'tag'      ) padXrefManual ( 'properties', $dir3 );
@@ -83,35 +77,21 @@
     if ( str_contains ( $padStartPage, 'manual'     ) ) return;
     if ( ! isset ( $_REQUEST['padInclude']          ) ) return;
 
-    if ( $dir1 == 'tag'        and $dir2 <> 'pad'     ) return padXrefManual2 ( $dir1, $dir2, $dir3 );
-    if ( $dir1 == 'functions'  and $dir2 <> 'pad'     ) return padXrefManual2 ( $dir1, $dir2, $dir3 );
-    if ( $dir1 == 'sequences'  and $dir2 == 'actions' ) return padXrefManual2 ( $dir1, $dir2, $dir3 );
-    if ( $dir1 == 'sequences'  and $dir2 == 'builds'  ) return padXrefManual2 ( $dir1, $dir2, $dir3 );
-    if ( $dir1 == 'at'         and $dir2 == 'kind'    ) return padXrefManual2 ( $dir1, $dir2, $dir3 );
+    if ( $dir1 == 'tag'        and $dir2 <> 'pad'     ) return padXrefGo ( $dir1, $dir2, $dir3 );
+    if ( $dir1 == 'functions'  and $dir2 <> 'pad'     ) return padXrefGo ( $dir1, $dir2, $dir3 );
+    if ( $dir1 == 'sequences'  and $dir2 == 'actions' ) return padXrefGo ( $dir1, $dir2, $dir3 );
+    if ( $dir1 == 'sequences'  and $dir2 == 'builds'  ) return padXrefGo ( $dir1, $dir2, $dir3 );
+    if ( $dir1 == 'at'         and $dir2 == 'kind'    ) return padXrefGo ( $dir1, $dir2, $dir3 );
 
     if (   $dir3 and strpos ( $padXrefSource, $dir3 ) === FALSE ) return;
     if ( ! $dir3 and strpos ( $padXrefSource, $dir2 ) === FALSE ) return;
  
-    padXrefManual2 ( $dir1, $dir2, $dir3 );
+    padXrefGo ( $dir1, $dir2, $dir3 );
 
   }
 
 
-  function padXrefManual2 ( $dir1, $dir2, $dir3 ) {
-
-    padXrefDevelopManual ( 'manual', $dir1, $dir2, $dir3 );
-
-  }
-
-
-  function padXrefDevelop ( $dir1, $dir2, $dir3 ) {
-
-    padXrefDevelopManual ( 'develop', $dir1, $dir2, $dir3 );
-
-  }
-
-
-  function padXrefDevelopManual ( $type, $dir1, $dir2, $dir3 ) {
+  function padXrefGo ( $dir1, $dir2, $dir3, $type='manual' ) {
 
     $file = "_xref/$type/$dir1/$dir2";
 
@@ -121,10 +101,32 @@
     $target = padApp . "$file.txt";
     $page   = $GLOBALS ['padStartPage'];
 
-    if ( file_exists ($target) and in_array ( $page, file ( $target, FILE_IGNORE_NEW_LINES  ) ) )
+    if ( file_exists ($target) and in_array ( $page, file ( $target, FILE_IGNORE_NEW_LINES ) ) )
       return;
 
     padInfoLine ( "$file.txt", $page, 1 );
+
+  }
+
+
+  function padXrefTree ( $dir1, $dir2, $dir3 ) {
+
+    global $pad, $padLvlIds, $padOccur, $padTag;
+
+    $file = padXrefLocation () . "tree";
+
+    for ( $lvl=0; $lvl<=$pad; $lvl++ ) {
+      $l = $padLvlIds [$lvl] ?? 0;
+      $o = $padOccur  [$lvl] ?? 0; 
+      $t = $padTag    [$lvl] ?? 0;
+      $file .= "/L-$l-$t/O-$o";
+    }
+
+    $file .= "/X-$dir1/X-$dir2";    
+    if ( $dir3 !== '' )
+      $file .= "/X-$dir3";
+
+    padXrefData ( $file );
 
   }
 
@@ -150,49 +152,6 @@
   }
 
 
-  function padXrefData ( $file ) {
-
-    global $pad;
-
-    for ( $lvl=$pad; $lvl>=0; $lvl-- ) 
-      $data [$lvl] = padDumpGetLevel ($lvl) ;
-
-    padInfoFile ( "$file.json", $data );
-
-  }
-
-
-  function padXrefTree ( $dir1, $dir2, $dir3 ) {
-
-    global $pad, $padLvlIds, $padOccur, $padTag;
-
-    $file = padXrefLocation () . "tree";
-
-    for ( $lvl=0; $lvl<=$pad; $lvl++ ) {
-      $l = $padLvlIds [$lvl] ?? 0;
-      $o = $padOccur  [$lvl] ?? 0; 
-      $t = $padTag    [$lvl] ?? 0;
-      $file .= "/L-$l-$t/O-$o";
-    }
-
-    $file .= "/$dir1/$dir2";    
-    if ( $dir3 !== '' )
-      $file .= "/" . str_replace ( '/' , '@', $dir3 );
-
-    padXrefData ( $file );
-
-  }
-
-
-  function padXrefLocation () {
-
-    global $padStartPage;
-
-    return "xref/pages/$padStartPage/";
-
-  }
-
-
   function padXrefTrace ( $dir1, $dir2, $dir3 ) { 
 
     global $pad, $padTrace, $padTraceLevel;
@@ -210,6 +169,34 @@
     padTraceWrite ( $pad, 'xref', $xref );
  
   } 
+
+
+  function padXrefData ( $file ) {
+
+    global $pad;
+
+    for ( $lvl=$pad; $lvl>=0; $lvl-- ) 
+      $data [$lvl] = padDumpGetLevel ($lvl) ;
+
+    padInfoFile ( "$file.json", $data );
+
+  }
+
+
+  function padXrefLocation () {
+
+    global $padStartPage;
+
+    $dir = "xref/pages/$padStartPage/";
+
+    if ( isset ( $_REQUEST['padInclude'] ) )
+      $dir .= "include/";
+    else
+      $dir .= "complete/";
+
+    return $dir;
+
+  }
 
 
   function padXrefXmlMake () {
@@ -336,7 +323,7 @@
     else
       $spaces = '';
 
-    padInfoLine ( padXrefLocation () . "xref.xml", "$spaces$xml", true );
+    padInfoLine ( padXrefLocation () . "xref.xml", "$spaces$xml" );
   
   }
 

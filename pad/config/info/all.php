@@ -17,8 +17,8 @@
   $padXmlShowEmpty     = TRUE;
   
   $padXrefXref         = TRUE;
-  $padXrefManual       = TRUE;
-  $padXrefDevelop      = TRUE;
+  $padXrefPage         = TRUE;
+  $padXrefSite         = TRUE;
   $padXrefTree         = TRUE;
   $padXrefXml          = TRUE;
   $padXrefTrace        = TRUE;

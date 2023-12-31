@@ -12,6 +12,9 @@
       elseif ( $event ['event'] == 'occur-start' ) padXmlOccurStart ( $event );
       elseif ( $event ['event'] == 'occur-end'   ) padXmlOccurEnd   ( $event );
 
+      if     ( $event ['event'] == 'level-start' ) padXmlLevelStartShort ( $event );
+      elseif ( $event ['event'] == 'level-end'   ) padXmlLevelEndShort   ( $event );
+  
     }
 
   }
@@ -69,6 +72,7 @@
 
   }
 
+
   function padXmlLevelEnd ( $event ) {
 
     global $padXmlTree;
@@ -80,7 +84,7 @@
       return;
 
     if ( $written ) padXmlClose ( 'occurs' );
-    if ( $childs  ) padXmlClose ( $tag );
+    if ( $childs  ) padXmlClose ( $tag, 'short' );
 
   }
 
@@ -132,49 +136,83 @@
   }  
 
 
-  function padXmlOpen ( $xml, $parms=[] ) {
+  function padXmlLevelStartShort ( $event ) {
+
+    global $padXmlTree;
+
+    extract ( $event );
+    extract ( $padXmlTree [$tree] );
+
+    $options = [];
+
+    if ( $size               ) $options ['size']   = $size;
+    if ( count ($occurs) > 1 ) $options ['occurs'] = count ($occurs);
+    if ( $parm               ) $options ['parm']   = $parm;
+
+    if ( $padXmlTree [$tree] ['childs'] )
+      padXmlOpen ( $tag, $options, 'short' );
+    else
+      padXmlLine ( $tag, $options, 'short' );
+   
+  }
+
+
+  function padXmlLevelEndShort ( $event ) {
+
+    global $padXmlTree;
+
+    extract ( $event );
+    extract ( $padXmlTree [$tree] );
+
+    if ( $childs ) 
+      padXmlClose ( $tag );
+
+  }
+
+
+  function padXmlOpen ( $xml, $parms=[], $type='long' ) {
   
     global $padXmlDepth;
 
     $more = padXmlMore ( $parms );
 
-    padXmlWrite ( "<$xml$more>" );
+    padXmlWrite ( "<$xml$more>", $type );
 
     $padXmlDepth++;
       
   }
 
 
-  function padXmlLine ( $xml, $parms=[] ) {
+  function padXmlLine ( $xml, $parms=[], $type='long' ) {
   
     $more = padXmlMore ( $parms );
  
-    padXmlWrite ( "<$xml$more />" );
+    padXmlWrite ( "<$xml$more />", $type );
   
   }
 
 
-  function padXmlClose ( $xml ) {
+  function padXmlClose ( $xml, $type='long' ) {
 
     global $padXmlDepth;
 
     $padXmlDepth--;
   
-    padXmlWrite ( "</$xml>" );
+    padXmlWrite ( "</$xml>", $type );
   
   }
 
 
-  function padXmlWrite ( $xml ) {
+  function padXmlWrite ( $xml, $type='long' ) {
   
-    global $padXmlDepth, $padStartPage;
+    global $padXmlDepth, $padXmlDir;
 
     if ( $padXmlDepth > 0 )
       $spaces = str_repeat ( ' ', $padXmlDepth * 2 );
     else
       $spaces = '';
 
-    padInfoLine ( "xml/$padStartPage.xml", "$spaces$xml", true );
+    padInfoLine ( "$padXmlDir/$type.xml", "$spaces$xml" );
   
   }
 
@@ -194,7 +232,7 @@
 
   function padXmlTidy () {
 
-    global $padXmlTidy, $padStartPage;
+    global $padXmlTidy, $padXmlDir;
 
     if ( ! $padXmlTidy )
       return;
@@ -213,16 +251,24 @@
       'drop-empty-elements' => 'yes'
     ];
 
-    $data = padInfoGet ( padData . "xml/$padStartPage.xml" );
+    padXmlTidyGo ( "$padXmlDir/long.xml",  $options );
+    padXmlTidyGo ( "$padXmlDir/short.xml", $options );
+
+  }
+
+
+  function padXmlTidyGo ( $file, $options ) {
+
+    $data = padInfoGet ( padData . $file );
 
     $tidy = new tidy;
     $tidy->parseString ( $data, $options, 'utf8' );
     $tidy->cleanRepair();
 
     if ( $tidy === FALSE )
-      return padError ( "TIDY conversion error");
+      return;
 
-    $data = padInfoFile ( "xml/$padStartPage.xml", $tidy->value );
+    $data = padInfoFile ( $file, $tidy->value );
 
   }
 

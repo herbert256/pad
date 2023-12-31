@@ -6,11 +6,11 @@
   $padStats            = FALSE;       // Keep runtime statistics about time and cpu used
   $padTrace            = FALSE;       // Trace the internal working of PAD
 
-  $padXrefXref         = FALSE;
-  $padXrefPage         = FALSE;
+  $padXrefXref         = TRUE;
+  $padXrefPage         = TRUE;
   $padXrefSite         = TRUE;
-  $padXrefTree         = FALSE;
-  $padXrefXml          = FALSE;
-  $padXrefTrace        = FALSE;
+  $padXrefTree         = TRUE;
+  $padXrefXml          = TRUE;
+  $padXrefTrace        = TRUE;
 
 ?>

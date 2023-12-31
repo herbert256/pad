@@ -6,6 +6,7 @@
     global $padPage, $manual, $parts, $item; 
 
     $parts = [];
+    return $parts;  
 
     if ( ! str_starts_with ( $padPage, 'index') and 
          ! str_starts_with ( $padPage, 'manual/') and 

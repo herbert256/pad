@@ -1,15 +1,11 @@
 <?php
 
-  if ( ! isset ( $go     ) ) $go     = 'hello/hello';
-  if ( ! isset ( $xitem  ) ) $xitem  = '';
-  if ( ! isset ( $for    ) ) $for    = '';
+  if ( ! isset ( $go    ) ) $go    = 'hello/hello';
+  if ( ! isset ( $for   ) ) $for   = 'tags';
+  if ( ! isset ( $base  ) ) $base  = '';
+  if ( ! isset ( $item  ) ) $item  = 'pad';
 
-                 $title  = $for;
-  if ( $xitem  ) $title .= " - $xitem";
-                 $title .= " - $go";
-
-  $file = padApp . $go . '.pad';
-
+  $title    = "$for - $item - $go";
   $source   = padFileGetContents ( padApp . $go . '.pad' );
   $showPage = ( str_contains ( $source, '{demo}' ) or str_contains ( $source, '{example' )  );
 

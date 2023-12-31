@@ -15,9 +15,9 @@
       {getXref '{!type}', '{$xref}', '{$dir}'}
 
         {if $dir}
-          <a href="{$padGo}reference/dir&dir={$dir}&for={$type|url}&xitem={$item}">{$item}</a>
+          <a href="{$padGo}reference/dir&dir={$dir}&for={$type|url}&base={$item}">{$item}</a>
         {elseif $pages}
-          <a href="{$padGo}reference/pages&pages={$pages}&for={$type|url}&xitem={$item}">{$item}</a>
+          <a href="{$padGo}reference/pages&pages={$pages}&for={$type|url}&item={$item}">{$item}</a>
         @else@
           {$item}
         {/if}

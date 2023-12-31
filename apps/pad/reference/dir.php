@@ -1,9 +1,12 @@
 <?php
 
-  if ( ! isset ( $for    ) ) $for    = 'tags';
-  if ( ! isset ( $xitem  ) ) $xitem  = 'pad';
+  if ( ! isset ( $dir  ) ) $dir   = 'tag';
+  if ( ! isset ( $for  ) ) $for   = 'tags';
+  if ( ! isset ( $item ) ) $item  = 'pad';
 
-  $title = "$for - $xitem";
+  $base = $item;
+
+  $title = "$for - $item";
   $list  = scandir ( padApp . '_xref/manual/' . $dir );
 
   foreach ( $list as $file ) {
@@ -19,7 +22,7 @@
   if ( count ($hits) == 1 )
     padRedirect ( $go = 'reference/pages',
                   [ 'pages' => $hits [$file] ['pages'],
-                    'xitem' => $xitem,
+                    'item' => $item,
                     'for'   => $for ] );
  
 ?>
