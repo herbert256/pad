@@ -7,8 +7,8 @@
 
   $padStoreName = 'pad' . ucwords($padTag[$pad]) . 'Store';
 
-  if ( isset ( $padOpt [$pad] [1] ) or isset ( $padOpt [$pad] [2] ) ) 
-    $padName [$pad] = $padOpt [$pad] [1];
+  if ( isset ( $padParm ) or isset ( $padOpt [$pad] [2] ) ) 
+    $padName [$pad] = $padParm;
 
   if ( ! $padContent )
     $padStoreSource = $padOpt [$pad] [2];  

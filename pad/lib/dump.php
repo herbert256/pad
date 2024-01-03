@@ -436,7 +436,7 @@
   function padDumpToDir ( $info='', $dir='' ) {
  
     if ( ! $dir )
-      $dir = "dumps/" . $GLOBALS ['padPage'] . '/' . hrtime (true);
+      $dir = "dumps/" . $GLOBALS ['padPage'] . '/' . $GLOBALS ['padLog'];
 
     if ( isset ( $GLOBALS ['padDumpToDirDone'] ) )
       return padDumpToDirDone ( $info, $dir );
@@ -517,7 +517,7 @@
     ob_start (); padDumpLines     ( 'PHP', $php );    padDumpFile ( 'php-vars',  ob_get_clean () );
     ob_start (); padDumpGlobals   ();                 padDumpFile ( 'globals',   ob_get_clean () );
 
-    padDumpInputToFile ( 'input', $dir ) ;
+    padDumpInputToFile () ;
 
   }
 
@@ -570,29 +570,48 @@
   function padDumpFile ( $file, $txt ) {
 
     $dir = $GLOBALS ['padDumpToDirDone'];
-
     $txt = trim ( $txt );
 
-    if ( $txt )
-      padFilePutContents ( "$dir/$file.html", "<pre>$txt</pre>" );
+    padDumpWrite ( "$dir/$file.html", "<pre>$txt</pre>" );
 
   }
 
 
-  function padDumpInputToFile ( $file, $dir ) {
+  function padDumpInputToFile () {
 
-    $txt = trim ( file_get_contents('php://input') ?? '' );
-    
-    if ( ! $txt )
-      return;
-
+    $txt  = trim ( file_get_contents('php://input') ?? '' );
     $type = padContentType ( $txt );
 
     if ( $type == 'csv' )
       $type = 'txt';
 
-    padFilePutContents ( "$dir/$file.$type", "<pre>$txt</pre>" );
+    padDumpWrite ( $GLOBALS ['padDumpToDirDone'] . "/input.$type", $txt );
 
+  }
+
+
+  function padDumpWrite ( $file, $data ) {
+
+    if ( is_array($data) or is_object($data) )
+      $data = padJson ($data);
+
+    if ( ! $data )
+      return;
+
+    $file = padData . $file;
+
+    $dir = substr ( $file, 0, strrpos($file, '/') );
+    
+    if ( ! file_exists ($dir) )
+      mkdir ($dir, $GLOBALS ['padDirMode'], true );
+      
+    if ( ! file_exists ($file) ) {      
+      touch ($file);
+      chmod ($file, $GLOBALS ['padFileMode']);
+    }
+      
+    file_put_contents ( $file, $data );
+    
   }
 
 

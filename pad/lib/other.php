@@ -331,10 +331,8 @@
 
   function padValidFirstChar ($char) {
 
-    if ( $char == '@'         ) return TRUE;
     if ( ctype_alpha ( $char) ) return TRUE;
-
-    return FALSE;
+    else                        return FALSE;
  
   }
 
@@ -926,7 +924,7 @@
   }
 
 
-  function padIgnore ($info) {
+  function padIgnore ( $info ) {
 
     global $padBetween;
 

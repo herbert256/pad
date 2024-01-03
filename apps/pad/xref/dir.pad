@@ -1,0 +1,19 @@
+<blockquote>
+
+  {block}
+
+    {hits}
+
+      {if $dir}
+        <a href="{$padGo}xref/dir&dir={$dir}&for={$for|url}&base={$base}&item={$item}&xref={$xref}">{$item}</a>
+      {elseif $pages}
+        <a href="{$padGo}xref/pages&pages={$pages}&for={$for|url}&item={$item}&base={$base}&xref={$xref}">{$item}</a>
+      {/if}
+
+      <br>
+
+    {/hits}
+
+  {/block}
+
+</blockquote>

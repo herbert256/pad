@@ -3,7 +3,7 @@
   if ( isset ( $padPrm [$pad] [$padSeqTmp]) )
     $padSeqParm = $padPrm [$pad][$padSeqTmp];
   else
-    $padSeqParm = $padOpt [$pad] [1];
+    $padSeqParm = $padParm;
 
   $padSeqParms = padExplode($padSeqParm, '|');
 

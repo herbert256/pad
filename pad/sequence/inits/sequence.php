@@ -3,7 +3,7 @@
   $padSeqNext = pad . 'sequence/inits/sequence';
 
   $padSeqChk = [ $padTag [$pad], 
-                 $padOpt [$pad] [1], 
+                 $padParm, 
                  array_key_first($padPrm [$pad]) ?? ''
                ];
      
@@ -17,9 +17,9 @@
 
   $padSeqSet  = 'sequence';
 
-  if ( ctype_digit($padOpt [$pad] [1]) ) {
+  if ( ctype_digit($padParm) ) {
     $padSeqSeq = 'range';
-    $padSeqParm = "1.." . $padOpt [$pad] [1];
+    $padSeqParm = "1.." . $padParm;
   } else {
     $padSeqSeq  = 'loop';
     $padSeqParm = TRUE;

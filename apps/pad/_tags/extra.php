@@ -4,7 +4,7 @@
     if ( str_contains ( $_SERVER ['HTTP_REFERER'] , 'develop/page' ) )
       return NULL;
   
-  $page = $padOpt [$pad] [1] ;
+  $page = $padParm ;
   $dir  = substr($page, 0, strrpos($page, '/')   );
 
   $basePage = padApp . $page;

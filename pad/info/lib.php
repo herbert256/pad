@@ -1,70 +1,6 @@
 <?php
 
 
-  function padSessionStart () {
-
-    return [
-        'session'   => $GLOBALS ['padSesID'] ?? '',
-        'request'   => $GLOBALS ['padReqID'] ?? '',
-        'parent'    => $GLOBALS ['padRefID'] ?? '',
-        'page'      => $GLOBALS ['padPage'] ?? '',
-        'start'     => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0
-      ];
-
-  }
-
-
-  function padSessionEnd () {
-  
-    $session = [
-        'session'   => $GLOBALS ['padSesID'] ?? '',
-        'request'   => $GLOBALS ['padReqID'] ?? '',
-        'stop'      => $GLOBALS ['padStop'] ?? '',
-        'end'       => microtime(true),
-        'length'    => $GLOBALS ['padLen'] ?? 0,
-        'etag'      => $GLOBALS ['padEtag'] ?? ''
-      ];
-
-    if ( isset ( $GLOBALS ['padStatsUser'] ) ) {
-        $session ['duration'] = padDuration ();
-        $session ['system']   = $GLOBALS ['padStatsSystem'];
-        $session ['user']     = $GLOBALS ['padStatsUser'];
-    }
-
-    return $session;
-
-  }
-
-
-  function padInfoError ( $error ) {
-
-    set_error_handler ( 'padThrow' );
-
-    try {
-
-      padDumpToDir ( $error, $GLOBALS ['padInfoDir'] . '/ERROR');
-    
-    } catch (Throwable $e) {
-    
-      // Ignore errors
-
-    }
-
-    restore_error_handler ();   
-
-  }
-
-
-  function padInfoIds () {
-
-    global $padXrefId, $padTraceId, $padXmlId;
-
-    return sprintf ( '%-9s',  padInfoPadOccur () )
-         . sprintf ( '%-16s', "$padTraceId/$padXrefId/$padXmlId" );
-
-  }
-
-
   function padInfoPadOccur () {
 
     global $pad, $padOccur;
@@ -81,43 +17,32 @@
   }
 
 
-  function padInfoLine ( $file, $data ) {
+  function padInfoLine ( $file, $data, $app=0 ) {
 
-    padInfoWrite ( $file, $data, 1 ); 
+    padInfoWrite ( $file, $data, 1, $app ); 
     
   }
 
 
-  function padInfoFile ( $file, $data ) {
+  function padInfoFile ( $file, $data, $app=0 ) {
     
-    padInfoWrite ( $file, $data, 0 ); 
+    padInfoWrite ( $file, $data, 0, $app ); 
     
   }
 
 
-  function padInfoWrite ( $file, $data, $append=0, $add=1 ) {
-
-    global $padInfoDir;
+  function padInfoWrite ( $file, $data, $append, $app ) {
 
     if ( is_array($data) or is_object($data) )
       $data = padJson ($data);
-    
-    if ( $add )
-      $file = "$padInfoDir/$file";
 
-    padInfoCheck ( $file );
+    if ( ! $append and file_exists ($file) )
+      return;
 
-    if ( $append)
-      file_put_contents ( padData . $file, $data . "\n", LOCK_EX | FILE_APPEND );
+    if ( $app )
+      $file = padApp . $file;
     else
-      file_put_contents ( padData . $file, $data,        LOCK_EX );
-    
-  }
-
-
-  function padInfoCheck ( $file ) {
-
-    $file = padData . $file;
+      $file = padData . $file;
 
     $dir = substr ( $file, 0, strrpos($file, '/') );
     
@@ -128,6 +53,11 @@
       touch ($file);
       chmod ($file, $GLOBALS ['padFileMode']);
     }
+
+    if ( $append )
+      file_put_contents ( $file, $data . "\n", LOCK_EX | FILE_APPEND );
+    else
+      file_put_contents ( $file, $data,        LOCK_EX );
     
   }
 
@@ -141,7 +71,7 @@
       mkdir ($dir, $GLOBALS ['padDirMode'], true );
 
     } catch (Throwable $e) {
-  
+
     }
 
     restore_error_handler ();  
@@ -155,6 +85,28 @@
       return '';
 
     return file_get_contents ($file);
+
+  }
+
+
+  function padInfoDelete ( $dir ) {
+
+    if ( ! file_exists ( $dir ) )
+      return;
+
+    $loop = opendir ( $dir );
+
+    while ( ( $file = readdir ( $loop ) ) !== FALSE )
+
+      if ( $file <> '.' and $file <> '..' )
+        if ( is_dir ( "$dir/$file" ) )
+          padInfoDelete ( "$dir/$file" );
+        else
+          unlink ( "$dir/$file" ) ;
+        
+    closedir ( $loop );
+
+    rmdir ( $dir );
 
   }
 

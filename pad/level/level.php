@@ -22,8 +22,8 @@
   if ( in_array ( $padFirst, ['$','!','#','&'] ) ) 
     return include pad . 'var/var.php';
 
-  if ( ! padValidFirstChar ( $padFirst ) ) return padIgnore ('first char');
-  if ( ! padValidTag ( $padWords [0]   ) ) return padIgnore ('valid tag');
+  if ( ! ctype_alpha ( $padFirst )       ) return padIgnore ('first char');
+  if ( ! padValidTag ( $padWords [0] )   ) return padIgnore ('valid tag');
   if ( ! include pad . 'level/type.php'  ) return padIgnore ('type');
 
   include pad . 'level/start.php';

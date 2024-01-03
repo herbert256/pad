@@ -1,6 +1,6 @@
 <?php
 
-  $manualLink = $padOpt [$pad] [1];
+  $manualLink = $padParm;
   $manualText = $manualLink;
 
   if ( isset ( $padOpt [$pad] [2] ) )

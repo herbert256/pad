@@ -1,5 +1,5 @@
 <?php
 
-  return '<b>&at;</b><b>' . $padOpt [$pad] [1] . '</b><b>&at;</b>';
+  return '<b>&at;</b><b>' . $padParm . '</b><b>&at;</b>';
 
 ?>

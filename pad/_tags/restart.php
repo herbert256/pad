@@ -1,5 +1,5 @@
 <?php
 
-  return padRestart ( $padOpt [$pad] [1], $padSetLvl [$pad] ); 
+  return padRestart ( $padParm, $padSetLvl [$pad] ); 
 
 ?>

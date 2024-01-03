@@ -4,17 +4,15 @@
 
   set_time_limit ( 900 );
 
-  if ( $padTraceStartEnd )
-    padTrace ( 'trace', 'start' );
-
-  if ( $padTraceSession )
-    foreach ( padSessionStart () as $padK => $padV )
-      padTrace ( 'session', $padK, $padV );  
-
+  $padTraceId          = 0;
   $padTraceLevel       = [];
   $padTraceLevelChilds = [];
   $padTraceOccurChilds = [];
   $padTraceMaxLevel    = 0;
   $padTraceSkipLevel   = 0;
+  $padTraceDir         = "trace/$padStartPage/$padLog";
+
+  if ( $padTraceStartEnd )
+    padTrace ( 'trace', 'start' );
         
 ?>

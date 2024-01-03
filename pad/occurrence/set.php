@@ -2,8 +2,8 @@
 
   $padSetTmp = [];
 
-  if ( $padOpt [$pad] [1] )
-    $padSetTmp [ $padName [$pad] ] = $padOpt [$pad] [1];
+  if ( $padParm )
+    $padSetTmp [ $padName [$pad] ] = $padParm;
 
   foreach ( $padTable [$pad] as $padK => $padV)
     foreach ( $padV as $padK2 => $padV2)

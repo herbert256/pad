@@ -1,6 +1,6 @@
 <?php
 
-  $padExec = padApp . "_scripts/" . escapeshellcmd ($padOpt [$pad] [1]);
+  $padExec = padApp . "_scripts/" . escapeshellcmd ($padParm);
 
   if ( ! file_exists($padExec) ) {
     padError ("Script $padExec not found");

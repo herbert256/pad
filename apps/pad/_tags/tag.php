@@ -2,6 +2,6 @@
 
   $tagClose = ( padTagParm ('close') ) ? '/' : '';
 
-  return '<b>&open;</b><b>' . $tagClose . $padOpt [$pad] [1] . '</b><b>&close;</b>';
+  return '<b>&open;</b><b>' . $tagClose . $padParm . '</b><b>&close;</b>';
 
 ?>

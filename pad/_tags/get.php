@@ -1,6 +1,6 @@
 <?php
  
-  $padPagePage    = $padOpt [$pad] [1];
+  $padPagePage    = $padParm;
   $padPageInclude = TRUE;
   $padPageType    = 'sandbox';
 

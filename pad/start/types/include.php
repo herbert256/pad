@@ -1,6 +1,6 @@
 <?php
   
-  $padIncPage = $padOpt [$pad] [1] ;
+  $padIncPage = $padParm ;
 
   return include pad . '_tags/go/include.php';
 

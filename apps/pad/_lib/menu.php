@@ -6,6 +6,7 @@
     global $padPage, $manual, $parts, $item; 
 
     $parts = [];
+    return $parts;  
 
     if ( ! str_starts_with ( $padPage, 'index') and 
          ! str_starts_with ( $padPage, 'manual/') and 
@@ -44,12 +45,12 @@
       $parts ['f'] ['link'] = '';
 
       $parts ['i'] ['part'] = $GLOBALS ['xitem'];
-      $parts ['i'] ['link'] = itemLink ();
+      $parts ['i'] ['link'] = '';
 
-      if ( $GLOBALS ['second'] ) {
-        $parts ['s'] ['part'] = $GLOBALS ['second'];
-        $parts ['s'] ['link'] = secondLink ();
-      }
+ #     if ( $GLOBALS ['second'] ) {
+ #       $parts ['s'] ['part'] = $GLOBALS ['second'];
+ #       $parts ['s'] ['link'] = secondLink ();
+ #     }
     
     }
 

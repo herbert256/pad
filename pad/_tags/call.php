@@ -1,6 +1,6 @@
 <?php
 
-   $padCall = $padOpt [$pad] [1];
+   $padCall = $padParm;
 
    $padCallReturn = include pad . 'call/anyNoOne.php';
 

@@ -4,6 +4,7 @@
   $padTagContent = '';
 
   ob_start();
+  $padParm        = $padOpt [$pad] [1] ?? '';
   $padTagResult   = include pad . "types/" . $padType [$pad] . ".php";
   $padTagOrg      = $padTagResult;
   $padTagContent .= ob_get_clean();

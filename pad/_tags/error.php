@@ -1,5 +1,5 @@
 <?php
 
-  return padError ($padOpt [$pad] [1]);
+  return padError ($padParm);
    
 ?>

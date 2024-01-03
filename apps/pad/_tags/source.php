@@ -5,8 +5,8 @@
     return TRUE;
   }
 
-  if ( ! $padContent and $padOpt [$pad] [1] ) 
-    $padReturn = padColorsFile ( padApp . $padOpt [$pad] [1] ) ;
+  if ( ! $padContent and $padParm ) 
+    $padReturn = padColorsFile ( padApp . $padParm ) ;
   else
     $padReturn = padColorsString ( $padContent ) ;
 

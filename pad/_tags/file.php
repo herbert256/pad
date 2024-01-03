@@ -3,7 +3,7 @@
   if ( padStartAndClose ('end') )
     return TRUE;
 
-  $padFile = $padOpt [$pad] [1] ;
+  $padFile = $padParm ;
 
   padFilePutContents ( $padFile , padUnEscape ( trim($padContent) ) );
 
