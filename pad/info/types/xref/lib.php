@@ -54,7 +54,7 @@
     if ( $dir1 == 'at'         and $dir2 == 'property' ) padXrefManual ( 'properties', $dir3 );
     if ( $dir1 == 'tag'                                ) padXrefManual ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'constructs'                         ) padXrefManual ( $dir1, $dir2, $dir3 );
-    if ( $dir1 == 'parms'      and $dir2 == 'options'  ) padXrefManual ( $dir1, $dir2, $dir3 );
+    if ( $dir1 == 'options'                            ) padXrefManual ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'properties'                         ) padXrefManual ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'functions'                          ) padXrefManual ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'sequences'  and $dir2 == 'types'    ) padXrefManual ( $dir1, $dir2, $dir3 );

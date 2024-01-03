@@ -1,0 +1,39 @@
+<blockquote>
+
+{block}
+
+  {true data='xref'}
+
+    {range '1..{$lvl}'}
+      <blockquote>
+    {/range}
+
+    <h3>{$type}</h3>
+
+    <blockquote>
+
+      {getXref '{!type}', '{$xref}', '{$dir}'}
+
+        {if $dir}
+          <a href="{$padGo}xref/dir&dir={$dir}&for={$type|url}&item={$item}&base={$item}&xref=manual">{$item}</a>
+        {elseif $pages}
+          <a href="{$padGo}xref/pages&pages={$pages}&for={$type|url}&item={$item}&base=&xref=manual">{$item}</a>
+        @else@
+          {$item}
+        {/if}
+
+        &nbsp; 
+        
+      {/getXref}
+            
+    </blockquote>
+
+    {range '1..{$lvl}'}
+      </blockquote>
+    {/range}
+
+  {/true}
+
+{/block}
+
+</blockquote>
