@@ -19,8 +19,9 @@
   if ( file_exists ( "$padSeqType/exit.php" ) )   
     include "$padSeqType/exit.php";    
 
-  include pad . 'sequence/exits/exits.php';
- 
+  include pad . 'sequence/exits/push.php';
+  include pad . 'sequence/exits/return.php';
+
   return $padSeqReturn;
 
 ?>

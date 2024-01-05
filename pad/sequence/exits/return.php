@@ -10,7 +10,7 @@
     $padSeqSet, 
     $padSeqName, 
     $padSeqPull,
-    $padName[$pad], 
+    $padName [$pad], 
   ] );
 
   foreach ($padSeqResult as $padSeqValue  ) {

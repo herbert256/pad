@@ -26,7 +26,4 @@
   if ( ! isset ( $GLOBALS [$padSeqSetName] ) )
     $$padSeqSetName = $padSeqParm;
 
-  if ( is_integer ($GLOBALS [$padSeqSetName]) )
-    $GLOBALS [$padSeqSetName] = (int) $GLOBALS [$padSeqSetName];
-
 ?>
