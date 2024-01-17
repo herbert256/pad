@@ -1,8 +1,8 @@
 <?php
 
-  if ( ! $padSeqCeil )
-    $padSeqCeil = 1;
+  if ( ! $padSeqRight )
+    $padSeqRight = 1;
 
-  return ceil ( $padSeqLoop / (int) $padSeqCeil ) * $padSeqCeil;
+  return $padSeqLoop >> (int) $padSeqRight;
 
 ?>
