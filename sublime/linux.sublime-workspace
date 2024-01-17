@@ -108,9 +108,10 @@
 	"buffers":
 	[
 		{
-			"file": "/home/herbert/pad/apps/pad/xref/pages.php",
+			"contents": "Searching 3324 files for \"padSeqTmp\" (case sensitive)\n\n~/pad/pad/sequence/actions/difference.php:\n    1  <?php\n    2  \n    3:   $padSeqTmp1 = include pad . 'sequence/actions/onlyMe.php';\n    4:   $padSeqTmp2 = include pad . 'sequence/actions/onlyOther.php';\n    5  \n    6:   foreach ( $padSeqTmp2 as $padSeqAppendKey )\n    7:     $padSeqTmp1 [] = $padSeqAppendKey;\n    8  \n    9:   return $padSeqTmp1;\n   10  \n   11  ?>\n\n~/pad/pad/sequence/inits/sequence.php:\n    8                 ];\n    9       \n   10:   foreach ( $padSeqChk as $padSeqTmp )\n   11:     if ( $padSeqTmp )\n   12:       if     ( isset ( $padSeqStore [$padSeqTmp] )                     ) return include \"$padSeqNext/store.php\";\n   13:       elseif ( file_exists ( \"$padSeqTypes/$padSeqTmp\" )               ) return include \"$padSeqNext/type.php\";\n   14:       elseif ( file_exists ( pad . \"sequence/actions/$padSeqTmp.php\" ) ) return include \"$padSeqNext/action.php\";\n   15:       elseif ( strpos ( $padSeqTmp, '..' )                             ) return include \"$padSeqNext/range.php\";\n   16:       elseif ( strpos ( $padSeqTmp, ';' )                              ) return include \"$padSeqNext/list.php\";\n   17  \n   18    $padSeqSet = 'sequence';\n\n~/pad/pad/sequence/inits/sequence/action.php:\n    1  <?php\n    2  \n    3:   if ( isset ( $padPrm [$pad] [$padSeqTmp]) )\n    4:     $padSeqParm = $padPrm [$pad][$padSeqTmp];\n    5    else\n    6      $padSeqParm = $padParm;\n    .\n   10    $padSeqSeq  = 'pull';\n   11    $padSeqPull = $padSeqParms[0]; \n   12:   $padSeqSet  = $padSeqTmp;\n   13  \n   14    unset ( $padSeqParms[0] );\n   15  \n   16    if ( count($padSeqParms) )\n   17:     $padPrm [$pad] [$padSeqTmp] = implode('|', $padSeqParms);\n   18    else\n   19:     $padPrm [$pad] [$padSeqTmp] = true;\n   20  \n   21  ?>\n\n~/pad/pad/sequence/inits/sequence/list.php:\n    3      $padSeqSeq = 'list';\n    4      $padSeqSet = 'list';\n    5:     $padSeqParm = $padSeqTmp;\n    6  \n    7  ?>\n\n~/pad/pad/sequence/inits/sequence/range.php:\n    3      $padSeqSeq = 'range';\n    4      $padSeqSet = 'range';\n    5:     $padSeqParm = $padSeqTmp;\n    6  \n    7  ?>\n\n~/pad/pad/sequence/inits/sequence/store.php:\n    2  \n    3    $padSeqSeq  = 'pull';\n    4:   $padSeqPull = $padSeqTmp;\n    5:   $padSeqSet  = $padSeqTmp;\n    6:   $padSeqParm = $padSeqTmp;\n    7  \n    8  ?>\n\n~/pad/pad/sequence/inits/sequence/type.php:\n    1  <?php\n    2  \n    3:     $padSeqSeq = $padSeqTmp;\n    4:     $padSeqSet = $padSeqTmp;\n    5  \n    6      if ( isset($padPrm [$pad][$padSeqSeq]) )\n\n24 matches across 7 files\n",
 			"settings":
 			{
+<<<<<<< HEAD
 				"buffer_size": 728,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
@@ -698,6 +699,21 @@
 					"AwAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8L8AAAAAAQAAAOUAAAAAAAAA8wAAAAAAAAAAAAAAAADwvw"
 				]
 			]
+=======
+				"buffer_size": 2550,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "/home/herbert/pad/pad/sequence/types/step/init.php",
+			"settings":
+			{
+				"buffer_size": 38,
+				"line_ending": "Windows"
+			}
+>>>>>>> 85e6a908e9fc7a16e1e904ec4864f32cf9f419e0
 		}
 	],
 	"build_system": "",
@@ -733,13 +749,47 @@
 	"expanded_folders":
 	[
 		"/home/herbert/pad/pad",
+<<<<<<< HEAD
 		"/home/herbert/pad/pad/sequence"
+=======
+		"/home/herbert/pad/pad/sequence",
+		"/home/herbert/pad/pad/sequence/types",
+		"/home/herbert/pad/pad/sequence/types/multiplication",
+		"/home/herbert/pad/pad/sequence/types/power",
+		"/home/herbert/pad/pad/sequence/types/step",
+		"/home/herbert/data"
+>>>>>>> 85e6a908e9fc7a16e1e904ec4864f32cf9f419e0
 	],
 	"file_history":
 	[
+		"/home/herbert/pad/pad/sequence/operations/operations.php",
+		"/home/herbert/pad/pad/sequence/actions/go/operations.php",
+		"/home/herbert/pad/pad/sequence/one.php",
+		"/home/herbert/pad/pad/sequence/types/left/loop.php",
+		"/home/herbert/pad/pad/sequence/types/modulo/loop.php",
+		"/home/herbert/pad/pad/sequence/types/not/loop.php",
+		"/home/herbert/pad/pad/sequence/types/or/loop.php",
+		"/home/herbert/pad/pad/sequence/types/right/loop.php",
+		"/home/herbert/pad/pad/sequence/types/xor/loop.php",
+		"/home/herbert/pad/pad/sequence/operations/mkr.php",
+		"/home/herbert/pad/pad/sequence/types/and/loop.php",
+		"/home/herbert/pad/pad/sequence/types/modulo/make.php",
+		"/home/herbert/pad/apps/pad/sequence/floor_round_ceil.pad",
+		"/home/herbert/pad/pad/sequence/types/and/make.php",
+		"/home/herbert/pad/pad/sequence/types/left/make.php",
+		"/home/herbert/pad/pad/sequence/types/or/make.php",
+		"/home/herbert/pad/pad/sequence/types/right/make.php",
+		"/home/herbert/pad/pad/sequence/types/xor/make.php",
+		"/home/herbert/pad/pad/sequence/inits/sequence.php",
+		"/home/herbert/pad/pad/sequence/inits/inits.php",
+		"/home/herbert/pad/pad/sequence/actions.php",
+		"/home/herbert/pad/pad/sequence/inits/operations.php",
+		"/home/herbert/pad/apps/pad/xref/pages.php",
+		"/home/herbert/pad/pad/sequence/sequence.php",
+		"/home/herbert/pad/pad/sequence/exits/return.php",
+		"/home/herbert/pad/pad/sequence/exits/push.php",
 		"/home/herbert/pad/apps/pad/xref/dir.php",
 		"/home/herbert/pad/apps/pad/xref/go.php",
-		"/home/herbert/pad/apps/pad/xref/pages.php",
 		"/home/herbert/pad/apps/pad/develop/regression.php",
 		"/home/herbert/pad/apps/pad/xref/dir.pad",
 		"/home/herbert/pad/pad/config/info/xref.php",
@@ -834,37 +884,12 @@
 		"/home/herbert/pad/pad/occurrence/start.php",
 		"/home/herbert/pad/pad/lib/data.php",
 		"/home/herbert/pad/pad/occurrence/set.php",
-		"/home/herbert/pad/pad/sequence/inits/sequence.php",
 		"/home/herbert/pad/pad/sequence/inits/sequence/action.php",
 		"/home/herbert/pad/pad/sequence/inits/sequence/type.php",
 		"/home/herbert/pad/pad/start/page.php",
 		"/home/herbert/pad/pad/start/lib/external.php",
 		"/home/herbert/pad/pad/start/types/include.php",
-		"/home/herbert/pad/pad/types/tag.php",
-		"/home/herbert/pad/pad/walk/end.php",
-		"/home/herbert/pad/apps/pad/_tags/at.php",
-		"/home/herbert/pad/apps/pad/_tags/example.php",
-		"/home/herbert/pad/apps/pad/_tags/extra.php",
-		"/home/herbert/pad/apps/pad/_tags/link.php",
-		"/home/herbert/pad/apps/pad/_tags/manual.php",
-		"/home/herbert/pad/apps/pad/_tags/source.php",
-		"/home/herbert/pad/apps/pad/_tags/tag.php",
-		"/home/herbert/pad/pad/_tags/ajax.php",
-		"/home/herbert/pad/pad/_tags/call.php",
-		"/home/herbert/pad/pad/_tags/check.php",
-		"/home/herbert/pad/pad/_tags/count.php",
-		"/home/herbert/pad/pad/_tags/curl.php",
-		"/home/herbert/pad/pad/_tags/dir.php",
-		"/home/herbert/pad/pad/_tags/error.php",
-		"/home/herbert/pad/pad/_tags/exception.php",
-		"/home/herbert/pad/pad/_tags/file.php",
-		"/home/herbert/pad/pad/_tags/get.php",
-		"/home/herbert/pad/pad/_tags/if.php",
-		"/home/herbert/pad/pad/_tags/include.php",
-		"/home/herbert/pad/pad/_tags/record.php",
-		"/home/herbert/pad/pad/_tags/redirect.php",
-		"/home/herbert/pad/pad/_tags/restart.php",
-		"/home/herbert/pad/pad/_tags/script.php"
+		"/home/herbert/pad/pad/types/tag.php"
 	],
 	"find":
 	{
@@ -875,6 +900,7 @@
 		"height": 104.0,
 		"where_history":
 		[
+			"",
 			"/home/herbert/pad/apps/pad/xref,<project filters>",
 			"",
 			"/home/herbert/pad/pad/info,<project filters>",
@@ -937,6 +963,16 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"padSeqTmp",
+			"/operations/other.php",
+			"/operations/operations.php",
+			"/operations/mkr.php",
+			"And",
+			"Modulo",
+			"padSeqOpr",
+			"padSeqSetName",
+			"padSeqSet",
+			"padSeqBase",
 			"        {include 'xref'}",
 			"reference/",
 			"[$item]",
@@ -1054,17 +1090,7 @@
 			"padInfoCnt",
 			"padMain",
 			"padXrefId",
-			"padXmlId",
-			"padInfoIds",
-			"padInfoId",
-			"xml/build",
-			"padXrefPageSource",
-			"padXrefXmlEvents",
-			"padXrefEvents",
-			"padInfoPage",
-			"padInfoDir",
-			"{ajax",
-			"{get"
+			"padXmlId"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1072,6 +1098,14 @@
 		"regex": false,
 		"replace_history":
 		[
+			"/actions/go/other.php",
+			"/actions/go/operations.php",
+			"/actions/mkr.php",
+			"Xor",
+			"Right",
+			"Or",
+			"Left",
+			"And",
 			"xref/",
 			"[$file]",
 			"develop",
@@ -1197,20 +1231,164 @@
 			[
 				{
 					"buffer": 0,
-					"file": "/home/herbert/pad/apps/pad/xref/pages.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2550,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										129,
+										138
+									],
+									[
+										197,
+										206
+									],
+									[
+										286,
+										295
+									],
+									[
+										331,
+										340
+									],
+									[
+										390,
+										399
+									],
+									[
+										532,
+										541
+									],
+									[
+										561,
+										570
+									],
+									[
+										618,
+										627
+									],
+									[
+										744,
+										753
+									],
+									[
+										873,
+										882
+									],
+									[
+										965,
+										974
+									],
+									[
+										1085,
+										1094
+									],
+									[
+										1321,
+										1330
+									],
+									[
+										1376,
+										1385
+									],
+									[
+										1539,
+										1548
+									],
+									[
+										1666,
+										1675
+									],
+									[
+										1749,
+										1758
+									],
+									[
+										1921,
+										1930
+									],
+									[
+										2088,
+										2097
+									],
+									[
+										2226,
+										2235
+									],
+									[
+										2261,
+										2270
+									],
+									[
+										2296,
+										2305
+									],
+									[
+										2416,
+										2425
+									],
+									[
+										2452,
+										2461
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([^ \t].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 283.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"stack_multiselect": false,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/home/herbert/pad/pad/sequence/types/step/init.php",
 					"selected": true,
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 728,
+						"buffer_size": 38,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
+<<<<<<< HEAD
 								201,
 								201
+=======
+								0,
+								0
+>>>>>>> 85e6a908e9fc7a16e1e904ec4864f32cf9f419e0
 							]
 						],
 						"settings":
