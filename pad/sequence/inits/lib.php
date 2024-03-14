@@ -25,7 +25,7 @@
     if     ( file_exists ( "$check/function.php") ) return 'function';
     elseif ( file_exists ( "$check/make.php")     ) return 'make';
     elseif ( file_exists ( "$check/loop.php")     ) return 'loop';
-    else                                          return '';
+    else                                            return '';
 
   }
 
@@ -40,7 +40,7 @@
     elseif ( file_exists ( "$check/loop.php")     ) return 'loop';
     elseif ( file_exists ( "$check/make.php")     ) return 'make';
     elseif ( file_exists ( "$check/filter.php")   ) return 'filter';
-    else                                          return 'none';
+    else                                            return 'none';
 
   }
 
@@ -103,9 +103,9 @@
   function padSeqTruncate ( $array, $side, $count ) {
 
     if ( $side == 'left' )
-      return array_slice ($array, $count);
+      return array_slice ( $array, $count );
     else
-      return array_slice ($array, 0, $count*-1);
+      return array_slice ( $array, 0, $count * -1 );
 
   }
 
