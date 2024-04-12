@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! padValidVar2 ($padFld))
+  if ( ! padValidVar2 ($padFld) )
     return padIgnore ( "Field '$padFld' not a valid name" );
  
   if ( ! in_array('noError', $padOpts) )
