@@ -2,9 +2,10 @@
   
   $padTrack            = FALSE;       // Big Brother, session and request information of the client
   $padXml              = FALSE;       // Build a XML file of the structure of the PAD page 
-  $padXref             = FALSE;       // Build the <app>_xref and <data>xref directories
+  $padXref             = FALSE;       // Build the <data>xref directories
   $padStats            = FALSE;       // Keep runtime statistics about time and cpu used
   $padTrace            = FALSE;       // Trace the internal working of PAD
+  $padXweb             = FALSE;       // Build the <app>_web directorie
 
   $padTrackFileRequest = FALSE;       // Request info in the data directory
   $padTrackFileData    = FALSE;       // Complete result page in the directory
@@ -18,7 +19,6 @@
   
   $padXrefXref         = FALSE;
   $padXrefPage         = FALSE;
-  $padXrefSite         = FALSE;
   $padXrefTree         = FALSE;
   $padXrefXml          = FALSE;
   $padXrefTrace        = FALSE;

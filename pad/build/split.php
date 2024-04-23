@@ -9,8 +9,8 @@
     if  ( padOpenCloseCount ( substr ( $padBuildTrue, 0, $padPos ), $padOpenClose) ) {
       $padBuildFalse = substr ( $padBuildTrue, $padPos+6  );
       $padBuildTrue  = substr ( $padBuildTrue, 0, $padPos );
-      if ( padXref ) 
-        include pad . 'info/types/xref/items/else.php';
+      if ( padInfo ) 
+        include pad . 'info/events/else.php';
       return;
     }
 

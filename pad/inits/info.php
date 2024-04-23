@@ -13,14 +13,17 @@
 
       define ( 'padInfo', TRUE );
       
-      if ( $padXml )  define ( 'padXml',  TRUE  );
-      else            define ( 'padXml',  FALSE );
+      if ( $padXml )   define ( 'padXml',  TRUE  );
+      else             define ( 'padXml',  FALSE );
 
-      if ( $padXref ) define ( 'padXref', TRUE  );
-      else            define ( 'padXref', FALSE );
+      if ( $padXref )  define ( 'padXref', TRUE  );
+      else             define ( 'padXref', FALSE );
 
       if ( $padTrace ) define ( 'padTrace', TRUE  );
       else             define ( 'padTrace', FALSE );
+
+      if ( $padXweb )  define ( 'padXweb', TRUE  );
+      else             define ( 'padXweb', FALSE );
 
     }
 

@@ -19,5 +19,6 @@
 
   if ( padXml  ) include pad . 'info/types/xml/level/parms.php';  
   if ( padXref ) include pad . 'info/types/xref/items/parms.php';
+  if ( padXweb ) include pad . 'info/types/xweb/items/parms.php';
 
 ?>

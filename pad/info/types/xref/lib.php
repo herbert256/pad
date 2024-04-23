@@ -15,7 +15,6 @@
 
     if ( $padXrefXref  ) padXrefXref  ( $dir1, $dir2, $dir3, 'xref' );
     if ( $padXrefPage  ) padXrefXref  ( $dir1, $dir2, $dir3, 'page' );
-    if ( $padXrefSite  ) padXrefSite  ( $dir1, $dir2, $dir3 );
     if ( $padXrefTree  ) padXrefTree  ( $dir1, $dir2, $dir3 );
     if ( $padXrefXml   ) padXrefXml   ( $dir1, $dir2, $dir3 );
     if ( $padXrefTrace ) padXrefTrace ( $dir1, $dir2, $dir3 );
@@ -43,70 +42,6 @@
     padXrefData ( "$file/$padXrefId" );
 
   } 
-
-  
-  function padXrefSite ( $dir1, $dir2, $dir3 ) {
-
-    padXrefGo ( $dir1, $dir2, $dir3, 'develop' );
-   
-    if ( $dir1 == 'tag'        and $dir2 == 'tag'      ) padXrefManual ( 'properties', $dir3 );
-    if ( $dir1 == 'field'      and $dir2 == 'tag'      ) padXrefManual ( 'properties', $dir3 );
-    if ( $dir1 == 'at'         and $dir2 == 'property' ) padXrefManual ( 'properties', $dir3 );
-    if ( $dir1 == 'tag'                                ) padXrefManual ( $dir1, $dir2, $dir3 );
-    if ( $dir1 == 'constructs'                         ) padXrefManual ( $dir1, $dir2, $dir3 );
-    if ( $dir1 == 'options'                            ) padXrefManual ( $dir1, $dir2, $dir3 );
-    if ( $dir1 == 'properties'                         ) padXrefManual ( $dir1, $dir2, $dir3 );
-    if ( $dir1 == 'functions'                          ) padXrefManual ( $dir1, $dir2, $dir3 );
-    if ( $dir1 == 'sequences'  and $dir2 == 'types'    ) padXrefManual ( $dir1, $dir2, $dir3 );
-    if ( $dir1 == 'sequences'  and $dir2 == 'builds'   ) padXrefManual ( $dir1, $dir2, $dir3 );
-    if ( $dir1 == 'sequences'  and $dir2 == 'actions'  ) padXrefManual ( $dir1, $dir2, $dir3 );
-    if ( $dir1 == 'at'         and $dir2 == 'kind'     ) padXrefManual ( $dir1, $dir2, $dir3 );
-  
-  }
-
-
-  function padXrefManual ( $dir1, $dir2, $dir3='' ) {
-
-    global $padPage, $padXrefSource, $padStartPage;
-
-    if ( padInsideOther()                             ) return;
-    if ( $padPage <> $padStartPage                    ) return;
-    if ( ! str_ends_with ( padApp, '/pad/' )          ) return;
-    if ( str_contains ( $padStartPage, 'develop'    ) ) return;
-    if ( str_contains ( $padStartPage, 'reference'  ) ) return;
-    if ( str_contains ( $padStartPage, 'manual'     ) ) return;
-    if ( ! isset ( $_REQUEST['padInclude']          ) ) return;
-
-    if ( $dir1 == 'tag'        and $dir2 <> 'pad'     ) return padXrefGo ( $dir1, $dir2, $dir3 );
-    if ( $dir1 == 'functions'  and $dir2 <> 'pad'     ) return padXrefGo ( $dir1, $dir2, $dir3 );
-    if ( $dir1 == 'sequences'  and $dir2 == 'actions' ) return padXrefGo ( $dir1, $dir2, $dir3 );
-    if ( $dir1 == 'sequences'  and $dir2 == 'builds'  ) return padXrefGo ( $dir1, $dir2, $dir3 );
-    if ( $dir1 == 'at'         and $dir2 == 'kind'    ) return padXrefGo ( $dir1, $dir2, $dir3 );
-
-    if (   $dir3 and strpos ( $padXrefSource, $dir3 ) === FALSE ) return;
-    if ( ! $dir3 and strpos ( $padXrefSource, $dir2 ) === FALSE ) return;
- 
-    padXrefGo ( $dir1, $dir2, $dir3 );
-
-  }
-
-
-  function padXrefGo ( $dir1, $dir2, $dir3, $type='manual' ) {
-
-    $file = "_xref/$type/$dir1/$dir2";
-
-    if ( $dir3 !== '' )
-      $file .= "/$dir3";
-
-    $target = padApp . "$file.txt";
-    $page   = $GLOBALS ['padStartPage'];
-
-    if ( file_exists ($target) and in_array ( $page, file ( $target, FILE_IGNORE_NEW_LINES ) ) )
-      return;
-
-    padInfoLine ( "$file.txt", $page, 1 );
-
-  }
 
 
   function padXrefTree ( $dir1, $dir2, $dir3 ) {
