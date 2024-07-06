@@ -5,7 +5,7 @@
   $padXref             = FALSE;       // Build the <data>xref directories
   $padStats            = FALSE;       // Keep runtime statistics about time and cpu used
   $padTrace            = FALSE;       // Trace the internal working of PAD
-  $padXweb             = FALSE;       // Build the <app>_web directorie
+  $padXweb             = FALSE;       // Build the <app>_xweb directorie
 
   $padTrackFileRequest = FALSE;       // Request info in the data directory
   $padTrackFileData    = FALSE;       // Complete result page in the directory
@@ -25,7 +25,7 @@
 
   $padTraceLines       = FALSE;
   $padTraceDouble      = FALSE;
-  $padTraceDefault     = FALSE;
+  $padTraceDefault     = FALSE; 
   $padTraceKeepEmpty   = FALSE;
 
   $padTraceRoot        = FALSE;

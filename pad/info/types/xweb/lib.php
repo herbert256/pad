@@ -20,7 +20,7 @@
   }
 
 
-  function padXwebManual ( $dir1, $dir2, $dir3 ) {
+  function padXwebManual ( $dir1, $dir2, $dir3='' ) {
 
     global $padPage, $padXwebSource, $padStartPage;
 

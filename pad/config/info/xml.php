@@ -5,7 +5,7 @@
   $padXref    = FALSE;  // Build the <app>_xref and <data>xref directories
   $padStats   = FALSE;  // Keep runtime statistics about time and cpu used
   $padTrace   = FALSE;  // Trace the internal working of PAD
-  $padXweb    = FALSE;  // Build the <app>_web directorie
+  $padXweb    = FALSE;  // Build the <app>_xweb directorie
 
   $padXmlParms     = FALSE;
   $padXmlShowEmpty = FALSE;

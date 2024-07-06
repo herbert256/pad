@@ -493,7 +493,7 @@
 
   function padDumpToDirGo ( $info ) {
 
-    ob_start (); padDumpInfo      ( $info );          padDumpFile ( 'error',     ob_get_clean () );
+    ob_start (); padDumpInfo      ( $info );          padDumpFile ( '_ERROR',    ob_get_clean () );
     ob_start (); padDumpStack     ();                 padDumpFile ( 'stack',     ob_get_clean () );
     ob_start (); padDumpBuffer    ();                 padDumpFile ( 'buffer',    ob_get_clean () );
     ob_start (); padDumpRequest   ();                 padDumpFile ( 'request',   ob_get_clean () );
