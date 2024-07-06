@@ -1,0 +1,19 @@
+<blockquote>
+
+  {block}
+
+    {hits}
+
+      {if $dir}
+        <a href="{$padGo}reference/dir&dir={$dir}&for={$for|url}&base={$base}&item={$item}">{$item}</a>
+      {elseif $pages}
+        <a href="{$padGo}reference/pages&pages={$pages}&for={$for|url}&item={$item}&base={$base}">{$item}</a>
+      {/if}
+
+      <br>
+
+    {/hits}
+
+  {/block}
+
+</blockquote>

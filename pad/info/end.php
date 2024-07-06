@@ -5,6 +5,6 @@
   if ( $GLOBALS ['padXref']  ) include pad . 'info/types/xref/end.php';
   if ( $GLOBALS ['padTrack'] ) include pad . 'info/types/track/end.php';
   if ( $GLOBALS ['padTrace'] ) include pad . 'info/types/trace/end.php';
-  if ( $GLOBALS ['padXweb']  ) include pad . 'info/types/xweb/end.php';
+  if ( $GLOBALS ['padXweb']  ) include pad . 'info/types/reference/end.php';
 
 ?>

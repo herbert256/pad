@@ -48,7 +48,7 @@
 
   function padXwebGo ( $dir1, $dir2, $dir3 ) {
 
-    $file = "_xweb/$dir1/$dir2";
+    $file = "_reference/$dir1/$dir2";
 
     if ( $dir3 !== '' )
       $file .= "/$dir3";

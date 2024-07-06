@@ -5,7 +5,7 @@
   if ( ! isset ( $for  ) ) $for  = 'Tags';
   if ( ! isset ( $base ) ) $base  = '';
 
-  $list = scandir ( padApp . "_xweb/$dir" );
+  $list = scandir ( padApp . "_reference/$dir" );
 
   foreach ( $list as $file ) {
 
@@ -25,13 +25,13 @@
  
   if ( count ($hits) == 1 )
     if ( $hits [$file] ['pages'] )
-      padRedirect ( $go = '_xweb/pages',
+      padRedirect ( $go = '_reference/pages',
                     [ 'pages' => $hits [$file] ['pages'],
                       'for'   => $for ?? '',
                       'item'  => $item ?? '',
                       'base'  => $base ?? ''] );
     else 
-      padRedirect ( $go = '_xweb/dir',
+      padRedirect ( $go = '_reference/dir',
                     [ 'dir  ' => $hits [$file] ['dir'],
                       'for'   => $for ?? '',
                       'base'  => $file] );

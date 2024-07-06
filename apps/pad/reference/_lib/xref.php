@@ -39,9 +39,9 @@
       $items [$item] ['dir']   = '';
       $items [$item] ['pages'] = '';
 
-      if     ( padIsDir ( padApp . "_xweb/$item" ) )
+      if     ( padIsDir ( padApp . "_reference/$item" ) )
         $items [$item] ['dir'] = "$item";
-      elseif ( file_exists ( padApp . "_xweb/$item.txt" ) )
+      elseif ( file_exists ( padApp . "_reference/$item.txt" ) )
         $items [$item] ['pages'] = "$item.txt";
 
     }

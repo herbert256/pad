@@ -5,10 +5,10 @@
   if ( ! isset ( $item  ) ) $item  = '';
   if ( ! isset ( $for   ) ) $for   = '';
 
-  $pages = file ( padApp . "_xweb/$pages", FILE_IGNORE_NEW_LINES );
+  $pages = file ( padApp . "_reference/$pages", FILE_IGNORE_NEW_LINES );
 
   if ( count ($pages) == 1 )
-    padRedirect ( '_xweb/go',
+    padRedirect ( '_reference/go',
                   [ 'go'    => $pages [0],
                     'for'   => $for ?? '',
                     'item'  => $item ?? '',
