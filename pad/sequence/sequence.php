@@ -6,8 +6,8 @@
   elseif ( $padSeqRange ) $padSeqFor = padGetRange ( $padSeqRange, $padSeqInc );
   elseif ( $padSeqList  ) $padSeqFor = padGetList ( $padSeqList );
 
-  if ( padXref )
-    include pad . 'info/types/xref/items/sequence.php'; 
+  if ( padXref ) include pad . 'info/types/xref/events/sequence.php'; 
+  if ( padXapp ) include pad . 'info/types/xapp/events/sequence.php'; 
 
   if ( $padSeqFor !== FALSE )
     include pad . "sequence/builds/for.php";

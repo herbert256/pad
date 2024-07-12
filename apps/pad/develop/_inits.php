@@ -4,8 +4,8 @@
   $item      = padCorrectPath ( $item      ?? 'hello/index'     );
   $reference = padCorrectPath ( $reference ?? 'tags/properties' );
 
-  if     ( $padPage == 'reference/index' ) $title = $reference;
-  elseif ( $padPage == 'reference/show'  ) $title = $item;
+  if     ( $padPage == 'xapp/index' ) $title = $reference;
+  elseif ( $padPage == 'xapp/show'  ) $title = $item;
   else                                     $title = $padPage;
 
   if ( strpos($title, '/docs/')  ) 

@@ -1,6 +1,6 @@
 <?php
  
-  if ( padXref  ) include pad . 'info/types/xref/items/else.php';
-  if ( $padXweb ) include pad . 'info/types/reference/items/else.php';
+  if ( padXref ) include pad . 'info/types/xref/events/else.php';
+  if ( padXapp ) include pad . 'info/types/xapp/events/else.php';
 
 ?>

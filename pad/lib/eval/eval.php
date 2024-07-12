@@ -45,8 +45,8 @@
 
   function padEvalFast ( $eval, $value ) {
 
-    if ( padXref ) 
-      include pad . 'info/types/xref/items/fast.php';
+    if ( padXref ) include pad . 'info/types/xref/events/fast.php';
+    if ( padXapp ) include pad . 'info/types/xapp/events/fast.php';
 
     if ( padTrace )
       return include pad . 'info/events/eval/fast.php';

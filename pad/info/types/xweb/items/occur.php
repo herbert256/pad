@@ -1,5 +1,0 @@
-<?php
-
-  padXweb ( 'occur', $padOccurTypeSet );
-
-?>

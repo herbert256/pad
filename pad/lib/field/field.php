@@ -19,7 +19,7 @@
   function padField ( $field, $type, $lvl=0 ) {
 
     if ( padXref ) 
-      include pad . 'info/types/xref/items/field.php';
+      include pad . 'info/types/xref/events/field.php';
 
     if ( str_contains ($field, ':' ) )
       list ( $prefix, $field ) = explode (':', $field, 2);

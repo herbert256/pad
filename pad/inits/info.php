@@ -8,6 +8,7 @@
       define ( 'padXml',   FALSE );
       define ( 'padXref',  FALSE );
       define ( 'padTrace', FALSE );
+      define ( 'padXapp',  FALSE );
 
     } else {
 
@@ -22,8 +23,8 @@
       if ( $padTrace ) define ( 'padTrace', TRUE  );
       else             define ( 'padTrace', FALSE );
 
-      if ( $padXweb )  define ( 'padXweb', TRUE  );
-      else             define ( 'padXweb', FALSE );
+      if ( $padXapp )  define ( 'padXapp', TRUE  );
+      else             define ( 'padXapp', FALSE );
 
     }
 

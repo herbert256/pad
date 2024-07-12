@@ -24,8 +24,8 @@
 
           if ( file_exists ( pad . "eval/single/$type.php") ) {            
 
-            if ( padXref )
-              include pad . 'info/types/xref/items/functions.php'; 
+            if ( padXref ) include pad . 'info/types/xref/events/functions.php'; 
+            if ( padXapp ) include pad . 'info/types/xapp/events/functions.php'; 
 
             $padCall = pad . "eval/single/$type.php" ;
             $single  = include pad . "call/any.php" ;
@@ -35,8 +35,8 @@
 
           } elseif ( file_exists ( pad . "eval/parms/$type.php" ) ) {
 
-            if ( padXref ) 
-              include pad . 'info/types/xref/items/functions.php'; 
+            if ( padXref ) include pad . 'info/types/xref/events/functions.php'; 
+            if ( padXapp ) include pad . 'info/types/xapp/events/functions.php'; 
 
             $result[$k][0] = $name;
             $result[$k][1] = 'TYPE';

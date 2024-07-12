@@ -25,8 +25,8 @@
     $first  = $names [0] ?? '';
     $second = $names [1] ?? '';
 
-    if ( padXref ) 
-      include pad . 'info/types/xref/items/at.php';
+    if ( padXref ) include pad . 'info/types/xref/events/at.php';
+    if ( padXapp ) include pad . 'info/types/xapp/events/at.php';
 
     if     ( $property )  return include pad . "var/property.php";
     elseif ( $kind     )  return include pad . "var/at/$kind.php";

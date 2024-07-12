@@ -11,6 +11,6 @@
   if ( padTrace ) include pad . 'info/types/trace/occur/start.php';  
   if ( padXml   ) include pad . 'info/types/xml/occur/start.php';  
   if ( padXref  ) include pad . 'info/types/xref/occur/start.php';  
-  if ( padXref  ) include pad . 'info/types/xref/items/occur.php';   
+  if ( padXref  ) include pad . 'info/types/xref/events/occur.php';   
   
 ?>

@@ -12,8 +12,8 @@
       else
         $padSeqActionCnt = $padSeqActionValue;    
 
-      if ( padXref ) 
-        include pad . 'info/types/xref/items/action.php';
+      if ( padXapp ) include pad . 'info/types/xapp/events/action.php';
+      if ( padXref ) include pad . 'info/types/xref/events/action.php';
  
       $padSeqResult = include pad . "sequence/actions/$padSeqActionName.php";
 

@@ -4,7 +4,7 @@
     include pad . 'walk/parse_opt.php';
 
   if ( padXref )
-    include pad . 'info/types/xref/items/walk.php';
+    include pad . 'info/types/xref/events/walk.php';
 
   $padWalk [$pad] = 'next';
   
