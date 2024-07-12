@@ -13,7 +13,7 @@
     }
  
   if ( count ($hits) == 1 )
-      padRedirect ( '_xref/pages',
+      padRedirect ( 'xref/pages',
                     [ 'pages' => $hits [$file] ['pages'],
                       'type'  => $type,
                       'item'  => $item ] );

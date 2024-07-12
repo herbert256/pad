@@ -9,14 +9,13 @@
 
     global $padPage, $padXappSource, $padStartPage;
 
-  #  if ( padInsideOther()                             ) return;
-  #  if ( $padPage <> $padStartPage                    ) return;
-  #  if ( ! str_ends_with ( padApp, '/pad/' )          ) return;
-  #  if ( str_contains ( $padStartPage, 'develop'    ) ) return;
-  #  if ( str_contains ( $padStartPage, 'xref'       ) ) return;
-  #  if ( str_contains ( $padStartPage, 'manual'     ) ) return;
-  #  if ( str_contains ( $padStartPage, 'xapp'       ) ) return;
-  #  if ( ! isset ( $_REQUEST['padInclude']          ) ) return;
+    if ( padInsideOther ()                            ) return;
+    if ( $padPage <> $padStartPage                    ) return;
+    if ( ! str_ends_with ( padApp, '/pad/' )          ) return;
+    if ( str_contains ( $padStartPage, 'develop'    ) ) return;
+    if ( str_contains ( $padStartPage, 'xref'       ) ) return;
+    if ( str_contains ( $padStartPage, 'manual'     ) ) return;
+    if ( ! isset ( $_REQUEST['padInclude']          ) ) return;
 
     if ( $dir1 == 'tag'        and $dir2 <> 'pad'     ) return padXappGo ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'functions'  and $dir2 <> 'pad'     ) return padXappGo ( $dir1, $dir2, $dir3 );

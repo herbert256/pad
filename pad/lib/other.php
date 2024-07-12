@@ -141,6 +141,7 @@
 
     for ( $i=$pad; $i; $i--) {
       if ( $padTag [$i] == 'include' ) return TRUE;
+      if ( $padTag [$i] == 'get'     ) return TRUE;
       if ( $padTag [$i] == 'page'    ) return TRUE;
       if ( $padTag [$i] == 'example' ) return TRUE;
     }
