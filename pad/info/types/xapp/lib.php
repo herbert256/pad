@@ -34,7 +34,7 @@
 
   function padXappGo ( $dir1, $dir2, $dir3 ) {
 
-    $file = "_xapp/$dir1/$dir2";
+    $file = "_xref/$dir1/$dir2";
 
     if ( $dir3 !== '' )
       $file .= "/$dir3";

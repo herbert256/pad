@@ -15,8 +15,8 @@
   $pages = [];
   $list  = [];
 
-  if ( file_exists ( padData . 'develop/xref' . $xref) )
-    $list = scandir ( padData . 'develop/xref' . $xref ); 
+  if ( file_exists  ( padData . 'xref' . $xref ) )
+    $list = scandir ( padData . 'xref' . $xref ); 
 
   foreach ( $list as $file ) {
 

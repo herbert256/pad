@@ -1,3 +1,5 @@
 <?php
 
+  $title = 'Reference';
+  
 ?>

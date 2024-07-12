@@ -1,11 +1,11 @@
 <?php
 
 
-  function getXref ( $type, $xref, $dir ) {
+  function getXref ( $type, $dir, $xref ) {
 
     if ( $type == 'Function types' ) {
-      $one   = getXref ('n/a', $xref, 'eval/single' );
-      $two   = getXref ('n/a', $xref, 'eval/parms' ) ;
+      $one   = getXref ('n/a', 'eval/single', $xref );
+      $two   = getXref ('n/a', 'eval/parms',  $xref ) ;
       $items = array_merge ( $one, $two );
       ksort ($items);
       return $items;
@@ -39,9 +39,9 @@
       $items [$item] ['dir']   = '';
       $items [$item] ['pages'] = '';
 
-      if     ( padIsDir ( padApp . "_xref/manual/$xref/$item" ) )
+      if     ( is_dir ( padApp . "_xref/$xref/$item" ) )
         $items [$item] ['dir'] = "$xref/$item";
-      elseif ( file_exists ( padApp . "_xref/manual/$xref/$item.txt" ) )
+      elseif ( file_exists ( padApp . "_xref/$xref/$item.txt" ) )
         $items [$item] ['pages'] = "$xref/$item.txt";
 
     }

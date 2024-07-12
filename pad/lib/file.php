@@ -14,16 +14,6 @@
   }
 
 
-  function padIsDir ( $dir ) {
-
-    if ( ! padValidFile ( $dir ) )
-      return FALSE;
-    else
-      return is_dir ( $dir );
-
-  }
-
-
   function padFileCorrectX ( $file ) {
 
     $file = str_replace ( ':', '_', $file );

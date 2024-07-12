@@ -37,7 +37,7 @@
 
   function getExtraFiles ($dir) {
 
-    if ( ! padIsDir ( $dir) )
+    if ( ! is_dir ( $dir) )
       return [];
 
     $files = [];

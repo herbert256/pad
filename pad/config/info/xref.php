@@ -8,9 +8,9 @@
   $padXapp             = FALSE;       // Build the <app>_xapp directorie
 
   $padXrefXref         = TRUE;
-  $padXrefPage         = TRUE;
-  $padXrefTree         = TRUE;
-  $padXrefXml          = TRUE;
-  $padXrefTrace        = TRUE;
+  $padXrefPage         = FALSE;
+  $padXrefTree         = FALSE;
+  $padXrefXml          = FALSE;
+  $padXrefTrace        = FALSE;
 
 ?>
