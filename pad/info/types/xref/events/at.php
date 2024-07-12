@@ -1,7 +1,8 @@
 <?php
 
-  if     ( $property ) padXref ( 'at', 'property', $property );
-  elseif ( $kind     ) padXref ( 'at', 'kind',     $kind );
-  else                 padXref ( 'at', 'name',     $name ); 
+  if ( $field    ) padXapp ( 'at', 'fields',     $field    );
+  if ( $kind     ) padXapp ( 'at', 'kinds',      $kind     );
+  if ( $name     ) padXapp ( 'at', 'names',      $name     );
+  if ( $property ) padXapp ( 'at', 'properties', $property );
 
 ?>

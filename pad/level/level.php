@@ -19,7 +19,7 @@
   $padFirst   = substr ( $padBetween , 0, 1 );
   $padWords   = preg_split ("/[\s]+/", $padBetween, 2, PREG_SPLIT_NO_EMPTY);
 
-  if ( in_array ( $padFirst, ['$','!','#','&'] ) ) 
+  if ( in_array ( $padFirst, ['$','!','#','&','?'] ) ) 
     return include pad . 'var/var.php';
 
   if ( ! ctype_alpha ( $padFirst )       ) return padIgnore ('first char');

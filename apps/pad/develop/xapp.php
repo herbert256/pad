@@ -3,6 +3,8 @@
   if ( ! isset ( $fromMenu ) )
     return NULL;
 
+  padRemoveDirectory ( padApp . '_xapp' );
+
   set_time_limit ( 1000 );
 
   foreach ( padList ( 0 ) as $one ) {

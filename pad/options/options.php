@@ -24,8 +24,8 @@
 
         include pad . 'call/call.php';
 
-        if ( padTrace )
-          include pad . 'info/events/options.php';       
+        if ( padInfo )
+          include padInfo . 'options.php';           
 
       }
 

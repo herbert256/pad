@@ -12,15 +12,9 @@
 
     <blockquote>
 
-      {getXref '{!type}', '{$dir}'}
+      {getXref '{!type}', '{$dir}', '{$xref}'}
 
-        {if $dir}
-          <a href="{$padGo}_xapp/dir&dir={$dir}&for={$type|url}&item={$item}&base={$item}&xref=manual">{$item}</a>
-        {elseif $pages}
-          <a href="{$padGo}_xapp/pages&pages={$pages}&for={$type|url}&item={$item}&base=&xref=manual">{$item}</a>
-        @else@
-          {$item}
-        {/if}
+        {include 'item'}
 
         &nbsp; 
         

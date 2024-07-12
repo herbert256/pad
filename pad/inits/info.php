@@ -12,7 +12,7 @@
 
     } else {
 
-      define ( 'padInfo', TRUE );
+      define ( 'padInfo', pad . 'info/events/' );
       
       if ( $padXml )   define ( 'padXml',  TRUE  );
       else             define ( 'padXml',  FALSE );

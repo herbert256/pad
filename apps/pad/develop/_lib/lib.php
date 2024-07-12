@@ -89,4 +89,17 @@
   }
 
 
+  function padRemoveDirectory ( $dir ) {
+
+    foreach ( glob ( "{$dir}/*" ) as $file ) 
+      if ( is_dir ( $file ) ) 
+        padRemoveDirectory ( $file );
+      else
+        unlink ( $file );
+
+    rmdir ( $dir );
+
+  }
+
+
 ?>

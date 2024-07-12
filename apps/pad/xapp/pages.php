@@ -1,22 +1,17 @@
 <?php
 
   if ( ! isset ( $pages ) ) $pages = 'tag/pad/if.txt';
-  if ( ! isset ( $base  ) ) $base  = '';
-  if ( ! isset ( $item  ) ) $item  = '';
-  if ( ! isset ( $for   ) ) $for   = '';
+  if ( ! isset ( $item  ) ) $item  = 'if';
+  if ( ! isset ( $type  ) ) $type  = 'Tags';
 
   $pages = file ( padApp . "_xapp/$pages", FILE_IGNORE_NEW_LINES );
 
   if ( count ($pages) == 1 )
-    padRedirect ( '_xapp/go',
-                  [ 'go'    => $pages [0],
-                    'for'   => $for ?? '',
-                    'item'  => $item ?? '',
-                    'base'  => $base ?? '' ] );
+    padRedirect ( 'xapp/go',
+                  [ 'pages' => $pages [0],
+                    'type'  => $type ?? '',
+                    'item'  => $item ?? ''] );
 
-               $title  = 'Reference';
-  if ( $for  ) $title .= " - $for";
-  if ( $base ) $title .= " - $base";
-  if ( $item ) $title .= " - $item";
+  $title .= " - $type - $item";
 
 ?>

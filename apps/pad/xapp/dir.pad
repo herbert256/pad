@@ -4,11 +4,7 @@
 
     {hits}
 
-      {if $dir}
-        <a href="{$padGo}xapp/dir&dir={$dir}&for={$for|url}&base={$base}&item={$item}">{$item}</a>
-      {elseif $pages}
-        <a href="{$padGo}xapp/pages&pages={$pages}&for={$for|url}&item={$item}&base={$base}">{$item}</a>
-      {/if}
+      {include 'item'}
 
       <br>
 

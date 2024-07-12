@@ -3,7 +3,7 @@
 
   function padFieldCheck ( $parm )         { return padField ( $parm, 1       ); } 
   function padFieldValue ( $parm )         { return padField ( $parm, 2       ); } 
-
+ 
   function padArrayCheck ( $parm )         { return padField ( $parm, 3       ); } 
   function padArrayValue ( $parm )         { return padField ( $parm, 4       ); } 
   
@@ -65,11 +65,11 @@
   }
 
 
- function padRawCheck ( $parm ) { 
+  function padUrlValue ( $parm )  { 
 
-    return padFieldCheck ( $parm );
+    return "&$parm=" . urlencode ( padFieldValue ( $parm ) ); 
 
   }
-
+  
 
 ?>

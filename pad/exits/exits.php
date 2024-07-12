@@ -2,6 +2,7 @@
   
   $padOutput = $padResult [0];
   $padOutput = padUnescape ( $padOutput );
+  $padOutput = str_replace ( '@pad@', $padGo, $padOutput);
 
   if ( $padTidy or $padMyTidy )
     include pad . 'exits/tidy.php';

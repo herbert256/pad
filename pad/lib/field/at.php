@@ -8,6 +8,8 @@
 
     padAtSet ( $field, $kind, $name, $property );
 
+    if ( padInfo ) include padInfo . 'at.php';
+
     $names = padExplode ( $field, '.' ); 
 
     if     ( count ($names) ) $forceName = end ($names);
@@ -24,9 +26,6 @@
 
     $first  = $names [0] ?? '';
     $second = $names [1] ?? '';
-
-    if ( padXref ) include pad . 'info/types/xref/events/at.php';
-    if ( padXapp ) include pad . 'info/types/xapp/events/at.php';
 
     if     ( $property )  return include pad . "var/property.php";
     elseif ( $kind     )  return include pad . "var/at/$kind.php";
