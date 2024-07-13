@@ -2,6 +2,6 @@
 
   $padCallback = "exit";
   
-  include pad . 'options/options/callback.php' ;
+  include pad . 'options/go/callback.php' ;
   
 ?>

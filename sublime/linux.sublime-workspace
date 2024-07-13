@@ -115,16 +115,6 @@
 	},
 	"buffers":
 	[
-		{
-			"contents": "Searching 2874 files for \"glue\" (case sensitive)\n\n~/pad/apps/pad/_regression/reference/index.pad:\n  502  \n  503          \n  504:           glue\n  505          \n  506  \n\n~/pad/apps/pad/_regression/sequence/print.pad:\n   14  <tr><td style=\"vertical-align:top\"><!-- START DEMO SOURCE --><pre><code style=\"color: #000000\"><b>{<font color=\"blue\">sequence </font><font color=\"red\">range=<font color=\"black\">'</font>a..k<font color=\"black\">'</font><font color=\"black\">,</font> print<font color=\"black\">,</font> open=<font color=\"b... <skipped 42 characters> ...><font color=\"black\">,</font> close=<font color=\"black\">'</font>)<font color=\"black\">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style=\"vertical-align:top\"><code><span style=\"color: #000000\"><!-- START DEMO RESULT -->(abcdefghijk)<!-- END DEMO RESULT --></span></code></td></tr>\n   15  \n   16: <tr><td style=\"vertical-align:top\"><!-- START DEMO SOURCE --><pre><code style=\"color: #000000\"><b>{<font color=\"blue\">sequence </font><font color=\"red\">range=<font color=\"black\">'</font>a..k<font color=\"black\">'</font><font color=\"black\">,</font> print<font color=\"black\">,</font> glue=<font color=\"black\">'</font><font color=\"black\">,</font><font color=\"black\">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style=\"vertical-align:top\"><code><span style=\"color: #000000\"><!-- START DEMO RESULT -->a,b,c,d,e,f,g,h,i,j,k<!-- END DEMO RESULT --></span></code></td></tr>\n   17  \n   18: <skipped 72 characters> ...style=\"color: #000000\"><b>{<font color=\"blue\">sequence </font><font color=\"red\">range=<font color=\"black\">'</font>a..k<font color=\"black\">'</font><font color=\"black\">,</font> print<font color=\"black\">,</font> open=<font color=\"black\">'</font>(<font color=\"black\">'</font><font color=\"black\">,</font> glue=<font color=\"black\">'</font><font color=\"black\">,</font><font color=\"black\">'</font><font color=\"black\">,</font> close=<font color=\"black\">'</font>)<font color=\"black\">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style=\"vertical-align:top\"><code><span style=\"color: #000000\"><!-... <skipped 94 characters> ...\n   19  \n   20: <tr><td style=\"vertical-align:top\"><!-- START DEMO SOURCE --><pre><code style=\"color: #000000\"><b>{<font color=\"blue\">sequence </font><font color=\"red\">range=<font color=\"black\">'</font>a..k<font color=\"black\">'</font><font color=\"black\">,</font> print<font color=\"black\">,</font> glue=<font color=\"black\">'</font><font color=\"black\">,</font><font color=\"black\">'</font><font color=\"black\">,</font> quote=\"<font color=\"black\">'</font>\"</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style=\"vertical-align:top\"><code><span style=\"color: #000000\"><!-- START DEMO RESULT -->'a',... <skipped 87 characters> ...\n   21  \n   22: <skipped 72 characters> ...style=\"color: #000000\"><b>{<font color=\"blue\">sequence </font><font color=\"red\">range=<font color=\"black\">'</font>a..k<font color=\"black\">'</font><font color=\"black\">,</font> print<font color=\"black\">,</font> open=<font color=\"black\">'</font>(<font color=\"black\">'</font><font color=\"black\">,</font> glue=<font color=\"black\">'</font><font color=\"black\">,</font><font color=\"black\">'</font><font color=\"black\">,</font> quote=\"<font color=\"black\">'</font>\"<font color=\"black\">,</font> close=<font color=\"black\">'</font>)<font color=\"black\">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td ... <skipped 181 characters> ...\n   23  \n   24  \n\n~/pad/apps/pad/_regression/xref/manual.pad:\n  502  \n  503          \n  504:           <a href=\"/?xref/pages&pages=options/glue.txt&for=Tag+options&item=glue&base=&xref=manual\">glue</a>\n  505          \n  506  \n\n~/pad/apps/pad/sequence/print.pad:\n   10  \n   11  {demo}\n   12:   {sequence range='a..k', print, glue=','}\n   13  {/demo}\n   14  \n   15  {demo}\n   16:   {sequence range='a..k', print, open='(', glue=',', close=')'}\n   17  {/demo}\n   18  \n   19  {demo}\n   20:   {sequence range='a..k', print, glue=',', quote=\"'\"}\n   21  {/demo}\n   22  \n   23  {demo}\n   24:   {sequence range='a..k', print, open='(', glue=',', quote=\"'\", close=')'}\n   25  {/demo}\n   26  \n\n~/pad/pad/_options/glue.php:\n    1  <?php\n    2  \n    3:   $padContent .= '{notLast}' . padTagParm ('glue') . '{/notLast}';\n    4  \n    5  ?>\n\n~/pad/pad/_options/print.php:\n    5    if ( padTagParm ('quote') ) include pad . '_options/quote.php';\n    6    if ( padTagParm ('open')  ) include pad . '_options/open.php';\n    7:   if ( padTagParm ('glue')  ) include pad . '_options/glue.php';\n    8    if ( padTagParm ('close') ) include pad . '_options/close.php';\n    9  \n\n~/data/dumps/sequence/figurate/574956374993561/files.html:\n  223        [221] =&gt; /home/herbert/pad/pad/tag/current.php\n  224        [222] =&gt; /home/herbert/pad/pad/tag/last.php\n  225:       [223] =&gt; /home/herbert/pad/pad/_options/glue.php\n  226        [224] =&gt; /home/herbert/pad/pad/tag/notLast.php\n  227        [225] =&gt; /home/herbert/pad/pad/_options/quote.php\n\n~/data/dumps/sequence/figurate/574956374993561/globals.html:\n 4184  &lt;tr&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style&amp;eq;&quot;color: #000000&quot;&gt;&lt;b&gt;&amp;open;&lt;font color&amp;eq;&quot;blue&quot;&gt;sequence &lt;/font&gt;&lt;font color&amp;eq;&quot;red&quot;&gt;range&amp;eq;&lt;... <skipped 649 characters> ...de&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;code&gt;&lt;span style&amp;eq;&quot;color: #000000&quot;&gt;&lt;!-- START DEMO RESULT --&gt;(abcdefghijk)&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;\n 4185  \n 4186: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;/font&gt;&amp;close;&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&... <skipped 348 characters> ...\n 4187  \n 4188: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; close&amp;eq;&lt;font color&amp;e... <skipped 556 characters> ...\n 4189  \n 4190: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 635 characters> ...\n 4191  \n 4192: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 843 characters> ...\n 4193  \n 4194  \n\n~/data/dumps/sequence/named/574945008068817/files.html:\n  223        [221] =&gt; /home/herbert/pad/pad/tag/current.php\n  224        [222] =&gt; /home/herbert/pad/pad/tag/last.php\n  225:       [223] =&gt; /home/herbert/pad/pad/_options/glue.php\n  226        [224] =&gt; /home/herbert/pad/pad/tag/notLast.php\n  227        [225] =&gt; /home/herbert/pad/pad/_options/quote.php\n\n~/data/dumps/sequence/named/574945008068817/globals.html:\n 4264  &lt;tr&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style&amp;eq;&quot;color: #000000&quot;&gt;&lt;b&gt;&amp;open;&lt;font color&amp;eq;&quot;blue&quot;&gt;sequence &lt;/font&gt;&lt;font color&amp;eq;&quot;red&quot;&gt;range&amp;eq;&lt;... <skipped 649 characters> ...de&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;code&gt;&lt;span style&amp;eq;&quot;color: #000000&quot;&gt;&lt;!-- START DEMO RESULT --&gt;(abcdefghijk)&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;\n 4265  \n 4266: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;/font&gt;&amp;close;&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&... <skipped 348 characters> ...\n 4267  \n 4268: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; close&amp;eq;&lt;font color&amp;e... <skipped 556 characters> ...\n 4269  \n 4270: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 635 characters> ...\n 4271  \n 4272: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 843 characters> ...\n 4273  \n 4274  \n\n~/data/dumps/sequence/named/574992096474092/files.html:\n  220        [218] =&gt; /home/herbert/pad/pad/tag/current.php\n  221        [219] =&gt; /home/herbert/pad/pad/tag/last.php\n  222:       [220] =&gt; /home/herbert/pad/pad/_options/glue.php\n  223        [221] =&gt; /home/herbert/pad/pad/tag/notLast.php\n  224        [222] =&gt; /home/herbert/pad/pad/_options/quote.php\n\n~/data/dumps/sequence/named/574992096474092/globals.html:\n 4375  &lt;tr&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style&amp;eq;&quot;color: #000000&quot;&gt;&lt;b&gt;&amp;open;&lt;font color&amp;eq;&quot;blue&quot;&gt;sequence &lt;/font&gt;&lt;font color&amp;eq;&quot;red&quot;&gt;range&amp;eq;&lt;... <skipped 649 characters> ...de&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;code&gt;&lt;span style&amp;eq;&quot;color: #000000&quot;&gt;&lt;!-- START DEMO RESULT --&gt;(abcdefghijk)&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;\n 4376  \n 4377: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;/font&gt;&amp;close;&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&... <skipped 348 characters> ...\n 4378  \n 4379: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; close&amp;eq;&lt;font color&amp;e... <skipped 556 characters> ...\n 4380  \n 4381: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 635 characters> ...\n 4382  \n 4383: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 843 characters> ...\n 4384  \n 4385  \n\n~/pad/www/data/dumps/sequence/figurate/574956374993561/files.html:\n  223        [221] =&gt; /home/herbert/pad/pad/tag/current.php\n  224        [222] =&gt; /home/herbert/pad/pad/tag/last.php\n  225:       [223] =&gt; /home/herbert/pad/pad/_options/glue.php\n  226        [224] =&gt; /home/herbert/pad/pad/tag/notLast.php\n  227        [225] =&gt; /home/herbert/pad/pad/_options/quote.php\n\n~/pad/www/data/dumps/sequence/figurate/574956374993561/globals.html:\n 4184  &lt;tr&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style&amp;eq;&quot;color: #000000&quot;&gt;&lt;b&gt;&amp;open;&lt;font color&amp;eq;&quot;blue&quot;&gt;sequence &lt;/font&gt;&lt;font color&amp;eq;&quot;red&quot;&gt;range&amp;eq;&lt;... <skipped 649 characters> ...de&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;code&gt;&lt;span style&amp;eq;&quot;color: #000000&quot;&gt;&lt;!-- START DEMO RESULT --&gt;(abcdefghijk)&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;\n 4185  \n 4186: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;/font&gt;&amp;close;&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&... <skipped 348 characters> ...\n 4187  \n 4188: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; close&amp;eq;&lt;font color&amp;e... <skipped 556 characters> ...\n 4189  \n 4190: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 635 characters> ...\n 4191  \n 4192: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 843 characters> ...\n 4193  \n 4194  \n\n~/pad/www/data/dumps/sequence/named/574945008068817/files.html:\n  223        [221] =&gt; /home/herbert/pad/pad/tag/current.php\n  224        [222] =&gt; /home/herbert/pad/pad/tag/last.php\n  225:       [223] =&gt; /home/herbert/pad/pad/_options/glue.php\n  226        [224] =&gt; /home/herbert/pad/pad/tag/notLast.php\n  227        [225] =&gt; /home/herbert/pad/pad/_options/quote.php\n\n~/pad/www/data/dumps/sequence/named/574945008068817/globals.html:\n 4264  &lt;tr&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style&amp;eq;&quot;color: #000000&quot;&gt;&lt;b&gt;&amp;open;&lt;font color&amp;eq;&quot;blue&quot;&gt;sequence &lt;/font&gt;&lt;font color&amp;eq;&quot;red&quot;&gt;range&amp;eq;&lt;... <skipped 649 characters> ...de&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;code&gt;&lt;span style&amp;eq;&quot;color: #000000&quot;&gt;&lt;!-- START DEMO RESULT --&gt;(abcdefghijk)&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;\n 4265  \n 4266: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;/font&gt;&amp;close;&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&... <skipped 348 characters> ...\n 4267  \n 4268: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; close&amp;eq;&lt;font color&amp;e... <skipped 556 characters> ...\n 4269  \n 4270: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 635 characters> ...\n 4271  \n 4272: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 843 characters> ...\n 4273  \n 4274  \n\n~/pad/www/data/dumps/sequence/named/574992096474092/files.html:\n  220        [218] =&gt; /home/herbert/pad/pad/tag/current.php\n  221        [219] =&gt; /home/herbert/pad/pad/tag/last.php\n  222:       [220] =&gt; /home/herbert/pad/pad/_options/glue.php\n  223        [221] =&gt; /home/herbert/pad/pad/tag/notLast.php\n  224        [222] =&gt; /home/herbert/pad/pad/_options/quote.php\n\n~/pad/www/data/dumps/sequence/named/574992096474092/globals.html:\n 4375  &lt;tr&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style&amp;eq;&quot;color: #000000&quot;&gt;&lt;b&gt;&amp;open;&lt;font color&amp;eq;&quot;blue&quot;&gt;sequence &lt;/font&gt;&lt;font color&amp;eq;&quot;red&quot;&gt;range&amp;eq;&lt;... <skipped 649 characters> ...de&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;code&gt;&lt;span style&amp;eq;&quot;color: #000000&quot;&gt;&lt;!-- START DEMO RESULT --&gt;(abcdefghijk)&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;\n 4376  \n 4377: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;/font&gt;&amp;close;&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&... <skipped 348 characters> ...\n 4378  \n 4379: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; close&amp;eq;&lt;font color&amp;e... <skipped 556 characters> ...\n 4380  \n 4381: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 635 characters> ...\n 4382  \n 4383: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 843 characters> ...\n 4384  \n 4385  \n\n45 matches across 18 files\n",
-			"settings":
-			{
-				"buffer_size": 27540,
-				"line_ending": "Unix",
-				"name": "Find Results",
-				"scratch": true
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -158,145 +148,141 @@
 	},
 	"expanded_folders":
 	[
-		"/home/herbert/pad/apps/pad",
-		"/home/herbert/pad/apps/pad/xref",
 		"/home/herbert/pad/pad",
-		"/home/herbert/pad/pad/config",
-		"/home/herbert/pad/pad/exits",
-		"/home/herbert/pad/pad/info",
-		"/home/herbert/pad/pad/info/types",
-		"/home/herbert/pad/pad/info/types/xapp"
+		"/home/herbert/pad/pad/build",
+		"/home/herbert/pad/pad/options",
+		"/home/herbert/pad/pad/options/options"
 	],
 	"file_history":
 	[
-		"/home/herbert/pad/apps/pad/xref/index.pad",
-		"/home/herbert/pad/pad/lib/other.php",
-		"/home/herbert/pad/pad/info/types/xapp/lib.php",
-		"/home/herbert/pad/apps/pad/xref/dir.pad",
-		"/home/herbert/pad/apps/pad/xref/dir.php",
-		"/home/herbert/pad/apps/pad/xref/pages.php",
-		"/home/herbert/pad/pad/config/config.php",
-		"/home/herbert/pad/apps/pad/xref/_lib/xref.php",
-		"/home/herbert/pad/apps/pad/xref/pages.pad",
-		"/home/herbert/pad/apps/pad/xref/go.pad",
-		"/home/herbert/pad/apps/pad/xref/go.php",
-		"/home/herbert/pad/pad/lib/file.php",
-		"/home/herbert/pad/apps/pad/_lib/lib.php",
-		"/home/herbert/pad/pad/config/info/xref.php",
-		"/home/herbert/pad/pad/info/types/xref/lib.php",
-		"/home/herbert/pad/apps/pad/develop/_lib/lib.php",
-		"/home/herbert/pad/pad/info/lib.php",
-		"/home/herbert/pad/apps/pad/develop/build.php",
-		"/home/herbert/pad/apps/pad/develop/index.pad",
-		"/home/herbert/pad/apps/pad/develop/xref.php",
-		"/home/herbert/pad/apps/pad/xref/_includes/item.pad",
-		"/home/herbert/pad/apps/pad/develop/xapp.php",
-		"/home/herbert/pad/apps/pad/_includes/menu.pad",
-		"/home/herbert/pad/pad/info/types/xref/events/at.php",
-		"/home/herbert/pad/apps/pad/xapp/dir.php",
-		"/home/herbert/pad/apps/pad/xapp/pages.pad",
-		"/home/herbert/pad/apps/pad/xapp/pages.php",
-		"/home/herbert/pad/apps/pad/xapp/_includes/item.pad",
-		"/home/herbert/pad/apps/pad/xapp/_lib/xref.php",
-		"/home/herbert/pad/pad/lib/field/at.php",
-		"/home/herbert/pad/apps/pad/xapp/_data/xref.json",
-		"/home/herbert/pad/pad/info/events/at.php",
-		"/home/herbert/pad/pad/info/events/options.php",
-		"/home/herbert/pad/pad/info/types/xapp/events/options.php",
-		"/home/herbert/pad/pad/options/options.php",
-		"/home/herbert/pad/pad/info/start.php",
-		"/home/herbert/pad/pad/inits/info.php",
-		"/home/herbert/pad/apps/pad/xapp/_inits.php",
-		"/home/herbert/pad/pad/exits/exits.php",
-		"/home/herbert/pad/pad/constructs/pad.php",
-		"/home/herbert/pad/pad/level/level.php",
-		"/home/herbert/pad/pad/lib/field/field.php",
-		"/home/herbert/pad/pad/var/classic.php",
-		"/home/herbert/pad/pad/lib/valid.php",
-		"/home/herbert/pad/apps/pad/xapp/go.php",
-		"/home/herbert/pad/apps/pad/xapp/index.pad",
-		"/home/herbert/pad/apps/pad/xapp/dir.pad",
-		"/home/herbert/pad/apps/pad/xapp/_content/item.pad",
-		"/home/herbert/pad/apps/pad/php_and_html/z00.php",
-		"/home/herbert/pad/apps/pad/php_and_html/z99.php",
-		"/home/herbert/pad/apps/pad/php_and_html/z99.pad",
-		"/home/herbert/work",
-		"/home/herbert/pad/apps/pad/manual/php_and_html.pad",
-		"/home/herbert/pad/pad/info/events/go.php",
-		"/home/herbert/pad/pad/info/events/parms.php",
-		"/home/herbert/pad/pad/config/info/all.php",
-		"/home/herbert/pad/pad/config/info/none.php",
-		"/home/herbert/pad/pad/config/info/xapp.php",
-		"/home/herbert/pad/pad/config/info/xml.php",
-		"/home/herbert/pad/pad/info/events/else.php",
-		"/home/herbert/pad/pad/info/events/occurStart.php",
-		"/home/herbert/pad/pad/info/events/setup.php",
-		"/home/herbert/pad/pad/level/split.php",
-		"/home/herbert/pad/pad/level/start_end/end1.php",
-		"/home/herbert/pad/pad/level/start_end/start1.php",
-		"/home/herbert/pad/pad/lib/eval/after.php",
-		"/home/herbert/pad/pad/lib/eval/eval.php",
-		"/home/herbert/pad/pad/sequence/actions.php",
-		"/home/herbert/pad/pad/sequence/sequence.php",
-		"/home/herbert/pad/pad/start/lib/page.php",
-		"/home/herbert/pad/pad/walk/end.php",
-		"/home/herbert/pad/pad/walk/next.php",
-		"/home/herbert/pad/pad/info/types/xapp/items/tag.php",
-		"/home/herbert/pad/pad/info/types/xapp/start.php",
-		"/home/herbert/pad/apps/pad/xapp/index.php",
-		"/home/herbert/pad/apps/pad/_lib/menu.php",
-		"/home/herbert/pad/apps/pad/_reference/constructs/else.txt",
-		"/home/herbert/pad/apps/pad/_reference/functions/pad/url.txt",
-		"/home/herbert/pad/apps/pad/_reference/options/data.txt",
-		"/home/herbert/pad/apps/pad/_reference/sequences/builds/for.txt",
-		"/home/herbert/pad/apps/pad/_reference/sequences/types/range.txt",
-		"/home/herbert/pad/apps/pad/_reference/tag/array/hits.txt",
-		"/home/herbert/pad/apps/pad/_reference/tag/array/pages.txt",
-		"/home/herbert/pad/apps/pad/_reference/tag/content/block.txt",
-		"/home/herbert/pad/apps/pad/_reference/tag/field/showPage.txt",
-		"/home/herbert/pad/apps/pad/_reference/tag/pad/if.txt",
-		"/home/herbert/pad/apps/pad/_reference/tag/pad/pad.txt",
-		"/home/herbert/pad/apps/pad/_reference/tag/pad/true.txt",
-		"/home/herbert/pad/apps/pad/_reference/tag/php/getXref.txt",
-		"/home/herbert/pad/apps/pad/_reference/tag/sequence/range.txt",
-		"/home/herbert/pad/apps/pad/_regression/reference/dir.pad",
-		"/home/herbert/pad/apps/pad/_regression/reference/index.pad",
-		"/home/herbert/pad/apps/pad/_regression/reference/pages.pad",
-		"/home/herbert/pad/apps/pad/develop/_inits.php",
-		"/home/herbert/pad/apps/pad/reference/dir.pad",
-		"/home/herbert/pad/apps/pad/reference/dir.php",
-		"/home/herbert/pad/apps/pad/reference/index.pad",
-		"/home/herbert/pad/apps/pad/reference/pages.pad",
-		"/home/herbert/pad/apps/pad/reference/pages.php",
-		"/home/herbert/pad/apps/pad/reference/_lib/xref.php",
-		"/home/herbert/pad/pad/info/types/reference/lib.php",
-		"/home/herbert/data/dumps/reference/index/13151496803336/globals.html",
-		"/home/herbert/data/dumps/reference/index/13151496803336/ids.html",
-		"/home/herbert/data/dumps/reference/index/13151496803336/pad-vars.html",
-		"/home/herbert/pad/www/data/dumps/reference/index/13151496803336/globals.html",
-		"/home/herbert/pad/www/data/dumps/reference/index/13151496803336/ids.html",
-		"/home/herbert/pad/www/data/dumps/reference/index/13151496803336/pad-vars.html",
-		"/home/herbert/pad/pad/info/end.php",
-		"/home/herbert/pad/pad/info/types/reference/start.php",
-		"/home/herbert/data/dumps/develop/index/12568688137440/files.html",
-		"/home/herbert/data/dumps/error/error_1/11926754281856/files.html",
-		"/home/herbert/data/dumps/error/error_1/11926768974484/files.html",
-		"/home/herbert/data/dumps/error/error_1/12770841909546/files.html",
-		"/home/herbert/data/dumps/error/error_1/12770856160142/files.html",
-		"/home/herbert/data/dumps/error/error_2/11926780137159/files.html",
-		"/home/herbert/data/dumps/error/error_2/11926789174092/files.html",
-		"/home/herbert/data/dumps/error/error_2/12770866167712/files.html",
-		"/home/herbert/data/dumps/error/error_2/12770876474145/files.html",
-		"/home/herbert/data/dumps/error/exception_1/11926798046561/files.html",
-		"/home/herbert/data/dumps/error/exception_1/11926809520259/files.html",
-		"/home/herbert/data/dumps/error/exception_1/12770884608585/files.html",
-		"/home/herbert/data/dumps/error/exception_1/12770899119461/files.html",
-		"/home/herbert/data/dumps/error/exception_2/11926820037927/files.html",
-		"/home/herbert/data/dumps/error/exception_2/11926829511134/files.html",
-		"/home/herbert/data/dumps/error/exception_2/12770911688075/files.html",
-		"/home/herbert/data/dumps/error/exception_2/12770922050953/files.html",
-		"/home/herbert/data/dumps/error/pad_1/11926849239026/files.html",
-		"/home/herbert/data/dumps/error/pad_1/11926864815249/files.html"
+		"/home/herbert/pad/pad/options/options/end.php",
+		"/home/herbert/pad/pad/options/options/callback.php",
+		"/home/herbert/pad/pad/options/options/app.php",
+		"/home/herbert/pad/pad/options/end.php",
+		"/home/herbert/pad/pad/level/start.php",
+		"/home/herbert/pad/pad/level/end.php",
+		"/home/herbert/pad/pad/callback/row.php",
+		"/home/herbert/pad/pad/callback/init.php",
+		"/home/herbert/pad/pad/callback/exit.php",
+		"/home/herbert/pad/www/index.php",
+		"/home/herbert/pad/pad/options/options/start.php",
+		"/home/herbert/data/dumps/callback/before/594648901472709/_ERROR.html",
+		"/home/herbert/data/dumps/callback/before/594648901472709/files.html",
+		"/home/herbert/data/dumps/callback/before/594648901472709/globals.html",
+		"/home/herbert/data/dumps/callback/before/594648901472709/pad-vars.html",
+		"/home/herbert/data/dumps/callback/before/594648901472709/stack.html",
+		"/home/herbert/data/dumps/callback/before/600046039911082/_ERROR.html",
+		"/home/herbert/data/dumps/callback/before/600046039911082/files.html",
+		"/home/herbert/data/dumps/callback/before/600046039911082/globals.html",
+		"/home/herbert/data/dumps/callback/before/600046039911082/pad-vars.html",
+		"/home/herbert/data/dumps/callback/before/600046039911082/stack.html",
+		"/home/herbert/data/dumps/callback/before/600046529756216/_ERROR.html",
+		"/home/herbert/data/dumps/callback/before/600046529756216/files.html",
+		"/home/herbert/data/dumps/callback/before/600046529756216/globals.html",
+		"/home/herbert/data/dumps/callback/before/600046529756216/pad-vars.html",
+		"/home/herbert/data/dumps/callback/before/600046529756216/stack.html",
+		"/home/herbert/data/dumps/callback/before/600054212796577/_ERROR.html",
+		"/home/herbert/data/dumps/callback/before/600054212796577/files.html",
+		"/home/herbert/data/dumps/callback/before/600054212796577/globals.html",
+		"/home/herbert/data/dumps/callback/before/600054212796577/pad-vars.html",
+		"/home/herbert/data/dumps/callback/before/600054212796577/stack.html",
+		"/home/herbert/data/dumps/callback/before/600054238662107/_ERROR.html",
+		"/home/herbert/data/dumps/callback/before/600054238662107/files.html",
+		"/home/herbert/data/dumps/callback/before/600054238662107/globals.html",
+		"/home/herbert/data/dumps/callback/before/600054238662107/pad-vars.html",
+		"/home/herbert/data/dumps/callback/before/600054238662107/stack.html",
+		"/home/herbert/data/dumps/callback/before/600063298124211/_ERROR.html",
+		"/home/herbert/data/dumps/callback/before/600063298124211/files.html",
+		"/home/herbert/data/dumps/callback/before/600063298124211/globals.html",
+		"/home/herbert/data/dumps/callback/before/600063298124211/pad-vars.html",
+		"/home/herbert/data/dumps/callback/before/600063298124211/stack.html",
+		"/home/herbert/data/dumps/callback/before/600063790583790/_ERROR.html",
+		"/home/herbert/data/dumps/callback/before/600063790583790/files.html",
+		"/home/herbert/data/dumps/callback/before/600063790583790/globals.html",
+		"/home/herbert/data/dumps/callback/before/600063790583790/pad-vars.html",
+		"/home/herbert/data/dumps/callback/before/600063790583790/stack.html",
+		"/home/herbert/data/dumps/callback/before/600069230955045/_ERROR.html",
+		"/home/herbert/data/dumps/callback/before/600069230955045/files.html",
+		"/home/herbert/data/dumps/callback/before/600069230955045/globals.html",
+		"/home/herbert/data/dumps/callback/before/600069230955045/pad-vars.html",
+		"/home/herbert/data/dumps/callback/before/600069230955045/stack.html",
+		"/home/herbert/data/dumps/callback/before/600069718834326/_ERROR.html",
+		"/home/herbert/data/dumps/callback/before/600069718834326/files.html",
+		"/home/herbert/data/dumps/callback/before/600069718834326/globals.html",
+		"/home/herbert/data/dumps/callback/before/600069718834326/pad-vars.html",
+		"/home/herbert/data/dumps/callback/before/600069718834326/stack.html",
+		"/home/herbert/data/dumps/callback/demand/594648917713881/files.html",
+		"/home/herbert/data/dumps/callback/demand/600046053435975/files.html",
+		"/home/herbert/data/dumps/callback/demand/600063313530888/files.html",
+		"/home/herbert/data/dumps/callback/demand/600069245551095/files.html",
+		"/home/herbert/data/dumps/index/594077389132802/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/594649302462350/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/594649302462350/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600047139185158/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600047139185158/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600064413906207/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600064413906207/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600070375988782/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600070375988782/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600088333577562/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600088333577562/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600088359564618/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600088359564618/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600200368019995/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600200368019995/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600200885038782/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600200885038782/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600201226512482/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600201226512482/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600201502822189/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600201502822189/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600201756764318/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600201756764318/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600202022308958/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600202022308958/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600202294255970/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600202294255970/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600202558678709/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600202558678709/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600202811420068/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600202811420068/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600203128529788/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600203128529788/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600203502855030/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600203502855030/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600205730120212/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600205730120212/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600206033633527/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600206033633527/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600206327870585/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600206327870585/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600206607344563/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600206607344563/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600206852093512/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600206852093512/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600207121252203/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600207121252203/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600207398404838/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600207398404838/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600207729381788/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600207729381788/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600208049170158/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600208049170158/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600208331903206/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600208331903206/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600208632712705/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600208632712705/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600209011273683/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600209011273683/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600209273338649/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600209273338649/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600209506160724/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600209506160724/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600209742379575/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600209742379575/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600209986185715/files.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600209986185715/stack.html",
+		"/home/herbert/data/dumps/miscellaneous/filter/600210257590976/files.html"
 	],
 	"find":
 	{
@@ -307,6 +293,8 @@
 		"height": 104.0,
 		"where_history":
 		[
+			"",
+			"/home/herbert/pad/pad,<project filters>",
 			"",
 			"/home/herbert/pad/apps/pad/xref,<project filters>",
 			"/home/herbert/pad/apps/pad/xapp,<project filters>",
@@ -390,6 +378,30 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"options/options/",
+			"parts",
+			"xapp",
+			"options/start.php",
+			"options/options.php",
+			"options/end.php",
+			"options/callback.php",
+			"options/app.php",
+			"options/",
+			"_functions",
+			"_options",
+			"_tags",
+			"go/tag",
+			"_tags",
+			"pad . '_functions/",
+			"pad . \"_functions/",
+			"pad . \"_options/",
+			"pad . '_options/",
+			"pad . '_tags/",
+			"pad . 'tags/",
+			"pad . \"_tags/",
+			"_tags",
+			"_options",
+			"_functions",
 			"glue",
 			"getXref",
 			"xapp",
@@ -493,38 +505,26 @@
 			"padInfoDir",
 			"*SKIP*",
 			"padTraceLevel",
-			"padTraceWrite",
-			"padLog",
-			"padID",
-			"padInfoDir",
-			"['file']",
-			"$files",
-			"$dir",
-			"padXrefPage",
-			"XrefTree",
-			"padOutputType",
-			"$padOpt [$pad] [1]",
-			"pad . \"types/\"",
-			"types/",
-			"pad/types",
-			"pad/types/",
-			"padParm",
-			"padOpt [$pad] [1]",
-			"padSkipBootShutdown",
-			"padXrefInfo",
-			"apt update",
-			"apt -y",
-			"bfghjkjhfdfgj",
-			"padCache_mem",
-			"padSkipShutdown",
-			"padErrorException"
+			"padTraceWrite"
 		],
 		"highlight": true,
 		"in_selection": false,
-		"preserve_case": false,
+		"preserve_case": true,
 		"regex": false,
 		"replace_history":
 		[
+			"options/go/",
+			"options/options/start.php",
+			"options/options/options.php",
+			"options/options/end.php",
+			"options/options/callback.php",
+			"options/options/app.php",
+			"pad . 'functions/",
+			"pad . \"functions/",
+			"pad . \"options/",
+			"pad . 'options/",
+			"pad . 'tags/",
+			"pad . \"tags/",
 			"xref",
 			"\"type",
 			"'type",
@@ -640,19 +640,7 @@
 			"$padFalse",
 			"$padBase",
 			"padBase   [$pad]",
-			"padBase  [$pad]",
-			"padBase [$pad]",
-			"padBaseSet",
-			"$padFalse",
-			"$padBaseSet",
-			"$padBase   [$pad]",
-			"$padBase  [$pad]",
-			"$padBase [$pad]",
-			"$after",
-			"$before",
-			".",
-			"true",
-			""
+			"padBase  [$pad]"
 		],
 		"reverse": false,
 		"scrollbar_highlights": true,
@@ -667,230 +655,6 @@
 		{
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"selected": true,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 27540,
-						"regions":
-						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										139,
-										143
-									],
-									[
-										1151,
-										1155
-									],
-									[
-										1798,
-										1802
-									],
-									[
-										2430,
-										2434
-									],
-									[
-										3108,
-										3112
-									],
-									[
-										3583,
-										3587
-									],
-									[
-										3613,
-										3617
-									],
-									[
-										3637,
-										3641
-									],
-									[
-										3768,
-										3772
-									],
-									[
-										3865,
-										3869
-									],
-									[
-										3963,
-										3967
-									],
-									[
-										4071,
-										4075
-									],
-									[
-										4228,
-										4232
-									],
-									[
-										4472,
-										4476
-									],
-									[
-										4506,
-										4510
-									],
-									[
-										4837,
-										4841
-									],
-									[
-										6020,
-										6024
-									],
-									[
-										6700,
-										6704
-									],
-									[
-										7380,
-										7384
-									],
-									[
-										8060,
-										8064
-									],
-									[
-										8649,
-										8653
-									],
-									[
-										9829,
-										9833
-									],
-									[
-										10509,
-										10513
-									],
-									[
-										11189,
-										11193
-									],
-									[
-										11869,
-										11873
-									],
-									[
-										12458,
-										12462
-									],
-									[
-										13638,
-										13642
-									],
-									[
-										14318,
-										14322
-									],
-									[
-										14998,
-										15002
-									],
-									[
-										15678,
-										15682
-									],
-									[
-										16278,
-										16282
-									],
-									[
-										17469,
-										17473
-									],
-									[
-										18149,
-										18153
-									],
-									[
-										18829,
-										18833
-									],
-									[
-										19509,
-										19513
-									],
-									[
-										20106,
-										20110
-									],
-									[
-										21294,
-										21298
-									],
-									[
-										21974,
-										21978
-									],
-									[
-										22654,
-										22658
-									],
-									[
-										23334,
-										23338
-									],
-									[
-										23931,
-										23935
-									],
-									[
-										25119,
-										25123
-									],
-									[
-										25799,
-										25803
-									],
-									[
-										26479,
-										26483
-									],
-									[
-										27159,
-										27163
-									]
-								],
-								"scope": ""
-							}
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"detect_indentation": false,
-							"line_numbers": false,
-							"output_tag": 1,
-							"result_base_dir": "",
-							"result_file_regex": "^([^ \t].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 146.5,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"stack_multiselect": false,
-					"type": "text"
-				}
 			]
 		}
 	],

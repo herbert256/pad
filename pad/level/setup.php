@@ -61,7 +61,6 @@
   $padOccurStart [$pad] = [];
 
   $padOptionsAppStart [$pad] = [];
-  $padOptionsCallback [$pad] = [];
 
   $padForceTagName  = '';
   $padForceDataName = '';

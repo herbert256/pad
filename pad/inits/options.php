@@ -5,5 +5,7 @@
                       'random', 'print', 'parent', 'trace', 'pre', 'trace'];
                             
   $padOptionsEnd   = ['toFlag', 'toContent', 'toData', 'tidy'];
+
+  $padOptionsCallback = ['callback'];
   
 ?>

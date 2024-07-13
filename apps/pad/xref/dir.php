@@ -1,5 +1,9 @@
 <?php
 
+  if ( ! isset ( $dir  ) ) $dir  = 'tag/pad';
+  if ( ! isset ( $type ) ) $type = 'Tags';
+  if ( ! isset ( $item ) ) $item = 'pad';
+
   $list = scandir ( padApp . "_xref/$dir" );
 
   foreach ( $list as $file ) {

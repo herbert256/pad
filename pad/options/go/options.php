@@ -1,7 +1,7 @@
 <?php
 
   if     ( $padOptions == 'app'      ) $padOptionsWalk = $padOptionsAppStart [$pad];
-  elseif ( $padOptions == 'callback' ) $padOptionsWalk = $padOptionsCallback [$pad];
+  elseif ( $padOptions == 'callback' ) $padOptionsWalk = $padOptionsCallback;
   else                                 $padOptionsWalk = $GLOBALS [ 'padOptions' . ucfirst($padOptions) ];
    
   if     ( $padOptions == 'start'    ) $padContent = $padBase   [$pad];
@@ -9,7 +9,7 @@
   elseif ( $padOptions == 'app'      ) $padContent = $padBase   [$pad];
   elseif ( $padOptions == 'callback' ) $padContent = $padResult [$pad];
  
-  foreach ( $padPrm [$pad] as $padOptionName => $padV )
+  foreach ( $padPrm [$pad] as $padOptionName => $padV ) {
 
     if ( in_array ( $padOptionName, $padOptionsWalk ) )
 
@@ -28,6 +28,8 @@
           include padInfo . 'options.php';           
 
       }
+
+  }
 
   if     ( $padOptions == 'start'    ) $padBase   [$pad] = $padContent;
   elseif ( $padOptions == 'end'      ) $padResult [$pad] = $padContent;

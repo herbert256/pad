@@ -15,9 +15,9 @@
   include pad . 'level/data.php';
 
   if ( count ( $padOptionsAppStart [$pad] ) )
-    include pad . 'options/options/app.php';
+    include pad . 'options/go/app.php';
 
-  include pad . 'options/options/start.php';
+  include pad . 'options/go/start.php';
 
   include pad . 'level/name.php';
 
