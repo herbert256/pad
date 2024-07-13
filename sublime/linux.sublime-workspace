@@ -115,6 +115,16 @@
 	},
 	"buffers":
 	[
+		{
+			"contents": "Searching 2874 files for \"glue\" (case sensitive)\n\n~/pad/apps/pad/_regression/reference/index.pad:\n  502  \n  503          \n  504:           glue\n  505          \n  506  \n\n~/pad/apps/pad/_regression/sequence/print.pad:\n   14  <tr><td style=\"vertical-align:top\"><!-- START DEMO SOURCE --><pre><code style=\"color: #000000\"><b>{<font color=\"blue\">sequence </font><font color=\"red\">range=<font color=\"black\">'</font>a..k<font color=\"black\">'</font><font color=\"black\">,</font> print<font color=\"black\">,</font> open=<font color=\"b... <skipped 42 characters> ...><font color=\"black\">,</font> close=<font color=\"black\">'</font>)<font color=\"black\">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style=\"vertical-align:top\"><code><span style=\"color: #000000\"><!-- START DEMO RESULT -->(abcdefghijk)<!-- END DEMO RESULT --></span></code></td></tr>\n   15  \n   16: <tr><td style=\"vertical-align:top\"><!-- START DEMO SOURCE --><pre><code style=\"color: #000000\"><b>{<font color=\"blue\">sequence </font><font color=\"red\">range=<font color=\"black\">'</font>a..k<font color=\"black\">'</font><font color=\"black\">,</font> print<font color=\"black\">,</font> glue=<font color=\"black\">'</font><font color=\"black\">,</font><font color=\"black\">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style=\"vertical-align:top\"><code><span style=\"color: #000000\"><!-- START DEMO RESULT -->a,b,c,d,e,f,g,h,i,j,k<!-- END DEMO RESULT --></span></code></td></tr>\n   17  \n   18: <skipped 72 characters> ...style=\"color: #000000\"><b>{<font color=\"blue\">sequence </font><font color=\"red\">range=<font color=\"black\">'</font>a..k<font color=\"black\">'</font><font color=\"black\">,</font> print<font color=\"black\">,</font> open=<font color=\"black\">'</font>(<font color=\"black\">'</font><font color=\"black\">,</font> glue=<font color=\"black\">'</font><font color=\"black\">,</font><font color=\"black\">'</font><font color=\"black\">,</font> close=<font color=\"black\">'</font>)<font color=\"black\">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style=\"vertical-align:top\"><code><span style=\"color: #000000\"><!-... <skipped 94 characters> ...\n   19  \n   20: <tr><td style=\"vertical-align:top\"><!-- START DEMO SOURCE --><pre><code style=\"color: #000000\"><b>{<font color=\"blue\">sequence </font><font color=\"red\">range=<font color=\"black\">'</font>a..k<font color=\"black\">'</font><font color=\"black\">,</font> print<font color=\"black\">,</font> glue=<font color=\"black\">'</font><font color=\"black\">,</font><font color=\"black\">'</font><font color=\"black\">,</font> quote=\"<font color=\"black\">'</font>\"</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style=\"vertical-align:top\"><code><span style=\"color: #000000\"><!-- START DEMO RESULT -->'a',... <skipped 87 characters> ...\n   21  \n   22: <skipped 72 characters> ...style=\"color: #000000\"><b>{<font color=\"blue\">sequence </font><font color=\"red\">range=<font color=\"black\">'</font>a..k<font color=\"black\">'</font><font color=\"black\">,</font> print<font color=\"black\">,</font> open=<font color=\"black\">'</font>(<font color=\"black\">'</font><font color=\"black\">,</font> glue=<font color=\"black\">'</font><font color=\"black\">,</font><font color=\"black\">'</font><font color=\"black\">,</font> quote=\"<font color=\"black\">'</font>\"<font color=\"black\">,</font> close=<font color=\"black\">'</font>)<font color=\"black\">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td ... <skipped 181 characters> ...\n   23  \n   24  \n\n~/pad/apps/pad/_regression/xref/manual.pad:\n  502  \n  503          \n  504:           <a href=\"/?xref/pages&pages=options/glue.txt&for=Tag+options&item=glue&base=&xref=manual\">glue</a>\n  505          \n  506  \n\n~/pad/apps/pad/sequence/print.pad:\n   10  \n   11  {demo}\n   12:   {sequence range='a..k', print, glue=','}\n   13  {/demo}\n   14  \n   15  {demo}\n   16:   {sequence range='a..k', print, open='(', glue=',', close=')'}\n   17  {/demo}\n   18  \n   19  {demo}\n   20:   {sequence range='a..k', print, glue=',', quote=\"'\"}\n   21  {/demo}\n   22  \n   23  {demo}\n   24:   {sequence range='a..k', print, open='(', glue=',', quote=\"'\", close=')'}\n   25  {/demo}\n   26  \n\n~/pad/pad/_options/glue.php:\n    1  <?php\n    2  \n    3:   $padContent .= '{notLast}' . padTagParm ('glue') . '{/notLast}';\n    4  \n    5  ?>\n\n~/pad/pad/_options/print.php:\n    5    if ( padTagParm ('quote') ) include pad . '_options/quote.php';\n    6    if ( padTagParm ('open')  ) include pad . '_options/open.php';\n    7:   if ( padTagParm ('glue')  ) include pad . '_options/glue.php';\n    8    if ( padTagParm ('close') ) include pad . '_options/close.php';\n    9  \n\n~/data/dumps/sequence/figurate/574956374993561/files.html:\n  223        [221] =&gt; /home/herbert/pad/pad/tag/current.php\n  224        [222] =&gt; /home/herbert/pad/pad/tag/last.php\n  225:       [223] =&gt; /home/herbert/pad/pad/_options/glue.php\n  226        [224] =&gt; /home/herbert/pad/pad/tag/notLast.php\n  227        [225] =&gt; /home/herbert/pad/pad/_options/quote.php\n\n~/data/dumps/sequence/figurate/574956374993561/globals.html:\n 4184  &lt;tr&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style&amp;eq;&quot;color: #000000&quot;&gt;&lt;b&gt;&amp;open;&lt;font color&amp;eq;&quot;blue&quot;&gt;sequence &lt;/font&gt;&lt;font color&amp;eq;&quot;red&quot;&gt;range&amp;eq;&lt;... <skipped 649 characters> ...de&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;code&gt;&lt;span style&amp;eq;&quot;color: #000000&quot;&gt;&lt;!-- START DEMO RESULT --&gt;(abcdefghijk)&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;\n 4185  \n 4186: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;/font&gt;&amp;close;&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&... <skipped 348 characters> ...\n 4187  \n 4188: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; close&amp;eq;&lt;font color&amp;e... <skipped 556 characters> ...\n 4189  \n 4190: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 635 characters> ...\n 4191  \n 4192: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 843 characters> ...\n 4193  \n 4194  \n\n~/data/dumps/sequence/named/574945008068817/files.html:\n  223        [221] =&gt; /home/herbert/pad/pad/tag/current.php\n  224        [222] =&gt; /home/herbert/pad/pad/tag/last.php\n  225:       [223] =&gt; /home/herbert/pad/pad/_options/glue.php\n  226        [224] =&gt; /home/herbert/pad/pad/tag/notLast.php\n  227        [225] =&gt; /home/herbert/pad/pad/_options/quote.php\n\n~/data/dumps/sequence/named/574945008068817/globals.html:\n 4264  &lt;tr&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style&amp;eq;&quot;color: #000000&quot;&gt;&lt;b&gt;&amp;open;&lt;font color&amp;eq;&quot;blue&quot;&gt;sequence &lt;/font&gt;&lt;font color&amp;eq;&quot;red&quot;&gt;range&amp;eq;&lt;... <skipped 649 characters> ...de&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;code&gt;&lt;span style&amp;eq;&quot;color: #000000&quot;&gt;&lt;!-- START DEMO RESULT --&gt;(abcdefghijk)&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;\n 4265  \n 4266: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;/font&gt;&amp;close;&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&... <skipped 348 characters> ...\n 4267  \n 4268: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; close&amp;eq;&lt;font color&amp;e... <skipped 556 characters> ...\n 4269  \n 4270: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 635 characters> ...\n 4271  \n 4272: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 843 characters> ...\n 4273  \n 4274  \n\n~/data/dumps/sequence/named/574992096474092/files.html:\n  220        [218] =&gt; /home/herbert/pad/pad/tag/current.php\n  221        [219] =&gt; /home/herbert/pad/pad/tag/last.php\n  222:       [220] =&gt; /home/herbert/pad/pad/_options/glue.php\n  223        [221] =&gt; /home/herbert/pad/pad/tag/notLast.php\n  224        [222] =&gt; /home/herbert/pad/pad/_options/quote.php\n\n~/data/dumps/sequence/named/574992096474092/globals.html:\n 4375  &lt;tr&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style&amp;eq;&quot;color: #000000&quot;&gt;&lt;b&gt;&amp;open;&lt;font color&amp;eq;&quot;blue&quot;&gt;sequence &lt;/font&gt;&lt;font color&amp;eq;&quot;red&quot;&gt;range&amp;eq;&lt;... <skipped 649 characters> ...de&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;code&gt;&lt;span style&amp;eq;&quot;color: #000000&quot;&gt;&lt;!-- START DEMO RESULT --&gt;(abcdefghijk)&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;\n 4376  \n 4377: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;/font&gt;&amp;close;&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&... <skipped 348 characters> ...\n 4378  \n 4379: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; close&amp;eq;&lt;font color&amp;e... <skipped 556 characters> ...\n 4380  \n 4381: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 635 characters> ...\n 4382  \n 4383: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 843 characters> ...\n 4384  \n 4385  \n\n~/pad/www/data/dumps/sequence/figurate/574956374993561/files.html:\n  223        [221] =&gt; /home/herbert/pad/pad/tag/current.php\n  224        [222] =&gt; /home/herbert/pad/pad/tag/last.php\n  225:       [223] =&gt; /home/herbert/pad/pad/_options/glue.php\n  226        [224] =&gt; /home/herbert/pad/pad/tag/notLast.php\n  227        [225] =&gt; /home/herbert/pad/pad/_options/quote.php\n\n~/pad/www/data/dumps/sequence/figurate/574956374993561/globals.html:\n 4184  &lt;tr&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style&amp;eq;&quot;color: #000000&quot;&gt;&lt;b&gt;&amp;open;&lt;font color&amp;eq;&quot;blue&quot;&gt;sequence &lt;/font&gt;&lt;font color&amp;eq;&quot;red&quot;&gt;range&amp;eq;&lt;... <skipped 649 characters> ...de&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;code&gt;&lt;span style&amp;eq;&quot;color: #000000&quot;&gt;&lt;!-- START DEMO RESULT --&gt;(abcdefghijk)&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;\n 4185  \n 4186: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;/font&gt;&amp;close;&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&... <skipped 348 characters> ...\n 4187  \n 4188: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; close&amp;eq;&lt;font color&amp;e... <skipped 556 characters> ...\n 4189  \n 4190: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 635 characters> ...\n 4191  \n 4192: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 843 characters> ...\n 4193  \n 4194  \n\n~/pad/www/data/dumps/sequence/named/574945008068817/files.html:\n  223        [221] =&gt; /home/herbert/pad/pad/tag/current.php\n  224        [222] =&gt; /home/herbert/pad/pad/tag/last.php\n  225:       [223] =&gt; /home/herbert/pad/pad/_options/glue.php\n  226        [224] =&gt; /home/herbert/pad/pad/tag/notLast.php\n  227        [225] =&gt; /home/herbert/pad/pad/_options/quote.php\n\n~/pad/www/data/dumps/sequence/named/574945008068817/globals.html:\n 4264  &lt;tr&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style&amp;eq;&quot;color: #000000&quot;&gt;&lt;b&gt;&amp;open;&lt;font color&amp;eq;&quot;blue&quot;&gt;sequence &lt;/font&gt;&lt;font color&amp;eq;&quot;red&quot;&gt;range&amp;eq;&lt;... <skipped 649 characters> ...de&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;code&gt;&lt;span style&amp;eq;&quot;color: #000000&quot;&gt;&lt;!-- START DEMO RESULT --&gt;(abcdefghijk)&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;\n 4265  \n 4266: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;/font&gt;&amp;close;&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&... <skipped 348 characters> ...\n 4267  \n 4268: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; close&amp;eq;&lt;font color&amp;e... <skipped 556 characters> ...\n 4269  \n 4270: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 635 characters> ...\n 4271  \n 4272: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 843 characters> ...\n 4273  \n 4274  \n\n~/pad/www/data/dumps/sequence/named/574992096474092/files.html:\n  220        [218] =&gt; /home/herbert/pad/pad/tag/current.php\n  221        [219] =&gt; /home/herbert/pad/pad/tag/last.php\n  222:       [220] =&gt; /home/herbert/pad/pad/_options/glue.php\n  223        [221] =&gt; /home/herbert/pad/pad/tag/notLast.php\n  224        [222] =&gt; /home/herbert/pad/pad/_options/quote.php\n\n~/pad/www/data/dumps/sequence/named/574992096474092/globals.html:\n 4375  &lt;tr&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;!-- START DEMO SOURCE --&gt;&lt;pre&gt;&lt;code style&amp;eq;&quot;color: #000000&quot;&gt;&lt;b&gt;&amp;open;&lt;font color&amp;eq;&quot;blue&quot;&gt;sequence &lt;/font&gt;&lt;font color&amp;eq;&quot;red&quot;&gt;range&amp;eq;&lt;... <skipped 649 characters> ...de&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&lt;td style&amp;eq;&quot;vertical-align:top&quot;&gt;&lt;code&gt;&lt;span style&amp;eq;&quot;color: #000000&quot;&gt;&lt;!-- START DEMO RESULT --&gt;(abcdefghijk)&lt;!-- END DEMO RESULT --&gt;&lt;/span&gt;&lt;/code&gt;&lt;/td&gt;&lt;/tr&gt;\n 4376  \n 4377: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;/font&gt;&amp;close;&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;&lt;!-- END DEMO SOURCE --&gt;&lt;/td&gt;&... <skipped 348 characters> ...\n 4378  \n 4379: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; close&amp;eq;&lt;font color&amp;e... <skipped 556 characters> ...\n 4380  \n 4381: <skipped 265 characters> ...quot;red&quot;&gt;range&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;a..k&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 635 characters> ...\n 4382  \n 4383: <skipped 470 characters> ...p;comma;&lt;/font&gt; print&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; open&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;(&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; glue&amp;eq;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&#039;&lt;/font&gt;&lt;font color&amp;eq;&quot;black&quot;&gt;&amp;comma;&lt;/font&gt; quote&amp;eq;&quot;&lt;font color... <skipped 843 characters> ...\n 4384  \n 4385  \n\n45 matches across 18 files\n",
+			"settings":
+			{
+				"buffer_size": 27540,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -149,29 +159,34 @@
 	"expanded_folders":
 	[
 		"/home/herbert/pad/apps/pad",
-		"/home/herbert/pad/apps/pad/_xref",
 		"/home/herbert/pad/apps/pad/xref",
-		"/home/herbert/pad/pad"
+		"/home/herbert/pad/pad",
+		"/home/herbert/pad/pad/config",
+		"/home/herbert/pad/pad/exits",
+		"/home/herbert/pad/pad/info",
+		"/home/herbert/pad/pad/info/types",
+		"/home/herbert/pad/pad/info/types/xapp"
 	],
 	"file_history":
 	[
-		"/home/herbert/pad/apps/pad/xref/pages.pad",
-		"/home/herbert/pad/apps/pad/xref/pages.php",
-		"/home/herbert/pad/apps/pad/xref/go.pad",
-		"/home/herbert/pad/apps/pad/xref/go.php",
+		"/home/herbert/pad/apps/pad/xref/index.pad",
+		"/home/herbert/pad/pad/lib/other.php",
+		"/home/herbert/pad/pad/info/types/xapp/lib.php",
 		"/home/herbert/pad/apps/pad/xref/dir.pad",
 		"/home/herbert/pad/apps/pad/xref/dir.php",
-		"/home/herbert/pad/apps/pad/xref/index.pad",
+		"/home/herbert/pad/apps/pad/xref/pages.php",
+		"/home/herbert/pad/pad/config/config.php",
 		"/home/herbert/pad/apps/pad/xref/_lib/xref.php",
+		"/home/herbert/pad/apps/pad/xref/pages.pad",
+		"/home/herbert/pad/apps/pad/xref/go.pad",
+		"/home/herbert/pad/apps/pad/xref/go.php",
 		"/home/herbert/pad/pad/lib/file.php",
 		"/home/herbert/pad/apps/pad/_lib/lib.php",
 		"/home/herbert/pad/pad/config/info/xref.php",
-		"/home/herbert/pad/pad/config/config.php",
 		"/home/herbert/pad/pad/info/types/xref/lib.php",
 		"/home/herbert/pad/apps/pad/develop/_lib/lib.php",
 		"/home/herbert/pad/pad/info/lib.php",
 		"/home/herbert/pad/apps/pad/develop/build.php",
-		"/home/herbert/pad/pad/info/types/xapp/lib.php",
 		"/home/herbert/pad/apps/pad/develop/index.pad",
 		"/home/herbert/pad/apps/pad/develop/xref.php",
 		"/home/herbert/pad/apps/pad/xref/_includes/item.pad",
@@ -281,8 +296,7 @@
 		"/home/herbert/data/dumps/error/exception_2/12770911688075/files.html",
 		"/home/herbert/data/dumps/error/exception_2/12770922050953/files.html",
 		"/home/herbert/data/dumps/error/pad_1/11926849239026/files.html",
-		"/home/herbert/data/dumps/error/pad_1/11926864815249/files.html",
-		"/home/herbert/data/dumps/error/pad_1/12770945460637/files.html"
+		"/home/herbert/data/dumps/error/pad_1/11926864815249/files.html"
 	],
 	"find":
 	{
@@ -293,6 +307,7 @@
 		"height": 104.0,
 		"where_history":
 		[
+			"",
 			"/home/herbert/pad/apps/pad/xref,<project filters>",
 			"/home/herbert/pad/apps/pad/xapp,<project filters>",
 			"",
@@ -375,6 +390,8 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"glue",
+			"getXref",
 			"xapp",
 			"\"for",
 			"'for",
@@ -500,9 +517,7 @@
 			"bfghjkjhfdfgj",
 			"padCache_mem",
 			"padSkipShutdown",
-			"padErrorException",
-			"padErrrorList",
-			"ob_get_clean (), $dir"
+			"padErrorException"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -652,6 +667,230 @@
 		{
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"selected": true,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 27540,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										139,
+										143
+									],
+									[
+										1151,
+										1155
+									],
+									[
+										1798,
+										1802
+									],
+									[
+										2430,
+										2434
+									],
+									[
+										3108,
+										3112
+									],
+									[
+										3583,
+										3587
+									],
+									[
+										3613,
+										3617
+									],
+									[
+										3637,
+										3641
+									],
+									[
+										3768,
+										3772
+									],
+									[
+										3865,
+										3869
+									],
+									[
+										3963,
+										3967
+									],
+									[
+										4071,
+										4075
+									],
+									[
+										4228,
+										4232
+									],
+									[
+										4472,
+										4476
+									],
+									[
+										4506,
+										4510
+									],
+									[
+										4837,
+										4841
+									],
+									[
+										6020,
+										6024
+									],
+									[
+										6700,
+										6704
+									],
+									[
+										7380,
+										7384
+									],
+									[
+										8060,
+										8064
+									],
+									[
+										8649,
+										8653
+									],
+									[
+										9829,
+										9833
+									],
+									[
+										10509,
+										10513
+									],
+									[
+										11189,
+										11193
+									],
+									[
+										11869,
+										11873
+									],
+									[
+										12458,
+										12462
+									],
+									[
+										13638,
+										13642
+									],
+									[
+										14318,
+										14322
+									],
+									[
+										14998,
+										15002
+									],
+									[
+										15678,
+										15682
+									],
+									[
+										16278,
+										16282
+									],
+									[
+										17469,
+										17473
+									],
+									[
+										18149,
+										18153
+									],
+									[
+										18829,
+										18833
+									],
+									[
+										19509,
+										19513
+									],
+									[
+										20106,
+										20110
+									],
+									[
+										21294,
+										21298
+									],
+									[
+										21974,
+										21978
+									],
+									[
+										22654,
+										22658
+									],
+									[
+										23334,
+										23338
+									],
+									[
+										23931,
+										23935
+									],
+									[
+										25119,
+										25123
+									],
+									[
+										25799,
+										25803
+									],
+									[
+										26479,
+										26483
+									],
+									[
+										27159,
+										27163
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([^ \t].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 146.5,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"stack_multiselect": false,
+					"type": "text"
+				}
 			]
 		}
 	],
