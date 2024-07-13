@@ -28,10 +28,10 @@
   if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']) )
     include pad . 'callback/exit.php' ;
 
-  include pad . 'options/end.php';
+  include pad . 'options/options/end.php';
 
   if ( count ( $padOptionsCallback [$pad] ) )
-    include pad . 'options/callback.php';
+    include pad . 'options/options/callback.php';
  
   if ( padInfo ) 
     include pad . 'info/events/levelEnd.php';    

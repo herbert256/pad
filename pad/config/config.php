@@ -61,7 +61,7 @@
   $padSessionVars = [];
     
   // Default {$var} options, there must be a PHP snippet in one of below directories
-  // - pad/_functions/
+  // - pad/functions/
   // - padApp/_functions/
 
   $padDataDefaultStart = [];

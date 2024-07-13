@@ -3,7 +3,7 @@
   if ( ! $GLOBALS ['padTraceEval'] )
     return;
 
-  $return = include pad . "_functions/$eval.php";
+  $return = include pad . "functions/$eval.php";
 
   if ( $return <> $value )
     padTrace ( 'eval', 'fast', "$eval: $value --> $return");

@@ -73,7 +73,7 @@
 
       if ( str_contains ( $one ['path'], 'develop')     ) continue;
       if ( str_contains ( $one ['path'], 'manual')      ) continue;
-      if ( str_contains ( $one ['path'], 'xapp')        ) continue;
+      if ( str_contains ( $one ['path'], 'xref')        ) continue;
 
       if ( padFileContains ( $one ['path'], '{example') ) continue;
       if ( padFileContains ( $one ['path'], '{get')     ) continue;

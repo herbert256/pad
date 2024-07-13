@@ -1,7 +1,5 @@
 <?php
 
-  $padOptions = 'end';
-  
-  include pad . 'options/options.php';
-  
+  include pad . 'options/options/start.php';
+
 ?>

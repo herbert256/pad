@@ -5,8 +5,8 @@
   include pad . 'level/parms.php';    
   include pad . 'level/split.php';
 
-  if ( padTagParm ('else')    ) $padFalse = include pad . "_options/else.php";    
-  if ( padTagParm ('data')    ) $padData  [$pad] = include pad . "_options/data.php";   
+  if ( padTagParm ('else')    ) $padFalse = include pad . "options/else.php";    
+  if ( padTagParm ('data')    ) $padData  [$pad] = include pad . "options/data.php";   
 
   include pad . 'level/set.php';
   include pad . 'level/go.php';  
@@ -15,9 +15,9 @@
   include pad . 'level/data.php';
 
   if ( count ( $padOptionsAppStart [$pad] ) )
-    include pad . 'options/app.php';
+    include pad . 'options/options/app.php';
 
-  include pad . 'options/start.php';
+  include pad . 'options/options/start.php';
 
   include pad . 'level/name.php';
 

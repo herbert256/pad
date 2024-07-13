@@ -1,7 +1,7 @@
 <?php
 
-  $padOptions = 'callback';
+  $padCall = padApp . "_callbacks/" . $GLOBALS ['padPrm'] [$GLOBALS ['pad']] ['callback'];
 
-  include pad . 'options/options.php';
-  
+  include pad . 'call/call.php';
+
 ?>

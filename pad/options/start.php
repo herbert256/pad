@@ -1,7 +1,11 @@
 <?php
 
-  $padOptions = 'start';
+  $padFilterStart = $padPrm [$pad] ['start'] ?? 1;
+  $padFilterEnd   = $padPrm [$pad] ['end'] ?? count($padData [$pad]);
 
-  include pad . 'options/options.php';
+  padDone ( 'start', TRUE);
+  padDone ( 'end',   TRUE); 
   
+  padDataFilterGo ($padData [$pad], $padFilterStart, $padFilterEnd);    
+
 ?>

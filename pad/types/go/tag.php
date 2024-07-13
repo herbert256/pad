@@ -1,6 +1,6 @@
 <?php
 
-  $padTagGo .= "_tags/". $padTag [$pad];
+  $padTagGo .= $padTag [$pad];
 
   $padCall = "$padTagGo.php";
   include pad . 'call/callNoOne.php';

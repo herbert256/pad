@@ -51,7 +51,7 @@
     if ( padTrace )
       return include pad . 'info/events/eval/fast.php';
     else
-      return include pad . "_functions/$eval.php";
+      return include pad . "functions/$eval.php";
 
   }  
 

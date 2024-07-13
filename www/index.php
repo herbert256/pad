@@ -1,8 +1,8 @@
-<?php
+\<?php
 
   //  =============================================================================
   //  PAD - (P)HP (A)pplication (D)river
-  //  (c) 2004-2023 by Herbert Groot Jebbink - herbert@groot.jebbink.nl
+  //  (c) 2004-2024 by Herbert Groot Jebbink - herbert@groot.jebbink.nl
   //  =============================================================================
   //
   //  This is the PAD startup file for HTTP
@@ -12,7 +12,7 @@
   //
   //  =============================================================================
 
-  $padOS = substr ( strtolower ( php_uname ('s') ), 0, 3);
+  $padOS = substr ( strtolower ( php_uname ('s') ), 0, 3 );
 
   if     ( $padOS == 'dar' ) $padHome = '/Users/herbert';
   elseif ( $padOS == 'win' ) $padHome = '/xampp';
