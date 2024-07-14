@@ -1,6 +1,21 @@
 <?php
 
 
+  function padAtCheck ( $field ) {
+
+    if ( padAt ( $field, 'var' ) === INF ) return FALSE;
+    else                                   return TRUE;
+
+  }
+
+
+  function padAtValue ( $field ) {
+
+    return padAt ( $field, 'var' );
+
+  }
+
+
   function padAt ( $field, $type ) {
 
     global $pad, $padCurrent, $padData, $padTable, $padSeqStore, $padDataStore, $padName;
@@ -27,9 +42,9 @@
     $first  = $names [0] ?? '';
     $second = $names [1] ?? '';
 
-    if     ( $property )  return include pad . "var/property.php";
-    elseif ( $kind     )  return include pad . "var/at/$kind.php";
-    else                  return include pad . 'var/name.php'; 
+    if     ( $property )  return include pad . "at/property.php";
+    elseif ( $kind     )  return include pad . "at/types/$kind.php";
+    else                  return include pad . 'at/name.php'; 
 
   }
 
@@ -43,7 +58,7 @@
     $name     = $first;
     $property = '';
   
-    if ( $second and file_exists ( pad . "var/at/$second.php" ) )
+    if ( $second and file_exists ( pad . "at/types/$second.php" ) )
  
       $kind = $second;
    
@@ -57,7 +72,7 @@
 
         $kind = 'tag';
 
-      } elseif ( file_exists ( pad . "var/at/$first.php" ) ) {
+      } elseif ( file_exists ( pad . "at/types/$first.php" ) ) {
 
         $kind = $first;
         $name = '';            

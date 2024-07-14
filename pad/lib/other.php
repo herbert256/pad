@@ -338,7 +338,7 @@
   }
 
 
-  function padAtCheck ( $item ) {
+  function padAtCheckTag ( $item ) {
 
     if ( str_contains($item, '@') ) 
       return TRUE;

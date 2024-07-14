@@ -80,7 +80,7 @@ go: $end = strpos($source, '}');
     $tag     = trim($words[0] ?? '');
     $search  = $tag;
  
-    if ( $char == '$' or $char == '!'  or $char == '#'  or $char == '&' ) {
+    if ( in_array ( $char, ['$','!','#','&','?','@'] ) ) {
       padColorsField ( $source, $start, $end, $between );
       goto go;
     }
@@ -110,6 +110,8 @@ go: $end = strpos($source, '}');
 
   function padColorsField ( &$source, $start, $end, $between ) { 
 
+    $between = str_replace ('!', '<font color="red">!</font>', $between);
+    $between = str_replace ('@', '<font color="red">@</font>', $between);
     $between = str_replace ('$', '<font color="red">$</font>', $between);
     $between = str_replace ('!', '<font color="red">!</font>', $between);
     $between = str_replace ('#', '<font color="red">#</font>', $between);
@@ -123,7 +125,7 @@ go: $end = strpos($source, '}');
        $source = substr($source, 0, $start) 
                 . '<b>&open;<font color="green">' 
                 . $parts[0]
-                . '</font><b><font color="black">@</font></b><font color="purple">' 
+                . '</font><b><font color="red">@</font></b><font color="purple">' 
                 . $parts[1]
                 . '</font>&close;</b>' 
                 . substr($source, $end+1);      
