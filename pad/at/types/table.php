@@ -1,13 +1,13 @@
 <?php
   
-  if ( $name ) {
+  if ( $kind ) {
 
-    if ( isset ( $padTable [$i] [$name] ) )
-      return  padAtSearch ( $padTable [$i] [$name], $names ); 
+    if ( isset ( $padTable [$padIdx] [$kind] ) )
+      return  padAtSearch ( $padTable [$padIdx] [$kind], $names ); 
 
   } else
 
-    foreach ( $padTable [$i] as $value) {
+    foreach ( $padTable [$padIdx] as $value) {
       $current = padAtSearch ( $value, $names ); 
       if ( $current !== INF ) 
         return $current;

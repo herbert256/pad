@@ -1,96 +1,156 @@
 <?php
 
 
-  function padAtCheck ( $field ) {
+  function padAtCheckField ( $field, $type='var' ) { 
 
-    if ( padAt ( $field, 'var' ) === INF ) return FALSE;
-    else                                   return TRUE;
+    if ( ! str_contains( $field, '@') )
+      $field .= '@any';
 
-  }
-
-
-  function padAtValue ( $field ) {
-
-    return padAt ( $field, 'var' );
+    return padAtCheck ( $field, $type ); 
 
   }
+  
+  
+  function padAtCheckTag ( $field, $type='var' ) { 
 
-
-  function padAt ( $field, $type ) {
-
-    global $pad, $padCurrent, $padData, $padTable, $padSeqStore, $padDataStore, $padName;
-    global $padOpt, $padPrm, $padSetLvl;
-
-    padAtSet ( $field, $kind, $name, $property );
-
-    if ( padInfo ) include padInfo . 'at.php';
-
-    $names = padExplode ( $field, '.' ); 
-
-    if     ( count ($names) ) $forceName = end ($names);
-    elseif ( $property )      $forceName = $property;
-    else                      $forceName = $name;
-
-    $GLOBALS ['padForceTagName']  = $forceName;
-    $GLOBALS ['padForceDataName'] = $forceName;
-
-    if     ( $name and padIsTag   ($name) ) $i = padIsTag       ($name); 
-    elseif ( $name and padIsLevel ($name) ) $i = padIsLevel     ($name); 
-    elseif ( $type == 'tag'               ) $i = padAtIdxNoName (1);
-    else                                    $i = padAtIdxNoName (0);
-
-    $first  = $names [0] ?? '';
-    $second = $names [1] ?? '';
-
-    if     ( $property )  return include pad . "at/property.php";
-    elseif ( $kind     )  return include pad . "at/types/$kind.php";
-    else                  return include pad . 'at/name.php'; 
+    return padAtCheck ( $field, $type ); 
 
   }
+  
 
+  function padAtCheck ( $field, $type='var' ) {
 
-  function padAtSet ( &$field, &$kind, &$name, &$property ) {
+    $field = rtrim ( $field );
 
-    list ( $field, $after ) = padSplit ( '@', $field );
-    list ( $first, $second) = padSplit ( '.', $after );
+    if ( preg_match ( '/\s/', $field  ) ) return FALSE; 
+    if ( substr_count($field, '@') <> 1 ) return FALSE;
+
+    list ( $before, $after ) = padSplit ( '@', $field );
     
-    $kind     = 'any';
-    $name     = $first;
-    $property = '';
-  
-    if ( $second and file_exists ( pad . "at/types/$second.php" ) )
- 
-      $kind = $second;
-   
-    elseif ( $second and file_exists ( pad . "tag/$second.php" ) )
+    if ( ! strlen ( $before ) ) return FALSE;
+    if ( ! strlen ( $after  ) ) return FALSE;
 
-      $property = $second;
+    $names = padExplode ( $before, '.' ); 
+    $parts = padExplode ( $after,  '.' ); 
 
-    elseif ( $first and ! $second ) {
-  
-      if ( padIsTag ($first) or padIsLevel ($first) ) {
+    if ( count ( $parts ) > 2                                 ) return FALSE;
+    if (                           ! padAtValid ( $parts[0] ) ) return FALSE;
+    if ( count ( $parts ) == 2 and ! padAtValid ( $parts[1] ) ) return FALSE;
 
-        $kind = 'tag';
+    foreach ( $names as $part)
+      if ( ! padAtCheckName ($part) )
+        return FALSE;
 
-      } elseif ( file_exists ( pad . "at/types/$first.php" ) ) {
+    $at = padAt ( $names, $parts, $type );
 
-        $kind = $first;
-        $name = '';            
+    if ( $at === INF )
+      return FALSE;
 
-      } elseif ( file_exists ( pad . "tag/$first.php") ) {
+    return TRUE;
 
-        $property = $first;
-        $name     = '';            
+  }
 
-      } else {
 
-        $kind = '';
-        
-      }
+  function padAtCheckName ( $part ) {
 
+    if ( ctype_alpha ( $part) ) return TRUE;
+    if ( ctype_digit ( $part) ) return TRUE;
+    if ( $part == '*')          return TRUE;
+
+    if ( strlen($part) > 1 ) { 
+      $check1 = substr ( $part, 0, 1 );
+      $check2 = substr ( $part, 1    );
+      if ( $check1 == '<' and ctype_digit ( $check2) ) return TRUE;
+      if ( $check1 == '>' and ctype_digit ( $check2) ) return TRUE;
     }
-        
-  } 
+
+    if ( padAtCheckCondition ( $part, '<>' ) ) return TRUE;
+    if ( padAtCheckCondition ( $part, '<=' ) ) return TRUE;
+    if ( padAtCheckCondition ( $part, '>=' ) ) return TRUE;
+    if ( padAtCheckCondition ( $part, '>'  ) ) return TRUE;
+    if ( padAtCheckCondition ( $part, '<'  ) ) return TRUE;
+    if ( padAtCheckCondition ( $part, '='  ) ) return TRUE;
+
+    if ( padAtValid ( $part ) ) return TRUE;
+
+    return FALSE;
+
+  }
+
+
+  function padAtCheckCondition ( $part, $condition ) {
+
+    if ( ! str_contains ( $part, $condition ) ) 
+      return TRUE;
+
+    $parts = explode ( $condition, $part );
+
+    if ( count ( $parts ) <> 2      ) return FALSE;
+    if ( ! strlen ( $parts [0] )    ) return FALSE;
+    if ( ! strlen ( $parts [1] )    ) return FALSE;
+    if ( ! padAtValid ( $part [0] ) ) return FALSE;
+
+    return TRUE;
+
+  }
+
+
+  function padAtValueField ( $field ) { 
+
+    if ( ! str_contains( $field, '@') )
+      $field .= '@any';
+
+    return padAtValue ( $field, 'var' ); 
+
+  }
+
+
+  function padAtValueTag ( $field ) { 
+
+    return padAtValue ( $field, 'tag' ); 
+
+  }
+
+
+  function padAtValue ( $field, $type='var' ) {
+
+    $field = rtrim ( $field );
+
+    list ( $before, $after ) = padSplit ( '@', $field );
+    
+    $names = padExplode ( $before, '.' ); 
+    $parts = padExplode ( $after,  '.' ); 
+
+    return padAt ( $names, $parts, $type );
+
+  }
+
+
+  function padAt ( $names, $parts, $type='var' ) {
+
+    $parm = $field = $name = end ($names);
+
+    $at = $parts [0];
+
+    if ( count ( $parts ) == 2 ) $kind = $parts [1];
+    else                         $kind = '';
+
+    if     ( padIsTag   ( $at ) ) $padIdx = padIsTag   ( $at ); 
+    elseif ( padIsLevel ( $at ) ) $padIdx = padIsLevel ( $at ); 
+    else                          $padIdx = 0; 
+
+    $GLOBALS ['padForceTagName']  = $name;
+    $GLOBALS ['padForceDataName'] = $name;
+
+    if ( $padIdx ) 
+      return include pad . 'at/tag.php';
+
+    if ( file_exists ( "at/types/$at.php" ) ) 
+      return include pad . "at/types/$at.php";
+
+    return INF;
+
+  }
 
 
   function padAtSearch ( $current, $names ) {
@@ -206,32 +266,6 @@
     $idx = ( $start ) ? $key - 1 : count ($keys) - $key;
 
     return $keys [$idx];
-
-  }
-
-
-  function padFindName ( $current, $name, $names ) {
-
-    if ( array_key_exists ($name, $current) ) {
-      $check = padAtSearch ( $current [$name], $names );
-      if ( $check !== INF)
-        return $check;
-    }
-
-    foreach ( $current as $key => $value ) {
-
-      if ( is_object ($value) or is_resource ($value) )
-        $value = (array) $value;
-
-      if ( is_array ($value) and ! str_starts_with ($key, 'pad') ) {
-        $check = padFindName ( $value, $name, $names );
-        if ( $check !== INF )
-          return $check;
-      }
-
-    }
-
-    return INF;
 
   }
 

@@ -338,16 +338,6 @@
   }
 
 
-  function padAtCheckTag ( $item ) {
-
-    if ( str_contains($item, '@') ) 
-      return TRUE;
-    
-    return FALSE;
-
-  }
-
-
   function padCorrectPath ( $in ) {
 
     return str_replace ('\\',  '/', $in );

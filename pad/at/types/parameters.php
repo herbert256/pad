@@ -1,6 +1,6 @@
 <?php
 
-  $padOptAt = $padOpt [$i];
+  $padOptAt = $padOpt [$padIdx];
   unset ( $padOptAt [0] );
 
   if ( ! count ($names) )

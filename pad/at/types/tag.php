@@ -1,35 +1,24 @@
 <?php
 
-  $current = padAtSearch ( $padCurrent [$i], $names );
-  if ( $current !== INF ) 
-    return $current;
+  if ( $kind ) {
 
-  $current = padAtSearch ( $padTable [$i], $names );
-  if ( $current !== INF ) 
-    return $current;
+    if     ( padIsTag   ( $kind ) ) $padIdx = padIsTag   ( $kind ); 
+    elseif ( padIsLevel ( $kind ) ) $padIdx = padIsLevel ( $kind ); 
+    else                            return INF;
 
-  $current = padAtSearch ( $padSetLvl [$i], $names );
-  if ( $current !== INF ) 
-    return $current;
+    return include pad . 'var/tag.php';
 
-  $padOptAt = $padOpt [$i];
-  unset ( $padOptAt [0] );
+  } 
 
-  $current = padAtSearch ( $padOptAt , $names );
-  if ( $current !== INF ) 
-    return $current;
+  global $pad;
 
-  $current = padAtSearch ( $padPrm [$i], $names );
-  if ( $current !== INF ) 
-    return $current;
+  for ( $padIdx=$pad; $padIdx; $padIdx-- ) {
 
-  $current = padFindNames ( $padCurrent [$i], $names );
-  if ( $current !== INF ) 
-    return $current;
+    $check = include pad . 'var/tag.php';
+    if ( $check !== INF )
+      return $check;
 
-  $current = padFindNames ( $padData [$i], $names );
-  if ( $current !== INF ) 
-    return $current;
+  }
 
   return INF;
 

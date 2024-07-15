@@ -1,7 +1,7 @@
 <?php
 
-  if ( $name ) 
-    return padAtSearch ( $padSeqStore [$name], $names );
+  if ( $kind ) 
+    return padAtSearch ( $padSeqStore [$kind], $names );
   else
     return padAtSearch ( $padSeqStore, $names );
 

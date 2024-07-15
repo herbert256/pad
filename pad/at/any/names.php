@@ -1,16 +1,13 @@
 <?php
 
-  for ( $i=$pad; $i; $i-- ) {
+  global $pad, $padCurrent, $padData, $padTable, $padSeqStore, $padDataStore, $padName;
+  global $padOpt, $padPrm, $padSetLvl;
+  
+  for ( $padIdx=$pad; $padIdx; $padIdx-- ) {
 
-    $check = padAtSearch ( $padCurrent [$i], $names );
-    if ( $check !== INF ) 
+    $check = include pad . 'var/tag.php';
+    if ( $check !== INF )
       return $check;
-
-    foreach ( $padTable [$i] as $value ) {
-      $check = padAtSearch ( $value, $names );
-      if ( $check !== INF ) 
-        return $check;
-    }
 
   }
 
@@ -26,24 +23,13 @@
   if ( $check !== INF ) 
     return $check;
 
-  for ( $i=$pad; $i; $i-- ) {
-
-    $check = padFindNames ( $padCurrent [$i], $names );
-    if ( $check !== INF ) 
-      return $check;
-
-    $check = padFindNames ( $padData [$i], $names );
-    if ( $check !== INF ) 
-      return $check;
-
-  }
-
-  if ( isset ($padDataStore) ) {   
+  if ( isset ($padDataStore ) ) {   
     $check = padFindNames ( $padDataStore, $names );
     if ( $check !== INF ) 
       return $check;
   }
 
+  return padFindNames ( $padData, $names );
   return padFindNames ( $GLOBALS, $names );
 
 ?>

@@ -1,14 +1,11 @@
 <?php
 
-  if ( $name and ! isset ( $padDataStore [$name] ) )
-    $padDataStore [$name] = padData ($name);
+  if ( $kind )
+    if ( $kind and $padDataStore [$kind] ) 
+      return padFindNames ( $padDataStore [$kind], $names );
+    else
+      return INF;
 
-  if ( ! $name and ! isset ( $padDataStore [$first] ) )
-    $padDataStore [$first] = padData ($first);
-
-  if ( $name )
-    return padFindNames ( $padDataStore [$name], $names );
-  else
-    return padFindNames ( $padDataStore, $names );
+  return padFindNames ( $padDataStore, $names );
 
 ?>

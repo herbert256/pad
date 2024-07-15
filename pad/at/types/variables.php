@@ -1,8 +1,8 @@
 <?php
 
   if ( ! count ($names) )
-    return padDataForcePad ( $padSetLvl [$i] ); 
+    return padDataForcePad ( $padSetLvl [$padIdx] ); 
 
-  return padAtSearch ( $padSetLvl [$i], $names );
+  return padAtSearch ( $padSetLvl [$padIdx], $names );
 
 ?>

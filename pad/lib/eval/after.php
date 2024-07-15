@@ -73,7 +73,7 @@
         $result[$k][1] = 'VAL';   
 
         if ( str_contains ( $one[0], '@' ) )
-          $result[$k][0] = padAt ( $one[0], 'eval' );
+          $result[$k][0] = padAtValueField ( $one[0], 'eval' );
         else  
           $result[$k][0] = padFieldValue ( $one[0] );
  

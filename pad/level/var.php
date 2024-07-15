@@ -30,18 +30,18 @@
   if ( $padFirst <> '@' and ! padValidVar2  ($padFld) ) return padIgnore ( "Field '$padFld' is not a valid name" );
 
   if ( ! in_array('noError', $padOpts) )
-    if     ( $padFirst == '!' ) { if ( ! padfieldCheck ( $padFld ) ) padError ( "Field '$padFld' not found" ); }
-    elseif ( $padFirst == '$' ) { if ( ! padFieldCheck ( $padFld ) ) padError ( "Field '$padFld' not found" ); }
-    elseif ( $padFirst == '#' ) { if ( ! padOptCheck   ( $padFld ) ) padError ( "Field '$padFld' not found" ); }
-    elseif ( $padFirst == '&' ) { if ( ! padTagCheck   ( $padFld ) ) padError ( "Field '$padFld' not found" ); }
-    elseif ( $padFirst == '@' ) { if ( ! padAtCheck    ( $padFld ) ) padError ( "Field '$padFld' not found" ); }
+    if     ( $padFirst == '!' ) { if ( ! padfieldCheck   ( $padFld ) ) padError ( "Field '$padFld' not found" ); }
+    elseif ( $padFirst == '$' ) { if ( ! padFieldCheck   ( $padFld ) ) padError ( "Field '$padFld' not found" ); }
+    elseif ( $padFirst == '#' ) { if ( ! padOptCheck     ( $padFld ) ) padError ( "Field '$padFld' not found" ); }
+    elseif ( $padFirst == '&' ) { if ( ! padTagCheck     ( $padFld ) ) padError ( "Field '$padFld' not found" ); }
+    elseif ( $padFirst == '@' ) { if ( ! padAtCheckField ( $padFld ) ) padError ( "Field '$padFld' not found" ); }
 
-  if     ( $padFirst == '!' ) $padVal = padRawValue   ($padFld);
-  elseif ( $padFirst == '$' ) $padVal = padFieldValue ($padFld);
-  elseif ( $padFirst == '#' ) $padVal = padOptValue   ($padFld);
-  elseif ( $padFirst == '&' ) $padVal = padTagValue   ($padFld);
-  elseif ( $padFirst == '?' ) $padVal = padUrlValue   ($padFld);
-  elseif ( $padFirst == '@' ) $padVal = padAtValue    ($padFld);
+  if     ( $padFirst == '!' ) $padVal = padRawValue     ($padFld);
+  elseif ( $padFirst == '$' ) $padVal = padFieldValue   ($padFld);
+  elseif ( $padFirst == '#' ) $padVal = padOptValue     ($padFld);
+  elseif ( $padFirst == '&' ) $padVal = padTagValue     ($padFld);
+  elseif ( $padFirst == '?' ) $padVal = padUrlValue     ($padFld);
+  elseif ( $padFirst == '@' ) $padVal = padAtValueField ($padFld);
 
   if ( $padFirst == '$' )
     $padOpts = array_merge ( $padDataDefaultStart, $padOpts, $padDataDefaultEnd );   

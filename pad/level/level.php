@@ -22,9 +22,12 @@
   if ( in_array ( $padFirst, ['$','!','#','&','?','@'] ) ) 
     return include pad . 'level/var.php';
 
-  if ( ! ctype_alpha ( $padFirst )       ) return padIgnore ('first char');
-  if ( ! padValidTag ( $padWords [0] )   ) return padIgnore ('valid tag');
-  if ( ! include pad . 'level/type.php'  ) return padIgnore ('type');
+  if ( ! ctype_alpha ( $padFirst ) ) 
+    if ( ! padAtCheckTag ( $padBetween ) )
+      return padIgnore ('first char');
+
+  if ( ! include pad . 'level/type.php' ) 
+    return padIgnore ('type');
 
   include pad . 'level/start.php';
  

@@ -1,7 +1,5 @@
 <?php
 
- $a = padFindNames ( $padCurrent [$i], $names );
-
- return $a;
+ return padFindNames ( $padCurrent [$pad], $names );
 
 ?>
