@@ -20,7 +20,7 @@
       [  1 => $session,
          2 => $request,
          4 => $GLOBALS ['padStartPage'] ?? '',
-         5 => padDuration(),
+         5 => padDuration (),
          6 => $GLOBALS ['padLen'] ?? 0,
          7 => $GLOBALS ['padStop'] ?? '',
          8 => $GLOBALS ['padEtag'] ?? '',
@@ -41,7 +41,7 @@
     $etag = padDb ( "check track_data where etag='{1}'", [ 1 => $padEtag ] );
 
     if ( ! $etag )
-      $session = padDb ( "insert into track_data values('{1}', '{2}')", [ 1 => $padEtag, 2=> $padOutput ] );
+      $session = padDb ( "insert delayed into track_data values('{1}', '{2}')", [ 1 => $padEtag, 2=> $padOutput ] );
 
   }  
 
@@ -50,23 +50,19 @@
 
    global $padLog;
 
-   if ( function_exists ('getallheaders') )
+    if ( function_exists ('getallheaders') )
       $headers = getallheaders();
     else
       $headers = [];
 
     padInfoFile ( "track/$padLog-entry.json",  [
-        'headers' => $headers,
         'start'   => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0 ,    
-        'pad' => [  'session'   => $GLOBALS ['padSesID'] ?? '',
-                    'request'   => $GLOBALS ['padReqID'] ?? '',
-                    'parent'    => $GLOBALS ['padRefID'] ?? '',
-                    'page'      => $GLOBALS ['padPage'] ?? '' ],
-        'get'     => $_GET ??    '',
-        'post'    => $_POST ??   '',
-        'data'    => file_get_contents('php://input') ?? '',
-        'files '  => $_FILES ?? '',
-        'cookies' => $_COOKIE ?? ''
+        'headers' => $headers,
+        'get'     => $_GET    ?? '',
+        'post'    => $_POST   ?? '',
+        'files '  => $_FILES  ?? '',
+        'cookies' => $_COOKIE ?? '',
+        'data'    => file_get_contents('php://input') ?? ''
     ] );
 
   }
@@ -76,7 +72,12 @@
 
     global $padLog;
 
-    $phpHeaders = headers_list ()         ?? [];
+    if ( function_exists ('headers_list') )        $phpHeaders = headers_list ();
+    else                                           $phpHeaders = [];
+
+    if ( function_exists ('http_response_code') )  $http = http_response_code ();
+    else                                           $http = $GLOBALS ['padStop'] ?? 0;
+
     $padHeaders = $GLOBALS ['padHeaders'] ?? [];
 
     foreach ( $padHeaders as $header ) {
@@ -85,41 +86,42 @@
         unset ( $phpHeaders [$key] );
     }
 
-    $session =  [
-        'http'       => http_response_code () ?? 'null',
-        'length'     => $GLOBALS ['padLen'] ?? 0,
-        'session'    => $GLOBALS ['padSesID'] ?? '',
-        'request'    => $GLOBALS ['padReqID'] ?? '',
-        'stop'       => $GLOBALS ['padStop'] ?? '',
-        'end'        => microtime(true),
-        'etag'       => $GLOBALS ['padEtag'] ?? '',
-        'phpHeaders' => $phpHeaders,
-        'padHeaders' => $padHeaders
-      ];
+    $out = [
+     'request'=> [
+       'end'    => microtime(true),
+       'http'   => $http,
+       'length' => $GLOBALS ['padLen']   ?? 0,
+       'etag'   => $GLOBALS ['padEtag']  ?? '' ],
+     'headers' => [
+       'php' => $phpHeaders,
+       'pad' => $padHeaders  ]
+    ];
 
-    if ( isset ( $GLOBALS ['padStatsUser'] ) ) {
-        $session ['duration'] = padDuration ();
-        $session ['system']   = $GLOBALS ['padStatsSystem'];
-        $session ['user']     = $GLOBALS ['padStatsUser'];
-    }
+    if ( isset ( $GLOBALS ['padStatsUser'] ) ) 
+        $out ['stats'] = [ 
+          'duration' => padDuration (),
+          'system'   => $GLOBALS ['padStatsSystem'],
+          'user'     => $GLOBALS ['padStatsUser'] ];
 
-    $session ['data'] = $GLOBALS ['padOutput'];
-
-    padInfoFile ( "track/$padLog-exit.json", $session );
+    $in = json_decode ( padInfoGet ( padData . "track/$padLog-entry.json" ) );
 
     padInfoFile ( 
       "track/$padLog.json", 
-        [ 'in'      => json_decode ( padInfoGet ( padData . "track/$padLog-entry.json" ) ), 
-          'out'     => json_decode ( padInfoGet ( padData . "track/$padLog-exit.json"  ) ),
+        [ 'pad'     => [ 
+             'session' => $GLOBALS ['padSesID'] ?? '',
+             'request' => $GLOBALS ['padReqID'] ?? '',
+             'parent'  => $GLOBALS ['padRefID'] ?? '',
+             'page'    => $GLOBALS ['padPage']  ?? '' ],
+          'in'      => $in, 
+          'out'     => $out,
+          'result'  => $GLOBALS ['padOutput'],
           'session' => $_SESSION ?? '',
           'server'  => $_SERVER ?? '',
-          'getenv'  => getenv () ?? '' , 
-          'request' => $_REQUEST ?? ''
+          'getenv'  => getenv () ?? ''
         ] 
     );
 
     unlink ( padData . "track/$padLog-entry.json" );
-    unlink ( padData . "track/$padLog-exit.json" );
 
   }
 
