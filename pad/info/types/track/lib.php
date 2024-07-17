@@ -15,12 +15,12 @@
       return;
 
     padDb ( "insert delayed into track_request
-              values('{1}', '{2}', '{4:32}', NOW(), {5}, '{6}', '{7:32}', '{8}', '{9:1023}', '{10:1023}', '{11:1023}', '{12:1023}')
+              values('{1}', '{2}', '{4:32}//.', NOW(), {5}, '{6}', '{7:32}', '{8}', '{9:1023}', '{10:1023}', '{11:1023}', '{12:1023}')
               ",
       [  1 => $session,
          2 => $request,
          4 => $GLOBALS ['padStartPage'] ?? '',
-         5 => padDuration (),
+         5 => padDuration(),
          6 => $GLOBALS ['padLen'] ?? 0,
          7 => $GLOBALS ['padStop'] ?? '',
          8 => $GLOBALS ['padEtag'] ?? '',
@@ -41,7 +41,7 @@
     $etag = padDb ( "check track_data where etag='{1}'", [ 1 => $padEtag ] );
 
     if ( ! $etag )
-      $session = padDb ( "insert delayed into track_data values('{1}', '{2}')", [ 1 => $padEtag, 2=> $padOutput ] );
+      $session = padDb ( "insert into track_data values('{1}', '{2}')", [ 1 => $padEtag, 2=> $padOutput ] );
 
   }  
 
@@ -50,13 +50,10 @@
 
    global $padLog;
 
-    if ( function_exists ('getallheaders') )
-      $headers = getallheaders();
-    else
-      $headers = [];
+    if ( function_exists ('getallheaders') ) $headers = getallheaders() ?? [];
+    else                                     $headers = [];
 
     padInfoFile ( "track/$padLog-entry.json",  [
-        'start'   => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0 ,    
         'headers' => $headers,
         'get'     => $_GET    ?? '',
         'post'    => $_POST   ?? '',
@@ -72,11 +69,11 @@
 
     global $padLog;
 
-    if ( function_exists ('headers_list') )        $phpHeaders = headers_list ();
-    else                                           $phpHeaders = [];
-
     if ( function_exists ('http_response_code') )  $http = http_response_code ();
     else                                           $http = $GLOBALS ['padStop'] ?? 0;
+
+    if ( function_exists ('headers_list') )        $phpHeaders = headers_list () ?? [];
+    else                                           $phpHeaders = [];
 
     $padHeaders = $GLOBALS ['padHeaders'] ?? [];
 
@@ -86,34 +83,25 @@
         unset ( $phpHeaders [$key] );
     }
 
-    $out = [
-     'request'=> [
-       'end'    => microtime(true),
-       'http'   => $http,
-       'length' => $GLOBALS ['padLen']   ?? 0,
-       'etag'   => $GLOBALS ['padEtag']  ?? '' ],
-     'headers' => [
-       'php' => $phpHeaders,
-       'pad' => $padHeaders  ]
-    ];
-
-    if ( isset ( $GLOBALS ['padStatsUser'] ) ) 
-        $out ['stats'] = [ 
-          'duration' => padDuration (),
-          'system'   => $GLOBALS ['padStatsSystem'],
-          'user'     => $GLOBALS ['padStatsUser'] ];
-
-    $in = json_decode ( padInfoGet ( padData . "track/$padLog-entry.json" ) );
-
     padInfoFile ( 
       "track/$padLog.json", 
         [ 'pad'     => [ 
              'session' => $GLOBALS ['padSesID'] ?? '',
              'request' => $GLOBALS ['padReqID'] ?? '',
              'parent'  => $GLOBALS ['padRefID'] ?? '',
-             'page'    => $GLOBALS ['padPage']  ?? '' ],
-          'in'      => $in, 
-          'out'     => $out,
+             'page'    => $GLOBALS ['padPage']  ?? '',
+             'stop'    => $GLOBALS ['padStop']  ?? '',
+             'length'  => $GLOBALS ['padLen']   ?? '',
+             'start'   => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0 , 
+             'end'     => microtime(true),
+             'etag'    => $GLOBALS ['padEtag']  ?? ''  ],
+          'in'      => json_decode ( padInfoGet ( padData . "track/$padLog-entry.json" ) ),
+          'out'     => [
+             'http'   => $http,
+             'headers' => [
+               'php' => $phpHeaders,
+               'pad' => $padHeaders  ]
+            ],
           'result'  => $GLOBALS ['padOutput'],
           'session' => $_SESSION ?? '',
           'server'  => $_SERVER ?? '',
