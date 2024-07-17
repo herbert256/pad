@@ -15,7 +15,7 @@
       return;
 
     padDb ( "insert delayed into track_request
-              values('{1}', '{2}', '{4:32}//.', NOW(), {5}, '{6}', '{7:32}', '{8}', '{9:1023}', '{10:1023}', '{11:1023}', '{12:1023}')
+              values('{1}', '{2}', '{4:32}', NOW(), {5}, '{6}', '{7:32}', '{8}', '{9:1023}', '{10:1023}', '{11:1023}', '{12:1023}')
               ",
       [  1 => $session,
          2 => $request,
@@ -100,9 +100,9 @@
              'http'   => $http,
              'headers' => [
                'php' => $phpHeaders,
-               'pad' => $padHeaders  ]
+               'pad' => $padHeaders ], 
+             'data' => $GLOBALS ['padOutput'],
             ],
-          'result'  => $GLOBALS ['padOutput'],
           'session' => $_SESSION ?? '',
           'server'  => $_SERVER ?? '',
           'getenv'  => getenv () ?? ''
