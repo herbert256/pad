@@ -1,8 +1,13 @@
 <?php
 
-  $padTagParmsResult = $GLOBALS ['padSetLvl'] [$padIdx];
-  $padTagParmsResult = padDataForcePad ($padTagParmsResult);
+   global $padSetLvl, $padSetOcc;
 
-  return $padTagParmsResult;
+   if ( count ( $names ) == 1 ) {
+     $name = $names [0];
+     if ( isset ( $padSetLvl  [$padIdx] [$name] ) ) return $padSetLvl [$padIdx] [$name]; 
+     if ( isset ( $padSetOcc  [$padIdx] [$name] ) ) return $GLOBALS [ $name ]; 
+   }
+
+  return INF;
 
 ?>

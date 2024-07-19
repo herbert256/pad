@@ -1,11 +1,9 @@
 <?php
 
-  $padTagParmsResult = $GLOBALS ['padOpt'] [$padIdx];
-
-  unset ( $padTagParmsResult[0] );
+  $padOptAt = $padOpt [$padIdx];
+ 
+  unset ( $padOptAt [0] );
+ 
+  return padFindNames( $padOptAt , $names );
   
-  $padTagParmsResult = padDataForcePad ($padTagParmsResult);
-
-  return $padTagParmsResult;
-
 ?>

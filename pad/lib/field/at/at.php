@@ -1,30 +1,47 @@
 <?php
 
 
+  function padAtTag ( $names, $padIdx, $tag, $type ) {
+
+    if ( $tag and file_exists ( pad . "at/groups/$tag.php") )
+      return include pad . "at/groups/$tag.php";
+
+    if ( ! $tag and count ( $names ) == 1 ) {
+      $property = $names [0];
+      if ( file_exists ( pad . "at/properties/$property.php") )
+        return include pad . "at/properties/$property.php";
+    } 
+
+    if ( ! $tag ) 
+      return include pad . 'at/groups/any.php';
+
+    return INF;
+
+  }
+
+
   function padAt ( $names, $parts, $type ) {
 
-    $at = $parts [0];
-
-    if     ( padIsTag   ( $at ) ) $padIdx = padIsTag   ( $at ); 
-    elseif ( padIsLevel ( $at ) ) $padIdx = padIsLevel ( $at ); 
-    else                          return INF; 
-
     $name = end ($names);
-
-    if ( count ( $parts ) == 2 )  $group = $parts [1];
-    else                          $group = '';
-
-    if ( $group == ''           ) $group = 'any';
-    if ( $group == 'properties' ) $group = '';
-
-    if (   $group and ! file_exists ( pad . "at/groups/$group.php")    ) return INF;
-    if ( ! $group and ! file_exists ( pad . "at/properties/$name.php") ) return INF;
 
     $GLOBALS ['padForceTagName']  = $name;
     $GLOBALS ['padForceDataName'] = $name;
 
-    if ( $group ) return include pad . "at/groups/$group.php";
-    else          return include pad . "at/properties/$name.php";
+    $first  = $parts [0] ?? '';
+    $second = $parts [1] ?? '';
+    $third  = $parts [2] ?? '';
+
+    if ( $first == 'tag' and $second ) { 
+      if     ( padIsTag   ( $second ) ) return padAtTag ( $names, padIsTag   ( $second ), $third, $type );
+      elseif ( padIsLevel ( $second ) ) return padAtTag ( $names, padIsLevel ( $second ), $third, $type );
+    }
+    elseif ( $first ) {
+      if     ( padIsTag   ( $first ) ) return padAtTag ( $names, padIsTag   ( $first ), $second, $type );
+      elseif ( padIsLevel ( $first ) ) return padAtTag ( $names, padIsLevel ( $first ), $second, $type ); 
+    }
+
+
+    return INF;
 
   }
 

@@ -1,8 +1,5 @@
 <?php
-
-  $padTagParmsResult = $GLOBALS ['padPrm'] [$padIdx];
-  $padTagParmsResult = padDataForcePad ($padTagParmsResult);
-
-  return $padTagParmsResult;
+ 
+  return padFindNames ( $padPrm [$padIdx], $names );
 
 ?>

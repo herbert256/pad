@@ -51,16 +51,6 @@
 
   }
 
-
-  function padAtValid ( $part ) {
-
-    if ( trim($part) == '' )                                    return FALSE;
-    if ( ! preg_match ( '/^[a-zA-Z_][a-zA-Z0-9_]*$/', $part ) ) return FALSE;
-
-    return TRUE;  
-
-  }
-
  
   function padValidVar2 ($name) {
 
@@ -88,6 +78,15 @@
   }
 
 
+
+  function padAtValid ( $part ) {
+
+    if ( trim($part) == '' )                                    return FALSE;
+    if ( ! preg_match ( '/^[a-zA-Z_][a-zA-Z0-9_]*$/', $part ) ) return FALSE;
+
+    return TRUE;  
+
+  }
   function padValidType ($name) {
 
     if ( trim($name) == '' ) 

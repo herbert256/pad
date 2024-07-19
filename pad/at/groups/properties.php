@@ -1,8 +1,5 @@
 <?php
 
-  $padTagParmsResult = $GLOBALS ['padPrm'] [$padIdx];
-  $padTagParmsResult = padDataForcePad ($padTagParmsResult);
-
-  return $padTagParmsResult;
+  return include pad . 'at/groups/any.php';
 
 ?>
