@@ -14,6 +14,7 @@
 
       if ( padValidVar ($padSetName) and $padPrmValue !== '' ) {
         $padSetLvl [$pad] [$padSetName] = padVarOpts ( '', padExplode($padPrmValue, '|') );
+        $padParmParse [$pad] [$padSetName] = 'lvl';
         continue;
       }
   
@@ -25,6 +26,7 @@
 
       if ( padValidVar ($padSetName) ) {
         $padSetOcc [$pad] [$padSetName] = $padPrmValue;
+        $padParmParse [$pad] [$padSetName] = 'occ';
         continue;
       }
   

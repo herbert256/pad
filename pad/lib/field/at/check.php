@@ -1,24 +1,27 @@
 <?php
 
 
-  function padAtCheckField ( $field, $type='var' ) { 
+  function padAtCheckField ( $field, $cor='' ) { 
 
     if ( ! str_contains( $field, '@') )
       $field .= '@any';
 
-    return padAtCheck ( $field, $type ); 
+    return padAtCheck ( $field, $cor ); 
 
   }
   
   
-  function padAtCheckTag ( $field, $type='var' ) { 
+  function padAtCheckTag ( $field, $cor='' ) { 
 
-    return padAtCheck ( $field, $type ); 
+    return padAtCheck ( $field, $cor ); 
 
   }
   
 
-  function padAtCheck ( $field, $type='var' ) {
+  function padAtCheck ( $field, $cor='' ) {
+
+    if ( str_contains($field, '@*') )
+      return padAtCheckAny ( $field, $cor);
 
     $field = rtrim ( $field );
 
@@ -33,19 +36,19 @@
     $names = padExplode ( $before, '.' ); 
     $parts = padExplode ( $after,  '.' ); 
 
-    if ( $parts [0] == '*' )
-      return padAtCheckAny ( $field, $type, $names, $parts );
-
-    if ( count ( $parts ) > 2                                 ) return FALSE;
-    if (                           ! padAtValid ( $parts[0] ) ) return FALSE;
-    if ( count ( $parts ) == 2 and ! padAtValid ( $parts[1] ) ) return FALSE;
+    foreach ( $parts as $part)
+      if ( ! padAtCheckPart ($part) )
+        return FALSE;
 
     foreach ( $names as $part)
       if ( ! padAtCheckName ($part) )
         return FALSE;
 
-    $at = padAt ( $names, $parts, $type );
+    $at = padAt ( $names, $parts, $cor );
 
+    global $debug;
+    $debug [] = ['check', $names, $parts, $cor, $at];
+  
     if ( $at === INF )
       return FALSE;
 
@@ -54,20 +57,34 @@
   }
 
 
-  function padAtCheckAny ( $field, $type, $names, $parts ) {
+  function padAtCheckAny ( $field, $cor  ) {
 
     global $pad;
 
     for ( $i=$pad; $i; $i-- ) {
 
-      $parts [0] = $i;
+      $check = str_replace ( '@*', "@$i", $field );
 
-      $field = implode ( '.', $names ) . '@' . implode ( '.', $parts );
+      global $debug2;
+      $debug2 [] = ['check-any', $check];
 
-      if ( padAtCheck ( $field, $type ) === INF ) 
+      if ( padAtCheck ( $check, $cor ) ) 
         return TRUE;
     
     }
+
+    return FALSE;
+
+  }
+
+
+  function padAtCheckPart ( $part ) {
+
+    if ( is_numeric  ( $part) ) return TRUE;
+    if ( ctype_alpha ( $part) ) return TRUE;
+    if ( ctype_digit ( $part) ) return TRUE;
+    if ( $part == '*')          return TRUE;
+    if ( padAtValid ( $part ) ) return TRUE;
 
     return FALSE;
 

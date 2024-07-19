@@ -515,8 +515,8 @@
     if ( count ($array) == 1 )
       $array [] = '';
 
-    $array [0] = trim($array [0]);
-    $array [1] = trim($array [1]);
+    $array [0] = trim ( $array [0] ?? '');
+    $array [1] = trim ( $array [1] ?? '');
 
     return $array;
 
@@ -918,6 +918,11 @@
   function padIgnore ( $info ) {
 
     global $padBetween;
+
+    x();
+
+    echo ( '&open;' . $padBetween . '&close;' );
+    exit;
 
     padPad ( '&open;' . $padBetween . '&close;' );
 

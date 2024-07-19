@@ -17,8 +17,8 @@
     }
   }
 
-  if ( $padStartBase [$pad]  ) return include pad . 'level/start_end/start2.php';
-  if ( $padEndBase [$pad]    ) return include pad . 'level/start_end/end2.php';
+  if ( $padStartBase [$pad] ) return include pad . 'level/start_end/start2.php';
+  if ( $padEndBase [$pad]   ) return include pad . 'level/start_end/end2.php';
 
   $padOccur [$pad] = 99999;
 

@@ -1,25 +1,28 @@
 <?php
 
 
-  function padAtValueField ( $field ) { 
+  function padAtValueField ( $field, $cor='' ) { 
 
     if ( ! str_contains( $field, '@') )
       $field .= '@any';
 
-    return padAtValue ( $field, 'var' ); 
+    return padAtValue ( $field, $cor ); 
 
   }
 
 
-  function padAtValueTag ( $field ) { 
+  function padAtValueTag ( $field, $cor='' ) { 
 
-    return padAtValue ( $field, 'tag' ); 
+    return padAtValue ( $field, $cor); 
 
   }
 
 
-  function padAtValue ( $field, $type='var' ) {
+  function padAtValue ( $field, $cor='' ) {
 
+    if ( str_contains($field, '@*') )
+      return padAtValueAny ( $field, $cor);
+    
     $field = rtrim ( $field );
 
     list ( $before, $after ) = padSplit ( '@', $field );
@@ -27,27 +30,26 @@
     $names = padExplode ( $before, '.' ); 
     $parts = padExplode ( $after,  '.' ); 
 
-    if ( $parts [0] == '*' )
-      return padAtValueAny ( $field, $type, $names, $parts );
+    $at = padAt ( $names, $parts, $cor );
 
-    return padAt ( $names, $parts, $type );
+    global $debug;
+    $debug [] = ['value', $names, $parts, $cor, $at];
+
+    return $at;
 
   }
 
 
-  function padAtValueAny ( $field, $type, $names, $parts ) {
+  function padAtValueAny ( $field, $cor ) {
 
     global $pad;
 
     for ( $i=$pad; $i; $i-- ) {
 
-      $parts [0] = $i;
+      $check = str_replace ( '@*', "@$i", $field );
 
-      $field = implode ( '.', $names ) . '@' . implode ( '.', $parts );
-
-      if ( padAtCheck ( $field, $type ) !== INF ) {
-        return padAt ( $names, $parts, $type );
-      }
+      if ( padAtCheck ( $check, $cor ) ) 
+        return padAtValue ( $check, $cor );
     
     }
 

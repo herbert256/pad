@@ -4,7 +4,7 @@
                       'rows', 'first', 'last', 'row', 'sort', 'ignore', 'shuffle', 
                       'random', 'print', 'parent', 'trace', 'pre', 'trace'];
                             
-  $padOptionsEnd   = ['toFlag', 'toContent', 'toData', 'tidy'];
+  $padOptionsEnd   = ['toFlag', 'toContent', 'toData', 'tidy', 'dump'];
 
   $padOptionsCallback = ['callback'];
   
