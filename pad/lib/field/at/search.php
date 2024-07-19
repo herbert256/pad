@@ -3,6 +3,13 @@
 
   function padAtSearch ( $current, $names ) {
 
+    if ( count ( $names ) == 1 and ctype_digit ( reset ($names ) ) ) {
+      $name = end ( $names );
+      $key  = padAtKey ( $current, $name );
+      if ( $key )
+        return $current [ $key ];
+    }
+
     foreach ( $names as $key => $name ) {
 
       if ( is_object ($current) or is_resource ($current) )

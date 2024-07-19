@@ -176,4 +176,26 @@
   }
 
 
+  function padAtIndex ( $search, $index ) {
+
+    $keys = array_keys ( $search );
+    $key  = $keys [ $index - 1 ] ?? '';
+
+    if ( $key ) 
+      return $search [ $key ];
+    else
+      return INF;
+
+  }
+
+
+  function padAtKey ( $search, $index ) {
+
+    $keys = array_keys ( $search );
+
+    return $keys [ $index - 1 ] ?? '';
+
+  }
+
+
 ?>

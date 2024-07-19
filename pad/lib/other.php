@@ -919,11 +919,6 @@
 
     global $padBetween;
 
-    x();
-
-    echo ( '&open;' . $padBetween . '&close;' );
-    exit;
-
     padPad ( '&open;' . $padBetween . '&close;' );
 
     return FALSE;

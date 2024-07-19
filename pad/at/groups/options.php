@@ -1,5 +1,7 @@
 <?php
  
-  return padFindNames ( $padPrm [$padIdx], $names );
+  global $padPrm;
+
+  return padAtSearch ( $padPrm [$padIdx], $names );
 
 ?>
