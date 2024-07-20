@@ -24,7 +24,7 @@
     elseif ( file_exists      ( padApp . "_functions/$item.php"      ) ) return 'function';
     elseif ( file_exists      ( pad . "functions/$item.php"          ) ) return 'function';
     elseif ( function_exists  ( $item                                ) ) return 'php';
-    elseif ( padAtCheckTag    ( $item                                ) ) return 'at';
+    elseif ( padAtCheck       ( $item                                ) ) return 'at';
     else                                                                 return FALSE;
 
   }
@@ -55,7 +55,7 @@
     elseif ( $type == 'function' and file_exists      ( pad . "functions/$item.php"          ) ) return $type;
     elseif ( $type == 'php'      and function_exists  ( $item                                ) ) return $type;
     elseif ( $type == 'table'    and isset            ( $GLOBALS ['padTables'] [$item]       ) ) return $type;
-    elseif ( $type == 'at'       and padAtCheckTag    ( $item                                ) ) return $type;
+    elseif ( $type == 'at'       and padAtCheck       ( $item                                ) ) return $type;
     else                                                                                         return FALSE;
 
   }

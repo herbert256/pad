@@ -31,10 +31,10 @@
     if ( ! padValidVarAt ($padFld) ) 
       return padIgnore ( "Field '$padFld' is not a valid name" );
 
-    if ( ! in_array('noError', $padOpts) and ! padAtCheckField ( $padFld ) ) 
+    if ( ! in_array('noError', $padOpts) and ! padAtCheck ( $padFld ) ) 
       padError ( "Field '$padFld' not found" );
 
-    $padVal = padAtValueField ($padFld);
+    $padVal = padAtValue ($padFld);
 
   } else {
 

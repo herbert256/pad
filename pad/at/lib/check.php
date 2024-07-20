@@ -1,24 +1,10 @@
 <?php
+  
 
+  function padAtCheck ( $field, $cor=0 ) {
 
-  function padAtCheckField ( $field, $cor='' ) { 
-
-    if ( ! str_contains( $field, '@') )
+    if ( ! str_contains ( $field, '@' ) )
       $field .= '@any';
-
-    return padAtCheck ( $field, $cor ); 
-
-  }
-  
-  
-  function padAtCheckTag ( $field, $cor='' ) { 
-
-    return padAtCheck ( $field, $cor ); 
-
-  }
-  
-
-  function padAtCheck ( $field, $cor='' ) {
 
     if ( str_contains($field, '@*') )
       return padAtCheckAny ( $field, $cor);
@@ -45,9 +31,6 @@
         return FALSE;
 
     $at = padAt ( $names, $parts, $cor );
-
-    global $debug;
-    $debug [] = ['check', $names, $parts, $cor, $at];
   
     if ( $at === INF )
       return FALSE;
@@ -65,9 +48,6 @@
 
       $check = str_replace ( '@*', "@$i", $field );
 
-      global $debug2;
-      $debug2 [] = ['check-any', $check];
-
       if ( padAtCheck ( $check, $cor ) ) 
         return TRUE;
     
@@ -80,11 +60,10 @@
 
   function padAtCheckPart ( $part ) {
 
-    if ( is_numeric  ( $part) ) return TRUE;
-    if ( ctype_alpha ( $part) ) return TRUE;
-    if ( ctype_digit ( $part) ) return TRUE;
-    if ( $part == '*')          return TRUE;
-    if ( padAtValid ( $part ) ) return TRUE;
+    if ( is_numeric  ( $part ) ) return TRUE;
+    if ( ctype_alpha ( $part ) ) return TRUE;
+    if ( ctype_digit ( $part ) ) return TRUE;
+    if ( padAtValid  ( $part ) ) return TRUE;
 
     return FALSE;
 

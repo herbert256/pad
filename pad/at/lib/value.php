@@ -1,24 +1,10 @@
 <?php
 
 
-  function padAtValueField ( $field, $cor='' ) { 
+  function padAtValue ( $field, $cor=0 ) {
 
     if ( ! str_contains( $field, '@') )
       $field .= '@any';
-
-    return padAtValue ( $field, $cor ); 
-
-  }
-
-
-  function padAtValueTag ( $field, $cor='' ) { 
-
-    return padAtValue ( $field, $cor); 
-
-  }
-
-
-  function padAtValue ( $field, $cor='' ) {
 
     if ( str_contains($field, '@*') )
       return padAtValueAny ( $field, $cor);
@@ -30,12 +16,7 @@
     $names = padExplode ( $before, '.' ); 
     $parts = padExplode ( $after,  '.' ); 
 
-    $at = padAt ( $names, $parts, $cor );
-
-    global $debug;
-    $debug [] = ['value', $names, $parts, $cor, $at];
-
-    return $at;
+    return padAt ( $names, $parts, $cor );
 
   }
 

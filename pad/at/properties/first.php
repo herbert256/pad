@@ -1,5 +1,9 @@
 <?php
 
-  return include pad . "tag/$property.php";
+#dump();
+
+  return include pad . "tag/
+
+$name.php";
 
 ?>

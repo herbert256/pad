@@ -1,6 +1,6 @@
 <?php
 
-  $padReturn = padAtValueTag ( $padTag [$pad], -1 );
+  $padReturn = padAtValue ( $padTag [$pad], -1 );
 
   if ( $padReturn === INF )
     return FALSE;

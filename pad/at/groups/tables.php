@@ -1,5 +1,5 @@
 <?php
  
-  return padFindNames ( $padTable [$padIdx], $names );
+  return padAtSearchNames ( $padTable [$padIdx], $names );
 
 ?>

@@ -1,25 +1,50 @@
 <?php
 
 
-  function padAtSearch ( $current, $names ) {
+  function padAtSearchNames ( $current, $names ) {
 
-    if ( count ( $names ) == 1 and ctype_digit ( reset ($names ) ) ) {
-      $name = end ( $names );
-      $key  = padAtKey ( $current, $name );
-      if ( $key )
-        return $current [ $key ];
+    $check = padAtSearch ( $current, $names );
+    if ( $check !== INF)
+      return $check;
+
+    foreach ( $current as $key => $value ) {
+
+      if ( is_object ($value) or is_resource ($value) )
+        $value = (array) $value;
+
+      if ( is_array ($value) and ! str_starts_with ($key, 'pad') ) {
+        $check = padAtSearchNames ( $value, $names );
+        if ( $check !== INF )
+          return $check;
+      }
+
     }
+
+    return INF;
+
+  }
+
+
+  function padAtSearch ( $current, $names ) {
 
     foreach ( $names as $key => $name ) {
 
       if ( is_object ($current) or is_resource ($current) )
         $current = (array) $current;
 
+      $key = padAtKey ( $current, $name );
+
       if ( ! is_array ($current) or ! count ($current) ) 
 
         return INF;
 
-      elseif ( $name == '*' )
+      elseif ( $key ) {
+
+        $current = &$current [$key];
+        
+        continue;
+
+      } elseif ( $name == '*' )
         
         return padAtSearchAny ( $key, $current, $names );
 

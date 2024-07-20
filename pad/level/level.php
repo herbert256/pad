@@ -23,7 +23,7 @@
     return include pad . 'level/var.php';
 
   if ( ! ctype_alpha ( $padFirst ) ) 
-    if ( ! padAtCheckTag ( $padBetween ) )
+    if ( ! padAtCheck ( $padBetween ) )
       return padIgnore ('first char');
 
   if ( ! include pad . 'level/type.php' ) 

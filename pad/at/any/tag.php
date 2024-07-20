@@ -34,16 +34,16 @@
   if ( $current !== INF ) 
     return $current;
 
-  $current = padFindNames ( $padCurrent [$padIdx], $names );
+  $current = padAtSearchNames ( $padCurrent [$padIdx], $names );
   if ( $current !== INF ) 
     return $current;
 
-  $current = padFindNames ( $padData [$padIdx], $names );
+  $current = padAtSearchNames ( $padData [$padIdx], $names );
   if ( $current !== INF ) 
     return $current;
 
-  if ( count ( $names ) == 1 and file_exists ( pad . "at/properties/$name.php" ) ) {
-    return pad . "at/properties/$name.php";
+  if ( count ( $names ) == 1 and file_exists ( pad . "at/properties/$name.php" ) )
+    return include pad . "at/properties/$name.php";
 
   return INF;
 
