@@ -1,6 +1,53 @@
 <?php
 
 
+  function padAt ( $names, $parts, $cor ) {
+
+    $name = end ($names);
+
+    $GLOBALS ['padForceTagName']  = $name;
+    $GLOBALS ['padForceDataName'] = $name;
+
+    $first  = $parts [0] ?? '';
+    $second = $parts [1] ?? '';
+    $third  = $parts [2] ?? '';
+
+    global $debug;
+    $debug [] = ['at', $first, $second, $third];
+
+    $padIdx = 0;
+    
+    if ( $first == 'tag' and $second and ! $third ) { 
+      if     ( padIsTag   ( $second, $cor ) ) $padIdx = padIsTag   ( $second, $cor );
+      elseif ( padIsLevel ( $second, $cor ) ) $padIdx = padIsLevel ( $second, $cor );
+    } elseif ( $first and ! $second ) {
+      if     ( padIsTag   ( $first, $cor ) ) $padIdx = padIsTag   ( $first, $cor );
+      elseif ( padIsLevel ( $first, $cor ) ) $padIdx = padIsLevel ( $first, $cor ); 
+    }
+
+    if ( $padIdx )
+      return include pad . 'at/any/tag.php';
+
+    if ( $first == 'tag' and $second ) { 
+      if     ( padIsTag   ( $second, $cor ) ) return padAtTag ( $names, padIsTag   ( $second, $cor ), $third, $cor );
+      elseif ( padIsLevel ( $second, $cor ) ) return padAtTag ( $names, padIsLevel ( $second, $cor ), $third, $cor );
+    }
+    elseif ( $first ) {
+      if     ( padIsTag   ( $first, $cor ) ) return padAtTag ( $names, padIsTag   ( $first, $cor ), $second, $cor );
+      elseif ( padIsLevel ( $first, $cor ) ) return padAtTag ( $names, padIsLevel ( $first, $cor ), $second, $cor ); 
+    }
+
+    if ( count ($parts) == 1 and file_exists ( pad . "at/groups/$first.php") )
+      return padAtFindGroup ( $first, $names, $cor );
+
+    if ( file_exists ( pad . "at/types/$first.php") )
+      return pad . "at/types/$first.php";
+
+    return include pad . 'at/types/any.php';
+
+  }
+
+
   function padAtTag ( $names, $padIdx, $parm, $cor ) {
 
     $name = end ($names);
@@ -25,43 +72,10 @@
   }
 
 
-  function padAt ( $names, $parts, $cor ) {
-
-    $name = end ($names);
-
-    $GLOBALS ['padForceTagName']  = $name;
-    $GLOBALS ['padForceDataName'] = $name;
-
-    $first  = $parts [0] ?? '';
-    $second = $parts [1] ?? '';
-    $third  = $parts [2] ?? '';
-
-    global $debug;
-    $debug [] = ['at', $first, $second, $third];
-
-    if ( $first == 'tag' and $second ) { 
-      if     ( padIsTag   ( $second, $cor ) ) return padAtTag ( $names, padIsTag   ( $second, $cor ), $third, $cor );
-      elseif ( padIsLevel ( $second, $cor ) ) return padAtTag ( $names, padIsLevel ( $second, $cor ), $third, $cor );
-    }
-    elseif ( $first ) {
-      if     ( padIsTag   ( $first, $cor ) ) return padAtTag ( $names, padIsTag   ( $first, $cor ), $second, $cor );
-      elseif ( padIsLevel ( $first, $cor ) ) return padAtTag ( $names, padIsLevel ( $first, $cor ), $second, $cor ); 
-    }
-
-    if ( count ($parts) == 1 and file_exists ( pad . "at/groups/$first.php") )
-      return padAtFindGroup ( $first, $names, $cor );
-
-    return INF;
-
-  }
-
   function padAtFindGroup ( $group, $names, $cor ) {
 
     $field = implode ( '.', $names) . '@*' . '.' . $group;
     $at    = padAtValue ( $field, $cor );
-
-    global $debug3;
-    $debug3 [] = ['group', $field, $at ];
 
     return $at;
 

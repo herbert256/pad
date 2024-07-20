@@ -1,13 +1,19 @@
 <?php
 
-  $check = padAtSearch ( $GLOBALS['padSaveLvl'] [$padIdx], $names );
-  if ( $check !== INF ) 
-    return $check;
+  global $pad, $padSaveLvl, $padSaveOcc;
 
-  $check = padAtSearch ( $GLOBALS['padSaveOcc'] [$padIdx], $names );
-  if ( $check !== INF ) 
-    return $check;
+  for ( $padIdx=$pad; $padIdx; $padIdx-- ) {
+
+    $check = padFindNames ( $padSaveLvl [$padIdx], $names );
+    if ( $check !== INF ) 
+      return $check;
+
+    $check = padFindNames ( $padSaveOcc [$padIdx], $names );
+    if ( $check !== INF ) 
+      return $check;
+
+  }
 
   return INF;
 
-?>
+?>;

@@ -1,5 +1,5 @@
 <?php
 
-    return padFindNames ( $GLOBALS, $names );
+  return padFindNames ( $GLOBALS, $names );
 
 ?>

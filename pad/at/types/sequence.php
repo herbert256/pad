@@ -1,8 +1,9 @@
 <?php
 
-  if ( $kind ) 
-    return padAtSearch ( $padSeqStore [$kind], $names );
-  else
-    return padAtSearch ( $padSeqStore, $names );
+  if ( count ($names) == 1 )
+    if ( isset ( $padSeqStore [$name] ) )
+      return $padSeqStore [$name];
+    
+  padFindNames ( $padSeqStore, $names );
 
 ?>

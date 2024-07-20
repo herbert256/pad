@@ -1,17 +1,17 @@
 <?php
-  
-  if ( $kind ) {
 
-    if ( isset ( $padTable [$padIdx] [$kind] ) )
-      return  padAtSearch ( $padTable [$padIdx] [$kind], $names ); 
+  global $pad;
 
-  } else
+  for ( $padIdx=$pad; $padIdx; $padIdx-- ) {
 
-    foreach ( $padTable [$padIdx] as $value) {
-      $current = padAtSearch ( $value, $names ); 
-      if ( $current !== INF ) 
-        return $current;
-    }
+    if ( count ($names) == 1 and isset ( $padTable [$padIdx] [$name] ) )
+      return $padTable [$padIdx] [$name];
+
+    $check = padFindNames ( $padTable [$padIdx], $names );
+    if ( $check !== INF )
+       return $check;
+
+  }
 
   return INF;
 
