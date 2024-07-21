@@ -147,8 +147,8 @@
     global $pad, $padPrm, $padTag, $padName, $padForceDataName;
     
     if     ( $name                              ) $return = $name;
-    elseif ( $padForceDataName                  ) $return = $padForceDataName;
     elseif ( isset ($padPrm [$pad] ['name'] )   ) $return = $padPrm [$pad] ['name'];
+    elseif ( $padForceDataName                  ) $return = $padForceDataName;
     elseif ( isset ($padPrm [$pad] ['toData'] ) ) $return = $padPrm [$pad] ['toData'];
     elseif ( $padTag [$pad] == 'data '          ) $return = $padParm;
     elseif ( isset ($padTag [$pad] )            ) $return = $padTag [$pad];

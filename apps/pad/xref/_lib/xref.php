@@ -3,6 +3,10 @@
 
   function getXref ( $type, $dir, $xref ) {
 
+    if ( ! $dir )
+      return [];
+
+
     if ( $type == 'Function types' ) {
       $one   = getXref ('n/a', 'eval/single', $xref );
       $two   = getXref ('n/a', 'eval/parms',  $xref ) ;

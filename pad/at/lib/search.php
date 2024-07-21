@@ -1,9 +1,9 @@
 <?php
 
 
-  function padAtSearchNames ( $current, $names ) {
+  function padAtSearch ( $current, $names ) {
 
-    $check = padAtSearch ( $current, $names );
+    $check = padAtSearchGo ( $current, $names );
     if ( $check !== INF)
       return $check;
 
@@ -13,7 +13,7 @@
         $value = (array) $value;
 
       if ( is_array ($value) and ! str_starts_with ($key, 'pad') ) {
-        $check = padAtSearchNames ( $value, $names );
+        $check = padAtSearch ( $value, $names );
         if ( $check !== INF )
           return $check;
       }
@@ -25,7 +25,7 @@
   }
 
 
-  function padAtSearch ( $current, $names ) {
+  function padAtSearchGo ( $current, $names ) {
 
     foreach ( $names as $key => $name ) {
 

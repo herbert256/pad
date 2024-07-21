@@ -11,25 +11,27 @@
     $first  = $parts [0] ?? '';
     $second = $parts [1] ?? '';
 
-    $check = padAtTag ( $name, $names, $first, $second, $cor );
+    $check = padAtTags ( $name, $names, $first, $second, $cor );
     if ( $check !== INF )
       return $check;
 
-    $check = padAtGroup ( $name, $names, $first, $second, $cor );
+    return padAtGroups ( $name, $names, $first, $second, $cor );
     if ( $check !== INF )
       return $check;
 
-    return include pad . 'at/any/tags.php';
+    return padAtTypes ( $name, $names, $first, $second, $cor );
+    if ( $check !== INF )
+      return $check;
+
+    return INF;
 
   }
 
 
-  function padAtTag ( $name, $names, $first, $second, $cor ) {
+  function padAtTags ( $name, $names, $first, $second, $cor ) {
 
-    $padIdx = 0;
-
-    if     ( padIsTag   ( $first, $cor ) ) $padIdx = padIsTag   ( $first, $cor );
-    elseif ( padIsLevel ( $first, $cor ) ) $padIdx = padIsLevel ( $first, $cor ); 
+                     $padIdx = padAtIsTag   ( $first, $cor );
+    if ( ! $padIdx ) $padIdx = padAtIsLevel ( $first, $cor );
 
     if ( ! $padIdx )
       return INF;
@@ -48,28 +50,85 @@
   }
 
 
-  function padAtGroup ( $name, $names, $first, $second, $cor ) {
+  function padAtGroups ( $name, $names, $first, $second, $cor ) {
 
     global $pad;
 
     if ( $second or ! file_exists ( pad . "at/groups/$first.php") )
       return INF;
 
-    if ( file_exists ( pad . "at/groups/$first.php") ) 
+    for ( $padLoop=$pad; $padLoop; $padLoop-- ) {
 
-      for ( $padIdx=$pad; $padIdx; $padIdx-- ) {
+      $padIdx = $padLoop + $cor;
 
-        $padIdx = $padIdx + $cor;
+      $check = include pad . "at/groups/$first.php";
+      if ( $check !== INF )
+        return $check;
 
-        $check = includep ad . "at/groups/$first.php";
-        if ( $check !== INF )
-          return $check;
-
-      }
+    }
 
     return INF;
 
   }
+
+
+  function padAtTypes ( $name, $names, $first, $second, $cor ) {
+
+    global $pad;
+
+    $type = $second;
+
+    if ( file_exists ( pad . "at/types/$first.php") )  
+      return include pad . "at/types/$first.php";
+
+    if ( $first == 'any' ) {
+
+      if ( $type and isset ( $padDataStore [$type] ) ) {
+        $current = padAtSearch ( $padDataStore [$type], $names ); 
+        if ( $current !== INF ) 
+          return $current;
+      }
+
+      foreach ( $padDataStore as $value) {
+        $current = padAtSearch ( $value, $names ); 
+        if ( $current !== INF ) 
+          return $current;
+      }
+
+      $current = include pad . 'at/types/sequences.php';
+      if ( $current !== INF ) 
+        return $current;
+
+      $current = include pad . 'at/types/globals.php';
+      if ( $current !== INF ) 
+        return $current;
+
+    }
+
+    $check = padDataFileName ( $type ); 
+    if ( $check ) {
+      $padDataStore [$type] = padData ($type);
+      $current = padAtSearch ( $padDataStore [$type], $names ); 
+      if ( $current !== INF ) 
+        return $current;
+    }
+
+    if ( ! isset ( $padDataStore [$type] ) ) {
+      $padDataStore [$type] = padData ($type);
+      $current = padAtSearch ( $padDataStore [$type], $names ); 
+      if ( $current !== INF ) 
+        return $current;
+      else
+        unset $padDataStore [$type];
+    }   
+
+    $current = include pad . 'at/types/globals.php';
+    if ( $current !== INF ) 
+      return $current;
+
+    return INF;
+
+  }  
 
 
 ?>

@@ -6,6 +6,6 @@
  
   unset ( $padOptAt [0] );
  
-  return padAtSearchNames ( $padOptAt , $names );
+  return padAtSearch ( $padOptAt , $names );
   
 ?>

@@ -3,7 +3,7 @@
 
   function padAtValue ( $field, $cor=0 ) {
 
-    if ( ! str_contains( $field, '@') )
+    if ( ! str_contains ( $field, '@' ) )
       $field .= '@any';
 
     if ( str_contains($field, '@*') )

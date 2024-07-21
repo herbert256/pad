@@ -1,7 +1,5 @@
 <?php
 
-  return include pad . "tag/
-
-$name.php";
+  return include pad . "tag/$name.php";
 
 ?>

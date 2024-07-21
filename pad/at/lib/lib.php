@@ -1,7 +1,7 @@
 <?php
 
 
-  function padIsTag ($name, $cor) {
+  function padAtIsTag ($name, $cor) {
 
     global $pad, $padName;
 
@@ -14,7 +14,7 @@
   }
 
 
-  function padIsLevel ( $field, $cor ) {
+  function padAtIsLevel ( $field, $cor ) {
 
     global $pad;
 
@@ -37,9 +37,9 @@
 
   function padAtKey ( $search, $index ) {
 
-    if ( ! ctype_digit ( $index )   )            return '';
-    if ( array_is_list ( $current ) )            return '';
-    if ( array_key_exists ( $index, $current ) ) return '';
+    if ( ! ctype_digit ( $index ) )           return '';
+    if ( array_is_list ( $search ) )            return '';
+    if ( array_key_exists ( $index, $search ) ) return '';
 
     $keys = array_keys ( $search );
 
