@@ -34,8 +34,9 @@
   if ( $current !== INF ) 
     return $current;
 
-  if ( count ( $names ) == 1 and file_exists ( pad . "at/properties/$name.php" ) )
-    return include pad . "at/properties/$name.php";
+  $current = padAtProperty ($names, $padIdx, $cor );
+  if ( $current !== INF ) 
+    return $current;
 
   $current = padAtSearch ( $padData [$padIdx], $names );
   if ( $current !== INF ) 

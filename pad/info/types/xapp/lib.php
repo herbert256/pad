@@ -5,7 +5,6 @@
 
     if ( $dir1 == 'tag'   and $dir2 == 'tag'      ) return padXapp ( 'properties', $dir3 );
     if ( $dir1 == 'field' and $dir2 == 'tag'      ) return padXapp ( 'properties', $dir3 );
-    if ( $dir1 == 'at'    and $dir2 == 'property' ) return padXapp ( 'properties', $dir3 );
 
     global $padPage, $padXappSource, $padStartPage;
 
@@ -21,7 +20,6 @@
     if ( $dir1 == 'functions'  and $dir2 <> 'pad'     ) return padXappGo ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'sequences'  and $dir2 == 'actions' ) return padXappGo ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'sequences'  and $dir2 == 'builds'  ) return padXappGo ( $dir1, $dir2, $dir3 );
-    if ( $dir1 == 'at'         and $dir2 == 'kind'    ) return padXappGo ( $dir1, $dir2, $dir3 );
 
     if (   $dir3 and strpos ( $padXappSource, $dir3 ) === FALSE ) return;
     if ( ! $dir3 and strpos ( $padXappSource, $dir2 ) === FALSE ) return;

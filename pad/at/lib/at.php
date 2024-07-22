@@ -19,10 +19,9 @@
     if ( $check !== INF )
       return $check;
 
-    return padAtTypes ( $name, $names, $first, $second, $cor );
+    $check = padAtType ( $first, $second, $names, $cor );
     if ( $check !== INF )
       return $check;
-
 
     return INF;
 
@@ -38,13 +37,11 @@
       return INF;
 
     if ( $second )
-      if ( file_exists ( pad . "at/groups/$second.php") )
-        return include pad . "at/groups/$second.php";
-      else
-        return INF;
+      return padAtGroup ( $second, $name, $names, $padIdx, $cor );
 
-    if ( count ( $names ) == 1 and file_exists ( pad . "at/properties/$name.php") ) 
-      return include pad . "at/properties/$name.php";
+    $current = padAtProperty ( $names, $padIdx, $cor );
+    if ( $current !== INF ) 
+      return $current;
 
     return include pad . 'at/any/tag.php';
 
@@ -55,41 +52,66 @@
 
     global $pad;
 
-    if ( ! $second and file_exists ( pad . "at/groups/$first.php") ) {
-
+    if ( ! $second and file_exists ( pad . "at/groups/$first.php") )
 
       for ( $padLoop=$pad; $padLoop; $padLoop-- ) {
 
         $padIdx = $padLoop + $cor;
 
-        $check = include pad . "at/groups/$first.php";
+        $check = padAtGroup ( $first, $name, $names, $padIdx, $cor );
         if ( $check !== INF )
           return $check;
 
       }
-
-    }
 
     return INF;
 
   }
 
 
-  function padAtTypes ( $name, $names, $first, $second, $cor ) {
+  function padAtProperty ( $names, $padIdx, $cor ) {
 
-    global $pad;
+    $name = reset ( $names );
 
-    $type = $second;
+    if ( ! file_exists ( pad . "at/properties/$name.php") ) 
+      return INF;
 
-    if ( file_exists ( pad . "at/types/$first.php") )  
-      return include pad . "at/types/$first.php";
+    if     ( count ( $names ) == 1 ) $parm = '';
+    elseif ( count ( $names ) == 2 ) $parm = end ($names);
+    else                             return INF;
 
-    if ( $first == 'any' ) 
-      return include pad . 'at/any/type.php';
+    if ( padXapp )
+      padXapp ( 'at', 'properties', $name );
 
-    return INF;
+    return include pad . "at/properties/$name.php";
 
-  }  
+  }
+
+
+  function padAtGroup ( $group, $name, $names, $padIdx, $cor ) {
+
+    if ( ! file_exists ( pad . "at/groups/$group.php" ) )
+      return INF;
+
+    if ( padXapp )
+      padXapp ( 'at', 'groups', $group );
+
+    return include pad . "at/groups/$group.php";
+
+  }
+
+
+  function padAtType ( $go, $type, $names, $cor ) {
+
+    if ( ! file_exists ( pad . "at/types/$go.php" ) )
+      return INF;
+
+    if ( padXapp )
+      padXapp ( 'at', 'types', $go );
+
+    return include pad . "at/types/$go.php";
+
+  }
 
 
 ?>
