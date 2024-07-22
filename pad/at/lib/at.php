@@ -15,13 +15,14 @@
     if ( $check !== INF )
       return $check;
 
-    return padAtGroups ( $name, $names, $first, $second, $cor );
+    $check = padAtGroups ( $name, $names, $first, $second, $cor );
     if ( $check !== INF )
       return $check;
 
     return padAtTypes ( $name, $names, $first, $second, $cor );
     if ( $check !== INF )
       return $check;
+
 
     return INF;
 
@@ -54,16 +55,18 @@
 
     global $pad;
 
-    if ( $second or ! file_exists ( pad . "at/groups/$first.php") )
-      return INF;
+    if ( ! $second and file_exists ( pad . "at/groups/$first.php") ) {
 
-    for ( $padLoop=$pad; $padLoop; $padLoop-- ) {
 
-      $padIdx = $padLoop + $cor;
+      for ( $padLoop=$pad; $padLoop; $padLoop-- ) {
 
-      $check = include pad . "at/groups/$first.php";
-      if ( $check !== INF )
-        return $check;
+        $padIdx = $padLoop + $cor;
+
+        $check = include pad . "at/groups/$first.php";
+        if ( $check !== INF )
+          return $check;
+
+      }
 
     }
 
@@ -81,50 +84,8 @@
     if ( file_exists ( pad . "at/types/$first.php") )  
       return include pad . "at/types/$first.php";
 
-    if ( $first == 'any' ) {
-
-      if ( $type and isset ( $padDataStore [$type] ) ) {
-        $current = padAtSearch ( $padDataStore [$type], $names ); 
-        if ( $current !== INF ) 
-          return $current;
-      }
-
-      foreach ( $padDataStore as $value) {
-        $current = padAtSearch ( $value, $names ); 
-        if ( $current !== INF ) 
-          return $current;
-      }
-
-      $current = include pad . 'at/types/sequences.php';
-      if ( $current !== INF ) 
-        return $current;
-
-      $current = include pad . 'at/types/globals.php';
-      if ( $current !== INF ) 
-        return $current;
-
-    }
-
-    $check = padDataFileName ( $type ); 
-    if ( $check ) {
-      $padDataStore [$type] = padData ($type);
-      $current = padAtSearch ( $padDataStore [$type], $names ); 
-      if ( $current !== INF ) 
-        return $current;
-    }
-
-    if ( ! isset ( $padDataStore [$type] ) ) {
-      $padDataStore [$type] = padData ($type);
-      $current = padAtSearch ( $padDataStore [$type], $names ); 
-      if ( $current !== INF ) 
-        return $current;
-      else
-        unset $padDataStore [$type];
-    }   
-
-    $current = include pad . 'at/types/globals.php';
-    if ( $current !== INF ) 
-      return $current;
+    if ( $first == 'any' ) 
+      return include pad . 'at/any/type.php';
 
     return INF;
 
