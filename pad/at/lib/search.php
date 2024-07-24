@@ -20,6 +20,19 @@
 
     }
 
+    foreach ( $current as $key => $value ) {
+
+      if ( is_object ($value) or is_resource ($value) )
+        $value = (array) $value;
+
+      if ( is_array ($value) and str_starts_with ($key, 'pad') ) {
+        $check = padAtSearch ( $value, $names );
+        if ( $check !== INF )
+          return $check;
+      }
+
+    }
+
     return INF;
 
   }

@@ -7,9 +7,6 @@
 
   $key = padAtKey ( $padParmParse [$padIdx], $name );
 
-  global $debug;
-  $debug [] = [$name, $key, $padIdx, $padParmParse [$padIdx]];
-
   if ( $key )
     if ( $padParmParse [$padIdx] [$key] == 'lvl' ) return $padSetLvl [$padIdx] [$key];
     else                                           return $GLOBALS [$key]; 

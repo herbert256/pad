@@ -1,18 +1,18 @@
-{pad data='bakery'}
+{bakery}
 
-  <h2> {@name@current} / {@type@current} </h2>
+  <h2> {$name@current} / {$type@current} </h2>
 
   <p> Batter: 
-      {@batter} 
-        {@batter@current} 
-        {@notLast} / {/@notLast} 
+      {$batter} 
+        {$batter@current} 
+        {notLast} / {/notLast} 
       {/@batter}
 
   {topping@current} 
     <p> Topping: 
       @start@
-        {@topping@topping} 
-        {@notLast} / {/@notLast} 
+        {$topping@topping} 
+        {notLast} / {/notLast} 
       @end@
     </p>
   {/topping@current}
@@ -20,10 +20,10 @@
   {filling@current} 
     <p>Filling:
       @start@
-        {@name@any}
-        {@notLast} / {/@notLast} 
+        {$name@any}
+        {notLast} / {/notLast} 
       @end@
     </p>
   {/filling@current}
 
-{/pad}
+{/bakery}

@@ -26,7 +26,7 @@
   if ( substr($padFld, 0, 1) == '$' ) 
     $padFld = padFieldValue ( substr($padFld,1) );
 
-  if  ( str_contains ( $padFld, '@' ) ) {
+  if  ( str_contains ( $padFld, '@' ) or str_contains ( $padFld, '.' ) ) {
 
     if ( ! padValidVarAt ($padFld) ) 
       return padIgnore ( "Field '$padFld' is not a valid name" );

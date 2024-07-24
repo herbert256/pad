@@ -3,7 +3,7 @@
 
   function padAt ( $names, $parts, $cor ) {
 
-    $name = end ($names);
+    $name = reset ($names);
 
     $GLOBALS ['padForceTagName']  = $name;
     $GLOBALS ['padForceDataName'] = $name;
@@ -20,6 +20,10 @@
       return $check;
 
     $check = padAtType ( $first, $second, $names, $cor );
+    if ( $check !== INF )
+      return $check;
+
+    $check = padAtData ( $names, $parts );
     if ( $check !== INF )
       return $check;
 
@@ -110,6 +114,31 @@
       padXapp ( 'at', 'types', $go );
 
     return include pad . "at/types/$go.php";
+
+  }
+
+
+  function padAtData ( $names, $parts ) {
+
+    global $padDataStore;
+
+    $data = implode ( '.', $parts );
+
+    if ( isset ( $padDataStore [$data] ) )
+
+      $check = padAtSearch ( $padDataStore [$data], $names );
+    
+    else {
+
+      $store = padData ( $data );
+      $check = padAtSearch ( $store, $names );
+
+      if ( $check !== INF ) 
+        $padDataStore [$data] = $store;
+
+    }
+
+    return $check;
 
   }
 
