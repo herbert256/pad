@@ -8,7 +8,6 @@
 
   reset ( $padData [$pad] );
   
-  $padOccurTypeSet = 'between';  
   include pad . 'occurrence/start.php';
 
 ?>

@@ -1,5 +1,5 @@
 <?php
 
-  padXref ( 'occur', $padOccurTypeSet );
+  padXref ( 'occur', 'toDo' );
 
 ?>

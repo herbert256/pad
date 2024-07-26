@@ -10,7 +10,6 @@
 
   reset ( $padData [$pad] );
 
-  $padOccurTypeSet = 'before';  
   include pad . 'occurrence/start.php';
    
 ?>

@@ -1,14 +1,23 @@
 <?php
 
+  $padParm       = $padOpt [$pad] [1];
   $padContent    = $padBase [$pad];
   $padTagContent = '';
 
-  ob_start();
-  $padParm        = $padOpt [$pad] [1] ?? '';
-  $padTagResult   = include pad . "types/" . $padType [$pad] . ".php";
-  $padTagOrg      = $padTagResult;
-  $padTagContent .= ob_get_clean();
+  if ( $padLevelType [$pad] == 'optional' ) 
 
+    $padTagResult = NULL;
+
+  else  {
+
+    ob_start();
+    $padTagResult   = include pad . "types/" . $padType [$pad] . ".php";
+    $padTagContent .= ob_get_clean();
+
+  }
+
+  $padTagOrg = $padTagResult;
+ 
   if ( padSingleValue ( $padTagResult ) ) {
     $padTagContent .= $padTagResult;
     $padTagResult = TRUE;

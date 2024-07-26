@@ -304,7 +304,7 @@
       $G = '';
   
     if ( is_array ($G) )
-      $G = ' !!! array as input for padDumpShort !!!';
+      $G = '!!! array as input for padDumpShort !!!';
   
     return substr ( preg_replace('/\s+/', ' ', $G ), 0, 150 );
   

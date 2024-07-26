@@ -6,13 +6,13 @@
 
   if ( substr($padBetween, -1) == '/') {
     $padBetween = substr($padBetween, 0, -1);
-    $padWords   = preg_split ("/[\s]+/", $padBetween, 2, PREG_SPLIT_NO_EMPTY);
+    include pad . 'level/between.php';
     return;
   }
 
-  $padPairTag    = ( $padTypeGiven ) ? $padTypeResult . ':' . $padTypeCheck : $padTypeCheck;
-  $padPos        = $padEnd [$pad];
-  $padPairCheck  = '';
+  $padPairTag   = ( $padTypeGiven ) ? $padTypeResult . ':' . $padTypeCheck : $padTypeCheck;
+  $padPos       = $padEnd [$pad];
+  $padPairCheck = '';
 
   while ( ! in_array ( $padPairCheck, [' ', '}'] ) ) {
 

@@ -16,17 +16,21 @@
   }
 
   $padBetween = substr ( $padPad [$pad], $padStart [$pad] + 1, $padEnd [$pad] - $padStart [$pad] - 1 );
-  $padFirst   = substr ( $padBetween , 0, 1 );
-  $padWords   = preg_split ("/[\s]+/", $padBetween, 2, PREG_SPLIT_NO_EMPTY);
+  include pad . 'level/between.php';
 
   if ( in_array ( $padFirst, ['$','!','#','&','?'] ) ) 
     return include pad . 'level/var.php';
 
-  if ( ! ctype_alpha ( $padFirst ) ) 
-    if ( ! padAtCheck ( $padBetween ) )
-      return padIgnore ('first char');
+  if ( ! ctype_alpha ( $padFirst ) and ! str_contains ( $padTagCheck, '@') ) 
+    return padIgnore ('first char');
 
-  if ( ! include pad . 'level/type.php' ) 
+  $padTypeParse = include pad . 'level/type.php';
+
+  include pad . 'level/tag.php';
+
+  if ( ! $padTypeParse and isset ( $padStartOptions ['optional'] ) )
+    $padSetLevelType = 'null';
+  elseif ( ! $padTypeParse )
     return padIgnore ('type');
 
   include pad . 'level/start.php';

@@ -11,7 +11,6 @@
   if ( padTrace )
     include pad . 'info/events/build.php';
  
-  $padOccurTypeSet = 'build';  
   include pad . 'occurrence/start.php';
 
 ?>

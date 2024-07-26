@@ -1,6 +1,5 @@
 <?php
 
-  include pad . 'level/tag.php';
   include pad . 'level/setup.php';    
   include pad . 'level/parms.php';    
   include pad . 'level/split.php';
@@ -32,9 +31,7 @@
   if ( padOpenCloseOk ( $padBase[$pad], '@start@') ) 
     return include pad . 'level/start_end/start1.php';
 
-  if ( count ( $padData [$pad] ) and $padBase [$pad] ) {
-    $padOccurTypeSet = 'start';  
+  if ( count ( $padData [$pad] ) and $padBase [$pad] )
     include pad . 'occurrence/start.php';
-  }
 
 ?>

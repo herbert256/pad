@@ -1,6 +1,13 @@
 <?php
 
 
+  function padFunction ( $padFun ) {
+
+    return include pad . 'start/function.php';
+
+  }
+
+
   function padContentSet ( $base, $new, $name ) {
 
     padBeforeAfter ( $base, $before, $after, '@content@' ) ;
@@ -301,6 +308,8 @@
       if ( file_exists ("$file.yaml")              ) return "$file.yaml";
       if ( file_exists ("$file.csv")               ) return "$file.csv";
       if ( file_exists ("$file.php")               ) return "$file.php";
+      if ( file_exists ("$file.curl")              ) return "$file.curl";
+      if ( file_exists ("$file.sql")               ) return "$file.sql";
 
     }
 

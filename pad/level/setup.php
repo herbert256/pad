@@ -13,7 +13,7 @@
   $padSetLvl     [$pad] = [];
   $padSetOcc     [$pad] = [];
 
-  $padOpt        [$pad] [0] = trim($padWords[1] ?? '');
+  $padOpt        [$pad] [0] = $padTagOpts;
   $padOpt        [$pad] [1] = '';
 
   $padTag        [$pad] = $padTypeCheck  ?? '';
@@ -22,6 +22,8 @@
   $padPair       [$pad] = $padPairSet    ?? '';
   $padBase       [$pad] = $padBaseSet    ?? '';
   $padPrmType    [$pad] = $padPrmTypeSet ?? '';
+
+  $padLevelType  [$pad] = $padSetLevelType;
 
   $padName       [$pad] = '';
 
@@ -33,7 +35,6 @@
   $padWalkData   [$pad] = [];
 
   $padDone       [$pad] = [];
-  $padOccurType  [$pad] = '';
   $padOccur      [$pad] = 0;
   $padStart      [$pad] = 0;
   $padEnd        [$pad] = 0;

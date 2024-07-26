@@ -6,11 +6,10 @@
 
   $padOccurStart [$pad] [$padOccur[$pad]] = TRUE;
 
-  $padPad       [$pad] = $padBase [$pad];
-  $padKey       [$pad] = key($padData [$pad]);
-  $padCurrent   [$pad] = $padData [$pad] [$padKey [$pad]];
-  $padOccurType [$pad] = $padOccurTypeSet;
-
+  $padPad     [$pad] = $padBase [$pad];
+  $padKey     [$pad] = key($padData [$pad]);
+  $padCurrent [$pad] = $padData [$pad] [$padKey [$pad]];
+ 
   if ( padInfo )
     include pad . 'info/events/occurStart.php';
 

@@ -2,8 +2,6 @@
 
   $padOptCnt = 0;
 
-  $padPrmParse = padParseOptions ( $padOpt [$pad] [0] );
-
   foreach ( $padPrmParse as $padK => $padV ) {
 
     list ($padPrmName, $padPrmValue ) = padSplit ('=', trim($padV));
@@ -37,7 +35,7 @@
       if ( file_exists ( padApp . "options/$padPrmName.php") )
         $padOptionsAppStart [$pad] [] = $padPrmName;
 
-      $padPrm [$pad] [$padPrmName] = ( $padPrmValue === '' ) ? TRUE : padEval ( $padPrmValue );
+      $padPrm [$pad] [$padPrmName] = $padStartOptions [$padPrmName];
 
       continue;
 

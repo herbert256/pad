@@ -1,11 +1,11 @@
 <?php
 
-  $padTypeExplode = padExplode ($padWords [0], ':') ;
+  $padTypeExplode = padExplode ( $padTagCheck, ':' ) ;
 
   if ( count ($padTypeExplode) == 1 ) {
 
     $padTypeGiven  = FALSE;
-    $padTypeCheck  = $padWords [0];
+    $padTypeCheck  = $padTagCheck;
     $padTypeResult = padTypeGet( $padTypeCheck );
 
   } else {

@@ -1,7 +1,7 @@
 <?php
 
   include pad . 'start/lib/start.php';
-  include pad . 'start/lib/setup.php';
+  include pad . 'inits/level.php';
   include pad . 'build/build.php';   
   include pad . 'start/lib/level.php'; 
   include pad . 'start/lib/end.php';
