@@ -1,20 +1,11 @@
 <?php
 
-  include pad . 'inits/levelVars.php';
+  include_once pad . 'inits/levelVars.php';
 
-  foreach ( $GLOBALS as $padFunK => $padFunV ) 
-    global $$padFunK;
+  $padFunSave = padSave ();
 
-  if ( ! isset ($padFunCnt) )
-    $padFunCnt = 0;
-  else
-    $padFunCnt++;
-
-  foreach ( $GLOBALS as $padFunK => $padFunV ) 
-    if ( str_starts_with($padFunK, 'pad') )
-      if ( ! str_starts_with($padFunK, 'padFun') )
-        if ( ! in_array($padFunK, $padLevelVars ) )
-          $padFunSave [$padFunCnt] [$padFunK] = $padFunV; 
+  foreach ( $GLOBALS as $padLoopK => $padLoopV )
+    global $$padLoopK;
 
   include pad . 'inits/level.php';
 
@@ -23,10 +14,7 @@
   include pad . 'occurrence/start.php'; 
   include pad . 'start/lib/level.php'; 
 
-  foreach ( $padFunSave [$padFunCnt] as $padFunK => $padFunV ) 
-    $GLOBALS [$padFunK] = $padFunV;
- 
-  $padFunCnt--;
+  padRestore ( $padFunSave );
 
   return $padPad [$pad+1];
 

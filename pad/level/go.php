@@ -4,7 +4,7 @@
   $padContent    = $padBase [$pad];
   $padTagContent = '';
 
-  if ( $padLevelType [$pad] == 'optional' ) 
+  if ( $padLevelType [$pad] == 'null' ) 
 
     $padTagResult = NULL;
 

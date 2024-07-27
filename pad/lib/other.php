@@ -8,6 +8,13 @@
   }
 
 
+  function padSolitary ( $padFun ) {
+
+    return include pad . 'start/solitary.php';
+
+  }
+
+
   function padContentSet ( $base, $new, $name ) {
 
     padBeforeAfter ( $base, $before, $after, '@content@' ) ;
@@ -188,21 +195,6 @@
 
     if ( trim($output) )
       return padError ( "Illegal output: '$output'" );
-
-  }
-
-
-  function padCloseWithPad () {
-
-    global $pad, $padOpt;
-
-    if ( $padOpt [$pad] [0] and 
-         substr_count ( $padOpt [$pad] [0], '{' ) and 
-         substr_count ( $padOpt [$pad] [0], '}' ) ) 
-
-      return TRUE;
-
-    return FALSE;
 
   }
 
@@ -1123,10 +1115,44 @@
 
     return TRUE;
 
+  }
+
+
+  function padSave ( ) {
+
+    foreach ( $GLOBALS as $k => $v ) 
+      if ( padSaveField ( $k ) )
+        $s [$k] = $v; 
+
+    return $s;
 
   }
 
 
+  function padSaveField ( $field ) {
+
+    if ( substr($field, 0, 3) == 'pad' and ! in_array ( $field, $GLOBALS ['padLevelVars']) )
+      if ( $field <> 'padLoopK' and $field <> 'padLoopV' ) 
+        if ( $field <> 'padOptionHits' and $field <> 'padTagHits') 
+          if ( substr($field, 0, 8) <> 'padTrace' and substr($field, 0, 6) <> 'padXml' ) 
+            if ( substr($field, 0, 7) <> 'padInfo' and substr($field, 0, 7) <> 'padXref' ) 
+              return TRUE;
+
+    return FALSE;
+
+  }
+
+  function padRestore ( $safe ) { 
+
+#    foreach ( $GLOBALS as $k => $v )
+#      if ( padSaveField ( $k ) and ! in_array ( $k, $safe ) )
+#        unset ( $GLOBALS [$k] );
+
+    foreach ( $safe as $k => $v ) 
+      $GLOBALS [$k] = $v;
+  
+  }
+  
   function padDataFilterGo (&$vars, $start, $end) {
 
     $now = 0;

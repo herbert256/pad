@@ -1,5 +1,5 @@
 <?php
 
-  return padRedirect ( $padParm, $padSetLvl [$pad] ); 
+  return include pad . "start/redirect.php" ;
 
 ?>

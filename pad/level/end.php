@@ -4,7 +4,7 @@
     if ( isset ( $padOccurStart [$pad] [$padOccur[$pad]] ) )
       include pad . 'occurrence/end.php';
 
-  if ( next($padData [$pad]) !== FALSE )
+  if ( next ($padData [$pad]) !== FALSE )
     return include pad . 'occurrence/start.php';
 
   if ( $padWalk [$pad] == 'next' ) {

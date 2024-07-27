@@ -1,5 +1,8 @@
 <?php
 
+  if ( $padPrmType [$pad] == 'close' and str_contains( $padOpt [$pad] [0], '}' ) ) 
+    include pad . 'level/close.php';
+
   $padOptCnt = 0;
 
   foreach ( $padPrmParse as $padK => $padV ) {

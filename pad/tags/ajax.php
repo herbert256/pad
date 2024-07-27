@@ -1,11 +1,5 @@
 <?php
 
-  $padExtPag = $padParm ;
-  $padExtQry = '&padInclude';
+  return include pad . "start/ajax.php" ;
 
-  foreach ( $padSetLvl [$pad] as $padK => $padV )
-    $padExtQry .= "&$padK=" . urlencode($padV);
-
-  return padPageAjax ( $padExtPag, $padExtQry ) ;
- 
 ?>

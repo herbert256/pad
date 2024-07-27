@@ -1,8 +1,5 @@
 <?php
      
-  if ( padCloseWithPad () )
-    include pad . 'walk/parse_opt.php';
-
   if ( padXref )
     include pad . 'info/types/xref/events/walk.php';
 
