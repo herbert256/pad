@@ -8,7 +8,7 @@
   }
 
 
-  function padSolitary ( $padFun ) {
+  function padSolitary ( $padSol ) {
 
     return include pad . 'start/solitary.php';
 
@@ -1104,7 +1104,20 @@
 
   }
 
+
+  function padValidSolitary ($fld) {
+
+    if ( ! str_starts_with ( $fld, 'pad') )
+      return FALSE;
+
+    if ( in_array ( $fld, ['padPad','padStart','padEnd','padPageLevel','padResult'] ) )
+      return FALSE;
+
+    return TRUE;
+
+  }
   
+
   function padValidStore ($fld) {
 
     if ( substr($fld, 0,3) == 'pad')
@@ -1143,10 +1156,6 @@
   }
 
   function padRestore ( $safe ) { 
-
-#    foreach ( $GLOBALS as $k => $v )
-#      if ( padSaveField ( $k ) and ! in_array ( $k, $safe ) )
-#        unset ( $GLOBALS [$k] );
 
     foreach ( $safe as $k => $v ) 
       $GLOBALS [$k] = $v;

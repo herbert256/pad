@@ -1,7 +1,7 @@
 <?php
 
-  $padFunction = "{include $padParm}"
+  $padSolitary = "{include $padParm}"
 
-  return padEscape ( padSolitary ( $padFunction ) );
+  return padEscape ( padSolitary ( $padSolitary ) );
  
 ?>

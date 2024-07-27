@@ -1,10 +1,10 @@
 <?php
 
-  $padBetween = 'pad';
+  $padBetween = '*internal*';
   include pad . 'level/between.php';
 
-  $padTypeCheck  = 'pad';
-  $padTypeResult = 'internal';
+  $padTypeCheck  = '*internal*';
+  $padTypeResult = '';
   $padTypeGiven  = FALSE;
   $padPairSet    = FALSE;
   $padBaseSet    = '';
