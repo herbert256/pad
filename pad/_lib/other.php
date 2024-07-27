@@ -3,14 +3,14 @@
 
   function padFunction ( $padFun ) {
 
-    return include pad . 'pad/code/_lib/function.php';
+    return include pad . 'start/code/_lib/function.php';
 
   }
 
 
   function padSolitary ( $padSol ) {
 
-    return include pad . 'pad/code/solitary/solitary.php';
+    return include pad . 'start/code/solitary/solitary.php';
 
   }
 

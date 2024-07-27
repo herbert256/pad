@@ -7,11 +7,11 @@
       if ( substr($padK, 0, 3) == 'pad' )
         global $$padK;
       
-    include pad . 'pad/start.php';
-    include pad . 'pad/setup.php';
+    include pad . 'start/start.php';
+    include pad . 'start/setup.php';
     include pad . 'build/build.php';   
-    include pad . 'pad/level.php'; 
-    include pad . 'pad/end.php';
+    include pad . 'start/level.php'; 
+    include pad . 'start/end.php';
 
     return $padPad [$pad+1];
 

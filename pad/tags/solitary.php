@@ -1,5 +1,5 @@
 <?php
 
-  return include pad . "pad/code/solitary.php" ;
+  return include pad . "start/code/solitary.php" ;
 
 ?>
