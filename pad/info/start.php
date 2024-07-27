@@ -1,6 +1,6 @@
 <?php
  
-  include_once pad . 'info/lib.php';
+  include_once pad . 'info/_lib.php';
 
   if ( $padTrack ) include pad . 'info/types/track/start.php';
   if ( $padStats ) include pad . 'info/types/stats/start.php';

@@ -1,6 +1,6 @@
 <?php
 
-  include_once pad . 'info/types/trace/lib.php';
+  include_once pad . 'info/types/trace/_lib.php';
 
   set_time_limit ( 900 );
 

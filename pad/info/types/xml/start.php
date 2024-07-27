@@ -1,6 +1,6 @@
 <?php
   
-  include_once pad . 'info/types/xml/lib.php';
+  include_once pad . 'info/types/xml/_lib.php';
 
   $padXmlId     = 0;
   $padXmlDepth  = 0;

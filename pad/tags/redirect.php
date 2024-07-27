@@ -1,5 +1,5 @@
 <?php
 
-  return include pad . "start/redirect.php" ;
+  return include pad . "pad/redirect.php" ;
 
 ?>

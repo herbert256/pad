@@ -1,6 +1,6 @@
 <?php
 
-  include_once pad . 'info/types/xref/lib.php';
+  include_once pad . 'info/types/xref/_lib.php';
     
   $padXrefId     = 0;
   $padXrefDepth  = 0;

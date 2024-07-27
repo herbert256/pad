@@ -6,7 +6,7 @@
   $padSeqOpr   = ['make', 'keep', 'remove'];
   $padSeqTypes = pad . 'sequence/types';
 
-  include_once pad . 'sequence/inits/lib.php';
+  include_once pad . 'sequence/inits/_lib.php';
   
   include pad . 'sequence/inits/parms.php';
   include pad . 'sequence/inits/sequence.php';

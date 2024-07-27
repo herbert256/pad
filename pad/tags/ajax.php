@@ -1,5 +1,5 @@
 <?php
 
-  return include pad . "start/ajax.php" ;
+  return include pad . 'pad/page/ajax.php' ;
 
 ?>

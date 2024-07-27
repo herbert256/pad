@@ -1,6 +1,6 @@
 <?php
   
-  include_once pad . 'error/php/lib.php';
+  include_once pad . 'error/php/_lib.php';
 
   padErrorRestoreBoot ();
 

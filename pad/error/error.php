@@ -1,7 +1,7 @@
 <?php
   
-  include pad . "error/$padErrorAction/lib.php";
-  include pad . "error/lib.php";
+  include pad . "error/$padErrorAction/_lib.php";
+  include pad . "error/_lib.php";
 
   padErrorReporting   ( $padErrorLevel );
   padErrorRestoreBoot ();

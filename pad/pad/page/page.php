@@ -4,6 +4,6 @@
   $padPageInclude = padTagParm ( 'include' );
   $padPageType    = padTagParm ( 'type', 'get' );
 
-  return include pad . "start/lib/page.php";
+  return include pad . "pad/page/_lib/page.php";
 
 ?>

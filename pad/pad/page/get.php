@@ -4,6 +4,6 @@
   $padPageInclude = TRUE;
   $padPageType    = 'sandbox';
 
-  return padEscape ( include pad . "start/lib/page.php" );
+  return padEscape ( include pad . "pad/page/_lib/page.php" );
 
 ?>

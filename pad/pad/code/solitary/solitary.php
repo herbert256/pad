@@ -5,8 +5,8 @@
   foreach ( $GLOBALS as $padLoopK => $padLoopV )
     global $$padLoopK;
 
-  include pad . 'start/solitary/backup.php';  
-  include pad . 'start/solitary/reset.php';  
+  include pad . 'pad/code/solitary/backup.php';  
+  include pad . 'pad/code/solitary/reset.php';  
   include pad . 'inits/level.php'; 
   
   foreach ( $padSetLvl [$pad-1] as $k => $v ) {
@@ -18,9 +18,9 @@
 
   include pad . 'occurrence/start.php'; 
   
-  include pad . 'start/lib/level.php'; 
+  include pad . 'pad/_lib/level.php'; 
 
-  include pad . 'start/solitary/restore.php';  
+  include pad . 'pad/solitary/restore.php';  
 
   return $padPad [$pad+1];
 

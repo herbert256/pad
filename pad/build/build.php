@@ -2,7 +2,7 @@
 
   include pad . 'build/dirs.php';
 
-  $padBuildLib  = include pad . 'build/lib.php';  
+  $padBuildLib  = include pad . 'build/_lib.php';  
   $padBuildBase = include pad . 'build/base.php';
   $padBuildPage = include pad . 'build/page.php';
 

@@ -1,7 +1,5 @@
 <?php
 
-  return padSolitary ( $padContent );
-
-  return true;
+  return include pad . "pad/code/solitary.php" ;
 
 ?>
