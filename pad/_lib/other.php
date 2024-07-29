@@ -1,16 +1,16 @@
 <?php
 
 
-  function padFunction ( $padFun ) {
+  function padFunction ( $padCode ) {
 
     return include pad . 'start/code/_lib/function.php';
 
   }
 
 
-  function padSolitary ( $padSol ) {
+  function padSolitary ( $padCode ) {
 
-    return include pad . 'start/code/solitary/solitary.php';
+    return include pad . 'start/code/_lib/solitary.php';
 
   }
 
@@ -1145,11 +1145,13 @@
   function padSaveField ( $field ) {
 
     if ( substr($field, 0, 3) == 'pad' and ! in_array ( $field, $GLOBALS ['padLevelVars']) )
-      if ( $field <> 'padLoopK' and $field <> 'padLoopV' ) 
-        if ( $field <> 'padOptionHits' and $field <> 'padTagHits') 
-          if ( substr($field, 0, 8) <> 'padTrace' and substr($field, 0, 6) <> 'padXml' ) 
-            if ( substr($field, 0, 7) <> 'padInfo' and substr($field, 0, 7) <> 'padXref' ) 
-              return TRUE;
+      if ( ! str_starts_with ( $field, 'padSol' ) )
+        if ( ! str_starts_with ( $field, 'padCode' ) )
+          if ( $field <> 'padLoopK' and $field <> 'padLoopV' ) 
+            if ( $field <> 'padOptionHits' and $field <> 'padTagHits') 
+              if ( substr($field, 0, 8) <> 'padTrace' and substr($field, 0, 6) <> 'padXml' ) 
+                if ( substr($field, 0, 7) <> 'padInfo' and substr($field, 0, 7) <> 'padXref' ) 
+                  return TRUE;
 
     return FALSE;
 

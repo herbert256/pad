@@ -1,9 +1,8 @@
 <?php
  
-  $padPagePage    = $padParm;
-  $padPageInclude = TRUE;
-  $padPageType    = 'sandbox';
+  $padPrm [$pad] ['include'] = TRUE;
+  $padPrm [$pad] ['type']    = 'sandbox';
 
-  return padEscape ( include pad . "start/page/_lib/page.php" );
+  return padEscape ( include pad . "start/page/page.php" );
 
 ?>

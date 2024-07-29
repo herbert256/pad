@@ -1,10 +1,9 @@
 <?php
 
-  include pad . 'inits/level.php';
+  $padCode = $padBase [$pad];
 
-  $padBase [$pad] = $padBase [$pad-1];    
+  include pad . 'start/code/_lib/code.php'; 
 
-  include pad . 'occurrence/start.php'; 
-  include pad . 'start/_lib/level.php'; 
+  return $padPad [$pad+1];
 
 ?>

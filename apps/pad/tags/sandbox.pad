@@ -1,10 +1,79 @@
-{set $abc = 123}
-
-<p>{$abc}<p>
-
-{sandbox}
-  {set $abc = 456}
-  <p>{$abc}<p>
-{/sandbox}
-
-<p>{$abc}<p>
+{set $abc=1} {$abc}
+{true}
+  {true}
+    {solitary} {set $abc=2} {$abc}
+      {true}
+        {true}
+          {sandbox} {set $abc=3} {$abc}
+            {true}
+              {true}
+                {sandbox} {set $abc=4} {$abc}
+                  {true}
+                    {true}
+                      {solitary} {set $abc=5} {$abc}
+                        {true}
+                          {true}
+                            {solitary} {set $abc=6} {$abc}
+                              {true}
+                                {true}
+                                  {sandbox} {set $abc=7} {$abc}
+                                    {true}
+                                      {true}
+                                        {sandbox} {set $abc=8} {$abc}
+                                          {true}
+                                            {true}
+                                              {solitary} {set $abc=9} {$abc}
+                                                {true}
+                                                  {true}
+                                                    {solitary} {set $abc=10} {$abc}
+                                                      {true}
+                                                        {true}
+                                                          {sandbox} {set $abc=11} {$abc}
+                                                            {true}
+                                                              {true}
+                                                                {sandbox} {set $abc=12} {$abc}
+                                                                  {true}
+                                                                    {true}
+                                                                      {solitary} {set $abc=13}
+                                                                        {true}
+                                                                          {true}
+                                                                             {$abc}
+                                                                          {/true}
+                                                                        {/true}
+                                                                      {/solitary}
+                                                                    {/true}
+                                                                  {/true}
+                                                                {$abc} {/sandbox}
+                                                              {/true}
+                                                            {/true}
+                                                          {$abc} {/sandbox}
+                                                        {/true}
+                                                      {/true}
+                                                    {$abc} {/solitary}
+                                                  {/true}
+                                                {/true}
+                                              {$abc} {/solitary}
+                                            {/true}
+                                          {/true}
+                                        {$abc} {/sandbox}
+                                      {/true}
+                                    {/true}
+                                  {$abc} {/sandbox}
+                                {/true}
+                              {/true}
+                            {$abc} {/solitary}
+                          {/true}
+                        {/true}
+                      {$abc} {/solitary}
+                    {/true}
+                  {/true}
+                {$abc} {/sandbox}
+              {/true}
+            {/true}
+          {$abc} {/sandbox}
+        {/true}
+      {/true}
+    {$abc} {/solitary}
+  {/true}
+{/true}
+{$abc}

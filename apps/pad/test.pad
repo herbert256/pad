@@ -1,19 +1,79 @@
-{true}{true}
-123
-{solitary}
-  {true}{true}
-  abc
-  {isolate}
-    {true}{true}
-      {sandbox}
-        {true}{true}
-           klm
-        {/true}{/true}
-      {/sandbox}
-    {/true}{/true}
-  {/isolate}
-  xyz 
-  {/true}{/true}
-{/solitary}
-789
-{/true}{/true}
+{set $abc=1} {$abc}
+{true}
+  {true}
+    {solitary} {set $abc=2} {$abc}
+      {true}
+        {true}
+          {sandbox} {set $abc=3} {$abc}
+            {true}
+              {true}
+                {sandbox} {set $abc=4} {$abc}
+                  {true}
+                    {true}
+                      {solitary} {set $abc=5} {$abc}
+                        {true}
+                          {true}
+                            {solitary} {set $abc=6} {$abc}
+                              {true}
+                                {true}
+                                  {sandbox} {set $abc=7} {$abc}
+                                    {true}
+                                      {true}
+                                        {sandbox} {set $abc=8} {$abc}
+                                          {true}
+                                            {true}
+                                              {solitary} {set $abc=9} {$abc}
+                                                {true}
+                                                  {true}
+                                                    {solitary} {set $abc=10} {$abc}
+                                                      {true}
+                                                        {true}
+                                                          {sandbox} {set $abc=11} {$abc}
+                                                            {true}
+                                                              {true}
+                                                                {sandbox} {set $abc=12} {$abc}
+                                                                  {true}
+                                                                    {true}
+                                                                      {solitary} {set $abc=13}
+                                                                        {true}
+                                                                          {true}
+                                                                             {$abc}
+                                                                          {/true}
+                                                                        {/true}
+                                                                      {/solitary}
+                                                                    {/true}
+                                                                  {/true}
+                                                                {$abc} {/sandbox}
+                                                              {/true}
+                                                            {/true}
+                                                          {$abc} {/sandbox}
+                                                        {/true}
+                                                      {/true}
+                                                    {$abc} {/solitary}
+                                                  {/true}
+                                                {/true}
+                                              {$abc} {/solitary}
+                                            {/true}
+                                          {/true}
+                                        {$abc} {/sandbox}
+                                      {/true}
+                                    {/true}
+                                  {$abc} {/sandbox}
+                                {/true}
+                              {/true}
+                            {$abc} {/solitary}
+                          {/true}
+                        {/true}
+                      {$abc} {/solitary}
+                    {/true}
+                  {/true}
+                {$abc} {/sandbox}
+              {/true}
+            {/true}
+          {$abc} {/sandbox}
+        {/true}
+      {/true}
+    {$abc} {/solitary}
+  {/true}
+{/true}
+{$abc}

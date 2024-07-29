@@ -1,22 +1,13 @@
 <?php
 
-  include_once pad . 'inits/levelVars.php';
-  
-  $padPageApp [$pad] = [];
-  $padPagePad [$pad] = padSave ();
+  global $padSolApp, $padSolSave, $padSolData, $padSolCnt;
 
-  foreach ( $GLOBALS as $padLoopK => $padLoopV )
-    if ( padValidStore ($padLoopK) ) {
-      $padPageApp [$pad] [$padLoopK] = $padLoopV;
-      unset ( $GLOBALS [$padLoopK] );
-    }
+  if ( ! isset ( $padSolCnt ) ) 
+    $padSolCnt = 0;
+  else
+    $padSolCnt++;
 
-  foreach ( $padSetLvl [$pad] as $padK => $padV )
-     $GLOBALS [$padK] = $padV;
-
-  $padTables = $padRelations = $padDataStore = $padContentStore = $padFlagStore = $padSeqStore = [];
-   
-  if ( isset ( $padSqlConnect ) )
-    unset ( $padSqlConnect );
+  include pad . 'start/_lib/backup.php';
+  include pad . 'start/_lib/reset.php';
 
 ?>

@@ -1,11 +1,11 @@
 <?php
 
-  $padField = padFieldName ($padOpt [$pad] [0]);
+  $padField = padFieldName ( $padOpt [$pad] [0] );
   
-  if ( isset ($GLOBALS[$padField]) )
-    $GLOBALS[$padField]++;
+  if ( isset ( $GLOBALS [$padField] ) )
+    $GLOBALS [$padField]++;
   else
-    $GLOBALS[$padField] = 1;
+    $GLOBALS [$padField] = 1;
   
   return TRUE;
   

@@ -1,7 +1,5 @@
 <?php
 
-  $padSolitary = "{include $padParm}"
-
-  return padEscape ( padSolitary ( $padSolitary ) );
- 
+   return padSolitary ( include pad . 'start/page/types/_lib/function.php' );
+   
 ?>

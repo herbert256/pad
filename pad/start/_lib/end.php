@@ -1,18 +1,30 @@
 <?php
 
-  foreach ( $GLOBALS as $padK => $padV ) {
+  foreach ( $GLOBALS as $padSolK => $padSolV ) 
+    if ( padValidStore ( $padSolK ) ) 
+      unset ( $GLOBALS [$padSolK] );
 
-    if ( padValidStore ($padK) )
-      unset ( $GLOBALS [$padK] );
+  foreach ( $padSolApp [$padSolCnt] as $padSolK => $padSolV ) 
+    $GLOBALS [$padSolK] = $padSolV;
 
-    if ( padSaveField ( $padK) and ! in_array($padK, $padPagePad [$pad]) ) 
-      unset ( $GLOBALS [$padK] );
+  for ( $padSolIdx=0; $padSolIdx <=$pad ; $padSolIdx++ ) {
+
+    $padData    [$padSolIdx] = $padSolData [$padSolCnt] ['padData']    [$padSolIdx];
+    $padCurrent [$padSolIdx] = $padSolData [$padSolCnt] ['padCurrent'] [$padSolIdx];
+    $padSetLvl  [$padSolIdx] = $padSolData [$padSolCnt] ['padSetLvl']  [$padSolIdx];
+    $padSetOcc  [$padSolIdx] = $padSolData [$padSolCnt] ['padSetOcc']  [$padSolIdx];
+    $padTable   [$padSolIdx] = $padSolData [$padSolCnt] ['padTable']   [$padSolIdx];
+    $padPrm     [$padSolIdx] = $padSolData [$padSolCnt] ['padPrm']     [$padSolIdx];
+    $padOpt     [$padSolIdx] = $padSolData [$padSolCnt] ['padOpt']     [$padSolIdx];
+
+  }
  
+  for ( $padSolIdx=0; $padSolIdx <=$pad ; $padSolIdx++) { 
+    reset ( $padData [$padSolIdx] );
+    while ( current ( $padData [$padSolIdx] ) !== false and key ( $padData [$padSolIdx] ) <> $padKey [$padSolIdx] )
+      next ( $padData [$padSolIdx] );
   }
 
-  foreach ( $padPageApp [$pad] as $padK => $padV )
-    $GLOBALS [$padK] = $padV;
-  
-  padRestore ( $padPagePad [$pad] ) ;
+  $padSolCnt--;
 
 ?>
