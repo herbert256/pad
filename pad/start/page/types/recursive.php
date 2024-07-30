@@ -1,7 +1,6 @@
 <?php
 
   include pad . 'start/_lib/backupApp.php';
-  include pad . 'start/_lib/resetApp.php';
   include pad . 'start/_lib/start.php';
   include pad . 'inits/level.php';
   include pad . 'build/build.php';   

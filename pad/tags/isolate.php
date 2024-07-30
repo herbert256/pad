@@ -1,5 +1,5 @@
 <?php
 
-  return include pad . "start/code/isolate.php" ;
+  return padIsolate ( $padContent );
 
 ?>

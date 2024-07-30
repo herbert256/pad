@@ -1,12 +1,5 @@
 <?php
 
-  foreach ( $GLOBALS as $padSolK => $padSolV ) 
-    if ( padValidStore ( $padSolK ) ) 
-      unset ( $GLOBALS [$padSolK] );
-
-  foreach ( $padSolApp [$padSolCnt] as $padSolK => $padSolV ) 
-    $GLOBALS [$padSolK] = $padSolV;
-
   for ( $padSolIdx=0; $padSolIdx <=$pad ; $padSolIdx++ ) {
 
     $padData    [$padSolIdx] = $padSolData [$padSolCnt] ['padData']    [$padSolIdx];
@@ -24,7 +17,5 @@
     while ( current ( $padData [$padSolIdx] ) !== false and key ( $padData [$padSolIdx] ) <> $padKey [$padSolIdx] )
       next ( $padData [$padSolIdx] );
   }
-
-  $padSolCnt--;
 
 ?>

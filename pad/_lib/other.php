@@ -1,16 +1,23 @@
 <?php
 
 
-  function padFunction ( $padCode ) {
+  function padIsolate ( $padCode ) {
 
-    return include pad . 'start/code/_lib/function.php';
+    return include pad . 'start/types/isolate.php';
+
+  }
+
+
+  function padInsulate ( $padCode ) {
+
+    return include pad . 'start/types/insulate.php';
 
   }
 
 
   function padSolitary ( $padCode ) {
 
-    return include pad . 'start/code/_lib/solitary.php';
+    return include pad . 'start/types/solitary.php';
 
   }
 

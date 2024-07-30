@@ -1,21 +1,11 @@
 <?php
 
- $padSolApp [$padSolCnt] = [];
+  if ( $padResetPad or $padBackupPad )
+    include pad . 'start/_lib/backupPad.php';
 
-  foreach ( $GLOBALS as $padSolK => $padSolV )
-    if ( padValidStore ($padSolK) )
-      $padSolApp [$padSolCnt] [$padSolK] = $GLOBALS [$padSolK];
+  if ( $padResetApp or $padBackupApp )
+    include pad . 'start/_lib/backupApp.php';
 
-  for ( $padSolIdx = 0; $padSolIdx <= $pad ; $padSolIdx++ ) {
-
-    $padSolData [$padSolCnt] ['padData']    [$padSolIdx] = $padData    [$padSolIdx];
-    $padSolData [$padSolCnt] ['padCurrent'] [$padSolIdx] = $padCurrent [$padSolIdx];
-    $padSolData [$padSolCnt] ['padSetLvl']  [$padSolIdx] = $padSetLvl  [$padSolIdx];
-    $padSolData [$padSolCnt] ['padSetOcc']  [$padSolIdx] = $padSetOcc  [$padSolIdx];
-    $padSolData [$padSolCnt] ['padTable']   [$padSolIdx] = $padTable   [$padSolIdx];
-    $padSolData [$padSolCnt] ['padPrm']     [$padSolIdx] = $padPrm     [$padSolIdx];
-    $padSolData [$padSolCnt] ['padOpt']     [$padSolIdx] = $padOpt     [$padSolIdx];
-
-  }
+  $padSolSave [$padSolCnt] = padSave ();
   
 ?>

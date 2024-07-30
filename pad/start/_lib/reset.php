@@ -1,24 +1,9 @@
 <?php
 
-  foreach ( $GLOBALS as $k => $v )
-    if ( padValidStore ($k) )
-      unset ( $GLOBALS [$k] );
+  if ( $padResetPad )
+    include pad . 'start/_lib/resetPad.php';
 
-  for ( $i = 0; $i <= $pad ; $i++ ) {
+  if ( $padResetApp )
+    include pad . 'start/_lib/resetApp.php';
 
-    $padData    [$i] = [];
-    $padCurrent [$i] = [];
-    $padSetLvl  [$i] = [];
-    $padSetOcc  [$i] = [];
-    $padTable   [$i] = [];
-    $padPrm     [$i] = [];
-    $padOpt     [$i] = [];
-
-  }
-
-  $padTables = $padRelations = $padDataStore = $padContentStore = $padFlagStore = $padSeqStore = [];
-   
-  if ( isset ( $padSqlConnect ) )
-    unset ( $padSqlConnect );
-  
 ?>
