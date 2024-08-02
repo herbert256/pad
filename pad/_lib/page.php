@@ -1,22 +1,5 @@
 <?php
 
-  
-  function padPageFunction ( ) {
-
-    foreach ($GLOBALS as $padK => $padV )
-      if ( substr($padK, 0, 3) == 'pad' )
-        global $$padK;
-      
-    include pad . 'start/start.php';
-    include pad . 'start/setup.php';
-    include pad . 'build/build.php';   
-    include pad . 'start/level.php'; 
-    include pad . 'start/end.php';
-
-    return $padPad [$pad+1];
-
-  }
-
 
   function padPageCheck ( $page, $check=1 ) {
 

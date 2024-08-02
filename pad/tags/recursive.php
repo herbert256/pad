@@ -1,5 +1,5 @@
 <?php
 
-  return include pad . 'start/types/recursive.php';
+  return include pad . 'start/enter/recursive.php';
 
 ?>

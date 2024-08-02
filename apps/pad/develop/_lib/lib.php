@@ -76,7 +76,7 @@
       if ( str_contains ( $one ['path'], 'xref')        ) continue;
 
       if ( padFileContains ( $one ['path'], '{example') ) continue;
-      if ( padFileContains ( $one ['path'], '{get')     ) continue;
+      if ( padFileContains ( $one ['path'], '{page')     ) continue;
       if ( padFileContains ( $one ['path'], '{page')    ) continue;
       if ( padFileContains ( $one ['path'], '{ajax')    ) continue;
 

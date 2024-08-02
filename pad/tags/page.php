@@ -1,5 +1,5 @@
 <?php
 
-  return include pad . 'start/page/page.php' ;
+  return include pad . 'start/enter/page.php' ;
 
 ?>

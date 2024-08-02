@@ -2,7 +2,7 @@
 
   $padBuildBase = '@pad@';
 
-  if ( isset ($padInclude) or isset ( $_REQUEST ['padInclude'] ) ) 
+  if ( $padInclude ) 
     return $padBuildBase;
 
   foreach ( $padBuildDirs as $padBuildDir ) {

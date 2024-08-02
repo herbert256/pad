@@ -11,5 +11,6 @@
   $padCacheStop   = 0;
   $padPageLevel   = [];
   $padBuffer      = '';
+  $padInclude     = isset ( $_REQUEST ['padInclude'] ) ? TRUE : FALSE;
 
 ?>

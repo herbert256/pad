@@ -1,23 +1,31 @@
 <?php
 
 
-  function padIsolate ( $padCode ) {
+  function padCode ( $padCode ) {
 
-    return include pad . 'start/types/isolate.php';
+    $GLOBALS ['padBackup']   = FALSE;
+    $GLOBALS ['padReset']    = FALSE;
+    $GLOBALS ['padBuild']    = 'code';
 
-  }
-
-
-  function padInsulate ( $padCode ) {
-
-    return include pad . 'start/types/insulate.php';
+    return include pad . 'start/function.php';
 
   }
 
 
-  function padSolitary ( $padCode ) {
+  function padSandbox ( $padCode ) {
 
-    return include pad . 'start/types/solitary.php';
+    $GLOBALS ['padBackup']   = TRUE;
+    $GLOBALS ['padReset']    = TRUE;
+    $GLOBALS ['padBuild']    = 'code';
+
+    return include pad . 'start/function.php';
+
+  }
+
+
+  function padFunction ( $padCode ) {
+
+    return include pad . 'start/function.php';
 
   }
 
