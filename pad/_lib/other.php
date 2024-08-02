@@ -3,9 +3,9 @@
 
   function padCode ( $padCode ) {
 
-    $GLOBALS ['padBackup']   = FALSE;
-    $GLOBALS ['padReset']    = FALSE;
-    $GLOBALS ['padBuild']    = 'code';
+    $GLOBALS ['padSandbox'] = FALSE;
+    $GLOBALS ['padIsolate'] = FALSE;
+    $GLOBALS ['padBuild']   = 'code';
 
     return include pad . 'start/function.php';
 
@@ -14,9 +14,9 @@
 
   function padSandbox ( $padCode ) {
 
-    $GLOBALS ['padBackup']   = TRUE;
-    $GLOBALS ['padReset']    = TRUE;
-    $GLOBALS ['padBuild']    = 'code';
+    $GLOBALS ['padSandbox'] = TRUE;
+    $GLOBALS ['padIsolate'] = TRUE;
+    $GLOBALS ['padBuild']   = 'code';
 
     return include pad . 'start/function.php';
 

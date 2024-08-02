@@ -4,17 +4,9 @@
   $padContent    = $padBase [$pad];
   $padTagContent = '';
 
-  if ( $padLevelType [$pad] == 'null' ) 
-
-    $padTagResult = NULL;
-
-  else  {
-
-    ob_start();
-    $padTagResult   = include pad . "types/" . $padType [$pad] . ".php";
-    $padTagContent .= ob_get_clean();
-
-  }
+  ob_start();
+  $padTagResult   = include pad . "types/" . $padType [$pad] . ".php";
+  $padTagContent .= ob_get_clean();
 
   $padTagOrg = $padTagResult;
  

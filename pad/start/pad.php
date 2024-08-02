@@ -1,6 +1,6 @@
 <?php
 
-  if ( $padFunction )
+  if ( $GLOBALS ['padFunction'] )
     foreach ( $GLOBALS as $padLoopK => $padLoopV )
       global $$padLoopK;
 
@@ -11,7 +11,7 @@
  
   include pad . 'inits/level.php'; 
 
-  if ( $padBuild <> 'page' ) {
+  if ( $padBuild == 'code' ) {
     $padBase [$pad] = $padCode;    
     include pad . 'occurrence/start.php'; 
   } else

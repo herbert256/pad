@@ -23,8 +23,6 @@
   $padBase       [$pad] = $padBaseSet    ?? '';
   $padPrmType    [$pad] = $padPrmTypeSet ?? '';
 
-  $padLevelType  [$pad] = $padSetLevelType;
-
   $padName       [$pad] = '';
 
   $padData       [$pad] = padDefaultData ();

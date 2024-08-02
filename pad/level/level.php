@@ -26,13 +26,10 @@
 
   $padTypeParse = include pad . 'level/type.php';
 
-  include pad . 'level/tag.php';
-
-  if ( ! $padTypeParse and isset ( $padStartOptions ['optional'] ) )
-    $padSetLevelType = 'null';
-  elseif ( ! $padTypeParse )
+  if ( ! $padTypeParse )
     return padIgnore ('type');
 
+  include pad . 'level/tag.php';
   include pad . 'level/start.php';
  
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-  $padClosePad = padIsolate ( $padOpt [$pad] [0] );
+  $padClosePad = padCode ( $padOpt [$pad] [0] );
 
   if ( $padClosePad == $padOpt [$pad] [0] )
     return;

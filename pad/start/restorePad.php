@@ -13,7 +13,7 @@
   }
  
   for ( $padSolIdx=0; $padSolIdx <=$pad ; $padSolIdx++) { 
-    isolate ( $padData [$padSolIdx] );
+    reset ( $padData [$padSolIdx] );
     while ( current ( $padData [$padSolIdx] ) !== false and key ( $padData [$padSolIdx] ) <> $padKey [$padSolIdx] )
       next ( $padData [$padSolIdx] );
   }

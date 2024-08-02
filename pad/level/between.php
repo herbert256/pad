@@ -16,7 +16,5 @@
         $padStartOptions [$padPrmName] = ( $padPrmValue === '' ) ? TRUE : padEval ( $padPrmValue );
 
   }
- 
-  $padSetLevelType = '';
 
 ?>

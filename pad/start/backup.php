@@ -11,16 +11,10 @@
     $padSandbox = TRUE;
 
   if ( $padSandbox ) {
-    include pad . 'start/sandboxPad.php';
-    include pad . 'start/sandboxApp.php';
+    include pad . 'start/backupPad.php';
+    include pad . 'start/backupApp.php';
   }
 
   $padSolSave [$padSolCnt] = padSave ();
-
-  #$padSolData [$padSolCnt] [0] = $padFunction;
-  #$padSolData [$padSolCnt] [1] = $padBuild;
-  #$padSolData [$padSolCnt] [2] = $padSandbox;
-  #$padSolData [$padSolCnt] [4] = $padIsolate;
-  #$padSolData [$padSolCnt] [5] = $padGlobals;
 
 ?>

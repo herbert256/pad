@@ -3,12 +3,6 @@
 
   function padAtCheck ( $field, $cor=0 ) {
 
-    if ( ! str_contains ( $field, '@' ) )
-      $field .= '@any';
-
-    if ( str_contains($field, '@*') )
-      return padAtCheckAny ( $field, $cor);
-
     $field = rtrim ( $field );
 
     if ( preg_match ( '/\s/', $field  ) ) return FALSE; 
@@ -16,8 +10,15 @@
 
     list ( $before, $after ) = padSplit ( '@', $field );
     
-    if ( ! strlen ( $before ) ) return FALSE;
-    if ( ! strlen ( $after  ) ) return FALSE;
+    if ( ! strlen ( $before )            ) return FALSE;
+    if ( ! strlen ( $after  )            ) return FALSE;
+    if ( str_starts_with ( $before, '.') ) return FALSE;
+    if ( str_starts_with ( $after,  '.') ) return FALSE;
+    if ( str_ends_with   ( $before, '.') ) return FALSE;
+    if ( str_ends_with   ( $after,  '.') ) return FALSE;
+
+    if ( str_contains($field, '@*') )
+      return padAtCheckAny ( $field, $cor);
 
     $names = padExplode ( $before, '.' ); 
     $parts = padExplode ( $after,  '.' ); 
