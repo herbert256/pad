@@ -1,13 +1,13 @@
 <?php
 
-  if ( $GLOBALS ['padGlobals'] )
+  if ( $padFunction )
     foreach ( $GLOBALS as $padLoopK => $padLoopV )
       global $$padLoopK;
 
   include pad . 'start/backup.php';
 
   if ( $padIsolate )
-    include pad . 'start/isolate.php';
+    include pad . 'start/reset.php';
  
   include pad . 'inits/level.php'; 
 

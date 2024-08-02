@@ -3,8 +3,7 @@
   if ( isset ( $GLOBALS ['padCode'] ) )
     unset ( $GLOBALS ['padCode'] );
 
-  $GLOBALS ['padFunction'] = FALSE;
-  $GLOBALS ['padGlobals']  = TRUE;
+  $GLOBALS ['padFunction'] = TRUE;
 
   return include pad . 'start/pad.php'; 
 

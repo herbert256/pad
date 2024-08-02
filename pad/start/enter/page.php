@@ -6,9 +6,8 @@
   $padDir  = padDir ();  
   $padPath = padPath ();  
 
-  $padBuild   = 'page';
-  $padCode    = '';
-  $padGlobals = FALSE;
+  $padBuild = 'page';
+  $padCode  = '';
 
   return include pad . "start/parms.php";
   
