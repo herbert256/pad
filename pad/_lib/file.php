@@ -26,7 +26,7 @@
   }
 
 
-  function padFileGetContents ( $file ) {
+  function padFileGetContents ( $file, $default='' ) {
 
     if ( padTrace and function_exists ('padTrace') )
       include pad . 'info/events/get.php';
@@ -35,7 +35,7 @@
       return $file;
 
     if ( ! file_exists($file) )
-      return '';
+      return $default;
 
     return file_get_contents ($file);
 

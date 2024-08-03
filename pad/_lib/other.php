@@ -4,7 +4,8 @@
   function padCode ( $padStrCod ) {
 
     $GLOBALS ['padStrBox'] = FALSE;
-    $GLOBALS ['padStrIso'] = FALSE;
+    $GLOBALS ['padStrRes'] = FALSE;
+    $GLOBALS ['padStrCln'] = FALSE;
     $GLOBALS ['padStrBld'] = 'code';
 
     return include pad . 'start/function.php';
@@ -15,7 +16,8 @@
   function padSandbox ( $padStrCod ) {
 
     $GLOBALS ['padStrBox'] = TRUE;
-    $GLOBALS ['padStrIso'] = TRUE;
+    $GLOBALS ['padStrRes'] = TRUE;
+    $GLOBALS ['padStrCln'] = TRUE;
     $GLOBALS ['padStrBld'] = 'code';
 
     return include pad . 'start/function.php';
@@ -1145,39 +1147,6 @@
 
   }
 
-
-  function padSave ( ) {
-
-    foreach ( $GLOBALS as $k => $v ) 
-      if ( padSaveField ( $k ) )
-        $s [$k] = $v; 
-
-    return $s;
-
-  }
-
-
-  function padSaveField ( $field ) {
-
-    if ( substr($field, 0, 3) == 'pad' and ! in_array ( $field, $GLOBALS ['padLevelVars']) )
-      if ( ! str_starts_with ( $field, 'padSol' ) )
-        if ( ! str_starts_with ( $field, 'padCode' ) )
-          if ( $field <> 'padLoopK' and $field <> 'padLoopV' ) 
-            if ( $field <> 'padOptionHits' and $field <> 'padTagHits') 
-              if ( substr($field, 0, 8) <> 'padTrace' and substr($field, 0, 6) <> 'padXml' ) 
-                if ( substr($field, 0, 7) <> 'padInfo' and substr($field, 0, 7) <> 'padXref' ) 
-                  return TRUE;
-
-    return FALSE;
-
-  }
-
-  function padRestore ( $safe ) { 
-
-    foreach ( $safe as $k => $v ) 
-      $GLOBALS [$k] = $v;
-  
-  }
   
   function padDataFilterGo (&$vars, $start, $end) {
 

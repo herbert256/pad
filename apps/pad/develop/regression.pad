@@ -1,12 +1,22 @@
+<!-- 
+<form action="{$padGo}develop/regressionGo&fromMenu=1">
+  <input type="hidden" value="dfds">
+  <input type="submit" value="TEST">
+</form>
+-->
+
+<h2><a href="{$padGo}develop/regressionGo&fromMenu=1">TEST</a></h2>
+
 {list}
 
   <a 
 
     {if     $status eq 'ok'}      style="color:blue;"
     {elseif $status eq 'error'}   style="color:black;background-color: #f44336;"
-    {elseif $status eq 'no'}      style="color:black;background-color: #ffffb3;"
-    {elseif $status eq 'new'}     style="color:black;background-color: #248f24;"
     {elseif $status eq 'warning'} style="color:black;background-color: #ffaa80;"
+    {elseif $status eq 'no'}      style="color:black;background-color: #ffffb3;"
+    {elseif $status eq 'todo'}    style="color:black;background-color: #ff66ff;"
+    {elseif $status eq 'new'}     style="color:black;background-color: #248f24;"
     @else@                        style="color:black;background-color: #ccffcc;" 
     {/if} 
 

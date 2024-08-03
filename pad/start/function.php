@@ -5,18 +5,21 @@
 
   $GLOBALS ['padStrFun'] = TRUE;
 
-  if ( ! isset ( $GLOBALS ['padInFunction'] ) ) 
-    $GLOBALS ['padInFunction'] = 1;
+  if ( ! isset ( $GLOBALS ['padStrFunCnt'] ) ) 
+    $GLOBALS ['padStrFunCnt'] = 1;
   else
-    $GLOBALS ['padInFunction']++;
+    $GLOBALS ['padStrFunCnt']++;
 
-  $padInFunctionResult =  include pad . 'start/pad.php'; 
+  foreach ( $GLOBALS as $padStrKey => $padStrVal )
+    global $$padStrKey;
 
-  $GLOBALS ['padInFunction']--;
+  $padStrFunCntResult =  include pad . 'start/pad.php'; 
 
-  if ( ! $GLOBALS ['padInFunction'] )
-    unset ( $GLOBALS ['padInFunction'] );  
+  $GLOBALS ['padStrFunCnt']--;
 
-  return $padInFunctionResult;
+  if ( ! $GLOBALS ['padStrFunCnt'] )
+    unset ( $GLOBALS ['padStrFunCnt'] );  
+
+  return $padStrFunCntResult;
 
 ?>

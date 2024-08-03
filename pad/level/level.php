@@ -18,8 +18,8 @@
   $padBetween = substr ( $padPad [$pad], $padStart [$pad] + 1, $padEnd [$pad] - $padStart [$pad] - 1 );
   include pad . 'level/between.php';
 
-  if ( isset ( $GLOBALS ['padInFunction'] ) )
-    $GLOBALS ['padInFunctionVars'] = get_defined_vars ();
+  if ( isset ( $GLOBALS ['padStrFunCnt'] ) )
+    $GLOBALS ['padStrFunVar'] = get_defined_vars ();
   
   if ( in_array ( $padFirst, ['$','!','#','&','?'] ) ) 
     return include pad . 'level/var.php';
