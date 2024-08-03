@@ -1,20 +1,20 @@
 <?php
 
-  global $padSolSave, $padSolApp, $padSolData, $padSolCnt;
+  global $padStrSave, $padStrApp, $padStrDat, $padStrCnt;
 
-  if ( ! isset ( $padSolCnt ) ) 
-    $padSolCnt = 0;
+  if ( ! isset ( $padStrCnt ) ) 
+    $padStrCnt = 0;
   else
-    $padSolCnt++;
+    $padStrCnt++;
 
-  if ( $padIsolate ) 
-    $padSandbox = TRUE;
+  if ( $padStrIso ) 
+    $padStrBox = TRUE;
 
-  if ( $padSandbox ) {
+  if ( $padStrBox ) {
     include pad . 'start/backupPad.php';
     include pad . 'start/backupApp.php';
   }
 
-  $padSolSave [$padSolCnt] = padSave ();
+  $padStrSave [$padStrCnt] = padSave ();
 
 ?>

@@ -1,10 +1,10 @@
 <?php
 
-  foreach ( $GLOBALS as $padSolK => $padSolV ) 
-    if ( padValidStore ( $padSolK ) ) 
-      unset ( $GLOBALS [$padSolK] );
+  foreach ( $GLOBALS as $padStrKey => $padStrVal ) 
+    if ( padValidStore ( $padStrKey ) ) 
+      unset ( $GLOBALS [$padStrKey] );
 
-  foreach ( $padSolApp [$padSolCnt] as $padSolK => $padSolV ) 
-    $GLOBALS [$padSolK] = $padSolV;
+  foreach ( $padStrApp [$padStrCnt] as $padStrKey => $padStrVal ) 
+    $GLOBALS [$padStrKey] = $padStrVal;
 
 ?>

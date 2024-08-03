@@ -1,21 +1,21 @@
 <?php
 
-  for ( $padSolIdx=0; $padSolIdx <=$pad ; $padSolIdx++ ) {
+  for ( $padStrIdx=0; $padStrIdx <=$pad ; $padStrIdx++ ) {
 
-    $padData    [$padSolIdx] = $padSolData [$padSolCnt] ['padData']    [$padSolIdx];
-    $padCurrent [$padSolIdx] = $padSolData [$padSolCnt] ['padCurrent'] [$padSolIdx];
-    $padSetLvl  [$padSolIdx] = $padSolData [$padSolCnt] ['padSetLvl']  [$padSolIdx];
-    $padSetOcc  [$padSolIdx] = $padSolData [$padSolCnt] ['padSetOcc']  [$padSolIdx];
-    $padTable   [$padSolIdx] = $padSolData [$padSolCnt] ['padTable']   [$padSolIdx];
-    $padPrm     [$padSolIdx] = $padSolData [$padSolCnt] ['padPrm']     [$padSolIdx];
-    $padOpt     [$padSolIdx] = $padSolData [$padSolCnt] ['padOpt']     [$padSolIdx];
+    $padData    [$padStrIdx] = $padStrDat [$padStrCnt] ['padData']    [$padStrIdx];
+    $padCurrent [$padStrIdx] = $padStrDat [$padStrCnt] ['padCurrent'] [$padStrIdx];
+    $padSetLvl  [$padStrIdx] = $padStrDat [$padStrCnt] ['padSetLvl']  [$padStrIdx];
+    $padSetOcc  [$padStrIdx] = $padStrDat [$padStrCnt] ['padSetOcc']  [$padStrIdx];
+    $padTable   [$padStrIdx] = $padStrDat [$padStrCnt] ['padTable']   [$padStrIdx];
+    $padPrm     [$padStrIdx] = $padStrDat [$padStrCnt] ['padPrm']     [$padStrIdx];
+    $padOpt     [$padStrIdx] = $padStrDat [$padStrCnt] ['padOpt']     [$padStrIdx];
 
-  }
- 
-  for ( $padSolIdx=0; $padSolIdx <=$pad ; $padSolIdx++) { 
-    reset ( $padData [$padSolIdx] );
-    while ( current ( $padData [$padSolIdx] ) !== false and key ( $padData [$padSolIdx] ) <> $padKey [$padSolIdx] )
-      next ( $padData [$padSolIdx] );
+    reset ( $padData [$padStrIdx] );
+
+    while ( current ( $padData [$padStrIdx] ) !== false and 
+            key ( $padData [$padStrIdx] ) <> $padKey [$padStrIdx] )
+      next ( $padData [$padStrIdx] );
+  
   }
 
 ?>

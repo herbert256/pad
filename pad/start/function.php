@@ -1,10 +1,22 @@
 <?php
 
-  if ( isset ( $GLOBALS ['padCode'] ) )
-    unset ( $GLOBALS ['padCode'] );
+  if ( isset ( $GLOBALS ['padStrCod'] ) )
+    unset ( $GLOBALS ['padStrCod'] );
 
-  $GLOBALS ['padFunction'] = TRUE;
+  $GLOBALS ['padStrFun'] = TRUE;
 
-  return include pad . 'start/pad.php'; 
+  if ( ! isset ( $GLOBALS ['padInFunction'] ) ) 
+    $GLOBALS ['padInFunction'] = 1;
+  else
+    $GLOBALS ['padInFunction']++;
+
+  $padInFunctionResult =  include pad . 'start/pad.php'; 
+
+  $GLOBALS ['padInFunction']--;
+
+  if ( ! $GLOBALS ['padInFunction'] )
+    unset ( $GLOBALS ['padInFunction'] );  
+
+  return $padInFunctionResult;
 
 ?>

@@ -1,7 +1,7 @@
 <?php
 
-  $padBuild = 'code';
-  $padCode  = $padBase [$pad];
+  $padStrBld  = 'code';
+  $padStrCod  = $padBase [$pad];
 
   return include pad . 'start/parms.php';
 

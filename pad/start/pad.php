@@ -1,20 +1,20 @@
 <?php
 
-  if ( $GLOBALS ['padFunction'] )
-    foreach ( $GLOBALS as $padLoopK => $padLoopV )
-      global $$padLoopK;
+  if ( $GLOBALS ['padStrFun'] )
+    foreach ( $GLOBALS as $padStrKey => $padStrVal )
+      global $$padStrKey;
 
   include pad . 'start/backup.php';
 
-  if ( $padIsolate )
+  if ( $padStrIso )
     include pad . 'start/reset.php';
  
   include pad . 'inits/level.php'; 
 
-  if ( $padBuild == 'code' ) {
-    $padBase [$pad] = $padCode;    
+  if ( $padStrBld  == 'code' ) {
+    $padBase [$pad] = $padStrCod;    
     include pad . 'occurrence/start.php'; 
-  } else
+  } else 
     include pad . 'build/build.php'; 
 
   include pad . 'start/level.php'; 

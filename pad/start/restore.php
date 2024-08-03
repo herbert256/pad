@@ -1,12 +1,12 @@
 <?php
 
-  padRestore ( $padSolSave [$padSolCnt] );
+  padRestore ( $padStrSave [$padStrCnt] );
   
-  if ( $padIsolate ) {
+  if ( $padStrBox ) {
     include pad . 'start/restorePad.php';
     include pad . 'start/restoreApp.php';
   }
 
-  $padSolCnt--;
+  $padStrCnt--;
 
 ?>

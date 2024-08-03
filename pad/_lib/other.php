@@ -1,29 +1,29 @@
 <?php
 
 
-  function padCode ( $padCode ) {
+  function padCode ( $padStrCod ) {
 
-    $GLOBALS ['padSandbox'] = FALSE;
-    $GLOBALS ['padIsolate'] = FALSE;
-    $GLOBALS ['padBuild']   = 'code';
-
-    return include pad . 'start/function.php';
-
-  }
-
-
-  function padSandbox ( $padCode ) {
-
-    $GLOBALS ['padSandbox'] = TRUE;
-    $GLOBALS ['padIsolate'] = TRUE;
-    $GLOBALS ['padBuild']   = 'code';
+    $GLOBALS ['padStrBox'] = FALSE;
+    $GLOBALS ['padStrIso'] = FALSE;
+    $GLOBALS ['padStrBld'] = 'code';
 
     return include pad . 'start/function.php';
 
   }
 
 
-  function padFunction ( $padCode ) {
+  function padSandbox ( $padStrCod ) {
+
+    $GLOBALS ['padStrBox'] = TRUE;
+    $GLOBALS ['padStrIso'] = TRUE;
+    $GLOBALS ['padStrBld'] = 'code';
+
+    return include pad . 'start/function.php';
+
+  }
+
+
+  function padStr ( $padStrCod ) {
 
     return include pad . 'start/function.php';
 

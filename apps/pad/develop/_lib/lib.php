@@ -77,7 +77,6 @@
 
       if ( padFileContains ( $one ['path'], '{example') ) continue;
       if ( padFileContains ( $one ['path'], '{page')     ) continue;
-      if ( padFileContains ( $one ['path'], '{page')    ) continue;
       if ( padFileContains ( $one ['path'], '{ajax')    ) continue;
 
       $list [] = $one;

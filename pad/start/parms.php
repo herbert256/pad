@@ -1,11 +1,11 @@
 <?php
 
-  $padSandbox  = padTagParm ( 'sandbox'  );
-  $padIsolate  = padTagParm ( 'isolate'  );
-  $padFunction = padTagParm ( 'function' );
+  $padStrBox  = padTagParm ( 'sandbox'  );
+  $padStrIso  = padTagParm ( 'isolate'  );
+  $padStrFun = padTagParm ( 'function' );
 
-  if ( $padFunction )
-    return padFunction ( $padCode );
+  if ( $padStrFun )
+    return padStr ( $padStrCod );
   else 
     return include pad . 'start/pad.php';
   

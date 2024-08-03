@@ -1,9 +1,9 @@
 <?php
 
-  $padSolApp [$padSolCnt] = [];
+  $padStrApp [$padStrCnt] = [];
 
-  foreach ( $GLOBALS as $padSolK => $padSolV )
-    if ( padValidStore ($padSolK) )
-      $padSolApp [$padSolCnt] [$padSolK] = $GLOBALS [$padSolK];
+  foreach ( $GLOBALS as $padStrKey => $padStrVal )
+    if ( padValidStore ($padStrKey) )
+      $padStrApp [$padStrCnt] [$padStrKey] = $GLOBALS [$padStrKey];
   
 ?>

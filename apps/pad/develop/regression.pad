@@ -1,23 +1,16 @@
 {list}
 
-  {if $status eq 'error'}
-    <font size="+1"><b>
-  {/if}
-
   <a 
 
-    {if $status eq 'error'} 
-      style="color:black;background-color: #f44336;"
-    @else@
-      style="color:blue;"
+    {if     $status eq 'ok'}      style="color:blue;"
+    {elseif $status eq 'error'}   style="color:black;background-color: #f44336;"
+    {elseif $status eq 'no'}      style="color:black;background-color: #ffffb3;"
+    {elseif $status eq 'new'}     style="color:black;background-color: #248f24;"
+    {elseif $status eq 'warning'} style="color:black;background-color: #ffaa80;"
+    @else@                        style="color:black;background-color: #ccffcc;" 
     {/if} 
 
     href="{$padGo}develop/show&item={$item}">{item}</a>
-
-
-  {if $status eq 'error'}
-    </b></font>
-  {/if}
 
   &nbsp; &nbsp;
 
