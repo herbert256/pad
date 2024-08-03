@@ -19,9 +19,12 @@
     $padTable   [$padStrCnt] = [];
     $padPrm     [$padStrCnt] = [];
     $padOpt     [$padStrCnt] = [];
+
   }
 
-  $padTables = $padRelations = $padDataStore = $padContentStore = $padFlagStore = $padSeqStore = [];
+  foreach ( $padStrSto as $padStrVal )
+    if ( isset ( $GLOBALS [$padStrVal] ))   
+      $GLOBALS [$padStrVal] = [];
    
   unset ( $padSqlConnect );
 

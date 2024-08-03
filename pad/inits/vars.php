@@ -12,5 +12,6 @@
   $padPageLevel   = [];
   $padBuffer      = '';
   $padInclude     = isset ( $_REQUEST ['padInclude'] ) ? TRUE : FALSE;
+  $padStrCnt      = -1
 
 ?>
