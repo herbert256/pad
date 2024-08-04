@@ -1122,22 +1122,9 @@
   }
 
 
-  function padValidSolitary ($fld) {
-
-    if ( ! str_starts_with ( $fld, 'pad') )
-      return FALSE;
-
-    if ( in_array ( $fld, ['padPad','padStart','padEnd','padPageLevel','padResult'] ) )
-      return FALSE;
-
-    return TRUE;
-
-  }
-  
-
   function padValidStore ($fld) {
 
-    if ( substr($fld, 0,3) == 'pad')
+    if ( substr($fld, 0,3) == 'pad' )
       return FALSE;
 
     if ( in_array ( $fld, ['GLOBALS','_POST','_GET','_COOKIE','_SESSION','_FILES','_SERVER','_REQUEST','_ENV'] ) )
@@ -1147,7 +1134,20 @@
 
   }
 
+
+  function padStrPad ( $field ) {
+
+    if ( str_starts_with ( $field, 'pad' ) ) 
+      if ( ! str_starts_with ( $field, 'padStr' ) )
+        if ( ! in_array ( $field, $GLOBALS ['padStrSto']) )
+          if ( ! in_array ( $field, $GLOBALS ['padLevelVars']) )
+            return TRUE;
+         
+    return FALSE;
+
+  }
   
+
   function padDataFilterGo (&$vars, $start, $end) {
 
     $now = 0;

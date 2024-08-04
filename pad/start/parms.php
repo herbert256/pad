@@ -5,11 +5,6 @@
   $padStrCln = padTagParm ( 'clean'    );
   $padStrFun = padTagParm ( 'function' );
 
-  if ( $padStrBox ) {
-    $padStrRes = TRUE;
-    $padStrCln = TRUE;
-  }
-
   if ( $padStrFun )
     return padStr ( $padStrCod );
   else 

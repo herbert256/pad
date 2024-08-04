@@ -1,23 +1,19 @@
 <?php
 
-  $padStrSto = ['padTables','padRelations','padDataStore','padContentStore','padFlagStore','padSeqStore'];
+  if ( $padStrCln and $padStrRes ) 
+    $padStrBox = TRUE;
 
-  $padStrCnt++;
+  if ( $padStrBox or $padStrCln or $padStrRes ) 
+    $padStrHit = TRUE;
+  else
+    $padStrHit = FALSE;    
 
-  if ( $padStrCln or $padStrRes )
-    include pad . 'start/start/startStores.php';
-  
-  if ( $padStrCln ) {
-    include pad . 'start/start/startCleanPad.php';
-    include pad . 'start/start/startCleanApp.php';
-  }
-
-  if ( $padStrRes ) {
-    include pad . 'start/start/startResetPad.php';
-    include pad . 'start/start/startResetApp.php';
-  }
-
-  include pad . 'start/start/startLevel.php';
-  include pad . 'start/start/startStart.php';
+  $padStrStr [$padStrCnt] [0] = $padStrBld;
+  $padStrStr [$padStrCnt] [1] = $padStrBox; 
+  $padStrStr [$padStrCnt] [2] = $padStrCln; 
+  $padStrStr [$padStrCnt] [3] = $padStrCod; 
+  $padStrStr [$padStrCnt] [4] = $padStrFun; 
+  $padStrStr [$padStrCnt] [5] = $padStrRes;
+  $padStrStr [$padStrCnt] [6] = $padStrHit;
 
 ?>

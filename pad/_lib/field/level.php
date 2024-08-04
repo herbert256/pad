@@ -68,10 +68,12 @@
         elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
       }
 
-    if ( isset ( $GLOBALS ['padStrFunCnt'] ) )
-      if ( isset ( $GLOBALS ['padStrFunVar'] ) )
-        if ( array_key_exists ( $field, $GLOBALS ['padStrFunVar'] ) ) {
-          $work = $GLOBALS ['padStrFunVar'] [$field];
+    global $padStrFunCnt, $padStrFunVar;
+
+    if ( $padStrFunCnt ) 
+      for ( $i=$padStrFunCnt; $i > 0; $i-- )   
+        if ( array_key_exists ( $field, $padStrFunVar [$i] ) ) {
+          $work = $padStrFunVar [$i] [$field];
           if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
           if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
           elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
