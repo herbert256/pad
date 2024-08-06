@@ -59,6 +59,9 @@
   $padTable      [$pad] = [];
   $padTableTag   [$pad] = '';
 
+  $padLvlFun     [$pad] = FALSE;
+  $padLvlFunVar  [$pad] = [];
+
   $padOccurStart [$pad] = [];
 
   $padOptionsAppStart [$pad] = [];

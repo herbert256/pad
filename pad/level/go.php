@@ -15,18 +15,21 @@
     $padTagResult = TRUE;
   }
 
+  if ( $pad and $padLvlFun [$pad-1] )
+    include pad . 'level/function.php';
+
   include pad . 'level/flags.php';
 
   if ( padInfo )
     include pad . 'info/events/go.php';
 
   if ( $padTagContent )
-    padContentMerge ( $padContent, $padFalse, $padTagContent, $padHit [$pad], $padTag [$pad] );
+    padContentMerge ( $padContent, $padFalse, $padTagContent, $padHit [$pad] );
 
   if ( padTagParm ('content') ) {
     $padContentOption = padTagParm('content');
     $padContentData   = $padContentStore [$padContentOption];
-    padContentMerge ( $padContent, $padFalse, $padContentData, $padHit [$pad], $padContentOption );
+    padContentMerge ( $padContent, $padFalse, $padContentData, $padHit [$pad] );
   }
 
 ?>

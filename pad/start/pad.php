@@ -6,6 +6,6 @@
   include pad . 'start/level.php'; 
   include pad . 'start/end.php';
   
-  return padEscape ( $padPad [$pad+1] );
+  return $padPad [$pad+1] ;
 
 ?>

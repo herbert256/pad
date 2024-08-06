@@ -32,7 +32,7 @@
   }
 
 
-  function padContentSet ( $base, $new, $name ) {
+  function padContentSet ( $base, $new ) {
 
     padBeforeAfter ( $base, $before, $after, '@content@' ) ;
     if ( $before and $after )
@@ -41,12 +41,6 @@
     padBeforeAfter ( $new, $before, $after, '@content@' ) ;
     if ( $before and $after )
       return $before . $base . $after;
-
-    if ( str_contains ( $base, "@$name:content@" ) ) 
-      return str_replace ( "@$name:content@", $new, $base );
-
-    if ( str_contains ( $new, "@$name:content@" ) ) 
-      return str_replace ( "@$name:content@", $base, $new );
     
     $merge = padTagParm ( 'merge', 'replace' );
 
@@ -57,44 +51,12 @@
   }
 
 
-  function padContentSetXref ( $base, $new, $name ) {
-
-    padBeforeAfter ( $base, $before, $after, '@content@' ) ;
-    if ( $before and $after )
-      return padXref ( 'merge', 'set', 1 );
-
-    padBeforeAfter ( $new, $before, $after, '@content@' ) ;
-    if ( $before and $after )
-      return padXref ( 'merge', 'set', 2 );
-
-    if ( str_contains ( $base, "@$name:content@" ) ) 
-      return padXref ( 'merge', 'set', 3 );
-
-    if ( str_contains ( $new, "@$name:content@" ) ) 
-       return padXref ( 'merge', 'set', 4 );
-
-    $merge = padTagParm ( 'merge', 'replace' );
-
-    if     ( $merge == 'bottom'  ) return padXref ( 'merge', 'set', 5 );
-    elseif ( $merge == 'top'     ) return padXref ( 'merge', 'set', 6 );
-    elseif ( $merge == 'replace' ) return padXref ( 'merge', 'set', 7 );
-    
-  }  
-
-
-  function padContentMerge ( &$true, &$false, $new, $condition, $name ) {
+  function padContentMerge ( &$true, &$false, $new, $condition ) {
 
     padBeforeAfter ( $new, $newTrue, $newFalse, '@else@' ) ;
 
-    if ( padXref ) {
-      if ( $condition ) padXref ( 'merge', 'true', $name );
-      else              padXref ( 'merge', 'false', $name );
-      if ( $condition ) padContentSetXref  ( $true,  $newTrue,  $name );
-      else              padContentSetXref  ( $false, $newFalse, $name );
-    }
-
-    if ( $condition ) $true  = padContentSet ( $true,  $newTrue,  $name );
-    else              $false = padContentSet ( $false, $newFalse, $name );
+    if ( $condition ) $true  = padContentSet ( $true,  $newTrue );
+    else              $false = padContentSet ( $false, $newFalse );
 
   }
 

@@ -1,6 +1,18 @@
 <?php
 
 
+  function padAtCheckParts ( $field, &$names, &$parts ) {
+
+    $field = rtrim ( $field );
+
+    list ( $before, $after ) = padSplit ( '@', $field );
+  
+    $names = padExplode ( $before, '.' ); 
+    $parts = padExplode ( $after,  '.' ); 
+
+  }  
+
+
   function padAtIsTag ($name, $cor) {
 
     global $pad, $padName;

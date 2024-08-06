@@ -1,7 +1,27 @@
 <?php
-  
+
 
   function padAtCheck ( $field, $cor=0 ) {
+
+    if ( ! padAtCheckName ( $field ) )
+      return FALSE;
+
+    padAtCheckParts ( $field, $names, $parts );
+
+    $at = padAt ( $names, $parts, $cor );
+  
+    if ( str_contains($field, '@*') )
+      return padAtCheckAny ( $field );
+
+    if ( $at === INF )
+      return FALSE;
+
+    return TRUE;
+
+  }
+
+
+ function padAtCheckName ( $field ) {
 
     $field = rtrim ( $field );
 
@@ -18,23 +38,17 @@
     if ( str_ends_with   ( $after,  '.') ) return FALSE;
 
     if ( str_contains($field, '@*') )
-      return padAtCheckAny ( $field, $cor);
+      return ( padAtCheckName ( str_replace ( '@*', "@1", $field ) ) );
 
-    $names = padExplode ( $before, '.' ); 
-    $parts = padExplode ( $after,  '.' ); 
+    padAtCheckParts ( $field, $names, $parts );
 
     foreach ( $parts as $part)
       if ( ! padAtCheckPart ($part) )
         return FALSE;
 
     foreach ( $names as $part)
-      if ( ! padAtCheckName ($part) )
+      if ( ! padAtCheckNamePart ($part) )
         return FALSE;
-
-    $at = padAt ( $names, $parts, $cor );
-  
-    if ( $at === INF )
-      return FALSE;
 
     return TRUE;
 
@@ -58,7 +72,6 @@
 
   }
 
-
   function padAtCheckPart ( $part ) {
 
     if ( is_numeric  ( $part ) ) return TRUE;
@@ -71,7 +84,7 @@
   }
 
 
-  function padAtCheckName ( $part ) {
+  function padAtCheckNamePart ( $part ) {
 
     if ( ctype_alpha ( $part) ) return TRUE;
     if ( ctype_digit ( $part) ) return TRUE;

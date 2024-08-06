@@ -23,4 +23,6 @@
   if ( $current !== INF ) 
     return $current;
 
+  return INF;
+  
 ?>

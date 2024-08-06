@@ -5,13 +5,8 @@
 
     if ( str_contains($field, '@*') )
       return padAtValueAny ( $field, $cor);
-    
-    $field = rtrim ( $field );
-
-    list ( $before, $after ) = padSplit ( '@', $field );
-    
-    $names = padExplode ( $before, '.' ); 
-    $parts = padExplode ( $after,  '.' ); 
+        
+    padAtCheckParts ( $field, $names, $parts );
 
     return padAt ( $names, $parts, $cor );
 
@@ -31,7 +26,7 @@
     
     }
 
-    return INF;
+    return padAtValue ( str_replace ( '@*', "@any", $field ), $cor );
 
   }
 

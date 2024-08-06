@@ -6,14 +6,12 @@
   if ( str_ends_with ( $padIncPage, '.pad') )
     $padIncPage = substr ( $padIncPage, 0, -4 );
 
-  $padIncPHP  = padApp . "$padIncPage.php";
+  $padIncPHP = padApp . "$padIncPage.php";
   $padIncPAD = padApp . "$padIncPage.pad";
 
-  $padIncReturn = padFileGetContents ( $padIncPAD ) ;
-  
-  if ( file_exists ($padIncPHP) )
-    return "{call '$padIncPHP'}$padIncReturn{/call}";
+  if ( ! file_exists ($padIncPHP) )
+    return padFileGetContents ( $padIncPAD );
   else
-    return $padIncReturn;
+    return "{call '$padIncPHP'}" . padFileGetContents ( $padIncPAD ) . '{/call}';
 
 ?>

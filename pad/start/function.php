@@ -4,19 +4,24 @@
     unset ( $GLOBALS ['padStrCod'] );
 
   $GLOBALS ['padStrFun'] = TRUE;
+  $GLOBALS ['padStrFunCnt']++;
+  $GLOBALS ['padStrFunVar'] [ $GLOBALS ['padStrFunCnt'] ] = [];
 
   foreach ( $GLOBALS as $padStrKey => $padStrVal )
     global $$padStrKey;
 
-  $padStrFunCnt++;
+  $padLvlFun [$pad] = $padStrFunCnt;
 
-  global $padStrFunVar;
-  $padStrFunVar [$padStrFunCnt] = [];
+  $padStrFunResult = include pad . 'start/pad.php'; 
 
-  $padStrFunCntResult = include pad . 'start/pad.php'; 
+  if ( ! $padStrBox and ! $padStrCln )
+    foreach ( get_defined_vars () as $padStrKey => $padStrVal )
+      if ( padValidStore ( $padStrKey ) )
+        if ( ! isset ( $GLOBALS [$padStrKey] ) )
+          $GLOBALS [$padStrKey] = $padStrVal;
 
   $padStrFunCnt--;
 
-  return $padStrFunCntResult;
+  return $padStrFunResult;
 
 ?>

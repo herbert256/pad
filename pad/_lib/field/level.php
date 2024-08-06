@@ -2,7 +2,7 @@
 
   function padFieldLevel ( $field, $type ) {
 
-    global $pad, $padCurrent, $padPrm, $padOpt, $padName, $padTable;
+    global $pad, $padCurrent, $padPrm, $padOpt, $padName, $padTable, $padLvlFunVar;
 
     if ( strlen($field) > 1 and substr($field,0,1) == '-' and is_numeric(substr($field,1)) ) {
       $idx = $pad + $field;
@@ -68,16 +68,13 @@
         elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
       }
 
-    global $padStrFunCnt, $padStrFunVar;
-
-    if ( $padStrFunCnt ) 
-      for ( $i=$padStrFunCnt; $i > 0; $i-- )   
-        if ( array_key_exists ( $field, $padStrFunVar [$i] ) ) {
-          $work = $padStrFunVar [$i] [$field];
-          if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
-          if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
-          elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
-        }
+   for ( $i=$pad; $i >= 0; $i-- )      
+      if ( array_key_exists ( $field, $padLvlFunVar [$i] ) ) {
+        $work = $padLvlFunVar [$i] [$field];
+        if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
+        if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
+        elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
+      }
 
     return INF;
     
