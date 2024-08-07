@@ -15,9 +15,6 @@
     $padTagResult = TRUE;
   }
 
-  if ( $pad and $padLvlFun [$pad-1] )
-    include pad . 'level/function.php';
-
   include pad . 'level/flags.php';
 
   if ( padInfo )

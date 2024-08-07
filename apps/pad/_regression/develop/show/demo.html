@@ -36,11 +36,22 @@
 
  
 
-  <h3>
-  <font color="black">
-    Hello World !
-  </font>
-</h3>
+  <div id="padAjaxf1yhe7kb"></div>
+
+<script>
+  padAjaxf1yhe7kb = new XMLHttpRequest();
+  padAjaxf1yhe7kb.onreadystatechange=function() {
+    if (padAjaxf1yhe7kb.readyState === 4) {
+      if (padAjaxf1yhe7kb.status === 200) {
+        document.getElementById("padAjaxf1yhe7kb").innerHTML=padAjaxf1yhe7kb.responseText;
+      } else {
+        document.getElementById("padAjaxf1yhe7kb").innerHTML=padAjaxf1yhe7kb.statusText;
+      }
+    }
+  }
+  padAjaxf1yhe7kb.open("GET","http://penguin.linux.test/?hello/index&padInclude&padSesID=DYXrxM31&padReqID=HIUrP68h",true);
+  padAjaxf1yhe7kb.send();
+</script>
 
 
 

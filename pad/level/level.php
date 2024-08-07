@@ -1,7 +1,7 @@
 <?php
 
   if ( $padRestart )
-    include pad . 'start/enter/restart.php';    
+    return include pad . 'start/enter/restart.php';    
     
   $padEnd [$pad] = strpos ( $padPad [$pad], '}' );
 
@@ -18,18 +18,25 @@
   $padBetween = substr ( $padPad [$pad], $padStart [$pad] + 1, $padEnd [$pad] - $padStart [$pad] - 1 );
   include pad . 'level/between.php';
   
+   if ( $pad and $padLvlFun [$pad-1] )
+    include pad . 'level/function.php';
+     
   if ( in_array ( $padFirst, ['$','!','#','&','?'] ) ) 
     return include pad . 'level/var.php';
 
   if ( ! ctype_alpha ( $padFirst ) and ! str_contains ( $padTagCheck, '@') ) 
     return padIgnore ('first char');
 
-  $padTypeParse = include pad . 'level/type.php';
-
-  if ( ! $padTypeParse )
-    return padIgnore ('type');
-
+  include pad . 'level/type.php';
   include pad . 'level/tag.php';
+
+  if ( ! $padTypeResult and isset ( $padStartOptions ['optional'] ) )
+    if ( padValidTag ($padWords [0]) or padAtCheckName ($padWords [0]) )
+      return include pad . 'options/optional.php';
+  
+  if ( ! $padTypeResult ) 
+      return padIgnore ('type');
+
   include pad . 'level/start.php';
  
 ?>

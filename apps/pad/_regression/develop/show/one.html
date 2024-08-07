@@ -1,5 +1,16 @@
-<h3>
-  <font color="black">
-    Hello World !
-  </font>
-</h3>
+<div id="padAjax3UTycQVN"></div>
+
+<script>
+  padAjax3UTycQVN = new XMLHttpRequest();
+  padAjax3UTycQVN.onreadystatechange=function() {
+    if (padAjax3UTycQVN.readyState === 4) {
+      if (padAjax3UTycQVN.status === 200) {
+        document.getElementById("padAjax3UTycQVN").innerHTML=padAjax3UTycQVN.responseText;
+      } else {
+        document.getElementById("padAjax3UTycQVN").innerHTML=padAjax3UTycQVN.statusText;
+      }
+    }
+  }
+  padAjax3UTycQVN.open("GET","http://penguin.linux.test/?hello/index&padInclude&padSesID=DYXrxM31&padReqID=6l7nZrG4",true);
+  padAjax3UTycQVN.send();
+</script>
