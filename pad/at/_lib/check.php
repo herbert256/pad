@@ -53,6 +53,8 @@
     if ( ctype_alpha ( $part) ) return TRUE;
     if ( ctype_digit ( $part) ) return TRUE;
     if ( $part == '*')          return TRUE;
+    if ( $part == '<')          return TRUE;
+    if ( $part == '>')          return TRUE;
 
     if ( strlen($part) > 1 ) { 
       $check1 = substr ( $part, 0, 1 );

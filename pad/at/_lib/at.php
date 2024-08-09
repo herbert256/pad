@@ -15,16 +15,89 @@
 
     global $pad;
 
-
     for ( $i=$pad; $i; $i-- ) {
 
-      $check = padAt ( str_replace ( '@*', "@$i", $field ), $cor );
+      $check = padAtValue ( str_replace ( '@*', "@$i", $field ), $cor );
       if ( $check !== INF )
         return $check; 
     
     }
 
-    return padAt ( str_replace ( '@*', "@everywhere", $field ), $cor );
+    if ( str_ends_with($field, '@*') ) {
+
+      $check = padAtSingle ( $field, $cor );
+      if ( $check !== INF )
+        return $check;
+      
+      $check = padAtValue ( str_replace ( '@*', "@everywhere", $field ), $cor );
+      if ( $check !== INF )
+        return $check;
+      
+    }
+
+    return INF;
+
+  }
+  
+
+  function padAtSpecial ( $names, $cor ) {
+
+    $special = ['_POST','_GET','_COOKIE','_SESSION','_FILES','_SERVER','_REQUEST','_ENV'] ;
+
+    foreach ( $special as $field ) 
+
+      if ( isset ( $GLOBALS [$field] ) and is_array ( $GLOBALS [$field] ) ) {
+        $check = padAtSearchGo ( $current, $names );
+        if ( $check !== INF)
+          return $check;
+      }
+
+    return INF;
+
+  }
+
+
+  function padAtPad ( $names, $cor ) {
+
+    foreach ( $GLOBALS  as $key => $value ) 
+
+      if ( str_starts_with($key, 'pad' and is_array ( $GLOBALS [$key] ) ) {
+        $check = padAtSearchGo ( $value, $names );
+        if ( $check !== INF)
+          return $check;
+      }
+
+    return INF;
+
+  }
+  
+
+  function padAtSingle ( $field, $cor ) {
+
+    $field = str_replace ( '@*', '', $field );
+    $names = padExplode ( $field, '.' ); 
+
+    $check = padAtSearch ( $GLOBALS ['padDataStore'], $names );
+    if ( $check !== INF )
+      return $check;
+
+    $check = padAtSearch ( $GLOBALS ['padSequenceStore'], $names );
+    if ( $check !== INF )
+      return $check;
+
+    $check = padAtSearch ( $GLOBALS, $names );
+    if ( $check !== INF )
+      return $check;
+
+    $check = padAtSpecial ( $names, $cor );
+    if ( $check !== INF )
+      return $check;
+
+    $check = padAtPad ( $names, $cor );
+    if ( $check !== INF )
+      return $check;
+
+    return INF;
 
   }
 
@@ -63,13 +136,53 @@
     if ( $check !== INF )
       return $check;
 
+    $check = padAtStore ( $GLOBALS ['padSeqStore'], $names, $parts );
+    if ( $check !== INF )
+      return $check;
+
+    $check = padAtStore ( $GLOBALS ['padDataStore'], $names, $parts );
+    if ( $check !== INF )
+      return $check;
+
     $check = padAtData ( $names, $parts );
     if ( $check !== INF )
       return $check;
 
+    if ( count ($parts) == 0 ) {
+
+
+    }      
+
     return INF;
 
   }
+
+
+  function padAtStore ( $store, $names, $parts ) {
+
+    if ( count ($parts) == 1 ) {      
+      $name = reset ($parts);
+      if ( isset ( $store [$store] ) )
+        return padAtSearch ( $store [$name], $names );
+    }
+
+    if ( count ($parts) == 2 ) {
+      list ( $first, $second ) = $parts;
+      if ( $first == 'sequence' or $first == 'sequences' )
+        if ( isset ( $store [$second] ) )
+          return padAtSearch ( $store [$second], $names );
+    }
+
+    if ( count ($parts) == 1 ) {      
+      $name = reset ($parts);
+      if ( $store == 'sequence' or $store == 'sequences' )
+        return padAtSearch ( $store, $names );
+    }
+
+    return INF;
+
+  }
+
 
 
   function padAtArray ( $names, $parts ) {

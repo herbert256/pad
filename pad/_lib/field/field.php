@@ -21,8 +21,8 @@
     if ( padXref ) 
       include pad . 'info/types/xref/events/field.php';
 
-    if ( str_starts_with ($field, '@') and substr_count($field, '@') == 1 ) 
-      $field .= '@*';
+    if ( str_starts_with ($field, '@') and substr_count($field, '@') == 1 )  $field .= '@*';
+    if ( str_contains ( $field, '.' ) and ! str_contains ( $field, '@' )  )  $field .= '@*';
 
     if ( in_array ( substr ( $field, 0, 1 ), ['$','!','#','&','?','@'] ) ) 
      $field = substr ( $field, 1 );

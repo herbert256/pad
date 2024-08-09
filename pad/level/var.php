@@ -20,9 +20,13 @@
 
   }
 
+  if ( str_contains ( $padFld, '.' ) and ! str_contains ( $padFld, '@' ) )
+    $padFld .= '@*';
+
   if ( $padFirst == '@' ) {
     $padFirst = '$';
-    $padFld  .= '@*';
+    if ( ! str_contains ( $padFld, '@' ) )
+      $padFld .= '@*';
   }
  
   if ( substr($padFld, 0, 1) == '$' ) 
