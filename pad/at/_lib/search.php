@@ -1,12 +1,15 @@
 <?php
 
 
-  function padAtSearch ( $current, $names ) {
+  function padAtSearch ( $current, $names, $noDeep = 0 ) {
 
     $check = padAtSearchGo ( $current, $names );
     if ( $check !== INF)
       return $check;
 
+    if ( $noDeep )
+      return INF;
+    
     foreach ( $current as $key => $value ) {
 
       if ( is_object ($value) or is_resource ($value) )

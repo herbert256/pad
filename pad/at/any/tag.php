@@ -1,6 +1,6 @@
 <?php
 
-  global $padCurrent, $padData, $padTable, $padOpt, $padPrm, $padSetLvl;
+  global $padCurrent, $padData, $padTable, $padOpt, $padPrm, $padSetLvl, $padLvlFunVar;
 
   $name = end ( $names );
 
@@ -31,6 +31,10 @@
     return $current;
 
   $current = padAtSearch ( $padPrm [$padIdx], $names );
+  if ( $current !== INF ) 
+    return $current;
+
+  $current = padAtSearch ( $padLvlFunVar [$padIdx], $names );
   if ( $current !== INF ) 
     return $current;
 

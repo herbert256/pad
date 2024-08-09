@@ -17,21 +17,21 @@
 
   $padBetween = substr ( $padPad [$pad], $padStart [$pad] + 1, $padEnd [$pad] - $padStart [$pad] - 1 );
   include pad . 'level/between.php';
+
+  if ( ctype_space ($padFirst ) ) 
+    return padIgnore ('first char');
   
-   if ( $pad and $padLvlFun [$pad-1] )
+  if ( $pad and $padLvlFun [$pad-1] )
     include pad . 'level/function.php';
      
-  if ( in_array ( $padFirst, ['$','!','#','&','?'] ) ) 
+  if ( in_array ( $padFirst, ['$','!','#','&','?','@'] ) ) 
     return include pad . 'level/var.php';
-
-  if ( ! ctype_alpha ( $padFirst ) and ! str_contains ( $padTagCheck, '@') ) 
-    return padIgnore ('first char');
 
   include pad . 'level/type.php';
   include pad . 'level/tag.php';
 
   if ( ! $padTypeResult and isset ( $padStartOptions ['optional'] ) )
-    if ( padValidTag ($padWords [0]) or padAtCheckName ($padWords [0]) )
+    if ( padValidTag ($padWords [0]) or padAtCheck ($padWords [0]) )
       return include pad . 'options/optional.php';
   
   if ( ! $padTypeResult ) 

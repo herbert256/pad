@@ -20,41 +20,29 @@
 
   }
 
-  if ( padTrace )
-    include pad . 'info/events/var_start.php';   
-
+  if ( $padFirst == '@' ) {
+    $padFirst = '$';
+    $padFld  .= '@*';
+  }
+ 
   if ( substr($padFld, 0, 1) == '$' ) 
-    $padFld = padFieldValue ( substr($padFld,1) );
+    $padFld = padFieldValue ( substr($padFld, 1) );
 
-  if  ( str_contains ( $padFld, '@' ) or str_contains ( $padFld, '.' ) ) {
+  if ( ! padValidVar2 ($padFld) ) 
+    return padError ( "Field '$padFld' is not a valid name" );
 
-    if ( ! padValidVarAt ($padFld) ) 
-      return padIgnore ( "Field '$padFld' is not a valid name" );
+  if ( ! in_array ( 'noError', $padOpts ) )
+    if     ( $padFirst == '$' and ! padFieldCheck ( $padFld ) ) padError ( "Field '$padFld' not found" );
+    elseif ( $padFirst == '?' and ! padfieldCheck ( $padFld ) ) padError ( "Field '$padFld' not found" );
+    elseif ( $padFirst == '!' and ! padfieldCheck ( $padFld ) ) padError ( "Field '$padFld' not found" );
+    elseif ( $padFirst == '#' and ! padOptCheck   ( $padFld ) ) padError ( "Field '$padFld' not found" );
+    elseif ( $padFirst == '&' and ! padTagCheck   ( $padFld ) ) padError ( "Field '$padFld' not found" );
 
-    if ( ! in_array('noError', $padOpts) and ! padAtCheck ( $padFld ) ) 
-      padError ( "Field '$padFld' not found" );
-
-    $padVal = padAtValue ($padFld);
-
-  } else {
-
-    if ( ! padValidVar2 ($padFld) ) 
-      return padIgnore ( "Field '$padFld' is not a valid name" );
-
-    if ( ! in_array ( 'noError', $padOpts ) )
-      if     ( $padFirst == '$' and ! padFieldCheck ( $padFld ) ) padError ( "Field '$padFld' not found" );
-      elseif ( $padFirst == '?' and ! padfieldCheck ( $padFld ) ) padError ( "Field '$padFld' not found" );
-      elseif ( $padFirst == '!' and ! padfieldCheck ( $padFld ) ) padError ( "Field '$padFld' not found" );
-      elseif ( $padFirst == '#' and ! padOptCheck   ( $padFld ) ) padError ( "Field '$padFld' not found" );
-      elseif ( $padFirst == '&' and ! padTagCheck   ( $padFld ) ) padError ( "Field '$padFld' not found" );
-
-    if     ( $padFirst == '$' ) $padVal = padFieldValue ($padFld);
-    elseif ( $padFirst == '?' ) $padVal = padUrlValue   ($padFld);
-    elseif ( $padFirst == '!' ) $padVal = padRawValue   ($padFld);
-    elseif ( $padFirst == '#' ) $padVal = padOptValue   ($padFld);
-    elseif ( $padFirst == '&' ) $padVal = padTagValue   ($padFld);
-
-  } 
+  if     ( $padFirst == '$' ) $padVal = padFieldValue ($padFld);
+  elseif ( $padFirst == '?' ) $padVal = padUrlValue   ($padFld);
+  elseif ( $padFirst == '!' ) $padVal = padRawValue   ($padFld);
+  elseif ( $padFirst == '#' ) $padVal = padOptValue   ($padFld);
+  elseif ( $padFirst == '&' ) $padVal = padTagValue   ($padFld);
 
   if ( $padFirst == '$' )
     $padOpts = array_merge ( $padDataDefaultStart, $padOpts, $padDataDefaultEnd );   
@@ -62,8 +50,5 @@
   $padVal = padVarOpts ($padVal, $padOpts);
 
   padPad ( $padVal );
-
-  if ( padTrace )
-    include pad . 'info/events/var_end.php';   
 
 ?>

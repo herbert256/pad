@@ -1,0 +1,103 @@
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="green"><font color="red"></font><b><font color="red">@</font></b><font color="purple"></font>first</font>}</b><br>      &lt;tr&gt;<br>        <b>{<font color="green"><font color="red"></font><b><font color="red">@</font></b><font color="purple"></font>fields</font>}</b><br>          &lt;th&gt; <b>{<font color="green"><font color="red"></font><b><font color="red">@</font></b><font color="purple"></font>name</font>}</b> &lt;/th&gt;<br>        <b>{/<font color="blue"><font color="black"><b><font color="red">@</font></b></font>fields</font><font color="red"></font>}</b><br>      &lt;/tr&gt;<br>    <b>{/<font color="blue"><font color="black"><b><font color="red">@</font></b></font>first</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="green"><font color="red"></font><b><font color="red">@</font></b><font color="purple"></font>fields</font>}</b><br>        &lt;td&gt; <b>{<font color="green"><font color="red"></font><b><font color="red">@</font></b><font color="purple"></font>value</font>}</b> &lt;/td&gt;<br>      <b>{/<font color="blue"><font color="black"><b><font color="red">@</font></b></font>fields</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
+  
+    {@first}
+    <tr>
+      {@fields}
+    </tr>
+  
+    {@first}
+    <tr>
+      {@fields}
+    </tr>
+  
+    {@first}
+    <tr>
+      {@fields}
+    </tr>
+  
+    {@first}
+    <tr>
+      {@fields}
+    </tr>
+  
+    {@first}
+    <tr>
+      {@fields}
+    </tr>
+  
+</table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="green"><font color="red"></font><b><font color="red">@</font></b><font color="purple"></font>staff.first</font>}</b><br>      &lt;tr&gt;<br>        <b>{<font color="green"><font color="red"></font><b><font color="red">@</font></b><font color="purple"></font>staff.fields</font>}</b><br>          &lt;th&gt; <b>{<font color="green"><font color="red"></font><b><font color="red">@</font></b><font color="purple"></font>name</font>}</b> &lt;/th&gt;<br>        <b>{/<font color="blue"><font color="black"><b><font color="red">@</font></b></font>staff.fields</font><font color="red"></font>}</b><br>      &lt;/tr&gt;<br>    <b>{/<font color="blue"><font color="black"><b><font color="red">@</font></b></font>staff.first</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="green"><font color="red"></font><b><font color="red">@</font></b><font color="purple"></font>staff.fields</font>}</b><br>        &lt;td&gt; <b>{<font color="green"><font color="red"></font><b><font color="red">@</font></b><font color="purple"></font>value</font>}</b> &lt;/td&gt;<br>      <b>{/<font color="blue"><font color="black"><b><font color="red">@</font></b></font>staff.fields</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
+  
+    {@staff.first}
+    <tr>
+      {@staff.fields}
+    </tr>
+  
+    {@staff.first}
+    <tr>
+      {@staff.fields}
+    </tr>
+  
+    {@staff.first}
+    <tr>
+      {@staff.fields}
+    </tr>
+  
+    {@staff.first}
+    <tr>
+      {@staff.fields}
+    </tr>
+  
+    {@staff.first}
+    <tr>
+      {@staff.fields}
+    </tr>
+  
+</table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      <b>{<font color="green"><font color="red"></font><b><font color="red">@</font></b><font color="purple"></font>-2.first</font>}</b><br>        &lt;tr&gt;<br>          <b>{<font color="green"><font color="red"></font><b><font color="red">@</font></b><font color="purple"></font>-3.fields</font>}</b><br>            &lt;th&gt; <b>{<font color="green"><font color="red"></font><b><font color="red">@</font></b><font color="purple"></font>name</font>}</b> &lt;/th&gt;<br>          <b>{/<font color="blue"><font color="black"><b><font color="red">@</font></b></font>-3.fields</font><font color="red"></font>}</b><br>        &lt;/tr&gt;<br>      <b>{/<font color="blue"><font color="black"><b><font color="red">@</font></b></font>-2.first</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        <b>{<font color="green"><font color="red"></font><b><font color="red">@</font></b><font color="purple"></font>-2.fields</font>}</b><br>          &lt;td&gt; <b>{<font color="green"><font color="red"></font><b><font color="red">@</font></b><font color="purple"></font>value</font>}</b> &lt;/td&gt;<br>        <b>{/<font color="blue"><font color="black"><b><font color="red">@</font></b></font>-2.fields</font><font color="red"></font>}</b><br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border=1>
+  
+    
+      {@-2.first}
+      <tr>
+        {@-2.fields}
+      </tr>
+    
+  
+    
+      {@-2.first}
+      <tr>
+        {@-2.fields}
+      </tr>
+    
+  
+    
+      {@-2.first}
+      <tr>
+        {@-2.fields}
+      </tr>
+    
+  
+    
+      {@-2.first}
+      <tr>
+        {@-2.fields}
+      </tr>
+    
+  
+    
+      {@-2.first}
+      <tr>
+        {@-2.fields}
+      </tr>
+    
+  
+</table><!-- END DEMO RESULT --></span></code></td></tr>
+  </table>
+</p>

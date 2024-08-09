@@ -1,27 +1,10 @@
 <?php
 
 
-  function padAtCheck ( $field, $cor=0 ) {
+ function padAtCheck ( $field ) {
 
-    if ( ! padAtCheckName ( $field ) )
-      return FALSE;
-
-    padAtCheckParts ( $field, $names, $parts );
-
-    $at = padAt ( $names, $parts, $cor );
-  
     if ( str_contains($field, '@*') )
-      return padAtCheckAny ( $field );
-
-    if ( $at === INF )
-      return FALSE;
-
-    return TRUE;
-
-  }
-
-
- function padAtCheckName ( $field ) {
+      return padAtCheck ( str_replace ( '@*', "@1", $field ) );
 
     $field = rtrim ( $field );
 
@@ -36,11 +19,9 @@
     if ( str_starts_with ( $after,  '.') ) return FALSE;
     if ( str_ends_with   ( $before, '.') ) return FALSE;
     if ( str_ends_with   ( $after,  '.') ) return FALSE;
-
-    if ( str_contains($field, '@*') )
-      return ( padAtCheckName ( str_replace ( '@*', "@1", $field ) ) );
-
-    padAtCheckParts ( $field, $names, $parts );
+  
+    $names = padExplode ( $before, '.' ); 
+    $parts = padExplode ( $after,  '.' ); 
 
     foreach ( $parts as $part)
       if ( ! padAtCheckPart ($part) )
@@ -54,23 +35,6 @@
 
   }
 
-
-  function padAtCheckAny ( $field, $cor  ) {
-
-    global $pad;
-
-    for ( $i=$pad; $i; $i-- ) {
-
-      $check = str_replace ( '@*', "@$i", $field );
-
-      if ( padAtCheck ( $check, $cor ) ) 
-        return TRUE;
-    
-    }
-
-    return FALSE;
-
-  }
 
   function padAtCheckPart ( $part ) {
 

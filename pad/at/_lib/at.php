@@ -1,8 +1,44 @@
 <?php
 
 
-  function padAt ( $names, $parts, $cor ) {
+  function padAt ( $field, $cor=0 ) {
 
+    if ( ! padAtCheck ( $field ) )
+      return INF;
+
+    return padAtValue ( $field, $cor );
+
+  }
+
+
+  function padAtValueAny ( $field, $cor ) {
+
+    global $pad;
+
+
+    for ( $i=$pad; $i; $i-- ) {
+
+      $check = padAt ( str_replace ( '@*', "@$i", $field ), $cor );
+      if ( $check !== INF )
+        return $check; 
+    
+    }
+
+    return padAt ( str_replace ( '@*', "@everywhere", $field ), $cor );
+
+  }
+
+
+  function padAtValue ( $field, $cor ) {
+
+    if ( str_contains($field, '@*') )
+      return padAtValueAny ( $field, $cor);
+        
+    list ( $before, $after ) = padSplit ( '@', $field );
+  
+    $names = padExplode ( $before, '.' ); 
+    $parts = padExplode ( $after,  '.' ); 
+    
     $name = reset ($names);
 
     $GLOBALS ['padForceTagName']  = $name;
@@ -23,9 +59,45 @@
     if ( $check !== INF )
       return $check;
 
+    $check = padAtArray ( $names, $parts );
+    if ( $check !== INF )
+      return $check;
+
     $check = padAtData ( $names, $parts );
     if ( $check !== INF )
       return $check;
+
+    return INF;
+
+  }
+
+
+  function padAtArray ( $names, $parts ) {
+
+    if ( count ($parts) <> 1 )
+      return INF;
+
+    $array = reset ($parts);
+
+    return padAtArray2 ( $array, $names, $GLOBALS );
+
+  }
+
+
+  function padAtArray2 ( $array, $names, $search ) {
+
+    if ( isset ( $search [$array] ) and is_array ( $search [$array] ) ) {
+      $check = padAtSearch ( $search [$array], $names, 1 );
+      if ( $check !== INF ) 
+        return $check;
+    }
+
+    foreach ( $search as $k => $v )
+      if ( padValidStore ($k) and is_array ($v) ) {
+        $check = padAtArray2 ( $array, $names, $v );
+        if ( $check !== INF ) 
+          return $check;
+      }
 
     return INF;
 

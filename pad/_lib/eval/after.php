@@ -71,11 +71,7 @@
       } elseif ( $one[1] == '$' ) {
 
         $result[$k][1] = 'VAL';   
-
-        if ( str_contains ( $one[0], '@' ) )
-          $result[$k][0] = padAtValue ( $one[0] );
-        else  
-          $result[$k][0] = padFieldValue ( $one[0] );
+        $result[$k][0] = padFieldValue ( $one[0] );
  
       } elseif ( $one[1] == '&' ) {
 
