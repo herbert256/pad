@@ -24,6 +24,7 @@
         $idx = $idx + $cor;
       if ( $idx > 0 and $idx <= $pad )
         return $idx;
+
     }
 
     if ( is_numeric($field) ) 
@@ -37,7 +38,7 @@
 
   function padAtKey ( $search, $index ) {
 
-    if ( ! ctype_digit ( $index ) )           return '';
+    if ( ! ctype_digit ( $index ) )             return '';
     if ( array_is_list ( $search ) )            return '';
     if ( array_key_exists ( $index, $search ) ) return '';
 

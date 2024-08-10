@@ -2,8 +2,15 @@
 
   global $padSetLvl, $padSetOcc, $padParmParse;
 
-  if ( count ( $names ) > 1 )
-    return INF;
+  $temp = [];
+
+  foreach ( $padParmParse [$padIdx] as $key => $val )
+    if ( $val == 'lvl' ) $temp [$key] = $padSetLvl [$padIdx] [$key];
+    else                 $temp [$key] = $GLOBALS [$key]; 
+
+  $check = padAtSearch ( $temp, $names );
+  if ( $check !== INF )
+    return $check;
 
   $key = padAtKey ( $padParmParse [$padIdx], $name );
 

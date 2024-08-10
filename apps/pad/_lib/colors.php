@@ -96,7 +96,7 @@ go: $end = strpos($source, '}');
       $tag  = substr ($tag, $ns_pos+1);
     } 
 
-    if ( ! padValidTag ( $tag ) )  {        
+    if ( ! padValidTag ( $tag ) and ! padAtCheck ($tag) )  {        
       $source = substr($source, 0, $start) . '&open;' . substr($source, $start+1);      
       goto go;       
     } 

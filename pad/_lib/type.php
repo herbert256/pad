@@ -14,11 +14,11 @@
     elseif ( isset            ( $GLOBALS ['padSeqStore']     [$item] ) ) return 'store';      
     elseif ( isset            ( $GLOBALS ['padTables']       [$item] ) ) return 'table';
     elseif ( file_exists      ( pad . "tag/$item.php"                ) ) return 'tag';
-    elseif ( padArrayCheck    ( $item                                ) ) return 'array';
-    elseif ( padFieldCheck    ( $item                                ) ) return 'field';
+    elseif ( padDataFileName  ( $item                                ) ) return 'local';    
+    elseif ( padArrayCheck    ( $item, 1                                ) ) return 'array';
+    elseif ( padFieldCheck    ( $item, 1                                ) ) return 'field';
     elseif ( file_exists      ( pad . "sequence/types/$item"         ) ) return 'sequence';
     elseif ( file_exists      ( pad . "sequence/actions/$item.php"   ) ) return 'action';
-    elseif ( padDataFileName  ( $item                                ) ) return 'local';    
     elseif ( padInclFileName  ( $item                                ) ) return 'include';
     elseif ( defined          ( $item                                ) ) return 'constant';
     elseif ( file_exists      ( padApp . "_functions/$item.php"      ) ) return 'function';
@@ -47,8 +47,8 @@
     elseif ( $type == 'store'    and isset            ( $GLOBALS ['padSeqStore'] [$item]     ) ) return $type;
     elseif ( $type == 'local'    and padDataFileName  ( $item                                ) ) return $type;
     elseif ( $type == 'include'  and padInclFileName  ( $item                                ) ) return $type;
-    elseif ( $type == 'array'    and padArrayCheck    ( $item                                ) ) return $type;
-    elseif ( $type == 'field'    and padFieldCheck    ( $item                                ) ) return $type;
+    elseif ( $type == 'array'    and padArrayCheck    ( $item, 1                                ) ) return $type;
+    elseif ( $type == 'field'    and padFieldCheck    ( $item, 1                                ) ) return $type;
     elseif ( $type == 'constant' and defined          ( $item                                ) ) return $type;
     elseif ( $type == 'function' and file_exists      ( padApp . "_functions/$item.php"      ) ) return $type;
     elseif ( $type == 'function' and file_exists      ( pad . "functions/$item.php"          ) ) return $type;

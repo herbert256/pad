@@ -1,5 +1,5 @@
 <?php
 
-  padDump ( '{xxx dump}');
+  padDump ( 'Dump option at tag');
   
 ?>

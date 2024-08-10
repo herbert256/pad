@@ -28,6 +28,9 @@
   if ( padInfo ) 
     include pad . 'info/events/levelStart.php';  
 
+  if ( padTagParm ('dump') )
+    include pad . 'options/dump.php';
+
   if ( padOpenCloseOk ( $padBase[$pad], '@start@') ) 
     return include pad . 'level/start_end/start1.php';
 

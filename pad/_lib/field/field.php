@@ -1,11 +1,11 @@
 <?php
 
 
-  function padFieldCheck   ( $parm )         { return padField ( $parm, 1        ); } 
-  function padFieldValue   ( $parm )         { return padField ( $parm, 2        ); } 
+  function padFieldCheck   ( $parm, $lvl=0 )         { return padField ( $parm, 1, $lvl        ); } 
+  function padFieldValue   ( $parm, $lvl=0 )         { return padField ( $parm, 2, $lvl        ); } 
  
-  function padArrayCheck   ( $parm )         { return padField ( $parm, 3        ); } 
-  function padArrayValue   ( $parm )         { return padField ( $parm, 4        ); } 
+  function padArrayCheck   ( $parm, $lvl=0 )         { return padField ( $parm, 3, $lvl        ); } 
+  function padArrayValue   ( $parm, $lvl=0 )         { return padField ( $parm, 4, $lvl        ); } 
   
   function padOptCheck     ( $parm )         { return padField ( $parm, 5        ); } 
   function padOptValue     ( $parm )         { return padField ( $parm, 6        ); } 

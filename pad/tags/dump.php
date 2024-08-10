@@ -1,5 +1,5 @@
 <?php
 
-  padDump ();
+  padDump ( '{dump} tag used' );
 
 ?>
