@@ -1,8 +1,10 @@
 <?php
 
-
  function padAtCheck ( $field ) {
 
+    if ( str_ends_with ( $field, '@' ) )
+      $field .= '*';
+    
     if ( str_contains($field, '@*') )
       return padAtCheck ( str_replace ( '@*', "@1", $field ) );
 

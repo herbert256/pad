@@ -57,7 +57,7 @@
     if ( trim ( $name ) == '' ) 
       return FALSE;
 
-    if ( str_contains ( $name, '@' ) )
+    if ( str_contains ( $name, '@' ) or str_contains ( $name, '.' ) )
       return padAtCheck ( $name );
 
     if ( ! preg_match ( '/^[a-zA-Z0-9\-\$][a-zA-Z0-9:#_]*$/',$name ) )
@@ -71,7 +71,7 @@
   function padAtValid ( $part ) {
 
     if ( trim($part) == '' )                                       return FALSE;
-    if ( ! preg_match ( '/^[a-zA-Z0-9_-][a-zA-Z0-9_]*$/', $part ) ) return FALSE;
+    if ( ! preg_match ( '/^[a-zA-Z0-9_-][a-zA-Z0-9_:]*$/', $part ) ) return FALSE;
 
     return TRUE;  
 
@@ -96,10 +96,13 @@
     if ( trim($name) == '' ) 
       return FALSE;
 
-    if ( ! preg_match('/^[a-zA-Z][a-zA-Z0-9:_]*$/',$name) )
-      return FALSE;
+    if ( padAtCheck ($name) )
+      return TRUE;
 
-    return TRUE;  
+    if ( preg_match('/^[a-zA-Z][a-zA-Z0-9:_]*$/',$name) )
+      return TRUE;
+
+    return FALSE;  
 
   }
 

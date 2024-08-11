@@ -1,5 +1,29 @@
-{countryx@mondial hhh}
+{bakery}
+  
+  <h2> {$name@current} / {$type@current} </h2>
 
-  {$name@current} <br>
+  <p> Batter: 
+      {batter optional} 
+        {$batter@current} 
+        {notLast} / {/notLast} 
+      {/batter}
 
-{/country@mondial}
+  {topping@current optional} 
+    <p> Topping: 
+      @start@
+        {$topping@topping} 
+        {notLast} / {/notLast} 
+      @end@
+    </p>
+  {/topping@current}
+  
+  {filling@current optional} 
+    <p>Filling:
+      @start@
+        {$name@*}
+        {notLast} / {/notLast} 
+      @end@
+    </p>
+  {/filling@current}
+
+{/bakery}

@@ -6,13 +6,16 @@
     if ( ! padAtCheck ( $field ) )
       return INF;
 
+    if ( str_ends_with ( $field, '@' ) )
+      $field .= '*';
+
     return padAtValue ( $field, $cor );
 
   }
 
-
-  function padAtValue ( $field, $cor ) {
         
+  function padAtValue ( $field, $cor=0 ) {
+
     list ( $before, $after ) = padSplit ( '@', $field );
   
     $names = padExplode ( $before, '.' ); 
@@ -24,7 +27,7 @@
     if ( str_contains($field, '@*') )
       return padAtValueAny ( $field, $cor);
 
-    $parts = padExplode ( $after,  '.' ); 
+    $parts = padExplode ( $after,  ':' ); 
 
     if ( ! count ( $parts ) )
       return padAtSingle ( $field, $cor );
@@ -32,7 +35,15 @@
     $first  = $parts [0] ?? '';
     $second = $parts [1] ?? '';
 
-    $check = padAtTags ( $name, $names, $first, $second, $cor );
+    $check = padAtTag ( $name, $names, $first, $second, $cor );
+    if ( $check !== INF )
+      return $check;
+
+    $check = padAtLevelGroup ( $name, $names, $first, $second, $cor );
+    if ( $check !== INF )
+      return $check;
+
+    $check = padAtProperties ( $name, $names, $first, $second, $cor );
     if ( $check !== INF )
       return $check;
 
@@ -69,18 +80,17 @@
 
     global $pad;
 
-    $idx = 999;
-
     $check = str_replace ( '@*', '', $field );
+
     if ( file_exists ( pad . "at/properties/$check.php") ) {
-      $idx = $pad + $cor - 1;
+      $idx   = padFieldFirstNonTag ( $cor ) + 1 ;
       $check = str_replace ( '@*', "@$idx", $field );
       $check = padAtValue ( $check, $cor );
       if ( $check !== INF )
         return $check; 
     }
 
-    for ( $i=$pad; $i; $i-- ) {
+    for ( $i=$pad; $i>-1; $i-- ) {
  
       $check = str_replace ( '@*', "@$i", $field );
       $check = padAtValue ( $check, $cor );
@@ -106,27 +116,13 @@
 
     $field = str_replace ( '@*', '', $field );
     $names = padExplode ( $field, '.' ); 
+    $name  = reset ( $names );
+    $type  = '';
 
-    $check = padAtSearch ( $GLOBALS ['padDataStore'] ?? [], $names );
+    $check = include pad . 'at/types/_lib/other.php';
     if ( $check !== INF )
       return $check;
-
-    $check = padAtSearch ( $GLOBALS ['padSequenceStore'] ?? [], $names );
-    if ( $check !== INF )
-      return $check;
-
-    $check = padAtSearch ( $GLOBALS, $names );
-    if ( $check !== INF )
-      return $check;
-
-    $check = padAtSpecial ( $names, $cor );
-    if ( $check !== INF )
-      return $check;
-
-    $check = padAtPad ( $names, $cor );
-    if ( $check !== INF )
-      return $check;
-
+   
     return INF;
 
   }
@@ -177,14 +173,14 @@
 
     if ( count ($parts) == 2 ) {
       list ( $first, $second ) = $parts;
-      if ( $first == 'sequence' or $first == 'sequences' )
+      if ( $first == 'sequence' or $first == 'sequences' or $first == 'data' )
         if ( isset ( $store [$second] ) )
           return padAtSearch ( $store [$second], $names );
     }
 
     if ( count ($parts) == 1 ) {      
       $name = reset ($parts);
-      if ( $name == 'sequence' or $name == 'sequences' )
+      if ( $name == 'sequence' or $name == 'sequences' or $name == 'data' )
         return padAtSearch ( $store, $names );
     }
 
@@ -225,22 +221,23 @@
   }
 
 
-  function padAtTags ( $name, $names, $first, $second, $cor ) {
-
-                     $padIdx = padAtIsTag   ( $first, $cor );
-    if ( ! $padIdx ) $padIdx = padAtIsLevel ( $first, $cor );
-
-    if ( ! $padIdx )
-      return INF;
+  function padAtTag ( $name, $names, $first, $second, $cor ) {
 
     if ( $second )
-      return padAtGroup ( $second, $name, $names, $padIdx, $cor );
+      return INF;
 
-    $current = padAtProperty ( $names, $padIdx, $cor );
-    if ( $current !== INF ) 
-      return $current;
+    $padIdx = padAtIdx ( $first, $cor );
 
     return include pad . 'at/any/tag.php';
+
+  }
+
+
+  function padAtLevelGroup ( $name, $names, $level, $group, $cor ) {  
+
+    $padIdx = padAtIdx ( $level, $cor );
+
+    return padAtGroup ( $group, $name, $names, $padIdx );
 
   }
 
@@ -251,14 +248,11 @@
 
     if ( ! $second and file_exists ( pad . "at/groups/$first.php") )
 
-      for ( $padLoop=$pad; $padLoop; $padLoop-- ) {
-
-        $padIdx = $padLoop + $cor;
-
-        $check = padAtGroup ( $first, $name, $names, $padIdx, $cor );
+      for ( $i=$pad; $i>-1; $i-- ) {
+        $check = padAtGroup ( $first, $name, $names, $i+$cor );
+        $GLOBALS ['a1'] [] = [$first, $names, $i, $cor, $check];
         if ( $check !== INF )
           return $check;
-
       }
 
     return INF;
@@ -266,35 +260,55 @@
   }
 
 
-  function padAtProperty ( $names, $padIdx, $cor ) {
+  function padAtGroup ( $group, $name, $names, $padIdx ) {
 
-    $name = reset ( $names );
-
-    if ( ! file_exists ( pad . "at/properties/$name.php") ) 
-      return INF;
-
-    if     ( count ( $names ) == 1 ) $parm = '';
-    elseif ( count ( $names ) == 2 ) $parm = end ($names);
-    else                             return INF;
-
-    if ( padXapp )
-      padXapp ( 'at', 'properties', $name );
-
-
-    return include pad . "at/properties/$name.php";
-
-  }
-
-
-  function padAtGroup ( $group, $name, $names, $padIdx, $cor ) {
-
-    if ( ! file_exists ( pad . "at/groups/$group.php" ) )
+    if ( ! $group or ! $padIdx or ! file_exists ( pad . "at/groups/$group.php" ) )
       return INF;
 
     if ( padXapp )
       padXapp ( 'at', 'groups', $group );
 
     return include pad . "at/groups/$group.php";
+
+  }
+
+
+  function padAtProperties ( $name, $names, $first, $second, $cor ) {
+
+    if ( $second )
+      return INF;
+    
+    $padIdx = padAtIdx ( $first, $cor );
+
+    $current = padAtProperty ( $names, $padIdx );
+    if ( $current !== INF ) 
+      return $current;
+
+    return INF;
+
+  }
+
+
+  function padAtProperty ( $names, $padIdx ) {
+
+    if     ( count ( $names ) == 1 ) $parm = '';
+    elseif ( count ( $names ) == 2 ) $parm = end ($names);
+    else                             return INF;
+
+    $name = reset ( $names );
+
+    if ( ! $padIdx or ! file_exists ( pad . "at/properties/$name.php") ) 
+      return INF;
+
+    $return = include pad . "at/properties/$name.php";
+
+    if ( $return !== INF )
+      padAtSetTag ();
+
+    if ( padXapp )
+      padXapp ( 'at', 'properties', $name );
+
+    return $return;
 
   }
 
@@ -316,7 +330,7 @@
 
     global $padDataStore;
 
-    $data = implode ( '.', $parts );
+    $data = implode ( ':', $parts );
 
     if ( isset ( $padDataStore [$data] ) )
 
@@ -324,11 +338,10 @@
     
     else {
 
-      $store = padData ( $data );
-      $check = padAtSearch ( $store, $names );
+      $check = padAtDataNew ( $data, $names );
 
       if ( $check !== INF ) 
-        $padDataStore [$data] = $store;
+        return $check;
 
     }
 

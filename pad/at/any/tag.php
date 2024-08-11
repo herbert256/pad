@@ -1,5 +1,8 @@
 <?php
 
+  if ( ! $padIdx )
+    return INF;
+
   global $padCurrent, $padData, $padTable, $padOpt, $padPrm, $padSetLvl, $padLvlFunVar;
 
   $name = end ( $names );
@@ -38,7 +41,7 @@
   if ( $current !== INF ) 
     return $current;
 
-  $current = padAtProperty ($names, $padIdx, $cor );
+  $current = padAtProperty ($names, $padIdx );
   if ( $current !== INF ) 
     return $current;
 

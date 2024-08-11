@@ -7,8 +7,6 @@
   ob_start();
   $padTagResult   = include pad . "types/" . $padType [$pad] . ".php";
   $padTagContent .= ob_get_clean();
-
-  $padTagOrg = $padTagResult;
  
   if ( padSingleValue ( $padTagResult ) ) {
     $padTagContent .= $padTagResult;

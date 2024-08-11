@@ -1,25 +1,12 @@
 <?php
 
-  global $padDataStore;
+  $check = include pad . 'at/types/_lib/check.php';
+  if ( $check !== INF )
+    return $check;
 
-  if ( $type and isset ( $padDataStore [$type] ) ) {
-    $current = padAtSearch ( $padDataStore [$type], $names ); 
-    if ( $current !== INF ) 
-      return $current;
-  }
-
-  foreach ( $padDataStore as $value) {
-    $current = padAtSearch ( $value, $names ); 
-    if ( $current !== INF ) 
-      return $current;
-  }
-
-  if ( $type and ! isset ( $padDataStore [$type] ) ) {
-    $padDataStore [$type] = padData ($type);
-    $current = padAtSearch ( $padDataStore [$type], $names ); 
-    if ( $current !== INF ) 
-      return $current;
-  }
+  $check = include pad . 'at/types/_lib/new.php';
+  if ( $check !== INF )
+    return $check;
 
   return INF;
 

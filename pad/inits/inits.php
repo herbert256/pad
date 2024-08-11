@@ -2,6 +2,8 @@
 
   set_time_limit ( 5 );
 
+  include_once pad . 'inits/const.php';
+
   include pad . 'inits/lib.php';
   include pad . 'inits/clean.php';
   include pad . 'inits/vars.php';
@@ -18,7 +20,6 @@
   include pad . 'inits/cache.php';
   include pad . 'inits/level.php';
   include pad . 'inits/parms.php';
-  include pad . 'inits/options.php';
   include pad . 'inits/app.php';
 
 ?>

@@ -1,5 +1,7 @@
 <?php
 
+  return;
+  
   if     ( $padTagOrg === NULL        ) padXref ( 'result', 'null'     );
   elseif ( $padTagOrg === FALSE       ) padXref ( 'result', 'false'    );
   elseif ( $padTagOrg === TRUE        ) padXref ( 'result', 'true'     );

@@ -1,8 +1,7 @@
 <?php
 
-  if     ( $padOptions == 'app'      ) $padOptionsWalk = $padOptionsAppStart [$pad];
-  elseif ( $padOptions == 'callback' ) $padOptionsWalk = $padOptionsCallback;
-  else                                 $padOptionsWalk = $GLOBALS [ 'padOptions' . ucfirst($padOptions) ];
+  if     ( $padOptions == 'app' ) $padOptionsWalk = $padOptionsAppStart [$pad];
+  else                            $padOptionsWalk = constant ( 'padOptions' . ucfirst($padOptions) );
    
   if     ( $padOptions == 'start'    ) $padContent = $padBase   [$pad];
   elseif ( $padOptions == 'end'      ) $padContent = $padResult [$pad];

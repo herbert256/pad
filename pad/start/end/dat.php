@@ -2,7 +2,7 @@
 
   for ( $padStrIdx = 0; $padStrIdx < $pad; $padStrIdx++ ) {
 
-    foreach ( $padStrDat as $padStrVal ) 
+    foreach ( padStrDat as $padStrVal ) 
       $GLOBALS [$padStrVal] [$padStrIdx] = $padStrSav [$padStrCnt] [$padStrVal] [$padStrIdx];
 
     reset ( $padData [$padStrIdx] );

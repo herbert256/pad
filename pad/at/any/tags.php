@@ -2,9 +2,9 @@
 
   global $pad;
 
-  for ( $padLoop=$pad; $padLoop; $padLoop-- ) {
+  for ( $i=$pad; $i>-1; $i-- ) {
 
-    $padIdx = $padLoop + $cor;
+    $padIdx = $i + $cor;
 
     $check = include pad . 'at/any/tag.php';
     if ( $check !== INF )

@@ -1,25 +1,32 @@
 <?php
 
 
-  function padAtIsTag ($name, $cor) {
+   function padAtDataNew ( $name, $names ) {
 
-    global $pad, $padName;
+    global $padDataStore;
 
-    for ( $i=$pad; $i; $i-- ) 
-      if ( $padName [$i] == $name )
-        return $i;
+    $padDataStore [$name] = padData ($name);
 
-    return FALSE;
+    $check = padAtSearch ( $padDataStore [$name], $names ); 
+
+    if ( $check === INF ) 
+      unset ( $padDataStore [$name] );
+
+    return $check;
 
   }
 
 
-  function padAtIsLevel ( $field, $cor ) {
+  function padAtIdx ( $level, $cor ) {
 
-    global $pad;
+    global $pad, $padName;
 
-    if ( strlen($field) > 1 and substr($field,0,1) == '-' and is_numeric(substr($field,1)) ) {
-      $idx = $pad + $field;
+    for ( $i=$pad; $i>-1; $i-- ) 
+      if ( $padName [$i] == $level )
+        return $i;
+
+    if ( strlen($level) > 1 and substr($level,0,1) == '-' and is_numeric(substr($level,1)) ) {
+      $idx = $pad + $level;
       if ( $cor )
         $idx = $idx + $cor;
       if ( $idx > 0 and $idx <= $pad )
@@ -27,12 +34,12 @@
 
     }
 
-    if ( is_numeric($field) ) 
-      if ($field > 0 and $field <= $pad )
-        return $field;
+    if ( is_numeric ($level) ) 
+      if ($level >= 0 and $level <= $pad )
+        return $level;
 
     return FALSE;
-
+    
   }
 
 
@@ -45,6 +52,15 @@
     $keys = array_keys ( $search );
 
     return $keys [ $index - 1 ] ?? '';
+
+  }
+
+
+  function padAtSetTag () {
+
+    global $pad, $padType;
+
+    $padType [$pad] = 'tag' ;
 
   }
 

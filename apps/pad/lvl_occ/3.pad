@@ -5,7 +5,7 @@
   {row}
     <tr>
       {column}
-        <td>{echo ($row*10) + $column}</td>      
+        <td>{$row | @ * 10 | @ + $column}</td>      
       {/column}
     </tr>
   {/row}

@@ -22,5 +22,5 @@
     $GLOBALS ['padName'] [$GLOBALS['pad']] = $padLocalName;
 
   return padData ( $padLocalData, $padLocalExt, $padLocalName );
- 
+
 ?>

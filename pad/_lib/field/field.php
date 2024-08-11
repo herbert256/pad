@@ -1,11 +1,11 @@
 <?php
 
 
-  function padFieldCheck   ( $parm, $lvl=0 )         { return padField ( $parm, 1, $lvl        ); } 
-  function padFieldValue   ( $parm, $lvl=0 )         { return padField ( $parm, 2, $lvl        ); } 
+  function padFieldCheck   ( $parm, $lvl=0 ) { return padField ( $parm, 1, $lvl  ); } 
+  function padFieldValue   ( $parm, $lvl=0 ) { return padField ( $parm, 2, $lvl  ); } 
  
-  function padArrayCheck   ( $parm, $lvl=0 )         { return padField ( $parm, 3, $lvl        ); } 
-  function padArrayValue   ( $parm, $lvl=0 )         { return padField ( $parm, 4, $lvl        ); } 
+  function padArrayCheck   ( $parm, $lvl=0 ) { return padField ( $parm, 3, $lvl  ); } 
+  function padArrayValue   ( $parm, $lvl=0 ) { return padField ( $parm, 4, $lvl  ); } 
   
   function padOptCheck     ( $parm )         { return padField ( $parm, 5        ); } 
   function padOptValue     ( $parm )         { return padField ( $parm, 6        ); } 
@@ -21,15 +21,9 @@
     if ( padXref ) 
       include pad . 'info/types/xref/events/field.php';
 
-    if ( str_starts_with ($field, '@') and substr_count($field, '@') == 1 )  $field .= '@*';
-    if ( str_contains ( $field, '.' ) and ! str_contains ( $field, '@' )  )  $field .= '@*';
-
-    if ( in_array ( substr ( $field, 0, 1 ), ['$','!','#','&','?','@'] ) ) 
-     $field = substr ( $field, 1 );
-
-    if ( str_contains ( $field, '@' ) )
+    if ( str_contains ( $field, '@' ) or str_contains ( $field, '.' ) )
     
-      $value = padAt ( $field, $lvl );
+      $value = padFieldAt ( $field, $lvl );
 
     else {
 
@@ -68,6 +62,19 @@
       include pad . 'info/events/field.php';    
 
     return $return;
+
+  }
+
+
+  function padFieldAt ( $field, $lvl ) {
+
+    if ( str_starts_with ($field, '@') and substr_count($field, '@') == 1 )  
+      $field .= '@*';
+
+    if ( str_contains ( $field, '.' ) and ! str_contains ( $field, '@' )  )  
+      $field .= '@*';
+    
+    return padAt ( $field, $lvl );
 
   }
 

@@ -31,11 +31,11 @@
   include pad . 'level/tag.php';
 
   if ( ! $padTypeResult and isset ( $padStartOptions ['optional'] ) )
-    if ( padValidTag ($padWords [0]) or padAtCheck ($padWords [0]) )
+    if ( padValidTag ($padWords [0]) )
       return include pad . 'options/optional.php';
   
   if ( ! $padTypeResult ) 
-      return padIgnore ('type');
+    return padIgnore ('type');
 
   include pad . 'level/start.php';
  
