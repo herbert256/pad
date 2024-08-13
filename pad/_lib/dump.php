@@ -1,6 +1,5 @@
 <?php
 
-
   function padDump ( $error='' ) {
 
     set_error_handler ( 'padThrow' );

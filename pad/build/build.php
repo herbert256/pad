@@ -1,16 +1,20 @@
 <?php
 
-  include pad . 'build/dirs.php';
+  if ( ! $padCatch )
+    return include pad . 'build/getBuild.php';
 
-  $padBuildLib  = include pad . 'build/_lib.php';  
-  $padBuildBase = include pad . 'build/base.php';
-  $padBuildPage = include pad . 'build/page.php';
+  set_error_handler ( 'padThrow' );
 
-  $padBase [$pad] = $padBuildLib . str_replace ( '@pad@', $padBuildPage, $padBuildBase );
+  try {
 
-  if ( padTrace )
-    include pad . 'info/events/build.php';
- 
-  include pad . 'occurrence/start.php';
+    include pad . 'build/getBuild.php';
+
+  } catch ( Throwable $padCatchException ) {
+
+    include pad . 'catch/build.php';
+
+  }
+
+  restore_error_handler ();
 
 ?>

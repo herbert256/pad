@@ -17,6 +17,19 @@
   $padErrorLog    = TRUE;   //  Report errors to Apache error log
   $padErrorReport = TRUE;   //  Report errors to the DATA directory
 
+  // Also an Error handler system.
+  // Catch 'weak' parts, replace that part with an empty string if there is an error.
+  // The parts are: build, level, tag, callback
+  // If active it will override above settings ( except when $padErrorAction is 'php' )
+
+  $padCatch = TRUE; 
+
+  // Check PAD syntax and
+
+  $padSyntax           = TRUE;   
+  $padSyntaxDefaultVar = '???';   
+
+
   // info/track/trace/xref etc
   // If set then a config file with the same name will be load from the sub folder info 
 

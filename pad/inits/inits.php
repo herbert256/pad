@@ -3,8 +3,8 @@
   set_time_limit ( 5 );
 
   include_once pad . 'inits/const.php';
+  include_once pad . 'inits/lib.php';
 
-  include pad . 'inits/lib.php';
   include pad . 'inits/clean.php';
   include pad . 'inits/vars.php';
   include pad . 'inits/page.php';

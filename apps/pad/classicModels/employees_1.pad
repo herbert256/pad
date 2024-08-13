@@ -10,13 +10,13 @@
            {$employees:firstName}  
            ({$employees:employeeNumber}) 
       </td>
-      <td> {$managers:lastName | noError},  
-           {$managers:firstName | noError}   
-           ({$managers:employeeNumber | noError})  
+      <td> {$managers:lastName | optional},  
+           {$managers:firstName | optional}   
+           ({$managers:employeeNumber | optional})  
       </td>
-      <td> {$bosses:lastName | noError},    
-           {$bosses:firstName | noError}     
-           ({$bosses:employeeNumber | noError})   
+      <td> {$bosses:lastName | optional},    
+           {$bosses:firstName | optional}     
+           ({$bosses:employeeNumber | optional})   
      </td>
     </tr>
   {/employees}

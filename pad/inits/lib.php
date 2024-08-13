@@ -1,15 +1,33 @@
 <?php
 
-  $padLibDirectory = new RecursiveDirectoryIterator ( pad . '_lib' );
-  $padLibIterator  = new RecursiveIteratorIterator  ( $padLibDirectory );
+  set_error_handler ( 
+    function ( $errno, $errstr, $errfile, $errline ) {
+      throw new ErrorException ( $errstr, $errno, 0, $errfile, $errline);
+    }
+  );
 
-  foreach ( $padLibIterator as $padLibOne ) {
+  try {
 
-    $padLibFile = str_replace ('\\', '/' , $padLibOne->getPathname() );
+    $padLibDirectory = new RecursiveDirectoryIterator ( pad . '_lib' );
+    $padLibIterator  = new RecursiveIteratorIterator  ( $padLibDirectory );
 
-    if ( substr($padLibFile, -4) == '.php' )
-      include_once $padLibFile;
+    foreach ( $padLibIterator as $padLibOne ) {
+
+      $padLibFile = str_replace ('\\', '/' , $padLibOne->getPathname() );
+
+      if ( substr($padLibFile, -4) == '.php' )
+        include_once $padLibFile;
+
+    }
+    
+  } catch ( Throwable $e ) {
+
+    echo $e->getFile() . ':' .  $e->getLine() . ' ' . $e->getMessage() ;
+
+    exit;
 
   }
+
+  restore_error_handler ();
 
 ?>

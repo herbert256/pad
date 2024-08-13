@@ -1,0 +1,120 @@
+<table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+
+<p>
+PAD parses on the fly, on demand, it searches for the first <b>}</b>, then it takes the first </b>{</b> before it, and analyses it to see if it is a PAD tag of PAD variable.
+</p>
+
+<p>
+In below example, the <code style="color: #000000"><b>{<font color="green"><font color="red">$</font>myVar</font>}</b></code> part is parsed first and executed, lets assume <code style="color: #000000"><b>{<font color="green"><font color="red">$</font>myVar</font>}</b></code> has the value ABC.
+</p>
+
+
+
+ 
+
+
+
+  
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+
+      <tr>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">myOption=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>myVar</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br>   ....<br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<p>
+The result is that then below is parsed, and now it will be the <b>{</b><b>pad</b><b>}</b> tag that is executed.
+</p>
+
+
+
+ 
+
+
+
+  
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+
+      <tr>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">myOption=<font color="black">'</font>ABC<font color="black">'</font></font>}</b><br>   ....<br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<p>
+If you do not put quotes around <code style="color: #000000"><b>{<font color="green"><font color="red">$</font>myVar</font>}</b></code> then below will be executed, and PAD will give the error that the constant ABC does not exists
+</p>
+
+
+
+ 
+
+
+
+  
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+
+      <tr>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">myOption=ABC</font>}</b><br>   ....<br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+
+</td>
+  </tr>
+</table>

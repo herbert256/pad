@@ -2,6 +2,6 @@
 
   $padCallback = "init";
   
-  include pad . 'options/go/callback.php' ;
+  include pad . 'callback/callback.php' ;
   
 ?>
