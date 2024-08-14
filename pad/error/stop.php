@@ -1,7 +1,7 @@
 <?php
 
 
-  set_error_handler ( 'padThrow' );
+  set_error_handler ( 'padErrorThrow' );
 
   try {
 
@@ -23,7 +23,7 @@
 
   function padErrorStopCatch ( $error1, $e2, $e3 ) {
     
-    set_error_handler ( 'padThrow' );
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -49,7 +49,7 @@
 
   function padErrorStopCatchCatch ( $error1, $e2, $e3, $e4 ) {
     
-    set_error_handler ( 'padThrow' );
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -77,7 +77,7 @@
 
   function padErrorStopCatchCatchCatch ( $error1, $e2, $e3, $e4, $e5 ) {
     
-    set_error_handler ( 'padThrow' );
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -104,7 +104,7 @@
     if ( ! $info )
       return;
 
-    set_error_handler ( 'padThrow' );
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -125,7 +125,7 @@
 
   function padErrorLogCatch ( $error, $e2 ) {
 
-    set_error_handler ( 'padThrow' );
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -148,7 +148,7 @@
     if ( ! $info )
       return;
 
-    set_error_handler ( 'padThrow' );
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -169,7 +169,7 @@
 
   function padErrorFileCatch ( $e, $info ) {
 
-    set_error_handler ( 'padThrow' );
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -189,7 +189,7 @@
 
   function padErrorExit ( $error ) {
 
-    set_error_handler ( 'padThrow' );
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -213,7 +213,7 @@
 
   function padErrorExitCatch ( $error, $e ) {
 
-    set_error_handler ( 'padThrow' );
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -236,7 +236,7 @@
     if ( ! $info )
       return;
 
-    set_error_handler ( 'padThrow' );
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -254,16 +254,9 @@
   }
 
 
-  function padErrorGet ( $e ) {
-
-    return $e->getFile() . ':' .  $e->getLine() . ' ' . $e->getMessage() ;
-
-  }
-
-
   function padError500 ( ) {
 
-    set_error_handler ( 'padThrow' );
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 

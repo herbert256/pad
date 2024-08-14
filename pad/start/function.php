@@ -10,8 +10,7 @@
   foreach ( $GLOBALS as $padStrKey => $padStrVal )
     global $$padStrKey;
 
-  $padPadSave [$pad] = $padPad [$pad];
-  $padLvlFun  [$pad] = $padStrFunCnt;
+  $padLvlFun [$pad] = $padStrFunCnt;
 
   $padStrFunResult = include pad . 'start/pad.php'; 
 
@@ -22,8 +21,6 @@
           $GLOBALS [$padStrKey] = $padStrVal;
 
   $padStrFunCnt--;
-
-  $padPad [$pad] = $padPadSave [$pad];
 
   return $padStrFunResult;
 

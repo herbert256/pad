@@ -8,7 +8,7 @@
     $GLOBALS ['padStrCln'] = FALSE;
     $GLOBALS ['padStrBld'] = 'code';
 
-    return include pad . 'start/function.php';
+    return include pad . 'start/enter/function.php';
 
   }
 
@@ -20,7 +20,7 @@
     $GLOBALS ['padStrCln'] = TRUE;
     $GLOBALS ['padStrBld'] = 'code';
 
-    return include pad . 'start/function.php';
+    return include pad . 'start/enter/function.php';
 
   }
 
@@ -57,17 +57,6 @@
 
     if ( $condition ) $true  = padContentSet ( $true,  $newTrue );
     else              $false = padContentSet ( $false, $newFalse );
-
-  }
-
-
-  function padThrow ( $severity, $message, $filename, $lineno ) {
-
-    if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
-      return FALSE;
-
-    if ( error_reporting() & $severity )
-      throw new ErrorException ( $message, 0, $severity, $filename, $lineno );
 
   }
 
@@ -148,7 +137,7 @@
 
     global $padBuffer;
 
-    set_error_handler ( 'padThrow' );
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -556,7 +545,7 @@
 
   function padJson ( $data ) {
 
-    set_error_handler ( 'padThrow' );
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 

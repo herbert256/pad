@@ -102,7 +102,7 @@
 
     $output ['options'] = $options;      
 
-    set_error_handler ( 'padThrow' );
+    set_error_handler ( 'padErrorThrow' );
     $errorReporting = error_reporting (0);
 
     try {

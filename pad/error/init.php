@@ -5,7 +5,7 @@
 
   $padErrorInit = TRUE;
 
-  include pad . "error/$padErrorAction/_lib.php";
-  include pad . "error/$padErrorAction/error.php";
+  include pad . "error/types/$padErrorAction/_lib.php";
+  include pad . "error/types/$padErrorAction/error.php";
  
 ?>

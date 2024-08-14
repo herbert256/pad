@@ -20,15 +20,13 @@
   // Also an Error handler system.
   // Catch 'weak' parts, replace that part with an empty string if there is an error.
   // The parts are: build, level, tag, callback
-  // If active it will override above settings ( except when $padErrorAction is 'php' )
+  // If active it will override above settings ( except when $padErrorAction is 'php' or 'boot' )
 
   $padCatch = TRUE; 
 
-  // Check PAD syntax and
+  // Check PAD syntax
 
-  $padSyntax           = TRUE;   
-  $padSyntaxDefaultVar = '???';   
-
+  $padSyntax =  TRUE;
 
   // info/track/trace/xref etc
   // If set then a config file with the same name will be load from the sub folder info 

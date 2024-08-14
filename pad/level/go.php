@@ -1,20 +1,30 @@
 <?php
 
-  if ( ! $padCatch )
-    return include pad . 'level/getTag.php';
+  $padParm       = $padOpt [$pad] [1];
+  $padContent    = $padBase [$pad];
+  $padTagContent = '';
 
-  set_error_handler ( 'padThrow' );
-
-  try {
-
-    include pad . 'level/getTag.php';
-
-  } catch ( Throwable $padCatchException ) {
-
-    include pad . 'catch/tag.php';
-
+  ob_start();
+  $padTagResult   = include pad . "types/" . $padType [$pad] . ".php";
+  $padTagContent .= ob_get_clean();
+ 
+  if ( padSingleValue ( $padTagResult ) ) {
+    $padTagContent .= $padTagResult;
+    $padTagResult = TRUE;
   }
 
-  restore_error_handler ();
+  include pad . 'level/flags.php';
+
+  if ( padInfo )
+    include pad . 'info/events/go.php';
+
+  if ( $padTagContent )
+    padContentMerge ( $padContent, $padFalse, $padTagContent, $padHit [$pad] );
+
+  if ( padTagParm ('content') ) {
+    $padContentOption = padTagParm('content');
+    $padContentData   = $padContentStore [$padContentOption];
+    padContentMerge ( $padContent, $padFalse, $padContentData, $padHit [$pad] );
+  }
 
 ?>

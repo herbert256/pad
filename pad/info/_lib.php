@@ -64,7 +64,7 @@
 
   function padInfoMkDir( $dir ) {
 
-   set_error_handler ( 'padThrow' );
+   set_error_handler ( 'padErrorThrow' );
 
     try {
 

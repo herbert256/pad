@@ -1,5 +1,7 @@
 <?php
 
+  $GLOBALS ['catch'] = '1';
+
   $padDisplayErrors  = ini_set ('display_errors', 0);
   $padErrorReporting = error_reporting (E_ALL);
 

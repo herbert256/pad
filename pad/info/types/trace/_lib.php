@@ -39,7 +39,7 @@
     if ( ! function_exists ( 'padTrace') )
       return;
 
-    set_error_handler ( 'padThrow' );
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 

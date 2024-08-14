@@ -3,6 +3,8 @@
 
   function padErrorHandler ( $type, $error, $file, $line ) {
  
+    $GLOBALS ['catch'] .= '-E1';
+
     if ( error_reporting() & $type )
       return padErrorGo ( 'ERROR: ' . $error, $file, $line );
  
@@ -10,6 +12,8 @@
 
 
   function padErrorException ( $error ) {
+
+    $GLOBALS ['catch'] .= '-E2';
 
     $GLOBALS ['padErrorException'] = $error;
 
@@ -19,6 +23,8 @@
 
 
   function padErrorShutdown () {
+
+    $GLOBALS ['catch'] .= '-E3';
 
     if ( isset ( $GLOBALS ['padSkipShutdown'] ) )
       return;

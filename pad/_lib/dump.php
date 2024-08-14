@@ -2,7 +2,7 @@
 
   function padDump ( $error='' ) {
 
-    set_error_handler ( 'padThrow' );
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -444,7 +444,7 @@
 
     $GLOBALS ['padDumpToDirDone'] = $dir;
 
-    set_error_handler ( 'padThrow' );
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -475,7 +475,7 @@
 
   function padDumpToDirDoneGo ( $info, $dir, $done ) {
 
-    set_error_handler ( 'padThrow' );
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -525,7 +525,7 @@
 
   function padDumpToDirCatch ( $info, $e, $dir ) {
 
-    set_error_handler ( 'padThrow' );
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
@@ -547,7 +547,7 @@
 
   function padDumpToDirCatchCatch ( $info, $e1, $e2 ) {
 
-    set_error_handler ( 'padThrow' );
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 

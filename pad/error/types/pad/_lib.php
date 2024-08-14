@@ -3,10 +3,12 @@
 
   function padErrorGo ( $error, $file, $line ) {
 
+    $GLOBALS ['catch'] .= '-GO';
+
     if ( $GLOBALS ['padCatch'] )
       throw new ErrorException ( $error, 0, 0, $file, $line );
     
-    set_error_handler ( 'padThrow' );
+    set_error_handler ( 'padErrorThrow' );
 
     try {
 
