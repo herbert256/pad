@@ -48,7 +48,7 @@
     foreach ( $dir as $one ) {
 
       $path = padCorrectPath ( $one->getPathname() );
-      $file = str_replace ( padApp, '', $path );
+      $file = str_replace ( '/app/', '', $path );
 
       if ( substr ( $path, -1   ) == '.'        ) continue;
       if (  str_ends_with ( $file, '.DS_Store') ) continue;
@@ -117,7 +117,7 @@
 
     $list = [];
 
-    $dir = padApp . $dir;
+    $dir = '/app/' . $dir;
 
     $directory = new DirectoryIterator ( $dir       );
     $iterator  = new IteratorIterator  ( $directory );

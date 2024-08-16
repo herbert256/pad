@@ -1,16 +1,16 @@
 <?php
 
-  $padXmlParent = $padXmlParentOcc = 0;
+  $padInfXmlParent = $padInfXmlParentOcc = 0;
 
   if ( $pad <= 0 ) 
     return;
 
-  $padXmlParent    = $padXmlLevel [$pad-1];
-  $padXmlParentOcc = $padOccur [$pad-1];
+  $padInfXmlParent    = $padInfXmlLevel [$pad-1];
+  $padInfXmlParentOcc = $padOccur [$pad-1];
 
-  $padXmlTree [$padXmlParent] ['childs'] = TRUE;
+  $padInfXmlTree [$padInfXmlParent] ['childs'] = TRUE;
 
-  if ( $padXmlParentOcc > 0 and $padXmlParentOcc < 99999 )
-    $padXmlTree [$padXmlParent] ['occurs'] [$padXmlParentOcc] ['childs'] = TRUE;
+  if ( $padInfXmlParentOcc > 0 and $padInfXmlParentOcc < 99999 )
+    $padInfXmlTree [$padInfXmlParent] ['occurs'] [$padInfXmlParentOcc] ['childs'] = TRUE;
 
 ?>

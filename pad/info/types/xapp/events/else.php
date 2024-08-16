@@ -1,5 +1,0 @@
-<?php
-
-  padXapp ( 'constructs', 'else' );
-  
-?>

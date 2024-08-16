@@ -1,22 +1,22 @@
 <?php
 
-  if ( ! $padXmlParms )
+  if ( ! $padInfXmlParms )
     return;
   
-  $padXmlLvl = $padXmlLevel [$pad];
-  $padXmlOcc = $padOccur    [$pad];
+  $padInfXmlLvl = $padInfXmlLevel [$pad];
+  $padInfXmlOcc = $padOccur    [$pad];
 
   foreach ( $padOpt [$pad] as $padK => $padV )
     if ( $padK and $padV )
-      $padXmlTree [$padXmlLvl] ['parms'] ['opt'] [$padK] = $padV;
+      $padInfXmlTree [$padInfXmlLvl] ['parms'] ['opt'] [$padK] = $padV;
 
   foreach ( $padPrm [$pad] as $padK => $padV )
-    $padXmlTree [$padXmlLvl] ['parms'] ['prm'] [$padK] = $padV;
+    $padInfXmlTree [$padInfXmlLvl] ['parms'] ['prm'] [$padK] = $padV;
   
   foreach ( $padSetLvl [$pad] as $padK => $padV )
-    $padXmlTree [$padXmlLvl] ['parms'] ['lvl'] [$padK] = $padV;
+    $padInfXmlTree [$padInfXmlLvl] ['parms'] ['lvl'] [$padK] = $padV;
   
   foreach ( $padSetOcc [$pad] as $padK => $padV )
-    $padXmlTree [$padXmlLvl] ['parms'] ['occ'] [$padK] = $padV;
+    $padInfXmlTree [$padInfXmlLvl] ['parms'] ['occ'] [$padK] = $padV;
   
 ?>

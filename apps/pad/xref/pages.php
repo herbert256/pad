@@ -4,7 +4,7 @@
   if ( ! isset ( $type  ) ) $type  = 'Tags';
   if ( ! isset ( $item  ) ) $item  = 'if';
 
-  $go = file ( padApp . "_xref/$pages", FILE_IGNORE_NEW_LINES );
+  $go = file ( "/app/_xref/$pages", FILE_IGNORE_NEW_LINES );
 
   if ( count ($go) == 1 )
     padRedirect ( 'xref/go',

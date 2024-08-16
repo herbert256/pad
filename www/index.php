@@ -12,16 +12,6 @@
   //
   //  =============================================================================
 
-  $padOS = substr ( strtolower ( php_uname ('s') ), 0, 3 );
-
-  if     ( $padOS == 'dar' ) $padHome = '/Users/herbert';
-  elseif ( $padOS == 'win' ) $padHome = '/xampp';
-  else                       $padHome = '/home/herbert';
-
-  define ( 'pad',     "$padHome/pad/pad/"      );   // Home of PAD itself
-  define ( 'padApp',  "$padHome/pad/apps/pad/" );   // The application files
-  define ( 'padData', "$padHome/data/"         );   // Data locaction, used for logs/cache/errors/etc.
-  
-  include pad . 'pad.php';
+  include '/pad/pad.php';
 
 ?>

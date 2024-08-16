@@ -20,7 +20,7 @@
   elseif ( $padSequence === TRUE  ) $padSequence = $padSeqLoop;
 
   if ( count ($padSeqOprGo) ) {
-    $padSequence = include pad . 'sequence/operations/operations.php';
+    $padSequence = include '/pad/sequence/operations/operations.php';
     if ( $padSequence === TRUE ) 
       return TRUE;
   }

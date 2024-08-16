@@ -2,6 +2,6 @@
 
   $padCallback = "row";
 
-  include pad . 'catch/callback.php' ;
+  include '/pad/catch/callback.php' ;
   
 ?>

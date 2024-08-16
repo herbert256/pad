@@ -1,24 +1,24 @@
 <?php
 
-  include pad . 'info/events/resultOcc.php';     
+  include '/pad/info/events/resultOcc.php';     
 
-  if ( ! isset ( $padTraceLevel [$pad] ) ) padTraceSet ( $pad );
-  if ( ! $padTraceLevel [$pad]           ) padTraceSet ( $pad );
+  if ( ! isset ( $padInfTraceLevel [$pad] ) ) padTraceSet ( $pad );
+  if ( ! $padInfTraceLevel [$pad]           ) padTraceSet ( $pad );
 
   $padI = $padOccur [$pad] ?? 0;
 
-  if ( ! isset ($padTraceOccurChilds [$pad]         ) ) $padTraceOccurChilds [$pad] [$padI] = 0;
-  if ( ! isset ($padTraceOccurChilds [$pad] [$padI] ) ) $padTraceOccurChilds [$pad] [$padI] = 0;
+  if ( ! isset ($padInfTraceOccurChilds [$pad]         ) ) $padInfTraceOccurChilds [$pad] [$padI] = 0;
+  if ( ! isset ($padInfTraceOccurChilds [$pad] [$padI] ) ) $padInfTraceOccurChilds [$pad] [$padI] = 0;
 
-  if ( $padTraceStartEndOcc )
-    padTrace ( 'occur', 'end' );
+  if ( $padInfTraceStartEndOcc )
+   $GLOBALS ['padInfo']( 'occur', 'end' );
 
-  if ( $padTraceLocalChk )
-    padTraceCheckLocal ( $padTraceLevel [$pad] . "/$padI" );
+  if ( $padInfTraceLocalChk )
+    padTraceCheckLocal ( $padInfTraceLevel [$pad] . "/$padI" );
   
-  if ( $padTraceChilds )
-    padTraceChilds ( $padTraceLevel [$pad] . "/$padI", $padTraceOccurChilds [$pad] [$padI], 'occur' );
+  if ( $padInfTraceChilds )
+    padTraceChilds ( $padInfTraceLevel [$pad] . "/$padI", $padInfTraceOccurChilds [$pad] [$padI], 'occur' );
 
-  $padTraceOccurChilds [$pad] [$padI] = 0;
+  $padInfTraceOccurChilds [$pad] [$padI] = 0;
    
 ?>

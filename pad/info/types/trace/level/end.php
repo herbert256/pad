@@ -1,36 +1,36 @@
 <?php
 
-  include pad . 'info/events/result.php';   
+  include '/pad/info/events/result.php';   
   
-  if ( ! isset ( $padTraceLevel [$pad] ) ) padTraceSet ( $pad );
-  if ( ! $padTraceLevel [$pad]           ) padTraceSet ( $pad );
+  if ( ! isset ( $padInfTraceLevel [$pad] ) ) padTraceSet ( $pad );
+  if ( ! $padInfTraceLevel [$pad]           ) padTraceSet ( $pad );
 
-  if ( $padTraceStartEndLvl )
-    padTrace ( 'level', 'end' );
+  if ( $padInfTraceStartEndLvl )
+   $GLOBALS ['padInfo']( 'level', 'end' );
 
-  if ( $padTraceStatus )
+  if ( $padInfTraceStatus )
     padTraceStatus ( );
 
-  if ( $padTraceLocalChk ) {
-    padTraceCheckLocal ( $padTraceLevel [$pad] . '/0'     );
-    padTraceCheckLocal ( $padTraceLevel [$pad] . '/inits' );
-    padTraceCheckLocal ( $padTraceLevel [$pad]            );
-    padTraceCheckLocal ( $padTraceLevel [$pad] . '/99999' );
-    padTraceCheckLocal ( $padTraceLevel [$pad] . '/exits' );
+  if ( $padInfTraceLocalChk ) {
+    padTraceCheckLocal ( $padInfTraceLevel [$pad] . '/0'     );
+    padTraceCheckLocal ( $padInfTraceLevel [$pad] . '/inits' );
+    padTraceCheckLocal ( $padInfTraceLevel [$pad]            );
+    padTraceCheckLocal ( $padInfTraceLevel [$pad] . '/99999' );
+    padTraceCheckLocal ( $padInfTraceLevel [$pad] . '/exits' );
   }
   
-  if ( ! isset ( $padTraceLevelChilds [$pad] ) ) 
-    $padTraceLevelChilds [$pad] = 0;
+  if ( ! isset ( $padInfTraceLevelChilds [$pad] ) ) 
+    $padInfTraceLevelChilds [$pad] = 0;
 
-  if ( $padTraceChilds ) 
-    padTraceChilds ( $padTraceLevel [$pad], $padTraceLevelChilds [$pad], 'level' );
+  if ( $padInfTraceChilds ) 
+    padTraceChilds ( $padInfTraceLevel [$pad], $padInfTraceLevelChilds [$pad], 'level' );
 
-  if ( $pad > 0 and ! $padTraceKeepEmpty and $padTraceLevel [$pad] and ! $padTraceLevelChilds [$pad] )
-    padTraceDeleteDir ( padData . $padTraceDir . $padTraceLevel [$pad] . '/' ); 
+  if ( $pad > 0 and ! $padInfTraceKeepEmpty and $padInfTraceLevel [$pad] and ! $padInfTraceLevelChilds [$pad] )
+    padTraceDeleteDir ( '/data/' . $padInfTraceDir . $padInfTraceLevel [$pad] . '/' ); 
 
-  $padTraceLevel [$pad] = '';
+  $padInfTraceLevel [$pad] = '';
 
-  $padTraceLevelChilds [$pad] = 0;
-  $padTraceOccurChilds [$pad] = [];
+  $padInfTraceLevelChilds [$pad] = 0;
+  $padInfTraceOccurChilds [$pad] = [];
 
 ?>

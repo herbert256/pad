@@ -6,7 +6,6 @@
     if ( ! $dir )
       return [];
 
-
     if ( $type == 'Function types' ) {
       $one   = getXref ('n/a', 'eval/single', $xref );
       $two   = getXref ('n/a', 'eval/parms',  $xref ) ;
@@ -15,7 +14,7 @@
       return $items;
     }
 
-    $directory = new DirectoryIterator ( pad . $dir );
+    $directory = new DirectoryIterator ( "/pad/$dir" );
     $iterator  = new IteratorIterator  ( $directory );
 
     $items = [];
@@ -43,9 +42,9 @@
       $items [$item] ['dir']   = '';
       $items [$item] ['pages'] = '';
 
-      if     ( is_dir ( padApp . "_xref/$xref/$item" ) )
+      if     ( is_dir ( "/app/_xref/$xref/$item" ) )
         $items [$item] ['dir'] = "$xref/$item";
-      elseif ( file_exists ( padApp . "_xref/$xref/$item.txt" ) )
+      elseif ( file_exists ( "/app/_xref/$xref/$item.txt" ) )
         $items [$item] ['pages'] = "$xref/$item.txt";
 
     }

@@ -1,12 +1,12 @@
 <?php
 
-  $padXmlId++;
+  $padInfXmlId++;
 
-  $padXmlEvent ['id']    = $padXmlId;
-  $padXmlEvent ['event'] = $padXmlEventType;
-  $padXmlEvent ['tree']  = $padXmlLevel [$pad];
-  $padXmlEvent ['occur'] = $padOccur    [$pad];
+  $padInfXmlEvent ['id']    = $padInfXmlId;
+  $padInfXmlEvent ['event'] = $padInfXmlEventType;
+  $padInfXmlEvent ['tree']  = $padInfXmlLevel [$pad];
+  $padInfXmlEvent ['occur'] = $padOccur    [$pad];
 
-  $padXmlEvents [] = $padXmlEvent;
+  $padInfXmlEvents [] = $padInfXmlEvent;
 
 ?>

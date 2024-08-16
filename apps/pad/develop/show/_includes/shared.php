@@ -7,7 +7,7 @@
 
   $title = $item;
   $new   = $curl ['data'];
-  $old   = padFileGetContents ( padApp . "_regression/$item.html" );
+  $old   = padFileGetContents ( "/app/_regression/$item.html" );
  
   $oldRes = $newRes = $newSrc = [];
   $check = $old;

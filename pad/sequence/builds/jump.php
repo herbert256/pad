@@ -1,5 +1,5 @@
 <?php
 
-  include pad . "sequence/kinds/jump.php"; 
+  include "/pad/sequence/kinds/jump.php"; 
 
 ?>

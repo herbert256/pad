@@ -1,5 +1,5 @@
 <?php
 
-  include pad . 'catch/build.php'; 
+  include '/pad/catch/build.php'; 
 
 ?>

@@ -6,7 +6,7 @@
     if ( $check and ! padValidPage ($page) )
       return FALSE;
 
-    $location = padApp;
+    $location = '/app/';
     $part     = padExplode ($page, '/');
 
     foreach ($part as $key => $value) {
@@ -29,7 +29,7 @@
 
   function padPageSet ( $page ) {
 
-    $location = padApp;
+    $location = '/app/';
     $part     = padExplode ($page, '/');
     
     foreach ($part as $key => $value)

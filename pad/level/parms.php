@@ -1,7 +1,7 @@
 <?php
 
   if ( $padPrmType [$pad] == 'close' and str_contains( $padOpt [$pad] [0], '}' ) ) 
-    include pad . 'level/close.php';
+    include '/pad/level/close.php';
 
   $padOptCnt = 0;
 
@@ -35,7 +35,7 @@
 
     if ( padValidVar ($padPrmName) ) {
 
-      if ( file_exists ( padApp . "options/$padPrmName.php") )
+      if ( file_exists ( "/app/options/$padPrmName.php") )
         $padOptionsAppStart [$pad] [] = $padPrmName;
 
       $padPrm [$pad] [$padPrmName] = $padStartOptions [$padPrmName];
@@ -49,7 +49,7 @@
 
   }
 
-  if ( padInfo ) 
-    include pad . 'info/events/parms.php';
+  if ( $GLOBALS['padInfo'] ) 
+    include '/pad/info/events/parms.php';
 
 ?>

@@ -25,7 +25,7 @@
 
   } 
 
-  if ( padTrace )
-    include pad . 'info/events/sequence.php';
+  if ( $GLOBALS ['padInfo'] )
+    include '/pad/info/events/sequence.php';
 
 ?>

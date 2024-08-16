@@ -8,7 +8,7 @@
   foreach ( padList ( 0 ) as $one ) {
 
     $item   = $one ['item'];
-    $store  = padApp . "_regression/$item.txt";
+    $store  = "/app/_regression/$item.txt";
     $status = padFileGetContents ($store, 'todo' );
 
     if ( $status == 'ok' and ! str_contains ($item, 'manual') )

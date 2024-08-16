@@ -1,5 +1,5 @@
 <?php
 
-  include pad . 'sequence/kinds/for.php';
+  include '/pad/sequence/kinds/for.php';
 
 ?>

@@ -3,14 +3,14 @@
   if ( ! function_exists ( 'padTrace') )
     return;
 
-  global $pad, $padTraceLocalChk, $padTraceDir, $padTraceSkipLevel, $padTraceMaxLevel, $padTraceLevel;
+  global $pad, $padInfTraceLocalChk, $padInfTraceDir, $padInfTraceSkipLevel, $padInfTraceMaxLevel, $padInfTraceLevel;
 
   if ( $GLOBALS ['padTraceStartEnd'] )
-     padTrace ( 'trace', 'end' );
+    $GLOBALS ['padInfo']( 'trace', 'end' );
 
-  if ( $padTraceLocalChk )
-    padTraceCheckLocal ( $padTraceDir );
+  if ( $padInfTraceLocalChk )
+    padTraceCheckLocal ( $padInfTraceDir );
 
-  padDumpToDir ( '', "$padTraceDir/dump" );    
+  padDumpToDir ( '', "$padInfTraceDir/dump" );    
 
 ?>

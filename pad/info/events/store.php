@@ -3,6 +3,6 @@
   if ( ! $GLOBALS ['padTraceStore'] )
     return;
 
-  padTrace ( 'store', $padName [$pad], $padStoreData ); 
+ padTrace ( 'store', $padName [$pad], $padStoreData ); 
 
 ?>

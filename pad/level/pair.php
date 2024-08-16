@@ -20,7 +20,7 @@
 
   if ( count($padWordsCheck) > 1 ) { 
     $padBetween    = $padBetweenCheck;  
-    include pad . 'level/between.php';
+    include '/pad/level/between.php';
     $padPrmTypeSet = 'close';
   }
 

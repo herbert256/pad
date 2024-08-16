@@ -14,5 +14,7 @@
   $padInclude   = isset ( $_REQUEST ['padInclude'] ) ? TRUE : FALSE;
   $padStrCnt    = -1;
   $padStrFunCnt = 0;
-
+  $padInfo      = '';
+  $padInfCnt    = 0;
+ 
 ?>

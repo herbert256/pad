@@ -1,5 +1,0 @@
-<?php
-
-  padXref ( 'return', $padXrefReturn );
-
-?>

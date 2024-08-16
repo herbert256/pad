@@ -12,7 +12,7 @@
 
   $padStrBld = 'page';
   $padStrCod = '';
-  $padStrRet = include pad . "start/parms.php";
+  $padStrRet = include "/pad/start/parms.php";
 
   $padPage    = $padStrPag [$pad] [0];
   $padInclude = $padStrPag [$pad] [1];

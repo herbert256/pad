@@ -3,8 +3,8 @@
   if ( ! $GLOBALS ['padTraceEval'] )
     return;
 
-  global $padTraceEvalData;
+  global $padInfTraceEvalData;
 
-  $padTraceEvalData ['after'] = $result;
+  $padInfTraceEvalData ['after'] = $result;
 
 ?>

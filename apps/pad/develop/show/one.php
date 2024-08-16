@@ -1,6 +1,6 @@
 <?php
 
-  $file = padApp . $one . '.pad';
+  $file = '/app/' . $one . '.pad';
 
   $onlyResult = onlyResult ($file);
     

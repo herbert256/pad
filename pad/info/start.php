@@ -1,13 +1,19 @@
 <?php
  
-  include_once pad . 'info/_lib.php';
+  if ( ! $padInfo )
+    return;
 
-  if ( $padTrack ) include pad . 'info/types/track/start.php';
-  if ( $padStats ) include pad . 'info/types/stats/start.php';
-  
-  if ( padXapp   ) include pad . 'info/types/xapp/start.php';
-  if ( padTrace  ) include pad . 'info/types/trace/start.php';
-  if ( padXml    ) include pad . 'info/types/xml/start.php';
-  if ( padXref   ) include pad . 'info/types/xref/start.php';
-  
+  $padInfCnt++;
+
+  include_once '/pad/info/_lib.php';
+
+  padInfoSet ();
+
+  if ( $padInfTrack ) include '/pad/info/types/track/start.php';
+  if ( $padInfStats ) include '/pad/info/types/stats/start.php';
+  if ( $padInfXapp  ) include '/pad/info/types/xapp/start.php';
+  if ( $padInfTrace ) include '/pad/info/types/trace/start.php';
+  if ( $padInfXml   ) include '/pad/info/types/xml/start.php';
+  if ( $padInfXref  ) include '/pad/info/types/xref/start.php';
+
 ?>

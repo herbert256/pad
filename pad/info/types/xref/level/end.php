@@ -1,15 +1,15 @@
 <?php
   
-  if ( ! $padXrefXml )
+  if ( ! $padInfXrefXml )
     return;
   
-  $padXrefLvl = $padXrefLevel [$pad];
-  $padXrefOcc = $padOccur     [$pad];
+  $padInfXrefLvl = $padInfXrefLevel [$pad];
+  $padInfXrefOcc = $padOccur     [$pad];
  
   if ( strlen ( $padResult [$pad] ) )
-    $padXrefStore [$padXrefLvl] ['end'] [] = 'size ' . strlen ( $padResult [$pad] );
+    $padInfXrefStore [$padInfXrefLvl] ['end'] [] = 'size ' . strlen ( $padResult [$pad] );
 
-  $padXrefEventType = 'level-end';
-  include pad . 'info/types/xref/event.php';
+  $padInfXrefEventType = 'level-end';
+  include '/pad/info/types/xref/event.php';
 
 ?>

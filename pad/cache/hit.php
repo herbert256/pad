@@ -4,6 +4,6 @@
   
   $padTime = $padCacheAge;
 
-  include pad . 'exits/output.php';
+  include '/pad/exits/output.php';
 
 ?>

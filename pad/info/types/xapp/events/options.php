@@ -1,5 +1,0 @@
-<?php
-
-  padXapp ( 'options', $padOptionName );
-  
-?>

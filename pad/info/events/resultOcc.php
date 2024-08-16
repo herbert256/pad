@@ -1,11 +1,11 @@
 <?php
 
-  if ( ! $padTraceResultOcc )
+  if ( ! $padInfTraceResultOcc )
     return;
 
-  if ( !$padTraceDouble and $padTraceContent and $padBase [$pad] == $padPad [$pad] )
+  if ( !$padInfTraceDouble and $padInfTraceContent and $padBase [$pad] == $padPad [$pad] )
     return;
 
-  padTrace ( 'occur', 'occ-result', $padPad [$pad] );
+ padTrace ( 'occur', 'occ-result', $padPad [$pad] );
 
 ?>

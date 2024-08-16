@@ -1,5 +1,0 @@
-<?php
-
-  padXref ( 'page', $padPageType );
-
-?>

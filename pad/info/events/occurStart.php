@@ -8,9 +8,9 @@
           $padDefault [$pad] = TRUE;
   }
  
-  if ( padTrace ) include pad . 'info/types/trace/occur/start.php';  
-  if ( padXml   ) include pad . 'info/types/xml/occur/start.php';  
-  if ( padXref  ) include pad . 'info/types/xref/occur/start.php';  
-  if ( padXref  ) include pad . 'info/types/xref/events/occur.php';   
+  if ( $GLOBALS ['padInfo'] ) include '/pad/info/types/trace/occur/start.php';  
+  if ( padXml   ) include '/pad/info/types/xml/occur/start.php';  
+  if ( $GLOBALS ['padInfo']  ) include '/pad/info/types/xref/occur/start.php';  
+  if ( $GLOBALS ['padInfo']  ) include '/pad/info/events/occur.php';   
   
 ?>

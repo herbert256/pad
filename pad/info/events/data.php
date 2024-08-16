@@ -1,11 +1,11 @@
 <?php
 
-  if ( $padTraceDataLvl ) {
+  if ( $padInfTraceDataLvl ) {
 
-    if ( ! $padTraceDefault and padIsDefaultData ( $padData [$pad] ) )
+    if ( ! $padInfTraceDefault and padIsDefaultData ( $padData [$pad] ) )
       return;
   
-    padTrace ( 'level', 'data', $padData [$pad] );
+   padTrace ( 'level', 'data', $padData [$pad] );
 
     padTraceWrite ( $pad, "data.json", $padData [$pad], 'file' );
   

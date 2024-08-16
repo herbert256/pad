@@ -3,12 +3,12 @@
   if ( ! $GLOBALS ['padTraceEval'] )
     return;
 
-  global $padTraceEvalData;
+  global $padInfTraceEvalData;
 
-  $padTraceEvalData           = [];
-  $padTraceEvalData ['eval']  = $eval;
-  $padTraceEvalData ['value'] = $value;
+  $padInfTraceEvalData           = [];
+  $padInfTraceEvalData ['eval']  = $eval;
+  $padInfTraceEvalData ['value'] = $value;
   
-  padTrace ( 'eval', 'start', "eval=$eval" );
+ padTrace ( 'eval', 'start', "eval=$eval" );
 
 ?>

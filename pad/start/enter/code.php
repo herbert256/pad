@@ -3,6 +3,6 @@
   $padStrBld  = 'code';
   $padStrCod  = $padBase [$pad];
 
-  return include pad . 'start/parms.php';
+  return include '/pad/start/parms.php';
 
 ?>

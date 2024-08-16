@@ -22,15 +22,15 @@
 
   if ( $firstFileP ) {
     $firstFile = '<td style="vertical-align:top">';
-    if ( file_exists ( padApp . $firstFileP ) and ! is_dir ( padApp . $firstFileP ) ) 
-      $firstFile .= padColorsFile ( padApp . $firstFileP );
+    if ( file_exists ( '/app/' . $firstFileP ) and ! is_dir ( '/app/' . $firstFileP ) ) 
+      $firstFile .= padColorsFile ( '/app/' . $firstFileP );
     $firstFile .= '</td>';
   }
 
   if ( $secondFileP ) {
     $secondFile = '<td style="vertical-align:top">';
-    if ( file_exists ( padApp . $secondFileP ) and ! is_dir ( padApp . $secondFileP ) ) 
-      $secondFile .= padColorsFile ( padApp . $secondFileP );
+    if ( file_exists ( '/app/' . $secondFileP ) and ! is_dir ( '/app/' . $secondFileP ) ) 
+      $secondFile .= padColorsFile ( '/app/' . $secondFileP );
     $secondFile .= '</td>';
   }
 

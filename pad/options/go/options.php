@@ -17,14 +17,14 @@
         padDone ( $padOptionName, TRUE );  
    
         if ( $padOptions == 'app' )
-          $padCall = padApp . "_options/$padOptionName.php" ;
+          $padCall = "/app/_options/$padOptionName.php" ;
         else
-          $padCall = pad . "options/$padOptionName.php" ;
+          $padCall = "/pad/options/$padOptionName.php" ;
 
-        include pad . 'call/call.php';
+        include '/pad/call/call.php';
 
-        if ( padInfo )
-          include padInfo . 'options.php';           
+        if ( $GLOBALS['padInfo'] )
+          include '/pad/info/events/options.php';           
 
       }
 

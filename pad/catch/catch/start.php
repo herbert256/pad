@@ -1,6 +1,6 @@
 <?php
 
-  include pad . 'catch/catch/_catch.php';
+  include '/pad/catch/catch/_catch.php';
 
   if ( function_exists ( 'padErrorGo' ) )
     padErrorGo ( $padCatchError, $padCatchFile, $padCatchLine );

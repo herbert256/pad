@@ -6,8 +6,8 @@
   if ( str_ends_with ( $padIncPage, '.pad') )
     $padIncPage = substr ( $padIncPage, 0, -4 );
 
-  $padIncPHP = padApp . "$padIncPage.php";
-  $padIncPAD = padApp . "$padIncPage.pad";
+  $padIncPHP = "/app/$padIncPage.php";
+  $padIncPAD = "/app/$padIncPage.pad";
 
   if ( ! file_exists ($padIncPHP) )
     return padFileGetContents ( $padIncPAD );

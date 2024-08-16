@@ -1,11 +1,11 @@
 <?php
 
-  $padXmlLvl = $padXmlLevel [$pad];
-  $padXmlOcc = $padOccur    [$pad];
+  $padInfXmlLvl = $padInfXmlLevel [$pad];
+  $padInfXmlOcc = $padOccur    [$pad];
  
-  $padXmlTree [$padXmlLvl] ['occurs'] [$padXmlOcc] ['size'] = strlen ( $padPad [$pad] );
+  $padInfXmlTree [$padInfXmlLvl] ['occurs'] [$padInfXmlOcc] ['size'] = strlen ( $padPad [$pad] );
 
-  $padXmlEventType = 'occur-end';
-  include pad . 'info/types/xml/event.php';
+  $padInfXmlEventType = 'occur-end';
+  include '/pad/info/types/xml/event.php';
 
 ?>

@@ -2,7 +2,7 @@
 
   $padBuildDirs = [];
 
-  $padBuildNow = substr     ( padApp, 0, -1);  
+  $padBuildNow = substr     ( '/app/', 0, -1);  
   $padBuildPos = strrpos    ( $padBuildNow, '/');  
   $padBuildDir = substr     ( $padBuildNow, 0, $padBuildPos);  
   $padBuildMrg = substr     ( $padBuildNow, $padBuildPos+1) . '/' . $padDir; 

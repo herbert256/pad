@@ -1,5 +1,5 @@
 <?php
   
-  include pad . 'catch/catch/_catch.php';
+  include '/pad/catch/catch/_catch.php';
   
 ?>

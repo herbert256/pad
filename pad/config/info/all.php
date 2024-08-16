@@ -1,90 +1,90 @@
 <?php
   
-  $padTrack            = TRUE;       // Big Brother, session and request information of the client
-  $padXml              = TRUE;       // Build a XML file of the structure of the PAD page 
-  $padXref             = TRUE;       // Build the <data>xref directories
-  $padStats            = TRUE;       // Keep runtime statistics about time and cpu used
-  $padTrace            = TRUE;       // Trace the internal working of PAD
-  $padXapp             = TRUE;       // Build the <app>_xapp directorie
+  $padInfTrack            = TRUE;       // Big Brother, session and request information of the client
+  $padInfXml              = TRUE;       // Build a XML file of the structure of the PAD page 
+  $padInfXref             = TRUE;       // Build the <data>xref directories
+  $padInfStats            = TRUE;       // Keep runtime statistics about time and cpu used
+  $padInfTrace            = TRUE;       // Trace the internal working of PAD
+  $padInfXapp             = TRUE;       // Build the <app>_xapp directorie
 
-  $padTrackFileRequest = TRUE;       // Request info in the data directory
-  $padTrackFileData    = TRUE;       // Complete result page in the directory
-  $padTrackDbSession   = TRUE;       // Session info in the PAD database
-  $padTrackDbRequest   = TRUE;       // Request info in the PAD database
-  $padTrackDbData      = TRUE;       // Complete result page in the PAD database
+  $padInfTrackFileRequest = TRUE;       // Request info in the data directory
+  $padInfTrackFileData    = TRUE;       // Complete result page in the directory
+  $padInfTrackDbSession   = TRUE;       // Session info in the PAD database
+  $padInfTrackDbRequest   = TRUE;       // Request info in the PAD database
+  $padInfTrackDbData      = TRUE;       // Complete result page in the PAD database
 
-  $padXmlParms         = TRUE;
-  $padXmlTidy          = TRUE;
-  $padXmlShowEmpty     = TRUE;
+  $padInfXmlParms         = TRUE;
+  $padInfXmlTidy          = TRUE;
+  $padInfXmlShowEmpty     = TRUE;
   
-  $padXrefXref         = TRUE;
-  $padXrefPage         = TRUE;
-  $padXrefTree         = TRUE;
-  $padXrefXml          = TRUE;
-  $padXrefTrace        = TRUE;
+  $padInfXrefXref         = TRUE;
+  $padInfXrefPage         = TRUE;
+  $padInfXrefTree         = TRUE;
+  $padInfXrefXml          = TRUE;
+  $padInfXrefTrace        = TRUE;
   
-  $padTraceLines       = TRUE;
-  $padTraceDouble      = TRUE;
-  $padTraceDefault     = TRUE;
-  $padTraceKeepEmpty   = TRUE;
+  $padInfTraceLines       = TRUE;
+  $padInfTraceDouble      = TRUE;
+  $padInfTraceDefault     = TRUE;
+  $padInfTraceKeepEmpty   = TRUE;
 
-  $padTraceRoot        = TRUE;
-  $padTraceTree        = TRUE;  
-  $padTraceLocal       = TRUE;
-  $padTraceTypes       = TRUE;
-  $padTraceMore        = TRUE;
-  $padTraceXref        = TRUE;
+  $padInfTraceRoot        = TRUE;
+  $padInfTraceTree        = TRUE;  
+  $padInfTraceLocal       = TRUE;
+  $padInfTraceTypes       = TRUE;
+  $padInfTraceMore        = TRUE;
+  $padInfTraceXref        = TRUE;
 
-  $padTraceStartEnd    = TRUE;
-  $padTraceStartEndLvl = TRUE;
-  $padTraceStartEndOcc = TRUE;
+  $padInfTraceStartEnd    = TRUE;
+  $padInfTraceStartEndLvl = TRUE;
+  $padInfTraceStartEndOcc = TRUE;
 
-  $padTraceStatus      = TRUE;
-  $padTraceChilds      = TRUE;
-  $padTraceAddLine     = TRUE;
-  $padTraceLocalChk    = TRUE;       
+  $padInfTraceStatus      = TRUE;
+  $padInfTraceChilds      = TRUE;
+  $padInfTraceAddLine     = TRUE;
+  $padInfTraceLocalChk    = TRUE;       
 
-  $padTraceOccurs      = TRUE;
-  $padTraceOccursSmart = FALSE;
+  $padInfTraceOccurs      = TRUE;
+  $padInfTraceOccursSmart = FALSE;
 
-  $padTraceInitsExits  = TRUE;
+  $padInfTraceInitsExits  = TRUE;
   
-  $padTraceTypesDir    = TRUE;       
-  $padTraceRequest     = TRUE;
+  $padInfTraceTypesDir    = TRUE;       
+  $padInfTraceRequest     = TRUE;
 
-  $padTraceSession     = TRUE;
-  $padTraceBuild       = TRUE;
+  $padInfTraceSession     = TRUE;
+  $padInfTraceBuild       = TRUE;
   
-  $padTraceParse       = TRUE;
-  $padTraceParms       = TRUE;
-  $padTraceOptions     = TRUE;
+  $padInfTraceParse       = TRUE;
+  $padInfTraceParms       = TRUE;
+  $padInfTraceOptions     = TRUE;
 
-  $padTraceStartLvl    = TRUE;
-  $padTraceStartOcc    = TRUE;
-  $padTraceEndLvl      = TRUE;
-  $padTraceEndOcc      = TRUE;
+  $padInfTraceStartLvl    = TRUE;
+  $padInfTraceStartOcc    = TRUE;
+  $padInfTraceEndLvl      = TRUE;
+  $padInfTraceEndOcc      = TRUE;
   
-  $padTraceContent     = TRUE;
-  $padTraceTrue        = TRUE;
-  $padTraceFalse       = TRUE;
-  $padTraceLevelBase   = TRUE;
-  $padTraceResultLvl   = TRUE;
-  $padTraceResultOcc   = TRUE;
+  $padInfTraceContent     = TRUE;
+  $padInfTraceTrue        = TRUE;
+  $padInfTraceFalse       = TRUE;
+  $padInfTraceLevelBase   = TRUE;
+  $padInfTraceResultLvl   = TRUE;
+  $padInfTraceResultOcc   = TRUE;
 
-  $padTraceFlags       = TRUE;
+  $padInfTraceFlags       = TRUE;
  
-  $padTraceDataLvl     = TRUE;
-  $padTraceDataOcc     = TRUE;
+  $padInfTraceDataLvl     = TRUE;
+  $padInfTraceDataOcc     = TRUE;
   
-  $padTraceStore       = TRUE;
-  $padTraceSequence    = TRUE;
-  $padTraceVar         = TRUE;
-  $padTraceField       = TRUE;
-  $padTraceEval        = TRUE;
-  $padTraceCall        = TRUE;
-  $padTraceSql         = TRUE;
-  $padTracePut         = TRUE;
-  $padTraceGet         = TRUE;
-  $padTraceCurl        = TRUE;
+  $padInfTraceStore       = TRUE;
+  $padInfTraceSequence    = TRUE;
+  $padInfTraceVar         = TRUE;
+  $padInfTraceField       = TRUE;
+  $padInfTraceEval        = TRUE;
+  $padInfTraceCall        = TRUE;
+  $padInfTraceSql         = TRUE;
+  $padInfTracePut         = TRUE;
+  $padInfTraceGet         = TRUE;
+  $padInfTraceCurl        = TRUE;
 
 ?>

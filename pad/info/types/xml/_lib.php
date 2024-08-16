@@ -3,9 +3,9 @@
 
   function padXml () {
 
-    global $padXmlEvents;
+    global $padInfXmlEvents;
 
-    foreach ( $padXmlEvents as $key => $event ) {
+    foreach ( $padInfXmlEvents as $key => $event ) {
 
       if     ( $event ['event'] == 'level-start' ) padXmlLevelStart ( $event );
       elseif ( $event ['event'] == 'level-end'   ) padXmlLevelEnd   ( $event );
@@ -22,13 +22,13 @@
 
   function padXmlLevelStart ( $event ) {
 
-    global $padXmlTree, $padXmlShowEmpty;
+    global $padInfXmlTree, $padInfXmlShowEmpty;
 
     extract ( $event );
-    extract ( $padXmlTree [$tree] );
+    extract ( $padInfXmlTree [$tree] );
 
-    if ( ! $size and ! $padXmlShowEmpty ) {
-      $padXmlTree [$tree] ['SKIP'] = TRUE;
+    if ( ! $size and ! $padInfXmlShowEmpty ) {
+      $padInfXmlTree [$tree] ['SKIP'] = TRUE;
       return;
     }
 
@@ -42,14 +42,14 @@
     $options ['result'] = $result;
 
     if ( $count > 1 ) 
-      $padXmlTree [$tree] ['childs'] = TRUE;
+      $padInfXmlTree [$tree] ['childs'] = TRUE;
     else
       $options ['parm'] = $parm;
     
     if ( $type   <> 'pad'     ) $options ['type']   = $type;
     if ( $source <> 'content' ) $options ['source'] = $source;
 
-    if ( $padXmlTree [$tree] ['childs'] )
+    if ( $padInfXmlTree [$tree] ['childs'] )
       padXmlOpen ( $tag, $options );
     else
       padXmlLine ( $tag, $options );
@@ -75,12 +75,12 @@
 
   function padXmlLevelEnd ( $event ) {
 
-    global $padXmlTree;
+    global $padInfXmlTree;
 
     extract ( $event );
-    extract ( $padXmlTree [$tree] );
+    extract ( $padInfXmlTree [$tree] );
 
-    if ( isset ($padXmlTree [$tree] ['SKIP'] ) )
+    if ( isset ($padInfXmlTree [$tree] ['SKIP'] ) )
       return;
 
     if ( $written ) padXmlClose ( 'occurs' );
@@ -91,10 +91,10 @@
 
   function padXmlOccurStart ( $event ) {
 
-    global $padXmlTree;
+    global $padInfXmlTree;
 
     extract ( $event );
-    extract ( $padXmlTree [$tree]  );
+    extract ( $padInfXmlTree [$tree]  );
     extract ( $occurs  [$occur] );
 
     if ( count ($occurs) < 2)
@@ -108,7 +108,7 @@
 
     if ( $id == 1 ) {
       padXmlOpen ( 'occurs' );
-      $padXmlTree [$tree] ['written'] = TRUE;
+      $padInfXmlTree [$tree] ['written'] = TRUE;
     }
 
     if ( $childs )
@@ -121,10 +121,10 @@
 
   function padXmlOccurEnd ( $event ) {
 
-    global $padXmlTree;
+    global $padInfXmlTree;
 
     extract ( $event );
-    extract ( $padXmlTree [$tree]  );
+    extract ( $padInfXmlTree [$tree]  );
     extract ( $occurs  [$occur] );
 
     if ( count ($occurs) < 2)
@@ -138,10 +138,10 @@
 
   function padXmlLevelStartShort ( $event ) {
 
-    global $padXmlTree;
+    global $padInfXmlTree;
 
     extract ( $event );
-    extract ( $padXmlTree [$tree] );
+    extract ( $padInfXmlTree [$tree] );
 
     $options = [];
 
@@ -149,7 +149,7 @@
     if ( count ($occurs) > 1 ) $options ['occurs'] = count ($occurs);
     if ( $parm               ) $options ['parm']   = $parm;
 
-    if ( $padXmlTree [$tree] ['childs'] )
+    if ( $padInfXmlTree [$tree] ['childs'] )
       padXmlOpen ( $tag, $options, 'short' );
     else
       padXmlLine ( $tag, $options, 'short' );
@@ -159,10 +159,10 @@
 
   function padXmlLevelEndShort ( $event ) {
 
-    global $padXmlTree;
+    global $padInfXmlTree;
 
     extract ( $event );
-    extract ( $padXmlTree [$tree] );
+    extract ( $padInfXmlTree [$tree] );
 
     if ( $childs ) 
       padXmlClose ( $tag );
@@ -172,13 +172,13 @@
 
   function padXmlOpen ( $xml, $parms=[], $type='long' ) {
   
-    global $padXmlDepth;
+    global $padInfXmlDepth;
 
     $more = padXmlMore ( $parms );
 
     padXmlWrite ( "<$xml$more>", $type );
 
-    $padXmlDepth++;
+    $padInfXmlDepth++;
       
   }
 
@@ -194,9 +194,9 @@
 
   function padXmlClose ( $xml, $type='long' ) {
 
-    global $padXmlDepth;
+    global $padInfXmlDepth;
 
-    $padXmlDepth--;
+    $padInfXmlDepth--;
   
     padXmlWrite ( "</$xml>", $type );
   
@@ -205,14 +205,14 @@
 
   function padXmlWrite ( $xml, $type='long' ) {
   
-    global $padXmlDepth, $padXmlDir;
+    global $padInfXmlDepth, $padInfXmlDir;
 
-    if ( $padXmlDepth > 0 )
-      $spaces = str_repeat ( ' ', $padXmlDepth * 2 );
+    if ( $padInfXmlDepth > 0 )
+      $spaces = str_repeat ( ' ', $padInfXmlDepth * 2 );
     else
       $spaces = '';
 
-    padInfoLine ( "$padXmlDir/$type.xml", "$spaces$xml" );
+    padInfoLine ( "$padInfXmlDir/$type.xml", "$spaces$xml" );
   
   }
 
@@ -232,9 +232,9 @@
 
   function padXmlTidy () {
 
-    global $padXmlTidy, $padXmlDir;
+    global $padInfXmlTidy, $padInfXmlDir;
 
-    if ( ! $padXmlTidy )
+    if ( ! $padInfXmlTidy )
       return;
     
     $options = [
@@ -251,15 +251,15 @@
       'drop-empty-elements' => 'yes'
     ];
 
-    padXmlTidyGo ( "$padXmlDir/long.xml",  $options );
-    padXmlTidyGo ( "$padXmlDir/short.xml", $options );
+    padXmlTidyGo ( "$padInfXmlDir/long.xml",  $options );
+    padXmlTidyGo ( "$padInfXmlDir/short.xml", $options );
 
   }
 
 
   function padXmlTidyGo ( $file, $options ) {
 
-    $data = padInfoGet ( padData . $file );
+    $data = padInfoGet ( '/data/' . $file );
 
     $tidy = new tidy;
     $tidy->parseString ( $data, $options, 'utf8' );

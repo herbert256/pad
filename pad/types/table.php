@@ -2,6 +2,6 @@
 
   $padTableName = $padTag [$pad];
 
-  return include pad . 'types/go/table.php';
+  return include '/pad/types/go/table.php';
 
 ?>

@@ -95,7 +95,7 @@
              'start'   => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0 , 
              'end'     => microtime(true),
              'etag'    => $GLOBALS ['padEtag']  ?? ''  ],
-          'in'      => json_decode ( padInfoGet ( padData . "track/$padLog-entry.json" ) ),
+          'in'      => json_decode ( padInfoGet ( '/data/' . "track/$padLog-entry.json" ) ),
           'out'     => [
              'http'   => $http,
              'headers' => [
@@ -109,7 +109,7 @@
         ] 
     );
 
-    unlink ( padData . "track/$padLog-entry.json" );
+    unlink ( '/data/' . "track/$padLog-entry.json" );
 
   }
 

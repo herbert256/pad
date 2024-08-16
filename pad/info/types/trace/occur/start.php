@@ -1,34 +1,34 @@
 <?php
 
-  if ( $padTraceStartEndOcc )
-    padTrace ( 'occur', 'start' );
+  if ( $padInfTraceStartEndOcc )
+   $GLOBALS ['padInfo']( 'occur', 'start' );
 
   for ( $padI = $pad; $padI >= 0; $padI-- ) {
 
-    if ( ! isset ( $padTraceLevelChilds [$padI] ) ) 
-      $padTraceLevelChilds [$padI] = 0;
+    if ( ! isset ( $padInfTraceLevelChilds [$padI] ) ) 
+      $padInfTraceLevelChilds [$padI] = 0;
 
-    $padTraceLevelChilds [$padI] ++;
+    $padInfTraceLevelChilds [$padI] ++;
 
     $padJ = $padOccur [$padI] ?? 0;
 
     if ( $padJ) { 
 
-       if ( ! isset ($padTraceOccurChilds [$padI]         ) ) $padTraceOccurChilds [$padI] [$padJ] = 0;
-       if ( ! isset ($padTraceOccurChilds [$padI] [$padJ] ) ) $padTraceOccurChilds [$padI] [$padJ] = 0;
+       if ( ! isset ($padInfTraceOccurChilds [$padI]         ) ) $padInfTraceOccurChilds [$padI] [$padJ] = 0;
+       if ( ! isset ($padInfTraceOccurChilds [$padI] [$padJ] ) ) $padInfTraceOccurChilds [$padI] [$padJ] = 0;
 
-       $padTraceOccurChilds [$padI] [$padJ] ++;
+       $padInfTraceOccurChilds [$padI] [$padJ] ++;
 
     }
 
   }
  
-  if ( $padTraceDataOcc ) {
+  if ( $padInfTraceDataOcc ) {
 
-    if ( ! $padTraceDefault and ! count ( $padCurrent [$pad] ) )
+    if ( ! $padInfTraceDefault and ! count ( $padCurrent [$pad] ) )
       return;
     
-    padTrace ( 'occur', 'occ-data', $padCurrent [$pad] );   
+   $GLOBALS ['padInfo']( 'occur', 'occ-data', $padCurrent [$pad] );   
 
     $padJ = $padOccur [$pad];
 

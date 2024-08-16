@@ -1,30 +1,30 @@
 <?php
 
-  include pad . 'info/types/xml/level/parent.php';
+  include '/pad/info/types/xml/level/parent.php';
     
-  $padXmlNew             = [];
-  $padXmlNew ['tag']     = str_replace ( '/', '-', $padTag [$pad] );
-  $padXmlNew ['level']   = $pad;
-  $padXmlNew ['type']    = $padType [$pad];
-  $padXmlNew ['parm']    = $padOpt [$pad] [0];
-  $padXmlNew ['parms']   = [];
-  $padXmlNew ['occurs']  = [];
-  $padXmlNew ['childs']  = FALSE;
-  $padXmlNew ['written'] = FALSE;
-  $padXmlNew ['size']    = 0;
-  $padXmlNew ['result']  = '';
-  $padXmlNew ['source']  = '';
-  $padXmlNew ['start']   = [];
-  $padXmlNew ['end']     = [];
+  $padInfXmlNew             = [];
+  $padInfXmlNew ['tag']     = str_replace ( '/', '-', $padTag [$pad] );
+  $padInfXmlNew ['level']   = $pad;
+  $padInfXmlNew ['type']    = $padType [$pad];
+  $padInfXmlNew ['parm']    = $padOpt [$pad] [0];
+  $padInfXmlNew ['parms']   = [];
+  $padInfXmlNew ['occurs']  = [];
+  $padInfXmlNew ['childs']  = FALSE;
+  $padInfXmlNew ['written'] = FALSE;
+  $padInfXmlNew ['size']    = 0;
+  $padInfXmlNew ['result']  = '';
+  $padInfXmlNew ['source']  = '';
+  $padInfXmlNew ['start']   = [];
+  $padInfXmlNew ['end']     = [];
 
-  $padXmlTree [] = $padXmlNew;
+  $padInfXmlTree [] = $padInfXmlNew;
 
-  $padXmlLevel [$pad] = array_key_last ( $padXmlTree );
+  $padInfXmlLevel [$pad] = array_key_last ( $padInfXmlTree );
 
-  $padXmlLvl = $padXmlLevel [$pad];
-  $padXmlOcc = $padOccur    [$pad]; 
+  $padInfXmlLvl = $padInfXmlLevel [$pad];
+  $padInfXmlOcc = $padOccur    [$pad]; 
   
-  $padXmlEventType = 'level-start';
-  include pad . 'info/types/xml/event.php';
+  $padInfXmlEventType = 'level-start';
+  include '/pad/info/types/xml/event.php';
 
 ?>

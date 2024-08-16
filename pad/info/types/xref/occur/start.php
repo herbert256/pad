@@ -1,14 +1,14 @@
 <?php
 
-  if ( ! $padXrefXml )
+  if ( ! $padInfXrefXml )
     return;
   
-  $padXrefLvl = $padXrefLevel [$pad];
-  $padXrefOcc = $padOccur     [$pad];
+  $padInfXrefLvl = $padInfXrefLevel [$pad];
+  $padInfXrefOcc = $padOccur     [$pad];
 
-  $padXrefStore [$padXrefLvl] ['occurs'] [$padXrefOcc] ['xref'] = [];
+  $padInfXrefStore [$padInfXrefLvl] ['occurs'] [$padInfXrefOcc] ['xref'] = [];
 
-  $padXrefEventType = 'occur-start';
-  include pad . 'info/types/xref/event.php';
+  $padInfXrefEventType = 'occur-start';
+  include '/pad/info/types/xref/event.php';
 
 ?>

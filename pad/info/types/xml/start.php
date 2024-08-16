@@ -1,19 +1,19 @@
 <?php
   
-  include_once pad . 'info/types/xml/_lib.php';
+  include_once '/pad/info/types/xml/_lib.php';
 
-  $padXmlId     = 0;
-  $padXmlDepth  = 0;
-  $padXmlTree   = [];
-  $padXmlLevel  = [];
-  $padXmlEvents = [];
+  $padInfXmlId     = 0;
+  $padInfXmlDepth  = 0;
+  $padInfXmlTree   = [];
+  $padInfXmlLevel  = [];
+  $padInfXmlEvents = [];
 
   if ( isset ( $_REQUEST['padInclude'] ) )
-    $padXmlDir = "xml/include/$padStartPage";
+    $padInfXmlDir = "xml/include/$padStartPage";
   else
-    $padXmlDir = "xml/complete/$padStartPage";
+    $padInfXmlDir = "xml/complete/$padStartPage";
 
-  if ( file_exists ( padData . "$padXmlDir/long.xml" )  ) unlink ( padData . "$padXmlDir/long.xml"  ) ;
-  if ( file_exists ( padData . "$padXmlDir/short.xml" ) ) unlink ( padData . "$padXmlDir/short.xml" ) ;
+  if ( file_exists ( '/data/' . "$padInfXmlDir/long.xml" )  ) unlink ( '/data/' . "$padInfXmlDir/long.xml"  ) ;
+  if ( file_exists ( '/data/' . "$padInfXmlDir/short.xml" ) ) unlink ( '/data/' . "$padInfXmlDir/short.xml" ) ;
 
 ?>

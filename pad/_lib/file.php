@@ -28,8 +28,8 @@
 
   function padFileGetContents ( $file, $default='' ) {
 
-    if ( padTrace and function_exists ('padTrace') )
-      include pad . 'info/events/get.php';
+    if ( $GLOBALS ['padInfo'] and function_exists ('padTrace') )
+      include '/pad/info/events/get.php';
 
     if ( is_dir ($file) )
       return $file;
@@ -44,12 +44,12 @@
 
   function padFilePutContents ($in, $data='', $append=0) {
 
-    if ( padTrace and function_exists ('padTrace') )
-      include pad . 'info/events/put.php';
+    if ( $GLOBALS ['padInfo'] and function_exists ('padTrace') )
+      include '/pad/info/events/put.php';
 
     global $pad;
     
-    $file = padData . str_replace(':', '_', $in);
+    $file = '/data/' . str_replace(':', '_', $in);
 
     # $file = padFileCorrect ( $file );
 

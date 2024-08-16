@@ -30,13 +30,13 @@
 
   function padList ( $filter = 1 ) {
 
-    $directory = new RecursiveDirectoryIterator (padApp);
+    $directory = new RecursiveDirectoryIterator ('/app/');
     $iterator  = new RecursiveIteratorIterator  ($directory);
 
     foreach ($iterator as $one ) {
 
       $path  = padCorrectPath ( $one->getPathname() );
-      $file  = str_replace(padApp, '', $path );
+      $file  = str_replace('/app/', '', $path );
       $ext   = substr($file,    strrpos($file, '.')+1 );
       $item  = substr($file, 0, strrpos($file, '.')   );
       $dir   = substr($item, 0, strrpos($item, '/')   );

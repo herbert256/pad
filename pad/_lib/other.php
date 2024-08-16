@@ -8,7 +8,7 @@
     $GLOBALS ['padStrCln'] = FALSE;
     $GLOBALS ['padStrBld'] = 'code';
 
-    return include pad . 'start/enter/function.php';
+    return include '/pad/start/enter/function.php';
 
   }
 
@@ -20,14 +20,14 @@
     $GLOBALS ['padStrCln'] = TRUE;
     $GLOBALS ['padStrBld'] = 'code';
 
-    return include pad . 'start/enter/function.php'; 
+    return include '/pad/start/enter/function.php'; 
 
   }
 
 
   function padStr (  $padStrCod, $padStrBox, $padStrRes, $padStrCln, $padStrFun ) {
 
-    return include pad . 'start/function.php';
+    return include '/pad/start/function.php';
 
   }
 
@@ -211,7 +211,7 @@
 
     foreach ( padDirs () as $key => $value ) {
 
-      $file = substr (padApp, 0, -1) . $value . "_content/$content.pad";
+      $file = '/app' . $value . "_content/$content.pad";
 
       if ( file_exists ($file) ) 
         return TRUE;
@@ -227,7 +227,7 @@
 
     foreach ( padDirs () as $key => $value ) {
 
-      $file = substr (padApp, 0, -1) . $value . "_content/$content.pad";
+      $file = '/app' . $value . "_content/$content.pad";
 
       if ( file_exists ($file) ) 
         return padFileGetContents ($file);
@@ -243,7 +243,7 @@
 
     foreach ( padDirs () as $key => $value ) {
 
-      $file = substr (padApp, 0, -1) . $value . "_includes/$check";
+      $file = '/app' . $value . "_includes/$check";
 
       if ( file_exists ($file) and ! is_dir($file) ) return $file;
       if ( file_exists ("$file.php")               ) return "$file.php";
@@ -260,7 +260,7 @@
 
     foreach ( padDirs () as $key => $value ) {
 
-      $file = substr (padApp, 0, -1) . $value . "_data/$check";
+      $file = '/app' . $value . "_data/$check";
 
       if ( file_exists ($file) and ! is_dir($file) ) return $file;
       if ( file_exists ("$file.xml")               ) return "$file.xml";
@@ -280,7 +280,7 @@
 
  function padDataFileData ( $padLocalFile ) {
   
-    return include pad . 'types/go/local.php';
+    return include '/pad/types/go/local.php';
 
   }
 
@@ -383,9 +383,9 @@
     global $padDir;
 
     if ( ! $padDir )
-      return substr ( padApp, -1 );
+      return substr ( '/app/', -1 );
     else
-      return padApp . $padDir;
+      return '/app/' . $padDir;
 
   }
 
@@ -755,12 +755,12 @@
    
     $count = count ( $parms );
 
-    if ( file_exists ( padApp . "_functions/$name.php" ) )
-      $padCall = padApp . "_functions/$name.php";
+    if ( file_exists ( "/app/_functions/$name.php" ) )
+      $padCall = "/app/_functions/$name.php";
     else
-      $padCall = pad . "functions/$name.php";
+      $padCall = "/pad/functions/$name.php";
 
-    return include pad . 'call/any.php';
+    return include '/pad/call/any.php';
 
   }
 
@@ -981,17 +981,17 @@
   
     foreach($opts as $opt) {
         
-      $padAppend  = (substr($opt, 0, 1) == '.');
-      $padPrepend = (substr($opt, -1)   == '.');
+      $append  = (substr($opt, 0, 1) == '.');
+      $prepend = (substr($opt, -1)   == '.');
   
-      if ($padAppend)   $opt = trim(substr($opt,1));
-      if ($padPrepend)  $opt = trim(substr($opt,0,-1));
+      if ($append)   $opt = trim(substr($opt,1));
+      if ($prepend)  $opt = trim(substr($opt,0,-1));
   
       $now = (substr($opt, 0, 1) == '%') ? sprintf($opt, $val) : padEval ($opt, $val);
      
-      if ( $padAppend )                     $val = $val . $now;
-      if ( $padPrepend )                    $val = $now . $val;
-      if ( ! $padAppend and ! $padPrepend ) $val = $now;
+      if ( $append )                     $val = $val . $now;
+      if ( $prepend )                    $val = $now . $val;
+      if ( ! $append and ! $prepend ) $val = $now;
 
     }
 

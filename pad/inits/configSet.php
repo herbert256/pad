@@ -3,13 +3,13 @@
   foreach ( $padSetConfig as $padK => $padV )
     $GLOBALS ["pad$padK"] = $padV;
 
-  include pad . "config/output/$padOutputType.php";
+  include "/pad/config/output/$padOutputType.php";
 
   if ( $padInfo ) 
-    include pad . "config/info/$padInfo.php";
+    include "/pad/config/info/$padInfo.php";
 
-  if ( file_exists ( padApp . '_config/config.php' ) ) 
-    include padApp . '_config/config.php';
+  if ( file_exists ( '/app/_config/config.php' ) ) 
+    include '/app/_config/config.php';
 
   foreach ( $padSetConfig as $padK => $padV )
     $GLOBALS ["pad$padK"] = $padV;

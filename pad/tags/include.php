@@ -1,9 +1,9 @@
 <?php
   
-  $padIncPage = padTagParm ( 'include', $padParm );
+  $padIncPage = padTagParm      ( 'include', $padParm );
   $padIncPage = padInclFileName ($padIncPage);
-  $padIncPage = str_replace (padApp, '',  $padIncPage);
+  $padIncPage = str_replace     ('/app/', '',  $padIncPage);
   
-  return include pad . 'tags/go/include.php';
+  return include '/pad/tags/go/include.php';
   
 ?>

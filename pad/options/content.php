@@ -12,8 +12,8 @@
 
     if ( $padIncPage ) {
 
-      $padIncPage     = str_replace (padApp, '',  $padIncPage);
-      $padContentData = include pad . 'tags/go/include.php';
+      $padIncPage     = str_replace ('/app/', '',  $padIncPage);
+      $padContentData = include '/pad/tags/go/include.php';
 
     } else 
 

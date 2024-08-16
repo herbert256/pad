@@ -18,8 +18,8 @@
   
   function padField ( $field, $type, $lvl=0 ) {
 
-    if ( padXref ) 
-      include pad . 'info/types/xref/events/field.php';
+    if ( $GLOBALS ['padInfo'] ) 
+      include '/pad/info/events/field.php';
 
     if ( str_contains ( $field, '@' ) or str_contains ( $field, '.' ) )
     
@@ -58,8 +58,8 @@
     elseif ($type ==  8) $return = ( $value === INF                                                ) ? ''    : $value;
     elseif ($type ==  9) $return = ( $value === NULL                                               ) ? TRUE  : FALSE;
 
-    if ( padTrace )
-      include pad . 'info/events/field.php';    
+    if ( $GLOBALS ['padInfo'] )
+      include '/pad/info/events/field.php';    
 
     return $return;
 

@@ -1,8 +1,8 @@
 <?php
 
-  if ( ! $padTraceVar )
+  if ( ! $padInfTraceVar )
     return;
 
-  padTrace ( 'var', 'end', 'value=' . $padVal );
+ padTrace ( 'var', 'end', 'value=' . $padVal );
    
 ?>

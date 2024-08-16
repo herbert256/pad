@@ -1,11 +1,11 @@
 <?php
 
-  $padXrefId++;
+  $padInfXrefId++;
 
-  $padXrefEvent ['event'] = $padXrefEventType;
-  $padXrefEvent ['tree']  = $padXrefLevel [$pad];
-  $padXrefEvent ['occur'] = $padOccur     [$pad];
+  $padInfXrefEvent ['event'] = $padInfXrefEventType;
+  $padInfXrefEvent ['tree']  = $padInfXrefLevel [$pad];
+  $padInfXrefEvent ['occur'] = $padOccur     [$pad];
 
-  $padXrefEvents [] = $padXrefEvent;
+  $padInfXrefEvents [] = $padInfXrefEvent;
 
 ?>

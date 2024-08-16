@@ -6,6 +6,6 @@
   
   elseif ( $padMyTidy )
     
-    include pad . 'exits/myTidy.php';
+    include '/pad/exits/myTidy.php';
   
 ?>

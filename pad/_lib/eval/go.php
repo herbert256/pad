@@ -5,8 +5,8 @@
 
 go: $last = $open = FALSE;
 
-    if ( padTrace )
-      include pad . 'info/events/eval/go.php';
+    if ( $GLOBALS ['padInfo'] )
+      include '/pad/info/events/eval/go.php';
 
     foreach ($result as $key => $value) {
 
@@ -158,8 +158,8 @@ go: $last = $open = FALSE;
     } else
       $value = $myself;
    
-    $padCall = pad . "eval/parms/$kind.php" ;
-    $value   = include pad . "call/any.php" ;
+    $padCall = "/pad/eval/parms/$kind.php" ;
+    $value   = include "/pad/call/any.php" ;
     
     $result [$type] [1] = 'VAL';
     $result [$type] [0] = padCheckValue ($value);

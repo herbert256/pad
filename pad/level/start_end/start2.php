@@ -8,6 +8,6 @@
 
   reset ( $padData [$pad] );
   
-  include pad . 'occurrence/start.php';
+  include '/pad/occurrence/start.php';
 
 ?>

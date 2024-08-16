@@ -1,8 +1,10 @@
 <?php
 
-  if ( ! $padTraceContent )
-    return;
 
-  padTrace ( 'level', 'content', $padBase [$pad] ); 
+  if ( $padDouble [$pad] == 'mrg-new' or $padDouble [$pad] == 'mrg-base' )
+    padXapp ( 'constructs', 'content' );
+
+  if ( $padDouble [$pad] == 'mrg-new' or $padDouble [$pad] == 'mrg-base' )
+   padTrace ( 'constructs', 'content' );
 
 ?>

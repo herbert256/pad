@@ -4,7 +4,7 @@
 
   while ( $padSeqLoop <= $padSeqEnd ) {
 
-    if ( ! include pad . 'sequence/one.php')
+    if ( ! include '/pad/sequence/one.php')
       break;
 
   }

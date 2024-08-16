@@ -1,5 +1,5 @@
 <?php
 
-  include pad . "sequence/kinds/loop.php"; 
+  include "/pad/sequence/kinds/loop.php"; 
 
 ?>

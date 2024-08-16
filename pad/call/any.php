@@ -5,7 +5,7 @@
   if ( ! file_exists ( $padCall ) )
     return '';
 
-  include pad . 'call/_call.php';
+  include '/pad/call/_call.php';
   
   if ( trim ( $padCallOB ) ) 
 

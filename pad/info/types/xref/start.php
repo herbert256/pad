@@ -1,13 +1,13 @@
 <?php
 
-  include_once pad . 'info/types/xref/_lib.php';
+  include_once '/pad/info/types/xref/_lib.php';
     
-  $padXrefId     = 0;
-  $padXrefDepth  = 0;
-  $padXrefEvents = [];
-  $padXrefSource = padInfoGet ( padApp . $padStartPage . '.pad' );
+  $padInfXrefId     = 0;
+  $padInfXrefDepth  = 0;
+  $padInfXrefEvents = [];
+  $padInfXrefSource = padInfoGet ( '/app/' . $padStartPage . '.pad' );
 
-  if ( $padXrefXml and file_exists ( padData . padXrefLocation () . "xref.xml" ) )
-    unlink ( padData . padXrefLocation () . "xref.xml" );
+  if ( $padInfXrefXml and file_exists ( '/data/' . padXrefLocation () . "xref.xml" ) )
+    unlink ( '/data/' . padXrefLocation () . "xref.xml" );
 
 ?>

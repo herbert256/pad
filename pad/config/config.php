@@ -20,7 +20,7 @@
   // Also an Error handler system.
   // Catch 'weak' parts, replace that part with an empty string if there is an error.
 
-  $padCatch = TRUE; 
+  $padCatch = FALSE; 
 
   // Check PAD syntax
 
@@ -71,7 +71,7 @@
     
   // Default {$var} options, there must be a PHP snippet in one of below directories
   // - pad/functions/
-  // - padApp/_functions/
+  // - '/app/'/_functions/
 
   $padDataDefaultStart = [];
   $padDataDefaultEnd   = ['html'];

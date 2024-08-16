@@ -1,6 +1,6 @@
 <?php
 
   if ( $GLOBALS ['padTracePut'] )
-    padTrace ( 'file', 'put', $in );
+   padTrace ( 'file', 'put', $in );
    
 ?>

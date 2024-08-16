@@ -11,9 +11,9 @@
   $padFilesGroup         = padTagParm ('group');
 
 
-  if     ( $padFilesBase == 'app'  ) $padFilesScan = padApp  . "/$padFilesDir";
-  elseif ( $padFilesBase == 'data' ) $padFilesScan = padData . "/$padFilesDir";
-  elseif ( $padFilesBase == 'pad'  ) $padFilesScan = pad     . "/$padFilesDir";
+  if     ( $padFilesBase == 'app'  ) $padFilesScan = '/app/'  . "/$padFilesDir";
+  elseif ( $padFilesBase == 'data' ) $padFilesScan = '/data/' . "/$padFilesDir";
+  elseif ( $padFilesBase == 'pad'  ) $padFilesScan = '/pad/'   . "/$padFilesDir";
   else                               $padFilesScan = "/$padFilesDir";
 
   $padFilesScan = str_replace ( '//', '/', $padFilesScan);

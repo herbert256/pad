@@ -1,5 +1,5 @@
 <?php
 
-  include padApp . "_tags/error_error.php";
+  include "/app/_tags/error_error.php";
 
 ?>

@@ -1,12 +1,12 @@
 <?php
      
-  if ( padXref )
-    include pad . 'info/types/xref/events/walk.php';
+  if ( $GLOBALS ['padInfo'] )
+    include '/pad/info/events/walk.php';
 
   $padWalk [$pad] = 'next';
   
-  include pad . "catch/go.php"; 
-  include pad . "level/flags.php";
+  include "/pad/catch/go.php"; 
+  include "/pad/level/flags.php";
 
   if ( $padWalk [$pad] ) {
 

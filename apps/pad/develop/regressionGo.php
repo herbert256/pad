@@ -8,8 +8,8 @@
   foreach ( padList ( 0 ) as $one ) {
 
     $item   = $one ['item'];
-    $store  = padApp . "_regression/$item.html";
-    $check  = padApp . "$item.pad";
+    $store  = "/app/_regression/$item.html";
+    $check  = "/app/$item.pad";
     $source = padFileGetContents($check);
 
     if     ( strpos ( $source, 'PAD: SKIP REGRESSION' ) ) $status = 'no';
@@ -45,7 +45,7 @@
 
     }
 
-    $store =  padApp . "_regression/$item.txt";
+    $store =  "/app/_regression/$item.txt";
     padFileChkDir     ( $store );
     padFileChkFile    ( $store );
     file_put_contents ( $store, $status ) ;

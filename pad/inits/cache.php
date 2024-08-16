@@ -1,6 +1,6 @@
 <?php
 
   if ( $padCache )
-    include pad . 'cache/cache.php';
+    include '/pad/cache/cache.php';
   
 ?>

@@ -40,9 +40,9 @@
       return;
 
     if ( $app )
-      $file = padApp . $file;
+      $file = '/app/' . $file;
     else
-      $file = padData . $file;
+      $file = '/data/' . $file;
 
     $dir = substr ( $file, 0, strrpos($file, '/') );
     

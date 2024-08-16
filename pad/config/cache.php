@@ -26,7 +26,7 @@
   $padCacheDbUser          = 'cache';
   $padCacheDbPassword      = 'cache';
 
-  $padCacheFile            = padData . 'cache/';  //  Used when $padCacheServerType is 'file'
+  $padCacheFile            = '/data/' . 'cache/';  //  Used when $padCacheServerType is 'file'
   $padCacheFileMode        = 755;
 
 ?>

@@ -130,8 +130,8 @@
     else
       $return = '';
 
-    if ( padTrace )
-      include pad . 'info/events/sql.php';
+    if ( $GLOBALS ['padInfo'] )
+      include '/pad/info/events/sql.php';
 
     return $return;
 

@@ -4,11 +4,11 @@
  
   foreach ( $padBuildDirs as $padCall ) {
     $padCall .= '/_inits.php';
-    $padBuildTrue .= include pad . 'call/stringNoOne.php';
+    $padBuildTrue .= include '/pad/call/stringNoOne.php';
   }
 
-  $padCall = padApp . "$padPage.php";
-  $padBuildTrue .= include pad . 'call/callNoOne.php';
+  $padCall = "/app/$padPage.php";
+  $padBuildTrue .= include '/pad/call/callNoOne.php';
   $padBuildCall = $padCallPHP;
 
   if ( $padCallPHP === NULL )
@@ -20,14 +20,14 @@
   if ( ! is_array ($padCallPHP) and $padCallPHP !== TRUE and $padCallPHP !== FALSE )
     $padBuildTrue .= $padCallPHP;
 
-  $padBuildTrue .= padFileGetContents ( padApp . "$padPage.pad" );
+  $padBuildTrue .= padFileGetContents ( "/app/$padPage.pad" );
 
   foreach ( array_reverse ($padBuildDirs) as $padCall ) {
     $padCall .= '/_exits.php';
-    $padBuildTrue .= include pad . 'call/stringNoOne.php';
+    $padBuildTrue .= include '/pad/call/stringNoOne.php';
   }
 
-  include pad . 'build/split.php';
+  include '/pad/build/split.php';
 
   if ( $padBuildCall === FALSE or ! count ($padBuild) )
     return $padBuildFalse;

@@ -1,10 +1,10 @@
 <?php
 
-  if ( padXref ) include pad . 'info/types/xref/events/result.php';
+  if ( $GLOBALS ['padInfo'] ) include '/pad/info/events/result.php';
 
-  if ( padXref and str_contains ($padTagContent.$padContent, 'content@') )
-    padXref ('constructs', 'content');  
+  if ( $GLOBALS ['padInfo'] and str_contains ($padTagContent.$padContent, 'content@') )
+   padTrace ('constructs', 'content');  
 
-  if ( padXref ) include pad . 'info/types/xref/events/flags.php';
+  if ( $GLOBALS ['padInfo'] ) include '/pad/info/events/flags.php';
 
 ?>

@@ -6,7 +6,7 @@
   }
 
   if ( ! $padContent and $padParm ) 
-    $padReturn = padColorsFile ( padApp . $padParm ) ;
+    $padReturn = padColorsFile ( '/app/' . $padParm ) ;
   else {
     $padReturn = padColorsString ( $padContent ) ;
     $padReturn = substr($padReturn, 5, -6);

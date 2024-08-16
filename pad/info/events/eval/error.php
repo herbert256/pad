@@ -3,13 +3,13 @@
   if ( ! $GLOBALS ['padTraceEval'] )
     return;
   
-  global $padTraceEvalData;
+  global $padInfTraceEvalData;
 
   $error = $e->getFile() . ':' .  $e->getLine() . $e->getMessage();
 
-  $padTraceEvalData ['error'] = $error;
+  $padInfTraceEvalData ['error'] = $error;
 
-  padTrace ( 'eval', 'error', $error );
-  padTrace ( 'eval', 'end',   $padTraceEvalData );
+ padTrace ( 'eval', 'error', $error );
+ padTrace ( 'eval', 'end',   $padInfTraceEvalData );
 
 ?>

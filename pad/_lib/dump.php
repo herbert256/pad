@@ -10,7 +10,7 @@
 
     } catch (Throwable $e) {
   
-      include pad . 'error/stop.php';
+      include '/pad/error/stop.php';
   
     }
 
@@ -70,7 +70,7 @@
     padDumpXXX       ( $pad, 'padSeq' ); 
     padDumpXXX       ( $pad, 'padBuild' );
     padDumpLines     ( "PAD variables",   $pad );
-    padDumpLines     ( "Trace variables", $trc );
+    padDumpLines     ( '$padInf variables', $trc );
     padDumpLines     ( "Level variables", $lvl );
     padDumpLines     ( "ID's", $ids );
     padDumpSQL       ();
@@ -372,15 +372,15 @@
   } 
 
 
-  function padDumpFields ( &$php, &$lvl, &$cfg, &$pad, &$ids, &$trc ) {
+  function padDumpFields ( &$php, &$lvl, &$cfg, &$pad, &$ids, &$inf ) {
     
-    $php = $lvl = $cfg = $pad = $ids = $exc = $trc = [];
+    $php = $lvl = $cfg = $pad = $ids = $inf = [];
 
     $chk1 = [ '_GET','_REQUEST','_ENV','_POST','_COOKIE','_FILES','_SERVER','_SESSION'];
 
     $chk3 = [ 'padPage','padSesID','padReqID','padRefID','PHPSESSID' ];
     
-    $settings = file_get_contents ( pad . 'config/config.php' );
+    $settings = file_get_contents ( '/pad/config/config.php' );
 
     foreach ($GLOBALS as $key => $value)
 
@@ -388,17 +388,9 @@
 
         $cfg  [$key] = $value;
 
-      elseif ( substr($key, 0, 6)  == 'padXml' )
+      elseif ( substr($key, 0, 6)  == 'padInf' )
 
-        $trc [$key] = $value;
-
-      elseif ( substr($key, 0, 7)  == 'padXref' )
-
-        $trc [$key] = $value;
-
-      elseif ( substr($key, 0, 8)  == 'padTrace' )
-
-        $trc [$key] = $value;
+        $inf [$key] = $value;
 
       elseif ( $key == 'padSqlConnect' )
         
@@ -427,6 +419,7 @@
 
         $pad [$key] = $value;
 
+    ksort($inf);
     ksort($cfg);
     ksort($php);
     ksort($lvl);
@@ -479,7 +472,7 @@
 
     try {
 
-      padFilePutContents ( "$dir/error.txt", padData . "$info\n\n$done" );   
+      padFilePutContents ( "$dir/error.txt", '/data/' . "$info\n\n$done" );   
     
     } catch (Throwable $e ) {
 
@@ -506,12 +499,12 @@
     ob_start (); padDumpFunctions ();                 padDumpFile ( 'functions', ob_get_clean () );
     ob_start (); padDumpApp       ();                 padDumpFile ( 'app-vars',  ob_get_clean () );
   
-    padDumpFields ( $php, $lvl, $cfg, $pad, $ids, $trc );
+    padDumpFields ( $php, $lvl, $cfg, $pad, $ids, $inf );
 
     ob_start (); padDumpLines     ( "ID's", $ids );   padDumpFile ( 'ids',       ob_get_clean () );
     ob_start (); padDumpCurl      ( $pad );           padDumpFile ( 'last-curl', ob_get_clean () );
     ob_start (); padDumpXXX       ( $pad, 'padSeq' ); padDumpFile ( 'sequence',  ob_get_clean () );
-    ob_start (); padDumpLines     ( "Trace", $trc );  padDumpFile ( 'trace',     ob_get_clean () );
+    ob_start (); padDumpLines     ( "Info", $inf );   padDumpFile ( 'info',      ob_get_clean () );
     ob_start (); padDumpLines     ( "Level", $lvl );  padDumpFile ( 'lvl-vars',  ob_get_clean () );
     ob_start (); padDumpLines     ( 'Config', $cfg ); padDumpFile ( 'config',    ob_get_clean () );
     ob_start (); padDumpLines     ( 'PHP', $php );    padDumpFile ( 'php-vars',  ob_get_clean () );
@@ -599,7 +592,7 @@
     if ( ! $data )
       return;
 
-    $file = padData . $file;
+    $file = '/data/' . $file;
 
     $dir = substr ( $file, 0, strrpos($file, '/') );
     

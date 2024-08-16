@@ -1,21 +1,21 @@
 <?php
 
-  if ( ! $padXrefXml )
+  if ( ! $padInfXrefXml )
     return;
   
-  $padXrefNew            = [];
-  $padXrefNew ['start']  = [];
-  $padXrefNew ['end']    = [];
-  $padXrefNew ['occurs'] = [];
+  $padInfXrefNew            = [];
+  $padInfXrefNew ['start']  = [];
+  $padInfXrefNew ['end']    = [];
+  $padInfXrefNew ['occurs'] = [];
 
-  $padXrefStore [] = $padXrefNew;
+  $padInfXrefStore [] = $padInfXrefNew;
 
-  $padXrefLevel [$pad] = array_key_last ( $padXrefStore );
+  $padInfXrefLevel [$pad] = array_key_last ( $padInfXrefStore );
 
-  $padXrefLvl = $padXrefLevel [$pad];
-  $padXrefOcc = $padOccur     [$pad]; 
+  $padInfXrefLvl = $padInfXrefLevel [$pad];
+  $padInfXrefOcc = $padOccur     [$pad]; 
   
-  $padXrefEventType = 'level-start';
-  include pad . 'info/types/xref/event.php';
+  $padInfXrefEventType = 'level-start';
+  include '/pad/info/types/xref/event.php';
 
 ?>

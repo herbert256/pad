@@ -1,6 +1,9 @@
 <?php
  
-  if ( padXref ) include pad . 'info/types/xref/events/else.php';
-  if ( padXapp ) include pad . 'info/types/xapp/events/else.php';
+  if ( $GLOBALS ['padInfTrace'] )
+    padTrace ( 'constructs', 'else' );
 
+  if ( $GLOBALS ['padInfXapp'] )
+    padXapp ( 'constructs', 'else' );
+  
 ?>

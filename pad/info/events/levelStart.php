@@ -1,6 +1,6 @@
 <?php
 
-  if ( padTrace )
-    include pad . 'info/types/trace/level/info.php';   
+  if ( $GLOBALS ['padInfo'] )
+    include '/pad/info/types/trace/level/info.php';   
 
 ?>

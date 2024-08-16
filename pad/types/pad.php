@@ -1,7 +1,7 @@
 <?php
 
-  $padTagGo = pad . 'tags/';
+  $padTagGo = '/pad/tags/';
 
-  return include pad . 'types/go/tag.php';
+  return include '/pad/types/go/tag.php';
 
 ?>
