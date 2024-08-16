@@ -265,7 +265,7 @@
     if ( ! $group or ! $padIdx or ! file_exists ( "/pad/at/groups/$group.php" ) )
       return INF;
 
-    if ( $GLOBALS ['padInfo'] )
+    if ( $GLOBALS ['padInfo'] ) 
       include '/pad/info/events/atGroups.php'; 
 
     return include "/pad/at/groups/$group.php";

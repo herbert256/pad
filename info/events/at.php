@@ -2,17 +2,17 @@
 
   return;
 
-  if ( $field    ) padTrace ( 'at', 'fields',     $field    );
-  if ( $kind     ) padTrace ( 'at', 'kinds',      $kind     );
-  if ( $name     ) padTrace ( 'at', 'names',      $name     );
-  if ( $property ) padTrace ( 'at', 'properties', $property );
+  if ( $field    ) if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'at', 'fields',     $field    );
+  if ( $kind     ) if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'at', 'kinds',      $kind     );
+  if ( $name     ) if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'at', 'names',      $name     );
+  if ( $property ) if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'at', 'properties', $property );
 
-  if ( $kind     ) padXapp ( 'at', 'kinds',      $kind     );
-  if ( $property ) padXapp ( 'at', 'properties', $property );
+  if ( $kind     ) if ( $GLOBALS ['padInfoXapp'] ) padInfoXapp ( 'at', 'kinds',      $kind     );
+  if ( $property ) if ( $GLOBALS ['padInfoXapp'] ) padInfoXapp ( 'at', 'properties', $property );
 
-  if ( $field    ) padXapp ( 'at-2', 'fields',     $field    );
-  if ( $kind     ) padXapp ( 'at-2', 'kinds',      $kind     );
-  if ( $name     ) padXapp ( 'at-2', 'names',      $name     );
-  if ( $property ) padXapp ( 'at-2', 'properties', $property );
+  if ( $field    ) if ( $GLOBALS ['padInfoXapp'] ) padInfoXapp ( 'at-2', 'fields',     $field    );
+  if ( $kind     ) if ( $GLOBALS ['padInfoXapp'] ) padInfoXapp ( 'at-2', 'kinds',      $kind     );
+  if ( $name     ) if ( $GLOBALS ['padInfoXapp'] ) padInfoXapp ( 'at-2', 'names',      $name     );
+  if ( $property ) if ( $GLOBALS ['padInfoXapp'] ) padInfoXapp ( 'at-2', 'properties', $property );
 
 ?>

@@ -1,23 +1,24 @@
 <?php
 
-  if ( ! $padInfTraceResultLvl )
+  if ( ! $GLOBALS ['padInfoTrace'] )
     return;
 
-  if ( $padInfTraceDouble and $padInfTraceContent and $padBase [$pad] == $padResult [$pad] )
+  if ( ! $padInfoTrace or ! $padInfoTraceResultLvl )
     return;
 
- padTrace ( 'level', 'result',  $padResult [$pad] ); 
+  if ( $padInfoTraceDouble and $padInfoTraceContent and $padBase [$pad] == $padResult [$pad] )
+    return;
 
-  return;
+  if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'level', 'result',  $padResult [$pad] ); 
   
-  if     ( $padTagOrg === NULL        )padTrace ( 'result', 'null'     );
-  elseif ( $padTagOrg === FALSE       )padTrace ( 'result', 'false'    );
-  elseif ( $padTagOrg === TRUE        )padTrace ( 'result', 'true'     );
-  elseif ( $padTagOrg === INF         )padTrace ( 'result', 'inf'      );
-  elseif ( $padTagOrg === NAN         )padTrace ( 'result', 'nan'      );
-  elseif ( is_array    ( $padTagOrg ) )padTrace ( 'result', 'array'    );
-  elseif ( is_object   ( $padTagOrg ) )padTrace ( 'result', 'object'   );
-  elseif ( is_resource ( $padTagOrg ) )padTrace ( 'result', 'resource' );
-  else                                 padTrace ( 'result', 'string'   );
+  if     ( $padTagOrg === NULL        ) if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'result', 'null'     );
+  elseif ( $padTagOrg === FALSE       ) if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'result', 'false'    );
+  elseif ( $padTagOrg === TRUE        ) if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'result', 'true'     );
+  elseif ( $padTagOrg === INF         ) if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'result', 'inf'      );
+  elseif ( $padTagOrg === NAN         ) if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'result', 'nan'      );
+  elseif ( is_array    ( $padTagOrg ) ) if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'result', 'array'    );
+  elseif ( is_object   ( $padTagOrg ) ) if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'result', 'object'   );
+  elseif ( is_resource ( $padTagOrg ) ) if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'result', 'resource' );
+  else                                  if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'result', 'string'   );
 
 ?>

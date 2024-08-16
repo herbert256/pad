@@ -1,5 +1,5 @@
 <?php
 
- padTrace ( 'page', $padPageType );
+ if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'page', $padPageType );
 
 ?>

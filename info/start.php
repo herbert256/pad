@@ -3,17 +3,17 @@
   if ( ! $padInfo )
     return;
 
-  $padInfCnt++;
+  $padInfoCnt++;
 
   include_once '/pad/info/_lib.php';
 
   padInfoSet ();
 
-  if ( $padInfTrack ) include '/pad/info/types/track/start.php';
-  if ( $padInfStats ) include '/pad/info/types/stats/start.php';
-  if ( $padInfXapp  ) include '/pad/info/types/xapp/start.php';
-  if ( $padInfTrace ) include '/pad/info/types/trace/start.php';
-  if ( $padInfXml   ) include '/pad/info/types/xml/start.php';
-  if ( $padInfXref  ) include '/pad/info/types/xref/start.php';
+  if ( $padInfoTrack ) include '/pad/info/track/start.php';
+  if ( $padInfoStats ) include '/pad/info/stats/start.php';
+  if ( $padInfoXapp  ) include '/pad/info/xapp/start.php';
+  if ( $padInfoTrace ) include '/pad/info/trace/start.php';
+  if ( $padInfoXml   ) include '/pad/info/xml/start.php';
+  if ( $padInfoXref  ) include '/pad/info/xref/start.php';
 
 ?>

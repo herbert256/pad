@@ -1,6 +1,7 @@
 <?php
 
-  if ( $padInfTraceCall )
-   padTrace ( 'call', 'info', $padCall );
+  if ( $GLOBALS ['padInfoTrace'] ) 
+    if ( $padInfoTraceCall )
+      padInfoTrace ( 'call', 'info', $padCall );
    
 ?>

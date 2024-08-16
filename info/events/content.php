@@ -1,10 +1,12 @@
 <?php
 
+  if ( ! $GLOBALS ['padInfoXapp'] ) 
+    return;
 
   if ( $padDouble [$pad] == 'mrg-new' or $padDouble [$pad] == 'mrg-base' )
-    padXapp ( 'constructs', 'content' );
+    if ( $GLOBALS ['padInfoXapp'] ) padInfoXapp ( 'constructs', 'content' );
 
   if ( $padDouble [$pad] == 'mrg-new' or $padDouble [$pad] == 'mrg-base' )
-   padTrace ( 'constructs', 'content' );
+   if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'constructs', 'content' );
 
 ?>

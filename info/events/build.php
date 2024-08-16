@@ -1,11 +1,10 @@
 <?php
 
-  if ( $padInfTraceBuild )
-   padTrace ( 'build', 'info', $padBase [$pad] ); 
-
-  $padOccur [$pad-1] = 1;
+  if ( $GLOBALS ['padInfoTrace'] ) 
+    if ($padInfoTraceBuild )
+      padInfoTrace ( 'build', 'info', $padBase [$pad] ); 
     
-  include '/pad/info/types/trace/level/start.php';
-  include '/pad/info/types/trace/level/info.php';    
+  if ( $GLOBALS ['padInfoTrace'] ) include '/pad/info/trace/level/start.php';
+  if ( $GLOBALS ['padInfoTrace'] ) include '/pad/info/trace/level/info.php';    
 
 ?>

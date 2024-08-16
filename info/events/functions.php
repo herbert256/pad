@@ -1,8 +1,8 @@
 <?php
 
-  padXapp ( 'functions', $type, $name );
+  if ( $GLOBALS ['padInfoXapp'] ) padInfoXapp ( 'functions', $type, $name );
 
 
- padTrace ( 'functions', $type, $name );
+ if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'functions', $type, $name );
 
 ?>

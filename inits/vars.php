@@ -15,6 +15,6 @@
   $padStrCnt    = -1;
   $padStrFunCnt = 0;
   $padInfo      = '';
-  $padInfCnt    = 0;
+  $padInfoCnt    = 0;
  
 ?>

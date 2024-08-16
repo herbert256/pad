@@ -1,8 +1,5 @@
 <?php
 
-  if ( ! $padInfTraceFalse )
-    return;
-
- padTrace ( 'level', 'false',  $padFalse ); 
+ if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'level', 'false',  $padFalse ); 
 
 ?>

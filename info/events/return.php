@@ -1,5 +1,5 @@
 <?php
 
- padTrace ( 'return', $padInfXrefReturn );
+ if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'return', $padInfoXrefReturn );
 
 ?>

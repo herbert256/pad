@@ -1,8 +1,11 @@
 <?php
 
-  if ( ! $GLOBALS ['padTraceCurl'] )
+  if ( ! $GLOBALS ['padInfoTrace'] )
     return;
 
- padTrace ( 'curl', 'file', $url ); 
+  if ( ! $GLOBALS ['padInfoTraceCurl'] )
+    return;
+
+  padInfoTrace ( 'curl', 'file', $url ); 
 
 ?>

@@ -1,10 +1,13 @@
 <?php
 
-  if ( ! $padInfTraceTrue )
+  if ( ! $GLOBALS ['padInfoTrace'] )
     return;
 
-  if ( !$padInfTraceDouble and $padInfTraceContent )
+  if ( ! $padInfoTrace or ! $padInfoTraceTrue )
+    return;
 
- padTrace ( 'level', 'true',  $padBase [$pad] ); 
+  if ( !$padInfoTraceDouble and $padInfoTraceContent )
+
+ if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'level', 'true',  $padBase [$pad] ); 
 
 ?>

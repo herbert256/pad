@@ -28,7 +28,7 @@
 
   function padFileGetContents ( $file, $default='' ) {
 
-    if ( $GLOBALS ['padInfo'] and function_exists ('padTrace') )
+    if ( $GLOBALS ['padInfo'] and function_exists ('padInfoTrace') )
       include '/pad/info/events/get.php';
 
     if ( is_dir ($file) )
@@ -44,7 +44,7 @@
 
   function padFilePutContents ($in, $data='', $append=0) {
 
-    if ( $GLOBALS ['padInfo'] and function_exists ('padTrace') )
+    if ( $GLOBALS ['padInfo'] and function_exists ('padInfoTrace') )
       include '/pad/info/events/put.php';
 
     global $pad;

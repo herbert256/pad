@@ -3,10 +3,10 @@
   $padDefault [$pad] = TRUE;
   $padDouble  [$pad] = '';
  
-  if ( $GLOBALS ['padInfo'] ) include '/pad/info/types/trace/level/start.php';
-  if ( padXml   ) include '/pad/info/types/xml/level/start.php';  
-  if ( $GLOBALS ['padInfo']  ) include '/pad/info/types/xref/level/start.php';  
-  if ( $GLOBALS ['padInfo']  ) include '/pad/info/events/tag.php';
-  if ( $GLOBALS ['padInfo']  ) include '/pad/info/events/tag.php';
+  if ( $GLOBALS ['padInfoTrace']  ) include '/pad/info/trace/level/start.php';
+  if ( $GLOBALS ['padInfoXml']    ) include '/pad/info/xml/level/start.php';  
+  if ( $GLOBALS ['padInfoXref']   ) include '/pad/info/xref/level/start.php';
 
+  include '/pad/info/events/tag.php';
+  
 ?>

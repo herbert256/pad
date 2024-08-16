@@ -1,18 +1,21 @@
 <?php
 
-  if ( ! $padInfTraceParse )
+  if ( ! $GLOBALS ['padInfoTrace'] )
+    return;
+
+  if ( ! $padInfoTrace or ! $padInfoTraceParse )
     return;
 
   if (  $padStart [$pad] > 50 ) {
-    $padInfTraceParseStart = $padStart [$pad] - 50;
-    $padInfTraceParseEnd   = 50;
+    $padInfoTraceParseStart = $padStart [$pad] - 50;
+    $padInfoTraceParseEnd   = 50;
   } else {
-    $padInfTraceParseStart = 0;
-    $padInfTraceParseEnd   = $padStart [$pad];
+    $padInfoTraceParseStart = 0;
+    $padInfoTraceParseEnd   = $padStart [$pad];
   }
 
- padTrace ( 'parse', 'start',  '{' . $padBetween . '}');
- padTrace ( 'parse', 'before', substr ( $padPad [$pad], $padInfTraceParseStart, $padInfTraceParseEnd ) ); 
- padTrace ( 'parse', 'after',  substr ( $padPad [$pad], $padEnd [$pad] + 1 ) ); 
+ if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'parse', 'start',  '{' . $padBetween . '}');
+ if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'parse', 'before', substr ( $padPad [$pad], $padInfoTraceParseStart, $padInfoTraceParseEnd ) ); 
+ if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'parse', 'after',  substr ( $padPad [$pad], $padEnd [$pad] + 1 ) ); 
 
 ?>

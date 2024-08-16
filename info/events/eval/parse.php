@@ -1,10 +1,10 @@
 <?php
 
-  if ( ! $GLOBALS ['padTraceEval'] )
+  if ( ! $GLOBALS ['padInfoTrace'] or ! $GLOBALS ['padInfoTraceEval'] )
     return;
 
-  global $padInfTraceData;
+  global $padInfoTraceData;
 
-  $padInfTraceEvalData ['parse'] = $result;
+  $padInfoTraceEvalData ['parse'] = $result;
 
 ?>

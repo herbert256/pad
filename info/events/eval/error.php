@@ -1,15 +1,15 @@
 <?php
 
-  if ( ! $GLOBALS ['padTraceEval'] )
+  if ( ! $GLOBALS ['padInfoTrace'] or ! $GLOBALS ['padInfoTraceEval'] )
     return;
   
-  global $padInfTraceEvalData;
+  global $padInfoTraceEvalData;
 
   $error = $e->getFile() . ':' .  $e->getLine() . $e->getMessage();
 
-  $padInfTraceEvalData ['error'] = $error;
+  $padInfoTraceEvalData ['error'] = $error;
 
- padTrace ( 'eval', 'error', $error );
- padTrace ( 'eval', 'end',   $padInfTraceEvalData );
+ if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'eval', 'error', $error );
+ if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'eval', 'end',   $padInfoTraceEvalData );
 
 ?>

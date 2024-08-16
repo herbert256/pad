@@ -34,7 +34,8 @@
     if ( $GLOBALS ['padInfo'] and ! $noInfo )
       include '/pad/info/end.php';  
 
-    $GLOBALS ['padSkipShutdown'] = TRUE;
+    $GLOBALS ['padSkipShutdown']     = TRUE;
+    $GLOBALS ['padSkipBootShutdown'] = TRUE;
 
     exit;
 

@@ -1,12 +1,12 @@
 <?php
 
-  if ( $GLOBALS ['padInfo'] )
-    if ( $padInfTraceOptions )
-     padTrace ( 'option', $padOptionName, "type ==> $padOptions" );
+  if ( $GLOBALS ['padInfoTrace'] )
+    if ( $padInfoTraceOptions )
+     if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'option', $padOptionName, "type ==> $padOptions" );
 
-  if ( $GLOBALS ['padInfo'] )
+  if ( $GLOBALS ['padInfoTrace'] )
     include '/pad/info/events/options.php'; 
 
-  padXapp ( 'options', $padOptionName );
+  if ( $GLOBALS ['padInfoXapp'] ) padInfoXapp ( 'options', $padOptionName );
   
 ?>

@@ -26,10 +26,10 @@
 
   $padSyntax =  TRUE;
 
-  // info/track/trace/xref etc
-  // If set then a config file with the same name will be load from the sub folder info 
+  // Many ways to track/trace and so.
+  // Optional, one or more values from the sub folder 'info' 
 
-  $padInfo = '';
+  $padInfo = 'track,stats,xapp,xml';
 
   // Where the output goes
   // A config file with the same name will be load from the sub folder output

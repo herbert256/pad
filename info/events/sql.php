@@ -1,8 +1,11 @@
 <?php
 
-  if ( ! $GLOBALS ['padTraceSql'] )
+  if ( ! $GLOBALS ['padInfoTrace'] )
     return;
 
- padTrace ( 'sql', 'info', [ 'input' => $input, 'vars' => $vars, 'sql' => $sql, 'result' => $return ] );
+  if ( ! $GLOBALS ['padInfoTrace'] or ! $GLOBALS ['padInfoTraceSql'] )
+    return;
+
+ if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'sql', 'info', [ 'input' => $input, 'vars' => $vars, 'sql' => $sql, 'result' => $return ] );
 
 ?>

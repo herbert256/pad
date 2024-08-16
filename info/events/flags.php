@@ -1,7 +1,8 @@
 <?php
 
-  if ( $padInfTraceFlags )
-   padTrace ( 'level', 'flags', 
+  if ( $GLOBALS ['padInfoTrace'] ) 
+    if ( $padInfoTraceFlags )
+      padInfoTrace ( 'level', 'flags', 
       ' hit='     . $padHit   [$pad] . 
       ' else='    . $padElse  [$pad] . 
       ' null='    . $padNull  [$pad] . 
@@ -10,9 +11,9 @@
       ' count='   . count ( $padData [$pad] )
     );
 
-  if ( $padNull [$pad]  )padTrace ( 'flag', 'null',  $padNull [$pad]  );
-  if ( $padElse [$pad]  )padTrace ( 'flag', 'else',  $padElse [$pad]  );
-  if ( $padHit [$pad]   )padTrace ( 'flag', 'hit',   $padHit [$pad]   );
-  if ( $padArray [$pad] )padTrace ( 'flag', 'array', $padArray [$pad] );
+  if ( $padNull [$pad]  ) if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'flag', 'null',  $padNull [$pad]  );
+  if ( $padElse [$pad]  ) if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'flag', 'else',  $padElse [$pad]  );
+  if ( $padHit [$pad]   ) if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'flag', 'hit',   $padHit [$pad]   );
+  if ( $padArray [$pad] ) if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'flag', 'array', $padArray [$pad] );
 
 ?>

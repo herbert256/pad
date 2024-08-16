@@ -19,8 +19,8 @@
 
       $error = "$file:$line " . padMakeSafe ( $error );
 
-      if ( function_exists ( 'padTraceError' ) )
-        padTraceError ( $error );
+      if ( function_exists ( 'padInfoTraceError' ) )
+        padInfoTraceError ( $error );
 
       if ( $GLOBALS ['padErrorLog'] ) 
         error_log ( $error, 4 );

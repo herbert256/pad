@@ -1,8 +1,9 @@
 <?php
 
- padTrace ( 'constructs', 'start' );
+  if ( $GLOBALS ['padInfoTrace'] )
+    if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'constructs', 'start' );
 
-  padXapp ( 'constructs', 'start' );
+  if ( $GLOBALS ['padInfoXapp'] ) padInfoXapp ( 'constructs', 'start' );
 
 
 ?>

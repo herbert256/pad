@@ -1,13 +1,13 @@
 <?php
 
-  if ( ! $GLOBALS ['padTraceEval'] )
+  if ( ! $GLOBALS ['padInfoTrace'] or ! $GLOBALS ['padInfoTraceEval'] )
     return;
   
-  global $padInfTraceEvalData;
+  global $padInfoTraceEvalData;
 
-  $padInfTraceEvalData ['result'] = $result [$key] [0];
+  $padInfoTraceEvalData ['result'] = $result [$key] [0];
 
- padTrace ( 'eval', 'result', $result [$key] [0] );
- padTrace ( 'eval', 'end',    $padInfTraceEvalData );
+ if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'eval', 'result', $result [$key] [0] );
+ if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'eval', 'end',    $padInfoTraceEvalData );
 
 ?>

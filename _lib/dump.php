@@ -70,7 +70,7 @@
     padDumpXXX       ( $pad, 'padSeq' ); 
     padDumpXXX       ( $pad, 'padBuild' );
     padDumpLines     ( "PAD variables",   $pad );
-    padDumpLines     ( '$padInf variables', $trc );
+    padDumpLines     ( '$padInfo variables', $trc );
     padDumpLines     ( "Level variables", $lvl );
     padDumpLines     ( "ID's", $ids );
     padDumpSQL       ();
@@ -388,7 +388,7 @@
 
         $cfg  [$key] = $value;
 
-      elseif ( substr($key, 0, 6)  == 'padInf' )
+      elseif ( substr($key, 0, 6)  == 'padInfo' )
 
         $inf [$key] = $value;
 

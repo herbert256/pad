@@ -1,26 +1,28 @@
 <?php
 
-  if ( $padInfTrace and $padInfTraceSequence ) {
+  if ( $GLOBALS ['padInfoTrace'] and $GLOBALS ['padInfoTraceSequence'] ) {
 
-   padTrace ( 'sequence', $padSeqSeq, $padSeqResult ); 
-   padTrace ( 'sequence', $padSeqSeq, $padSeqReturn ); 
+    padInfoTrace ( 'sequence', $padSeqSeq, $padSeqResult ); 
+    padInfoTrace ( 'sequence', $padSeqSeq, $padSeqReturn ); 
+
+    padInfoTrace ( 'sequences', 'types', $padSeqSeq );
+
+    if ( $padSeqFor !== FALSE )
+     padInfoTrace ( 'sequences', 'builds', 'for' );
+    else
+     padInfoTrace ( 'sequences', 'builds', $padSeqBuild );
 
   }
 
-  
-  padTrace ( 'sequences', 'types', $padSeqSeq );
+  if ( $GLOBALS ['padInfoXapp'] ) {
 
-  if ( $padSeqFor !== FALSE )
-   padTrace ( 'sequences', 'builds', 'for' );
-  else
-   padTrace ( 'sequences', 'builds', $padSeqBuild );
+    padInfoXapp ( 'sequences', 'types', $padSeqSeq );
 
+    if ( $padSeqFor !== FALSE )
+      padInfoXapp ( 'sequences', 'builds', 'for' );
+    else
+      padInfoXapp ( 'sequences', 'builds', $padSeqBuild );
 
-  padXapp ( 'sequences', 'types', $padSeqSeq );
-
-  if ( $padSeqFor !== FALSE )
-    padXapp ( 'sequences', 'builds', 'for' );
-  else
-    padXapp ( 'sequences', 'builds', $padSeqBuild );
+  }
 
 ?>

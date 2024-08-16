@@ -1,9 +1,12 @@
 <?php
 
-  if ( ! $GLOBALS ['padTraceField'] )
+  if ( ! $GLOBALS ['padInfoTrace'] )
     return;
 
- padTrace ( 'field', 'info', 
+  if ( ! $GLOBALS ['padInfoTraceField'] )
+    return;
+
+ if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'field', 'info', 
     ' field='  . $field . 
     ' type='   . $type . 
     ' prefix=' . $prefix . 
@@ -12,9 +15,9 @@
     ' return=' . padJson ( $return )  
   );
 
-  if ( $type == 2 )padTrace ( 'field', 'var',    $field );
-  if ( $type == 4 )padTrace ( 'field', 'array',  $field );
-  if ( $type == 6 )padTrace ( 'field', 'option', $field );
-  if ( $type == 8 )padTrace ( 'field', 'tag',    $field );
+  if ( $type == 2 ) if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'field', 'var',    $field );
+  if ( $type == 4 ) if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'field', 'array',  $field );
+  if ( $type == 6 ) if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'field', 'option', $field );
+  if ( $type == 8 ) if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'field', 'tag',    $field );
 
 ?>

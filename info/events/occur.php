@@ -1,5 +1,5 @@
 <?php
 
- padTrace ( 'occur', 'toDo' );
+ if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'occur', 'toDo' );
 
 ?>
