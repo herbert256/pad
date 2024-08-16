@@ -1,8 +1,6 @@
 <?php
 
-  $GLOBALS ['catch'] .= '-B';
-
-  include pad . 'error/catch/_catch.php';
+  include pad . 'catch/catch/_catch.php';
 
   $padBase [$pad] = '';
  

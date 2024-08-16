@@ -19,8 +19,6 @@
 
   // Also an Error handler system.
   // Catch 'weak' parts, replace that part with an empty string if there is an error.
-  // The parts are: build, level, tag, callback
-  // If active it will override above settings ( except when $padErrorAction is 'php' or 'boot' )
 
   $padCatch = TRUE; 
 

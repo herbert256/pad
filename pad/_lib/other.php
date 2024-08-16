@@ -20,12 +20,12 @@
     $GLOBALS ['padStrCln'] = TRUE;
     $GLOBALS ['padStrBld'] = 'code';
 
-    return include pad . 'start/enter/function.php';
+    return include pad . 'start/enter/function.php'; 
 
   }
 
 
-  function padStr ( $padStrCod ) {
+  function padStr (  $padStrCod, $padStrBox, $padStrRes, $padStrCln, $padStrFun ) {
 
     return include pad . 'start/function.php';
 

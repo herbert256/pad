@@ -11,7 +11,7 @@
 
   } catch ( Throwable $padCatchException ) {
 
-    $padCatchReturn = include pad . 'error/catch/function.php';
+    $padCatchReturn = include pad . 'catch/catch/function.php';
 
   }
 

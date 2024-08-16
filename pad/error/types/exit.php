@@ -1,12 +1,14 @@
 <?php
 
+
+  include pad . "error/error.php";
+
+
   function padErrorGo ( $error, $file, $line ) {
-  
-    if ( $GLOBALS ['padCatch'] )
-      throw new ErrorException ( $error, 0, 0, $file, $line );
         
     padExit ( TRUE );
 
   }
 
+   
 ?>

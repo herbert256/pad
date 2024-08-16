@@ -1,6 +1,14 @@
 <?php
 
 
+  $padDisplayErrors  = ini_set ('display_errors', 0);
+  $padErrorReporting = error_reporting (E_ALL);
+
+  set_error_handler          ( 'padBootHandler'   );
+  set_exception_handler      ( 'padBootException' );
+  register_shutdown_function ( 'padBootShutdown'  );
+
+
   function padBootError ( $error ) {
 
     extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
@@ -115,6 +123,14 @@
 
     return FALSE;
     
+  }
+
+
+  function padErrorThrow ( $type, $error, $file, $line ) {
+
+    if ( ( error_reporting() & $type ) ) 
+      throw new \ErrorException ( $error, 0, $type, $file, $line);
+
   }
 
 

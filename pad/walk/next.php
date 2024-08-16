@@ -5,7 +5,7 @@
 
   $padWalk [$pad] = 'next';
   
-  include pad . "level/catch/go.php"; 
+  include pad . "catch/go.php"; 
   include pad . "level/flags.php";
 
   if ( $padWalk [$pad] ) {

@@ -1,13 +1,11 @@
 <?php
+  
 
-
+  include pad . "error/error.php";
+  
+  
   function padErrorGo ( $error, $file, $line ) {
-
-    $GLOBALS ['catch'] .= '-GO';
-
-    if ( $GLOBALS ['padCatch'] )
-      throw new ErrorException ( $error, 0, 0, $file, $line );
-    
+ 
     set_error_handler ( 'padErrorThrow' );
 
     try {
@@ -41,5 +39,6 @@
     padExit ( TRUE );
 
   }
+
 
 ?>

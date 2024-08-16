@@ -3,9 +3,10 @@
 
   function padError ($error) {
  
-    $GLOBALS ['catch'] .= '-E';
-
     extract ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1) [0] );
+
+    if ( $GLOBALS ['padCatch'] )
+      throw new \ErrorException ( $error, 0, 0, $file, $line );
 
     padErrorGo ( 'PAD: ' . $error, $file, $line ); 
 
@@ -29,16 +30,5 @@
 
   }
 
-
-  function padErrorThrow ( $severity, $message, $filename, $lineno ) {
-
-    if ( $GLOBALS ['padErrorAction'] == 'ignore' ) 
-      return FALSE;
-
-    if ( error_reporting() & $severity )
-      throw new ErrorException ( $message, 0, $severity, $filename, $lineno );
-
-  }
-  
 
 ?>
