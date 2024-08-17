@@ -1,26 +1,20 @@
 <?php
 
+
   if ( $GLOBALS ['padInfoXref'] or $GLOBALS ['padInfoXapp'] ) {
 
     foreach ( $padPrm [$pad] as $padK => $padV )
       padInfoXapp ( 'options', $padK );
 
     foreach ( $padPrm [$pad] as $padK => $padV )
-      padInfoXapp ( '_options/tags-options', $padTag [$pad], $padK );
-
-    foreach ( $padPrm [$pad] as $padK => $padV )
-      padInfoXapp ( '_options/options-tags', $padK, $padTag [$pad] );
-
-    foreach ( $padPrm [$pad] as $padK => $padV )
-      padInfoXapp ( '_options/types-options', $padType [$pad], $padK );
-
-    foreach ( $padPrm [$pad] as $padK => $padV )
-      padInfoXapp ( '_options/options-types', $padK, $padType [$pad] );
+      padInfoXapp ( "_options/$padK", $padType [$pad], $padTag [$pad] );
 
   }
 
+
   if ( $GLOBALS ['padInfoXml']   ) 
     include '/pad/info/xml/level/parms.php';  
+
 
   if ( $GLOBALS ['padInfoTrace'] and $GLOBALS ['padInfoTraceParms'] ) {
 
@@ -38,5 +32,6 @@
       padInfoTrace ( 'parm', 'occ',  "$padK ==> $padV" );
 
   }
+
 
 ?>
