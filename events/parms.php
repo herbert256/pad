@@ -1,15 +1,22 @@
 <?php
 
+  if ( $GLOBALS ['padInfoXref'] or $GLOBALS ['padInfoXapp'] ) 
+    foreach ( $padPrm [$pad] as $padK => $padV )
+      padInfoXapp ( 'options', $padK );
+
   if ( $GLOBALS ['padInfoXref'] ) { 
 
     foreach ( $padPrm [$pad] as $padK => $padV )
-      padInfoTrace ( 'options', $padK );
+      padInfoXref ( 'options/tags-options', $padTag [$pad], $padK );
 
     foreach ( $padPrm [$pad] as $padK => $padV )
-      padInfoTrace ( 'tags-options', $padTag[$pad], $padK );
+      padInfoXref ( 'options/options-tags', $padK, $padTag [$pad] );
 
     foreach ( $padPrm [$pad] as $padK => $padV )
-      padInfoTrace ( 'options-tags', $padK, $padTag[$pad] );
+      padInfoXref ( 'options/types-options', $padType [$pad], $padK );
+
+    foreach ( $padPrm [$pad] as $padK => $padV )
+      padInfoXref ( 'options/options-types', $padK, $padType [$pad] );
 
   }
 

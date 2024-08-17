@@ -60,7 +60,8 @@
 
     global $pad, $padType;
 
-    $padType [$pad] = 'tag' ;
+    #if ( $padType [$pad] == 'field' or $padType [$pad] == 'array' )
+      $padType [$pad] = 'tag' ;
 
   }
 

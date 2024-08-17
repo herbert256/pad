@@ -1,7 +1,4 @@
 <?php
-  
-  $padDefault [$pad] = TRUE;
-  $padDouble  [$pad] = '';
  
   if ( $GLOBALS ['padInfoTrace']  ) include '/pad/info/trace/level/start.php';
   if ( $GLOBALS ['padInfoXml']    ) include '/pad/info/xml/level/start.php';  

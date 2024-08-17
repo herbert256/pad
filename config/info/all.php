@@ -22,6 +22,7 @@
   $padInfoXrefTree         = TRUE;
   $padInfoXrefXml          = TRUE;
   $padInfoXrefTrace        = TRUE;
+  $padInfoXrefXapp         = TRUE;
   
   $padInfoTraceLines       = TRUE;
   $padInfoTraceDouble      = TRUE;

@@ -3,7 +3,7 @@
 
   function padInfoXref ( $dir1, $dir2, $dir3='' ) {
 
-    global $padInfoXrefId, $padInfoXrefXref, $padInfoXrefPage, $padInfoXrefXml, $padInfoXrefTrace, $padInfoXrefTree, $padInfoXrefSite;
+    global $padInfoXrefId, $padInfoXrefXref, $padInfoXrefPage, $padInfoXrefXml, $padInfoXrefTrace, $padInfoXrefTree, $padInfoXrefSite, $padInfoXrefXapp;
 
     $padInfoXrefId++;
 
@@ -18,7 +18,15 @@
     if ( $padInfoXrefTree  ) padInfoXrefTree  ( $dir1, $dir2, $dir3 );
     if ( $padInfoXrefXml   ) padInfoXrefXml   ( $dir1, $dir2, $dir3 );
     if ( $padInfoXrefTrace ) padInfoXrefTrace ( $dir1, $dir2, $dir3 );
+    if ( $padInfoXrefXapp  ) padInfoXrefXapp  ( $dir1, $dir2, $dir3 );
  
+  }
+
+
+  function padInfoXrefXapp ( $dir1, $dir2, $dir3 ) {
+
+    padInfoXappGo ( '_xref/_xref', $dir1, $dir2, $dir3 );
+
   }
 
 
@@ -37,7 +45,7 @@
       $file .= "$dir3/";
 
     if ( $type == 'xref' )
-      $file .= str_replace ( '/' , '@', $padStartPage ) . "-page";
+      $file .= str_replace ( '/' , '_', $padStartPage );
 
     padInfoXrefData ( "$file/$padInfoXrefId" );
 
@@ -71,7 +79,7 @@
     global $pad, $padInfoXrefLevel, $padOccur, $padInfoXrefStore;
 
     $padInfoXrefLvl = $padInfoXrefLevel [$pad] ?? 0;
-    $padInfoXrefOcc = $padOccur     [$pad] ?? 0;
+    $padInfoXrefOcc = $padOccur         [$pad] ?? 0;
 
     $xref = "$dir1 $dir2";
     if ( $dir3 !== '' )

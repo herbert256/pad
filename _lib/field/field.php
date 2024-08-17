@@ -18,14 +18,17 @@
   
   function padField ( $field, $type, $lvl=0 ) {
 
-    if ( $GLOBALS ['padInfo'] ) 
-      include '/pad/events/fieldStart.php';
+      if ( $GLOBALS ['padInfo'] ) 
+        include '/pad/events/fieldStart.php';
 
-    if ( str_contains ( $field, '@' ) or str_contains ( $field, '.' ) )
-    
+    if ( str_contains ( $field, '@' ) or str_contains ( $field, '.' ) ) {
+
       $value = padFieldAt ( $field, $lvl );
 
-    else {
+      if ( $GLOBALS ['padInfo'] ) 
+        include '/pad/events/fieldAt.php';
+
+    } else {
 
       if ( str_contains ($field, ':' ) )
         list ( $prefix, $field ) = explode (':', $field, 2);
@@ -39,12 +42,16 @@
     
       list ( $field, $parm ) = padSplit ( ':', $field );
 
+
       if     ( $type ==  5 ) $value = padParm        ( $field, $idx, $type );
       elseif ( $type ==  6 ) $value = padParm        ( $field, $idx, $type );
       elseif ( $type ==  7 ) $value = padTag         ( $field, $idx, $type, $parm );
       elseif ( $type ==  8 ) $value = padTag         ( $field, $idx, $type, $parm );
       elseif ( $prefix     ) $value = padFieldPrefix ( $field, $idx, $type, $prefix );
       else                   $value = padFieldLevel  ( $field, $type );
+
+      if ( $GLOBALS ['padInfo'] ) 
+        include '/pad/events/fieldClassic.php';
 
     }  
    
