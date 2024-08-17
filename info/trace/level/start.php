@@ -1,6 +1,6 @@
 <?php
 
   if ( $padInfoTraceStartEndLvl )
-   padInfoTrace ( 'level', 'start' );
+     padInfoTrace ( 'level', 'start', '{' . $padBetween . '}');
 
 ?>

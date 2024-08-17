@@ -3,67 +3,69 @@
   $padInfoTrace            = TRUE;       // Trace the internal working of PAD
   
   $padInfoTraceLines       = TRUE;
-  $padInfoTraceDouble      = TRUE;
-  $padInfoTraceDefault     = TRUE;
-  $padInfoTraceKeepEmpty   = TRUE;
+  $padInfoTraceDouble      = FALSE;
+  $padInfoTraceDefault     = FALSE;
+  $padInfoTraceKeepEmpty   = FALSE;
 
   $padInfoTraceRoot        = TRUE;
-  $padInfoTraceTree        = TRUE;  
+  $padInfoTraceTree        = FALSE;  
   $padInfoTraceLocal       = TRUE;
-  $padInfoTraceTypes       = TRUE;
-  $padInfoTraceMore        = TRUE;
-  $padInfoTraceXref        = TRUE;
+  $padInfoTraceTypes       = FALSE;
+  $padInfoTraceMore        = FALSE;
+
+  $padInfoTraceXref        = FALSE;
+  $padInfoTraceDump        = FALSE;
 
   $padInfoTraceStartEnd    = TRUE;
   $padInfoTraceStartEndLvl = TRUE;
   $padInfoTraceStartEndOcc = TRUE;
 
-  $padInfoTraceStatus      = TRUE;
-  $padInfoTraceChilds      = TRUE;
-  $padInfoTraceAddLine     = TRUE;
-  $padInfoTraceLocalChk    = TRUE;       
+  $padInfoTraceStatus      = FALSE;
+  $padInfoTraceChilds      = FALSE;
+  $padInfoTraceAddLine     = FALSE;
+  $padInfoTraceLocalChk    = FALSE;       
 
-  $padInfoTraceOccurs      = TRUE;
+  $padInfoTraceOccurs      = FALSE;
   $padInfoTraceOccursSmart = FALSE;
 
-  $padInfoTraceInitsExits  = TRUE;
+  $padInfoTraceInitsExits  = FALSE;
   
-  $padInfoTraceTypesDir    = TRUE;       
-  $padInfoTraceRequest     = TRUE;
+  $padInfoTraceTypesDir    = FALSE;       
+  $padInfoTraceRequest     = FALSE;
 
-  $padInfoTraceSession     = TRUE;
-  $padInfoTraceBuild       = TRUE;
+  $padInfoTraceSession     = FALSE;
+  $padInfoTraceBuild       = FALSE;
   
-  $padInfoTraceParse       = TRUE;
-  $padInfoTraceParms       = TRUE;
-  $padInfoTraceOptions     = TRUE;
+  $padInfoTraceParse       = FALSE;
+  $padInfoTraceParms       = FALSE;
+  $padInfoTraceOptions     = FALSE;
 
-  $padInfoTraceStartLvl    = TRUE;
-  $padInfoTraceStartOcc    = TRUE;
-  $padInfoTraceEndLvl      = TRUE;
-  $padInfoTraceEndOcc      = TRUE;
+  $padInfoTraceStartLvl    = FALSE;
+  $padInfoTraceStartOcc    = FALSE;
+  $padInfoTraceEndLvl      = FALSE;
+  $padInfoTraceEndOcc      = FALSE;
   
   $padInfoTraceContent     = TRUE;
-  $padInfoTraceTrue        = TRUE;
-  $padInfoTraceFalse       = TRUE;
-  $padInfoTraceLevelBase   = TRUE;
-  $padInfoTraceResultLvl   = TRUE;
-  $padInfoTraceResultOcc   = TRUE;
+  $padInfoTraceTrue        = FALSE;
+  $padInfoTraceFalse       = FALSE;
+  $padInfoTraceLevelBase   = FALSE;
+  $padInfoTraceResultLvl   = FALSE;
+  $padInfoTraceResultOcc   = FALSE;
 
-  $padInfoTraceFlags       = TRUE;
+  $padInfoTraceFlags       = FALSE;
  
-  $padInfoTraceDataLvl     = TRUE;
-  $padInfoTraceDataOcc     = TRUE;
+  $padInfoTraceDataLvl     = FALSE;
+  $padInfoTraceDataOcc     = FALSE;
   
-  $padInfoTraceStore       = TRUE;
-  $padInfoTraceSequence    = TRUE;
-  $padInfoTraceVar         = TRUE;
-  $padInfoTraceField       = TRUE;
-  $padInfoTraceEval        = TRUE;
-  $padInfoTraceCall        = TRUE;
-  $padInfoTraceSql         = TRUE;
-  $padInfoTracePut         = TRUE;
-  $padInfoTraceGet         = TRUE;
-  $padInfoTraceCurl        = TRUE;
+  $padInfoTraceStore       = FALSE;
+  $padInfoTraceSequence    = FALSE;
+  $padInfoTraceVar         = FALSE;
+  $padInfoTraceField       = FALSE;
+  $padInfoTraceEval        = FALSE;
+  $padInfoTraceCall        = FALSE;
+  $padInfoTraceSql         = FALSE;
+  $padInfoTracePut         = FALSE;
+  $padInfoTraceGet         = FALSE;
+  $padInfoTraceCurl        = FALSE;
 
 ?>

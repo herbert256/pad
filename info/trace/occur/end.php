@@ -11,7 +11,7 @@
   if ( ! isset ($padInfoTraceOccurChilds [$pad] [$padI] ) ) $padInfoTraceOccurChilds [$pad] [$padI] = 0;
 
   if ( $padInfoTraceStartEndOcc )
-   padInfoTrace ( 'occur', 'end' );
+   padInfoTrace ( 'occur', 'end', $padPad [$pad] );
 
   if ( $padInfoTraceLocalChk )
     padInfoTraceCheckLocal ( $padInfoTraceLevel [$pad] . "/$padI" );

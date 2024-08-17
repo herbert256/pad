@@ -4,7 +4,7 @@
   if ( ! $padInfoTraceLevel [$pad]           ) padInfoTraceSet ( $pad );
 
   if ( $padInfoTraceStartEndLvl )
-   padInfoTrace ( 'level', 'end' );
+   padInfoTrace ( 'level', 'end', $padResult[$pad] );
 
   if ( $padInfoTraceStatus )
     padInfoTraceStatus ( );

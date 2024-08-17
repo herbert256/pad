@@ -1,6 +1,15 @@
 <?php
 
 
+  function padInfoTraceStart ( ) {   
+
+    if ( $GLOBALS ['padInfoTraceLvl'] [ $GLOBALS ['padInfoTraceCnt'] ] < 0 )
+      return 0;
+    
+    return $GLOBALS ['padInfoTraceLvl'] [ $GLOBALS ['padInfoTraceCnt'] ];
+
+  }
+
   function padInfoTrace ( $type, $event, $info='' ) {
 
     global $pad, $padOccur;
@@ -29,7 +38,7 @@
     if ( $padInfoTraceTree  ) padInfoTraceTree  ( $trace );
     if ( $padInfoTraceLocal ) padInfoTraceLocal ( $trace );
     if ( $padInfoTraceTypes ) padInfoTraceTypes ( $trace, $type );
-   
+
   }
 
 
@@ -77,7 +86,7 @@
     global $padInfoTraceId, $padInfoTraceIds, $padInfoTraceOccurId;
 
     $prefix = $pad;  
-    if ( $pad >= 0 and $padOccur [$pad] )
+    if ( $pad >= 0 and $padOccur [$pad] and $padOccur [$pad] <> 99999 )
       $prefix .= '/' . $padOccur [$pad];
 
     if     ( $type == 'level' )                      $id = $padInfoTraceIds [$pad]         ?? 0;
@@ -121,9 +130,11 @@
 
   function padInfoTraceTree ( $trace ) {  
 
+    $start = padInfoTraceStart ();
+
     global $pad;
 
-    for ( $i = 0; $i <= $pad; $i++ )
+    for ( $i = $start; $i <= $pad; $i++ )
       padInfoTraceWrite ( $i, 'tree.txt', $trace );
 
   }
@@ -286,7 +297,7 @@
     $add  = padInfoTraceOccur ( $pad-1 );
     $line = ($padInfoTraceAddLine) ? "$padInfoTraceId-" : '';
 
-    $padInfoTraceLevel [$pad] = $padInfoTraceLevel [$last] ?? "NoPrev";
+    $padInfoTraceLevel [$pad] = $padInfoTraceLevel [$last] ?? '';
  
     $padInfoTraceLevel [$pad] .= "/$add$line$tag";
   
@@ -353,10 +364,26 @@
 
   function padInfoTraceCheckLocal ( $dir ) {
 
-    global $pad, $padInfoTraceDir;
+    padInfoTraceCheckLocalOne ( $dir, 'trace', 'local' );
+    padInfoTraceCheckLocalOne ( $dir, 'trace', 'tree' );
+    padInfoTraceCheckLocalOne ( $dir, 'local', 'tree' );
 
-    $file1 = "/data/$padInfoTraceDir/$dir/tree.txt";
-    $file2 = "/data/$padInfoTraceDir/$dir/local.txt";
+    padInfoTraceCheckLocalOne ( $dir, 'root', 'local' );
+    padInfoTraceCheckLocalOne ( $dir, 'root', 'tree' );
+    padInfoTraceCheckLocalOne ( $dir, 'root', 'trace' );
+
+  }
+
+
+  function padInfoTraceCheckLocalOne ( $dir, $file1, $file2 ) {
+
+    global $padInfoTraceDir;
+
+    $file1 = "/data/$padInfoTraceDir/$dir/f$ile1.txt";
+    $file2 = "/data/$padInfoTraceDir/$dir/f$ile2.txt";
+
+    $file1 = str_replace ( '//', '/', $file1 );
+    $file2 = str_replace ( '//', '/', $file2 );
 
     if ( ! file_exists ( $file1 ) or ! file_exists ( $file2 ) )
       return;

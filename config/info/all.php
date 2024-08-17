@@ -29,6 +29,7 @@
   $padInfoTraceKeepEmpty   = TRUE;
 
   $padInfoTraceRoot        = TRUE;
+  $padInfoTraceDump        = TRUE;
   $padInfoTraceTree        = TRUE;  
   $padInfoTraceLocal       = TRUE;
   $padInfoTraceTypes       = TRUE;

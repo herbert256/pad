@@ -17,7 +17,6 @@
   $padData [$pad]  = padData ( $padData [$pad] );   
   $padCount [$pad] = count ( $padData [$pad] );
 
-  if ( $GLOBALS['padInfo'] )
-    include '/pad/events/default.php';
+  $padDefault [$pad] = padIsDefaultData ( $padData [$pad] );
 
 ?>

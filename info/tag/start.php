@@ -4,6 +4,8 @@
 
   padInfoBackup ();
 
+  $padInfo = 'go';
+  
   $padInfoCnt++;
 
   padInfoSet (); 

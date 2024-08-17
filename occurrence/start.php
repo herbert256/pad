@@ -1,7 +1,7 @@
 <?php
 
   $padOccur [$pad]++;
-
+ 
   $padParm = $padOpt [$pad] [1] ?? '';
 
   $padOccurStart [$pad] [$padOccur[$pad]] = TRUE;

@@ -1092,7 +1092,8 @@
       if ( ! str_starts_with ( $field, 'padStr' ) )
         if ( ! in_array ( $field, padStrSto) )
           if ( ! in_array ( $field, padLevelVars) )
-            return TRUE;
+            if ( $field <> 'padInfoCnt' and $field <> 'padInfoTraceId' )
+              return TRUE;
          
     return FALSE;
 

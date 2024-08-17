@@ -17,11 +17,10 @@
 
     global $padInfoCnt; 
 
-$GLOBALS ['aaa'] [] = $padInfoCnt;
-
     foreach ( $GLOBALS as $k => $v )
-      if ( str_starts_with($k, 'padInfo') and $k <> 'padInfoCnt' and $k <> 'padInfoBackup' )
-        $GLOBALS ['padInfoBackup'] [$padInfoCnt] [$k] = $v;
+      if ( str_starts_with($k, 'padInfo') and $k <> 'padInfoBackup' )
+        if ( $k <> 'padInfoCnt' and $k <> 'padInfoTraceId' )
+          $GLOBALS ['padInfoBackup'] [$padInfoCnt] [$k] = $v;
 
   }
 
@@ -30,19 +29,13 @@ $GLOBALS ['aaa'] [] = $padInfoCnt;
 
     global $padInfoCnt; 
 
-$GLOBALS ['aaa'] [] = $padInfoCnt;
+    foreach ( $GLOBALS as $k => $v )
+      if ( str_starts_with($k, 'padInfo') and $k <> 'padInfoBackup' )
+        if ( $k <> 'padInfoCnt' and $k <> 'padInfoTraceId' )
+          unset ( $GLOBALS [$k] );
 
     foreach ( $GLOBALS ['padInfoBackup'] [$padInfoCnt] as $k => $v )
       $GLOBALS [$k] = $v;
-
-$GLOBALS ['aaa'] [] = $padInfoCnt;
-
-    foreach ( $GLOBALS as $k => $v )
-      if ( str_starts_with($k, 'padInfo') and $k <> 'padInfoCnt' and $k <> 'padInfoBackup' )
-        if ( ! in_array  ( $k, $GLOBALS ['padInfoBackup'] [$padInfoCnt] ) )
-          unset ( $GLOBALS [$k] );
-
-$GLOBALS ['aaa'] [] = $padInfoCnt;
 
   }
 
