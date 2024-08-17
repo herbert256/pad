@@ -50,6 +50,6 @@
   }
 
   if ( $GLOBALS['padInfo'] ) 
-    include '/pad/info/events/parms.php';
+    include '/pad/events/parms.php';
 
 ?>

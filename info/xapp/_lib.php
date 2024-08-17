@@ -3,7 +3,11 @@
   
   function padInfoXapp ( $dir1, $dir2, $dir3='' ) {
 
-    padInfoXappGo ( '_xref/raw', $dir1, $dir2, $dir3 );
+    if ( $GLOBALS ['padInfoXref'] )
+      padInfoXref ( $dir1, $dir2, $dir3 );
+
+    if ( ! $GLOBALS ['padInfoXapp'] )
+      return;
 
     if ( $dir1 == 'tag'   and $dir2 == 'tag' ) padInfoXapp ( 'properties', $dir3 );
     if ( $dir1 == 'field' and $dir2 == 'tag' ) padInfoXapp ( 'properties', $dir3 );

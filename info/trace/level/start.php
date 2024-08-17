@@ -1,6 +1,6 @@
 <?php
 
   if ( $padInfoTraceStartEndLvl )
-   $GLOBALS ['padInfo']( 'level', 'start' );
+   padInfoTrace ( 'level', 'start' );
 
 ?>

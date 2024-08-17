@@ -26,7 +26,7 @@
     include '/pad/level/start_end/end1.php';
 
   if ( $GLOBALS['padInfo'] ) 
-    include '/pad/info/events/levelStart.php';  
+    include '/pad/events/levelStart.php';  
 
   if ( padTagParm ('dump') )
     include '/pad/options/dump.php';
@@ -34,7 +34,9 @@
   if ( padOpenCloseOk ( $padBase[$pad], '@start@') ) 
     return include '/pad/level/start_end/start1.php';
 
-  if ( count ( $padData [$pad] ) and $padBase [$pad] )
+  if ( count ( $padData [$pad] ) and $padBase [$pad] ) {
+    $padInfoOccur = 'start'; 
     include '/pad/occurrence/start.php';
+  }
 
 ?>

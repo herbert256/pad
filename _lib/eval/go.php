@@ -6,7 +6,7 @@
 go: $last = $open = FALSE;
 
     if ( $GLOBALS ['padInfo'] )
-      include '/pad/info/events/eval/go.php';
+      include '/pad/events/eval/go.php';
 
     foreach ($result as $key => $value) {
 

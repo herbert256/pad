@@ -7,7 +7,7 @@
   elseif ( $padSeqList  ) $padSeqFor = padGetList ( $padSeqList );
 
   if ( $GLOBALS ['padInfo'] ) 
-    include '/pad/info/events/sequence.php'; 
+    include '/pad/events/sequenceStart.php'; 
 
   if ( $padSeqFor !== FALSE )
     include "/pad/sequence/builds/for.php";

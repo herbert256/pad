@@ -1,7 +1,7 @@
 <?php
 
   if ( $GLOBALS ['padInfo'] )
-    include '/pad/info/events/call.php';
+    include '/pad/events/call.php';
 
   ob_start();
   $padCallPHP = include_once $padCall;

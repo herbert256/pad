@@ -10,7 +10,7 @@
       $padBuildFalse = substr ( $padBuildTrue, $padPos+6  );
       $padBuildTrue  = substr ( $padBuildTrue, 0, $padPos );
       if ( $GLOBALS['padInfo'] ) 
-        include '/pad/info/events/else.php';
+        include '/pad/events/else.php';
       return;
     }
 

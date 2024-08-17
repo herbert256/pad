@@ -24,7 +24,7 @@
         include '/pad/call/call.php';
 
         if ( $GLOBALS['padInfo'] )
-          include '/pad/info/events/options.php';           
+          include '/pad/events/options.php';           
 
       }
 

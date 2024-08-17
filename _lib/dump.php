@@ -388,7 +388,7 @@
 
         $cfg  [$key] = $value;
 
-      elseif ( substr($key, 0, 6)  == 'padInfo' )
+      elseif ( substr($key, 0, 7)  == 'padInfo' )
 
         $inf [$key] = $value;
 
@@ -472,7 +472,7 @@
 
     try {
 
-      padFilePutContents ( "$dir/error.txt", '/data/' . "$info\n\n$done" );   
+      padFilePutContents ( "$dir/error.txt", "/data/$info\n\n$done" );   
     
     } catch (Throwable $e ) {
 

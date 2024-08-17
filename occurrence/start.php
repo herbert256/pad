@@ -11,7 +11,7 @@
   $padCurrent [$pad] = $padData [$pad] [$padKey [$pad]];
  
   if ( $GLOBALS['padInfo'] )
-    include '/pad/info/events/occurStart.php';
+    include '/pad/events/occurStart.php';
 
   if ( $padWalk [$pad] <> 'start' )
     $padWalkData [$pad] [] = $padCurrent [$pad];

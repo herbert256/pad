@@ -23,21 +23,21 @@
 
   function padEvalInfo ( $eval, $value='' ) {
 
-    include '/pad/info/events/eval/start.php';
+    include '/pad/events/eval/start.php';
 
     $result = [];
 
     padEvalParse ( $result, $eval, $value );    
  
-    include '/pad/info/events/eval/parse.php';
+    include '/pad/events/eval/parse.php';
 
     padEvalAfter ( $result );  
  
-    include '/pad/info/events/eval/after.php';
+    include '/pad/events/eval/after.php';
 
     padEvalGo ( $result, array_key_first($result), array_key_last($result), $value) ;
  
-    include '/pad/info/events/eval/go.php';
+    include '/pad/events/eval/go.php';
 
     $key = array_key_first ($result);
 
@@ -45,7 +45,7 @@
     elseif ( count($result) > 1        ) padError ("More then one result back: $eval");
     elseif ( $result[$key][1] <> 'VAL' ) padError ("Result is not a value: $eval");
 
-    include '/pad/info/events/eval/end.php';
+    include '/pad/events/eval/end.php';
 
     return $result [$key] [0];
 

@@ -13,7 +13,7 @@
         $padSeqActionCnt = $padSeqActionValue;    
 
       if ( $GLOBALS ['padInfo'] ) 
-        include '/pad/info/events/action.php';
+        include '/pad/events/action.php';
  
       $padSeqResult = include "/pad/sequence/actions/$padSeqActionName.php";
 

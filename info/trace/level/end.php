@@ -1,12 +1,10 @@
 <?php
-
-  include '/pad/info/events/result.php';   
   
   if ( ! isset ( $padInfoTraceLevel [$pad] ) ) padInfoTraceSet ( $pad );
   if ( ! $padInfoTraceLevel [$pad]           ) padInfoTraceSet ( $pad );
 
   if ( $padInfoTraceStartEndLvl )
-   $GLOBALS ['padInfo']( 'level', 'end' );
+   padInfoTrace ( 'level', 'end' );
 
   if ( $padInfoTraceStatus )
     padInfoTraceStatus ( );

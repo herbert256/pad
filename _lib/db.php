@@ -131,7 +131,7 @@
       $return = '';
 
     if ( $GLOBALS ['padInfo'] )
-      include '/pad/info/events/sql.php';
+      include '/pad/events/sql.php';
 
     return $return;
 

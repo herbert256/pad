@@ -4,6 +4,7 @@
 
   $padBase [$pad] = '';
  
+  $padInfoOccur = 'catch'; 
   include '/pad/occurrence/start.php';
 
 ?>

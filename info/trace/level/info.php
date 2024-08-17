@@ -1,10 +1,10 @@
 <?php
 
-  include '/pad/info/events/data.php';      
-  include '/pad/info/events/flags.php';      
-  include '/pad/info/events/content.php';      
-  include '/pad/info/events/true.php';      
-  include '/pad/info/events/false.php';      
-  include '/pad/info/events/base.php';      
+  include '/pad/events/data.php';      
+  include '/pad/events/flags.php';      
+  include '/pad/events/content.php';      
+  include '/pad/events/true.php';      
+  include '/pad/events/false.php';      
+  include '/pad/events/base.php';      
 
 ?>

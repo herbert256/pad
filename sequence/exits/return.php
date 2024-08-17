@@ -26,6 +26,6 @@
   } 
 
   if ( $GLOBALS ['padInfo'] )
-    include '/pad/info/events/sequence.php';
+    include '/pad/events/sequenceEnd.php';
 
 ?>

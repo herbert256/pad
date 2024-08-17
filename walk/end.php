@@ -1,7 +1,7 @@
 <?php
 
   if ( $GLOBALS ['padInfo'] )
-    include '/pad/info/events/walk.php';
+    include '/pad/events/walk.php';
 
   $padWalk [$pad] = 'end';
 

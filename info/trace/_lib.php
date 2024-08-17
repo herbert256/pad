@@ -18,7 +18,7 @@
     $occur = $padOccur [$pad] ?? 0;
 
     if ( $event == 'start' )
-      if     ( $type == 'level' ) $padInfoTraceIds [$pad]          = $padInfoTraceId;
+      if     ( $type == 'level' ) $padInfoTraceIds [$pad]         = $padInfoTraceId;
       elseif ( $type == 'occur' ) $padInfoTraceOccurId [$pad]     = $padInfoTraceId;
       else                        $GLOBALS ["padInfoTraceX$type"] = $padInfoTraceId;
 
@@ -355,8 +355,8 @@
 
     global $pad, $padInfoTraceDir;
 
-    $file1 = '/data/' . "$padInfoTraceDir/$dir/trace.txt";
-    $file2 = '/data/' . "$padInfoTraceDir/$dir/local.txt";
+    $file1 = "/data/$padInfoTraceDir/$dir/tree.txt";
+    $file2 = "/data/$padInfoTraceDir/$dir/local.txt";
 
     if ( ! file_exists ( $file1 ) or ! file_exists ( $file2 ) )
       return;

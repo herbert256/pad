@@ -25,7 +25,7 @@
           if ( file_exists ( "/pad/eval/single/$type.php") ) {            
 
             if ( $GLOBALS ['padInfo'] ) 
-              include '/pad/info/events/functions.php'; 
+              include '/pad/events/functions.php'; 
 
             $padCall = "/pad/eval/single/$type.php" ;
             $single  = include "/pad/call/any.php" ;
@@ -36,7 +36,7 @@
           } elseif ( file_exists ( "/pad/eval/parms/$type.php" ) ) {
 
             if ( $GLOBALS ['padInfo'] ) 
-              include '/pad/info/events/functions.php'; 
+              include '/pad/events/functions.php'; 
 
             $result[$k][0] = $name;
             $result[$k][1] = 'TYPE';

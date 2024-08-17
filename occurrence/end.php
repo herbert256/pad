@@ -3,7 +3,7 @@
   $padResult [$pad] .= $padPad [$pad];
     
   if ( $GLOBALS['padInfo'] )
-    include '/pad/info/events/occurEnd.php';  
+    include '/pad/events/occurEnd.php';  
      
   padResetOcc ($pad);
 

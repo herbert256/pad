@@ -26,7 +26,7 @@
       'duration' => padDuration ()
     ];
 
-    include '/pad/info/events/stats.php';
+    include '/pad/events/stats.php';
 
   }
 

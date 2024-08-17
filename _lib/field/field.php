@@ -19,7 +19,7 @@
   function padField ( $field, $type, $lvl=0 ) {
 
     if ( $GLOBALS ['padInfo'] ) 
-      include '/pad/info/events/field.php';
+      include '/pad/events/fieldStart.php';
 
     if ( str_contains ( $field, '@' ) or str_contains ( $field, '.' ) )
     
@@ -59,7 +59,7 @@
     elseif ($type ==  9) $return = ( $value === NULL                                               ) ? TRUE  : FALSE;
 
     if ( $GLOBALS ['padInfo'] )
-      include '/pad/info/events/field.php';    
+      include '/pad/events/fieldEnd.php';    
 
     return $return;
 

@@ -1,7 +1,7 @@
 <?php
 
   if ( $padInfoTraceStartEndOcc )
-   $GLOBALS ['padInfo']( 'occur', 'start' );
+   padInfoTrace ( 'occur', 'start' );
 
   for ( $padI = $pad; $padI >= 0; $padI-- ) {
 
@@ -28,7 +28,7 @@
     if ( ! $padInfoTraceDefault and ! count ( $padCurrent [$pad] ) )
       return;
     
-   $GLOBALS ['padInfo']( 'occur', 'occ-data', $padCurrent [$pad] );   
+   padInfoTrace ( 'occur', 'occ-data', $padCurrent [$pad] );   
 
     $padJ = $padOccur [$pad];
 

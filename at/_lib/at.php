@@ -266,7 +266,7 @@
       return INF;
 
     if ( $GLOBALS ['padInfo'] ) 
-      include '/pad/info/events/atGroups.php'; 
+      include '/pad/events/atGroups.php'; 
 
     return include "/pad/at/groups/$group.php";
 
@@ -306,7 +306,7 @@
       padAtSetTag ();
 
     if ( $GLOBALS ['padInfo'] )
-      include '/pad/info/events/atProperties.php'; 
+      include '/pad/events/atProperties.php'; 
 
     return $return;
 
@@ -319,7 +319,7 @@
       return INF;
 
     if ( $GLOBALS ['padInfo'] )
-      include '/pad/info/events/atTypes.php'; 
+      include '/pad/events/atTypes.php'; 
 
     return include "/pad/at/types/$go.php";
 

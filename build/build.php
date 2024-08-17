@@ -9,8 +9,9 @@
   $padBase [$pad] = $padBuildLib . str_replace ( '@pad@', $padBuildPage, $padBuildBase );
 
   if ( $GLOBALS ['padInfo'] )
-    include '/pad/info/events/build.php';
- 
+    include '/pad/events/build.php';
+
+  $padInfoOccur = 'build'; 
   include '/pad/occurrence/start.php';
 
 ?>

@@ -8,10 +8,6 @@
   if ( $check !== INF )
     return $check;
 
-  $check = padAtPad ( $names, $cor );
-  if ( $check !== INF )
-    return $check;
-
   return INF;
 
 ?>

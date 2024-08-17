@@ -4,13 +4,17 @@
     if ( isset ( $padOccurStart [$pad] [$padOccur[$pad]] ) )
       include '/pad/occurrence/end.php';
 
-  if ( next ($padData [$pad]) !== FALSE )
+  if ( next ($padData [$pad]) !== FALSE ) {
+    $padInfoOccur = 'end'; 
     return include '/pad/occurrence/start.php';
+  }
 
   if ( $padWalk [$pad] == 'next' ) {
     include '/pad/walk/next.php';
-    if ( $padWalk [$pad] == 'next' )
+    if ( $padWalk [$pad] == 'next' ) {
+      $padInfoOccur = 'next'; 
       return include '/pad/occurrence/start.php';
+    }
   }
 
   if ( $padStartBase [$pad] ) return include '/pad/level/start_end/start2.php';
@@ -27,7 +31,7 @@
   include '/pad/options/go/end.php';
  
   if ( $GLOBALS['padInfo'] ) 
-    include '/pad/info/events/levelEnd.php';    
+    include '/pad/events/levelEnd.php';    
   
   padResetLvl ($pad);
 

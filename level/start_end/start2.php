@@ -8,6 +8,7 @@
 
   reset ( $padData [$pad] );
   
+  $padInfoOccur = 'start2'; 
   include '/pad/occurrence/start.php';
 
 ?>

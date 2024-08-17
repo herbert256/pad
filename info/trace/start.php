@@ -10,9 +10,10 @@
   $padInfoTraceOccurChilds = [];
   $padInfoTraceMaxLevel    = 0;
   $padInfoTraceSkipLevel   = 0;
-  $padInfoTraceDir         = "trace/$padStartPage/$padLog";
+  $padInfoTraceId          = hrtime ( true );
+  $padInfoTraceDir         = "trace/$padLog-$padInfoTraceId";
 
   if ( $padInfoTraceStartEnd )
-   $GLOBALS ['padInfo']( 'trace', 'start' );
+   padInfoTrace ( 'trace', 'start' );
         
 ?>
