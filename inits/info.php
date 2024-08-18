@@ -1,6 +1,6 @@
 <?php
 
   if ( $padInfo )
-    include '/pad/info/start.php';
+    include '/pad/info/start/config.php';
 
 ?>

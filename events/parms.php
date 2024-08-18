@@ -13,7 +13,7 @@
 
 
   if ( $GLOBALS ['padInfoXml']   ) 
-    include '/pad/info/xml/level/parms.php';  
+    include '/pad/info/types/xml/level/parms.php';  
 
 
   if ( $GLOBALS ['padInfoTrace'] and $GLOBALS ['padInfoTraceParms'] ) {
