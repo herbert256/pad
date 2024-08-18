@@ -1,7 +1,6 @@
 <?php
 
-    $padSeqSeq = 'list';
-    $padSeqSet = 'list';
-    $padSeqParm = $padSeqTmp;
+  $padSeqSeq = 'list';
+  $padSeqParm = $padParm;
 
 ?>

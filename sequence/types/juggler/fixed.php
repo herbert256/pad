@@ -12,7 +12,7 @@
 
 	  padSeqJuggler ($padSeqParm);
 
-	elseif ( count ($padSeqFor) )
+	elseif ( count ($padSeqFixed) )
  
  	  padSeqJuggler ( reset($padSeqParm) );
 

@@ -1,8 +1,9 @@
 <?php
 
+  if ( ! $padSeqName )
+    $padSeqName = $padSeqSeq;
+
+  $padSeqParm = $padSeqSeq;
   $padSeqSeq  = 'pull';
-  $padSeqPull = $padSeqTmp;
-  $padSeqSet  = $padSeqTmp;
-  $padSeqParm = $padSeqTmp;
 
 ?>

@@ -2,30 +2,11 @@
 
   $padSeqReturn = [];
 
-  $padSeqNames = array_unique ( [ 
-    $padPrm [$pad] ['name']   ?? '', 
-    $padPrm [$pad] ['toData'] ?? '', 
-    'sequence', 
-    $padSeqSeq, 
-    $padSeqSet, 
-    $padSeqName, 
-    $padSeqPull,
-    $padName [$pad], 
-  ] );
+  $padSeqI = -1;
 
-  foreach ($padSeqResult as $padSeqValue  ) {
-
-     $padSeqRecord = [];
-
-     foreach ( $padSeqNames as $padSeqName )
-       if ( $padSeqName )
-         $padSeqRecord [$padSeqName] = $padSeqValue;
-
-     $padSeqReturn [] = $padSeqRecord; 
-
-  } 
-
-  if ( $GLOBALS ['padInfo'] )
-    include '/pad/events/sequenceEnd.php';
+  foreach ($padSeqResult as $padK  ) {
+    $padSeqI++;
+    $padSeqReturn [$padSeqI] ['sequence'] = $padSeqReturn [$padSeqI] [$padSeqName] = $padK; 
+  }
 
 ?>

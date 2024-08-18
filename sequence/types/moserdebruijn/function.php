@@ -1,9 +1,9 @@
 <?php
 // PHP code to generate first 'n' terms
-// of the Moser-de Bruijn Sequence
+// of the Moser-de Bruijn Seq
 
 // Function to generate nth term
-// of Moser-de Bruijn Sequence
+// of Moser-de Bruijn Seq
 function padSeqMoserdebruijn($n)
 {
   

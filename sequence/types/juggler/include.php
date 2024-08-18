@@ -1,10 +1,10 @@
 <?php
 
 // PHP implementation of
-// Juggler Sequence
+// Juggler Seq
 
 // function prints the
-// juggler Sequence
+// juggler Seq
 
 function padSeqJuggler ($n) {
 

@@ -1,28 +1,21 @@
 <?php
 
-  $padSeqNext = '/pad/sequence/inits/sequence';
+  if     ( strpos ( $padParm, '..' ) ) return include '/pad/sequence/inits/sequence/range.php';
+  elseif ( strpos ( $padParm, ';'  ) ) return include '/pad/sequence/inits/sequence/list.php';
+  elseif ( ctype_digit ( $padParm  ) ) return include '/pad/sequence/inits/sequence/digit.php';
 
-  $padSeqChk = [ $padTag [$pad], 
-                 $padParm, 
-                 array_key_first ( $padPrm [$pad] ) ?? ''
-               ];
-     
-  foreach ( $padSeqChk as $padSeqTmp )
-    if ( $padSeqTmp )
-      if     ( isset ( $padSeqStore [$padSeqTmp] )                     ) return include "$padSeqNext/store.php";
-      elseif ( file_exists ( "$padSeqTypes/$padSeqTmp" )               ) return include "$padSeqNext/type.php";
-      elseif ( file_exists ( "/pad/sequence/actions/$padSeqTmp.php" ) ) return include "$padSeqNext/action.php";
-      elseif ( strpos ( $padSeqTmp, '..' )                             ) return include "$padSeqNext/range.php";
-      elseif ( strpos ( $padSeqTmp, ';' )                              ) return include "$padSeqNext/list.php";
+  $padSeqSeq  = array_key_first ( $padPrm [$pad] ) ?? '';
+  $padSeqParm = $padPrm [$pad] [$padSeqSeq]        ?? '';
 
-  $padSeqSet = 'sequence';
+  if ( isset ( $padSeqStore [$padSeqSeq] ) ) 
+    return include '/pad/sequence/inits/sequence/store.php';
 
-  if ( ctype_digit($padParm) ) {
-    $padSeqSeq = 'range';
-    $padSeqParm = "1.." . $padParm;
-  } else {
-    $padSeqSeq  = 'loop';
-    $padSeqParm = TRUE;
-  }
+  if ( file_exists ( "/pad/sequence/types/$padSeqSeq" ) ) 
+    return include '/pad/sequence/inits/sequence/type.php';
+ 
+  if ( isset ( $padSeqRows ) or isset ( $padSeqTo ) )
+    return include '/pad/sequence/inits/sequence/loop.php';
+
+  padError ( "Sequence not found: $padSeqSeq ");
 
 ?>

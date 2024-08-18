@@ -1,6 +1,19 @@
 <?php
 
 
+  function padSeqName ( $name ) {
+
+    return 'padSeq' . ucfirst( $name );
+
+  }
+  
+  function padSeqValue ( $name ) {
+
+    return $GLOBALS [ padSeqName ( $name ) ];
+
+  }
+
+
   function padSeqRandom ( $for, $start, $end, $inc ) {
 
     if ( is_array ( $for ) and count ( $for ) )
@@ -25,36 +38,25 @@
     if     ( file_exists ( "$check/function.php") ) return 'function';
     elseif ( file_exists ( "$check/make.php")     ) return 'make';
     elseif ( file_exists ( "$check/loop.php")     ) return 'loop';
+    elseif ( file_exists ( "$check/bool.php")     ) return 'bool';
+    elseif ( file_exists ( "$check/jump.php")     ) return 'jump';
+    elseif ( file_exists ( "$check/order.php")    ) return 'order';
+    elseif ( file_exists ( "$check/fixed.php")    ) return 'fixed';
     else                                            return '';
 
   }
 
 
-  function padSeqFilterType ( $check ) {
+  function padSeqAction ( $seq1, $action, $seq2 ) {
 
-    if     ( file_exists ( "$check/bool.php")     ) return 'bool';
-    elseif ( file_exists ( "$check/order.php")    ) return 'order';
-    elseif ( file_exists ( "$check/fixed.php")    ) return 'fixed';
-    elseif ( file_exists ( "$check/jump.php")     ) return 'jump';
-    elseif ( file_exists ( "$check/function.php") ) return 'function';
-    elseif ( file_exists ( "$check/loop.php")     ) return 'loop';
-    elseif ( file_exists ( "$check/make.php")     ) return 'make';
-    elseif ( file_exists ( "$check/filter.php")   ) return 'filter';
-    else                                            return 'none';
-
-  }
-
-
-  function padSeqAction ( $sequence1, $action, $sequence2 ) {
-
-    $padSeqResult      = $sequence1;
+    $padSeqResult      = $seq1;
     $padSeqCnt         = 0;
     $padSeqActionValue = $action;
     $padSeqActionName  = $action;
     
-    $padSeqStore [$action] = $sequence2;
+    $padSeqStore [$action] = $seq2;
 
-    return include "/pad/sequence/actions/$action.php";  
+    return include "/pad/sequence/actions/types/$action.php";  
 
   }
 

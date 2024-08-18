@@ -1,6 +1,6 @@
 <?php
 
   $padSeqSeq = 'range';
-  $padSeqParm = $padParm;
+  $padSeqParm = "1.." . $padParm;
 
 ?>

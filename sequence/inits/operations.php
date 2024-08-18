@@ -1,42 +1,25 @@
 <?php
 
-  $padSeqOprGo = $padSeqOprType = [];
+  $padSeqOprList = [];
+  $padSeqOprType = 'make';
 
-  $padSeqOprType [$padSeqSeq] = padSeqMakeType ( "$padSeqTypes/$padSeqSeq" );
+  foreach ( $padPrmParse as $padV ) {
 
-  foreach ( $padPrm [$pad] as $padSeqOprName => $padSeqOprVal ) {
+    list ( $padPrmName, $padPrmValue ) = padSplit ( '=', trim($padV) );
 
-    if ( $padSeqOprName == $padSeqSeq ) 
+    if ( in_array ( $padPrmName, ['make','keep','remove'] ) ) {
+      $padSeqOprType = $padPrmName;
       continue;
-
-    if ( in_array ( $padSeqOprName, $padSeqOpr ) ) {
-
-      $padSeqOprArr = padExplode ( $padSeqOprVal, ';');
-
-      foreach ( $padSeqOprArr as $padSeqOprOne ) {
-
-        $padSeqOprPrm = padExplode ( $padSeqOprOne, '=');
-
-        $padSeqOprGo   [$padSeqOprName] [$padSeqOprPrm[0]] = $padSeqOprPrm [1] ?? '';
-        $padSeqOprType [$padSeqOprPrm[0]] = padSeqMakeType ("$padSeqTypes/$padSeqOprPrm[0]");
-
-        if ( $padSeqOprName == 'make' and $padSeqOprType [$padSeqOprPrm[0]] == 'function' ) 
-          include_once "$padSeqTypes/$padSeqOprPrm[0]/function.php";
-        elseif ( $padSeqOprName <> 'make' ) 
-          include_once "$padSeqTypes/$padSeqOprPrm[0]/bool.php";
-
-      }
-
-    } elseif ( $padSeqOprName <> 'random' and padSeqMakeType ( "$padSeqTypes/$padSeqOprName" ) ) {
-
-      $padSeqOprGo   [$padSeqOprName] = $padSeqOprVal;
-      $padSeqOprType [$padSeqOprName] = padSeqMakeType ( "$padSeqTypes/$padSeqOprName" );
-
-      if ( $padSeqOprType [$padSeqOprName] == 'function' ) 
-        include_once "$padSeqTypes/$padSeqOprName/function.php";
-
     }
 
+    if ( $padPrmName <> $padSeqSeq and file_exists ( "/pad/sequence/types/$padPrmName" ) )
+      $padSeqOprList [] = [
+        'padSeqOprName'  => $padPrmName,
+        'padSeqOprValue' => padEval ( $padPrmValue ),
+        'padSeqOprBld'   => padSeqMakeType ( "/pad/sequence/types/$padPrmName" ),
+        'padSeqOprType'  => $padSeqOprType
+      ];
+
   }
- 
+
 ?>
