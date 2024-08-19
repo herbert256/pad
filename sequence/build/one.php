@@ -20,9 +20,11 @@
   elseif ( $padSeqOne === TRUE  ) $padSeqOne = $padSeqLoop;
 
   if ( count ( $padSeqOprList ) ) {
+    $padSeqParmSave = $padSeqParm;
     $padSeqLoopSave = $padSeqLoop;
     $padSeqOne = include '/pad/sequence/build/operations.php';
     $padSeqLoop = $padSeqLoopSave;
+    $padSeqParm = $padSeqParmSave;
     if ( $padSeqOne === FALSE ) 
       return TRUE;
   }
