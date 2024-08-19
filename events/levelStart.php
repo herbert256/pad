@@ -4,9 +4,17 @@
     include '/pad/info/types/trace/level/info.php';   
 
   if ( $GLOBALS ['padInfoXref'] or $GLOBALS ['padInfoXapp'] ) {
-    padInfoXapp ( 'tag', $padType [$pad], $padTag [$pad] );
+
+    if ( str_contains($padTag [$pad], '@'))  
+      $padInfoTmp = strstr ( $padTag [$pad] , "@", true ) ;
+    else
+      $padInfoTmp = $padTag [$pad] ;
+
+    padInfoXapp ( 'tag', $padType [$pad], $padInfoTmp );
+
     if ( $padType [$pad] == 'tag' )
-      padInfoXapp ( 'properties', $padTag [$pad] );
+      padInfoXapp ( 'properties', $padInfoTmp );
+
   }
   
 ?>

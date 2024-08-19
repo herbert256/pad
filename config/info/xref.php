@@ -2,11 +2,11 @@
   
   $padInfoXref      = TRUE; 
 
-  $padInfoXrefXref  = FALSE;
-  $padInfoXrefPage  = FALSE;
-  $padInfoXrefTree  = FALSE;
-  $padInfoXrefXml   = FALSE;
-  $padInfoXrefTrace = FALSE;
+  $padInfoXrefXref  = TRUE;
+  $padInfoXrefPage  = TRUE;
+  $padInfoXrefTree  = TRUE;
+  $padInfoXrefXml   = TRUE;
+  $padInfoXrefTrace = TRUE;
   $padInfoXrefXapp  = TRUE;
 
 ?>
