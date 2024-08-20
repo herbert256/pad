@@ -1,7 +1,7 @@
 <?php
 
   $padSeqProtect  = intval ( $padPrm [$pad] ['protect']   ?? 10000       ); 
-  $padSeqSave     = intval ( $padPrm [$pad] ['save']      ?? 100         ); 
+  $padSeqSave     = intval ( $padPrm [$pad] ['save']      ?? 25          ); 
 
   $padSeqFrom     = intval ( $padPrm [$pad] ['from']      ?? 1           );
   $padSeqTo       = intval ( $padPrm [$pad] ['to']        ?? PHP_INT_MAX );

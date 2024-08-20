@@ -1,8 +1,8 @@
 <?php
 
-  foreach ( $padSeqList as $padSeqOpr ) {
+  foreach ( $padSeqOperations as $padSeqOperation ) {
 
-    extract ( $padSeqOpr );
+    extract ( $padSeqOperation );
 
     $GLOBALS [ padSeqName ($padSeqName) ] = $padSeqParm;
 

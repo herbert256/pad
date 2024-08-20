@@ -1,8 +1,12 @@
 <?php
   
-  foreach ( $padPrm [$pad] as $padSeqActionName => $padSeqActionValue )
+  foreach ( $padPrmParse as $padV ) {
+
+    list ( $padSeqActionName , $padSeqActionValue ) = padSplit ( '=', trim($padV) );
 
     if ( file_exists ( "/pad/sequence/actions/types/$padSeqActionName.php" ) ) {
+
+      $padSeqActionValue = padEval ( $padSeqActionValue ) ;
 
       if ( $padSeqActionValue === TRUE or ! ctype_digit($padSeqActionValue) )
         if ( $padSeqCnt )
@@ -20,5 +24,7 @@
       padDone ( $padSeqActionName, TRUE );
 
     }
+
+  }
   
 ?>

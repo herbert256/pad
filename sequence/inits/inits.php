@@ -6,7 +6,7 @@
   include '/pad/sequence/inits/vars.php';
   include '/pad/sequence/inits/parms.php';
   include '/pad/sequence/inits/sequence.php';
-  include '/pad/sequence/inits/operations.php';
+  include '/pad/sequence//operations/inits.php';
   include '/pad/sequence/inits/store.php';
   include '/pad/sequence/inits/name.php';
   include '/pad/sequence/inits/loop.php';

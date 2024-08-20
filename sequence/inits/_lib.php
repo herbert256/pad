@@ -35,25 +35,16 @@
 
   function padSeqBuild ( $check, $for='make' ) {
 
-    if ( $for == 'keep' or $for == 'remove' ) 
-      if ( file_exists ( "/pad/sequence/types/$check/bool.php" ) )
-        return 'bool';
+    $check = "/pad/sequence/types/$check";
 
-    if ( $for == 'keep' or $for == 'remove' ) 
-      if ( file_exists ( "/pad/sequence/types/$check/function.php" ) )
-        return 'function';
-
-    if ( $for == 'make' ) 
-      if ( file_exists ( "/pad/sequence/types/$check/make.php" ) )
-        return 'make';
-
-    if ( $for == 'loop' ) 
-      if ( file_exists ( "/pad/sequence/types/$check/loop.php" ) )
-        return 'loop';
+    if ( $for == 'keep' or $for == 'remove' ) if ( file_exists ( "$check/bool.php" )     ) return 'bool';
+    if ( $for == 'keep' or $for == 'remove' ) if ( file_exists ( "$check/function.php" ) ) return 'function';
+    if ( $for == 'make' )                     if ( file_exists ( "$check/make.php" )     ) return 'make';
+    if ( $for == 'loop' )                     if ( file_exists ( "$check/loop.php" )     ) return 'loop';
     
-    if     ( file_exists ( "$check/function.php") ) return 'function';
-    elseif ( file_exists ( "$check/make.php")     ) return 'make';
+    if     ( file_exists ( "$check/make.php")     ) return 'make';
     elseif ( file_exists ( "$check/loop.php")     ) return 'loop';
+    elseif ( file_exists ( "$check/function.php") ) return 'function';
     elseif ( file_exists ( "$check/bool.php")     ) return 'bool';
     elseif ( file_exists ( "$check/jump.php")     ) return 'jump';
     elseif ( file_exists ( "$check/order.php")    ) return 'order';

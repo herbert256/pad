@@ -1,6 +1,6 @@
 <?php
  
-  if ( ! count ( $padSeqList ) ) 
+  if ( ! count ( $padSeqOperations ) ) 
     return;
 
   $padSeqSeqSave   = $padSeqSeq;
@@ -9,7 +9,7 @@
   $padSeqLoopSave  = $padSeqLoop;
   $padSeqNameSave  = $padSeqName;
 
-  $include '/pad/sequence/operations/go.php';
+  include '/pad/sequence/operations/go.php';
 
   $padSeqSeq   = $padSeqSeqSave;
   $padSeqBuild = $padSeqBuildSave;

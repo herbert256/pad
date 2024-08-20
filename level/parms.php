@@ -35,10 +35,10 @@
 
     if ( padValidVar ($padPrmName) ) {
 
-      if ( file_exists ( "/app/options/$padPrmName.php") )
+      if ( file_exists ( "/app/_options/$padPrmName.php") )
         $padOptionsAppStart [$pad] [] = $padPrmName;
 
-      $padPrm [$pad] [$padPrmName] = $padStartOptions [$padPrmName];
+      $padPrm [$pad] [$padPrmName] = $padStartOptionsSingle [$padPrmName];
 
       continue;
 

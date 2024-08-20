@@ -7,15 +7,12 @@
   $padSeqSeq  = array_key_first ( $padPrm [$pad] ) ?? '';
   $padSeqParm = $padPrm [$pad] [$padSeqSeq]        ?? '';
 
-  if ( isset ( $padSeqStore [$padSeqSeq] ) ) 
+  if ( $padSeqSeq and isset ( $padSeqStore [$padSeqSeq] ) ) 
     return include '/pad/sequence/inits/sequence/store.php';
 
-  if ( file_exists ( "/pad/sequence/types/$padSeqSeq" ) ) 
+  if ( $padSeqSeq and file_exists ( "/pad/sequence/types/$padSeqSeq" ) ) 
     return include '/pad/sequence/inits/sequence/type.php';
+
+  return include '/pad/sequence/inits/sequence/loop.php';
  
-  if ( isset ( $padSeqRows ) or isset ( $padSeqTo ) )
-    return include '/pad/sequence/inits/sequence/loop.php';
-
-  padError ( "Sequence not found: $padSeqSeq ");
-
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-  $padSeqList = [];
+  $padSeqOperations = [];
   $padSeqType = 'make';
 
   foreach ( $padPrmParse as $padV ) {
@@ -22,7 +22,7 @@
 
     include "/pad/sequence/build/include.php";
 
-    $padSeqList [] = [
+    $padSeqOperations [] = [
       'padSeqSeq'   => $padSeqOpr,
       'padSeqName'  => $padSeqOpr,
       'padSeqParm'  => padEval ( $padSeqValue ),

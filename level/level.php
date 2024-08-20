@@ -33,7 +33,7 @@
   include '/pad/level/type.php';
   include '/pad/level/tag.php';
 
-  if ( ! $padTypeResult and isset ( $padStartOptions ['optional'] ) )
+  if ( ! $padTypeResult and isset ( $padStartOptionsSingle ['optional'] ) )
     if ( padValidTag ($padWords [0]) )
       return include '/pad/options/optional.php';
 

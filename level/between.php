@@ -6,14 +6,20 @@
   $padTagOpts  = $padWords [1] ?? '';
   $padPrmParse = padParseOptions ( $padTagOpts );
 
-  $padStartOptions = [];
+  $padStartOptionsSingle = $padStartOptionsMulti = [];
 
   foreach ( $padPrmParse as $padV ) {
 
     list ( $padPrmName, $padPrmValue ) = padSplit ( '=', trim ( $padV ) );
 
-    if ( padValidVar ( $padPrmName ) )
-        $padStartOptions [$padPrmName] = ( $padPrmValue === '' ) ? TRUE : padEval ( $padPrmValue );
+    if ( padValidVar ( $padPrmName ) ) {
+
+      $padPrmValue = ( $padPrmValue === '' ) ? TRUE : padEval ( $padPrmValue );
+
+      $padStartOptionsSingle [$padPrmName] = $padPrmValue;
+      $padStartOptionsMulti  []            = [ 'padPrmName' => $padPrmName, 'padPrmValue' => $padPrmValue ];
+  
+    }
 
   }
 
