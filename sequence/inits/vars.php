@@ -5,7 +5,7 @@
 
   $padSeqResult = [];
   $padSeqFixed  = FALSE;
-  $padSeq       = 0;
+  $padSeqTries  = 0;
   $padSeqBase   = 0;
 
 ?>

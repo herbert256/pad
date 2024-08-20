@@ -1,45 +1,34 @@
 <?php
  
-  $padSeq++;
+  $padSeqTries++;
 
-  if ( $padSeq > $padSeqProtect                          ) return FALSE;
-  if ( $padSeqBuild == 'order' and $padSeq < $padSeqFrom ) return TRUE;
+  if ( $padSeqTries > $padSeqProtect                          ) return FALSE;
+  if ( $padSeqBuild == 'order' and $padSeqTries < $padSeqFrom ) return TRUE;
  
   if ( $padSeqRandom )
     $padSeqLoop = padSeqRandom ( $padSeqFixed, $padSeqStart, $padSeqEnd, $padSeqInc );
 
-  if     ( $padSeqBuild == 'fixed'    ) $padSeqOne = $padSeqLoop;
-  elseif ( $padSeqBuild == 'function' ) $padSeqOne = ( 'padSeq'     . ucfirst($padSeqSeq) ) ( $padSeqLoop );
-  elseif ( $padSeqBuild == 'bool'     ) $padSeqOne = ( 'padSeqBool' . ucfirst($padSeqSeq) ) ( $padSeqLoop );
-  else                                  $padSeqOne = include "/pad/sequence/types/$padSeqSeq/$padSeqBuild.php";
+  if   ( $padSeqBuild == 'fixed') $padSeq = $padSeqLoop;
+  else                            $padSeq = include '/pad/sequence/build/call.php';
 
-  if     ( $padSeqOne === FALSE ) return TRUE;   
-  elseif ( $padSeqOne === NULL  ) return FALSE;
-  elseif ( $padSeqOne === INF   ) return FALSE; 
-  elseif ( $padSeqOne === NAN   ) return FALSE; 
-  elseif ( $padSeqOne === TRUE  ) $padSeqOne = $padSeqLoop;
+  if     ( $padSeq === FALSE ) return TRUE;
+  elseif ( $padSeq === TRUE  ) $padSeq = $padSeqLoop;
 
-  if ( count ( $padSeqOprList ) ) {
-    $padSeqParmSave = $padSeqParm;
-    $padSeqLoopSave = $padSeqLoop;
-    $padSeqOne = include '/pad/sequence/build/operations.php';
-    $padSeqLoop = $padSeqLoopSave;
-    $padSeqParm = $padSeqParmSave;
-    if ( $padSeqOne === FALSE ) 
-      return TRUE;
-  }
-
+  include '/pad/sequence/operations/build.php';
+  if ( $padSeq === FALSE ) 
+    return TRUE;
+  
   $padSeqBase++;
 
-  if ( is_numeric ($padSeqOne) and $padSeqOne < $padSeqMin    ) return TRUE;
-  if ( is_numeric ($padSeqOne) and $padSeqOne > $padSeqMax    ) return $padSeqRandom;
-  if ( $padSeqUnique and in_array ($padSeqOne, $padSeqResult) ) return TRUE;
-  if ( $padSeqSkip and $padSeqBase <= $padSeqSkip )             return TRUE;
+  if ( is_numeric ($padSeq) and $padSeq < $padSeqMin       ) return TRUE;
+  if ( is_numeric ($padSeq) and $padSeq > $padSeqMax       ) return $padSeqRandom;
+  if ( $padSeqUnique and in_array ($padSeq, $padSeqResult) ) return TRUE;
+  if ( $padSeqSkip and $padSeqBase <= $padSeqSkip )          return TRUE;
 
-  $padSeqResult [] = $padSeqOne;
+  $padSeqResult [] = $padSeq;
 
-  if ( $padSeqRows  and count($padSeqResult) >= $padSeqRows )   return FALSE;
-  if ( $padSeqCheck and count($padSeqResult) >= $padSeqSave )   return FALSE;
+  if ( $padSeqRows  and count($padSeqResult) >= $padSeqRows ) return FALSE;
+  if ( $padSeqCheck and count($padSeqResult) >= $padSeqSave ) return FALSE;
 
   return TRUE;
 

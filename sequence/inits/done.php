@@ -14,7 +14,7 @@
   padDone ( 'skip',        TRUE );
  
   foreach ( $padPrm [$pad] as $padSeqTagName => $padSeqTagValue )
-    if ( padSeqMakeType ("/pad/sequence/types/$padSeqTagName/") ) 
+    if ( file_exists ("/pad/sequence/types/$padSeqTagName/") ) 
       padDone ( $padSeqTagName, TRUE );
 
 ?>
