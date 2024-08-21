@@ -3,7 +3,7 @@
   if ( file_exists ( "/pad/sequence/types/$padSeqSeq/exit.php" ) )   
     include "/pad/sequence/types/$padSeqSeq/exit.php";    
 
-  if ( isset ( $padSeqToData) ) 
+  if ( $padSeqToData ) 
     include '/pad/sequence/exits/data.php';
   
   include '/pad/sequence/exits/store.php';

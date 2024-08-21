@@ -11,6 +11,7 @@
   include '/pad/sequence/inits/name.php';
   include '/pad/sequence/inits/loop.php';
   include '/pad/sequence/inits/done.php';
+  include '/pad/sequence/inits/check.php';
 
   if ( file_exists ( "/pad/sequence/types/$padSeqSeq/init.php" )) 
     include "/pad/sequence/types/$padSeqSeq/init.php";

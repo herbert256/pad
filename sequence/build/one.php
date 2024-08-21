@@ -2,7 +2,7 @@
  
   $padSeqTries++;
 
-  if ( $padSeqTries > $padSeqProtect                          ) return FALSE;
+  if ( $padSeqTries > $padSeqTry                              ) return FALSE;
   if ( $padSeqBuild == 'order' and $padSeqTries < $padSeqFrom ) return TRUE;
  
   if ( $padSeqRandom )
@@ -14,7 +14,7 @@
   if     ( $padSeq === FALSE ) return TRUE;
   elseif ( $padSeq === TRUE  ) $padSeq = $padSeqLoop;
 
-  include '/pad/sequence/operations/build.php';
+  $padSeq = include '/pad/sequence/operations/build.php';
   if ( $padSeq === FALSE ) 
     return TRUE;
   
@@ -28,7 +28,7 @@
   $padSeqResult [] = $padSeq;
 
   if ( $padSeqRows  and count($padSeqResult) >= $padSeqRows ) return FALSE;
-  if ( $padSeqCheck and count($padSeqResult) >= $padSeqSave ) return FALSE;
+  if ( $padSeqCheck and count($padSeqResult) >= $padSeqMost  ) return FALSE;
 
   return TRUE;
 

@@ -6,8 +6,9 @@
 
     $GLOBALS [ padSeqName ($padSeqName) ] = $padSeqParm;
 
-    $padSeqLoop = $padSeq;
     $padSeqSave = $padSeq;
+  
+    $padSeqLoop = $padSeq;
     $padSeq     = include '/pad/sequence/build/call.php';
 
     if     ( $padSeqType == 'keep'   and $padSeq === TRUE       ) $padSeq = $padSeqSave;
@@ -22,5 +23,7 @@
     elseif ( $padSeqType == 'make'   and $padSeq === TRUE       ) $padSeq = $padSeqSave;
 
   }
+
+  return $padSeq;
 
 ?>

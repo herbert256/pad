@@ -1,35 +1,41 @@
 <?php
 
+  $padSeqSeqSave   = $padSeqSeq;
+  $padSeqBuildSave = $padSeqBuild;
+
   $padSeqOperations = [];
   $padSeqType = 'make';
 
   foreach ( $padPrmParse as $padV ) {
 
-    list ( $padSeqOpr, $padSeqValue ) = padSplit ( '=', trim($padV) );
+    list ( $padSeqSeq, $padSeqValue ) = padSplit ( '=', trim($padV) );
 
-    if ( in_array ( $padSeqOpr, ['make','keep','remove'] ) ) {
-      $padSeqType = $padSeqOpr;
+    if ( in_array ( $padSeqSeq, ['make','keep','remove'] ) ) {
+      $padSeqType = $padSeqSeq;
       continue;
     }
 
-    if ( ! $padSeqOpr or $padSeqOpr == 'random' or $padSeqOpr == $padSeqSeq )
+    if ( ! $padSeqSeq or $padSeqSeq == 'random' or $padSeqSeq == $padSeqSeqSave or $padSeqSeq == $padSeqPull )
       continue;
 
-    if ( ! file_exists ( "/pad/sequence/types/$padSeqOpr" ) )
+    if ( ! file_exists ( "/pad/sequence/types/$padSeqSeq" ) )
       continue;
 
-    $padSeqOprBld = padSeqBuild ( $padSeqOpr, $padSeqType );
+    $padSeqBuild = padSeqBuild ( $padSeqSeq, $padSeqType );
 
     include "/pad/sequence/build/include.php";
 
     $padSeqOperations [] = [
-      'padSeqSeq'   => $padSeqOpr,
-      'padSeqName'  => $padSeqOpr,
+      'padSeqSeq'   => $padSeqSeq,
+      'padSeqName'  => $padSeqSeq,
       'padSeqParm'  => padEval ( $padSeqValue ),
-      'padSeqBuild' => $padSeqOprBld,
+      'padSeqBuild' => $padSeqBuild,
       'padSeqType'  => $padSeqType
     ];
 
   }
+
+  $padSeqSeq   = $padSeqSeqSave;
+  $padSeqBuild = $padSeqBuildSave;
 
 ?>

@@ -1,7 +1,7 @@
 <?php
  
   if ( ! count ( $padSeqOperations ) ) 
-    return;
+    return $padSeq;
 
   $padSeqSeqSave   = $padSeqSeq;
   $padSeqBuildSave = $padSeqBuild;
@@ -9,12 +9,14 @@
   $padSeqLoopSave  = $padSeqLoop;
   $padSeqNameSave  = $padSeqName;
 
-  include '/pad/sequence/operations/go.php';
+  $padSeq = include '/pad/sequence/operations/go.php';
 
   $padSeqSeq   = $padSeqSeqSave;
   $padSeqBuild = $padSeqBuildSave;
   $padSeqLoop  = $padSeqLoopSave;
   $padSeqParm  = $padSeqParmSave;
   $padSeqName  = $padSeqNameSave;
+
+  return $padSeq;
 
 ?>
