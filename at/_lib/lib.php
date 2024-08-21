@@ -19,7 +19,7 @@
 
   function padAtIdx ( $level, $cor ) {
 
-    global $pad, $padName;
+    global $pad, $padName, $padTag;
 
     for ( $i=$pad; $i>-1; $i-- ) 
       if ( $padName [$i] == $level )
@@ -37,6 +37,10 @@
     if ( is_numeric ($level) ) 
       if ($level >= 0 and $level <= $pad )
         return $level;
+
+    for ( $i=$pad; $i>-1; $i-- ) 
+      if ( $padTag [$i] == $level )
+        return $i;
 
     return FALSE;
     

@@ -3,7 +3,7 @@
 
   function padFieldGetLevel  ( $search ) {
 
-    global $pad, $padName;
+    global $pad, $padName, $padTag;
 
     if ( trim($search) == '' )
       return $pad;
@@ -20,6 +20,10 @@
 
     if ( is_numeric($search) ) 
       return $search;
+
+    for ( $i=$pad; $i; $i-- )
+      if ( $padTag [$i] == $search )
+        return $i;
 
     return $pad;
 

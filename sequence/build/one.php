@@ -27,8 +27,7 @@
 
   $padSeqResult [] = $padSeq;
 
-  if ( $padSeqRows  and count($padSeqResult) >= $padSeqRows ) return FALSE;
-  if ( $padSeqCheck and count($padSeqResult) >= $padSeqMost  ) return FALSE;
+  if ( $padSeqRows and count($padSeqResult) >= $padSeqRows ) return FALSE;
 
   return TRUE;
 

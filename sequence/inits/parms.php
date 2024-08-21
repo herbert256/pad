@@ -1,8 +1,7 @@
 <?php
 
   $padSeqTry    = intval ( $padPrm [$pad] ['try']       ?? 10000       ); 
-  $padSeqMost   = intval ( $padPrm [$pad] ['most']      ?? 25          ); 
-
+ 
   $padSeqFrom   = intval ( $padPrm [$pad] ['from']      ?? 1           );
   $padSeqTo     = intval ( $padPrm [$pad] ['to']        ?? PHP_INT_MAX );
  
