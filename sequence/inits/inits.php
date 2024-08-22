@@ -6,15 +6,17 @@
   include '/pad/sequence/inits/vars.php';
   include '/pad/sequence/inits/parms.php';
   include '/pad/sequence/inits/sequence.php';
-  include '/pad/sequence//operations/inits.php';
-  include '/pad/sequence/inits/store.php';
+  include '/pad/sequence/inits/operations.php';
+  include '/pad/sequence/inits/actions.php';
+  include '/pad/sequence/inits/options.php';
+  include '/pad/sequence/inits/pull.php';
+  include '/pad/sequence/inits/fixed.php';
   include '/pad/sequence/inits/name.php';
   include '/pad/sequence/inits/loop.php';
-  include '/pad/sequence/inits/done.php';
   include '/pad/sequence/inits/build.php';
   include '/pad/sequence/inits/rows.php';
 
-  if ( file_exists ( "/pad/sequence/types/$padSeqSeq/init.php" )) 
+  if ( file_exists ( "/pad/sequence/types/$padSeqSeq/init.php" ) ) 
     include "/pad/sequence/types/$padSeqSeq/init.php";
 
 ?>

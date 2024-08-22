@@ -1,9 +1,6 @@
 <?php
 
-  $padSeqMergeList = padExplode ($padSeqActionValue, '|');
-
-
-  foreach ( $padSeqMergeList as $padSeqMergeKey ) {
+  foreach ( $padSeqActionList as $padSeqMergeKey ) {
 
     $padSeqMerge1 = $padSeqResult;
     $padSeqMerge2 = $padSeqStore [$padSeqMergeKey];

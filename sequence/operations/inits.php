@@ -6,19 +6,19 @@
   $padSeqOperations = [];
   $padSeqType = 'make';
 
-  foreach ( $padPrmParse as $padV ) {
+  foreach ( $padStartOptionsMulti as $padStartOption ) {
 
-    list ( $padSeqSeq, $padSeqValue ) = padSplit ( '=', trim($padV) );
+    extract ( $padStartOption );
+
+    $padSeqSeq = $padPrmName;
 
     if ( in_array ( $padSeqSeq, ['make','keep','remove'] ) ) {
       $padSeqType = $padSeqSeq;
       continue;
     }
 
-    if ( ! $padSeqSeq or $padSeqSeq == 'random' or $padSeqSeq == $padSeqSeqSave or $padSeqSeq == $padSeqPull )
-      continue;
-
-    if ( ! file_exists ( "/pad/sequence/types/$padSeqSeq" ) )
+    if ( ! $padSeqSeq or $padSeqSeq == 'random' or $padSeqSeq == $padSeqSeqSave or $padSeqSeq == $padSeqPull 
+      or ! file_exists ( "/pad/sequence/types/$padSeqSeq" ) )
       continue;
 
     $padSeqBuild = padSeqBuild ( $padSeqSeq, $padSeqType );
@@ -28,7 +28,7 @@
     $padSeqOperations [] = [
       'padSeqSeq'   => $padSeqSeq,
       'padSeqName'  => $padSeqSeq,
-      'padSeqParm'  => padEval ( $padSeqValue ),
+      'padSeqParm'  => $padPrmValue,
       'padSeqBuild' => $padSeqBuild,
       'padSeqType'  => $padSeqType
     ];

@@ -1,24 +1,22 @@
 <?php
 
-  $padSeqSplice = padExplode ($padSeqActionValue, '|');
-
-  if ( count ( $padSeqSplice ) == 1 )
+  if ( count ( $padSeqActionList ) == 1 )
     array_splice (
       $padSeqResult,
-      $padSeqSplice[0]
+      $padSeqActionList[0]
     );
-  elseif ( count ( $padSeqSplice ) == 2 )
+  elseif ( count ( $padSeqActionList ) == 2 )
     array_splice (
       $padSeqResult,
-      $padSeqSplice[0],
-      $padSeqSplice[1]
+      $padSeqActionList[0],
+      $padSeqActionList[1]
     );
-  elseif ( count ( $padSeqSplice ) == 3 )
+  elseif ( count ( $padSeqActionList ) == 3 )
     array_splice (
       $padSeqResult,
-      $padSeqSplice[0],
-      $padSeqSplice[1],
-      $padSeqStore [$padSeqSplice[2]]
+      $padSeqActionList[0],
+      $padSeqActionList[1],
+      $padSeqStore [$padSeqActionList[2]]
     );
 
   return $padSeqResult;

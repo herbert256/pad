@@ -2,23 +2,36 @@
 
 
   if ( $GLOBALS ['padInfoXapp'] or $GLOBALS ['padInfoXref'] ) {
+
     padInfoXapp ( 'sequences', 'types',  $padSeqSeq );
-    padInfoXapp ( 'sequences', 'builds', $padSeqBuild );
+
+    foreach ( $padSeqActions as $padSeqAction ) {
+      extract ( $padSeqAction );
+      padInfoXapp ( 'sequences', 'actions', $padSeqActionName );
+    }
+
+    foreach ( $padSeqOperations as $padSeqOperation ) {
+      extract ( $padSeqOperation );
+      padInfoXapp ( 'sequences', 'operations', $padSeqSeq );
+    }
+
+    foreach ( $padSeqOptions as $padK => $padV ) {
+      extract ( $padV );
+      padInfoXapp ( 'sequences', 'options', $padK );
+    }
+
   }
+
+
+  if ( $GLOBALS ['padInfoXref'] ) 
+    padInfoXref ( 'sequences', 'builds', $padSeqBuild );
 
 
   if ( $GLOBALS ['padInfoTrace'] and $GLOBALS ['padInfoTraceSequence'] ) {
 
     padInfoTrace ( 'sequence', $padSeqSeq, $padSeqResult ); 
-    padInfoTrace ( 'sequence', $padSeqSeq, $padSeqReturn ); 
  
-    padInfoTrace ( 'sequences', 'types', $padSeqSeq );
-
-    if ( $padSeqFor !== FALSE )
-     padInfoTrace ( 'sequences', 'builds', 'for' );
-    else
-     padInfoTrace ( 'sequences', 'builds', $padSeqBuild );
-
   }
+
 
 ?>

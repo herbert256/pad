@@ -4,9 +4,6 @@
   if ( $GLOBALS ['padInfoXref'] or $GLOBALS ['padInfoXapp'] ) {
 
     foreach ( $padPrm [$pad] as $padK => $padV )
-      padInfoXapp ( 'options', $padK );
-
-    foreach ( $padPrm [$pad] as $padK => $padV )
       padInfoXapp ( "_options/$padK", $padType [$pad], $padTag [$pad] );
 
   }

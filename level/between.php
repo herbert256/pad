@@ -14,6 +14,9 @@
 
     if ( padValidVar ( $padPrmName ) ) {
 
+      if ( $GLOBALS ['padInfo'] )
+        include '/pad/events/option.php';
+
       $padPrmValue = ( $padPrmValue === '' ) ? TRUE : padEval ( $padPrmValue );
 
       $padStartOptionsSingle [$padPrmName] = $padPrmValue;
@@ -22,5 +25,6 @@
     }
 
   }
+
 
 ?>
