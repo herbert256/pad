@@ -30,11 +30,15 @@
 
     $GLOBALS ['padSent'] = TRUE;
 
-    if ( $stop == 200 ) {
+    if ( $stop == 200 )
       echo $output;
-      flush ();
-      ignore_user_abort(true);
-    }
+
+    flush ();
+
+    ignore_user_abort (true);
+
+    if ( function_exists ( 'fastcgi_finish_request') )
+      fastcgi_finish_request();
 
   }
 
