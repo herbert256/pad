@@ -1,8 +1,5 @@
 <?php
 
-  if ( ! $padSeqNand )
-    $padSeqNand = 1;
-
-  return ~ ( $padSeqLoop & (int) $padSeqNand );
+  return ~ include '/pad/sequence/types/and/make.php';
 
 ?>
