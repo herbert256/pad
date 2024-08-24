@@ -2,7 +2,7 @@
   
   $padSeqActions = [];
 
-  foreach ( $padStartOptionsMulti as $padStartOption ) {
+  foreach ( $padOptionsMulti as $padStartOption ) {
 
     extract ( $padStartOption );
 
