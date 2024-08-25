@@ -33,7 +33,7 @@
   }
 
 
-  function padSeqBuild ( $check, $for='make' ) {
+  function padSeqBuild ( $check, $for='' ) {
 
     $check = "/pad/sequence/types/$check";
 

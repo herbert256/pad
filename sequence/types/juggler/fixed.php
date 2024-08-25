@@ -1,10 +1,10 @@
 <?php
 
-	include_once 'include.php';
+	include_once '/pad/sequence/types/juggler/include.php';
 
 	$padSeqJugglerArray = [];
 
-	if ( isset($padSeqJuggler) and $padSeqJuggler and is_numeric($padSeqJuggler) )
+	if ( $padSeqJuggler and is_numeric($padSeqJuggler) )
 
 	  padSeqJuggler ($padSeqJuggler);
 

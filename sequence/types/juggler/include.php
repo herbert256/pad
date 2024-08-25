@@ -12,8 +12,6 @@ function padSeqJuggler ($n) {
 
 	$a = $n;
 
-	// print the first term
-
 	// calculate terms until
 	// last term is not 1
 	while ($a != 1)
@@ -31,8 +29,7 @@ function padSeqJuggler ($n) {
 
 			// for odd previous term
 			// calculate next term
-			$b = floor(sqrt($a) * sqrt($a) *
-								sqrt($a));
+			$b = floor(sqrt($a) * sqrt($a) * sqrt($a));
 
         $GLOBALS ['padSeqJugglerArray'] [] = $b;
 

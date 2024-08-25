@@ -1,5 +1,16 @@
 <?php
 
+  function padFindIdx ( $tag ) {
+
+    global $pad, $padTag;
+
+    for ( $i = $pad; $i >= 0 ; $i-- )
+      if ( $padTag [$i] == $tag )
+        return $i;
+
+    return FALSE;
+
+  }
 
   function padCode ( $padStrCod ) {
 
