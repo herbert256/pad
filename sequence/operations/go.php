@@ -7,7 +7,6 @@
     $GLOBALS [ padSeqName ($padSeqName) ] = $padSeqParm;
 
     $padSeqSave = $padSeq;
-  
     $padSeqLoop = $padSeq;
     $padSeq     = include '/pad/sequence/build/call.php';
 

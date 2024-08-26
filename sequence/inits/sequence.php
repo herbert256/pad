@@ -2,7 +2,7 @@
 
   if     ( strpos ( $padParm, '..' ) ) return include '/pad/sequence/inits/sequence/range.php';
   elseif ( strpos ( $padParm, ';'  ) ) return include '/pad/sequence/inits/sequence/list.php';
-  elseif ( ctype_digit ( $padParm  ) ) return include '/pad/sequence/inits/sequence/digit.php';
+#  elseif ( ctype_digit ( $padParm  ) ) return include '/pad/sequence/inits/sequence/digit.php';
 
   foreach ( $padPrm [$pad] as $padSeqSeq => $padSeqParm ) {
 

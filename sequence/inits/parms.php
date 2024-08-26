@@ -17,7 +17,6 @@
   $padSeqUnique = $padPrm [$pad] ['unique'] ?? ''; 
   $padSeqName   = $padPrm [$pad] ['name']   ?? ''; 
   $padSeqBuild  = $padPrm [$pad] ['build']  ?? ''; 
-  $padSeqNoMain = $padPrm [$pad] ['noMain'] ?? ''; 
   $padSeqToData = $padPrm [$pad] ['toData'] ?? ''; 
    
   foreach ( $padPrm [$pad] as $padK => $padV )

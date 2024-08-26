@@ -4,6 +4,8 @@
     $padSeqName = $padSeqSeq;
 
   $padSeqParm = $padSeqSeq;
+  $padSeqPull = $padSeqSeq;
+  
   $padSeqSeq  = 'pull';
-
+  
 ?>

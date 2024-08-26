@@ -1,6 +1,7 @@
 <?php
 
   if     ( $padSeqRows                       ) return;
+  elseif ( ctype_digit ( $padParm )          ) $padSeqRows = $padParm;
   elseif ( $padSeqTo <> PHP_INT_MAX          ) $padSeqRows = PHP_INT_MAX ;
   elseif ( isset ( $padPrm [$pad] ['try'] )  ) $padSeqRows = PHP_INT_MAX ;
   elseif ( $padSeqPull                       ) $padSeqRows = PHP_INT_MAX ;

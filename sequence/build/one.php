@@ -8,16 +8,18 @@
   if ( $padSeqRandom )
     $padSeqLoop = padSeqRandom ( $padSeqFixed, $padSeqStart, $padSeqEnd, $padSeqInc );
 
-  if   ( $padSeqBuild == 'fixed') $padSeq = $padSeqLoop;
-  else                            $padSeq = include '/pad/sequence/build/call.php';
+  if   ( $padSeqBuild == 'fixed' ) $padSeq = $padSeqLoop;
+  else                             $padSeq = include '/pad/sequence/build/call.php';
 
   if     ( $padSeq === FALSE ) return TRUE;
   elseif ( $padSeq === TRUE  ) $padSeq = $padSeqLoop;
 
-  $padSeq = include '/pad/sequence/operations/build.php';
-  if ( $padSeq === FALSE ) 
-    return TRUE;
-  
+  if ( count ( $padSeqOperations ) ) {
+    $padSeq = include '/pad/sequence/operations/build.php';
+    if ( $padSeq === FALSE ) 
+      return TRUE;
+  }
+    
   $padSeqBase++;
 
   if ( is_numeric ($padSeq) and $padSeq < $padSeqMin       ) return TRUE;

@@ -1,8 +1,5 @@
 <?php
  
-  if ( ! count ( $padSeqOperations ) ) 
-    return $padSeq;
-
   $padSeqSeqSave   = $padSeqSeq;
   $padSeqBuildSave = $padSeqBuild;
   $padSeqParmSave  = $padSeqParm;

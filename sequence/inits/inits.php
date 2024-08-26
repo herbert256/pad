@@ -9,9 +9,6 @@
   include '/pad/sequence/inits/operations.php';
   include '/pad/sequence/inits/actions.php';
   include '/pad/sequence/inits/options.php';
-  include '/pad/sequence/inits/loop.php';
-  include '/pad/sequence/inits/pull.php';
-  include '/pad/sequence/inits/fixed.php';
   include '/pad/sequence/inits/name.php';
   include '/pad/sequence/inits/startEnd.php';
   include '/pad/sequence/inits/build.php';
