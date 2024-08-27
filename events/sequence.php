@@ -3,11 +3,16 @@
 
   if ( $GLOBALS ['padInfoXapp'] or $GLOBALS ['padInfoXref'] ) {
 
-    padInfoXapp ( 'sequences', 'types',  $padSeqSeq );
+    padInfoXapp ( 'sequences', 'types',  $padSeqSeq   );
+    padInfoXapp ( 'sequences', 'builds', $padSeqBuild );
 
     foreach ( $padSeqActions as $padSeqAction ) {
       extract ( $padSeqAction );
       padInfoXapp ( 'sequences', 'actions', $padSeqActionName );
+    }
+
+    foreach ( $padSeqStoreList as $padSeqActionName => $padSeqActionValue ) {
+      padInfoXapp ( 'sequences', 'stores', $padSeqActionName );
     }
 
     foreach ( $padSeqOperations as $padSeqOperation ) {

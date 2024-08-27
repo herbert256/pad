@@ -9,6 +9,7 @@
   include '/pad/sequence/inits/operations.php';
   include '/pad/sequence/inits/actions.php';
   include '/pad/sequence/inits/options.php';
+  include '/pad/sequence/inits/store.php';
   include '/pad/sequence/inits/name.php';
   include '/pad/sequence/inits/startEnd.php';
   include '/pad/sequence/inits/build.php';

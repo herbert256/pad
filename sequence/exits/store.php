@@ -1,16 +1,9 @@
 <?php
 
-  if ( $padSeqPull and ( isset ($padSeqPop) or isset ($padSeqShift) ) ) {
-
-    if ( $padSeqPull <> $padSeqName )
-      $padSeqStore [$padSeqName] = $padSeqStore [$padSeqPull];
-
+  if ( $padPair [$pad] and ! count ( $padSeqStoreList ) )
     return;
 
-  }
-
-  if ( $padPair [$pad] )
-    return;
+  include '/pad/sequence/store/exits.php';
 
   $padSeqStore [$padSeqName] = $padSeqResult;
 
