@@ -18,6 +18,7 @@
     foreach ( $padSeqOperations as $padSeqOperation ) {
       extract ( $padSeqOperation );
       padInfoXapp ( 'sequences', 'operations', $padSeqSeq );
+      padInfoXapp ( 'sequences', 'builds',     $padSeqBuild );
     }
 
     foreach ( $padSeqOptions as $padK => $padV ) {
