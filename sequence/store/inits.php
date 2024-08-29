@@ -2,8 +2,8 @@
   
   $padSeqStoreList = [];
 
-  foreach ( $padOptionsSingle as $padStartOption ) 
-   if ( file_exists ( "/pad/sequence/store/types/$padPrmName.php" ) ) 
-     $padSeqStoreList [$padPrmName] = $padPrmValue;
+  foreach ( $padOptionsSingle as $padSeqK => $padSeqV ) 
+   if ( file_exists ( "/pad/sequence/store/types/$padSeqK.php" ) ) 
+     $padSeqStoreList [$padSeqK] = $padSeqV  ;
   
 ?>

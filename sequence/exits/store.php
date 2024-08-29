@@ -3,8 +3,11 @@
   if ( $padPair [$pad] and ! count ( $padSeqStoreList ) )
     return;
 
+  if ( ! isset ($padSeqStoreName) or ! $padSeqStoreName )
+    $padSeqStoreName = $padSeqName;
+
   include '/pad/sequence/store/exits.php';
 
-  $padSeqStore [$padSeqName] = $padSeqResult;
+  $padSeqStore [$padSeqStoreName] = $padSeqResult;
 
 ?>

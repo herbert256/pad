@@ -2,16 +2,21 @@
 
   foreach ( $padSeqStoreList as $padSeqActionName => $padSeqActionValue ) {
 
-    $padSeqActionList = [$padSeqName];
+    if ( str_contains ( $padSeqActionValue, '|' ))
+      $padSeqActionList = padExplode ( "$padSeqActionValue|$padSeqStoreName", '|' );
+    else
+      $padSeqActionList = [$padSeqStoreName];
 
     if ( ! $padSeqActionValue )
-      $padSeqActionValue = $padSeqName;
+      $padSeqActionValue = $padSeqStoreName;
 
-    $padSeqStoreTemp           = $padSeqResult;
-    $padSeqResult              = $padSeqStore [$padSeqName];
-    $padSeqStore [$padSeqName] = $padSeqStoreTemp;
+    $padSeqStoreTemp                = $padSeqResult;
+    $padSeqResult                   = $padSeqStore [$padSeqStoreName];
+    $padSeqStore [$padSeqStoreName] = $padSeqStoreTemp;
 
-    include "/pad/sequence/store/types/$padSeqActionName.php";
+                  include "/pad/sequence/store/types/$padSeqActionName.php";
+    $padSeqResult = include "/pad/sequence/actions/types/$padSeqActionName.php";
+   
 
   }
   
