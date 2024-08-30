@@ -12,8 +12,8 @@
 
     extract ( $padSeqStoreItem );
 
-    if ( $padSeqStoreType == 'operation' ) include '/pad/store/exitOperation.php';
-    else                                   include '/pad/store/exitAction.php';  
+    if ( $padSeqStoreType == 'operation' ) include '/pad/sequence/store/exitOperation.php';
+    else                                   include '/pad/sequence/store/exitAction.php';  
   
     $padSeqStore [$padSeqStoreName] = $padSeqResult;
 

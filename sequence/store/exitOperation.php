@@ -3,6 +3,7 @@
   if ( ! count ( $padSeqResult )                   ) return;
   if ( ! count ( $padSeqStore [$padSeqStoreName] ) ) return;
 
+  $padSeqSeq      = $padSeqStoreAction;
   $padSeqResult   = array_values ( $padSeqResult );
   $padStoreStore  = array_values ( $padSeqStore [$padSeqStoreName] );
   $padStoreIndex  = 0;

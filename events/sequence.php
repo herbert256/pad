@@ -11,8 +11,9 @@
       padInfoXapp ( 'sequences', 'actions', $padSeqActionName );
     }
 
-    foreach ( $padSeqStoreList as $padSeqActionName => $padSeqActionValue ) {
-      padInfoXapp ( 'sequences', 'stores', $padSeqActionName );
+    foreach ( $padSeqStoreList as $padSeqStoreEntry ) {
+      extract ( $padSeqStoreEntry );
+      padInfoXapp ( 'sequences', 'stores', $padSeqStoreAction );
     }
 
     foreach ( $padSeqOperations as $padSeqOperation ) {

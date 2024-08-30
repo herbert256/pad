@@ -23,11 +23,10 @@
 
     $padSeqBuild = padSeqBuild ( $padSeqSeq, $padSeqType );
 
-    include "/pad/sequence/build/include.php";
+    include '/pad/sequence/build/include.php';
 
     $padSeqOperations [] = [
       'padSeqSeq'   => $padSeqSeq,
-      'padSeqName'  => $padSeqSeq,
       'padSeqParm'  => $padPrmValue,
       'padSeqBuild' => $padSeqBuild,
       'padSeqType'  => $padSeqType

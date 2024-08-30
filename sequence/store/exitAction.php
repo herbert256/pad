@@ -1,5 +1,6 @@
 <?php
 
+  $padSeqActionName  = $padSeqStoreAction;
   $padSeqActionValue = $padSeqStoreName;
   $padSeqActionList  = padExplode ( $padSeqActionValue, '|' );
 

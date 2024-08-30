@@ -6,13 +6,9 @@
   if ( in_array ( $padSeqBuild, ['order','fixed'] ) )
     return;
 
-  include "/pad/sequence/build/include.php";
+  include '/pad/sequence/build/include.php';
 
-  $padSeqStoreList [] = [
-    'padSeqStoreType' => 'action',
-    'padSeqStoreName' => $padPrmValue,
-    'padSeqSeq'       => $padSeqSeq,
-    'padSeqBuild'     => $padSeqBuild
-  ];
+  $padSeqStoreEntry ['padSeqStoreType'] = 'operation';
+  $padSeqStoreEntry ['padSeqBuild']     = $padSeqBuild
 
 ?>

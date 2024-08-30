@@ -23,12 +23,13 @@
   $padSeqBase++;
 
   if ( is_numeric ($padSeq) and $padSeq < $padSeqMin       ) return TRUE;
-  if ( is_numeric ($padSeq) and $padSeq > $padSeqMax       ) return $padSeqRandom;
+  if ( is_numeric ($padSeq) and $padSeq > $padSeqMax       ) return TRUE;
   if ( $padSeqUnique and in_array ($padSeq, $padSeqResult) ) return TRUE;
   if ( $padSeqSkip and $padSeqBase <= $padSeqSkip )          return TRUE;
 
   $padSeqResult [] = $padSeq;
 
+  if ( is_numeric ($padSeq) and $padSeq >= $padSeqStop     ) return FALSE;
   if ( $padSeqRows and count($padSeqResult) >= $padSeqRows ) return FALSE;
 
   return TRUE;
