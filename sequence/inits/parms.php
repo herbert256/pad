@@ -18,11 +18,6 @@
   $padSeqName      = $padPrm [$pad] ['name']   ?? ''; 
   $padSeqBuild     = $padPrm [$pad] ['build']  ?? ''; 
   $padSeqToData    = $padPrm [$pad] ['toData'] ?? ''; 
-  $padSeqToData    = $padPrm [$pad] ['toData'] ?? ''; 
   $padSeqStoreName = $padPrm [$pad] ['store']  ?? '';
    
-  foreach ( $padPrm [$pad] as $padK => $padV )
-    if ( ! isset ( $GLOBALS [ padSeqName ($padK) ] ) )
-      $GLOBALS [ padSeqName ($padK) ] = $padV;
-
 ?>

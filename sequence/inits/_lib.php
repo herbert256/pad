@@ -6,12 +6,6 @@
     return 'padSeq' . ucfirst( $name );
 
   }
-  
-  function padSeqValue ( $name ) {
-
-    return $GLOBALS [ padSeqName ( $name ) ];
-
-  }
 
 
   function padSeqRandom ( $for, $start, $end, $inc ) {
@@ -76,17 +70,6 @@
       $x = (int)($x / 10);
     }
     return $rev;
-
-  }
-
-  function padSeqSet ( $name, $value ) {
-
-    $name = ucfirst ($name);
-
-    $GLOBALS ["padSeqParm"]  = $value;
-    $GLOBALS ["padSeq$name"] = $value;
-
-    padDone ( $name );
 
   }
 

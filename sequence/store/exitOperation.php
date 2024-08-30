@@ -15,8 +15,6 @@
     $padSeqLoop = $padStoreStore [$padStoreIndex];
     $padSeqSave = $padSeqLoop;
 
-    $GLOBALS [ padSeqName ($padSeqName) ] = $padSeqParm;
-
     $padSeqResult [$padStoreIndex] = include '/pad/sequence/build/call.php';
 
     if     ( $padSeqResult [$padStoreIndex] === FALSE ) unset ( $padSeqResult [$padStoreIndex] ) ;

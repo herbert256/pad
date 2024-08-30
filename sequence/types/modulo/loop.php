@@ -1,8 +1,8 @@
 <?php
 
-  if ( ! $padSeqModulo )
-    $padSeqModulo = 1;
+  if ( ! $padSeqParm )
+    $padSeqParm = 1;
 
-  return $padSeqLoop % (int) $padSeqModulo;
+  return $padSeqLoop % (int) $padSeqParm;
 
 ?>

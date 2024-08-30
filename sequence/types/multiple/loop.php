@@ -1,5 +1,5 @@
 <?php
 
-  return ceil ( $padSeqLoop / $padSeqMultiple) * $padSeqMultiple;
+  return ceil ( $padSeqLoop / $padSeqParm) * $padSeqParm;
 
 ?>

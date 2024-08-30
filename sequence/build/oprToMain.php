@@ -11,6 +11,4 @@
 
   unset ( $padSeqOperations [0] );
 
-  $GLOBALS [ padSeqName ($padSeqSeq) ] = $padSeqParm;
-
 ?>

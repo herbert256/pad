@@ -1,8 +1,8 @@
 <?php
 
-  if ( ! $padSeqRound )
-    $padSeqRound = 1;
+  if ( ! $padSeqParm )
+    $padSeqParm = 1;
 
-  return round ( $padSeqLoop / $padSeqRound ) * $padSeqRound;
+  return round ( $padSeqLoop / $padSeqParm ) * $padSeqParm;
 
 ?>

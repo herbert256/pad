@@ -1,5 +1,5 @@
 <?php
 
-  return $padSeqLoop ** $padSeqExponentiation;
+  return $padSeqLoop ** $padSeqParm;
 
 ?>

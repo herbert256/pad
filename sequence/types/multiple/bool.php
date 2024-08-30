@@ -2,9 +2,9 @@
 
   function padSeqBoolMultiple ( $n ) {
 
-    global $padSeqMultiple;
+    global $padSeqParm;
 
-    return ( $n == ceil ( $n / $padSeqMultiple) * $padSeqMultiple );
+    return ( $n == ceil ( $n / $padSeqParm) * $padSeqParm );
 
   }
 
