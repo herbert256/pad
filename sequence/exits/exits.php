@@ -12,4 +12,9 @@
   if ( $GLOBALS ['padInfo'] )
     include '/pad/events/sequence.php';
 
+  foreach ( $GLOBALS as $padK => $padV )
+    if ( str_starts_with ( $padK, 'padSeq') )
+      if ( $padK <> 'padSeqStore' and $padK <> 'padSeqReturn' )
+        unset ( $GLOBALS [$padK] );
+
 ?>

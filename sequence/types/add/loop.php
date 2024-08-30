@@ -1,5 +1,5 @@
 <?php
 
-  return $padSeqLoop + $padSeqAdd;
+  return $padSeqLoop + $padSeqParm;
 
 ?>
