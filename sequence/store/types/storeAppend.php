@@ -1,5 +1,5 @@
 <?php
 
-   $padSeqActionName = 'append';
-   
+   include '/pad/sequence/store/switch.php';
+
 ?>

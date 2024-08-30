@@ -117,30 +117,5 @@
 
   }
 
-  function padSeqGetCnt ( $first, $second, $third ) {
-
-    global $pad, $padPrm, $padSeqParm;
-
-    if ( isset($padPrm [$pad][$first])      and $padPrm [$pad][$first]  !== TRUE and is_numeric($padPrm [$pad][$first]) )
- 
-      return $padPrm [$pad][$first];
- 
-    elseif ( isset($padPrm [$pad][$second]) and $padPrm [$pad][$second] !== TRUE and is_numeric($padPrm [$pad][$second]) )
- 
-      return $padPrm [$pad][$second];
- 
-    elseif ( isset($padPrm [$pad][$third])  and $padPrm [$pad][$third]  !== TRUE and is_numeric($padPrm [$pad][$third]) )
- 
-      return $padPrm [$pad][$third];
- 
-    elseif (                                     $padSeqParm !== TRUE            and is_numeric($padSeqParm) )
- 
-      return $padSeqParm;
- 
-    else
- 
-      return 1;
-
-  }
 
 ?>

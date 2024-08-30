@@ -1,5 +1,5 @@
 <?php
 
-   $padSeqActionName = 'prepend';
+  include '/pad/sequence/store/switch.php';
    
 ?>
