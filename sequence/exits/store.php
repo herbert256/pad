@@ -4,8 +4,8 @@
     return;
 
   if ( count ( $padSeqStoreList ) )
-    $padSeqReturn = $padSeqResult;
-
-  include '/pad/sequence/store/exits.php';
+    include '/pad/sequence/store/exits.php';
+  else
+    include '/pad/sequence/exits/single.php';
 
 ?>

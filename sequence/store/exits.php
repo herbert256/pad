@@ -1,19 +1,30 @@
 <?php
 
-  if ( ! $padSeqStoreName )
-    $padSeqStoreName = $padSeqName;
+  $padSeqResultSave = $padSeqResult;
 
-  foreach ( $padSeqStoreList as $padSeqStoreAction => $padSeqStoreValue ) {
+  $padSeqSeqSave    = $padSeqSeq;
+  $padSeqBuildSave  = $padSeqBuild;
+  $padSeqParmSave   = $padSeqParm;
+  $padSeqLoopSave   = $padSeqLoop;
+  $padSeqNameSave   = $padSeqName;
+
+  foreach ( $padSeqStoreList as $padSeqStoreItem ) {
+
+    extract ( $padSeqStoreItem );
+
+    if ( $padSeqStoreType == 'operation' ) include '/pad/store/exitOperation.php';
+    else                                   include '/pad/store/exitAction.php';  
   
-    $padSeqActionName  = strtolower ( substr ( $padSeqStoreAction, 5, 1 ) ) . substr ( $padSeqStoreAction, 6 );
-    $padSeqActionList  = [$padSeqStoreName];
-    $padSeqActionValue = ( $padSeqStoreValue === TRUE ) ? $padSeqStoreName: $padSeqStoreValue;
+    $padSeqStore [$padSeqStoreName] = $padSeqResult;
 
-                    include "/pad/sequence/store/types/$padSeqStoreAction.php";
-    $padSeqResult = include "/pad/sequence/actions/types/$padSeqActionName.php";
+    $padSeqResult = $padSeqResultSave;
 
   }
   
-  $padSeqStore [$padSeqStoreName] = $padSeqResult;
-
+  $padSeqSeq   = $padSeqSeqSave;
+  $padSeqBuild = $padSeqBuildSave;
+  $padSeqLoop  = $padSeqLoopSave;
+  $padSeqParm  = $padSeqParmSave;
+  $padSeqName  = $padSeqNameSave;
+   
 ?>

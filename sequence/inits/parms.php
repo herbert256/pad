@@ -12,12 +12,11 @@
   $padSeqRows   = intval ( $padPrm [$pad] ['rows']      ?? 0           );
   $padSeqSkip   = intval ( $padPrm [$pad] ['skip']      ?? 0           );
   
-  $padSeqRandom    = $padPrm [$pad] ['random'] ?? ''; 
-  $padSeqUnique    = $padPrm [$pad] ['unique'] ?? ''; 
-  $padSeqName      = $padPrm [$pad] ['name']   ?? ''; 
-  $padSeqBuild     = $padPrm [$pad] ['build']  ?? ''; 
-  $padSeqToData    = $padPrm [$pad] ['toData'] ?? ''; 
-  $padSeqStoreName = $padPrm [$pad] ['store'] ?? ''; 
+  $padSeqRandom = $padPrm [$pad] ['random'] ?? ''; 
+  $padSeqUnique = $padPrm [$pad] ['unique'] ?? ''; 
+  $padSeqName   = $padPrm [$pad] ['name']   ?? ''; 
+  $padSeqBuild  = $padPrm [$pad] ['build']  ?? ''; 
+  $padSeqToData = $padPrm [$pad] ['toData'] ?? ''; 
    
   foreach ( $padPrm [$pad] as $padK => $padV )
     if ( ! isset ( $GLOBALS [ padSeqName ($padK) ] ) )
