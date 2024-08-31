@@ -1,8 +1,5 @@
 <?php
 
-  if ( count ( $padSeqReturn ) )
-    $padSeqResult = $padSeqReturn;
-
   $padSeqReturn = [];
 
   $padSeqI = -1;

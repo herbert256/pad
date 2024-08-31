@@ -1,7 +1,6 @@
 <?php
 
-  $padSeqSeqSave   = $padSeqSeq;
-  $padSeqBuildSave = $padSeqBuild;
+  $padSeqSeqSave = $padSeqSeq;
 
   $padSeqOperations = [];
   $padSeqType = 'make';
@@ -34,7 +33,6 @@
 
   }
 
-  $padSeqSeq   = $padSeqSeqSave;
-  $padSeqBuild = $padSeqBuildSave;
+  $padSeqSeq = $padSeqSeqSave;
 
 ?>

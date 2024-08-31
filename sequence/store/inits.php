@@ -1,8 +1,5 @@
 <?php
 
-  $padSeqSeqSave   = $padSeqSeq;
-  $padSeqBuildSave = $padSeqBuild;
-
   $padSeqStoreList = [];
 
   foreach ( $padOptionsMulti as $padStartOption ) {
@@ -25,11 +22,6 @@
     if ( file_exists ( "/pad/sequence/actions/types/$padSeqStoreAction.php" ) ) 
       include '/pad/sequence/store/initAction.php';
 
-    $padSeqStoreList [] = $padSeqStoreEntry;
-
   }
-
-  $padSeqSeq   = $padSeqSeqSave;
-  $padSeqBuild = $padSeqBuildSave;
-
+ 
 ?>

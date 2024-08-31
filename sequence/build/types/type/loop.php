@@ -6,7 +6,8 @@
 
     $padSeqLoop = $padSeqGo;
 
-    if ( ! include '/pad/sequence/build/one.php')
+    $padSeqTmp = include '/pad/sequence/build/one.php';
+    if ( $padSeqTmp === FALSE )
       break;
 
     $padSeqGo = $padSeqGo + $padSeqInc;

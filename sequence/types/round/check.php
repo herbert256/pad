@@ -2,8 +2,17 @@
 
   function padSeqCheckRound ( $f, $n ) {
 
-    if ( file_exists ( "/pad/sequence/types/round/bool.php" ) )
+    if ( file_exists ( '/pad/sequence/types/round/bool.php' ) )
       return padSeqBoolRound ( $n );
+
+    if ( file_exists ( '/pad/sequence/types/round/generated.php' ) ) 
+      return in_array ( $n, PADround );
+
+    if ( file_exists ( '/pad/sequence/types/round/fixed.php' ) ) {
+      $fixed = include '/pad/sequence/types/round/fixed.php';
+      return in_array ( $n, $fixed );
+
+    }
 
     $text = padCode ( "{sequence round, from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
     $arr  = explode ( ',', $text );

@@ -2,8 +2,17 @@
 
   function padSeqCheckGould ( $f, $n ) {
 
-    if ( file_exists ( "/pad/sequence/types/gould/bool.php" ) )
+    if ( file_exists ( '/pad/sequence/types/gould/bool.php' ) )
       return padSeqBoolGould ( $n );
+
+    if ( file_exists ( '/pad/sequence/types/gould/generated.php' ) ) 
+      return in_array ( $n, PADgould );
+
+    if ( file_exists ( '/pad/sequence/types/gould/fixed.php' ) ) {
+      $fixed = include '/pad/sequence/types/gould/fixed.php';
+      return in_array ( $n, $fixed );
+
+    }
 
     $text = padCode ( "{sequence gould, from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
     $arr  = explode ( ',', $text );

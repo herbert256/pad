@@ -4,7 +4,6 @@
 
     extract ( $padSeqOperation );
 
-    $padSeqName = $padSeqSeq;
     $padSeqSave = $padSeq;
     $padSeqLoop = $padSeq;
     $padSeq     = include '/pad/sequence/build/call.php';

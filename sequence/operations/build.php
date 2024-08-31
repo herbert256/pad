@@ -4,7 +4,6 @@
   $padSeqBuildSave = $padSeqBuild;
   $padSeqParmSave  = $padSeqParm;
   $padSeqLoopSave  = $padSeqLoop;
-  $padSeqNameSave  = $padSeqName;
 
   $padSeq = include '/pad/sequence/operations/go.php';
 
@@ -12,7 +11,6 @@
   $padSeqBuild = $padSeqBuildSave;
   $padSeqLoop  = $padSeqLoopSave;
   $padSeqParm  = $padSeqParmSave;
-  $padSeqName  = $padSeqNameSave;
 
   return $padSeq;
 

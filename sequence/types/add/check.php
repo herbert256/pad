@@ -2,8 +2,17 @@
 
   function padSeqCheckAdd ( $f, $n ) {
 
-    if ( file_exists ( "/pad/sequence/types/add/bool.php" ) )
+    if ( file_exists ( '/pad/sequence/types/add/bool.php' ) )
       return padSeqBoolAdd ( $n );
+
+    if ( file_exists ( '/pad/sequence/types/add/generated.php' ) ) 
+      return in_array ( $n, PADadd );
+
+    if ( file_exists ( '/pad/sequence/types/add/fixed.php' ) ) {
+      $fixed = include '/pad/sequence/types/add/fixed.php';
+      return in_array ( $n, $fixed );
+
+    }
 
     $text = padCode ( "{sequence add, from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
     $arr  = explode ( ',', $text );

@@ -2,8 +2,17 @@
 
   function padSeqCheckSylvester ( $f, $n ) {
 
-    if ( file_exists ( "/pad/sequence/types/sylvester/bool.php" ) )
+    if ( file_exists ( '/pad/sequence/types/sylvester/bool.php' ) )
       return padSeqBoolSylvester ( $n );
+
+    if ( file_exists ( '/pad/sequence/types/sylvester/generated.php' ) ) 
+      return in_array ( $n, PADsylvester );
+
+    if ( file_exists ( '/pad/sequence/types/sylvester/fixed.php' ) ) {
+      $fixed = include '/pad/sequence/types/sylvester/fixed.php';
+      return in_array ( $n, $fixed );
+
+    }
 
     $text = padCode ( "{sequence sylvester, from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
     $arr  = explode ( ',', $text );

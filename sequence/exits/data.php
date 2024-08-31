@@ -8,6 +8,4 @@
   else
     $padDataStore [$padSeqToData] = padData ( $padSeqResult,              '', $padSeqToData );
 
-  padDone ('toData');
-
 ?>

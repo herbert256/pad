@@ -16,7 +16,6 @@
   $padSeqRandom    = $padPrm [$pad] ['random'] ?? ''; 
   $padSeqUnique    = $padPrm [$pad] ['unique'] ?? ''; 
   $padSeqName      = $padPrm [$pad] ['name']   ?? ''; 
-  $padSeqBuild     = $padPrm [$pad] ['build']  ?? ''; 
   $padSeqToData    = $padPrm [$pad] ['toData'] ?? ''; 
   $padSeqStoreName = $padPrm [$pad] ['store']  ?? '';
    

@@ -22,6 +22,8 @@
     
   $padSeqBase++;
 
+  if ( is_float ($padSeq)   and $padSeq < PHP_INT_MIN      ) return FALSE;
+  if ( is_float ($padSeq)   and $padSeq > PHP_INT_MAX      ) return FALSE; 
   if ( is_numeric ($padSeq) and $padSeq < $padSeqMin       ) return TRUE;
   if ( is_numeric ($padSeq) and $padSeq > $padSeqMax       ) return TRUE;
   if ( $padSeqUnique and in_array ($padSeq, $padSeqResult) ) return TRUE;

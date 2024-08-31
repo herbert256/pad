@@ -73,7 +73,7 @@ END;
   }
 
 
-  function padPageGet ( $page, $qry ) {
+  function padPageGet ( $page, $qry='' ) {
 
     $curl = padCurl ( $GLOBALS['padGoExt'] . $page . $qry );
 

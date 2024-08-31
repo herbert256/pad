@@ -2,8 +2,17 @@
 
   function padSeqCheckSubstract ( $f, $n ) {
 
-    if ( file_exists ( "/pad/sequence/types/substract/bool.php" ) )
+    if ( file_exists ( '/pad/sequence/types/substract/bool.php' ) )
       return padSeqBoolSubstract ( $n );
+
+    if ( file_exists ( '/pad/sequence/types/substract/generated.php' ) ) 
+      return in_array ( $n, PADsubstract );
+
+    if ( file_exists ( '/pad/sequence/types/substract/fixed.php' ) ) {
+      $fixed = include '/pad/sequence/types/substract/fixed.php';
+      return in_array ( $n, $fixed );
+
+    }
 
     $text = padCode ( "{sequence substract, from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
     $arr  = explode ( ',', $text );

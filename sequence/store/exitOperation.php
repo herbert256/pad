@@ -1,26 +1,29 @@
 <?php
 
-  if ( ! count ( $padSeqResult )                   ) return;
-  if ( ! count ( $padSeqStore [$padSeqStoreName] ) ) return;
+  $padSeqSeq   = $padSeqStoreAction;
+  $padSeqBuild = padSeqBuild ( $padSeqSeq, 'make' );
 
-  $padSeqSeq      = $padSeqStoreAction;
-  $padSeqResult   = array_values ( $padSeqResult );
-  $padStoreStore  = array_values ( $padSeqStore [$padSeqStoreName] );
-  $padStoreIndex  = 0;
+  include '/pad/sequence/build/include.php';
 
-  while ( isset ( $padSeqResult [$padStoreIndex] ) and isset ( $padStoreStore [$padStoreIndex] ) ) {
+  if ( ! file_exists ( "/pad/sequence/types/$padSeqSeq/parm" ) ) 
 
-    $padSeqName = $padSeqSeq;
-    $padSeqParm = $padSeqResult  [$padStoreIndex];
-    $padSeqLoop = $padStoreStore [$padStoreIndex];
-    $padSeqSave = $padSeqLoop;
+    foreach ( $padSeqResult as $padIdx => $padSeqLoop )
+      include '/pad/sequence/store/operation.php';
 
-    $padSeqResult [$padStoreIndex] = include '/pad/sequence/build/call.php';
+   else {
 
-    if     ( $padSeqResult [$padStoreIndex] === FALSE ) unset ( $padSeqResult [$padStoreIndex] ) ;
-    elseif ( $padSeqResult [$padStoreIndex] === TRUE  ) $padSeqResult [$padStoreIndex] = $padSeqSave;
-    
-    $padStoreIndex++;
+    $padIdx = 0;
+
+    while ( isset ( $padSeqResult [$padIdx] ) and isset ( $padSeqStore [$padSeqStoreName] [$padIdx] ) ) {
+
+      $padSeqParm = $padSeqResult [$padIdx];
+      $padSeqLoop = $padSeqStore [$padSeqStoreName] [$padIdx];
+
+      include '/pad/sequence/store/operation.php';
+
+      $padIdx++;
+
+    }
 
   }
   

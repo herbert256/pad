@@ -1,13 +1,6 @@
 <?php
 
 
-  function padSeqName ( $name ) {
-
-    return 'padSeq' . ucfirst( $name );
-
-  }
-
-
   function padSeqRandom ( $for, $start, $end, $inc ) {
 
     if ( is_array ( $for ) and count ( $for ) )
@@ -91,6 +84,7 @@
     return call_user_func_array ($action, $parms);
 
   }
+
 
   function padSeqTruncate ( $array, $side, $count ) {
 

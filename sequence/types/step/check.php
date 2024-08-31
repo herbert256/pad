@@ -2,8 +2,17 @@
 
   function padSeqCheckStep ( $f, $n ) {
 
-    if ( file_exists ( "/pad/sequence/types/step/bool.php" ) )
+    if ( file_exists ( '/pad/sequence/types/step/bool.php' ) )
       return padSeqBoolStep ( $n );
+
+    if ( file_exists ( '/pad/sequence/types/step/generated.php' ) ) 
+      return in_array ( $n, PADstep );
+
+    if ( file_exists ( '/pad/sequence/types/step/fixed.php' ) ) {
+      $fixed = include '/pad/sequence/types/step/fixed.php';
+      return in_array ( $n, $fixed );
+
+    }
 
     $text = padCode ( "{sequence step, from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
     $arr  = explode ( ',', $text );
