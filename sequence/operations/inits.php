@@ -9,6 +9,9 @@
 
     extract ( $padStartOption );
 
+    if ( $padPrmName == $padSeqSeqSave )
+      continue;
+
     $padSeqSeq = $padPrmName;
 
     if ( in_array ( $padSeqSeq, ['make','keep','remove'] ) ) {
