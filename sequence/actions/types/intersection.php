@@ -1,5 +1,7 @@
 <?php
 
-  return padSeqArrayAction ('array_intersect');
+  $padSeqFunction = 'array_intersect';
+
+  return include '/pad/sequence/actions/function.php';
 
 ?>

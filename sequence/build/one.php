@@ -1,5 +1,8 @@
 <?php
  
+  if ( $padSeqLoop > PHP_INT_MAX )
+    return FALSE;
+
   $padSeqTries++;
 
   if ( $padSeqTries > $padSeqTry                              ) return FALSE;

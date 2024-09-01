@@ -5,7 +5,7 @@
 
   include '/pad/sequence/build/include.php';
 
-  if ( ! file_exists ( "/pad/sequence/types/$padSeqSeq/parm" ) ) 
+  if ( ! file_exists ( "/pad/sequence/types/$padSeqSeq/flags/parm" ) ) 
 
     foreach ( $padSeqResult as $padIdx => $padSeqLoop )
       include '/pad/sequence/store/operation.php';

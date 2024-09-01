@@ -1,5 +1,7 @@
 <?php
 
-  return padSeqArrayAction ('array_reverse');
+  $padSeqFunction = 'array_reverse';
+
+  return include '/pad/sequence/actions/function.php';
 
 ?>

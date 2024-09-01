@@ -67,25 +67,6 @@
   }
 
 
-  function padSeqArrayAction ($action) {
-
-    $array  = $GLOBALS ['padSeqActionValue'];
-    $arrays = padExplode ($array, '|');
-
-    $parms [] = $GLOBALS ['padSeqResult'];
-
-    foreach ($arrays as $store)
-      if ( $store !== TRUE )
-        if ( isset($GLOBALS ['padSeqStore'] [$store]) )
-          $parms [] = $GLOBALS ['padSeqStore'] [$store];
-        else
-          $parms [] = $store;
-
-    return call_user_func_array ($action, $parms);
-
-  }
-
-
   function padSeqTruncate ( $array, $side, $count ) {
 
     if ( $side == 'left' )

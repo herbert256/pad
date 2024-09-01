@@ -1,5 +1,8 @@
 <?php
 
+  if ( $padSeqLoop > PHP_INT_MAX )
+    return FALSE;
+  
   if ( in_array ( $padSeqBuild, ['fixed'] ) )
     padError ( "Sequence operation '$padSeqName' not supported" );
 

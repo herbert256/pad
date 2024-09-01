@@ -6,7 +6,11 @@
 
     $padSeqSave = $padSeq;
     $padSeqLoop = $padSeq;
-    $padSeq     = include '/pad/sequence/build/call.php';
+
+    if ( $padSeqType == 'store' )
+      include '/pad/sequence/operations/store.php';
+
+    $padSeq = include '/pad/sequence/build/call.php';
 
     if     ( $padSeqType == 'keep'   and $padSeq === TRUE       ) $padSeq = $padSeqSave;
     elseif ( $padSeqType == 'keep'   and $padSeq === FALSE      ) return FALSE;
@@ -18,6 +22,8 @@
     elseif ( $padSeqType == 'remove'                            ) $padSeq = $padSeqSave;
     elseif ( $padSeqType == 'make'   and $padSeq === FALSE      ) return FALSE;
     elseif ( $padSeqType == 'make'   and $padSeq === TRUE       ) $padSeq = $padSeqSave;
+    elseif ( $padSeqType == 'store'  and $padSeq === FALSE      ) return FALSE;
+    elseif ( $padSeqType == 'store'  and $padSeq === TRUE       ) $padSeq = $padSeqSave;
 
   }
 

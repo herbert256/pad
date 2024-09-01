@@ -1,5 +1,7 @@
 <?php
 
-  return padSeqArrayAction ('array_slice');
+  $padSeqFunction = 'array_slice';
+
+  return include '/pad/sequence/actions/function.php';
 
 ?>

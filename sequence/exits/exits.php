@@ -8,6 +8,7 @@
   include '/pad/sequence/exits/store.php';
   include '/pad/sequence/exits/return.php';
   include '/pad/sequence/exits/done.php';
+  include '/pad/sequence/exits/check.php';
    
   if ( $GLOBALS ['padInfo'] )
     include '/pad/events/sequence.php';

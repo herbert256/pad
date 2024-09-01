@@ -1,9 +1,9 @@
 <?php
 
-  $padSeqSeqSave = $padSeqSeq;
-
+  $padSeqSeqSave    = $padSeqSeq;
   $padSeqOperations = [];
-  $padSeqType = 'make';
+  $padSeqType       = 'make';
+  $padSeqTypeSave   = '';
 
   foreach ( $padOptionsMulti as $padStartOption ) {
 
@@ -16,8 +16,17 @@
       continue;
     }
 
-    if ( ! $padSeqSeq or $padSeqSeq == 'random' or $padSeqSeq == $padSeqSeqSave or $padSeqSeq == $padSeqPull 
-      or ! file_exists ( "/pad/sequence/types/$padSeqSeq" ) )
+    if ( $padPrmValue and isset ( $padSeqStore [$padPrmValue] ) 
+      and file_exists ( "/pad/sequence/types/$padSeqSeq/flags/operationDouble") ) 
+
+      include '/pad/sequence/operations/initsDouble.php';
+
+    elseif ( file_exists ( "/pad/sequence/types/$padSeqSeq/flags/operationSingle") )
+
+      include '/pad/sequence/operations/initsSingle.php';
+
+    else
+
       continue;
 
     $padSeqBuild = padSeqBuild ( $padSeqSeq, $padSeqType );

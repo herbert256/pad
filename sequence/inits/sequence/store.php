@@ -8,4 +8,6 @@
   
   $padSeqSeq  = 'pull';
   
+  $padSeqDone [] = $padSeqParm;
+
 ?>

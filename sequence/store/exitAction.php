@@ -10,4 +10,6 @@
   if ( $padSeqActionName <> 'replace' )
     $padSeqResult = include "/pad/sequence/actions/types/$padSeqActionName.php";
 
+  $padSeqDone [] = 'store'. ucfirst ( $padSeqActionName );;
+
 ?>

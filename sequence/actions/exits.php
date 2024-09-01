@@ -11,6 +11,8 @@
 
     $padSeqResult = include "/pad/sequence/actions/types/$padSeqActionName.php";
 
+    $padSeqDone [] = $padSeqActionName;
+
   }
   
 ?>
