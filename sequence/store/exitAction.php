@@ -4,6 +4,11 @@
   $padSeqActionValue = $padSeqStoreName;
   $padSeqActionList  = padExplode ( $padSeqActionValue, '|' );
 
+  if ( $padSeqActionValue === TRUE or ! ctype_digit($padSeqActionValue) )
+    $padSeqActionCnt = 1;
+  else
+    $padSeqActionCnt = $padSeqActionValue;
+
   if ( $padSeqActionName == 'splice' )
     include '/pad/sequence/store/splice.php';
 
