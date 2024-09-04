@@ -4,10 +4,10 @@
 
     extract ( $padSeqAction );
 
-    if ( $padSeqActionValue === TRUE or ! ctype_digit($padSeqActionValue) )
+    if ( $padSeqActionList [0] === TRUE or ! ctype_digit($padSeqActionList [0]) )
       $padSeqActionCnt = 1;
     else
-      $padSeqActionCnt = $padSeqActionValue;
+      $padSeqActionCnt = $padSeqActionList [0];
 
     $padSeqResult = include "/pad/sequence/actions/types/$padSeqActionName.php";
 

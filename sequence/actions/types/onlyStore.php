@@ -1,5 +1,5 @@
 <?php
 
-  return array_diff ( $padSeqStore [$padSeqActionValue], $padSeqResult );
+  return array_diff ( $padSeqStore [$padSeqActionList [0]], $padSeqResult );
 
 ?>

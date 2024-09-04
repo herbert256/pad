@@ -12,14 +12,14 @@
     $padSeqStoreAction = strtolower ( substr ( $padPrmName, 5, 1 ) ) . substr ( $padPrmName, 6 );
 
     $padSeqStoreEntry = [
-      'padSeqStoreName'   => $padPrmValue,
+      'padSeqStoreNames'  => padExplode ( $padPrmValue ), 
       'padSeqStoreAction' => $padSeqStoreAction
     ];
 
-    if ( file_exists ( "/pad/sequence/types/$padSeqStoreAction" ) ) 
+    if ( file_exists ( "/pad/sequence/store/operations/$padSeqStoreAction" ) ) 
       include '/pad/sequence/store/initOperation.php';
 
-    if ( file_exists ( "/pad/sequence/actions/types/$padSeqStoreAction.php" ) ) 
+    if ( file_exists ( "/pad/sequence/store/actions/$padSeqStoreAction" ) ) 
       include '/pad/sequence/store/initAction.php';
 
   }

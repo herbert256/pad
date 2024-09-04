@@ -10,7 +10,6 @@
 
       $padSeqActions [] = [
         'padSeqActionName'  => $padPrmName, 
-        'padSeqActionValue' => $padPrmValue,
         'padSeqActionList'  => padExplode ( $padPrmValue, '|' ),
       ];
 

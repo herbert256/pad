@@ -45,7 +45,7 @@
   function padSeqAction ( $seq1, $action, $seq2 ) {
 
     $padSeqResult      = $seq1;
-    $padSeqActionValue = $action;
+    $padSeqActionList [0] = $action;
     $padSeqActionName  = $action;
     
     $padSeqStore [$action] = $seq2;

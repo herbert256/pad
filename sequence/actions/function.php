@@ -3,7 +3,7 @@
   $padSeqFunctionParms    = [];
   $padSeqFunctionParms [] = $padSeqResult;
 
-  foreach ( padExplode ( $padSeqActionValue, '|' ) as $store )
+  foreach ( padExplode ( $padSeqActionList [0], '|' ) as $store )
       if ( isset ( $padSeqStore [$store] ) )
         $padSeqFunctionParms [] = $padSeqStore [$store];
       else
