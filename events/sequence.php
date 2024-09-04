@@ -1,6 +1,9 @@
 <?php
 
 
+  return;
+
+  
   if ( $GLOBALS ['padInfoXapp'] or $GLOBALS ['padInfoXref'] ) {
 
     padInfoXapp ( 'sequences', 'types',  $padSeqSeq   );

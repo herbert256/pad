@@ -5,31 +5,25 @@
 
   include '/pad/sequence/build/include.php';
 
-  $padSeqResultActionSave = $padSeqResult;
+  $padIdx = 0;
 
-  foreach ( $padSeqStoreNames as $padSeqStoreName ) {
+  while ( isset ( $padSeqResult [$padIdx] ) and isset ( $padSeqStore [$padSeqStoreName] [$padIdx] ) ) {
 
-    $padIdx = 0;
+    $padSeqParm = $padSeqResult [$padIdx];
+    $padSeqLoop = $padSeqStore [$padSeqStoreName] [$padIdx];
+    $padSeqSave = $padSeqLoop;
 
-    while ( isset ( $padSeqResult [$padIdx] ) and isset ( $padSeqStore [$padSeqStoreName] [$padIdx] ) ) {
+    $padSeqResult [$padIdx] = include '/pad/sequence/build/call.php';
 
-      $padSeqParm = $padSeqResult [$padIdx];
-      $padSeqLoop = $padSeqStore [$padSeqStoreName] [$padIdx];
-      $padSeqSave = $padSeqLoop;
+    if     ( $padSeqResult [$padIdx] === FALSE ) unset ( $padSeqResult [$padIdx] ) ;
+    elseif ( $padSeqResult [$padIdx] === TRUE  ) $padSeqResult [$padIdx] = $padSeqSave;
 
-      $padSeqResult [$padIdx] = include '/pad/sequence/build/call.php';
-
-      if     ( $padSeqResult [$padIdx] === FALSE ) unset ( $padSeqResult [$padIdx] ) ;
-      elseif ( $padSeqResult [$padIdx] === TRUE  ) $padSeqResult [$padIdx] = $padSeqSave;
-
-      $padIdx++;
-
-    }
-
-    $padSeqResult = $padSeqResultActionSave;
+    $padIdx++;
 
   }
 
-  $padSeqDone [] = 'store'. ucfirst ( padSeqSeq );
+  $padSeqStore [$padSeqStoreName] = array_values ( $padSeqResult );
+
+  $padSeqDone [] = 'store'. ucfirst ( $padSeqSeq );
   
 ?>
