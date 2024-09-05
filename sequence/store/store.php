@@ -8,7 +8,7 @@
   $padSeqResultSave  = $padSeqResult;
 
   $padSeqStoreAction = strtolower ( substr ( $padPrmName, 5, 1 ) ) . substr ( $padPrmName, 6 );
-  $padSeqStoreNames  = padExplode ( $padPrmValue );
+  $padSeqStoreNames  = padExplode ( $padPrmValue, '|' );
   $padSeqStoreName   = $padSeqStoreNames [0];
 
   if ( file_exists ( "/pad/sequence/store/operations/$padSeqStoreAction" ) ) 
