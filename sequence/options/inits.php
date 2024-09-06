@@ -11,4 +11,7 @@
 
       $padSeqOptions [$padPrmName] = [$padPrmValue];
   
+  foreach ( $padSeqOptions as $padPrmName => $padPrmValue )
+    $padSeqInfo ['options'] [] = $padPrmName;
+
 ?>

@@ -11,4 +11,6 @@
   $padSeqLoop   = 0;
   $padSeqPull   = '';
 
+  $padSeqInfo   = [];
+
 ?>

@@ -10,4 +10,6 @@
 
   $padSeqDone [] = 'store'. ucfirst ( $padSeqActionName );
 
+  $padSeqInfo ['store/actions'] [] = $padSeqActionName;
+
 ?>

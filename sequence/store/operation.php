@@ -26,4 +26,6 @@
 
   $padSeqDone [] = 'store'. ucfirst ( $padSeqSeq );
   
+  $padSeqInfo ['store/operations'] [] = $padSeqSeq;
+
 ?>

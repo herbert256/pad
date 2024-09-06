@@ -11,6 +11,8 @@
     $padSeqTypeSave = '';
   }
 
+  $padSeqInfo ['operations/single'] [] = $padSeqSeq;
+
   $padSeqDone [] = $padSeqSeq;
 
 ?>

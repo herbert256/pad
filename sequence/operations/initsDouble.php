@@ -5,6 +5,8 @@
 
   $padSeqType = 'store';
 
+  $padSeqInfo ['operations/double'] [] = $padSeqSeq;
+
   $padSeqDone [] = $padSeqSeq;
 
 ?>
