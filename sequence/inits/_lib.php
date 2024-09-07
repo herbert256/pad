@@ -50,7 +50,7 @@
     
     $padSeqStore [$action] = $seq2;
 
-    return include "/pad/sequence/actions/types/$action.php";  
+    return include "/pad/sequence/after/actions/types/$action.php";  
 
   }
 

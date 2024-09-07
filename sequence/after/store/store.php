@@ -11,11 +11,11 @@
   $padSeqStoreNames  = padExplode ( $padPrmValue, '|' );
   $padSeqStoreName   = $padSeqStoreNames [0];
 
-  if ( file_exists ( "/pad/sequence/store/operations/$padSeqStoreAction" ) ) 
-      include '/pad/sequence/store/operation.php';
+  if ( file_exists ( "/pad/sequence/after/store/operations/$padSeqStoreAction" ) ) 
+      include '/pad/sequence/after/store/operation.php';
 
-  if ( file_exists ( "/pad/sequence/store/actions/$padSeqStoreAction" ) ) 
-      include '/pad/sequence/store/action.php';
+  if ( file_exists ( "/pad/sequence/after/store/actions/$padSeqStoreAction" ) ) 
+      include '/pad/sequence/after/store/action.php';
 
   $padSeqResult = $padSeqResultSave;
  

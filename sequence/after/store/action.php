@@ -4,9 +4,9 @@
   $padSeqActionList = $padSeqStoreNames;
 
   if ( $padSeqActionName == 'splice' )
-    include '/pad/sequence/store/splice.php';
+    include '/pad/sequence/after/store/splice.php';
 
-  $padSeqStore [$padSeqStoreName] = include "/pad/sequence/actions/types/$padSeqActionName.php";
+  $padSeqStore [$padSeqStoreName] = include "/pad/sequence/after/actions/types/$padSeqActionName.php";
 
   $padSeqDone [] = 'store'. ucfirst ( $padSeqActionName );
 

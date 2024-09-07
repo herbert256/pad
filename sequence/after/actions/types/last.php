@@ -6,6 +6,6 @@
     else 
       return array_slice ( $padSeqResult, $padSeqActionCnt * -1 );
   else
-    return include '/pad/sequence/actions/types/first.php';
+    return include '/pad/sequence/after/actions/types/first.php';
   
 ?>
