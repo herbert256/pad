@@ -1,6 +1,6 @@
 <?php
  
-  if ( $padSeqLoop > PHP_INT_MAX )
+  if ( is_numeric ($padSeqLoop) and $padSeqLoop > PHP_INT_MAX )
     return FALSE;
 
   $padSeqTries++;
@@ -31,7 +31,6 @@
   if ( is_numeric ($padSeq) and $padSeq > $padSeqMax       ) return TRUE;
   if ( $padSeqUnique and in_array ($padSeq, $padSeqResult) ) return TRUE;
   if ( $padSeqSkip and $padSeqBase <= $padSeqSkip )          return TRUE;
-
 
   $padSeqResult [] = $padSeq;
 
