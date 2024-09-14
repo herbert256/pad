@@ -12,7 +12,4 @@
   if ( $GLOBALS ['padInfo'] )
     include '/pad/events/sequence.php';
 
-    foreach ( $padSeqInfo as $padSeqInfoKey => $padSeqInfoVal )
-      foreach (  $padSeqInfoVal as $padSeqInfoVal2 )
-        padInfoXapp ( 'sequence', $padSeqInfoKey, $padSeqInfoVal2 );
 ?>

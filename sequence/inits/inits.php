@@ -1,13 +1,9 @@
 <?php
 
-  include_once '/pad/sequence/inits/_lib.php';
-
-  include '/pad/sequence/inits/clear.php';
-  include '/pad/sequence/inits/vars.php';
   include '/pad/sequence/inits/parms.php';
+  include '/pad/sequence/inits/options.php';
   include '/pad/sequence/inits/sequence.php';
   include '/pad/sequence/inits/operations.php';
-  include '/pad/sequence/inits/options.php';
   include '/pad/sequence/inits/name.php';
   include '/pad/sequence/inits/startEnd.php';
   include '/pad/sequence/inits/build.php';

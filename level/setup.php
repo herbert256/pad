@@ -71,7 +71,7 @@
   $padForceDataName = '';
   $padFalse         = '';  
 
-  if ( $GLOBALS['padInfo'] )
+  if ( $GLOBALS ['padInfo'] )
     include '/pad/events/setup.php';
 
 ?>

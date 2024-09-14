@@ -1,5 +1,6 @@
 <?php
 
+
   function padTypeGet ( $item ) {
 
     if     ( padChkLevel      ( $item                                ) ) return 'level';
@@ -21,7 +22,11 @@
     elseif ( file_exists      ( "/app/_functions/$item.php"          ) ) return 'function';
     elseif ( file_exists      ( "/pad/functions/$item.php"           ) ) return 'function';
     elseif ( function_exists  ( $item                                ) ) return 'php';
-    else                                                                 return FALSE;
+    elseif ( isset            ( $GLOBALS ['padSeqStore'] [$item]        ) ) return 'store';
+    elseif ( file_exists      ( "/pad/sequence/types/$item"             ) ) return 'type';
+    elseif ( file_exists      ( "/pad/sequence/actions/types/$item.php" ) ) return 'action';
+    elseif ( file_exists      ( "/pad/sequence/one/types/$item.php"     ) ) return 'one';
+    else                                                                    return FALSE;
 
   }
 
@@ -48,7 +53,11 @@
     elseif ( $type == 'function' and file_exists      ( "/pad/functions/$item.php"           ) ) return $type;
     elseif ( $type == 'php'      and function_exists  ( $item                                ) ) return $type;
     elseif ( $type == 'table'    and isset            ( $GLOBALS ['padTables'] [$item]       ) ) return $type;
-    else                                                                                         return FALSE;
+    elseif ( $type == 'store'    and isset            ( $GLOBALS ['padSeqStore'] [$item]        ) ) return $type;
+    elseif ( $type == 'type'     and file_exists      ( "/pad/sequence/types/$item"             ) ) return $type;
+    elseif ( $type == 'action'   and file_exists      ( "/pad/sequence/actions/types/$item.php" ) ) return $type;
+    elseif ( $type == 'one'      and file_exists      ( "/pad/sequence/one/types/$item.php"     ) ) return $type;
+    else                                                                                            return FALSE;
 
   }
 

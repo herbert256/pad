@@ -1,9 +1,12 @@
 <?php
 
-  if     ( strpos ( $padParm, '..' ) ) return include '/pad/sequence/inits/sequence/range.php';
-  elseif ( strpos ( $padParm, ';'  ) ) return include '/pad/sequence/inits/sequence/list.php';
+  if     ( strpos ( $padSeqEntryParm, '..' ) ) return include '/pad/sequence/inits/sequence/range.php';
+  elseif ( strpos ( $padSeqEntryParm, ';'  ) ) return include '/pad/sequence/inits/sequence/list.php';
 
-  foreach ( $padPrm [$pad] as $padSeqSeq => $padSeqParm ) {
+  foreach ( $padSeqEntryList as $padSeqSeq => $padSeqParm ) {
+
+    if     ( strpos ( $padSeqSeq, '..' ) ) return include '/pad/sequence/inits/sequence/range.php';
+    elseif ( strpos ( $padSeqSeq, ';'  ) ) return include '/pad/sequence/inits/sequence/list.php';
 
     if ( $padSeqSeq and isset ( $padSeqStore [$padSeqSeq] ) ) 
       return include '/pad/sequence/inits/sequence/store.php';

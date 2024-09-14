@@ -5,10 +5,10 @@
   $padSeqType       = 'make';
   $padSeqTypeSave   = '';
 
-  foreach ( $padOptionsMulti as $padStartOption ) {
+  foreach ( $padSeqOptions as  $padSeqOption ) {
 
-    extract ( $padStartOption );
-
+    extract (  $padSeqOption );
+    
     if ( $padPrmName == $padSeqSeqSave )
       continue;
 

@@ -3,7 +3,6 @@
   
   function padInfoXapp ( $dir1, $dir2, $dir3='' ) {
 
-
     if ( $GLOBALS ['padInfoXref'] )
       padInfoXref ( $dir1, $dir2, $dir3 );
 

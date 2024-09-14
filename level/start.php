@@ -25,7 +25,7 @@
   if ( padOpenCloseOk ( $padBase[$pad], '@end@') ) 
     include '/pad/level/start_end/end1.php';
 
-  if ( $GLOBALS['padInfo'] ) 
+  if ( $GLOBALS ['padInfo'] ) 
     include '/pad/events/levelStart.php';  
 
   if ( padTagParm ('dump') )

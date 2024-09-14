@@ -49,7 +49,7 @@
 
   }
 
-  if ( $GLOBALS['padInfo'] ) 
+  if ( $GLOBALS ['padInfo'] ) 
     include '/pad/events/parms.php';
 
 ?>

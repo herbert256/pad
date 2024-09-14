@@ -1,7 +1,7 @@
 <?php
 
-  foreach ( $padOptionsMulti as $padStartOption )
-    if ( str_starts_with ( $padStartOption ['padPrmName'], 'store' ) )
+  foreach ( $padSeqOptions as $padSeqOption ) 
+    if ( str_starts_with ( $padSeqOption ['padPrmName'], 'store' ) )
       return;
 
   if ( $padPair [$pad] )

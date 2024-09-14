@@ -30,7 +30,7 @@
 
   include '/pad/options/go/end.php';
  
-  if ( $GLOBALS['padInfo'] ) 
+  if ( $GLOBALS ['padInfo'] ) 
     include '/pad/events/levelEnd.php';    
   
   padResetLvl ($pad);

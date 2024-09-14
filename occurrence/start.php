@@ -10,7 +10,7 @@
   $padKey     [$pad] = key($padData [$pad]);
   $padCurrent [$pad] = $padData [$pad] [$padKey [$pad]];
  
-  if ( $GLOBALS['padInfo'] )
+  if ( $GLOBALS ['padInfo'] )
     include '/pad/events/occurStart.php';
 
   if ( $padWalk [$pad] <> 'start' )
