@@ -9,6 +9,7 @@
   
   $padOpt        [$pad] = [];
   $padPrm        [$pad] = [];
+  $padAll        [$pad] = [];
 
   $padSetLvl     [$pad] = [];
   $padSetOcc     [$pad] = [];

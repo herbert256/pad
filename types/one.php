@@ -1,5 +1,5 @@
 <?php
 
-  return include '/pad/sequence/entry/one.php';
+  return include '/pad/sequence/entry/type.php';
 
 ?>

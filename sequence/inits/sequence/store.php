@@ -5,7 +5,6 @@
 
   $padSeqParm = $padSeqSeq;
   $padSeqPull = $padSeqSeq;
-  
   $padSeqSeq  = 'pull';
   
   $padSeqDone [] = $padSeqParm;

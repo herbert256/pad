@@ -25,6 +25,10 @@
 
       include '/pad/sequence/one/one.php';
 
+    elseif ( file_exists ( "/pad/sequence/one/types/$padPrmName.php" ) )
+
+      include '/pad/sequence/one/one.php';
+
   }
  
   $padSeqSeq = $padSeqSeqSave;

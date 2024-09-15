@@ -2,6 +2,7 @@
 
   if ( strlen ( $padPrmName ) == 5 ) {
     $padSeqStore [$padPrmValue] = array_values ( $padSeqResult );
+    $padSeqNames [] = $padPrmValue;
     return;
   }
 

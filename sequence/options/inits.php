@@ -11,6 +11,11 @@
 
        $padSeqInfo ['options'] [] = $padPrmName;
 
+    if ( isset ( $padSeqNoNo [$padPrmName] ) ) {
+      unset ( $padSeqNoNo [$padPrmName] );
+      continue;
+    }
+
     $padSeqOptions [] = [ 
       'padPrmName'  => $padPrmName,
       'padPrmValue' => $padPrmValue

@@ -8,6 +8,8 @@
 
   $padSeqStore [$padSeqStoreName] = include "/pad/sequence/actions/types/$padSeqActionName.php";
 
+  $padSeqNames [] = $padSeqStoreName;
+
   $padSeqDone [] = 'store'. ucfirst ( $padSeqActionName );
 
   $padSeqInfo ['store/actions'] [] = $padSeqActionName;

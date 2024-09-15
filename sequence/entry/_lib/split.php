@@ -1,8 +1,5 @@
 <?php
 
-  include '/pad/sequence/entry/inits/clear.php';
-  include '/pad/sequence/entry/inits/vars.php';
-
   $padSeqEntryExplode = padExplode ( $padParm, '|' ); 
   $padSeqEntryFirst   = $padSeqEntryExplode [0] ?? '';
 

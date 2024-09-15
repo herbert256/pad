@@ -24,6 +24,8 @@
 
   $padSeqStore [$padSeqStoreName] = array_values ( $padSeqResult );
 
+  $padSeqNames [] = $padSeqStoreName;
+
   $padSeqDone [] = 'store'. ucfirst ( $padSeqSeq );
   
   $padSeqInfo ['store/operations'] [] = $padSeqSeq;

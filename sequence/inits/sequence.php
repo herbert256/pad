@@ -1,20 +1,19 @@
 <?php
 
-  if     ( strpos ( $padSeqEntryParm, '..' ) ) return include '/pad/sequence/inits/sequence/range.php';
-  elseif ( strpos ( $padSeqEntryParm, ';'  ) ) return include '/pad/sequence/inits/sequence/list.php';
+  if ( $padSeqSetSeq or $padSeqSetStore )
+    return include '/pad/sequence/inits/sequence/set.php';
 
-  foreach ( $padSeqEntryList as $padSeqSeq => $padSeqParm ) {
+  foreach ( $padOpt [$pad] as $padK => $padSeqParm )
+    if ( $padK )
+      if     ( strpos ( $padSeqParm, '..' ) ) return include '/pad/sequence/inits/sequence/range.php';
+      elseif ( strpos ( $padSeqParm, ';'  ) ) return include '/pad/sequence/inits/sequence/list.php';
 
-    if     ( strpos ( $padSeqSeq, '..' ) ) return include '/pad/sequence/inits/sequence/range.php';
-    elseif ( strpos ( $padSeqSeq, ';'  ) ) return include '/pad/sequence/inits/sequence/list.php';
-
-    if ( $padSeqSeq and isset ( $padSeqStore [$padSeqSeq] ) ) 
-      return include '/pad/sequence/inits/sequence/store.php';
-
-    if ( $padSeqSeq and file_exists ( "/pad/sequence/types/$padSeqSeq" ) ) 
-      return include '/pad/sequence/inits/sequence/type.php';
-
-  }
+  foreach ( $padSeqEntryList as $padSeqSeq => $padSeqParm )
+    if ( $padSeqSeq ) 
+      if ( isset ( $padSeqStore [$padSeqSeq] ) ) 
+        return include '/pad/sequence/inits/sequence/store.php';
+      elseif ( file_exists ( "/pad/sequence/types/$padSeqSeq" ) ) 
+        return include '/pad/sequence/inits/sequence/type.php';
 
   return include '/pad/sequence/inits/sequence/loop.php';
  

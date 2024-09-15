@@ -1,6 +1,43 @@
 <?php
 
 
+  function padSeqSequence ( $item, $options='', $body='' ) {
+
+    return include '/pad/sequence/entry/functions/sequence.php';
+
+  }
+
+  function padSeqAction ( $item, $options='', $body='' ) {
+
+    return include '/pad/sequence/entry/functions/action.php';
+
+  }
+
+  function padSeqStore ( $item, $options='', $body='' ) {
+
+    return include '/pad/sequence/entry/functions/store.php';
+
+  }
+
+  function padSeqOne ( $item, $options='', $body='' ) {
+
+    return include '/pad/sequence/entry/functions/one.php';
+
+  }
+
+
+  function padSeqXXX ( $type, $item, $options, $body ) {
+
+    $code = "\{$type:$item $options}";
+
+    if ( $body )
+      $code .= "$body{/$type:$item}";
+
+    return padCode ($code);
+
+  }
+
+
   function padSeqRandom ( $for, $start, $end, $inc ) {
 
     if ( is_array ( $for ) and count ( $for ) )
@@ -42,7 +79,7 @@
   }
 
 
-  function padSeqAction ( $seq1, $action, $seq2 ) {
+  function padSeqEvalAction ( $seq1, $action, $seq2 ) {
 
     $padSeqResult      = $seq1;
     $padSeqActionList [0] = $action;
