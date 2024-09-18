@@ -7,46 +7,24 @@
 
   foreach ( $padPrmParse as $padK => $padV ) {
 
-    list ($padPrmName, $padPrmValue ) = padSplit ('=', trim($padV));
+    list ( $padPrmName, $padPrmValue ) = padSplit ( '=', trim($padV) );
 
-    if ( substr($padPrmName, 0, 1) == '$' ) {
+    if ( str_starts_with ( $padPrmName, '$' ) or str_starts_with ( $padPrmName, '%' ) ) {
 
-      $padSetName = substr($padPrmName, 1);
-
-      if ( padValidVar ($padSetName) and $padPrmValue !== '' ) {
-        $padSetLvl [$pad] [$padSetName] = padVarOpts ( '', padExplode($padPrmValue, '|') );
-        $padParmParse [$pad] [$padSetName] = 'lvl';
+      $padSetName = substr ( $padPrmName, 1 );
+      
+      if ( padValidVar ( $padSetName ) and $padPrmValue ) {
+        include '/pad/level/parms/variable.php';
         continue;
       }
-  
-    }
-
-    if ( substr($padPrmName, 0, 1) == '%' ) {
-
-      $padSetName = substr($padPrmName, 1);
-
-      if ( padValidVar ($padSetName) ) {
-        $padSetOcc [$pad] [$padSetName] = $padPrmValue;
-        $padParmParse [$pad] [$padSetName] = 'occ';
-        continue;
-      }
-  
-    }
-
-    if ( padValidVar ($padPrmName) ) {
-
-      if ( file_exists ( "/app/_options/$padPrmName.php") )
-        $padOptionsAppStart [$pad] [] = $padPrmName;
-
-      $padPrm [$pad] [$padPrmName] = $padOptionsSingle [$padPrmName];
-
-      continue;
 
     }
 
-    $padOptCnt++;
-    $padOpt [$pad] [$padOptCnt] = padEval ( $padV );
-
+    if ( padValidVar ( $padPrmName ) )
+      include '/pad/level/parms/option.php';
+    else 
+      include '/pad/level/parms/parameter.php';
+    
   }
 
   if ( $GLOBALS ['padInfo'] ) 

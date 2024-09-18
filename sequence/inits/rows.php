@@ -1,5 +1,8 @@
 <?php
 
+  if ( $padSeqEntryParm === TRUE )
+    $padSeqEntryParm = '';
+  
   if     ( $padSeqRows                               ) return;
   elseif ( ctype_digit ( $padSeqEntryParm )          ) $padSeqRows = $padSeqEntryParm ;
   elseif ( $padSeqTo <> PHP_INT_MAX                  ) $padSeqRows = PHP_INT_MAX ;
