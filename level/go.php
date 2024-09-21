@@ -1,6 +1,6 @@
 <?php
 
-  $padParm       = $padOpt [$pad] [1];
+  $padParm       = $padOpt [$pad] [1] ?? '';
   $padContent    = $padBase [$pad];
   $padTagContent = '';
 

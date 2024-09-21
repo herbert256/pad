@@ -1,8 +1,10 @@
 <?php
 
   foreach ( $padPrm [$pad] as $padSeqSetStore => $padSeqSetParm )
-    if ( isset ( $padSeqStore [$padSeqSetStore] ) )
+    if ( isset ( $padSeqStore [$padSeqSetStore] ) ) {
+      $padSeqNoNo [$padSeqSetStore] = TRUE;
       return include '/pad/sequence/sequence.php';
+    }
 
   foreach ( $padOpt [$pad] as $padK => $padSeqSetStore )
     if ( isset ( $padSeqStore [$padSeqSetStore] ) )

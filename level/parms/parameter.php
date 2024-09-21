@@ -1,9 +1,10 @@
 <?php
+  
+  $padPrmEval = padEval ( $padPrmOne );
 
-  $padOptCnt++;
-  $padOpt [$pad] [$padOptCnt] = padEval ( $padV );
+  $padOpt [$pad] [] = $padPrmEval;
 
   if ( ! $padFirstParm [$pad] )
-    $padFirstParm [$pad] = $padOpt [$pad] [$padOptCnt];
+    $padFirstParm [$pad] = $padPrmEval;
     
 ?>

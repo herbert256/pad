@@ -15,7 +15,6 @@
   $padSetOcc     [$pad] = [];
 
   $padOpt        [$pad] [0] = $padTagOpts;
-  $padOpt        [$pad] [1] = '';
 
   $padTag        [$pad] = $padTypeCheck  ?? '';
   $padType       [$pad] = $padTypeResult ?? '';

@@ -230,8 +230,6 @@
     if ( isset ( $opt[0]) ) {
       $prm = $opt[0];
       unset ( $opt[0] );
-      if ( isset ( $opt[1]) ) 
-        unset ( $opt[1] );
     }
 
     if     ( $tag and $prm ) $tag = '{' . "$tag $prm" . '}';

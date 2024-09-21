@@ -1,5 +1,7 @@
 <?php
 
+  $padSetName = substr ( $padPrmName, 1 );
+
   if ( substr ( $padPrmName, 0, 1 ) == '$' ) {
 
     $padSetLvl [$pad] [$padSetName] = padVarOpts ( '', padExplode($padPrmValue, '|') );

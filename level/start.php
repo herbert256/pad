@@ -1,7 +1,7 @@
 <?php
 
   include '/pad/level/setup.php';    
-  include '/pad/level/parms.php';    
+  include '/pad/level/parms/parms.php';    
   include '/pad/level/split.php';
 
   if ( padTagParm ('else') ) $padFalse       = include "/pad/options/else.php";    
