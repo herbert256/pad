@@ -2,15 +2,9 @@
 
     $padSeqNoNo [$padSeqEntryName] = TRUE;
 
-    if ( $padSeqEntryType == 'type' )
-      $padSeqEntryParm = $padOpt [$pad] [1] ?? ''; 
-    else
-      $padSeqEntryParm = $padPrm [$pad] [$padSeqEntryName]; 
-
     if ( $padSeqEntryParm === TRUE )
       $padSeqEntryParm = '';
 
-    $padSeqEntryList = $padPrm [$pad];
     unset ( $padSeqEntryList [$padSeqEntryName] );
 
     $padSeqEntryExplode = padExplode ( $padSeqEntryParm, '|' ); 

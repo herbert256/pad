@@ -1,8 +1,6 @@
 <?php
 
-  $padSeqEntryType = 'type';
-
-  include '/pad/sequence/entry/_lib/inits.php';
+  include '/pad/sequence/entry/inits/inits.php';
 
   return include "/pad/sequence/entry/types/$padType[$pad].php";
 

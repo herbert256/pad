@@ -54,12 +54,14 @@
     else                                     $headers = [];
 
     padInfoFile ( "track/requests/$padLog-entry.json",  [
-        'headers' => $headers,
+        'headers' => getallheaders() ?? '',
         'get'     => $_GET    ?? '',
         'post'    => $_POST   ?? '',
         'files '  => $_FILES  ?? '',
         'cookies' => $_COOKIE ?? '',
-        'data'    => file_get_contents('php://input') ?? ''
+        'data'    => file_get_contents('php://input') ?? '',
+        'server'  => $_SERVER ?? '',
+        'host'    => $_ENV ?? ''
     ] );
 
   }

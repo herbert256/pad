@@ -9,7 +9,7 @@
 
     $padSeqNoNo [$padSeqActionParm] = TRUE;
     
-    if ( $padSeqActionParm == $padOpt [$pad] [1] ?? '' ) 
+    if ( $padSeqActionParm == $padOpt [$pad] [1] ) 
       $padSeqEntryParm = $padOpt [$pad] [2] ?? '';
     else
       unset ( $padSeqEntryList [$padSeqActionParm] );

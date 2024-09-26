@@ -1,6 +1,5 @@
 <?php
 
-  include '/pad/sequence/inits/parms.php';
   include '/pad/sequence/inits/sequence.php';
   include '/pad/sequence/inits/options.php';
   include '/pad/sequence/inits/operations.php';
