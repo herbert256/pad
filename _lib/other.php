@@ -951,6 +951,8 @@
     if     ($value === NULL)      return '';
     elseif ($value === TRUE)      return '1';
     elseif ($value === FALSE)     return '';
+    elseif ($value === INF)       return '';
+    elseif ($value === NAN)       return '';
     elseif (is_array($value))     return '';
     elseif (is_object($value))    return '';
     elseif (is_resource($value))  return '';

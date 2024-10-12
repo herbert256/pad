@@ -2,8 +2,6 @@
   
   const padEval_precedence = [
     '!',
-    'TYPE',
-    'FUN',
     '**', '*', '/', '%', '+', '-',
     '.',
     'LT', 'LE', 'GT', 'GE', 'EQ', 'NE',

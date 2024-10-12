@@ -24,9 +24,6 @@
 
           if ( file_exists ( "/pad/eval/single/$type.php") ) {            
 
-            if ( $GLOBALS ['padInfo'] ) 
-              include '/pad/events/functions.php'; 
-
             $padCall = "/pad/eval/single/$type.php" ;
             $single  = include "/pad/call/any.php" ;
 

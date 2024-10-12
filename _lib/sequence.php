@@ -3,25 +3,36 @@
 
   function padSeqSequence ( $item, $options='', $body='' ) {
 
-    return include '/pad/sequence/entry/functions/sequence.php';
+    $padSeqFunction = 'sequence';
+
+    return include '/pad/sequence/entry/function.php';
 
   }
+
 
   function padSeqAction ( $item, $options='', $body='' ) {
 
-    return include '/pad/sequence/entry/functions/action.php';
+    $padSeqFunction = 'action';
+
+    return include '/pad/sequence/entry/function.php';
 
   }
+
 
   function padSeqStore ( $item, $options='', $body='' ) {
 
-    return include '/pad/sequence/entry/functions/store.php';
+    $padSeqFunction = 'store';
+
+    return include '/pad/sequence/entry/function.php';
 
   }
 
+
   function padSeqOne ( $item, $options='', $body='' ) {
 
-    return include '/pad/sequence/entry/functions/one.php';
+    $padSeqFunction = 'one';
+
+    return include '/pad/sequence/entry/function.php';
 
   }
 
@@ -81,10 +92,9 @@
 
   function padSeqEvalAction ( $seq1, $action, $seq2 ) {
 
-    $padSeqResult      = $seq1;
-    $padSeqActionList [0] = $action;
-    $padSeqActionName  = $action;
-    
+    $padSeqResult          = $seq1;
+    $padSeqActionList [0]  = $action;
+    $padSeqActionName      = $action;
     $padSeqStore [$action] = $seq2;
 
     return include "/pad/sequence/actions/types/$action.php";  

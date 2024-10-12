@@ -1,5 +1,5 @@
 <?php
 
-  return padSeqXXX ( 'sequence', $item, $options, $body );
+  return padSeqXXX ( $padSeqFunction, $item, $options, $body );
 
 ?>
