@@ -3,9 +3,6 @@
   
   function padEvalArray ( &$result, $myself, $start=0, $end=PHP_INT_MAX ) {
 
-    $GLOBALS ['aaeval'] [] = "ARRAY: $start-$end";
-    $GLOBALS ['aaeval'] [] = $result;
-
     $prev = $type = $open = FALSE;
 
     foreach ( $result as $key => $value ) {
@@ -51,9 +48,6 @@
 
   function padEvalOpnCls ( &$result, $myself, $start=0, $end=PHP_INT_MAX ) {
 
-    $GLOBALS ['aaeval'] [] = "OpnCls: $start-$end";
-    $GLOBALS ['aaeval'] [] = $result;
-
     $prev = $type = $open = FALSE;
 
     foreach ( $result as $key => $value ) {
@@ -89,8 +83,7 @@
 
   function padEvalOpr ( &$result, $myself, $start=0, $end=PHP_INT_MAX ) {
 
-    $GLOBALS ['aaeval'] [] = "Opr: $start-$end";
-    $GLOBALS ['aaeval'] [] = $result;
+    padEvalType ( $result, $myself, $start, $end );
 
     foreach ( padEval_precedence as $now ) {
 
@@ -101,9 +94,7 @@
         if ( $k < $start ) continue;
         if ( $k > $end   ) break;
 
-        if ( $result[$k][1] == 'TYPE' )
-          return include '/pad/eval/actions/type.php';
-        elseif ( $b >= $start and $result[$b][1] == 'OPR' and $result[$b][0] == $now )
+        if ( $b >= $start and $result[$b][1] == 'OPR' and $result[$b][0] == $now )
           if ( in_array ( $result[$b][0], ['not','!'] ) and $result[$k][1] == 'VAL' )
             return include '/pad/eval/actions/single.php';
           elseif ( $f >= $start and $result[$f][1] == 'VAL' and $result[$k][1] == 'VAL' )
@@ -113,10 +104,29 @@
         $b = $k;
   
       }
-  
+
     }
 
   }
  
+
+  function padEvalType ( &$result, $myself, $start, $end ) {
+
+    $b = -1;
+    
+    foreach ( $result as $k => $t ) { 
+
+      if ( $k < $start ) continue;
+      if ( $k > $end   ) break;
+
+      if ( $result[$k][1] == 'TYPE' )
+        return include '/pad/eval/actions/type.php';
+ 
+      $b = $k;
+
+    }
+
+  }
+
 
 ?>

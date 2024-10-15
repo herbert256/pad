@@ -6,7 +6,7 @@
         if ( ! isset  ( $padSeqStore [$padPrmName] ) )
           if ( file_exists ( "/pad/options/$padPrmName.php" ) )
             padInfoXapp ( 'options', 'general', $padPrmName );
-          else
+          elseif ( ! str_starts_with($padPrmName, 'store') )
             padInfoXapp ( 'options', 'specific', $padPrmName );
    
 ?>

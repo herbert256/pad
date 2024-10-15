@@ -21,25 +21,18 @@
         }
 
         if ( padValid ($type) and padValid ($name) )
-
-          if ( file_exists ( "/pad/eval/single/$type.php") ) {            
-
-            $padCall = "/pad/eval/single/$type.php" ;
-            $single  = include "/pad/call/any.php" ;
-
-            $result [$k] [1] = 'VAL';
-            $result [$k] [0] = padCheckValue ($single);
-
-          } elseif ( file_exists ( "/pad/eval/parms/$type.php" ) ) {
-
-            if ( $GLOBALS ['padInfo'] ) 
-              include '/pad/events/functions.php'; 
-
+          if ( file_exists ( "/pad/eval/single/$type.php") ) {  
             $result[$k][0] = $name;
             $result[$k][1] = 'TYPE';
             $result[$k][2] = $type;          
-            $result[$k][3] = 0;
-     
+            $result[$k][3] = 0;         
+            $result[$k][4] = 1;     
+          } elseif ( file_exists ( "/pad/eval/parms/$type.php") ) {  
+            $result[$k][0] = $name;
+            $result[$k][1] = 'TYPE';
+            $result[$k][2] = $type;          
+            $result[$k][3] = 0;         
+            $result[$k][4] = 0;     
           }
 
       }

@@ -2,12 +2,6 @@
 
 
   function padEval ( $eval, $myself='' ) {
-
-    if ( strlen ( trim ( $eval ) ) == 0 ) 
-      return ''; 
-
-    $GLOBALS ['aaeval'] [] = '';
-    $GLOBALS ['aaeval'] [] = $eval;
     
     $result = [];
 
