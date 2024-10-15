@@ -6,7 +6,7 @@
     $GLOBALS ['aaeval'] [] = "ARRAY: $start-$end";
     $GLOBALS ['aaeval'] [] = $result;
 
-    $open = FALSE;
+    $prev = $type = $open = FALSE;
 
     foreach ( $result as $key => $value ) {
 
@@ -15,6 +15,7 @@
 
       if ( $value [1] == 'a-open' ) {
  
+        $type = $prev;
         $open = $key;
  
       } elseif ( $value [1] == 'a-close' ) {
@@ -22,6 +23,9 @@
         unset ( $result [$open] );
         unset ( $result [$key]  );
 
+        if ( $type and $result [$type] [1] == 'TYPE' )
+          $result [$type] [3] = $key;
+        
         padEvalOpnCls ( $result, $myself, $open, $key );
         padEvalOpr    ( $result, $myself, $open, $key );
 
@@ -36,7 +40,9 @@
 
         return padEvalArray ( $result, $myself, $start, $end );
             
-      } 
+      } else
+
+        $prev = $key;
 
     }
 

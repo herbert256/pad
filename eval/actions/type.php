@@ -9,6 +9,9 @@
       $parm [] = $val[0];
       unset ( $result [$key] );
     }
+   
+  if ( count ( $parm ) == 1 and is_array ( $parm [0] ) )
+    $parm = $parm [0];
 
   $count = count ( $parm );
 
