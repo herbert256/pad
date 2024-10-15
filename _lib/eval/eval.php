@@ -1,20 +1,29 @@
 <?php
 
 
-  function padEval ( $eval, $value='' ) {
+  function padEval ( $eval, $myself='' ) {
 
     if ( strlen ( trim ( $eval ) ) == 0 ) 
       return ''; 
 
+    $GLOBALS ['aaeval'] [] = '';
+    $GLOBALS ['aaeval'] [] = $eval;
+    
     $result = [];
 
-    padEvalParse     ( $result, $eval, $value );    
-    padEvalAfter     ( $result );  
-    padEvalOpenClose ( $result, $value ) ;
-    
-    $return = reset ( $result );
+    padEvalParse  ( $result, $eval, $myself );    
+    padEvalAfter  ( $result );  
+    padEvalArray  ( $result, $myself );
+    padEvalOpnCls ( $result, $myself );
+    padEvalOpr    ( $result, $myself );
 
-    return $return [0];
+    $key = array_key_first ($result);
+
+    if     ( count($result) < 1        ) padError ("No result back: $eval");
+    elseif ( count($result) > 1        ) padError ("More then one result back: $eval");
+    elseif ( $result[$key][1] <> 'VAL' ) padError ("Result is not a value: $eval");
+
+    return $result [$key] [0];
 
   }  
  

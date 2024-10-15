@@ -36,8 +36,19 @@
       if ( $one==')' and ($in_str or $in_quote) )
         continue;
 
+     if ( $one=='[' and ($in_str or $in_quote) )
+        continue;
+
+      if ( $one==']' and ($in_str or $in_quote) )
+        continue;
+
       if ( $one==')' and !$pair ) {
         pad_error ("Closing ) without an opening (");
+        return [];
+      }
+
+      if ( $one==']' and !$pair ) {
+        pad_error ("Closing ] without an opening [");
         return [];
       }
 
@@ -47,6 +58,16 @@
       }
 
       if ( $one==')') {
+        $pair--;
+        continue;
+      }
+
+      if ( $one=='[') {
+        $pair++;
+        continue;
+      }
+
+      if ( $one==']') {
         $pair--;
         continue;
       }

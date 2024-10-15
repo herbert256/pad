@@ -1,69 +1,107 @@
 <?php
   
   
-  function padEvalOpenClose ( &$result, $myself ) {
+  function padEvalArray ( &$result, $myself, $start=0, $end=PHP_INT_MAX ) {
 
-    $prev = $type = $open = FALSE;
+    $GLOBALS ['aaeval'] [] = "ARRAY: $start-$end";
+    $GLOBALS ['aaeval'] [] = $result;
 
-    foreach ( $result as $key => $value )
+    $open = FALSE;
 
-      if ( $value [1] == 'open') {
+    foreach ( $result as $key => $value ) {
+
+      if ( $key < $start ) continue;
+      if ( $key > $end   ) break;
+
+      if ( $value [1] == 'a-open' ) {
  
-        $type = $prev;
         $open = $key;
  
-      } elseif ( $value [1] == 'close') {
-
-        if ( $type )
-          $result [$type] [3] = $key;
+      } elseif ( $value [1] == 'a-close' ) {
 
         unset ( $result [$open] );
         unset ( $result [$key]  );
 
-        padEvalOpr ( $result, $open, $key, $myself );
+        padEvalOpnCls ( $result, $myself, $open, $key );
+        padEvalOpr    ( $result, $myself, $open, $key );
 
-        return padEvalOpenClose ( $result, $myself );
+        $result [$open] [0] = [];
+        $result [$open] [1] = 'VAL';
+
+        foreach ( $result as $key2 => $value )
+          if ( $key2 > $open and $key2 < $key ) {
+            $result [$open] [0] [] = $result [$key2] [0] ;
+            unset ( $result [$key2] );
+          }
+
+        return padEvalArray ( $result, $myself, $start, $end );
+            
+      } 
+
+    }
+
+  }
+
+
+  function padEvalOpnCls ( &$result, $myself, $start=0, $end=PHP_INT_MAX ) {
+
+    $GLOBALS ['aaeval'] [] = "OpnCls: $start-$end";
+    $GLOBALS ['aaeval'] [] = $result;
+
+    $prev = $type = $open = FALSE;
+
+    foreach ( $result as $key => $value ) {
+
+      if ( $key < $start ) continue;
+      if ( $key > $end   ) break;
+
+      if ( $value [1] == 'open' ) {
+ 
+        $type = $prev;
+        $open = $key;
+ 
+      } elseif ( $value [1] == 'close' ) {
+
+        unset ( $result [$open] );
+        unset ( $result [$key]  );
+
+        if ( $type and $result [$type] [1] == 'TYPE' )
+          $result [$type] [3] = $key;
+
+        padEvalOpr ( $result, $myself, $open, $key );
+
+        return padEvalOpnCls ( $result, $myself, $start, $end );
             
       } else
 
         $prev = $key;
 
-    padEvalType ( $result, 0, PHP_INT_MAX, $myself );
-    padEvalOpr  ( $result, 0, PHP_INT_MAX, $myself );
-
-  }
-
-
-  function padEvalType ( &$result, $start, $end, $myself ) {
-
-    $b = -1;
-    
-    foreach ( $result as $k => $t ) {
-
-      if ( $k >= $start and $k <= $end and $result[$k][1] == 'TYPE' )
-        return padEvalTypeGo ($k, $b, $result, $myself, $start, $end);       
-
-      $b = $k;
-
     }
 
   }
-  
+   
 
-  function padEvalOpr ( &$result, $start, $end, $myself ) {
+  function padEvalOpr ( &$result, $myself, $start=0, $end=PHP_INT_MAX ) {
+
+    $GLOBALS ['aaeval'] [] = "Opr: $start-$end";
+    $GLOBALS ['aaeval'] [] = $result;
 
     foreach ( padEval_precedence as $now ) {
 
       $f = $b = -1;
       
-      foreach ( $result as $k => $t ) {
+      foreach ( $result as $k => $t ) { 
 
-        if ( $b >= $start and $result[$b][0] == $now and $result[$b][1] == 'OPR' )
-          if ( $k <= $end and $result[$k][1] == 'VAL' )
-            if ( in_array ( $result[$b][0], ['not','!'] )  )
-              return padEvalNot ($result, $k, $b, $start, $end, $myself);
-            elseif ( $f >= $start and $result[$f][1] == 'VAL' )
-              return padEvalAction ($result, $k, $b, $f, $start, $end, $myself);
+        if ( $k < $start ) continue;
+        if ( $k > $end   ) break;
+
+        if ( $result[$k][1] == 'TYPE' )
+          return include '/pad/eval/actions/type.php';
+        elseif ( $b >= $start and $result[$b][1] == 'OPR' and $result[$b][0] == $now )
+          if ( in_array ( $result[$b][0], ['not','!'] ) and $result[$k][1] == 'VAL' )
+            return include '/pad/eval/actions/single.php';
+          elseif ( $f >= $start and $result[$f][1] == 'VAL' and $result[$k][1] == 'VAL' )
+            return include '/pad/eval/actions/double.php';
 
         $f = $b;
         $b = $k;
@@ -73,93 +111,6 @@
     }
 
   }
-  
-
-  function padEvalNot ( &$result, $k, $b, $start, $end, $myself ) {
-
-    $result [$k] [0] = ( $result [$k] [0] ) ? '' : '1';
-    
-    unset ( $result [$b] );
-
-    padEvalOpr ( $result, $start, $end, $myself );
-
-  }
-  
-   
-  function padEvalAction ( &$result, $k, $b, $f, $start, $end, $myself ) {
-
-    $left  = $result [$f] [0];
-    $opr   = $result [$b] [0];
-    $right = $result [$k] [0];
-
-    if     ( $opr == 'LT'  ) $now = ($left <   $right) ? 1 : '';
-    elseif ( $opr == 'LE'  ) $now = ($left <=  $right) ? 1 : '';
-    elseif ( $opr == 'EQ'  ) $now = ($left ==  $right) ? 1 : '';
-    elseif ( $opr == 'GE'  ) $now = ($left >=  $right) ? 1 : '';
-    elseif ( $opr == 'GT'  ) $now = ($left >   $right) ? 1 : '';
-    elseif ( $opr == 'NE'  ) $now = ($left <>  $right) ? 1 : '';
-    elseif ( $opr == 'AND' ) $now = ($left AND $right) ? 1 : '';
-    elseif ( $opr == 'OR'  ) $now = ($left OR  $right) ? 1 : '';
-    elseif ( $opr == 'XOR' ) $now = ($left XOR $right) ? 1 : ''; 
-    elseif ( $opr == '.'   ) $now =  $left .   $right;
-    else { 
-
-      if ( strpos($left, '.' ) === FALSE ) $left  = (int)    $left;
-      else                                 $left  = (double) $left;
-
-      if ( strpos($right, '.') === FALSE ) $right = (int)    $right;
-      else                                 $right = (double) $right;
-
-      if     ( $opr == '+' ) $now = $left + $right;
-      elseif ( $opr == '-' ) $now = $left - $right;
-      elseif ( $opr == '*' ) $now = $left * $right;
-      elseif ( $opr == '/' ) $now = $left / $right;
-      elseif ( $opr == '%' ) $now = $left % $right;
-
-    }
-
-    $result [$k] [0] = $now ?? '';
-    $result [$k] [1] = 'VAL';
-
-    unset ( $result [$b] );
-    unset ( $result [$f] );
-
-    padEvalOpr ($result, $start, $end, $myself);
-
-
-  }
-
-
-
-  function padEvalTypeGo ( $type, $left, &$result, $myself, $start, $end ) {
-
-    $kind = $result [$type] [2];
-    $name = $result [$type] [0];
-
-    $parm = [];
-    foreach ( $result as $k => $v ) 
-      if ( $k > $type and $k <= $result [$type] [3] - 1 ) {
-        $parm [] = $v[0];
-        unset ( $result [$k] );
-      }
-
-    $count = count ( $parm );
-
-    if ( $left >= $start and $result [$left] [1] == 'VAL' ) {
-      $value = $result [$left] [0];
-      unset ($result [$left]);
-    } else
-      $value = $myself;
-   
-    $padCall = "/pad/eval/parms/$kind.php" ;
-    $value   = include "/pad/call/any.php" ;
-    
-    $result [$type] [1] = 'VAL';
-    $result [$type] [0] = padCheckValue ($value);
-
-    padEvalType ($result, $start, $end, $myself);
-
-  }  
-
+ 
 
 ?>

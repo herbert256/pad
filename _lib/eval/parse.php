@@ -129,7 +129,7 @@
 
       }
       
-      if ($one == ')' or $one == ']') {
+      if ($one == ')') {
       
         $i += 100;
         $result [$i] [0] = ')';
@@ -140,11 +140,33 @@
 
       }
       
-      if ($one == '(' or $one == '[' ) {
+      if ($one == '(') {
       
         $i += 100;
         $result [$i] [0] = '(';
         $result [$i] [1] = 'open';
+        $is_other = FALSE;
+
+        continue;
+
+      }
+            
+      if ($one == ']') {
+      
+        $i += 100;
+        $result [$i] [0] = ']';
+        $result [$i] [1] = 'a-close';
+        $is_other = FALSE;
+
+        continue;
+
+      }
+      
+      if ($one == '[' ) {
+      
+        $i += 100;
+        $result [$i] [0] = '[';
+        $result [$i] [1] = 'a-open';
         $is_other = FALSE;
 
         continue;
