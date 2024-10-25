@@ -3,6 +3,9 @@
   $kind = $result [$k] [2];
   $name = $result [$k] [0];
  
+  if ( $GLOBALS ['padInfo'] )
+    include '/pad/events/functions.php';
+
   if ( $result [$k] [4] ) 
     include '/pad/eval/actions/typeSingle.php';
   else
