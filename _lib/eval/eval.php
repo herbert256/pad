@@ -1,15 +1,18 @@
 <?php
 
 
-  function padEval ( $eval, $myself='' ) {
+  function padEval ( $eval, $value='' ) {
     
+    if ( $value and file_exists ( "/pad/functions/fast/$eval.php" ) )
+      return '/pad/eval/fast.php';
+      
     $result = [];
 
-    padEvalParse  ( $result, $eval, $myself );    
+    padEvalParse  ( $result, $eval, $value );    
     padEvalAfter  ( $result );  
-    padEvalArray  ( $result, $myself );
-    padEvalOpnCls ( $result, $myself );
-    padEvalOpr    ( $result, $myself );
+    padEvalArray  ( $result, $value );
+    padEvalOpnCls ( $result, $value );
+    padEvalOpr    ( $result, $value );
 
     $key = array_key_first ($result);
 
