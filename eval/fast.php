@@ -1,5 +1,5 @@
 <?php
 
-  return "/pad/functions/fast/$eval.php";
+  return include "/pad/functions/single/$eval.php";
 
 ?>

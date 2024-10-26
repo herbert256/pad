@@ -1,5 +1,5 @@
 <?php
 
-  return substr($value, 0, strrpos( $value, $parm[0])); 
+  return include '/pad/functions/parms/before_last.php';
 
-?>)
+?>

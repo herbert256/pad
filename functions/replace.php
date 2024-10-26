@@ -1,5 +1,5 @@
 <?php
 
-  return str_replace ( $parm[0], $parm[1], $value );
+  return include '/pad/functions/parms/replace.php';
 
 ?>

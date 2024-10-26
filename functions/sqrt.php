@@ -1,5 +1,5 @@
 <?php
 
-  return sqrt ($value);
+  return include '/pad/functions/single/sqrt.php';
 
 ?>

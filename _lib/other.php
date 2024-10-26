@@ -984,25 +984,25 @@
   }   
 
 
-  function padVarOpts ($val, $opts) {
+  function padVarOpts ($value, $opts) {
   
     foreach($opts as $opt) {
-        
+
       $append  = (substr($opt, 0, 1) == '.');
       $prepend = (substr($opt, -1)   == '.');
   
       if ($append)   $opt = trim(substr($opt,1));
       if ($prepend)  $opt = trim(substr($opt,0,-1));
   
-      $now = (substr($opt, 0, 1) == '%') ? sprintf($opt, $val) : padEval ($opt, $val);
+      $now = (substr($opt, 0, 1) == '%') ? sprintf($opt, $value) : padEval ($opt, $value);
      
-      if ( $append )                     $val = $val . $now;
-      if ( $prepend )                    $val = $now . $val;
-      if ( ! $append and ! $prepend ) $val = $now;
+      if ( $append )                  $value = $value . $now;
+      if ( $prepend )                 $value = $now . $value;
+      if ( ! $append and ! $prepend ) $value = $now;
 
     }
 
-    return $val;
+    return $value;
     
   }
 

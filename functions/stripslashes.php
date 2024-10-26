@@ -1,5 +1,5 @@
 <?php
 
-  return stripslashes($value);
+  return include '/pad/functions/single/stripslashes.php';
 
 ?>

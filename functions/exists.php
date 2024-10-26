@@ -1,7 +1,5 @@
 <?php
 
-  $file_exists = '/app/'  . $value;
-
-  return ( file_exists ($file_exists) ) ? '1' : '0';
+  return include '/pad/functions/single/exists.php';
 
 ?>

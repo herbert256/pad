@@ -1,5 +1,5 @@
 <?php
 
-  return filter_var ($value, FILTER_FLAG_STRIP_LOW);
+  return include '/pad/functions/single/strip_low.php';
 
 ?>

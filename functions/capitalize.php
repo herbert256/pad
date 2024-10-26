@@ -1,5 +1,5 @@
 <?php
 
-  return ucwords ($value);
+  return include '/pad/functions/single/capitalize.php';
 
 ?>

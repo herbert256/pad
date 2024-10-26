@@ -1,5 +1,5 @@
 <?php
-  
-  return substr($value, $parm[0]-1, $parm[1]);
+
+  return include '/pad/functions/parms/mid.php';
 
 ?>

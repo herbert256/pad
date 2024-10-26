@@ -1,5 +1,5 @@
 <?php
 
-  return htmlentities ($value);
+  return include '/pad/functions/single/html.php';
 
 ?>

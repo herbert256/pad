@@ -1,5 +1,5 @@
 <?php
 
-  return str_replace (' ' , '&nbsp;' , $value);
+  return include '/pad/functions/single/nbsp.php';
 
 ?>

@@ -2,9 +2,8 @@
 
   $padBasis   = padEval  ($padOpt [$pad] [0]);        
   $padChk     = strpos   ($padContent , '{when');
-  
   $padPos     = strpos   ($padContent, '}', $padChk);
-  $padEval    = substr   ($padContent, $padChk+6, $padPos-($padChk+6));
+  $padCase    = substr   ($padContent, $padChk+6, $padPos-($padChk+6));
   $padContent = substr   ($padContent, $padPos+1);
   $padChk     = strpos   ($padContent, '{when');
   
@@ -14,14 +13,14 @@
 
       $padChk = strpos($padContent , '{when', $padChk+5);
 
-    elseif ( $padBasis == padEval($padEval) ) 
+    elseif ( $padBasis == padEval($padCase) ) 
         
       return substr ($padContent, 0, $padChk);
 
      else {
 
       $padPos     = strpos($padContent, '}', $padChk); 
-      $padEval    = substr($padContent, $padChk+6, $padPos-($padChk+6));
+      $padCase    = substr($padContent, $padChk+6, $padPos-($padChk+6));
       $padContent = substr($padContent, $padPos+1);
       $padChk     = strpos($padContent, '{when');
 
@@ -29,6 +28,6 @@
  
   }
 
-  return ( $padBasis == padEval($padEval) );
+  return ( $padBasis == padEval($padCase) );
 
 ?>

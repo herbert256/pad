@@ -1,5 +1,5 @@
 <?php
 
-  return array_pop ( explode ( $parm[0], $value ) );
+  return include '/pad/functions/parms/after_last.php';
 
 ?>

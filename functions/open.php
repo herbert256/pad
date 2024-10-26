@@ -1,5 +1,5 @@
 <?php
-  
-  return "{" . $value . "}";
+
+  return include '/pad/functions/single/open.php';
 
 ?>

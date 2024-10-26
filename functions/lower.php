@@ -1,5 +1,5 @@
 <?php
-  
-  return strtolower ($value);
+
+  return include '/pad/functions/single/lower.php';
 
 ?>

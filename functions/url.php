@@ -1,5 +1,5 @@
 <?php
 
-  return urlencode ($value);
+  return include '/pad/functions/single/url.php';
 
 ?>

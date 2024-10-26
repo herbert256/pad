@@ -1,5 +1,5 @@
 <?php
-  
-  return strtoupper ($value);
+
+  return include '/pad/functions/single/upper.php';
 
 ?>

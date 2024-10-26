@@ -1,5 +1,5 @@
 <?php
-  
-  return ( $value > $parm[0] and $value < $parm[1] );
+
+  return include '/pad/functions/parms/between.php';
 
 ?>

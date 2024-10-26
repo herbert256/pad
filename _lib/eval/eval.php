@@ -2,25 +2,31 @@
 
 
   function padEval ( $eval, $value='' ) {
-    
-    if ( $value and file_exists ( "/pad/functions/fast/$eval.php" ) )
-      return '/pad/eval/fast.php';
       
-    $result = [];
+    if ( file_exists ( "/pad/functions/single/$eval.php" ) )
+      return include '/pad/eval/fast.php';
+        
+    global $padEval, $padEvalCnt;
 
-    padEvalParse  ( $result, $eval, $value );    
-    padEvalAfter  ( $result );  
-    padEvalArray  ( $result, $value );
-    padEvalOpnCls ( $result, $value );
-    padEvalOpr    ( $result, $value );
+    $padEvalCnt++;
+  
+    $padEval [$padEvalCnt] = [];
 
-    $key = array_key_first ($result);
+    padEvalParse  ( $padEval [$padEvalCnt], $eval, $value );    
+    padEvalAfter  ( $padEval [$padEvalCnt] );  
+    padEvalArray  ( $padEval [$padEvalCnt], $value );
+    padEvalOpnCls ( $padEval [$padEvalCnt], $value );
+    padEvalOpr    ( $padEval [$padEvalCnt], $value );
 
-    if     ( count($result) < 1        ) padError ("No result back: $eval");
-    elseif ( count($result) > 1        ) padError ("More then one result back: $eval");
-    elseif ( $result[$key][1] <> 'VAL' ) padError ("Result is not a value: $eval");
+    $key = array_key_first ($padEval [$padEvalCnt]);
 
-    return $result [$key] [0];
+    if     ( count($padEval [$padEvalCnt]) < 1        ) padError ("No value back: $eval");
+    elseif ( count($padEval [$padEvalCnt]) > 1        ) padError ("More then one value back: $eval");
+    elseif ( $padEval [$padEvalCnt][$key][1] <> 'VAL' ) padError ("Result is not a value: $eval");
+
+    $padEvalCnt--;
+
+    return $padEval [$padEvalCnt+1] [$key] [0];
 
   }  
  

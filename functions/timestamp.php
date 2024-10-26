@@ -1,5 +1,5 @@
 <?php
 
-  return include '/pad/functions/date.php';
+  return include '/pad/functions/single/timestamp.php';
 
 ?>

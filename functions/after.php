@@ -1,5 +1,5 @@
 <?php
 
-  return substr($value, strpos($value, $parm[0])+1);
+  return include '/pad/functions/parms/after.php';
 
 ?>

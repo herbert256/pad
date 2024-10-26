@@ -1,5 +1,5 @@
 <?php
 
-  return filter_var ($value, FILTER_SANITIZE_STRING);
+  return include '/pad/functions/single/encode_high.php';
 
 ?>

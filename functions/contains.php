@@ -1,8 +1,5 @@
 <?php
 
-  if ( strpos($value, $parm[0]) !== FALSE )
-    return TRUE;
-  else
-    return FALSE;
+  return include '/pad/functions/parms/contains.php';
 
 ?>
