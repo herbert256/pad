@@ -5,31 +5,25 @@
       
     if ( file_exists ( "/pad/functions/single/$eval.php" ) )
       return include '/pad/eval/fast.php';
-        
-    global $padEval, $padEvalCnt, $padEvalGo;
 
-    $padEvalCnt++;
-    $padEval   [$padEvalCnt] = [];
-    $padEvalGo [$padEvalCnt] = [];
+    $result = [];
 
-    padEvalParse  ( $padEval [$padEvalCnt], $eval, $value );    
-    padEvalAfter  ( $padEval [$padEvalCnt] );  
-    padEvalArray  ( $padEval [$padEvalCnt], $value );
-    padEvalOpnCls ( $padEval [$padEvalCnt], $value );
-    padEvalCheck  ( $padEval [$padEvalCnt], $value );
-    padEvalOpr    ( $padEval [$padEvalCnt], $value );
-    padEvalCheck  ( $padEval [$padEvalCnt], $value );
+    padEvalParse ( $result, $eval );    
+    padEvalAfter ( $result );  
 
-    $key = array_key_first ($padEval [$padEvalCnt]);
-    $last  = array_key_last  ($padEval [$padEvalCnt]);
+    $pipe  = 0;
+    $pipes = [];
 
-    if     ( count($padEval [$padEvalCnt]) < 1        ) padError ("No value back: $eval");
-    elseif ( count($padEval [$padEvalCnt]) > 1        ) padError ("More then one value back: $eval");
-    elseif ( $padEval [$padEvalCnt][$key][1] <> 'VAL' ) padError ("Result is not a value: $eval");
+    foreach ( $result as $key => $val )
+      if ( $val [1] == 'pipe' )
+        $pipe++;
+      else
+        $pipes [$pipe] [$key] = $val;
 
-    $padEvalCnt--;
+    foreach ( $pipes as $one )
+      $value = padEvalResult ( $one, $value, $eval );
 
-    return $padEval [$padEvalCnt+1] [$key] [0];
+    return $value;
 
   }  
  

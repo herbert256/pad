@@ -32,7 +32,7 @@
 
   }
 
-  function padEvalParse (&$result, $eval, $myself='') {
+  function padEvalParse (&$result, $eval ) {
     
     $input  = str_split ( padUnescape($eval) );
     $is_hex = $is_var = $is_prm = $is_tag = $is_str = $is_quote = $is_num = $is_other = FALSE;
@@ -187,8 +187,7 @@
       if ($one == '@') {
 
         $i += 100;
-        $result[$i][1] = 'VAL';
-        $result[$i][0] = $myself;
+        $result[$i][1] = '$$';
 
         $is_other = FALSE;
 
@@ -199,8 +198,7 @@
       if ($one == '$' and $next == '$') {
 
         $i += 100;
-        $result[$i][1] = 'VAL';
-        $result[$i][0] = $myself;
+        $result[$i][1] = '$$';
 
         $is_other = FALSE;
         $skip = 1;
