@@ -1,5 +1,5 @@
 <?php
 
-  return preg_replace('!\s+!', ' ', $value);
+  return preg_replace ('!\s+!', ' ', $value);
 
 ?>

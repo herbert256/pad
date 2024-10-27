@@ -16,7 +16,7 @@
     $warning = (int) $error   | E_RECOVERABLE_ERROR | E_WARNING | E_USER_WARNING | 
                                 E_CORE_WARNING | E_COMPILE_WARNING;
     $notice  = (int) $warning | E_NOTICE | E_USER_NOTICE;
-    $all     = (int) $notice  | E_DEPRECATED | E_USER_DEPRECATED | E_STRICT;
+    $all     = (int) $notice  | E_DEPRECATED | E_USER_DEPRECATED ;
 
     error_reporting ( $$level );
     

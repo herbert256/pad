@@ -1,5 +1,5 @@
 <?php
 
-  return htmlentities ($value);
+  return htmlspecialchars ($value);
 
 ?>

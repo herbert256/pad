@@ -1,5 +1,5 @@
 <?php
 
-  return stripslashes($value);
+  return stripslashes ($value);
 
 ?>

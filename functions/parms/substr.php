@@ -1,11 +1,11 @@
 <?php
 
-  if ( $parmCnt == 1 )
+  if ( $count == 1 )
   
-    return substr($value, $parm_1_int);
+    return substr ($value, $parm [0]);
     
   else
 
-    return substr($value, $parm_1_int, $parm_2_int);
+    return substr ($value, $parm [0], $parm [1]);
 
 ?>

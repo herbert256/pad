@@ -128,7 +128,18 @@
         continue;
 
       }
+
+      if ($one == '|') {
       
+        $i += 100;
+        $result [$i] [0] = '|';
+        $result [$i] [1] = 'pipe';
+        $is_other = FALSE;
+
+        continue;
+
+      }
+
       if ($one == ')') {
       
         $i += 100;

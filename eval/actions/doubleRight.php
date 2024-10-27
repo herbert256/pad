@@ -1,10 +1,9 @@
 <?php
   
   $left  = $result [$f] [0];
-  $right = $result [$k] [0];
+  $right = $myself;
 
   unset ( $result [$f] );
-  unset ( $result [$k] );
 
   include '/pad/eval/actions/go.php';
 

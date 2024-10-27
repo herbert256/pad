@@ -83,6 +83,10 @@
 
   function padEvalOpr ( &$result, $myself, $start=0, $end=PHP_INT_MAX ) {
 
+    global $padEvalGo, $padEvalCnt;
+
+    $padEvalGo [$padEvalCnt] [] = $result;
+
     padEvalType ( $result, $myself, $start, $end );
 
     foreach ( padEval_precedence as $now ) {
@@ -95,10 +99,16 @@
         if ( $k > $end   ) break;
 
         if ( $b >= $start and $result[$b][1] == 'OPR' and $result[$b][0] == $now )
-          if ( in_array ( $result[$b][0], ['not','!'] ) and $result[$k][1] == 'VAL' )
+          if ( in_array ( $result[$b][0], padEval_one ) and $result[$k][1] == 'VAL' )
             return include '/pad/eval/actions/single.php';
+          elseif ( in_array ( $result[$b][0], padEval_one ) and $result[$k][1] == 'OPR' )
+            return include '/pad/eval/actions/singleRight.php';
           elseif ( $f >= $start and $result[$f][1] == 'VAL' and $result[$k][1] == 'VAL' )
             return include '/pad/eval/actions/double.php';
+          elseif ( ( $f == -1 or $result[$f][1] <> 'VAL' ) and $result[$k][1] == 'VAL' )
+            return include '/pad/eval/actions/doubleLeft.php';
+          elseif ( $f >= $start and $result[$f][1] == 'VAL' and $result[$k][1] == 'OPR' )
+            return include '/pad/eval/actions/doubleRight.php';
 
         $f = $b;
         $b = $k;

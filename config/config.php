@@ -74,7 +74,7 @@
   // - '/app/'/_functions/
 
   $padDataDefaultStart = [];
-  $padDataDefaultEnd   = ['html'];
+  $padDataDefaultEnd   = ['sanitize'];
 
   // Formatting the output
 

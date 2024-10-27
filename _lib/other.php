@@ -993,8 +993,11 @@
   
       if ($append)   $opt = trim(substr($opt,1));
       if ($prepend)  $opt = trim(substr($opt,0,-1));
-  
-      $now = (substr($opt, 0, 1) == '%') ? sprintf($opt, $value) : padEval ($opt, $value);
+
+      if ( substr($opt, 0, 1) == '%' )
+        $now = sprintf ($opt, $value);
+      else 
+        $now = padEval ($opt, $value);
      
       if ( $append )                  $value = $value . $now;
       if ( $prepend )                 $value = $now . $value;

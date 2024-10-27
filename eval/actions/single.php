@@ -1,10 +1,9 @@
 <?php
   
-  if     ( ! is_array ( $result [$k] [0] ) ) include '/pad/eval/actions/singleVar.php';
-  elseif (   is_array ( $result [$k] [0] ) ) include '/pad/eval/actions/singleArr.php';
-    
-  unset ( $result [$b] );
+  $right = $result [$k] [0];
 
-  padEvalOpr ( $result, $myself, $start, $end );
+  unset ( $result [$k] );
 
+  include '/pad/eval/actions/go.php';
+  
 ?>
