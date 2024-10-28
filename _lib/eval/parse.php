@@ -34,6 +34,13 @@
 
   function padEvalParse (&$result, $eval ) {
     
+    $input = trim ($input);
+
+    if ( str_starts_with ( $input, '%' ) ) {
+      $result = [ 0 => $eval, 1 => '%' ];
+      return;
+    }
+
     $input  = str_split ( padUnescape($eval) );
     $is_hex = $is_var = $is_prm = $is_tag = $is_str = $is_quote = $is_num = $is_other = FALSE;
     $skip   = $i = 0;

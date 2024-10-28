@@ -983,32 +983,6 @@
 
   }   
 
-
-  function padVarOpts ($value, $opts) {
-  
-    foreach($opts as $opt) {
-
-      $append  = (substr($opt, 0, 1) == '.');
-      $prepend = (substr($opt, -1)   == '.');
-  
-      if ($append)   $opt = trim(substr($opt,1));
-      if ($prepend)  $opt = trim(substr($opt,0,-1));
-
-      if ( substr($opt, 0, 1) == '%' )
-        $now = sprintf ($opt, $value);
-      else 
-        $now = padEval ($opt, $value);
-     
-      if ( $append )                  $value = $value . $now;
-      if ( $prepend )                 $value = $now . $value;
-      if ( ! $append and ! $prepend ) $value = $now;
-
-    }
-
-    return $value;
-    
-  }
-
   
   function padContentType ( &$content ) {
 

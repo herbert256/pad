@@ -14,7 +14,7 @@
       $padSetTmp [$padK] = $padV;
 
   foreach ( $padSetOcc [$pad] as $padK => $padV )
-    $padCurrent [$pad] [$padK] = padVarOpts ( '', padExplode($padV, '|') );
+    $padCurrent [$pad] [$padK] = padEval ( $padV );
 
   foreach ( $padCurrent [$pad] as $padK => $padV )
     $padSetTmp [$padK] = $padV;

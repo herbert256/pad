@@ -53,10 +53,11 @@
   elseif ( $padFirst == '#' ) $padVal = padOptValue   ($padFld);
   elseif ( $padFirst == '&' ) $padVal = padTagValue   ($padFld);
 
-  if ( $padFirst == '$' )
+  if ( $padFirst == '$' ) 
     $padOpts = array_merge ( $padDataDefaultStart, $padOpts, $padDataDefaultEnd );   
 
-  $padVal = padVarOpts ($padVal, $padOpts);
+  foreach ( $padOpts as $padOpt )
+    $padVal = padEval ( $padOpt, $padVal);
 
   padPad ( $padVal );
 

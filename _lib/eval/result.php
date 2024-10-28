@@ -2,13 +2,8 @@
 
 
   function padEvalResult ( $result, $value, $eval ) {
-
-    foreach ( $result as $key => $val ) 
-      if ( $val [1] == '$$' ) {
-        $result [$key] [0] = $value;
-        $result [$key] [1] = 'VAL';
-      }
-
+    
+    padEvalValue  ( $result, $value );
     padEvalArray  ( $result, $value );
     padEvalOpnCls ( $result, $value );
     padEvalCheck  ( $result, $value );

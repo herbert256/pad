@@ -4,7 +4,7 @@
 
   if ( substr ( $padPrmName, 0, 1 ) == '$' ) {
 
-    $padSetLvl [$pad] [$padSetName] = padVarOpts ( '', padExplode($padPrmValue, '|') );
+    $padSetLvl [$pad] [$padSetName] = padEval ( $padPrmValue );
     $padParmParse [$pad] [$padSetName] = 'lvl';
 
   } else {
