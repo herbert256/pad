@@ -6,8 +6,6 @@
     if ( file_exists ( "/pad/functions/single/$eval.php" ) )
       return include '/pad/eval/fast.php';
 
-    $result = [];
-
     padEvalParse ( $result, $eval );    
     padEvalAfter ( $result );  
 

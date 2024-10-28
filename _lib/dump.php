@@ -227,7 +227,7 @@
     $tag = $GLOBALS ['padTag'] [$pad] ?? '';
      
     $prm = '';
-    if ( isset ( $opt[0]) ) {
+    if ( is_array ($opt) and isset ( $opt[0]) ) {
       $prm = $opt[0];
       unset ( $opt[0] );
     }

@@ -34,10 +34,13 @@
 
   function padEvalParse (&$result, $eval ) {
     
-    $input = trim ($input);
+    $result = [];
+
+    $input = trim ($eval);
 
     if ( str_starts_with ( $input, '%' ) ) {
-      $result = [ 0 => $eval, 1 => '%' ];
+      $result [100] [0] = $input;
+      $result [100] [1] = '%';
       return;
     }
 

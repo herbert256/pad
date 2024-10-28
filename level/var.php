@@ -3,20 +3,20 @@
   $padPipe  = strpos ( $padBetween, '|' );
   $padSpace = strpos ( $padBetween, ' ' );
 
-  if ($padPipe and (!$padSpace or $padPipe < $padSpace) ) {
+  if ( $padPipe ) {
     
     $padFld  = rtrim(substr($padBetween, 1, $padPipe-1));
-    $padOpts = padExplode(substr($padBetween, $padPipe+1), '|');
+    $padOpts = substr($padBetween, $padPipe+1);
 
-  } elseif ($padSpace and (!$padPipe or $padSpace < $padPipe) ) {
+  } elseif ( $padSpace ) {
 
     $padFld  = rtrim(substr($padBetween, 1, $padSpace-1));
-    $padOpts = padExplode(substr($padBetween, $padSpace+1), '|');
+    $padOpts = substr($padBetween, $padSpace+1);
 
   } else {
 
     $padFld  = rtrim(substr($padBetween, 1));
-    $padOpts = [];
+    $padOpts = '';
 
   }
 
@@ -41,8 +41,8 @@
   elseif ( $padFirst == '#' ) $padFldChk = padOptCheck   ( $padFld );
   elseif ( $padFirst == '&' ) $padFldChk = padTagCheck   ( $padFld );
 
-  if ( $padSyntax and ! $padFldChk and ! in_array ( 'optional', $padOpts ) )
-    padError ( "Field '$padFld' not found" );
+  if ( $padSyntax and ! $padFldChk and ! str_starts_with ( trim($padOpts), 'optional'))
+    padError ( "Field '$padFld' not found $padOpts" );
 
   if ( ! $padSyntax and ! $padFldChk )
     return padPad ( $padSyntaxDefaultVar );
@@ -54,10 +54,14 @@
   elseif ( $padFirst == '&' ) $padVal = padTagValue   ($padFld);
 
   if ( $padFirst == '$' ) 
-    $padOpts = array_merge ( $padDataDefaultStart, $padOpts, $padDataDefaultEnd );   
+    foreach ( $padDataDefaultStart as $padOptOne )
+      $padVal = padEval ( $padOptOne, $padVal );
 
-  foreach ( $padOpts as $padOpt )
-    $padVal = padEval ( $padOpt, $padVal);
+  $padVal = padEval ( $padOpts, $padVal );
+
+  if ( $padFirst == '$' ) 
+    foreach ( $padDataDefaultEnd as $padOptOne )
+      $padVal = padEval ( $padOptOne, $padVal );
 
   padPad ( $padVal );
 
