@@ -22,10 +22,6 @@
 
   $padCatch = FALSE; 
 
-  // Check PAD syntax
-
-  $padSyntax =  TRUE;
-
   // Many ways to track/trace and so.
   // Optional, one or more values from the sub folder 'info' 
 

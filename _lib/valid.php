@@ -51,22 +51,6 @@
 
   }
 
- 
-  function padValidVar2 ($name) {
-
-    if ( trim ( $name ) == '' ) 
-      return FALSE;
-
-    if ( str_contains ( $name, '@' ) or str_contains ( $name, '.' ) )
-      return padAtCheck ( $name );
-
-    if ( ! preg_match ( '/^[a-zA-Z0-9\-\$][a-zA-Z0-9:#_]*$/',$name ) )
-      return FALSE;
-
-    return TRUE;  
-
-  }
-
 
   function padAtValid ( $part ) {
 

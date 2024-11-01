@@ -1,10 +1,7 @@
 <?php
 
   include '/pad/config/config.php';
-
-  if ( $padSyntax ) 
-    include "/pad/config/syntax.php";
-  
+ 
   if ( $padInfo ) {
     $padInfoList = padExplode ( $padInfo, ',' );
     foreach ( $padInfoList as $padInfoType  )

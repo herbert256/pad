@@ -21,9 +21,6 @@
   if ( ctype_space ( $padFirst ) ) 
     return padIgnore ('first char');
   
-  if ( $padSyntax and $padFirst == '/' and padValidTag ( substr ($padBetween, 1) ) )
-    return padError ( "Closing tag without opening tag found: {{$padBetween}}");
-  
   if ( $pad and $padLvlFun [$pad-1] )
     include '/pad/level/function.php';
      
@@ -37,9 +34,6 @@
     if ( padValidTag ($padWords [0]) )
       return include '/pad/options/optional.php';
 
-  if ( $padSyntax and ! $padTypeResult and padValidTag ( $padWords [0] ) )
-    return padError ( "Tag not Found: {{$padBetween}}");
-  
   if ( ! $padTypeResult ) 
     return padIgnore ('type');
 

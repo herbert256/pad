@@ -18,8 +18,8 @@
   
   function padField ( $field, $type, $lvl=0 ) {
 
-      if ( $GLOBALS ['padInfo'] ) 
-        include '/pad/events/fieldStart.php';
+    if ( $GLOBALS ['padInfo'] ) 
+      include '/pad/events/fieldStart.php';
 
     if ( str_contains ( $field, '@' ) or str_contains ( $field, '.' ) ) {
 

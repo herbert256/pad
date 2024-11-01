@@ -19,7 +19,7 @@
 
     restore_error_handler ();
     restore_exception_handler ();
-    $GLOBALS ['padSkipBootShutdown'] = TRUE;
+    $GLOBALS ['padBootShutdown'] = TRUE;
 
   }
 
