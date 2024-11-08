@@ -36,7 +36,7 @@
   }
 
 
-  function padStr (  $padStrCod, $padStrBox, $padStrRes, $padStrCln, $padStrFun ) {
+  function padStrFun (  $padStrCod, $padStrBox, $padStrRes, $padStrCln, $padStrFun ) {
 
     return include '/pad/start/function.php';
 

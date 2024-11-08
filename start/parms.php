@@ -6,7 +6,7 @@
   $padStrFun = padTagParm ( 'function' );
 
   if ( $padStrFun )
-    return padStr ( $padStrCod, $padStrBox, $padStrRes, $padStrCln, $padStrFun );
+    return padStrFun ( $padStrCod, $padStrBox, $padStrRes, $padStrCln, $padStrFun );
   else 
     return include '/pad/start/pad.php';
   

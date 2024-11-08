@@ -2,8 +2,6 @@
 
   
   function padEvalAfter ( &$result ) {
- 
-    global $padFlagStore, $padDataStore, $padContentStore;
 
     foreach ($result as $k => $one)
 

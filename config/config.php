@@ -66,15 +66,15 @@
   $padSessionVars = [];
     
   // Default {$var} options, there must be a PHP snippet in one of below directories
-  // - pad/functions/
-  // - '/app/'/_functions/
+  // - /pad/functions/
+  // - /app/_functions/
 
   $padDataDefaultStart = [];
   $padDataDefaultEnd   = ['sanitize'];
 
   // Formatting the output
 
-  $padTidy   = FALSE;
+  $padTidy   = TRUE;
   $padMyTidy = FALSE;
 
   $padTables    = [];
@@ -83,7 +83,7 @@
     // Other settings.
 
   $padGzip      = FALSE;  // Send the result zipped
-  $padCookies   = TRUE;  // Send the result zipped
+  $padCookies   = TRUE;   // Send the result zipped
   $padNoNo      = FALSE;  // No pad stuff, just plane PHP   
   $padFastLink  = 32;     // Lenght of the FastLink code in the URL
 
