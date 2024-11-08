@@ -16,7 +16,7 @@
   }
 
   if ( $padMyTidyTabToSpace )
-    $padOutput = str_replace ( "\t", '??', $padOutput );
+    $padOutput = str_replace ( "\t", ' ', $padOutput );
 
   if ( $padMyTidyTrim )
     $padOutput = trim ($padOutput);

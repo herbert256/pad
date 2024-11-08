@@ -341,14 +341,12 @@
 
     if ( $fragment 
          or isset ( $_REQUEST ['padInclude'] ) 
-         or isset ( $GLOBALS  ['padInclude']  ) )
+         or ( isset ( $GLOBALS  ['padInclude'] ) and $GLOBALS ['padInclude'] ) )
       $config ['show-body-only'] = true;
 
     $tidy = new tidy;
-    $tidy->parseString($data, $config, 'utf8');
+    $tidy->parseString($data, $config, $GLOBALS ['padTidyCcsid'] );
     $tidy->cleanRepair();
-
-    $GLOBALS ['lastTidy'] = $tidy;
 
     if ( $tidy->value === NULL ) 
       return $data;

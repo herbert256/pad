@@ -13,7 +13,6 @@
     'vertical-space'      => 'no',
     'indent-spaces'       => 2,
     'replace-color'       => 'yes',
-    'markup'              => 'yes',
     'omit-optional-tags'  => 'yes',
     'clean'               => 'yes',
     'drop-empty-elements' => 'yes',
