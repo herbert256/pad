@@ -20,5 +20,6 @@
   $padSeqSetStore   = '';
   $padSeqEntryParm  = $padParm;
   $padSeqEntryList  = $padPrm [$pad];
+  $padSeqParmUsed   = FALSE;
   
 ?>

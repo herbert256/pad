@@ -1,6 +1,15 @@
 <?php
 
 
+  function padSeqOperation ( $item, $options='', $body='' ) {
+
+    $padSeqFunction = 'operation';
+
+    return include '/pad/sequence/entry/function.php';
+
+  }
+
+
   function padSeqSequence ( $item, $options='', $body='' ) {
 
     $padSeqFunction = 'sequence';
