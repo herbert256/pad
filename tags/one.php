@@ -1,5 +1,5 @@
 <?php
 
-  return include '/pad/sequence/entry/tag.php';
+  return include '/pad/tags/sequence.php';
 
 ?>

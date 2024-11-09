@@ -8,27 +8,24 @@
   elseif ( $padOptions == 'app'      ) $padContent = $padBase   [$pad];
   elseif ( $padOptions == 'callback' ) $padContent = $padResult [$pad];
  
-  foreach ( $padPrm [$pad] as $padOptionName => $padV ) {
+  foreach ( $padPrm [$pad] as $padOptionName => $padV )
 
-    if ( in_array ( $padOptionName, $padOptionsWalk ) )
+    if ( in_array ( $padOptionName, $padOptionsWalk ) and ! padIsDone ( $padOptionName ) ) {
 
-      if ( $padOptions == 'callback' or ! isset ( $padDone [$pad] [$padOptionName] ) ) {
+      if ( $padOptions <> 'callback' )
+        padDone ( $padOptionName );  
+ 
+      if ( $padOptions == 'app' )
+        $padCall = "/app/_options/$padOptionName.php" ;
+      else
+        $padCall = "/pad/options/$padOptionName.php" ;
 
-        padDone ( $padOptionName, TRUE );  
-   
-        if ( $padOptions == 'app' )
-          $padCall = "/app/_options/$padOptionName.php" ;
-        else
-          $padCall = "/pad/options/$padOptionName.php" ;
+      include '/pad/call/call.php';
 
-        include '/pad/call/call.php';
+      if ( $GLOBALS ['padInfo'] )
+        include '/pad/events/options.php';           
 
-        if ( $GLOBALS ['padInfo'] )
-          include '/pad/events/options.php';           
-
-      }
-
-  }
+    }
 
   if     ( $padOptions == 'start'    ) $padBase   [$pad] = $padContent;
   elseif ( $padOptions == 'end'      ) $padResult [$pad] = $padContent;

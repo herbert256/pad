@@ -6,10 +6,14 @@
 
     extract (  $padSeqOption );
 
-    if ( $padPrmName == $padSeqPull )
+    if ( $padPrmName == $padSeqPull or $padPrmName == $padSeqSeq )
       continue;
 
-    if ( str_starts_with ( $padPrmName, 'action' ) )
+    elseif ( $padPrmName == 'one' )
+
+      include '/pad/sequence/one/one.php';
+
+    elseif ( str_starts_with ( $padPrmName, 'action' ) )
 
       include '/pad/sequence/actions/action.php';
 
@@ -17,13 +21,13 @@
 
       include '/pad/sequence/store/store.php';
 
+    elseif ( file_exists ( "/pad/sequence/options/types/$padPrmName.php" ) )
+
+      continue;
+
     elseif ( file_exists ( "/pad/sequence/actions/types/$padPrmName.php" ) )
 
       include '/pad/sequence/actions/action.php';
-
-    elseif ( $padPrmName == 'one' )
-
-      include '/pad/sequence/one/one.php';
 
     elseif ( file_exists ( "/pad/sequence/one/types/$padPrmName.php" ) )
 
