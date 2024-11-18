@@ -1,0 +1,169 @@
+<p></p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <th bgcolor="#DDDDDD">
+      HTML
+    </th>
+    <th bgcolor="#DDDDDD">
+      RESULT
+    </th>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">50 * 4 * 2</font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> * 4 <font color="black">|</font> * 2</font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> <font color="black">@</font> * 4 <font color="black">|</font> <font color="black">@</font> * 2</font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <pre><code><span style="color: #000000">
+400
+400
+400
+</span></code></pre><!-- END DEMO RESULT -->
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> <font color="black">'</font>"<font color="black">'</font> . </font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> . <font color="black">'</font>"<font color="black">'</font> </font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> <font color="black">'</font>"<font color="black">'</font> . . <font color="black">'</font>"<font color="black">'</font> </font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> <font color="black">'</font>"<font color="black">'</font> . <font color="black">@</font> . <font color="black">'</font>"<font color="black">'</font> </font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <pre><code><span style="color: #000000">
+"50
+50"
+"50"
+"50"
+</span></code></pre><!-- END DEMO RESULT -->
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = 50</font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">* 4</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">4 * 4</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">* / 4</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">* 4 / 2 + 10</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">* 4</font> <font color="black">|</font> <font color="blue">/ 2</font> <font color="black">|</font> <font color="blue">+ 10</font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <pre><code><span style="color: #000000">
+200
+16
+625
+110
+110
+</span></code></pre><!-- END DEMO RESULT -->
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = <font color="black">'</font>abc<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">crc32</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="purple">app</font><font color="black">:</font><font color="blue">substr (1, 1)</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="purple">pad</font><font color="black">:</font><font color="blue">substr (1, 1)</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="purple">php</font><font color="black">:</font><font color="blue">substr (<font color="black"><b><font color="black"><b><font color="black"><b><font color="black"><b>@</b></font></b></font></b></font></b></font>, 1, 1)</font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <pre><code><span style="color: #000000">
+891568578
+b
+b
+b
+</span></code></pre><!-- END DEMO RESULT -->
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = <font color="black">'</font>abc<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">. '"'</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">'"' .</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">. '"' .</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">'"' . <font color="black"><b><font color="black"><b><font color="black"><b><font color="black"><b>@</b></font></b></font></b></font></b></font> . '"'</font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <pre><code><span style="color: #000000">
+abc
+abc"
+"abc
+abc"abc
+"abc"
+</span></code></pre><!-- END DEMO RESULT -->
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>line = <font color="black">'</font>a &lt;test&gt; LiNe<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>line</font>}</b> <br><b>{<font color="green"><font color="red"><font color="red">!</font></font>line</font>}</b> <br><b>{<font color="green">$line</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b> <br><b>{<font color="green">$line</font> <font color="black">|</font> <font color="blue">upper</font>}</b> <br><b>{<font color="green">$line</font> <font color="black">|</font> <font color="blue">lower</font>}</b> <br><b>{<font color="green">$line</font> <font color="black">|</font> <font color="blue">url</font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <pre><code><span style="color: #000000">
+a &lt;test&gt; LiNe 
+a  LiNe 
+A &lt;test&gt; LiNe 
+A &lt;TEST&gt; LINE 
+a &lt;test&gt; line 
+a+%3Ctest%3E+LiNe 
+</span></code></pre><!-- END DEMO RESULT -->
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>nbr = 12345.678</font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="green">$nbr</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b> <br><b>{<font color="green">$nbr</font> <font color="black">|</font> <font color="blue">%.5f</font>}</b> <br><b>{<font color="green">$nbr</font> <font color="black">|</font> <font color="blue">%'.09d</font>}</b> <br><b>{<font color="green">$nbr</font> <font color="black">|</font> <font color="blue">%d</font>}</b> <br><b>{<font color="green">$nbr</font> <font color="black">|</font> <font color="blue">%e</font>}</b> <br><b>{<font color="green">$nbr</font> <font color="black">|</font> <font color="blue">%f</font>}</b> <br><b>{<font color="green">$nbr</font> <font color="black">|</font> <font color="blue">%g</font>}</b> <br><b>{<font color="green">$nbr</font> <font color="black">|</font> <font color="blue">%o</font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <pre><code><span style="color: #000000">
+12345.68 
+12345.67800 
+000012345 
+12345 
+1.234568e+4 
+12345.678000 
+12345.7 
+30071 
+</span></code></pre><!-- END DEMO RESULT -->
+    </td>
+  </tr>
+</table>
+<p></p>

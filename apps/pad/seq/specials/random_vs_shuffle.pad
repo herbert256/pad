@@ -1,0 +1,41 @@
+<h3>Random vs shuffle</h3>
+
+{table}
+
+{demo}{seq 'A..Z'}
+  {$seq}
+{/seq }{/demo}
+
+{demo}{seq 'A..Z', shuffle}
+  {$seq}
+{/seq }{/demo}
+
+{demo}{seq 'A..Z', shuffle, sort}
+  {$seq}
+{/seq }{/demo}
+
+{demo}{seq 'A..Z', random}
+  {$seq}
+{/seq }{/demo}
+
+{demo}{seq 'A..Z', random, sort}
+  {$seq}
+{/seq }{/demo}
+
+{demo}{seq 'A..Z', random, unique, sort}
+  {$seq}
+{/seq }{/demo}
+
+{demo}{seq 'A..Z', random, dedup, sort}
+  {$seq}
+{/seq }{/demo}
+
+{demo}{seq 'A..Z', reverse}
+  {$seq}
+{/seq}{/demo}
+
+{demo}{seq 'A..Z', reverse, sort}
+  {$seq}
+{/seq}{/demo}
+
+{/table}

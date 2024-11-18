@@ -1,0 +1,23 @@
+{include 'style'}
+
+<table  style="max-width:95%;" border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <td bgcolor="#dddddd" align="center"><font size="+1"><b>OLD</b></font></td>
+    <td bgcolor="#dddddd" align="center">
+      <font size="+1"><b>NEW</b></font> 
+      &nbsp;<a href="{$padGo}{$item}&padInclude">go</a>
+      &nbsp;<a href="{$padGo}develop/regression/ok&item={$item}">ok</a>
+    </td>
+  </tr>
+  <tr>
+    <td>{!old}</tb>
+    <td>{!new}</td>
+  </tr>
+  <tr>
+    <td bgcolor="#dddddd" align="center"><font size="+1"><b>Old Source</b></font></td>
+    <td bgcolor="#dddddd" align="center"><font size="+1"><b>New Source</b></font></td>
+  </tr>
+  {!diff}
+</table>
+
+{include 'base'}

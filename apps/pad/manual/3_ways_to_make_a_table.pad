@@ -1,0 +1,148 @@
+{block}
+<p>The {at 'start'} / {at 'end'} & {at 'else'} constructs act on the number of occurences.</p>
+<p>The {tag 'first'} & {tag 'last'} tags are part of the special {manual 'properties'} tags.</p>
+</p>
+{/block}
+
+{table}
+
+{demo}
+
+{data 'myArray'}
+  [1,2,3]
+{/data}
+
+{/demo}{demo}
+
+{myArray}
+
+  <table border="1">
+    <tr> <td> Before the first occurrence </td> </tr>
+    @start@
+      <tr> <td> For every occurence </td> </tr>
+    @end@
+    <tr> <td> After the last occurrence </td> </tr>
+  </table>
+
+@else@
+
+  <p> No occurences at all </p>
+
+{/myArray}
+
+{/demo}{demo}
+
+{myArray}
+
+  {first}
+    <table border="1">
+      <tr> <td> Before the first occurrence </td> </tr>
+  {/first}
+      <tr> <td> For every occurence </td> </tr>
+  {last}
+      <tr> <td> After the last occurrence </td> </tr>
+    </table>
+  {/last}
+
+@else@
+
+  <p> No occurences at all </p>
+
+{/myArray}
+
+{/demo}{demo}
+
+{count 'myArray'}
+
+  <table border="1">
+    <tr> <td> Before the first occurrence </td> </tr>
+  {myArray}
+    <tr> <td> For every occurence </td> </tr>
+  {/myArray}
+    <tr> <td> After the last occurrence </td> </tr>
+  </table>
+
+@else@
+
+  <p> No occurences at all </p>
+
+{/count}
+
+{/demo}
+
+{/table}
+
+<br><hr><br>
+
+{block}
+<p>Now the same code with an empty array</p>
+<p>The {at 'else'} construct comes active when there are zero occurences for a PAD tag.</p>
+{/block}
+
+{table}
+
+{demo}
+
+{data 'myArray'}
+ []
+{/data}
+
+{/demo}{demo}
+
+{myArray}
+
+  <table border="1">
+    <tr> <td> Before the first occurrence </td> </tr>
+    @start@
+      <tr> <td> For every occurence </td> </tr>
+    @end@
+    <tr> <td> After the last occurrence </td> </tr>
+  </table>
+
+@else@
+
+  <p> No occurences at all </p>
+
+{/myArray}
+
+{/demo}{demo}
+
+{myArray}
+
+  {first}
+    <table border="1">
+      <tr> <td> Before the first occurrence </td> </tr>
+  {/first}
+      <tr> <td> For every occurence </td> </tr>
+  {last}
+      <tr> <td> After the last occurrence </td> </tr>
+    </table>
+  {/last}
+
+@else@
+
+  <p> No occurences at all </p>
+
+{/myArray}
+
+{/demo}{demo}
+
+{count 'myArray'}
+
+  <table border="1">
+    <tr> <td> Before the first occurrence </td> </tr>
+  {myArray}
+    <tr> <td> For every occurence </td> </tr>
+  {/myArray}
+    <tr> <td> After the last occurrence </td> </tr>
+  </table>
+
+@else@
+
+  <p> No occurences at all </p>
+
+{/count}
+
+{/demo}
+
+{/table}

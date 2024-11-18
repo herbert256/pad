@@ -1,0 +1,60 @@
+{data 'list'} 
+  (
+    'seqs',
+    'specials',
+    'actions/single',
+    'actions/double',
+    'operation/single',
+    'operation/double',
+    'keepRemove',
+    'store/actions',
+    'store/operations',
+    'one',
+    'entry',
+  )
+{/data}
+
+<center>
+
+<p>Many examples, most are generated and do sometime not make sence, the examples from 'specials' are hand crafted and gives a good view of what the Sequences subsystem of PAD can do.</p>
+
+  {list}
+    {if $example eq $list}
+      {$list}
+    @else@
+      <a href="@pad@manual/seq/examples&example={$list}{?go}{?item}">{$list}</a>
+    {/if}
+    &nbsp;
+  {/list}
+
+  <br><br><hr>
+
+  {examples}
+    {if $item eq $examples}
+      {$examples}
+    @else@
+      <a href="@pad@manual/seq/examples&example={$example}&item={$examples}{?go}">{$examples}</a>
+    {/if}
+    &nbsp;
+  {/examples}
+
+  <br><br><hr>
+
+  {if $example eq 'seqs' }
+    <h4>{$item}</h4>
+        {exists APP . 'seq/basic/{$item}.pad'}
+        <h5>basic</h5>
+        {example 'seq/basic/{$item}', onlyResult}
+      {/exists}
+    {list}
+      {exists APP . 'seq/{$list}/{$item}.pad'}
+        <h5>{$list}</h5>
+        {example 'seq/{$list}/{$item}', onlyResult}
+      {/exists}
+    {/list}
+  @else@
+    <h4>{$example} - {$item}</h4>
+    {example 'seq/{$example}/{$item}', onlyResult, include}
+  {/if}
+
+</center>

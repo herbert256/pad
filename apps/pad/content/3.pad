@@ -1,0 +1,31 @@
+{table}{demo}
+
+{content 'myContent'}
+  Before <br>
+  @content@
+  After <br>
+{/content}
+
+{/demo}{demo}
+
+{myContent}
+  This will be inserted <br>
+{/myContent}
+
+{/demo}{/table}
+
+{table}{demo}
+
+{content 'myContent'}
+  This will be inserted <br>
+{/content}
+
+{/demo}{demo}
+
+{myContent}
+  Before <br>
+  @content@
+  After <br>
+{/myContent}
+
+{/demo}{/table}

@@ -1,0 +1,462 @@
+<table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+      With the <b>{content}</b> tag it is possible to define content for later use.
+    </td>
+  </tr>
+</table>
+<p></p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <th bgcolor="#DDDDDD">
+      HTML
+    </th>
+    <th bgcolor="#DDDDDD">
+      RESULT
+    </th>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>hello<font color="black">'</font></font>}</b><br>  &lt;p&gt; Hello World &lt;/p&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">hello</font><font color="red"></font>}</b><br><br><b>{<font color="blue">hello</font><font color="red"></font>}</b><br><br><b>{<font color="blue">hello</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <p>
+        <code><span style="color: #000000">Hello World</span></code>
+      </p><code><span style="color: #000000"></span></code>
+      <p>
+        <code><span style="color: #000000">Hello World</span></code>
+      </p><code><span style="color: #000000"></span></code>
+      <p>
+        <code><span style="color: #000000">Hello World</span></code>
+      </p><code><span style="color: #000000"><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+</table>
+<p></p>
+<hr>
+<h4>
+  Open or close tag
+</h4>
+<table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+      <p>
+        If <b>{content 'xxx'}</b> is used, then the content will not be processed before it is stored in the content store
+      </p>
+      <p>
+        If <b>{/content 'xxx'}</b> is used, then the content will be processed before it is stored in the content store
+      </p>
+    </td>
+  </tr>
+</table>
+<p></p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <th bgcolor="#DDDDDD">
+      HTML
+    </th>
+    <th bgcolor="#DDDDDD">
+      RESULT
+    </th>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = 10</font>}</b><br><br><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b> &lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="blue">myContent</font><font color="red"></font>}</b><br><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="blue">myContent</font><font color="red"></font>}</b><br><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->11<br>
+      12<br>
+      13<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = 10</font>}</b><br><br><b>{<font color="blue">content</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b> &lt;br&gt;<br><b>{/<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="blue">myContent</font><font color="red"></font>}</b><br><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="blue">myContent</font><font color="red"></font>}</b><br><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->10<br>
+      10<br>
+      10<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+</table>
+<p></p>
+<hr>
+<h4>
+  Merge content with content - part 1
+</h4>
+<p></p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <th bgcolor="#DDDDDD">
+      HTML
+    </th>
+    <th bgcolor="#DDDDDD">
+      RESULT
+    </th>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  This is my content.&lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->This is my content.<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>  This is the base content. &lt;br&gt;<br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->This is my content.<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">myContent </font><font color="red">merge=<font color="black">'</font>replace<font color="black">'</font></font>}</b><br>  This is the base content. &lt;br&gt;<br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->This is my content.<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">myContent </font><font color="red">merge=<font color="black">'</font>top<font color="black">'</font></font>}</b><br>  This is the base content. &lt;br&gt;<br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->This is my content.<br>
+      This is the base content.<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">myContent </font><font color="red">merge=<font color="black">'</font>bottom<font color="black">'</font></font>}</b><br>  This is the base content. &lt;br&gt;<br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->This is the base content.<br>
+      This is my content.<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+</table>
+<p></p>
+<hr>
+<h4>
+  Merge content with content - part 2
+</h4>
+<p></p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <th bgcolor="#DDDDDD">
+      HTML
+    </th>
+    <th bgcolor="#DDDDDD">
+      RESULT
+    </th>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  Before &lt;br&gt;<br>  <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b><br>  After &lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>  This will be inserted &lt;br&gt;<br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->Before<br>
+      This will be inserted<br>
+      After<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+</table>
+<p></p>
+<p></p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <th bgcolor="#DDDDDD">
+      HTML
+    </th>
+    <th bgcolor="#DDDDDD">
+      RESULT
+    </th>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  This will be inserted &lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>  Before &lt;br&gt;<br>  <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b><br>  After &lt;br&gt;<br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->Before<br>
+      This will be inserted<br>
+      After<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+</table>
+<p></p>
+<hr>
+<h4>
+  Merge content with content - part 3
+</h4>
+<p></p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <th bgcolor="#DDDDDD">
+      HTML
+    </th>
+    <th bgcolor="#DDDDDD">
+      RESULT
+    </th>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  This is the true content. &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is the false content. &lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">true </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>replace<font color="black">'</font></font>}</b><br>  This is the true base content &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is the false base content &lt;br&gt;<br><b>{/<font color="blue">true</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->This is the true content.<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">true </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>top<font color="black">'</font></font>}</b><br>  This is the true base content &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is the false base content &lt;br&gt;<br><b>{/<font color="blue">true</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->This is the true content.<br>
+      This is the true base content<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">true </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>bottom<font color="black">'</font></font>}</b><br>  This is the true base content &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is the false base content &lt;br&gt;<br><b>{/<font color="blue">true</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->This is the true base content<br>
+      This is the true content.<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">false </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>replace<font color="black">'</font></font>}</b><br>  This is the true base content &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is the false base content &lt;br&gt;<br><b>{/<font color="blue">false</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->This is the false content.<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">false </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>top<font color="black">'</font></font>}</b><br>  This is the true base content &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is the false base content &lt;br&gt;<br><b>{/<font color="blue">false</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->This is the false content.<br>
+      This is the false base content<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">false </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>bottom<font color="black">'</font></font>}</b><br>  This is the true base content &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is the false base content &lt;br&gt;<br><b>{/<font color="blue">false</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->This is the false base content<br>
+      This is the false content.<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+</table>
+<p></p>
+<hr>
+<h4>
+  Merge content with content - part 4
+</h4>
+<p></p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <th bgcolor="#DDDDDD">
+      PHP
+    </th>
+    <th bgcolor="#DDDDDD">
+      HTML
+    </th>
+    <th bgcolor="#DDDDDD">
+      RESULT
+    </th>
+  </tr>
+  <tr>
+    <td style="vertical-align:top" rowspan="4">
+      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">function </span><span style="color: #0000BB">myFunction </span><span style="color: #007700">() {<br><br>    return </span><span style="color: #DD0000">'This is the tag content &lt;br&gt;'</span><span style="color: #007700">;<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+    </td>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  This is content from the <b>{<font color="blue">content</font><font color="red"></font>}</b> tag &lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">myFunction </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>replace<font color="black">'</font></font>}</b><br>  This is the base content &lt;br&gt;<br><b>{/<font color="blue">myFunction</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->This is content from the {content} tag<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">myFunction </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>top<font color="black">'</font></font>}</b><br>  This is the base content &lt;br&gt;<br><b>{/<font color="blue">myFunction</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->This is content from the {content} tag<br>
+      This is the tag content<br>
+      This is the base content<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">myFunction </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>bottom<font color="black">'</font></font>}</b><br>  This is the base content &lt;br&gt;<br><b>{/<font color="blue">myFunction</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->This is the base content<br>
+      This is the tag content<br>
+      This is content from the {content} tag<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+</table>
+<p></p>
+<hr>
+<h4>
+  Merge content with content - part 5
+</h4>
+<p></p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <th bgcolor="#DDDDDD">
+      HTML
+    </th>
+    <th bgcolor="#DDDDDD">
+      RESULT
+    </th>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  true: This is the <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b> content. &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false: This is the <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b> content. &lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">true </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false<br><b>{/<font color="blue">true</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->true: This is the true content.<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">false </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false<br><b>{/<font color="blue">false</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->false: This is the false content.<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+</table>
+<p></p>

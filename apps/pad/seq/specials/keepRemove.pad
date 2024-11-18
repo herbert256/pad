@@ -1,0 +1,80 @@
+{table}
+
+{demo}
+{seq 20, name='mySeq'}
+{/demo}
+
+{demo}
+{seq mySeq}
+  {$seq}
+{/seq}
+{/demo}
+
+{demo}
+{seq mySeq, make, even}
+  {$seq}
+{/seq}
+{/demo}
+{demo}
+
+{seq mySeq, keep, even}
+  {$seq}
+{/seq}
+{/demo}
+
+{demo}{seq mySeq, remove, even}
+  {$seq}
+{/seq}{/demo}
+
+{/table}
+
+
+{table}
+
+{demo}
+{seq 40, name='mySeq'}
+{/demo}
+
+{demo}
+{seq mySeq, keep, even}
+  {$seq}
+{/seq}
+{/demo}
+
+{demo}
+{seq mySeq, keep, multiple=5}
+  {$seq}
+{/seq}
+{/demo}
+
+{demo}
+{seq mySeq, keep, even, multiple=5}
+  {$seq}
+{/seq}
+{/demo}
+
+{/table}{table}
+
+{demo}
+{seq 40, name='mySeq'}
+{/demo}
+
+{demo}
+{seq mySeq, remove , even}
+  {$seq}
+{/seq}
+{/demo}
+
+{demo}
+{seq mySeq, remove, multiple=5}
+  {$seq}
+{/seq}
+{/demo}
+
+{demo}
+{seq mySeq, remove, even, multiple=5}
+  {$seq}
+{/seq}
+{/demo}
+
+{/table}

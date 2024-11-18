@@ -1,0 +1,32 @@
+<html>
+
+  <head>
+    <title>PAD - {$title}</title>
+  </head>
+  
+  <body>
+  
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      {include 'menu'}
+      <br><hr width="75%">
+    </center>
+
+    {block}
+      <center>
+        {showTitle}<h2>{$title | replace ( '_', ' ') | ucfirst }</h2>{/showTitle}
+        @content@
+      </center>
+    {/block}
+
+    <center>
+      <br><hr width="75%"><br>
+      {include 'menu'}
+      <p><font size="-3">(c) 2003-2024 Herbert Groot Jebbink</font></p>
+    </center>
+
+  </body>
+
+</html>

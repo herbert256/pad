@@ -1,0 +1,21 @@
+{table}
+
+{demo}{seq '5..2',   name='one'}{/demo}
+
+{demo}{seq '11..14', name='two'}{/demo}
+
+{demo}{seq one}
+  {$seq}
+{/seq}{/demo}
+
+{demo}{seq two}
+  {$seq}
+{/seq}{/demo}
+
+{demo}{seq one, storeHarshad='two'}{/demo}
+
+{demo}{seq two}
+  {$seq}
+{/seq}{/demo}
+
+{/table}

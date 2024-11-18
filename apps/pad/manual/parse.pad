@@ -1,0 +1,26 @@
+{block}
+
+<p>
+PAD parses on the fly (on demand) it searches for the first <b>{close}</b>, then it takes the first <b>{open}</b> before it, and analyses it to see if it is a PAD tag or PAD variable.
+</p>
+
+<p>
+In below example, the {source}{$myVar}{/source} part is parsed first and executed.
+</p>
+
+{example 'miscellaneous/parse/1', skipResult, skipPhp, skipHeader}
+
+<p>
+Lets assume {source}{$myVar}{/source} has the value ABC, then the result will be below, and now the {tag 'pad'} tag will be processed.
+</p>
+
+{example 'miscellaneous/parse/2', skipResult, skipPhp, skipHeader}
+
+<p>
+If you do not put quotes around {source}{$myVar}{/source} then below will be executed, and PAD will give the error that the constant ABC does not exists
+</p>
+
+{example 'miscellaneous/parse/3', skipResult, skipPhp, skipHeader}
+
+
+{/block}

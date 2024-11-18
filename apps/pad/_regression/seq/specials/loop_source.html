@@ -1,0 +1,57 @@
+<p></p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <th bgcolor="#DDDDDD">
+      HTML
+    </th>
+    <th bgcolor="#DDDDDD">
+      RESULT
+    </th>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">seq </font><font color="red">loop<font color="black">,</font> from=4<font color="black">,</font> to=8<font color="black">,</font> name=<font color="black">'</font>mySeq<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">seq </font><font color="red">power=2<font color="black">,</font> from=1<font color="black">,</font> to=16<font color="black">,</font> increment=2</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>seq</font>}</b> <br><b>{/<font color="blue">seq</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->2 8 32 128 512 2048 8192 32768<!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">seq </font><font color="red">mySeq<font color="black">,</font> power=2 </font>}</b><br>  <b>{<font color="green"><font color="red">$</font>seq</font>}</b> <br><b>{/<font color="blue">seq</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->16 32 64 128 256<!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">seq </font><font color="red"><font color="black">'</font>9..16<font color="black">'</font><font color="black">,</font> power=2</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>seq</font>}</b> <br><b>{/<font color="blue">seq</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->512 1024 2048 4096 8192 16384 32768 65536<!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">seq </font><font color="red"><font color="black">'</font>8;4;16;2<font color="black">'</font><font color="black">,</font> power=2</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>seq</font>}</b> <br><b>{/<font color="blue">seq</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->256 16 65536 4<!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+</table>
+<p></p>

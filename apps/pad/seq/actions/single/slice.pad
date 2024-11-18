@@ -1,0 +1,34 @@
+{table}
+
+{demo}{seq '1..25', name='mySeq'}
+{/demo} 
+
+{demo}{seq mySeq}
+  {$seq}
+{/seq}{/demo} 
+
+{demo}{seq mySeq, slice='5'}
+  {$seq}
+{/seq}{/demo} 
+
+{demo}{seq mySeq, slice='-5'}
+  {$seq}
+{/seq}{/demo} 
+
+{demo}{seq mySeq, slice='5|5'}
+  {$seq}
+{/seq}{/demo} 
+
+{demo}{seq mySeq, slice='5|-5'}
+  {$seq}
+{/seq}{/demo} 
+
+{demo}{seq mySeq, slice='-15|5'}
+  {$seq}
+{/seq}{/demo} 
+
+{demo}{seq mySeq, slice='-15|-5'}
+  {$seq}
+{/seq}{/demo} 
+
+{/table}

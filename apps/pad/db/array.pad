@@ -1,0 +1,31 @@
+<h3>array, found</h3>
+
+<table border=1>
+  {array_1}
+    <tr>
+      <td>{$name}</td>
+      <td>{$phone}</td>
+    </tr>
+   @else@
+    <tr>
+      <td>Nothing</td>
+      <td>Found</td>
+    </tr>
+  {/array_1}
+</table>
+
+<h3>array, no records found</h3>
+
+<table border=1>
+  {array_2}
+    <tr>
+      <td>{$name}</td>
+      <td>{$phone}</td>
+    </tr>
+  @else@
+    <tr>
+      <td>Nothing</td>
+      <td>Found</td>
+    </tr>
+  {/array_2}
+</table>

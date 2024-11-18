@@ -1,0 +1,61 @@
+{table}{demo}
+
+{data 'myXML'}
+  <data>
+    <row name="bob"   phone="555-1111" />
+    <row name="jim"   phone="555-2222" />
+    <row name="joe"   phone="555-3333" />
+    <row name="jerry" phone="555-4444" />
+  </data>
+{/data}
+
+{data 'myJSON'}
+  [ { "name": "bob",   "phone": "555-5555" },
+    { "name": "jim",   "phone": "555-6666" },
+    { "name": "joe",   "phone": "555-7777" },      
+    { "name": "jerry", "phone": "555-8888" } ]
+{/data}
+
+{data 'myYAML'}
+  ---
+  - name: bob
+    phone: 555-3425
+  - name: jim
+    phone: 555-4364
+  - name: joe
+    phone: 555-3422
+  - name: jerry
+    phone: 555-4973
+{/data}
+
+{data 'myCSV'}
+  name,phone
+  bob,555-3425
+  jim,555-4364
+  joe,555-3422
+  jerry,555-4973
+{/data}
+
+{data 'myList'}
+  ( 'myXML', 'myJSON', 'myYAML', 'myCSV' )
+{/data}
+
+{myList}
+  <p>
+    <table border=1>
+      <tr>
+        <th colspan="2">
+          {$myList}
+        </th>
+      </tr>
+      {pad data='{$myList}'}
+        <tr>
+          <td>{$name}</td> 
+          <td>{$phone}</td>
+        </tr>
+      {/pad}
+    </table>
+  </p>
+{/myList}
+
+{/demo}{/table}

@@ -1,5 +1,0 @@
-<?php
-  
-  $padInfoXapp = TRUE;
-
-?>

@@ -1,0 +1,252 @@
+<p></p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <th bgcolor="#DDDDDD">
+      HTML
+    </th>
+    <th bgcolor="#DDDDDD">
+      RESULT
+    </th>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000">&lt;h3&gt;From an pad tag&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <h3>
+        <code><span style="color: #000000">From an pad tag</span></code>
+      </h3><code><span style="color: #000000">An example PAD tag<!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000">&lt;h3&gt;From an application tag &lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">app</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <h3>
+        <code><span style="color: #000000">From an application tag</span></code>
+      </h3><code><span style="color: #000000">From a own {tag}<!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000">&lt;h3&gt;From the <b>{<font color="blue">content</font><font color="red"></font>}</b> tag &lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <h3>
+        <code><span style="color: #000000">From the {content} tag</span></code>
+      </h3><code><span style="color: #000000">This is from content<!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000">&lt;h3&gt;From a PHP function !&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <h3>
+        <code><span style="color: #000000">From a PHP function !</span></code>
+      </h3><code><span style="color: #000000">This is a function<!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000">&lt;h3&gt;From an own PAD function &lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">function</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <h3>
+        <code><span style="color: #000000">From an own PAD function</span></code>
+      </h3><code><span style="color: #000000">From a own function<!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000">&lt;h3&gt;From an defined flag&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  Flag 'foo' is true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  Flag 'foo' is false<br><b>{/<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <h3>
+        <code><span style="color: #000000">From an defined flag</span></code>
+      </h3><code><span style="color: #000000">Flag 'foo' is true<!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000">&lt;h3&gt;From a PHP array&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <h3>
+        <code><span style="color: #000000">From a PHP array</span></code>
+      </h3><code><span style="color: #000000">This is a PHP array - 1<br>
+      This is a PHP array - 2<br>
+      This is a PHP array - 3<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000">&lt;h3&gt;A defined constant&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">constant</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">constant</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <h3>
+        <code><span style="color: #000000">A defined constant</span></code>
+      </h3><code><span style="color: #000000">This is a constant - 1<br>
+      This is a constant - 2<br>
+      This is a constant - 3<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000">&lt;h3&gt;From the <b>{<font color="blue">data</font><font color="red"></font>}</b> tag&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <h3>
+        <code><span style="color: #000000">From the {data} tag</span></code>
+      </h3><code><span style="color: #000000">This is a json array - 1<br>
+      This is a json array - 2<br>
+      This is a json array - 3<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000">&lt;h3&gt;From the local _data directory&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <h3>
+        <code><span style="color: #000000">From the local _data directory</span></code>
+      </h3><code><span style="color: #000000">From the _data directory - 1<br>
+      From the _data directory - 2<br>
+      From the _data directory - 3<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+</table>
+<p></p>
+<p></p>
+<h2>
+  Extra files used
+</h2>
+<table border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <th bgcolor="#BBBBBB">
+      PHP
+    </th>
+    <th bgcolor="#BBBBBB">
+      PAD
+    </th>
+    <th bgcolor="#BBBBBB">
+      OTHER
+    </th>
+  </tr>
+  <tr>
+    <td bgcolor="#EEEEEE">
+      _functions/foo.php
+    </td>
+    <td bgcolor="#EEEEEE"></td>
+    <td bgcolor="#EEEEEE"></td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">return </span><span style="color: #DD0000">"From a own function"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+    </td>
+    <td style="vertical-align:top">
+      <code style="color: #000000"></code>
+    </td>
+    <td style="vertical-align:top">
+      <code style="color: #000000"></code>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#EEEEEE">
+      _tags/foo.php
+    </td>
+    <td bgcolor="#EEEEEE"></td>
+    <td bgcolor="#EEEEEE"></td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">return </span><span style="color: #DD0000">"From a own {open}tag{close}"</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+    </td>
+    <td style="vertical-align:top">
+      <code style="color: #000000"></code>
+    </td>
+    <td style="vertical-align:top">
+      <code style="color: #000000"></code>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#EEEEEE"></td>
+    <td bgcolor="#EEEEEE"></td>
+    <td bgcolor="#EEEEEE">
+      prefix/_data/foo.xml
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <code style="color: #000000"></code>
+    </td>
+    <td style="vertical-align:top">
+      <code style="color: #000000"></code>
+    </td>
+    <td style="vertical-align:top">
+      <pre><code style="color: #000000">&lt;xml&gt;<br>  &lt;line foo="From the _data directory - 1" /&gt;<br>  &lt;line foo="From the _data directory - 2" /&gt;<br>  &lt;line foo="From the _data directory - 3" /&gt;<br>&lt;/xml&gt;</code></pre>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#EEEEEE"></td>
+    <td bgcolor="#EEEEEE">
+      prefix/_lib/foo.pad
+    </td>
+    <td bgcolor="#EEEEEE"></td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <code style="color: #000000"></code>
+    </td>
+    <td style="vertical-align:top">
+      <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>foo<font color="black">'</font></font>}</b><br>  This is from content<br><b>{/<font color="blue">content</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>foo<font color="black">'</font></font>}</b><br>  [ { "foo": "This is a json array - 1" },<br>    { "foo": "This is a json array - 2" },<br>    { "foo": "This is a json array - 3" } ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">flag </font><font color="red"><font color="black">'</font>foo<font color="black">'</font></font>}</b>1<b>{/<font color="blue">flag</font><font color="red"></font>}</b></code></pre>
+    </td>
+    <td style="vertical-align:top">
+      <code style="color: #000000"></code>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#EEEEEE">
+      prefix/_lib/foo.php
+    </td>
+    <td bgcolor="#EEEEEE"></td>
+    <td bgcolor="#EEEEEE"></td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">function </span><span style="color: #0000BB">foo </span><span style="color: #007700">() {<br><br>     return </span><span style="color: #DD0000">"This is a function"</span><span style="color: #007700">;<br><br>  }<br><br>  </span><span style="color: #0000BB">$foo </span><span style="color: #007700">= [ </span><span style="color: #DD0000">'This is a PHP array - 1'</span><span style="color: #007700">,<br>           </span><span style="color: #DD0000">'This is a PHP array - 2'</span><span style="color: #007700">,<br>           </span><span style="color: #DD0000">'This is a PHP array - 3'<br>         </span><span style="color: #007700">];<br><br>  </span><span style="color: #0000BB">define </span><span style="color: #007700">( </span><span style="color: #DD0000">'foo'</span><span style="color: #007700">, [ </span><span style="color: #DD0000">'This is a constant - 1'</span><span style="color: #007700">,<br>                    </span><span style="color: #DD0000">'This is a constant - 2'</span><span style="color: #007700">,<br>                    </span><span style="color: #DD0000">'This is a constant - 3'<br>                  </span><span style="color: #007700">] );<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+    </td>
+    <td style="vertical-align:top">
+      <code style="color: #000000"></code>
+    </td>
+    <td style="vertical-align:top">
+      <code style="color: #000000"></code>
+    </td>
+  </tr>
+</table>
+<p></p>

@@ -1,0 +1,25 @@
+{table}{demo}
+
+{content 'myContent'}
+  true: This is the @content@ content. <br>
+@else@
+  false: This is the @content@ content. <br>
+{/content}
+
+{/demo}{demo}
+
+{true content='myContent'}
+  true
+@else@
+  false
+{/true}
+
+{/demo}{demo}
+
+{false content='myContent'}
+  true
+@else@
+  false
+{/false}
+
+{/demo}{/table}

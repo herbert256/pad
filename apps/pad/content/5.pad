@@ -1,0 +1,57 @@
+{table}{demo}
+
+{content 'myContent'}
+  This is the true content. <br>
+@else@
+  This is the false content. <br>
+{/content}
+
+{/demo}{demo}
+
+{true content='myContent', merge='replace'}
+  This is the true base content <br>
+@else@
+  This is the false base content <br>
+{/true}
+
+{/demo}{demo}
+
+{true content='myContent', merge='top'}
+  This is the true base content <br>
+@else@
+  This is the false base content <br>
+{/true}
+
+{/demo}{demo}
+
+{true content='myContent', merge='bottom'}
+  This is the true base content <br>
+@else@
+  This is the false base content <br>
+{/true}
+
+{/demo}{demo}
+
+{false content='myContent', merge='replace'}
+  This is the true base content <br>
+@else@
+  This is the false base content <br>
+{/false}
+
+{/demo}{demo}
+
+{false content='myContent', merge='top'}
+  This is the true base content <br>
+@else@
+  This is the false base content <br>
+{/false}
+
+{/demo}{demo}
+
+{false content='myContent', merge='bottom'}
+  This is the true base content <br>
+@else@
+  This is the false base content <br>
+{/false}
+
+{/demo}{/table}

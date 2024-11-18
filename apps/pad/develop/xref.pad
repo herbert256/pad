@@ -1,0 +1,23 @@
+{if $go}
+
+  {example '{$go}' }
+
+@else@
+
+  {block}
+
+    {dirs}
+
+      <a href="{$padGo}develop/xref&xref={$xref}/{$dir}">{$dir}</a> <br>
+
+    {/dirs}
+
+    {pages}
+
+      <a href="{$padGo}develop/xref&go=/{$page}&xref={$xref|url}">{$page}</a> <br>
+
+    {/pages}
+
+  {/block}
+
+{/if}

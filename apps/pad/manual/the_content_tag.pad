@@ -1,0 +1,34 @@
+{block}
+    With the <b>&open;content&close;</b> tag it is possible to define content for later use.
+{/block}  
+
+{page 'content/1'}
+
+<hr><h4>Open or close tag</h4>
+
+{block}
+<p>If <b>&open;content 'xxx'&close;</b> is used, then the content will not be processed before it is stored in the content store</p>
+<p>If <b>&open;/content 'xxx'&close;</b> is used, then the content will be processed before it is stored in the content store</p>
+{/block}
+
+{page 'content/2'}
+
+<hr><h4>Merge content with content - part 1</h4>
+
+{page 'content/4'}
+
+<hr><h4>Merge content with content - part 2</h4>
+
+{page 'content/3'}
+
+<hr><h4>Merge content with content - part 3</h4>
+
+{page 'content/5'}
+
+<hr><h4>Merge content with content - part 4</h4>
+
+{page 'content/6'}
+
+<hr><h4>Merge content with content - part 5</h4>
+
+{page 'content/7'}

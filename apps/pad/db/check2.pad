@@ -1,0 +1,15 @@
+<h3>check, found</h3>
+
+{check "staff where name = 'jim'"}
+  <p>Jim works here</p>
+@else@
+  <p>Jim does not work here</p>
+{/check}
+
+<h3>check, not found</h3>
+
+{check "staff where name = 'john'"}
+  <p>John works here</p>
+@else@
+  <p>John does not work here</p>
+{/check}

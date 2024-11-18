@@ -1,0 +1,200 @@
+<table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+      A pad tag can have variables/options/parameters
+      <p></p>
+      <table border="0">
+        <tr>
+          <td>
+            - variables are:
+          </td>
+          <td>
+            $name=&lt;expresion&gt;
+          </td>
+        </tr>
+        <tr>
+          <td>
+            - options are:
+          </td>
+          <td>
+            name=&lt;expresion&gt;
+          </td>
+        </tr>
+        <tr>
+          <td>
+            - parameters are: &nbsp;
+          </td>
+          <td>
+            &lt;expresion&gt;
+          </td>
+        </tr>
+      </table>
+      <p>
+        <b>{variables}</b>, <b>{options}</b> & <b>{parameters}</b> belong to the <a href="/?manual&amp;manual=properties">properties</a> tags
+      </p>
+    </td>
+  </tr>
+</table>
+<p></p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <th bgcolor="#DDDDDD">
+      HTML
+    </th>
+    <th bgcolor="#DDDDDD">
+      RESULT
+    </th>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">name=<font color="black">'</font>cool<font color="black">'</font><font color="black">,</font> abc=123<font color="black">,</font> <font color="black">'</font>fiets<font color="black">'</font><font color="black">,</font> <font color="red">$</font>abc=<font color="black">'</font>banaan<font color="black">'</font><font color="black">,</font> <font color="red">$</font>go=<font color="black">'</font>nuts<font color="black">'</font><font color="black">,</font> xyz=789<font color="black">,</font> 12*15</font>}</b><br><br>  &lt;h3&gt;variables&lt;/h3&gt;<br>  <br>  &lt;table border="1"&gt;<br>    &lt;th&gt;name&lt;/th&gt;<br>    &lt;th&gt;value&lt;/th&gt;<br>    <b>{<font color="blue">variables</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">variables</font><font color="red"></font>}</b><br>  &lt;/table&gt;<br><br>  &lt;h3&gt;options&lt;/h3&gt;<br>  <br>  &lt;table border="1"&gt;<br>    &lt;th&gt;name&lt;/th&gt;<br>    &lt;th&gt;value&lt;/th&gt;<br>    <b>{<font color="blue">options</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">options</font><font color="red"></font>}</b><br>  &lt;/table&gt;<br><br>  &lt;h3&gt;parameters&lt;/h3&gt;<br>  <br>  &lt;table border="1"&gt;<br>    &lt;th&gt;name&lt;/th&gt;<br>    &lt;th&gt;value&lt;/th&gt;<br>    <b>{<font color="blue">parameters</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">parameters</font><font color="red"></font>}</b><br>  &lt;/table&gt;<br><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <h3>
+        <code><span style="color: #000000">variables</span></code>
+      </h3>
+      <table border="1">
+        <tr>
+          <th>
+            name
+          </th>
+          <th>
+            value
+          </th>
+        </tr>
+        <tr>
+          <td>
+            abc
+          </td>
+          <td>
+            banaan
+          </td>
+        </tr>
+        <tr>
+          <td>
+            go
+          </td>
+          <td>
+            nuts
+          </td>
+        </tr>
+      </table>
+      <h3>
+        <code><span style="color: #000000">options</span></code>
+      </h3>
+      <table border="1">
+        <tr>
+          <th>
+            name
+          </th>
+          <th>
+            value
+          </th>
+        </tr>
+        <tr>
+          <td>
+            name
+          </td>
+          <td>
+            cool
+          </td>
+        </tr>
+        <tr>
+          <td>
+            abc
+          </td>
+          <td>
+            123
+          </td>
+        </tr>
+        <tr>
+          <td>
+            xyz
+          </td>
+          <td>
+            789
+          </td>
+        </tr>
+      </table>
+      <h3>
+        <code><span style="color: #000000">parameters</span></code>
+      </h3>
+      <table border="1">
+        <tr>
+          <th>
+            name
+          </th>
+          <th>
+            value
+          </th>
+        </tr>
+        <tr>
+          <td>
+            1
+          </td>
+          <td>
+            fiets
+          </td>
+        </tr>
+        <tr>
+          <td>
+            2
+          </td>
+          <td>
+            180
+          </td>
+        </tr>
+      </table><!-- END DEMO RESULT -->
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">name=<font color="black">'</font>cool<font color="black">'</font><font color="black">,</font> abc=123<font color="black">,</font> <font color="black">'</font>fiets<font color="black">'</font><font color="black">,</font> <font color="red">$</font>abc=<font color="black">'</font>banaan<font color="black">'</font><font color="black">,</font> <font color="red">$</font>go=<font color="black">'</font>nuts<font color="black">'</font><font color="black">,</font> xyz=789<font color="black">,</font> 12*15</font>}</b><br><br>  &lt;h3&gt;variables&lt;/h3&gt;<br><br>  The value of variable 'abc' is: <b>{<font color="purple"><font color="red">&</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>variable<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>abc</font>}</b> &lt;br&gt;<br>  The value of variable 'go' is: <b>{<font color="purple"><font color="red">&</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>variable<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>go</font>}</b> &lt;br&gt;<br>  <br>  &lt;h3&gt;options&lt;/h3&gt;<br>  <br>  The value of option 'abc' is: <b>{<font color="purple"><font color="red">&</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>option<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>abc</font>}</b> &lt;br&gt;<br>  The value of option 'xyz' is: <b>{<font color="purple"><font color="red">&</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>option<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>xyz</font>}</b> &lt;br&gt;<br>  <br>  &lt;h3&gt;parameters&lt;/h3&gt;<br>  <br>  The first parameters is: <b>{<font color="purple"><font color="red">&</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>parameter<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>1</font>}</b> &lt;br&gt;<br>  The second parameter is: <b>{<font color="purple"><font color="red">&</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>parameter<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>2</font>}</b> &lt;br&gt;<br>  <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <h3>
+        <code><span style="color: #000000">variables</span></code>
+      </h3><code><span style="color: #000000">The value of variable 'abc' is: banaan<br>
+      The value of variable 'go' is: nuts<br></span></code>
+      <h3>
+        <code><span style="color: #000000">options</span></code>
+      </h3><code><span style="color: #000000">The value of option 'abc' is: 123<br>
+      The value of option 'xyz' is: 789<br></span></code>
+      <h3>
+        <code><span style="color: #000000">parameters</span></code>
+      </h3><code><span style="color: #000000">The first parameters is: fiets<br>
+      The second parameter is: 180<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">name=<font color="black">'</font>cool<font color="black">'</font><font color="black">,</font> abc=123<font color="black">,</font> <font color="black">'</font>fiets<font color="black">'</font><font color="black">,</font> <font color="red">$</font>abc=<font color="black">'</font>banaan<font color="black">'</font><font color="black">,</font> <font color="red">$</font>go=<font color="black">'</font>nuts<font color="black">'</font><font color="black">,</font> xyz=789<font color="black">,</font> 12*15</font>}</b><br><br>  &lt;h3&gt;variables&lt;/h3&gt;<br><br>  Variables can be directy accessed with the $ char &lt;br&gt;<br>  - variable 'abc' - <b>{<font color="green"><font color="red">$</font>abc</font>}</b> &lt;br&gt;<br>  - variable 'go' - <b>{<font color="green"><font color="red">$</font>go</font>}</b> &lt;br&gt;<br>  <br>  &lt;h3&gt;options&lt;/h3&gt;<br><br>  Options can be directy accessed with the # char &lt;br&gt;<br>  - option 'abc' - <b>{<font color="green"><font color="red">#</font>abc</font>}</b> &lt;br&gt;<br>  - option 'xyz' - <b>{<font color="green"><font color="red">#</font>xyz</font>}</b> &lt;br&gt;<br>    <br>  &lt;h3&gt;parameters&lt;/h3&gt;<br>  <br>  Parameters can be directy accesed with the $ char  &lt;br&gt;<br>  - The first parameters is: <b>{<font color="green"><font color="red">$</font>1</font>}</b> &lt;br&gt;<br>  - The second parameter is: <b>{<font color="green"><font color="red">$</font>2</font>}</b> &lt;br&gt;<br>  <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <h3>
+        <code><span style="color: #000000">variables</span></code>
+      </h3><code><span style="color: #000000">Variables can be directy accessed with the $ char<br>
+      - variable 'abc' - banaan<br>
+      - variable 'go' - nuts<br></span></code>
+      <h3>
+        <code><span style="color: #000000">options</span></code>
+      </h3><code><span style="color: #000000">Options can be directy accessed with the # char<br>
+      - option 'abc' - 123<br>
+      - option 'xyz' - 789<br></span></code>
+      <h3>
+        <code><span style="color: #000000">parameters</span></code>
+      </h3><code><span style="color: #000000">Parameters can be directy accesed with the $ char<br>
+      - The first parameters is: fiets<br>
+      - The second parameter is: 180<br>
+      <!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+</table>
+<p></p>

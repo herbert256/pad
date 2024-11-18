@@ -1,0 +1,82 @@
+{table}
+
+{demo}
+{seq 'A..Z',  name='myStore1'}
+{seq '1..20', name='myStore2'}
+
+{seq myStore1, first=5, storeSplice='myStore2|10'}
+
+{seq myStore2}
+  {$seq}
+{/seq}
+{/demo} 
+
+
+{demo}
+{seq 'A..Z',  name='myStore1'}
+{seq '1..20', name='myStore2'}
+
+{seq myStore1, first=5, storeSplice='myStore2|-15'}
+
+{seq myStore2}
+  {$seq}
+{/seq}
+{/demo} 
+
+
+{demo}
+{seq 'A..Z',  name='myStore1'}
+{seq '1..20', name='myStore2'}
+
+{seq myStore1, first=5, storeSplice='myStore2|0|3'}
+
+{seq myStore2}
+  {$seq}
+{/seq}
+{/demo} 
+
+{demo}
+{seq 'A..Z',  name='myStore1'}
+{seq '1..20', name='myStore2'}
+
+{seq myStore1, first=5, storeSplice='myStore2|10|3'}
+
+{seq myStore2}
+  {$seq}
+{/seq}
+{/demo} 
+
+{demo}
+{seq 'A..Z',  name='myStore1'}
+{seq '1..20', name='myStore2'}
+
+{seq myStore1, first=5, storeSplice='myStore2|10|-3|'}
+
+{seq myStore2}
+  {$seq}
+{/seq}
+{/demo} 
+
+{demo}
+{seq 'A..Z',  name='myStore1'}
+{seq '1..20', name='myStore2'}
+
+{seq myStore1, first=5, storeSplice='myStore2|-15|3'}
+
+{seq myStore2}
+  {$seq}
+{/seq}
+{/demo} 
+
+{demo}
+{seq 'A..Z',  name='myStore1'}
+{seq '1..20', name='myStore2'}
+
+{seq myStore1, first=5, storeSplice='myStore2|-15|-3'}
+
+{seq myStore2}
+  {$seq}
+{/seq}
+{/demo} 
+
+{/table}

@@ -1,0 +1,31 @@
+<h3>array, found</h3>
+
+<table border=1>
+  {array "name&comma; phone from staff where phone like '%4%'"}
+    <tr>
+      <td>{$name}</td>
+      <td>{$phone}</td>
+    </tr>
+   @else@
+    <tr>
+      <td>Nothing</td>
+      <td>Found</td>
+    </tr>
+  {/array}
+</table>
+
+<h3>array, no records found</h3>
+
+<table border=1>
+  {array "* from staff where name like '%x%'"}
+    <tr>
+      <td>{$name}</td>
+      <td>{$phone}</td>
+    </tr>
+  @else@
+    <tr>
+      <td>Nothing</td>
+      <td>Found</td>
+    </tr>
+  {/array}
+</table>

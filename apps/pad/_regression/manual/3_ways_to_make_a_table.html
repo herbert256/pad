@@ -1,0 +1,213 @@
+<table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+      <p>
+        The <b>@</b><b>start</b><b>@</b> / <b>@</b><b>end</b><b>@</b> & <b>@</b><b>else</b><b>@</b> constructs act on the number of occurences.
+      </p>
+      <p>
+        The <b>{first}</b> & <b>{last}</b> tags are part of the special <a href="/?manual/properties">Properties</a> tags.
+      </p>
+      <p></p>
+    </td>
+  </tr>
+</table>
+<p></p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <th bgcolor="#DDDDDD">
+      HTML
+    </th>
+    <th bgcolor="#DDDDDD">
+      RESULT
+    </th>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myArray<font color="black">'</font></font>}</b><br>  [1,2,3]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b><br><br>  &lt;table border="1"&gt;<br>    &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br>    &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>  &lt;/table&gt;<br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <table border="1">
+        <tr>
+          <td>
+            Before the first occurrence
+          </td>
+        </tr>
+        <tr>
+          <td>
+            For every occurence
+          </td>
+        </tr>
+        <tr>
+          <td>
+            For every occurence
+          </td>
+        </tr>
+        <tr>
+          <td>
+            For every occurence
+          </td>
+        </tr>
+        <tr>
+          <td>
+            After the last occurrence
+          </td>
+        </tr>
+      </table><!-- END DEMO RESULT -->
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">first</font><font color="red"></font>}</b><br>    &lt;table border="1"&gt;<br>      &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{/<font color="blue">first</font><font color="red"></font>}</b><br>      &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{<font color="blue">last</font><font color="red"></font>}</b><br>      &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>    &lt;/table&gt;<br>  <b>{/<font color="blue">last</font><font color="red"></font>}</b><br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <table border="1">
+        <tr>
+          <td>
+            Before the first occurrence
+          </td>
+        </tr>
+        <tr>
+          <td>
+            For every occurence
+          </td>
+        </tr>
+        <tr>
+          <td>
+            For every occurence
+          </td>
+        </tr>
+        <tr>
+          <td>
+            For every occurence
+          </td>
+        </tr>
+        <tr>
+          <td>
+            After the last occurrence
+          </td>
+        </tr>
+      </table><!-- END DEMO RESULT -->
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">count </font><font color="red"><font color="black">'</font>myArray<font color="black">'</font></font>}</b><br><br>  &lt;table border="1"&gt;<br>    &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{<font color="blue">myArray</font><font color="red"></font>}</b><br>    &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{/<font color="blue">myArray</font><font color="red"></font>}</b><br>    &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>  &lt;/table&gt;<br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">count</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <table border="1">
+        <tr>
+          <td>
+            Before the first occurrence
+          </td>
+        </tr>
+        <tr>
+          <td>
+            For every occurence
+          </td>
+        </tr>
+        <tr>
+          <td>
+            For every occurence
+          </td>
+        </tr>
+        <tr>
+          <td>
+            For every occurence
+          </td>
+        </tr>
+        <tr>
+          <td>
+            After the last occurrence
+          </td>
+        </tr>
+      </table><!-- END DEMO RESULT -->
+    </td>
+  </tr>
+</table>
+<p></p><br>
+<hr>
+<br>
+<table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+      <p>
+        Now the same code with an empty array
+      </p>
+      <p>
+        The <b>@</b><b>else</b><b>@</b> construct comes active when there are zero occurences for a PAD tag.
+      </p>
+    </td>
+  </tr>
+</table>
+<p></p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <th bgcolor="#DDDDDD">
+      HTML
+    </th>
+    <th bgcolor="#DDDDDD">
+      RESULT
+    </th>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myArray<font color="black">'</font></font>}</b><br> []<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b><br><br>  &lt;table border="1"&gt;<br>    &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br>    &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>  &lt;/table&gt;<br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <p>
+        <code><span style="color: #000000">No occurences at all</span></code>
+      </p><code><span style="color: #000000"><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">first</font><font color="red"></font>}</b><br>    &lt;table border="1"&gt;<br>      &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{/<font color="blue">first</font><font color="red"></font>}</b><br>      &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{<font color="blue">last</font><font color="red"></font>}</b><br>      &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>    &lt;/table&gt;<br>  <b>{/<font color="blue">last</font><font color="red"></font>}</b><br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <p>
+        <code><span style="color: #000000">No occurences at all</span></code>
+      </p><code><span style="color: #000000"><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">count </font><font color="red"><font color="black">'</font>myArray<font color="black">'</font></font>}</b><br><br>  &lt;table border="1"&gt;<br>    &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{<font color="blue">myArray</font><font color="red"></font>}</b><br>    &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{/<font color="blue">myArray</font><font color="red"></font>}</b><br>    &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>  &lt;/table&gt;<br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">count</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <p>
+        <code><span style="color: #000000">No occurences at all</span></code>
+      </p><code><span style="color: #000000"><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+</table>
+<p></p>

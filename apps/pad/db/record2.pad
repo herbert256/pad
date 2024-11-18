@@ -1,0 +1,15 @@
+<h3>record, found</h3>
+  
+{record "* from staff where name = 'jim'"}
+  <p>Jim's phone number is {$phone}, his salary is {$salary}</p>
+@else@
+  <p>Jim does not work here</p>
+{/record}
+
+<h3>record, not found</h3>
+  
+{record "* from staff where name = 'john'"}
+  <p>John's phone number is {$phone}, his salary is {$salary}</p>
+@else@
+  <p>John does not work here</p>
+{/record}

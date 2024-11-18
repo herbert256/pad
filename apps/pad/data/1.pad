@@ -1,0 +1,21 @@
+{table}{demo}
+
+{data 'myData'}
+  [
+    { "name": "joe",   "phone": "555-3425" },
+    { "name": "jim",   "phone": "555-2364" },
+    { "name": "jack",  "phone": "555-3422" },
+    { "name": "jerry", "phone": "555-4973" }
+  ]
+{/data}
+
+<table border="1">
+  {myData}
+    <tr>
+      <td>{$name}</td> 
+      <td>{$phone}</td>
+    </tr>  
+  {/myData}
+</table>
+
+{/demo}{/table}

@@ -1,0 +1,42 @@
+{table withPHP}
+
+{demo}
+
+{data 'myData'}
+  (1,2,3)
+{/data}
+
+{content 'myContent'}
+  myContent
+{/content}
+
+{/demo}{demo}
+
+1 - {var_null}  <br>
+2 - {var_true}  <br>
+3 - {var_false} <br>
+4 - {var_value} <br>
+5 - {arr_array} <br>
+6 - {arr_empty}
+
+{/demo}{demo}
+
+1 - {var_null}  true @else@ false {/var_null} <br>
+2 - {var_true}  true @else@ false {/var_true} <br>
+3 - {var_false} true @else@ false {/var_false} <br>
+4 - {var_value} true @else@ false {/var_value} <br>
+5 - {arr_array} true @else@ false {/arr_array} <br>
+6 - {arr_empty} true @else@ false {/arr_empty}
+
+{/demo}{demo}
+
+1 - {var_null  content='myContent', data='myData'} <br>
+2 - {var_true  content='myContent', data='myData'} <br>
+3 - {var_false content='myContent', data='myData'} <br>
+4 - {var_value content='myContent', data='myData'} <br>
+5 - {arr_array content='myContent', data='myData'} <br>
+6 - {arr_empty content='myContent', data='myData'} 
+
+{/demo}
+
+{/table}

@@ -1,0 +1,96 @@
+<h3>part 1</h3>  
+{set $abc = (15 gt 33) } eq {$abc}
+
+
+<h3>part 3</h3>
+
+{if ( PHP_EOL EQ "\n" ) and ( PHP_EOL EQ 0x0a) }
+  ok
+@else@
+  NOK
+{/if}
+
+<h3>part 4</h3>
+
+{set $abc = ''}
+{set $klm = 0}
+{set $xyz = 'ok'}
+
+<h3>part 6</h3>
+
+{set $abc = 'abc'}
+{set $xyz = 'xyz'}
+
+{$abc | mid (2,1)}
+{$abc | mid ( 2 , 1 ) }
+
+<h3>part 10</h3>
+
+{if 5 gt 3}
+  ok
+@else@
+  NOK
+{/if}
+
+{if 3 gt 5}
+  NOK
+@else@
+  ok
+{/if}
+
+{if 5 gt 3 and 7 gt 6}
+  ok
+@else@
+  NOK
+{/if}
+
+
+{if 3 gt 5 or 6 gt 7}
+  NOK
+@else@
+  ok
+{/if}
+
+
+{if 1 gt 1 and  1 gt 1 and 1 gt 1 and 1 gt 1 and 1 gt 1 }
+  NOK
+@else@
+  ok
+{/if}
+
+{if 1 gt 1 and  1 gt 1 and 1 gt 1 and 1 gt 1 or 5 gt 4 }
+  ok
+@else@
+  NOK
+{/if}
+
+
+{if (1 gt 1) or ( 1 gt 1 or ( 1 gt 1 or (1 gt 1 or (5 gt 4) )  )  ) }
+  ok
+@else@
+  NOK
+{/if}
+
+{if (1 gt 1) or ( 1 gt 1 or ( 1 gt 1 or (1 gt 1 or (5 gt 6) )  )  ) }
+  NOK
+@else@
+  ok
+{/if}
+
+<h3>part 11c</h3>
+
+{if 3 gt 5 or 6 gt 7}
+  NOK
+@else@
+  ok
+{/if}
+{if 3 gt 5 or 6 gt 7}
+  NOK
+@else@
+  ok
+{/if}
+{if 3 gt 5 or 6 gt 7}
+  NOK
+@else@
+  ok
+{/if}

@@ -1,0 +1,19 @@
+<blockquote>
+
+  {block}
+
+    {hits}
+
+      {if $pages}
+        <a href="@pad@xref/pages{?pages}{?type}{?item}">{$item}</a>
+      @else@
+        {$item}
+      {/if}
+
+      <br>
+
+    {/hits}
+
+  {/block}
+
+</blockquote>

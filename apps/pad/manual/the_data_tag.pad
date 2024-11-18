@@ -1,0 +1,30 @@
+{block}
+    With the <b>&open;data&close;</b> tag it is possible to define data for later use.
+{/block}  
+
+{embed 'data/1'}
+
+<hr>
+
+{block}
+  Data can be in xml/json/yaml/csv format.
+  <br><br>
+  There is also an own PAD list format with opening ( and closing )</p>
+{/block}
+
+{page 'data/2'}
+
+<hr>
+
+{block}
+<p>
+If <b>&open;data 'xxx'&close;</b> is used, then the data will not be processed before it is stored in the data store,<br>all above examples use it in this way.</p>
+<p>If <b>&open;/data 'xxx'&close;</b> is used, then the data will be processed before it is stored in the data store.<br> Below a crazy example how this can be used: <br>
+- first there is a JSON data definition<br>
+- then this JSON data is converted to CSV data<br>
+- then this CSV data is converted to XML data<br>
+- then this XML data is converted to YAML data<br>
+- then this YAML data is used to show a HTML table.
+{/block}
+
+{page 'data/3'}

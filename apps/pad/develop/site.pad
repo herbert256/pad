@@ -1,0 +1,25 @@
+{pagesList}
+
+  {if $type eq 'complete'}
+
+    <br><br>
+    {page '{$item}', type='get', ignore}
+    <br><br><hr><br>
+
+  @else@
+
+    <br><br>
+    {hrlines}<h1 style="margin:0;">{$item}</h1>{/hrlines}
+    <br>
+
+    {block}
+      {if $type eq 'sandbox'}
+        {page '{$item}'}
+      @else@
+        {ajax '{$item}'}
+      {/if} 
+    {/block}
+
+  {/if}
+
+{/pagesList}

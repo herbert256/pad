@@ -1,0 +1,46 @@
+{table}
+ 
+{demo}{seq '5;10;15;20',  name='one'}{/demo}
+{demo}{seq '15;20;25;30', name='two'}{/demo}
+
+{demo}{seq one}
+  {$seq}
+{/seq}{/demo}
+
+{demo}{seq two}
+  {$seq}
+{/seq}{/demo}
+
+{demo}{seq one, append='two'}
+  {$seq}
+{/seq}{/demo}
+
+{demo}{seq one, prepend='two'}
+  {$seq}
+{/seq}{/demo}
+
+{demo}{seq one, combine='two'}
+  {$seq}
+{/seq}{/demo}
+
+{demo}{seq one, merge='two'}
+  {$seq}
+{/seq}{/demo}
+
+{demo}{seq one, difference='two'}
+  {$seq}
+{/seq}{/demo}
+
+{demo}{seq one, intersection='two'}
+  {$seq}
+{/seq}{/demo}
+
+{demo}{seq one, onlyNow='two'}
+  {$seq}
+{/seq}{/demo}
+
+{demo}{seq one, onlyStore='two'}
+  {$seq}
+{/seq}{/demo}
+
+{/table}

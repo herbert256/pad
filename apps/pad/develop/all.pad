@@ -1,0 +1,22 @@
+{padListFiltered}
+
+  {block}
+
+    <br><br>
+    <h3><a href="{$padGo}develop/show&item={$dir}/{$file}">{$item}</a></h3>
+
+    {if $allType eq 'example'}
+      {example '{$item}', skipWhenEmpty, skipNames}
+    @else@
+      <table style="border-style: dashed; dotted;" cellspacing="15">
+        <tr>
+          <td><center>{page '{$item}', type='{$allType}', include, ignore}</center></td>
+        </tr>
+      </table>
+    {/if}
+
+  {/block}
+
+{/padListFiltered}
+
+<!-- PAD: SKIP REGRESSION -->

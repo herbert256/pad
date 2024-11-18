@@ -1,5 +1,0 @@
-<?php
-
-  $padSeqSeq = 'list';
-
-?>

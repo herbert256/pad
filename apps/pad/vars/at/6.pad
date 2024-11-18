@@ -1,0 +1,64 @@
+{table}{demo} 
+
+<table border=1>
+  {staff}
+    {first@staff}
+      <tr>
+        {fields@staff}
+          <th> {$name} </th>
+        {/fields@staff}
+      </tr>
+    {/first@staff}
+    <tr>
+      {fields@staff}
+        <td> {$value} </td>
+      {/fields@staff}
+    </tr>
+  {/staff}
+</table>
+
+{/demo}{demo}
+
+<table border=1>
+  {staff}
+    {true}
+      {first@-2} 
+        <tr>
+          {fields@-3}
+            <th> {$name} </th>
+          {/fields@-3}
+        </tr>
+      {/first@-2}
+      <tr>
+        {fields@-2}
+          <td> {$value} </td>
+        {/fields@-2}
+      </tr>
+    {/true}
+  {/staff}
+</table>
+
+{/demo}{demo}
+
+<table border=1>
+  {staff}
+    {first@3} 
+      <tr>
+        {fields@3}
+          <th> {$name} </th>
+        {/fields@3}
+      </tr>
+    {/first@3}
+    <tr>
+      {fields@3}
+        <td> {$value} </td>
+      {/fields@3}
+    </tr>
+  {/staff}
+</table>
+
+<p>Level 3 because this part is wrapped in the {tag 'table'} and {tag 'demo'} tags
+
+{/demo}{demo}
+
+{/table}

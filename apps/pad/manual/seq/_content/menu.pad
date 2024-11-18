@@ -1,0 +1,8 @@
+{nows}
+    {if $go eq $now}
+      {$text@nows}
+    @else@
+      <a href="@pad@manual/seq/{$now}&go={$now}">{$text@nows}</a>
+    {/if}
+    &nbsp;
+{/nows}

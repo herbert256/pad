@@ -1,0 +1,69 @@
+<p></p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <th bgcolor="#DDDDDD">
+      PHP
+    </th>
+    <th bgcolor="#DDDDDD">
+      HTML
+    </th>
+    <th bgcolor="#DDDDDD">
+      RESULT
+    </th>
+  </tr>
+  <tr>
+    <td style="vertical-align:top" rowspan="4">
+      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br>  <br>  $var_null  </span><span style="color: #007700">= </span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$var_true  </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$var_false </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$var_value </span><span style="color: #007700">= </span><span style="color: #DD0000">'hello'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$arr_array </span><span style="color: #007700">= [</span><span style="color: #0000BB">1</span><span style="color: #007700">,</span><span style="color: #0000BB">2</span><span style="color: #007700">,</span><span style="color: #0000BB">3</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$arr_empty </span><span style="color: #007700">= [];<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+    </td>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myData<font color="black">'</font></font>}</b><br>  (1,2,3)<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  myContent<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000">1 - <b>{<font color="blue">var_null</font><font color="red"></font>}</b>  &lt;br&gt;<br>2 - <b>{<font color="blue">var_true</font><font color="red"></font>}</b>  &lt;br&gt;<br>3 - <b>{<font color="blue">var_false</font><font color="red"></font>}</b> &lt;br&gt;<br>4 - <b>{<font color="blue">var_value</font><font color="red"></font>}</b> &lt;br&gt;<br>5 - <b>{<font color="blue">arr_array</font><font color="red"></font>}</b> &lt;br&gt;<br>6 - <b>{<font color="blue">arr_empty</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->1 -<br>
+      2 -<br>
+      3 -<br>
+      4 - hello<br>
+      5 -<br>
+      6 -<!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000">1 - <b>{<font color="blue">var_null</font><font color="red"></font>}</b>  true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">var_null</font><font color="red"></font>}</b> &lt;br&gt;<br>2 - <b>{<font color="blue">var_true</font><font color="red"></font>}</b>  true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">var_true</font><font color="red"></font>}</b> &lt;br&gt;<br>3 - <b>{<font color="blue">var_false</font><font color="red"></font>}</b> true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">var_false</font><font color="red"></font>}</b> &lt;br&gt;<br>4 - <b>{<font color="blue">var_value</font><font color="red"></font>}</b> true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">var_value</font><font color="red"></font>}</b> &lt;br&gt;<br>5 - <b>{<font color="blue">arr_array</font><font color="red"></font>}</b> true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">arr_array</font><font color="red"></font>}</b> &lt;br&gt;<br>6 - <b>{<font color="blue">arr_empty</font><font color="red"></font>}</b> true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">arr_empty</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->1 -<br>
+      2 - true<br>
+      3 - false<br>
+      4 - hello<br>
+      5 - true true true<br>
+      6 - false<!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000">1 - <b>{<font color="blue">var_null </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b> &lt;br&gt;<br>2 - <b>{<font color="blue">var_true </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b> &lt;br&gt;<br>3 - <b>{<font color="blue">var_false </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b> &lt;br&gt;<br>4 - <b>{<font color="blue">var_value </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b> &lt;br&gt;<br>5 - <b>{<font color="blue">arr_array </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b> &lt;br&gt;<br>6 - <b>{<font color="blue">arr_empty </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->1 -<br>
+      2 - myContent myContent myContent<br>
+      3 -<br>
+      4 - myContent myContent myContent<br>
+      5 - myContent myContent myContent<br>
+      6 -<!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+</table>
+<p></p>
