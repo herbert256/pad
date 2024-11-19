@@ -9,6 +9,9 @@
     if ( ! str_starts_with ( $value, 'seq/' ) )
       unset ( $go [$key] );
 
+  if ( count ( $go ) > 15 )
+    $go = array_slice ( $go, 0, 15 );
+
   $title = "seq - Xref - $type - $item";
 
 ?>

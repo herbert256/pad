@@ -15,7 +15,7 @@
   }
 
  if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'parse', 'start',  '{' . $padBetween . '}');
- if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'parse', 'before', substr ( $padPad [$pad], $padInfoTraceParseStart, $padInfoTraceParseEnd ) ); 
- if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'parse', 'after',  substr ( $padPad [$pad], $padEnd [$pad] + 1 ) ); 
+ if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'parse', 'before', substr ( $padOut [$pad], $padInfoTraceParseStart, $padInfoTraceParseEnd ) ); 
+ if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'parse', 'after',  substr ( $padOut [$pad], $padEnd [$pad] + 1 ) ); 
 
 ?>

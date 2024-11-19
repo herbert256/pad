@@ -3,6 +3,9 @@
 
   function db ( $sql, $vars = [] ) {
 
+    if ( ! function_exists ( 'mysqli_connect' ) )
+      return FALSE;
+
     global $padSqlConnect, $padSqlHost, $padSqlUser, $padSqlPassword, $padSqlDatabase;
     
     if ( ! isset ( $padSqlConnect ) )
@@ -15,12 +18,15 @@
   
   function padDb ( $sql, $vars = [] ) {
 
-    global $padPadSqlConnect, $padPadSqlHost , $padPadSqlUser , $padPadSqlPassword , $padPadSqlDatabase;
+    if ( ! function_exists ( 'mysqli_connect' ) )
+      return FALSE;
     
-    if ( ! isset ( $padPadSqlConnect ) )
-      $padPadSqlConnect = padDbConnect ( $padPadSqlHost , $padPadSqlUser , $padPadSqlPassword , $padPadSqlDatabase );
+    global $padSqlPadConnect, $padSqlPadHost , $padSqlPadUser , $padSqlPadPassword , $padSqlPadDatabase;
     
-    return padDbPart2 ($padPadSqlConnect, $sql, $vars);
+    if ( ! isset ( $padSqlPadConnect ) )
+      $padSqlPadConnect = padDbConnect ( $padSqlPadHost , $padSqlPadUser , $padSqlPadPassword , $padSqlPadDatabase );
+    
+    return padDbPart2 ($padSqlPadConnect, $sql, $vars);
     
   }
 

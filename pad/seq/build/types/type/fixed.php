@@ -1,6 +1,5 @@
 <?php
 
-  $padSeqCheck = FALSE;
   $padSeqTry   = PHP_INT_MAX;
   $padSeqFixed = include PAD . "seq/types/$padSeqSeq/fixed.php";
  

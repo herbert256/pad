@@ -38,7 +38,7 @@
   $padStart      [$pad] = 0;
   $padEnd        [$pad] = 0;
 
-  $padPad        [$pad] = '';
+  $padOut        [$pad] = '';
   $padResult     [$pad] = '';
  
   $padHit        [$pad] = FALSE;

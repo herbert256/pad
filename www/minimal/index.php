@@ -1,7 +1,5 @@
 <?php
 
-  $app = 'minimal';
-  
-  include '../pad.php';
+  include '/pad/start.php';
 
 ?>

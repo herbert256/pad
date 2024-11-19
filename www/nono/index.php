@@ -1,7 +1,5 @@
 <?php
 
-  $app = 'nono';
-  
-  include '../pad.php';
+  include "../pad.php";
 
 ?>

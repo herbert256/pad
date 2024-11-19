@@ -670,12 +670,12 @@
 
   function padPad ($value) {
 
-    global $padPad, $padStart, $padEnd, $pad;
+    global $padOut, $padStart, $padEnd, $pad;
 
-    $padPad [$pad] = 
-        substr ( $padPad [$pad], 0, $padStart [$pad] )
+    $padOut [$pad] = 
+        substr ( $padOut [$pad], 0, $padStart [$pad] )
       . $value
-      . substr ( $padPad [$pad],    $padEnd [$pad]+1 );
+      . substr ( $padOut [$pad],    $padEnd [$pad]+1 );
     
   }
   

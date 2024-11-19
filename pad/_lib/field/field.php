@@ -18,6 +18,9 @@
   
   function padField ( $field, $type, $lvl=0 ) {
 
+    if ( $field == 'pad' )
+      return $GLOBALS ['padGo'];
+
     if ( $GLOBALS ['padInfo'] ) 
       include PAD . 'events/fieldStart.php';
 

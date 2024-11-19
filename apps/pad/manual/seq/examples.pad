@@ -1,6 +1,6 @@
 {data 'list'} 
   (
-    'seqs',
+    'sequences',
     'specials',
     'actions/single',
     'actions/double',
@@ -9,8 +9,7 @@
     'keepRemove',
     'store/actions',
     'store/operations',
-    'one',
-    'entry',
+    'one'
   )
 {/data}
 
@@ -40,15 +39,15 @@
 
   <br><br><hr>
 
-  {if $example eq 'seqs' }
-    <h4>{$item}</h4>
+  {if $example eq 'sequences' }
+    <h3>{$item}</h3>
         {exists APP . 'seq/basic/{$item}.pad'}
-        <h5>basic</h5>
+        <h5>{echo 'seq/basic/{$item}.pad}</h5>
         {example 'seq/basic/{$item}', onlyResult}
       {/exists}
     {list}
       {exists APP . 'seq/{$list}/{$item}.pad'}
-        <h5>{$list}</h5>
+        <h5>{echo 'seq/{$list}/{$item}.pad}</h5>
         {example 'seq/{$list}/{$item}', onlyResult}
       {/exists}
     {/list}

@@ -1,14 +1,14 @@
 <?php
 
-  global $pad, $padPad;
+  global $pad, $padOut;
 
   $padFunctionPad  = $pad;
-  $padFunctionData = $padPad [$pad];
+  $padFunctionData = $padOut [$pad];
 
   $padFunctionReturn = include PAD . 'catch/function.php';
 
   $pad           = $padFunctionPad;
-  $padPad [$pad] = $padFunctionData;
+  $padOut [$pad] = $padFunctionData;
 
   return $padFunctionReturn;
 

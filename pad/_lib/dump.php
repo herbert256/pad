@@ -171,8 +171,8 @@
     if ( isset ( $GLOBALS ['padSqlConnect'     ] ) ) 
       padDumpLines ('MySQL-App', $GLOBALS ['padSqlConnect']      );
     
-    if ( isset ( $GLOBALS ['padPadSqlConnect' ] ) ) 
-      padDumpLines ('MySQL-pad', $GLOBALS ['padPadSqlConnect']  );
+    if ( isset ( $GLOBALS ['padSqlPadConnect' ] ) ) 
+      padDumpLines ('MySQL-pad', $GLOBALS ['padSqlPadConnect']  );
 
   }
 
@@ -394,7 +394,7 @@
         
         $ignored [$key] = 1;
 
-      elseif ( $key == 'padPadSqlConnect' )
+      elseif ( $key == 'padSqlPadConnect' )
         
         $ignored [$key] = 1;
 

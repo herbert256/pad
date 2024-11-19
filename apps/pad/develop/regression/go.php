@@ -20,10 +20,11 @@
 
     if ( $status == 'go' ) {
 
-      $old   = padFileGetContents($store);
-      $curl  = getPage ($item ,1);
-      $good  = str_starts_with ( $curl ['result'], '2');
-      $new   = $curl ['data'] ?? '';
+      $old  = padFileGetContents($store);
+      $curl = getPage ($item ,1);
+      $good = str_starts_with ( $curl ['result'], '2');
+      $new  = $curl ['data'] ?? '';
+      $new  = str_replace ( "\r\n", "\n", $new );
 
       if     ( ! $good                            ) $status = 'error';
       elseif ( ! file_exists ($store)             ) $status = 'new';

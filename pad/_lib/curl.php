@@ -1,6 +1,36 @@
 <?php
 
 
+  function padNoCurl ( $output ) {
+
+    set_error_handler ( 'padErrorThrow' );
+    $errorReporting = error_reporting (0);
+
+    try {
+
+      $result = file_get_contents ( $output ['url'] );
+
+      if ( $result === FALSE )
+        return padCurlError ( $output, 'file_get_contents = FALSE' );
+
+    } catch (Throwable $e) {
+
+      return padCurlError ( $output,  $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage() );
+
+    }
+
+    restore_error_handler ();
+    error_reporting ( $errorReporting );
+
+    $output ['data']   = $result;
+    $output ['result'] = '200';
+    $output ['type']   = padContentType ( $output ['data'] );
+
+    return $output;
+
+  }
+
+
   function padCurl ($input) {
 
     //  Required input parms
@@ -101,6 +131,9 @@
     }
 
     $output ['options'] = $options;      
+
+    if ( ! function_exists ( 'curl_init') )
+      return padNoCurl ( $output );
 
     set_error_handler ( 'padErrorThrow' );
     $errorReporting = error_reporting (0);
@@ -210,7 +243,7 @@
 
   }
 
-  function padCurlError ($output, $error) {
+  function padCurlError ( $output, $error ) {
 
     $output ['ERROR']  = $error;
     $output ['result'] = '999';

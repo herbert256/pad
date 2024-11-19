@@ -1,13 +1,12 @@
 <?php
-  
-  $padDir  = dirname (__FILE__);
-  $padHome = substr ( $padDir, 0, strpos  ( $padDir, 'apps/') - 1);
-  $padApp  = substr ( $padDir,    strrpos ( $padDir, '/'    ) + 1);
 
-  define ( 'APP', "$padHome/apps/$padApp/" );
-  define ( 'PAD', "$padHome/pad/"          );
-  define ( 'DAT', "$padHome/data/"         );
+  $padOS = substr ( strtolower ( php_uname ('s') ), 0, 3);
 
-  include PAD . 'pad.php';
+  if     ( $padOS == 'dar' ) $padHome = '/Users/herbert/pad';
+  elseif ( $padOS == 'win' ) $padHome = '/pad';
+  elseif ( $padOS == 'lin' ) $padHome = '/home/herbert/pad';
+  else                       die ( 'unknow host system' );
+
+  include "$padHome/start.php";
 
 ?>

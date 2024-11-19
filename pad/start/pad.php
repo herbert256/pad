@@ -6,6 +6,6 @@
   include PAD . 'start/level.php'; 
   include PAD . 'start/end.php';
   
-  return $padPad [$pad+1] ;
+  return $padOut [$pad+1] ;
 
 ?>

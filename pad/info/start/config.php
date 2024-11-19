@@ -3,8 +3,6 @@
   if ( ! $padInfo )
     return;
 
-  set_time_limit ( 15 );
-
   $padInfoCnt++;
 
   include_once PAD . 'info/_lib/_lib.php';

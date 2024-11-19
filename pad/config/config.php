@@ -38,10 +38,10 @@
 
   // SQL parms - pad internal
 
-  $padPadSqlHost           = '127.0.0.1';
-  $padPadSqlDatabase       = 'pad';
-  $padPadSqlUser           = 'pad';
-  $padPadSqlPassword       = 'pad';
+  $padSqlPadHost           = '127.0.0.1';
+  $padSqlPadDatabase       = 'pad';
+  $padSqlPadUser           = 'pad';
+  $padSqlPadPassword       = 'pad';
 
   // SQL parms - application
 

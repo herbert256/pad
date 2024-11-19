@@ -3,7 +3,7 @@
   if ( ! isset ( $example ) or ! $example )
     $example = 'specials';
 
-  if ( $example == 'seqs')
+  if ( $example == 'sequences')
     $examples = sequenceDir ( APP . "seq/basic" ) ;
   else
     $examples = sequenceDir ( APP . "seq/$example" ) ;

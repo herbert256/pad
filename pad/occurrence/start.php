@@ -6,7 +6,7 @@
 
   $padOccurStart [$pad] [$padOccur[$pad]] = TRUE;
 
-  $padPad     [$pad] = $padBase [$pad];
+  $padOut     [$pad] = $padBase [$pad];
   $padKey     [$pad] = key($padData [$pad]);
   $padCurrent [$pad] = $padData [$pad] [$padKey [$pad]];
  

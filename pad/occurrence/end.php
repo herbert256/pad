@@ -1,6 +1,6 @@
 <?php
     
-  $padResult [$pad] .= $padPad [$pad];
+  $padResult [$pad] .= $padOut [$pad];
     
   if ( $GLOBALS ['padInfo'] )
     include PAD . 'events/occurEnd.php';  

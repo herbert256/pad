@@ -3,19 +3,19 @@
   if ( $padRestart )
     return include PAD . 'start/enter/restart.php';    
     
-  $padEnd [$pad] = strpos ( $padPad [$pad], '}' );
+  $padEnd [$pad] = strpos ( $padOut [$pad], '}' );
 
   if ( $padEnd [$pad] === FALSE )
     return include PAD . 'level/end.php';
 
-  $padStart [$pad] = strrpos ( $padPad [$pad], '{', $padEnd [$pad] - strlen($padPad [$pad]) );
+  $padStart [$pad] = strrpos ( $padOut [$pad], '{', $padEnd [$pad] - strlen($padOut [$pad]) );
   
   if ( $padStart [$pad] === FALSE ) {
-    $padPad [$pad] = substr_replace ( $padPad [$pad], '&close;', $padEnd [$pad], 1 );
+    $padOut [$pad] = substr_replace ( $padOut [$pad], '&close;', $padEnd [$pad], 1 );
     return;
   }
 
-  $padBetween = substr ( $padPad [$pad], $padStart [$pad] + 1, $padEnd [$pad] - $padStart [$pad] - 1 );
+  $padBetween = substr ( $padOut [$pad], $padStart [$pad] + 1, $padEnd [$pad] - $padStart [$pad] - 1 );
   include PAD . 'level/between.php';
 
   if ( ctype_space ( $padFirst ) ) 

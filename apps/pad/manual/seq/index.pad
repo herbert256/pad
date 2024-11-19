@@ -64,7 +64,7 @@ in below 2 examples from/to/rows/random/max are options.
 
 {block}
 
-Stores are stored sequence lists in from below example, mySeq is a store.
+Stores are stored sequence lists in below example, mySeq is a store.
 
 {table}
 {demo}{seq range='20..30', store='mySeq'} {/demo}
@@ -81,7 +81,7 @@ Stores are stored sequence lists in from below example, mySeq is a store.
 
 {block}
 
-Operations are a seq that is executed on a sequence list entry when building the list<br>
+Operations are a sequence that is executed on a sequence list entry when building the list<br>
 in below 2 examples even/add are operations.
 
 {table}
@@ -119,9 +119,7 @@ in below 2 examples shuffle/reverse are actions.
 
 
 
-<h3>Ones</h3>
-
-{block}
+<h3>Ones</h3>{block}
 
 Executing a 'one' on a sequence list will reduce the sequence list to a single value,<br>
 in from below 2 examples, first/sum are ones.
@@ -140,9 +138,9 @@ in from below 2 examples, first/sum are ones.
 
 
 
-<h3>Options</h3>{block}
+<h3>operations/actions/one as options</h3>{block}
 
-<br><p>operations/actions/ones can be added as options to a seq tag
+operations/actions/ones can be added as options to a seq tag
 
 {table}{demo}
 
@@ -170,7 +168,7 @@ in from below 2 examples, first/sum are ones.
 
 <h3>Option with parameter</h3>{block}
 
-<br><p>when an operation/action/one, that is used as an option, has a parameter<br>
+when an operation/action/one, that is used as an option, has a parameter<br>
 use a '|' to give the parameter.
 
 {table}{demo}
@@ -191,7 +189,7 @@ use a '|' to give the parameter.
 
 <h3>Parameters</h3>{block}
 
-<br><p>operation/actions/ones can be added as a parameter to a seq tag,<br>
+operation/actions/ones can be added as a parameter to a seq tag,<br>
 but naming conflicts are possible and then above option way must be used.
 
 {table}{demo}
@@ -218,9 +216,9 @@ but naming conflicts are possible and then above option way must be used.
 
 
 
-<h3>Chain</h3>{block}
+<h3>Chain</h3>
 
-<br><p>operation/actions/ones can be used in a chain.
+{block}operation/actions/ones can be used in a chain.
 
 {table}{demo}
 
@@ -238,7 +236,7 @@ but naming conflicts are possible and then above option way must be used.
 
 {block}
 
-  <br><p>Shortcuts for the loop/list/range sequences
+  Shortcuts for the loop/list/range sequences
 
   {table}
     {demo}{seq loop, rows=10}  {$seq} {/seq}{/demo}
@@ -249,14 +247,14 @@ but naming conflicts are possible and then above option way must be used.
     {demo}{seq '11..20'} {$seq} {/seq}{/demo}
   {/table}
 
-  <br><p>Shortcuts for sequences
+  Shortcuts for sequences
 
   {table}
     {demo}{golomb rows=10}  {$golomb} {/golomb}{/demo}
     {demo}{prime  rows=10}  {$prime}  {/prime}{/demo}
   {/table}
 
-  <br><p>Shortcuts for stores
+  Shortcuts for stores
 
   {table}
     {demo}{seq range='10..20', name='mySeq'}  {/demo}
@@ -270,7 +268,7 @@ but naming conflicts are possible and then above option way must be used.
 
 {block}
 
-  <br><p>Inside a nested sequence the value of an entry has many names.
+  Inside a nested sequence the value of an entry has many names.
 
 {table}
 

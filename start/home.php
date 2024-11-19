@@ -7,6 +7,4 @@
   elseif ( $padOS == 'lin' ) $padHome = '/home/herbert/pad';
   else                       die ( 'unknow host system' );
 
-  include "$padHome/start.php";
-
 ?>

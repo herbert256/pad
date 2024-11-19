@@ -1,5 +1,8 @@
 <?php
 
+  if ( ! function_exists ( 'gmp_prob_prime' ) )
+    return TRUE;
+  
   if ( ! gmp_prob_prime ( $padSeqLoop ) )
     return false;
 

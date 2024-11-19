@@ -1,7 +1,5 @@
 <?php
 
-  set_time_limit ( 5 );
-
   include_once PAD . 'inits/const.php';
   include_once PAD . 'inits/lib.php';
 

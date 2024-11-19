@@ -7,12 +7,12 @@
 
   do {
 
-    $padEnd [$pad] = strpos ( $padPad [$pad], '}', $padEnd [$pad] + 1 );
+    $padEnd [$pad] = strpos ( $padOut [$pad], '}', $padEnd [$pad] + 1 );
 
     if ( $padEnd [$pad] === FALSE )
       padError ("Closing } not found");
 
-    $padBetweenCheck = substr ($padPad [$pad], $padPos+1, $padEnd [$pad]-$padPos-1);
+    $padBetweenCheck = substr ($padOut [$pad], $padPos+1, $padEnd [$pad]-$padPos-1);
 
   } while ( substr_count($padBetweenCheck, '{') <> substr_count($padBetweenCheck, '}') );
 

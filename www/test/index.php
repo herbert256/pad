@@ -1,7 +1,5 @@
 <?php
 
-  $app = 'test';
-  
-  include '../pad.php';
+  include "../pad.php";
 
 ?>
