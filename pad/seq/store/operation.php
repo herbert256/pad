@@ -3,7 +3,7 @@
   $padSeqSeq   = $padSeqStoreAction;
   $padSeqBuild = padSeqBuild ( $padSeqSeq, 'make' );
 
-  include PAD . 'seq/build/include.php';
+  include 'seq/build/include.php';
 
   $padIdx = 0;
 
@@ -13,7 +13,7 @@
     $padSeqLoop = $padSeqStore [$padSeqStoreName] [$padIdx];
     $padSeqSave = $padSeqLoop;
 
-    $padSeqResult [$padIdx] = include PAD . 'seq/build/call.php';
+    $padSeqResult [$padIdx] = include 'seq/build/call.php';
 
     if     ( $padSeqResult [$padIdx] === FALSE ) unset ( $padSeqResult [$padIdx] ) ;
     elseif ( $padSeqResult [$padIdx] === TRUE  ) $padSeqResult [$padIdx] = $padSeqSave;

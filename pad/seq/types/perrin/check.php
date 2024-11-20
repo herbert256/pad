@@ -9,7 +9,7 @@
       return in_array ( $n, PADperrin );
 
     if ( file_exists ( PAD . 'seq/types/perrin/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/perrin/fixed.php';
+      $fixed = include 'seq/types/perrin/fixed.php';
       return in_array ( $n, $fixed );
 
     }

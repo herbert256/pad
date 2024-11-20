@@ -9,7 +9,7 @@
       return in_array ( $n, PADoctagonal );
 
     if ( file_exists ( PAD . 'seq/types/octagonal/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/octagonal/fixed.php';
+      $fixed = include 'seq/types/octagonal/fixed.php';
       return in_array ( $n, $fixed );
 
     }

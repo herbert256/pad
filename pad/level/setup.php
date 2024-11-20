@@ -73,6 +73,6 @@
   $padFalse         = '';  
 
   if ( $GLOBALS ['padInfo'] )
-    include PAD . 'events/setup.php';
+    include 'events/setup.php';
 
 ?>

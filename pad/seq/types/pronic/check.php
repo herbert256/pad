@@ -9,7 +9,7 @@
       return in_array ( $n, PADpronic );
 
     if ( file_exists ( PAD . 'seq/types/pronic/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/pronic/fixed.php';
+      $fixed = include 'seq/types/pronic/fixed.php';
       return in_array ( $n, $fixed );
 
     }

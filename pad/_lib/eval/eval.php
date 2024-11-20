@@ -4,7 +4,7 @@
   function padEval ( $eval, $value='' ) {
       
     if ( file_exists ( PAD . "functions/single/$eval.php" ) )
-      return include PAD . 'eval/fast.php';
+      return include 'eval/fast.php';
 
     padEvalParse ( $result, $eval );    
     padEvalAfter ( $result );  

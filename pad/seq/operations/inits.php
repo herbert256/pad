@@ -18,7 +18,7 @@
       continue;
     }
 
-    include PAD . 'seq/operations/add.php';
+    include 'seq/operations/add.php';
 
   }
 

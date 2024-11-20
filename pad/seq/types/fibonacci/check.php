@@ -9,7 +9,7 @@
       return in_array ( $n, PADfibonacci );
 
     if ( file_exists ( PAD . 'seq/types/fibonacci/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/fibonacci/fixed.php';
+      $fixed = include 'seq/types/fibonacci/fixed.php';
       return in_array ( $n, $fixed );
 
     }

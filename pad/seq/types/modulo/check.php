@@ -9,7 +9,7 @@
       return in_array ( $n, PADmodulo );
 
     if ( file_exists ( PAD . 'seq/types/modulo/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/modulo/fixed.php';
+      $fixed = include 'seq/types/modulo/fixed.php';
       return in_array ( $n, $fixed );
 
     }

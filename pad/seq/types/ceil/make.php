@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'seq/types/ceil/loop.php';
+  return include 'seq/types/ceil/loop.php';
 
 ?>

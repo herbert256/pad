@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'seq/types/divide/loop.php';
+  return include 'seq/types/divide/loop.php';
 
 ?>

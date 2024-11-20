@@ -9,7 +9,7 @@
       return in_array ( $n, PADround );
 
     if ( file_exists ( PAD . 'seq/types/round/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/round/fixed.php';
+      $fixed = include 'seq/types/round/fixed.php';
       return in_array ( $n, $fixed );
 
     }

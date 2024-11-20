@@ -6,7 +6,7 @@
 
   if ( substr($padBetween, -1) == '/') {
     $padBetween = substr($padBetween, 0, -1);
-    include PAD . 'level/between.php';
+    include 'level/between.php';
     return;
   }
 
@@ -28,6 +28,6 @@
     
   }
 
-  include PAD . 'level/pair.php';
+  include 'level/pair.php';
   
 ?>

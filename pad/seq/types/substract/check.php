@@ -9,7 +9,7 @@
       return in_array ( $n, PADsubstract );
 
     if ( file_exists ( PAD . 'seq/types/substract/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/substract/fixed.php';
+      $fixed = include 'seq/types/substract/fixed.php';
       return in_array ( $n, $fixed );
 
     }

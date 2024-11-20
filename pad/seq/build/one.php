@@ -12,13 +12,13 @@
     $padSeqLoop = padSeqRandom ( $padSeqFixed, $padSeqStart, $padSeqEnd, $padSeqInc );
 
   if   ( $padSeqBuild == 'fixed' ) $padSeq = $padSeqLoop;
-  else                             $padSeq = include PAD . 'seq/build/call.php';
+  else                             $padSeq = include 'seq/build/call.php';
 
   if     ( $padSeq === FALSE ) return TRUE;
   elseif ( $padSeq === TRUE  ) $padSeq = $padSeqLoop;
 
   if ( count ( $padSeqOperations ) ) {
-    $padSeq = include PAD . 'seq/operations/build.php';
+    $padSeq = include 'seq/operations/build.php';
     if ( $padSeq === FALSE ) 
       return TRUE;
   }

@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'functions/single/tag.php';
+  return include 'functions/single/tag.php';
 
 ?>

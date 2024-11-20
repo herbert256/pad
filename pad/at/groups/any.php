@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'at/any/tag.php';
+  return include 'at/any/tag.php';
 
 ?>

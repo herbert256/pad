@@ -9,7 +9,7 @@
       return in_array ( $n, PADgolomb );
 
     if ( file_exists ( PAD . 'seq/types/golomb/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/golomb/fixed.php';
+      $fixed = include 'seq/types/golomb/fixed.php';
       return in_array ( $n, $fixed );
 
     }

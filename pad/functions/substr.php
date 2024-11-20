@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'functions/parms/substr.php';
+  return include 'functions/parms/substr.php';
 
 ?>

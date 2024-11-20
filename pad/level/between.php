@@ -6,6 +6,6 @@
   $padTagOpts  = $padWords [1] ?? '';
   $padPrmParse = padParseOptions ( $padTagOpts );
 
-  include PAD . 'level/options.php';
+  include 'level/options.php';
 
 ?>

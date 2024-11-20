@@ -19,7 +19,7 @@
   $padSeqActionStore = $padSeqActionList [0] ?? '';
   $padSeqActionCnt   = ( ctype_digit ( $padSeqActionStore ) ) ? $padSeqActionStore : 1;
 
-  $padSeqResult = include PAD . "seq/actions/types/$padSeqActionName.php";
+  $padSeqResult = include "seq/actions/types/$padSeqActionName.php";
 
   $padSeqDone [] = $padSeqActionName;
 

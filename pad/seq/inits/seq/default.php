@@ -3,6 +3,6 @@
   $padSeqSeq = 'loop';
   $padSeqParm = '';
 
-  include PAD . 'seq/inits/seq/seq.php';
+  include 'seq/inits/seq/seq.php';
 
 ?>

@@ -9,7 +9,7 @@
       return in_array ( $n, PADperfect );
 
     if ( file_exists ( PAD . 'seq/types/perfect/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/perfect/fixed.php';
+      $fixed = include 'seq/types/perfect/fixed.php';
       return in_array ( $n, $fixed );
 
     }

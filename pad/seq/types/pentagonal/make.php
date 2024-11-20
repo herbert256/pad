@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'seq/types/pentagonal/loop.php';
+  return include 'seq/types/pentagonal/loop.php';
 
 ?>

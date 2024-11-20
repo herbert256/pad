@@ -19,7 +19,7 @@
     $GLOBALS ['padStrCln'] = FALSE;
     $GLOBALS ['padStrBld'] = 'code';
 
-    return include PAD . 'start/enter/function.php';
+    return include 'start/enter/function.php';
 
   }
 
@@ -31,14 +31,14 @@
     $GLOBALS ['padStrCln'] = TRUE;
     $GLOBALS ['padStrBld'] = 'code';
 
-    return include PAD . 'start/enter/function.php'; 
+    return include 'start/enter/function.php'; 
 
   }
 
 
   function padStrFun (  $padStrCod, $padStrBox, $padStrRes, $padStrCln, $padStrFun ) {
 
-    return include PAD . 'start/function.php';
+    return include 'start/function.php';
 
   }
 
@@ -291,7 +291,7 @@
 
  function padDataFileData ( $padLocalFile ) {
   
-    return include PAD . 'types/go/local.php';
+    return include 'types/go/local.php';
 
   }
 
@@ -763,7 +763,7 @@
     else
       $padCall = PAD . "functions/$name.php";
 
-    return include PAD . 'call/any.php';
+    return include 'call/any.php';
 
   }
 

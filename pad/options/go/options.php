@@ -20,10 +20,10 @@
       else
         $padCall = PAD . "options/$padOptionName.php" ;
 
-      include PAD . 'call/call.php';
+      include 'call/call.php';
 
       if ( $GLOBALS ['padInfo'] )
-        include PAD . 'events/options.php';           
+        include 'events/options.php';           
 
     }
 

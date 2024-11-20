@@ -11,6 +11,6 @@
     $padInfoXmlTree [$padInfoXmlLvl] ['occurs'] [$padInfoXmlOcc] ['xref'] = [];
 
   $padInfoXmlEventType = 'occur-start';
-  include PAD . 'info/types/xml/event.php';
+  include 'info/types/xml/event.php';
 
 ?>

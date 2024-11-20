@@ -10,6 +10,6 @@
 
   $padBetween = $padTag [$pad] . ' ' . $padClosePad;
 
-  include PAD . 'level/between.php';
+  include 'level/between.php';
 
 ?>

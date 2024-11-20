@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'seq/actions/types/combine.php';
+  return include 'seq/actions/types/combine.php';
 
 ?>

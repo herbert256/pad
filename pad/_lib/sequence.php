@@ -5,7 +5,7 @@
 
     $padSeqFunction = 'operation';
 
-    return include PAD . 'seq/entry/function.php';
+    return include 'seq/entry/function.php';
 
   }
 
@@ -14,7 +14,7 @@
 
     $padSeqFunction = 'sequence';
 
-    return include PAD . 'seq/entry/function.php';
+    return include 'seq/entry/function.php';
 
   }
 
@@ -23,7 +23,7 @@
 
     $padSeqFunction = 'action';
 
-    return include PAD . 'seq/entry/function.php';
+    return include 'seq/entry/function.php';
 
   }
 
@@ -32,7 +32,7 @@
 
     $padSeqFunction = 'store';
 
-    return include PAD . 'seq/entry/function.php';
+    return include 'seq/entry/function.php';
 
   }
 
@@ -41,7 +41,7 @@
 
     $padSeqFunction = 'one';
 
-    return include PAD . 'seq/entry/function.php';
+    return include 'seq/entry/function.php';
 
   }
 
@@ -109,7 +109,7 @@
     $padSeqActionName      = $action;
     $padSeqStore [$action] = $seq2;
 
-    return include PAD . "seq/actions/types/$action.php";  
+    return include "seq/actions/types/$action.php";  
 
   }
 

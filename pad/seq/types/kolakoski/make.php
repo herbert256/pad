@@ -1,6 +1,6 @@
 <?php
 
-  $padSeqTemp = include PAD . "seq/types/$padSeqSeq/fixed.php";
+  $padSeqTemp = include "seq/types/$padSeqSeq/fixed.php";
 
   if ( isset ( $padSeqTemp [$padSeqLoop-1] ) )
     return $padSeqTemp [$padSeqLoop-1];

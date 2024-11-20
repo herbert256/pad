@@ -1,17 +1,17 @@
 <?php
 
   if ( ! $padCatch )
-    return include PAD . 'build/build.php';
+    return include 'build/build.php';
 
   set_error_handler ( 'padErrorThrow' );
 
   try {
 
-    include PAD . 'build/build.php';
+    include 'build/build.php';
 
   } catch ( Throwable $padCatchException ) {
 
-    include PAD . 'catch/catch/build.php';
+    include 'catch/catch/build.php';
 
   }
 

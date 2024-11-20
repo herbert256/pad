@@ -4,6 +4,6 @@
   $padIncPage = padInclFileName ($padIncPage);
   $padIncPage = str_replace     (APP, '',  $padIncPage);
   
-  return include PAD . 'tags/go/include.php';
+  return include 'tags/go/include.php';
   
 ?>

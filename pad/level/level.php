@@ -1,12 +1,12 @@
 <?php
 
   if ( $padRestart )
-    return include PAD . 'start/enter/restart.php';    
+    return include 'start/enter/restart.php';    
     
   $padEnd [$pad] = strpos ( $padOut [$pad], '}' );
 
   if ( $padEnd [$pad] === FALSE )
-    return include PAD . 'level/end.php';
+    return include 'level/end.php';
 
   $padStart [$pad] = strrpos ( $padOut [$pad], '{', $padEnd [$pad] - strlen($padOut [$pad]) );
   
@@ -16,27 +16,27 @@
   }
 
   $padBetween = substr ( $padOut [$pad], $padStart [$pad] + 1, $padEnd [$pad] - $padStart [$pad] - 1 );
-  include PAD . 'level/between.php';
+  include 'level/between.php';
 
   if ( ctype_space ( $padFirst ) ) 
     return padIgnore ('first char');
   
   if ( $pad and $padLvlFun [$pad-1] )
-    include PAD . 'level/function.php';
+    include 'level/function.php';
      
   if ( in_array ( $padFirst, ['$','!','#','&','?','@'] ) ) 
-    return include PAD . 'catch/var.php';
+    return include 'catch/var.php';
 
-  include PAD . 'level/type.php';
-  include PAD . 'level/tag.php';
+  include 'level/type.php';
+  include 'level/tag.php';
 
   if ( ! $padTypeResult and isset ( $padOptionsSingle ['optional'] ) )
     if ( padValidTag ($padWords [0]) )
-      return include PAD . 'options/optional.php';
+      return include 'options/optional.php';
 
   if ( ! $padTypeResult ) 
     return padIgnore ('type');
 
-  include PAD . 'level/start.php';
+  include 'level/start.php';
  
 ?>

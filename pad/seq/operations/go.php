@@ -8,9 +8,9 @@
     $padSeqLoop = $padSeq;
 
     if ( $padSeqType == 'store' )
-      include PAD . 'seq/operations/store.php';
+      include 'seq/operations/store.php';
 
-    $padSeq = include PAD . 'seq/build/call.php';
+    $padSeq = include 'seq/build/call.php';
 
     if     ( $padSeqType == 'keep'   and $padSeq === TRUE       ) $padSeq = $padSeqSave;
     elseif ( $padSeqType == 'keep'   and $padSeq === FALSE      ) return FALSE;

@@ -1,15 +1,15 @@
 <?php
 
   if ( file_exists ( PAD . "seq/types/$padSeqSeq/exit.php" ) )   
-    include PAD . "seq/types/$padSeqSeq/exit.php";    
+    include "seq/types/$padSeqSeq/exit.php";    
 
-  include PAD . 'seq/exits/after.php';
-  include PAD . 'seq/exits/store.php';
-  include PAD . 'seq/exits/data.php';
-  include PAD . 'seq/exits/return.php';
-  include PAD . 'seq/exits/done.php';
+  include 'seq/exits/after.php';
+  include 'seq/exits/store.php';
+  include 'seq/exits/data.php';
+  include 'seq/exits/return.php';
+  include 'seq/exits/done.php';
    
   if ( $GLOBALS ['padInfo'] ) 
-    include PAD . 'events/seq.php';
+    include 'events/seq.php';
 
 ?>

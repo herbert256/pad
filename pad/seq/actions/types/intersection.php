@@ -2,6 +2,6 @@
 
   $padSeqFunction = 'array_intersect';
 
-  return include PAD . 'seq/actions/function.php';
+  return include 'seq/actions/function.php';
 
 ?>

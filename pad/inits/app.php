@@ -3,6 +3,6 @@
   if ( ! defined ( 'APP2' ) )
     define ( 'APP2', substr ( APP, 0, -1) );
 
-  include PAD . 'catch/build.php';
+  include 'catch/build.php';
 
 ?>

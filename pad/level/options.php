@@ -9,7 +9,7 @@
     if ( padValidVar ( $padPrmName ) ) {
 
       if ( $GLOBALS ['padInfo'] )
-        include PAD . 'events/option.php';
+        include 'events/option.php';
 
       $padPrmValue = ( $padPrmValue === '' ) ? TRUE : padEval ( $padPrmValue );
 

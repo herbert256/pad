@@ -4,9 +4,9 @@
   $padSeqActionList = $padSeqStoreNames;
 
   if ( $padSeqActionName == 'splice' )
-    include PAD . 'seq/store/splice.php';
+    include 'seq/store/splice.php';
 
-  $padSeqStore [$padSeqStoreName] = include PAD . "seq/actions/types/$padSeqActionName.php";
+  $padSeqStore [$padSeqStoreName] = include "seq/actions/types/$padSeqActionName.php";
 
   $padSeqNames [] = $padSeqStoreName;
 

@@ -137,7 +137,7 @@
       $return = '';
 
     if ( $GLOBALS ['padInfo'] )
-      include PAD . 'events/sql.php';
+      include 'events/sql.php';
 
     return $return;
 

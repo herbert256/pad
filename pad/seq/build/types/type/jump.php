@@ -3,7 +3,7 @@
   $padSeqLoop = $padSeqStart;
 
   while ( $padSeqLoop <= $padSeqEnd )
-    if ( ! include PAD . 'seq/build/one.php')
+    if ( ! include 'seq/build/one.php')
       break;
 
 ?>

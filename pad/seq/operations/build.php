@@ -5,7 +5,7 @@
   $padSeqParmSave  = $padSeqParm;
   $padSeqLoopSave  = $padSeqLoop;
 
-  $padSeq = include PAD . 'seq/operations/go.php';
+  $padSeq = include 'seq/operations/go.php';
 
   $padSeqSeq   = $padSeqSeqSave;
   $padSeqBuild = $padSeqBuildSave;

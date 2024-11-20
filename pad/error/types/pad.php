@@ -1,7 +1,7 @@
 <?php
   
 
-  include PAD . "error/error.php";
+  include "error/error.php";
   
   
   function padErrorGo ( $error, $file, $line ) {
@@ -32,7 +32,7 @@
    
     } catch (Throwable $e) {
 
-      include PAD . 'error/stop.php';
+      include 'error/stop.php';
 
     }
       

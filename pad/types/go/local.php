@@ -8,7 +8,7 @@
   if ( $padLocalExt == 'php' ) {
 
     $padCall      = $padLocalFile;
-    $padLocalData = include PAD . 'call/any.php';
+    $padLocalData = include 'call/any.php';
     $padLocalExt  = '';
 
   } else

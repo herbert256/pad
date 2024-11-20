@@ -1,7 +1,7 @@
 <?php
   
   $padBetween = 'internal';
-  include PAD . 'level/between.php';
+  include 'level/between.php';
 
   $padTypeCheck  = 'internal';
   $padTypeResult = '';
@@ -10,6 +10,6 @@
   $padBaseSet    = '';
   $padPrmTypeSet = 'none';
 
-  include PAD . 'level/setup.php';
+  include 'level/setup.php';
 
 ?>

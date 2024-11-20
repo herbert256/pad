@@ -1,6 +1,6 @@
 <?php
 
-  include PAD . 'info/types/xml/level/parent.php';
+  include 'info/types/xml/level/parent.php';
     
   $padInfoXmlNew             = [];
   $padInfoXmlNew ['tag']     = str_replace ( '/', '-', $padTag [$pad] );
@@ -25,6 +25,6 @@
   $padInfoXmlOcc = $padOccur    [$pad]; 
   
   $padInfoXmlEventType = 'level-start';
-  include PAD . 'info/types/xml/event.php';
+  include 'info/types/xml/event.php';
 
 ?>

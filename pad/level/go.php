@@ -5,21 +5,21 @@
   $padTagContent = '';
 
   ob_start();
-  $padTagResult   = include PAD . "types/" . $padType [$pad] . ".php";
+  $padTagResult   = include "types/" . $padType [$pad] . ".php";
   $padTagContent .= ob_get_clean();
 
   if ( $padInfo )
-    include PAD . 'events/type.php';
+    include 'events/type.php';
 
   if ( padSingleValue ( $padTagResult ) ) {
     $padTagContent .= $padTagResult;
     $padTagResult = TRUE;
   }
 
-  include PAD . 'level/flags.php';
+  include 'level/flags.php';
 
   if ( $padInfo )
-    include PAD . 'events/go.php';
+    include 'events/go.php';
 
   if ( $padTagContent )
     padContentMerge ( $padContent, $padFalse, $padTagContent, $padHit [$pad] );

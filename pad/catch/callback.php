@@ -1,17 +1,17 @@
 <?php
 
   if ( ! $GLOBALS ['padCatch'] )
-    return include PAD . 'callback/callback.php';
+    return include 'callback/callback.php';
 
   set_error_handler ( 'padErrorThrow' );
 
   try {
 
-    include PAD . 'callback/callback.php';
+    include 'callback/callback.php';
 
   } catch ( Throwable $padCatchException ) {
 
-    include PAD . 'catch/catch/callback.php';
+    include 'catch/catch/callback.php';
 
   }
 

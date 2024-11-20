@@ -9,7 +9,7 @@
       return in_array ( $n, PADprime );
 
     if ( file_exists ( PAD . 'seq/types/prime/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/prime/fixed.php';
+      $fixed = include 'seq/types/prime/fixed.php';
       return in_array ( $n, $fixed );
 
     }

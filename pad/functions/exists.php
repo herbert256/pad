@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'functions/single/exists.php';
+  return include 'functions/single/exists.php';
 
 ?>

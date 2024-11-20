@@ -13,6 +13,6 @@
 
   }
 
-  include PAD . 'start/enter/start.php';
+  include 'start/enter/start.php';
   
 ?>

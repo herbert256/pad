@@ -18,7 +18,7 @@
     if ( ! is_array ( $data ) ) {    
       if ( ! $type )
         $type = padContentType ( $data );
-      $data = include PAD . "data/$type.php";
+      $data = include "data/$type.php";
     }
     
     $data = padDataChkSimpleArray ($data,$name);

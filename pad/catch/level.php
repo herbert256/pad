@@ -1,17 +1,17 @@
 <?php
 
   if ( ! $padCatch )
-    return include PAD . 'level/level.php';
+    return include 'level/level.php';
 
   set_error_handler ( 'padErrorThrow' );
 
   try {
 
-    include PAD . 'level/level.php';
+    include 'level/level.php';
 
   } catch ( Throwable $padCatchException ) {
 
-    include PAD . 'catch/catch/level.php';
+    include 'catch/catch/level.php';
 
   }
 

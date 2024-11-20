@@ -11,15 +11,15 @@
   $padCurrent [$pad] = $padData [$pad] [$padKey [$pad]];
  
   if ( $GLOBALS ['padInfo'] )
-    include PAD . 'events/occurStart.php';
+    include 'events/occurStart.php';
 
   if ( $padWalk [$pad] <> 'start' )
     $padWalkData [$pad] [] = $padCurrent [$pad];
 
-  include PAD . 'occurrence/table.php';
-  include PAD . 'occurrence/set.php';
+  include 'occurrence/table.php';
+  include 'occurrence/set.php';
 
   if ( isset($padPrm [$pad] ['callback']) and ! isset ( $padPrm [$pad] ['before']) )
-    include PAD . 'callback/row.php' ;
+    include 'callback/row.php' ;
 
 ?>

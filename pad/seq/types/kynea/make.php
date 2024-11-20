@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'seq/types/kynea/loop.php';
+  return include 'seq/types/kynea/loop.php';
 
 ?>

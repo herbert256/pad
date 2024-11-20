@@ -1,5 +1,5 @@
 <?php
 
-  include PAD . 'options/page.php';
+  include 'options/page.php';
 
 ?>

@@ -9,7 +9,7 @@
       return in_array ( $n, PADkynea );
 
     if ( file_exists ( PAD . 'seq/types/kynea/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/kynea/fixed.php';
+      $fixed = include 'seq/types/kynea/fixed.php';
       return in_array ( $n, $fixed );
 
     }

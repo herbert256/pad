@@ -1,5 +1,5 @@
 <?php
 
-  include PAD . 'catch/build.php'; 
+  include 'catch/build.php'; 
 
 ?>

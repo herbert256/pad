@@ -15,7 +15,7 @@
       $padFalse = substr ( $padBase [$pad], $padPos+6  );
       $padBase  [$pad] = substr ( $padBase [$pad], 0, $padPos );
       if ( $GLOBALS ['padInfo'] ) 
-        include PAD . 'events/else.php';
+        include 'events/else.php';
       return;
     }
 

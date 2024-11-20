@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'functions/parms/after_last.php';
+  return include 'functions/parms/after_last.php';
 
 ?>

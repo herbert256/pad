@@ -1,8 +1,8 @@
 <?php
 
-  include PAD . 'seq/inits/inits.php';
-  include PAD . 'seq/build/build.php'; 
-  include PAD . 'seq/exits/exits.php';
+  include 'seq/inits/inits.php';
+  include 'seq/build/build.php'; 
+  include 'seq/exits/exits.php';
 
   return $padSeqReturn;
 

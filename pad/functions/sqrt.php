@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'functions/single/sqrt.php';
+  return include 'functions/single/sqrt.php';
 
 ?>

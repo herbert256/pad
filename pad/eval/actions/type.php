@@ -4,14 +4,14 @@
   $name = $result [$k] [0];
  
   if ( $GLOBALS ['padInfo'] )
-    include PAD . 'events/functions.php';
+    include 'events/functions.php';
 
   if ( $result [$k] [4] ) 
-    include PAD . 'eval/actions/typeSingle.php';
+    include 'eval/actions/typeSingle.php';
   else
-    include PAD . 'eval/actions/typeParms.php';
+    include 'eval/actions/typeParms.php';
   
-  $value = include PAD . 'call/any.php' ;
+  $value = include 'call/any.php' ;
   
   $result [$k] [1] = 'VAL';
   $result [$k] [0] = $value;

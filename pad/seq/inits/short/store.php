@@ -6,7 +6,7 @@
   if ( ! $padSeqName )
     $padSeqName = $padTag [$pad] ;
 
-  include PAD . 'seq/inits/seq/seq.php';
+  include 'seq/inits/seq/seq.php';
 
   $padSeqDone [] = $padTag [$pad];
 

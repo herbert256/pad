@@ -1,6 +1,6 @@
 <?php
 
-  include PAD . 'seq/inits/seq/seq.php';
+  include 'seq/inits/seq/seq.php';
 
   $padSeqParm = $padSeqSeq;
   $padSeqSeq  = 'get';

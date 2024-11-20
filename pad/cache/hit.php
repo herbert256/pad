@@ -3,6 +3,6 @@
   $padTime      = $padCacheAge;
   $padCacheStop = $padStop;
 
-  include PAD . 'exits/output.php';
+  include 'exits/output.php';
 
 ?>

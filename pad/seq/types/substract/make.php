@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'seq/types/substract/loop.php';
+  return include 'seq/types/substract/loop.php';
 
 ?>

@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'functions/single/capitalize.php';
+  return include 'functions/single/capitalize.php';
 
 ?>

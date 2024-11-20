@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'functions/parms/left.php';
+  return include 'functions/parms/left.php';
 
 ?>

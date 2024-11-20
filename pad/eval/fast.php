@@ -1,8 +1,8 @@
 <?php
 
   if ( $GLOBALS ['padInfo'] )
-    include PAD . 'events/functionsFast.php';
+    include 'events/functionsFast.php';
 
-  return include PAD . "functions/single/$eval.php";
+  return include "functions/single/$eval.php";
 
 ?>

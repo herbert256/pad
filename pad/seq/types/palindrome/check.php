@@ -9,7 +9,7 @@
       return in_array ( $n, PADpalindrome );
 
     if ( file_exists ( PAD . 'seq/types/palindrome/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/palindrome/fixed.php';
+      $fixed = include 'seq/types/palindrome/fixed.php';
       return in_array ( $n, $fixed );
 
     }

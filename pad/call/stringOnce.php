@@ -5,7 +5,7 @@
   if ( ! file_exists ( $padCall ) )
     return '';
 
-  include PAD . 'call/_once.php';
+  include 'call/_once.php';
 
   if     ( is_array($padCallPHP) ) $padCallPHP = padMakeContent ( $padCallPHP );
   elseif ( $padCallPHP === TRUE  ) $padCallPHP = '';

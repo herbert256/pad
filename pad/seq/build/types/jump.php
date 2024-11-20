@@ -1,5 +1,5 @@
 <?php
 
-  include PAD . 'seq/build/types/type/jump.php';
+  include 'seq/build/types/type/jump.php';
   
 ?>

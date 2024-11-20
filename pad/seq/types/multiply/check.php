@@ -9,7 +9,7 @@
       return in_array ( $n, PADmultiply );
 
     if ( file_exists ( PAD . 'seq/types/multiply/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/multiply/fixed.php';
+      $fixed = include 'seq/types/multiply/fixed.php';
       return in_array ( $n, $fixed );
 
     }

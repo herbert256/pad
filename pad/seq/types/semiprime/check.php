@@ -9,7 +9,7 @@
       return in_array ( $n, PADsemiprime );
 
     if ( file_exists ( PAD . 'seq/types/semiprime/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/semiprime/fixed.php';
+      $fixed = include 'seq/types/semiprime/fixed.php';
       return in_array ( $n, $fixed );
 
     }

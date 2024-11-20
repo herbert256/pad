@@ -9,7 +9,7 @@
       return in_array ( $n, PADbiquadratic );
 
     if ( file_exists ( PAD . 'seq/types/biquadratic/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/biquadratic/fixed.php';
+      $fixed = include 'seq/types/biquadratic/fixed.php';
       return in_array ( $n, $fixed );
 
     }

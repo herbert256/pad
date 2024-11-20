@@ -9,7 +9,7 @@
       return in_array ( $n, PADrandom );
 
     if ( file_exists ( PAD . 'seq/types/random/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/random/fixed.php';
+      $fixed = include 'seq/types/random/fixed.php';
       return in_array ( $n, $fixed );
 
     }

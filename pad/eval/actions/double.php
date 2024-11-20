@@ -6,6 +6,6 @@
   unset ( $result [$f] );
   unset ( $result [$k] );
 
-  include PAD . 'eval/actions/go.php';
+  include 'eval/actions/go.php';
 
 ?>

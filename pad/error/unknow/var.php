@@ -1,5 +1,5 @@
 <?php
 
-  include PAD . 'error/catch/_unknow.php';
+  include 'error/catch/_unknow.php';
 
 ?>

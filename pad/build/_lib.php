@@ -14,7 +14,7 @@
         $padCall = $padLibOne->getPathname();
 
         if ( substr($padCall, -4) == '.php' ) 
-          $padBuildLib .= include PAD . 'call/stringOnce.php';
+          $padBuildLib .= include 'call/stringOnce.php';
  
         if ( substr($padCall, -4) == '.pad' )
           $padBuildLib .= padFileGetContents ( $padCall );

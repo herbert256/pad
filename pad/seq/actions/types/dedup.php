@@ -2,6 +2,6 @@
 
   $padSeqFunction = 'array_unique';
 
-  return include PAD . 'seq/actions/function.php';
+  return include 'seq/actions/function.php';
 
 ?>

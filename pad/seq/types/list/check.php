@@ -9,7 +9,7 @@
       return in_array ( $n, PADlist );
 
     if ( file_exists ( PAD . 'seq/types/list/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/list/fixed.php';
+      $fixed = include 'seq/types/list/fixed.php';
       return in_array ( $n, $fixed );
 
     }

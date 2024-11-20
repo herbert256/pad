@@ -9,11 +9,11 @@
   if ( $padPrmValue and isset ( $padSeqStore [$padPrmValue] ) 
     and file_exists ( PAD . "seq/types/$padSeqSeq/flags/operationDouble") ) 
 
-    include PAD . 'seq/operations/initsDouble.php';
+    include 'seq/operations/initsDouble.php';
 
   elseif ( file_exists ( PAD . "seq/types/$padSeqSeq/flags/operationSingle") )
 
-    include PAD . 'seq/operations/initsSingle.php';
+    include 'seq/operations/initsSingle.php';
 
   else
 
@@ -21,7 +21,7 @@
     
   $padSeqBuild = padSeqBuild ( $padSeqSeq, $padSeqType );
 
-  include PAD . 'seq/build/include.php';
+  include 'seq/build/include.php';
 
   $padSeqOperations [] = [
     'padSeqSeq'   => $padSeqSeq,

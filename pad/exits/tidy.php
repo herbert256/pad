@@ -1,6 +1,6 @@
 <?php
 
-  include PAD . 'config/tidy.php';
+  include 'config/tidy.php';
 
   if ( $padTidy or strpos( $padOutput, '@tidy@' ) !== FALSE ) 
 
@@ -8,6 +8,6 @@
   
   elseif ( $padMyTidy )
     
-    include PAD . 'exits/myTidy.php';
+    include 'exits/myTidy.php';
   
 ?>

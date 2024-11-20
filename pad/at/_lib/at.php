@@ -119,7 +119,7 @@
     $name  = reset ( $names );
     $type  = '';
 
-    $check = include PAD . 'at/types/_lib/other.php';
+    $check = include 'at/types/_lib/other.php';
     if ( $check !== INF )
       return $check;
    
@@ -228,7 +228,7 @@
 
     $padIdx = padAtIdx ( $first, $cor );
 
-    return include PAD . 'at/any/tag.php';
+    return include 'at/any/tag.php';
 
   }
 
@@ -266,9 +266,9 @@
       return INF;
 
     if ( $GLOBALS ['padInfo'] ) 
-      include PAD . 'events/atGroups.php'; 
+      include 'events/atGroups.php'; 
 
-    return include PAD . "at/groups/$group.php";
+    return include "at/groups/$group.php";
 
   }
 
@@ -300,13 +300,13 @@
     if ( ! $padIdx or ! file_exists ( PAD . "at/properties/$name.php") ) 
       return INF;
 
-    $return = include PAD . "at/properties/$name.php";
+    $return = include "at/properties/$name.php";
 
     if ( $return !== INF )
       padAtSetTag ();
 
     if ( $GLOBALS ['padInfo'] )
-      include PAD . 'events/atProperties.php'; 
+      include 'events/atProperties.php'; 
 
     return $return;
 
@@ -319,9 +319,9 @@
       return INF;
 
     if ( $GLOBALS ['padInfo'] )
-      include PAD . 'events/atTypes.php'; 
+      include 'events/atTypes.php'; 
 
-    return include PAD . "at/types/$go.php";
+    return include "at/types/$go.php";
 
   }
 

@@ -10,6 +10,6 @@
     $padInfoXrefStore [$padInfoXrefLvl] ['end'] [] = 'size ' . strlen ( $padResult [$pad] );
 
   $padInfoXrefEventType = 'level-end';
-  include PAD . 'info/types/xref/event.php';
+  include 'info/types/xref/event.php';
 
 ?>

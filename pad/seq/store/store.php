@@ -12,10 +12,10 @@
   $padSeqStoreName   = $padSeqStoreNames [0];
 
   if ( file_exists ( PAD . "seq/store/operations/$padSeqStoreAction" ) ) 
-      include PAD . 'seq/store/operation.php';
+      include 'seq/store/operation.php';
 
   if ( file_exists ( PAD . "seq/store/actions/$padSeqStoreAction" ) ) 
-      include PAD . 'seq/store/action.php';
+      include 'seq/store/action.php';
 
   $padSeqResult = $padSeqResultSave;
 

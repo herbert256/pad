@@ -1,7 +1,7 @@
 <?php
 
   if ( $GLOBALS ['padInfo'] )
-    include PAD . 'events/optional.php';
+    include 'events/optional.php';
 
   padPad ( '' );
 

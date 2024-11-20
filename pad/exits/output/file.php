@@ -7,6 +7,6 @@
   $padSetConfig ['OutputType'] = 'web';
 
   $padRestart = $padFileNextPage;
-  include PAD . 'start/enter/restart.php';
+  include 'start/enter/restart.php';
 
 ?>

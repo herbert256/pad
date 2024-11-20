@@ -9,7 +9,7 @@
       return in_array ( $n, PADexponentiation );
 
     if ( file_exists ( PAD . 'seq/types/exponentiation/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/exponentiation/fixed.php';
+      $fixed = include 'seq/types/exponentiation/fixed.php';
       return in_array ( $n, $fixed );
 
     }

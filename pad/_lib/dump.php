@@ -10,7 +10,7 @@
 
     } catch (Throwable $e) {
   
-      include PAD . 'error/stop.php';
+      include 'error/stop.php';
   
     }
 

@@ -9,7 +9,7 @@
       return in_array ( $n, PADenneadecagonal );
 
     if ( file_exists ( PAD . 'seq/types/enneadecagonal/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/enneadecagonal/fixed.php';
+      $fixed = include 'seq/types/enneadecagonal/fixed.php';
       return in_array ( $n, $fixed );
 
     }

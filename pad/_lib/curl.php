@@ -228,7 +228,7 @@
       $output ['type'] = padContentType ( $output ['data'] );
 
     if ( $GLOBALS ['padInfo'] )
-      include PAD . 'events/curl.php';
+      include 'events/curl.php';
 
     $GLOBALS ['padCurlLast'] = $output;
 

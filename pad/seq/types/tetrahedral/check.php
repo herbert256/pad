@@ -9,7 +9,7 @@
       return in_array ( $n, PADtetrahedral );
 
     if ( file_exists ( PAD . 'seq/types/tetrahedral/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/tetrahedral/fixed.php';
+      $fixed = include 'seq/types/tetrahedral/fixed.php';
       return in_array ( $n, $fixed );
 
     }

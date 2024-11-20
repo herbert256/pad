@@ -16,15 +16,15 @@
 
         if ( $b >= $start and $result[$b][1] == 'OPR' and $result[$b][0] == $now )
           if ( in_array ( $result[$b][0], padEval_one ) and $result[$k][1] == 'VAL' )
-            return include PAD . 'eval/actions/single.php';
+            return include 'eval/actions/single.php';
           elseif ( in_array ( $result[$b][0], padEval_one ) and $result[$k][1] == 'OPR' )
-            return include PAD . 'eval/actions/singleRight.php';
+            return include 'eval/actions/singleRight.php';
           elseif ( $f >= $start and $result[$f][1] == 'VAL' and $result[$k][1] == 'VAL' )
-            return include PAD . 'eval/actions/double.php';
+            return include 'eval/actions/double.php';
           elseif ( ( $f == -1 or $result[$f][1] <> 'VAL' ) and $result[$k][1] == 'VAL' )
-            return include PAD . 'eval/actions/doubleLeft.php';
+            return include 'eval/actions/doubleLeft.php';
           elseif ( $f >= $start and $result[$f][1] == 'VAL' and $result[$k][1] == 'OPR' )
-            return include PAD . 'eval/actions/doubleRight.php';
+            return include 'eval/actions/doubleRight.php';
 
         $f = $b;
         $b = $k;

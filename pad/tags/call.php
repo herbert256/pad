@@ -2,7 +2,7 @@
 
    $padCall = $padParm;
 
-   $padCallReturn = include PAD . 'call/anyNoOne.php';
+   $padCallReturn = include 'call/anyNoOne.php';
 
     if ( is_array ($padCallReturn) or is_object ($padCallReturn) or is_resource ($padCallReturn) )
       return $padCallReturn;

@@ -9,7 +9,7 @@
       return in_array ( $n, PADcatalan );
 
     if ( file_exists ( PAD . 'seq/types/catalan/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/catalan/fixed.php';
+      $fixed = include 'seq/types/catalan/fixed.php';
       return in_array ( $n, $fixed );
 
     }

@@ -9,7 +9,7 @@
       return in_array ( $n, PADemirp );
 
     if ( file_exists ( PAD . 'seq/types/emirp/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/emirp/fixed.php';
+      $fixed = include 'seq/types/emirp/fixed.php';
       return in_array ( $n, $fixed );
 
     }

@@ -1,6 +1,6 @@
 <?php
 
-  include PAD . 'events/resultOcc.php';     
+  include 'events/resultOcc.php';     
 
   if ( ! isset ( $padInfoTraceLevel [$pad] ) ) padInfoTraceSet ( $pad );
   if ( ! $padInfoTraceLevel [$pad]           ) padInfoTraceSet ( $pad );

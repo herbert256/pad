@@ -9,6 +9,6 @@
   $padInfoXrefStore [$padInfoXrefLvl] ['occurs'] [$padInfoXrefOcc] ['xref'] = [];
 
   $padInfoXrefEventType = 'occur-start';
-  include PAD . 'info/types/xref/event.php';
+  include 'info/types/xref/event.php';
 
 ?>

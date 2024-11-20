@@ -9,7 +9,7 @@
       return in_array ( $n, PADtribonacci );
 
     if ( file_exists ( PAD . 'seq/types/tribonacci/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/tribonacci/fixed.php';
+      $fixed = include 'seq/types/tribonacci/fixed.php';
       return in_array ( $n, $fixed );
 
     }

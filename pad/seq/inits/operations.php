@@ -1,5 +1,5 @@
 <?php
 
-  include PAD . 'seq/operations/inits.php';
+  include 'seq/operations/inits.php';
 
 ?>

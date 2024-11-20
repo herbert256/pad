@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'functions/single/nbsp.php';
+  return include 'functions/single/nbsp.php';
 
 ?>

@@ -9,7 +9,7 @@
       return in_array ( $n, PADcubic );
 
     if ( file_exists ( PAD . 'seq/types/cubic/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/cubic/fixed.php';
+      $fixed = include 'seq/types/cubic/fixed.php';
       return in_array ( $n, $fixed );
 
     }

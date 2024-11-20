@@ -2,7 +2,7 @@
 
    $padOutputType = $padParm;
 
-   include PAD . "config/output/$padOutputType.php";
+   include "config/output/$padOutputType.php";
 
    return TRUE;
 

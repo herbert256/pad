@@ -1,7 +1,9 @@
 <?php
 
-  include PAD . 'error/boot.php';
-  include PAD . 'config/config.php';
-  include PAD . 'catch/start.php';
+  set_include_path ( PAD );
+
+  include 'error/boot.php';
+  include 'config/config.php';
+  include 'catch/start.php';
 
 ?>

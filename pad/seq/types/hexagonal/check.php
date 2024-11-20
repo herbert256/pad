@@ -9,7 +9,7 @@
       return in_array ( $n, PADhexagonal );
 
     if ( file_exists ( PAD . 'seq/types/hexagonal/fixed.php' ) ) {
-      $fixed = include PAD . 'seq/types/hexagonal/fixed.php';
+      $fixed = include 'seq/types/hexagonal/fixed.php';
       return in_array ( $n, $fixed );
 
     }

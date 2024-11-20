@@ -15,6 +15,6 @@
   $padSeqInfo ['one'] [] = $padSeqOneName;
 
   if ( count ( $padSeqResult ) ) 
-    $padSeqResult = [ 1 => include PAD . "seq/one/types/$padSeqOneName.php" ];
+    $padSeqResult = [ 1 => include "seq/one/types/$padSeqOneName.php" ];
 
 ?>

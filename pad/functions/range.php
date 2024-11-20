@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'functions/parms/range.php';
+  return include 'functions/parms/range.php';
 
 ?>

@@ -10,6 +10,6 @@
     $padInfoXrefStore [$padInfoXrefLvl] ['occurs'] [$padInfoXrefOcc] ['xref'] [] = 'size ' . strlen ( $padOut [$pad] );
 
   $padInfoXrefEventType = 'occur-end';
-  include PAD . 'info/types/xref/event.php';
+  include 'info/types/xref/event.php';
 
 ?>

@@ -22,14 +22,14 @@
       return $GLOBALS ['padGo'];
 
     if ( $GLOBALS ['padInfo'] ) 
-      include PAD . 'events/fieldStart.php';
+      include 'events/fieldStart.php';
 
     if ( str_contains ( $field, '@' ) or str_contains ( $field, '.' ) ) {
 
       $value = padFieldAt ( $field, $lvl );
 
       if ( $GLOBALS ['padInfo'] ) 
-        include PAD . 'events/fieldAt.php';
+        include 'events/fieldAt.php';
 
     } else {
 
@@ -54,7 +54,7 @@
       else                   $value = padFieldLevel  ( $field, $type );
 
       if ( $GLOBALS ['padInfo'] ) 
-        include PAD . 'events/fieldClassic.php';
+        include 'events/fieldClassic.php';
 
     }  
    
@@ -69,7 +69,7 @@
     elseif ($type ==  9) $return = ( $value === NULL                                               ) ? TRUE  : FALSE;
 
     if ( $GLOBALS ['padInfo'] )
-      include PAD . 'events/fieldEnd.php';    
+      include 'events/fieldEnd.php';    
 
     return $return;
 

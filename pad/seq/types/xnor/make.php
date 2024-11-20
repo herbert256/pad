@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'seq/types/xnor/loop.php';
+  return include 'seq/types/xnor/loop.php';
 
 ?>
