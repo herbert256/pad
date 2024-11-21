@@ -1,5 +1,5 @@
 <?php
 
-  include "pad.php";
+  include "../pad.php";
 
 ?>
