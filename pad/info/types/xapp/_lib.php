@@ -32,7 +32,7 @@
 
   function padInfoXappGo ( $prefix, $dir1, $dir2, $dir3 ) {
 
-    if ( $dir1 == 'properties' and ! file_exists ( PAD . "tag/$dir2.php" ) )
+    if ( $dir1 == 'properties' and ! file_exists ( "tag/$dir2.php" ) )
       $dir2 = strtolower($dir2);
 
     $file = "$prefix/$dir1/$dir2";

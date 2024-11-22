@@ -2,13 +2,13 @@
 
   function padSeqCheckGould ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/gould/bool.php' ) )
+    if ( file_exists ( 'seq/types/gould/bool.php' ) )
       return padSeqBoolGould ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/gould/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/gould/generated.php' ) ) 
       return in_array ( $n, PADgould );
 
-    if ( file_exists ( PAD . 'seq/types/gould/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/gould/fixed.php' ) ) {
       $fixed = include 'seq/types/gould/fixed.php';
       return in_array ( $n, $fixed );
 

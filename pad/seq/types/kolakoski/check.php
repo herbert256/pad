@@ -2,13 +2,13 @@
 
   function padSeqCheckKolakoski ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/kolakoski/bool.php' ) )
+    if ( file_exists ( 'seq/types/kolakoski/bool.php' ) )
       return padSeqBoolKolakoski ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/kolakoski/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/kolakoski/generated.php' ) ) 
       return in_array ( $n, PADkolakoski );
 
-    if ( file_exists ( PAD . 'seq/types/kolakoski/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/kolakoski/fixed.php' ) ) {
       $fixed = include 'seq/types/kolakoski/fixed.php';
       return in_array ( $n, $fixed );
 

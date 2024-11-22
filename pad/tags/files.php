@@ -13,7 +13,7 @@
 
   if     ( $padFilesBase == 'app'  ) $padFilesScan = APP . "$padFilesDir";
   elseif ( $padFilesBase == 'data' ) $padFilesScan = DAT . "$padFilesDir";
-  elseif ( $padFilesBase == 'pad'  ) $padFilesScan = PAD . "$padFilesDir";
+  elseif ( $padFilesBase == 'pad'  ) $padFilesScan = "$padFilesDir";
   else                               $padFilesScan = "/$padFilesDir";
 
   $padFilesScan = str_replace ( '//', '/', $padFilesScan);

@@ -2,13 +2,13 @@
 
   function padSeqCheckEmirp ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/emirp/bool.php' ) )
+    if ( file_exists ( 'seq/types/emirp/bool.php' ) )
       return padSeqBoolEmirp ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/emirp/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/emirp/generated.php' ) ) 
       return in_array ( $n, PADemirp );
 
-    if ( file_exists ( PAD . 'seq/types/emirp/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/emirp/fixed.php' ) ) {
       $fixed = include 'seq/types/emirp/fixed.php';
       return in_array ( $n, $fixed );
 

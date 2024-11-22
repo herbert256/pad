@@ -3,7 +3,7 @@
 
   function padSeqTypes () {
   
-    return array_diff ( scandir ( PAD . 'seq/types' ), [ '.', '..' ] ) ;
+    return array_diff ( scandir ( 'seq/types' ), [ '.', '..' ] ) ;
 
   }
   

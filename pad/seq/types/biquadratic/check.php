@@ -2,13 +2,13 @@
 
   function padSeqCheckBiquadratic ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/biquadratic/bool.php' ) )
+    if ( file_exists ( 'seq/types/biquadratic/bool.php' ) )
       return padSeqBoolBiquadratic ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/biquadratic/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/biquadratic/generated.php' ) ) 
       return in_array ( $n, PADbiquadratic );
 
-    if ( file_exists ( PAD . 'seq/types/biquadratic/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/biquadratic/fixed.php' ) ) {
       $fixed = include 'seq/types/biquadratic/fixed.php';
       return in_array ( $n, $fixed );
 

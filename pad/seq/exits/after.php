@@ -21,15 +21,15 @@
 
       include 'seq/store/store.php';  
 
-    elseif ( file_exists ( PAD . "seq/options/types/$padPrmName.php" ) )
+    elseif ( file_exists ( "seq/options/types/$padPrmName.php" ) )
 
       continue;
 
-    elseif ( file_exists ( PAD . "seq/actions/types/$padPrmName.php" ) )
+    elseif ( file_exists ( "seq/actions/types/$padPrmName.php" ) )
 
       include 'seq/actions/action.php';
 
-    elseif ( file_exists ( PAD . "seq/one/types/$padPrmName.php" ) )
+    elseif ( file_exists ( "seq/one/types/$padPrmName.php" ) )
 
       include 'seq/one/one.php';
 

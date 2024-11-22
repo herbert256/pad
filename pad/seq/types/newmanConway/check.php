@@ -2,13 +2,13 @@
 
   function padSeqCheckNewmanConway ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/newmanConway/bool.php' ) )
+    if ( file_exists ( 'seq/types/newmanConway/bool.php' ) )
       return padSeqBoolNewmanConway ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/newmanConway/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/newmanConway/generated.php' ) ) 
       return in_array ( $n, PADnewmanConway );
 
-    if ( file_exists ( PAD . 'seq/types/newmanConway/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/newmanConway/fixed.php' ) ) {
       $fixed = include 'seq/types/newmanConway/fixed.php';
       return in_array ( $n, $fixed );
 

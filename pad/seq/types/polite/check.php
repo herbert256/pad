@@ -2,13 +2,13 @@
 
   function padSeqCheckPolite ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/polite/bool.php' ) )
+    if ( file_exists ( 'seq/types/polite/bool.php' ) )
       return padSeqBoolPolite ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/polite/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/polite/generated.php' ) ) 
       return in_array ( $n, PADpolite );
 
-    if ( file_exists ( PAD . 'seq/types/polite/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/polite/fixed.php' ) ) {
       $fixed = include 'seq/types/polite/fixed.php';
       return in_array ( $n, $fixed );
 

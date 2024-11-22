@@ -2,13 +2,13 @@
 
   function padSeqCheckPerfect ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/perfect/bool.php' ) )
+    if ( file_exists ( 'seq/types/perfect/bool.php' ) )
       return padSeqBoolPerfect ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/perfect/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/perfect/generated.php' ) ) 
       return in_array ( $n, PADperfect );
 
-    if ( file_exists ( PAD . 'seq/types/perfect/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/perfect/fixed.php' ) ) {
       $fixed = include 'seq/types/perfect/fixed.php';
       return in_array ( $n, $fixed );
 

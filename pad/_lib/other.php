@@ -761,7 +761,7 @@
     if ( file_exists ( APP . "_functions/$name.php" ) )
       $padCall = APP . "_functions/$name.php";
     else
-      $padCall = PAD . "functions/$name.php";
+      $padCall = "functions/$name.php";
 
     return include 'call/any.php';
 

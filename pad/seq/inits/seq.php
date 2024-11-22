@@ -8,7 +8,7 @@
   elseif ( strpos     ( $padParm, ';'  ) ) return include 'seq/inits/seq/list.php';
  
   foreach ( $padOptionsSingle as $padSeqSeq => $padSeqParm )  
-    if ( file_exists ( PAD . "seq/types/$padSeqSeq" ) ) 
+    if ( file_exists ( "seq/types/$padSeqSeq" ) ) 
       return include 'seq/inits/seq/seq.php';
     elseif ( isset ( $padSeqStore [$padSeqSeq] ) )          
       return include 'seq/inits/seq/store.php';

@@ -2,13 +2,13 @@
 
   function padSeqCheckAntiprime ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/antiprime/bool.php' ) )
+    if ( file_exists ( 'seq/types/antiprime/bool.php' ) )
       return padSeqBoolAntiprime ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/antiprime/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/antiprime/generated.php' ) ) 
       return in_array ( $n, PADantiprime );
 
-    if ( file_exists ( PAD . 'seq/types/antiprime/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/antiprime/fixed.php' ) ) {
       $fixed = include 'seq/types/antiprime/fixed.php';
       return in_array ( $n, $fixed );
 

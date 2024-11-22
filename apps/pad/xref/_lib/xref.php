@@ -17,7 +17,7 @@
     if ( $xref == '*') 
       return getXrefDir ( $type, $dir );
     
-    $directory = new DirectoryIterator ( PAD . "$dir" );
+    $directory = new DirectoryIterator ( $dir );
     $iterator  = new IteratorIterator  ( $directory );
 
     $items = [];

@@ -14,7 +14,7 @@
        . "{demo}{seq one, $type='two'}\n  {\$seq}\n{/seq}{/demo}\n\n"
        . "{/table}";    
 
-  file_put_contents ( PAD . "seq/types/$type/flags/operationDouble", 1 );
+  file_put_contents ( "seq/types/$type/flags/operationDouble", 1 );
   file_put_contents ( APP . "seq/operation/double/{$type}.pad", $one );
 
 ?>

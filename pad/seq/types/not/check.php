@@ -2,13 +2,13 @@
 
   function padSeqCheckNot ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/not/bool.php' ) )
+    if ( file_exists ( 'seq/types/not/bool.php' ) )
       return padSeqBoolNot ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/not/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/not/generated.php' ) ) 
       return in_array ( $n, PADnot );
 
-    if ( file_exists ( PAD . 'seq/types/not/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/not/fixed.php' ) ) {
       $fixed = include 'seq/types/not/fixed.php';
       return in_array ( $n, $fixed );
 

@@ -2,13 +2,13 @@
 
   function padSeqCheckList ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/list/bool.php' ) )
+    if ( file_exists ( 'seq/types/list/bool.php' ) )
       return padSeqBoolList ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/list/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/list/generated.php' ) ) 
       return in_array ( $n, PADlist );
 
-    if ( file_exists ( PAD . 'seq/types/list/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/list/fixed.php' ) ) {
       $fixed = include 'seq/types/list/fixed.php';
       return in_array ( $n, $fixed );
 

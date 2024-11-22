@@ -2,13 +2,13 @@
 
   function padSeqCheckCullen ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/cullen/bool.php' ) )
+    if ( file_exists ( 'seq/types/cullen/bool.php' ) )
       return padSeqBoolCullen ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/cullen/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/cullen/generated.php' ) ) 
       return in_array ( $n, PADcullen );
 
-    if ( file_exists ( PAD . 'seq/types/cullen/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/cullen/fixed.php' ) ) {
       $fixed = include 'seq/types/cullen/fixed.php';
       return in_array ( $n, $fixed );
 

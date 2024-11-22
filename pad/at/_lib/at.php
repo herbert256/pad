@@ -82,7 +82,7 @@
 
     $check = str_replace ( '@*', '', $field );
 
-    if ( file_exists ( PAD . "at/properties/$check.php") ) {
+    if ( file_exists ( "at/properties/$check.php") ) {
       $idx   = padFieldFirstNonTag ( $cor ) + 1 ;
       $check = str_replace ( '@*', "@$idx", $field );
       $check = padAtValue ( $check, $cor );
@@ -246,7 +246,7 @@
 
     global $pad;
 
-    if ( ! $second and file_exists ( PAD . "at/groups/$first.php") )
+    if ( ! $second and file_exists ( "at/groups/$first.php") )
 
       for ( $i=$pad; $i>-1; $i-- ) {
         $check = padAtGroup ( $first, $name, $names, $i+$cor );
@@ -262,7 +262,7 @@
 
   function padAtGroup ( $group, $name, $names, $padIdx ) {
 
-    if ( ! $group or ! $padIdx or ! file_exists ( PAD . "at/groups/$group.php" ) )
+    if ( ! $group or ! $padIdx or ! file_exists ( "at/groups/$group.php" ) )
       return INF;
 
     if ( $GLOBALS ['padInfo'] ) 
@@ -297,7 +297,7 @@
 
     $name = reset ( $names );
 
-    if ( ! $padIdx or ! file_exists ( PAD . "at/properties/$name.php") ) 
+    if ( ! $padIdx or ! file_exists ( "at/properties/$name.php") ) 
       return INF;
 
     $return = include "at/properties/$name.php";
@@ -315,7 +315,7 @@
 
   function padAtType ( $go, $type, $names, $cor ) {
 
-    if ( ! file_exists ( PAD . "at/types/$go.php" ) )
+    if ( ! file_exists ( "at/types/$go.php" ) )
       return INF;
 
     if ( $GLOBALS ['padInfo'] )

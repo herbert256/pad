@@ -11,7 +11,7 @@
   include 'seq/inits/build.php';
   include 'seq/inits/rows.php';
 
-  if ( file_exists ( PAD . "seq/types/$padSeqSeq/init.php" ) ) 
+  if ( file_exists ( "seq/types/$padSeqSeq/init.php" ) ) 
     include "seq/types/$padSeqSeq/init.php";
 
 ?>

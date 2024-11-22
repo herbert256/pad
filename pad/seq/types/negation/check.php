@@ -2,13 +2,13 @@
 
   function padSeqCheckNegation ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/negation/bool.php' ) )
+    if ( file_exists ( 'seq/types/negation/bool.php' ) )
       return padSeqBoolNegation ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/negation/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/negation/generated.php' ) ) 
       return in_array ( $n, PADnegation );
 
-    if ( file_exists ( PAD . 'seq/types/negation/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/negation/fixed.php' ) ) {
       $fixed = include 'seq/types/negation/fixed.php';
       return in_array ( $n, $fixed );
 

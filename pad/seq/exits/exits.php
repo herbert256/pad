@@ -1,6 +1,6 @@
 <?php
 
-  if ( file_exists ( PAD . "seq/types/$padSeqSeq/exit.php" ) )   
+  if ( file_exists ( "seq/types/$padSeqSeq/exit.php" ) )   
     include "seq/types/$padSeqSeq/exit.php";    
 
   include 'seq/exits/after.php';

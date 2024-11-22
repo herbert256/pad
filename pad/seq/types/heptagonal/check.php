@@ -2,13 +2,13 @@
 
   function padSeqCheckHeptagonal ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/heptagonal/bool.php' ) )
+    if ( file_exists ( 'seq/types/heptagonal/bool.php' ) )
       return padSeqBoolHeptagonal ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/heptagonal/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/heptagonal/generated.php' ) ) 
       return in_array ( $n, PADheptagonal );
 
-    if ( file_exists ( PAD . 'seq/types/heptagonal/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/heptagonal/fixed.php' ) ) {
       $fixed = include 'seq/types/heptagonal/fixed.php';
       return in_array ( $n, $fixed );
 

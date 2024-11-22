@@ -23,9 +23,9 @@
 
   $padSeqDone [] = $padSeqActionName;
 
-  if ( file_exists ( PAD . "seq/actions/single/$padSeqActionName" ) )
+  if ( file_exists ( "seq/actions/single/$padSeqActionName" ) )
     $padSeqInfo ['actions/single'] [] = $padSeqActionName;
-  elseif ( file_exists ( PAD . "seq/actions/double/$padSeqActionName" ) )
+  elseif ( file_exists ( "seq/actions/double/$padSeqActionName" ) )
     $padSeqInfo ['actions/double'] [] = $padSeqActionName;
 
 ?>

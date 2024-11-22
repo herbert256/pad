@@ -2,13 +2,13 @@
 
   function padSeqCheckCubic ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/cubic/bool.php' ) )
+    if ( file_exists ( 'seq/types/cubic/bool.php' ) )
       return padSeqBoolCubic ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/cubic/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/cubic/generated.php' ) ) 
       return in_array ( $n, PADcubic );
 
-    if ( file_exists ( PAD . 'seq/types/cubic/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/cubic/fixed.php' ) ) {
       $fixed = include 'seq/types/cubic/fixed.php';
       return in_array ( $n, $fixed );
 

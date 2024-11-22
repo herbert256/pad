@@ -1,8 +1,8 @@
 <?php
 
-  deleteDir ( PAD . "seq/types/$type/flags/" ); 
-  mkdir     ( PAD . "seq/types/$type/flags/" );
+  deleteDir ( "seq/types/$type/flags/" ); 
+  mkdir     ( "seq/types/$type/flags/" );
 
-  file_put_contents ( PAD . "seq/types/$type/flags/readme.txt", 'This directory is generared' );
+  file_put_contents ( "seq/types/$type/flags/readme.txt", 'This directory is generared' );
 
 ?>

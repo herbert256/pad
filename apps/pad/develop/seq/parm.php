@@ -11,8 +11,8 @@
 
   $e = FALSE;
   foreach ( [ 'loop', 'make', 'function', 'bool' ] as $check ) 
-    if (   file_exists       ( PAD . "seq/types/$type/$check.php") ) {
-      $c = file_get_contents ( PAD . "seq/types/$type/$check.php");
+    if (   file_exists       ( "seq/types/$type/$check.php") ) {
+      $c = file_get_contents ( "seq/types/$type/$check.php");
       if ( str_contains ( $c, "padSeqParm" ) ) 
         $e = TRUE;
     }
@@ -21,6 +21,6 @@
     $parm = '=4';
 
   if ( $parm )
-    file_put_contents ( PAD . "seq/types/$type/flags/parm", 1 );
+    file_put_contents ( "seq/types/$type/flags/parm", 1 );
 
 ?>

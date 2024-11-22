@@ -3,7 +3,7 @@
 
   function padEval ( $eval, $value='' ) {
       
-    if ( file_exists ( PAD . "functions/single/$eval.php" ) )
+    if ( file_exists ( "functions/single/$eval.php" ) )
       return include 'eval/fast.php';
 
     padEvalParse ( $result, $eval );    

@@ -1,5 +1,5 @@
 <?php
  
-  $padCall = PAD . "eval/single/$kind.php" ;
+  $padCall = "eval/single/$kind.php" ;
 
 ?>

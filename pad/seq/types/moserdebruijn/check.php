@@ -2,13 +2,13 @@
 
   function padSeqCheckMoserdebruijn ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/moserdebruijn/bool.php' ) )
+    if ( file_exists ( 'seq/types/moserdebruijn/bool.php' ) )
       return padSeqBoolMoserdebruijn ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/moserdebruijn/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/moserdebruijn/generated.php' ) ) 
       return in_array ( $n, PADmoserdebruijn );
 
-    if ( file_exists ( PAD . 'seq/types/moserdebruijn/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/moserdebruijn/fixed.php' ) ) {
       $fixed = include 'seq/types/moserdebruijn/fixed.php';
       return in_array ( $n, $fixed );
 

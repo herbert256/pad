@@ -5,7 +5,7 @@
 
   $padInfoCnt++;
 
-  include_once PAD . 'info/_lib/_lib.php';
+  include_once 'info/_lib/_lib.php';
 
   padInfoSet ();
 

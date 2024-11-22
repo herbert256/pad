@@ -1,7 +1,7 @@
 <?php
 
-  include_once PAD . 'inits/const.php';
-  include_once PAD . 'inits/lib.php';
+  include_once 'inits/const.php';
+  include_once 'inits/lib.php';
 
   include 'inits/vars.php';
   include 'inits/clean.php';

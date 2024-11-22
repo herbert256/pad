@@ -2,13 +2,13 @@
 
   function padSeqCheckDivide ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/divide/bool.php' ) )
+    if ( file_exists ( 'seq/types/divide/bool.php' ) )
       return padSeqBoolDivide ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/divide/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/divide/generated.php' ) ) 
       return in_array ( $n, PADdivide );
 
-    if ( file_exists ( PAD . 'seq/types/divide/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/divide/fixed.php' ) ) {
       $fixed = include 'seq/types/divide/fixed.php';
       return in_array ( $n, $fixed );
 

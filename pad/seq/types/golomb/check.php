@@ -2,13 +2,13 @@
 
   function padSeqCheckGolomb ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/golomb/bool.php' ) )
+    if ( file_exists ( 'seq/types/golomb/bool.php' ) )
       return padSeqBoolGolomb ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/golomb/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/golomb/generated.php' ) ) 
       return in_array ( $n, PADgolomb );
 
-    if ( file_exists ( PAD . 'seq/types/golomb/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/golomb/fixed.php' ) ) {
       $fixed = include 'seq/types/golomb/fixed.php';
       return in_array ( $n, $fixed );
 

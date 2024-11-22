@@ -2,13 +2,13 @@
 
   function padSeqCheckStrong ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/strong/bool.php' ) )
+    if ( file_exists ( 'seq/types/strong/bool.php' ) )
       return padSeqBoolStrong ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/strong/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/strong/generated.php' ) ) 
       return in_array ( $n, PADstrong );
 
-    if ( file_exists ( PAD . 'seq/types/strong/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/strong/fixed.php' ) ) {
       $fixed = include 'seq/types/strong/fixed.php';
       return in_array ( $n, $fixed );
 

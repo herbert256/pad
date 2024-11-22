@@ -2,13 +2,13 @@
 
   function padSeqCheckNand ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/nand/bool.php' ) )
+    if ( file_exists ( 'seq/types/nand/bool.php' ) )
       return padSeqBoolNand ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/nand/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/nand/generated.php' ) ) 
       return in_array ( $n, PADnand );
 
-    if ( file_exists ( PAD . 'seq/types/nand/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/nand/fixed.php' ) ) {
       $fixed = include 'seq/types/nand/fixed.php';
       return in_array ( $n, $fixed );
 

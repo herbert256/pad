@@ -4,7 +4,7 @@
     padDone ( $padV );
 
   foreach ( $padPrm [$pad] as $padK => $padV )
-    if ( file_exists ( PAD . "seq/options/types/$padK.php" ) )
+    if ( file_exists ( "seq/options/types/$padK.php" ) )
       padDone ( $padK );
 
 ?>

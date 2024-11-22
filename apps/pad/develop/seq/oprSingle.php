@@ -10,7 +10,7 @@
        . "{demo}{seq $main, $type$parm, rows=5}\n  {\$seq}\n{/seq}{/demo}\n\n"
        . "{/table}";
 
-  file_put_contents ( PAD . "seq/types/$type/flags/operationSingle", 1 );
+  file_put_contents ( "seq/types/$type/flags/operationSingle", 1 );
   file_put_contents ( APP . "seq/operation/single/{$type}.pad", $one );
 
 ?>

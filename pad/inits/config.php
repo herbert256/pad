@@ -17,6 +17,6 @@
     include APP . '_config/config.php';
   
   if ( isset ( $padSetConfig ) and count ( $padSetConfig ) ) 
-    include_once PAD . 'inits/configSet.php';
+    include_once 'inits/configSet.php';
 
 ?>

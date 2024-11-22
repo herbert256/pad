@@ -2,13 +2,13 @@
 
   function padSeqCheckMersenne ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/mersenne/bool.php' ) )
+    if ( file_exists ( 'seq/types/mersenne/bool.php' ) )
       return padSeqBoolMersenne ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/mersenne/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/mersenne/generated.php' ) ) 
       return in_array ( $n, PADmersenne );
 
-    if ( file_exists ( PAD . 'seq/types/mersenne/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/mersenne/fixed.php' ) ) {
       $fixed = include 'seq/types/mersenne/fixed.php';
       return in_array ( $n, $fixed );
 

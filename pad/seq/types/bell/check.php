@@ -2,13 +2,13 @@
 
   function padSeqCheckBell ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/bell/bool.php' ) )
+    if ( file_exists ( 'seq/types/bell/bool.php' ) )
       return padSeqBoolBell ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/bell/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/bell/generated.php' ) ) 
       return in_array ( $n, PADbell );
 
-    if ( file_exists ( PAD . 'seq/types/bell/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/bell/fixed.php' ) ) {
       $fixed = include 'seq/types/bell/fixed.php';
       return in_array ( $n, $fixed );
 

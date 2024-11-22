@@ -2,7 +2,7 @@
 
   function padTag ( $field, $padIdx, $type, $parm ) {
   
-    if ( file_exists ( PAD . "tag/".$field.".php" ) )
+    if ( file_exists ( "tag/".$field.".php" ) )
       if ( $type == 7 ) 
         return 1;
       else

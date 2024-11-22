@@ -2,13 +2,13 @@
 
   function padSeqCheckTriangular ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/triangular/bool.php' ) )
+    if ( file_exists ( 'seq/types/triangular/bool.php' ) )
       return padSeqBoolTriangular ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/triangular/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/triangular/generated.php' ) ) 
       return in_array ( $n, PADtriangular );
 
-    if ( file_exists ( PAD . 'seq/types/triangular/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/triangular/fixed.php' ) ) {
       $fixed = include 'seq/types/triangular/fixed.php';
       return in_array ( $n, $fixed );
 

@@ -2,7 +2,7 @@
 
   $padSeqSeq = $padTag [$pad];
 
-  if ( file_exists ( PAD . "seq/types/$padSeqSeq/flags/parm") )
+  if ( file_exists ( "seq/types/$padSeqSeq/flags/parm") )
     $padSeqParm = $padParm; 
   else
     $padSeqParm = ''; 

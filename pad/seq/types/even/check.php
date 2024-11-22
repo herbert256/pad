@@ -2,13 +2,13 @@
 
   function padSeqCheckEven ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/even/bool.php' ) )
+    if ( file_exists ( 'seq/types/even/bool.php' ) )
       return padSeqBoolEven ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/even/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/even/generated.php' ) ) 
       return in_array ( $n, PADeven );
 
-    if ( file_exists ( PAD . 'seq/types/even/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/even/fixed.php' ) ) {
       $fixed = include 'seq/types/even/fixed.php';
       return in_array ( $n, $fixed );
 

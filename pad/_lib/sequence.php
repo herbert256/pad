@@ -85,7 +85,7 @@
     if ( $for == 'keep' or $for == 'remove' )
       return 'check';
 
-    $check = PAD . "seq/types/$check";
+    $check = "seq/types/$check";
 
     if ( $for == 'make' ) if ( file_exists ( "$check/make.php" ) ) return 'make';
     if ( $for == 'loop' ) if ( file_exists ( "$check/loop.php" ) ) return 'loop';

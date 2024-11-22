@@ -2,13 +2,13 @@
 
   function padSeqCheckOr ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/or/bool.php' ) )
+    if ( file_exists ( 'seq/types/or/bool.php' ) )
       return padSeqBoolOr ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/or/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/or/generated.php' ) ) 
       return in_array ( $n, PADor );
 
-    if ( file_exists ( PAD . 'seq/types/or/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/or/fixed.php' ) ) {
       $fixed = include 'seq/types/or/fixed.php';
       return in_array ( $n, $fixed );
 

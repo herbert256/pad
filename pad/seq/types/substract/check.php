@@ -2,13 +2,13 @@
 
   function padSeqCheckSubstract ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/substract/bool.php' ) )
+    if ( file_exists ( 'seq/types/substract/bool.php' ) )
       return padSeqBoolSubstract ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/substract/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/substract/generated.php' ) ) 
       return in_array ( $n, PADsubstract );
 
-    if ( file_exists ( PAD . 'seq/types/substract/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/substract/fixed.php' ) ) {
       $fixed = include 'seq/types/substract/fixed.php';
       return in_array ( $n, $fixed );
 

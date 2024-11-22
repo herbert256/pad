@@ -2,13 +2,13 @@
 
   function padSeqCheckCaterer ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/caterer/bool.php' ) )
+    if ( file_exists ( 'seq/types/caterer/bool.php' ) )
       return padSeqBoolCaterer ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/caterer/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/caterer/generated.php' ) ) 
       return in_array ( $n, PADcaterer );
 
-    if ( file_exists ( PAD . 'seq/types/caterer/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/caterer/fixed.php' ) ) {
       $fixed = include 'seq/types/caterer/fixed.php';
       return in_array ( $n, $fixed );
 

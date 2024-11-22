@@ -7,11 +7,11 @@
   }
 
   if ( $padPrmValue and isset ( $padSeqStore [$padPrmValue] ) 
-    and file_exists ( PAD . "seq/types/$padSeqSeq/flags/operationDouble") ) 
+    and file_exists ( "seq/types/$padSeqSeq/flags/operationDouble") ) 
 
     include 'seq/operations/initsDouble.php';
 
-  elseif ( file_exists ( PAD . "seq/types/$padSeqSeq/flags/operationSingle") )
+  elseif ( file_exists ( "seq/types/$padSeqSeq/flags/operationSingle") )
 
     include 'seq/operations/initsSingle.php';
 

@@ -2,13 +2,13 @@
 
   function padSeqCheckCatalan ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/catalan/bool.php' ) )
+    if ( file_exists ( 'seq/types/catalan/bool.php' ) )
       return padSeqBoolCatalan ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/catalan/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/catalan/generated.php' ) ) 
       return in_array ( $n, PADcatalan );
 
-    if ( file_exists ( PAD . 'seq/types/catalan/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/catalan/fixed.php' ) ) {
       $fixed = include 'seq/types/catalan/fixed.php';
       return in_array ( $n, $fixed );
 

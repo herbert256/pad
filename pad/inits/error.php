@@ -1,5 +1,5 @@
 <?php
   
-  include_once PAD . "error/types/$padErrorAction.php";
+  include_once "error/types/$padErrorAction.php";
  
 ?>

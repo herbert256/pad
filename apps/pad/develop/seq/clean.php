@@ -10,10 +10,10 @@
 
   foreach ( glob ( APP . 'seq/store/operations/*' ) as $file ) unlink($file);
  
-  foreach ( glob ( PAD . 'seq/actions/double/*'   ) as $file ) unlink($file);
-  foreach ( glob ( PAD . 'seq/actions/single/*'   ) as $file ) unlink($file);
+  foreach ( glob ( 'seq/actions/double/*'   ) as $file ) unlink($file);
+  foreach ( glob ( 'seq/actions/single/*'   ) as $file ) unlink($file);
 
-  foreach ( glob ( PAD . 'seq/store/actions/*'    ) as $file ) unlink($file);
-  foreach ( glob ( PAD . 'seq/store/operations/*' ) as $file ) unlink($file);
+  foreach ( glob ( 'seq/store/actions/*'    ) as $file ) unlink($file);
+  foreach ( glob ( 'seq/store/operations/*' ) as $file ) unlink($file);
 
 ?>

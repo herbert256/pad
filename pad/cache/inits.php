@@ -15,7 +15,7 @@
   $padCacheUrl = padMD5($_SERVER['REQUEST_URI']);
   $padCacheMax = $_SERVER['REQUEST_TIME'] - $padCacheServerAge;
 
-  include_once PAD . "cache/types/$padCacheServerType.php";
+  include_once "cache/types/$padCacheServerType.php";
   
   padCacheInit ($padCacheUrl, $padCacheClient);
   

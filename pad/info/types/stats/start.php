@@ -1,6 +1,6 @@
 <?php
 
-  include_once PAD . 'info/types/stats/_lib.php';
+  include_once 'info/types/stats/_lib.php';
 
   padInfoStatsStart ();
 

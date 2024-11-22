@@ -2,13 +2,13 @@
 
   function padSeqCheckPower ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/power/bool.php' ) )
+    if ( file_exists ( 'seq/types/power/bool.php' ) )
       return padSeqBoolPower ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/power/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/power/generated.php' ) ) 
       return in_array ( $n, PADpower );
 
-    if ( file_exists ( PAD . 'seq/types/power/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/power/fixed.php' ) ) {
       $fixed = include 'seq/types/power/fixed.php';
       return in_array ( $n, $fixed );
 

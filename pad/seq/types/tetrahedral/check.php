@@ -2,13 +2,13 @@
 
   function padSeqCheckTetrahedral ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/tetrahedral/bool.php' ) )
+    if ( file_exists ( 'seq/types/tetrahedral/bool.php' ) )
       return padSeqBoolTetrahedral ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/tetrahedral/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/tetrahedral/generated.php' ) ) 
       return in_array ( $n, PADtetrahedral );
 
-    if ( file_exists ( PAD . 'seq/types/tetrahedral/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/tetrahedral/fixed.php' ) ) {
       $fixed = include 'seq/types/tetrahedral/fixed.php';
       return in_array ( $n, $fixed );
 

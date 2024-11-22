@@ -2,13 +2,13 @@
 
   function padSeqCheckGet ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/get/bool.php' ) )
+    if ( file_exists ( 'seq/types/get/bool.php' ) )
       return padSeqBoolGet ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/get/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/get/generated.php' ) ) 
       return in_array ( $n, PADget );
 
-    if ( file_exists ( PAD . 'seq/types/get/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/get/fixed.php' ) ) {
       $fixed = include 'seq/types/get/fixed.php';
       return in_array ( $n, $fixed );
 

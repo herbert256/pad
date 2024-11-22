@@ -2,13 +2,13 @@
 
   function padSeqCheckKynea ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/kynea/bool.php' ) )
+    if ( file_exists ( 'seq/types/kynea/bool.php' ) )
       return padSeqBoolKynea ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/kynea/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/kynea/generated.php' ) ) 
       return in_array ( $n, PADkynea );
 
-    if ( file_exists ( PAD . 'seq/types/kynea/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/kynea/fixed.php' ) ) {
       $fixed = include 'seq/types/kynea/fixed.php';
       return in_array ( $n, $fixed );
 

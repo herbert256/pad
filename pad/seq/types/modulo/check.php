@@ -2,13 +2,13 @@
 
   function padSeqCheckModulo ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/modulo/bool.php' ) )
+    if ( file_exists ( 'seq/types/modulo/bool.php' ) )
       return padSeqBoolModulo ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/modulo/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/modulo/generated.php' ) ) 
       return in_array ( $n, PADmodulo );
 
-    if ( file_exists ( PAD . 'seq/types/modulo/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/modulo/fixed.php' ) ) {
       $fixed = include 'seq/types/modulo/fixed.php';
       return in_array ( $n, $fixed );
 

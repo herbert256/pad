@@ -1,5 +1,7 @@
 #!/bin/bash
 
-mkdir /data
-chmod 777 /data
-ln -s /data /home/herbert/www/data
+rm -rf /home/herbert/pad/data
+rm -rf /home/herbert/pad/www/data
+
+mkdir /home/herbert/pad/data
+ln -s /home/herbert/pad/data /home/herbert/pad/www/data

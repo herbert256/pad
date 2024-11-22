@@ -2,13 +2,13 @@
 
   function padSeqCheckKaprekar ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/kaprekar/bool.php' ) )
+    if ( file_exists ( 'seq/types/kaprekar/bool.php' ) )
       return padSeqBoolKaprekar ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/kaprekar/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/kaprekar/generated.php' ) ) 
       return in_array ( $n, PADkaprekar );
 
-    if ( file_exists ( PAD . 'seq/types/kaprekar/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/kaprekar/fixed.php' ) ) {
       $fixed = include 'seq/types/kaprekar/fixed.php';
       return in_array ( $n, $fixed );
 

@@ -1,8 +1,8 @@
 <?php
 
-  foreach ( glob ( PAD . 'seq/one/types/*.php' ) as $file ) {
+  foreach ( glob ( 'seq/one/types/*.php' ) as $file ) {
 
-    $single = str_replace ( PAD . 'seq/one/types/', '', $file   );
+    $single = str_replace ( 'seq/one/types/', '', $file   );
     $single = str_replace ( '.php',                     '', $single );
 
     $extra = ( $single == 'element') ? '|3' : '';

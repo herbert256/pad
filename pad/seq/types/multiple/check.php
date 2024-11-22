@@ -2,13 +2,13 @@
 
   function padSeqCheckMultiple ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/multiple/bool.php' ) )
+    if ( file_exists ( 'seq/types/multiple/bool.php' ) )
       return padSeqBoolMultiple ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/multiple/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/multiple/generated.php' ) ) 
       return in_array ( $n, PADmultiple );
 
-    if ( file_exists ( PAD . 'seq/types/multiple/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/multiple/fixed.php' ) ) {
       $fixed = include 'seq/types/multiple/fixed.php';
       return in_array ( $n, $fixed );
 

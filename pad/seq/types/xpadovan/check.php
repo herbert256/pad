@@ -2,13 +2,13 @@
 
   function padSeqCheckXpadovan ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/xpadovan/bool.php' ) )
+    if ( file_exists ( 'seq/types/xpadovan/bool.php' ) )
       return padSeqBoolXpadovan ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/xpadovan/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/xpadovan/generated.php' ) ) 
       return in_array ( $n, PADxpadovan );
 
-    if ( file_exists ( PAD . 'seq/types/xpadovan/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/xpadovan/fixed.php' ) ) {
       $fixed = include 'seq/types/xpadovan/fixed.php';
       return in_array ( $n, $fixed );
 

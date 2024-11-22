@@ -4,9 +4,9 @@
 
     extract ( $padStartOption );
 
-    if ( ! file_exists ( PAD . "seq/actions/types/$padPrmName.php" ) 
-     and ! file_exists ( PAD . "seq/types/$padPrmName" ) 
-     and   file_exists ( PAD . "seq/options/types/$padPrmName.php" ) 
+    if ( ! file_exists ( "seq/actions/types/$padPrmName.php" ) 
+     and ! file_exists ( "seq/types/$padPrmName" ) 
+     and   file_exists ( "seq/options/types/$padPrmName.php" ) 
      and ! isset       ( $padSeqStore [$padPrmName] ) )
 
        $padSeqInfo ['options'] [] = $padPrmName;

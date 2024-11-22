@@ -2,13 +2,13 @@
 
   function padSeqCheckOctagonal ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/octagonal/bool.php' ) )
+    if ( file_exists ( 'seq/types/octagonal/bool.php' ) )
       return padSeqBoolOctagonal ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/octagonal/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/octagonal/generated.php' ) ) 
       return in_array ( $n, PADoctagonal );
 
-    if ( file_exists ( PAD . 'seq/types/octagonal/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/octagonal/fixed.php' ) ) {
       $fixed = include 'seq/types/octagonal/fixed.php';
       return in_array ( $n, $fixed );
 

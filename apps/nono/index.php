@@ -1,7 +1,5 @@
 <?php
 
-  $a = [];
-
-  aa();
+  echo "plain php without (much) PAD stuff.";
 
 ?>

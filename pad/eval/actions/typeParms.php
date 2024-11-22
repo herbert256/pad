@@ -18,6 +18,6 @@
   } else
     $value = $myself;
 
-  $padCall = PAD . "eval/parms/$kind.php" ;
+  $padCall = "eval/parms/$kind.php" ;
 
 ?>

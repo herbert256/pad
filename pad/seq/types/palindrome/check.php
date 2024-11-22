@@ -2,13 +2,13 @@
 
   function padSeqCheckPalindrome ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/palindrome/bool.php' ) )
+    if ( file_exists ( 'seq/types/palindrome/bool.php' ) )
       return padSeqBoolPalindrome ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/palindrome/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/palindrome/generated.php' ) ) 
       return in_array ( $n, PADpalindrome );
 
-    if ( file_exists ( PAD . 'seq/types/palindrome/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/palindrome/fixed.php' ) ) {
       $fixed = include 'seq/types/palindrome/fixed.php';
       return in_array ( $n, $fixed );
 

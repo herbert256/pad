@@ -1,6 +1,6 @@
 <?php
 
-  $padLibDirectory = new RecursiveDirectoryIterator ( PAD . '_lib' );
+  $padLibDirectory = new RecursiveDirectoryIterator ( '_lib' );
   $padLibIterator  = new RecursiveIteratorIterator  ( $padLibDirectory );
 
   foreach ( $padLibIterator as $padLibOne ) {

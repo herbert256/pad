@@ -2,13 +2,13 @@
 
   function padSeqCheckExponentiation ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/exponentiation/bool.php' ) )
+    if ( file_exists ( 'seq/types/exponentiation/bool.php' ) )
       return padSeqBoolExponentiation ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/exponentiation/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/exponentiation/generated.php' ) ) 
       return in_array ( $n, PADexponentiation );
 
-    if ( file_exists ( PAD . 'seq/types/exponentiation/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/exponentiation/fixed.php' ) ) {
       $fixed = include 'seq/types/exponentiation/fixed.php';
       return in_array ( $n, $fixed );
 

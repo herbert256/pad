@@ -2,13 +2,13 @@
 
   function padSeqCheckComposite ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/composite/bool.php' ) )
+    if ( file_exists ( 'seq/types/composite/bool.php' ) )
       return padSeqBoolComposite ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/composite/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/composite/generated.php' ) ) 
       return in_array ( $n, PADcomposite );
 
-    if ( file_exists ( PAD . 'seq/types/composite/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/composite/fixed.php' ) ) {
       $fixed = include 'seq/types/composite/fixed.php';
       return in_array ( $n, $fixed );
 

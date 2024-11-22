@@ -2,13 +2,13 @@
 
   function padSeqCheckHarshad ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/harshad/bool.php' ) )
+    if ( file_exists ( 'seq/types/harshad/bool.php' ) )
       return padSeqBoolHarshad ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/harshad/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/harshad/generated.php' ) ) 
       return in_array ( $n, PADharshad );
 
-    if ( file_exists ( PAD . 'seq/types/harshad/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/harshad/fixed.php' ) ) {
       $fixed = include 'seq/types/harshad/fixed.php';
       return in_array ( $n, $fixed );
 

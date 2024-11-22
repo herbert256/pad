@@ -2,13 +2,13 @@
 
   function padSeqCheckRange ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/range/bool.php' ) )
+    if ( file_exists ( 'seq/types/range/bool.php' ) )
       return padSeqBoolRange ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/range/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/range/generated.php' ) ) 
       return in_array ( $n, PADrange );
 
-    if ( file_exists ( PAD . 'seq/types/range/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/range/fixed.php' ) ) {
       $fixed = include 'seq/types/range/fixed.php';
       return in_array ( $n, $fixed );
 

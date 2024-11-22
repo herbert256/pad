@@ -2,13 +2,13 @@
 
   function padSeqCheckEnneadecagonal ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/enneadecagonal/bool.php' ) )
+    if ( file_exists ( 'seq/types/enneadecagonal/bool.php' ) )
       return padSeqBoolEnneadecagonal ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/enneadecagonal/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/enneadecagonal/generated.php' ) ) 
       return in_array ( $n, PADenneadecagonal );
 
-    if ( file_exists ( PAD . 'seq/types/enneadecagonal/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/enneadecagonal/fixed.php' ) ) {
       $fixed = include 'seq/types/enneadecagonal/fixed.php';
       return in_array ( $n, $fixed );
 

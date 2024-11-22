@@ -2,13 +2,13 @@
 
   function padSeqCheckEval ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/eval/bool.php' ) )
+    if ( file_exists ( 'seq/types/eval/bool.php' ) )
       return padSeqBoolEval ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/eval/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/eval/generated.php' ) ) 
       return in_array ( $n, PADeval );
 
-    if ( file_exists ( PAD . 'seq/types/eval/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/eval/fixed.php' ) ) {
       $fixed = include 'seq/types/eval/fixed.php';
       return in_array ( $n, $fixed );
 

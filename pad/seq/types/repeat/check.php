@@ -2,13 +2,13 @@
 
   function padSeqCheckRepeat ( $f, $n ) {
 
-    if ( file_exists ( PAD . 'seq/types/repeat/bool.php' ) )
+    if ( file_exists ( 'seq/types/repeat/bool.php' ) )
       return padSeqBoolRepeat ( $n );
 
-    if ( file_exists ( PAD . 'seq/types/repeat/generated.php' ) ) 
+    if ( file_exists ( 'seq/types/repeat/generated.php' ) ) 
       return in_array ( $n, PADrepeat );
 
-    if ( file_exists ( PAD . 'seq/types/repeat/fixed.php' ) ) {
+    if ( file_exists ( 'seq/types/repeat/fixed.php' ) ) {
       $fixed = include 'seq/types/repeat/fixed.php';
       return in_array ( $n, $fixed );
 
