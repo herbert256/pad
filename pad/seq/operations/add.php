@@ -30,4 +30,6 @@
     'padSeqType'  => $padSeqType
   ];
 
+  unset ( $padSeqOptions [$padSeqOptionKey] );
+
 ?>

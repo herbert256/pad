@@ -4,7 +4,7 @@
   $padSeqType       = 'make';
   $padSeqTypeSave   = '';
 
-  foreach ( $padSeqOptions as $padSeqOption ) {
+  foreach ( $padSeqOptions as $padSeqOptionKey => $padSeqOption ) {
 
     extract ( $padSeqOption );
     

@@ -347,7 +347,7 @@ class Diff{
     }
 
     // return the PAD
-    return $$indentation . "</table>\n";
+    return $pad . $indentation . "</table>\n";
 
   }
 
