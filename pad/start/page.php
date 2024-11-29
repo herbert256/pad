@@ -1,5 +1,5 @@
 <?php
 
-  include 'catch/build.php'; 
+  include 'tryCatch/go/build.php'; 
 
 ?>

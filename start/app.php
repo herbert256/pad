@@ -2,7 +2,7 @@
 
   $app = 'pad';
 
-  $script = $_SERVER ['[SCRIPT_NAME'] ?? '';
+  $script = $_SERVER ['SCRIPT_NAME'] ?? '';
   $dir    = dirname ( $script );
   $parts  = explode ( '/', $dir );
 

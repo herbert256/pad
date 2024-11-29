@@ -8,7 +8,7 @@
   if ( padTagParm ('data') ) $padData [$pad] = include "options/data.php";   
 
   include 'level/set.php';
-  include 'catch/go.php';  
+  include 'tryCatch/go/go.php';  
   include 'level/flags.php';
   include 'level/base.php';
   include 'level/data.php';

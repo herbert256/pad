@@ -31,11 +31,14 @@
   }
 
 
-  function padErrorException ( $error ) {
+  function padErrorException ( $padException ) {
 
-    $GLOBALS ['padErrorException'] = $error;
+    include 'error/exception.php';
 
-    return padErrorGo ( 'EXCEPTION: ' . $error->getMessage() , $error->getFile(), $error->getLine() );
+    return padErrorGo ( 
+             'EXCEPTION: ' . 
+             $padException->getMessage() , $padException->getFile(), $padException->getLine() 
+    );
      
   }
 

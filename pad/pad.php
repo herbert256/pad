@@ -8,6 +8,6 @@
 
   include 'error/boot.php';
   include 'config/config.php';
-  include 'catch/start.php';
+  include 'tryCatch/go/start.php';
 
 ?>

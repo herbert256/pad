@@ -3,7 +3,7 @@
   $GLOBALS ['padLevel'] [] = $pad;
 
   while ( $pad >= end ( $GLOBALS ['padLevel'] ) ) 
-    include 'catch/level.php'; 
+    include 'tryCatch/go/level.php'; 
 
   array_pop ( $GLOBALS ['padLevel'] );
 
