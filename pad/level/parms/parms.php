@@ -26,7 +26,7 @@
   if ( ! isset ( $padOpt [$pad] [1] ) )
     $padOpt [$pad] [1] = '';
 
-  if ( $GLOBALS ['padInfo'] ) 
+  if ( $padInfo ) 
     include 'events/parms.php';
 
 ?>

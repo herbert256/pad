@@ -9,7 +9,7 @@
     if  ( padOpenCloseCount ( substr ( $padBuildTrue, 0, $padPos ), $padOpenClose) ) {
       $padBuildFalse = substr ( $padBuildTrue, $padPos+6  );
       $padBuildTrue  = substr ( $padBuildTrue, 0, $padPos );
-      if ( $GLOBALS ['padInfo'] ) 
+      if ( $padInfo ) 
         include 'events/else.php';
       return;
     }

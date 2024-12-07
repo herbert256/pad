@@ -1,5 +1,5 @@
 <?php
 
-  include '/pad/start.php';
+  include "../../start.php";
 
 ?>

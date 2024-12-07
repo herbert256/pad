@@ -2,6 +2,6 @@
 
   include 'error/exception.php';
 
-  padDump ();
+  return include "tryCatch/catch/$padTryCatch.php";;
   
 ?>

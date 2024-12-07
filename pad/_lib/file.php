@@ -44,7 +44,7 @@
 
   function padFilePutContents ($in, $data='', $append=0) {
 
-    if ( $GLOBALS ['padInfo'] and function_exists ('padInfoTrace') )
+    if ( $padInfo and function_exists ('padInfoTrace') )
       include 'events/put.php';
 
     global $pad;

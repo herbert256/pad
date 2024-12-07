@@ -1,12 +1,12 @@
 <?php
      
-  if ( $GLOBALS ['padInfo'] )
+  if ( $padInfo )
     include 'events/walk.php';
 
   $padWalk [$pad] = 'next';
   
-  include "catch/go.php"; 
-  include "level/flags.php";
+  include 'tryCatch/go/go.php'; 
+  include 'level/flags.php';
 
   if ( $padWalk [$pad] ) {
 

@@ -11,9 +11,7 @@
 
   } catch ( Throwable $padException ) {
 
-    include 'tryCatch/_catch.php';
-
-    $padTryCatchReturn = include "tryCatch/catch/$padTryCatch.php";;
+    $padTryCatchReturn = include 'tryCatch/_catch.php';
 
   }
 

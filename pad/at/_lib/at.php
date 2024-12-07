@@ -265,7 +265,7 @@
     if ( ! $group or ! $padIdx or ! file_exists ( "at/groups/$group.php" ) )
       return INF;
 
-    if ( $GLOBALS ['padInfo'] ) 
+    if ( $padInfo ) 
       include 'events/atGroups.php'; 
 
     return include "at/groups/$group.php";
@@ -305,7 +305,7 @@
     if ( $return !== INF )
       padAtSetTag ();
 
-    if ( $GLOBALS ['padInfo'] )
+    if ( $padInfo )
       include 'events/atProperties.php'; 
 
     return $return;
@@ -318,7 +318,7 @@
     if ( ! file_exists ( "at/types/$go.php" ) )
       return INF;
 
-    if ( $GLOBALS ['padInfo'] )
+    if ( $padInfo )
       include 'events/atTypes.php'; 
 
     return include "at/types/$go.php";

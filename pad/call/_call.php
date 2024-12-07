@@ -1,5 +1,8 @@
 <?php
 
+  if ( $GLOBALS ['padInfo'] )
+    include 'events/call.php';
+
   ob_start();
   $padCallPHP = include $padCall;
   $padCallOB  = ob_get_clean();

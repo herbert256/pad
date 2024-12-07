@@ -8,12 +8,10 @@
   if ( $padEnd [$pad] === FALSE )
     return include 'level/end.php';
 
-  $padStart [$pad] = strrpos ( $padOut [$pad], '{', $padEnd [$pad] - strlen($padOut [$pad]) );
+  $padStart [$pad] = strrpos ( $padOut [$pad], '{', $padEnd [$pad] - strlen ( $padOut [$pad] ) );
   
-  if ( $padStart [$pad] === FALSE ) {
-    $padOut [$pad] = substr_replace ( $padOut [$pad], '&close;', $padEnd [$pad], 1 );
-    return;
-  }
+  if ( $padStart [$pad] === FALSE ) 
+    return include 'level/noOpen.php';
 
   $padBetween = substr ( $padOut [$pad], $padStart [$pad] + 1, $padEnd [$pad] - $padStart [$pad] - 1 );
   include 'level/between.php';

@@ -1,6 +1,6 @@
 <?php
 
-  if ( $GLOBALS ['padInfo'] )
+  if ( $padInfo )
     include 'events/optional.php';
 
   padPad ( '' );
