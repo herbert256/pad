@@ -1,5 +1,5 @@
 <?php
 
-echo dirname (__FILE__);
+echo PHP_VERSION_ID;
 
 ?>

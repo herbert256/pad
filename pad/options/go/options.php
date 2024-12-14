@@ -20,7 +20,7 @@
       else
         $padCall = "options/$padOptionName.php" ;
 
-      include 'call/call.php';
+      include 'call/any.php';
 
       if ( $GLOBALS ['padInfo'] )
         include 'events/options.php';           

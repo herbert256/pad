@@ -1,15 +1,10 @@
 <?php
 
-  if ( $GLOBALS ['padInfo'] )
-    include 'events/call.php';
+  include 'call/_init.php';
+  
+  if ( file_exists ( $padCall ) )
+    $padCallPHP = include $padCall;
 
-  ob_start();
-  $padCallPHP = include $padCall;
-  $padCallOB  = ob_get_clean();
-
-  if     ( is_object   ( $padCallPHP ) ) $padCallPHP = padToArray( $padCallPHP );
-  elseif ( is_resource ( $padCallPHP ) ) $padCallPHP = padToArray( $padCallPHP );
-  elseif ( $padCallPHP === INF         ) $padCallPHP = NULL;
-  elseif ( $padCallPHP === NAN         ) $padCallPHP = NULL;
+  include 'call/_exit.php';
 
  ?>
