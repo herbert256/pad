@@ -2,6 +2,6 @@
 
   $padBase [$pad] = $padStrCod;    
   
-  include 'occurrence/start.php'; 
+  include 'occurrence/occurence.php'; 
 
 ?>

@@ -11,6 +11,6 @@
   if ( $padInfo )
     include 'events/build.php';
 
-  include 'occurrence/start.php';
+  include 'occurrence/occurence.php';
 
 ?>
