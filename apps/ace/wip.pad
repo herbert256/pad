@@ -1,0 +1,69 @@
+<tr>
+  
+  <th width="15%">ACE-IS</th>
+  <th width="45%">BAR</th>
+
+  {envs}
+	  <th width="10%">{$envs|upper}</th>
+  {/envs}
+
+</tr>
+
+{wip}
+
+  {bars}
+
+    <tr>
+
+      {cell}
+
+		    {if $dev EQ $tst AND $dev EQ $acc AND $dev EQ $prd}
+
+		 		    <td colspan="4" align="center">{$dev}</td>
+
+	 		    {elseif $dev EQ $tst AND $acc EQ $prd and $dev NE $prd}
+
+				    <td colspan="2" align="center">{$dev}</td>
+			    <td colspan="2" align="center">{$acc}</td>
+
+		    {elseif $dev EQ $tst AND $dev EQ $acc and $dev NE $prd}
+
+			    <td colspan="3" align="center">{$dev}</td>
+			    <td colspan="1" align="center">{$prd}</td>
+
+		    {elseif $dev NE $tst AND $tst EQ $acc and $tst EQ $prd}
+
+			    <td colspan="1" align="center">{$dev}</td>
+			    <td colspan="3" align="center">{$prd}</td>
+
+		    {elseif $dev EQ $tst AND $acc NE $prd and $tst NE $acc}
+
+			    <td colspan="2" align="center">{$dev}</td>
+			    <td colspan="1" align="center">{$acc}</td>
+			    <td colspan="1" align="center">{$prd}</td>
+
+		    {elseif $dev NE $tst AND $tst NE $acc and $acc EQ $prd}
+
+			    <td colspan="1" align="center">{$dev}</td>
+			    <td colspan="1" align="center">{$tst}</td>
+			    <td colspan="2" align="center">{$prd}</td>
+
+		    {elseif $dev NE $tst AND $tst EQ $acc and $acc NE $prd}
+
+			    <td colspan="1" align="center">{$dev}</td>
+			    <td colspan="2" align="center">{$tst}</td>
+			    <td colspan="1" align="center">{$prd}</td>
+		    
+		    @else@
+			  
+			    {envs}
+			      <td align="center">{$$envs}</td>
+			    {/envs}
+
+		    {/if}
+	      
+    </tr>
+ 
+  {/bars}
+
+{/wip}

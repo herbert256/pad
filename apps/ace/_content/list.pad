@@ -1,0 +1,14 @@
+
+    {bars}
+
+      <tr>
+@content@
+        {if &bars:first}
+          <td valign='top' rowspan={&bars:count}>{&-3:key}</td>
+        {/if}
+
+        <td>{$value}{if &bars:key EQ 'wmb7'} WMB-7 resource(s){/if}</td>
+
+      </tr>
+     
+    {/bars}
