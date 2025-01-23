@@ -98,6 +98,9 @@
 
   function padDumpInfo ( $info ) {
 
+    if ( ! $info and isset ( $GLOBALS ['padExceptionText'] ) ) 
+      echo ( "<hr><b>" . $GLOBALS ['padExceptionText'] . "</b><hr><br>" ); 
+        
     if ( trim($info) )
       echo ( "<hr><b>" . htmlentities($info) . "</b><hr><br>" ); 
 
@@ -121,10 +124,12 @@
 
     echo "<br>";
     
-    padDumpStackGo ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS) );
+    if ( isset ( $GLOBALS ['padException'] ) ) {
+      padDumpStackGo ( $GLOBALS['padException']->getTrace() );
+      echo "<br>";
+    }
 
-    if ( isset ( $GLOBALS ['padErrorException'] ) )
-      padDumpStackGo ( $GLOBALS['padErrorException']->getTrace() );
+    padDumpStackGo ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS) );
 
   }
 
@@ -139,6 +144,7 @@
       $line     = $line     ?? $GLOBALS['padErrorLine'] ?? '???';
       $function = $function ?? '???';
 
+      if ( $file <> '???' )
       echo ( "$file:$line - $function\n");
 
       unset ($file);

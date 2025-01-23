@@ -4,11 +4,11 @@
  
   foreach ( $padBuildDirs as $padCall ) {
     $padCall .= '/_inits.php';
-    $padBuildTrue .= include 'call/stringNoOne.php';
+    $padBuildTrue .= include 'call/noOne.php';
   }
 
   $padCall = APP . "$padPage.php";
-  $padBuildTrue .= include 'call/callNoOne.php';
+  $padBuildTrue .= include 'call/ob.php';
   $padBuildCall = $padCallPHP;
 
   if ( $padCallPHP === NULL )
@@ -24,7 +24,7 @@
 
   foreach ( array_reverse ($padBuildDirs) as $padCall ) {
     $padCall .= '/_exits.php';
-    $padBuildTrue .= include 'call/stringNoOne.php';
+    $padBuildTrue .= include 'call/noOne.php';
   }
 
   include 'build/split.php';

@@ -18,7 +18,7 @@
   if     ( $padHit [$pad] and is_array($padTagResult) ) $padArray [$pad] = TRUE;
   else                                                  $padArray [$pad] = FALSE;
 
-  if ( $GLOBALS ['padInfo'] )
+  if ( $padInfo )
     include 'events/flags.php';
 
 ?>

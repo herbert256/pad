@@ -1,11 +1,9 @@
 <?php
 
-  include 'catch/catch/_catch.php';
-
   if ( function_exists ( 'padErrorGo' ) )
-    padErrorGo ( $padCatchError, $padCatchFile, $padCatchLine );
+    padErrorGo ( $padExceptionError, $padExceptionFile, $padExceptionLine );
   else
-    padBootStop ( $padCatchError, $padCatchFile, $padCatchLine );
+    padBootStop ( $padExceptionError, $padExceptionFile, $padExceptionLine );
 
   padStop ( 500 );
 
