@@ -15,6 +15,6 @@
 
   define ( 'APP', "$padHome/apps/$app/" );
   
-  unset ( $app, $script, $dir, $parts, $part );
+  unset ( $app, $parts, $part );
 
 ?>
