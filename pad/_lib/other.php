@@ -72,6 +72,24 @@
   }
 
 
+  function padBeforeAfter2 ( $input, &$before, &$after, $type ) {
+
+    $len  = strlen ( $type );
+    $list = padOpenCloseList ( $input ) ;
+    $pos  = strpos ( $input, $type );
+
+    if ( $pos !== FALSE) {
+        $before = substr ( $input, 0, $pos );
+        $after  = substr ( $input, $pos+$len  );
+    } else {
+      $before = $input;
+      $after  = '';
+    
+    }
+
+  }
+
+
   function padBeforeAfter ( $input, &$before, &$after, $type ) {
 
     $len  = strlen ( $type );

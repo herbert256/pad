@@ -1,11 +1,11 @@
 <?php
 
-  $app = 'pad';
-
   $parts = $_SERVER ['SCRIPT_NAME'] ?? '';
   $parts = str_replace ( '.php', '', $parts);
   $parts = str_replace ( DIRECTORY_SEPARATOR , '/', $parts);
   $parts = explode     ( '/', $parts );
+
+  $app = 'pad';
 
   foreach ( $parts as $part ) 
     if ( $part and file_exists ( "$padHome/apps/$part") ) {

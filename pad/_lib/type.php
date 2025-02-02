@@ -28,6 +28,7 @@
 
   }
 
+
   function padTypeCheck ( $type, $item ) {
 
     if     ( ! padValidType                          ( $type                                ) ) return FALSE;
@@ -57,6 +58,7 @@
 
   }
 
+
   function padGetTypeEval ( $type ) {
 
         if ( ! padValid      ( $type                                  ) ) return FALSE;
@@ -77,5 +79,6 @@
     else                                                                  return FALSE;
 
   } 
+
   
 ?>
