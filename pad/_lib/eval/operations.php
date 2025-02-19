@@ -3,7 +3,9 @@
   
   function padEvalOpr ( &$result, $myself, $start=0, $end=PHP_INT_MAX ) {
 
-    padEvalType ( $result, $myself, $start, $end );
+    padEvalDouble ( $result, $myself, $start, $end );
+    padEvalCheck  ( $result, $myself, $start, $end );
+    padEvalType   ( $result, $myself, $start, $end );
 
     foreach ( padEval_precedence as $now ) {
 

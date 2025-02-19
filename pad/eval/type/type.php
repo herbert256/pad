@@ -7,9 +7,9 @@
     include 'events/functions.php';
 
   if ( $result [$k] [4] ) 
-    include 'eval/actions/typeSingle.php';
+    include 'eval/type/single.php';
   else
-    include 'eval/actions/typeParms.php';
+    include 'eval/type/parms.php';
   
   $value = include 'call/any.php' ;
   

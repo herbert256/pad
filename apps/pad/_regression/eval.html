@@ -15,8 +15,7 @@
     </td>
     <td style="vertical-align:top">
       <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
-      <pre><code><span style="color: #000000">
-400
+      <pre><code><span style="color: #000000">400
 400
 400
 </span></code></pre><!-- END DEMO RESULT -->
@@ -25,15 +24,29 @@
   <tr>
     <td style="vertical-align:top">
       <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> <font color="black">'</font>"<font color="black">'</font> . </font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> . <font color="black">'</font>"<font color="black">'</font> </font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> <font color="black">'</font>"<font color="black">'</font> . . <font color="black">'</font>"<font color="black">'</font> </font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> <font color="black">'</font>"<font color="black">'</font> . <font color="black">@</font> . <font color="black">'</font>"<font color="black">'</font> </font>}</b></code></pre><!-- END DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> <font color="black">'</font>"<font color="black">'</font> . </font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> . <font color="black">'</font>"<font color="black">'</font> </font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> <font color="black">'</font>"<font color="black">'</font> . <font color="black">@</font> . <font color="black">'</font>"<font color="black">'</font> </font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> <font color="black">'</font>"<font color="black">'</font> . <font color="red">$</font><font color="red">$</font> . <font color="black">'</font>"<font color="black">'</font> </font>}</b></code></pre><!-- END DEMO SOURCE -->
     </td>
     <td style="vertical-align:top">
       <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
-      <pre><code><span style="color: #000000">
-"50
+      <pre><code><span style="color: #000000">"50
 50"
 "50"
 "50"
+</span></code></pre><!-- END DEMO RESULT -->
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> <font color="black">'</font>"<font color="black">'</font> . <font color="black">'</font>"<font color="black">'</font> </font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> <font color="black">'</font>"<font color="black">'</font> . . <font color="black">'</font>"<font color="black">'</font> </font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> . <font color="black">@</font> . </font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> . </font>}</b><br><b>{<font color="blue">echo </font><font color="red">50 <font color="black">|</font> . . </font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <pre><code><span style="color: #000000">""
+"5050"
+505050
+5050
+505050
 </span></code></pre><!-- END DEMO RESULT -->
     </td>
   </tr>
@@ -53,8 +66,7 @@
     </td>
     <td style="vertical-align:top">
       <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
-      <pre><code><span style="color: #000000">
-200
+      <pre><code><span style="color: #000000">200
 16
 625
 110
@@ -78,36 +90,10 @@
     </td>
     <td style="vertical-align:top">
       <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
-      <pre><code><span style="color: #000000">
-891568578
+      <pre><code><span style="color: #000000">891568578
 b
 b
 b
-</span></code></pre><!-- END DEMO RESULT -->
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = <font color="black">'</font>abc<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">. '"'</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">'"' .</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">. '"' .</font>}</b><br><b>{<font color="green">$abc</font> <font color="black">|</font> <font color="blue">'"' . <font color="black"><b><font color="black"><b><font color="black"><b><font color="black"><b>@</b></font></b></font></b></font></b></font> . '"'</font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
-      <pre><code><span style="color: #000000">
-abc
-abc"
-"abc
-abc"abc
-"abc"
 </span></code></pre><!-- END DEMO RESULT -->
     </td>
   </tr>
@@ -127,8 +113,7 @@ abc"abc
     </td>
     <td style="vertical-align:top">
       <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
-      <pre><code><span style="color: #000000">
-a &lt;test&gt; LiNe 
+      <pre><code><span style="color: #000000">a &lt;test&gt; LiNe 
 a  LiNe 
 A &lt;test&gt; LiNe 
 A &lt;TEST&gt; LINE 
@@ -153,8 +138,7 @@ a+%3Ctest%3E+LiNe
     </td>
     <td style="vertical-align:top">
       <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
-      <pre><code><span style="color: #000000">
-12345.68 
+      <pre><code><span style="color: #000000">12345.68 
 12345.67800 
 000012345 
 12345 

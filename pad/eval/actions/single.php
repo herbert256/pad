@@ -4,6 +4,6 @@
 
   unset ( $result [$k] );
 
-  include 'eval/actions/go.php';
+  include 'eval/go/go.php';
   
 ?>

@@ -43,77 +43,6 @@
   }
 
 
-  function padContentSet ( $base, $new ) {
-
-    padBeforeAfter ( $base, $before, $after, '@content@' ) ;
-    if ( $before and $after )
-      return $before . $new . $after;
-
-    padBeforeAfter ( $new, $before, $after, '@content@' ) ;
-    if ( $before and $after )
-      return $before . $base . $after;
-    
-    $merge = padTagParm ( 'merge', 'replace' );
-
-    if     ( $merge == 'bottom'  ) return $base . $new;
-    elseif ( $merge == 'top'     ) return $new . $base;
-    elseif ( $merge == 'replace' ) return $new;
-    
-  }
-
-
-  function padContentMerge ( &$true, &$false, $new, $condition ) {
-
-    padBeforeAfter ( $new, $newTrue, $newFalse, '@else@' ) ;
-
-    if ( $condition ) $true  = padContentSet ( $true,  $newTrue );
-    else              $false = padContentSet ( $false, $newFalse );
-
-  }
-
-
-  function padBeforeAfter2 ( $input, &$before, &$after, $type ) {
-
-    $len  = strlen ( $type );
-    $list = padOpenCloseList ( $input ) ;
-    $pos  = strpos ( $input, $type );
-
-    if ( $pos !== FALSE) {
-        $before = substr ( $input, 0, $pos );
-        $after  = substr ( $input, $pos+$len  );
-    } else {
-      $before = $input;
-      $after  = '';
-    
-    }
-
-  }
-
-
-  function padBeforeAfter ( $input, &$before, &$after, $type ) {
-
-    $len  = strlen ( $type );
-    $list = padOpenCloseList ( $input ) ;
-    $pos  = strpos ( $input, $type );
-
-    while ( $pos !== FALSE) {
-      
-      if  ( padOpenCloseCount ( substr ( $input, 0, $pos ), $list ) ) {
-        $before = substr ( $input, 0, $pos );
-        $after  = substr ( $input, $pos+$len  );
-        return;
-      }
-  
-      $pos = strpos ( $input, $type, $pos+1 );
-
-    }
-
-    $before = $input;
-    $after  = '';
-
-  }
-
-
   function padFileName ( $withDir ) {
 
     global $padFileDir, $padFileName, $padFileTimeStamp, $padFileUniqId, $padFileExtension;
@@ -143,7 +72,6 @@
     return $now->format('YmdHisu');
 
   }
-
 
 
   function padInsideOther () {
@@ -959,21 +887,6 @@
       if ( isset ( $padCurrent [$search] [$tag] ) and is_array ( $padCurrent [$search] [$tag]) )
         return $padCurrent [$search] [$tag];
 
-  }
-
-
-  function padCheckValue ($value) {
-
-    if     ($value === NULL)      return '';
-    elseif ($value === TRUE)      return '1';
-    elseif ($value === FALSE)     return '';
-    elseif ($value === INF)       return '';
-    elseif ($value === NAN)       return '';
-    elseif (is_array($value))     return '';
-    elseif (is_object($value))    return '';
-    elseif (is_resource($value))  return '';
-    else                          return $value;                       
-    
   }
 
 

@@ -11,7 +11,7 @@
       if ( $k > $end   ) break;
 
       if ( $result[$k][1] == 'TYPE' )
-        return include 'eval/actions/type.php';
+        return include 'eval/type/type.php';
  
       $b = $k;
 

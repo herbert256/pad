@@ -6,14 +6,13 @@
     padEvalValue  ( $result, $value );
     padEvalArray  ( $result, $value );
     padEvalOpnCls ( $result, $value );
-    padEvalCheck  ( $result, $value );
     padEvalOpr    ( $result, $value );
-    padEvalCheck  ( $result, $value );
+    padEvalMulti  ( $result );
 
     $key = array_key_first ($result);
 
-    if     ( count($result) < 1        ) padError ("No value back: $eval");
-    elseif ( count($result) > 1        ) padError ("More then one value back: $eval");
+    if     ( count($result) < 1        ) padError ("No result back: $eval");
+    elseif ( count($result) > 1        ) padError ("More then one reault back: $eval");
     elseif ( $result[$key][1] <> 'VAL' ) padError ("Result is not a value: $eval");
 
     return $result [$key] [0];

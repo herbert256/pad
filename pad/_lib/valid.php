@@ -25,21 +25,7 @@
 
   }
 
-  
-  function padValidPage ($page) {
-
-    if ( ! preg_match ( '/^[a-zA-Z][a-zA-Z0-9_\/]*$/', $page ) )  return FALSE;
-    if ( trim($page) == '' )                                      return FALSE;
-    if ( strpos($page, '//') !== FALSE)                           return FALSE;
-    if ( substr($page, -1) == '/')                                return FALSE;
-    if ( strpos($page, '/_') !== FALSE)                           return FALSE;
-    if ( substr($page, 0, 1) == '_')                              return FALSE;
- 
-    return TRUE;  
-
-  }
-
-  
+    
   function padValidVar ($name) {
 
     if ( trim($name) == '' )                                 return FALSE;

@@ -1,9 +1,7 @@
 <?php
   
-  $left  = $result [$f] [0];
+  $left  = $myself;
   $right = $myself;
-
-  unset ( $result [$f] );
 
   include 'eval/go/go.php';
 

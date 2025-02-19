@@ -18,8 +18,8 @@
   
   function padField ( $field, $type, $lvl=0 ) {
 
-    if ( str_contains ( $field, ':' ) and ( $type == 1 or $type == 2) )
-      $type = $type + 6;
+ #   if ( str_contains ( $field, ':' ) and ( $type == 1 or $type == 2) )
+ #     $type = $type + 6;
     
     if ( $field == 'pad' )
       return $GLOBALS ['padGo'];

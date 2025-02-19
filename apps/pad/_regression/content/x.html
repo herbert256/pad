@@ -1,0 +1,25 @@
+<table>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContents<font color="black">'</font></font>}</b>b<b>{/<font color="blue">content</font><font color="red"></font>}</b><b>{<font color="blue">myContents</font><font color="red"></font>}</b>a&lt;p&gt; <br>  &lt;table border="1" cellpadding="10" cellspacing="0"&gt;<br>    &lt;tr&gt;<br>      <b>{<font color="blue">if </font><font color="red">#firstFile</font>}</b><br>        &lt;th bgcolor="#dddddd"&gt;<b>{<font color="green"><font color="red">#</font>firstFile</font>}</b>&lt;/th&gt;<br>      <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>      <b>{<font color="blue">if </font><font color="red">#secondFile</font>}</b><br>        &lt;th bgcolor="#dddddd"&gt;<b>{<font color="green"><font color="red">#</font>secondFile</font>}</b>&lt;/th&gt;<br>      <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>      <b>{<font color="blue">if </font><font color="red">#withPHP</font>}</b><br>        &lt;th bgcolor="#dddddd"&gt;PHP&lt;/th&gt;<br>      <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>      &lt;th bgcolor="#dddddd"&gt;HTML&lt;/th&gt;<br>      &lt;th bgcolor="#dddddd"&gt;RESULT&lt;/th&gt;<br>    &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b><br>  &lt;/table&gt;<br>&lt;/p&gt;c<b>{/<font color="blue">myContents</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->a</span></code>
+      <p>
+        <code><span style="color: #000000"></span></code>
+      </p>b
+      <table border="1" cellpadding="10" cellspacing="0">
+        <tr>
+          <th bgcolor="#DDDDDD">
+            HTML
+          </th>
+          <th bgcolor="#DDDDDD">
+            RESULT
+          </th>
+        </tr>
+      </table>
+      <p></p><code><span style="color: #000000">c<!-- END DEMO RESULT --></span></code>
+    </td>
+  </tr>
+</table>

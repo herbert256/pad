@@ -1,11 +1,14 @@
 <?php
 
 
-  function padPageCheck ( $page, $check=1 ) {
+  function padPageCheck ( $page ) {
 
-    if ( $check and ! padValidPage ($page) )
-      return FALSE;
-
+    if ( ! preg_match ( '/^[a-zA-Z][a-zA-Z0-9_\/-]*$/', $page ) ) return FALSE;
+    if ( trim($page) == '' )                                      return FALSE;
+    if ( strpos($page, '//') !== FALSE)                           return FALSE;
+    if ( substr($page, -1) == '/')                                return FALSE;
+    if ( strpos($page, '/_') !== FALSE)                           return FALSE;
+ 
     $location = APP;
     $part     = padExplode ($page, '/');
 
