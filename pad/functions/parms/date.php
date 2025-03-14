@@ -1,18 +1,23 @@
 <?php
 
-  if ( $count == 2 ) {
-    
-    $date = date_create_from_format($parm[0], $value);
-    return $date->format($parm[1]);
+  if ( ! $value )
+    $value = time ();
 
-  } elseif ( $count == 0 )
+  if ( $count == 0 ) {
   
-    $format = $GLOBALS ['padFmt_'.$name];
+    $format = $GLOBALS ['padFmtDate'];
     
-  elseif ( $count == 1 )
+  } elseif ( $count == 1 ) {
 
-    $format = $parm[0];
+    $format = $parm [0];
 
-  return date($format, $value);
+  } else {
+
+    $format = $parm [0];
+    $value  = strtotime ( $parm [1], $value );
+
+  }
+
+  return date ($format, $value);
 
 ?>

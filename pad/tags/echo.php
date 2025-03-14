@@ -1,5 +1,5 @@
 <?php
 
-  return padEval ( $padOpt [$pad] [0], '|' );
+  return padEval ( $padOpt [$pad] [0] );
 
 ?>

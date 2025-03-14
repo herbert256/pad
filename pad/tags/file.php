@@ -7,7 +7,7 @@
 
   padFilePutContents ( $padFile , padUnEscape ( trim($padContent) ) );
 
-  $padContent = "<hr>$padFile<hr><pre>" . htmlentities ( trim($padContent) ) . "</pre><br>";
+  $padContent = '';
 
   return TRUE;
  
