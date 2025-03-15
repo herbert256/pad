@@ -25,8 +25,8 @@
     padContentMerge ( $padContent, $padFalse, $padTagContent, $padHit [$pad] );
 
   if ( padTagParm ('content') ) {
-    $padContentOption = padTagParm('content');
-    $padContentData   = $padContentStore [$padContentOption];
+    $padContentOption = padTagParm    ( 'content' );
+    $padContentData   = padContentGet ( $padContentOption );
     padContentMerge ( $padContent, $padFalse, $padContentData, $padHit [$pad] );
   }
 

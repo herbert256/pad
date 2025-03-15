@@ -1,0 +1,30 @@
+<h3>Shortcuts</h3>
+
+{block}
+
+  Shortcuts for the loop/list/range sequences
+
+  {table}
+    {demo}{seq loop, rows=10}  {$seq} {/seq}{/demo}
+    {demo}{seq list='a;b;c'}   {$seq} {/seq}{/demo}
+    {demo}{seq range='11..20'} {$seq} {/seq}{/demo}
+    {demo}{seq 10}       {$seq} {/seq}{/demo}
+    {demo}{seq 'a;b;c'}  {$seq} {/seq}{/demo}
+    {demo}{seq '11..20'} {$seq} {/seq}{/demo}
+  {/table}
+
+  Shortcuts for sequences
+
+  {table}
+    {demo}{golomb rows=10}  {$golomb} {/golomb}{/demo}
+    {demo}{prime  rows=10}  {$prime}  {/prime}{/demo}
+  {/table}
+
+  Shortcuts for stores
+
+  {table}
+    {demo}{seq range='10..20', name='mySeq'}  {/demo}
+    {demo}{mySeq} {$mySeq} {/mySeq}{/demo}
+  {/table}
+
+{/block}

@@ -1,5 +1,30 @@
 <?php
 
+
+  function padWriteFile ( $output ) {
+
+    $file = padFileName ();
+    $data = padOutput   ( $output ) ; 
+
+    padFilePutContents ( $file, $data );
+
+  }
+
+
+  function padOutput ( $output ) {
+
+    global $padGo, $padPage;
+
+    $output = padUnescape ( $output );
+
+    $output = str_replace ( '@pad@',  $padGo,            $output );
+    $output = str_replace ( '@self@', $padGo . $padPage, $output );
+
+    return $output;
+
+  }
+
+
   function padFindIdx ( $tag ) {
 
     global $pad, $padTag;
@@ -43,14 +68,17 @@
   }
 
 
-  function padFileName ( $withDir ) {
+  function padFileName ( $withDir = TRUE) {
 
-    global $padFileDir, $padFileName, $padFileTimeStamp, $padFileUniqId, $padFileExtension;
+    global $padFileDir, $padFileName, $padFileDate, $padFileTimeStamp, $padFileUniqId, $padFileExtension;
 
-    if ( $withDir )
+    if ( $withDir and $padFileDir )
       $name = "$padFileDir/$padFileName";
     else
       $name = $padFileName;
+
+    if ( $padFileDate )
+      $name .= '_' . date ('Y-m-d');
 
     if ( $padFileTimeStamp )
       $name .= '_' . padTimeStamp ();
@@ -185,6 +213,38 @@
     foreach ( padDirs () as $key => $value ) {
 
       $file = APP2 . $value . "_content/$content.pad";
+
+      if ( file_exists ($file) ) 
+        return padFileGetContents ($file);
+
+    }
+
+    return '';
+
+  }  
+
+
+  function padPadFileCheck ( $content ) {
+
+    foreach ( padDirs () as $key => $value ) {
+
+      $file = APP2 . $value . "$content.pad";
+
+      if ( file_exists ($file) ) 
+        return TRUE;
+
+    }
+
+    return FALSE;
+
+  }  
+
+
+  function padPadFileData ( $content ) {
+
+    foreach ( padDirs () as $key => $value ) {
+
+      $file = APP2 . $value . "$content.pad";
 
       if ( file_exists ($file) ) 
         return padFileGetContents ($file);

@@ -3,7 +3,7 @@
   if ( ! $padOutput or isset ( $padSent ) )
     return;
 
-  echo $padOutput;
+  echo trim($padOutput) . "\n";
 
   $padSent = TRUE;
 

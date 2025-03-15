@@ -1,0 +1,30 @@
+<html>
+
+  <head>
+    <title>{$padPage|upper}</title>
+  </head>
+
+  <body>
+
+    <h2>{$padPage|upper}</h2>
+
+    <table border=1 cellpadding=5 cellspacing=1>
+
+		  <tr>
+
+		    <th>ACE-IS</th>
+		    <th>BAR</th>
+
+		    {envs}
+		      <th>{$envs|upper}</th>
+		    {/envs}
+
+		  </tr>
+
+      @content@
+
+    </table>
+
+  </body>
+
+</html>

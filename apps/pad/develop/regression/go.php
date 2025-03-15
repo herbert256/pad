@@ -28,7 +28,6 @@
 
       if     ( ! $good                            ) $status = 'error';
       elseif ( ! file_exists ($store)             ) $status = 'new';
-      elseif ( strrpos($store, 'random')          ) $status = 'random' ;
       elseif ( strpos($new, 'PAD: NO REGRESSION') ) $status = 'skip' ;
       elseif ( strpos($source, '{example')        ) $status = 'skip' ;
       elseif ( strpos($source, '{ajax')           ) $status = 'skip' ;

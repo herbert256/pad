@@ -1,0 +1,25 @@
+<h3>operations/actions/one as options</h3>{block}
+
+operations/actions/ones can be added as options to a seq tag
+
+{table}{demo}
+
+{seq loop, from=10, to=20, name='mySeq'}
+
+{/demo}{demo}
+
+{seq mySeq, operation='even'} {$seq} {/seq}
+
+{/demo}{demo}
+
+{seq mySeq, action='shuffle'} {$seq} {/seq}
+
+{/demo}{demo} 
+
+{seq mySeq, one='average'} {$seq} {/seq}
+
+{/demo}
+
+{/table}
+
+{/block}

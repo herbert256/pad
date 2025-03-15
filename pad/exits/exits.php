@@ -1,8 +1,6 @@
 <?php
   
-  $padOutput = $padResult [0];
-  $padOutput = padUnescape ( $padOutput );
-  $padOutput = str_replace ( '@pad@', $padGo, $padOutput);
+  $padOutput = padOutput ( $padResult [0] );
 
   if ( $padTidy or $padMyTidy )
     include 'exits/tidy.php';

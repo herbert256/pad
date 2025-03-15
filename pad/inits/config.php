@@ -11,6 +11,9 @@
   if ( file_exists ( APP . '_config/config.php' ) ) 
     include APP . '_config/config.php';
 
+  if ( php_sapi_name() == 'cli' and $padOutputType == 'web' )
+    $padOutputType = 'console';
+
   include "config/output/$padOutputType.php";
   
   if ( file_exists ( APP . '_config/config.php' ) ) 

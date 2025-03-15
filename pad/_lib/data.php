@@ -21,6 +21,11 @@
       $data = include "data/$type.php";
     }
     
+    if ( isset ( $GLOBALS ['padDataSetRecord'] ) and $GLOBALS ['padDataSetRecord'] ) {
+      $data = padDataChkCheckRecord ($data,$name); 
+      $GLOBALS ['padDataSetRecord'] = FALSE;
+    }
+
     $data = padDataChkSimpleArray ($data,$name);
     $data = padDataChkChkOne      ($data,$name);   
     $data = padDataChkDataAttr    ($data,$name);
@@ -37,7 +42,7 @@
     $result = $data;
 
     foreach ($result as $padK => $padV)
-      if ( is_array($padV) or ! is_numeric($padK) )
+      if ( is_array($padV) )
         return $result;
   
     $name   = padDataName($name);

@@ -1,11 +1,18 @@
 <?php
 
-  if ( padStartAndClose ('end') )
+  if ( $padWalk [$pad] == 'start' ) {
+    $padWalk [$pad] = 'end';
     return TRUE;
+  }
 
-  $padFile = $padParm ;
+  $padFileDir        = padTagParm ( 'dir',   ''     );
+  $padFileName       = padTagParm ( 'name',  'file' );
+  $padFileExtension  = padTagParm ( 'ext',   'ext'  );
+  $padFileDate       = padTagParm ( 'date',  ''     );
+  $padFileTimeStamp  = padTagParm ( 'stamp', ''     );
+  $padFileUniqId     = padTagParm ( 'id',    ''     );
 
-  padFilePutContents ( $padFile , padUnEscape ( trim($padContent) ) );
+  padWriteFile ( $padContent );
 
   $padContent = '';
 

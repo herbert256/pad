@@ -1,0 +1,26 @@
+<h3>Parameters</h3>{block}
+
+operation/actions/ones can be added as a parameter to a seq tag,<br>
+but naming conflicts are possible and then above option way must be used.
+
+{table}{demo}
+
+{seq '10..20', name='mySeq'}
+
+{/demo}{demo}
+
+{seq mySeq, even} {$seq} {/seq}
+
+{/demo}{demo}
+
+{seq mySeq, shuffle} {$seq} {/seq}
+
+{/demo}{demo} 
+
+{seq mySeq, average} {$seq} {/seq}
+
+{/demo}
+
+{/table}
+
+{/block}

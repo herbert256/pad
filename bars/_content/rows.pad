@@ -1,0 +1,15 @@
+{bars}
+
+  <tr>
+
+    {if &bars:first}
+      <td valign='top' rowspan={&bars:count}>{&-3:key}</td>
+    {/if}
+
+    <td>{&bars:key}</td>
+
+    @content@
+
+  </tr>
+ 
+{/bars}

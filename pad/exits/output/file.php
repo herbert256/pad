@@ -1,8 +1,6 @@
 <?php
 
-  $padFile = padFileName ( TRUE );
-
-  padFilePutContents ( $padFile, $padOutput );
+  padWriteFile ( $padOutput );
 
   $padSetConfig ['OutputType'] = 'web';
 

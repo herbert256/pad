@@ -3,17 +3,17 @@
   $nows ['index'] ['text'] = 'Introduction';
   $nows ['index'] ['now']  = 'index';
 
-  foreach ( glob ( APP . 'manual/seq/*.pad' ) as $file ) {
+  $nows ['concepts'] ['text'] = 'Concepts';
+  $nows ['concepts'] ['now']  = 'concepts';
 
-    $now = str_replace ( APP . 'manual/seq/', '', $file );
-    $now = str_replace ( '.pad',                  '', $now );
+  $nows ['others'] ['text'] = 'Other';
+  $nows ['others'] ['now']  = 'others';
 
-    if ( $now <> '_inits' and $now <> 'index' and $now <> 'pages' ) {
-      $nows [$now] ['text'] = ucfirst ( $now );
-      $nows [$now] ['now'] = $now;
-    }
+  $nows ['examples'] ['text'] = 'Examples';
+  $nows ['examples'] ['now']  = 'examples';
 
-  }
+  $nows ['xref'] ['text'] = 'Xref';
+  $nows ['xref'] ['now']  = 'xref';
 
   if ( ! isset ( $go ) or ! $go )
     $go = 'index';

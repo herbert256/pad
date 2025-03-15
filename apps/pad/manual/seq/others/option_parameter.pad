@@ -1,0 +1,18 @@
+<h3>Option with parameter</h3>{block}
+
+when an operation/action/one, that is used as an option, has a parameter<br>
+use a '|' to give the parameter.
+
+{table}{demo}
+
+{seq '10..20', name='mySeq'}
+
+{/demo}{demo}
+
+{seq mySeq, operation='multiply|10'} {$seq} {/seq}
+
+{/demo}
+
+{/table}
+
+{/block}
