@@ -10,6 +10,7 @@
     include APP . 'develop/seq/generated.php';
     include APP . 'develop/seq/check.php';
     include APP . 'develop/seq/basic.php';
+    include APP . 'develop/seq/type.php';
     include APP . 'develop/seq/keepRemove.php';
     include APP . 'develop/seq/oprSingle.php';
     include APP . 'develop/seq/oprDouble.php';

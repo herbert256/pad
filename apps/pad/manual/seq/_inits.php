@@ -6,6 +6,9 @@
   $nows ['concepts'] ['text'] = 'Concepts';
   $nows ['concepts'] ['now']  = 'concepts';
 
+  $nows ['all'] ['text'] = 'All';
+  $nows ['all'] ['now']  = 'all';
+
   $nows ['others'] ['text'] = 'Other';
   $nows ['others'] ['now']  = 'others';
 
