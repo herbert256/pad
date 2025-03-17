@@ -1,0 +1,6 @@
+{seq range='20..30', store='mySeq1'}
+{seq range='40..50', store='mySeq2'}
+
+{action:merge 'mySeq1|mySeq2', add=10}
+  {$merge}
+{/action:merge}

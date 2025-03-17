@@ -1,7 +1,9 @@
 <?php
 
-  if     ( $padType [$pad] == 'seq'   )  return include 'seq/inits/short/seq.php';
-  elseif ( $padType [$pad] == 'store' )  return include 'seq/inits/short/store.php';
+  if     ( $padType [$pad] == 'seq'    )  return include 'seq/inits/short/seq.php';
+  elseif ( $padType [$pad] == 'store'  )  return include 'seq/inits/short/store.php';
+  elseif ( $padType [$pad] == 'one'    )  return include 'seq/inits/short/one.php';
+  elseif ( $padType [$pad] == 'action' )  return include 'seq/inits/short/action.php';
 
   if     ( is_numeric ( $padParm       ) ) return include 'seq/inits/seq/integer.php';
   elseif ( strpos     ( $padParm, '..' ) ) return include 'seq/inits/seq/range.php';

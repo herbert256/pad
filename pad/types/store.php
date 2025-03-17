@@ -1,5 +1,5 @@
 <?php
 
-  return include 'types/seq.php';
+  return include 'seq/start/types/store.php';
 
 ?>

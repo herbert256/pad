@@ -24,6 +24,8 @@
     elseif ( function_exists  ( $item                                ) ) return 'php';
     elseif ( isset            ( $GLOBALS ['padSeqStore'] [$item]     ) ) return 'store';
     elseif ( file_exists      ( "seq/types/$item"                    ) ) return 'seq';
+    elseif ( file_exists      ( "seq/one/types/$item.php"            ) ) return 'one';
+    elseif ( file_exists      ( "seq/actions/yypes/$item.php"        ) ) return 'action';
     else                                                                 return FALSE;
 
   }
@@ -54,6 +56,8 @@
     elseif ( $type == 'table'    and isset           ( $GLOBALS ['padTables'] [$item]       ) ) return $type;
     elseif ( $type == 'store'    and isset           ( $GLOBALS ['padSeqStore'] [$item]     ) ) return $type;
     elseif ( $type == 'seq'      and file_exists     ( "seq/types/$item"                    ) ) return $type;
+    elseif ( $type == 'one'      and file_exists     ( "seq/one/types/$item.php"            ) ) return $type;
+    elseif ( $type == 'action'   and file_exists     ( "seq/actions/types/$item.php"        ) ) return $type;
     else                                                                                        return FALSE;
 
   }

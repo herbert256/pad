@@ -2,7 +2,7 @@
 
   foreach ( $GLOBALS as $padK => $padV )
     if ( str_starts_with ( $padK, 'padSeq') )
-      if ( $padK <> 'padSeqStore' )
+      if ( $padK <> 'padSeqStore' and $padK <> 'padSeqEntry' )
         unset ( $GLOBALS [$padK] );
 
 ?>
