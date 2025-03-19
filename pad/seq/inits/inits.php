@@ -5,7 +5,7 @@
   include 'seq/inits/parms.php';
   include 'seq/inits/options.php';
   include 'seq/inits/seq.php';
-  include 'seq/inits/operations.php';
+  include 'seq/inits/plays.php';
   include 'seq/inits/name.php';
   include 'seq/inits/startEnd.php';
   include 'seq/inits/build.php';

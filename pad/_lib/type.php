@@ -56,6 +56,7 @@
     elseif ( $type == 'table'    and isset           ( $GLOBALS ['padTables'] [$item]       ) ) return $type;
     elseif ( $type == 'store'    and isset           ( $GLOBALS ['padSeqStore'] [$item]     ) ) return $type;
     elseif ( $type == 'seq'      and file_exists     ( "seq/types/$item"                    ) ) return $type;
+    elseif ( $type == 'play'     and file_exists     ( "seq/types/$item"                    ) ) return $type;
     elseif ( $type == 'one'      and file_exists     ( "seq/one/types/$item.php"            ) ) return $type;
     elseif ( $type == 'action'   and file_exists     ( "seq/actions/types/$item.php"        ) ) return $type;
     else                                                                                        return FALSE;

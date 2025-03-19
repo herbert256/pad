@@ -1,0 +1,18 @@
+<h3>Plays</h3>
+
+{block}
+
+Plays are a sequence that is executed on a sequence list entry when building the list<br>
+in below 2 examples even/add are plays.
+
+{table}
+{demo}{seq range='20..30', store='mySeq'} {/demo}
+{demo}{seq mySeq, even} 
+  {$mySeq} 
+{/seq}{/demo}
+{demo}{seq mySeq, add=5} 
+  {$mySeq} 
+{/seq}{/demo}
+{/table}
+
+{/block}

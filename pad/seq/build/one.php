@@ -17,8 +17,8 @@
   if     ( $padSeq === FALSE ) return TRUE;
   elseif ( $padSeq === TRUE  ) $padSeq = $padSeqLoop;
 
-  if ( count ( $padSeqOperations ) ) {
-    $padSeq = include 'seq/operations/build.php';
+  if ( count ( $padSeqPlays ) ) {
+    $padSeq = include 'seq/plays/build.php';
     if ( $padSeq === FALSE ) 
       return TRUE;
   }

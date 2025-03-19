@@ -14,8 +14,8 @@
        . "{demo}{seq two}\n  {\$seq}\n{/seq}{/demo}\n\n"
        . "{/table}";    
 
-  file_put_contents ( APP . "seq/store/operations/$type.pad", $one );
+  file_put_contents ( APP . "seq/store/plays/$type.pad", $one );
   file_put_contents ( "seq/types/$type/flags/storeDouble", 1 );
-  file_put_contents ( "seq/store/operations/$type",  1 );
+  file_put_contents ( "seq/store/plays/$type",  1 );
   
 ?>

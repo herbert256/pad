@@ -5,8 +5,8 @@
   $padSeqStoreNames  = padExplode ( $padPrmValue, '|' );
   $padSeqStoreName   = $padSeqStoreNames [0];
 
-  if ( file_exists ( "seq/store/operations/$padSeqStoreAction" ) ) 
-      include 'seq/store/operation.php';
+  if ( file_exists ( "seq/store/plays/$padSeqStoreAction" ) ) 
+      include 'seq/store/play.php';
 
   if ( file_exists ( "seq/store/actions/$padSeqStoreAction" ) ) 
       include 'seq/store/action.php';

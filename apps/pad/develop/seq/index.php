@@ -12,8 +12,8 @@
     include APP . 'develop/seq/basic.php';
     include APP . 'develop/seq/type.php';
     include APP . 'develop/seq/keepRemove.php';
-    include APP . 'develop/seq/oprSingle.php';
-    include APP . 'develop/seq/oprDouble.php';
+    include APP . 'develop/seq/playSingle.php';
+    include APP . 'develop/seq/playDouble.php';
     include APP . 'develop/seq/store.php';
   }  
 
