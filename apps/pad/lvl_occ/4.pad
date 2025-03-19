@@ -1,10 +1,10 @@
 <table border='1'>
-  {seq '10..30', increment=10, name='row'}
+  {sequence '10..30', increment=10, name='row'}
     <tr>
-      {seq '1..5', name='column'}
+      {sequence '1..5', name='column'}
         {set $cell = $row + $column}
         <td>{$cell}</td>      
-      {/seq}
+      {/sequence}
     </tr>
-  {/seq}
+  {/sequence}
 </table>

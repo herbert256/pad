@@ -17,7 +17,7 @@
     elseif ( $type == 'sylvester' ) $gox = 'sylvester, rows=10';
     else                            $gox = "$type$parm, rows=15";
 
-    echo "{demo}{seq $gox}\n  {\$seq}\n{/seq}{/demo}";
+    echo "{demo}{sequence $gox}\n  {\$sequence}\n{/sequence}{/demo}";
 
   }
   

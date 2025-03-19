@@ -6,8 +6,8 @@
   $main = ( $type == 'even') ? 'odd' : 'even';
 
   $one = "{table}\n\n"
-       . "{demo}{seq $main, rows=5}\n  {\$seq}\n{/seq}{/demo}\n\n"
-       . "{demo}{seq $main, $type$parm, rows=5}\n  {\$seq}\n{/seq}{/demo}\n\n"
+       . "{demo}{sequence $main, rows=5}\n  {\$sequence}\n{/sequence}{/demo}\n\n"
+       . "{demo}{sequence $main, $type$parm, rows=5}\n  {\$sequence}\n{/sequence}{/demo}\n\n"
        . "{/table}";
 
   file_put_contents ( "seq/types/$type/flags/playSingle", 1 );

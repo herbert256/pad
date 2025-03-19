@@ -14,7 +14,7 @@
 
     }
 
-    $text = padCode ( "{seq happy, from=$f, stop=$n, try=$n}{\$seq},{/seq}" );
+    $text = padCode ( "{sequence happy, from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
     $arr  = explode ( ',', $text );
 
     return in_array ( $n, $arr );

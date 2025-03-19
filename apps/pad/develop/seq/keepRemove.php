@@ -12,9 +12,9 @@
      return;
 
   $one = "{table}\n\n"
-       . "{demo}{seq 10}\n  {\$seq}\n{/seq}{/demo}\n\n"
-       . "{demo}{seq 10, keep, $type}\n  {\$seq}\n{/seq}{/demo}\n\n"
-       . "{demo}{seq 10, remove, $type}\n  {\$seq}\n{/seq}{/demo}\n\n"
+       . "{demo}{sequence 10}\n  {\$sequence}\n{/sequence}{/demo}\n\n"
+       . "{demo}{sequence 10, keep, $type}\n  {\$sequence}\n{/sequence}{/demo}\n\n"
+       . "{demo}{sequence 10, remove, $type}\n  {\$sequence}\n{/sequence}{/demo}\n\n"
        . "{/table}";
 
   file_put_contents ( "seq/types/$type/flags/keepRemove", 1 );

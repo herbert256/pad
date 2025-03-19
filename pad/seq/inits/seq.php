@@ -1,10 +1,12 @@
 <?php
 
-  if     ( $padType [$pad] == 'seq'    )  return include 'seq/inits/short/seq.php';
-  elseif ( $padType [$pad] == 'store'  )  return include 'seq/inits/short/store.php';
-  elseif ( $padType [$pad] == 'one'    )  return include 'seq/inits/short/one.php';
-  elseif ( $padType [$pad] == 'action' )  return include 'seq/inits/short/action.php';
-  elseif ( $padType [$pad] == 'play'   )  return include 'seq/inits/short/play.php';
+  if     ( $padType [$pad] == 'seq'    )  return include 'seq/inits/short/types/seq.php';
+  elseif ( $padType [$pad] == 'store'  )  return include 'seq/inits/short/types/store.php';
+  elseif ( $padType [$pad] == 'one'    )  return include 'seq/inits/short/types/one.php';
+  elseif ( $padType [$pad] == 'action' )  return include 'seq/inits/short/types/action.php';
+  elseif ( $padType [$pad] == 'make'   )  return include 'seq/inits/short/types/make.php';
+  elseif ( $padType [$pad] == 'keep'   )  return include 'seq/inits/short/types/keep.php';
+  elseif ( $padType [$pad] == 'remove' )  return include 'seq/inits/short/types/remove.php';
 
   if     ( is_numeric ( $padParm       ) ) return include 'seq/inits/seq/integer.php';
   elseif ( strpos     ( $padParm, '..' ) ) return include 'seq/inits/seq/range.php';

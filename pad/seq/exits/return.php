@@ -2,7 +2,7 @@
 
   $padSeqReturn = [];
 
-  $padSeqNames [] = 'seq';
+  $padSeqNames [] = 'sequence';
   $padSeqNames [] = $padSeqName; 
   $padSeqNames [] = $padSeqToData;
   $padSeqNames [] = $padSeqSeq;
@@ -11,6 +11,8 @@
   $padSeqNames [] = $padSeqSet;
   $padSeqNames [] = $padName [$pad]; 
   $padSeqNames [] = $padTag [$pad];
+  $padSeqNames [] = $padSeqStartSeq ?? '';
+  $padSeqNames [] = $padSeqStartType;
 
   $padSeqNames = array_unique ( $padSeqNames );
 

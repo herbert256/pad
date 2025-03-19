@@ -1,6 +1,6 @@
 <?php
 
-  $padSeqStartType = 'play';
+  $padSeqStartType = 'remove';
 
   return include "seq/seq.php";
 

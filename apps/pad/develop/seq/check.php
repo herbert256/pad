@@ -17,7 +17,7 @@
         . "\n      return in_array ( \$n, \$fixed );"        . "\n"
         . "\n    }"
         . "\n"
-        . "\n    \$text = padCode ( \"{seq $type, from=\$f, stop=\$n, try=\$n}{\\\$seq},{/seq}\" );"
+        . "\n    \$text = padCode ( \"{sequence $type, from=\$f, stop=\$n, try=\$n}{\\\$sequence},{/sequence}\" );"
         . "\n    \$arr  = explode ( ',', \$text );"
         . "\n"
         . "\n    return in_array ( \$n, \$arr );"

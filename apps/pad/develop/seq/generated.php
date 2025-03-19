@@ -10,7 +10,7 @@
 
   $name = ucfirst ($type);
 
-  $fixed = padCode ( "{seq $type, rows=5000, try=5000}{\$seq},{/seq}" );
+  $fixed = padCode ( "{sequence $type, rows=5000, try=5000}{\$sequence},{/sequence}" );
   $fixed = substr ($fixed, 0, -1);
   
   $code = "<?php const PAD$type=[$fixed]; ?>";  

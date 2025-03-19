@@ -1,0 +1,36 @@
+<h3>Plays</h3>
+
+<p>A play is a sequence, but not used to build a list, it is used to exucute on a sequence list.
+
+<p>There are 3 play operators
+
+<table border=1>
+
+{plays}
+  <tr>
+    <td> {&plays:key} </td>
+    <td> {$plays}     </td>
+  </tr>
+{/plays}
+
+{block}
+
+{table}
+
+{demo}{sequence range='20..30', store='mySequence'} {/demo}
+
+{demo}{make:even 'mySequence'} 
+  {$mySequence} 
+{/make:even}{/demo}
+
+{demo}{keep:even 'mySequence'} 
+  {$mySequence} 
+{/keep:even}{/demo}
+
+{demo}{remove:even 'mySequence'} 
+  {$mySequence} 
+{/remove:even}{/demo}
+
+{/table}
+
+{/block}

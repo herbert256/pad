@@ -1,7 +1,7 @@
 <?php
 
-  $padSeqStartSeq = $padOpt [$pad] [1];      
-  $padSeqResult   = $padSeqStore [$padSeqStartSeq];
+  include 'seq/inits/short/parms.php';
+  
   $padPrmName     = $padTag [$pad];
   $padPrmValue    = $padOpt [$pad] [2] ?? ''; 
 
@@ -9,6 +9,6 @@
 
   $padSeqStartArray = $padSeqResult;
 
-  include 'seq/inits/start.php';
+  include 'seq/inits/short/get.php';
 
 ?>

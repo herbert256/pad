@@ -6,12 +6,12 @@
   $seq = ucfirst( $type );
 
   $one = "{table}\n\n"
-       . "{demo}{seq '5..2',   name='one'}{/demo}\n\n"
-       . "{demo}{seq '11..14', name='two'}{/demo}\n\n"
-       . "{demo}{seq one}\n  {\$seq}\n{/seq}{/demo}\n\n"
-       . "{demo}{seq two}\n  {\$seq}\n{/seq}{/demo}\n\n"
-       . "{demo}{seq one, store$seq='two'}{/demo}\n\n"
-       . "{demo}{seq two}\n  {\$seq}\n{/seq}{/demo}\n\n"
+       . "{demo}{sequence '5..2',   name='one'}{/demo}\n\n"
+       . "{demo}{sequence '11..14', name='two'}{/demo}\n\n"
+       . "{demo}{sequence one}\n  {\$sequence}\n{/sequence}{/demo}\n\n"
+       . "{demo}{sequence two}\n  {\$sequence}\n{/sequence}{/demo}\n\n"
+       . "{demo}{sequence one, store$seq='two'}{/demo}\n\n"
+       . "{demo}{sequence two}\n  {\$sequence}\n{/sequence}{/demo}\n\n"
        . "{/table}";    
 
   file_put_contents ( APP . "seq/store/plays/$type.pad", $one );

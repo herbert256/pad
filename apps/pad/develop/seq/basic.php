@@ -10,7 +10,7 @@
   else                            $go = "$type$parm, rows=15";
 
   $one  = "{table}\n\n";
-  $one .= "{demo}{seq $go}\n  {\$seq}\n{/seq}{/demo}\n\n";
+  $one .= "{demo}{sequence $go}\n  {\$sequence}\n{/sequence}{/demo}\n\n";
   $one .= "{/table}";
 
   file_put_contents ( APP . "seq/basic/{$type}.pad", $one );

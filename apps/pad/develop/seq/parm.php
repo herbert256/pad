@@ -6,8 +6,8 @@
   if ( $build == 'fixed' or $build == 'order' or $type == 'get' )
     return; 
 
-  $a = padCode ( "{seq $type=3, rows=15}{\$seq}{/seq}" );
-  $b = padCode ( "{seq $type=5, rows=15}{\$seq}{/seq}" );
+  $a = padCode ( "{sequence $type=3, rows=15}{\$sequence}{/sequence}" );
+  $b = padCode ( "{sequence $type=5, rows=15}{\$sequence}{/sequence}" );
 
   $e = FALSE;
   foreach ( [ 'loop', 'make', 'function', 'bool' ] as $check ) 

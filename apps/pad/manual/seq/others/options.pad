@@ -1,22 +1,40 @@
-<h3>plays/actions/one as options</h3>{block}
+<h3>Options</h3>
+
+{block}
+
+Options control aspects of a sequence list, <br>
+in below 2 examples from/to/rows/random/max are options.
+
+{table}
+{demo}{sequence even, from=20, to=30 }
+  {$sequence} 
+{/sequence}{/demo}
+{demo}{sequence power=2, rows=3, random, from=8, to=16 }
+  {$sequence} 
+{/sequence}{/demo}
+{/table}
+
+{/block}
+
+<h3>plays/actions/ones as options</h3>{block}
 
 plays/actions/ones can be added as options to a seq tag
 
 {table}{demo}
 
-{seq loop, from=10, to=20, name='mySeq'}
+{sequence loop, from=10, to=20, name='mySeq'}
 
 {/demo}{demo}
 
-{seq mySeq, play='even'} {$seq} {/seq}
+{sequence mySeq, make='even'} {$sequence} {/sequence}
 
 {/demo}{demo}
 
-{seq mySeq, action='shuffle'} {$seq} {/seq}
+{sequence mySeq, action='shuffle'} {$sequence} {/sequence}
 
 {/demo}{demo} 
 
-{seq mySeq, one='average'} {$seq} {/seq}
+{sequence mySeq, one='average'} {$sequence} {/sequence}
 
 {/demo}
 
