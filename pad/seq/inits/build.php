@@ -1,5 +1,6 @@
 <?php
   
-  $padSeqBuild = padSeqBuild ( $padSeqSeq, 'loop' );
+  if ( ! $padSeqBuild )
+    $padSeqBuild = padSeqBuild ( $padSeqSeq, 'loop' );
 
 ?>

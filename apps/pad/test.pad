@@ -1,6 +1,6 @@
-{sequence range='20..30', store='mySeq1'}
-{sequence range='40..50', store='mySeq2'}
+{sequence range='20..30', store='mySequence'}
 
-{action:merge 'mySeq1|mySeq2', add=10}
-  {$merge}
-{/action:merge}
+{make:even 'mySequence'} 
+{dump}
+  {$mySequence} 
+{/make:even}

@@ -1,6 +1,9 @@
 <?php
 
   if ( $padSeqPull )
+    $padSeqStoreUpdated = TRUE;
+
+  if ( $padSeqPull )
     if ( count($padSeqStore [$padSeqPull]) > $padSeqActionCnt )
       if ( $padSeqActionName == 'shift')
         $padSeqStore [$padSeqPull] = array_slice($padSeqStore [$padSeqPull], $padSeqActionCnt);

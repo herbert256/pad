@@ -19,8 +19,10 @@
   $padTag        [$pad] = $padTypeCheck  ?? '';
   $padType       [$pad] = $padTypeResult ?? '';
   $padGiven      [$pad] = $padTypeGiven  ?? '';
+  $padPrefix     [$pad] = $padTypePrefix ?? '';
   $padPair       [$pad] = $padPairSet    ?? '';
   $padBase       [$pad] = $padBaseSet    ?? '';
+  $padOrg        [$pad] = $padOrgSet     ?? '';
   $padSource     [$pad] = $padBaseSet    ?? '';
   $padPrmType    [$pad] = $padPrmTypeSet ?? '';
 

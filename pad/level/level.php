@@ -14,6 +14,7 @@
     return include 'level/noOpen.php';
 
   $padBetween = substr ( $padOut [$pad], $padStart [$pad] + 1, $padEnd [$pad] - $padStart [$pad] - 1 );
+  $padOrgSet  = $padBetween;
   include 'level/between.php';
 
   if ( ctype_space ( $padFirst ) ) 

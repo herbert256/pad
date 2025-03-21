@@ -1,8 +1,7 @@
 <?php
 
-  $padSeqTry   = PHP_INT_MAX;
-  $padSeqFixed = include "seq/types/$padSeqSeq/fixed.php";
- 
+  $padSeqTry = PHP_INT_MAX;
+
   foreach ( $padSeqFixed as $padSeqLoop )
     if ( ! include 'seq/build/one.php')
       break;

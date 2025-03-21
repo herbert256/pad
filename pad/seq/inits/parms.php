@@ -13,11 +13,10 @@
   $padSeqRows = intval ( $padPrm [$pad] ['rows']      ?? 0           );
   $padSeqSkip = intval ( $padPrm [$pad] ['skip']      ?? 0           );
   
-  $padSeqRandom = $padPrm [$pad] ['random'] ?? ''; 
-  $padSeqUnique = $padPrm [$pad] ['unique'] ?? ''; 
-  $padSeqName   = $padPrm [$pad] ['name']   ?? ''; 
-  $padSeqToData = $padPrm [$pad] ['toData'] ?? ''; 
-  $padSeqSet    = $padPrm [$pad] ['set']    ?? ''; 
-  $padSeqGet    = $padPrm [$pad] ['get']    ?? ''; 
-     
+  $padSeqRandom    = $padPrm [$pad] ['random'] ?? ''; 
+  $padSeqUnique    = $padPrm [$pad] ['unique'] ?? ''; 
+  $padSeqName      = $padPrm [$pad] ['name']   ?? ''; 
+  $padSeqStoreName = $padPrm [$pad] ['store']  ?? ''; 
+  $padSeqToData    = $padPrm [$pad] ['toData'] ?? ''; 
+ 
 ?>

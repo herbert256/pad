@@ -231,6 +231,7 @@
     
     $opt = $GLOBALS ['padOpt'] [$pad] ?? [];
     $tag = $GLOBALS ['padTag'] [$pad] ?? '';
+    $type = $GLOBALS ['padType'] [$pad] ?? '';
      
     $prm = '';
     if ( is_array ($opt) and isset ( $opt[0]) ) {
@@ -238,12 +239,11 @@
       unset ( $opt[0] );
     }
 
-    if     ( $tag and $prm ) $tag = '{' . "$tag $prm" . '}';
-    elseif ( $tag          ) $tag = '{' . $tag . '}';
+    if     ( $tag and $prm ) $tag = '{' . "$type:$tag $prm" . '}';
+    elseif ( $tag          ) $tag = '{' . "$type:$tag"      . '}';
     
     return [
-      'tag'     => $tag,
-      'type'    => $GLOBALS ['padType'] [$pad] ?? '',
+      'tag'     => $GLOBALS ['padOrg'] [$pad] ?? '',
       'name'    => $GLOBALS ['padName'] [$pad] ?? '',
       'pair'    => $GLOBALS ['padPair'] [$pad] ?? '',
       'opt'     => $opt,
