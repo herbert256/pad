@@ -2,15 +2,15 @@
 
   // {make:sequence, 'add|5'}
 
-  $padSeqPull = $padTag [$pad] [1];
+  $padSeqPull = $padTag [$pad];
 
   $padSeqPlayParms     = padExplode ( $padParm, '|' );
   $padSeqPlayOperation = $padSeqPlayParms [0] ?? '';
   $padSeqPlayParm      = $padSeqPlayParms [1] ?? '';
 
-  $padPlayAction = $padType [$pad];
+  $padSeqPlayAction = $padType [$pad];
  
-  include 'sequence/inits/play/play.php';
+  include 'sequence/inits/go/play.php';
 
 
 ?>

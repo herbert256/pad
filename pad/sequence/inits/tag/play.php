@@ -8,8 +8,8 @@
   $padSeqPlayOperation = $padSeqPlayParms [0] ?? '';
   $padSeqPlayParm      = $padSeqPlayParms [1] ?? '';
 
-  $padPlayAction = $padTag [$pad];
+  $padSeqPlayAction = $padTag [$pad];
  
-  include 'sequence/inits/play/play.php';
+  include 'sequence/inits/go/play.php';
 
 ?>
