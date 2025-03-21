@@ -23,15 +23,20 @@
     elseif ( file_exists      ( "functions/$item.php"                ) ) return 'function';
     elseif ( function_exists  ( $item                                ) ) return 'php';
     elseif ( isset            ( $GLOBALS ['padSeqStore'] [$item]     ) ) return 'store';
-    elseif ( file_exists      ( "seq/types/$item"                    ) ) return 'sequence';
-    elseif ( file_exists      ( "seq/one/types/$item.php"            ) ) return 'one';
-    elseif ( file_exists      ( "seq/actions/types/$item.php"        ) ) return 'action';
+    elseif ( file_exists      ( "sequence/types/$item"                    ) ) return 'sequence';
+    elseif ( file_exists      ( "sequence/one/types/$item.php"            ) ) return 'one';
+    elseif ( file_exists      ( "sequence/actions/types/$item.php"        ) ) return 'action';
     else                                                                 return FALSE;
 
   }
 
 
   function padTypeCheck ( $type, $item ) {
+
+    if ( isset ( $GLOBALS ['padSeqStore'] [$item] ) )
+      if     ( in_array ($type, ['make', 'keep', 'remove'] ) return $type;
+      elseif ( file_exists ("sequence/one/types/$type.php")     ) return 'one';
+      elseif ( file_exists ("sequence/actions/types/$type.php") ) return 'action';
 
     if     ( ! padValidType                          ( $type                                ) ) return FALSE;
     if     (                        ! file_exists    ( "types/$type.php"                    ) ) return FALSE;
@@ -55,12 +60,12 @@
     elseif ( $type == 'php'      and function_exists ( $item                                ) ) return $type;
     elseif ( $type == 'table'    and isset           ( $GLOBALS ['padTables'] [$item]       ) ) return $type;
     elseif ( $type == 'store'    and isset           ( $GLOBALS ['padSeqStore'] [$item]     ) ) return $type;
-    elseif ( $type == 'sequence' and file_exists     ( "seq/types/$item"                    ) ) return $type;
-    elseif ( $type == 'make'     and file_exists     ( "seq/types/$item"                    ) ) return $type;
-    elseif ( $type == 'keep'     and file_exists     ( "seq/types/$item"                    ) ) return $type;
-    elseif ( $type == 'remove'   and file_exists     ( "seq/types/$item"                    ) ) return $type;
-    elseif ( $type == 'one'      and file_exists     ( "seq/one/types/$item.php"            ) ) return $type;
-    elseif ( $type == 'action'   and file_exists     ( "seq/actions/types/$item.php"        ) ) return $type;
+    elseif ( $type == 'sequence' and file_exists     ( "sequence/types/$item"                    ) ) return $type;
+    elseif ( $type == 'make'     and file_exists     ( "sequence/types/$item"                    ) ) return $type;
+    elseif ( $type == 'keep'     and file_exists     ( "sequence/types/$item"                    ) ) return $type;
+    elseif ( $type == 'remove'   and file_exists     ( "sequence/types/$item"                    ) ) return $type;
+    elseif ( $type == 'one'      and file_exists     ( "sequence/one/types/$item.php"            ) ) return $type;
+    elseif ( $type == 'action'   and file_exists     ( "sequence/actions/types/$item.php"        ) ) return $type;
     else                                                                                        return FALSE;
 
   }

@@ -17,5 +17,8 @@
   $padInfo      = '';
   $padInfoCnt   = 0;
   $padEvalCnt   = -1;
+
+  if ( ! isset ( $padSeqStore ) )
+    $padSeqStore = [];
  
 ?>

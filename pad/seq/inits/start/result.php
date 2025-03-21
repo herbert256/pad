@@ -1,5 +1,0 @@
-<?php
-
-  $padSeqResult = $padSeqStore [$padSeqPull];
-
-?>

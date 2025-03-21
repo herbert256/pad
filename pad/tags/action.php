@@ -1,5 +1,5 @@
 <?php
 
-  return include 'seq/start/tags/action.php';
+  return include 'sequence/start/tags/action.php';
 
 ?>

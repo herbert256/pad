@@ -5,7 +5,7 @@
 
     $padSeqFunction = 'operation';
 
-    return include 'seq/entry/function.php';
+    return include 'sequence/entry/function.php';
 
   }
 
@@ -14,7 +14,7 @@
 
     $padSeqFunction = 'sequence';
 
-    return include 'seq/entry/function.php';
+    return include 'sequence/entry/function.php';
 
   }
 
@@ -23,7 +23,7 @@
 
     $padSeqFunction = 'action';
 
-    return include 'seq/entry/function.php';
+    return include 'sequence/entry/function.php';
 
   }
 
@@ -32,7 +32,7 @@
 
     $padSeqFunction = 'store';
 
-    return include 'seq/entry/function.php';
+    return include 'sequence/entry/function.php';
 
   }
 
@@ -41,7 +41,7 @@
 
     $padSeqFunction = 'one';
 
-    return include 'seq/entry/function.php';
+    return include 'sequence/entry/function.php';
 
   }
 
@@ -85,7 +85,7 @@
     if ( $for == 'keep' or $for == 'remove' )
       return 'check';
 
-    $check = "seq/types/$check";
+    $check = "sequence/types/$check";
 
     if ( $for == 'make' ) if ( file_exists ( "$check/make.php" ) ) return 'make';
     if ( $for == 'loop' ) if ( file_exists ( "$check/loop.php" ) ) return 'loop';
@@ -109,7 +109,7 @@
     $padSeqActionName      = $action;
     $padSeqStore [$action] = $seq2;
 
-    return include "seq/actions/types/$action.php";  
+    return include "sequence/actions/types/$action.php";  
 
   }
 
