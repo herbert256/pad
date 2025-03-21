@@ -229,24 +229,13 @@
     if ( ! isset($pad) or $pad === NULL or $pad < 0 )
       return [];
     
-    $opt = $GLOBALS ['padOpt'] [$pad] ?? [];
-    $tag = $GLOBALS ['padTag'] [$pad] ?? '';
-    $type = $GLOBALS ['padType'] [$pad] ?? '';
-     
-    $prm = '';
-    if ( is_array ($opt) and isset ( $opt[0]) ) {
-      $prm = $opt[0];
-      unset ( $opt[0] );
-    }
-
-    if     ( $tag and $prm ) $tag = '{' . "$type:$tag $prm" . '}';
-    elseif ( $tag          ) $tag = '{' . "$type:$tag"      . '}';
-    
     return [
-      'tag'     => $GLOBALS ['padOrg'] [$pad] ?? '',
+      'org'     => $GLOBALS ['padOrg'] [$pad] ?? '',
+      'tag'     => $GLOBALS ['padTag'] [$pad] ?? '',
+      'type'    => $GLOBALS ['padType'] [$pad] ?? '',
       'name'    => $GLOBALS ['padName'] [$pad] ?? '',
       'pair'    => $GLOBALS ['padPair'] [$pad] ?? '',
-      'opt'     => $opt,
+      'opt'     => $GLOBALS ['padOpt'] [$pad] ?? '',
       'prm'     => $GLOBALS ['padPrm'] [$pad] ?? '',
       'set-lvl' => $GLOBALS ['padSetLvl'] [$pad] ?? '',
       'set-occ' => $GLOBALS ['padSetOcc'] [$pad] ?? '',

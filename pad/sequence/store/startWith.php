@@ -1,5 +1,8 @@
 <?php
 
+  if ( $padPrmName == 'store' )
+    return;
+  
   $padSeqResultSave  = $padSeqResult;
   $padSeqStoreAction = strtolower ( substr ( $padPrmName, 5, 1 ) ) . substr ( $padPrmName, 6 );
   $padSeqStoreNames  = padExplode ( $padPrmValue, '|' );

@@ -3,9 +3,9 @@
   // {action:reverse 'myseq', 'parm' } 
   // {reverse:myseq  'parm' }          
 
-  if     ( $padPrefix[$pad] and file_exists ("sequence/one/types/$padPrefix[$pad].php")     ) $padSeqTmp  = 'one';
-  elseif ( $padPrefix[$pad] and file_exists ("sequence/actions/types/$padPrefix[$pad].php") ) $padSeqTmp  = 'action';
-  else                                                                                   $padSeqTmp  = '';
+  if     ( $padPrefix[$pad] and file_exists ("sequence/one/types/$padPrefix[$pad].php")     ) $padSeqTmp = 'one';
+  elseif ( $padPrefix[$pad] and file_exists ("sequence/actions/types/$padPrefix[$pad].php") ) $padSeqTmp = 'action';
+  else                                                                                        $padSeqTmp = '';
 
   if ( $padSeqTmp == 'one' or $padSeqTmp == 'action' ) {
 

@@ -1,4 +1,7 @@
 <?php
+
+  if ( $padPrmName == 'saction' )
+    return;
   
   if ( $padPrmValue === TRUE or ! $padPrmValue )
     $padSeqActionList = [];

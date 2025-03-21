@@ -1,7 +1,6 @@
 <?php
 
-  $padStartTypeType  = 'type';
-  $padStartTypeValue = $padType [$pad];
+  $padSeqInfo ['types'] [] = $padTag [$pad];
 
       if ( $padType [$pad] == 'action'   ) return include "sequence/inits/type/operation.php";
   elseif ( $padType [$pad] == 'keep'     ) return include "sequence/inits/type/play.php";

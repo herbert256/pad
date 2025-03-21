@@ -10,7 +10,11 @@
     return;
   }
 
-  $padPairTag   = ( $padTypeGiven ) ? $padTypeResult . ':' . $padTypeCheck : $padTypeCheck;
+  if ( $padTypeSeq )
+    $padPairTag = $padTypeSeq . ':' . $padTypeCheck;
+  else
+    $padPairTag = ( $padTypeGiven ) ? $padTypeResult . ':' . $padTypeCheck : $padTypeCheck;
+
   $padPos       = $padEnd [$pad];
   $padPairCheck = '';
 

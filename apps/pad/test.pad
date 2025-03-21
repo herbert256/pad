@@ -1,6 +1,13 @@
-{sequence range='20..30', store='mySequence'}
+{sequence:prime rows=10, store='mySequence'}
 
-{make:even 'mySequence'} 
-{dump}
-  {$mySequence} 
-{/make:even}
+{store:mySequence}
+  {$mySequence}
+{/store:mySequence}
+
+{reverse:mySequence}
+  {$mySequence}
+{/reverse:mySequence}
+
+{sum:mySequence}
+  {$mySequence}
+{/sum:mySequence}

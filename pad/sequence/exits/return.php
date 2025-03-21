@@ -6,7 +6,6 @@
   $padSeqNames [] = $padSeqName; 
   $padSeqNames [] = $padSeqToData;
   $padSeqNames [] = $padSeqSeq;
-  $padSeqNames [] = $padSeqName; 
   $padSeqNames [] = $padName [$pad]; 
   $padSeqNames [] = $padTag [$pad];
   $padSeqNames [] = $padSeqPull;
