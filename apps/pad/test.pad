@@ -1,56 +1,6 @@
-{sequence '31..40', keep, even}
+{sequence '5;10;15;20',  name='one'}
+
+{sequence one}
   {$sequence}
 {/sequence}
 
-
-{table}
-
-{demo}{sequence '31..40', store='mySequence'}{/demo}
-
-{demo}{store:mySequence}
-  {$mySequence}
-{/store:mySequence}{/demo}
-
-{demo}{make:mySequence 'even'}
-  {$mySequence}
-{/make:mySequence}{/demo}
-
-{demo}{keep:mySequence 'even'}
-  {$mySequence}
-{/keep:mySequence}{/demo}
-
-{demo}{remove:mySequence 'even'}
-  {$mySequence}
-{/remove:mySequence}{/demo}
-
-{demo}{sequence:prime rows=10, store='mySequence'}{/demo}
-
-{demo}{store:mySequence}
-  {$mySequence}
-{/store:mySequence}{/demo}
-
-{demo}{mySequence}
-  {$mySequence}
-{/mySequence}{/demo}
-
-{demo}{reverse:mySequence}
-  {$mySequence}
-{/reverse:mySequence}{/demo}
-
-{demo}{sum:mySequence}
-  {$mySequence}
-{/sum:mySequence}{/demo}
-
-{demo}{power 2, rows=10}
-  {$power}
-{/power}{/demo}
-
-{demo}{sequence cubic}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence 'cubic'}
-  {$cubic}
-{/sequence}{/demo}
-
-{/table}

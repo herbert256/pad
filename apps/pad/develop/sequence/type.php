@@ -1,7 +1,6 @@
 <?php
  
-  if     ( $type == 'get'       ) return;
-  elseif ( $type == 'loop'      ) $go = "rows=15";
+  if     ( $type == 'loop'      ) $go = "rows=15";
   elseif ( $type == 'oeis'      ) $go = "87, rows=15";
   elseif ( $type == 'list'      ) $go = "'1;8;5;2;9;66'";
   elseif ( $type == 'range'     ) $go = "'1..10'";
@@ -10,7 +9,7 @@
   elseif ( $parm )                $go = "4, rows=15";
   else                            $go = "rows=15";
 
-  $prefix = ( padTypeGet ( $type ) == 'seq' ) ? '' : 'seq:';
+  $prefix = ( padTypeGet ( $type ) == 'sequence' ) ? '' : 'sequence:';
 
   $one  = "{table}\n\n";
   $one .= "{demo}{" . "$prefix$type $go" . "}\n  {\$" . $type . "}\n{/" . $prefix . $type . "}{/demo}\n\n";

@@ -10,6 +10,11 @@
     if ( $padSeqType == 'store' )
       include 'sequence/plays/store.php';
 
+    if ( ! file_exists ( "sequence/types/$padSeqSeq/" ) ) {
+      $padSeqInfo ['errors'] [] = "$padPage-no_play-$padSeqSeq";
+      continue;
+    }
+
     $padSeq = include 'sequence/build/call.php';
 
     if     ( $padSeqType == 'keep'   and $padSeq === TRUE       ) $padSeq = $padSeqSave;

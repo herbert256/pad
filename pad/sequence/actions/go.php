@@ -1,5 +1,10 @@
 <?php
 
+  if ( ! file_exists ( include "sequence/actions/types/$padSeqActionName.php" ) ) {
+    $padSeqInfo ['errors'] [] = "$padPage-no_action-$padSeqActionName";
+    return;
+  }
+
   $padSeqActionStore = $padSeqActionList [0] ?? '';
   $padSeqActionCnt   = ( ctype_digit ( $padSeqActionStore ) ) ? $padSeqActionStore : 1;
 

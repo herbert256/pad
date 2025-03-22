@@ -12,6 +12,11 @@
   $padSeqNames [] = 'one';
   $padSeqNames [] = $padSeqOneName;
 
+  if ( ! file_exists ( "sequence/one/types/$padSeqOneName.php" ) ) {
+    $padSeqInfo ['errors'] [] = "$padPage-no_one-$padSeqOneName";
+    return;
+  }
+
   $padSeqInfo ['one'] [] = $padSeqOneName;
 
   if ( count ( $padSeqResult ) ) 
