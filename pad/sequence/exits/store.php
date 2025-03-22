@@ -2,6 +2,8 @@
 
   if ( $padSeqStoreName ) {
 
+    $padSeqNames [] = $padSeqStoreName;
+
     if ( $padSeqStoreUpdated ) $padSeqStore [$padSeqStoreName] = $padSeqStore [$padSeqPull];
     else                       $padSeqStore [$padSeqStoreName] = array_values ( $padSeqResult );
 

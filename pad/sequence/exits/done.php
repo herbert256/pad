@@ -1,10 +1,12 @@
 <?php
 
   foreach ( $padSeqDone as $padK => $padV )
-    padDone ( $padV );
+    if ( ! is_array ( $padV ) )
+      padDone ( $padV );
 
   foreach ( $padPrm [$pad] as $padK => $padV )
     if ( file_exists ( "sequence/options/types/$padK.php" ) )
-      padDone ( $padK );
+      if ( ! is_array ( $padV ) )
+        padDone ( $padK );
 
 ?>

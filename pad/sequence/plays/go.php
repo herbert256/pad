@@ -11,7 +11,7 @@
       include 'sequence/plays/store.php';
 
     if ( ! file_exists ( "sequence/types/$padSeqSeq/" ) ) {
-      $padSeqInfo ['errors'] [] = "$padPage-no_play-$padSeqSeq";
+      $padSeqInfo ['errors'] [] = "no_play-$padSeqSeq-$padPage";
       continue;
     }
 

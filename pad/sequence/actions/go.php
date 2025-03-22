@@ -1,7 +1,7 @@
 <?php
 
-  if ( ! file_exists ( include "sequence/actions/types/$padSeqActionName.php" ) ) {
-    $padSeqInfo ['errors'] [] = "$padPage-no_action-$padSeqActionName";
+  if ( ! file_exists ( "sequence/actions/types/$padSeqActionName.php" ) ) {
+    $padSeqInfo ['errors'] [] = "no_action-$padSeqActionName-$padPage";
     return;
   }
 

@@ -9,13 +9,13 @@
     $padSeqOneParm = $padPrmValue;      
   }
 
-  $padSeqNames [] = 'one';
-  $padSeqNames [] = $padSeqOneName;
-
   if ( ! file_exists ( "sequence/one/types/$padSeqOneName.php" ) ) {
-    $padSeqInfo ['errors'] [] = "$padPage-no_one-$padSeqOneName";
+    $padSeqInfo ['errors'] [] = "no_one-$padSeqOneName-$padPage";
     return;
   }
+
+  $padSeqNames [] = 'one';
+  $padSeqNames [] = $padSeqOneName;
 
   $padSeqInfo ['one'] [] = $padSeqOneName;
 

@@ -1,16 +1,32 @@
 <?php
 
   // {make:sequence, 'add|5'}
-
-  $padSeqPull = $padTag [$pad];
-
-  $padSeqPlayParms     = padExplode ( $padParm, '|' );
-  $padSeqPlayOperation = $padSeqPlayParms [0] ?? '';
-  $padSeqPlayParm      = $padSeqPlayParms [1] ?? '';
+  // {make:add, 'sequence|5'}
 
   $padSeqPlayAction = $padType [$pad];
- 
-  include 'sequence/inits/go/play.php';
+  $padSeqPlayParms  = padExplode ( $padParm, '|' );
+  $padSeqPlayParm   = $padSeqPlayParms [1] ?? '';
 
+  $padTmpFirst  = $padTag [$pad]; 
+  $padTmpSecond = $padSeqPlayParms [0] ?? ''; 
+
+  if ( isset ( $padSeqStore[$padTmpFirst] ) and file_exists ( "sequence/types/$padTmpSecond" ) ) {
+
+    $padSeqPull          = $padTmpFirst;
+    $padSeqPlayOperation = $padTmpSecond;
+  
+  } elseif ( isset ( $padSeqStore[$padTmpSecond] ) and file_exists ( "sequence/types/$padTmpFirst" ) ) {
+
+    $padSeqPull          = $padTmpSecond;
+    $padSeqPlayOperation = $padTmpFirst;
+
+  } else {
+
+   $padSeqInfo ['errors'] [] = "$padPage-no_start-play-$padTmpFirst-$padTmpSecond";
+   return;
+  
+  }
+
+  include 'sequence/inits/go/play.php';
 
 ?>
