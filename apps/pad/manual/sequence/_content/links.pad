@@ -1,0 +1,16 @@
+<center>
+
+  {links}
+      {if $link eq $action}
+        {$link}
+      @else@
+        <a href="@pad@manual/sequence/{$page}&next={$link}">{$link}</a>
+      {/if}
+      &nbsp;
+  {/links}
+
+  <br><hr>
+
+  {example '{$dir}/{$next}', onlyResult, include}
+
+</center>

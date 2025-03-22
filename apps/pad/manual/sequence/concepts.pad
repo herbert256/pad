@@ -1,0 +1,30 @@
+{block}
+
+<p>There are 5 Sequence concepts
+
+<table border=1>
+
+{concepts}
+  <tr>
+    <td>
+      {if &concepts:key <> $concept}
+        <a href="@self@&go=concepts&concept={&concepts:key}">{&concepts:key}</a>
+      @else@
+        {&concepts:key}
+      {/if}
+    </td>
+    <td>
+      {$concepts}
+    </td>
+  </tr>
+{/concepts}
+
+</table>
+
+{/block}
+
+{block}
+<br>
+  {page 'manual/sequence/concepts/{$concept}', include}
+{/block}
+

@@ -79,25 +79,23 @@
 
   function padSeqBuild ( $check, $for='' ) {
 
-    if ( $check == 'pull' or $check == 'get' )
+    if ( $check == 'pull' )
       return 'fixed';
 
     if ( $for == 'keep' or $for == 'remove' )
       return 'check';
 
-    $check = "sequence/types/$check";
-
-    if ( $for == 'make' ) if ( file_exists ( "$check/make.php" ) ) return 'make';
-    if ( $for == 'loop' ) if ( file_exists ( "$check/loop.php" ) ) return 'loop';
+    if ( file_exists ( "sequence/types/$check/$for.php" ) ) 
+      return $for;
     
-    if     ( file_exists ( "$check/loop.php")     ) return 'loop';
-    elseif ( file_exists ( "$check/make.php")     ) return 'make';
-    elseif ( file_exists ( "$check/function.php") ) return 'function';
-    elseif ( file_exists ( "$check/bool.php")     ) return 'bool';
-    elseif ( file_exists ( "$check/jump.php")     ) return 'jump';
-    elseif ( file_exists ( "$check/order.php")    ) return 'order';
-    elseif ( file_exists ( "$check/fixed.php")    ) return 'fixed';
-    else                                            return '';
+    if     ( file_exists ( "sequence/types/$check/loop.php")     ) return 'loop';
+    elseif ( file_exists ( "sequence/types/$check/make.php")     ) return 'make';
+    elseif ( file_exists ( "sequence/types/$check/function.php") ) return 'function';
+    elseif ( file_exists ( "sequence/types/$check/bool.php")     ) return 'bool';
+    elseif ( file_exists ( "sequence/types/$check/jump.php")     ) return 'jump';
+    elseif ( file_exists ( "sequence/types/$check/order.php")    ) return 'order';
+    elseif ( file_exists ( "sequence/types/$check/fixed.php")    ) return 'fixed';
+    else                                                           return '';
 
   }
 

@@ -1,8 +1,7 @@
 <?php
 
-  $padSeqSeqSave    = $padSeqSeq;
-  $padSeqType       = 'make';
-  $padSeqTypeSave   = '';
+  $padSeqType     = 'make';
+  $padSeqTypeSave = '';
 
   foreach ( $padSeqOptions as $padSeqOptionKey => $padSeqOption ) {
 
@@ -21,7 +20,5 @@
     include 'sequence/plays/add.php';
 
   }
-
-  $padSeqSeq = $padSeqSeqSave;
 
 ?>

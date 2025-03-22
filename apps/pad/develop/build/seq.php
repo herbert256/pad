@@ -1,5 +1,5 @@
 <?php
 
-  padPageGet ( 'develop/seq/index' );  
+  padPageGet ( 'develop/sequence/index' );  
 
 ?>
