@@ -8,6 +8,8 @@
 
   $padSeqFixed = [];
 
+  $padSeqInfo ["start/$padStartType/play/$padSeqPlayAction"] [] = $padSeqSeq;
+
   foreach ( $padSeqStore [$padSeqPull] as $padSeqPlayKey => $padSeqLoop ) {
 
     $padSeq = include 'sequence/build/call.php';

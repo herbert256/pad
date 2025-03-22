@@ -1,6 +1,6 @@
 <?php
   
-  if ( $parm  or $type == 'random' or $type == 'get' or $build == 'fixed' or $build == 'order' )
+  if ( $parm or $type == 'random' or $build == 'fixed' or $build == 'order' )
     return;
 
   $seq = ucfirst( $type );

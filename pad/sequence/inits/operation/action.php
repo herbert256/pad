@@ -3,7 +3,7 @@
   $padSeqActionList = $padSeqOperationParms;
   $padSeqActionName = $padSeqOperationValue;
 
-  $padSeqInfo ['start-action'] [] = $padSeqActionName;
+  $padSeqInfo ["start/$padStartType/action"] [] = $padSeqActionName;
 
   include 'sequence/actions/go.php';
 

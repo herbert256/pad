@@ -1,0 +1,29 @@
+{table}
+
+{demo}{sequence '31..40', store='mySequence'}{/demo}
+
+{demo}{store:mySequence}
+  {$mySequence}
+{/store:mySequence}{/demo}
+
+{demo}{mySequence reverse}
+  {$mySequence}
+{/mySequence}{/demo}
+
+{demo}{mySequence action='reverse'}
+  {$mySequence}
+{/mySequence}{/demo}
+
+{demo}{reverse:mySequence}
+  {$mySequence}
+{/reverse:mySequence}{/demo}
+
+{demo}{reverse 'mySequence'}
+  {$mySequence}
+{/reverse}{/demo}
+
+{demo}{action 'reverse', 'mySequence'}
+  {$mySequence}
+{/action}{/demo}
+
+{/table}

@@ -1,5 +1,7 @@
 <?php
 
+  $padStartType = 'tag';
+  
   $padSeqInfo ['tags'] [] = $padTag [$pad];
 
       if ( $padTag  [$pad] == 'action'   ) return include "sequence/inits/tag/operation.php";

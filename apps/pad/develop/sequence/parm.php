@@ -3,7 +3,7 @@
   $build = padSeqBuild ( $type );
   $parm  = '';
 
-  if ( $build == 'fixed' or $build == 'order' or $type == 'get' )
+  if ( $build == 'fixed' or $build == 'order' )
     return; 
 
   $a = padCode ( "{sequence $type=3, rows=15}{\$sequence}{/sequence}" );

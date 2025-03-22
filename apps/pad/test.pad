@@ -1,6 +1,21 @@
-{sequence '5;10;15;20',  name='one'}
+{table}
 
-{sequence one}
-  {$sequence}
-{/sequence}
+{demo}{sequence '31..40', store='mySequence'}{/demo}
 
+{demo}{store:mySequence}
+  {$mySequence}
+{/store:mySequence}{/demo}
+
+{demo}{mySequence reverse}
+  {$mySequence}
+{/mySequence}{/demo}
+
+{demo}{reverse:mySequence}
+  {$mySequence}
+{/reverse:mySequence}{/demo}
+
+{demo}{reverse 'mySequence'}
+  {$mySequence}
+{/reverse}{/demo}
+
+{/table}

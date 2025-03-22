@@ -7,7 +7,7 @@
  
   $padSeqOperationType  = $padTag [$pad];
   $padSeqOperationValue = $padOpt [$pad] [1];
-  $padSeqOperationParms = $padOpt [$pad] [3] ?? ´ ;
+  $padSeqOperationParms = $padOpt [$pad] [3] ?? '' ;
 
   include 'sequence/inits/operation/operation.php';
 

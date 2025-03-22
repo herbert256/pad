@@ -15,9 +15,9 @@
     $padSeqOperationValue = $padPrefix [$pad];
     $padSeqOperationParms = $padOpt    [$pad] [1] ?? '';
 
-    $padSeqDone ['start-prefix'] [] = $padPrefix [$pad];
+    $padSeqInfo ["start/prefix/$padSeqTmp"] [] = $padPrefix [$pad];
 
-  } else { 
+  } else {
 
     $padSeqPull = $padParm;  
 

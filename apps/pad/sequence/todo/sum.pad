@@ -1,0 +1,29 @@
+{table}
+
+{demo}{sequence '31..40', store='mySequence'}{/demo}
+
+{demo}{store:mySequence}
+  {$mySequence}
+{/store:mySequence}{/demo}
+
+{demo}{mySequence sum}
+  {$mySequence}
+{/mySequence}{/demo}
+
+{demo}{mySequence one='sum'}
+  {$mySequence}
+{/mySequence}{/demo}
+
+{demo}{sum:mySequence}
+  {$mySequence}
+{/sum:mySequence}{/demo}
+
+{demo}{sum 'mySequence'}
+  {$mySequence}
+{/sum}{/demo}
+
+{demo}{one 'sum', 'mySequence'}
+  {$mySequence}
+{/one}{/demo}
+
+{/table}

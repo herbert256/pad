@@ -1,5 +1,7 @@
 <?php
 
+  $padStartType = 'type';
+  
   $padSeqInfo ['types'] [] = $padType [$pad];
 
       if ( $padType [$pad] == 'action'   ) return include "sequence/inits/type/operation.php";

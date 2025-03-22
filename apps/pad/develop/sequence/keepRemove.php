@@ -1,6 +1,6 @@
 <?php
  
-   if ( $parm or $type == 'get' or $build == 'fixed' or $build == 'order' )
+   if ( $parm or $build == 'fixed' or $build == 'order' )
     return;
 
   if ( ! file_exists ("sequence/types/$type/bool.php") and 

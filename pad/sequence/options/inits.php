@@ -7,7 +7,7 @@
     if ( file_exists ( "sequence/options/types/$padPrmName.php" ) )
       continue;
 
-    if ( isset ( $padSeqDone [$padPrmName] ) )
+    if ( in_array ( $padPrmName, $padSeqDone ) )
       continue;
 
     $padSeqInfo ['options'] [] = $padPrmName;
