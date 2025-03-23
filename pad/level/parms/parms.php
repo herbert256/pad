@@ -3,9 +3,13 @@
   if ( $padPrmType [$pad] == 'close' ) 
     include 'level/close.php';
 
+  $padParms = [];
+  
   foreach ( $padPrmParse as $padPrmOne ) {
 
     list ( $padPrmName, $padPrmValue ) = padSplit ( '=', trim ( $padPrmOne ) );
+
+    $padParmsSet = '';
 
     if ( in_array    ( $padPrmName [0], ['$','%'] ) and 
          padValidVar ( substr ( $padPrmName, 1 ) )  and 
@@ -20,8 +24,14 @@
     else 
     
       include 'level/parms/parameter.php';
+
+    $padParms [] = $padParmsSet;
     
   }
+
+  $padPrm1 = $padParms [0] ?? '';
+  $padPrm2 = $padParms [1] ?? '';
+  $padPrm3 = $padParms [2] ?? '';
 
   if ( ! isset ( $padOpt [$pad] [1] ) )
     $padOpt [$pad] [1] = '';

@@ -5,6 +5,8 @@
 
   $padPrm [$pad] [$padPrmName] = $padOptionsSingle [$padPrmName];
 
+  $padPrmEval = ( $padPrm [$pad] [$padPrmName] === TRUE ) ? $padPrmName : $padPrm [$pad] [$padPrmName];
+
   if ( ! $padFirstParm [$pad] )
     $padFirstParm [$pad] = ( $padPrm [$pad] [$padPrmName] === TRUE ) ? $padPrmName : $padPrm [$pad] [$padPrmName];
 

@@ -112,7 +112,7 @@
   }
 
 
-  function padSeqReverse ( $x ) {
+  function padTypeReverse ( $x ) {
 
    $rev = 0;
     while ($x > 0) {

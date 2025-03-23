@@ -7,10 +7,14 @@
     $padSetLvl [$pad] [$padSetName] = padEval ( $padPrmValue );
     $padParmParse [$pad] [$padSetName] = 'lvl';
 
+    $padParmsSet = $padSetLvl [$pad] [$padSetName];
+
   } else {
  
     $padSetOcc [$pad] [$padSetName] = $padPrmValue;
     $padParmParse [$pad] [$padSetName] = 'occ';
+
+    $padParmsSet = $padSetOcc [$pad] [$padSetName];
 
   }
 

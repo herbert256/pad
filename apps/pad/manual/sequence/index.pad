@@ -9,10 +9,9 @@
     elseif ( $type == 'make'     and file_exists  ( "sequence/types/$item"               ) ) return $type;
     elseif ( $type == 'keep'     and file_exists  ( "sequence/types/$item"               ) ) return $type;
     elseif ( $type == 'remove'   and file_exists  ( "sequence/types/$item"               ) ) return $type;
-    elseif ( $type == 'one'      and file_exists  ( "sequence/one/types/$item.php"       ) ) return $type;
     elseif ( $type == 'action'   and file_exists  ( "sequence/actions/types/$item.php"   ) ) return $type;
 
-<p>There are 7 tags for PAD Sequences
+<p>There are 6 tags for PAD Sequences
 
 {table}
 
@@ -21,8 +20,23 @@
 
 {demo}{store 'mySequence'}
   {$mySequence}
-{/store}
-{/demo}
+{/store}{/demo}
+
+{demo}{action 'reverse', 'mySequence'}
+  {$mySequence}
+{/action}{/demo}
+
+{demo}{make 'mySequence', 'even'}
+  {$mySequence}
+{/make}{/demo}
+
+{demo}{keep 'mySequence', 'even'}
+  {$mySequence}
+{/keep}{/demo}
+
+{demo}{remove 'mySequence', 'even'}
+  {$mySequence}
+{/remove}{/demo}
 
 {/table}
 

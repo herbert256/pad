@@ -2,6 +2,8 @@
 
   $padTypeExplode = padExplode ( $padTagCheck, ':' ) ;
   $padTypeSeq     = '';
+  $padTypeReverse = '';
+  $padTypeSeqTag  = '';
 
   if ( count ($padTypeExplode) == 1 ) {
 
@@ -17,15 +19,9 @@
     $padTypeCheck  = $padTypeExplode [1];  
     $padTypeResult = padTypeCheck ( $padTypePrefix, $padTypeCheck ); 
 
-    if ( ! $padTypeResult ) {
-
-      $padTypeResult = padTypeSeq ( $padTypePrefix, $padTypeCheck ); 
-
-      if ( $padTypeResult )
-        $padTypeSeq = $padTypePrefix;
-    
-    }
-
+    if ( ! $padTypeResult )
+      $padTypeResult = padTypeSeq ( $padTypePrefix, $padTypeCheck );     
+  
   } 
 
 ?>

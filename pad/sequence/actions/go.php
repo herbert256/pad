@@ -1,16 +1,11 @@
 <?php
 
-  if ( ! file_exists ( "sequence/actions/types/$padSeqActionName.php" ) ) {
-    $padSeqInfo ['errors'] [] = "no_action-$padSeqActionName-$padPage";
-    return;
-  }
-
-  $padSeqActionStore = $padSeqActionList [0] ?? '';
-  $padSeqActionCnt   = ( ctype_digit ( $padSeqActionStore ) ) ? $padSeqActionStore : 1;
+  $padSeqActionCnt  = ( ctype_digit ( $padSeqActionParm ) ) ? $padSeqActionParm : 1;
 
   $padSeqResult = include "sequence/actions/types/$padSeqActionName.php";
 
-  $padSeqDone [] = $padSeqActionName;
+  $padSeqDone  [] = $padSeqActionName;
+  $padSeqNames [] = $padSeqActionName;
 
   if ( file_exists ( "sequence/actions/single/$padSeqActionName" ) )
     $padSeqInfo ['actions/single'] [] = $padSeqActionName;

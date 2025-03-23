@@ -33,45 +33,40 @@
 
   function padTypeSeq ( $type, $item ) {
 
-    global  $padTypeSeq, $padTypeSeqReverse; 
+    global $padTypeSeq, $padTypeReverse, $padTypeSeqTag;
 
-    $padTypeSeq = $padTypeSeqReverse = '';
+    if ( in_array ( $type, ['sequence','make','keep','remove','action'] )
+         and isset ( $GLOBALS ['padSeqStore'] [$item] ) ) {
 
-    if ( isset ( $GLOBALS ['padSeqStore'] [$item] ) ) {
+      $padTypeSeqTag = TRUE;  
 
-      if     ( in_array ($type, ['make', 'keep', 'remove'] )    ) $padTypeSeq = $type;
-      elseif ( file_exists ("sequence/one/types/$type.php")     ) $padTypeSeq = 'one';
-      elseif ( file_exists ("sequence/actions/types/$type.php") ) $padTypeSeq = 'action';
-
-      if ( $padTypeSeq )
-        return $padTypeSeq;
+      return $type;
 
     }
 
-    if ( isset ( $GLOBALS ['padSeqStore'] [$type] ) ) {
+    if     ( $type == 'store'    and isset           ( $GLOBALS ['padSeqStore'] [$item]     ) ) return $type;
+    elseif ( $type == 'sequence' and file_exists     ( "sequence/types/$item"               ) ) return $type;
+    elseif ( $type == 'make'     and file_exists     ( "sequence/types/$item"               ) ) return $type;
+    elseif ( $type == 'keep'     and file_exists     ( "sequence/types/$item"               ) ) return $type;
+    elseif ( $type == 'remove'   and file_exists     ( "sequence/types/$item"               ) ) return $type;
+    elseif ( $type == 'action'   and file_exists     ( "sequence/actions/types/$item.php"   ) ) return $type;
 
-      if     ( in_array ($item, ['make', 'keep', 'remove'] )    ) $padTypeSeq = $item;
-      elseif ( file_exists ("sequence/one/types/$item.php")     ) $padTypeSeq = 'one';
-      elseif ( file_exists ("sequence/actions/types/$item.php") ) $padTypeSeq = 'action';
 
-      if ( $padTypeSeq ) {
-        $padTypeSeqReverse = TRUE;
-        return $padTypeSeq;
+    if ( isset ( $GLOBALS ['padSeqStore'] [$item] ) ) 
+      if ( file_exists ("sequence/actions/types/$type.php") ) {
+        $padTypeSeq = $type;
+        return 'action';
+      } 
+
+    if ( isset ( $GLOBALS ['padSeqStore'] [$type] ) ) 
+      if ( file_exists ("sequence/actions/types/$item.php") )  {
+        $padTypeSeq     = $type;
+        $padTypeReverse = TRUE;
+        return 'action';
       }
+  
+  }
 
-    }
-
-    if     ( $type == 'store'    and isset        ( $GLOBALS ['padSeqStore'] [$item]     ) ) return $type;
-    elseif ( $type == 'sequence' and file_exists  ( "sequence/types/$item"               ) ) return $type;
-    elseif ( $type == 'make'     and file_exists  ( "sequence/types/$item"               ) ) return $type;
-    elseif ( $type == 'keep'     and file_exists  ( "sequence/types/$item"               ) ) return $type;
-    elseif ( $type == 'remove'   and file_exists  ( "sequence/types/$item"               ) ) return $type;
-    elseif ( $type == 'one'      and file_exists  ( "sequence/one/types/$item.php"       ) ) return $type;
-    elseif ( $type == 'action'   and file_exists  ( "sequence/actions/types/$item.php"   ) ) return $type;
-
-    return '';
-
-  }  
 
 
   function padTypeCheck ( $type, $item ) {

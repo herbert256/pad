@@ -16,7 +16,7 @@
       $padSeqResult,
       $padSeqActionList [1],
       $padSeqActionList [2],
-      $padSeqStore [$padSeqActionList [0]]
+      $padSeqActionList [0]
     );
 
   return $padSeqResult;

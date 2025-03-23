@@ -13,7 +13,7 @@
 
   foreach ( glob ( APP . 'sequence/actions/double/*.pad' ) as $file ) {
 
-    $action = str_replace ( APP . 'sequence/actions/double/', '', $file   );
+    $action = str_replace ( APP . 'sequence/actions/double/', '', $file  );
     $action = str_replace ( '.pad',                          '', $action );
 
     file_put_contents ( "sequence/actions/double/$action", 1 );

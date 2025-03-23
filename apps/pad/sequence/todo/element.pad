@@ -1,0 +1,20 @@
+{table}
+
+{demo} {sequence '31..40', store='mySequence'}{/demo}
+
+{demo} {store:mySequence               } {$mySequence} {/store:mySequence}  {/demo}
+
+{demo} {mySequence 'last', 3           } {$mySequence} {/mySequence}        {/demo}
+{demo} {mySequence action='last', 3    } {$mySequence} {/mySequence}        {/demo}
+{demo} {mySequence:last 3              } {$mySequence} {/mySequence:last}   {/demo}
+
+{demo} {action 'last:3', 'mySequence'  } {$mySequence} {/action}            {/demo}
+{demo} {action:last 'mySequence', 3    } {$mySequence} {/action:last}       {/demo}
+
+{demo} {last 'mySequence', 3           } {$mySequence} {/last}              {/demo}
+{demo} {last:mySequence 3              } {$mySequence} {/last:mySequence}   {/demo}
+
+{demo} {action 'mySequence', 'last', 3 } {$mySequence} {/action}            {/demo}
+{demo} {action:mySequence 'last', 3    } {$mySequence} {/action:mysequence} {/demo}
+
+{/table}

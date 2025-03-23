@@ -2,7 +2,6 @@
  
   include APP . 'develop/sequence/clean.php';
   include APP . 'develop/sequence/actions.php';
-  include APP . 'develop/sequence/one.php';
 
   foreach ( padSeqTypes () as $type ) {
     include APP . 'develop/sequence/flags.php';

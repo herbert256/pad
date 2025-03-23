@@ -13,7 +13,6 @@
   $padSeqResult     = [];
   $padSeqDone       = [];
   $padSeqInfo       = [];  
-  $padSeqOptions    = [];
   $padSeqNames      = [];
   $padSeqPlays      = [];
   

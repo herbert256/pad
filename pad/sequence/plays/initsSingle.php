@@ -7,6 +7,4 @@
 
   $padSeqInfo ['plays/single'] [] = $padSeqSeq;
 
-  $padSeqDone [] = $padSeqSeq;
-
 ?>
