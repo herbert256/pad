@@ -33,16 +33,11 @@
 
   function padTypeSeq ( $type, $item ) {
 
-    global $padTypeSeq, $padTypeReverse, $padTypeSeqTag;
+    global $padTypeSeq;
 
     if ( in_array ( $type, ['sequence','make','keep','remove','action'] )
-         and isset ( $GLOBALS ['padSeqStore'] [$item] ) ) {
-
-      $padTypeSeqTag = TRUE;  
-
+         and isset ( $GLOBALS ['padSeqStore'] [$item] ) )
       return $type;
-
-    }
 
     if     ( $type == 'store'    and isset           ( $GLOBALS ['padSeqStore'] [$item]     ) ) return $type;
     elseif ( $type == 'sequence' and file_exists     ( "sequence/types/$item"               ) ) return $type;
@@ -50,7 +45,6 @@
     elseif ( $type == 'keep'     and file_exists     ( "sequence/types/$item"               ) ) return $type;
     elseif ( $type == 'remove'   and file_exists     ( "sequence/types/$item"               ) ) return $type;
     elseif ( $type == 'action'   and file_exists     ( "sequence/actions/types/$item.php"   ) ) return $type;
-
 
     if ( isset ( $GLOBALS ['padSeqStore'] [$item] ) ) 
       if ( file_exists ("sequence/actions/types/$type.php") ) {
@@ -60,8 +54,7 @@
 
     if ( isset ( $GLOBALS ['padSeqStore'] [$type] ) ) 
       if ( file_exists ("sequence/actions/types/$item.php") )  {
-        $padTypeSeq     = $type;
-        $padTypeReverse = TRUE;
+        $padTypeSeq = $type;
         return 'action';
       }
   

@@ -1,20 +1,21 @@
 {table}
 
-{demo} {sequence '31..40', store='mySequence'}{/demo}
+{demo} {sequence '11..40', action='shift|2'   } {$sequence} {/sequence}  {/demo}
 
-{demo} {store:mySequence               } {$mySequence} {/store:mySequence}  {/demo}
+{demo} {sequence '11..40', store='mySequence' }{/demo}
 
-{demo} {mySequence 'last', 3           } {$mySequence} {/mySequence}        {/demo}
-{demo} {mySequence action='last', 3    } {$mySequence} {/mySequence}        {/demo}
-{demo} {mySequence:last 3              } {$mySequence} {/mySequence:last}   {/demo}
+{demo} {mySequence action='shift|2'           } {$mySequence} {/mySequence}        {/demo}
 
-{demo} {action 'last', 'mySequence', 3 } {$mySequence} {/action}            {/demo}
-{demo} {action:last 'mySequence', 3    } {$mySequence} {/action:last}       {/demo}
+{demo} {action 'shift', 'mySequence', 2       } {$mySequence} {/action}            {/demo}
+{demo} {action 'mySequence', 'shift', 2       } {$mySequence} {/action}            {/demo}
 
-{demo} {last 'mySequence', 3           } {$mySequence} {/last}              {/demo}
-{demo} {last:mySequence 3              } {$mySequence} {/last:mySequence}   {/demo}
+{demo} {mySequence:shift 2                    } {$mySequence} {/mySequence:shift}   {/demo}
 
-{demo} {action 'mySequence', 'last', 3 } {$mySequence} {/action}            {/demo}
-{demo} {action:mySequence 'last', 3    } {$mySequence} {/action:mysequence} {/demo}
+{demo} {action:shift 'mySequence', 2          } {$mySequence} {/action:shift}       {/demo}
+
+{demo} {shift 'mySequence', 2                 } {$mySequence} {/shift}              {/demo}
+{demo} {shift:mySequence 2                    } {$mySequence} {/shift:mySequence}   {/demo}
+
+{demo} {action:mySequence 'shift', 2          } {$mySequence} {/action:mySequence} {/demo}
 
 {/table}

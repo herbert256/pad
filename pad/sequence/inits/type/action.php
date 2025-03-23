@@ -1,34 +1,43 @@
 <?php
- 
-  // {reverse:myseq  'parm' }          
-  // {myseq:reverse  'parm' }          
-  // {action:reverse 'myseq', 'parm' } 
 
+  if ( isset ( $padSeqStore [ $padTag [$pad] ] ) ) {
 
-  if ( $padTypeReverse ) {
+    // {demo} {action:mySequence 'last', 3 } 
+    // {demo} {last:mySequence 3           } 
 
-    $padSeqPull = $padPrefix[$pad];  
+    $padSeqPull = $padTag [$pad];
 
-    $padSeqActionName  = $padSeqFirst;
-    $padSeqActionParms = $padSeqSecond;
+    if ( ( $padPrefix[$pad] == 'action' ) ) { 
+      $padSeqActionName  = $padOpt [$pad] [1];
+      $padSeqActionParms = $padOpt [$pad] [2];
+    } else {
+      $padSeqActionName  = $padPrefix[$pad];
+      $padSeqActionParms = $padOpt [$pad] [1];
+    }
 
-    $padSeqInfo ["start/reverse"] [] = $padSeqActionName;
+  } elseif ( isset ( $padSeqStore [ $padPrefix [$pad] ] ) ) {
 
-  } elseif ( $padPrefix[$pad] and file_exists ("sequence/actions/types/$padPrefix[$pad].php") ) {
+    // {demo} {mySequence:last 3 }
 
-    $padSeqPull = $padSeqFirst;  
+    $padSeqPull = $padPrefix [$pad] ;
 
-    $padSeqActionName  = $padPrefix [$pad];
-    $padSeqActionParms = $padSeqSecond;
+    $padSeqActionName  = $padTag [$pad];
+    $padSeqActionParms = $padOpt [$pad] [1];
 
-    $padSeqInfo ["start/prefix"] [] = $padSeqActionName;
+  } elseif ( isset ( $padSeqStore [ $padOpt [$pad] [1] ] ) ) {
 
-  } else {
+    // {demo} {action:last 'mySequence', 3    } 
+    // {demo} {last 'mySequence', 3    } 
 
-    $padSeqPull = $padSeqFirst;  
+    $padSeqPull = $padOpt [$pad] [1] ;
 
-    $padSeqActionName  = $padTag  [$pad];
-    $padSeqActionParms = $padOpt  [$pad] [2] ?? '';
+    if ( ( $padPrefix[$pad] == 'action' ) ) {
+      $padSeqActionName  = $padTag [$pad];
+      $padSeqActionParms = $padOpt [$pad] [2];
+    } else {
+      $padSeqActionName  = $padTag [$pad];
+      $padSeqActionParms = $padOpt [$pad] [2];
+    }
 
   }
 

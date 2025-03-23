@@ -2,8 +2,6 @@
 
   $padTypeExplode = padExplode ( $padTagCheck, ':' ) ;
   $padTypeSeq     = '';
-  $padTypeReverse = '';
-  $padTypeSeqTag  = '';
 
   if ( count ($padTypeExplode) == 1 ) {
 
