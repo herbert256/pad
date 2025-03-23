@@ -18,12 +18,20 @@
   {$mySequence}
 {/sum:mySequence}{/demo}
 
-{demo}{sum 'mySequence'}
+{demo}{mySequence:sum}
   {$mySequence}
-{/sum}{/demo}
+{/mySequence:sum}{/demo}
 
 {demo}{one 'sum', 'mySequence'}
   {$mySequence}
 {/one}{/demo}
+
+{demo}{sum 'mySequence'}
+  {$mySequence}
+{/sum}{/demo}
+
+{demo}{one:sum 'mySequence'}
+  {$mySequence}
+{/one:sum}{/demo}
 
 {/table}

@@ -15,12 +15,16 @@
     $padTypeGiven  = TRUE;
     $padTypePrefix = $padTypeExplode [0];  
     $padTypeCheck  = $padTypeExplode [1];  
-    $padTypeResult = padTypeSeq ( $padTypePrefix, $padTypeCheck ); 
+    $padTypeResult = padTypeCheck ( $padTypePrefix, $padTypeCheck ); 
 
-    if ( $padTypeResult ) 
-      $padTypeSeq  = $padTypePrefix;
-    else
-      $padTypeResult = padTypeCheck ( $padTypePrefix, $padTypeCheck ); 
+    if ( ! $padTypeResult ) {
+
+      $padTypeResult = padTypeSeq ( $padTypePrefix, $padTypeCheck ); 
+
+      if ( $padTypeResult )
+        $padTypeSeq = $padTypePrefix;
+    
+    }
 
   } 
 

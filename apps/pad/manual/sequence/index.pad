@@ -4,37 +4,24 @@
 
 <hr>
 
-<p>There are 4 basic Sequence concepts
+   if     ( $type == 'store'    and isset        ( $GLOBALS ['padSeqStore'] [$item]     ) ) return $type;
+    elseif ( $type == 'sequence' and file_exists  ( "sequence/types/$item"               ) ) return $type;
+    elseif ( $type == 'make'     and file_exists  ( "sequence/types/$item"               ) ) return $type;
+    elseif ( $type == 'keep'     and file_exists  ( "sequence/types/$item"               ) ) return $type;
+    elseif ( $type == 'remove'   and file_exists  ( "sequence/types/$item"               ) ) return $type;
+    elseif ( $type == 'one'      and file_exists  ( "sequence/one/types/$item.php"       ) ) return $type;
+    elseif ( $type == 'action'   and file_exists  ( "sequence/actions/types/$item.php"   ) ) return $type;
 
-<table border=1>
-
-{concepts}
-  <tr>
-    <td> {&concepts:key} </td>
-    <td> {$concepts}     </td>
-  </tr>
-{/concepts}
-
-</table border>
+<p>There are 7 tags for PAD Sequences
 
 {table}
 
-{demo}{sequence:prime rows=10, store='mySequence'}
+{demo}{sequence range='11..20, store='mySequence'}
 {/demo}
 
-{demo}{store:mySequence}
+{demo}{store 'mySequence'}
   {$mySequence}
-{/store:mySequence}
-{/demo}
-
-{demo}{reverse:mySequence}
-  {$mySequence}
-{/reverse:mySequence}
-{/demo}
-
-{demo}{sum:mySequence}
-  {$mySequence}
-{/sum:mySequence}
+{/store}
 {/demo}
 
 {/table}

@@ -1,6 +1,6 @@
 {table}
 
-{demo}{sequence '10..30', name='mySeq'}{/demo}
+{demo}{sequence '1..15', name='mySeq'}{/demo}
 
 {demo}{mySeq}
   {$mySeq}
@@ -38,7 +38,11 @@
   {$mySeq}
 {/mySeq}{/demo}
 
-{demo}{mySeq exponentiation=5, rows=10}
+{demo}{mySeq exponentiation=5}
+  {$mySeq}
+{/mySeq}{/demo}
+
+{demo}{mySeq power=5}
   {$mySeq}
 {/mySeq}{/demo}
 
