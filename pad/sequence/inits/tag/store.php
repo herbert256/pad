@@ -1,6 +1,6 @@
 <?php
 
-  $padSeqPull = $padOpt [$pad] [1];  
+  $padSeqPull = $padSeqParm1;  
 
   include 'sequence/inits/go/store.php';
 

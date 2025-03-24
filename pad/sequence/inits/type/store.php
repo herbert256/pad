@@ -2,7 +2,7 @@
 
   // {store:myseq}
 
-  $padSeqPull = $padTag [$pad];
+  $padSeqPull = $padSeqTag;
 
   include 'sequence/inits/go/store.php';
 

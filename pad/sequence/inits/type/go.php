@@ -2,13 +2,13 @@
 
   $padStartType = 'type';
   
-  $padSeqInfo ['types'] [] = $padType [$pad];
+  $padSeqInfo ['types'] [] = $padSeqType;
 
-  if     ( $padType [$pad] == 'sequence' ) return include "sequence/inits/type/sequence.php";
-  elseif ( $padType [$pad] == 'store'    ) return include "sequence/inits/type/store.php";
-  elseif ( $padType [$pad] == 'action'   ) return include "sequence/inits/type/action.php";
-  elseif ( $padType [$pad] == 'keep'     ) return include "sequence/inits/type/play.php";
-  elseif ( $padType [$pad] == 'make'     ) return include "sequence/inits/type/play.php";
-  elseif ( $padType [$pad] == 'remove'   ) return include "sequence/inits/type/play.php";
+  if     ( $padSeqType == 'sequence' ) return include "sequence/inits/type/sequence.php";
+  elseif ( $padSeqType == 'store'    ) return include "sequence/inits/type/store.php";
+  elseif ( $padSeqType == 'action'   ) return include "sequence/inits/type/action.php";
+  elseif ( $padSeqType == 'keep'     ) return include "sequence/inits/type/play.php";
+  elseif ( $padSeqType == 'make'     ) return include "sequence/inits/type/play.php";
+  elseif ( $padSeqType == 'remove'   ) return include "sequence/inits/type/play.php";
     
 ?>

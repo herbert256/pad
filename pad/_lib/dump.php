@@ -54,9 +54,12 @@
 
   function padDumpLocal ( $info ) {
 
+    padDumpFields    ( $php, $lvl, $cfg, $pad, $ids, $trc);
+
     echo ( "<div align=\"left\"><pre>" );
 
     padDumpInfo      ( $info );
+    padDumpXXX       ( $pad, 'padSeq' ); 
     padDumpStack     ();
     padDumpLevel     ();
     padDumpInput     ();    
@@ -64,10 +67,7 @@
     padDumpApp       ();
     padDumpRequest   ();
     
-    padDumpFields    ( $php, $lvl, $cfg, $pad, $ids, $trc);
-
     padDumpCurl      ( $pad );
-    padDumpXXX       ( $pad, 'padSeq' ); 
     padDumpXXX       ( $pad, 'padBuild' );
     padDumpLines     ( "PAD variables",   $pad );
     padDumpLines     ( '$padInfo variables', $trc );

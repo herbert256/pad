@@ -2,7 +2,7 @@
 
    // {sequence:power 5}
 
-  $padSeqSeq  = $padTag [$pad];
+  $padSeqSeq  = $padSeqTag;
   $padSeqParm = $padParm;
 
   include 'sequence/inits/go/sequence.php';

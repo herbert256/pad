@@ -1,9 +1,9 @@
 <?php
 
-  if ( ! $padSeqTypeSave )
-    $padSeqTypeSave = $padSeqType;
+  if ( ! $padSeqPlaySave )
+    $padSeqPlaySave = $padSeqPlay;
 
-  $padSeqType = 'store';
+  $padSeqPlay = 'store';
 
   $padSeqInfo ['plays/double'] [] = $padSeqSeq;
 

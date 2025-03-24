@@ -39,12 +39,13 @@
          and isset ( $GLOBALS ['padSeqStore'] [$item] ) )
       return $type;
 
-    if     ( $type == 'store'    and isset           ( $GLOBALS ['padSeqStore'] [$item]     ) ) return $type;
-    elseif ( $type == 'sequence' and file_exists     ( "sequence/types/$item"               ) ) return $type;
-    elseif ( $type == 'make'     and file_exists     ( "sequence/types/$item"               ) ) return $type;
-    elseif ( $type == 'keep'     and file_exists     ( "sequence/types/$item"               ) ) return $type;
-    elseif ( $type == 'remove'   and file_exists     ( "sequence/types/$item"               ) ) return $type;
-    elseif ( $type == 'action'   and file_exists     ( "sequence/actions/types/$item.php"   ) ) return $type;
+    if     ( $type == 'store'    and isset       ( $GLOBALS ['padSeqStore'] [$item]   ) ) return $type;
+    elseif ( $type == 'sequence' and file_exists ( "sequence/types/$item"             ) ) return $type;
+    elseif ( $type == 'make'     and file_exists ( "sequence/types/$item"             ) ) return $type;
+    elseif ( $type == 'keep'     and file_exists ( "sequence/types/$item"             ) ) return $type;
+    elseif ( $type == 'remove'   and file_exists ( "sequence/types/$item"             ) ) return $type;
+    elseif ( $type == 'action'   and file_exists ( "sequence/actions/types/$item.php" ) ) return $type;
+
 
     if ( isset ( $GLOBALS ['padSeqStore'] [$item] ) ) 
       if ( file_exists ("sequence/actions/types/$type.php") ) {
@@ -57,7 +58,27 @@
         $padTypeSeq = $type;
         return 'action';
       }
+
+    if ( isset ( $GLOBALS ['padSeqStore'] [$item] ) ) 
+      if ( file_exists ("sequence/types/$type") ) {
+        $padTypeSeq = $type;
+        return 'make';
+      } 
+
+    if ( isset ( $GLOBALS ['padSeqStore'] [$type] ) ) 
+      if ( file_exists ("sequence/types/$item") )  {
+        $padTypeSeq = $type;
+        return 'make';
+      }
   
+    if ( in_array ( $item, ['make','keep','remove'] ) ) 
+      if ( file_exists ( "sequence/types/$type" ) or isset ( $GLOBALS ['padSeqStore'] [$type] ) ) {
+        $padTypeSeq = $type; 
+        return $item; 
+      }
+  
+    return FALSE;
+
   }
 
 

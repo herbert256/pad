@@ -1,26 +1,35 @@
 <?php
 
-  // {make:sequence, 'add|5'}
-  // {make:add, 'sequence|5'}
+  // {add:make, 'sequence', 5}
+  // {sequence:make, 'add', 5}
 
-  $padSeqPlayAction = $padSeqTypeFirst;
-  $padSeqPlayParms  = padExplode ( $padParm, '|' );
-  $padSeqPlayParm   = $padSeqPlayParms [1] ?? '';
+  // {make:sequence, 'add', 5}
+  // {make:add, 'sequence', 5}
 
-  $padTmpFirst  = $padSeqFirst; 
-  $padTmpSecond = $padSeqPlayParms [0] ?? ''; 
+  // {add:mySequence 3}
+  // {mySequence:add 3}
 
-  if ( isset ( $padSeqStore[$padTmpFirst] ) and file_exists ( "sequence/types/$padTmpSecond" ) ) {
-
-    $padSeqPull          = $padTmpFirst;
-    $padSeqPlayOperation = $padTmpSecond;
+  $padSeqPlay = $padSeqType;
   
-  } elseif ( isset ( $padSeqStore[$padTmpSecond] ) and file_exists ( "sequence/types/$padTmpFirst" ) ) {
+  if ( $padSeqType == 'make' and $padSeqTag <> 'make' and $padSeqPrefix <> 'make' ) {
 
-    $padSeqPull          = $padTmpSecond;
-    $padSeqPlayOperation = $padTmpFirst;
+    $padSeqFirst  = $padSeqPrefix;
+    $padSeqSecond = $padSeqTag; 
+    $padSeqParm   = $padSeqParm1;
 
-  } 
+  } else {
+
+    padSeqCorrectParm2 ();
+
+    if ( in_array ( $padSeqTag, ['make','keep','remove'] ) )
+      $padSeqFirst  = $padSeqPrefix;
+    else 
+      $padSeqFirst  = $padSeqTag; 
+
+    $padSeqSecond = $padSeqParm1; 
+    $padSeqParm   = $padSeqParm2;
+
+  }
 
   include 'sequence/inits/go/play.php';
 

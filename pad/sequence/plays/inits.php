@@ -1,7 +1,7 @@
 <?php
 
-  $padSeqType     = 'make';
-  $padSeqTypeSave = '';
+  $padSeqPlay     = 'make';
+  $padSeqPlaySave = '';
 
   foreach ( $padOptionsMulti as $padStartOption ) {
 
@@ -13,12 +13,21 @@
     if ( $padPrmName == $padSeqSeqSave )
       continue;
 
-    $padSeqSeq = $padPrmName;
-
-    if ( in_array ( $padSeqSeq, ['make','keep','remove'] ) ) {
-      $padSeqType = $padSeqSeq;
+    if ( in_array ( $padPrmName, ['make','keep','remove'] ) and $padPrmValue and $padPrmValue !== TRUE ) {
+      $padSeqPlay  = $padPrmName;
+      $padExplode  = explode ('|', $padPrmValue, 2); 
+      $padSeqSeq   = $padExplode [0] ?? '';
+      $padPrmValue = $padExplode [1] ?? '';   
+      include 'sequence/plays/add.php';     
       continue;
     }
+
+    if ( in_array ( $padPrmName, ['make','keep','remove'] ) ) {
+      $padSeqPlay = $padPrmName;
+      continue;
+    }
+
+    $padSeqSeq = $padPrmName;
 
     include 'sequence/plays/add.php';
 

@@ -1,15 +1,19 @@
 <?php
 
-  // {make 'sequence', 'add|5'}
+  // {make 'mySequence', 'add', 3 }
+  // {make 'add', 'mysequence', 3 }
 
-  $padSeqPull = $padOpt [$pad] [1];
+  // {make 'mySequence', 'add|3'  }
+  // {make 'add|3', 'mysequence'  }
 
-  $padSeqPlayParms     = padExplode ( $padOpt [$pad] [2], '|' );
-  $padSeqPlayOperation = $padSeqPlayParms [0] ?? '';
-  $padSeqPlayParm      = $padSeqPlayParms [1] ?? '';
+  padSeqCorrectParm3 ();
 
-  $padSeqPlayAction = $padTag [$pad];
- 
+  $padSeqPlay  = $padSeqTag;
+  $padSeqParm  = $padSeqParm3;
+
+  $padSeqFirst  = $padSeqParm1; 
+  $padSeqSecond = $padSeqParm2; 
+
   include 'sequence/inits/go/play.php';
 
 ?>

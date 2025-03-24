@@ -1,7 +1,7 @@
 <?php
 
   $padSeqSeq  = $padParm;
-  $padSeqParm = $padOpt [$pad] [2] ?? '';
+  $padSeqParm = $padSeqParm2;
 
   include 'sequence/inits/go/sequence.php';
 

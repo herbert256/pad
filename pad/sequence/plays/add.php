@@ -1,11 +1,5 @@
 <?php
 
-  if ( $padSeqSeq == 'play' ) {
-    $padExplode  = explode ('|', $padPrmValue, 2); 
-    $padSeqSeq   = $padExplode [0] ?? '';
-    $padPrmValue = $padExplode [1] ?? '';
-  }
-
   if ( $padPrmValue and isset ( $padSeqStore [$padPrmValue] ) 
     and file_exists ( "sequence/types/$padSeqSeq/flags/playDouble") ) 
 
@@ -19,7 +13,7 @@
 
     return;
     
-  $padSeqBuild = padSeqBuild ( $padSeqSeq, $padSeqType );
+  $padSeqBuild = padSeqBuild ( $padSeqSeq, $padSeqPlay );
 
   include 'sequence/build/include.php';
 
@@ -27,7 +21,7 @@
     'padSeqSeq'   => $padSeqSeq,
     'padSeqParm'  => $padPrmValue,
     'padSeqBuild' => $padSeqBuild,
-    'padSeqType'  => $padSeqType
+    'padSeqPlay'  => $padSeqPlay
   ];
 
   $padSeqDone [] = $padSeqSeq;

@@ -2,7 +2,7 @@
 
   $padSeqInfo ['kinds'] [] = include 'sequence/inits/sequence/info.php';
 
-  $padTmp = $padOpt [$pad] [1];
+  $padTmp = $padSeqParm1;
 
   if ( $padTmp )
     if     ( is_numeric ( $padTmp              )      ) return include 'sequence/inits/sequence/integer.php';
@@ -16,5 +16,6 @@
     elseif ( isset ( $padSeqStore [$padSeqSeq] )    )      return include 'sequence/inits/sequence/option-store.php';
  
   return include 'sequence/inits/sequence/default.php';
+
     
 ?>

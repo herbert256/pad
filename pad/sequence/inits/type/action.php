@@ -1,42 +1,45 @@
 <?php
 
-  if ( isset ( $padSeqStore [ $padTag [$pad] ] ) ) {
+  if ( isset ( $padSeqStore [ $padSeqTag ] ) ) {
 
     // {demo} {action:mySequence 'last', 3 } 
     // {demo} {last:mySequence 3           } 
 
-    $padSeqPull = $padTag [$pad];
+    $padSeqPull = $padSeqTag;
 
-    if ( ( $padPrefix[$pad] == 'action' ) ) { 
-      $padSeqActionName  = $padOpt [$pad] [1];
-      $padSeqActionParms = $padOpt [$pad] [2];
+    if ( ( $padSeqPrefix == 'action' ) ) { 
+      padSeqCorrectParm2 ();
+      $padSeqActionName  = $padSeqParm1;
+      $padSeqActionParms = $padSeqParm2;
     } else {
-      $padSeqActionName  = $padPrefix[$pad];
-      $padSeqActionParms = $padOpt [$pad] [1];
+      $padSeqActionName  = $padSeqPrefix;
+      $padSeqActionParms = $padSeqParm1;
     }
 
-  } elseif ( isset ( $padSeqStore [ $padPrefix [$pad] ] ) ) {
+  } elseif ( isset ( $padSeqStore [ $padSeqPrefix ] ) ) {
 
     // {demo} {mySequence:last 3 }
 
-    $padSeqPull = $padPrefix [$pad] ;
+    $padSeqPull = $padSeqPrefix ;
 
-    $padSeqActionName  = $padTag [$pad];
-    $padSeqActionParms = $padOpt [$pad] [1];
+    $padSeqActionName  = $padSeqTag;
+    $padSeqActionParms = $padSeqParm1;
 
-  } elseif ( isset ( $padSeqStore [ $padOpt [$pad] [1] ] ) ) {
+  } elseif ( isset ( $padSeqStore [ $padSeqParm1 ] ) ) {
 
     // {demo} {action:last 'mySequence', 3    } 
     // {demo} {last 'mySequence', 3    } 
 
-    $padSeqPull = $padOpt [$pad] [1] ;
+    padSeqCorrectParm2 ();
 
-    if ( ( $padPrefix[$pad] == 'action' ) ) {
-      $padSeqActionName  = $padTag [$pad];
-      $padSeqActionParms = $padOpt [$pad] [2];
+    $padSeqPull = $padSeqParm1 ;
+
+    if ( ( $padSeqPrefix == 'action' ) ) {
+      $padSeqActionName  = $padSeqTag;
+      $padSeqActionParms = $padSeqParm2;
     } else {
-      $padSeqActionName  = $padTag [$pad];
-      $padSeqActionParms = $padOpt [$pad] [2];
+      $padSeqActionName  = $padSeqTag;
+      $padSeqActionParms = $padSeqParm2;
     }
 
   }

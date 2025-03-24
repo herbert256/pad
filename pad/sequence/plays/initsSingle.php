@@ -1,8 +1,8 @@
 <?php
 
-  if ( $padSeqTypeSave ) {
-    $padSeqType     = $padSeqTypeSave;
-    $padSeqTypeSave = '';
+  if ( $padSeqPlaySave ) {
+    $padSeqPlay     = $padSeqPlaySave;
+    $padSeqPlaySave = '';
   }
 
   $padSeqInfo ['plays/single'] [] = $padSeqSeq;
