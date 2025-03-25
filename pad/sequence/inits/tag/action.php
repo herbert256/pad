@@ -5,15 +5,15 @@
 
   padSeqCorrectParm3 ();
 
-  if ( isset ( $padSeqStore [ $padSeqParm2 ] ) ) {
-    $padSeqPull       = $padSeqParm2;   
-    $padSeqActionName = $padSeqParm1;
+  if ( isset ( $padSeqStore [ $padPrm2 ] ) ) {
+    $padSeqPull       = $padPrm2;   
+    $padSeqActionName = $padPrm1;
   } else {
-    $padSeqPull       = $padSeqParm1;   
-    $padSeqActionName = $padSeqParm2;
+    $padSeqPull       = $padPrm1;   
+    $padSeqActionName = $padPrm2;
   }
 
-  $padSeqActionParms = $padSeqParm3;
+  $padSeqActionParms = $padPrm3;
 
   include 'sequence/inits/go/action.php';
 

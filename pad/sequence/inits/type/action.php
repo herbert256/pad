@@ -9,11 +9,11 @@
 
     if ( ( $padSeqPrefix == 'action' ) ) { 
       padSeqCorrectParm2 ();
-      $padSeqActionName  = $padSeqParm1;
-      $padSeqActionParms = $padSeqParm2;
+      $padSeqActionName  = $padPrm1;
+      $padSeqActionParms = $padPrm2;
     } else {
       $padSeqActionName  = $padSeqPrefix;
-      $padSeqActionParms = $padSeqParm1;
+      $padSeqActionParms = $padPrm1;
     }
 
   } elseif ( isset ( $padSeqStore [ $padSeqPrefix ] ) ) {
@@ -23,23 +23,23 @@
     $padSeqPull = $padSeqPrefix ;
 
     $padSeqActionName  = $padSeqTag;
-    $padSeqActionParms = $padSeqParm1;
+    $padSeqActionParms = $padPrm1;
 
-  } elseif ( isset ( $padSeqStore [ $padSeqParm1 ] ) ) {
+  } elseif ( isset ( $padSeqStore [ $padPrm1 ] ) ) {
 
     // {demo} {action:last 'mySequence', 3    } 
     // {demo} {last 'mySequence', 3    } 
 
     padSeqCorrectParm2 ();
 
-    $padSeqPull = $padSeqParm1 ;
+    $padSeqPull = $padPrm1 ;
 
     if ( ( $padSeqPrefix == 'action' ) ) {
       $padSeqActionName  = $padSeqTag;
-      $padSeqActionParms = $padSeqParm2;
+      $padSeqActionParms = $padPrm2;
     } else {
       $padSeqActionName  = $padSeqTag;
-      $padSeqActionParms = $padSeqParm2;
+      $padSeqActionParms = $padPrm2;
     }
 
   }

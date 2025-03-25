@@ -18,4 +18,6 @@
 
   }
 
+  $padParmsTypeSet = 'parameter';
+
 ?>

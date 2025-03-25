@@ -25,13 +25,14 @@
     
       include 'level/parms/parameter.php';
 
-    $padParms [] = $padParmsSet;
+    $padParms     [$pad] = $padParmsSet;
+    $padParmsType [$pad] = $padParmsTypeSet;
     
   }
 
-  $padPrm1 = $padParms [0] ?? '';
-  $padPrm2 = $padParms [1] ?? '';
-  $padPrm3 = $padParms [2] ?? '';
+  $padPrm1 = $padOpt [$pad] [1] ?? '';
+  $padPrm2 = $padOpt [$pad] [2] ?? '';
+  $padPrm3 = $padOpt [$pad] [3] ?? '';
 
   if ( ! isset ( $padOpt [$pad] [1] ) )
     $padOpt [$pad] [1] = '';

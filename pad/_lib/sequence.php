@@ -2,17 +2,14 @@
 
   function padSeqCorrectParm2 () {
 
-    global $pad, $padOpt, $padSeqParm1, $padSeqParm2;
+    global $padPrm1, $padPrm2, $padPrm3;
 
-    if ( str_contains ( $padOpt [$pad] [1], '|' ) and ! isset ( $padOpt [$pad] [2] ) ) {
+    if ( str_contains ( $padPrm1, '|' ) and ! $padPrm2 ) {
 
-      $padTmp = padExplode ( $padOpt [$pad] [1], '|', 2 );
+      $padTmp = padExplode ( $padPrm1, '|', 2 );
 
-      $padOpt [$pad] [1] = $padTmp [0];
-      $padOpt [$pad] [2] = $padTmp [1];
-
-      $padSeqParm1  = $padOpt [$pad] [1];
-      $padSeqParm2  = $padOpt [$pad] [2];
+      $padPrm1 = $padTmp [0];
+      $padPrm2 = $padTmp [1];
 
     }
 
@@ -20,27 +17,21 @@
 
   function padSeqCorrectParm3 () {
 
-    global $pad, $padOpt, $padSeqParm1, $padSeqParm2, $padSeqParm3;
+    global $padPrm1, $padPrm2, $padPrm3;
 
-    if ( str_contains ( $padOpt [$pad] [1], '|' ) and ! isset ( $padOpt [$pad] [3] ) ) {
+    if ( str_contains ( $padPrm1, '|' ) and ! $padPrm3 ) {
   
-      $padTmp = padExplode ( $padOpt [$pad] [1], '|', 2 );
+      $padTmp = padExplode ( $padPrm1, '|', 2 );
   
-      $padOpt [$pad] [1] = $padTmp [0];
-      $padOpt [$pad] [3] = $padTmp [1];
+      $padPrm1 = $padTmp [0];
+      $padPrm3 = $padTmp [1];
   
-      $padSeqParm1  = $padOpt [$pad] [1];
-      $padSeqParm3  = $padOpt [$pad] [3];
-
     }
 
-    if ( str_contains ( $padOpt [$pad] [2], '|' ) and ! isset ( $padOpt [$pad] [3] ) ) {
-      $padTmp = padExplode ( $padOpt [$pad] [2], '|', 2 );
-      $padOpt [$pad] [2] = $padTmp [0];
-      $padOpt [$pad] [3] = $padTmp [1];
-
-      $padSeqParm2  = $padOpt [$pad] [2];
-      $padSeqParm3  = $padOpt [$pad] [3];
+    if ( str_contains ( $padPrm2, '|' ) and ! $padPrm3 ) {
+      $padTmp = padExplode ( $padPrm2, '|', 2 );
+      $padPrm2 = $padTmp [0];
+      $padPrm3 = $padTmp [1];
 
     }
   

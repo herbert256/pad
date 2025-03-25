@@ -1,12 +1,10 @@
 <?php
   
-  $padPrmEval = padEval ( $padPrmOne );
+  $padPrmEval        = padEval ( $padPrmOne );
 
   $padOpt [$pad] [] = $padPrmEval;
 
-  $padParmsSet = $padPrmEval;
+  $padParmsSet      = $padPrmEval;
+  $padParmsTypeSet  = 'parameter';
 
-  if ( ! $padFirstParm [$pad] )
-    $padFirstParm [$pad] = $padPrmEval;
-    
 ?>

@@ -9,10 +9,10 @@
   padSeqCorrectParm3 ();
 
   $padSeqPlay  = $padSeqTag;
-  $padSeqParm  = $padSeqParm3;
+  $padSeqParm  = $padPrm3;
 
-  $padSeqFirst  = $padSeqParm1; 
-  $padSeqSecond = $padSeqParm2; 
+  $padSeqFirst  = $padPrm1; 
+  $padSeqSecond = $padPrm2; 
 
   include 'sequence/inits/go/play.php';
 

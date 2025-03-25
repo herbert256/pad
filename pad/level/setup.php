@@ -10,7 +10,7 @@
   $padOpt        [$pad] = [];
   $padPrm        [$pad] = [];
   $padParms      [$pad] = [];
-  $padFirstParm  [$pad] = '';
+  $padParmsType  [$pad] = [];
 
   $padSetLvl     [$pad] = [];
   $padSetOcc     [$pad] = [];

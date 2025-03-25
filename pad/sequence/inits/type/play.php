@@ -15,7 +15,7 @@
 
     $padSeqFirst  = $padSeqPrefix;
     $padSeqSecond = $padSeqTag; 
-    $padSeqParm   = $padSeqParm1;
+    $padSeqParm   = $padPrm1;
 
   } else {
 
@@ -26,8 +26,8 @@
     else 
       $padSeqFirst  = $padSeqTag; 
 
-    $padSeqSecond = $padSeqParm1; 
-    $padSeqParm   = $padSeqParm2;
+    $padSeqSecond = $padPrm1; 
+    $padSeqParm   = $padPrm2;
 
   }
 
