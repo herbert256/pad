@@ -1,6 +1,6 @@
 <?php
 
-  $padTmp = $padPrm1;
+  $padTmp = $padSeqPrm1;
 
   if ( $padTmp )
     if     ( is_numeric ( $padTmp              )      ) return 'integer';

@@ -15,19 +15,17 @@
 
     $padSeqFirst  = $padSeqPrefix;
     $padSeqSecond = $padSeqTag; 
-    $padSeqParm   = $padPrm1;
+    $padSeqParm   = $padSeqPrm1;
 
   } else {
-
-    padSeqCorrectParm2 ();
 
     if ( in_array ( $padSeqTag, ['make','keep','remove'] ) )
       $padSeqFirst  = $padSeqPrefix;
     else 
       $padSeqFirst  = $padSeqTag; 
 
-    $padSeqSecond = $padPrm1; 
-    $padSeqParm   = $padPrm2;
+    $padSeqSecond = $padSeqPrm1; 
+    $padSeqParm   = $padSeqPrm2;
 
   }
 

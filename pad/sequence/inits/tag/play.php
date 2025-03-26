@@ -6,13 +6,11 @@
   // {make 'mySequence', 'add|3'  }
   // {make 'add|3', 'mysequence'  }
 
-  padSeqCorrectParm3 ();
-
   $padSeqPlay  = $padSeqTag;
-  $padSeqParm  = $padPrm3;
+  $padSeqParm  = $padSeqPrm3;
 
-  $padSeqFirst  = $padPrm1; 
-  $padSeqSecond = $padPrm2; 
+  $padSeqFirst  = $padSeqPrm1; 
+  $padSeqSecond = $padSeqPrm2; 
 
   include 'sequence/inits/go/play.php';
 

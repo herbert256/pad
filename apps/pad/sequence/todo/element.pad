@@ -2,19 +2,38 @@
 
 {demo} {sequence '31..40', store='mySequence'}{/demo}
 
-{demo} {store:mySequence               } {$mySequence} {/store:mySequence}  {/demo}
+{demo} {mySequence element=3                } {$mySequence} {/mySequence}        {/demo}
+{demo} {mySequence action='element|3'       } {$mySequence} {/mySequence}        {/demo}
+{demo} {mySequence:element 3                } {$mySequence} {/mySequence:element}   {/demo}
 
-{demo} {mySequence 'last', 3           } {$mySequence} {/mySequence}        {/demo}
-{demo} {mySequence action='last', 3    } {$mySequence} {/mySequence}        {/demo}
-{demo} {mySequence:last 3              } {$mySequence} {/mySequence:last}   {/demo}
+{demo} {action 'element|3', 'mySequence'    } {$mySequence} {/action}            {/demo}
+{demo} {action:element 'mySequence', 3      } {$mySequence} {/action:element}       {/demo}
+{demo} {action:element 'mySequence|3'       } {$mySequence} {/action:element}       {/demo}
 
-{demo} {action 'last:3', 'mySequence'  } {$mySequence} {/action}            {/demo}
-{demo} {action:last 'mySequence', 3    } {$mySequence} {/action:last}       {/demo}
+{demo} {element 'mySequence', 3             } {$mySequence} {/element}              {/demo}
+{demo} {element:mySequence 3                } {$mySequence} {/element:mySequence}   {/demo}
 
-{demo} {last 'mySequence', 3           } {$mySequence} {/last}              {/demo}
-{demo} {last:mySequence 3              } {$mySequence} {/last:mySequence}   {/demo}
+{demo} {action 'mySequence', 'element', 3   } {$mySequence} {/action}            {/demo}
+{demo} {action:mySequence 'element', 3      } {$mySequence} {/action:mySequence} {/demo}
 
-{demo} {action 'mySequence', 'last', 3 } {$mySequence} {/action}            {/demo}
-{demo} {action:mySequence 'last', 3    } {$mySequence} {/action:mysequence} {/demo}
+{/table}
+
+{table}
+
+{demo} {sequence '31..40', store='mySequence'}{/demo}
+
+{demo} {mySequence element=3, even                } {$mySequence} {/mySequence}        {/demo}
+{demo} {mySequence action='element|3', even       } {$mySequence} {/mySequence}        {/demo}
+{demo} {mySequence:element 3, even                } {$mySequence} {/mySequence:element}   {/demo}
+
+{demo} {action 'element|3', 'mySequence', even    } {$mySequence} {/action}            {/demo}
+{demo} {action:element 'mySequence', 3, even      } {$mySequence} {/action:element}       {/demo}
+{demo} {action:element 'mySequence|3', even       } {$mySequence} {/action:element}       {/demo}
+
+{demo} {element 'mySequence', 3, even             } {$mySequence} {/element}              {/demo}
+{demo} {element:mySequence 3, even                } {$mySequence} {/element:mySequence}   {/demo}
+
+{demo} {action 'mySequence', 'element', 3, even   } {$mySequence} {/action}            {/demo}
+{demo} {action:mySequence 'element', 3, even      } {$mySequence} {/action:mySequence} {/demo}
 
 {/table}

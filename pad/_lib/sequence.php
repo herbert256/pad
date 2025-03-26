@@ -1,96 +1,32 @@
 <?php
 
-  function padSeqCorrectParm2 () {
 
-    global $padPrm1, $padPrm2, $padPrm3;
+  function padSeqCorrectParms (&$padSeqPrm1, &$padSeqPrm2, &$padSeqPrm3) {
 
-    if ( str_contains ( $padPrm1, '|' ) and ! $padPrm2 ) {
+    if ( str_contains ( $padSeqPrm1, '|' ) and ! $padSeqPrm2 ) {
 
-      $padTmp = padExplode ( $padPrm1, '|', 2 );
+      $padTmp = padExplode ( $padSeqPrm1, '|', 2 );
 
-      $padPrm1 = $padTmp [0];
-      $padPrm2 = $padTmp [1];
+      $padSeqPrm1 = $padTmp [0];
+      $padSeqPrm2 = $padTmp [1];
+
+    }
+
+    if ( str_contains ( $padSeqPrm1, '|' ) and ! $padSeqPrm3 ) {
+
+      $padTmp = padExplode ( $padSeqPrm1, '|', 2 );
+
+      $padSeqPrm1 = $padTmp [0];
+      $padSeqPrm3 = $padTmp [1];
 
     }
 
-  }
+    if ( str_contains ( $padSeqPrm2, '|' ) and ! $padSeqPrm3 ) {
+      $padTmp = padExplode ( $padSeqPrm2, '|', 2 );
+      $padSeqPrm2 = $padTmp [0];
+      $padSeqPrm3 = $padTmp [1];
 
-  function padSeqCorrectParm3 () {
-
-    global $padPrm1, $padPrm2, $padPrm3;
-
-    if ( str_contains ( $padPrm1, '|' ) and ! $padPrm3 ) {
-  
-      $padTmp = padExplode ( $padPrm1, '|', 2 );
-  
-      $padPrm1 = $padTmp [0];
-      $padPrm3 = $padTmp [1];
-  
-    }
-
-    if ( str_contains ( $padPrm2, '|' ) and ! $padPrm3 ) {
-      $padTmp = padExplode ( $padPrm2, '|', 2 );
-      $padPrm2 = $padTmp [0];
-      $padPrm3 = $padTmp [1];
-
-    }
-  
-  }
-
-
-  function padSeqOperation ( $item, $options='', $body='' ) {
-
-    $padSeqFunction = 'operation';
-
-    return include 'sequence/entry/function.php';
-
-  }
-
-
-  function padSeqSequence ( $item, $options='', $body='' ) {
-
-    $padSeqFunction = 'sequence';
-
-    return include 'sequence/entry/function.php';
-
-  }
-
-
-  function padSeqAction ( $item, $options='', $body='' ) {
-
-    $padSeqFunction = 'action';
-
-    return include 'sequence/entry/function.php';
-
-  }
-
-
-  function padSeqStore ( $item, $options='', $body='' ) {
-
-    $padSeqFunction = 'store';
-
-    return include 'sequence/entry/function.php';
-
-  }
-
-
-  function padSeqOne ( $item, $options='', $body='' ) {
-
-    $padSeqFunction = 'one';
-
-    return include 'sequence/entry/function.php';
-
-  }
-
-
-  function padSeqXXX ( $type, $item, $options, $body ) {
-
-    $code = "\{$type:$item $options}";
-
-    if ( $body )
-      $code .= "$body{/$type:$item}";
-
-    return padCode ($code);
+    }    
 
   }
 

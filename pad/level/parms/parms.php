@@ -30,10 +30,6 @@
     
   }
 
-  $padPrm1 = $padOpt [$pad] [1] ?? '';
-  $padPrm2 = $padOpt [$pad] [2] ?? '';
-  $padPrm3 = $padOpt [$pad] [3] ?? '';
-
   if ( ! isset ( $padOpt [$pad] [1] ) )
     $padOpt [$pad] [1] = '';
 

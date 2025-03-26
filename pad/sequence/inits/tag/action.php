@@ -3,17 +3,15 @@
   // {action 'last', 'myseq1', 3}  
   // {action 'myseq1', 'last', 3}  
 
-  padSeqCorrectParm3 ();
-
-  if ( isset ( $padSeqStore [ $padPrm2 ] ) ) {
-    $padSeqPull       = $padPrm2;   
-    $padSeqActionName = $padPrm1;
+  if ( isset ( $padSeqStore [ $padSeqPrm2 ] ) ) {
+    $padSeqPull       = $padSeqPrm2;   
+    $padSeqActionName = $padSeqPrm1;
   } else {
-    $padSeqPull       = $padPrm1;   
-    $padSeqActionName = $padPrm2;
+    $padSeqPull       = $padSeqPrm1;   
+    $padSeqActionName = $padSeqPrm2;
   }
 
-  $padSeqActionParms = $padPrm3;
+  $padSeqActionParms = $padSeqPrm3;
 
   include 'sequence/inits/go/action.php';
 

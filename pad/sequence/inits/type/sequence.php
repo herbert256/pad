@@ -2,15 +2,15 @@
 
    // {sequence:power 5}
 
-   if ( isset ( $padSeqStore [$padPrm1] ) ) {
-     $padSeqPull  = $padPrm1;
-     $padPrmValue = $padPrm2;
+   if ( isset ( $padSeqStore [$padSeqPrm1] ) ) {
+     $padSeqPull  = $padSeqPrm1;
+     $padPrmValue = $padSeqPrm2;
      return include 'sequence/inits/type/make.php';
    }
 
-   if ( isset ( $padSeqStore [$padPrm2] ) ) {
-     $padSeqPull  = $padPrm2;
-     $padPrmValue = $padPrm1;
+   if ( isset ( $padSeqStore [$padSeqPrm2] ) ) {
+     $padSeqPull  = $padSeqPrm2;
+     $padPrmValue = $padSeqPrm1;
      return include 'sequence/inits/type/make.php';
    }
 

@@ -18,5 +18,11 @@
   $padSeqName      = $padPrm [$pad] ['name']   ?? ''; 
   $padSeqStoreName = $padPrm [$pad] ['store']  ?? ''; 
   $padSeqToData    = $padPrm [$pad] ['toData'] ?? ''; 
+
+  $padSeqPrm1 = $padOpt [$pad] [1] ?? '';
+  $padSeqPrm2 = $padOpt [$pad] [2] ?? '';
+  $padSeqPrm3 = $padOpt [$pad] [3] ?? '';
+
+  padSeqCorrectParms ( $padSeqPrm1, $padSeqPrm2, $padSeqPrm3 );
  
 ?>

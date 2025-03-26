@@ -1,7 +1,5 @@
 <?php
 
-
-
   $padSeqActionList = padExplode ( $padSeqActionParms, '|' );
   $padSeqActionParm = $padSeqActionList [0] ?? '';
 

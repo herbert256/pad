@@ -2,7 +2,7 @@
 
   $padSeqInfo ['kinds'] [] = include 'sequence/inits/sequence/info.php';
 
-  $padTmp = $padPrm1;
+  $padTmp = $padSeqPrm1;
 
   if ( $padTmp )
     if     ( is_numeric ( $padTmp              )      ) return include 'sequence/inits/sequence/integer.php';
