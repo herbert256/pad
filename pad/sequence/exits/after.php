@@ -8,11 +8,11 @@
     include 'sequence/actions/action.php';
   } 
 
-  foreach ( $padParms as $padStartOption ) {
+  foreach ( $padParms [$pad] as $padStartOption ) {
 
     extract ( $padStartOption );
 
-    if     ( $padPrmType <> 'option'               ) continue;
+    if     ( $padPrmKind <> 'option'               ) continue;
     elseif ( in_array ( $padPrmName, $padSeqDone ) ) continue;
 
     if     ( $padPrmName == 'store'  )                                  continue;

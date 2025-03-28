@@ -29,7 +29,7 @@
   include 'level/type.php';
   include 'level/tag.php';
 
-  if ( ! $padTypeResult and isset ( $padOptionsSingle ['optional'] ) )
+  if ( ! $padTypeResult and isset ( $padPrm [$pad] [$padPrmName] ['optional'] ) )
     if ( padValidTag ($padWords [0]) )
       return include 'options/optional.php';
 

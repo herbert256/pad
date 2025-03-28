@@ -1,6 +1,6 @@
 <?php
 
-{mySequence make,    add,3  } {$mySequence} {/mySequence}
+  // {mySequence make,    add,3  } {$mySequence} {/mySequence}
 
   $padSeqPull = '';
 

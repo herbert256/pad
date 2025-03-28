@@ -3,7 +3,7 @@
   if ( $padPrmType [$pad] == 'close' ) 
     include 'level/close.php';
 
-  $padParms = [];
+  $padParms [$pad]  = [];
   
   foreach ( $padPrmParse as $padPrmOne ) {
 
@@ -26,7 +26,7 @@
       include 'level/parms/parameter.php';
 
     $padParms [$pad] [] = [
-      'padPrmType'  => $padParmsSetType,
+      'padPrmKind'  => $padParmsSetType,
       'padPrmName'  => $padParmsSetName,
       'padPrmValue' => $padParmsSetValue
     ];

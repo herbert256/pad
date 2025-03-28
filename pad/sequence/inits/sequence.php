@@ -1,7 +1,5 @@
 <?php
 
-kk ();
-
       if ( $padSeqType == 'action'   ) include "sequence/inits/type/go.php";
   elseif ( $padSeqType == 'keep'     ) include "sequence/inits/type/go.php";
   elseif ( $padSeqType == 'make'     ) include "sequence/inits/type/go.php";

@@ -1,23 +1,19 @@
 <?php
 
   $padSeqPlay     = 'make';
-  $padSeqLast     = '';
+  $padSeqLast     = FALSE;
   $padSeqPlaySave = '';
 
-  foreach ( $padParms as $padStartOption ) {
+  foreach ( $padParms [$pad] as $padStartOption ) {
 
     extract ( $padStartOption );
 
+    if ( $padPrmKind == 'parm' and $padSeqLast !== FALSE ) 
+      $padSeqPlays [$padSeqLast] ['padSeqParm'] = $padPrmValue;
+
         if ( in_array ( $padPrmName, $padSeqDone ) ) continue;
     elseif ( $padPrmName == $padSeqSeqSave         ) continue;
-    elseif ( $padPrmType == 'lvl'                  ) continue;
-    elseif ( $padPrmType == 'occ'                  ) continue;
- 
-    if ( $padPrmType == 'parm' ) {
-      if ( $padSeqLast ) 
-        $padSeqPlays [$padSeqLast] ['padSeqParm'] = $padPrmValue;
-      continue;
-    }
+    elseif ( $padPrmKind <> 'option'               ) continue;
 
     if ( in_array ( $padPrmName, ['make','keep','remove'] ) and $padPrmValue and $padPrmValue !== TRUE ) {
       $padSeqPlay  = $padPrmName;

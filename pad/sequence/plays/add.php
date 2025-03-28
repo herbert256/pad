@@ -24,6 +24,11 @@
     'padSeqPlay'  => $padSeqPlay
   ];
 
+  if ( in_array ( $padSeqPlay, ['make','keep','remove'] ) ) 
+    $padSeqLast = array_key_last ( $padSeqPlays);
+  else
+    $padSeqLast = FALSE;
+
   $padSeqDone [] = $padSeqSeq;
 
 ?>
