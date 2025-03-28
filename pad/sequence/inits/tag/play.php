@@ -1,17 +1,34 @@
 <?php
 
-  // {make 'mySequence', 'add', 3 }
-  // {make 'add', 'mysequence', 3 }
+  // {make mySequence, add, 3 }
+  // {make add, mysequence, 3 }
 
-  // {make 'mySequence', 'add|3'  }
-  // {make 'add|3', 'mysequence'  }
+  if ( $padSeqFirst and $padSeqSecond )
+    if       ( isset ( $padSeqStore[$padSeqFirst] ) and file_exists ( "sequence/types/$padSeqSecond" ) ) {
 
-  $padSeqPlay  = $padSeqTag;
-  $padSeqParm  = $padSeqPrm3;
+      $padSeqPull = $padSeqFirst;
+      $padSeqSeq  = $padSeqSecond;
 
-  $padSeqFirst  = $padSeqPrm1; 
-  $padSeqSecond = $padSeqPrm2; 
+      if ( $padSeqSecondParm and $padSeqSecondParm !== TRUE and ! $padSeqParm )
+        $padSeqParm = $padSeqSecondParm;
+    
+    } elseif ( isset ( $padSeqStore[$padSeqSecond] ) and file_exists ( "sequence/types/$padSeqFirst" ) ) {
+    
+      $padSeqPull = $padSeqSecond;
+      $padSeqSeq  = $padSeqFirst;
+    
+      if ( $padSeqFirstParm and $padSeqFirstParm !== TRUE and ! $padSeqParm )
+        $padSeqParm = $padSeqFirstParm;
+    
+    }
+ 
+  if ( $padSeqPull ) {
+ 
+    $padSeqDone [] = $padSeqFirst;
+    $padSeqDone [] = $padSeqSecond;
+ 
+    $padSeqPlay  = $padSeqTag;
 
-  include 'sequence/inits/go/play.php';
+  }
 
 ?>

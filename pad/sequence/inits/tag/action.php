@@ -1,18 +1,27 @@
 <?php
 
-  // {action 'last', 'myseq1', 3}  
-  // {action 'myseq1', 'last', 3}  
+  if ( $padSeqFirst and $padSeqSecond )
 
-  if ( isset ( $padSeqStore [ $padSeqPrm2 ] ) ) {
-    $padSeqPull       = $padSeqPrm2;   
-    $padSeqActionName = $padSeqPrm1;
-  } else {
-    $padSeqPull       = $padSeqPrm1;   
-    $padSeqActionName = $padSeqPrm2;
+    if ( isset ( $padSeqStore [ $padSeqFirst ] ) and file_exists ( "sequence/actions/types/$padSeqSecond.php" ) ) {
+
+      $padSeqPull       = $padSeqFirst;   
+      $padSeqActionName = $padSeqSecond;
+
+      if ( $padSeqSecondParm and $padSeqSecondParm !== TRUE and ! $padSeqParm )
+        $padSeqParm = $padSeqSecondParm;
+
+    } elseif ( isset ( $padSeqStore [ $padSeqSecond ] ) and file_exists ( "sequence/actions/types/$padSeqFirst.php" ) ) {
+
+      $padSeqPull       = $padSeqSecond;   
+      $padSeqActionName = $padSeqFirst;
+
+      if ( $padSeqFirstParm and $padSeqFirstParm !== TRUE and ! $padSeqParm )
+        $padSeqParm = $padSeqFirstParm;
+    }
+
+  if ( $padSeqPull ) {   
+    $padSeqDone [] = $padSeqFirst;
+    $padSeqDone [] = $padSeqSecond;
   }
-
-  $padSeqActionParms = $padSeqPrm3;
-
-  include 'sequence/inits/go/action.php';
 
 ?>

@@ -1,17 +1,13 @@
 <?php
 
-  $padTmp = $padSeqPrm1;
-
-  if ( $padTmp )
-    if     ( is_numeric ( $padTmp              )      ) return 'integer';
-    elseif ( strpos     ( $padTmp, '..'        )      ) return 'range';
-    elseif ( strpos     ( $padTmp, ';'         )      ) return 'list';
-    elseif ( file_exists ( "sequence/types/$padTmp" ) ) return 'parm-type';
-    elseif ( isset ( $padSeqStore [$padTmp]    )      ) return 'parm-store';
+  if ( $padSeqParm )
+    if     ( is_numeric ( $padSeqParm              )      ) return 'integer';
+    elseif ( strpos     ( $padSeqParm, '..'        )      ) return 'range';
+    elseif ( strpos     ( $padSeqParm, ';'         )      ) return 'list';
    
   foreach ( $padOptionsSingle as $padSeqSeq => $padSeqParm )  
-    if     ( file_exists ( "sequence/types/$padSeqSeq" ) ) return 'option-type';
-    elseif ( isset ( $padSeqStore [$padSeqSeq] )    )      return 'option-store';
+    if     ( file_exists ( "sequence/types/$padSeqSeq" ) ) return 'type';
+    elseif ( isset ( $padSeqStore [$padSeqSeq] )    )      return 'store';
  
   return 'default';
     

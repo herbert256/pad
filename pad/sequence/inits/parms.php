@@ -19,10 +19,11 @@
   $padSeqStoreName = $padPrm [$pad] ['store']  ?? ''; 
   $padSeqToData    = $padPrm [$pad] ['toData'] ?? ''; 
 
-  $padSeqPrm1 = $padOpt [$pad] [1] ?? '';
-  $padSeqPrm2 = $padOpt [$pad] [2] ?? '';
-  $padSeqPrm3 = $padOpt [$pad] [3] ?? '';
+  $padSeqTmp    = array_keys ( $padPrm [$pad] );
+  $padSeqFirst  = $padSeqTmp [0] ?? '';
+  $padSeqSecond = $padSeqTmp [1] ?? '';
 
-  padSeqCorrectParms ( $padSeqPrm1, $padSeqPrm2, $padSeqPrm3 );
+  $padSeqFirstParm  = ( $padSeqFirst  ) ? $padPrm [$pad] [$padSeqFirst] : '';
+  $padSeqSecondParm = ( $padSeqSecond ) ? $padPrm [$pad] [$padSeqSecond] : '';
  
 ?>

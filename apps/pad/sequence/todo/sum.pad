@@ -1,21 +1,30 @@
 {table}
 
-{demo} {sequence '31..40', store='mySequence'}{/demo}
+{demo} {sum '31..40'                    } {$sum} {/sum}               {/demo}
+{demo} {sum from=31, to=40              } {$sum} {/sum}               {/demo}
 
-{demo} {store:mySequence           } {$mySequence} {/store:mySequence}  {/demo}
-{demo} {store 'mySequence'         } {$mySequence} {/store}             {/demo}
+{demo} {action sum, '31..40'            } {$sum} {/action}               {/demo}
+{demo} {action:sum '31..40'             } {$sum} {/action}               {/demo}
+
+{demo} {sequence '31..40', sum          } {$sum} {/sequence}               {/demo}
+{demo} {sequence sum, '31..40'          } {$sum} {/sequence}               {/demo}
+{demo} {sequence '31..40', action='sum' } {$sum} {/sequence}               {/demo}
+
+{/table}{table}
+
+{demo} {sequence '31..40', store='mySequence'}{/demo}
 
 {demo} {mySequence sum             } {$mySequence} {/mySequence}        {/demo}
 {demo} {mySequence action='sum'    } {$mySequence} {/mySequence}        {/demo}
 {demo} {mySequence:sum             } {$mySequence} {/mySequence:sum}    {/demo}
 
-{demo} {action 'sum', 'mySequence' } {$mySequence} {/action}            {/demo}
-{demo} {action:sum 'mySequence'    } {$mySequence} {/action:sum}        {/demo}
-
-{demo} {sum 'mySequence'           } {$mySequence} {/sum}               {/demo}
+{demo} {sum mySequence             } {$mySequence} {/sum}               {/demo}
 {demo} {sum:mySequence             } {$mySequence} {/sum:mySequence}    {/demo}
 
-{demo} {action 'mySequence', 'sum' } {$mySequence} {/action}            {/demo}
-{demo} {action:mySequence 'sum'    } {$mySequence} {/action:mySequence} {/demo}
+{demo} {action mySequence, sum     } {$mySequence} {/action}            {/demo}
+{demo} {action:mySequence sum      } {$mySequence} {/action:mySequence} {/demo}
+
+{demo} {action sum, mySequence     } {$mySequence} {/action}            {/demo}
+{demo} {action:sum mySequence      } {$mySequence} {/action:sum}        {/demo}
 
 {/table}

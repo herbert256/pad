@@ -9,6 +9,10 @@
 
     $padParmsSet = $padSetLvl [$pad] [$padSetName];
 
+    $padParmsSetType  = 'lvl';
+    $padParmsSetName  = $padSetName;
+    $padParmsSetValue = $padSetLvl [$pad] [$padSetName];
+
   } else {
  
     $padSetOcc [$pad] [$padSetName] = $padPrmValue;
@@ -16,8 +20,10 @@
 
     $padParmsSet = $padSetOcc [$pad] [$padSetName];
 
-  }
+    $padParmsSetType  = 'occ';
+    $padParmsSetName  = $padSetName;
+    $padParmsSetValue = 'todo';
 
-  $padParmsTypeSet = 'parameter';
+  }
 
 ?>

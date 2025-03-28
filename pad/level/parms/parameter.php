@@ -1,10 +1,11 @@
 <?php
   
-  $padPrmEval        = padEval ( $padPrmOne );
+  $padPrmEval       = padEval ( $padPrmOne );
 
   $padOpt [$pad] [] = $padPrmEval;
 
-  $padParmsSet      = $padPrmEval;
-  $padParmsTypeSet  = 'parameter';
+  $padParmsSetType  = 'parm';
+  $padParmsSetName  = array_key_last ( $padOpt [$pad] [] );
+  $padParmsSetValue = $padPrmEval;
 
 ?>

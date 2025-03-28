@@ -35,17 +35,36 @@
 
     global $padTypeSeq;
 
-    if ( in_array ( $type, ['sequence','make','keep','remove','action'] )
+    if ( in_array ( $type, ['store','sequence'] ) and isset ( $GLOBALS ['padSeqStore'] [$item] ) ) {
+      $padTypeSeq = $type;
+      return 'store';
+    } 
+
+    if ( in_array ( $item, ['store','sequence'] ) and isset ( $GLOBALS ['padSeqStore'] [$type] ) ) {
+      $padTypeSeq = $type;
+      return 'store';
+    } 
+
+    if ( in_array ( $type, ['make','keep','remove','action'] )
          and isset ( $GLOBALS ['padSeqStore'] [$item] ) )
       return $type;
 
-    if     ( $type == 'store'    and isset       ( $GLOBALS ['padSeqStore'] [$item]   ) ) return $type;
-    elseif ( $type == 'sequence' and file_exists ( "sequence/types/$item"             ) ) return $type;
+    if     ( $type == 'sequence' and file_exists ( "sequence/types/$item"             ) ) return $type;
     elseif ( $type == 'make'     and file_exists ( "sequence/types/$item"             ) ) return $type;
     elseif ( $type == 'keep'     and file_exists ( "sequence/types/$item"             ) ) return $type;
     elseif ( $type == 'remove'   and file_exists ( "sequence/types/$item"             ) ) return $type;
     elseif ( $type == 'action'   and file_exists ( "sequence/actions/types/$item.php" ) ) return $type;
 
+    if ( $item == 'action' and isset ( $GLOBALS ['padSeqStore'] [$type] ) ) {
+      $padTypeSeq = $type;
+      return 'action';
+    } 
+
+    if ( $item == 'action' ) 
+      if ( file_exists ("sequence/actions/types/$type.php") ) {
+        $padTypeSeq = $type;
+        return 'action';
+      } 
 
     if ( isset ( $GLOBALS ['padSeqStore'] [$item] ) ) 
       if ( file_exists ("sequence/actions/types/$type.php") ) {

@@ -166,7 +166,7 @@
         $wrk [$key] = $value;
       }   
 
-    if ( count ($wrk) )
+    if ( count ($wrk) > 1 )
       padDumpLines ( $prefix, $wrk );
 
   }

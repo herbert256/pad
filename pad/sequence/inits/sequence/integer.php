@@ -1,8 +1,7 @@
 <?php
 
   $padSeqSeq  = 'loop';
-  $padSeqParm = $padParm;
-  $padSeqRows = $padParm;
+  $padSeqRows = $padSeqParm;
 
   include 'sequence/inits/go/sequence.php';
 

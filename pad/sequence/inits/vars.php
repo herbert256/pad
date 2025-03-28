@@ -16,11 +16,15 @@
   $padSeqNames      = [];
   $padSeqPlays      = [];
   
+  $padSeqSeq        = '';
   $padSeqPull       = '';
   $padSeqBuild      = '';
 
-  $padSeqTag    = $padTag    [$pad];
+  $padSeqActionAfterName = '';
+
   $padSeqType   = $padType   [$pad];
   $padSeqPrefix = $padPrefix [$pad];
+  $padSeqTag    = $padTag    [$pad];
+  $padSeqParm   = $padOpt    [$pad] [1];
   
 ?>

@@ -7,8 +7,9 @@
 
   $padPrmEval = ( $padPrm [$pad] [$padPrmName] === TRUE ) ? $padPrmName : $padPrm [$pad] [$padPrmName];
 
-  $padParmsSet     = $padPrmEval;
-  $padParmsTypeSet = 'option';
+  $padParmsSetType  = 'option';
+  $padParmsSetName  = $padPrmName;
+  $padParmsSetValue = $padPrmEval;
 
 
 ?>

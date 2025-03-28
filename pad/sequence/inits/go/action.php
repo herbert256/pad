@@ -1,11 +1,11 @@
 <?php
 
-  $padSeqActionList = padExplode ( $padSeqActionParms, '|' );
+  $padSeqActionList = padExplode ( $padSeqParm, '|' );
   $padSeqActionParm = $padSeqActionList [0] ?? '';
 
   $padSeqResult = $padSeqStore [$padSeqPull];
 
-  $padSeqInfo ["start/$padStartType/action"] [] = $padSeqActionName;
+  $padSeqInfo ["start/$padSeqInit/action"] [] = $padSeqActionName;
 
   include 'sequence/actions/go.php';
   

@@ -1,6 +1,9 @@
 <?php
 
-  $padSeqActionCnt  = ( ctype_digit ( $padSeqActionParm ) ) ? $padSeqActionParm : 1;
+  if ( ! file_exists ( "sequence/actions/types/$padSeqActionName.php" ) )
+    return;
+  
+  $padSeqActionCnt = ( ctype_digit ( $padSeqActionParm ) ) ? $padSeqActionParm : 1;
 
   $padSeqResult = include "sequence/actions/types/$padSeqActionName.php";
 

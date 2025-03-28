@@ -1,13 +1,5 @@
 <?php 
 
-  if ( isset ( $padSeqStore[$padSeqFirst] ) and file_exists ( "sequence/types/$padSeqSecond" ) ) {
-    $padSeqPull = $padSeqFirst;
-    $padSeqSeq  = $padSeqSecond;
-  } elseif ( isset ( $padSeqStore[$padSeqSecond] ) and file_exists ( "sequence/types/$padSeqFirst" ) ) {
-    $padSeqPull = $padSeqSecond;
-    $padSeqSeq  = $padSeqFirst;
-  } 
-
   if ( is_numeric ($padSeqParm) )
     if ( str_contains ( $padSeqParm, '.' ) )  $padSeqParm = doubleval ( $padSeqParm );
     else                                      $padSeqParm = intval ( $padSeqParm );
@@ -18,7 +10,7 @@
 
   $padSeqFixed = [];
 
-  $padSeqInfo ["start/$padStartType/play/$padSeqPlay"] [] = $padSeqSeq;
+  $padSeqInfo ["start/$padSeqInit/play/$padSeqPlay"] [] = $padSeqSeq;
 
   foreach ( $padSeqStore [$padSeqPull] as $padSeqLoop ) {
 
@@ -42,5 +34,7 @@
   }
 
   include "sequence/inits/go/start.php";
+
+  return TRUE;
 
 ?>

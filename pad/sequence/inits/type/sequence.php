@@ -1,21 +1,17 @@
 <?php
 
-   // {sequence:power 5}
+//{sequence:even mySequence, keep} {$mySequence} {/sequence:even}
 
-   if ( isset ( $padSeqStore [$padSeqPrm1] ) ) {
-     $padSeqPull  = $padSeqPrm1;
-     $padPrmValue = $padSeqPrm2;
-     return include 'sequence/inits/type/make.php';
-   }
+  if ( isset ( $padSeqStore [$padSeqFirst] ) ) {
 
-   if ( isset ( $padSeqStore [$padSeqPrm2] ) ) {
-     $padSeqPull  = $padSeqPrm2;
-     $padPrmValue = $padSeqPrm1;
-     return include 'sequence/inits/type/make.php';
-   }
+    $padSeqPull    = $padSeqFirst;
+    $padSeqDone [] = $padSeqFirst;
 
-  $padSeqSeq  = $padSeqTag;
-  $padSeqParm = $padParm;
+    return include 'sequence/inits/go/store.php';
+
+  }
+
+  $padSeqSeq = $padSeqTag;
 
   include 'sequence/inits/go/sequence.php';
 

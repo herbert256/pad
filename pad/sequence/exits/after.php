@@ -1,13 +1,19 @@
 <?php
 
   $padSeqSeqSave = $padSeqSeq;
-  
-  foreach ( $padOptionsMulti as $padStartOption ) {
+
+  if ( $padSeqActionAfterName ) {
+    $padPrmName  = $padSeqActionAfterName;
+    $padPrmValue = $padSeqActionAfterParm;
+    include 'sequence/actions/action.php';
+  } 
+
+  foreach ( $padParms as $padStartOption ) {
 
     extract ( $padStartOption );
 
-    if ( in_array ( $padPrmName, $padSeqDone ) )
-      continue;
+    if     ( $padPrmType <> 'option'               ) continue;
+    elseif ( in_array ( $padPrmName, $padSeqDone ) ) continue;
 
     if     ( $padPrmName == 'store'  )                                  continue;
     elseif ( str_starts_with ( $padPrmName, 'store'  ) )                include 'sequence/store/startWith.php';  
