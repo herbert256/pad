@@ -12,12 +12,12 @@
 
     extract ( $padStartOption );
 
-    if     ( $padPrmKind <> 'option'               ) continue;
-    elseif ( in_array ( $padPrmName, $padSeqDone ) ) continue;
-
-    if     ( $padPrmName == 'store'  )                                  continue;
+    if     ( $padPrmKind <> 'option'                                  ) continue;
+    elseif ( in_array ( $padPrmName, $padSeqDone )                    ) continue;
+    elseif ( $padPrmName == 'store'  )                                  continue;
     elseif ( str_starts_with ( $padPrmName, 'store'  ) )                include 'sequence/store/startWith.php';  
     elseif ( str_starts_with ( $padPrmName, 'action' ) )                include 'sequence/actions/action.php';
+    elseif ( file_exists ( "sequence/options/types/$padPrmName.php" ) ) continue; 
     elseif ( file_exists ( "sequence/actions/types/$padPrmName.php" ) ) include 'sequence/actions/action.php';
     
   }

@@ -1,5 +1,8 @@
 <?php
 
+  if ( isset ( $padPrm [$pad] ['update'] ) and $padSeqPull )
+    $padSeqStore [$padSeqPull] = array_values ( $padSeqResult );
+
   if ( $padSeqStoreName ) {
 
     $padSeqNames [] = $padSeqStoreName;

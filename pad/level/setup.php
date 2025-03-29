@@ -50,6 +50,7 @@
   $padArray      [$pad] = FALSE;
   $padCount      [$pad] = FALSE;
   $padDefault    [$pad] = FALSE;
+  $padTagSeq     [$pad] = FALSE;
 
   $padSaveLvl    [$pad] = [];
   $padDeleteLvl  [$pad] = [];

@@ -2,11 +2,11 @@
 
   $padSeqPlaySave = '';
 
-  $padSeqSeq  = $padSeqTag;
-  $padSeqPlay = 'make';
+  $padSeqSeq = $padSeqTag;
+
+  if ( ! $padSeqPlay )
+    $padSeqPlay = 'make';
 
   include 'sequence/plays/add.php';
-
-  include 'sequence/inits/go/store.php';
 
 ?>

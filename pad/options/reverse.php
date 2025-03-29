@@ -1,5 +1,5 @@
 <?php
 
-  $padData [$pad] = array_reverse ( $padData [$pad] );
+  // see handling directory    
 
 ?>

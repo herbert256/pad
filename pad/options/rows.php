@@ -1,5 +1,5 @@
 <?php
 
-  include 'options/page.php';
+  // see handling directory    
 
 ?>

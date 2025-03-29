@@ -1,6 +1,6 @@
 <?php
 
-  $padContent .= '{$' . $padName [$pad] . '}';
+  $padContent .= '{&firstFieldValue}';
 
   if ( padTagParm ('quote') ) include 'options/quote.php';
   if ( padTagParm ('open')  ) include 'options/open.php';

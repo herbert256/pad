@@ -47,6 +47,16 @@
       
     } 
 
+    if ( $padSeqFirst and isset ( $padSeqStore [$padSeqFirst] ) ) {
+  
+      $padSeqTmp2    = $padSeqFirst; 
+      $padSeqDone [] = $padSeqFirst;
+
+       if ( $padSeqFirstParm and $padSeqFirstParm !== TRUE and ! $padSeqParm )
+        $padSeqParm = $padSeqFirstParm;
+
+    } 
+
   }
 
   if ( $padSeqTmp1 and $padSeqTmp2 ) {

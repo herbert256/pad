@@ -1,5 +1,5 @@
 <?php
 
-  shuffle ( $padData [$pad] );
+  // see handling directory    
 
 ?>

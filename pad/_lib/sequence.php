@@ -107,4 +107,11 @@
   }
 
 
+  function padHandTruncate ( $array, $side, $count ) {
+
+    return padSeqTruncate ( $array, $side, $count );
+
+  }
+
+
 ?>

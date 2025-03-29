@@ -22,9 +22,6 @@
 
       include 'call/any.php';
 
-      if ( $GLOBALS ['padInfo'] )
-        include 'events/options.php';           
-
     }
 
   if     ( $padOptions == 'start'    ) $padBase   [$pad] = $padContent;

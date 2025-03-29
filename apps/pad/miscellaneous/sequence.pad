@@ -1,0 +1,300 @@
+{table}
+
+{demo} {sequence '31..40', store='mySequence'}{/demo}
+
+{demo} {mySequence}         {$mySequence} {/mySequence}        {/demo}
+{demo} {store:mySequence}   {$mySequence} {/store:mySequence}  {/demo}
+{demo} {store mySequence} {$mySequence} {/store}             {/demo}
+
+{/table}
+
+{table}
+
+{demo} {sum '31..40'                    } {$sum} {/sum}               {/demo}
+{demo} {sum from=31, to=40              } {$sum} {/sum}               {/demo}
+
+{demo} {action sum, '31..40'            } {$sum} {/action}               {/demo}
+{demo} {action:sum '31..40'             } {$sum} {/action:sum}               {/demo}
+
+{demo} {sequence '31..40', sum          } {$sum} {/sequence}               {/demo}
+{demo} {sequence sum, '31..40'          } {$sum} {/sequence}               {/demo}
+{demo} {sequence '31..40', action='sum' } {$sum} {/sequence}               {/demo}
+
+{/table}
+
+{table}
+
+{demo} {sequence '31..40', store='mySequence'}{/demo}
+
+{demo} {mySequence sum             } {$mySequence} {/mySequence}        {/demo}
+{demo} {mySequence action='sum'    } {$mySequence} {/mySequence}        {/demo}
+{demo} {mySequence:sum             } {$mySequence} {/mySequence:sum}    {/demo}
+
+{demo} {sum mySequence             } {$mySequence} {/sum}               {/demo}
+{demo} {sum:mySequence             } {$mySequence} {/sum:mySequence}    {/demo}
+
+{demo} {action mySequence, sum     } {$mySequence} {/action}            {/demo}
+{demo} {action:mySequence sum      } {$mySequence} {/action:mySequence} {/demo}
+
+{demo} {action sum, mySequence     } {$mySequence} {/action}            {/demo}
+{demo} {action:sum mySequence      } {$mySequence} {/action:sum}        {/demo}
+
+{/table}
+
+
+{table}
+
+{demo} {sequence '11..40', action='shift|2'   } {$sequence} {/sequence}  {/demo}
+
+{demo} {sequence '11..40', store='mySequence' }{/demo}
+
+{demo} {mySequence action='shift|2'           } {$mySequence} {/mySequence}        {/demo}
+
+{demo} {action shift, mySequence, 2       } {$mySequence} {/action}            {/demo}
+{demo} {action mySequence, shift, 2       } {$mySequence} {/action}            {/demo}
+
+{demo} {mySequence:shift 2                    } {$mySequence} {/mySequence:shift}   {/demo}
+
+{demo} {action:shift mySequence, 2          } {$mySequence} {/action:shift}       {/demo}
+
+{demo} {shift mySequence, 2                 } {$mySequence} {/shift}              {/demo}
+{demo} {shift:mySequence 2                    } {$mySequence} {/shift:mySequence}   {/demo}
+
+{demo} {action:mySequence shift, 2          } {$mySequence} {/action:mySequence} {/demo}
+
+{/table}
+
+{table}
+
+{demo} {sequence '31..40', store='mySequence'}{/demo}
+
+{/table}{table}
+
+{demo} {mySequence:sequence          } {$mySequence} {/mySequence:sequence}        {/demo}
+{demo} {mySequence:store             } {$mySequence} {/mySequence:store}        {/demo}
+{demo} {mySequence:action  sum       } {$mySequence} {/mySequence:action}        {/demo}
+{demo} {mySequence:keep    even      } {$mySequence} {/mySequence:keep}        {/demo}
+{demo} {mySequence:remove  even      } {$mySequence} {/mySequence:remove}        {/demo}
+{demo} {mySequence:make    add, 3    } {$mySequence} {/mySequence:make}        {/demo}
+{demo} {mySequence:make    add=3    } {$mySequence} {/mySequence:make}        {/demo}
+
+{/table}{table}
+
+{demo} {sequence:mySequence          } {$mySequence} {/sequence:mySequence}        {/demo}
+{demo} {store:mySequence             } {$mySequence} {/store:mySequence}        {/demo}
+{demo} {action:mySequence  sum       } {$mySequence} {/action:mySequence}        {/demo}
+{demo} {keep:mySequence    even      } {$mySequence} {/keep:mySequence}        {/demo}
+{demo} {remove:mySequence  even      } {$mySequence} {/remove:mySequence}        {/demo}
+{demo} {make:mySequence    add=3    } {$mySequence} {/make:mySequence}        {/demo}
+{demo} {make:mySequence    add,3    } {$mySequence} {/make:mySequence}        {/demo}
+
+{/table}{table}
+
+{demo} {mySequence sequence         } {$mySequence} {/mySequence}        {/demo}
+{demo} {mySequence store            } {$mySequence} {/mySequence}        {/demo}
+{demo} {mySequence action,  sum     } {$mySequence} {/mySequence}        {/demo}
+{demo} {mySequence keep,    even    } {$mySequence} {/mySequence}        {/demo}
+{demo} {mySequence remove,  even    } {$mySequence} {/mySequence}        {/demo}
+{demo} {mySequence make,    add=3  } {$mySequence} {/mySequence}        {/demo}
+{demo} {mySequence make,    add,3  } {$mySequence} {/mySequence}        {/demo}
+
+{/table}{table}
+
+{demo} {sequence mySequence         } {$mySequence} {/sequence}        {/demo}
+{demo} {store    mySequence         } {$mySequence} {/store}        {/demo}
+{demo} {action   mySequence, sum    } {$mySequence} {/action}        {/demo}
+{demo} {keep     mySequence, even   } {$mySequence} {/keep}        {/demo}
+{demo} {remove   mySequence, even   } {$mySequence} {/remove}        {/demo}
+{demo} {make     mySequence, add,3 } {$mySequence} {/make}        {/demo}
+{demo} {make     mySequence, add=3 } {$mySequence} {/make}        {/demo}
+
+{/table}{table}
+
+{demo} {sum:action  mySequence       } {$mySequence} {/sum:action}        {/demo}
+{demo} {even:keep    mySequence      } {$mySequence} {/even:keep}        {/demo}
+{demo} {even:remove  mySequence      } {$mySequence} {/even:remove}        {/demo}
+{demo} {add:make    mySequence, 3    } {$mySequence} {/add:make}        {/demo}
+
+{/table}{table}
+
+{demo} {sum:mySequence  action       } {$mySequence} {/sum:mySequence}        {/demo}
+{demo} {even:mySequence keep         } {$mySequence} {/even:mySequence}        {/demo}
+{demo} {even:mySequence remove       } {$mySequence} {/even:mySequence}        {/demo}
+{demo} {add:mySequence  make, 3      } {$mySequence} {/add:mySequence}        {/demo}
+
+{/table}{table}
+
+{demo} {sum  action, mySequence     } {$mySequence} {/sum}        {/demo}
+{demo} {sequence:even keep,   mySequence     } {$mySequence} {/sequence:even}        {/demo}
+{demo} {sequence:even remove, mySequence     } {$mySequence} {/sequence:even}        {/demo}
+{demo} {sequence:add  make,   mySequence, 3  } {$mySequence} {/sequence:add}        {/demo}
+
+{/table}{table}
+
+{demo} {sum  mySequence, action    } {$mySequence} {/sum}        {/demo}
+{demo} {sequence:even mySequence, keep      } {$mySequence} {/sequence:even}        {/demo}
+{demo} {sequence:even mySequence, remove    } {$mySequence} {/sequence:even}        {/demo}
+{demo} {sequence:add  mySequence, make, 3   } {$mySequence} {/sequence:add}        {/demo}
+
+{/table}
+
+{table}
+
+{demo} {add 3, from=31, to=40                 } {$sequence} {/add}{/demo}
+{demo} {sequence '31..40', add=3              } {$sequence} {/sequence}{/demo}
+{demo} {sequence '31..40', make, add=3        } {$sequence} {/sequence}{/demo}
+{demo} {sequence '31..40', make='add|3'       } {$sequence} {/sequence}{/demo}
+
+{demo} {sequence '31..40', store='mySequence' } {/demo}
+
+{demo} {add mySequence, 3                   } {$sequence} {/add}{/demo}
+{demo} {add 3, mySequence                   } {$sequence} {/add}{/demo}
+
+{demo} {sequence:add mySequence, 3          } {$sequence} {/sequence:add}{/demo}
+{demo} {sequence:add 3, mySequence          } {$sequence} {/sequence:add}{/demo}
+
+{demo} {add:mySequence 3                      } {$sequence} {/add:mySequence}{/demo}
+{demo} {mySequence:add 3                      } {$sequence} {/mySequence:add}{/demo}
+
+{demo} {make mySequence, add, 3           } {$sequence} {/make}{/demo}
+{demo} {make add, mySequence, 3           } {$sequence} {/make}{/demo}
+
+{demo} {pad:make mySequence, add, 3       } {$sequence} {/pad:make}{/demo}
+{demo} {pad:make add, mySequence, 3       } {$sequence} {/pad:make}{/demo}
+
+{demo} {make:mySequence add, 3              } {$sequence} {/make:mySequence}{/demo}
+{demo} {mySequence:make add, 3              } {$sequence} {/mySequence:make}{/demo}
+
+{demo} {make:add mySequence, 3              } {$sequence} {/make:add}{/demo}
+{demo} {add:make mySequence, 3              } {$sequence} {/add:make}{/demo}
+
+{/table}
+
+
+{table}
+
+{demo} {add 3, from=31, to=40, even                } {$sequence} {/add}{/demo}
+{demo} {sequence '31..40', add=3, even             } {$sequence} {/sequence}{/demo}
+{demo} {sequence '31..40', make, add=3, even       } {$sequence} {/sequence}{/demo}
+{demo} {sequence '31..40', make='add|3', even      } {$sequence} {/sequence}{/demo}
+{demo} {sequence '31..40', store='mySequence'      } {/demo}
+
+{demo} {add mySequence, 3, even                  } {$sequence} {/add}{/demo}
+{demo} {add 3, mySequence, even                  } {$sequence} {/add}{/demo}
+
+{demo} {sequence:add mySequence, 3, even         } {$sequence} {/sequence:add}{/demo}
+{demo} {sequence:add 3, mySequence, even         } {$sequence} {/sequence:add}{/demo}
+
+{demo} {add:mySequence 3, even                     } {$sequence} {/add:mySequence}{/demo}
+{demo} {mySequence:add 3, even                     } {$sequence} {/mySequence:add}{/demo}
+
+{demo} {make mySequence, add, 3, even          } {$sequence} {/make}{/demo}
+{demo} {make add, mySequence, 3, even          } {$sequence} {/make}{/demo}
+
+{demo} {pad:make mySequence, add, 3, even      } {$sequence} {/pad:make}{/demo}
+{demo} {pad:make add, mySequence, 3, even      } {$sequence} {/pad:make}{/demo}
+
+{demo} {make:mySequence add, 3, even             } {$sequence} {/make:mySequence}{/demo}
+{demo} {mySequence:make add, 3, even             } {$sequence} {/mySequence:make}{/demo}
+
+{demo} {make:add mySequence, 3, even             } {$sequence} {/make:add}{/demo}
+{demo} {add:make mySequence, 3, even             } {$sequence} {/add:make}{/demo}
+
+{/table}
+
+{table}
+
+{demo} {add 3, from=31, to=40, even, sum                } {$sequence} {/add}{/demo}
+{demo} {sequence '31..40', add=3, even, sum             } {$sequence} {/sequence}{/demo}
+{demo} {sequence '31..40', make, add=3, even, sum       } {$sequence} {/sequence}{/demo}
+{demo} {sequence '31..40', make='add|3', even, sum      } {$sequence} {/sequence}{/demo}
+
+{demo} {sequence '31..40', store='mySequence'           } {/demo}
+
+{demo} {add mySequence, 3, even, sum                  } {$sequence} {/add}{/demo}
+{demo} {add 3, mySequence, even, sum                  } {$sequence} {/add}{/demo}
+
+{demo} {sequence:add mySequence, 3, even, sum         } {$sequence} {/sequence:add}{/demo}
+{demo} {sequence:add 3, mySequence, even, sum         } {$sequence} {/sequence:add}{/demo}
+
+{demo} {add:mySequence 3, even, sum                     } {$sequence} {/add:mySequence}{/demo}
+{demo} {mySequence:add 3, even, sum                     } {$sequence} {/mySequence:add}{/demo}
+
+{demo} {make mySequence, add, 3, even, sum          } {$sequence} {/make}{/demo}
+{demo} {make add, mySequence, 3, even, sum          } {$sequence} {/make}{/demo}
+
+{demo} {pad:make mySequence, add, 3, even, sum      } {$sequence} {/pad:make}{/demo}
+{demo} {pad:make add, mySequence, 3, even, sum      } {$sequence} {/pad:make}{/demo}
+
+{demo} {make:mySequence add, 3, even, sum             } {$sequence} {/make:mySequence}{/demo}
+{demo} {mySequence:make add, 3, even, sum             } {$sequence} {/mySequence:make}{/demo}
+
+{demo} {make:add mySequence, 3, even, sum             } {$sequence} {/make:add}{/demo}
+{demo} {add:make mySequence, 3, even, sum             } {$sequence} {/add:make}{/demo}
+
+{/table}
+
+
+{table}
+
+{demo}{sequence '31..40'}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence '31..40'}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence '31..40'}
+  {$sequence}
+{/sequence}{/demo}
+
+{/table}
+
+{table}
+
+{demo}{sequence '31..40', make, even}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence '31..40', keep, even}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence '31..40', remove, even}
+  {$sequence}
+{/sequence}{/demo}
+
+{/table}
+
+{table}
+
+{demo}{sequence '31..40', make, even, make, add=3}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence '31..40', keep, even, make, add=3}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence '31..40', remove, even, make, add=3}
+  {$sequence}
+{/sequence}{/demo}
+
+{/table}
+
+{table}
+
+{demo}{sequence '31..40', make, even, make='add|3'}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence '31..40', keep, even, make='add|3'}
+  {$sequence}
+{/sequence}{/demo}
+
+{demo}{sequence '31..40', remove, even, make='add|3'}
+  {$sequence}
+{/sequence}{/demo}
+
+{/table}
