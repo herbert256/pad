@@ -16,7 +16,7 @@
         
   function padAtValue ( $field, $cor=0 ) {
 
-    list ( $before, $after ) = padSplit ( '@', $field );
+    padSplit ( '@', $field, $before, $after );
   
     $names = padExplode ( $before, '.' ); 
     $name  = reset ($names);

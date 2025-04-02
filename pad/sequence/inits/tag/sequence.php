@@ -6,7 +6,7 @@
     if     ( is_numeric ( $padSeqParm       ) ) return include 'sequence/inits/sequence/integer.php';
     elseif ( strpos     ( $padSeqParm, '..' ) ) return include 'sequence/inits/sequence/range.php';
     elseif ( strpos     ( $padSeqParm, ';'  ) ) return include 'sequence/inits/sequence/list.php';
- 
+
   foreach ( $padParms [$pad] as $padParmsOne )  {
 
     if ( $padParmsOne ['padPrmKind'] == 'option' ) {

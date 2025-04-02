@@ -13,7 +13,7 @@
     if ( preg_match ( '/\s/', $field  ) ) return FALSE; 
     if ( substr_count($field, '@') <> 1 ) return FALSE;
 
-    list ( $before, $after ) = padSplit ( '@', $field );
+    padSplit ( '@', $field, $before, $after );
     
     if ( ! strlen ( $before )            ) return FALSE;
     if ( ! strlen ( $after  )            ) return FALSE;

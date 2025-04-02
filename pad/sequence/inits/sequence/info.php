@@ -9,11 +9,10 @@
 
     if ( $padParmsOne ['padPrmKind'] == 'option' ) {
 
-      $padSeqSeq   = $padParmsOne ['padPrmName']; 
-      $padSeqParm  = $padParmsOne ['padPrmValue'];
+      $padSeqTmp = $padParmsOne ['padPrmName']; 
 
-      if     ( file_exists ( "sequence/types/$padSeqSeq" ) ) return 'type';
-      elseif ( isset ( $padSeqStore [$padSeqSeq] )         ) return 'store';
+      if     ( file_exists ( "sequence/types/$padSeqTmp" ) ) return 'type';
+      elseif ( isset ( $padSeqStore [$padSeqTmp] )         ) return 'store';
 
     }
 

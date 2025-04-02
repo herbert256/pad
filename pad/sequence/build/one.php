@@ -11,10 +11,13 @@
   if ( $padSeqRandom )
     $padSeqLoop = padSeqRandom ( $padSeqFixed, $padSeqStart, $padSeqEnd, $padSeqInc );
 
-  if     ( $padSeqBuild == 'fixed' ) $padSeq = $padSeqLoop;
-  elseif ( $padSeqBuild == 'store' ) $padSeq = $padSeqLoop;
-  elseif ( $padSeqBuild == 'start' ) $padSeq = $padSeqLoop;
-  else                               $padSeq = include 'sequence/build/call.php';
+  if ( $padSeqFlag and ! $padSeqFlagSeq )
+    include 'sequence/build/flag/check.php';
+  else
+    if     ( $padSeqBuild == 'fixed' ) $padSeq = $padSeqLoop;
+    elseif ( $padSeqBuild == 'store' ) $padSeq = $padSeqLoop;
+    elseif ( $padSeqBuild == 'start' ) $padSeq = $padSeqLoop;
+    else                               $padSeq = include 'sequence/build/call.php';
 
   if     ( $padSeq === FALSE ) return TRUE;
   elseif ( $padSeq === TRUE  ) $padSeq = $padSeqLoop;
@@ -24,6 +27,9 @@
     if ( $padSeq === FALSE ) 
       return TRUE;
   }
+
+  if ( $padSeqFlag and $padSeqFlagSeq )
+    include 'sequence/build/flag/sequence.php';
 
   $padSeqBase++;
 

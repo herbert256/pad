@@ -2,24 +2,28 @@
 
 {demo}
 
-{show}
+{set $loop = 1}
 
-  {set $loop = 1}
+{while $loop LE 5, toData='abc'}
+  {increment $loop}
+{/while}
 
-  {while $loop LE 5}
+{/demo}
 
+{demo}
+
+{myTable}
+
+  {abc}
     <tr>
       <td> {first}  X {/first}  </td>
       <td> {middle} X {/middle} </td>
       <td> {last}   X {/last}   </td>
       <td> {border} X {/border} </td>
     </tr>
+  {/abc}
 
-    {set $loop = $loop + 1}
-
-  {/while}
-
-{/show}
+{/myTable}
 
 {/demo}
 

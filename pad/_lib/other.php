@@ -489,14 +489,12 @@
   }
 
 
-  function padSplit ( $needle, $haystack ) {
+  function padSplit ( $needle, $haystack, &$before, &$after ) {
 
     $array = explode ( $needle, $haystack, 2 );
 
-    $array [0] = trim ( $array [0] ?? '' );
-    $array [1] = trim ( $array [1] ?? '' );
-
-    return $array;
+    $before = trim ( $array [0] ?? '' );
+    $after  = trim ( $array [1] ?? '' );
 
   }
 

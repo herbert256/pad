@@ -46,8 +46,7 @@
       elseif ( in_array ( $type, [7,8] ) ) $idx = padFieldFirstNonTag ($lvl);
       else                                 $idx = $GLOBALS ['pad'];
     
-      list ( $field, $parm ) = padSplit ( ':', $field );
-
+      padSplit ( ':', $field, $field, $parm  );
 
       if     ( $type ==  5 ) $value = padParm        ( $field, $idx, $type );
       elseif ( $type ==  6 ) $value = padParm        ( $field, $idx, $type );

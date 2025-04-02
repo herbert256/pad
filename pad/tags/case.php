@@ -1,11 +1,11 @@
 <?php
 
-  $padBasis   = padEval  ($padOpt [$pad] [0]);        
-  $padChk     = strpos   ($padContent , '{when');
-  $padPos     = strpos   ($padContent, '}', $padChk);
-  $padCase    = substr   ($padContent, $padChk+6, $padPos-($padChk+6));
-  $padContent = substr   ($padContent, $padPos+1);
-  $padChk     = strpos   ($padContent, '{when');
+  $padBasis   = padEval  ( $padParms [$pad] [0] ['padPrmOrg'] );        
+  $padChk     = strpos   ( $padContent , '{when' );
+  $padPos     = strpos   ( $padContent, '}', $padChk );
+  $padCase    = substr   ( $padContent, $padChk+6, $padPos-($padChk+6) );
+  $padContent = substr   ( $padContent, $padPos+1 );
+  $padChk     = strpos   ( $padContent, '{when' );
   
   while ($padChk !== FALSE) {
 

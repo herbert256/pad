@@ -68,6 +68,7 @@
     elseif ( file_exists ( "sequence/types/$check/jump.php")     ) return 'jump';
     elseif ( file_exists ( "sequence/types/$check/order.php")    ) return 'order';
     elseif ( file_exists ( "sequence/types/$check/fixed.php")    ) return 'fixed';
+    elseif ( file_exists ( "sequence/types/$check/check.php")    ) return 'check';
     else                                                           return '';
 
   }

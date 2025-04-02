@@ -7,7 +7,7 @@
   
   foreach ( $padPrmParse as $padPrmOne ) {
 
-    list ( $padPrmName, $padPrmValue ) = padSplit ( '=', trim ( $padPrmOne ) );
+    padSplit ( '=', $padPrmOne, $padPrmName, $padPrmValue );
 
     $padParmsSet = '';
 
@@ -28,7 +28,8 @@
     $padParms [$pad] [] = [
       'padPrmKind'  => $padParmsSetType,
       'padPrmName'  => $padParmsSetName,
-      'padPrmValue' => $padParmsSetValue
+      'padPrmValue' => $padParmsSetValue,
+      'padPrmOrg'   => $padPrmOne
     ];
 
   }

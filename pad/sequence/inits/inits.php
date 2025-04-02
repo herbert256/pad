@@ -9,8 +9,7 @@
   include 'sequence/inits/name.php';
   include 'sequence/inits/build.php';
   include 'sequence/inits/rows.php';
-
-  if ( file_exists ( "sequence/types/$padSeqSeq/init.php" ) ) 
-    include "sequence/types/$padSeqSeq/init.php";
+  include 'sequence/inits/flag.php';
+  include 'sequence/inits/init.php';
 
 ?>
