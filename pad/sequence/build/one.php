@@ -10,6 +10,9 @@
  
   if ( $padSeqRandom )
     $padSeqLoop = padSeqRandom ( $padSeqFixed, $padSeqStart, $padSeqEnd, $padSeqInc );
+  
+  if ( $padSeqParmStore )
+    $padSeqParm = $padSeqStore [$padSeqParmStore] [$padSeqTries-1];
 
   if ( $padSeqFlag and ! $padSeqFlagSeq )
     include 'sequence/build/flag/check.php';

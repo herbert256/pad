@@ -1,2 +1,15 @@
-{sequence store='xxx' }
-{action:trim xxx, both=3, negative } {$trim} {/action:trim}
+{table}
+
+{demo} {sequence from=100, to=120, store='mySeq'} {/demo}
+{demo} {sequence from=10, to=20, add='mySeq'} {$sequence} {/sequence} {/demo}
+{/table}
+
+{table}
+
+{demo} {sequence rows=25                 } {$sequence} {/sequence} {/demo}
+{demo} {sequence rows=25, make   = 'even'} {$sequence} {/sequence} {/demo}
+{demo} {sequence rows=25, keep   = 'even'} {$sequence} {/sequence} {/demo}
+{demo} {sequence rows=25, remove = 'even'} {$sequence} {/sequence} {/demo}
+{demo} {sequence rows=25, flag   = 'even'} {$sequence} {/sequence} {/demo}
+
+{/table}
