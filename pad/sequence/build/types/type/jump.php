@@ -1,5 +1,7 @@
 <?php
 
+  $padSeqBuildType = 'jump';
+  
   $padSeqLoop = $padSeqStart;
 
   while ( $padSeqLoop <= $padSeqEnd )

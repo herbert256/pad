@@ -1,15 +1,33 @@
 {table}
 
-{demo} {sequence from=100, to=120, store='mySeq'} {/demo}
-{demo} {sequence from=10, to=20, add='mySeq'} {$sequence} {/sequence} {/demo}
+{demo} {sequence from=10, to=20, store='mySeq'}{/demo} 
+{demo} {mySeq                                      } {$sequence} {/mySeq} {/demo}
+{demo} {action:mySeq shuffle                       } {$sequence} {/action:mySeq} {/demo}
+{demo} {action:mySeq random=5                      } {$sequence} {/action:mySeq} {/demo}
+{demo} {action:mySeq random=5, duplicates          } {$sequence} {/action:mySeq} {/demo}
+{demo} {action:mySeq random=5, orderly             } {$sequence} {/action:mySeq} {/demo}
+{demo} {action:mySeq random=5, orderly, duplicates } {$sequence} {/action:mySeq} {/demo}
+{demo} {action:mySeq random=25                     } {$sequence} {/action:mySeq} {/demo}
+{demo} {action:mySeq random=25, orderly            } {$sequence} {/action:mySeq} {/demo}
+
+{/table}{table}
+
+{demo} {sequence rand, from=10, to=20                                 } {$sequence} {/sequence} {/demo}
+{demo} {sequence rand, from=10, to=20, increment=2                    } {$sequence} {/sequence} {/demo}
+{demo} {sequence loop, from=10, to=20, randomly                       } {$sequence} {/sequence} {/demo}
+{demo} {sequence loop, from=10, to=20, randomly, increment=2          } {$sequence} {/sequence} {/demo}
+
+{/table}{table}
+
+{demo} {sequence rand, rows=15, min=10, max=20                        } {$sequence} {/sequence} {/demo}
+{demo} {sequence rand, rows=15, min=10, max=20, increment=2           } {$sequence} {/sequence} {/demo}
+{demo} {sequence loop, rows=15, randomly              } {$sequence} {/sequence} {/demo}
+{demo} {sequence loop, rows=15, randomly, increment=2 } {$sequence} {/sequence} {/demo}
+
+{/table}{table}
+
+{demo} {sequence from=11, to=13, store='mySeq1'} {/demo}
+{demo} {sequence mySeq1, randomly} {$sequence} {/sequence} {/demo}
+
 {/table}
 
-{table}
-
-{demo} {sequence rows=25                 } {$sequence} {/sequence} {/demo}
-{demo} {sequence rows=25, make   = 'even'} {$sequence} {/sequence} {/demo}
-{demo} {sequence rows=25, keep   = 'even'} {$sequence} {/sequence} {/demo}
-{demo} {sequence rows=25, remove = 'even'} {$sequence} {/sequence} {/demo}
-{demo} {sequence rows=25, flag   = 'even'} {$sequence} {/sequence} {/demo}
-
-{/table}

@@ -8,19 +8,10 @@
   if ( $padSeqTries > $padSeqTry                              ) return FALSE;
   if ( $padSeqBuild == 'order' and $padSeqTries < $padSeqFrom ) return TRUE;
  
-  if ( $padSeqRandom )
-    $padSeqLoop = padSeqRandom ( $padSeqFixed, $padSeqStart, $padSeqEnd, $padSeqInc );
-  
-  if ( $padSeqParmStore )
-    $padSeqParm = $padSeqStore [$padSeqParmStore] [$padSeqTries-1];
+  if ( $padSeqParmStore ) $padSeqParm = include 'sequence/build/store.php';
+  if ( $padSeqRandomly  ) $padSeqLoop = include 'sequence/build/randomly.php';
 
-  if ( $padSeqFlag and ! $padSeqFlagSeq )
-    include 'sequence/build/flag/check.php';
-  else
-    if     ( $padSeqBuild == 'fixed' ) $padSeq = $padSeqLoop;
-    elseif ( $padSeqBuild == 'store' ) $padSeq = $padSeqLoop;
-    elseif ( $padSeqBuild == 'start' ) $padSeq = $padSeqLoop;
-    else                               $padSeq = include 'sequence/build/call.php';
+  include 'sequence/build/sequence.php';
 
   if     ( $padSeq === FALSE ) return TRUE;
   elseif ( $padSeq === TRUE  ) $padSeq = $padSeqLoop;

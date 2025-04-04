@@ -1,5 +1,45 @@
 <?php
 
+  function padSeqRandom ( $array, $count, $order, $dups ) {
+  
+    $out  = [];
+    $keys = [];
+
+    if ( $dups or $count > count ( $array ) ) {
+      
+      for ($i=1; $i <= $count; $i++)
+        $keys [] = array_rand ($array) ;
+
+      if ( $order ) {
+
+        $dups = array_count_values ($keys); 
+        $keys = []; 
+
+        foreach ( $array as $k => $v )
+          if ( isset ( $dups [$k] ) )
+            $keys = array_merge ( $keys , array_fill ( 0, $dups [$k], $k ) );
+
+      }
+
+    } else {
+
+      if ( $count == 1 )
+        $keys = [ 0 => array_rand ( $array ) ];
+      else 
+        $keys = array_rand ( $array, $count );
+
+      if ( ! $order  )
+        shuffle ( $keys );
+
+    }
+
+    foreach ( $keys as $k )
+      $out [] = $array [ $k ];
+    
+    return $out;
+
+  }
+
 
   function padSeqCorrectParms (&$padSeqPrm1, &$padSeqPrm2, &$padSeqPrm3) {
 
@@ -31,7 +71,7 @@
   }
 
 
-  function padSeqRandom ( $for, $start, $end, $inc ) {
+  function padSeqRandomLy ( $for, $start, $end, $inc ) {
 
     if ( is_array ( $for ) and count ( $for ) )
       return $for [array_rand($for)];
