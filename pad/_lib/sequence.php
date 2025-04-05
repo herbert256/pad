@@ -1,23 +1,23 @@
 <?php
 
-  function padSeqRandom ( $array, $count, $order, $dups ) {
+  function padSeqRandom ( $array, $count=1, $order=0, $dups=0 ) {
   
     $out  = [];
     $keys = [];
 
     if ( $dups or $count > count ( $array ) ) {
       
-      for ($i=1; $i <= $count; $i++)
-        $keys [] = array_rand ($array) ;
+      for ( $i=1; $i <= $count; $i++ )
+        $keys [] = array_rand ( $array ) ;
 
       if ( $order ) {
 
-        $dups = array_count_values ($keys); 
+        $dups = array_count_values ( $keys ); 
         $keys = []; 
 
         foreach ( $array as $k => $v )
           if ( isset ( $dups [$k] ) )
-            $keys = array_merge ( $keys , array_fill ( 0, $dups [$k], $k ) );
+            $keys = array_merge ( $keys, array_fill ( 0, $dups [$k], $k ) );
 
       }
 

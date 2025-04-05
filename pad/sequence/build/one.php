@@ -9,7 +9,7 @@
   if ( $padSeqBuild == 'order' and $padSeqTries < $padSeqFrom ) return TRUE;
  
   if ( $padSeqParmStore ) $padSeqParm = include 'sequence/build/store.php';
-  if ( $padSeqRandomly  ) $padSeqLoop = include 'sequence/build/randomly.php';
+  if ( $padSeqRandomly  ) $padSeqLoop = include 'sequence/build/randomly/randomly.php';
 
   include 'sequence/build/sequence.php';
 

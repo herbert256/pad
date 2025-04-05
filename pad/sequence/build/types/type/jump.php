@@ -2,6 +2,8 @@
 
   $padSeqBuildType = 'jump';
   
+  include 'sequence/build/randomly/init.php';
+
   $padSeqLoop = $padSeqStart;
 
   while ( $padSeqLoop <= $padSeqEnd )
