@@ -1,7 +1,7 @@
 <?php
 
   if ( $padSeqInc <> 1 )
-    $padSeqRandomlyRand = rand ( 0, $padSeqRandomlySteps ) * $padSeqInc;
+    $padSeqRandomlyRand = $padSeqRandomlyStart + rand ( 0, $padSeqRandomlySteps ) * $padSeqInc;
   else
     $padSeqRandomlyRand = rand ( $padSeqRandomlyStart, $padSeqRandomlyEnd ) ;
 

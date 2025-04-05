@@ -1,7 +1,7 @@
 <?php
 
   function padSeqRandom ( $array, $count=1, $order=0, $dups=0 ) {
-  
+
     $out  = [];
     $keys = [];
 
