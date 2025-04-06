@@ -9,7 +9,10 @@
   include 'sequence/exits/return.php';
   include 'sequence/exits/done.php';
    
-  if ( $padInfo ) 
+
+  if ( $padInfo ) {
+    include 'sequence/exits/options.php';
     include 'events/sequence.php';
+  }
 
 ?>

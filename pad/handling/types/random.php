@@ -1,5 +1,7 @@
 <?php
   
+  return;
+
   $padHandStart = $padPrm [$pad] ['start'] ?? 1;
 
   if ( $padHandCnt >= count ( $padData [$pad] ) )

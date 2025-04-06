@@ -20,8 +20,6 @@
   $concepts ['actions']          = 'An operation executed on a sequence list';
   $concepts ['plays']            = '';
   $concepts ['options']          = '';
-  $concepts ['option_parameter'] = '';
-  $concepts ['parameters']       = '';
   $concepts ['chain']            = '';
   $concepts ['names']            = '';
 

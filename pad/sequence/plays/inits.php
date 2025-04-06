@@ -1,8 +1,7 @@
 <?php
 
-  $padSeqPlay     = 'make';
-  $padSeqLast     = FALSE;
-  $padSeqPlaySave = '';
+  $padSeqPlay = 'make';
+  $padSeqLast = FALSE;
 
   foreach ( $padParms [$pad] as $padStartOption ) {
 
@@ -16,10 +15,8 @@
     elseif ( $padPrmKind <> 'option'               ) continue;
 
     if ( in_array ( $padPrmName, ['make','keep','remove'] ) and $padPrmValue and $padPrmValue !== TRUE ) {
-      $padSeqPlay  = $padPrmName;
-      $padExplode  = explode ('|', $padPrmValue, 2); 
-      $padSeqSeq   = $padExplode [0] ?? '';
-      $padPrmValue = $padExplode [1] ?? '';   
+      $padSeqPlay = $padPrmName;
+      padSplit ( '|', $padPrmValue, $padSeqSeq, $padPrmValue );
       include 'sequence/plays/add.php';     
       continue;
     }

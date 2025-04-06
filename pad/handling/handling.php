@@ -6,11 +6,10 @@
 
     extract ( $padHand );
 
-        if ( ! count ( $padData [$pad] )                                                    ) continue;
-    elseif ( $padPrmKind <> 'option'                                                        ) continue;
-    elseif ( ! file_exists ( "handling/types/$padPrmName.php" )                             ) continue; 
-    elseif ( $padTagSeq [$pad] and file_exists ( "sequence/actions/types/$padPrmName.php" ) ) continue; 
-    elseif ( $padTagSeq [$pad] and file_exists ( "sequence/options/types/$padPrmName.php" ) ) continue; 
+        if ( ! count ( $padData [$pad] )                        ) continue;
+    elseif ( $padTagSeq [$pad]                                  ) continue; 
+    elseif ( $padPrmKind <> 'option'                            ) continue;
+    elseif ( ! file_exists ( "handling/types/$padPrmName.php" ) ) continue; 
 
     $padHandName = $padPrmName;
     $padHandParm = $padPrmValue;

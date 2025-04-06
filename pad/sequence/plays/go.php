@@ -4,15 +4,16 @@
 
     extract ( $padSeqPlay );
 
+    if ( isset ( $padSeqStore [$padSeqParm] ) ) {
+      include 'sequence/plays/store.php';
+    }
+
     if ( is_numeric ($padSeqParm) )
       if ( str_contains ( $padSeqParm, '.' ) )  $padSeqParm = doubleval ( $padSeqParm );
       else                                      $padSeqParm = intval ( $padSeqParm );
 
     $padSeqSave = $padSeq;
     $padSeqLoop = $padSeq;
-
-    if ( $padSeqPlay == 'store' )
-      include 'sequence/plays/store.php';
 
     $padSeq = include 'sequence/build/call.php';
 
@@ -26,8 +27,6 @@
     elseif ( $padSeqPlay == 'remove'                            ) $padSeq = $padSeqSave;
     elseif ( $padSeqPlay == 'make'   and $padSeq === FALSE      ) return FALSE;
     elseif ( $padSeqPlay == 'make'   and $padSeq === TRUE       ) $padSeq = $padSeqSave;
-    elseif ( $padSeqPlay == 'store'  and $padSeq === FALSE      ) return FALSE;
-    elseif ( $padSeqPlay == 'store'  and $padSeq === TRUE       ) $padSeq = $padSeqSave;
 
   }
 
