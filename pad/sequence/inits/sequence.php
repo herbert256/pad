@@ -4,6 +4,7 @@
   elseif ( $padSeqType == 'keep'     ) include "sequence/inits/type/go.php";
   elseif ( $padSeqType == 'make'     ) include "sequence/inits/type/go.php";
   elseif ( $padSeqType == 'remove'   ) include "sequence/inits/type/go.php";
+  elseif ( $padSeqType == 'flag'     ) include "sequence/inits/type/go.php";
   elseif ( $padSeqType == 'sequence' ) include "sequence/inits/type/go.php";
   elseif ( $padSeqType == 'store'    ) include "sequence/inits/type/go.php";
     
@@ -11,6 +12,7 @@
   elseif ( $padSeqTag  == 'keep'     ) include "sequence/inits/tag/go.php";
   elseif ( $padSeqTag  == 'make'     ) include "sequence/inits/tag/go.php";
   elseif ( $padSeqTag  == 'remove'   ) include "sequence/inits/tag/go.php";
+  elseif ( $padSeqTag  == 'flag'     ) include "sequence/inits/tag/go.php";
   elseif ( $padSeqTag  == 'sequence' ) include "sequence/inits/tag/go.php";
   elseif ( $padSeqTag  == 'store'    ) include "sequence/inits/tag/go.php";
 

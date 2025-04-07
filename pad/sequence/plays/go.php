@@ -25,6 +25,10 @@
     elseif ( $padSeqPlay == 'remove' and $padSeq === FALSE      ) $padSeq = $padSeqSave;
     elseif ( $padSeqPlay == 'remove' and $padSeq == $padSeqLoop ) return FALSE;
     elseif ( $padSeqPlay == 'remove'                            ) $padSeq = $padSeqSave;
+    elseif ( $padSeqPlay == 'flag'   and $padSeq === TRUE       ) $padSeq = 1;
+    elseif ( $padSeqPlay == 'flag'   and $padSeq === FALSE      ) $padSeq = 0;
+    elseif ( $padSeqPlay == 'flag'   and $padSeq == $padSeqLoop ) $padSeq = 1;
+    elseif ( $padSeqPlay == 'flag'                              ) $padSeq = 0;
     elseif ( $padSeqPlay == 'make'   and $padSeq === FALSE      ) return FALSE;
     elseif ( $padSeqPlay == 'make'   and $padSeq === TRUE       ) $padSeq = $padSeqSave;
 

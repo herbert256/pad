@@ -1,5 +1,5 @@
 <?php
 
-  return include 'tags/go/store.php';
+  return include 'sequence/start/tags/flag.php';
 
 ?>

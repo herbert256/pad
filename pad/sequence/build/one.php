@@ -22,9 +22,6 @@
       return TRUE;
   }
 
-  if ( $padSeqFlag and $padSeqFlagSeq )
-    include 'sequence/build/flag/sequence.php';
-
   $padSeqBase++;
 
   if ( is_float ($padSeq)   and $padSeq < PHP_INT_MIN      ) return FALSE;

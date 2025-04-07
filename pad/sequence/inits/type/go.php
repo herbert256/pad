@@ -10,5 +10,6 @@
   elseif ( $padSeqType == 'keep'     ) return include "sequence/inits/play.php";
   elseif ( $padSeqType == 'make'     ) return include "sequence/inits/play.php";
   elseif ( $padSeqType == 'remove'   ) return include "sequence/inits/play.php";
+  elseif ( $padSeqType == 'flag'     ) return include "sequence/inits/play.php";
     
 ?>

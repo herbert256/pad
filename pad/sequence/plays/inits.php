@@ -14,14 +14,14 @@
     elseif ( $padPrmName == $padSeqSeqSave         ) continue;
     elseif ( $padPrmKind <> 'option'               ) continue;
 
-    if ( in_array ( $padPrmName, ['make','keep','remove'] ) and $padPrmValue and $padPrmValue !== TRUE ) {
+    if ( in_array ( $padPrmName, ['make','keep','remove','flag'] ) and $padPrmValue and $padPrmValue !== TRUE ) {
       $padSeqPlay = $padPrmName;
       padSplit ( '|', $padPrmValue, $padSeqSeq, $padPrmValue );
       include 'sequence/plays/add.php';     
       continue;
     }
 
-    if ( in_array ( $padPrmName, ['make','keep','remove'] ) ) {
+    if ( in_array ( $padPrmName, ['make','keep','remove','flag'] ) ) {
       $padSeqPlay = $padPrmName;
       continue;
     }

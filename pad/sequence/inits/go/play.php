@@ -31,6 +31,11 @@
     elseif ( $padSeqPlay == 'remove' and $padSeq == $padSeqLoop ) continue;
     elseif ( $padSeqPlay == 'remove' and $padSeq <> $padSeqLoop ) $padSeqFixed [] = $padSeq;
 
+    elseif ( $padSeqPlay == 'remove' and $padSeq === TRUE       ) $padSeqFixed [] = 1;
+    elseif ( $padSeqPlay == 'remove' and $padSeq === FALSE      ) $padSeqFixed [] = 0;
+    elseif ( $padSeqPlay == 'remove' and $padSeq == $padSeqLoop ) $padSeqFixed [] = 1;
+    elseif ( $padSeqPlay == 'remove' and $padSeq <> $padSeqLoop ) $padSeqFixed [] = 0;
+
   }
 
   include "sequence/inits/go/start.php";

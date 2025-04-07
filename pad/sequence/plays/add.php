@@ -17,7 +17,7 @@
     'padSeqPlay'  => $padSeqPlay
   ];
 
-  if ( in_array ( $padSeqPlay, ['make','keep','remove'] ) ) 
+  if ( in_array ( $padSeqPlay, ['make','keep','remove','flag'] ) ) 
     $padSeqLast = array_key_last ( $padSeqPlays);
   else
     $padSeqLast = FALSE;

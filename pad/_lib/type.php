@@ -8,10 +8,10 @@
     elseif ( file_exists      ( APP . "_tags/$item.pad"              ) ) return 'app';
     elseif ( file_exists      ( "tags/$item.php"                     ) ) return 'pad';
     elseif ( file_exists      ( "tags/$item.pad"                     ) ) return 'pad';
-    elseif ( isset            ( $GLOBALS ['padFlagStore']    [$item] ) ) return 'flag';
     elseif ( isset            ( $GLOBALS ['padContentStore'] [$item] ) ) return 'content';
     elseif ( padContentCheck  ( $item                                ) ) return 'defined';
     elseif ( isset            ( $GLOBALS ['padDataStore']    [$item] ) ) return 'data';
+    elseif ( isset            ( $GLOBALS ['padBoolStore']    [$item] ) ) return 'bool';
     elseif ( isset            ( $GLOBALS ['padTables']       [$item] ) ) return 'table';
     elseif ( file_exists      ( "tag/$item.php"                      ) ) return 'tag';
     elseif ( padDataFileName  ( $item                                ) ) return 'local';    
@@ -45,7 +45,7 @@
       return 'store';
     } 
 
-    if ( in_array ( $type, ['make','keep','remove','action'] )
+    if ( in_array ( $type, ['make','keep','remove','flag','action'] )
          and isset ( $GLOBALS ['padSeqStore'] [$item] ) )
       return $type;
 
@@ -53,6 +53,7 @@
     elseif ( $type == 'make'     and file_exists ( "sequence/types/$item"             ) ) return $type;
     elseif ( $type == 'keep'     and file_exists ( "sequence/types/$item"             ) ) return $type;
     elseif ( $type == 'remove'   and file_exists ( "sequence/types/$item"             ) ) return $type;
+    elseif ( $type == 'flag'     and file_exists ( "sequence/types/$item"             ) ) return $type;
     elseif ( $type == 'action'   and file_exists ( "sequence/actions/types/$item.php" ) ) return $type;
 
     if ( $item == 'action' and isset ( $GLOBALS ['padSeqStore'] [$type] ) ) {
@@ -90,7 +91,7 @@
         return 'make';
       }
   
-    if ( in_array ( $item, ['make','keep','remove'] ) ) 
+    if ( in_array ( $item, ['make','keep','remove','flag'] ) ) 
       if ( file_exists ( "sequence/types/$type" ) or isset ( $GLOBALS ['padSeqStore'] [$type] ) ) {
         $padTypeSeq = $type; 
         return $item; 
@@ -112,7 +113,7 @@
     elseif ( $type == 'pad'      and file_exists     ( "tags/$item.pad"                     ) ) return $type;
     elseif ( $type == 'tag'      and file_exists     ( "tag/$type.php"                      ) ) return $type;
     elseif ( $type == 'level'    and padChkLevel     ( $item                                ) ) return $type;
-    elseif ( $type == 'flag'     and isset           ( $GLOBALS ['padFlagStore'] [$item]    ) ) return $type;
+    elseif ( $type == 'bool'     and isset           ( $GLOBALS ['padBoolStore'] [$item]    ) ) return $type;
     elseif ( $type == 'content'  and isset           ( $GLOBALS ['padContentStore'] [$item] ) ) return $type;
     elseif ( $type == 'defined'  and padContentCheck ( $item                                ) ) return $type;
     elseif ( $type == 'data'     and isset           ( $GLOBALS ['padDataStore'] [$item]    ) ) return $type;

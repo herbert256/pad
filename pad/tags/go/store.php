@@ -31,7 +31,7 @@
     else
       $padStoreData = padData ($padStoreSource, padTagParm('type'), $padName [$pad]);
 
-  } elseif ( $padTag [$pad] == 'flag' ) {
+  } elseif ( $padTag [$pad] == 'bool' ) {
 
     $padStoreData = padMakeFlag ($padStoreSource);
 

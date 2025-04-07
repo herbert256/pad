@@ -1,5 +1,5 @@
 <?php
 
-  return $padFlagStore [$padTag [$pad]];
- 
+  return include 'sequence/start/types/keep.php';
+
 ?>
