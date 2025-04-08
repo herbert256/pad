@@ -1,9 +1,5 @@
 <?php 
 
-  if ( is_numeric ($padSeqParm) )
-    if ( str_contains ( $padSeqParm, '.' ) )  $padSeqParm = doubleval ( $padSeqParm );
-    else                                      $padSeqParm = intval ( $padSeqParm );
-
   $padSeqBuild = padSeqBuild ( $padSeqSeq, $padSeqPlay );
 
   include 'sequence/build/include.php';
@@ -12,29 +8,14 @@
 
   $padSeqInfo ["start/$padSeqInit/play/$padSeqPlay"] [] = $padSeqSeq;
 
+  $padSeqPlayType = 'init';
+
   foreach ( $padSeqStore [$padSeqPull] as $padSeqLoop ) {
 
-    $padSeq = include 'sequence/build/call.php';
-  
-    if     ( $padSeqPlay == 'make'   and $padSeq === TRUE       ) continue;
-    elseif ( $padSeqPlay == 'make'   and $padSeq === FALSE      ) continue;
-    elseif ( $padSeqPlay == 'make'   and $padSeq == $padSeqLoop ) $padSeqFixed [] = $padSeq;
-    elseif ( $padSeqPlay == 'make'   and $padSeq <> $padSeqLoop ) $padSeqFixed [] = $padSeq;
+    include 'sequence/plays/one.php';
 
-    elseif ( $padSeqPlay == 'keep'   and $padSeq === TRUE       ) $padSeqFixed [] = $padSeqLoop;
-    elseif ( $padSeqPlay == 'keep'   and $padSeq === FALSE      ) continue;
-    elseif ( $padSeqPlay == 'keep'   and $padSeq == $padSeqLoop ) $padSeqFixed [] = $padSeq;
-    elseif ( $padSeqPlay == 'keep'   and $padSeq <> $padSeqLoop ) continue;
-
-    elseif ( $padSeqPlay == 'remove' and $padSeq === TRUE       ) continue;
-    elseif ( $padSeqPlay == 'remove' and $padSeq === FALSE      ) $padSeqFixed [] = $padSeqLoop;
-    elseif ( $padSeqPlay == 'remove' and $padSeq == $padSeqLoop ) continue;
-    elseif ( $padSeqPlay == 'remove' and $padSeq <> $padSeqLoop ) $padSeqFixed [] = $padSeq;
-
-    elseif ( $padSeqPlay == 'remove' and $padSeq === TRUE       ) $padSeqFixed [] = 1;
-    elseif ( $padSeqPlay == 'remove' and $padSeq === FALSE      ) $padSeqFixed [] = 0;
-    elseif ( $padSeqPlay == 'remove' and $padSeq == $padSeqLoop ) $padSeqFixed [] = 1;
-    elseif ( $padSeqPlay == 'remove' and $padSeq <> $padSeqLoop ) $padSeqFixed [] = 0;
+    if ( $padSeq !== FALSE )
+      $padSeqFixed [] = $padSeq;
 
   }
 

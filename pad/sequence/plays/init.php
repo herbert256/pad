@@ -6,7 +6,7 @@
 
   $padSeqParm = $padPrmValue;
 
-  if ( isset ( $padSeqStore [$padSeqParm] ) )
+  if ( $padSeqParm and isset ( $padSeqStore [$padSeqParm] ) )
     $padSeqParm = reset ( $padSeqStore [$padSeqParm] );
 
   include "sequence/types/$padSeqSeq/init.php";

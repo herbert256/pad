@@ -95,7 +95,7 @@
     if ( $check == 'pull' )
       return 'fixed';
 
-    if ( $for == 'keep' or $for == 'remove' )
+    if ( $for == 'keep' or $for == 'remove' or $for == 'flag' )
       return 'check';
 
     if ( file_exists ( "sequence/types/$check/$for.php" ) ) 

@@ -1,7 +1,6 @@
 <?php
 
-  $padStoreIndex = count ( $padSeqResult );
-
-  $padSeqParm = $padSeqStore [$padSeqParm] [$padStoreIndex];
-
+  $padStoreIndex = ( $padSeqPlayType == 'build' ) ? count ( $padSeqResult ) : count ( $padSeqResult );
+  $padSeqParm    = $padSeqStore [$padSeqParm] [$padStoreIndex];
+  
 ?>
