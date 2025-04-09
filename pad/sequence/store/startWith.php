@@ -5,8 +5,8 @@
   
   $padSeqResultSave  = $padSeqResult;
   $padSeqStoreAction = strtolower ( substr ( $padPrmName, 5, 1 ) ) . substr ( $padPrmName, 6 );
-  $padSeqStoreNames  = padExplode ( $padPrmValue, '|' );
-  $padSeqStoreName   = $padSeqStoreNames [0];
+  $padSeqPushNames  = padExplode ( $padPrmValue, '|' );
+  $padSeqPushName   = $padSeqPushNames [0];
 
   if ( file_exists ( "sequence/store/plays/$padSeqStoreAction" ) ) 
       include 'sequence/store/play.php';

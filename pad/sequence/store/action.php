@@ -1,7 +1,7 @@
 <?php
 
   $padSeqActionName = $padSeqStoreAction;
-  $padSeqActionList = $padSeqStoreNames;
+  $padSeqActionList = $padSeqPushNames;
 
   $padSeqActionParm = $padSeqActionList [0];
   $padSeqActionCnt  = ( ctype_digit ( $padSeqActionParm ) ) ? $padSeqActionParm : 1;
@@ -9,9 +9,9 @@
   if ( $padSeqActionName == 'splice' )
     include 'sequence/store/splice.php';
 
-  $padSeqStore [$padSeqStoreName] = include "sequence/actions/types/$padSeqActionName.php";
+  $padSeqStore [$padSeqPushName] = include "sequence/actions/types/$padSeqActionName.php";
 
-  $padSeqNames [] = $padSeqStoreName;
+  $padSeqNames [] = $padSeqPushName;
 
   $padSeqDone [] = 'store'. ucfirst ( $padSeqActionName );
 

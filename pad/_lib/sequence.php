@@ -1,5 +1,22 @@
 <?php
 
+  function padSeqStore ( $name ) {
+
+    if ( file_exists ( "sequence/types/$name") )
+      padError ( "Store name '$name' can not be equal to a Sequence name" );
+
+    if ( file_exists ( "sequence/options/types/$name.php") )
+      padError ( "Store name '$name' can not be equal to a Sequence option name" );
+
+    if ( file_exists ( "sequence/actions/types/$name.php") )
+      padError ( "Store name '$name' can not be equal to an Action name" );
+    
+    if ( file_exists ( "options/$name.php") )
+      padError ( "Store name '$name' can not be equal to a PAD option name" );
+
+  }
+
+
   function padSeqRandom ( $array, $count=1, $order=0, $dups=0 ) {
 
     $out  = [];

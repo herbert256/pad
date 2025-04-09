@@ -3,7 +3,10 @@
   $padSeqPull = '';
   
   include "sequence/inits/$padSeqInit/action.php";
-  
+
+  if ( ! $padSeqPull and $padSeqPullName )
+    include "sequence/inits/pull/action.php";
+
   if ( $padSeqPull )
     return include 'sequence/inits/go/action.php';
 

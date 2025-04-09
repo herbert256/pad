@@ -2,6 +2,9 @@
 
   $padSeqInfo ['kinds'] [] = include 'sequence/inits/sequence/info.php';
 
+  if ( $padSeqPullName and isset ( $padSeqStore [$padSeqPullName] ) )
+    return include 'sequence/inits/sequence/pull.php'
+
   foreach ( $padParms [$pad] as $padParmsOne )  {
 
     $padSeqSeq  = $padParmsOne ['padPrmName']; 
@@ -24,7 +27,7 @@
       elseif ( isset ( $padSeqStore [$padSeqSeq] )         ) return include 'sequence/inits/sequence/store.php';
 
       if ( file_exists ( "sequence/actions/types/$padSeqSeq.php" ) ) {
-        padSplit ( '|', $padPrmValue, $padSeqParm1, $padSeqParm2 );
+        padSplit ( '|', $padSeqParm, $padSeqParm1, $padSeqParm2 );
         if ( isset ( $padSeqStore [$padSeqParm1] ) )
           return include 'sequence/inits/sequence/action.php';
       }

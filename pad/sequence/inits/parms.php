@@ -13,19 +13,22 @@
   $padSeqRows = intval ( $padPrm [$pad] ['rows']      ?? 0           );
   $padSeqSkip = intval ( $padPrm [$pad] ['skip']      ?? 0           );
   
-  $padSeqRandomly  = $padPrm [$pad] ['randomly']   ?? ''; 
+  $padSeqRandomly  = $padPrm [$pad] ['randomly'] ?? ''; 
   $padSeqUnique    = $padPrm [$pad] ['unique']   ?? ''; 
   $padSeqName      = $padPrm [$pad] ['name']     ?? ''; 
   $padSeqStoreName = $padPrm [$pad] ['store']    ?? ''; 
   $padSeqBuildName = $padPrm [$pad] ['build']    ?? ''; 
   $padSeqToData    = $padPrm [$pad] ['toData']   ?? ''; 
   $padSeqNegative  = $padPrm [$pad] ['negative'] ?? 0 ;
+  $padSeqFlag      = $padPrm [$pad] ['flag']     ?? '';
+  $padSeqPullName  = $padPrm [$pad] ['pull']     ?? '';
+  $padSeqPush      = $padPrm [$pad] ['push']     ?? '';
 
   $padSeqTmp    = array_keys ( $padPrm [$pad] );
   $padSeqFirst  = $padSeqTmp [0] ?? '';
   $padSeqSecond = $padSeqTmp [1] ?? '';
 
-  $padSeqFirstParm  = ( $padSeqFirst  ) ? $padPrm [$pad] [$padSeqFirst] : '';
+  $padSeqFirstParm  = ( $padSeqFirst  ) ? $padPrm [$pad] [$padSeqFirst]  : '';
   $padSeqSecondParm = ( $padSeqSecond ) ? $padPrm [$pad] [$padSeqSecond] : '';
  
 ?>

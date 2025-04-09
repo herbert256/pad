@@ -9,6 +9,8 @@
   include 'sequence/inits/name.php';
   include 'sequence/inits/build.php';
   include 'sequence/inits/rows.php';
+  include 'sequence/inits/pull.php';
+  include 'sequence/inits/flag.php';
   include 'sequence/inits/init.php';
 
 ?>

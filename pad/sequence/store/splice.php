@@ -4,7 +4,7 @@
     $padSeqActionList [2] = NULL;
 
   $padSeqStoreTemp                = $padSeqResult;
-  $padSeqResult                   = $padSeqStore [$padSeqStoreName];
-  $padSeqStore [$padSeqStoreName] = $padSeqStoreTemp;
+  $padSeqResult                   = $padSeqStore [$padSeqPushName];
+  $padSeqStore [$padSeqPushName] = $padSeqStoreTemp;
 
 ?>

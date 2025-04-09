@@ -1,5 +1,7 @@
 <?php
 
+  include 'sequence/inits/go/pull.php';
+
   $padSeqActionList = padExplode ( $padSeqParm, '|' );
   $padSeqActionParm = $padSeqActionList [0] ?? '';
 

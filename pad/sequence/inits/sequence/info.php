@@ -1,24 +1,39 @@
 <?php
 
-  if ( $padSeqParm )
-    if     ( is_numeric ( $padSeqParm              )      ) return 'integer';
-    elseif ( strpos     ( $padSeqParm, '..'        )      ) return 'range';
-    elseif ( strpos     ( $padSeqParm, ';'         )      ) return 'list';
-   
+  if ( $padSeqPullName and isset ( $padSeqStore [$padSeqPullName] ) )
+    return 'pull'
+
   foreach ( $padParms [$pad] as $padParmsOne )  {
 
-    if ( $padParmsOne ['padPrmKind'] == 'option' ) {
+    $padSeqInfSeq  = $padParmsOne ['padPrmName']; 
+    $padSeqInfParm = $padParmsOne ['padPrmValue'];
 
-      $padSeqTmp = $padParmsOne ['padPrmName']; 
+    if ( $padParmsOne ['padPrmKind'] == 'parm' ) {
 
-      if     ( file_exists ( "sequence/types/$padSeqTmp" ) ) return 'type';
-      elseif ( isset ( $padSeqStore [$padSeqTmp] )         ) return 'store';
+      if     ( is_numeric ( $padSeqInfParm       ) ) return 'integer';
+      elseif ( strpos     ( $padSeqInfParm, '..' ) ) return 'range';
+      elseif ( strpos     ( $padSeqInfParm, ';'  ) ) return 'list';
+
+    } elseif ( $padParmsOne ['padPrmKind'] == 'option' ) {
+
+      if ( $padSeqInfSeq == 'from'      ) return 'basic';
+      if ( $padSeqInfSeq == 'to'        ) return 'basic';
+      if ( $padSeqInfSeq == 'rows'      ) return 'basic';
+      if ( $padSeqInfSeq == 'increment' ) return 'basic';
+
+      if     ( file_exists ( "sequence/types/$padSeqInfSeq" ) ) return 'type';
+      elseif ( isset ( $padSeqStore [$padSeqInfSeq] )         ) return 'store';
+
+      if ( file_exists ( "sequence/actions/types/$padSeqInfSeq.php" ) ) {
+        padSplit ( '|', $padSeqInfParm, $padSeqInfParm1, $padSeqInfParm2 );
+        if ( isset ( $padSeqStore [$padSeqInfParm1] ) )
+          return 'action';
+      }
 
     }
 
   }
 
- 
   return 'default';
     
 ?>

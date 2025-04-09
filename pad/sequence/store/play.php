@@ -7,10 +7,10 @@
 
   $padIdx = 0;
 
-  while ( isset ( $padSeqResult [$padIdx] ) and isset ( $padSeqStore [$padSeqStoreName] [$padIdx] ) ) {
+  while ( isset ( $padSeqResult [$padIdx] ) and isset ( $padSeqStore [$padSeqPushName] [$padIdx] ) ) {
 
     $padSeqParm = $padSeqResult [$padIdx];
-    $padSeqLoop = $padSeqStore [$padSeqStoreName] [$padIdx];
+    $padSeqLoop = $padSeqStore [$padSeqPushName] [$padIdx];
     $padSeqSave = $padSeqLoop;
 
     $padSeqResult [$padIdx] = include 'sequence/build/call.php';
@@ -22,9 +22,9 @@
 
   }
 
-  $padSeqStore [$padSeqStoreName] = array_values ( $padSeqResult );
+  $padSeqStore [$padSeqPushName] = array_values ( $padSeqResult );
 
-  $padSeqNames [] = $padSeqStoreName;
+  $padSeqNames [] = $padSeqPushName;
 
   $padSeqDone [] = 'store'. ucfirst ( $padSeqSeq );
   

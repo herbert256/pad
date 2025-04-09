@@ -18,7 +18,6 @@
   
   $padSeqPlay       = '';
   $padSeqSeq        = '';
-  $padSeqPull       = '';
   $padSeqBuild      = '';
 
   $padSeqActionAfterName = '';
