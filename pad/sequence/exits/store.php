@@ -3,17 +3,18 @@
   if ( $padPair [$pad] and ! $padSeqPush )
     return; 
 
-  if ( $padSeqNameGiven                         ) $padSeqStoreName = $padSeqNameGiven;
-  elseif ( $padSeqPush and $padSeqPush !== TRUE ) $padSeqStoreName = $padSeqPush; 
-  elseif ( $padSeqPull                          ) $padSeqStoreName = $padSeqPull;
-  else                                            $padSeqStoreName = $padSeqName;
+  if     ( ! $padSeqNameGiven and ! $padSeqPull and ! $padSeqPush ) $padSeqStoreName = 'sequence';
+  elseif ( $padSeqNameGiven                                       ) $padSeqStoreName = $padSeqNameGiven;
+  elseif ( $padSeqPush and $padSeqPush !== TRUE                   ) $padSeqStoreName = $padSeqPush; 
+  elseif ( $padSeqPull and $padSeqPull !== TRUE                   ) $padSeqStoreName = $padSeqPull;
+  else                                                              $padSeqStoreName = $padSeqName;
 
   if ( $padSeqPush )
     if ( $padSeqPush === TRUE )
       if ( $padSeqPull )        $padLastPush = $padSeqPull;
       else                      $padLastPush = $padSeqStoreName;
     else                        $padLastPush = $padSeqPush;
-  elseif ( $padSeqPull)         $padLastPush = $padSeqPull;
+  elseif ( $padSeqPull )        $padLastPush = $padSeqPull;
   else                          $padLastPush = $padSeqStoreName;
 
   if ( file_exists ( "sequence/types/$padLastPush") )
