@@ -13,7 +13,6 @@
     include APP . 'develop/sequence/keepRemove.php';
     include APP . 'develop/sequence/playSingle.php';
     include APP . 'develop/sequence/playDouble.php';
-    include APP . 'develop/sequence/store.php';
   }  
 
 ?>

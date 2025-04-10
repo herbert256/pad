@@ -11,7 +11,7 @@
   if ( $padSeqPull )
     padError ('Double store names found');
 
-  if ( $padSeqSeq and file_exists ( "sequence/types/$padSeqSeq" ) {
+  if ( $padSeqSeq and file_exists ( "sequence/types/$padSeqSeq" ) ) {
     $padPrmValue = $padSeqParm;
     $padSeqPlay  = 'make';
     include 'sequence/plays/add.php';

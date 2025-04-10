@@ -6,8 +6,12 @@
 
 {table}
 
-{demo}{sequence range='40..50', action='sum', name='abc', push='klm', toData='xyz'}
-  {$sequence} {$range} {$action} {$sum} {$abc} {$klm} {$xyz}
+{demo}{sequence range='40..50', action='sum', push='klm', toData='xyz'}
+  {$sequence} {$range} {$sum} {$klm} {$xyz}
+{/sequence}{/demo}
+
+{demo}{sequence range='40..50', action='sum', push='klm', toData='xyz', name='abc'}
+  {$abc}
 {/sequence}{/demo}
 
 {/table}

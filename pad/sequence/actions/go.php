@@ -13,6 +13,8 @@
   if ( $padSeqNegative )
     include "sequence/actions/negative/exits.php";
 
+  $padSeqResult = array_values ( $padSeqResult );
+  
   $padSeqDone  [] = $padSeqActionName;
   $padSeqNames [] = $padSeqActionName;
 

@@ -3,7 +3,7 @@
   $padSeqInfo ['kinds'] [] = include 'sequence/inits/sequence/info.php';
 
   if ( $padSeqPullName and isset ( $padSeqStore [$padSeqPullName] ) )
-    return include 'sequence/inits/sequence/pull.php'
+    return include 'sequence/inits/sequence/pull.php';
 
   foreach ( $padParms [$pad] as $padParmsOne )  {
 

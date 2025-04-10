@@ -16,7 +16,6 @@
   $padSeqRandomly  = $padPrm [$pad] ['randomly'] ?? ''; 
   $padSeqUnique    = $padPrm [$pad] ['unique']   ?? ''; 
   $padSeqName      = $padPrm [$pad] ['name']     ?? ''; 
-  $padSeqStoreName = $padPrm [$pad] ['store']    ?? ''; 
   $padSeqBuildName = $padPrm [$pad] ['build']    ?? ''; 
   $padSeqToData    = $padPrm [$pad] ['toData']   ?? ''; 
   $padSeqNegative  = $padPrm [$pad] ['negative'] ?? 0 ;
@@ -30,5 +29,9 @@
 
   $padSeqFirstParm  = ( $padSeqFirst  ) ? $padPrm [$pad] [$padSeqFirst]  : '';
   $padSeqSecondParm = ( $padSeqSecond ) ? $padPrm [$pad] [$padSeqSecond] : '';
- 
+
+  if ( $padSeqPullName === TRUE ) $padSeqPullName = $padLastPush;
+
+  $padSeqNameGiven = $padSeqName;
+
 ?>

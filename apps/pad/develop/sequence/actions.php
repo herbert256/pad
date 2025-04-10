@@ -17,7 +17,6 @@
     $action = str_replace ( '.pad',                          '', $action );
 
     file_put_contents ( "sequence/actions/double/$action", 1 );
-    file_put_contents ( "sequence/store/actions/$action" , 1 );
 
   }
 

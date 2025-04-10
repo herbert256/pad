@@ -1,10 +1,6 @@
 <?php
 
-  $padSeqParm  = '';
-
-  if ( ! $padSeqName )
-    $padSeqName = $padSeqPull;
-
+  $padSeqParm   = '';
   $padSeqResult = [];
       
 ?>

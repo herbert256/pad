@@ -1,5 +1,7 @@
 <?php 
 
+  $padSeqSetName = $padSeqSeq;
+
   include 'sequence/inits/go/pull.php';
 
   $padSeqBuild = padSeqBuild ( $padSeqSeq, $padSeqPlay );

@@ -7,13 +7,8 @@
 
   foreach ( glob ( APP . 'sequence/play/single/*' ) as $file ) unlink($file);
   foreach ( glob ( APP . 'sequence/play/double/*' ) as $file ) unlink($file);
-
-  foreach ( glob ( APP . 'sequence/store/plays/*' ) as $file ) unlink($file);
  
   foreach ( glob ( 'sequence/actions/double/*'   ) as $file ) unlink($file);
   foreach ( glob ( 'sequence/actions/single/*'   ) as $file ) unlink($file);
-
-  foreach ( glob ( 'sequence/store/actions/*'    ) as $file ) unlink($file);
-  foreach ( glob ( 'sequence/store/plays/*' ) as $file ) unlink($file);
 
 ?>
