@@ -16,7 +16,10 @@
       elseif ( strpos     ( $padSeqParm, '..' ) ) return include 'sequence/inits/sequence/range.php';
       elseif ( strpos     ( $padSeqParm, ';'  ) ) return include 'sequence/inits/sequence/list.php';
 
-    } elseif ( $padParmsOne ['padPrmKind'] == 'option' ) {
+    } elseif ( $padParmsOne ['padPrmKind'] == 'option' ) {  
+
+      if ( in_array ( $padSeqSeq, $padSeqDone ) ) 
+        continue;
 
       if ( $padSeqSeq == 'from'      ) return include 'sequence/inits/sequence/basic.php';
       if ( $padSeqSeq == 'to'        ) return include 'sequence/inits/sequence/basic.php';

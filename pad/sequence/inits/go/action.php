@@ -9,7 +9,7 @@
 
   $padSeqResult = $padSeqStore [$padSeqPull];
 
-  $padSeqInfo ["start/$padSeqInit/action"] [] = $padSeqActionName;
+  $padSeqInfo ["start/$padSeqInitType/action"] [] = $padSeqActionName;
 
   include 'sequence/actions/go.php';
   

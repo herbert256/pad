@@ -3,7 +3,7 @@
   $padSeqPlayType = 'build';
 
   foreach ( $padSeqPlays as $padSeqPlay ) {
-
+    
     extract ( $padSeqPlay );
 
     $padSeqLoop = $padSeq;

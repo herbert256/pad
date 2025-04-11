@@ -10,6 +10,9 @@
   if ( file_exists ( "sequence/types/$padSeqSeq/init.php" ) )
     include "sequence/plays/init.php";
 
+  if ( $padPrmValue === TRUE )
+    $padPrmValue = '';
+  
   $padSeqPlays [] = [
     'padSeqSeq'   => $padSeqSeq,
     'padSeqParm'  => $padPrmValue,

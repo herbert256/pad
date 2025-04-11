@@ -1,8 +1,9 @@
 <?php
 
-  $padSeqIncSave   = $padSeqInc;
   $padSeqParmSave  = $padSeqParm;
+  $padSeqIncSave   = $padSeqInc;
   $padSeqStartSave = $padSeqStart;
+  $padSeqEndSave   = $padSeqEnd;
 
   $padSeqParm = $padPrmValue;
 
@@ -14,5 +15,6 @@
   $padSeqParm  = $padSeqParmSave;
   $padSeqInc   = $padSeqIncSave;
   $padSeqStart = $padSeqStartSave;
+  $padSeqEnd   = $padSeqEndSave;
 
 ?>

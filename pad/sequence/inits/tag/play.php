@@ -1,8 +1,5 @@
 <?php
 
-  // {make mySequence, add, 3 }
-  // {make add, mysequence, 3 }
-
   if ( $padSeqFirst and $padSeqSecond )
     if       ( isset ( $padSeqStore[$padSeqFirst] ) and file_exists ( "sequence/types/$padSeqSecond" ) ) {
 
@@ -27,7 +24,7 @@
     $padSeqDone [] = $padSeqFirst;
     $padSeqDone [] = $padSeqSecond;
  
-    $padSeqPlay  = $padSeqTag;
+    $padSeqPlay = $padSeqTag;
 
   }
 

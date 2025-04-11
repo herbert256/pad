@@ -1,6 +1,13 @@
 <?php
 
 
+  function padSeqPlay ( $check ) {
+
+    return in_array ( $check, ['make','keep','remove','flag'] );
+
+  }
+  
+
   function padSeqRandom ( $array, $count=1, $order=0, $dups=0 ) {
 
     $out  = [];

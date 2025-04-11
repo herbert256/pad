@@ -9,7 +9,9 @@
 
     } else {
 
-      if ( $padSeqPullName <> $padSeqPull )
+      if ( $padSeqPullName == $padSeqPull )
+        $padSeqPullName = '';
+      else
         padError ( "Double store names found: '$padSeqPull' & '$padSeqPullNamea' ");
 
     }

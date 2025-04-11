@@ -1,19 +1,2 @@
-{table}
-
-{demo} {sequence rows=25, from=11                } {$sequence} {/sequence} {/demo}
-{demo} {sequence rows=25, from=11, make='even'   } {$sequence} {/sequence} {/demo}
-{demo} {sequence rows=25, from=11, keep='even'   } {$sequence} {/sequence} {/demo}
-{demo} {sequence rows=25, from=11, remove='even' } {$sequence} {/sequence} {/demo}
-{demo} {sequence rows=25, from=11, flag='even'   } {$sequence} {/sequence} {/demo}
-
-{/table}
-
-{table}
-
-{demo} {sequence rows=25, from=11               } {$sequence} {/sequence} {/demo}
-{demo} {sequence rows=25, from=11, make, even   } {$sequence} {/sequence} {/demo}
-{demo} {sequence rows=25, from=11, keep, even   } {$sequence} {/sequence} {/demo}
-{demo} {sequence rows=25, from=11, remove, even } {$sequence} {/sequence} {/demo}
-{demo} {sequence rows=25, from=11, flag, even   } {$sequence} {/sequence} {/demo}
-
-{/table}
+{loop rows=25}
+{prime default, flag} {$prime} {/prime}

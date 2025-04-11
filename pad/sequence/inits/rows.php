@@ -9,7 +9,7 @@
   elseif ( $padSeqFixed !== FALSE                    ) $padSeqRows = PHP_INT_MAX ;
   elseif ( $padSeqBuild == 'fixed'                   ) $padSeqRows = PHP_INT_MAX ;
   elseif ( $padSeqBuild == 'start'                   ) $padSeqRows = PHP_INT_MAX ;
-  elseif ( $padSeqBuild == 'store'                   ) $padSeqRows = PHP_INT_MAX ;
+  elseif ( $padSeqBuild == 'pull'                   ) $padSeqRows = PHP_INT_MAX ;
   else                                                 $padSeqRows = 25;
 
 ?>

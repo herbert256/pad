@@ -10,7 +10,7 @@
 
   $padSeqFixed = [];
 
-  $padSeqInfo ["start/$padSeqInit/play/$padSeqPlay"] [] = $padSeqSeq;
+  $padSeqInfo ["start/$padSeqInitType/play/$padSeqPlay"] [] = $padSeqSeq;
 
   $padSeqPlayType = 'init';
 

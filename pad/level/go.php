@@ -21,7 +21,7 @@
   if ( $padInfo )
     include 'events/go.php';
 
-  if ( $padTagContent )
+  if ( $padTagContent ) 
     padContentMerge ( $padContent, $padFalse, $padTagContent, $padHit [$pad] );
 
   if ( padTagParm ('content') ) {

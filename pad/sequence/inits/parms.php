@@ -20,6 +20,8 @@
   $padSeqToData    = $padPrm [$pad] ['toData']   ?? ''; 
   $padSeqNegative  = $padPrm [$pad] ['negative'] ?? 0 ;
   $padSeqFlag      = $padPrm [$pad] ['flag']     ?? '';
+  $padSeqKeep      = $padPrm [$pad] ['keep']     ?? '';
+  $padSeqRemove    = $padPrm [$pad] ['remove']   ?? '';
   $padSeqPullName  = $padPrm [$pad] ['pull']     ?? '';
   $padSeqPush      = $padPrm [$pad] ['push']     ?? '';
 

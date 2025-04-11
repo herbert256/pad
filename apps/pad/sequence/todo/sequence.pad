@@ -3,8 +3,8 @@
 {demo} {sequence '31..40', push='mySequence'}{/demo}
 
 {demo} {mySequence}         {$mySequence} {/mySequence}        {/demo}
-{demo} {store:mySequence}   {$mySequence} {/store:mySequence}  {/demo}
-{demo} {store mySequence} {$mySequence} {/store}             {/demo}
+{demo} {pull:mySequence}   {$mySequence} {/pull:mySequence}  {/demo}
+{demo} {pull mySequence} {$mySequence} {/pull}             {/demo}
 
 {/table}
 
@@ -71,17 +71,17 @@
 {/table}{table}
 
 {demo} {mySequence:sequence          } {$mySequence} {/mySequence:sequence}        {/demo}
-{demo} {mySequence:store             } {$mySequence} {/mySequence:store}        {/demo}
+{demo} {mySequence:pull              } {$mySequence} {/mySequence:pull}        {/demo}
 {demo} {mySequence:action  sum       } {$mySequence} {/mySequence:action}        {/demo}
 {demo} {mySequence:keep    even      } {$mySequence} {/mySequence:keep}        {/demo}
 {demo} {mySequence:remove  even      } {$mySequence} {/mySequence:remove}        {/demo}
 {demo} {mySequence:make    add, 3    } {$mySequence} {/mySequence:make}        {/demo}
-{demo} {mySequence:make    add=3    } {$mySequence} {/mySequence:make}        {/demo}
+{demo} {mySequence:make    add=3     } {$mySequence} {/mySequence:make}        {/demo}
 
 {/table}{table}
 
 {demo} {sequence:mySequence          } {$mySequence} {/sequence:mySequence}        {/demo}
-{demo} {store:mySequence             } {$mySequence} {/store:mySequence}        {/demo}
+{demo} {pull:mySequence             } {$mySequence} {/pull:mySequence}        {/demo}
 {demo} {action:mySequence  sum       } {$mySequence} {/action:mySequence}        {/demo}
 {demo} {keep:mySequence    even      } {$mySequence} {/keep:mySequence}        {/demo}
 {demo} {remove:mySequence  even      } {$mySequence} {/remove:mySequence}        {/demo}
@@ -101,7 +101,7 @@
 {/table}{table}
 
 {demo} {sequence mySequence         } {$mySequence} {/sequence}        {/demo}
-{demo} {store    mySequence         } {$mySequence} {/store}        {/demo}
+{demo} {pull    mySequence         } {$mySequence} {/pull}        {/demo}
 {demo} {action   mySequence, sum    } {$mySequence} {/action}        {/demo}
 {demo} {keep     mySequence, even   } {$mySequence} {/keep}        {/demo}
 {demo} {remove   mySequence, even   } {$mySequence} {/remove}        {/demo}
@@ -231,23 +231,6 @@
 
 {demo} {make:add mySequence, 3, even, sum             } {$sequence} {/make:add}{/demo}
 {demo} {add:make mySequence, 3, even, sum             } {$sequence} {/add:make}{/demo}
-
-{/table}
-
-
-{table}
-
-{demo}{sequence '31..40'}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence '31..40'}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence '31..40'}
-  {$sequence}
-{/sequence}{/demo}
 
 {/table}
 

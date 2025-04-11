@@ -3,8 +3,10 @@
   if ( ! defined ( 'APP' ) ) die ( 'Constant APP must be set before calling this script' );
   if ( ! defined ( 'DAT' ) ) die ( 'Constant DAT must be set before calling this script' );
 
-  chdir            ( dirname ( __FILE__ ) );
-  set_include_path ( dirname ( __FILE__ ) );
+  define ( 'PAD', dirname ( __FILE__ ) );
+
+  chdir            ( PAD );
+  set_include_path ( PAD );
 
   include 'error/boot.php';
   include 'config/config.php';

@@ -27,9 +27,14 @@
   }
 
   if ( $padSeqSeq ) {
+   
     $padSeqPull     = $padSeqPullName;
     $padSeqPullName = '';
-    $padSeqPlay     = 'make'
+   
+    if     ( padSeqPlay ( $padSeqType ) ) $padSeqPlay = $padSeqType;
+    elseif ( padSeqPlay ( $padSeqTag  ) ) $padSeqPlay = $padSeqTag;
+    else                                  $padSeqPlay = 'make';
+  
   }
 
 ?>

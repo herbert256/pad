@@ -1,7 +1,5 @@
 <?php
 
-  $padSeqPlaySave = '';
-
   $padSeqSeq = $padSeqTag;
 
   if ( ! $padSeqPlay )
