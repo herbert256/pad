@@ -1,6 +1,13 @@
 <?php
 
 
+  function padSeqStore ( $check ) {
+
+    return in_array ( $check, ['start','store','pull'] );
+
+  }
+  
+  
   function padSeqPlay ( $check ) {
 
     return in_array ( $check, ['make','keep','remove','flag'] );

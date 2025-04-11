@@ -10,7 +10,6 @@
   include 'sequence/inits/name.php';
   include 'sequence/inits/build.php';
   include 'sequence/inits/rows.php';
-  include 'sequence/inits/flag/flag.php';
   include 'sequence/inits/check/check.php';
   include 'sequence/inits/init.php';
 

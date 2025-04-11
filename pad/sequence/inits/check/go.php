@@ -1,23 +1,14 @@
 <?php
     
-  if ( ! $GLOBALS [ "padSeq" . ucfirst($padSeqCheck) ] )
-    return;
+  if ( $padSeqCheck == 'flag'   and ! $padSeqFlag   ) return;
+  if ( $padSeqCheck == 'keep'   and ! $padSeqKeep   ) return;
+  if ( $padSeqCheck == 'remove' and ! $padSeqRemove ) return;
 
   foreach ( $padSeqPlays as $padSeqPlay )
     if ( $padSeqPlay ['padSeqPlay'] == $padSeqCheck )
       return;
          
-  if ( in_array ( $padSeqBuild, ['start','store','pull'] ) )
-
-      foreach ( $padSeqPlays as $padK => $padV )
-
-        if ( $padV ['padSeqPlay'] == 'make' ) {
-
-          $padSeqPlays [$padK] ['padSeqBuild'] = padSeqBuild ( $padV ['padSeqSeq'], $padSeqCheck );
-          $padSeqPlays [$padK] ['padSeqPlay']  = $padSeqCheck;
-
-          return;
-
-        }
+  if ( padSeqStore ( $padSeqBuild ) ) include 'sequence/inits/check/store.php';
+  else                                include 'sequence/inits/check/sequence.php';
 
 ?>

@@ -5,7 +5,7 @@
 
   if ( is_numeric ($padSeqParm) )
     if ( str_contains ( $padSeqParm, '.' ) ) $padSeqParm = doubleval ( $padSeqParm );
-    else                                     $padSeqParm = intval ( $padSeqParm );
+    else                                     $padSeqParm = intval    ( $padSeqParm );
 
   $padSeq = include 'sequence/build/call.php';
 

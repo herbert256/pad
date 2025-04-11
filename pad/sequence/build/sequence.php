@@ -1,17 +1,15 @@
 <?php
  
-  if ( $padSeqFlagGo ) {
-  
-    $padSeqBuildSave = $padSeqBuild;
-    $padSeqBuild = 'check';
-    $padSeq = include 'sequence/build/call.php';
-    $padSeqBuild = $padSeqBuildSave;
+  if ( in_array ( $padSeqBuild, ['keep', 'remove', 'flag'] ) ) {
 
-        if ( $padSeq === TRUE       ) $padSeq = 1;
-    elseif ( $padSeq === FALSE      ) $padSeq = 0;
-    elseif ( $padSeq == $padSeqLoop ) $padSeq = 1;
-    elseif ( $padSeq <> $padSeqLoop ) $padSeq = 0;
-  
+    $padSeqBuildSave = $padSeqBuild;
+    $padSeqPlay      = $padSeqBuild;
+    $padSeqBuild     = 'check';
+
+    include "sequence/plays/one.php";
+
+    $padSeqBuild = $padSeqBuildSave;
+    
   } elseif ( $padSeqBuildType == 'fixed' ) 
   
     $padSeq = $padSeqLoop;
