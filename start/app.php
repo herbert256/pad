@@ -3,7 +3,8 @@
   $parts = $_SERVER ['SCRIPT_NAME'] ?? '';
   $parts = str_replace ( '.php', '', $parts);
   $parts = str_replace ( DIRECTORY_SEPARATOR , '/', $parts);
-  $parts = explode     ( '/', $parts );
+  $parts = explode ( '/', $parts );
+  $parts = array_reverse ( $parts );
 
   $app = 'pad';
 
