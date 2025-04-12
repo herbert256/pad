@@ -22,7 +22,7 @@
       if ( $padSeqInfSeq == 'increment' ) return 'basic';
 
       if     ( file_exists ( "sequence/types/$padSeqInfSeq" ) ) return 'type';
-      elseif ( isset ( $padSeqStore [$padSeqInfSeq] )         ) return 'pull';
+      elseif ( isset ( $padSeqStore [$padSeqInfSeq] )         ) return 'store';
 
       if ( file_exists ( "sequence/actions/types/$padSeqInfSeq.php" ) ) {
         padSplit ( '|', $padSeqInfParm, $padSeqInfParm1, $padSeqInfParm2 );

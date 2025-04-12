@@ -12,6 +12,6 @@
   if ( count ( $go ) > 15 )
     $go = array_slice ( $go, 0, 15 );
 
-  $title = "seq - Xref - $type - $item";
+  $title = "sequences - Xref - $type - $item";
 
 ?>
