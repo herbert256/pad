@@ -1,2 +1,11 @@
-{sequence loop, rows=10, randomly, from=10, to=20} {dump}{$sequence} {/sequence}
-{sequence loop, rows=10, randomly, from=10, to=20} {dump}{$sequence} {/sequence}
+{data 'myData', 'http://localhost/manual/level_demo.yaml'}
+
+<table border='1'>
+  {myYaml}
+    <tr>
+      {column}
+        <td>{$column}</td>
+      {/column}
+    </tr>
+  {/myData}
+</table>

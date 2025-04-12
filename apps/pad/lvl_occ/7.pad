@@ -1,9 +1,13 @@
 <table border='1'>
-  {rows}
+  {set $row = 10}
+  {while $row <= 30}
     <tr>
-      {cols}
-        <td>{echo (&rows:key*10) + &cols:key}</td>  
-      {/cols}
+      {set $column = 1}
+      {while $column <= 5}
+        <td>{echo $row + $column}</td>  
+        {increment $column}
+      {/while}
     </tr>
-  {/rows}
+    {set $row = $row + 10}
+  {/while}
 </table>

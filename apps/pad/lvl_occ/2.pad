@@ -1,9 +1,9 @@
-<table border='1'> 
-  {short}
+<table border='1'>
+  {row}
     <tr>
-      {short}
-        <td>{$short}</td>
-      {/short}
+      {column}
+        <td>{$row | * 10 | + $column}</td> 
+      {/column}
     </tr>
-  {/short}
+  {/row}
 </table>

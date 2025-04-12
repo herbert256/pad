@@ -1,19 +1,13 @@
 {table}
 
-{demo}{sequence 10}
-  {$sequence}
-{/sequence}{/demo}
+{demo}{sequence 25, push='mySequence'} {/demo}
 
-{demo}{sequence 10, keep, prime}
-  {$sequence}
-{/sequence}{/demo}
+{demo}{pull mySequence               } {$sequence} {/pull}{/demo}
 
-{demo}{sequence 10, remove, prime}
-  {$sequence}
-{/sequence}{/demo}
+{demo}{pull mySequence, keep,   prime} {$sequence} {/pull}{/demo}
 
-{demo}{sequence 10, flag, prime}
-  {$sequence}
-{/sequence}{/demo}
+{demo}{pull mySequence, remove, prime} {$sequence} {/pull}{/demo}
+
+{demo}{pull mySequence, flag,   prime} {$sequence} {/pull}{/demo}
 
 {/table}

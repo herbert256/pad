@@ -11,11 +11,14 @@
    if ( in_array ( $type, ['loop','not','negatation'] ) )
      return;
 
+  $space = str_repeat ( ' ', strlen ( $type ) );
+
   $one = "{table}\n\n"
-       . "{demo}{sequence 10}\n  {\$sequence}\n{/sequence}{/demo}\n\n"
-       . "{demo}{sequence 10, keep, $type}\n  {\$sequence}\n{/sequence}{/demo}\n\n"
-       . "{demo}{sequence 10, remove, $type}\n  {\$sequence}\n{/sequence}{/demo}\n\n"
-       . "{demo}{sequence 10, flag, $type}\n  {\$sequence}\n{/sequence}{/demo}\n\n"
+       . "{demo}{sequence 25, push='mySequence'} {/demo}\n\n"
+       . "{demo}{pull mySequence          $space} {\$sequence} {/pull}{/demo}\n\n"
+       . "{demo}{pull mySequence, keep,   $type} {\$sequence} {/pull}{/demo}\n\n"
+       . "{demo}{pull mySequence, remove, $type} {\$sequence} {/pull}{/demo}\n\n"
+       . "{demo}{pull mySequence, flag,   $type} {\$sequence} {/pull}{/demo}\n\n"
        . "{/table}";
 
   file_put_contents ( "sequence/types/$type/flags/keepRemoveFlag", 1 );

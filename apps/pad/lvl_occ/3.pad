@@ -1,12 +1,9 @@
-{data 'row'   } [1,2,3]     {/data}
-{data 'column'} [1,2,3,4,5] {/data}
-
-<table border='1'>
-  {row}
+<table border='1'> 
+  {short}
     <tr>
-      {column}
-        <td>{$row | * 10 | + $column}</td>      
-      {/column}
+      {short}
+        <td>{$short}</td>
+      {/short}
     </tr>
-  {/row}
+  {/short}
 </table>

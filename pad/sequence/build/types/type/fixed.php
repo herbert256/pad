@@ -28,7 +28,7 @@
     if ( ! include 'sequence/build/one.php')
       break;
 
-    if ( $padSeqInc > 1 )
+    if ( $padSeqInc > 1 and ! in_array ( 'increment', $padSeqDone ) )
       $padSeqSkipNow = 1;
 
   }

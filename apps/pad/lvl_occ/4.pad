@@ -1,10 +1,9 @@
 <table border='1'>
-  {sequence '10..30', increment=10, name='row'}
+  {rows}
     <tr>
-      {sequence '1..5', name='column'}
-        {set $cell = $row + $column}
-        <td>{$cell}</td>      
-      {/sequence}
+      {cols}
+        <td>{echo (&rows:key*10) + &cols:key}</td>  
+      {/cols}
     </tr>
-  {/sequence}
+  {/rows}
 </table>
