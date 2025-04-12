@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckLucas ( $f, $n ) {
+  function padSeqCheckLucas ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/lucas/bool.php' ) )
-      return padSeqBoolLucas ( $n );
+      return padSeqBoolLucas ( $n, $p );
 
     if ( file_exists ( 'sequence/types/lucas/generated.php' ) ) 
       return in_array ( $n, PADlucas );

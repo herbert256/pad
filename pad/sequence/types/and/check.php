@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckAnd ( $f, $n ) {
+  function padSeqCheckAnd ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/and/bool.php' ) )
-      return padSeqBoolAnd ( $n );
+      return padSeqBoolAnd ( $n, $p );
 
     if ( file_exists ( 'sequence/types/and/generated.php' ) ) 
       return in_array ( $n, PADand );
@@ -14,7 +14,7 @@
 
     }
 
-    $text = padCode ( "{sequence and, from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
+    $text = padCode ( "{sequence and='$p', from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
     $arr  = explode ( ',', $text );
 
     return in_array ( $n, $arr );

@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckNor ( $f, $n ) {
+  function padSeqCheckNor ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/nor/bool.php' ) )
-      return padSeqBoolNor ( $n );
+      return padSeqBoolNor ( $n, $p );
 
     if ( file_exists ( 'sequence/types/nor/generated.php' ) ) 
       return in_array ( $n, PADnor );
@@ -14,7 +14,7 @@
 
     }
 
-    $text = padCode ( "{sequence nor, from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
+    $text = padCode ( "{sequence nor='$p', from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
     $arr  = explode ( ',', $text );
 
     return in_array ( $n, $arr );

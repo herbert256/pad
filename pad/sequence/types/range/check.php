@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckRange ( $f, $n ) {
+  function padSeqCheckRange ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/range/bool.php' ) )
-      return padSeqBoolRange ( $n );
+      return padSeqBoolRange ( $n, $p );
 
     if ( file_exists ( 'sequence/types/range/generated.php' ) ) 
       return in_array ( $n, PADrange );

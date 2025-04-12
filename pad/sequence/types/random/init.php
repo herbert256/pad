@@ -1,15 +1,12 @@
 <?php
 
-  $padSeqRandomStart = $padSeqStart;
-  $padSeqRandomEnd   = $padSeqEnd;
+  $padSeqRandomStart = $padSeqMin;
+  $padSeqRandomEnd   = $padSeqMax;
+  $padSeqRandomStep  = $padPrm [$pad] ['step'] ?? 1;
 
-  if ( $padSeqRandomStart == 1 and $padSeqMin <> PHP_INT_MIN ) 
-    $padSeqRandomStart = $padSeqMin;
+  $padSeqDone [] = 'step'; 
 
-  if ( $padSeqRandomEnd == PHP_INT_MAX and $padSeqMax <> PHP_INT_MAX ) 
-    $padSeqRandomEnd = $padSeqMax;
-
-  if ( $padSeqInc <> 1 )
-    $padSeqRandomSteps = intval ( ( $padSeqRandomEnd - $padSeqRandomStart ) / $padSeqInc );
+  if ( $padSeqRandomStep <> 1 )
+    $padSeqRandomSteps = intval ( ( $padSeqRandomEnd - $padSeqRandomStart ) / $padSeqRandomStep );
   
 ?>

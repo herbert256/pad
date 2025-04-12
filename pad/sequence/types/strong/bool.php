@@ -1,6 +1,6 @@
 <?php
 
-  function padSeqBoolStrong ($number) {
+  function padSeqBoolStrong ($number, $p=0) {
 
     $x = $number;
     $sum = 0;

@@ -67,6 +67,8 @@
 
   }
 
+  $padSeqPlaySource = 'inits/type/sequence';
+
   if ( $padSeqPull and $padSeqPlay ) include 'sequence/plays/extra.php';
   else                               include 'sequence/inits/go/sequence.php';
 

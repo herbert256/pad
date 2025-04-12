@@ -6,7 +6,9 @@
   foreach ( padList ( 0 ) as $one )
     getPage ( $one ['item'], 1, 1 );
   
-  padPageGet  ( 'develop/regression/go' );
+  padReqression ( 0 );
+  padReqression ( 1 );
+
   padRedirect ( 'develop/regression'    );
 
 ?>

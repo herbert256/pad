@@ -1,7 +1,5 @@
 <?php
  
-  include_once APP . 'develop/_lib/lib.php';
-
   echo "{table}";
 
   foreach ( padSeqTypes () as $type ) {

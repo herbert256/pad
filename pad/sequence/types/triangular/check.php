@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckTriangular ( $f, $n ) {
+  function padSeqCheckTriangular ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/triangular/bool.php' ) )
-      return padSeqBoolTriangular ( $n );
+      return padSeqBoolTriangular ( $n, $p );
 
     if ( file_exists ( 'sequence/types/triangular/generated.php' ) ) 
       return in_array ( $n, PADtriangular );

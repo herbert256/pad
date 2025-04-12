@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckRandom ( $f, $n ) {
+  function padSeqCheckRandom ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/random/bool.php' ) )
-      return padSeqBoolRandom ( $n );
+      return padSeqBoolRandom ( $n, $p );
 
     if ( file_exists ( 'sequence/types/random/generated.php' ) ) 
       return in_array ( $n, PADrandom );
@@ -14,7 +14,7 @@
 
     }
 
-    $text = padCode ( "{sequence random, from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
+    $text = padCode ( "{sequence random='$p', from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
     $arr  = explode ( ',', $text );
 
     return in_array ( $n, $arr );

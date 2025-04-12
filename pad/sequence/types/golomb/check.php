@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckGolomb ( $f, $n ) {
+  function padSeqCheckGolomb ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/golomb/bool.php' ) )
-      return padSeqBoolGolomb ( $n );
+      return padSeqBoolGolomb ( $n, $p );
 
     if ( file_exists ( 'sequence/types/golomb/generated.php' ) ) 
       return in_array ( $n, PADgolomb );

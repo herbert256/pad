@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckCubic ( $f, $n ) {
+  function padSeqCheckCubic ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/cubic/bool.php' ) )
-      return padSeqBoolCubic ( $n );
+      return padSeqBoolCubic ( $n, $p );
 
     if ( file_exists ( 'sequence/types/cubic/generated.php' ) ) 
       return in_array ( $n, PADcubic );

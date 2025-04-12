@@ -1,6 +1,6 @@
 <?php
 
-  function padSeqBoolAntiprime ($n) {
+  function padSeqBoolAntiprime ($n, $p=0) {
 
     $init = padSeqBoolAntiprimeDivisors ($n);
 

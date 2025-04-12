@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckMersenne ( $f, $n ) {
+  function padSeqCheckMersenne ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/mersenne/bool.php' ) )
-      return padSeqBoolMersenne ( $n );
+      return padSeqBoolMersenne ( $n, $p );
 
     if ( file_exists ( 'sequence/types/mersenne/generated.php' ) ) 
       return in_array ( $n, PADmersenne );

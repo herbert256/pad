@@ -25,6 +25,4 @@
 
   include "sequence/inits/go/start.php";
 
-  return TRUE;
-
 ?>

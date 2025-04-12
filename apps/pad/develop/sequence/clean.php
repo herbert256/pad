@@ -2,7 +2,7 @@
    
   foreach ( glob ( APP . 'sequence/basic/*'            ) as $file ) unlink($file);
   foreach ( glob ( APP . 'sequence/type/*'             ) as $file ) unlink($file);
-  foreach ( glob ( APP . 'sequence/keepRemove/*'       ) as $file ) unlink($file);
+  foreach ( glob ( APP . 'sequence/keepRemoveFlag/*'   ) as $file ) unlink($file);
   foreach ( glob ( APP . 'sequence/make/*'             ) as $file ) unlink($file);
 
   foreach ( glob ( APP . 'sequence/play/single/*' ) as $file ) unlink($file);

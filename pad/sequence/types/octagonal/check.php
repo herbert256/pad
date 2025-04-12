@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckOctagonal ( $f, $n ) {
+  function padSeqCheckOctagonal ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/octagonal/bool.php' ) )
-      return padSeqBoolOctagonal ( $n );
+      return padSeqBoolOctagonal ( $n, $p );
 
     if ( file_exists ( 'sequence/types/octagonal/generated.php' ) ) 
       return in_array ( $n, PADoctagonal );

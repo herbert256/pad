@@ -1,5 +1,5 @@
 <?php
 
-  return include 'sequence/start/types/keep.php';
+  return include 'sequence/start/types/flag.php';
 
 ?>

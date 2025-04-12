@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckXor ( $f, $n ) {
+  function padSeqCheckXor ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/xor/bool.php' ) )
-      return padSeqBoolXor ( $n );
+      return padSeqBoolXor ( $n, $p );
 
     if ( file_exists ( 'sequence/types/xor/generated.php' ) ) 
       return in_array ( $n, PADxor );
@@ -14,7 +14,7 @@
 
     }
 
-    $text = padCode ( "{sequence xor, from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
+    $text = padCode ( "{sequence xor='$p', from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
     $arr  = explode ( ',', $text );
 
     return in_array ( $n, $arr );

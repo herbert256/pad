@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckLucky ( $f, $n ) {
+  function padSeqCheckLucky ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/lucky/bool.php' ) )
-      return padSeqBoolLucky ( $n );
+      return padSeqBoolLucky ( $n, $p );
 
     if ( file_exists ( 'sequence/types/lucky/generated.php' ) ) 
       return in_array ( $n, PADlucky );

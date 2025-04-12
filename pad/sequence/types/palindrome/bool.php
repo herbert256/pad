@@ -1,6 +1,6 @@
 <?php
 
-  function padSeqBoolPalindrome ($n) {
+  function padSeqBoolPalindrome ($n, $p=0) {
 
     if ( $n == padTypeReverse($n) )
       return TRUE;

@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckHarshad ( $f, $n ) {
+  function padSeqCheckHarshad ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/harshad/bool.php' ) )
-      return padSeqBoolHarshad ( $n );
+      return padSeqBoolHarshad ( $n, $p );
 
     if ( file_exists ( 'sequence/types/harshad/generated.php' ) ) 
       return in_array ( $n, PADharshad );

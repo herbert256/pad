@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckKolakoski ( $f, $n ) {
+  function padSeqCheckKolakoski ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/kolakoski/bool.php' ) )
-      return padSeqBoolKolakoski ( $n );
+      return padSeqBoolKolakoski ( $n, $p );
 
     if ( file_exists ( 'sequence/types/kolakoski/generated.php' ) ) 
       return in_array ( $n, PADkolakoski );

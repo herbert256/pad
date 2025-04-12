@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckEven ( $f, $n ) {
+  function padSeqCheckEven ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/even/bool.php' ) )
-      return padSeqBoolEven ( $n );
+      return padSeqBoolEven ( $n, $p );
 
     if ( file_exists ( 'sequence/types/even/generated.php' ) ) 
       return in_array ( $n, PADeven );

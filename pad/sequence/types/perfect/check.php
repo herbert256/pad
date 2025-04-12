@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckPerfect ( $f, $n ) {
+  function padSeqCheckPerfect ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/perfect/bool.php' ) )
-      return padSeqBoolPerfect ( $n );
+      return padSeqBoolPerfect ( $n, $p );
 
     if ( file_exists ( 'sequence/types/perfect/generated.php' ) ) 
       return in_array ( $n, PADperfect );

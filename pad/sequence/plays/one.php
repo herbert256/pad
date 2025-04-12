@@ -23,4 +23,6 @@
   elseif ( $padSeqPlay == 'flag'   and $padSeq == $padSeqLoop ) $padSeq = 1;
   elseif ( $padSeqPlay == 'flag'   and $padSeq <> $padSeqLoop ) $padSeq = 0;
 
+  $padSeqInfo ['plays'] [] = "$padSeqPlay/$padSeqSeq";
+
 ?>

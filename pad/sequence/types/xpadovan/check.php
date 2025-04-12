@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckXpadovan ( $f, $n ) {
+  function padSeqCheckXpadovan ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/xpadovan/bool.php' ) )
-      return padSeqBoolXpadovan ( $n );
+      return padSeqBoolXpadovan ( $n, $p );
 
     if ( file_exists ( 'sequence/types/xpadovan/generated.php' ) ) 
       return in_array ( $n, PADxpadovan );

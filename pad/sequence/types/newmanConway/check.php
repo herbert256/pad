@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckNewmanConway ( $f, $n ) {
+  function padSeqCheckNewmanConway ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/newmanConway/bool.php' ) )
-      return padSeqBoolNewmanConway ( $n );
+      return padSeqBoolNewmanConway ( $n, $p );
 
     if ( file_exists ( 'sequence/types/newmanConway/generated.php' ) ) 
       return in_array ( $n, PADnewmanConway );

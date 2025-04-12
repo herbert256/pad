@@ -21,6 +21,7 @@
   $padSeqBuild      = '';
   $padSeqPull       = '';
   $padSeqSetName    = '';
+  $padSeqPlaySource = '';
 
   $padSeqActionAfterName = '';
 

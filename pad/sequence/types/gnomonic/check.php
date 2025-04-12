@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckGnomonic ( $f, $n ) {
+  function padSeqCheckGnomonic ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/gnomonic/bool.php' ) )
-      return padSeqBoolGnomonic ( $n );
+      return padSeqBoolGnomonic ( $n, $p );
 
     if ( file_exists ( 'sequence/types/gnomonic/generated.php' ) ) 
       return in_array ( $n, PADgnomonic );

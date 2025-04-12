@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckBiquadratic ( $f, $n ) {
+  function padSeqCheckBiquadratic ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/biquadratic/bool.php' ) )
-      return padSeqBoolBiquadratic ( $n );
+      return padSeqBoolBiquadratic ( $n, $p );
 
     if ( file_exists ( 'sequence/types/biquadratic/generated.php' ) ) 
       return in_array ( $n, PADbiquadratic );

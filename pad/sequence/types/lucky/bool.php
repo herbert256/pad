@@ -1,6 +1,6 @@
 <?php
 
-  function padSeqBoolLucky ($n) {
+  function padSeqBoolLucky ($n, $p=0) {
     
     $counter = 2;
      

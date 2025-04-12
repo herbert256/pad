@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckModulo ( $f, $n ) {
+  function padSeqCheckModulo ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/modulo/bool.php' ) )
-      return padSeqBoolModulo ( $n );
+      return padSeqBoolModulo ( $n, $p );
 
     if ( file_exists ( 'sequence/types/modulo/generated.php' ) ) 
       return in_array ( $n, PADmodulo );
@@ -14,7 +14,7 @@
 
     }
 
-    $text = padCode ( "{sequence modulo, from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
+    $text = padCode ( "{sequence modulo='$p', from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
     $arr  = explode ( ',', $text );
 
     return in_array ( $n, $arr );

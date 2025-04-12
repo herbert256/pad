@@ -14,13 +14,14 @@
     $padPrmValue = '';
   
   $padSeqPlays [] = [
-    'padSeqSeq'   => $padSeqSeq,
-    'padSeqParm'  => $padPrmValue,
-    'padSeqBuild' => $padSeqBuild,
-    'padSeqPlay'  => $padSeqPlay
+    'padSeqSeq'        => $padSeqSeq,
+    'padSeqParm'       => $padPrmValue,
+    'padSeqBuild'      => $padSeqBuild,
+    'padSeqPlay'       => $padSeqPlay,
+    'padSeqPlaySource' => $padSeqPlaySource
   ];
 
-  if ( in_array ( $padSeqPlay, ['make','keep','remove','flag'] ) ) 
+  if ( padSeqPlay ( $padSeqPlay ) ) 
     $padSeqLast = array_key_last ( $padSeqPlays);
   else
     $padSeqLast = FALSE;

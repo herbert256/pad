@@ -10,7 +10,7 @@
     include APP . 'develop/sequence/check.php';
     include APP . 'develop/sequence/basic.php';
     include APP . 'develop/sequence/type.php';
-    include APP . 'develop/sequence/keepRemove.php';
+    include APP . 'develop/sequence/keepRemoveFlag.php';
     include APP . 'develop/sequence/playSingle.php';
     include APP . 'develop/sequence/playDouble.php';
   }  

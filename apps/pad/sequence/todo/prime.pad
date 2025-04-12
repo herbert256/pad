@@ -1,42 +1,42 @@
 {table}
-{demo} {prime rows=25       } {$sequence} {/prime} {/demo}
-{demo} {loop rows=25, prime } {$sequence} {/loop}  {/demo}
+{demo} {prime rows=15, from=10       } {$sequence} {/prime} {/demo}
+{demo} {loop rows=15, from=10, prime } {$sequence} {/loop}  {/demo}
 {/table}
 
 {table}
-{demo} {loop rows=25, make='prime' } {$sequence} {/loop}  {/demo}
-{demo} {prime rows=25, make        } {$sequence} {/prime} {/demo}
-{demo} {make prime, rows=25        } {$sequence} {/make} {/demo}
-{demo} {make:prime rows=25         } {$sequence} {/make:prime} {/demo}
-{demo} {prime:make rows=25         } {$sequence} {/prime:make} {/demo}
+{demo} {loop rows=15, from=10, make='prime' } {$sequence} {/loop}  {/demo}
+{demo} {prime rows=15, from=10, make        } {$sequence} {/prime} {/demo}
+{demo} {make prime, rows=15, from=10        } {$sequence} {/make} {/demo}
+{demo} {make:prime rows=15, from=10         } {$sequence} {/make:prime} {/demo}
+{demo} {prime:make rows=15, from=10         } {$sequence} {/prime:make} {/demo}
 {/table}
 
 {table}
-{demo} {loop rows=25, keep='prime' } {$sequence} {/loop}  {/demo}
-{demo} {prime rows=25, keep        } {$sequence} {/prime} {/demo}
-{demo} {keep prime, rows=25        } {$sequence} {/keep} {/demo}
-{demo} {keep:prime rows=25         } {$sequence} {/keep:prime} {/demo}
-{demo} {prime:keep rows=25         } {$sequence} {/prime:keep} {/demo}
+{demo} {loop rows=15, from=10, keep='prime' } {$sequence} {/loop}  {/demo}
+{demo} {prime rows=15, from=10, keep        } {$sequence} {/prime} {/demo}
+{demo} {keep prime, rows=15, from=10        } {$sequence} {/keep} {/demo}
+{demo} {keep:prime rows=15, from=10         } {$sequence} {/keep:prime} {/demo}
+{demo} {prime:keep rows=15, from=10         } {$sequence} {/prime:keep} {/demo}
 {/table}
 
 {table}
-{demo} {loop rows=25, remove='prime' } {$sequence} {/loop}  {/demo}
-{demo} {prime rows=25, remove        } {$sequence} {/prime} {/demo}
-{demo} {remove prime, rows=25        } {$sequence} {/remove} {/demo}
-{demo} {remove:prime rows=25         } {$sequence} {/remove:prime} {/demo}
-{demo} {prime:remove rows=25         } {$sequence} {/prime:remove} {/demo}
+{demo} {loop rows=15, from=10, remove='prime' } {$sequence} {/loop}  {/demo}
+{demo} {prime rows=15, from=10, remove        } {$sequence} {/prime} {/demo}
+{demo} {remove prime, rows=15, from=10        } {$sequence} {/remove} {/demo}
+{demo} {remove:prime rows=15, from=10         } {$sequence} {/remove:prime} {/demo}
+{demo} {prime:remove rows=15, from=10         } {$sequence} {/prime:remove} {/demo}
 {/table}
 
 {table}
-{demo} {loop rows=25, flag='prime' } {$sequence} {/loop}  {/demo}
-{demo} {prime rows=25, flag        } {$sequence} {/prime} {/demo}
-{demo} {flag prime, rows=25        } {$sequence} {/flag} {/demo}
-{demo} {flag:prime rows=25         } {$sequence} {/flag:prime} {/demo}
-{demo} {prime:flag rows=25         } {$sequence} {/prime:flag} {/demo}
+{demo} {loop rows=15, from=10, flag='prime' } {$sequence} {/loop}  {/demo}
+{demo} {prime rows=15, from=10, flag        } {$sequence} {/prime} {/demo}
+{demo} {flag prime, rows=15, from=10        } {$sequence} {/flag} {/demo}
+{demo} {flag:prime rows=15, from=10         } {$sequence} {/flag:prime} {/demo}
+{demo} {prime:flag rows=15, from=10         } {$sequence} {/prime:flag} {/demo}
 {/table}
 
 {table}
-{demo} {loop rows=25           } {/demo}
+{demo} {loop rows=40, from=10           } {/demo}
 {demo} {pull prime             } {$sequence} {/pull}  {/demo}
 {demo} {default prime          } {$sequence} {/default}  {/demo}
 {demo} {prime default          } {$sequence} {/prime}  {/demo}
@@ -50,7 +50,7 @@
 {/table}
 
 {table}
-{demo} {loop rows=25                 } {/demo}
+{demo} {loop rows=40, from=10                 } {/demo}
 {demo} {pull make='prime'            } {$sequence} {/pull}  {/demo}
 {demo} {pull make, prime             } {$sequence} {/pull}  {/demo}
 {demo} {pull prime, make             } {$sequence} {/pull}  {/demo}
@@ -76,7 +76,7 @@
 {/table}
 
 {table}
-{demo} {loop rows=25                 } {/demo}
+{demo} {loop rows=40, from=10                 } {/demo}
 {demo} {pull keep='prime'            } {$sequence} {/pull}  {/demo}
 {demo} {pull keep, prime             } {$sequence} {/pull}  {/demo}
 {demo} {pull prime, keep             } {$sequence} {/pull}  {/demo}
@@ -102,7 +102,7 @@
 {/table}
 
 {table}
-{demo} {loop rows=25                   } {/demo}
+{demo} {loop rows=40, from=10                   } {/demo}
 {demo} {pull remove='prime'            } {$sequence} {/pull}  {/demo}
 {demo} {pull remove, prime             } {$sequence} {/pull}  {/demo}
 {demo} {pull prime, remove             } {$sequence} {/pull}  {/demo}
@@ -129,7 +129,7 @@
 
 
 {table}
-{demo} {loop rows=25                 } {/demo}
+{demo} {loop rows=40, from=10                 } {/demo}
 {demo} {pull flag='prime'            } {$sequence} {/pull}  {/demo}
 {demo} {pull flag, prime             } {$sequence} {/pull}  {/demo}
 {demo} {pull prime, flag             } {$sequence} {/pull}  {/demo}

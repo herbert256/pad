@@ -1,27 +1,38 @@
 {table}
 
-{demo}{sequence random, rows=3}
-  {$sequence} 
-{/sequence}{/demo}
+{demo} {sequence loop,    rows=10, randomly, from=10, to=20} {$sequence} {/sequence} {/demo}
+{demo} {sequence power=2, rows=10, randomly, from=8,  to=16} {$sequence} {/sequence} {/demo}
+{demo} {sequence prime,   rows=10, randomly, to=1000       } {$sequence} {/sequence} {/demo}
 
-{demo}{sequence random, max=100, rows=10}
-  {$sequence} 
-{/sequence}{/demo}
+{/table}{table}
 
-{demo}{sequence random, min=11, max=13, rows=20}
-  {$sequence} 
-{/sequence}{/demo}
+{demo} {sequence rows=10, randomly                                        } {$sequence} {/sequence} {/demo}
+{demo} {sequence rows=10, randomly, from=1000000000, increment=1000000000 } {$sequence} {/sequence} {/demo}
 
-{demo}{sequence '11..20', random, rows=10}
-  {$sequence} 
-{/sequence}{/demo}
+{/table}{table}
 
-{demo}{sequence '1..16', power=2, random, rows=10}
-  {$sequence} 
-{/sequence}{/demo}
+{demo} {sequence:random rows=15, min=10, max=50         } {$sequence} {/sequence:random} {/demo}
+{demo} {sequence:random rows=15, min=10, max=50, step=5 } {$sequence} {/sequence:random} {/demo}
 
-{demo}{sequence prime, to=5000, random, rows=10}
-  {$sequence} 
-{/sequence}{/demo}
+{/table}{table}
+
+{demo} {sequence from=10, to=20, push='mySeq'}{/demo} 
+{demo} {mySeq}                                            {$sequence} {/mySeq}        {/demo}
+{demo} {action:randomize 5,  mySeq                      } {$sequence} {/action:randomize} {/demo}
+{demo} {action:randomize 5,  mySeq, duplicates          } {$sequence} {/action:randomize} {/demo}
+{demo} {action:randomize 5,  mySeq, orderly             } {$sequence} {/action:randomize} {/demo}
+{demo} {action:randomize 5,  mySeq, orderly, duplicates } {$sequence} {/action:randomize} {/demo}
+{demo} {action:randomize 25, mySeq                      } {$sequence} {/action:randomize} {/demo}
+{demo} {action:randomize 25, mySeq, orderly             } {$sequence} {/action:randomize} {/demo}
+
+{/table}{table}
+
+{demo} {sequence rows=25, push='mySeq1'} {/demo}
+{demo} {sequence mySeq1, randomly} {$sequence} {/sequence} {/demo}
+{demo} {sequence mySeq1, randomly, unique} {$sequence} {/sequence} {/demo}
+
+{/table}{table}
+
+{demo} {sequence randomize, random, randomly, rows=25} {$sequence} {/sequence} {/demo}
 
 {/table}

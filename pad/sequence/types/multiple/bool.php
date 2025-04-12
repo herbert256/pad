@@ -1,6 +1,6 @@
 <?php
 
-  function padSeqBoolMultiple ( $n ) {
+  function padSeqBoolMultiple ( $n, $p=0 ) {
 
     global $padSeqParm;
 

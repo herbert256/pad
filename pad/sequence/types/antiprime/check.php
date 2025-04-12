@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckAntiprime ( $f, $n ) {
+  function padSeqCheckAntiprime ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/antiprime/bool.php' ) )
-      return padSeqBoolAntiprime ( $n );
+      return padSeqBoolAntiprime ( $n, $p );
 
     if ( file_exists ( 'sequence/types/antiprime/generated.php' ) ) 
       return in_array ( $n, PADantiprime );

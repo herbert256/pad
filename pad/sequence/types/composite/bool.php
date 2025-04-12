@@ -4,7 +4,7 @@
 // program to check
 // if a number is composite.
 
-function padSeqBoolComposite($n)
+function padSeqBoolComposite($n, $p=0)
 {
     
     // Corner cases

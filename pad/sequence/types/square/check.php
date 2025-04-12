@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckSquare ( $f, $n ) {
+  function padSeqCheckSquare ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/square/bool.php' ) )
-      return padSeqBoolSquare ( $n );
+      return padSeqBoolSquare ( $n, $p );
 
     if ( file_exists ( 'sequence/types/square/generated.php' ) ) 
       return in_array ( $n, PADsquare );

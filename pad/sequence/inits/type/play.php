@@ -1,19 +1,19 @@
 <?php
 
-  // {add:make sequence, 5}
-  // {sequence:make add, 5}
-
-  // {make:sequence add, 5}
-  // {make:add sequence, 5}
-
-  // {add:mySequence 5}
-  // {mySequence:add 5}
-
-  // {add:mySequence make, 3 } {$mySequence} {/mySequence:mySequence}
+  if ( $padSeqPrefix and isset ( $padSeqStore [$padSeqPrefix] ) )
+    if ( padSeqPlay ( $padSeqTag ) ) 
+      if ( $padSeqFirst and file_exists ( "sequence/types/$padSeqFirst" ) ) {
+        $padSeqPull    = $padSeqPrefix;
+        $padSeqPlay    = $padSeqTag;
+        $padSeqSeq     = $padSeqFirst;
+        $padSeqParm    = $padSeqFirstParm;
+        $padSeqDone [] = $padSeqFirst;
+        return;
+      }
 
   if ( $padSeqPrefix and file_exists ( "sequence/types/$padSeqPrefix" ) )
     if ( isset ( $padSeqStore [$padSeqTag] ) )
-      if ( in_array ( $padSeqFirst, ['make','keep','remove'] ) ) {
+      if ( padSeqPlay ( $padSeqFirst ) ) {
         $padSeqPull    = $padSeqTag;
         $padSeqSeq     = $padSeqPrefix;
         $padSeqType    = $padSeqFirst;
@@ -32,7 +32,7 @@
 
   } else {
 
-    if ( in_array ( $padSeqTag, ['make','keep','remove'] ) )
+    if ( padSeqPlay ( $padSeqTag ) )
       $padSeqTmp1  = $padSeqPrefix;
     else 
       $padSeqTmp1  = $padSeqTag; 

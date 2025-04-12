@@ -1,6 +1,6 @@
 <?php
 
-  function padSeqBoolHarshad ( $n ) {
+  function padSeqBoolHarshad ( $n, $p=0 ) {
 
     // calculate sum of digits
     $sum = 0;

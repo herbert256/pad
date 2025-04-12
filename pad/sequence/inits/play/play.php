@@ -12,10 +12,16 @@
   if ( $padSeqPull )
     return include 'sequence/inits/go/play.php';
 
-   include 'sequence/inits/play/check.php';
+  include 'sequence/inits/play/type.php';
+
+  if ( $padSeqSeq )
+    return;
+
+  include 'sequence/inits/play/check.php';
 
   $padSeqSeq   = '';
   $padSeqBuild = '';
+
   include 'sequence/inits/tag/sequence.php'; 
 
 ?>

@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckDecagonal ( $f, $n ) {
+  function padSeqCheckDecagonal ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/decagonal/bool.php' ) )
-      return padSeqBoolDecagonal ( $n );
+      return padSeqBoolDecagonal ( $n, $p );
 
     if ( file_exists ( 'sequence/types/decagonal/generated.php' ) ) 
       return in_array ( $n, PADdecagonal );

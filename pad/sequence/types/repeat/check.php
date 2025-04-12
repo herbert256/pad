@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckRepeat ( $f, $n ) {
+  function padSeqCheckRepeat ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/repeat/bool.php' ) )
-      return padSeqBoolRepeat ( $n );
+      return padSeqBoolRepeat ( $n, $p );
 
     if ( file_exists ( 'sequence/types/repeat/generated.php' ) ) 
       return in_array ( $n, PADrepeat );
@@ -14,7 +14,7 @@
 
     }
 
-    $text = padCode ( "{sequence repeat, from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
+    $text = padCode ( "{sequence repeat='$p', from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
     $arr  = explode ( ',', $text );
 
     return in_array ( $n, $arr );

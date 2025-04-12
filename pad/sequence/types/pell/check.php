@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckPell ( $f, $n ) {
+  function padSeqCheckPell ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/pell/bool.php' ) )
-      return padSeqBoolPell ( $n );
+      return padSeqBoolPell ( $n, $p );
 
     if ( file_exists ( 'sequence/types/pell/generated.php' ) ) 
       return in_array ( $n, PADpell );

@@ -15,6 +15,12 @@
   $nows ['xref'] ['text'] = 'Xref';
   $nows ['xref'] ['now']  = 'xref';
 
+  $nows ['regression'] ['text'] = 'Regression';
+  $nows ['regression'] ['now']  = 'regression';
+
+  $nows ['generate'] ['text'] = 'Generate';
+  $nows ['generate'] ['now']  = 'generate';
+
   $concepts ['sequences']        = 'Something that defines a sequence list';
   $concepts ['stores']           = 'A stored sequence list';
   $concepts ['actions']          = 'An operation executed on a sequence list';

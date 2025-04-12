@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckCeil ( $f, $n ) {
+  function padSeqCheckCeil ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/ceil/bool.php' ) )
-      return padSeqBoolCeil ( $n );
+      return padSeqBoolCeil ( $n, $p );
 
     if ( file_exists ( 'sequence/types/ceil/generated.php' ) ) 
       return in_array ( $n, PADceil );
@@ -14,7 +14,7 @@
 
     }
 
-    $text = padCode ( "{sequence ceil, from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
+    $text = padCode ( "{sequence ceil='$p', from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
     $arr  = explode ( ',', $text );
 
     return in_array ( $n, $arr );

@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckNegation ( $f, $n ) {
+  function padSeqCheckNegation ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/negation/bool.php' ) )
-      return padSeqBoolNegation ( $n );
+      return padSeqBoolNegation ( $n, $p );
 
     if ( file_exists ( 'sequence/types/negation/generated.php' ) ) 
       return in_array ( $n, PADnegation );

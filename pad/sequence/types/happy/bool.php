@@ -1,6 +1,6 @@
 <?php
 
-  function padSeqBoolHappy ($num) {
+  function padSeqBoolHappy ($num, $p=0) {
 
     $n = $num;
   

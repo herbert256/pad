@@ -17,6 +17,7 @@
     if ( in_array ( $padPrmName, ['make','keep','remove','flag'] ) and $padPrmValue and $padPrmValue !== TRUE ) {
       $padSeqPlay = $padPrmName;
       padSplit ( '|', $padPrmValue, $padSeqSeq, $padPrmValue );
+      $padSeqPlaySource = 'plays/inits1';
       include 'sequence/plays/add.php';     
       continue;
     }
@@ -28,6 +29,7 @@
 
     $padSeqSeq = $padPrmName;
 
+    $padSeqPlaySource = 'plays/inits2';
     include 'sequence/plays/add.php';
 
   }

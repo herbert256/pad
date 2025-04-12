@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckPowerful ( $f, $n ) {
+  function padSeqCheckPowerful ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/powerful/bool.php' ) )
-      return padSeqBoolPowerful ( $n );
+      return padSeqBoolPowerful ( $n, $p );
 
     if ( file_exists ( 'sequence/types/powerful/generated.php' ) ) 
       return in_array ( $n, PADpowerful );

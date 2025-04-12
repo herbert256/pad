@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckNot ( $f, $n ) {
+  function padSeqCheckNot ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/not/bool.php' ) )
-      return padSeqBoolNot ( $n );
+      return padSeqBoolNot ( $n, $p );
 
     if ( file_exists ( 'sequence/types/not/generated.php' ) ) 
       return in_array ( $n, PADnot );

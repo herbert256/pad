@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckIdentity ( $f, $n ) {
+  function padSeqCheckIdentity ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/identity/bool.php' ) )
-      return padSeqBoolIdentity ( $n );
+      return padSeqBoolIdentity ( $n, $p );
 
     if ( file_exists ( 'sequence/types/identity/generated.php' ) ) 
       return in_array ( $n, PADidentity );

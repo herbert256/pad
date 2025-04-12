@@ -3,7 +3,7 @@
 
   function padSeqStore ( $check ) {
 
-    return in_array ( $check, ['start','store','pull'] );
+    return in_array ( $check, ['start','store','pull','fixed'] );
 
   }
   
@@ -14,6 +14,13 @@
 
   }
   
+
+  function padSeqCheck ( $check ) {
+
+    return in_array ( $check, ['keep','remove','flag'] );
+
+  }
+
 
   function padSeqRandom ( $array, $count=1, $order=0, $dups=0 ) {
 

@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckPrime ( $f, $n ) {
+  function padSeqCheckPrime ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/prime/bool.php' ) )
-      return padSeqBoolPrime ( $n );
+      return padSeqBoolPrime ( $n, $p );
 
     if ( file_exists ( 'sequence/types/prime/generated.php' ) ) 
       return in_array ( $n, PADprime );

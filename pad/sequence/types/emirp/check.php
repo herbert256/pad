@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckEmirp ( $f, $n ) {
+  function padSeqCheckEmirp ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/emirp/bool.php' ) )
-      return padSeqBoolEmirp ( $n );
+      return padSeqBoolEmirp ( $n, $p );
 
     if ( file_exists ( 'sequence/types/emirp/generated.php' ) ) 
       return in_array ( $n, PADemirp );

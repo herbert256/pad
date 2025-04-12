@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckPalindrome ( $f, $n ) {
+  function padSeqCheckPalindrome ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/palindrome/bool.php' ) )
-      return padSeqBoolPalindrome ( $n );
+      return padSeqBoolPalindrome ( $n, $p );
 
     if ( file_exists ( 'sequence/types/palindrome/generated.php' ) ) 
       return in_array ( $n, PADpalindrome );

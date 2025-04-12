@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckCatalan ( $f, $n ) {
+  function padSeqCheckCatalan ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/catalan/bool.php' ) )
-      return padSeqBoolCatalan ( $n );
+      return padSeqBoolCatalan ( $n, $p );
 
     if ( file_exists ( 'sequence/types/catalan/generated.php' ) ) 
       return in_array ( $n, PADcatalan );

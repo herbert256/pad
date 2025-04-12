@@ -1,6 +1,6 @@
 <?php
 
-  function padSeqBoolSemiprime ($num) {
+  function padSeqBoolSemiprime ($num, $p=0) {
 
     $cnt = 0;
  

@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckSylvester ( $f, $n ) {
+  function padSeqCheckSylvester ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/sylvester/bool.php' ) )
-      return padSeqBoolSylvester ( $n );
+      return padSeqBoolSylvester ( $n, $p );
 
     if ( file_exists ( 'sequence/types/sylvester/generated.php' ) ) 
       return in_array ( $n, PADsylvester );

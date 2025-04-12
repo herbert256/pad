@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckStrong ( $f, $n ) {
+  function padSeqCheckStrong ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/strong/bool.php' ) )
-      return padSeqBoolStrong ( $n );
+      return padSeqBoolStrong ( $n, $p );
 
     if ( file_exists ( 'sequence/types/strong/generated.php' ) ) 
       return in_array ( $n, PADstrong );

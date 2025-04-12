@@ -1,6 +1,6 @@
 <?php
 
-  function padSeqBoolPronic($x) {
+  function padSeqBoolPronic($x, $p=0) {
  
     for ($i = 0;
          $i <= (sqrt($x));

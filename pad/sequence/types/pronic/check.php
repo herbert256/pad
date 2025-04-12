@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckPronic ( $f, $n ) {
+  function padSeqCheckPronic ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/pronic/bool.php' ) )
-      return padSeqBoolPronic ( $n );
+      return padSeqBoolPronic ( $n, $p );
 
     if ( file_exists ( 'sequence/types/pronic/generated.php' ) ) 
       return in_array ( $n, PADpronic );

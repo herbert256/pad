@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckEval ( $f, $n ) {
+  function padSeqCheckEval ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/eval/bool.php' ) )
-      return padSeqBoolEval ( $n );
+      return padSeqBoolEval ( $n, $p );
 
     if ( file_exists ( 'sequence/types/eval/generated.php' ) ) 
       return in_array ( $n, PADeval );
@@ -14,7 +14,7 @@
 
     }
 
-    $text = padCode ( "{sequence eval, from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
+    $text = padCode ( "{sequence eval='$p', from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
     $arr  = explode ( ',', $text );
 
     return in_array ( $n, $arr );

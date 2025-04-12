@@ -20,7 +20,8 @@
     if     ( padSeqPlay ( $padSeqType ) ) $padSeqPlay = $padSeqType;
     elseif ( padSeqPlay ( $padSeqTag  ) ) $padSeqPlay = $padSeqTag;
     else                                  $padSeqPlay = 'make';
-  
+
+    $padSeqPlaySource = 'inits/pull/parm'; 
     return include 'sequence/plays/extra.php';
   
   }

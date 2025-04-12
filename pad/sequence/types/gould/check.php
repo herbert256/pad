@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckGould ( $f, $n ) {
+  function padSeqCheckGould ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/gould/bool.php' ) )
-      return padSeqBoolGould ( $n );
+      return padSeqBoolGould ( $n, $p );
 
     if ( file_exists ( 'sequence/types/gould/generated.php' ) ) 
       return in_array ( $n, PADgould );

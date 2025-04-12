@@ -160,6 +160,9 @@
 
     $wrk = [];
     
+    if ( $prefix == 'padSeq' )
+      $wrk ['tag'] = $GLOBALS ['padOrg'] [  $GLOBALS['pad'] ] ?? '';
+
     foreach ( $pad as $key => $value )
       if ( str_starts_with ( $key, $prefix ) ) {
         unset ($pad[$key]);

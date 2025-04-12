@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckList ( $f, $n ) {
+  function padSeqCheckList ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/list/bool.php' ) )
-      return padSeqBoolList ( $n );
+      return padSeqBoolList ( $n, $p );
 
     if ( file_exists ( 'sequence/types/list/generated.php' ) ) 
       return in_array ( $n, PADlist );

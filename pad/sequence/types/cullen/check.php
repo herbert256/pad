@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckCullen ( $f, $n ) {
+  function padSeqCheckCullen ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/cullen/bool.php' ) )
-      return padSeqBoolCullen ( $n );
+      return padSeqBoolCullen ( $n, $p );
 
     if ( file_exists ( 'sequence/types/cullen/generated.php' ) ) 
       return in_array ( $n, PADcullen );

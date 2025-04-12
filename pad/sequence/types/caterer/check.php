@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckCaterer ( $f, $n ) {
+  function padSeqCheckCaterer ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/caterer/bool.php' ) )
-      return padSeqBoolCaterer ( $n );
+      return padSeqBoolCaterer ( $n, $p );
 
     if ( file_exists ( 'sequence/types/caterer/generated.php' ) ) 
       return in_array ( $n, PADcaterer );

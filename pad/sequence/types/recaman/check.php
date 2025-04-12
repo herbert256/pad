@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckRecaman ( $f, $n ) {
+  function padSeqCheckRecaman ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/recaman/bool.php' ) )
-      return padSeqBoolRecaman ( $n );
+      return padSeqBoolRecaman ( $n, $p );
 
     if ( file_exists ( 'sequence/types/recaman/generated.php' ) ) 
       return in_array ( $n, PADrecaman );
