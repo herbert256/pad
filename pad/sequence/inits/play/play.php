@@ -19,6 +19,12 @@
 
   include 'sequence/inits/play/check.php';
 
+  if ( ! $padSeqPull )
+    padSeqPull ( $padSeqPull );
+
+  if ( $padSeqPull )
+    return include 'sequence/inits/go/store.php';
+
   $padSeqSeq   = '';
   $padSeqBuild = '';
 
