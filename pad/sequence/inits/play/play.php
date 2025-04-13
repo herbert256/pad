@@ -19,7 +19,7 @@
 
   include 'sequence/inits/play/check.php';
 
-  if ( ! $padSeqPull )
+  if ( ! $padSeqPull ) 
     padSeqPull ( $padSeqPull );
 
   if ( $padSeqPull )

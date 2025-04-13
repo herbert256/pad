@@ -106,40 +106,24 @@
 {table}
   {demo} {reverse:sequence mySequence} {$sequence} {/reverse:sequence} {/demo}
   {demo} {reverse:action   mySequence} {$sequence} {/reverse:action} {/demo}
-  {demo} {reverse:make     mySequence} {$sequence} {/reverse:make} {/demo}
-  {demo} {reverse:keep     mySequence} {$sequence} {/reverse:keep} {/demo}
-  {demo} {reverse:remove   mySequence} {$sequence} {/reverse:remove} {/demo}
-  {demo} {reverse:flag     mySequence} {$sequence} {/reverse:flag} {/demo}
   {demo} {reverse:pull     mySequence} {$sequence} {/reverse:pull} {/demo}
 {/table}
 
 {table}
   {demo} {sequence:reverse mySequence} {$sequence} {/sequence:reverse} {/demo}
   {demo} {action:reverse   mySequence} {$sequence} {/action:reverse} {/demo}
-  {demo} {make:reverse     mySequence} {$sequence} {/make:reverse} {/demo}
-  {demo} {keep:reverse     mySequence} {$sequence} {/keep:reverse} {/demo}
-  {demo} {remove:reverse   mySequence} {$sequence} {/remove:reverse} {/demo}
-  {demo} {flag:reverse     mySequence} {$sequence} {/flag:reverse} {/demo}
   {demo} {pull:reverse     mySequence} {$sequence} {/pull:reverse} {/demo}
 {/table}
 
 {table}
   {demo} {mySequence:sequence reverse} {$sequence} {/mySequence:sequence} {/demo}
   {demo} {mySequence:action   reverse} {$sequence} {/mySequence:action} {/demo}
-  {demo} {mySequence:make     reverse} {$sequence} {/mySequence:make} {/demo}
-  {demo} {mySequence:keep     reverse} {$sequence} {/mySequence:keep} {/demo}
-  {demo} {mySequence:remove   reverse} {$sequence} {/mySequence:remove} {/demo}
-  {demo} {mySequence:flag     reverse} {$sequence} {/mySequence:flag} {/demo}
   {demo} {mySequence:pull     reverse} {$sequence} {/mySequence:pull} {/demo}
 {/table}
 
 {table}
   {demo} {sequence:mySequence reverse} {$sequence} {/sequence:mySequence} {/demo}
   {demo} {action:mySequence   reverse} {$sequence} {/action:mySequence} {/demo}
-  {demo} {make:mySequence     reverse} {$sequence} {/make:mySequence} {/demo}
-  {demo} {keep:mySequence     reverse} {$sequence} {/keep:mySequence} {/demo}
-  {demo} {remove:mySequence   reverse} {$sequence} {/remove:mySequence} {/demo}
-  {demo} {flag:mySequence     reverse} {$sequence} {/flag:mySequence} {/demo}
   {demo} {pull:mySequence     reverse} {$sequence} {/pull:mySequence} {/demo}
 {/table}
 

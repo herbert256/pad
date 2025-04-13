@@ -7,6 +7,8 @@
     if ( str_contains ( $padSeqParm, '.' ) ) $padSeqParm = doubleval ( $padSeqParm );
     else                                     $padSeqParm = intval    ( $padSeqParm );
 
+  include 'sequence/build/include.php';
+
   $padSeq = include 'sequence/build/call.php';
 
   if     ( $padSeqPlay == 'make'   and $padSeq === TRUE       ) $padSeq = $padSeqLoop;

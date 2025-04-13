@@ -1,42 +1,42 @@
 {table}
-{demo} {power 2, rows=4      } {$sequence} {/power} {/demo}
-{demo} {loop rows=4, power=2 } {$sequence} {/loop}  {/demo}
+{demo} {power 2, from=8, rows=4     } {$sequence} {/power} {/demo}
+{demo} {loop from=8, rows=4, power=2 } {$sequence} {/loop}  {/demo}
 {/table}
 
 {table}
-{demo} {loop rows=4, make='power|2' } {$sequence} {/loop}  {/demo}
-{demo} {power 2, rows=4, make       } {$sequence} {/power} {/demo}
-{demo} {make power=2, rows=4        } {$sequence} {/make} {/demo}
-{demo} {make:power 2, rows=4        } {$sequence} {/make:power} {/demo}
-{demo} {power:make 2, rows=4        } {$sequence} {/power:make} {/demo}
+{demo} {loop from=8, rows=4, make='power|2' } {$sequence} {/loop}  {/demo}
+{demo} {power 2, from=8, rows=4, make       } {$sequence} {/power} {/demo}
+{demo} {make power=2, from=8, rows=4       } {$sequence} {/make} {/demo}
+{demo} {make:power 2, from=8, rows=4       } {$sequence} {/make:power} {/demo}
+{demo} {power:make 2, from=8, rows=4       } {$sequence} {/power:make} {/demo}
 {/table}
 
 {table}
-{demo} {loop rows=4, keep='power|2' } {$sequence} {/loop}  {/demo}
-{demo} {power 2, rows=4, keep       } {$sequence} {/power} {/demo}
-{demo} {keep power=2, rows=4        } {$sequence} {/keep} {/demo}
-{demo} {keep:power 2, rows=4        } {$sequence} {/keep:power} {/demo}
-{demo} {power:keep 2, rows=4        } {$sequence} {/power:keep} {/demo}
+{demo} {loop from=8, rows=4, keep='power|2' } {$sequence} {/loop}  {/demo}
+{demo} {power 2, from=8, rows=4, keep       } {$sequence} {/power} {/demo}
+{demo} {keep power=2, from=8, rows=4       } {$sequence} {/keep} {/demo}
+{demo} {keep:power 2, from=8, rows=4       } {$sequence} {/keep:power} {/demo}
+{demo} {power:keep 2, from=8, rows=4       } {$sequence} {/power:keep} {/demo}
 {/table}
 
 {table}
-{demo} {loop rows=4, remove='power|2' } {$sequence} {/loop}  {/demo}
-{demo} {power 2, rows=4, remove       } {$sequence} {/power} {/demo}
-{demo} {remove power=2, rows=4        } {$sequence} {/remove} {/demo}
-{demo} {remove:power 2, rows=4        } {$sequence} {/remove:power} {/demo}
-{demo} {power:remove 2, rows=4        } {$sequence} {/power:remove} {/demo}
+{demo} {loop from=8, rows=4, remove='power|2' } {$sequence} {/loop}  {/demo}
+{demo} {power 2, from=8, rows=4, remove       } {$sequence} {/power} {/demo}
+{demo} {remove power=2, from=8, rows=4       } {$sequence} {/remove} {/demo}
+{demo} {remove:power 2, from=8, rows=4       } {$sequence} {/remove:power} {/demo}
+{demo} {power:remove 2, from=8, rows=4       } {$sequence} {/power:remove} {/demo}
 {/table}
 
 {table}
-{demo} {loop rows=4, flag='power|2' } {$sequence} {/loop}  {/demo}
-{demo} {power 2, rows=4, flag       } {$sequence} {/power} {/demo}
-{demo} {flag power=2, rows=4        } {$sequence} {/flag} {/demo}
-{demo} {flag:power 2, rows=4        } {$sequence} {/flag:power} {/demo}
-{demo} {power:flag 2, rows=4        } {$sequence} {/power:flag} {/demo}
+{demo} {loop from=8, rows=4, flag='power|2' } {$sequence} {/loop}  {/demo}
+{demo} {power 2, from=8, rows=4, flag       } {$sequence} {/power} {/demo} 
+{demo} {flag power=2, from=8, rows=4       } {$sequence} {/flag} {/demo}
+{demo} {flag:power 2, from=8, rows=4       } {$sequence} {/flag:power} {/demo}
+{demo} {power:flag 2, from=8, rows=4       } {$sequence} {/power:flag} {/demo}
 {/table}
 
 {table}
-{demo} {loop rows=16              } {/demo}
+{demo} {loop from=4, rows=12              } {/demo}
 {demo} {pull power=2              } {$sequence} {/pull}  {/demo}
 {demo} {default power=2           } {$sequence} {/default}  {/demo}
 {demo} {power 2, default          } {$sequence} {/power}  {/demo}
@@ -50,7 +50,7 @@
 {/table}
 
 {table}
-{demo} {loop rows=16                   } {/demo}
+{demo} {loop from=4, rows=12                   } {/demo}
 {demo} {pull make='power|2'            } {$sequence} {/pull}  {/demo}
 {demo} {pull make, power=2             } {$sequence} {/pull}  {/demo}
 {demo} {pull power=2, make             } {$sequence} {/pull}  {/demo}
@@ -76,7 +76,7 @@
 {/table}
 
 {table}
-{demo} {loop rows=16                   } {/demo}
+{demo} {loop from=4, rows=12                   } {/demo}
 {demo} {pull keep='power|2'            } {$sequence} {/pull}  {/demo}
 {demo} {pull keep, power=2             } {$sequence} {/pull}  {/demo}
 {demo} {pull power=2, keep             } {$sequence} {/pull}  {/demo}
@@ -102,7 +102,7 @@
 {/table}
 
 {table}
-{demo} {loop rows=16                     } {/demo}
+{demo} {loop from=4, rows=12                     } {/demo}
 {demo} {pull remove='power|2'            } {$sequence} {/pull}  {/demo}
 {demo} {pull remove, power=2             } {$sequence} {/pull}  {/demo}
 {demo} {pull power=2, remove             } {$sequence} {/pull}  {/demo}
@@ -128,7 +128,7 @@
 {/table}
 
 {table}
-{demo} {loop rows=16                   } {/demo}
+{demo} {loop from=4, rows=12                   } {/demo}
 {demo} {pull flag='power|2'            } {$sequence} {/pull}  {/demo}
 {demo} {pull flag, power=2             } {$sequence} {/pull}  {/demo}
 {demo} {pull power=2, flag             } {$sequence} {/pull}  {/demo}
