@@ -17,8 +17,7 @@
     'padSeqSeq'        => $padSeqSeq,
     'padSeqParm'       => $padPrmValue,
     'padSeqBuild'      => $padSeqBuild,
-    'padSeqPlay'       => $padSeqPlay,
-    'padSeqPlaySource' => $padSeqPlaySource
+    'padSeqPlay'       => $padSeqPlay
   ];
 
   if ( padSeqPlay ( $padSeqPlay ) ) 

@@ -14,7 +14,6 @@
 
           $padSeqPlays [$padK] ['padSeqBuild']       = padSeqBuild ( $padV ['padSeqSeq'], $padSeqInitValue );
           $padSeqPlays [$padK] ['padSeqPlay']        = $padSeqInitValue;
-          $padSeqPlays [$padK] ['padSeqPlaySource'] .= '|inits/check/tag';
 
           return;
 

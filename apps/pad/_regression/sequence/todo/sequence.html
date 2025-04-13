@@ -11,846 +11,6 @@
   <tr>
     <td style="vertical-align:top">
       <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>31..40<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>mySequence<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">mySequence</font><font color="red"></font>}</b>         <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b>   <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">pull </font><font color="red">mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sum </font><font color="red"><font color="black">'</font>31..40<font color="black">'</font>                    </font>}</b> <b>{<font color="green"><font color="red">$</font>sum</font>}</b> <b>{/<font color="blue">sum</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sum </font><font color="red">from=31<font color="black">,</font> to=40              </font>}</b> <b>{<font color="green"><font color="red">$</font>sum</font>}</b> <b>{/<font color="blue">sum</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">action </font><font color="red">sum<font color="black">,</font> <font color="black">'</font>31..40<font color="black">'</font>            </font>}</b> <b>{<font color="green"><font color="red">$</font>sum</font>}</b> <b>{/<font color="blue">action</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>sum </font><font color="red"><font color="black">'</font>31..40<font color="black">'</font>             </font>}</b> <b>{<font color="green"><font color="red">$</font>sum</font>}</b> <b>{/<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>sum</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>31..40<font color="black">'</font><font color="black">,</font> sum          </font>}</b> <b>{<font color="green"><font color="red">$</font>sum</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">sum<font color="black">,</font> <font color="black">'</font>31..40<font color="black">'</font>          </font>}</b> <b>{<font color="green"><font color="red">$</font>sum</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>31..40<font color="black">'</font><font color="black">,</font> action=<font color="black">'</font>sum<font color="black">'</font> </font>}</b> <b>{<font color="green"><font color="red">$</font>sum</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>31..40<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>mySequence<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">mySequence </font><font color="red">sum             </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">mySequence </font><font color="red">action=<font color="black">'</font>sum<font color="black">'</font>    </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>sum</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>sum</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sum </font><font color="red">mySequence             </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">sum</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sum</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">sum</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">action </font><font color="red">mySequence<font color="black">,</font> sum     </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">action</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>mySequence </font><font color="red">sum      </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">action </font><font color="red">sum<font color="black">,</font> mySequence     </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">action</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>sum </font><font color="red">mySequence      </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>sum</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>11..40<font color="black">'</font><font color="black">,</font> action=<font color="black">'</font>shift<font color="black">|</font>2<font color="black">'</font>   </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>11..40<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>mySequence<font color="black">'</font> </font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">mySequence </font><font color="red">action=<font color="black">'</font>shift<font color="black">|</font>2<font color="black">'</font>           </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->11 12<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">action </font><font color="red">shift<font color="black">,</font> mySequence<font color="black">,</font> 2       </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">action</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->13 14<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">action </font><font color="red">mySequence<font color="black">,</font> shift<font color="black">,</font> 2       </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">action</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->15 16<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>shift </font><font color="red">2                    </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>shift</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->17 18<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>shift </font><font color="red">mySequence<font color="black">,</font> 2          </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>shift</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->19 20<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">shift </font><font color="red">mySequence<font color="black">,</font> 2                 </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">shift</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">shift</font><font color="black"><b>:</b></font>mySequence </font><font color="red">2                    </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">shift</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->23 24<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>mySequence </font><font color="red">shift<font color="black">,</font> 2          </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->25 26<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>31..40<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>mySequence<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>sequence</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>pull</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>action </font><font color="red">sum       </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>action</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>keep </font><font color="red">even      </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>keep</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->32 34 36 38 40<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>remove </font><font color="red">even      </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>remove</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->31 33 35 37 39<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make </font><font color="red">add<font color="black">,</font> 3    </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->32 33 34 35 36 37 38 39 40 41<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make </font><font color="red">add=3     </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->34 35 36 37 38 39 40 41 42 43<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>mySequence </font><font color="red">sum       </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>mySequence </font><font color="red">even      </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->32 34 36 38 40<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">remove</font><font color="black"><b>:</b></font>mySequence </font><font color="red">even      </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">remove</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->31 33 35 37 39<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence </font><font color="red">add=3    </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->34 35 36 37 38 39 40 41 42 43<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence </font><font color="red">add<font color="black">,</font>3    </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->34 35 36 37 38 39 40 41 42 43<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">mySequence </font><font color="red">sequence         </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">mySequence </font><font color="red">store            </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">mySequence </font><font color="red">action<font color="black">,</font>  sum     </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">mySequence </font><font color="red">keep<font color="black">,</font>    even    </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->32 34 36 38 40<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">mySequence </font><font color="red">remove<font color="black">,</font>  even    </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->31 33 35 37 39<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">mySequence </font><font color="red">make<font color="black">,</font>    add=3  </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->34 35 36 37 38 39 40 41 42 43<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">mySequence </font><font color="red">make<font color="black">,</font>    add<font color="black">,</font>3  </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->34 35 36 37 38 39 40 41 42 43<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySequence         </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">pull </font><font color="red">mySequence         </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->31 32 33 34 35 36 37 38 39 40<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">action </font><font color="red">mySequence<font color="black">,</font> sum    </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">action</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">keep </font><font color="red">mySequence<font color="black">,</font> even   </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">keep</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->32 34 36 38 40<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">remove </font><font color="red">mySequence<font color="black">,</font> even   </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">remove</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->31 33 35 37 39<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">make </font><font color="red">mySequence<font color="black">,</font> add<font color="black">,</font>3 </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->34 35 36 37 38 39 40 41 42 43<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">make </font><font color="red">mySequence<font color="black">,</font> add=3 </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->34 35 36 37 38 39 40 41 42 43<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sum</font><font color="black"><b>:</b></font>action </font><font color="red">mySequence       </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">sum</font><font color="black"><b>:</b></font>action</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">even</font><font color="black"><b>:</b></font>keep </font><font color="red">mySequence      </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">even</font><font color="black"><b>:</b></font>keep</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->32 34 36 38 40<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">even</font><font color="black"><b>:</b></font>remove </font><font color="red">mySequence      </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">even</font><font color="black"><b>:</b></font>remove</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->31 33 35 37 39<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">add</font><font color="black"><b>:</b></font>make </font><font color="red">mySequence<font color="black">,</font> 3    </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">add</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->34 35 36 37 38 39 40 41 42 43<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sum</font><font color="black"><b>:</b></font>mySequence </font><font color="red">action       </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">sum</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">even</font><font color="black"><b>:</b></font>mySequence </font><font color="red">keep         </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">even</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->32 34 36 38 40<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">even</font><font color="black"><b>:</b></font>mySequence </font><font color="red">remove       </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">even</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->31 33 35 37 39<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">add</font><font color="black"><b>:</b></font>mySequence </font><font color="red">make<font color="black">,</font> 3      </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">add</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->34 35 36 37 38 39 40 41 42 43<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sum </font><font color="red">action<font color="black">,</font> mySequence     </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">sum</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>even </font><font color="red">keep<font color="black">,</font>   mySequence     </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>even</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->32 34 36 38 40<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>even </font><font color="red">remove<font color="black">,</font> mySequence     </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>even</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->31 33 35 37 39<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>add </font><font color="red">make<font color="black">,</font>   mySequence<font color="black">,</font> 3  </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>add</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->34 35 36 37 38 39 40 41 42 43<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sum </font><font color="red">mySequence<font color="black">,</font> action    </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue">sum</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->355<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>even </font><font color="red">mySequence<font color="black">,</font> keep      </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>even</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->32 34 36 38 40<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>even </font><font color="red">mySequence<font color="black">,</font> remove    </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>even</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->31 33 35 37 39<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>add </font><font color="red">mySequence<font color="black">,</font> make<font color="black">,</font> 3   </font>}</b> <b>{<font color="green"><font color="red">$</font>mySequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>add</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->34 35 36 37 38 39 40 41 42 43<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
       <pre><code style="color: #000000"><b>{<font color="blue">add </font><font color="red">3<font color="black">,</font> from=31<font color="black">,</font> to=40                 </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">add</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
     </td>
     <td style="vertical-align:top">
@@ -950,7 +110,7 @@
   <tr>
     <td style="vertical-align:top">
       <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">make </font><font color="red">mySequence<font color="black">,</font> add<font color="black">,</font> 3           </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">make </font><font color="red">mySequence<font color="black">,</font> add=3           </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
     </td>
     <td style="vertical-align:top">
       <code><span style="color: #000000"><!-- START DEMO RESULT -->34 35 36 37 38 39 40 41 42 43<!-- END DEMO RESULT --></span></code>
@@ -968,7 +128,7 @@
   <tr>
     <td style="vertical-align:top">
       <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>make </font><font color="red">mySequence<font color="black">,</font> add<font color="black">,</font> 3       </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>make </font><font color="red">mySequence<font color="black">,</font> add=3       </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
     </td>
     <td style="vertical-align:top">
       <code><span style="color: #000000"><!-- START DEMO RESULT -->34 35 36 37 38 39 40 41 42 43<!-- END DEMO RESULT --></span></code>
@@ -986,7 +146,7 @@
   <tr>
     <td style="vertical-align:top">
       <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence </font><font color="red">add<font color="black">,</font> 3              </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence </font><font color="red">add=3              </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
     </td>
     <td style="vertical-align:top">
       <code><span style="color: #000000"><!-- START DEMO RESULT -->34 35 36 37 38 39 40 41 42 43<!-- END DEMO RESULT --></span></code>
@@ -995,10 +155,10 @@
   <tr>
     <td style="vertical-align:top">
       <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make </font><font color="red">add<font color="black">,</font> 3              </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make </font><font color="red">add=3              </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
     </td>
     <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->32 33 34 35 36 37 38 39 40 41<!-- END DEMO RESULT --></span></code>
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->34 35 36 37 38 39 40 41 42 43<!-- END DEMO RESULT --></span></code>
     </td>
   </tr>
   <tr>
@@ -1133,7 +293,7 @@
   <tr>
     <td style="vertical-align:top">
       <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">make </font><font color="red">mySequence<font color="black">,</font> add<font color="black">,</font> 3<font color="black">,</font> even          </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">make </font><font color="red">mySequence<font color="black">,</font> add=3<font color="black">,</font> even          </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
     </td>
     <td style="vertical-align:top">
       <code><span style="color: #000000"><!-- START DEMO RESULT -->34 36 36 38 38 40 40 42 42 44<!-- END DEMO RESULT --></span></code>
@@ -1151,7 +311,7 @@
   <tr>
     <td style="vertical-align:top">
       <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>make </font><font color="red">mySequence<font color="black">,</font> add<font color="black">,</font> 3<font color="black">,</font> even      </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>make </font><font color="red">mySequence<font color="black">,</font> add=3<font color="black">,</font> even      </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
     </td>
     <td style="vertical-align:top">
       <code><span style="color: #000000"><!-- START DEMO RESULT -->34 36 36 38 38 40 40 42 42 44<!-- END DEMO RESULT --></span></code>
@@ -1169,7 +329,7 @@
   <tr>
     <td style="vertical-align:top">
       <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence </font><font color="red">add<font color="black">,</font> 3<font color="black">,</font> even             </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence </font><font color="red">add=3<font color="black">,</font> even             </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
     </td>
     <td style="vertical-align:top">
       <code><span style="color: #000000"><!-- START DEMO RESULT -->34 36 36 38 38 40 40 42 42 44<!-- END DEMO RESULT --></span></code>
@@ -1178,10 +338,10 @@
   <tr>
     <td style="vertical-align:top">
       <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make </font><font color="red">add<font color="black">,</font> 3<font color="black">,</font> even             </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make </font><font color="red">add=3<font color="black">,</font> even             </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
     </td>
     <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->32 34 34 36 36 38 38 40 40 42<!-- END DEMO RESULT --></span></code>
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->34 36 36 38 38 40 40 42 42 44<!-- END DEMO RESULT --></span></code>
     </td>
   </tr>
   <tr>
@@ -1316,7 +476,7 @@
   <tr>
     <td style="vertical-align:top">
       <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">make </font><font color="red">mySequence<font color="black">,</font> add<font color="black">,</font> 3<font color="black">,</font> even<font color="black">,</font> sum          </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">make </font><font color="red">mySequence<font color="black">,</font> add=3<font color="black">,</font> even<font color="black">,</font> sum          </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
     </td>
     <td style="vertical-align:top">
       <code><span style="color: #000000"><!-- START DEMO RESULT -->390<!-- END DEMO RESULT --></span></code>
@@ -1334,7 +494,7 @@
   <tr>
     <td style="vertical-align:top">
       <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>make </font><font color="red">mySequence<font color="black">,</font> add<font color="black">,</font> 3<font color="black">,</font> even<font color="black">,</font> sum      </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>make </font><font color="red">mySequence<font color="black">,</font> add=3<font color="black">,</font> even<font color="black">,</font> sum      </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
     </td>
     <td style="vertical-align:top">
       <code><span style="color: #000000"><!-- START DEMO RESULT -->390<!-- END DEMO RESULT --></span></code>
@@ -1352,7 +512,7 @@
   <tr>
     <td style="vertical-align:top">
       <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence </font><font color="red">add<font color="black">,</font> 3<font color="black">,</font> even<font color="black">,</font> sum             </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence </font><font color="red">add=3<font color="black">,</font> even<font color="black">,</font> sum             </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
     </td>
     <td style="vertical-align:top">
       <code><span style="color: #000000"><!-- START DEMO RESULT -->390<!-- END DEMO RESULT --></span></code>
@@ -1361,10 +521,10 @@
   <tr>
     <td style="vertical-align:top">
       <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make </font><font color="red">add<font color="black">,</font> 3<font color="black">,</font> even<font color="black">,</font> sum             </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make </font><font color="red">add=3<font color="black">,</font> even<font color="black">,</font> sum             </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
     </td>
     <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->370<!-- END DEMO RESULT --></span></code>
+      <code><span style="color: #000000"><!-- START DEMO RESULT -->390<!-- END DEMO RESULT --></span></code>
     </td>
   </tr>
   <tr>
@@ -1383,123 +543,6 @@
     </td>
     <td style="vertical-align:top">
       <code><span style="color: #000000"><!-- START DEMO RESULT -->390<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>31..40<font color="black">'</font><font color="black">,</font> make<font color="black">,</font> even</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->32 32 34 34 36 36 38 38 40 40<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>31..40<font color="black">'</font><font color="black">,</font> keep<font color="black">,</font> even</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->32 34 36 38 40<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>31..40<font color="black">'</font><font color="black">,</font> remove<font color="black">,</font> even</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->31 33 35 37 39<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>31..40<font color="black">'</font><font color="black">,</font> make<font color="black">,</font> even<font color="black">,</font> make<font color="black">,</font> add=3</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->35 35 37 37 39 39 41 41 43 43<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>31..40<font color="black">'</font><font color="black">,</font> keep<font color="black">,</font> even<font color="black">,</font> make<font color="black">,</font> add=3</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->35 37 39 41 43<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>31..40<font color="black">'</font><font color="black">,</font> remove<font color="black">,</font> even<font color="black">,</font> make<font color="black">,</font> add=3</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->34 36 38 40 42<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>31..40<font color="black">'</font><font color="black">,</font> make<font color="black">,</font> even<font color="black">,</font> make=<font color="black">'</font>add<font color="black">|</font>3<font color="black">'</font></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->35 35 37 37 39 39 41 41 43 43<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>31..40<font color="black">'</font><font color="black">,</font> keep<font color="black">,</font> even<font color="black">,</font> make=<font color="black">'</font>add<font color="black">|</font>3<font color="black">'</font></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->35 37 39 41 43<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>31..40<font color="black">'</font><font color="black">,</font> remove<font color="black">,</font> even<font color="black">,</font> make=<font color="black">'</font>add<font color="black">|</font>3<font color="black">'</font></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->34 36 38 40 42<!-- END DEMO RESULT --></span></code>
     </td>
   </tr>
 </table>

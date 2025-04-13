@@ -14,7 +14,7 @@
     elseif ( $padPrmName == $padSeqSeqSave         ) continue;
     elseif ( $padPrmKind <> 'option'               ) continue;
 
-    if ( in_array ( $padPrmName, ['make','keep','remove','flag'] ) and $padPrmValue and $padPrmValue !== TRUE ) {
+    if ( padSeqPlay ( $padPrmName ) and $padPrmValue and $padPrmValue !== TRUE ) {
       $padSeqPlay = $padPrmName;
       padSplit ( '|', $padPrmValue, $padSeqSeq, $padPrmValue );
       $padSeqPlaySource = 'plays/inits1';
@@ -22,7 +22,7 @@
       continue;
     }
 
-    if ( in_array ( $padPrmName, ['make','keep','remove','flag'] ) ) {
+    if ( padSeqPlay ( $padPrmName ) ) {
       $padSeqPlay = $padPrmName;
       continue;
     }
