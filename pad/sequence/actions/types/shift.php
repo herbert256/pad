@@ -5,7 +5,7 @@
 
   if ( $padSeqPull )
     if ( count($padSeqStore [$padSeqPull]) > $padSeqActionCnt )
-      if ( $padSeqActionName == 'shift')
+      if ( $padSeqAction == 'shift')
         $padSeqStore [$padSeqPull] = array_slice($padSeqStore [$padSeqPull], $padSeqActionCnt);
       else
         $padSeqStore [$padSeqPull] = array_slice($padSeqStore [$padSeqPull], 0, $padSeqActionCnt * -1);
@@ -13,7 +13,7 @@
       $padSeqStore [$padSeqPull] = [];
 
   if ( count($padSeqResult) > $padSeqActionCnt )
-    if ( $padSeqActionName == 'shift')
+    if ( $padSeqAction == 'shift')
       return array_slice ( $padSeqResult, 0, $padSeqActionCnt );
     else 
       return array_slice ( $padSeqResult, $padSeqActionCnt * -1 );

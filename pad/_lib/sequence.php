@@ -1,6 +1,115 @@
 <?php
 
 
+  function padSeqParm ( $option ) {
+
+    if ( $option and $option !== TRUE and ! $GLOBALS ['padSeqParm'] ) 
+      return $option;
+    else
+      return $GLOBALS ['padSeqParm'];
+
+  }
+
+
+  function padSeqSequence ( &$name, &$parm ) {
+
+    global $padSeqStore, $padSeqDone, $padSeqPrefix, $padSeqTag, $padSeqParm;
+    global $padSeqFirst, $padSeqSecond, $padSeqFirstParm, $padSeqSecondParm;
+
+    if ( $padSeqPrefix and file_exists ( "sequence/types/$padSeqPrefix" ) ) {
+
+      $name = $padSeqPrefix;
+    
+    } elseif ( file_exists ( "sequence//types/$padSeqTag" ) ) {
+
+      $name = $padSeqTag;
+    
+    } elseif ( $padSeqFirst and file_exists ( "sequence/types/$padSeqFirst" ) ) {
+
+      $padSeqDone [] = $padSeqFirst; 
+
+      $name = $padSeqFirst;
+      $parm = $padSeqFirstParm;
+
+    } elseif ( $padSeqSecond and file_exists ( "sequence/types/$padSeqSecond" ) ) {
+
+      $padSeqDone [] = $padSeqSecond; 
+
+      $name = $padSeqSecond;
+      $parm = $padSeqSecondParm;
+    
+    }
+
+  }
+
+
+  function padSeqAction ( &$name, &$parm ) {
+
+    global $padSeqStore, $padSeqDone, $padSeqPrefix, $padSeqTag, $padSeqParm;
+    global $padSeqFirst, $padSeqSecond, $padSeqFirstParm, $padSeqSecondParm;
+
+    if ( $padSeqPrefix and file_exists ( "sequence/actions/types/$padSeqPrefix.php" ) ) {
+
+      $name = $padSeqPrefix;
+    
+    } elseif ( file_exists ( "sequence/actions/types/$padSeqTag.php" ) ) {
+
+      $name = $padSeqTag;
+    
+    } elseif ( $padSeqFirst and file_exists ( "sequence/actions/types/$padSeqFirst.php" ) ) {
+
+      $padSeqDone [] = $padSeqFirst; 
+
+      $name = $padSeqFirst;
+      $parm = $padSeqFirstParm;
+
+    } elseif ( $padSeqSecond and file_exists ( "sequence/actions/types/$padSeqSecond.php" ) ) {
+
+      $padSeqDone [] = $padSeqSecond; 
+
+      $name = $padSeqSecond;
+      $parm = $padSeqSecondParm;
+    
+    } 
+
+  }
+
+  function padSeqPull ( &$pull ) {
+
+    global $padSeqPullName, $padLastPush, $padSeqStore, $padSeqFirst, $padSeqSecond, $padSeqDone, $padSeqPrefix, $padSeqTag;
+
+    if ( $padSeqFirst and isset ( $padSeqStore [ $padSeqFirst ] ) ) {
+
+      $padSeqDone [] = $padSeqFirst; 
+      $pull = $padSeqFirst;
+
+    } elseif ( $padSeqSecond and isset ( $padSeqStore [ $padSeqSecond ] ) ) {
+
+      $padSeqDone [] = $padSeqSecond; 
+      $pull = $padSeqSecond;
+    
+    } elseif ( $padSeqSecond and isset ( $padSeqStore [ $padSeqPrefix ] ) ) {
+
+      $pull = $padSeqPrefix;
+    
+    } elseif ( isset ( $padSeqStore [ $padSeqTag ] ) ) {
+
+      $pull = $padSeqTag;
+    
+    } elseif ( $padSeqPullName ) {
+
+      $pull           = $padSeqPullName;
+      $padSeqPullName = '';    
+
+    } elseif ( $padLastPush ) {
+
+      $pull = $padLastPush;
+
+    } 
+
+  }
+
+
   function padSeqStore ( $check ) {
 
     return in_array ( $check, ['start','store','pull','fixed'] );

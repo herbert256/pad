@@ -1,13 +1,9 @@
 <?php
 
-  if ( in_array ( $padSeqType, ['pull','sequence'] ) )
-    if ( isset ( $padSeqStore [$padSeqTag] ) )
-      $padSeqPull = $padSeqTag;
+  padSeqPull ($padSeqPull);
 
-  if ( in_array ( $padSeqTag, ['pull','sequence'] ) )
-    if ( isset ( $padSeqStore [$padSeqPrefix] ) ) 
-      $padSeqPull = $padSeqPrefix;
-    
+  include 'sequence/inits/type/pull/check.php';
+  
   if ( $padSeqPull )
     include 'sequence/inits/go/store.php';
 

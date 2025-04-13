@@ -1,6 +1,6 @@
 <?php
 
-  $padSeqSetName = $padSeqActionName;
+  $padSeqSetName = $padSeqAction;
 
   include 'sequence/inits/go/pull.php';
 
@@ -9,7 +9,7 @@
 
   $padSeqResult = $padSeqStore [$padSeqPull];
 
-  $padSeqInfo ["start/$padSeqInitType/action"] [] = $padSeqActionName;
+  $padSeqInfo ["start/$padSeqInitType/action"] [] = $padSeqAction;
 
   include 'sequence/actions/go.php';
   

@@ -1,30 +1,30 @@
 <?php
 
-  $padSeqActionName = '';
+  $padSeqAction = '';
 
   if ( file_exists ( "sequence/actions/types/$padSeqTag.php" ) )
 
-    $padSeqActionName = $padSeqTag;
+    $padSeqAction = $padSeqTag;
 
   elseif ( file_exists ( "sequence/actions/types/$padSeqPrefix.php" ) )
 
-    $padSeqActionName = $padSeqPrefix;
+    $padSeqAction = $padSeqPrefix;
 
   elseif ( file_exists ( "sequence/actions/types/$padSeqFirst.php" ) ) {
 
-    $padSeqActionName = $padSeqFirst ;
+    $padSeqAction = $padSeqFirst ;
     $padSeqParm       = $padSeqFirstParm;
     $padSeqDone []    = $padSeqFirst;
 
   } elseif ( file_exists ( "sequence/actions/types/$padSeqSecond.php" ) ) {
 
-    $padSeqActionName = $padSeqSecond ;
+    $padSeqAction = $padSeqSecond ;
     $padSeqParm       = $padSeqSecondParm;
     $padSeqDone []    = $padSeqSecond;
 
   }
 
-  if ( $padSeqActionName ) {
+  if ( $padSeqAction ) {
     $padSeqPull       = $padSeqPullName;
     $padSeqPullName   = '';
   }

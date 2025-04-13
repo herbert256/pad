@@ -1,7 +1,7 @@
 <?php
 
   $padSeqPull       = $padSeqParm1;
-  $padSeqActionName = $padSeqSeq ;
+  $padSeqAction = $padSeqSeq ;
   $padSeqDone []    = $padSeqSeq;
 
   $padSeqSeq  = '';

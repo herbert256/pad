@@ -23,6 +23,7 @@
   elseif ( $padSeqPlay == 'flag'   and $padSeq == $padSeqLoop ) $padSeq = 1;
   elseif ( $padSeqPlay == 'flag'   and $padSeq <> $padSeqLoop ) $padSeq = 0;
 
-  $padSeqInfo ['plays'] [] = "$padSeqPlay/$padSeqSeq";
+  if ( ! isset ( $padSeqInfo ['plays'] ) or ! in_array ( "$padSeqPlay/$padSeqSeq", $padSeqInfo ['plays'] ) )
+    $padSeqInfo ['plays'] [] = "$padSeqPlay/$padSeqSeq";
 
 ?>

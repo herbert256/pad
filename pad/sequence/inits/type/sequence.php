@@ -1,29 +1,20 @@
 <?php
 
-  if ( $padSeqPrefix and $padSeqTag == 'sequence' and file_exists ( "sequence/types/$padSeqPrefix" ) )  {
-    $padSeqSeq = $padSeqPrefix;
-    return 'sequence/inits/go/sequence.php';
+  include 'sequence/inits/type/sequence/check.php';
+ 
+  if ( ! $padSeqPrefix and isset ( $padSeqStore [$padSeqTag] ) ) {
+    $padSeqPull = $padSeqTag;
+    return include 'sequence/inits/go/store.php';
   }
 
-  if ( $padSeqPrefix ) {
+  if ( isset ( $padSeqStore [$padSeqPrefix] ) and $padSeqTag == 'sequence' ) {
+    $padSeqPull = $padSeqPrefix;
+    return include 'sequence/inits/go/store.php';
+  }
 
-    if ( isset ( $padSeqStore [$padSeqPrefix] ) and $padSeqTag == 'sequence' ) {
-      $padSeqPull = $padSeqPrefix;
-      return include 'sequence/inits/go/store.php';
-    }
-
-    if ( isset ( $padSeqStore [$padSeqTag] ) and $padSeqPrefix == 'sequence' ) {
-      $padSeqPull = $padSeqTag;
-      return include 'sequence/inits/go/store.php';
-    }
-
-  } else {
-
-    if ( isset ( $padSeqStore [$padSeqTag] ) ) {
-      $padSeqPull = $padSeqTag;
-      return include 'sequence/inits/go/store.php';
-    }
-
+  if ( isset ( $padSeqStore [$padSeqTag] ) and $padSeqPrefix == 'sequence' ) {
+    $padSeqPull = $padSeqTag;
+    return include 'sequence/inits/go/store.php';
   }
 
   $padPrmValue = $padSeqParm;
@@ -67,9 +58,10 @@
 
   }
 
-  $padSeqPlaySource = 'inits/type/sequence';
+  if ( $padSeqPull and $padSeqSeq and $padSeqPlay ) 
+    return include 'sequence/plays/extra.php';
 
-  if ( $padSeqPull and $padSeqPlay ) include 'sequence/plays/extra.php';
-  else                               include 'sequence/inits/go/sequence.php';
-
+  if ( $padSeqPull ) 
+    return include 'sequence/inits/go/store.php';
+  
 ?>

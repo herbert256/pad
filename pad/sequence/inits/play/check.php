@@ -16,9 +16,7 @@
     $padPrmValue = $padSeqFirstParm;
   }
 
-  if ( $padSeqPlay ) {
-    $padSeqPlaySource = 'inits/play/check';
+  if ( $padSeqPlay )
     include 'sequence/plays/add.php'; 
-  }
 
 ?>

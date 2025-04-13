@@ -5,8 +5,8 @@
 
   $padSeqActionList = padExplode ( $padPrmValue, '|' );
 
-  if ( $padPrmName == 'action' ) $padSeqActionName = array_shift ( $padSeqActionList );
-  else                           $padSeqActionName = $padPrmName;     
+  if ( $padPrmName == 'action' ) $padSeqAction = array_shift ( $padSeqActionList );
+  else                           $padSeqAction = $padPrmName;     
 
   $padSeqActionParm = $padSeqActionList [0] ?? '';
 
