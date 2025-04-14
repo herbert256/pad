@@ -2,7 +2,7 @@
 
   if ( $padSeqInitType == 'tag' and padSeqPlay ($padSeqInitValue ) and $padSeqInitValue <> 'make' )
 
-    if ( in_array ( $padSeqBuild, ['start','store','pull'] ) ) {
+    if ( padSeqStore ( $padSeqBuild ) ) {
 
       foreach ( $padSeqPlays as $padSeqPlay )
         if ( $padSeqPlay ['padSeqPlay'] == $padSeqInitValue )
