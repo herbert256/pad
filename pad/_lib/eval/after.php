@@ -52,7 +52,7 @@
         } else {
 
           $result[$k][1] = 'VAL';
-          $result[$k][0] = constant ( $one[0] );
+          $result[$k][0] = padConstant ( $one[0] );
 
         }
 

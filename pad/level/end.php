@@ -34,6 +34,6 @@
   $pad--;
 
   if ( $pad >= 0 )
-    padPad ( $padResult[$pad+1] );
+    padLevel ( $padResult[$pad+1] );
 
 ?>

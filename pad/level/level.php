@@ -3,22 +3,22 @@
   if ( $padRestart )
     return include 'start/enter/restart.php';    
     
-  $padEnd [$pad] = strpos ( $padOut [$pad], '}' );
-
+  padLevelEnd ();
   if ( $padEnd [$pad] === FALSE )
     return include 'level/end.php';
 
-  $padStart [$pad] = strrpos ( $padOut [$pad], '{', $padEnd [$pad] - strlen ( $padOut [$pad] ) );
-  
+  padLevelStart ();
   if ( $padStart [$pad] === FALSE ) 
-    return include 'level/noOpen.php';
+    return padLevelNoOpen ();
 
-  $padBetween = substr ( $padOut [$pad], $padStart [$pad] + 1, $padEnd [$pad] - $padStart [$pad] - 1 );
-  $padOrgSet  = $padBetween;
+  padLevelBetween ();
   include 'level/between.php';
 
+  if ( $padFirst == '/' ) 
+    return padError ( "Closing tag found without an open tag: {" . $padBetween . "}" );
+
   if ( ctype_space ( $padFirst ) ) 
-    return padIgnore ('first char');
+    return padLevelNoSingle ();
   
   if ( $pad and $padLvlFun [$pad-1] )
     include 'level/function.php';
@@ -34,7 +34,8 @@
       return include 'options/optional.php';
 
   if ( ! $padTypeResult ) 
-    return padIgnore ('type');
+    if ( $padPairSet ) return padLevelNoPair   ();
+    else               return padLevelNoSingle ();
 
   include 'level/start.php';
  

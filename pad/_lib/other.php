@@ -11,6 +11,16 @@
   }
 
 
+  function padConstant ( $parm ) {
+
+    if ( defined ( $parm ) )
+      return constant ( $parm );
+    else
+      return $parm;
+
+  }
+
+
   function padOutput ( $output ) {
 
     global $padGo, $padPage;
@@ -672,18 +682,6 @@
   }
 
 
-  function padPad ($value) {
-
-    global $padOut, $padStart, $padEnd, $pad;
-
-    $padOut [$pad] = 
-        substr ( $padOut [$pad], 0, $padStart [$pad] )
-      . $value
-      . substr ( $padOut [$pad],    $padEnd [$pad]+1 );
-    
-  }
-  
-
   function padZip ($data) {
 
     return gzencode($data);
@@ -888,17 +886,6 @@
       if ( isset ( $GLOBALS [$key] ) )
         unset ( $GLOBALS [$key] );
 
-  }
-
-
-  function padIgnore ( $info ) {
-
-    global $padBetween;
-
-    padPad ( '&open;' . $padBetween . '&close;' );
-
-    return FALSE;
-    
   }
 
 

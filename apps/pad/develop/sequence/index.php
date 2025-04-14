@@ -1,5 +1,7 @@
 <?php
- 
+
+  set_time_limit ( 300 );
+
   include APP . 'develop/sequence/clean.php';
   include APP . 'develop/sequence/actions.php';
 

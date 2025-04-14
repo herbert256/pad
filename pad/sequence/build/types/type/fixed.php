@@ -9,7 +9,10 @@
 
   $padSeqTry = PHP_INT_MAX;
 
-  $padSeqFixed = array_values ( $padSeqFixed );
+  if ( is_array($padSeqFixed))
+    $padSeqFixed = array_values ( $padSeqFixed );
+  else
+    $padSeqFixed = [];
 
   foreach ( $padSeqFixed as $padSeqKey => $padSeqLoop ) {
 

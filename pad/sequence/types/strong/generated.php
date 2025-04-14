@@ -1,0 +1,1 @@
+<?php const PADstrong=[1,2,145]; ?>

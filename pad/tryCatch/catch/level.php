@@ -3,7 +3,7 @@
   $pad--;
 
   if ( $pad >= 0 )
-    padPad ( '' );
+    padLevel ( '' );
 
   return '';
 

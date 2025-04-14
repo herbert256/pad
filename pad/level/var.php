@@ -39,6 +39,6 @@
     foreach ( $padDataDefaultEnd as $padOptOne )
       $padVal = padEval ( $padOptOne, $padVal );
 
-  padPad ( $padVal );
+  padLevel ( $padVal );
 
 ?>
