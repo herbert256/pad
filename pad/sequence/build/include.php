@@ -1,5 +1,11 @@
 <?php
 
+   if ( file_exists ( "sequence/types/$padSeqSeq/bool.php") ) 
+     include_once "sequence/types/$padSeqSeq/bool.php";
+ 
+   if ( file_exists ( "sequence/types/$padSeqSeq/function.php") ) 
+     include_once "sequence/types/$padSeqSeq/function.php";
+
   if ( $padSeqBuild == 'bool' or $padSeqBuild == 'function' or $padSeqBuild == 'check' ) 
     include_once "sequence/types/$padSeqSeq/$padSeqBuild.php";
 

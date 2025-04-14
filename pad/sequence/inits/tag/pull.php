@@ -13,7 +13,7 @@
   
     $padSeqPull = $padSeqParm;
 
-  elseif ( $padLastPush )
+  elseif ( $padLastPush ) 
 
     $padSeqPull = $padLastPush;
 

@@ -16,6 +16,8 @@
     'padSeqPlay'  => $padSeqPlay
   ];
 
+  $padSeqPlayKey = array_key_last ( $padSeqPlays );
+  
   $padSeqDone [] = $padSeqSeq;
 
 ?>

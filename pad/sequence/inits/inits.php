@@ -6,7 +6,7 @@
   include 'sequence/inits/startEnd.php';
   include 'sequence/inits/continue.php';
   include 'sequence/inits/go.php';
-  include 'sequence/inits/pull.php';
+  include 'sequence/inits/pull.php';   
   include 'sequence/inits/name.php';
   include 'sequence/inits/build.php';
   include 'sequence/inits/init.php';

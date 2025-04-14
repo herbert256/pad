@@ -1,6 +1,11 @@
 <?php
   
-  if     (   $padSeqBuildName ) $padSeqBuild = $padSeqBuildName; 
-  elseif ( ! $padSeqBuild     ) $padSeqBuild = padSeqBuild ( $padSeqSeq, 'loop' );
+  if ( $padSeqBuildName and $padSeqBuildName !== TRUE )  
+
+    $padSeqBuild = include 'sequence/inits/build/given.php';
+  
+  elseif ( ! $padSeqBuild ) 
+
+    $padSeqBuild = padSeqBuild ( $padSeqSeq, 'loop' );
 
 ?>

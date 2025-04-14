@@ -127,3 +127,13 @@
   {demo} {pull:mySequence     reverse} {$sequence} {/pull:mySequence} {/demo}
 {/table}
 
+{table}
+  {demo} {reverse:sequence} {$sequence} {/reverse:sequence} {/demo}
+  {demo} {reverse:action} {$sequence} {/reverse:action} {/demo}
+  {demo} {reverse:make} {$sequence} {/reverse:make} {/demo}
+  {demo} {reverse:keep} {$sequence} {/reverse:keep} {/demo}
+  {demo} {reverse:remove} {$sequence} {/reverse:remove} {/demo}
+  {demo} {reverse:flag} {$sequence} {/reverse:flag} {/demo}
+  {demo} {reverse:pull} {$sequence} {/reverse:pull} {/demo}
+{/table}
+
