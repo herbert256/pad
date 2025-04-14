@@ -1,5 +1,8 @@
 <?php
 
+  if ( $padSeqContinue )
+    return include 'sequence/continue/go.php';
+
   if ( $padSeqType <> 'pad' ) include "sequence/inits/type/go.php";
   else                        include "sequence/inits/tag/go.php";
 

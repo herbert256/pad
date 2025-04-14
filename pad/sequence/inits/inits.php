@@ -4,6 +4,7 @@
   include 'sequence/inits/vars.php';
   include 'sequence/inits/parms.php';
   include 'sequence/inits/startEnd.php';
+  include 'sequence/inits/continue.php';
   include 'sequence/inits/go.php';
   include 'sequence/inits/pull.php';
   include 'sequence/inits/name.php';

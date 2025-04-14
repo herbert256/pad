@@ -15,7 +15,6 @@
 
   $padSeqResult = array_values ( $padSeqResult );
   
-  $padSeqDone  [] = $padSeqAction;
   $padSeqNames [] = $padSeqAction;
 
   if ( file_exists ( "sequence/actions/single/$padSeqAction" ) )

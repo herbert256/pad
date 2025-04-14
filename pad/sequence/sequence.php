@@ -4,6 +4,9 @@
   include 'sequence/build/build.php'; 
   include 'sequence/exits/exits.php';
 
-  return $padSeqReturn;
+  if ( $padSeqContinue )
+    return NULL;
+  else
+    return $padSeqReturn;
 
 ?>

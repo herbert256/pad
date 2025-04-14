@@ -10,6 +10,7 @@
 
       if (   $sequence and ! str_contains ( $item, 'sequence' ) ) continue;
       if ( ! $sequence and   str_contains ( $item, 'sequence' ) ) continue;
+      if (   $sequence and   str_contains ( $item, 'develop'  ) ) continue;
 
       $store  = APP . "_regression/$item.html";
       $check  = APP . "$item.pad";

@@ -1,6 +1,20 @@
 <?php
 
 
+  function padSeqDone ( $option, &$array ) {
+
+    $key = array_search ( $option, $array );
+
+    if ( $key === FALSE ) 
+      return FALSE;
+
+    unset ( $array [$key] );
+
+    return TRUE;
+
+  }
+
+
   function padSeqParm ( $option ) {
 
     if ( $option and $option !== TRUE and ! $GLOBALS ['padSeqParm'] ) 

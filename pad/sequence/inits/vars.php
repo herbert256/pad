@@ -12,6 +12,7 @@
   
   $padSeqResult     = [];
   $padSeqDone       = [];
+  $padSeqDoneDone   = [];
   $padSeqInfo       = [];  
   $padSeqNames      = [];
   $padSeqPlays      = [];
@@ -23,7 +24,7 @@
   $padSeqSetName    = '';
   $padSeqPlaySource = '';
   $padSeqAction     = '';
-
+ 
   $padSeqActionAfterName = '';
 
   $padSeqType   = $padType   [$pad];
@@ -32,5 +33,5 @@
   $padSeqParm   = $padOpt    [$pad] [1];
 
   $padTagSeq [$pad] = TRUE;
-  
+
 ?>
