@@ -7,7 +7,6 @@
     extract ( $padStartOption );
 
         if ( in_array ( $padPrmName, $padSeqDone ) ) continue;
-    elseif ( $padPrmName == $padSeqSeqSave         ) continue;
     elseif ( $padPrmKind <> 'option'               ) continue;
 
     if ( padSeqPlay ( $padPrmName ) and $padPrmValue and $padPrmValue !== TRUE ) {

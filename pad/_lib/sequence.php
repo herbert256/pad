@@ -136,13 +136,6 @@
     return in_array ( $check, ['make','keep','remove','flag'] );
 
   }
-  
-
-  function padSeqCheck ( $check ) {
-
-    return in_array ( $check, ['keep','remove','flag'] );
-
-  }
 
 
   function padSeqRandom ( $array, $count=1, $order=0, $dups=0 ) {

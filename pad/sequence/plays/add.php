@@ -1,7 +1,5 @@
 <?php
   
-  if ( $padSeqSeq == 'start' ) kkk();
-
   $padSeqBuild = padSeqBuild ( $padSeqSeq, $padSeqPlay );
 
   include 'sequence/build/include.php';

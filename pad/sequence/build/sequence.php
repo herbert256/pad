@@ -10,7 +10,7 @@
 
     $padSeqBuild = $padSeqBuildSave;
     
-  } elseif ( $padSeqBuildType == 'fixed' ) 
+  } elseif ( padSeqStore ( $padSeqBuild ) ) 
   
     $padSeq = $padSeqLoop;
   

@@ -6,7 +6,7 @@
   $padSeqRandomlyStart = $padSeqStart;
   $padSeqRandomlyEnd   = $padSeqEnd;
 
-  if ( $padSeqBuildType == 'fixed' )
+  if ( padSeqStore ( $padSeqBuild ) )
     if ( $padSeqRandomlyEnd > count ( $padSeqFixed ) - 1 )
       $padSeqRandomlyEnd = count ( $padSeqFixed ) - 1;
 

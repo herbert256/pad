@@ -11,7 +11,9 @@
 
   $padSeq = include 'sequence/build/call.php';
 
-  if     ( $padSeqPlay == 'make'   and $padSeq === TRUE       ) $padSeq = $padSeqLoop;
+  if     ( $padSeqPlay == 'loop'   and $padSeq === TRUE       ) $padSeq = $padSeqLoop;
+
+  elseif ( $padSeqPlay == 'make'   and $padSeq === TRUE       ) $padSeq = $padSeqLoop;
 
   elseif ( $padSeqPlay == 'keep'   and $padSeq === TRUE       ) $padSeq = $padSeqLoop;
   elseif ( $padSeqPlay == 'keep'   and $padSeq <> $padSeqLoop ) $padSeq = FALSE;

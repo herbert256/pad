@@ -5,7 +5,7 @@
   else
     $padSeqRandomlyRand = rand ( $padSeqRandomlyStart, $padSeqRandomlyEnd ) ;
 
-  if ( $padSeqBuildType == 'fixed' )
+  if ( padSeqStore ( $padSeqBuild ) )
     return $padSeqFixed [$padSeqRandomlyRand];
   else
     return $padSeqRandomlyRand;

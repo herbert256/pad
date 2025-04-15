@@ -1,8 +1,35 @@
 {table}
+{demo}{sequence prime, build='loop'    } {$sequence} {/sequence} {/demo}
+{demo}{sequence prime, build='make'    } {$sequence} {/sequence} {/demo}
+{demo}{sequence prime, build='function'} {$sequence} {/sequence} {/demo}
+{demo}{sequence prime, build='bool'    } {$sequence} {/sequence} {/demo}
+{demo}{sequence prime, build='jump'    } {$sequence} {/sequence} {/demo}
+{/table}
+
+{table}
+{demo}{sequence from=10, prime, build='loop'    } {$sequence} {/sequence} {/demo}
+{demo}{sequence from=10, prime, build='make'    } {$sequence} {/sequence} {/demo}
+{demo}{sequence from=10, prime, build='function'} {$sequence} {/sequence} {/demo}
+{demo}{sequence from=10, prime, build='bool'    } {$sequence} {/sequence} {/demo}
+{demo}{sequence from=10, prime, build='jump'    } {$sequence} {/sequence} {/demo}
+{/table}
+
+{table}
 {demo}{sequence '10..20'}{/demo}
 {demo}{pull prime, build='loop'    } {$sequence} {/pull} {/demo}
 {demo}{pull prime, build='make'    } {$sequence} {/pull} {/demo}
 {demo}{pull prime, build='function'} {$sequence} {/pull} {/demo}
 {demo}{pull prime, build='bool'    } {$sequence} {/pull} {/demo}
 {demo}{pull prime, build='jump'    } {$sequence} {/pull} {/demo}
+{/table}
+
+{table}
+{demo}{sequence even, build='bool'    } {$sequence} {/sequence} {/demo}
+{demo}{sequence even, build='make'    } {$sequence} {/sequence} {/demo}
+{/table}
+
+{table}
+{demo}{sequence '10..20'}{/demo}
+{demo}{pull even, build='bool'    } {$sequence} {/pull} {/demo}
+{demo}{pull even, build='make'    } {$sequence} {/pull} {/demo}
 {/table}

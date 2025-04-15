@@ -1,7 +1,5 @@
 <?php
 
-  $padSeqBuildType = 'loop';
-  
   include 'sequence/build/randomly/init.php';
 
   $padSeqGo = $padSeqStart;

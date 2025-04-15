@@ -25,9 +25,8 @@
   if ( $padSeqPull )
     return include 'sequence/inits/go/store.php';
 
-  $padSeqSeq   = '';
   $padSeqBuild = '';
 
-  include 'sequence/inits/tag/sequence.php'; 
+  include 'sequence/inits/seqseq.php'; 
 
 ?>

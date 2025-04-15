@@ -1,7 +1,5 @@
 <?php
 
-  $padSeqBuildType = 'fixed';
-
   include 'sequence/build/randomly/init.php';
 
   $padSeqSkipNow   = 0;

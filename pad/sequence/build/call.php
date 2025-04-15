@@ -1,7 +1,4 @@
 <?php
-
-  if ( $padSeqLoop > PHP_INT_MAX )
-    return FALSE;
   
   if     ( $padSeqBuild == 'function' ) $padRet = ( 'padSeq'      . ucfirst($padSeqSeq) ) ( $padSeqLoop );
   elseif ( $padSeqBuild == 'check'    ) $padRet = ( 'padSeqCheck' . ucfirst($padSeqSeq) ) ( $padSeqStart, $padSeqLoop, $padSeqParm );

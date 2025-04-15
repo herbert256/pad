@@ -1,6 +1,6 @@
 <?php
 
-  if ( padSeqStore ( $padSeqBuild ) {
+  if ( padSeqStore ( $padSeqBuild ) ) {
 
     foreach ( $padSeqPlays as $padK => $padV ) {
       $padSeqPlays [$padK] ['padSeqBuild'] = $padSeqBuildName;

@@ -1,5 +1,6 @@
 <?php
     
+  if ( $padSeqCheck == 'make'   and ! $padSeqMake   ) return;
   if ( $padSeqCheck == 'flag'   and ! $padSeqFlag   ) return;
   if ( $padSeqCheck == 'keep'   and ! $padSeqKeep   ) return;
   if ( $padSeqCheck == 'remove' and ! $padSeqRemove ) return;
