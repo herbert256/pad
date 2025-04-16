@@ -1,6 +1,0 @@
-<?php
-
-  $padSeqParm   = '';
-  $padSeqResult = [];
-      
-?>

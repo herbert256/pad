@@ -1,5 +1,7 @@
 <?php
 
+return;
+
   if ( $padSeqInitType == 'tag' and padSeqPlay ($padSeqInitValue ) and $padSeqInitValue <> 'make' )
 
     if ( padSeqStore ( $padSeqBuild ) ) {

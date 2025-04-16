@@ -17,4 +17,7 @@
     include APP . 'develop/sequence/playDouble.php';
   }  
 
+  file_put_contents ( "sequence/types/range/flags/parm", 1 );
+  file_put_contents ( "sequence/types/list/flags/parm",  1 );
+
 ?>

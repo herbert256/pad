@@ -15,7 +15,7 @@
   }
 
 
-  function padSeqParm ( $option ) {
+  function padSeqParm ( $option ) { 
 
     if ( $option and $option !== TRUE and ! $GLOBALS ['padSeqParm'] ) 
       return $option;

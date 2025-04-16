@@ -1,7 +1,5 @@
 <?php
 
-  $padSeqPlay = 'make';
-
   foreach ( $padParms [$pad] as $padStartOption ) {
 
     extract ( $padStartOption );
@@ -11,7 +9,7 @@
 
     if ( padSeqPlay ( $padPrmName ) and $padPrmValue and $padPrmValue !== TRUE ) {
       $padSeqPlay = $padPrmName;
-      padSplit ( '|', $padPrmValue, $padSeqSeq, $padPrmValue );
+      padSplit ( '|', $padPrmValue, $padPrmName, $padPrmValue );
       include 'sequence/plays/add.php';     
       continue;
     }
@@ -23,8 +21,6 @@
 
     if ( ! file_exists ( "sequence/types/$padPrmName" ) )
       continue;
-
-    $padSeqSeq = $padPrmName;
 
     include 'sequence/plays/add.php';
 

@@ -2,15 +2,13 @@
 
   include 'sequence/inits/clear.php';
   include 'sequence/inits/vars.php';
-  include 'sequence/inits/parms.php';
   include 'sequence/inits/startEnd.php';
-  include 'sequence/inits/continue.php';
-  include 'sequence/inits/go.php';
-  include 'sequence/inits/pull.php';   
+  include 'sequence/continue/inits.php';
+  include 'sequence/inits/find/find.php';
   include 'sequence/inits/name.php';
-  include 'sequence/inits/build.php';
+  include 'sequence/build/inits.php';
   include 'sequence/inits/init.php';
-  include 'sequence/inits/play/inits.php';
+  include 'sequence/plays/inits.php';
   include 'sequence/inits/check/check.php';
   include 'sequence/inits/rows.php';
 
