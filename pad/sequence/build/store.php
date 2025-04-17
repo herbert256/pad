@@ -1,7 +1,7 @@
 <?php
  
-  $padStoreIndex = count ( $padSeqResult );
+  $padStoreIndex = count ( $pqResult );
   
-  return $padSeqStore [$padSeqParmStore] [$padStoreIndex];
+  return $pqStore [$pqParmStore] [$padStoreIndex];
  
 ?>

@@ -1,15 +1,15 @@
 <?php
  
-  $padSeqSeqSave   = $padSeqSeq;
-  $padSeqBuildSave = $padSeqBuild;
-  $padSeqParmSave  = $padSeqParm;
-  $padSeqLoopSave  = $padSeqLoop;
+  $pqSeqSave   = $pqSeq;
+  $pqBuildSave = $pqBuild;
+  $pqParmSave  = $pqParm;
+  $pqLoopSave  = $pqLoop;
 
   include 'sequence/plays/go.php';
 
-  $padSeqSeq   = $padSeqSeqSave;
-  $padSeqBuild = $padSeqBuildSave;
-  $padSeqLoop  = $padSeqLoopSave;
-  $padSeqParm  = $padSeqParmSave;
+  $pqSeq   = $pqSeqSave;
+  $pqBuild = $pqBuildSave;
+  $pqLoop  = $pqLoopSave;
+  $pqParm  = $pqParmSave;
 
 ?>

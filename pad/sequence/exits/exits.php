@@ -1,7 +1,7 @@
 <?php
 
-  if ( file_exists ( "sequence/types/$padSeqSeq/exit.php" ) )   
-    include "sequence/types/$padSeqSeq/exit.php";    
+  if ( file_exists ( "sequence/types/$pqSeq/exit.php" ) )   
+    include "sequence/types/$pqSeq/exit.php";    
 
   include 'sequence/exits/actions.php';
   include 'sequence/exits/store.php';

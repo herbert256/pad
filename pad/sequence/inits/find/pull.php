@@ -1,7 +1,7 @@
 <?php
 
-      if ( $padSeqPullName                                ) $padSeqPull = $padSeqPullName;
-  elseif ( $padSeqFindType == 'continue' and $padLastPush ) $padSeqPull = $padLastPush;
-  elseif ( $padSeqFindType == 'pull'     and $padLastPush ) $padSeqPull = $padLastPush;
+      if ( $pqPullName                                ) $pqPull = $pqPullName;
+  elseif ( $pqFindType == 'continue' and $padLastPush ) $pqPull = $padLastPush;
+  elseif ( $pqFindType == 'pull'     and $padLastPush ) $pqPull = $padLastPush;
 
 ?>

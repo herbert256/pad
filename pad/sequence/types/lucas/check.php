@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckLucas ( $f, $n, $p ) {
+  function pqCheckLucas ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/lucas/bool.php' ) )
-      return padSeqBoolLucas ( $n, $p );
+      return pqBoolLucas ( $n, $p );
 
     if ( file_exists ( 'sequence/types/lucas/fixed.php' ) ) {
       $fixed = include 'sequence/types/lucas/fixed.php';

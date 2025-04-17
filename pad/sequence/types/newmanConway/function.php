@@ -5,22 +5,22 @@
 // Recursive Function to
 // find the n-th element
 
-function padSeqNewmanConway ($n) {
+function pqNewmanConway ($n) {
 
 	if ($n == 1 || $n == 2)
 		return 1;
 
-	if ( ! isset ( $GLOBALS ['padSeqCache'] ) )
-	  $GLOBALS ['padSeqCache'] = [];
+	if ( ! isset ( $GLOBALS ['pqCache'] ) )
+	  $GLOBALS ['pqCache'] = [];
 
-	if ( isset ( $GLOBALS ['padSeqCache'] [$n] ) )
-		return $GLOBALS ['padSeqCache'] [$n];
+	if ( isset ( $GLOBALS ['pqCache'] [$n] ) )
+		return $GLOBALS ['pqCache'] [$n];
 
-	$now = padSeqNewmanConway ( padSeqNewmanConway ($n - 1)     )
+	$now = pqNewmanConway ( pqNewmanConway ($n - 1)     )
 	       +
-		   padSeqNewmanConway ( $n - padSeqNewmanConway($n - 1) );
+		   pqNewmanConway ( $n - pqNewmanConway($n - 1) );
 
-	$GLOBALS ['padSeqCache'] [$n] = $now;
+	$GLOBALS ['pqCache'] [$n] = $now;
 
 	return $now;
 

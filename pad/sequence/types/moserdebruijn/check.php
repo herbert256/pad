@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckMoserdebruijn ( $f, $n, $p ) {
+  function pqCheckMoserdebruijn ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/moserdebruijn/bool.php' ) )
-      return padSeqBoolMoserdebruijn ( $n, $p );
+      return pqBoolMoserdebruijn ( $n, $p );
 
     if ( file_exists ( 'sequence/types/moserdebruijn/fixed.php' ) ) {
       $fixed = include 'sequence/types/moserdebruijn/fixed.php';

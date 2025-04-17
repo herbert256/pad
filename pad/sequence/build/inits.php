@@ -1,9 +1,9 @@
 <?php
   
-  if ( $padSeqPull )
-    $padSeqBuild = 'pull';
+  if ( $pqPull )
+    $pqBuild = 'pull';
 
-  if ( ! $padSeqBuild ) 
-    $padSeqBuild = padSeqBuild ( $padSeqSeq, 'loop' );
+  if ( ! $pqBuild ) 
+    $pqBuild = pqBuild ( $pqSeq, 'loop' );
 
 ?>

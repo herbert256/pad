@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckMultiple ( $f, $n, $p ) {
+  function pqCheckMultiple ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/multiple/bool.php' ) )
-      return padSeqBoolMultiple ( $n, $p );
+      return pqBoolMultiple ( $n, $p );
 
     if ( file_exists ( 'sequence/types/multiple/fixed.php' ) ) {
       $fixed = include 'sequence/types/multiple/fixed.php';

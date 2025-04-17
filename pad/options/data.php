@@ -5,8 +5,8 @@
   if ( isset ( $padDataStore [$padCheck] ) )
     return $padDataStore [$padCheck];
 
- if ( isset ( $padSeqStore [$padCheck] ) )
-    return $padSeqStore [$padCheck];
+ if ( isset ( $pqStore [$padCheck] ) )
+    return $pqStore [$padCheck];
 
   return padData ( $padCheck );
 

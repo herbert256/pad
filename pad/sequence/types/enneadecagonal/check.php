@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckEnneadecagonal ( $f, $n, $p ) {
+  function pqCheckEnneadecagonal ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/enneadecagonal/bool.php' ) )
-      return padSeqBoolEnneadecagonal ( $n, $p );
+      return pqBoolEnneadecagonal ( $n, $p );
 
     if ( file_exists ( 'sequence/types/enneadecagonal/fixed.php' ) ) {
       $fixed = include 'sequence/types/enneadecagonal/fixed.php';

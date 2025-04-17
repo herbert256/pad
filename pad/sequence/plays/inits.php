@@ -4,18 +4,18 @@
 
     extract ( $padStartOption );
 
-        if ( in_array ( $padPrmName, $padSeqDone ) ) continue;
+        if ( in_array ( $padPrmName, $pqDone ) ) continue;
     elseif ( $padPrmKind <> 'option'               ) continue;
 
-    if ( padSeqPlay ( $padPrmName ) and $padPrmValue and $padPrmValue !== TRUE ) {
-      $padSeqPlay = $padPrmName;
+    if ( pqPlay ( $padPrmName ) and $padPrmValue and $padPrmValue !== TRUE ) {
+      $pqPlay = $padPrmName;
       padSplit ( '|', $padPrmValue, $padPrmName, $padPrmValue );
       include 'sequence/plays/add.php';     
       continue;
     }
 
-    if ( padSeqPlay ( $padPrmName ) ) {
-      $padSeqPlay = $padPrmName;
+    if ( pqPlay ( $padPrmName ) ) {
+      $pqPlay = $padPrmName;
       continue;
     }
 

@@ -1,8 +1,8 @@
 <?php
 
-  $padSeqStart = 1;
-  $padSeqLoop  = 1;
-  $padSeqInc   = 1;
+  $pqStart = 1;
+  $pqLoop  = 1;
+  $pqInc   = 1;
 
   include 'sequence/build/types/type/loop.php';
 

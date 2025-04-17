@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckList ( $f, $n, $p ) {
+  function pqCheckList ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/list/bool.php' ) )
-      return padSeqBoolList ( $n, $p );
+      return pqBoolList ( $n, $p );
 
     if ( file_exists ( 'sequence/types/list/fixed.php' ) ) {
       $fixed = include 'sequence/types/list/fixed.php';

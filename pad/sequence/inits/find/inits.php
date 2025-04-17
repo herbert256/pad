@@ -1,11 +1,11 @@
 <?php
 
-  $padSeqFindParm = $padOpt [$pad] [1];
+  $pqFindParm = $padOpt [$pad] [1];
 
-      if ( padSeqPlay ( $padSeqTag ) or padSeqPlay ( $padSeqType ) ) $padSeqFindType = 'play';
-  elseif ( $padSeqTag == 'sequence'  or $padSeqType == 'sequence'  ) $padSeqFindType = 'sequence';
-  elseif ( $padSeqTag == 'action'    or $padSeqType == 'action'    ) $padSeqFindType = 'action';
-  elseif ( $padSeqTag == 'pull'      or $padSeqType == 'pull'      ) $padSeqFindType = 'pull';
-  elseif ( $padSeqTag == 'continue'  or $padSeqType == 'continue'  ) $padSeqFindType = 'continue';
+      if ( pqPlay ( $pqTag ) or pqPlay ( $pqType ) ) $pqFindType = 'play';
+  elseif ( $pqTag == 'sequence'  or $pqType == 'sequence'  ) $pqFindType = 'sequence';
+  elseif ( $pqTag == 'action'    or $pqType == 'action'    ) $pqFindType = 'action';
+  elseif ( $pqTag == 'pull'      or $pqType == 'pull'      ) $pqFindType = 'pull';
+  elseif ( $pqTag == 'continue'  or $pqType == 'continue'  ) $pqFindType = 'continue';
 
 ?>

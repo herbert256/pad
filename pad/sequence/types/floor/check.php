@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckFloor ( $f, $n, $p ) {
+  function pqCheckFloor ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/floor/bool.php' ) )
-      return padSeqBoolFloor ( $n, $p );
+      return pqBoolFloor ( $n, $p );
 
     if ( file_exists ( 'sequence/types/floor/fixed.php' ) ) {
       $fixed = include 'sequence/types/floor/fixed.php';

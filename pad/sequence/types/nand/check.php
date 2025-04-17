@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckNand ( $f, $n, $p ) {
+  function pqCheckNand ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/nand/bool.php' ) )
-      return padSeqBoolNand ( $n, $p );
+      return pqBoolNand ( $n, $p );
 
     if ( file_exists ( 'sequence/types/nand/fixed.php' ) ) {
       $fixed = include 'sequence/types/nand/fixed.php';

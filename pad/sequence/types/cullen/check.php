@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckCullen ( $f, $n, $p ) {
+  function pqCheckCullen ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/cullen/bool.php' ) )
-      return padSeqBoolCullen ( $n, $p );
+      return pqBoolCullen ( $n, $p );
 
     if ( file_exists ( 'sequence/types/cullen/fixed.php' ) ) {
       $fixed = include 'sequence/types/cullen/fixed.php';

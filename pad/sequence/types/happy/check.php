@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckHappy ( $f, $n, $p ) {
+  function pqCheckHappy ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/happy/bool.php' ) )
-      return padSeqBoolHappy ( $n, $p );
+      return pqBoolHappy ( $n, $p );
 
     if ( file_exists ( 'sequence/types/happy/fixed.php' ) ) {
       $fixed = include 'sequence/types/happy/fixed.php';

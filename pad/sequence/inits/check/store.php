@@ -1,9 +1,9 @@
 <?php
     
-  foreach ( $padSeqPlays as $padK => $padV ) {
+  foreach ( $pqPlays as $padK => $padV ) {
 
-    $padSeqPlays [$padK] ['padSeqBuild'] = padSeqBuild ( $padV ['padSeqSeq'], $padSeqCheck );
-    $padSeqPlays [$padK] ['padSeqPlay']  = $padSeqCheck;
+    $pqPlays [$padK] ['pqBuild'] = pqBuild ( $padV ['pqSeq'], $pqCheck );
+    $pqPlays [$padK] ['pqPlay']  = $pqCheck;
 
     return;
 

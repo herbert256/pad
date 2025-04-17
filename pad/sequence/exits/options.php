@@ -6,7 +6,7 @@
 
     if ( $padPrmKind == 'option' ) 
       if ( file_exists ( "sequence/options/types/$padPrmName.php") )
-        $padSeqInfo ['options'] [] = $padPrmName;
+        $pqInfo ['options'] [] = $padPrmName;
     
   }
  

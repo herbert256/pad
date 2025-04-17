@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckCaterer ( $f, $n, $p ) {
+  function pqCheckCaterer ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/caterer/bool.php' ) )
-      return padSeqBoolCaterer ( $n, $p );
+      return pqBoolCaterer ( $n, $p );
 
     if ( file_exists ( 'sequence/types/caterer/fixed.php' ) ) {
       $fixed = include 'sequence/types/caterer/fixed.php';

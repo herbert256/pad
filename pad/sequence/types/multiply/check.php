@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckMultiply ( $f, $n, $p ) {
+  function pqCheckMultiply ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/multiply/bool.php' ) )
-      return padSeqBoolMultiply ( $n, $p );
+      return pqBoolMultiply ( $n, $p );
 
     if ( file_exists ( 'sequence/types/multiply/fixed.php' ) ) {
       $fixed = include 'sequence/types/multiply/fixed.php';

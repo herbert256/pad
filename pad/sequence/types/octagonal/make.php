@@ -2,6 +2,6 @@
 
   include_once 'function.php';
   
-  return padSeqOctagonal ( $padSeqLoop );
+  return pqOctagonal ( $pqLoop );
 
 ?>

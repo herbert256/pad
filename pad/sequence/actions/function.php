@@ -1,14 +1,14 @@
 <?php
 
-  $padSeqFunctionParms    = [];
-  $padSeqFunctionParms [] = $padSeqResult;
+  $pqFunctionParms    = [];
+  $pqFunctionParms [] = $pqResult;
 
-  foreach ( $padSeqActionList as $padSeqFunctionParm )
-    if ( isset ( $padSeqStore [$padSeqFunctionParm] ) )
-      $padSeqFunctionParms [] = $padSeqStore [$padSeqFunctionParm];
+  foreach ( $pqActionList as $pqFunctionParm )
+    if ( isset ( $pqStore [$pqFunctionParm] ) )
+      $pqFunctionParms [] = $pqStore [$pqFunctionParm];
     else
-      $padSeqFunctionParms [] = $padSeqFunctionParm;
+      $pqFunctionParms [] = $pqFunctionParm;
     
-  return call_user_func_array ( $padSeqFunction, $padSeqFunctionParms );
+  return call_user_func_array ( $pqFunction, $pqFunctionParms );
   
 ?>

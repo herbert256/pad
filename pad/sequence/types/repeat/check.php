@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckRepeat ( $f, $n, $p ) {
+  function pqCheckRepeat ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/repeat/bool.php' ) )
-      return padSeqBoolRepeat ( $n, $p );
+      return pqBoolRepeat ( $n, $p );
 
     if ( file_exists ( 'sequence/types/repeat/fixed.php' ) ) {
       $fixed = include 'sequence/types/repeat/fixed.php';

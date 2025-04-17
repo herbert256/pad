@@ -1,18 +1,18 @@
 <?php
 
-  function padSeqBoolAntiprime ($n, $p=0) {
+  function pqBoolAntiprime ($n, $p=0) {
 
-    $init = padSeqBoolAntiprimeDivisors ($n);
+    $init = pqBoolAntiprimeDivisors ($n);
 
     for ($i = 1; $i < $n; $i++) 
-        if (padSeqBoolAntiprimeDivisors($i) >= $init)
+        if (pqBoolAntiprimeDivisors($i) >= $init)
             return false;
 
     return true;
 
   }
 
-  function padSeqBoolAntiprimeDivisors ($a) {
+  function pqBoolAntiprimeDivisors ($a) {
 
     if ($a == 1)
         return 1;

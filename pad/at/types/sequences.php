@@ -1,15 +1,15 @@
 <?php
 
-  global $padSeqStore;
+  global $pqStore;
 
   if ( $type )
-    if ( isset ( $padSeqStore [$type] ) ) 
-      return padAtSearch ( $padSeqStore [$type], $names );
+    if ( isset ( $pqStore [$type] ) ) 
+      return padAtSearch ( $pqStore [$type], $names );
     else
       return INF;
 
-  if ( is_array ( $padSeqStore ) )
-    return padAtSearch ( $padSeqStore, $names );
+  if ( is_array ( $pqStore ) )
+    return padAtSearch ( $pqStore, $names );
 
   return INF;
 

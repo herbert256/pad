@@ -1,21 +1,21 @@
 <?php
  
-  if ( in_array ( $padSeqBuild, ['keep', 'remove', 'flag'] ) ) {
+  if ( in_array ( $pqBuild, ['keep', 'remove', 'flag'] ) ) {
 
-    $padSeqBuildSave = $padSeqBuild;
-    $padSeqPlay      = $padSeqBuild;
-    $padSeqBuild     = 'check';
+    $pqBuildSave = $pqBuild;
+    $pqPlay      = $pqBuild;
+    $pqBuild     = 'check';
 
     include "sequence/plays/one.php";
 
-    $padSeqBuild = $padSeqBuildSave;
+    $pqBuild = $pqBuildSave;
     
-  } elseif ( padSeqStore ( $padSeqBuild ) ) 
+  } elseif ( pqStore ( $pqBuild ) ) 
   
-    $padSeq = $padSeqLoop;
+    $pq = $pqLoop;
   
   else
 
-    $padSeq = include 'sequence/build/call.php';  
+    $pq = include 'sequence/build/call.php';  
     
 ?>

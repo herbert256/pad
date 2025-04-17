@@ -2,17 +2,17 @@
 
   include 'sequence/build/randomly/init.php';
 
-  $padSeqGo = $padSeqStart;
+  $pqGo = $pqStart;
 
-  while ( $padSeqGo <= $padSeqEnd ) {
+  while ( $pqGo <= $pqEnd ) {
 
-    $padSeqLoop = $padSeqGo;
+    $pqLoop = $pqGo;
 
-    $padSeqTmp = include 'sequence/build/one.php';
-    if ( $padSeqTmp === FALSE )
+    $pqTmp = include 'sequence/build/one.php';
+    if ( $pqTmp === FALSE )
       break;
 
-    $padSeqGo = $padSeqGo + $padSeqInc;
+    $pqGo = $pqGo + $pqInc;
 
   }
 

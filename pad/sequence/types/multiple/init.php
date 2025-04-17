@@ -1,6 +1,6 @@
 <?php
 
-  $padSeqInc   = $padSeqParm;
-  $padSeqStart = ceil ( $padSeqStart / $padSeqParm) * $padSeqParm;
+  $pqInc   = $pqParm;
+  $pqStart = ceil ( $pqStart / $pqParm) * $pqParm;
 
 ?>

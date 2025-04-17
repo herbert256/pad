@@ -1,9 +1,9 @@
 <?php
 
-  $padSeqTemp = include "sequence/types/$padSeqSeq/fixed.php";
+  $pqTemp = include "sequence/types/$pqSeq/fixed.php";
 
-  if ( isset ( $padSeqTemp [$padSeqLoop-1] ) )
-    return $padSeqTemp [$padSeqLoop-1];
+  if ( isset ( $pqTemp [$pqLoop-1] ) )
+    return $pqTemp [$pqLoop-1];
   else
     return FALSE;
 

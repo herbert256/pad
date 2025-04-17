@@ -55,7 +55,7 @@
     if ( $check !== INF )
       return $check;
 
-    $check = padAtStore ( $GLOBALS ['padSeqStore'] ?? [], $names, $parts );
+    $check = padAtStore ( $GLOBALS ['pqStore'] ?? [], $names, $parts );
     if ( $check !== INF )
       return $check;
 

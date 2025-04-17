@@ -1,5 +1,5 @@
 <?php
 
-    return $GLOBALS ['padSeqStore'] [$name];
+    return $GLOBALS ['pqStore'] [$name];
  
 ?>

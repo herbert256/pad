@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckRange ( $f, $n, $p ) {
+  function pqCheckRange ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/range/bool.php' ) )
-      return padSeqBoolRange ( $n, $p );
+      return pqBoolRange ( $n, $p );
 
     if ( file_exists ( 'sequence/types/range/fixed.php' ) ) {
       $fixed = include 'sequence/types/range/fixed.php';

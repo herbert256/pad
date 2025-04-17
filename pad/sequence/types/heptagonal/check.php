@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckHeptagonal ( $f, $n, $p ) {
+  function pqCheckHeptagonal ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/heptagonal/bool.php' ) )
-      return padSeqBoolHeptagonal ( $n, $p );
+      return pqBoolHeptagonal ( $n, $p );
 
     if ( file_exists ( 'sequence/types/heptagonal/fixed.php' ) ) {
       $fixed = include 'sequence/types/heptagonal/fixed.php';

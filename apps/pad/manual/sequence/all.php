@@ -2,7 +2,7 @@
  
   echo "{table}";
 
-  foreach ( padSeqTypes () as $type ) {
+  foreach ( pqTypes () as $type ) {
 
     include APP . 'develop/sequence/parm.php';
 

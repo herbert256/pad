@@ -1,6 +1,6 @@
 <?php
 
-  $padSeqPull = $padLastPush;
+  $pqPull = $padLastPush;
   
   return include 'sequence/inits/go/store.php';
 

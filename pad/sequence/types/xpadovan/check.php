@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckXpadovan ( $f, $n, $p ) {
+  function pqCheckXpadovan ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/xpadovan/bool.php' ) )
-      return padSeqBoolXpadovan ( $n, $p );
+      return pqBoolXpadovan ( $n, $p );
 
     if ( file_exists ( 'sequence/types/xpadovan/fixed.php' ) ) {
       $fixed = include 'sequence/types/xpadovan/fixed.php';

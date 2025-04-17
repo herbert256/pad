@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckNot ( $f, $n, $p ) {
+  function pqCheckNot ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/not/bool.php' ) )
-      return padSeqBoolNot ( $n, $p );
+      return pqBoolNot ( $n, $p );
 
     if ( file_exists ( 'sequence/types/not/fixed.php' ) ) {
       $fixed = include 'sequence/types/not/fixed.php';

@@ -1,10 +1,10 @@
 <?php
 
-  function padSeqBoolMultiple ( $n, $p=0 ) {
+  function pqBoolMultiple ( $n, $p=0 ) {
 
-    global $padSeqParm;
+    global $pqParm;
 
-    return ( $n == ceil ( $n / $padSeqParm) * $padSeqParm );
+    return ( $n == ceil ( $n / $pqParm) * $pqParm );
 
   }
 

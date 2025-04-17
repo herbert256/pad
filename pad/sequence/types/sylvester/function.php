@@ -1,6 +1,6 @@
 <?php
 
-  function padSeqSylvester ($n) {
+  function pqSylvester ($n) {
 
     $N = 1000000007;
       

@@ -2,35 +2,35 @@
 
   include 'sequence/build/randomly/init.php';
 
-  $padSeqSkipNow   = 0;
-  $padSeqSkipCount = 0;
+  $pqSkipNow   = 0;
+  $pqSkipCount = 0;
 
-  $padSeqTry = PHP_INT_MAX;
+  $pqTry = PHP_INT_MAX;
 
-  if ( is_array($padSeqFixed))
-    $padSeqFixed = array_values ( $padSeqFixed );
+  if ( is_array($pqFixed))
+    $pqFixed = array_values ( $pqFixed );
   else
-    $padSeqFixed = [];
+    $pqFixed = [];
 
-  foreach ( $padSeqFixed as $padSeqKey => $padSeqLoop ) {
+  foreach ( $pqFixed as $pqKey => $pqLoop ) {
 
-    if ( $padSeqSkipNow ) {
-      $padSeqSkipCount++;
-      if ( $padSeqSkipCount < $padSeqInc )
+    if ( $pqSkipNow ) {
+      $pqSkipCount++;
+      if ( $pqSkipCount < $pqInc )
         continue;
-      $padSeqSkipCount = $padSeqSkipNow = 0;
+      $pqSkipCount = $pqSkipNow = 0;
     }
 
-    if ( $padSeqKey < $padSeqStart - 1 ) continue;
-    if ( $padSeqKey > $padSeqEnd - 1   ) return;
+    if ( $pqKey < $pqStart - 1 ) continue;
+    if ( $pqKey > $pqEnd - 1   ) return;
 
-    $padSeqTries = $padSeqKey;
+    $pqTries = $pqKey;
 
     if ( ! include 'sequence/build/one.php')
       break;
 
-    if ( $padSeqInc > 1 and ! in_array ( 'increment', $padSeqDone ) )
-      $padSeqSkipNow = 1;
+    if ( $pqInc > 1 and ! in_array ( 'increment', $pqDone ) )
+      $pqSkipNow = 1;
 
   }
 

@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckKaprekar ( $f, $n, $p ) {
+  function pqCheckKaprekar ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/kaprekar/bool.php' ) )
-      return padSeqBoolKaprekar ( $n, $p );
+      return pqBoolKaprekar ( $n, $p );
 
     if ( file_exists ( 'sequence/types/kaprekar/fixed.php' ) ) {
       $fixed = include 'sequence/types/kaprekar/fixed.php';

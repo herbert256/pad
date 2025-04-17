@@ -1,6 +1,6 @@
 <?php
 
-  $padSeqFunction = 'array_reverse';
+  $pqFunction = 'array_reverse';
 
   return include 'sequence/actions/function.php';
 

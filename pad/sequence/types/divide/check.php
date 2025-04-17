@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckDivide ( $f, $n, $p ) {
+  function pqCheckDivide ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/divide/bool.php' ) )
-      return padSeqBoolDivide ( $n, $p );
+      return pqBoolDivide ( $n, $p );
 
     if ( file_exists ( 'sequence/types/divide/fixed.php' ) ) {
       $fixed = include 'sequence/types/divide/fixed.php';

@@ -1,7 +1,7 @@
 <?php
 
-  $padFibonacci = $padSeqLoop - 1;
+  $padFibonacci = $pqLoop - 1;
 
-  return $padSeqResult [$padFibonacci-1] + $padSeqResult [$padFibonacci-2];
+  return $pqResult [$padFibonacci-1] + $pqResult [$padFibonacci-2];
 
 ?>

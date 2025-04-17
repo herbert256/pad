@@ -1,6 +1,6 @@
 <?php
 
-function padSeqBoolKaprekar($n, $p=0)
+function pqBoolKaprekar($n, $p=0)
 {
     if ($n == 1)
     return true;

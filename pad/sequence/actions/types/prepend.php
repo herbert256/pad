@@ -1,9 +1,9 @@
 <?php
 
-  foreach ( $padSeqActionList as $padSeqAppendKey )
-    foreach ($padSeqStore [$padSeqAppendKey] as $padSeqAppendValue)
-      $padSeqResult [] = $padSeqAppendValue;
+  foreach ( $pqActionList as $pqAppendKey )
+    foreach ($pqStore [$pqAppendKey] as $pqAppendValue)
+      $pqResult [] = $pqAppendValue;
 
-  return $padSeqResult;
+  return $pqResult;
 
 ?>

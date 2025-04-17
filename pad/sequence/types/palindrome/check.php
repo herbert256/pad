@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckPalindrome ( $f, $n, $p ) {
+  function pqCheckPalindrome ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/palindrome/bool.php' ) )
-      return padSeqBoolPalindrome ( $n, $p );
+      return pqBoolPalindrome ( $n, $p );
 
     if ( file_exists ( 'sequence/types/palindrome/fixed.php' ) ) {
       $fixed = include 'sequence/types/palindrome/fixed.php';

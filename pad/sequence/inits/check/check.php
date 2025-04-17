@@ -1,18 +1,18 @@
 <?php
 
-  $padSeqMake      = $padPrm [$pad] ['make']     ?? '';
-  $padSeqFlag      = $padPrm [$pad] ['flag']     ?? '';
-  $padSeqKeep      = $padPrm [$pad] ['keep']     ?? '';
-  $padSeqRemove    = $padPrm [$pad] ['remove']   ?? '';
+  $pqMake      = $padPrm [$pad] ['make']     ?? '';
+  $pqFlag      = $padPrm [$pad] ['flag']     ?? '';
+  $pqKeep      = $padPrm [$pad] ['keep']     ?? '';
+  $pqRemove    = $padPrm [$pad] ['remove']   ?? '';
   
-  if ( $padSeqType == 'make'   or $padSeqPrefix == 'make'   or $padSeqTag == 'make'   ) $padSeqMake   = TRUE;
-  if ( $padSeqType == 'keep'   or $padSeqPrefix == 'keep'   or $padSeqTag == 'keep'   ) $padSeqKeep   = TRUE;
-  if ( $padSeqType == 'remove' or $padSeqPrefix == 'remove' or $padSeqTag == 'remove' ) $padSeqRemove = TRUE;
-  if ( $padSeqType == 'flag'   or $padSeqPrefix == 'flag'   or $padSeqTag == 'flag'   ) $padSeqFlag   = TRUE;
+  if ( $pqType == 'make'   or $pqPrefix == 'make'   or $pqTag == 'make'   ) $pqMake   = TRUE;
+  if ( $pqType == 'keep'   or $pqPrefix == 'keep'   or $pqTag == 'keep'   ) $pqKeep   = TRUE;
+  if ( $pqType == 'remove' or $pqPrefix == 'remove' or $pqTag == 'remove' ) $pqRemove = TRUE;
+  if ( $pqType == 'flag'   or $pqPrefix == 'flag'   or $pqTag == 'flag'   ) $pqFlag   = TRUE;
 
-  $padSeqCheck = 'make';   include "sequence/inits/check/go.php";
-  $padSeqCheck = 'keep';   include "sequence/inits/check/go.php";
-  $padSeqCheck = 'remove'; include "sequence/inits/check/go.php";
-  $padSeqCheck = 'flag';   include "sequence/inits/check/go.php";
+  $pqCheck = 'make';   include "sequence/inits/check/go.php";
+  $pqCheck = 'keep';   include "sequence/inits/check/go.php";
+  $pqCheck = 'remove'; include "sequence/inits/check/go.php";
+  $pqCheck = 'flag';   include "sequence/inits/check/go.php";
 
 ?>

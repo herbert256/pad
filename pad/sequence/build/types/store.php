@@ -1,6 +1,6 @@
 <?php
  
-  $padSeqFixed = &$padSeqStore [$padSeqPull];
+  $pqFixed = &$pqStore [$pqPull];
 
   include 'sequence/build/types/type/fixed.php';
 

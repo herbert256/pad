@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckEven ( $f, $n, $p ) {
+  function pqCheckEven ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/even/bool.php' ) )
-      return padSeqBoolEven ( $n, $p );
+      return pqBoolEven ( $n, $p );
 
     if ( file_exists ( 'sequence/types/even/fixed.php' ) ) {
       $fixed = include 'sequence/types/even/fixed.php';

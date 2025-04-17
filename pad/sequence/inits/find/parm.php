@@ -1,12 +1,12 @@
 <?php
 
-  if ( ! $padSeqFindParm )
+  if ( ! $pqFindParm )
     return;
 
-      if ( $padSeqSeq    and file_exists("sequence/types/$padSeqSeq/flags/parm")  ) $padSeqParm       = $padSeqFindParm;
-  elseif ( $padSeqAction and file_exists("sequence/actions/double/$padSeqAction") ) $padSeqActionParm = $padSeqFindParm;
-  elseif ( $padSeqAction and file_exists("sequence/actions/parm/$padSeqAction")   ) $padSeqActionParm = $padSeqFindParm;
-  elseif ( $padSeqSeq                                                             ) $padSeqParm       = $padSeqFindParm;
-  elseif ( $padSeqAction                                                          ) $padSeqActionParm = $padSeqFindParm;
+      if ( $pqSeq    and file_exists("sequence/types/$pqSeq/flags/parm")  ) $pqParm       = $pqFindParm;
+  elseif ( $pqAction and file_exists("sequence/actions/double/$pqAction") ) $pqActionParm = $pqFindParm;
+  elseif ( $pqAction and file_exists("sequence/actions/parm/$pqAction")   ) $pqActionParm = $pqFindParm;
+  elseif ( $pqSeq                                                             ) $pqParm       = $pqFindParm;
+  elseif ( $pqAction                                                          ) $pqActionParm = $pqFindParm;
  
 ?>

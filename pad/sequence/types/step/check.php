@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckStep ( $f, $n, $p ) {
+  function pqCheckStep ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/step/bool.php' ) )
-      return padSeqBoolStep ( $n, $p );
+      return pqBoolStep ( $n, $p );
 
     if ( file_exists ( 'sequence/types/step/fixed.php' ) ) {
       $fixed = include 'sequence/types/step/fixed.php';

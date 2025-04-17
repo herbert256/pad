@@ -1,6 +1,6 @@
 <?php
 
-  foreach ( $padSeqResult as $padSeqValue )
-    $padSeqReturn [] [$padSeqNameGiven] = $padSeqValue; 
+  foreach ( $pqResult as $pqValue )
+    $pqReturn [] [$pqNameGiven] = $pqValue; 
 
 ?>

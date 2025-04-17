@@ -1,21 +1,21 @@
 <?php
 
-  if ( $padSeqContinue )
+  if ( $pqContinue )
     return;
   
-  if     ( ! $padSeqNameGiven and ! $padSeqPull and ! $padSeqPush        ) $padSeqStoreName = 'default';
-  elseif ( ! $padSeqNameGiven and ! $padSeqPull and $padSeqPush === TRUE ) $padSeqStoreName = 'default';
-  elseif ( $padSeqNameGiven                                              ) $padSeqStoreName = $padSeqNameGiven;
-  elseif ( $padSeqPush and $padSeqPush !== TRUE                          ) $padSeqStoreName = $padSeqPush; 
-  elseif ( $padSeqPull and $padSeqPull !== TRUE                          ) $padSeqStoreName = $padSeqPull;
-  else                                                                     $padSeqStoreName = $padSeqName;
+  if     ( ! $pqNameGiven and ! $pqPull and ! $pqPush        ) $pqStoreName = 'default';
+  elseif ( ! $pqNameGiven and ! $pqPull and $pqPush === TRUE ) $pqStoreName = 'default';
+  elseif ( $pqNameGiven                                              ) $pqStoreName = $pqNameGiven;
+  elseif ( $pqPush and $pqPush !== TRUE                          ) $pqStoreName = $pqPush; 
+  elseif ( $pqPull and $pqPull !== TRUE                          ) $pqStoreName = $pqPull;
+  else                                                                     $pqStoreName = $pqName;
 
-  if ( $padSeqPush )
-    if ( $padSeqPush === TRUE )
-      if ( $padSeqPull )        $padLastPush = $padSeqPull;
-      else                      $padLastPush = $padSeqStoreName;
-    else                        $padLastPush = $padSeqPush;
-  elseif ( $padSeqPull )        $padLastPush = $padSeqPull;
-  else                          $padLastPush = $padSeqStoreName;
+  if ( $pqPush )
+    if ( $pqPush === TRUE )
+      if ( $pqPull )        $padLastPush = $pqPull;
+      else                      $padLastPush = $pqStoreName;
+    else                        $padLastPush = $pqPush;
+  elseif ( $pqPull )        $padLastPush = $pqPull;
+  else                          $padLastPush = $pqStoreName;
 
 ?>

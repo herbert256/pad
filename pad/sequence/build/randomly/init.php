@@ -1,16 +1,16 @@
 <?php
 
-  if ( ! $padSeqRandomly )
+  if ( ! $pqRandomly )
     return;
   
-  $padSeqRandomlyStart = $padSeqStart;
-  $padSeqRandomlyEnd   = $padSeqEnd;
+  $pqRandomlyStart = $pqStart;
+  $pqRandomlyEnd   = $pqEnd;
 
-  if ( padSeqStore ( $padSeqBuild ) )
-    if ( $padSeqRandomlyEnd > count ( $padSeqFixed ) - 1 )
-      $padSeqRandomlyEnd = count ( $padSeqFixed ) - 1;
+  if ( pqStore ( $pqBuild ) )
+    if ( $pqRandomlyEnd > count ( $pqFixed ) - 1 )
+      $pqRandomlyEnd = count ( $pqFixed ) - 1;
 
-  if ( $padSeqInc <> 1 )
-    $padSeqRandomlySteps = intval ( ( $padSeqRandomlyEnd - $padSeqRandomlyStart ) / $padSeqInc );
+  if ( $pqInc <> 1 )
+    $pqRandomlySteps = intval ( ( $pqRandomlyEnd - $pqRandomlyStart ) / $pqInc );
   
 ?>

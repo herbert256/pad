@@ -3,13 +3,13 @@
   if ( ! function_exists ( 'gmp_prob_prime' ) )
     return TRUE;
   
-  if ( ! gmp_prob_prime ( $padSeqLoop ) )
+  if ( ! gmp_prob_prime ( $pqLoop ) )
     return false;
 
-  if ( $padSeqLoop < 11 )
+  if ( $pqLoop < 11 )
     return false;
 
-   $padReverse = padTypeReverse($padSeqLoop);
+   $padReverse = padTypeReverse($pqLoop);
 
   if ( gmp_prob_prime ( $padReverse ) ) 
     return TRUE;

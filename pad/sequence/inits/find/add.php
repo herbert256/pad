@@ -1,15 +1,15 @@
 <?php
 
-  $padPrmName  = $padSeqSeq;
-  $padPrmValue = $padSeqParm;
+  $padPrmName  = $pqSeq;
+  $padPrmValue = $pqParm;
   
-  if     ( padSeqPlay ( $padSeqTag )  ) $padSeqPlay = $padSeqTag;
-  elseif ( padSeqPlay ( $padSeqType ) ) $padSeqPlay = $padSeqType;
-  else                                  $padSeqPlay = 'make';
+  if     ( pqPlay ( $pqTag )  ) $pqPlay = $pqTag;
+  elseif ( pqPlay ( $pqType ) ) $pqPlay = $pqType;
+  else                                  $pqPlay = 'make';
 
   include 'sequence/plays/add.php';
 
-  $padSeqSeq  = '';
-  $padSeqParm = '';
+  $pqSeq  = '';
+  $pqParm = '';
 
 ?>

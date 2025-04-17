@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckKolakoski ( $f, $n, $p ) {
+  function pqCheckKolakoski ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/kolakoski/bool.php' ) )
-      return padSeqBoolKolakoski ( $n, $p );
+      return pqBoolKolakoski ( $n, $p );
 
     if ( file_exists ( 'sequence/types/kolakoski/fixed.php' ) ) {
       $fixed = include 'sequence/types/kolakoski/fixed.php';

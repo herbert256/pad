@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckComposite ( $f, $n, $p ) {
+  function pqCheckComposite ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/composite/bool.php' ) )
-      return padSeqBoolComposite ( $n, $p );
+      return pqBoolComposite ( $n, $p );
 
     if ( file_exists ( 'sequence/types/composite/fixed.php' ) ) {
       $fixed = include 'sequence/types/composite/fixed.php';

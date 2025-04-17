@@ -1,11 +1,11 @@
 <?php
 
-  $padSeqReturn = [];
+  $pqReturn = [];
 
-  if ( $padSeqContinue )
+  if ( $pqContinue )
     return;
 
-  if ( $padSeqNameGiven ) include 'sequence/exits/return/given.php'; 
+  if ( $pqNameGiven ) include 'sequence/exits/return/given.php'; 
   else                    include 'sequence/exits/return/names.php'; 
 
 ?>

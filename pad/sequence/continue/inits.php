@@ -1,10 +1,10 @@
 <?php
 
-  $padSeqContinue = ( $padSeqTag == 'continue' ) ? TRUE : FALSE;
+  $pqContinue = ( $pqTag == 'continue' ) ? TRUE : FALSE;
   
-  if ( ! $padSeqContinue )
+  if ( ! $pqContinue )
     return;
 
-  $padSeqPull = $padLastPush;
+  $pqPull = $padLastPush;
 
 ?>

@@ -8,7 +8,7 @@
   include 'sequence/inits/find/pull.php';
   include 'sequence/inits/find/parm.php';
 
-  if     ( ! $padSeqPull and ! $padSeqSeq ) include 'sequence/inits/find/default.php';
-  elseif (   $padSeqPull and   $padSeqSeq ) include 'sequence/inits/find/add.php';
+  if     ( ! $pqPull and ! $pqSeq ) include 'sequence/inits/find/default.php';
+  elseif (   $pqPull and   $pqSeq ) include 'sequence/inits/find/add.php';
 
 ?>

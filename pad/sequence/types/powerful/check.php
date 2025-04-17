@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckPowerful ( $f, $n, $p ) {
+  function pqCheckPowerful ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/powerful/bool.php' ) )
-      return padSeqBoolPowerful ( $n, $p );
+      return pqBoolPowerful ( $n, $p );
 
     if ( file_exists ( 'sequence/types/powerful/fixed.php' ) ) {
       $fixed = include 'sequence/types/powerful/fixed.php';

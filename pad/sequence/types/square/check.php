@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckSquare ( $f, $n, $p ) {
+  function pqCheckSquare ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/square/bool.php' ) )
-      return padSeqBoolSquare ( $n, $p );
+      return pqBoolSquare ( $n, $p );
 
     if ( file_exists ( 'sequence/types/square/fixed.php' ) ) {
       $fixed = include 'sequence/types/square/fixed.php';

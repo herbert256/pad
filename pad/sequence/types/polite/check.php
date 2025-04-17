@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckPolite ( $f, $n, $p ) {
+  function pqCheckPolite ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/polite/bool.php' ) )
-      return padSeqBoolPolite ( $n, $p );
+      return pqBoolPolite ( $n, $p );
 
     if ( file_exists ( 'sequence/types/polite/fixed.php' ) ) {
       $fixed = include 'sequence/types/polite/fixed.php';

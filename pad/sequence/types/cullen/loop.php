@@ -1,5 +1,5 @@
 <?php
 
-  return (1 << $padSeqLoop) * $padSeqLoop + 1;  
+  return (1 << $pqLoop) * $pqLoop + 1;  
 
 ?>

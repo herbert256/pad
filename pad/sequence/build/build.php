@@ -1,14 +1,14 @@
 <?php
 
-  if ( $padSeqBuildName and  $padSeqBuildName !== TRUE )
+  if ( $pqBuildName and  $pqBuildName !== TRUE )
     include 'sequence/build/given.php';
     
-  $padSeqInfo ['sequences'] [] = $padSeqSeq;
-  $padSeqInfo ['builds']    [] = $padSeqBuild;
+  $pqInfo ['sequences'] [] = $pqSeq;
+  $pqInfo ['builds']    [] = $pqBuild;
 
-  $padSeqParmStore = ( $padSeqParm and isset ( $padSeqStore [$padSeqParm] ) ) ? $padSeqParm : '';
+  $pqParmStore = ( $pqParm and isset ( $pqStore [$pqParm] ) ) ? $pqParm : '';
 
   include "sequence/build/include.php";
-  include "sequence/build/types/$padSeqBuild.php";
+  include "sequence/build/types/$pqBuild.php";
   
 ?>

@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckSemiprime ( $f, $n, $p ) {
+  function pqCheckSemiprime ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/semiprime/bool.php' ) )
-      return padSeqBoolSemiprime ( $n, $p );
+      return pqBoolSemiprime ( $n, $p );
 
     if ( file_exists ( 'sequence/types/semiprime/fixed.php' ) ) {
       $fixed = include 'sequence/types/semiprime/fixed.php';

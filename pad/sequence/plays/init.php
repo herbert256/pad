@@ -1,20 +1,20 @@
 <?php
 
-  $padSeqParmSave  = $padSeqParm;
-  $padSeqIncSave   = $padSeqInc;
-  $padSeqStartSave = $padSeqStart;
-  $padSeqEndSave   = $padSeqEnd;
+  $pqParmSave  = $pqParm;
+  $pqIncSave   = $pqInc;
+  $pqStartSave = $pqStart;
+  $pqEndSave   = $pqEnd;
 
-  $padSeqParm = $padPrmValue;
+  $pqParm = $padPrmValue;
 
-  if ( $padSeqParm and isset ( $padSeqStore [$padSeqParm] ) )
-    $padSeqParm = reset ( $padSeqStore [$padSeqParm] );
+  if ( $pqParm and isset ( $pqStore [$pqParm] ) )
+    $pqParm = reset ( $pqStore [$pqParm] );
 
-  include "sequence/types/$padSeqSeq/init.php";
+  include "sequence/types/$pqSeq/init.php";
 
-  $padSeqParm  = $padSeqParmSave;
-  $padSeqInc   = $padSeqIncSave;
-  $padSeqStart = $padSeqStartSave;
-  $padSeqEnd   = $padSeqEndSave;
+  $pqParm  = $pqParmSave;
+  $pqInc   = $pqIncSave;
+  $pqStart = $pqStartSave;
+  $pqEnd   = $pqEndSave;
 
 ?>

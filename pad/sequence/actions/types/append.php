@@ -1,11 +1,11 @@
 <?php
  
-   foreach ( $padSeqActionList as $padSeqPrependKey ) {
-    $padSeqPrependReverse = array_reverse($padSeqStore [$padSeqPrependKey]);
-    foreach ($padSeqPrependReverse as $padSeqPrependValue)
-      array_unshift ($padSeqResult, $padSeqPrependValue);
+   foreach ( $pqActionList as $pqPrependKey ) {
+    $pqPrependReverse = array_reverse($pqStore [$pqPrependKey]);
+    foreach ($pqPrependReverse as $pqPrependValue)
+      array_unshift ($pqResult, $pqPrependValue);
   }
 
-  return $padSeqResult;
+  return $pqResult;
   
 ?>

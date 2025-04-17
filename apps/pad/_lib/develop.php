@@ -64,7 +64,7 @@
   }
 
 
-  function padSeqTypes () {
+  function pqTypes () {
   
     return array_diff ( scandir ( 'sequence/types' ), [ '.', '..' ] ) ;
 

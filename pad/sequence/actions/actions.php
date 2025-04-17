@@ -1,8 +1,8 @@
 <?php
 
-  if ( $padSeqAction ) {
-    $padPrmName  = $padSeqAction;
-    $padPrmValue = $padSeqActionParm;
+  if ( $pqAction ) {
+    $padPrmName  = $pqAction;
+    $padPrmValue = $pqActionParm;
     include 'sequence/actions/action.php';
   }
 
@@ -11,7 +11,7 @@
     extract ( $padStartOption );
 
     if     ( $padPrmKind <> 'option'                                  ) continue;
-    elseif ( padSeqDone ( $padPrmName, $padSeqDone )                  ) continue;
+    elseif ( pqDone ( $padPrmName, $pqDone )                  ) continue;
     elseif ( $padPrmName == 'action'                                  ) include 'sequence/actions/action.php';
     elseif ( file_exists ( "sequence/actions/types/$padPrmName.php" ) ) include 'sequence/actions/action.php';
     

@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckOctagonal ( $f, $n, $p ) {
+  function pqCheckOctagonal ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/octagonal/bool.php' ) )
-      return padSeqBoolOctagonal ( $n, $p );
+      return pqBoolOctagonal ( $n, $p );
 
     if ( file_exists ( 'sequence/types/octagonal/fixed.php' ) ) {
       $fixed = include 'sequence/types/octagonal/fixed.php';

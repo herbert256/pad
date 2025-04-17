@@ -1,14 +1,14 @@
 <?php
 
-  if ( $padSeqName )
+  if ( $pqName )
     return;
 
-      if ( $padSeqPush     and $padSeqPush     !== TRUE ) $padSeqName = $padSeqPush;           
-  elseif ( $padSeqPull     and $padSeqPull     !== TRUE ) $padSeqName = $padSeqPull;           
-  elseif ( $padSeqPullName and $padSeqPullName !== TRUE ) $padSeqName = $padSeqPullName;           
-  elseif ( file_exists ( "sequence/types/$padSeqSeq" )  ) $padSeqName = $padSeqSeq;
-  else                                                    $padSeqName = 'sequence'; 
+      if ( $pqPush     and $pqPush     !== TRUE ) $pqName = $pqPush;           
+  elseif ( $pqPull     and $pqPull     !== TRUE ) $pqName = $pqPull;           
+  elseif ( $pqPullName and $pqPullName !== TRUE ) $pqName = $pqPullName;           
+  elseif ( file_exists ( "sequence/types/$pqSeq" )  ) $pqName = $pqSeq;
+  else                                                    $pqName = 'sequence'; 
   
-  $padName [$pad] = $padSeqName;
+  $padName [$pad] = $pqName;
 
 ?>

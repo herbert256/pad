@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckEmirp ( $f, $n, $p ) {
+  function pqCheckEmirp ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/emirp/bool.php' ) )
-      return padSeqBoolEmirp ( $n, $p );
+      return pqBoolEmirp ( $n, $p );
 
     if ( file_exists ( 'sequence/types/emirp/fixed.php' ) ) {
       $fixed = include 'sequence/types/emirp/fixed.php';

@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckPentagonal ( $f, $n, $p ) {
+  function pqCheckPentagonal ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/pentagonal/bool.php' ) )
-      return padSeqBoolPentagonal ( $n, $p );
+      return pqBoolPentagonal ( $n, $p );
 
     if ( file_exists ( 'sequence/types/pentagonal/fixed.php' ) ) {
       $fixed = include 'sequence/types/pentagonal/fixed.php';

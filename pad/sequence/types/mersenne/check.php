@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckMersenne ( $f, $n, $p ) {
+  function pqCheckMersenne ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/mersenne/bool.php' ) )
-      return padSeqBoolMersenne ( $n, $p );
+      return pqBoolMersenne ( $n, $p );
 
     if ( file_exists ( 'sequence/types/mersenne/fixed.php' ) ) {
       $fixed = include 'sequence/types/mersenne/fixed.php';

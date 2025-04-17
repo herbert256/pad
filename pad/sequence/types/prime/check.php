@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckPrime ( $f, $n, $p ) {
+  function pqCheckPrime ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/prime/bool.php' ) )
-      return padSeqBoolPrime ( $n, $p );
+      return pqBoolPrime ( $n, $p );
 
     if ( file_exists ( 'sequence/types/prime/fixed.php' ) ) {
       $fixed = include 'sequence/types/prime/fixed.php';

@@ -1,11 +1,11 @@
 <?php
 
-  $padSeqRandomOrderly    = $padPrm [$pad] ['orderly']     ?? ''; 
-  $padSeqRandomDuplicates = $padPrm [$pad] ['duplicates']  ?? ''; 
+  $pqRandomOrderly    = $padPrm [$pad] ['orderly']     ?? ''; 
+  $pqRandomDuplicates = $padPrm [$pad] ['duplicates']  ?? ''; 
 
-  if ( ! $padSeqActionParm )
-    $padSeqActionCnt = count ( $padSeqResult );
+  if ( ! $pqActionParm )
+    $pqActionCnt = count ( $pqResult );
 
-  return padSeqRandom ( $padSeqResult, $padSeqActionCnt, $padSeqRandomOrderly, $padSeqRandomDuplicates );
+  return pqRandom ( $pqResult, $pqActionCnt, $pqRandomOrderly, $pqRandomDuplicates );
     
 ?>

@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckIdentity ( $f, $n, $p ) {
+  function pqCheckIdentity ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/identity/bool.php' ) )
-      return padSeqBoolIdentity ( $n, $p );
+      return pqBoolIdentity ( $n, $p );
 
     if ( file_exists ( 'sequence/types/identity/fixed.php' ) ) {
       $fixed = include 'sequence/types/identity/fixed.php';

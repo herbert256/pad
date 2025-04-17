@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckKynea ( $f, $n, $p ) {
+  function pqCheckKynea ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/kynea/bool.php' ) )
-      return padSeqBoolKynea ( $n, $p );
+      return pqBoolKynea ( $n, $p );
 
     if ( file_exists ( 'sequence/types/kynea/fixed.php' ) ) {
       $fixed = include 'sequence/types/kynea/fixed.php';

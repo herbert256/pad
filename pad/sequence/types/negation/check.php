@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckNegation ( $f, $n, $p ) {
+  function pqCheckNegation ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/negation/bool.php' ) )
-      return padSeqBoolNegation ( $n, $p );
+      return pqBoolNegation ( $n, $p );
 
     if ( file_exists ( 'sequence/types/negation/fixed.php' ) ) {
       $fixed = include 'sequence/types/negation/fixed.php';

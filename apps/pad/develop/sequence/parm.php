@@ -1,6 +1,6 @@
 <?php
 
-  $build = padSeqBuild ( $type );
+  $build = pqBuild ( $type );
   $parm  = '';
 
   if ( $build == 'fixed' or $build == 'order' )
@@ -13,7 +13,7 @@
   foreach ( [ 'loop', 'make', 'function', 'bool' ] as $check ) 
     if (   file_exists       ( "sequence/types/$type/$check.php") ) {
       $c = file_get_contents ( "sequence/types/$type/$check.php");
-      if ( str_contains ( $c, "padSeqParm" ) ) 
+      if ( str_contains ( $c, "pqParm" ) ) 
         $e = TRUE;
     }
 

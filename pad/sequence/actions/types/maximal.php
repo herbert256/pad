@@ -1,5 +1,5 @@
 <?php
 
-  return [ 1 => max ( $padSeqResult ) ];
+  return [ 1 => max ( $pqResult ) ];
 
 ?>

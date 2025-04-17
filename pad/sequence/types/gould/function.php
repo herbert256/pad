@@ -1,6 +1,6 @@
 <?php
 
-  function padSeqGould ($n) {
+  function pqGould ($n) {
 
     $x = $c = 1;
 

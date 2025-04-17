@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckGolomb ( $f, $n, $p ) {
+  function pqCheckGolomb ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/golomb/bool.php' ) )
-      return padSeqBoolGolomb ( $n, $p );
+      return pqBoolGolomb ( $n, $p );
 
     if ( file_exists ( 'sequence/types/golomb/fixed.php' ) ) {
       $fixed = include 'sequence/types/golomb/fixed.php';

@@ -3,33 +3,33 @@
   if ( $padPrmValue === TRUE )
     $padPrmValue = '';
 
-  $padSeqActionList = padExplode ( $padPrmValue, '|' );
+  $pqActionList = padExplode ( $padPrmValue, '|' );
 
-  if ( $padPrmName == 'action' ) $padSeqAction = array_shift ( $padSeqActionList );
-  else                           $padSeqAction = $padPrmName;     
+  if ( $padPrmName == 'action' ) $pqAction = array_shift ( $pqActionList );
+  else                           $pqAction = $padPrmName;     
 
-  $padSeqActionParm = $padSeqActionList [0] ?? '';
+  $pqActionParm = $pqActionList [0] ?? '';
 
-  if ( ! file_exists ( "sequence/actions/types/$padSeqAction.php" ) )
+  if ( ! file_exists ( "sequence/actions/types/$pqAction.php" ) )
     return;
 
-  if ( $padSeqNegative )
+  if ( $pqNegative )
     include "sequence/actions/negative/inits.php";
   
-  $padSeqActionCnt = ( ctype_digit ( $padSeqActionParm ) ) ? $padSeqActionParm : 1;
+  $pqActionCnt = ( ctype_digit ( $pqActionParm ) ) ? $pqActionParm : 1;
 
-  $padSeqResult = include "sequence/actions/types/$padSeqAction.php";
+  $pqResult = include "sequence/actions/types/$pqAction.php";
 
-  if ( $padSeqNegative )
+  if ( $pqNegative )
     include "sequence/actions/negative/exits.php";
 
-  $padSeqResult = array_values ( $padSeqResult );
+  $pqResult = array_values ( $pqResult );
   
-  $padSeqNames [] = $padSeqAction;
+  $pqNames [] = $pqAction;
 
-  if ( file_exists ( "sequence/actions/single/$padSeqAction" ) )
-    $padSeqInfo ['actions/single'] [] = $padSeqAction;
-  elseif ( file_exists ( "sequence/actions/double/$padSeqAction" ) )
-    $padSeqInfo ['actions/double'] [] = $padSeqAction;
+  if ( file_exists ( "sequence/actions/single/$pqAction" ) )
+    $pqInfo ['actions/single'] [] = $pqAction;
+  elseif ( file_exists ( "sequence/actions/double/$pqAction" ) )
+    $pqInfo ['actions/double'] [] = $pqAction;
 
 ?>

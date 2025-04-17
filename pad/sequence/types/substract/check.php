@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckSubstract ( $f, $n, $p ) {
+  function pqCheckSubstract ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/substract/bool.php' ) )
-      return padSeqBoolSubstract ( $n, $p );
+      return pqBoolSubstract ( $n, $p );
 
     if ( file_exists ( 'sequence/types/substract/fixed.php' ) ) {
       $fixed = include 'sequence/types/substract/fixed.php';

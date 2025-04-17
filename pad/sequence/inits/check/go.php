@@ -1,15 +1,15 @@
 <?php
     
-  if ( $padSeqCheck == 'make'   and ! $padSeqMake   ) return;
-  if ( $padSeqCheck == 'flag'   and ! $padSeqFlag   ) return;
-  if ( $padSeqCheck == 'keep'   and ! $padSeqKeep   ) return;
-  if ( $padSeqCheck == 'remove' and ! $padSeqRemove ) return;
+  if ( $pqCheck == 'make'   and ! $pqMake   ) return;
+  if ( $pqCheck == 'flag'   and ! $pqFlag   ) return;
+  if ( $pqCheck == 'keep'   and ! $pqKeep   ) return;
+  if ( $pqCheck == 'remove' and ! $pqRemove ) return;
 
-  foreach ( $padSeqPlays as $padSeqPlay )
-    if ( $padSeqPlay ['padSeqPlay'] == $padSeqCheck )
+  foreach ( $pqPlays as $pqPlay )
+    if ( $pqPlay ['pqPlay'] == $pqCheck )
       return;
          
-  if ( padSeqStore ( $padSeqBuild ) ) include 'sequence/inits/check/store.php';
+  if ( pqStore ( $pqBuild ) ) include 'sequence/inits/check/store.php';
   else                                include 'sequence/inits/check/sequence.php';
 
 ?>

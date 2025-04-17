@@ -1,39 +1,39 @@
 <?php
 
-  foreach ( $padSeqActionList as $padSeqMergeKey ) {
+  foreach ( $pqActionList as $pqMergeKey ) {
 
-    $padSeqMerge1 = $padSeqResult;
-    $padSeqMerge2 = $padSeqStore [$padSeqMergeKey];
+    $pqMerge1 = $pqResult;
+    $pqMerge2 = $pqStore [$pqMergeKey];
 
-    $padSeqResult = [];
+    $pqResult = [];
 
-    $padSeqMerge1Val = reset ($padSeqMerge1);
-    $padSeqMerge2Val = reset ($padSeqMerge2);
+    $pqMerge1Val = reset ($pqMerge1);
+    $pqMerge2Val = reset ($pqMerge2);
 
-    while ( $padSeqMerge1Val !== FALSE or $padSeqMerge2Val !== FALSE) {
+    while ( $pqMerge1Val !== FALSE or $pqMerge2Val !== FALSE) {
 
-      if ( $padSeqMerge1Val !== FALSE and $padSeqMerge2Val === FALSE ) {
-        if ($padSeqAction == 'combine' or ! in_array($padSeqMerge1Val, $padSeqResult) )
-          $padSeqResult [] = $padSeqMerge1Val;
-        $padSeqMerge1Val = next ($padSeqMerge1);
-      } elseif ( $padSeqMerge1Val === FALSE and $padSeqMerge2Val !== FALSE ) {
-        if ($padSeqAction == 'combine' or ! in_array($padSeqMerge2Val, $padSeqResult) )
-          $padSeqResult [] = $padSeqMerge2Val;
-        $padSeqMerge2Val = next ($padSeqMerge2);
-      } elseif ( $padSeqMerge1Val < $padSeqMerge2Val ) {
-        if ($padSeqAction == 'combine' or ! in_array($padSeqMerge1Val, $padSeqResult) )
-          $padSeqResult [] = $padSeqMerge1Val;
-        $padSeqMerge1Val = next ($padSeqMerge1);
+      if ( $pqMerge1Val !== FALSE and $pqMerge2Val === FALSE ) {
+        if ($pqAction == 'combine' or ! in_array($pqMerge1Val, $pqResult) )
+          $pqResult [] = $pqMerge1Val;
+        $pqMerge1Val = next ($pqMerge1);
+      } elseif ( $pqMerge1Val === FALSE and $pqMerge2Val !== FALSE ) {
+        if ($pqAction == 'combine' or ! in_array($pqMerge2Val, $pqResult) )
+          $pqResult [] = $pqMerge2Val;
+        $pqMerge2Val = next ($pqMerge2);
+      } elseif ( $pqMerge1Val < $pqMerge2Val ) {
+        if ($pqAction == 'combine' or ! in_array($pqMerge1Val, $pqResult) )
+          $pqResult [] = $pqMerge1Val;
+        $pqMerge1Val = next ($pqMerge1);
       } else {
-        if ($padSeqAction == 'combine' or ! in_array($padSeqMerge2Val, $padSeqResult) )
-          $padSeqResult [] = $padSeqMerge2Val;
-        $padSeqMerge2Val = next ($padSeqMerge2);
+        if ($pqAction == 'combine' or ! in_array($pqMerge2Val, $pqResult) )
+          $pqResult [] = $pqMerge2Val;
+        $pqMerge2Val = next ($pqMerge2);
       }
 
     }
 
   }
 
-  return $padSeqResult;
+  return $pqResult;
 
 ?>

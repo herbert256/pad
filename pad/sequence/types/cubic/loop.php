@@ -1,5 +1,5 @@
 <?php
 
-return $padSeqLoop ** 3;
+return $pqLoop ** 3;
 
 ?>

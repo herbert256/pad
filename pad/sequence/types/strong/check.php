@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckStrong ( $f, $n, $p ) {
+  function pqCheckStrong ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/strong/bool.php' ) )
-      return padSeqBoolStrong ( $n, $p );
+      return pqBoolStrong ( $n, $p );
 
     if ( file_exists ( 'sequence/types/strong/fixed.php' ) ) {
       $fixed = include 'sequence/types/strong/fixed.php';

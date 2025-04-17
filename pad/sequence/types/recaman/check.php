@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckRecaman ( $f, $n, $p ) {
+  function pqCheckRecaman ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/recaman/bool.php' ) )
-      return padSeqBoolRecaman ( $n, $p );
+      return pqBoolRecaman ( $n, $p );
 
     if ( file_exists ( 'sequence/types/recaman/fixed.php' ) ) {
       $fixed = include 'sequence/types/recaman/fixed.php';

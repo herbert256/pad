@@ -1,17 +1,17 @@
 <?php
 
-  function padSeqBoolHappy ($num, $p=0) {
+  function pqBoolHappy ($num, $p=0) {
 
     $n = $num;
   
     while ($n != 1 && $n != 4)
-      $n = padSeqBoolHappyGo ($n);
+      $n = pqBoolHappyGo ($n);
   
     return ( $n == 1 );
 
   }
 
-  function padSeqBoolHappyGo ($num) {
+  function pqBoolHappyGo ($num) {
 
     $rem = 0;
     $sum = 0;

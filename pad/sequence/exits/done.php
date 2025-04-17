@@ -1,6 +1,6 @@
 <?php
 
-  foreach ( $padSeqDone as $padK => $padV )
+  foreach ( $pqDone as $padK => $padV )
     if ( ! is_array ( $padV ) )
       padDone ( $padV );
 

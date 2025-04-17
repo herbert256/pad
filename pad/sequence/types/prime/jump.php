@@ -1,15 +1,15 @@
 <?php
 
   if ( ! function_exists ( 'gmp_prob_prime' ) )
-    return $padSeqLoop;
+    return $pqLoop;
 
-  if ( gmp_prob_prime ($padSeqLoop) )
-    $padSeqJump = $padSeqLoop;
+  if ( gmp_prob_prime ($pqLoop) )
+    $pqJump = $pqLoop;
   else
-    $padSeqJump = intval ( gmp_nextprime ($padSeqLoop) );
+    $pqJump = intval ( gmp_nextprime ($pqLoop) );
 
-  $padSeqLoop = $padSeqJump + $padSeqInc;
+  $pqLoop = $pqJump + $pqInc;
  
-  return $padSeqJump;
+  return $pqJump;
 
 ?>

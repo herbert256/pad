@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckTribonacci ( $f, $n, $p ) {
+  function pqCheckTribonacci ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/tribonacci/bool.php' ) )
-      return padSeqBoolTribonacci ( $n, $p );
+      return pqBoolTribonacci ( $n, $p );
 
     if ( file_exists ( 'sequence/types/tribonacci/fixed.php' ) ) {
       $fixed = include 'sequence/types/tribonacci/fixed.php';

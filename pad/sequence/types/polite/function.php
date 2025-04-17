@@ -1,6 +1,6 @@
 <?php
 
-  function padSeqPolite ($n) {
+  function pqPolite ($n) {
 
     $n += 1;
     $base = 2;

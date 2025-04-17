@@ -1,9 +1,9 @@
 <?php
   
-  if     ( $padSeqBuild == 'function' ) $padRet = ( 'padSeq'      . ucfirst($padSeqSeq) ) ( $padSeqLoop );
-  elseif ( $padSeqBuild == 'check'    ) $padRet = ( 'padSeqCheck' . ucfirst($padSeqSeq) ) ( $padSeqStart, $padSeqLoop, $padSeqParm );
-  elseif ( $padSeqBuild == 'bool'     ) $padRet = ( 'padSeqBool'  . ucfirst($padSeqSeq) ) ( $padSeqLoop );
-  else                                  $padRet = include "sequence/types/$padSeqSeq/$padSeqBuild.php";
+  if     ( $pqBuild == 'function' ) $padRet = ( 'pq'      . ucfirst($pqSeq) ) ( $pqLoop );
+  elseif ( $pqBuild == 'check'    ) $padRet = ( 'pqCheck' . ucfirst($pqSeq) ) ( $pqStart, $pqLoop, $pqParm );
+  elseif ( $pqBuild == 'bool'     ) $padRet = ( 'pqBool'  . ucfirst($pqSeq) ) ( $pqLoop );
+  else                                  $padRet = include "sequence/types/$pqSeq/$pqBuild.php";
 
   if     ( $padRet === NULL  ) return FALSE;
   elseif ( $padRet === INF   ) return FALSE; 

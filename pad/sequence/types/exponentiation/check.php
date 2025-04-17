@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckExponentiation ( $f, $n, $p ) {
+  function pqCheckExponentiation ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/exponentiation/bool.php' ) )
-      return padSeqBoolExponentiation ( $n, $p );
+      return pqBoolExponentiation ( $n, $p );
 
     if ( file_exists ( 'sequence/types/exponentiation/fixed.php' ) ) {
       $fixed = include 'sequence/types/exponentiation/fixed.php';

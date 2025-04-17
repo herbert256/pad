@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckPerrin ( $f, $n, $p ) {
+  function pqCheckPerrin ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/perrin/bool.php' ) )
-      return padSeqBoolPerrin ( $n, $p );
+      return pqBoolPerrin ( $n, $p );
 
     if ( file_exists ( 'sequence/types/perrin/fixed.php' ) ) {
       $fixed = include 'sequence/types/perrin/fixed.php';

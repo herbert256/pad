@@ -2,6 +2,6 @@
 
   include_once 'function.php';
   
-  return padSeqRecaman ( $padSeqLoop );
+  return pqRecaman ( $pqLoop );
 
 ?>

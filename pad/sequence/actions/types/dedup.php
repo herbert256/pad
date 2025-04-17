@@ -1,6 +1,6 @@
 <?php
 
-  $padSeqFunction = 'array_unique';
+  $pqFunction = 'array_unique';
 
   return include 'sequence/actions/function.php';
 

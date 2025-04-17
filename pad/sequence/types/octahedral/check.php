@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckOctahedral ( $f, $n, $p ) {
+  function pqCheckOctahedral ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/octahedral/bool.php' ) )
-      return padSeqBoolOctahedral ( $n, $p );
+      return pqBoolOctahedral ( $n, $p );
 
     if ( file_exists ( 'sequence/types/octahedral/fixed.php' ) ) {
       $fixed = include 'sequence/types/octahedral/fixed.php';

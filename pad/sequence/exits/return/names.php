@@ -1,25 +1,25 @@
 <?php
 
-  $padSeqNames [] = 'sequence';
-  $padSeqNames [] = $padSeqName; 
-  $padSeqNames [] = $padSeqToData;
-  $padSeqNames [] = $padSeqSeq;
-  $padSeqNames [] = $padName [$pad]; 
-  $padSeqNames [] = $padTag [$pad];
-  $padSeqNames [] = $padSeqPull;
-  $padSeqNames [] = $padSeqPush;
+  $pqNames [] = 'sequence';
+  $pqNames [] = $pqName; 
+  $pqNames [] = $pqToData;
+  $pqNames [] = $pqSeq;
+  $pqNames [] = $padName [$pad]; 
+  $pqNames [] = $padTag [$pad];
+  $pqNames [] = $pqPull;
+  $pqNames [] = $pqPush;
 
-  $padSeqNames = array_unique ( $padSeqNames );
+  $pqNames = array_unique ( $pqNames );
 
-  foreach ( $padSeqResult as $padSeqValue ) {
+  foreach ( $pqResult as $pqValue ) {
 
-     $padSeqRecord = [];
+     $pqRecord = [];
 
-     foreach ( $padSeqNames as $padSeqName )
-       if ( $padSeqName and $padSeqName !== TRUE )
-         $padSeqRecord [$padSeqName] = $padSeqValue;
+     foreach ( $pqNames as $pqName )
+       if ( $pqName and $pqName !== TRUE )
+         $pqRecord [$pqName] = $pqValue;
 
-     $padSeqReturn [] = $padSeqRecord; 
+     $pqReturn [] = $pqRecord; 
 
   } 
 

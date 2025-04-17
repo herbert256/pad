@@ -1,6 +1,6 @@
 <?php
 
-  $padSeqFunction = 'array_intersect';
+  $pqFunction = 'array_intersect';
 
   return include 'sequence/actions/function.php';
 

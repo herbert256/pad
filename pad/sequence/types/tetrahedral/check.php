@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckTetrahedral ( $f, $n, $p ) {
+  function pqCheckTetrahedral ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/tetrahedral/bool.php' ) )
-      return padSeqBoolTetrahedral ( $n, $p );
+      return pqBoolTetrahedral ( $n, $p );
 
     if ( file_exists ( 'sequence/types/tetrahedral/fixed.php' ) ) {
       $fixed = include 'sequence/types/tetrahedral/fixed.php';

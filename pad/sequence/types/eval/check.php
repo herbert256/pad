@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckEval ( $f, $n, $p ) {
+  function pqCheckEval ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/eval/bool.php' ) )
-      return padSeqBoolEval ( $n, $p );
+      return pqBoolEval ( $n, $p );
 
     if ( file_exists ( 'sequence/types/eval/fixed.php' ) ) {
       $fixed = include 'sequence/types/eval/fixed.php';

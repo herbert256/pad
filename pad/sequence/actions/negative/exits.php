@@ -1,28 +1,28 @@
 <?php
 
-  foreach ( $padSeqResult as $padK => $padV )
+  foreach ( $pqResult as $padK => $padV )
 
     if ( substr ( $padK, 0, 1 ) <> 'x' ) { 
 
-      $padSeqNegativeNew = $padSeqResult;
+      $pqNegativeNew = $pqResult;
 
-      $padSeqResult = [];
+      $pqResult = [];
 
-      foreach ( $padSeqNegativeOld as $padV )
-        if ( ! in_array ( $padV, $padSeqNegativeNew ) )
-          $padSeqResult [] = $padV;
+      foreach ( $pqNegativeOld as $padV )
+        if ( ! in_array ( $padV, $pqNegativeNew ) )
+          $pqResult [] = $padV;
 
       return;
 
     }
 
-  $padSeqNegativeKeysNew = array_keys ( $padSeqResult      );
-  $padSeqNegativeKeysOld = array_keys ( $padSeqNegativeOld );
+  $pqNegativeKeysNew = array_keys ( $pqResult      );
+  $pqNegativeKeysOld = array_keys ( $pqNegativeOld );
 
-  $padSeqResult = [];
+  $pqResult = [];
 
-  foreach ( $padSeqNegativeKeysOld as $padSeqNegativeOldKey )
-    if ( ! in_array ( $padSeqNegativeOldKey, $padSeqNegativeKeysNew ) )
-      $padSeqResult [ substr ( $padSeqNegativeOldKey, 1 ) ] = $padSeqNegativeOld [$padSeqNegativeOldKey];
+  foreach ( $pqNegativeKeysOld as $pqNegativeOldKey )
+    if ( ! in_array ( $pqNegativeOldKey, $pqNegativeKeysNew ) )
+      $pqResult [ substr ( $pqNegativeOldKey, 1 ) ] = $pqNegativeOld [$pqNegativeOldKey];
   
 ?>

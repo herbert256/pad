@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckPower ( $f, $n, $p ) {
+  function pqCheckPower ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/power/bool.php' ) )
-      return padSeqBoolPower ( $n, $p );
+      return pqBoolPower ( $n, $p );
 
     if ( file_exists ( 'sequence/types/power/fixed.php' ) ) {
       $fixed = include 'sequence/types/power/fixed.php';

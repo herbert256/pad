@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckFibonacci ( $f, $n, $p ) {
+  function pqCheckFibonacci ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/fibonacci/bool.php' ) )
-      return padSeqBoolFibonacci ( $n, $p );
+      return pqBoolFibonacci ( $n, $p );
 
     if ( file_exists ( 'sequence/types/fibonacci/fixed.php' ) ) {
       $fixed = include 'sequence/types/fibonacci/fixed.php';

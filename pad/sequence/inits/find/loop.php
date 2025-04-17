@@ -4,22 +4,22 @@
 
     extract ( $padParmsOne );
 
-    if ( ! $padSeqSeq and file_exists ( "sequence/types/$padPrmName" ) ) {
+    if ( ! $pqSeq and file_exists ( "sequence/types/$padPrmName" ) ) {
 
-      $padSeqDone [] = $padPrmName; 
-      $padSeqSeq     = $padPrmName;
-      $padSeqParm    = $padPrmValue;
+      $pqDone [] = $padPrmName; 
+      $pqSeq     = $padPrmName;
+      $pqParm    = $padPrmValue;
 
-    } elseif ( ! $padSeqAction and file_exists ( "sequence/actions/types/$padPrmName.php" ) ) {
+    } elseif ( ! $pqAction and file_exists ( "sequence/actions/types/$padPrmName.php" ) ) {
 
-      $padSeqDone []    = $padPrmName; 
-      $padSeqAction     = $padPrmName;
-      $padSeqActionParm = $padPrmValue;
+      $pqDone []    = $padPrmName; 
+      $pqAction     = $padPrmName;
+      $pqActionParm = $padPrmValue;
 
-    } elseif ( ! $padSeqPull and isset ( $padSeqStore [$padPrmName] ) ) {
+    } elseif ( ! $pqPull and isset ( $pqStore [$padPrmName] ) ) {
 
-      $padSeqDone [] = $padPrmName;
-      $padSeqPull    = $padPrmName;
+      $pqDone [] = $padPrmName;
+      $pqPull    = $padPrmName;
           
     }
 

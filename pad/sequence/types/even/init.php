@@ -1,13 +1,13 @@
 <?php
 
-  $padSeqInc = 2;
+  $pqInc = 2;
 
-  $padSeqStart = $padSeqFrom * 2;
+  $pqStart = $pqFrom * 2;
 
-  if ( $padSeqTo <> PHP_INT_MAX )
-    $padSeqEnd = $padSeqTo * 2;
+  if ( $pqTo <> PHP_INT_MAX )
+    $pqEnd = $pqTo * 2;
 
-  if ( $padSeqStart % 2 )
-    $padSeqStart++;
+  if ( $pqStart % 2 )
+    $pqStart++;
 
 ?>

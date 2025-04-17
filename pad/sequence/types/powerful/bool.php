@@ -1,6 +1,6 @@
 <?php
 
-  function padSeqBoolPowerful ($n, $p=0) {
+  function pqBoolPowerful ($n, $p=0) {
 
     // https://www.geeksforgeeks.org/powerful-number/
 

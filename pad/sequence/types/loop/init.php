@@ -1,6 +1,6 @@
 <?php
 
-  if ( is_int ( $padSeqParm ) )
-    $padSeqRows = $padSeqParm;
+  if ( is_int ( $pqParm ) )
+    $pqRows = $pqParm;
 
 ?>

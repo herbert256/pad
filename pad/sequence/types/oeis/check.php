@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckOeis ( $f, $n, $p ) {
+  function pqCheckOeis ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/oeis/bool.php' ) )
-      return padSeqBoolOeis ( $n, $p );
+      return pqBoolOeis ( $n, $p );
 
     if ( file_exists ( 'sequence/types/oeis/fixed.php' ) ) {
       $fixed = include 'sequence/types/oeis/fixed.php';

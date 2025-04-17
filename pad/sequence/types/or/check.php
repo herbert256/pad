@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckOr ( $f, $n, $p ) {
+  function pqCheckOr ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/or/bool.php' ) )
-      return padSeqBoolOr ( $n, $p );
+      return pqBoolOr ( $n, $p );
 
     if ( file_exists ( 'sequence/types/or/fixed.php' ) ) {
       $fixed = include 'sequence/types/or/fixed.php';

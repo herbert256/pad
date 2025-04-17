@@ -13,6 +13,7 @@
     elseif ( isset            ( $GLOBALS ['padDataStore']    [$item] ) ) return 'data';
     elseif ( isset            ( $GLOBALS ['padBoolStore']    [$item] ) ) return 'bool';
     elseif ( isset            ( $GLOBALS ['padTables']       [$item] ) ) return 'table';
+    elseif ( isset            ( $GLOBALS ['pqStore'] [$item]     ) ) return 'pull';
     elseif ( file_exists      ( "tag/$item.php"                      ) ) return 'tag';
     elseif ( padDataFileName  ( $item                                ) ) return 'local';    
     elseif ( padArrayCheck    ( $item, 1                             ) ) return 'array';
@@ -22,7 +23,6 @@
     elseif ( file_exists      ( APP . "_functions/$item.php"         ) ) return 'function';
     elseif ( file_exists      ( "functions/$item.php"                ) ) return 'function';
     elseif ( function_exists  ( $item                                ) ) return 'php';
-    elseif ( isset            ( $GLOBALS ['padSeqStore'] [$item]     ) ) return 'pull';
     elseif ( file_exists      ( "sequence/types/$item"               ) ) return 'sequence';
     elseif ( file_exists      ( "sequence/actions/types/$item.php"   ) ) return 'action';
     else                                                                 return FALSE;
@@ -37,14 +37,14 @@
     if ( $type == 'action' and file_exists ( "sequence/actions/types/$item.php" )                        ) return 'action';
     if ( $item == 'action' and file_exists ( "sequence/actions/types/$type.php" )                        ) return 'action';
         
-    if ( isset ( $GLOBALS ['padSeqStore'] [$type] ) and file_exists ("sequence/actions/types/$item.php") ) return 'action';
-    if ( isset ( $GLOBALS ['padSeqStore'] [$item] ) and file_exists ("sequence/actions/types/$type.php") ) return 'action';
+    if ( isset ( $GLOBALS ['pqStore'] [$type] ) and file_exists ("sequence/actions/types/$item.php") ) return 'action';
+    if ( isset ( $GLOBALS ['pqStore'] [$item] ) and file_exists ("sequence/actions/types/$type.php") ) return 'action';
 
-    if ( isset ( $GLOBALS ['padSeqStore'] [$type] ) and file_exists ("sequence/types/$item")             ) return 'make';
-    if ( isset ( $GLOBALS ['padSeqStore'] [$item] ) and file_exists ("sequence/types/$type")             ) return 'make'; 
+    if ( isset ( $GLOBALS ['pqStore'] [$type] ) and file_exists ("sequence/types/$item")             ) return 'make';
+    if ( isset ( $GLOBALS ['pqStore'] [$item] ) and file_exists ("sequence/types/$type")             ) return 'make'; 
 
-    if ( isset ( $GLOBALS ['padSeqStore'] [$type] ) and file_exists ("sequence/start/types/$item.php")   ) return $item;
-    if ( isset ( $GLOBALS ['padSeqStore'] [$item] ) and file_exists ("sequence/start/types/$type.php")   ) return $type;
+    if ( isset ( $GLOBALS ['pqStore'] [$type] ) and file_exists ("sequence/start/types/$item.php")   ) return $item;
+    if ( isset ( $GLOBALS ['pqStore'] [$item] ) and file_exists ("sequence/start/types/$type.php")   ) return $type;
 
     if ( file_exists ( "sequence/types/$item" )    and file_exists ("sequence/start/types/$type.php")    ) return $type;
     if ( file_exists ( "sequence/types/$type" )    and file_exists ("sequence/start/types/$item.php")    ) return $item; 

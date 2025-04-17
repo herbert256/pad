@@ -2,11 +2,11 @@
 
   include_once 'bool.php';
 
-  return padSeqBoolPrime ($padSeqLoop);
+  return pqBoolPrime ($pqLoop);
   
-  if ( gmp_prob_prime ($padSeqLoop) )
-    return $padSeqLoop;
+  if ( gmp_prob_prime ($pqLoop) )
+    return $pqLoop;
   else
-    return intval (gmp_nextprime ($padSeqLoop));
+    return intval (gmp_nextprime ($pqLoop));
 
 ?>

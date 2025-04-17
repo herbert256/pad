@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckRound ( $f, $n, $p ) {
+  function pqCheckRound ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/round/bool.php' ) )
-      return padSeqBoolRound ( $n, $p );
+      return pqBoolRound ( $n, $p );
 
     if ( file_exists ( 'sequence/types/round/fixed.php' ) ) {
       $fixed = include 'sequence/types/round/fixed.php';

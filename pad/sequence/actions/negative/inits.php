@@ -1,11 +1,11 @@
 <?php
 
-  $padSeqNegativeOld = $padSeqResult;
-  $padSeqResult = [];
+  $pqNegativeOld = $pqResult;
+  $pqResult = [];
 
-  foreach ( $padSeqNegativeOld as $padK => $padV )
-    $padSeqResult [ 'x' . $padK ] = $padV;
+  foreach ( $pqNegativeOld as $padK => $padV )
+    $pqResult [ 'x' . $padK ] = $padV;
 
-  $padSeqNegativeOld = $padSeqResult;
+  $pqNegativeOld = $pqResult;
 
 ?>

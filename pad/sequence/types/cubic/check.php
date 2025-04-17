@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckCubic ( $f, $n, $p ) {
+  function pqCheckCubic ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/cubic/bool.php' ) )
-      return padSeqBoolCubic ( $n, $p );
+      return pqBoolCubic ( $n, $p );
 
     if ( file_exists ( 'sequence/types/cubic/fixed.php' ) ) {
       $fixed = include 'sequence/types/cubic/fixed.php';

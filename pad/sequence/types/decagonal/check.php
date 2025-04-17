@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckDecagonal ( $f, $n, $p ) {
+  function pqCheckDecagonal ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/decagonal/bool.php' ) )
-      return padSeqBoolDecagonal ( $n, $p );
+      return pqBoolDecagonal ( $n, $p );
 
     if ( file_exists ( 'sequence/types/decagonal/fixed.php' ) ) {
       $fixed = include 'sequence/types/decagonal/fixed.php';

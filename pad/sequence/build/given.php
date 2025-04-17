@@ -1,15 +1,15 @@
 <?php
 
-  if ( padSeqStore ( $padSeqBuild ) ) {
+  if ( pqStore ( $pqBuild ) ) {
 
-    foreach ( $padSeqPlays as $padK => $padV ) {
-      $padSeqPlays [$padK] ['padSeqBuild'] = $padSeqBuildName;
+    foreach ( $pqPlays as $padK => $padV ) {
+      $pqPlays [$padK] ['pqBuild'] = $pqBuildName;
       return;
     }
       
   } else {
 
-    $padSeqBuild = $padSeqBuildName;
+    $pqBuild = $pqBuildName;
 
   }
 

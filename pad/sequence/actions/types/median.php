@@ -1,8 +1,8 @@
 <?php
 
-  $padSeqTmp    = count ( $padSeqResult ) / 2;
-  $padSeqMedian = (int) $padSeqTmp;
+  $pqTmp    = count ( $pqResult ) / 2;
+  $pqMedian = (int) $pqTmp;
 
-  return [ 1 => $padSeqResult [$padSeqMedian] ];
+  return [ 1 => $pqResult [$pqMedian] ];
 
 ?>

@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckPronic ( $f, $n, $p ) {
+  function pqCheckPronic ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/pronic/bool.php' ) )
-      return padSeqBoolPronic ( $n, $p );
+      return pqBoolPronic ( $n, $p );
 
     if ( file_exists ( 'sequence/types/pronic/fixed.php' ) ) {
       $fixed = include 'sequence/types/pronic/fixed.php';

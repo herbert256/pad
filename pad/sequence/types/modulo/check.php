@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckModulo ( $f, $n, $p ) {
+  function pqCheckModulo ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/modulo/bool.php' ) )
-      return padSeqBoolModulo ( $n, $p );
+      return pqBoolModulo ( $n, $p );
 
     if ( file_exists ( 'sequence/types/modulo/fixed.php' ) ) {
       $fixed = include 'sequence/types/modulo/fixed.php';

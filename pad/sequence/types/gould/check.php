@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckGould ( $f, $n, $p ) {
+  function pqCheckGould ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/gould/bool.php' ) )
-      return padSeqBoolGould ( $n, $p );
+      return pqBoolGould ( $n, $p );
 
     if ( file_exists ( 'sequence/types/gould/fixed.php' ) ) {
       $fixed = include 'sequence/types/gould/fixed.php';

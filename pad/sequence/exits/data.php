@@ -1,11 +1,11 @@
 <?php
 
-  if ( ! $padSeqToData ) 
+  if ( ! $pqToData ) 
     return;
 
-  if ( $padSeqPull and ( isset ($padSeqPop) or isset ($padSeqShift) ) )
-    $padDataStore [$padSeqToData] = padData ( $padSeqStore [$padSeqPull], '', $padSeqToData );
+  if ( $pqPull and ( isset ($pqPop) or isset ($pqShift) ) )
+    $padDataStore [$pqToData] = padData ( $pqStore [$pqPull], '', $pqToData );
   else
-    $padDataStore [$padSeqToData] = padData ( $padSeqResult,              '', $padSeqToData );
+    $padDataStore [$pqToData] = padData ( $pqResult,              '', $pqToData );
 
 ?>

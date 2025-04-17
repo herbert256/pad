@@ -1,5 +1,5 @@
 <?php
 
-  return [ 1 => count ( $padSeqResult ) ];
+  return [ 1 => count ( $pqResult ) ];
 
 ?>

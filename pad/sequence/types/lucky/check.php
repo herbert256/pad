@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckLucky ( $f, $n, $p ) {
+  function pqCheckLucky ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/lucky/bool.php' ) )
-      return padSeqBoolLucky ( $n, $p );
+      return pqBoolLucky ( $n, $p );
 
     if ( file_exists ( 'sequence/types/lucky/fixed.php' ) ) {
       $fixed = include 'sequence/types/lucky/fixed.php';

@@ -1,8 +1,8 @@
 <?php
 
-  if ( $padSeqLoop == 1 ) return 3;
-  if ( $padSeqLoop == 2 ) return 0; 
-  if ( $padSeqLoop == 3 ) return 2; 
+  if ( $pqLoop == 1 ) return 3;
+  if ( $pqLoop == 2 ) return 0; 
+  if ( $pqLoop == 3 ) return 2; 
 
   return include "sequence/types/fibonacci/go.php"; 
 

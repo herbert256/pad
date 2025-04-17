@@ -1,13 +1,13 @@
 <?php
 
-  if ( $padSeqRandomStep <> 1 ) {
+  if ( $pqRandomStep <> 1 ) {
   
-    $padSeqRandomRand = rand ( 0, $padSeqRandomSteps ) * $padSeqRandomStep;
+    $pqRandomRand = rand ( 0, $pqRandomSteps ) * $pqRandomStep;
 
-    return  $padSeqRandomStart + $padSeqRandomRand;
+    return  $pqRandomStart + $pqRandomRand;
 
   }
 
-  return rand ( $padSeqRandomStart, $padSeqRandomEnd );
+  return rand ( $pqRandomStart, $pqRandomEnd );
 
 ?>

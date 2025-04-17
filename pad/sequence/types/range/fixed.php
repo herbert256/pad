@@ -1,10 +1,10 @@
 <?php
 
-  if ( ! $padSeqParm )
-    $padSeqParm = $padParm;
+  if ( ! $pqParm )
+    $pqParm = $padParm;
 
-  $padSeqDone [] = 'increment';
+  $pqDone [] = 'increment';
 
-  return padGetRange ( $padSeqParm,  $padSeqInc );
+  return padGetRange ( $pqParm,  $pqInc );
 
 ?>

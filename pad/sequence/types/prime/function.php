@@ -1,6 +1,6 @@
 <?php
 
-  function padSeqPrime (int $number) {
+  function pqPrime (int $number) {
 
     if ($number==0) return false;
     $n=2;

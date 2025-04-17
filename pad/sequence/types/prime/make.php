@@ -1,5 +1,5 @@
 <?php
 
-  return padSeqPrime ( $padSeqLoop );
+  return pqPrime ( $pqLoop );
 
 ?>

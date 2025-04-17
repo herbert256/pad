@@ -2,9 +2,9 @@
 
   include 'sequence/build/randomly/init.php';
 
-  $padSeqLoop = $padSeqStart;
+  $pqLoop = $pqStart;
 
-  while ( $padSeqLoop <= $padSeqEnd )
+  while ( $pqLoop <= $pqEnd )
     if ( ! include 'sequence/build/one.php')
       break;
 

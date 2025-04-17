@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckPerfect ( $f, $n, $p ) {
+  function pqCheckPerfect ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/perfect/bool.php' ) )
-      return padSeqBoolPerfect ( $n, $p );
+      return pqBoolPerfect ( $n, $p );
 
     if ( file_exists ( 'sequence/types/perfect/fixed.php' ) ) {
       $fixed = include 'sequence/types/perfect/fixed.php';

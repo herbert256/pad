@@ -1,6 +1,6 @@
 <?php
 
-  function padSeqBoolOdd( $n, $p=0 ) {
+  function pqBoolOdd( $n, $p=0 ) {
 
     if ( $n & 1 )
       return TRUE;

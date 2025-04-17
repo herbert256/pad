@@ -1,33 +1,33 @@
 <?php 
 
-  if ( $padSeqParm and isset ( $padSeqStore [$padSeqParm] ) )
+  if ( $pqParm and isset ( $pqStore [$pqParm] ) )
     include 'sequence/plays/store.php';
 
-  if ( is_numeric ($padSeqParm) )
-    if ( str_contains ( $padSeqParm, '.' ) ) $padSeqParm = doubleval ( $padSeqParm );
-    else                                     $padSeqParm = intval    ( $padSeqParm );
+  if ( is_numeric ($pqParm) )
+    if ( str_contains ( $pqParm, '.' ) ) $pqParm = doubleval ( $pqParm );
+    else                                     $pqParm = intval    ( $pqParm );
 
   include 'sequence/build/include.php';
 
-  $padSeq = include 'sequence/build/call.php';
+  $pq = include 'sequence/build/call.php';
 
-  if     ( $padSeqPlay == 'loop'   and $padSeq === TRUE       ) $padSeq = $padSeqLoop;
+  if     ( $pqPlay == 'loop'   and $pq === TRUE       ) $pq = $pqLoop;
 
-  elseif ( $padSeqPlay == 'make'   and $padSeq === TRUE       ) $padSeq = $padSeqLoop;
+  elseif ( $pqPlay == 'make'   and $pq === TRUE       ) $pq = $pqLoop;
 
-  elseif ( $padSeqPlay == 'keep'   and $padSeq === TRUE       ) $padSeq = $padSeqLoop;
-  elseif ( $padSeqPlay == 'keep'   and $padSeq <> $padSeqLoop ) $padSeq = FALSE;
+  elseif ( $pqPlay == 'keep'   and $pq === TRUE       ) $pq = $pqLoop;
+  elseif ( $pqPlay == 'keep'   and $pq <> $pqLoop ) $pq = FALSE;
 
-  elseif ( $padSeqPlay == 'remove' and $padSeq === TRUE       ) $padSeq = FALSE;
-  elseif ( $padSeqPlay == 'remove' and $padSeq === FALSE      ) $padSeq = $padSeqLoop;
-  elseif ( $padSeqPlay == 'remove' and $padSeq == $padSeqLoop ) $padSeq = FALSE;
+  elseif ( $pqPlay == 'remove' and $pq === TRUE       ) $pq = FALSE;
+  elseif ( $pqPlay == 'remove' and $pq === FALSE      ) $pq = $pqLoop;
+  elseif ( $pqPlay == 'remove' and $pq == $pqLoop ) $pq = FALSE;
 
-  elseif ( $padSeqPlay == 'flag'   and $padSeq === TRUE       ) $padSeq = 1;
-  elseif ( $padSeqPlay == 'flag'   and $padSeq === FALSE      ) $padSeq = 0;
-  elseif ( $padSeqPlay == 'flag'   and $padSeq == $padSeqLoop ) $padSeq = 1;
-  elseif ( $padSeqPlay == 'flag'   and $padSeq <> $padSeqLoop ) $padSeq = 0;
+  elseif ( $pqPlay == 'flag'   and $pq === TRUE       ) $pq = 1;
+  elseif ( $pqPlay == 'flag'   and $pq === FALSE      ) $pq = 0;
+  elseif ( $pqPlay == 'flag'   and $pq == $pqLoop ) $pq = 1;
+  elseif ( $pqPlay == 'flag'   and $pq <> $pqLoop ) $pq = 0;
 
-  if ( ! isset ( $padSeqInfo ['plays'] ) or ! in_array ( "$padSeqPlay/$padSeqSeq", $padSeqInfo ['plays'] ) )
-    $padSeqInfo ['plays'] [] = "$padSeqPlay/$padSeqSeq";
+  if ( ! isset ( $pqInfo ['plays'] ) or ! in_array ( "$pqPlay/$pqSeq", $pqInfo ['plays'] ) )
+    $pqInfo ['plays'] [] = "$pqPlay/$pqSeq";
 
 ?>

@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckNor ( $f, $n, $p ) {
+  function pqCheckNor ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/nor/bool.php' ) )
-      return padSeqBoolNor ( $n, $p );
+      return pqBoolNor ( $n, $p );
 
     if ( file_exists ( 'sequence/types/nor/fixed.php' ) ) {
       $fixed = include 'sequence/types/nor/fixed.php';

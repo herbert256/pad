@@ -1,5 +1,5 @@
 <?php
 
-  return [ 1 => array_sum ( $padSeqResult ) ];
+  return [ 1 => array_sum ( $pqResult ) ];
 
 ?>

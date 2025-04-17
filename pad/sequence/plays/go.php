@@ -1,16 +1,16 @@
 <?php
 
-  $padSeqPlayType = 'build';
+  $pqPlayType = 'build';
 
-  foreach ( $padSeqPlays as $padSeqPlay ) {
+  foreach ( $pqPlays as $pqPlay ) {
     
-    extract ( $padSeqPlay );
+    extract ( $pqPlay );
 
-    $padSeqLoop = $padSeq;
+    $pqLoop = $pq;
 
     include 'sequence/plays/one.php';
 
-    if ( $padSeq === FALSE )
+    if ( $pq === FALSE )
       return;
 
   }

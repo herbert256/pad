@@ -1,5 +1,5 @@
 <?php
 
-  return padGetList ( $padSeqParm );
+  return padGetList ( $pqParm );
   
 ?>

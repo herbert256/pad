@@ -7,10 +7,10 @@
 
   $code =   "<?php"
         . "\n"
-        . "\n  function padSeqCheck$name ( \$f, \$n, \$p ) {"
+        . "\n  function pqCheck$name ( \$f, \$n, \$p ) {"
         . "\n"
         . "\n    if ( file_exists ( 'sequence/types/$type/bool.php' ) )"
-        . "\n      return padSeqBool$name ( \$n, \$p );"
+        . "\n      return pqBool$name ( \$n, \$p );"
         . "\n"
         . "\n    if ( file_exists ( 'sequence/types/$type/fixed.php' ) ) {"
         . "\n      \$fixed = include 'sequence/types/$type/fixed.php';"

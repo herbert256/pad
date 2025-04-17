@@ -1,13 +1,13 @@
 <?php
 
-  if ( $padSeqInc <> 1 )
-    $padSeqRandomlyRand = $padSeqRandomlyStart + rand ( 0, $padSeqRandomlySteps ) * $padSeqInc;
+  if ( $pqInc <> 1 )
+    $pqRandomlyRand = $pqRandomlyStart + rand ( 0, $pqRandomlySteps ) * $pqInc;
   else
-    $padSeqRandomlyRand = rand ( $padSeqRandomlyStart, $padSeqRandomlyEnd ) ;
+    $pqRandomlyRand = rand ( $pqRandomlyStart, $pqRandomlyEnd ) ;
 
-  if ( padSeqStore ( $padSeqBuild ) )
-    return $padSeqFixed [$padSeqRandomlyRand];
+  if ( pqStore ( $pqBuild ) )
+    return $pqFixed [$pqRandomlyRand];
   else
-    return $padSeqRandomlyRand;
+    return $pqRandomlyRand;
 
 ?>

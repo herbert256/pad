@@ -1,60 +1,60 @@
 <?php
 
   $padTagSeq [$pad]   = TRUE;
-  $padSeqFixed        = FALSE;
-  $padSeqStoreUpdated = FALSE;
+  $pqFixed        = FALSE;
+  $pqStoreUpdated = FALSE;
 
-  $padSeqTries      = 0;
-  $padSeqBase       = 0;
-  $padSeqLoop       = 0;
+  $pqTries      = 0;
+  $pqBase       = 0;
+  $pqLoop       = 0;
   
-  $padSeqResult     = [];
-  $padSeqDone       = [];
-  $padSeqInfo       = [];  
-  $padSeqNames      = [];
-  $padSeqPlays      = [];
+  $pqResult     = [];
+  $pqDone       = [];
+  $pqInfo       = [];  
+  $pqNames      = [];
+  $pqPlays      = [];
   
-  $padSeqSeq        = '';
-  $padSeqBuild      = '';
-  $padSeqPull       = '';
-  $padSeqParm       = '';
-  $padSeqAction     = '';
-  $padSeqActionParm = '';
+  $pqSeq        = '';
+  $pqBuild      = '';
+  $pqPull       = '';
+  $pqParm       = '';
+  $pqAction     = '';
+  $pqActionParm = '';
  
-  $padSeqType   = $padType   [$pad];
-  $padSeqPrefix = $padPrefix [$pad];
-  $padSeqTag    = $padTag    [$pad];
+  $pqType   = $padType   [$pad];
+  $pqPrefix = $padPrefix [$pad];
+  $pqTag    = $padTag    [$pad];
 
-      if ( padSeqPlay ( $padSeqTag  ) ) $padSeqPlay = $padSeqTag;
-  elseif ( padSeqPlay ( $padSeqType ) ) $padSeqPlay = $padSeqType;
-  else                                  $padSeqPlay = 'make';
+      if ( pqPlay ( $pqTag  ) ) $pqPlay = $pqTag;
+  elseif ( pqPlay ( $pqType ) ) $pqPlay = $pqType;
+  else                                  $pqPlay = 'make';
  
-  $padSeqFrom = intval ( $padPrm [$pad] ['from']      ?? 1           );
-  $padSeqTo   = intval ( $padPrm [$pad] ['to']        ?? PHP_INT_MAX );
+  $pqFrom = intval ( $padPrm [$pad] ['from']      ?? 1           );
+  $pqTo   = intval ( $padPrm [$pad] ['to']        ?? PHP_INT_MAX );
  
-  $padSeqMin  = intval ( $padPrm [$pad] ['min']       ?? PHP_INT_MIN );
-  $padSeqMax  = intval ( $padPrm [$pad] ['max']       ?? PHP_INT_MAX );
-  $padSeqStop = intval ( $padPrm [$pad] ['stop']      ?? PHP_INT_MAX );
+  $pqMin  = intval ( $padPrm [$pad] ['min']       ?? PHP_INT_MIN );
+  $pqMax  = intval ( $padPrm [$pad] ['max']       ?? PHP_INT_MAX );
+  $pqStop = intval ( $padPrm [$pad] ['stop']      ?? PHP_INT_MAX );
   
-  $padSeqInc  = intval ( $padPrm [$pad] ['increment'] ?? 1           );
-  $padSeqRows = intval ( $padPrm [$pad] ['rows']      ?? 0           );
-  $padSeqSkip = intval ( $padPrm [$pad] ['skip']      ?? 0           );
-  $padSeqTry  = intval ( $padPrm [$pad] ['try']       ?? 10000       ); 
+  $pqInc  = intval ( $padPrm [$pad] ['increment'] ?? 1           );
+  $pqRows = intval ( $padPrm [$pad] ['rows']      ?? 0           );
+  $pqSkip = intval ( $padPrm [$pad] ['skip']      ?? 0           );
+  $pqTry  = intval ( $padPrm [$pad] ['try']       ?? 10000       ); 
   
-  $padSeqRandomly  = $padPrm [$pad] ['randomly'] ?? ''; 
-  $padSeqUnique    = $padPrm [$pad] ['unique']   ?? ''; 
-  $padSeqName      = $padPrm [$pad] ['name']     ?? ''; 
-  $padSeqBuildName = $padPrm [$pad] ['build']    ?? ''; 
-  $padSeqToData    = $padPrm [$pad] ['toData']   ?? ''; 
-  $padSeqNegative  = $padPrm [$pad] ['negative'] ?? 0 ;
-  $padSeqPullName  = $padPrm [$pad] ['pull']     ?? '';
-  $padSeqPush      = $padPrm [$pad] ['push']     ?? '';
+  $pqRandomly  = $padPrm [$pad] ['randomly'] ?? ''; 
+  $pqUnique    = $padPrm [$pad] ['unique']   ?? ''; 
+  $pqName      = $padPrm [$pad] ['name']     ?? ''; 
+  $pqBuildName = $padPrm [$pad] ['build']    ?? ''; 
+  $pqToData    = $padPrm [$pad] ['toData']   ?? ''; 
+  $pqNegative  = $padPrm [$pad] ['negative'] ?? 0 ;
+  $pqPullName  = $padPrm [$pad] ['pull']     ?? '';
+  $pqPush      = $padPrm [$pad] ['push']     ?? '';
 
-  if ( $padSeqPullName === TRUE ) $padSeqPullName = $padLastPush;
+  if ( $pqPullName === TRUE ) $pqPullName = $padLastPush;
 
-  $padSeqNameGiven = $padSeqName;
+  $pqNameGiven = $pqName;
 
-  $padSeqStart = $padPrm [$pad] ['from'] ?? 1; 
-  $padSeqEnd   = $padPrm [$pad] ['to']   ?? PHP_INT_MAX;
+  $pqStart = $padPrm [$pad] ['from'] ?? 1; 
+  $pqEnd   = $padPrm [$pad] ['to']   ?? PHP_INT_MAX;
 
 ?>

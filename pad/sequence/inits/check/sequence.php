@@ -1,9 +1,9 @@
 <?php
     
-  $padSeqBuild = 'check';
+  $pqBuild = 'check';
   
   include 'sequence/build/include.php';
 
-  $padSeqBuild = $padSeqCheck;
+  $pqBuild = $pqCheck;
 
 ?>

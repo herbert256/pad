@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckXnor ( $f, $n, $p ) {
+  function pqCheckXnor ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/xnor/bool.php' ) )
-      return padSeqBoolXnor ( $n, $p );
+      return pqBoolXnor ( $n, $p );
 
     if ( file_exists ( 'sequence/types/xnor/fixed.php' ) ) {
       $fixed = include 'sequence/types/xnor/fixed.php';

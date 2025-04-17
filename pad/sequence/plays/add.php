@@ -1,26 +1,26 @@
 <?php
 
-  $padSeqSave1 = $padSeqSeq;
-  $padSeqSave2 = $padSeqBuild;
+  $pqSave1 = $pqSeq;
+  $pqSave2 = $pqBuild;
   
-  $padSeqSeq   = $padPrmName;
-  $padSeqBuild = padSeqBuild ( $padSeqSeq, $padSeqPlay );
+  $pqSeq   = $padPrmName;
+  $pqBuild = pqBuild ( $pqSeq, $pqPlay );
 
   include 'sequence/build/include.php';
   
-  if ( file_exists ( "sequence/types/$padSeqSeq/init.php" ) )
+  if ( file_exists ( "sequence/types/$pqSeq/init.php" ) )
     include "sequence/plays/init.php";
   
-  $padSeqPlays [] = [
-    'padSeqSeq'   => $padSeqSeq,
-    'padSeqParm'  => $padPrmValue,
-    'padSeqBuild' => $padSeqBuild,
-    'padSeqPlay'  => $padSeqPlay
+  $pqPlays [] = [
+    'pqSeq'   => $pqSeq,
+    'pqParm'  => $padPrmValue,
+    'pqBuild' => $pqBuild,
+    'pqPlay'  => $pqPlay
   ];
 
-  $padSeqDone [] = $padSeqSeq;
+  $pqDone [] = $pqSeq;
 
-  $padSeqSeq   = $padSeqSave1;
-  $padSeqBuild = $padSeqSave2;
+  $pqSeq   = $pqSave1;
+  $pqBuild = $pqSave2;
 
 ?>

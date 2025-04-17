@@ -1,7 +1,7 @@
 <?php
 
-  if     ( isset ( $padSeqStore [$padSeqTag]                     ) ) $padSeqPull   = $padSeqTag;
-  elseif ( file_exists ( "sequence/types/$padSeqTag"             ) ) $padSeqSeq    = $padSeqTag;
-  elseif ( file_exists ( "sequence/actions/types/$padSeqTag.php" ) ) $padSeqAction = $padSeqTag;
+  if     ( isset ( $pqStore [$pqTag]                     ) ) $pqPull   = $pqTag;
+  elseif ( file_exists ( "sequence/types/$pqTag"             ) ) $pqSeq    = $pqTag;
+  elseif ( file_exists ( "sequence/actions/types/$pqTag.php" ) ) $pqAction = $pqTag;
 
 ?>

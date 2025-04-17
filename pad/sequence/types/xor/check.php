@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckXor ( $f, $n, $p ) {
+  function pqCheckXor ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/xor/bool.php' ) )
-      return padSeqBoolXor ( $n, $p );
+      return pqBoolXor ( $n, $p );
 
     if ( file_exists ( 'sequence/types/xor/fixed.php' ) ) {
       $fixed = include 'sequence/types/xor/fixed.php';

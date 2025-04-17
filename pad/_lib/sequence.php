@@ -1,7 +1,7 @@
 <?php
 
 
-  function padSeqDone ( $option, &$array ) {
+  function pqDone ( $option, &$array ) {
 
     $key = array_search ( $option, $array );
 
@@ -15,21 +15,21 @@
   }
 
 
-  function padSeqStore ( $check ) {
+  function pqStore ( $check ) {
 
     return in_array ( $check, ['start','store','pull','fixed'] );
 
   }
   
   
-  function padSeqPlay ( $check ) {
+  function pqPlay ( $check ) {
 
     return in_array ( $check, ['make','keep','remove','flag'] );
 
   }
 
 
-  function padSeqRandom ( $array, $count=1, $order=0, $dups=0 ) {
+  function pqRandom ( $array, $count=1, $order=0, $dups=0 ) {
 
     $out  = [];
     $keys = [];
@@ -70,37 +70,37 @@
   }
 
 
-  function padSeqCorrectParms (&$padSeqPrm1, &$padSeqPrm2, &$padSeqPrm3) {
+  function pqCorrectParms (&$pqPrm1, &$pqPrm2, &$pqPrm3) {
 
-    if ( str_contains ( $padSeqPrm1, '|' ) and ! $padSeqPrm2 ) {
+    if ( str_contains ( $pqPrm1, '|' ) and ! $pqPrm2 ) {
 
-      $padTmp = padExplode ( $padSeqPrm1, '|', 2 );
+      $padTmp = padExplode ( $pqPrm1, '|', 2 );
 
-      $padSeqPrm1 = $padTmp [0];
-      $padSeqPrm2 = $padTmp [1];
-
-    }
-
-    if ( str_contains ( $padSeqPrm1, '|' ) and ! $padSeqPrm3 ) {
-
-      $padTmp = padExplode ( $padSeqPrm1, '|', 2 );
-
-      $padSeqPrm1 = $padTmp [0];
-      $padSeqPrm3 = $padTmp [1];
+      $pqPrm1 = $padTmp [0];
+      $pqPrm2 = $padTmp [1];
 
     }
 
-    if ( str_contains ( $padSeqPrm2, '|' ) and ! $padSeqPrm3 ) {
-      $padTmp = padExplode ( $padSeqPrm2, '|', 2 );
-      $padSeqPrm2 = $padTmp [0];
-      $padSeqPrm3 = $padTmp [1];
+    if ( str_contains ( $pqPrm1, '|' ) and ! $pqPrm3 ) {
+
+      $padTmp = padExplode ( $pqPrm1, '|', 2 );
+
+      $pqPrm1 = $padTmp [0];
+      $pqPrm3 = $padTmp [1];
+
+    }
+
+    if ( str_contains ( $pqPrm2, '|' ) and ! $pqPrm3 ) {
+      $padTmp = padExplode ( $pqPrm2, '|', 2 );
+      $pqPrm2 = $padTmp [0];
+      $pqPrm3 = $padTmp [1];
 
     }    
 
   }
 
 
-  function padSeqRandomLy ( $for, $start, $end, $inc ) {
+  function pqRandomLy ( $for, $start, $end, $inc ) {
 
     if ( is_array ( $for ) and count ( $for ) )
       return $for [array_rand($for)];
@@ -119,7 +119,7 @@
   }
 
 
-  function padSeqBuild ( $check, $for='' ) {
+  function pqBuild ( $check, $for='' ) {
 
     if ( $check == 'pull' )
       return 'fixed';
@@ -143,12 +143,12 @@
   }
 
 
-  function padSeqEvalAction ( $seq1, $action, $seq2 ) {
+  function pqEvalAction ( $seq1, $action, $seq2 ) {
 
-    $padSeqResult          = $seq1;
-    $padSeqActionList [0]  = $action;
-    $padSeqActionName      = $action;
-    $padSeqStore [$action] = $seq2;
+    $pqResult          = $seq1;
+    $pqActionList [0]  = $action;
+    $pqActionName      = $action;
+    $pqStore [$action] = $seq2;
 
     return include "sequence/actions/types/$action.php";  
 
@@ -167,7 +167,7 @@
   }
 
 
-  function padSeqTruncate ( $array, $side, $count ) {
+  function pqTruncate ( $array, $side, $count ) {
 
     if ( $side == 'left' )
       return array_slice ( $array, $count );
@@ -179,7 +179,7 @@
 
   function padHandTruncate ( $array, $side, $count ) {
 
-    return padSeqTruncate ( $array, $side, $count );
+    return pqTruncate ( $array, $side, $count );
 
   }
 

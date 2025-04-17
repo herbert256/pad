@@ -1,5 +1,5 @@
 <?php
 
-  $padSeqResult = array_flip ( $padSeqResult );
+  $pqResult = array_flip ( $pqResult );
   
 ?>

@@ -1,24 +1,24 @@
 <?php
 
-  if ( count ( $padSeqActionList ) == 1 )
+  if ( count ( $pqActionList ) == 1 )
     array_splice (
-      $padSeqResult,
-      $padSeqActionList [0]
+      $pqResult,
+      $pqActionList [0]
     );
-  elseif ( count ( $padSeqActionList ) == 2 )
+  elseif ( count ( $pqActionList ) == 2 )
     array_splice (
-      $padSeqResult,
-      $padSeqActionList [0],
-      $padSeqActionList [1]
+      $pqResult,
+      $pqActionList [0],
+      $pqActionList [1]
     );
-  elseif ( count ( $padSeqActionList ) == 3 )
+  elseif ( count ( $pqActionList ) == 3 )
     array_splice (
-      $padSeqResult,
-      $padSeqActionList [1],
-      $padSeqActionList [2],
-      $padSeqActionList [0]
+      $pqResult,
+      $pqActionList [1],
+      $pqActionList [2],
+      $pqActionList [0]
     );
 
-  return $padSeqResult;
+  return $pqResult;
 
 ?>

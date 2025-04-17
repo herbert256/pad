@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckCeil ( $f, $n, $p ) {
+  function pqCheckCeil ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/ceil/bool.php' ) )
-      return padSeqBoolCeil ( $n, $p );
+      return pqBoolCeil ( $n, $p );
 
     if ( file_exists ( 'sequence/types/ceil/fixed.php' ) ) {
       $fixed = include 'sequence/types/ceil/fixed.php';

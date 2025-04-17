@@ -1,9 +1,9 @@
 <?php
 
-  function padSeqCheckCatalan ( $f, $n, $p ) {
+  function pqCheckCatalan ( $f, $n, $p ) {
 
     if ( file_exists ( 'sequence/types/catalan/bool.php' ) )
-      return padSeqBoolCatalan ( $n, $p );
+      return pqBoolCatalan ( $n, $p );
 
     if ( file_exists ( 'sequence/types/catalan/fixed.php' ) ) {
       $fixed = include 'sequence/types/catalan/fixed.php';

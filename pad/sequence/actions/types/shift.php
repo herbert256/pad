@@ -1,23 +1,23 @@
 <?php
 
-  if ( $padSeqPull )
-    $padSeqStoreUpdated = TRUE;
+  if ( $pqPull )
+    $pqStoreUpdated = TRUE;
 
-  if ( $padSeqPull )
-    if ( count($padSeqStore [$padSeqPull]) > $padSeqActionCnt )
-      if ( $padSeqAction == 'shift')
-        $padSeqStore [$padSeqPull] = array_slice($padSeqStore [$padSeqPull], $padSeqActionCnt);
+  if ( $pqPull )
+    if ( count($pqStore [$pqPull]) > $pqActionCnt )
+      if ( $pqAction == 'shift')
+        $pqStore [$pqPull] = array_slice($pqStore [$pqPull], $pqActionCnt);
       else
-        $padSeqStore [$padSeqPull] = array_slice($padSeqStore [$padSeqPull], 0, $padSeqActionCnt * -1);
+        $pqStore [$pqPull] = array_slice($pqStore [$pqPull], 0, $pqActionCnt * -1);
     else
-      $padSeqStore [$padSeqPull] = [];
+      $pqStore [$pqPull] = [];
 
-  if ( count($padSeqResult) > $padSeqActionCnt )
-    if ( $padSeqAction == 'shift')
-      return array_slice ( $padSeqResult, 0, $padSeqActionCnt );
+  if ( count($pqResult) > $pqActionCnt )
+    if ( $pqAction == 'shift')
+      return array_slice ( $pqResult, 0, $pqActionCnt );
     else 
-      return array_slice ( $padSeqResult, $padSeqActionCnt * -1 );
+      return array_slice ( $pqResult, $pqActionCnt * -1 );
   else
-    return $padSeqResult;
+    return $pqResult;
   
 ?>
