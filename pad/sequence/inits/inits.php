@@ -2,7 +2,6 @@
 
   include 'sequence/inits/clear.php';
   include 'sequence/inits/vars.php';
-  include 'sequence/inits/startEnd.php';
   include 'sequence/continue/inits.php';
   include 'sequence/inits/find/find.php';
   include 'sequence/inits/name.php';

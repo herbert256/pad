@@ -1,7 +1,7 @@
 <?php
 
   if ( $padSeqPull )
-    return $padSeqPull;
+    return;
 
   foreach ( $padParms [$pad] as $padParmsOne )  {
 
@@ -11,18 +11,18 @@
       continue;
 
     if ( isset ( $padSeqStore [$padPrmName] ) ) {
+
       $padSeqDone [] = $padPrmName;
-      return $padPrmName;
+      $padSeqPull = $padPrmName;
+      
+      return;
+    
     }
 
   }
 
-  if ( $padSeqPullName ) 
-    return $padSeqPullName;
-
-  if ( $padSeqFindType == 'continue' and $padLastPush ) return $padLastPush;
-  if ( $padSeqFindType == 'pull'     and $padLastPush ) return $padLastPush;
-
-  return '';
+      if ( $padSeqPullName                                ) $padSeqPull = $padSeqPullName;
+  elseif ( $padSeqFindType == 'continue' and $padLastPush ) $padSeqPull = $padLastPush;
+  elseif ( $padSeqFindType == 'pull'     and $padLastPush ) $padSeqPull = $padLastPush;
 
 ?>

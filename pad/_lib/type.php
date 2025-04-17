@@ -49,8 +49,8 @@
     if ( file_exists ( "sequence/types/$item" )    and file_exists ("sequence/start/types/$type.php")    ) return $type;
     if ( file_exists ( "sequence/types/$type" )    and file_exists ("sequence/start/types/$item.php")    ) return $item; 
 
-    if ( file_exists ( "sequence/actions/types/$item.php" ) and file_exists ("sequence/start/types/$type.php")    ) return $type;
-    if ( file_exists ( "sequence/actions/types/$type.php" ) and file_exists ("sequence/start/types/$item.php")    ) return $item; 
+    if ( file_exists ( "sequence/actions/types/$item.php" ) and file_exists ("sequence/start/types/$type.php") ) return $type;
+    if ( file_exists ( "sequence/actions/types/$type.php" ) and file_exists ("sequence/start/types/$item.php") ) return $item; 
 
     return FALSE;
 
@@ -65,7 +65,7 @@
     elseif ( $type == 'app'      and file_exists     ( APP . "_tags/$item.php"              ) ) return $type;
     elseif ( $type == 'app'      and file_exists     ( APP . "_tags/$item.pad"              ) ) return $type;
     elseif ( $type == 'pad'      and file_exists     ( "tags/$item.php"                     ) ) return $type;
-    elseif ( $type ==  'pad'      and file_exists     ( "tags/$item.pad"                     ) ) return $type;
+    elseif ( $type == 'pad'      and file_exists     ( "tags/$item.pad"                     ) ) return $type;
     elseif ( $type == 'tag'      and file_exists     ( "tag/$type.php"                      ) ) return $type;
     elseif ( $type == 'level'    and padChkLevel     ( $item                                ) ) return $type;
     elseif ( $type == 'bool'     and isset           ( $GLOBALS ['padBoolStore'] [$item]    ) ) return $type;

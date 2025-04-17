@@ -1,8 +1,6 @@
 <?php
 
-  if ( ! isset ( $padSeqStore ) )
-    $padSeqStore = [];
-
+  $padTagSeq [$pad]   = TRUE;
   $padSeqFixed        = FALSE;
   $padSeqStoreUpdated = FALSE;
 
@@ -12,16 +10,13 @@
   
   $padSeqResult     = [];
   $padSeqDone       = [];
-  $padSeqDoneDone   = [];
   $padSeqInfo       = [];  
   $padSeqNames      = [];
   $padSeqPlays      = [];
   
-  $padSeqPlay       = '';
   $padSeqSeq        = '';
   $padSeqBuild      = '';
   $padSeqPull       = '';
-  $padSeqSetName    = '';
   $padSeqParm       = '';
   $padSeqAction     = '';
   $padSeqActionParm = '';
@@ -30,13 +25,9 @@
   $padSeqPrefix = $padPrefix [$pad];
   $padSeqTag    = $padTag    [$pad];
 
-  $padTagSeq [$pad] = TRUE;
-
       if ( padSeqPlay ( $padSeqTag  ) ) $padSeqPlay = $padSeqTag;
   elseif ( padSeqPlay ( $padSeqType ) ) $padSeqPlay = $padSeqType;
   else                                  $padSeqPlay = 'make';
-
-  $padSeqTry  = intval ( $padPrm [$pad] ['try']       ?? 10000       ); 
  
   $padSeqFrom = intval ( $padPrm [$pad] ['from']      ?? 1           );
   $padSeqTo   = intval ( $padPrm [$pad] ['to']        ?? PHP_INT_MAX );
@@ -48,6 +39,7 @@
   $padSeqInc  = intval ( $padPrm [$pad] ['increment'] ?? 1           );
   $padSeqRows = intval ( $padPrm [$pad] ['rows']      ?? 0           );
   $padSeqSkip = intval ( $padPrm [$pad] ['skip']      ?? 0           );
+  $padSeqTry  = intval ( $padPrm [$pad] ['try']       ?? 10000       ); 
   
   $padSeqRandomly  = $padPrm [$pad] ['randomly'] ?? ''; 
   $padSeqUnique    = $padPrm [$pad] ['unique']   ?? ''; 
@@ -58,15 +50,11 @@
   $padSeqPullName  = $padPrm [$pad] ['pull']     ?? '';
   $padSeqPush      = $padPrm [$pad] ['push']     ?? '';
 
-  $padSeqTmp    = array_keys ( $padPrm [$pad] );
-  $padSeqFirst  = $padSeqTmp [0] ?? '';
-  $padSeqSecond = $padSeqTmp [1] ?? '';
-
-  $padSeqFirstParm  = ( $padSeqFirst  ) ? $padPrm [$pad] [$padSeqFirst]  : '';
-  $padSeqSecondParm = ( $padSeqSecond ) ? $padPrm [$pad] [$padSeqSecond] : '';
-
   if ( $padSeqPullName === TRUE ) $padSeqPullName = $padLastPush;
 
   $padSeqNameGiven = $padSeqName;
+
+  $padSeqStart = $padPrm [$pad] ['from'] ?? 1; 
+  $padSeqEnd   = $padPrm [$pad] ['to']   ?? PHP_INT_MAX;
 
 ?>
