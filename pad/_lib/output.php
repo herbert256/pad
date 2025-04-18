@@ -86,8 +86,8 @@
 
   function padWebPadHeaders ( $stop ) {
 
-    padHeader ('X-PAD: ' . $GLOBALS ['padSesID'] . '-' . $GLOBALS ['padReqID']);
-
+    padHeader       ('PAD: ' . $GLOBALS ['padSesID'] . '-' . $GLOBALS ['padReqID']);
+    padWebStats     ();
     padWebNoHeaders ($stop);
     
     if ( $stop == 200 and $GLOBALS ['padGzip'] and $GLOBALS ['padClientGzip'] )
@@ -103,6 +103,20 @@
       padHeader ( 'Cache-Control: no-cache, no-store' );
     else
       padWebCacheHeaders ();
+
+  }
+
+
+  function padWebStats () {
+
+    if ( ! $GLOBALS ['padInfo']      ) return;
+    if ( ! $GLOBALS ['padInfoStats'] ) return;
+
+    if ( ! isset ( $GLOBALS ['padInfoStatsJson'] ) )
+      include 'info/types/stats/end.php';
+
+    if ( isset ( $GLOBALS ['padInfoStatsJson'] ) )
+      padHeader ( 'PAD-Stats: ' . $GLOBALS ['padInfoStatsJson'] );    
 
   }
 

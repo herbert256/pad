@@ -13,7 +13,7 @@
     elseif ( isset            ( $GLOBALS ['padDataStore']    [$item] ) ) return 'data';
     elseif ( isset            ( $GLOBALS ['padBoolStore']    [$item] ) ) return 'bool';
     elseif ( isset            ( $GLOBALS ['padTables']       [$item] ) ) return 'table';
-    elseif ( isset            ( $GLOBALS ['pqStore'] [$item]     ) ) return 'pull';
+    elseif ( isset            ( $GLOBALS ['pqStore'] [$item]         ) ) return 'pull';
     elseif ( file_exists      ( "tag/$item.php"                      ) ) return 'tag';
     elseif ( padDataFileName  ( $item                                ) ) return 'local';    
     elseif ( padArrayCheck    ( $item, 1                             ) ) return 'array';

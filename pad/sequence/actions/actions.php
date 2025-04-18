@@ -10,10 +10,10 @@
 
     extract ( $padStartOption );
 
-    if     ( $padPrmKind <> 'option'                                  ) continue;
-    elseif ( pqDone ( $padPrmName, $pqDone )                  ) continue;
-    elseif ( $padPrmName == 'action'                                  ) include 'sequence/actions/action.php';
-    elseif ( file_exists ( "sequence/actions/types/$padPrmName.php" ) ) include 'sequence/actions/action.php';
+    if     ( $padPrmKind <> 'option'         ) continue;
+    elseif ( pqDone ( $padPrmName, $pqDone ) ) continue;
+    elseif ( $padPrmName == 'action'         ) include 'sequence/actions/action.php';
+    elseif ( pqAction ( $padPrmName )        ) include 'sequence/actions/action.php';
     
   }
  

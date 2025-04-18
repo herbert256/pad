@@ -3,6 +3,8 @@
   
   function padEvalType ( &$result, $myself, $start, $end ) {
 
+    global $padInfo;
+    
     $b = -1;
     
     foreach ( $result as $k => $t ) { 

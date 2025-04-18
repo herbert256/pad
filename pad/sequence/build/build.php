@@ -1,6 +1,6 @@
 <?php
 
-  if ( $pqBuildName and  $pqBuildName !== TRUE )
+  if ( $pqBuildName and $pqBuildName !== TRUE )
     include 'sequence/build/given.php';
     
   $pqInfo ['sequences'] [] = $pqSeq;

@@ -1,6 +1,25 @@
 <?php
 
 
+  function pqSeq ( $seq  ) {
+
+    if ( $seq and file_exists ( "sequence/types/$seq" ) )
+      return TRUE;
+    else
+      return FALSE;
+
+  }
+
+  function pqAction ( $action  ) {
+
+    if ( $action and file_exists ( "sequence/actions/types/$action.php" ) )
+      return TRUE;
+    else
+      return FALSE;
+
+  }
+
+
   function pqDone ( $option, &$array ) {
 
     $key = array_search ( $option, $array );

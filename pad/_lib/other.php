@@ -696,11 +696,24 @@
   }
   
   
-  function padDuration () {
+  function padDuration ( $start = 0, $end = 0 ) {
 
-    $duration = (int) ( ( microtime(true) - $_SERVER['REQUEST_TIME_FLOAT'] ) * 1000000 );
+    if ( ! $start ) $start = $_SERVER ['REQUEST_TIME_FLOAT'];
+    if ( ! $end   ) $end   = microtime ( true );
+
+    $duration = (int) ( ( $end - $start ) * 1000000000 );
 
     return $duration;
+
+  }
+
+
+  function padDurationHR ( $start = 0, $end = 0 ) {
+
+    if ( ! $start ) $start = $GLOBALS ['padHR'] ?? hrtime ( TRUE );
+    if ( ! $end   ) $end   = hrtime ( TRUE );
+
+    return $end - $start;
 
   }
 

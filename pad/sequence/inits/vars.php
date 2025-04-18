@@ -27,7 +27,7 @@
 
       if ( pqPlay ( $pqTag  ) ) $pqPlay = $pqTag;
   elseif ( pqPlay ( $pqType ) ) $pqPlay = $pqType;
-  else                                  $pqPlay = 'make';
+  else                                    $pqPlay = 'make';
  
   $pqFrom = intval ( $padPrm [$pad] ['from']      ?? 1           );
   $pqTo   = intval ( $padPrm [$pad] ['to']        ?? PHP_INT_MAX );

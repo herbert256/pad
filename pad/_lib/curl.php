@@ -56,6 +56,11 @@
     $output ['cookies'] = [];
     $output ['data']    = '';
 
+    $stats = isset ( $GLOBALS ['padCurlStats'] );
+    
+    if ( $stats )
+      $GLOBALS ['padCurlStats'] = [];
+
     $url = ( is_array($input) ) ? $input ['url'] : $input;
 
     if ( ! is_array($input) ) 
@@ -147,12 +152,15 @@
 
       foreach ( $options as $key => $val )
         curl_setopt ( $curl, constant('CURLOPT_'.$key), $val );
-    
-      $result          = curl_exec    ($curl);
-      $output ['info'] = curl_getinfo ($curl);
+
+      if ( $stats ) $start = hrtime ( TRUE );
+      $result = curl_exec ($curl);
+      if ( $stats ) $end = hrtime ( TRUE );
       
       if ($result === FALSE)
         return padCurlError ($output, 'curl_exec = FALSE');
+
+      $output ['info'] = curl_getinfo ($curl);
 
     } catch (Throwable $e) {
 
@@ -211,6 +219,13 @@
 
       }
       
+    }
+
+    if ( $stats and isset ( $output ['headers'] ['PAD-Stats'] ) ) {
+      $output ['stats'] = json_decode ( $output ['headers'] ['PAD-Stats'], TRUE ) ;
+      $output ['stats'] ['curl']   = $end - $start;
+      $GLOBALS ['padCurlStats'] = $output ['stats'] ; 
+
     }
 
     if ( isset($output ['info']['header_size']) )

@@ -20,7 +20,7 @@
       [  1 => $session,
          2 => $request,
          4 => $GLOBALS ['padStartPage'] ?? '',
-         5 => padDuration(),
+         5 => padDuration (),
          6 => $GLOBALS ['padLen'] ?? 0,
          7 => $GLOBALS ['padStop'] ?? '',
          8 => $GLOBALS ['padEtag'] ?? '',

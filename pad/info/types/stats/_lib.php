@@ -3,7 +3,7 @@
 
   function padInfoStatsStart () {
 
-    $GLOBALS ['padInfoStatsStart'] = getrusage();
+      return;
 
   }
 
@@ -11,20 +11,25 @@
 
   function padInfoStatsEnd () {
 
-    $start = $GLOBALS ['padInfoStatsStart'];
-    $end   = getrusage ();
+    if ( isset ( $GLOBALS ['padInfoStatsInfo'] ) )
+      return;
     
-    $user = ( $end   ['ru_utime.tv_sec'] * 1000000 + $end   ['ru_utime.tv_usec'] )
-          - ( $start ['ru_utime.tv_sec'] * 1000000 + $start ['ru_utime.tv_usec'] );
+    global $padMicro, $padHR, $padApp;
 
-    $system = ( $end   ['ru_stime.tv_sec'] * 1000000 + $end   ['ru_stime.tv_usec'] )
-            - ( $start ['ru_stime.tv_sec'] * 1000000 + $start ['ru_stime.tv_usec'] );
+    $total = padDuration ();
+    $php   = padDuration ( 0, $padMicro );
+    $user  = $total - $php;
+    $pad   = $user - $padApp;
 
     $GLOBALS ['padInfoStatsInfo'] =  [
-      'user'     => $user,
-      'system'   => $system,
-      'duration' => padDuration ()
-    ];
+      'tot'    => $total,
+      'php'    => $php,
+      'usr'    => $pad,
+      'app'    => $padApp,
+      'hr'     => padDurationHR () 
+    ]; 
+
+    $GLOBALS ['padInfoStatsJson'] = json_encode ( $GLOBALS ['padInfoStatsInfo'] ) ;
 
     include 'events/stats.php';
 

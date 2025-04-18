@@ -19,7 +19,7 @@
       continue;
     }
 
-    if ( ! file_exists ( "sequence/types/$padPrmName" ) )
+    if ( ! pqSeq ( $padPrmName ) )
       continue;
 
     include 'sequence/plays/add.php';

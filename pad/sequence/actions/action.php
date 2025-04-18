@@ -10,7 +10,7 @@
 
   $pqActionParm = $pqActionList [0] ?? '';
 
-  if ( ! file_exists ( "sequence/actions/types/$pqAction.php" ) )
+  if ( ! pqAction ( $pqAction ) )
     return;
 
   if ( $pqNegative )

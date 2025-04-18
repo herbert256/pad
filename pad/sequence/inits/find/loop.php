@@ -4,13 +4,13 @@
 
     extract ( $padParmsOne );
 
-    if ( ! $pqSeq and file_exists ( "sequence/types/$padPrmName" ) ) {
+    if ( ! $pqSeq and pqSeq ( $padPrmName ) ) {
 
       $pqDone [] = $padPrmName; 
       $pqSeq     = $padPrmName;
       $pqParm    = $padPrmValue;
 
-    } elseif ( ! $pqAction and file_exists ( "sequence/actions/types/$padPrmName.php" ) ) {
+    } elseif ( ! $pqAction and pqAction ( $padPrmName ) ) {
 
       $pqDone []    = $padPrmName; 
       $pqAction     = $padPrmName;

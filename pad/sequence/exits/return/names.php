@@ -1,13 +1,15 @@
 <?php
 
   $pqNames [] = 'sequence';
+
   $pqNames [] = $pqName; 
   $pqNames [] = $pqToData;
   $pqNames [] = $pqSeq;
-  $pqNames [] = $padName [$pad]; 
-  $pqNames [] = $padTag [$pad];
   $pqNames [] = $pqPull;
   $pqNames [] = $pqPush;
+
+  $pqNames [] = $padName [$pad]; 
+  $pqNames [] = $padTag [$pad];
 
   $pqNames = array_unique ( $pqNames );
 
@@ -19,9 +21,8 @@
        if ( $pqName and $pqName !== TRUE )
          $pqRecord [$pqName] = $pqValue;
 
-     $pqReturn [] = $pqRecord; 
+     $padData [$pad] [] = $pqRecord; 
 
   } 
-
 
 ?>

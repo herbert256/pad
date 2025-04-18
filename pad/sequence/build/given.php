@@ -7,10 +7,8 @@
       return;
     }
       
-  } else {
+  } else
 
     $pqBuild = $pqBuildName;
-
-  }
 
 ?>
