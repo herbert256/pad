@@ -1,6 +1,6 @@
 <?php
    
-  padEmptyBuffers ();
+  padEmptyBuffers ( $padIgnored );
    
   $padPage = $padRestart;
 

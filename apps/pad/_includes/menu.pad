@@ -4,7 +4,7 @@
 
   {if $padPage == 'index'}
     home
-  @else@
+  {else}
     <a href="{$pad}index">home</a> 
   {/if}
     
@@ -12,7 +12,7 @@
 
   {if $padPage == 'manual/index'}
     manual
-  @else@
+  {else}
     <a href="{$pad}manual">manual</a> 
   {/if}
     
@@ -20,7 +20,7 @@
 
   {if $padPage == 'xref/index'}
     reference
-  @else@
+  {else}
     <a href="{$pad}xref">reference</a> 
   {/if}
    
@@ -28,7 +28,7 @@
 
   {if str_starts_with ( $padPage, 'manual/sequence/' ) }
     sequences
-  @else@
+  {else}
     <a href="{$pad}manual/sequence/index">sequences</a> 
   {/if}
     
@@ -36,7 +36,7 @@
 
   {if $padPage == 'develop/develop'}
     develop
-  @else@
+  {else}
     <a href="{$pad}develop">develop</a> 
   {/if}
     

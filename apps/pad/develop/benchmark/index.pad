@@ -1,34 +1,40 @@
 <table border=1> 
 
-<tr>
+  <tr>
 
-<td>item</td>
-<td align="right">curl</td>
-<td align="right">total</td>
-<td align="right">boot</td>
-<td align="right">pad</td>
-<td align="right">app</td>
+    <td>item</td>
+    <td align="right">curl</td>
+    <td align="right">total</td>
+    <td align="right">boot</td>
+    <td align="right">pad</td>
+    <td align="right">app</td>
 
-</tr>
+  </tr>
 
-{list}
+  {list}
 
-<tr>
+    <tr>
 
-<td>{$item}</td>
+      <td>{$item}</td>
 
-<td align="right">{$curl}</td>
-<td align="right">{$tot}</td>
-<td align="right">{$php}</td>
-<td align="right">{$usr}</td>
-<td align="right">{$app}</td>
+      <td align="right">{$curl}</td>
+      <td align="right">{$tot}</td>
+      <td align="right">{$php}</td>
+      <td align="right">{$usr}</td>
+      <td align="right">{$app}</td>
 
-<!-- <td align="right">{$resSystem}</td>
-<td align="right">{$resUser}</td> -->
+    </tr>
 
-</tr>
+  {else}
 
-{/list}
+    {block}
+    <br>
+      No data, there are some requirements for PAD Benchmarks.<br>
+      - $padInfoStats must be TRUE<br>
+      - There must be regression result under _regression
+    {/block}
+
+  {/list}
 
 </table>
 

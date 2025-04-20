@@ -17,7 +17,7 @@
 
   if ( ! isset ( $padParms [$pad] [0] ['padPrmKind'] ) ) return;
   if ( $padParms [$pad] [0] ['padPrmKind'] <> 'parm'   ) return;
-  if ( ! is_numeric ( $pqFindParm )                ) return;
+  if ( ! is_numeric ( $pqFindParm )                    ) return;
 
   if     ( $pqSeq    and file_exists("sequence/types/$pqSeq/flags/parm")  ) return;
   elseif ( $pqAction and file_exists("sequence/actions/double/$pqAction") ) return;

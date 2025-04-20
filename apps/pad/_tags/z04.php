@@ -1,3 +1,9 @@
 <h3>
-  <?php echo 'Hello World'; ?>
+  <?php 
+
+    echo 'Hello World'; 
+
+    return TRUE;
+
+  ?>
 </h3>

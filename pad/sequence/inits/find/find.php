@@ -4,6 +4,7 @@
   include 'sequence/inits/find/prefix.php';
   include 'sequence/inits/find/tag.php';  
   include 'sequence/inits/find/quick.php';
+  include 'sequence/inits/find/fastParm.php';
   include 'sequence/inits/find/loop.php';
   include 'sequence/inits/find/pull.php';
   include 'sequence/inits/find/parm.php';

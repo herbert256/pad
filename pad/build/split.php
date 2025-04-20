@@ -2,7 +2,7 @@
  
   $padOpenClose = padOpenCloseList ( $padBuildTrue) ;
 
-  $padPos = strpos ( $padBuildTrue, '@else@');
+  $padPos = strpos ( $padBuildTrue, '{else}');
 
   while ( $padPos !== FALSE) {
     
@@ -14,7 +14,7 @@
       return;
     }
 
-    $padPos = strpos ( $padBuildTrue, '@else@', $padPos+1);
+    $padPos = strpos ( $padBuildTrue, '{else}', $padPos+1);
 
   }
 

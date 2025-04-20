@@ -5,7 +5,7 @@
 
     padCloseSession ();  
 
-    padEmptyBuffers ();
+    padEmptyBuffers ( $padIgnored );
 
     if ( $GLOBALS ['padOutputType'] == 'web' )
       padWebHeaders ( $stop );
@@ -34,7 +34,7 @@
     if ( $GLOBALS ['padInfo'] and ! $noInfo )
       include 'info/end/config.php';  
 
-    $GLOBALS ['padSkipShutdown'] = $GLOBALS ['padSkipBootShutdown'] = TRUE;
+    $GLOBALS ['padSkipShutdown'] = TRUE;
 
     exit;
 

@@ -7,7 +7,7 @@
 
     {if $allType eq 'example'}
       {example '{$item}', skipWhenEmpty, skipNames}
-    @else@
+    {else}
       <table style="border-style: dashed; dotted;" cellspacing="15">
         <tr>
           <td><center>{page '{$item}', type='{$allType}', include, ignore}</center></td>

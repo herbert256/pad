@@ -128,9 +128,9 @@
   }
 
 
-  function padEmptyBuffers () {
+  function padEmptyBuffers ( &$output ) {
 
-    global $padBuffer;
+    $output = '';
 
     set_error_handler ( 'padErrorThrow' );
 
@@ -139,9 +139,7 @@
       $j = ob_get_level (); 
      
       for ( $i = 1; $i <= $j; $i++ ) 
-        $padBuffer .= ob_get_clean ();
-
-      return $padBuffer;
+        $output .= ob_get_clean ();
 
     } catch (Throwable $ignored) {
 
@@ -154,9 +152,9 @@
 
   function padCheckBuffers () {
 
-    $output = padEmptyBuffers ();
+    padEmptyBuffers ( $output );
 
-    if ( trim($output) )
+    if ( trim ( $output ) )
       return padError ( "Illegal output: '$output'" );
 
   }
@@ -669,7 +667,7 @@
   function padUnescape ( $string ) {
 
     return str_replace ( [ '&open;','&close;','&pipe;', '&eq;','&comma;','&at;', '&else;' ], 
-                         [ '{',     '}',      '|',      '=',   ',',      '@',    '@else@' ], 
+                         [ '{',     '}',      '|',      '=',   ',',      '@',    '{else}' ], 
                          $string );
   }
   

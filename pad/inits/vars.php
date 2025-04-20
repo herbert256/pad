@@ -11,7 +11,6 @@
   $padTime      = $_SERVER ['REQUEST_TIME'];  
   $padCacheStop = 0;
   $padPageLevel = [];
-  $padBuffer    = '';
   $padInclude   = isset ( $_REQUEST ['padInclude'] ) ? TRUE : FALSE;
   $padStrCnt    = -1;
   $padStrFunCnt = 0;

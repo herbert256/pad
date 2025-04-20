@@ -1,7 +1,7 @@
 <?php
 
-  padEmptyBuffers ();
-
+  padEmptyBuffers ( $padIgnored );
+ 
   ob_start();
   
 ?>

@@ -18,7 +18,7 @@
   {list}
     {if $example eq $list}
       {$list}
-    @else@
+    {else}
       <a href="@pad@manual/sequence/examples&example={$list}{?go}{?item}">{$list}</a>
     {/if}
     &nbsp;
@@ -29,7 +29,7 @@
   {examples}
     {if $item eq $examples}
       {$examples}
-    @else@
+    {else}
       <a href="@pad@manual/sequence/examples&example={$example}&item={$examples}{?go}">{$examples}</a>
     {/if}
     &nbsp;
@@ -53,7 +53,7 @@
         {example 'sequence/{$list}/{$item}', onlyResult}
       {/exists}
     {/list}
-  @else@
+  {else}
     <h4>{$example} - {$item}</h4>
     {example 'sequence/{$example}/{$item}', onlyResult, include}
   {/if}

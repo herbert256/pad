@@ -1,9 +1,9 @@
 <?php
 
-  $pqMake      = $padPrm [$pad] ['make']     ?? '';
-  $pqFlag      = $padPrm [$pad] ['flag']     ?? '';
-  $pqKeep      = $padPrm [$pad] ['keep']     ?? '';
-  $pqRemove    = $padPrm [$pad] ['remove']   ?? '';
+  $pqMake   = $padPrm [$pad] ['make']     ?? '';
+  $pqFlag   = $padPrm [$pad] ['flag']     ?? '';
+  $pqKeep   = $padPrm [$pad] ['keep']     ?? '';
+  $pqRemove = $padPrm [$pad] ['remove']   ?? '';
   
   if ( $pqType == 'make'   or $pqPrefix == 'make'   or $pqTag == 'make'   ) $pqMake   = TRUE;
   if ( $pqType == 'keep'   or $pqPrefix == 'keep'   or $pqTag == 'keep'   ) $pqKeep   = TRUE;

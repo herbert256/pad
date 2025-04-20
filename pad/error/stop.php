@@ -52,8 +52,6 @@
     set_error_handler ( 'padErrorThrow' );
 
     try {
-
-      $buffer = padEmptyBuffers ();
  
       if ( ! headers_sent () )
         header ( 'HTTP/1.0 500 Internal Server Error' );
@@ -62,7 +60,6 @@
       padErrorConsole ( padErrorGet ( $e2 ) );
       padErrorConsole ( padErrorGet ( $e3 ) );
       padErrorConsole ( padErrorGet ( $e4 ) );
-      padErrorConsole ( $buffer );
 
     } catch (Throwable $e5) {
 
@@ -193,7 +190,7 @@
 
     try {
 
-      $buffer = padEmptyBuffers ();
+      padEmptyBuffers ( $buffer );
 
       if ( padLocal () )
         echo "\n<pre>$error\n\n$buffer</pre>";
