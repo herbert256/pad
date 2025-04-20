@@ -2,7 +2,7 @@
 
   $pqInc = 2;
 
-  if ( ! ($pqStart % 2) )
-    $pqStart++;
+  if ( ! ($pqFrom % 2) )
+    $pqFrom++;
 
 ?>

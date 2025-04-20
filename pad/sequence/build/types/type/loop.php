@@ -2,9 +2,9 @@
 
   include 'sequence/build/randomly/init.php';
 
-  $pqGo = $pqStart;
+  $pqGo = $pqFrom;
 
-  while ( $pqGo <= $pqEnd ) {
+  while ( $pqGo <= $pqTo ) {
 
     $pqLoop = $pqGo;
 

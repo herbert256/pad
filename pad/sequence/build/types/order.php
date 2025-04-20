@@ -1,6 +1,6 @@
 <?php
 
-  $pqStart = 1;
+  $pqFrom = 1;
   $pqLoop  = 1;
   $pqInc   = 1;
 

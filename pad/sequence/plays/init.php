@@ -2,8 +2,8 @@
 
   $pqParmSave  = $pqParm;
   $pqIncSave   = $pqInc;
-  $pqStartSave = $pqStart;
-  $pqEndSave   = $pqEnd;
+  $pqFromSave = $pqFrom;
+  $pqToSave   = $pqTo;
 
   $pqParm = $padPrmValue;
 
@@ -14,7 +14,7 @@
 
   $pqParm  = $pqParmSave;
   $pqInc   = $pqIncSave;
-  $pqStart = $pqStartSave;
-  $pqEnd   = $pqEndSave;
+  $pqFrom = $pqFromSave;
+  $pqTo   = $pqToSave;
 
 ?>

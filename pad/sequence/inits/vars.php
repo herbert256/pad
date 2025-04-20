@@ -1,6 +1,7 @@
 <?php
 
-  $padTagSeq [$pad]   = TRUE;
+  $padTagSeq [$pad] = TRUE;
+
   $pqFixed        = FALSE;
   $pqStoreUpdated = FALSE;
 
@@ -53,8 +54,5 @@
   if ( $pqPullName === TRUE ) $pqPullName = $padLastPush;
 
   $pqNameGiven = $pqName;
-
-  $pqStart = $padPrm [$pad] ['from'] ?? 1; 
-  $pqEnd   = $padPrm [$pad] ['to']   ?? PHP_INT_MAX;
 
 ?>

@@ -3,8 +3,8 @@
   if ( ! $pqRandomly )
     return;
   
-  $pqRandomlyStart = $pqStart;
-  $pqRandomlyEnd   = $pqEnd;
+  $pqRandomlyStart = $pqFrom;
+  $pqRandomlyEnd   = $pqTo;
 
   if ( pqStore ( $pqBuild ) )
     if ( $pqRandomlyEnd > count ( $pqFixed ) - 1 )

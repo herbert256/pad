@@ -7,10 +7,7 @@
 
   $pqTry = PHP_INT_MAX;
 
-  if ( is_array($pqFixed))
-    $pqFixed = array_values ( $pqFixed );
-  else
-    $pqFixed = [];
+  $pqFixed = array_values ( $pqFixed );
 
   foreach ( $pqFixed as $pqKey => $pqLoop ) {
 
@@ -21,8 +18,8 @@
       $pqSkipCount = $pqSkipNow = 0;
     }
 
-    if ( $pqKey < $pqStart - 1 ) continue;
-    if ( $pqKey > $pqEnd - 1   ) return;
+    if ( $pqKey < $pqFrom - 1 ) continue;
+    if ( $pqKey > $pqTo - 1   ) return;
 
     $pqTries = $pqKey;
 

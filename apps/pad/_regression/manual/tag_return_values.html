@@ -187,7 +187,7 @@
     </tr>
     <tr>
       <td style="vertical-align:top">
-        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">echo </span><span style="color: #DD0000">'&lt;h3&gt;Hello World&lt;/h3&gt;'</span><span style="color: #007700">; <br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">echo </span><span style="color: #DD0000">'&lt;h3&gt;Hello World&lt;/h3&gt;'</span><span style="color: #007700">; <br><br>  return </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
       </td>
       <td style="vertical-align:top"></td>
       <td style="vertical-align:top">
@@ -219,7 +219,7 @@
     </tr>
     <tr>
       <td style="vertical-align:top">
-        <pre><code style="color: #000000">&lt;h3&gt;<br>  <span style="color: #0000BB">&lt;?php </span><span style="color: #007700">echo </span><span style="color: #DD0000">'Hello World'</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;<br></span>&lt;/h3&gt;</code></pre>
+        <pre><code style="color: #000000">&lt;h3&gt;<br>  <span style="color: #0000BB">&lt;?php <br><br>    </span><span style="color: #007700">echo </span><span style="color: #DD0000">'Hello World'</span><span style="color: #007700">; <br><br>    return </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">?&gt;<br></span>&lt;/h3&gt;<br></code></pre>
       </td>
       <td style="vertical-align:top"></td>
       <td style="vertical-align:top">
@@ -229,13 +229,13 @@
       <td style="vertical-align:top">
         <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
         <h3>
-          <code><span style="color: #000000">Hello World</span></code>
-        </h3><!-- END DEMO RESULT -->
+          <code><span style="color: #000000">Hello World<!-- END DEMO RESULT --></span></code>
+        </h3>
       </td>
     </tr>
     <tr>
       <td style="vertical-align:top">
-        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $hi </span><span style="color: #007700">= </span><span style="color: #DD0000">'Hello World'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $hi </span><span style="color: #007700">= </span><span style="color: #DD0000">'Hello World'</span><span style="color: #007700">;<br><br>  return </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br>  <br></span><span style="color: #0000BB">?&gt;</span></code></pre>
       </td>
       <td style="vertical-align:top">
         <pre><code style="color: #000000">&lt;h3&gt;<b>{<font color="green"><font color="red">$</font>hi</font>}</b>&lt;/h3&gt;</code></pre>
@@ -253,7 +253,7 @@
     </tr>
     <tr>
       <td style="vertical-align:top">
-        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $hi </span><span style="color: #007700">= [ <br>    </span><span style="color: #0000BB">1 </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'hi' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">],<br>    </span><span style="color: #0000BB">2 </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'hi' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">],<br>    </span><span style="color: #0000BB">3 </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'hi' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $hi </span><span style="color: #007700">= [ <br>    </span><span style="color: #0000BB">1 </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'hi' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1 </span><span style="color: #007700">],<br>    </span><span style="color: #0000BB">2 </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'hi' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2 </span><span style="color: #007700">],<br>    </span><span style="color: #0000BB">3 </span><span style="color: #007700">=&gt; [ </span><span style="color: #DD0000">'hi' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3 </span><span style="color: #007700">]<br>  ];<br><br>  return </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br>  <br></span><span style="color: #0000BB">?&gt;</span></code></pre>
       </td>
       <td style="vertical-align:top">
         <pre><code style="color: #000000"><b>{<font color="blue">hi</font><font color="red"></font>}</b><br>  &lt;h3&gt;Hello World <b>{<font color="green"><font color="red">$</font>hi</font>}</b>&lt;/h3&gt;<br><b>{/<font color="blue">hi</font><font color="red"></font>}</b></code></pre>

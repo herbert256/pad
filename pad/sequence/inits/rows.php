@@ -1,9 +1,7 @@
 <?php
 
-  if ( $pqRows ) 
-    return;
-  
-  if     ( $pqTo <> PHP_INT_MAX   ) $pqRows = PHP_INT_MAX ;
+      if ( $pqRows                ) return;
+  elseif ( $pqTo <> PHP_INT_MAX   ) $pqRows = PHP_INT_MAX ;
   elseif ( $pqTry <> 10000        ) $pqRows = PHP_INT_MAX ;
   elseif ( $pqStop <> PHP_INT_MAX ) $pqRows = PHP_INT_MAX ;
   elseif ( $pqFixed !== FALSE     ) $pqRows = PHP_INT_MAX ;

@@ -36,7 +36,7 @@
 
   function pqStore ( $check ) {
 
-    return in_array ( $check, ['start','store','pull','fixed'] );
+    return in_array ( $check, ['pull','fixed'] );
 
   }
   

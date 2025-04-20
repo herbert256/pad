@@ -1,6 +1,6 @@
 <?php
 
   $pqInc   = $pqParm;
-  $pqStart = ceil ( $pqStart / $pqParm) * $pqParm;
+  $pqFrom = ceil ( $pqFrom / $pqParm) * $pqParm;
 
 ?>
