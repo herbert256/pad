@@ -6,7 +6,6 @@
   $pqStoreUpdated = FALSE;
 
   $pqTries      = 0;
-  $pqBase       = 0;
   $pqLoop       = 0;
   
   $pqResult     = [];

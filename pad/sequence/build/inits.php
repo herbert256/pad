@@ -1,9 +1,6 @@
 <?php
   
-  if ( $pqPull )
-    $pqBuild = 'pull';
-
-  if ( ! $pqBuild ) 
-    $pqBuild = pqBuild ( $pqSeq, 'loop' );
+      if ( $pqPull    ) $pqBuild = 'pull';
+  elseif ( ! $pqBuild ) $pqBuild = pqBuild ( $pqSeq, 'loop' );
 
 ?>

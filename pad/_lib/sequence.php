@@ -144,7 +144,7 @@
       return 'fixed';
 
     if ( $for == 'keep' or $for == 'remove' or $for == 'flag' )
-      return 'check';
+      return 'bool';
 
     if ( file_exists ( "sequence/types/$check/$for.php" ) ) 
       return $for;
@@ -153,11 +153,9 @@
     elseif ( file_exists ( "sequence/types/$check/make.php")     ) return 'make';
     elseif ( file_exists ( "sequence/types/$check/function.php") ) return 'function';
     elseif ( file_exists ( "sequence/types/$check/bool.php")     ) return 'bool';
-    elseif ( file_exists ( "sequence/types/$check/jump.php")     ) return 'jump';
     elseif ( file_exists ( "sequence/types/$check/order.php")    ) return 'order';
     elseif ( file_exists ( "sequence/types/$check/fixed.php")    ) return 'fixed';
-    elseif ( file_exists ( "sequence/types/$check/check.php")    ) return 'check';
-    else                                                           return '';
+    else                                                           return 'bool';
 
   }
 

@@ -4,7 +4,7 @@
 
     $pqBuildSave = $pqBuild;
     $pqPlay      = $pqBuild;
-    $pqBuild     = 'check';
+    $pqBuild     = 'bool';
 
     include "sequence/plays/one.php";
 
