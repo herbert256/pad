@@ -1,5 +1,7 @@
 <?php
 
+  padReqression ( 0 );
+
   $title = "Regression test";
 
   foreach ( padList ( 0 ) as $one ) {

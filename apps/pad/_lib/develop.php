@@ -16,7 +16,8 @@
       $check  = APP . "$item.pad";
       $source = padFileGetContents($check);
 
-      if     ( strpos ( $source, 'PAD: SKIP REGRESSION' ) ) $status = 'no';
+      if     ( ! $source                                  ) $status = 'no';
+      elseif ( strpos ( $source, 'PAD: SKIP REGRESSION' ) ) $status = 'no';
       elseif ( strpos ( $store, 'error' )                 ) $status = 'no';
       elseif ( strpos ( $store, 'test' )                  ) $status = 'no';
       elseif ( strpos ( $store, 'restart' )               ) $status = 'no';
@@ -26,6 +27,8 @@
 
       if ( $status == 'go' ) {
 
+        file_put_contents  (APP . "_regression.txt", $item);
+
         $old  = padFileGetContents($store);
         $curl = getPage ($item ,1);
         $good = str_starts_with ( $curl ['result'], '2');
@@ -34,7 +37,6 @@
 
         if     ( ! $good                            ) $status = 'error';
         elseif ( ! file_exists ($store)             ) $status = 'new';
-        elseif ( strpos($new, 'PAD: NO REGRESSION') ) $status = 'skip' ;
         elseif ( strpos($source, '{example')        ) $status = 'skip' ;
         elseif ( strpos($source, '{ajax')           ) $status = 'skip' ;
         elseif ( strpos($source, 'random')          ) $status = 'random' ;

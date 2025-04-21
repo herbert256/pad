@@ -9,7 +9,7 @@
           if ( $oldRes [$key] <> $newRes [$key] )
             padRedirect ("develop/show/demo&item=$item");
 
-  if ( $old <> $new and ! strpos ( $new, '<!-- PAD: NO REGRESSION -->' ) !== FALSE )
+  if ( $old <> $new and ! strpos ( $new, '<!-- PAD: SKIP REGRESSION -->' ) !== FALSE )
     padRedirect ("develop/show/changed&item=$item");
 
   $showTitle = TRUE;

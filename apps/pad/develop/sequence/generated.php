@@ -12,7 +12,7 @@
   if ( file_exists ( "sequence/types/$type/generated.php" ) )
     return;
 
-  $name = ucfirst ($type);
+  file_put_contents  (APP . "_generate.txt", $type);
 
   $fixed = padCode ( "{sequence $type, rows=10000, try=10000}{\$sequence},{/sequence}" );
   $fixed = substr ($fixed, 0, -1);

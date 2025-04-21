@@ -1,5 +1,10 @@
 <?php
 
-  padDump ( 'Dump option at tag');
+
+  x();
+  
+  padDumpToDir ( );
+
+  unset ( $GLOBALS ['padDumpToDirDone'] );
   
 ?>

@@ -34,6 +34,12 @@
   $pad--;
 
   if ( $pad >= 0 )
-    padLevel ( $padResult[$pad+1] );
+    padLevel ( $padResult [$pad+1] );
+
+  // if ( $pad >= 0 )
+  //   foreach ( padLevelVars  as $padK )
+  //     if ( $padK <> 'padOut' )
+  //       if ( isset ( $GLOBALS [$padK] [$pad+1] ) )
+  //         unset ( $GLOBALS [$padK] [$pad+1] );
 
 ?>

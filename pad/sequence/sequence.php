@@ -4,8 +4,10 @@
   include 'sequence/build/build.php'; 
   include 'sequence/exits/exits.php';
 
-  if     ( $pqContinue               ) return NULL;
-  elseif ( count ( $padData [$pad] ) ) return TRUE; 
-  else                                 return FALSE;
+  if     ( $pqContinue               ) $pqReturn = NULL;
+  elseif ( count ( $padData [$pad] ) ) $pqReturn = TRUE; 
+  else                                 $pqReturn = FALSE;
+
+  return $pqReturn;
 
 ?>

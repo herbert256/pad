@@ -240,11 +240,13 @@
       'pair'    => $GLOBALS ['padPair'] [$pad] ?? '',
       'opt'     => $GLOBALS ['padOpt'] [$pad] ?? '',
       'prm'     => $GLOBALS ['padPrm'] [$pad] ?? '',
-      'set-lvl' => $GLOBALS ['padSetLvl'] [$pad] ?? '',
-      'set-occ' => $GLOBALS ['padSetOcc'] [$pad] ?? '',
       'base'    => padDumpShort ($GLOBALS ['padBase'][$pad]??''),
       'pad'     => padDumpShort ($GLOBALS ['padPad'][$pad]??''),
-      'result'  => padDumpShort ($GLOBALS ['padResult'][$pad]??'')
+      'result'  => padDumpShort ($GLOBALS ['padResult'][$pad]??''),
+      'flags'  => [ 'null' => $GLOBALS ['padNull'] [$pad] ?? '',
+                    'else' => $GLOBALS ['padElse'] [$pad] ?? '',
+                    'hit' => $GLOBALS ['padHit'] [$pad] ?? '',
+                    'Array' => $GLOBALS ['padArray'] [$pad] ?? '']
     ];
 
   } 
@@ -314,7 +316,7 @@
 
   function padDumpBuffer ( ) {
 
-    padDumpLines ( 'Output buffer', $GLOBALS ['padBuffer'] );
+    #padDumpLines ( 'Output buffer', $GLOBALS ['padBuffer'] );
 
   }
 
@@ -430,7 +432,7 @@
   function padDumpToDir ( $info='', $dir='' ) {
  
     if ( ! $dir )
-      $dir = "dumps/" . $GLOBALS ['padPage'] . '/' . $GLOBALS ['padLog'];
+      $dir = "dumps/" . $GLOBALS ['padPage'] . '/' . $GLOBALS ['padLog'] . '-' . uniqid();
 
     if ( isset ( $GLOBALS ['padDumpToDirDone'] ) )
       return padDumpToDirDone ( $info, $dir );

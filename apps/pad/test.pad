@@ -1,1 +1,3 @@
-{sum '31..40'                    } {dump} {$sum} {/sum}
+{sequence '11..40', push='mySequence'}
+{shift mySequence, 2} {$mySequence} {/shift}
+{shift mySequence, 2, dump} {$mySequence} {/shift}

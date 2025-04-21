@@ -13,6 +13,7 @@
   $pqInfo       = [];  
   $pqNames      = [];
   $pqPlays      = [];
+  $pqActions    = [];
   
   $pqSeq        = '';
   $pqBuild      = '';

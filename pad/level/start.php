@@ -20,6 +20,9 @@
 
   include 'options/go/start.php';
 
+  if ( padTagParm ('dump') )
+    include 'options/dump.php';
+
   if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']) )
     include 'callback/init.php' ;
 
@@ -28,9 +31,6 @@
 
   if ( $padInfo ) 
     include 'events/levelStart.php';  
-
-  if ( padTagParm ('dump') )
-    include 'options/dump.php';
 
   if ( padOpenCloseOk ( $padBase[$pad], '@start@') ) 
     return include 'level/start_end/start1.php';

@@ -27,7 +27,7 @@
 
     $source = str_replace ( '<!-- PAD: ABOVE -->',           '', $source );
     $source = str_replace ( '<!-- PAD: VERTICAL -->',        '', $source );
-    $source = str_replace ( '<!-- PAD: NO REGRESSION -->',   '', $source );
+    $source = str_replace ( '<!-- PAD: SKIP REGRESSION -->',   '', $source );
     $source = str_replace ( '<!-- PAD: SKIP REGRESSION -->', '', $source );
 
     $source = padColorsHighLight ( trim ( $source ) );
