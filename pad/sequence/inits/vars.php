@@ -4,6 +4,7 @@
 
   $pqFixed        = FALSE;
   $pqStoreUpdated = FALSE;
+  $pqStored       = FALSE;
 
   $pqTries      = 0;
   $pqLoop       = 0;
@@ -13,8 +14,10 @@
   $pqInfo       = [];  
   $pqNames      = [];
   $pqPlays      = [];
+  $pqPlaysHit   = [];
   $pqActions    = [];
-  
+  $pqOrgHit     = [];
+    
   $pqSeq        = '';
   $pqBuild      = '';
   $pqPull       = '';

@@ -45,7 +45,8 @@
     }
 
     foreach ( $GLOBALS as $key => $value ) 
-      if ( is_array ($value) and array_key_exists ( $field, $value) and substr($key, 0, 3) <> 'pad'  and substr($key, 0, 2) <> 'pq' )  {
+      if ( is_array ($value) and array_key_exists ( $field, $value) 
+           and substr($key, 0, 3) <> 'pad' and substr($key, 0, 2) <> 'pq' )  {
         $work = $value [$field];
         if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
         if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;

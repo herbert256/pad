@@ -2,6 +2,8 @@
  
   $pqTries++;
 
+  $pqPlaysSet = [];
+
   if ( $pqTries > $pqTry                          ) return FALSE;
   if ( $pqBuild == 'order' and $pqTries < $pqFrom ) return TRUE;
  
@@ -26,7 +28,9 @@
   if ( $pqUnique and in_array ($pq, $pqResult) ) return TRUE;
   if ( $pqSkip and $pqTries <= $pqSkip )         return TRUE;
 
-  $pqResult [] = $pq;
+                            $pqResult   [] = $pq;
+  if ( count ( $pqPlays ) ) $pqPlaysHit [] = $pqPlaysSet;
+  if ( $pqOrgName         ) $pqOrgHit   [] = $pqOrgSet;
 
   if ( is_numeric ($pq) and $pq >= $pqStop     ) return FALSE;
   if ( $pqRows and count($pqResult) >= $pqRows ) return FALSE;

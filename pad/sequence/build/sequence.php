@@ -17,5 +17,11 @@
   else
 
     $pq = include 'sequence/build/call.php';  
+
+  $pqOrgName = $pqSeq;
+  $pqOrgSet  = $pq;
+
+  if ( $pqOrgSet === TRUE ) 
+    $pqOrgSet = $pqLoop;
     
 ?>

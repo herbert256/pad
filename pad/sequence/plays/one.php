@@ -27,6 +27,8 @@
   elseif ( $pqPlay == 'flag'   and $pq == $pqLoop ) $pq = 1;
   elseif ( $pqPlay == 'flag'   and $pq <> $pqLoop ) $pq = 0;
 
+  $pqPlaysSet [$pqSeq] = $pq;
+
   if ( ! isset ( $pqInfo ['plays'] ) or ! in_array ( "$pqPlay/$pqSeq", $pqInfo ['plays'] ) )
     $pqInfo ['plays'] [] = "$pqPlay/$pqSeq";
 
