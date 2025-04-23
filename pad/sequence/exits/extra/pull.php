@@ -1,11 +1,10 @@
 <?php
 
-  if ( ! $pqPull                                                 ) return;
-  if ( count ( $pqStore [$pqPull] ) <> count ( $padData [$pad] ) ) return;
-
-  $padData [$pad] = array_values ( $padData [$pad] );
-
+  if ( ! $pqPull ) 
+    return;
+  
   foreach ( $padData [$pad] as $padK => $padV )
-    $padData [$pad] [$padK] [$pqPull] = $pqStore [$pqPull] [$padK];
+    if ( isset ( $pqStore [$pqPull] [$padK] ) )
+      $padData [$pad] [$padK] [$pqPull] = $pqStore [$pqPull] [$padK];
  
 ?>

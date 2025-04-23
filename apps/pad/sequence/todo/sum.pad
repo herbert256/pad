@@ -16,17 +16,17 @@
 
 {demo} {sequence '31..40', push='mySequence'}{/demo}
 
-{demo} {mySequence sum             } {$mySequence} {/mySequence}        {/demo}
-{demo} {mySequence action='sum'    } {$mySequence} {/mySequence}        {/demo}
-{demo} {mySequence:sum             } {$mySequence} {/mySequence:sum}    {/demo}
+{demo} {mySequence sum             } {$sequence} {/mySequence}        {/demo}
+{demo} {mySequence action='sum'    } {$sequence} {/mySequence}        {/demo}
+{demo} {mySequence:sum             } {$sequence} {/mySequence:sum}    {/demo}
 
-{demo} {sum mySequence             } {$mySequence} {/sum}               {/demo}
-{demo} {sum:mySequence             } {$mySequence} {/sum:mySequence}    {/demo}
+{demo} {sum mySequence             } {$sequence} {/sum}               {/demo}
+{demo} {sum:mySequence             } {$sequence} {/sum:mySequence}    {/demo}
 
-{demo} {action mySequence, sum     } {$mySequence} {/action}            {/demo}
-{demo} {action:mySequence sum      } {$mySequence} {/action:mySequence} {/demo}
+{demo} {action mySequence, sum     } {$sequence} {/action}            {/demo}
+{demo} {action:mySequence sum      } {$sequence} {/action:mySequence} {/demo}
 
-{demo} {action sum, mySequence     } {$mySequence} {/action}            {/demo}
-{demo} {action:sum mySequence      } {$mySequence} {/action:sum}        {/demo}
+{demo} {action sum, mySequence     } {$sequence} {/action}            {/demo}
+{demo} {action:sum mySequence      } {$sequence} {/action:sum}        {/demo}
 
 {/table}

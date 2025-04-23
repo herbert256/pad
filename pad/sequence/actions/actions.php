@@ -1,11 +1,5 @@
 <?php
 
-  #include 'sequence/actions/build.php';
-  #include 'sequence/actions/go.php';
-
-  #return;
-
-
   if ( $pqAction ) {
     $padPrmName  = $pqAction;
     $padPrmValue = $pqActionParm;
