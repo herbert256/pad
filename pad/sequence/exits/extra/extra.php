@@ -1,7 +1,4 @@
 <?php
-
-  if ( $pqContinue ) 
-    return;
  
   include 'sequence/exits/extra/org.php'; 
   include 'sequence/exits/extra/pull.php'; 

@@ -1,7 +1,4 @@
 <?php
-
-  if ( $pqContinue )
-    return;
   
   if     ( ! $pqNameGiven and ! $pqPull and ! $pqPush        ) $pqStoreName = 'default';
   elseif ( ! $pqNameGiven and ! $pqPull and $pqPush === TRUE ) $pqStoreName = 'default';

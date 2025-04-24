@@ -1,20 +1,26 @@
 <?php
 
-  if ( $pqAction ) {
-    $padPrmName  = $pqAction;
-    $padPrmValue = $pqActionParm;
-    include 'sequence/actions/action.php';
-  }
+  $pqActionStart = $pqResult;
+  $pqResult      = [];
 
-  foreach ( $padParms [$pad] as $padStartOption ) {
+  foreach ( $pqActionStart as $padK => $padV )
+    $pqResult [ 'pq_' . $padK ] = $padV;
 
-    extract ( $padStartOption );
+  if ( $pqAction ) 
+    $pqActions [$pqAction] = $pqActionParm;
 
-    if     ( $padPrmKind <> 'option'         ) continue;
-    elseif ( pqDone ( $padPrmName, $pqDone ) ) continue;
-    elseif ( $padPrmName == 'action'         ) include 'sequence/actions/action.php';
-    elseif ( pqAction ( $padPrmName )        ) include 'sequence/actions/action.php';
-    
+  foreach ( $padParms [$pad] as $padParmsOne ) {
+
+    extract ( $padParmsOne );
+
+    if  ( $padPrmKind == 'option' )
+      $pqActions [$padPrmName] = $padPrmValue;
+        
   }
  
+  foreach ( $pqActions as $padPrmName => $padPrmValue )
+    include 'sequence/actions/action.php';
+
+  $pqResult = array_values ( $pqResult );
+
 ?>

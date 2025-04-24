@@ -3,6 +3,12 @@
   $pqTmp    = count ( $pqResult ) / 2;
   $pqMedian = (int) $pqTmp;
 
-  return [ 1 => $pqResult [$pqMedian] ];
+  $pqI = 0;
 
+  foreach ( $pqActionStart as $padK => $padV ) {
+    if ( $pqI == $pqMedian )
+       return [ $padK => $padV ];
+    $pqI++;
+  }
+  
 ?>

@@ -5,7 +5,7 @@
     extract ( $padStartOption );
 
         if ( in_array ( $padPrmName, $pqDone ) ) continue;
-    elseif ( $padPrmKind <> 'option'               ) continue;
+    elseif ( $padPrmKind <> 'option'           ) continue;
 
     if ( pqPlay ( $padPrmName ) and $padPrmValue and $padPrmValue !== TRUE ) {
       $pqPlay = $padPrmName;

@@ -1,8 +1,5 @@
 <?php
 
-  if ( $pqContinue )
-    return include 'sequence/continue/store.php';
-  
   if ( $padPair [$pad] and ! $pqPush )
     return; 
 
