@@ -1,6 +1,21 @@
 <?php
 
 
+  function pqShuffle ( &$array ) {
+
+    $shuffled = [];
+    $keys     = array_keys ( $array );
+
+    shuffle ( $keys );
+
+    foreach ( $keys as $key )
+      $shuffled [$key] = $array [$key];
+
+    $array = $shuffled;
+
+  }
+
+
   function pqSeq ( $seq  ) {
 
     if ( $seq and file_exists ( "sequence/types/$seq" ) )
@@ -77,12 +92,12 @@
         $keys = array_rand ( $array, $count );
 
       if ( ! $order  )
-        shuffle ( $keys );
+        pqShuffle ( $keys );
 
     }
 
     foreach ( $keys as $k )
-      $out [] = $array [ $k ];
+      $out [$k] = $array [$k];
     
     return $out;
 

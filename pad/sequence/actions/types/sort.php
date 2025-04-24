@@ -1,6 +1,6 @@
 <?php
 
-  sort ( $pqResult );
+  asort ( $pqResult );
 
   return $pqResult
   

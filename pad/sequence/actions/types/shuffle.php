@@ -1,6 +1,6 @@
 <?php
 
-  shuffle ( $pqResult );
+  pqShuffle ( $pqResult );
 
   return $pqResult;
 

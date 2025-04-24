@@ -1,11 +1,9 @@
 <?php
- 
-   foreach ( $pqActionList as $pqPrependKey ) {
-    $pqPrependReverse = array_reverse($pqStore [$pqPrependKey]);
-    foreach ($pqPrependReverse as $pqPrependValue)
-      array_unshift ($pqResult, $pqPrependValue);
-  }
+
+  foreach ( $pqActionList as $pqAppendKey )
+    foreach ($pqStore [$pqAppendKey] as $pqAppendValue)
+      $pqResult [] = $pqAppendValue;
 
   return $pqResult;
-  
+
 ?>

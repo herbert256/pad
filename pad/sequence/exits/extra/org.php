@@ -4,6 +4,9 @@
     return;
 
   foreach ( $padData [$pad] as $padK => $padV )
-    $padData [$pad] [$padK] [$pqOrgName] = $pqOrgHit [$padK];
+    if ( isset ( $pqOrgHit [$padK] ) )
+      $padData [$pad] [$padK] [$pqOrgName] = $pqOrgHit [$padK];
+    else
+      $padData [$pad] [$padK] [$pqOrgName] = 'n/a';
 
 ?>

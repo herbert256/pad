@@ -1,5 +1,5 @@
 <?php
 
-  return [ 1 => max ( $pqResult ) ];
-
+  return include 'sequence/actions/types/minimal.php';
+  
 ?>

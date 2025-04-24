@@ -1,10 +1,6 @@
 <?php
 
-  $pqActionStart = $pqResult;
-  $pqResult      = [];
-
-  foreach ( $pqActionStart as $padK => $padV )
-    $pqResult [ 'pq_' . $padK ] = $padV;
+  include 'sequence/actions/assoc.php';
 
   if ( $pqAction ) 
     $pqActions [$pqAction] = $pqActionParm;
@@ -20,7 +16,5 @@
  
   foreach ( $pqActions as $padPrmName => $padPrmValue )
     include 'sequence/actions/action.php';
-
-  $pqResult = array_values ( $pqResult );
 
 ?>

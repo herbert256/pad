@@ -1,7 +1,5 @@
 <?php
 
-  $pqFunction = 'array_unique';
-
-  return include 'sequence/actions/function.php';
+  return array_unique ( $pqResult );
 
 ?>

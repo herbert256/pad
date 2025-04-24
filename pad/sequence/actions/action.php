@@ -11,16 +11,17 @@
   if ( ! pqAction ( $pqAction ) )
     return;
 
-  $pqActionParm = $pqActionList [0] ?? '';
-  $pqActionCnt  = ( ctype_digit ( $pqActionParm ) ) ? $pqActionParm : 1;
+  include 'sequence/actions/merge.php'; 
 
-  if ( $pqNegative )
-    include "sequence/actions/negative/inits.php";
-  
+  $pqActionParm  = $pqActionList [0] ?? '';
+  $pqActionCnt   = ( ctype_digit ( $pqActionParm ) ) ? $pqActionParm : 1;
+  $pqActionStart = $pqResult;
+  $pqActionKey   = array_key_first ( $pqResult);
+
   $pqResult = include "sequence/actions/types/$pqAction.php";
 
   if ( $pqNegative )
-    include "sequence/actions/negative/exits.php";
+    include "sequence/actions/negative/negative.php";
 
   $pqNames [] = $pqAction;
 

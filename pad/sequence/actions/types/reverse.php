@@ -1,7 +1,5 @@
 <?php
 
-  $pqFunction = 'array_reverse';
-
-  return include 'sequence/actions/function.php';
+  return array_reverse ( $pqResult, true );
 
 ?>

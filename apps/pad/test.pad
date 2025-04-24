@@ -1,12 +1,12 @@
-{tetrahedral rows=15}
-  {$tetrahedral}
-{/tetrahedral}
+{table}
+ 
+{demo}{sequence list='5;10;15',    name='q1'}{/demo}
+{demo}{sequence list='15;25;30',   name='q2'}{/demo}
+{demo}{sequence list='15;3;25;30', name='q3'}{/demo}
+{demo}{sequence list='15;35;30',   name='q4'}{/demo}
 
-<br>
+{demo}{sequence '20..20', sort='q1|q2|q3|q4'} {$sequence} {/sequence}{/demo}
+{demo}{sequence '20..20', reverse='q1|q2|q3|q4'} {$sequence} {/sequence}{/demo}
+{demo}{sequence '20..20', dedup='q1|q2|q3|q4'} {$sequence} {/sequence}{/demo}
 
-{triangular rows=15}
-  {$triangular}
-{/triangular}
-
-<br>
-
+{/table}
