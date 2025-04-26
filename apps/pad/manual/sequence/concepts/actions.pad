@@ -1,18 +1,12 @@
-<h3>Actions</h3>
-
-{block}
-
-Actions operate on a sequence list after the list is build,<br>
-in below 2 examples shuffle/reverse are actions.
+<p>Actions operate on a sequence list after the list is build.
+<p>In below examples shuffle/reverse are actions.
 
 {table}
 {demo}{sequence range='20..30', push='mySeq'} {/demo}
 {demo}{sequence mySeq, shuffle} 
-  {$mySeq} 
+  {$sequence} 
 {/sequence}{/demo}
 {demo}{sequence mySeq, reverse} 
-  {$mySeq} 
+  {$sequence} 
 {/sequence}{/demo}
 {/table}
-
-{/block}

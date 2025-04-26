@@ -1,6 +1,5 @@
 <?php
 
-  if ( ! $pqStoreUpdated ) 
-    $pqStore [$padLastPush] = array_values ( $pqResult );
+  include 'sequence/exits/store/set.php';
 
 ?>

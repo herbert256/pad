@@ -9,6 +9,16 @@
   $pqTries      = 0;
   $pqLoop       = 0;
   
+  $pqSeq        = '';
+  $pqBuild      = '';
+  $pqPull       = '';
+  $pqParm       = '';
+  $pqAction     = '';
+  $pqActionParm = '';
+  $pqOrgName    = '';
+  $pqOrgSet     = '';
+
+ 
   $pqResult     = [];
   $pqDone       = [];
   $pqInfo       = [];  
@@ -16,34 +26,21 @@
   $pqPlays      = [];
   $pqPlaysHit   = [];
   $pqActions    = [];
+  $pqActionsHit = [];
   $pqOrgHit     = [];
-    
-  $pqSeq        = '';
-  $pqBuild      = '';
-  $pqPull       = '';
-  $pqParm       = '';
-  $pqAction     = '';
-  $pqActionParm = '';
- 
-  $pqType   = $padType   [$pad];
-  $pqPrefix = $padPrefix [$pad];
-  $pqTag    = $padTag    [$pad];
-
-      if ( pqPlay ( $pqTag  ) ) $pqPlay = $pqTag;
-  elseif ( pqPlay ( $pqType ) ) $pqPlay = $pqType;
-  else                                    $pqPlay = 'make';
- 
+      
   $pqFrom = intval ( $padPrm [$pad] ['from']      ?? 1           );
   $pqTo   = intval ( $padPrm [$pad] ['to']        ?? PHP_INT_MAX );
  
-  $pqMin  = intval ( $padPrm [$pad] ['min']       ?? PHP_INT_MIN );
-  $pqMax  = intval ( $padPrm [$pad] ['max']       ?? PHP_INT_MAX );
-  $pqStop = intval ( $padPrm [$pad] ['stop']      ?? PHP_INT_MAX );
-  
+  $pqMin  = intval ( $padPrm [$pad] ['minimal']   ?? PHP_INT_MIN );
+  $pqMax  = intval ( $padPrm [$pad] ['maximal']   ?? PHP_INT_MAX );
+
   $pqInc  = intval ( $padPrm [$pad] ['increment'] ?? 1           );
   $pqRows = intval ( $padPrm [$pad] ['rows']      ?? 0           );
-  $pqSkip = intval ( $padPrm [$pad] ['skip']      ?? 0           );
   $pqTry  = intval ( $padPrm [$pad] ['try']       ?? 10000       ); 
+  
+  $pqStop = intval ( $padPrm [$pad] ['stop']      ?? PHP_INT_MAX );
+  $pqSkip = intval ( $padPrm [$pad] ['skip']      ?? 0           );
   
   $pqRandomly  = $padPrm [$pad] ['randomly'] ?? ''; 
   $pqUnique    = $padPrm [$pad] ['unique']   ?? ''; 
@@ -54,8 +51,22 @@
   $pqPullName  = $padPrm [$pad] ['pull']     ?? '';
   $pqPush      = $padPrm [$pad] ['push']     ?? '';
 
-  if ( $pqPullName === TRUE ) $pqPullName = $padLastPush;
+  $pqType   = $padType   [$pad];
+  $pqPrefix = $padPrefix [$pad];
+  $pqTag    = $padTag    [$pad];
+
+  if ( $pqPullName === TRUE ) 
+    $pqPullName = $padLastPush;
+
+      if ( pqPlay ( $pqTag  ) ) $pqPlay = $pqTag;
+  elseif ( pqPlay ( $pqType ) ) $pqPlay = $pqType;
+  else                                    $pqPlay = 'make';
 
   $pqNameGiven = $pqName;
+
+  if ( $pqTag == 'continue' ) {
+    $pqPull  = $padLastPush;
+    $pqBuild = 'pull';
+  }
 
 ?>

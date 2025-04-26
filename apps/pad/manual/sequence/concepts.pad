@@ -1,27 +1,19 @@
+
 {block}
 
-<table border=1>
-
 {concepts}
-  <tr>
-    <td>
       {if &concepts:key <> $concept}
-        <a href="@self@&go=concepts&concept={&concepts:key}">{&concepts:key}</a>
+        <a href="@self@&go=concepts&concept={&concepts:key}">{&concepts:key | ucfirst}</a>
       {else}
-        {&concepts:key}
+        {&concepts:key | ucfirst}
       {/if}
-    </td>
-    <td>
-      {$concepts}
-    </td>
-  </tr>
+      &nbsp;
 {/concepts}
-
-</table>
 
 {/block}
 
+<h3>{$conceptTitle}</h3>
+
 {block}
-<br>
   {page 'manual/sequence/concepts/{$concept}', include}
 {/block}

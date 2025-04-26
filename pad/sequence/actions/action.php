@@ -23,7 +23,7 @@
   if ( $pqNegative )
     include "sequence/actions/negative/negative.php";
 
-  $pqNames [] = $pqAction;
+  $pqActionsHit [$pqAction] = array_values ( $pqResult ); 
 
   include 'sequence/actions/info.php';
 

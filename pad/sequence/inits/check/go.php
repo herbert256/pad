@@ -10,6 +10,6 @@
       return;
          
   if ( pqStore ( $pqBuild ) ) include 'sequence/inits/check/store.php';
-  else                                include 'sequence/inits/check/sequence.php';
+  else                        include 'sequence/inits/check/sequence.php';
 
 ?>

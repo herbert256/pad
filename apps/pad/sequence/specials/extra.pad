@@ -1,0 +1,28 @@
+{table}
+{demo} {sequence '31..40', push='abc' } {/demo}
+{demo} {abc add=2} {$abc} {$add} | {/abc} {/demo}
+{/table}
+
+{table}
+{demo} {loop 10, rows=5, add=10, substract=1} {$loop} {$add} {$substract} | {/loop} {/demo}
+{/table}
+
+{table}
+{demo} {sequence '1..3',         push='abc' } {/demo}
+{demo} {abc add=10, substract=1, push='klm' } {/demo}
+{demo} {klm multiply=10,         push='xyz' } {/demo}
+{demo} {xyz} {$abc} {$add} {$substract} {$klm} {$multiply} {$xyz} | {/xyz} {/demo}
+{/table} 
+
+{table}
+{demo}{sequence '11..15', name='q1'}{/demo}
+{demo}{q1} {$q1} {/q1} {/demo}
+{demo}{q1 randomize} {$randomize} {/q1} {/demo}
+{demo}{q1 randomize, sort} {$sort} {/q1} {/demo}
+{demo}{q1 randomize, sort, reverse} {$reverse} {/q1} {/demo}
+{/table}
+
+{table}
+{demo}{loop 5, add=10, substract=1, randomize, sort, reverse, push='abc'} {/demo}
+{demo}{abc} {$loop} {$add} {$substract} {$randomize} {$sort} {$reverse} | {/abc} {/demo}
+{/table}

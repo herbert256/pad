@@ -1,5 +1,6 @@
 <?php
 
-  $pqPull = $padLastPush;
+  $pqPull  = $padLastPush;
+  $pqBuild = 'pull';
 
 ?>

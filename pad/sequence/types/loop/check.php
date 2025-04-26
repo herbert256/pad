@@ -13,7 +13,7 @@
     if ( file_exists ( 'sequence/types/loop/generated.php' ) ) 
       return in_array ( $n, PADloop );
 
-    $text = padCode ( "{sequence loop, from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
+    $text = padCode ( "{sequence loop='$p', from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
     $arr  = explode ( ',', $text );
 
     return in_array ( $n, $arr );

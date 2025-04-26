@@ -1,58 +1,54 @@
 {table}
 
-{demo}{sequence '1..25', name='mySeq'}
-{/demo} 
+{demo}{sequence '1..25', name='mySeq1'}{/demo}
+{demo}{sequence 'A..E',  name='mySeq2'}{/demo} 
 
-{demo}{sequence mySeq}
-  {$sequence}
-{/sequence}{/demo} 
+{/table}{table}
 
-{demo}{sequence mySeq, slice='5'}
-  {$sequence}
-{/sequence}{/demo} 
+{demo}{sequence mySeq1}                    {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq2}                    {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, slice='5' }        {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='5'}        {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='5|mySeq2'} {$sequence} {/sequence}{/demo} 
 
-{demo}{sequence mySeq, splice='5'}
-  {$sequence}
-{/sequence}{/demo} 
+{/table}{table}
 
-{demo}{sequence mySeq, slice='-5'}
-  {$sequence}
-{/sequence}{/demo} 
+{demo}{sequence mySeq1}                     {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq2}                     {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, slice='-5'}         {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='-5'}        {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='-5|mySeq2'} {$sequence} {/sequence}{/demo} 
 
-{demo}{sequence mySeq, splice='-5'}
-  {$sequence}
-{/sequence}{/demo} 
+{/table}{table}
 
-{demo}{sequence mySeq, slice='5|5'}
-  {$sequence}
-{/sequence}{/demo} 
+{demo}{sequence mySeq1}                      {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq2}                      {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, slice='5|5' }        {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='5|5'}        {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='5|5|mySeq2'} {$sequence} {/sequence}{/demo} 
 
-{demo}{sequence mySeq, splice='5|5'}
-  {$sequence}
-{/sequence}{/demo} 
+{/table}{table}
 
-{demo}{sequence mySeq, slice='5|-5'}
-  {$sequence}
-{/sequence}{/demo} 
+{demo}{sequence mySeq1}                       {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq2}                       {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, slice='5|-5' }        {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='5|-5'}        {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='5|-5|mySeq2'} {$sequence} {/sequence}{/demo} 
 
-{demo}{sequence mySeq, splice='5|-5'}
-  {$sequence}
-{/sequence}{/demo} 
+{/table}{table}
 
-{demo}{sequence mySeq, slice='-15|5'}
-  {$sequence}
-{/sequence}{/demo} 
+{demo}{sequence mySeq1}                        {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq2}                        {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, slice='-15|5' }        {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='-15|5'}        {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='-15|5|mySeq2'} {$sequence} {/sequence}{/demo} 
 
-{demo}{sequence mySeq, splice='-15|5'}
-  {$sequence}
-{/sequence}{/demo} 
+{/table}{table}
 
-{demo}{sequence mySeq, slice='-15|-5'}
-  {$sequence}
-{/sequence}{/demo} 
-
-{demo}{sequence mySeq, splice='-15|-5'}
-  {$sequence}
-{/sequence}{/demo} 
+{demo}{sequence mySeq1}                         {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq2}                         {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, slice='-15|-5'        } {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='-15|-5'       } {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='-15|-5|mySeq2'} {$sequence} {/sequence}{/demo} 
 
 {/table}

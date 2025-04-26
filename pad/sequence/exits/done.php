@@ -1,12 +1,8 @@
 <?php
 
-  foreach ( $pqDone as $padK => $padV )
-    if ( ! is_array ( $padV ) )
-      padDone ( $padV );
-
   foreach ( $padPrm [$pad] as $padK => $padV )
-    if ( file_exists ( "sequence/options/types/$padK.php" ) )
-      if ( ! is_array ( $padV ) )
-        padDone ( $padK );
+        if ( file_exists ( "sequence/options/types/$padK.php" ) ) padDone ( $padK );
+    elseif ( file_exists ( "sequence/actions/types/$padK.php" ) ) padDone ( $padK );
+    elseif ( file_exists ( "sequence/types/$padK" )             ) padDone ( $padK );
 
 ?>

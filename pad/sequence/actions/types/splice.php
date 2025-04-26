@@ -1,22 +1,39 @@
 <?php
 
   if ( count ( $pqActionList ) == 1 )
+
     array_splice (
       $pqResult,
       $pqActionList [0]
     );
-  elseif ( count ( $pqActionList ) == 2 )
-    array_splice (
-      $pqResult,
-      $pqActionList [0],
-      $pqActionList [1]
-    );
+
+  elseif ( count ( $pqActionList ) == 2 ) {
+
+    if ( is_numeric ( $pqActionList [1] ) )
+
+      array_splice (
+        $pqResult,
+        $pqActionList [0],
+        $pqActionList [1]
+      );
+    
+    else 
+    
+      array_splice (
+        $pqResult,
+        $pqActionList [0],
+        null,
+        $pqStore [ $pqActionList [1] ]
+      );
+
+  }
+
   elseif ( count ( $pqActionList ) == 3 )
     array_splice (
       $pqResult,
+      $pqActionList [0],
       $pqActionList [1],
-      $pqActionList [2],
-      $pqActionList [0]
+      $pqStore [ $pqActionList [2] ]
     );
 
   return $pqResult;

@@ -1,6 +1,6 @@
 <?php
 
-  if ( is_int ( $pqParm ) )
+  if ( is_numeric ( $pqParm ) )
     $pqRows = $pqParm;
 
 ?>

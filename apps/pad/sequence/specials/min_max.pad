@@ -1,0 +1,16 @@
+{table}
+
+{demo} {sequence '11..30', shuffle, push='mySequence' } {/demo}
+
+{demo} {mySequence} {$sequence} {/mySequence}        {/demo}
+
+{demo} {mySequence minimum } {$sequence} {/mySequence} {/demo}
+{demo} {mySequence maximum } {$sequence} {/mySequence} {/demo}
+
+{demo} {mySequence minimum=5 } {$sequence} {/mySequence} {/demo}
+{demo} {mySequence maximum=5 } {$sequence} {/mySequence} {/demo}
+
+{demo} {mySequence minimum=5, negative } {$sequence} {/mySequence} {/demo}
+{demo} {mySequence maximum=5, negative } {$sequence} {/mySequence} {/demo}
+
+{/table}

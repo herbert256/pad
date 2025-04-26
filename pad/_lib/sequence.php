@@ -65,6 +65,9 @@
 
   function pqRandom ( $array, $count=1, $order=0, $dups=0 ) {
 
+    if  ( ! is_array ( $array ) or ! count ( $array ) )
+      return [];
+
     $out  = [];
     $keys = [];
 

@@ -1,15 +1,9 @@
 <?php
 
   $pqNames [] = 'sequence';
-
   $pqNames [] = $pqName; 
   $pqNames [] = $pqToData;
-  $pqNames [] = $pqSeq;
-  $pqNames [] = $pqPull;
   $pqNames [] = $pqPush;
-
-  $pqNames [] = $padName [$pad]; 
-  $pqNames [] = $padTag [$pad];
 
   $pqNames = array_unique ( $pqNames );
 

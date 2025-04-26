@@ -71,6 +71,18 @@
     return array_diff ( scandir ( 'sequence/types' ), [ '.', '..' ] ) ;
 
   }
+
+
+  function pqActions () {
+
+    $array = array_diff ( scandir ( 'sequence/actions/types' ), [ '.', '..' ] ) ;
+
+    foreach ( $array as &$str ) 
+      $str = str_replace ( '.php', '', $str );
+
+    return $array;
+
+  }
   
   
   function padCut (&$content, $start, $end) {

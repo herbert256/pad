@@ -9,7 +9,7 @@
 
     extract ( $padParmsOne );
 
-    if  ( $padPrmKind == 'option' )
+    if ( $padPrmKind == 'option' )
       $pqActions [$padPrmName] = $padPrmValue;
         
   }

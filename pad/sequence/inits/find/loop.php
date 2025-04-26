@@ -4,12 +4,8 @@
 
     extract ( $padParmsOne );
 
-    if ( ! $pqPull and isset ( $pqStore [$padPrmName] ) ) {
-
-      $pqDone [] = $padPrmName;
-      $pqPull    = $padPrmName;
-          
-    }
+    if ( ! $pqPull and isset ( $pqStore [$padPrmName] ) )
+      $pqPull = $padPrmName;
 
   }
 
