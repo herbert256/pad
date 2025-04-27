@@ -1,5 +1,5 @@
 <?php
 
-  return "From a own function";
+  return "From an own function";
 
 ?>

@@ -68,6 +68,9 @@
     if  ( ! is_array ( $array ) or ! count ( $array ) )
       return [];
 
+    if ( ! $count or $count === TRUE )
+      $count = count ( $array );
+    
     $out  = [];
     $keys = [];
 
@@ -83,9 +86,16 @@
 
         foreach ( $array as $k => $v )
           if ( isset ( $dups [$k] ) )
-            $keys = array_merge ( $keys, array_fill ( 0, $dups [$k], $k ) );
+            for ($i=0; $i < $dups [$k]; $i++) 
+              $keys [] = $k;  
 
       }
+
+      foreach ( $keys as $k )
+        if ( isset ( $out [$k] ) )
+          $out [] = $array [$k];
+        else
+          $out [$k] = $array [$k];
 
     } else {
 
@@ -97,10 +107,10 @@
       if ( ! $order  )
         pqShuffle ( $keys );
 
-    }
+      foreach ( $keys as $k )
+        $out [$k] = $array [$k];
 
-    foreach ( $keys as $k )
-      $out [$k] = $array [$k];
+    }
     
     return $out;
 

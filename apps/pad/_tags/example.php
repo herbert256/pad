@@ -18,6 +18,12 @@
   $exampleFilePhp  = ( file_exists($examplePhp) ) ? str_replace(APP, '', $examplePhp) : '';
   $exampleFilePad  = ( file_exists($examplePad) ) ? str_replace(APP, '', $examplePad) : '';
 
+  if ( padTagParm ( 'onlyPHP' ) ) {
+    $exampleOnlyResult            = '';
+    $padPrm [$pad] ['skipPad']    = TRUE;
+    $padPrm [$pad] ['skipResult'] = TRUE;
+  }
+
   if ( padTagParm ( 'skipWhenEmpty' ) ) {
     if ( ! padFileGetContents ( $examplePhp ) ) $padPrm [$pad] ['skipPhp'] = TRUE;
     if ( ! padFileGetContents ( $examplePad ) ) $padPrm [$pad] ['skipPad'] = TRUE;

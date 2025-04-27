@@ -1,4 +1,4 @@
-{sequence '11..20', push='mySeq1'}
-{sequence '14..16', push='mySeq2'}
-
-{mySeq1 dump} {$sequence} {/mySeq1}
+{sequence from=11, to=15, push='mySeq'}
+{action:randomize 2, mySeq, orderly } {$sequence} {/action:randomize} <hr>
+{action:randomize 2, mySeq, duplicates } {$sequence} {/action:randomize} <hr>
+{action:randomize 2, mySeq, orderly, duplicates } {$sequence} {/action:randomize}

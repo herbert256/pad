@@ -1,25 +1,16 @@
 <?php
   
-  return;
+  $padHandRandKeys       = array_keys ( $padData [$pad] );
+  $padHandRandCount      = $padPrm [$pad] ['random']      ?? 0; 
+  $padHandRandOrderly    = $padPrm [$pad] ['orderly']     ?? 0; 
+  $padHandRandDuplicates = $padPrm [$pad] ['duplicates']  ?? 0; 
 
-  $padHandStart = $padPrm [$pad] ['start'] ?? 1;
+  $padHandRandKeys = pqRandom ( $padHandRandKeys, $padHandRandCount, $padHandRandOrderly, $padHandRandDuplicates );
 
-  if ( $padHandCnt >= count ( $padData [$pad] ) )
-    return include 'handling/types/shuffle.php';
-
-  if ( $padHandCnt == 1) {
-    $padData [$pad] = [ 1 => $padData [$pad] [ array_rand ( $padData [$pad] ) ] ];
-    return;
-  }
-
-  $padHandRand = array_rand ( $padData [$pad], $padHandCnt );
-  $padHandData = $padData [$pad];
-
+  $padHandRand    = $padData [$pad];
   $padData [$pad] = [];
-  
-  foreach ( $padHandRand as $padHandKey )
-    $padData [$pad] [] = $padHandData [$padHandKey];
 
-  include 'handling/types/shuffle.php';
-  
+  foreach ( $padHandRandKeys as $padK )
+    $padData [$pad] [] = $padHandRand [$padK];
+
 ?>

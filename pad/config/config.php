@@ -66,9 +66,9 @@
   $padSessionVars = [];
     
   // Default {$var} options, there must be a PHP snippet in one of below directories
-  // - /pad/functions/
   // - /app/_functions/
-
+  // - /pad/functions/
+ 
   $padDataDefaultStart = [];
   $padDataDefaultEnd   = ['sanitize'];
 
