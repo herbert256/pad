@@ -63,7 +63,7 @@
   }
 
 
-  function pqRandom ( $array, $count=1, $order=0, $dups=0 ) {
+  function pqRandom ( $array, $count=1, $order=0, $dups=0, $once=0 ) {
 
     if  ( ! is_array ( $array ) or ! count ( $array ) )
       return [];
@@ -71,47 +71,64 @@
     if ( ! $count or $count === TRUE )
       $count = count ( $array );
     
-    $out  = [];
-    $keys = [];
-
-    if ( $dups or $count > count ( $array ) ) {
+    if ( $dups or $count > count ( $array ) or $once ) 
+      return pqRandomDups ( $array, $count, $order, $once );
+    else
+      return pqRandomKeys ( $array, $count, $order );
       
-      for ( $i=1; $i <= $count; $i++ )
-        $keys [] = array_rand ( $array ) ;
+  }
 
-      if ( $order ) {
 
-        $dups = array_count_values ( $keys ); 
-        $keys = []; 
+  function pqRandomKeys ( $array, $count, $order ) {
 
-        foreach ( $array as $k => $v )
-          if ( isset ( $dups [$k] ) )
-            for ($i=0; $i < $dups [$k]; $i++) 
-              $keys [] = $k;  
+    if ( $count == 1 )
+      $keys = [ 0 => array_rand ( $array ) ];
+    else 
+      $keys = array_rand ( $array, $count );
 
-      }
+    if ( ! $order  )
+      shuffle ( $keys );
 
-      foreach ( $keys as $k )
-        if ( isset ( $out [$k] ) )
-          $out [] = $array [$k];
-        else
-          $out [$k] = $array [$k];
+    foreach ( $keys as $k )
+      $out [$k] = $array [$k];
 
-    } else {
+    return $out;
 
-      if ( $count == 1 )
-        $keys = [ 0 => array_rand ( $array ) ];
-      else 
-        $keys = array_rand ( $array, $count );
+  }
+    
 
-      if ( ! $order  )
-        pqShuffle ( $keys );
+  function pqRandomDups ( $array, $count, $order, $once ) {
 
-      foreach ( $keys as $k )
-        $out [$k] = $array [$k];
+    if ( $once ) {
+      $keys = array_keys ( $array );
+      $count = $count - count ( $array );
+    }
+
+    for ( $i=1; $i <= $count; $i++ )
+      $keys [] = array_rand ( $array ) ;
+
+    if ( ! $order ) 
+
+      shuffle ( $keys );
+
+    else {
+
+      $dups = array_count_values ( $keys ); 
+      $keys = []; 
+
+      foreach ( $array as $k => $v )
+        if ( isset ( $dups [$k] ) )
+          for ($i=0; $i < $dups [$k]; $i++) 
+            $keys [] = $k;  
 
     }
-    
+
+    foreach ( $keys as $k )
+      if ( isset ( $out [$k] ) )
+        $out [] = $array [$k];
+      else
+        $out [$k] = $array [$k];
+
     return $out;
 
   }
@@ -218,13 +235,6 @@
       return array_slice ( $array, $count );
     else
       return array_slice ( $array, 0, $count * -1 );
-
-  }
-
-
-  function padHandTruncate ( $array, $side, $count ) {
-
-    return pqTruncate ( $array, $side, $count );
 
   }
 

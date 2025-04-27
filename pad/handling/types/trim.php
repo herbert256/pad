@@ -8,14 +8,14 @@
     $padHandBoth = 1;
 
   if ( $padHandBoth ) {
-    $padData [$pad] = padHandTruncate  ( $padData [$pad], 'left',  $padHandCnt );
-    $padData [$pad] = padHandTruncate  ( $padData [$pad], 'right', $padHandCnt );
+    $padData [$pad] = pqTruncate  ( $padData [$pad], 'left',  $padHandCnt );
+    $padData [$pad] = pqTruncate  ( $padData [$pad], 'right', $padHandCnt );
   }
 
   if ( $padHandLeft )
-    $padData [$pad] = padHandTruncate  ( $padData [$pad], 'left',  $padHandCnt );
+    $padData [$pad] = pqTruncate  ( $padData [$pad], 'left',  $padHandCnt );
 
   if ( $padHandRight ) 
-    $padData [$pad] = padHandTruncate  ( $padData [$pad], 'right', $padHandCnt );
+    $padData [$pad] = pqTruncate  ( $padData [$pad], 'right', $padHandCnt );
   
 ?>
