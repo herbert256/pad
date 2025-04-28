@@ -8,6 +8,9 @@
 
       $item = $one ['item'];
 
+      if ( ! file_exists ( APP . "$item.pad" ) )
+        continue;
+
       if (   $sequence and ! str_contains ( $item, 'sequence' ) ) continue;
       if ( ! $sequence and   str_contains ( $item, 'sequence' ) ) continue;
       if (   $sequence and   str_contains ( $item, 'develop'  ) ) continue;
@@ -27,10 +30,8 @@
 
       if ( $status == 'go' ) {
 
-        file_put_contents  (APP . "_regression.txt", $item);
-
         $old  = padFileGetContents($store);
-        $curl = getPage ($item ,1);
+        $curl = getPage ($item, 1, 1);
         $good = str_starts_with ( $curl ['result'], '2');
         $new  = $curl ['data'] ?? '';
         $new  = str_replace ( "\r\n", "\n", $new );

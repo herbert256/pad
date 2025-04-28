@@ -4,8 +4,26 @@
   deleteDir  ( APP . '_regression' );
 
   foreach ( padList ( 0 ) as $one ) {
-    file_put_contents  ( APP . "_getAll.txt", $one ['item'] );
-    getPage ( $one ['item'], 1, 1 );
+
+    $item = $one ['item'];
+    
+    if ( ! file_exists ( APP . "$item.pad" ) )
+      continue;
+    
+    $curl = getPage ( $item, 1, 1 );
+    $new  = $curl ['data'] ?? '';
+    $new  = str_replace ( "\r\n", "\n", $new );
+
+    $store  = APP . "_regression/$item.html";
+    padFileChkDir     ( $store );
+    padFileChkFile    ( $store );
+    file_put_contents ( $store, $new ) ;
+
+    $store = APP . "_regression/$item.txt";
+    padFileChkDir     ( $store );
+    padFileChkFile    ( $store );
+    file_put_contents ( $store, 'ok' ) ;
+
   }
   
   padRedirect ( 'develop/regression'    );
