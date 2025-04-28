@@ -6,10 +6,7 @@
   foreach ( padList ( 0 ) as $one ) {
 
     $item = $one ['item'];
-    
-    if ( ! file_exists ( APP . "$item.pad" ) )
-      continue;
-    
+
     $curl = getPage ( $item, 1, 1 );
     $new  = $curl ['data'] ?? '';
     $new  = str_replace ( "\r\n", "\n", $new );
@@ -25,7 +22,5 @@
     file_put_contents ( $store, 'ok' ) ;
 
   }
-  
-  padRedirect ( 'develop/regression'    );
 
 ?>
