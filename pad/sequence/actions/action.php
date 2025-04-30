@@ -1,12 +1,12 @@
 <?php
 
-  if ( $padPrmValue === TRUE )
-    $padPrmValue = '';
+  if ( $pqActionParm === TRUE )
+    $pqActionParm = '';
 
-  $pqActionList = padExplode ( $padPrmValue, '|' );
+  $pqActionList = padExplode ( $pqActionParm, '|' );
 
-  if ( $padPrmName == 'action' ) $pqAction = array_shift ( $pqActionList );
-  else                           $pqAction = $padPrmName;     
+  if ( $pqAction == 'action' ) 
+    $pqAction = array_shift ( $pqActionList );
 
   if ( ! pqAction ( $pqAction ) )
     return;

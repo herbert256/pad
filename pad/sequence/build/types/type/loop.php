@@ -8,8 +8,7 @@
 
     $pqLoop = $pqGo;
 
-    $pqTmp = include 'sequence/build/one.php';
-    if ( $pqTmp === FALSE )
+    if ( ! include 'sequence/build/one.php')
       break;
 
     $pqGo = $pqGo + $pqInc;

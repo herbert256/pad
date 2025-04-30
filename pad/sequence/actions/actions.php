@@ -5,16 +5,11 @@
   if ( $pqAction ) 
     $pqActions [$pqAction] = $pqActionParm;
 
-  foreach ( $padParms [$pad] as $padParmsOne ) {
-
-    extract ( $padParmsOne );
-
-    if ( $padPrmKind == 'option' )
-      $pqActions [$padPrmName] = $padPrmValue;
-        
-  }
+  foreach ( $padParms [$pad] as $padV )
+    if ( $padV ['padPrmKind'] == 'option' )
+      $pqActions [ $padV ['padPrmName'] ] = $padV ['padPrmValue'];
  
-  foreach ( $pqActions as $padPrmName => $padPrmValue )
+  foreach ( $pqActions as $pqAction => $pqActionParm )
     include 'sequence/actions/action.php';
 
 ?>

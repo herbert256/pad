@@ -4,10 +4,8 @@
 
   $pqSkipNow   = 0;
   $pqSkipCount = 0;
-
-  $pqTry = PHP_INT_MAX;
-
-  $pqFixed = array_values ( $pqFixed );
+  $pqTry       = PHP_INT_MAX;
+  $pqFixed     = array_values ( $pqFixed );
 
   foreach ( $pqFixed as $pqKey => $pqLoop ) {
 
@@ -19,7 +17,7 @@
     }
 
     if ( $pqKey < $pqFrom - 1 ) continue;
-    if ( $pqKey > $pqTo - 1   ) return;
+    if ( $pqKey > $pqTo - 1   ) break;
 
     $pqTries = $pqKey;
 
