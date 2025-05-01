@@ -1,4 +1,4 @@
-<?php
+<?php 
 
   $pqTemp = include "sequence/types/$pqSeq/fixed.php";
 

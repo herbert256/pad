@@ -7,10 +7,8 @@
   $pqBuild = pqBuild ( $pqSeq, $pqPlay );
 
   include 'sequence/build/include.php';
-  
-  if ( file_exists ( "sequence/types/$pqSeq/init.php" ) )
-    include "sequence/plays/init.php";
-  
+  include "sequence/plays/init.php";
+    
   $pqPlays [] = [
     'pqSeq'   => $pqSeq,
     'pqParm'  => $padPrmValue,

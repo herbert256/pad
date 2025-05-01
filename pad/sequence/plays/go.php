@@ -1,7 +1,5 @@
 <?php
 
-  $pqPlayType = 'build';
-
   foreach ( $pqPlays as $pqPlay ) {
     
     extract ( $pqPlay );

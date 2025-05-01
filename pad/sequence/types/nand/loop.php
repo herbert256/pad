@@ -1,5 +1,5 @@
 <?php
 
-  return ~ include 'sequence/types/and/make.php';
+  return ~ include 'sequence/types/and/loop.php';
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-  $padStoreIndex = ( $pqPlayType == 'build' ) ? count ( $pqResult ) : count ( $pqFixed );
+  $padStoreIndex = count ( $pqResult ) ;
   $pqParm    = $pqStore [$pqParm] [$padStoreIndex];
   
 ?>

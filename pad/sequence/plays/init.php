@@ -1,7 +1,10 @@
 <?php
 
-  $pqParmSave  = $pqParm;
-  $pqIncSave   = $pqInc;
+  if ( ! file_exists ( "sequence/types/$pqSeq/init.php" ) )
+    return;
+
+  $pqParmSave = $pqParm;
+  $pqIncSave  = $pqInc;
   $pqFromSave = $pqFrom;
   $pqToSave   = $pqTo;
 
@@ -12,8 +15,8 @@
 
   include "sequence/types/$pqSeq/init.php";
 
-  $pqParm  = $pqParmSave;
-  $pqInc   = $pqIncSave;
+  $pqParm = $pqParmSave;
+  $pqInc  = $pqIncSave;
   $pqFrom = $pqFromSave;
   $pqTo   = $pqToSave;
 

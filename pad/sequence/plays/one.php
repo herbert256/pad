@@ -5,11 +5,12 @@
 
   if ( is_numeric ($pqParm) )
     if ( str_contains ( $pqParm, '.' ) ) $pqParm = doubleval ( $pqParm );
-    else                                     $pqParm = intval    ( $pqParm );
+    else                                 $pqParm = intval    ( $pqParm );
 
   include 'sequence/build/include.php';
 
-  $pq = include 'sequence/build/call.php';
+  if ( $pqBuild == 'fixed' ) $pq = include "sequence/plays/fixed.php";
+  else                       $pq = include 'sequence/build/call.php';
 
   if     ( $pqPlay == 'loop'   and $pq === TRUE   ) $pq = $pqLoop;
 
