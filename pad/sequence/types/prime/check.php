@@ -6,6 +6,7 @@
       return pqBoolPrime ( $n, $p );
 
     if ( file_exists ( 'sequence/types/prime/fixed.php' ) ) {
+      $pqParm = $p;
       $fixed = include 'sequence/types/prime/fixed.php';
       return in_array ( $n, $fixed );
     }
@@ -13,6 +14,7 @@
     if ( file_exists ( 'sequence/types/prime/generated.php' ) ) 
       return in_array ( $n, PADprime );
 
+    #$text = padCode ( "{sequence prime, from=$n, to=$n}{\$sequence},{/sequence}" );
     $text = padCode ( "{sequence prime, from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
     $arr  = explode ( ',', $text );
 

@@ -1,6 +1,7 @@
 <?php
 
   include 'config/config.php';
+  include 'config/sequence.php';
  
   if ( $padInfo ) {
     $padInfoList = padExplode ( $padInfo, ',' );

@@ -1,8 +1,8 @@
 <?php
 
-  foreach ( $pqPlays as $pqPlay ) {
-    
-    extract ( $pqPlay );
+  foreach ( $pqPlays as $pqTmp ) {
+        
+    extract ( $pqTmp );
 
     $pqLoop = $pq;
 

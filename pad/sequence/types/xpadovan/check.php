@@ -6,6 +6,7 @@
       return pqBoolXpadovan ( $n, $p );
 
     if ( file_exists ( 'sequence/types/xpadovan/fixed.php' ) ) {
+      $pqParm = $p;
       $fixed = include 'sequence/types/xpadovan/fixed.php';
       return in_array ( $n, $fixed );
     }
@@ -13,6 +14,7 @@
     if ( file_exists ( 'sequence/types/xpadovan/generated.php' ) ) 
       return in_array ( $n, PADxpadovan );
 
+    #$text = padCode ( "{sequence xpadovan, from=$n, to=$n}{\$sequence},{/sequence}" );
     $text = padCode ( "{sequence xpadovan, from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
     $arr  = explode ( ',', $text );
 

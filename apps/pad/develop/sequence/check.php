@@ -13,6 +13,7 @@
         . "\n      return pqBool$name ( \$n, \$p );"
         . "\n"
         . "\n    if ( file_exists ( 'sequence/types/$type/fixed.php' ) ) {"
+        . "\n      \$pqParm = \$p;"
         . "\n      \$fixed = include 'sequence/types/$type/fixed.php';"
         . "\n      return in_array ( \$n, \$fixed );"        
         . "\n    }"

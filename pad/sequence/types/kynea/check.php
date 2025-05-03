@@ -6,6 +6,7 @@
       return pqBoolKynea ( $n, $p );
 
     if ( file_exists ( 'sequence/types/kynea/fixed.php' ) ) {
+      $pqParm = $p;
       $fixed = include 'sequence/types/kynea/fixed.php';
       return in_array ( $n, $fixed );
     }
@@ -13,6 +14,7 @@
     if ( file_exists ( 'sequence/types/kynea/generated.php' ) ) 
       return in_array ( $n, PADkynea );
 
+    #$text = padCode ( "{sequence kynea, from=$n, to=$n}{\$sequence},{/sequence}" );
     $text = padCode ( "{sequence kynea, from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
     $arr  = explode ( ',', $text );
 

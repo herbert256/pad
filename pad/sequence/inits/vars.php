@@ -18,7 +18,6 @@
   $pqOrgName    = '';
   $pqOrgSet     = '';
 
- 
   $pqResult     = [];
   $pqDone       = [];
   $pqInfo       = [];  
@@ -37,7 +36,7 @@
 
   $pqInc  = intval ( $padPrm [$pad] ['increment'] ?? 1           );
   $pqRows = intval ( $padPrm [$pad] ['rows']      ?? 0           );
-  $pqTry  = intval ( $padPrm [$pad] ['try']       ?? 10000       ); 
+  $pqTry  = intval ( $padPrm [$pad] ['try']       ?? 0           ); 
   
   $pqStop = intval ( $padPrm [$pad] ['stop']      ?? PHP_INT_MAX );
   $pqSkip = intval ( $padPrm [$pad] ['skip']      ?? 0           );

@@ -6,6 +6,7 @@
       return pqBoolStrong ( $n, $p );
 
     if ( file_exists ( 'sequence/types/strong/fixed.php' ) ) {
+      $pqParm = $p;
       $fixed = include 'sequence/types/strong/fixed.php';
       return in_array ( $n, $fixed );
     }
@@ -13,6 +14,7 @@
     if ( file_exists ( 'sequence/types/strong/generated.php' ) ) 
       return in_array ( $n, PADstrong );
 
+    #$text = padCode ( "{sequence strong, from=$n, to=$n}{\$sequence},{/sequence}" );
     $text = padCode ( "{sequence strong, from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
     $arr  = explode ( ',', $text );
 

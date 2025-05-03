@@ -189,7 +189,7 @@
       return 'fixed';
 
     if ( $for == 'keep' or $for == 'remove' or $for == 'flag' )
-      return 'bool';
+      return 'check';
 
     if ( file_exists ( "sequence/types/$check/$for.php" ) ) 
       return $for;

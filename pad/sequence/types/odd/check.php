@@ -6,6 +6,7 @@
       return pqBoolOdd ( $n, $p );
 
     if ( file_exists ( 'sequence/types/odd/fixed.php' ) ) {
+      $pqParm = $p;
       $fixed = include 'sequence/types/odd/fixed.php';
       return in_array ( $n, $fixed );
     }
@@ -13,6 +14,7 @@
     if ( file_exists ( 'sequence/types/odd/generated.php' ) ) 
       return in_array ( $n, PADodd );
 
+    #$text = padCode ( "{sequence odd, from=$n, to=$n}{\$sequence},{/sequence}" );
     $text = padCode ( "{sequence odd, from=$f, stop=$n, try=$n}{\$sequence},{/sequence}" );
     $arr  = explode ( ',', $text );
 
