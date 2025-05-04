@@ -9,8 +9,7 @@
 
   include 'sequence/build/include.php';
 
-  if ( $pqBuild == 'fixed' ) $pq = include "sequence/plays/fixed.php";
-  else                       $pq = include 'sequence/build/call.php';
+  $pq = include 'sequence/build/play/play.php';
 
   if     ( $pqPlay == 'loop'   and $pq === TRUE   ) $pq = $pqLoop;
 

@@ -16,7 +16,7 @@
   
   else
 
-    $pq = include 'sequence/build/call.php';  
+    $pq = include 'sequence/build/main/main.php';  
 
   $pqOrgName = $pqSeq;
   $pqOrgSet  = $pq;

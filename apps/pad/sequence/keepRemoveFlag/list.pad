@@ -1,0 +1,15 @@
+{table}
+
+{demo}{sequence list='5;10;15;20', rows=25} {$sequence} {/sequence} {/demo}
+
+{demo}{sequence 25, push='mySequence'} {/demo}
+
+{demo}{pull mySequence, make,   list='5;10;15;20'} {$sequence} {/pull}{/demo}
+
+{demo}{pull mySequence, keep,   list='5;10;15;20'} {$sequence} {/pull}{/demo}
+
+{demo}{pull mySequence, remove, list='5;10;15;20'} {$sequence} {/pull}{/demo}
+
+{demo}{pull mySequence, flag,   list='5;10;15;20'} {$sequence} {/pull}{/demo}
+
+{/table}

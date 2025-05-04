@@ -1,7 +1,7 @@
 <?php
  
-  if ( $type == 'random' or $build == 'fixed' or $build == 'order' )
-    return;
+  # if ( $type == 'random' or $build == 'fixed' or $build == 'order' )
+  #  return;
 
   if ( ! $parm ) 
     return;

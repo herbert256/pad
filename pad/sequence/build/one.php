@@ -2,10 +2,8 @@
  
   $pqTries++;
 
-  $pqPlaysSet = [];
-
-  if ( $pqTries > $pqTry                          ) return FALSE;
-  if ( $pqBuild == 'order' and $pqTries < $pqFrom ) return TRUE;
+  if ( $pqTries > $pqTry ) 
+    return FALSE;
  
   if ( $pqParmStore ) $pqParm = include 'sequence/build/store.php';
   if ( $pqRandomly  ) $pqLoop = include 'sequence/build/randomly/randomly.php';
@@ -16,6 +14,7 @@
   elseif ( $pq === TRUE  ) $pq = $pqLoop;
 
   if ( count ( $pqPlays ) ) {
+    $pqPlaysSet = [];
     include 'sequence/plays/build.php';
     if ( $pq === FALSE ) 
       return TRUE;
@@ -28,6 +27,11 @@
   if ( $pqUnique and in_array ($pq, $pqResult) ) return TRUE;
   if ( $pqSkip and $pqTries <= $pqSkip )         return TRUE;
 
+  if ( $pqBuild == 'order' ) { 
+    $pqOrder [] = $pq;
+    if ( $pqLoop < $pqOrderFrom ) 
+      return TRUE;
+  }
                             $pqResult   [] = $pq;
   if ( count ( $pqPlays ) ) $pqPlaysHit [] = $pqPlaysSet;
   if ( $pqOrgName         ) $pqOrgHit   [] = $pqOrgSet;

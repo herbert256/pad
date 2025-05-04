@@ -1,15 +1,17 @@
 <?php
 
-  if ( $pqLoop > 0 ) {
+  if ( str_contains ( $pqParm, '%' ) ) {
 
-    $pqModulo = ( $pqLoop % $pqParm ) + 1;
+    $pqChance = str_replace('%', '', $pqParm );
 
-    if  ( $pqModulo == mt_rand ( 1, $pqParm ) ) return $pqLoop;
-    else                                        return FALSE;
+    if  ( mt_rand ( 1, 100 ) <= $pqChance  ) return TRUE;
+    else                                     return FALSE;
 
-  } else
+  } else {
 
-    return $pqLoop;
+    if  ( mt_rand ( 1, $pqParm ) == 1 ) return TRUE;
+    else                                return FALSE;
 
+  }
 
 ?>

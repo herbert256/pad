@@ -19,6 +19,8 @@
       $check  = APP . "$item.pad";
       $source = padFileGetContents($check);
 
+      file_put_contents ( APP . "_regression.txt", $item ) ;
+
       if     ( ! $source                                  ) $status = 'no';
       elseif ( strpos ( $source, 'PAD: SKIP REGRESSION' ) ) $status = 'no';
       elseif ( strpos ( $store, 'error' )                 ) $status = 'no';
@@ -42,6 +44,7 @@
         elseif ( strpos($source, '{ajax')           ) $status = 'skip' ;
         elseif ( strpos($source, 'random')          ) $status = 'random' ;
         elseif ( strpos($source, 'shuffle')         ) $status = 'random' ;
+        elseif ( strpos($source, 'chance')          ) $status = 'random' ;
         elseif ( strpos($new, 'padAjax')            ) $status = 'skip' ;
         elseif ( $old == $new                       ) $status = 'ok';
         else                                          $status = 'warning';

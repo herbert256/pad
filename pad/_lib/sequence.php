@@ -51,7 +51,7 @@
 
   function pqStore ( $check ) {
 
-    return in_array ( $check, ['pull','fixed'] );
+    return in_array ( $check, ['pull','fixed','build'] );
 
   }
   
@@ -194,13 +194,15 @@
     if ( file_exists ( "sequence/types/$check/$for.php" ) ) 
       return $for;
     
-    if     ( file_exists ( "sequence/types/$check/loop.php")     ) return 'loop';
-    elseif ( file_exists ( "sequence/types/$check/make.php")     ) return 'make';
-    elseif ( file_exists ( "sequence/types/$check/function.php") ) return 'function';
-    elseif ( file_exists ( "sequence/types/$check/bool.php")     ) return 'bool';
-    elseif ( file_exists ( "sequence/types/$check/order.php")    ) return 'order';
-    elseif ( file_exists ( "sequence/types/$check/fixed.php")    ) return 'fixed';
-    else                                                           return 'bool';
+    if     ( file_exists ( "sequence/types/$check/loop.php")      ) return 'loop';
+    elseif ( file_exists ( "sequence/types/$check/make.php")      ) return 'make';
+    elseif ( file_exists ( "sequence/types/$check/function.php")  ) return 'function';
+    elseif ( file_exists ( "sequence/types/$check/bool.php")      ) return 'bool';
+    elseif ( file_exists ( "sequence/types/$check/order.php")     ) return 'order';
+    elseif ( file_exists ( "sequence/types/$check/build.php")     ) return 'build';
+    elseif ( file_exists ( "sequence/types/$check/fixed.php")     ) return 'fixed';
+    elseif ( file_exists ( "sequence/types/$check/generated.php") ) return 'generated';
+    else                                                            return 'unknow';
 
   }
 

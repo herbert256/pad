@@ -11,7 +11,6 @@
   
   $pqSeq        = '';
   $pqBuild      = '';
-  $pqPull       = '';
   $pqParm       = '';
   $pqAction     = '';
   $pqActionParm = '';
@@ -30,7 +29,11 @@
       
   $pqFrom = intval ( $padPrm [$pad] ['from']      ?? 1           );
   $pqTo   = intval ( $padPrm [$pad] ['to']        ?? PHP_INT_MAX );
+  $pqSole = intval ( $padPrm [$pad] ['sole']      ?? 0           );
  
+  if ( $pqSole ) 
+    $pqFrom = $pqTo = $pqSole;
+
   $pqMin  = intval ( $padPrm [$pad] ['minimal']   ?? PHP_INT_MIN );
   $pqMax  = intval ( $padPrm [$pad] ['maximal']   ?? PHP_INT_MAX );
 
@@ -47,19 +50,20 @@
   $pqBuildName = $padPrm [$pad] ['build']    ?? ''; 
   $pqToData    = $padPrm [$pad] ['toData']   ?? ''; 
   $pqNegative  = $padPrm [$pad] ['negative'] ?? 0 ;
-  $pqPullName  = $padPrm [$pad] ['pull']     ?? '';
+  $pqPull      = $padPrm [$pad] ['pull']     ?? '';
   $pqPush      = $padPrm [$pad] ['push']     ?? '';
+  $pqOne       = $padPrm [$pad] ['one']     ?? '';
 
   $pqType   = $padType   [$pad];
   $pqPrefix = $padPrefix [$pad];
   $pqTag    = $padTag    [$pad];
 
-  if ( $pqPullName === TRUE ) 
-    $pqPullName = $padLastPush;
+  if ( $pqPull === TRUE ) 
+    $pqPull = $padLastPush;
 
       if ( pqPlay ( $pqTag  ) ) $pqPlay = $pqTag;
   elseif ( pqPlay ( $pqType ) ) $pqPlay = $pqType;
-  else                                    $pqPlay = 'make';
+  else                          $pqPlay = 'make';
 
   $pqNameGiven = $pqName;
 

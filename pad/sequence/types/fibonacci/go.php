@@ -2,6 +2,6 @@
 
   $padFibonacci = $pqLoop - 1;
 
-  return $pqResult [$padFibonacci-1] + $pqResult [$padFibonacci-2];
+  return $pqOrder [$padFibonacci-1] + $pqOrder [$padFibonacci-2];
 
 ?>

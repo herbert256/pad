@@ -1,240 +1,926 @@
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">range<font color="black">,</font> from=11<font color="black">,</font> to=30<font color="black">,</font> name=<font color="black">'</font>mySeq<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq           </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->21 22 23 24 25 26 27 28 29 30<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> first    </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->21<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> last     </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->30<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> count    </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->10<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> distinct </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->10<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> element=5</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->25<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> minimum  </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->21<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> maximum  </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->30<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> average  </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->25.5<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> sum      </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->255<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> product  </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->109027350432000<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">random<font color="black">,</font> minimal=11<font color="black">,</font> maximal=50<font color="black">,</font> rows=20<font color="black">,</font> name=<font color="black">'</font>mySeq<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq           </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->50 41 33 27 44 25 19 47 25 38 48 38 12 23 24 47 16 34 23 42<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> first    </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->50<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> last     </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->42<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> count    </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->20<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> distinct </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->16<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> element=5</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->44<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> minimum  </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->12<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> maximum  </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->50<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> average  </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->32.8<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> sum      </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->656<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> product  </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->5.08649188836E+29<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>
+<div align="left"><pre><hr><b>/home/herbert/pad/pad/sequence/actions/types/element.php:3 EXCEPTION: array_combine(): Argument #1 ($keys) and argument #2 ($values) must have the same number of elements</b><hr><br>
+<b>pq</b>
+      [tag] =&gt; sequence mySeq, element=5
+      [pqStore] 
+              [mySeq] 
+      [pqFixed] 
+      [pqStoreUpdated] =&gt; 
+      [pqStored] =&gt; 
+      [pqTries] =&gt; 0
+      [pqLoop] =&gt; 0
+      [pqSeq] =&gt; 
+      [pqBuild] =&gt; pull
+      [pqParm] =&gt; 
+      [pqAction] =&gt; element
+      [pqActionParm] =&gt; 5
+      [pqOrgName] =&gt; 
+      [pqOrgSet] =&gt; 
+      [pqResult] 
+      [pqDone] 
+      [pqInfo] 
+              [sequences] 
+                      [0] =&gt; 
+              [builds] 
+                      [0] =&gt; pull
+      [pqNames] 
+      [pqPlays] 
+      [pqPlaysHit] 
+      [pqActions] 
+              [mySeq] =&gt; 1
+              [element] =&gt; 5
+      [pqActionsHit] 
+      [pqOrgHit] 
+      [pqFrom] =&gt; 1
+      [pqTo] =&gt; 9223372036854775807
+      [pqSole] =&gt; 0
+      [pqMin] =&gt; -9223372036854775808
+      [pqMax] =&gt; 9223372036854775807
+      [pqInc] =&gt; 1
+      [pqRows] =&gt; 9223372036854775807
+      [pqTry] =&gt; 9223372036854775807
+      [pqStop] =&gt; 9223372036854775807
+      [pqSkip] =&gt; 0
+      [pqRandomly] =&gt; 
+      [pqUnique] =&gt; 
+      [pqName] =&gt; mySeq
+      [pqBuildName] =&gt; 
+      [pqToData] =&gt; 
+      [pqNegative] =&gt; 0
+      [pqPull] =&gt; mySeq
+      [pqPush] =&gt; 
+      [pqOne] =&gt; 
+      [pqType] =&gt; pad
+      [pqPrefix] =&gt; 
+      [pqTag] =&gt; sequence
+      [pqPlay] =&gt; make
+      [pqNameGiven] =&gt; 
+      [pqFindParm] =&gt; 
+      [pqMake] =&gt; 
+      [pqFlag] =&gt; 
+      [pqKeep] =&gt; 
+      [pqRemove] =&gt; 
+      [pqCheck] =&gt; flag
+      [pqParmStore] =&gt; 
+      [pqRandomlyBuild] =&gt; 
+      [pqSkipNow] =&gt; 0
+      [pqSkipCount] =&gt; 0
+      [pqActionStart] 
+      [pqActionList] 
+              [0] =&gt; 5
+      [pqActionCnt] =&gt; 5
+      [pqActionKey] =&gt; 
+<br>/home/herbert/pad/pad/sequence/actions/types/element.php:3 - array_combine
+/home/herbert/pad/pad/sequence/actions/action.php:21 - include
+/home/herbert/pad/pad/sequence/actions/actions.php:13 - include
+/home/herbert/pad/pad/sequence/exits/actions.php:3 - include
+/home/herbert/pad/pad/sequence/exits/exits.php:4 - include
+/home/herbert/pad/pad/sequence/sequence.php:5 - include
+/home/herbert/pad/pad/sequence/start/tags/sequence.php:3 - include
+/home/herbert/pad/pad/tags/sequence.php:3 - include
+/home/herbert/pad/pad/call/_call.php:10 - include
+/home/herbert/pad/pad/call/ob.php:3 - include
+/home/herbert/pad/pad/types/go/tag.php:6 - include
+/home/herbert/pad/pad/types/pad.php:5 - include
+/home/herbert/pad/pad/level/go.php:8 - include
+/home/herbert/pad/pad/tryCatch/try/go.php:3 - include
+/home/herbert/pad/pad/tryCatch/_tryCatch.php:4 - include
+/home/herbert/pad/pad/tryCatch/go/go.php:5 - include
+/home/herbert/pad/pad/level/start.php:11 - include
+/home/herbert/pad/pad/level/level.php:40 - include
+/home/herbert/pad/pad/tryCatch/try/level.php:3 - include
+/home/herbert/pad/pad/tryCatch/_tryCatch.php:4 - include
+/home/herbert/pad/pad/tryCatch/go/level.php:5 - include
+/home/herbert/pad/pad/start/level.php:6 - include
+/home/herbert/pad/pad/start/enter/start.php:4 - include
+/home/herbert/pad/pad/tryCatch/try/start.php:3 - include
+/home/herbert/pad/pad/tryCatch/_tryCatch.php:4 - include
+/home/herbert/pad/pad/tryCatch/go/start.php:5 - include
+/home/herbert/pad/pad/pad.php:16 - include
+/home/herbert/pad/start.php:11 - include
+/home/herbert/pad/www/index.php:6 - include
+<br>/home/herbert/pad/pad/_lib/dump.php:63 - padDumpStack
+/home/herbert/pad/pad/_lib/dump.php:36 - padDumpLocal
+/home/herbert/pad/pad/_lib/dump.php:9 - padDumpGo
+/home/herbert/pad/pad/error/types/pad.php:31 - padDump
+/home/herbert/pad/pad/error/error.php:38 - padErrorGo
+/home/herbert/pad/pad/sequence/actions/types/element.php:3 - padErrorException
+
+<b>Level: 3</b>
+      [org] =&gt; sequence mySeq, element=5
+      [tag] =&gt; sequence
+      [type] =&gt; pad
+      [name] =&gt; mySeq
+      [pair] =&gt; 1
+      [opt] 
+              [0] =&gt; mySeq, element=5
+              [1] =&gt; 
+      [prm] 
+              [mySeq] =&gt; 1
+              [element] =&gt; 5
+      [base] =&gt;  {$sequence} 
+      [pad] =&gt; 
+      [result] =&gt; 
+      [flags] 
+              [null] =&gt; 
+              [else] =&gt; 
+              [hit] =&gt; 
+              [Array] =&gt; 
+
+<b>Level: 2</b>
+      [org] =&gt; demo
+      [tag] =&gt; demo
+      [type] =&gt; app
+      [name] =&gt; demo
+      [pair] =&gt; 1
+      [opt] 
+              [0] =&gt; 
+              [1] =&gt; 
+      [prm] 
+      [base] =&gt; {sequence mySeq, element=5} {$sequence} {/sequence} 
+      [pad] =&gt; 
+      [result] =&gt; 
+      [flags] 
+              [null] =&gt; 
+              [else] =&gt; 
+              [hit] =&gt; 1
+              [Array] =&gt; 
+
+<b>Level: 1</b>
+      [org] =&gt; table
+      [tag] =&gt; table
+      [type] =&gt; app
+      [name] =&gt; table
+      [pair] =&gt; 1
+      [opt] 
+              [0] =&gt; 
+              [1] =&gt; 
+      [prm] 
+      [base] =&gt; &lt;p&gt; &lt;table border=&quot;1&quot; cellpadding=&quot;10&quot; cellspacing=&quot;0&quot;&gt; &lt;tr&gt; {if #firstFile} &lt;th bgcolor=&quot;#dddddd&quot;&gt;{#firstFile}&lt;/th&gt; {/if} {if #secondFile} &lt;th bgcolo
+      [pad] =&gt; 
+      [result] =&gt; 
+      [flags] 
+              [null] =&gt; 
+              [else] =&gt; 
+              [hit] =&gt; 1
+              [Array] =&gt; 
+
+<b>Level: 0</b>
+      [org] =&gt; 
+      [tag] =&gt; internal
+      [type] =&gt; 
+      [name] =&gt; 
+      [pair] =&gt; 
+      [opt] 
+              [0] =&gt; 
+      [prm] 
+      [base] =&gt; {table} {demo}{sequence range, from=11, to=30, name=&#039;mySeq&#039;}{/demo} {demo}{sequence mySeq } {$sequence} {/sequence} {/demo} {demo}{sequence mySeq, fir
+      [pad] =&gt; 
+      [result] =&gt; 
+      [flags] 
+              [null] =&gt; 
+              [else] =&gt; 
+              [hit] =&gt; 
+              [Array] =&gt; 
+
+<b>App variables</b>
+      [firstFile] =&gt; 
+      [firstFileP] =&gt; 
+      [secondFile] =&gt; 
+      [secondFileP] =&gt; 
+      [showTitle] =&gt; 1
+      [title] =&gt; reduce
+
+<b>Request variables</b>
+      [sequence/specials/reduce] =&gt; 
+      [padInclude] =&gt; 
+      [padSesID] =&gt; CLbXpELl
+      [padReqID] =&gt; f3yc3gWo
+
+<b>padBuild</b>
+      [padBuild] 
+              [999] 
+      [padBuildBase] =&gt; @pad@
+      [padBuildCall] =&gt; 
+      [padBuildDir] =&gt; /home/herbert/pad/apps/pad/sequence/specials
+      [padBuildDirs] 
+              [0] =&gt; /home/herbert/pad/apps/pad
+              [1] =&gt; /home/herbert/pad/apps/pad/sequence
+              [2] =&gt; /home/herbert/pad/apps/pad/sequence/specials
+      [padBuildLib] =&gt; 
+      [padBuildMrg] 
+              [0] =&gt; pad
+              [1] =&gt; sequence
+              [2] =&gt; specials
+      [padBuildNow] =&gt; /home/herbert/pad/apps/pad
+      [padBuildPage] =&gt; {table} {demo}{sequence range, from=11, to=30, name=&#039;mySeq&#039;}{/demo} {demo}{sequence mySeq } {$sequence} {/sequence} {/demo} {demo}{sequence mySeq, fir
+      [padBuildPos] =&gt; 22
+      [padBuildTrue] =&gt; {table} {demo}{sequence range, from=11, to=30, name=&#039;mySeq&#039;}{/demo} {demo}{sequence mySeq } {$sequence} {/sequence} {/demo} {demo}{sequence mySeq, fir
+
+<b>PAD variables</b>
+      [pad] =&gt; 3
+      [padApp] =&gt; 201453
+      [padAt] =&gt; at/_lib/search.php
+      [padBaseBase] =&gt;  {$sequence} 
+      [padBaseSet] =&gt;  {$sequence} 
+      [padBetween] =&gt; sequence mySeq, element=5
+      [padBetweenCheck] =&gt; /sequence
+      [padBootShutdown] =&gt; 1
+      [padCacheStop] =&gt; 0
+      [padCall] =&gt; tags/sequence.php
+      [padCallOB] =&gt; 
+      [padCallPHP] =&gt; 
+      [padCallStart] =&gt; 46515360466053
+      [padChk] =&gt; 
+      [padClientDate] =&gt; 0
+      [padClientEtag] =&gt; 
+      [padClientGzip] =&gt; 1
+      [padContent] =&gt;  {$sequence} 
+      [padContentType] =&gt; text/html; charset=UTF-8
+      [padDemoCount] 
+              [1] =&gt; 7
+      [padDemoSourcePHP] =&gt; 
+      [padDir] =&gt; sequence/specials
+      [padDisplayErrors] =&gt; 1
+      [padDumpToDirDone] =&gt; dumps/sequence/specials/reduce/J6ZVfsVr-681750f74dd68
+      [padErrorFile] =&gt; /home/herbert/pad/pad/sequence/actions/types/element.php
+      [padErrorGo] =&gt; 1
+      [padErrorLine] =&gt; 3
+      [padErrorReporting] =&gt; 30719
+      [padEtag] =&gt; 
+      [padEvalCnt] =&gt; -1
+      [padEventsOption] 
+              [padPrmKind] =&gt; parm
+              [padPrmName] =&gt; 1
+              [padPrmValue] =&gt; 
+              [padPrmOrg] =&gt; #withPHP
+      [padException] =&gt; ValueError Object
+              [message:protected] =&gt; array_combine(): Argument #1 ($keys) and argument #2 ($values) must have the same number of elements
+              [string:Error:private] =&gt; 
+              [code:protected] =&gt; 0
+              [file:protected] =&gt; /home/herbert/pad/pad/sequence/actions/types/element.php
+              [line:protected] =&gt; 3
+              [trace:Error:private] 
+                      [0] 
+                              [file] =&gt; /home/herbert/pad/pad/sequence/actions/types/element.php
+                              [line] =&gt; 3
+                              [function] =&gt; array_combine
+                              [args] 
+                                      [0] 
+                                              [0] =&gt; 1
+                                              [1] =&gt; 0
+                                      [1] 
+                      [1] 
+                              [file] =&gt; /home/herbert/pad/pad/sequence/actions/action.php
+                              [line] =&gt; 21
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/sequence/actions/types/element.php
+                              [function] =&gt; include
+                      [2] 
+                              [file] =&gt; /home/herbert/pad/pad/sequence/actions/actions.php
+                              [line] =&gt; 13
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/sequence/actions/action.php
+                              [function] =&gt; include
+                      [3] 
+                              [file] =&gt; /home/herbert/pad/pad/sequence/exits/actions.php
+                              [line] =&gt; 3
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/sequence/actions/actions.php
+                              [function] =&gt; include
+                      [4] 
+                              [file] =&gt; /home/herbert/pad/pad/sequence/exits/exits.php
+                              [line] =&gt; 4
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/sequence/exits/actions.php
+                              [function] =&gt; include
+                      [5] 
+                              [file] =&gt; /home/herbert/pad/pad/sequence/sequence.php
+                              [line] =&gt; 5
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/sequence/exits/exits.php
+                              [function] =&gt; include
+                      [6] 
+                              [file] =&gt; /home/herbert/pad/pad/sequence/start/tags/sequence.php
+                              [line] =&gt; 3
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/sequence/sequence.php
+                              [function] =&gt; include
+                      [7] 
+                              [file] =&gt; /home/herbert/pad/pad/tags/sequence.php
+                              [line] =&gt; 3
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/sequence/start/tags/sequence.php
+                              [function] =&gt; include
+                      [8] 
+                              [file] =&gt; /home/herbert/pad/pad/call/_call.php
+                              [line] =&gt; 10
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/tags/sequence.php
+                              [function] =&gt; include
+                      [9] 
+                              [file] =&gt; /home/herbert/pad/pad/call/ob.php
+                              [line] =&gt; 3
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/call/_call.php
+                              [function] =&gt; include
+                      [10] 
+                              [file] =&gt; /home/herbert/pad/pad/types/go/tag.php
+                              [line] =&gt; 6
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/call/ob.php
+                              [function] =&gt; include
+                      [11] 
+                              [file] =&gt; /home/herbert/pad/pad/types/pad.php
+                              [line] =&gt; 5
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/types/go/tag.php
+                              [function] =&gt; include
+                      [12] 
+                              [file] =&gt; /home/herbert/pad/pad/level/go.php
+                              [line] =&gt; 8
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/types/pad.php
+                              [function] =&gt; include
+                      [13] 
+                              [file] =&gt; /home/herbert/pad/pad/tryCatch/try/go.php
+                              [line] =&gt; 3
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/level/go.php
+                              [function] =&gt; include
+                      [14] 
+                              [file] =&gt; /home/herbert/pad/pad/tryCatch/_tryCatch.php
+                              [line] =&gt; 4
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/tryCatch/try/go.php
+                              [function] =&gt; include
+                      [15] 
+                              [file] =&gt; /home/herbert/pad/pad/tryCatch/go/go.php
+                              [line] =&gt; 5
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/tryCatch/_tryCatch.php
+                              [function] =&gt; include
+                      [16] 
+                              [file] =&gt; /home/herbert/pad/pad/level/start.php
+                              [line] =&gt; 11
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/tryCatch/go/go.php
+                              [function] =&gt; include
+                      [17] 
+                              [file] =&gt; /home/herbert/pad/pad/level/level.php
+                              [line] =&gt; 40
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/level/start.php
+                              [function] =&gt; include
+                      [18] 
+                              [file] =&gt; /home/herbert/pad/pad/tryCatch/try/level.php
+                              [line] =&gt; 3
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/level/level.php
+                              [function] =&gt; include
+                      [19] 
+                              [file] =&gt; /home/herbert/pad/pad/tryCatch/_tryCatch.php
+                              [line] =&gt; 4
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/tryCatch/try/level.php
+                              [function] =&gt; include
+                      [20] 
+                              [file] =&gt; /home/herbert/pad/pad/tryCatch/go/level.php
+                              [line] =&gt; 5
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/tryCatch/_tryCatch.php
+                              [function] =&gt; include
+                      [21] 
+                              [file] =&gt; /home/herbert/pad/pad/start/level.php
+                              [line] =&gt; 6
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/tryCatch/go/level.php
+                              [function] =&gt; include
+                      [22] 
+                              [file] =&gt; /home/herbert/pad/pad/start/enter/start.php
+                              [line] =&gt; 4
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/start/level.php
+                              [function] =&gt; include
+                      [23] 
+                              [file] =&gt; /home/herbert/pad/pad/tryCatch/try/start.php
+                              [line] =&gt; 3
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/start/enter/start.php
+                              [function] =&gt; include
+                      [24] 
+                              [file] =&gt; /home/herbert/pad/pad/tryCatch/_tryCatch.php
+                              [line] =&gt; 4
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/tryCatch/try/start.php
+                              [function] =&gt; include
+                      [25] 
+                              [file] =&gt; /home/herbert/pad/pad/tryCatch/go/start.php
+                              [line] =&gt; 5
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/tryCatch/_tryCatch.php
+                              [function] =&gt; include
+                      [26] 
+                              [file] =&gt; /home/herbert/pad/pad/pad.php
+                              [line] =&gt; 16
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/tryCatch/go/start.php
+                              [function] =&gt; include
+                      [27] 
+                              [file] =&gt; /home/herbert/pad/start.php
+                              [line] =&gt; 11
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/pad/pad.php
+                              [function] =&gt; include
+                      [28] 
+                              [file] =&gt; /home/herbert/pad/www/index.php
+                              [line] =&gt; 6
+                              [args] 
+                                      [0] =&gt; /home/herbert/pad/start.php
+                              [function] =&gt; include
+              [previous:Error:private] =&gt; 
+      [padExceptionError] =&gt; array_combine(): Argument #1 ($keys) and argument #2 ($values) must have the same number of elements
+      [padExceptionFile] =&gt; /home/herbert/pad/pad/sequence/actions/types/element.php
+      [padExceptionLine] =&gt; 3
+      [padExceptionText] =&gt; /home/herbert/pad/pad/sequence/actions/types/element.php:3 array_combine(): Argument #1 ($keys) and argument #2 ($values) must have the same number of
+      [padFalse] =&gt; 
+      [padFirst] =&gt; s
+      [padFld] =&gt; sequence
+      [padFldChk] =&gt; 1
+      [padForceDataName] =&gt; 
+      [padForceTagName] =&gt; 
+      [padGo] =&gt; /?
+      [padGoExt] =&gt; http://penguin.linux.test/?
+      [padHR] =&gt; 46515355564881
+      [padHand] 
+              [padPrmKind] =&gt; option
+              [padPrmName] =&gt; distinct
+              [padPrmValue] =&gt; 1
+              [padPrmOrg] =&gt;  distinct 
+      [padHandNegative] =&gt; 0
+      [padHome] =&gt; /home/herbert/pad
+      [padHost] =&gt; http://penguin.linux.test
+      [padHttpHost] =&gt; penguin.linux.test
+      [padIf] =&gt; &quot;&quot;
+      [padIgnored] =&gt; 
+      [padInclude] =&gt; 1
+      [padK] =&gt; pqInfoVal2
+      [padK1] =&gt; 0
+      [padLastPull] =&gt; 
+      [padLastPush] =&gt; mySeq
+      [padLen] =&gt; 0
+      [padLevel] 
+              [0] =&gt; 0
+      [padLibDirectory] =&gt; RecursiveDirectoryIterator Object
+              [pathName:SplFileInfo:private] =&gt; 
+              [glob:DirectoryIterator:private] =&gt; 
+              [subPathName:RecursiveDirectoryIterator:private] =&gt; 
+      [padLibFile] =&gt; _lib/sequence.php
+      [padLibIterator] =&gt; RecursiveIteratorIterator Object
+      [padLibOne] =&gt; SplFileInfo Object
+              [pathName:SplFileInfo:private] =&gt; /home/herbert/pad/apps/pad/_lib/develop.php
+              [fileName:SplFileInfo:private] =&gt; develop.php
+      [padLog] =&gt; J6ZVfsVr
+      [padLvlId] =&gt; 19
+      [padMicro] =&gt; 1746358519.3135
+      [padOpenClose] 
+              [sequence] =&gt; 1
+      [padOptOne] =&gt; sanitize
+      [padOptionName] =&gt; distinct
+      [padOptions] =&gt; start
+      [padOptionsWalk] 
+              [0] =&gt; track
+              [1] =&gt; before
+              [2] =&gt; dedup
+              [3] =&gt; page
+              [4] =&gt; sort
+              [5] =&gt; ignore
+              [6] =&gt; print
+              [7] =&gt; parent
+              [8] =&gt; trace
+              [9] =&gt; pre
+      [padOpts] =&gt; 
+      [padOrgSet] =&gt; sequence mySeq, element=5
+      [padOutput] =&gt; 
+      [padPageLevel] 
+      [padPairCheck] =&gt; }
+      [padPairSet] =&gt; 1
+      [padPairTag] =&gt; sequence
+      [padParm] =&gt; 
+      [padParmsOne] 
+              [padPrmKind] =&gt; option
+              [padPrmName] =&gt; element
+              [padPrmValue] =&gt; 5
+              [padPrmOrg] =&gt;  element=5
+      [padParmsSet] =&gt; 
+      [padParmsSetName] =&gt; element
+      [padParmsSetType] =&gt; option
+      [padParmsSetValue] =&gt; 5
+      [padParmsType] 
+              [0] 
+              [1] 
+              [2] 
+              [3] 
+      [padPath] =&gt; /home/herbert/pad/apps/pad/sequence/specials
+      [padPipe] =&gt; 
+      [padPos] =&gt; 
+      [padPrmEval] =&gt; 
+      [padPrmKind] =&gt; option
+      [padPrmName] =&gt; element
+      [padPrmOne] =&gt;  element=5
+      [padPrmOrg] =&gt;  element=5
+      [padPrmParse] 
+              [0] =&gt; mySeq
+              [1] =&gt;  element=5
+      [padPrmTypeSet] =&gt; open
+      [padPrmValue] =&gt; 5
+      [padRequestScheme] =&gt; http
+      [padRestart] =&gt; 
+      [padScript] =&gt; /
+      [padSeqData] 
+              [mySeq] 
+      [padSeqDefaultRows] =&gt; 10
+      [padSeqDefaultTries] =&gt; 10000
+      [padServerPort] =&gt; 80
+      [padSetTmp] 
+      [padSourcex] =&gt; &lt;pre&gt;&lt;code style=&quot;color: #000000&quot;&gt;&lt;b&gt;&amp;open;&lt;font color=&quot;blue&quot;&gt;sequence &lt;/font&gt;&lt;font color=&quot;red&quot;&gt;mySeq&lt;font color=&quot;black&quot;&gt;,&lt;/font&gt; element=5&lt;/font&gt;&amp;clo
+      [padStartOption] 
+              [padPrmKind] =&gt; option
+              [padPrmName] =&gt; element
+              [padPrmValue] =&gt; 5
+              [padPrmOrg] =&gt;  element=5
+      [padStartPage] =&gt; sequence/specials/reduce
+      [padStop] =&gt; 000
+      [padStrCnt] =&gt; -1
+      [padStrFunCnt] =&gt; 0
+      [padTableIdx] =&gt; 1
+      [padTagCheck] =&gt; sequence
+      [padTagContent] =&gt; 
+      [padTagGo] =&gt; tags/sequence
+      [padTagOpts] =&gt; mySeq, element=5
+      [padTagResult] =&gt; 1
+      [padTime] =&gt; 1746358519
+      [padTryCatch] =&gt; go
+      [padTypeCheck] =&gt; sequence
+      [padTypeExplode] 
+              [0] =&gt; sequence
+      [padTypeGiven] =&gt; 
+      [padTypePrefix] =&gt; 
+      [padTypeResult] =&gt; pad
+      [padTypeSeq] =&gt; 
+      [padUri] =&gt; /?sequence/specials/reduce&amp;padInclude
+      [padV] 
+              [padPrmKind] =&gt; option
+              [padPrmName] =&gt; element
+              [padPrmValue] =&gt; 5
+              [padPrmOrg] =&gt;  element=5
+      [padV1] 
+              [sequence] =&gt; 0
+              [mySeq] =&gt; n/a
+              [distinct] =&gt; 0
+      [padVal] =&gt; 0
+      [padWebEtag304] =&gt; 1
+      [padWebNoHeaders] =&gt; 
+      [padWords] 
+              [0] =&gt; sequence
+              [1] =&gt; mySeq, element=5
+      [padWordsCheck] 
+              [0] =&gt; /sequence
+
+<b>$padInfo variables</b>
+      [padInfoCnt] =&gt; 1
+      [padInfoList] 
+              [0] =&gt; xapp
+      [padInfoStats] =&gt; 
+      [padInfoTmp] =&gt; demo
+      [padInfoTrace] =&gt; 
+      [padInfoTrack] =&gt; 
+      [padInfoType] =&gt; xapp
+      [padInfoXapp] =&gt; 1
+      [padInfoXappSource] =&gt; {table} {demo}{sequence range, from=11, to=30, name=&#039;mySeq&#039;}{/demo} {demo}{sequence mySeq } {$sequence} {/sequence} {/demo} {demo}{sequence mySeq, fir
+      [padInfoXml] =&gt; 
+      [padInfoXref] =&gt; 
+
+<b>Level variables</b>
+      [padArray] 
+              [1] =&gt; 
+              [2] =&gt; 
+              [3] =&gt; 
+      [padBase] 
+              [0] =&gt; {table} {demo}{sequence range, from=11, to=30, name=&#039;mySeq&#039;}{/demo} {demo}{sequence mySeq } {$sequence} {/sequence} {/demo} {demo}{sequence mySeq, fir
+              [1] =&gt; &lt;p&gt; &lt;table border=&quot;1&quot; cellpadding=&quot;10&quot; cellspacing=&quot;0&quot;&gt; &lt;tr&gt; {if #firstFile} &lt;th bgcolor=&quot;#dddddd&quot;&gt;{#firstFile}&lt;/th&gt; {/if} {if #secondFile} &lt;th bgcolo
+              [2] =&gt; {sequence mySeq, element=5} {$sequence} {/sequence} 
+              [3] =&gt;  {$sequence} 
+      [padCount] 
+              [1] =&gt; 1
+              [2] =&gt; 1
+              [3] =&gt; 
+      [padCurrent] 
+              [1] 
+              [2] 
+              [3] 
+      [padData] 
+              [0] 
+                      [999] 
+              [1] 
+                      [999] 
+              [2] 
+                      [999] 
+              [3] 
+                      [999] 
+      [padDefault] 
+              [1] =&gt; 1
+              [2] =&gt; 1
+              [3] =&gt; 
+      [padDeleteLvl] 
+              [1] 
+              [2] 
+              [3] 
+      [padDeleteOcc] 
+              [1] 
+              [2] 
+              [3] 
+      [padDone] 
+              [1] 
+                      [else] =&gt; 1
+                      [data] =&gt; 1
+                      [withPHP] =&gt; 1
+                      [content] =&gt; 1
+                      [dump] =&gt; 1
+              [2] 
+                      [else] =&gt; 1
+                      [data] =&gt; 1
+                      [content] =&gt; 1
+                      [dump] =&gt; 1
+              [3] 
+                      [else] =&gt; 1
+                      [data] =&gt; 1
+      [padElse] 
+              [1] =&gt; 
+              [2] =&gt; 
+              [3] =&gt; 
+      [padEnd] 
+              [0] =&gt; 836
+              [1] =&gt; 3585
+              [2] =&gt; 50
+              [3] =&gt; 0
+      [padEndBase] 
+              [1] =&gt; 
+              [2] =&gt; 
+              [3] =&gt; 
+      [padGiven] 
+              [1] =&gt; 
+              [2] =&gt; 
+              [3] =&gt; 
+      [padHit] 
+              [1] =&gt; 1
+              [2] =&gt; 1
+              [3] =&gt; 
+      [padKey] 
+              [0] =&gt; 999
+              [1] =&gt; 999
+              [2] =&gt; 999
+              [3] =&gt; 1
+      [padLvlFun] 
+              [1] =&gt; 
+              [2] =&gt; 
+              [3] =&gt; 
+      [padLvlFunVar] 
+              [1] 
+              [2] 
+              [3] 
+      [padLvlIds] 
+              [0] =&gt; 1
+              [1] =&gt; 2
+              [2] =&gt; 18
+              [3] =&gt; 19
+      [padName] 
+              [1] =&gt; table
+              [2] =&gt; demo
+              [3] =&gt; mySeq
+      [padNull] 
+              [1] =&gt; 
+              [2] =&gt; 
+              [3] =&gt; 
+      [padOccur] 
+              [0] =&gt; 1
+              [1] =&gt; 1
+              [2] =&gt; 1
+              [3] =&gt; 0
+      [padOccurStart] 
+              [0] 
+                      [1] =&gt; 1
+              [1] 
+                      [1] =&gt; 1
+              [2] 
+                      [1] =&gt; 1
+              [3] 
+      [padOpt] 
+              [0] 
+                      [0] =&gt; 
+              [1] 
+                      [0] =&gt; 
+                      [1] =&gt; 
+              [2] 
+                      [0] =&gt; 
+                      [1] =&gt; 
+              [3] 
+                      [0] =&gt; mySeq, element=5
+                      [1] =&gt; 
+      [padOptionsAppStart] 
+              [1] 
+              [2] 
+              [3] 
+      [padOrg] 
+              [1] =&gt; table
+              [2] =&gt; demo
+              [3] =&gt; sequence mySeq, element=5
+      [padOut] 
+              [0] =&gt; {table} {demo}{sequence range, from=11, to=30, name=&#039;mySeq&#039;}{/demo} {demo}{sequence mySeq } {$sequence} {/sequence} {/demo} {demo}{sequence mySeq, fir
+              [1] =&gt; &lt;p&gt; &lt;table border=&quot;1&quot; cellpadding=&quot;10&quot; cellspacing=&quot;0&quot;&gt; &lt;tr&gt; &lt;th bgcolor=&quot;#dddddd&quot;&gt;HTML&lt;/th&gt; &lt;th bgcolor=&quot;#dddddd&quot;&gt;RESULT&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt;&lt;td style=&quot;ve
+              [2] =&gt; {sequence mySeq, element=5} {$sequence} {/sequence} 
+              [3] =&gt; 
+      [padPair] 
+              [1] =&gt; 1
+              [2] =&gt; 1
+              [3] =&gt; 1
+      [padParmParse] 
+              [1] 
+              [2] 
+              [3] 
+      [padParms] 
+              [1] 
+              [2] 
+              [3] 
+                      [0] 
+                              [padPrmKind] =&gt; option
+                              [padPrmName] =&gt; mySeq
+                              [padPrmValue] =&gt; 1
+                              [padPrmOrg] =&gt; mySeq
+                      [1] 
+                              [padPrmKind] =&gt; option
+                              [padPrmName] =&gt; element
+                              [padPrmValue] =&gt; 5
+                              [padPrmOrg] =&gt;  element=5
+      [padPrefix] 
+              [1] =&gt; 
+              [2] =&gt; 
+              [3] =&gt; 
+      [padPrm] 
+              [1] 
+              [2] 
+              [3] 
+                      [mySeq] =&gt; 1
+                      [element] =&gt; 5
+      [padPrmType] 
+              [0] =&gt; none
+              [1] =&gt; none
+              [2] =&gt; none
+              [3] =&gt; open
+      [padResult] 
+              [1] =&gt; 
+              [2] =&gt; 
+              [3] =&gt; 
+      [padSaveLvl] 
+              [1] 
+              [2] 
+              [3] 
+      [padSaveOcc] 
+              [1] 
+              [2] 
+              [3] 
+      [padSetLvl] 
+              [1] 
+              [2] 
+              [3] 
+      [padSetOcc] 
+              [1] 
+              [2] 
+              [3] 
+      [padSource] 
+              [1] =&gt;  {demo}{sequence range, from=11, to=30, name=&#039;mySeq&#039;}{/demo} {demo}{sequence mySeq } {$sequence} {/sequence} {/demo} {demo}{sequence mySeq, first } {$
+              [2] =&gt; {sequence mySeq, element=5} {$sequence} {/sequence} 
+              [3] =&gt;  {$sequence} 
+      [padStart] 
+              [1] =&gt; 3521
+              [2] =&gt; 0
+              [3] =&gt; 0
+      [padStartBase] 
+              [1] 
+              [2] 
+              [3] 
+      [padStartData] 
+              [1] 
+              [2] 
+              [3] 
+      [padTable] 
+              [1] 
+              [2] 
+              [3] 
+      [padTableTag] 
+              [1] =&gt; 
+              [2] =&gt; 
+              [3] =&gt; 
+      [padTag] 
+              [0] =&gt; internal
+              [1] =&gt; table
+              [2] =&gt; demo
+              [3] =&gt; sequence
+      [padTagSeq] 
+              [1] =&gt; 
+              [2] =&gt; 
+              [3] =&gt; 1
+      [padType] 
+              [1] =&gt; app
+              [2] =&gt; app
+              [3] =&gt; pad
+      [padWalk] 
+              [0] =&gt; start
+              [1] =&gt; end
+              [2] =&gt; end
+              [3] =&gt; start
+      [padWalkData] 
+              [1] 
+                      [0] 
+              [2] 
+                      [0] 
+              [3] 
+
+<b>ID's</b>
+      [padPage] =&gt; sequence/specials/reduce
+      [padSesID] =&gt; CLbXpELl
+      [padRefID] =&gt; f3yc3gWo
+      [padReqID] =&gt; J6ZVfsVr
+
+<b>Headers-in</b>
+      [Host] =&gt; penguin.linux.test
+      [User-Agent] =&gt; Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36
+      [Accept] =&gt; */*
+      [Accept-Encoding] =&gt; gzip
+      [Referer] =&gt; http://penguin.linux.test/?develop/build/index
+      [Cookie] =&gt; padSesID=CLbXpELl; padReqID=f3yc3gWo
+
+<b>Headers-out</b>
+      [0] =&gt; X-Powered-By: PHP/8.4.5
+      [1] =&gt; Set-Cookie: padReqID=J6ZVfsVr; expires=Sat, 12 May 2035 11:35:19 GMT; Max-Age=316224000
+      [2] =&gt; Content-type: text/html; charset=UTF-8
+
+<b>Configuration</b>
+      [padCache] =&gt; 
+      [padCatch] =&gt; 
+      [padCookies] =&gt; 1
+      [padDataDefaultEnd] 
+              [0] =&gt; sanitize
+      [padDataDefaultStart] 
+      [padDirMode] =&gt; 493
+      [padErrorAction] =&gt; pad
+      [padErrorLevel] =&gt; all
+      [padErrorLog] =&gt; 1
+      [padErrorReport] =&gt; 1
+      [padFastLink] =&gt; 32
+      [padFileMode] =&gt; 420
+      [padFmtDate] =&gt; Y-m-d
+      [padFmtTime] =&gt; H:i:s
+      [padFmtTimestamp] =&gt; Y-m-d H:i:s
+      [padGzip] =&gt; 
+      [padInfo] =&gt; xapp
+      [padMyTidy] =&gt; 
+      [padNoNo] =&gt; 
+      [padOutputType] =&gt; web
+      [padRelations] 
+      [padSessionVars] 
+      [padSqlDatabase] =&gt; demo
+      [padSqlHost] =&gt; 127.0.0.1
+      [padSqlPadDatabase] =&gt; pad
+      [padSqlPadHost] =&gt; 127.0.0.1
+      [padSqlPadPassword] =&gt; pad
+      [padSqlPadUser] =&gt; pad
+      [padSqlPassword] =&gt; demo
+      [padSqlUser] =&gt; demo
+      [padTables] 
+      [padTidy] =&gt; 1
+</pre></div>

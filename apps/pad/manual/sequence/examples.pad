@@ -41,10 +41,6 @@
         <h5>{echo 'sequence/basic/{$item}.pad}</h5>
         {example 'sequence/basic/{$item}', onlyResult}
       {/exists}
-      {exists APP . 'sequence/type/{$item}.pad'}
-        <h5>{echo 'sequence/type/{$item}.pad}</h5>
-        {example 'sequence/type/{$item}', onlyResult}
-      {/exists}
     {list}
       {exists APP . 'sequence/{$list}/{$item}.pad'}
         <h5>{echo 'sequence/{$list}/{$item}.pad}</h5>

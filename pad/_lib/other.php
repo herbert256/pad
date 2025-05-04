@@ -743,7 +743,15 @@
 
     $parts = padExplode ($input, '..');
 
-    return range ( $parts[0], $parts[1], $increment );
+    $p1 = $parts[0] ?? '';
+    $p2 = $parts[1] ?? '';
+
+    if ( $p2 )
+      return range ( $p1, $p2, $increment );
+    elseif ( $p1 )
+      return range ( 1, $p1, $increment );
+    else
+      return range ( 1, 10, $increment );
 
   }
 
