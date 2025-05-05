@@ -1,22 +1,10 @@
 <?php
  
-  if ( in_array ( $pqBuild, ['keep', 'remove', 'flag'] ) ) {
+  $pq = include "sequence/build/main/$pqBuild.php";
 
-    $pqBuildSave = $pqBuild;
-    $pqPlay      = $pqBuild;
-    $pqBuild     = 'bool';
-
-    include "sequence/plays/one.php";
-
-    $pqBuild = $pqBuildSave;
-    
-  } elseif ( pqStore ( $pqBuild ) ) 
-  
-    $pq = $pqLoop;
-  
-  else
-
-    $pq = include 'sequence/build/main/main.php';  
+  if     ( $pq === NULL ) $pq = FALSE;
+  elseif ( $pq === INF  ) $pq = FALSE; 
+  elseif ( $pq === NAN  ) $pq = FALSE; 
 
   $pqOrgName = $pqSeq;
   $pqOrgSet  = $pq;

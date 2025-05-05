@@ -8,10 +8,18 @@
   if ( $pqParmStore ) $pqParm = include 'sequence/build/store.php';
   if ( $pqRandomly  ) $pqLoop = include 'sequence/build/randomly/randomly.php';
 
-  include 'sequence/build/sequence.php';
+  $pqInfo ['build/main'] [] = $pqBuild;
+  $pq = include "sequence/build/main/$pqBuild.php";
+
+  if     ( $pq === NULL ) $pq = FALSE;
+  elseif ( $pq === INF  ) $pq = FALSE; 
+  elseif ( $pq === NAN  ) $pq = FALSE; 
 
   if     ( $pq === FALSE ) return TRUE;
   elseif ( $pq === TRUE  ) $pq = $pqLoop;
+
+  $pqOrgName = $pqSeq;
+  $pqOrgSet  = $pq;
 
   if ( count ( $pqPlays ) ) {
     $pqPlaysSet = [];
@@ -32,9 +40,12 @@
     if ( $pqLoop < $pqOrderFrom ) 
       return TRUE;
   }
-                            $pqResult   [] = $pq;
-  if ( count ( $pqPlays ) ) $pqPlaysHit [] = $pqPlaysSet;
-  if ( $pqOrgName         ) $pqOrgHit   [] = $pqOrgSet;
+  
+  $pqResult [] = $pq;
+  $pqOrgHit [] = $pqOrgSet;
+
+  if ( count ( $pqPlays ) ) 
+    $pqPlaysHit [] = $pqPlaysSet;
 
   if ( is_numeric ($pq) and $pq >= $pqStop     ) return FALSE;
   if ( $pqRows and count($pqResult) >= $pqRows ) return FALSE;

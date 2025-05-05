@@ -1,6 +1,6 @@
 <?php
  
-  $pqFixed = include "sequence/build/main/build.php";
+  $pqFixed = include "sequence/types/$pqSeq/build.php";
 
   include 'sequence/build/types/type/fixed.php';
 

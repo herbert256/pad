@@ -1,5 +1,7 @@
 <?php
 
-  return [ $pqActionKey => array_combine (range (1, count($pqResult)), array_values($pqResult)) [$pqActionParm] ];
+  return [ $pqActionKey => array_combine (
+    range (1, count($pqResult)), 
+    array_values($pqResult)) [$pqActionParm] ];
 
 ?>

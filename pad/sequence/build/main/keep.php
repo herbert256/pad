@@ -1,5 +1,5 @@
 <?php
 
-  return include "sequence/build/call/check.php";
+  return include "sequence/build/main/flag.php";
 
 ?>

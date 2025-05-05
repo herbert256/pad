@@ -1,5 +1,7 @@
 <?php
 
+  $pqInfo ['build/play'] [] = $pqBuild;
+
   $pqRet = include "sequence/build/play/$pqBuild.php";
 
   if     ( $pqRet === NULL ) return FALSE;
