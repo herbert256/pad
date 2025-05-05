@@ -9,5 +9,6 @@
   include 'sequence/plays/inits.php';
   include 'sequence/inits/check/check.php';
   include 'sequence/inits/limits.php';
+  include 'sequence/actions/inits.php';
 
 ?>

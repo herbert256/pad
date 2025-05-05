@@ -21,6 +21,7 @@
   $pqDone       = [];
   $pqInfo       = [];  
   $pqNames      = [];
+  $pqActions    = [];
   $pqPlays      = [];
   $pqPlaysHit   = [];
   $pqActions    = [];

@@ -1,8 +1,5 @@
 <?php
 
-  if ( ! $pqOrgName ) 
-    return;
-
   foreach ( $padData [$pad] as $padK => $padV )
     if ( isset ( $pqOrgHit [$padK] ) )
       $padData [$pad] [$padK] [$pqOrgName] = $pqOrgHit [$padK];

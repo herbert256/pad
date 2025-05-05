@@ -2,6 +2,6 @@
   
   $pqTmp = include "sequence/types/$pqSeq/build.php";
   
-  return include 'sequence/build/play/array.php';
-  
+  return ( isset ( $pqTmp [$pqLoop-1]) ) ? $pqTmp [$pqLoop-1] : FALSE;
+
 ?>

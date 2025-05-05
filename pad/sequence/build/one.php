@@ -8,22 +8,16 @@
   if ( $pqParmStore ) $pqParm = include 'sequence/build/store.php';
   if ( $pqRandomly  ) $pqLoop = include 'sequence/build/randomly/randomly.php';
 
-  $pqInfo ['build/main'] [] = $pqBuild;
-  $pq = include "sequence/build/main/$pqBuild.php";
-
-  if     ( $pq === NULL ) $pq = FALSE;
-  elseif ( $pq === INF  ) $pq = FALSE; 
-  elseif ( $pq === NAN  ) $pq = FALSE; 
+  $pq = ( pqStore ( $pqBuild ) ) ? $pqLoop : include "sequence/build/main/$pqBuild.php";
 
   if     ( $pq === FALSE ) return TRUE;
   elseif ( $pq === TRUE  ) $pq = $pqLoop;
 
-  $pqOrgName = $pqSeq;
-  $pqOrgSet  = $pq;
+  $pqOrgSet = $pq;
 
   if ( count ( $pqPlays ) ) {
     $pqPlaysSet = [];
-    include 'sequence/plays/build.php';
+    include 'sequence/plays/plays.php';
     if ( $pq === FALSE ) 
       return TRUE;
   }
