@@ -5,7 +5,7 @@
   $padFunctionPad  = $pad;
   $padFunctionData = $padOut [$pad];
 
-  $padFunctionReturn = include 'tryCatch/go/function.php';
+  $padFunctionReturn = include 'start/function.php';
 
   $pad           = $padFunctionPad;
   $padOut [$pad] = $padFunctionData;

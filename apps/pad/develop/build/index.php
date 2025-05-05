@@ -2,12 +2,10 @@
 
   set_time_limit ( 300 );
 
+  include APP . 'develop/build/clean.php';
   include APP . 'develop/build/sequence.php';
-  include APP . 'develop/build/getAll.php';
+  include APP . 'develop/build/regression.php';
 
-  padReqression ( 0 );
-  padReqression ( 1 );
-
-  padRedirect ( 'develop/regression'    );
+  padRedirect ( 'develop/regression' );
 
 ?>

@@ -12,7 +12,7 @@
       $pqParm = $pqStore [$pqParm] [ count ( $pqResult ) ];
 
     $pqLoop = $pq;
-    $pq     = include "sequence/build/play/$pqBuild.php";
+    $pq     = include "sequence/plays/play/$pqBuild.php";
 
     if     ( $pqPlay == 'make'   and $pq === TRUE   ) $pq = $pqLoop;
 

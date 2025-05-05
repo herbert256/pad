@@ -25,6 +25,23 @@
 
   }
 
+
+
+  function pqArray ( $sequence, $parm, $options ) {
+
+    if ( $parm === TRUE )
+      $parm = '';
+    else
+      $parm = ( $parm ) ? "=$parm" : '';
+
+    if ( $options )
+      $options = ", $options";
+
+    return explode ( ',', padCode ( "{sequence $sequence$parm$options}{\$sequence},{/sequence}" ) );
+
+  }
+
+
   function pqAction ( $action  ) {
 
     if ( $action and file_exists ( "sequence/actions/types/$action.php" ) )

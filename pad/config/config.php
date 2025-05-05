@@ -17,11 +17,6 @@
   $padErrorLog    = TRUE;   //  Report errors to Apache error log
   $padErrorReport = TRUE;   //  Report errors to the DATA directory
 
-  // Another error handler system.
-  // TryCatch 'weak' parts, replace that part with an empty string if there is an error.
-
-  $padCatch = FALSE; 
-
   // Many ways to track/trace and so.
   // Optional, one or more values from the sub folder 'info' 
 

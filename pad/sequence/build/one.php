@@ -8,7 +8,13 @@
   if ( $pqParmStore ) $pqParm = include 'sequence/build/store.php';
   if ( $pqRandomly  ) $pqLoop = include 'sequence/build/randomly/randomly.php';
 
-  $pq = ( pqStore ( $pqBuild ) ) ? $pqLoop : include "sequence/build/main/$pqBuild.php";
+      if ( pqStore ( $pqBuild ) )  $pq = $pqLoop;
+  elseif ($pqBuild == 'bool'    )  $pq = ( 'pqBool' . ucfirst($pqSeq) ) ( $pqLoop, $pqParm );
+  elseif ($pqBuild == 'function')  $pq = ( 'pq'     . ucfirst($pqSeq) ) ( $pqLoop );
+  elseif ($pqBuild == 'check'   )  $pq = include "sequence/build/check.php";
+  elseif ($pqBuild == 'loop'    )  $pq = include "sequence/types/$pqSeq/loop.php";
+  elseif ($pqBuild == 'make'    )  $pq = include "sequence/types/$pqSeq/make.php";
+  elseif ($pqBuild == 'order'   )  $pq = include "sequence/types/$pqSeq/order.php";
 
   if     ( $pq === FALSE ) return TRUE;
   elseif ( $pq === TRUE  ) $pq = $pqLoop;

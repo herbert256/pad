@@ -24,7 +24,7 @@
     include 'level/function.php';
      
   if ( in_array ( $padFirst, ['$','!','#','&','?','@'] ) ) 
-    return include 'tryCatch/go/var.php';
+    return include 'level/var.php';
 
   include 'level/type.php';
   include 'level/tag.php';

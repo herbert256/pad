@@ -2,6 +2,6 @@
 
   $padCallback = "init";
   
-  include 'tryCatch/go/callback.php' ;
+  include 'callback/callback.php';
   
 ?>
