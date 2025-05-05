@@ -2,7 +2,7 @@
 
   if ( $padInfo ) {
     $pqInfo ['sequences'] [] = $pqSeq;
-    $pqInfo ['build']     [] = $pqBuild;
+    $pqInfo ['builds']    [] = $pqBuild;
   }
 
   $pqOrgName = $pqSeq;

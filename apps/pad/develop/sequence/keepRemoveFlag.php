@@ -8,7 +8,6 @@
   $space = str_repeat ( ' ', strlen ( $go ) );
 
   $one = "{table}\n\n"
-       . "{demo}{sequence $type$go, rows=25} {\$sequence} {/sequence} {/demo}\n\n"
        . "{demo}{sequence 25, push='mySequence'} {/demo}\n\n"
        . "{demo}{pull mySequence, make,   $type$go} {\$sequence} {/pull}{/demo}\n\n"
        . "{demo}{pull mySequence, keep,   $type$go} {\$sequence} {/pull}{/demo}\n\n"
