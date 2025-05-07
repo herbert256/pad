@@ -9,7 +9,7 @@
   if ( $pqLoop < 11 )
     return false;
 
-   $padReverse = padTypeReverse($pqLoop);
+  $padReverse = (int) padTypeReverse($pqLoop);
 
   if ( gmp_prob_prime ( $padReverse ) ) 
     return TRUE;

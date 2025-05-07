@@ -1,5 +1,5 @@
 <?php
 
-  padPageGet ( 'develop/sequence/index' );  
+  include APP . 'develop/sequence/index.php';  
 
 ?>

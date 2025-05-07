@@ -10,10 +10,10 @@
   $pqBuild    = 'pull';
   $pqRandomly = TRUE;
 
-  $pqFrom  = $pqFromSave;
-  $pqInc   = $pqIncSave;
-  $pqRows  = $pqRowsSave;
-  $pqPlays = $pqPlays;
+  $pqFrom  = $pqFromRandomly;
+  $pqInc   = $pqIncRandomly;
+  $pqRows  = $pqRowsRandomly;
+  $pqPlays = $pqPlaysRandomly;
 
   include 'sequence/build/types/type/fixed.php';
 

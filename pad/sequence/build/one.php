@@ -36,7 +36,7 @@
   if ( $pqSkip and $pqTries <= $pqSkip )         return TRUE;
 
   if ( $pqBuild == 'order' ) { 
-    $pqOrder [] = $pq;
+    $pqOrder [] = $pqOrgSet;
     if ( $pqLoop < $pqOrderFrom ) 
       return TRUE;
   }

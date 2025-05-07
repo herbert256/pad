@@ -11,6 +11,7 @@
     include APP . 'develop/sequence/generated.php';
     include APP . 'develop/sequence/basic.php';
     include APP . 'develop/sequence/keepRemoveFlag.php';
+    include APP . 'develop/sequence/random.php';
     include APP . 'develop/sequence/playSingle.php';
     include APP . 'develop/sequence/playDouble.php';
   }  
