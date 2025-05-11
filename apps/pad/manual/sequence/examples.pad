@@ -2,6 +2,7 @@
   (
     'sequences',
     'specials',
+    'random',
     'play/single',
     'play/double',
     'keepRemoveFlag',
@@ -15,7 +16,7 @@
 
   {list}
     {if $example eq $list}
-      {$list}
+      <b>{$list}</b>
     {else}
       <a href="@pad@manual/sequence/examples&example={$list}{?go}{?item}">{$list}</a>
     {/if}
@@ -26,7 +27,7 @@
 
   {examples}
     {if $item eq $examples}
-      {$examples}
+      <b>{$examples}</b>
     {else}
       <a href="@pad@manual/sequence/examples&example={$example}&item={$examples}{?go}">{$examples}</a>
     {/if}
@@ -48,7 +49,6 @@
       {/exists}
     {/list}
   {else}
-    <h4>{$example} - {$item}</h4>
     {example 'sequence/{$example}/{$item}', onlyResult, include}
   {/if}
 

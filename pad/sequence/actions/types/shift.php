@@ -14,10 +14,8 @@
 
   if ( count($pqResult) > $pqActionCnt )
     if ( $pqAction == 'shift')
-      return array_slice ( $pqResult, 0, $pqActionCnt );
+      $pqResult = array_slice ( $pqResult, 0, $pqActionCnt );
     else 
-      return array_slice ( $pqResult, $pqActionCnt * -1 );
-  else
-    return $pqResult;
-  
+      $pqResult = array_slice ( $pqResult, $pqActionCnt * -1 );
+        
 ?>

@@ -14,6 +14,6 @@
        . "{demo}{sequence $gox, rows=10, randomly} {\$sequence} {/sequence} {/demo}\n\n"
        . "{/table}";
 
-  file_put_contents ( APP . "sequence/random/{$type}.pad", $one );
+  unlink ( APP . "sequence/random/{$type}.pad");
 
 ?>

@@ -7,6 +7,6 @@
   if ( ! $pqActionParm )
     $pqActionCnt = count ( $pqResult );
 
-  return pqRandom ( $pqResult, $pqActionCnt, $pqRandomOrderly, $pqRandomDuplicates, $pqRandomOnce );
+  $pqResult = pqRandom ( $pqResult, $pqActionCnt, $pqRandomOrderly, $pqRandomDuplicates, $pqRandomOnce );
     
 ?>

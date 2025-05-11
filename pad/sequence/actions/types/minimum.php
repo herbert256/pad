@@ -7,6 +7,6 @@
   else
     $pqResult = array_slice ( $pqResult, $pqActionCnt * -1, $pqActionCnt, true );
 
-  return include 'sequence/actions/order/order.php';
+  $pqResult = include 'sequence/actions/order/order.php';
 
 ?>

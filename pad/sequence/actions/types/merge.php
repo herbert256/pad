@@ -1,5 +1,5 @@
 <?php
 
-  return include 'sequence/actions/types/combine.php';
+  include 'sequence/actions/types/combine.php';
 
 ?>

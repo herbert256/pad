@@ -6,7 +6,13 @@
 
     $padWalk[$pad] = 'end';
 
-    $padSourcex = padColorsString ( trim ( $padContent ) );
+    $p1 = padTagParm ('p1');
+    $p2 = padTagParm ('p2');
+
+    $padContent = trim ( $padContent );
+    $padContent = str_replace('@p1', $p1, $padContent);
+    $padContent = str_replace('@p2', $p2, $padContent);
+    $padSourcex = padColorsString ( $padContent );
 
     $padDemoCount [$padTableIdx]++;
 

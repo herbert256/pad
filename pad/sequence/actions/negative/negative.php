@@ -1,5 +1,8 @@
 <?php
 
+  if ( ! $pqNegative )
+    return;
+
   $pqActionEnd = $pqResult;
   $pqResult    = [];
 

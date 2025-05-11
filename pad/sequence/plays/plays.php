@@ -1,5 +1,8 @@
 <?php
- 
+
+  $pqPlaysSet = [];
+  $pqInPlays  = TRUE;
+
   $pqSeqSave   = $pqSeq;
   $pqBuildSave = $pqBuild;
   $pqParmSave  = $pqParm;
@@ -8,10 +11,8 @@
         
     extract ( $pqTmp );
 
-    if ( $pqParm and isset ( $pqStore [$pqParm] ) )
-      $pqParm = $pqStore [$pqParm] [ count ( $pqResult ) ];
-
     $pqLoop = $pq;
+    $pqParm = include 'sequence/plays/parm.php';
     $pq     = include "sequence/plays/play/$pqBuild.php";
 
     if     ( $pqPlay == 'make'   and $pq === TRUE   ) $pq = $pqLoop;
@@ -38,5 +39,7 @@
   $pqSeq   = $pqSeqSave;
   $pqBuild = $pqBuildSave;
   $pqParm  = $pqParmSave;
+
+  $pqInPlays = FALSE;
 
 ?>

@@ -1,5 +1,5 @@
 <?php
 
-  return [ $pqActionKey => array_sum ( $pqResult ) ];
+  $pqResult = [ $pqActionKey => array_sum ( $pqResult ) ];
 
 ?>

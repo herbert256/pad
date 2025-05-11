@@ -3,7 +3,7 @@
 <font size="-1">
 
   {if $padPage == 'index'}
-    home
+    <b>home</b>
   {else}
     <a href="{$pad}index">home</a> 
   {/if}
@@ -11,7 +11,7 @@
   &nbsp; | &nbsp;
 
   {if $padPage == 'manual/index'}
-    manual
+    <b>manual</b>
   {else}
     <a href="{$pad}manual">manual</a> 
   {/if}
@@ -19,7 +19,7 @@
   &nbsp; | &nbsp;
 
   {if $padPage == 'xref/index'}
-    reference
+    <b>reference</b>
   {else}
     <a href="{$pad}xref">reference</a> 
   {/if}
@@ -27,7 +27,7 @@
   &nbsp; | &nbsp;
 
   {if str_starts_with ( $padPage, 'manual/sequence/' ) }
-    sequences
+    <b>sequences</b>
   {else}
     <a href="{$pad}manual/sequence/index">sequences</a> 
   {/if}
@@ -35,7 +35,7 @@
   &nbsp; | &nbsp;
 
   {if $padPage == 'develop/develop'}
-    develop
+    <b>develop</b>
   {else}
     <a href="{$pad}develop">develop</a> 
   {/if}

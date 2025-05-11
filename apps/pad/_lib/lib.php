@@ -6,7 +6,7 @@
     $out = [];
 
     foreach ( array_diff ( scandir ( $dir ), [ '.', '..' ] ) as $file )
-      $out [] = str_replace( '.pad', '', $file );
+      $out [] = str_replace( '.pad', '', str_replace( '.php', '', $file ) );
     
     return $out;
 

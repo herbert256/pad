@@ -2,6 +2,6 @@
 
   $pqFunction = 'array_intersect';
 
-  return include 'sequence/actions/function.php';
+  $pqResult = include 'sequence/actions/function.php';
 
 ?>

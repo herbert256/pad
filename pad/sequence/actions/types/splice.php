@@ -36,6 +36,4 @@
       $pqStore [ $pqActionList [2] ]
     );
 
-  return $pqResult;
-
 ?>

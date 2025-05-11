@@ -1,5 +1,5 @@
 <?php
 
-  return array_diff ( $pqStore [$pqActionParm], $pqResult );
+  $pqResult = array_diff ( $pqStore [$pqActionParm], $pqResult );
 
 ?>

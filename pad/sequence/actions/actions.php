@@ -7,19 +7,18 @@
 
   foreach ( $pqActions as $pqAction => $pqActionParm ) {
 
-    $pqActionList = padExplode ( $pqActionParm, '|' );
-
-    include 'sequence/actions/merge.php'; 
-
+    $pqActionStart = $pqResult;
+    $pqActionList  = padExplode ( $pqActionParm, '|' );
     $pqActionParm  = $pqActionList [0] ?? '';
     $pqActionCnt   = ( ctype_digit ( $pqActionParm ) ) ? $pqActionParm : 1;
-    $pqActionStart = $pqResult;
     $pqActionKey   = array_key_first ( $pqResult);
 
-    $pqResult = include "sequence/actions/types/$pqAction.php";
+    if ( str_contains ( $pqActionParm, '..' ) )
+      pqRandomParm ( $pqActionParm );
 
-    if ( $pqNegative )
-      include "sequence/actions/negative/negative.php";
+    include 'sequence/actions/merge.php'; 
+    include "sequence/actions/types/$pqAction.php";
+    include 'sequence/actions/negative/negative.php';
 
     $pqActionsHit [$pqAction] = array_values ( $pqResult ); 
 

@@ -34,6 +34,4 @@
 
   }
 
-  return $pqResult;
-
 ?>

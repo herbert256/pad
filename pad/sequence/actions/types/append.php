@@ -4,6 +4,4 @@
     foreach ($pqStore [$pqAppendKey] as $pqAppendValue)
       $pqResult [] = $pqAppendValue;
 
-  return $pqResult;
-
 ?>

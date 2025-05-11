@@ -2,6 +2,4 @@
 
   pqShuffle ( $pqResult );
 
-  return $pqResult;
-
 ?>

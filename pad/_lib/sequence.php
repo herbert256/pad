@@ -1,5 +1,32 @@
 <?php
 
+   
+   
+  function pqRandomParm ( &$parm ) {
+
+    if ( str_contains ( $parm, '..' ) ) {
+
+      padSplit ( '..', $parm, $from, $to );
+
+      if ( is_numeric ( $from ) and is_numeric ( $to ) )
+        $parm = mt_rand ( $from, $to );
+
+    }
+
+  }
+
+
+  function pqRandomParm3 ( $parm ) {
+
+    padSplit ( '...', $parm, $from, $to );
+
+    if ( is_numeric ( $from ) and is_numeric ( $to ) )
+      return mt_rand ( $from, $to );
+    else
+      return $parm;
+
+  }
+
 
   function pqShuffle ( &$array ) {
 

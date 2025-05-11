@@ -7,7 +7,7 @@
 
   foreach ( $pqActionStart as $padK => $padV ) {
     if ( $pqI == $pqMedian )
-       return [ $padK => $padV ];
+       $pqResult = [ $padK => $padV ];
     $pqI++;
   }
   

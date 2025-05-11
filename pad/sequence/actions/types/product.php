@@ -1,5 +1,5 @@
 <?php
 
-  return [ $pqActionKey => array_product ( $pqResult ) ];
+  $pqResult = [ $pqActionKey => array_product ( $pqResult ) ];
 
 ?>

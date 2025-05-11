@@ -24,6 +24,9 @@
     if ( ! include 'sequence/build/one.php')
       break;
 
+    if ( $pqRandomInc )
+      $pqInc = pqRandomParm3 ( $pqRandomInc );
+
     if ( $pqInc > 1 and ! in_array ( 'increment', $pqDone ) )
       $pqSkipNow = 1;
 

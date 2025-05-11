@@ -11,6 +11,9 @@
     if ( ! include 'sequence/build/one.php')
       break;
 
+    if ( $pqRandomInc )
+      $pqInc = pqRandomParm3 ( $pqRandomInc );
+
     $pqGo = $pqGo + $pqInc;
 
   }

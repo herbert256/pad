@@ -1,5 +1,5 @@
 <?php
 
-  return array_unique ( $pqResult );
+  $pqResult = array_unique ( $pqResult );
 
 ?>

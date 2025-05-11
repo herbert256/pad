@@ -5,7 +5,5 @@
     foreach ($pqPrependReverse as $pqPrependValue)
       array_unshift ($pqResult, $pqPrependValue);
   }
-
-  return $pqResult;
   
 ?>

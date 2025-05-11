@@ -1,5 +1,5 @@
 <?php
 
-  return array_reverse ( $pqResult, true );
+  $pqResult = array_reverse ( $pqResult, true );
 
 ?>

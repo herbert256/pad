@@ -22,6 +22,4 @@
   if ( $pqTrimRight ) 
     $pqResult = pqTruncate  ( $pqResult, 'right', $pqTrimRight );
 
-  return $pqResult;
-  
 ?>

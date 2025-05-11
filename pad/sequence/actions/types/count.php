@@ -1,5 +1,5 @@
 <?php
 
-  return [ $pqActionKey => count ( $pqResult ) ];
+  $pqResult = [ $pqActionKey => count ( $pqResult ) ];
 
 ?>

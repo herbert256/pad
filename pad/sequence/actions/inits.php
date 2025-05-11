@@ -17,10 +17,7 @@
   
       $pqActionList = padExplode ( $pqActionParm, '|' );
 
-      if ( $padV ['padPrmName'] == 'action' ) 
-        $pqAction = array_shift ( $pqActionList );
-      else 
-        $pqAction = $padV ['padPrmName'];
+      $pqAction = ( $padV ['padPrmName'] == 'action' ) ? array_shift ( $pqActionList ) : $padV ['padPrmName'];
 
       if ( pqAction ( $pqAction ) )
         $pqActions [$pqAction] = implode ( '|', $pqActionList );

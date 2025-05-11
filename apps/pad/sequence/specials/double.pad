@@ -1,46 +1,25 @@
 {table}
- 
 {demo}{sequence '5;10;15;20',  name='one'}{/demo}
 {demo}{sequence '15;20;25;30', name='two'}{/demo}
+{demo}{sequence one}                     {$sequence} {/sequence}{/demo}
+{demo}{sequence two}                     {$sequence} {/sequence}{/demo}
+{demo}{sequence one, append='two'}       {$sequence} {/sequence}{/demo}
+{demo}{sequence one, prepend='two'}      {$sequence} {/sequence}{/demo}
+{demo}{sequence one, combine='two'}      {$sequence} {/sequence}{/demo}
+{demo}{sequence one, merge='two'}        {$sequence} {/sequence}{/demo}
+{demo}{sequence one, intersection='two'} {$sequence} {/sequence}{/demo}
+{demo}{sequence one, difference='two'}   {$sequence} {/sequence}{/demo}
+{demo}{sequence one, onlyNow='two'}      {$sequence} {/sequence}{/demo}
+{demo}{sequence one, onlyStore='two'}    {$sequence} {/sequence}{/demo}
+{/table}
 
-{demo}{sequence one}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence two}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence one, append='two'}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence one, prepend='two'}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence one, combine='two'}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence one, merge='two'}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence one, difference='two'}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence one, intersection='two'}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence one, onlyNow='two'}
-  {$sequence}
-{/sequence}{/demo}
-
-{demo}{sequence one, onlyStore='two'}
-  {$sequence}
-{/sequence}{/demo}
-
+{table}
+{demo}{sequence '10..90', increment=10, name='one'}{/demo}
+{demo}{sequence '1..9',                 name='two'}{/demo}
+{demo}{sequence one}                  {$sequence} {/sequence}{/demo}
+{demo}{sequence two}                  {$sequence} {/sequence}{/demo}
+{demo}{sequence one, add='two'}       {$sequence} {/sequence}{/demo}
+{demo}{sequence one, substract='two'} {$sequence} {/sequence}{/demo}
+{demo}{sequence one, multiply='two'}  {$sequence} {/sequence}{/demo}
+{demo}{sequence one, divide='two'}    {$sequence} {/sequence}{/demo}
 {/table}

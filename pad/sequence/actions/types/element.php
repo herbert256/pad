@@ -1,6 +1,6 @@
 <?php
 
-  return [ $pqActionKey => array_combine (
+  $pqResult = [ $pqActionKey => array_combine (
     range (1, count($pqResult)), 
     array_values($pqResult)) [$pqActionParm] ];
 

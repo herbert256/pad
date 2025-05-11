@@ -4,9 +4,10 @@
 
   if ( $pqTries > $pqTry ) 
     return FALSE;
- 
-  if ( $pqParmStore ) $pqParm = include 'sequence/build/store.php';
-  if ( $pqRandomly  ) $pqLoop = include 'sequence/build/randomly/randomly.php';
+
+  if ( $pqRandomParm ) $pqParm = include 'sequence/build/parm.php';
+  if ( $pqParmStore  ) $pqParm = include 'sequence/build/store.php';
+  if ( $pqRandomly   ) $pqLoop = include 'sequence/build/randomly/randomly.php';
 
       if ( pqStore ( $pqBuild ) )  $pq = $pqLoop;
   elseif ($pqBuild == 'bool'    )  $pq = ( 'pqBool' . ucfirst($pqSeq) ) ( $pqLoop, $pqParm );
@@ -22,7 +23,6 @@
   $pqOrgSet = $pq;
 
   if ( count ( $pqPlays ) ) {
-    $pqPlaysSet = [];
     include 'sequence/plays/plays.php';
     if ( $pq === FALSE ) 
       return TRUE;
