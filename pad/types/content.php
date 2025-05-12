@@ -1,5 +1,7 @@
 <?php
 
-  return $padContentStore [ $padTag [$pad] ];
-  
+  $padContentName = $padTag [$pad];
+
+  return include 'content/get.php';
+
 ?>

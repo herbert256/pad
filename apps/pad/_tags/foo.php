@@ -1,5 +1,5 @@
 <?php
 
-  return "From a own {open}tag{close}";
+  return "Foo tag from app";
 
 ?>

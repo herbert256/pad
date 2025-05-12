@@ -1,5 +1,5 @@
 <?php
 
-  return 'An example PAD tag';
+  return "Foo tag from pad";
 
 ?>

@@ -11,22 +11,6 @@
   }
 
 
-  function padContentGet ( $content ) {
-
-    if ( isset ( $GLOBALS ['padContentStore'] ) and isset ( $GLOBALS ['padContentStore'] [$content] ) )  
-      return $GLOBALS ['padContentStore'] [$content];
-
-    if ( padContentCheck ( $content ) )
-      return padContentData ( $content );
-
-    if ( padPadFileCheck ( $content ) )
-      return padPadFileData ( $content );
-
-    return '';
-
-  }
-
-
   function padContentSet ( $base, $new ) {
 
     $check = padContentBeforeAfter ( $new,  $before, $after );

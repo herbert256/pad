@@ -199,86 +199,50 @@
 
   }
 
+  function padContent ( $content ) {
+
+    if ( padStoreCheck   ( $content ) ) return TRUE;
+    if ( padContentCheck ( $content ) ) return TRUE;
+
+    return FALSE;
+
+  }  
+
+
+  function padStoreCheck ( $store ) {
+
+    return isset ( $GLOBALS ['padContentStore'] [$store] );
+
+  }  
+
 
   function padContentCheck ( $content ) {
 
-    foreach ( padDirs () as $key => $value ) {
-
-      $file = APP2 . $value . "_content/$content.pad";
-
-      if ( file_exists ($file) ) 
+    foreach ( padDirs () as $value )
+      if ( padCheck ( APP2 . $value . "_content/$content" ) )
         return TRUE;
-
-    }
 
     return FALSE;
 
   }  
 
 
-  function padContentData ( $content ) {
+  function padPadFileCheck ( $file ) {
 
-    foreach ( padDirs () as $key => $value ) {
-
-      $file = APP2 . $value . "_content/$content.pad";
-
-      if ( file_exists ($file) ) 
-        return padFileGetContents ($file);
-
-    }
-
-    return '';
-
-  }  
-
-
-  function padPadFileCheck ( $content ) {
-
-    foreach ( padDirs () as $key => $value ) {
-
-      $file = APP2 . $value . "$content.pad";
-
-      if ( file_exists ($file) ) 
+    foreach ( padDirs () as $value )
+      if ( padCheck ( APP2 . $value . $file ) )
         return TRUE;
-
-    }
 
     return FALSE;
 
-  }  
+  } 
 
 
-  function padPadFileData ( $content ) {
+  function padCheck ( $check ) {
 
-    foreach ( padDirs () as $key => $value ) {
+     return  ( file_exists ( "$check.pad" ) or file_exists ( "$check.php" ) ) ;
 
-      $file = APP2 . $value . "$content.pad";
-
-      if ( file_exists ($file) ) 
-        return padFileGetContents ($file);
-
-    }
-
-    return '';
-
-  }  
-
-
-  function padInclFileName ( $check ) {
-
-    foreach ( padDirs () as $key => $value ) {
-
-      $file = APP2 . $value . "_includes/$check";
-
-      if ( file_exists ($file) and ! is_dir($file) ) return $file;
-      if ( file_exists ("$file.php")               ) return "$file.php";
-      if ( file_exists ("$file.pad")               ) return "$file.pad";
-
-    }
-
-    return '';
-
-  }
+  }   
 
 
   function padDataFileName ( $check ) {

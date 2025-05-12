@@ -15,7 +15,6 @@
     elseif ( padOptCheck     ( $type, 1                               ) ) return 'parm';
     elseif ( padChkLevel     ( $type                                  ) ) return 'level';
     elseif ( defined         ( $type                                  ) ) return 'constant';
-    elseif ( padInclFileName ( $type                                  ) ) return 'include';
     elseif ( padDataFileName ( $type                                  ) ) return 'local';      
     else                                                                  return FALSE;
 
