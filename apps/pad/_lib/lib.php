@@ -5,8 +5,10 @@
   
     $out = [];
 
-    foreach ( array_diff ( scandir ( $dir ), [ '.', '..' ] ) as $file )
-      $out [] = str_replace( '.pad', '', str_replace( '.php', '', $file ) );
+    foreach ( array_diff ( scandir ( $dir ), [ '.', '..' ] ) as $file ) {
+      $key = str_replace( '.pad', '', str_replace( '.php', '', $file ) );
+      $out [$key] = $key;
+    }
     
     return $out;
 
