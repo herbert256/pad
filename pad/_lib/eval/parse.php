@@ -392,6 +392,9 @@
 
     }
 
+
+     $GLOBALS ['eval_parse'] = $result;
+
   }
   
 ?>

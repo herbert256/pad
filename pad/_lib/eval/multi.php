@@ -9,13 +9,15 @@
 
       if ( $previous !== NULL ) 
 
-        if ( $result [$now] [1] == 'VAL' and $result [$previous] [1] == 'VAL' ) {
+        if ( $result [$now] [1] == 'VAL' and $result [$previous] [1] == 'VAL' ) 
+
+          if ( ! is_array ( $result [$previous] [0] ) and ! is_array ( $result [$now] [0] ) ) {
         
-          $result [$now] [0] = $result [$previous] [0] . $result [$now] [0];
+            $result [$now] [0] = $result [$previous] [0] . $result [$now] [0];
         
-          unset ( $result [$previous] );
+            unset ( $result [$previous] );
         
-        } 
+          } 
 
       $previous = $now;
 

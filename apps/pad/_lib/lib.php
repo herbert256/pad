@@ -10,7 +10,7 @@
       $out [$key] = $key;
     }
     
-    return $out;
+    return array_values ( $out );
 
   }
 

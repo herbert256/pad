@@ -11,6 +11,8 @@
 
     $key = array_key_first ($result);
 
+    $GLOBALS ['eval_result'] = $result;
+
     if     ( count($result) < 1        ) padError ("No result back: $eval");
     elseif ( count($result) > 1        ) padError ("More then one reault back: $eval");
     elseif ( $result[$key][1] <> 'VAL' ) padError ("Result is not a value: $eval");

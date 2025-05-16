@@ -1,10 +1,8 @@
 <?php
 
-  if ( $padWalk [$pad] == 'start' and $padPrmType [$pad] == 'close' ) {
-    $padWalk [$pad] = 'end';
+  if ( padStartAndClose ('end') )
     return TRUE;
-  }
    
-  return padFunctionInTag ( $padTag [$pad], $padContent, $padOpt[$pad] );
+  return padFunctionAsTag ( $padTag [$pad], $padContent, $padOpt[$pad] );
 
 ?>

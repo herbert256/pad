@@ -1,8 +1,7 @@
-{table}
+{sequence from=3, to=5, name='abc'}
 
-{demo} {sequence from=1, to='15..25'} {$sequence} {/sequence} {/demo}
-{demo} {sequence from='-5..5', to=15} {$sequence} {/sequence} {/demo}
-{demo} {sequence rows='15..25'} {$sequence} {/sequence} {/demo}
-{demo} {sequence rows=15, increment='1..10'} {$sequence} {/sequence} {/demo}
-
-{/table}
+{if 5 in abc}
+  true
+{else}
+  false
+{/if}

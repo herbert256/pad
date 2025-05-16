@@ -20,11 +20,8 @@
 
         if ( padValid ($type) and padValid ($name) )
           if ( file_exists ( "eval/single/$type.php") ) {  
-            $result[$k][0] = $name;
-            $result[$k][1] = 'TYPE';
-            $result[$k][2] = $type;          
-            $result[$k][3] = 0;         
-            $result[$k][4] = 1;     
+            $result [$k] [0] = include "eval/single/$type.php";
+            $result [$k] [1] = 'VAL';
           } elseif ( file_exists ( "eval/parms/$type.php") ) {  
             $result[$k][0] = $name;
             $result[$k][1] = 'TYPE';
@@ -77,6 +74,8 @@
         $result[$k][0] = hex2bin($one[0]);
 
       }
+
+     $GLOBALS ['eval_after'] = $result;
 
   }
 

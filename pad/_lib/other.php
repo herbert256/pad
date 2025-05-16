@@ -733,13 +733,13 @@
   }
 
   
-  function padFunctionInTag ( $name, $value, $ops ) {
+  function padFunctionAsTag ( $name, $value, $ops ) {
   
     $parms = [];
    
-    foreach ( $ops as $key => $value )
+    foreach ( $ops as $key => $tmp )
       if ( $key > 0)
-        $parms [] = $value;
+        $parms [] = $tmp;
    
     $count = count ( $parms );
 

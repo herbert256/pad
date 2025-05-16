@@ -1,5 +1,6 @@
 <?php
 
+
   $opr = $result [$b] [0];
 
   if ( in_array ( $opr, padEval_one ) ) {
