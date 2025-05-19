@@ -15,7 +15,8 @@
         $b = $previous;
         include 'eval/actions/alone.php';
   
-        return padEvalDouble ( $result, $myself, $start, $end ); 
+        padEvalDouble ( $result, $myself, $start, $end ); padEvalTrace ( 'double3', $result );;
+        return;
       
       }
 

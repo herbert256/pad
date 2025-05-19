@@ -11,7 +11,6 @@
     global $$padStrKey;
 
   $padLvlFun [$pad] = $padStrFunCnt;
-$GLOBALS['yyy']=1;
   $padStrFunResult = include 'start/pad.php'; 
 
   if ( ! $padStrBox and ! $padStrCln )

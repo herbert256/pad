@@ -1,6 +1,5 @@
 <?php
 
-
   $opr = $result [$b] [0];
 
   if ( in_array ( $opr, padEval_one ) ) {
@@ -14,8 +13,8 @@
   }
 
   $result [$b] [0] = $now;
-  $result [$b] [1] = 'VAL';
+  $result [$b] [1] = 'VAL'; padEvalTrace ( 'go', $result );
 
-  padEvalOpr ( $result, $myself, $start, $end );
+  padEvalOpr ( $result, $myself, $start, $end ); padEvalTrace ( 'opr5', $result );
   
 ?>

@@ -3,9 +3,9 @@
   
   function padEvalOpr ( &$result, $myself, $start=0, $end=PHP_INT_MAX ) {
 
-    padEvalDouble ( $result, $myself, $start, $end );
-    padEvalCheck  ( $result, $myself, $start, $end );
-    padEvalType   ( $result, $myself, $start, $end );
+    padEvalDouble ( $result, $myself, $start, $end ); padEvalTrace ( 'double2', $result );
+    padEvalCheck  ( $result, $myself, $start, $end ); padEvalTrace ( 'check2', $result );
+    padEvalType   ( $result, $myself, $start, $end ); padEvalTrace ( 'type2', $result );
 
     foreach ( padEval_precedence as $now ) {
 

@@ -1,5 +1,25 @@
 <?php
 
+  function pqActionArray ( &$parms ) {
+
+    $pqFirst = array_shift ( $parms );
+
+    if ( ! is_array ( $pqFirst ) ) {
+
+      return $pqFirst;
+    
+    } elseif ( is_array ( $pqFirst ) ) {
+
+      $pqFirst = array_values ( $pqFirst );
+
+      if ( count ( $pqFirst ) == 1 and is_array ( $pqFirst [0] ) )
+        $pqFirst = $pqFirst [0];
+
+    }
+
+    return $pqFirst;
+
+  }
    
    
   function pqRandomParm ( &$parm ) {
@@ -54,12 +74,13 @@
 
 
 
-  function pqArray ( $sequence, $parm, $options ) {
+  function pqArray ( $sequence, $parm='', $options='') {
 
-    if ( $parm === TRUE )
-      $parm = '';
-    else
-      $parm = ( $parm ) ? "=$parm" : '';
+    if ( $parm)
+      if ( $parm === TRUE )
+        $parm = '';
+      else
+        $parm = ( $parm ) ? "=$parm" : '';
 
     if ( $options )
       $options = ", $options";
@@ -95,7 +116,7 @@
 
   function pqStore ( $check ) {
 
-    return in_array ( $check, ['pull','fixed','build'] );
+    return in_array ( $check, ['pull','fixed','build','given'] );
 
   }
   
@@ -251,25 +272,15 @@
   }
 
 
-  function pqEvalAction ( $seq1, $action, $seq2 ) {
-
-    $pqResult          = $seq1;
-    $pqActionList [0]  = $action;
-    $pqActionName      = $action;
-    $pqStore [$action] = $seq2;
-
-    return include "sequence/actions/types/$action.php";  
-
-  }
-
-
   function padTypeReverse ( $x ) {
 
    $rev = 0;
+
     while ($x > 0) {
       $rev = ($rev  * 10) + $x % 10;
-      $x = (int)($x / 10);
+      $x = (int) ($x / 10);
     }
+   
     return $rev;
 
   }

@@ -1,7 +1,5 @@
-{sequence from=3, to=5, name='abc'}
+{sequence '8..10', name='q1'}
+{sequence '1..10', name='q2'}
 
-{if 5 in abc}
-  true
-{else}
-  false
-{/if}
+{if q1 eq action:last(q2,3),dump}  ok {else} nok {/if}
+{if q1 ne action:last(q2,3)} nok {else}  ok {/if}

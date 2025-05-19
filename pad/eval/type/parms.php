@@ -1,5 +1,10 @@
 <?php
-  
+    
+  if ( $result [$k] [3] == 0 ) {
+    $padEvalNextKey = padEvalNextKey ( $result, $k );
+    $result [$k] [3] = ( $padEvalNextKey and $padEvalNextKey <= $end ) ? $padEvalNextKey + 1 : 0;
+  }
+
   $parm = [];
   foreach ( $result as $key => $val ) 
     if ( $key > $k and $key <= $result [$k] [3] - 1 ) {
@@ -7,9 +12,6 @@
       unset ( $result [$key] );
     }
    
-  if ( count ( $parm ) == 1 and is_array ( $parm [0] ) )
-    $parm = $parm [0];
-
   $count = count ( $parm );
 
   if ( $b >= $start and $result [$b] [1] == 'VAL' ) {
@@ -18,6 +20,6 @@
   } else
     $value = $myself;
 
-  $padCall = "eval/parms/$kind.php" ;
+  return include "eval/parms/$kind.php" ;
 
 ?>

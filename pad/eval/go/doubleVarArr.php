@@ -1,6 +1,13 @@
 <?php
-  
-  if ( $opr == 'IN' ) 
-    $now = in_array ( $left, $right);
-  
+
+  if ( count ( $right ) == 1 ) {
+
+    $right = reset ( $right );
+
+    include 'eval/go/doubleVarVar.php';
+
+  } else
+
+     padError ( 'ToDo' );
+
 ?>

@@ -3,7 +3,7 @@
   if ( padStartAndClose ('next') )
     return TRUE;
 
-  $padWhile = padEval ( $padParms [$pad] [0] ['padPrmOrg'] );
+  $padWhile = padEvalBool ( $padParms [$pad] [0] ['padPrmOrg'] );
 
   if ($padTag [$pad] == 'while') { 
  

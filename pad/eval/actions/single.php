@@ -2,7 +2,7 @@
   
   $right = $result [$k] [0];
 
-  unset ( $result [$k] );
+  unset ( $result [$k] ); padEvalTrace ( 'action/single', $result );
 
   include 'eval/go/go.php';
   

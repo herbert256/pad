@@ -1,9 +1,9 @@
 <?php
-  
-  
+    
+
   function padEvalType ( &$result, $myself, $start, $end ) {
 
-    global $padInfo;
+    $typeK = FALSE;
     
     $b = -1;
     
@@ -12,14 +12,22 @@
       if ( $k < $start ) continue;
       if ( $k > $end   ) break;
 
-      if ( $result[$k][1] == 'TYPE' )
-        return include 'eval/type/type.php';
+      if ( $result[$k][1] == 'TYPE' ) {
+        $typeK = $k;
+        $typeB = $b;
+      }
  
       $b = $k;
 
     }
 
+    if ( $typeK ) {
+      $k = $typeK;
+      $b = $typeB;
+      include 'eval/type/type.php';
+    }
+
   }
 
-
+  
 ?>

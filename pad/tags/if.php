@@ -1,6 +1,6 @@
 <?php
-  
-  $padIf  = '"' . $padParm . '"';
+
+  $padIf  = $padParms [$pad] [0] ['padPrmOrg']; 
   $padChk = strpos ($padContent, '{elseif');
 
   while ($padChk !== FALSE) {
@@ -23,6 +23,6 @@
  
   }
 
-  return ( padEval($padIf) ) ? TRUE : FALSE;
+  return padEvalBool ( $padIf );
 
 ?>

@@ -1,5 +1,6 @@
 <?php
 
+  include 'sequence/inits/tag.php';
   include 'sequence/inits/clear.php';
   include 'sequence/inits/vars.php';
   include 'sequence/plays/inits.php';

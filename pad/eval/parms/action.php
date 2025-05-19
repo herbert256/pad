@@ -1,5 +1,10 @@
 <?php
  
-  return pqEvalAction ( $value, $name, $parm );
- 
+  global $pqSetAction, $pqSetParms;
+
+  $pqSetAction = $name;
+  $pqSetParms  = [];
+  
+  return include 'sequence/action.php';
+
 ?>

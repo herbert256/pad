@@ -20,11 +20,12 @@
         unset ( $result [$open] );
         unset ( $result [$key]  );
 
-        if ( $type and $result [$type] [1] == 'TYPE' )
+        if ( $type )
           $result [$type] [3] = $key;
-        
-        padEvalOpnCls ( $result, $myself, $open, $key );
-        padEvalOpr    ( $result, $myself, $open, $key );
+   
+                                                         padEvalTrace ( 'array9', $result );
+        padEvalOpnCls ( $result, $myself, $open, $key ); padEvalTrace ( 'opncls2', $result );
+        padEvalOpr    ( $result, $myself, $open, $key ); padEvalTrace ( 'opr1', $result );
 
         $result [$open] [0] = [];
         $result [$open] [1] = 'VAL';
@@ -35,7 +36,8 @@
             unset ( $result [$key2] );
           }
 
-        return padEvalArray ( $result, $myself, $start, $end );
+        padEvalArray ( $result, $myself, $start, $end ); padEvalTrace ( 'array2', $result );;
+        return;
             
       } else
 

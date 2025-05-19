@@ -1,8 +1,6 @@
 <?php
 
-  $pqPlaysSet = [];
-  $pqInPlays  = TRUE;
-
+  $pqPlaysSet  = [];
   $pqSeqSave   = $pqSeq;
   $pqBuildSave = $pqBuild;
   $pqParmSave  = $pqParm;
@@ -39,7 +37,5 @@
   $pqSeq   = $pqSeqSave;
   $pqBuild = $pqBuildSave;
   $pqParm  = $pqParmSave;
-
-  $pqInPlays = FALSE;
 
 ?>

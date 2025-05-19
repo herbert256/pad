@@ -1,5 +1,5 @@
 <?php
 
-  $now = 'todo';
+  $now = ( count ( $right ) ) ? '' : '1';
 
 ?>

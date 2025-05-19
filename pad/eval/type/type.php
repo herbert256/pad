@@ -1,5 +1,5 @@
 <?php
-  
+    
   $kind = $result [$k] [2];
   $name = $result [$k] [0];
  
@@ -7,15 +7,13 @@
     include 'events/functions.php';
 
   if ( $result [$k] [4] ) 
-    include 'eval/type/single.php';
+    $value = include 'eval/type/single.php';
   else
-    include 'eval/type/parms.php';
-  
-  $value = include 'call/any.php' ;
-  
+    $value = include 'eval/type/parms.php';
+    
   $result [$k] [1] = 'VAL';
-  $result [$k] [0] = $value;
+  $result [$k] [0] = $value; padEvalTrace ( 'type9', $result );
 
-  padEvalOpr ($result, $myself, $start, $end );
+  padEvalOpr ( $result, $myself, $start, $end ); padEvalTrace ( 'opr4', $result );
 
 ?>
