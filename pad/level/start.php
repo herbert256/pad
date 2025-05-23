@@ -9,19 +9,20 @@
 
   include 'level/set.php';
   include 'level/go.php';
+  
   include 'level/flags.php';
   include 'level/base.php';
   include 'level/data.php';
   include 'level/name.php';
   include 'handling/handling.php';  
 
+  if ( padTagParm ('dump') )
+    include 'options/dump.php';
+
   if ( count ( $padOptionsAppStart [$pad] ) )
     include 'options/go/app.php';
 
   include 'options/go/start.php';
-
-  if ( padTagParm ('dump') )
-    include 'options/dump.php';
 
   if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']) )
     include 'callback/init.php' ;

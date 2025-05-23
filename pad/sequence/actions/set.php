@@ -1,8 +1,9 @@
 <?php
 
-  $pqAction = $pqSetAction;
-
-  $pqFirst = pqActionArray ( $pqSetParms );
+  $pqAction     = $pqSetAction;
+  $pqActionParm = '';
+  $pqParms      = [];
+  $pqFirst      = pqActionArray ( $pqSetParms );
   
    if ( is_array ( $pqFirst )  ) {
 
@@ -16,30 +17,16 @@
 
   }
 
-  if ( ! file_exists ( "sequence/actions/double/$pqAction")) 
+  foreach ( $pqSetParms as $pqV )
 
-    $pqActionParm = implode ( '|', $pqSetParms );
+    if ( is_array ( $pqV ) ) {
 
-  else { 
-
-    $pqSecond = pqActionArray ( $pqSetParms );
-  
-    if ( is_array ( $pqSecond ) ) {
-
-      $pqActionParm = "__action__" . padRandomString ();
-      $pqStore [$pqActionParm] = array_values ( $pqSecond );
-
-      if ( count ( $pqSetParms ) )
-        $pqActionParm .= '|' . implode ( '|', $pqSetParms );
+      $pqT            = "__action__" . padRandomString ();
+      $pqStore [$pqT] = array_values ( $pqV );
+      $pqActionParm  .= $pqT . '|';
     
-    } else {
+    } else
 
-      $pqActionParm = implode ( '|', $pqSetParms );
+      $pqActionParm .= $pqV . '|';
 
-    }
-
-  } 
-
-  $pqParms = [];
-
-?> 
+?>

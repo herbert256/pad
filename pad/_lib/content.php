@@ -23,7 +23,7 @@
     if ( $check )
       return $before . $new . $after;
 
-    $merge = padTagParm ( 'merge', 'replace' );
+    $merge = padTagParm ( 'merge', 'top' );
 
     if     ( $merge == 'bottom'  ) return $base . $new;
     elseif ( $merge == 'top'     ) return $new . $base;

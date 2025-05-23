@@ -11,8 +11,8 @@
 
     else {
 
-      if ( padEval($padIf) )
-        return substr ($padContent, 0, $padChk);
+      if ( padEval($padIf) ) 
+        return include 'tags/go/case.php';
 
       $padPos     = strpos($padContent, '}', $padChk); 
       $padIf      = substr($padContent, $padChk+8, $padPos-($padChk+8));
@@ -23,6 +23,6 @@
  
   }
 
-  return padEvalBool ( $padIf );
+  return include 'tags/go/if.php';
 
 ?>

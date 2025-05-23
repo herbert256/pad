@@ -3,7 +3,7 @@
   
   function padEvalArray ( &$result, $myself, $start=0, $end=PHP_INT_MAX ) {
 
-    $prev = $type = $open = FALSE;
+    $open = FALSE;
 
     foreach ( $result as $key => $value ) {
 
@@ -12,23 +12,17 @@
 
       if ( $value [1] == 'a-open' ) {
  
-        $type = $prev;
         $open = $key;
  
       } elseif ( $value [1] == 'a-close' ) {
 
-        unset ( $result [$open] );
-        unset ( $result [$key]  );
-
-        if ( $type )
-          $result [$type] [3] = $key;
-   
-                                                         padEvalTrace ( 'array9', $result );
-        padEvalOpnCls ( $result, $myself, $open, $key ); padEvalTrace ( 'opncls2', $result );
-        padEvalOpr    ( $result, $myself, $open, $key ); padEvalTrace ( 'opr1', $result );
-
         $result [$open] [0] = [];
         $result [$open] [1] = 'VAL';
+        unset ( $result [$key]  );
+   
+                                                           padEvalTrace ( 'array3',  $result );
+        padEvalOpnCls ( $result, $myself, $open+1, $key ); padEvalTrace ( 'opncls2', $result );
+        padEvalOpr    ( $result, $myself, $open+1, $key ); padEvalTrace ( 'opr1',    $result );
 
         foreach ( $result as $key2 => $value )
           if ( $key2 > $open and $key2 < $key ) {
@@ -36,12 +30,11 @@
             unset ( $result [$key2] );
           }
 
-        padEvalArray ( $result, $myself, $start, $end ); padEvalTrace ( 'array2', $result );;
+                                                         padEvalTrace ( 'array4', $result );
+        padEvalArray ( $result, $myself, $start, $end ); padEvalTrace ( 'array5', $result );
         return;
             
-      } else
-
-        $prev = $key;
+      } 
 
     }
 

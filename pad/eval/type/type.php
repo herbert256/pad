@@ -12,7 +12,13 @@
     $value = include 'eval/type/parms.php';
     
   $result [$k] [1] = 'VAL';
-  $result [$k] [0] = $value; padEvalTrace ( 'type9', $result );
+  $result [$k] [0] = $value;
+
+  unset ( $result [$k] [2] );
+  unset ( $result [$k] [3] );
+  unset ( $result [$k] [4] );
+
+  padEvalTrace ( 'type9', $result );
 
   padEvalOpr ( $result, $myself, $start, $end ); padEvalTrace ( 'opr4', $result );
 

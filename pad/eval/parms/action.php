@@ -3,7 +3,7 @@
   global $pqSetAction, $pqSetParms;
 
   $pqSetAction = $name;
-  $pqSetParms  = [];
+  $pqSetParms  = $parm;
   
   return include 'sequence/action.php';
 

@@ -21,6 +21,9 @@
   if ( $padInfo )
     include 'events/go.php';
 
+  if ( padTagParm ('dump') )
+    include 'options/dump.php';
+
   if ( $padTagContent ) 
     padContentMerge ( $padContent, $padFalse, $padTagContent, $padHit [$pad] );
 
@@ -28,5 +31,6 @@
     $padContentData = include 'options/content.php';
     padContentMerge ( $padContent, $padFalse, $padContentData, $padHit [$pad] );
   }
+
 
 ?>

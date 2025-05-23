@@ -12,8 +12,7 @@
     $padReturn = substr($padReturn, 5, -6);
   }
 
-
+  $padContent = '';
 	return str_replace ( '}', '&close;', $padReturn );
-
 
 ?>

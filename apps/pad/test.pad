@@ -1,5 +1,36 @@
+{sequence '5;10;15;20',  name='q1'}
+{sequence '15;20;25;30', name='q2'}
+{sequence '15;20',       name='q3'}
+
+{if q3 eq action:intersection (q1,q2)}  ok {else} nok {/if}
+{if q3 eq action:intersection ( [5,10,15,20], [15,20,25,30] )} ok {else} nok {/if}
+
+<hr>
+
+{sequence '3..5', name='abc'}
+
+{if 4 in abc }  ok {else} nok {/if}
+{if 6 in abc } nok {else}  ok {/if}
+
+<hr>
+
+{if 3 eq action:count(abc)}  ok {else} nok {/if}
+{if action:count(abc) eq 4} nok {else}  ok {/if}
+
+<hr>
+
+{if 3 in action:count(abc)}  ok {else} nok {/if}
+{if 4 in action:count(abc)} nok {else}  ok {/if}
+
 {sequence '8..10', name='q1'}
 {sequence '1..10', name='q2'}
 
-{if q1 eq action:last(q2,3),dump}  ok {else} nok {/if}
+<hr>
+
+{if q1 eq action:last(q2,3)}  ok {else} nok {/if}
 {if q1 ne action:last(q2,3)} nok {else}  ok {/if}
+
+<hr>
+
+{if [9,10] ne action:last ( q2,      2) } nok {else}  ok {/if}
+{if [8,9]  eq action:last ( [7,8,9], 2) }  ok {else} nok {/if}
