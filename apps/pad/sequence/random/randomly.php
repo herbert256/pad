@@ -2,7 +2,7 @@
  
   foreach ( pqTypes () as $type ) {
 
-    include APP . 'develop/sequence/parm.php';
+    include APP . 'sequence/develop/parm.php';
 
         if ( $type == 'oeis'      ) $gox = "oeis=87";
     elseif ( $type == 'list'      ) $gox = "list='1;8;5;2;9;66'";

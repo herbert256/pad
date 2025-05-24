@@ -1,0 +1,23 @@
+<h4> page </h4>
+
+{page 'hello/index',          $color='pink'}
+{page 'hello/index', reset,   $color='orange'}
+{page 'hello/index', clean,   $color='brown'}
+{page 'hello/index', sandbox, $color='purple'}
+
+{page 'hello/index',          function, $color='green'}
+{page 'hello/index', reset,   function, $color='blue'}
+{page 'hello/index', clean,   function, $color='yellow'}
+{page 'hello/index', sandbox, function, $color='red'}
+
+<h4> code </h4>
+
+{code          $color='pink'}             <h3><font color="{$color}">Hello world !</font></h3>  {/code}
+{code reset,   $color='orange'}           <h3><font color="{$color}">Hello world !</font></h3>  {/code}
+{code clean,   $color='brown'}            <h3><font color="{$color}">Hello world !</font></h3>  {/code}
+{code sandbox, $color='purple'}           <h3><font color="{$color}">Hello world !</font></h3>  {/code}
+
+{code          function, $color='green'}  <h3><font color="{$color}">Hello world !</font></h3>  {/code}
+{code reset,   function, $color='blue'}   <h3><font color="{$color}">Hello world !</font></h3>  {/code}
+{code clean,   function, $color='yellow'} <h3><font color="{$color}">Hello world !</font></h3>  {/code}
+{code sandbox, function, $color='red'}    <h3><font color="{$color}">Hello world !</font></h3>  {/code}

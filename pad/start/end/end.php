@@ -6,6 +6,5 @@
   $padStrCod = $padStrStr [$padStrCnt] [3]; 
   $padStrFun = $padStrStr [$padStrCnt] [4]; 
   $padStrRes = $padStrStr [$padStrCnt] [5];
-  $padStrHit = $padStrStr [$padStrCnt] [6];
   
 ?>

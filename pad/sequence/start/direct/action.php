@@ -1,5 +1,5 @@
 <?php
 
-  return include "sequence/action.php";
+  return include "sequence/sequence/action.php";
 
 ?>

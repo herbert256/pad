@@ -3,7 +3,7 @@
   include 'start/end/end.php';
   include 'start/end/pad.php';
 
-  if ( $padStrHit ) {
+  if ( $padStrBox or $padStrCln or $padStrRes )  {
     include 'start/end/dat.php';
     include 'start/end/stores.php';
   }
@@ -13,7 +13,7 @@
     include 'start/end/unsetPad.php';
   }
 
-  if ( $padStrHit )
+  if ( $padStrBox or $padStrCln or $padStrRes )
     include 'start/end/app.php';
 
   $padStrCnt--;

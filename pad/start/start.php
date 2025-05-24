@@ -5,7 +5,7 @@
   include 'start/start/start.php';
   include 'start/start/pad.php';
 
-  if ( $padStrHit ) {
+  if ( $padStrBox or $padStrCln or $padStrRes ) {
     include 'start/start/app.php';
     include 'start/start/dat.php';
     include 'start/start/stores.php';
@@ -16,7 +16,7 @@
     include 'start/start/resetApp.php'; 
   } 
 
-  if ( $padStrHit )
+  if ( $padStrBox or $padStrCln or $padStrRes )
     include 'start/start/level.php';
 
 ?>

@@ -14,7 +14,7 @@ padFileChkFile    ( $store );
 file_put_contents ( $store, $status ) ;
 
 if ( str_contains ( $item, 'sequence' ) )
-  padRedirect ( 'manual/sequence/regression', [ 'go' => 'regression' ] );
+  padRedirect ( 'sequence/manual/regression', [ 'go' => 'regression' ] );
 else  
   padRedirect ( "develop/regression" );
 

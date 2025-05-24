@@ -1,5 +1,5 @@
 <?php
 
-  include APP . 'develop/sequence/index.php';  
+  include APP . 'sequence/develop/index.php';  
 
 ?>
