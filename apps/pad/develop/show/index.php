@@ -1,18 +1,36 @@
 <?php
 
-  include APP . 'develop/show/_includes/shared.php';
+  $curl = getPage ($item, 1);
 
-  if ( count($oldRes) ) 
-    if ( count ($oldRes) == count($newRes) and count($oldRes) == count($newSrc) ) 
-      foreach ( $oldRes as $key => $value ) 
-        if ( strpos ($newSrc [$key], 'random') === FALSE and strpos ($newSrc [$key], 'shuffle') === FALSE ) 
-          if ( $oldRes [$key] <> $newRes [$key] )
-            padRedirect ("develop/show/demo&item=$item");
+  if ( ! str_starts_with ( $curl ['result'], '2') )
+    padRedirect ($item);
 
-  if ( $old <> $new and ! strpos ( $new, '<!-- PAD: SKIP REGRESSION -->' ) !== FALSE )
-    padRedirect ("develop/show/changed&item=$item");
+  $oldRes = $newRes = $newSrc = $compare = $demoLines = [];
+ 
+  $title = $item;
+  $new   = $curl ['data'];
+  $old   = padFileGetContents ( APP . "_regression/$item.html" );
+  $diff  = diff ( $old, $new );
+   
+  $check = $old;
+  while ( strpos($check, '<!-- START DEMO RESULT -->') ) 
+    $oldRes [] = trim ( padCut ( $check, '<!-- START DEMO RESULT -->', '<!-- END DEMO RESULT -->' ) );
 
-  $showTitle = TRUE;
-  $title     = $item;
+  $check = $new;
+  while ( strpos($check, '<!-- START DEMO RESULT -->') ) 
+    $newRes [] = trim ( padCut ( $check, '<!-- START DEMO RESULT -->', '<!-- END DEMO RESULT -->' ) );
+  
+  $check = $new;
+  while ( strpos($check, '<!-- START DEMO SOURCE -->') ) 
+    $newSrc [] = trim ( padCut ( $check, '<!-- START DEMO SOURCE -->', '<!-- END DEMO SOURCE -->' ) );
+ 
+  foreach ( $oldRes as $key => $value ) 
+
+    if ( isset ($newRes [$key]) and $oldRes [$key] <> $newRes [$key] ) {
+      $compare   [$key] ['diff']   = diff ( $oldRes [$key], $newRes [$key] );
+      $demoLines [$key] ['newSrc'] = $newSrc [$key];
+      $demoLines [$key] ['oldRes'] = $oldRes [$key];
+      $demoLines [$key] ['newRes'] = $newRes [$key];
+    }
   
 ?>

@@ -1,10 +1,7 @@
 <?php
 
-  $nows ['index'] ['text']      = 'Introduction';
-  $nows ['index'] ['now']       = 'index';
-
-  $nows ['concepts'] ['text']   = 'Concepts';
-  $nows ['concepts'] ['now']    = 'concepts';
+  $nows ['index'] ['text']   = 'Concepts';
+  $nows ['index'] ['now']    = 'index';
 
   $nows ['sequences'] ['text']   = 'Sequences';
   $nows ['sequences'] ['now']    = 'sequences';

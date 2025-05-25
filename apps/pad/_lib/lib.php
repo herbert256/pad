@@ -81,7 +81,6 @@
     $pad = ( file_exists( $file ) ) ? file_get_contents( $file ) : ''; 
 
     if ( strpos($pad, '<!-- PAD: ONLYRESULT -->') !== false ) return ',onlyResult';
-    if ( strpos($pad, '{present')                 !== false ) return ',onlyResult';
     if ( strpos($pad, '{demo')                    !== false ) return ',onlyResult';
     if ( str_ends_with($file, 'index.pad')                  ) return ',onlyResult';
 
