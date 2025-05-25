@@ -7,4 +7,6 @@
 
   $padContent = padTidy ( $padContent, TRUE );
 
+  return TRUE;
+
 ?>

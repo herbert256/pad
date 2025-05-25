@@ -1,5 +1,7 @@
 <?php
 
-  return padEscape ( $padContent );
+   $padContent = padEscape ( $padContent );
+
+   return true;
   
 ?>
