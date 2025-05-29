@@ -14,7 +14,7 @@
   }
 
   if ( $padStartBase [$pad] ) return include 'level/start_end/start2.php';
-  if ( $padEndBase [$pad]   ) return include 'level/start_end/end2.php';
+  if ( $padEndBase   [$pad] ) return include 'level/start_end/end2.php';
 
   $padOccur [$pad] = 99999;
 
@@ -35,11 +35,5 @@
 
   if ( $pad >= 0 )
     padLevel ( $padResult [$pad+1] );
-
-  // if ( $pad >= 0 )
-  //   foreach ( padLevelVars  as $padK )
-  //     if ( $padK <> 'padOut' )
-  //       if ( isset ( $GLOBALS [$padK] [$pad+1] ) )
-  //         unset ( $GLOBALS [$padK] [$pad+1] );
 
 ?>

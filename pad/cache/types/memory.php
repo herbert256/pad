@@ -1,51 +1,81 @@
 <?php
 
+
   function padCacheInit ($url, $etag) {
-    $GLOBALS ['padCache_mem'] = new Memcached();
-    $GLOBALS ['padCache_mem']->addServer($GLOBALS ['padCacheMemoryHost'], $GLOBALS ['padCacheMemoryPort']);
+
+    global $padCacheMemory, $padCacheMemoryHost, $padCacheMemoryPort;
+
+    $padCacheMemory = new Memcached();
+    $padCacheMemory->addServer($padCacheMemoryHost, $padCacheMemoryPort);
+  
   }
+
 
   function padCacheEtag ($get) {
-    return $GLOBALS ['padCache_mem']->get($get);
+  
+    global $padCacheMemory;
+
+    return $padCacheMemory->get($get);
+  
   }
+
 
   function padCacheUrl ($url) {
-    return $GLOBALS ['padCache_mem']->get($url);
+
+    global $padCacheMemory;
+
+    return $padCacheMemory->get($url);
+
   }
 
+
   function padCacheGet ($etag) {
-    return $GLOBALS ['padCache_mem']->get("x$etag");
+
+    global $padCacheMemory;
+
+    return $padCacheMemory->get("x$etag");
+
   }
+
 
   function padCacheStore ($url, $etag, $data) {
 
-    $GLOBALS ['padCache_mem']->set($etag, $_SERVER['REQUEST_TIME'], $GLOBALS ['padCacheServerAge']);
+    global $padCacheMemory, $padCacheServerAge, $padCacheServerNoData;
 
-    if ( ! $GLOBALS ['padCacheServerNoData'] ) {
-      $GLOBALS ['padCache_mem']->set($url,  [$_SERVER['REQUEST_TIME'], $etag], $GLOBALS ['padCacheServerAge']);
-      $GLOBALS ['padCache_mem']->set("x$etag", $data,                          $GLOBALS ['padCacheServerAge']+10);
+    $padCacheMemory->set($etag, $_SERVER['REQUEST_TIME'], $padCacheServerAge);
+
+    if ( ! $padCacheServerNoData ) {
+      $padCacheMemory->set($url,  [$_SERVER['REQUEST_TIME'], $etag], $padCacheServerAge);
+      $padCacheMemory->set("x$etag", $data,                          $padCacheServerAge+10);
      }
     
   }
 
+
   function padCacheUpdate ($url, $etag) {
 
-    $GLOBALS ['padCache_mem']->set($etag, $_SERVER['REQUEST_TIME'], $GLOBALS ['padCacheServerAge']);
+    global $padCacheMemory, $padCacheServerAge, $padCacheServerNoData;
 
-    if ( ! $GLOBALS ['padCacheServerNoData'] ) {
-      $GLOBALS ['padCache_mem']->set($url,  [$_SERVER['REQUEST_TIME'], $etag], $GLOBALS ['padCacheServerAge']);
-      $GLOBALS ['padCache_mem']->touch("x$etag", $GLOBALS ['padCacheServerAge']+10);
+    $padCacheMemory->set($etag, $_SERVER['REQUEST_TIME'], $padCacheServerAge);
+
+    if ( ! $padCacheServerNoData ) {
+      $padCacheMemory->set($url,  [$_SERVER['REQUEST_TIME'], $etag], $padCacheServerAge);
+      $padCacheMemory->touch("x$etag", $padCacheServerAge+10);
     }
 
   }
 
+
   function padCacheDelete ($url, $etag) {
 
-    $GLOBALS ['padCache_mem']->delete($etag);
+    global $padCacheMemory, $padCacheServerNoData;
+
+    $padCacheMemory->delete($etag);
  
-    if ( ! $GLOBALS ['padCacheServerNoData'] )
-      $GLOBALS ['padCache_mem']->delete("x$etag");
+    if ( ! $padCacheServerNoData )
+      $padCacheMemory->delete("x$etag");
 
   }
+
 
 ?>

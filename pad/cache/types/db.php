@@ -8,15 +8,6 @@
     $padCacheDbConnect = padDbConnect ( $padCacheDbHost, $padCacheDbUser, $padCacheDbPassword, $padCacheDbDatabase );
 
   }
-    
-
-  function padCacheDb ( $sql, $vars=[] ) {
-    
-    global $padCacheDbConnect;
-
-    return padDbPart2 ( $padCacheDbConnect, $sql, $vars, 'cache' );
-    
-  }
 
 
   function padCacheEtag ($etag) {
@@ -69,6 +60,15 @@
     if ( ! $GLOBALS ['padCacheServerNoData'] )
       padCacheDb ( "delete from data where etag='{0}'", [$etag] );
 
+  }
+
+    
+  function padCacheDb ( $sql, $vars=[] ) {
+    
+    global $padCacheDbConnect;
+
+    return padDbPart2 ( $padCacheDbConnect, $sql, $vars, 'cache' );
+    
   }
 
 
