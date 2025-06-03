@@ -4,15 +4,12 @@
   echo "{demo}{sequence '11..20', push='mySeq1'}{/demo}";
   echo "{demo}{sequence '16..25', push='mySeq2'}{/demo}";
   echo "{demo}{sequence 'A..E',   push='mySeq3'}{/demo}";
-  echo "{demo}{mySeq1} {\$sequence} {/mySeq1} {/demo}";
-  echo "{demo}{mySeq2} {\$sequence} {/mySeq2} {/demo}";
-  echo "{demo}{mySeq3} {\$sequence} {/mySeq3} {/demo}";
   echo "{/table}{table}";
 
   foreach ( pqActions () as $action ) {
 
         if ( in_array ( $action, ['slice','splice','pop','shift'] ) ) continue;
-    elseif ( file_exists ( "sequence/actions/double/$action" )      ) $extra = "='mySeq2'";
+    elseif ( file_exists ( "sequence/actions/double/$action" )      ) continue;
     elseif ( file_exists ( "sequence/actions/parm/$action" )        ) $extra = "=3";
     else                                                              $extra = '';
 
