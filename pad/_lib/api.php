@@ -40,7 +40,7 @@
 
     padHeader ("Location: $go");
     
-    padStop (302);
+    padExit (302);
 
   }
 

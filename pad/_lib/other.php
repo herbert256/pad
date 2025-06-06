@@ -478,6 +478,13 @@
   }
 
 
+  function padLogError ( $error ) {
+
+    error_log ( '[PAD] ' . padID () . ' ' . padMakeSafe ( $error ), 4 );
+
+  }
+
+
   function padMakeSafe ( $input, $len=2048 ) {
 
     if ( is_array($input) or is_object($input) ) 

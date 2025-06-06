@@ -23,8 +23,10 @@
   if ( $pad and $padLvlFun [$pad-1] )
     include 'level/function.php';
      
-  if ( in_array ( $padFirst, ['$','!','#','&','?','@'] ) ) 
-    return include 'level/var.php';
+  if ( in_array ( $padFirst, ['$','!','#','&','?','@'] ) ) {
+    $padTry = 'level/var';
+    return include 'try/try.php';
+  }
 
   include 'level/type.php';
   include 'level/tag.php';

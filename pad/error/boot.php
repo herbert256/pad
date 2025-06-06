@@ -1,5 +1,6 @@
 <?php
 
+
   $padDisplayErrors  = ini_set ('display_errors', 0);
   $padErrorReporting = error_reporting (E_ALL);
 
@@ -45,6 +46,11 @@
 
 
   function padBootStop ( $error, $file, $line ) {
+
+    if ( isset ( $GLOBALS ['padBootStop'] ) ) 
+      padBootExit ( "$file:$line $error", $GLOBALS ['padBootStop'] );
+  
+    $GLOBALS ['padBootStop'] = "$file:$line $error";
       
     set_error_handler ( 'padBootStopError' );
 
@@ -54,25 +60,16 @@
 
     } catch (Throwable $e) {
 
-      padBootStopCatch ();;
+      padBootStopCatch ( "$file:$line $error", $e );
   
     }
 
-    exit;
-
-  }
-
-
-  function padBootStopError ( $severity, $message, $filename, $lineno ) {
-
-    throw new ErrorException ( $message, 0, $severity, $filename, $lineno );
+    padBootExit ();
 
   }
 
 
   function padBootStopGo ( $error, $file, $line ) {
-
-    $GLOBALS ['padSkipShutdown'] = TRUE;
 
     $j = ob_get_level (); 
     for ( $i = 1; $i <= $j; $i++ ) 
@@ -88,20 +85,39 @@
     else {
 
       $id = $GLOBALS ['padReqID'] ?? uniqid (TRUE);
-      error_log ( "[PAD] $id - $file:$line $error", 4 );
+      error_log ( "[PAD] $id $file:$line $error", 4 );
       echo "Error: $id";
  
     }
  
-    exit;
+  }
+
+
+  function padBootStopError ( $severity, $message, $filename, $lineno ) {
+
+    throw new ErrorException ( $message, 0, $severity, $filename, $lineno );
 
   }
 
 
-  function padBootStopCatch () {
+  function padBootStopCatch  ( $error, $e ) {
+    
+    set_error_handler ( 'padErrorThrow' );
 
-    echo 'oops';
-    exit;
+    try {
+
+      $error2 = $e->getFile() . ':' .  $e->getLine() . ' ' . $e->getMessage() ;
+
+      padBootExit ( $error2, $error );
+
+    } catch (Throwable $e2) {
+
+      // Ignore Errors
+
+
+    }
+
+    include 'exits/exit.php';
 
   }
 
@@ -129,6 +145,19 @@
 
     if ( ( error_reporting() & $type ) ) 
       throw new \ErrorException ( $error, 0, $type, $file, $line);
+
+  }
+
+
+  function padBootExit ( $error1 = '', $error2 = '' ) {
+
+    if ( padLocal () and ( $error1 or $error2 ) )
+      echo "<pre><br>$error2<br>$error1</pre>";
+
+    if ( function_exists ( 'padExit') )
+      padExit ( 500 );
+    else
+      include 'exits/exit.php';
 
   }
 

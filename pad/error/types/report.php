@@ -6,7 +6,7 @@
 
   function padErrorGo ( $error, $file, $line ) {
     
-    error_log ( "$file:$line $error", 4 );
+    padLogError ( "$file:$line $error", 4 );
  
   }
 

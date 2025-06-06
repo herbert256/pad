@@ -17,6 +17,8 @@
   $padErrorLog    = TRUE;   //  Report errors to Apache error log
   $padErrorReport = TRUE;   //  Report errors to the DATA directory
 
+  $padTryCatch    = FALSE;   //  Trap problems
+
   // Many ways to track/trace and so.
   // Optional, one or more values from the sub folder 'info' 
 

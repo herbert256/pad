@@ -26,14 +26,23 @@
   function padErrorHandler ( $type, $error, $file, $line ) {
  
     if ( error_reporting() & $type )
-      return padErrorGo ( 'ERROR: ' . $error, $file, $line );
+      padErrorGo ( 'ERROR: ' . $error, $file, $line );
  
+    return TRUE;
+    
   }
 
 
   function padErrorException ( $padException ) {
 
-    include 'error/exception.php';
+    $GLOBALS ['padException'] = $padException;
+    
+    global $padExceptionFile, $padExceptionLine, $padExceptionError, $padExceptionText;
+
+    $padExceptionFile  = $padException->getFile();
+    $padExceptionLine  = $padException->getLine();
+    $padExceptionError = $padException->getMessage();
+    $padExceptionText  = "$padExceptionFile:$padExceptionLine $padExceptionError" ;
 
     return padErrorGo ( 
              'EXCEPTION: ' . 

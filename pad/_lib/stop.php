@@ -1,20 +1,6 @@
 <?php
 
 
-  function padStop ( $stop ) {
-
-    padCloseSession ();  
-
-    padEmptyBuffers ( $padIgnored );
-
-    if ( $GLOBALS ['padOutputType'] == 'web' )
-      padWebHeaders ( $stop );
-
-    padExit ();
-
-  }
-
-
   function padCloseSession () {
 
     if ( ! isset($GLOBALS ['padSessionStarted']) )
@@ -29,14 +15,19 @@
   }
 
 
-  function padExit ( $noInfo = FALSE ) { 
+  function padExit ( $stop = 200 ) { 
 
-    if ( $GLOBALS ['padInfo'] and ! $noInfo )
+    padCloseSession ();  
+
+    padEmptyBuffers ( $padIgnored );
+
+    if ( $GLOBALS ['padOutputType'] == 'web' )
+      padWebHeaders ( $stop );
+
+    if ( isset ( $GLOBALS ['padInfoStarted'] ) )
       include 'info/end/config.php';  
 
-    $GLOBALS ['padSkipShutdown'] = TRUE;
-
-    exit;
+    include 'exits/exit.php'; 
 
   }
 

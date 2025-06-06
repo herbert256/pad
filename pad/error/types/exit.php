@@ -6,7 +6,7 @@
 
   function padErrorGo ( $error, $file, $line ) {
         
-    padExit ( TRUE );
+    include 'exits/exit.php';
 
   }
 

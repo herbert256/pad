@@ -6,7 +6,7 @@
 
   function padErrorGo ( $error, $file, $line ) {
    
-    padStop ( 500 );
+    padExit ( 500 );
 
   }
 

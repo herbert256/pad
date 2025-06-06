@@ -17,4 +17,6 @@
   if ( $padInfoXref  ) include 'info/types/xref/start.php';
   if ( $padInfoXref  ) include 'info/types/xapp/start.php';
 
+  $padInfoStarted = TRUE;
+
 ?>

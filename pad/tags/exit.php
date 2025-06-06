@@ -1,5 +1,5 @@
 <?php
 
-  padExit ( TRUE );
+  padExit ();
   
 ?>

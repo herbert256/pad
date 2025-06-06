@@ -23,10 +23,12 @@
         padInfoTraceError ( $error );
 
       if ( $GLOBALS ['padErrorLog'] ) 
-        error_log ( $error, 4 );
-
+        padLogError ( $error );
+      
       if ( $GLOBALS ['padErrorReport'] )
         padDumpToDir ( $error );
+
+      $a2 = 2 / 0;
 
       padDump ( $error );
    
@@ -36,7 +38,7 @@
 
     }
       
-    padExit ( TRUE );
+    padExit ( 500 );
 
   }
 

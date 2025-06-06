@@ -9,6 +9,6 @@
 
   include "exits/output/$padOutputType.php";
 
-  padStop ( $padStop );
+  padExit ( $padStop );
 
 ?>

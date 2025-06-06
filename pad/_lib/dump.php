@@ -16,7 +16,7 @@
 
     restore_error_handler ();
 
-    padStop ( 500 );
+    padExit ( 500 );
 
   }
 
@@ -553,9 +553,9 @@
 
       gc_collect_cycles();
 
-      error_log ( 'DIR-CATCH: ' . $info, 4 );
-      error_log ( $e1->getFile() . ':' . $e1->getLine()  . ' DIR-CATCH: ' . $e1->getMessage(), 4 );
-      error_log ( $e2->getFile() . ':' . $e2->getLine()  . ' DIR-CATCH: ' . $e2->getMessage(), 4 );
+      padLogError ( 'DIR-CATCH: ' . $info );
+      padLogError ( $e1->getFile() . ':' . $e1->getLine()  . ' DIR-CATCH: ' . $e1->getMessage() );
+      padLogError ( $e2->getFile() . ':' . $e2->getLine()  . ' DIR-CATCH: ' . $e2->getMessage() );
 
     } catch (Throwable $e2) {
 

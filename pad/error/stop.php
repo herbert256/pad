@@ -5,20 +5,46 @@
 
   try {
 
+    padErrorStop ( $error, $e );
+
+  } catch (Throwable $e3) {
+
+    padExit ();  
+
+  }
+
+  padExit ();
+
+
+  function padErrorStop ( $error, $e ) {
+
+    set_error_handler ( 'padErrorThrow' );
+
+    try {
+
+      padErrorStopGo ( $error, $e );
+
+    } catch (Throwable $e3) {
+
+      padErrorStopCatch ( $error, $e, $e3 );
+
+    }
+
+    padError500 ();
+
+  }
+  
+
+  function padErrorStopGo ( $error, $e ) {
+
     $error2 = padErrorGet ( $e );
 
     padErrorLog ( $error );
     padErrorLog ( $error2 );
 
     padErrorExit ( "$error\n$error2" );
-
-  } catch (Throwable $e3) {
-
-    padErrorStopCatch ( $error, $e, $e3 );
-
-  }
   
-  padError500 ();
+  }
 
 
   function padErrorStopCatch ( $error1, $e2, $e3 ) {
@@ -33,7 +59,7 @@
       padErrorFile ( $error1 );
       padErrorFile ( $error2 );
       padErrorFile ( $error3 );
- 
+
       padErrorExit ( "$error1\n$error2\n$error3" );
 
     } catch (Throwable $e4) {
@@ -56,10 +82,16 @@
       if ( ! headers_sent () )
         header ( 'HTTP/1.0 500 Internal Server Error' );
  
+      $error2 = padErrorGet ( $e2 );
+      $error3 = padErrorGet ( $e3 );
+      $error4 = padErrorGet ( $e4 );
+
       padErrorConsole ( $error1 );
-      padErrorConsole ( padErrorGet ( $e2 ) );
-      padErrorConsole ( padErrorGet ( $e3 ) );
-      padErrorConsole ( padErrorGet ( $e4 ) );
+      padErrorConsole ( $error2 );
+      padErrorConsole ( $error3 );
+      padErrorConsole ( $error4 );
+
+      padErrorExit ( "$error1\n$error2\n$error3\n$error4" );
 
     } catch (Throwable $e5) {
 
@@ -105,9 +137,7 @@
 
     try {
 
-      $log = '[PAD] ' . padID () . ' ' . padMakeSafe ( $info, 200 );
-
-      error_log ( $log, 4 );
+      padLogError ( $info );
     
     } catch (Throwable $e) {
     
@@ -141,9 +171,6 @@
 
 
   function padErrorFile ( $info ) {
-
-    if ( ! $info )
-      return;
 
     set_error_handler ( 'padErrorThrow' );
 
@@ -183,6 +210,28 @@
 
   }
 
+  
+  function padErrorConsole ( $info ) {
+
+    set_error_handler ( 'padErrorThrow' );
+
+    try {
+
+      if ( padLocal () )
+        echo "<pre>\nError: $info</pre>";
+      else
+        echo '<pre>Unknow error occurred.</pre>';
+    
+    } catch (Throwable $e) {
+    
+      // Ignore errors
+    
+    }
+
+    restore_error_handler ();
+
+  }
+
 
   function padErrorExit ( $error ) {
 
@@ -215,38 +264,15 @@
     try {
 
       padErrorConsole ( $error );
-      padErrorConsole ( adErrorGet ( $e ) );
+      padErrorConsole ( padErrorGet ( $e ) );
       
     } catch (Throwable $e2) {
 
-      // Ignoring errors
+      echo 'oops';
   
     }
 
     padError500 ();
-
-  }
-
-  
-  function padErrorConsole ( $info ) {
-
-    if ( ! $info )
-      return;
-
-    set_error_handler ( 'padErrorThrow' );
-
-    try {
-
-      if ( padLocal () )
-        echo "<pre>\n$info</pre>";
-    
-    } catch (Throwable $e) {
-    
-      // Ignore errors
-    
-    }
-
-    restore_error_handler ();
 
   }
 
@@ -260,16 +286,15 @@
       if ( ! headers_sent () )
         header ( 'HTTP/1.0 500 Internal Server Error' );
 
-      padExit ( TRUE );
+      padExit ( 500 );
 
     } catch (Throwable $e) {
     
-      // Ignore errors
+      echo 'oops';
     
     }
 
-    $GLOBALS ['padSkipShutdown'] = TRUE;
-    exit;
+    padExit ( 500 );  
 
   }
 
