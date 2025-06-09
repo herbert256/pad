@@ -3,7 +3,7 @@
 
   function padErrorGo ( $error, $file, $line ) {
 
-    padBootStop ( $error, $file, $line ); 
+    return padBootStop ( $error, $file, $line ); 
 
   }
 

@@ -34,7 +34,7 @@
 
   function padBootShutdown () {
 
-    if ( isset ( $GLOBALS ['padSkipShutdown'] ) )
+    if ( isset ( $GLOBALS ['padBootShutdown'] ) )
       return;
 
     $error = error_get_last ();
@@ -47,19 +47,16 @@
 
   function padBootStop ( $error, $file, $line ) {
 
-    if ( isset ( $GLOBALS ['padBootStop'] ) ) 
-      padBootExit ( "$file:$line $error", $GLOBALS ['padBootStop'] );
-  
-    $GLOBALS ['padBootStop'] = "$file:$line $error";
-      
     set_error_handler ( 'padBootStopError' );
 
     try {
 
-      padBootStopGo ( $error, $file, $line );
+      padBootStopTry ( $error, $file, $line );
+      restore_error_handler ();
 
     } catch (Throwable $e) {
 
+      restore_error_handler ();
       padBootStopCatch ( "$file:$line $error", $e );
   
     }
@@ -69,8 +66,13 @@
   }
 
 
-  function padBootStopGo ( $error, $file, $line ) {
+  function padBootStopTry ( $error, $file, $line ) {
 
+    if ( isset ( $GLOBALS ['padBootStop'] ) ) 
+      padBootProblems ( "$file:$line $error", $GLOBALS ['padBootStop'] );
+  
+    $GLOBALS ['padBootStop'] = "$file:$line $error";
+      
     $j = ob_get_level (); 
     for ( $i = 1; $i <= $j; $i++ ) 
       ob_get_clean ();
@@ -93,22 +95,17 @@
   }
 
 
-  function padBootStopError ( $severity, $message, $filename, $lineno ) {
-
-    throw new ErrorException ( $message, 0, $severity, $filename, $lineno );
-
-  }
 
 
   function padBootStopCatch  ( $error, $e ) {
     
-    set_error_handler ( 'padErrorThrow' );
+    set_error_handler ( 'padBootStopError' );
 
     try {
 
       $error2 = $e->getFile() . ':' .  $e->getLine() . ' ' . $e->getMessage() ;
 
-      padBootExit ( $error2, $error );
+      padBootProblems( $error2, $error );
 
     } catch (Throwable $e2) {
 
@@ -118,6 +115,33 @@
     }
 
     include 'exits/exit.php';
+
+  }
+
+
+  function padBootStopError ( $severity, $message, $filename, $lineno ) {
+
+    throw new ErrorException ( $message, 0, $severity, $filename, $lineno );
+
+  }
+
+
+  function padBootProblems ( $error1, $error2 ) {
+
+    if ( padLocal () )
+      echo "<pre><br>$error2<br>$error1</pre>";
+
+    padBootExit ();
+
+  }
+
+
+  function padBootExit () {
+
+    if ( function_exists ( 'padExit') )
+      padExit ( 500 );
+    else
+      include 'exits/exit.php';
 
   }
 
@@ -138,27 +162,6 @@
 
     return FALSE;
     
-  }
-
-
-  function padErrorThrow ( $type, $error, $file, $line ) {
-
-    if ( ( error_reporting() & $type ) ) 
-      throw new \ErrorException ( $error, 0, $type, $file, $line);
-
-  }
-
-
-  function padBootExit ( $error1 = '', $error2 = '' ) {
-
-    if ( padLocal () and ( $error1 or $error2 ) )
-      echo "<pre><br>$error2<br>$error1</pre>";
-
-    if ( function_exists ( 'padExit') )
-      padExit ( 500 );
-    else
-      include 'exits/exit.php';
-
   }
 
 

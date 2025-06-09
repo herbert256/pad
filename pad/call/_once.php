@@ -7,7 +7,8 @@
     if ( $GLOBALS ['padInfo'] ) 
       include 'events/callStart.php';
 
-    $padCallPHP = include_once $padCall;
+    $padTry = 'call/_tryOnce';
+    $padCallPHP = include 'try/try.php';
 
     if ( $GLOBALS ['padInfo'] ) 
       include 'events/callEnd.php';

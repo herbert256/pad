@@ -6,7 +6,7 @@
 
   function padErrorGo ( $error, $file, $line ) {
    
-    return FALSE;
+    return TRUE;
 
   }
 

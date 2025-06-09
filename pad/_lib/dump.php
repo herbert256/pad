@@ -6,11 +6,11 @@
 
     try {
 
-      padDumpGo ( $error );
+      padDumpTry ( $error );
 
     } catch (Throwable $e) {
   
-      include 'error/stop.php';
+      padErrorStop ( $error, $e );
   
     }
 
@@ -21,7 +21,7 @@
   }
 
 
-  function padDumpGo ( $info ) {
+  function padDumpTry ( $info ) {
 
     if ( ! headers_sent () ) 
       header ( 'HTTP/1.0 500 Internal Server Error' );

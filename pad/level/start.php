@@ -9,9 +9,10 @@
   if ( padTagParm ('data') ) $padData [$pad] = include "options/data.php";   
 
   include 'level/set.php';
-  include 'level/go.php';
   
-  include 'level/flags.php';
+  $padTry = 'level/go';
+  include 'try/try.php';
+
   include 'level/base.php';
   include 'level/data.php';
   include 'level/name.php';

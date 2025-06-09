@@ -1,6 +1,51 @@
 <?php
 
 
+  function padSecondTime ( $id ) {
+
+    if ( isset ( $GLOBALS ["padSecond$id"] ) )
+      return TRUE;
+
+    $GLOBALS ["padSecond$id"] = TRUE;
+
+    return FALSE;
+
+  }
+
+
+  function padCloseSession () {
+
+    set_error_handler ( 'padErrorThrow' );
+
+    try {
+
+      padCloseSessionTry ();
+
+    } catch (Throwable $e) {
+
+      // Ignore errors
+
+    }
+
+    restore_error_handler ();
+
+  }
+
+
+  function padCloseSessionTry () {
+
+    if ( ! isset ( $GLOBALS ['padSessionStarted'] ) or padSecondTime ( 'closeSession' ) )
+      return;
+
+    foreach ( $GLOBALS ['padSessionVars'] as $var )
+      if ( isset ( $GLOBALS [$var] ) )
+        $_SESSION [$var] = $GLOBALS [$var];
+
+    session_write_close ();
+
+  }
+
+
   function padWriteFile ( $output ) {
 
     $file = padFileName ();
@@ -580,8 +625,10 @@
       
   function padHeader ($header) {
 
-    if ( ! headers_sent () )
-      header ($header);
+    if ( headers_sent () )
+      return;
+
+    header ($header);
 
     $GLOBALS ['padHeaders'] [] = $header;
  

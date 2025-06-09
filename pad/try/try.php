@@ -1,22 +1,23 @@
 <?php 
 
-  if ( ! $GLOBALS ['padTryCatch'] )
+  if ( ! $GLOBALS ['padErrorTry'] )
     return include "$padTry.php";
-
-  set_error_handler ( 'padErrorThrow' );
 
   try {
 
-    $padTryReturn = include "$padTry.php";
+    return include "$padTry.php";
 
   } catch (Throwable $padTryException) {
 
-    $padTryReturn = include "try/$padTry.php";
+    padErrorGo ( 
+      'CATCH: ' .
+      $padTryException->getMessage(),
+      $padTryException->getFile(),
+      $padTryException->getLine()
+    );
+
+    return include "try/catch/$padTry.php";
 
   }
-
-  restore_error_handler ();
-
-  return $padTryReturn;
 
 ?>

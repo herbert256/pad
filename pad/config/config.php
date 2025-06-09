@@ -2,22 +2,25 @@
   
   //  Error handling
 
-  $padErrorAction = 'pad';  // 'pad'    = PAD's own full blown error handler.
-                            // 'boot'   = Keep using the lightweight PAD boot error handler
-                            // 'php'    = Use the PHP defaults (php.ini).
-                            // 'stop'   = Stop processing but do the PAD stop handling.
-                            // 'exit'   = Exit, don't do the PAD stop handling
-                            // 'ignore' = Ignore all errors and continue processing.
-                            // 'report' = Report errors and continue processing.
+  $padErrorAction    = 'pad';  // 'pad'    = PAD's own full blown error handler.
+                               // 'boot'   = Keep using the lightweight PAD boot error handler
+                               // 'php'    = Use the PHP defaults (php.ini).
+                               // 'stop'   = Stop processing but do the PAD stop handling.
+                               // 'exit'   = Exit, don't do the PAD stop handling
+                               // 'ignore' = Ignore all errors and continue processing.
+                               // 'log'    = Log errors to Apache error log and continue processing.
+                               // 'dump'   = Dump errors to the DATA directory and continue processing.
  
-  $padErrorLevel  = 'all';  // Kind of PHP errors that will be processed by $padErrorAction
-                            // 'none' , 'error' , 'warning' , 'notice' , 'all'
-                            // (not used when $padErrorAction is 'php' or 'boot')
+  $padErrorLevel     = 'all';  // Kind of PHP errors that will be processed by $padErrorAction
+                               // 'none' , 'error' , 'warning' , 'notice' , 'all'
+                               // (not used when $padErrorAction is 'php' or 'boot')
 
-  $padErrorLog    = TRUE;   //  Report errors to Apache error log
-  $padErrorReport = TRUE;   //  Report errors to the DATA directory
+  $padErrorTry       = TRUE;   //  Trap exceptions and handle like errors
 
-  $padTryCatch    = FALSE;   //  Trap problems
+                               //  Only used when $padErrorAction is 'pad'
+  $padErrorLog       = TRUE;   //  Log errors to Apache error log
+  $padErrorReport    = TRUE;   //  Dump errors to the DATA directory
+
 
   // Many ways to track/trace and so.
   // Optional, one or more values from the sub folder 'info' 
@@ -80,8 +83,8 @@
     // Other settings.
 
   $padGzip      = FALSE;  // Send the result zipped
-  $padCookies   = TRUE;   // Send the result zipped
+  $padCookies   = TRUE;   // Set some cookies
   $padNoNo      = FALSE;  // No pad stuff, just plane PHP   
-  $padFastLink  = 32;     // Lenght of the FastLink code in the URL
+  $padFastLink  = 32;     // Length of the FastLink code in the URL
 
 ?>

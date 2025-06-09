@@ -4,8 +4,10 @@
     include 'events/walk.php';
 
   $padWalk [$pad] = 'next';
-  
-  include 'level/go.php'; 
+
+  $padTry = 'level/go';
+  include 'try/try.php';
+
   include 'level/flags.php';
 
   if ( $padWalk [$pad] ) {

@@ -63,7 +63,7 @@
 
     global $padWebNoHeaders, $padSent;
 
-    if ( isset ( $padSent ) )
+    if ( isset ( $padSent ) or padSecondTime ( 'webHeaders' ) )
       return;
 
     if ( $padWebNoHeaders )

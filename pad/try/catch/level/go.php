@@ -1,0 +1,5 @@
+<?php 
+
+  $padNull [$pad] = TRUE;
+
+?>

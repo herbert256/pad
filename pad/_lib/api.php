@@ -1,6 +1,5 @@
 <?php
 
-
   function padFastLink ( $padPage, $vars ) {
     
     global $padFastLink, $padSesID, $padReqID, $padHost;
