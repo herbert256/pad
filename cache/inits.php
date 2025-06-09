@@ -3,11 +3,11 @@
   include 'config/cache.php';
 
   if ( $padOutputType <> 'web' )
-    $padCache = FALSE; ;
+    $padCache = FALSE;
   elseif ( isset ( $_SERVER['REQUEST_METHOD'] ) and $_SERVER['REQUEST_METHOD'] <> 'GET' )
-    $padCache = FALSE; ;
+    $padCache = FALSE;
   elseif ( ! $padCacheServerAge ) 
-    $padCache = FALSE; ;
+    $padCache = FALSE;
 
   if ( ! $padCache )
     return;

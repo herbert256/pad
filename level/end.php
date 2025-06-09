@@ -5,12 +5,12 @@
       include 'occurrence/end.php';
 
   if ( next ($padData [$pad]) !== FALSE )
-    return include 'occurrence/occurence.php';
+    return include 'occurrence/occurrence.php';
 
   if ( $padWalk [$pad] == 'next' ) {
     include 'walk/next.php';
     if ( $padWalk [$pad] == 'next' )
-      return include 'occurrence/occurence.php';
+      return include 'occurrence/occurrence.php';
   }
 
   if ( $padStartBase [$pad] ) return include 'level/start_end/start2.php';

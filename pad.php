@@ -13,6 +13,6 @@
 
   include 'error/boot.php';
   include 'config/config.php';
-  include 'start/enter/start.php'
+  include 'start/enter/start.php';
   
 ?>

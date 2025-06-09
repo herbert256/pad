@@ -10,6 +10,6 @@
 
   reset ( $padData [$pad] );
 
-  include 'occurrence/occurence.php';
+  include 'occurrence/occurrence.php';
    
 ?>

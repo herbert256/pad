@@ -39,6 +39,6 @@
     return include 'level/start_end/start1.php';
 
   if ( count ( $padData [$pad] ) and $padBase [$pad] )
-    include 'occurrence/occurence.php';
+    include 'occurrence/occurrence.php';
 
 ?>
