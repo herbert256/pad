@@ -6,7 +6,7 @@
   global $pad, $padInfoTraceLocalChk, $padInfoTraceDir, $padInfoTraceSkipLevel, $padInfoTraceMaxLevel, $padInfoTraceLevel, $padInfoTraceStartEnd, $padInfoTraceDump, $padInfoTraceCnt;
 
   if ( $padInfoTraceStartEnd )
-    padInfoTrace ( 'trace', 'end', $padOut [$pad] );
+    padInfoTrace ( 'trace', 'end', $padResult [$pad] ?? '');
 
   if ( $padInfoTraceLocalChk )
     padInfoTraceCheckLocal ( '' );

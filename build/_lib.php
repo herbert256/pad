@@ -17,7 +17,7 @@
           $padBuildLib .= include 'call/once.php';
  
         if ( substr($padCall, -4) == '.pad' )
-          $padBuildLib .= padFileGetContents ( $padCall );
+          $padBuildLib .= padFileGet ( $padCall );
 
       }
 

@@ -3,7 +3,9 @@
    if ( ! function_exists ( 'padInfoXml') )
     return;
 
-  padInfoXml     ();
-  padInfoXmlTidy ();
+  padInfoXml ();
+
+  if ( $GLOBALS ['padInfoXmlTidy'] )
+   padFileXmlTidy ( $GLOBALS ['padInfoXmlFile'] );
 
 ?>

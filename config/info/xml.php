@@ -2,8 +2,8 @@
   
   $padInfoXml          = TRUE; 
 
-  $padInfoXmlParms     = FALSE;
-  $padInfoXmlShowEmpty = FALSE;
+  $padInfoXmlParms     = TRUE;
+  $padInfoXmlShowEmpty = TRUE;
   $padInfoXmlTidy      = TRUE;
 
 ?>

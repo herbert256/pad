@@ -379,8 +379,8 @@
 
     global $padInfoTraceDir;
 
-    $file1 = DAT . "$padInfoTraceDir/$dir/f$ile1.txt";
-    $file2 = DAT . "$padInfoTraceDir/$dir/f$ile2.txt";
+    $file1 = DAT . "$padInfoTraceDir/$dir/$file1.txt";
+    $file2 = DAT . "$padInfoTraceDir/$dir/$file2.txt";
 
     $file1 = str_replace ( '//', '/', $file1 );
     $file2 = str_replace ( '//', '/', $file2 );

@@ -2,14 +2,11 @@
   
   $padInfoXapp = TRUE;
 
-  $padInfoStats = TRUE;
-  $padInfoTrack = TRUE;
-  $padInfoXapp  = TRUE;
+  $padInfoXml          = TRUE; 
 
-  $padInfoTrackFileRequest = TRUE;      
-  $padInfoTrackFileData    = FALSE;      
-  $padInfoTrackDbSession   = FALSE;     
-  $padInfoTrackDbRequest   = FALSE;    
-  $padInfoTrackDbData      = FALSE;  
+  $padInfoXmlParms     = TRUE;
+  $padInfoXmlShowEmpty = TRUE;
+  $padInfoXmlTidy      = TRUE;
+
   
 ?>

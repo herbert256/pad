@@ -1,6 +1,39 @@
 <?php
 
 
+  function padFileXmlTidy ( $file ) {
+    
+    $options = [
+      'input-xml'           => true,
+      'output-xml'          => true,
+      'force-output'        => true,
+      'add-xml-decl'        => false,
+      'indent'              => true,
+      'tab-size'            => 2,
+      'indent-spaces'       => 2,
+      'vertical-space'      => 'no',
+      'wrap'                => 0,
+      'clean'               => 'yes',
+      'drop-empty-elements' => 'yes'
+    ];
+
+    $data = padFileGet ( $file );
+
+    $tidy = new tidy;
+    $tidy->parseString ( $data, $options, 'utf8' );
+    $tidy->cleanRepair();
+
+    if ( $tidy === FALSE )
+      return;
+
+    $value = $tidy->value;
+
+    if ( $value and strlen($value) > 10 )
+      padFilePut ( $file, $value, 0, 1 );
+
+  }
+
+
   function padSecondTime ( $id ) {
 
     if ( isset ( $GLOBALS ["padSecond$id"] ) )
@@ -51,7 +84,7 @@
     $file = padFileName ();
     $data = padOutput   ( $output ) ; 
 
-    padFilePutContents ( $file, $data );
+    padFilePutDat ( $file, $data );
 
   }
 

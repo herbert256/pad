@@ -474,7 +474,7 @@
 
     try {
 
-      padFilePutContents ( "$dir/error.txt", DAT . "$info\n\n$done" );   
+      padFilePutDat ( "$dir/error.txt", DAT . "$info\n\n$done" );   
     
     } catch (Throwable $e ) {
 
@@ -529,7 +529,7 @@
 
     try {
 
-      padFilePutContents ( "$dir/oops.txt", 
+      padFilePutDat ( "$dir/oops.txt", 
                            "$info\n\n" . 
                            $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage() 
                          );

@@ -1,34 +1,51 @@
 <?php
 
 
-  function padFileContains ( $file, $string ) {
+  function padFileGetApp ( $file, $default='' ) {
 
-    $file = str_replace ( '.php', '.pad', $file );
-
-    if ( file_exists( $file ) ) 
-      if ( str_contains ( file_get_contents ( $file ), $string ) ) 
-        return TRUE;
-
-    return FALSE;
+    return padFileGet ( APP . $file, $default );
 
   }
 
 
-  function padFileCorrectX ( $file ) {
+  function padFileGetDat ( $file, $default='' ) {
 
-    $file = str_replace ( ':', '_', $file );
-    $file = str_replace ( '@', '_', $file );
-    $file = str_replace ( "'", '_', $file );
-    $file = str_replace ( '=', '_', $file );
-
-    return $file;
+    return padFileGet ( DAT . $file, $default );
 
   }
 
 
-  function padFileGetContents ( $file, $default='' ) {
+  function padFileGetPad ( $file, $default='' ) {
 
-    if ( $GLOBALS ['padInfo'] and function_exists ('padInfoTrace') )
+    return padFileGet ( PAD . $file, $default );
+
+  }
+
+
+  function padFilePutApp ( $file, $data='', $append=0 ) {
+
+    return padFilePut ( APP . $file, $data, $append );
+
+  }
+
+
+  function padFilePutDat ( $file, $data='', $append=0 ) {
+
+    return padFilePut ( DAT . $file, $data, $append );
+ 
+  }
+
+
+  function padFilePutPad ( $file, $data='', $append=0 ) {
+
+    return padFilePut ( PAD . $file, $data, $append );
+ 
+  }
+
+
+  function padFileGet ( $file, $default='' ) {
+
+    if ( $GLOBALS ['padInfo'] )
       include 'events/get.php';
 
     if ( is_dir ($file) )
@@ -42,19 +59,10 @@
   }
 
 
-  function padFilePutContents ($in, $data='', $append=0) {
+  function padFilePut ( $file, $data='', $append=0 ) {
 
-    if ( $GLOBALS ['padInfo']  and function_exists ('padInfoTrace') )
+    if ( $GLOBALS ['padInfo'] )
       include 'events/put.php';
-
-    global $pad;
-    
-    $file = DAT . str_replace(':', '_', $in);
-
-    # $file = padFileCorrect ( $file );
-
-    if ( ! padValidFile ( $file ) )
-      return padError ("Invalid file name: $file");
 
     padFileChkDir  ( $file );
     padFileChkFile ( $file );
@@ -66,6 +74,19 @@
       if ($append) file_put_contents ($file, "$data\n", LOCK_EX | FILE_APPEND);
       else         file_put_contents ($file, $data,     LOCK_EX);
     
+  }
+
+
+  function padFileContains ( $file, $string ) {
+
+    $file = str_replace ( '.php', '.pad', $file );
+
+    if ( file_exists( $file ) ) 
+      if ( str_contains ( file_get_contents ( $file ), $string ) ) 
+        return TRUE;
+
+    return FALSE;
+
   }
 
 

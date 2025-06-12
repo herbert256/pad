@@ -1,6 +1,9 @@
 <?php
 
-  if ( $GLOBALS ['padInfoTracePut'] )
-   if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'file', 'put', $in );
+  if ( function_exists ('padInfoTrace') )
+    if ( $GLOBALS ['padInfoTrace'] ) 
+      if ( $GLOBALS ['padInfoTracePut'] )
+         padInfoTrace ( 'file', 'put', $in );
+
    
 ?>

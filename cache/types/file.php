@@ -73,7 +73,7 @@
 
     $file = $GLOBALS ['padCacheFile'] . $file;
 
-    $return = padFileGetContents ($file);
+    $return = padFileGet ($file);
 
     return $return;    
 

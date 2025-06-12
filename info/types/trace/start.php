@@ -19,6 +19,6 @@
   $padInfoTraceDir         = "trace/$padPage/$padLog-". $padInfoTraceId;
 
   if ( $padInfoTraceStartEnd )
-    padInfoTrace ( 'trace', 'start', $padOut [$pad] );
+    padInfoTrace ( 'trace', 'start', $Result [$pad] ?? '');
         
 ?>

@@ -20,6 +20,7 @@
 
     if ( str_starts_with($file, APP)  ) return TRUE;
     if ( str_starts_with($file, DAT)  ) return TRUE;
+    if ( str_starts_with($file, PAD)  ) return TRUE;
 
     return FALSE;
 

@@ -14,9 +14,9 @@
   } else
 
     if ( $padLocalBox )
-      $padLocalData = padSandbox ( padFileGetContents ($padLocalFile) ); 
+      $padLocalData = padSandbox ( padFileGet ($padLocalFile) ); 
     else
-      $padLocalData = padCode ( padFileGetContents ($padLocalFile) ); 
+      $padLocalData = padCode ( padFileGet ($padLocalFile) ); 
 
   if ( $padLocalName and ! $GLOBALS ['padName'] [$GLOBALS['pad']] )
     $GLOBALS ['padName'] [$GLOBALS['pad']] = $padLocalName;

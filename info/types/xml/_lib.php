@@ -5,16 +5,13 @@
 
     global $padInfoXmlEvents;
 
-    foreach ( $padInfoXmlEvents as $key => $event ) {
+    foreach ( $padInfoXmlEvents as $event ) {
 
       if     ( $event ['event'] == 'level-start' ) padInfoXmlLevelStart ( $event );
       elseif ( $event ['event'] == 'level-end'   ) padInfoXmlLevelEnd   ( $event );
       elseif ( $event ['event'] == 'occur-start' ) padInfoXmlOccurStart ( $event );
       elseif ( $event ['event'] == 'occur-end'   ) padInfoXmlOccurEnd   ( $event );
 
-      if     ( $event ['event'] == 'level-start' ) padInfoXmlLevelStartShort ( $event );
-      elseif ( $event ['event'] == 'level-end'   ) padInfoXmlLevelEndShort   ( $event );
-  
     }
 
   }
@@ -83,9 +80,12 @@
     if ( isset ($padInfoXmlTree [$tree] ['SKIP'] ) )
       return;
 
-    if ( $written ) padInfoXmlClose ( 'occurs' );
-    if ( $childs  ) padInfoXmlClose ( $tag, 'short' );
+    if ( $written ) 
+      padInfoXmlClose ( 'occurs' );
 
+    if ( $padInfoXmlTree [$tree] ['childs'] )
+      padInfoXmlClose ( $tag );   
+  
   }
 
 
@@ -136,83 +136,49 @@
   }  
 
 
-  function padInfoXmlLevelStartShort ( $event ) {
-
-    global $padInfoXmlTree;
-
-    extract ( $event );
-    extract ( $padInfoXmlTree [$tree] );
-
-    $options = [];
-
-    if ( $size               ) $options ['size']   = $size;
-    if ( count ($occurs) > 1 ) $options ['occurs'] = count ($occurs);
-    if ( $parm               ) $options ['parm']   = $parm;
-
-    if ( $padInfoXmlTree [$tree] ['childs'] )
-      padInfoXmlOpen ( $tag, $options, 'short' );
-    else
-      padInfoXmlLine ( $tag, $options, 'short' );
-   
-  }
-
-
-  function padInfoXmlLevelEndShort ( $event ) {
-
-    global $padInfoXmlTree;
-
-    extract ( $event );
-    extract ( $padInfoXmlTree [$tree] );
-
-    if ( $childs ) 
-      padInfoXmlClose ( $tag );
-
-  }
-
-
-  function padInfoXmlOpen ( $xml, $parms=[], $type='long' ) {
+  function padInfoXmlOpen ( $xml, $parms=[] ) {
   
     global $padInfoXmlDepth;
 
     $more = padInfoXmlMore ( $parms );
 
-    padInfoXmlWrite ( "<$xml$more>", $type );
+    padInfoXmlWrite ( "<$xml$more>" );
 
     $padInfoXmlDepth++;
       
   }
 
 
-  function padInfoXmlLine ( $xml, $parms=[], $type='long' ) {
+  function padInfoXmlLine ( $xml, $parms=[] ) {
   
     $more = padInfoXmlMore ( $parms );
  
-    padInfoXmlWrite ( "<$xml$more />", $type );
+    padInfoXmlWrite ( "<$xml$more />" );
   
   }
 
 
-  function padInfoXmlClose ( $xml, $type='long' ) {
+  function padInfoXmlClose ( $xml ) {
 
     global $padInfoXmlDepth;
 
     $padInfoXmlDepth--;
   
-    padInfoXmlWrite ( "</$xml>", $type );
+    padInfoXmlWrite ( "</$xml>" );
   
   }
 
 
-  function padInfoXmlWrite ( $xml, $type='long' ) {
+  function padInfoXmlWrite ( $xml ) {
   
-    global $padInfoXmlDepth, $padInfoXmlDir;
+    global $padInfoXmlDepth, $padInfoXmlFile;
 
     if ( $padInfoXmlDepth > 0 )
       $spaces = str_repeat ( ' ', $padInfoXmlDepth * 2 );
     else
       $spaces = '';
 
-    padInfoLine ( "$padInfoXmlDir/$type.xml", "$spaces$xml" );
+    padFilePut ( $padInfoXmlFile, "$spaces$xml", 1 );
   
   }
 
@@ -227,52 +193,6 @@
 
     return $more;
   
-  }
-
-
-  function padInfoXmlTidy () {
-
-    global $padInfoXmlTidy, $padInfoXmlDir;
-
-    if ( ! $padInfoXmlTidy )
-      return;
-    
-    $options = [
-      'input-xml'           => true,
-      'output-xml'          => true,
-      'force-output'        => true,
-      'add-xml-decl'        => false,
-      'indent'              => true,
-      'tab-size'            => 2,
-      'indent-spaces'       => 2,
-      'vertical-space'      => 'no',
-      'wrap'                => 0,
-      'clean'               => 'yes',
-      'drop-empty-elements' => 'yes'
-    ];
-
-    padInfoXmlTidyGo ( "$padInfoXmlDir/long.xml",  $options );
-    padInfoXmlTidyGo ( "$padInfoXmlDir/short.xml", $options );
-
-  }
-
-
-  function padInfoXmlTidyGo ( $file, $options ) {
-
-    $data = padInfoGet ( DAT . $file );
-
-    $tidy = new tidy;
-    $tidy->parseString ( $data, $options, 'utf8' );
-    $tidy->cleanRepair();
-
-    if ( $tidy === FALSE )
-      return;
-
-    $value = $tidy->value;
-
-    if ( $value and strlen($value) > 10 )
-      padInfoFile ( $file, $value );
-
   }
 
 

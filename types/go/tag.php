@@ -5,7 +5,7 @@
   $padCall = "$padTagGo.php";
   include 'call/ob.php';
 
-  $padTagContent = $padCallOB . padFileGetContents ("$padTagGo.pad");
+  $padTagContent = $padCallOB . padFileGet ("$padTagGo.pad");
 
   return $padCallPHP;
 

@@ -15,7 +15,7 @@
       }
 
       if ( file_exists ( $padContentPad ) ) 
-        $padContentData .= padFileGetContents ( $padContentPad );
+        $padContentData .= padFileGet ( $padContentPad );
 
       return $padContentData;
       
