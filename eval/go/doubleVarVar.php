@@ -12,11 +12,11 @@
   elseif ( $opr == '.'   ) $now =  $left .   $right;
   else { 
 
-    if ( strpos($left, '.' ) === FALSE ) $left  = (int)    $left;
-    else                                 $left  = (double) $left;
+    if ( strpos($left, '.' ) === FALSE ) $left  = (int)   $left;
+    else                                 $left  = (float) $left;
 
-    if ( strpos($right, '.') === FALSE ) $right = (int)    $right;
-    else                                 $right = (double) $right;
+    if ( strpos($right, '.') === FALSE ) $right = (int)   $right;
+    else                                 $right = (float) $right;
 
     if     ( $opr == '+' ) $now = $left + $right;
     elseif ( $opr == '-' ) $now = $left - $right;

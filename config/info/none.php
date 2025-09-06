@@ -4,7 +4,7 @@
   $padInfoXml              = FALSE;       // Build a XML file of the structure of the PAD page 
   $padInfoStats            = FALSE;       // Keep runtime statistics about time and cpu used
   $padInfoTrace            = FALSE;       // Trace the internal working of PAD
-  $padInfoXref             = FALSE;       // Build the <app>_Xref directorie
+  $padInfoXref             = FALSE;       // Build the <app>_xref directory
 
   $padInfoTrackFileRequest = FALSE;       // Request info in the data directory
   $padInfoTrackFileData    = FALSE;       // Complete result page in the directory

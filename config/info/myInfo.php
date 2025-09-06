@@ -1,6 +1,7 @@
 <?php
   
   $padInfoStats = TRUE;
+
   $padInfoTrack = TRUE;  
 
   $padInfoTrackFileRequest = TRUE;      
