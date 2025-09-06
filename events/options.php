@@ -3,7 +3,7 @@
   if ( $padTagSeq [$pad] )
     return;
 
-  if ( $GLOBALS ['padInfoXapp'] or $GLOBALS ['padInfoXref'] )
+  if ( $GLOBALS ['padInfoXref']  )
 
     foreach ( $padParms [$pad] as $padEventsOption ) {
 
@@ -12,9 +12,9 @@
       if ( $padPrmKind == 'option' )  {
 
         if ( file_exists ( "options/$padPrmName.php" ) )
-          padInfoXapp ( 'options', 'general', $padPrmName );
+          padInfoXref ( 'options', 'general', $padPrmName );
         
-        padInfoXapp ( 'options', 'all', $padPrmName );
+        padInfoXref ( 'options', 'all', $padPrmName );
 
       }
 

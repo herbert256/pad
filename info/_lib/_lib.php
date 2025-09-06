@@ -62,6 +62,21 @@
   }
 
 
+  function padInfoPut ( $file, $data='', $append=0 ) {
+
+    padFileChkDir  ( $file );
+    padFileChkFile ( $file );
+
+    if ( is_array($data) or is_object($data) )
+      $data = padJson ($data);
+      
+    if ($data)
+      if ($append) file_put_contents ($file, "$data\n", LOCK_EX | FILE_APPEND);
+      else         file_put_contents ($file, $data,     LOCK_EX);
+    
+  }
+
+
   function padInfoMkDir( $dir ) {
 
    set_error_handler ( 'padErrorThrow' );

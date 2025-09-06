@@ -1,12 +1,12 @@
 <?php
 
-  if ( $GLOBALS ['padInfoXref'] or $GLOBALS ['padInfoXapp'] ) {
+  if (  $GLOBALS ['padInfoXref'] ) {
 
     if ( $type == 7 and $value !== TRUE )
-      padInfoXapp ( 'properties', $field );
+      padInfoXref ( 'properties', $field );
   
     if ( $type == 8 and $value !== TRUE )
-      padInfoXapp ( 'properties', $field );
+      padInfoXref ( 'properties', $field );
   
   }
   

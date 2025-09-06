@@ -1,18 +1,15 @@
 <?php
   
   
-  function padInfoXapp ( $dir1, $dir2, $dir3='' ) {
+  function padInfoXref ( $dir1, $dir2, $dir3='' ) {
 
-    if ( $GLOBALS ['padInfoXref'] )
-      padInfoXref ( $dir1, $dir2, $dir3 );
-
-    if ( ! $GLOBALS ['padInfoXapp'] )
+    if ( ! $GLOBALS ['padInfoXref'] )
       return;
 
-    global $padPage, $padInfoXappSource, $padStartPage;
+    global $padPage, $padInfoXrefSource, $padStartPage;
 
     if ( $dir1 == 'sequence' ) 
-      return padInfoXappGo ( '_xref', $dir1, $dir2, $dir3 );
+      return padInfoXrefGo ( '_xref', $dir1, $dir2, $dir3 );
 
     if ( padInsideOther ()                    ) return;
     if ( $padPage <> $padStartPage            ) return;
@@ -21,18 +18,18 @@
     if ( str_contains ( $padPage, 'manual'  ) ) return;
     if ( ! isset ( $_REQUEST['padInclude']  ) ) return;
  
-    if ( $dir1 == 'tag'        and $dir2 <> 'pad' ) return padInfoXappGo ( '_xref', $dir1, $dir2, $dir3 );
-    if ( $dir1 == 'functions'  and $dir2 <> 'pad' ) return padInfoXappGo ( '_xref', $dir1, $dir2, $dir3 );
+    if ( $dir1 == 'tag'        and $dir2 <> 'pad' ) return padInfoXrefGo ( '_xref', $dir1, $dir2, $dir3 );
+    if ( $dir1 == 'functions'  and $dir2 <> 'pad' ) return padInfoXrefGo ( '_xref', $dir1, $dir2, $dir3 );
 
-    if (   $dir3 and strpos ( $padInfoXappSource, $dir3 ) === FALSE ) return;
-    if ( ! $dir3 and strpos ( $padInfoXappSource, $dir2 ) === FALSE ) return;
+    if (   $dir3 and strpos ( $padInfoXrefSource, $dir3 ) === FALSE ) return;
+    if ( ! $dir3 and strpos ( $padInfoXrefSource, $dir2 ) === FALSE ) return;
  
-    padInfoXappGo ( '_xref', $dir1, $dir2, $dir3 );
+    padInfoXrefGo ( '_xref', $dir1, $dir2, $dir3 );
 
   }
   
 
-  function padInfoXappGo ( $prefix, $dir1, $dir2, $dir3 ) {
+  function padInfoXrefGo ( $prefix, $dir1, $dir2, $dir3 ) {
 
     if ( $dir1 == 'properties' and ! file_exists ( "tag/$dir2.php" ) )
       $dir2 = strtolower($dir2);

@@ -57,9 +57,6 @@
     $output ['data']    = '';
 
     $stats = isset ( $GLOBALS ['padCurlStats'] );
-    
-    if ( $stats )
-      $GLOBALS ['padCurlStats'] = [];
 
     $url = ( is_array($input) ) ? $input ['url'] : $input;
 
@@ -222,10 +219,9 @@
     }
 
     if ( $stats and isset ( $output ['headers'] ['PAD-Stats'] ) ) {
-      $output ['stats'] = json_decode ( $output ['headers'] ['PAD-Stats'], TRUE ) ;
-      $output ['stats'] ['curl']   = $end - $start;
-      $GLOBALS ['padCurlStats'] = $output ['stats'] ; 
-
+      if ( isset ( $output ['headers'] ['PAD-Stats'] ) )
+        $output ['stats'] = json_decode ( $output ['headers'] ['PAD-Stats'], TRUE ) ;
+        $output ['stats'] ['curl']   = $end - $start;
     }
 
     if ( isset($output ['info']['header_size']) )

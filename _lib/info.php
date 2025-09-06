@@ -5,10 +5,9 @@
 
     if ( ! isset ( $GLOBALS ['padInfoTrack'] ) ) $GLOBALS ['padInfoTrack'] = FALSE;
     if ( ! isset ( $GLOBALS ['padInfoStats'] ) ) $GLOBALS ['padInfoStats'] = FALSE;
-    if ( ! isset ( $GLOBALS ['padInfoXapp']  ) ) $GLOBALS ['padInfoXapp']  = FALSE;
+    if ( ! isset ( $GLOBALS ['padInfoXref']  ) ) $GLOBALS ['padInfoXref']  = FALSE;
     if ( ! isset ( $GLOBALS ['padInfoTrace'] ) ) $GLOBALS ['padInfoTrace'] = FALSE;
     if ( ! isset ( $GLOBALS ['padInfoXml']   ) ) $GLOBALS ['padInfoXml']   = FALSE;
-    if ( ! isset ( $GLOBALS ['padInfoXref']  ) ) $GLOBALS ['padInfoXref']  = FALSE;
 
   }
 

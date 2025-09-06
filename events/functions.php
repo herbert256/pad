@@ -1,6 +1,6 @@
 <?php
 
-  if ( $GLOBALS ['padInfoXapp'] or $GLOBALS ['padInfoXref'] ) 
-    padInfoXapp ( 'functions', $kind, $name );
+  if ( $GLOBALS ['padInfoXref']  ) 
+    padInfoXref ( 'functions', $kind, $name );
 
 ?>

@@ -1,12 +1,16 @@
 <?php
   
-  $padInfoXapp = TRUE;
+  $padInfoStats = TRUE;
+  $padInfoTrack = TRUE;  
 
-  $padInfoXml          = TRUE; 
-
-  $padInfoXmlParms     = TRUE;
-  $padInfoXmlShowEmpty = TRUE;
-  $padInfoXmlTidy      = TRUE;
-
+  $padInfoTrackFileRequest = TRUE;      
+  $padInfoTrackFileData    = TRUE;      
+  $padInfoTrackDbSession   = FALSE;     
+  $padInfoTrackDbRequest   = FALSE;    
+  $padInfoTrackDbData      = FALSE;    
   
+  $padInfoXref = TRUE;
+
+  $padInfoXml = TRUE; 
+
 ?>

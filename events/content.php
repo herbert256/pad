@@ -2,7 +2,7 @@
 
   return;
   
-  if ( $GLOBALS ['padInfoXapp'] or $GLOBALS ['padInfoXref'] ) 
-      padInfoXapp ( 'constructs', 'content' );
+  if ( $GLOBALS ['padInfoXref']  ) 
+      padInfoXref ( 'constructs', 'content' );
 
 ?>

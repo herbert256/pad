@@ -15,8 +15,8 @@
       return;
 
     padDb ( "insert delayed into track_request
-              values('{1}', '{2}', '{4:32}', NOW(), {5}, '{6}', '{7:32}', '{8}', '{9:1023}', '{10:1023}', '{11:1023}', '{12:1023}')
-              ",
+             values('{1}', '{2}', '{4:32}', NOW(), {5}, '{6}', '{7:32}', '{8}', '{9:1023}', '{10:1023}', '{11:1023}', '{12:1023}')
+            ",
       [  1 => $session,
          2 => $request,
          4 => $GLOBALS ['padStartPage'] ?? '',
@@ -87,28 +87,16 @@
 
     padInfoFile ( 
       "track/requests/$padLog.json", 
-        [ 'pad'     => [ 
-             'session' => $GLOBALS ['padSesID'] ?? '',
-             'request' => $GLOBALS ['padReqID'] ?? '',
-             'parent'  => $GLOBALS ['padRefID'] ?? '',
-             'page'    => $GLOBALS ['padPage']  ?? '',
-             'stop'    => $GLOBALS ['padStop']  ?? '',
-             'length'  => $GLOBALS ['padLen']   ?? '',
-             'start'   => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0 , 
-             'end'     => microtime (true),
-             'etag'    => $GLOBALS ['padEtag']  ?? ''  ],
-          'stats'   => $GLOBALS ['padInfoStatsInfo'] ?? [],
-          'in'      => json_decode ( padInfoGet ( DAT . "track/requests/$padLog-entry.json" ) ),
-          'out'     => [
-             'http'   => $http,
+        [ 'pad' => padInfo (),
+          'in'  => json_decode ( padInfoGet ( DAT . "track/requests/$padLog-entry.json" ) ),
+          'out' => [
+             'http'    => $http,
              'headers' => [
-               'php' => $phpHeaders,
-               'pad' => $padHeaders ], 
-             'data' => $GLOBALS ['padOutput'],
-            ],
-          'session' => $_SESSION ?? '',
-          'server'  => $_SERVER ?? '',
-          'getenv'  => getenv () ?? ''
+               'php'     => $phpHeaders,
+               'pad'     => $padHeaders ], 
+             'length'  => $GLOBALS ['padLen']   ?? '',
+             'data'    => $GLOBALS ['padOutput'],
+            ]
         ] 
     );
 
@@ -121,7 +109,7 @@
 
     global $padStartPage;
     
-    if ( isset ( $_REQUEST['padInclude'] ) )
+    if ( padInclude () )
       $dir = 'include';
     else
       $dir = 'complete';

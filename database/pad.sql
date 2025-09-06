@@ -20,7 +20,7 @@ CREATE TABLE `track_request` (
   `request` char(8) NOT NULL,  
   `page` varchar(32) NOT NULL,
   `time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `duration` int(11) NOT NULL,
+  `duration` bigint(11) NOT NULL,
   `bytes` int(11) NOT NULL,
   `stop` varchar(3) NOT NULL,
   `etag` char(22) NOT NULL,

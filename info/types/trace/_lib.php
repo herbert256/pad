@@ -3,6 +3,9 @@
 
   function padInfoTraceStart ( ) {   
 
+    if ( ! isset ( $GLOBALS ['padInfoTraceLvl'] [ $GLOBALS ['padInfoTraceCnt'] ] ) )
+      return 0;
+
     if ( $GLOBALS ['padInfoTraceLvl'] [ $GLOBALS ['padInfoTraceCnt'] ] < 0 )
       return 0;
     

@@ -2,10 +2,9 @@
   
   $padInfoTrack            = TRUE;       // Big Brother, session and request information of the client
   $padInfoXml              = TRUE;       // Build a XML file of the structure of the PAD page 
-  $padInfoXref             = TRUE;       // Build the <data>xref directories
   $padInfoStats            = TRUE;       // Keep runtime statistics about time and cpu used
   $padInfoTrace            = TRUE;       // Trace the internal working of PAD
-  $padInfoXapp             = TRUE;       // Build the <app>_xapp directorie
+  $padInfoXref             = TRUE;       // Build the <app>_Xref directorie
 
   $padInfoTrackFileRequest = TRUE;       // Request info in the data directory
   $padInfoTrackFileData    = TRUE;       // Complete result page in the directory
@@ -15,15 +14,8 @@
 
   $padInfoXmlParms         = TRUE;
   $padInfoXmlTidy          = TRUE;
-  $padInfoXmlShowEmpty     = TRUE;
-  
-  $padInfoXrefXref         = TRUE;
-  $padInfoXrefPage         = TRUE;
-  $padInfoXrefTree         = TRUE;
-  $padInfoXrefXml          = TRUE;
-  $padInfoXrefTrace        = TRUE;
-  $padInfoXrefXapp         = TRUE;
-  
+  $padInfoXmlCompact       = TRUE;
+    
   $padInfoTraceLines       = TRUE;
   $padInfoTraceDouble      = TRUE;
   $padInfoTraceDefault     = TRUE;

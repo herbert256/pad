@@ -3,7 +3,7 @@
 
   function padInfoXml () {
 
-    global $padInfoXmlEvents;
+    global $padInfoXmlEvents, $padInfoXmlFile;
 
     foreach ( $padInfoXmlEvents as $event ) {
 
@@ -19,12 +19,12 @@
 
   function padInfoXmlLevelStart ( $event ) {
 
-    global $padInfoXmlTree, $padInfoXmlShowEmpty;
+    global $padInfoXmlTree, $padInfoXmlCompact;
 
     extract ( $event );
     extract ( $padInfoXmlTree [$tree] );
 
-    if ( ! $size and ! $padInfoXmlShowEmpty ) {
+    if ( ! $size and $padInfoXmlCompact ) {
       $padInfoXmlTree [$tree] ['SKIP'] = TRUE;
       return;
     }
@@ -38,7 +38,7 @@
     $options ['size']   = $size;
     $options ['result'] = $result;
 
-    if ( $count > 1 ) 
+    if ( $count > 1 and ! $padInfoXmlCompact ) 
       $padInfoXmlTree [$tree] ['childs'] = TRUE;
     else
       $options ['parm'] = $parm;
@@ -46,12 +46,15 @@
     if ( $type   <> 'pad'     ) $options ['type']   = $type;
     if ( $source <> 'content' ) $options ['source'] = $source;
 
+    if ( $padInfoXmlCompact )
+      $options = [];
+
     if ( $padInfoXmlTree [$tree] ['childs'] )
       padInfoXmlOpen ( $tag, $options );
     else
       padInfoXmlLine ( $tag, $options );
 
-    if ( $count > 1 )
+    if ( $count > 1 and ! $padInfoXmlCompact )
       padInfoXmlLevelParms ( $parms );
    
   }
@@ -91,7 +94,10 @@
 
   function padInfoXmlOccurStart ( $event ) {
 
-    global $padInfoXmlTree;
+    global $padInfoXmlTree, $padInfoXmlCompact;
+
+    if ( $padInfoXmlCompact ) 
+      return;
 
     extract ( $event );
     extract ( $padInfoXmlTree [$tree]  );
@@ -121,7 +127,10 @@
 
   function padInfoXmlOccurEnd ( $event ) {
 
-    global $padInfoXmlTree;
+    global $padInfoXmlTree, $padInfoXmlCompact;
+
+    if ( $padInfoXmlCompact ) 
+      return;
 
     extract ( $event );
     extract ( $padInfoXmlTree [$tree]  );
@@ -178,7 +187,7 @@
     else
       $spaces = '';
 
-    padFilePut ( $padInfoXmlFile, "$spaces$xml", 1 );
+    padInfoPut ( $padInfoXmlFile, "$spaces$xml", 1 );
   
   }
 

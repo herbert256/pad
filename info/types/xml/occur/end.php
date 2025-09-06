@@ -1,5 +1,8 @@
 <?php
 
+  if ( $GLOBALS ['padInfoXmlCompact'] )
+    return;
+  
   $padInfoXmlLvl = $padInfoXmlLevel [$pad];
   $padInfoXmlOcc = $padOccur    [$pad];
  

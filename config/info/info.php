@@ -2,7 +2,7 @@
   
   $padInfoStats = TRUE;
   $padInfoTrack = TRUE;
-  $padInfoXapp  = TRUE;
+  $padInfoXref  = TRUE;
 
   $padInfoTrackFileRequest = TRUE;      
   $padInfoTrackFileData    = FALSE;      

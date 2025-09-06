@@ -8,11 +8,14 @@
   $padInfoXmlLevel  = [];
   $padInfoXmlEvents = [];
 
-  if ( isset ( $_REQUEST ['padInclude'] ) or ( isset ( $GLOBALS ['padInclude'] ) and $GLOBALS ['padInclude'] ) )
+  if ( padInclude () )
     $padInfoXmlFile = APP . "_xml/include/$padStartPage.xml";
   else
     $padInfoXmlFile = APP . "_xml/complete/$padStartPage.xml";
 
+  if ( $GLOBALS ['padInfoXmlCompact'] )
+    $padInfoXmlFile = str_replace('_xml/', '_xml/compact/', $padInfoXmlFile); 
+ 
   if ( file_exists ( $padInfoXmlFile )  ) 
     unlink ( $padInfoXmlFile  );
 

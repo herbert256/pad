@@ -11,6 +11,8 @@
 
     } catch (Throwable $e) {
 
+      $GLOBALS['exit'] = $e;
+
       padExitCatch ( $e );
 
     }

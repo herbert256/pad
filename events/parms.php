@@ -1,12 +1,9 @@
 <?php
 
 
-  if ( $GLOBALS ['padInfoXref'] or $GLOBALS ['padInfoXapp'] ) {
-
+  if (  $GLOBALS ['padInfoXref'] )
     foreach ( $padPrm [$pad] as $padK => $padV )
-      padInfoXapp ( "_options/$padK", $padType [$pad], $padTag [$pad] );
-
-  }
+      padInfoXref ( "_options/$padK", $padType [$pad], $padTag [$pad] );
 
 
   if ( $GLOBALS ['padInfoXml']   ) 

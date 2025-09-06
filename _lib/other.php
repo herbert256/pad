@@ -1,6 +1,33 @@
 <?php
 
 
+  function padInfo () {
+
+    return [ 
+      'session' => $GLOBALS ['padSesID'] ?? '',
+      'request' => $GLOBALS ['padReqID'] ?? '',
+      'parent'  => $GLOBALS ['padRefID'] ?? '',
+      'page'    => $GLOBALS ['padPage']  ?? '',
+      'stop'    => $GLOBALS ['padStop']  ?? '',
+      'length'  => $GLOBALS ['padLen']   ?? '',
+      'start'   => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0 , 
+      'end'     => microtime (true),
+      'etag'    => $GLOBALS ['padEtag']  ?? ''  
+    ];
+
+  }
+
+
+  function padInclude () {
+
+    if ( isset ( $GLOBALS ['padInclude'] ) and $GLOBALS ['padInclude'] ) 
+      return TRUE;
+    else
+      return FALSE;
+
+  }
+
+
   function padFileXmlTidy ( $file ) {
     
     $options = [
@@ -747,7 +774,7 @@
   
   function padDuration ( $start = 0, $end = 0 ) {
 
-    if ( ! $start ) $start = $_SERVER ['REQUEST_TIME_FLOAT'];
+    if ( ! $start ) $start = $_SERVER ['REQUEST_TIME_FLOAT'] ?? $GLOBALS ['padMicro'] ?? microtime ( true );
     if ( ! $end   ) $end   = microtime ( true );
 
     $duration = (int) ( ( $end - $start ) * 1000000000 );

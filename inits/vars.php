@@ -18,7 +18,7 @@
   $padInfoCnt   = 0;
   $padEvalCnt   = -1;
 
-  if ( ! isset ( $pqStore ) ) $pqStore = [];
+  if ( ! isset ( $pqStore )     ) $pqStore     = [];
   if ( ! isset ( $padLastPush ) ) $padLastPush = '';
   if ( ! isset ( $padLastPull ) ) $padLastPull = '';
 

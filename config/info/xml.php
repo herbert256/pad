@@ -3,7 +3,8 @@
   $padInfoXml          = TRUE; 
 
   $padInfoXmlParms     = TRUE;
-  $padInfoXmlShowEmpty = TRUE;
+  $padInfoXmlCompact = TRUE;
+  $padInfoXmlCompact   = TRUE;
   $padInfoXmlTidy      = TRUE;
 
 ?>
