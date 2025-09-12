@@ -1,0 +1,93 @@
+{table}
+
+{demo} {sequence 15, name='mySequence'} {/demo}
+
+{demo} {mySequence}                    {$sequence} {/mySequence} {/demo}
+{demo} {mySequence first=5}            {$sequence} {/mySequence} {/demo}
+{demo} {mySequence first=5, negative}  {$sequence} {/mySequence} {/demo}
+{demo} {mySequence last=5}             {$sequence} {/mySequence} {/demo}
+{demo} {mySequence last=5, negative}   {$sequence} {/mySequence} {/demo}
+
+{/table}
+
+
+{table}
+ 
+{demo}{sequence '5;10;15;20',  name='one'}{/demo}
+{demo}{sequence '15;20;25;30', name='two'}{/demo}
+
+{/table}{table}
+
+{demo}{sequence one}                               {$sequence} {/sequence}{/demo}
+{demo}{sequence two}                               {$sequence} {/sequence}{/demo}
+{demo}{sequence one, difference='two'          }   {$sequence} {/sequence}{/demo}
+{demo}{sequence one, difference='two', negative}   {$sequence} {/sequence}{/demo}
+
+{/table}{table}
+
+{demo}{sequence one}                               {$sequence} {/sequence}{/demo}
+{demo}{sequence two}                               {$sequence} {/sequence}{/demo}
+{demo}{sequence one, intersection='two'          } {$sequence} {/sequence}{/demo}
+{demo}{sequence one, intersection='two', negative} {$sequence} {/sequence}{/demo}
+
+{/table}
+
+{table}
+
+{demo}{sequence '1..25', name='mySeq1'}{/demo}
+
+{/table}{table}
+
+{demo}{sequence mySeq1}                       {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq2}                       {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, slice='5' }           {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='5'}           {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, slice='5', negative } {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='5', negative} {$sequence} {/sequence}{/demo} 
+
+{/table}{table}
+
+{demo}{sequence mySeq1}                        {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq2}                        {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, slice='-5'}            {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='-5'}           {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, slice='-5', negative}  {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='-5', negative} {$sequence} {/sequence}{/demo} 
+
+{/table}{table}
+
+{demo}{sequence mySeq1}                         {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq2}                         {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, slice='5|5' }           {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='5|5'}           {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, slice='5|5', negative}  {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='5|5', negative} {$sequence} {/sequence}{/demo} 
+
+{/table}{table}
+
+{demo}{sequence mySeq1}                          {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq2}                          {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, slice='5|-5' }           {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='5|-5'}           {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, slice='5|-5', negative}  {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='5|-5', negative} {$sequence} {/sequence}{/demo} 
+
+{/table}{table}
+
+{demo}{sequence mySeq1}                           {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq2}                           {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, slice='-15|5' }           {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='-15|5'}           {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, slice='-15|5', negative}  {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='-15|5', negative} {$sequence} {/sequence}{/demo} 
+
+{/table}{table}
+
+{demo}{sequence mySeq1}                            {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq2}                            {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, slice='-15|-5'}            {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='-15|-5'}           {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, slice='-15|-5', negative } {$sequence} {/sequence}{/demo} 
+{demo}{sequence mySeq1, splice='-15|-5', negative} {$sequence} {/sequence}{/demo} 
+
+{/table}

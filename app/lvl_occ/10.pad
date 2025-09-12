@@ -1,0 +1,16 @@
+{data 'myCsv'}
+AA,BB,CC,DD,EE
+11,12,13,14,15
+21,22,23,24,35
+31,32,33,34,35
+{/data}
+
+<table border='1'>
+  {myCsv}
+    <tr>
+      {fields}
+        <td>{$value}</td>
+      {/fields}
+    </tr>
+  {/myCsv}
+</table>

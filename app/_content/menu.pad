@@ -1,0 +1,51 @@
+{lineOpen}
+
+<font size="-1">
+
+  {if $padPage == 'index'}
+    <b>home</b>
+  {else}
+    <a href="{$pad}index">home</a> 
+  {/if}
+    
+  &nbsp; | &nbsp;
+
+  {if $padPage == 'manual/index'}
+    <b>manual</b>
+  {else}
+    <a href="{$pad}manual">manual</a> 
+  {/if}
+    
+  &nbsp; | &nbsp;
+
+  {if $padPage == 'xref/index'}
+    <b>reference</b>
+  {else}
+    <a href="{$pad}xref">reference</a> 
+  {/if}
+   
+  &nbsp; | &nbsp;
+
+  {if str_starts_with ( $padPage, 'sequence/manual/' ) }
+    <b>sequences</b>
+  {else}
+    <a href="{$pad}sequence/manual/index">sequences</a> 
+  {/if}
+    
+  &nbsp; | &nbsp;
+
+  {if $padPage == 'develop/develop'}
+    <b>develop</b>
+  {else}
+    <a href="{$pad}develop">develop</a> 
+  {/if}
+    
+  {parts}
+    {first} &nbsp; &nbsp; &nbsp; {/first}
+    {if $link}<a href="{$padGo}{$link}">{/if}{$part}{if $link}</a>{/if} 
+    {notLast} / {/notLast}
+  {/parts}
+
+</font>
+
+{lineClose}

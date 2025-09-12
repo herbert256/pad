@@ -1,0 +1,31 @@
+<table>
+  <tr>
+    <td>
+      
+      <table border=1>
+        {offices sort}
+          {employees}
+            <tr>
+              <td> {$city} </td>
+              <td> {$lastName}, {$firstName} </td>
+            </tr
+>          {/employees}
+        {/offices}
+      </table>
+      
+    </td> <td> &nbsp; </td> <td>
+
+      <table border=1>
+        {employees}
+          {offices}
+            <tr>
+              <td> {$lastName}, {$firstName} </td>
+              <td> {$city} </td>
+            </tr>
+          {/offices}
+        {/employees}
+      </table>
+
+    </td>
+  </tr>
+</table>

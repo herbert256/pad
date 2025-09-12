@@ -1,0 +1,31 @@
+{if $old and $old NE $new}
+
+  <style>
+    .diffDeleted {
+        background-color: OrangeRed;
+        font-family: monospace;
+        font-size: 75%;
+    }
+    .diffUnmodified {
+        background-color: white;
+        font-family: monospace;
+        font-size: 75%;
+    }
+    .diffInserted {
+        background-color: Chartreuse;
+        font-family: monospace;
+        font-size: 75%;
+    }
+  </style>
+
+  {count 'demoLines'} 
+    {lines}
+  {else}
+    {changed}
+  {/count}
+
+  <br>
+
+{/if}
+
+{example '{$item}'}

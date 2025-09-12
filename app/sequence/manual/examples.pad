@@ -1,0 +1,55 @@
+{data 'list'} 
+  (
+    'sequences',
+    'specials',
+    'random',
+    'play/single',
+    'play/double',
+    'keepRemoveFlag',
+    'regression'
+  )
+{/data}
+
+<center>
+
+<p>Examples ! Many are generated and do not always make sence, the examples from 'specials' are hand crafted and gives a good view of what the Sequences subsystem of PAD can do.</p>
+
+  {list}
+    {if $example eq $list}
+      <b>{$list}</b>
+    {else}
+      <a href="@pad@sequence/manual/examples&example={$list}{?go}{?item}">{$list}</a>
+    {/if}
+    &nbsp;
+  {/list}
+
+  <br><br><hr>
+
+  {examples}
+    {if $item eq $examples}
+      <b>{$examples}</b>
+    {else}
+      <a href="@pad@sequence/manual/examples&example={$example}&item={$examples}{?go}">{$examples}</a>
+    {/if}
+    &nbsp;
+  {/examples}
+
+  <br><br><hr>
+
+  {if $example eq 'sequences' }
+    <h3>{$item}</h3>
+      {exists APP . 'sequence/basic/{$item}.pad'}
+        <h5>{echo 'sequence/basic/{$item}.pad}</h5>
+        {example 'sequence/basic/{$item}', onlyResult}
+      {/exists}
+    {list}
+      {exists APP . 'sequence/{$list}/{$item}.pad'}
+        <h5>{echo 'sequence/{$list}/{$item}.pad}</h5>
+        {example 'sequence/{$list}/{$item}', onlyResult}
+      {/exists}
+    {/list}
+  {else}
+    {example 'sequence/{$example}/{$item}', onlyResult, include}
+  {/if}
+
+</center>

@@ -1,0 +1,16 @@
+{if $php_inits or $pad_inits}
+
+<p>
+  <table border="1" cellpadding="10" cellspacing="1">
+      <tr>
+        {if $php_inits} <td align="center" bgcolor="#dddddd">_inits.php </td> {/if}
+        {if $pad_inits} <td align="center" bgcolor="#dddddd">_inits.pad</td> {/if}
+      </tr>
+      <tr>
+        {if $php_inits} <td style="vertical-align:top">{!php_inits} </td> {/if}
+        {if $pad_inits} <td style="vertical-align:top">{!pad_inits}</td> {/if}
+      </tr>
+  </table>
+</p>
+
+{/if}

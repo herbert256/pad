@@ -1,0 +1,193 @@
+<p></p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <th bgcolor="#DDDDDD">
+      HTML
+    </th>
+    <th bgcolor="#DDDDDD">
+      RESULT
+    </th>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myXML<font color="black">'</font></font>}</b><br>  &lt;data&gt;<br>    &lt;row name="bob"   phone="555-1111" /&gt;<br>    &lt;row name="jim"   phone="555-2222" /&gt;<br>    &lt;row name="joe"   phone="555-3333" /&gt;<br>    &lt;row name="jerry" phone="555-4444" /&gt;<br>  &lt;/data&gt;<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myJSON<font color="black">'</font></font>}</b><br>  [ { "name": "bob",   "phone": "555-5555" },<br>    { "name": "jim",   "phone": "555-6666" },<br>    { "name": "joe",   "phone": "555-7777" },      <br>    { "name": "jerry", "phone": "555-8888" } ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myYAML<font color="black">'</font></font>}</b><br>  ---<br>  - name: bob<br>    phone: 555-3425<br>  - name: jim<br>    phone: 555-4364<br>  - name: joe<br>    phone: 555-3422<br>  - name: jerry<br>    phone: 555-4973<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myCSV<font color="black">'</font></font>}</b><br>  name,phone<br>  bob,555-3425<br>  jim,555-4364<br>  joe,555-3422<br>  jerry,555-4973<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myList<font color="black">'</font></font>}</b><br>  ( 'myXML', 'myJSON', 'myYAML', 'myCSV' )<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myList</font><font color="red"></font>}</b><br>  &lt;p&gt;<br>    &lt;table border=1&gt;<br>      &lt;tr&gt;<br>        &lt;th colspan="2"&gt;<br>          <b>{<font color="green"><font color="red">$</font>myList</font>}</b><br>        &lt;/th&gt;<br>      &lt;/tr&gt;<br>      <b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>myList</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br>        &lt;tr&gt;<br>          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt; <br>          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>        &lt;/tr&gt;<br>      <b>{/<font color="blue">pad</font><font color="red"></font>}</b><br>    &lt;/table&gt;<br>  &lt;/p&gt;<br><b>{/<font color="blue">myList</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <p>
+        <code><span style="color: #000000"></span></code>
+      </p>
+      <table border="1">
+        <tr>
+          <th colspan="2">
+            myXML
+          </th>
+        </tr>
+        <tr>
+          <td>
+            bob
+          </td>
+          <td>
+            555-1111
+          </td>
+        </tr>
+        <tr>
+          <td>
+            jim
+          </td>
+          <td>
+            555-2222
+          </td>
+        </tr>
+        <tr>
+          <td>
+            joe
+          </td>
+          <td>
+            555-3333
+          </td>
+        </tr>
+        <tr>
+          <td>
+            jerry
+          </td>
+          <td>
+            555-4444
+          </td>
+        </tr>
+      </table>
+      <p></p>
+      <p>
+        <code><span style="color: #000000"></span></code>
+      </p>
+      <table border="1">
+        <tr>
+          <th colspan="2">
+            myJSON
+          </th>
+        </tr>
+        <tr>
+          <td>
+            bob
+          </td>
+          <td>
+            555-5555
+          </td>
+        </tr>
+        <tr>
+          <td>
+            jim
+          </td>
+          <td>
+            555-6666
+          </td>
+        </tr>
+        <tr>
+          <td>
+            joe
+          </td>
+          <td>
+            555-7777
+          </td>
+        </tr>
+        <tr>
+          <td>
+            jerry
+          </td>
+          <td>
+            555-8888
+          </td>
+        </tr>
+      </table>
+      <p></p>
+      <p>
+        <code><span style="color: #000000"></span></code>
+      </p>
+      <table border="1">
+        <tr>
+          <th colspan="2">
+            myYAML
+          </th>
+        </tr>
+        <tr>
+          <td>
+            bob
+          </td>
+          <td>
+            555-3425
+          </td>
+        </tr>
+        <tr>
+          <td>
+            jim
+          </td>
+          <td>
+            555-4364
+          </td>
+        </tr>
+        <tr>
+          <td>
+            joe
+          </td>
+          <td>
+            555-3422
+          </td>
+        </tr>
+        <tr>
+          <td>
+            jerry
+          </td>
+          <td>
+            555-4973
+          </td>
+        </tr>
+      </table>
+      <p></p>
+      <p>
+        <code><span style="color: #000000"></span></code>
+      </p>
+      <table border="1">
+        <tr>
+          <th colspan="2">
+            myCSV
+          </th>
+        </tr>
+        <tr>
+          <td>
+            bob
+          </td>
+          <td>
+            555-3425
+          </td>
+        </tr>
+        <tr>
+          <td>
+            jim
+          </td>
+          <td>
+            555-4364
+          </td>
+        </tr>
+        <tr>
+          <td>
+            joe
+          </td>
+          <td>
+            555-3422
+          </td>
+        </tr>
+        <tr>
+          <td>
+            jerry
+          </td>
+          <td>
+            555-4973
+          </td>
+        </tr>
+      </table>
+      <p></p><!-- END DEMO RESULT -->
+    </td>
+  </tr>
+</table>
+<p></p>

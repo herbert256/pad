@@ -1,0 +1,74 @@
+<table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+      <p>
+        Sometimes the PAD parser is confused and interprets something incorrectly as a PAD instruction.<br>
+        <br>
+        In those cases a PAD entity can be used to prevent this.
+      </p>
+      <p></p>
+      <table border="0">
+        <tr>
+          <td>
+            <b>Character</b> &nbsp;
+          </td>
+          <td>
+            &nbsp; <b>PAD entity</b>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            {
+          </td>
+          <td>
+            &nbsp;&nbsp;&amp;open;
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            }
+          </td>
+          <td>
+            &nbsp;&nbsp;&amp;close;
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            |
+          </td>
+          <td>
+            &nbsp;&nbsp;&amp;pipe;
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            =
+          </td>
+          <td>
+            &nbsp;&nbsp;&amp;eq;
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            ,
+          </td>
+          <td>
+            &nbsp;&nbsp;&amp;comma;
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            @
+          </td>
+          <td>
+            &nbsp;&nbsp;&amp;at;
+          </td>
+        </tr>
+      </table>
+      <p>
+        For example, in this manual the string <b>{tag}</b> must be writen as <b>&amp;open;</b>tag<b>&amp;close;</b><br>
+        to make sure the PAD parser leaves it alone.
+      </p>
+    </td>
+  </tr>
+</table>

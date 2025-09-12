@@ -1,0 +1,30 @@
+<blockquote>
+
+{block}
+
+  {true data='xref'}
+
+    {sequence range='1..{$lvl}'}
+      <blockquote>
+    {/sequence}
+
+    <h3>{$type}</h3>
+
+    <blockquote>
+
+      {getXref '{!type}', '{$dir}'}
+        <a href="@pad@sequence/manual/pages{?pages}{?type}{?item}">{$item}</a>
+        &nbsp; 
+      {/getXref}
+            
+    </blockquote>
+
+    {sequence range='1..{$lvl}'}
+      </blockquote>
+    {/sequence}
+
+  {/true}
+
+{/block}
+
+</blockquote>

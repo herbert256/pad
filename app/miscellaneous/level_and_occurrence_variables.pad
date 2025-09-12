@@ -1,0 +1,44 @@
+{table}{demo}
+
+{set $range = 10}
+
+<table border=1>
+
+  <tr>
+    <th>Level</th>
+    <th>Occurence</th>
+  </tr>
+
+  {sequence range='1..5', $abc=$range, %xyz=$range} 
+        <tr>
+          <td>{$abc}</td>
+          <td>{$xyz}</td>
+        </tr>
+  {/sequence}
+
+</table>
+
+{/demo}{demo}
+<table border=1>
+
+  <tr>
+    <th>Name</th>
+    <th>Salary</th>
+    <th>Bonus</th>
+    <th>Total</th>
+  </tr>
+  
+  {staff %total = $salary + $bonus}
+
+    <tr align="right">
+      <td align="left">{$name}</td>
+      <td>{$salary | %.2f}</td>
+      <td>{$bonus  | %.2f}</td>
+      <td>{$total  | %.2f}</td>
+    </tr>
+
+  {/staff}
+ 
+</table>
+
+{/demo}{/table}

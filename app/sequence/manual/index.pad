@@ -1,0 +1,18 @@
+{block}
+
+{concepts}
+      {if &concepts:key NE $concept}
+        <a href="@self@&go=index&concept={&concepts:key}">{&concepts:key | ucfirst}</a>
+      {else}
+        <b> {&concepts:key | ucfirst} <b>
+      {/if}
+      &nbsp;
+{/concepts}
+
+{/block}
+
+<h3>{$conceptTitle}</h3>
+
+{block}
+  {page 'sequence/manual/concepts/{$concept}', include}
+{/block}

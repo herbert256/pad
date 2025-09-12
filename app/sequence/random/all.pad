@@ -1,0 +1,26 @@
+<p>There are main 3 ways for randomizing, a sequence (random), an option (randomly) and an action (randomize)
+
+<h3>The sequence 'random'</h3>
+
+{table}
+{demo} {sequence random rows=25, minimal=10, maximal=50         } {$sequence} {/sequence} {/demo}
+{demo} {sequence random rows=25, minimal=10, maximal=50, unique } {$sequence} {/sequence} {/demo}
+{/table}
+
+<h3>The sequence option 'randomly'</h3>
+
+Here the loop index is randomly set before the sequence is executed.
+
+{table}
+{demo} {sequence power=2, rows=10, randomly, from=8, to=16} {$sequence} {/sequence} {/demo}
+{demo} {sequence prime,   rows=10, randomly, to=1000      } {$sequence} {/sequence} {/demo}
+{/table}
+
+<h3>The sequence action 'randomize'</h3>
+
+{table}
+{demo} {sequence from=10, to=20, push='mySeq'}{/demo} 
+{demo} {mySeq}             {$sequence} {/mySeq} {/demo}
+{demo} {mySeq randomize  } {$sequence} {/mySeq} {/demo}
+{demo} {mySeq randomize=5} {$sequence} {/mySeq} {/demo}
+{/table}

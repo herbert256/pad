@@ -1,0 +1,95 @@
+{table}
+
+{demo}
+
+{pad name='cool', abc=123, 'fiets', $abc='banaan', $go='nuts', xyz=789, 12*15}
+
+  <h3>variables</h3>
+  
+  <table border="1">
+    <th>name</th>
+    <th>value</th>
+    {variables}
+      <tr>
+        <td>{$name}</td>
+        <td>{$value}</td>
+      </tr>
+    {/variables}
+  </table>
+
+  <h3>options</h3>
+  
+  <table border="1">
+    <th>name</th>
+    <th>value</th>
+    {options}
+      <tr>
+        <td>{$name}</td>
+        <td>{$value}</td>
+      </tr>
+    {/options}
+  </table>
+
+  <h3>parameters</h3>
+  
+  <table border="1">
+    <th>name</th>
+    <th>value</th>
+    {parameters}
+      <tr>
+        <td>{$name}</td>
+        <td>{$value}</td>
+      </tr>
+    {/parameters}
+  </table>
+
+{/pad}
+
+{/demo}{demo}
+
+{pad name='cool', abc=123, 'fiets', $abc='banaan', $go='nuts', xyz=789, 12*15}
+
+  <h3>variables</h3>
+
+  The value of variable 'abc' is: {&cool:variable:abc} <br>
+  The value of variable 'go' is: {&cool:variable:go} <br>
+  
+  <h3>options</h3>
+  
+  The value of option 'abc' is: {&cool:option:abc} <br>
+  The value of option 'xyz' is: {&cool:option:xyz} <br>
+  
+  <h3>parameters</h3>
+  
+  The first parameters is: {&cool:parameter:1} <br>
+  The second parameter is: {&cool:parameter:2} <br>
+  
+{/pad}
+
+{/demo}{demo}
+
+{pad name='cool', abc=123, 'fiets', $abc='banaan', $go='nuts', xyz=789, 12*15}
+
+  <h3>variables</h3>
+
+  Variables can be directy accessed with the $ char <br>
+  - variable 'abc' - {$abc} <br>
+  - variable 'go' - {$go} <br>
+  
+  <h3>options</h3>
+
+  Options can be directy accessed with the # char <br>
+  - option 'abc' - {#abc} <br>
+  - option 'xyz' - {#xyz} <br>
+    
+  <h3>parameters</h3>
+  
+  Parameters can be directy accesed with the $ char  <br>
+  - The first parameters is: {$1} <br>
+  - The second parameter is: {$2} <br>
+  
+{/pad}
+
+{/demo}
+
+{/table}

@@ -1,0 +1,21 @@
+{table}
+
+{demo} {sequence '11..40', action='shift|2'   } {$sequence} {/sequence}  {/demo}
+
+{demo} {sequence '11..40', push='mySequence' }{/demo}
+
+{demo} {mySequence action='shift|2'           } {$sequence} {/mySequence}        {/demo}
+
+{demo} {action shift=2, mySequence       } {$sequence} {/action}            {/demo}
+{demo} {action mySequence, shift=2       } {$sequence} {/action}            {/demo}
+
+{demo} {mySequence:shift 2                    } {$sequence} {/mySequence:shift}   {/demo}
+
+{demo} {action:shift mySequence, 2          } {$sequence} {/action:shift}       {/demo}
+
+{demo} {shift mySequence, 2                 } {$sequence} {/shift}              {/demo}
+{demo} {shift:mySequence 2                    } {$sequence} {/shift:mySequence}   {/demo}
+
+{demo} {action:mySequence shift=2          } {$sequence} {/action:mySequence} {/demo}
+
+{/table}

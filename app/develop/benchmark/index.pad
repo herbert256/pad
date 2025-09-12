@@ -1,0 +1,41 @@
+<table border=1> 
+
+  <tr>
+
+    <td>item</td>
+    <td align="right">curl</td>
+    <td align="right">total</td>
+    <td align="right">boot</td>
+    <td align="right">pad</td>
+    <td align="right">app</td>
+
+  </tr>
+
+  {list}
+
+    <tr>
+
+      <td>{$item}</td>
+
+      <td align="right">{$curl | bm}</td>
+      <td align="right">{$total | bm}</td>
+      <td align="right">{$boot | bm}</td>
+      <td align="right">{$usr | bm}</td>
+      <td align="right">{$call | bm}</td>
+
+    </tr>
+
+  {else}
+
+    {block}
+    <br>
+      No data, there are some requirements for PAD Benchmarks.<br>
+      - $padInfoStats must be TRUE<br>
+      - There must be regression result under _regression
+    {/block}
+
+  {/list}
+
+</table>
+
+<!-- PAD: SKIP REGRESSION -->

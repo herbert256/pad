@@ -1,0 +1,27 @@
+Tag properties give information about a tag, they can be used:
+
+<p><table border=0>
+<tr><td>- as a pad tag </td><td>{source}{first} ... {/first}{/source}</td></tr>
+<tr><td>- as a variable with the & prefix &nbsp; </td><td>{source}{if &first} ... {/if}{/source}</td></tr>
+</table>
+
+{page 'properties/doc1'}
+
+<p>When working with properties of a tag that is deeper in the stack of tags, the name of that tag must be given.
+ 
+<p><table border=0>
+<tr><td>- as parameter when used as tag &nbsp; </td><td>{source}{tag ‘first’  }{/source}</td></tr>
+<tr><td>- as prefix, when used as #var </td><td>{source}{if &mytag:first} …. {/if}{/source}</td></tr>
+</table>
+
+{page 'properties/doc2'}
+
+Or with a level number down the level stack.
+
+{page 'properties/doc3'}
+
+<p>todo-1
+
+{page 'properties/doc4'}
+
+{fragment 'properties/_lib/lib'}

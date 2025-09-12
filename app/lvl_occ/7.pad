@@ -1,0 +1,13 @@
+<table border='1'>
+  {set $row = 10}
+  {while $row <= 30}
+    <tr>
+      {set $column = 1}
+      {while $column <= 5}
+        <td>{echo $row + $column}</td>  
+        {increment $column}
+      {/while}
+    </tr>
+    {set $row = $row + 10}
+  {/while}
+</table>

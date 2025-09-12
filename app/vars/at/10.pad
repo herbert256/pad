@@ -1,0 +1,66 @@
+{content 'myContent'}
+  <table border=1 valign=center>
+    <tr>
+      <th>        </th>
+      <th> first  </th>
+      <th> border </th>
+      <th> middle </th>
+      <th> last   </th>
+      <th> even   </th>
+      <th> odd    </th>
+    </tr>
+    @content@
+  </table>
+{/content}
+
+{table}{demo}
+
+{myContent}
+  {staff}
+    <tr>
+      <td> {$name}                          </td>
+      <td> {first@staff}  X {/first@staff}  </td>
+      <td> {border@staff} X {/border@staff} </td>
+      <td> {middle@staff} X {/middle@staff} </td>
+      <td> {last@staff}   X {/last@staff}   </td>
+      <td> {even@staff}   X {/even@staff}   </td>
+      <td> {odd@staff}    X {/odd@staff}    </td>
+    </tr>
+  {/staff}
+{/myContent}
+
+{/demo}{demo}
+
+{myContent}
+  {staff}
+  	{true}
+	    <tr>
+	      <td> {$name}                     </td>
+	      <td> {first@-2}  X {/first@-2}  </td>
+	      <td> {border@-2} X {/border@-2} </td>
+	      <td> {middle@-2} X {/middle@-2} </td>
+	      <td> {last@-2}   X {/last@-2}   </td>
+	      <td> {even@-2}   X {/even@-2}   </td>
+	      <td> {odd@-2}    X {/odd@-2}    </td>
+	    </tr>
+    {/true}
+  {/staff}
+{/myContent}
+
+{/demo}{demo}
+
+{myContent}
+  {staff}
+  	<tr>
+      <td> {$name}                </td>
+      <td> {first@}  X {/first@}  </td>
+      <td> {border@} X {/border@} </td>
+      <td> {middle@} X {/middle@} </td>
+      <td> {last@}   X {/last@}   </td>
+      <td> {even@}   X {/even@}   </td>
+      <td> {odd@}    X {/odd@}    </td>
+    </tr>
+  {/staff}
+{/myContent}
+
+{/demo}{/table}
