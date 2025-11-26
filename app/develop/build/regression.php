@@ -1,7 +1,7 @@
 <?php
 
-  deleteDir ( DATA . '_regression' );
-  deleteDir ( DATA . '_xref'       );
+  deleteDir ( APP . '_regression' );
+  deleteDir ( APP . '_xref'       );
 
   padRegression ( 0 );
   padRegression ( 1 );

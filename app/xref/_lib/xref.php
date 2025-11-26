@@ -41,9 +41,9 @@
       $items [$item] ['dir']   = '';
       $items [$item] ['pages'] = '';
 
-      if     ( is_dir ( DATA . "_xref/$xref/$item" ) )
+      if     ( is_dir ( APP . "_xref/$xref/$item" ) )
         $items [$item] ['dir'] = "$xref/$item";
-      elseif ( file_exists ( DATA . "_xref/$xref/$item.txt" ) )
+      elseif ( file_exists ( APP . "_xref/$xref/$item.txt" ) )
         $items [$item] ['pages'] = "$xref/$item.txt";
 
     }
@@ -55,7 +55,7 @@
 
   function getXrefDir ( $type, $dir ) {
     
-    $base = DATA . "_xref/";
+    $base = APP . "_xref/";
 
     if ( ! file_exists ( "$base$dir" ) )
       return [];

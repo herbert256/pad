@@ -2,12 +2,12 @@
     
 $curl = getPage ($item);
 
-$store = DATA . "_regression/$item.html";
+$store = APP . "_regression/$item.html";
 padFileChkDir     ( $store );
 padFileChkFile    ( $store );
 file_put_contents ( $store, $curl ['data'] );
 
-$store =  DATA . "_regression/$item.txt";
+$store =  APP . "_regression/$item.txt";
 $status = 'ok';
 padFileChkDir     ( $store );
 padFileChkFile    ( $store );

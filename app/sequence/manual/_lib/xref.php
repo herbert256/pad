@@ -5,7 +5,7 @@
     if ( ! $dir )
       return [];
     
-    $base = DATA . "_xref/sequence/";
+    $base = APP . "_xref/sequence/";
 
     if ( ! file_exists ( "$base$dir" ) )
       return [];
