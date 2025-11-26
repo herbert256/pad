@@ -4,7 +4,7 @@
   if ( ! isset ( $type ) ) $type = 'Tags';
   if ( ! isset ( $item ) ) $item = 'pad';
 
-  $list = scandir ( APP . "_xref/$dir" );
+  $list = scandir ( DATA . "_xref/$dir" );
 
   foreach ( $list as $file ) {
 

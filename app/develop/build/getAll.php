@@ -1,7 +1,7 @@
 <?php
 
-  deleteDir  ( APP . '_xref'       ); 
-  deleteDir  ( APP . '_regression' );
+  deleteDir  ( DATA . '_xref'       ); 
+  deleteDir  ( DATA . '_regression' );
 
   foreach ( padList ( 0 ) as $one ) {
 
@@ -11,12 +11,12 @@
     $new  = $curl ['data'] ?? '';
     $new  = str_replace ( "\r\n", "\n", $new );
 
-    $store  = APP . "_regression/$item.html";
+    $store  = DATA . "_regression/$item.html";
     padFileChkDir     ( $store );
     padFileChkFile    ( $store );
     file_put_contents ( $store, $new ) ;
 
-    $store = APP . "_regression/$item.txt";
+    $store = DATA . "_regression/$item.txt";
     padFileChkDir     ( $store );
     padFileChkFile    ( $store );
     file_put_contents ( $store, 'ok' ) ;

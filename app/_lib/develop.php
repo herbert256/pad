@@ -15,11 +15,11 @@
       if ( ! $sequence and   str_contains ( $item, 'sequence' ) ) continue;
       if (   $sequence and   str_contains ( $item, 'develop'  ) ) continue;
 
-      $store  = APP . "_regression/$item.html";
+      $store  = DATA . "_regression/$item.html";
       $check  = APP . "$item.pad";
       $source = padFileGet($check);
 
-      file_put_contents ( APP . "_regression.txt", $item ) ;
+      file_put_contents ( DATA . "_regression.txt", $item ) ;
 
       if     ( ! $source                                  ) $status = 'no';
       elseif ( strpos ( $source, 'PAD: SKIP REGRESSION' ) ) $status = 'no';
@@ -60,7 +60,7 @@
       if ( $status == 'new' )
         $status = 'ok';
 
-      $store = APP . "_regression/$item.txt";
+      $store = DATA . "_regression/$item.txt";
       padFileChkDir     ( $store );
       padFileChkFile    ( $store );
       file_put_contents ( $store, $status ) ;

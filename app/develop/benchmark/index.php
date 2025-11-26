@@ -13,7 +13,7 @@
 
     $item = $one ['item'];
 
-    $store = APP . "_regression/$item.txt";
+    $store = DATA . "_regression/$item.txt";
     $bm    = APP . "_benchmark/$item.json";
 
     $status = padFileGet ( $store );
