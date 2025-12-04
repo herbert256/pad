@@ -24,7 +24,7 @@ PAD is a custom PHP framework and template engine designed for building dynamic 
     ```php
     define('APP', '/path/to/your/app');  // Directory for your app code and templates
     define('DAT', '/path/to/data');       // Writable directory for logs, cache, etc.
-    require '/path/to/pad/pad.php';
+    require '/path/to/pad.php';
     ```
 
 ## 2. Configuration

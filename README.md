@@ -34,7 +34,7 @@ The framework relies on two constants that must be defined by the hosting applic
 ```php
 define('APP', '/path/to/your/app');  // application directory
 define('DAT', '/path/to/data');       // writable data directory
-require '/path/to/pad/pad.php';
+require '/path/to/pad.php';
 ```
 
 `APP` should contain the application specific PHP code and templates. `DAT` is used by PAD to store runtime data, logs and cache files.
