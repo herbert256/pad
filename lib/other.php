@@ -302,8 +302,6 @@
     if ( padStoreCheck   ( $content ) ) return TRUE;
     if ( padContentCheck ( $content ) ) return TRUE;
 
-
-
     return FALSE;
 
   }  
@@ -318,24 +316,27 @@
 
   function padContentCheck ( $content ) {
 
-    foreach ( padDirs () as $value )
-      if ( padCheck ( APP2 . $value . "_content/$content" ) )
-        return TRUE;
-
-    return FALSE;
+    return padAppGet ( "_content/$content" );
 
   }  
 
 
-  function padPadFileCheck ( $file ) {
+  function padAppTagCheck ( $content ) {
+
+    return padAppGet ( "_tags/$content" );
+
+  }  
+
+
+  function padAppGet ( $check ) {
 
     foreach ( padDirs () as $value )
-      if ( padCheck ( APP2 . $value . $file ) )
-        return TRUE;
+      if ( padCheck ( APP2 . $value . $check ) )
+        return $value . $check ;
 
     return FALSE;
 
-  } 
+  }   
 
 
   function padCheck ( $check ) {

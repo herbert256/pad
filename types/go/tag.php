@@ -1,7 +1,5 @@
 <?php
 
-  $padTagGo .= $padTag [$pad];
-
   $padCall = "$padTagGo.php";
   include PAD . 'call/ob.php';
 

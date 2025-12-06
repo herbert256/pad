@@ -1,7 +1,7 @@
 <?php
 
-  $padcontentLoop = '_content/';
-
-  return include PAD . 'content/loop.php';
+  $padcontentCall = APP2 . padAppGet ( "_content/$padContentName" );
+      
+  return include PAD . 'content/call.php';
 
 ?>

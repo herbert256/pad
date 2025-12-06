@@ -4,8 +4,7 @@
   function padTypeGet ( $item ) {
 
     if     ( padChkLevel      ( $item                                ) ) return 'level';
-    elseif ( file_exists      ( APP . "_tags/$item.php"              ) ) return 'app';
-    elseif ( file_exists      ( APP . "_tags/$item.pad"              ) ) return 'app';
+    elseif ( padAppTagCheck   ( $item                                ) ) return 'app';
     elseif ( file_exists      ( PAD . "tags/$item.php"                     ) ) return 'pad';
     elseif ( file_exists      ( PAD . "tags/$item.pad"                     ) ) return 'pad';
     elseif ( padContent       ( $item                                ) ) return 'content';
@@ -60,7 +59,7 @@
 
     if     ( ! padValidType                          ( $type                                ) ) return FALSE;
     elseif (                       ! file_exists     ( PAD . "types/$type.php"                    ) ) return FALSE;
-    elseif ( $type == 'app'      and file_exists     ( APP . "_tags/$item.php"              ) ) return $type;
+    elseif ( $type == 'app'      and padAppTagCheck  ( $item                                ) ) return $type;
     elseif ( $type == 'app'      and file_exists     ( APP . "_tags/$item.pad"              ) ) return $type;
     elseif ( $type == 'pad'      and file_exists     ( PAD . "tags/$item.php"                     ) ) return $type;
     elseif ( $type == 'pad'      and file_exists     ( PAD . "tags/$item.pad"                     ) ) return $type;
