@@ -322,8 +322,6 @@
       if ( padCheck ( APP2 . $value . "_content/$content" ) )
         return TRUE;
 
-    if ( $content == 'block') padError("");
-
     return FALSE;
 
   }  
