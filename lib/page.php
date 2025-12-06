@@ -8,43 +8,33 @@
     if ( strpos($page, '//') !== FALSE)                           return FALSE;
     if ( substr($page, -1) == '/')                                return FALSE;
     if ( strpos($page, '/_') !== FALSE)                           return FALSE;
- 
-    $location = APP;
-    $part     = padExplode ($page, '/');
 
-    foreach ($part as $key => $value) {
-      
-      if ( $key == array_key_last($part)
-            and (file_exists("$location$value.php") or file_exists("$location$value.pad") ) )
-        return TRUE; 
-
-      if ( is_dir ("$location$value") )
-        $location .= "$value/";
-      else
-        return FALSE;
-      
-    }
-    
-    return ( file_exists("$location"."index.php") or file_exists("$location"."index.pad") );
-    
+    return padPage ( $page );
+     
   }
 
 
-  function padPageSet ( $page ) {
+  function padPage ( $page ) {
 
     $location = APP;
-    $part     = padExplode ($page, '/');
-    
+    $part     = padExplode ( $page, '/' );
+
     foreach ($part as $key => $value)
-      if ( $key == array_key_last($part)
-            and (file_exists("$location$value.php") or file_exists("$location$value.pad") ) )
-        return $page; 
-      elseif ( is_dir ("$location$value") )
-        $location.= "$value/";
-   
-    return "$page/index";
-
+      if ( $key == array_key_last($part) and ( file_exists ( "$location$value.php" ) or file_exists ( "$location$value.pad" ) ) )
+        return $page;
+      else
+        if ( is_dir ( "$location$value" ) )
+          $location .= "$value/";
+        else
+          return FALSE;
+    
+    if ( file_exists ( $location . 'index.php' ) or file_exists ( $location . 'index.pad' ) )
+      return "$page/index";
+    else
+      return FALSE;
+    
   }
+
 
 
   function padPageAjax ( $page, $qry ) {

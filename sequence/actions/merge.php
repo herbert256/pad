@@ -1,6 +1,6 @@
 <?php
 
-  if ( count ( $pqActionList ) and file_exists ( PAD . "sequence/actions/merge/$pqAction" ) )
+  if ( count ( $pqActionList ) and file_exists ( PQ . "actions/merge/$pqAction" ) )
     foreach ( $pqActionList as $pqMerge ) 
       $pqResult = array_merge ( $pqResult, $pqStore [$pqMerge] );
   

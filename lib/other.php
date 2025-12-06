@@ -302,6 +302,8 @@
     if ( padStoreCheck   ( $content ) ) return TRUE;
     if ( padContentCheck ( $content ) ) return TRUE;
 
+
+
     return FALSE;
 
   }  
@@ -319,6 +321,8 @@
     foreach ( padDirs () as $value )
       if ( padCheck ( APP2 . $value . "_content/$content" ) )
         return TRUE;
+
+    if ( $content == 'block') padError("");
 
     return FALSE;
 
@@ -338,7 +342,7 @@
 
   function padCheck ( $check ) {
 
-     return  ( file_exists ( PAD . "$check.pad" ) or file_exists ( PAD . "$check.php" ) ) ;
+     return  ( file_exists ( "$check.pad" ) or file_exists ( "$check.php" ) ) ;
 
   }   
 
@@ -349,14 +353,14 @@
 
       $file = APP2 . $value . "_data/$check";
 
-      if ( file_exists ($file) and ! is_dir($file) ) return $file;
-      if ( file_exists ("$file.xml")               ) return "$file.xml";
-      if ( file_exists ("$file.json")              ) return "$file.json";
-      if ( file_exists ("$file.yaml")              ) return "$file.yaml";
-      if ( file_exists ("$file.csv")               ) return "$file.csv";
-      if ( file_exists ("$file.php")               ) return "$file.php";
-      if ( file_exists ("$file.curl")              ) return "$file.curl";
-      if ( file_exists ("$file.sql")               ) return "$file.sql";
+      if ( file_exists ( $file ) and ! is_dir ( $file ) ) return  $file;
+      if ( file_exists ( "$file.xml"  )                 ) return "$file.xml";
+      if ( file_exists ( "$file.json" )                 ) return "$file.json";
+      if ( file_exists ( "$file.yaml" )                 ) return "$file.yaml";
+      if ( file_exists ( "$file.csv"  )                 ) return "$file.csv";
+      if ( file_exists ( "$file.php"  )                 ) return "$file.php";
+      if ( file_exists ( "$file.curl" )                 ) return "$file.curl";
+      if ( file_exists ( "$file.sql"  )                 ) return "$file.sql";
 
     }
 

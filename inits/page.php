@@ -10,8 +10,9 @@
   if ( ! padPageCheck ($padPage) )
     padBootError ("Page '$padPage' not found");
 
-  $padPage = padPageSet ($padPage);
-  $padDir  = padDir ();
+  $padPage = padPage ($padPage);
+  $padDir  = padDir  ();
+  $padDirs = padDirs ();
   $padPath = padPath ();
 
   if ( ! isset ( $padStartPage) )

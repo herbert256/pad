@@ -1,13 +1,13 @@
 <?php
  
-  if ( file_exists ( PAD . "sequence/actions/types/$name.php" ) ) {
+  if ( file_exists ( PQ . "actions/types/$name.php" ) ) {
 
     $pqSetAction = $name;
     $pqSetParms  = $parm;
 
     return include PQ . 'start/direct/action.php';
 
-  } elseif ( file_exists ( PAD . "sequence/types/$name" ) ) {
+  } elseif ( file_exists ( PT . "$name" ) ) {
 
     $pqSetAction = $name;
     $pqSetParms  = $parm;

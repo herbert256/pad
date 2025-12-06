@@ -1,5 +1,5 @@
 <?php
 
-  return ~ include PQ . 'types/and/loop.php';
+  return ~ include PT . 'and/loop.php';
 
 ?>

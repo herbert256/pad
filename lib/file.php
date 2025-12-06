@@ -79,9 +79,9 @@
 
   function padFileCheck ( $file ) {
 
-    if ( ! str_starts_with ( $file, '/' )       ) return "Invalid file (start): $file";
-    if ( strpos($file, '..' ) !== FALSE         ) return "Invalid file (..): $file";
-    if ( strpos($file, '//' ) !== FALSE         ) return "Invalid file (//): $file";
+    if ( ! str_starts_with ( $file, '/' )       ) return "Invalid file (not starting with /): $file";
+    if ( strpos($file, '..' ) !== FALSE         ) return "Invalid file (contains '..'): $file";
+    if ( strpos($file, '//' ) !== FALSE         ) return "Invalid file (contains '//'): $file";
     if ( preg_match('/[\x00-\x1F\x7F]/', $file) ) return "Invalid file (contains control chars): $file";
                                                   return '';
 

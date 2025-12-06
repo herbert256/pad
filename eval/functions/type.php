@@ -4,7 +4,7 @@
 
         if ( ! padValid      ( $type                                  ) ) return FALSE;
     elseif ( file_exists     ( APP . "_functions/$type.php"           ) ) return 'app';
-    elseif ( file_exists     ( "functions/$type.php"                  ) ) return 'pad';
+    elseif ( file_exists     ( PAD . "functions/$type.php"                  ) ) return 'pad';
     elseif ( function_exists ( $type                                  ) ) return 'php';
     elseif ( padFieldCheck   ( $type                                  ) ) return 'field';
     elseif ( isset           ( $GLOBALS ['pqStore'] [$type]           ) ) return 'pull';

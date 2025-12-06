@@ -4,9 +4,9 @@
     return;
 
   foreach ( $pqActions as $pqAction => $pqActionParm ) 
-    if ( file_exists ( PAD . "sequence/actions/single/$pqAction" ) )
+    if ( file_exists ( PQ . "actions/single/$pqAction" ) )
       $pqInfo ['actions/single'] [] = $pqAction;
-    elseif ( file_exists ( PAD . "sequence/actions/double/$pqAction" ) )
+    elseif ( file_exists ( PQ . "actions/double/$pqAction" ) )
       $pqInfo ['actions/double'] [] = $pqAction;
 
   foreach ( $pqPlays as $pqTmp ) {    
@@ -17,7 +17,7 @@
   foreach ( $padParms [$pad] as $padStartOption ) {
     extract ( $padStartOption );
     if ( $padPrmKind == 'option' ) 
-      if ( file_exists ( PAD . "sequence/options/types/$padPrmName.php") )
+      if ( file_exists ( PQ . "options/types/$padPrmName.php") )
         $pqInfo ['options'] [] = $padPrmName;
   }
   
