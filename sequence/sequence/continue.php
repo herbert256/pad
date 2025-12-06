@@ -1,16 +1,16 @@
 <?php
 
-  include 'sequence/inits/tag.php';
-  include 'sequence/inits/clear.php';
-  include 'sequence/inits/vars.php';
-  include 'sequence/plays/inits.php';
-  include 'sequence/actions/inits.php';
-  include 'sequence/inits/limits.php';
-  include 'sequence/build/build.php';
-  include 'sequence/exits/actions.php';
-  include 'sequence/exits/store/set.php';
-  include 'sequence/exits/done.php';
-  include 'sequence/exits/info.php';
+  include PQ . 'inits/tag.php';
+  include PQ . 'inits/clear.php';
+  include PQ . 'inits/vars.php';
+  include PQ . 'plays/inits.php';
+  include PQ . 'actions/inits.php';
+  include PQ . 'inits/limits.php';
+  include PQ . 'build/build.php';
+  include PQ . 'exits/actions.php';
+  include PQ . 'exits/store/set.php';
+  include PQ . 'exits/done.php';
+  include PQ . 'exits/info.php';
 
   return NULL;
 

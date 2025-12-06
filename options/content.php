@@ -2,6 +2,6 @@
 
   $padContentName = padTagParm ( 'content' );
   
-  return include 'content/get.php'
+  return include PAD . 'content/get.php'
 
 ?>

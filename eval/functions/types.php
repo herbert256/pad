@@ -24,7 +24,7 @@
     if ( $typeK ) {
       $k = $typeK;
       $b = $typeB;
-      include 'eval/type/type.php';
+      include PAD . 'eval/type/type.php';
     }
 
   }

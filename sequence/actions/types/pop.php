@@ -1,5 +1,5 @@
 <?php
 
-  include 'sequence/actions/types/shift.php';
+  include PQ . 'actions/types/shift.php';
   
 ?>

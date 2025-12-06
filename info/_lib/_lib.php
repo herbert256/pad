@@ -17,89 +17,12 @@
   }
 
 
-  function padInfoLine ( $file, $data, $app=0 ) {
-
-    padInfoWrite ( $file, $data, 1, $app ); 
-    
-  }
-
-
-  function padInfoFile ( $file, $data, $app=0 ) {
-    
-    padInfoWrite ( $file, $data, 0, $app ); 
-    
-  }
-
-
-  function padInfoWrite ( $file, $data, $append, $app ) {
-
-    if ( is_array($data) or is_object($data) )
-      $data = padJson ($data);
-
-    if ( ! $append and file_exists ($file) )
-      return;
-
-    if ( $app )
-      $file = APP . $file;
-    else
-      $file = DAT . $file;
-
-    $dir = substr ( $file, 0, strrpos($file, '/') );
-    
-    if ( ! file_exists ($dir) )
-      padInfoMkDir ( $dir );
-
-    if ( ! file_exists ($file) ) {      
-      touch ($file);
-      chmod ($file, $GLOBALS ['padFileMode']);
-    }
-
-    if ( $append )
-      file_put_contents ( $file, $data . "\n", LOCK_EX | FILE_APPEND );
-    else
-      file_put_contents ( $file, $data,        LOCK_EX );
-    
-  }
-
-
-  function padInfoPut ( $file, $data='', $append=0 ) {
-
-    padFileChkDir  ( $file );
-    padFileChkFile ( $file );
-
-    if ( is_array($data) or is_object($data) )
-      $data = padJson ($data);
-      
-    if ($data)
-      if ($append) file_put_contents ($file, "$data\n", LOCK_EX | FILE_APPEND);
-      else         file_put_contents ($file, $data,     LOCK_EX);
-    
-  }
-
-
-  function padInfoMkDir( $dir ) {
-
-   set_error_handler ( 'padErrorThrow' );
-
-    try {
-
-      mkdir ($dir, $GLOBALS ['padDirMode'], true );
-
-    } catch (Throwable $e) {
-
-    }
-
-    restore_error_handler ();  
-    
-  }
-
-
   function padInfoGet ( $file ) {
 
     if ( ! file_exists ($file) )
       return '';
 
-    return file_get_contents ($file);
+    return padFileGet ($file);
 
   }
 

@@ -206,7 +206,7 @@
 
       $log = padID () . ' - ' . padMakeSafe ( $info );
 
-      padFilePutDat ( 'error_log.txt', $log, true );
+      padFilePut ( 'error_log.txt', $log, true );
 
     } catch (Throwable $e) {
 

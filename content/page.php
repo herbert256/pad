@@ -2,6 +2,6 @@
 
   $padcontentLoop = '';
 
-  return include 'content/loop.php';
+  return include PAD . 'content/loop.php';
 
 ?>

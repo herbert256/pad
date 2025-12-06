@@ -3,7 +3,7 @@
   $padPrmName  = $pqSeq;
   $padPrmValue = $pqParm;
   
-  include 'sequence/plays/add.php';
+  include PQ . 'plays/add.php';
 
   $pqSeq  = '';
   $pqParm = '';

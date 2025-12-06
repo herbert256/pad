@@ -1,5 +1,5 @@
 <?php
 
-  return include 'functions/parms/date.php';
+  return include PAD . 'functions/parms/date.php';
 
 ?>

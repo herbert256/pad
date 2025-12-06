@@ -1,5 +1,5 @@
 <?php
 
-  include 'options/go/callback.php' ;
+  include PAD . 'options/go/callback.php' ;
   
 ?>

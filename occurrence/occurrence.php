@@ -1,14 +1,14 @@
 <?php
 
-  include 'occurrence/init.php';
+  include PAD . 'occurrence/init.php';
 
   if ( $padInfo )
-    include 'events/occurStart.php';
+    include PAD . 'events/occurStart.php';
 
-  include 'occurrence/table.php';
-  include 'occurrence/set.php';
+  include PAD . 'occurrence/table.php';
+  include PAD . 'occurrence/set.php';
 
   if ( isset($padPrm [$pad] ['callback']) and ! isset ( $padPrm [$pad] ['before']) )
-    include 'callback/row.php' ;
+    include PAD . 'callback/row.php' ;
 
 ?>

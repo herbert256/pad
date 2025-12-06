@@ -1,7 +1,7 @@
 <?php
 
-  if ( file_exists ( "functions/single/$eval.php" ) )
-    return include 'eval/fast.php';
+  if ( file_exists ( PAD . "functions/single/$eval.php" ) )
+    return include PAD . 'eval/fast.php';
 
   $GLOBALS ['_eval']      = [];
   $GLOBALS ['_eval_last'] = [];

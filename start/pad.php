@@ -1,10 +1,10 @@
 <?php
 
-  include 'start/start.php';
-  include 'inits/level.php'; 
-  include "start/$padStrBld.php"; 
-  include 'start/level.php'; 
-  include 'start/end.php';
+  include PAD . 'start/start.php';
+  include PAD . 'inits/level.php'; 
+  include PAD . "start/$padStrBld.php"; 
+  include PAD . 'start/level.php'; 
+  include PAD . 'start/end.php';
   
   return $padOut [$pad+1] ;
 

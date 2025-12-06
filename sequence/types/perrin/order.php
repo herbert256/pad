@@ -4,6 +4,6 @@
   if ( $pqLoop == 2 ) return 0; 
   if ( $pqLoop == 3 ) return 2; 
 
-  return include "sequence/types/fibonacci/go.php"; 
+  return include PQ . "types/fibonacci/go.php"; 
 
 ?>

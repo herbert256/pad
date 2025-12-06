@@ -1,5 +1,5 @@
 <?php
 
-  return include "sequence/types/$pqSeq/make.php";
+  return include "$pqDir/make.php";
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-  include 'sequence/build/randomly/init.php';
+  include PQ . 'build/randomly/init.php';
 
   $pqSkipNow   = 0;
   $pqSkipCount = 0;
@@ -21,7 +21,7 @@
 
     $pqTries = $pqKey;
 
-    if ( ! include 'sequence/build/one.php')
+    if ( ! include PQ . 'build/one.php')
       break;
 
     if ( $pqRandomInc )

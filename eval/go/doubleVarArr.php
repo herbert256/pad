@@ -4,7 +4,7 @@
 
     $right = reset ( $right );
 
-    include 'eval/go/doubleVarVar.php';
+    include PAD . 'eval/go/doubleVarVar.php';
 
   } else
 

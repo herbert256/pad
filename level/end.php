@@ -2,32 +2,32 @@
 
   if ( isset ( $padOccurStart [$pad] ) )
     if ( isset ( $padOccurStart [$pad] [$padOccur[$pad]] ) )
-      include 'occurrence/end.php';
+      include PAD . 'occurrence/end.php';
 
   if ( next ($padData [$pad]) !== FALSE )
-    return include 'occurrence/occurrence.php';
+    return include PAD . 'occurrence/occurrence.php';
 
   if ( $padWalk [$pad] == 'next' ) {
-    include 'walk/next.php';
+    include PAD . 'walk/next.php';
     if ( $padWalk [$pad] == 'next' )
-      return include 'occurrence/occurrence.php';
+      return include PAD . 'occurrence/occurrence.php';
   }
 
-  if ( $padStartBase [$pad] ) return include 'level/start_end/start2.php';
-  if ( $padEndBase   [$pad] ) return include 'level/start_end/end2.php';
+  if ( $padStartBase [$pad] ) return include PAD . 'level/start_end/start2.php';
+  if ( $padEndBase   [$pad] ) return include PAD . 'level/start_end/end2.php';
 
   $padOccur [$pad] = 99999;
 
   if ( $padWalk [$pad] == 'end' )
-    include 'walk/end.php';
+    include PAD . 'walk/end.php';
 
   if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']) )
-    include 'callback/exit.php' ;
+    include PAD . 'callback/exit.php' ;
 
-  include 'options/go/end.php';
+  include PAD . 'options/go/end.php';
  
   if ( $padInfo ) 
-    include 'events/levelEnd.php';    
+    include PAD . 'events/levelEnd.php';    
   
   padResetLvl ($pad);
 

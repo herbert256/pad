@@ -12,4 +12,7 @@
 
   define ( 'padOptionsCallback', ['callback'] );
 
+  define ( 'SQ', PAD . 'sequence/' );
+
+
 ?>

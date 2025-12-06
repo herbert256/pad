@@ -1,7 +1,7 @@
 <?php
   
 
-  include "error/error.php";
+  include PAD . "error/error.php";
   
   
   function padErrorGo ( $error, $file, $line ) {
@@ -76,7 +76,7 @@
   function padErrorDoubleTry ( $error1, $error2 ) {
  
     if ( isset ( $GLOBALS ['padErrorDouble'] ) )
-      include 'exits/exit.php';
+      include PAD . 'exits/exit.php';
     else
       $GLOBALS ['padErrorDouble'] = TRUE;
 

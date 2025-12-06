@@ -8,10 +8,10 @@
 
     try {
 
-      $result = file_get_contents ( $output ['url'] );
+      $result = padFileGet ( $output ['url'] );
 
       if ( $result === FALSE )
-        return padCurlError ( $output, 'file_get_contents = FALSE' );
+        return padCurlError ( $output, 'padFileGet = FALSE' );
 
     } catch (Throwable $e) {
 
@@ -219,9 +219,8 @@
     }
 
     if ( $stats and isset ( $output ['headers'] ['PAD-Stats'] ) ) {
-      if ( isset ( $output ['headers'] ['PAD-Stats'] ) )
-        $output ['stats'] = json_decode ( $output ['headers'] ['PAD-Stats'], TRUE ) ;
-        $output ['stats'] ['curl']   = $end - $start;
+      $output ['stats'] = json_decode ( $output ['headers'] ['PAD-Stats'], TRUE ) ;
+      $output ['stats'] ['curl']   = $end - $start;
     }
 
     if ( isset($output ['info']['header_size']) )
@@ -239,7 +238,7 @@
       $output ['type'] = padContentType ( $output ['data'] );
 
     if ( $GLOBALS ['padInfo'] )
-      include 'events/curl.php';
+      include PAD . 'events/curl.php';
 
     $GLOBALS ['padCurlLast'] = $output;
 

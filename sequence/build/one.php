@@ -5,17 +5,17 @@
   if ( $pqTries > $pqTry ) 
     return FALSE;
 
-  if ( $pqRandomParm ) $pqParm = include 'sequence/build/parm.php';
-  if ( $pqParmStore  ) $pqParm = include 'sequence/build/store.php';
-  if ( $pqRandomly   ) $pqLoop = include 'sequence/build/randomly/randomly.php';
+  if ( $pqRandomParm ) $pqParm = include PQ . 'build/parm.php';
+  if ( $pqParmStore  ) $pqParm = include PQ . 'build/store.php';
+  if ( $pqRandomly   ) $pqLoop = include PQ . 'build/randomly/randomly.php';
 
       if ( pqStore ( $pqBuild ) )  $pq = $pqLoop;
   elseif ($pqBuild == 'bool'    )  $pq = ( 'pqBool' . ucfirst($pqSeq) ) ( $pqLoop, $pqParm );
   elseif ($pqBuild == 'function')  $pq = ( 'pq'     . ucfirst($pqSeq) ) ( $pqLoop );
-  elseif ($pqBuild == 'check'   )  $pq = include "sequence/build/check.php";
-  elseif ($pqBuild == 'loop'    )  $pq = include "sequence/types/$pqSeq/loop.php";
-  elseif ($pqBuild == 'make'    )  $pq = include "sequence/types/$pqSeq/make.php";
-  elseif ($pqBuild == 'order'   )  $pq = include "sequence/types/$pqSeq/order.php";
+  elseif ($pqBuild == 'check'   )  $pq = include PQ . "build/check.php";
+  elseif ($pqBuild == 'loop'    )  $pq = include PQ . "types/$pqSeq/loop.php";
+  elseif ($pqBuild == 'make'    )  $pq = include PQ . "types/$pqSeq/make.php";
+  elseif ($pqBuild == 'order'   )  $pq = include PQ . "types/$pqSeq/order.php";
 
   if     ( $pq === FALSE ) return TRUE;
   elseif ( $pq === TRUE  ) $pq = $pqLoop;
@@ -23,7 +23,7 @@
   $pqOrgSet = $pq;
 
   if ( count ( $pqPlays ) ) {
-    include 'sequence/plays/plays.php';
+    include PQ . 'plays/plays.php';
     if ( $pq === FALSE ) 
       return TRUE;
   }

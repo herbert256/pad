@@ -1,6 +1,6 @@
 <?php
 
-  include 'sequence/build/randomly/init.php';
+  include PQ . 'build/randomly/init.php';
 
   $pqGo = $pqFrom;
 
@@ -8,7 +8,7 @@
 
     $pqLoop = $pqGo;
 
-    if ( ! include 'sequence/build/one.php')
+    if ( ! include PQ . 'build/one.php')
       break;
 
     if ( $pqRandomInc )

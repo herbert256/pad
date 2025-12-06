@@ -1,6 +1,6 @@
 <?php
 
-  include 'call/_call.php';
+  include PAD . 'call/_call.php';
 
   return $padCallOB;
 

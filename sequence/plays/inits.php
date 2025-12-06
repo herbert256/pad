@@ -10,7 +10,7 @@
     if ( pqPlay ( $padPrmName ) and $padPrmValue and $padPrmValue !== TRUE ) {
       $pqPlay = $padPrmName;
       padSplit ( '|', $padPrmValue, $padPrmName, $padPrmValue );
-      include 'sequence/plays/add.php';     
+      include PQ . 'plays/add.php';     
       continue;
     }
 
@@ -22,7 +22,7 @@
     if ( ! pqSeq ( $padPrmName ) )
       continue;
 
-    include 'sequence/plays/add.php';
+    include PQ . 'plays/add.php';
 
   }
   

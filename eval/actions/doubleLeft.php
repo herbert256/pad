@@ -5,6 +5,6 @@
 
   unset ( $result [$k] ); padEvalTrace ( 'action/doubleleft', $result );
 
-  include 'eval/go/go.php';
+  include PAD . 'eval/go/go.php';
 
 ?>

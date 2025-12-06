@@ -1,5 +1,5 @@
 <?php
 
-  return ~ include 'sequence/types/xor/loop.php';
+  return ~ include PQ . 'types/xor/loop.php';
 
 ?>

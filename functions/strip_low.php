@@ -1,5 +1,5 @@
 <?php
 
-  return include 'functions/single/strip_low.php';
+  return include PAD . 'functions/single/strip_low.php';
 
 ?>

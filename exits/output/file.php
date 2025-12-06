@@ -1,10 +1,10 @@
 <?php
 
-  padWriteFile ( $padOutput );
+  padFilePut ( padFileName (), $padOutput );
 
   $padSetConfig ['OutputType'] = 'web';
 
   $padRestart = $padFileNextPage;
-  include 'start/enter/restart.php';
+  include PAD . 'start/enter/restart.php';
 
 ?>

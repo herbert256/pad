@@ -82,7 +82,7 @@
 
     $check = str_replace ( '@*', '', $field );
 
-    if ( file_exists ( "at/properties/$check.php") ) {
+    if ( file_exists ( PAD . "at/properties/$check.php") ) {
       $idx   = padFieldFirstNonTag ( $cor ) + 1 ;
       $check = str_replace ( '@*', "@$idx", $field );
       $check = padAtValue ( $check, $cor );
@@ -119,7 +119,7 @@
     $name  = reset ( $names );
     $type  = '';
 
-    $check = include 'at/types/_lib/other.php';
+    $check = include PAD . 'at/types/_lib/other.php';
     if ( $check !== INF )
       return $check;
    
@@ -228,7 +228,7 @@
 
     $padIdx = padAtIdx ( $first, $cor );
 
-    return include 'at/any/tag.php';
+    return include PAD . 'at/any/tag.php';
 
   }
 
@@ -246,7 +246,7 @@
 
     global $pad;
 
-    if ( ! $second and file_exists ( "at/groups/$first.php") )
+    if ( ! $second and file_exists ( PAD . "at/groups/$first.php") )
 
       for ( $i=$pad; $i>-1; $i-- ) {
         $check = padAtGroup ( $first, $name, $names, $i+$cor );
@@ -262,13 +262,13 @@
 
   function padAtGroup ( $group, $name, $names, $padIdx ) {
 
-    if ( ! $group or ! $padIdx or ! file_exists ( "at/groups/$group.php" ) )
+    if ( ! $group or ! $padIdx or ! file_exists ( PAD . "at/groups/$group.php" ) )
       return INF;
 
     if ( $GLOBALS ['padInfo'] ) 
-      include 'events/atGroups.php'; 
+      include PAD . 'events/atGroups.php'; 
 
-    return include "at/groups/$group.php";
+    return include PAD . "at/groups/$group.php";
 
   }
 
@@ -297,16 +297,16 @@
 
     $name = reset ( $names );
 
-    if ( ! $padIdx or ! file_exists ( "at/properties/$name.php") ) 
+    if ( ! $padIdx or ! file_exists ( PAD . "at/properties/$name.php") ) 
       return INF;
 
-    $return = include "at/properties/$name.php";
+    $return = include PAD . "at/properties/$name.php";
 
     if ( $return !== INF )
       padAtSetTag ();
 
     if ( $GLOBALS ['padInfo'] ) 
-      include 'events/atProperties.php'; 
+      include PAD . 'events/atProperties.php'; 
 
     return $return;
 
@@ -315,13 +315,13 @@
 
   function padAtType ( $go, $type, $names, $cor ) {
 
-    if ( ! file_exists ( "at/types/$go.php" ) )
+    if ( ! file_exists ( PAD . "at/types/$go.php" ) )
       return INF;
 
     if ( $GLOBALS ['padInfo'] ) 
-      include 'events/atTypes.php'; 
+      include PAD . 'events/atTypes.php'; 
 
-    return include "at/types/$go.php";
+    return include PAD . "at/types/$go.php";
 
   }
 

@@ -10,9 +10,9 @@
   if ( $pqType == 'remove' or $pqPrefix == 'remove' or $pqTag == 'remove' ) $pqRemove = TRUE;
   if ( $pqType == 'flag'   or $pqPrefix == 'flag'   or $pqTag == 'flag'   ) $pqFlag   = TRUE;
 
-  $pqCheck = 'make';   include "sequence/inits/check/go.php";
-  $pqCheck = 'keep';   include "sequence/inits/check/go.php";
-  $pqCheck = 'remove'; include "sequence/inits/check/go.php";
-  $pqCheck = 'flag';   include "sequence/inits/check/go.php";
+  $pqCheck = 'make';   include PQ . "inits/check/go.php";
+  $pqCheck = 'keep';   include PQ . "inits/check/go.php";
+  $pqCheck = 'remove'; include PQ . "inits/check/go.php";
+  $pqCheck = 'flag';   include PQ . "inits/check/go.php";
 
 ?>

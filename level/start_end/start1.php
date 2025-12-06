@@ -1,7 +1,7 @@
 <?php
 
   if ( $padInfo ) 
-    include 'events/start.php';
+    include PAD . 'events/start.php';
   
   list ( $padBase [$pad], $padStartBase [$pad] ) = explode ( '@start@', $padBase [$pad], 2 );
 
@@ -10,6 +10,6 @@
 
   reset ( $padData [$pad] );
 
-  include 'occurrence/occurrence.php';
+  include PAD . 'occurrence/occurrence.php';
    
 ?>

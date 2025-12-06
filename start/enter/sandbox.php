@@ -8,6 +8,6 @@
   $padStrRes = 1;
   $padStrFun = 0;
 
-  return include 'start/pad.php';
+  return include PAD . 'start/pad.php';
 
 ?>

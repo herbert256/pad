@@ -1,5 +1,5 @@
 <?php
 
-  return ( ! (include "tag/even.php") );
+  return ( ! (include PAD . "tag/even.php") );
 
 ?>

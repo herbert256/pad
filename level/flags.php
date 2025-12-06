@@ -19,6 +19,6 @@
   else                                                  $padArray [$pad] = FALSE;
 
   if ( $padInfo )
-    include 'events/flags.php';
+    include PAD . 'events/flags.php';
 
 ?>

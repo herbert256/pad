@@ -14,7 +14,7 @@
   function padCacheUrl ($url) {
 
     if ( padCacheExists ("url/$url") ) {
-      $etag = padCacheGetContents("url/$url");
+      $etag = padFilePut ("url/$url");
       if ( padCacheExists ("etag/$etag") )
         return [padCacheTime ("etag/$etag"), $etag];
     }
@@ -26,19 +26,19 @@
 
   function padCacheGet ($etag) {
 
-    return ( padCacheExists ("etag/$etag" ) ) ? padCacheGetContents("etag/$etag") : FALSE;
+    return ( padCacheExists ("etag/$etag" ) ) ? padFilePut ("etag/$etag") : FALSE;
 
   }
 
 
   function padCacheStore ($url, $etag, $data) {
     
-    padCachePutContents ("url/$url", $etag);
+    padFilePut ("url/$url", $etag);
 
     if ( $GLOBALS ['padCacheServerNoData'] )
       padCacheTouch ("etag/$etag", $_SERVER['REQUEST_TIME']);
     else
-      padCachePutContents ("etag/$etag", $data);
+      padFilePut ("etag/$etag", $data);
 
   }
 
@@ -66,28 +66,6 @@
 
     return $return;    
 
-  }
-
-
-  function padCacheGetContents ( $file ) {
-
-    $file = $GLOBALS ['padCacheFile'] . $file;
-
-    $return = padFileGet ($file);
-
-    return $return;    
-
-  }
-
-
-  function padCachePutContents ($file, $data) {
-   
-    padCacheChkDir($file);
-
-    $file = $GLOBALS ['padCacheFile'] . $file;
-    
-    file_put_contents ($file, $data, LOCK_EX);
-    
   }
 
 

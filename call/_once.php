@@ -1,20 +1,20 @@
 <?php
 
-  include 'call/_init.php';
+  include PAD . 'call/_init.php';
 
   if ( file_exists ( $padCall ) ) {
 
     if ( $GLOBALS ['padInfo'] ) 
-      include 'events/callStart.php';
+      include PAD . 'events/callStart.php';
 
     $padTry = 'call/_tryOnce';
-    $padCallPHP = include 'try/try.php';
+    $padCallPHP = include PAD . 'try/try.php';
 
     if ( $GLOBALS ['padInfo'] ) 
-      include 'events/callEnd.php';
+      include PAD . 'events/callEnd.php';
 
   }
   
-  include 'call/_exit.php';
+  include PAD . 'call/_exit.php';
 
  ?>

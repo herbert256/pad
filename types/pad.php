@@ -1,7 +1,7 @@
 <?php
 
-  $padTagGo = 'tags/';
+  $padTagGo =  'tags/';
 
-  return include 'types/go/tag.php';
+  return include PAD . 'types/go/tag.php';
 
 ?>

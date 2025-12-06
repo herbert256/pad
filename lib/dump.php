@@ -310,7 +310,7 @@
 
   function padDumpInput ( ) {
 
-    padDumpLines ( 'Input', file_get_contents('php://input') );
+    padDumpLines ( 'Input', padFileGet('php://input') );
 
   }
 
@@ -378,7 +378,7 @@
 
     $chk3 = [ 'padPage','padSesID','padReqID','padRefID','PHPSESSID' ];
     
-    $settings = file_get_contents ( 'config/config.php' );
+    $settings = padFileGet ( 'config/config.php' );
 
     foreach ($GLOBALS as $key => $value)
 
@@ -429,13 +429,20 @@
 
   }
 
+
   function padDumpToDir ( $info='', $dir='' ) {
  
     if ( ! $dir )
       $dir = "dumps/" . $GLOBALS ['padPage'] . '/' . $GLOBALS ['padLog'] . '-' . uniqid();
 
-    if ( isset ( $GLOBALS ['padDumpToDirDone'] ) )
-      return padDumpToDirDone ( $info, $dir );
+    if ( isset ( $GLOBALS ['padDumpToDirDone'] ) ) {
+
+      if ( $dir !== $GLOBALS ['padDumpToDirDone'] )
+        padDumpToDirDone ( $info, $dir, $GLOBALS ['padDumpToDirDone'] );
+
+      return $GLOBALS ['padDumpToDirDone'];
+
+    }
 
     $GLOBALS ['padDumpToDirDone'] = $dir;
 
@@ -458,23 +465,13 @@
   }
 
 
-  function padDumpToDirDone ( $info, $dir ) {
-
-    if ( $dir !== $GLOBALS ['padDumpToDirDone'] )
-      padDumpToDirDoneGo ( $info, $dir, $GLOBALS ['padDumpToDirDone'] );
-
-    return $GLOBALS ['padDumpToDirDone'];
-
-  }
-
-
-  function padDumpToDirDoneGo ( $info, $dir, $done ) {
+  function padDumpToDirDone ( $info, $dir, $done ) {
 
     set_error_handler ( 'padErrorThrow' );
 
     try {
 
-      padFilePutDat ( "$dir/error.txt", DAT . "$info\n\n$done" );   
+      padFilePut ( "$dir/error.txt", "$info\n\n$done" );   
     
     } catch (Throwable $e ) {
 
@@ -529,7 +526,7 @@
 
     try {
 
-      padFilePutDat ( "$dir/oops.txt", 
+      padFilePut ( "$dir/oops.txt", 
                            "$info\n\n" . 
                            $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage() 
                          );
@@ -573,46 +570,21 @@
     $dir = $GLOBALS ['padDumpToDirDone'];
     $txt = trim ( $txt );
 
-    padDumpWrite ( "$dir/$file.html", "<pre>$txt</pre>" );
+    padFilePut ( "$dir/$file.html", "<pre>$txt</pre>" );
 
   }
 
 
   function padDumpInputToFile () {
 
-    $txt  = trim ( file_get_contents('php://input') ?? '' );
+    $txt  = trim ( padFileGet('php://input') ?? '' );
     $type = padContentType ( $txt );
 
     if ( $type == 'csv' )
       $type = 'txt';
 
-    padDumpWrite ( $GLOBALS ['padDumpToDirDone'] . "/input.$type", $txt );
+    padFilePut ( $GLOBALS ['padDumpToDirDone'] . "/input.$type", $txt );
 
-  }
-
-
-  function padDumpWrite ( $file, $data ) {
-
-    if ( is_array($data) or is_object($data) )
-      $data = padJson ($data);
-
-    if ( ! $data )
-      return;
-
-    $file = DAT . $file;
-
-    $dir = substr ( $file, 0, strrpos($file, '/') );
-    
-    if ( ! file_exists ($dir) )
-      mkdir ($dir, $GLOBALS ['padDirMode'], true );
-      
-    if ( ! file_exists ($file) ) {      
-      touch ($file);
-      chmod ($file, $GLOBALS ['padFileMode']);
-    }
-      
-    file_put_contents ( $file, $data );
-    
   }
 
 

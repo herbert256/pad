@@ -1,5 +1,5 @@
 <?php
 
-  include 'sequence/actions/types/minimum.php';
+  include PQ . 'actions/types/minimum.php';
   
 ?>

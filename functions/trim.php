@@ -1,5 +1,5 @@
 <?php
 
-  return include 'functions/single/trim.php';
+  return include PAD . 'functions/single/trim.php';
 
 ?>

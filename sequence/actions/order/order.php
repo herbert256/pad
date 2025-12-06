@@ -5,8 +5,8 @@
   
   foreach ( $pqActionEnd as $padK => $padV ) 
     if ( substr ( $padK, 0, 1 ) <> 'x' ) 
-      return include 'sequence/actions/order/values.php';
+      return include PQ . 'actions/order/values.php';
 
-  return include 'sequence/actions/order/keys.php';
+  return include PQ . 'actions/order/keys.php';
 
 ?>

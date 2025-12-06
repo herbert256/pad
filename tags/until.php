@@ -1,5 +1,5 @@
 <?php
           
-  return include 'tags/while.php';
+  return include PAD . 'tags/while.php';
 
 ?>

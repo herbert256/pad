@@ -1,6 +1,6 @@
 <?php
 
-  include_once 'bool.php';
+  include_once PAD . 'bool.php';
 
   return pqBoolPrime ($pqLoop);
   

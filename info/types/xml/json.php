@@ -131,7 +131,7 @@
     else
       $spaces = '';
 
-    padInfoPut ( $padInfoXmlFile, "$spaces$xml", 1 );
+    padFilePut ( $padInfoXmlFile, "$spaces$xml", 1 );
   
   }
 

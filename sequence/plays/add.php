@@ -6,8 +6,8 @@
   $pqSeq   = $padPrmName;
   $pqBuild = pqBuild ( $pqSeq, $pqPlay );
 
-  include 'sequence/build/include.php';
-  include "sequence/plays/init.php";
+  include PQ . 'build/include.php';
+  include PQ . "plays/init.php";
     
   $pqPlays [] = [
     'pqSeq'   => $pqSeq,

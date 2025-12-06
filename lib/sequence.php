@@ -65,7 +65,7 @@
 
   function pqSeq ( $seq  ) {
 
-    if ( $seq and file_exists ( "sequence/types/$seq" ) )
+    if ( $seq and file_exists ( PAD . "sequence/types/$seq" ) )
       return TRUE;
     else
       return FALSE;
@@ -92,7 +92,7 @@
 
   function pqAction ( $action  ) {
 
-    if ( $action and file_exists ( "sequence/actions/types/$action.php" ) )
+    if ( $action and file_exists ( PAD . "sequence/actions/types/$action.php" ) )
       return TRUE;
     else
       return FALSE;
@@ -256,17 +256,17 @@
     if ( $for == 'keep' or $for == 'remove' or $for == 'flag' )
       return 'check';
 
-    if ( file_exists ( "sequence/types/$check/$for.php" ) ) 
+    if ( file_exists ( PAD . "sequence/types/$check/$for.php" ) ) 
       return $for;
     
-    if     ( file_exists ( "sequence/types/$check/loop.php")      ) return 'loop';
-    elseif ( file_exists ( "sequence/types/$check/make.php")      ) return 'make';
-    elseif ( file_exists ( "sequence/types/$check/function.php")  ) return 'function';
-    elseif ( file_exists ( "sequence/types/$check/bool.php")      ) return 'bool';
-    elseif ( file_exists ( "sequence/types/$check/order.php")     ) return 'order';
-    elseif ( file_exists ( "sequence/types/$check/build.php")     ) return 'build';
-    elseif ( file_exists ( "sequence/types/$check/fixed.php")     ) return 'fixed';
-    elseif ( file_exists ( "sequence/types/$check/generated.php") ) return 'generated';
+    if     ( file_exists ( PAD . "sequence/types/$check/loop.php")      ) return 'loop';
+    elseif ( file_exists ( PAD . "sequence/types/$check/make.php")      ) return 'make';
+    elseif ( file_exists ( PAD . "sequence/types/$check/function.php")  ) return 'function';
+    elseif ( file_exists ( PAD . "sequence/types/$check/bool.php")      ) return 'bool';
+    elseif ( file_exists ( PAD . "sequence/types/$check/order.php")     ) return 'order';
+    elseif ( file_exists ( PAD . "sequence/types/$check/build.php")     ) return 'build';
+    elseif ( file_exists ( PAD . "sequence/types/$check/fixed.php")     ) return 'fixed';
+    elseif ( file_exists ( PAD . "sequence/types/$check/generated.php") ) return 'generated';
     else                                                            return 'unknow';
 
   }

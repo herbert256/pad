@@ -2,7 +2,7 @@
 
   $padData [$pad] = [];
 
-  if ( $pqNameGiven ) include 'sequence/exits/return/given.php'; 
-  else                include 'sequence/exits/return/names.php'; 
+  if ( $pqNameGiven ) include PQ . 'exits/return/given.php'; 
+  else                include PQ . 'exits/return/names.php'; 
 
 ?>

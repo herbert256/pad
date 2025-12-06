@@ -1,6 +1,6 @@
 <?php
 
   if ( $padCache )
-    include 'cache/inits.php';
+    include PAD . 'cache/inits.php';
   
 ?>

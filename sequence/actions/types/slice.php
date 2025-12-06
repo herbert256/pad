@@ -2,6 +2,6 @@
 
   $pqFunction = 'array_slice';
 
-  $pqResult = include 'sequence/actions/function.php';
+  $pqResult = include PQ . 'actions/function.php';
 
 ?>

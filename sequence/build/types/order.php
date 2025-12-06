@@ -6,6 +6,6 @@
   $pqFrom = 1;
   $pqInc  = 1;
 
-  include 'sequence/build/types/type/loop.php';
+  include PQ . 'build/types/type/loop.php';
   
 ?>

@@ -1,5 +1,5 @@
 <?php
 
-  return include 'tags/record.php'; 
+  return include PAD . 'tags/record.php'; 
 
 ?>

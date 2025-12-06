@@ -20,6 +20,6 @@
   } else
     $value = $myself;
 
-  return include "eval/parms/$kind.php" ;
+  return include PAD . "eval/parms/$kind.php" ;
 
 ?>

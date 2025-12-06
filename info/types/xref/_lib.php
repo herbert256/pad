@@ -31,7 +31,7 @@
 
   function padInfoXrefGo ( $prefix, $dir1, $dir2, $dir3 ) {
 
-    if ( $dir1 == 'properties' and ! file_exists ( "tag/$dir2.php" ) )
+    if ( $dir1 == 'properties' and ! file_exists ( PAD . "tag/$dir2.php" ) )
       $dir2 = strtolower($dir2);
 
     $file = "$prefix/$dir1/$dir2";
@@ -39,13 +39,13 @@
     if ( $dir3 !== '' )
       $file .= "/$dir3";
 
-    $target = APP . "$file.txt";
+    $target = "$file.txt";
     $page   = $GLOBALS ['padStartPage'];
 
     if ( file_exists ($target) and in_array ( $page, file ( $target, FILE_IGNORE_NEW_LINES ) ) )
       return;
 
-    padInfoLine ( "$file.txt", $page, 1 );
+    padFilePut ( "$file.txt", $page, 1 );
 
   }
  

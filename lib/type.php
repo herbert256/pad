@@ -32,8 +32,8 @@
 
     $GLOBALS ['padTypeSeq'] = $type;
 
-    if ( $type == 'action' and file_exists ( "sequence/actions/types/$item.php" )                        ) return 'action';
-    if ( $item == 'action' and file_exists ( "sequence/actions/types/$type.php" )                        ) return 'action';
+    if ( $type == 'action' and file_exists ( PAD . "sequence/actions/types/$item.php" )                        ) return 'action';
+    if ( $item == 'action' and file_exists ( PAD . "sequence/actions/types/$type.php" )                        ) return 'action';
         
     if ( isset ( $GLOBALS ['pqStore'] [$type] ) and file_exists ("sequence/actions/types/$item.php") ) return 'action';
     if ( isset ( $GLOBALS ['pqStore'] [$item] ) and file_exists ("sequence/actions/types/$type.php") ) return 'action';
@@ -44,11 +44,11 @@
     if ( isset ( $GLOBALS ['pqStore'] [$type] ) and file_exists ("sequence/start/types/$item.php")   ) return $item;
     if ( isset ( $GLOBALS ['pqStore'] [$item] ) and file_exists ("sequence/start/types/$type.php")   ) return $type;
 
-    if ( file_exists ( "sequence/types/$item" )    and file_exists ("sequence/start/types/$type.php")    ) return $type;
-    if ( file_exists ( "sequence/types/$type" )    and file_exists ("sequence/start/types/$item.php")    ) return $item; 
+    if ( file_exists ( PAD . "sequence/types/$item" )    and file_exists ("sequence/start/types/$type.php")    ) return $type;
+    if ( file_exists ( PAD . "sequence/types/$type" )    and file_exists ("sequence/start/types/$item.php")    ) return $item; 
 
-    if ( file_exists ( "sequence/actions/types/$item.php" ) and file_exists ("sequence/start/types/$type.php") ) return $type;
-    if ( file_exists ( "sequence/actions/types/$type.php" ) and file_exists ("sequence/start/types/$item.php") ) return $item; 
+    if ( file_exists ( PAD . "sequence/actions/types/$item.php" ) and file_exists ("sequence/start/types/$type.php") ) return $type;
+    if ( file_exists ( PAD . "sequence/actions/types/$type.php" ) and file_exists ("sequence/start/types/$item.php") ) return $item; 
 
     return FALSE;
 

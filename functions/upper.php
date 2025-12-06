@@ -1,5 +1,5 @@
 <?php
 
-  return include 'functions/single/upper.php';
+  return include PAD . 'functions/single/upper.php';
 
 ?>

@@ -1,12 +1,12 @@
 <?php
 
-  include 'sequence/exits/exit.php';
-  include 'sequence/exits/actions.php';
-  include 'sequence/exits/store/store.php';
-  include 'sequence/exits/data.php';
-  include 'sequence/exits/return/return.php';
-  include 'sequence/exits/extra/extra.php';
-  include 'sequence/exits/done.php';
-  include 'sequence/exits/info.php';
+  include PQ . 'exits/exit.php';
+  include PQ . 'exits/actions.php';
+  include PQ . 'exits/store/store.php';
+  include PQ . 'exits/data.php';
+  include PQ . 'exits/return/return.php';
+  include PQ . 'exits/extra/extra.php';
+  include PQ . 'exits/done.php';
+  include PQ . 'exits/info.php';
  
 ?>

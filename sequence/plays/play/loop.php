@@ -1,5 +1,5 @@
 <?php
 
-  return include "sequence/types/$pqSeq/loop.php";
+  return include PQ . "types/$pqSeq/loop.php";
 
 ?>

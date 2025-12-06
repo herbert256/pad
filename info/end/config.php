@@ -3,11 +3,11 @@
    if ( ! $GLOBALS ['padInfo'] )
       return;
 
-  if ( $GLOBALS ['padInfoXml']   ) include 'info/types/xml/end.php';
-  if ( $GLOBALS ['padInfoXref']  ) include 'info/types/xref/end.php';
-  if ( $GLOBALS ['padInfoStats'] ) include 'info/types/stats/end.php';
-  if ( $GLOBALS ['padInfoTrace'] ) include 'info/types/trace/end.php';
-  if ( $GLOBALS ['padInfoTrack'] ) include 'info/types/track/end.php';
+  if ( $GLOBALS ['padInfoXml']   ) include PAD . 'info/types/xml/end.php';
+  if ( $GLOBALS ['padInfoXref']  ) include PAD . 'info/types/xref/end.php';
+  if ( $GLOBALS ['padInfoStats'] ) include PAD . 'info/types/stats/end.php';
+  if ( $GLOBALS ['padInfoTrace'] ) include PAD . 'info/types/trace/end.php';
+  if ( $GLOBALS ['padInfoTrack'] ) include PAD . 'info/types/track/end.php';
 
   $GLOBALS ['padInfoCnt']--;
 

@@ -1,5 +1,5 @@
 <?php
 
-  return include 'sequence/start/tags/keep.php';
+  return include PQ . 'start/tags/keep.php';
 
 ?>

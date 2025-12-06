@@ -13,7 +13,7 @@
       if ( $previous !== NULL and $result [$now] [1] == 'OPR' and $result [$previous] [1] == 'OPR' ) {
                   
         $b = $previous;
-        include 'eval/actions/alone.php';
+        include PAD . 'eval/actions/alone.php';
   
         padEvalDouble ( $result, $myself, $start, $end ); padEvalTrace ( 'double3', $result );;
         return;

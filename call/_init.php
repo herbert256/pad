@@ -3,7 +3,7 @@
   $padCallPHP = $padCallOB = '';
   
   if ( $GLOBALS ['padInfo'] )
-    include 'events/call.php';
+    include PAD . 'events/call.php';
 
   ob_start();
  

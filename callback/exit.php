@@ -2,6 +2,6 @@
 
   $padCallback = "exit";
   
-  include 'callback/callback.php';
+  include PAD . 'callback/callback.php';
   
 ?>

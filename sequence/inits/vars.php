@@ -26,7 +26,7 @@
   $pqActionsHit = [];
   $pqOrgHit     = [];
 
-  include 'sequence/inits/parms.php';
-  include 'sequence/inits/set.php';
+  include PQ . 'inits/parms.php';
+  include PQ . 'inits/set.php';
 
 ?>

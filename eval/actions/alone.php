@@ -3,6 +3,6 @@
   $left  = $myself;
   $right = $myself;
 
-  include 'eval/go/go.php';
+  include PAD . 'eval/go/go.php';
 
 ?>

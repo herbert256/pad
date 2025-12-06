@@ -1,6 +1,6 @@
 <?php
   
-  include_once 'info/types/xml/_lib.php';
+  include_once PAD . 'info/types/xml/_lib.php';
 
   $padInfoXmlId     = 0;
   $padInfoXmlDepth  = 0;
@@ -9,9 +9,9 @@
   $padInfoXmlEvents = [];
 
   if ( padInclude () )
-    $padInfoXmlFile = APP . "_xml/include/$padStartPage.xml";
+    $padInfoXmlFile = "_xml/include/$padStartPage.xml";
   else
-    $padInfoXmlFile = APP . "_xml/complete/$padStartPage.xml";
+    $padInfoXmlFile = "_xml/complete/$padStartPage.xml";
 
   if ( $GLOBALS ['padInfoXmlCompact'] )
     $padInfoXmlFile = str_replace('_xml/', '_xml/compact/', $padInfoXmlFile); 

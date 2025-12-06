@@ -1,10 +1,10 @@
 <?php
 
-  include 'sequence/build/given.php';
-  include 'sequence/build/vars.php';
-  include "sequence/build/include.php";
-  include "sequence/build/randomly/build/inits.php";
-  include "sequence/build/types/$pqBuild.php";
-  include "sequence/build/randomly/build/exits.php";
+  include PQ . 'build/given.php';
+  include PQ . 'build/vars.php';
+  include PQ . "build/include.php";
+  include PQ . "build/randomly/build/inits.php";
+  include PQ . "build/types/$pqBuild.php";
+  include PQ . "build/randomly/build/exits.php";
   
 ?>

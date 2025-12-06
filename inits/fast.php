@@ -12,6 +12,6 @@
   
   extract ( unserialize ( $padFast ), EXTR_OVERWRITE );
 
-  include 'config/config.php';
+  include PAD . 'config/config.php';
   
 ?>

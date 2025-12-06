@@ -2,16 +2,16 @@
 
   if ( $padWalk [$pad] == 'start' ) { 
 
-    include 'info/start/tag.php';
-    include 'config/info/trace.php';
-    include 'info/types/trace/start.php';
+    include PAD . 'info/start/tag.php';
+    include PAD . 'config/info/trace.php';
+    include PAD . 'info/types/trace/start.php';
     
     $padWalk [$pad] = 'end';
 
   } else {
 
-    include 'info/types/trace/end.php';
-    include 'info/end/tag.php';
+    include PAD . 'info/types/trace/end.php';
+    include PAD . 'info/end/tag.php';
 
   }
 

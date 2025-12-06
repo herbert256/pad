@@ -2,6 +2,6 @@
 
   $padOptions = 'end';
   
-  include 'options/go/options.php';
+  include PAD . 'options/go/options.php';
   
 ?>

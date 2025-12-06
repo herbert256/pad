@@ -1,44 +1,44 @@
 <?php
 
-  include 'level/setup.php';    
+  include PAD . 'level/setup.php';    
   
-  include 'level/parms/parms.php';    
-  include 'level/split.php';
+  include PAD . 'level/parms/parms.php';    
+  include PAD . 'level/split.php';
 
-  if ( padTagParm ('else') ) $padFalse       = include "options/else.php";    
-  if ( padTagParm ('data') ) $padData [$pad] = include "options/data.php";   
+  if ( padTagParm ('else') ) $padFalse       = include PAD . "options/else.php";    
+  if ( padTagParm ('data') ) $padData [$pad] = include PAD . "options/data.php";   
 
-  include 'level/set.php';
+  include PAD . 'level/set.php';
   
   $padTry = 'level/go';
-  include 'try/try.php';
+  include PAD . 'try/try.php';
 
-  include 'level/base.php';
-  include 'level/data.php';
-  include 'level/name.php';
-  include 'handling/handling.php';  
+  include PAD . 'level/base.php';
+  include PAD . 'level/data.php';
+  include PAD . 'level/name.php';
+  include PAD . 'handling/handling.php';  
 
   if ( padTagParm ('dump') )
-    include 'options/dump.php';
+    include PAD . 'options/dump.php';
 
   if ( count ( $padOptionsAppStart [$pad] ) )
-    include 'options/go/app.php';
+    include PAD . 'options/go/app.php';
 
-  include 'options/go/start.php';
+  include PAD . 'options/go/start.php';
 
   if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']) )
-    include 'callback/init.php' ;
+    include PAD . 'callback/init.php' ;
 
   if ( padOpenCloseOk ( $padBase[$pad], '@end@') ) 
-    include 'level/start_end/end1.php';
+    include PAD . 'level/start_end/end1.php';
 
   if ( $padInfo ) 
-    include 'events/levelStart.php';  
+    include PAD . 'events/levelStart.php';  
 
   if ( padOpenCloseOk ( $padBase[$pad], '@start@') ) 
-    return include 'level/start_end/start1.php';
+    return include PAD . 'level/start_end/start1.php';
 
   if ( count ( $padData [$pad] ) and $padBase [$pad] )
-    include 'occurrence/occurrence.php';
+    include PAD . 'occurrence/occurrence.php';
 
 ?>

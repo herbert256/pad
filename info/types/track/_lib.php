@@ -53,13 +53,13 @@
     if ( function_exists ('getallheaders') ) $headers = getallheaders() ?? [];
     else                                     $headers = [];
 
-    padInfoFile ( "track/requests/$padLog-entry.json",  [
+    padFilePut ( "track/requests/$padLog-entry.json",  [
         'headers' => getallheaders() ?? '',
         'get'     => $_GET    ?? '',
         'post'    => $_POST   ?? '',
         'files '  => $_FILES  ?? '',
         'cookies' => $_COOKIE ?? '',
-        'data'    => file_get_contents('php://input') ?? '',
+        'data'    => padFileGet('php://input') ?? '',
         'server'  => $_SERVER ?? '',
         'host'    => $_ENV ?? ''
     ] );
@@ -85,7 +85,7 @@
         unset ( $phpHeaders [$key] );
     }
 
-    padInfoFile ( 
+    padFilePut ( 
       "track/requests/$padLog.json", 
         [ 'pad' => padInfo (),
           'in'  => json_decode ( padInfoGet ( DAT . "track/requests/$padLog-entry.json" ) ),
@@ -114,7 +114,7 @@
     else
       $dir = 'complete';
 
-    padInfoFile ( "track/data/$dir/$padStartPage.html", $GLOBALS ['padOutput'] );
+    padFilePut ( "track/data/$dir/$padStartPage.html", $GLOBALS ['padOutput'] );
 
   }
 

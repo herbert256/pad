@@ -25,6 +25,6 @@
 
   $t = substr ( $t, 0, -1) . "\n];\n\n?>";
 
-  file_put_contents ( "/pad/seq/types/oeis/test.php", $t );
+  padFilePut ( "/pad/seq/types/oeis/test.php", $t );
 
 ?>

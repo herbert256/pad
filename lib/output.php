@@ -113,7 +113,7 @@
     if ( ! $GLOBALS ['padInfoStats'] ) return;
 
     if ( ! isset ( $GLOBALS ['padInfoStatsJson'] ) )
-      include 'info/types/stats/end.php';
+      include PAD . 'info/types/stats/end.php';
 
     if ( isset ( $GLOBALS ['padInfoStatsJson'] ) )
       padHeader ( 'PAD-Stats: ' . $GLOBALS ['padInfoStatsJson'] );    

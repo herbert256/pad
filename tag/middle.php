@@ -1,5 +1,5 @@
 <?php
 
-  return ! include 'tag/border.php';
+  return ! include PAD . 'tag/border.php';
 
 ?>

@@ -1,18 +1,18 @@
 <?php
 
   if ( $padRestart )
-    return include 'start/enter/restart.php';    
+    return include PAD . 'start/enter/restart.php';    
     
   padLevelEnd ();
   if ( $padEnd [$pad] === FALSE )
-    return include 'level/end.php';
+    return include PAD . 'level/end.php';
 
   padLevelStart ();
   if ( $padStart [$pad] === FALSE ) 
     return padLevelNoOpen ();
 
   padLevelBetween ();
-  include 'level/between.php';
+  include PAD . 'level/between.php';
 
   if ( $padFirst == '/' ) 
     return padError ( "Closing tag found without an open tag: {" . $padBetween . "}" );
@@ -21,24 +21,24 @@
     return padLevelNoSingle ();
   
   if ( $pad and $padLvlFun [$pad-1] )
-    include 'level/function.php';
+    include PAD . 'level/function.php';
      
   if ( in_array ( $padFirst, ['$','!','#','&','?','@'] ) ) {
     $padTry = 'level/var';
-    return include 'try/try.php';
+    return include PAD . 'try/try.php';
   }
 
-  include 'level/type.php';
-  include 'level/tag.php';
+  include PAD . 'level/type.php';
+  include PAD . 'level/tag.php';
 
   if ( ! $padTypeResult and in_array ( 'optional', $padPrmParse ) )
     if ( padValidTag ($padWords [0]) )
-      return include 'options/optional.php';
+      return include PAD . 'options/optional.php';
 
   if ( ! $padTypeResult ) 
     if ( $padPairSet ) return padLevelNoPair   ();
     else               return padLevelNoSingle ();
 
-  include 'level/start.php';
+  include PAD . 'level/start.php';
  
 ?>

@@ -1,11 +1,11 @@
 <?php 
 
   if ( ! $GLOBALS ['padErrorTry'] )
-    return include "$padTry.php";
+    return include PAD . "$padTry.php";
 
   try {
 
-    return include "$padTry.php";
+    return include PAD . "$padTry.php";
 
   } catch (Throwable $padTryException) {
 
@@ -16,7 +16,7 @@
       $padTryException->getLine()
     );
 
-    return include "try/catch/$padTry.php";
+    return include PAD . "try/catch/$padTry.php";
 
   }
 

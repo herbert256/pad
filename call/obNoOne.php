@@ -1,6 +1,6 @@
 <?php
 
-  include 'call/_call.php';
+  include PAD . 'call/_call.php';
 
   if ( $padCallPHP === 1 )
     $padCallPHP = '';

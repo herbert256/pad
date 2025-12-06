@@ -2,21 +2,21 @@
 
   $padStrCnt++;
   
-  include 'start/start/start.php';
-  include 'start/start/pad.php';
+  include PAD . 'start/start/start.php';
+  include PAD . 'start/start/pad.php';
 
   if ( $padStrBox or $padStrCln or $padStrRes ) {
-    include 'start/start/app.php';
-    include 'start/start/dat.php';
-    include 'start/start/stores.php';
+    include PAD . 'start/start/app.php';
+    include PAD . 'start/start/dat.php';
+    include PAD . 'start/start/stores.php';
   }
 
   if ( $padStrBox or $padStrRes ) { 
-    include 'start/start/resetPad.php';
-    include 'start/start/resetApp.php'; 
+    include PAD . 'start/start/resetPad.php';
+    include PAD . 'start/start/resetApp.php'; 
   } 
 
   if ( $padStrBox or $padStrCln or $padStrRes )
-    include 'start/start/level.php';
+    include PAD . 'start/start/level.php';
 
 ?>

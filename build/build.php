@@ -1,16 +1,16 @@
 <?php
 
-  include 'build/dirs.php';
+  include PAD . 'build/dirs.php';
 
-  $padBuildLib  = include 'build/_lib.php';  
-  $padBuildBase = include 'build/base.php';
-  $padBuildPage = include 'build/page.php';
+  $padBuildLib  = include PAD . 'build/_lib.php';  
+  $padBuildBase = include PAD . 'build/base.php';
+  $padBuildPage = include PAD . 'build/page.php';
 
   $padBase [$pad] = $padBuildLib . str_replace ( '@pad@', $padBuildPage, $padBuildBase );
 
   if ( $padInfo )
-    include 'events/build.php';
+    include PAD . 'events/build.php';
 
-  include 'occurrence/occurrence.php';
+  include PAD . 'occurrence/occurrence.php';
 
 ?>

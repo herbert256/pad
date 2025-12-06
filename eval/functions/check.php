@@ -22,15 +22,15 @@
 
     if ( $count == 1 and $result [$last] [1] == 'OPR' ) {
       $b = $last;
-      include 'eval/actions/alone.php';
+      include PAD . 'eval/actions/alone.php';
     } elseif ( $count == 2 and $result [$first] [1] == 'OPR' and $result [$last] [1] == 'VAL' ) {
       $b = $first;
       $k = $last;
-      include 'eval/actions/doubleLeft.php';
+      include PAD . 'eval/actions/doubleLeft.php';
     } elseif ( $count == 2 and $result [$first] [1] == 'VAL' and $result [$last] [1] == 'OPR' ) {
       $b = $last;
       $f = $first;
-      include 'eval/actions/doubleRight.php';
+      include PAD . 'eval/actions/doubleRight.php';
     }
 
   }

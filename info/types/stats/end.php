@@ -19,6 +19,6 @@
 
   $GLOBALS ['padInfoStatsJson'] = json_encode ( $GLOBALS ['padInfoStatsInfo'] ) ;
   
-  include 'events/stats.php';
+  include PAD . 'events/stats.php';
  
 ?>

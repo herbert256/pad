@@ -6,7 +6,7 @@
 
     $padIdx = $i + $cor;
 
-    $check = include 'at/any/tag.php';
+    $check = include PAD . 'at/any/tag.php';
     if ( $check !== INF )
       return $check;
 

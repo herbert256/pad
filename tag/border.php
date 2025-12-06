@@ -1,9 +1,9 @@
 <?php
 
   return ( 
-    (include "tag/first.php")
+    (include PAD . "tag/first.php")
       or
-    (include "tag/last.php")
+    (include PAD . "tag/last.php")
   );
 
 ?>

@@ -1,5 +1,5 @@
 <?php
 
-  return include 'functions/single/stripslashes.php';
+  return include PAD . 'functions/single/stripslashes.php';
 
 ?>

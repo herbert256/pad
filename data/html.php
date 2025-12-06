@@ -14,7 +14,7 @@
 
   $data = trim($xml->value);
 
-  $arr = include 'data/xml.php';
+  $arr = include PAD . 'data/xml.php';
 
   return $arr;
 

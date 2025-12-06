@@ -3,6 +3,6 @@
   if ( ! isset ( $padPrm [$pad] ['page'] ) )
     if ( ! isset ( $padPrm [$pad] ['start'] ) )
       if ( ! isset ( $padPrm [$pad] ['end'] ) )
-        include 'handling/types/page.php';
+        include PAD . 'handling/types/page.php';
 
 ?>

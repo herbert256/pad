@@ -3,7 +3,7 @@
   if ( ! count ( $pqActions ) )
     return;
 
-  include 'sequence/actions/assoc.php';
+  include PQ . 'actions/assoc.php';
 
   foreach ( $pqActions as $pqAction => $pqActionParm ) {
 
@@ -16,9 +16,9 @@
     if ( str_contains ( $pqActionParm, '..' ) )
       pqRandomParm ( $pqActionParm );
 
-    include 'sequence/actions/merge.php'; 
-    include "sequence/actions/types/$pqAction.php";
-    include 'sequence/actions/negative/negative.php';
+    include PQ . 'actions/merge.php'; 
+    include PQ . "actions/types/$pqAction.php";
+    include PQ . 'actions/negative/negative.php';
 
     $pqActionsHit [$pqAction] = array_values ( $pqResult ); 
 

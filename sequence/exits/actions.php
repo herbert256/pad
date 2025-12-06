@@ -1,5 +1,5 @@
 <?php
 
-  include 'sequence/actions/actions.php';
+  include PQ . 'actions/actions.php';
  
 ?>

@@ -1,7 +1,7 @@
 <?php
  
-  $pqFixed = include "sequence/types/$pqSeq/build.php";
+  $pqFixed = include PQ . "types/$pqSeq/build.php";
 
-  include 'sequence/build/types/type/fixed.php';
+  include PQ . 'build/types/type/fixed.php';
 
 ?>

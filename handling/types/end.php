@@ -1,6 +1,6 @@
 <?php
 
   if ( ! isset ( $padPrm [$pad] ['start'] ) )
-    include 'handling/types/start.php';
+    include PAD . 'handling/types/start.php';
 
 ?>

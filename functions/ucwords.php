@@ -1,5 +1,5 @@
 <?php
 
-  return include 'functions/single/ucwords.php';
+  return include PAD . 'functions/single/ucwords.php';
 
 ?>

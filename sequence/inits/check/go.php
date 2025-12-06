@@ -9,7 +9,7 @@
     if ( $pqPlay ['pqPlay'] == $pqCheck )
       return;
          
-  if ( pqStore ( $pqBuild ) ) include 'sequence/inits/check/store.php';
-  else                        include 'sequence/inits/check/sequence.php';
+  if ( pqStore ( $pqBuild ) ) include PQ . 'inits/check/store.php';
+  else                        include PQ . 'inits/check/sequence.php';
 
 ?>

@@ -18,7 +18,7 @@
     if ( ! is_array ( $data ) ) {    
       if ( ! $type )
         $type = padContentType ( $data );
-      $data = include "data/$type.php";
+      $data = include PAD . "data/$type.php";
     }
     
     if ( isset ( $GLOBALS ['padDataSetRecord'] ) and $GLOBALS ['padDataSetRecord'] ) {

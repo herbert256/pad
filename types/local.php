@@ -2,6 +2,6 @@
 
   $padLocalFile = padDataFileName ( $padTag [$pad] ) ;
 
-  return include 'types/go/local.php';
+  return include PAD . 'types/go/local.php';
 
 ?>

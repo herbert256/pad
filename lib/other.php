@@ -46,17 +46,20 @@
 
     $data = padFileGet ( $file );
 
-    $tidy = new tidy;
-    $tidy->parseString ( $data, $options, 'utf8' );
-    $tidy->cleanRepair();
-
-    if ( $tidy === FALSE )
+    if ( ! class_exists('tidy') )
       return;
 
-    $value = $tidy->value;
+    try {
+      $tidy = new tidy;
+      $tidy->parseString ( $data, $options, 'utf8' );
+      $tidy->cleanRepair();
+      $value = $tidy->value ?? '';
+    } catch (Throwable $e) {
+      return;
+    }
 
     if ( $value and strlen($value) > 10 )
-      padFilePut ( $file, $value, 0, 1 );
+      padFilePut ( $file, $value, 0 );
 
   }
 
@@ -106,16 +109,6 @@
   }
 
 
-  function padWriteFile ( $output ) {
-
-    $file = padFileName ();
-    $data = padOutput   ( $output ) ; 
-
-    padFilePutDat ( $file, $data );
-
-  }
-
-
   function padConstant ( $parm ) {
 
     if ( defined ( $parm ) )
@@ -159,7 +152,7 @@
     $GLOBALS ['padStrCln'] = FALSE;
     $GLOBALS ['padStrBld'] = 'code';
 
-    return include 'start/enter/function.php';
+    return include PAD . 'start/enter/function.php';
 
   }
 
@@ -171,14 +164,14 @@
     $GLOBALS ['padStrCln'] = TRUE;
     $GLOBALS ['padStrBld'] = 'code';
 
-    return include 'start/enter/function.php'; 
+    return include PAD . 'start/enter/function.php'; 
 
   }
 
 
   function padStrFun (  $padStrCod, $padStrBox, $padStrRes, $padStrCln, $padStrFun ) {
 
-    return include 'start/function.php';
+    return include PAD . 'start/function.php';
 
   }
 
@@ -345,7 +338,7 @@
 
   function padCheck ( $check ) {
 
-     return  ( file_exists ( "$check.pad" ) or file_exists ( "$check.php" ) ) ;
+     return  ( file_exists ( PAD . "$check.pad" ) or file_exists ( PAD . "$check.php" ) ) ;
 
   }   
 
@@ -374,7 +367,7 @@
 
  function padDataFileData ( $padLocalFile ) {
   
-    return include 'types/go/local.php';
+    return include PAD . 'types/go/local.php';
 
   }
 
@@ -408,6 +401,21 @@
   }
 
 
+  function padValidatePath ( $path ) {
+
+    if ( $path === '' ) return FALSE;
+
+    // Reject obvious traversal attempts
+    if ( strpos($path, '..') !== FALSE ) return FALSE;
+
+    // Reject null bytes or control characters
+    if ( preg_match('/[\x00-\x1F\x7F]/', $path) ) return FALSE;
+
+    return TRUE;
+
+  }
+
+
  function padAddIds ( $url ) {
 
     $url = padAddGet ( $url, 'padSesID', $GLOBALS ['padSesID'] );
@@ -427,14 +435,17 @@
          or ( isset ( $GLOBALS  ['padInclude'] ) and $GLOBALS ['padInclude'] ) )
       $config ['show-body-only'] = true;
 
-    $tidy = new tidy;
-    $tidy->parseString($data, $config, $GLOBALS ['padTidyCcsid'] );
-    $tidy->cleanRepair();
-
-    if ( $tidy->value === NULL ) 
+    if ( ! class_exists('tidy') )
       return $data;
-    else
-      return $tidy->value;
+
+    try {
+      $tidy = new tidy;
+      $tidy->parseString($data, $config, $GLOBALS ['padTidyCcsid'] );
+      $tidy->cleanRepair();
+      return $tidy->value ?? $data;
+    } catch (Throwable $e) {
+      return $data;
+    }
 
   }  
 
@@ -797,20 +808,22 @@
   function padBetween ( $string, $open, $close, &$before, &$between, &$after ) {
 
     $before = $between = $after = '';
-  
-    $p1 = strpos ( $string, $open         );
-    $p2 = strpos ( $string, $close, $p1+1 );
 
-    if ( $p1 === FALSE or $p2 === FALSE )
-      return FALSE;
+    $p1 = strpos ( $string, $open );
+    if ( $p1 === FALSE ) return FALSE;
 
-    if ( $p1 )
-      $before  = substr ( $string, 0, $p1 ); 
+    $start = $p1 + strlen($open);
+    $p2 = strpos ( $string, $close, $start );
+    if ( $p2 === FALSE ) return FALSE;
 
-    $between = substr ( $string, $p1+1, ($p2-$p1) - 1 );
+    if ( $p1 > 0 )
+      $before = substr ( $string, 0, $p1 );
 
-    if ( $p2 < strlen ( $string ) )
-      $after = substr ( $string, $p2+1 );
+    $between = substr ( $string, $start, $p2 - $start );
+
+    $afterPos = $p2 + strlen($close);
+    if ( $afterPos < strlen ( $string ) )
+      $after = substr ( $string, $afterPos );
 
     return TRUE;
 
@@ -862,7 +875,7 @@
     else
       $padCall = "functions/$name.php";
 
-    return include 'call/any.php';
+    return include PAD . 'call/any.php';
 
   }
 

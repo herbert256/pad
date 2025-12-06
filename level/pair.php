@@ -21,7 +21,7 @@
   if ( count($padWordsCheck) > 1 ) { 
     $padPrmTypeSet = 'close';
     $padBetween    = $padBetweenCheck;  
-    include 'level/between.php';
+    include PAD . 'level/between.php';
   }
 
 ?>

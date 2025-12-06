@@ -1,6 +1,6 @@
 <?php
 
-  include 'config/cache.php';
+  include PAD . 'config/cache.php';
 
   if ( $padOutputType <> 'web' )
     $padCache = FALSE;
@@ -15,7 +15,7 @@
   $padCacheUrl = padMD5($_SERVER['REQUEST_URI']);
   $padCacheMax = $_SERVER['REQUEST_TIME'] - $padCacheServerAge;
 
-  include_once "cache/types/$padCacheServerType.php";
+  include_once PAD . "cache/types/$padCacheServerType.php";
   
   padCacheInit ($padCacheUrl, $padCacheClient);
   
@@ -26,7 +26,7 @@
     if ( $padCacheAge and $padCacheAge >= $padCacheMax ) {
       $padStop = 304;
       $padEtag = $padCacheClient;
-      include 'cache/hit.php';
+      include PAD . 'cache/hit.php';
     }
     
   }
@@ -41,7 +41,7 @@
     if ( $padClientDate and $padClientDate >= $padCacheMax and $padCacheAge >= $padCacheMax ) {
       $padStop = 304;
       $padEtag = $padCacheEtag;
-      include 'cache/hit.php';    
+      include PAD . 'cache/hit.php';    
     }
 
     if ( $padCacheAge >= $padCacheMax and ! $GLOBALS ['padCacheServerNoData'] ) {
@@ -51,7 +51,7 @@
       if ( $padOutput ) {
         $padStop = 200;
         $padEtag = $padCacheEtag;
-        include 'cache/hit.php';
+        include PAD . 'cache/hit.php';
       }
 
     }

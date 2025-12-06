@@ -1,7 +1,7 @@
 <?php
 
-  include 'inits/inits.php';
-  include 'start/level.php'; 
-  include 'exits/exits.php';
+  include PAD . 'inits/inits.php';
+  include PAD . 'start/level.php'; 
+  include PAD . 'exits/exits.php';
 
 ?>

@@ -1,5 +1,5 @@
 <?php
 
-  include 'handling/types/splice.php';
+  include PAD . 'handling/types/splice.php';
 
 ?>

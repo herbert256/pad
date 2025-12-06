@@ -3,7 +3,7 @@
  
   function padTable ( $table, $unionBuild = 0 ) {
 
-    global $pad;
+    global $pad, $padPrm;
 
     $parms = padTableGetDB ($table);
 
@@ -42,9 +42,9 @@
 
   function padTableStart ( $all,  $distinct, $distinctrow ) {
 
-    if     ($all)         return 'all';
+    if     ($all)         return 'ALL';
     elseif ($distinct)    return 'distinct';
-    elseif ($distinctrow) return 'distinctrows';
+    elseif ($distinctrow) return 'distinctrow';
     else                  return '';
 
   }
@@ -65,24 +65,25 @@
 
   function padTableOrder ( $order, $joinSQL, $keys ) {
 
-   if ($order)
-      return 'order by ' . $order;
-    elseif ( !$joinSQL and $keys )
-      return 'order by ' . $keys;
+    if     ( $order              ) return 'order by ' . $order;
+    elseif ( !$joinSQL and $keys ) return 'order by ' . $keys;
+    else                           return '';
 
   }
 
 
   function padTableLimit ( $rows, $page ) {
 
-     $limit = '';
+    global $padDone;
+
+    $limit = '';
 
     if ( ! isset($padDone['page']) or ! isset($padDone['rows']))
 
       if ($page or $rows) {
 
         if (!$rows) $rows = 10;
-        if (!$page) $padPage = 1;
+        if (!$page) $page = 1;
  
         $offset = ($page-1) * $rows;
         $limit = "limit $offset, $rows";          

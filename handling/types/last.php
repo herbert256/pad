@@ -1,5 +1,5 @@
 <?php
 
-  include 'handling/types/first.php';
+  include PAD . 'handling/types/first.php';
   
 ?>

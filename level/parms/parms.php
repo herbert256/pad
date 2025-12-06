@@ -1,7 +1,7 @@
 <?php
 
   if ( $padPrmType [$pad] == 'close' ) 
-    include 'level/close.php';
+    include PAD . 'level/close.php';
 
   $padParms [$pad]  = [];
   
@@ -15,15 +15,15 @@
          padValidVar ( substr ( $padPrmName, 1 ) )  and 
          strlen      ( $padPrmValue ) ) 
 
-      include 'level/parms/variable.php';
+      include PAD . 'level/parms/variable.php';
 
     elseif ( padValidVar ( $padPrmName ) )
       
-      include 'level/parms/option.php';
+      include PAD . 'level/parms/option.php';
     
     else 
     
-      include 'level/parms/parameter.php';
+      include PAD . 'level/parms/parameter.php';
 
     $padParms [$pad] [] = [
       'padPrmKind'  => $padParmsSetType,
@@ -38,6 +38,6 @@
     $padOpt [$pad] [1] = '';
 
   if ( $padInfo ) 
-    include 'events/parms.php';
+    include PAD . 'events/parms.php';
 
 ?>

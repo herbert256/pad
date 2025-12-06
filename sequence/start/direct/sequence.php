@@ -1,5 +1,5 @@
 <?php
 
-  return include "sequence/sequence/sequence.php";
+  return include PQ . "sequence/sequence.php";
 
 ?>

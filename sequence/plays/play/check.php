@@ -1,5 +1,5 @@
 <?php
   
-  return include "sequence/build/check.php";
+  return include PQ . "build/check.php";
 
 ?>

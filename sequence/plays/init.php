@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! file_exists ( "sequence/types/$pqSeq/init.php" ) )
+  if ( ! file_exists ( PAD . "sequence/types/$pqSeq/init.php" ) )
     return;
 
   $pqParmSave = $pqParm;
@@ -13,7 +13,7 @@
   if ( $pqParm and isset ( $pqStore [$pqParm] ) )
     $pqParm = reset ( $pqStore [$pqParm] );
 
-  include "sequence/types/$pqSeq/init.php";
+  include PQ . "types/$pqSeq/init.php";
 
   $pqParm = $pqParmSave;
   $pqInc  = $pqIncSave;

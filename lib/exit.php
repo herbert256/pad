@@ -19,7 +19,7 @@
 
     restore_error_handler ();
 
-    include 'exits/exit.php'; 
+    include PAD . 'exits/exit.php'; 
 
   }
 
@@ -37,7 +37,7 @@
       padWebHeaders ( $stop );
 
     if ( isset ( $GLOBALS ['padInfoStarted'] ) and ! padSecondTime ( 'exitInfo' ) )
-      include 'info/end/config.php';  
+      include PAD . 'info/end/config.php';  
 
   }
 
@@ -68,7 +68,7 @@
     try {
 
       if ( padSecondTime ( 'exitDouble' ) ) 
-        include 'exits/exit.php'; 
+        include PAD . 'exits/exit.php'; 
 
     } catch (Throwable $e) {
 

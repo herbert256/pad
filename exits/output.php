@@ -7,7 +7,7 @@
   if ( $padOutputType <> 'web' and $padCacheStop == 200 and $padCacheServerGzip )
     $padOutput = padUnzip ( $padOutput );
 
-  include "exits/output/$padOutputType.php";
+  include PAD . "exits/output/$padOutputType.php";
 
   padExit ( $padStop );
 

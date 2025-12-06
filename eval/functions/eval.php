@@ -30,7 +30,7 @@
   function padEval ( $eval, $value='' ) {
 
     $padTry = 'eval/eval';
-    return  include 'try/try.php';
+    return  include PAD . 'try/try.php';
 
   }  
 

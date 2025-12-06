@@ -2,6 +2,6 @@
 
   $pqFixed = $pqStore [$pqPull];
 
-  include 'sequence/build/types/type/fixed.php';
+  include PQ . 'build/types/type/fixed.php';
 
 ?>

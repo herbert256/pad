@@ -11,7 +11,7 @@
 
       if ( $padPrmKind == 'option' )  {
 
-        if ( file_exists ( "options/$padPrmName.php" ) )
+        if ( file_exists ( PAD . "options/$padPrmName.php" ) )
           padInfoXref ( 'options', 'general', $padPrmName );
         
         padInfoXref ( 'options', 'all', $padPrmName );

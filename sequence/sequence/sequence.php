@@ -1,16 +1,16 @@
 <?php
 
-  include 'sequence/inits/direct.php';
-  include 'sequence/inits/clear.php';
-  include 'sequence/inits/vars.php';
-  include 'sequence/actions/set.php';
-  include 'sequence/plays/inits.php';
-  include 'sequence/actions/inits.php';
-  include 'sequence/inits/limits.php';
-  include 'sequence/build/build.php';
-  include 'sequence/exits/actions.php';
-  include 'sequence/exits/done.php';
-  include 'sequence/exits/info.php';
+  include PQ . 'inits/direct.php';
+  include PQ . 'inits/clear.php';
+  include PQ . 'inits/vars.php';
+  include PQ . 'actions/set.php';
+  include PQ . 'plays/inits.php';
+  include PQ . 'actions/inits.php';
+  include PQ . 'inits/limits.php';
+  include PQ . 'build/build.php';
+  include PQ . 'exits/actions.php';
+  include PQ . 'exits/done.php';
+  include PQ . 'exits/info.php';
 
   return array_values ( $pqResult );
 

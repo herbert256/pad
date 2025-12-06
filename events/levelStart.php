@@ -1,7 +1,7 @@
 <?php
 
   if ( $GLOBALS ['padInfoTrace'] )
-    include 'info/types/trace/level/info.php';   
+    include PAD . 'info/types/trace/level/info.php';   
 
   if (  $GLOBALS ['padInfoXref'] ) {
 
