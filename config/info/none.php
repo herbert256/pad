@@ -14,7 +14,7 @@
 
   $padInfoXmlParms         = FALSE;
   $padInfoXmlTidy          = FALSE;
-  $padInfoXmlCompact     = FALSE;
+  $padInfoXmlCompact       = FALSE;
     
   $padInfoTraceLines       = FALSE;
   $padInfoTraceDouble      = FALSE;
