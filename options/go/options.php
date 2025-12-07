@@ -18,7 +18,7 @@
       if ( $padOptions == 'app' )
         $padCall = APP . "_options/$padOptionName.php" ;
       else
-        $padCall = "options/$padOptionName.php" ;
+        $padCall = PAD . "options/$padOptionName.php" ;
 
       include PAD . 'call/any.php';
 

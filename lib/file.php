@@ -84,18 +84,19 @@
   }
 
 
-
   function padAppPutFile ( $dir, $file, $data ) {
 
     return padAppPut ( $dir, $file, $data, 0 ); 
     
   }
 
+
   function padAppPutLine ( $dir, $file, $data ) {
 
     return padAppPut ( $dir, $file, $data, 1 ); 
   
    }
+
 
   function padAppPut ( $dir, $file, $data, $append ) {
 
@@ -154,6 +155,26 @@
 
     return TRUE;
     
+  }
+
+
+  function padDeleteAppDataDir ( $dir ) {
+
+    padDeleteDir ( APP . $dir . '/DATA/' );
+
+  }
+
+
+  function padDeleteDir ( $dir ) {
+
+    if ( ! file_exists ($dir) )
+      return;
+    
+    foreach ( array_diff ( scandir ( $dir ), [ '.', '..' ] ) as $file )
+      ( is_dir ( "$dir/$file" ) ) ? padDeleteDir ( "$dir/$file" ) : unlink ( "$dir/$file" );
+
+    rmdir ( $dir );
+
   }
 
 
