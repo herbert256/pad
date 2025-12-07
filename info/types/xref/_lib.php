@@ -9,43 +9,40 @@
     global $padPage, $padInfoXrefSource, $padStartPage;
 
     if ( $dir1 == 'sequence' ) 
-      return padInfoXrefGo ( '_xref', $dir1, $dir2, $dir3 );
+      return padInfoXrefGo ( $dir1, $dir2, $dir3 );
 
-    if ( padInsideOther ()                    ) return;
-    if ( $padPage <> $padStartPage            ) return;
-    if ( str_contains ( $padPage, 'develop' ) ) return;
-    if ( str_contains ( $padPage, 'xref'    ) ) return;
-    if ( str_contains ( $padPage, 'manual'  ) ) return;
-    if ( ! isset ( $_REQUEST['padInclude']  ) ) return;
+    if ( padInsideOther ()         ) return;
+    if ( $padPage <> $padStartPage ) return;
  
-    if ( $dir1 == 'tag'        and $dir2 <> 'pad' ) return padInfoXrefGo ( '_xref', $dir1, $dir2, $dir3 );
-    if ( $dir1 == 'functions'  and $dir2 <> 'pad' ) return padInfoXrefGo ( '_xref', $dir1, $dir2, $dir3 );
+    if ( $dir1 == 'tag'       and $dir2 <> 'pad' ) return padInfoXrefGo ( $dir1, $dir2, $dir3 );
+    if ( $dir1 == 'functions' and $dir2 <> 'pad' ) return padInfoXrefGo ( $dir1, $dir2, $dir3 );
 
     if (   $dir3 and strpos ( $padInfoXrefSource, $dir3 ) === FALSE ) return;
     if ( ! $dir3 and strpos ( $padInfoXrefSource, $dir2 ) === FALSE ) return;
  
-    padInfoXrefGo ( '_xref', $dir1, $dir2, $dir3 );
+    padInfoXrefGo ( $dir1, $dir2, $dir3 );
 
   }
   
 
-  function padInfoXrefGo ( $prefix, $dir1, $dir2, $dir3 ) {
+  function padInfoXrefGo ( $dir1, $dir2, $dir3 ) {
+
+    global $padStartPage;
 
     if ( $dir1 == 'properties' and ! file_exists ( PAD . "tag/$dir2.php" ) )
       $dir2 = strtolower($dir2);
 
-    $file = "$prefix/$dir1/$dir2";
+    $file = "$dir1/$dir2";
 
     if ( $dir3 !== '' )
       $file .= "/$dir3";
 
-    $target = "$file.txt";
-    $page   = $GLOBALS ['padStartPage'];
+    $target = APP . "reference/DATA/$file.txt";
 
-    if ( file_exists ($target) and in_array ( $page, file ( $target, FILE_IGNORE_NEW_LINES ) ) )
+    if ( file_exists ($target) and in_array ( $padStartPage, file ( $target, FILE_IGNORE_NEW_LINES ) ) )
       return;
 
-    padFilePut ( "$file.txt", $page, 1 );
+    padAppPutLine ( 'reference', "$file.txt", $padStartPage );
 
   }
  
