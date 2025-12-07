@@ -8,6 +8,9 @@
 
       $c = $c * ($n - $i) / $i;
 
+      if ( $c > PHP_INT_MAX)
+        return $x;
+      
       $c = (int) $c;
       
       if ($c % 2 == 1)

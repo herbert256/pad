@@ -20,7 +20,7 @@
   elseif ( $padFirst == '&' ) $padFldChk = padTagCheck   ( $padFld );
 
   if ( ! $padFldChk and ! str_starts_with ( $padOpts, 'optional'))
-    padError ( "Field '$padFld' not found $padOpts" );
+    padError ( "Field '$padFirst$padFld' not found $padOpts" );
 
   if     ( $padFirst == '$' ) $padVal = padFieldValue ($padFld);
   elseif ( $padFirst == '?' ) $padVal = padUrlValue   ($padFld);

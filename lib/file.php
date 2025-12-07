@@ -142,12 +142,17 @@
     if ( is_array($data) or is_object($data) )
       $data = padJson ($data);
       
-    if ( $data !== null and $data !== '' )
+    if ( $data !== null and $data !== '' ) {
+
       if ($append) $check = file_put_contents ( $file, "$data\n", LOCK_EX | FILE_APPEND );
       else         $check = file_put_contents ( $file, $data,     LOCK_EX               );
 
-    if ( $check === FALSE ) return padError ( "Writing to file failed: $file" );
-    else                    return TRUE;
+      if ( $check === FALSE ) 
+        return padError ( "Writing to file failed: $file" );
+     
+    }
+
+    return TRUE;
     
   }
 
