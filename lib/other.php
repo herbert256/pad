@@ -346,6 +346,15 @@
   }   
 
 
+  function padScriptCheck ( $check ) {
+
+    foreach ( padDirs () as $value )
+      if ( count ( glob ( APP2 . $value . "_scripts/$check*" ) ) )
+        return APP2 . $value . "_scripts/$check*";
+
+  }  
+  
+
   function padDataFileName ( $check ) {
 
     foreach ( padDirs () as $key => $value ) {
