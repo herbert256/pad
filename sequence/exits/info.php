@@ -20,7 +20,9 @@
       if ( file_exists ( PQ . "options/types/$padPrmName.php") )
         $pqInfo ['options'] [] = $padPrmName;
   }
-  
+    
+  $pqInfo ['start'] = basename ( str_replace ( PQ . 'start/', '', $pqSartScript ), '.php' );
+
   include PAD . 'events/sequence.php';
 
 ?>
