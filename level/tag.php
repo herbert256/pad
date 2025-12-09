@@ -6,6 +6,7 @@
 
   if ( substr($padBetween, -1) == '/') {
     $padBetween = substr($padBetween, 0, -1);
+    include PAD . 'level/pipes/start.php';     
     include PAD . 'level/between.php';
     return;
   }

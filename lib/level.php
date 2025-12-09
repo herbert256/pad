@@ -1,6 +1,41 @@
 <?php
 
 
+  function padPipeSplit ($input) {
+
+    $inSingle = false;
+    $inDouble = false;
+    $length   = strlen($input);
+    $splitPos = null;
+
+    for ($i = 0; $i < $length; $i++) {
+    
+        $ch = $input[$i];
+
+        if ($ch === '\\' && $i + 1 < $length && ($input[$i + 1] === "'" || $input[$i + 1] === '"')) {
+            $i++; 
+      } elseif ($ch === "'" && !$inDouble) {
+            $inSingle = !$inSingle;
+        } elseif ($ch === '"' && !$inSingle) {
+            $inDouble = !$inDouble;
+        } elseif ($ch === '|' && !$inSingle && !$inDouble) {
+            $splitPos = $i;
+            break;
+        }
+    
+    }
+
+    if ( $splitPos === null)
+        return [ $input, '' ];
+
+    $left  = substr($input, 0, $splitPos);
+    $right = substr($input, $splitPos + 1);
+
+    return [$left, $right];
+  
+  }
+
+
   function padLevel ( $value ) {
 
     global $padOut, $padStart, $padEnd, $pad;

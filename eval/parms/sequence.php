@@ -5,14 +5,14 @@
     $pqSetAction = $name;
     $pqSetParms  = $parm;
 
-    return include PQ . 'start/direct/action.php';
+    return include PQ . 'start/eval/action.php';
 
   } elseif ( file_exists ( PT . "$name" ) ) {
 
     $pqSetAction = $name;
     $pqSetParms  = $parm;
 
-    return include PQ . 'start/direct/sequence.php';
+    return include PQ . 'start/eval/sequence.php';
 
   }
 

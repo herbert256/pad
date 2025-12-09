@@ -25,7 +25,8 @@
     include PAD . 'callback/exit.php' ;
 
   include PAD . 'options/go/end.php';
- 
+  include PAD . 'level/pipes/after.php';  
+
   if ( $padInfo ) 
     include PAD . 'events/levelEnd.php';    
   

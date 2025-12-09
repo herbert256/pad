@@ -16,6 +16,8 @@
 
   } while ( substr_count($padBetweenCheck, '{') <> substr_count($padBetweenCheck, '}') );
 
+  include PAD . 'level/pipes/end.php';  
+
   $padWordsCheck = preg_split ( "/[\s]+/", $padBetweenCheck, 2, PREG_SPLIT_NO_EMPTY );
 
   if ( count($padWordsCheck) > 1 ) { 

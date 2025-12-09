@@ -12,6 +12,7 @@
     return padLevelNoOpen ();
 
   padLevelBetween ();
+  include PAD . 'level/pipes/start.php';  
   include PAD . 'level/between.php';
 
   if ( $padFirst == '/' ) 

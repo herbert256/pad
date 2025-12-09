@@ -14,6 +14,7 @@
   include PAD . 'try/try.php';
 
   include PAD . 'level/base.php';
+  include PAD . 'level/pipes/before.php';  
   include PAD . 'level/data.php';
   include PAD . 'level/name.php';
   include PAD . 'handling/handling.php';  
