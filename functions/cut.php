@@ -1,5 +1,5 @@
 <?php
-
-  return include PAD . 'functions/parms/cut.php';
+  
+  return str_replace ( $parm[0], '', $value );
 
 ?>

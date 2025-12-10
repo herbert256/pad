@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'functions/parms/range.php';
-
+  return ( $value >= $parm[0] and $value <= $parm[1] )
+  
 ?>

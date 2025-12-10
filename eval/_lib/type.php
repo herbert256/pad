@@ -3,8 +3,10 @@
   function padGetTypeEval ( $type ) {
 
         if ( ! padValid      ( $type                                  ) ) return FALSE;
-    elseif ( file_exists     ( APP . "_functions/$type.php"           ) ) return 'app';
-    elseif ( file_exists     ( PAD . "functions/$type.php"                  ) ) return 'pad';
+    elseif ( padFunctionCheck ( $type                                 ) ) return 'appFunction';
+    elseif ( padActionCheck ( $type                                 ) ) return 'appFunction';
+    elseif ( file_exists     ( PAD . "functions/$type.php"            ) ) return 'padFunction';
+    elseif ( file_exists     ( PAD . "actions/$type.php"              ) ) return 'padAction';
     elseif ( function_exists ( $type                                  ) ) return 'php';
     elseif ( padFieldCheck   ( $type                                  ) ) return 'field';
     elseif ( isset           ( $GLOBALS ['pqStore'] [$type]           ) ) return 'pull';

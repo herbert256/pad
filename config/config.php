@@ -67,7 +67,9 @@
     
   // Default {$var} options, there must be a PHP snippet in one of below directories
   // - /app/_functions/
+  // - /app/_actions/
   // - /pad/functions/
+  // - /pad/actions/
  
   $padDataDefaultStart = [];
   $padDataDefaultEnd   = ['sanitize'];

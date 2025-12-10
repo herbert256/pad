@@ -1,0 +1,7 @@
+<?php
+
+  $padAsTag = PAD . 'functions/' . $padTag [$pad];
+
+  return include PAD . 'types/go/asTag.php';
+
+?>

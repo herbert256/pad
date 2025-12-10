@@ -328,6 +328,20 @@
   }  
 
 
+  function padFunctionCheck ( $content ) {
+
+    return padAppGet ( "_functions/$content" );
+
+  }  
+
+
+  function padActionCheck ( $content ) {
+
+    return padAppGet ( "_actions/$content" );
+
+  }  
+
+
   function padAppGet ( $check ) {
 
     foreach ( padDirs () as $value )
@@ -872,7 +886,7 @@
   }
 
   
-  function padFunctionAsTag ( $name, $value, $ops ) {
+  function padAsTag ( $item, $value, $ops ) {
   
     $parms = [];
    
@@ -880,12 +894,10 @@
       if ( $key > 0)
         $parms [] = $tmp;
    
-    $count = count ( $parms );
-
-    if ( file_exists ( APP . "_functions/$name.php" ) )
-      $padCall = APP . "_functions/$name.php";
-    else
-      $padCall = "functions/$name.php";
+    $count   = count ( $parms );
+    $name    = substr ( $item, strrpos ( $item, '/' ) + 1 );
+    
+    $padCall = "$item.php";
 
     return include PAD . 'call/any.php';
 

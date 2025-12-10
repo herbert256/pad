@@ -1,6 +1,6 @@
 <?php
 
-  foreach ( glob ( PAD . 'eval/functions/*.php' ) as $padIncludeFile )
+  foreach ( glob ( PAD . 'eval/_lib/*.php' ) as $padIncludeFile )
     include_once  $padIncludeFile;
 
 ?>

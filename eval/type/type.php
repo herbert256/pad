@@ -7,9 +7,9 @@
     include PAD . 'events/functions.php';
 
   if ( $result [$k] [4] ) 
-    $value = include PAD . 'eval/type/single.php';
+    $value = include PAD . 'eval/type/action.php';
   else
-    $value = include PAD . 'eval/type/parms.php';
+    $value = include PAD . 'eval/type/function.php';
     
   $result [$k] [1] = 'VAL';
   $result [$k] [0] = $value;

@@ -1,6 +1,6 @@
 <?php
  
-  $padCall = APP . "_functions/$name.php";
+  $padCall = padFunctionCheck ( $name ) . '.php";
 
   return include PAD . 'call/any.php';
 

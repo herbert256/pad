@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'functions/parms/left.php';
+  return substr($value, 0, $parm[0]);
 
 ?>
