@@ -880,16 +880,12 @@
   }
 
   
-  function padFunctionAsTag ( $item, $value, $ops ) {
+  function padFunctionAsTag ( $name, $value, $parm ) {
 
-    $parm = [];
-   
-    foreach ( $ops as $key => $tmp )
-      if ( $key > 0)
-        $parm [] = $tmp;
-   
-    $count = count  ( $parms );
-    $name  = substr ( $item, strrpos ( $item, '/' ) + 1 );
+    unset ( $parm [0] );
+
+    $parm  = array_values ( $parm );
+    $count = count ( $parm );
  
     if ( padFunctionCheck ( $item ) ) {
 
@@ -904,27 +900,21 @@
 
   }
 
-  function padTagAsFunction ( $item, $value, $ops ) {
+
+  function padTagAsFunction ( $tag, $value, $parms ) {
   
-    $parm = [];
-   
-    foreach ( $ops as $key => $tmp )
-      if ( $key > 0)
-        $parm [] = $tmp;
-   
-    $count = count  ( $parms );
-    $name  = substr ( $item, strrpos ( $item, '/' ) + 1 );
-    
-    if ( str_starts_with ( $item, PAD ) )
-   
-      return include "$item.php";
-   
-    else {
-   
-      $padCall = "$item.php";
-      return include PAD . 'call/any.php';
-   
+    $extra = '';
+
+    foreach ( $parms as $parm ) {
+
+      $extra .= " '" . str_replace( "'", "\\'", $parm) . "',";
+
     }
+
+    if ( $extra )
+      $extra = substr ( $extra, 0, -1 );
+
+    return padCode ( '{' . $tag . $extra . '}' . $value . '{/' . $tag . '}' );
 
   }
 
