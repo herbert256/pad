@@ -1,7 +1,7 @@
 <?php
 
 
-  function padTypeGet ( $item ) {
+  function padTypeGet ( $item, $goFunctions=1 ) {
 
     if     ( padChkLevel      ( $item                                ) ) return 'level';
     elseif ( padAppTagCheck   ( $item                                ) ) return 'app';
@@ -23,8 +23,12 @@
     elseif ( function_exists  ( $item                                ) ) return 'php';
     elseif ( file_exists      ( PT . "$item"                         ) ) return 'sequence';
     elseif ( file_exists      ( PQ . "actions/types/$item.php"       ) ) return 'action';
-    else                                                                 return FALSE;
 
+    if (  $goFunctions and padGetTypeEval ( $item, 0 )  ) 
+      return 'padFunction';
+		
+		return FALSE;
+    
   }
 
 
