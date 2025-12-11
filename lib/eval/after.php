@@ -18,19 +18,11 @@
           $name = $one[0];
         }
 
-        if ( padValid ($type) and padValid ($name) )
-          if ( file_exists ( PAD . "eval/actions/$type.php") ) {  
+        if ( padValid ($type) and padValid ($name) ) {  
             $result[$k][0] = $name;
             $result[$k][1] = 'TYPE';
             $result[$k][2] = $type;          
-            $result[$k][3] = 0;         
-            $result[$k][4] = 1;         
-          } elseif ( file_exists ( PAD . "eval/functions/$type.php") ) {  
-            $result[$k][0] = $name;
-            $result[$k][1] = 'TYPE';
-            $result[$k][2] = $type;          
-            $result[$k][3] = 0;         
-            $result[$k][4] = 0;         
+            $result[$k][3] = 0;                 
           }
 
       }

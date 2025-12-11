@@ -1,6 +1,6 @@
 <?php
 
-  if ( file_exists ( PAD . "actions/$eval.php" ) )
+  if ( file_exists ( PAD . "functions/$eval.php" ) )
     return include PAD . 'eval/fast.php';
 
   $GLOBALS ['_eval']      = [];

@@ -335,12 +335,6 @@
   }  
 
 
-  function padActionCheck ( $content ) {
-
-    return padAppGet ( "_actions/$content" );
-
-  }  
-
 
   function padAppGet ( $check ) {
 
@@ -886,20 +880,51 @@
   }
 
   
-  function padAsTag ( $item, $value, $ops ) {
-  
-    $parms = [];
+  function padFunctionAsTag ( $item, $value, $ops ) {
+
+    $parm = [];
    
     foreach ( $ops as $key => $tmp )
       if ( $key > 0)
-        $parms [] = $tmp;
+        $parm [] = $tmp;
    
-    $count   = count ( $parms );
-    $name    = substr ( $item, strrpos ( $item, '/' ) + 1 );
-    
-    $padCall = "$item.php";
+    $count = count  ( $parms );
+    $name  = substr ( $item, strrpos ( $item, '/' ) + 1 );
+ 
+    if ( padFunctionCheck ( $item ) ) {
 
-    return include PAD . 'call/any.php';
+      $padCall = APP2 . padFunctionCheck ( $padTag [$pad] ) . "$item.php";
+      return include PAD . 'call/any.php';
+
+    } else {
+   
+      return include PAD . "functions/$item.php";
+   
+    }
+
+  }
+
+  function padTagAsFunction ( $item, $value, $ops ) {
+  
+    $parm = [];
+   
+    foreach ( $ops as $key => $tmp )
+      if ( $key > 0)
+        $parm [] = $tmp;
+   
+    $count = count  ( $parms );
+    $name  = substr ( $item, strrpos ( $item, '/' ) + 1 );
+    
+    if ( str_starts_with ( $item, PAD ) )
+   
+      return include "$item.php";
+   
+    else {
+   
+      $padCall = "$item.php";
+      return include PAD . 'call/any.php';
+   
+    }
 
   }
 
