@@ -1,6 +1,6 @@
 <?php
 
-  function padGetTypeEval ( $type ) {
+  function padGetTypeEval ( $type, $goTags=1 ) {
 
         if ( ! padValid       ( $type                                  ) ) return FALSE;
     elseif ( padFunctionCheck ( $type                                  ) ) return 'app';
@@ -17,9 +17,12 @@
     elseif ( padChkLevel      ( $type                                  ) ) return 'level';
     elseif ( defined          ( $type                                  ) ) return 'constant';
     elseif ( padDataFileName  ( $type                                  ) ) return 'local';      
-    elseif ( padTypeGet       ( $type                                  ) ) return 'padTag';
-    else                                                                   return FALSE;
 
+		if (  $goTags and padTypeGet ( $type, 0 )  ) 
+			return 'padTag';
+		
+		return FALSE;    
+    
   } 
 
 ?>
