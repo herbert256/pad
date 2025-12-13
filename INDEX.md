@@ -14,10 +14,47 @@ This file provides an index to all documentation files (`*.md`) in the PAD frame
 
 ## Bug Reports
 
-| File | Description |
-|------|-------------|
-| [lib/BUGS.md](lib/BUGS.md) | Bugs found in core library functions (13 issues) |
-| [level/BUGS.md](level/BUGS.md) | Bugs found in main processing loop (9 issues) |
+### Directories with Issues Found
+
+| File | Issues | Description |
+|------|--------|-------------|
+| [lib/BUGS.md](lib/BUGS.md) | 13 | Core library: SQL injection, NaN comparison, typos, undefined vars |
+| [level/BUGS.md](level/BUGS.md) | 9 | Main loop: missing semicolon, NaN bug, function typo, placeholder |
+| [at/BUGS.md](at/BUGS.md) | 2 | Property access: debug code left in, wrong variable |
+| [config/BUGS.md](config/BUGS.md) | 1 | Configuration: typo "plane" → "plain" |
+| [data/BUGS.md](data/BUGS.md) | 1 | Data loading: redundant NULL check (minor) |
+
+### Directories Reviewed (No Significant Issues)
+
+| File | Status |
+|------|--------|
+| [build/BUGS.md](build/BUGS.md) | Clean |
+| [cache/BUGS.md](cache/BUGS.md) | Clean |
+| [call/BUGS.md](call/BUGS.md) | Clean |
+| [callback/BUGS.md](callback/BUGS.md) | Clean |
+| [constructs/BUGS.md](constructs/BUGS.md) | Clean |
+| [database/BUGS.md](database/BUGS.md) | No PHP files |
+| [error/BUGS.md](error/BUGS.md) | Clean |
+| [eval/BUGS.md](eval/BUGS.md) | Clean |
+| [events/BUGS.md](events/BUGS.md) | Clean |
+| [exits/BUGS.md](exits/BUGS.md) | Clean |
+| [functions/BUGS.md](functions/BUGS.md) | Clean |
+| [get/BUGS.md](get/BUGS.md) | Clean |
+| [handling/BUGS.md](handling/BUGS.md) | Clean |
+| [info/BUGS.md](info/BUGS.md) | Clean |
+| [inits/BUGS.md](inits/BUGS.md) | Clean |
+| [install/BUGS.md](install/BUGS.md) | Clean |
+| [occurrence/BUGS.md](occurrence/BUGS.md) | Clean |
+| [options/BUGS.md](options/BUGS.md) | Clean |
+| [sequence/BUGS.md](sequence/BUGS.md) | Clean |
+| [start/BUGS.md](start/BUGS.md) | Clean |
+| [tag/BUGS.md](tag/BUGS.md) | Clean |
+| [tags/BUGS.md](tags/BUGS.md) | Clean |
+| [try/BUGS.md](try/BUGS.md) | Clean |
+| [types/BUGS.md](types/BUGS.md) | Clean |
+| [walk/BUGS.md](walk/BUGS.md) | Clean |
+
+**Total: ~26 issues across 30 directories reviewed**
 
 ---
 
@@ -127,15 +164,15 @@ This file provides an index to all documentation files (`*.md`) in the PAD frame
 | How expressions are evaluated | [eval/EXPLAIN.md](eval/EXPLAIN.md) |
 | How sequences work | [sequence/EXPLAIN.md](sequence/EXPLAIN.md) |
 | List of built-in tags | [tags/TAGS.md](tags/TAGS.md) |
-| Known bugs | [lib/BUGS.md](lib/BUGS.md), [level/BUGS.md](level/BUGS.md) |
+| Known bugs | See Bug Reports section above (30 directories reviewed) |
 | Main processing loop | [level/CLAUDE.md](level/CLAUDE.md) |
 | Pipe functions | [functions/CLAUDE.md](functions/CLAUDE.md) |
 
 ### File Statistics
 
-- **Total documentation files:** 36
+- **Total documentation files:** 64
 - **CLAUDE.md files:** 30 (module documentation)
-- **BUGS.md files:** 2 (bug reports)
+- **BUGS.md files:** 30 (bug reports for all directories)
 - **EXPLAIN.md files:** 2 (detailed explanations)
 - **Other:** 2 (TAGS.md, INDEX.md)
 
