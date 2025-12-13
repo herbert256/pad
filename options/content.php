@@ -4,7 +4,8 @@
   if ( padAppIncludeCheck ( $padGetName ) ) return include PAD . 'get/include.php';
   if ( padAppPageCheck    ( $padGetName ) ) return include PAD . 'get/page.php';
 
-  $padContentSearch = padTypeTag ( $padGetName );
+  if ( padTypeTag ( $padGetName ) )
+    return padTagAsFunction ( $padGetName, $padContent, [] );
 
   return '';
 
