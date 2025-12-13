@@ -12,7 +12,7 @@
   $padFileTimeStamp  = padTagParm ( 'stamp', ''     );
   $padFileUniqId     = padTagParm ( 'id',    ''     );
 
-  padFilePut ( padFileName (),  $padContent )
+  padFilePut ( padFileName (),  $padContent );
 
   $padContent = '';
 
