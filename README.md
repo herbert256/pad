@@ -1,41 +1,60 @@
 # PAD - PHP Application Driver
 
-PAD is an Inversion of Control PHP template engine where templates drive the application flow, not the other way around. Instead of PHP code including templates, PAD templates orchestrate everything from data retrieval to output generation.
+&nbsp;
+* * *
+&nbsp;
+
+## Concept
+
+PAD is an [inversion of control](https://en.wikipedia.org/wiki/Inversion_of_control) PHP application driver.
+ 
+PAD:  
+\- first executes the application PHP code,  
+\- then reads the application HTML markup code,  
+\- merges both and send the result to the browser.
+
+There is no PAD code in the application PHP code at all !
+
+&nbsp;
+* * *
+&nbsp;
 
 ## Hello World
+&nbsp;
 
-**1. Create the entry point** (`www/index.php`):
+`hello.php` - The application PHP file:
 ```php
 <?php
-define('APP', '/path/to/apps/myapp/');
-define('DAT', '/path/to/DATA/myapp/');
-include '/path/to/pad/pad.php';
+
+  $hi = 'Hello World !';
+
 ?>
 ```
 
-**2. Create your application** (`apps/myapp/`):
-
-`hello.php` - provides data:
-```php
-<?php
-return ['name' => 'World'];
-?>
-```
-
-`hello.pad` - the template:
+`hello.pad` - The PAD template:
 ```html
-<!DOCTYPE html>
 <html>
-<head><title>Hello</title></head>
-<body>
-  <h1>Hello, {$name}!</h1>
-</body>
+  <body>
+    <h1>{$hi}!</h1>
+  </body>
 </html>
 ```
+&nbsp;
 
-**3. Visit** `/hello` in your browser.
+`Browser` - The result in your web browser:
+### Hello World !
 
-PAD automatically pairs `.php` and `.pad` files. The PHP file returns data, the PAD template renders it.
+&nbsp;
+* * *
+&nbsp;
+
+## Don't call us, we'll call you
+
+[Sugarloaf - Don't call us, we'll call you.](https://www.youtube.com/watch?v=i4njPe2_rho&t=45s)
+
+&nbsp;
+* * *
+&nbsp;
 
 ## Directory Structure
 
