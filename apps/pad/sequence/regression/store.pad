@@ -1,0 +1,188 @@
+{table}
+
+{demo} {sequence '31..40', push='mySequence'}{/demo}
+
+{/table}{table}
+
+{demo} {mySequence:sequence          } {$sequence} {/mySequence:sequence}        {/demo}
+{demo} {mySequence:pull              } {$sequence} {/mySequence:pull}        {/demo}
+{demo} {mySequence:action  sum       } {$sequence} {/mySequence:action}        {/demo}
+{demo} {mySequence:keep    even      } {$sequence} {/mySequence:keep}        {/demo}
+{demo} {mySequence:remove  even      } {$sequence} {/mySequence:remove}        {/demo}
+{demo} {mySequence:make    add=3     } {$sequence} {/mySequence:make}        {/demo}
+
+{/table}{table}
+
+{demo} {sequence:mySequence          } {$sequence} {/sequence:mySequence}        {/demo}
+{demo} {pull:mySequence             } {$sequence} {/pull:mySequence}        {/demo}
+{demo} {action:mySequence  sum       } {$sequence} {/action:mySequence}        {/demo}
+{demo} {keep:mySequence    even      } {$sequence} {/keep:mySequence}        {/demo}
+{demo} {remove:mySequence  even      } {$sequence} {/remove:mySequence}        {/demo}
+{demo} {make:mySequence    add=3    } {$sequence} {/make:mySequence}        {/demo}
+
+{/table}{table}
+
+{demo} {mySequence sequence         } {$sequence} {/mySequence}        {/demo}
+{demo} {mySequence store            } {$sequence} {/mySequence}        {/demo}
+{demo} {mySequence action,  sum     } {$sequence} {/mySequence}        {/demo}
+{demo} {mySequence keep,    even    } {$sequence} {/mySequence}        {/demo}
+{demo} {mySequence remove,  even    } {$sequence} {/mySequence}        {/demo}
+{demo} {mySequence make,    add=3  } {$sequence} {/mySequence}        {/demo}
+
+{/table}{table}
+
+{demo} {sequence mySequence         } {$sequence} {/sequence}        {/demo}
+{demo} {pull    mySequence         } {$sequence} {/pull}        {/demo}
+{demo} {action   mySequence, sum    } {$sequence} {/action}        {/demo}
+{demo} {keep     mySequence, even   } {$sequence} {/keep}        {/demo}
+{demo} {remove   mySequence, even   } {$sequence} {/remove}        {/demo}
+{demo} {make     mySequence, add=3 } {$sequence} {/make}        {/demo}
+
+{/table}{table}
+
+{demo} {sum:action  mySequence       } {$sequence} {/sum:action}        {/demo}
+{demo} {even:keep    mySequence      } {$sequence} {/even:keep}        {/demo}
+{demo} {even:remove  mySequence      } {$sequence} {/even:remove}        {/demo}
+{demo} {add:make    mySequence, 3    } {$sequence} {/add:make}        {/demo}
+
+{/table}{table}
+
+{demo} {sum:mySequence  action       } {$sequence} {/sum:mySequence}        {/demo}
+{demo} {even:mySequence keep         } {$sequence} {/even:mySequence}        {/demo}
+{demo} {even:mySequence remove       } {$sequence} {/even:mySequence}        {/demo}
+{demo} {add:mySequence  make, 3      } {$sequence} {/add:mySequence}        {/demo}
+
+{/table}{table}
+
+{demo} {sum  action, mySequence     } {$sequence} {/sum}        {/demo}
+{demo} {sequence:even keep,   mySequence     } {$sequence} {/sequence:even}        {/demo}
+{demo} {sequence:even remove, mySequence     } {$sequence} {/sequence:even}        {/demo}
+{demo} {sequence:add  make,   mySequence, 3  } {$sequence} {/sequence:add}        {/demo}
+
+{/table}{table}
+
+{demo} {sum  mySequence, action    } {$sequence} {/sum}        {/demo}
+{demo} {sequence:even mySequence, keep      } {$sequence} {/sequence:even}        {/demo}
+{demo} {sequence:even mySequence, remove    } {$sequence} {/sequence:even}        {/demo}
+{demo} {sequence:add  mySequence, make, 3   } {$sequence} {/sequence:add}        {/demo}
+
+{/table}
+
+{table}
+{demo} {loop rows=20, from=10, push='mySequence'           } {/demo}
+{demo} {pull prime             } {$sequence} {/pull}  {/demo}
+{demo} {mySequence prime          } {$sequence} {/mySequence}  {/demo}
+{demo} {prime mySequence          } {$sequence} {/prime}  {/demo}
+{demo} {prime pull='mySequence'           } {$sequence} {/prime}  {/demo}
+{demo} {sequence:prime mySequence } {$sequence} {/sequence:prime}  {/demo}
+{demo} {prime:sequence mySequence } {$sequence} {/prime:sequence}  {/demo}
+{demo} {sequence:prime pull='mySequence'  } {$sequence} {/sequence:prime}  {/demo}
+{demo} {prime:sequence pull='mySequence'  } {$sequence} {/prime:sequence}  {/demo}
+{demo} {pull:mySequence prime     } {$sequence} {/pull:mySequence}  {/demo}
+{demo} {mySequence:pull prime     } {$sequence} {/mySequence:pull}  {/demo}
+{/table}
+
+{table}
+{demo} {loop rows=20, from=10, push='mySequence'                 } {/demo}
+{demo} {pull make='prime'            } {$sequence} {/pull}  {/demo}
+{demo} {pull make, prime             } {$sequence} {/pull}  {/demo}
+{demo} {pull prime, make             } {$sequence} {/pull}  {/demo}
+{demo} {mySequence make='prime'         } {$sequence} {/mySequence}  {/demo}
+{demo} {mySequence prime, make          } {$sequence} {/mySequence}  {/demo}
+{demo} {mySequence make, prime          } {$sequence} {/mySequence}  {/demo}
+{demo} {make mySequence, prime          } {$sequence} {/make}  {/demo}
+{demo} {make prime, mySequence          } {$sequence} {/make}  {/demo}
+{demo} {make pull='mySequence', prime             } {$sequence} {/make}  {/demo}
+{demo} {make prime, pull='mySequence'           } {$sequence} {/make}  {/demo}
+{demo} {prime mySequence, make          } {$sequence} {/prime}  {/demo}
+{demo} {prime make, mySequence          } {$sequence} {/prime}  {/demo}
+{demo} {prime make, pull='mySequence'           } {$sequence} {/prime}  {/demo}
+{demo} {prime pull='mySequence', make             } {$sequence} {/prime}  {/demo}
+{demo} {mySequence:make prime           } {$sequence} {/mySequence:make}  {/demo}
+{demo} {make:mySequence prime           } {$sequence} {/make:mySequence}  {/demo}
+{demo} {sequence:prime mySequence, make } {$sequence} {/sequence:prime}  {/demo}
+{demo} {prime:sequence mySequence, make } {$sequence} {/prime:sequence}  {/demo}
+{demo} {sequence:prime pull='mySequence', make    } {$sequence} {/sequence:prime}  {/demo}
+{demo} {prime:sequence pull='mySequence', make    } {$sequence} {/prime:sequence}  {/demo}
+{demo} {pull:mySequence make='prime'    } {$sequence} {/pull:mySequence}  {/demo}
+{demo} {mySequence:pull make='prime'    } {$sequence} {/mySequence:pull}  {/demo}
+{/table}
+
+{table}
+{demo} {loop rows=40, from=10, push='mySequence'                 } {/demo}
+{demo} {pull keep='prime'            } {$sequence} {/pull}  {/demo}
+{demo} {pull keep, prime             } {$sequence} {/pull}  {/demo}
+{demo} {pull prime, keep             } {$sequence} {/pull}  {/demo}
+{demo} {mySequence keep='prime'         } {$sequence} {/mySequence}  {/demo}
+{demo} {mySequence prime, keep          } {$sequence} {/mySequence}  {/demo}
+{demo} {mySequence keep, prime          } {$sequence} {/mySequence}  {/demo}
+{demo} {keep mySequence, prime          } {$sequence} {/keep}  {/demo}
+{demo} {keep prime, mySequence          } {$sequence} {/keep}  {/demo}
+{demo} {keep pull='mySequence', prime             } {$sequence} {/keep}  {/demo}
+{demo} {keep prime, pull='mySequence'           } {$sequence} {/keep}  {/demo}
+{demo} {prime mySequence, keep          } {$sequence} {/prime}  {/demo}
+{demo} {prime keep, mySequence          } {$sequence} {/prime}  {/demo}
+{demo} {prime keep, pull='mySequence'           } {$sequence} {/prime}  {/demo}
+{demo} {prime pull='mySequence', keep             } {$sequence} {/prime}  {/demo}
+{demo} {mySequence:keep prime           } {$sequence} {/mySequence:keep}  {/demo}
+{demo} {keep:mySequence prime           } {$sequence} {/keep:mySequence}  {/demo}
+{demo} {sequence:prime mySequence, keep } {$sequence} {/sequence:prime}  {/demo}
+{demo} {prime:sequence mySequence, keep } {$sequence} {/prime:sequence}  {/demo}
+{demo} {sequence:prime pull='mySequence', keep    } {$sequence} {/sequence:prime}  {/demo}
+{demo} {prime:sequence pull='mySequence', keep    } {$sequence} {/prime:sequence}  {/demo}
+{demo} {pull:mySequence keep='prime'    } {$sequence} {/pull:mySequence}  {/demo}
+{demo} {mySequence:pull keep='prime'    } {$sequence} {/mySequence:pull}  {/demo}
+{/table}
+
+{table}
+{demo} {loop rows=40, from=10, push='mySequence'} {/demo}
+{demo} {pull remove='prime'            } {$sequence} {/pull}  {/demo}
+{demo} {pull remove, prime             } {$sequence} {/pull}  {/demo}
+{demo} {pull prime, remove             } {$sequence} {/pull}  {/demo}
+{demo} {mySequence remove='prime'         } {$sequence} {/mySequence}  {/demo}
+{demo} {mySequence prime, remove          } {$sequence} {/mySequence}  {/demo}
+{demo} {mySequence remove, prime          } {$sequence} {/mySequence}  {/demo}
+{demo} {remove mySequence, prime          } {$sequence} {/remove}  {/demo}
+{demo} {remove prime, mySequence          } {$sequence} {/remove}  {/demo}
+{demo} {remove pull='mySequence', prime             } {$sequence} {/remove}  {/demo}
+{demo} {remove prime, pull='mySequence'           } {$sequence} {/remove}  {/demo}
+{demo} {prime mySequence, remove          } {$sequence} {/prime}  {/demo}
+{demo} {prime remove, mySequence          } {$sequence} {/prime}  {/demo}
+{demo} {prime remove, pull='mySequence'           } {$sequence} {/prime}  {/demo}
+{demo} {prime pull='mySequence', remove             } {$sequence} {/prime}  {/demo}
+{demo} {mySequence:remove prime           } {$sequence} {/mySequence:remove}  {/demo}
+{demo} {remove:mySequence prime           } {$sequence} {/remove:mySequence}  {/demo}
+{demo} {sequence:prime mySequence, remove } {$sequence} {/sequence:prime}  {/demo}
+{demo} {prime:sequence mySequence, remove } {$sequence} {/prime:sequence}  {/demo}
+{demo} {sequence:prime pull='mySequence', remove    } {$sequence} {/sequence:prime}  {/demo}
+{demo} {prime:sequence pull='mySequence', remove    } {$sequence} {/prime:sequence}  {/demo}
+{demo} {pull:mySequence remove='prime'    } {$sequence} {/pull:mySequence}  {/demo}
+{demo} {mySequence:pull remove='prime'    } {$sequence} {/mySequence:pull}  {/demo}
+{/table}
+
+
+{table}
+{demo} {loop rows=40, from=10, push='mySequence'                 } {/demo}
+{demo} {pull flag='prime'            } {$sequence} {/pull}  {/demo}
+{demo} {pull flag, prime             } {$sequence} {/pull}  {/demo}
+{demo} {pull prime, flag             } {$sequence} {/pull}  {/demo}
+{demo} {mySequence flag='prime'         } {$sequence} {/mySequence}  {/demo}
+{demo} {mySequence prime, flag          } {$sequence} {/mySequence}  {/demo}
+{demo} {mySequence flag, prime          } {$sequence} {/mySequence}  {/demo}
+{demo} {flag mySequence, prime          } {$sequence} {/flag}  {/demo}
+{demo} {flag prime, mySequence          } {$sequence} {/flag}  {/demo}
+{demo} {flag pull='mySequence', prime             } {$sequence} {/flag}  {/demo}
+{demo} {flag prime, pull='mySequence'           } {$sequence} {/flag}  {/demo}
+{demo} {prime mySequence, flag          } {$sequence} {/prime}  {/demo}
+{demo} {prime flag, mySequence          } {$sequence} {/prime}  {/demo}
+{demo} {prime flag, pull='mySequence'           } {$sequence} {/prime}  {/demo}
+{demo} {prime pull='mySequence', flag             } {$sequence} {/prime}  {/demo}
+{demo} {mySequence:flag prime           } {$sequence} {/mySequence:flag}  {/demo}
+{demo} {flag:mySequence prime           } {$sequence} {/flag:mySequence}  {/demo}
+{demo} {sequence:prime mySequence, flag } {$sequence} {/sequence:prime}  {/demo}
+{demo} {prime:sequence mySequence, flag } {$sequence} {/prime:sequence}  {/demo}
+{demo} {sequence:prime pull='mySequence', flag } {$sequence} {/sequence:prime}  {/demo}
+{demo} {prime:sequence pull='mySequence', flag } {$sequence} {/prime:sequence}  {/demo}
+{demo} {pull:mySequence flag='prime'           } {$sequence} {/pull:mySequence}  {/demo}
+{demo} {mySequence:pull flag='prime'    } {$sequence} {/mySequence:pull}  {/demo}
+{/table}

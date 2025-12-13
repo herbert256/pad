@@ -1,0 +1,63 @@
+{table}
+
+{demo} {add 3, from=31, to=40                 } {$sequence} {/add}{/demo}
+{demo} {sequence '31..40', add=3              } {$sequence} {/sequence}{/demo}
+{demo} {sequence '31..40', make, add=3        } {$sequence} {/sequence}{/demo}
+{demo} {sequence '31..40', make='add|3'       } {$sequence} {/sequence}{/demo}
+
+{demo} {sequence '31..40', push='mySequence' } {/demo}
+
+{demo} {add mySequence, 3                   } {$sequence} {/add}{/demo}
+{demo} {add 3, mySequence                   } {$sequence} {/add}{/demo}
+
+{demo} {sequence:add mySequence, 3          } {$sequence} {/sequence:add}{/demo}
+{demo} {sequence:add 3, mySequence          } {$sequence} {/sequence:add}{/demo}
+
+{demo} {add:mySequence 3                      } {$sequence} {/add:mySequence}{/demo}
+{demo} {mySequence:add 3                      } {$sequence} {/mySequence:add}{/demo}
+
+{demo} {make mySequence, add=3           } {$sequence} {/make}{/demo}
+{demo} {make add=3, mySequence, 3           } {$sequence} {/make}{/demo}
+
+{demo} {pad:make mySequence, add=3       } {$sequence} {/pad:make}{/demo}
+{demo} {pad:make add=3, mySequence, 3       } {$sequence} {/pad:make}{/demo}
+
+{demo} {make:mySequence add=3              } {$sequence} {/make:mySequence}{/demo}
+{demo} {mySequence:make add=3              } {$sequence} {/mySequence:make}{/demo}
+
+{demo} {make:add mySequence, 3              } {$sequence} {/make:add}{/demo}
+{demo} {add:make mySequence, 3              } {$sequence} {/add:make}{/demo}
+
+{/table}
+
+
+{table}
+
+{demo} {add 3, from=31, to=40, even                } {$sequence} {/add}{/demo}
+{demo} {sequence '31..40', add=3, even             } {$sequence} {/sequence}{/demo}
+{demo} {sequence '31..40', make, add=3, even       } {$sequence} {/sequence}{/demo}
+{demo} {sequence '31..40', make='add|3', even      } {$sequence} {/sequence}{/demo}
+{demo} {sequence '31..40', push='mySequence'      } {/demo}
+
+{demo} {add mySequence, 3, even                  } {$sequence} {/add}{/demo}
+{demo} {add 3, mySequence, even                  } {$sequence} {/add}{/demo}
+
+{demo} {sequence:add mySequence, 3, even         } {$sequence} {/sequence:add}{/demo}
+{demo} {sequence:add 3, mySequence, even         } {$sequence} {/sequence:add}{/demo}
+
+{demo} {add:mySequence 3, even                     } {$sequence} {/add:mySequence}{/demo}
+{demo} {mySequence:add 3, even                     } {$sequence} {/mySequence:add}{/demo}
+
+{demo} {make mySequence, add=3, even          } {$sequence} {/make}{/demo}
+{demo} {make add=3, mySequence, 3, even          } {$sequence} {/make}{/demo}
+
+{demo} {pad:make mySequence, add=3, even      } {$sequence} {/pad:make}{/demo}
+{demo} {pad:make add=3, mySequence, 3, even      } {$sequence} {/pad:make}{/demo}
+
+{demo} {make:mySequence add=3, even             } {$sequence} {/make:mySequence}{/demo}
+{demo} {mySequence:make add=3, even             } {$sequence} {/mySequence:make}{/demo}
+
+{demo} {make:add mySequence, 3, even             } {$sequence} {/make:add}{/demo}
+{demo} {add:make mySequence, 3, even             } {$sequence} {/add:make}{/demo}
+
+{/table}

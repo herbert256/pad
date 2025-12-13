@@ -1,0 +1,155 @@
+{table}
+{demo} {prime rows=15, from=10       } {$sequence} {/prime} {/demo}
+{demo} {loop rows=15, from=10, prime } {$sequence} {/loop}  {/demo}
+{/table}
+
+{table}
+{demo} {loop rows=15, from=10, make='prime' } {$sequence} {/loop}  {/demo}
+{demo} {prime rows=15, from=10, make        } {$sequence} {/prime} {/demo}
+{demo} {make prime, rows=15, from=10        } {$sequence} {/make} {/demo}
+{demo} {make:prime rows=15, from=10         } {$sequence} {/make:prime} {/demo}
+{demo} {prime:make rows=15, from=10         } {$sequence} {/prime:make} {/demo}
+{/table}
+
+{table}
+{demo} {loop rows=15, from=10, keep='prime' } {$sequence} {/loop}  {/demo}
+{demo} {prime rows=15, from=10, keep        } {$sequence} {/prime} {/demo}
+{demo} {keep prime, rows=15, from=10        } {$sequence} {/keep} {/demo}
+{demo} {keep:prime rows=15, from=10         } {$sequence} {/keep:prime} {/demo}
+{demo} {prime:keep rows=15, from=10         } {$sequence} {/prime:keep} {/demo}
+{/table}
+
+{table}
+{demo} {loop rows=15, from=10, remove='prime' } {$sequence} {/loop}  {/demo}
+{demo} {prime rows=15, from=10, remove        } {$sequence} {/prime} {/demo}
+{demo} {remove prime, rows=15, from=10        } {$sequence} {/remove} {/demo}
+{demo} {remove:prime rows=15, from=10         } {$sequence} {/remove:prime} {/demo}
+{demo} {prime:remove rows=15, from=10         } {$sequence} {/prime:remove} {/demo}
+{/table}
+
+{table}
+{demo} {loop rows=15, from=10, flag='prime' } {$sequence} {/loop}  {/demo}
+{demo} {prime rows=15, from=10, flag        } {$sequence} {/prime} {/demo}
+{demo} {flag prime, rows=15, from=10        } {$sequence} {/flag} {/demo}
+{demo} {flag:prime rows=15, from=10         } {$sequence} {/flag:prime} {/demo}
+{demo} {prime:flag rows=15, from=10         } {$sequence} {/prime:flag} {/demo}
+{/table}
+
+{table}
+{demo} {loop rows=30, from=10           } {/demo}
+{demo} {pull prime             } {$sequence} {/pull}  {/demo}
+{demo} {default prime          } {$sequence} {/default}  {/demo}
+{demo} {prime default          } {$sequence} {/prime}  {/demo}
+{demo} {prime pull             } {$sequence} {/prime}  {/demo}
+{demo} {sequence:prime default } {$sequence} {/sequence:prime}  {/demo}
+{demo} {prime:sequence default } {$sequence} {/prime:sequence}  {/demo}
+{demo} {sequence:prime pull    } {$sequence} {/sequence:prime}  {/demo}
+{demo} {prime:sequence pull    } {$sequence} {/prime:sequence}  {/demo}
+{demo} {pull:default prime     } {$sequence} {/pull:default}  {/demo}
+{demo} {default:pull prime     } {$sequence} {/default:pull}  {/demo}
+{/table}
+
+{table}
+{demo} {loop rows=30, from=10                 } {/demo}
+{demo} {pull make='prime'            } {$sequence} {/pull}  {/demo}
+{demo} {pull make, prime             } {$sequence} {/pull}  {/demo}
+{demo} {pull prime, make             } {$sequence} {/pull}  {/demo}
+{demo} {default make='prime'         } {$sequence} {/default}  {/demo}
+{demo} {default prime, make          } {$sequence} {/default}  {/demo}
+{demo} {default make, prime          } {$sequence} {/default}  {/demo}
+{demo} {make default, prime          } {$sequence} {/make}  {/demo}
+{demo} {make prime, default          } {$sequence} {/make}  {/demo}
+{demo} {make pull, prime             } {$sequence} {/make}  {/demo}
+{demo} {make prime, pull             } {$sequence} {/make}  {/demo}
+{demo} {prime default, make          } {$sequence} {/prime}  {/demo}
+{demo} {prime make, default          } {$sequence} {/prime}  {/demo}
+{demo} {prime make, pull             } {$sequence} {/prime}  {/demo}
+{demo} {prime pull, make             } {$sequence} {/prime}  {/demo}
+{demo} {default:make prime           } {$sequence} {/default:make}  {/demo}
+{demo} {make:default prime           } {$sequence} {/make:default}  {/demo}
+{demo} {sequence:prime default, make } {$sequence} {/sequence:prime}  {/demo}
+{demo} {prime:sequence default, make } {$sequence} {/prime:sequence}  {/demo}
+{demo} {sequence:prime pull, make    } {$sequence} {/sequence:prime}  {/demo}
+{demo} {prime:sequence pull, make    } {$sequence} {/prime:sequence}  {/demo}
+{demo} {pull:default make='prime'    } {$sequence} {/pull:default}  {/demo}
+{demo} {default:pull make='prime'    } {$sequence} {/default:pull}  {/demo}
+{/table}
+
+{table}
+{demo} {loop rows=40, from=10                 } {/demo}
+{demo} {pull keep='prime'            } {$sequence} {/pull}  {/demo}
+{demo} {pull keep, prime             } {$sequence} {/pull}  {/demo}
+{demo} {pull prime, keep             } {$sequence} {/pull}  {/demo}
+{demo} {default keep='prime'         } {$sequence} {/default}  {/demo}
+{demo} {default prime, keep          } {$sequence} {/default}  {/demo}
+{demo} {default keep, prime          } {$sequence} {/default}  {/demo}
+{demo} {keep default, prime          } {$sequence} {/keep}  {/demo}
+{demo} {keep prime, default          } {$sequence} {/keep}  {/demo}
+{demo} {keep pull, prime             } {$sequence} {/keep}  {/demo}
+{demo} {keep prime, pull             } {$sequence} {/keep}  {/demo}
+{demo} {prime default, keep          } {$sequence} {/prime}  {/demo}
+{demo} {prime keep, default          } {$sequence} {/prime}  {/demo}
+{demo} {prime keep, pull             } {$sequence} {/prime}  {/demo}
+{demo} {prime pull, keep             } {$sequence} {/prime}  {/demo}
+{demo} {default:keep prime           } {$sequence} {/default:keep}  {/demo}
+{demo} {keep:default prime           } {$sequence} {/keep:default}  {/demo}
+{demo} {sequence:prime default, keep } {$sequence} {/sequence:prime}  {/demo}
+{demo} {prime:sequence default, keep } {$sequence} {/prime:sequence}  {/demo}
+{demo} {sequence:prime pull, keep    } {$sequence} {/sequence:prime}  {/demo}
+{demo} {prime:sequence pull, keep    } {$sequence} {/prime:sequence}  {/demo}
+{demo} {pull:default keep='prime'    } {$sequence} {/pull:default}  {/demo}
+{demo} {default:pull keep='prime'    } {$sequence} {/default:pull}  {/demo}
+{/table}
+
+{table}
+{demo} {loop rows=40, from=10                   } {/demo}
+{demo} {pull remove='prime'            } {$sequence} {/pull}  {/demo}
+{demo} {pull remove, prime             } {$sequence} {/pull}  {/demo}
+{demo} {pull prime, remove             } {$sequence} {/pull}  {/demo}
+{demo} {default remove='prime'         } {$sequence} {/default}  {/demo}
+{demo} {default prime, remove          } {$sequence} {/default}  {/demo}
+{demo} {default remove, prime          } {$sequence} {/default}  {/demo}
+{demo} {remove default, prime          } {$sequence} {/remove}  {/demo}
+{demo} {remove prime, default          } {$sequence} {/remove}  {/demo}
+{demo} {remove pull, prime             } {$sequence} {/remove}  {/demo}
+{demo} {remove prime, pull             } {$sequence} {/remove}  {/demo}
+{demo} {prime default, remove          } {$sequence} {/prime}  {/demo}
+{demo} {prime remove, default          } {$sequence} {/prime}  {/demo}
+{demo} {prime remove, pull             } {$sequence} {/prime}  {/demo}
+{demo} {prime pull, remove             } {$sequence} {/prime}  {/demo}
+{demo} {default:remove prime           } {$sequence} {/default:remove}  {/demo}
+{demo} {remove:default prime           } {$sequence} {/remove:default}  {/demo}
+{demo} {sequence:prime default, remove } {$sequence} {/sequence:prime}  {/demo}
+{demo} {prime:sequence default, remove } {$sequence} {/prime:sequence}  {/demo}
+{demo} {sequence:prime pull, remove    } {$sequence} {/sequence:prime}  {/demo}
+{demo} {prime:sequence pull, remove    } {$sequence} {/prime:sequence}  {/demo}
+{demo} {pull:default remove='prime'    } {$sequence} {/pull:default}  {/demo}
+{demo} {default:pull remove='prime'    } {$sequence} {/default:pull}  {/demo}
+{/table}
+
+
+{table}
+{demo} {loop rows=40, from=10                 } {/demo}
+{demo} {pull flag='prime'            } {$sequence} {/pull}  {/demo}
+{demo} {pull flag, prime             } {$sequence} {/pull}  {/demo}
+{demo} {pull prime, flag             } {$sequence} {/pull}  {/demo}
+{demo} {default flag='prime'         } {$sequence} {/default}  {/demo}
+{demo} {default prime, flag          } {$sequence} {/default}  {/demo}
+{demo} {default flag, prime          } {$sequence} {/default}  {/demo}
+{demo} {flag default, prime          } {$sequence} {/flag}  {/demo}
+{demo} {flag prime, default          } {$sequence} {/flag}  {/demo}
+{demo} {flag pull, prime             } {$sequence} {/flag}  {/demo}
+{demo} {flag prime, pull             } {$sequence} {/flag}  {/demo}
+{demo} {prime default, flag          } {$sequence} {/prime}  {/demo}
+{demo} {prime flag, default          } {$sequence} {/prime}  {/demo}
+{demo} {prime flag, pull             } {$sequence} {/prime}  {/demo}
+{demo} {prime pull, flag             } {$sequence} {/prime}  {/demo}
+{demo} {default:flag prime           } {$sequence} {/default:flag}  {/demo}
+{demo} {flag:default prime           } {$sequence} {/flag:default}  {/demo}
+{demo} {sequence:prime default, flag } {$sequence} {/sequence:prime}  {/demo}
+{demo} {prime:sequence default, flag } {$sequence} {/prime:sequence}  {/demo}
+{demo} {sequence:prime pull, flag    } {$sequence} {/sequence:prime}  {/demo}
+{demo} {prime:sequence pull, flag    } {$sequence} {/prime:sequence}  {/demo}
+{demo} {pull:default flag='prime'    } {$sequence} {/pull:default}  {/demo}
+{demo} {default:pull flag='prime'    } {$sequence} {/default:pull}  {/demo}
+{/table}

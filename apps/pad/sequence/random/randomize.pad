@@ -1,0 +1,17 @@
+<h3>The sequence action 'randomize'</h3>
+
+{table}
+
+{demo} {sequence from=10, to=20, push='mySeq'}{/demo} 
+{demo} {mySeq}                                     {$sequence} {/mySeq} {/demo}
+{demo} {mySeq randomize                          } {$sequence} {/mySeq} {/demo}
+{demo} {mySeq randomize=5                        } {$sequence} {/mySeq} {/demo}
+{demo} {mySeq randomize=5, duplicates            } {$sequence} {/mySeq} {/demo}
+{demo} {mySeq randomize=5, orderly               } {$sequence} {/mySeq} {/demo}
+{demo} {mySeq randomize=5, orderly, duplicates   } {$sequence} {/mySeq} {/demo}
+{demo} {mySeq randomize=25                       } {$sequence} {/mySeq} {/demo}
+{demo} {mySeq randomize=25, orderly              } {$sequence} {/mySeq} {/demo}
+{demo} {mySeq randomize=25, atLeastOnce          } {$sequence} {/mySeq} {/demo}
+{demo} {mySeq randomize=25, atLeastOnce, orderly } {$sequence} {/mySeq} {/demo}
+
+{/table}

@@ -1,0 +1,19 @@
+<blockquote>
+
+  {block}
+
+    {hits}
+
+      {if $pages}
+        <a href="@pad@reference/pages{?pages}{?type}{?item}{?sequence}">{$item}</a>
+      {else}
+        {$item}
+      {/if}
+
+      <br>
+
+    {/hits}
+
+  {/block}
+
+</blockquote>

@@ -1,0 +1,15 @@
+<div id="padAjax9gc3QbOL"></div>
+<script>
+  padAjax9gc3QbOL = new XMLHttpRequest();
+  padAjax9gc3QbOL.onreadystatechange=function() {
+    if (padAjax9gc3QbOL.readyState === 4) {
+      if (padAjax9gc3QbOL.status === 200) {
+        document.getElementById("padAjax9gc3QbOL").innerHTML=padAjax9gc3QbOL.responseText;
+      } else {
+        document.getElementById("padAjax9gc3QbOL").innerHTML=padAjax9gc3QbOL.statusText;
+      }
+    }
+  }
+  padAjax9gc3QbOL.open("GET","http://penguin.linux.test/?regression&padInclude&sequence=1&padSesID=AXwMjQLq&padReqID=PtadjFfx",true);
+  padAjax9gc3QbOL.send();
+</script>

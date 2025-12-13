@@ -1,0 +1,61 @@
+{table}
+
+{demo}
+
+{myContent2}
+  {staff}
+      <tr>
+        <td> {$name}      </td>
+        <td> {&name}      </td>
+        <td> {&count}     </td>
+        <td> {&key}       </td>
+        <td> {&current}   </td>
+        <td> {&done}      </td>
+        <td> {&remaining} </td>   
+      </tr>
+  {/staff}
+{/myContent2}
+
+{/demo}{demo}
+
+{myContent2}
+  {staff}
+    {true}
+      {true}
+        <tr>
+          <td> {$name}         </td>
+          <td> {&-2:name}      </td>
+          <td> {&-2:count}     </td>
+          <td> {&-2:key}       </td>
+          <td> {&-2:current}   </td>
+          <td> {&-2:done}      </td>
+          <td> {&-2:remaining} </td> 
+        </tr>
+      {/true}
+    {/true}
+  {/staff}
+{/myContent2}
+
+{/demo}{demo}
+
+{myContent2}
+  {staff}
+    {true}
+      {true}
+        <tr>
+          <td> {$name}            </td>
+          <td> {&staff:name}      </td>
+          <td> {&staff:count}     </td>
+          <td> {&staff:key}       </td>
+          <td> {&staff:current}   </td>
+          <td> {&staff:done}      </td>
+          <td> {&staff:remaining} </td>   
+        </tr>
+      {/true}
+    {/true}
+  {/staff}
+{/myContent2}
+
+{/demo}
+
+{/table}

@@ -1,0 +1,25 @@
+<p>
+  {block}
+    PAD is data driven, the PAD data concepts are named Level and Occurence
+    <br><br>
+    Below example: <br>
+    - Is two levels deep <br>
+    - The level 'row' has 3 occurences<br>
+    - The level 'column' has 5 occurences<br><br>
+  {/block}
+  {example 'fragments/lvl_occ/1', skipNames, center}
+</p>
+
+{block}
+  If not specifield for a PAD tag then default it has 1 occurence.
+  <br><br><hr><br>
+  Just for fun, below the above example implemented in a few different ways.
+  <br>
+  Hopefully all this magic will be explained in this manual.
+{/block}
+
+<p> 
+{sequence '2..12', name='xxx'}
+  {example 'fragments/lvl_occ/{$xxx}', skipNames{notFirst},skipOpen,skipHeader{/notFirst}{notLast},skipClose{/notLast}}
+{/sequence}
+</p>

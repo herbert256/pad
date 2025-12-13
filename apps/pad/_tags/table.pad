@@ -1,0 +1,18 @@
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      {if #firstFile}
+        <th bgcolor="#dddddd">{#firstFile}</th>
+      {/if}
+      {if #secondFile}
+        <th bgcolor="#dddddd">{#secondFile}</th>
+      {/if}
+      {if #withPHP}
+        <th bgcolor="#dddddd">PHP</th>
+      {/if}
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    @content@
+  </table>
+</p>

@@ -1,0 +1,37 @@
+{table}{demo}
+
+{myContent1}
+  {staff}
+    {true}
+      <tr>
+        <td> {$name}                      </td>
+        <td> {first 'staff'}  X {/first}  </td>
+        <td> {border 'staff'} X {/border} </td>
+        <td> {middle 'staff'} X {/middle} </td>
+        <td> {last 'staff'}   X {/last}   </td>
+        <td> {even 'staff'}   X {/even}   </td>
+        <td> {odd 'staff'}    X {/odd}    </td>
+      </tr>
+    {/true}
+  {/staff}
+{/myContent1}
+
+{/demo}{demo}
+
+{myContent1}
+  {staff}
+    {true}
+      <tr>
+        <td> {$name}                    </td>
+        <td> {if &staff:first}  X {/if} </td>
+        <td> {if &staff:border} X {/if} </td>
+        <td> {if &staff:middle} X {/if} </td>
+        <td> {if &staff:last}   X {/if} </td>
+        <td> {if &staff:even}   X {/if} </td>
+        <td> {if &staff:odd}    X {/if} </td>
+      </tr>
+    {/true}
+  {/staff}
+{/myContent1}
+
+{/demo}{/table}

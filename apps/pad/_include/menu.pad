@@ -1,0 +1,59 @@
+{lineOpen}
+
+<font size="-1">
+
+  {if $padPage == 'index'}
+    <b>home</b>
+  {else}
+    <a href="{$pad}index">home</a> 
+  {/if}
+    
+  &nbsp; | &nbsp;
+
+  {if $padPage == 'manual/index'}
+    <b>manual</b>
+  {else}
+    <a href="{$pad}manual">manual</a> 
+  {/if}
+    
+  &nbsp; | &nbsp;
+
+  {if $padPage == 'reference/index'}
+    <b>reference</b>
+  {else}
+    <a href="{$pad}reference">reference</a> 
+  {/if}
+       
+  &nbsp; | &nbsp;
+
+  {if $padPage == 'regression/index'}
+    <b>regression</b>
+  {else}
+    <a href="{$pad}regression">regression</a> 
+  {/if}
+   
+  &nbsp; | &nbsp;
+
+  {if str_starts_with ( $padPage, 'sequence' ) }
+    <b>sequences</b>
+  {else}
+    <a href="{$pad}sequence/index">sequences</a> 
+  {/if}
+        
+  &nbsp; | &nbsp;
+
+  {if $padPage == 'develop/develop'}
+    <b>develop</b>
+  {else}
+    <a href="{$pad}develop">develop</a> 
+  {/if}
+          
+  {parts}
+    {first} &nbsp; &nbsp; &nbsp; {/first}
+    {if $link}<a href="{$pad}{$link}">{/if}{$part}{if $link}</a>{/if} 
+    {notLast} / {/notLast}
+  {/parts}
+
+</font>
+
+{lineClose}
