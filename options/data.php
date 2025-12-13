@@ -1,6 +1,7 @@
 <?php
 
-  $padCheck = padTagParm('data');
+  $padGetName = padTagParm ( 'data' );
+  $padCheck   = padTagParm ( 'data' );
 
   if ( isset ( $padDataStore [$padCheck] ) )
     return $padDataStore [$padCheck];

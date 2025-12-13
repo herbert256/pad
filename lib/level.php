@@ -47,6 +47,21 @@
   }
 
 
+  function padCommentCheck () {
+
+    global $padBetween;
+
+    return ( str_starts_with( $padBetween, '#' ) and str_ends_with($padBetween, '#') );
+
+  }
+
+  function padCommentGo () {
+
+    return padLevelNo ( '' );
+
+  }
+
+
   function padLevelNo ( $no ) {
 
     padLevel ( "&open;$no&close;" );

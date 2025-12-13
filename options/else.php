@@ -1,5 +1,7 @@
 <?php
 
-  return $padContentStore [ padTagParm ('else') ];
-  
+  $padGetName = padTagParm ( 'else' );
+
+  return include PAD . 'get/content.php';
+
 ?>

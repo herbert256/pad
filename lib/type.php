@@ -17,7 +17,7 @@
     elseif ( padDataFileName    ( $type                                ) ) return 'local';      
     elseif ( padScriptCheck     ( $type                                ) ) return 'script';
     elseif ( function_exists    ( $type                                ) ) return 'php';
-    elseif ( padAppPageCheck    ( $type                                ) ) return 'page';   
+    elseif ( padAppPageCheck    ( $type                                ) ) return 'xyz';   
     elseif ( file_exists        ( PT . $type                           ) ) return 'sequence';
     elseif ( file_exists        ( PQ . "actions/types/$type.php"       ) ) return 'action';
 

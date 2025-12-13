@@ -15,6 +15,9 @@
   include PAD . 'level/pipes/start.php';  
   include PAD . 'level/between.php';
 
+  if ( padCommentCheck () )
+    return padCommentGo ();
+
   if ( $padFirst == '/' ) 
     return padError ( "Closing tag found without an open tag: {" . $padBetween . "}" );
 

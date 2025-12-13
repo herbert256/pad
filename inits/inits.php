@@ -1,5 +1,8 @@
 <?php
 
+  if ( ! isset ( $padMicro ) ) $padMicro = microtime ( TRUE );
+  if ( ! isset ( $padHR    ) ) $padHR    = hrtime    ( TRUE );
+
   include_once PAD . 'inits/const.php';
   include_once PAD . 'inits/lib.php';
 
