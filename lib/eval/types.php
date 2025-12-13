@@ -1,7 +1,7 @@
 <?php
     
 
-  function padEvalType ( &$result, $myself, $start, $end ) {
+  function padEvalType ( &$result, $myself, $start=0, $end=PHP_INT_MAX  ) {
 
     $typeK = FALSE;
     

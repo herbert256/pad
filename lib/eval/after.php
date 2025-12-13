@@ -14,7 +14,7 @@
           $name = $exp[1];
         }
         else {
-          $type = padGetTypeEval ( $one[0] );
+          $type = padTypeFunction ( $one[0] );
           $name = $one[0];
         }
 

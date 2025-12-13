@@ -299,8 +299,8 @@
 
   function padContent ( $content ) {
 
-    if ( padStoreCheck   ( $content ) ) return TRUE;
-    if ( padContentCheck ( $content ) ) return TRUE;
+    if ( padStoreCheck      ( $content ) ) return TRUE;
+    if ( padAppContentCheck ( $content ) ) return TRUE;
 
     return FALSE;
 
@@ -314,29 +314,12 @@
   }  
 
 
-  function padContentCheck ( $content ) {
+  function padAppPageCheck     ( $check ) { return padAppCheck ( $check              ); }  
+  function padAppIncludeCheck  ( $check ) { return padAppCheck ( "_include/$check"   ); }  
+  function padAppTagCheck      ( $check ) { return padAppCheck ( "_tags/$check"      ); }  
+  function padAppFunctionCheck ( $check ) { return padAppCheck ( "_functions/$check" ); }  
 
-    return padAppGet ( "_content/$content" );
-
-  }  
-
-
-  function padAppTagCheck ( $content ) {
-
-    return padAppGet ( "_tags/$content" );
-
-  }  
-
-
-  function padFunctionCheck ( $content ) {
-
-    return padAppGet ( "_functions/$content" );
-
-  }  
-
-
-
-  function padAppGet ( $check ) {
+  function padAppCheck ( $check ) {
 
     foreach ( padDirs () as $value )
       if ( padCheck ( APP2 . $value . $check ) )
@@ -880,23 +863,27 @@
   }
 
   
-  function padFunctionAsTag ( $name, $value, $parm ) {
+  function padFunctionAsTag ( $name, $myself, $parm ) {
 
-    unset ( $parm [0] );
+    $k = 100;
 
-    $parm  = array_values ( $parm );
-    $count = count ( $parm );
- 
-    if ( padFunctionCheck ( $item ) ) {
+    $result [$k] [0] = $name;
+    $result [$k] [1] = 'TYPE';
+    $result [$k] [2] = padTypeFunction ( $name );        
+    $result [$k] [3] = 0;       
 
-      $padCall = APP2 . padFunctionCheck ( $padTag [$pad] ) . "$item.php";
-      return include PAD . 'call/any.php';
+    foreach ( $parm as $key => $val ) 
+      if ( $key > 0 ) {
+        $k = $k + 100;
+        $result [$k] [0] = $val;;
+        $result [$k] [1] = 'VAL';
+      }
 
-    } else {
-   
-      return include PAD . "functions/$item.php";
-   
-    }
+    padEvalType ( $result, $myself );
+
+    $start = array_key_first ( $result );
+
+    return $result [$start] [0];
 
   }
 
@@ -905,11 +892,8 @@
   
     $extra = '';
 
-    foreach ( $parms as $parm ) {
-
+    foreach ( $parms as $parm )
       $extra .= " '" . str_replace( "'", "\\'", $parm) . "',";
-
-    }
 
     if ( $extra )
       $extra = substr ( $extra, 0, -1 );

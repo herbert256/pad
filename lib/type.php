@@ -1,61 +1,82 @@
 <?php
 
 
-  function padTypeGet ( $item, $goFunctions=1 ) {
+  function padTypeCommon ( $type ) {
 
-    if     ( padChkLevel      ( $item                                ) ) return 'level';
-    elseif ( padAppTagCheck   ( $item                                ) ) return 'app';
-    elseif ( file_exists      ( PAD . "tags/$item.php"               ) ) return 'pad';
-    elseif ( file_exists      ( PAD . "tags/$item.pad"               ) ) return 'pad';
-    elseif ( padContent       ( $item                                ) ) return 'content';
-    elseif ( padScriptCheck   ( $item                                ) ) return 'script';
-    elseif ( isset            ( $GLOBALS ['padDataStore']    [$item] ) ) return 'data';
-    elseif ( isset            ( $GLOBALS ['padBoolStore']    [$item] ) ) return 'bool';
-    elseif ( isset            ( $GLOBALS ['padTables']       [$item] ) ) return 'table';
-    elseif ( isset            ( $GLOBALS ['pqStore'] [$item]         ) ) return 'pull';
-    elseif ( file_exists      ( PAD . "tag/$item.php"                ) ) return 'tag';
-    elseif ( padDataFileName  ( $item                                ) ) return 'local';    
-    elseif ( padArrayCheck    ( $item, 1                             ) ) return 'array';
-    elseif ( padFieldCheck    ( $item, 1                             ) ) return 'field';
-    elseif ( defined          ( $item                                ) ) return 'constant';
-    elseif ( padFunctionCheck ( $item                                ) ) return 'function';
-    elseif ( file_exists      ( PAD . "functions/$item.php"          ) ) return 'function';
-    elseif ( function_exists  ( $item                                ) ) return 'php';
-    elseif ( file_exists      ( PT . "$item"                         ) ) return 'sequence';
-    elseif ( file_exists      ( PQ . "actions/types/$item.php"       ) ) return 'action';
+    if     ( isset              ( $GLOBALS ['pqStore']         [$type] ) ) return 'pull';
+    elseif ( isset              ( $GLOBALS ['padBoolStore']    [$type] ) ) return 'flag';
+    elseif ( isset              ( $GLOBALS ['padContentStore'] [$type] ) ) return 'content';
+    elseif ( isset              ( $GLOBALS ['padDataStore']    [$type] ) ) return 'data';
+    elseif ( padAppIncludeCheck ( $type                                ) ) return 'include';   
+    elseif ( padAppPageCheck    ( $item                                ) ) return 'page';   
+    elseif ( padFieldCheck      ( $type                                ) ) return 'field';
+    elseif ( padTagCheck        ( $type                                ) ) return 'property';
+    elseif ( padArrayCheck      ( $type                                ) ) return 'array';
+    elseif ( padOptCheck        ( $type, 1                             ) ) return 'parm';
+    elseif ( padChkLevel        ( $type                                ) ) return 'level';
+    elseif ( defined            ( $type                                ) ) return 'constant';
+    elseif ( padDataFileName    ( $type                                ) ) return 'local';      
+    elseif ( padScriptCheck     ( $type                                ) ) return 'script';
+    elseif ( function_exists    ( $type                                ) ) return 'php';
+    elseif ( file_exists        ( PT . $type                           ) ) return 'sequence';
+    elseif ( file_exists        ( PQ . "actions/types/$type.php"       ) ) return 'action';
 
-    if (  $goFunctions and padGetTypeEval ( $item, 0 )  ) 
-      return 'padFunction';
-		
-		return FALSE;
+    return FALSE;    
+    
+  } 
+
+
+  function padTypeTag ( $type, $goFunction=1 ) {
+
+    if     ( ! padValid     ( $type                  ) ) return FALSE;
+    elseif ( padAppTagCheck ( $type                  ) ) return 'app';
+    elseif ( file_exists    ( PAD . "tags/$type.php" ) ) return 'pad';
+    elseif ( file_exists    ( PAD . "tags/$type.pad" ) ) return 'pad';
+
+    $common = padTypeCommon ( $type );
+    if ( $common ) 
+      return $common;
+
+    if ( $goFunction and padTypeFunction ( $type, 0 ) ) 
+      return 'function';
+    
+    return FALSE;
     
   }
 
 
-  function padTypeCheck ( $type, $item ) {
+  function padTypeTagCheck ( $type, $item ) {
 
-    if     ( ! padValidType                          ( $type                                ) ) return FALSE;
-    elseif (                       ! file_exists     ( PAD . "types/$type.php"              ) ) return FALSE;
-    elseif ( $type == 'app'      and padAppTagCheck  ( $item                                ) ) return $type;
-    elseif ( $type == 'pad'      and file_exists     ( PAD . "tags/$item.php"               ) ) return $type;
-    elseif ( $type == 'pad'      and file_exists     ( PAD . "tags/$item.pad"               ) ) return $type;
-    elseif ( $type == 'tag'      and file_exists     ( PAD . "tag/$type.php"                ) ) return $type;
-    elseif ( $type == 'script'   and padScriptCheck  ( $item                                ) ) return $type;
-    elseif ( $type == 'level'    and padChkLevel     ( $item                                ) ) return $type;
-    elseif ( $type == 'bool'     and isset           ( $GLOBALS ['padBoolStore'] [$item]    ) ) return $type;
-    elseif ( $type == 'content'  and padContent      ( $item                                ) ) return $type;
-    elseif ( $type == 'data'     and isset           ( $GLOBALS ['padDataStore'] [$item]    ) ) return $type;
-    elseif ( $type == 'local'    and padDataFileName ( $item                                ) ) return $type;
-    elseif ( $type == 'array'    and padArrayCheck   ( $item, 1                             ) ) return $type;
-    elseif ( $type == 'field'    and padFieldCheck   ( $item, 1                             ) ) return $type;
-    elseif ( $type == 'constant' and defined         ( $item                                ) ) return $type;
-    elseif ( $type == 'function' and padFunctionCheck ( $item                                ) ) return $type;
-    elseif ( $type == 'function' and file_exists     ( PAD . "functions/$type.php"                ) ) return $type;
-    elseif ( $type == 'php'      and function_exists ( $item                                ) ) return $type;
-    elseif ( $type == 'table'    and isset           ( $GLOBALS ['padTables'] [$item]       ) ) return $type;
-    else                                                                                        return FALSE;
+    if     ( ! padValidType                          ( $type                   ) ) return FALSE;
+    elseif (                       ! file_exists     ( PAD . "types/$type.php" ) ) return FALSE;
+    elseif ( $type == 'app'      and padAppTagCheck  ( $item                   ) ) return $type;
+    elseif ( $type == 'pad'      and file_exists     ( PAD . "tags/$item.php"  ) ) return $type;
+    elseif ( $type == 'pad'      and file_exists     ( PAD . "tags/$item.pad"  ) ) return $type;
+    elseif ( padTypeCommon ( $item ) == $type                                    ) return $type;
+    elseif ( $type == 'function' and padTypeFunction  ( $item, 0               ) ) return $type;
+  
+    return FALSE;
 
   }
+
+
+  function padTypeFunction ( $type, $goTag=1 ) {
+
+        if ( ! padValid          ( $type                       ) ) return FALSE;
+    elseif ( padAppFunctionCheck ( $type                       ) ) return 'app';
+    elseif ( file_exists         ( PAD . "functions/$type.php" ) ) return 'pad';
+
+    $common = padTypeCommon ( $type );
+    if ( $common ) 
+      return $common;
+
+    if ( $goTag and padTypeTag ( $type, 0 ) ) 
+      return 'tag';
+    
+    return FALSE;    
+    
+  } 
+
 
 
   function padTypeSeq ( $type, $item ) {

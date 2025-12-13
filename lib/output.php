@@ -22,7 +22,9 @@
       else
         $output = $GLOBALS ['padOutput'];
    
-    }
+    } else
+
+      $output = '';
 
     $GLOBALS ['padLen'] = strlen ( $output );
 
@@ -42,7 +44,7 @@
 
   }
 
-  function padDownLoadHeaders ( $contentType, $fileName, $lenght ) {
+  function padDownLoadHeaders ( $contentType, $fileName, $length ) {
 
     global $padSent, $padStop;
 
@@ -55,7 +57,7 @@
     padHeader ( "Content-Type: $contentType");
     padHeader ( "Content-Transfer-Encoding: Binary"); 
     padHeader ( "Content-Disposition: attachment; filename=\"$fileName\""); 
-    padHeader ( "Content-Length: $lenght");
+    padHeader ( "Content-Length: $length");
 
   }
 
@@ -76,10 +78,7 @@
 
   function padWebNoHeaders ( $stop ) {
 
-    if ( $stop == 500 )
-      padHeader ('HTTP/1.0 500 Internal Server Error' );
-    elseif ( $stop == 304 )
-      padHeader ('HTTP/1.1 304 Not Modified');
+    http_response_code ($stop);
 
   }
 
@@ -97,7 +96,7 @@
       padHeader ( 'Content-Type: ' . $GLOBALS ['padContentType'] );
 
     if ( $stop == 200 and $GLOBALS ['padLen'] )
-      padHeader ( 'Content-Length: ' . strlen ( $GLOBALS ['padOutput'] ) );
+      padHeader ( 'Content-Length: ' . $GLOBALS ['padLen'] );
     
     if ( ! isset ( $GLOBALS ['padCacheClientAge'] ) or ( $stop <> 200 and $stop <> 304 ) )
       padHeader ( 'Cache-Control: no-cache, no-store' );

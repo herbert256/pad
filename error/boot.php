@@ -39,13 +39,15 @@
 
     $error = error_get_last ();
  
-    if ($error !== NULL)
+    if ( $error !== NULL )
       padBootStop ( $error['message'], $error['file'], $error['line'] );
  
   }
 
 
   function padBootStop ( $error, $file, $line ) {
+
+    $GLOBALS ['padBootShutdown'] = TRUE;
 
     set_error_handler ( 'padBootStopError' );
 
@@ -78,23 +80,40 @@
       ob_get_clean ();
 
     if ( ! headers_sent () )
-      header ( 'HTTP/1.0 500 Internal Server Error' );
+      http_response_code(500);
 
-    if ( padLocal () )
- 
-      echo "\n<pre>$file:$line $error</pre>";
- 
-    else {
-
-      $id = $GLOBALS ['padReqID'] ?? uniqid (TRUE);
-      error_log ( "[PAD] $id $file:$line $error", 4 );
-      echo "Error: $id";
- 
-    }
+    if ( padLocal () )  padShowErrorLocal  ( $error, $file, $line );
+    else                padShowErrorRemote ( $error, $file, $line ); 
  
   }
 
 
+  function padShowErrorLocal ( $error, $file, $line ) {
+
+    if ( PHP_SAPI === 'cli' ) {
+
+      echo "$file:$line $error\n";
+
+    } else {
+
+      $msg = htmlspecialchars("$file:$line $error", ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+
+      echo "\n<pre>{$msg}</pre>";
+
+    }
+    
+  }
+
+
+  function padShowErrorRemote ( $error, $file, $line ) {
+
+      $id = $GLOBALS ['padReqID'] ?? bin2hex(random_bytes(8));
+
+      error_log ( "[PAD] $id $file:$line $error", 4 );
+
+      echo "Error: $id";
+    
+  }
 
 
   function padBootStopCatch  ( $error, $e ) {
@@ -110,7 +129,6 @@
     } catch (Throwable $e2) {
 
       // Ignore Errors
-
 
     }
 
@@ -148,13 +166,11 @@
 
   function padLocal () {
 
-    $local = [ 'localhost', 'penguin.linux.test', '127.0.0.1' ];
+    if ( PHP_SAPI === 'cli' ) 
+      return true;
 
-    $server = [ 
-      $_SERVER ['HTTP_HOST']   ?? '',  
-      $_SERVER ['REMOTE_ADDR'] ?? '', 
-      $_SERVER ['SERVER_NAME'] ?? ''
-    ];
+    $local  = [ 'localhost', 'penguin.linux.test', '127.0.0.1', '::1' ];
+    $server = [ $_SERVER ['REMOTE_ADDR'] ?? '',  $_SERVER ['SERVER_NAME'] ?? '' ];
 
     foreach ( $local as $check )
       if ( in_array( $check, $server) )

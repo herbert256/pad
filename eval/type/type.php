@@ -6,6 +6,8 @@
   if ( $GLOBALS ['padInfo'] )
     include PAD . 'events/functions.php';
 
+  $padGetName = $name;
+
   if ( file_exists ( PAD . "eval/single/$kind.php" ) ) 
     $value = include PAD . 'eval/type/single.php';
   else

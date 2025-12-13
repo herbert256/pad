@@ -8,14 +8,14 @@
     $padTypeGiven  = FALSE;
     $padTypePrefix = '';
     $padTypeCheck  = $padTagCheck;
-    $padTypeResult = padTypeGet ( $padTypeCheck );
+    $padTypeResult = padTypeTag ( $padTypeCheck );
 
   } else {
 
     $padTypeGiven  = TRUE;
     $padTypePrefix = $padTypeExplode [0];  
     $padTypeCheck  = $padTypeExplode [1];  
-    $padTypeResult = padTypeCheck ( $padTypePrefix, $padTypeCheck ); 
+    $padTypeResult = padTypeTagCheck ( $padTypePrefix, $padTypeCheck ); 
 
     if ( ! $padTypeResult )
       $padTypeResult = padTypeSeq ( $padTypePrefix, $padTypeCheck );     

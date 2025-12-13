@@ -1,32 +1,6 @@
 <?php
 
 
-  function padAppData ( $file, $default='' ) {
-
-    if ( str_starts_with ( $file, APP ) ) 
-      $file = substr ( $file, strlen ( APP ) );
-
-    $file = APP . $file;
-    $dir  = substr ( $file, 0, strrpos ( $file, '/' ) );
-
-    if     ( ! str_starts_with ( $file, '/' )       ) return padError ( "File does not start with /: $file" );
-    elseif ( strpos($file, '..' ) !== FALSE         ) return padError ( "File contains ..: $file"  );
-    elseif ( strpos($file, '//' ) !== FALSE         ) return padError ( "File contains //: $file"  );
-    elseif ( preg_match('/[\x00-\x1F\x7F]/', $file) ) return padError ( "File contains invalid char: $file" );    
-    elseif ( is_dir ($file)                         ) return padError ( "File is a directory: $file"  );
-    elseif ( is_file ($dir)                         ) return padError ( "Directory is a file: $file"  );
-
-    if ( file_exists ( $file ) )
-      if ( ! is_readable ( $file ) )
-        return padError ( "File is not readable: $file"  );
-      else
-        return file_get_contents ($file);
-    else
-      return $default;
-
-  }
-
-
   function padFileGet ( $file, $default='' ) {
 
     if ( $file == 'php://input' )
@@ -84,38 +58,6 @@
   }
 
 
-  function padAppPutFile ( $dir, $file, $data ) {
-
-    return padAppPut ( $dir, $file, $data, 0 ); 
-    
-  }
-
-
-  function padAppPutLine ( $dir, $file, $data ) {
-
-    return padAppPut ( $dir, $file, $data, 1 ); 
-  
-   }
-
-
-  function padAppPut ( $dir, $file, $data, $append ) {
-
-    $file  = APP . "$dir/DATA/$file";
-    $dir   = substr ( $file, 0, strrpos ( $file, '/' ) );
-
-    if     ( ! str_contains($file, '/DATA/')        ) return padError ( "File does not contain /__: $file" );
-    elseif ( ! str_starts_with ( $file, '/' )       ) return padError ( "File does not start with /: $file" );
-    elseif ( strpos($file, '..' ) !== FALSE         ) return padError ( "File contains ..: $file"  );
-    elseif ( strpos($file, '//' ) !== FALSE         ) return padError ( "File contains //: $file"  );
-    elseif ( preg_match('/[\x00-\x1F\x7F]/', $file) ) return padError ( "File contains invalid char: $file" );    
-    elseif ( is_dir ($file)                         ) return padError ( "File is a directory: $file"  );
-    elseif ( is_file ($dir)                         ) return padError ( "Directory is a file: $file"  );
- 
-    padFilePutGo ( $file, $data, $append );
-
-  }
-
-
   function padFilePutGo ( $file, $data, $append ) {
 
     $dir = substr ( $file, 0, strrpos ( $file, '/' ) );
@@ -155,26 +97,6 @@
 
     return TRUE;
     
-  }
-
-
-  function padDeleteAppDataDir ( $dir ) {
-
-    padDeleteDir ( APP . $dir . '/DATA/' );
-
-  }
-
-
-  function padDeleteDir ( $dir ) {
-
-    if ( ! file_exists ($dir) )
-      return;
-    
-    foreach ( array_diff ( scandir ( $dir ), [ '.', '..' ] ) as $file )
-      ( is_dir ( "$dir/$file" ) ) ? padDeleteDir ( "$dir/$file" ) : unlink ( "$dir/$file" );
-
-    rmdir ( $dir );
-
   }
 
 

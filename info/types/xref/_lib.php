@@ -42,7 +42,7 @@
     if ( file_exists ($target) and in_array ( $padStartPage, file ( $target, FILE_IGNORE_NEW_LINES ) ) )
       return;
 
-    padAppPutLine ( 'reference', "$file.txt", $padStartPage );
+    filePutLine ( 'reference', "$file.txt", $padStartPage );
 
   }
  

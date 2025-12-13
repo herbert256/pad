@@ -124,17 +124,19 @@
 
     echo "<br>";
     
-    if ( isset ( $GLOBALS ['padException'] ) ) {
+    if ( isset ( $GLOBALS ['padException'] ) ) { 
       padDumpStackGo ( $GLOBALS['padException']->getTrace() );
       echo "<br>";
     }
 
-    padDumpStackGo ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS) );
+    padDumpStackGo ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS), 2 );
+    echo '<br>';
+    padDumpStackGo ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS), 1 );
 
   }
 
 
-  function padDumpStackGo ( $stack ) {
+  function padDumpStackGo ( $stack, $flag=0 ) {
 
     foreach ( $stack as $key => $trace ) {
 
@@ -144,8 +146,13 @@
       $line     = $line     ?? $GLOBALS['padErrorLine'] ?? '???';
       $function = $function ?? '???';
 
+      $error = ( str_starts_with ( $function, 'padDump' ) or str_starts_with ( $function, 'padError' ) );
+
+      if ( $flag == 1 and ! $error ) continue;
+      if ( $flag == 2 and   $error ) continue;
+
       if ( $file <> '???' )
-      echo ( "$file:$line - $function\n");
+        echo ( "$file:$line - $function\n");
 
       unset ($file);
       unset ($line);
@@ -169,7 +176,7 @@
         $wrk [$key] = $value;
       }   
 
-    if ( count ($wrk) > 1 )
+    if ( count ($wrk) > 2 )
       padDumpLines ( $prefix, $wrk );
 
   }
@@ -310,7 +317,7 @@
 
   function padDumpInput ( ) {
 
-    padDumpLines ( 'Input', padFileGet('php://input') );
+    padDumpLines ( 'Input', file_get_contents ('php://input') );
 
   }
 
@@ -577,7 +584,7 @@
 
   function padDumpInputToFile () {
 
-    $txt  = trim ( padFileGet('php://input') ?? '' );
+    $txt  = trim ( file_get_contents ('php://input') ?? '' );
     $type = padContentType ( $txt );
 
     if ( $type == 'csv' )

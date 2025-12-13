@@ -59,7 +59,7 @@
         'post'    => $_POST   ?? '',
         'files '  => $_FILES  ?? '',
         'cookies' => $_COOKIE ?? '',
-        'data'    => padFileGet('php://input') ?? '',
+        'data'    => file_get_contents ('php://input') ?? '',
         'server'  => $_SERVER ?? '',
         'host'    => $_ENV ?? ''
     ] );

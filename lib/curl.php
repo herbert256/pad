@@ -229,9 +229,9 @@
       $output ['data'] = trim($result);
 
     if ( ! $output ['type'] and $file) {
-      $pados = strrpos($file, '.');
-      if ( ! $pados !==FALSE)
-        $output ['type'] = substr($file, $pados+1);
+      $pos = strrpos($file, '.');
+      if ( $pos !== FALSE )
+        $output ['type'] = substr($file, $pos+1);
     }
 
     if ( ! $output ['type'] )
