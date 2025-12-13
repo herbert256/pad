@@ -1,70 +1,36 @@
-# Bug Report - Config Directory
+# Bugs Found in /home/herbert/pad/pad/config/
 
-## Bugs Found
+## 1. Duplicate Variable Assignment in info/xml.php
 
-### 1. Undefined Constant: DAT
-**File:** `/home/herbert/pad/pad/config/cache.php`
-**Line:** 29
-**Severity:** Critical
-**Description:** The constant `DAT` is used but not defined in this file. This will cause a fatal error if the constant is not defined elsewhere before this file is included.
-```php
-$padCacheFile = DAT . 'cache/';
-```
-
-### 2. Duplicate Variable Assignment
 **File:** `/home/herbert/pad/pad/config/info/xml.php`
-**Line:** 6-7
-**Severity:** Low
-**Description:** Variable `$padInfoXmlCompact` is assigned twice on consecutive lines. The first assignment on line 6 is immediately overwritten by line 7.
+**Lines:** 6-7
+**Bug Type:** Logic Error - Redundant Assignment
+
 ```php
-$padInfoXmlCompact = TRUE;  // Line 6
-$padInfoXmlCompact = TRUE;  // Line 7
+$padInfoXmlParms     = TRUE;
+$padInfoXmlCompact = TRUE;    // Line 6
+$padInfoXmlCompact   = TRUE;  // Line 7 - DUPLICATE
+$padInfoXmlTidy      = TRUE;
 ```
 
-### 3. Variable Name Typo
+**Issue:** The variable `$padInfoXmlCompact` is assigned twice consecutively with the same value. This is redundant and may indicate a copy-paste error where a different variable name was intended.
+
+**Impact:** No functional impact (both assignments are identical), but indicates possible missing configuration variable.
+
+---
+
+## 2. Variable Name Typo in info/none.php
+
 **File:** `/home/herbert/pad/pad/config/info/none.php`
 **Line:** 62
-**Severity:** Medium
-**Description:** Variable name `$padInfoTraceFALSE` (all caps FALSE) is inconsistent with the pattern used elsewhere. Should likely be `$padInfoTraceTrue` based on line 63 and the naming convention used throughout the file.
+**Bug Type:** Variable Name Typo
+
 ```php
-$padInfoTraceFALSE = FALSE;  // Line 62 - should be $padInfoTraceTrue
-$padInfoTraceFalse = FALSE;  // Line 63
+$padInfoTraceContent     = FALSE;
+$padInfoTraceFALSE       = FALSE;  // Line 62 - TYPO: should be $padInfoTraceTrue
+$padInfoTraceFalse       = FALSE;  // Line 63 - Correct variable name
 ```
 
-### 4. Undefined Constant: PAD
-**File:** `/home/herbert/pad/pad/config/output/download.php`
-**Line:** 5
-**Severity:** Critical
-**Description:** The constant `PAD` is used but not defined in this file. This will cause a fatal error if the constant is not defined elsewhere before this file is included.
-```php
-include PAD . 'config/output/file.php';
-```
+**Issue:** Line 62 has `$padInfoTraceFALSE` (all caps FALSE) instead of `$padInfoTraceTrue`. This appears to be a typo. Looking at other configuration files (like `/home/herbert/pad/pad/config/info/all.php` line 62 and `/home/herbert/pad/pad/config/info/trace.php` line 49), this variable should be `$padInfoTraceTrue`.
 
-### 5. Hardcoded Database Credentials
-**File:** `/home/herbert/pad/pad/config/config.php`
-**Lines:** 41-44, 48-51
-**Severity:** High
-**Description:** Database credentials are hardcoded in the configuration file. This is a security risk as passwords should not be stored in plain text in source code. Consider using environment variables or a secure credential management system.
-```php
-$padSqlPadHost     = '127.0.0.1';
-$padSqlPadDatabase = 'pad';
-$padSqlPadUser     = 'pad';
-$padSqlPadPassword = 'pad';  // Hardcoded password
-
-$padSqlHost     = '127.0.0.1';
-$padSqlDatabase = 'app';
-$padSqlUser     = 'app';
-$padSqlPassword = 'app';  // Hardcoded password
-```
-
-### 6. Hardcoded Cache Database Credentials
-**File:** `/home/herbert/pad/pad/config/cache.php`
-**Lines:** 24-27
-**Severity:** High
-**Description:** Cache database credentials are hardcoded in the configuration file. Same security concern as issue #5.
-```php
-$padCacheDbHost     = 'localhost';
-$padCacheDbDatabase = 'cache';
-$padCacheDbUser     = 'cache';
-$padCacheDbPassword = 'cache';  // Hardcoded password
-```
+**Impact:** The intended variable `$padInfoTraceTrue` may not be properly initialized, potentially causing undefined variable issues if the code expects this variable to be set.

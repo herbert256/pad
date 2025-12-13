@@ -18,6 +18,10 @@
   if     ( $padHit [$pad] and is_array($padTagResult) ) $padArray [$pad] = TRUE;
   else                                                  $padArray [$pad] = FALSE;
 
+
+  if ( $padNull [$pad] and padTagParm ( 'null' ) )
+    include PAD 'options/null.php';
+
   if ( $padInfo )
     include PAD . 'events/flags.php';
 

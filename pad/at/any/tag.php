@@ -3,7 +3,7 @@
   if ( ! $padIdx )
     return INF;
 
-  global $padCurrent, $padData, $padTable, $padOpt, $padPrm, $padSetLvl, $padLvlFunVar;
+  global $padCurrent, $padData, $padTable, $padOpt, $padPrm, $padSetLvl, $padLvlFunVar, $padSetOcc;
 
   $name = end ( $names );
 

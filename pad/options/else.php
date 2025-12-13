@@ -1,7 +1,7 @@
 <?php
 
-  $padGetName = padTagParm ( 'else' );
+  $padReset = 'else';
 
-  return include PAD . 'get/content.php';
-
+  return include PAD . 'options/go/reset.php';
+  
 ?>

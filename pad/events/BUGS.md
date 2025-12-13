@@ -1,147 +1,92 @@
 # Bug Report - /home/herbert/pad/pad/events/
 
-## Bugs Found
-
-### 1. Redundant Condition Check
-**File:** /home/herbert/pad/pad/events/sql.php
-**Line:** 3, 6
-**Description:** The condition `if ( ! $GLOBALS ['padInfoTrace'] )` is checked twice - once on line 3 and again on line 6. The second check is redundant since if it returns on line 4, the code on line 6 will never execute. Line 6 should likely check a different condition or be removed.
-**Severity:** Low
-
-### 2. Logic Error - Dead Code
-**File:** /home/herbert/pad/pad/events/sql.php
-**Line:** 6-9
-**Description:** Due to the return statement on line 4, if `$GLOBALS ['padInfoTrace']` is false, the function returns early. Then line 6 checks `if ( ! $GLOBALS ['padInfoTrace']` again, which can never be true at that point (since it would have already returned). Either line 6 should check for `$GLOBALS ['padInfoTraceSql']` only, or there's a logic error.
-**Severity:** Medium
-
-### 3. Undefined Variable Usage
-**File:** /home/herbert/pad/pad/events/data.php
+## Bug 1: Redundant Condition Check
+**File:** `/home/herbert/pad/pad/events/data.php`
 **Line:** 8
-**Description:** Variable `$padInfoTrace` is used without the `$GLOBALS` prefix on line 8, while other references use `$GLOBALS['padInfoTrace']`. This will cause an "Undefined variable" warning unless it's defined in the local scope.
-**Severity:** Medium
+**Severity:** Low (Code Quality)
 
-### 4. Undefined Variable Usage
-**File:** /home/herbert/pad/pad/events/data.php
-**Line:** 8
-**Description:** Variable `$padInfoTraceDefault` is used without checking if it's defined. This will cause an "Undefined variable" warning if not set.
-**Severity:** Medium
+### Issue
+The condition `$padInfoTrace` is checked twice unnecessarily on line 8.
 
-### 5. Undefined Function Call
-**File:** /home/herbert/pad/pad/events/data.php
-**Line:** 8, 11, 13
-**Description:** Functions `padIsDefaultData()`, `padInfoTrace()`, and `padInfoTraceWrite()` are called but may not be defined. If these functions don't exist, they will cause fatal errors.
-**Severity:** Critical
+### Current Code
+```php
+if ( ! $GLOBALS ['padInfoTrace'] )
+    return;
 
-### 6. Undefined Variable Usage
-**File:** /home/herbert/pad/pad/events/data.php
-**Line:** 6, 8, 11, 13
-**Description:** Variables `$padInfoTraceDataLvl`, `$padData`, `$pad` are used but may not be defined in this scope. This will cause "Undefined variable" warnings.
-**Severity:** High
+if ( $padInfoTraceDataLvl ) {
 
-### 7. Undefined Variable Usage
-**File:** /home/herbert/pad/pad/events/base.php
-**Line:** 4, 5
-**Description:** Variables `$padInfoTraceDouble`, `$padInfoTraceContent`, `$padBase`, `$pad` are used but may not be defined in this scope. This will cause "Undefined variable" warnings.
-**Severity:** High
+    if ( ! $padInfoTrace or ! $padInfoTraceDefault and padIsDefaultData ( $padData [$pad] ) )
+      return;
 
-### 8. Undefined Function Call
-**File:** /home/herbert/pad/pad/events/base.php
-**Line:** 5
-**Description:** Function `padInfoTrace()` is called but may not be defined. If this function doesn't exist, it will cause a fatal error.
-**Severity:** Critical
+   if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'level', 'data', $padData [$pad] );
+   //  ^^^ This check is redundant - we already checked at the top
+```
 
-### 9. Undefined Variable Usage
-**File:** /home/herbert/pad/pad/events/cache.php
-**Line:** 4, 5
-**Description:** Variables `$padInfoTraceCall` and `$padCall` are used but may not be defined in this scope. This will cause "Undefined variable" warnings.
-**Severity:** High
+### Fix Needed
+Remove the redundant check on line 11:
+```php
+padInfoTrace ( 'level', 'data', $padData [$pad] );
+```
+The outer check on line 3 already ensures `$GLOBALS ['padInfoTrace']` is true.
 
-### 10. Undefined Function Call
-**File:** /home/herbert/pad/pad/events/cache.php
-**Line:** 5
-**Description:** Function `padInfoTrace()` is called but may not be defined. If this function doesn't exist, it will cause a fatal error.
-**Severity:** Critical
+---
 
-### 11. Undefined Function Call
-**File:** /home/herbert/pad/pad/events/call.php
-**Line:** 5
-**Description:** Function `padInfoTrace()` is called but may not be defined. If this function doesn't exist, it will cause a fatal error.
-**Severity:** Critical
-
-### 12. Undefined Function Call
-**File:** /home/herbert/pad/pad/events/curl.php
-**Line:** 9
-**Description:** Function `padInfoTrace()` is called but may not be defined. Variable `$url` is used but may not be defined.
-**Severity:** Critical
-
-### 13. Dead Code
-**File:** /home/herbert/pad/pad/events/content.php
-**Line:** 3-6
-**Description:** The entire code block after `return;` on line 3 is unreachable dead code. It will never execute.
-**Severity:** Low
-
-### 14. Undefined Function Call
-**File:** /home/herbert/pad/pad/events/content.php
+## Bug 2: Redundant Condition Check
+**File:** `/home/herbert/pad/pad/events/sql.php`
 **Line:** 6
-**Description:** Function `padInfoXref()` is called but may not be defined (though the code is unreachable anyway).
-**Severity:** Low
+**Severity:** Low (Code Quality)
 
-### 15. Empty File
-**File:** /home/herbert/pad/pad/events/fieldAt.php
-**Line:** N/A
-**Description:** The file only contains opening PHP tags with no actual code. This is not necessarily a bug but indicates incomplete implementation.
-**Severity:** Low
+### Issue
+Line 3 checks if `$GLOBALS ['padInfoTrace']` is false and returns. Line 6 checks it again - this is redundant.
 
-### 16. Undefined Function Call
-**File:** /home/herbert/pad/pad/events/eval/error.php
-**Line:** 12, 13
-**Description:** Function `padInfoTrace()` is called but may not be defined. If this function doesn't exist, it will cause a fatal error.
-**Severity:** Critical
+### Current Code
+```php
+if ( ! $GLOBALS ['padInfoTrace'] )
+    return;
 
-### 17. Undefined Variable Usage
-**File:** /home/herbert/pad/pad/events/eval/error.php
-**Line:** 6, 8, 10
-**Description:** Variable `$padInfoTraceEvalData` is declared as global but may not be initialized. Also, variable `$e` is used but must be passed from the calling context.
-**Severity:** Medium
+if ( ! $GLOBALS ['padInfoTrace'] or ! $GLOBALS ['padInfoTraceSql'] )
+    //  ^^^ This part is redundant
+    return;
+```
 
-### 18. Missing Space in String Concatenation
-**File:** /home/herbert/pad/pad/events/eval/error.php
+### Fix Needed
+Simplify line 6:
+```php
+if ( ! $GLOBALS ['padInfoTraceSql'] )
+    return;
+```
+
+---
+
+## Bug 3: Missing Space Concatenation
+**File:** `/home/herbert/pad/pad/events/eval/error.php`
 **Line:** 8
-**Description:** Missing space between `$e->getLine()` and `$e->getMessage()`. Should be `$e->getLine() . ' ' . $e->getMessage()` for proper formatting.
-**Severity:** Low
-
-### 19. Undefined Function Call
-**File:** /home/herbert/pad/pad/events/functions.php
-**Line:** 4
-**Description:** Function `padInfoXref()` is called but may not be defined. If this function doesn't exist, it will cause a fatal error.
-**Severity:** Critical
-
-### 20. Undefined Variable Usage
-**File:** /home/herbert/pad/pad/events/functions.php
-**Line:** 4
-**Description:** Variables `$kind` and `$name` are used but may not be defined in this scope. This will cause "Undefined variable" warnings.
-**Severity:** High
-
-### 21. Undefined Variable Usage
-**File:** /home/herbert/pad/pad/events/parse.php
-**Line:** 6, 9, 17, 18, 19
-**Description:** Multiple variables are used but may not be defined: `$padInfoTrace`, `$padInfoTraceParse`, `$padStart`, `$pad`, `$padBetween`, `$padOut`, `$padEnd`. This will cause "Undefined variable" warnings.
-**Severity:** High
-
-### 22. Undefined Function Call
-**File:** /home/herbert/pad/pad/events/parse.php
-**Line:** 17, 18, 19
-**Description:** Function `padInfoTrace()` is called but may not be defined. If this function doesn't exist, it will cause a fatal error.
-**Severity:** Critical
-
-### 23. Array Access Without Existence Check
-**File:** /home/herbert/pad/pad/events/parse.php
-**Line:** 9, 10, 14, 18, 19
-**Description:** Array access like `$padStart [$pad]`, `$padOut [$pad]`, `$padEnd [$pad]` without checking if the keys exist. This will cause "Undefined index" warnings if the keys don't exist.
 **Severity:** Medium
 
-### 24. Undefined Constant Usage
-**File:** Multiple files in /home/herbert/pad/pad/events/
-**Line:** Various
-**Description:** The constant `PAD` is used in multiple files but may not be defined. This will cause fatal errors or notices if not defined.
-**Severity:** Critical
+### Issue
+Missing space or separator between file path and line number/message concatenation.
+
+### Current Code
+```php
+$error = $e->getFile() . ':' .  $e->getLine() . $e->getMessage();
+//                                           ^^^ Missing space/separator
+```
+
+### Expected Output
+```
+/path/to/file.php:123Some error message
+```
+
+### Should Be
+```
+/path/to/file.php:123 Some error message
+```
+
+### Fix Needed
+```php
+$error = $e->getFile() . ':' .  $e->getLine() . ' ' . $e->getMessage();
+```
+
+---
+
+All other files have been analyzed and no additional bugs were found.
