@@ -12,6 +12,8 @@
 
     if ( in_array ( $padOptionName, $padOptionsWalk ) and ! padIsDone ( $padOptionName ) ) {
 
+      $padGetName = padTagParm ( $padOptionName, '???' );
+
       if ( $padOptions <> 'callback' )
         padDone ( $padOptionName );  
  

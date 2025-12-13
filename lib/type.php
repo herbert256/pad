@@ -8,7 +8,7 @@
     elseif ( isset              ( $GLOBALS ['padContentStore'] [$type] ) ) return 'content';
     elseif ( isset              ( $GLOBALS ['padDataStore']    [$type] ) ) return 'data';
     elseif ( padAppIncludeCheck ( $type                                ) ) return 'include';   
-    elseif ( padAppPageCheck    ( $item                                ) ) return 'page';   
+    elseif ( padAppPageCheck    ( $type                                ) ) return 'page';   
     elseif ( padFieldCheck      ( $type                                ) ) return 'field';
     elseif ( padTagCheck        ( $type                                ) ) return 'property';
     elseif ( padArrayCheck      ( $type                                ) ) return 'array';
