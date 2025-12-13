@@ -1,6 +1,10 @@
 <?php
   
   $pad++;  
+
+  if ( $pad > 256 )
+    return padError ( "To many Levels" );
+
   $padLvlId++;
 
   $padLvlIds     [$pad] = $padLvlId;

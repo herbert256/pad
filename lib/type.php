@@ -8,7 +8,6 @@
     elseif ( isset              ( $GLOBALS ['padContentStore'] [$type] ) ) return 'content';
     elseif ( isset              ( $GLOBALS ['padDataStore']    [$type] ) ) return 'data';
     elseif ( padAppIncludeCheck ( $type                                ) ) return 'include';   
-    elseif ( padAppPageCheck    ( $type                                ) ) return 'page';   
     elseif ( padFieldCheck      ( $type                                ) ) return 'field';
     elseif ( padTagCheck        ( $type                                ) ) return 'property';
     elseif ( padArrayCheck      ( $type                                ) ) return 'array';
@@ -18,6 +17,7 @@
     elseif ( padDataFileName    ( $type                                ) ) return 'local';      
     elseif ( padScriptCheck     ( $type                                ) ) return 'script';
     elseif ( function_exists    ( $type                                ) ) return 'php';
+    elseif ( padAppPageCheck    ( $type                                ) ) return 'page';   
     elseif ( file_exists        ( PT . $type                           ) ) return 'sequence';
     elseif ( file_exists        ( PQ . "actions/types/$type.php"       ) ) return 'action';
 
