@@ -250,7 +250,6 @@
 
       for ( $i=$pad; $i>-1; $i-- ) {
         $check = padAtGroup ( $first, $name, $names, $i+$cor );
-        $GLOBALS ['a1'] [] = [$first, $names, $i, $cor, $check];
         if ( $check !== INF )
           return $check;
       }

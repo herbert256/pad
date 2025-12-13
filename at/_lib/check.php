@@ -89,7 +89,7 @@
     if ( count ( $parts ) <> 2      ) return FALSE;
     if ( ! strlen ( $parts [0] )    ) return FALSE;
     if ( ! strlen ( $parts [1] )    ) return FALSE;
-    if ( ! padAtValid ( $part [0] ) ) return FALSE;
+    if ( ! padAtValid ( $parts [0] ) ) return FALSE;
 
     return TRUE;
 
