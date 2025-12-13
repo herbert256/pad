@@ -14,7 +14,7 @@
         return 1;
       
       $pos = 1;
-      
+           
       foreach( $GLOBALS ['padCurrent'] [$padIdx] as $key => $value )
         if ( $pos++ == $field )
           if ( $type == 7 )
@@ -25,6 +25,7 @@
     }
 
     return INF;
+
 
   }
 
