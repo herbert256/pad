@@ -2,7 +2,7 @@
 
   if     ( $padTagResult === NULL ) $padNull [$pad] = TRUE;
   elseif ( $padTagResult === INF  ) $padNull [$pad] = TRUE;
-  elseif ( $padTagResult === NAN  ) $padNull [$pad] = TRUE;
+  elseif ( is_float($padTagResult) && is_nan($padTagResult) ) $padNull [$pad] = TRUE;
   else                              $padNull [$pad] = FALSE;
 
   if     ( is_array($padTagResult) and ! count($padTagResult) ) $padElse [$pad] = TRUE;

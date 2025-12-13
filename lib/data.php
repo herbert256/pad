@@ -5,7 +5,7 @@
 
     if     ( $input === NULL           ) $data = [];
     elseif ( $input === FALSE          ) $data = [];
-    elseif ( $input === NAN            ) $data = [];
+    elseif ( is_float($input) && is_nan($input) ) $data = [];
     elseif ( $input === INF            ) $data = [];
     elseif ( $input === TRUE           ) $data = [ 1 => [] ];
     elseif ( is_array ( $input)        ) $data = $input;

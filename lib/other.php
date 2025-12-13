@@ -292,7 +292,7 @@
     elseif ( $value === TRUE  ) return TRUE;     
     elseif ( $value === NULL  ) return TRUE;   
     elseif ( $value === INF   ) return TRUE;   
-    elseif ( $value === NAN   ) return TRUE;   
+    elseif ( is_float($value) && is_nan($value) ) return TRUE;   
     else                        return FALSE; 
 
   }
