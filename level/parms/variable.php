@@ -22,7 +22,7 @@
 
     $padParmsSetType  = 'occ';
     $padParmsSetName  = $padSetName;
-    $padParmsSetValue = 'todo';
+    $padParmsSetValue = $padSetOcc [$pad] [$padSetName];
 
   }
 
