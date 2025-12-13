@@ -7,6 +7,6 @@
 
   $padParmsSetType  = 'option';
   $padParmsSetName  = $padPrmName;
-  $padParmsSetValue = $padPrm [$pad] [$padPrmName]
+  $padParmsSetValue = $padPrm [$pad] [$padPrmName];
 
 ?>
