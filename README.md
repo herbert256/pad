@@ -1,7 +1,7 @@
+&nbsp;
 # PAD - PHP Application Driver
 
 &nbsp;
-* * *
 &nbsp;
 
 ## Concept
@@ -16,12 +16,10 @@ PAD:
 There is no PAD code in the application PHP code at all !
 
 &nbsp;
-* * *
 &nbsp;
 
 ## Hello World
 &nbsp;
-
 `hello.php` - The application PHP file:
 ```php
 <?php
@@ -40,12 +38,10 @@ There is no PAD code in the application PHP code at all !
 </html>
 ```
 &nbsp;
-
 `Browser` - The result in your web browser:
 ### Hello World !
 
 &nbsp;
-* * *
 &nbsp;
 
 ## Don't call us, we'll call you
@@ -53,7 +49,6 @@ There is no PAD code in the application PHP code at all !
 [Sugarloaf - Don't call us, we'll call you.](https://www.youtube.com/watch?v=i4njPe2_rho&t=45s)
 
 &nbsp;
-* * *
 &nbsp;
 
 ## Directory Structure
