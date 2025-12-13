@@ -84,10 +84,10 @@ Functions for processing and normalizing data.
 |----------|------|-------------|
 | `padData($input, $type, $name)` | data.php | Convert input to PAD data array |
 | `padDataName($name)` | data.php | Determine data name for fields |
-| `padDataForcePad($data)` | other.php | Force data into PAD format |
-| `padToArray($xxx)` | other.php | Convert object/resource to array |
-| `padDefaultData()` | other.php | Get default data structure |
-| `padIsDefaultData($data)` | other.php | Check if data is default |
+| `padDataForcePad($data)` | values.php | Force data into PAD format |
+| `padToArray($xxx)` | values.php | Convert object/resource to array |
+| `padDefaultData()` | values.php | Get default data structure |
+| `padIsDefaultData($data)` | values.php | Check if data is default |
 
 ### padData
 
@@ -195,8 +195,8 @@ Functions for content manipulation and merging.
 | `padContentSet($base, $new)` | content.php | Set/merge content |
 | `padContentElse($input, &$before, &$after)` | content.php | Split at {else} |
 | `padContentBeforeAfter($input, &$before, &$after)` | content.php | Split at @content@ |
-| `padContent($content)` | other.php | Process content string |
-| `padMakeContent($input)` | other.php | Create content from input |
+| `padContent($content)` | checks.php | Process content string |
+| `padMakeContent($input)` | values.php | Create content from input |
 
 ### padContentSet
 
@@ -219,7 +219,7 @@ Functions for detecting and validating types.
 | `padTypeTagCheck($type, $item)` | type.php | Validate explicit type |
 | `padTypeFunction($type, $goTag)` | type.php | Detect function type |
 | `padTypeSeq($type, $item)` | type.php | Detect sequence type |
-| `padContentType(&$content)` | other.php | Detect content type (json, xml, etc.) |
+| `padContentType(&$content)` | checks.php | Detect content type (json, xml, etc.) |
 
 ### padTypeTag
 
@@ -243,7 +243,7 @@ Functions for validating names, paths, and data.
 | `padValidType($name)` | valid.php | Validate type name |
 | `padValidTag($name)` | valid.php | Validate tag name |
 | `padAtValid($part)` | valid.php | Validate @ notation part |
-| `padValidStore($fld)` | other.php | Validate store field name |
+| `padValidStore($fld)` | checks.php | Validate store field name |
 
 ### padValid
 
@@ -299,8 +299,8 @@ Functions for ending requests and sending output.
 | `padWebSend($stop)` | output.php | Send web response |
 | `padWebHeaders($stop)` | output.php | Send HTTP headers |
 | `padDownLoadHeaders($type, $name, $len)` | output.php | Send download headers |
-| `padOutput($output)` | other.php | Process final output |
-| `padHeader($header)` | other.php | Send HTTP header |
+| `padOutput($output)` | tidy.php | Process final output |
+| `padHeader($header)` | tidy.php | Send HTTP header |
 
 ### padExit
 
@@ -371,8 +371,8 @@ Functions for template level processing.
 | `padLevelEnd()` | level.php | Find level end position |
 | `padLevelBetween()` | level.php | Get content between braces |
 | `padCommentCheck()` | level.php | Check if current is comment |
-| `padGetLevelArray($tag)` | other.php | Get level array by tag |
-| `padChkLevel($tag)` | other.php | Check if level exists |
+| `padGetLevelArray($tag)` | scope.php | Get level array by tag |
+| `padChkLevel($tag)` | scope.php | Check if level exists |
 
 ### padLevel
 
@@ -390,14 +390,14 @@ General utility functions.
 
 | Function | File | Description |
 |----------|------|-------------|
-| `padExplode($haystack, $limit, $number)` | other.php | Smart explode with options |
-| `padJson($data)` | other.php | Convert to JSON |
-| `padTidy($data, $fragment)` | other.php | Tidy HTML output |
-| `padBetween($string, $open, $close, ...)` | other.php | Extract between delimiters |
-| `padSplit($needle, $haystack, &$before, &$after)` | other.php | Split string in two |
-| `padMakeSafe($input, $len)` | other.php | Sanitize input |
-| `padGetRange($input, $increment)` | other.php | Generate numeric range |
-| `padGetList($list)` | other.php | Parse list string |
+| `padExplode($haystack, $limit, $number)` | template.php | Smart explode with options |
+| `padJson($data)` | values.php | Convert to JSON |
+| `padTidy($data, $fragment)` | tidy.php | Tidy HTML output |
+| `padBetween($string, $open, $close, ...)` | template.php | Extract between delimiters |
+| `padSplit($needle, $haystack, &$before, &$after)` | template.php | Split string in two |
+| `padMakeSafe($input, $len)` | template.php | Sanitize input |
+| `padGetRange($input, $increment)` | template.php | Generate numeric range |
+| `padGetList($list)` | template.php | Parse list string |
 
 ### padExplode
 
@@ -433,16 +433,16 @@ Functions for encoding and hashing.
 
 | Function | File | Description |
 |----------|------|-------------|
-| `padMD5($input)` | other.php | Calculate MD5 hash |
-| `padMD5Unpack($input)` | other.php | Unpack MD5 hash |
-| `padPack($data)` | other.php | Serialize and compress |
-| `padUnpack($data)` | other.php | Decompress and unserialize |
-| `padBase64($string)` | other.php | Base64 encode |
-| `padUnbase64($string)` | other.php | Base64 decode |
-| `padZip($data)` | other.php | Gzip compress |
-| `padUnzip($data)` | other.php | Gzip decompress |
-| `padEscape($string)` | other.php | Escape special chars |
-| `padUnescape($string)` | other.php | Unescape special chars |
+| `padMD5($input)` | encoding.php | Calculate MD5 hash |
+| `padMD5Unpack($input)` | encoding.php | Unpack MD5 hash |
+| `padPack($data)` | encoding.php | Serialize and compress |
+| `padUnpack($data)` | encoding.php | Decompress and unserialize |
+| `padBase64($string)` | encoding.php | Base64 encode |
+| `padUnbase64($string)` | encoding.php | Base64 decode |
+| `padZip($data)` | encoding.php | Gzip compress |
+| `padUnzip($data)` | encoding.php | Gzip decompress |
+| `padEscape($string)` | encoding.php | Escape special chars |
+| `padUnescape($string)` | encoding.php | Unescape special chars |
 
 ---
 
@@ -452,10 +452,10 @@ Functions for generating random values and IDs.
 
 | Function | File | Description |
 |----------|------|-------------|
-| `padRandomString($len)` | other.php | Generate random string |
-| `padRandomChar()` | other.php | Generate random character |
-| `padID()` | other.php | Generate unique ID |
-| `padTimeStamp()` | other.php | Get microsecond timestamp |
+| `padRandomString($len)` | encoding.php | Generate random string |
+| `padRandomChar()` | encoding.php | Generate random character |
+| `padID()` | session.php | Generate unique ID |
+| `padTimeStamp()` | time.php | Get microsecond timestamp |
 
 ### padRandomString
 
@@ -474,12 +474,12 @@ Functions for path manipulation.
 
 | Function | File | Description |
 |----------|------|-------------|
-| `padDir()` | other.php | Get current directory |
-| `padDirs()` | other.php | Get directory hierarchy |
-| `padPath()` | other.php | Get current path |
-| `padFileName($withDir)` | other.php | Get current filename |
-| `padCorrectPath($in)` | other.php | Normalize path separators |
-| `padValidatePath($path)` | other.php | Validate path for security |
+| `padDir()` | paths.php | Get current directory |
+| `padDirs()` | paths.php | Get directory hierarchy |
+| `padPath()` | paths.php | Get current path |
+| `padFileName($withDir)` | paths.php | Get current filename |
+| `padCorrectPath($in)` | paths.php | Normalize path separators |
+| `padValidatePath($path)` | paths.php | Validate path for security |
 
 ---
 
@@ -489,13 +489,13 @@ Functions for tag and function processing.
 
 | Function | File | Description |
 |----------|------|-------------|
-| `padFunctionAsTag($name, $myself, $parm)` | other.php | Use function as tag |
-| `padTagAsFunction($tag, $value, $parms)` | other.php | Use tag as function |
-| `padTagParm($parm, $default)` | other.php | Get current tag parameter |
-| `padDone($var, $val)` | other.php | Mark option as done |
-| `padIsDone($var)` | other.php | Check if option is done |
-| `padMakeFlag($input)` | other.php | Create boolean flag |
-| `padStartAndClose($go)` | other.php | Handle start/close tags |
+| `padFunctionAsTag($name, $myself, $parm)` | execute.php | Use function as tag |
+| `padTagAsFunction($tag, $value, $parms)` | execute.php | Use tag as function |
+| `padTagParm($parm, $default)` | scope.php | Get current tag parameter |
+| `padDone($var, $val)` | scope.php | Mark option as done |
+| `padIsDone($var)` | scope.php | Check if option is done |
+| `padMakeFlag($input)` | values.php | Create boolean flag |
+| `padStartAndClose($go)` | scope.php | Handle start/close tags |
 
 ### padTagParm
 
@@ -514,13 +514,13 @@ Functions for checking application resources.
 
 | Function | File | Description |
 |----------|------|-------------|
-| `padAppCheck($check)` | other.php | Check if app resource exists |
-| `padAppPageCheck($check)` | other.php | Check if page exists |
-| `padAppIncludeCheck($check)` | other.php | Check if include exists |
-| `padAppTagCheck($check)` | other.php | Check if custom tag exists |
-| `padAppFunctionCheck($check)` | other.php | Check if custom function exists |
-| `padScriptCheck($check)` | other.php | Check if script exists |
-| `padDataFileName($check)` | other.php | Check if data file exists |
+| `padAppCheck($check)` | checks.php | Check if app resource exists |
+| `padAppPageCheck($check)` | checks.php | Check if page exists |
+| `padAppIncludeCheck($check)` | checks.php | Check if include exists |
+| `padAppTagCheck($check)` | checks.php | Check if custom tag exists |
+| `padAppFunctionCheck($check)` | checks.php | Check if custom function exists |
+| `padScriptCheck($check)` | checks.php | Check if script exists |
+| `padDataFileName($check)` | paths.php | Check if data file exists |
 
 ---
 
@@ -581,9 +581,9 @@ Functions for time measurement.
 
 | Function | File | Description |
 |----------|------|-------------|
-| `padDuration($start, $end)` | other.php | Calculate duration in ms |
-| `padDurationHR($start, $end)` | other.php | Human-readable duration |
-| `padSecondTime($id)` | other.php | Check second-level timing |
+| `padDuration($start, $end)` | time.php | Calculate duration in ns |
+| `padDurationHR($start, $end)` | time.php | High-resolution duration in ns |
+| `padSecondTime($id)` | session.php | Check second-level timing |
 
 ---
 
@@ -593,10 +593,10 @@ Functions for managing global variables.
 
 | Function | File | Description |
 |----------|------|-------------|
-| `padSetGlobalLvl($name, $value)` | other.php | Set level-scoped global |
-| `padSetGlobalOcc($name, $value)` | other.php | Set occurrence-scoped global |
-| `padResetLvl()` | other.php | Reset level variables |
-| `padResetOcc()` | other.php | Reset occurrence variables |
+| `padSetGlobalLvl($name, $value)` | scope.php | Set level-scoped global |
+| `padSetGlobalOcc($name, $value)` | scope.php | Set occurrence-scoped global |
+| `padResetLvl()` | scope.php | Reset level variables |
+| `padResetOcc()` | scope.php | Reset occurrence variables |
 
 ---
 
@@ -629,11 +629,11 @@ Functions for checking balanced tags.
 
 | Function | File | Description |
 |----------|------|-------------|
-| `padOpenCloseOk($string, $check)` | other.php | Check if marker is at valid position |
-| `padOpenCloseList($string)` | other.php | Get list of close tags |
-| `padOpenCloseCount($string, $tags)` | other.php | Count open/close balance |
-| `padOpenCloseCountOne($string, $tag)` | other.php | Check single tag balance |
-| `padCheckTag($tag, $string)` | other.php | Check if tag exists in string |
+| `padOpenCloseOk($string, $check)` | template.php | Check if marker is at valid position |
+| `padOpenCloseList($string)` | template.php | Get list of close tags |
+| `padOpenCloseCount($string, $tags)` | template.php | Count open/close balance |
+| `padOpenCloseCountOne($string, $tag)` | template.php | Check single tag balance |
+| `padCheckTag($tag, $string)` | template.php | Check if tag exists in string |
 
 ---
 
@@ -643,8 +643,8 @@ Functions for data handling operations.
 
 | Function | File | Description |
 |----------|------|-------------|
-| `padHandGo(&$vars, $start, $end, $count)` | other.php | Apply range filter to data |
-| `padDataFilterGo(&$vars, $start, $end)` | other.php | Filter data by range |
+| `padHandGo(&$vars, $start, $end, $count)` | filter.php | Apply range filter to data |
+| `padDataFilterGo(&$vars, $start, $end)` | filter.php | Filter data by range |
 
 ---
 
@@ -654,9 +654,9 @@ Functions for session management.
 
 | Function | File | Description |
 |----------|------|-------------|
-| `padCloseSession()` | other.php | Close session safely |
-| `padAddIds($url)` | other.php | Add session/request IDs to URL |
-| `padAddGet($url, $key, $val)` | other.php | Add GET parameter to URL |
+| `padCloseSession()` | session.php | Close session safely |
+| `padAddIds($url)` | paths.php | Add session/request IDs to URL |
+| `padAddGet($url, $key, $val)` | paths.php | Add GET parameter to URL |
 
 ---
 
@@ -666,7 +666,7 @@ Functions for tracing/debugging info.
 
 | Function | File | Description |
 |----------|------|-------------|
-| `padInfo()` | other.php | Get info mode status |
+| `padInfo()` | session.php | Get info mode status |
 | `padInfoSet()` | info.php | Initialize info mode |
 | `padInfoBackup()` | info.php | Backup info state |
 | `padInfoRestore()` | info.php | Restore info state |
@@ -679,18 +679,18 @@ Other utility functions.
 
 | Function | File | Description |
 |----------|------|-------------|
-| `padInclude()` | other.php | Include file handler |
-| `padFileXmlTidy($file)` | other.php | Tidy XML file |
-| `padCode($str)` | other.php | Process code string |
-| `padSandbox($str)` | other.php | Process sandboxed code |
-| `padConstant($parm)` | other.php | Get constant value |
-| `padFindIdx($tag)` | other.php | Find index for tag |
-| `padSingleValue($value)` | other.php | Check for single value |
-| `padSpecialValue($value)` | other.php | Check for special values |
-| `padStoreCheck($store)` | other.php | Check store exists |
-| `padEmptyBuffers(&$output)` | other.php | Empty output buffers |
-| `padCheckBuffers()` | other.php | Check buffer status |
-| `padFieldName($parm)` | other.php | Extract field name |
-| `padStrPad($field)` | other.php | Pad string |
+| `padInclude()` | session.php | Include file handler |
+| `padFileXmlTidy($file)` | tidy.php | Tidy XML file |
+| `padCode($str)` | execute.php | Process code string |
+| `padSandbox($str)` | execute.php | Process sandboxed code |
+| `padConstant($parm)` | values.php | Get constant value |
+| `padFindIdx($tag)` | scope.php | Find index for tag |
+| `padSingleValue($value)` | values.php | Check for single value |
+| `padSpecialValue($value)` | values.php | Check for special values |
+| `padStoreCheck($store)` | checks.php | Check store exists |
+| `padEmptyBuffers(&$output)` | tidy.php | Empty output buffers |
+| `padCheckBuffers()` | tidy.php | Check buffer status |
+| `padFieldName($parm)` | values.php | Extract field name |
+| `padStrPad($field)` | checks.php | Pad string |
 | `padParseOptions($parms)` | options.php | Parse option string |
 | `padGetParms($type, $parms)` | parms.php | Get parameters by type |

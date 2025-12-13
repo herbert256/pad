@@ -39,7 +39,17 @@ This module provides foundational utilities for:
 - **table.php** - Table data operations
 - **valid.php** - Validation functions
 - **data.php** - Data manipulation utilities
-- **other.php** - Miscellaneous utility functions
+- **session.php** - Session handling, request info, unique IDs
+- **encoding.php** - Encoding, hashing, compression utilities
+- **paths.php** - Path and directory manipulation
+- **checks.php** - File and content existence checks
+- **tidy.php** - Output formatting and buffer management
+- **values.php** - Value type checking and conversion
+- **template.php** - Template tag parsing and string utilities
+- **execute.php** - PAD code execution functions
+- **scope.php** - Variable scoping (level/occurrence)
+- **time.php** - Timestamps and duration calculations
+- **filter.php** - Data filtering utilities
 
 ### Subdirectories
 - **field/** - Field access and manipulation
