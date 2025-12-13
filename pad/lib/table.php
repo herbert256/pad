@@ -1,6 +1,21 @@
 <?php
- 
- 
+
+
+  /**
+   * Builds and executes a SQL SELECT query from table definition.
+   *
+   * Constructs SQL from parameters (fields, where, join, order, etc.)
+   * using table definitions from $padTables. Handles relations,
+   * pagination, and union queries.
+   *
+   * @param string $table      The table name or definition key.
+   * @param int    $unionBuild If 1, returns SQL for UNION instead of executing.
+   *
+   * @return array|string Query results or SQL fragment for unions.
+   *
+   * @global int   $pad      Current processing level.
+   * @global array $padPrm   Parameters per level.
+   */
   function padTable ( $table, $unionBuild = 0 ) {
 
     global $pad, $padPrm;
@@ -40,6 +55,7 @@
   }
 
 
+  /** Returns SQL SELECT modifier (ALL, DISTINCT, DISTINCTROW). */
   function padTableStart ( $all,  $distinct, $distinctrow ) {
 
     if     ($all)         return 'ALL';
@@ -50,6 +66,7 @@
   }
 
 
+  /** Builds GROUP BY clause with optional ROLLUP. */
   function padTableGroup ( $group, $rollup ) {
 
     if ($group)
@@ -63,6 +80,7 @@
   }
 
 
+  /** Builds ORDER BY clause from order parameter or keys. */
   function padTableOrder ( $order, $joinSQL, $keys ) {
 
     if     ( $order              ) return 'order by ' . $order;
@@ -72,6 +90,7 @@
   }
 
 
+  /** Builds LIMIT clause for pagination. */
   function padTableLimit ( $rows, $page ) {
 
     global $padDone;
@@ -97,6 +116,7 @@
 
     }
 
+  /** Builds WHERE clause from relations and key fields. */
   function padTableWhere ( $where, &$fields, $table, $keys, $db ) {
 
     global $padRelations;
@@ -129,6 +149,7 @@
   }
 
 
+  /** Builds JOIN clauses from join parameter array. */
   function padTableJoin ( $join, &$fields ) {
 
     $joinSQL = '';

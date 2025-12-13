@@ -1,6 +1,11 @@
 <?php
 
 
+  /**
+   * Returns current request information array.
+   *
+   * @return array Request info with session, request, parent, page, stop, length, start, end, etag.
+   */
   function padInfo () {
 
     return [ 
@@ -18,6 +23,11 @@
   }
 
 
+  /**
+   * Checks if current request is an include/embedded request.
+   *
+   * @return bool TRUE if padInclude flag is set.
+   */
   function padInclude () {
 
     if ( isset ( $GLOBALS ['padInclude'] ) and $GLOBALS ['padInclude'] ) 
@@ -28,6 +38,13 @@
   }
 
 
+  /**
+   * Tidies an XML file in place using PHP tidy extension.
+   *
+   * @param string $file Path to the XML file.
+   *
+   * @return void
+   */
   function padFileXmlTidy ( $file ) {
     
     $options = [
@@ -64,6 +81,15 @@
   }
 
 
+  /**
+   * Checks if this is the second call with given ID.
+   *
+   * Returns FALSE on first call, TRUE on subsequent calls.
+   *
+   * @param string $id Unique identifier for the check.
+   *
+   * @return bool TRUE if called before with same ID.
+   */
   function padSecondTime ( $id ) {
 
     if ( isset ( $GLOBALS ["padSecond$id"] ) )
@@ -76,6 +102,11 @@
   }
 
 
+  /**
+   * Closes the PHP session safely with error handling.
+   *
+   * @return void
+   */
   function padCloseSession () {
 
     set_error_handler ( 'padErrorThrow' );
@@ -95,6 +126,13 @@
   }
 
 
+  /**
+   * Internal session close logic.
+   *
+   * Saves session variables and writes session data.
+   *
+   * @return void
+   */
   function padCloseSessionTry () {
 
     if ( ! isset ( $GLOBALS ['padSessionStarted'] ) or padSecondTime ( 'closeSession' ) )
@@ -109,6 +147,13 @@
   }
 
 
+  /**
+   * Returns constant value if defined, otherwise the input string.
+   *
+   * @param string $parm Constant name or literal value.
+   *
+   * @return mixed Constant value or original string.
+   */
   function padConstant ( $parm ) {
 
     if ( defined ( $parm ) )
@@ -119,6 +164,15 @@
   }
 
 
+  /**
+   * Processes output string, replacing placeholders.
+   *
+   * Replaces @pad@ with base URL and @self@ with current page URL.
+   *
+   * @param string $output The output string to process.
+   *
+   * @return string Processed output.
+   */
   function padOutput ( $output ) {
 
     global $padGo, $padPage;
@@ -133,6 +187,15 @@
   }
 
 
+  /**
+   * Finds level index for a tag name.
+   *
+   * Searches backwards through levels for matching tag.
+   *
+   * @param string $tag Tag name to find.
+   *
+   * @return int|false Level index or FALSE if not found.
+   */
   function padFindIdx ( $tag ) {
 
     global $pad, $padTag;
@@ -145,6 +208,14 @@
 
   }
 
+
+  /**
+   * Executes PAD template code and returns result.
+   *
+   * @param string $padStrCod PAD template code to execute.
+   *
+   * @return mixed Execution result.
+   */
   function padCode ( $padStrCod ) {
 
     $GLOBALS ['padStrBox'] = FALSE;
@@ -157,6 +228,13 @@
   }
 
 
+  /**
+   * Executes PAD code in sandbox mode with isolated scope.
+   *
+   * @param string $padStrCod PAD template code to execute.
+   *
+   * @return mixed Execution result.
+   */
   function padSandbox ( $padStrCod ) {
 
     $GLOBALS ['padStrBox'] = TRUE;
@@ -169,6 +247,17 @@
   }
 
 
+  /**
+   * Executes PAD code as a function with custom settings.
+   *
+   * @param string $padStrCod PAD template code.
+   * @param bool   $padStrBox Sandbox mode flag.
+   * @param bool   $padStrRes Reset flag.
+   * @param bool   $padStrCln Clean flag.
+   * @param string $padStrFun Function name.
+   *
+   * @return mixed Execution result.
+   */
   function padStrFun (  $padStrCod, $padStrBox, $padStrRes, $padStrCln, $padStrFun ) {
 
     return include PAD . 'start/function.php';
@@ -176,6 +265,15 @@
   }
 
 
+  /**
+   * Builds output filename from global settings.
+   *
+   * Combines directory, name, optional date/timestamp/uniqid, and extension.
+   *
+   * @param bool $withDir Include directory in path.
+   *
+   * @return string Complete filename.
+   */
   function padFileName ( $withDir = TRUE) {
 
     global $padFileDir, $padFileName, $padFileDate, $padFileTimeStamp, $padFileUniqId, $padFileExtension;
@@ -201,6 +299,11 @@
   }
 
 
+  /**
+   * Returns current timestamp with microseconds.
+   *
+   * @return string Timestamp in YmdHisu format.
+   */
   function padTimeStamp () {
 
     $now = DateTime::createFromFormat('U.u', sprintf('%.6f', microtime(TRUE)));
@@ -210,6 +313,11 @@
   }
 
 
+  /**
+   * Checks if currently inside include, get, page, or example tag.
+   *
+   * @return bool TRUE if nested inside one of these tags.
+   */
   function padInsideOther () {
 
     global $padTag, $pad;
@@ -226,6 +334,13 @@
   }
 
 
+  /**
+   * Clears all output buffers and captures content.
+   *
+   * @param string &$output Receives concatenated buffer contents.
+   *
+   * @return void
+   */
   function padEmptyBuffers ( &$output ) {
 
     $output = '';
@@ -248,6 +363,11 @@
   }
 
 
+  /**
+   * Verifies output buffers are empty, errors if not.
+   *
+   * @return void
+   */
   function padCheckBuffers () {
 
     padEmptyBuffers ( $output );
@@ -258,6 +378,13 @@
   }
 
 
+  /**
+   * Handles start-and-close tag pattern.
+   *
+   * @param string $go Walk state to set.
+   *
+   * @return bool TRUE if pattern matched.
+   */
   function padStartAndClose ( $go ) {
 
     global $pad, $padWalk, $padPrmType;
@@ -272,6 +399,13 @@
   }
 
 
+  /**
+   * Checks if value is a simple scalar (not array/object/special).
+   *
+   * @param mixed $value Value to check.
+   *
+   * @return bool TRUE if simple scalar value.
+   */
   function padSingleValue ( $value ) {
 
     if ( is_array        ( $value ) or
@@ -286,6 +420,13 @@
   }
 
 
+  /**
+   * Checks if value is a special type (TRUE/FALSE/NULL/INF/NAN).
+   *
+   * @param mixed $value Value to check.
+   *
+   * @return bool TRUE if special value.
+   */
   function padSpecialValue ( $value ) {
 
     if     ( $value === FALSE ) return TRUE;  
@@ -297,6 +438,14 @@
 
   }
 
+
+  /**
+   * Checks if content name exists in store or app.
+   *
+   * @param string $content Content name to check.
+   *
+   * @return bool TRUE if content exists.
+   */
   function padContent ( $content ) {
 
     if ( padStoreCheck      ( $content ) ) return TRUE;
@@ -304,21 +453,43 @@
 
     return FALSE;
 
-  }  
+  }
 
 
+  /**
+   * Checks if a store name exists in content store.
+   *
+   * @param string $store Store name to check.
+   *
+   * @return bool TRUE if store exists.
+   */
   function padStoreCheck ( $store ) {
 
     return isset ( $GLOBALS ['padContentStore'] [$store] );
 
-  }  
+  }
 
 
-  function padAppPageCheck     ( $check ) { return padAppCheck ( $check              ); }  
-  function padAppIncludeCheck  ( $check ) { return padAppCheck ( "_include/$check"   ); }  
-  function padAppTagCheck      ( $check ) { return padAppCheck ( "_tags/$check"      ); }  
-  function padAppFunctionCheck ( $check ) { return padAppCheck ( "_functions/$check" ); }  
+  /** Checks if page exists in app. @see padAppCheck */
+  function padAppPageCheck     ( $check ) { return padAppCheck ( $check              ); }
 
+  /** Checks if include exists in app. @see padAppCheck */
+  function padAppIncludeCheck  ( $check ) { return padAppCheck ( "_include/$check"   ); }
+
+  /** Checks if custom tag exists in app. @see padAppCheck */
+  function padAppTagCheck      ( $check ) { return padAppCheck ( "_tags/$check"      ); }
+
+  /** Checks if custom function exists in app. @see padAppCheck */
+  function padAppFunctionCheck ( $check ) { return padAppCheck ( "_functions/$check" ); }
+
+
+  /**
+   * Checks if a .pad or .php file exists in app directories.
+   *
+   * @param string $check Path relative to app directory.
+   *
+   * @return string|false Relative path if found, FALSE otherwise.
+   */
   function padAppCheck ( $check ) {
 
     foreach ( padDirs () as $value )
@@ -327,25 +498,48 @@
 
     return FALSE;
 
-  }   
+  }
 
 
+  /**
+   * Checks if .pad or .php file exists at given path.
+   *
+   * @param string $check Base path without extension.
+   *
+   * @return bool TRUE if .pad or .php exists.
+   */
   function padCheck ( $check ) {
 
      return  ( file_exists ( "$check.pad" ) or file_exists ( "$check.php" ) ) ;
 
-  }   
+  }
 
 
+  /**
+   * Checks if script files exist in _scripts directory.
+   *
+   * @param string $check Script name prefix.
+   *
+   * @return string|null Glob pattern if found.
+   */
   function padScriptCheck ( $check ) {
 
     foreach ( padDirs () as $value )
       if ( count ( glob ( APP2 . $value . "_scripts/$check*" ) ) )
         return APP2 . $value . "_scripts/$check*";
 
-  }  
-  
+  }
 
+
+  /**
+   * Finds data file path in _data directories.
+   *
+   * Checks for file with various extensions (xml, json, yaml, csv, php, curl, sql).
+   *
+   * @param string $check Data file name without extension.
+   *
+   * @return string Full path if found, empty string otherwise.
+   */
   function padDataFileName ( $check ) {
 
     foreach ( padDirs () as $key => $value ) {
@@ -368,13 +562,27 @@
   }
 
 
- function padDataFileData ( $padLocalFile ) {
+  /**
+   * Loads and parses data from a local file.
+   *
+   * @param string $padLocalFile Path to the data file.
+   *
+   * @return mixed Parsed data from file.
+   */
+  function padDataFileData ( $padLocalFile ) {
   
     return include PAD . 'types/go/local.php';
 
   }
 
 
+  /**
+   * Converts associative array to PAD name/value format.
+   *
+   * @param array $data Input array.
+   *
+   * @return array Array with name/value structure.
+   */
   function padDataForcePad ($data) {
 
     $result = [];
@@ -389,6 +597,13 @@
   }
 
 
+  /**
+   * Checks if character is valid as first char of identifier.
+   *
+   * @param string $char Single character.
+   *
+   * @return bool TRUE if alphabetic.
+   */
   function padValidFirstChar ($char) {
 
     if ( ctype_alpha ( $char) ) return TRUE;
@@ -397,6 +612,13 @@
   }
 
 
+  /**
+   * Converts backslashes to forward slashes in path.
+   *
+   * @param string $in Input path.
+   *
+   * @return string Path with forward slashes.
+   */
   function padCorrectPath ( $in ) {
 
     return str_replace ('\\',  '/', $in );
@@ -404,6 +626,13 @@
   }
 
 
+  /**
+   * Validates path for security (no traversal, no control chars).
+   *
+   * @param string $path Path to validate.
+   *
+   * @return bool TRUE if path is safe.
+   */
   function padValidatePath ( $path ) {
 
     if ( $path === '' ) return FALSE;
@@ -419,7 +648,14 @@
   }
 
 
- function padAddIds ( $url ) {
+  /**
+   * Appends session and request IDs to URL.
+   *
+   * @param string $url Input URL.
+   *
+   * @return string URL with padSesID and padReqID parameters.
+   */
+  function padAddIds ( $url ) {
 
     $url = padAddGet ( $url, 'padSesID', $GLOBALS ['padSesID'] );
     $url = padAddGet ( $url, 'padReqID', $GLOBALS ['padReqID'] );
@@ -428,7 +664,15 @@
 
   }
 
-      
+
+  /**
+   * Tidies HTML content using PHP tidy extension.
+   *
+   * @param string $data     HTML content.
+   * @param bool   $fragment If TRUE, output body only.
+   *
+   * @return string Tidied HTML.
+   */
   function padTidy ( $data, $fragment=FALSE ) {
 
     $config = $GLOBALS ['padTidyConfig'];
@@ -450,9 +694,16 @@
       return $data;
     }
 
-  }  
+  }
 
 
+  /**
+   * Returns array of directory paths to search for includes.
+   *
+   * Builds list from current directory up to root.
+   *
+   * @return array Directory paths in search order.
+   */
   function padDirs () {
 
     $padIncDirs  = padExplode ( $GLOBALS ['padDir'], '/' );
@@ -472,6 +723,11 @@
   }
 
 
+  /**
+   * Returns directory portion of current page path.
+   *
+   * @return string Directory path without trailing slash.
+   */
   function padDir () {
 
     global $padPage;
@@ -484,6 +740,11 @@
   }
 
 
+  /**
+   * Returns full filesystem path to current directory.
+   *
+   * @return string APP path plus current directory.
+   */
   function padPath () {
 
     global $padDir;
@@ -496,6 +757,15 @@
   }
 
 
+  /**
+   * Adds a query parameter to URL.
+   *
+   * @param string $url URL to modify.
+   * @param string $key Parameter name.
+   * @param string $val Parameter value.
+   *
+   * @return string URL with added parameter.
+   */
   function padAddGet ($url, $key, $val ) {
     
     $str = ( strpos ($url, '?' ) === FALSE ) ? '?' : '&';
@@ -505,6 +775,14 @@
   }
 
 
+  /**
+   * Validates that open/close tags are balanced after a point.
+   *
+   * @param string $string Template content.
+   * @param string $check  Point to check from.
+   *
+   * @return bool TRUE if tags are balanced.
+   */
   function padOpenCloseOk ( $string, $check) {
 
     if ( strpos ( $string, $check ) === FALSE )
@@ -519,6 +797,13 @@
   }
 
 
+  /**
+   * Extracts list of closing tags from template string.
+   *
+   * @param string $string Template content.
+   *
+   * @return array Tag names found as closing tags.
+   */
   function padOpenCloseList ( $string ) {
 
     $tags = [];
@@ -550,6 +835,14 @@
   }
 
 
+  /**
+   * Verifies all tags in list are balanced.
+   *
+   * @param string $string Template content.
+   * @param array  $tags   Tag names to check.
+   *
+   * @return bool TRUE if all balanced.
+   */
   function padOpenCloseCount ( $string, $tags ) {
 
    foreach ( $tags as $tag => $dummy )
@@ -561,6 +854,14 @@
   }
 
 
+  /**
+   * Checks if single tag is balanced (opens equal closes).
+   *
+   * @param string $string Template content.
+   * @param string $tag    Tag name to check.
+   *
+   * @return bool TRUE if balanced.
+   */
   function padOpenCloseCountOne ( $string, $tag ) {
 
     if ( ( substr_count($string, '{'.$tag.' ' ) + substr_count($string, '{'.$tag.'}' ) )
@@ -573,6 +874,14 @@
   }
 
 
+  /**
+   * Checks if tag opens and closes are balanced.
+   *
+   * @param string $tag    Tag name.
+   * @param string $string Template content.
+   *
+   * @return bool TRUE if balanced.
+   */
   function padCheckTag ($tag, $string) {
 
     return ( substr_count($string, "{".$tag.' ') == substr_count($string, "{/" . $tag.'}') ) ;
@@ -580,6 +889,16 @@
   }
 
 
+  /**
+   * Splits string into before and after parts.
+   *
+   * @param string $needle   Delimiter.
+   * @param string $haystack String to split.
+   * @param string &$before  Receives part before delimiter.
+   * @param string &$after   Receives part after delimiter.
+   *
+   * @return void
+   */
   function padSplit ( $needle, $haystack, &$before, &$after ) {
 
     $array = explode ( $needle, $haystack, 2 );
@@ -590,6 +909,11 @@
   }
 
 
+  /**
+   * Returns current request ID or generates unique ID.
+   *
+   * @return string Request ID.
+   */
   function padID () {
 
     return $GLOBALS ['padReqID'] ?? uniqid (TRUE);
@@ -597,6 +921,13 @@
   }
 
 
+  /**
+   * Logs error message to PHP error log.
+   *
+   * @param string $error Error message.
+   *
+   * @return void
+   */
   function padLogError ( $error ) {
 
     error_log ( '[PAD] ' . padID () . ' ' . padMakeSafe ( $error ), 4 );
@@ -604,6 +935,16 @@
   }
 
 
+  /**
+   * Sanitizes input for safe logging/display.
+   *
+   * Removes control characters and truncates to length.
+   *
+   * @param mixed $input Input value.
+   * @param int   $len   Maximum length.
+   *
+   * @return string Sanitized string.
+   */
   function padMakeSafe ( $input, $len=2048 ) {
 
     if ( is_array($input) or is_object($input) ) 
@@ -622,7 +963,17 @@
   }
 
 
-
+  /**
+   * Splits string by delimiter with entity restoration.
+   *
+   * Restores escaped entities (&pipe;, &eq;, &comma;) after split.
+   *
+   * @param string $haystack String to split.
+   * @param string $limit    Delimiter character.
+   * @param int    $number   Max parts (0 = unlimited).
+   *
+   * @return array Array of trimmed parts.
+   */
   function padExplode ( $haystack, $limit, $number=0 ) {
 
     if ($number)
@@ -648,6 +999,13 @@
   }
 
 
+  /**
+   * Encodes data as JSON with pretty printing.
+   *
+   * @param mixed $data Data to encode.
+   *
+   * @return string JSON string or '{}' on error.
+   */
   function padJson ( $data ) {
 
     set_error_handler ( 'padErrorThrow' );
@@ -669,6 +1027,13 @@
   }
 
 
+  /**
+   * Safely converts value to array.
+   *
+   * @param mixed $xxx Value to convert.
+   *
+   * @return array Converted array or empty array on failure.
+   */
   function padToArray ($xxx) {
 
     if ( is_array($xxx) )
@@ -695,8 +1060,15 @@
     return $array;
     
   }
-  
-      
+
+
+  /**
+   * Sends HTTP header if not already sent.
+   *
+   * @param string $header Header string.
+   *
+   * @return void
+   */
   function padHeader ($header) {
 
     if ( headers_sent () )
@@ -709,6 +1081,13 @@
   }
 
 
+  /**
+   * Strips leading $ from field name.
+   *
+   * @param string $parm Field name possibly with $.
+   *
+   * @return string Field name without $.
+   */
   function padFieldName ($parm) {
     
     return (substr($parm, 0, 1) == '$') ? substr($parm, 1) : $parm;
@@ -716,30 +1095,43 @@
   }
 
 
+  /** Returns URL-safe base64 encoded MD5 hash (22 chars). */
   function padMD5 ($input) {
     return substr(padBase64(padPack(md5($input))),0,22);
   }
-  
+
+  /** Unpacks URL-safe base64 MD5 back to hex. */
   function padMD5Unpack ($input) {
     return padUnpack(padUnbase64 ($input.'=='));
   }
 
+  /** Packs hex string to binary. */
   function padPack ($data) {
     return pack('H*',$data);
   }
 
+  /** Unpacks binary to hex string. */
   function padUnpack ($data) {
     return unpack('H*',$data)[1];
   }
 
+  /** URL-safe base64 encode (replaces +/ with _-). */
   function padBase64 ($string) {
     return strtr(base64_encode($string),'+/','_-');
   }
 
+  /** URL-safe base64 decode (replaces _- with +/). */
   function padUnbase64 ($string) {
     return base64_decode(strtr($string,'_-','+/'));
   }
 
+  /**
+   * Generates cryptographically secure random string.
+   *
+   * @param int $len Length of string.
+   *
+   * @return string Random alphanumeric string.
+   */
   function padRandomString ($len=8) {
     $random = ceil(($len/4)*3);
     $random = random_bytes($random);
@@ -750,20 +1142,35 @@
     return $random;
   }
 
+  /** Returns random alphanumeric character. */
   function padRandomChar () {
     $random = mt_rand(0,61);
     return ($random < 10) ? chr($random+48) : ($random < 36 ? chr($random+55) : chr($random+61));
   }
 
 
+  /**
+   * Restores escaped PAD entities to original characters.
+   *
+   * @param string $string String with entities.
+   *
+   * @return string String with restored characters.
+   */
   function padUnescape ( $string ) {
 
     return str_replace ( [ '&open;','&close;','&pipe;', '&eq;','&comma;','&at;', '&else;' ], 
                          [ '{',     '}',      '|',      '=',   ',',      '@',    '{else}' ], 
                          $string );
   }
-  
 
+
+  /**
+   * Escapes special PAD characters to entities.
+   *
+   * @param string $string String to escape.
+   *
+   * @return string String with escaped entities.
+   */
   function padEscape ( $string ) {
 
     return str_replace ( [ '{',     '}',      '|',      '=',    ',',     '@'    ], 
@@ -772,6 +1179,13 @@
   }
 
 
+  /**
+   * Compresses data using gzip.
+   *
+   * @param string $data Data to compress.
+   *
+   * @return string Compressed data.
+   */
   function padZip ($data) {
 
     return gzencode($data);
@@ -779,13 +1193,28 @@
   }
 
 
+  /**
+   * Decompresses gzip data.
+   *
+   * @param string $data Compressed data.
+   *
+   * @return string Decompressed data.
+   */
   function padUnzip ($data) {
 
     return gzdecode($data);
 
   }
-  
-  
+
+
+  /**
+   * Calculates duration in nanoseconds.
+   *
+   * @param float $start Start time (default: request start).
+   * @param float $end   End time (default: now).
+   *
+   * @return int Duration in nanoseconds.
+   */
   function padDuration ( $start = 0, $end = 0 ) {
 
     if ( ! $start ) $start = $_SERVER ['REQUEST_TIME_FLOAT'] ?? $GLOBALS ['padMicro'] ?? microtime ( true );
@@ -798,6 +1227,14 @@
   }
 
 
+  /**
+   * Calculates high-resolution duration in nanoseconds.
+   *
+   * @param int $start Start hrtime (default: request start).
+   * @param int $end   End hrtime (default: now).
+   *
+   * @return int Duration in nanoseconds.
+   */
   function padDurationHR ( $start = 0, $end = 0 ) {
 
     if ( ! $start ) $start = $GLOBALS ['padHR'] ?? hrtime ( TRUE );
@@ -808,6 +1245,18 @@
   }
 
 
+  /**
+   * Extracts text between delimiters.
+   *
+   * @param string $string  Input string.
+   * @param string $open    Opening delimiter.
+   * @param string $close   Closing delimiter.
+   * @param string &$before Receives text before open.
+   * @param string &$between Receives text between delimiters.
+   * @param string &$after  Receives text after close.
+   *
+   * @return bool TRUE if delimiters found.
+   */
   function padBetween ( $string, $open, $close, &$before, &$between, &$after ) {
 
     $before = $between = $after = '';
@@ -830,9 +1279,17 @@
 
     return TRUE;
 
-  } 
+  }
 
 
+  /**
+   * Creates numeric range from string notation.
+   *
+   * @param string $input     Range string (e.g., "1..10").
+   * @param int    $increment Step value.
+   *
+   * @return array Numeric range array.
+   */
   function padGetRange ( $input, $increment=1 ) {
 
     $parts = padExplode ($input, '..');
@@ -850,6 +1307,13 @@
   }
 
 
+  /**
+   * Parses semicolon-separated list, converting numeric strings.
+   *
+   * @param string $list Semicolon-separated values.
+   *
+   * @return array Parsed list.
+   */
   function padGetList ( $list ) {
 
     $list = explode ( ';', $list );
@@ -862,7 +1326,16 @@
 
   }
 
-  
+
+  /**
+   * Executes a function using the eval/type system.
+   *
+   * @param string $name   Function name.
+   * @param string $myself Caller identifier.
+   * @param array  $parm   Function parameters.
+   *
+   * @return mixed Function result.
+   */
   function padFunctionAsTag ( $name, $myself, $parm ) {
 
     $k = 100;
@@ -888,6 +1361,15 @@
   }
 
 
+  /**
+   * Executes a tag as if it were a function call.
+   *
+   * @param string $tag   Tag name.
+   * @param string $value Content between tags.
+   * @param array  $parms Tag parameters.
+   *
+   * @return mixed Tag result.
+   */
   function padTagAsFunction ( $tag, $value, $parms ) {
   
     $extra = '';
@@ -902,7 +1384,14 @@
 
   }
 
- 
+
+  /**
+   * Converts value to boolean flag.
+   *
+   * @param mixed $input Value to convert.
+   *
+   * @return bool Boolean result.
+   */
   function padMakeFlag ( $input ) {
 
     if     ( $input === NULL  )          return FALSE;
@@ -932,6 +1421,13 @@
   }
 
 
+  /**
+   * Converts value to content string.
+   *
+   * @param mixed $input Value to convert.
+   *
+   * @return string Content string.
+   */
   function padMakeContent ( $input ) {    
 
     if     ( $input === NULL        )  return '';
@@ -942,6 +1438,16 @@
   }
 
 
+  /**
+   * Sets global variable with level-scoped save/restore.
+   *
+   * Saves previous value to restore when level exits.
+   *
+   * @param string $name  Variable name.
+   * @param mixed  $value Value to set.
+   *
+   * @return void
+   */
   function padSetGlobalLvl ( $name, $value ) {
 
     if ( ! padValidVar($name) ) 
@@ -965,6 +1471,16 @@
   }
 
 
+  /**
+   * Sets global variable with occurrence-scoped save/restore.
+   *
+   * Saves previous value to restore when occurrence ends.
+   *
+   * @param string $name  Variable name.
+   * @param mixed  $value Value to set.
+   *
+   * @return void
+   */
   function padSetGlobalOcc ( $name, $value ) {
 
     if ( ! padValidVar($name) ) 
@@ -988,6 +1504,11 @@
   }
 
 
+  /**
+   * Restores globals saved at level start.
+   *
+   * @return void
+   */
   function padResetLvl () {
 
     global $pad, $padSaveLvl, $padDeleteLvl;
@@ -1005,6 +1526,11 @@
   }
 
 
+  /**
+   * Restores globals saved at occurrence start.
+   *
+   * @return void
+   */
   function padResetOcc () {
 
     global $pad, $padSaveOcc, $padDeleteOcc;
@@ -1022,6 +1548,11 @@
   }
 
 
+  /**
+   * Returns default empty data structure.
+   *
+   * @return array Default data array.
+   */
   function padDefaultData () {
     
     return [ 999 => [] ];
@@ -1029,6 +1560,13 @@
   }
 
 
+  /**
+   * Checks if data matches default empty structure.
+   *
+   * @param mixed $data Data to check.
+   *
+   * @return bool TRUE if default data.
+   */
   function padIsDefaultData ( $data ) {
     
     if ( ! is_array ( $data ) ) return FALSE;
@@ -1044,6 +1582,13 @@
   }
 
 
+  /**
+   * Checks if tag has array data at any level.
+   *
+   * @param string $tag Tag name to check.
+   *
+   * @return bool TRUE if array exists.
+   */
   function padChkLevel ($tag) {
 
     global $padCurrent, $pad;
@@ -1057,6 +1602,13 @@
   }
 
 
+  /**
+   * Gets array data for tag from any level.
+   *
+   * @param string $tag Tag name to find.
+   *
+   * @return array|null Array data or null.
+   */
   function padGetLevelArray ($tag) {
 
     global $padCurrent, $pad;
@@ -1068,6 +1620,14 @@
   }
 
 
+  /**
+   * Gets tag parameter value with default.
+   *
+   * @param string $parm    Parameter name.
+   * @param mixed  $default Default value.
+   *
+   * @return mixed Parameter value or default.
+   */
   function padTagParm ($parm, $default='') {
 
     global $pad, $padPrm;
@@ -1082,19 +1642,43 @@
   }
 
 
+  /**
+   * Marks a parameter/option as processed.
+   *
+   * @param string $var Parameter name.
+   * @param mixed  $val Value to store.
+   *
+   * @return void
+   */
   function padDone ( $var, $val=TRUE ) {
     
     $GLOBALS ['padDone'] [$GLOBALS ['pad']] [$var] = $val;
 
-  }   
+  }
 
+  /**
+   * Checks if parameter was already processed.
+   *
+   * @param string $var Parameter name.
+   *
+   * @return bool TRUE if processed.
+   */
   function padIsDone ( $var ) {
     
     return isset ( $GLOBALS ['padDone'] [$GLOBALS ['pad']] [$var] );
 
-  }   
+  }
 
-  
+
+  /**
+   * Detects content type from content string.
+   *
+   * Returns: list, json, yaml, xml, pad, html, range, curl, file, or csv.
+   *
+   * @param string &$content Content string (may be modified).
+   *
+   * @return string Content type identifier.
+   */
   function padContentType ( &$content ) {
 
     $content = trim ( $content );
@@ -1168,6 +1752,15 @@
   }
 
 
+  /**
+   * Checks if field name is valid for app storage.
+   *
+   * Rejects pad*, pq*, and PHP superglobals.
+   *
+   * @param string $fld Field name.
+   *
+   * @return bool TRUE if valid for storage.
+   */
   function padValidStore ($fld) {
 
     if ( substr($fld, 0,3) == 'pad' )
@@ -1184,6 +1777,13 @@
   }
 
 
+  /**
+   * Checks if field is internal PAD variable (non-storable).
+   *
+   * @param string $field Field name.
+   *
+   * @return bool TRUE if internal PAD variable.
+   */
   function padStrPad ( $field ) {
 
     if ( str_starts_with ( $field, 'pad' ) or str_starts_with ( $field, 'pq' ) ) 
@@ -1196,8 +1796,17 @@
     return FALSE;
 
   }
-  
 
+
+  /**
+   * Filters array to keep only items in range.
+   *
+   * @param array &$vars  Array to filter (modified in place).
+   * @param int   $start  First item to keep.
+   * @param int   $end    Last item to keep.
+   *
+   * @return void
+   */
   function padDataFilterGo (&$vars, $start, $end) {
 
     $now = 0;
@@ -1210,6 +1819,16 @@
   }
 
 
+  /**
+   * Filters array with range and optional count limit.
+   *
+   * @param array &$vars  Array to filter (modified in place).
+   * @param int   $start  First item to keep.
+   * @param int   $end    Last item to keep.
+   * @param int   $count  Max items (0 = unlimited).
+   *
+   * @return void
+   */
   function padHandGo ( &$vars, $start, $end, $count=0 ) {
 
     global $hit, $now;

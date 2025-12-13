@@ -18,9 +18,9 @@
   if     ( $padHit [$pad] and is_array($padTagResult) ) $padArray [$pad] = TRUE;
   else                                                  $padArray [$pad] = FALSE;
 
-
-  if ( $padNull [$pad] and padTagParm ( 'null' ) )
-    include PAD 'options/null.php';
+  if     ( ! $padHit  [$pad] and padTagParm ( 'notOk' ) ) include PAD . 'options/notOk.php';
+  if     (   $padNull [$pad] and padTagParm ( 'null'  ) ) include PAD . 'options/null.php';
+  elseif (   $padElse [$pad] and padTagParm ( 'else'  ) ) include PAD . 'options/else.php';
 
   if ( $padInfo )
     include PAD . 'events/flags.php';

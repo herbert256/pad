@@ -1,6 +1,20 @@
 <?php
-  
-  
+
+
+  /**
+   * Applies operators by precedence order.
+   *
+   * Processes double operators, edge cases, and type calls first.
+   * Then iterates through operators in precedence order, dispatching
+   * to appropriate action files (single, double, left, right).
+   *
+   * @param array  &$result The token array (modified in place).
+   * @param string $myself  Current function name for recursion.
+   * @param int    $start   Start index for processing.
+   * @param int    $end     End index for processing.
+   *
+   * @return mixed Result from included action file.
+   */
   function padEvalOpr ( &$result, $myself, $start=0, $end=PHP_INT_MAX ) {
 
     padEvalDouble ( $result, $myself, $start, $end ); padEvalTrace ( 'double2', $result );

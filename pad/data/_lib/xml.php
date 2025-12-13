@@ -1,5 +1,16 @@
 <?php
 
+  /**
+   * Converts XML data to a PHP array.
+   *
+   * Parses XML string, handling DTD declarations, processing instructions,
+   * and malformed XML (attempts repair using Tidy if initial parsing fails).
+   * Returns a nested array structure representing the XML document.
+   *
+   * @param string $data The XML data string to parse.
+   *
+   * @return array|string The parsed array structure, or error message on failure.
+   */
   function padXmlToArray ( $data ) {
 
     $input = str_replace ( '&nbsp;', ' ', trim($data) );
@@ -55,6 +66,16 @@
   }
 
 
+  /**
+   * Recursively iterates through XML elements to build an array structure.
+   *
+   * Processes each XML element, extracting values, attributes, and children.
+   * Handles multiple elements with the same name by creating indexed arrays.
+   *
+   * @param SimpleXMLElement $xml The XML element to iterate.
+   *
+   * @return array The array representation of the XML subtree.
+   */
   function padXmlToArrayIterator ( $xml ) {
 
     $arr = array();
@@ -92,6 +113,16 @@
   }
 
 
+  /**
+   * Post-processes an XML array to simplify its structure.
+   *
+   * Flattens single-element arrays to scalar values and merges
+   * _children elements into their parent arrays with appropriate key handling.
+   *
+   * @param array $arr The array to check and simplify.
+   *
+   * @return array The simplified array structure.
+   */
   function padXmlToArrayCheck ( $arr ) {
 
     foreach ( $arr as $key => $val ) 

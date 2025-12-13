@@ -1,13 +1,17 @@
 <?php
-// A php program to find
-// the solution to The
-// Lazy Caterer's Problem
 
-// This function receives
-// an integer n and returns
-// the maximum number of
-// pieces that can be made
-// form pancake using n cuts
+
+/**
+ * Solves the Lazy Caterer's problem.
+ *
+ * Returns the maximum number of pieces a circular pancake
+ * can be divided into using n straight cuts.
+ * Formula: n*(n+1)/2 + 1
+ *
+ * @param int $n Number of cuts.
+ *
+ * @return int Maximum pieces achievable.
+ */
 function pqCaterer ($n)
 {
     // Use the formula

@@ -1,6 +1,15 @@
 <?php
 
 
+  /**
+   * Fallback HTTP fetch when cURL is not available.
+   *
+   * Uses padFileGet as alternative to cURL for fetching URL content.
+   *
+   * @param array $output The output array with 'url' key.
+   *
+   * @return array Output array with data, result code, and type.
+   */
   function padNoCurl ( $output ) {
 
     set_error_handler ( 'padErrorThrow' );
@@ -31,6 +40,17 @@
   }
 
 
+  /**
+   * Performs HTTP request using cURL.
+   *
+   * Supports URL, GET/POST parameters, cookies, headers, basic auth.
+   * Auto-detects content type from response headers or content.
+   * Falls back to padNoCurl if cURL extension not available.
+   *
+   * @param string|array $input URL string or array with url, get, post, etc.
+   *
+   * @return array Output with url, data, result, type, headers, cookies.
+   */
   function padCurl ($input) {
 
     //  Required input parms
@@ -245,7 +265,17 @@
     return $output;
     
   }
-  
+
+
+  /**
+   * Sets a cURL option if not already set.
+   *
+   * @param array  &$options The options array (modified in place).
+   * @param string $name     The CURLOPT name (without prefix).
+   * @param mixed  $value    The option value.
+   *
+   * @return void
+   */
   function padCurlOpt (&$options, $name, $value) {
     
     if ( ! isset ( $options [$name] ) )
@@ -253,6 +283,15 @@
 
   }
 
+
+  /**
+   * Records a cURL error in the output array.
+   *
+   * @param array  $output The output array to modify.
+   * @param string $error  The error message.
+   *
+   * @return array Output array with ERROR key and result 999.
+   */
   function padCurlError ( $output, $error ) {
 
     $output ['ERROR']  = $error;

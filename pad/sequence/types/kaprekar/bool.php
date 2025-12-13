@@ -1,5 +1,17 @@
 <?php
 
+
+/**
+ * Checks if a number is a Kaprekar number.
+ *
+ * A Kaprekar number's square can be split into two parts
+ * that sum back to the original number.
+ *
+ * @param int $n The number to check.
+ * @param int $p Unused parameter.
+ *
+ * @return bool TRUE if n is a Kaprekar number.
+ */
 function pqBoolKaprekar($n, $p=0)
 {
     if ($n == 1)

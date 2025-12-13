@@ -1,6 +1,18 @@
 <?php
 
 
+  /**
+   * Determines the common type of a tag name.
+   *
+   * Checks various type stores and file locations to classify
+   * the tag: pull, flag, content, data, include, field, property,
+   * array, parm, level, constant, local, script, php, page,
+   * sequence, or action.
+   *
+   * @param string $type The type name to classify.
+   *
+   * @return string|false The type classification or FALSE if unknown.
+   */
   function padTypeCommon ( $type ) {
 
     if     ( isset              ( $GLOBALS ['pqStore']         [$type] ) ) return 'pull';
@@ -26,6 +38,17 @@
   } 
 
 
+  /**
+   * Determines the type of a tag.
+   *
+   * Checks app tags, pad tags, common types, and optionally
+   * function types.
+   *
+   * @param string $type       The tag name to check.
+   * @param int    $goFunction Also check function types (default 1).
+   *
+   * @return string|false The tag type or FALSE if not found.
+   */
   function padTypeTag ( $type, $goFunction=1 ) {
 
     if     ( ! padValid     ( $type                  ) ) return FALSE;
@@ -45,6 +68,17 @@
   }
 
 
+  /**
+   * Validates a type:item combination.
+   *
+   * Checks if the specified type handler exists and the item
+   * matches that type classification.
+   *
+   * @param string $type The type name (e.g., 'app', 'pad', 'function').
+   * @param string $item The item name to validate against the type.
+   *
+   * @return string|false The type if valid, FALSE otherwise.
+   */
   function padTypeTagCheck ( $type, $item ) {
 
     if     ( ! padValidType                          ( $type                   ) ) return FALSE;
@@ -54,12 +88,23 @@
     elseif ( $type == 'pad'      and file_exists     ( PAD . "tags/$item.pad"  ) ) return $type;
     elseif ( padTypeCommon ( $item ) == $type                                    ) return $type;
     elseif ( $type == 'function' and padTypeFunction  ( $item, 0               ) ) return $type;
-  
+
     return FALSE;
 
   }
 
 
+  /**
+   * Determines the type of a pipe function.
+   *
+   * Checks app functions, pad functions, common types, and
+   * optionally falls back to tag types.
+   *
+   * @param string $type  The function name to check.
+   * @param int    $goTag Also check tag types (default 1).
+   *
+   * @return string|false The function type or FALSE if not found.
+   */
   function padTypeFunction ( $type, $goTag=1 ) {
 
         if ( ! padValid          ( $type                       ) ) return FALSE;
@@ -79,6 +124,19 @@
 
 
 
+  /**
+   * Determines sequence type from type:item pair.
+   *
+   * Resolves sequence actions and start types based on file
+   * existence and store contents.
+   *
+   * @param string $type The first part of type:item.
+   * @param string $item The second part of type:item.
+   *
+   * @return string|false The resolved sequence type or FALSE.
+   *
+   * @global string $padTypeSeq Stores the type for reference.
+   */
   function padTypeSeq ( $type, $item ) {
 
     $GLOBALS ['padTypeSeq'] = $type;

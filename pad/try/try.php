@@ -9,13 +9,6 @@
 
   } catch (Throwable $padTryException) {
 
-    padErrorGo ( 
-      'CATCH: ' .
-      $padTryException->getMessage(),
-      $padTryException->getFile(),
-      $padTryException->getLine()
-    );
-
     return include PAD . "try/catch/$padTry.php";
 
   }

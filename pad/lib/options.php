@@ -1,5 +1,15 @@
 <?php
 
+  /**
+   * Parses comma-separated options respecting quotes and brackets.
+   *
+   * Splits a parameter string on commas while preserving quoted
+   * strings and nested parentheses/brackets.
+   *
+   * @param string $parms The parameter string to parse.
+   *
+   * @return array Array of individual option strings.
+   */
   function padParseOptions ( $parms ) {
 
     $input  = str_split ( $parms );

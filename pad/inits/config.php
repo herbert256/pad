@@ -23,4 +23,7 @@
   if ( isset ( $padSetConfig ) and count ( $padSetConfig ) ) 
     include_once PAD . 'inits/configSet.php';
 
+  if ( $padErrorTry )
+    include PAD . 'config/try.php';
+
 ?>

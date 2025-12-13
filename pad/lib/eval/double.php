@@ -1,6 +1,19 @@
 <?php
 
 
+  /**
+   * Handles consecutive operators in eval expressions.
+   *
+   * When two operators appear in sequence, processes the first
+   * as a standalone operation and recurses.
+   *
+   * @param array  &$result The token array (modified in place).
+   * @param string $myself  Current function name.
+   * @param int    $start   Start index for processing.
+   * @param int    $end     End index for processing.
+   *
+   * @return void
+   */
   function padEvalDouble ( &$result, $myself, $start, $end) {
 
     $previous = NULL;

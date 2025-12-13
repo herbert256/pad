@@ -1,8 +1,18 @@
 <?php
 // PHP program for nth Catalan Number
 
-// Returns value of Binomial
-// Coefficient C(n, k)
+
+/**
+ * Calculates binomial coefficient C(n,k).
+ *
+ * Uses the multiplicative formula to compute n choose k
+ * efficiently in O(k) time.
+ *
+ * @param int $n Total items.
+ * @param int $k Items to choose.
+ *
+ * @return int The binomial coefficient.
+ */
 function pqBinomialCoeff($n, $k)
 {
     $res = 1;
@@ -22,8 +32,17 @@ function pqBinomialCoeff($n, $k)
     return $res;
 }
 
-// A Binomial coefficient based function
-// to find nth catalan number in O(n) time
+
+/**
+ * Calculates the nth Catalan number.
+ *
+ * Uses the formula C(2n,n)/(n+1) to compute Catalan
+ * numbers in O(n) time via binomial coefficients.
+ *
+ * @param int $n The index in the Catalan sequence.
+ *
+ * @return int The nth Catalan number.
+ */
 function pqCatalan($n)
 {
     // Calculate value of 2nCn

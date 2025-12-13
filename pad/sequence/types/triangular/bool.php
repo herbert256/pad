@@ -1,7 +1,16 @@
 <?php
 
-// https://www.geeksforgeeks.org/triangular-numbers/
 
+/**
+ * Checks if a number is triangular.
+ *
+ * A triangular number satisfies n*(n+1)/2 = num for some n.
+ * Uses quadratic formula to find if valid integer n exists.
+ *
+ * @param int $num The number to check.
+ *
+ * @return bool TRUE if num is a triangular number.
+ */
 function pqBoolTriangular ($num) {
 
     if ($num < 0)

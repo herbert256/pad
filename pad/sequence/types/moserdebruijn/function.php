@@ -1,9 +1,16 @@
 <?php
-// PHP code to generate first 'n' terms
-// of the Moser-de Bruijn Seq
 
-// Function to generate nth term
-// of Moser-de Bruijn Seq
+
+/**
+ * Calculates the nth Moser-de Bruijn sequence term.
+ *
+ * The Moser-de Bruijn sequence consists of sums of distinct
+ * powers of 4. S(2n)=4*S(n), S(2n+1)=4*S(n)+1.
+ *
+ * @param int $n The index in the sequence.
+ *
+ * @return int The nth Moser-de Bruijn number.
+ */
 function pqMoserdebruijn($n)
 {
   

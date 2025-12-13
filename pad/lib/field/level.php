@@ -1,5 +1,26 @@
 <?php
 
+
+  /**
+   * Searches for a field value across level scopes.
+   *
+   * Checks for field values in order: relative level references,
+   * numeric options, current data at each level, table data,
+   * globals, parameters, options, and function variables.
+   *
+   * @param string $field The field name to find.
+   * @param int    $type  The type of value expected (1-9).
+   *
+   * @return mixed The field value or INF if not found.
+   *
+   * @global int   $pad           Current processing level.
+   * @global array $padCurrent    Current data per level.
+   * @global array $padPrm        Parameters per level.
+   * @global array $padOpt        Options per level.
+   * @global array $padName       Names per level.
+   * @global array $padTable      Table data per level.
+   * @global array $padLvlFunVar  Function variables per level.
+   */
   function padFieldLevel ( $field, $type ) {
 
     global $pad, $padCurrent, $padPrm, $padOpt, $padName, $padTable, $padLvlFunVar;

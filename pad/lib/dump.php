@@ -1,5 +1,16 @@
 <?php
 
+
+  /**
+   * Main debug dump entry point.
+   *
+   * Outputs diagnostic information on error, then exits with HTTP 500.
+   * Delegates to padDumpTry with error handling wrapper.
+   *
+   * @param string $error Optional error message to display.
+   *
+   * @return void Exits script after output.
+   */
   function padDump ( $error='' ) {
 
     set_error_handler ( 'padErrorThrow' );
@@ -21,6 +32,16 @@
   }
 
 
+  /**
+   * Outputs debug information based on context.
+   *
+   * Clears output buffers, closes HTML tags, then routes to
+   * console, local, or remote dump handler based on output type.
+   *
+   * @param string $info The error/info message to display.
+   *
+   * @return void
+   */
   function padDumpTry ( $info ) {
 
     if ( ! headers_sent () ) 
@@ -42,6 +63,7 @@
   }
 
 
+  /** Outputs error to console with directory dump. */
   function padDumpConsole ( $info ) {
 
     echo padMakeSafe ("Error: $info", 100);
@@ -52,6 +74,7 @@
   }
 
 
+  /** Outputs full debug dump for local development. */
   function padDumpLocal ( $info ) {
 
     padDumpFields    ( $php, $lvl, $cfg, $pad, $ids, $trc, $pq );
@@ -86,6 +109,7 @@
   }
 
 
+  /** Outputs minimal error info for remote/production. */
   function padDumpRemote ( $info ) {
 
     if ( ! isset ( $GLOBALS ['padDumpToDirDone'] ) ) 
@@ -437,6 +461,17 @@
   }
 
 
+  /**
+   * Writes debug dump to filesystem directory.
+   *
+   * Creates dump files in DATA/dumps/ with stack trace, variables,
+   * headers, SQL info, and other diagnostic data.
+   *
+   * @param string $info Error message to include.
+   * @param string $dir  Custom directory path (optional).
+   *
+   * @return string The directory path where dump was written.
+   */
   function padDumpToDir ( $info='', $dir='' ) {
  
     if ( ! $dir )

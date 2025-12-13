@@ -1,244 +1,101 @@
-# PAD Application
+# PAD Reference Application
 
-This PAD application serves a dual purpose: it is both a **reference implementation** demonstrating how to build applications with the PAD framework, and the **official manual and documentation** for the PAD framework itself.
+This application serves a dual purpose: it is both a **working example** of a PAD application and the **official manual** for the PAD framework.
 
 ## What is PAD?
 
-**PAD** stands for **P**HP **A**pplication **D**river. It is an [Inversion of Control](https://en.wikipedia.org/wiki/Inversion_of_control) (IoC) PHP framework that separates application logic from presentation.
+PAD (PHP Application Driver) is an Inversion of Control PHP template engine where templates drive application flow. For detailed framework documentation, see [../../pad/README.md](../../pad/README.md).
 
-### The PAD Principle
+## Application Structure
 
-PAD follows the principle: *"Don't call us, we'll call you."*
+### Manual (`manual/`)
 
-Unlike traditional PHP frameworks where your code calls framework functions, PAD inverts this relationship:
+Interactive documentation pages explaining PAD concepts:
 
-1. **First**, PAD executes your application PHP code
-2. **Then**, PAD reads your HTML/PAD template markup
-3. **Finally**, PAD merges both and sends the result to the browser
+- Template syntax and tag structure
+- Levels and occurrences
+- Data handling and callbacks
+- PHP and HTML integration
+- Properties and options
+- The data and content tags
 
-**There is no PAD code in your application PHP code at all!**
+Each manual page is itself a PAD template, demonstrating the concepts it describes.
 
-### Hello World Example
+### Reference (`reference/`)
 
-A minimal PAD application consists of two files:
+Cross-reference system that dynamically generates documentation by scanning the PAD framework directories. Provides browsable indexes of:
 
-**hello.php** (application logic):
-```php
-<?php
-  $greeting = 'Hello World';
-?>
-```
+- All template tags
+- All pipe functions
+- All tag options
+- All tag types and properties
 
-**hello.pad** (template markup):
-```html
-<html>
-  <body>
-    <h1>{$greeting}</h1>
-  </body>
-</html>
-```
+The reference pages read the framework source files and present them in a navigable format.
 
-The framework automatically merges the PHP variable `$greeting` into the template.
+### Fragments (`fragments/`)
 
----
-
-## PAD Framework Overview
-
-### Template Syntax
-
-PAD templates support three core syntaxes:
-
-| Syntax | Purpose | Example |
-|--------|---------|---------|
-| Block tags | Control structures and data iteration | `{tagname param=value}...{/tagname}` |
-| Variables | Variable substitution with filters | `{$varname \| filter1 \| filter2}` |
-| Properties | Context-aware properties | `{@property}` |
-
-### Built-in Features
-
-- **50+ functions** - Control flow (`if`, `while`, `switch`), data manipulation (`set`, `get`, `array`), utilities (`trace`, `dump`, `redirect`)
-- **38 tag filters** - String manipulation (`trim`, `lower`, `replace`), formatting (`date`, `timestamp`), HTML (`sanitize`, `html`, `nbsp`)
-- **25 type handlers** - Data sources (`data`, `table`, `field`), includes (`include`, `pad`), code execution (`php`, `script`)
-- **Multiple data formats** - CSV, JSON, YAML, XML support
-- **Database integration** - Session tracking, request logging, caching
-- **Event system** - 60+ event handlers for lifecycle hooks
-
-### Framework Architecture
-
-```
-pad/
-├── inits/        # Framework initialization (24 modules)
-├── start/        # Execution lifecycle management
-├── level/        # Scope and nesting management
-├── functions/    # Built-in PAD functions
-├── tags/         # Template filters
-├── types/        # Data type handlers
-├── eval/         # Expression parser and evaluator
-├── events/       # Event handling system
-├── data/         # Data format handlers
-├── cache/        # Caching system (memory/database)
-├── config/       # Configuration management
-├── exits/        # Shutdown and output processing
-└── lib/          # Core library utilities
-```
-
----
-
-## This Application's Structure
-
-This application (`apps/pad/`) demonstrates PAD's capabilities while serving as the framework documentation.
-
-### Directory Layout
-
-```
-apps/pad/
-├── index.php          # Entry point (sets page title)
-├── index.pad          # Home page template
-├── _inits.php         # Application initialization (PHP)
-├── _inits.pad         # Application template wrapper
-│
-├── manual/            # Framework documentation
-├── reference/         # API reference
-├── fragments/         # Code examples and demos
-├── regression/        # Regression tests
-├── sequence/          # Page flow examples
-├── develop/           # Development and testing area
-│
-├── _callbacks/        # Custom callback handlers
-├── _config/           # Application configuration
-├── _data/             # Application data files
-├── _functions/        # Custom PAD functions
-├── _include/          # Reusable includes
-├── _install/          # Installation scripts
-├── _lib/              # Application libraries
-├── _options/          # Option handlers
-└── _tags/             # Custom tag definitions
-```
-
-### Key Files
-
-| File | Purpose |
-|------|---------|
-| `index.php` | Sets PHP variables (like `$title`) before template processing |
-| `index.pad` | Home page content explaining PAD's concept |
-| `_inits.php` | Runs before every page; sets up common variables |
-| `_inits.pad` | HTML wrapper template; defines page structure with header, menu, content area, footer |
-
-### Documentation Sections
-
-#### Manual (`manual/`)
-
-Comprehensive guides covering PAD concepts:
-
-- `tags.pad` - Tag syntax and usage
-- `properties.pad` - Property accessors (`@property`)
-- `the_data_tag.pad` - Working with data sources
-- `the_content_tag.pad` - Content management
-- `levels_and_occurrences.pad` - Scope and iteration
-- `level_and_occurrence_variables.pad` - Level variables
-- `options_variables_parameters.pad` - Configuration
-- `data_handling.pad` - Data format handling
-- `callback.pad` - Callback system
-- `else.pad` - Conditional logic
-- `prefix.pad` - Prefix handling
-- `walking.pad` - Tree/structure traversal
-- `escaping_special_PAD_chars.pad` - Special character handling
-- `php_and_html.pad` - PHP and HTML integration
-- `3_ways_to_make_a_table.pad` - Table generation patterns
-- `table_fun.pad` - Advanced table techniques
-- `tag_return_values.pad` - Return value handling
-- `classicModels.pad` - Database example (ClassicModels)
-
-#### Reference (`reference/`)
-
-API reference with cross-referenced documentation of all PAD functions, tags, and types.
-
-#### Fragments (`fragments/`)
-
-Working code examples organized by topic:
+Test fragments and working examples organized by category:
 
 - `hello/` - Hello World examples
 - `tags/` - Tag usage examples
-- `functions/` - Function demonstrations
-- `properties/` - Property accessor examples
-- `data/` - Data handling examples
-- `content/` - Content tag examples
-- `constructs/` - Control structure examples
+- `functions/` - Pipe function examples
+- `constructs/` - Special construct examples
 - `db/` - Database integration examples
-- `classicModels/` - SQL database examples
 - `error/` - Error handling examples
-- `callback/` - Callback examples
-- `vars/` - Variable handling
-- `options/` - Options examples
-- `prefix/` - Prefix examples
-- `walk/` - Tree walking examples
 - `lvl_occ/` - Level and occurrence examples
-- `tableFun/` - Table manipulation
-- `deep/` - Deep nesting examples
-- `miscellaneous/` - Various examples
-- `_data/` - Sample data files (XML, JSON, YAML, CSV)
-- `_scripts/` - External script examples (Python, Perl, Shell, Groovy)
-- `_tags/` - Custom tag examples
+- `php_and_html/` - PHP/HTML integration examples
 
----
+These fragments serve as both documentation and test cases for the regression system.
 
-## Application Conventions
+### Regression (`regression/`)
 
-### Directory Prefixes
+Automated regression testing system that:
 
-| Prefix | Meaning |
-|--------|---------|
-| `_` (underscore) | Special PAD directories processed by the framework |
-| No prefix | Regular application directories |
+1. Iterates through all fragments
+2. Renders each fragment via HTTP request
+3. Compares output against stored reference files
+4. Reports differences (ok, warning, error, new)
 
-### Special `_` Directories
+Run regression tests by visiting `/regression` in the browser.
 
-- `_callbacks/` - PHP files called at specific lifecycle points (`before.php`, `demand.php`)
-- `_config/` - Application-specific configuration overrides
-- `_data/` - Data files accessible via the `data` type
-- `_functions/` - Custom PAD functions (PHP files)
-- `_include/` - Reusable PAD includes
-- `_install/` - One-time installation scripts
-- `_lib/` - PHP library files
-- `_options/` - Option processors
-- `_tags/` - Custom tag definitions (can be `.pad` or `.php`)
+### Sequence (`sequence/`)
 
-### File Pairs
+Documentation and examples for the Sequence subsystem - a declarative data transformation system within PAD:
 
-PAD pages typically consist of paired files:
+- `basic/` - Basic sequence operations (add, subtract, multiply, divide, etc.)
+- `concepts/` - Core sequence concepts
+- `actions.pad/php` - Available sequence actions
+- `examples.pad/php` - Working examples
 
-- `page.php` - PHP logic (executed first)
-- `page.pad` - Template markup (processed second)
+Sequences allow complex data transformations through chainable operations.
 
-The PHP file sets variables; the PAD file uses them in the template.
+### Develop (`develop/`)
 
----
+Development and debugging utilities:
 
-## Configuration
+- Benchmarking tools
+- Build process inspection
+- Manual page rendering
+- Development scratchpad
 
-This application's configuration is in `_config/`. It can override framework defaults for:
+## Extension Directories
 
-- Error handling behavior
-- Cache settings
-- Database connections
-- Output formatting
-- Session management
+| Directory | Purpose |
+|-----------|---------|
+| `_lib/` | Shared PHP libraries |
+| `_tags/` | Custom application tags |
+| `_functions/` | Custom pipe functions |
+| `_callbacks/` | Callback handlers |
+| `_options/` | Custom tag options |
+| `_include/` | Include templates |
+| `_data/` | Application data |
+| `_config/` | Configuration files |
 
----
+## Entry Points
 
-## Running the Application
+- `index.pad/php` - Application home page
+- `_inits.pad/php` - Global initialization (layout wrapper, menu)
 
-The application is accessed through the web server via `www/index.php`, which:
+## Running
 
-1. Detects the platform (Linux/macOS/Windows)
-2. Sets the `APP` constant to this application's path
-3. Sets the `DAT` constant to the data directory
-4. Includes the PAD framework (`pad/pad.php`)
-
-Access the manual at: `http://your-server/pad/manual/`
-
----
-
-## Copyright
-
-(c) 2003-2025 Herbert Groot Jebbink
+Access via web server at the configured URL. The application demonstrates PAD's automatic file pairing - each `.pad` template is paired with its corresponding `.php` data file.

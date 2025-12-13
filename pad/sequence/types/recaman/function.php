@@ -1,5 +1,16 @@
 <?php
 
+
+/**
+ * Calculates the nth Recamán sequence term.
+ *
+ * Each term a(n) = a(n-1) - n if positive and not already
+ * in sequence, otherwise a(n-1) + n.
+ *
+ * @param int $n The index in the sequence.
+ *
+ * @return int The nth Recamán number.
+ */
 function pqRecaman($n)
 {
   if($n <= 1)

@@ -1,6 +1,17 @@
 <?php
 
 
+  /**
+   * Reads a file's contents safely.
+   *
+   * Handles path resolution (relative to PAD, APP, or DAT), validates
+   * the file path for security, and returns file contents.
+   *
+   * @param string $file    The file path to read.
+   * @param string $default Default value if file not readable.
+   *
+   * @return string File contents, default value, or FALSE on error.
+   */
   function padFileGet ( $file, $default='' ) {
 
     if ( $file == 'php://input' )
@@ -24,6 +35,18 @@
   }
 
 
+  /**
+   * Writes data to a file in the DATA directory.
+   *
+   * Handles path normalization (always writes to DAT), validates paths,
+   * creates directories as needed, and serializes arrays/objects to JSON.
+   *
+   * @param string     $file   The file path (relative to DAT or absolute).
+   * @param string|array $data The data to write (arrays become JSON).
+   * @param int        $append If truthy, append instead of overwrite.
+   *
+   * @return bool|string TRUE on success, FALSE on error.
+   */
   function padFilePut ( $file, $data='', $append=0 ) {
 
     if ( ! str_starts_with ( $file, DAT ) ) {
@@ -47,6 +70,16 @@
   }
 
 
+  /**
+   * Validates a file path for security issues.
+   *
+   * Checks for path traversal attacks (..), double slashes,
+   * non-absolute paths, and control characters.
+   *
+   * @param string $file The file path to validate.
+   *
+   * @return string Empty string if valid, error message if invalid.
+   */
   function padFileCheck ( $file ) {
 
     if ( ! str_starts_with ( $file, '/' )       ) return "Invalid file (not starting with /): $file";
@@ -58,6 +91,21 @@
   }
 
 
+  /**
+   * Internal file write implementation.
+   *
+   * Creates parent directories if needed, handles file permissions,
+   * and writes data with locking.
+   *
+   * @param string $file   The absolute file path.
+   * @param mixed  $data   The data to write.
+   * @param int    $append Whether to append instead of overwrite.
+   *
+   * @return bool|string TRUE on success, FALSE on error.
+   *
+   * @global int $padDirMode  Directory creation permission mode.
+   * @global int $padFileMode File creation permission mode.
+   */
   function padFilePutGo ( $file, $data, $append ) {
 
     $dir = substr ( $file, 0, strrpos ( $file, '/' ) );
