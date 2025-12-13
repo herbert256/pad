@@ -86,7 +86,7 @@
 
   $padGzip      = FALSE;  // Send the result zipped
   $padCookies   = TRUE;   // Set some cookies
-  $padNoNo      = FALSE;  // No pad stuff, just plane PHP   
+  $padNoNo      = FALSE;  // No pad stuff, just plain PHP   
   $padFastLink  = 32;     // Length of the FastLink code in the URL
 
 ?>

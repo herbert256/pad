@@ -14,8 +14,8 @@
     $padFld = padFieldValue ( substr($padFld, 1) );
 
   if     ( $padFirst == '$' ) $padFldChk = padFieldCheck ( $padFld );
-  elseif ( $padFirst == '?' ) $padFldChk = padfieldCheck ( $padFld );
-  elseif ( $padFirst == '!' ) $padFldChk = padfieldCheck ( $padFld );
+  elseif ( $padFirst == '?' ) $padFldChk = padFieldCheck ( $padFld );
+  elseif ( $padFirst == '!' ) $padFldChk = padFieldCheck ( $padFld );
   elseif ( $padFirst == '#' ) $padFldChk = padOptCheck   ( $padFld );
   elseif ( $padFirst == '&' ) $padFldChk = padTagCheck   ( $padFld );
 

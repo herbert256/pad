@@ -267,7 +267,7 @@
     elseif ( file_exists ( PT . "$check/build.php")     ) return 'build';
     elseif ( file_exists ( PT . "$check/fixed.php")     ) return 'fixed';
     elseif ( file_exists ( PT . "$check/generated.php") ) return 'generated';
-    else                                                            return 'unknow';
+    else                                                            return 'unknown';
 
   }
 
