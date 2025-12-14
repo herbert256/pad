@@ -1,7 +1,7 @@
 <?php
 
   if ( $padCookies )
-    
+
     if ( ! headers_sent () ) {
 
       if ( ! isset($_COOKIE['padSesID']) or $_COOKIE['padSesID'] <> $padSesID )

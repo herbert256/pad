@@ -25,15 +25,15 @@
       return FALSE;
 
     global $padSqlConnect, $padSqlHost, $padSqlUser, $padSqlPassword, $padSqlDatabase;
-    
+
     if ( ! isset ( $padSqlConnect ) )
       $padSqlConnect = padDbConnect ( $padSqlHost, $padSqlUser, $padSqlPassword, $padSqlDatabase );
 
     return padDbPart2 ( $padSqlConnect, $sql, $vars );
-    
+
   }
 
-  
+
   /**
    * Executes a SQL query against the PAD framework database.
    *
@@ -65,7 +65,7 @@
 
   }
 
- 
+
   /**
    * Establishes a MySQL database connection.
    *
@@ -118,7 +118,7 @@
     global $pad, $padDbRowsFound, $padPrm;
 
     $input = $sql;
-    
+
     foreach ( $vars as $i => $replace ) {
 
       $pad1 = strpos($sql, '{'.$i.'}' );

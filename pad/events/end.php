@@ -1,6 +1,6 @@
 <?php
 
-  if ( $GLOBALS ['padInfoXref']  ) 
+  if ( $GLOBALS ['padInfoXref']  )
     padInfoXref ( 'constructs', 'end' );
 
 ?>

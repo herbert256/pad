@@ -6,6 +6,6 @@
   if ( $padInfoTraceDouble and $padInfoTraceContent and $padBase [$pad] == $padResult [$pad] )
     return;
 
-  padInfoTrace ( 'level', 'result',  $padResult [$pad] ); 
-  
+  padInfoTrace ( 'level', 'result',  $padResult [$pad] );
+
 ?>

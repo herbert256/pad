@@ -32,7 +32,7 @@
     if ( is_numeric($search) and $search < 0 )
       return $pad + $search;
 
-    if ( is_numeric($search) ) 
+    if ( is_numeric($search) )
       return $search;
 
     for ( $i=$pad; $i; $i-- )
@@ -98,7 +98,7 @@
 
     return $pad - 1;
 
-  }  
+  }
 
-  
+
 ?>

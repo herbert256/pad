@@ -27,7 +27,7 @@
 
   }
 
-  
+
   /**
    * Retrieves cache metadata for a URL from the file system.
    *
@@ -88,7 +88,7 @@
 
   }
 
-  
+
   /**
    * Updates the cache timestamp for an ETag file.
    *
@@ -165,7 +165,7 @@
     touch ( $file, $time );
 
   }
-  
+
 
   /**
    * Ensures the parent directory for a cache file exists.

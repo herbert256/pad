@@ -1,11 +1,11 @@
 <?php
-  
+
   // Cache settings
-  
-  $padCacheServerAge = 0;   //  Seconds to keep the cache at pad server side, 
+
+  $padCacheServerAge = 0;   //  Seconds to keep the cache at pad server side,
                             //  0 to turn of server-side caching
 
-  $padCacheProxyAge  = 0;   //  How long a proxy is allowed to cache. 
+  $padCacheProxyAge  = 0;   //  How long a proxy is allowed to cache.
                             //  0 to turn of proxy-side caching
 
   $padCacheClientAge = 0;   //  How long the client is allowed to cache.

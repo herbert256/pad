@@ -4,9 +4,9 @@
     $value = time ();
 
   if ( $count == 0 ) {
-  
+
     $format = $GLOBALS ['padFmtDate'];
-    
+
   } elseif ( $count == 1 ) {
 
     $format = $parm [0];

@@ -2,6 +2,6 @@
 
   $padHandStart = $padHandEnd = $padPrm [$pad] ['row'];
 
-  padHandGo ( $padData [$pad], $padHandStart, $padHandEnd );    
+  padHandGo ( $padData [$pad], $padHandStart, $padHandEnd );
 
 ?>

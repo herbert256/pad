@@ -1,5 +1,5 @@
 <?php
-  
+
   $padLen = ( $padStop == 200 ) ? strlen ( $padOutput ) : 0;
 
   padCheckBuffers ();

@@ -10,7 +10,7 @@
       if ( ! isset($padTables [$padK2] ) ) {
         $padTables [$padK2] = $padTables [$padRelations[$padK] [$padK2] ['table']];
         $padTables [$padK2] ['virtual'] = TRUE;
-      }    
+      }
 
   while ( padTableGetInfo () ) ;
 

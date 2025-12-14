@@ -1,6 +1,6 @@
 <?php
-  
-  $padOutputType = 'console'; 
+
+  $padOutputType = 'console';
 
   $padInfo = '';
   $padTidy = FALSE;

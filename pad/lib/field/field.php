@@ -46,32 +46,32 @@
 
  #   if ( str_contains ( $field, ':' ) and ( $type == 1 or $type == 2) )
  #     $type = $type + 6;
-    
+
     if ( $field == 'pad' )
       return $GLOBALS ['padGo'];
 
-    if ( $GLOBALS ['padInfo'] ) 
+    if ( $GLOBALS ['padInfo'] )
       include PAD . 'events/fieldStart.php';
 
     if ( str_contains ( $field, '@' ) or str_contains ( $field, '.' ) ) {
 
       $value = padFieldAt ( $field, $lvl );
 
-      if ( $GLOBALS ['padInfo'] ) 
+      if ( $GLOBALS ['padInfo'] )
         include PAD . 'events/fieldAt.php';
 
     } else {
 
       if ( str_contains ($field, ':' ) )
         list ( $prefix, $field ) = explode (':', $field, 2);
-      else 
+      else
         $prefix = '';
 
       if     ( $prefix                   ) $idx = padFieldGetLevel ($prefix);
       elseif ( in_array ( $type, [5,6] ) ) $idx = padFieldFirstParmTag ();
       elseif ( in_array ( $type, [7,8] ) ) $idx = padFieldFirstNonTag ($lvl);
       else                                 $idx = $GLOBALS ['pad'];
-    
+
       padSplit ( ':', $field, $field, $parm  );
 
       if     ( $type ==  5 ) $value = padParm        ( $field, $idx, $type );
@@ -81,11 +81,11 @@
       elseif ( $prefix     ) $value = padFieldPrefix ( $field, $idx, $type, $prefix );
       else                   $value = padFieldLevel  ( $field, $type );
 
-      if ( $GLOBALS ['padInfo'] ) 
+      if ( $GLOBALS ['padInfo'] )
         include PAD . 'events/fieldClassic.php';
 
-    }  
-   
+    }
+
     if     ($type ==  1) $return = ( $value !== NULL and ( $value === INF or ! is_scalar($value) ) ) ? FALSE : TRUE;
     elseif ($type ==  2) $return = ( $value === NULL or    $value === INF or ! is_scalar($value)   ) ? ''    : $value;
     elseif ($type ==  3) $return = ( $value === NULL or    $value === INF or   is_scalar($value)   ) ? FALSE : TRUE;
@@ -97,7 +97,7 @@
     elseif ($type ==  9) $return = ( $value === NULL                                               ) ? TRUE  : FALSE;
 
     if ( $GLOBALS ['padInfo'] )
-      include PAD . 'events/fieldEnd.php';    
+      include PAD . 'events/fieldEnd.php';
 
     return $return;
 
@@ -117,12 +117,12 @@
    */
   function padFieldAt ( $field, $lvl ) {
 
-    if ( str_starts_with ($field, '@') and substr_count($field, '@') == 1 )  
+    if ( str_starts_with ($field, '@') and substr_count($field, '@') == 1 )
       $field .= '@*';
 
-    if ( str_contains ( $field, '.' ) and ! str_contains ( $field, '@' )  )  
+    if ( str_contains ( $field, '.' ) and ! str_contains ( $field, '@' )  )
       $field .= '@*';
-    
+
     return padAt ( $field, $lvl );
 
   }
@@ -137,7 +137,7 @@
    *
    * @return string The value with } replaced by &close;
    */
-  function padRawValue ( $parm ) { 
+  function padRawValue ( $parm ) {
 
     return str_replace ( '}', '&close;', padFieldValue ($parm) );
 
@@ -154,11 +154,11 @@
    *
    * @return string URL parameter string.
    */
-  function padUrlValue ( $parm )  { 
+  function padUrlValue ( $parm )  {
 
-    return "&$parm=" . urlencode ( padFieldValue ( $parm ) ); 
+    return "&$parm=" . urlencode ( padFieldValue ( $parm ) );
 
   }
-  
+
 
 ?>

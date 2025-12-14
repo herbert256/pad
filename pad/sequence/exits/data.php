@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! $pqToData ) 
+  if ( ! $pqToData )
     return;
 
   if ( $pqPull and ( isset ($pqPop) or isset ($pqShift) ) )

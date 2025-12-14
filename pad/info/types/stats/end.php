@@ -2,7 +2,7 @@
 
   if ( ! isset ( $GLOBALS ['padInfoStatsStarted'] ) )
     return;
-  
+
   global $padMicro, $padHR, $padApp, $padLog;
 
   $padStats_total = padDuration ();
@@ -15,10 +15,10 @@
     'boot'  => $padStats_boot,
     'usr'   => $padStats_pad,
     'call'  => $padApp
-  ]; 
+  ];
 
   $GLOBALS ['padInfoStatsJson'] = json_encode ( $GLOBALS ['padInfoStatsInfo'] ) ;
-  
+
   include PAD . 'events/stats.php';
- 
+
 ?>

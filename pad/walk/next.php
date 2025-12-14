@@ -1,5 +1,5 @@
 <?php
-     
+
   if ( $padInfo )
     include PAD . 'events/walk.php';
 
@@ -12,9 +12,9 @@
 
   if ( $padWalk [$pad] ) {
 
-    if ( $padArray [$pad] ) 
+    if ( $padArray [$pad] )
       $padData [$pad] = $padTagResult;
- 
+
     reset ( $padData [$pad] );
 
   }

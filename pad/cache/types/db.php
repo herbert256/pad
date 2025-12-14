@@ -19,9 +19,9 @@
    * @global string   $padCacheDbDatabase Database name.
    */
   function padCacheInit ($url, $etag) {
-    
+
     global $padCacheDbConnect, $padCacheDbHost, $padCacheDbUser, $padCacheDbPassword, $padCacheDbDatabase;
-    
+
     $padCacheDbConnect = padDbConnect ( $padCacheDbHost, $padCacheDbUser, $padCacheDbPassword, $padCacheDbDatabase );
 
   }
@@ -40,7 +40,7 @@
 
   }
 
-  
+
   /**
    * Retrieves cache metadata for a URL from the database.
    *
@@ -92,7 +92,7 @@
 
   }
 
-  
+
   /**
    * Updates the cache timestamps for a URL and ETag in the database.
    *
@@ -134,7 +134,7 @@
 
   }
 
-    
+
   /**
    * Executes a database query for the cache system.
    *

@@ -3,10 +3,10 @@
   function pqBoolHappy ($num, $p=0) {
 
     $n = $num;
-  
+
     while ($n != 1 && $n != 4)
       $n = pqBoolHappyGo ($n);
-  
+
     return ( $n == 1 );
 
   }

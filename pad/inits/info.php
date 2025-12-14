@@ -4,10 +4,10 @@
 
     $padInfo      = 'xref';
     $padInfoTrack = FALSE;
-    $padInfoXml   = FALSE; 
+    $padInfoXml   = FALSE;
     $padInfoStats = FALSE;
     $padInfoTrace = FALSE;
-    $padInfoXref  = TRUE; 
+    $padInfoXref  = TRUE;
 
   }
 

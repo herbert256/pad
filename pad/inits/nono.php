@@ -1,7 +1,7 @@
 <?php
 
   if ( ! $padNoNo )
-    return; 
+    return;
 
   $padNoNo = APP . "$padPage.php";
 

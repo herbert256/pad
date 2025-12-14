@@ -2,7 +2,7 @@
 
   include PQ . 'inits/find/parm/inits.php';
   include PQ . 'inits/find/prefix.php';
-  include PQ . 'inits/find/tag.php';  
+  include PQ . 'inits/find/tag.php';
   include PQ . 'inits/find/parm/quick.php';
   include PQ . 'inits/find/parm/primary.php';
   include PQ . 'inits/find/loop.php';

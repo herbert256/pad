@@ -6,5 +6,5 @@
   include PQ . "build/randomly/build/inits.php";
   include PQ . "build/types/$pqBuild.php";
   include PQ . "build/randomly/build/exits.php";
-  
+
 ?>

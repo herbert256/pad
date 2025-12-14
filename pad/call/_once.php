@@ -4,17 +4,17 @@
 
   if ( file_exists ( $padCall ) ) {
 
-    if ( $GLOBALS ['padInfo'] ) 
+    if ( $GLOBALS ['padInfo'] )
       include PAD . 'events/callStart.php';
 
     $padTry = 'call/_tryOnce';
     $padCallPHP = include PAD . 'try/try.php';
 
-    if ( $GLOBALS ['padInfo'] ) 
+    if ( $GLOBALS ['padInfo'] )
       include PAD . 'events/callEnd.php';
 
   }
-  
+
   include PAD . 'call/_exit.php';
 
  ?>

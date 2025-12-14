@@ -20,18 +20,18 @@
   function padFastLink ( $padPage, $vars ) {
 
     global $padFastLink, $padSesID, $padReqID, $padHost, $padScript;
-  
+
     $vars ['padPage']  = $padPage;
     $vars ['padSesID'] = $padSesID;
     $vars ['padRefID'] = $padReqID;
-    
+
     $fast = padRandomString ($padFastLink);
-  
+
     padDb (
       "insert into links values('{0}','{1}')",
       [$fast, serialize($vars)]
     );
-                        
+
     return "$padHost$padScript?$fast";
 
   }
@@ -55,21 +55,21 @@
 
     global $padHost, $padGoExt;
 
-    foreach ( $vars as $padK => $padV ) 
+    foreach ( $vars as $padK => $padV )
       $go .= "&$padK=" . urlencode($padV);
 
     if ( ! strpos($go, '://') )
       $go = $padGoExt . $go;
-  
+
     $go = str_replace('SELF://', "$padHost/", $go);
 
     if  ( str_starts_with ( $go, $padHost ) ) {
       $go = padAddGet ( $go, 'padSesID', $GLOBALS ['padSesID'] );
       $go = padAddGet ( $go, 'padReqID', $GLOBALS ['padReqID'] );
-    }    
+    }
 
     padHeader ("Location: $go");
-    
+
     padExit (302);
 
   }

@@ -9,12 +9,12 @@
         $padExecArgs [$padK] = escapeshellarg ($padV);
 
     $padExecArgs = implode(" ", $padExecArgs);
-    
+
     exec ("$padExec $padExecArgs", $padExecOut, $padExecReturn);
 
     if ( $padExecReturn ) {
       padError ("Script $padExec has returned error $padExecReturn");
-      return FALSE;    
+      return FALSE;
     }
 
     return implode("\n", $padExecOut);

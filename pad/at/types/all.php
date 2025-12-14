@@ -9,5 +9,5 @@
     return $check;
 
   return INF;
-  
+
 ?>

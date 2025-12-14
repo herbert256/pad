@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! $padInfo ) 
+  if ( ! $padInfo )
     return;
 
   include PQ . 'exits/info/start.php';

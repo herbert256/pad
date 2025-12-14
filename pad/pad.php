@@ -19,5 +19,5 @@
 
   include PAD . 'config/config.php';
   include PAD . 'start/enter/start.php';
-  
+
 ?>

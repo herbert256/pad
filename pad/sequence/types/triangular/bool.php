@@ -16,9 +16,9 @@ function pqBoolTriangular ($num) {
     if ($num < 0)
         return false;
 
-    // Considering the equation 
+    // Considering the equation
     // n*(n+1)/2 = num
-    // The equation is : 
+    // The equation is :
     // a(n^2) + bn + c = 0";
     $c = (-2 * $num);
     $b = 1; $a = 1;
@@ -29,7 +29,7 @@ function pqBoolTriangular ($num) {
 
     // Find roots of equation
     $root1 = (-$b + (float)sqrt($d)) / (2 * $a);
-        
+
     $root2 = (-$b - (float)sqrt($d)) / (2 * $a);
 
     // checking if root1 is natural
@@ -42,5 +42,5 @@ function pqBoolTriangular ($num) {
 
     return false;
 }
-  
+
 ?>

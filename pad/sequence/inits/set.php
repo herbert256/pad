@@ -1,6 +1,6 @@
 <?php
 
-  if ( $pqSole ) 
+  if ( $pqSole )
     $pqFrom = $pqTo = $pqSole;
 
   $pqType   = $padType   [$pad];

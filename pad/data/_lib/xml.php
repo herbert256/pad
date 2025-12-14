@@ -32,16 +32,16 @@
         'output-xml'   => true,
         'force-output' => true
       ];
-      
+
       $xml = new tidy;
       $xml->parseString ( $input, $options, 'utf8');
       $xml->cleanRepair();
-      
+
       if ( $xml === FALSE )
         return padError ( "TIDY conversion error" );
-    
+
       $xml = simplexml_load_string ($xml, "SimpleXMLElement", LIBXML_NOERROR | LIBXML_ERR_NONE);
-      
+
       if ( $xml === FALSE ) {
         $errors = libxml_get_errors ();
         $line = 'XML parse error: ';
@@ -79,14 +79,14 @@
   function padXmlToArrayIterator ( $xml ) {
 
     $arr = array();
- 
+
     for( $xml->rewind(); $xml->valid(); $xml->next() ) {
 
       $val = trim ( strval ( $xml->current() ) );
       $idx = $xml->key();
       $cnt = ( array_key_exists ($idx, $arr) ) ? array_key_last ($arr [$idx]) + 1 : 0;
 
-      if ( ! $xml->hasChildren() and ! count ( $xml->current()->attributes() ) ) 
+      if ( ! $xml->hasChildren() and ! count ( $xml->current()->attributes() ) )
 
         $arr [$idx] [$cnt] = $val;
 
@@ -100,7 +100,7 @@
             $arr [$idx] [$cnt] ['_'.$key] = strval($val);
           else
             $arr [$idx] [$cnt] [$key] = strval($val);
-        
+
         if ( $xml->hasChildren() )
           $arr [$idx] [$cnt] ['_children'] = padXmlToArrayIterator ($xml->current());
 
@@ -125,14 +125,14 @@
    */
   function padXmlToArrayCheck ( $arr ) {
 
-    foreach ( $arr as $key => $val ) 
+    foreach ( $arr as $key => $val )
       if ( is_array ($val) )
         if ( count($val) == 1 and isset ($val[0]) and ! is_array ($val[0]) )
           $arr [$key] = $val [0];
         else
-          $arr [$key] = padXmlToArrayCheck ( $arr [$key] ); 
+          $arr [$key] = padXmlToArrayCheck ( $arr [$key] );
 
-    foreach ( $arr as $key => $val ) 
+    foreach ( $arr as $key => $val )
       if ( $key == '_children') {
         unset ( $arr [$key] );
         foreach ( $val as $key2 => $val2)
@@ -143,8 +143,8 @@
       }
 
     return $arr;
-  
+
   }
-   
+
 
 ?>

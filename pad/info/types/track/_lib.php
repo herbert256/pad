@@ -10,7 +10,7 @@
       padDb ( "update track_session set requests=requests+1 where session='$session'");
     else
       padDb ( "insert into track_session values('$session', NOW(), NOW(), 1)" );
-   
+
     if ( ! $GLOBALS ['padInfoTrackDbRequest'] )
       return;
 
@@ -30,20 +30,20 @@
         12 => $_SERVER ['HTTP_USER_AGENT'] ?? ''
       ]
     );
-      
+
   }
 
 
   function padInfoTrackDbData ( ) {
 
     global $padEtag, $padOutput;
-    
+
     $etag = padDb ( "check track_data where etag='{1}'", [ 1 => $padEtag ] );
 
     if ( ! $etag )
       $session = padDb ( "insert into track_data values('{1}', '{2}')", [ 1 => $padEtag, 2=> $padOutput ] );
 
-  }  
+  }
 
 
   function padInfoTrackStart () {
@@ -85,19 +85,19 @@
         unset ( $phpHeaders [$key] );
     }
 
-    padFilePut ( 
-      "track/requests/$padLog.json", 
+    padFilePut (
+      "track/requests/$padLog.json",
         [ 'pad' => padInfo (),
           'in'  => json_decode ( padInfoGet ( DAT . "track/requests/$padLog-entry.json" ) ),
           'out' => [
              'http'    => $http,
              'headers' => [
                'php'     => $phpHeaders,
-               'pad'     => $padHeaders ], 
+               'pad'     => $padHeaders ],
              'length'  => $GLOBALS ['padLen']   ?? '',
              'data'    => $GLOBALS ['padOutput'],
             ]
-        ] 
+        ]
     );
 
     unlink ( DAT . "track/requests/$padLog-entry.json" );
@@ -108,7 +108,7 @@
   function padInfoTrackData () {
 
     global $padStartPage;
-    
+
     if ( padInclude () )
       $dir = 'include';
     else

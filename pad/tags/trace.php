@@ -1,11 +1,11 @@
 <?php
 
-  if ( $padWalk [$pad] == 'start' ) { 
+  if ( $padWalk [$pad] == 'start' ) {
 
     include PAD . 'info/start/tag.php';
     include PAD . 'config/info/trace.php';
     include PAD . 'info/types/trace/start.php';
-    
+
     $padWalk [$pad] = 'end';
 
   } else {

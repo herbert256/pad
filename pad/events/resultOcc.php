@@ -2,7 +2,7 @@
 
   if ( ! $GLOBALS ['padInfoTrace'] )
     return;
-  
+
   if ( ! $padInfoTrace or ! $padInfoTraceResultOcc )
     return;
 

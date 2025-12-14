@@ -1,10 +1,10 @@
 <?php
-  
+
   $padOutput = padOutput ( $padResult [0] );
 
   if ( $padTidy or $padMyTidy )
     include PAD . 'exits/tidy.php';
- 
+
   $padEtag = padMD5 ($padOutput);
   $padStop = 200;
 

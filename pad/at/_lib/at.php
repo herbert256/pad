@@ -25,7 +25,7 @@
 
   }
 
-        
+
   /**
    * Resolves an @ field reference by trying multiple resolution strategies.
    *
@@ -41,8 +41,8 @@
   function padAtValue ( $field, $cor=0 ) {
 
     padSplit ( '@', $field, $before, $after );
-  
-    $names = padExplode ( $before, '.' ); 
+
+    $names = padExplode ( $before, '.' );
     $name  = reset ($names);
 
     $GLOBALS ['padForceTagName']  = $name;
@@ -51,7 +51,7 @@
     if ( str_contains($field, '@*') )
       return padAtValueAny ( $field, $cor);
 
-    $parts = padExplode ( $after,  ':' ); 
+    $parts = padExplode ( $after,  ':' );
 
     if ( ! count ( $parts ) )
       return padAtSingle ( $field, $cor );
@@ -123,15 +123,15 @@
       $check = str_replace ( '@*', "@$idx", $field );
       $check = padAtValue ( $check, $cor );
       if ( $check !== INF )
-        return $check; 
+        return $check;
     }
 
     for ( $i=$pad; $i>-1; $i-- ) {
- 
+
       $check = str_replace ( '@*', "@$i", $field );
       $check = padAtValue ( $check, $cor );
       if ( $check !== INF )
-        return $check; 
+        return $check;
 
     }
 
@@ -140,13 +140,13 @@
       $check = padAtSingle ( $field, $cor );
       if ( $check !== INF )
         return $check;
-      
+
     }
 
     return INF;
 
   }
-  
+
 
   /**
    * Resolves a simple @ field reference without level specifier.
@@ -162,14 +162,14 @@
   function padAtSingle ( $field, $cor ) {
 
     $field = str_replace ( '@*', '', $field );
-    $names = padExplode ( $field, '.' ); 
+    $names = padExplode ( $field, '.' );
     $name  = reset ( $names );
     $type  = '';
 
     $check = include PAD . 'at/types/_lib/other.php';
     if ( $check !== INF )
       return $check;
-   
+
     return INF;
 
   }
@@ -190,7 +190,7 @@
 
     $special = ['_POST','_GET','_COOKIE','_SESSION','_FILES','_SERVER','_REQUEST','_ENV'] ;
 
-    foreach ( $special as $field ) 
+    foreach ( $special as $field )
 
       if ( isset ( $GLOBALS [$field] ) and is_array ( $GLOBALS [$field] ) and count ( $GLOBALS [$field] )) {
         $check = padAtSearch ( $GLOBALS [$field], $names );
@@ -216,7 +216,7 @@
    */
   function padAtPad ( $names, $cor ) {
 
-    foreach ( $GLOBALS  as $key => $value ) 
+    foreach ( $GLOBALS  as $key => $value )
 
       if ( str_starts_with($key, 'pad' ) and is_array ( $GLOBALS [$key] ) and count ( $GLOBALS [$key] ) ) {
         $check = padAtSearch ( $value, $names );
@@ -227,7 +227,7 @@
     return INF;
 
   }
-  
+
 
   /**
    * Searches a data store for an @ field reference.
@@ -243,10 +243,10 @@
    */
   function padAtStore ( $store, $names, $parts ) {
 
-    if ( ! count ($store) ) 
+    if ( ! count ($store) )
       return INF;
 
-    if ( count ($parts) == 1 ) {      
+    if ( count ($parts) == 1 ) {
       $name = reset ($parts);
       if ( isset ( $store [$name] ) )
         return padAtSearch ( $store [$name], $names );
@@ -259,7 +259,7 @@
           return padAtSearch ( $store [$second], $names );
     }
 
-    if ( count ($parts) == 1 ) {      
+    if ( count ($parts) == 1 ) {
       $name = reset ($parts);
       if ( $name == 'sequence' or $name == 'sequences' or $name == 'data' )
         return padAtSearch ( $store, $names );
@@ -309,14 +309,14 @@
 
     if ( isset ( $search [$array] ) and is_array ( $search [$array] ) ) {
       $check = padAtSearch ( $search [$array], $names, 1 );
-      if ( $check !== INF ) 
+      if ( $check !== INF )
         return $check;
     }
 
     foreach ( $search as $k => $v )
       if ( padValidStore ($k) and is_array ($v) ) {
         $check = padAtGlobals2 ( $array, $names, $v );
-        if ( $check !== INF ) 
+        if ( $check !== INF )
           return $check;
       }
 
@@ -365,7 +365,7 @@
    *
    * @return mixed The resolved value, or INF if not found.
    */
-  function padAtLevelGroup ( $name, $names, $level, $group, $cor ) {  
+  function padAtLevelGroup ( $name, $names, $level, $group, $cor ) {
 
     $padIdx = padAtIdx ( $level, $cor );
 
@@ -423,8 +423,8 @@
     if ( ! $group or ! $padIdx or ! file_exists ( PAD . "at/groups/$group.php" ) )
       return INF;
 
-    if ( $GLOBALS ['padInfo'] ) 
-      include PAD . 'events/atGroups.php'; 
+    if ( $GLOBALS ['padInfo'] )
+      include PAD . 'events/atGroups.php';
 
     return include PAD . "at/groups/$group.php";
 
@@ -449,11 +449,11 @@
 
     if ( $second )
       return INF;
-    
+
     $padIdx = padAtIdx ( $first, $cor );
 
     $current = padAtProperty ( $names, $padIdx );
-    if ( $current !== INF ) 
+    if ( $current !== INF )
       return $current;
 
     return INF;
@@ -480,7 +480,7 @@
 
     $name = reset ( $names );
 
-    if ( ! $padIdx or ! file_exists ( PAD . "at/properties/$name.php") ) 
+    if ( ! $padIdx or ! file_exists ( PAD . "at/properties/$name.php") )
       return INF;
 
     $return = include PAD . "at/properties/$name.php";
@@ -488,8 +488,8 @@
     if ( $return !== INF )
       padAtSetTag ();
 
-    if ( $GLOBALS ['padInfo'] ) 
-      include PAD . 'events/atProperties.php'; 
+    if ( $GLOBALS ['padInfo'] )
+      include PAD . 'events/atProperties.php';
 
     return $return;
 
@@ -514,8 +514,8 @@
     if ( ! file_exists ( PAD . "at/types/$go.php" ) )
       return INF;
 
-    if ( $GLOBALS ['padInfo'] ) 
-      include PAD . 'events/atTypes.php'; 
+    if ( $GLOBALS ['padInfo'] )
+      include PAD . 'events/atTypes.php';
 
     return include PAD . "at/types/$go.php";
 
@@ -544,12 +544,12 @@
     if ( isset ( $padDataStore [$data] ) )
 
       $check = padAtSearch ( $padDataStore [$data], $names );
-    
+
     else {
 
       $check = padAtDataNew ( $data, $names );
 
-      if ( $check !== INF ) 
+      if ( $check !== INF )
         return $check;
 
     }

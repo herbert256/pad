@@ -11,7 +11,7 @@
 
   if ( pqAction ( $padLastPush ) )
     padError ( "Store name '$padLastPush' can not be equal to an Action name" );
-  
+
   if ( file_exists ( PAD . "options/$padLastPush.php") )
     padError ( "Store name '$padLastPush' can not be equal to a PAD option name" );
 

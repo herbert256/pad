@@ -9,5 +9,5 @@
    if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'eval', 'fast', "$eval: $value --> $return");
 
   return $return;
-   
+
 ?>

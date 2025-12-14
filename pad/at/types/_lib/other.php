@@ -17,5 +17,5 @@
     return $check;
 
   return INF;
-  
+
 ?>

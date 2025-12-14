@@ -1,7 +1,7 @@
 <?php
-  
+
   if ( $padEtag == $padCacheEtag )
-  
+
     padCacheUpdate ($padCacheUrl, $padEtag);
 
   else {
@@ -13,7 +13,7 @@
       padCacheStore ($padCacheUrl, $padEtag, padZip($padOutput));
     else
       padCacheStore ($padCacheUrl, $padEtag, $padOutput);
-    
+
   }
 
 ?>

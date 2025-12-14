@@ -34,9 +34,9 @@
     $options ['size']   = $size;
     $options ['result'] = $result;
 
-    if ( $count <= 1 or $padInfoXmlCompact ) 
+    if ( $count <= 1 or $padInfoXmlCompact )
       $options ['parm'] = $parm;
-    
+
     if ( $type   <> 'pad'     ) $options ['type']   = $type;
     if ( $source <> 'content' ) $options ['source'] = $source;
 
@@ -50,11 +50,11 @@
 
     if ( $count > 1 and ! $padInfoXmlCompact )
       padInfoJsonLevelParms ( $parms );
-   
+
   }
 
 
-  function padInfoJsonLevelParms ( $parms ) {  
+  function padInfoJsonLevelParms ( $parms ) {
 
     padInfoJsonOpen ( 'parms' );
 
@@ -71,7 +71,7 @@
 
     global $padInfoXmlTree, $padInfoXmlCompact;
 
-    if ( $padInfoXmlCompact ) 
+    if ( $padInfoXmlCompact )
       return;
 
     extract ( $event );
@@ -101,7 +101,7 @@
 
 
   function padInfoJsonOpen ( $xml, $parms=[] ) {
-  
+
     global $padInfoXmlDepth;
 
     $more = padInfoJsonMore ( $parms );
@@ -109,21 +109,21 @@
     padInfoJsonWrite ( "<$xml$more>" );
 
     $padInfoXmlDepth++;
-      
+
   }
 
 
   function padInfoJsonLine ( $xml, $parms=[] ) {
-  
+
     $more = padInfoJsonMore ( $parms );
- 
+
     padInfoJsonWrite ( "<$xml$more />" );
-  
+
   }
 
 
   function padInfoJsonWrite ( $xml ) {
-  
+
     global $padInfoXmlDepth, $padInfoXmlFile;
 
     if ( $padInfoXmlDepth > 0 )
@@ -132,12 +132,12 @@
       $spaces = '';
 
     padFilePut ( $padInfoXmlFile, "$spaces$xml", 1 );
-  
+
   }
 
 
   function padInfoJsonMore ( $parms ) {
-  
+
     $more = '';
 
     foreach ( $parms as $key => $value )
@@ -145,7 +145,7 @@
         $more .= " $key=\"" . str_replace ( '&#039;', "'", htmlspecialchars ($value) ) . '"';
 
     return $more;
-  
+
   }
 
 

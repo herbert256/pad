@@ -8,7 +8,7 @@
   if     ( $padOS == 'lin' ) $padHome = '/home/herbert/pad';
   elseif ( $padOS == 'dar' ) $padHome = '/Users/herbert/pad';
   elseif ( $padOS == 'win' ) $padHome = '/apache/htdocs/pad';
-  else                       
+  else
     die ( "Unsuported OS: $padOS" );
-  
+
 ?>

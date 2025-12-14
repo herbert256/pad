@@ -7,7 +7,7 @@
   define ( 'padStrDat', ['padData','padCurrent','padSetLvl','padSetOcc','padTable','padPrm','padOpt'] );
 
   define ( 'padOptionsStart', ['track', 'before', 'dedup', 'page', 'sort', 'ignore', 'print', 'parent', 'trace', 'pre'] );
-                            
+
   define ( 'padOptionsEnd', ['toBool', 'toContent', 'toData', 'tidy', 'dump'] );
 
   define ( 'PQ', PAD . 'sequence/' );

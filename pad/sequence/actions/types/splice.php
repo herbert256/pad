@@ -16,9 +16,9 @@
         $pqActionList [0],
         $pqActionList [1]
       );
-    
-    else 
-    
+
+    else
+
       array_splice (
         $pqResult,
         $pqActionList [0],

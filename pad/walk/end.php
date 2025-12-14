@@ -8,9 +8,9 @@
   $padContent = $padResult [$pad];
   $padParm    = $padOpt [$pad] [1] ?? '';
   include PAD . "types/" . $padType [$pad] . ".php";
-  
+
   $padResult [$pad] = $padContent;
 
-  include PAD . "level/flags.php"; 
-  
+  include PAD . "level/flags.php";
+
 ?>

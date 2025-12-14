@@ -3,14 +3,14 @@
   function pqBoolSemiprime ($num, $p=0) {
 
     $cnt = 0;
- 
+
     for ( $i = 2; $cnt < 2 &&
           $i * $i <= $num; ++$i)
-        while ($num % $i == 0) 
+        while ($num % $i == 0)
             $num /= $i;
-             
-               ++$cnt; 
- 
+
+               ++$cnt;
+
     if ($num > 1)
         ++$cnt;
 

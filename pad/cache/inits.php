@@ -6,7 +6,7 @@
     $padCache = FALSE;
   elseif ( isset ( $_SERVER['REQUEST_METHOD'] ) and $_SERVER['REQUEST_METHOD'] <> 'GET' )
     $padCache = FALSE;
-  elseif ( ! $padCacheServerAge ) 
+  elseif ( ! $padCacheServerAge )
     $padCache = FALSE;
 
   if ( ! $padCache )
@@ -16,11 +16,11 @@
   $padCacheMax = $_SERVER['REQUEST_TIME'] - $padCacheServerAge;
 
   include_once PAD . "cache/types/$padCacheServerType.php";
-  
+
   padCacheInit ($padCacheUrl, $padCacheClient);
-  
+
   if ( $padCacheClient ) {
-    
+
     $padCacheAge = padCacheEtag ($padCacheClient);
 
     if ( $padCacheAge and $padCacheAge >= $padCacheMax ) {
@@ -28,7 +28,7 @@
       $padEtag = $padCacheClient;
       include PAD . 'cache/hit.php';
     }
-    
+
   }
 
   $url = padCacheUrl ($padCacheUrl);
@@ -41,7 +41,7 @@
     if ( $padClientDate and $padClientDate >= $padCacheMax and $padCacheAge >= $padCacheMax ) {
       $padStop = 304;
       $padEtag = $padCacheEtag;
-      include PAD . 'cache/hit.php';    
+      include PAD . 'cache/hit.php';
     }
 
     if ( $padCacheAge >= $padCacheMax and ! $GLOBALS ['padCacheServerNoData'] ) {

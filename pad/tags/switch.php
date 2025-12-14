@@ -2,7 +2,7 @@
 
   $padSw = $padOpt [$pad] [0];
 
-  if ( isset ( $padSwNow [$padSw] ) ) 
+  if ( isset ( $padSwNow [$padSw] ) )
     $padSwNow [$padSw]++;
   else
     $padSwNow [$padSw] = 0;

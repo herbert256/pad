@@ -32,7 +32,7 @@ function pqRecaman($n)
     $padrev = $curr;
   }
 
-  return $curr; 
+  return $curr;
 
 }
 

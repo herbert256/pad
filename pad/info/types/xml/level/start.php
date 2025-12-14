@@ -1,7 +1,7 @@
 <?php
 
   include PAD . 'info/types/xml/level/parent.php';
-    
+
   $padInfoXmlNew             = [];
   $padInfoXmlNew ['tag']     = str_replace ( '/', '-', $padTag [$pad] );
   $padInfoXmlNew ['level']   = $pad;
@@ -22,8 +22,8 @@
   $padInfoXmlLevel [$pad] = array_key_last ( $padInfoXmlTree );
 
   $padInfoXmlLvl = $padInfoXmlLevel [$pad];
-  $padInfoXmlOcc = $padOccur    [$pad]; 
-  
+  $padInfoXmlOcc = $padOccur    [$pad];
+
   $padInfoXmlEventType = 'level-start';
   include PAD . 'info/types/xml/event.php';
 

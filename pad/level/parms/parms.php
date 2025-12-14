@@ -1,28 +1,28 @@
 <?php
 
-  if ( $padPrmType [$pad] == 'close' ) 
+  if ( $padPrmType [$pad] == 'close' )
     include PAD . 'level/close.php';
 
   $padParms [$pad]  = [];
-  
+
   foreach ( $padPrmParse as $padPrmOne ) {
 
     padSplit ( '=', $padPrmOne, $padPrmName, $padPrmValue );
 
     $padParmsSet = '';
 
-    if ( in_array    ( $padPrmName [0], ['$','%'] ) and 
-         padValidVar ( substr ( $padPrmName, 1 ) )  and 
-         strlen      ( $padPrmValue ) ) 
+    if ( in_array    ( $padPrmName [0], ['$','%'] ) and
+         padValidVar ( substr ( $padPrmName, 1 ) )  and
+         strlen      ( $padPrmValue ) )
 
       include PAD . 'level/parms/variable.php';
 
     elseif ( padValidVar ( $padPrmName ) )
-      
+
       include PAD . 'level/parms/option.php';
-    
-    else 
-    
+
+    else
+
       include PAD . 'level/parms/parameter.php';
 
     $padParms [$pad] [] = [
@@ -37,7 +37,7 @@
   if ( ! isset ( $padOpt [$pad] [1] ) )
     $padOpt [$pad] [1] = '';
 
-  if ( $padInfo ) 
+  if ( $padInfo )
     include PAD . 'events/parms.php';
 
 ?>

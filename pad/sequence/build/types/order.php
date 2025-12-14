@@ -7,5 +7,5 @@
   $pqInc  = 1;
 
   include PQ . 'build/types/type/loop.php';
-  
+
 ?>

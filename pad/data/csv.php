@@ -9,7 +9,7 @@
       },
       preg_replace('/(?<!")""/', '!!Q!!', trim($data))
   );
-  
+
   $lines  = preg_split('/( *\R)+/s', $enc);
   $header = explode(',', $lines [0]);
 
@@ -25,5 +25,5 @@
     return padError ( "CSV conversion error" );
 
   return $result;
-  
+
 ?>

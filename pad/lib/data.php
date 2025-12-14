@@ -28,27 +28,27 @@
     elseif ( strlen(trim($input)) == 0 ) $data = [];
     else                                 $data = trim ( $input );
 
-    if ( ! is_array ( $data ) ) {    
+    if ( ! is_array ( $data ) ) {
       if ( ! $type )
         $type = padContentType ( $data );
       $data = include PAD . "data/$type.php";
     }
-    
+
     if ( isset ( $GLOBALS ['padDataSetRecord'] ) and $GLOBALS ['padDataSetRecord'] ) {
-      $data = padDataChkCheckRecord ($data,$name); 
+      $data = padDataChkCheckRecord ($data,$name);
       $GLOBALS ['padDataSetRecord'] = FALSE;
     }
 
     $data = padDataChkSimpleArray ($data,$name);
-    $data = padDataChkChkOne      ($data,$name);   
+    $data = padDataChkChkOne      ($data,$name);
     $data = padDataChkDataAttr    ($data,$name);
-    $data = padDataChkCheckRecord ($data,$name); 
+    $data = padDataChkCheckRecord ($data,$name);
     $data = padDataChkCheckArray  ($data,$name);
 
     return $data;
 
   }
-  
+
 
   /**
    * Wraps simple (non-nested) arrays into standard data format.
@@ -68,18 +68,18 @@
     foreach ($result as $padK => $padV)
       if ( is_array($padV) )
         return $result;
-  
+
     $name   = padDataName($name);
     $tmp    = $result;
     $result = [];
-    
+
     foreach ($tmp as $k => $v)
       $result [$k] [$name] = $v;
 
     return $result;
 
   }
-  
+
 
   /**
    * Converts sequential numeric arrays to nested data format.
@@ -246,6 +246,6 @@
     return $return;
 
   }
-  
+
 
 ?>

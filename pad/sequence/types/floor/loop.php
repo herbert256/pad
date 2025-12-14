@@ -1,4 +1,4 @@
-<?php  
+<?php
 
   if ( ! $pqParm )
     $pqParm = 1;

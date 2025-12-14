@@ -48,7 +48,7 @@
 
     if ( $padFilesFile->isFile() )
       $padFiles ['item']  = substr ( $padFiles ['item'], 0+1, strrpos($padFiles ['item'], '.')-1 );
-    
+
     $padFiles ['dir']   = substr ( $padFiles ['item'], 0, strrpos($padFiles ['item'], '/')   );
 
     if ( $padFilesGroup )

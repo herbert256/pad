@@ -25,7 +25,7 @@
   if ( padTagParm ('dump') )
     include PAD . 'options/dump.php';
 
-  if ( $padTagContent ) 
+  if ( $padTagContent )
     padContentMerge ( $padContent, $padFalse, $padTagContent, $padHit [$pad] );
 
   if ( padTagParm ('content') ) {

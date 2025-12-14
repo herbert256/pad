@@ -1,6 +1,6 @@
 <?php
 
-  padErrorGo ( 
+  padErrorGo (
     'CATCH: ' .
     $padTryException->getMessage(),
     $padTryException->getFile(),

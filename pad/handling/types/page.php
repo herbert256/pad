@@ -5,7 +5,7 @@
 
   $padHandStart = ( ( $padHandPage - 1 ) * $padHandRows ) + 1;
   $padHandEnd   = (   $padHandStart      + $padHandRows ) - 1;
-  
-  padHandGo ($padData [$pad], $padHandStart, $padHandEnd);    
+
+  padHandGo ($padData [$pad], $padHandStart, $padHandEnd);
 
 ?>

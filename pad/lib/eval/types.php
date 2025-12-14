@@ -17,10 +17,10 @@
   function padEvalType ( &$result, $myself, $start=0, $end=PHP_INT_MAX  ) {
 
     $typeK = FALSE;
-    
+
     $b = -1;
-    
-    foreach ( $result as $k => $t ) { 
+
+    foreach ( $result as $k => $t ) {
 
       if ( $k < $start ) continue;
       if ( $k > $end   ) break;
@@ -29,7 +29,7 @@
         $typeK = $k;
         $typeB = $b;
       }
- 
+
       $b = $k;
 
     }
@@ -42,5 +42,5 @@
 
   }
 
-  
+
 ?>

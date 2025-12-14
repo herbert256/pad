@@ -1,5 +1,5 @@
 <?php
-  
+
   $left  = $myself;
   $right = $myself;
 

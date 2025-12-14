@@ -38,11 +38,11 @@
     $options ['size']   = $size;
     $options ['result'] = $result;
 
-    if ( $count > 1 and ! $padInfoXmlCompact ) 
+    if ( $count > 1 and ! $padInfoXmlCompact )
       $padInfoXmlTree [$tree] ['childs'] = TRUE;
     else
       $options ['parm'] = $parm;
-    
+
     if ( $type   <> 'pad'     ) $options ['type']   = $type;
     if ( $source <> 'content' ) $options ['source'] = $source;
 
@@ -56,11 +56,11 @@
 
     if ( $count > 1 and ! $padInfoXmlCompact )
       padInfoXmlLevelParms ( $parms );
-   
+
   }
 
 
-  function padInfoXmlLevelParms ( $parms ) {  
+  function padInfoXmlLevelParms ( $parms ) {
 
     padInfoXmlOpen ( 'parms' );
 
@@ -83,12 +83,12 @@
     if ( isset ($padInfoXmlTree [$tree] ['SKIP'] ) )
       return;
 
-    if ( $written ) 
+    if ( $written )
       padInfoXmlClose ( 'occurs' );
 
     if ( $padInfoXmlTree [$tree] ['childs'] )
-      padInfoXmlClose ( $tag );   
-  
+      padInfoXmlClose ( $tag );
+
   }
 
 
@@ -96,7 +96,7 @@
 
     global $padInfoXmlTree, $padInfoXmlCompact;
 
-    if ( $padInfoXmlCompact ) 
+    if ( $padInfoXmlCompact )
       return;
 
     extract ( $event );
@@ -129,7 +129,7 @@
 
     global $padInfoXmlTree, $padInfoXmlCompact;
 
-    if ( $padInfoXmlCompact ) 
+    if ( $padInfoXmlCompact )
       return;
 
     extract ( $event );
@@ -142,11 +142,11 @@
     if ( $childs )
      padInfoXmlClose ( 'occur' );
 
-  }  
+  }
 
 
   function padInfoXmlOpen ( $xml, $parms=[] ) {
-  
+
     global $padInfoXmlDepth;
 
     $more = padInfoXmlMore ( $parms );
@@ -154,16 +154,16 @@
     padInfoXmlWrite ( "<$xml$more>" );
 
     $padInfoXmlDepth++;
-      
+
   }
 
 
   function padInfoXmlLine ( $xml, $parms=[] ) {
-  
+
     $more = padInfoXmlMore ( $parms );
- 
+
     padInfoXmlWrite ( "<$xml$more />" );
-  
+
   }
 
 
@@ -172,14 +172,14 @@
     global $padInfoXmlDepth;
 
     $padInfoXmlDepth--;
-  
+
     padInfoXmlWrite ( "</$xml>" );
-  
+
   }
 
 
   function padInfoXmlWrite ( $xml ) {
-  
+
     global $padInfoXmlDepth, $padInfoXmlFile;
 
     if ( $padInfoXmlDepth > 0 )
@@ -188,12 +188,12 @@
       $spaces = '';
 
     padFilePut ( $padInfoXmlFile, "$spaces$xml", 1 );
-  
+
   }
 
 
   function padInfoXmlMore ( $parms ) {
-  
+
     $more = '';
 
     foreach ( $parms as $key => $value )
@@ -201,7 +201,7 @@
         $more .= " $key=\"" . str_replace ( '&#039;', "'", htmlspecialchars ($value) ) . '"';
 
     return $more;
-  
+
   }
 
 

@@ -19,11 +19,11 @@
     $splitPos = null;
 
     for ($i = 0; $i < $length; $i++) {
-    
+
         $ch = $input[$i];
 
         if ($ch === '\\' && $i + 1 < $length && ($input[$i + 1] === "'" || $input[$i + 1] === '"')) {
-            $i++; 
+            $i++;
       } elseif ($ch === "'" && !$inDouble) {
             $inSingle = !$inSingle;
         } elseif ($ch === '"' && !$inSingle) {
@@ -32,7 +32,7 @@
             $splitPos = $i;
             break;
         }
-    
+
     }
 
     if ( $splitPos === null)
@@ -42,7 +42,7 @@
     $right = substr($input, $splitPos + 1);
 
     return [$left, $right];
-  
+
   }
 
 
@@ -130,7 +130,7 @@
 
   }
 
-  
+
   /**
    * Escapes current paired tag to prevent reprocessing.
    *

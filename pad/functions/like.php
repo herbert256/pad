@@ -1,5 +1,5 @@
 <?php
-  
+
   $escape = '\\';
 
   $expr = '/((?:'.preg_quote($escape, '/').')?(?:'.preg_quote($escape, '/').'|%|_))/';
@@ -7,9 +7,9 @@
 
   $expr = '/^';
   $lastWasPercent = FALSE;
-  
+
   foreach ($parts as $part) {
-    
+
       switch ($part) {
           case $escape.$escape:
               $expr .= preg_quote($escape, '/');
@@ -31,10 +31,10 @@
               $expr .= preg_quote($part, '/');
               break;
       }
-      
+
       $lastWasPercent = $part == '%';
   }
-  
+
   $expr .= '$/i';
 
   return preg_match($expr, $value) ? '1' : '';

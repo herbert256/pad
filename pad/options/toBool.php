@@ -8,5 +8,5 @@
   else                                             $padBoolStore [$padStoreName] = FALSE;
 
   $padResult [$pad] = '';
-  
+
 ?>

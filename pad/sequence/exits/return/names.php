@@ -1,7 +1,7 @@
 <?php
 
   $pqNames [] = 'sequence';
-  $pqNames [] = $pqName; 
+  $pqNames [] = $pqName;
   $pqNames [] = $pqToData;
   $pqNames [] = $pqPush;
 
@@ -15,8 +15,8 @@
        if ( $pqName and $pqName !== TRUE )
          $pqRecord [$pqName] = $pqValue;
 
-     $padData [$pad] [] = $pqRecord; 
+     $padData [$pad] [] = $pqRecord;
 
-  } 
+  }
 
 ?>

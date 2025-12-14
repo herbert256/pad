@@ -1,9 +1,9 @@
-<?php 
+<?php
 
-  if  ( padTagParm ( 'notOk' ) ) 
+  if  ( padTagParm ( 'notOk' ) )
     return include PAD . 'options/notOk.php';
 
-  padErrorGo ( 
+  padErrorGo (
     'CATCH: ' .
     $padTryException->getMessage(),
     $padTryException->getFile(),

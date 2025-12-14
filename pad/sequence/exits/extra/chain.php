@@ -8,5 +8,5 @@
       foreach ( $padSeqData [$pqPull] [$padK1] as $padK2 => $padV2 )
         if ( ! isset ( $padData [$pad] [$padK1] [$padK2] ) )
           $padData [$pad] [$padK1] [$padK2] = $padV2;
- 
+
 ?>

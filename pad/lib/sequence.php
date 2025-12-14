@@ -30,8 +30,8 @@
     return $pqFirst;
 
   }
-   
-   
+
+
   /**
    * Expands range syntax (from..to) to random value.
    *
@@ -203,8 +203,8 @@
     return in_array ( $check, ['pull','fixed','build','given'] );
 
   }
-  
-  
+
+
   /**
    * Checks if value is a play type.
    *
@@ -274,7 +274,7 @@
     return $out;
 
   }
-    
+
 
   /**
    * Selects random keys allowing duplicates.

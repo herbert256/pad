@@ -6,13 +6,13 @@
 
     $i = (int) substr ( $l, 1,  7 );
 
-    $a [$i] = substr ( $l, 9, -2 ); 
+    $a [$i] = substr ( $l, 9, -2 );
 
   }
 
   $t = "<?php\n\nconst OEIS = [";
 
-  for ($i=0; $i <=375610 ; $i++) { 
+  for ($i=0; $i <=375610 ; $i++) {
 
     if ( isset ( $a [$i] ) )
       $s = $a [$i];

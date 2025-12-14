@@ -7,8 +7,8 @@
 
   $padPage    = $padParm;
   $padInclude = padTagParm ( 'include', TRUE );
-  $padDir     = padDir ();  
-  $padPath    = padPath ();  
+  $padDir     = padDir ();
+  $padPath    = padPath ();
 
   $padStrBld = 'page';
   $padStrCod = '';
@@ -18,7 +18,7 @@
   $padInclude = $padStrPag [$pad] [1];
   $padDir     = $padStrPag [$pad] [2];
   $padPath    = $padStrPag [$pad] [3];
-  
+
   return $padStrRet;
 
 ?>

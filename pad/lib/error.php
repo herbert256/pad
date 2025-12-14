@@ -162,7 +162,7 @@
     }
 
     restore_error_handler ();
-    
+
     padExit ( 500 );
 
   }
@@ -185,10 +185,10 @@
     set_error_handler ( 'padErrorThrow' );
 
     try {
- 
+
       if ( ! headers_sent () )
         header ( 'HTTP/1.0 500 Internal Server Error' );
- 
+
       $error2 = padErrorGet ( $e2 );
       $error3 = padErrorGet ( $e3 );
       $error4 = padErrorGet ( $e4 );
@@ -211,7 +211,7 @@
     padExit ( 500 );
 
   }
-  
+
 
   /**
    * Final fallback - last resort error display.
@@ -237,7 +237,7 @@
       $error3 = padErrorGet ( $e3 );
       $error4 = padErrorGet ( $e4 );
       $error5 = padErrorGet ( $e5 );
-      
+
       padErrorExit ( "$error1\n$error2\n$error3\n$error4\n$error5" );
 
     } catch (Throwable $e6) {
@@ -245,13 +245,13 @@
       // Ignoring errors
 
     }
- 
+
     restore_error_handler ();
-   
+
     padExit ( 500 );
 
   }
- 
+
 
   /**
    * Logs an error message via padLogError.
@@ -272,11 +272,11 @@
     try {
 
       padLogError ( $info );
-    
+
     } catch (Throwable $e) {
-    
+
       padErrorLogCatch ( $info, $e );
-    
+
     }
 
     restore_error_handler ();
@@ -336,11 +336,11 @@
     } catch (Throwable $e) {
 
       padErrorFileCatch ( $e, $info );
-  
+
     }
 
     restore_error_handler ();
-    
+
   }
 
 
@@ -373,7 +373,7 @@
 
   }
 
-  
+
   /**
    * Outputs error message to console/browser.
    *
@@ -394,11 +394,11 @@
         echo "<pre>\nError: $info</pre>";
       else
         echo '<pre>Unknow error occurred.</pre>';
-    
+
     } catch (Throwable $e) {
-    
+
       // Ignore errors
-    
+
     }
 
     restore_error_handler ();
@@ -428,11 +428,11 @@
         echo "\n<pre>$error\n\n$buffer</pre>";
       else
         echo 'Error: ' . padID ();
-    
+
     } catch (Throwable $e) {
-    
+
       padErrorExitCatch ( $error, $e );
-    
+
     }
 
     restore_error_handler ();

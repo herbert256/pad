@@ -6,14 +6,14 @@
    *
    * @return int The trace level to start from, or 0 if not set or negative.
    */
-  function padInfoTraceStart ( ) {   
+  function padInfoTraceStart ( ) {
 
     if ( ! isset ( $GLOBALS ['padInfoTraceLvl'] [ $GLOBALS ['padInfoTraceCnt'] ] ) )
       return 0;
 
     if ( $GLOBALS ['padInfoTraceLvl'] [ $GLOBALS ['padInfoTraceCnt'] ] < 0 )
       return 0;
-    
+
     return $GLOBALS ['padInfoTraceLvl'] [ $GLOBALS ['padInfoTraceCnt'] ];
 
   }
@@ -44,7 +44,7 @@
 
     if ( padInfoTraceSkip ( $type ) )
       return;
-    
+
     $padInfoTraceId++;
 
     $occur = $padOccur [$pad] ?? 0;
@@ -85,14 +85,14 @@
     try {
 
       padDumpToDir ( $error, $GLOBALS ['padInfoTraceDir'] . '/ERROR');
-    
+
     } catch (Throwable $e) {
-    
+
       // Ignore errors
 
     }
 
-    restore_error_handler ();   
+    restore_error_handler ();
 
   }
 
@@ -144,14 +144,14 @@
     global $pad, $padOccur;
     global $padInfoTraceId, $padInfoTraceIds, $padInfoTraceOccurId;
 
-    $prefix = $pad;  
+    $prefix = $pad;
     if ( $pad >= 0 and $padOccur [$pad] and $padOccur [$pad] <> 99999 )
       $prefix .= '/' . $padOccur [$pad];
 
     if     ( $type == 'level' )                      $id = $padInfoTraceIds [$pad]         ?? 0;
     elseif ( $type == 'occur' )                      $id = $padInfoTraceOccurId [$pad]     ?? 0;
     elseif ( isset ( $GLOBALS ["padInfoTraceX$type"] ) ) $id = $GLOBALS ["padInfoTraceX$type"] ?? 0;
-    else                                             $id = $padInfoTraceId;       
+    else                                             $id = $padInfoTraceId;
 
     if ( ! $id or $id == $padInfoTraceId )
       $id = '';
@@ -164,7 +164,7 @@
 
     $info = padMakeSafe ( $info );
 
-    if ( strlen ( $info ) > 70 ) 
+    if ( strlen ( $info ) > 70 )
       $trace .= substr ( $info, 0, 63 ) . ' <more>';
     else
       $trace .= $info;
@@ -310,7 +310,7 @@
     if ( ! isset ( $padInfoTraceLevel [$pad] ) ) padInfoTraceSet ( $pad );
     if ( ! $padInfoTraceLevel [$pad]           ) padInfoTraceSet ( $pad );
 
-    if ( $pad < 0 ) 
+    if ( $pad < 0 )
       $add = '';
     else
       $add = $padInfoTraceLevel [$pad] . '/' . padInfoTraceOccur ( $pad );
@@ -327,7 +327,7 @@
 
   }
 
- 
+
   /**
    * Ensures trace directory exists for line-type writes.
    *

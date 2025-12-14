@@ -1,8 +1,8 @@
 <?php
- 
+
   $pqTries++;
 
-  if ( $pqTries > $pqTry ) 
+  if ( $pqTries > $pqTry )
     return FALSE;
 
   if ( $pqRandomParm ) $pqParm = include PQ . 'build/parm.php';
@@ -24,27 +24,27 @@
 
   if ( count ( $pqPlays ) ) {
     include PQ . 'plays/plays.php';
-    if ( $pq === FALSE ) 
+    if ( $pq === FALSE )
       return TRUE;
   }
 
   if ( is_float ($pq)   and $pq < PHP_INT_MIN  ) return FALSE;
-  if ( is_float ($pq)   and $pq > PHP_INT_MAX  ) return FALSE; 
+  if ( is_float ($pq)   and $pq > PHP_INT_MAX  ) return FALSE;
   if ( is_numeric ($pq) and $pq < $pqMin       ) return TRUE;
   if ( is_numeric ($pq) and $pq > $pqMax       ) return TRUE;
   if ( $pqUnique and in_array ($pq, $pqResult) ) return TRUE;
   if ( $pqSkip and $pqTries <= $pqSkip )         return TRUE;
 
-  if ( $pqBuild == 'order' ) { 
+  if ( $pqBuild == 'order' ) {
     $pqOrder [] = $pqOrgSet;
-    if ( $pqLoop < $pqOrderFrom ) 
+    if ( $pqLoop < $pqOrderFrom )
       return TRUE;
   }
-  
+
   $pqResult [] = $pq;
   $pqOrgHit [] = $pqOrgSet;
 
-  if ( count ( $pqPlays ) ) 
+  if ( count ( $pqPlays ) )
     $pqPlaysHit [] = $pqPlaysSet;
 
   if ( is_numeric ($pq) and $pq >= $pqStop     ) return FALSE;

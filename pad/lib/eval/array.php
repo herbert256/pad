@@ -24,15 +24,15 @@
       if ( $key > $end   ) break;
 
       if ( $value [1] == 'a-open' ) {
- 
+
         $open = $key;
- 
+
       } elseif ( $value [1] == 'a-close' ) {
 
         $result [$open] [0] = [];
         $result [$open] [1] = 'VAL';
         unset ( $result [$key]  );
-   
+
                                                            padEvalTrace ( 'array3',  $result );
         padEvalOpnCls ( $result, $myself, $open+1, $key ); padEvalTrace ( 'opncls2', $result );
         padEvalOpr    ( $result, $myself, $open+1, $key ); padEvalTrace ( 'opr1',    $result );
@@ -46,8 +46,8 @@
                                                          padEvalTrace ( 'array4', $result );
         padEvalArray ( $result, $myself, $start, $end ); padEvalTrace ( 'array5', $result );
         return;
-            
-      } 
+
+      }
 
     }
 

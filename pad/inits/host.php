@@ -9,7 +9,7 @@
   $padScript = str_replace('index.php', '', $padScript);
 
   if (strpos ( $padHttpHost, ':') === FALSE )
-    if ( ($padRequestScheme == 'http'  and $padServerPort <> 80) or 
+    if ( ($padRequestScheme == 'http'  and $padServerPort <> 80) or
          ($padRequestScheme == 'https' and $padServerPort <> 443) )
       $padHttpHost .= ':' . $padServerPort;
 

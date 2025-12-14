@@ -1,5 +1,5 @@
 <?php
 
-  return '&close;'; 
+  return '&close;';
 
 ?>

@@ -1,7 +1,7 @@
 <?php
 
   return;
-  
+
   if ( padPageCheck ($padPage) )
     return;
 
@@ -9,9 +9,9 @@
 
   if ( ! $padFast )
     padBootError ("Shortcut to stored parameters not found: |" . $_SERVER['QUERY_STRING'] . "|");
-  
+
   extract ( unserialize ( $padFast ), EXTR_OVERWRITE );
 
   include PAD . 'config/config.php';
-  
+
 ?>

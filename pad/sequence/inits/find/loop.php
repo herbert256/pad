@@ -15,10 +15,10 @@
 
     if ( ! $pqPull and ! $pqSeq and pqSeq ( $padPrmName ) ) {
 
-      $pqDone [] = $padPrmName; 
+      $pqDone [] = $padPrmName;
       $pqSeq     = $padPrmName;
       $pqParm    = $padPrmValue;
-         
+
     }
 
   }

@@ -1,5 +1,5 @@
 <?php
-  
+
   $padFileName       = 'name';
   $padFileDir        = 'dir';
   $padFileExtension  = 'ext';

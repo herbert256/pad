@@ -6,7 +6,7 @@
 
   if ( substr($padBetween, -1) == '/') {
     $padBetween = substr($padBetween, 0, -1);
-    include PAD . 'level/pipes/start.php';     
+    include PAD . 'level/pipes/start.php';
     include PAD . 'level/between.php';
     return;
   }
@@ -30,9 +30,9 @@
 
     if ( padOpenCloseCountOne ( $padBaseBase, $padPairTag) )
       $padPairCheck = substr($padOut [$pad], $padPos + strlen($padPairTag) + 2, 1);
-    
+
   }
 
   include PAD . 'level/pair.php';
-  
+
 ?>

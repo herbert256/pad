@@ -6,6 +6,6 @@
   if ( ! $GLOBALS ['padInfoTraceCurl'] )
     return;
 
-  padInfoTrace ( 'curl', 'file', $url ); 
+  padInfoTrace ( 'curl', 'file', $url );
 
 ?>

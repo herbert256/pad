@@ -1,14 +1,14 @@
 <?php
-  
+
   $padInfoTrace            = TRUE;       // Trace the internal working of PAD
-  
+
   $padInfoTraceLines       = TRUE;
   $padInfoTraceDouble      = FALSE;
   $padInfoTraceDefault     = FALSE;
   $padInfoTraceKeepEmpty   = FALSE;
 
   $padInfoTraceRoot        = TRUE;
-  $padInfoTraceTree        = FALSE;  
+  $padInfoTraceTree        = FALSE;
   $padInfoTraceLocal       = TRUE;
   $padInfoTraceTypes       = FALSE;
   $padInfoTraceMore        = FALSE;
@@ -23,19 +23,19 @@
   $padInfoTraceStatus      = FALSE;
   $padInfoTraceChilds      = FALSE;
   $padInfoTraceAddLine     = FALSE;
-  $padInfoTraceLocalChk    = FALSE;       
+  $padInfoTraceLocalChk    = FALSE;
 
   $padInfoTraceOccurs      = FALSE;
   $padInfoTraceOccursSmart = FALSE;
 
   $padInfoTraceInitsExits  = FALSE;
-  
-  $padInfoTraceTypesDir    = FALSE;       
+
+  $padInfoTraceTypesDir    = FALSE;
   $padInfoTraceRequest     = FALSE;
 
   $padInfoTraceSession     = FALSE;
   $padInfoTraceBuild       = FALSE;
-  
+
   $padInfoTraceParse       = FALSE;
   $padInfoTraceParms       = FALSE;
   $padInfoTraceOptions     = FALSE;
@@ -44,7 +44,7 @@
   $padInfoTraceStartOcc    = FALSE;
   $padInfoTraceEndLvl      = FALSE;
   $padInfoTraceEndOcc      = FALSE;
-  
+
   $padInfoTraceContent     = TRUE;
   $padInfoTraceTrue        = FALSE;
   $padInfoTraceFalse       = FALSE;
@@ -53,10 +53,10 @@
   $padInfoTraceResultOcc   = FALSE;
 
   $padInfoTraceFlags       = FALSE;
- 
+
   $padInfoTraceDataLvl     = FALSE;
   $padInfoTraceDataOcc     = FALSE;
-  
+
   $padInfoTraceStore       = FALSE;
   $padInfoTraceSequence    = FALSE;
   $padInfoTraceVar         = FALSE;

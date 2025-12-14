@@ -12,7 +12,7 @@
    *
    * @return void Never returns - script terminates.
    */
-  function padExit ( $stop = 200 ) { 
+  function padExit ( $stop = 200 ) {
 
     set_error_handler ( 'padErrorThrow' );
 
@@ -30,7 +30,7 @@
 
     restore_error_handler ();
 
-    include PAD . 'exits/exit.php'; 
+    include PAD . 'exits/exit.php';
 
   }
 
@@ -51,7 +51,7 @@
     if ( padSecondTime ( 'exit' ) )
       return padExitDouble ( $stop );
 
-    padCloseSession ();  
+    padCloseSession ();
 
     padEmptyBuffers ( $padIgnored );
 
@@ -59,7 +59,7 @@
       padWebHeaders ( $stop );
 
     if ( isset ( $GLOBALS ['padInfoStarted'] ) and ! padSecondTime ( 'exitInfo' ) )
-      include PAD . 'info/end/config.php';  
+      include PAD . 'info/end/config.php';
 
   }
 
@@ -111,7 +111,7 @@
     try {
 
       if ( padSecondTime ( 'exitDouble' ) )
-        include PAD . 'exits/exit.php'; 
+        include PAD . 'exits/exit.php';
 
     } catch (Throwable $e) {
 

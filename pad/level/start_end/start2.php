@@ -7,7 +7,7 @@
   $padStartData [$pad] = [];
 
   reset ( $padData [$pad] );
-  
+
   include PAD . 'occurrence/occurrence.php';
 
 ?>

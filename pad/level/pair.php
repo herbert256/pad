@@ -16,13 +16,13 @@
 
   } while ( substr_count($padBetweenCheck, '{') <> substr_count($padBetweenCheck, '}') );
 
-  include PAD . 'level/pipes/end.php';  
+  include PAD . 'level/pipes/end.php';
 
   $padWordsCheck = preg_split ( "/[\s]+/", $padBetweenCheck, 2, PREG_SPLIT_NO_EMPTY );
 
-  if ( count($padWordsCheck) > 1 ) { 
+  if ( count($padWordsCheck) > 1 ) {
     $padPrmTypeSet = 'close';
-    $padBetween    = $padBetweenCheck;  
+    $padBetween    = $padBetweenCheck;
     include PAD . 'level/between.php';
   }
 

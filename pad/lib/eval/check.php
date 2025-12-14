@@ -18,7 +18,7 @@
 
     $first = $last = $count = 0;
 
-    foreach ( $result as $now => $dummy ) { 
+    foreach ( $result as $now => $dummy ) {
 
       if ( $now < $start ) continue;
       if ( $now > $end   ) break;

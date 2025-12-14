@@ -16,7 +16,7 @@
     return padError ( "JSON conversion error");
 
   $result = json_decode($data, true);
-  
+
   if ( ! is_array($result) or $result === NULL or $result === FALSE )
     return padError ( "JSON error (decode): " . json_last_error() . ' - ' . json_last_error_msg() );
 

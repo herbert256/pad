@@ -2,7 +2,7 @@
 
   if ( ! $GLOBALS ['padInfoTrace'] or ! $GLOBALS ['padInfoTraceEval'] )
     return;
-  
+
   global $padInfoTraceEvalData;
 
   $error = $e->getFile() . ':' .  $e->getLine() . $e->getMessage();

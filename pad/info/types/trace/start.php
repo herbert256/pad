@@ -9,7 +9,7 @@
 
   $padInfoTraceCnt++;
 
-  $padInfoTraceLvl [$padInfoTraceCnt] = $pad; 
+  $padInfoTraceLvl [$padInfoTraceCnt] = $pad;
 
   $padInfoTraceLevel       = [];
   $padInfoTraceLevelChilds = [];
@@ -20,5 +20,5 @@
 
   if ( $padInfoTraceStartEnd )
     padInfoTrace ( 'trace', 'start', $Result [$pad] ?? '');
-        
+
 ?>

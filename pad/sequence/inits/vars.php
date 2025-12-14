@@ -6,7 +6,7 @@
 
   $pqTries      = 0;
   $pqLoop       = 0;
-  
+
   $pqSeq        = '';
   $pqBuild      = '';
   $pqParm       = '';
@@ -17,7 +17,7 @@
 
   $pqResult     = [];
   $pqDone       = [];
-  $pqInfo       = [];  
+  $pqInfo       = [];
   $pqNames      = [];
   $pqActions    = [];
   $pqPlays      = [];

@@ -1,5 +1,5 @@
 <?php
-  
+
   if     ( $opr == 'LT'  ) $now = ($left <   $right) ? 1 : '';
   elseif ( $opr == 'LE'  ) $now = ($left <=  $right) ? 1 : '';
   elseif ( $opr == 'EQ'  ) $now = ($left ==  $right) ? 1 : '';
@@ -8,9 +8,9 @@
   elseif ( $opr == 'NE'  ) $now = ($left <>  $right) ? 1 : '';
   elseif ( $opr == 'AND' ) $now = ($left AND $right) ? 1 : '';
   elseif ( $opr == 'OR'  ) $now = ($left OR  $right) ? 1 : '';
-  elseif ( $opr == 'XOR' ) $now = ($left XOR $right) ? 1 : ''; 
+  elseif ( $opr == 'XOR' ) $now = ($left XOR $right) ? 1 : '';
   elseif ( $opr == '.'   ) $now =  $left .   $right;
-  else { 
+  else {
 
     if ( strpos($left, '.' ) === FALSE ) $left  = (int)   $left;
     else                                 $left  = (float) $left;

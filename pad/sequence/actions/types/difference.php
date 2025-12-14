@@ -4,7 +4,7 @@
   include PQ . 'actions/types/onlyNow.php';
   $pqTmp1 = $pqResult;
   $pqResult = $pqTmp;
-  
+
   include PQ . 'actions/types/onlyStore.php';
   $pqTmp2 = $pqResult;
 

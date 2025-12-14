@@ -1,7 +1,7 @@
 <?php
 
   if ( $padPair [$pad] and ! $pqPush )
-    return; 
+    return;
 
   include PQ . 'exits/store/last.php';
   include PQ . 'exits/store/check.php';

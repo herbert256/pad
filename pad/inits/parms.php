@@ -10,13 +10,13 @@
       session_start();
 
     padGetParms ('SESSION', $_SESSION);
-    
+
     foreach ($padSessionVars as $padVar)
       if ( ! isset ($GLOBALS [$padVar]) )
         $GLOBALS [$padVar] = '';
 
     $padSessionStarted = TRUE;
-      
+
   }
 
 ?>

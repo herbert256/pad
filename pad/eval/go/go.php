@@ -16,5 +16,5 @@
   $result [$b] [1] = 'VAL'; padEvalTrace ( 'go', $result );
 
   padEvalOpr ( $result, $myself, $start, $end ); padEvalTrace ( 'opr5', $result );
-  
+
 ?>

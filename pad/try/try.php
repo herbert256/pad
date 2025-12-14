@@ -1,4 +1,4 @@
-<?php 
+<?php
 
   if ( ! $GLOBALS ['padErrorTry'] )
     return include PAD . "$padTry.php";

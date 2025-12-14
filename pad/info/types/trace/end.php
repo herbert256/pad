@@ -12,8 +12,8 @@
     padInfoTraceCheckLocal ( '' );
 
   if ( $padInfoTraceDump )
-    padDumpToDir ( '', "$padInfoTraceDir/dump" ); 
+    padDumpToDir ( '', "$padInfoTraceDir/dump" );
 
-  $padInfoTraceCnt--; 
+  $padInfoTraceCnt--;
 
 ?>

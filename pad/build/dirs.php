@@ -2,10 +2,10 @@
 
   $padBuildDirs = [];
 
-  $padBuildNow = substr     ( APP, 0, -1);  
-  $padBuildPos = strrpos    ( $padBuildNow, '/');  
-  $padBuildDir = substr     ( $padBuildNow, 0, $padBuildPos);  
-  $padBuildMrg = substr     ( $padBuildNow, $padBuildPos+1) . '/' . $padDir; 
+  $padBuildNow = substr     ( APP, 0, -1);
+  $padBuildPos = strrpos    ( $padBuildNow, '/');
+  $padBuildDir = substr     ( $padBuildNow, 0, $padBuildPos);
+  $padBuildMrg = substr     ( $padBuildNow, $padBuildPos+1) . '/' . $padDir;
   $padBuildMrg = padExplode ( $padBuildMrg , '/' );
 
   foreach ( $padBuildMrg as $padV ) {

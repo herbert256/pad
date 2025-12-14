@@ -1,6 +1,6 @@
 <?php
 
   foreach ( $pqResult as $pqValue )
-    $padData [$pad] [] [$pqNameGiven] = $pqValue; 
+    $padData [$pad] [] [$pqNameGiven] = $pqValue;
 
 ?>

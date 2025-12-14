@@ -1,5 +1,5 @@
 <?php
-  
+
   if ( ! isset ( $padInfoTraceLevel [$pad] ) ) padInfoTraceSet ( $pad );
   if ( ! $padInfoTraceLevel [$pad]           ) padInfoTraceSet ( $pad );
 
@@ -16,15 +16,15 @@
     padInfoTraceCheckLocal ( $padInfoTraceLevel [$pad] . '/99999' );
     padInfoTraceCheckLocal ( $padInfoTraceLevel [$pad] . '/exits' );
   }
-  
-  if ( ! isset ( $padInfoTraceLevelChilds [$pad] ) ) 
+
+  if ( ! isset ( $padInfoTraceLevelChilds [$pad] ) )
     $padInfoTraceLevelChilds [$pad] = 0;
 
-  if ( $padInfoTraceChilds ) 
+  if ( $padInfoTraceChilds )
     padInfoTraceChilds ( $padInfoTraceLevel [$pad], $padInfoTraceLevelChilds [$pad], 'level' );
 
   if ( $pad > 0 and ! $padInfoTraceKeepEmpty and $padInfoTraceLevel [$pad] and ! $padInfoTraceLevelChilds [$pad] )
-    padInfoTraceDeleteDir ( DAT . $padInfoTraceDir . $padInfoTraceLevel [$pad] . '/' ); 
+    padInfoTraceDeleteDir ( DAT . $padInfoTraceDir . $padInfoTraceLevel [$pad] . '/' );
 
   $padInfoTraceLevel [$pad] = '';
 

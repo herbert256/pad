@@ -10,8 +10,8 @@
     foreach ( $padInfoList as $padInfoType  )
       include PAD . "config/info/$padInfoType.php";
   }
-  
-  if ( file_exists ( APP . '_config/config.php' ) ) 
+
+  if ( file_exists ( APP . '_config/config.php' ) )
     include APP . '_config/config.php';
 
   foreach ( $padSetConfig as $padK => $padV )

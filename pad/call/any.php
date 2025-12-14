@@ -2,9 +2,9 @@
 
   include PAD . 'call/_call.php';
 
-  if ( trim ( $padCallOB ) ) 
+  if ( trim ( $padCallOB ) )
     $padCallPHP .= $padCallOB;
- 
+
   return $padCallPHP;
 
 ?>

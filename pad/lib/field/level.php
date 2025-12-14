@@ -35,7 +35,7 @@
             return $value;
     }
 
-    if ( is_numeric($field) ) 
+    if ( is_numeric($field) )
       if ( array_key_exists ( $field, $padOpt [$pad] ) )
         return $padOpt [$pad] [$field];
 
@@ -48,7 +48,7 @@
         elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
       }
 
-      foreach ( $padTable [$i] as $table => $value) 
+      foreach ( $padTable [$i] as $table => $value)
         if ( array_key_exists ( $field, $value) ) {
           $work = $value [$field];
           if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
@@ -57,7 +57,7 @@
         }
 
     }
- 
+
     if ( array_key_exists ( $field, $GLOBALS ) ) {
       $work = $GLOBALS [$field];
       if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
@@ -65,8 +65,8 @@
       elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
     }
 
-    foreach ( $GLOBALS as $key => $value ) 
-      if ( is_array ($value) and array_key_exists ( $field, $value) 
+    foreach ( $GLOBALS as $key => $value )
+      if ( is_array ($value) and array_key_exists ( $field, $value)
            and substr($key, 0, 3) <> 'pad' and substr($key, 0, 2) <> 'pq' )  {
         $work = $value [$field];
         if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
@@ -82,7 +82,7 @@
         elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
       }
 
-    for ( $i=$pad; $i >= 0; $i-- )      
+    for ( $i=$pad; $i >= 0; $i-- )
       if ( array_key_exists ( $field, $padOpt [$i] ) ) {
         $work = $padOpt [$i] [$field];
         if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
@@ -90,7 +90,7 @@
         elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
       }
 
-   for ( $i=$pad; $i >= 0; $i-- )      
+   for ( $i=$pad; $i >= 0; $i-- )
       if ( array_key_exists ( $field, $padLvlFunVar [$i] ) ) {
         $work = $padLvlFunVar [$i] [$field];
         if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
@@ -99,7 +99,7 @@
       }
 
     return INF;
-    
+
   }
 
 ?>

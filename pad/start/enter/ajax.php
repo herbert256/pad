@@ -7,5 +7,5 @@
     $padExtQry .= "&$padK=" . urlencode($padV);
 
   return padPageAjax ( $padExtPag, $padExtQry ) ;
- 
+
 ?>

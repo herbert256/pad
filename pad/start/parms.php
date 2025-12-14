@@ -7,7 +7,7 @@
 
   if ( $padStrFun )
     return padStrFun ( $padStrCod, $padStrBox, $padStrRes, $padStrCln, $padStrFun );
-  else 
+  else
     return include PAD . 'start/pad.php';
-  
+
 ?>

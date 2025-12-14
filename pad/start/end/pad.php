@@ -1,6 +1,6 @@
 <?php
 
-  foreach ( $padStrZZZ [$padStrCnt] as $padStrKey => $padStrVal ) 
-    $GLOBALS [$padStrKey] = $padStrVal;  
-  
+  foreach ( $padStrZZZ [$padStrCnt] as $padStrKey => $padStrVal )
+    $GLOBALS [$padStrKey] = $padStrVal;
+
 ?>

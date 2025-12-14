@@ -2,7 +2,7 @@
 
   $padStrBld  = 'code';
   $padStrCod  = $padBase [$pad];
-  
+
   $padStrBox = 1;
   $padStrCln = 1;
   $padStrRes = 1;

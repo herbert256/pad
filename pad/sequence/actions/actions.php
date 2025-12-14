@@ -16,11 +16,11 @@
     if ( str_contains ( $pqActionParm, '..' ) )
       pqRandomParm ( $pqActionParm );
 
-    include PQ . 'actions/merge.php'; 
+    include PQ . 'actions/merge.php';
     include PQ . "actions/types/$pqAction.php";
     include PQ . 'actions/negative/negative.php';
 
-    $pqActionsHit [$pqAction] = array_values ( $pqResult ); 
+    $pqActionsHit [$pqAction] = array_values ( $pqResult );
 
   }
 

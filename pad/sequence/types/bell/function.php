@@ -10,11 +10,11 @@
     $bell[0][0] = 1;
     for ($i = 1; $i <= $n; $i++)
     {
-        
+
         // Explicitly fill for j = 0
         $bell[$i][0] = $bell[$i - 1]
                             [$i - 1];
-    
+
         // Fill for remaining
         // values of j
         for ($j = 1; $j <= $i; $j++)

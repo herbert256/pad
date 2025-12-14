@@ -5,5 +5,5 @@
   $padContentStore [$padStoreName] = $padResult [$pad];
 
   $padResult [$pad] = '';
-  
+
 ?>

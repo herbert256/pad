@@ -1,5 +1,5 @@
 <?php
- 
+
   if ( file_exists ( PAD . "sequence/actions/types/$name.php" ) ) {
 
     $pqSetAction = $name;

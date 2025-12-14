@@ -8,7 +8,7 @@
       $pqFunctionParms [] = $pqStore [$pqFunctionParm];
     else
       $pqFunctionParms [] = $pqFunctionParm;
-    
+
   return call_user_func_array ( $pqFunction, $pqFunctionParms );
-  
+
 ?>

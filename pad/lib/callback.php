@@ -21,7 +21,7 @@
 
     $padVarsBefore = [];
     foreach ($GLOBALS as $padK => $padV)
-      if ( padValidStore ($padK) ) { 
+      if ( padValidStore ($padK) ) {
         $padVarsBefore [] = $padK;
         $$padK = $padV;
       }
@@ -100,5 +100,5 @@
     }
 
   }
-  
+
 ?>

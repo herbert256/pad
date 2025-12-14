@@ -21,13 +21,13 @@
   if ( $padMyTidyTrim )
     $padOutput = trim ($padOutput);
 
-  if ( $padMyTidyRemoveWhitespace ) 
+  if ( $padMyTidyRemoveWhitespace )
     $padOutput = trim(preg_replace('/>\s+</', '><', $padOutput));
 
-  if ( $padMyTidyNoIndent ) 
+  if ( $padMyTidyNoIndent )
     $padOutput = preg_replace('/^ +/m', '', $padOutput);
 
-  if ( $padMyTidyNoEmptyLines ) 
+  if ( $padMyTidyNoEmptyLines )
     $padOutput = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $padOutput);
 
   if ( $padMyTidyNoNewLines )

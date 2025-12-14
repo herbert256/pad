@@ -1,6 +1,6 @@
 <?php
 
-  if ( $pqSeq or ! $pqFindParm ) 
+  if ( $pqSeq or ! $pqFindParm )
     return;
 
   if ( strpos( $pqFindParm, '..' ) ) {

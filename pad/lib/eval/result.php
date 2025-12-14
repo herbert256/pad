@@ -15,7 +15,7 @@
    * @return mixed The final evaluated value.
    */
   function padEvalResult ( $result, $value, $eval ) {
-    
+
     padEvalValue  ( $result, $value );  padEvalTrace ( 'value1', $result );
     padEvalArray  ( $result, $value );  padEvalTrace ( 'array1', $result );
     padEvalOpnCls ( $result, $value );  padEvalTrace ( 'opncls1', $result );

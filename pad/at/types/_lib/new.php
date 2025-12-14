@@ -6,7 +6,7 @@
 
     $check = padAtDataNew ( $type, $names );
 
-    if ( $check !== INF ) 
+    if ( $check !== INF )
       return $check;
 
   }

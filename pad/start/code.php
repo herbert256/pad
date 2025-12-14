@@ -1,7 +1,7 @@
 <?php
 
-  $padBase [$pad] = $padStrCod;    
+  $padBase [$pad] = $padStrCod;
 
-  include PAD . 'occurrence/occurrence.php'; 
+  include PAD . 'occurrence/occurrence.php';
 
 ?>

@@ -10,5 +10,5 @@
        $pqResult = [ $padK => $padV ];
     $pqI++;
   }
-  
+
 ?>

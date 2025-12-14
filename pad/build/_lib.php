@@ -13,16 +13,16 @@
 
         $padCall = $padLibOne->getPathname();
 
-        if ( substr($padCall, -4) == '.php' ) 
+        if ( substr($padCall, -4) == '.php' )
           $padBuildLib .= include PAD . 'call/once.php';
- 
+
         if ( substr($padCall, -4) == '.pad' )
           $padBuildLib .= padFileGet ( $padCall );
 
       }
 
     }
-    
+
   return $padBuildLib;
 
 ?>

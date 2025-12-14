@@ -6,7 +6,7 @@
 
   foreach ( $padParmParse [$padIdx] as $key => $val )
     if ( $val == 'lvl' ) $temp [$key] = $padSetLvl [$padIdx] [$key];
-    else                 $temp [$key] = $GLOBALS [$key]; 
+    else                 $temp [$key] = $GLOBALS [$key];
 
   $check = padAtSearch ( $temp, $names );
   if ( $check !== INF )
@@ -16,10 +16,10 @@
 
   if ( $key )
     if ( $padParmParse [$padIdx] [$key] == 'lvl' ) return $padSetLvl [$padIdx] [$key];
-    else                                           return $GLOBALS [$key]; 
+    else                                           return $GLOBALS [$key];
 
-  if ( isset ( $padSetLvl  [$padIdx] [$name] ) ) return $padSetLvl [$padIdx] [$name]; 
-  if ( isset ( $padSetOcc  [$padIdx] [$name] ) ) return $GLOBALS [$name]; 
+  if ( isset ( $padSetLvl  [$padIdx] [$name] ) ) return $padSetLvl [$padIdx] [$name];
+  if ( isset ( $padSetOcc  [$padIdx] [$name] ) ) return $GLOBALS [$name];
 
   return INF;
 

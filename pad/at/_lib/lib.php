@@ -20,9 +20,9 @@
 
     $padDataStore [$name] = padData ($name);
 
-    $check = padAtSearch ( $padDataStore [$name], $names ); 
+    $check = padAtSearch ( $padDataStore [$name], $names );
 
-    if ( $check === INF ) 
+    if ( $check === INF )
       unset ( $padDataStore [$name] );
 
     return $check;
@@ -49,7 +49,7 @@
 
     global $pad, $padName, $padTag;
 
-    for ( $i=$pad; $i>-1; $i-- ) 
+    for ( $i=$pad; $i>-1; $i-- )
       if ( $padName [$i] == $level )
         return $i;
 
@@ -62,16 +62,16 @@
 
     }
 
-    if ( is_numeric ($level) ) 
+    if ( is_numeric ($level) )
       if ($level >= 0 and $level <= $pad )
         return $level;
 
-    for ( $i=$pad; $i>-1; $i-- ) 
+    for ( $i=$pad; $i>-1; $i-- )
       if ( $padTag [$i] == $level )
         return $i;
 
     return FALSE;
-    
+
   }
 
 

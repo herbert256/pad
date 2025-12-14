@@ -2,7 +2,7 @@
 
   if ( ! $pqRandomly )
     return;
-  
+
   $pqRandomlyStart = $pqFrom;
   $pqRandomlyEnd   = $pqTo;
 
@@ -11,5 +11,5 @@
       $pqRandomlyEnd = count ( $pqFixed ) - 1;
 
   $pqRandomlySteps = intval ( ( $pqRandomlyEnd - $pqRandomlyStart ) / $pqInc );
-  
+
 ?>

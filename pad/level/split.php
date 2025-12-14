@@ -1,7 +1,7 @@
 <?php
- 
+
   $padOpenClose = padOpenCloseList ( $padBase [$pad] ) ;
-  
+
   if ( $padGiven [$pad] )
     $padOpenClose [ $padType [$pad] . ':' . $padTag [$pad] ] = TRUE;
   else
@@ -10,11 +10,11 @@
   $padPos = strpos ( $padBase [$pad], '{else}');
 
   while ( $padPos !== FALSE) {
-    
+
     if  ( padOpenCloseCount ( substr ( $padBase [$pad], 0, $padPos ), $padOpenClose) ) {
       $padFalse = substr ( $padBase [$pad], $padPos+6  );
       $padBase  [$pad] = substr ( $padBase [$pad], 0, $padPos );
-      if ( $padInfo ) 
+      if ( $padInfo )
         include PAD . 'events/else.php';
       return;
     }

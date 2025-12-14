@@ -47,12 +47,12 @@
           $location .= "$value/";
         else
           return FALSE;
-    
+
     if ( file_exists ( $location . 'index.php' ) or file_exists ( $location . 'index.pad' ) )
       return "$page/index";
     else
       return FALSE;
-    
+
   }
 
 
@@ -117,6 +117,6 @@ END;
     return $curl ['data'];
 
   }
-  
+
 
 ?>

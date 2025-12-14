@@ -1,7 +1,7 @@
 <?php
 
   $padBuildTrue = '';
- 
+
   foreach ( $padBuildDirs as $padCall ) {
     $padCall .= '/_inits.php';
     $padBuildTrue .= include PAD . 'call/noOne.php';
@@ -16,7 +16,7 @@
 
   if ( is_array ( $padCallPHP ) ) $padBuild = padData ( $padCallPHP );
   else                            $padBuild = padDefaultData();
- 
+
   if ( ! is_array ($padCallPHP) and $padCallPHP !== TRUE and $padCallPHP !== FALSE )
     $padBuildTrue .= $padCallPHP;
 
@@ -35,5 +35,5 @@
     return $padBuildTrue;
   else
     return "{padBuild for=\"$padPage\"}$padBuildTrue{/padBuild}";
-  
+
 ?>

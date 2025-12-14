@@ -1,10 +1,10 @@
 <?php
 
-  if ( $GLOBALS ['padInfoTrace'] ) 
+  if ( $GLOBALS ['padInfoTrace'] )
     if ($padInfoTraceBuild )
-      padInfoTrace ( 'build', 'info', $padBase [$pad] ); 
-    
+      padInfoTrace ( 'build', 'info', $padBase [$pad] );
+
   if ( $GLOBALS ['padInfoTrace'] ) include PAD . 'info/types/trace/level/start.php';
-  if ( $GLOBALS ['padInfoTrace'] ) include PAD . 'info/types/trace/level/info.php';    
+  if ( $GLOBALS ['padInfoTrace'] ) include PAD . 'info/types/trace/level/info.php';
 
 ?>

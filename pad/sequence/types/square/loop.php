@@ -1,5 +1,5 @@
 <?php
 
-  return $pqLoop * $pqLoop;  
+  return $pqLoop * $pqLoop;
 
 ?>

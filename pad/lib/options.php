@@ -14,15 +14,15 @@
 
     $input  = str_split ( $parms );
     $output = [];
-    
+
     $in_str   = FALSE;
     $in_quote = FALSE;
     $pair     = 0;
-  
+
     $now = '';
 
     foreach ( $input as $key => $one ) {
-      
+
       if ( $one==',' and !$in_str and !$in_quote and !$pair ) {
         $output [] = $now;
         $now = '';
@@ -110,5 +110,5 @@
     return $output;
 
   }
-  
+
 ?>

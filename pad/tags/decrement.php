@@ -6,7 +6,7 @@
     $GLOBALS[$padField]--;
   else
     $GLOBALS[$padField] = -1;
-  
+
   return TRUE;
-  
+
 ?>

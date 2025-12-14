@@ -15,6 +15,6 @@
     if ( isset ( $padPrm [$pad] ['rows'] ) )
       $padHandStart = $padHandEnd - $padHandRows + 1;
 
-  padHandGo ( $padData [$pad], $padHandStart, $padHandEnd, $padHandRows );    
+  padHandGo ( $padData [$pad], $padHandStart, $padHandEnd, $padHandRows );
 
 ?>

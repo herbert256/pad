@@ -1,6 +1,6 @@
 <?php
 
 
-  return (3 * $pqLoop * $pqLoop - $pqLoop) / 2; 
+  return (3 * $pqLoop * $pqLoop - $pqLoop) / 2;
 
 ?>

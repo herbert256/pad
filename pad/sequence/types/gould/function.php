@@ -10,16 +10,16 @@
 
       if ( $c > PHP_INT_MAX)
         return $x;
-      
+
       $c = (int) $c;
-      
+
       if ($c % 2 == 1)
         $x++;
-    
+
     }
 
-    return $x; 
+    return $x;
 
   }
-  
+
 ?>

@@ -1,6 +1,6 @@
 <?php
-  
-  $padInfoXml          = TRUE; 
+
+  $padInfoXml          = TRUE;
 
   $padInfoXmlParms     = TRUE;
   $padInfoXmlCompact   = TRUE;

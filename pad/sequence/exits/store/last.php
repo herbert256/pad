@@ -1,9 +1,9 @@
 <?php
-  
+
   if     ( ! $pqNameGiven and ! $pqPull and ! $pqPush        ) $pqStoreName = 'default';
   elseif ( ! $pqNameGiven and ! $pqPull and $pqPush === TRUE ) $pqStoreName = 'default';
   elseif ( $pqNameGiven                                      ) $pqStoreName = $pqNameGiven;
-  elseif ( $pqPush and $pqPush !== TRUE                      ) $pqStoreName = $pqPush; 
+  elseif ( $pqPush and $pqPush !== TRUE                      ) $pqStoreName = $pqPush;
   elseif ( $pqPull and $pqPull !== TRUE                      ) $pqStoreName = $pqPull;
   else                                                         $pqStoreName = $pqName;
 

@@ -4,6 +4,6 @@
     $pqLoop = $pqLoop * $pqLoop;
     $pqLoop = $pqLoop - 2;
 
-    return $pqLoop; 
+    return $pqLoop;
 
 ?>

@@ -25,10 +25,10 @@
       if ( $key > $end   ) break;
 
       if ( $value [1] == 'open' ) {
- 
+
         $type = $prev;
         $open = $key;
- 
+
       } elseif ( $value [1] == 'close' ) {
 
         unset ( $result [$open] );
@@ -41,7 +41,7 @@
         padEvalOpr ( $result, $myself, $open, $key );     padEvalTrace ( 'opr2', $result );
         padEvalOpnCls ( $result, $myself, $start, $end ); padEvalTrace ( 'opncls3', $result );
         return;
-            
+
       } else
 
         $prev = $key;
@@ -49,6 +49,6 @@
     }
 
   }
-   
+
 
 ?>

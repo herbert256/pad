@@ -30,14 +30,14 @@
         $output = padZip ( $GLOBALS ['padOutput'] );
       else
         $output = $GLOBALS ['padOutput'];
-   
+
     } elseif ( $stop == 200 ) {
 
       if ( $GLOBALS ['padGzip'] and $GLOBALS ['padClientGzip'] )
         $output = padZip ( $GLOBALS ['padOutput'] );
       else
         $output = $GLOBALS ['padOutput'];
-   
+
     } else
 
       $output = '';
@@ -86,8 +86,8 @@
       padError ( "HTTP status not 200 with download" );
 
     padHeader ( "Content-Type: $contentType");
-    padHeader ( "Content-Transfer-Encoding: Binary"); 
-    padHeader ( "Content-Disposition: attachment; filename=\"$fileName\""); 
+    padHeader ( "Content-Transfer-Encoding: Binary");
+    padHeader ( "Content-Disposition: attachment; filename=\"$fileName\"");
     padHeader ( "Content-Length: $length");
 
   }
@@ -151,7 +151,7 @@
     padHeader       ('PAD: ' . $GLOBALS ['padSesID'] . '-' . $GLOBALS ['padReqID']);
     padWebStats     ();
     padWebNoHeaders ($stop);
-    
+
     if ( $stop == 200 and $GLOBALS ['padGzip'] and $GLOBALS ['padClientGzip'] )
       padHeader ( 'Content-Encoding: gzip' );
 
@@ -160,7 +160,7 @@
 
     if ( $stop == 200 and $GLOBALS ['padLen'] )
       padHeader ( 'Content-Length: ' . $GLOBALS ['padLen'] );
-    
+
     if ( ! isset ( $GLOBALS ['padCacheClientAge'] ) or ( $stop <> 200 and $stop <> 304 ) )
       padHeader ( 'Cache-Control: no-cache, no-store' );
     else
@@ -189,7 +189,7 @@
       include PAD . 'info/types/stats/end.php';
 
     if ( isset ( $GLOBALS ['padInfoStatsJson'] ) )
-      padHeader ( 'PAD-Stats: ' . $GLOBALS ['padInfoStatsJson'] );    
+      padHeader ( 'PAD-Stats: ' . $GLOBALS ['padInfoStatsJson'] );
 
   }
 
@@ -221,10 +221,10 @@
       $type = 'private';
       $sage = 0;
     }
-     
+
     if ( $age  < 0 ) $age  = 0;
     if ( $sage < 0 ) $sage = 0;
-    
+
     $extra = 'no-transform, must-revalidate, proxy-revalidate';
 
     padHeader ('Cache-Control: ' . "$type, max-age=$age, s-maxage=$sage, $extra");
@@ -234,6 +234,6 @@
     padHeader ('Etag: '          . '"' . $GLOBALS ['padEtag'] . '"');
 
   }
-  
+
 
 ?>

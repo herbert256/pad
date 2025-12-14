@@ -8,7 +8,7 @@
   $padInfoTraceEvalData           = [];
   $padInfoTraceEvalData ['eval']  = $eval;
   $padInfoTraceEvalData ['value'] = $value;
-  
+
  if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'eval', 'start', "eval=$eval" );
 
 ?>

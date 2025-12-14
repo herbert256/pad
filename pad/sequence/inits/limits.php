@@ -6,7 +6,7 @@
   if ( $pqPull or $pqStop <> PHP_INT_MAX or $pqTo <> PHP_INT_MAX or $pqBuild == 'build' )
     if ( ! $pqRows ) $pqRows = PHP_INT_MAX ;
 
-  if ( ! $pqTry  ) $pqTry  = $padSeqDefaultTries; 
+  if ( ! $pqTry  ) $pqTry  = $padSeqDefaultTries;
   if ( ! $pqRows ) $pqRows = $padSeqDefaultRows;
 
 ?>

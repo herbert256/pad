@@ -7,16 +7,16 @@
     extract ( $padHand );
 
         if ( ! count ( $padData [$pad] )                        ) continue;
-    elseif ( $padTagSeq [$pad]                                  ) continue; 
+    elseif ( $padTagSeq [$pad]                                  ) continue;
     elseif ( $padPrmKind <> 'option'                            ) continue;
-    elseif ( ! file_exists ( PAD . "handling/types/$padPrmName.php" ) ) continue; 
+    elseif ( ! file_exists ( PAD . "handling/types/$padPrmName.php" ) ) continue;
 
     $padHandName = $padPrmName;
     $padHandParm = $padPrmValue;
     $padHandCnt  = ( $padHandParm === TRUE or ! ctype_digit ( $padHandParm ) ) ? 1 : $padHandParm;
 
-    if ( $padInfo ) 
-      include PAD . 'events/handling.php'; 
+    if ( $padInfo )
+      include PAD . 'events/handling.php';
 
     if ( $padHandNegative )
       include PAD . "handling/negative/inits.php";

@@ -7,11 +7,11 @@
     return;
   }
 
-  if ( $padWalk  [$pad] <> 'start' ) 
+  if ( $padWalk  [$pad] <> 'start' )
     $padDataStore [$padStoreName] = $padWalkData [$pad];
   else
     $padDataStore [$padStoreName] = $padData [$pad];
 
   $padResult [$pad] = '';
-  
+
 ?>

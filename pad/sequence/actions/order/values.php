@@ -5,7 +5,7 @@
     if ( $padK !== FALSE )
       $pqResult [$padK] = $pqActionEnd [$padK];
   }
-  
+
   return $pqResult;
 
 ?>

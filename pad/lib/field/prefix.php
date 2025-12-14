@@ -31,7 +31,7 @@
 
       if ( isset ( $GLOBALS [$prefix] ) )
         return padFieldSearch ( $GLOBALS [$prefix], $field, $type );
-  
+
     }
 
     if ( $idx )
@@ -71,6 +71,6 @@
     return $current [$field];
 
   }
-  
+
 
 ?>

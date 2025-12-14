@@ -14,7 +14,7 @@
  */
 function pqBoolComposite($n, $p=0)
 {
-    
+
     // Corner cases
     if ($n <= 1)
         return false;

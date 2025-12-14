@@ -10,10 +10,10 @@
   $pqPlaysRandomly = $pqPlays;
   $pqRowsRandomly  = $pqRows;
 
-  if ( $pqTo !== PHP_INT_MAX ) 
+  if ( $pqTo !== PHP_INT_MAX )
     $pqRows = 0;
 
   $pqRandomly      = FALSE;
   $pqRandomlyBuild = TRUE;
- 
+
 ?>

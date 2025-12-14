@@ -1,7 +1,7 @@
 <?php
 
   $padStrCnt++;
-  
+
   include PAD . 'start/start/start.php';
   include PAD . 'start/start/pad.php';
 
@@ -11,10 +11,10 @@
     include PAD . 'start/start/stores.php';
   }
 
-  if ( $padStrBox or $padStrRes ) { 
+  if ( $padStrBox or $padStrRes ) {
     include PAD . 'start/start/resetPad.php';
-    include PAD . 'start/start/resetApp.php'; 
-  } 
+    include PAD . 'start/start/resetApp.php';
+  }
 
   if ( $padStrBox or $padStrCln or $padStrRes )
     include PAD . 'start/start/level.php';

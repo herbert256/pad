@@ -1,5 +1,5 @@
 <?php
-  
+
   // ToDo, for usage in try/catch/xxx/xxx.php
 
   $padTryCallTry     = 'xxx';

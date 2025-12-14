@@ -6,5 +6,5 @@
   $pqTmp = pqArray ( $pqSeq, $pqParm, "sole=$pqLoop" );
 
   return  ( isset ( $pqTmp [0]) ) ? $pqTmp [0] : FALSE;
-  
+
 ?>

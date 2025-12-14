@@ -2,7 +2,7 @@
 
   $padBuildBase = '@pad@';
 
-  if ( $padInclude ) 
+  if ( $padInclude )
     return $padBuildBase;
 
   foreach ( $padBuildDirs as $padBuildDir ) {
@@ -20,8 +20,8 @@
 
     $padBuildBase = str_replace ( '@pad@', $padBuildBaseNow, $padBuildBase );
 
-  } 
-   
+  }
+
   return $padBuildBase;
-  
+
 ?>

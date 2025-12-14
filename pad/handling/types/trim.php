@@ -15,7 +15,7 @@
   if ( $padHandLeft )
     $padData [$pad] = pqTruncate  ( $padData [$pad], 'left',  $padHandCnt );
 
-  if ( $padHandRight ) 
+  if ( $padHandRight )
     $padData [$pad] = pqTruncate  ( $padData [$pad], 'right', $padHandCnt );
-  
+
 ?>

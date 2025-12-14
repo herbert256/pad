@@ -14,26 +14,26 @@
 
     if ( str_ends_with ( $field, '@' ) )
       $field .= '*';
-    
+
     if ( str_contains($field, '@*') )
       return padAtCheck ( str_replace ( '@*', "@1", $field ) );
 
     $field = rtrim ( $field );
 
-    if ( preg_match ( '/\s/', $field  ) ) return FALSE; 
+    if ( preg_match ( '/\s/', $field  ) ) return FALSE;
     if ( substr_count($field, '@') <> 1 ) return FALSE;
 
     padSplit ( '@', $field, $before, $after );
-    
+
     if ( ! strlen ( $before )            ) return FALSE;
     if ( ! strlen ( $after  )            ) return FALSE;
     if ( str_starts_with ( $before, '.') ) return FALSE;
     if ( str_starts_with ( $after,  '.') ) return FALSE;
     if ( str_ends_with   ( $before, '.') ) return FALSE;
     if ( str_ends_with   ( $after,  '.') ) return FALSE;
-  
-    $names = padExplode ( $before, '.' ); 
-    $parts = padExplode ( $after,  '.' ); 
+
+    $names = padExplode ( $before, '.' );
+    $parts = padExplode ( $after,  '.' );
 
     foreach ( $parts as $part)
       if ( ! padAtCheckPart ($part) )
@@ -89,7 +89,7 @@
     if ( $part == '<')          return TRUE;
     if ( $part == '>')          return TRUE;
 
-    if ( strlen($part) > 1 ) { 
+    if ( strlen($part) > 1 ) {
       $check1 = substr ( $part, 0, 1 );
       $check2 = substr ( $part, 1    );
       if ( $check1 == '<' and ctype_digit ( $check2) ) return TRUE;
@@ -123,7 +123,7 @@
    */
   function padAtCheckCondition ( $part, $condition ) {
 
-    if ( ! str_contains ( $part, $condition ) ) 
+    if ( ! str_contains ( $part, $condition ) )
       return TRUE;
 
     $parts = explode ( $condition, $part );

@@ -1,5 +1,5 @@
 <?php
-  
+
   //  Error handling
 
   $padErrorAction    = 'pad';  // 'pad'    = PAD's own full blown error handler.
@@ -10,7 +10,7 @@
                                // 'ignore' = Ignore all errors and continue processing.
                                // 'log'    = Log errors to Apache error log and continue processing.
                                // 'dump'   = Dump errors to the DATA directory and continue processing.
- 
+
   $padErrorLevel     = 'all';  // Kind of PHP errors that will be processed by $padErrorAction
                                // 'none' , 'error' , 'warning' , 'notice' , 'all'
                                // (not used when $padErrorAction is 'php' or 'boot')
@@ -23,7 +23,7 @@
 
 
   // Many ways to track/trace and so.
-  // Optional, one or more values from the sub folder 'info' 
+  // Optional, one or more values from the sub folder 'info'
 
   $padInfo = '';
 
@@ -33,8 +33,8 @@
   $padOutputType = 'web'; // web/file/download/console
 
   // Cache settings
-  
-  $padCache = FALSE;  
+
+  $padCache = FALSE;
 
   // SQL parms - pad internal
 
@@ -56,21 +56,21 @@
   $padFileMode = 0644;
 
   // Default date/time formating
-  
+
   $padFmtDate      = 'Y-m-d';
   $padFmtTime      = 'H:i:s';
   $padFmtTimestamp = 'Y-m-d H:i:s';
-  
+
   // Keep track of vars in a session.
-  
+
   $padSessionVars = [];
-    
+
   // Default {$var} options, there must be a PHP snippet in one of below directories
   // - /app/_functions/
   // - /app/_actions/
   // - /pad/functions/
   // - /pad/actions/
- 
+
   $padDataDefaultStart = [];
   $padDataDefaultEnd   = ['sanitize'];
 
@@ -86,7 +86,7 @@
 
   $padGzip      = FALSE;  // Send the result zipped
   $padCookies   = TRUE;   // Set some cookies
-  $padNoNo      = FALSE;  // No pad stuff, just plain PHP   
+  $padNoNo      = FALSE;  // No pad stuff, just plain PHP
   $padFastLink  = 32;     // Length of the FastLink code in the URL
 
 ?>

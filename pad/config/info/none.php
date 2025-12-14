@@ -1,7 +1,7 @@
 <?php
-  
+
   $padInfoTrack            = FALSE;       // Big Brother, session and request information of the client
-  $padInfoXml              = FALSE;       // Build a XML file of the structure of the PAD page 
+  $padInfoXml              = FALSE;       // Build a XML file of the structure of the PAD page
   $padInfoStats            = FALSE;       // Keep runtime statistics about time and cpu used
   $padInfoTrace            = FALSE;       // Trace the internal working of PAD
   $padInfoXref             = FALSE;       // Build the <app>_xref directory
@@ -15,7 +15,7 @@
   $padInfoXmlParms         = FALSE;
   $padInfoXmlTidy          = FALSE;
   $padInfoXmlCompact       = FALSE;
-    
+
   $padInfoTraceLines       = FALSE;
   $padInfoTraceDouble      = FALSE;
   $padInfoTraceDefault     = FALSE;
@@ -23,7 +23,7 @@
 
   $padInfoTraceRoot        = FALSE;
   $padInfoTraceDump        = FALSE;
-  $padInfoTraceTree        = FALSE;  
+  $padInfoTraceTree        = FALSE;
   $padInfoTraceLocal       = FALSE;
   $padInfoTraceTypes       = FALSE;
   $padInfoTraceMore        = FALSE;
@@ -36,19 +36,19 @@
   $padInfoTraceStatus      = FALSE;
   $padInfoTraceChilds      = FALSE;
   $padInfoTraceAddLine     = FALSE;
-  $padInfoTraceLocalChk    = FALSE;       
+  $padInfoTraceLocalChk    = FALSE;
 
   $padInfoTraceOccurs      = FALSE;
   $padInfoTraceOccursSmart = FALSE;
 
   $padInfoTraceInitsExits  = FALSE;
-  
-  $padInfoTraceTypesDir    = FALSE;       
+
+  $padInfoTraceTypesDir    = FALSE;
   $padInfoTraceRequest     = FALSE;
 
   $padInfoTraceSession     = FALSE;
   $padInfoTraceBuild       = FALSE;
-  
+
   $padInfoTraceParse       = FALSE;
   $padInfoTraceParms       = FALSE;
   $padInfoTraceOptions     = FALSE;
@@ -57,7 +57,7 @@
   $padInfoTraceStartOcc    = FALSE;
   $padInfoTraceEndLvl      = FALSE;
   $padInfoTraceEndOcc      = FALSE;
-  
+
   $padInfoTraceContent     = FALSE;
   $padInfoTraceTrue        = FALSE;
   $padInfoTraceFalse       = FALSE;
@@ -66,10 +66,10 @@
   $padInfoTraceResultOcc   = FALSE;
 
   $padInfoTraceFlags       = FALSE;
- 
+
   $padInfoTraceDataLvl     = FALSE;
   $padInfoTraceDataOcc     = FALSE;
-  
+
   $padInfoTraceStore       = FALSE;
   $padInfoTraceSequence    = FALSE;
   $padInfoTraceVar         = FALSE;

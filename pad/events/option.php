@@ -1,6 +1,6 @@
 <?php
 
-  if ( $GLOBALS ['padInfoXref']  ) 
+  if ( $GLOBALS ['padInfoXref']  )
     if ( ! file_exists ( PQ . "actions/types/$padPrmName.php" ) )
       if ( ! file_exists ( PT . "$padPrmName" ) )
         if ( ! isset  ( $pqStore [$padPrmName] ) )
@@ -8,5 +8,5 @@
             padInfoXref ( 'options', 'general', $padPrmName );
           else
             padInfoXref ( 'options', 'specific', $padPrmName );
-   
+
 ?>

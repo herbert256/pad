@@ -1,5 +1,5 @@
 <?php
-  
+
   $left = $result [$f] [0];
   $right = $myself;
 

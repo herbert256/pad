@@ -1,5 +1,5 @@
 <?php
-  
+
 
   padErrorReporting   ( $padErrorLevel );
   padErrorRestoreBoot ();

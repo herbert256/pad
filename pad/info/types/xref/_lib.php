@@ -1,6 +1,6 @@
 <?php
-  
-  
+
+
   function padInfoXref ( $dir1, $dir2, $dir3='' ) {
 
     if ( ! $GLOBALS ['padInfoXref'] )
@@ -8,22 +8,22 @@
 
     global $padPage, $padInfoXrefSource, $padStartPage;
 
-    if ( $dir1 == 'sequence' ) 
+    if ( $dir1 == 'sequence' )
       return padInfoXrefGo ( $dir1, $dir2, $dir3 );
 
     if ( padInsideOther ()         ) return;
     if ( $padPage <> $padStartPage ) return;
- 
+
     if ( $dir1 == 'tag'       and $dir2 <> 'pad' ) return padInfoXrefGo ( $dir1, $dir2, $dir3 );
     if ( $dir1 == 'functions' and $dir2 <> 'pad' ) return padInfoXrefGo ( $dir1, $dir2, $dir3 );
 
     if (   $dir3 and strpos ( $padInfoXrefSource, $dir3 ) === FALSE ) return;
     if ( ! $dir3 and strpos ( $padInfoXrefSource, $dir2 ) === FALSE ) return;
- 
+
     padInfoXrefGo ( $dir1, $dir2, $dir3 );
 
   }
-  
+
 
   function padInfoXrefGo ( $dir1, $dir2, $dir3 ) {
 
@@ -45,6 +45,6 @@
     filePutLine ( 'reference', "$file.txt", $padStartPage );
 
   }
- 
- 
+
+
 ?>

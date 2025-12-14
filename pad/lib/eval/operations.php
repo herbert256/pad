@@ -24,8 +24,8 @@
     foreach ( padEval_precedence as $now ) {
 
       $f = $b = -1;
-      
-      foreach ( $result as $k => $t ) { 
+
+      foreach ( $result as $k => $t ) {
 
         if ( $k < $start ) continue;
         if ( $k > $end   ) break;
@@ -39,12 +39,12 @@
 
         $f = $b;
         $b = $k;
-  
+
       }
 
     }
 
   }
- 
- 
+
+
 ?>

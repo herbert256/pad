@@ -2,7 +2,7 @@
 
   if ( ! $GLOBALS ['padInfoTrace'] or ! $GLOBALS ['padInfoTraceEval'] )
     return;
-  
+
   global $padInfoTraceEvalData;
 
   $padInfoTraceEvalData ['result'] = $result [$key] [0];

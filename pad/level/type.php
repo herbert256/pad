@@ -13,15 +13,15 @@
   } else {
 
     $padTypeGiven  = TRUE;
-    
-    $padTypePrefix = $padTypeExplode [0];  
-    $padTypeCheck  = $padTypeExplode [1]; 
 
-    $padTypeResult = padTypeTagCheck ( $padTypePrefix, $padTypeCheck ); 
+    $padTypePrefix = $padTypeExplode [0];
+    $padTypeCheck  = $padTypeExplode [1];
+
+    $padTypeResult = padTypeTagCheck ( $padTypePrefix, $padTypeCheck );
 
     if ( ! $padTypeResult )
-      $padTypeResult = padTypeSeq ( $padTypePrefix, $padTypeCheck );     
-  
-  } 
+      $padTypeResult = padTypeSeq ( $padTypePrefix, $padTypeCheck );
+
+  }
 
 ?>

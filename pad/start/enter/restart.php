@@ -1,7 +1,7 @@
 <?php
-   
+
   padEmptyBuffers ( $padIgnored );
-   
+
   $padPage = $padRestart;
 
   if ( isset ( $padRestartVars ) ) {
@@ -14,5 +14,5 @@
   }
 
   include PAD . 'start/enter/start.php';
-  
+
 ?>

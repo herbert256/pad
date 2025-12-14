@@ -55,7 +55,7 @@
 
     //  Required input parms
     //  - ['url']
-    
+
     //  Optional input parms
     //  - ['user']
     //  - ['password']
@@ -80,11 +80,11 @@
 
     $url = ( is_array($input) ) ? $input ['url'] : $input;
 
-    if ( ! is_array($input) ) 
+    if ( ! is_array($input) )
       $input = [];
 
     if ( isset($input['get']) )
-      foreach ( $input['get'] as $key => $val ) 
+      foreach ( $input['get'] as $key => $val )
         $url = padAddGet ( $url, $key, $val );
 
     $output ['url'] = $url;
@@ -92,19 +92,19 @@
     if ( ! strpos( $url, '://') ) {
 
       $check = padDataFileName ( $url );
-    
+
       if ( $check ) {
 
         $output ['url']    = "file://$check";
-        $output ['data']   = padDataFileData ( $check );   
-        $output ['type']   = padContentType  ( $output ['data'] );   
+        $output ['data']   = padDataFileData ( $check );
+        $output ['type']   = padContentType  ( $output ['data'] );
         $output ['result'] = '200';
 
         $GLOBALS ['padCurlLast'] = $output;
 
         return $output;
 
-      } 
+      }
 
     }
 
@@ -119,7 +119,7 @@
     }
 
     $options = $input ['options'] ?? [];
- 
+
     padCurlOpt ($options, 'RETURNTRANSFER', true);
     padCurlOpt ($options, 'ENCODING',       'gzip' );
     padCurlOpt ($options, 'FOLLOWLOCATION', true);
@@ -129,12 +129,12 @@
 
     if ( isset($input['user']) )
       padCurlOpt ($options, 'USERPWD', $input['user'] . ":" . $input['password']);
-    
+
     if ( isset($input['post']) ) {
       padCurlOpt ($options, 'POST', true);
       padCurlOpt ($options, 'POSTFIELDS', $input ['post']);
     }
- 
+
     if ( isset($input['cookies']) ) {
       $cookies = '';
       foreach ( $input['cookies'] as $key => $val ) {
@@ -144,7 +144,7 @@
       }
       padCurlOpt ($options, 'COOKIE', $cookies);
     }
-  
+
     if ( isset($input['headers']) ) {
       $headers_in = [];
       foreach ( $input['headers'] as $key => $val )
@@ -152,7 +152,7 @@
       padCurlOpt ($options, 'HTTPHEADER', $headers_in);
     }
 
-    $output ['options'] = $options;      
+    $output ['options'] = $options;
 
     if ( ! function_exists ( 'curl_init') )
       return padNoCurl ( $output );
@@ -173,7 +173,7 @@
       if ( $stats ) $start = hrtime ( TRUE );
       $result = curl_exec ($curl);
       if ( $stats ) $end = hrtime ( TRUE );
-      
+
       if ($result === FALSE)
         return padCurlError ($output, 'curl_exec = FALSE');
 
@@ -194,26 +194,26 @@
       $output ['result'] = 'xxx';
 
     if ( isset($output ['info']['header_size']) and $output ['info']['header_size'] > 0 ) {
-        
+
       $file = '';
       $headers = explode( "\r\n", substr ( $result, 0, $output ['info'] ['header_size'] ) );
 
       foreach ($headers as $key => $val) {
-        
+
         $work = explode ( ':', $val, 2 );
-        
+
         $header = trim ( $work [0] ?? '' );
         $value  = trim ( $work [1] ?? '' );
 
         if ( $header and ! $value )
-      
+
           $output ['headers'] ['http'] = $header;
-        
+
         elseif ( $header and $value ) {
 
           if ( $header == 'Content-Disposition' and !$file)
             padBetween ($value, '"', '"', $before, $file, $after);
-        
+
           if ( $header == 'Content-Type' )
             if     (strpos ($value, 'html')       !== FALSE) $output ['type'] = 'html';
             elseif (strpos ($value, 'xml')        !== FALSE) $output ['type'] = 'xml';
@@ -222,7 +222,7 @@
             elseif (strpos ($value, 'csv')        !== FALSE) $output ['type'] = 'csv';
             elseif (strpos ($value, 'yaml')       !== FALSE) $output ['type'] = 'yaml';
             elseif (strpos ($value, 'yml')        !== FALSE) $output ['type'] = 'yaml';
-         
+
           if ( $header == 'Set-Cookie') {
             $first = strpos ($value, '=');
             $last  = strpos ($value, ';');
@@ -231,11 +231,11 @@
           }
           else
             $output ['headers'] [$header] = $value;
-        
+
         }
 
       }
-      
+
     }
 
     if ( $stats and isset ( $output ['headers'] ['PAD-Stats'] ) ) {
@@ -263,7 +263,7 @@
     $GLOBALS ['padCurlLast'] = $output;
 
     return $output;
-    
+
   }
 
 
@@ -277,7 +277,7 @@
    * @return void
    */
   function padCurlOpt (&$options, $name, $value) {
-    
+
     if ( ! isset ( $options [$name] ) )
       $options [$name] = $value;
 

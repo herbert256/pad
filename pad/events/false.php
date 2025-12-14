@@ -4,6 +4,6 @@
     return;
 
   if ( !$padInfoTraceDouble and $padInfoTraceContent )
-    padInfoTrace ( 'level', 'false', $padFalse ); 
+    padInfoTrace ( 'level', 'false', $padFalse );
 
 ?>

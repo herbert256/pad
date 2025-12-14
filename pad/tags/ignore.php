@@ -3,5 +3,5 @@
    $padContent = padEscape ( $padContent );
 
    return true;
-  
+
 ?>

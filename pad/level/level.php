@@ -1,32 +1,32 @@
 <?php
 
   if ( $padRestart )
-    return include PAD . 'start/enter/restart.php';    
-    
+    return include PAD . 'start/enter/restart.php';
+
   padLevelEnd ();
   if ( $padEnd [$pad] === FALSE )
     return include PAD . 'level/end.php';
 
   padLevelStart ();
-  if ( $padStart [$pad] === FALSE ) 
+  if ( $padStart [$pad] === FALSE )
     return padLevelNoOpen ();
 
   padLevelBetween ();
-  include PAD . 'level/pipes/start.php';  
+  include PAD . 'level/pipes/start.php';
   include PAD . 'level/between.php';
 
   if ( padCommentCheck () )
     return padCommentGo ();
 
-  if ( $padFirst == '/' ) 
+  if ( $padFirst == '/' )
     return padError ( "Closing tag found without an open tag: {" . $padBetween . "}" );
 
-  if ( ctype_space ( $padFirst ) ) 
+  if ( ctype_space ( $padFirst ) )
     return padLevelNoSingle ();
-  
+
   if ( $pad and $padLvlFun [$pad-1] )
     include PAD . 'level/function.php';
-     
+
   if ( in_array ( $padFirst, ['$','!','#','&','?','@'] ) ) {
     $padTry = 'level/var';
     return include PAD . 'try/try.php';
@@ -39,10 +39,10 @@
     if ( padValidTag ($padWords [0]) )
       return include PAD . 'options/optional.php';
 
-  if ( ! $padTypeResult ) 
+  if ( ! $padTypeResult )
     if ( $padPairSet ) return padLevelNoPair   ();
     else               return padLevelNoSingle ();
 
   include PAD . 'level/start.php';
- 
+
 ?>

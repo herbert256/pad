@@ -7,14 +7,14 @@
   }
 
   foreach ( $padParms [$pad] as $padV )
-  
+
     if ( $padV ['padPrmKind'] == 'option' ) {
 
       $pqActionParm = $padV ['padPrmValue'];
 
       if ( $pqActionParm === TRUE )
         $pqActionParm = '';
-  
+
       $pqActionList = padExplode ( $pqActionParm, '|' );
 
       $pqAction = ( $padV ['padPrmName'] == 'action' ) ? array_shift ( $pqActionList ) : $padV ['padPrmName'];

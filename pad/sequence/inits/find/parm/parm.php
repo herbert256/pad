@@ -8,5 +8,5 @@
   elseif ( $pqAction and file_exists ( PQ . "actions/parm/$pqAction")   ) $pqActionParm = $pqFindParm;
   elseif ( $pqSeq                                                         ) $pqParm       = $pqFindParm;
   elseif ( $pqAction                                                      ) $pqActionParm = $pqFindParm;
- 
+
 ?>

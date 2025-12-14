@@ -7,5 +7,5 @@
     return;
 
  if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'var', 'end', 'value=' . $padVal );
-   
+
 ?>

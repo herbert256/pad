@@ -1,6 +1,6 @@
 <?php
-  
-  $pad++;  
+
+  $pad++;
 
   if ( $pad > 100 )
     return padError ( "Too many Levels" );
@@ -10,7 +10,7 @@
   $padLvlIds     [$pad] = $padLvlId;
 
   $padParmParse  [$pad] = [];
-  
+
   $padOpt        [$pad] = [];
   $padPrm        [$pad] = [];
   $padParms      [$pad] = [];
@@ -49,7 +49,7 @@
 
   $padOut        [$pad] = '';
   $padResult     [$pad] = '';
- 
+
   $padHit        [$pad] = FALSE;
   $padNull       [$pad] = FALSE;
   $padElse       [$pad] = FALSE;
@@ -63,7 +63,7 @@
 
   $padSaveOcc    [$pad] = [];
   $padDeleteOcc  [$pad] = [];
-  
+
   $padEndBase    [$pad] = '';
   $padStartBase  [$pad] = [];
   $padStartData  [$pad] = [];
@@ -82,8 +82,8 @@
 
   $padForceTagName  = '';
   $padForceDataName = '';
-  $padFalse         = '';  
-  
+  $padFalse         = '';
+
   if ( $padInfo )
     include PAD . 'events/setup.php';
 

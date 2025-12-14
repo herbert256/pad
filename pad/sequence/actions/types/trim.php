@@ -19,7 +19,7 @@
   if ( $pqTrimLeft )
     $pqResult = pqTruncate  ( $pqResult, 'left', $pqTrimLeft );
 
-  if ( $pqTrimRight ) 
+  if ( $pqTrimRight )
     $pqResult = pqTruncate  ( $pqResult, 'right', $pqTrimRight );
 
 ?>

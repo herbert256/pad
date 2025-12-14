@@ -2,9 +2,9 @@
 
   $padHandCount = (int) count ( $padData [$pad] );
 
-  $padExplode = explode ( '|', $padHandParm, 2 ); 
+  $padExplode = explode ( '|', $padHandParm, 2 );
   $padHandP1  = (int)  $padExplode [0] ?? 0;
-  $padHandP2  = (int) ($padExplode [1] ?? 0);   
+  $padHandP2  = (int) ($padExplode [1] ?? 0);
 
   if ( $padHandName == 'splice' )
     if ( $padHandP2 )

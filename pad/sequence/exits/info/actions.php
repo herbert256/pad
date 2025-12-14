@@ -8,5 +8,5 @@
       $pqInfo ['actions/double'] [] = $pqAction;
 
   }
-    
+
 ?>

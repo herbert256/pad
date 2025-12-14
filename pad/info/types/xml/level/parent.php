@@ -2,7 +2,7 @@
 
   $padInfoXmlParent = $padInfoXmlParentOcc = 0;
 
-  if ( $pad <= 0 ) 
+  if ( $pad <= 0 )
     return;
 
   $padInfoXmlParent    = $padInfoXmlLevel [$pad-1];

@@ -10,7 +10,7 @@
     $padGetData .= include PAD . 'call/obNoOne.php';
   }
 
-  if ( file_exists ( $padGetPad ) ) 
+  if ( file_exists ( $padGetPad ) )
     $padGetData .= padFileGet ( $padGetPad );
 
   return $padGetData;

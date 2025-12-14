@@ -6,5 +6,5 @@
   define ( 'DAT', "$padHome/DATA/"      );
 
   include "$padHome/pad/pad.php";
-  
+
 ?>

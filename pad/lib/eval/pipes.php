@@ -13,7 +13,7 @@
    * @return void
    */
   function padEvalPipes ( $result, &$pipes ) {
-      
+
     $pipe  = 0;
     $pipes = [];
 
@@ -23,7 +23,7 @@
       else
         $pipes [$pipe] [$key] = $val;
 
-  }  
- 
+  }
+
 
 ?>
