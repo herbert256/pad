@@ -12,12 +12,12 @@
   $manualText  = str_replace ( '_', ' ', $manualText);
   $manualText  = ucfirst ( $manualText );
 
-  return 
-      '<a href="' 
-    .  $padGo 
+  return
+      '<a href="'
+    .  $padGo
     . "manual/$manualLink"
-    . '">' 
-    . $manualText 
+    . '">'
+    . $manualText
     . '</a>';
 
 ?>

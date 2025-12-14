@@ -1,7 +1,7 @@
 <?php
 
   $title = 'Reference';
-  
+
   if ( ! isset ( $dir  )    ) $dir  = 'tag/pad';
   if ( ! isset ( $type )    ) $type = 'Tags';
   if ( ! isset ( $item )    ) $item = 'pad';

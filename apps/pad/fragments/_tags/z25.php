@@ -4,9 +4,9 @@
 
   $hi = 'Hello World 7';
 
-  echo '<h3>Hello World 2</h3>'; 
+  echo '<h3>Hello World 2</h3>';
 
-  return [ 
+  return [
     88 => [ 'hi' => 4 ],
     12 => [ 'hi' => 5 ],
     33 => [ 'hi' => 6 ]

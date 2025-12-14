@@ -2,14 +2,14 @@
 
 
   function sequenceDir ( $dir )  {
-  
+
     $out = [];
 
     foreach ( array_diff ( scandir ( $dir ), [ '.', '..' ] ) as $file ) {
       $key = str_replace( '.pad', '', str_replace( '.php', '', $file ) );
       $out [$key] = $key;
     }
-    
+
     return array_values ( $out );
 
   }
@@ -60,7 +60,7 @@
 
   function onlyResult ( $file ) {
 
-    $pad = ( file_exists( $file ) ) ? fileGet( $file ) : ''; 
+    $pad = ( file_exists( $file ) ) ? fileGet( $file ) : '';
 
     if ( strpos($pad, '<!-- PAD: ONLYRESULT -->') !== false ) return ',onlyResult';
     if ( strpos($pad, '{demo')                    !== false ) return ',onlyResult';
@@ -72,11 +72,11 @@
 
   function layout ( $file ) {
 
-    $pad = ( file_exists( $file ) ) ? fileGet( $file ) : ''; 
+    $pad = ( file_exists( $file ) ) ? fileGet( $file ) : '';
 
-    if ( strpos($pad, '<!-- PAD: VERTICAL -->') !== false ) 
+    if ( strpos($pad, '<!-- PAD: VERTICAL -->') !== false )
       return 'vertical';
-    elseif ( strpos($pad, '<!-- PAD: ABOVE -->') !== false ) 
+    elseif ( strpos($pad, '<!-- PAD: ABOVE -->') !== false )
       return 'above';
     else
       return 'horizontal';

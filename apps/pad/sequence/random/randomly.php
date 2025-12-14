@@ -1,5 +1,5 @@
 <?php
- 
+
   foreach ( pqTypes () as $type ) {
 
     $parm = pqParm ( $type );
@@ -16,5 +16,5 @@
     $sequences [$type] ['spaces'] = str_pad ( '', 19 - strlen ( $gox ) );
 
   }
-  
+
 ?>

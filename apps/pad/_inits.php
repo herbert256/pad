@@ -2,18 +2,18 @@
 
   $title = $padPage;
 
-  if ( isset ($skipTitle) ) 
+  if ( isset ($skipTitle) )
 
     $showTitle = FALSE;
 
-  else { 
+  else {
 
     $showTitle = TRUE;
 
     $title = str_replace ( '/index', '', $title );
     $title = padExplode ( $title, '/' );
     $title = end ( $title ) ;
-  
+
   }
 
 ?>

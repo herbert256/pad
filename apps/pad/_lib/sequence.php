@@ -1,8 +1,8 @@
 <?php
-  
+
 
   function pqTypes () {
-  
+
     return array_diff ( scandir ( PAD . 'sequence/types' ), [ '.', '..' ] ) ;
 
   }
@@ -12,12 +12,12 @@
 
     $array = array_diff ( scandir ( PAD . 'sequence/actions/types' ), [ '.', '..' ] ) ;
 
-    foreach ( $array as &$str ) 
+    foreach ( $array as &$str )
       $str = str_replace ( '.php', '', $str );
 
     return $array;
 
   }
-  
-  
+
+
 ?>

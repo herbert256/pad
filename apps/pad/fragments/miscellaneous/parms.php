@@ -7,9 +7,9 @@
   $phone = 'phone';
 
   define ( "xxxx", [ 1, 22, 333, 4444] );
-  
+
   $php_array_parms_1 ['xyz'] = 789;
-  
+
   $php_array_parms_1 ['vars'] [0] ['name']  = 'bob-p1';
   $php_array_parms_1 ['vars'] [0] ['phone'] = '555-3425';
 
@@ -37,7 +37,7 @@
   $php_array_vars_1 [3] ['phone'] = '555-4973';
 
   $php_array_parms_2 ['xyz'] = 789;
-  
+
   $php_array_parms_2 ['vars'] [0] ['name']  = 'bob-p2';
   $php_array_parms_2 ['vars'] [0] ['phone'] = '555-3425';
 

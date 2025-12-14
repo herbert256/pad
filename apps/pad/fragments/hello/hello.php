@@ -1,5 +1,5 @@
 <?php
-  
+
   $hi = 'Hello World !';
-  
+
 ?>

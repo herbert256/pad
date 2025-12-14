@@ -16,13 +16,13 @@
       $file = padCorrectPath ( $loop_info->getPathname() );
       $ext  = substr($file, strrpos($file, '.')+1 );
 
-      if ( $ext <> 'php' and $ext <> 'pad' ) 
+      if ( $ext <> 'php' and $ext <> 'pad' )
         continue;
 
       $old = fileGet ($file);
       $new = trim($old);
 
-      if ($old <> $new) 
+      if ($old <> $new)
         filePutFile ($file, $new, LOCK_EX);
 
     }

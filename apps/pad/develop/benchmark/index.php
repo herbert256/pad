@@ -5,7 +5,7 @@
   $list = [];
 
   if ( ! $padInfo      ) return TRUE;
-  if ( ! $padInfoStats ) return TRUE; 
+  if ( ! $padInfoStats ) return TRUE;
 
   $title = "Benchmark";
 

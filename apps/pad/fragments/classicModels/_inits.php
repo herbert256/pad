@@ -1,5 +1,5 @@
 <?php
-  
+
   $padTables ['customers'] = [ 'db' => 'customers',    'key' => 'customerNumber', 'order' => 'customerName'];
   $padTables ['employees'] = [ 'db' => 'employees',    'key' => 'employeeNumber', 'order' => 'lastName,firstName'];
   $padTables ['offices']   = [ 'db' => 'offices',      'key' => 'officeCode'];
@@ -25,11 +25,11 @@
   // All keys of *relation* must be given, use 'n/a' if it does not exists in *base* for a partly relation
 
   $padRelations ['customers'] ['employees']  = [ 'key' => 'salesRepEmployeeNumber'];
-  
+
   // Virtual tables
-  
+
   $padRelations ['customers'] ['sales']      = [ 'table' => 'employees', 'key' => 'salesRepEmployeeNumber' ];
   $padRelations ['employees'] ['managers']   = [ 'table' => 'employees', 'key' => 'reportsTo'              ];
   $padRelations ['managers']  ['bosses']     = [ 'table' => 'employees', 'key' => 'reportsTo'              ];
- 
+
  ?>

@@ -1,5 +1,5 @@
 <?php
- 
+
   echo "{table}";
 
   echo str_pad ( "{demo}{sequence}", 38) . "{\$sequence} {/sequence} {/demo}";
@@ -18,7 +18,7 @@
     echo str_pad ( "{demo}{sequence $gox}", 38) . "{\$sequence} {/sequence} {/demo}";
 
   }
-  
+
   echo "{/table}";
 
 ?>

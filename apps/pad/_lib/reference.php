@@ -1,5 +1,5 @@
 <?php
- 
+
 
   function getXref ( $dir, $xref,  ) {
 
@@ -17,11 +17,11 @@
       $check = APP . "reference/DATA/$dir/";
     } else {
       $base  = PAD . "$dir/";
-      $check = APP . "reference/DATA/$xref/";      
+      $check = APP . "reference/DATA/$xref/";
     }
 
     $items = [];
-    
+
     foreach ( padItems ( $base ) as $one ) {
 
       extract ( $one );
@@ -32,7 +32,7 @@
         or ( $xref == 'tag/pad'   and $dir == 'tags'        and file_exists ( PQ . "start/tags/$item.php"  ) )
         or ( $xref == 'functions' and $dir == 'eval/single' and file_exists ( PQ . "start/eval/$item.php"  ) )
         or ( $xref == 'functions' and $dir == 'eval/parms'  and file_exists ( PQ . "start/eval/$item.php"  ) ) )
-        continue; 
+        continue;
 
       if ( $item ) {
         $items [$item] ['item']  = $item;
@@ -41,7 +41,7 @@
       }
 
     }
-       
+
     return $items;
 
   }

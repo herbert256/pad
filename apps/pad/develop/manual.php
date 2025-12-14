@@ -8,7 +8,7 @@
 
     if ( str_starts_with ( $item, 'manual/' ) )
       $items [$item] ['item'] = $item;
-  
+
   }
 
   ksort ($items);

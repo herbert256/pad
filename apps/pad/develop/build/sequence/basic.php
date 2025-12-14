@@ -1,5 +1,5 @@
 <?php
- 
+
   if     ( $type == 'oeis'   ) $go = "oeis=87";
   elseif ( $type == 'list'   ) $go = "list='1;8;5;2;9;66'";
   elseif ( $type == 'range'  ) $go = "range='1..10'";

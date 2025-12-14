@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! isset ( $sequence) ) 
+  if ( ! isset ( $sequence) )
     $sequence = 0;
 
 ?>

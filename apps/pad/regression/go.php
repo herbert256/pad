@@ -2,7 +2,7 @@
 
   if ( $sequence )
     padRedirect ( 'manual/sequence/regression', [ 'go' => 'regression' ] );
-  else  
+  else
     padRedirect ( "regression" );
 
 ?>

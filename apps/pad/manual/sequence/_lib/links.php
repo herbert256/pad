@@ -1,7 +1,7 @@
 <?php
 
   function links ( $dir = '' ) {
-    
+
     if ( ! $dir )
       return [];
 

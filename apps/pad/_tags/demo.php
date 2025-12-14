@@ -30,14 +30,14 @@
 
   if ( $firstFileP ) {
     $firstFile = '<td style="vertical-align:top">';
-    if ( file_exists ( APP . $firstFileP ) and ! is_dir ( APP . $firstFileP ) ) 
+    if ( file_exists ( APP . $firstFileP ) and ! is_dir ( APP . $firstFileP ) )
       $firstFile .= padColorsFile ( APP . $firstFileP );
     $firstFile .= '</td>';
   }
 
   if ( $secondFileP ) {
     $secondFile = '<td style="vertical-align:top">';
-    if ( file_exists ( APP . $secondFileP ) and ! is_dir ( APP . $secondFileP ) ) 
+    if ( file_exists ( APP . $secondFileP ) and ! is_dir ( APP . $secondFileP ) )
       $secondFile .= padColorsFile ( APP . $secondFileP );
     $secondFile .= '</td>';
   }
@@ -45,20 +45,20 @@
   if ( padTagParm ('pre') )
     $padContent = "<pre>$padContent</pre>";
 
-  $padContent = 
+  $padContent =
     '<tr>' .
       $firstFile .
       $secondFile .
       $padDemoSourcePHP .
       '<td style="vertical-align:top">' .
-      '<!-- START DEMO SOURCE -->' .  
-      trim($padSourcex)  . 
-      '<!-- END DEMO SOURCE -->' .  
+      '<!-- START DEMO SOURCE -->' .
+      trim($padSourcex)  .
+      '<!-- END DEMO SOURCE -->' .
       '</td>' .
-      '<td style="vertical-align:top"><code><span style="color: #000000">' . 
-      '<!-- START DEMO RESULT -->' .  
-      trim($padContent) . 
-      '<!-- END DEMO RESULT -->' .  
+      '<td style="vertical-align:top"><code><span style="color: #000000">' .
+      '<!-- START DEMO RESULT -->' .
+      trim($padContent) .
+      '<!-- END DEMO RESULT -->' .
       '</span></code></td>' .
     '</tr>';
 

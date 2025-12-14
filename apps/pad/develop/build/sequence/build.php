@@ -12,6 +12,6 @@
     include APP . 'sequence/keepRemoveFlag.php';
     include APP . 'sequence/playSingle.php';
     include APP . 'sequence/playDouble.php';
-  }  
+  }
 
 ?>

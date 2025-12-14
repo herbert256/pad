@@ -1,6 +1,6 @@
 <?php
 
-  return [    
+  return [
     [ 'department' => 'IT',       'manager' => 'Bob',   'phone' => '555-1111' ],
     [ 'department' => 'Kitchen',  'manager' => 'Jim',   'phone' => '555-2222' ],
     [ 'department' => 'Helpdesk', 'manager' => 'Joe',   'phone' => '555-3333' ],

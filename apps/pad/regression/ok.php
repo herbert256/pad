@@ -1,5 +1,5 @@
 <?php
-    
+
 $curl = getPage ($item);
 
 filePutFile ( 'regression', "$item.html", $curl ['data'] );

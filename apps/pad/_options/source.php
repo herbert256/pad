@@ -1,5 +1,5 @@
 <?php
 
-  $padContent = padColorsString ($padContent);  
+  $padContent = padColorsString ($padContent);
 
 ?>

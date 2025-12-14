@@ -1,6 +1,6 @@
 <?php
 
-  fileDeleteDir  ( DAT . '_xref'       ); 
+  fileDeleteDir  ( DAT . '_xref'       );
   fileDeleteDir  ( DAT . '_regression' );
 
   foreach ( padList ( 0 ) as $one ) {

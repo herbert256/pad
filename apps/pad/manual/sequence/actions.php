@@ -1,5 +1,5 @@
 <?php
- 
+
   echo "{table}";
   echo "{demo}{sequence '11..20', push='mySeq1'}{/demo}";
   echo str_pad ( "{demo}{mySeq1}", 36) . "{\$sequence} {/mySeq1} {/demo}";
@@ -32,6 +32,6 @@
   echo "{demo}{sequence 'A..E',   push='mySeq2'}{/demo}";
   echo "{demo}{mySeq1 splice='3|5|mySeq2'} {\$sequence} {/mySeq1} {/demo}";
   echo "{/table}";
-  
+
 
 ?>

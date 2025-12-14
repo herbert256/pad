@@ -1,5 +1,5 @@
 <?php
-  
+
   $title = "All 'ok' from regression test";
 
   foreach ( padList ( 0 ) as $one ) {
@@ -10,7 +10,7 @@
 
     if ( $status == 'ok' and ! str_contains ($item, 'manual') )
       $list [$item] ['item'] = $item;
-  
+
   }
 
   ksort ($list);

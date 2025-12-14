@@ -15,9 +15,9 @@
       return padError ("Curl failed: $url");
 
     return $curl;
-    
+
   }
-  
+
 
   function dirList ($dir) {
 
@@ -43,7 +43,7 @@
       if ( $ext <> 'pad' and $ext <> 'php' ) continue;
 
       $list [$item] ['item'] = $item;
-      
+
     }
 
     ksort($list);
@@ -70,20 +70,20 @@
       if ( $ext <> 'pad'            ) continue;
       if ( strpos($path, '/DATA/')  ) continue;
       if ( strpos($path, '/_')      ) continue;
-      if ( strpos($path, 'develop') ) continue;     
+      if ( strpos($path, 'develop') ) continue;
 
       if ( $filter ) {
-        if ( strpos($path, 'error')    ) continue;      
-        if ( strpos($path, 'test')     ) continue;      
-        if ( strpos($path, 'redirect') ) continue;      
-        if ( strpos($path, 'deep')     ) continue;  
-      }    
+        if ( strpos($path, 'error')    ) continue;
+        if ( strpos($path, 'test')     ) continue;
+        if ( strpos($path, 'redirect') ) continue;
+        if ( strpos($path, 'deep')     ) continue;
+      }
 
       $files [$item] ['path'] = $path;
       $files [$item] ['item'] = $item;
       $files [$item] ['dir']  = $dir;
       $files [$item] ['file'] = $file;
-    
+
     }
 
     ksort ($files);
@@ -104,22 +104,23 @@
 
       $file  = str_replace (APP, '', $path );
       $file  = str_replace (PAD, '', $path );
-      
+
       $ext   = substr($file,    strrpos($file, '.')+1 );
       $item  = substr($file, 0, strrpos($file, '.')   );
       $dir   = substr($item, 0, strrpos($item, '/')   );
       $file  = substr($item,    strrpos($item, '/')+1 );
 
       if ( ! $item       ) continue;
-      if ( $file == '.'  ) continue; 
+      if ( $file == '.'  ) continue;
       if ( $file == '..' ) continue;
-      
+      if ( $ext  == 'md' ) continue;
+
       $files [$item] ['item'] = $item;
       $files [$item] ['path'] = $path;
       $files [$item] ['dir']  = $dir;
       $files [$item] ['file'] = $file;
       $files [$item] ['ext']  = $ext;
-    
+
     }
 
     ksort ($files);
@@ -134,8 +135,8 @@
 
     $file = str_replace ( '.php', '.pad', $file );
 
-    if ( file_exists( $file ) ) 
-      if ( str_contains ( fileGet ( $file ), $string ) ) 
+    if ( file_exists( $file ) )
+      if ( str_contains ( fileGet ( $file ), $string ) )
         return TRUE;
 
     return FALSE;
@@ -160,7 +161,7 @@
     }
 
     return $list;
-    
+
   }
 
 

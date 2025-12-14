@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! isset ( $pages ) ) 
+  if ( ! isset ( $pages ) )
     return;
 
   $go = file ( APP . "_xref/sequence/$pages", FILE_IGNORE_NEW_LINES );

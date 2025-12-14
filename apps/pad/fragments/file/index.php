@@ -1,7 +1,7 @@
 <?php
 
   $padOutputType     = 'file';
-  
+
   $padFileName       = 'myName';
   $padFileDir        = 'myDir';
   $padFileExtension  = 'ext';

@@ -6,25 +6,25 @@
     padRedirect ($item, [ 'padInclude' => 1 ] );
 
   $oldRes = $newRes = $newSrc = $compare = $demoLines = [];
- 
+
   $title = $item;
   $new   = $curl ['data'];
   $old   = fileGet ( APP . "regression/DATA/$item.html" );
   $diff  = diff ( $old, $new );
-   
+
   $check = $old;
-  while ( strpos($check, '<!-- START DEMO RESULT -->') ) 
+  while ( strpos($check, '<!-- START DEMO RESULT -->') )
     $oldRes [] = trim ( cut ( $check, '<!-- START DEMO RESULT -->', '<!-- END DEMO RESULT -->' ) );
 
   $check = $new;
-  while ( strpos($check, '<!-- START DEMO RESULT -->') ) 
+  while ( strpos($check, '<!-- START DEMO RESULT -->') )
     $newRes [] = trim ( cut ( $check, '<!-- START DEMO RESULT -->', '<!-- END DEMO RESULT -->' ) );
-  
+
   $check = $new;
-  while ( strpos($check, '<!-- START DEMO SOURCE -->') ) 
+  while ( strpos($check, '<!-- START DEMO SOURCE -->') )
     $newSrc [] = trim ( cut ( $check, '<!-- START DEMO SOURCE -->', '<!-- END DEMO SOURCE -->' ) );
- 
-  foreach ( $oldRes as $key => $value ) 
+
+  foreach ( $oldRes as $key => $value )
 
     if ( isset ($newRes [$key]) and $oldRes [$key] <> $newRes [$key] ) {
       $compare   [$key] ['diff']   = diff ( $oldRes [$key], $newRes [$key] );
@@ -32,5 +32,5 @@
       $demoLines [$key] ['oldRes'] = $oldRes [$key];
       $demoLines [$key] ['newRes'] = $newRes [$key];
     }
-  
+
 ?>

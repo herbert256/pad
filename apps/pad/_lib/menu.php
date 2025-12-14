@@ -1,16 +1,16 @@
 <?php
-  
+
 
   function parts ( ) {
 
-    global $padPage, $manual, $parts, $item; 
+    global $padPage, $manual, $parts, $item;
 
     $parts = [];
-    return $parts;  
+    return $parts;
 
-    if ( ! str_starts_with ( $padPage, 'index') and 
-         ! str_starts_with ( $padPage, 'manual/') and 
-         ! str_starts_with ( $padPage, 'Xref/') and 
+    if ( ! str_starts_with ( $padPage, 'index') and
+         ! str_starts_with ( $padPage, 'manual/') and
+         ! str_starts_with ( $padPage, 'Xref/') and
          ! str_starts_with ( $padPage, 'develop/') ) {
 
       $parts ['dev'] ['part'] = $padPage;
@@ -18,23 +18,23 @@
 
       return $parts;
 
-    } 
+    }
 
     if ( $padPage == 'manual/index' and $manual ) {
-      
-      $parts ['now'] ['part'] = $manual;
-      $parts ['now'] ['link'] = '';  
 
-    } 
+      $parts ['now'] ['part'] = $manual;
+      $parts ['now'] ['link'] = '';
+
+    }
 
     if ( str_starts_with ( $padPage, 'develop/') and $padPage <> 'develop/index') {
- 
+
       if ( str_starts_with ( $padPage, 'develop/show') ) {
         $parts ['now'] ['part'] = $item;
         $parts ['now'] ['link'] = '';
       } else {
         $parts ['dev'] ['part'] = $padPage;
-        $parts ['dev'] ['link'] = '';      
+        $parts ['dev'] ['link'] = '';
       }
 
     }
@@ -51,7 +51,7 @@
  #       $parts ['s'] ['part'] = $GLOBALS ['second'];
  #       $parts ['s'] ['link'] = secondLink ();
  #     }
-    
+
     }
 
     if ( $padPage == 'develop/xref' ) {
@@ -73,7 +73,7 @@
         }
 
       }
-    
+
     }
 
     return $parts;
@@ -89,7 +89,7 @@
     . '&for='    . urlencode(($GLOBALS ['for'] ))
     . '&xitem='  . ($GLOBALS ['xitem'] );
 
-  }  
+  }
 
 
   function itemLink () {
@@ -109,7 +109,7 @@
 
     return forLink () . '&second='  . $GLOBALS ['second'] ;
 
-  }  
-  
-  
+  }
+
+
 ?>

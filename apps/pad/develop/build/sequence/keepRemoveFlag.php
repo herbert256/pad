@@ -1,5 +1,5 @@
 <?php
- 
+
    if     ( $type == 'range') $go = "='5..15'";
    elseif ( $type == 'list' ) $go = "='5;10;15;20'";
    elseif ( $parm           ) $go = $parm;

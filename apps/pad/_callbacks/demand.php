@@ -6,13 +6,13 @@
 
         $salaryTotal = 0;
         $bonusTotal  = 0;
-        
+
         break;
 
     case 'row':
 
         $total = $salary + $bonus;
-        
+
         $salaryTotal += $salary;
         $bonusTotal  += $bonus;
 
