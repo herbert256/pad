@@ -1,0 +1,9 @@
+<p>The <code>combine</code> action combines two sequences.</p>
+
+<h2>Combine Action</h2>
+<pre>{open}sequence '1..5', push='seqA'{close}
+{open}sequence '3..7', push='seqB'{close}
+{open}pull:seqA combine='seqB'{close} {open}$sequence{close} {open}/pull:seqA{close}</pre>
+{sequence '1..5', push='seqA'}
+{sequence '3..7', push='seqB'}
+<p>Combined: {pull:seqA combine='seqB'} {$sequence} {/pull:seqA}</p>

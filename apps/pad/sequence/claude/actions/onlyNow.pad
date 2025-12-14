@@ -1,0 +1,9 @@
+<p>The <code>onlyNow</code> action finds elements only in the current sequence.</p>
+
+<h2>OnlyNow Action</h2>
+<pre>{open}sequence '1..7', push='seqA'{close}
+{open}sequence '5..12', push='seqB'{close}
+{open}pull:seqA onlyNow='seqB'{close} {open}$sequence{close} {open}/pull:seqA{close}</pre>
+{sequence '1..7', push='seqA'}
+{sequence '5..12', push='seqB'}
+<p>Only in seqA: {pull:seqA onlyNow='seqB'} {$sequence} {/pull:seqA}</p>

@@ -1,0 +1,34 @@
+<p>
+  The <code>case</code> tag provides multi-branch conditional execution using <code>when</code>.
+</p>
+<h2>
+  Basic Case Statement
+</h2>
+<pre>{case 2}
+  {when 1} One
+  {when 2} Two
+  {when 3} Three
+  {else} Default
+{/case}</pre><b>Two</b>
+<h2>
+  Case with Variable
+</h2>
+<pre>{set $day = 3}
+{case $day}
+  {when 1} Monday
+  {when 2} Tuesday
+  {when 3} Wednesday
+  {when 4} Thursday
+  {when 5} Friday
+  {else} Weekend
+{/case}</pre><b>Wednesday</b>
+<h2>
+  Case with Strings
+</h2>
+<pre>{set $color = 'green'}
+{case $color}
+  {when 'red'} Stop
+  {when 'yellow'} Caution
+  {when 'green'} Go
+  {else} Unknown
+{/case}</pre><b>Go</b>

@@ -1,0 +1,7 @@
+<p>The <code>average</code> action calculates the mean of all elements.</p>
+
+<h2>Average Action</h2>
+<pre>{open}sequence '1..10', push='nums'{close}
+{open}pull:nums average{close} {open}$sequence{close} {open}/pull:nums{close}</pre>
+{sequence '1..10', push='nums'}
+<p>Average of 1-10: {pull:nums average} {$sequence} {/pull:nums}</p>

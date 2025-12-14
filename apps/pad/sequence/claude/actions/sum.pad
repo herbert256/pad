@@ -1,0 +1,7 @@
+<p>The <code>sum</code> action calculates the sum of all elements.</p>
+
+<h2>Sum Action</h2>
+<pre>{open}sequence '1..10', push='nums'{close}
+{open}pull:nums sum{close} {open}$sequence{close} {open}/pull:nums{close}</pre>
+{sequence '1..10', push='nums'}
+<p>Sum of 1-10: {pull:nums sum} {$sequence} {/pull:nums}</p>

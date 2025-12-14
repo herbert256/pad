@@ -1,0 +1,7 @@
+<p>The <code>count</code> action returns the number of elements.</p>
+
+<h2>Count Action</h2>
+<pre>{open}sequence '1..10', push='nums'{close}
+{open}pull:nums count{close} {open}$sequence{close} {open}/pull:nums{close}</pre>
+{sequence '1..10', push='nums'}
+<p>Count: {pull:nums count} {$sequence} {/pull:nums}</p>

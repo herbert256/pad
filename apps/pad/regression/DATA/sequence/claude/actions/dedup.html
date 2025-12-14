@@ -1,0 +1,11 @@
+<p>
+  The <code>dedup</code> action removes duplicate values.
+</p>
+<h2>
+  Dedup Action
+</h2>
+<pre>{list '1;2;2;3;3;3;4', push='nums'}
+{pull:nums dedup} {$sequence} {/pull:nums}</pre>
+<p>
+  After dedup: 1 2 3 4
+</p>

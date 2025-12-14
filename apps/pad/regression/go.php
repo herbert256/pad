@@ -1,7 +1,7 @@
 <?php
 
   if ( $sequence )
-    padRedirect ( 'sequence/regression', [ 'go' => 'regression' ] );
+    padRedirect ( 'manual/sequence/regression', [ 'go' => 'regression' ] );
   else  
     padRedirect ( "regression" );
 

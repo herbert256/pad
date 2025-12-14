@@ -1,0 +1,7 @@
+<p>The <code>splice</code> action removes and/or inserts elements.</p>
+
+<h2>Splice Action</h2>
+<pre>{open}sequence '1..10', push='nums'{close}
+{open}pull:nums splice='3'{close} {open}$sequence{close} {open}/pull:nums{close}</pre>
+{sequence '1..10', push='nums'}
+<p>After splice at 3: {pull:nums splice='3'} {$sequence} {/pull:nums}</p>

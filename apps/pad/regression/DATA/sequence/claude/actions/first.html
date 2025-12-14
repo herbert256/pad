@@ -1,0 +1,15 @@
+<p>
+  The <code>first</code> action gets the first element(s) of a sequence.
+</p>
+<h2>
+  First Action
+</h2>
+<pre>{sequence '1..10', push='nums'}
+{pull:nums first} {$sequence} {/pull:nums}
+{pull:nums first=3} {$sequence} {/pull:nums}</pre>
+<p>
+  First element: 1
+</p>
+<p>
+  First 3 elements: 1 2 3
+</p>

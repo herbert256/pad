@@ -1,0 +1,9 @@
+<p>The <code>intersection</code> action finds elements common to both sequences.</p>
+
+<h2>Intersection Action</h2>
+<pre>{open}sequence '1..7', push='seqA'{close}
+{open}sequence '5..12', push='seqB'{close}
+{open}pull:seqA intersection='seqB'{close} {open}$sequence{close} {open}/pull:seqA{close}</pre>
+{sequence '1..7', push='seqA'}
+{sequence '5..12', push='seqB'}
+<p>Intersection: {pull:seqA intersection='seqB'} {$sequence} {/pull:seqA}</p>

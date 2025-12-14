@@ -1,0 +1,7 @@
+<p>The <code>pop</code> action removes elements from the end.</p>
+
+<h2>Pop Action</h2>
+<pre>{open}sequence '1..10', push='nums'{close}
+{open}pull:nums pop=3{close} {open}$sequence{close} {open}/pull:nums{close}</pre>
+{sequence '1..10', push='nums'}
+<p>After popping 3: {pull:nums pop=3} {$sequence} {/pull:nums}</p>

@@ -1,0 +1,9 @@
+<p>The <code>prepend</code> action adds another sequence to the beginning.</p>
+
+<h2>Prepend Action</h2>
+<pre>{open}sequence '6..10', push='seqA'{close}
+{open}sequence '1..5', push='seqB'{close}
+{open}pull:seqA prepend='seqB'{close} {open}$sequence{close} {open}/pull:seqA{close}</pre>
+{sequence '6..10', push='seqA'}
+{sequence '1..5', push='seqB'}
+<p>Prepended: {pull:seqA prepend='seqB'} {$sequence} {/pull:seqA}</p>

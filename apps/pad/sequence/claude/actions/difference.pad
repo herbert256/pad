@@ -1,0 +1,9 @@
+<p>The <code>difference</code> action finds elements in first but not in second.</p>
+
+<h2>Difference Action</h2>
+<pre>{open}sequence '1..7', push='seqA'{close}
+{open}sequence '5..12', push='seqB'{close}
+{open}pull:seqA difference='seqB'{close} {open}$sequence{close} {open}/pull:seqA{close}</pre>
+{sequence '1..7', push='seqA'}
+{sequence '5..12', push='seqB'}
+<p>Difference: {pull:seqA difference='seqB'} {$sequence} {/pull:seqA}</p>

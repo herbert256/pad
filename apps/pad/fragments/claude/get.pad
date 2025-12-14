@@ -1,20 +1,18 @@
-<p>The <code>get</code> tag retrieves variable values.</p>
+<p>The <code>get</code> tag includes a PAD page from the current application.</p>
 
 <h2>Basic Get</h2>
-<pre>{open}set $message = 'Hello World'{close}
-{open}get $message{close}</pre>
-{set $message = 'Hello World'}
-<p>Message: {get $message}</p>
+<pre>{open}get 'fragments/hello/hello'{close}</pre>
+<p>Included content:</p>
+<div style="border:1px solid #ccc; padding:10px;">
+{get 'fragments/hello/hello'}
+</div>
 
-<h2>Get vs Direct Variable</h2>
-<p>Both produce the same output:</p>
-<pre>{open}$message{close} = {open}get $message{close}</pre>
-{set $greeting = 'Welcome'}
-<ul>
-  <li>Direct: {$greeting}</li>
-  <li>Get: {get $greeting}</li>
-</ul>
+<h2>Get with Page Index</h2>
+<pre>{open}get 'fragments/hello'{close}</pre>
+<p>Includes the index page of a directory:</p>
+<div style="border:1px solid #ccc; padding:10px;">
+{get 'fragments/hello'}
+</div>
 
-<h2>Get with Default</h2>
-<pre>{open}get $undefined, 'default value'{close}</pre>
-<p>Undefined variable: {get $undefined, 'default value'}</p>
+<h2>Note</h2>
+<p>The get tag executes both the .php and .pad files of the included page, making variables from the PHP file available in the template.</p>

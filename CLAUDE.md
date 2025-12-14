@@ -394,3 +394,306 @@ PAD automatically makes POST form fields available as PHP variables matching the
 Day {clock 'z' | + 1} of {if {clock 'L'} eq 1}366{else}365{/if}
 Days remaining: {if {clock 'L'} eq 1}{echo 365 - {clock 'z'}}{else}{echo 364 - {clock 'z'}}{/if}
 ```
+
+## Important Tag Behaviors
+
+### Parameter Evaluation
+Parameters are evaluated before being passed to tags. Use quotes to pass literal strings:
+```
+{count items}              # Wrong - passes the array itself
+{count 'items'}            # Correct - passes the string "items"
+
+{get $message}             # Wrong - evaluates $message first
+{get 'fragments/hello'}    # Correct - passes literal page path
+```
+
+### Tag Type Prefixes
+Tags can have multiple sources (app tags, data, sequences, etc.). Use type prefixes to resolve naming conflicts:
+```
+{pull:mySequence}...{/pull:mySequence}    # Explicitly use stored sequence
+{data:items}...{/data:items}              # Explicitly use data store
+{app:mytag}                                # Explicitly use app tag from _tags/
+```
+
+Available prefixes match types in `pad/types/`: `app`, `pad`, `data`, `content`, `field`, `pull`, `table`, `function`, etc.
+
+### The `get` Tag
+The `get` tag includes PAD pages, NOT variables:
+```
+{get 'fragments/hello'}     # Includes the page fragments/hello (.php + .pad)
+{get 'admin/users'}         # Includes admin/users page
+```
+
+### The `case` Tag
+Uses `{when value}` syntax for branches:
+```
+{case $color}
+  {when 'red'} Stop
+  {when 'yellow'} Caution
+  {when 'green'} Go
+  {else} Unknown
+{/case}
+```
+
+### The `bool` Tag
+Creates a named boolean condition usable as a tag:
+```
+{bool 'isActive'}1{/bool}      # Define the boolean
+
+{isActive}                      # Use as a tag (NOT {$isActive})
+  <p>Active!</p>
+{else}
+  <p>Inactive</p>
+{/isActive}
+```
+
+### The `exists` Tag
+Block tag for file existence checks (not nested in `{if}`):
+```
+{exists APP . 'path/to/file.pad'}
+  File exists
+{else}
+  File not found
+{/exists}
+```
+
+### The `count` Tag
+Checks if an array has elements. Quote the array name:
+```
+{count 'items'}
+  Array has elements
+{else}
+  Array is empty
+{/count}
+```
+
+### The `output` Tag
+Sets output type, does NOT capture content:
+```
+{output 'web'}        # Normal web output (default)
+{output 'console'}    # Console output
+{output 'download'}   # File download
+```
+
+### Sequence Subsystem Tags
+The sequence tags (`continue`, `pull`, `keep`, `remove`, `flag`, `make`) operate on stored sequences:
+
+```
+{sequence 5, push='mySeq'}           # Create and store sequence
+{continue add=10}                     # Transform: add 10 to each value
+{continue reverse}                    # Transform: reverse order
+{pull:mySeq} {$sequence} {/pull:mySeq}  # Iterate stored sequence
+```
+
+**Note:** `{continue}` is NOT like PHP's continue statement. It continues operating on a stored sequence with transformations like `add`, `subtract`, `reverse`, `even`, `odd`, etc.
+
+### Sequence Variable Access
+Use named sequences instead of level-based `$-1` syntax:
+```
+{sequence 5, name='n'}
+  {$n}                    # Correct - use named variable
+{/sequence}
+
+{sequence 5}
+  {$-1}                   # Avoid - level-based access can be fragile
+{/sequence}
+```
+
+### Iteration Properties
+Two syntax forms for iteration properties:
+
+**Tag syntax** (block):
+```
+{items}
+  {first}First item{/first}
+  {last}Last item{/last}
+  {even}Even row{/even}
+  {odd}Odd row{/odd}
+{/items}
+```
+
+**Variable syntax** (with `&` prefix):
+```
+{items}
+  Item {&current} of {&count}: {$name}
+  {if &first}(first){/if}
+{/items}
+```
+
+### Files Tag
+Use `base='app'` for application-relative paths:
+```
+{files 'fragments/claude', base='app', mask='*.pad'}
+  {$file}
+{/files}
+```
+
+## Sequence Subsystem
+
+The sequence subsystem is a powerful mathematical sequence generation and manipulation engine. It allows generating various mathematical sequences, storing them, and applying transformations.
+
+### Basic Sequence Generation
+
+```
+{fibonacci rows=10}{$fibonacci} {/fibonacci}      # Fibonacci numbers
+{prime rows=15}{$prime} {/prime}                  # Prime numbers
+{sequence '1..10', name='n'}{$n} {/sequence}      # Range 1-10
+{random minimal=1, maximal=100, rows=5}           # Random numbers
+{list '5;2;8;1;9'}{$list} {/list}                 # Custom list
+```
+
+### Sequence Types (80+)
+
+**Mathematical sequences:**
+- `fibonacci`, `lucas`, `pell`, `tribonacci`, `catalan`, `bell`, `perrin`
+- `prime`, `composite`, `perfect`, `mersenne`
+
+**Figurate numbers:**
+- `triangular`, `square`, `cubic`, `pentagonal`, `hexagonal`, `heptagonal`, `octagonal`
+- `tetrahedral`, `octahedral`, `biquadratic`
+
+**Filters:**
+- `even`, `odd`, `happy`, `lucky`, `harshad`, `palindrome`
+- `semiprime`, `powerful`, `polite`, `kaprekar`
+
+**Arithmetic operations:**
+- `add`, `subtract`, `multiply`, `divide`, `modulo`, `power`/`exponentiation`
+- `ceil`, `floor`, `round`, `negation`
+
+**Logical operations:**
+- `and`, `or`, `xor`, `not`, `nand`, `nor`, `xnor`
+
+**Generation:**
+- `range` (e.g., `'1..10'`), `list` (e.g., `'1;5;3;8'`), `loop`, `random`, `repeat`
+- `oeis` - fetch from Online Encyclopedia of Integer Sequences
+
+### Storing and Retrieving Sequences
+
+**IMPORTANT:** Store names cannot be the same as action names (e.g., can't use `push='first'` because `first` is an action).
+
+```
+{sequence '1..10', push='mySeq'}           # Store sequence
+{pull:mySeq}{$sequence} {/pull:mySeq}      # Retrieve and iterate
+
+# Use pull: prefix to avoid naming conflicts with app tags
+{sequence 5, push='nums'}
+{pull:nums} {$sequence} {/pull:nums}
+```
+
+### Sequence Actions (Transformations)
+
+**Order manipulation:**
+```
+{pull:nums reverse}       # Reverse order
+{pull:nums sort}          # Sort ascending
+{pull:nums shuffle}       # Randomize order
+```
+
+**Selection:**
+```
+{pull:nums first}         # First element
+{pull:nums first=3}       # First 3 elements
+{pull:nums last=3}        # Last 3 elements
+{pull:nums shift=2}       # Remove first 2
+{pull:nums pop=2}         # Remove last 2
+{pull:nums element=5}     # Get 5th element
+{pull:nums slice='3|4'}   # From position 3, length 4
+```
+
+**Aggregation:**
+```
+{pull:nums sum}           # Sum of all elements
+{pull:nums product}       # Product of all elements
+{pull:nums average}       # Mean value
+{pull:nums median}        # Median value
+{pull:nums minimum}       # Smallest value
+{pull:nums maximum}       # Largest value
+{pull:nums count}         # Number of elements
+{pull:nums distinct}      # Count of unique values
+{pull:nums dedup}         # Remove duplicates
+```
+
+**Multi-sequence operations:**
+```
+{sequence '1..5', push='seqA'}
+{sequence '3..8', push='seqB'}
+{pull:seqA append='seqB'}        # Add seqB to end
+{pull:seqA prepend='seqB'}       # Add seqB to start
+{pull:seqA merge='seqB'}         # Merge, remove duplicates
+{pull:seqA intersection='seqB'}  # Elements in both
+{pull:seqA difference='seqB'}    # In seqA but not seqB
+```
+
+### The `continue` Tag
+
+Applies transformations to a stored sequence without pulling it:
+```
+{sequence '1..10', push='nums'}
+{continue add=100}                # Add 100 to each value
+{continue reverse}                # Reverse order
+{pull:nums}{$sequence} {/pull:nums}
+```
+
+**Note:** `{continue}` is NOT like PHP's continue statement!
+
+### Sequence Plays (keep, remove, make, flag)
+
+Filter or transform sequences based on sequence types:
+```
+{pull mySeq, keep, even}     # Keep only even values
+{pull mySeq, remove, odd}    # Remove odd values
+{pull mySeq, make, prime}    # Transform using prime
+{pull mySeq, flag, even}     # Mark even entries
+```
+
+### Special Syntax Rules
+
+**Some sequences need `sequence:` prefix:**
+```
+{sequence:repeat 42, rows=5}{$repeat}{/sequence:repeat}
+{sequence:even rows=10}{$even}{/sequence:even}
+```
+
+**Chance sequence needs a numeric parameter:**
+```
+{chance 4, rows=15}    # 1-in-4 chance (not {chance rows=15})
+```
+
+### Named vs Unnamed Sequences
+
+Always prefer named sequences for clarity:
+```
+{sequence 5, name='i'}
+  {$i}                  # Clear, explicit
+{/sequence}
+
+{sequence '1..3', name='row'}
+  {sequence '1..4', name='col'}
+    ({$row},{$col})
+  {/sequence}
+{/sequence}
+```
+
+### Common Sequence Patterns
+
+**Generate and transform:**
+```
+{sequence '1..10', push='nums'}
+{continue add=5}
+{continue reverse}
+{pull:nums sort}{$sequence} {/pull:nums}
+```
+
+**Combine sequences:**
+```
+{sequence '1..5', push='seqA'}
+{sequence '10..15', push='seqB'}
+{pull:seqA append='seqB'}{$sequence} {/pull:seqA}
+```
+
+**Aggregate values:**
+```
+{sequence '1..100', push='nums'}
+Sum: {pull:nums sum}{$sequence}{/pull:nums}
+Avg: {pull:nums average}{$sequence}{/pull:nums}
+```

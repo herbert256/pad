@@ -1,0 +1,7 @@
+<p>The <code>slice</code> action extracts a portion of a sequence.</p>
+
+<h2>Slice Action</h2>
+<pre>{open}sequence '1..10', push='nums'{close}
+{open}pull:nums slice='3|4'{close} {open}$sequence{close} {open}/pull:nums{close}</pre>
+{sequence '1..10', push='nums'}
+<p>Slice from 3, length 4: {pull:nums slice='3|4'} {$sequence} {/pull:nums}</p>

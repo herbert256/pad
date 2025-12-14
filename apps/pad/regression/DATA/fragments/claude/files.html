@@ -1,0 +1,108 @@
+<p>
+  The <code>files</code> tag lists directory contents with filtering.
+</p>
+<h2>
+  Basic Directory Listing
+</h2>
+<pre>{files 'fragments/claude', base='app'}
+  {$file}
+{/files}</pre>
+<ul>
+  <li>_include
+  </li>
+  <li>_lib
+  </li>
+  <li>index.php
+  </li>
+  <li>if.php
+  </li>
+  <li>if.pad
+  </li>
+  <li>switch.pad
+  </li>
+  <li>while.pad
+  </li>
+  <li>until.pad
+  </li>
+  <li>set.pad
+  </li>
+  <li>data.php
+  </li>
+</ul>
+<p>
+  (showing first 10 files)
+</p>
+<h2>
+  Filter by Extension
+</h2>
+<pre>{files 'fragments/claude', base='app', mask='*.php'}
+  {$file}
+{/files}</pre>
+<ul>
+  <li>index.php
+  </li>
+  <li>if.php
+  </li>
+  <li>data.php
+  </li>
+  <li>count.php
+  </li>
+  <li>subpage.php
+  </li>
+</ul>
+<h2>
+  Files with Properties
+</h2>
+<pre>{files 'fragments/claude', base='app', mask='*.pad'}
+  File: {$file}, Ext: {$ext}
+{/files}</pre>
+<table border="1">
+  <tr>
+    <th>
+      File
+    </th>
+    <th>
+      Extension
+    </th>
+  </tr>
+  <tr>
+    <td>
+      if.pad
+    </td>
+    <td>
+      pad
+    </td>
+  </tr>
+  <tr>
+    <td>
+      switch.pad
+    </td>
+    <td>
+      pad
+    </td>
+  </tr>
+  <tr>
+    <td>
+      while.pad
+    </td>
+    <td>
+      pad
+    </td>
+  </tr>
+  <tr>
+    <td>
+      until.pad
+    </td>
+    <td>
+      pad
+    </td>
+  </tr>
+  <tr>
+    <td>
+      set.pad
+    </td>
+    <td>
+      pad
+    </td>
+  </tr>
+</table>

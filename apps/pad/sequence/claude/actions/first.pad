@@ -1,0 +1,9 @@
+<p>The <code>first</code> action gets the first element(s) of a sequence.</p>
+
+<h2>First Action</h2>
+<pre>{open}sequence '1..10', push='nums'{close}
+{open}pull:nums first{close} {open}$sequence{close} {open}/pull:nums{close}
+{open}pull:nums first=3{close} {open}$sequence{close} {open}/pull:nums{close}</pre>
+{sequence '1..10', push='nums'}
+<p>First element: {pull:nums first} {$sequence} {/pull:nums}</p>
+<p>First 3 elements: {pull:nums first=3} {$sequence} {/pull:nums}</p>

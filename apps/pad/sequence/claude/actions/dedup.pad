@@ -1,0 +1,7 @@
+<p>The <code>dedup</code> action removes duplicate values.</p>
+
+<h2>Dedup Action</h2>
+<pre>{open}list '1;2;2;3;3;3;4', push='nums'{close}
+{open}pull:nums dedup{close} {open}$sequence{close} {open}/pull:nums{close}</pre>
+{list '1;2;2;3;3;3;4', push='nums'}
+<p>After dedup: {pull:nums dedup} {$sequence} {/pull:nums}</p>

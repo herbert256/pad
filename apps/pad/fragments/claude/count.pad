@@ -1,27 +1,27 @@
 <p>The <code>count</code> tag checks if an array has elements.</p>
 
 <h2>Basic Count Check</h2>
-<pre>{open}count items{close}
+<pre>{open}count 'items'{close}
   Items array has elements
 {open}/count{close}</pre>
-{count items}
+{count 'items'}
 <p style="color:green">Items array has elements</p>
 {/count}
 
 <h2>Empty Array Check</h2>
-<pre>{open}count emptyArray{close}
+<pre>{open}count 'emptyArray'{close}
   Has elements
 {open}else{close}
   Array is empty
 {open}/count{close}</pre>
-{count emptyArray}
+{count 'emptyArray'}
 <p>Has elements</p>
 {else}
 <p style="color:red">Array is empty</p>
 {/count}
 
 <h2>Count with List</h2>
-<pre>{open}count users{close}
+<pre>{open}count 'users'{close}
   &lt;p&gt;Users in the system:&lt;/p&gt;
   {open}users{close}
     - {open}$name{close}
@@ -29,7 +29,7 @@
 {open}else{close}
   No users found
 {open}/count{close}</pre>
-{count users}
+{count 'users'}
 <p>Users in the system:</p>
 <ul>
 {users}
@@ -49,3 +49,6 @@
   <li>Item {&current} of {&count}: {$name}</li>
 {/items}
 </ul>
+
+<h2>Note</h2>
+<p>Use quotes around the array name: <code>{open}count 'arrayName'{close}</code>. Without quotes, PAD evaluates the parameter and passes the array itself rather than the name.</p>
