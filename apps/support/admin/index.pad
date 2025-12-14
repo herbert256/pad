@@ -1,0 +1,98 @@
+<h1>Admin Dashboard</h1>
+
+<div class="stats">
+  <div class="stat">
+    <div class="stat-value">{$userCount}</div>
+    <div class="stat-label">Users</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">{$topicCount}</div>
+    <div class="stat-label">Topics</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">{$postCount}</div>
+    <div class="stat-label">Posts</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">{$newsCount}</div>
+    <div class="stat-label">News</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">{$ticketCount}</div>
+    <div class="stat-label">Tickets</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value" style="color: #e74c3c;">{$openTickets}</div>
+    <div class="stat-label">Open Tickets</div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <h2>Pending Tickets</h2>
+    {if $pendingTickets}
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Priority</th>
+            <th>Author</th>
+          </tr>
+        </thead>
+        <tbody>
+          {pendingTickets}
+            <tr>
+              <td>#{$id}</td>
+              <td><a href="?tickets/view&id={$id}">{$title | substr (0, 30)}</a></td>
+              <td><span class="badge badge-{$priority}">{$priority}</span></td>
+              <td>{$author_name}</td>
+            </tr>
+          {/pendingTickets}
+        </tbody>
+      </table>
+      <p style="margin-top: 10px;"><a href="?tickets/index">View All Tickets</a></p>
+    {else}
+      <p class="meta">No pending tickets!</p>
+    {/if}
+  </div>
+
+  <div class="card">
+    <h2>Recent Users</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Joined</th>
+        </tr>
+      </thead>
+      <tbody>
+        {recentUsers}
+          <tr>
+            <td>{$username}</td>
+            <td>{$email}</td>
+            <td>
+              {if $role eq 'admin'}
+                <span class="badge badge-admin">Admin</span>
+              {else}
+                User
+              {/if}
+            </td>
+            <td class="meta">{$created_at | substr (0, 10)}</td>
+          </tr>
+        {/recentUsers}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Quick Actions</h2>
+  <p>
+    <a href="?news/new" class="btn">Post News</a>
+    <a href="?tickets/index" class="btn btn-secondary">Manage Tickets</a>
+    <a href="?forum/index" class="btn btn-secondary">Browse Forum</a>
+  </p>
+</div>

@@ -1,0 +1,21 @@
+<p>The <code>beforeLast</code> function returns everything before the last occurrence of a delimiter.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}$samplePath | beforeLast('/'){close}</pre>
+<p>Path: {$samplePath}</p>
+<p>Directory: <b>{$samplePath | beforeLast('/')}</b></p>
+
+<h2>Remove Extension</h2>
+<pre>{open}$samplePath | beforeLast('.'){close}</pre>
+<p>Without extension: <b>{$samplePath | beforeLast('.')}</b></p>
+
+<h2>Chained Examples</h2>
+<pre>{open}$samplePath | beforeLast('/') | afterLast('/'){close}</pre>
+<p>Parent directory name: <b>{$samplePath | beforeLast('/') | afterLast('/')}</b></p>
+
+<pre>{open}'styles/components/button.module.css' | beforeLast('.') | beforeLast('.'){close}</pre>
+<p>Base filename: <b>{'styles/components/button.module.css' | beforeLast('.') | beforeLast('.')}</b></p>
+
+<h2>Complex Chain</h2>
+<pre>{open}'v1.2.3-beta' | beforeLast('-') | afterLast('.') | + 1{close}</pre>
+<p>Patch version + 1: <b>{'v1.2.3-beta' | beforeLast('-') | afterLast('.') | + 1}</b></p>

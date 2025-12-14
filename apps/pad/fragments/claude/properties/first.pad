@@ -1,0 +1,28 @@
+<p>The <code>@first</code> property returns TRUE if this is the first iteration.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}users{close}
+  {open}@first ? &lt;ul&gt;{close}
+  &lt;li&gt;{open}$name{close}&lt;/li&gt;
+{open}/users{close}</pre>
+
+<p>Result:</p>
+{users}
+  {@first ? <ul>}
+  <li>{$name}</li>
+  {@last ? </ul>}
+{/users}
+
+<h2>Conditional Block</h2>
+<pre>{open}colors{close}
+  {open}@first{close}
+    &lt;p&gt;&lt;b&gt;First color: {open}$colors{close}&lt;/b&gt;&lt;/p&gt;
+  {open}/@first{close}
+{open}/colors{close}</pre>
+
+<p>Result:</p>
+{colors}
+  {@first}
+    <p><b>First color: {$colors}</b></p>
+  {/@first}
+{/colors}

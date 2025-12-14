@@ -1,0 +1,29 @@
+<p>The <code>nbsp</code> function replaces spaces with <code>&amp;nbsp;</code> (non-breaking spaces).</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}'hello world' | nbsp{close}</pre>
+<p>Result: {'hello world' | nbsp}</p>
+
+<h2>Prevent Line Breaks</h2>
+<pre>{open}'John Doe' | nbsp{close}</pre>
+<p>Won't break: {'John Doe' | nbsp}</p>
+
+<pre>{open}'New York' | nbsp{close}</pre>
+<p>City name: {'New York' | nbsp}</p>
+
+<h2>Chained Examples</h2>
+<pre>{open}'  multiple spaces  ' | trim | white | nbsp{close}</pre>
+<p>Cleaned with nbsp: {'  multiple spaces  ' | trim | white | nbsp}</p>
+
+<h2>Phone Numbers</h2>
+<pre>{open}'555 123 4567' | nbsp{close}</pre>
+<p>No break: {'555 123 4567' | nbsp}</p>
+
+<h2>With Users</h2>
+<pre>{open}users{close}
+  {open}$name | nbsp{close}
+{open}/users{close}</pre>
+<p>Names that won't break:</p>
+{users}
+  [{$name | nbsp}]<br>
+{/users}

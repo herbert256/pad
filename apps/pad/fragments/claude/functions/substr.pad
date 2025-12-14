@@ -1,0 +1,26 @@
+<p>The <code>substr</code> function extracts a substring by position (PHP substr).</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}'Hello World' | substr(0, 5){close}</pre>
+<p>First 5 chars: <b>{'Hello World' | substr(0, 5)}</b></p>
+
+<pre>{open}'Hello World' | substr(6){close}</pre>
+<p>From position 6: <b>{'Hello World' | substr(6)}</b></p>
+
+<h2>Negative Positions</h2>
+<pre>{open}'Hello World' | substr(-5){close}</pre>
+<p>Last 5 chars: <b>{'Hello World' | substr(-5)}</b></p>
+
+<pre>{open}'Hello World' | substr(0, -6){close}</pre>
+<p>All except last 6: <b>{'Hello World' | substr(0, -6)}</b></p>
+
+<h2>Chained Examples</h2>
+<pre>{open}$sampleEmail | substr(0, 4) | upper{close}</pre>
+<p>First 4 chars uppercase: <b>{$sampleEmail | substr(0, 4) | upper}</b></p>
+
+<pre>{open}'2024-12-14' | substr(0, 4) | + 1{close}</pre>
+<p>Year + 1: <b>{'2024-12-14' | substr(0, 4) | + 1}</b></p>
+
+<h2>Complex Chain</h2>
+<pre>{open}$samplePath | afterLast('/') | substr(0, 4) | upper{close}</pre>
+<p>First 4 of filename, uppercase: <b>{$samplePath | afterLast('/') | substr(0, 4) | upper}</b></p>

@@ -1,0 +1,26 @@
+<p>The <code>cut</code> function removes all occurrences of a text (replace with empty).</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}'hello world' | cut('o'){close}</pre>
+<p>Result: <b>{'hello world' | cut('o')}</b></p>
+
+<h2>Remove Separators</h2>
+<pre>{open}'123-456-7890' | cut('-'){close}</pre>
+<p>Phone digits only: <b>{'123-456-7890' | cut('-')}</b></p>
+
+<pre>{open}'$1,234.56' | cut('$') | cut(','){close}</pre>
+<p>Clean number: <b>{'$1,234.56' | cut('$') | cut(',')}</b></p>
+
+<h2>Chained Examples</h2>
+<pre>{open}'  hello   world  ' | trim | white | cut(' '){close}</pre>
+<p>Remove all spaces: <b>{'  hello   world  ' | trim | white | cut(' ')}</b></p>
+
+<pre>{open}'user@example.com' | cut('@') | cut('.'){close}</pre>
+<p>Letters only: <b>{'user@example.com' | cut('@') | cut('.')}</b></p>
+
+<h2>Complex Chain</h2>
+<pre>{open}'ISBN: 978-3-16-148410-0' | after(': ') | cut('-'){close}</pre>
+<p>ISBN digits: <b>{'ISBN: 978-3-16-148410-0' | after(': ') | cut('-')}</b></p>
+
+<pre>{open}'(555) 123-4567' | cut('(') | cut(')') | cut(' ') | cut('-'){close}</pre>
+<p>Phone digits: <b>{'(555) 123-4567' | cut('(') | cut(')') | cut(' ') | cut('-')}</b></p>

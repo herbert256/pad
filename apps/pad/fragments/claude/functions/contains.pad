@@ -1,0 +1,31 @@
+<p>The <code>contains</code> function tests if a value contains a substring (returns 1 or empty).</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}'hello world' | contains('world'){close}</pre>
+<p>Contains 'world': <b>{'hello world' | contains('world')}</b> (1 = true)</p>
+
+<pre>{open}'hello world' | contains('foo'){close}</pre>
+<p>Contains 'foo': <b>{'hello world' | contains('foo')}</b> (empty = false)</p>
+
+<h2>Conditional Display</h2>
+<pre>{open}if $sampleEmail | contains('@'){close}
+  Valid email format
+{open}/if{close}</pre>
+<p>Result: {if $sampleEmail | contains('@')}Valid email format{/if}</p>
+
+<h2>With Users</h2>
+<pre>{open}users{close}
+  {open}if $email | contains('example'){close}
+    {open}$name{close} (example.com user)
+  {open}/if{close}
+{open}/users{close}</pre>
+<p>Example.com users:</p>
+{users}
+  {if $email | contains('example')}
+    {$name} (example.com user)<br>
+  {/if}
+{/users}
+
+<h2>Chained with Logic</h2>
+<pre>{open}if $samplePath | lower | contains('.txt'){close}Text file{open}/if{close}</pre>
+<p>Is text file: {if $samplePath | lower | contains('.txt')}Text file{/if}</p>

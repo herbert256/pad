@@ -371,6 +371,121 @@ PAD automatically makes POST form fields available as PHP variables matching the
 ?>
 ```
 
+## Database Operations
+
+### The `db()` Wrapper
+PAD provides a `db()` function for database queries. It uses positional placeholders `{0}`, `{1}`, etc.
+
+**Important:** PAD does NOT add quotes around placeholders - you must add them yourself for string values:
+```php
+// Correct - quotes around string placeholders
+db("SELECT * FROM users WHERE username='{0}'", [$username]);
+db("INSERT INTO posts (title, content) VALUES ('{0}', '{1}')", [$title, $content]);
+
+// Wrong - missing quotes for strings
+db("SELECT * FROM users WHERE username={0}", [$username]);  // SQL error!
+
+// Numeric values don't need quotes
+db("SELECT * FROM users WHERE id={0}", [$id]);
+```
+
+### Query Types
+The `db()` function supports special prefixes:
+
+```php
+// RECORD - Returns single row as associative array
+$user = db("RECORD * FROM users WHERE id={0}", [$id]);
+
+// ARRAY - Returns multiple rows as array of arrays
+$users = db("ARRAY * FROM users ORDER BY name");
+
+// FIELD - Returns single value
+$count = db("FIELD COUNT(*) FROM users");
+
+// CHECK - Returns boolean (row exists)
+// Syntax: CHECK tablename WHERE ... (NOT "CHECK * FROM tablename")
+$exists = db("CHECK users WHERE username='{0}'", [$username]);
+
+// INSERT - Returns inserted ID
+$id = db("INSERT INTO users (name, email) VALUES ('{0}', '{1}')", [$name, $email]);
+
+// UPDATE - Updates rows
+db("UPDATE users SET name='{0}' WHERE id={1}", [$name, $id]);
+```
+
+### CHECK Syntax
+The CHECK command has special syntax - do NOT use `* FROM`:
+```php
+// Correct
+$exists = db("CHECK users WHERE email='{0}'", [$email]);
+
+// Wrong - will cause errors
+$exists = db("CHECK * FROM users WHERE email='{0}'", [$email]);
+```
+
+## PAD Application Best Practices
+
+### Redirects
+PAD applications must NOT use PHP's `exit` or `die`. Use PAD's redirect function:
+```php
+// Correct - PAD handles cleanup properly
+padRedirect('tickets/index');
+padRedirect("tickets/view&id=$id");
+
+// Wrong - bypasses PAD's cleanup, causes issues
+header('Location: ?tickets/index');
+exit;
+```
+
+### Variable Naming in `_inits.php`
+Variables set in `_inits.php` can overwrite form field variables. Use distinct names:
+```php
+// In _inits.php - use prefixed names to avoid conflicts
+$session_user = $_SESSION['username'] ?? '';  // Good
+$username = $_SESSION['username'] ?? '';       // Bad - conflicts with form field 'username'
+```
+
+### CSS and JavaScript in Templates
+PAD parses `{ }` as template tags. CSS and JavaScript use braces extensively, causing parsing errors and loops.
+
+**Solution:** Move CSS/JS to static files in `www/appname/`:
+```html
+<!-- In _inits.pad - link to static CSS -->
+<link rel="stylesheet" href="style.css">
+
+<!-- NOT inline styles with braces -->
+<style>
+  body { color: red; }  <!-- PAD tries to parse { color: red } as a tag! -->
+</style>
+```
+
+### Table Subsystem vs Direct SQL
+PAD has two approaches for database access:
+
+1. **Direct SQL with `db()`** - Write your own queries
+2. **Table Subsystem** - Define `$padTables` and let PAD handle queries
+
+**Do NOT mix them.** If using direct SQL queries, do NOT set `$padTables` or `$padRelations`:
+```php
+// If using db() for all queries, DON'T add these:
+// $padTables['users'] = ['db' => 'users', 'key' => 'id'];
+// $padRelations['posts']['author'] = ['table' => 'users', 'key' => 'user_id'];
+```
+
+Setting `$padTables` activates the table subsystem (`pad/lib/table.php`) which can conflict with direct SQL and cause infinite loops.
+
+### Pipe Functions
+PAD pipe functions come from two sources:
+1. Custom functions in `pad/functions/` (trim, upper, date, html, etc.)
+2. Standard PHP functions called directly (strlen, count, etc.)
+
+```
+{$text | trim}              # PAD function from pad/functions/
+{$text | strlen}            # PHP function called directly
+{$items | count}            # PHP function called directly
+{$name | ucfirst}           # PHP function called directly
+```
+
 ## Common Patterns
 
 ### Dynamic Menu from JSON

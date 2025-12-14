@@ -126,7 +126,7 @@
    */
   function padLevelNoSingle () {
 
-    padLevelNo ( $GLOBALS ['padBetween'] );
+    padLevelNo ( $GLOBALS ['padBetweenOrg'] );
 
   }
 

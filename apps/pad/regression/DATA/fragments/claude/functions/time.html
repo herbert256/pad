@@ -1,0 +1,49 @@
+<p>
+  The <code>time</code> function is an alias for <code>date</code>.
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{now | time('H:i:s')}</pre>
+<p>
+  Current time: <b>21:06:00</b>
+</p>
+<h2>
+  Same as Date
+</h2>
+<pre>{now | date('Y-m-d H:i')}</pre>
+<p>
+  Date: <b>2025-12-14 21:06</b>
+</p>
+<pre>{now | time('Y-m-d H:i')}</pre>
+<p>
+  Time: <b>2025-12-14 21:06</b>
+</p>
+<h2>
+  Time Formats
+</h2>
+<pre>{now | time('H:i')}</pre>
+<p>
+  Hours:minutes: <b>21:06</b>
+</p>
+<pre>{now | time('g:i a')}</pre>
+<p>
+  12-hour: <b>9:06 pm</b>
+</p>
+<pre>{now | time('H')}</pre>
+<p>
+  Hour only: <b>21</b>
+</p>
+<h2>
+  With Modifier
+</h2>
+<pre>{now | time('H:i', '+2 hours')}</pre>
+<p>
+  In 2 hours: <b>23:06</b>
+</p>
+<h2>
+  Note
+</h2>
+<p>
+  Use <code>time</code> or <code>date</code> interchangeably based on readability. Some prefer <code>time</code> when focusing on time-of-day formatting.
+</p>

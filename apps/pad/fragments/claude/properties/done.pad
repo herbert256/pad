@@ -1,0 +1,25 @@
+<p>The <code>@done</code> property returns the number of completed iterations (current - 1).</p>
+
+<h2>Completed Count</h2>
+<pre>{open}users{close}
+  Processed: {open}@done{close}, Now: {open}$name{close}
+{open}/users{close}</pre>
+
+<p>Result:</p>
+<div>
+{users}
+  Processed: {@done}, Now: {$name}<br>
+{/users}
+</div>
+
+<h2>Progress Bar Simulation</h2>
+<pre>{open}colors{close}
+  [{open}@done{close}/{open}@count{close}] {open}$colors{close}
+{open}/colors{close}</pre>
+
+<p>Result:</p>
+<div>
+{colors}
+  [{@done}/{@count}] {$colors}<br>
+{/colors}
+</div>

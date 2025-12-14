@@ -1,0 +1,31 @@
+<p>The <code>exists</code> function tests if a file exists in the APP directory.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}'index.pad' | exists{close}</pre>
+<p>index.pad exists: <b>{'index.pad' | exists}</b></p>
+
+<pre>{open}'nonexistent.pad' | exists{close}</pre>
+<p>nonexistent.pad exists: <b>{'nonexistent.pad' | exists}</b></p>
+
+<h2>Check Templates</h2>
+<pre>{open}'fragments/claude/functions/index.pad' | exists{close}</pre>
+<p>This file exists: <b>{'fragments/claude/functions/index.pad' | exists}</b></p>
+
+<h2>Conditional Include</h2>
+<pre>{open}if 'fragments/hello/hello.pad' | exists{close}
+  File found
+{open}else{close}
+  File not found
+{open}/if{close}</pre>
+<p>Result: {if 'fragments/hello/hello.pad' | exists}File found{else}File not found{/if}</p>
+
+<h2>Dynamic Path Check</h2>
+<pre>{open}$path = 'index.pad'{close}
+{open}if $path | exists{close}
+  {open}$path{close} is available
+{open}/if{close}</pre>
+{data $path = 'index.pad'}
+<p>Result: {if $path | exists}{$path} is available{/if}</p>
+
+<h2>Note</h2>
+<p>The path is relative to the APP directory. Use for checking optional templates or configuration files.</p>

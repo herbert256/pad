@@ -1,0 +1,35 @@
+<p>The <code>@even</code> property returns TRUE if the current occurrence number is even.</p>
+
+<h2>Zebra Striping</h2>
+<pre>{open}users{close}
+  &lt;tr class="{open}@even ? even : odd{close}"&gt;
+    &lt;td&gt;{open}$name{close}&lt;/td&gt;
+  &lt;/tr&gt;
+{open}/users{close}</pre>
+
+<p>Result:</p>
+<style>.even { background: #e0e0e0; } .odd { background: #ffffff; }</style>
+<table border="1">
+  <tr><th>Name</th></tr>
+{users}
+  <tr class="{@even ? even : odd}">
+    <td>{$name}</td>
+  </tr>
+{/users}
+</table>
+
+<h2>Even Items Only</h2>
+<pre>{open}colors{close}
+  {open}@even{close}
+    &lt;li&gt;{open}@current{close}. {open}$colors{close}&lt;/li&gt;
+  {open}/@even{close}
+{open}/colors{close}</pre>
+
+<p>Result (only even positions):</p>
+<ul>
+{colors}
+  {@even}
+    <li>{@current}. {$colors}</li>
+  {/@even}
+{/colors}
+</ul>

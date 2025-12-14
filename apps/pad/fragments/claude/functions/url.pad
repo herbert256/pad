@@ -1,0 +1,29 @@
+<p>The <code>url</code> function URL-encodes a value for use in URLs.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}'hello world' | url{close}</pre>
+<p>Result: <b>{'hello world' | url}</b></p>
+
+<h2>Special Characters</h2>
+<pre>{open}'name=John&amp;age=30' | url{close}</pre>
+<p>Encoded: <b>{'name=John&age=30' | url}</b></p>
+
+<h2>Build URLs</h2>
+<pre>?search={open}'search term here' | url{close}</pre>
+<p>URL: <b>?search={'search term here' | url}</b></p>
+
+<h2>Chained Examples</h2>
+<pre>{open}'  My Search Query  ' | trim | url{close}</pre>
+<p>Clean and encode: <b>{'  My Search Query  ' | trim | url}</b></p>
+
+<pre>{open}'Category / Subcategory' | replace('/', '-') | url{close}</pre>
+<p>Safe path: <b>{'Category / Subcategory' | replace('/', '-') | url}</b></p>
+
+<h2>Dynamic Links</h2>
+<pre>{open}users{close}
+  &lt;a href="?user={open}$name | url{close}"&gt;{open}$name{close}&lt;/a&gt;
+{open}/users{close}</pre>
+<p>User links:</p>
+{users}
+  <a href="?user={$name | url}">{$name}</a><br>
+{/users}

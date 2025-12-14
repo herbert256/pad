@@ -1,0 +1,30 @@
+<p>The <code>max_len</code> function truncates a string to a maximum length.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}'Hello World' | max_len(5){close}</pre>
+<p>Result: <b>{'Hello World' | max_len(5)}</b></p>
+
+<h2>Truncate with Ellipsis</h2>
+<pre>{open}'This is a very long text' | max_len(15){close}...</pre>
+<p>Result: <b>{'This is a very long text' | max_len(15)}...</b></p>
+
+<h2>Chained Examples</h2>
+<pre>{open}'  HELLO WORLD  ' | trim | lower | max_len(8){close}</pre>
+<p>Cleaned and truncated: <b>{'  HELLO WORLD  ' | trim | lower | max_len(8)}</b></p>
+
+<pre>{open}$samplePath | afterLast('/') | max_len(4) | upper{close}</pre>
+<p>Short filename: <b>{$samplePath | afterLast('/') | max_len(4) | upper}</b></p>
+
+<h2>With Users</h2>
+<pre>{open}users{close}
+  {open}$email | max_len(15){close}...
+{open}/users{close}</pre>
+<p>Truncated emails:</p>
+{users}
+  {$email | max_len(15)}...<br>
+{/users}
+
+<h2>vs Left</h2>
+<p><code>max_len</code> and <code>left</code> are similar but <code>max_len</code> won't extend short strings:</p>
+<pre>{open}'Hi' | max_len(10){close}</pre>
+<p>max_len(10): <b>{'Hi' | max_len(10)}</b> (unchanged)</p>

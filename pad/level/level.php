@@ -22,7 +22,7 @@
     return padError ( "Closing tag found without an open tag: {" . $padBetween . "}" );
 
   if ( ctype_space ( $padFirst ) )
-    return padLevelNoSingle ();
+    return include PAD . 'level/eval.php';
 
   if ( $pad and $padLvlFun [$pad-1] )
     include PAD . 'level/function.php';
@@ -35,13 +35,8 @@
   include PAD . 'level/type.php';
   include PAD . 'level/tag.php';
 
-  if ( ! $padTypeResult and in_array ( 'optional', $padPrmParse ) )
-    if ( padValidTag ($padWords [0]) )
-      return include PAD . 'options/optional.php';
-
   if ( ! $padTypeResult )
-    if ( $padPairSet ) return padLevelNoPair   ();
-    else               return padLevelNoSingle ();
+    return include PAD . 'level/no.php';
 
   include PAD . 'level/start.php';
 

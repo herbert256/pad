@@ -1,0 +1,22 @@
+<p>The <code>ucwords</code> function is an alias for <code>capitalize</code>.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}'hello world' | ucwords{close}</pre>
+<p>Result: <b>{'hello world' | ucwords}</b></p>
+
+<h2>Same as Capitalize</h2>
+<pre>{open}'hello world' | capitalize{close}</pre>
+<p>Capitalize: <b>{'hello world' | capitalize}</b></p>
+
+<pre>{open}'hello world' | ucwords{close}</pre>
+<p>Ucwords: <b>{'hello world' | ucwords}</b></p>
+
+<h2>Chained Examples</h2>
+<pre>{open}'PRODUCT NAME HERE' | lower | ucwords{close}</pre>
+<p>Fixed: <b>{'PRODUCT NAME HERE' | lower | ucwords}</b></p>
+
+<pre>{open}'database_field_name' | replace('_', ' ') | ucwords{close}</pre>
+<p>From snake_case: <b>{'database_field_name' | replace('_', ' ') | ucwords}</b></p>
+
+<h2>Note</h2>
+<p>Use either <code>capitalize</code> or <code>ucwords</code> - they are identical. Choose based on your preference or familiarity with PHP's <code>ucwords()</code> function.</p>

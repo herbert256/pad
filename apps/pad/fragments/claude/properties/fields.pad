@@ -1,0 +1,26 @@
+<p>The <code>@fields</code> property returns field name/value pairs from the current record as iterable data.</p>
+
+<h2>Display All Fields</h2>
+<pre>{open}users{close}
+  {open}@first{close}
+    &lt;table border="1"&gt;
+    {open}@fields{close}
+      &lt;tr&gt;&lt;td&gt;{open}$name{close}&lt;/td&gt;&lt;td&gt;{open}$value{close}&lt;/td&gt;&lt;/tr&gt;
+    {open}/@fields{close}
+    &lt;/table&gt;
+  {open}/@first{close}
+{open}/users{close}</pre>
+
+<p>Result (fields from first user):</p>
+{users}
+  {@first}
+    <table border="1">
+    {@fields}
+      <tr><td>{$name}</td><td>{$value}</td></tr>
+    {/@fields}
+    </table>
+  {/@first}
+{/users}
+
+<h2>Note</h2>
+<p>The <code>@fields</code> property is useful for dynamically displaying record contents without knowing the field names in advance. Each item has <code>$name</code> (field name) and <code>$value</code> (field value).</p>

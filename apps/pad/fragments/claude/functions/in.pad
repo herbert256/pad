@@ -1,0 +1,29 @@
+<p>The <code>in</code> function tests if a value is in a list of values (returns 1 or empty).</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}$sampleStatus | in('active', 'pending'){close}</pre>
+<p>Status '{$sampleStatus}' in list: <b>{$sampleStatus | in('active', 'pending')}</b> (1 = true)</p>
+
+<pre>{open}'red' | in('blue', 'green', 'yellow'){close}</pre>
+<p>'red' in colors: <b>{'red' | in('blue', 'green', 'yellow')}</b> (empty = false)</p>
+
+<h2>Conditional Display</h2>
+<pre>{open}users{close}
+  {open}if $status | in('active', 'pending'){close}
+    {open}$name{close}: {open}$status{close}
+  {open}/if{close}
+{open}/users{close}</pre>
+<p>Active or pending users:</p>
+{users}
+  {if $status | in('active', 'pending')}
+    {$name}: {$status}<br>
+  {/if}
+{/users}
+
+<h2>File Type Check</h2>
+<pre>{open}$samplePath | afterLast('.') | in('txt', 'pdf', 'doc'){close}</pre>
+<p>Is document: <b>{$samplePath | afterLast('.') | in('txt', 'pdf', 'doc')}</b></p>
+
+<h2>Chained Example</h2>
+<pre>{open}$samplePath | afterLast('.') | lower | in('jpg', 'png', 'gif'){close}</pre>
+<p>Is image: <b>{$samplePath | afterLast('.') | lower | in('jpg', 'png', 'gif')}</b></p>

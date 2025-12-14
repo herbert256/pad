@@ -1,0 +1,25 @@
+<p>The <code>@key</code> property returns the current array key.</p>
+
+<h2>Associative Array Keys</h2>
+<pre>{open}config{close}
+  {open}@key{close}: {open}$config{close}
+{open}/config{close}</pre>
+
+<p>Result:</p>
+<div>
+{config}
+  {@key}: {$config}<br>
+{/config}
+</div>
+
+<h2>Numeric Array Keys</h2>
+<pre>{open}colors{close}
+  Key [{open}@key{close}] = {open}$colors{close}
+{open}/colors{close}</pre>
+
+<p>Result:</p>
+<div>
+{colors}
+  Key [{@key}] = {$colors}<br>
+{/colors}
+</div>

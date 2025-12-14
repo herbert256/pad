@@ -1,0 +1,26 @@
+<p>The <code>range</code> function tests if a value is inclusively in a range (min &lt;= value &lt;= max).</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}$sampleScore | range(0, 100){close}</pre>
+<p>Score {$sampleScore} in range 0-100: <b>{$sampleScore | range(0, 100)}</b></p>
+
+<h2>Boundary Test</h2>
+<pre>{open}0 | range(0, 100){close}</pre>
+<p>0 in range 0-100: <b>{0 | range(0, 100)}</b> (true - inclusive)</p>
+
+<pre>{open}100 | range(0, 100){close}</pre>
+<p>100 in range 0-100: <b>{100 | range(0, 100)}</b> (true - inclusive)</p>
+
+<pre>{open}101 | range(0, 100){close}</pre>
+<p>101 in range 0-100: <b>{101 | range(0, 100)}</b> (false)</p>
+
+<h2>Grade Ranges</h2>
+<pre>{open}$sampleScore | range(90, 100){close}</pre>
+<p>Score {$sampleScore} is A grade (90-100): <b>{$sampleScore | range(90, 100)}</b></p>
+
+<pre>{open}$sampleScore | range(80, 89){close}</pre>
+<p>Score {$sampleScore} is B grade (80-89): <b>{$sampleScore | range(80, 89)}</b></p>
+
+<h2>Compared to Between</h2>
+<p><code>range(0, 100)</code> = inclusive: 0 &lt;= value &lt;= 100</p>
+<p><code>between(0, 100)</code> = exclusive: 0 &lt; value &lt; 100</p>

@@ -1,0 +1,24 @@
+<h1>{$title}</h1>
+
+{if $error}
+  <div class="alert alert-error">{$error}</div>
+{/if}
+
+<div class="card">
+  <form method="post">
+    <input type="hidden" name="action" value="save">
+
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" name="news_title" value="{$formTitle}" required autofocus>
+    </div>
+
+    <div class="form-group">
+      <label>Content</label>
+      <textarea name="content" style="min-height: 300px;" required>{$formContent}</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">{if $editId}Update{else}Publish{/if} Article</button>
+    <a href="?news/index" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>

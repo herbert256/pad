@@ -1,0 +1,26 @@
+<p>The <code>@options</code> property returns all positional options as iterable data.</p>
+
+<h2>List All Options</h2>
+<pre>{open}sequence 10{close}
+  {open}@first{close}
+    Options:
+    {open}@options{close}
+      &lt;li&gt;{open}$value{close}&lt;/li&gt;
+    {open}/@options{close}
+  {open}/@first{close}
+{open}/sequence{close}</pre>
+
+<p>Result:</p>
+{sequence 10}
+  {@first}
+    Options:
+    <ul>
+    {@options}
+      <li>{$value}</li>
+    {/@options}
+    </ul>
+  {/@first}
+{/sequence}
+
+<h2>Note</h2>
+<p>The <code>@options</code> property creates an iterable array of all positional options passed to the tag.</p>

@@ -1,0 +1,21 @@
+<p>The <code>afterLast</code> function returns everything after the last occurrence of a delimiter.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}$samplePath | afterLast('/'){close}</pre>
+<p>Path: {$samplePath}</p>
+<p>Filename: <b>{$samplePath | afterLast('/')}</b></p>
+
+<h2>File Extension</h2>
+<pre>{open}$samplePath | afterLast('.'){close}</pre>
+<p>Extension: <b>{$samplePath | afterLast('.')}</b></p>
+
+<h2>Chained Examples</h2>
+<pre>{open}$samplePath | afterLast('/') | beforeLast('.'){close}</pre>
+<p>Filename without extension: <b>{$samplePath | afterLast('/') | beforeLast('.')}</b></p>
+
+<pre>{open}$samplePath | afterLast('/') | afterLast('.') | upper{close}</pre>
+<p>Extension uppercase: <b>{$samplePath | afterLast('/') | afterLast('.') | upper}</b></p>
+
+<h2>Complex Chain</h2>
+<pre>{open}'app/src/components/Button.tsx' | afterLast('/') | beforeLast('.') | lower{close}</pre>
+<p>Component name: <b>{'app/src/components/Button.tsx' | afterLast('/') | beforeLast('.') | lower}</b></p>

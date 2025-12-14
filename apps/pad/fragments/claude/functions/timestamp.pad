@@ -1,0 +1,26 @@
+<p>The <code>timestamp</code> function is an alias for <code>date</code>.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}now | timestamp('Y-m-d H:i:s'){close}</pre>
+<p>Full timestamp: <b>{now | timestamp('Y-m-d H:i:s')}</b></p>
+
+<h2>Same as Date</h2>
+<pre>{open}now | date('c'){close}</pre>
+<p>Date (ISO 8601): <b>{now | date('c')}</b></p>
+
+<pre>{open}now | timestamp('c'){close}</pre>
+<p>Timestamp (ISO 8601): <b>{now | timestamp('c')}</b></p>
+
+<h2>Database Formats</h2>
+<pre>{open}now | timestamp('Y-m-d H:i:s'){close}</pre>
+<p>MySQL datetime: <b>{now | timestamp('Y-m-d H:i:s')}</b></p>
+
+<pre>{open}now | timestamp('U'){close}</pre>
+<p>Unix timestamp: <b>{now | timestamp('U')}</b></p>
+
+<h2>With Modifier</h2>
+<pre>{open}now | timestamp('Y-m-d H:i:s', '+1 day'){close}</pre>
+<p>Tomorrow same time: <b>{now | timestamp('Y-m-d H:i:s', '+1 day')}</b></p>
+
+<h2>Note</h2>
+<p><code>timestamp</code>, <code>time</code>, and <code>date</code> are all identical. Use whichever is most readable in context.</p>

@@ -1,0 +1,29 @@
+<p>The <code>time</code> function is an alias for <code>date</code>.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}now | time('H:i:s'){close}</pre>
+<p>Current time: <b>{now | time('H:i:s')}</b></p>
+
+<h2>Same as Date</h2>
+<pre>{open}now | date('Y-m-d H:i'){close}</pre>
+<p>Date: <b>{now | date('Y-m-d H:i')}</b></p>
+
+<pre>{open}now | time('Y-m-d H:i'){close}</pre>
+<p>Time: <b>{now | time('Y-m-d H:i')}</b></p>
+
+<h2>Time Formats</h2>
+<pre>{open}now | time('H:i'){close}</pre>
+<p>Hours:minutes: <b>{now | time('H:i')}</b></p>
+
+<pre>{open}now | time('g:i a'){close}</pre>
+<p>12-hour: <b>{now | time('g:i a')}</b></p>
+
+<pre>{open}now | time('H'){close}</pre>
+<p>Hour only: <b>{now | time('H')}</b></p>
+
+<h2>With Modifier</h2>
+<pre>{open}now | time('H:i', '+2 hours'){close}</pre>
+<p>In 2 hours: <b>{now | time('H:i', '+2 hours')}</b></p>
+
+<h2>Note</h2>
+<p>Use <code>time</code> or <code>date</code> interchangeably based on readability. Some prefer <code>time</code> when focusing on time-of-day formatting.</p>

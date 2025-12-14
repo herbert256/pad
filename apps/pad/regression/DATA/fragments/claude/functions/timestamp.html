@@ -1,0 +1,45 @@
+<p>
+  The <code>timestamp</code> function is an alias for <code>date</code>.
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{now | timestamp('Y-m-d H:i:s')}</pre>
+<p>
+  Full timestamp: <b>2025-12-14 21:06:00</b>
+</p>
+<h2>
+  Same as Date
+</h2>
+<pre>{now | date('c')}</pre>
+<p>
+  Date (ISO 8601): <b>2025-12-14T21:06:00+00:00</b>
+</p>
+<pre>{now | timestamp('c')}</pre>
+<p>
+  Timestamp (ISO 8601): <b>2025-12-14T21:06:00+00:00</b>
+</p>
+<h2>
+  Database Formats
+</h2>
+<pre>{now | timestamp('Y-m-d H:i:s')}</pre>
+<p>
+  MySQL datetime: <b>2025-12-14 21:06:00</b>
+</p>
+<pre>{now | timestamp('U')}</pre>
+<p>
+  Unix timestamp: <b>1765746360</b>
+</p>
+<h2>
+  With Modifier
+</h2>
+<pre>{now | timestamp('Y-m-d H:i:s', '+1 day')}</pre>
+<p>
+  Tomorrow same time: <b>2025-12-15 21:06:00</b>
+</p>
+<h2>
+  Note
+</h2>
+<p>
+  <code>timestamp</code>, <code>time</code>, and <code>date</code> are all identical. Use whichever is most readable in context.
+</p>

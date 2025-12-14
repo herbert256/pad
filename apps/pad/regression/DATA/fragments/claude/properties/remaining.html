@@ -1,0 +1,40 @@
+<p>
+  The <code>@remaining</code> property returns the number of iterations remaining after the current one.
+</p>
+<h2>
+  Remaining Count
+</h2>
+<pre>{users}
+  {$name} ({@remaining} more to go)
+{/users}</pre>
+<p>
+  Result:
+</p>
+<div>
+  Alice (Alice more to go)<br>
+  Bob (Bob more to go)<br>
+  Charlie (Charlie more to go)<br>
+  Diana (Diana more to go)<br>
+  Eve (Eve more to go)<br>
+</div>
+<h2>
+  Conditional on Remaining
+</h2>
+<pre>{colors}
+  {$colors}
+  {if @remaining gt 0}
+    - {@remaining} remaining
+  {else}
+    - Done!
+  {/if}
+{/colors}</pre>
+<p>
+  Result:
+</p>
+<div>
+  Red - Red remaining<br>
+  Green - Green remaining<br>
+  Blue - Blue remaining<br>
+  Yellow - Yellow remaining<br>
+  Purple - Purple remaining<br>
+</div>

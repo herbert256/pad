@@ -1,0 +1,54 @@
+<h1>{$boardName}</h1>
+<p class="meta">{$boardDescription}</p>
+
+{if $user_id}
+  <p style="margin: 20px 0;">
+    <a href="?forum/new&board={$slug}" class="btn">New Topic</a>
+  </p>
+{else}
+  <p class="meta" style="margin: 20px 0;">
+    <a href="?auth/login">Login</a> to create a new topic.
+  </p>
+{/if}
+
+<div class="card">
+  {if $topics}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Topic</th>
+          <th style="width: 100px; text-align: center;">Replies</th>
+          <th style="width: 100px; text-align: center;">Views</th>
+          <th style="width: 150px;">Last Reply</th>
+        </tr>
+      </thead>
+      <tbody>
+        {topics}
+          <tr>
+            <td>
+              {if $is_pinned}<span class="badge badge-feature">Pinned</span> {/if}
+              {if $is_locked}<span class="badge badge-closed">Locked</span> {/if}
+              <a href="?forum/topic&id={$id}"><strong>{$title}</strong></a>
+              <p class="meta" style="margin: 5px 0 0 0;">
+                by {$author_name} on {$created_at | substr (0, 10)}
+              </p>
+            </td>
+            <td style="text-align: center;">{$reply_count}</td>
+            <td style="text-align: center;">{$views}</td>
+            <td class="meta">
+              {if $last_reply}
+                {$last_reply | substr (0, 16)}
+              {else}
+                -
+              {/if}
+            </td>
+          </tr>
+        {/topics}
+      </tbody>
+    </table>
+  {else}
+    <p class="meta">No topics yet. Be the first to create one!</p>
+  {/if}
+</div>
+
+<p><a href="?forum/index">&larr; Back to Forum</a></p>

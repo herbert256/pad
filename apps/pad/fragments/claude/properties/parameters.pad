@@ -1,0 +1,26 @@
+<p>The <code>@parameters</code> property returns all named parameters as iterable data.</p>
+
+<h2>List All Parameters</h2>
+<pre>{open}users sort="name" limit="10" filter="active"{close}
+  {open}@first{close}
+    Parameters:
+    {open}@parameters{close}
+      &lt;li&gt;{open}$name{close} = {open}$value{close}&lt;/li&gt;
+    {open}/@parameters{close}
+  {open}/@first{close}
+{open}/users{close}</pre>
+
+<p>Result:</p>
+{users sort="name" limit="10" filter="active"}
+  {@first}
+    Parameters:
+    <ul>
+    {@parameters}
+      <li>{$name} = {$value}</li>
+    {/@parameters}
+    </ul>
+  {/@first}
+{/users}
+
+<h2>Note</h2>
+<p>Each item has <code>$name</code> (parameter name) and <code>$value</code> (parameter value). Useful for debugging or dynamic parameter handling.</p>

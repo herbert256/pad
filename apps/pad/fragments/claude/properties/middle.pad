@@ -1,0 +1,45 @@
+<p>The <code>@middle</code> property returns TRUE if this is neither the first nor last iteration.</p>
+
+<h2>Process Middle Items Only</h2>
+<pre>{open}colors{close}
+  {open}@middle{close}
+    &lt;li&gt;{open}$colors{close} (middle)&lt;/li&gt;
+  {open}/@middle{close}
+{open}/colors{close}</pre>
+
+<p>Result (only middle items shown):</p>
+<ul>
+{colors}
+  {@middle}
+    <li>{$colors} (middle)</li>
+  {/@middle}
+{/colors}
+</ul>
+
+<h2>Different Treatment for Position</h2>
+<pre>{open}users{close}
+  {open}@first{close}
+    &lt;li&gt;&lt;b&gt;First: {open}$name{close}&lt;/b&gt;&lt;/li&gt;
+  {open}/@first{close}
+  {open}@middle{close}
+    &lt;li&gt;{open}$name{close}&lt;/li&gt;
+  {open}/@middle{close}
+  {open}@last{close}
+    &lt;li&gt;&lt;i&gt;Last: {open}$name{close}&lt;/i&gt;&lt;/li&gt;
+  {open}/@last{close}
+{open}/users{close}</pre>
+
+<p>Result:</p>
+<ul>
+{users}
+  {@first}
+    <li><b>First: {$name}</b></li>
+  {/@first}
+  {@middle}
+    <li>{$name}</li>
+  {/@middle}
+  {@last}
+    <li><i>Last: {$name}</i></li>
+  {/@last}
+{/users}
+</ul>

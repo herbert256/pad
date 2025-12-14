@@ -1,9 +1,76 @@
-<p>Working examples for all PAD template tags. Click a tag name to see examples.</p>
+<h1>PAD Reference</h1>
 
-<h2>All Tags</h2>
+<p>Complete working examples for PAD template tags, properties, and pipe functions.</p>
 
-<ul>
+<hr>
+
+<h2>Tags</h2>
+<p>Template tags control flow, data, and output. <a href="?fragments/claude/tags">View all tags &rarr;</a></p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="100%">
+<tr style="background:#ccc;"><th>Tag</th><th>Description</th><th>Category</th></tr>
 {tags}
-  <li><a href="?fragments/claude/{$name}">{$name}</a> - {$description} <i>({$category})</i></li>
+  <tr{@even ? style="background:#f5f5f5"}>
+    <td><a href="?fragments/claude/tags/{$name}">{$name}</a></td>
+    <td>{$desc}</td>
+    <td><i>{$cat}</i></td>
+  </tr>
 {/tags}
-</ul>
+</table>
+
+<hr>
+
+<h2>Properties</h2>
+<p>Access iteration state and metadata using <code>@property</code> syntax. <a href="?fragments/claude/properties">View all properties &rarr;</a></p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="100%">
+<tr style="background:#ccc;"><th>Property</th><th>Description</th><th>Category</th></tr>
+{props}
+  <tr{@even ? style="background:#f5f5f5"}>
+    <td><a href="?fragments/claude/properties/{$name}">@{$name}</a></td>
+    <td>{$desc}</td>
+    <td><i>{$cat}</i></td>
+  </tr>
+{/props}
+</table>
+
+<hr>
+
+<h2>Pipe Functions</h2>
+<p>Transform values using <code>| function</code> syntax. Chain multiple functions. <a href="?fragments/claude/functions">View all functions &rarr;</a></p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="100%">
+<tr style="background:#ccc;"><th>Function</th><th>Description</th><th>Category</th></tr>
+{funcs}
+  <tr{@even ? style="background:#f5f5f5"}>
+    <td><a href="?fragments/claude/functions/{$name}">{$name}</a></td>
+    <td>{$desc}</td>
+    <td><i>{$cat}</i></td>
+  </tr>
+{/funcs}
+</table>
+
+<hr>
+
+<h2>Quick Reference</h2>
+
+<h3>Tag Syntax</h3>
+<pre>{open}tagname{close}...{open}/tagname{close}
+{open}tagname option="value"{close}
+{open}if $x gt 0{close}...{open}/if{close}</pre>
+
+<h3>Property Syntax</h3>
+<pre>{open}@first{close}, {open}@last{close}, {open}@current{close}, {open}@count{close}
+{open}@even ? class="even" : class="odd"{close}
+{open}@first ? &lt;ul&gt;{close}...{open}@last ? &lt;/ul&gt;{close}</pre>
+
+<h3>Pipe Syntax</h3>
+<pre>{open}$var | function{close}
+{open}$var | function('param'){close}
+{open}$var | trim | upper | left(10){close}</pre>
+
+<h3>Common Patterns</h3>
+<pre>{open}$email | before('@') | replace('.', ' ') | capitalize{close}
+{open}$path | afterLast('/') | beforeLast('.'){close}
+{open}now | date('Y-m-d', '+1 week'){close}
+{open}items{close}{open}@notFirst ? , {close}{open}$name{close}{open}/items{close}</pre>

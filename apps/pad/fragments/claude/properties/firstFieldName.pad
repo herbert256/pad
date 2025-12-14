@@ -1,0 +1,29 @@
+<p>The <code>@firstFieldName</code> property returns the name of the first field in the current record.</p>
+
+<h2>Get First Field Name</h2>
+<pre>{open}users{close}
+  {open}@first{close}
+    Primary field: {open}@firstFieldName{close}
+  {open}/@first{close}
+{open}/users{close}</pre>
+
+<p>Result:</p>
+{users}
+  {@first}
+    Primary field: {@firstFieldName}
+  {/@first}
+{/users}
+
+<h2>Config Example</h2>
+<pre>{open}config{close}
+  {open}@first{close}
+    First setting: {open}@firstFieldName{close}
+  {open}/@first{close}
+{open}/config{close}</pre>
+
+<p>Result:</p>
+{config}
+  {@first}
+    First setting: {@firstFieldName}
+  {/@first}
+{/config}

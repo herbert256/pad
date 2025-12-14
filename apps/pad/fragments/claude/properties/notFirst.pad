@@ -1,0 +1,29 @@
+<p>The <code>@notFirst</code> property returns TRUE if this is NOT the first iteration.</p>
+
+<h2>Comma-Separated List</h2>
+<pre>{open}colors{close}
+  {open}@notFirst ? , {close}{open}$colors{close}
+{open}/colors{close}</pre>
+
+<p>Result:</p>
+<p>
+{colors}
+  {@notFirst ? , }{$colors}
+{/colors}
+</p>
+
+<h2>Skip First Item</h2>
+<pre>{open}users{close}
+  {open}@notFirst{close}
+    &lt;li&gt;{open}$name{close}&lt;/li&gt;
+  {open}/@notFirst{close}
+{open}/users{close}</pre>
+
+<p>Result (first user skipped):</p>
+<ul>
+{users}
+  {@notFirst}
+    <li>{$name}</li>
+  {/@notFirst}
+{/users}
+</ul>

@@ -1,0 +1,27 @@
+<p>The <code>replace</code> function replaces all occurrences of a search string with a replacement.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}'hello world' | replace('world', 'there'){close}</pre>
+<p>Result: <b>{'hello world' | replace('world', 'there')}</b></p>
+
+<h2>Multiple Replacements</h2>
+<pre>{open}'a-b-c' | replace('-', '_') | replace('_', ' '){close}</pre>
+<p>Chain replacements: <b>{'a-b-c' | replace('-', '_') | replace('_', ' ')}</b></p>
+
+<h2>URL Slugs</h2>
+<pre>{open}'Hello World Example' | lower | replace(' ', '-'){close}</pre>
+<p>URL slug: <b>{'Hello World Example' | lower | replace(' ', '-')}</b></p>
+
+<h2>Format Conversions</h2>
+<pre>{open}'snake_case_name' | replace('_', ' ') | capitalize{close}</pre>
+<p>Snake to title: <b>{'snake_case_name' | replace('_', ' ') | capitalize}</b></p>
+
+<pre>{open}'kebab-case-name' | replace('-', ' ') | capitalize{close}</pre>
+<p>Kebab to title: <b>{'kebab-case-name' | replace('-', ' ') | capitalize}</b></p>
+
+<h2>Complex Chain</h2>
+<pre>{open}'2024-12-14' | replace('-', '/'){close}</pre>
+<p>Date format: <b>{'2024-12-14' | replace('-', '/')}</b></p>
+
+<pre>{open}$sampleEmail | replace('.', ' ') | replace('@', ' at ') | capitalize{close}</pre>
+<p>Readable email: <b>{$sampleEmail | replace('.', ' ') | replace('@', ' at ') | capitalize}</b></p>

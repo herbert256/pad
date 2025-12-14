@@ -1,0 +1,20 @@
+<p>The <code>slashes</code> function adds backslashes before quotes (PHP addslashes).</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}"it's here" | slashes{close}</pre>
+<p>Result: <b>{"it's here" | slashes}</b></p>
+
+<h2>Double Quotes</h2>
+<pre>{open}'say "hello"' | slashes{close}</pre>
+<p>Result: <b>{'say "hello"' | slashes}</b></p>
+
+<h2>For JavaScript</h2>
+<pre>var msg = '{open}'User\'s "data"' | slashes{close}';</pre>
+<p>Safe JS: var msg = '<b>{'User\'s "data"' | slashes}</b>';</p>
+
+<h2>Chained Examples</h2>
+<pre>{open}'  John\'s Data  ' | trim | slashes{close}</pre>
+<p>Clean and escape: <b>{'  John\'s Data  ' | trim | slashes}</b></p>
+
+<h2>Note</h2>
+<p>Use <code>slashes</code> when preparing strings for contexts that need escaped quotes, like JavaScript strings or certain SQL contexts (though parameterized queries are preferred for SQL).</p>

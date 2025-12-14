@@ -1,0 +1,25 @@
+<h1>Forum</h1>
+
+<div class="card">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Board</th>
+        <th style="width: 100px; text-align: center;">Topics</th>
+        <th style="width: 100px; text-align: center;">Posts</th>
+      </tr>
+    </thead>
+    <tbody>
+      {boards}
+        <tr>
+          <td>
+            <h3 style="margin: 0;"><a href="?forum/board&slug={$slug}">{$name}</a></h3>
+            <p class="meta" style="margin: 5px 0 0 0;">{$description}</p>
+          </td>
+          <td style="text-align: center;">{$topic_count}</td>
+          <td style="text-align: center;">{$post_count}</td>
+        </tr>
+      {/boards}
+    </tbody>
+  </table>
+</div>

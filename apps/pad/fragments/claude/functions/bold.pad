@@ -1,0 +1,25 @@
+<p>The <code>bold</code> function wraps the value in <code>&lt;b&gt;</code> tags.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}'important' | bold{close}</pre>
+<p>Result: {'important' | bold}</p>
+
+<h2>Chained Examples</h2>
+<pre>{open}'hello world' | upper | bold{close}</pre>
+<p>Result: {'hello world' | upper | bold}</p>
+
+<pre>{open}'  warning  ' | trim | bold{close}</pre>
+<p>Result: {'  warning  ' | trim | bold}</p>
+
+<h2>With Users</h2>
+<pre>{open}users{close}
+  {open}$name | bold{close}: {open}$email{close}
+{open}/users{close}</pre>
+<p>Bold names:</p>
+{users}
+  {$name | bold}: {$email}<br>
+{/users}
+
+<h2>Complex Chain</h2>
+<pre>{open}'john.doe' | replace('.', ' ') | capitalize | bold{close}</pre>
+<p>Result: {'john.doe' | replace('.', ' ') | capitalize | bold}</p>

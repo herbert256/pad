@@ -1,0 +1,45 @@
+<p>
+  The <code>optional</code> function returns the value or empty string if null (null coalescing).
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{$existingVar | optional}</pre>
+<p>
+  Existing value: <b>Hello World</b>
+</p>
+<pre>{$undefinedVar | optional}</pre>
+<p>
+  Undefined (empty): <b></b>
+</p>
+<h2>
+  Safe Output
+</h2>
+<p>
+  Use <code>optional</code> to safely output variables that might not exist:
+</p>
+<pre>{$maybeNull | optional}</pre>
+<h2>
+  Chained Examples
+</h2>
+<pre>{$sampleText | optional | trim}</pre>
+<p>
+  Safe trim: <b>Hello World</b>
+</p>
+<pre>{$undefinedVar | optional | trim | upper}</pre>
+<p>
+  Chain on undefined: <b></b> (empty)
+</p>
+<h2>
+  With Default
+</h2>
+<p>
+  For default values, use conditional logic instead:
+</p>
+<pre>{if $value}{$value}{else}default{/if}</pre>
+<h2>
+  Note
+</h2>
+<p>
+  The <code>optional</code> function prevents errors when accessing potentially undefined variables. It's similar to PHP's null coalescing operator (<code>??</code>).
+</p>

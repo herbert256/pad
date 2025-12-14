@@ -1,0 +1,27 @@
+<p>The <code>@firstFieldValue</code> property returns the value of the first field in the current record.</p>
+
+<h2>Get First Field Value</h2>
+<pre>{open}users{close}
+  {open}@first{close}
+    Primary value: {open}@firstFieldValue{close}
+  {open}/@first{close}
+{open}/users{close}</pre>
+
+<p>Result:</p>
+{users}
+  {@first}
+    Primary value: {@firstFieldValue}
+  {/@first}
+{/users}
+
+<h2>All First Values</h2>
+<pre>{open}users{close}
+  ID: {open}@firstFieldValue{close}
+{open}/users{close}</pre>
+
+<p>Result:</p>
+<div>
+{users}
+  ID: {@firstFieldValue}<br>
+{/users}
+</div>

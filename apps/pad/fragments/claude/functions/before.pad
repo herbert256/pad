@@ -1,0 +1,22 @@
+<p>The <code>before</code> function returns everything before the first occurrence of a delimiter.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}$sampleEmail | before('@'){close}</pre>
+<p>Email: {$sampleEmail}</p>
+<p>Username: <b>{$sampleEmail | before('@')}</b></p>
+
+<h2>First Directory</h2>
+<pre>{open}$samplePath | after('/') | before('/'){close}</pre>
+<p>Path: {$samplePath}</p>
+<p>First directory: <b>{$samplePath | after('/') | before('/')}</b></p>
+
+<h2>Chained Examples</h2>
+<pre>{open}$sampleEmail | before('@') | replace('.', ' ') | capitalize{close}</pre>
+<p>Full name from email: <b>{$sampleEmail | before('@') | replace('.', ' ') | capitalize}</b></p>
+
+<pre>{open}'John Doe <john@example.com>' | before('<') | trim{close}</pre>
+<p>Name from email header: <b>{'John Doe <john@example.com>' | before('<') | trim}</b></p>
+
+<h2>Complex Chain</h2>
+<pre>{open}'2024-12-14T10:30:00' | before('T') | replace('-', '/'){close}</pre>
+<p>Date from ISO timestamp: <b>{'2024-12-14T10:30:00' | before('T') | replace('-', '/')}</b></p>

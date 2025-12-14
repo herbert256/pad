@@ -1,0 +1,26 @@
+<p>The <code>mid</code> function returns a substring starting at position (1-based index).</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}'Hello World' | mid(7, 5){close}</pre>
+<p>From pos 7, length 5: <b>{'Hello World' | mid(7, 5)}</b></p>
+
+<pre>{open}'Hello World' | mid(1, 5){close}</pre>
+<p>From pos 1, length 5: <b>{'Hello World' | mid(1, 5)}</b></p>
+
+<h2>Extract Date Parts</h2>
+<pre>{open}'2024-12-14' | mid(1, 4){close}</pre>
+<p>Year: <b>{'2024-12-14' | mid(1, 4)}</b></p>
+
+<pre>{open}'2024-12-14' | mid(6, 2){close}</pre>
+<p>Month: <b>{'2024-12-14' | mid(6, 2)}</b></p>
+
+<pre>{open}'2024-12-14' | mid(9, 2){close}</pre>
+<p>Day: <b>{'2024-12-14' | mid(9, 2)}</b></p>
+
+<h2>Chained Examples</h2>
+<pre>{open}'ISBN-978-3-16-148410-0' | mid(6, 3) | + 0{close}</pre>
+<p>ISBN prefix: <b>{'ISBN-978-3-16-148410-0' | mid(6, 3) | + 0}</b></p>
+
+<h2>Complex Chain</h2>
+<pre>{open}'2024-12-14' | mid(6, 2) | + 0{close} / {open}'2024-12-14' | mid(9, 2) | + 0{close} / {open}'2024-12-14' | mid(1, 4){close}</pre>
+<p>Reformat date: <b>{'2024-12-14' | mid(6, 2) | + 0} / {'2024-12-14' | mid(9, 2) | + 0} / {'2024-12-14' | mid(1, 4)}</b></p>

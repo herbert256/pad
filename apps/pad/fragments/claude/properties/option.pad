@@ -1,0 +1,28 @@
+<p>The <code>@option:n</code> property returns a specific positional option value.</p>
+
+<h2>Access Positional Options</h2>
+<pre>{open}sequence 5{close}
+  Option 1: {open}@option:1{close}
+{open}/sequence{close}</pre>
+
+<p>Result:</p>
+{sequence 5}
+  {@first}
+    Option 1: {@option:1}
+  {/@first}
+{/sequence}
+
+<h2>Multiple Options</h2>
+<pre>{open}list '1;2;3;4;5'{close}
+  List option: {open}@option:1{close}
+{open}/list{close}</pre>
+
+<p>Result:</p>
+{list '1;2;3;4;5'}
+  {@first}
+    List option: {@option:1}
+  {/@first}
+{/list}
+
+<h2>Note</h2>
+<p>Use <code>@option:1</code>, <code>@option:2</code>, etc. to access positional options passed to the tag. Index starts at 1.</p>

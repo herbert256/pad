@@ -1,0 +1,34 @@
+<p>The <code>@odd</code> property returns TRUE if the current occurrence number is odd.</p>
+
+<h2>Alternate Styling</h2>
+<pre>{open}users{close}
+  &lt;tr style="{open}@odd ? background:#f0f0f0{close}"&gt;
+    &lt;td&gt;{open}$name{close}&lt;/td&gt;
+  &lt;/tr&gt;
+{open}/users{close}</pre>
+
+<p>Result:</p>
+<table border="1">
+  <tr><th>Name</th></tr>
+{users}
+  <tr style="{@odd ? background:#f0f0f0}">
+    <td>{$name}</td>
+  </tr>
+{/users}
+</table>
+
+<h2>Odd Items Only</h2>
+<pre>{open}colors{close}
+  {open}@odd{close}
+    &lt;li&gt;{open}@current{close}. {open}$colors{close}&lt;/li&gt;
+  {open}/@odd{close}
+{open}/colors{close}</pre>
+
+<p>Result (only odd positions):</p>
+<ul>
+{colors}
+  {@odd}
+    <li>{@current}. {$colors}</li>
+  {/@odd}
+{/colors}
+</ul>

@@ -1,0 +1,19 @@
+<p class="meta"><a href="?news/index">&larr; Back to News</a></p>
+
+<div class="card">
+  <h1>{$articleTitle}</h1>
+  <p class="meta">
+    Posted by {$authorName} on {$createdAt | substr (0, 10)}
+    {if $updatedAt ne $createdAt}
+      (Updated: {$updatedAt | substr (0, 10)})
+    {/if}
+  </p>
+
+  <div style="margin-top: 20px; white-space: pre-wrap;">{$articleContent}</div>
+</div>
+
+{if $role eq 'admin'}
+  <p>
+    <a href="?news/new&edit={$newsId}" class="btn btn-secondary">Edit Article</a>
+  </p>
+{/if}

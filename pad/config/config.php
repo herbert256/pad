@@ -79,6 +79,7 @@
   $padTidy   = TRUE;
   $padMyTidy = FALSE;
 
+  $padSelect    = [];
   $padTables    = [];
   $padRelations = [];
 

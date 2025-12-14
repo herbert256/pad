@@ -26,10 +26,11 @@
   $padGiven      [$pad] = $padTypeGiven     ?? '';
   $padPrefix     [$pad] = $padTypePrefix    ?? '';
   $padPair       [$pad] = $padPairSet       ?? '';
+  $padPrmType    [$pad] = $padPrmTypeSet    ?? '';
+
   $padBase       [$pad] = $padBaseSet       ?? '';
   $padOrg        [$pad] = $padOrgSet        ?? '';
   $padSource     [$pad] = $padBaseSet       ?? '';
-  $padPrmType    [$pad] = $padPrmTypeSet    ?? '';
   $padPipeBefore [$pad] = $padPipeBeforeSet ?? '';
   $padPipeAfter  [$pad] = $padPipeAfterSet  ?? '';
 
@@ -70,11 +71,10 @@
 
   $padTable      [$pad] = [];
   $padTableTag   [$pad] = '';
+  $padSelect     [$pad] = [];
 
   $padLvlFun     [$pad] = FALSE;
   $padLvlFunVar  [$pad] = [];
-
-
 
   $padOccurStart [$pad] = [];
 

@@ -1,0 +1,66 @@
+<p>
+  The <code>date</code> function formats a timestamp using PHP date format.
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{$sampleTimestamp | date('Y-m-d')}</pre>
+<p>
+  Formatted: <b>2025-12-14</b>
+</p>
+<h2>
+  Common Formats
+</h2>
+<pre>{now | date('Y-m-d')}</pre>
+<p>
+  ISO date: <b>2025-12-14</b>
+</p>
+<pre>{now | date('d/m/Y')}</pre>
+<p>
+  European: <b>14/12/2025</b>
+</p>
+<pre>{now | date('m/d/Y')}</pre>
+<p>
+  US format: <b>12/14/2025</b>
+</p>
+<pre>{now | date('F j, Y')}</pre>
+<p>
+  Long format: <b>December 14, 2025</b>
+</p>
+<pre>{now | date('D, M j')}</pre>
+<p>
+  Short format: <b>Sun, Dec 14</b>
+</p>
+<h2>
+  Time Formats
+</h2>
+<pre>{now | date('H:i:s')}</pre>
+<p>
+  24-hour time: <b>21:05:59</b>
+</p>
+<pre>{now | date('g:i A')}</pre>
+<p>
+  12-hour time: <b>9:05 PM</b>
+</p>
+<h2>
+  With Modifier
+</h2>
+<pre>{now | date('Y-m-d', '+1 week')}</pre>
+<p>
+  Next week: <b>2025-12-21</b>
+</p>
+<pre>{now | date('Y-m-d', '-1 month')}</pre>
+<p>
+  Last month: <b>2025-11-14</b>
+</p>
+<pre>{now | date('F Y', '+6 months')}</pre>
+<p>
+  In 6 months: <b>June 2026</b>
+</p>
+<h2>
+  Chained Example
+</h2>
+<pre>{now | date('Y') | + 0} ©</pre>
+<p>
+  Copyright: <b>2025 ©</b>
+</p>

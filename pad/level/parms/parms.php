@@ -1,5 +1,8 @@
 <?php
 
+  if ( $padTypeResult == 'eval' )
+    return include PAD . 'level/parms/noParms.php';
+
   if ( $padPrmType [$pad] == 'close' )
     include PAD . 'level/close.php';
 

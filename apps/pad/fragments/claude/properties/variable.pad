@@ -1,0 +1,18 @@
+<p>The <code>@variable:name</code> property returns a specific level-scoped variable value.</p>
+
+<h2>Access Level Variables</h2>
+<pre>{open}users myVar="test value"{close}
+  {open}@first{close}
+    Variable myVar: {open}@variable:myVar{close}
+  {open}/@first{close}
+{open}/users{close}</pre>
+
+<p>Result:</p>
+{users myVar="test value"}
+  {@first}
+    Variable myVar: {@variable:myVar}
+  {/@first}
+{/users}
+
+<h2>Note</h2>
+<p>Level-scoped variables are set using the tag's named parameters. Use <code>@variable:varName</code> to access them. Returns NULL if not set.</p>

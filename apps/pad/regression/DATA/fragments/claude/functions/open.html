@@ -1,0 +1,41 @@
+<p>
+  The <code>open</code> function outputs a literal opening brace <code>{}</code>.
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{open}</pre>
+<p>
+  Result: <b>{</b>
+</p>
+<h2>
+  Document PAD Code
+</h2>
+<p>
+  Use to show PAD syntax in documentation:
+</p>
+<pre>{open}$variable{close}</pre>
+<p>
+  Shows: <b>{$variable}</b>
+</p>
+<pre>{open}if $count gt 0{close}</pre>
+<p>
+  Shows: <b>{if $count gt 0}</b>
+</p>
+<h2>
+  Complex Examples
+</h2>
+<pre>{open}users{close}
+  {open}$name{close}
+{open}/users{close}</pre>
+<p>
+  Shows:
+</p><code>{users}<br>
+&nbsp;&nbsp;{$name}<br>
+{/users}</code>
+<h2>
+  Note
+</h2>
+<p>
+  Essential for writing PAD documentation within PAD templates. Without <code>open</code> and <code>close</code>, PAD would try to execute the code instead of displaying it.
+</p>

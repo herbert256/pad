@@ -1,0 +1,47 @@
+<p>
+  The <code>now</code> function returns the current Unix timestamp.
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{now}</pre>
+<p>
+  Current timestamp: <b>1765746360</b>
+</p>
+<h2>
+  Format with Date
+</h2>
+<pre>{now | date('Y-m-d')}</pre>
+<p>
+  Today: <b>2025-12-14</b>
+</p>
+<pre>{now | date('H:i:s')}</pre>
+<p>
+  Current time: <b>21:06:00</b>
+</p>
+<h2>
+  Chained Examples
+</h2>
+<pre>{now | date('Y')}</pre>
+<p>
+  Current year: <b>2025</b>
+</p>
+<pre>{now | date('F j, Y')}</pre>
+<p>
+  Full date: <b>December 14, 2025</b>
+</p>
+<pre>{now | date('l')}</pre>
+<p>
+  Day of week: <b>Sunday</b>
+</p>
+<h2>
+  Calculations
+</h2>
+<pre>{now | date('Y') | + 1}</pre>
+<p>
+  Next year: <b>2026</b>
+</p>
+<pre>{now | date('m') | + 0}</pre>
+<p>
+  Current month number: <b>12</b>
+</p>
