@@ -2,7 +2,7 @@
   
   $padOutputType = 'console'; 
 
-  $padInfo       = '';
-  $padTidy       = FALSE;
+  $padInfo = '';
+  $padTidy = FALSE;
 
 ?>

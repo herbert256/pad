@@ -1,7 +1,10 @@
 <?php
 
-  $padApp = 'nono';
+  include __DIR__ . '/../padHome.php';
 
-  include __DIR__ . '/../index.php';
-  
+  define ( 'APP', "$padHome/apps/nono/"  );
+  define ( 'DAT', "$padHome/DATA/"       );
+
+  include "$padHome/pad/pad.php";
+
 ?>

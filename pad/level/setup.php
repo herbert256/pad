@@ -2,8 +2,8 @@
   
   $pad++;  
 
-  if ( $pad > 25 )
-    return padError ( "To many Levels" );
+  if ( $pad > 100 )
+    return padError ( "Too many Levels" );
 
   $padLvlId++;
 

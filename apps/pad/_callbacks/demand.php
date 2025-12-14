@@ -15,7 +15,7 @@
         
         $salaryTotal += $salary;
         $bonusTotal  += $bonus;
-        
+
         break;
 
     case 'exit':

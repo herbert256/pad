@@ -15,8 +15,8 @@
     $padPrmTypeX = '';      
 
   if ( $padPrmTypeX )
-    return padTagValue ( "$tag:$name" );
-  else
     return padTagValue ( "$tag:$name#$padPrmTypeX" );
+  else
+    return padTagValue ( "$tag:$name" );
   
 ?>

@@ -19,7 +19,7 @@
    */
   function padFastLink ( $padPage, $vars ) {
 
-    global $padFastLink, $padSesID, $padReqID, $padHost;
+    global $padFastLink, $padSesID, $padReqID, $padHost, $padScript;
   
     $vars ['padPage']  = $padPage;
     $vars ['padSesID'] = $padSesID;

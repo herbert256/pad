@@ -8,6 +8,6 @@
   $padFileDate       = FALSE;
   $padFileTimeStamp  = TRUE;
   $padFileUniqId     = 8;
-  $padFileNextPage   = 'file/done';
+  $padFileNextPage   = 'fragments/file/done';
 
 ?>

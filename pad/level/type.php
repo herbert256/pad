@@ -13,8 +13,10 @@
   } else {
 
     $padTypeGiven  = TRUE;
+    
     $padTypePrefix = $padTypeExplode [0];  
-    $padTypeCheck  = $padTypeExplode [1];  
+    $padTypeCheck  = $padTypeExplode [1]; 
+
     $padTypeResult = padTypeTagCheck ( $padTypePrefix, $padTypeCheck ); 
 
     if ( ! $padTypeResult )

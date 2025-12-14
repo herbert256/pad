@@ -209,7 +209,7 @@ types/
 
 **Arithmetic Operations:**
 - `add` - Addition: n + parm
-- `substract` - Subtraction: n - parm
+- `subtract` - Subtraction: n - parm
 - `multiply` - Multiplication: n * parm
 - `divide` - Division: n / parm
 - `modulo` - Modulus: n % parm

@@ -1,7 +1,10 @@
 <?php
 
-  $padApp = 'mimimal';
+  include __DIR__ . '/../padHome.php';
 
-  include __DIR__ . '/../index.php';
-  
+  define ( 'APP', "$padHome/apps/minimal/"  );
+  define ( 'DAT', "$padHome/DATA/"          );
+
+  include "$padHome/pad/pad.php";
+
 ?>

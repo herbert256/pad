@@ -10,8 +10,6 @@
                             
   define ( 'padOptionsEnd', ['toBool', 'toContent', 'toData', 'tidy', 'dump'] );
 
-  define ( 'padOptionsCallback', ['callback'] );
-
   define ( 'PQ', PAD . 'sequence/' );
   define ( 'PT', PAD . 'sequence/types/' );
 

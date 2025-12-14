@@ -37,7 +37,7 @@ The sequence module (internally prefixed with `pq`) enables templates to generat
 Over 70 mathematical and number theory sequences including:
 
 **Arithmetic Sequences**
-- **add**, **multiply**, **divide**, **substract**, **modulo** - Basic operations
+- **add**, **multiply**, **divide**, **subtract**, **modulo** - Basic operations
 - **exponentiation**, **power** - Exponential sequences
 - **repeat**, **step** - Simple patterns
 

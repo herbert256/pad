@@ -3,7 +3,7 @@
   $curl = getPage ($item, 1);
 
   if ( ! str_starts_with ( $curl ['result'], '2') )
-    padRedirect ($item);
+    padRedirect ($item, [ 'padInclude' => 1 ] );
 
   $oldRes = $newRes = $newSrc = $compare = $demoLines = [];
  

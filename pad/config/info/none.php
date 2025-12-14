@@ -59,7 +59,7 @@
   $padInfoTraceEndOcc      = FALSE;
   
   $padInfoTraceContent     = FALSE;
-  $padInfoTraceFALSE       = FALSE;
+  $padInfoTraceTrue        = FALSE;
   $padInfoTraceFalse       = FALSE;
   $padInfoTraceLevelBase   = FALSE;
   $padInfoTraceResultLvl   = FALSE;

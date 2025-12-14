@@ -39,9 +39,9 @@ return $pqLoop / $pqParm;
 
 ---
 
-## 4. Typo in substract Directory Name
+## 4. Typo in subtract Directory Name
 
-**File:** `/home/herbert/pad/pad/sequence/types/substract/`
+**File:** `/home/herbert/pad/pad/sequence/types/subtract/`
 **Bug Type:** Typo in directory name
 
-**Issue:** The directory is spelled "substract" but should be "subtract" (missing the second 't'). This is a common misspelling and could cause confusion or file-not-found errors if code tries to reference the correctly-spelled directory name.
+**Issue:** The directory is spelled "subtract" but should be "subtract" (missing the second 't'). This is a common misspelling and could cause confusion or file-not-found errors if code tries to reference the correctly-spelled directory name.

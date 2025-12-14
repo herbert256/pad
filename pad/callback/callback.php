@@ -1,5 +1,7 @@
 <?php
 
-  include PAD . 'options/go/callback.php' ;
-  
+  $padCall = APP . "_callbacks/" . $GLOBALS ['padPrm'] [$GLOBALS ['pad']] ['callback'];
+
+  include PAD . 'call/any.php';
+
 ?>

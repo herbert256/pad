@@ -41,7 +41,7 @@
   function padCacheUrl ($url) {
 
     if ( padCacheExists ("url/$url") ) {
-      $etag = padFilePut ("url/$url");
+      $etag = padFileGet ("url/$url");
       if ( padCacheExists ("etag/$etag") )
         return [padCacheTime ("etag/$etag"), $etag];
     }
@@ -60,7 +60,7 @@
    */
   function padCacheGet ($etag) {
 
-    return ( padCacheExists ("etag/$etag" ) ) ? padFilePut ("etag/$etag") : FALSE;
+    return ( padCacheExists ("etag/$etag" ) ) ? padFileGet ("etag/$etag") : FALSE;
 
   }
 

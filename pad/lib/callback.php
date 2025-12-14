@@ -71,14 +71,14 @@
 
     $padVarsBefore = [];
     foreach ($GLOBALS as $padK => $padV)
-      if ( $padK <> 'row' and padValidStore ($padK) ) { 
+      if ( $padK <> 'row' and padValidStore ($padK) ) {
         $padVarsBefore [] = $padK;
         $$padK = $padV;
       }
 
-    $row = $padRowParm;  
+    $row = $padRowParm;
     include PAD . 'callback/row.php';
-    $padRowParm = $row;  
+    $padRowParm = $row;
 
     $padVarsAfter = get_defined_vars();
 

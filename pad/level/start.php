@@ -27,8 +27,8 @@
 
   include PAD . 'options/go/start.php';
 
-  if ( isset($padPrm [$pad] ['callback']) and ! isset($padPrm [$pad] ['before']) )
-    include PAD . 'callback/init.php' ;
+  if ( isset ( $padPrm [$pad] ['callback'] ) )
+    include PAD . 'level/callback.php' ;
 
   if ( padOpenCloseOk ( $padBase[$pad], '@end@') ) 
     include PAD . 'level/start_end/end1.php';

@@ -11,10 +11,16 @@
    *
    * @return bool TRUE if valid, FALSE otherwise.
    */
-  function padValid ($name) {
+  function padValid ( $name ) {
 
-    if ( trim($name) == '' )                                 return FALSE;
-    if ( ! preg_match('/^[a-zA-Z][:#a-zA-Z0-9_]*$/',$name) ) return FALSE;
+    if ( trim ( $name ) == '' )                                 
+      return FALSE;
+
+    if ( padAtCheck ( $name ) !== INF )
+      return TRUE;
+
+    if ( ! preg_match ( '/^[a-zA-Z][:#a-zA-Z0-9_]*$/',$name ) ) 
+      return FALSE;
 
     return TRUE;
 
