@@ -1,0 +1,46 @@
+<p>The <code>error</code> tag triggers a PAD error.</p>
+
+<h2>Syntax</h2>
+<pre>{open}error 'Error message'{close}</pre>
+
+<h2>What It Does</h2>
+<p>The error tag calls PAD's error handling system with your custom message. The behavior depends on the <code>$padErrorAction</code> configuration.</p>
+
+<h2>Example Usage</h2>
+<pre>{open}if $requiredField eq ''{close}
+  {open}error 'Required field is empty'{close}
+{open}/if{close}</pre>
+
+<h2>Error Actions</h2>
+<p>PAD can handle errors in different ways based on <code>$padErrorAction</code>:</p>
+<table>
+  <tr><th>Action</th><th>Behavior</th></tr>
+  <tr><td>pad</td><td>PAD's internal error handling</td></tr>
+  <tr><td>boot</td><td>Boot-time error display</td></tr>
+  <tr><td>php</td><td>Trigger PHP error</td></tr>
+  <tr><td>stop</td><td>Stop execution</td></tr>
+  <tr><td>exit</td><td>Exit immediately</td></tr>
+  <tr><td>ignore</td><td>Continue execution</td></tr>
+  <tr><td>log</td><td>Log error only</td></tr>
+  <tr><td>dump</td><td>Dump error information</td></tr>
+</table>
+
+<h2>Conditional Errors</h2>
+<pre>{open}if $userId eq 0{close}
+  {open}error 'Invalid user ID'{close}
+{open}/if{close}
+
+{open}if $price < 0{close}
+  {open}error 'Price cannot be negative'{close}
+{open}/if{close}</pre>
+
+<h2>Comparison with Exception</h2>
+<table>
+  <tr><th>error</th><th>exception</th></tr>
+  <tr><td>PAD error system</td><td>PHP exception</td></tr>
+  <tr><td>Configurable behavior</td><td>Always throws</td></tr>
+  <tr><td>Can be ignored</td><td>Must be caught</td></tr>
+</table>
+
+<h2>Warning</h2>
+<p style="color:red">This demo page does not trigger an actual error. In real usage, the error tag would invoke PAD's error handling based on configuration.</p>

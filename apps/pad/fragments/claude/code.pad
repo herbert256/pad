@@ -1,0 +1,45 @@
+<p>The <code>code</code> tag executes PHP code.</p>
+
+<h2>Syntax</h2>
+<pre>{open}code 'phpfile'{close}</pre>
+
+<h2>How It Works</h2>
+<p>The code tag:</p>
+<ol>
+  <li>Clears the current content buffer</li>
+  <li>Executes the specified PHP file</li>
+  <li>The PHP file can set variables or return content</li>
+</ol>
+
+<h2>Example Usage</h2>
+<pre>{open}code 'process'{close}</pre>
+<p>This would execute <code>process.php</code> in the current context.</p>
+
+<h2>Use Cases</h2>
+<ul>
+  <li>Execute backend logic</li>
+  <li>Process form submissions</li>
+  <li>Run calculations</li>
+  <li>Database operations</li>
+</ul>
+
+<h2>PHP Functions from _lib</h2>
+<p>Functions defined in <code>_lib/</code> are auto-loaded:</p>
+<pre>// _lib/helpers.php defines formatPrice()
+{open}echo formatPrice(29.99){close}</pre>
+<p>Result: {echo formatPrice(29.99)}</p>
+
+<pre>{open}getCurrentYear{close}</pre>
+<p>Result: {getCurrentYear}</p>
+
+<h2>Comparison: code vs page</h2>
+<table>
+  <tr><th>Feature</th><th>code</th><th>page</th></tr>
+  <tr><td>Executes PHP</td><td>Yes</td><td>Yes</td></tr>
+  <tr><td>Processes template</td><td>No</td><td>Yes</td></tr>
+  <tr><td>Clears content</td><td>Yes</td><td>No</td></tr>
+  <tr><td>Use case</td><td>Backend logic</td><td>Include pages</td></tr>
+</table>
+
+<h2>Note</h2>
+<p>The code tag clears content before execution. Use it when you need to run PHP logic without keeping previous output.</p>

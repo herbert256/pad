@@ -1,0 +1,35 @@
+<p>The <code>action</code> tag executes a sequence action.</p>
+
+<h2>Syntax</h2>
+<pre>{open}action 'action_name'{close}</pre>
+
+<h2>What Are Actions?</h2>
+<p>Actions are predefined operations within the PAD sequence system. They allow you to trigger specific behaviors during sequence processing.</p>
+
+<h2>Example Usage</h2>
+<pre>{open}action 'process'{close}</pre>
+<p>This would execute the 'process' action defined in the sequence system.</p>
+
+<h2>Common Actions</h2>
+<table>
+  <tr><th>Action</th><th>Description</th></tr>
+  <tr><td>process</td><td>Process sequence data</td></tr>
+  <tr><td>filter</td><td>Apply filters to data</td></tr>
+  <tr><td>transform</td><td>Transform data values</td></tr>
+</table>
+
+<h2>Use with Sequences</h2>
+<pre>{open}sequence '1..10'{close}
+  {open}action 'validate'{close}
+  {open}$value{close}
+{open}/sequence{close}</pre>
+
+<h2>Use Cases</h2>
+<ul>
+  <li>Trigger sequence operations</li>
+  <li>Execute predefined data transformations</li>
+  <li>Call sequence system hooks</li>
+</ul>
+
+<h2>Note</h2>
+<p>The action tag is part of PAD's sequence subsystem. Actions must be defined within the sequence system to be executed.</p>

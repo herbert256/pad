@@ -1,0 +1,40 @@
+<p>The <code>if</code> tag provides conditional execution based on expression evaluation.</p>
+
+<h2>Basic If</h2>
+<pre>{open}if $count > 0{close}Has items{open}/if{close}</pre>
+<p>Result: {if $count > 0}Has items{/if}</p>
+
+<h2>If with Else</h2>
+<pre>{open}if $count eq 0{close}Empty{open}else{close}Has {$count} items{open}/if{close}</pre>
+<p>Result: {if $count eq 0}Empty{else}Has {$count} items{/if}</p>
+
+<h2>If-Elseif-Else Chain</h2>
+<pre>{open}if $age < 18{close}Minor{open}elseif $age < 65{close}Adult{open}else{close}Senior{open}/if{close}</pre>
+<p>Result: {if $age < 18}Minor{elseif $age < 65}Adult{else}Senior{/if}</p>
+
+<h2>String Comparison</h2>
+<pre>{open}if $name eq 'Alice'{close}Hello Alice!{open}/if{close}</pre>
+<p>Result: {if $name eq 'Alice'}Hello Alice!{/if}</p>
+
+<h2>Not Equal</h2>
+<pre>{open}if $name ne 'Bob'{close}You are not Bob{open}/if{close}</pre>
+<p>Result: {if $name ne 'Bob'}You are not Bob{/if}</p>
+
+<h2>Boolean Check</h2>
+<pre>{open}if $isActive eq TRUE{close}Active{open}else{close}Inactive{open}/if{close}</pre>
+<p>Result: {if $isActive eq TRUE}Active{else}Inactive{/if}</p>
+
+<h2>Nested If</h2>
+<pre>{open}if $count > 0{close}{open}if $name eq 'Alice'{close}Alice has {$count} items{open}/if{close}{open}/if{close}</pre>
+<p>Result: {if $count > 0}{if $name eq 'Alice'}Alice has {$count} items{/if}{/if}</p>
+
+<h2>Comparison Operators</h2>
+<table>
+  <tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
+  <tr><td>eq / ==</td><td>Equal</td><td>$count eq 5</td><td>{if $count eq 5}true{else}false{/if}</td></tr>
+  <tr><td>ne / !=</td><td>Not equal</td><td>$count ne 0</td><td>{if $count ne 0}true{else}false{/if}</td></tr>
+  <tr><td>gt / ></td><td>Greater than</td><td>$count gt 3</td><td>{if $count gt 3}true{else}false{/if}</td></tr>
+  <tr><td>lt / <</td><td>Less than</td><td>$count lt 10</td><td>{if $count lt 10}true{else}false{/if}</td></tr>
+  <tr><td>ge / >=</td><td>Greater or equal</td><td>$count ge 5</td><td>{if $count ge 5}true{else}false{/if}</td></tr>
+  <tr><td>le / <=</td><td>Less or equal</td><td>$count le 5</td><td>{if $count le 5}true{else}false{/if}</td></tr>
+</table>

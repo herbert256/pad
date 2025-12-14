@@ -1,0 +1,55 @@
+<p>The <code>null</code> tag returns the NULL value.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}null{close}</pre>
+<p>Result: "{null}" (empty/nothing)</p>
+
+<h2>Set Variable to Null</h2>
+<pre>{open}set emptyVar={open}null{close}{close}
+Value: "{open}$emptyVar{close}"</pre>
+{set emptyVar={null}}
+<p>Value: "{$emptyVar}"</p>
+
+<h2>Check for Null</h2>
+<pre>{open}if $nullVar eq NULL{close}
+  Variable is NULL
+{open}else{close}
+  Variable has a value
+{open}/if{close}</pre>
+{if $nullVar eq NULL}
+<p>$nullVar is NULL</p>
+{else}
+<p>$nullVar has a value</p>
+{/if}
+
+<h2>Defined vs Null</h2>
+<pre>$definedVar: "{open}$definedVar{close}"
+$nullVar: "{open}$nullVar{close}"</pre>
+<p>$definedVar: "{$definedVar}"</p>
+<p>$nullVar: "{$nullVar}"</p>
+
+<h2>Comparison Table</h2>
+<table>
+  <tr><th>Value</th><th>Tag</th><th>In Condition</th></tr>
+  <tr><td>TRUE</td><td>{open}true{close}</td><td>eq TRUE</td></tr>
+  <tr><td>FALSE</td><td>{open}false{close}</td><td>eq FALSE</td></tr>
+  <tr><td>NULL</td><td>{open}null{close}</td><td>eq NULL</td></tr>
+</table>
+
+<h2>Use Case: Clear a Variable</h2>
+<pre>{open}set myVar='Hello'{close}
+Before: "{open}$myVar{close}"
+{open}set myVar={open}null{close}{close}
+After: "{open}$myVar{close}"</pre>
+{set myVar='Hello'}
+<p>Before: "{$myVar}"</p>
+{set myVar={null}}
+<p>After: "{$myVar}"</p>
+
+<h2>Note</h2>
+<p>NULL represents the absence of a value. It's different from:</p>
+<ul>
+  <li>Empty string "" - a string with no characters</li>
+  <li>Zero (0) - a numeric value</li>
+  <li>FALSE - a boolean value</li>
+</ul>

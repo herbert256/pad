@@ -1,0 +1,46 @@
+<p>The <code>true</code> tag returns the boolean TRUE value.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}true{close}</pre>
+<p>Result: {true}</p>
+
+<h2>In Conditions</h2>
+<pre>{open}if {open}true{close} eq TRUE{close}
+  This is shown because true equals TRUE
+{open}/if{close}</pre>
+{if {true} eq TRUE}
+<p style="color:green">This is shown because true equals TRUE</p>
+{/if}
+
+<h2>Set Variable to True</h2>
+<pre>{open}set isActive={open}true{close}{close}
+{open}if $isActive eq TRUE{close}Active{open}else{close}Inactive{open}/if{close}</pre>
+{set isActive={true}}
+<p>Status: {if $isActive eq TRUE}Active{else}Inactive{/if}</p>
+
+<h2>Compare with FALSE</h2>
+<pre>{open}if {open}true{close} ne FALSE{close}
+  TRUE is not equal to FALSE
+{open}/if{close}</pre>
+{if {true} ne FALSE}
+<p>TRUE is not equal to FALSE</p>
+{/if}
+
+<h2>Boolean Values Table</h2>
+<table>
+  <tr><th>Tag</th><th>Value</th><th>Type</th></tr>
+  <tr><td>{open}true{close}</td><td>{true}</td><td>Boolean</td></tr>
+  <tr><td>{open}false{close}</td><td>{false}</td><td>Boolean</td></tr>
+  <tr><td>TRUE (literal)</td><td>TRUE</td><td>Boolean</td></tr>
+  <tr><td>FALSE (literal)</td><td>FALSE</td><td>Boolean</td></tr>
+</table>
+
+<h2>Use Case: Default Value</h2>
+<pre>{open}set showHeader={open}true{close}{close}
+{open}if $showHeader eq TRUE{close}
+  &lt;header&gt;Header Content&lt;/header&gt;
+{open}/if{close}</pre>
+{set showHeader={true}}
+{if $showHeader eq TRUE}
+<div style="background:#333; color:white; padding:5px;">Header Content</div>
+{/if}

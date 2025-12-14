@@ -1,0 +1,107 @@
+<p>
+  The <code>sandbox</code> tag executes PHP code in an isolated sandbox environment.
+</p>
+<h2>
+  Syntax
+</h2>
+<pre>{sandbox 'phpfile'}</pre>
+<h2>
+  How It Works
+</h2>
+<p>
+  The sandbox tag:
+</p>
+<ol>
+  <li>Creates an isolated execution environment
+  </li>
+  <li>Executes the specified PHP file
+  </li>
+  <li>Limits access to prevent security issues
+  </li>
+</ol>
+<h2>
+  Comparison: sandbox vs code
+</h2>
+<table>
+  <tr>
+    <th>
+      Feature
+    </th>
+    <th>
+      sandbox
+    </th>
+    <th>
+      code
+    </th>
+  </tr>
+  <tr>
+    <td>
+      Isolated environment
+    </td>
+    <td>
+      Yes
+    </td>
+    <td>
+      No
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Variable access
+    </td>
+    <td>
+      Limited
+    </td>
+    <td>
+      Full
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Security
+    </td>
+    <td>
+      Higher
+    </td>
+    <td>
+      Standard
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Use case
+    </td>
+    <td>
+      Untrusted code
+    </td>
+    <td>
+      Trusted code
+    </td>
+  </tr>
+</table>
+<h2>
+  Use Cases
+</h2>
+<ul>
+  <li>Execute user-provided code safely
+  </li>
+  <li>Run plugins or extensions
+  </li>
+  <li>Test code in isolation
+  </li>
+  <li>Limit side effects of code execution
+  </li>
+</ul>
+<h2>
+  Example
+</h2>
+<pre>{sandbox 'plugin'}</pre>
+<p>
+  This would execute plugin.php in a sandboxed environment, limiting its access to system resources.
+</p>
+<h2>
+  Note
+</h2>
+<p>
+  Use sandbox when executing code that may not be fully trusted or when you want to prevent unintended side effects on the main application state.
+</p>

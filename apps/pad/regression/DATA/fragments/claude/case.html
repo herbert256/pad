@@ -1,0 +1,48 @@
+<p>
+  The <code>case</code> tag provides switch-case style conditional based on value matching.
+</p>
+<h2>
+  Basic Case
+</h2>
+<pre>{case $color}
+  {when 'red'}Color is Red
+  {when 'blue'}Color is Blue
+  {when 'green'}Color is Green
+{/case}</pre>
+<p>
+  Result ($color = 'blue'): Color is Blue
+</p>
+<h2>
+  Case with Default
+</h2>
+<pre>{case $day}
+  {when 'Saturday'}Weekend!
+  {when 'Sunday'}Weekend!
+  {when 'default'}Weekday
+{/case}</pre>
+<p>
+  Result ($day = 'Monday'):
+</p>
+<h2>
+  Status Example
+</h2>
+<pre>{case $status}
+  {when 'pending'}&lt;span style="color:orange"&gt;Pending&lt;/span&gt;
+  {when 'approved'}&lt;span style="color:green"&gt;Approved&lt;/span&gt;
+  {when 'rejected'}&lt;span style="color:red"&gt;Rejected&lt;/span&gt;
+{/case}</pre>
+<p>
+  Result ($status = 'pending'): <span style="color:orange">Pending</span>
+</p>
+<h2>
+  Numeric Case
+</h2>
+<pre>{case $number}
+  {when 1}One
+  {when 2}Two
+  {when 3}Three
+  {when 'default'}Other number
+{/case}</pre>
+<p>
+  Result ($number = 2): Two
+</p>

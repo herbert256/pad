@@ -1,0 +1,58 @@
+<p>The <code>pad</code> tag is a generic PAD include/processing tag.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}pad{close}
+  Template content with {open}$variables{close}
+{open}/pad{close}</pre>
+
+<h2>Process with Data</h2>
+<pre>{open}pad data='items'{close}
+  Item: {open}$value{close}
+{open}/pad{close}</pre>
+{pad data='items'}
+<p>Item: {$value}</p>
+{/pad}
+
+<h2>Set Variable and Use</h2>
+<pre>{open}set greeting='Welcome'{close}
+{open}pad{close}
+  {open}$greeting{close} to PAD!
+{open}/pad{close}</pre>
+{set greeting='Welcome'}
+{pad}
+<p>{$greeting} to PAD!</p>
+{/pad}
+
+<h2>Nested PAD Processing</h2>
+<pre>{open}pad{close}
+  Outer content
+  {open}pad{close}
+    Inner content
+  {open}/pad{close}
+{open}/pad{close}</pre>
+{pad}
+<div style="border:1px solid #ccc; padding:5px;">
+  Outer content
+  {pad}
+  <div style="border:1px solid #999; padding:5px; margin:5px;">
+    Inner content
+  </div>
+  {/pad}
+</div>
+{/pad}
+
+<h2>Use Cases</h2>
+<ul>
+  <li>Process dynamic template content</li>
+  <li>Create reusable template blocks</li>
+  <li>Iterate over data with custom templates</li>
+</ul>
+
+<h2>Comparison</h2>
+<table>
+  <tr><th>Tag</th><th>Purpose</th></tr>
+  <tr><td>pad</td><td>Generic PAD processing</td></tr>
+  <tr><td>page</td><td>Include external page files</td></tr>
+  <tr><td>content</td><td>Store content for later</td></tr>
+  <tr><td>get</td><td>Retrieve stored content</td></tr>
+</table>

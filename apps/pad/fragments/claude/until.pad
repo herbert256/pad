@@ -1,0 +1,47 @@
+<p>The <code>until</code> tag provides looping until a condition becomes true (opposite of while).</p>
+
+<h2>Basic Until Loop</h2>
+<pre>{open}set counter=1{close}
+{open}until $counter > 5{close}
+  Item {open}$counter{close}
+  {open}increment $counter{close}
+{open}/until{close}</pre>
+<p>Result:</p>
+{set counter=1}
+<ul>
+{until $counter > 5}
+  <li>Item {$counter}</li>
+  {increment $counter}
+{/until}
+</ul>
+
+<h2>Count Up Until</h2>
+<pre>{open}set n=0{close}
+{open}until $n eq 5{close}
+  {open}$n{close}
+  {open}increment $n{close}
+{open}/until{close}</pre>
+<p>Result: {set n=0}{until $n eq 5}{$n} {increment $n}{/until}</p>
+
+<h2>Comparison: while vs until</h2>
+<table>
+  <tr>
+    <th>while</th>
+    <th>until</th>
+  </tr>
+  <tr>
+    <td>Loops while condition is TRUE</td>
+    <td>Loops while condition is FALSE</td>
+  </tr>
+  <tr>
+    <td><code>{open}while $x < 5{close}</code></td>
+    <td><code>{open}until $x >= 5{close}</code></td>
+  </tr>
+  <tr>
+    <td>Equivalent results:</td>
+    <td></td>
+  </tr>
+</table>
+
+<p>while $x < 3: {set x=0}{while $x < 3}{$x} {increment $x}{/while}</p>
+<p>until $x >= 3: {set x=0}{until $x >= 3}{$x} {increment $x}{/until}</p>

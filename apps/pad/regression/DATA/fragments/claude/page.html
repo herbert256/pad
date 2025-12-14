@@ -1,0 +1,88 @@
+<p>
+  The <code>page</code> tag includes and executes another PAD page.
+</p>
+<h2>
+  Basic Page Include
+</h2>
+<pre>{page 'fragments/claude/subpage'}</pre>
+<p>
+  Result:
+</p>
+<div style="border:2px dashed #666; padding:10px; margin:10px 0;">
+  <h4>
+    Included Subpage
+  </h4>
+  <ul>
+    <li>Alpha
+    </li>
+    <li>Beta
+    </li>
+    <li>Gamma
+    </li>
+  </ul>
+</div>
+<h2>
+  How It Works
+</h2>
+<p>
+  The <code>page</code> tag:
+</p>
+<ol>
+  <li>Executes the PHP file (pagename.php) to get data
+  </li>
+  <li>Processes the PAD template (pagename.pad)
+  </li>
+  <li>Inserts the result into the current page
+  </li>
+</ol>
+<h2>
+  Variable Scope
+</h2>
+<p>
+  Variables from the main page are available in included pages:
+</p>
+<pre>Main page sets: $mainVar = 'Value from main page'
+In subpage: {$mainVar}</pre>
+<p>
+  $mainVar = Value from main page
+</p>
+<h2>
+  Include from _include Directory
+</h2>
+<p>
+  Files in _include/ can be referenced directly:
+</p>
+<pre>{snippet}</pre>
+<div style="border:1px solid #999; padding:10px; background:#f9f9f9;">
+  <strong>Included Snippet</strong>
+  <p>
+    This content was included from _include/snippet.pad
+  </p>
+</div>
+<h2>
+  Include with Variables
+</h2>
+<pre>{set userName='Alice'}
+{greeting}</pre>
+<p>
+  Hello, Guest!
+</p>
+<h2>
+  Use Cases
+</h2>
+<ul>
+  <li>Modular page components
+  </li>
+  <li>Reusable widgets
+  </li>
+  <li>Include headers/footers
+  </li>
+  <li>Dynamic content sections
+  </li>
+</ul>
+<h2>
+  Note
+</h2>
+<p>
+  The page tag executes both .php and .pad files. For template-only includes, use the <code>_include</code> directory or <code>get</code> tag with stored content.
+</p>

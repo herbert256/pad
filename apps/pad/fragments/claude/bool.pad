@@ -1,0 +1,37 @@
+<p>The <code>bool</code> tag stores a boolean value to the store.</p>
+
+<h2>Basic Bool Usage</h2>
+<pre>{open}bool 'hasItems'{close}
+{open}if {open}get 'hasItems'{close} eq TRUE{close}Has items{open}else{close}No items{open}/if{close}</pre>
+{bool 'hasItems'}
+<p>Result: {if {get 'hasItems'} eq TRUE}Has items{else}No items{/if}</p>
+
+<h2>Setting TRUE/FALSE</h2>
+<pre>{open}set isEnabled=TRUE{close}
+{open}set isDisabled=FALSE{close}
+Enabled: {open}if $isEnabled eq TRUE{close}Yes{open}else{close}No{open}/if{close}
+Disabled: {open}if $isDisabled eq TRUE{close}Yes{open}else{close}No{open}/if{close}</pre>
+{set isEnabled=TRUE}
+{set isDisabled=FALSE}
+<p>Enabled: {if $isEnabled eq TRUE}Yes{else}No{/if}</p>
+<p>Disabled: {if $isDisabled eq TRUE}Yes{else}No{/if}</p>
+
+<h2>Boolean in Conditions</h2>
+<pre>{open}set showDetails=TRUE{close}
+{open}if $showDetails eq TRUE{close}
+  &lt;div&gt;Here are the details...&lt;/div&gt;
+{open}/if{close}</pre>
+{set showDetails=TRUE}
+{if $showDetails eq TRUE}
+<div style="border:1px solid #ccc; padding:10px;">Here are the details...</div>
+{/if}
+
+<h2>Toggle Boolean</h2>
+<pre>{open}set flag=TRUE{close}
+Before: {open}if $flag eq TRUE{close}TRUE{open}else{close}FALSE{open}/if{close}
+{open}set flag=FALSE{close}
+After: {open}if $flag eq TRUE{close}TRUE{open}else{close}FALSE{open}/if{close}</pre>
+{set flag=TRUE}
+<p>Before: {if $flag eq TRUE}TRUE{else}FALSE{/if}</p>
+{set flag=FALSE}
+<p>After: {if $flag eq TRUE}TRUE{else}FALSE{/if}</p>

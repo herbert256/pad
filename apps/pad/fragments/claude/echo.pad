@@ -1,0 +1,53 @@
+<p>The <code>echo</code> tag evaluates and outputs an expression.</p>
+
+<h2>Basic Expression</h2>
+<pre>{open}echo 5 + 3{close}</pre>
+<p>Result: {echo 5 + 3}</p>
+
+<h2>Arithmetic Operations</h2>
+<pre>Addition: {open}echo 10 + 5{close}
+Subtraction: {open}echo 10 - 3{close}
+Multiplication: {open}echo 6 * 7{close}
+Division: {open}echo 100 / 4{close}</pre>
+<ul>
+  <li>Addition: {echo 10 + 5}</li>
+  <li>Subtraction: {echo 10 - 3}</li>
+  <li>Multiplication: {echo 6 * 7}</li>
+  <li>Division: {echo 100 / 4}</li>
+</ul>
+
+<h2>With Variables</h2>
+<pre>{open}echo $number * 2{close}</pre>
+<p>$number = {$number}, doubled: {echo $number * 2}</p>
+
+<h2>Complex Expressions</h2>
+<pre>{open}echo ($number + 5) * 2{close}</pre>
+<p>($number + 5) * 2 = {echo ($number + 5) * 2}</p>
+
+<h2>Calculate Total</h2>
+<pre>{open}set quantity=3{close}
+Total: ${open}echo $price * $quantity{close}</pre>
+{set quantity=3}
+<p>Price: ${$price}, Quantity: {$quantity}</p>
+<p>Total: ${echo $price * $quantity}</p>
+
+<h2>Echo with Nested Tags</h2>
+<pre>Days remaining: {open}echo 365 - {open}date 'z'{close}{close}</pre>
+<p>Day of year: {date 'z'}</p>
+<p>Days remaining: {echo 365 - {date 'z'}}</p>
+
+<h2>Percentage Calculation</h2>
+<pre>{open}set score=85{close}
+{open}set total=100{close}
+Percentage: {open}echo $score / $total * 100{close}%</pre>
+{set score=85}
+{set total=100}
+<p>Score: {$score}/{$total} = {echo $score / $total * 100}%</p>
+
+<h2>Echo vs Direct Output</h2>
+<table>
+  <tr><th>Method</th><th>Code</th><th>Result</th></tr>
+  <tr><td>Variable</td><td>{open}$number{close}</td><td>{$number}</td></tr>
+  <tr><td>Echo expression</td><td>{open}echo $number + 1{close}</td><td>{echo $number + 1}</td></tr>
+  <tr><td>Literal math</td><td>{open}5 + 3{close}</td><td>Not evaluated</td></tr>
+</table>

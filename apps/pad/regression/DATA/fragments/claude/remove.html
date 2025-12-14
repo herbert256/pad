@@ -1,0 +1,90 @@
+<p>
+  The <code>remove</code> tag marks values to exclude during sequence filtering.
+</p>
+<h2>
+  Basic Remove
+</h2>
+<pre>{sequence '1..10'}
+  {if $value eq 5}{remove}{/if}
+{/sequence}</pre>
+<p>
+  This marks value 5 to be removed.
+</p>
+<h2>
+  Remove Multiples
+</h2>
+<pre>{sequence '1..20', push='nums'}
+  {if {echo $value % 3} eq 0}{remove}{/if}
+{/sequence}
+
+{pull 'nums', remove}{$value} {/pull}</pre>
+<p>
+  Remove multiples of 3 from 1-20.
+</p>
+<h2>
+  Remove Range
+</h2>
+<pre>{sequence '1..10'}
+  {if $value &gt;= 4}
+    {if $value &lt;= 6}
+      {remove}
+    {/if}
+  {/if}
+{/sequence}</pre>
+<p>
+  Remove values 4, 5, and 6.
+</p>
+<h2>
+  Remove vs Keep
+</h2>
+<table>
+  <tr>
+    <th>
+      Tag
+    </th>
+    <th>
+      Logic
+    </th>
+    <th>
+      Use when
+    </th>
+  </tr>
+  <tr>
+    <td>
+      keep
+    </td>
+    <td>
+      Include matching
+    </td>
+    <td>
+      Few to keep
+    </td>
+  </tr>
+  <tr>
+    <td>
+      remove
+    </td>
+    <td>
+      Exclude matching
+    </td>
+    <td>
+      Few to remove
+    </td>
+  </tr>
+</table>
+<h2>
+  Use Case: Filter Out Invalid
+</h2>
+<pre>{sequence '1..100', push='data'}
+  {if $value &lt; 10}{remove}{/if}
+  {if $value &gt; 90}{remove}{/if}
+{/sequence}</pre>
+<p>
+  Remove outliers (less than 10 or greater than 90).
+</p>
+<h2>
+  Note
+</h2>
+<p>
+  The remove tag is the opposite of keep. Use it to mark values that should be excluded from the final sequence.
+</p>

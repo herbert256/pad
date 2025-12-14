@@ -1,0 +1,62 @@
+<p>The <code>increment</code> tag increments a variable by 1.</p>
+
+<h2>Basic Increment</h2>
+<pre>{open}set counter=0{close}
+Before: {open}$counter{close}
+{open}increment $counter{close}
+After: {open}$counter{close}</pre>
+{set counter=0}
+<p>Before: {$counter}</p>
+{increment $counter}
+<p>After: {$counter}</p>
+
+<h2>Multiple Increments</h2>
+<pre>{open}set n=0{close}
+{open}increment $n{close} n = {open}$n{close}
+{open}increment $n{close} n = {open}$n{close}
+{open}increment $n{close} n = {open}$n{close}</pre>
+{set n=0}
+<p>{increment $n}n = {$n}</p>
+<p>{increment $n}n = {$n}</p>
+<p>{increment $n}n = {$n}</p>
+
+<h2>Increment in Loop</h2>
+<pre>{open}set i=1{close}
+{open}while $i <= 5{close}
+  Number: {open}$i{close}
+  {open}increment $i{close}
+{open}/while{close}</pre>
+{set i=1}
+<ul>
+{while $i <= 5}
+  <li>Number: {$i}</li>
+  {increment $i}
+{/while}
+</ul>
+
+<h2>Increment Creates Variable</h2>
+<pre>{open}increment $newVar{close}
+Value: {open}$newVar{close}</pre>
+<p>Incrementing undefined variable creates it with value 1:</p>
+{increment $newVar}
+<p>Value: {$newVar}</p>
+
+<h2>Increment Existing PHP Variable</h2>
+<pre>PHP set $startValue = 10
+{open}increment $startValue{close}
+After: {open}$startValue{close}</pre>
+<p>$startValue from PHP: {$startValue}</p>
+{increment $startValue}
+<p>After increment: {$startValue}</p>
+
+<h2>Counting Items</h2>
+<pre>{open}set itemCount=0{close}
+{open}sequence '1..5'{close}
+  {open}increment $itemCount{close}
+{open}/sequence{close}
+Total items: {open}$itemCount{close}</pre>
+{set itemCount=0}
+{sequence '1..5'}
+  {increment $itemCount}
+{/sequence}
+<p>Total items counted: {$itemCount}</p>

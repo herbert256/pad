@@ -1,0 +1,53 @@
+<p>The <code>false</code> tag returns the boolean FALSE value.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}false{close}</pre>
+<p>Result: {false}</p>
+
+<h2>In Conditions</h2>
+<pre>{open}if {open}false{close} eq FALSE{close}
+  This is shown because false equals FALSE
+{open}/if{close}</pre>
+{if {false} eq FALSE}
+<p style="color:green">This is shown because false equals FALSE</p>
+{/if}
+
+<h2>Negative Condition</h2>
+<pre>{open}if {open}false{close} eq TRUE{close}
+  Not shown
+{open}else{close}
+  False is not TRUE
+{open}/if{close}</pre>
+{if {false} eq TRUE}
+<p>Not shown</p>
+{else}
+<p>False is not TRUE</p>
+{/if}
+
+<h2>Set Variable to False</h2>
+<pre>{open}set isDisabled={open}false{close}{close}
+{open}if $isDisabled eq FALSE{close}Enabled{open}else{close}Disabled{open}/if{close}</pre>
+{set isDisabled={false}}
+<p>Status: {if $isDisabled eq FALSE}Enabled{else}Disabled{/if}</p>
+
+<h2>Toggle Example</h2>
+<pre>{open}set flag={open}true{close}{close}
+Flag is: {open}if $flag eq TRUE{close}ON{open}else{close}OFF{open}/if{close}
+
+{open}set flag={open}false{close}{close}
+Flag is: {open}if $flag eq TRUE{close}ON{open}else{close}OFF{open}/if{close}</pre>
+{set flag={true}}
+<p>Flag is: {if $flag eq TRUE}ON{else}OFF{/if}</p>
+{set flag={false}}
+<p>Flag is: {if $flag eq TRUE}ON{else}OFF{/if}</p>
+
+<h2>Use Case: Feature Flag</h2>
+<pre>{open}set showBetaFeature={open}false{close}{close}
+{open}if $showBetaFeature eq TRUE{close}
+  &lt;div&gt;Beta Feature Here&lt;/div&gt;
+{open}/if{close}</pre>
+{set showBetaFeature={false}}
+<p>Beta feature is hidden (set to false)</p>
+{if $showBetaFeature eq TRUE}
+<div style="border:2px solid orange; padding:10px;">Beta Feature Here</div>
+{/if}

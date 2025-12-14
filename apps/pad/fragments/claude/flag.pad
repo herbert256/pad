@@ -1,0 +1,32 @@
+<p>The <code>flag</code> tag sets a flag during sequence processing.</p>
+
+<h2>Basic Flag</h2>
+<pre>{open}sequence '1..10'{close}
+  {open}if $value eq 5{close}{open}flag{close}{open}/if{close}
+  {open}$value{close}
+{open}/sequence{close}</pre>
+<p>Flag at 5:</p>
+<p>{sequence '1..10'}{if $value eq 5}{flag}{/if}{$value} {/sequence}</p>
+
+<h2>Flag Usage</h2>
+<p>The flag tag is used within sequence processing to mark certain values or conditions. It works in conjunction with sequence filtering options.</p>
+
+<h2>Use with Sequence Options</h2>
+<pre>{open}sequence '1..20', flag{close}
+  {open}if {open}echo $value % 3{close} eq 0{close}{open}flag{close}{open}/if{close}
+  {open}$value{close}
+{open}/sequence{close}</pre>
+<p>This would flag multiples of 3 in the sequence.</p>
+
+<h2>Combining with Keep/Remove</h2>
+<p>Flags can be used to mark values that should be kept or removed when the sequence is later pulled:</p>
+<pre>{open}sequence '1..10', push='numbers'{close}
+  {open}if $value > 5{close}{open}flag{close}{open}/if{close}
+{open}/sequence{close}
+
+{open}pull 'numbers', flag{close}
+  {open}$value{close}
+{open}/pull{close}</pre>
+
+<h2>Note</h2>
+<p>The flag tag is part of PAD's sequence system for filtering and processing. It marks individual values during iteration for later use.</p>

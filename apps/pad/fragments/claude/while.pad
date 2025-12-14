@@ -1,0 +1,46 @@
+<p>The <code>while</code> tag provides looping while a condition is true.</p>
+
+<h2>Basic While Loop</h2>
+<pre>{open}set counter=1{close}
+{open}while $counter <= 5{close}
+  Item {open}$counter{close}
+  {open}increment $counter{close}
+{open}/while{close}</pre>
+<p>Result:</p>
+{set counter=1}
+<ul>
+{while $counter <= 5}
+  <li>Item {$counter}</li>
+  {increment $counter}
+{/while}
+</ul>
+
+<h2>Countdown</h2>
+<pre>{open}set n=5{close}
+{open}while $n > 0{close}
+  {open}$n{close}...
+  {open}decrement $n{close}
+{open}/while{close}
+Liftoff!</pre>
+<p>Result: {set n=5}{while $n > 0}{$n}... {decrement $n}{/while}Liftoff!</p>
+
+<h2>Building a List</h2>
+<pre>{open}set i=1{close}
+{open}while $i <= 3{close}
+  &lt;div&gt;Box {open}$i{close}&lt;/div&gt;
+  {open}increment $i{close}
+{open}/while{close}</pre>
+<p>Result:</p>
+{set i=1}
+{while $i <= 3}
+<div style="border:1px solid #ccc; padding:5px; margin:2px;">Box {$i}</div>
+{increment $i}
+{/while}
+
+<h2>Powers of 2</h2>
+<pre>{open}set val=1{close}
+{open}while $val <= 64{close}
+  {open}$val{close}
+  {open}set val={open}echo $val * 2{close}{close}
+{open}/while{close}</pre>
+<p>Result: {set val=1}{while $val <= 64}{$val} {set val={echo $val * 2}}{/while}</p>

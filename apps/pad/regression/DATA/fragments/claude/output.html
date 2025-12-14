@@ -1,0 +1,62 @@
+<p>
+  The <code>output</code> tag sets the output type for PAD processing.
+</p>
+<h2>
+  Output Types
+</h2>
+<p>
+  PAD supports several output types:
+</p>
+<ul>
+  <li>
+    <strong>web</strong> - Default, outputs to browser
+  </li>
+  <li>
+    <strong>console</strong> - Output for command line
+  </li>
+  <li>
+    <strong>file</strong> - Write output to file
+  </li>
+  <li>
+    <strong>download</strong> - Trigger file download
+  </li>
+</ul>
+<h2>
+  Syntax
+</h2>
+<pre>{output 'web'}
+{output 'console'}
+{output 'file'}
+{output 'download'}</pre>
+<h2>
+  Current Output Mode
+</h2>
+<p>
+  This page is using the default <strong>web</strong> output mode.
+</p>
+<h2>
+  Example: Download Mode
+</h2>
+<p>
+  To create a downloadable file:
+</p>
+<pre>{output 'download'}
+{file name='report', ext='txt'}
+  Report content here...
+{/file}</pre>
+<h2>
+  Example: File Output
+</h2>
+<p>
+  To write output to a file instead of displaying:
+</p>
+<pre>{output 'file'}
+{file dir='path/to/', name='output', ext='html'}
+  &lt;html&gt;...&lt;/html&gt;
+{/file}</pre>
+<h2>
+  Note
+</h2>
+<p>
+  The output tag affects how PAD delivers its final output. Changing it mid-page can have unexpected results. It's typically set at the beginning of processing.
+</p>

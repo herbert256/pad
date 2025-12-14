@@ -1,0 +1,49 @@
+<p>The <code>pull</code> tag retrieves a stored sequence.</p>
+
+<h2>Store and Pull Sequence</h2>
+<pre>{open}sequence '1..5', push='myNumbers'{close}{open}/sequence{close}
+
+Later...
+
+{open}pull 'myNumbers'{close}
+  {open}$value{close}
+{open}/pull{close}</pre>
+
+{sequence '1..5', push='myNumbers'}{/sequence}
+<p>Stored sequence, now pulling:</p>
+<p>Result: {pull 'myNumbers'}{$value} {/pull}</p>
+
+<h2>Store Primes, Use Later</h2>
+<pre>{open}sequence prime, rows=5, push='primes'{close}{open}/sequence{close}
+
+The first 5 primes are:
+{open}pull 'primes'{close}{open}$value{close}{open}/pull{close}</pre>
+
+{sequence prime, rows=5, push='primes'}{/sequence}
+<p>The first 5 primes are: {pull 'primes'}{$value} {/pull}</p>
+
+<h2>Multiple Stored Sequences</h2>
+<pre>{open}sequence '1..3', push='a'{close}{open}/sequence{close}
+{open}sequence '10..12', push='b'{close}{open}/sequence{close}
+
+From a: {open}pull 'a'{close}{open}$value{close} {open}/pull{close}
+From b: {open}pull 'b'{close}{open}$value{close} {open}/pull{close}</pre>
+
+{sequence '1..3', push='a'}{/sequence}
+{sequence '10..12', push='b'}{/sequence}
+<p>From a: {pull 'a'}{$value} {/pull}</p>
+<p>From b: {pull 'b'}{$value} {/pull}</p>
+
+<h2>Use Case: Generate Once, Use Multiple Times</h2>
+<p>Generate an expensive sequence once, then use it in multiple places:</p>
+<pre>{open}sequence fibonacci, rows=8, push='fib'{close}{open}/sequence{close}
+
+First display: {open}pull 'fib'{close}{open}$value{close}{open}/pull{close}
+Second display: {open}pull 'fib'{close}{open}$value{close}{open}/pull{close}</pre>
+
+{sequence fibonacci, rows=8, push='fib'}{/sequence}
+<p>First: {pull 'fib'}{$value} {/pull}</p>
+<p>Second: {pull 'fib'}{$value} {/pull}</p>
+
+<h2>Note</h2>
+<p>Use <code>push</code> option in sequence to store, and <code>pull</code> to retrieve. This is useful when you need to reuse the same sequence multiple times.</p>

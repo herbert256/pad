@@ -1,0 +1,45 @@
+<p>The <code>ignore</code> tag escapes PAD syntax so it is not processed.</p>
+
+<h2>Basic Ignore</h2>
+<pre>{open}ignore{close}
+{open}this is not processed{close}
+{open}/ignore{close}</pre>
+<p>Result: {ignore}{this is not processed}{/ignore}</p>
+
+<h2>Show PAD Code</h2>
+<pre>{open}ignore{close}
+{open}if $condition{close}
+  Show this
+{open}/if{close}
+{open}/ignore{close}</pre>
+<p>Result:</p>
+<pre>{ignore}{if $condition}
+  Show this
+{/if}{/ignore}</pre>
+
+<h2>Document Variables</h2>
+<pre>{open}ignore{close}
+Use {open}$name{close} to display the user's name.
+Use {open}$email{close} to display their email.
+{open}/ignore{close}</pre>
+<p>Result: {ignore}Use {$name} to display the user's name. Use {$email} to display their email.{/ignore}</p>
+
+<h2>Show Loop Syntax</h2>
+<pre>{open}ignore{close}
+{open}users{close}
+  &lt;li&gt;{open}$name{close}&lt;/li&gt;
+{open}/users{close}
+{open}/ignore{close}</pre>
+<p>Result:</p>
+<pre>{ignore}{users}
+  <li>{$name}</li>
+{/users}{/ignore}</pre>
+
+<h2>Mixed Content</h2>
+<p>Normal variable: {set demo='Hello'}{$demo}</p>
+<p>Ignored: {ignore}{$demo}{/ignore}</p>
+
+<h2>Alternative: open/close Tags</h2>
+<p>You can also use <code>{open}open{close}</code> and <code>{open}close{close}</code> to show individual braces:</p>
+<pre>{open}open{close}variable{open}close{close}</pre>
+<p>Result: {open}variable{close}</p>

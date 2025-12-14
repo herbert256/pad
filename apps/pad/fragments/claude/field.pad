@@ -1,0 +1,43 @@
+<p>The <code>field</code> tag retrieves a single field value from the database.</p>
+
+<h2>Syntax</h2>
+<pre>{open}field 'tablename fieldname'{close}
+{open}field 'tablename fieldname', where='condition'{close}</pre>
+
+<h2>Basic Usage</h2>
+<pre>{open}field 'users email'{close}</pre>
+<p>Retrieves the email field from the users table.</p>
+
+<h2>With Condition</h2>
+<pre>{open}field 'users email', where='id=1'{close}</pre>
+<p>Retrieves the email for user with id=1.</p>
+
+<h2>With Variable</h2>
+<pre>{open}field 'users name', where='id=$userId'{close}</pre>
+<p>Retrieves the name for the user specified by $userId.</p>
+
+<h2>Example Queries</h2>
+<table>
+  <tr><th>Tag</th><th>Equivalent SQL</th></tr>
+  <tr><td>{open}field 'users name'{close}</td><td>SELECT name FROM users LIMIT 1</td></tr>
+  <tr><td>{open}field 'users email', where='id=5'{close}</td><td>SELECT email FROM users WHERE id=5</td></tr>
+  <tr><td>{open}field 'products price', where='sku="ABC"'{close}</td><td>SELECT price FROM products WHERE sku='ABC'</td></tr>
+</table>
+
+<h2>Use Cases</h2>
+<ul>
+  <li>Retrieve single configuration values</li>
+  <li>Get user information</li>
+  <li>Look up reference data</li>
+  <li>Count or aggregate values</li>
+</ul>
+
+<h2>Database Configuration</h2>
+<p>The field tag requires database configuration in PAD:</p>
+<pre>$padSqlHost = 'localhost';
+$padSqlDatabase = 'mydb';
+$padSqlUser = 'user';
+$padSqlPassword = 'pass';</pre>
+
+<h2>Note</h2>
+<p>Database queries require a configured database connection. This demo page does not execute live queries.</p>

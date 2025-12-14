@@ -1,0 +1,41 @@
+<p>The <code>set</code> tag sets one or more global variables.</p>
+
+<h2>Set Single Variable</h2>
+<pre>{open}set name='John'{close}</pre>
+{set name='John'}
+<p>Result: $name = {$name}</p>
+
+<h2>Set Multiple Variables</h2>
+<pre>{open}set firstName='Alice', lastName='Smith', age=30{close}</pre>
+{set firstName='Alice', lastName='Smith', age=30}
+<p>Result: {$firstName} {$lastName}, age {$age}</p>
+
+<h2>Set Numeric Values</h2>
+<pre>{open}set count=10, price=19.99{close}</pre>
+{set count=10, price=19.99}
+<p>Result: count={$count}, price={$price}</p>
+
+<h2>Set Boolean Values</h2>
+<pre>{open}set isActive=TRUE, isDeleted=FALSE{close}</pre>
+{set isActive=TRUE, isDeleted=FALSE}
+<p>Active: {if $isActive eq TRUE}Yes{else}No{/if}, Deleted: {if $isDeleted eq TRUE}Yes{else}No{/if}</p>
+
+<h2>Set with Expression</h2>
+<pre>{open}set total={open}echo 10 * 5{close}{close}</pre>
+{set total={echo 10 * 5}}
+<p>Result: total = {$total}</p>
+
+<h2>Override PHP Variable</h2>
+<p>Original PHP value: {$existingVar}</p>
+<pre>{open}set existingVar='Now set from PAD'{close}</pre>
+{set existingVar='Now set from PAD'}
+<p>After set: {$existingVar}</p>
+
+<h2>Set for Loop Counter</h2>
+<pre>{open}set i=1{close}
+{open}while $i <= 3{close}
+  Loop {open}$i{close}
+  {open}set i={open}echo $i + 1{close}{close}
+{open}/while{close}</pre>
+{set i=1}
+<p>Result: {while $i <= 3}Loop {$i} {set i={echo $i + 1}}{/while}</p>

@@ -1,0 +1,92 @@
+<p>
+  The <code>make</code> tag transforms values during sequence generation.
+</p>
+<h2>
+  Basic Make
+</h2>
+<pre>{sequence '1..5'}
+  {make}{echo $value * 2}{/make}
+{/sequence}</pre>
+<p>
+  Double each value during iteration.
+</p>
+<h2>
+  Transform Values
+</h2>
+<pre>{sequence '1..5', push='nums'}
+  {make}{echo $value * $value}{/make}
+{/sequence}
+
+Squares: {pull 'nums', make}{$value} {/pull}</pre>
+<p>
+  Create squares of 1-5.
+</p>
+<h2>
+  Make with Format
+</h2>
+<pre>{sequence '1..5'}
+  {make}Item #{$value}{/make}
+{/sequence}</pre>
+<p>
+  Transform numbers into formatted strings.
+</p>
+<h2>
+  Mathematical Transformations
+</h2>
+<table>
+  <tr>
+    <th>
+      Transformation
+    </th>
+    <th>
+      Make Content
+    </th>
+  </tr>
+  <tr>
+    <td>
+      Double
+    </td>
+    <td>
+      {echo $value * 2}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Square
+    </td>
+    <td>
+      {echo $value * $value}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Plus 10
+    </td>
+    <td>
+      {echo $value + 10}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Percentage
+    </td>
+    <td>
+      {echo $value / 100}
+    </td>
+  </tr>
+</table>
+<h2>
+  Use Case: Data Transformation
+</h2>
+<pre>{sequence '0..100', to=10, push='percentages'}
+  {make}{$value}%{/make}
+{/sequence}</pre>
+<p>
+  Transform numbers 0, 10, 20... into "0%", "10%", "20%"...
+</p>
+<h2>
+  Note
+</h2>
+<p>
+  The make tag allows you to transform sequence values during generation. The transformation is applied to each value in the sequence.
+</p>

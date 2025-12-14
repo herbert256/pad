@@ -1,0 +1,58 @@
+<p>The <code>file</code> tag writes content to a file.</p>
+
+<h2>Basic File Writing</h2>
+<pre>{open}file dir=DAT . 'demo', name='example', ext='txt'{close}
+  This content will be written to a file.
+{open}/file{close}</pre>
+<p><em>This would create: DATA/demo/example.txt</em></p>
+
+<h2>Syntax</h2>
+<pre>{open}file dir='path', name='filename', ext='extension'{close}
+  File content here...
+{open}/file{close}</pre>
+
+<h2>Options</h2>
+<table>
+  <tr><th>Option</th><th>Description</th><th>Default</th></tr>
+  <tr><td>dir</td><td>Directory path</td><td>Required</td></tr>
+  <tr><td>name</td><td>Filename (without extension)</td><td>'file'</td></tr>
+  <tr><td>ext</td><td>File extension</td><td>'ext'</td></tr>
+  <tr><td>date</td><td>Include date in filename</td><td>FALSE</td></tr>
+  <tr><td>stamp</td><td>Include timestamp</td><td>FALSE</td></tr>
+  <tr><td>id</td><td>Include unique ID</td><td>FALSE</td></tr>
+</table>
+
+<h2>Example: Generate Report</h2>
+<pre>{open}file dir=DAT . 'reports', name='sales', ext='csv', date=TRUE{close}
+Item,Quantity,Price
+{open}reportData{close}
+{open}$item{close},{open}$qty{close},{open}$price{close}
+{open}/reportData{close}
+{open}/file{close}</pre>
+<p>This would create a CSV file like: DATA/reports/sales-2024-01-15.csv</p>
+
+<h2>Example: HTML Export</h2>
+<pre>{open}file dir=DAT . 'export', name='page', ext='html'{close}
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Export&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Exported Content&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+{open}/file{close}</pre>
+
+<h2>Example: JSON Data</h2>
+<pre>{open}file dir=DAT . 'backup', name='data', ext='json', stamp=TRUE{close}
+{open}open{close}
+  "items": [
+    {open}reportData{close}
+    {open}open{close}"name": "{open}$item{close}", "qty": {open}$qty{close}{open}close{close}{open}@last{close}{open}else{close},{open}/last{close}
+    {open}/reportData{close}
+  ]
+{open}close{close}
+{open}/file{close}</pre>
+<p>Creates a timestamped JSON backup file.</p>
+
+<h2>Note</h2>
+<p>The file tag writes to the filesystem. Ensure the target directory exists and is writable by the web server.</p>

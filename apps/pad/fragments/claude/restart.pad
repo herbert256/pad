@@ -1,0 +1,40 @@
+<p>The <code>restart</code> tag restarts PAD processing with a new page.</p>
+
+<h2>Syntax</h2>
+<pre>{open}restart 'pagename'{close}
+{open}restart 'pagename', param1='value1', param2='value2'{close}</pre>
+
+<h2>Basic Restart</h2>
+<pre>{open}restart 'homepage'{close}</pre>
+<p>Restarts PAD processing with the homepage.</p>
+
+<h2>Restart with Parameters</h2>
+<pre>{open}restart 'profile', userId=123{close}</pre>
+<p>Restarts to profile page with userId parameter.</p>
+
+<h2>How It Differs from Redirect</h2>
+<table>
+  <tr><th>Feature</th><th>restart</th><th>redirect</th></tr>
+  <tr><td>HTTP Response</td><td>Same request</td><td>New request (302)</td></tr>
+  <tr><td>URL Changes</td><td>No</td><td>Yes</td></tr>
+  <tr><td>Variables Preserved</td><td>Yes</td><td>No</td></tr>
+  <tr><td>Processing</td><td>Server-side</td><td>Client-side</td></tr>
+</table>
+
+<h2>Use Cases</h2>
+<ul>
+  <li>Internal page routing</li>
+  <li>Error handling (restart to error page)</li>
+  <li>Conditional page selection</li>
+  <li>Form processing flow</li>
+</ul>
+
+<h2>Conditional Restart</h2>
+<pre>{open}if $userType eq 'admin'{close}
+  {open}restart 'admin/dashboard'{close}
+{open}else{close}
+  {open}restart 'user/dashboard'{close}
+{open}/if{close}</pre>
+
+<h2>Note</h2>
+<p>Restart keeps the same HTTP request but processes a different page. The browser URL does not change. Use redirect if you want the URL to update.</p>

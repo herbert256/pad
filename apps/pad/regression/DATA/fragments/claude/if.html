@@ -1,0 +1,155 @@
+<p>
+  The <code>if</code> tag provides conditional execution based on expression evaluation.
+</p>
+<h2>
+  Basic If
+</h2>
+<pre>{if $count &gt; 0}Has items{/if}</pre>
+<p>
+  Result: Has items
+</p>
+<h2>
+  If with Else
+</h2>
+<pre>{if $count eq 0}Empty{else}Has 5 items{/if}</pre>
+<p>
+  Result: Has 5 items
+</p>
+<h2>
+  If-Elseif-Else Chain
+</h2>
+<pre>{if $age &lt; 18}Minor{elseif $age &lt; 65}Adult{else}Senior{/if}</pre>
+<p>
+  Result: Adult
+</p>
+<h2>
+  String Comparison
+</h2>
+<pre>{if $name eq 'Alice'}Hello Alice!{/if}</pre>
+<p>
+  Result: Hello Alice!
+</p>
+<h2>
+  Not Equal
+</h2>
+<pre>{if $name ne 'Bob'}You are not Bob{/if}</pre>
+<p>
+  Result: You are not Bob
+</p>
+<h2>
+  Boolean Check
+</h2>
+<pre>{if $isActive eq TRUE}Active{else}Inactive{/if}</pre>
+<p>
+  Result: Active
+</p>
+<h2>
+  Nested If
+</h2>
+<pre>{if $count &gt; 0}{if $name eq 'Alice'}Alice has 5 items{/if}{/if}</pre>
+<p>
+  Result: Alice has 5 items
+</p>
+<h2>
+  Comparison Operators
+</h2>
+<table>
+  <tr>
+    <th>
+      Operator
+    </th>
+    <th>
+      Meaning
+    </th>
+    <th>
+      Example
+    </th>
+    <th>
+      Result
+    </th>
+  </tr>
+  <tr>
+    <td>
+      eq / ==
+    </td>
+    <td>
+      Equal
+    </td>
+    <td>
+      $count eq 5
+    </td>
+    <td>
+      true
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ne / !=
+    </td>
+    <td>
+      Not equal
+    </td>
+    <td>
+      $count ne 0
+    </td>
+    <td>
+      true
+    </td>
+  </tr>
+  <tr>
+    <td>
+      gt / &gt;
+    </td>
+    <td>
+      Greater than
+    </td>
+    <td>
+      $count gt 3
+    </td>
+    <td>
+      true
+    </td>
+  </tr>
+  <tr>
+    <td>
+      lt / &lt;
+    </td>
+    <td>
+      Less than
+    </td>
+    <td>
+      $count lt 10
+    </td>
+    <td>
+      true
+    </td>
+  </tr>
+  <tr>
+    <td>
+      ge / &gt;=
+    </td>
+    <td>
+      Greater or equal
+    </td>
+    <td>
+      $count ge 5
+    </td>
+    <td>
+      true
+    </td>
+  </tr>
+  <tr>
+    <td>
+      le / &lt;=
+    </td>
+    <td>
+      Less or equal
+    </td>
+    <td>
+      $count le 5
+    </td>
+    <td>
+      true
+    </td>
+  </tr>
+</table>

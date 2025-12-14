@@ -1,0 +1,51 @@
+<p>The <code>data</code> tag stores data to the data store for iteration.</p>
+
+<h2>Iterate Over Array from PHP</h2>
+<pre>{open}users{close}
+  &lt;li&gt;{open}$name{close} - {open}$email{close}&lt;/li&gt;
+{open}/users{close}</pre>
+<ul>
+{users}
+  <li>{$name} - {$email}</li>
+{/users}
+</ul>
+
+<h2>Simple Array</h2>
+<pre>{open}colors{close}
+  &lt;span style="color:{open}$value{close}"&gt;{open}$value{close}&lt;/span&gt;
+{open}/colors{close}</pre>
+<p>{colors}<span style="color:{$value}">{$value}</span> {/colors}</p>
+
+<h2>Table with Data</h2>
+<pre>&lt;table&gt;
+  &lt;tr&gt;&lt;th&gt;Product&lt;/th&gt;&lt;th&gt;Price&lt;/th&gt;&lt;th&gt;Stock&lt;/th&gt;&lt;/tr&gt;
+  {open}products{close}
+    &lt;tr&gt;&lt;td&gt;{open}$name{close}&lt;/td&gt;&lt;td&gt;${open}$price{close}&lt;/td&gt;&lt;td&gt;{open}$stock{close}&lt;/td&gt;&lt;/tr&gt;
+  {open}/products{close}
+&lt;/table&gt;</pre>
+<table>
+  <tr><th>Product</th><th>Price</th><th>Stock</th></tr>
+  {products}
+    <tr><td>{$name}</td><td>${$price}</td><td>{$stock}</td></tr>
+  {/products}
+</table>
+
+<h2>Iteration Properties</h2>
+<pre>{open}users{close}
+  {open}@first ? &lt;ul&gt;{close}
+  &lt;li&gt;#{open}@current{close} of {open}@count{close}: {open}$name{close} ({open}$role{close}){open}@last ? &lt;-- Last!{close}&lt;/li&gt;
+  {open}@last ? &lt;/ul&gt;{close}
+{open}/users{close}</pre>
+{users}
+  {@first ? <ul>}
+  <li>#{@current} of {@count}: {$name} ({$role}){@last ? <-- Last!}</li>
+  {@last ? </ul>}
+{/users}
+
+<h2>Even/Odd Rows</h2>
+<pre>{open}users{close}
+  &lt;div class="{open}@even ? even : odd{close}"&gt;{open}$name{close}&lt;/div&gt;
+{open}/users{close}</pre>
+{users}
+<div style="background:{@even ? #e0e0e0 : #f0f0f0}; padding:3px;">{$name}</div>
+{/users}

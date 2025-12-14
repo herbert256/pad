@@ -1,0 +1,10 @@
+<p>Working examples for all PAD template tags. Click on a tag name to see examples.</p>
+
+<h2>Tags by Category</h2>
+
+{tags sort='category,name'}
+  {@first ? <h3>{$category}</h3><ul>}
+  {if $category ne @prev.category}</ul><h3>{$category}</h3><ul>{/if}
+  <li><a href="?fragments/claude/{$name}">{$name}</a> - {$description}</li>
+  {@last ? </ul>}
+{/tags}

@@ -1,0 +1,49 @@
+<p>The <code>exception</code> tag throws a PHP exception.</p>
+
+<h2>Syntax</h2>
+<pre>{open}exception 'Exception message'{close}</pre>
+
+<h2>What It Does</h2>
+<p>The exception tag throws a PHP Exception with the specified message. Unlike the error tag, this creates a real PHP exception that must be caught or will halt execution.</p>
+
+<h2>Example Usage</h2>
+<pre>{open}if $criticalError eq TRUE{close}
+  {open}exception 'Critical system error occurred'{close}
+{open}/if{close}</pre>
+
+<h2>When to Use</h2>
+<ul>
+  <li>Fatal errors that should stop execution</li>
+  <li>Integration with PHP exception handling</li>
+  <li>When errors must be caught by calling code</li>
+  <li>API endpoints that need exception responses</li>
+</ul>
+
+<h2>Comparison: error vs exception</h2>
+<table>
+  <tr><th>Feature</th><th>error</th><th>exception</th></tr>
+  <tr><td>Type</td><td>PAD error</td><td>PHP Exception</td></tr>
+  <tr><td>Can be ignored</td><td>Yes (via config)</td><td>No</td></tr>
+  <tr><td>Catchable</td><td>Via PAD</td><td>Via try/catch</td></tr>
+  <tr><td>Severity</td><td>Configurable</td><td>Always fatal if uncaught</td></tr>
+</table>
+
+<h2>PHP Integration</h2>
+<pre>// In PHP code that calls PAD
+try {
+  // PAD processing
+} catch (Exception $e) {
+  // Handle exception from {open}exception{close} tag
+  echo "Caught: " . $e->getMessage();
+}</pre>
+
+<h2>Use Cases</h2>
+<ul>
+  <li>Critical validation failures</li>
+  <li>Security violations</li>
+  <li>Data integrity errors</li>
+  <li>System configuration errors</li>
+</ul>
+
+<h2>Warning</h2>
+<p style="color:red">This demo page does not throw an actual exception. In real usage, the exception tag would throw a PHP exception that stops execution if not caught.</p>

@@ -1,0 +1,51 @@
+<p>The <code>case</code> tag provides switch-case style conditional based on value matching.</p>
+
+<h2>Basic Case</h2>
+<pre>{open}case $color{close}
+  {open}when 'red'{close}Color is Red
+  {open}when 'blue'{close}Color is Blue
+  {open}when 'green'{close}Color is Green
+{open}/case{close}</pre>
+<p>Result ($color = '{$color}'): {case $color}
+  {when 'red'}Color is Red
+  {when 'blue'}Color is Blue
+  {when 'green'}Color is Green
+{/case}</p>
+
+<h2>Case with Default</h2>
+<pre>{open}case $day{close}
+  {open}when 'Saturday'{close}Weekend!
+  {open}when 'Sunday'{close}Weekend!
+  {open}when 'default'{close}Weekday
+{open}/case{close}</pre>
+<p>Result ($day = '{$day}'): {case $day}
+  {when 'Saturday'}Weekend!
+  {when 'Sunday'}Weekend!
+  {when 'default'}Weekday
+{/case}</p>
+
+<h2>Status Example</h2>
+<pre>{open}case $status{close}
+  {open}when 'pending'{close}&lt;span style="color:orange"&gt;Pending&lt;/span&gt;
+  {open}when 'approved'{close}&lt;span style="color:green"&gt;Approved&lt;/span&gt;
+  {open}when 'rejected'{close}&lt;span style="color:red"&gt;Rejected&lt;/span&gt;
+{open}/case{close}</pre>
+<p>Result ($status = '{$status}'): {case $status}
+  {when 'pending'}<span style="color:orange">Pending</span>
+  {when 'approved'}<span style="color:green">Approved</span>
+  {when 'rejected'}<span style="color:red">Rejected</span>
+{/case}</p>
+
+<h2>Numeric Case</h2>
+<pre>{open}case $number{close}
+  {open}when 1{close}One
+  {open}when 2{close}Two
+  {open}when 3{close}Three
+  {open}when 'default'{close}Other number
+{open}/case{close}</pre>
+<p>Result ($number = {$number}): {case $number}
+  {when 1}One
+  {when 2}Two
+  {when 3}Three
+  {when 'default'}Other number
+{/case}</p>

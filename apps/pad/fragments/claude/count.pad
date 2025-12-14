@@ -1,0 +1,69 @@
+<p>The <code>count</code> tag checks if an array/data has elements.</p>
+
+<h2>Basic Count Check</h2>
+<pre>{open}count $items{close}
+  Items array has elements
+{open}/count{close}</pre>
+{count $items}
+<p style="color:green">Items array has elements</p>
+{/count}
+
+<h2>Empty Array Check</h2>
+<pre>{open}count $emptyArray{close}
+  Has elements
+{open}else{close}
+  Array is empty
+{open}/count{close}</pre>
+{count $emptyArray}
+<p>Has elements</p>
+{else}
+<p style="color:red">Array is empty</p>
+{/count}
+
+<h2>Count Users</h2>
+<pre>{open}count $users{close}
+  There are users in the system
+  {open}users{close}
+    - {open}$name{close}
+  {open}/users{close}
+{open}else{close}
+  No users found
+{open}/count{close}</pre>
+{count $users}
+<p>There are users in the system:</p>
+<ul>
+{users}
+  <li>{$name}</li>
+{/users}
+</ul>
+{else}
+<p>No users found</p>
+{/count}
+
+<h2>Count in Loop</h2>
+<pre>{open}items{close}
+  Item: {open}$value{close} (position {open}@current{close} of {open}@count{close})
+{open}/items{close}</pre>
+<ul>
+{items}
+  <li>Item: {$value} (position {@current} of {@count})</li>
+{/items}
+</ul>
+
+<h2>Conditional Display</h2>
+<pre>{open}count $items{close}
+  &lt;h4&gt;Your Items ({open}@count{close} total)&lt;/h4&gt;
+  &lt;ul&gt;
+    {open}items{close}&lt;li&gt;{open}$value{close}&lt;/li&gt;{open}/items{close}
+  &lt;/ul&gt;
+{open}else{close}
+  &lt;p&gt;No items to display&lt;/p&gt;
+{open}/count{close}</pre>
+{count $items}
+<h4>Your Items</h4>
+<ul>
+  {items}<li>{$value}</li>{/items}
+</ul>
+{else}
+<p>No items to display</p>
+{/count}

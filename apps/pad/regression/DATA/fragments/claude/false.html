@@ -1,0 +1,62 @@
+<p>
+  The <code>false</code> tag returns the boolean FALSE value.
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{false}</pre>
+<p>
+  Result:
+</p>
+<h2>
+  In Conditions
+</h2>
+<pre>{if {false} eq FALSE}
+  This is shown because false equals FALSE
+{/if}</pre>
+<p style="color:green">
+  This is shown because false equals FALSE
+</p>
+<h2>
+  Negative Condition
+</h2>
+<pre>{if {false} eq TRUE}
+  Not shown
+{else}
+  False is not TRUE
+{/if}</pre>
+<p>
+  False is not TRUE
+</p>
+<h2>
+  Set Variable to False
+</h2>
+<pre>{set isDisabled={false}}
+{if $isDisabled eq FALSE}Enabled{else}Disabled{/if}</pre>
+<p>
+  Status: Enabled
+</p>
+<h2>
+  Toggle Example
+</h2>
+<pre>{set flag={true}}
+Flag is: {if $flag eq TRUE}ON{else}OFF{/if}
+
+{set flag={false}}
+Flag is: {if $flag eq TRUE}ON{else}OFF{/if}</pre>
+<p>
+  Flag is: OFF
+</p>
+<p>
+  Flag is: OFF
+</p>
+<h2>
+  Use Case: Feature Flag
+</h2>
+<pre>{set showBetaFeature={false}}
+{if $showBetaFeature eq TRUE}
+  &lt;div&gt;Beta Feature Here&lt;/div&gt;
+{/if}</pre>
+<p>
+  Beta feature is hidden (set to false)
+</p>

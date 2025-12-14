@@ -1,0 +1,70 @@
+<p>
+  The <code>open</code> tag outputs the opening brace character.
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{open}</pre>
+<p>
+  Result: {
+</p>
+<h2>
+  Show Variable Syntax
+</h2>
+<pre>{open}$variableName{close}</pre>
+<p>
+  Result: {$variableName}
+</p>
+<h2>
+  Show Tag Syntax
+</h2>
+<pre>{open}tagname{close}</pre>
+<p>
+  Result: {tagname}
+</p>
+<h2>
+  Document PAD Syntax
+</h2>
+<pre>To show a variable, use {open}$name{close}</pre>
+<p>
+  Result: To show a variable, use {$name}
+</p>
+<h2>
+  Show Complete Tag
+</h2>
+<pre>{open}if $count &gt; 0{close}...{open}/if{close}</pre>
+<p>
+  Result: {if $count &gt; 0}...{/if}
+</p>
+<h2>
+  Use in Documentation
+</h2>
+<p>
+  The open/close tags are commonly used throughout this documentation to show PAD syntax examples without the tags being processed.
+</p>
+<table>
+  <tr>
+    <th>
+      Tag
+    </th>
+    <th>
+      Output
+    </th>
+  </tr>
+  <tr>
+    <td>
+      {open}
+    </td>
+    <td>
+      {
+    </td>
+  </tr>
+  <tr>
+    <td>
+      {close}
+    </td>
+    <td>
+      }
+    </td>
+  </tr>
+</table>
