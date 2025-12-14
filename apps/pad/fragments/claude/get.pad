@@ -1,0 +1,20 @@
+<p>The <code>get</code> tag retrieves variable values.</p>
+
+<h2>Basic Get</h2>
+<pre>{open}set $message = 'Hello World'{close}
+{open}get $message{close}</pre>
+{set $message = 'Hello World'}
+<p>Message: {get $message}</p>
+
+<h2>Get vs Direct Variable</h2>
+<p>Both produce the same output:</p>
+<pre>{open}$message{close} = {open}get $message{close}</pre>
+{set $greeting = 'Welcome'}
+<ul>
+  <li>Direct: {$greeting}</li>
+  <li>Get: {get $greeting}</li>
+</ul>
+
+<h2>Get with Default</h2>
+<pre>{open}get $undefined, 'default value'{close}</pre>
+<p>Undefined variable: {get $undefined, 'default value'}</p>

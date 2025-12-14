@@ -1,0 +1,33 @@
+<p>The <code>false</code> tag never executes its content (condition always false).</p>
+
+<h2>Basic False</h2>
+<pre>{open}false{close}
+  This never displays
+{open}/false{close}</pre>
+{false}
+<p>This never displays</p>
+{/false}
+<p>(Nothing shown above)</p>
+
+<h2>False with Else</h2>
+<pre>{open}false{close}
+  Never shown
+{open}else{close}
+  Always shown
+{open}/false{close}</pre>
+{false}
+<p>Never shown</p>
+{else}
+<p style="color:green">Always shown (else always executes)</p>
+{/false}
+
+<h2>Use Case: Disabled Code</h2>
+<pre>{open}false{close}
+  {open}dump{close}
+  Old debug code that's disabled
+{open}/false{close}</pre>
+{false}
+  {dump}
+  Old debug code that's disabled
+{/false}
+<p>(Debug code above is disabled)</p>

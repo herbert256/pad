@@ -1,0 +1,36 @@
+<p>The <code>ignore</code> tag suppresses its content from output.</p>
+
+<h2>Basic Ignore</h2>
+<pre>Before
+{open}ignore{close}
+  This will not appear in output
+{open}/ignore{close}
+After</pre>
+<p>Result:</p>
+Before
+{ignore}
+  This will not appear in output
+{/ignore}
+After
+
+<h2>Ignore for Comments</h2>
+<pre>{open}ignore{close}
+  TODO: Add validation here
+  NOTE: This section needs review
+{open}/ignore{close}</pre>
+{ignore}
+  TODO: Add validation here
+  NOTE: This section needs review
+{/ignore}
+<p>(Nothing displayed above - content was ignored)</p>
+
+<h2>Conditional Ignore</h2>
+{set $debug = 0}
+<pre>{open}set $debug = 0{close}
+{open}if $debug{close}
+  Debug info here
+{open}/if{close}</pre>
+{if $debug eq 1}
+<p>Debug info here</p>
+{/if}
+<p>(Debug is off, so nothing shown)</p>

@@ -4,75 +4,37 @@
 <h2>
   Syntax
 </h2>
-<pre>{dump}
-{dump 'message'}</pre>
+<pre>{dump}</pre>
 <h2>
-  What It Does
+  What It Shows
 </h2>
 <p>
-  The dump tag calls PAD's internal dump function to output debugging information. This typically includes:
+  The dump tag creates a debug dump containing:
 </p>
 <ul>
-  <li>Current variable state
+  <li>Current variables and values
   </li>
-  <li>Tag processing context
+  <li>Request parameters
   </li>
-  <li>Level information
+  <li>Session data
   </li>
-  <li>Other debug data
+  <li>Configuration settings
+  </li>
+  <li>Execution stack trace
   </li>
 </ul>
 <h2>
-  Example Usage
+  Usage
 </h2>
-<pre>{set testVar='Hello'}
-{dump 'After setting testVar'}</pre>
-<p>
-  This would dump debug info with the message "After setting testVar".
-</p>
-<h2>
-  When to Use
-</h2>
-<ul>
-  <li>Debugging template issues
-  </li>
-  <li>Understanding variable scope
-  </li>
-  <li>Tracing execution flow
-  </li>
-  <li>Inspecting data structures
-  </li>
-</ul>
-<h2>
-  Output Location
-</h2>
-<p>
-  Dump output goes to:
-</p>
-<ul>
-  <li>The DATA/ directory as dump files
-  </li>
-  <li>Optionally to browser output
-  </li>
-  <li>Error logs (depending on configuration)
-  </li>
-</ul>
-<h2>
-  Sample Data
-</h2>
-<p>
-  Current sample data available:
-</p>
-<pre>$sampleData = {$sampleData | json}</pre>
-<h2>
-  Warning
-</h2>
-<p style="color:orange">
-  The dump tag is for debugging only. Remove dump tags from production code as they can expose sensitive information and slow down execution.
-</p>
+<pre>{if $debug}
+  {dump}
+{/if}</pre>
 <h2>
   Note
 </h2>
 <p>
-  This demo page does not execute a live dump to avoid flooding the output. In real usage, dump would output detailed debug information.
+  Dump output goes to DATA/dumps/ directory.
+</p>
+<p>
+  <i>Not demonstrated here to avoid creating dump files.</i>
 </p>

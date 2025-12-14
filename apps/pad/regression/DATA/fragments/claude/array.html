@@ -1,131 +1,45 @@
 <p>
-  The <code>array</code> tag retrieves multiple rows from a database table.
+  The <code>array</code> tag retrieves multiple rows from the database.
 </p>
 <h2>
   Syntax
 </h2>
-<pre>{array 'tablename'}
-  {$fieldname}
+<pre>{array "columns from table where condition"}
+  {$column1} - {$column2}
 {/array}</pre>
-<h2>
-  Basic Usage
-</h2>
-<pre>{array 'users'}
-  &lt;li&gt;{$name} - {$email}&lt;/li&gt;
-{/array}</pre>
-<p>
-  Retrieves all rows from users table and iterates over them.
-</p>
-<h2>
-  With Options
-</h2>
-<pre>{array 'products', sort='price', rows=10}
-  {$name}: ${$price}
-{/array}</pre>
-<p>
-  Retrieves products sorted by price, limited to 10 rows.
-</p>
-<h2>
-  Common Options
-</h2>
-<table>
-  <tr>
-    <th>
-      Option
-    </th>
-    <th>
-      Description
-    </th>
-  </tr>
-  <tr>
-    <td>
-      sort
-    </td>
-    <td>
-      Sort by field(s)
-    </td>
-  </tr>
-  <tr>
-    <td>
-      rows
-    </td>
-    <td>
-      Limit number of results
-    </td>
-  </tr>
-  <tr>
-    <td>
-      where
-    </td>
-    <td>
-      Filter condition
-    </td>
-  </tr>
-  <tr>
-    <td>
-      order
-    </td>
-    <td>
-      Sort direction (asc/desc)
-    </td>
-  </tr>
-</table>
 <h2>
   Example: User List
 </h2>
-<pre>&lt;table&gt;
-  &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Email&lt;/th&gt;&lt;th&gt;Role&lt;/th&gt;&lt;/tr&gt;
-  {array 'users', sort='name'}
-    &lt;tr&gt;
-      &lt;td&gt;{$name}&lt;/td&gt;
-      &lt;td&gt;{$email}&lt;/td&gt;
-      &lt;td&gt;{$role}&lt;/td&gt;
-    &lt;/tr&gt;
-  {/array}
-&lt;/table&gt;</pre>
-<h2>
-  Iteration Properties
-</h2>
-<p>
-  Standard iteration properties are available:
-</p>
-<pre>{array 'items'}
-  {@first}First item{/first}
-  {@current} of {@count}
-  {@last}Last item{/last}
+<pre>{array "name, email from users"}
+  &lt;tr&gt;
+    &lt;td&gt;{$name}&lt;/td&gt;
+    &lt;td&gt;{$email}&lt;/td&gt;
+  &lt;/tr&gt;
+{else}
+  &lt;tr&gt;&lt;td colspan="2"&gt;No users found&lt;/td&gt;&lt;/tr&gt;
 {/array}</pre>
 <h2>
-  Comparison with PHP Data
+  With Options
 </h2>
-<table>
-  <tr>
-    <th>
-      Source
-    </th>
-    <th>
-      Tag
-    </th>
-  </tr>
-  <tr>
-    <td>
-      PHP array
-    </td>
-    <td>
-      {arrayName}...{/arrayName}
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Database table
-    </td>
-    <td>
-      {array 'tablename'}...{/array}
-    </td>
-  </tr>
-</table>
+<pre>{array "* from products", sort='price', rows=10}
+  {$name}: ${$price}
+{/array}</pre>
+<h2>
+  PHP Variable Method
+</h2>
+<pre>// In PHP:
+$users = db("array * from users");
+
+// In template:
+{users}
+  {$name}
+{/users}</pre>
 <h2>
   Note
 </h2>
 <p>
-  Database queries require a configured database connection. This demo page does not execute live queries.
+  Use &amp;comma; to escape commas in template syntax.
+</p>
+<p>
+  Supports all iteration properties ({first}, {last}, {&amp;count}, etc.)
 </p>

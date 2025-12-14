@@ -1,0 +1,26 @@
+<p>The <code>make</code> tag creates a new item during iteration.</p>
+
+<h2>Make Syntax</h2>
+<pre>{open}items{close}
+  {open}make $newField = $value * 2{close}
+{open}/items{close}</pre>
+
+<h2>Example</h2>
+{data 'prices'}
+  [
+    {"item": "Apple", "price": 1.00},
+    {"item": "Banana", "price": 0.50}
+  ]
+{/data}
+<pre>{open}prices{close}
+  {open}$item{close}: ${open}$price{close}
+{open}/prices{close}</pre>
+<table border="1">
+  <tr><th>Item</th><th>Price</th></tr>
+{prices}
+  <tr><td>{$item}</td><td>${$price}</td></tr>
+{/prices}
+</table>
+
+<h2>Note</h2>
+<p>The make tag allows creating computed fields during data iteration.</p>

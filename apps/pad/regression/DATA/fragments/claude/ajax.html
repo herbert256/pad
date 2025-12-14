@@ -4,65 +4,25 @@
 <h2>
   Syntax
 </h2>
-<pre>{ajax 'handler_name'}</pre>
+<pre>{ajax 'getData'}
+  {!-- Returns data for AJAX call --}
+  {"status": "ok", "data": [...]}
+{/ajax}</pre>
 <h2>
-  What Is AJAX?
-</h2>
-<p>
-  AJAX (Asynchronous JavaScript and XML) allows web pages to update content without reloading. The ajax tag provides server-side handling for these requests.
-</p>
-<h2>
-  How It Works
-</h2>
-<ol>
-  <li>Client sends AJAX request to PAD endpoint
-  </li>
-  <li>PAD detects the AJAX request
-  </li>
-  <li>The ajax tag processes the request
-  </li>
-  <li>Response is returned to client
-  </li>
-</ol>
-<h2>
-  Example Handler
-</h2>
-<pre>{ajax 'getData'}</pre>
-<p>
-  This would handle an AJAX request using the 'getData' handler.
-</p>
-<h2>
-  Client-Side Request
+  JavaScript Integration
 </h2>
 <pre>&lt;script&gt;
 fetch('?ajax=getData')
-  .then(response =&gt; response.json())
+  .then(r =&gt; r.json())
   .then(data =&gt; console.log(data));
-&lt;/script&gt;</pre>
-<h2>
-  Use Cases
-</h2>
-<ul>
-  <li>Dynamic content loading
-  </li>
-  <li>Form submission without page reload
-  </li>
-  <li>Real-time data updates
-  </li>
-  <li>Search suggestions
-  </li>
-  <li>Infinite scrolling
-  </li>
-</ul>
-<h2>
-  Response Format
-</h2>
-<p>
-  AJAX handlers typically return JSON data for client-side processing.
-</p>
+&lt;/script&gt;
+
+{ajax 'getData'}
+  {"items": [1, 2, 3]}
+{/ajax}</pre>
 <h2>
   Note
 </h2>
 <p>
-  The ajax tag handles the server-side of AJAX communication. You'll need corresponding JavaScript on the client side to make the requests.
+  AJAX handlers return only their content, without page wrapper.
 </p>

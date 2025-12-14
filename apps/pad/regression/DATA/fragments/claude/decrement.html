@@ -1,0 +1,46 @@
+<p>
+  The <code>decrement</code> tag subtracts 1 from a variable.
+</p>
+<h2>
+  Basic Decrement
+</h2>
+<pre>{set $counter = 5}
+Counter: {$counter}
+{decrement $counter}
+Counter: {$counter}
+{decrement $counter}
+Counter: {$counter}</pre>
+<ul>
+  <li>Counter: 5
+  </li>
+  <li>Counter: 4
+  </li>
+  <li>Counter: 3
+  </li>
+</ul>
+<h2>
+  Countdown
+</h2>
+<pre>{set $n = 5}
+{while $n gt 0}
+  {$n}...
+  {decrement $n}
+{/while}
+Go!</pre>
+<p>
+  5... 4... 3... 2... 1... Go!
+</p>
+<h2>
+  Decrement to Negative
+</h2>
+<pre>{set $x = 2}</pre>
+<ul>
+  <li>x = 2
+  </li>
+  <li>x = 1
+  </li>
+  <li>x = 0
+  </li>
+  <li>x = -1
+  </li>
+</ul>

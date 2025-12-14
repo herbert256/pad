@@ -1,0 +1,51 @@
+<p>The <code>case</code> tag provides multi-branch conditional execution using <code>when</code>.</p>
+
+<h2>Basic Case Statement</h2>
+<pre>{open}case 2{close}
+  {open}when 1{close} One
+  {open}when 2{close} Two
+  {open}when 3{close} Three
+  {open}else{close} Default
+{open}/case{close}</pre>
+{case 2}
+  {when 1} One
+  {when 2} <b>Two</b>
+  {when 3} Three
+  {else} Default
+{/case}
+
+<h2>Case with Variable</h2>
+{set $day = 3}
+<pre>{open}set $day = 3{close}
+{open}case $day{close}
+  {open}when 1{close} Monday
+  {open}when 2{close} Tuesday
+  {open}when 3{close} Wednesday
+  {open}when 4{close} Thursday
+  {open}when 5{close} Friday
+  {open}else{close} Weekend
+{open}/case{close}</pre>
+{case $day}
+  {when 1} Monday
+  {when 2} Tuesday
+  {when 3} <b>Wednesday</b>
+  {when 4} Thursday
+  {when 5} Friday
+  {else} Weekend
+{/case}
+
+<h2>Case with Strings</h2>
+{set $color = 'green'}
+<pre>{open}set $color = 'green'{close}
+{open}case $color{close}
+  {open}when 'red'{close} Stop
+  {open}when 'yellow'{close} Caution
+  {open}when 'green'{close} Go
+  {open}else{close} Unknown
+{open}/case{close}</pre>
+{case $color}
+  {when 'red'} Stop
+  {when 'yellow'} Caution
+  {when 'green'} <b>Go</b>
+  {else} Unknown
+{/case}

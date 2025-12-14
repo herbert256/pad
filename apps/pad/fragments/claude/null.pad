@@ -1,0 +1,16 @@
+<p>The <code>null</code> tag returns a null/empty value.</p>
+
+<h2>Null in Comparison</h2>
+<pre>{open}if {open}null{close} eq ''{close}
+  Null equals empty string
+{open}/if{close}</pre>
+{if {null} eq ''}
+<p style="color:green">Null equals empty string: true</p>
+{/if}
+
+<h2>Default for Undefined</h2>
+<pre>{open}get $undefined, 'default'{close}</pre>
+<p>Result: {get $undefined, 'default value'}</p>
+
+<h2>Note</h2>
+<p>The null tag is useful for comparisons and default value handling.</p>

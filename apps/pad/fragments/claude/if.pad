@@ -1,0 +1,67 @@
+<p>The <code>if</code> tag provides conditional execution.</p>
+
+<h2>Basic If/Else</h2>
+<pre>{open}if $count gt 0{close}
+  Has items
+{open}else{close}
+  Empty
+{open}/if{close}</pre>
+{if $count gt 0}
+<p style="color:green">Has items (count = {$count})</p>
+{else}
+<p style="color:red">Empty</p>
+{/if}
+
+<h2>Comparison Operators</h2>
+<table border="1" cellpadding="5">
+  <tr><th>Operator</th><th>Meaning</th><th>Example</th><th>Result</th></tr>
+  <tr><td>eq / ==</td><td>Equal</td><td>5 eq 5</td><td>{if 5 eq 5}true{else}false{/if}</td></tr>
+  <tr><td>ne / !=</td><td>Not equal</td><td>5 ne 3</td><td>{if 5 ne 3}true{else}false{/if}</td></tr>
+  <tr><td>gt / &gt;</td><td>Greater than</td><td>5 gt 3</td><td>{if 5 gt 3}true{else}false{/if}</td></tr>
+  <tr><td>lt / &lt;</td><td>Less than</td><td>3 lt 5</td><td>{if 3 lt 5}true{else}false{/if}</td></tr>
+  <tr><td>ge / &gt;=</td><td>Greater or equal</td><td>5 ge 5</td><td>{if 5 ge 5}true{else}false{/if}</td></tr>
+  <tr><td>le / &lt;=</td><td>Less or equal</td><td>5 le 5</td><td>{if 5 le 5}true{else}false{/if}</td></tr>
+</table>
+
+<h2>If/Elseif/Else</h2>
+<pre>{open}if $score ge 90{close}
+  Grade: A
+{open}elseif $score ge 80{close}
+  Grade: B
+{open}elseif $score ge 70{close}
+  Grade: C
+{open}else{close}
+  Grade: F
+{open}/if{close}</pre>
+{if $score ge 90}
+<p>Grade: A</p>
+{elseif $score ge 80}
+<p>Grade: B (score = {$score})</p>
+{elseif $score ge 70}
+<p>Grade: C</p>
+{else}
+<p>Grade: F</p>
+{/if}
+
+<h2>Logical Operators</h2>
+<pre>{open}if $role eq 'admin' and $count gt 0{close}
+  Admin with items
+{open}/if{close}</pre>
+{if $role eq 'admin' and $count gt 0}
+<p style="color:green">Admin with items</p>
+{/if}
+
+<pre>{open}if $role eq 'guest' or $role eq 'admin'{close}
+  Guest or Admin
+{open}/if{close}</pre>
+{if $role eq 'guest' or $role eq 'admin'}
+<p style="color:green">Guest or Admin (role = {$role})</p>
+{/if}
+
+<h2>String Comparison</h2>
+<pre>{open}if $name eq 'Alice'{close}
+  Hello Alice!
+{open}/if{close}</pre>
+{if $name eq 'Alice'}
+<p>Hello Alice!</p>
+{/if}

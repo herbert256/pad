@@ -1,42 +1,50 @@
 <p>
-  The <code>sandbox</code> tag executes PHP code in an isolated sandbox environment.
+  The <code>sandbox</code> tag creates an isolated execution scope.
 </p>
 <h2>
-  Syntax
+  Basic Sandbox
 </h2>
-<pre>{sandbox 'phpfile'}</pre>
-<h2>
-  How It Works
-</h2>
+<pre>{set $value = 'original'}
+{sandbox}
+  {set $value = 'modified'}
+  Inside: {$value}
+{/sandbox}
+Outside: {$value}</pre>
 <p>
-  The sandbox tag:
+  Inside sandbox: modified
 </p>
-<ol>
-  <li>Creates an isolated execution environment
-  </li>
-  <li>Executes the specified PHP file
-  </li>
-  <li>Limits access to prevent security issues
-  </li>
-</ol>
+<p>
+  Outside sandbox: modified (unchanged)
+</p>
 <h2>
-  Comparison: sandbox vs code
+  Sandbox vs Code
 </h2>
-<table>
+<table border="1" cellpadding="5">
   <tr>
     <th>
       Feature
     </th>
     <th>
-      sandbox
+      {code}
     </th>
     <th>
-      code
+      {sandbox}
     </th>
   </tr>
   <tr>
     <td>
-      Isolated environment
+      Variable isolation
+    </td>
+    <td>
+      No (shares scope)
+    </td>
+    <td>
+      Yes (isolated)
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Changes propagate
     </td>
     <td>
       Yes
@@ -45,63 +53,17 @@
       No
     </td>
   </tr>
-  <tr>
-    <td>
-      Variable access
-    </td>
-    <td>
-      Limited
-    </td>
-    <td>
-      Full
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Security
-    </td>
-    <td>
-      Higher
-    </td>
-    <td>
-      Standard
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Use case
-    </td>
-    <td>
-      Untrusted code
-    </td>
-    <td>
-      Trusted code
-    </td>
-  </tr>
 </table>
 <h2>
-  Use Cases
+  Use Case: Safe Execution
 </h2>
-<ul>
-  <li>Execute user-provided code safely
-  </li>
-  <li>Run plugins or extensions
-  </li>
-  <li>Test code in isolation
-  </li>
-  <li>Limit side effects of code execution
-  </li>
-</ul>
-<h2>
-  Example
-</h2>
-<pre>{sandbox 'plugin'}</pre>
+<pre>{sandbox}
+  {!-- Code here cannot affect parent scope --}
+  {set $temp = 'anything'}
+{/sandbox}</pre>
 <p>
-  This would execute plugin.php in a sandboxed environment, limiting its access to system resources.
+  Temp inside: temporary value
 </p>
-<h2>
-  Note
-</h2>
 <p>
-  Use sandbox when executing code that may not be fully trusted or when you want to prevent unintended side effects on the main application state.
+  Temp outside: [temporary value] (empty - not defined outside sandbox)
 </p>

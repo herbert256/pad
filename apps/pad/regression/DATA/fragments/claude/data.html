@@ -1,0 +1,104 @@
+<p>
+  The <code>data</code> tag defines inline data for iteration.
+</p>
+<h2>
+  JSON Array
+</h2>
+<pre>{data 'colors'}
+  [ "red", "green", "blue" ]
+{/data}
+
+{colors}
+  {$colors}
+{/colors}</pre>
+<ul>
+  <li>red
+  </li>
+  <li>green
+  </li>
+  <li>blue
+  </li>
+</ul>
+<h2>
+  JSON Objects
+</h2>
+<pre>{data 'products'}
+  [
+    { "name": "Apple", "price": 1.50 },
+    { "name": "Banana", "price": 0.75 }
+  ]
+{/data}
+
+{products}
+  {$name}: ${$price}
+{/products}</pre>
+<ul>
+  <li>Apple: $1.5
+  </li>
+  <li>Banana: $0.75
+  </li>
+</ul>
+<h2>
+  Tuple/List Syntax
+</h2>
+<pre>{data 'items'}
+  ( 'one', 'two', 'three' )
+{/data}</pre>
+<ul>
+  <li>one
+  </li>
+  <li>two
+  </li>
+  <li>three
+  </li>
+</ul>
+<h2>
+  PHP Array Iteration
+</h2>
+<p>
+  Using $users from PHP:
+</p>
+<pre>{users}
+  {$name} ({$role})
+{/users}</pre>
+<ul>
+  <li>Alice (admin)
+  </li>
+  <li>Bob (user)
+  </li>
+  <li>Carol (user)
+  </li>
+</ul>
+<h2>
+  Iteration Properties
+</h2>
+<pre>{users}
+  {first}&lt;ul&gt;{/first}
+  &lt;li&gt;#{&amp;current}: {$name}{/li&gt;
+  {last}&lt;/ul&gt;{/last}
+{/users}</pre>
+<ul>
+  <li>#1 of 3: Alice
+  </li>
+  <li>#2 of 3: Bob
+  </li>
+  <li>#3 of 3: Carol
+  </li>
+</ul>
+<h2>
+  Even/Odd Rows
+</h2>
+<pre>{users}
+  &lt;div style="background:{even}#e0e0e0{/even}{odd}#f0f0f0{/odd}"&gt;
+    {$name}
+  &lt;/div&gt;
+{/users}</pre>
+<div style="background:#f0f0f0; padding:3px;">
+  Alice
+</div>
+<div style="background:#e0e0e0; padding:3px;">
+  Bob
+</div>
+<div style="background:#f0f0f0; padding:3px;">
+  Carol
+</div>

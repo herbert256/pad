@@ -1,0 +1,19 @@
+<p>The <code>pull</code> tag extracts a value from a sequence/iteration.</p>
+
+<h2>Basic Pull</h2>
+<pre>{open}data 'numbers'{close}
+  [1, 2, 3, 4, 5]
+{open}/data{close}
+
+{open}pull 'numbers'{close} {open}!-- gets first value --{close}</pre>
+{data 'numbers'}
+  [1, 2, 3, 4, 5]
+{/data}
+<p>First value: {pull 'numbers'}</p>
+
+<h2>Pull at Position</h2>
+<pre>{open}pull 'numbers', 3{close} {open}!-- gets 3rd value --{close}</pre>
+<p>Third value: {pull 'numbers', 3}</p>
+
+<h2>Note</h2>
+<p>The pull tag is useful for extracting specific values from data without full iteration.</p>

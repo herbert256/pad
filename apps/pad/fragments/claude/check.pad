@@ -1,0 +1,34 @@
+<p>The <code>check</code> tag checks if a record exists.</p>
+
+<h2>Syntax</h2>
+<pre>{open}check "table where condition"{close}
+  Record exists
+{open}else{close}
+  Record not found
+{open}/check{close}</pre>
+
+<h2>Example: User Exists</h2>
+<pre>{open}check "users where username = 'admin'"{close}
+  &lt;p&gt;Admin user exists&lt;/p&gt;
+{open}else{close}
+  &lt;p&gt;Admin user not found&lt;/p&gt;
+{open}/check{close}</pre>
+
+<h2>PHP Variable Method</h2>
+<pre>// In PHP:
+$hasAdmin = db("check users where username = 'admin'");
+
+// In template:
+{open}if $hasAdmin{close}
+  Admin exists
+{open}/if{close}</pre>
+
+<h2>Use Cases</h2>
+<ul>
+  <li>Validate before insert (check duplicates)</li>
+  <li>Authorization checks</li>
+  <li>Feature availability</li>
+</ul>
+
+<h2>Note</h2>
+<p>More efficient than {open}record{close} when you only need to know if data exists.</p>

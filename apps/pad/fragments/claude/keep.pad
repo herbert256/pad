@@ -1,0 +1,26 @@
+<p>The <code>keep</code> tag marks an item to keep in filtered results.</p>
+
+<h2>Keep Syntax</h2>
+<pre>{open}items filter{close}
+  {open}if $value gt 10{close}
+    {open}keep{close}
+  {open}/if{close}
+{open}/items{close}</pre>
+
+<h2>Filter Example</h2>
+{data 'values'}
+  [5, 15, 8, 20, 3, 12]
+{/data}
+<pre>{open}data 'values'{close}[5, 15, 8, 20, 3, 12]{open}/data{close}
+{open}values{close}
+  {open}if $values gt 10{close}{open}keep{close}{open}/if{close}
+  {open}$values{close}
+{open}/values{close}</pre>
+<p>All values:
+{values}
+  {$values}
+{/values}
+</p>
+
+<h2>Note</h2>
+<p>The keep tag is used with filter options to build filtered result sets.</p>

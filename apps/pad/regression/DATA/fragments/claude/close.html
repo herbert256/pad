@@ -1,5 +1,5 @@
 <p>
-  The <code>close</code> tag outputs the closing brace character.
+  The <code>close</code> tag outputs a literal closing brace.
 </p>
 <h2>
   Basic Usage
@@ -9,89 +9,23 @@
   Result: }
 </p>
 <h2>
-  Combine with Open
+  Combined with Open
 </h2>
-<pre>{open}content{close}</pre>
+<pre>{open}tagname{close}</pre>
 <p>
-  Result: {content}
-</p>
-<h2>
-  Empty Braces
-</h2>
-<pre>{open}{close}</pre>
-<p>
-  Result: {}
+  Result: {tagname}
 </p>
 <h2>
   JSON-like Output
 </h2>
-<pre>{open}"name": "value"{close}</pre>
+<pre>{open} "key": "value" {close}</pre>
 <p>
-  Result: {"name": "value"}
+  Result: { "key": "value" }
 </p>
 <h2>
-  Practical Examples
+  Nested Braces
 </h2>
-<table>
-  <tr>
-    <th>
-      Description
-    </th>
-    <th>
-      Code
-    </th>
-    <th>
-      Result
-    </th>
-  </tr>
-  <tr>
-    <td>
-      Variable
-    </td>
-    <td>
-      {open}$var{close}
-    </td>
-    <td>
-      {$var}
-    </td>
-  </tr>
-  <tr>
-    <td>
-      If tag
-    </td>
-    <td>
-      {open}if{close}
-    </td>
-    <td>
-      {if}
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Close tag
-    </td>
-    <td>
-      {open}/if{close}
-    </td>
-    <td>
-      {/if}
-    </td>
-  </tr>
-  <tr>
-    <td>
-      With param
-    </td>
-    <td>
-      {open}set x=1{close}
-    </td>
-    <td>
-      {set x=1}
-    </td>
-  </tr>
-</table>
-<h2>
-  Note
-</h2>
+<pre>{open}{open} inner {close}{close}</pre>
 <p>
-  The <code>open</code> and <code>close</code> tags are essential for documenting PAD syntax. Without them, the template engine would try to process the example code.
+  Result: {{ inner }}
 </p>

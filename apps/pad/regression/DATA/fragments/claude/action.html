@@ -1,81 +1,37 @@
 <p>
-  The <code>action</code> tag executes a sequence action.
+  The <code>action</code> tag handles form actions.
 </p>
 <h2>
   Syntax
 </h2>
-<pre>{action 'action_name'}</pre>
+<pre>{action 'submit'}
+  {!-- Executes when action=submit --}
+  Form submitted!
+{/action}</pre>
 <h2>
-  What Are Actions?
+  Form Example
 </h2>
-<p>
-  Actions are predefined operations within the PAD sequence system. They allow you to trigger specific behaviors during sequence processing.
-</p>
+<pre>&lt;form method="post"&gt;
+  &lt;input type="hidden" name="action" value="save"&gt;
+  &lt;button type="submit"&gt;Save&lt;/button&gt;
+&lt;/form&gt;
+
+{action 'save'}
+  Data saved!
+{/action}</pre>
 <h2>
-  Example Usage
+  Multiple Actions
 </h2>
-<pre>{action 'process'}</pre>
-<p>
-  This would execute the 'process' action defined in the sequence system.
-</p>
-<h2>
-  Common Actions
-</h2>
-<table>
-  <tr>
-    <th>
-      Action
-    </th>
-    <th>
-      Description
-    </th>
-  </tr>
-  <tr>
-    <td>
-      process
-    </td>
-    <td>
-      Process sequence data
-    </td>
-  </tr>
-  <tr>
-    <td>
-      filter
-    </td>
-    <td>
-      Apply filters to data
-    </td>
-  </tr>
-  <tr>
-    <td>
-      transform
-    </td>
-    <td>
-      Transform data values
-    </td>
-  </tr>
-</table>
-<h2>
-  Use with Sequences
-</h2>
-<pre>{sequence '1..10'}
-  {action 'validate'}
-  {$value}
-{/sequence}</pre>
-<h2>
-  Use Cases
-</h2>
-<ul>
-  <li>Trigger sequence operations
-  </li>
-  <li>Execute predefined data transformations
-  </li>
-  <li>Call sequence system hooks
-  </li>
-</ul>
+<pre>{action 'create'}
+  Creating...
+{/action}
+
+{action 'delete'}
+  Deleting...
+{/action}</pre>
 <h2>
   Note
 </h2>
 <p>
-  The action tag is part of PAD's sequence subsystem. Actions must be defined within the sequence system to be executed.
+  Actions are triggered by POST requests with matching action parameter.
 </p>

@@ -1,93 +1,33 @@
 <p>
-  The <code>true</code> tag returns the boolean TRUE value.
+  The <code>true</code> tag always executes its content (condition always true).
 </p>
 <h2>
-  Basic Usage
+  Basic True
 </h2>
-<pre>{true}</pre>
+<pre>{true}
+  This always displays
+{/true}</pre>
+<p style="color:green">
+  This always displays
+</p>
+<h2>
+  True with Else
+</h2>
+<pre>{true}
+  True branch
+{else}
+  Never shown
+{/true}</pre>
 <p>
-  Result:
+  True branch (else never executes)
 </p>
 <h2>
-  In Conditions
+  Nested True for Scoping
 </h2>
-<pre>{if {true} eq TRUE}
-  This is shown because true equals TRUE
-{/if}</pre>
-<h2>
-  Set Variable to True
-</h2>
-<pre>{set isActive={true}}
-{if $isActive eq TRUE}Active{else}Inactive{/if}</pre>
+<pre>{true}
+  {set $local = 'inner value'}
+  Inside: {$local}
+{/true}</pre>
 <p>
-  Status: Inactive
+  Inside: inner value
 </p>
-<h2>
-  Compare with FALSE
-</h2>
-<pre>{if {true} ne FALSE}
-  TRUE is not equal to FALSE
-{/if}</pre>
-<h2>
-  Boolean Values Table
-</h2>
-<table>
-  <tr>
-    <th>
-      Tag
-    </th>
-    <th>
-      Value
-    </th>
-    <th>
-      Type
-    </th>
-  </tr>
-  <tr>
-    <td>
-      {true}
-    </td>
-    <td></td>
-    <td>
-      Boolean
-    </td>
-  </tr>
-  <tr>
-    <td>
-      {false}
-    </td>
-    <td></td>
-    <td>
-      Boolean
-    </td>
-  </tr>
-  <tr>
-    <td>
-      TRUE (literal)
-    </td>
-    <td>
-      TRUE
-    </td>
-    <td>
-      Boolean
-    </td>
-  </tr>
-  <tr>
-    <td>
-      FALSE (literal)
-    </td>
-    <td>
-      FALSE
-    </td>
-    <td>
-      Boolean
-    </td>
-  </tr>
-</table>
-<h2>
-  Use Case: Default Value
-</h2>
-<pre>{set showHeader={true}}
-{if $showHeader eq TRUE}
-  &lt;header&gt;Header Content&lt;/header&gt;
-{/if}</pre>

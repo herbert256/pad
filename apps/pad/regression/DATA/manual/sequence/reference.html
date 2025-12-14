@@ -1,0 +1,15 @@
+<div id="padAjaxU0Wc2cEJ"></div>
+<script>
+  padAjaxU0Wc2cEJ = new XMLHttpRequest();
+  padAjaxU0Wc2cEJ.onreadystatechange=function() {
+    if (padAjaxU0Wc2cEJ.readyState === 4) {
+      if (padAjaxU0Wc2cEJ.status === 200) {
+        document.getElementById("padAjaxU0Wc2cEJ").innerHTML=padAjaxU0Wc2cEJ.responseText;
+      } else {
+        document.getElementById("padAjaxU0Wc2cEJ").innerHTML=padAjaxU0Wc2cEJ.statusText;
+      }
+    }
+  }
+  padAjaxU0Wc2cEJ.open("GET","http://penguin.linux.test/?reference&padInclude&sequence=1&padSesID=AXwMjQLq&padReqID=WU0KZn1b",true);
+  padAjaxU0Wc2cEJ.send();
+</script>

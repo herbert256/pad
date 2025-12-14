@@ -1,0 +1,90 @@
+<p>
+  The <code>increment</code> tag adds 1 to a variable.
+</p>
+<h2>
+  Basic Increment
+</h2>
+<pre>{set $counter = 0}
+Counter: {$counter}
+{increment $counter}
+Counter: {$counter}
+{increment $counter}
+Counter: {$counter}</pre>
+<ul>
+  <li>Counter: 0
+  </li>
+  <li>Counter: 1
+  </li>
+  <li>Counter: 2
+  </li>
+</ul>
+<h2>
+  Increment in Loop
+</h2>
+<pre>{set $i = 1}
+{while $i le 5}
+  {$i}
+  {increment $i}
+{/while}</pre>
+<p>
+  1 2 3 4 5
+</p>
+<h2>
+  Multiple Counters
+</h2>
+<pre>{set $a = 0}
+{set $b = 10}
+Loop:
+  a={$a}, b={$b}
+  {increment $a}
+  {decrement $b}</pre>
+<table border="1">
+  <tr>
+    <th>
+      a
+    </th>
+    <th>
+      b
+    </th>
+  </tr>
+  <tr>
+    <td>
+      0
+    </td>
+    <td>
+      10
+    </td>
+  </tr>
+  <tr>
+    <td>
+      1
+    </td>
+    <td>
+      9
+    </td>
+  </tr>
+  <tr>
+    <td>
+      2
+    </td>
+    <td>
+      8
+    </td>
+  </tr>
+  <tr>
+    <td>
+      3
+    </td>
+    <td>
+      7
+    </td>
+  </tr>
+  <tr>
+    <td>
+      4
+    </td>
+    <td>
+      6
+    </td>
+  </tr>
+</table>

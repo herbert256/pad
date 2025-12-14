@@ -4,32 +4,13 @@
 <h2>
   Syntax
 </h2>
-<pre>{curl 'http://example.com'}</pre>
-<h2>
-  Basic GET Request
-</h2>
-<pre>{curl 'http://example.com/api/data'}</pre>
-<p>
-  Makes a GET request to the URL and returns the response.
-</p>
-<h2>
-  With Parameters
-</h2>
-<pre>{curl 'http://example.com/api', id=123, format='json'}</pre>
-<p>
-  Parameters are added to the query string.
-</p>
-<h2>
-  Self-Referencing URL
-</h2>
-<pre>{curl 'SELF://api/endpoint'}</pre>
-<p>
-  The <code>SELF://</code> prefix is replaced with the current host.
-</p>
+<pre>{curl 'https://api.example.com/data'}
+  {$response}
+{/curl}</pre>
 <h2>
   Options
 </h2>
-<table>
+<table border="1" cellpadding="5">
   <tr>
     <th>
       Option
@@ -37,14 +18,6 @@
     <th>
       Description
     </th>
-  </tr>
-  <tr>
-    <td>
-      url (first param)
-    </td>
-    <td>
-      The URL to request
-    </td>
   </tr>
   <tr>
     <td>
@@ -56,51 +29,38 @@
   </tr>
   <tr>
     <td>
-      data
+      headers
     </td>
     <td>
-      Request body data
+      Request headers
     </td>
   </tr>
   <tr>
     <td>
-      Additional params
+      data
     </td>
     <td>
-      Added to query string
+      POST data
+    </td>
+  </tr>
+  <tr>
+    <td>
+      timeout
+    </td>
+    <td>
+      Request timeout
     </td>
   </tr>
 </table>
 <h2>
-  Example: Fetch API Data
+  Example POST
 </h2>
-<pre>{curl 'https://api.example.com/users', limit=10}</pre>
-<h2>
-  Example: POST Request
-</h2>
-<pre>{curl 'https://api.example.com/submit', method='POST', data='payload'}</pre>
-<h2>
-  Error Handling
-</h2>
-<p>
-  The curl tag throws an error if the HTTP response is not 200 OK. Wrap in error handling if needed.
-</p>
-<h2>
-  Use Cases
-</h2>
-<ul>
-  <li>Fetch data from external APIs
-  </li>
-  <li>Internal service communication
-  </li>
-  <li>Webhook triggers
-  </li>
-  <li>Data synchronization
-  </li>
-</ul>
+<pre>{curl 'https://api.example.com/submit', method='POST', data='name=test'}
+  Response: {$body}
+{/curl}</pre>
 <h2>
   Note
 </h2>
 <p>
-  The curl tag is for server-side HTTP requests. For client-side requests, use JavaScript/AJAX.
+  The curl tag requires network access. Examples here are documentation only.
 </p>

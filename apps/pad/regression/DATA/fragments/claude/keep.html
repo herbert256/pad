@@ -1,85 +1,28 @@
 <p>
-  The <code>keep</code> tag marks values to keep during sequence filtering.
+  The <code>keep</code> tag marks an item to keep in filtered results.
 </p>
 <h2>
-  Basic Keep
+  Keep Syntax
 </h2>
-<pre>{sequence '1..10'}
-  {if $value &gt; 5}{keep}{/if}
-{/sequence}</pre>
-<p>
-  This marks values greater than 5 to be kept.
-</p>
-<h2>
-  Keep Even Numbers
-</h2>
-<pre>{sequence '1..10', push='nums'}
-  {if {echo $value % 2} eq 0}{keep}{/if}
-{/sequence}
-
-{pull 'nums', keep}{$value} {/pull}</pre>
-<p>
-  Keep only even numbers from 1-10.
-</p>
-<h2>
-  Keep with Condition
-</h2>
-<pre>{sequence '1..20'}
-  {if $value &gt;= 10}
-    {if $value &lt;= 15}
-      {keep}
-    {/if}
+<pre>{items filter}
+  {if $value gt 10}
+    {keep}
   {/if}
-{/sequence}</pre>
-<p>
-  Keep only values between 10 and 15.
-</p>
+{/items}</pre>
 <h2>
-  Keep vs Remove
+  Filter Example
 </h2>
-<table>
-  <tr>
-    <th>
-      Tag
-    </th>
-    <th>
-      Purpose
-    </th>
-  </tr>
-  <tr>
-    <td>
-      keep
-    </td>
-    <td>
-      Mark values to include
-    </td>
-  </tr>
-  <tr>
-    <td>
-      remove
-    </td>
-    <td>
-      Mark values to exclude
-    </td>
-  </tr>
-  <tr>
-    <td>
-      flag
-    </td>
-    <td>
-      Generic marker
-    </td>
-  </tr>
-</table>
-<h2>
-  Use Case
-</h2>
+<pre>{data 'values'}[5, 15, 8, 20, 3, 12]{/data}
+{values}
+  {if $values gt 10}{keep}{/if}
+  {$values}
+{/values}</pre>
 <p>
-  Use keep when you want to filter a sequence to only include values matching certain criteria. This is part of PAD's sequence filtering system.
+  All values: 5 15 8 20 3 12
 </p>
 <h2>
   Note
 </h2>
 <p>
-  The keep tag works during sequence iteration to mark which values should be retained when the sequence is pulled with the keep option.
+  The keep tag is used with filter options to build filtered result sets.
 </p>

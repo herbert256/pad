@@ -1,0 +1,51 @@
+<p>The <code>increment</code> tag adds 1 to a variable.</p>
+
+<h2>Basic Increment</h2>
+<pre>{open}set $counter = 0{close}
+Counter: {open}$counter{close}
+{open}increment $counter{close}
+Counter: {open}$counter{close}
+{open}increment $counter{close}
+Counter: {open}$counter{close}</pre>
+{set $counter = 0}
+<ul>
+  <li>Counter: {$counter}</li>
+  {increment $counter}
+  <li>Counter: {$counter}</li>
+  {increment $counter}
+  <li>Counter: {$counter}</li>
+</ul>
+
+<h2>Increment in Loop</h2>
+<pre>{open}set $i = 1{close}
+{open}while $i le 5{close}
+  {open}$i{close}
+  {open}increment $i{close}
+{open}/while{close}</pre>
+{set $i = 1}
+<p>
+{while $i le 5}
+{$i}
+{increment $i}
+{/while}
+</p>
+
+<h2>Multiple Counters</h2>
+{set $a = 0}
+{set $b = 10}
+<pre>{open}set $a = 0{close}
+{open}set $b = 10{close}
+Loop:
+  a={open}$a{close}, b={open}$b{close}
+  {open}increment $a{close}
+  {open}decrement $b{close}</pre>
+<table border="1">
+  <tr><th>a</th><th>b</th></tr>
+  {set $loop = 0}
+  {while $loop lt 5}
+    <tr><td>{$a}</td><td>{$b}</td></tr>
+    {increment $a}
+    {decrement $b}
+    {increment $loop}
+  {/while}
+</table>

@@ -1,118 +1,39 @@
 <p>
-  The <code>trace</code> tag enables detailed execution tracing.
+  The <code>trace</code> tag outputs execution trace information.
 </p>
 <h2>
   Syntax
 </h2>
-<pre>{trace}
-  Code to trace
-{/trace}</pre>
+<pre>{trace}</pre>
 <h2>
-  What It Does
+  What It Shows
 </h2>
 <p>
-  The trace tag enables PAD's tracing mode for the enclosed content. This records:
+  The trace tag displays:
 </p>
 <ul>
-  <li>Every tag processed
+  <li>Execution path through templates
   </li>
-  <li>Variable changes
+  <li>Tag processing order
   </li>
-  <li>Level transitions
+  <li>Variable state changes
   </li>
   <li>Timing information
   </li>
 </ul>
 <h2>
-  Example Usage
+  Enable Tracing
 </h2>
-<pre>{trace}
-  {set x=1}
-  {increment $x}
-  {$x}
-{/trace}</pre>
-<p>
-  This would trace each operation within the block.
-</p>
+<pre>In PHP: $padInfo = 'trace';</pre>
 <h2>
-  Trace Output
+  Inline Trace
 </h2>
-<p>
-  When tracing is enabled, PAD outputs detailed information about:
-</p>
-<table>
-  <tr>
-    <th>
-      Item
-    </th>
-    <th>
-      Description
-    </th>
-  </tr>
-  <tr>
-    <td>
-      Tag name
-    </td>
-    <td>
-      Which tag is being processed
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Parameters
-    </td>
-    <td>
-      Tag parameters and options
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Level
-    </td>
-    <td>
-      Current nesting level
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Result
-    </td>
-    <td>
-      What the tag returned
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Time
-    </td>
-    <td>
-      Processing duration
-    </td>
-  </tr>
-</table>
+<pre>{trace 'checkpoint 1'}
+... some code ...
+{trace 'checkpoint 2'}</pre>
 <h2>
-  Configuration
+  Note
 </h2>
 <p>
-  Tracing can also be enabled globally via config:
-</p>
-<pre>$padInfo = 'trace';</pre>
-<h2>
-  When to Use
-</h2>
-<ul>
-  <li>Understanding complex template execution
-  </li>
-  <li>Finding performance bottlenecks
-  </li>
-  <li>Debugging unexpected behavior
-  </li>
-  <li>Learning how PAD processes templates
-  </li>
-</ul>
-<h2>
-  Warning
-</h2>
-<p style="color:orange">
-  Tracing significantly impacts performance. Only use during development and debugging.
+  Useful for debugging complex template execution.
 </p>

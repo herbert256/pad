@@ -1,70 +1,38 @@
 <p>
-  The <code>record</code> tag executes a custom SQL query.
+  The <code>record</code> tag retrieves a single row from the database.
 </p>
 <h2>
   Syntax
 </h2>
-<pre>{record 'SQL query'}
-  {$fieldname}
+<pre>{record "columns from table where condition"}
+  {$column1} - {$column2}
 {/record}</pre>
 <h2>
-  Basic Query
+  Example: User Profile
 </h2>
-<pre>{record 'SELECT * FROM users WHERE active=1'}
-  &lt;li&gt;{$name}&lt;/li&gt;
-{/record}</pre>
-<p>
-  Executes the SQL and iterates over results.
-</p>
-<h2>
-  Join Query
-</h2>
-<pre>{record 'SELECT u.name, o.total FROM users u JOIN orders o ON u.id=o.user_id'}
-  {$name}: ${$total}
-{/record}</pre>
-<p>
-  Execute join queries to combine data from multiple tables.
-</p>
-<h2>
-  Aggregate Query
-</h2>
-<pre>{record 'SELECT COUNT(*) as count, SUM(total) as sum FROM orders'}
-  Orders: {$count}, Total: ${$sum}
-{/record}</pre>
-<p>
-  Execute aggregate functions like COUNT, SUM, AVG.
-</p>
-<h2>
-  With Variables
-</h2>
-<pre>{record 'SELECT * FROM orders WHERE user_id=$userId'}
-  Order #{$id}: ${$total}
-{/record}</pre>
-<p>
-  Use PAD variables in SQL queries.
-</p>
-<h2>
-  Example: Complex Report
-</h2>
-<pre>{record 'SELECT
-    p.name as product,
-    SUM(oi.quantity) as sold,
-    SUM(oi.quantity * oi.price) as revenue
-  FROM order_items oi
-  JOIN products p ON oi.product_id = p.id
-  GROUP BY p.id
-  ORDER BY revenue DESC
-  LIMIT 10'}
-  &lt;tr&gt;
-    &lt;td&gt;{$product}&lt;/td&gt;
-    &lt;td&gt;{$sold}&lt;/td&gt;
-    &lt;td&gt;${$revenue}&lt;/td&gt;
-  &lt;/tr&gt;
+<pre>{record "* from users where id = 1"}
+  &lt;h2&gt;{$name}&lt;/h2&gt;
+  &lt;p&gt;Email: {$email}&lt;/p&gt;
+  &lt;p&gt;Role: {$role}&lt;/p&gt;
+{else}
+  &lt;p&gt;User not found&lt;/p&gt;
 {/record}</pre>
 <h2>
-  Comparison: field vs array vs record
+  PHP Variable Method
 </h2>
-<table>
+<pre>// In PHP:
+$user = db("record * from users where id = 1");
+
+// In template:
+{user}
+  Name: {$name}
+{else}
+  Not found
+{/user}</pre>
+<h2>
+  Record vs Array
+</h2>
+<table border="1" cellpadding="5">
   <tr>
     <th>
       Tag
@@ -78,47 +46,24 @@
   </tr>
   <tr>
     <td>
-      field
+      {record}
     </td>
     <td>
-      Single value
+      First row only
     </td>
     <td>
-      Lookup one field
-    </td>
-  </tr>
-  <tr>
-    <td>
-      array
-    </td>
-    <td>
-      Table rows
-    </td>
-    <td>
-      Simple table queries
+      Single item lookup
     </td>
   </tr>
   <tr>
     <td>
-      record
+      {array}
     </td>
     <td>
-      Query results
+      All matching rows
     </td>
     <td>
-      Custom SQL, joins, aggregates
+      Lists, tables
     </td>
   </tr>
 </table>
-<h2>
-  Security Note
-</h2>
-<p style="color:orange">
-  Be careful with SQL injection when using variables in queries. PAD handles basic escaping, but always validate user input.
-</p>
-<h2>
-  Note
-</h2>
-<p>
-  Database queries require a configured database connection. This demo page does not execute live queries.
-</p>

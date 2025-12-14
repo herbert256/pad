@@ -1,59 +1,21 @@
 <p>
-  The <code>if</code> tag provides conditional execution based on expression evaluation.
+  The <code>if</code> tag provides conditional execution.
 </p>
 <h2>
-  Basic If
+  Basic If/Else
 </h2>
-<pre>{if $count &gt; 0}Has items{/if}</pre>
-<p>
-  Result: Has items
-</p>
-<h2>
-  If with Else
-</h2>
-<pre>{if $count eq 0}Empty{else}Has 5 items{/if}</pre>
-<p>
-  Result: Has 5 items
-</p>
-<h2>
-  If-Elseif-Else Chain
-</h2>
-<pre>{if $age &lt; 18}Minor{elseif $age &lt; 65}Adult{else}Senior{/if}</pre>
-<p>
-  Result: Adult
-</p>
-<h2>
-  String Comparison
-</h2>
-<pre>{if $name eq 'Alice'}Hello Alice!{/if}</pre>
-<p>
-  Result: Hello Alice!
-</p>
-<h2>
-  Not Equal
-</h2>
-<pre>{if $name ne 'Bob'}You are not Bob{/if}</pre>
-<p>
-  Result: You are not Bob
-</p>
-<h2>
-  Boolean Check
-</h2>
-<pre>{if $isActive eq TRUE}Active{else}Inactive{/if}</pre>
-<p>
-  Result: Active
-</p>
-<h2>
-  Nested If
-</h2>
-<pre>{if $count &gt; 0}{if $name eq 'Alice'}Alice has 5 items{/if}{/if}</pre>
-<p>
-  Result: Alice has 5 items
+<pre>{if $count gt 0}
+  Has items
+{else}
+  Empty
+{/if}</pre>
+<p style="color:green">
+  Has items (count = 5)
 </p>
 <h2>
   Comparison Operators
 </h2>
-<table>
+<table border="1" cellpadding="5">
   <tr>
     <th>
       Operator
@@ -76,7 +38,7 @@
       Equal
     </td>
     <td>
-      $count eq 5
+      5 eq 5
     </td>
     <td>
       true
@@ -90,7 +52,7 @@
       Not equal
     </td>
     <td>
-      $count ne 0
+      5 ne 3
     </td>
     <td>
       true
@@ -104,7 +66,7 @@
       Greater than
     </td>
     <td>
-      $count gt 3
+      5 gt 3
     </td>
     <td>
       true
@@ -118,7 +80,7 @@
       Less than
     </td>
     <td>
-      $count lt 10
+      3 lt 5
     </td>
     <td>
       true
@@ -132,7 +94,7 @@
       Greater or equal
     </td>
     <td>
-      $count ge 5
+      5 ge 5
     </td>
     <td>
       true
@@ -146,10 +108,49 @@
       Less or equal
     </td>
     <td>
-      $count le 5
+      5 le 5
     </td>
     <td>
       true
     </td>
   </tr>
 </table>
+<h2>
+  If/Elseif/Else
+</h2>
+<pre>{if $score ge 90}
+  Grade: A
+{elseif $score ge 80}
+  Grade: B
+{elseif $score ge 70}
+  Grade: C
+{else}
+  Grade: F
+{/if}</pre>
+<p>
+  Grade: B (score = 85)
+</p>
+<h2>
+  Logical Operators
+</h2>
+<pre>{if $role eq 'admin' and $count gt 0}
+  Admin with items
+{/if}</pre>
+<p style="color:green">
+  Admin with items
+</p>
+<pre>{if $role eq 'guest' or $role eq 'admin'}
+  Guest or Admin
+{/if}</pre>
+<p style="color:green">
+  Guest or Admin (role = admin)
+</p>
+<h2>
+  String Comparison
+</h2>
+<pre>{if $name eq 'Alice'}
+  Hello Alice!
+{/if}</pre>
+<p>
+  Hello Alice!
+</p>

@@ -1,0 +1,36 @@
+<p>The <code>continue</code> tag skips to the next iteration in sequences.</p>
+
+<h2>Skip Even Numbers</h2>
+<pre>{open}sequence 10, name='n'{close}
+  {open}if $n mod 2 eq 0{close}
+    {open}continue{close}
+  {open}/if{close}
+  {open}$n{close}
+{open}/sequence{close}</pre>
+<p>Odd numbers only:
+{sequence 10, name='n'}
+  {if $n mod 2 eq 0}
+    {continue}
+  {/if}
+  {$n}
+{/sequence}
+</p>
+
+<h2>Skip Numbers Greater Than 5</h2>
+<pre>{open}sequence 10, name='i'{close}
+  {open}if $i gt 5{close}
+    {open}continue{close}
+  {open}/if{close}
+  {open}$i{close}
+{open}/sequence{close}</pre>
+<p>Numbers 1-5 only:
+{sequence 10, name='i'}
+  {if $i gt 5}
+    {continue}
+  {/if}
+  {$i}
+{/sequence}
+</p>
+
+<h2>Note</h2>
+<p>The continue tag is used within sequence iterations to skip specific values.</p>

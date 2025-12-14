@@ -1,0 +1,19 @@
+<p>The <code>restart</code> tag restarts page processing.</p>
+
+<h2>Syntax</h2>
+<pre>{open}restart{close}</pre>
+
+<h2>Use Case</h2>
+<pre>{open}action 'process'{close}
+  {open}!-- Process data --{close}
+  {open}set $message = 'Done!'{close}
+  {open}restart{close}  {open}!-- Restart to show message --{close}
+{open}/action{close}
+
+{open}if $message{close}
+  {open}$message{close}
+{open}/if{close}</pre>
+
+<h2>Note</h2>
+<p>Restart re-executes the page from the beginning with current state.</p>
+<p>Useful after form processing to show updated data.</p>

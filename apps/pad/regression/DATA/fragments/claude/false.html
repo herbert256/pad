@@ -1,62 +1,33 @@
 <p>
-  The <code>false</code> tag returns the boolean FALSE value.
+  The <code>false</code> tag never executes its content (condition always false).
 </p>
 <h2>
-  Basic Usage
+  Basic False
 </h2>
-<pre>{false}</pre>
+<pre>{false}
+  This never displays
+{/false}</pre>
 <p>
-  Result:
+  (Nothing shown above)
 </p>
 <h2>
-  In Conditions
+  False with Else
 </h2>
-<pre>{if {false} eq FALSE}
-  This is shown because false equals FALSE
-{/if}</pre>
-<p style="color:green">
-  This is shown because false equals FALSE
-</p>
-<h2>
-  Negative Condition
-</h2>
-<pre>{if {false} eq TRUE}
-  Not shown
+<pre>{false}
+  Never shown
 {else}
-  False is not TRUE
-{/if}</pre>
-<p>
-  False is not TRUE
+  Always shown
+{/false}</pre>
+<p style="color:green">
+  Always shown (else always executes)
 </p>
 <h2>
-  Set Variable to False
+  Use Case: Disabled Code
 </h2>
-<pre>{set isDisabled={false}}
-{if $isDisabled eq FALSE}Enabled{else}Disabled{/if}</pre>
+<pre>{false}
+  {dump}
+  Old debug code that's disabled
+{/false}</pre>
 <p>
-  Status: Enabled
-</p>
-<h2>
-  Toggle Example
-</h2>
-<pre>{set flag={true}}
-Flag is: {if $flag eq TRUE}ON{else}OFF{/if}
-
-{set flag={false}}
-Flag is: {if $flag eq TRUE}ON{else}OFF{/if}</pre>
-<p>
-  Flag is: OFF
-</p>
-<p>
-  Flag is: OFF
-</p>
-<h2>
-  Use Case: Feature Flag
-</h2>
-<pre>{set showBetaFeature={false}}
-{if $showBetaFeature eq TRUE}
-  &lt;div&gt;Beta Feature Here&lt;/div&gt;
-{/if}</pre>
-<p>
-  Beta feature is hidden (set to false)
+  (Debug code above is disabled)
 </p>

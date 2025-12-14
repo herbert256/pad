@@ -1,0 +1,26 @@
+<p>
+  The <code>flag</code> tag sets a flag during iteration.
+</p>
+<h2>
+  Basic Flag
+</h2>
+<pre>{sequence 5, name='i'}
+  {if $i eq 3}
+    {flag 'found'}
+  {/if}
+{/sequence}
+{if $found}Found 3!{/if}</pre>
+<h2>
+  Flag for Detection
+</h2>
+<p>
+  Flags are useful to detect if a condition was met during iteration.
+</p>
+<pre>{items}
+  {if $status eq 'error'}
+    {flag 'hasErrors'}
+  {/if}
+{/items}
+{if $hasErrors}
+  Warning: Errors detected!
+{/if}</pre>
