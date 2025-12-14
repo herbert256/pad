@@ -17,25 +17,22 @@
   }
 
   // Handle form submission
-  if ( $_SERVER ['REQUEST_METHOD'] == 'POST' && isset ( $_POST ['action'] ) ) {
+  if ( $_SERVER['REQUEST_METHOD'] == 'POST' && $action == 'add' ) {
+    $name    = trim ( $name    ?? '' );
+    $comment = trim ( $comment ?? '' );
 
-    if ( $_POST ['action'] == 'add' ) {
-      $name    = trim ( $_POST ['name']    ?? '' );
-      $comment = trim ( $_POST ['comment'] ?? '' );
-
-      if ( $name && $comment ) {
-        $entry = [
-          'name'    => htmlspecialchars ( $name ),
-          'comment' => htmlspecialchars ( $comment ),
-          'date'    => date ( 'Y-m-d H:i:s' )
-        ];
-        array_unshift ( $entries, $entry );
-        file_put_contents ( $dataFile, json_encode ( $entries, JSON_PRETTY_PRINT ) );
-        $message = 'Thank you for signing the guestbook!';
-      }
-      else
-        $error = 'Please fill in both name and message.';
+    if ( $name && $comment ) {
+      $entry = [
+        'name'    => htmlspecialchars ( $name ),
+        'comment' => htmlspecialchars ( $comment ),
+        'date'    => date ( 'Y-m-d H:i:s' )
+      ];
+      array_unshift ( $entries, $entry );
+      file_put_contents ( $dataFile, json_encode ( $entries, JSON_PRETTY_PRINT ) );
+      $message = 'Thank you for signing the guestbook!';
     }
+    else
+      $error = 'Please fill in both name and message.';
   }
 
   $hasEntries = count ( $entries ) > 0;

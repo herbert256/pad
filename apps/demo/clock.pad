@@ -3,8 +3,8 @@
 <h2>Current Time</h2>
 
 <div class="counter" style="font-size: 36px;">
-  {$currentDate}<br>
-  {$time12h}
+  {clock 'l, F j, Y'}<br>
+  {clock 'g:i:s A'}
 </div>
 
 <h2>Time Formats</h2>
@@ -16,23 +16,23 @@
   </tr>
   <tr>
     <td>12-hour format</td>
-    <td>{$time12h}</td>
+    <td>{clock 'g:i:s A'}</td>
   </tr>
   <tr>
     <td>24-hour format</td>
-    <td>{$time24h}</td>
+    <td>{clock 'H:i:s'}</td>
   </tr>
   <tr>
     <td>ISO 8601</td>
-    <td>{$iso8601}</td>
+    <td>{clock 'c'}</td>
   </tr>
   <tr>
     <td>RFC 2822</td>
-    <td>{$rfc2822}</td>
+    <td>{clock 'r'}</td>
   </tr>
   <tr>
     <td>Unix Timestamp</td>
-    <td>{$timestamp}</td>
+    <td>{clock 'U'}</td>
   </tr>
 </table>
 
@@ -45,38 +45,38 @@
   </tr>
   <tr>
     <td>Day of Week</td>
-    <td>{$dayOfWeek}</td>
+    <td>{clock 'l'}</td>
   </tr>
   <tr>
     <td>Month</td>
-    <td>{$monthName}</td>
+    <td>{clock 'F'}</td>
   </tr>
   <tr>
     <td>Year</td>
-    <td>{$year}</td>
+    <td>{clock 'Y'}</td>
   </tr>
   <tr>
     <td>Day of Year</td>
-    <td>{$dayOfYear} of {$daysInYear}</td>
+    <td>{clock 'z' | + 1} of {if {clock 'L'} eq 1}366{else}365{/if}</td>
   </tr>
   <tr>
     <td>Week of Year</td>
-    <td>{$weekOfYear}</td>
+    <td>{clock 'W'}</td>
   </tr>
   <tr>
     <td>Days in This Month</td>
-    <td>{$daysInMonth}</td>
+    <td>{clock 't'}</td>
   </tr>
   <tr>
     <td>Days Remaining in Year</td>
-    <td>{$daysRemaining}</td>
+    <td>{if {clock 'L'} eq 1}{echo 365 - {clock 'z'}}{else}{echo 364 - {clock 'z'}}{/if}</td>
   </tr>
   <tr>
     <td>Leap Year</td>
-    <td>{$isLeapYear}</td>
+    <td>{if {clock 'L'} eq 1}Yes{else}No{/if}</td>
   </tr>
   <tr>
     <td>Timezone</td>
-    <td>{$timezone}</td>
+    <td>{date_default_timezone_get}</td>
   </tr>
 </table>

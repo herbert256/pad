@@ -268,3 +268,129 @@ Key references:
 - Thin dispatcher pattern (most files route to subsystems)
 - Output buffering for flexible content handling
 - Files prefixed with `_` are auto-discovered by the framework
+
+## Template Syntax Details
+
+### Pipe Arithmetic
+Arithmetic pipes require a space between the operator and operand:
+```
+{$value | + 1}          # Correct - adds 1
+{$value | +1}           # Wrong - won't work
+{$value | * 2}          # Correct - multiplies by 2
+```
+
+### If/Else Syntax
+Conditionals must use comparison operators (`eq`, `ne`, `gt`, `lt`, `ge`, `le`, `==`, `!=`, etc.):
+```
+{if $count eq 0}Empty{/if}              # Correct
+{if {clock 'L'} eq 1}Leap year{/if}     # Correct - nested tag as value
+{if $flag}True{/if}                      # Wrong - needs comparison
+```
+
+### Expression Evaluation
+To evaluate arithmetic expressions, use `{echo expression}`:
+```
+{echo 365 - {clock 'z'}}                # Evaluates: 365 - 347 = 18
+{echo $total * 1.1}                      # Evaluates multiplication
+{365 - {clock 'z'}}                      # Wrong - outputs literal "{365 - 347}"
+```
+
+### Calling PHP Functions
+PHP functions can be called directly as tags without custom wrappers:
+```
+{date_default_timezone_get}             # Calls PHP function directly
+{time}                                   # Returns Unix timestamp
+{rand 1 100}                            # Random number between 1-100
+```
+
+## Custom Tags
+
+### Creating Tags with Parameters
+Tags in `_tags/` receive parameters via `$padOpt[$pad]` array:
+- `$padOpt[$pad][0]` - The complete unparsed options string
+- `$padOpt[$pad][1]` - First parameter (already parsed/evaluated)
+- `$padOpt[$pad][2]` - Second parameter, etc.
+
+Named parameters are in `$padPrm[$pad]`:
+- `$padPrm[$pad]['format']` - Named parameter value
+
+**Example** (`_tags/clock.php`):
+```php
+<?php
+  // Usage: {clock 'H:i:s'} or {clock format='Y-m-d'}
+  $format = $padPrm[$pad]['format'] ?? $padOpt[$pad][1] ?? 'Y-m-d H:i:s';
+  return date($format);
+?>
+```
+
+### Data Files
+JSON/XML files in `_data/` become iterable tags:
+
+**File** (`_data/menu.json`):
+```json
+[
+  { "page": "index", "text": "Home" },
+  { "page": "about", "text": "About" }
+]
+```
+
+**Template**:
+```
+{menu}
+  <a href="?{$page}">{$text}</a>
+{/menu}
+```
+
+## Form Handling
+
+### Automatic Form Variables
+PAD automatically makes POST form fields available as PHP variables matching the field name:
+```html
+<form method="post">
+  <input name="username">    <!-- Available as $username -->
+  <input name="email">       <!-- Available as $email -->
+</form>
+```
+
+**Important:**
+- Variables are only populated on POST requests, not GET
+- Always check request method: `if ($_SERVER['REQUEST_METHOD'] == 'POST')`
+- Watch for naming conflicts with other variables (e.g., form field `message` vs success `$message`)
+
+**Example** (`contact.php`):
+```php
+<?php
+  $successMsg = '';  // Use different name to avoid conflict with form field
+  $formEmail = $email ?? '';  // Form field available as $email on POST
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST' && $action == 'send') {
+    // $email, $name, $message are available from form
+    // Process form...
+    $successMsg = 'Message sent!';
+  }
+?>
+```
+
+## Common Patterns
+
+### Dynamic Menu from JSON
+```
+{menu}
+  <a href="?{$page}"{if $padPage == $page} class="active"{/if}>{$text}</a>
+{/menu}
+```
+
+### Conditional Display with Nested Tags
+```
+{if {clock 'L'} eq 1}
+  366 days (leap year)
+{else}
+  365 days
+{/if}
+```
+
+### Calculated Values
+```
+Day {clock 'z' | + 1} of {if {clock 'L'} eq 1}366{else}365{/if}
+Days remaining: {if {clock 'L'} eq 1}{echo 365 - {clock 'z'}}{else}{echo 364 - {clock 'z'}}{/if}
+```

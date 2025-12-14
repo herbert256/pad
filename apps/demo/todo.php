@@ -16,47 +16,43 @@
   }
 
   // Handle form submissions
-  if ( $_SERVER ['REQUEST_METHOD'] == 'POST' && isset ( $_POST ['action'] ) ) {
+  if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) switch ( $action ?? '' ) {
 
-    switch ( $_POST ['action'] ) {
+    case 'add':
+      $task = trim ( $task ?? '' );
+      if ( $task ) {
+        $todos [] = [
+          'id'   => uniqid (),
+          'task' => htmlspecialchars ( $task ),
+          'done' => FALSE,
+          'date' => date ( 'Y-m-d H:i:s' )
+        ];
+        $message = 'Task added!';
+      }
+      break;
 
-      case 'add':
-        $task = trim ( $_POST ['task'] ?? '' );
-        if ( $task ) {
-          $todos [] = [
-            'id'   => uniqid (),
-            'task' => htmlspecialchars ( $task ),
-            'done' => FALSE,
-            'date' => date ( 'Y-m-d H:i:s' )
-          ];
-          $message = 'Task added!';
-        }
-        break;
+    case 'toggle':
+      foreach ( $todos as &$todo )
+        if ( $todo ['id'] == $id )
+          $todo ['done'] = ! $todo ['done'];
+      $message = 'Task updated!';
+      break;
 
-      case 'toggle':
-        $id = $_POST ['id'] ?? '';
-        foreach ( $todos as &$todo )
-          if ( $todo ['id'] == $id )
-            $todo ['done'] = ! $todo ['done'];
-        $message = 'Task updated!';
-        break;
+    case 'delete':
+      $todos = array_filter ( $todos, fn($t) => $t ['id'] != $id );
+      $todos = array_values ( $todos );
+      $message = 'Task deleted!';
+      break;
 
-      case 'delete':
-        $id = $_POST ['id'] ?? '';
-        $todos = array_filter ( $todos, fn($t) => $t ['id'] != $id );
-        $todos = array_values ( $todos );
-        $message = 'Task deleted!';
-        break;
-
-      case 'clear':
-        $todos = array_filter ( $todos, fn($t) => ! $t ['done'] );
-        $todos = array_values ( $todos );
-        $message = 'Completed tasks cleared!';
-        break;
-    }
-
-    file_put_contents ( $dataFile, json_encode ( $todos, JSON_PRETTY_PRINT ) );
+    case 'clear':
+      $todos = array_filter ( $todos, fn($t) => ! $t ['done'] );
+      $todos = array_values ( $todos );
+      $message = 'Completed tasks cleared!';
+      break;
   }
+
+  if ( $_SERVER['REQUEST_METHOD'] == 'POST' && $action )
+    file_put_contents ( $dataFile, json_encode ( $todos, JSON_PRETTY_PRINT ) );
 
   $hasTodos = count ( $todos ) > 0;
   $doneCount = count ( array_filter ( $todos, fn($t) => $t ['done'] ) );

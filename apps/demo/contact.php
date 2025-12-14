@@ -2,7 +2,7 @@
 
   $title = 'Contact Form';
   $dataFile = DAT . 'demo/messages.json';
-  $message = '';
+  $successMsg = '';
   $error = '';
   $errors = [];
 
@@ -11,18 +11,18 @@
     @mkdir ( DAT . 'demo', 0755, TRUE );
 
   // Form values (for repopulating on error)
-  $formName    = '';
-  $formEmail   = '';
-  $formSubject = '';
-  $formMessage = '';
+  $formName    = $name    ?? '';
+  $formEmail   = $email   ?? '';
+  $formSubject = $subject ?? '';
+  $formMessage = $message ?? '';
 
   // Handle form submission
-  if ( $_SERVER ['REQUEST_METHOD'] == 'POST' && isset ( $_POST ['action'] ) && $_POST ['action'] == 'send' ) {
+  if ( $_SERVER['REQUEST_METHOD'] == 'POST' && $action == 'send' ) {
 
-    $formName    = trim ( $_POST ['name']    ?? '' );
-    $formEmail   = trim ( $_POST ['email']   ?? '' );
-    $formSubject = trim ( $_POST ['subject'] ?? '' );
-    $formMessage = trim ( $_POST ['message'] ?? '' );
+    $formName    = trim ( $formName );
+    $formEmail   = trim ( $formEmail );
+    $formSubject = trim ( $formSubject );
+    $formMessage = trim ( $formMessage );
 
     // Validation
     if ( ! $formName )
@@ -57,7 +57,7 @@
 
       file_put_contents ( $dataFile, json_encode ( $messages, JSON_PRETTY_PRINT ) );
 
-      $message = 'Thank you for your message! We will get back to you soon.';
+      $successMsg = 'Thank you for your message! We will get back to you soon.';
 
       // Clear form
       $formName = $formEmail = $formSubject = $formMessage = '';
