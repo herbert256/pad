@@ -1,0 +1,39 @@
+<p>
+  The <code>left</code> function returns the first N characters.
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{'Hello World' | left(5)}</pre>
+<p>
+  First 5: <b>'Hello World' | left(5)</b>
+</p>
+<h2>
+  Truncate with Ellipsis
+</h2>
+<pre>{'This is a very long text that needs truncation' | left(20)}...</pre>
+<p>
+  Result: <b>'This is a very long text that needs truncation' | left(20)...</b>
+</p>
+<h2>
+  Chained Examples
+</h2>
+<pre>{$sampleEmail | before('@') | left(1) | upper}</pre>
+<p>
+  First initial: <b>J</b>
+</p>
+<pre>{'HELLO WORLD' | left(5) | lower | capitalize}</pre>
+<p>
+  Transform first word: <b>'HELLO WORLD' | left(5) | lower | capitalize</b>
+</p>
+<h2>
+  Complex Chain
+</h2>
+<pre>{users}
+  {$name | left(1)}. {$name | after(' ')}
+{/users}</pre>
+<p>
+  Abbreviated names:
+</p>A. Johnson<br>
+B. Smith<br>
+C. Brown<br>

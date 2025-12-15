@@ -1,29 +1,26 @@
-<p>The <code>capitalize</code> function capitalizes the first letter of each word.</p>
+<p>The <code>capitalize</code> function converts a string to title case (capitalizes each word).</p>
 
 <h2>Basic Usage</h2>
-<pre>{open}'hello world' | capitalize{close}</pre>
-<p>Result: <b>{'hello world' | capitalize}</b></p>
+<pre>{open}echo 'hello world' | capitalize{close}</pre>
+<p>Result: <b>{echo 'hello world' | capitalize}</b></p>
 
 <h2>From Lowercase</h2>
-<pre>{open}'JOHN DOE' | lower | capitalize{close}</pre>
-<p>Fixed caps: <b>{'JOHN DOE' | lower | capitalize}</b></p>
+<pre>{open}echo 'john smith' | capitalize{close}</pre>
+<p>Name: <b>{echo 'john smith' | capitalize}</b></p>
+
+<h2>From Uppercase</h2>
+<pre>{open}echo 'HELLO WORLD' | lower | capitalize{close}</pre>
+<p>Fixed: <b>{echo 'HELLO WORLD' | lower | capitalize}</b></p>
 
 <h2>Chained Examples</h2>
-<pre>{open}$sampleEmail | before('@') | replace('.', ' ') | capitalize{close}</pre>
-<p>Full name from email: <b>{$sampleEmail | before('@') | replace('.', ' ') | capitalize}</b></p>
+<pre>{open}echo $email | before('@') | replace('.', ' ') | capitalize{close}</pre>
+<p>Name from email: <b>{echo $email | before('@') | replace('.', ' ') | capitalize}</b></p>
 
-<pre>{open}'the quick brown fox' | capitalize | left(13){close}...</pre>
-<p>Title preview: <b>{'the quick brown fox' | capitalize | left(13)}...</b></p>
+<pre>{open}echo 'the quick brown fox' | capitalize | left(15){close}</pre>
+<p>Truncated title: <b>{echo 'the quick brown fox' | capitalize | left(15)}</b></p>
 
-<h2>With Users</h2>
-<pre>{open}users{close}
-  {open}$email | before('@') | replace('.', ' ') | capitalize{close}
-{open}/users{close}</pre>
-<p>Names from emails:</p>
-{users}
-  {$email | before('@') | replace('.', ' ') | capitalize}<br>
-{/users}
+<pre>{open}echo '  spaced  text  ' | trim | capitalize{close}</pre>
+<p>Trimmed and titled: <b>{echo '  spaced  text  ' | trim | capitalize}</b></p>
 
-<h2>Complex Chain</h2>
-<pre>{open}'product_category_name' | replace('_', ' ') | capitalize{close}</pre>
-<p>From snake_case: <b>{'product_category_name' | replace('_', ' ') | capitalize}</b></p>
+<h2>Note</h2>
+<p>Alias: <code>ucwords</code> provides the same functionality.</p>

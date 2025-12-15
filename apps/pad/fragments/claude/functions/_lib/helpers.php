@@ -1,20 +1,12 @@
 <?php
-
-// Sample data for function examples
-$sampleText = '  Hello World  ';
-$samplePath = '/home/user/documents/file.txt';
-$sampleEmail = 'john.doe@example.com';
-$sampleHtml = '<script>alert("XSS")</script>';
-$samplePrice = 1234.56;
-$sampleDate = '2024-12-14';
-$sampleTimestamp = time();
-$sampleStatus = 'active';
-$sampleScore = 85;
-
-$users = [
-  ['name' => 'Alice Johnson', 'email' => 'alice@example.com', 'status' => 'active'],
-  ['name' => 'Bob Smith', 'email' => 'bob@example.com', 'status' => 'pending'],
-  ['name' => 'Charlie Brown', 'email' => 'charlie@example.com', 'status' => 'inactive'],
-];
-
+  // Sample data for function examples
+  $sampleText = 'Hello World Example Text';
+  $email = 'john.smith@example.com';
+  $filePath = '/var/www/html/docs/readme.txt';
+  $htmlText = '<p>Hello & "World"</p>';
+  $spacedText = '  lots   of   spaces  ';
+  $slashedText = "It\'s a \"test\"";
+  $urlText = 'hello world & more';
+  $dateStr = '2024-12-15';
+  $timestamp = 1702656000;
 ?>

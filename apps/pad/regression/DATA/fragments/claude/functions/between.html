@@ -1,0 +1,42 @@
+<p>
+  The <code>between</code> function tests if a value is exclusively between two values (min &lt; value &lt; max).
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{$sampleScore | between(0, 100)}</pre>
+<p>
+  Score 85 between 0 and 100 (exclusive): <b>1</b>
+</p>
+<pre>{50 | between(0, 100)}</pre>
+<p>
+  50 between 0 and 100: <b>50 | between(0, 100)</b>
+</p>
+<h2>
+  Boundary Test
+</h2>
+<pre>{0 | between(0, 100)}</pre>
+<p>
+  0 between 0 and 100: <b></b> (false - not exclusive)
+</p>
+<pre>{100 | between(0, 100)}</pre>
+<p>
+  100 between 0 and 100: <b></b> (false - not exclusive)
+</p>
+<h2>
+  Age Ranges
+</h2>
+<pre>{25 | between(17, 66)}</pre>
+<p>
+  Age 25 is working age: <b>25 | between(17, 66)</b>
+</p>
+<pre>{17 | between(17, 66)}</pre>
+<p>
+  Age 17 (boundary): <b>17 | between(17, 66)</b> (false - exclusive)
+</p>
+<h2>
+  Note
+</h2>
+<p>
+  <code>between</code> uses exclusive comparison. For inclusive comparison, use <code>range</code>.
+</p>

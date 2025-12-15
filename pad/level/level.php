@@ -22,7 +22,7 @@
     return padError ( "Closing tag found without an open tag: {" . $padBetween . "}" );
 
   if ( ctype_space ( $padFirst ) )
-    return include PAD . 'level/eval.php';
+    return padLevelNoSingle ();
 
   if ( $pad and $padLvlFun [$pad-1] )
     include PAD . 'level/function.php';
@@ -38,6 +38,6 @@
   if ( ! $padTypeResult )
     return include PAD . 'level/no.php';
 
-  include PAD . 'level/start.php';
+  return include PAD . 'level/start.php';
 
 ?>

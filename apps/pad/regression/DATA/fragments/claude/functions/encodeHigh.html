@@ -1,0 +1,34 @@
+<p>
+  The <code>encodeHigh</code> function encodes high ASCII characters (above 127).
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{'café' | encodeHigh}</pre>
+<p>
+  Result: <b>'café' | encodeHigh</b>
+</p>
+<h2>
+  International Characters
+</h2>
+<pre>{'Müller' | encodeHigh}</pre>
+<p>
+  Encoded: <b>'Müller' | encodeHigh</b>
+</p>
+<pre>{'naïve' | encodeHigh}</pre>
+<p>
+  Encoded: <b>'naïve' | encodeHigh</b>
+</p>
+<h2>
+  Chained Examples
+</h2>
+<pre>{'  Café Müller  ' | trim | encodeHigh}</pre>
+<p>
+  Clean and encode: <b>' Café Müller ' | trim | encodeHigh</b>
+</p>
+<h2>
+  Note
+</h2>
+<p>
+  Use <code>encodeHigh</code> when you need to convert special characters to HTML entities for compatibility with systems that don't handle UTF-8 well.
+</p>

@@ -1,0 +1,39 @@
+<p>
+  The <code>right</code> function returns the last N characters.
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{'Hello World' | right(5)}</pre>
+<p>
+  Last 5: <b>'Hello World' | right(5)</b>
+</p>
+<h2>
+  File Extension
+</h2>
+<pre>{'document.pdf' | right(3)}</pre>
+<p>
+  Extension: <b>'document.pdf' | right(3)</b>
+</p>
+<h2>
+  Chained Examples
+</h2>
+<pre>{'1234567890' | right(4) | + 0}</pre>
+<p>
+  Last 4 digits as number: <b>'1234567890' | right(4) | + 0</b>
+</p>
+<pre>{$samplePath | right(7) | upper}</pre>
+<p>
+  Last 7 chars uppercase: <b>ILE.TXT</b>
+</p>
+<h2>
+  Complex Chain
+</h2>
+<pre>{'Order #ORD-2024-001234' | right(6) | + 1}</pre>
+<p>
+  Order number + 1: <b>'Order #ORD-2024-001234' | right(6) | + 1</b>
+</p>
+<pre>{'user@domain.co.uk' | afterLast('.') | right(2) | upper}</pre>
+<p>
+  Country code: <b>'user@domain.co.uk' | afterLast('.') | right(2) | upper</b>
+</p>

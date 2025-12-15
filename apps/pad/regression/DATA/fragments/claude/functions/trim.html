@@ -1,0 +1,38 @@
+<p>
+  The <code>trim</code> function removes whitespace from both ends of a string.
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{$sampleText | trim}</pre>
+<p>
+  Original: " <b>Hello World</b> "
+</p>
+<p>
+  Trimmed: "<b>Hello World</b>"
+</p>
+<h2>
+  Chained Examples
+</h2>
+<pre>{'  HELLO WORLD  ' | trim | lower | capitalize}</pre>
+<p>
+  Clean and format: <b>' HELLO WORLD ' | trim | lower | capitalize</b>
+</p>
+<pre>{'   john.doe@example.com   ' | trim | before('@') | upper}</pre>
+<p>
+  Username from padded email: <b>' john.doe@example.com ' | trim | before('@') | upper</b>
+</p>
+<h2>
+  Form Input Cleaning
+</h2>
+<pre>{'  user input  ' | trim | lower | replace(' ', '_')}</pre>
+<p>
+  Sanitized input: <b>' user input ' | trim | lower | replace(' ', '_')</b>
+</p>
+<h2>
+  Complex Chain
+</h2>
+<pre>{'   /path/to/file.txt   ' | trim | afterLast('/') | beforeLast('.') | upper}</pre>
+<p>
+  Filename from padded path: <b>' /path/to/file.txt ' | trim | afterLast('/') | beforeLast('.') | upper</b>
+</p>

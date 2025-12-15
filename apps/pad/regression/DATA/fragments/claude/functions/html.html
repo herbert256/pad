@@ -1,0 +1,47 @@
+<p>
+  The <code>html</code> function escapes HTML special characters for safe display.
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{$sampleHtml | html}</pre>
+<p>
+  Original: &lt;script&gt;alert("XSS")&lt;/script&gt;
+</p>
+<p>
+  Escaped: <b>&lt;script&gt;alert("XSS")&lt;/script&gt;</b>
+</p>
+<h2>
+  Prevent XSS
+</h2>
+<pre>{'&lt;img src=x onerror=alert(1)&gt;' | html}</pre>
+<p>
+  Safe output: <b>'<img src="x" onerror="alert(1)">' | html</b>
+</p>
+<h2>
+  Chained Examples
+</h2>
+<pre>{'  &lt;b&gt;Bold&lt;/b&gt;  ' | trim | html}</pre>
+<p>
+  Trimmed and escaped: <b>' Bold ' | trim | html</b>
+</p>
+<pre>{'&lt;script&gt;' | html | upper}</pre>
+<p>
+  Escaped then uppercase: <b>'
+  <script>
+  ' | html | upper<\/b><\/p>
+
+  <h2>User Content Display<\/h2>
+  <pre>{users}
+  {$name | html} - {$email | html}
+  {/users}<\/pre>
+  <p>Safe user display:<\/p>
+
+  Alice Johnson - alice@example.com<br>
+
+  Bob Smith - bob@example.com<br>
+
+  Charlie Brown - charlie@example.com<br>
+
+  </script></b>
+</p>

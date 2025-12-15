@@ -5,8 +5,6 @@
       return include PAD . 'options/optional.php';
 
   if ( $padPairSet ) return padLevelNoPair   ();
-    else               return padLevelNoSingle ();
-
-  return include PAD . 'level/eval.php'
+  else               return padLevelNoSingle ();
 
 ?>

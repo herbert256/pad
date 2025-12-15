@@ -1,19 +1,19 @@
 <p>The <code>encodeHigh</code> function encodes high ASCII characters (above 127).</p>
 
 <h2>Basic Usage</h2>
-<pre>{open}'café' | encodeHigh{close}</pre>
-<p>Result: <b>{'café' | encodeHigh}</b></p>
+<pre>{open}echo 'Café résumé' | encodeHigh{close}</pre>
+<p>Result: <b>{echo 'Café résumé' | encodeHigh}</b></p>
 
-<h2>International Characters</h2>
-<pre>{open}'Müller' | encodeHigh{close}</pre>
-<p>Encoded: <b>{'Müller' | encodeHigh}</b></p>
-
-<pre>{open}'naïve' | encodeHigh{close}</pre>
-<p>Encoded: <b>{'naïve' | encodeHigh}</b></p>
+<h2>Special Characters</h2>
+<pre>{open}echo 'naïve' | encodeHigh{close}</pre>
+<p>Encoded: <b>{echo 'naïve' | encodeHigh}</b></p>
 
 <h2>Chained Examples</h2>
-<pre>{open}'  Café Müller  ' | trim | encodeHigh{close}</pre>
-<p>Clean and encode: <b>{'  Café Müller  ' | trim | encodeHigh}</b></p>
+<pre>{open}echo 'Über' | encodeHigh | upper{close}</pre>
+<p>Encoded upper: <b>{echo 'Über' | encodeHigh | upper}</b></p>
+
+<pre>{open}echo 'São Paulo' | trim | encodeHigh{close}</pre>
+<p>Clean encoded: <b>{echo 'São Paulo' | trim | encodeHigh}</b></p>
 
 <h2>Note</h2>
-<p>Use <code>encodeHigh</code> when you need to convert special characters to HTML entities for compatibility with systems that don't handle UTF-8 well.</p>
+<p>Useful for ensuring ASCII compatibility in certain contexts.</p>

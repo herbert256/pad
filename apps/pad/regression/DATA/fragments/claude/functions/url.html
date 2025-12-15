@@ -1,0 +1,46 @@
+<p>
+  The <code>url</code> function URL-encodes a value for use in URLs.
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{'hello world' | url}</pre>
+<p>
+  Result: <b>'hello world' | url</b>
+</p>
+<h2>
+  Special Characters
+</h2>
+<pre>{'name=John&amp;age=30' | url}</pre>
+<p>
+  Encoded: <b>'name=John&amp;age=30' | url</b>
+</p>
+<h2>
+  Build URLs
+</h2>
+<pre>?search={'search term here' | url}</pre>
+<p>
+  URL: <b>?search='search term here' | url</b>
+</p>
+<h2>
+  Chained Examples
+</h2>
+<pre>{'  My Search Query  ' | trim | url}</pre>
+<p>
+  Clean and encode: <b>' My Search Query ' | trim | url</b>
+</p>
+<pre>{'Category / Subcategory' | replace('/', '-') | url}</pre>
+<p>
+  Safe path: <b>'Category / Subcategory' | replace('/', '-') | url</b>
+</p>
+<h2>
+  Dynamic Links
+</h2>
+<pre>{users}
+  &lt;a href="?user={$name | url}"&gt;{$name}&lt;/a&gt;
+{/users}</pre>
+<p>
+  User links:
+</p><a href="?user=Alice+Johnson">Alice Johnson</a><br>
+<a href="?user=Bob+Smith">Bob Smith</a><br>
+<a href="?user=Charlie+Brown">Charlie Brown</a><br>

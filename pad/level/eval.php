@@ -1,13 +1,12 @@
 <?php
 
+return padLevel ( $padBetweenOrg );
+
   $padReturn = padEval ( $padBetweenOrg );
 
   if ( is_array ( $padReturn ) )  
-    return padLevelNo ( $padBetweenOrg );
+    return padLevel ( $padBetweenOrg );
   else
-    return padLevelNo ( $padReturn );
-
-
-  padLevelNo ( $padReturn );
+    return padLevel ( $padReturn );
 
 ?>

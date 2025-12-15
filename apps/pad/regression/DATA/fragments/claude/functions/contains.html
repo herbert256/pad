@@ -1,0 +1,41 @@
+<p>
+  The <code>contains</code> function tests if a value contains a substring (returns 1 or empty).
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{'hello world' | contains('world')}</pre>
+<p>
+  Contains 'world': <b>'hello world' | contains('world')</b> (1 = true)
+</p>
+<pre>{'hello world' | contains('foo')}</pre>
+<p>
+  Contains 'foo': <b>'hello world' | contains('foo')</b> (empty = false)
+</p>
+<h2>
+  Conditional Display
+</h2>
+<pre>{if $sampleEmail | contains('@')}
+  Valid email format
+{/if}</pre>
+<p>
+  Result:
+</p>
+<h2>
+  With Users
+</h2>
+<pre>{users}
+  {if $email | contains('example')}
+    {$name} (example.com user)
+  {/if}
+{/users}</pre>
+<p>
+  Example.com users:
+</p>1 1 1
+<h2>
+  Chained with Logic
+</h2>
+<pre>{if $samplePath | lower | contains('.txt')}Text file{/if}</pre>
+<p>
+  Is text file:
+</p>

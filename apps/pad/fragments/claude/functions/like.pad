@@ -1,32 +1,20 @@
-<p>The <code>like</code> function performs SQL LIKE pattern matching (% = any chars, _ = single char).</p>
+<p>The <code>like</code> function tests pattern matching using wildcards.</p>
 
 <h2>Basic Usage</h2>
-<pre>{open}'test.txt' | like('%.txt'){close}</pre>
-<p>Matches *.txt: <b>{'test.txt' | like('%.txt')}</b> (1 = true)</p>
+<pre>{open}if {open}echo 'hello.txt' | like('*.txt'){close} eq 1{close}Text file{open}/if{close}</pre>
+{if {echo 'hello.txt' | like('*.txt')} eq 1}<p>Result: <b>Matches *.txt pattern</b></p>{/if}
 
-<pre>{open}'test.pdf' | like('%.txt'){close}</pre>
-<p>Matches *.txt: <b>{'test.pdf' | like('%.txt')}</b> (empty = false)</p>
+<h2>Prefix Match</h2>
+<pre>{open}if {open}echo 'user_john' | like('user_*'){close} eq 1{close}Is user{open}/if{close}</pre>
+{if {echo 'user_john' | like('user_*')} eq 1}<p>Found: <b>Matches user_* pattern</b></p>{/if}
 
-<h2>Pattern Examples</h2>
-<pre>{open}'hello' | like('h%'){close}</pre>
-<p>Starts with h: <b>{'hello' | like('h%')}</b></p>
+<h2>Contains Pattern</h2>
+<pre>{open}if {open}echo 'my_document_v2.pdf' | like('*document*'){close} eq 1{close}Document{open}/if{close}</pre>
+{if {echo 'my_document_v2.pdf' | like('*document*')} eq 1}<p>Found: <b>Contains 'document'</b></p>{/if}
 
-<pre>{open}'hello' | like('%lo'){close}</pre>
-<p>Ends with lo: <b>{'hello' | like('%lo')}</b></p>
+<h2>Chained Example</h2>
+<pre>{open}if {open}echo $filePath | afterLast('/') | like('*.txt'){close} eq 1{close}Text{open}/if{close}</pre>
+{if {echo $filePath | afterLast('/') | like('*.txt')} eq 1}<p>File: <b>readme.txt matches *.txt</b></p>{/if}
 
-<pre>{open}'hello' | like('%ell%'){close}</pre>
-<p>Contains ell: <b>{'hello' | like('%ell%')}</b></p>
-
-<h2>Single Character Wildcard</h2>
-<pre>{open}'test1' | like('test_'){close}</pre>
-<p>test + 1 char: <b>{'test1' | like('test_')}</b></p>
-
-<pre>{open}'test12' | like('test_'){close}</pre>
-<p>test + 1 char: <b>{'test12' | like('test_')}</b> (no match - 2 chars)</p>
-
-<h2>File Filtering</h2>
-<pre>{open}$samplePath | like('%.txt'){close}</pre>
-<p>Is .txt file: <b>{$samplePath | like('%.txt')}</b></p>
-
-<pre>{open}$samplePath | afterLast('/') | like('file%'){close}</pre>
-<p>Filename starts with 'file': <b>{$samplePath | afterLast('/') | like('file%')}</b></p>
+<h2>Note</h2>
+<p>Use <code>*</code> for any characters. Returns 1 (true) or 0 (false).</p>

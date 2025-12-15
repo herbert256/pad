@@ -1,0 +1,41 @@
+<p>
+  The <code>after</code> function returns everything after the first occurrence of a delimiter.
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{$samplePath | after('/')}</pre>
+<p>
+  Path: /home/user/documents/file.txt
+</p>
+<p>
+  After first /: <b>home/user/documents/file.txt</b>
+</p>
+<h2>
+  Email Domain
+</h2>
+<pre>{$sampleEmail | after('@')}</pre>
+<p>
+  Email: john.doe@example.com
+</p>
+<p>
+  Domain: <b>example.com</b>
+</p>
+<h2>
+  Chained with Other Functions
+</h2>
+<pre>{$sampleEmail | after('@') | before('.') | upper}</pre>
+<p>
+  Domain name only, uppercase: <b>EXAMPLE</b>
+</p>
+<pre>{$samplePath | after('/') | after('/') | after('/')}</pre>
+<p>
+  Filename from path: <b>documents/file.txt</b>
+</p>
+<h2>
+  Complex Chain
+</h2>
+<pre>{'user:john:admin:active' | after(':') | before(':') | capitalize}</pre>
+<p>
+  Extract username: <b>'user:john:admin:active' | after(':') | before(':') | capitalize</b>
+</p>

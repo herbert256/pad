@@ -1,0 +1,37 @@
+<p>
+  The <code>sanitize</code> function provides full special character sanitization.
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{'&lt;script&gt;alert("test")&lt;/script&gt;' | sanitize}</pre>
+<p>
+  Result: <b>'
+  <script>
+  alert("test")
+  </script>' | sanitize</b>
+</p>
+<h2>
+  Compared to HTML
+</h2>
+<pre>{'&lt;b&gt;"quoted"&lt;/b&gt;' | html}</pre>
+<p>
+  HTML: <b>'</b>"quoted"' | html
+</p>
+<pre>{'&lt;b&gt;"quoted"&lt;/b&gt;' | sanitize}</pre>
+<p>
+  Sanitize: <b>'</b>"quoted"' | sanitize
+</p>
+<h2>
+  Chained Examples
+</h2>
+<pre>{'  &lt;dangerous&gt;  ' | trim | sanitize | upper}</pre>
+<p>
+  Cleaned: <b>' ' | trim | sanitize | upper</b>
+</p>
+<h2>
+  Note
+</h2>
+<p>
+  Use <code>sanitize</code> when you need stricter encoding than <code>html</code>. It uses PHP's FILTER_SANITIZE_FULL_SPECIAL_CHARS.
+</p>

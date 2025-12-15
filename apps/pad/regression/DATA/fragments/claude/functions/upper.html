@@ -1,0 +1,39 @@
+<p>
+  The <code>upper</code> function converts text to uppercase.
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{'hello world' | upper}</pre>
+<p>
+  Result: <b>'hello world' | upper</b>
+</p>
+<h2>
+  Chained Examples
+</h2>
+<pre>{$sampleEmail | before('@') | upper}</pre>
+<p>
+  Username uppercase: <b>JOHN.DOE</b>
+</p>
+<pre>{'  mixed CASE text  ' | trim | upper}</pre>
+<p>
+  Trim then uppercase: <b>' mixed CASE text ' | trim | upper</b>
+</p>
+<h2>
+  Acronyms
+</h2>
+<pre>{'application programming interface' | left(1)}{'application programming interface' | after(' ') | left(1)}{'application programming interface' | afterLast(' ') | left(1)}</pre>
+<p>
+  Manual acronym: <b>'application programming interface' | left(1) | upper'application programming interface' | after(' ') | left(1) | upper'application programming interface' | afterLast(' ') | left(1) | upper</b>
+</p>
+<h2>
+  With Users
+</h2>
+<pre>{users}
+  {$status | upper}: {$name}
+{/users}</pre>
+<p>
+  Status badges:
+</p><span style="background:#ddd;padding:2px 5px;">ACTIVE</span> Alice Johnson<br>
+<span style="background:#ddd;padding:2px 5px;">PENDING</span> Bob Smith<br>
+<span style="background:#ddd;padding:2px 5px;">INACTIVE</span> Charlie Brown<br>

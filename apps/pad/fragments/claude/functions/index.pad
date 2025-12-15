@@ -1,14 +1,51 @@
-<p>Pipe functions transform values using the <code>|</code> operator. Functions can be chained for complex transformations.</p>
+<h1>PAD Pipe Functions</h1>
+<p>Transform values using <code>| function</code> syntax. Chain multiple functions together.</p>
 
-<h2>Basic Syntax</h2>
-<pre>{open}$variable | functionName{close}
-{open}$variable | functionName('parameter'){close}
-{open}$variable | func1 | func2 | func3{close}</pre>
+<h2>Syntax</h2>
+<pre>{open}echo $var | function{close}
+{open}echo $var | function('param'){close}
+{open}echo $var | func1 | func2 | func3{close}</pre>
 
-<h2>All Functions</h2>
-
+<h2>Available Functions</h2>
 <ul>
-{functions}
-  <li><a href="?fragments/claude/functions/{$name}">{$name}</a> - {$description} <i>({$category})</i></li>
-{/functions}
+<li><a href="?fragments/claude/functions/after">after</a> - After first delimiter</li>
+<li><a href="?fragments/claude/functions/afterLast">afterLast</a> - After last delimiter</li>
+<li><a href="?fragments/claude/functions/before">before</a> - Before first delimiter</li>
+<li><a href="?fragments/claude/functions/beforeLast">beforeLast</a> - Before last delimiter</li>
+<li><a href="?fragments/claude/functions/between">between</a> - Exclusive range test</li>
+<li><a href="?fragments/claude/functions/bold">bold</a> - Wrap in bold tags</li>
+<li><a href="?fragments/claude/functions/capitalize">capitalize</a> - Title case</li>
+<li><a href="?fragments/claude/functions/close">close</a> - Literal close brace</li>
+<li><a href="?fragments/claude/functions/contains">contains</a> - Contains substring</li>
+<li><a href="?fragments/claude/functions/cut">cut</a> - Remove text</li>
+<li><a href="?fragments/claude/functions/date">date</a> - Format date</li>
+<li><a href="?fragments/claude/functions/encodeHigh">encodeHigh</a> - Encode high ASCII</li>
+<li><a href="?fragments/claude/functions/exists">exists</a> - File exists</li>
+<li><a href="?fragments/claude/functions/html">html</a> - HTML escape</li>
+<li><a href="?fragments/claude/functions/in">in</a> - Value in list</li>
+<li><a href="?fragments/claude/functions/left">left</a> - First N characters</li>
+<li><a href="?fragments/claude/functions/like">like</a> - Pattern matching</li>
+<li><a href="?fragments/claude/functions/lower">lower</a> - To lowercase</li>
+<li><a href="?fragments/claude/functions/max_len">max_len</a> - Truncate to length</li>
+<li><a href="?fragments/claude/functions/mid">mid</a> - Middle substring</li>
+<li><a href="?fragments/claude/functions/nbsp">nbsp</a> - Non-breaking spaces</li>
+<li><a href="?fragments/claude/functions/now">now</a> - Current timestamp</li>
+<li><a href="?fragments/claude/functions/open">open</a> - Literal open brace</li>
+<li><a href="?fragments/claude/functions/optional">optional</a> - Null coalescing</li>
+<li><a href="?fragments/claude/functions/range">range</a> - Inclusive range test</li>
+<li><a href="?fragments/claude/functions/replace">replace</a> - Replace text</li>
+<li><a href="?fragments/claude/functions/right">right</a> - Last N characters</li>
+<li><a href="?fragments/claude/functions/sanitize">sanitize</a> - Full sanitization</li>
+<li><a href="?fragments/claude/functions/slashes">slashes</a> - Add slashes</li>
+<li><a href="?fragments/claude/functions/stripLow">stripLow</a> - Strip control chars</li>
+<li><a href="?fragments/claude/functions/stripslashes">stripslashes</a> - Remove slashes</li>
+<li><a href="?fragments/claude/functions/substr">substr</a> - Extract by position</li>
+<li><a href="?fragments/claude/functions/tag">tag</a> - Create tag syntax</li>
+<li><a href="?fragments/claude/functions/time">time</a> - Format time</li>
+<li><a href="?fragments/claude/functions/timestamp">timestamp</a> - Format timestamp</li>
+<li><a href="?fragments/claude/functions/trim">trim</a> - Remove whitespace</li>
+<li><a href="?fragments/claude/functions/ucwords">ucwords</a> - Title case (alias)</li>
+<li><a href="?fragments/claude/functions/upper">upper</a> - To uppercase</li>
+<li><a href="?fragments/claude/functions/url">url</a> - URL encode</li>
+<li><a href="?fragments/claude/functions/white">white</a> - Normalize spaces</li>
 </ul>

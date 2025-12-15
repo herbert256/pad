@@ -1,31 +1,20 @@
-<p>The <code>contains</code> function tests if a value contains a substring (returns 1 or empty).</p>
+<p>The <code>contains</code> function tests if a string contains a substring (returns boolean).</p>
 
 <h2>Basic Usage</h2>
-<pre>{open}'hello world' | contains('world'){close}</pre>
-<p>Contains 'world': <b>{'hello world' | contains('world')}</b> (1 = true)</p>
+<pre>{open}if {open}echo $email | contains('@'){close} eq 1{close}Valid email format{open}/if{close}</pre>
+{if {echo $email | contains('@')} eq 1}<p>Result: <b>Email contains @</b></p>{/if}
 
-<pre>{open}'hello world' | contains('foo'){close}</pre>
-<p>Contains 'foo': <b>{'hello world' | contains('foo')}</b> (empty = false)</p>
+<h2>Check for Word</h2>
+<pre>{open}if {open}echo $sampleText | contains('World'){close} eq 1{close}Contains World{open}/if{close}</pre>
+{if {echo $sampleText | contains('World')} eq 1}<p>Found: <b>Text contains "World"</b></p>{/if}
 
-<h2>Conditional Display</h2>
-<pre>{open}if $sampleEmail | contains('@'){close}
-  Valid email format
-{open}/if{close}</pre>
-<p>Result: {if $sampleEmail | contains('@')}Valid email format{/if}</p>
+<h2>Case Sensitive</h2>
+<pre>{open}if {open}echo 'Hello' | contains('hello'){close} eq 0{close}Not found (case matters){open}/if{close}</pre>
+{if {echo 'Hello' | contains('hello')} eq 0}<p>Note: <b>Case sensitive - 'hello' not in 'Hello'</b></p>{/if}
 
-<h2>With Users</h2>
-<pre>{open}users{close}
-  {open}if $email | contains('example'){close}
-    {open}$name{close} (example.com user)
-  {open}/if{close}
-{open}/users{close}</pre>
-<p>Example.com users:</p>
-{users}
-  {if $email | contains('example')}
-    {$name} (example.com user)<br>
-  {/if}
-{/users}
+<h2>With Lower</h2>
+<pre>{open}if {open}echo 'Hello' | lower | contains('hello'){close} eq 1{close}Found{open}/if{close}</pre>
+{if {echo 'Hello' | lower | contains('hello')} eq 1}<p>Case-insensitive match: <b>Found after lowercasing</b></p>{/if}
 
-<h2>Chained with Logic</h2>
-<pre>{open}if $samplePath | lower | contains('.txt'){close}Text file{open}/if{close}</pre>
-<p>Is text file: {if $samplePath | lower | contains('.txt')}Text file{/if}</p>
+<h2>Note</h2>
+<p>Returns 1 (true) or 0 (false). Use with <code>{open}if{close}</code> conditionals.</p>

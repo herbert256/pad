@@ -1,21 +1,24 @@
-<p>The <code>tag</code> function wraps a value as a PAD tag (alias for <code>open</code>).</p>
+<p>The <code>tag</code> function wraps a value as a PAD tag (wraps in braces).</p>
 
 <h2>Basic Usage</h2>
-<pre>{open}'myTag' | tag{close}</pre>
-<p>Result: <b>{'myTag' | tag}</b></p>
+<pre>{open}echo 'myTag' | tag{close}</pre>
+<p>Result: <b>{echo 'myTag' | tag}</b></p>
 
 <h2>Dynamic Tag Names</h2>
-<pre>{open}$tagName = 'users'{close}
-{open}$tagName | tag{close}</pre>
 {data $tagName = 'users'}
-<p>Dynamic tag: <b>{$tagName | tag}</b></p>
+<pre>{open}data $tagName = 'users'{close}
+{open}echo $tagName | tag{close}</pre>
+<p>Dynamic tag: <b>{echo $tagName | tag}</b></p>
 
 <h2>Chained Examples</h2>
-<pre>{open}'IF' | lower | tag{close}</pre>
-<p>Lowercase tag: <b>{'IF' | lower | tag}</b></p>
+<pre>{open}echo 'IF' | lower | tag{close}</pre>
+<p>Lowercase tag: <b>{echo 'IF' | lower | tag}</b></p>
 
-<pre>{open}'my_tag' | replace('_', '') | tag{close}</pre>
-<p>Clean tag name: <b>{'my_tag' | replace('_', '') | tag}</b></p>
+<pre>{open}echo 'my_tag' | replace('_', '') | tag{close}</pre>
+<p>Clean tag name: <b>{echo 'my_tag' | replace('_', '') | tag}</b></p>
+
+<pre>{open}echo 'data' | tag{close}</pre>
+<p>Data tag: <b>{echo 'data' | tag}</b></p>
 
 <h2>Note</h2>
-<p>The <code>tag</code> function is useful for dynamically generating PAD tag syntax. It's equivalent to wrapping a value in braces.</p>
+<p>The <code>tag</code> function is useful for dynamically generating PAD tag syntax. It wraps the value in braces.</p>

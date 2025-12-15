@@ -1,25 +1,26 @@
-<p>The <code>upper</code> function converts text to uppercase.</p>
+<p>The <code>upper</code> function converts a string to uppercase.</p>
 
 <h2>Basic Usage</h2>
-<pre>{open}'hello world' | upper{close}</pre>
-<p>Result: <b>{'hello world' | upper}</b></p>
+<pre>{open}echo $sampleText | upper{close}</pre>
+<p>Result: <b>{echo $sampleText | upper}</b></p>
+
+<h2>Simple Text</h2>
+<pre>{open}echo 'hello world' | upper{close}</pre>
+<p>Uppercase: <b>{echo 'hello world' | upper}</b></p>
+
+<h2>Mixed Case</h2>
+<pre>{open}echo 'HeLLo WoRLd' | upper{close}</pre>
+<p>All upper: <b>{echo 'HeLLo WoRLd' | upper}</b></p>
 
 <h2>Chained Examples</h2>
-<pre>{open}$sampleEmail | before('@') | upper{close}</pre>
-<p>Username uppercase: <b>{$sampleEmail | before('@') | upper}</b></p>
+<pre>{open}echo $email | before('@') | upper{close}</pre>
+<p>Username uppercase: <b>{echo $email | before('@') | upper}</b></p>
 
-<pre>{open}'  mixed CASE text  ' | trim | upper{close}</pre>
-<p>Trim then uppercase: <b>{'  mixed CASE text  ' | trim | upper}</b></p>
+<pre>{open}echo $sampleText | left(10) | upper | trim{close}</pre>
+<p>First 10 upper: <b>{echo $sampleText | left(10) | upper | trim}</b></p>
 
-<h2>Acronyms</h2>
-<pre>{open}'application programming interface' | left(1){close}{open}'application programming interface' | after(' ') | left(1){close}{open}'application programming interface' | afterLast(' ') | left(1){close}</pre>
-<p>Manual acronym: <b>{'application programming interface' | left(1) | upper}{'application programming interface' | after(' ') | left(1) | upper}{'application programming interface' | afterLast(' ') | left(1) | upper}</b></p>
+<pre>{open}echo 'hello' | upper | left(1){close}</pre>
+<p>First initial: <b>{echo 'hello' | upper | left(1)}</b></p>
 
-<h2>With Users</h2>
-<pre>{open}users{close}
-  {open}$status | upper{close}: {open}$name{close}
-{open}/users{close}</pre>
-<p>Status badges:</p>
-{users}
-  <span style="background:#ddd;padding:2px 5px;">{$status | upper}</span> {$name}<br>
-{/users}
+<h2>Note</h2>
+<p>Works with UTF-8 characters.</p>

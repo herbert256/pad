@@ -1,25 +1,20 @@
-<p>The <code>between</code> function tests if a value is exclusively between two values (min &lt; value &lt; max).</p>
+<p>The <code>between</code> function tests if a value is between two values (exclusive).</p>
 
 <h2>Basic Usage</h2>
-<pre>{open}$sampleScore | between(0, 100){close}</pre>
-<p>Score {$sampleScore} between 0 and 100 (exclusive): <b>{$sampleScore | between(0, 100)}</b></p>
+<pre>{open}if {open}echo 5 | between(1, 10){close} eq 1{close}In range{open}/if{close}</pre>
+{if {echo 5 | between(1, 10)} eq 1}<p>Result: <b>5 is between 1 and 10</b></p>{/if}
 
-<pre>{open}50 | between(0, 100){close}</pre>
-<p>50 between 0 and 100: <b>{50 | between(0, 100)}</b></p>
+<h2>Edge Cases (Exclusive)</h2>
+<pre>{open}if {open}echo 10 | between(1, 10){close} eq 0{close}At boundary{open}/if{close}</pre>
+{if {echo 10 | between(1, 10)} eq 0}<p>Edge: <b>10 is NOT between 1 and 10 (exclusive)</b></p>{/if}
 
-<h2>Boundary Test</h2>
-<pre>{open}0 | between(0, 100){close}</pre>
-<p>0 between 0 and 100: <b>{0 | between(0, 100)}</b> (false - not exclusive)</p>
+<h2>Outside Range</h2>
+<pre>{open}if {open}echo 15 | between(1, 10){close} eq 0{close}Out of range{open}/if{close}</pre>
+{if {echo 15 | between(1, 10)} eq 0}<p>Result: <b>15 is NOT between 1 and 10</b></p>{/if}
 
-<pre>{open}100 | between(0, 100){close}</pre>
-<p>100 between 0 and 100: <b>{100 | between(0, 100)}</b> (false - not exclusive)</p>
-
-<h2>Age Ranges</h2>
-<pre>{open}25 | between(17, 66){close}</pre>
-<p>Age 25 is working age: <b>{25 | between(17, 66)}</b></p>
-
-<pre>{open}17 | between(17, 66){close}</pre>
-<p>Age 17 (boundary): <b>{17 | between(17, 66)}</b> (false - exclusive)</p>
+<h2>String Comparison</h2>
+<pre>{open}if {open}echo 'b' | between('a', 'c'){close} eq 1{close}In range{open}/if{close}</pre>
+{if {echo 'b' | between('a', 'c')} eq 1}<p>Result: <b>'b' is between 'a' and 'c'</b></p>{/if}
 
 <h2>Note</h2>
-<p><code>between</code> uses exclusive comparison. For inclusive comparison, use <code>range</code>.</p>
+<p>Exclusive: boundaries are NOT included. Use <code>range</code> for inclusive comparison.</p>

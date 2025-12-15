@@ -1,20 +1,16 @@
-<p>The <code>stripslashes</code> function removes backslashes (PHP stripslashes).</p>
+<p>The <code>stripslashes</code> function removes backslashes from a string.</p>
 
 <h2>Basic Usage</h2>
-<pre>{open}"it\\'s here" | stripslashes{close}</pre>
-<p>Result: <b>{"it\\'s here" | stripslashes}</b></p>
+<pre>{open}echo $slashedText | stripslashes{close}</pre>
+<p>Result: <b>{echo $slashedText | stripslashes}</b></p>
 
-<h2>Clean Escaped Data</h2>
-<pre>{open}'say \\"hello\\"' | stripslashes{close}</pre>
-<p>Result: <b>{'say \\"hello\\"' | stripslashes}</b></p>
+<h2>Remove Escapes</h2>
+<pre>{open}echo 'It\'s a \"test\"' | stripslashes{close}</pre>
+<p>Cleaned: <b>{echo 'It\'s a \"test\"' | stripslashes}</b></p>
 
 <h2>Chained Examples</h2>
-<pre>{open}"John\\'s" | stripslashes | upper{close}</pre>
-<p>Unescaped and upper: <b>{"John\\'s" | stripslashes | upper}</b></p>
+<pre>{open}echo 'He said \"hello\"' | stripslashes | upper{close}</pre>
+<p>Clean and upper: <b>{echo 'He said \"hello\"' | stripslashes | upper}</b></p>
 
-<h2>Round Trip</h2>
-<pre>{open}"it's here" | slashes{close}</pre>
-<p>With slashes: <b>{"it's here" | slashes}</b></p>
-
-<pre>{open}"it's here" | slashes | stripslashes{close}</pre>
-<p>Restored: <b>{"it's here" | slashes | stripslashes}</b></p>
+<h2>Note</h2>
+<p>Opposite of <code>slashes</code>. Use to clean escaped strings.</p>

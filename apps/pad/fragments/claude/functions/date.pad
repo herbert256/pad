@@ -1,42 +1,38 @@
 <p>The <code>date</code> function formats a timestamp using PHP date format.</p>
 
 <h2>Basic Usage</h2>
-<pre>{open}$sampleTimestamp | date('Y-m-d'){close}</pre>
-<p>Formatted: <b>{$sampleTimestamp | date('Y-m-d')}</b></p>
+<pre>{open}echo {open}now{close} | date('Y-m-d'){close}</pre>
+<p>Today: <b>{echo {now} | date('Y-m-d')}</b></p>
 
 <h2>Common Formats</h2>
-<pre>{open}now | date('Y-m-d'){close}</pre>
-<p>ISO date: <b>{now | date('Y-m-d')}</b></p>
+<pre>{open}echo {open}now{close} | date('d/m/Y'){close}</pre>
+<p>European: <b>{echo {now} | date('d/m/Y')}</b></p>
 
-<pre>{open}now | date('d/m/Y'){close}</pre>
-<p>European: <b>{now | date('d/m/Y')}</b></p>
+<pre>{open}echo {open}now{close} | date('M j, Y'){close}</pre>
+<p>Readable: <b>{echo {now} | date('M j, Y')}</b></p>
 
-<pre>{open}now | date('m/d/Y'){close}</pre>
-<p>US format: <b>{now | date('m/d/Y')}</b></p>
+<pre>{open}echo {open}now{close} | date('l'){close}</pre>
+<p>Day name: <b>{echo {now} | date('l')}</b></p>
 
-<pre>{open}now | date('F j, Y'){close}</pre>
-<p>Long format: <b>{now | date('F j, Y')}</b></p>
+<h2>With Time</h2>
+<pre>{open}echo {open}now{close} | date('Y-m-d H:i:s'){close}</pre>
+<p>Full: <b>{echo {now} | date('Y-m-d H:i:s')}</b></p>
 
-<pre>{open}now | date('D, M j'){close}</pre>
-<p>Short format: <b>{now | date('D, M j')}</b></p>
+<h2>With Offset</h2>
+<pre>{open}echo {open}now{close} | date('Y-m-d', '+1 week'){close}</pre>
+<p>Next week: <b>{echo {now} | date('Y-m-d', '+1 week')}</b></p>
 
-<h2>Time Formats</h2>
-<pre>{open}now | date('H:i:s'){close}</pre>
-<p>24-hour time: <b>{now | date('H:i:s')}</b></p>
+<pre>{open}echo {open}now{close} | date('Y-m-d', '-1 month'){close}</pre>
+<p>Last month: <b>{echo {now} | date('Y-m-d', '-1 month')}</b></p>
 
-<pre>{open}now | date('g:i A'){close}</pre>
-<p>12-hour time: <b>{now | date('g:i A')}</b></p>
-
-<h2>With Modifier</h2>
-<pre>{open}now | date('Y-m-d', '+1 week'){close}</pre>
-<p>Next week: <b>{now | date('Y-m-d', '+1 week')}</b></p>
-
-<pre>{open}now | date('Y-m-d', '-1 month'){close}</pre>
-<p>Last month: <b>{now | date('Y-m-d', '-1 month')}</b></p>
-
-<pre>{open}now | date('F Y', '+6 months'){close}</pre>
-<p>In 6 months: <b>{now | date('F Y', '+6 months')}</b></p>
-
-<h2>Chained Example</h2>
-<pre>{open}now | date('Y') | + 0{close} &copy;</pre>
-<p>Copyright: <b>{now | date('Y') | + 0} &copy;</b></p>
+<h2>Format Codes</h2>
+<ul>
+<li><code>Y</code> - 4-digit year</li>
+<li><code>m</code> - Month (01-12)</li>
+<li><code>d</code> - Day (01-31)</li>
+<li><code>H</code> - Hour (00-23)</li>
+<li><code>i</code> - Minutes (00-59)</li>
+<li><code>s</code> - Seconds (00-59)</li>
+<li><code>l</code> - Full day name</li>
+<li><code>F</code> - Full month name</li>
+</ul>

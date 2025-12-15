@@ -2,28 +2,22 @@
 
 <h2>Basic Usage</h2>
 <pre>{open}now{close}</pre>
-<p>Current timestamp: <b>{now}</b></p>
+<p>Timestamp: <b>{now}</b></p>
 
-<h2>Format with Date</h2>
-<pre>{open}now | date('Y-m-d'){close}</pre>
-<p>Today: <b>{now | date('Y-m-d')}</b></p>
+<h2>Format Current Time</h2>
+<pre>{open}echo {open}now{close} | date('Y-m-d'){close}</pre>
+<p>Today: <b>{echo {now} | date('Y-m-d')}</b></p>
 
-<pre>{open}now | date('H:i:s'){close}</pre>
-<p>Current time: <b>{now | date('H:i:s')}</b></p>
+<h2>Full DateTime</h2>
+<pre>{open}echo {open}now{close} | date('Y-m-d H:i:s'){close}</pre>
+<p>Now: <b>{echo {now} | date('Y-m-d H:i:s')}</b></p>
 
 <h2>Chained Examples</h2>
-<pre>{open}now | date('Y'){close}</pre>
-<p>Current year: <b>{now | date('Y')}</b></p>
+<pre>{open}echo {open}now{close} | date('l, F j, Y'){close}</pre>
+<p>Full date: <b>{echo {now} | date('l, F j, Y')}</b></p>
 
-<pre>{open}now | date('F j, Y'){close}</pre>
-<p>Full date: <b>{now | date('F j, Y')}</b></p>
+<pre>{open}echo {open}now{close} | date('H:i'){close}</pre>
+<p>Time: <b>{echo {now} | date('H:i')}</b></p>
 
-<pre>{open}now | date('l'){close}</pre>
-<p>Day of week: <b>{now | date('l')}</b></p>
-
-<h2>Calculations</h2>
-<pre>{open}now | date('Y') | + 1{close}</pre>
-<p>Next year: <b>{now | date('Y') | + 1}</b></p>
-
-<pre>{open}now | date('m') | + 0{close}</pre>
-<p>Current month number: <b>{now | date('m') | + 0}</b></p>
+<h2>Note</h2>
+<p>Returns Unix timestamp (seconds since 1970-01-01). Pipe to <code>date</code> for formatting.</p>

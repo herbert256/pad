@@ -1,0 +1,41 @@
+<p>
+  The <code>before</code> function returns everything before the first occurrence of a delimiter.
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{$sampleEmail | before('@')}</pre>
+<p>
+  Email: john.doe@example.com
+</p>
+<p>
+  Username: <b>john.doe</b>
+</p>
+<h2>
+  First Directory
+</h2>
+<pre>{$samplePath | after('/') | before('/')}</pre>
+<p>
+  Path: /home/user/documents/file.txt
+</p>
+<p>
+  First directory: <b>home</b>
+</p>
+<h2>
+  Chained Examples
+</h2>
+<pre>{$sampleEmail | before('@') | replace('.', ' ') | capitalize}</pre>
+<p>
+  Full name from email: <b>John Doe</b>
+</p>
+<pre>{'John Doe ' | before('&lt;') | trim}</pre>
+<p>
+  Name from email header: <b>'John Doe ' | before('&lt;') | trim</b>
+</p>
+<h2>
+  Complex Chain
+</h2>
+<pre>{'2024-12-14T10:30:00' | before('T') | replace('-', '/')}</pre>
+<p>
+  Date from ISO timestamp: <b>'2024-12-14T10:30:00' | before('T') | replace('-', '/')</b>
+</p>

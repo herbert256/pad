@@ -1,0 +1,35 @@
+<p>
+  The <code>white</code> function normalizes whitespace - collapses multiple spaces to a single space.
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{'hello    world' | white}</pre>
+<p>
+  Result: <b>'hello world' | white</b>
+</p>
+<h2>
+  Clean User Input
+</h2>
+<pre>{'  multiple   spaces   here  ' | trim | white}</pre>
+<p>
+  Cleaned: <b>' multiple spaces here ' | trim | white</b>
+</p>
+<h2>
+  Chained Examples
+</h2>
+<pre>{'  HELLO    WORLD  ' | trim | white | lower | capitalize}</pre>
+<p>
+  Full cleanup: <b>' HELLO WORLD ' | trim | white | lower | capitalize</b>
+</p>
+<pre>{'John     Doe' | white | before(' ') | left(1)}. {'John     Doe' | white | after(' ')}</pre>
+<p>
+  Abbreviated: <b>'John Doe' | white | before(' ') | left(1). 'John Doe' | white | after(' ')</b>
+</p>
+<h2>
+  Complex Chain
+</h2>
+<pre>{'Product:    Widget    XL    Blue' | white | after(': ') | replace(' ', '-') | lower}</pre>
+<p>
+  Product slug: <b>'Product: Widget XL Blue' | white | after(': ') | replace(' ', '-') | lower</b>
+</p>

@@ -1,0 +1,35 @@
+<p>
+  The <code>stripslashes</code> function removes backslashes (PHP stripslashes).
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{"it\\'s here" | stripslashes}</pre>
+<p>
+  Result: <b>"it\\'s here" | stripslashes</b>
+</p>
+<h2>
+  Clean Escaped Data
+</h2>
+<pre>{'say \\"hello\\"' | stripslashes}</pre>
+<p>
+  Result: <b>'say \\"hello\\"' | stripslashes</b>
+</p>
+<h2>
+  Chained Examples
+</h2>
+<pre>{"John\\'s" | stripslashes | upper}</pre>
+<p>
+  Unescaped and upper: <b>"John\\'s" | stripslashes | upper</b>
+</p>
+<h2>
+  Round Trip
+</h2>
+<pre>{"it's here" | slashes}</pre>
+<p>
+  With slashes: <b>"it's here" | slashes</b>
+</p>
+<pre>{"it's here" | slashes | stripslashes}</pre>
+<p>
+  Restored: <b>"it's here" | slashes | stripslashes</b>
+</p>

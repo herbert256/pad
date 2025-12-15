@@ -1,0 +1,42 @@
+<p>
+  The <code>lower</code> function converts text to lowercase.
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{'HELLO WORLD' | lower}</pre>
+<p>
+  Result: <b>'HELLO WORLD' | lower</b>
+</p>
+<h2>
+  Normalize Input
+</h2>
+<pre>{'JoHn.DoE@EXAMPLE.COM' | lower}</pre>
+<p>
+  Email normalized: <b>'JoHn.DoE@EXAMPLE.COM' | lower</b>
+</p>
+<h2>
+  Chained Examples
+</h2>
+<pre>{'FILE.TXT' | lower | before('.')}</pre>
+<p>
+  Lowercase filename without extension: <b>'FILE.TXT' | lower | before('.')</b>
+</p>
+<pre>{'  HELLO WORLD  ' | trim | lower | capitalize}</pre>
+<p>
+  Clean and title case: <b>' HELLO WORLD ' | trim | lower | capitalize</b>
+</p>
+<h2>
+  URL Slugs
+</h2>
+<pre>{'My Blog Post Title' | lower | replace(' ', '-')}</pre>
+<p>
+  URL slug: <b>'My Blog Post Title' | lower | replace(' ', '-')</b>
+</p>
+<h2>
+  Complex Chain
+</h2>
+<pre>{'USER: JOHN_DOE' | after(': ') | lower | replace('_', ' ') | capitalize}</pre>
+<p>
+  Format username: <b>'USER: JOHN_DOE' | after(': ') | lower | replace('_', ' ') | capitalize</b>
+</p>
