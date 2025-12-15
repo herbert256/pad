@@ -1,49 +1,41 @@
 <p>
-  The <code>time</code> function is an alias for <code>date</code>.
+  The <code>time</code> function formats a timestamp as time only.
 </p>
 <h2>
   Basic Usage
 </h2>
-<pre>{now | time('H:i:s')}</pre>
+<pre>{echo {now} | time}</pre>
 <p>
-  Current time: <b>23:42:02</b>
+  Current time: <b>2025-12-15</b>
 </p>
 <h2>
-  Same as Date
+  Custom Format
 </h2>
-<pre>{now | date('Y-m-d H:i')}</pre>
+<pre>{echo {now} | time('H:i')}</pre>
 <p>
-  Date: <b>2025-12-14 23:42</b>
+  24-hour: <b>00:48</b>
 </p>
-<pre>{now | time('Y-m-d H:i')}</pre>
+<pre>{echo {now} | time('h:i A')}</pre>
 <p>
-  Time: <b>2025-12-14 23:42</b>
+  12-hour: <b>12:48 AM</b>
 </p>
 <h2>
-  Time Formats
+  With Seconds
 </h2>
-<pre>{now | time('H:i')}</pre>
+<pre>{echo {now} | time('H:i:s')}</pre>
 <p>
-  Hours:minutes: <b>23:42</b>
-</p>
-<pre>{now | time('g:i a')}</pre>
-<p>
-  12-hour: <b>11:42 pm</b>
-</p>
-<pre>{now | time('H')}</pre>
-<p>
-  Hour only: <b>23</b>
+  With seconds: <b>00:48:19</b>
 </p>
 <h2>
-  With Modifier
+  Chained Examples
 </h2>
-<pre>{now | time('H:i', '+2 hours')}</pre>
+<pre>{echo {now} | time('H:i') | bold}</pre>
 <p>
-  In 2 hours: <b>01:42</b>
+  Bold time: <b>00:48</b>
 </p>
 <h2>
   Note
 </h2>
 <p>
-  Use <code>time</code> or <code>date</code> interchangeably based on readability. Some prefer <code>time</code> when focusing on time-of-day formatting.
+  Shortcut for time-only formatting. Use <code>date</code> for full date-time formatting.
 </p>

@@ -1,38 +1,34 @@
 <p>
-  The <code>ucwords</code> function is an alias for <code>capitalize</code>.
+  The <code>ucwords</code> function converts a string to title case (alias for <code>capitalize</code>).
 </p>
 <h2>
   Basic Usage
 </h2>
-<pre>{'hello world' | ucwords}</pre>
+<pre>{echo 'hello world' | ucwords}</pre>
 <p>
-  Result: <b>'hello world' | ucwords</b>
+  Result: <b>Hello World</b>
 </p>
 <h2>
-  Same as Capitalize
+  Name Formatting
 </h2>
-<pre>{'hello world' | capitalize}</pre>
+<pre>{echo 'jane doe' | ucwords}</pre>
 <p>
-  Capitalize: <b>'hello world' | capitalize</b>
-</p>
-<pre>{'hello world' | ucwords}</pre>
-<p>
-  Ucwords: <b>'hello world' | ucwords</b>
+  Name: <b>Jane Doe</b>
 </p>
 <h2>
   Chained Examples
 </h2>
-<pre>{'PRODUCT NAME HERE' | lower | ucwords}</pre>
+<pre>{echo 'LOUD TEXT' | lower | ucwords}</pre>
 <p>
-  Fixed: <b>'PRODUCT NAME HERE' | lower | ucwords</b>
+  Normalized: <b>Loud Text</b>
 </p>
-<pre>{'database_field_name' | replace('_', ' ') | ucwords}</pre>
+<pre>{echo $email | before('@') | replace('.', ' ') | ucwords}</pre>
 <p>
-  From snake_case: <b>'database_field_name' | replace('_', ' ') | ucwords</b>
+  Name from email: <b>John Smith</b>
 </p>
 <h2>
   Note
 </h2>
 <p>
-  Use either <code>capitalize</code> or <code>ucwords</code> - they are identical. Choose based on your preference or familiarity with PHP's <code>ucwords()</code> function.
+  This is an alias for <code>capitalize</code>. Use whichever you prefer.
 </p>

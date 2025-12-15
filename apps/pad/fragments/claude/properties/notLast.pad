@@ -1,27 +1,6 @@
-<p>The <code>@notLast</code> property returns TRUE if this is NOT the last iteration.</p>
+<p>The <code>notLast</code> property matches all except the last iteration.</p>
 
-<h2>Pipe-Separated List</h2>
-<pre>{open}colors{close}
-  {open}$colors{close}{open}@notLast ? |{close}
-{open}/colors{close}</pre>
+<pre>{open}users{close}{open}$name{close}{open}property:notLast{close}, {open}/property:notLast{close}{open}/users{close}</pre>
 
-<p>Result:</p>
-<p>
-{colors}
-  {$colors}{@notLast ? |}
-{/colors}
-</p>
-
-<h2>Add Separator Between Items</h2>
-<pre>{open}users{close}
-  {open}$name{close}
-  {open}@notLast{close}&lt;hr&gt;{open}/@notLast{close}
-{open}/users{close}</pre>
-
-<p>Result:</p>
-<div style="border:1px solid #ccc; padding:10px;">
-{users}
-  {$name}
-  {@notLast}<hr>{/@notLast}
-{/users}
-</div>
+<h3>Result:</h3>
+<p>{users}{$name}{property:notLast}, {/property:notLast}{/users}</p>

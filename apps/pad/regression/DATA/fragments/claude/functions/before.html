@@ -4,38 +4,42 @@
 <h2>
   Basic Usage
 </h2>
-<pre>{$sampleEmail | before('@')}</pre>
+<pre>{echo $email | before('@')}</pre>
 <p>
-  Email: john.doe@example.com
-</p>
-<p>
-  Username: <b>john.doe</b>
+  Username: <b>john.smith</b>
 </p>
 <h2>
-  First Directory
+  Extract Protocol
 </h2>
-<pre>{$samplePath | after('/') | before('/')}</pre>
+<pre>{echo 'https://example.com' | before('://')}</pre>
 <p>
-  Path: /home/user/documents/file.txt
+  Protocol: <b>https</b>
 </p>
+<h2>
+  First Name
+</h2>
+<pre>{echo 'John Smith' | before(' ')}</pre>
 <p>
-  First directory: <b>home</b>
+  First name: <b>John</b>
 </p>
 <h2>
   Chained Examples
 </h2>
-<pre>{$sampleEmail | before('@') | replace('.', ' ') | capitalize}</pre>
+<pre>{echo $email | before('@') | upper}</pre>
 <p>
-  Full name from email: <b>John Doe</b>
+  Username uppercase: <b>JOHN.SMITH</b>
 </p>
-<pre>{'John Doe ' | before('&lt;') | trim}</pre>
+<pre>{echo $email | before('@') | replace('.', ' ') | capitalize}</pre>
 <p>
-  Name from email header: <b>'John Doe ' | before('&lt;') | trim</b>
+  Formatted name: <b>John Smith</b>
+</p>
+<pre>{echo 'file.name.txt' | before('.') | upper}</pre>
+<p>
+  First part uppercase: <b>FILE</b>
 </p>
 <h2>
-  Complex Chain
+  Note
 </h2>
-<pre>{'2024-12-14T10:30:00' | before('T') | replace('-', '/')}</pre>
 <p>
-  Date from ISO timestamp: <b>'2024-12-14T10:30:00' | before('T') | replace('-', '/')</b>
+  If the delimiter is not found, the original string is returned unchanged.
 </p>

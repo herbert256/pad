@@ -4,11 +4,11 @@
 <h2>
   Basic Usage
 </h2>
-<pre>{$existingVar | optional}</pre>
+<pre>{echo $sampleText | optional}</pre>
 <p>
-  Existing value: <b>Hello World</b>
+  Existing value: <b>Hello World Example Text</b>
 </p>
-<pre>{$undefinedVar | optional}</pre>
+<pre>{echo $undefinedVar | optional}</pre>
 <p>
   Undefined (empty): <b></b>
 </p>
@@ -18,15 +18,15 @@
 <p>
   Use <code>optional</code> to safely output variables that might not exist:
 </p>
-<pre>{$maybeNull | optional}</pre>
+<pre>{echo $maybeNull | optional}</pre>
 <h2>
   Chained Examples
 </h2>
-<pre>{$sampleText | optional | trim}</pre>
+<pre>{echo $sampleText | optional | trim}</pre>
 <p>
-  Safe trim: <b>Hello World</b>
+  Safe trim: <b>Hello World Example Text</b>
 </p>
-<pre>{$undefinedVar | optional | trim | upper}</pre>
+<pre>{echo $undefinedVar | optional | trim | upper}</pre>
 <p>
   Chain on undefined: <b></b> (empty)
 </p>
@@ -36,7 +36,7 @@
 <p>
   For default values, use conditional logic instead:
 </p>
-<pre>{if $value}{$value}{else}default{/if}</pre>
+<pre>{if $value}{echo $value}{else}default{/if}</pre>
 <h2>
   Note
 </h2>

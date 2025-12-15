@@ -156,4 +156,8 @@
     ['name' => 'optional',  'desc' => 'Null coalescing',              'cat' => 'Helpers'],
   ];
 
+  $tagCount = count($tags);
+  $propCount = count($props);
+  $funcCount = count($funcs);
+
 ?>

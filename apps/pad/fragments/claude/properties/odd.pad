@@ -1,34 +1,16 @@
-<p>The <code>@odd</code> property returns TRUE if the current occurrence number is odd.</p>
+<p>The <code>odd</code> property matches odd iterations (1st, 3rd, 5th, etc.).</p>
 
-<h2>Alternate Styling</h2>
 <pre>{open}users{close}
-  &lt;tr style="{open}@odd ? background:#f0f0f0{close}"&gt;
+  &lt;tr{open}property:odd{close} style="background:#e8e8e8"{open}/property:odd{close}&gt;
     &lt;td&gt;{open}$name{close}&lt;/td&gt;
   &lt;/tr&gt;
 {open}/users{close}</pre>
 
-<p>Result:</p>
-<table border="1">
-  <tr><th>Name</th></tr>
+<h3>Result:</h3>
+<table border="1" cellpadding="5">
 {users}
-  <tr style="{@odd ? background:#f0f0f0}">
+  <tr{property:odd} style="background:#e8e8e8"{/property:odd}>
     <td>{$name}</td>
   </tr>
 {/users}
 </table>
-
-<h2>Odd Items Only</h2>
-<pre>{open}colors{close}
-  {open}@odd{close}
-    &lt;li&gt;{open}@current{close}. {open}$colors{close}&lt;/li&gt;
-  {open}/@odd{close}
-{open}/colors{close}</pre>
-
-<p>Result (only odd positions):</p>
-<ul>
-{colors}
-  {@odd}
-    <li>{@current}. {$colors}</li>
-  {/@odd}
-{/colors}
-</ul>

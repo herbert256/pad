@@ -1,35 +1,45 @@
 <p>
-  The <code>white</code> function normalizes whitespace - collapses multiple spaces to a single space.
+  The <code>white</code> function normalizes whitespace (collapses multiple spaces to single space).
 </p>
 <h2>
   Basic Usage
 </h2>
-<pre>{'hello    world' | white}</pre>
+<pre>{echo $spacedText | white}</pre>
 <p>
-  Result: <b>'hello world' | white</b>
+  Result: <b>lots of spaces</b>
 </p>
 <h2>
-  Clean User Input
+  Multiple Spaces
 </h2>
-<pre>{'  multiple   spaces   here  ' | trim | white}</pre>
+<pre>{echo 'too    many     spaces' | white}</pre>
 <p>
-  Cleaned: <b>' multiple spaces here ' | trim | white</b>
+  Normalized: <b>too many spaces</b>
+</p>
+<h2>
+  Mixed Whitespace
+</h2>
+<pre>{echo 'tabs  and   spaces' | white}</pre>
+<p>
+  Cleaned: <b>tabs and spaces</b>
 </p>
 <h2>
   Chained Examples
 </h2>
-<pre>{'  HELLO    WORLD  ' | trim | white | lower | capitalize}</pre>
+<pre>{echo $spacedText | white | trim}</pre>
 <p>
-  Full cleanup: <b>' HELLO WORLD ' | trim | white | lower | capitalize</b>
+  Full cleanup: <b>lots of spaces</b>
 </p>
-<pre>{'John     Doe' | white | before(' ') | left(1)}. {'John     Doe' | white | after(' ')}</pre>
+<pre>{echo '  hello    world  ' | white | trim | capitalize}</pre>
 <p>
-  Abbreviated: <b>'John Doe' | white | before(' ') | left(1). 'John Doe' | white | after(' ')</b>
+  Clean and format: <b>Hello World</b>
+</p>
+<pre>{echo 'Name:    John    Doe' | white | after(': ')}</pre>
+<p>
+  Extract value: <b>John Doe</b>
 </p>
 <h2>
-  Complex Chain
+  Note
 </h2>
-<pre>{'Product:    Widget    XL    Blue' | white | after(': ') | replace(' ', '-') | lower}</pre>
 <p>
-  Product slug: <b>'Product: Widget XL Blue' | white | after(': ') | replace(' ', '-') | lower</b>
+  Combine with <code>trim</code> for full whitespace normalization.
 </p>

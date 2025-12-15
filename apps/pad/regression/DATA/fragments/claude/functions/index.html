@@ -1,134 +1,137 @@
+<h1>
+  PAD Pipe Functions
+</h1>
 <p>
-  Pipe functions transform values using the <code>|</code> operator. Functions can be chained for complex transformations.
+  Transform values using <code>| function</code> syntax. Chain multiple functions together.
 </p>
 <h2>
-  Basic Syntax
+  Syntax
 </h2>
-<pre>{$variable | functionName}
-{$variable | functionName('parameter')}
-{$variable | func1 | func2 | func3}</pre>
+<pre>{echo $var | function}
+{echo $var | function('param')}
+{echo $var | func1 | func2 | func3}</pre>
 <h2>
-  All Functions
+  Available Functions
 </h2>
 <ul>
   <li>
-    <a href="?fragments/claude/functions/after">after</a> - Everything after first delimiter <i>(String Extraction)</i>
+    <a href="?fragments/claude/functions/after">after</a> - After first delimiter
   </li>
   <li>
-    <a href="?fragments/claude/functions/afterLast">afterLast</a> - Everything after last delimiter <i>(String Extraction)</i>
+    <a href="?fragments/claude/functions/afterLast">afterLast</a> - After last delimiter
   </li>
   <li>
-    <a href="?fragments/claude/functions/before">before</a> - Everything before first delimiter <i>(String Extraction)</i>
+    <a href="?fragments/claude/functions/before">before</a> - Before first delimiter
   </li>
   <li>
-    <a href="?fragments/claude/functions/beforeLast">beforeLast</a> - Everything before last delimiter <i>(String Extraction)</i>
+    <a href="?fragments/claude/functions/beforeLast">beforeLast</a> - Before last delimiter
   </li>
   <li>
-    <a href="?fragments/claude/functions/substr">substr</a> - Extract substring by position <i>(Substring)</i>
+    <a href="?fragments/claude/functions/between">between</a> - Exclusive range test
   </li>
   <li>
-    <a href="?fragments/claude/functions/left">left</a> - First N characters <i>(Substring)</i>
+    <a href="?fragments/claude/functions/bold">bold</a> - Wrap in bold tags
   </li>
   <li>
-    <a href="?fragments/claude/functions/right">right</a> - Last N characters <i>(Substring)</i>
+    <a href="?fragments/claude/functions/capitalize">capitalize</a> - Title case
   </li>
   <li>
-    <a href="?fragments/claude/functions/mid">mid</a> - Substring from position (1-based) <i>(Substring)</i>
+    <a href="?fragments/claude/functions/close">close</a> - Literal close brace
   </li>
   <li>
-    <a href="?fragments/claude/functions/upper">upper</a> - Convert to uppercase <i>(Case)</i>
+    <a href="?fragments/claude/functions/contains">contains</a> - Contains substring
   </li>
   <li>
-    <a href="?fragments/claude/functions/lower">lower</a> - Convert to lowercase <i>(Case)</i>
+    <a href="?fragments/claude/functions/cut">cut</a> - Remove text
   </li>
   <li>
-    <a href="?fragments/claude/functions/capitalize">capitalize</a> - Capitalize first letter of each word <i>(Case)</i>
+    <a href="?fragments/claude/functions/date">date</a> - Format date
   </li>
   <li>
-    <a href="?fragments/claude/functions/ucwords">ucwords</a> - Alias for capitalize <i>(Case)</i>
+    <a href="?fragments/claude/functions/encodeHigh">encodeHigh</a> - Encode high ASCII
   </li>
   <li>
-    <a href="?fragments/claude/functions/trim">trim</a> - Remove whitespace from ends <i>(Manipulation)</i>
+    <a href="?fragments/claude/functions/exists">exists</a> - File exists
   </li>
   <li>
-    <a href="?fragments/claude/functions/replace">replace</a> - Replace occurrences of text <i>(Manipulation)</i>
+    <a href="?fragments/claude/functions/html">html</a> - HTML escape
   </li>
   <li>
-    <a href="?fragments/claude/functions/cut">cut</a> - Remove all occurrences of text <i>(Manipulation)</i>
+    <a href="?fragments/claude/functions/in">in</a> - Value in list
   </li>
   <li>
-    <a href="?fragments/claude/functions/white">white</a> - Normalize whitespace <i>(Manipulation)</i>
+    <a href="?fragments/claude/functions/left">left</a> - First N characters
   </li>
   <li>
-    <a href="?fragments/claude/functions/html">html</a> - Escape HTML special characters <i>(Encoding)</i>
+    <a href="?fragments/claude/functions/like">like</a> - Pattern matching
   </li>
   <li>
-    <a href="?fragments/claude/functions/sanitize">sanitize</a> - Full special character sanitization <i>(Encoding)</i>
+    <a href="?fragments/claude/functions/lower">lower</a> - To lowercase
   </li>
   <li>
-    <a href="?fragments/claude/functions/url">url</a> - URL-encode the value <i>(Encoding)</i>
+    <a href="?fragments/claude/functions/max_len">max_len</a> - Truncate to length
   </li>
   <li>
-    <a href="?fragments/claude/functions/slashes">slashes</a> - Add backslashes before quotes <i>(Encoding)</i>
+    <a href="?fragments/claude/functions/mid">mid</a> - Middle substring
   </li>
   <li>
-    <a href="?fragments/claude/functions/stripslashes">stripslashes</a> - Remove backslashes <i>(Encoding)</i>
+    <a href="?fragments/claude/functions/nbsp">nbsp</a> - Non-breaking spaces
   </li>
   <li>
-    <a href="?fragments/claude/functions/encodeHigh">encodeHigh</a> - Encode high ASCII characters <i>(Encoding)</i>
+    <a href="?fragments/claude/functions/now">now</a> - Current timestamp
   </li>
   <li>
-    <a href="?fragments/claude/functions/stripLow">stripLow</a> - Strip low ASCII control characters <i>(Encoding)</i>
+    <a href="?fragments/claude/functions/open">open</a> - Literal open brace
   </li>
   <li>
-    <a href="?fragments/claude/functions/bold">bold</a> - Wrap in &lt;b&gt; tags <i>(HTML)</i>
+    <a href="?fragments/claude/functions/optional">optional</a> - Null coalescing
   </li>
   <li>
-    <a href="?fragments/claude/functions/nbsp">nbsp</a> - Replace spaces with &nbsp; <i>(HTML)</i>
+    <a href="?fragments/claude/functions/range">range</a> - Inclusive range test
   </li>
   <li>
-    <a href="?fragments/claude/functions/max_len">max_len</a> - Truncate to maximum length <i>(Length)</i>
+    <a href="?fragments/claude/functions/replace">replace</a> - Replace text
   </li>
   <li>
-    <a href="?fragments/claude/functions/contains">contains</a> - Test if value contains substring <i>(Testing)</i>
+    <a href="?fragments/claude/functions/right">right</a> - Last N characters
   </li>
   <li>
-    <a href="?fragments/claude/functions/in">in</a> - Test if value is in list <i>(Testing)</i>
+    <a href="?fragments/claude/functions/sanitize">sanitize</a> - Full sanitization
   </li>
   <li>
-    <a href="?fragments/claude/functions/like">like</a> - SQL LIKE pattern matching <i>(Testing)</i>
+    <a href="?fragments/claude/functions/slashes">slashes</a> - Add slashes
   </li>
   <li>
-    <a href="?fragments/claude/functions/between">between</a> - Test if exclusively between values <i>(Testing)</i>
+    <a href="?fragments/claude/functions/stripLow">stripLow</a> - Strip control chars
   </li>
   <li>
-    <a href="?fragments/claude/functions/range">range</a> - Test if inclusively in range <i>(Testing)</i>
+    <a href="?fragments/claude/functions/stripslashes">stripslashes</a> - Remove slashes
   </li>
   <li>
-    <a href="?fragments/claude/functions/exists">exists</a> - Test if file exists <i>(Testing)</i>
+    <a href="?fragments/claude/functions/substr">substr</a> - Extract by position
   </li>
   <li>
-    <a href="?fragments/claude/functions/now">now</a> - Current Unix timestamp <i>(Date/Time)</i>
+    <a href="?fragments/claude/functions/tag">tag</a> - Create tag syntax
   </li>
   <li>
-    <a href="?fragments/claude/functions/date">date</a> - Format timestamp as date <i>(Date/Time)</i>
+    <a href="?fragments/claude/functions/time">time</a> - Format time
   </li>
   <li>
-    <a href="?fragments/claude/functions/time">time</a> - Alias for date <i>(Date/Time)</i>
+    <a href="?fragments/claude/functions/timestamp">timestamp</a> - Format timestamp
   </li>
   <li>
-    <a href="?fragments/claude/functions/timestamp">timestamp</a> - Alias for date <i>(Date/Time)</i>
+    <a href="?fragments/claude/functions/trim">trim</a> - Remove whitespace
   </li>
   <li>
-    <a href="?fragments/claude/functions/open">open</a> - Output literal opening brace <i>(PAD Helpers)</i>
+    <a href="?fragments/claude/functions/ucwords">ucwords</a> - Title case (alias)
   </li>
   <li>
-    <a href="?fragments/claude/functions/close">close</a> - Output literal closing brace <i>(PAD Helpers)</i>
+    <a href="?fragments/claude/functions/upper">upper</a> - To uppercase
   </li>
   <li>
-    <a href="?fragments/claude/functions/tag">tag</a> - Wrap value as PAD tag <i>(PAD Helpers)</i>
+    <a href="?fragments/claude/functions/url">url</a> - URL encode
   </li>
   <li>
-    <a href="?fragments/claude/functions/optional">optional</a> - Return value or empty if null <i>(PAD Helpers)</i>
+    <a href="?fragments/claude/functions/white">white</a> - Normalize spaces
   </li>
 </ul>

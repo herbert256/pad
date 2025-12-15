@@ -4,31 +4,31 @@
 <h2>
   Basic Usage
 </h2>
-<pre>{'café' | encodeHigh}</pre>
+<pre>{echo 'Café résumé' | encodeHigh}</pre>
 <p>
-  Result: <b>'café' | encodeHigh</b>
+  Result: <b>CafÃ© rÃ©sumÃ©</b>
 </p>
 <h2>
-  International Characters
+  Special Characters
 </h2>
-<pre>{'Müller' | encodeHigh}</pre>
+<pre>{echo 'naïve' | encodeHigh}</pre>
 <p>
-  Encoded: <b>'Müller' | encodeHigh</b>
-</p>
-<pre>{'naïve' | encodeHigh}</pre>
-<p>
-  Encoded: <b>'naïve' | encodeHigh</b>
+  Encoded: <b>naÃ¯ve</b>
 </p>
 <h2>
   Chained Examples
 </h2>
-<pre>{'  Café Müller  ' | trim | encodeHigh}</pre>
+<pre>{echo 'Über' | encodeHigh | upper}</pre>
 <p>
-  Clean and encode: <b>' Café Müller ' | trim | encodeHigh</b>
+  Encoded upper: <b>ÃœBER</b>
+</p>
+<pre>{echo 'São Paulo' | trim | encodeHigh}</pre>
+<p>
+  Clean encoded: <b>SÃ£o Paulo</b>
 </p>
 <h2>
   Note
 </h2>
 <p>
-  Use <code>encodeHigh</code> when you need to convert special characters to HTML entities for compatibility with systems that don't handle UTF-8 well.
+  Useful for ensuring ASCII compatibility in certain contexts.
 </p>

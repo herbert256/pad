@@ -1,42 +1,31 @@
 <p>
-  The <code>between</code> function tests if a value is exclusively between two values (min &lt; value &lt; max).
+  The <code>between</code> function tests if a value is between two values (exclusive).
 </p>
 <h2>
   Basic Usage
 </h2>
-<pre>{$sampleScore | between(0, 100)}</pre>
+<pre>{if {echo 5 | between(1, 10)} eq 1}In range{/if}</pre>
 <p>
-  Score 85 between 0 and 100 (exclusive): <b>1</b>
-</p>
-<pre>{50 | between(0, 100)}</pre>
-<p>
-  50 between 0 and 100: <b>50 | between(0, 100)</b>
+  Result: <b>5 is between 1 and 10</b>
 </p>
 <h2>
-  Boundary Test
+  Edge Cases (Exclusive)
 </h2>
-<pre>{0 | between(0, 100)}</pre>
-<p>
-  0 between 0 and 100: <b></b> (false - not exclusive)
-</p>
-<pre>{100 | between(0, 100)}</pre>
-<p>
-  100 between 0 and 100: <b></b> (false - not exclusive)
-</p>
+<pre>{if {echo 10 | between(1, 10)} eq 0}At boundary{/if}</pre>
 <h2>
-  Age Ranges
+  Outside Range
 </h2>
-<pre>{25 | between(17, 66)}</pre>
+<pre>{if {echo 15 | between(1, 10)} eq 0}Out of range{/if}</pre>
+<h2>
+  String Comparison
+</h2>
+<pre>{if {echo 'b' | between('a', 'c')} eq 1}In range{/if}</pre>
 <p>
-  Age 25 is working age: <b>25 | between(17, 66)</b>
-</p>
-<pre>{17 | between(17, 66)}</pre>
-<p>
-  Age 17 (boundary): <b>17 | between(17, 66)</b> (false - exclusive)
+  Result: <b>'b' is between 'a' and 'c'</b>
 </p>
 <h2>
   Note
 </h2>
 <p>
-  <code>between</code> uses exclusive comparison. For inclusive comparison, use <code>range</code>.
+  Exclusive: boundaries are NOT included. Use <code>range</code> for inclusive comparison.
 </p>

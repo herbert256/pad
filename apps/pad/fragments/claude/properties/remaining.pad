@@ -1,36 +1,10 @@
-<p>The <code>@remaining</code> property returns the number of iterations remaining after the current one.</p>
+<p>The <code>remaining</code> property outputs the number of items remaining.</p>
 
-<h2>Remaining Count</h2>
 <pre>{open}users{close}
-  {open}$name{close} ({open}@remaining{close} more to go)
+  {open}$name{close} - {open}property:remaining{close} more&lt;br&gt;
 {open}/users{close}</pre>
 
-<p>Result:</p>
-<div>
+<h3>Result:</h3>
 {users}
-  {$name} ({@remaining} more to go)<br>
+  {$name} - {property:remaining} more<br>
 {/users}
-</div>
-
-<h2>Conditional on Remaining</h2>
-<pre>{open}colors{close}
-  {open}$colors{close}
-  {open}if @remaining gt 0{close}
-    - {open}@remaining{close} remaining
-  {open}else{close}
-    - Done!
-  {open}/if{close}
-{open}/colors{close}</pre>
-
-<p>Result:</p>
-<div>
-{colors}
-  {$colors}
-  {if @remaining gt 0}
-    - {@remaining} remaining
-  {else}
-    - Done!
-  {/if}
-  <br>
-{/colors}
-</div>

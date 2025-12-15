@@ -1,37 +1,37 @@
 <p>
-  The <code>sanitize</code> function provides full special character sanitization.
+  The <code>sanitize</code> function performs full sanitization for safe output.
 </p>
 <h2>
   Basic Usage
 </h2>
-<pre>{'&lt;script&gt;alert("test")&lt;/script&gt;' | sanitize}</pre>
+<pre>{echo $htmlText | sanitize}</pre>
 <p>
-  Result: <b>'
-  <script>
-  alert("test")
-  </script>' | sanitize</b>
+  Result: <b>&lt;p&gt;Hello & "World"&lt;/p&gt;</b>
 </p>
 <h2>
-  Compared to HTML
+  User Input
 </h2>
-<pre>{'&lt;b&gt;"quoted"&lt;/b&gt;' | html}</pre>
+<pre>{echo '
+<script>
+bad()
+</script>' | sanitize}</pre>
 <p>
-  HTML: <b>'</b>"quoted"' | html
-</p>
-<pre>{'&lt;b&gt;"quoted"&lt;/b&gt;' | sanitize}</pre>
-<p>
-  Sanitize: <b>'</b>"quoted"' | sanitize
+  Safe: <b>&lt;script&gt;bad()&lt;/script&gt;</b>
 </p>
 <h2>
   Chained Examples
 </h2>
-<pre>{'  &lt;dangerous&gt;  ' | trim | sanitize | upper}</pre>
+<pre>{echo '  <b>Hello</b>  ' | trim | sanitize}</pre>
 <p>
-  Cleaned: <b>' ' | trim | sanitize | upper</b>
+  Clean and safe: <b>&lt;b&gt;Hello&lt;/b&gt;</b>
+</p>
+<pre>{echo $htmlText | sanitize | left(20)}</pre>
+<p>
+  Truncated safe: <b>&lt;p&gt;Hello &</b>
 </p>
 <h2>
   Note
 </h2>
 <p>
-  Use <code>sanitize</code> when you need stricter encoding than <code>html</code>. It uses PHP's FILTER_SANITIZE_FULL_SPECIAL_CHARS.
+  Use <code>sanitize</code> for comprehensive protection. It provides more thorough cleaning than <code>html</code> alone.
 </p>

@@ -4,44 +4,58 @@
 <h2>
   Basic Usage
 </h2>
-<pre>{$sampleHtml | html}</pre>
+<pre>{echo $htmlText | html}</pre>
 <p>
-  Original: &lt;script&gt;alert("XSS")&lt;/script&gt;
-</p>
-<p>
-  Escaped: <b>&lt;script&gt;alert("XSS")&lt;/script&gt;</b>
+  Result: <b>&lt;p&gt;Hello & "World"&lt;/p&gt;</b>
 </p>
 <h2>
-  Prevent XSS
+  Escape Tags
 </h2>
-<pre>{'&lt;img src=x onerror=alert(1)&gt;' | html}</pre>
+<pre>{echo '
+<script>
+alert("XSS")
+</script>' | html}</pre>
 <p>
-  Safe output: <b>'<img src="x" onerror="alert(1)">' | html</b>
+  Safe: <b>&lt;script&gt;alert("XSS")&lt;/script&gt;</b>
+</p>
+<h2>
+  Escape Quotes
+</h2>
+<pre>{echo 'He said "hello"' | html}</pre>
+<p>
+  Escaped: <b>He said "hello"</b>
 </p>
 <h2>
   Chained Examples
 </h2>
-<pre>{'  &lt;b&gt;Bold&lt;/b&gt;  ' | trim | html}</pre>
+<pre>{echo $htmlText | html | replace('&amp;', '+')}</pre>
 <p>
-  Trimmed and escaped: <b>' Bold ' | trim | html</b>
+  Modified: <b>&lt;p&gt;Hello + "World"&lt;/p&gt;</b>
 </p>
-<pre>{'&lt;script&gt;' | html | upper}</pre>
+<pre>{echo '<b>Bold</b>' | html | upper}</pre>
 <p>
-  Escaped then uppercase: <b>'
-  <script>
-  ' | html | upper<\/b><\/p>
-
-  <h2>User Content Display<\/h2>
-  <pre>{users}
-  {$name | html} - {$email | html}
-  {/users}<\/pre>
-  <p>Safe user display:<\/p>
-
-  Alice Johnson - alice@example.com<br>
-
-  Bob Smith - bob@example.com<br>
-
-  Charlie Brown - charlie@example.com<br>
-
-  </script></b>
+  Escaped and upper: <b>&lt;B&gt;BOLD&lt;/B&gt;</b>
+</p>
+<h2>
+  Characters Escaped
+</h2>
+<ul>
+  <li>
+    <code>&lt;</code> becomes <code>&amp;lt;</code>
+  </li>
+  <li>
+    <code>&gt;</code> becomes <code>&amp;gt;</code>
+  </li>
+  <li>
+    <code>&</code> becomes <code>&amp;amp;</code>
+  </li>
+  <li>
+    <code>"</code> becomes <code>&amp;quot;</code>
+  </li>
+</ul>
+<h2>
+  Note
+</h2>
+<p>
+  Always escape user input before displaying in HTML to prevent XSS attacks.
 </p>

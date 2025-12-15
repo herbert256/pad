@@ -1,46 +1,34 @@
 <p>
-  The <code>nbsp</code> function replaces spaces with <code>&amp;nbsp;</code> (non-breaking spaces).
+  The <code>nbsp</code> function converts spaces to non-breaking spaces (<code>&amp;nbsp;</code>).
 </p>
 <h2>
   Basic Usage
 </h2>
-<pre>{'hello world' | nbsp}</pre>
+<pre>{echo 'Hello World' | nbsp}</pre>
 <p>
-  Result: 'hello world' | nbsp
+  Result: <b>Hello&nbsp;World</b>
 </p>
 <h2>
-  Prevent Line Breaks
+  Prevent Wrapping
 </h2>
-<pre>{'John Doe' | nbsp}</pre>
+<pre>{echo '10 USD' | nbsp}</pre>
 <p>
-  Won't break: 'John Doe' | nbsp
-</p>
-<pre>{'New York' | nbsp}</pre>
-<p>
-  City name: 'New York' | nbsp
+  Price: 10&nbsp;USD
 </p>
 <h2>
   Chained Examples
 </h2>
-<pre>{'  multiple spaces  ' | trim | white | nbsp}</pre>
+<pre>{echo 'New York City' | nbsp | bold}</pre>
 <p>
-  Cleaned with nbsp: ' multiple spaces ' | trim | white | nbsp
+  City: <b>New&nbsp;York&nbsp;City</b>
+</p>
+<pre>{echo '100 km' | trim | nbsp}</pre>
+<p>
+  Distance: 100&nbsp;km
 </p>
 <h2>
-  Phone Numbers
+  Note
 </h2>
-<pre>{'555 123 4567' | nbsp}</pre>
 <p>
-  No break: '555 123 4567' | nbsp
+  Use to prevent line breaks between words that should stay together.
 </p>
-<h2>
-  With Users
-</h2>
-<pre>{users}
-  {$name | nbsp}
-{/users}</pre>
-<p>
-  Names that won't break:
-</p>[Alice&nbsp;Johnson]<br>
-[Bob&nbsp;Smith]<br>
-[Charlie&nbsp;Brown]<br>

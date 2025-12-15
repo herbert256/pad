@@ -1,39 +1,45 @@
 <p>
-  The <code>upper</code> function converts text to uppercase.
+  The <code>upper</code> function converts a string to uppercase.
 </p>
 <h2>
   Basic Usage
 </h2>
-<pre>{'hello world' | upper}</pre>
+<pre>{echo $sampleText | upper}</pre>
 <p>
-  Result: <b>'hello world' | upper</b>
+  Result: <b>HELLO WORLD EXAMPLE TEXT</b>
+</p>
+<h2>
+  Simple Text
+</h2>
+<pre>{echo 'hello world' | upper}</pre>
+<p>
+  Uppercase: <b>HELLO WORLD</b>
+</p>
+<h2>
+  Mixed Case
+</h2>
+<pre>{echo 'HeLLo WoRLd' | upper}</pre>
+<p>
+  All upper: <b>HELLO WORLD</b>
 </p>
 <h2>
   Chained Examples
 </h2>
-<pre>{$sampleEmail | before('@') | upper}</pre>
+<pre>{echo $email | before('@') | upper}</pre>
 <p>
-  Username uppercase: <b>JOHN.DOE</b>
+  Username uppercase: <b>JOHN.SMITH</b>
 </p>
-<pre>{'  mixed CASE text  ' | trim | upper}</pre>
+<pre>{echo $sampleText | left(10) | upper | trim}</pre>
 <p>
-  Trim then uppercase: <b>' mixed CASE text ' | trim | upper</b>
+  First 10 upper: <b>HELLO WORL</b>
 </p>
-<h2>
-  Acronyms
-</h2>
-<pre>{'application programming interface' | left(1)}{'application programming interface' | after(' ') | left(1)}{'application programming interface' | afterLast(' ') | left(1)}</pre>
+<pre>{echo 'hello' | upper | left(1)}</pre>
 <p>
-  Manual acronym: <b>'application programming interface' | left(1) | upper'application programming interface' | after(' ') | left(1) | upper'application programming interface' | afterLast(' ') | left(1) | upper</b>
+  First initial: <b>H</b>
 </p>
 <h2>
-  With Users
+  Note
 </h2>
-<pre>{users}
-  {$status | upper}: {$name}
-{/users}</pre>
 <p>
-  Status badges:
-</p><span style="background:#ddd;padding:2px 5px;">ACTIVE</span> Alice Johnson<br>
-<span style="background:#ddd;padding:2px 5px;">PENDING</span> Bob Smith<br>
-<span style="background:#ddd;padding:2px 5px;">INACTIVE</span> Charlie Brown<br>
+  Works with UTF-8 characters.
+</p>

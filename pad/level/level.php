@@ -27,7 +27,7 @@
   if ( $pad and $padLvlFun [$pad-1] )
     include PAD . 'level/function.php';
 
-  if ( in_array ( $padFirst, ['$','!','#','&','?','@'] ) ) {
+  if ( in_array ( $padFirst, ['$','!','#','&','?'] ) ) {
     $padTry = 'level/var';
     return include PAD . 'try/try.php';
   }

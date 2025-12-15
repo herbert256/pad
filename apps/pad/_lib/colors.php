@@ -25,6 +25,14 @@
 
   function padColorsString ( $source ) {
 
+    $source = str_replace ( '<pre>', '', $source );
+    $source = str_replace ( '</pre>', '', $source );
+    $source = str_replace ( '{open}', '{', $source );
+    $source = str_replace ( '{close}', '}', $source );
+    $source = str_replace ( '&lt;', '<', $source );
+    $source = str_replace ( '&gt;', '>', $source );
+
+
     $source = str_replace ( '<!-- PAD: ABOVE -->',           '', $source );
     $source = str_replace ( '<!-- PAD: VERTICAL -->',        '', $source );
     $source = str_replace ( '<!-- PAD: SKIP REGRESSION -->',   '', $source );

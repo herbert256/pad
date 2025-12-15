@@ -1,46 +1,45 @@
 <p>
-  The <code>replace</code> function replaces all occurrences of a search string with a replacement.
+  The <code>replace</code> function replaces all occurrences of a substring.
 </p>
 <h2>
   Basic Usage
 </h2>
-<pre>{'hello world' | replace('world', 'there')}</pre>
+<pre>{echo 'hello world' | replace('world', 'there')}</pre>
 <p>
-  Result: <b>'hello world' | replace('world', 'there')</b>
+  Result: <b>hello there</b>
 </p>
 <h2>
-  Multiple Replacements
+  Remove Characters
 </h2>
-<pre>{'a-b-c' | replace('-', '_') | replace('_', ' ')}</pre>
+<pre>{echo 'a-b-c-d' | replace('-', '')}</pre>
 <p>
-  Chain replacements: <b>'a-b-c' | replace('-', '_') | replace('_', ' ')</b>
+  No dashes: <b>abcd</b>
 </p>
 <h2>
-  URL Slugs
+  Change Separators
 </h2>
-<pre>{'Hello World Example' | lower | replace(' ', '-')}</pre>
+<pre>{echo 'one_two_three' | replace('_', ' ')}</pre>
 <p>
-  URL slug: <b>'Hello World Example' | lower | replace(' ', '-')</b>
+  Spaces: <b>one two three</b>
 </p>
 <h2>
-  Format Conversions
+  Chained Examples
 </h2>
-<pre>{'snake_case_name' | replace('_', ' ') | capitalize}</pre>
+<pre>{echo $email | before('@') | replace('.', ' ') | capitalize}</pre>
 <p>
-  Snake to title: <b>'snake_case_name' | replace('_', ' ') | capitalize</b>
+  Name from email: <b>John Smith</b>
 </p>
-<pre>{'kebab-case-name' | replace('-', ' ') | capitalize}</pre>
+<pre>{echo 'Hello World' | lower | replace(' ', '-')}</pre>
 <p>
-  Kebab to title: <b>'kebab-case-name' | replace('-', ' ') | capitalize</b>
+  Slug: <b>hello-world</b>
+</p>
+<pre>{echo 'a.b.c' | replace('.', '/') | replace('a', 'x')}</pre>
+<p>
+  Multiple replacements: <b>x/b/c</b>
 </p>
 <h2>
-  Complex Chain
+  Note
 </h2>
-<pre>{'2024-12-14' | replace('-', '/')}</pre>
 <p>
-  Date format: <b>'2024-12-14' | replace('-', '/')</b>
-</p>
-<pre>{$sampleEmail | replace('.', ' ') | replace('@', ' at ') | capitalize}</pre>
-<p>
-  Readable email: <b>John Doe At Example Com</b>
+  Replaces ALL occurrences. For removing text, you can also use <code>cut</code>.
 </p>

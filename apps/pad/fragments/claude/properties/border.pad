@@ -1,33 +1,10 @@
-<p>The <code>@border</code> property returns TRUE if this is the first OR last iteration.</p>
+<p>The <code>border</code> property matches the first OR last iteration.</p>
 
-<h2>Highlight First and Last</h2>
-<pre>{open}colors{close}
-  &lt;span {open}@border ? style="font-weight:bold"{close}&gt;{open}$colors{close}&lt;/span&gt;
-{open}/colors{close}</pre>
-
-<p>Result:</p>
-<p>
-{colors}
-  <span {@border ? style="font-weight:bold"}>{$colors}</span>{@notLast ? , }
-{/colors}
-</p>
-
-<h2>Special Styling for Borders</h2>
 <pre>{open}users{close}
-  {open}@border{close}
-    &lt;li style="background:#ff0"&gt;{open}$name{close} (border)&lt;/li&gt;
-  {open}else{close}
-    &lt;li&gt;{open}$name{close}&lt;/li&gt;
-  {open}/@border{close}
+  {open}property:border{close}*{open}/property:border{close}{open}$name{close}&lt;br&gt;
 {open}/users{close}</pre>
 
-<p>Result:</p>
-<ul>
+<h3>Result:</h3>
 {users}
-  {@border}
-    <li style="background:#ff0">{$name} (border)</li>
-  {else}
-    <li>{$name}</li>
-  {/@border}
+  {property:border}*{/property:border}{$name}<br>
 {/users}
-</ul>

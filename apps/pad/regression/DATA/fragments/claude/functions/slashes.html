@@ -1,37 +1,30 @@
 <p>
-  The <code>slashes</code> function adds backslashes before quotes (PHP addslashes).
+  The <code>slashes</code> function adds backslashes before special characters.
 </p>
 <h2>
   Basic Usage
 </h2>
-<pre>{"it's here" | slashes}</pre>
+<pre>{echo 'It is a "test"' | slashes}</pre>
 <p>
-  Result: <b>"it's here" | slashes</b>
+  Result: <b>It is a \"test\"</b>
 </p>
 <h2>
-  Double Quotes
+  Escape Quotes
 </h2>
-<pre>{'say "hello"' | slashes}</pre>
+<pre>{echo "He said 'hello'" | slashes}</pre>
 <p>
-  Result: <b>'say "hello"' | slashes</b>
-</p>
-<h2>
-  For JavaScript
-</h2>
-<pre>var msg = '{'User\'s "data"' | slashes}';</pre>
-<p>
-  Safe JS: var msg = '<b>'User\'s "data"' | slashes</b>';
+  Escaped: <b>He said \'hello\'</b>
 </p>
 <h2>
   Chained Examples
 </h2>
-<pre>{'  John\'s Data  ' | trim | slashes}</pre>
+<pre>{echo 'Name: "John"' | slashes | left(20)}</pre>
 <p>
-  Clean and escape: <b>' John\'s Data ' | trim | slashes</b>
+  Truncated: <b>Name: \"John\"</b>
 </p>
 <h2>
   Note
 </h2>
 <p>
-  Use <code>slashes</code> when preparing strings for contexts that need escaped quotes, like JavaScript strings or certain SQL contexts (though parameterized queries are preferred for SQL).
+  Use <code>slashes</code> when you need to escape strings for contexts requiring backslash escaping.
 </p>

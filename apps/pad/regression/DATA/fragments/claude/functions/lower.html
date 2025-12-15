@@ -1,42 +1,45 @@
 <p>
-  The <code>lower</code> function converts text to lowercase.
+  The <code>lower</code> function converts a string to lowercase.
 </p>
 <h2>
   Basic Usage
 </h2>
-<pre>{'HELLO WORLD' | lower}</pre>
+<pre>{echo 'HELLO WORLD' | lower}</pre>
 <p>
-  Result: <b>'HELLO WORLD' | lower</b>
+  Result: <b>hello world</b>
 </p>
 <h2>
-  Normalize Input
+  Email Normalization
 </h2>
-<pre>{'JoHn.DoE@EXAMPLE.COM' | lower}</pre>
+<pre>{echo 'User@EXAMPLE.COM' | lower}</pre>
 <p>
-  Email normalized: <b>'JoHn.DoE@EXAMPLE.COM' | lower</b>
+  Normalized: <b>user@example.com</b>
+</p>
+<h2>
+  Mixed Case
+</h2>
+<pre>{echo 'HeLLo WoRLd' | lower}</pre>
+<p>
+  All lower: <b>hello world</b>
 </p>
 <h2>
   Chained Examples
 </h2>
-<pre>{'FILE.TXT' | lower | before('.')}</pre>
+<pre>{echo $email | lower | before('@')}</pre>
 <p>
-  Lowercase filename without extension: <b>'FILE.TXT' | lower | before('.')</b>
+  Lowercase username: <b>john.smith</b>
 </p>
-<pre>{'  HELLO WORLD  ' | trim | lower | capitalize}</pre>
+<pre>{echo 'MY FILE.TXT' | lower | replace(' ', '_')}</pre>
 <p>
-  Clean and title case: <b>' HELLO WORLD ' | trim | lower | capitalize</b>
+  Normalized filename: <b>my_file.txt</b>
 </p>
-<h2>
-  URL Slugs
-</h2>
-<pre>{'My Blog Post Title' | lower | replace(' ', '-')}</pre>
+<pre>{echo 'HELLO WORLD' | lower | capitalize}</pre>
 <p>
-  URL slug: <b>'My Blog Post Title' | lower | replace(' ', '-')</b>
+  Title case: <b>Hello World</b>
 </p>
 <h2>
-  Complex Chain
+  Note
 </h2>
-<pre>{'USER: JOHN_DOE' | after(': ') | lower | replace('_', ' ') | capitalize}</pre>
 <p>
-  Format username: <b>'USER: JOHN_DOE' | after(': ') | lower | replace('_', ' ') | capitalize</b>
+  Works with UTF-8 characters.
 </p>

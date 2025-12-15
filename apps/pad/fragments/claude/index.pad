@@ -4,13 +4,13 @@
 
 <hr>
 
-<h2>Tags</h2>
+<h2>Tags ({$tagCount})</h2>
 <p>Template tags control flow, data, and output. <a href="?fragments/claude/tags">View all tags &rarr;</a></p>
 
 <table border="1" cellpadding="5" cellspacing="0" width="100%">
 <tr style="background:#ccc;"><th>Tag</th><th>Description</th><th>Category</th></tr>
 {tags}
-  <tr{@even ? style="background:#f5f5f5"}>
+  <tr{property:even} style="background:#f5f5f5"{/property:even}>
     <td><a href="?fragments/claude/tags/{$name}">{$name}</a></td>
     <td>{$desc}</td>
     <td><i>{$cat}</i></td>
@@ -20,14 +20,14 @@
 
 <hr>
 
-<h2>Properties</h2>
-<p>Access iteration state and metadata using <code>@property</code> syntax. <a href="?fragments/claude/properties">View all properties &rarr;</a></p>
+<h2>Properties ({$propCount})</h2>
+<p>Access iteration state and metadata using <code>{open}property:name{close}...{open}/property:name{close}</code> syntax. <a href="?fragments/claude/properties">View all properties &rarr;</a></p>
 
 <table border="1" cellpadding="5" cellspacing="0" width="100%">
 <tr style="background:#ccc;"><th>Property</th><th>Description</th><th>Category</th></tr>
 {props}
-  <tr{@even ? style="background:#f5f5f5"}>
-    <td><a href="?fragments/claude/properties/{$name}">@{$name}</a></td>
+  <tr{property:even} style="background:#f5f5f5"{/property:even}>
+    <td><a href="?fragments/claude/properties/{$name}">{$name}</a></td>
     <td>{$desc}</td>
     <td><i>{$cat}</i></td>
   </tr>
@@ -36,13 +36,13 @@
 
 <hr>
 
-<h2>Pipe Functions</h2>
+<h2>Pipe Functions ({$funcCount})</h2>
 <p>Transform values using <code>| function</code> syntax. Chain multiple functions. <a href="?fragments/claude/functions">View all functions &rarr;</a></p>
 
 <table border="1" cellpadding="5" cellspacing="0" width="100%">
 <tr style="background:#ccc;"><th>Function</th><th>Description</th><th>Category</th></tr>
 {funcs}
-  <tr{@even ? style="background:#f5f5f5"}>
+  <tr{property:even} style="background:#f5f5f5"{/property:even}>
     <td><a href="?fragments/claude/functions/{$name}">{$name}</a></td>
     <td>{$desc}</td>
     <td><i>{$cat}</i></td>
@@ -60,17 +60,19 @@
 {open}if $x gt 0{close}...{open}/if{close}</pre>
 
 <h3>Property Syntax</h3>
-<pre>{open}@first{close}, {open}@last{close}, {open}@current{close}, {open}@count{close}
-{open}@even ? class="even" : class="odd"{close}
-{open}@first ? &lt;ul&gt;{close}...{open}@last ? &lt;/ul&gt;{close}</pre>
+<pre>{open}property:first{close}First item{open}/property:first{close}
+{open}property:last{close}Last item{open}/property:last{close}
+{open}property:even{close}Even row{open}/property:even{close}
+{open}property:current{close} - outputs current index
+{open}property:count{close} - outputs total count</pre>
 
 <h3>Pipe Syntax</h3>
-<pre>{open}$var | function{close}
-{open}$var | function('param'){close}
-{open}$var | trim | upper | left(10){close}</pre>
+<pre>{open}echo $var | function{close}
+{open}echo $var | function('param'){close}
+{open}echo $var | trim | upper | left(10){close}</pre>
 
 <h3>Common Patterns</h3>
-<pre>{open}$email | before('@') | replace('.', ' ') | capitalize{close}
-{open}$path | afterLast('/') | beforeLast('.'){close}
-{open}now | date('Y-m-d', '+1 week'){close}
-{open}items{close}{open}@notFirst ? , {close}{open}$name{close}{open}/items{close}</pre>
+<pre>{open}echo $email | before('@') | replace('.', ' ') | capitalize{close}
+{open}echo $path | afterLast('/') | beforeLast('.'){close}
+{open}echo {open}now{close} | date('Y-m-d', '+1 week'){close}
+{open}items{close}{open}property:notFirst{close}, {open}/property:notFirst{close}{open}$name{close}{open}/items{close}</pre>

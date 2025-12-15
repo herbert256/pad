@@ -1,43 +1,45 @@
 <p>
-  The <code>cut</code> function removes all occurrences of a text (replace with empty).
+  The <code>cut</code> function removes all occurrences of a substring.
 </p>
 <h2>
   Basic Usage
 </h2>
-<pre>{'hello world' | cut('o')}</pre>
+<pre>{echo 'hello-world' | cut('-')}</pre>
 <p>
-  Result: <b>'hello world' | cut('o')</b>
+  Result: <b>helloworld</b>
 </p>
 <h2>
-  Remove Separators
+  Remove Prefix
 </h2>
-<pre>{'123-456-7890' | cut('-')}</pre>
+<pre>{echo 'prefix_name' | cut('prefix_')}</pre>
 <p>
-  Phone digits only: <b>'123-456-7890' | cut('-')</b>
+  Without prefix: <b>name</b>
 </p>
-<pre>{'$1,234.56' | cut('$') | cut(',')}</pre>
+<h2>
+  Remove Characters
+</h2>
+<pre>{echo 'a.b.c.d' | cut('.')}</pre>
 <p>
-  Clean number: <b>'$1,234.56' | cut('$') | cut(',')</b>
+  No dots: <b>abcd</b>
 </p>
 <h2>
   Chained Examples
 </h2>
-<pre>{'  hello   world  ' | trim | white | cut(' ')}</pre>
+<pre>{echo 'Mr. John Smith' | cut('Mr. ') | upper}</pre>
 <p>
-  Remove all spaces: <b>' hello world ' | trim | white | cut(' ')</b>
+  Name only: <b>JOHN SMITH</b>
 </p>
-<pre>{'user@example.com' | cut('@') | cut('.')}</pre>
+<pre>{echo '123-456-7890' | cut('-') | left(6)}</pre>
 <p>
-  Letters only: <b>'user@example.com' | cut('@') | cut('.')</b>
+  First 6 digits: <b>123456</b>
+</p>
+<pre>{echo 'test_file_name.txt' | cut('_') | beforeLast('.')}</pre>
+<p>
+  Clean name: <b>testfilename</b>
 </p>
 <h2>
-  Complex Chain
+  Note
 </h2>
-<pre>{'ISBN: 978-3-16-148410-0' | after(': ') | cut('-')}</pre>
 <p>
-  ISBN digits: <b>'ISBN: 978-3-16-148410-0' | after(': ') | cut('-')</b>
-</p>
-<pre>{'(555) 123-4567' | cut('(') | cut(')') | cut(' ') | cut('-')}</pre>
-<p>
-  Phone digits: <b>'(555) 123-4567' | cut('(') | cut(')') | cut(' ') | cut('-')</b>
+  The <code>cut</code> function is shorthand for <code>replace(text, '')</code>.
 </p>

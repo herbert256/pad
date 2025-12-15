@@ -1,25 +1,10 @@
-<p>The <code>@current</code> property returns the current occurrence number (1-based index).</p>
+<p>The <code>current</code> property outputs the current iteration number (1-based).</p>
 
-<h2>Numbered List</h2>
 <pre>{open}users{close}
-  {open}@current{close}. {open}$name{close}
+  {open}property:current{close}. {open}$name{close}&lt;br&gt;
 {open}/users{close}</pre>
 
-<p>Result:</p>
-<div>
+<h3>Result:</h3>
 {users}
-  {@current}. {$name}<br>
+  {property:current}. {$name}<br>
 {/users}
-</div>
-
-<h2>Position Display</h2>
-<pre>{open}colors{close}
-  &lt;li&gt;Item {open}@current{close} of {open}@count{close}: {open}$colors{close}&lt;/li&gt;
-{open}/colors{close}</pre>
-
-<p>Result:</p>
-<ul>
-{colors}
-  <li>Item {@current} of {@count}: {$colors}</li>
-{/colors}
-</ul>

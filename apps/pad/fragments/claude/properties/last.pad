@@ -1,28 +1,14 @@
-<p>The <code>@last</code> property returns TRUE if this is the last iteration.</p>
+<p>The <code>last</code> property matches only the last iteration.</p>
 
-<h2>Basic Usage</h2>
 <pre>{open}users{close}
   &lt;li&gt;{open}$name{close}&lt;/li&gt;
-  {open}@last ? &lt;/ul&gt;{close}
+  {open}property:last{close}(end of list){open}/property:last{close}
 {open}/users{close}</pre>
 
-<p>Result:</p>
+<h3>Result:</h3>
 <ul>
 {users}
   <li>{$name}</li>
-  {@last ? </ul>}
+  {property:last}(end of list){/property:last}
 {/users}
-
-<h2>Conditional Block</h2>
-<pre>{open}colors{close}
-  {open}@last{close}
-    &lt;p&gt;&lt;b&gt;Last color: {open}$colors{close}&lt;/b&gt;&lt;/p&gt;
-  {open}/@last{close}
-{open}/colors{close}</pre>
-
-<p>Result:</p>
-{colors}
-  {@last}
-    <p><b>Last color: {$colors}</b></p>
-  {/@last}
-{/colors}
+</ul>

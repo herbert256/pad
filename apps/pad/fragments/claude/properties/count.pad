@@ -1,23 +1,10 @@
-<p>The <code>@count</code> property returns the total number of items.</p>
+<p>The <code>count</code> property outputs the total number of items.</p>
 
-<h2>Total Count</h2>
 <pre>{open}users{close}
-  {open}@first{close}Total users: {open}@count{close}{open}/@first{close}
+  {open}$name{close} ({open}property:current{close}/{open}property:count{close})&lt;br&gt;
 {open}/users{close}</pre>
 
-<p>Result:</p>
+<h3>Result:</h3>
 {users}
-  {@first}Total users: {@count}{/@first}
+  {$name} ({property:current}/{property:count})<br>
 {/users}
-
-<h2>Progress Display</h2>
-<pre>{open}colors{close}
-  Processing {open}@current{close}/{open}@count{close}: {open}$colors{close}
-{open}/colors{close}</pre>
-
-<p>Result:</p>
-<div>
-{colors}
-  Processing {@current}/{@count}: {$colors}<br>
-{/colors}
-</div>

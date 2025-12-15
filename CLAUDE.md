@@ -42,7 +42,7 @@ pad/               # Framework core
 ├── tags/          # Template tags: if, while, data, files, page, etc.
 ├── functions/     # Pipe functions: trim, upper, date, html, contains, etc.
 ├── options/       # Tag options: sort, first, page, rows, cache, etc.
-├── tag/           # Tag properties: @first, @last, @even, @odd, @current, @count
+├── tag/           # Tag properties: property:first, property:last, property:even, etc.
 ├── lib/           # PHP helper functions
 ├── config/        # Configuration and presets
 ├── error/         # Error handling (boot-time and runtime)
@@ -97,7 +97,7 @@ apps/myapp/
 | `_lib/` | PHP functions | All `.php` files auto-included |
 | `_include/` | Template snippets | `{name}` → `name.pad` |
 | `_tags/` | Custom tags | `{mytag}` → `mytag.php` |
-| `_functions/` | Pipe functions | `{$x \| myfunc}` → `myfunc.php` |
+| `_functions/` | Pipe functions | `{echo $x \| myfunc}` → `myfunc.php` |
 | `_callbacks/` | Iteration hooks | `callback='name'` → `name.php` |
 | `_options/` | Tag options | Custom option handlers |
 | `_config/` | App config | `config.php` overrides |
@@ -136,10 +136,13 @@ sudo pad/install/install.sh  # Requires root - sets up DB, Apache, data dirs
 ```
 
 ### Pipe Functions
+**IMPORTANT:** Pipe functions require a tag like `{echo}` - you cannot use bare expressions.
 ```
-{$name | upper}                # Uppercase
-{$text | trim | lower}         # Chain multiple
-{$date | date ('Y-m-d')}       # With parameters
+{echo $name | upper}                # Correct - uppercase
+{echo $text | trim | lower}         # Correct - chain multiple
+{echo $date | date('Y-m-d')}        # Correct - with parameters
+
+{$name | upper}                     # WRONG - bare expression won't work
 ```
 
 ### Loops
@@ -161,14 +164,15 @@ sudo pad/install/install.sh  # Requires root - sets up DB, Apache, data dirs
 ```
 
 ### Iteration Properties
+Properties are tags with the `property:` prefix for clarity and to avoid naming conflicts:
 ```
 {items}
-  {@first}First item{/first}
-  {@last}Last item{/last}
-  {@even}Even row{/even}
-  {@odd}Odd row{/odd}
-  Count: {@count}
-  Index: {@current}
+  {property:first}First item{/property:first}
+  {property:last}Last item{/property:last}
+  {property:even}Even row{/property:even}
+  {property:odd}Odd row{/property:odd}
+  Count: {property:count}
+  Index: {property:current}
 {/items}
 ```
 
@@ -272,11 +276,12 @@ Key references:
 ## Template Syntax Details
 
 ### Pipe Arithmetic
-Arithmetic pipes require a space between the operator and operand:
+Arithmetic pipes require a space between the operator and operand, and must use `{echo}`:
 ```
-{$value | + 1}          # Correct - adds 1
-{$value | +1}           # Wrong - won't work
-{$value | * 2}          # Correct - multiplies by 2
+{echo $value | + 1}          # Correct - adds 1
+{echo $value | +1}           # Wrong - no space
+{echo $value | * 2}          # Correct - multiplies by 2
+{$value | + 1}               # Wrong - bare expression
 ```
 
 ### If/Else Syntax
@@ -479,11 +484,14 @@ PAD pipe functions come from two sources:
 1. Custom functions in `pad/functions/` (trim, upper, date, html, etc.)
 2. Standard PHP functions called directly (strlen, count, etc.)
 
+**IMPORTANT:** Always use `{echo}` or another tag - bare expressions don't work:
 ```
-{$text | trim}              # PAD function from pad/functions/
-{$text | strlen}            # PHP function called directly
-{$items | count}            # PHP function called directly
-{$name | ucfirst}           # PHP function called directly
+{echo $text | trim}              # Correct - PAD function
+{echo $text | strlen}            # Correct - PHP function
+{echo $items | count}            # Correct - PHP function
+{echo $name | ucfirst}           # Correct - PHP function
+
+{$text | trim}                   # WRONG - bare expression
 ```
 
 ## Common Patterns
@@ -615,25 +623,26 @@ Use named sequences instead of level-based `$-1` syntax:
 ```
 
 ### Iteration Properties
-Two syntax forms for iteration properties:
-
-**Tag syntax** (block):
+Use the `property:` prefix to access iteration state within loops:
 ```
 {items}
-  {first}First item{/first}
-  {last}Last item{/last}
-  {even}Even row{/even}
-  {odd}Odd row{/odd}
+  {property:first}First item{/property:first}
+  {property:last}Last item{/property:last}
+  {property:even}Even row{/property:even}
+  {property:odd}Odd row{/property:odd}
+  {property:notFirst}, {/property:notFirst}{$name}
 {/items}
 ```
 
-**Variable syntax** (with `&` prefix):
-```
-{items}
-  Item {&current} of {&count}: {$name}
-  {if &first}(first){/if}
-{/items}
-```
+**Available properties:**
+- `first`, `last`, `notFirst`, `notLast` - Position checks
+- `border` (first or last), `middle` (neither first nor last)
+- `even`, `odd` - Alternating rows
+- `current` - Current index (1-based)
+- `count` - Total items
+- `remaining`, `done` - Items left/processed
+- `key` - Current array key
+- `fields` - Iterate field name/value pairs
 
 ### Files Tag
 Use `base='app'` for application-relative paths:

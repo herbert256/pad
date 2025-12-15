@@ -1,33 +1,12 @@
-<p>The <code>@name</code> property returns the name of the current tag/level.</p>
+<p>The <code>name</code> property outputs the current tag name.</p>
 
-<h2>Get Tag Name</h2>
 <pre>{open}users{close}
-  {open}@first{close}
-    Processing tag: {open}@name{close}
-  {open}/@first{close}
+  {open}property:first{close}Tag: {open}property:name{close}&lt;br&gt;{open}/property:first{close}
+  {open}$name{close}&lt;br&gt;
 {open}/users{close}</pre>
 
-<p>Result:</p>
+<h3>Result:</h3>
 {users}
-  {@first}
-    Processing tag: {@name}
-  {/@first}
+  {property:first}Tag: {property:name}<br>{/property:first}
+  {$name}<br>
 {/users}
-
-<h2>Multiple Tags</h2>
-<pre>{open}users{close}
-  In: {open}@name{close}
-{open}/users{close}
-
-{open}colors{close}
-  In: {open}@name{close}
-{open}/colors{close}</pre>
-
-<p>Result:</p>
-{users}
-  {@first}In: {@name}{/@first}
-{/users}
-<br>
-{colors}
-  {@first}In: {@name}{/@first}
-{/colors}

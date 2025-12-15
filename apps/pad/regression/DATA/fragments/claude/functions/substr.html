@@ -1,0 +1,45 @@
+<p>
+  The <code>substr</code> function extracts a substring by position and length.
+</p>
+<h2>
+  Basic Usage
+</h2>
+<pre>{echo $sampleText | substr(0, 5)}</pre>
+<p>
+  First 5 chars: <b>Hello</b>
+</p>
+<h2>
+  From Position
+</h2>
+<pre>{echo 'Hello World' | substr(6)}</pre>
+<p>
+  From position 6: <b>World</b>
+</p>
+<h2>
+  Negative Index
+</h2>
+<pre>{echo 'Hello World' | substr(-5)}</pre>
+<p>
+  Last 5 chars: <b>World</b>
+</p>
+<h2>
+  Chained Examples
+</h2>
+<pre>{echo $sampleText | substr(0, 10) | upper}</pre>
+<p>
+  First 10 uppercase: <b>HELLO WORL</b>
+</p>
+<pre>{echo 'abcdefghij' | substr(2, 4) | upper}</pre>
+<p>
+  Middle portion: <b>CDEF</b>
+</p>
+<pre>{echo $email | substr(0, 3) | upper}</pre>
+<p>
+  First 3 of email: <b>JOH</b>
+</p>
+<h2>
+  Note
+</h2>
+<p>
+  Parameters: <code>substr(start, length)</code>. Negative start counts from end.
+</p>

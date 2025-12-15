@@ -1,41 +1,34 @@
 <p>
-  The <code>contains</code> function tests if a value contains a substring (returns 1 or empty).
+  The <code>contains</code> function tests if a string contains a substring (returns boolean).
 </p>
 <h2>
   Basic Usage
 </h2>
-<pre>{'hello world' | contains('world')}</pre>
+<pre>{if {echo $email | contains('@')} eq 1}Valid email format{/if}</pre>
 <p>
-  Contains 'world': <b>'hello world' | contains('world')</b> (1 = true)
-</p>
-<pre>{'hello world' | contains('foo')}</pre>
-<p>
-  Contains 'foo': <b>'hello world' | contains('foo')</b> (empty = false)
+  Result: <b>Email contains @</b>
 </p>
 <h2>
-  Conditional Display
+  Check for Word
 </h2>
-<pre>{if $sampleEmail | contains('@')}
-  Valid email format
-{/if}</pre>
+<pre>{if {echo $sampleText | contains('World')} eq 1}Contains World{/if}</pre>
 <p>
-  Result:
+  Found: <b>Text contains "World"</b>
 </p>
 <h2>
-  With Users
+  Case Sensitive
 </h2>
-<pre>{users}
-  {if $email | contains('example')}
-    {$name} (example.com user)
-  {/if}
-{/users}</pre>
-<p>
-  Example.com users:
-</p>1 1 1
+<pre>{if {echo 'Hello' | contains('hello')} eq 0}Not found (case matters){/if}</pre>
 <h2>
-  Chained with Logic
+  With Lower
 </h2>
-<pre>{if $samplePath | lower | contains('.txt')}Text file{/if}</pre>
+<pre>{if {echo 'Hello' | lower | contains('hello')} eq 1}Found{/if}</pre>
 <p>
-  Is text file:
+  Case-insensitive match: <b>Found after lowercasing</b>
+</p>
+<h2>
+  Note
+</h2>
+<p>
+  Returns 1 (true) or 0 (false). Use with <code>{if}</code> conditionals.
 </p>

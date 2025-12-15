@@ -1,39 +1,45 @@
 <p>
-  The <code>right</code> function returns the last N characters.
+  The <code>right</code> function returns the last N characters of a string.
 </p>
 <h2>
   Basic Usage
 </h2>
-<pre>{'Hello World' | right(5)}</pre>
+<pre>{echo $sampleText | right(10)}</pre>
 <p>
-  Last 5: <b>'Hello World' | right(5)</b>
+  Last 10: <b>ample Text</b>
 </p>
 <h2>
   File Extension
 </h2>
-<pre>{'document.pdf' | right(3)}</pre>
+<pre>{echo 'document.txt' | right(3)}</pre>
 <p>
-  Extension: <b>'document.pdf' | right(3)</b>
+  Extension: <b>txt</b>
+</p>
+<h2>
+  Last Digits
+</h2>
+<pre>{echo '1234567890' | right(4)}</pre>
+<p>
+  Last 4: <b>7890</b>
 </p>
 <h2>
   Chained Examples
 </h2>
-<pre>{'1234567890' | right(4) | + 0}</pre>
+<pre>{echo $sampleText | right(15) | upper}</pre>
 <p>
-  Last 4 digits as number: <b>'1234567890' | right(4) | + 0</b>
+  Last 15 uppercase: <b>LD EXAMPLE TEXT</b>
 </p>
-<pre>{$samplePath | right(7) | upper}</pre>
+<pre>{echo $filePath | right(10) | lower}</pre>
 <p>
-  Last 7 chars uppercase: <b>ILE.TXT</b>
+  End of path: <b>readme.txt</b>
+</p>
+<pre>{echo 'HELLO WORLD' | right(5) | lower | capitalize}</pre>
+<p>
+  Last word formatted: <b>World</b>
 </p>
 <h2>
-  Complex Chain
+  Note
 </h2>
-<pre>{'Order #ORD-2024-001234' | right(6) | + 1}</pre>
 <p>
-  Order number + 1: <b>'Order #ORD-2024-001234' | right(6) | + 1</b>
-</p>
-<pre>{'user@domain.co.uk' | afterLast('.') | right(2) | upper}</pre>
-<p>
-  Country code: <b>'user@domain.co.uk' | afterLast('.') | right(2) | upper</b>
+  If the string is shorter than N, the entire string is returned.
 </p>

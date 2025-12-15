@@ -1,46 +1,45 @@
 <p>
-  The <code>capitalize</code> function capitalizes the first letter of each word.
+  The <code>capitalize</code> function converts a string to title case (capitalizes each word).
 </p>
 <h2>
   Basic Usage
 </h2>
-<pre>{'hello world' | capitalize}</pre>
+<pre>{echo 'hello world' | capitalize}</pre>
 <p>
-  Result: <b>'hello world' | capitalize</b>
+  Result: <b>Hello World</b>
 </p>
 <h2>
   From Lowercase
 </h2>
-<pre>{'JOHN DOE' | lower | capitalize}</pre>
+<pre>{echo 'john smith' | capitalize}</pre>
 <p>
-  Fixed caps: <b>'JOHN DOE' | lower | capitalize</b>
+  Name: <b>John Smith</b>
+</p>
+<h2>
+  From Uppercase
+</h2>
+<pre>{echo 'HELLO WORLD' | lower | capitalize}</pre>
+<p>
+  Fixed: <b>Hello World</b>
 </p>
 <h2>
   Chained Examples
 </h2>
-<pre>{$sampleEmail | before('@') | replace('.', ' ') | capitalize}</pre>
+<pre>{echo $email | before('@') | replace('.', ' ') | capitalize}</pre>
 <p>
-  Full name from email: <b>John Doe</b>
+  Name from email: <b>John Smith</b>
 </p>
-<pre>{'the quick brown fox' | capitalize | left(13)}...</pre>
+<pre>{echo 'the quick brown fox' | capitalize | left(15)}</pre>
 <p>
-  Title preview: <b>'the quick brown fox' | capitalize | left(13)...</b>
+  Truncated title: <b>The Quick Brown</b>
+</p>
+<pre>{echo '  spaced  text  ' | trim | capitalize}</pre>
+<p>
+  Trimmed and titled: <b>Spaced Text</b>
 </p>
 <h2>
-  With Users
+  Note
 </h2>
-<pre>{users}
-  {$email | before('@') | replace('.', ' ') | capitalize}
-{/users}</pre>
 <p>
-  Names from emails:
-</p>Alice<br>
-Bob<br>
-Charlie<br>
-<h2>
-  Complex Chain
-</h2>
-<pre>{'product_category_name' | replace('_', ' ') | capitalize}</pre>
-<p>
-  From snake_case: <b>'product_category_name' | replace('_', ' ') | capitalize</b>
+  Alias: <code>ucwords</code> provides the same functionality.
 </p>

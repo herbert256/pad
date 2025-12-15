@@ -6,42 +6,36 @@
 </h2>
 <pre>{now}</pre>
 <p>
-  Current timestamp: <b>1765755722</b>
+  Timestamp: <b>1765759699</b>
 </p>
 <h2>
-  Format with Date
+  Format Current Time
 </h2>
-<pre>{now | date('Y-m-d')}</pre>
+<pre>{echo {now} | date('Y-m-d')}</pre>
 <p>
-  Today: <b>2025-12-14</b>
+  Today: <b>2025-12-15</b>
 </p>
-<pre>{now | date('H:i:s')}</pre>
+<h2>
+  Full DateTime
+</h2>
+<pre>{echo {now} | date('Y-m-d H:i:s')}</pre>
 <p>
-  Current time: <b>23:42:02</b>
+  Now: <b>2025-12-15 00:48:19</b>
 </p>
 <h2>
   Chained Examples
 </h2>
-<pre>{now | date('Y')}</pre>
+<pre>{echo {now} | date('l, F j, Y')}</pre>
 <p>
-  Current year: <b>2025</b>
+  Full date: <b>Monday, December 15, 2025</b>
 </p>
-<pre>{now | date('F j, Y')}</pre>
+<pre>{echo {now} | date('H:i')}</pre>
 <p>
-  Full date: <b>December 14, 2025</b>
-</p>
-<pre>{now | date('l')}</pre>
-<p>
-  Day of week: <b>Sunday</b>
+  Time: <b>00:48</b>
 </p>
 <h2>
-  Calculations
+  Note
 </h2>
-<pre>{now | date('Y') | + 1}</pre>
 <p>
-  Next year: <b>2026</b>
-</p>
-<pre>{now | date('m') | + 0}</pre>
-<p>
-  Current month number: <b>12</b>
+  Returns Unix timestamp (seconds since 1970-01-01). Pipe to <code>date</code> for formatting.
 </p>

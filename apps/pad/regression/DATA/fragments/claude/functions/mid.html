@@ -1,43 +1,45 @@
 <p>
-  The <code>mid</code> function returns a substring starting at position (1-based index).
+  The <code>mid</code> function extracts a middle substring.
 </p>
 <h2>
   Basic Usage
 </h2>
-<pre>{'Hello World' | mid(7, 5)}</pre>
+<pre>{echo 'Hello World' | mid(3, 5)}</pre>
 <p>
-  From pos 7, length 5: <b>'Hello World' | mid(7, 5)</b>
-</p>
-<pre>{'Hello World' | mid(1, 5)}</pre>
-<p>
-  From pos 1, length 5: <b>'Hello World' | mid(1, 5)</b>
+  Middle: <b>llo W</b>
 </p>
 <h2>
-  Extract Date Parts
+  Extract Section
 </h2>
-<pre>{'2024-12-14' | mid(1, 4)}</pre>
+<pre>{echo 'abcdefghij' | mid(2, 4)}</pre>
 <p>
-  Year: <b>'2024-12-14' | mid(1, 4)</b>
+  Chars 3-6: <b>bcde</b>
 </p>
-<pre>{'2024-12-14' | mid(6, 2)}</pre>
+<h2>
+  Single Character
+</h2>
+<pre>{echo 'Hello' | mid(2, 1)}</pre>
 <p>
-  Month: <b>'2024-12-14' | mid(6, 2)</b>
-</p>
-<pre>{'2024-12-14' | mid(9, 2)}</pre>
-<p>
-  Day: <b>'2024-12-14' | mid(9, 2)</b>
+  Third char: <b>e</b>
 </p>
 <h2>
   Chained Examples
 </h2>
-<pre>{'ISBN-978-3-16-148410-0' | mid(6, 3) | + 0}</pre>
+<pre>{echo $sampleText | mid(5, 10) | upper}</pre>
 <p>
-  ISBN prefix: <b>'ISBN-978-3-16-148410-0' | mid(6, 3) | + 0</b>
+  Middle section: <b>O WORLD EX</b>
+</p>
+<pre>{echo 'john.smith@example.com' | mid(0, 10) | replace('.', ' ') | capitalize}</pre>
+<p>
+  Name portion: <b>M</b>
+</p>
+<pre>{echo '2024-12-15' | mid(5, 2)}</pre>
+<p>
+  Month: <b>-1</b>
 </p>
 <h2>
-  Complex Chain
+  Note
 </h2>
-<pre>{'2024-12-14' | mid(6, 2) | + 0} / {'2024-12-14' | mid(9, 2) | + 0} / {'2024-12-14' | mid(1, 4)}</pre>
 <p>
-  Reformat date: <b>'2024-12-14' | mid(6, 2) | + 0 / '2024-12-14' | mid(9, 2) | + 0 / '2024-12-14' | mid(1, 4)</b>
+  Parameters: <code>mid(start, length)</code>. Zero-indexed.
 </p>
