@@ -4,22 +4,28 @@
 <h2>
   Basic Usage
 </h2>
-<pre>{if {echo 5 | between(1, 10)} eq 1}In range{/if}</pre>
+<pre>{if {echo 5 | between(1, 10)}}In range{/if}</pre>
 <p>
   Result: <b>5 is between 1 and 10</b>
 </p>
 <h2>
   Edge Cases (Exclusive)
 </h2>
-<pre>{if {echo 10 | between(1, 10)} eq 0}At boundary{/if}</pre>
+<pre>{if not {echo 10 | between(1, 10)}}At boundary{/if}</pre>
+<p>
+  Edge: <b>10 is NOT between 1 and 10 (exclusive)</b>
+</p>
 <h2>
   Outside Range
 </h2>
-<pre>{if {echo 15 | between(1, 10)} eq 0}Out of range{/if}</pre>
+<pre>{if not {echo 15 | between(1, 10)}}Out of range{/if}</pre>
+<p>
+  Result: <b>15 is NOT between 1 and 10</b>
+</p>
 <h2>
   String Comparison
 </h2>
-<pre>{if {echo 'b' | between('a', 'c')} eq 1}In range{/if}</pre>
+<pre>{if {echo 'b' | between('a', 'c')}}In range{/if}</pre>
 <p>
   Result: <b>'b' is between 'a' and 'c'</b>
 </p>

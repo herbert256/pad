@@ -1,34 +1,37 @@
 <p>
-  The <code>contains</code> function tests if a string contains a substring (returns boolean).
+  The <code>contains</code> function tests if a string contains a substring.
 </p>
 <h2>
   Basic Usage
 </h2>
-<pre>{if {echo $email | contains('@')} eq 1}Valid email format{/if}</pre>
+<pre>{if {echo $email | contains('@')}}Valid email{/if}</pre>
 <p>
   Result: <b>Email contains @</b>
 </p>
 <h2>
   Check for Word
 </h2>
-<pre>{if {echo $sampleText | contains('World')} eq 1}Contains World{/if}</pre>
+<pre>{if {echo $sampleText | contains('World')}}Has World{/if}</pre>
 <p>
   Found: <b>Text contains "World"</b>
 </p>
 <h2>
   Case Sensitive
 </h2>
-<pre>{if {echo 'Hello' | contains('hello')} eq 0}Not found (case matters){/if}</pre>
+<pre>{if not {echo 'Hello' | contains('hello')}}Not found{/if}</pre>
+<p>
+  Note: <b>Case sensitive - 'hello' not in 'Hello'</b>
+</p>
 <h2>
   With Lower
 </h2>
-<pre>{if {echo 'Hello' | lower | contains('hello')} eq 1}Found{/if}</pre>
+<pre>{if {echo 'Hello' | lower | contains('hello')}}Found{/if}</pre>
 <p>
-  Case-insensitive match: <b>Found after lowercasing</b>
+  Case-insensitive: <b>Found after lowercasing</b>
 </p>
 <h2>
   Note
 </h2>
 <p>
-  Returns 1 (true) or 0 (false). Use with <code>{if}</code> conditionals.
+  Returns true or false. Use with <code>{if}</code> conditionals.
 </p>
