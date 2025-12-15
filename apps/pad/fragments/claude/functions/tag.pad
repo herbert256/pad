@@ -5,8 +5,8 @@
 <p>Result: <b>{echo 'myTag' | tag}</b></p>
 
 <h2>Dynamic Tag Names</h2>
-{data $tagName = 'users'}
-<pre>{open}data $tagName = 'users'{close}
+{set $tagName = 'users'}
+<pre>{open}set $tagName = 'users'{close}
 {open}echo $tagName | tag{close}</pre>
 <p>Dynamic tag: <b>{echo $tagName | tag}</b></p>
 

@@ -1,20 +1,20 @@
 <p>The <code>like</code> function tests pattern matching using wildcards.</p>
 
 <h2>Basic Usage</h2>
-<pre>{open}if {open}echo 'hello.txt' | like('*.txt'){close} eq 1{close}Text file{open}/if{close}</pre>
-{if {echo 'hello.txt' | like('*.txt')} eq 1}<p>Result: <b>Matches *.txt pattern</b></p>{/if}
+<pre>{open}if {open}echo 'hello.txt' | like('*.txt'){close}{close}Text file{open}/if{close}</pre>
+{if {echo 'hello.txt' | like('*.txt')}}<p>Result: <b>Matches *.txt pattern</b></p>{/if}
 
 <h2>Prefix Match</h2>
-<pre>{open}if {open}echo 'user_john' | like('user_*'){close} eq 1{close}Is user{open}/if{close}</pre>
-{if {echo 'user_john' | like('user_*')} eq 1}<p>Found: <b>Matches user_* pattern</b></p>{/if}
+<pre>{open}if {open}echo 'user_john' | like('user_*'){close}{close}Is user{open}/if{close}</pre>
+{if {echo 'user_john' | like('user_*')}}<p>Found: <b>Matches user_* pattern</b></p>{/if}
 
 <h2>Contains Pattern</h2>
-<pre>{open}if {open}echo 'my_document_v2.pdf' | like('*document*'){close} eq 1{close}Document{open}/if{close}</pre>
-{if {echo 'my_document_v2.pdf' | like('*document*')} eq 1}<p>Found: <b>Contains 'document'</b></p>{/if}
+<pre>{open}if {open}echo 'my_document_v2.pdf' | like('*document*'){close}{close}Document{open}/if{close}</pre>
+{if {echo 'my_document_v2.pdf' | like('*document*')}}<p>Found: <b>Contains 'document'</b></p>{/if}
 
 <h2>Chained Example</h2>
-<pre>{open}if {open}echo $filePath | afterLast('/') | like('*.txt'){close} eq 1{close}Text{open}/if{close}</pre>
-{if {echo $filePath | afterLast('/') | like('*.txt')} eq 1}<p>File: <b>readme.txt matches *.txt</b></p>{/if}
+<pre>{open}if {open}echo $filePath | afterLast('/') | like('*.txt'){close}{close}Text{open}/if{close}</pre>
+{if {echo $filePath | afterLast('/') | like('*.txt')}}<p>File: <b>readme.txt matches *.txt</b></p>{/if}
 
 <h2>Note</h2>
 <p>Use <code>*</code> for any characters. Returns 1 (true) or 0 (false).</p>

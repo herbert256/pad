@@ -1,20 +1,20 @@
-<p>The <code>contains</code> function tests if a string contains a substring (returns boolean).</p>
+<p>The <code>contains</code> function tests if a string contains a substring.</p>
 
 <h2>Basic Usage</h2>
-<pre>{open}if {open}echo $email | contains('@'){close} eq 1{close}Valid email format{open}/if{close}</pre>
-{if {echo $email | contains('@')} eq 1}<p>Result: <b>Email contains @</b></p>{/if}
+<pre>{open}if {open}echo $email | contains('@'){close}{close}Valid email{open}/if{close}</pre>
+{if {echo $email | contains('@')}}<p>Result: <b>Email contains @</b></p>{/if}
 
 <h2>Check for Word</h2>
-<pre>{open}if {open}echo $sampleText | contains('World'){close} eq 1{close}Contains World{open}/if{close}</pre>
-{if {echo $sampleText | contains('World')} eq 1}<p>Found: <b>Text contains "World"</b></p>{/if}
+<pre>{open}if {open}echo $sampleText | contains('World'){close}{close}Has World{open}/if{close}</pre>
+{if {echo $sampleText | contains('World')}}<p>Found: <b>Text contains "World"</b></p>{/if}
 
 <h2>Case Sensitive</h2>
-<pre>{open}if {open}echo 'Hello' | contains('hello'){close} eq 0{close}Not found (case matters){open}/if{close}</pre>
-{if {echo 'Hello' | contains('hello')} eq 0}<p>Note: <b>Case sensitive - 'hello' not in 'Hello'</b></p>{/if}
+<pre>{open}if not {open}echo 'Hello' | contains('hello'){close}{close}Not found{open}/if{close}</pre>
+{if not {echo 'Hello' | contains('hello')}}<p>Note: <b>Case sensitive - 'hello' not in 'Hello'</b></p>{/if}
 
 <h2>With Lower</h2>
-<pre>{open}if {open}echo 'Hello' | lower | contains('hello'){close} eq 1{close}Found{open}/if{close}</pre>
-{if {echo 'Hello' | lower | contains('hello')} eq 1}<p>Case-insensitive match: <b>Found after lowercasing</b></p>{/if}
+<pre>{open}if {open}echo 'Hello' | lower | contains('hello'){close}{close}Found{open}/if{close}</pre>
+{if {echo 'Hello' | lower | contains('hello')}}<p>Case-insensitive: <b>Found after lowercasing</b></p>{/if}
 
 <h2>Note</h2>
-<p>Returns 1 (true) or 0 (false). Use with <code>{open}if{close}</code> conditionals.</p>
+<p>Returns true or false. Use with <code>{open}if{close}</code> conditionals.</p>

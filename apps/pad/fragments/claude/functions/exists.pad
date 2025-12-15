@@ -1,21 +1,21 @@
 <p>The <code>exists</code> function tests if a file exists.</p>
 
 <h2>Basic Usage</h2>
-<pre>{open}if {open}echo 'index.php' | exists{close} eq 1{close}File found{open}/if{close}</pre>
-{if {echo 'index.php' | exists} eq 1}<p>Result: <b>index.php exists</b></p>{else}<p>Result: <b>index.php not found</b></p>{/if}
+<pre>{open}if {open}echo 'index.php' | exists{close}{close}File found{open}/if{close}</pre>
+{if {echo 'index.php' | exists}}<p>Result: <b>index.php exists</b></p>{else}<p>Result: <b>index.php not found</b></p>{/if}
 
 <h2>Check Path</h2>
-<pre>{open}if {open}echo '_lib/helpers.php' | exists{close} eq 1{close}Helper exists{open}/if{close}</pre>
-{if {echo '_lib/helpers.php' | exists} eq 1}<p>Found: <b>Helper file exists</b></p>{else}<p>Not found: <b>Helper file missing</b></p>{/if}
+<pre>{open}if {open}echo '_lib/helpers.php' | exists{close}{close}Helper exists{open}/if{close}</pre>
+{if {echo '_lib/helpers.php' | exists}}<p>Found: <b>Helper file exists</b></p>{else}<p>Not found: <b>Helper file missing</b></p>{/if}
 
 <h2>Conditional Include</h2>
-<pre>{open}if {open}echo 'custom.pad' | exists{close} eq 1{close}
+<pre>{open}if {open}echo 'custom.pad' | exists{close}{close}
   {open}custom{close}
 {open}/if{close}</pre>
 
 <h2>Chained Example</h2>
-<pre>{open}data $file = 'readme.txt'{close}
-{open}if {open}echo $file | exists{close} eq 1{close}Found{open}/if{close}</pre>
+<pre>{open}set $file = 'readme.txt'{close}
+{open}if {open}echo $file | exists{close}{close}Found{open}/if{close}</pre>
 
 <h2>Note</h2>
 <p>Returns 1 (true) if file exists, 0 (false) otherwise. Path is relative to current page.</p>

@@ -1,22 +1,22 @@
 <p>The <code>range</code> function tests if a value is within a range (inclusive).</p>
 
 <h2>Basic Usage</h2>
-<pre>{open}if {open}echo 5 | range(1, 10){close} eq 1{close}In range{open}/if{close}</pre>
-{if {echo 5 | range(1, 10)} eq 1}<p>Result: <b>5 is in range 1-10</b></p>{/if}
+<pre>{open}if {open}echo 5 | range(1, 10){close}{close}In range{open}/if{close}</pre>
+{if {echo 5 | range(1, 10)}}<p>Result: <b>5 is in range 1-10</b></p>{/if}
 
 <h2>Inclusive Boundaries</h2>
-<pre>{open}if {open}echo 10 | range(1, 10){close} eq 1{close}At boundary{open}/if{close}</pre>
-{if {echo 10 | range(1, 10)} eq 1}<p>Edge: <b>10 IS in range 1-10 (inclusive)</b></p>{/if}
+<pre>{open}if {open}echo 10 | range(1, 10){close}{close}At boundary{open}/if{close}</pre>
+{if {echo 10 | range(1, 10)}}<p>Edge: <b>10 IS in range 1-10 (inclusive)</b></p>{/if}
 
 <h2>Outside Range</h2>
-<pre>{open}if {open}echo 15 | range(1, 10){close} eq 0{close}Out of range{open}/if{close}</pre>
-{if {echo 15 | range(1, 10)} eq 0}<p>Result: <b>15 is NOT in range 1-10</b></p>{/if}
+<pre>{open}if not {open}echo 15 | range(1, 10){close}{close}Out of range{open}/if{close}</pre>
+{if not {echo 15 | range(1, 10)}}<p>Result: <b>15 is NOT in range 1-10</b></p>{/if}
 
 <h2>Age Validation</h2>
-{data $age = 25}
-<pre>{open}data $age = 25{close}
-{open}if {open}echo $age | range(18, 65){close} eq 1{close}Working age{open}/if{close}</pre>
-{if {echo $age | range(18, 65)} eq 1}<p>Age: <b>{echo $age} is working age (18-65)</b></p>{/if}
+{set $age = 25}
+<pre>{open}set $age = 25{close}
+{open}if {open}echo $age | range(18, 65){close}{close}Working age{open}/if{close}</pre>
+{if {echo $age | range(18, 65)}}<p>Age: <b>{echo $age} is working age (18-65)</b></p>{/if}
 
 <h2>Note</h2>
 <p>Inclusive: boundaries ARE included. Use <code>between</code> for exclusive comparison.</p>
