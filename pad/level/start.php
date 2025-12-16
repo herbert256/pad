@@ -13,6 +13,9 @@
   $padTry = 'level/go';
   include PAD . 'try/try.php';
 
+  if ( $padNextPadLevel )
+    return include PAD . 'level/nextLevel.php';
+
   include PAD . 'level/base.php';
   include PAD . 'level/pipes/before.php';
   include PAD . 'level/data.php';

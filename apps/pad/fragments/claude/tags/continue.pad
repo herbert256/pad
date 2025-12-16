@@ -6,7 +6,7 @@
 {open}pull:mySeq{close} {open}$sequence{close} {open}/pull:mySeq{close}</pre>
 <p>Original 1-5, after adding 10:</p>
 {sequence 5, push='mySeq'}
-{continue add=10}
+{resume add=10}
 <p>{pull:mySeq} {$sequence} {/pull:mySeq}</p>
 
 <h2>Multiple Transformations</h2>
@@ -16,8 +16,8 @@
 {open}pull:nums{close} {open}$sequence{close} {open}/pull:nums{close}</pre>
 <p>After add=100 and reverse:</p>
 {sequence 5, push='nums'}
-{continue add=100}
-{continue reverse}
+{resume add=100}
+{resume reverse}
 <p>{pull:nums} {$sequence} {/pull:nums}</p>
 
 <h2>Note</h2>

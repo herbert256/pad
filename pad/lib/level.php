@@ -1,6 +1,34 @@
 <?php
 
 
+
+  function padFindContinueBreak ( $parm ) {
+
+    global $pad, $padName, $padTag;
+
+    if ( $parm and is_numeric ($parm) and $parm < 0 )
+      return $pad + $parm;
+
+    if ( $parm )
+      for ( $key = $pad-1; $key >=0 ; $key-- )
+        if ( $padName [$key] == $parm )
+          return $key;
+
+    if ( $parm and is_numeric ($parm) )
+      for ( $key = $pad-1; $key >=0 ; $key-- )
+        if ( $key == $parm )
+          return $key;
+
+    for ( $key = $pad-1; $key >=0 ; $key-- )
+      if ( $padTag [$key] <> 'if' and $padTag [$key] <> 'case' )
+        return $key;
+
+    return $pad - 1;
+
+  }
+
+
+
   /**
    * Splits string at first pipe not inside quotes.
    *

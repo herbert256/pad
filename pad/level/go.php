@@ -12,6 +12,9 @@
   if ( $padInfo )
     include PAD . 'events/type.php';
 
+  if ( $padNextPadLevel )
+    return;
+
   if ( padSingleValue ( $padTagResult ) ) {
     $padTagContent .= $padTagResult;
     $padTagResult = TRUE;

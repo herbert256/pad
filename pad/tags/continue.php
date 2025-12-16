@@ -1,5 +1,7 @@
 <?php
 
-  return include PQ . 'start/tags/continue.php';
+  $padNextPadLevel = padFindContinueBreak ( $padParm );
+
+  return TRUE;
 
 ?>

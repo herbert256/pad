@@ -13,7 +13,7 @@
 
   $pqNameGiven = $pqName;
 
-  if ( $pqTag == 'continue' or $pqPull === TRUE ) {
+  if ( $pqTag == 'resume' or $pqPull === TRUE ) {
     $pqPull  = $padLastPush;
     $pqBuild = 'pull';
   }

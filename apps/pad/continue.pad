@@ -1,0 +1,39 @@
+<table border=1>
+  {staff}
+    {if $name eq 'jack'}
+      {resume}
+    {/if}
+    <tr>
+      <td> {$name} </td>
+      <td> {$phone} </td>
+    </tr>
+  {/staff}
+</table>
+
+<hr>
+
+<table border=1>
+  {staff}
+    {if $name eq 'jack'}
+      {resume 'staff'}
+    {/if}
+    <tr>
+      <td> {$name} </td>
+      <td> {$phone} </td>
+    </tr>
+  {/staff}
+</table>
+
+<hr>
+
+<table border=1>
+  {staff}
+    {if $name eq 'jack'}
+      {resume -2}
+    {/if}
+    <tr>
+      <td> {$name} </td>
+      <td> {$phone} </td>
+    </tr>
+  {/staff}
+</table>
