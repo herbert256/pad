@@ -326,9 +326,7 @@ When processing `{tagname}`: app → pad → data → content → field → tag
 | Document | Description |
 |----------|-------------|
 | [DOCUMENTATION.md](DOCUMENTATION.md) | Detailed documentation of concepts, syntax, and architecture |
-| [INDEX.md](INDEX.md) | Index of all module README files |
 | [../reference/](../reference/README.md) | API reference documentation |
-| [EXPLAIN.md](EXPLAIN.md) | Technical deep dives into complex subsystems |
 
 ### Reference Documentation
 - [TAGS.md](../reference/TAGS.md) - All template tags
@@ -385,8 +383,6 @@ See LICENSE file for details.
 |------|-------------|
 | [ANALYSE.md](ANALYSE.md) | Code analysis and architecture overview |
 | [DOCUMENTATION.md](DOCUMENTATION.md) | Detailed framework documentation |
-| [EXPLAIN.md](EXPLAIN.md) | Technical explanations of subsystems |
-| [INDEX.md](INDEX.md) | Index of all framework modules |
 
 ## Reference Documentation
 
