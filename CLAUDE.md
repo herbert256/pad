@@ -86,10 +86,11 @@ apps/myapp/
 
 ## Key References
 
-- [docs/TAGS.md](docs/TAGS.md) - All template tags
-- [docs/FUNCTIONS.md](docs/FUNCTIONS.md) - All pipe functions
-- [docs/OPTIONS.md](docs/OPTIONS.md) - All tag options
-- [docs/PROPERTIES.md](docs/PROPERTIES.md) - All iteration properties (first@tag, count@tag, etc.)
+- [docs/reference/](docs/reference/README.md) - All reference documentation
+- [docs/reference/TAGS.md](docs/reference/TAGS.md) - All template tags
+- [docs/reference/FUNCTIONS.md](docs/reference/FUNCTIONS.md) - All pipe functions
+- [docs/reference/OPTIONS.md](docs/reference/OPTIONS.md) - All tag options
+- [docs/reference/PROPERTIES.md](docs/reference/PROPERTIES.md) - All iteration properties (first@tag, count@tag, etc.)
 - [docs/NEW.md](docs/NEW.md) - Creating new applications
 
 ## Quick Reference

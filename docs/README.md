@@ -8,24 +8,18 @@ This directory contains comprehensive documentation for the PAD (PHP Application
 |------|-------------|
 | [APP.md](APP.md) | Application development guide - template syntax, tags, patterns, best practices |
 | [APPS.md](APPS.md) | Overview of PAD applications and their structure |
-| [CONSTRUCTS.md](CONSTRUCTS.md) | Reference for template constructs and syntax structures |
-| [EVAL.md](EVAL.md) | Expression evaluation internals and parser details |
-| [FUNCTIONS.md](FUNCTIONS.md) | Reference for all pipe functions (trim, upper, date, html, etc.) |
-| [HANDLING.md](HANDLING.md) | Reference for error and exception handling |
 | [LICENSE.md](LICENSE.md) | GPLv3 license information |
 | [NEW.md](NEW.md) | Guide for creating new PAD applications |
-| [OPTIONS.md](OPTIONS.md) | Reference for all tag options (sort, rows, cache, etc.) |
 | [pad/](pad/README.md) | Framework internals - execution flow, level system, configuration |
-| [PROPERTIES.md](PROPERTIES.md) | Reference for iteration properties (first@tag, count@tag, etc.) |
+| [reference/](reference/README.md) | Reference documentation - tags, functions, options, properties |
 | [sequences/](sequences/README.md) | Sequence subsystem - 80+ mathematical sequences and transformations |
-| [TAGS.md](TAGS.md) | Reference for all template tags (if, while, data, files, etc.) |
-| [TYPES.md](TYPES.md) | Reference for tag type handlers (app, pad, data, field, etc.) |
 
 ## Quick Links
 
 - **Getting Started:** [NEW.md](NEW.md) - Create your first PAD application
 - **Template Syntax:** [APP.md](APP.md) - Learn how to write PAD templates
-- **Framework Details:** [PAD.md](PAD.md) - Understand how PAD works internally
+- **Framework Details:** [pad/](pad/README.md) - Understand how PAD works internally
+- **Reference:** [reference/](reference/README.md) - Tags, functions, options, properties
 
 ## See Also
 
