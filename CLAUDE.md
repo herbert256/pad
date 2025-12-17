@@ -63,7 +63,7 @@ Every page consists of two files:
 ## Project Structure
 
 ```
-pad/               # Framework core (see PAD.md)
+pad/               # Framework core (see pad/README.md)
 apps/              # PAD applications (see APP.md)
 www/               # Web entry points
 DATA/              # Runtime data (skip when analyzing code)
@@ -84,10 +84,10 @@ apps/myapp/
 
 ## Key References
 
-- `pad/tags/REFERENCE.md` - All template tags
-- `pad/functions/REFERENCE.md` - All pipe functions
-- `pad/options/REFERENCE.md` - All tag options
-- `apps/NEW.md` - Creating new applications
+- [pad/tags/REFERENCE.md](pad/tags/REFERENCE.md) - All template tags
+- [pad/functions/REFERENCE.md](pad/functions/REFERENCE.md) - All pipe functions
+- [pad/options/REFERENCE.md](pad/options/REFERENCE.md) - All tag options
+- [apps/NEW.md](apps/NEW.md) - Creating new applications
 
 ## Quick Reference
 
