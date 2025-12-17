@@ -6,6 +6,18 @@ PAD is a PHP template engine that inverts the traditional web application archit
 
 **Requirements:** PHP 8.0+
 
+## Philosophy
+
+Traditional PHP frameworks follow a "code-first" approach where PHP scripts control the flow and include template fragments. PAD inverts this paradigm: templates are first-class citizens that orchestrate everything from data retrieval to output generation. This "template-first" approach creates a natural separation where the visual structure of the application mirrors its logical structure.
+
+### Key Benefits
+
+- **Visual-Logical Unity**: Template structure reflects application flow
+- **Reduced Boilerplate**: No manual routing, controller classes, or view binding
+- **Hierarchical Inheritance**: Templates inherit from parent directories automatically
+- **Clean Syntax**: Minimal, readable template syntax with `{tags}`
+- **Zero Configuration**: Convention over configuration - just create files and directories
+
 ## Key Concepts
 
 ### Inversion of Control
@@ -61,7 +73,14 @@ DATA/              # Runtime data (cache, logs, temp) - writable by web server
 
 ## Quick Start
 
-### Entry Point
+### Installation
+
+1. Set up two constants before including PAD:
+   - `APP` - Path to your application directory (must end with `/`)
+   - `DAT` - Path to your data directory (must end with `/`)
+
+2. Include the PAD framework:
+
 ```php
 <?php
 include __DIR__ . '/../padHome.php';
@@ -306,12 +325,10 @@ When processing `{tagname}`: app → pad → data → content → field → tag
 
 | Document | Description |
 |----------|-------------|
-| [INTRO.md](INTRO.md) | Introduction, installation, and Hello World example |
 | [DOCUMENTATION.md](DOCUMENTATION.md) | Detailed documentation of concepts, syntax, and architecture |
 | [INDEX.md](INDEX.md) | Index of all module README files |
-| [REFERENCE.md](REFERENCE.md) | Index of all API reference files |
+| [../reference/](../reference/README.md) | API reference documentation |
 | [EXPLAIN.md](EXPLAIN.md) | Technical deep dives into complex subsystems |
-| [DEVELOPMENT.md](DEVELOPMENT.md) | Resources for maintainers (analysis, known bugs) |
 
 ### Reference Documentation
 - [TAGS.md](../reference/TAGS.md) - All template tags
@@ -354,12 +371,6 @@ When processing `{tagname}`: app → pad → data → content → field → tag
 4. **No inline CSS/JS** - PAD parses `{ }` as tags; use external files
 5. **Use `padRedirect()`** - Don't use `exit` or `die` in PAD apps
 
-## Installation
-
-```bash
-sudo pad/install/install.sh  # Sets up DB, Apache, data directories
-```
-
 ## Testing
 
 Run regression tests by visiting `/regression` in browser. Tests compare current output against stored HTML snapshots.
@@ -373,9 +384,6 @@ See LICENSE file for details.
 | File | Description |
 |------|-------------|
 | [ANALYSE.md](ANALYSE.md) | Code analysis and architecture overview |
-| [DEVELOPMENT.md](DEVELOPMENT.md) | Development resources and guidelines |
 | [DOCUMENTATION.md](DOCUMENTATION.md) | Detailed framework documentation |
 | [EXPLAIN.md](EXPLAIN.md) | Technical explanations of subsystems |
 | [INDEX.md](INDEX.md) | Index of all framework modules |
-| [INTRO.md](INTRO.md) | Introduction and getting started |
-| [REFERENCE.md](REFERENCE.md) | API reference |

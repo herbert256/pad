@@ -2,18 +2,30 @@
 
 This directory contains reference documentation for PAD template syntax elements.
 
-## Documents
+## Template Syntax
 
 | File | Description |
 |------|-------------|
-| [CONSTRUCTS.md](CONSTRUCTS.md) | Template constructs and syntax structures |
-| [EVAL.md](EVAL.md) | Expression evaluation internals and parser details |
+| [TAGS.md](TAGS.md) | All template tags (if, while, data, files, etc.) |
 | [FUNCTIONS.md](FUNCTIONS.md) | All pipe functions (trim, upper, date, html, etc.) |
-| [HANDLING.md](HANDLING.md) | Error and exception handling |
 | [OPTIONS.md](OPTIONS.md) | All tag options (sort, rows, cache, etc.) |
 | [PROPERTIES.md](PROPERTIES.md) | Iteration properties (first@tag, count@tag, etc.) |
-| [TAGS.md](TAGS.md) | All template tags (if, while, data, files, etc.) |
 | [TYPES.md](TYPES.md) | Tag type handlers (app, pad, data, field, etc.) |
+| [CONSTRUCTS.md](CONSTRUCTS.md) | Template constructs and syntax structures |
+
+## Processing
+
+| File | Description |
+|------|-------------|
+| [EVAL.md](EVAL.md) | Expression evaluation internals and parser details |
+| [HANDLING.md](HANDLING.md) | Error and exception handling |
+
+## Sequences
+
+| File | Description |
+|------|-------------|
+| [SEQUENCES.md](../sequences/SEQUENCES.md) | Sequence types (80+ mathematical sequences) |
+| [ACTIONS.md](../sequences/ACTIONS.md) | Sequence actions and transformations |
 
 ## Quick Reference
 
