@@ -367,3 +367,15 @@ Run regression tests by visiting `/regression` in browser. Tests compare current
 ## License
 
 See LICENSE file for details.
+
+## Related Documents
+
+| File | Description |
+|------|-------------|
+| [ANALYSE.md](ANALYSE.md) | Code analysis and architecture overview |
+| [DEVELOPMENT.md](DEVELOPMENT.md) | Development resources and guidelines |
+| [DOCUMENTATION.md](DOCUMENTATION.md) | Detailed framework documentation |
+| [EXPLAIN.md](EXPLAIN.md) | Technical explanations of subsystems |
+| [INDEX.md](INDEX.md) | Index of all framework modules |
+| [INTRO.md](INTRO.md) | Introduction and getting started |
+| [REFERENCE.md](REFERENCE.md) | API reference |

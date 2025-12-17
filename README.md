@@ -65,7 +65,7 @@ pad/
 
 The PAD framework itself - the template engine, tag processors, expression evaluator, and all supporting modules.
 
-See [docs/PAD.md](docs/PAD.md) for complete framework documentation.
+See [docs/pad/](docs/pad/README.md) for complete framework documentation.
 
 ### apps/
 
