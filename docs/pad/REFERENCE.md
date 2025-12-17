@@ -1,21 +1,28 @@
 # API Reference Index
 
-Index of all REFERENCE documentation files in the PAD framework.
+Index of all reference documentation files in the PAD framework.
 
 ## Template Syntax
 
 | Reference | Description |
 |-----------|-------------|
-| [tags/REFERENCE.md](tags/REFERENCE.md) | All template tags |
-| [functions/REFERENCE.md](functions/REFERENCE.md) | All pipe functions |
-| [options/REFERENCE.md](options/REFERENCE.md) | All tag options |
-| [types/REFERENCE.md](types/REFERENCE.md) | All tag types |
-| [tag/REFERENCE.md](tag/REFERENCE.md) | All tag properties (@first, @last, etc.) |
-| [constructs/REFERENCE.md](constructs/REFERENCE.md) | All @construct@ patterns |
+| [TAGS.md](../reference/TAGS.md) | All template tags |
+| [FUNCTIONS.md](../reference/FUNCTIONS.md) | All pipe functions |
+| [OPTIONS.md](../reference/OPTIONS.md) | All tag options |
+| [TYPES.md](../reference/TYPES.md) | All tag types |
+| [PROPERTIES.md](../reference/PROPERTIES.md) | All tag properties (first@tag, last@tag, etc.) |
+| [CONSTRUCTS.md](../reference/CONSTRUCTS.md) | All @construct@ patterns |
 
 ## Processing
 
 | Reference | Description |
 |-----------|-------------|
-| [handling/REFERENCE.md](handling/REFERENCE.md) | Data handling functions |
-| [lib/REFERENCE.md](lib/REFERENCE.md) | PHP library functions |
+| [HANDLING.md](../reference/HANDLING.md) | Data handling functions |
+| [EVAL.md](../reference/EVAL.md) | Expression evaluation |
+
+## Sequences
+
+| Reference | Description |
+|-----------|-------------|
+| [SEQUENCES.md](../sequences/SEQUENCES.md) | Sequence types |
+| [ACTIONS.md](../sequences/ACTIONS.md) | Sequence actions |

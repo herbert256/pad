@@ -2,62 +2,73 @@
 
 Index of all README documentation files in the PAD framework.
 
+Note: These links point to README files in the `pad/` framework directory.
+
 ## Core Processing
 
 | Module | Description |
 |--------|-------------|
-| [start/README.md](start/README.md) | Execution lifecycle and entry points |
-| [build/README.md](build/README.md) | Page assembly and build process |
-| [level/README.md](level/README.md) | Tag processing and scope management |
-| [walk/README.md](walk/README.md) | Template tree walking |
-| [occurrence/README.md](occurrence/README.md) | Data iteration and occurrence tracking |
-| [eval/README.md](eval/README.md) | Expression evaluation system |
+| `pad/start/` | Execution lifecycle and entry points |
+| `pad/build/` | Page assembly and build process |
+| `pad/level/` | Tag processing and scope management |
+| `pad/walk/` | Template tree walking |
+| `pad/occurrence/` | Data iteration and occurrence tracking |
+| `pad/eval/` | Expression evaluation system |
 
 ## Tags and Types
 
 | Module | Description |
 |--------|-------------|
-| [tags/README.md](tags/README.md) | Template tag implementations |
-| [types/README.md](types/README.md) | Tag type handlers |
-| [tag/README.md](tag/README.md) | Tag property system (@first, @last, etc.) |
-| [constructs/README.md](constructs/README.md) | Special @construct@ patterns |
+| `pad/tags/` | Template tag implementations |
+| `pad/types/` | Tag type handlers |
+| `pad/tag/` | Tag property system (first@tag, last@tag, etc.) |
+| `pad/constructs/` | Special @construct@ patterns |
 
 ## Functions and Options
 
 | Module | Description |
 |--------|-------------|
-| [functions/README.md](functions/README.md) | Pipe function implementations |
-| [options/README.md](options/README.md) | Tag option handlers |
-| [handling/README.md](handling/README.md) | Data handling functions |
+| `pad/functions/` | Pipe function implementations |
+| `pad/options/` | Tag option handlers |
+| `pad/handling/` | Data handling functions |
 
 ## Data and Storage
 
 | Module | Description |
 |--------|-------------|
-| [data/README.md](data/README.md) | Data store management |
-| [database/README.md](database/README.md) | Database layer |
-| [cache/README.md](cache/README.md) | Caching system |
-| [sequence/README.md](sequence/README.md) | Sequence generation |
+| `pad/data/` | Data store management |
+| `pad/database/` | Database layer |
+| `pad/cache/` | Caching system |
+| `pad/sequence/` | Sequence generation |
 
 ## Infrastructure
 
 | Module | Description |
 |--------|-------------|
-| [config/README.md](config/README.md) | Configuration system |
-| [error/README.md](error/README.md) | Error handling |
-| [events/README.md](events/README.md) | Event system |
-| [exits/README.md](exits/README.md) | Exit handlers |
-| [info/README.md](info/README.md) | Debug and profiling |
-| [inits/README.md](inits/README.md) | Initialization modules |
+| `pad/config/` | Configuration system |
+| `pad/error/` | Error handling |
+| `pad/events/` | Event system |
+| `pad/exits/` | Exit handlers |
+| `pad/info/` | Debug and profiling |
+| `pad/inits/` | Initialization modules |
 
 ## Utilities
 
 | Module | Description |
 |--------|-------------|
-| [lib/README.md](lib/README.md) | PHP helper library |
-| [call/README.md](call/README.md) | Function call utilities |
-| [callback/README.md](callback/README.md) | Callback system |
-| [try/README.md](try/README.md) | Try/catch mechanism |
-| [at/README.md](at/README.md) | @ prefix handlers |
-| [get/README.md](get/README.md) | GET request handling |
-| [install/README.md](install/README.md) | Installation utilities |
+| `pad/lib/` | PHP helper library |
+| `pad/call/` | Function call utilities |
+| `pad/callback/` | Callback system |
+| `pad/try/` | Try/catch mechanism |
+| `pad/at/` | @ prefix handlers |
+| `pad/get/` | GET request handling |
+| `pad/install/` | Installation utilities |
+
+## Reference Documentation
+
+For detailed reference documentation, see:
+- [TAGS.md](../reference/TAGS.md) - All template tags
+- [FUNCTIONS.md](../reference/FUNCTIONS.md) - All pipe functions
+- [OPTIONS.md](../reference/OPTIONS.md) - All tag options
+- [PROPERTIES.md](../reference/PROPERTIES.md) - All iteration properties
+- [sequences/](../sequences/README.md) - Sequence subsystem

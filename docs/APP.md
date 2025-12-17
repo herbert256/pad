@@ -61,6 +61,106 @@ apps/myapp/
 | `_config/` | App config | `config.php` overrides |
 | `_data/` | Static data | XML, JSON files |
 
+### _lib/ - PHP Functions
+
+Files in `_lib/` are automatically included.
+
+**_lib/helpers.php**:
+```php
+<?php
+  function formatDate ( $date ) {
+    return date ( 'F j, Y', strtotime ( $date ) );
+  }
+?>
+```
+
+Use in any `.php` file:
+```php
+$formatted = formatDate ( '2025-01-15' );
+```
+
+### _include/ - Template Snippets
+
+Templates in `_include/` become available as tags.
+
+**_include/card.pad**:
+```html
+<div class="card">
+  @content@
+</div>
+```
+
+Use in templates:
+```
+{card}
+  <h3>Title</h3>
+  <p>Content here</p>
+{/card}
+```
+
+### _tags/ - Custom Tags
+
+Create custom template tags.
+
+**_tags/button.php**:
+```php
+<?php
+  $label = padTagParm ( 'label', 'Click' );
+  $href  = padTagParm ( 'href', '#' );
+  $padContent = "<a href=\"$href\" class=\"button\">$label</a>";
+?>
+```
+
+Use in templates:
+```
+{button label="Submit" href="?submit"}
+```
+
+### _functions/ - Pipe Functions
+
+Create custom pipe functions.
+
+**_functions/money.php**:
+```php
+<?php
+  return '$' . number_format ( $padContent, 2 );
+?>
+```
+
+Use in templates:
+```
+{echo $price | money}
+```
+
+### _callbacks/ - Iteration Callbacks
+
+Process data during iteration.
+
+**_callbacks/totals.php**:
+```php
+<?php
+  switch ( $padCallback ) {
+    case 'init':
+      $total = 0;
+      break;
+    case 'row':
+      $total += $amount;
+      break;
+    case 'exit':
+      // $total now contains sum
+      break;
+  }
+?>
+```
+
+Use in templates:
+```
+{items callback="totals"}
+  {$name}: {$amount}
+{/items}
+Total: {$total}
+```
+
 ## Running PAD
 
 ### Web Server
@@ -78,14 +178,43 @@ PAD runs through Apache or similar. Entry points are in `www/`.
 
 ## Creating a New Application
 
-1. Create directory: `apps/myapp/`
-2. Create entry point: `www/myapp/index.php`
-3. Create index page: `apps/myapp/index.php` + `apps/myapp/index.pad`
-4. Optionally add `_inits.pad` for common layout
+### Quick Start
 
-See `apps/NEW.md` for detailed instructions.
+**1. Create the Application Directory:**
+```bash
+mkdir -p apps/myapp
+```
 
-**Minimal example** (`apps/hello/`):
+**2. Create the Entry Point** (`www/myapp/index.php`):
+```php
+<?php
+  include __DIR__ . '/../padHome.php';
+  define ( 'APP', "$padHome/apps/myapp/"  );
+  define ( 'DAT', "$padHome/DATA/"        );
+  include "$padHome/pad/pad.php";
+?>
+```
+
+**3. Create the Index Page:**
+
+`apps/myapp/index.php` (returns data):
+```php
+<?php
+  $title = 'My App';
+  $message = 'Hello World!';
+?>
+```
+
+`apps/myapp/index.pad` (template):
+```
+<h1>{$title}</h1>
+<p>{$message}</p>
+```
+
+**4. Access Your Application:**
+Visit `http://yourserver/myapp/` in your browser.
+
+### Minimal Example (`apps/hello/`):
 ```php
 // index.php
 <?php $message = 'Hello World!'; ?>
@@ -781,6 +910,126 @@ Use `base='app'` for application-relative paths:
 
 ---
 
+## Global Wrapper (_inits.pad)
+
+Wrap all pages with a common layout:
+
+**_inits.pad**:
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{$title}</title>
+</head>
+<body>
+  <nav>
+    <a href="?index">Home</a>
+    <a href="?about">About</a>
+  </nav>
+
+  @pad@
+
+  <footer>&copy; 2025 My App</footer>
+</body>
+</html>
+```
+
+The `@pad@` placeholder is replaced with each page's content.
+
+---
+
+## Global Setup (_inits.php)
+
+Run PHP code before all pages:
+
+**_inits.php**:
+```php
+<?php
+  // Default title
+  $title = ucfirst ( $padPage );
+
+  // Check authentication
+  session_start ();
+  $loggedIn = isset ( $_SESSION ['user'] );
+?>
+```
+
+---
+
+## Configuration (_config/config.php)
+
+Override framework settings:
+
+```php
+<?php
+  // Database connection
+  $padSqlHost     = 'localhost';
+  $padSqlDatabase = 'myapp';
+  $padSqlUser     = 'myuser';
+  $padSqlPassword = 'mypass';
+
+  // Error handling: pad, boot, php, stop, exit, ignore, log, dump
+  $padErrorAction = 'pad';
+
+  // Debug mode: trace, stats, track, xml, xref
+  // $padInfo = 'trace';
+?>
+```
+
+---
+
+## Data Storage
+
+Use the `DAT` directory for writable data:
+
+```php
+<?php
+  $dataFile = DAT . 'myapp/data.json';
+
+  // Ensure directory exists
+  if ( ! is_dir ( DAT . 'myapp' ) )
+    mkdir ( DAT . 'myapp', 0755, TRUE );
+
+  // Read
+  $data = json_decode ( file_get_contents ( $dataFile ), TRUE );
+
+  // Write
+  file_put_contents ( $dataFile, json_encode ( $data ) );
+?>
+```
+
+---
+
+## Subdirectories
+
+Create sections with their own wrappers:
+
+```
+apps/myapp/
+└── admin/
+    ├── _inits.pad      # Admin section wrapper
+    ├── _inits.php      # Admin authentication check
+    ├── index.pad
+    ├── users.pad
+    └── settings.pad
+```
+
+Access via `?admin/users`, `?admin/settings`, etc.
+
+Each `_inits.pad` wraps content from its directory and below.
+
+---
+
+## Tips
+
+1. **Start simple** - Begin with just `index.php` and `index.pad`
+2. **Add wrapper later** - Create `_inits.pad` when you need common layout
+3. **Use DATA for storage** - Never write to APP directory
+4. **Check existing apps** - Look at `apps/pad/` for examples
+5. **URL format** - Always use `?page` format for internal links
+
+---
+
 ## Common Patterns
 
 ### Dynamic Menu from JSON
@@ -875,7 +1124,7 @@ Output: `Alice, Bob, Charlie`
 | `{get 'page'}` | Include page | `{get 'fragments/nav'}` |
 | `{data 'name'}...{/data}` | Define data | `{data 'items'}[1,2,3]{/data}` |
 | `{property@tag}` | Iteration property | `{first@items}`, `{count@users}` |
-| `{sequence}` | Generate sequence | `{sequence '1..10', name='n'}` (see SEQUENCES.md) |
+| `{sequence}` | Generate sequence | `{sequence '1..10', name='n'}` (see [sequences/](sequences/README.md)) |
 | `{break}` | Hard stop loop | `{break}` or `{break 'outer'}` |
 | `{continue}` | Skip iteration | `{continue 'loopname'}` |
 | `{cease}` | Soft stop loop | `{cease 'loopname'}` |

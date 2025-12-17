@@ -52,4 +52,4 @@ Sum: {pull:nums sum}{$sequence}{/pull:nums}
 ## See Also
 
 - [../APP.md](../APP.md) - Application development guide
-- [../TAGS.md](../TAGS.md) - All template tags reference
+- [../reference/TAGS.md](../reference/TAGS.md) - All template tags reference

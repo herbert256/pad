@@ -227,7 +227,7 @@ $exists = db("CHECK users WHERE email='{0}'", [$email]);
 {pull:nums}{$sequence} {/pull:nums}
 ```
 
-See `sequence/README.md` for complete documentation.
+See [sequences/](../sequences/README.md) for complete documentation.
 
 ## Application Structure
 
@@ -313,12 +313,12 @@ When processing `{tagname}`: app → pad → data → content → field → tag
 | [EXPLAIN.md](EXPLAIN.md) | Technical deep dives into complex subsystems |
 | [DEVELOPMENT.md](DEVELOPMENT.md) | Resources for maintainers (analysis, known bugs) |
 
-### Module References
-- `tags/REFERENCE.md` - All template tags
-- `functions/REFERENCE.md` - All pipe functions
-- `options/REFERENCE.md` - All tag options
-- `eval/EXPLAIN.md` - Expression evaluation internals
-- `sequence/README.md` - Sequence subsystem
+### Reference Documentation
+- [TAGS.md](../reference/TAGS.md) - All template tags
+- [FUNCTIONS.md](../reference/FUNCTIONS.md) - All pipe functions
+- [OPTIONS.md](../reference/OPTIONS.md) - All tag options
+- [EVAL.md](../reference/EVAL.md) - Expression evaluation internals
+- [sequences/](../sequences/README.md) - Sequence subsystem
 
 ## Quick Reference
 
