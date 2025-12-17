@@ -1,0 +1,13 @@
+{sequence '1..15', name='mySeq'}
+
+{mySeq}
+  {$sequence}
+{/mySeq}
+
+{mySeq eval='* 10 | - 1'}
+  {$sequence}
+{/mySeq}
+
+{mySeq eval='15 + @'}
+  {$sequence}
+{/mySeq}

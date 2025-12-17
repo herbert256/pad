@@ -1,0 +1,45 @@
+{loop rows=30, from=10                 }
+
+{pull make='prime'            } {$sequence} {/pull}
+
+{pull make, prime             } {$sequence} {/pull}
+
+{pull prime, make             } {$sequence} {/pull}
+
+{default make='prime'         } {$sequence} {/default}
+
+{default prime, make          } {$sequence} {/default}
+
+{default make, prime          } {$sequence} {/default}
+
+{make default, prime          } {$sequence} {/make}
+
+{make prime, default          } {$sequence} {/make}
+
+{make pull, prime             } {$sequence} {/make}
+
+{make prime, pull             } {$sequence} {/make}
+
+{prime default, make          } {$sequence} {/prime}
+
+{prime make, default          } {$sequence} {/prime}
+
+{prime make, pull             } {$sequence} {/prime}
+
+{prime pull, make             } {$sequence} {/prime}
+
+{default:make prime           } {$sequence} {/default:make}
+
+{make:default prime           } {$sequence} {/make:default}
+
+{sequence:prime default, make } {$sequence} {/sequence:prime}
+
+{prime:sequence default, make } {$sequence} {/prime:sequence}
+
+{sequence:prime pull, make    } {$sequence} {/sequence:prime}
+
+{prime:sequence pull, make    } {$sequence} {/prime:sequence}
+
+{pull:default make='prime'    } {$sequence} {/pull:default}
+
+{default:pull make='prime'    } {$sequence} {/default:pull}

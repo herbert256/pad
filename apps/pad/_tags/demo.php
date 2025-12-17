@@ -14,6 +14,8 @@
     $padContent = str_replace('@p2', $p2, $padContent);
     $padSourcex = padColorsString ( $padContent );
 
+    $tablePAD  .= "\n\n$padContent";
+
     $padDemoCount [$padTableIdx]++;
 
     if ( $padDemoCount [$padTableIdx] > 1 )
@@ -22,6 +24,8 @@
    return TRUE;
 
   }
+
+  $tableHTML .= "\n\n$padContent";
 
   $firstFile = $secondFile = '';
 

@@ -135,6 +135,14 @@ sudo pad/install/install.sh  # Requires root - sets up DB, Apache, data dirs
 {$items[0]}                    # Array index
 ```
 
+**Output escaping options:**
+```
+{$text}                        # Raw output (no escaping)
+{!text}                        # HTML escaped output
+{$text | html}                 # HTML escaped via pipe
+{$text | url}                  # URL encoded
+```
+
 ### Pipe Functions
 **IMPORTANT:** Pipe functions require a tag like `{echo}` - you cannot use bare expressions.
 ```
@@ -168,6 +176,13 @@ sudo pad/install/install.sh  # Requires root - sets up DB, Apache, data dirs
 {echo $text | 'prefix ' . @ . ' suffix'}  # @ marks where value goes
 ```
 
+**The @ placeholder in expressions:**
+```
+{echo 50 | @ * 4}                       # @ represents the current value
+{echo 50 | @ * 4 | @ * 2}               # Chain with @ at each step
+{echo 50 | '"' . @ . '"'}               # Wrap value in quotes
+```
+
 **Chaining Multiple Functions:**
 ```
 {echo $email | after('@') | before('.')}   # Extract domain name
@@ -178,6 +193,17 @@ sudo pad/install/install.sh  # Requires root - sets up DB, Apache, data dirs
 ```
 {echo $price | %.2f}                # Format to 2 decimal places
 {echo $value | number(2)}           # Alternative number format
+```
+
+**Printf-style format specifiers:**
+```
+{echo $nbr | %.5f}          # 5 decimal places
+{echo $nbr | %'.09d}        # Zero-padded to 9 digits
+{echo $nbr | %d}            # Integer
+{echo $nbr | %e}            # Scientific notation
+{echo $nbr | %g}            # General format
+{echo $nbr | %o}            # Octal
+{echo $nbr | %x}            # Hexadecimal
 ```
 
 ### Loops
@@ -216,6 +242,20 @@ sudo pad/install/install.sh  # Requires root - sets up DB, Apache, data dirs
   {/inner}
 {/outer}
 ```
+
+**Three types of loop control:**
+```
+{staff}
+  {if $name eq 'jack'}{continue 'staff'}{/if}  # Skip this iteration
+  {if $name eq 'bob'}{cease 'staff'}{/if}      # Soft stop (graceful end)
+  {if $name eq 'sue'}{break 'staff'}{/if}      # Hard stop (immediate exit)
+  {$name}
+{/staff}
+```
+
+- `{continue 'tag'}` - Skip to next iteration (like PHP's continue)
+- `{cease 'tag'}` - Stop iteration gracefully, process remaining output
+- `{break 'tag'}` - Exit immediately, discard remaining
 
 ### Conditionals
 ```
@@ -256,6 +296,24 @@ Properties are tags with the `property:` prefix for clarity and to avoid naming 
 {set $upper | upper}               # Assign with pipe (uses previous value)
 ```
 
+### Level vs Occurrence Variables
+Variables prefixed with `$` are level variables (same for all iterations). Variables prefixed with `%` are occurrence variables (change each iteration):
+```
+{set $range = 10}
+
+{sequence '1..5', $abc=$range, %xyz=$range}
+  Level: {$abc}      # Always 10
+  Occurrence: {$xyz} # 1, 2, 3, 4, 5
+{/sequence}
+```
+
+**Per-iteration calculations:**
+```
+{staff %total = $salary + $bonus}
+  {$name}: {$total}
+{/staff}
+```
+
 ### Inline Data Definition with {data}
 ```
 {data 'colors'}
@@ -275,6 +333,25 @@ Supports JSON arrays, objects, and tuples:
 
 {data 'items'}
   ('one', 'two', 'three')
+{/data}
+```
+
+**Multiple data formats supported (JSON, XML, YAML, CSV):**
+```
+{data 'myXML'}
+  <data><row name="bob" phone="123" /></data>
+{/data}
+
+{data 'myYAML'}
+  ---
+  - name: bob
+    phone: 123
+{/data}
+
+{data 'myCSV'}
+  name,phone
+  bob,123
+  alice,456
 {/data}
 ```
 
@@ -701,7 +778,32 @@ Tags can have multiple sources (app tags, data, sequences, etc.). Use type prefi
 {app:mytag}                                # Explicitly use app tag from _tags/
 ```
 
-Available prefixes match types in `pad/types/`: `app`, `pad`, `data`, `content`, `field`, `pull`, `table`, `function`, etc.
+**Complete list of type prefixes:**
+| Prefix | Purpose |
+|--------|---------|
+| `app:` | App tag from `_tags/` directory |
+| `pad:` | Built-in PAD tag |
+| `php:` | Call PHP function directly |
+| `function:` | Custom PAD function from `_functions/` |
+| `data:` | Defined data block |
+| `content:` | Content block definition |
+| `local:` | Files from `_data/` directory |
+| `script:` | Execute from `_scripts/` |
+| `array:` | Access array as loop |
+| `constant:` | Access PHP constant |
+| `bool:` | Access bool definition |
+| `pull:` | Retrieved stored sequence |
+| `field:` | Database field query |
+| `table:` | Database table query |
+| `action:` | Sequence action |
+| `shift:` | Sequence shift operation |
+
+**Function type prefixes in pipes:**
+```
+{$abc | app:substr (1, 1)}    # Call app function
+{$abc | pad:substr (1, 1)}    # Call pad function
+{$abc | php:substr (@, 1, 1)} # Call raw PHP function (@ = value)
+```
 
 ### The `get` Tag
 The `get` tag includes PAD pages, NOT variables:
@@ -803,6 +905,16 @@ Define named content templates for reuse:
 {pad data='items', content='rowTemplate'}
 ```
 
+**Content with sorting and pagination:**
+```
+{myContent data='myData', sort='name'}
+{myContent data='myData', sort='name DESC'}
+{myContent data='myData', sort='volume;edition'}           # Multiple fields
+{myContent data='myData', sort='volume DESC; edition ASC'} # Mixed directions
+{myContent data='myData', sort='file NATURAL'}             # Natural ordering
+{myContent data='myData', rows=10, page=2}                 # Pagination
+```
+
 ### The `file` Tag
 Write content to files:
 ```
@@ -833,16 +945,16 @@ Query databases directly from templates:
 ```
 
 ### Sequence Subsystem Tags
-The sequence tags (`continue`, `pull`, `keep`, `remove`, `flag`, `make`) operate on stored sequences:
+The sequence tags (`resume`, `pull`, `keep`, `remove`, `flag`, `make`) operate on stored sequences:
 
 ```
 {sequence 5, push='mySeq'}           # Create and store sequence
-{continue add=10}                     # Transform: add 10 to each value
-{continue reverse}                    # Transform: reverse order
+{resume add=10}                       # Transform: add 10 to each value
+{resume reverse}                      # Transform: reverse order
 {pull:mySeq} {$sequence} {/pull:mySeq}  # Iterate stored sequence
 ```
 
-**Note:** `{continue}` is NOT like PHP's continue statement. It continues operating on a stored sequence with transformations like `add`, `subtract`, `reverse`, `even`, `odd`, etc.
+**Note:** `{resume}` applies transformations to stored sequences. Use `{continue}` for skipping iterations (like PHP's continue).
 
 ### Sequence Variable Access
 Use named sequences instead of level-based `$-1` syntax:
@@ -900,6 +1012,27 @@ The sequence subsystem is a powerful mathematical sequence generation and manipu
 {sequence '1..10', name='n'}{$n} {/sequence}      # Range 1-10
 {random minimal=1, maximal=100, rows=5}           # Random numbers
 {list '5;2;8;1;9'}{$list} {/list}                 # Custom list
+```
+
+### Character/Letter Ranges
+
+```
+{sequence 'A..Z', name='letter'}{$letter} {/sequence}   # Full alphabet
+{sequence 'a..e', name='c'}{$c} {/sequence}             # a, b, c, d, e
+{sequence '0..9', name='digit'}{$digit} {/sequence}     # Digits as strings
+```
+
+### OEIS Integration (Online Encyclopedia of Integer Sequences)
+
+```
+{sequence 10, oeis=81}{$sequence} {/sequence}           # OEIS sequence A000081
+{sequence 15, oeis=257360}{$sequence} {/sequence}       # OEIS sequence A257360
+```
+
+### Loop with from/to Parameters
+
+```
+{sequence loop, from=11, to=30, name='i'}{$i} {/sequence}
 ```
 
 ### Sequence Types (80+)
@@ -960,6 +1093,26 @@ The sequence subsystem is a powerful mathematical sequence generation and manipu
 {pull:nums slice='3|4'}   # From position 3, length 4
 ```
 
+**Negative selection (invert):**
+```
+{pull:nums first=5, negative}   # All EXCEPT first 5
+{pull:nums last=5, negative}    # All EXCEPT last 5
+```
+
+**Trim operations:**
+```
+{pull:nums trim, both=5}              # Trim 5 from each end
+{pull:nums trim, left=5}              # Trim 5 from left
+{pull:nums trim, right=5}             # Trim 5 from right
+{pull:nums trim, left=10, right=5}    # Different amounts each side
+```
+
+**Eval parameter (apply expression to each element):**
+```
+{pull:nums eval='* 10 | - 1'}    # Multiply by 10, subtract 1
+{pull:nums eval='15 + @'}        # Add 15 to each (@ = current value)
+```
+
 **Aggregation:**
 ```
 {pull:nums sum}           # Sum of all elements
@@ -979,22 +1132,24 @@ The sequence subsystem is a powerful mathematical sequence generation and manipu
 {sequence '3..8', push='seqB'}
 {pull:seqA append='seqB'}        # Add seqB to end
 {pull:seqA prepend='seqB'}       # Add seqB to start
+{pull:seqA combine='seqB'}       # Concatenate preserving duplicates
 {pull:seqA merge='seqB'}         # Merge, remove duplicates
 {pull:seqA intersection='seqB'}  # Elements in both
 {pull:seqA difference='seqB'}    # In seqA but not seqB
+{pull:seqA onlyNow='seqB'}       # Only in current sequence
+{pull:seqA onlyStore='seqB'}     # Only in stored sequence
 ```
 
-### The `continue` Tag
+### The `resume` Tag
 
 Applies transformations to a stored sequence without pulling it:
 ```
-{sequence '1..10', push='nums'}
-{continue add=100}                # Add 100 to each value
-{continue reverse}                # Reverse order
-{pull:nums}{$sequence} {/pull:nums}
+{sequence 25, push='mySeq'}
+{resume add=100}           # Add 100 to each value
+{resume reverse}           # Reverse order
+{resume subtract=5}        # Subtract 5 from each
+{pull:mySeq}{$sequence} {/pull:mySeq}
 ```
-
-**Note:** `{continue}` is NOT like PHP's continue statement!
 
 ### Sequence Plays (keep, remove, make, flag)
 
@@ -1039,8 +1194,8 @@ Always prefer named sequences for clarity:
 **Generate and transform:**
 ```
 {sequence '1..10', push='nums'}
-{continue add=5}
-{continue reverse}
+{resume add=5}
+{resume reverse}
 {pull:nums sort}{$sequence} {/pull:nums}
 ```
 
@@ -1065,6 +1220,7 @@ Avg: {pull:nums average}{$sequence}{/pull:nums}
 | Syntax | Purpose | Example |
 |--------|---------|---------|
 | `{$var}` | Output variable | `{$name}` |
+| `{!var}` | HTML-escaped output | `{!userInput}` |
 | `{$obj.prop}` | Property access | `{$user.email}` |
 | `{echo expr}` | Evaluate expression | `{echo $a + $b}` |
 | `{echo $x \| func}` | Pipe function | `{echo $text \| upper}` |
@@ -1077,7 +1233,10 @@ Avg: {pull:nums average}{$sequence}{/pull:nums}
 | `{data 'name'}...{/data}` | Define data | `{data 'items'}[1,2,3]{/data}` |
 | `{property:name}` | Iteration property | `{property:first}...{/property:first}` |
 | `{sequence}` | Generate sequence | `{sequence '1..10', name='n'}` |
-| `{break}` | Break loop | `{break}` or `{break 'outer'}` |
+| `{sequence 'A..Z'}` | Character range | `{sequence 'a..z', name='c'}` |
+| `{break}` | Hard stop loop | `{break}` or `{break 'outer'}` |
+| `{continue}` | Skip iteration | `{continue 'loopname'}` |
+| `{cease}` | Soft stop loop | `{cease 'loopname'}` |
 
 ### Comparison Operators
 
@@ -1114,5 +1273,8 @@ Avg: {pull:nums average}{$sequence}{/pull:nums}
 3. **Arithmetic needs space** - `{echo $x | + 1}` not `| +1`
 4. **Conditionals need comparison** - `{if $flag eq 1}` not `{if $flag}`
 5. **Quote literal strings** - `{count 'items'}` not `{count items}`
-6. **`{continue}` transforms sequences** - not PHP loop control
-7. **Use type prefixes** - `{pull:seq}`, `{data:items}` to disambiguate
+6. **`{continue}` skips iterations** - like PHP; use `{resume}` to transform stored sequences
+7. **Use type prefixes** - `{pull:seq}`, `{data:items}`, `{php:func}` to disambiguate
+8. **`$` vs `%` variables** - `$var` is level (constant), `%var` is occurrence (per-iteration)
+9. **`@` placeholder** - represents current value in pipes: `{echo 5 | @ * 2}`
+10. **Multiple data formats** - JSON, XML, YAML, CSV all supported in `{data}` blocks

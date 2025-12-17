@@ -1,0 +1,37 @@
+{add 3, from=31, to=40                 } {$sequence} {/add}
+
+{sequence '31..40', add=3              } {$sequence} {/sequence}
+
+{sequence '31..40', make, add=3        } {$sequence} {/sequence}
+
+{sequence '31..40', make='add|3'       } {$sequence} {/sequence}
+
+{sequence '31..40', push='mySequence' }
+
+{add mySequence, 3                   } {$sequence} {/add}
+
+{add 3, mySequence                   } {$sequence} {/add}
+
+{sequence:add mySequence, 3          } {$sequence} {/sequence:add}
+
+{sequence:add 3, mySequence          } {$sequence} {/sequence:add}
+
+{add:mySequence 3                      } {$sequence} {/add:mySequence}
+
+{mySequence:add 3                      } {$sequence} {/mySequence:add}
+
+{make mySequence, add=3           } {$sequence} {/make}
+
+{make add=3, mySequence, 3           } {$sequence} {/make}
+
+{pad:make mySequence, add=3       } {$sequence} {/pad:make}
+
+{pad:make add=3, mySequence, 3       } {$sequence} {/pad:make}
+
+{make:mySequence add=3              } {$sequence} {/make:mySequence}
+
+{mySequence:make add=3              } {$sequence} {/mySequence:make}
+
+{make:add mySequence, 3              } {$sequence} {/make:add}
+
+{add:make mySequence, 3              } {$sequence} {/add:make}

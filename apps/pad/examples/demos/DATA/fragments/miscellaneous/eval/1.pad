@@ -1,0 +1,49 @@
+{echo 50 * 4 * 2}
+{echo 50 | * 4 | * 2}
+{echo 50 | @ * 4 | @ * 2}
+
+{echo 50 | '"' . }
+{echo 50 | . '"' }
+{echo 50 | '"' . @ . '"' }
+{echo 50 | '"' . $$ . '"' }
+
+{echo 50 | '"' . '"' }
+{echo 50 | '"' . . '"' }
+{echo 50 | . @ . }
+{echo 50 | . }
+{echo 50 | . . }
+
+{set $abc = 50}
+
+{$abc | * 4}
+{$abc | 4 * 4}
+{$abc | * / 4}
+{$abc | * 4 / 2 + 10 }
+{$abc | * 4 | / 2 | + 10 }
+
+{set $abc = 'abc'}
+
+{$abc | crc32 }
+{$abc | app:substr (1, 1) }
+{$abc | pad:substr (1, 1) }
+{$abc | php:substr (@, 1, 1) }
+
+{set $line = 'a <test> LiNe'}
+
+{$line} 
+{!line} 
+{$line | capitalize} 
+{$line | upper} 
+{$line | lower} 
+{$line | url}
+
+{set $nbr = 12345.678}
+
+{$nbr | %.2f} 
+{$nbr | %.5f} 
+{$nbr | %'.09d} 
+{$nbr | %d} 
+{$nbr | %e} 
+{$nbr | %f} 
+{$nbr | %g} 
+{$nbr | %o}

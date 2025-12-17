@@ -1,0 +1,45 @@
+{loop rows=40, from=10                   }
+
+{pull remove='prime'            } {$sequence} {/pull}
+
+{pull remove, prime             } {$sequence} {/pull}
+
+{pull prime, remove             } {$sequence} {/pull}
+
+{default remove='prime'         } {$sequence} {/default}
+
+{default prime, remove          } {$sequence} {/default}
+
+{default remove, prime          } {$sequence} {/default}
+
+{remove default, prime          } {$sequence} {/remove}
+
+{remove prime, default          } {$sequence} {/remove}
+
+{remove pull, prime             } {$sequence} {/remove}
+
+{remove prime, pull             } {$sequence} {/remove}
+
+{prime default, remove          } {$sequence} {/prime}
+
+{prime remove, default          } {$sequence} {/prime}
+
+{prime remove, pull             } {$sequence} {/prime}
+
+{prime pull, remove             } {$sequence} {/prime}
+
+{default:remove prime           } {$sequence} {/default:remove}
+
+{remove:default prime           } {$sequence} {/remove:default}
+
+{sequence:prime default, remove } {$sequence} {/sequence:prime}
+
+{prime:sequence default, remove } {$sequence} {/prime:sequence}
+
+{sequence:prime pull, remove    } {$sequence} {/sequence:prime}
+
+{prime:sequence pull, remove    } {$sequence} {/prime:sequence}
+
+{pull:default remove='prime'    } {$sequence} {/pull:default}
+
+{default:pull remove='prime'    } {$sequence} {/default:pull}
