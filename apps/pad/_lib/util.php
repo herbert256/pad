@@ -53,7 +53,7 @@
   }
 
 
-  function padList ( $filter = 1 ) {
+  function padList () {
 
     $directory = new RecursiveDirectoryIterator (APP);
     $iterator  = new RecursiveIteratorIterator  ($directory);
@@ -71,13 +71,7 @@
       if ( strpos($path, '/DATA/')  ) continue;
       if ( strpos($path, '/_')      ) continue;
       if ( strpos($path, 'develop') ) continue;
-
-      if ( $filter ) {
-        if ( strpos($path, 'error')    ) continue;
-        if ( strpos($path, 'test')     ) continue;
-        if ( strpos($path, 'redirect') ) continue;
-        if ( strpos($path, 'deep')     ) continue;
-      }
+      if ( strpos($path, 'claude')  ) continue;
 
       $files [$item] ['path'] = $path;
       $files [$item] ['item'] = $item;
@@ -150,7 +144,7 @@
 
       if ( str_contains ( $one ['path'], 'develop')     ) continue;
       if ( str_contains ( $one ['path'], 'manual')      ) continue;
-      if ( str_contains ( $one ['path'], 'xref')        ) continue;
+      if ( str_contains ( $one ['path'], 'reference')   ) continue;
 
       if ( padFileContains ( $one ['path'], '{example') ) continue;
       if ( padFileContains ( $one ['path'], '{page')    ) continue;

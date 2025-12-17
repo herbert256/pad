@@ -2,7 +2,7 @@
 
   set_time_limit ( 15 );
 
-  foreach ( padList ( 0 ) as $one ) {
+  foreach ( padList () as $one ) {
 
     $item = $one ['item'];
 

@@ -2,7 +2,7 @@
 
   $title = "Everything";
 
-  foreach ( padList ( 0 ) as $one ) {
+  foreach ( padList () as $one ) {
     $item = $one ['item'];
     $items [$item] ['item'] = $item;
   }

@@ -28,7 +28,7 @@
     if ( ! file_exists     ( $file      ) ) return $default;
     if ( ! is_readable     ( $file      ) ) return $default;
 
-    $contents = file_get_contents($file);
+    $contents = file_get_contents ($file);
 
     return ($contents === false) ? $default : $contents;
 

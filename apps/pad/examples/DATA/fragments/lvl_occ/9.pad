@@ -1,0 +1,19 @@
+{data 'myJson'}
+[
+  { "column": [ 11, 12, 13, 14, 15 ] },
+  { "column": [ 21, 22, 23, 24, 35 ] },
+  { "column": [ 31, 32, 33, 34, 35 ] }
+]
+{/data}
+
+{pad data='myJson'}
+  <table border='1'>
+    @start@
+      <tr>
+        {column}
+          <td>{$column}</td>
+        {/column}
+      </tr>
+    @end@
+  </table>
+{/pad}

@@ -2,7 +2,7 @@
 
   $title = "All 'ok' from regression test";
 
-  foreach ( padList ( 0 ) as $one ) {
+  foreach ( padList () as $one ) {
 
     $item   = $one ['item'];
     $store  = APP . "_regression/$item.txt";

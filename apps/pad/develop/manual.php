@@ -2,7 +2,7 @@
 
   $title = "All manual pages";
 
-  foreach ( padList ( 0 ) as $one ) {
+  foreach ( padList () as $one ) {
 
     $item = $one ['item'];
 

@@ -3,7 +3,7 @@
   fileDeleteDir  ( DAT . '_xref'       );
   fileDeleteDir  ( DAT . '_regression' );
 
-  foreach ( padList ( 0 ) as $one ) {
+  foreach ( padList () as $one ) {
 
     $item = $one ['item'];
 
