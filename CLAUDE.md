@@ -10,6 +10,8 @@ PAD (PHP Application Driver) is an Inversion of Control PHP template engine wher
 
 ## Documentation Structure
 
+See [docs/README.md](docs/README.md) for the full documentation index.
+
 | File | Contents |
 |------|----------|
 | [docs/PAD.md](docs/PAD.md) | Framework internals, execution flow, configuration |
