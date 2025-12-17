@@ -12,9 +12,9 @@ PAD (PHP Application Driver) is an Inversion of Control PHP template engine wher
 
 | File | Contents |
 |------|----------|
-| [pad/README.md](pad/README.md) | Framework internals, execution flow, configuration |
-| [APP.md](APP.md) | Application development, template syntax, tags, patterns |
-| [SEQUENCES.md](SEQUENCES.md) | Sequence subsystem (80+ mathematical sequences) |
+| [docs/PAD.md](docs/PAD.md) | Framework internals, execution flow, configuration |
+| [docs/APP.md](docs/APP.md) | Application development, template syntax, tags, patterns |
+| [docs/SEQUENCES.md](docs/SEQUENCES.md) | Sequence subsystem (80+ mathematical sequences) |
 
 ## Quick Start
 
@@ -84,11 +84,11 @@ apps/myapp/
 
 ## Key References
 
-- [pad/tags/REFERENCE.md](pad/tags/REFERENCE.md) - All template tags
-- [pad/functions/REFERENCE.md](pad/functions/REFERENCE.md) - All pipe functions
-- [pad/options/REFERENCE.md](pad/options/REFERENCE.md) - All tag options
-- [pad/properties/REFERENCE.md](pad/properties/REFERENCE.md) - All iteration properties (first@tag, count@tag, etc.)
-- [apps/NEW.md](apps/NEW.md) - Creating new applications
+- [docs/TAGS.md](docs/TAGS.md) - All template tags
+- [docs/FUNCTIONS.md](docs/FUNCTIONS.md) - All pipe functions
+- [docs/OPTIONS.md](docs/OPTIONS.md) - All tag options
+- [docs/PROPERTIES.md](docs/PROPERTIES.md) - All iteration properties (first@tag, count@tag, etc.)
+- [docs/NEW.md](docs/NEW.md) - Creating new applications
 
 ## Quick Reference
 
