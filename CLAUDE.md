@@ -422,10 +422,12 @@ Each `{tag}` creates a new level scope. PAD maintains global variables per level
 
 | File | Description |
 |------|-------------|
-| [docs/PAD.md](docs/PAD.md) | Framework internals, execution flow |
-| [docs/APP.md](docs/APP.md) | Application development guide |
-| [docs/reference/](docs/reference/README.md) | API reference |
-| [docs/sequences/](docs/sequences/README.md) | Sequence subsystem |
+| [ANALYSE.md](ANALYSE.md) | Code analysis and architecture overview |
+| [APP.md](APP.md) | Application development guide - creating apps, template syntax, tags, patterns |
+| [LICENSE.md](LICENSE.md) | GPLv3 license information |
+| [PAD.md](PAD.md) | Framework internals - execution flow, level system, configuration |
+| [reference/](reference/README.md) | Reference documentation - tags, functions, options, properties |
+| [sequences/](sequences/README.md) | Sequence subsystem - 80+ mathematical sequences and transformations |
 
 ### Reference Files
 - [docs/reference/TAGS.md](docs/reference/TAGS.md) - All template tags
@@ -435,6 +437,11 @@ Each `{tag}` creates a new level scope. PAD maintains global variables per level
 - [docs/reference/TYPES.md](docs/reference/TYPES.md) - All tag types
 - [docs/sequences/SEQUENCES.md](docs/sequences/SEQUENCES.md) - All sequence types
 - [docs/sequences/ACTIONS.md](docs/sequences/ACTIONS.md) - All sequence actions
+
+##
+- [apps/README.md](apps/README.md) - All template tags
+- [pad/README.md](pad/README.md) - PHP sources of the PAD framework itself
+- [www/README.md](www/README.md) - Webserver files, entry points when PAD is used in Apache
 
 ---
 
