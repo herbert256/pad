@@ -1,19 +1,29 @@
-<p>The <code>open</code> tag outputs a literal opening brace.</p>
-
-<h2>Escaping PAD Syntax</h2>
+<p>
+  The <code>open</code> tag outputs a literal opening brace.
+</p>
+<h2>
+  Escaping PAD Syntax
+</h2>
 <pre>To show {$variable} literally:
 {open}$variable{close}</pre>
-<p>Result: {$variable}</p>
-
-<h2>Documenting PAD Code</h2>
+<p>
+  Result: {$variable}
+</p>
+<h2>
+  Documenting PAD Code
+</h2>
 <pre>{open}if $count gt 0{close}
   Has items
 {open}/if{close}</pre>
-<p>Shows:</p>
-<code>{if $count gt 0}<br>
-  Has items<br>
+<p>
+  Shows:
+</p><code>{if $count gt 0}<br>
+Has items<br>
 {/if}</code>
-
-<h2>Multiple Braces</h2>
+<h2>
+  Multiple Braces
+</h2>
 <pre>{open}{open}nested{close}{close}</pre>
-<p>Result: {{nested}}</p>
+<p>
+  Result: {{nested}}
+</p>

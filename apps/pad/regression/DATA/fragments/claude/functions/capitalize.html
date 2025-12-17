@@ -1,26 +1,45 @@
-<p>The <code>capitalize</code> function converts a string to title case (capitalizes each word).</p>
-
-<h2>Basic Usage</h2>
+<p>
+  The <code>capitalize</code> function converts a string to title case (capitalizes each word).
+</p>
+<h2>
+  Basic Usage
+</h2>
 <pre>{echo 'hello world' | capitalize}</pre>
-<p>Result: <b>Hello World</b></p>
-
-<h2>From Lowercase</h2>
+<p>
+  Result: <b>Hello World</b>
+</p>
+<h2>
+  From Lowercase
+</h2>
 <pre>{echo 'john smith' | capitalize}</pre>
-<p>Name: <b>John Smith</b></p>
-
-<h2>From Uppercase</h2>
+<p>
+  Name: <b>John Smith</b>
+</p>
+<h2>
+  From Uppercase
+</h2>
 <pre>{echo 'HELLO WORLD' | lower | capitalize}</pre>
-<p>Fixed: <b>Hello World</b></p>
-
-<h2>Chained Examples</h2>
+<p>
+  Fixed: <b>Hello World</b>
+</p>
+<h2>
+  Chained Examples
+</h2>
 <pre>{echo $email | before('@') | replace('.', ' ') | capitalize}</pre>
-<p>Name from email: <b>John Smith</b></p>
-
+<p>
+  Name from email: <b>John Smith</b>
+</p>
 <pre>{echo 'the quick brown fox' | capitalize | left(15)}</pre>
-<p>Truncated title: <b>The Quick Brown</b></p>
-
+<p>
+  Truncated title: <b>The Quick Brown</b>
+</p>
 <pre>{echo '  spaced  text  ' | trim | capitalize}</pre>
-<p>Trimmed and titled: <b>Spaced  Text</b></p>
-
-<h2>Note</h2>
-<p>Alias: <code>ucwords</code> provides the same functionality.</p>
+<p>
+  Trimmed and titled: <b>Spaced Text</b>
+</p>
+<h2>
+  Note
+</h2>
+<p>
+  Alias: <code>ucwords</code> provides the same functionality.
+</p>

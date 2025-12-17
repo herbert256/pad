@@ -1,42 +1,47 @@
-<p>The <code>code</code> tag creates an execution scope.</p>
-
-<h2>Basic Code Block</h2>
+<p>
+  The <code>code</code> tag creates an execution scope.
+</p>
+<h2>
+  Basic Code Block
+</h2>
 <pre>{code}
   {set $x = 10}
   Inside: {$x}
 {/code}
 Outside: {$x}</pre>
-
-
-  
-  <p>Inside code block: x = 10</p>
-
-<p>Outside code block: x = 10</p>
-
-<h2>Sandbox Scope (Isolated)</h2>
+<p>
+  Inside code block: x = 10
+</p>
+<p>
+  Outside code block: x = 10
+</p>
+<h2>
+  Sandbox Scope (Isolated)
+</h2>
 <pre>{set $y = 5}
 {code sandbox}
   {set $y = 100}
   Inside sandbox: {$y}
 {/code}
 Outside sandbox: {$y}</pre>
-
-
-  
-  <p>Inside sandbox: y = 100</p>
-
-<p>Outside sandbox: y = 5 (unchanged)</p>
-
-<h2>Clean Scope</h2>
+<p>
+  Inside sandbox: y = 100
+</p>
+<p>
+  Outside sandbox: y = 5 (unchanged)
+</p>
+<h2>
+  Clean Scope
+</h2>
 <pre>{code clean}
   Fresh scope - parent variables not inherited
 {/code}</pre>
-
-  <p>Clean scope block</p>
-
-
-<h2>Nested Code Blocks</h2>
-
+<p>
+  Clean scope block
+</p>
+<h2>
+  Nested Code Blocks
+</h2>
 <pre>{set $level = 0}
 {code}
   {set $level = 1}
@@ -44,11 +49,12 @@ Outside sandbox: {$y}</pre>
     {set $level = 2}
   {/code}
 {/code}</pre>
-
-  
-  <p>Level 1: 1</p>
-  
-    
-    <p>Level 2: 2</p>
-  
-  <p>Back to Level 1: 2</p>
+<p>
+  Level 1: 1
+</p>
+<p>
+  Level 2: 2
+</p>
+<p>
+  Back to Level 1: 2
+</p>

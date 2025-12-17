@@ -1,20 +1,25 @@
-<p>The <code>check</code> tag checks if a record exists.</p>
-
-<h2>Syntax</h2>
+<p>
+  The <code>check</code> tag checks if a record exists.
+</p>
+<h2>
+  Syntax
+</h2>
 <pre>{check "table where condition"}
   Record exists
 {else}
   Record not found
 {/check}</pre>
-
-<h2>Example: User Exists</h2>
+<h2>
+  Example: User Exists
+</h2>
 <pre>{check "users where username = 'admin'"}
   &lt;p&gt;Admin user exists&lt;/p&gt;
 {else}
   &lt;p&gt;Admin user not found&lt;/p&gt;
 {/check}</pre>
-
-<h2>PHP Variable Method</h2>
+<h2>
+  PHP Variable Method
+</h2>
 <pre>// In PHP:
 $hasAdmin = db("check users where username = 'admin'");
 
@@ -22,13 +27,20 @@ $hasAdmin = db("check users where username = 'admin'");
 {if $hasAdmin}
   Admin exists
 {/if}</pre>
-
-<h2>Use Cases</h2>
+<h2>
+  Use Cases
+</h2>
 <ul>
-  <li>Validate before insert (check duplicates)</li>
-  <li>Authorization checks</li>
-  <li>Feature availability</li>
+  <li>Validate before insert (check duplicates)
+  </li>
+  <li>Authorization checks
+  </li>
+  <li>Feature availability
+  </li>
 </ul>
-
-<h2>Note</h2>
-<p>More efficient than {record} when you only need to know if data exists.</p>
+<h2>
+  Note
+</h2>
+<p>
+  More efficient than {record} when you only need to know if data exists.
+</p>

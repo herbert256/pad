@@ -1,12 +1,16 @@
-<p>The <code>action</code> tag handles form actions.</p>
-
-<h2>Syntax</h2>
+<p>
+  The <code>action</code> tag handles form actions.
+</p>
+<h2>
+  Syntax
+</h2>
 <pre>{action 'submit'}
   {!-- Executes when action=submit --}
   Form submitted!
 {/action}</pre>
-
-<h2>Form Example</h2>
+<h2>
+  Form Example
+</h2>
 <pre>&lt;form method="post"&gt;
   &lt;input type="hidden" name="action" value="save"&gt;
   &lt;button type="submit"&gt;Save&lt;/button&gt;
@@ -15,8 +19,9 @@
 {action 'save'}
   Data saved!
 {/action}</pre>
-
-<h2>Multiple Actions</h2>
+<h2>
+  Multiple Actions
+</h2>
 <pre>{action 'create'}
   Creating...
 {/action}
@@ -24,6 +29,9 @@
 {action 'delete'}
   Deleting...
 {/action}</pre>
-
-<h2>Note</h2>
-<p>Actions are triggered by POST requests with matching action parameter.</p>
+<h2>
+  Note
+</h2>
+<p>
+  Actions are triggered by POST requests with matching action parameter.
+</p>

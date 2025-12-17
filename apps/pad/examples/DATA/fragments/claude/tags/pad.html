@@ -1,14 +1,18 @@
-<p>The <code>pad</code> tag processes PAD template content.</p>
-
-<h2>Basic PAD Tag</h2>
+<p>
+  The <code>pad</code> tag processes PAD template content.
+</p>
+<h2>
+  Basic PAD Tag
+</h2>
 <pre>{pad}
   Template content: {$items} items
 {/pad}</pre>
-
-  <p>Template content processed</p>
-
-
-<h2>PAD with Data</h2>
+<p>
+  Template content processed
+</p>
+<h2>
+  PAD with Data
+</h2>
 <pre>{data 'myData'}
   [ {"text": "First"}, {"text": "Second"} ]
 {/data}
@@ -18,31 +22,30 @@
     Item: {$text}
   @end@
 {/pad}</pre>
-
-
-  
-  <p>Item: First</p>
-  
-  <p>Item: Second</p>
-  
-
-
-<h2>PAD with Variable Assignment</h2>
+<p>
+  Item: First
+</p>
+<p>
+  Item: Second
+</p>
+<h2>
+  PAD with Variable Assignment
+</h2>
 <pre>{pad $color='blue'}
   Color is: {$color}
 {/pad}</pre>
-
-  <p>Color is: blue</p>
-
-
-<h2>Iteration with @start@ @end@</h2>
-<p>The @start@ and @end@ markers define the iteration block:</p>
+<p>
+  Color is: blue
+</p>
+<h2>
+  Iteration with @start@ @end@
+</h2>
+<p>
+  The @start@ and @end@ markers define the iteration block:
+</p>
 <ul>
-
-  
-  <li>First</li>
-  
-  <li>Second</li>
-  
-
+  <li>First
+  </li>
+  <li>Second
+  </li>
 </ul>

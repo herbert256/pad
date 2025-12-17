@@ -1,24 +1,31 @@
-<p>The <code>exists</code> tag checks if a file exists.</p>
-
-<h2>Check File Exists</h2>
+<p>
+  The <code>exists</code> tag checks if a file exists.
+</p>
+<h2>
+  Check File Exists
+</h2>
 <pre>{exists APP . 'fragments/claude/index.pad'}
   File exists
 {else}
   File not found
 {/exists}</pre>
-
-<p style="color:green">File exists: fragments/claude/index.pad</p>
-
-
-<h2>Check Non-Existent File</h2>
+<p style="color:green">
+  File exists: fragments/claude/index.pad
+</p>
+<h2>
+  Check Non-Existent File
+</h2>
 <pre>{exists APP . 'fragments/claude/nonexistent.pad'}
   Found
 {else}
   Not found
 {/exists}</pre>
-
-<p style="color:red">Not found: fragments/claude/nonexistent.pad</p>
-
-
-<h2>Note</h2>
-<p>The exists tag uses APP constant for application-relative paths.</p>
+<p style="color:red">
+  Not found: fragments/claude/nonexistent.pad
+</p>
+<h2>
+  Note
+</h2>
+<p>
+  The exists tag uses APP constant for application-relative paths.
+</p>

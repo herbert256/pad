@@ -1,26 +1,45 @@
-<p>The <code>afterLast</code> function returns everything after the last occurrence of a delimiter.</p>
-
-<h2>Basic Usage</h2>
+<p>
+  The <code>afterLast</code> function returns everything after the last occurrence of a delimiter.
+</p>
+<h2>
+  Basic Usage
+</h2>
 <pre>{echo $filePath | afterLast('/')}</pre>
-<p>Filename: <b>/readme.txt</b></p>
-
-<h2>Get File Extension</h2>
+<p>
+  Filename: <b>/readme.txt</b>
+</p>
+<h2>
+  Get File Extension
+</h2>
 <pre>{echo 'document.backup.txt' | afterLast('.')}</pre>
-<p>Extension: <b>.txt</b></p>
-
-<h2>Last Path Segment</h2>
+<p>
+  Extension: <b>.txt</b>
+</p>
+<h2>
+  Last Path Segment
+</h2>
 <pre>{echo '/var/www/html/index.php' | afterLast('/')}</pre>
-<p>File: <b>/index.php</b></p>
-
-<h2>Chained Examples</h2>
+<p>
+  File: <b>/index.php</b>
+</p>
+<h2>
+  Chained Examples
+</h2>
 <pre>{echo $filePath | afterLast('/') | beforeLast('.')}</pre>
-<p>Filename without extension: <b>/readme</b></p>
-
+<p>
+  Filename without extension: <b>/readme</b>
+</p>
 <pre>{echo $filePath | afterLast('/') | upper}</pre>
-<p>Uppercase filename: <b>/README.TXT</b></p>
-
+<p>
+  Uppercase filename: <b>/README.TXT</b>
+</p>
 <pre>{echo 'path/to/My File.TXT' | afterLast('/') | lower | replace(' ', '_')}</pre>
-<p>Normalized: <b>/my_file.txt</b></p>
-
-<h2>Note</h2>
-<p>Use <code>afterLast</code> to extract filenames from paths or get the last segment of delimited data.</p>
+<p>
+  Normalized: <b>/my_file.txt</b>
+</p>
+<h2>
+  Note
+</h2>
+<p>
+  Use <code>afterLast</code> to extract filenames from paths or get the last segment of delimited data.
+</p>

@@ -1,26 +1,45 @@
-<p>The <code>lower</code> function converts a string to lowercase.</p>
-
-<h2>Basic Usage</h2>
+<p>
+  The <code>lower</code> function converts a string to lowercase.
+</p>
+<h2>
+  Basic Usage
+</h2>
 <pre>{echo 'HELLO WORLD' | lower}</pre>
-<p>Result: <b>hello world</b></p>
-
-<h2>Email Normalization</h2>
+<p>
+  Result: <b>hello world</b>
+</p>
+<h2>
+  Email Normalization
+</h2>
 <pre>{echo 'User@EXAMPLE.COM' | lower}</pre>
-<p>Normalized: <b>user@example.com</b></p>
-
-<h2>Mixed Case</h2>
+<p>
+  Normalized: <b>user@example.com</b>
+</p>
+<h2>
+  Mixed Case
+</h2>
 <pre>{echo 'HeLLo WoRLd' | lower}</pre>
-<p>All lower: <b>hello world</b></p>
-
-<h2>Chained Examples</h2>
+<p>
+  All lower: <b>hello world</b>
+</p>
+<h2>
+  Chained Examples
+</h2>
 <pre>{echo $email | lower | before('@')}</pre>
-<p>Lowercase username: <b>john.smith</b></p>
-
+<p>
+  Lowercase username: <b>john.smith</b>
+</p>
 <pre>{echo 'MY FILE.TXT' | lower | replace(' ', '_')}</pre>
-<p>Normalized filename: <b>my_file.txt</b></p>
-
+<p>
+  Normalized filename: <b>my_file.txt</b>
+</p>
 <pre>{echo 'HELLO WORLD' | lower | capitalize}</pre>
-<p>Title case: <b>Hello World</b></p>
-
-<h2>Note</h2>
-<p>Works with UTF-8 characters.</p>
+<p>
+  Title case: <b>Hello World</b>
+</p>
+<h2>
+  Note
+</h2>
+<p>
+  Works with UTF-8 characters.
+</p>

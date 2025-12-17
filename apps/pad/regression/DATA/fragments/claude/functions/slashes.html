@@ -1,16 +1,30 @@
-<p>The <code>slashes</code> function adds backslashes before special characters.</p>
-
-<h2>Basic Usage</h2>
+<p>
+  The <code>slashes</code> function adds backslashes before special characters.
+</p>
+<h2>
+  Basic Usage
+</h2>
 <pre>{echo 'It is a "test"' | slashes}</pre>
-<p>Result: <b>It is a \"test\"</b></p>
-
-<h2>Escape Quotes</h2>
+<p>
+  Result: <b>It is a \"test\"</b>
+</p>
+<h2>
+  Escape Quotes
+</h2>
 <pre>{echo "He said 'hello'" | slashes}</pre>
-<p>Escaped: <b>He said \'hello\'</b></p>
-
-<h2>Chained Examples</h2>
+<p>
+  Escaped: <b>He said \'hello\'</b>
+</p>
+<h2>
+  Chained Examples
+</h2>
 <pre>{echo 'Name: "John"' | slashes | left(20)}</pre>
-<p>Truncated: <b>Name: \"John\"</b></p>
-
-<h2>Note</h2>
-<p>Use <code>slashes</code> when you need to escape strings for contexts requiring backslash escaping.</p>
+<p>
+  Truncated: <b>Name: \"John\"</b>
+</p>
+<h2>
+  Note
+</h2>
+<p>
+  Use <code>slashes</code> when you need to escape strings for contexts requiring backslash escaping.
+</p>

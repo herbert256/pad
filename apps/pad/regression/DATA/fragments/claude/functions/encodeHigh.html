@@ -1,19 +1,34 @@
-<p>The <code>encodeHigh</code> function encodes high ASCII characters (above 127).</p>
-
-<h2>Basic Usage</h2>
+<p>
+  The <code>encodeHigh</code> function encodes high ASCII characters (above 127).
+</p>
+<h2>
+  Basic Usage
+</h2>
 <pre>{echo 'Café résumé' | encodeHigh}</pre>
-<p>Result: <b>Caf&#195;&#169; r&#195;&#169;sum&#195;&#169;</b></p>
-
-<h2>Special Characters</h2>
+<p>
+  Result: <b>CafÃ© rÃ©sumÃ©</b>
+</p>
+<h2>
+  Special Characters
+</h2>
 <pre>{echo 'naïve' | encodeHigh}</pre>
-<p>Encoded: <b>na&#195;&#175;ve</b></p>
-
-<h2>Chained Examples</h2>
+<p>
+  Encoded: <b>naÃ¯ve</b>
+</p>
+<h2>
+  Chained Examples
+</h2>
 <pre>{echo 'Über' | encodeHigh | upper}</pre>
-<p>Encoded upper: <b>&#195;&#156;BER</b></p>
-
+<p>
+  Encoded upper: <b>ÃœBER</b>
+</p>
 <pre>{echo 'São Paulo' | trim | encodeHigh}</pre>
-<p>Clean encoded: <b>S&#195;&#163;o Paulo</b></p>
-
-<h2>Note</h2>
-<p>Useful for ensuring ASCII compatibility in certain contexts.</p>
+<p>
+  Clean encoded: <b>SÃ£o Paulo</b>
+</p>
+<h2>
+  Note
+</h2>
+<p>
+  Useful for ensuring ASCII compatibility in certain contexts.
+</p>

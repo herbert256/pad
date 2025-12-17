@@ -1,19 +1,34 @@
-<p>The <code>nbsp</code> function converts spaces to non-breaking spaces (<code>&amp;nbsp;</code>).</p>
-
-<h2>Basic Usage</h2>
+<p>
+  The <code>nbsp</code> function converts spaces to non-breaking spaces (<code>&amp;nbsp;</code>).
+</p>
+<h2>
+  Basic Usage
+</h2>
 <pre>{echo 'Hello World' | nbsp}</pre>
-<p>Result: <b>Hello&nbsp;World</b></p>
-
-<h2>Prevent Wrapping</h2>
+<p>
+  Result: <b>Hello&nbsp;World</b>
+</p>
+<h2>
+  Prevent Wrapping
+</h2>
 <pre>{echo '10 USD' | nbsp}</pre>
-<p>Price: 10&nbsp;USD</p>
-
-<h2>Chained Examples</h2>
+<p>
+  Price: 10&nbsp;USD
+</p>
+<h2>
+  Chained Examples
+</h2>
 <pre>{echo 'New York City' | nbsp | bold}</pre>
-<p>City: <b>New&nbsp;York&nbsp;City</b></p>
-
+<p>
+  City: <b>New&nbsp;York&nbsp;City</b>
+</p>
 <pre>{echo '100 km' | trim | nbsp}</pre>
-<p>Distance: 100&nbsp;km</p>
-
-<h2>Note</h2>
-<p>Use to prevent line breaks between words that should stay together.</p>
+<p>
+  Distance: 100&nbsp;km
+</p>
+<h2>
+  Note
+</h2>
+<p>
+  Use to prevent line breaks between words that should stay together.
+</p>

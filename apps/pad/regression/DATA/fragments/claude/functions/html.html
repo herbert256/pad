@@ -1,31 +1,61 @@
-<p>The <code>html</code> function escapes HTML special characters for safe display.</p>
-
-<h2>Basic Usage</h2>
+<p>
+  The <code>html</code> function escapes HTML special characters for safe display.
+</p>
+<h2>
+  Basic Usage
+</h2>
 <pre>{echo $htmlText | html}</pre>
-<p>Result: <b>&lt;p&gt;Hello &amp; &quot;World&quot;&lt;/p&gt;</b></p>
-
-<h2>Escape Tags</h2>
-<pre>{echo '<script>alert("XSS")</script>' | html}</pre>
-<p>Safe: <b>&lt;script&gt;alert(&quot;XSS&quot;)&lt;/script&gt;</b></p>
-
-<h2>Escape Quotes</h2>
+<p>
+  Result: <b>&lt;p&gt;Hello & "World"&lt;/p&gt;</b>
+</p>
+<h2>
+  Escape Tags
+</h2>
+<pre>{echo '
+<script>
+alert("XSS")
+</script>' | html}</pre>
+<p>
+  Safe: <b>&lt;script&gt;alert("XSS")&lt;/script&gt;</b>
+</p>
+<h2>
+  Escape Quotes
+</h2>
 <pre>{echo 'He said "hello"' | html}</pre>
-<p>Escaped: <b>He said &quot;hello&quot;</b></p>
-
-<h2>Chained Examples</h2>
+<p>
+  Escaped: <b>He said "hello"</b>
+</p>
+<h2>
+  Chained Examples
+</h2>
 <pre>{echo $htmlText | html | replace('&amp;', '+')}</pre>
-<p>Modified: <b>&lt;p&gt;Hello + &quot;World&quot;&lt;/p&gt;</b></p>
-
+<p>
+  Modified: <b>&lt;p&gt;Hello + "World"&lt;/p&gt;</b>
+</p>
 <pre>{echo '<b>Bold</b>' | html | upper}</pre>
-<p>Escaped and upper: <b>&LT;B&GT;BOLD&LT;/B&GT;</b></p>
-
-<h2>Characters Escaped</h2>
+<p>
+  Escaped and upper: <b>&lt;B&gt;BOLD&lt;/B&gt;</b>
+</p>
+<h2>
+  Characters Escaped
+</h2>
 <ul>
-<li><code>&lt;</code> becomes <code>&amp;lt;</code></li>
-<li><code>&gt;</code> becomes <code>&amp;gt;</code></li>
-<li><code>&amp;</code> becomes <code>&amp;amp;</code></li>
-<li><code>"</code> becomes <code>&amp;quot;</code></li>
+  <li>
+    <code>&lt;</code> becomes <code>&amp;lt;</code>
+  </li>
+  <li>
+    <code>&gt;</code> becomes <code>&amp;gt;</code>
+  </li>
+  <li>
+    <code>&</code> becomes <code>&amp;amp;</code>
+  </li>
+  <li>
+    <code>"</code> becomes <code>&amp;quot;</code>
+  </li>
 </ul>
-
-<h2>Note</h2>
-<p>Always escape user input before displaying in HTML to prevent XSS attacks.</p>
+<h2>
+  Note
+</h2>
+<p>
+  Always escape user input before displaying in HTML to prevent XSS attacks.
+</p>

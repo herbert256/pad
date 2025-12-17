@@ -1,24 +1,38 @@
-<p>The <code>error</code> tag triggers an error.</p>
-
-<h2>Syntax</h2>
+<p>
+  The <code>error</code> tag triggers an error.
+</p>
+<h2>
+  Syntax
+</h2>
 <pre>{error 'Error message'}</pre>
-
-<h2>Conditional Error</h2>
+<h2>
+  Conditional Error
+</h2>
 <pre>{if $value lt 0}
   {error 'Value cannot be negative'}
 {/if}</pre>
-
-<h2>Validation Example</h2>
+<h2>
+  Validation Example
+</h2>
 <pre>{if $email eq ''}
   {error 'Email is required'}
 {/if}</pre>
-
-<h2>Note</h2>
-<p>Error handling depends on $padErrorAction configuration:</p>
+<h2>
+  Note
+</h2>
+<p>
+  Error handling depends on $padErrorAction configuration:
+</p>
 <ul>
-  <li>'pad' - PAD error page</li>
-  <li>'php' - PHP error</li>
-  <li>'stop' - Stop execution</li>
-  <li>'log' - Log and continue</li>
+  <li>'pad' - PAD error page
+  </li>
+  <li>'php' - PHP error
+  </li>
+  <li>'stop' - Stop execution
+  </li>
+  <li>'log' - Log and continue
+  </li>
 </ul>
-<p><i>Not demonstrated to avoid triggering errors.</i></p>
+<p>
+  <i>Not demonstrated to avoid triggering errors.</i>
+</p>

@@ -1,19 +1,37 @@
-<p>The <code>sanitize</code> function performs full sanitization for safe output.</p>
-
-<h2>Basic Usage</h2>
+<p>
+  The <code>sanitize</code> function performs full sanitization for safe output.
+</p>
+<h2>
+  Basic Usage
+</h2>
 <pre>{echo $htmlText | sanitize}</pre>
-<p>Result: <b>&lt;p&gt;Hello &amp; &quot;World&quot;&lt;/p&gt;</b></p>
-
-<h2>User Input</h2>
-<pre>{echo '<script>bad()</script>' | sanitize}</pre>
-<p>Safe: <b>&lt;script&gt;bad()&lt;/script&gt;</b></p>
-
-<h2>Chained Examples</h2>
+<p>
+  Result: <b>&lt;p&gt;Hello & "World"&lt;/p&gt;</b>
+</p>
+<h2>
+  User Input
+</h2>
+<pre>{echo '
+<script>
+bad()
+</script>' | sanitize}</pre>
+<p>
+  Safe: <b>&lt;script&gt;bad()&lt;/script&gt;</b>
+</p>
+<h2>
+  Chained Examples
+</h2>
 <pre>{echo '  <b>Hello</b>  ' | trim | sanitize}</pre>
-<p>Clean and safe: <b>&lt;b&gt;Hello&lt;/b&gt;</b></p>
-
+<p>
+  Clean and safe: <b>&lt;b&gt;Hello&lt;/b&gt;</b>
+</p>
 <pre>{echo $htmlText | sanitize | left(20)}</pre>
-<p>Truncated safe: <b>&lt;p&gt;Hello &amp;</b></p>
-
-<h2>Note</h2>
-<p>Use <code>sanitize</code> for comprehensive protection. It provides more thorough cleaning than <code>html</code> alone.</p>
+<p>
+  Truncated safe: <b>&lt;p&gt;Hello &</b>
+</p>
+<h2>
+  Note
+</h2>
+<p>
+  Use <code>sanitize</code> for comprehensive protection. It provides more thorough cleaning than <code>html</code> alone.
+</p>

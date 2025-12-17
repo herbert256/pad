@@ -1,767 +1,1394 @@
-<h1>PAD Reference</h1>
-
-<p>Complete working examples for PAD template tags, properties, and pipe functions.</p>
-
+<h1>
+  PAD Reference
+</h1>
+<p>
+  Complete working examples for PAD template tags, properties, and pipe functions.
+</p>
 <hr>
-
-<h2>Tags (53)</h2>
-<p>Template tags control flow, data, and output. <a href="?fragments/claude/tags">View all tags &rarr;</a></p>
-
+<h2>
+  Tags (53)
+</h2>
+<p>
+  Template tags control flow, data, and output. <a href="?fragments/claude/tags">View all tags →</a>
+</p>
 <table border="1" cellpadding="5" cellspacing="0" width="100%">
-<tr style="background:#ccc;"><th>Tag</th><th>Description</th><th>Category</th></tr>
-
-  <tr>
-    <td><a href="?fragments/claude/tags/if">if</a></td>
-    <td>Conditional branching</td>
-    <td><i>Control Flow</i></td>
+  <tr style="background:#ccc;">
+    <th>
+      Tag
+    </th>
+    <th>
+      Description
+    </th>
+    <th>
+      Category
+    </th>
   </tr>
-
+  <tr>
+    <td>
+      <a href="?fragments/claude/tags/if">if</a>
+    </td>
+    <td>
+      Conditional branching
+    </td>
+    <td>
+      <i>Control Flow</i>
+    </td>
+  </tr>
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/switch">switch</a></td>
-    <td>Multi-way branching</td>
-    <td><i>Control Flow</i></td>
+    <td>
+      <a href="?fragments/claude/tags/switch">switch</a>
+    </td>
+    <td>
+      Multi-way branching
+    </td>
+    <td>
+      <i>Control Flow</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/case">case</a></td>
-    <td>Switch case matching</td>
-    <td><i>Control Flow</i></td>
+    <td>
+      <a href="?fragments/claude/tags/case">case</a>
+    </td>
+    <td>
+      Switch case matching
+    </td>
+    <td>
+      <i>Control Flow</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/while">while</a></td>
-    <td>Loop while condition true</td>
-    <td><i>Control Flow</i></td>
+    <td>
+      <a href="?fragments/claude/tags/while">while</a>
+    </td>
+    <td>
+      Loop while condition true
+    </td>
+    <td>
+      <i>Control Flow</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/until">until</a></td>
-    <td>Loop until condition true</td>
-    <td><i>Control Flow</i></td>
+    <td>
+      <a href="?fragments/claude/tags/until">until</a>
+    </td>
+    <td>
+      Loop until condition true
+    </td>
+    <td>
+      <i>Control Flow</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/data">data</a></td>
-    <td>Define variables</td>
-    <td><i>Variables</i></td>
+    <td>
+      <a href="?fragments/claude/tags/data">data</a>
+    </td>
+    <td>
+      Define variables
+    </td>
+    <td>
+      <i>Variables</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/set">set</a></td>
-    <td>Set variable values</td>
-    <td><i>Variables</i></td>
+    <td>
+      <a href="?fragments/claude/tags/set">set</a>
+    </td>
+    <td>
+      Set variable values
+    </td>
+    <td>
+      <i>Variables</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/get">get</a></td>
-    <td>Include PAD pages</td>
-    <td><i>Variables</i></td>
+    <td>
+      <a href="?fragments/claude/tags/get">get</a>
+    </td>
+    <td>
+      Include PAD pages
+    </td>
+    <td>
+      <i>Variables</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/field">field</a></td>
-    <td>Access record fields</td>
-    <td><i>Variables</i></td>
+    <td>
+      <a href="?fragments/claude/tags/field">field</a>
+    </td>
+    <td>
+      Access record fields
+    </td>
+    <td>
+      <i>Variables</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/array">array</a></td>
-    <td>Work with arrays</td>
-    <td><i>Variables</i></td>
+    <td>
+      <a href="?fragments/claude/tags/array">array</a>
+    </td>
+    <td>
+      Work with arrays
+    </td>
+    <td>
+      <i>Variables</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/record">record</a></td>
-    <td>Work with records</td>
-    <td><i>Variables</i></td>
+    <td>
+      <a href="?fragments/claude/tags/record">record</a>
+    </td>
+    <td>
+      Work with records
+    </td>
+    <td>
+      <i>Variables</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/null">null</a></td>
-    <td>Null value handling</td>
-    <td><i>Variables</i></td>
+    <td>
+      <a href="?fragments/claude/tags/null">null</a>
+    </td>
+    <td>
+      Null value handling
+    </td>
+    <td>
+      <i>Variables</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/bool">bool</a></td>
-    <td>Boolean values</td>
-    <td><i>Variables</i></td>
+    <td>
+      <a href="?fragments/claude/tags/bool">bool</a>
+    </td>
+    <td>
+      Boolean values
+    </td>
+    <td>
+      <i>Variables</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/true">true</a></td>
-    <td>True constant</td>
-    <td><i>Variables</i></td>
+    <td>
+      <a href="?fragments/claude/tags/true">true</a>
+    </td>
+    <td>
+      True constant
+    </td>
+    <td>
+      <i>Variables</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/false">false</a></td>
-    <td>False constant</td>
-    <td><i>Variables</i></td>
+    <td>
+      <a href="?fragments/claude/tags/false">false</a>
+    </td>
+    <td>
+      False constant
+    </td>
+    <td>
+      <i>Variables</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/echo">echo</a></td>
-    <td>Output expressions</td>
-    <td><i>Output</i></td>
+    <td>
+      <a href="?fragments/claude/tags/echo">echo</a>
+    </td>
+    <td>
+      Output expressions
+    </td>
+    <td>
+      <i>Output</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/content">content</a></td>
-    <td>Capture content blocks</td>
-    <td><i>Output</i></td>
+    <td>
+      <a href="?fragments/claude/tags/content">content</a>
+    </td>
+    <td>
+      Capture content blocks
+    </td>
+    <td>
+      <i>Output</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/code">code</a></td>
-    <td>Display code blocks</td>
-    <td><i>Output</i></td>
+    <td>
+      <a href="?fragments/claude/tags/code">code</a>
+    </td>
+    <td>
+      Display code blocks
+    </td>
+    <td>
+      <i>Output</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/dump">dump</a></td>
-    <td>Debug variable dump</td>
-    <td><i>Output</i></td>
+    <td>
+      <a href="?fragments/claude/tags/dump">dump</a>
+    </td>
+    <td>
+      Debug variable dump
+    </td>
+    <td>
+      <i>Output</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/trace">trace</a></td>
-    <td>Execution trace</td>
-    <td><i>Output</i></td>
+    <td>
+      <a href="?fragments/claude/tags/trace">trace</a>
+    </td>
+    <td>
+      Execution trace
+    </td>
+    <td>
+      <i>Output</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/output">output</a></td>
-    <td>Set output type</td>
-    <td><i>Output</i></td>
+    <td>
+      <a href="?fragments/claude/tags/output">output</a>
+    </td>
+    <td>
+      Set output type
+    </td>
+    <td>
+      <i>Output</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/tidy">tidy</a></td>
-    <td>Clean HTML output</td>
-    <td><i>Output</i></td>
+    <td>
+      <a href="?fragments/claude/tags/tidy">tidy</a>
+    </td>
+    <td>
+      Clean HTML output
+    </td>
+    <td>
+      <i>Output</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/count">count</a></td>
-    <td>Count items</td>
-    <td><i>Counters</i></td>
+    <td>
+      <a href="?fragments/claude/tags/count">count</a>
+    </td>
+    <td>
+      Count items
+    </td>
+    <td>
+      <i>Counters</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/increment">increment</a></td>
-    <td>Increment counter</td>
-    <td><i>Counters</i></td>
+    <td>
+      <a href="?fragments/claude/tags/increment">increment</a>
+    </td>
+    <td>
+      Increment counter
+    </td>
+    <td>
+      <i>Counters</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/decrement">decrement</a></td>
-    <td>Decrement counter</td>
-    <td><i>Counters</i></td>
+    <td>
+      <a href="?fragments/claude/tags/decrement">decrement</a>
+    </td>
+    <td>
+      Decrement counter
+    </td>
+    <td>
+      <i>Counters</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/file">file</a></td>
-    <td>Read file contents</td>
-    <td><i>Files</i></td>
+    <td>
+      <a href="?fragments/claude/tags/file">file</a>
+    </td>
+    <td>
+      Read file contents
+    </td>
+    <td>
+      <i>Files</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/files">files</a></td>
-    <td>List directory files</td>
-    <td><i>Files</i></td>
+    <td>
+      <a href="?fragments/claude/tags/files">files</a>
+    </td>
+    <td>
+      List directory files
+    </td>
+    <td>
+      <i>Files</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/dir">dir</a></td>
-    <td>Simple directory listing</td>
-    <td><i>Files</i></td>
+    <td>
+      <a href="?fragments/claude/tags/dir">dir</a>
+    </td>
+    <td>
+      Simple directory listing
+    </td>
+    <td>
+      <i>Files</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/exists">exists</a></td>
-    <td>Check file existence</td>
-    <td><i>Files</i></td>
+    <td>
+      <a href="?fragments/claude/tags/exists">exists</a>
+    </td>
+    <td>
+      Check file existence
+    </td>
+    <td>
+      <i>Files</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/sequence">sequence</a></td>
-    <td>Generate sequences</td>
-    <td><i>Sequences</i></td>
+    <td>
+      <a href="?fragments/claude/tags/sequence">sequence</a>
+    </td>
+    <td>
+      Generate sequences
+    </td>
+    <td>
+      <i>Sequences</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/continue">continue</a></td>
-    <td>Transform sequences</td>
-    <td><i>Sequences</i></td>
+    <td>
+      <a href="?fragments/claude/tags/continue">continue</a>
+    </td>
+    <td>
+      Transform sequences
+    </td>
+    <td>
+      <i>Sequences</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/pull">pull</a></td>
-    <td>Retrieve stored sequences</td>
-    <td><i>Sequences</i></td>
+    <td>
+      <a href="?fragments/claude/tags/pull">pull</a>
+    </td>
+    <td>
+      Retrieve stored sequences
+    </td>
+    <td>
+      <i>Sequences</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/keep">keep</a></td>
-    <td>Filter sequence values</td>
-    <td><i>Sequences</i></td>
+    <td>
+      <a href="?fragments/claude/tags/keep">keep</a>
+    </td>
+    <td>
+      Filter sequence values
+    </td>
+    <td>
+      <i>Sequences</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/remove">remove</a></td>
-    <td>Remove from sequences</td>
-    <td><i>Sequences</i></td>
+    <td>
+      <a href="?fragments/claude/tags/remove">remove</a>
+    </td>
+    <td>
+      Remove from sequences
+    </td>
+    <td>
+      <i>Sequences</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/make">make</a></td>
-    <td>Transform sequence values</td>
-    <td><i>Sequences</i></td>
+    <td>
+      <a href="?fragments/claude/tags/make">make</a>
+    </td>
+    <td>
+      Transform sequence values
+    </td>
+    <td>
+      <i>Sequences</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/flag">flag</a></td>
-    <td>Mark sequence entries</td>
-    <td><i>Sequences</i></td>
+    <td>
+      <a href="?fragments/claude/tags/flag">flag</a>
+    </td>
+    <td>
+      Mark sequence entries
+    </td>
+    <td>
+      <i>Sequences</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/check">check</a></td>
-    <td>Check record existence</td>
-    <td><i>Database</i></td>
+    <td>
+      <a href="?fragments/claude/tags/check">check</a>
+    </td>
+    <td>
+      Check record existence
+    </td>
+    <td>
+      <i>Database</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/exit">exit</a></td>
-    <td>Exit template execution</td>
-    <td><i>Flow</i></td>
+    <td>
+      <a href="?fragments/claude/tags/exit">exit</a>
+    </td>
+    <td>
+      Exit template execution
+    </td>
+    <td>
+      <i>Flow</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/restart">restart</a></td>
-    <td>Restart page execution</td>
-    <td><i>Flow</i></td>
+    <td>
+      <a href="?fragments/claude/tags/restart">restart</a>
+    </td>
+    <td>
+      Restart page execution
+    </td>
+    <td>
+      <i>Flow</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/redirect">redirect</a></td>
-    <td>Redirect to URL</td>
-    <td><i>Flow</i></td>
+    <td>
+      <a href="?fragments/claude/tags/redirect">redirect</a>
+    </td>
+    <td>
+      Redirect to URL
+    </td>
+    <td>
+      <i>Flow</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/ignore">ignore</a></td>
-    <td>Skip content block</td>
-    <td><i>Flow</i></td>
+    <td>
+      <a href="?fragments/claude/tags/ignore">ignore</a>
+    </td>
+    <td>
+      Skip content block
+    </td>
+    <td>
+      <i>Flow</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/open">open</a></td>
-    <td>Output literal {</td>
-    <td><i>Helpers</i></td>
+    <td>
+      <a href="?fragments/claude/tags/open">open</a>
+    </td>
+    <td>
+      Output literal {
+    </td>
+    <td>
+      <i>Helpers</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/close">close</a></td>
-    <td>Output literal }</td>
-    <td><i>Helpers</i></td>
+    <td>
+      <a href="?fragments/claude/tags/close">close</a>
+    </td>
+    <td>
+      Output literal }
+    </td>
+    <td>
+      <i>Helpers</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/pad">pad</a></td>
-    <td>PAD metadata</td>
-    <td><i>Helpers</i></td>
+    <td>
+      <a href="?fragments/claude/tags/pad">pad</a>
+    </td>
+    <td>
+      PAD metadata
+    </td>
+    <td>
+      <i>Helpers</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/page">page</a></td>
-    <td>Page information</td>
-    <td><i>Helpers</i></td>
+    <td>
+      <a href="?fragments/claude/tags/page">page</a>
+    </td>
+    <td>
+      Page information
+    </td>
+    <td>
+      <i>Helpers</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/subpage">subpage</a></td>
-    <td>Subpage handling</td>
-    <td><i>Helpers</i></td>
+    <td>
+      <a href="?fragments/claude/tags/subpage">subpage</a>
+    </td>
+    <td>
+      Subpage handling
+    </td>
+    <td>
+      <i>Helpers</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/sandbox">sandbox</a></td>
-    <td>Isolated execution</td>
-    <td><i>Helpers</i></td>
+    <td>
+      <a href="?fragments/claude/tags/sandbox">sandbox</a>
+    </td>
+    <td>
+      Isolated execution
+    </td>
+    <td>
+      <i>Helpers</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/at">at</a></td>
-    <td>Iteration position tags</td>
-    <td><i>Helpers</i></td>
+    <td>
+      <a href="?fragments/claude/tags/at">at</a>
+    </td>
+    <td>
+      Iteration position tags
+    </td>
+    <td>
+      <i>Helpers</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/error">error</a></td>
-    <td>Error handling</td>
-    <td><i>Errors</i></td>
+    <td>
+      <a href="?fragments/claude/tags/error">error</a>
+    </td>
+    <td>
+      Error handling
+    </td>
+    <td>
+      <i>Errors</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/exception">exception</a></td>
-    <td>Exception handling</td>
-    <td><i>Errors</i></td>
+    <td>
+      <a href="?fragments/claude/tags/exception">exception</a>
+    </td>
+    <td>
+      Exception handling
+    </td>
+    <td>
+      <i>Errors</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/curl">curl</a></td>
-    <td>HTTP requests</td>
-    <td><i>External</i></td>
+    <td>
+      <a href="?fragments/claude/tags/curl">curl</a>
+    </td>
+    <td>
+      HTTP requests
+    </td>
+    <td>
+      <i>External</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/tags/ajax">ajax</a></td>
-    <td>AJAX responses</td>
-    <td><i>External</i></td>
+    <td>
+      <a href="?fragments/claude/tags/ajax">ajax</a>
+    </td>
+    <td>
+      AJAX responses
+    </td>
+    <td>
+      <i>External</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/tags/action">action</a></td>
-    <td>Form actions</td>
-    <td><i>External</i></td>
+    <td>
+      <a href="?fragments/claude/tags/action">action</a>
+    </td>
+    <td>
+      Form actions
+    </td>
+    <td>
+      <i>External</i>
+    </td>
   </tr>
-
 </table>
-
 <hr>
-
-<h2>Properties (25)</h2>
-<p>Access iteration state and metadata using <code>{property:name}...{/property:name}</code> syntax. <a href="?fragments/claude/properties">View all properties &rarr;</a></p>
-
+<h2>
+  Properties (25)
+</h2>
+<p>
+  Access iteration state and metadata using <code>{property:name}...{/property:name}</code> syntax. <a href="?fragments/claude/properties">View all properties →</a>
+</p>
 <table border="1" cellpadding="5" cellspacing="0" width="100%">
-<tr style="background:#ccc;"><th>Property</th><th>Description</th><th>Category</th></tr>
-
-  <tr>
-    <td><a href="?fragments/claude/properties/first">first</a></td>
-    <td>Is first iteration</td>
-    <td><i>Iteration</i></td>
+  <tr style="background:#ccc;">
+    <th>
+      Property
+    </th>
+    <th>
+      Description
+    </th>
+    <th>
+      Category
+    </th>
   </tr>
-
+  <tr>
+    <td>
+      <a href="?fragments/claude/properties/first">first</a>
+    </td>
+    <td>
+      Is first iteration
+    </td>
+    <td>
+      <i>Iteration</i>
+    </td>
+  </tr>
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/properties/last">last</a></td>
-    <td>Is last iteration</td>
-    <td><i>Iteration</i></td>
+    <td>
+      <a href="?fragments/claude/properties/last">last</a>
+    </td>
+    <td>
+      Is last iteration
+    </td>
+    <td>
+      <i>Iteration</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/properties/notFirst">notFirst</a></td>
-    <td>Not first iteration</td>
-    <td><i>Iteration</i></td>
+    <td>
+      <a href="?fragments/claude/properties/notFirst">notFirst</a>
+    </td>
+    <td>
+      Not first iteration
+    </td>
+    <td>
+      <i>Iteration</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/properties/notLast">notLast</a></td>
-    <td>Not last iteration</td>
-    <td><i>Iteration</i></td>
+    <td>
+      <a href="?fragments/claude/properties/notLast">notLast</a>
+    </td>
+    <td>
+      Not last iteration
+    </td>
+    <td>
+      <i>Iteration</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/properties/border">border</a></td>
-    <td>Is first or last</td>
-    <td><i>Iteration</i></td>
+    <td>
+      <a href="?fragments/claude/properties/border">border</a>
+    </td>
+    <td>
+      Is first or last
+    </td>
+    <td>
+      <i>Iteration</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/properties/middle">middle</a></td>
-    <td>Neither first nor last</td>
-    <td><i>Iteration</i></td>
+    <td>
+      <a href="?fragments/claude/properties/middle">middle</a>
+    </td>
+    <td>
+      Neither first nor last
+    </td>
+    <td>
+      <i>Iteration</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/properties/even">even</a></td>
-    <td>Even occurrence</td>
-    <td><i>Iteration</i></td>
+    <td>
+      <a href="?fragments/claude/properties/even">even</a>
+    </td>
+    <td>
+      Even occurrence
+    </td>
+    <td>
+      <i>Iteration</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/properties/odd">odd</a></td>
-    <td>Odd occurrence</td>
-    <td><i>Iteration</i></td>
+    <td>
+      <a href="?fragments/claude/properties/odd">odd</a>
+    </td>
+    <td>
+      Odd occurrence
+    </td>
+    <td>
+      <i>Iteration</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/properties/current">current</a></td>
-    <td>Current position (1-based)</td>
-    <td><i>Counters</i></td>
+    <td>
+      <a href="?fragments/claude/properties/current">current</a>
+    </td>
+    <td>
+      Current position (1-based)
+    </td>
+    <td>
+      <i>Counters</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/properties/count">count</a></td>
-    <td>Total item count</td>
-    <td><i>Counters</i></td>
+    <td>
+      <a href="?fragments/claude/properties/count">count</a>
+    </td>
+    <td>
+      Total item count
+    </td>
+    <td>
+      <i>Counters</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/properties/remaining">remaining</a></td>
-    <td>Items remaining</td>
-    <td><i>Counters</i></td>
+    <td>
+      <a href="?fragments/claude/properties/remaining">remaining</a>
+    </td>
+    <td>
+      Items remaining
+    </td>
+    <td>
+      <i>Counters</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/properties/done">done</a></td>
-    <td>Items completed</td>
-    <td><i>Counters</i></td>
+    <td>
+      <a href="?fragments/claude/properties/done">done</a>
+    </td>
+    <td>
+      Items completed
+    </td>
+    <td>
+      <i>Counters</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/properties/data">data</a></td>
-    <td>Full data array</td>
-    <td><i>Data</i></td>
+    <td>
+      <a href="?fragments/claude/properties/data">data</a>
+    </td>
+    <td>
+      Full data array
+    </td>
+    <td>
+      <i>Data</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/properties/key">key</a></td>
-    <td>Current array key</td>
-    <td><i>Data</i></td>
+    <td>
+      <a href="?fragments/claude/properties/key">key</a>
+    </td>
+    <td>
+      Current array key
+    </td>
+    <td>
+      <i>Data</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/properties/keys">keys</a></td>
-    <td>All keys (iterable)</td>
-    <td><i>Data</i></td>
+    <td>
+      <a href="?fragments/claude/properties/keys">keys</a>
+    </td>
+    <td>
+      All keys (iterable)
+    </td>
+    <td>
+      <i>Data</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/properties/fields">fields</a></td>
-    <td>Field name/value pairs</td>
-    <td><i>Data</i></td>
+    <td>
+      <a href="?fragments/claude/properties/fields">fields</a>
+    </td>
+    <td>
+      Field name/value pairs
+    </td>
+    <td>
+      <i>Data</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/properties/firstFieldName">firstFieldName</a></td>
-    <td>First field name</td>
-    <td><i>Data</i></td>
+    <td>
+      <a href="?fragments/claude/properties/firstFieldName">firstFieldName</a>
+    </td>
+    <td>
+      First field name
+    </td>
+    <td>
+      <i>Data</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/properties/firstFieldValue">firstFieldValue</a></td>
-    <td>First field value</td>
-    <td><i>Data</i></td>
+    <td>
+      <a href="?fragments/claude/properties/firstFieldValue">firstFieldValue</a>
+    </td>
+    <td>
+      First field value
+    </td>
+    <td>
+      <i>Data</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/properties/name">name</a></td>
-    <td>Current tag name</td>
-    <td><i>Metadata</i></td>
+    <td>
+      <a href="?fragments/claude/properties/name">name</a>
+    </td>
+    <td>
+      Current tag name
+    </td>
+    <td>
+      <i>Metadata</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/properties/parameter">parameter</a></td>
-    <td>Named parameter value</td>
-    <td><i>Metadata</i></td>
+    <td>
+      <a href="?fragments/claude/properties/parameter">parameter</a>
+    </td>
+    <td>
+      Named parameter value
+    </td>
+    <td>
+      <i>Metadata</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/properties/parameters">parameters</a></td>
-    <td>All parameters</td>
-    <td><i>Metadata</i></td>
+    <td>
+      <a href="?fragments/claude/properties/parameters">parameters</a>
+    </td>
+    <td>
+      All parameters
+    </td>
+    <td>
+      <i>Metadata</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/properties/option">option</a></td>
-    <td>Positional option</td>
-    <td><i>Metadata</i></td>
+    <td>
+      <a href="?fragments/claude/properties/option">option</a>
+    </td>
+    <td>
+      Positional option
+    </td>
+    <td>
+      <i>Metadata</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/properties/options">options</a></td>
-    <td>All options</td>
-    <td><i>Metadata</i></td>
+    <td>
+      <a href="?fragments/claude/properties/options">options</a>
+    </td>
+    <td>
+      All options
+    </td>
+    <td>
+      <i>Metadata</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/properties/variable">variable</a></td>
-    <td>Level variable</td>
-    <td><i>Metadata</i></td>
+    <td>
+      <a href="?fragments/claude/properties/variable">variable</a>
+    </td>
+    <td>
+      Level variable
+    </td>
+    <td>
+      <i>Metadata</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/properties/variables">variables</a></td>
-    <td>All level variables</td>
-    <td><i>Metadata</i></td>
+    <td>
+      <a href="?fragments/claude/properties/variables">variables</a>
+    </td>
+    <td>
+      All level variables
+    </td>
+    <td>
+      <i>Metadata</i>
+    </td>
   </tr>
-
 </table>
-
 <hr>
-
-<h2>Pipe Functions (40)</h2>
-<p>Transform values using <code>| function</code> syntax. Chain multiple functions. <a href="?fragments/claude/functions">View all functions &rarr;</a></p>
-
+<h2>
+  Pipe Functions (40)
+</h2>
+<p>
+  Transform values using <code>| function</code> syntax. Chain multiple functions. <a href="?fragments/claude/functions">View all functions →</a>
+</p>
 <table border="1" cellpadding="5" cellspacing="0" width="100%">
-<tr style="background:#ccc;"><th>Function</th><th>Description</th><th>Category</th></tr>
-
+  <tr style="background:#ccc;">
+    <th>
+      Function
+    </th>
+    <th>
+      Description
+    </th>
+    <th>
+      Category
+    </th>
+  </tr>
   <tr>
-    <td><a href="?fragments/claude/functions/after">after</a></td>
-    <td>After first delimiter</td>
-    <td><i>Extraction</i></td>
+    <td>
+      <a href="?fragments/claude/functions/after">after</a>
+    </td>
+    <td>
+      After first delimiter
+    </td>
+    <td>
+      <i>Extraction</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/functions/afterLast">afterLast</a></td>
-    <td>After last delimiter</td>
-    <td><i>Extraction</i></td>
+    <td>
+      <a href="?fragments/claude/functions/afterLast">afterLast</a>
+    </td>
+    <td>
+      After last delimiter
+    </td>
+    <td>
+      <i>Extraction</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/functions/before">before</a></td>
-    <td>Before first delimiter</td>
-    <td><i>Extraction</i></td>
+    <td>
+      <a href="?fragments/claude/functions/before">before</a>
+    </td>
+    <td>
+      Before first delimiter
+    </td>
+    <td>
+      <i>Extraction</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/functions/beforeLast">beforeLast</a></td>
-    <td>Before last delimiter</td>
-    <td><i>Extraction</i></td>
+    <td>
+      <a href="?fragments/claude/functions/beforeLast">beforeLast</a>
+    </td>
+    <td>
+      Before last delimiter
+    </td>
+    <td>
+      <i>Extraction</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/functions/substr">substr</a></td>
-    <td>Extract by position</td>
-    <td><i>Substring</i></td>
+    <td>
+      <a href="?fragments/claude/functions/substr">substr</a>
+    </td>
+    <td>
+      Extract by position
+    </td>
+    <td>
+      <i>Substring</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/functions/left">left</a></td>
-    <td>First N characters</td>
-    <td><i>Substring</i></td>
+    <td>
+      <a href="?fragments/claude/functions/left">left</a>
+    </td>
+    <td>
+      First N characters
+    </td>
+    <td>
+      <i>Substring</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/functions/right">right</a></td>
-    <td>Last N characters</td>
-    <td><i>Substring</i></td>
+    <td>
+      <a href="?fragments/claude/functions/right">right</a>
+    </td>
+    <td>
+      Last N characters
+    </td>
+    <td>
+      <i>Substring</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/functions/mid">mid</a></td>
-    <td>Middle substring</td>
-    <td><i>Substring</i></td>
+    <td>
+      <a href="?fragments/claude/functions/mid">mid</a>
+    </td>
+    <td>
+      Middle substring
+    </td>
+    <td>
+      <i>Substring</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/functions/upper">upper</a></td>
-    <td>To uppercase</td>
-    <td><i>Case</i></td>
+    <td>
+      <a href="?fragments/claude/functions/upper">upper</a>
+    </td>
+    <td>
+      To uppercase
+    </td>
+    <td>
+      <i>Case</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/functions/lower">lower</a></td>
-    <td>To lowercase</td>
-    <td><i>Case</i></td>
+    <td>
+      <a href="?fragments/claude/functions/lower">lower</a>
+    </td>
+    <td>
+      To lowercase
+    </td>
+    <td>
+      <i>Case</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/functions/capitalize">capitalize</a></td>
-    <td>Title case</td>
-    <td><i>Case</i></td>
+    <td>
+      <a href="?fragments/claude/functions/capitalize">capitalize</a>
+    </td>
+    <td>
+      Title case
+    </td>
+    <td>
+      <i>Case</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/functions/ucwords">ucwords</a></td>
-    <td>Title case (alias)</td>
-    <td><i>Case</i></td>
+    <td>
+      <a href="?fragments/claude/functions/ucwords">ucwords</a>
+    </td>
+    <td>
+      Title case (alias)
+    </td>
+    <td>
+      <i>Case</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/functions/trim">trim</a></td>
-    <td>Remove whitespace</td>
-    <td><i>Manipulation</i></td>
+    <td>
+      <a href="?fragments/claude/functions/trim">trim</a>
+    </td>
+    <td>
+      Remove whitespace
+    </td>
+    <td>
+      <i>Manipulation</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/functions/replace">replace</a></td>
-    <td>Replace text</td>
-    <td><i>Manipulation</i></td>
+    <td>
+      <a href="?fragments/claude/functions/replace">replace</a>
+    </td>
+    <td>
+      Replace text
+    </td>
+    <td>
+      <i>Manipulation</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/functions/cut">cut</a></td>
-    <td>Remove text</td>
-    <td><i>Manipulation</i></td>
+    <td>
+      <a href="?fragments/claude/functions/cut">cut</a>
+    </td>
+    <td>
+      Remove text
+    </td>
+    <td>
+      <i>Manipulation</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/functions/white">white</a></td>
-    <td>Normalize spaces</td>
-    <td><i>Manipulation</i></td>
+    <td>
+      <a href="?fragments/claude/functions/white">white</a>
+    </td>
+    <td>
+      Normalize spaces
+    </td>
+    <td>
+      <i>Manipulation</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/functions/html">html</a></td>
-    <td>HTML escape</td>
-    <td><i>Encoding</i></td>
+    <td>
+      <a href="?fragments/claude/functions/html">html</a>
+    </td>
+    <td>
+      HTML escape
+    </td>
+    <td>
+      <i>Encoding</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/functions/sanitize">sanitize</a></td>
-    <td>Full sanitization</td>
-    <td><i>Encoding</i></td>
+    <td>
+      <a href="?fragments/claude/functions/sanitize">sanitize</a>
+    </td>
+    <td>
+      Full sanitization
+    </td>
+    <td>
+      <i>Encoding</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/functions/url">url</a></td>
-    <td>URL encode</td>
-    <td><i>Encoding</i></td>
+    <td>
+      <a href="?fragments/claude/functions/url">url</a>
+    </td>
+    <td>
+      URL encode
+    </td>
+    <td>
+      <i>Encoding</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/functions/slashes">slashes</a></td>
-    <td>Add slashes</td>
-    <td><i>Encoding</i></td>
+    <td>
+      <a href="?fragments/claude/functions/slashes">slashes</a>
+    </td>
+    <td>
+      Add slashes
+    </td>
+    <td>
+      <i>Encoding</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/functions/stripslashes">stripslashes</a></td>
-    <td>Remove slashes</td>
-    <td><i>Encoding</i></td>
+    <td>
+      <a href="?fragments/claude/functions/stripslashes">stripslashes</a>
+    </td>
+    <td>
+      Remove slashes
+    </td>
+    <td>
+      <i>Encoding</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/functions/encodeHigh">encodeHigh</a></td>
-    <td>Encode high ASCII</td>
-    <td><i>Encoding</i></td>
+    <td>
+      <a href="?fragments/claude/functions/encodeHigh">encodeHigh</a>
+    </td>
+    <td>
+      Encode high ASCII
+    </td>
+    <td>
+      <i>Encoding</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/functions/stripLow">stripLow</a></td>
-    <td>Strip control chars</td>
-    <td><i>Encoding</i></td>
+    <td>
+      <a href="?fragments/claude/functions/stripLow">stripLow</a>
+    </td>
+    <td>
+      Strip control chars
+    </td>
+    <td>
+      <i>Encoding</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/functions/bold">bold</a></td>
-    <td>Wrap in &lt;b&gt; tags</td>
-    <td><i>HTML</i></td>
+    <td>
+      <a href="?fragments/claude/functions/bold">bold</a>
+    </td>
+    <td>
+      Wrap in &lt;b&gt; tags
+    </td>
+    <td>
+      <i>HTML</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/functions/nbsp">nbsp</a></td>
-    <td>Non-breaking spaces</td>
-    <td><i>HTML</i></td>
+    <td>
+      <a href="?fragments/claude/functions/nbsp">nbsp</a>
+    </td>
+    <td>
+      Non-breaking spaces
+    </td>
+    <td>
+      <i>HTML</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/functions/max_len">max_len</a></td>
-    <td>Truncate to length</td>
-    <td><i>HTML</i></td>
+    <td>
+      <a href="?fragments/claude/functions/max_len">max_len</a>
+    </td>
+    <td>
+      Truncate to length
+    </td>
+    <td>
+      <i>HTML</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/functions/contains">contains</a></td>
-    <td>Contains substring</td>
-    <td><i>Testing</i></td>
+    <td>
+      <a href="?fragments/claude/functions/contains">contains</a>
+    </td>
+    <td>
+      Contains substring
+    </td>
+    <td>
+      <i>Testing</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/functions/in">in</a></td>
-    <td>Value in list</td>
-    <td><i>Testing</i></td>
+    <td>
+      <a href="?fragments/claude/functions/in">in</a>
+    </td>
+    <td>
+      Value in list
+    </td>
+    <td>
+      <i>Testing</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/functions/like">like</a></td>
-    <td>Pattern matching</td>
-    <td><i>Testing</i></td>
+    <td>
+      <a href="?fragments/claude/functions/like">like</a>
+    </td>
+    <td>
+      Pattern matching
+    </td>
+    <td>
+      <i>Testing</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/functions/between">between</a></td>
-    <td>Exclusive range</td>
-    <td><i>Testing</i></td>
+    <td>
+      <a href="?fragments/claude/functions/between">between</a>
+    </td>
+    <td>
+      Exclusive range
+    </td>
+    <td>
+      <i>Testing</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/functions/range">range</a></td>
-    <td>Inclusive range</td>
-    <td><i>Testing</i></td>
+    <td>
+      <a href="?fragments/claude/functions/range">range</a>
+    </td>
+    <td>
+      Inclusive range
+    </td>
+    <td>
+      <i>Testing</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/functions/exists">exists</a></td>
-    <td>File exists</td>
-    <td><i>Testing</i></td>
+    <td>
+      <a href="?fragments/claude/functions/exists">exists</a>
+    </td>
+    <td>
+      File exists
+    </td>
+    <td>
+      <i>Testing</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/functions/now">now</a></td>
-    <td>Current timestamp</td>
-    <td><i>Date/Time</i></td>
+    <td>
+      <a href="?fragments/claude/functions/now">now</a>
+    </td>
+    <td>
+      Current timestamp
+    </td>
+    <td>
+      <i>Date/Time</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/functions/date">date</a></td>
-    <td>Format date</td>
-    <td><i>Date/Time</i></td>
+    <td>
+      <a href="?fragments/claude/functions/date">date</a>
+    </td>
+    <td>
+      Format date
+    </td>
+    <td>
+      <i>Date/Time</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/functions/time">time</a></td>
-    <td>Format time</td>
-    <td><i>Date/Time</i></td>
+    <td>
+      <a href="?fragments/claude/functions/time">time</a>
+    </td>
+    <td>
+      Format time
+    </td>
+    <td>
+      <i>Date/Time</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/functions/timestamp">timestamp</a></td>
-    <td>Format timestamp</td>
-    <td><i>Date/Time</i></td>
+    <td>
+      <a href="?fragments/claude/functions/timestamp">timestamp</a>
+    </td>
+    <td>
+      Format timestamp
+    </td>
+    <td>
+      <i>Date/Time</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/functions/open">open</a></td>
-    <td>Literal open brace</td>
-    <td><i>Helpers</i></td>
+    <td>
+      <a href="?fragments/claude/functions/open">open</a>
+    </td>
+    <td>
+      Literal open brace
+    </td>
+    <td>
+      <i>Helpers</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/functions/close">close</a></td>
-    <td>Literal close brace</td>
-    <td><i>Helpers</i></td>
+    <td>
+      <a href="?fragments/claude/functions/close">close</a>
+    </td>
+    <td>
+      Literal close brace
+    </td>
+    <td>
+      <i>Helpers</i>
+    </td>
   </tr>
-
   <tr>
-    <td><a href="?fragments/claude/functions/tag">tag</a></td>
-    <td>Create tag syntax</td>
-    <td><i>Helpers</i></td>
+    <td>
+      <a href="?fragments/claude/functions/tag">tag</a>
+    </td>
+    <td>
+      Create tag syntax
+    </td>
+    <td>
+      <i>Helpers</i>
+    </td>
   </tr>
-
   <tr style="background:#f5f5f5">
-    <td><a href="?fragments/claude/functions/optional">optional</a></td>
-    <td>Null coalescing</td>
-    <td><i>Helpers</i></td>
+    <td>
+      <a href="?fragments/claude/functions/optional">optional</a>
+    </td>
+    <td>
+      Null coalescing
+    </td>
+    <td>
+      <i>Helpers</i>
+    </td>
   </tr>
-
 </table>
-
 <hr>
-
-<h2>Quick Reference</h2>
-
-<h3>Tag Syntax</h3>
+<h2>
+  Quick Reference
+</h2>
+<h3>
+  Tag Syntax
+</h3>
 <pre>{tagname}...{/tagname}
 {tagname option="value"}
 {if $x gt 0}...{/if}</pre>
-
-<h3>Property Syntax</h3>
+<h3>
+  Property Syntax
+</h3>
 <pre>{property:first}First item{/property:first}
 {property:last}Last item{/property:last}
 {property:even}Even row{/property:even}
 {property:current} - outputs current index
 {property:count} - outputs total count</pre>
-
-<h3>Pipe Syntax</h3>
+<h3>
+  Pipe Syntax
+</h3>
 <pre>{echo $var | function}
 {echo $var | function('param')}
 {echo $var | trim | upper | left(10)}</pre>
-
-<h3>Common Patterns</h3>
+<h3>
+  Common Patterns
+</h3>
 <pre>{echo $email | before('@') | replace('.', ' ') | capitalize}
 {echo $path | afterLast('/') | beforeLast('.')}
 {echo {now} | date('Y-m-d', '+1 week')}

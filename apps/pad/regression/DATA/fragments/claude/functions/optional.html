@@ -1,26 +1,45 @@
-<p>The <code>optional</code> function returns the value or empty string if null (null coalescing).</p>
-
-<h2>Basic Usage</h2>
+<p>
+  The <code>optional</code> function returns the value or empty string if null (null coalescing).
+</p>
+<h2>
+  Basic Usage
+</h2>
 <pre>{echo $sampleText | optional}</pre>
-<p>Existing value: <b>Hello World Example Text</b></p>
-
+<p>
+  Existing value: <b>Hello World Example Text</b>
+</p>
 <pre>{echo $undefinedVar | optional}</pre>
-<p>Undefined (empty): <b></b></p>
-
-<h2>Safe Output</h2>
-<p>Use <code>optional</code> to safely output variables that might not exist:</p>
+<p>
+  Undefined (empty): <b></b>
+</p>
+<h2>
+  Safe Output
+</h2>
+<p>
+  Use <code>optional</code> to safely output variables that might not exist:
+</p>
 <pre>{echo $maybeNull | optional}</pre>
-
-<h2>Chained Examples</h2>
+<h2>
+  Chained Examples
+</h2>
 <pre>{echo $sampleText | optional | trim}</pre>
-<p>Safe trim: <b>Hello World Example Text</b></p>
-
+<p>
+  Safe trim: <b>Hello World Example Text</b>
+</p>
 <pre>{echo $undefinedVar | optional | trim | upper}</pre>
-<p>Chain on undefined: <b></b> (empty)</p>
-
-<h2>With Default</h2>
-<p>For default values, use conditional logic instead:</p>
+<p>
+  Chain on undefined: <b></b> (empty)
+</p>
+<h2>
+  With Default
+</h2>
+<p>
+  For default values, use conditional logic instead:
+</p>
 <pre>{if $value}{echo $value}{else}default{/if}</pre>
-
-<h2>Note</h2>
-<p>The <code>optional</code> function prevents errors when accessing potentially undefined variables. It's similar to PHP's null coalescing operator (<code>??</code>).</p>
+<h2>
+  Note
+</h2>
+<p>
+  The <code>optional</code> function prevents errors when accessing potentially undefined variables. It's similar to PHP's null coalescing operator (<code>??</code>).
+</p>

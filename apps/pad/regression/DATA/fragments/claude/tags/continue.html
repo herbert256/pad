@@ -1,24 +1,34 @@
-<p>The <code>continue</code> tag transforms a stored sequence.</p>
-
-<h2>Store and Transform Sequence</h2>
+<p>
+  The <code>continue</code> tag transforms a stored sequence.
+</p>
+<h2>
+  Store and Transform Sequence
+</h2>
 <pre>{sequence 5, push='mySeq'}
 {continue add=10}
 {pull:mySeq} {$sequence} {/pull:mySeq}</pre>
-<p>Original 1-5, after adding 10:</p>
-
-
-<p> 11  12  13  14  15 </p>
-
-<h2>Multiple Transformations</h2>
+<p>
+  Original 1-5, after adding 10:
+</p>
+<p>
+  11 12 13 14 15
+</p>
+<h2>
+  Multiple Transformations
+</h2>
 <pre>{sequence 5, push='nums'}
 {continue add=100}
 {continue reverse}
 {pull:nums} {$sequence} {/pull:nums}</pre>
-<p>After add=100 and reverse:</p>
-
-
-
-<p> 105  104  103  102  101 </p>
-
-<h2>Note</h2>
-<p>Use <code>pull:</code> prefix to avoid naming conflicts with application tags. The continue tag operates on a stored sequence (via <code>push='name'</code>) and applies transformations like add, subtract, reverse, even, odd, etc.</p>
+<p>
+  After add=100 and reverse:
+</p>
+<p>
+  105 104 103 102 101
+</p>
+<h2>
+  Note
+</h2>
+<p>
+  Use <code>pull:</code> prefix to avoid naming conflicts with application tags. The continue tag operates on a stored sequence (via <code>push='name'</code>) and applies transformations like add, subtract, reverse, even, odd, etc.
+</p>

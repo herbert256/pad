@@ -1,27 +1,48 @@
-<p>The <code>url</code> function URL-encodes a string for use in URLs.</p>
-
-<h2>Basic Usage</h2>
+<p>
+  The <code>url</code> function URL-encodes a string for use in URLs.
+</p>
+<h2>
+  Basic Usage
+</h2>
 <pre>{echo $urlText | url}</pre>
-<p>Result: <b>hello+world+%26+more</b></p>
-
-<h2>Spaces and Special Chars</h2>
+<p>
+  Result: <b>hello+world+%26+more</b>
+</p>
+<h2>
+  Spaces and Special Chars
+</h2>
 <pre>{echo 'hello world' | url}</pre>
-<p>Encoded: <b>hello+world</b></p>
-
-<h2>Query Parameter</h2>
+<p>
+  Encoded: <b>hello+world</b>
+</p>
+<h2>
+  Query Parameter
+</h2>
 <pre>{echo 'search term & more' | url}</pre>
-<p>Safe for URL: <b>search+term+%26+more</b></p>
-
-<h2>Chained Examples</h2>
+<p>
+  Safe for URL: <b>search+term+%26+more</b>
+</p>
+<h2>
+  Chained Examples
+</h2>
 <pre>{echo 'My Document.pdf' | url}</pre>
-<p>Filename: <b>My+Document.pdf</b></p>
-
+<p>
+  Filename: <b>My+Document.pdf</b>
+</p>
 <pre>{echo $sampleText | left(10) | url}</pre>
-<p>Partial encoded: <b>Hello+Worl</b></p>
-
-<h2>Building URLs</h2>
+<p>
+  Partial encoded: <b>Hello+Worl</b>
+</p>
+<h2>
+  Building URLs
+</h2>
 <pre>?search={echo 'hello world' | url}</pre>
-<p>Result: <b>?search=hello+world</b></p>
-
-<h2>Note</h2>
-<p>Use this when building query strings or encoding values for URLs.</p>
+<p>
+  Result: <b>?search=hello+world</b>
+</p>
+<h2>
+  Note
+</h2>
+<p>
+  Use this when building query strings or encoding values for URLs.
+</p>

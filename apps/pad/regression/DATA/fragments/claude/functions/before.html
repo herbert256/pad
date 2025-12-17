@@ -1,26 +1,45 @@
-<p>The <code>before</code> function returns everything before the first occurrence of a delimiter.</p>
-
-<h2>Basic Usage</h2>
+<p>
+  The <code>before</code> function returns everything before the first occurrence of a delimiter.
+</p>
+<h2>
+  Basic Usage
+</h2>
 <pre>{echo $email | before('@')}</pre>
-<p>Username: <b>john.smith</b></p>
-
-<h2>Extract Protocol</h2>
+<p>
+  Username: <b>john.smith</b>
+</p>
+<h2>
+  Extract Protocol
+</h2>
 <pre>{echo 'https://example.com' | before('://')}</pre>
-<p>Protocol: <b>https</b></p>
-
-<h2>First Name</h2>
+<p>
+  Protocol: <b>https</b>
+</p>
+<h2>
+  First Name
+</h2>
 <pre>{echo 'John Smith' | before(' ')}</pre>
-<p>First name: <b>John</b></p>
-
-<h2>Chained Examples</h2>
+<p>
+  First name: <b>John</b>
+</p>
+<h2>
+  Chained Examples
+</h2>
 <pre>{echo $email | before('@') | upper}</pre>
-<p>Username uppercase: <b>JOHN.SMITH</b></p>
-
+<p>
+  Username uppercase: <b>JOHN.SMITH</b>
+</p>
 <pre>{echo $email | before('@') | replace('.', ' ') | capitalize}</pre>
-<p>Formatted name: <b>John Smith</b></p>
-
+<p>
+  Formatted name: <b>John Smith</b>
+</p>
 <pre>{echo 'file.name.txt' | before('.') | upper}</pre>
-<p>First part uppercase: <b>FILE</b></p>
-
-<h2>Note</h2>
-<p>If the delimiter is not found, the original string is returned unchanged.</p>
+<p>
+  First part uppercase: <b>FILE</b>
+</p>
+<h2>
+  Note
+</h2>
+<p>
+  If the delimiter is not found, the original string is returned unchanged.
+</p>

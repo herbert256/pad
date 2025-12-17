@@ -1,11 +1,15 @@
-<p>The <code>array</code> tag retrieves multiple rows from the database.</p>
-
-<h2>Syntax</h2>
+<p>
+  The <code>array</code> tag retrieves multiple rows from the database.
+</p>
+<h2>
+  Syntax
+</h2>
 <pre>{array "columns from table where condition"}
   {$column1} - {$column2}
 {/array}</pre>
-
-<h2>Example: User List</h2>
+<h2>
+  Example: User List
+</h2>
 <pre>{array "name, email from users"}
   &lt;tr&gt;
     &lt;td&gt;{$name}&lt;/td&gt;
@@ -14,13 +18,15 @@
 {else}
   &lt;tr&gt;&lt;td colspan="2"&gt;No users found&lt;/td&gt;&lt;/tr&gt;
 {/array}</pre>
-
-<h2>With Options</h2>
+<h2>
+  With Options
+</h2>
 <pre>{array "* from products", sort='price', rows=10}
   {$name}: ${$price}
 {/array}</pre>
-
-<h2>PHP Variable Method</h2>
+<h2>
+  PHP Variable Method
+</h2>
 <pre>// In PHP:
 $users = db("array * from users");
 
@@ -28,7 +34,12 @@ $users = db("array * from users");
 {users}
   {$name}
 {/users}</pre>
-
-<h2>Note</h2>
-<p>Use &amp;comma; to escape commas in template syntax.</p>
-<p>Supports all iteration properties ({first}, {last}, {&amp;count}, etc.)</p>
+<h2>
+  Note
+</h2>
+<p>
+  Use &amp;comma; to escape commas in template syntax.
+</p>
+<p>
+  Supports all iteration properties ({first}, {last}, {&amp;count}, etc.)
+</p>

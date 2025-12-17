@@ -76,7 +76,7 @@
 
   // Formatting the output
 
-  $padTidy   = FALSE;
+  $padTidy   = TRUE;
   $padMyTidy = FALSE;
 
   $padSelect    = [];
