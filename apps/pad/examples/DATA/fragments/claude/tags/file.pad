@@ -1,0 +1,26 @@
+<p>The <code>file</code> tag writes content to a file.</p>
+
+<h2>Syntax</h2>
+<pre>{open}file dir='path', name='filename', ext='txt'{close}
+  Content to write
+{open}/file{close}</pre>
+
+<h2>Options</h2>
+<table border="1" cellpadding="5">
+  <tr><th>Option</th><th>Description</th></tr>
+  <tr><td>dir</td><td>Output directory path</td></tr>
+  <tr><td>name</td><td>Base filename</td></tr>
+  <tr><td>ext</td><td>File extension</td></tr>
+  <tr><td>date</td><td>Append date to filename</td></tr>
+  <tr><td>stamp</td><td>Append timestamp</td></tr>
+  <tr><td>id</td><td>Append unique ID (length)</td></tr>
+</table>
+
+<h2>Example</h2>
+<pre>{open}file dir='output', name='report', ext='txt', date{close}
+  Report content here
+  Generated: {open}date{close}
+{open}/file{close}</pre>
+<p>Creates: output/report_2024-12-14.txt</p>
+
+<p><i>Note: File writing requires proper directory permissions.</i></p>

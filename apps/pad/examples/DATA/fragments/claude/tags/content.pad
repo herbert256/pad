@@ -1,0 +1,45 @@
+<p>The <code>content</code> tag defines reusable content blocks.</p>
+
+<h2>Basic Content Block</h2>
+<pre>{open}content 'greeting'{close}
+  &lt;p&gt;Hello World!&lt;/p&gt;
+{open}/content{close}
+
+{open}greeting{close}</pre>
+{content 'greeting'}
+  <p>Hello World!</p>
+{/content}
+<p>Rendered:</p>
+{greeting}
+
+<h2>Content with Placeholder</h2>
+<pre>{open}content 'wrapper'{close}
+  &lt;div style="border:1px solid #ccc; padding:10px;"&gt;
+    @content@
+  &lt;/div&gt;
+{open}/content{close}
+
+{open}wrapper{close}
+  This is the inner content
+{open}/wrapper{close}</pre>
+{content 'wrapper'}
+  <div style="border:1px solid #ccc; padding:10px;">
+    @content@
+  </div>
+{/content}
+{wrapper}
+  This is the inner content
+{/wrapper}
+
+<h2>Content with Variables</h2>
+{set $userName = 'Alice'}
+<pre>{open}set $userName = 'Alice'{close}
+{open}content 'userBox'{close}
+  &lt;b&gt;User: {open}$userName{close}&lt;/b&gt;
+{open}/content{close}
+
+{open}userBox{close}</pre>
+{content 'userBox'}
+  <b>User: {$userName}</b>
+{/content}
+{userBox}

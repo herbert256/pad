@@ -1,0 +1,78 @@
+<h1>PAD Reference</h1>
+
+<p>Complete working examples for PAD template tags, properties, and pipe functions.</p>
+
+<hr>
+
+<h2>Tags ({$tagCount})</h2>
+<p>Template tags control flow, data, and output. <a href="?fragments/claude/tags">View all tags &rarr;</a></p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="100%">
+<tr style="background:#ccc;"><th>Tag</th><th>Description</th><th>Category</th></tr>
+{tags}
+  <tr{property:even} style="background:#f5f5f5"{/property:even}>
+    <td><a href="?fragments/claude/tags/{$name}">{$name}</a></td>
+    <td>{$desc}</td>
+    <td><i>{$cat}</i></td>
+  </tr>
+{/tags}
+</table>
+
+<hr>
+
+<h2>Properties ({$propCount})</h2>
+<p>Access iteration state and metadata using <code>{open}property:name{close}...{open}/property:name{close}</code> syntax. <a href="?fragments/claude/properties">View all properties &rarr;</a></p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="100%">
+<tr style="background:#ccc;"><th>Property</th><th>Description</th><th>Category</th></tr>
+{props}
+  <tr{property:even} style="background:#f5f5f5"{/property:even}>
+    <td><a href="?fragments/claude/properties/{$name}">{$name}</a></td>
+    <td>{$desc}</td>
+    <td><i>{$cat}</i></td>
+  </tr>
+{/props}
+</table>
+
+<hr>
+
+<h2>Pipe Functions ({$funcCount})</h2>
+<p>Transform values using <code>| function</code> syntax. Chain multiple functions. <a href="?fragments/claude/functions">View all functions &rarr;</a></p>
+
+<table border="1" cellpadding="5" cellspacing="0" width="100%">
+<tr style="background:#ccc;"><th>Function</th><th>Description</th><th>Category</th></tr>
+{funcs}
+  <tr{property:even} style="background:#f5f5f5"{/property:even}>
+    <td><a href="?fragments/claude/functions/{$name}">{$name}</a></td>
+    <td>{$desc}</td>
+    <td><i>{$cat}</i></td>
+  </tr>
+{/funcs}
+</table>
+
+<hr>
+
+<h2>Quick Reference</h2>
+
+<h3>Tag Syntax</h3>
+<pre>{open}tagname{close}...{open}/tagname{close}
+{open}tagname option="value"{close}
+{open}if $x gt 0{close}...{open}/if{close}</pre>
+
+<h3>Property Syntax</h3>
+<pre>{open}property:first{close}First item{open}/property:first{close}
+{open}property:last{close}Last item{open}/property:last{close}
+{open}property:even{close}Even row{open}/property:even{close}
+{open}property:current{close} - outputs current index
+{open}property:count{close} - outputs total count</pre>
+
+<h3>Pipe Syntax</h3>
+<pre>{open}echo $var | function{close}
+{open}echo $var | function('param'){close}
+{open}echo $var | trim | upper | left(10){close}</pre>
+
+<h3>Common Patterns</h3>
+<pre>{open}echo $email | before('@') | replace('.', ' ') | capitalize{close}
+{open}echo $path | afterLast('/') | beforeLast('.'){close}
+{open}echo {open}now{close} | date('Y-m-d', '+1 week'){close}
+{open}items{close}{open}property:notFirst{close}, {open}/property:notFirst{close}{open}$name{close}{open}/items{close}</pre>

@@ -1,0 +1,22 @@
+<p>The <code>remove</code> tag marks an item for removal from results.</p>
+
+<h2>Remove Syntax</h2>
+<pre>{open}items{close}
+  {open}if $value lt 10{close}
+    {open}remove{close}
+  {open}/if{close}
+{open}/items{close}</pre>
+
+<h2>Remove Example</h2>
+{data 'nums'}
+  [1, 2, 3, 4, 5]
+{/data}
+<pre>{open}data 'nums'{close}[1, 2, 3, 4, 5]{open}/data{close}</pre>
+<p>Original:
+{nums}
+  {$nums}
+{/nums}
+</p>
+
+<h2>Note</h2>
+<p>The remove tag is the opposite of keep - it marks items for exclusion.</p>

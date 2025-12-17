@@ -1,0 +1,29 @@
+<p>The <code>open</code> function outputs a literal opening brace <code>{</code>.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}open{close}</pre>
+<p>Result: <b>{open}</b></p>
+
+<h2>Document PAD Syntax</h2>
+<pre>{open}open{close}if $x gt 0{open}close{close}</pre>
+<p>Shows: <b>{open}if $x gt 0{close}</b></p>
+
+<h2>Show Variable Syntax</h2>
+<pre>{open}open{close}$username{open}close{close}</pre>
+<p>Shows: <b>{open}$username{close}</b></p>
+
+<h2>Show Pipe Syntax</h2>
+<pre>{open}open{close}$name | upper{open}close{close}</pre>
+<p>Shows: <b>{open}$name | upper{close}</b></p>
+
+<h2>Complete Example</h2>
+<pre>{open}open{close}users{open}close{close}
+  {open}open{close}$name{open}close{close}
+{open}open{close}/users{open}close{close}</pre>
+<p>Shows:</p>
+<code>{open}users{close}<br>
+&nbsp;&nbsp;{open}$name{close}<br>
+{open}/users{close}</code>
+
+<h2>Note</h2>
+<p>Use with <code>close</code> to display PAD syntax literally instead of executing it.</p>

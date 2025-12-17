@@ -1,0 +1,7 @@
+<p>The <code>shift</code> action removes elements from the beginning.</p>
+
+<h2>Shift Action</h2>
+<pre>{open}sequence '1..10', push='nums'{close}
+{open}pull:nums shift=3{close} {open}$sequence{close} {open}/pull:nums{close}</pre>
+{sequence '1..10', push='nums'}
+<p>After shifting 3: {pull:nums shift=3} {$sequence} {/pull:nums}</p>

@@ -1,0 +1,19 @@
+<p>The <code>sanitize</code> function performs full sanitization for safe output.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}echo $htmlText | sanitize{close}</pre>
+<p>Result: <b>{echo $htmlText | sanitize}</b></p>
+
+<h2>User Input</h2>
+<pre>{open}echo '<script>bad()</script>' | sanitize{close}</pre>
+<p>Safe: <b>{echo '<script>bad()</script>' | sanitize}</b></p>
+
+<h2>Chained Examples</h2>
+<pre>{open}echo '  <b>Hello</b>  ' | trim | sanitize{close}</pre>
+<p>Clean and safe: <b>{echo '  <b>Hello</b>  ' | trim | sanitize}</b></p>
+
+<pre>{open}echo $htmlText | sanitize | left(20){close}</pre>
+<p>Truncated safe: <b>{echo $htmlText | sanitize | left(20)}</b></p>
+
+<h2>Note</h2>
+<p>Use <code>sanitize</code> for comprehensive protection. It provides more thorough cleaning than <code>html</code> alone.</p>

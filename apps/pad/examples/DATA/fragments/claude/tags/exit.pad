@@ -1,0 +1,23 @@
+<p>The <code>exit</code> tag stops page execution.</p>
+
+<h2>Syntax</h2>
+<pre>{open}exit{close}</pre>
+
+<h2>Exit with Message</h2>
+<pre>{open}exit 'Goodbye'{close}</pre>
+
+<h2>Conditional Exit</h2>
+<pre>{open}if $unauthorized{close}
+  &lt;p&gt;Access denied&lt;/p&gt;
+  {open}exit{close}
+{open}/if{close}</pre>
+
+<h2>Early Exit Pattern</h2>
+<pre>{open}if $done{close}
+  {open}exit{close}
+{open}/if{close}
+{open}!-- This code only runs if not done --{close}</pre>
+
+<h2>Note</h2>
+<p>Exit immediately stops all template processing.</p>
+<p><i>Not demonstrated to avoid stopping page execution.</i></p>

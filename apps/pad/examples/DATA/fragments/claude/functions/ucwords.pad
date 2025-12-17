@@ -1,0 +1,19 @@
+<p>The <code>ucwords</code> function converts a string to title case (alias for <code>capitalize</code>).</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}echo 'hello world' | ucwords{close}</pre>
+<p>Result: <b>{echo 'hello world' | ucwords}</b></p>
+
+<h2>Name Formatting</h2>
+<pre>{open}echo 'jane doe' | ucwords{close}</pre>
+<p>Name: <b>{echo 'jane doe' | ucwords}</b></p>
+
+<h2>Chained Examples</h2>
+<pre>{open}echo 'LOUD TEXT' | lower | ucwords{close}</pre>
+<p>Normalized: <b>{echo 'LOUD TEXT' | lower | ucwords}</b></p>
+
+<pre>{open}echo $email | before('@') | replace('.', ' ') | ucwords{close}</pre>
+<p>Name from email: <b>{echo $email | before('@') | replace('.', ' ') | ucwords}</b></p>
+
+<h2>Note</h2>
+<p>This is an alias for <code>capitalize</code>. Use whichever you prefer.</p>

@@ -1,0 +1,26 @@
+<p>The <code>after</code> function returns everything after the first occurrence of a delimiter.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}echo $email | after('@'){close}</pre>
+<p>Result: <b>{echo $email | after('@')}</b></p>
+
+<h2>Extract Domain</h2>
+<pre>{open}echo 'user@example.com' | after('@'){close}</pre>
+<p>Domain: <b>{echo 'user@example.com' | after('@')}</b></p>
+
+<h2>Path Extraction</h2>
+<pre>{open}echo '/home/user/docs/file.txt' | after('/home/'){close}</pre>
+<p>Relative path: <b>{echo '/home/user/docs/file.txt' | after('/home/')}</b></p>
+
+<h2>Chained Examples</h2>
+<pre>{open}echo $email | after('@') | before('.'){close}</pre>
+<p>Domain name only: <b>{echo $email | after('@') | before('.')}</b></p>
+
+<pre>{open}echo 'Hello: World' | after(': ') | upper{close}</pre>
+<p>After colon, uppercase: <b>{echo 'Hello: World' | after(': ') | upper}</b></p>
+
+<pre>{open}echo $filePath | after('/') | after('/') | after('/'){close}</pre>
+<p>Deep path segment: <b>{echo $filePath | after('/') | after('/') | after('/')}</b></p>
+
+<h2>Note</h2>
+<p>If the delimiter is not found, the original string is returned unchanged.</p>

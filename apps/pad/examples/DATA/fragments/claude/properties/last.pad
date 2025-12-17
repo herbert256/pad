@@ -1,0 +1,14 @@
+<p>The <code>last</code> property matches only the last iteration.</p>
+
+<pre>{open}users{close}
+  &lt;li&gt;{open}$name{close}&lt;/li&gt;
+  {open}property:last{close}(end of list){open}/property:last{close}
+{open}/users{close}</pre>
+
+<h3>Result:</h3>
+<ul>
+{users}
+  <li>{$name}</li>
+  {property:last}(end of list){/property:last}
+{/users}
+</ul>

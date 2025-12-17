@@ -71,7 +71,6 @@
       if ( strpos($path, '/DATA/')  ) continue;
       if ( strpos($path, '/_')      ) continue;
       if ( strpos($path, 'develop') ) continue;
-      if ( strpos($path, 'claude')  ) continue;
 
       $files [$item] ['path'] = $path;
       $files [$item] ['item'] = $item;

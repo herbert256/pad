@@ -1,30 +1,25 @@
-<p>
-  The <code>page</code> tag includes another page.
-</p>
-<h2>
-  Include a Subpage
-</h2>
+<p>The <code>page</code> tag includes another page.</p>
+
+<h2>Include a Subpage</h2>
 <pre>{page 'fragments/claude/subpage'}</pre>
-<h2>
-  Include with Variable Passing
-</h2>
+
+
+<h2>Include with Variable Passing</h2>
 <pre>{page 'fragments/claude/subpage', $subpageMessage='Custom message'}</pre>
-<h2>
-  Include Snippets from _include
-</h2>
+
+
+<h2>Include Snippets from _include</h2>
 <pre>{greeting}</pre>
-<p style="color:blue">
-  Hello from included snippet!
-</p>
+<p style="color:blue">Hello from included snippet!</p>
+
+
 <pre>{snippet}</pre>
 <div style="border:1px dashed #999; padding:5px; margin:5px;">
   <b>Snippet:</b> This is reusable content from _include/snippet.pad
 </div>
-<h2>
-  Scope Options
-</h2>
+
+
+<h2>Scope Options</h2>
 <pre>{page 'path', sandbox}  {!-- isolated scope --}
 {page 'path', clean}    {!-- clean scope --}</pre>
-<p>
-  These options control variable scope when including pages.
-</p>
+<p>These options control variable scope when including pages.</p>

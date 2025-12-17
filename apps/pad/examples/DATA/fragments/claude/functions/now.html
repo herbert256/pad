@@ -1,0 +1,23 @@
+<p>The <code>now</code> function returns the current Unix timestamp.</p>
+
+<h2>Basic Usage</h2>
+<pre>{now}</pre>
+<p>Timestamp: <b>1765931920</b></p>
+
+<h2>Format Current Time</h2>
+<pre>{echo {now} | date('Y-m-d')}</pre>
+<p>Today: <b>2025-12-17</b></p>
+
+<h2>Full DateTime</h2>
+<pre>{echo {now} | date('Y-m-d H:i:s')}</pre>
+<p>Now: <b>2025-12-17 00:38:40</b></p>
+
+<h2>Chained Examples</h2>
+<pre>{echo {now} | date('l, F j, Y')}</pre>
+<p>Full date: <b>Wednesday, December 17, 2025</b></p>
+
+<pre>{echo {now} | date('H:i')}</pre>
+<p>Time: <b>00:38</b></p>
+
+<h2>Note</h2>
+<p>Returns Unix timestamp (seconds since 1970-01-01). Pipe to <code>date</code> for formatting.</p>

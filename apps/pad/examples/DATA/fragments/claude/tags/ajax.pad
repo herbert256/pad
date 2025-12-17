@@ -1,0 +1,21 @@
+<p>The <code>ajax</code> tag handles AJAX requests.</p>
+
+<h2>Syntax</h2>
+<pre>{open}ajax 'getData'{close}
+  {open}!-- Returns data for AJAX call --{close}
+  {open}"status": "ok", "data": [...]{close}
+{open}/ajax{close}</pre>
+
+<h2>JavaScript Integration</h2>
+<pre>&lt;script&gt;
+fetch('?ajax=getData')
+  .then(r => r.json())
+  .then(data => console.log(data));
+&lt;/script&gt;
+
+{open}ajax 'getData'{close}
+  {open}"items": [1, 2, 3]{close}
+{open}/ajax{close}</pre>
+
+<h2>Note</h2>
+<p>AJAX handlers return only their content, without page wrapper.</p>

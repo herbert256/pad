@@ -1,0 +1,7 @@
+<p>The <code>element</code> action gets a specific element by index.</p>
+
+<h2>Element Action</h2>
+<pre>{open}sequence '1..10', push='nums'{close}
+{open}pull:nums element=5{close} {open}$sequence{close} {open}/pull:nums{close}</pre>
+{sequence '1..10', push='nums'}
+<p>5th element: {pull:nums element=5} {$sequence} {/pull:nums}</p>

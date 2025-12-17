@@ -1,0 +1,14 @@
+<p>The <code>first</code> property matches only the first iteration.</p>
+
+<pre>{open}users{close}
+  {open}property:first{close}&lt;ul&gt;{open}/property:first{close}
+  &lt;li&gt;{open}$name{close}&lt;/li&gt;
+  {open}property:last{close}&lt;/ul&gt;{open}/property:last{close}
+{open}/users{close}</pre>
+
+<h3>Result:</h3>
+{users}
+  {property:first}<ul>{/property:first}
+  <li>{$name}</li>
+  {property:last}</ul>{/property:last}
+{/users}

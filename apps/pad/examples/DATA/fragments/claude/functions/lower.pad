@@ -1,0 +1,26 @@
+<p>The <code>lower</code> function converts a string to lowercase.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}echo 'HELLO WORLD' | lower{close}</pre>
+<p>Result: <b>{echo 'HELLO WORLD' | lower}</b></p>
+
+<h2>Email Normalization</h2>
+<pre>{open}echo 'User@EXAMPLE.COM' | lower{close}</pre>
+<p>Normalized: <b>{echo 'User@EXAMPLE.COM' | lower}</b></p>
+
+<h2>Mixed Case</h2>
+<pre>{open}echo 'HeLLo WoRLd' | lower{close}</pre>
+<p>All lower: <b>{echo 'HeLLo WoRLd' | lower}</b></p>
+
+<h2>Chained Examples</h2>
+<pre>{open}echo $email | lower | before('@'){close}</pre>
+<p>Lowercase username: <b>{echo $email | lower | before('@')}</b></p>
+
+<pre>{open}echo 'MY FILE.TXT' | lower | replace(' ', '_'){close}</pre>
+<p>Normalized filename: <b>{echo 'MY FILE.TXT' | lower | replace(' ', '_')}</b></p>
+
+<pre>{open}echo 'HELLO WORLD' | lower | capitalize{close}</pre>
+<p>Title case: <b>{echo 'HELLO WORLD' | lower | capitalize}</b></p>
+
+<h2>Note</h2>
+<p>Works with UTF-8 characters.</p>

@@ -1,0 +1,16 @@
+<p>The <code>redirect</code> tag redirects to another URL.</p>
+
+<h2>Syntax</h2>
+<pre>{open}redirect '?otherpage'{close}</pre>
+
+<h2>Conditional Redirect</h2>
+<pre>{open}if $loggedIn ne 1{close}
+  {open}redirect '?login'{close}
+{open}/if{close}</pre>
+
+<h2>External Redirect</h2>
+<pre>{open}redirect 'https://example.com'{close}</pre>
+
+<h2>Note</h2>
+<p>Redirect stops page execution and sends HTTP redirect header.</p>
+<p><i>Examples here are documentation only - actual redirects would navigate away.</i></p>

@@ -1,0 +1,24 @@
+<p>The <code>trace</code> tag outputs execution trace information.</p>
+
+<h2>Syntax</h2>
+<pre>{open}trace{close}</pre>
+
+<h2>What It Shows</h2>
+<p>The trace tag displays:</p>
+<ul>
+  <li>Execution path through templates</li>
+  <li>Tag processing order</li>
+  <li>Variable state changes</li>
+  <li>Timing information</li>
+</ul>
+
+<h2>Enable Tracing</h2>
+<pre>In PHP: $padInfo = 'trace';</pre>
+
+<h2>Inline Trace</h2>
+<pre>{open}trace 'checkpoint 1'{close}
+... some code ...
+{open}trace 'checkpoint 2'{close}</pre>
+
+<h2>Note</h2>
+<p>Useful for debugging complex template execution.</p>

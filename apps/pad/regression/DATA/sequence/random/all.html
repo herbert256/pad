@@ -1,120 +1,59 @@
-<p>
-  There are main 3 ways for randomizing, a sequence (random), an option (randomly) and an action (randomize)
+<p>There are main 3 ways for randomizing, a sequence (random), an option (randomly) and an action (randomize)
+
+<h3>The sequence 'random'</h3>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">random<font color="black">,</font> rows=25<font color="black">,</font> minimal=10<font color="black">,</font> maximal=50         </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->20  20  12  27  45  27  24  42  19  19  27  34  22  21  33  11  34  15  44  22  45  11  22  12  40<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">random<font color="black">,</font> rows=25<font color="black">,</font> minimal=10<font color="black">,</font> maximal=50<font color="black">,</font> unique </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->10  35  44  26  22  47  38  28  21  29  30  20  32  50  25  17  34  31  37  46  12  19  15  13  43<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
 </p>
-<h3>
-  The sequence 'random'
-</h3>
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">random<font color="black">,</font> rows=25<font color="black">,</font> minimal=10<font color="black">,</font> maximal=50         </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->24 30 49 11 24 17 11 31 23 36 18 38 46 23 12 28 50 49 15 22 13 35 50 44 39<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">random<font color="black">,</font> rows=25<font color="black">,</font> minimal=10<font color="black">,</font> maximal=50<font color="black">,</font> unique </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->38 29 24 20 40 37 39 44 15 43 50 35 19 18 16 14 12 21 31 22 11 10 34 45 30<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
-<h3>
-  The sequence option 'randomly'
-</h3>Here the loop index is randomly set before the sequence is executed.
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">power=2<font color="black">,</font> rows=10<font color="black">,</font> randomly<font color="black">,</font> from=8<font color="black">,</font> to=16</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->8192 256 16384 8192 16384 1024 32768 4096 8192<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">prime<font color="black">,</font>   rows=10<font color="black">,</font> randomly<font color="black">,</font> to=1000      </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->97 751 127 251 7 433 587 43 41 859<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
-<h3>
-  The sequence action 'randomize'
-</h3>
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">from=10<font color="black">,</font> to=20<font color="black">,</font> push=<font color="black">'</font>mySeq<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">mySeq</font><font color="red"></font>}</b>             <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->10 11 12 13 14 15 16 17 18 19 20<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">mySeq </font><font color="red">randomize  </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->12 11 20 18 14 10 17 19 15 16 13<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">mySeq </font><font color="red">randomize=5</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->20 19 16 11 12<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
+
+<h3>The sequence option 'randomly'</h3>
+
+Here the loop index is randomly set before the sequence is executed.
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">power=2<font color="black">,</font> rows=10<font color="black">,</font> randomly<font color="black">,</font> from=8<font color="black">,</font> to=16</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->65536  1024  4096  4096  32768  256  32768  256  65536<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">prime<font color="black">,</font>   rows=10<font color="black">,</font> randomly<font color="black">,</font> to=1000      </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->31  251  577  929  967  227  613  751  479  617<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>
+
+<h3>The sequence action 'randomize'</h3>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">from=10<font color="black">,</font> to=20<font color="black">,</font> push=<font color="black">'</font>mySeq<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr> 
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq</font><font color="red"></font>}</b>             <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->10              11              12              13              14              15              16              17              18              19              20<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq </font><font color="red">randomize  </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->18  10  12  14  20  16  13  15  11  19  17<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq </font><font color="red">randomize=5</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->12  19  14  11  15<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </table>
+</p>

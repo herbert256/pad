@@ -1,0 +1,38 @@
+<p>The <code>date</code> function formats a timestamp using PHP date format.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}echo {open}now{close} | date('Y-m-d'){close}</pre>
+<p>Today: <b>{echo {now} | date('Y-m-d')}</b></p>
+
+<h2>Common Formats</h2>
+<pre>{open}echo {open}now{close} | date('d/m/Y'){close}</pre>
+<p>European: <b>{echo {now} | date('d/m/Y')}</b></p>
+
+<pre>{open}echo {open}now{close} | date('M j, Y'){close}</pre>
+<p>Readable: <b>{echo {now} | date('M j, Y')}</b></p>
+
+<pre>{open}echo {open}now{close} | date('l'){close}</pre>
+<p>Day name: <b>{echo {now} | date('l')}</b></p>
+
+<h2>With Time</h2>
+<pre>{open}echo {open}now{close} | date('Y-m-d H:i:s'){close}</pre>
+<p>Full: <b>{echo {now} | date('Y-m-d H:i:s')}</b></p>
+
+<h2>With Offset</h2>
+<pre>{open}echo {open}now{close} | date('Y-m-d', '+1 week'){close}</pre>
+<p>Next week: <b>{echo {now} | date('Y-m-d', '+1 week')}</b></p>
+
+<pre>{open}echo {open}now{close} | date('Y-m-d', '-1 month'){close}</pre>
+<p>Last month: <b>{echo {now} | date('Y-m-d', '-1 month')}</b></p>
+
+<h2>Format Codes</h2>
+<ul>
+<li><code>Y</code> - 4-digit year</li>
+<li><code>m</code> - Month (01-12)</li>
+<li><code>d</code> - Day (01-31)</li>
+<li><code>H</code> - Hour (00-23)</li>
+<li><code>i</code> - Minutes (00-59)</li>
+<li><code>s</code> - Seconds (00-59)</li>
+<li><code>l</code> - Full day name</li>
+<li><code>F</code> - Full month name</li>
+</ul>

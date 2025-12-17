@@ -1,0 +1,26 @@
+<p>The <code>mid</code> function extracts a middle substring.</p>
+
+<h2>Basic Usage</h2>
+<pre>{open}echo 'Hello World' | mid(3, 5){close}</pre>
+<p>Middle: <b>{echo 'Hello World' | mid(3, 5)}</b></p>
+
+<h2>Extract Section</h2>
+<pre>{open}echo 'abcdefghij' | mid(2, 4){close}</pre>
+<p>Chars 3-6: <b>{echo 'abcdefghij' | mid(2, 4)}</b></p>
+
+<h2>Single Character</h2>
+<pre>{open}echo 'Hello' | mid(2, 1){close}</pre>
+<p>Third char: <b>{echo 'Hello' | mid(2, 1)}</b></p>
+
+<h2>Chained Examples</h2>
+<pre>{open}echo $sampleText | mid(5, 10) | upper{close}</pre>
+<p>Middle section: <b>{echo $sampleText | mid(5, 10) | upper}</b></p>
+
+<pre>{open}echo 'john.smith@example.com' | mid(0, 10) | replace('.', ' ') | capitalize{close}</pre>
+<p>Name portion: <b>{echo 'john.smith@example.com' | mid(0, 10) | replace('.', ' ') | capitalize}</b></p>
+
+<pre>{open}echo '2024-12-15' | mid(5, 2){close}</pre>
+<p>Month: <b>{echo '2024-12-15' | mid(5, 2)}</b></p>
+
+<h2>Note</h2>
+<p>Parameters: <code>mid(start, length)</code>. Zero-indexed.</p>

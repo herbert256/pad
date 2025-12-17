@@ -1,0 +1,9 @@
+<p>The <code>merge</code> action merges sequences removing duplicates.</p>
+
+<h2>Merge Action</h2>
+<pre>{open}sequence '1..5', push='seqA'{close}
+{open}sequence '3..7', push='seqB'{close}
+{open}pull:seqA merge='seqB'{close} {open}$sequence{close} {open}/pull:seqA{close}</pre>
+{sequence '1..5', push='seqA'}
+{sequence '3..7', push='seqB'}
+<p>Merged (no duplicates): {pull:seqA merge='seqB'} {$sequence} {/pull:seqA}</p>
