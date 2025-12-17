@@ -145,11 +145,76 @@ sudo pad/install/install.sh  # Requires root - sets up DB, Apache, data dirs
 {$name | upper}                     # WRONG - bare expression won't work
 ```
 
+**Common String Functions:**
+```
+{echo $text | upper}                # Uppercase
+{echo $text | lower}                # Lowercase
+{echo $text | trim}                 # Remove whitespace
+{echo $text | capitalize}           # Capitalize first letter
+{echo $text | bold}                 # Wrap in <b> tags
+{echo $text | html}                 # HTML-encode
+{echo $text | left(5)}              # First 5 characters
+{echo $text | cut(100)}             # Truncate to 100 chars
+{echo $text | after('@')}           # Everything after first @
+{echo $text | before('.')}          # Everything before first .
+{echo $text | between('(', ')')}    # Extract between delimiters
+{echo $text | contains('word')}     # Check if contains substring
+```
+
+**String Concatenation (with @ marker):**
+```
+{echo $text | . ' suffix'}              # Append string
+{echo $text | 'prefix ' . }             # Prepend string
+{echo $text | 'prefix ' . @ . ' suffix'}  # @ marks where value goes
+```
+
+**Chaining Multiple Functions:**
+```
+{echo $email | after('@') | before('.')}   # Extract domain name
+{echo 'Hello: World' | after(': ') | upper}  # "WORLD"
+```
+
+**Number Formatting:**
+```
+{echo $price | %.2f}                # Format to 2 decimal places
+{echo $value | number(2)}           # Alternative number format
+```
+
 ### Loops
 ```
 {users}
   <li>{$name} - {$email}</li>
 {/users}
+```
+
+### While and Until Loops
+```
+{set $i = 1}
+{while $i le 10}
+  Item {$i}
+  {increment $i}
+{/while}
+
+{set $count = 5}
+{until $count eq 0}
+  Countdown: {$count}
+  {decrement $count}
+{/until}
+```
+
+### Loop Control
+```
+{items}
+  {if $skip eq 1}{break}{/if}      # Break current loop
+  {$name}
+{/items}
+
+{outer}
+  {inner}
+    {break 'outer'}                 # Break named outer loop
+    {break -2}                      # Break by level
+  {/inner}
+{/outer}
 ```
 
 ### Conditionals
@@ -181,6 +246,55 @@ Properties are tags with the `property:` prefix for clarity and to avoid naming 
 {tagname option="value"}
 {data $var=value}
 {items sort="name" rows="10"}
+```
+
+### Variable Assignment with {set}
+```
+{set $name = 'Alice'}              # Assign string
+{set $count = 0}                   # Assign number
+{set $total = $price * $qty}       # Assign expression
+{set $upper | upper}               # Assign with pipe (uses previous value)
+```
+
+### Inline Data Definition with {data}
+```
+{data 'colors'}
+  ["red", "green", "blue"]
+{/data}
+
+{colors}
+  <li>{$colors}</li>
+{/colors}
+```
+
+Supports JSON arrays, objects, and tuples:
+```
+{data 'users'}
+  [{"name": "Alice", "role": "admin"}, {"name": "Bob", "role": "user"}]
+{/data}
+
+{data 'items'}
+  ('one', 'two', 'three')
+{/data}
+```
+
+### Switch Tag (Alternating Values)
+```
+{items}
+  <tr style="background: {switch '#fff', '#eee'}">
+    <td>{$name}</td>
+  </tr>
+{/items}
+```
+Alternates between values on each iteration - useful for zebra striping.
+
+### Range Expressions
+```
+{if $value range (20, 40)}
+  Value is between 20 and 40
+{/if}
+
+{if 30 range (1, 100)}ok{/if}
 ```
 
 ## Core Execution Flow
@@ -518,6 +632,55 @@ Day {clock 'z' | + 1} of {if {clock 'L'} eq 1}366{else}365{/if}
 Days remaining: {if {clock 'L'} eq 1}{echo 365 - {clock 'z'}}{else}{echo 364 - {clock 'z'}}{/if}
 ```
 
+### Alternating Row Colors
+```
+{items}
+  <div style="background: {property:even}#e0e0e0{/property:even}{property:odd}#f0f0f0{/property:odd}">
+    {$name}
+  </div>
+{/items}
+```
+
+Or using the `{switch}` tag:
+```
+{items}
+  <tr class="{switch 'odd', 'even'}"><td>{$name}</td></tr>
+{/items}
+```
+
+### Conditional Table Wrapper
+```
+{items}
+  {property:first}<table border="1">{/property:first}
+  <tr><td>{$name}</td></tr>
+  {property:last}</table>{/property:last}
+{/items}
+```
+
+### Comma-Separated List
+```
+{items}
+  {property:notFirst}, {/property:notFirst}{$name}
+{/items}
+```
+Output: `Alice, Bob, Charlie`
+
+### Nested Loop with Arithmetic
+```
+{sequence '1..3', name='row'}
+  <tr>
+    {sequence '1..4', name='col'}
+      <td>{echo $row * 10 + $col}</td>
+    {/sequence}
+  </tr>
+{/sequence}
+```
+
+### Extract Domain from Email
+```
+{echo $email | after('@') | before('.')}
+```
+
 ## Important Tag Behaviors
 
 ### Parameter Evaluation
@@ -598,6 +761,77 @@ Sets output type, does NOT capture content:
 {output 'download'}   # File download
 ```
 
+### The `true` and `false` Tags
+Literal boolean conditions for always/never showing content:
+```
+{true}This is always shown{/true}
+{false}This is never shown{/false}
+```
+
+### The `code` Tag
+Execute PHP code within templates:
+```
+{code}
+  $result = calculateSomething();
+{/code}
+
+{code sandbox, function}
+  // Sandboxed execution with limited scope
+  $local = 'value';
+{/code}
+```
+
+### The `pad` Tag with Content Blocks
+Process template content with data using `@start@` and `@end@` markers:
+```
+{pad data='myData'}
+  @start@
+    <li>{$name}</li>
+  @end@
+{/pad}
+```
+
+### The `content` Tag
+Define named content templates for reuse:
+```
+{content 'rowTemplate'}
+  @start@
+    <tr><td>{$name}</td><td>{$value}</td></tr>
+  @end@
+{/content}
+
+{pad data='items', content='rowTemplate'}
+```
+
+### The `file` Tag
+Write content to files:
+```
+{file dir='output', name='report', ext='txt'}
+  Report content here
+{/file}
+
+{file dir='logs', name='entry', ext='log', date, stamp}
+  Log entry with date and timestamp in filename
+{/file}
+```
+
+### The `open` and `close` Tags
+Output literal braces (for documentation/examples):
+```
+{open}echo $var{close}    # Outputs: {echo $var}
+```
+
+### Database Template Tags
+Query databases directly from templates:
+```
+{field "count(*) from users"}                    # Single value
+{field "name from users where id = 1"}           # Single field
+
+{table "SELECT * FROM users ORDER BY name"}
+  <tr><td>{$name}</td><td>{$email}</td></tr>
+{/table}
+```
+
 ### Sequence Subsystem Tags
 The sequence tags (`continue`, `pull`, `keep`, `remove`, `flag`, `make`) operate on stored sequences:
 
@@ -643,6 +877,8 @@ Use the `property:` prefix to access iteration state within loops:
 - `remaining`, `done` - Items left/processed
 - `key` - Current array key
 - `fields` - Iterate field name/value pairs
+
+**Alternative syntax:** `{&current}`, `{&count}` (shorthand for property access)
 
 ### Files Tag
 Use `base='app'` for application-relative paths:
@@ -821,3 +1057,62 @@ Always prefer named sequences for clarity:
 Sum: {pull:nums sum}{$sequence}{/pull:nums}
 Avg: {pull:nums average}{$sequence}{/pull:nums}
 ```
+
+## Quick Reference
+
+### Essential Syntax Summary
+
+| Syntax | Purpose | Example |
+|--------|---------|---------|
+| `{$var}` | Output variable | `{$name}` |
+| `{$obj.prop}` | Property access | `{$user.email}` |
+| `{echo expr}` | Evaluate expression | `{echo $a + $b}` |
+| `{echo $x \| func}` | Pipe function | `{echo $text \| upper}` |
+| `{set $x = val}` | Assign variable | `{set $count = 0}` |
+| `{if cond}...{/if}` | Conditional | `{if $x eq 1}yes{/if}` |
+| `{tag}...{/tag}` | Iterate array | `{users}{$name}{/users}` |
+| `{while}...{/while}` | While loop | `{while $i lt 10}...{/while}` |
+| `{case}...{/case}` | Switch/case | `{case $x}{when 'a'}...{/case}` |
+| `{get 'page'}` | Include page | `{get 'fragments/nav'}` |
+| `{data 'name'}...{/data}` | Define data | `{data 'items'}[1,2,3]{/data}` |
+| `{property:name}` | Iteration property | `{property:first}...{/property:first}` |
+| `{sequence}` | Generate sequence | `{sequence '1..10', name='n'}` |
+| `{break}` | Break loop | `{break}` or `{break 'outer'}` |
+
+### Comparison Operators
+
+| Operator | Meaning |
+|----------|---------|
+| `eq`, `==` | Equal |
+| `ne`, `!=` | Not equal |
+| `gt`, `>` | Greater than |
+| `lt`, `<` | Less than |
+| `ge`, `>=` | Greater or equal |
+| `le`, `<=` | Less or equal |
+| `and` | Logical AND |
+| `or` | Logical OR |
+| `range (a, b)` | Value in range |
+
+### Common Pipe Functions
+
+| Function | Purpose |
+|----------|---------|
+| `upper`, `lower` | Case conversion |
+| `trim` | Remove whitespace |
+| `html` | HTML encode |
+| `date('fmt')` | Format date |
+| `+ n`, `- n`, `* n`, `/ n` | Arithmetic |
+| `left(n)`, `cut(n)` | Truncate |
+| `after('x')`, `before('x')` | Extract substring |
+| `contains('x')` | Check substring |
+| `. 'str'` | Concatenate |
+
+### Key Distinctions from PHP
+
+1. **Templates drive execution** - not code including templates
+2. **Use `{echo}` for pipes** - bare `{$var | func}` doesn't work
+3. **Arithmetic needs space** - `{echo $x | + 1}` not `| +1`
+4. **Conditionals need comparison** - `{if $flag eq 1}` not `{if $flag}`
+5. **Quote literal strings** - `{count 'items'}` not `{count items}`
+6. **`{continue}` transforms sequences** - not PHP loop control
+7. **Use type prefixes** - `{pull:seq}`, `{data:items}` to disambiguate

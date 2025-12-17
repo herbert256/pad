@@ -4,6 +4,6 @@
 
   $padData [$padNextPadLevel] = [];
 
-  return TRUE;
+  return NULL;
 
 ?>
