@@ -387,3 +387,12 @@ See LICENSE file for details.
 | [DOCUMENTATION.md](DOCUMENTATION.md) | Detailed framework documentation |
 | [EXPLAIN.md](EXPLAIN.md) | Technical explanations of subsystems |
 | [INDEX.md](INDEX.md) | Index of all framework modules |
+
+## Reference Documentation
+
+For detailed reference documentation, see:
+- [TAGS.md](../reference/TAGS.md) - All template tags
+- [FUNCTIONS.md](../reference/FUNCTIONS.md) - All pipe functions
+- [OPTIONS.md](../reference/OPTIONS.md) - All tag options
+- [PROPERTIES.md](../reference/PROPERTIES.md) - All iteration properties
+- [sequences/](../sequences/README.md) - Sequence subsystem
