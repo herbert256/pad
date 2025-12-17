@@ -259,15 +259,14 @@ Conditionals must use comparison operators (`eq`, `ne`, `gt`, `lt`, `ge`, `le`, 
 ```
 
 ### Iteration Properties
-Properties are tags with the `property:` prefix for clarity and to avoid naming conflicts:
+Properties use the `property@tag` syntax to access iteration state:
 ```
 {items}
-  {property:first}First item{/property:first}
-  {property:last}Last item{/property:last}
-  {property:even}Even row{/property:even}
-  {property:odd}Odd row{/property:odd}
-  Count: {property:count}
-  Index: {property:current}
+  {if first@items}First item{/if}
+  {if last@items}Last item{/if}
+  {even@items ? Even row : Odd row}
+  Count: {count@items}
+  Index: {current@items}
 {/items}
 ```
 
@@ -280,8 +279,6 @@ Properties are tags with the `property:` prefix for clarity and to avoid naming 
 - `remaining`, `done` - Items left/processed
 - `key` - Current array key
 - `fields` - Iterate field name/value pairs
-
-**Alternative syntax:** `{&current}`, `{&count}` (shorthand for property access)
 
 ### Tags with Options
 ```
@@ -811,7 +808,7 @@ Days remaining: {if {clock 'L'} eq 1}{echo 365 - {clock 'z'}}{else}{echo 364 - {
 ### Alternating Row Colors
 ```
 {items}
-  <div style="background: {property:even}#e0e0e0{/property:even}{property:odd}#f0f0f0{/property:odd}">
+  <div style="background: {even@items ? #e0e0e0 : #f0f0f0}">
     {$name}
   </div>
 {/items}
@@ -827,16 +824,16 @@ Or using the `{switch}` tag:
 ### Conditional Table Wrapper
 ```
 {items}
-  {property:first}<table border="1">{/property:first}
+  {if first@items}<table border="1">{/if}
   <tr><td>{$name}</td></tr>
-  {property:last}</table>{/property:last}
+  {if last@items}</table>{/if}
 {/items}
 ```
 
 ### Comma-Separated List
 ```
 {items}
-  {property:notFirst}, {/property:notFirst}{$name}
+  {if notFirst@items}, {/if}{$name}
 {/items}
 ```
 Output: `Alice, Bob, Charlie`
@@ -877,7 +874,7 @@ Output: `Alice, Bob, Charlie`
 | `{case}...{/case}` | Switch/case | `{case $x}{when 'a'}...{/case}` |
 | `{get 'page'}` | Include page | `{get 'fragments/nav'}` |
 | `{data 'name'}...{/data}` | Define data | `{data 'items'}[1,2,3]{/data}` |
-| `{property:name}` | Iteration property | `{property:first}...{/property:first}` |
+| `{property@tag}` | Iteration property | `{first@items}`, `{count@users}` |
 | `{sequence}` | Generate sequence | `{sequence '1..10', name='n'}` (see SEQUENCES.md) |
 | `{break}` | Hard stop loop | `{break}` or `{break 'outer'}` |
 | `{continue}` | Skip iteration | `{continue 'loopname'}` |

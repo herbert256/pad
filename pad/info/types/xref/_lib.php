@@ -29,7 +29,7 @@
 
     global $padStartPage;
 
-    if ( $dir1 == 'properties' and ! file_exists ( PAD . "tag/$dir2.php" ) )
+    if ( $dir1 == 'properties' and ! file_exists ( PAD . "properties/$dir2.php" ) )
       $dir2 = strtolower($dir2);
 
     $file = "$dir1/$dir2";

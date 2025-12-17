@@ -16,11 +16,11 @@
    */
   function padTag ( $field, $padIdx, $type, $parm ) {
 
-    if ( file_exists ( PAD . "tag/".$field.".php" ) )
+    if ( file_exists ( PAD . "properties/".$field.".php" ) )
       if ( $type == 7 )
         return 1;
       else
-        return include PAD . "tag/$field.php";
+        return include PAD . "properties/$field.php";
 
     if ( in_array ( $parm, ['name','value'] ) ) {
 

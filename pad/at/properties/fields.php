@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . "tag/$name.php";
+  return include PAD . "properties/$name.php";
 
 ?>

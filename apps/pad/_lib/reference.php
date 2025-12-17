@@ -29,7 +29,7 @@
       $item = str_replace ( "$dir/", '', $item );
 
       if ( ( $xref == 'tag'       and $dir == 'types'       and file_exists ( PQ . "start/types/$item.php" ) )
-        or ( $xref == 'tag/pad'   and $dir == 'tags'        and file_exists ( PQ . "start/tags/$item.php"  ) )
+        or ( $xref == 'properties/pad'   and $dir == 'tags'        and file_exists ( PQ . "start/tags/$item.php"  ) )
         or ( $xref == 'functions' and $dir == 'eval/single' and file_exists ( PQ . "start/eval/$item.php"  ) )
         or ( $xref == 'functions' and $dir == 'eval/parms'  and file_exists ( PQ . "start/eval/$item.php"  ) ) )
         continue;

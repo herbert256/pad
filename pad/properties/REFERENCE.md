@@ -4,13 +4,13 @@ This document provides a complete reference for all PAD tag properties.
 
 ## Overview
 
-Tag properties provide contextual information during template execution. They are accessed using the `@` symbol:
+Tag properties provide contextual information during template execution. They are accessed using the `property@tag` syntax:
 
 ```
-{@propertyName}
+{property@tagname}
 ```
 
-Properties give access to iteration state, data, parameters, and metadata about the current tag execution context.
+Where `tagname` is the name of the iteration/loop context and `property` is the information you want to access.
 
 ---
 
@@ -19,22 +19,22 @@ Properties give access to iteration state, data, parameters, and metadata about 
 ### Basic Property Access
 
 ```
-{@property}
+{first@users}
+{count@items}
+{current@rows}
 ```
 
 ### In Conditionals
 
 ```
-{@first ? <ul>}
-{@last ? </ul>}
-{@even ? class="even" : class="odd"}
+{if first@users}<ul>{/if}
+{if last@users}</ul>{/if}
 ```
 
-### With Pipes
+### Ternary Conditionals
 
 ```
-{@count | number_format}
-{@key | upper}
+{even@rows ? class="even" : class="odd"}
 ```
 
 ---
@@ -48,7 +48,7 @@ Properties that indicate position within a loop iteration.
 Returns `TRUE` if this is the first iteration.
 
 ```
-{@first}
+{first@tagname}
 ```
 
 **Logic:** `$padOccur[$padIdx] == 1`
@@ -56,7 +56,7 @@ Returns `TRUE` if this is the first iteration.
 **Example:**
 ```html
 {users}
-  {@first ? <table><tr><th>Name</th></tr>}
+  {if first@users}<table><tr><th>Name</th></tr>{/if}
   <tr><td>{$name}</td></tr>
 {/users}
 ```
@@ -68,7 +68,7 @@ Returns `TRUE` if this is the first iteration.
 Returns `TRUE` if this is the last iteration.
 
 ```
-{@last}
+{last@tagname}
 ```
 
 **Logic:** `$padKey[$padIdx] == array_key_last($padData[$padIdx])`
@@ -77,7 +77,7 @@ Returns `TRUE` if this is the last iteration.
 ```html
 {users}
   <tr><td>{$name}</td></tr>
-  {@last ? </table>}
+  {if last@users}</table>{/if}
 {/users}
 ```
 
@@ -88,15 +88,15 @@ Returns `TRUE` if this is the last iteration.
 Returns `TRUE` if this is NOT the first iteration.
 
 ```
-{@notFirst}
+{notFirst@tagname}
 ```
 
-**Logic:** `! @first`
+**Logic:** `! first@tagname`
 
 **Example:**
 ```html
 {items}
-  {@notFirst ? , }{$name}
+  {if notFirst@items}, {/if}{$name}
 {/items}
 ```
 
@@ -109,15 +109,15 @@ Returns `TRUE` if this is NOT the first iteration.
 Returns `TRUE` if this is NOT the last iteration.
 
 ```
-{@notLast}
+{notLast@tagname}
 ```
 
-**Logic:** `! @last`
+**Logic:** `! last@tagname`
 
 **Example:**
 ```html
 {items}
-  {$name}{@notLast ? |}
+  {$name}{if notLast@items}|{/if}
 {/items}
 ```
 
@@ -130,15 +130,15 @@ Returns `TRUE` if this is NOT the last iteration.
 Returns `TRUE` if this is either the first OR last iteration.
 
 ```
-{@border}
+{border@tagname}
 ```
 
-**Logic:** `@first OR @last`
+**Logic:** `first@tagname OR last@tagname`
 
 **Example:**
 ```html
 {items}
-  <div {@border ? class="highlight"}>{$name}</div>
+  <div {if border@items}class="highlight"{/if}>{$name}</div>
 {/items}
 ```
 
@@ -149,15 +149,15 @@ Returns `TRUE` if this is either the first OR last iteration.
 Returns `TRUE` if this is neither first nor last (middle items only).
 
 ```
-{@middle}
+{middle@tagname}
 ```
 
-**Logic:** `NOT @border` (neither first nor last)
+**Logic:** `NOT border@tagname` (neither first nor last)
 
 **Example:**
 ```html
 {items}
-  {@middle ? <div class="middle">{$name}</div>}
+  {if middle@items}<div class="middle">{$name}</div>{/if}
 {/items}
 ```
 
@@ -168,7 +168,7 @@ Returns `TRUE` if this is neither first nor last (middle items only).
 Returns `TRUE` if the current occurrence number is even.
 
 ```
-{@even}
+{even@tagname}
 ```
 
 **Logic:** `$padOccur[$padIdx] % 2 == 0`
@@ -176,7 +176,7 @@ Returns `TRUE` if the current occurrence number is even.
 **Example:**
 ```html
 {rows}
-  <tr class="{@even ? even : odd}">{$data}</tr>
+  <tr class="{even@rows ? even : odd}">{$data}</tr>
 {/rows}
 ```
 
@@ -187,15 +187,15 @@ Returns `TRUE` if the current occurrence number is even.
 Returns `TRUE` if the current occurrence number is odd.
 
 ```
-{@odd}
+{odd@tagname}
 ```
 
-**Logic:** `NOT @even`
+**Logic:** `NOT even@tagname`
 
 **Example:**
 ```html
 {rows}
-  <tr class="{@odd ? odd : even}">{$data}</tr>
+  <tr class="{odd@rows ? odd : even}">{$data}</tr>
 {/rows}
 ```
 
@@ -210,7 +210,7 @@ Properties that provide numeric information about the iteration.
 Returns the current occurrence number (1-based index).
 
 ```
-{@current}
+{current@tagname}
 ```
 
 **Returns:** `$padOccur[$padIdx]`
@@ -218,7 +218,7 @@ Returns the current occurrence number (1-based index).
 **Example:**
 ```html
 {users}
-  {@current}. {$name}
+  {current@users}. {$name}
 {/users}
 ```
 
@@ -236,7 +236,7 @@ Returns the current occurrence number (1-based index).
 Returns the total number of items.
 
 ```
-{@count}
+{count@tagname}
 ```
 
 **Returns:** `max(count($padData[$padIdx]), $padOccur[$padIdx])`
@@ -244,7 +244,7 @@ Returns the total number of items.
 **Example:**
 ```html
 {users}
-  User {@current} of {@count}
+  User {current@users} of {count@users}
 {/users}
 ```
 
@@ -255,7 +255,7 @@ Returns the total number of items.
 Returns the number of iterations remaining.
 
 ```
-{@remaining}
+{remaining@tagname}
 ```
 
 **Returns:** `count($padData[$padIdx]) - $padOccur[$padIdx]` (minimum 0)
@@ -263,7 +263,7 @@ Returns the number of iterations remaining.
 **Example:**
 ```html
 {users}
-  {$name} ({@remaining} more to go)
+  {$name} ({remaining@users} more to go)
 {/users}
 ```
 
@@ -274,7 +274,7 @@ Returns the number of iterations remaining.
 Returns the number of completed iterations (current - 1).
 
 ```
-{@done}
+{done@tagname}
 ```
 
 **Returns:** `$padOccur[$padIdx] - 1`
@@ -282,7 +282,7 @@ Returns the number of completed iterations (current - 1).
 **Example:**
 ```html
 {users}
-  Processed: {@done}, Current: {$name}
+  Processed: {done@users}, Current: {$name}
 {/users}
 ```
 
@@ -297,7 +297,7 @@ Properties that provide access to the current data context.
 Returns the complete data array for the current level.
 
 ```
-{@data}
+{data@tagname}
 ```
 
 **Returns:** `$padData[$padIdx]`
@@ -305,8 +305,7 @@ Returns the complete data array for the current level.
 **Example:**
 ```html
 {users}
-  {-- Access the raw data array --}
-  {@data toData="allUsers"}
+  {data@users toData="allUsers"}
 {/users}
 ```
 
@@ -317,7 +316,7 @@ Returns the complete data array for the current level.
 Returns the current array key.
 
 ```
-{@key}
+{key@tagname}
 ```
 
 **Returns:** `$padKey[$padIdx]`
@@ -325,8 +324,7 @@ Returns the current array key.
 **Example:**
 ```html
 {config}
-  {-- For associative arrays, get the key --}
-  {@key}: {$value}
+  {key@config}: {$value}
 {/config}
 ```
 
@@ -344,7 +342,7 @@ user: admin
 Returns an array of all keys with their values as iterable data.
 
 ```
-{@keys}
+{keys@tagname}
 ```
 
 **Returns:** Array where each item has `name` (the key) and `value`
@@ -352,9 +350,9 @@ Returns an array of all keys with their values as iterable data.
 **Example:**
 ```html
 {data myArray}
-  {@keys}
+  {keys@myArray}
     Key: {$name}, Value: {$value}
-  {/@keys}
+  {/keys}
 {/data}
 ```
 
@@ -365,7 +363,7 @@ Returns an array of all keys with their values as iterable data.
 Returns an array of field name/value pairs from the current record.
 
 ```
-{@fields}
+{fields@tagname}
 ```
 
 **Returns:** Array where each item has `name` and `value`
@@ -374,9 +372,9 @@ Returns an array of field name/value pairs from the current record.
 ```html
 {user}
   <table>
-  {@fields}
+  {fields@user}
     <tr><td>{$name}</td><td>{$value}</td></tr>
-  {/@fields}
+  {/fields}
   </table>
 {/user}
 ```
@@ -397,7 +395,7 @@ Returns an array of field name/value pairs from the current record.
 Returns the name of the first field in the current record.
 
 ```
-{@firstFieldName}
+{firstFieldName@tagname}
 ```
 
 **Returns:** First key from `$padCurrent[$padIdx]`
@@ -405,7 +403,7 @@ Returns the name of the first field in the current record.
 **Example:**
 ```html
 {user}
-  Primary field: {@firstFieldName}
+  Primary field: {firstFieldName@user}
 {/user}
 ```
 
@@ -416,7 +414,7 @@ Returns the name of the first field in the current record.
 Returns the value of the first field in the current record.
 
 ```
-{@firstFieldValue}
+{firstFieldValue@tagname}
 ```
 
 **Returns:** First value from `$padCurrent[$padIdx]`
@@ -424,7 +422,7 @@ Returns the value of the first field in the current record.
 **Example:**
 ```html
 {user}
-  Primary value: {@firstFieldValue}
+  Primary value: {firstFieldValue@user}
 {/user}
 ```
 
@@ -439,7 +437,7 @@ Properties that provide information about the current tag.
 Returns the name of the current tag/level.
 
 ```
-{@name}
+{name@tagname}
 ```
 
 **Returns:** `$padName[$padIdx]`
@@ -447,7 +445,7 @@ Returns the name of the current tag/level.
 **Example:**
 ```html
 {users}
-  Processing tag: {@name}
+  Processing tag: {name@users}
 {/users}
 ```
 
@@ -464,7 +462,7 @@ Properties for accessing tag parameters and options.
 Returns a specific named parameter value.
 
 ```
-{@parameter:paramName}
+{parameter:paramName@tagname}
 ```
 
 **Returns:** `$padPrm[$padIdx][$parm]` or `NULL`
@@ -472,8 +470,8 @@ Returns a specific named parameter value.
 **Example:**
 ```html
 {myTag sort="name" limit="10"}
-  Sort by: {@parameter:sort}
-  Limit: {@parameter:limit}
+  Sort by: {parameter:sort@myTag}
+  Limit: {parameter:limit@myTag}
 {/myTag}
 ```
 
@@ -484,7 +482,7 @@ Returns a specific named parameter value.
 Returns all parameters as an iterable array.
 
 ```
-{@parameters}
+{parameters@tagname}
 ```
 
 **Returns:** All parameters from `$padPrm[$padIdx]`
@@ -492,9 +490,9 @@ Returns all parameters as an iterable array.
 **Example:**
 ```html
 {myTag foo="1" bar="2"}
-  {@parameters}
+  {parameters@myTag}
     {$name} = {$value}
-  {/@parameters}
+  {/parameters}
 {/myTag}
 ```
 
@@ -505,8 +503,8 @@ Returns all parameters as an iterable array.
 Returns a specific positional option value.
 
 ```
-{@option:1}
-{@option:2}
+{option:1@tagname}
+{option:2@tagname}
 ```
 
 **Returns:** `$padOpt[$padIdx][$parm]` or `NULL`
@@ -514,8 +512,8 @@ Returns a specific positional option value.
 **Example:**
 ```html
 {myTag arg1 arg2 arg3}
-  First: {@option:1}
-  Second: {@option:2}
+  First: {option:1@myTag}
+  Second: {option:2@myTag}
 {/myTag}
 ```
 
@@ -526,7 +524,7 @@ Returns a specific positional option value.
 Returns all positional options as an iterable array.
 
 ```
-{@options}
+{options@tagname}
 ```
 
 **Returns:** All options from `$padOpt[$padIdx]` (excluding index 0)
@@ -534,9 +532,9 @@ Returns all positional options as an iterable array.
 **Example:**
 ```html
 {myTag opt1 opt2 opt3}
-  {@options}
+  {options@myTag}
     Option: {$value}
-  {/@options}
+  {/options}
 {/myTag}
 ```
 
@@ -551,7 +549,7 @@ Properties for accessing level-scoped variables.
 Returns a specific level-scoped variable.
 
 ```
-{@variable:varName}
+{variable:varName@tagname}
 ```
 
 **Returns:** `$padSetLvl[$padIdx][$parm]` or `NULL`
@@ -559,7 +557,7 @@ Returns a specific level-scoped variable.
 **Example:**
 ```html
 {users myVar="test"}
-  Variable: {@variable:myVar}
+  Variable: {variable:myVar@users}
 {/users}
 ```
 
@@ -570,7 +568,7 @@ Returns a specific level-scoped variable.
 Returns all level-scoped variables as an iterable array.
 
 ```
-{@variables}
+{variables@tagname}
 ```
 
 **Returns:** All variables from `$padSetLvl[$padIdx]`
@@ -578,9 +576,9 @@ Returns all level-scoped variables as an iterable array.
 **Example:**
 ```html
 {users a="1" b="2"}
-  {@variables}
+  {variables@users}
     {$name}: {$value}
-  {/@variables}
+  {/variables}
 {/users}
 ```
 
@@ -590,31 +588,31 @@ Returns all level-scoped variables as an iterable array.
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `@first` | Boolean | Is first iteration |
-| `@last` | Boolean | Is last iteration |
-| `@notFirst` | Boolean | Is NOT first iteration |
-| `@notLast` | Boolean | Is NOT last iteration |
-| `@border` | Boolean | Is first OR last |
-| `@middle` | Boolean | Is neither first nor last |
-| `@even` | Boolean | Is even occurrence |
-| `@odd` | Boolean | Is odd occurrence |
-| `@current` | Number | Current occurrence (1-based) |
-| `@count` | Number | Total item count |
-| `@remaining` | Number | Items remaining |
-| `@done` | Number | Items completed |
-| `@data` | Array | Full data array |
-| `@key` | Mixed | Current array key |
-| `@keys` | Array | All keys with values |
-| `@fields` | Array | Field name/value pairs |
-| `@firstFieldName` | String | First field's name |
-| `@firstFieldValue` | Mixed | First field's value |
-| `@name` | String | Tag name |
-| `@parameter:x` | Mixed | Named parameter |
-| `@parameters` | Array | All parameters |
-| `@option:n` | Mixed | Positional option |
-| `@options` | Array | All options |
-| `@variable:x` | Mixed | Level variable |
-| `@variables` | Array | All variables |
+| `first@tag` | Boolean | Is first iteration |
+| `last@tag` | Boolean | Is last iteration |
+| `notFirst@tag` | Boolean | Is NOT first iteration |
+| `notLast@tag` | Boolean | Is NOT last iteration |
+| `border@tag` | Boolean | Is first OR last |
+| `middle@tag` | Boolean | Is neither first nor last |
+| `even@tag` | Boolean | Is even occurrence |
+| `odd@tag` | Boolean | Is odd occurrence |
+| `current@tag` | Number | Current occurrence (1-based) |
+| `count@tag` | Number | Total item count |
+| `remaining@tag` | Number | Items remaining |
+| `done@tag` | Number | Items completed |
+| `data@tag` | Array | Full data array |
+| `key@tag` | Mixed | Current array key |
+| `keys@tag` | Array | All keys with values |
+| `fields@tag` | Array | Field name/value pairs |
+| `firstFieldName@tag` | String | First field's name |
+| `firstFieldValue@tag` | Mixed | First field's value |
+| `name@tag` | String | Tag name |
+| `parameter:x@tag` | Mixed | Named parameter |
+| `parameters@tag` | Array | All parameters |
+| `option:n@tag` | Mixed | Positional option |
+| `options@tag` | Array | All options |
+| `variable:x@tag` | Mixed | Level variable |
+| `variables@tag` | Array | All variables |
 
 ---
 
@@ -624,7 +622,7 @@ Returns all level-scoped variables as an iterable array.
 
 ```html
 {rows}
-  <tr class="{@even ? row-even : row-odd}">{$data}</tr>
+  <tr class="{even@rows ? row-even : row-odd}">{$data}</tr>
 {/rows}
 ```
 
@@ -632,9 +630,9 @@ Returns all level-scoped variables as an iterable array.
 
 ```html
 {items}
-  {@first ? <ul>}
+  {if first@items}<ul>{/if}
   <li>{$name}</li>
-  {@last ? </ul>}
+  {if last@items}</ul>{/if}
 {/items}
 ```
 
@@ -642,7 +640,7 @@ Returns all level-scoped variables as an iterable array.
 
 ```html
 {tags}
-  {$name}{@notLast ? , }
+  {$name}{if notLast@tags}, {/if}
 {/tags}
 ```
 
@@ -651,8 +649,8 @@ Returns all level-scoped variables as an iterable array.
 ```html
 {users}
   <div>
-    {@current} of {@count}: {$name}
-    {@remaining ? ({@remaining} remaining)}
+    {current@users} of {count@users}: {$name}
+    {if remaining@users}({remaining@users} remaining){/if}
   </div>
 {/users}
 ```
@@ -662,10 +660,10 @@ Returns all level-scoped variables as an iterable array.
 ```html
 {record}
   <dl>
-  {@fields}
+  {fields@record}
     <dt>{$name}</dt>
     <dd>{$value}</dd>
-  {/@fields}
+  {/fields}
   </dl>
 {/record}
 ```
@@ -674,7 +672,7 @@ Returns all level-scoped variables as an iterable array.
 
 ```html
 {customTag mode="advanced" debug="true"}
-  Mode: {@parameter:mode}
-  Debug: {@parameter:debug}
+  Mode: {parameter:mode@customTag}
+  Debug: {parameter:debug@customTag}
 {/customTag}
 ```

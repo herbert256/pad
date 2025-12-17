@@ -87,6 +87,7 @@ apps/myapp/
 - [pad/tags/REFERENCE.md](pad/tags/REFERENCE.md) - All template tags
 - [pad/functions/REFERENCE.md](pad/functions/REFERENCE.md) - All pipe functions
 - [pad/options/REFERENCE.md](pad/options/REFERENCE.md) - All tag options
+- [pad/properties/REFERENCE.md](pad/properties/REFERENCE.md) - All iteration properties (first@tag, count@tag, etc.)
 - [apps/NEW.md](apps/NEW.md) - Creating new applications
 
 ## Quick Reference
@@ -100,7 +101,7 @@ apps/myapp/
 | `{set $x = val}` | Assign variable |
 | `{if cond}...{/if}` | Conditional |
 | `{tag}...{/tag}` | Iterate array |
-| `{property:first}` | Iteration property |
+| `{first@tag}` | Iteration property |
 | `{break}` / `{continue}` / `{cease}` | Loop control |
 | `{get 'page'}` | Include page |
 | `{case $x}{when 'a'}...{/case}` | Switch/case |

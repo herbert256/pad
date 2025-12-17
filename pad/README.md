@@ -38,7 +38,7 @@ pad/               # Framework core
 ├── tags/          # Template tags: if, while, data, files, page, etc.
 ├── functions/     # Pipe functions: trim, upper, date, html, contains, etc.
 ├── options/       # Tag options: sort, first, page, rows, cache, etc.
-├── tag/           # Tag properties: property:first, property:last, property:even, etc.
+├── tag/           # Tag properties: first@tag, last@tag, even@tag, etc.
 ├── lib/           # PHP helper functions
 ├── config/        # Configuration and presets
 ├── error/         # Error handling (boot-time and runtime)
@@ -150,9 +150,9 @@ $items = ['Apple', 'Banana', 'Cherry'];
 ### Iteration Properties
 ```
 {items}
-  {property:first}First!{/property:first}
-  {property:even}Even row{/property:even}
-  Index: {property:current} of {property:count}
+  {if first@items}First!{/if}
+  {even@items ? Even row : Odd row}
+  Index: {current@items} of {count@items}
 {/items}
 ```
 
