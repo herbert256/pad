@@ -14,7 +14,7 @@ See [docs/README.md](docs/README.md) for the full documentation index.
 
 | File | Contents |
 |------|----------|
-| [docs/pad/](docs/pad/README.md) | Framework internals, execution flow, configuration |
+| [docs/PAD.md](docs/PAD.md) | Framework internals, execution flow, configuration |
 | [docs/APP.md](docs/APP.md) | Application development, template syntax, tags, patterns |
 | [docs/sequences/](docs/sequences/README.md) | Sequence subsystem (80+ mathematical sequences) |
 

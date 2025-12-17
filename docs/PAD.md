@@ -1,42 +1,39 @@
-# PAD Documentation
+# PAD Framework
 
-Detailed documentation for the PAD framework.
+**PHP Application Driver** - An Inversion of Control Template Engine
 
-## Core Concepts
+PAD is a PHP template engine that inverts the traditional web application architecture. Instead of PHP code including templates, PAD templates drive the execution flow, seamlessly integrating data access, control structures, and presentation in a unified template syntax.
 
-### Templates (.pad files)
+**Requirements:** PHP 8.0+
 
-PAD templates use curly brace syntax for dynamic content:
+## Philosophy
 
-```
-{# This is a comment #}
+Traditional PHP frameworks follow a "code-first" approach where PHP scripts control the flow and include template fragments. PAD inverts this paradigm: templates are first-class citizens that orchestrate everything from data retrieval to output generation. This "template-first" approach creates a natural separation where the visual structure of the application mirrors its logical structure.
 
-{$variable}                    {# Output a variable #}
-{$name | upper}                {# Apply a pipe function #}
-{$price | number(2)}           {# Pipe with parameters #}
+### Key Benefits
 
-{if $loggedIn}                 {# Conditional #}
-  Welcome back!
-{/if}
+- **Visual-Logical Unity**: Template structure reflects application flow
+- **Reduced Boilerplate**: No manual routing, controller classes, or view binding
+- **Hierarchical Inheritance**: Templates inherit from parent directories automatically
+- **Clean Syntax**: Minimal, readable template syntax with `{tags}`
+- **Zero Configuration**: Convention over configuration - just create files and directories
 
-{users}                        {# Iterate over data #}
-  <li>{$name} - {$email}</li>
-{/users}
-```
+## Key Concepts
 
-### Data Files (.php files)
+### Inversion of Control
+- **Traditional PHP:** Code includes templates
+- **PAD:** Templates drive execution, orchestrating data and output
 
-PHP files provide data to templates. Return an array to make it available:
+### Page Pairing
+Every page consists of two files that PAD automatically pairs:
+- `pagename.php` - Returns data (variables, arrays)
+- `pagename.pad` - Template that renders the data
 
-```php
-<?php
-// users.php
-return [
-  ['name' => 'Alice', 'email' => 'alice@example.com'],
-  ['name' => 'Bob', 'email' => 'bob@example.com'],
-];
-?>
-```
+### URL Structure
+Pages are accessed via query string:
+- `/myapp/` → `index.pad`
+- `/myapp/?about` → `about.pad`
+- `/myapp/?admin/users` → `admin/users.pad`
 
 ### Directory Hierarchy
 
@@ -60,7 +57,49 @@ APP/
 
 Child directories automatically inherit parent templates. The `_inits.pad` files wrap content like layouts.
 
----
+## Quick Start
+
+### Installation
+
+1. Set up two constants before including PAD:
+   - `APP` - Path to your application directory (must end with `/`)
+   - `DAT` - Path to your data directory (must end with `/`)
+
+2. Include the PAD framework:
+
+```php
+<?php
+include __DIR__ . '/../padHome.php';
+define('APP', "$padHome/apps/myapp/");
+define('DAT', "$padHome/DATA/");
+include "$padHome/pad/pad.php";
+?>
+```
+
+### Hello World Example
+
+**index.php:**
+```php
+<?php
+$message = 'Hello World!';
+$items = ['Apple', 'Banana', 'Cherry'];
+?>
+```
+
+**index.pad:**
+```html
+<html>
+<head><title>Hello</title></head>
+<body>
+  <h1>{$message}</h1>
+  <ul>
+    {items}
+      <li>{$items}</li>
+    {/items}
+  </ul>
+</body>
+</html>
+```
 
 ## Template Syntax
 
@@ -70,6 +109,7 @@ Child directories automatically inherit parent templates. The `_inits.pad` files
 {$simple}                      {# Simple variable #}
 {$user.name}                   {# Object/array property #}
 {$items[0]}                    {# Array index #}
+{!text}                        {# HTML-escaped output #}
 {$value | default('N/A')}      {# Default value #}
 ```
 
@@ -78,12 +118,16 @@ Child directories automatically inherit parent templates. The `_inits.pad` files
 Transform values with pipe functions:
 
 ```
-{$text | trim | upper}                    {# Chain functions #}
-{$date | date('Y-m-d')}                   {# With parameters #}
-{$html | html}                            {# Escape HTML #}
-{$path | exists}                          {# Check file exists #}
-{$name | contains('admin')}               {# String contains #}
+{echo $name | upper}           {# Uppercase #}
+{echo $text | trim | lower}    {# Chain multiple functions #}
+{echo $date | date('Y-m-d')}   {# With parameters #}
+{echo $value | + 1}            {# Arithmetic (space required) #}
+{echo $text | after('@')}      {# String manipulation #}
+{echo $html | html}            {# Escape HTML #}
+{echo $name | contains('admin')} {# String contains #}
 ```
+
+**Important:** Pipes require `{echo}` - bare `{$var | func}` won't work.
 
 Common functions: `trim`, `upper`, `lower`, `html`, `url`, `date`, `replace`, `left`, `right`, `contains`, `in`, `between`, `exists`
 
@@ -95,22 +139,26 @@ Common functions: `trim`, `upper`, `lower`, `html`, `url`, `date`, `replace`, `l
   Content if true
 {elseif $other}
   Alternative
+{else}
+  Default
 {/if}
 
 {case $status}
   {when 'active'}Active{/when}
   {when 'pending'}Pending{/when}
+  {else}Unknown{/else}
 {/case}
 ```
 
 **Loops:**
 ```
 {users}                        {# Iterate data tag #}
-  {$name}
+  <li>{$name} - {$email}</li>
 {/users}
 
-{while $condition}             {# While loop #}
-  ...
+{while $i le 10}               {# While loop #}
+  Item {$i}
+  {increment $i}
 {/while}
 
 {files dir="images" mask="*.jpg"}
@@ -118,19 +166,26 @@ Common functions: `trim`, `upper`, `lower`, `html`, `url`, `date`, `replace`, `l
 {/files}
 ```
 
+**Loop Control:**
+```
+{continue 'tagname'}    # Skip to next iteration
+{cease 'tagname'}       # Soft stop (graceful end)
+{break 'tagname'}       # Hard stop (immediate exit)
+```
+
 ### Tag Properties
 
-Access iteration state with `@` properties:
+Access iteration state with `property@tag` syntax:
 
 ```
 {items}
-  {if @first}<ul>{/if}
-  <li class="{if @odd}odd{/if}">{$name}</li>
-  {if @last}</ul>{/if}
+  {if first@items}<ul>{/if}
+  <li class="{if odd@items}odd{/if}">{$name}</li>
+  {if last@items}</ul>{/if}
 {/items}
 ```
 
-Properties: `@first`, `@last`, `@even`, `@odd`, `@current`, `@count`, `@remaining`, `@key`, `@data`
+Properties: `first@tag`, `last@tag`, `even@tag`, `odd@tag`, `current@tag`, `count@tag`, `remaining@tag`, `key@tag`, `data@tag`
 
 ### Tag Options
 
@@ -143,7 +198,81 @@ Control tag behavior with options:
 {data content="users" toData="cached"}   {# Data operations #}
 ```
 
----
+### Data Definition
+
+```
+{data 'colors'}
+  ["red", "green", "blue"]
+{/data}
+
+{colors}{$colors} {/colors}
+```
+
+Supports JSON, XML, YAML, and CSV formats.
+
+## Core Features
+
+### Type Prefixes
+
+Resolve naming conflicts with explicit type prefixes:
+```
+{app:mytag}              # App tag from _tags/
+{pad:tagname}            # Built-in PAD tag
+{php:strlen(@)}          # Call PHP function
+{data:items}             # Defined data block
+{pull:mySequence}        # Stored sequence
+{field:"name from users"}  # Database field
+```
+
+### Custom Tags
+
+Create `_tags/mytag.php` in your app:
+```php
+<?php
+$format = $padPrm[$pad]['format'] ?? $padOpt[$pad][1] ?? 'default';
+return "Output: $format";
+?>
+```
+
+Use as `{mytag 'value'}` or `{mytag format='value'}`.
+
+### Database Operations
+
+```php
+// In PHP
+$user = db("RECORD * FROM users WHERE id={0}", [$id]);
+$users = db("ARRAY * FROM users ORDER BY name");
+$count = db("FIELD COUNT(*) FROM users");
+$exists = db("CHECK users WHERE email='{0}'", [$email]);
+```
+
+```
+// In templates
+{field "count(*) from users"}
+{table "SELECT * FROM users"}
+  <tr><td>{$name}</td></tr>
+{/table}
+
+{users table}                  {# Query users table #}
+  {$name} - {$email}
+{/users}
+
+{orders table where="user_id = $userId" sort="date DESC"}
+  Order #{$id}: {$total}
+{/orders}
+```
+
+### Sequence Subsystem
+
+80+ mathematical sequences with transformations:
+```
+{fibonacci rows=10}{$fibonacci} {/fibonacci}
+{sequence '1..10', push='nums'}
+{resume add=5}
+{pull:nums}{$sequence} {/pull:nums}
+```
+
+See [sequences/](sequences/README.md) for complete documentation.
 
 ## How PAD Works
 
@@ -214,7 +343,7 @@ When a tag is encountered, PAD determines its type:
 | `$` | Variable | `{$name}` |
 | `#` | Option | `{#param}` |
 | `&` | Tag reference | `{&tagname}` |
-| `@` | Property | `{@first}` |
+| `@` | Property | `{first@tag}` |
 | (none) | Tag/Field | `{users}`, `{if}` |
 
 Types are resolved in order: app → pad → data → content → field → tag
@@ -231,7 +360,7 @@ When a tag has data (array), PAD iterates through each item:
 ```
 
 The occurrence system (`occurrence/`) manages:
-- Iteration counter (`@current`)
+- Iteration counter (`current@tag`)
 - Current data item
 - Scope variables for each iteration
 - First/last/even/odd detection
@@ -259,12 +388,6 @@ After processing, PAD generates the final output:
 ```
 Template Processing → $padResult → $padOut → Output Buffer → Response
 ```
-
-The walker (`walk/`) manages the output flow:
-- `next.php` - Advance to next iteration
-- `end.php` - Finalize level, apply type handler
-
----
 
 ## Framework Architecture
 
@@ -313,7 +436,7 @@ pad/
 ├── functions/           # Pipe functions (40+)
 ├── options/             # Tag options (50+)
 ├── handling/            # Data handling (15 handlers)
-├── tag/                 # Tag properties (25 properties)
+├── properties/          # Tag properties (25 properties)
 ├── constructs/          # Special constructs (7 constructs)
 │
 ├── lib/                 # PHP library
@@ -386,23 +509,25 @@ pad/
 └─────────────────────────────────────────────────────────────────┘
 ```
 
----
+## Application Structure
+
+```
+apps/myapp/
+├── index.php / index.pad     # Page pair
+├── _inits.php                # Runs before all pages
+├── _inits.pad                # Wraps all pages (use @pad@ placeholder)
+├── _exits.php / _exits.pad   # Runs after all pages
+├── _lib/                     # Auto-included PHP functions
+├── _tags/                    # Custom template tags
+├── _functions/               # Custom pipe functions
+├── _data/                    # Static data files (JSON, XML)
+├── _include/                 # Template snippets
+├── _callbacks/               # Iteration callbacks
+├── _options/                 # Custom tag options
+└── _config/config.php        # App configuration
+```
 
 ## Advanced Features
-
-### Database Integration
-
-PAD includes a database layer for working with tables:
-
-```
-{users table}                  {# Query users table #}
-  {$name} - {$email}
-{/users}
-
-{orders table where="user_id = $userId" sort="date DESC"}
-  Order #{$id}: {$total}
-{/orders}
-```
 
 ### Caching
 
@@ -453,25 +578,29 @@ Execute PHP code at specific points:
 {/data}
 ```
 
----
-
 ## Configuration
 
-### Global Configuration
+In `_config/config.php` or `pad/config/config.php`:
 
-Configuration is loaded from `config/config.php`. Key settings:
+```php
+$padErrorAction   // 'pad', 'boot', 'php', 'stop', 'exit', 'ignore', 'log', 'dump'
+$padInfo          // Debug: 'trace', 'stats', 'track', 'xml', 'xref'
+$padOutputType    // 'web', 'file', 'download', 'console'
+$padCache         // Enable caching
 
-- Error handling mode
-- Debug/info mode
-- Default date format
-- Database connections
-- Cache settings
+// Database
+$padSqlHost
+$padSqlDatabase
+$padSqlUser
+$padSqlPassword
+```
 
-### Application Configuration
+## Debugging
 
-Applications can have their own `_config.php` files that are loaded during initialization.
-
----
+- Set `$padInfo = 'trace'` for execution tracing
+- Use `{dump}` tag for variable inspection
+- Use `{trace}` tag for execution trace
+- Check `DATA/` directory for error dumps and logs
 
 ## Best Practices
 
@@ -505,3 +634,57 @@ APP/
 2. **Limit data** - Use `first`, `page`, `rows` options
 3. **Sort server-side** - Let database handle sorting when possible
 4. **Minimize nesting** - Deep nesting impacts performance
+
+## Quick Reference
+
+### Comparison Operators
+
+| Operator | Meaning |
+|----------|---------|
+| `eq`, `==` | Equal |
+| `ne`, `!=` | Not equal |
+| `gt`, `>` | Greater than |
+| `lt`, `<` | Less than |
+| `ge`, `>=` | Greater or equal |
+| `le`, `<=` | Less or equal |
+| `and`, `or` | Logical operators |
+| `range (a, b)` | Value in range |
+
+### Common Pipe Functions
+
+| Function | Purpose |
+|----------|---------|
+| `upper`, `lower` | Case conversion |
+| `trim` | Remove whitespace |
+| `html`, `url` | Encoding |
+| `date('fmt')` | Format date |
+| `+ n`, `- n`, `* n`, `/ n` | Arithmetic |
+| `left(n)`, `cut(n)` | Truncate |
+| `after('x')`, `before('x')` | Extract substring |
+| `contains('x')` | Check substring |
+| `. 'str'` | Concatenate |
+
+### Key Syntax Rules
+
+1. **Pipes need `{echo}`** - `{$var | upper}` won't work
+2. **Arithmetic needs space** - `{echo $x | + 1}` not `| +1`
+3. **Quote literal strings** - `{count 'items'}` not `{count items}`
+4. **No inline CSS/JS** - PAD parses `{ }` as tags; use external files
+5. **Use `padRedirect()`** - Don't use `exit` or `die` in PAD apps
+
+## Testing
+
+Run regression tests by visiting `/regression` in browser. Tests compare current output against stored HTML snapshots.
+
+## License
+
+See LICENSE file for details.
+
+## Reference Documentation
+
+- [TAGS.md](reference/TAGS.md) - All template tags
+- [FUNCTIONS.md](reference/FUNCTIONS.md) - All pipe functions
+- [OPTIONS.md](reference/OPTIONS.md) - All tag options
+- [PROPERTIES.md](reference/PROPERTIES.md) - All iteration properties
+- [EVAL.md](reference/EVAL.md) - Expression evaluation internals
+- [sequences/](sequences/README.md) - Sequence subsystem

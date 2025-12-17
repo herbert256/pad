@@ -104,4 +104,4 @@ This directory should be writable by the web server and excluded from version co
 
 PAD is licensed under the GNU General Public License v3.0. See [LICENSE.md](docs/LICENSE.md) for details.
 
-- See [docs/pad/README.md](docs/pad/README.md) for complete framework documentation.
+- See [docs/PAD.md](docs/PAD.md) for complete framework documentation.

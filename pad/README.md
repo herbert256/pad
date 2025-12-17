@@ -27,7 +27,7 @@ pad/
 
 ## Documentation
 
-For complete framework documentation, see [docs/pad/README.md](../docs/pad/README.md).
+For complete framework documentation, see [docs/PAD.md](../docs/PAD.md).
 
 ## Module Documentation
 
