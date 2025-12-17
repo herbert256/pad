@@ -438,7 +438,7 @@ Each `{tag}` creates a new level scope. PAD maintains global variables per level
 - [docs/sequences/SEQUENCES.md](docs/sequences/SEQUENCES.md) - All sequence types
 - [docs/sequences/ACTIONS.md](docs/sequences/ACTIONS.md) - All sequence actions
 
-##
+### Parts op PAD
 - [apps/README.md](apps/README.md) - All template tags
 - [pad/README.md](pad/README.md) - PHP sources of the PAD framework itself
 - [www/README.md](www/README.md) - Webserver files, entry points when PAD is used in Apache
