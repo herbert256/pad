@@ -1,31 +1,33 @@
 # PAD Applications
 
-This document describes the structure and types of PAD applications.
+This directory contains PAD applications and examples.
+
+## Applications
+
+| Directory | Type | Description |
+|-----------|------|-------------|
+| `pad/` | Standard | Reference application with manual and regression tests |
+| `demo/` | Standard | Demo application with examples |
+| `hello/` | Minimal | Hello World example |
+| `minimal/` | Minimal | Minimal single-page example |
+| `cli/` | CLI | Command-line interface application |
+| `support/` | Standard | Support utilities |
+| `test/` | Standard | Test application |
+| `nono/` | Plain PHP | PHP application without PAD framework |
 
 ## Application Types
 
 | Type | Description |
 |------|-------------|
 | Standard | Full PAD application with templates (.pad files) |
-| CLI | Command-line interface application |
 | Minimal | Simple single-page application |
-| Plain PHP | PHP application without PAD templating |
-
-## Application Location
-
-Applications are stored in the `apps/` directory:
-
-```
-apps/
-├── pad/           # Reference application and PAD manual
-├── myapp/         # Your custom application
-└── demo/          # Demo application
-```
+| CLI | Command-line interface application |
+| Plain PHP | PHP application that does not use PAD templating |
 
 ## Creating Applications
 
-See [APP.md](APP.md) for complete instructions on creating and developing PAD applications.
+See [../docs/APP.md](../docs/APP.md) for complete instructions on creating and developing PAD applications.
 
-## Framework Documentation
+## Documentation
 
-For information about the PAD framework internals, see [pad/README.md](pad/README.md).
+For PAD framework documentation, see [../README.md](../README.md).

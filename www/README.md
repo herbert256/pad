@@ -76,4 +76,4 @@ The centralized bootstrap:
 
 ## Documentation
 
-For PAD framework documentation, see [../pad/README.md](../pad/README.md).
+For PAD framework documentation, see [../README.md](../README.md).
