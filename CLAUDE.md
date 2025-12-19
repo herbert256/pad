@@ -256,6 +256,125 @@ db("SELECT * FROM users WHERE name={0}", [$name]);    // WRONG for strings
 
 ---
 
+## PAD Select Subsystem
+
+PAD Select allows templates to access database tables directly without writing PHP queries. Define tables and relations in `_lib/select.php`, then use table names as tags.
+
+### Configuration (_lib/select.php)
+
+```php
+// Define tables with primary key
+$padSelectTables ['users']         = [ 'key' => 'id' ];
+$padSelectTables ['forum_topics']  = [ 'key' => 'id' ];
+$padSelectTables ['forum_posts']   = [ 'key' => 'id', 'order' => 'created_at' ];
+
+// Define relations (foreign keys)
+$padSelectRelations ['forum_topics'] ['users']        = [ 'key' => 'user_id'  ];
+$padSelectRelations ['forum_posts']  ['forum_topics'] = [ 'key' => 'topic_id' ];
+$padSelectRelations ['forum_posts']  ['users']        = [ 'key' => 'user_id'  ];
+
+// Virtual tables (filtered/sorted views)
+$padSelectTables ['openBugs'] = [
+    'base'  => "tickets",
+    'where' => "`type`='bug' and `status`='open'",
+    'order' => "updated_at desc"
+];
+```
+
+### Using Table Tags in Templates
+
+```html
+<!-- List all users -->
+{users}
+  {$username} - {$email}
+{/users}
+
+<!-- Filter by ID -->
+{users $id=5}
+  {$username}
+{/users}
+
+<!-- Filter by field -->
+{forum_boards $slug=$slug}
+  {$name}
+{/forum_boards}
+
+<!-- With options -->
+{news sort="created_at desc" rows=10}
+  {$title}
+{/news}
+```
+
+### Nested Relations (Automatic Joins)
+
+When a table tag is nested inside another, PAD automatically uses the defined relation:
+
+```html
+{forum_topics $id=$id}
+  <h1>{$title}</h1>
+
+  <!-- Gets the topic's author via user_id relation -->
+  {users}
+    Posted by {$username}
+  {/users}
+
+  <!-- Gets posts for this topic via topic_id relation -->
+  {forum_posts}
+    <div class="post">
+      {$content}
+      <!-- Gets the post's author -->
+      {users}
+        by {$username}
+      {/users}
+    </div>
+  {/forum_posts}
+{/forum_topics}
+```
+
+### Counting with {count}
+
+```html
+{forum_boards}
+  {$name}: {count 'forum_topics'} topics
+{/forum_boards}
+```
+
+### Combining with {field} for Stats
+
+```html
+<div class="stats">
+  {field "count(*) from users"} members
+  {field "count(*) from forum_posts"} posts
+</div>
+```
+
+### PHP Side - Minimal Code
+
+With PAD Select, PHP files become minimal:
+
+```php
+// Before (traditional)
+$topic = db("RECORD t.*, u.username FROM forum_topics t
+             JOIN users u ON t.user_id = u.id WHERE t.id={0}", [$id]);
+$posts = db("ARRAY p.*, u.username FROM forum_posts p
+             JOIN users u ON p.user_id = u.id WHERE p.topic_id={0}", [$id]);
+
+// After (PAD Select)
+if (!db("CHECK forum_topics WHERE id = {0}", [$id]))
+    padRedirect('forum/index');
+$title = db("FIELD title FROM forum_topics WHERE id = {0}", [$id]);
+// Template handles all the data fetching via {forum_topics}, {users}, {forum_posts}
+```
+
+### Key Benefits
+
+1. **Declarative data access** - Template describes what data it needs
+2. **Automatic joins** - Relations handle foreign key lookups
+3. **Less PHP code** - No need to build arrays in PHP
+4. **Cleaner separation** - PHP handles validation/actions, template handles display
+
+---
+
 ## Sequence Subsystem (80+ Mathematical Sequences)
 
 ### Basic Usage
