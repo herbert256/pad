@@ -4,7 +4,7 @@
 </p>
 
 <h1>{$topicTitle}</h1>
-<p class="meta">Started by {$authorName} on {$createdAt | substr (0, 16)}</p>
+<p class="meta">Started by {$topic.author_name} on {$createdAt | substr (0, 16)}</p>
 
 {if $isLocked}
   <div class="alert alert-info">This topic is locked. No new replies can be posted.</div>
