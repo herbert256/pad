@@ -9,7 +9,7 @@
   $formType = 'bug';
   $formPriority = 'medium';
 
-  if ($_SERVER['REQUEST_METHOD'] == 'POST' && $action == 'create') {
+  if ($padPost && $action == 'create') {
     $formTitle = trim($ticket_title ?? '');
     $formDescription = trim($description ?? '');
     $formType = $type ?? 'bug';

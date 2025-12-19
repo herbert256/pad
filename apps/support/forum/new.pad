@@ -1,9 +1,11 @@
+{forum_boards $slug=$board}
+
 <p class="meta">
   <a href="?forum/index">Forum</a> &rarr;
-  <a href="?forum/board&slug={$boardSlug}">{$boardName}</a>
+  <a href="?forum/board&slug={$slug}">{$name}</a>
 </p>
 
-<h1>New Topic in {$boardName}</h1>
+<h1>New Topic in {$name}</h1>
 
 {if $error}
   <div class="alert alert-error">{$error}</div>
@@ -24,6 +26,8 @@
     </div>
 
     <button type="submit" class="btn">Create Topic</button>
-    <a href="?forum/board&slug={$boardSlug}" class="btn btn-secondary">Cancel</a>
+    <a href="?forum/board&slug={$slug}" class="btn btn-secondary">Cancel</a>
   </form>
 </div>
+
+{/forum_boards}

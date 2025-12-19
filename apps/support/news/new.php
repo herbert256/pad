@@ -6,21 +6,17 @@
   $error = '';
   $formTitle = '';
   $formContent = '';
-  $editId = $_GET['edit'] ?? 0;
 
   // Load existing article for editing
-  if ($editId) {
-    $article = db("RECORD * FROM news WHERE id={0}", [$editId]);
-    if ($article) {
-      $title = 'Edit News';
-      $formTitle = $article['title'];
-      $formContent = $article['content'];
-    } else {
-      $editId = 0;
-    }
+  if ($edit && db("CHECK news WHERE id = {0}", [$edit])) {
+    $title = 'Edit News';
+    $formTitle = db("FIELD title FROM news WHERE id = {0}", [$edit]);
+    $formContent = db("FIELD content FROM news WHERE id = {0}", [$edit]);
+  } else {
+    $edit = 0;
   }
 
-  if ($_SERVER['REQUEST_METHOD'] == 'POST' && $action == 'save') {
+  if ($padPost && $action == 'save') {
     $formTitle = trim($news_title ?? '');
     $formContent = trim($content ?? '');
 
@@ -29,10 +25,10 @@
     } elseif (!$formContent) {
       $error = 'Content is required';
     } else {
-      if ($editId) {
+      if ($edit) {
         db("UPDATE news SET title='{0}', content='{1}', updated_at=NOW() WHERE id={2}",
-           [$formTitle, $formContent, $editId]);
-        padRedirect("news/view&id=$editId");
+           [$formTitle, $formContent, $edit]);
+        padRedirect("news/view&id=$edit");
       } else {
         $newsId = db("INSERT INTO news (user_id, title, content) VALUES ({0}, '{1}', '{2}')",
                      [$user_id, $formTitle, $formContent]);

@@ -2,23 +2,17 @@
 
   requireLogin();
 
-  $boardSlug = $_GET['board'] ?? '';
-
-  $board = db("RECORD * FROM forum_boards WHERE slug='{0}'", [$boardSlug]);
-
-  if (!$board) {
+  if (!db("CHECK forum_boards WHERE slug = '{0}'", [$board]))
     padRedirect('forum/index');
-  }
 
   $title = 'New Topic';
-  $boardId = $board['id'];
-  $boardName = $board['name'];
+  $boardId = db("FIELD id FROM forum_boards WHERE slug = '{0}'", [$board]);
 
   $error = '';
   $formTitle = '';
   $formContent = '';
 
-  if ($_SERVER['REQUEST_METHOD'] == 'POST' && $action == 'create') {
+  if ($padPost && $action == 'create') {
     $formTitle = trim($topic_title ?? '');
     $formContent = trim($content ?? '');
 

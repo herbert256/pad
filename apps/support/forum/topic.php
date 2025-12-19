@@ -1,39 +1,18 @@
 <?php
 
-  $topic = db("RECORD
-    t.*, b.name as board_name, b.slug as board_slug, u.username as author_name
-    FROM forum_topics t
-    JOIN forum_boards b ON t.board_id = b.id
-    JOIN users u ON t.user_id = u.id
-    WHERE t.id = {0}
-  ", [$id]);
-
-  if (!$topic) {
+  if (!db("CHECK forum_topics WHERE id = {0}", [$id]))
     padRedirect('forum/index');
-  }
 
-  $title = $topic['title'];
+  $title = db("FIELD title FROM forum_topics WHERE id = {0}", [$id]);
 
   // Increment view count
   db("UPDATE forum_topics SET views = views + 1 WHERE id = {0}", [$id]);
 
-  // Get posts
-  $posts = db("ARRAY
-    p.*, u.username as author_name, u.role as author_role
-    FROM forum_posts p
-    JOIN users u ON p.user_id = u.id
-    WHERE p.topic_id = {0}
-    ORDER BY p.created_at ASC
-  ", [$id]);
-
-  $error = '';
-  $success = '';
-
   // Handle new reply
-  if ($_SERVER['REQUEST_METHOD'] == 'POST' && $action == 'reply') {
+  if ($padPost && $action == 'reply') {
     if (!$user_id) {
       $error = 'You must be logged in to reply';
-    } elseif ($topic['is_locked']) {
+    } elseif (db("FIELD is_locked FROM forum_topics WHERE id = {0}", [$id])) {
       $error = 'This topic is locked';
     } else {
       $replyContent = trim($content ?? '');
@@ -44,15 +23,6 @@
            [$id, $user_id, $replyContent]);
         db("UPDATE forum_topics SET updated_at = NOW() WHERE id = {0}", [$id]);
         $success = 'Reply posted successfully';
-
-        // Refresh posts
-        $posts = db("ARRAY
-          p.*, u.username as author_name, u.role as author_role
-          FROM forum_posts p
-          JOIN users u ON p.user_id = u.id
-          WHERE p.topic_id = {0}
-          ORDER BY p.created_at ASC
-        ", [$id]);
       }
     }
   }

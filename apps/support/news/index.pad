@@ -6,17 +6,15 @@
   </p>
 {/if}
 
-{if $articles}
-  {articles}
-    <div class="card">
-      <h2><a href="?news/view&id={$id}">{$title}</a></h2>
-      <p class="meta">Posted by {$author_name} on {$created_at | substr (0, 10)}</p>
-      <p style="margin-top: 10px;">{$content | substr (0, 300)}{if {$content | strlen} gt 300}...{/if}</p>
-      <p style="margin-top: 10px;"><a href="?news/view&id={$id}">Read more &rarr;</a></p>
-    </div>
-  {/articles}
+{news sort="created_at desc"}
+  <div class="card">
+    <h2><a href="?news/view&id={$id}">{$title}</a></h2>
+    <p class="meta">Posted by {users}{$username}{/users} on {$created_at | substr (0, 10)}</p>
+    <p style="margin-top: 10px;">{$content | substr (0, 300)}{if {$content | strlen} gt 300}...{/if}</p>
+    <p style="margin-top: 10px;"><a href="?news/view&id={$id}">Read more &rarr;</a></p>
+  </div>
 {else}
   <div class="card">
     <p class="meta">No news articles yet.</p>
   </div>
-{/if}
+{/news}
