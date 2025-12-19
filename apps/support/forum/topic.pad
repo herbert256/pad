@@ -1,12 +1,12 @@
 <p class="meta">
   <a href="?forum/index">Forum</a> &rarr;
-  <a href="?forum/board&slug={$boardSlug}">{$boardName}</a>
+  <a href="?forum/board&slug={$topic.board_slug}">{$topic.board_name}</a>
 </p>
 
-<h1>{$topicTitle}</h1>
-<p class="meta">Started by {$topic.author_name} on {$createdAt | substr (0, 16)}</p>
+<h1>{$topic.title}</h1>
+<p class="meta">Started by {$topic.author_name} on {$topic.created_at | substr (0, 16)}</p>
 
-{if $isLocked}
+{if $topic.is_locked}
   <div class="alert alert-info">This topic is locked. No new replies can be posted.</div>
 {/if}
 
@@ -37,7 +37,7 @@
 </div>
 
 {if $user_id}
-  {if $isLocked}
+  {if $topic.is_locked}
   {else}
     <div class="card">
       <h3>Post a Reply</h3>
@@ -56,4 +56,4 @@
   </div>
 {/if}
 
-<p><a href="?forum/board&slug={$boardSlug}">&larr; Back to {$boardName}</a></p>
+<p><a href="?forum/board&slug={$topic.board_slug}">&larr; Back to {$topic.board_name}</a></p>

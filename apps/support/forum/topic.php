@@ -12,12 +12,7 @@
     padRedirect('forum/index');
   }
 
-  $title      = $topic['title'];
-  $topicTitle = $topic['title'];
-  $boardName  = $topic['board_name'];
-  $boardSlug  = $topic['board_slug'];
-  $createdAt  = $topic['created_at'];
-  $isLocked   = $topic['is_locked'];
+  $title = $topic['title'];
 
   // Increment view count
   db("UPDATE forum_topics SET views = views + 1 WHERE id = {0}", [$id]);
@@ -38,7 +33,7 @@
   if ($_SERVER['REQUEST_METHOD'] == 'POST' && $action == 'reply') {
     if (!$user_id) {
       $error = 'You must be logged in to reply';
-    } elseif ($isLocked) {
+    } elseif ($topic['is_locked']) {
       $error = 'This topic is locked';
     } else {
       $replyContent = trim($content ?? '');
