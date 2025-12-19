@@ -18,7 +18,7 @@ There is no PAD code in the application PHP code at all !
 &nbsp;
 &nbsp;
 
-## Hello World
+## Hello World example
 &nbsp;
 `hello.php` - The application PHP file:
 ```php
@@ -29,7 +29,7 @@ There is no PAD code in the application PHP code at all !
 ?>
 ```
 
-`hello.pad` - The PAD template:
+`hello.pad` - The application PAD template:
 ```html
 <html>
   <body>
@@ -37,9 +37,15 @@ There is no PAD code in the application PHP code at all !
   </body>
 </html>
 ```
-&nbsp;
-`Browser` - The result in your web browser:
-### Hello World !
+
+The data that is send to the browser:
+```html
+<html>
+  <body>
+    <h1>Hello World !</h1>
+  </body>
+</html>
+```
 
 &nbsp;
 &nbsp;
@@ -55,23 +61,30 @@ There is no PAD code in the application PHP code at all !
 
 ```
 pad/
+├── apps/     # A few PAD applications, including the PAD manual
+├── docs/     # Documentation
 ├── pad/      # PAD framework core
-├── apps/     # PAD applications
 ├── www/      # Web server entry points
 └── DATA/     # Runtime data (logs, cache, dumps)
 ```
-
-### pad/
-
-The PAD framework itself - the template engine, tag processors, expression evaluator, and all supporting modules.
-
-- See [pad/README.md](pad/README.md) for complete framework PHP sources
 
 ### apps/
 
 PAD applications. Each subdirectory is a self-contained application with its own templates, data files, and libraries.
 
 See [apps/README.md](apps/README.md) for application development guidelines.
+
+### docs/
+
+Complete documentation about PAD, the template options, and so on.
+
+- See [docs/README.md](docs/README.md) for this documentation
+
+### pad/
+
+The PAD framework itself - the template engine, tag processors, expression evaluator, and all supporting modules.
+
+- See [pad/README.md](pad/README.md) for complete framework PHP sources
 
 ### www/
 
@@ -89,13 +102,6 @@ Runtime data directory for generated files:
 - Temporary files
 
 This directory should be writable by the web server and excluded from version control.
-
-&nbsp;
-&nbsp;
-
-## Additional Documentation
-
-- [docs/README.md](docs/README.md) - Full documentation index
 
 &nbsp;
 &nbsp;
