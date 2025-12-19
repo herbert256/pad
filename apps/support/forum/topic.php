@@ -16,7 +16,6 @@
   $topicTitle = $topic['title'];
   $boardName  = $topic['board_name'];
   $boardSlug  = $topic['board_slug'];
-  $authorName = $topic['author_name'];
   $createdAt  = $topic['created_at'];
   $isLocked   = $topic['is_locked'];
 
