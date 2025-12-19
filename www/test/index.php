@@ -1,7 +1,7 @@
 <?php
 
-  $padApp = 'test';
+  $padApp = basename ( __DIR__ );
 
-  include __DIR__ . '/../index.php';
+  include __DIR__ . '/../pad.php'
 
 ?>

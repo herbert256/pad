@@ -1,3 +1,3 @@
 <sql>
-  <sql>http://localhost/external/departments.xml</sql>
+  <sql>http://localhost/pad/departments.xml</sql>
 </sql>

@@ -1,6 +1,37 @@
 <?php
 
 
+function padSplitOnUnquotedColon ( $str ) {
+
+    $len = strlen($str);
+ 
+    $inSingleQuote = false;
+    $inDoubleQuote = false;
+    
+    for ($i = 0; $i < $len; $i++) {
+ 
+        $char = $str[$i];
+        
+        if ($char === '\\' && $i + 1 < $len) {
+            $i++;
+            continue;
+        }
+        
+        if     ( $char === "'" && !$inDoubleQuote ) $inSingleQuote = !$inSingleQuote;
+        elseif ( $char === '"' && !$inSingleQuote ) $inDoubleQuote = !$inDoubleQuote;
+        
+        if ($char === ':' && !$inSingleQuote && !$inDoubleQuote) 
+            return [
+                substr($str, 0, $i),
+                substr($str, $i + 1)
+            ];
+      
+    }
+    
+    return [$str, ''];
+
+}
+
 
   function padFindContinueBreak ( $parm ) {
 

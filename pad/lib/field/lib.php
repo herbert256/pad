@@ -26,9 +26,6 @@
       if ( $padName [$i] == $search )
         return $i;
 
-    if ( $search == 'PHP' )
-      return 0;
-
     if ( is_numeric($search) and $search < 0 )
       return $pad + $search;
 
@@ -43,6 +40,30 @@
 
   }
 
+  function padTagFieldSearch ( $search ) {
+
+    global $pad, $padName, $padTag;
+
+    if ( trim($search) == '' )
+      return FALSE;
+
+    for ( $i=$pad; $i; $i-- )
+      if ( $padName [$i] == $search )
+        return TRUE;
+
+    if ( is_numeric($search) and $search < 0 )
+      return TRUE;
+
+    if ( is_numeric($search) )
+      return TRUE;
+
+    for ( $i=$pad; $i; $i-- )
+      if ( $padTag [$i] == $search )
+        return TRUE;
+
+    return FALSE;
+
+  }
 
   /**
    * Finds first level with a non-control tag.

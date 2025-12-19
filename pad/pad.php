@@ -1,6 +1,7 @@
 <?php
 
-  // The main entry point of PAD
+  if ( ! isset ( $padMicro ) ) $padMicro = microtime ( TRUE );
+  if ( ! isset ( $padHR )    ) $padHR    = hrtime    ( TRUE );
 
   define ( 'PAD', dirname ( __FILE__ ) . '/' ) ;
 

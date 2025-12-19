@@ -6,8 +6,8 @@
   $GLOBALS ['_eval']      = [];
   $GLOBALS ['_eval_last'] = [];
 
-  padEvalParse ( $result, $eval );  padEvalTrace ( 'parse', $result );
-  padEvalAfter ( $result );         padEvalTrace ( 'after', $result );
+  padEvalParse ( $result, $eval );  padEvalTrace ( 'parse', $result ); $GLOBALS ['_eval_parse'] [] = $result;
+  padEvalAfter ( $result );         padEvalTrace ( 'after', $result ); $GLOBALS ['_eval_after'] [] = $result;
   padEvalPipes ( $result, $pipes );
 
   foreach ( $pipes as $one )

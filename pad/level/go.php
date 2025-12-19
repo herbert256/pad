@@ -9,9 +9,6 @@
   $padTagResult   = include PAD . "types/" . $padType [$pad] . ".php";
   $padTagContent .= ob_get_clean();
 
-  if ( $padInfo )
-    include PAD . 'events/type.php';
-
   if ( $padNextPadLevel )
     return;
 
@@ -21,6 +18,12 @@
   }
 
   include PAD . 'level/flags.php';
+
+  if ( str_starts_with ( $padOpt [$pad] [0], '?' ) )
+    include PAD . 'level/ternary.php';
+  
+  if ( $padInfo )
+    include PAD . 'events/type.php';
 
   if ( $padInfo )
     include PAD . 'events/go.php';

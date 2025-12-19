@@ -9,7 +9,7 @@
   $padPairSet    = FALSE;
   $padBaseSet    = '';
   $padPrmTypeSet = 'none';
-  $padTagRestul  = 'internal';
+  $padTagResult  = 'internal';
 
   include PAD . 'level/setup.php';
 

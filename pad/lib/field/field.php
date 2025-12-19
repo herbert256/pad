@@ -81,6 +81,11 @@
       elseif ( $prefix     ) $value = padFieldPrefix ( $field, $idx, $type, $prefix );
       else                   $value = padFieldLevel  ( $field, $type );
 
+      if ( $value === INF and $type == 1 ) $value = padTag  ( $field, $idx, 7, $parm );
+      if ( $value === INF and $type == 2 ) $value = padTag  ( $field, $idx, 8, $parm );
+      if ( $value === INF and $type == 1 ) $value = padParm ( $field, $idx, 5);
+      if ( $value === INF and $type == 2 ) $value = padParm ( $field, $idx, 6 );
+
       if ( $GLOBALS ['padInfo'] )
         include PAD . 'events/fieldClassic.php';
 
