@@ -6,14 +6,14 @@ This directory contains PAD applications and examples.
 
 | Directory | Type | Description |
 |-----------|------|-------------|
-| `pad/` | Standard | Reference application with manual and regression tests |
-| `demo/` | Standard | Demo application with examples |
-| `hello/` | Minimal | Hello World example |
-| `minimal/` | Minimal | Minimal single-page example |
-| `cli/` | CLI | Command-line interface application |
-| `support/` | Standard | Support utilities |
-| `test/` | Standard | Test application |
-| `nono/` | Plain PHP | PHP application without PAD framework |
+| [cli](cli/README.md) | CLI | Command-line interface for running PAD from terminal |
+| [demo](demo/README.md) | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
+| [hello](hello/README.md) | Minimal | Hello World example demonstrating page pairing |
+| [minimal](minimal/README.md) | Minimal | Absolute minimum - single template file |
+| [nono](nono/README.md) | Plain PHP | PHP application without PAD framework |
+| [pad](pad/README.md) | Standard | Reference application with manual and regression tests |
+| [support](support/README.md) | Standard | Support portal with forum, news, and tickets |
+| [test](test/README.md) | Standard | Test application for database table subsystem |
 
 ## Application Types
 
