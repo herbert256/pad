@@ -19,7 +19,7 @@
     elseif ( isset              ( $GLOBALS ['padBoolStore']    [$item] ) ) return 'flag';
     elseif ( isset              ( $GLOBALS ['padContentStore'] [$item] ) ) return 'content';
     elseif ( isset              ( $GLOBALS ['padTables']       [$item] ) ) return 'table';
-    elseif ( isset              ( $GLOBALS ['padSelectTables'] [$item] ) ) return 'table';
+    elseif ( isset              ( $GLOBALS ['padSelectTables'] [$item] ) ) return 'select';
     elseif ( isset              ( $GLOBALS ['padDataStore']    [$item] ) ) return 'data';
     elseif ( padAppIncludeCheck ( $item                                ) ) return 'include';
     elseif ( padFieldCheck      ( $item                                ) ) return 'field';

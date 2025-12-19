@@ -162,6 +162,8 @@
     elseif ( $command == 'field'  )  $sql = 'select '        . $split[1] . ' limit 0,1';
     elseif ( $command == 'array'  )  $sql = 'select '        . $split[1];
 
+    $GLOBALS ['_SQL'] = $sql;
+    
     $query = mysqli_query ( $padSqlConnect , $sql );
 
     if ( ! $query )

@@ -22,4 +22,6 @@
   if ( ! isset ( $padLastPush ) ) $padLastPush = '';
   if ( ! isset ( $padLastPull ) ) $padLastPull = '';
 
+  $padPost = ( isset ( $_SERVER['REQUEST_METHOD'] ) and $_SERVER['REQUEST_METHOD'] == 'POST' );
+
 ?>
