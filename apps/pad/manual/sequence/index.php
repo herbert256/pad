@@ -7,7 +7,7 @@
   $concepts ['resume']     = 'Resume on a stored Sequence';
 
   if ( ! isset ( $concept ) )
-  	$concept = 'sequences';
+    $concept = 'sequences';
 
   $conceptTitle = ucfirst ($concept ) . ' - ' . $concepts [$concept];
 

@@ -1,10 +1,10 @@
 <?php
 
-	list ( $padSplitBefore, $padSplitAfter ) = padPipeSplit (  $padBetweenCheck );
+  list ( $padSplitBefore, $padSplitAfter ) = padPipeSplit (  $padBetweenCheck );
 
-	if ( $padSplitAfter ) {
-		$padBetweenCheck = $padSplitBefore;
-		$padPipeAfterSet = $padSplitAfter;
-	}
+  if ( $padSplitAfter ) {
+    $padBetweenCheck = $padSplitBefore;
+    $padPipeAfterSet = $padSplitAfter;
+  }
 
 ?>

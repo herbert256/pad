@@ -1,7 +1,7 @@
 <?php
 
-	$tag = 'def';
+  $tag = 'def';
 
-	return TRUE;
+  return TRUE;
 
 ?>

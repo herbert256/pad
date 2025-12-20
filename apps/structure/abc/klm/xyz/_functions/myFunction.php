@@ -1,5 +1,5 @@
 <?php
 
-	return $value . 'xyz';
+  return $value . 'xyz';
 
 ?>

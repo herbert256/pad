@@ -1,5 +1,5 @@
 <?php
 
-	return $value . 'def';
+  return $value . 'def';
 
 ?>
