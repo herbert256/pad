@@ -1,6 +1,5 @@
 <?php
 
-
   function padColorsFile ( $file ) {
 
     if (substr($file, -4) == '.pad')
@@ -9,7 +8,6 @@
       return padColorsHighLight ( fileGet ($file) ) ;
 
   }
-
 
   function padColorsHighLight ( $source ) {
 
@@ -22,7 +20,6 @@
 
   }
 
-
   function padColorsString ( $source ) {
 
     $source = str_replace ( '<pre>', '', $source );
@@ -31,7 +28,6 @@
     $source = str_replace ( '{close}', '}', $source );
     $source = str_replace ( '&lt;', '<', $source );
     $source = str_replace ( '&gt;', '>', $source );
-
 
     $source = str_replace ( '<!-- PAD: ABOVE -->',           '', $source );
     $source = str_replace ( '<!-- PAD: VERTICAL -->',        '', $source );
@@ -92,7 +88,6 @@ go: $end = strpos($source, '}');
 
   }
 
-
   function padColorsAt ( &$source ) {
 
    while ( padBetween ( $source, '@', '@', $before, $between, $after ) ) {
@@ -125,7 +120,6 @@ go: $end = strpos($source, '}');
 
   }
 
-
   function padColorsField ( &$source, $start, $end, $between ) {
 
     $options = padExplode($between, '|' );
@@ -144,7 +138,6 @@ go: $end = strpos($source, '}');
     $parts = padExplode ($between, '@', 2);
 
     if ( count ( $parts ) == 2 ) {
-
 
        $source = substr($source, 0, $start)
                 . '<b>&open;<font color="green">'
@@ -187,7 +180,6 @@ go: $end = strpos($source, '}');
 
   }
 
-
   function padColorsFieldOptions ( &$source, $start, $end, $between, $options ) {
 
     $parts = padExplode ( $options [0], ':', 2);
@@ -226,7 +218,6 @@ go: $end = strpos($source, '}');
     $source = str_replace ('@', '<font color="black"><b>@</b></font>', $source);
 
   }
-
 
   function padColorsTag ( &$source, $start, $end, $between, $words, $search ) {
 
@@ -274,6 +265,5 @@ go: $end = strpos($source, '}');
             . substr($source, $end+1);
 
   }
-
 
 ?>

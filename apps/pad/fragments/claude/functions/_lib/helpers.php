@@ -1,5 +1,5 @@
 <?php
-  // Sample data for function examples
+
   $sampleText = 'Hello World Example Text';
   $email = 'john.smith@example.com';
   $filePath = '/var/www/html/docs/readme.txt';

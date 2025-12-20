@@ -1,18 +1,5 @@
 <?php
 
-
-  /**
-   * Checks if a character sequence starts a variable token.
-   *
-   * Tests whether the next two characters indicate the beginning
-   * of a variable, including negative hex, alphanumeric, or
-   * path expressions with *.<>@ prefixes.
-   *
-   * @param string $next  The next character.
-   * @param string $next2 The character after next.
-   *
-   * @return bool TRUE if this starts a variable token.
-   */
   function padEvalParseStart ( $next, $next2 ) {
 
     if ( $next == '-' and ctype_xdigit($next2) )         return TRUE;
@@ -27,21 +14,6 @@
 
   }
 
-
-  /**
-   * Checks if a character is valid within a variable token.
-   *
-   * Tests whether the current character can continue as part of
-   * a variable name, including alphanumerics, underscores, colons,
-   * dots, and path navigation characters.
-   *
-   * @param string $one   Current character.
-   * @param string $next  Next character.
-   * @param string $next2 Character after next.
-   * @param string $prev  Previous character in result.
-   *
-   * @return bool TRUE if character is valid in variable.
-   */
   function padEvalParseValid ( $one, $next, $next2, $prev ) {
 
     if ( ctype_alpha($one) or ctype_digit($one) )                  return TRUE;
@@ -60,20 +32,6 @@
 
   }
 
-
-  /**
-   * Parses an eval expression string into tokens.
-   *
-   * Tokenizes the input expression into an array of [value, type]
-   * pairs. Handles strings (single/double quotes), variables ($),
-   * tags (&), options (#), hex literals, numbers, operators,
-   * parentheses, brackets, and pipes.
-   *
-   * @param array  &$result Output token array (modified in place).
-   * @param string $eval    The expression string to parse.
-   *
-   * @return void
-   */
   function padEvalParse (&$result, $eval ) {
 
     $result = [];

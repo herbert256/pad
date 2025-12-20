@@ -1,19 +1,5 @@
 <?php
 
-
-  /**
-   * Merges new content into true/false branches based on condition.
-   *
-   * Splits new content at {else} tag and merges appropriate part
-   * into the corresponding branch.
-   *
-   * @param string &$true     The true branch content.
-   * @param string &$false    The false branch content.
-   * @param string $new       New content to merge (may contain {else}).
-   * @param bool   $condition Which branch to merge into.
-   *
-   * @return void
-   */
   function padContentMerge ( &$true, &$false, $new, $condition ) {
 
     padContentElse ( $new, $newTrue, $newFalse ) ;
@@ -23,18 +9,6 @@
 
   }
 
-
-  /**
-   * Combines base and new content using @content@ or merge mode.
-   *
-   * If either content has @content@ placeholder, uses that for
-   * positioning. Otherwise uses merge option (top/bottom/replace).
-   *
-   * @param string $base The existing base content.
-   * @param string $new  The new content to merge.
-   *
-   * @return string The combined content.
-   */
   function padContentSet ( $base, $new ) {
 
     $check = padContentBeforeAfter ( $new,  $before, $after );
@@ -55,19 +29,6 @@
 
   }
 
-
-  /**
-   * Splits content at top-level {else} tag.
-   *
-   * Finds {else} that isn't nested inside other tags and splits
-   * content into before and after parts.
-   *
-   * @param string $input   The content to split.
-   * @param string &$before Output: Content before {else}.
-   * @param string &$after  Output: Content after {else}.
-   *
-   * @return void
-   */
   function padContentElse ( $input, &$before, &$after ) {
 
     $list = padOpenCloseList ( $input ) ;
@@ -90,19 +51,6 @@
 
   }
 
-
-  /**
-   * Splits content at top-level @content@ placeholder.
-   *
-   * Finds @content@ that isn't nested inside {content} tags
-   * and returns the before/after parts.
-   *
-   * @param string $input   The content to split.
-   * @param string &$before Output: Content before @content@.
-   * @param string &$after  Output: Content after @content@.
-   *
-   * @return bool TRUE if @content@ was found, FALSE otherwise.
-   */
   function padContentBeforeAfter ( $input, &$before, &$after ) {
 
     $pos = strpos ( $input, '@content@' );
@@ -122,6 +70,5 @@
     return FALSE;
 
   }
-
 
 ?>

@@ -1,15 +1,5 @@
 <?php
 
-
-  /**
-   * Finds level index for a tag name.
-   *
-   * Searches backwards through levels for matching tag.
-   *
-   * @param string $tag Tag name to find.
-   *
-   * @return int|false Level index or FALSE if not found.
-   */
   function padFindIdx ( $tag ) {
 
     global $pad, $padTag;
@@ -22,12 +12,6 @@
 
   }
 
-
-  /**
-   * Checks if currently inside include, get, page, or example tag.
-   *
-   * @return bool TRUE if nested inside one of these tags.
-   */
   function padInsideOther () {
 
     global $padTag, $pad;
@@ -43,14 +27,6 @@
 
   }
 
-
-  /**
-   * Handles start-and-close tag pattern.
-   *
-   * @param string $go Walk state to set.
-   *
-   * @return bool TRUE if pattern matched.
-   */
   function padStartAndClose ( $go ) {
 
     global $pad, $padWalk, $padPrmType;
@@ -64,17 +40,6 @@
 
   }
 
-
-  /**
-   * Sets global variable with level-scoped save/restore.
-   *
-   * Saves previous value to restore when level exits.
-   *
-   * @param string $name  Variable name.
-   * @param mixed  $value Value to set.
-   *
-   * @return void
-   */
   function padSetGlobalLvl ( $name, $value ) {
 
     if ( ! padValidVar($name) )
@@ -97,17 +62,6 @@
 
   }
 
-
-  /**
-   * Sets global variable with occurrence-scoped save/restore.
-   *
-   * Saves previous value to restore when occurrence ends.
-   *
-   * @param string $name  Variable name.
-   * @param mixed  $value Value to set.
-   *
-   * @return void
-   */
   function padSetGlobalOcc ( $name, $value ) {
 
     if ( ! padValidVar($name) )
@@ -130,12 +84,6 @@
 
   }
 
-
-  /**
-   * Restores globals saved at level start.
-   *
-   * @return void
-   */
   function padResetLvl () {
 
     global $pad, $padSaveLvl, $padDeleteLvl;
@@ -152,12 +100,6 @@
 
   }
 
-
-  /**
-   * Restores globals saved at occurrence start.
-   *
-   * @return void
-   */
   function padResetOcc () {
 
     global $pad, $padSaveOcc, $padDeleteOcc;
@@ -174,14 +116,6 @@
 
   }
 
-
-  /**
-   * Checks if tag has array data at any level.
-   *
-   * @param string $tag Tag name to check.
-   *
-   * @return bool TRUE if array exists.
-   */
   function padChkLevel ($tag) {
 
     global $padCurrent, $pad;
@@ -194,14 +128,6 @@
 
   }
 
-
-  /**
-   * Gets array data for tag from any level.
-   *
-   * @param string $tag Tag name to find.
-   *
-   * @return array|null Array data or null.
-   */
   function padGetLevelArray ($tag) {
 
     global $padCurrent, $pad;
@@ -212,15 +138,6 @@
 
   }
 
-
-  /**
-   * Gets tag parameter value with default.
-   *
-   * @param string $parm    Parameter name.
-   * @param mixed  $default Default value.
-   *
-   * @return mixed Parameter value or default.
-   */
   function padTagParm ($parm, $default='') {
 
     global $pad, $padPrm;
@@ -234,34 +151,16 @@
 
   }
 
-
-  /**
-   * Marks a parameter/option as processed.
-   *
-   * @param string $var Parameter name.
-   * @param mixed  $val Value to store.
-   *
-   * @return void
-   */
   function padDone ( $var, $val=TRUE ) {
 
     $GLOBALS ['padDone'] [$GLOBALS ['pad']] [$var] = $val;
 
   }
 
-
-  /**
-   * Checks if parameter was already processed.
-   *
-   * @param string $var Parameter name.
-   *
-   * @return bool TRUE if processed.
-   */
   function padIsDone ( $var ) {
 
     return isset ( $GLOBALS ['padDone'] [$GLOBALS ['pad']] [$var] );
 
   }
-
 
 ?>

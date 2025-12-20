@@ -1,6 +1,5 @@
 <?php
 
-
   function getPath ( $file ) {
 
     $file = realpath ( $file );
@@ -11,7 +10,6 @@
     return str_replace ('\\',  '/', $file );
 
   }
-
 
   function fileGet ( $file, $default='' ) {
 
@@ -33,7 +31,6 @@
     return ($contents === false) ? $default : $contents;
 
   }
-
 
   function filePut ( $dir, $file, $data, $append=0 ) {
 
@@ -69,7 +66,6 @@
     return TRUE;
 
   }
-
 
   function fileNew ( $file ) {
 
@@ -109,20 +105,17 @@
 
   }
 
-
   function filePutFile ( $dir, $file, $data ) {
 
     return filePut ( $dir, $file, $data, 0 );
 
   }
 
-
   function filePutLine ( $dir, $file, $data ) {
 
     return filePut ( $dir, $file, $data, 1 );
 
    }
-
 
   function fileDeleteDir ( $dir ) {
 
@@ -135,7 +128,6 @@
     return fileDeleteDirGo ( $dir . '/DATA/' );
 
   }
-
 
   function fileDeleteDirGo ( $dir ) {
 
@@ -171,6 +163,5 @@
     return TRUE;
 
   }
-
 
 ?>

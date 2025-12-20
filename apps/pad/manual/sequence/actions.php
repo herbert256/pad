@@ -33,5 +33,4 @@
   echo "{demo}{mySeq1 splice='3|5|mySeq2'} {\$sequence} {/mySeq1} {/demo}";
   echo "{/table}";
 
-
 ?>

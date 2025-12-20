@@ -1,16 +1,16 @@
 <?php
 
-  $padInfoTrack            = TRUE;       // Big Brother, session and request information of the client
-  $padInfoXml              = TRUE;       // Build a XML file of the structure of the PAD page
-  $padInfoStats            = TRUE;       // Keep runtime statistics about time and cpu used
-  $padInfoTrace            = TRUE;       // Trace the internal working of PAD
-  $padInfoXref             = TRUE;       // Build the <app>_Xref directorie
+  $padInfoTrack            = TRUE;
+  $padInfoXml              = TRUE;
+  $padInfoStats            = TRUE;
+  $padInfoTrace            = TRUE;
+  $padInfoXref             = TRUE;
 
-  $padInfoTrackFileRequest = TRUE;       // Request info in the data directory
-  $padInfoTrackFileData    = TRUE;       // Complete result page in the directory
-  $padInfoTrackDbSession   = TRUE;       // Session info in the PAD database
-  $padInfoTrackDbRequest   = TRUE;       // Request info in the PAD database
-  $padInfoTrackDbData      = TRUE;       // Complete result page in the PAD database
+  $padInfoTrackFileRequest = TRUE;
+  $padInfoTrackFileData    = TRUE;
+  $padInfoTrackDbSession   = TRUE;
+  $padInfoTrackDbRequest   = TRUE;
+  $padInfoTrackDbData      = TRUE;
 
   $padInfoXmlParms         = TRUE;
   $padInfoXmlTidy          = TRUE;

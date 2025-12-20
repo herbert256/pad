@@ -5,18 +5,15 @@
   $message = '';
   $error = '';
 
-  // Ensure data directory exists
   if ( ! is_dir ( DAT . 'demo' ) )
     @mkdir ( DAT . 'demo', 0755, TRUE );
 
-  // Load existing entries
   $entries = [];
   if ( file_exists ( $dataFile ) ) {
     $json = file_get_contents ( $dataFile );
     $entries = json_decode ( $json, TRUE ) ?: [];
   }
 
-  // Handle form submission
   if ( $_SERVER['REQUEST_METHOD'] == 'POST' && $action == 'add' ) {
     $name    = trim ( $name    ?? '' );
     $comment = trim ( $comment ?? '' );

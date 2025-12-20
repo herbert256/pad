@@ -1,7 +1,7 @@
 <?php
 
-	$tag = 'klm';
+	$tag = 'xyz';
 
 	return TRUE;
-	
+
 ?>

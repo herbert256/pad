@@ -1,24 +1,5 @@
 <?php
 
-
-  /**
-   * Executes a SQL query against the application database.
-   *
-   * Automatically connects on first call using configured credentials.
-   * Supports placeholder substitution and various result types based on
-   * the SQL command prefix (select, field, record, check, etc.).
-   *
-   * @param string $sql  The SQL query with {0}, {1}, etc. placeholders.
-   * @param array  $vars Values to substitute into placeholders.
-   *
-   * @return mixed Query result (array, string, int, or FALSE on error).
-   *
-   * @global resource $padSqlConnect  Application database connection.
-   * @global string   $padSqlHost     Database host.
-   * @global string   $padSqlUser     Database username.
-   * @global string   $padSqlPassword Database password.
-   * @global string   $padSqlDatabase Database name.
-   */
   function db ( $sql, $vars = [] ) {
 
     if ( ! function_exists ( 'mysqli_connect' ) )
@@ -33,24 +14,6 @@
 
   }
 
-
-  /**
-   * Executes a SQL query against the PAD framework database.
-   *
-   * Similar to db() but uses the PAD-specific database connection
-   * for framework internal data (sessions, cache, etc.).
-   *
-   * @param string $sql  The SQL query with {0}, {1}, etc. placeholders.
-   * @param array  $vars Values to substitute into placeholders.
-   *
-   * @return mixed Query result (array, string, int, or FALSE on error).
-   *
-   * @global resource $padSqlPadConnect  PAD database connection.
-   * @global string   $padSqlPadHost     PAD database host.
-   * @global string   $padSqlPadUser     PAD database username.
-   * @global string   $padSqlPadPassword PAD database password.
-   * @global string   $padSqlPadDatabase PAD database name.
-   */
   function padDb ( $sql, $vars = [] ) {
 
     if ( ! function_exists ( 'mysqli_connect' ) )
@@ -65,19 +28,6 @@
 
   }
 
-
-  /**
-   * Establishes a MySQL database connection.
-   *
-   * Creates a mysqli connection and sets TRADITIONAL SQL mode.
-   *
-   * @param string $host     Database server hostname.
-   * @param string $user     Database username.
-   * @param string $password Database password.
-   * @param string $database Database name.
-   *
-   * @return mysqli|false The connection handle, or FALSE on error.
-   */
   function padDbConnect ( $host, $user, $password, $database ) {
 
     $connect = mysqli_connect ( "$host" , $user , $password , $database );
@@ -91,28 +41,6 @@
 
   }
 
-
-  /**
-   * Core SQL query processor - handles placeholder substitution and execution.
-   *
-   * Processes SQL with placeholder substitution, executes the query, and returns
-   * results based on the command prefix:
-   * - 'field': Returns single value from first row
-   * - 'record': Returns first row as array
-   * - 'array'/'select': Returns all rows as array (keyed by 'id' if present)
-   * - 'check': Returns row count (used to check existence)
-   * - insert/update/delete: Returns affected rows or insert ID
-   *
-   * Placeholder formats: {0}, {1} for direct substitution; {1:32} to truncate to 32 chars.
-   *
-   * @param mysqli $padSqlConnect The database connection.
-   * @param string $sql           The SQL query with placeholders.
-   * @param array  $vars          Values to substitute into placeholders.
-   *
-   * @return mixed Query result based on command type.
-   *
-   * @global int $padDbRowsFound Number of rows affected/returned.
-   */
   function padDbPart2 ( $padSqlConnect, $sql, $vars ) {
 
     global $pad, $padDbRowsFound, $padPrm;
@@ -163,7 +91,7 @@
     elseif ( $command == 'array'  )  $sql = 'select '        . $split[1];
 
     $GLOBALS ['_SQL'] [] = $sql;
-    
+
     $query = mysqli_query ( $padSqlConnect , $sql );
 
     if ( ! $query )
@@ -215,6 +143,5 @@
     return $return;
 
   }
-
 
 ?>

@@ -14,7 +14,6 @@
 
   }
 
-
   if ( is_array ( $pqFixed ) and count ( $pqFixed ) )
      return $pqFixed [ array_rand ( $pqFixed, 1) ];
 

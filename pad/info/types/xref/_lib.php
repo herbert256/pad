@@ -1,6 +1,5 @@
 <?php
 
-
   function padInfoXref ( $dir1, $dir2, $dir3='' ) {
 
     if ( ! $GLOBALS ['padInfoXref'] )
@@ -24,7 +23,6 @@
 
   }
 
-
   function padInfoXrefGo ( $dir1, $dir2, $dir3 ) {
 
     global $padStartPage;
@@ -45,6 +43,5 @@
     filePutLine ( 'reference', "$file.txt", $padStartPage );
 
   }
-
 
 ?>

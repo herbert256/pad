@@ -1,19 +1,5 @@
 <?php
 
-
-  /**
-   * Processes array literal syntax in eval expressions.
-   *
-   * Finds matching array brackets (a-open/a-close), evaluates
-   * contents, and collapses to a VAL array token.
-   *
-   * @param array  &$result The token array (modified in place).
-   * @param string $myself  Current function name for recursion.
-   * @param int    $start   Start index for processing.
-   * @param int    $end     End index for processing.
-   *
-   * @return void
-   */
   function padEvalArray ( &$result, $myself, $start=0, $end=PHP_INT_MAX ) {
 
     $open = FALSE;
@@ -52,6 +38,5 @@
     }
 
   }
-
 
 ?>

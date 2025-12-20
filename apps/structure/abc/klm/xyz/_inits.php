@@ -1,5 +1,5 @@
 <?php
 
-  $inits = 'klm';
+  $inits = 'xyz';
 
 ?>

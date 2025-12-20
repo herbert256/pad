@@ -1,6 +1,5 @@
 <?php
 
-
   function diff ( $old, $new ) {
 
     $diff = Diff::toTable(Diff::compare($old,$new));
@@ -17,7 +16,6 @@
     return $diff;
 
   }
-
 
   function cut (&$content, $start, $end) {
 
@@ -44,6 +42,5 @@
     return '';
 
   }
-
 
 ?>

@@ -1,16 +1,16 @@
 <?php
 
-  $padInfoTrack            = FALSE;       // Big Brother, session and request information of the client
-  $padInfoXml              = FALSE;       // Build a XML file of the structure of the PAD page
-  $padInfoStats            = FALSE;       // Keep runtime statistics about time and cpu used
-  $padInfoTrace            = FALSE;       // Trace the internal working of PAD
-  $padInfoXref             = FALSE;       // Build the <app>_xref directory
+  $padInfoTrack            = FALSE;
+  $padInfoXml              = FALSE;
+  $padInfoStats            = FALSE;
+  $padInfoTrace            = FALSE;
+  $padInfoXref             = FALSE;
 
-  $padInfoTrackFileRequest = FALSE;       // Request info in the data directory
-  $padInfoTrackFileData    = FALSE;       // Complete result page in the directory
-  $padInfoTrackDbSession   = FALSE;       // Session info in the PAD database
-  $padInfoTrackDbRequest   = FALSE;       // Request info in the PAD database
-  $padInfoTrackDbData      = FALSE;       // Complete result page in the PAD database
+  $padInfoTrackFileRequest = FALSE;
+  $padInfoTrackFileData    = FALSE;
+  $padInfoTrackDbSession   = FALSE;
+  $padInfoTrackDbRequest   = FALSE;
+  $padInfoTrackDbData      = FALSE;
 
   $padInfoXmlParms         = FALSE;
   $padInfoXmlTidy          = FALSE;

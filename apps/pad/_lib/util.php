@@ -1,6 +1,5 @@
 <?php
 
-
   function getPage ( $page, $ignoreErrors=0, $include=1 ) {
 
     global $padHost, $padScript;
@@ -17,7 +16,6 @@
     return $curl;
 
   }
-
 
   function dirList ($dir) {
 
@@ -52,7 +50,6 @@
 
   }
 
-
   function padList () {
 
     $directory = new RecursiveDirectoryIterator (APP);
@@ -84,7 +81,6 @@
     return $files;
 
   }
-
 
   function padItems ( $source ) {
 
@@ -122,8 +118,6 @@
 
   }
 
-
-
   function padFileContains ( $file, $string ) {
 
     $file = str_replace ( '.php', '.pad', $file );
@@ -135,7 +129,6 @@
     return FALSE;
 
   }
-
 
   function padListFiltered () {
 
@@ -156,8 +149,5 @@
     return $list;
 
   }
-
-
-
 
 ?>

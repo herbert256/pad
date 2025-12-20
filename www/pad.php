@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! isset ( $padApp ) ) 
+  if ( ! isset ( $padApp ) )
     die ( "Variable \$padApp must be set.\n" );
 
   $padOS = strtolower ( substr ( php_uname ('s'), 0, 3 ) );

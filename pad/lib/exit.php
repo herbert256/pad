@@ -1,17 +1,5 @@
 <?php
 
-
-  /**
-   * Terminates PAD execution gracefully.
-   *
-   * Closes the session, clears output buffers, sends headers,
-   * runs info/end scripts, and then terminates. Handles errors
-   * during exit gracefully.
-   *
-   * @param int $stop HTTP status code (default 200).
-   *
-   * @return void Never returns - script terminates.
-   */
   function padExit ( $stop = 200 ) {
 
     set_error_handler ( 'padErrorThrow' );
@@ -34,18 +22,6 @@
 
   }
 
-
-  /**
-   * Main exit processing logic.
-   *
-   * Closes session, empties output buffers, sends HTTP headers,
-   * and runs info/end scripts. Delegates to padExitDouble if
-   * this is a recursive exit call.
-   *
-   * @param int $stop HTTP status code.
-   *
-   * @return void
-   */
   function padExitTry ( $stop ) {
 
     if ( padSecondTime ( 'exit' ) )
@@ -63,17 +39,6 @@
 
   }
 
-
-  /**
-   * Handles exceptions during exit processing.
-   *
-   * Attempts to log the error via padErrorGo. Silently ignores
-   * any errors that occur during error handling itself.
-   *
-   * @param Throwable $e The exception that occurred during exit.
-   *
-   * @return void
-   */
   function padExitCatch ( $e ) {
 
     set_error_handler ( 'padErrorThrow' );
@@ -84,26 +49,12 @@
 
     } catch (Throwable $e) {
 
-      // Ignore errors
-
     }
 
     restore_error_handler ();
 
   }
 
-
-  /**
-   * Handles recursive/double exit calls.
-   *
-   * When padExit is called while already exiting, this function
-   * handles the situation gracefully. On third exit attempt,
-   * forces immediate termination.
-   *
-   * @param int $stop HTTP status code.
-   *
-   * @return void
-   */
   function padExitDouble ( $stop ) {
 
     set_error_handler ( 'padErrorThrow' );
@@ -115,13 +66,10 @@
 
     } catch (Throwable $e) {
 
-      // Ignore errors
-
     }
 
     restore_error_handler ();
 
   }
-
 
 ?>

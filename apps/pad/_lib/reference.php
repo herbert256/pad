@@ -1,6 +1,5 @@
 <?php
 
-
   function getXref ( $dir, $xref,  ) {
 
     if ( ! $dir )

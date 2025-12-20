@@ -16,7 +16,7 @@
   $padRelations ['ticket_comments'] ['tickets']       = [ 'ticket_id' => 'id' ];
   $padRelations ['ticket_comments'] ['users']         = [ 'user_id'   => 'id' ];
 
-  $padSelect ['openBugs'] = [ 'base'  => "tickets", 
+  $padSelect ['openBugs'] = [ 'base'  => "tickets",
                               'where' => "`type`='bug' and `status`='open'",
                               'order' => "updated_at desc"
                             ];

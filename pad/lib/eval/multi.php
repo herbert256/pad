@@ -1,16 +1,5 @@
 <?php
 
-
-  /**
-   * Concatenates consecutive VAL tokens into one.
-   *
-   * When two adjacent tokens are both VAL (value) types and neither
-   * is an array, merges them by string concatenation into one token.
-   *
-   * @param array &$result The token array (modified in place).
-   *
-   * @return void
-   */
   function padEvalMulti( &$result ) {
 
     $previous = NULL;
@@ -34,6 +23,5 @@
     }
 
   }
-
 
 ?>

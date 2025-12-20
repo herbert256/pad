@@ -21,7 +21,7 @@
 
   if ( str_starts_with ( $padOpt [$pad] [0], '?' ) )
     include PAD . 'level/ternary.php';
-  
+
   if ( $padInfo )
     include PAD . 'events/type.php';
 
@@ -38,6 +38,5 @@
     $padContentData = include PAD . 'options/content.php';
     padContentMerge ( $padContent, $padFalse, $padContentData, $padHit [$pad] );
   }
-
 
 ?>

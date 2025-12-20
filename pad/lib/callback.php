@@ -1,20 +1,5 @@
 <?php
 
-
-  /**
-   * Executes a callback script with isolated variable scope.
-   *
-   * Backs up global variables that pass validation, includes the
-   * callback script, then restores/updates globals based on changes.
-   *
-   * @param string $padCallbackType The callback type (determines script file).
-   *
-   * @return void
-   *
-   * @global array $padOptionsCallback Callback configuration.
-   * @global mixed $padResult          Current result value.
-   * @global int   $pad                Current processing level.
-   */
   function padCallbackBeforeXxx ($padCallbackType) {
 
     global $padOptionsCallback, $padResult, $pad, $padPrm;
@@ -43,22 +28,6 @@
 
   }
 
-
-  /**
-   * Executes row callback with $row available in scope.
-   *
-   * Similar to padCallbackBeforeXxx but specifically handles the
-   * 'row' variable - backs it up, makes it available to callback,
-   * and preserves modifications.
-   *
-   * @param mixed &$padRowParm The row data (passed by reference).
-   *
-   * @return void
-   *
-   * @global array $padOptionsCallback Callback configuration.
-   * @global mixed $padResult          Current result value.
-   * @global int   $pad                Current processing level.
-   */
   function padCallbackBeforeRow ( &$padRowParm ) {
 
     global $padOptionsCallback, $padResult, $pad, $padPrm;

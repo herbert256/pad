@@ -1,16 +1,5 @@
 <?php
 
-
-  /**
-   * Main debug dump entry point.
-   *
-   * Outputs diagnostic information on error, then exits with HTTP 500.
-   * Delegates to padDumpTry with error handling wrapper.
-   *
-   * @param string $error Optional error message to display.
-   *
-   * @return void Exits script after output.
-   */
   function padDump ( $error='' ) {
 
     set_error_handler ( 'padErrorThrow' );
@@ -31,17 +20,6 @@
 
   }
 
-
-  /**
-   * Outputs debug information based on context.
-   *
-   * Clears output buffers, closes HTML tags, then routes to
-   * console, local, or remote dump handler based on output type.
-   *
-   * @param string $info The error/info message to display.
-   *
-   * @return void
-   */
   function padDumpTry ( $info ) {
 
     if ( ! headers_sent () )
@@ -62,8 +40,6 @@
 
   }
 
-
-  /** Outputs error to console with directory dump. */
   function padDumpConsole ( $info ) {
 
     echo padMakeSafe ("Error: $info", 100);
@@ -73,8 +49,6 @@
 
   }
 
-
-  /** Outputs full debug dump for local development. */
   function padDumpLocal ( $info ) {
 
     padDumpFields    ( $php, $lvl, $cfg, $pad, $ids, $trc, $pq );
@@ -99,17 +73,11 @@
     padDumpSQL       ();
     padDumpHeaders   ();
     padDumpLines     ( 'Configuration', $cfg );
-    //padDumpLines     ( 'PHP', $php );
-    //padDumpFiles     ();
-    //padDumpFunctions ();
-    //padDumpGlobals   ();
 
     echo ( "</pre></div>" );
 
   }
 
-
-  /** Outputs minimal error info for remote/production. */
   function padDumpRemote ( $info ) {
 
     if ( ! isset ( $GLOBALS ['padDumpToDirDone'] ) )
@@ -118,7 +86,6 @@
     echo "Error: " . padID ();
 
   }
-
 
   function padDumpInfo ( $info ) {
 
@@ -129,7 +96,6 @@
       echo ( "<hr><b>" . htmlentities($info) . "</b><hr><br>" );
 
   }
-
 
   function padDumpCurl ( &$pad ) {
 
@@ -142,7 +108,6 @@
     }
 
   }
-
 
   function padDumpStack () {
 
@@ -158,7 +123,6 @@
     padDumpStackGo ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS), 1 );
 
   }
-
 
   function padDumpStackGo ( $stack, $flag=0 ) {
 
@@ -186,7 +150,6 @@
 
   }
 
-
   function padDumpXXX (&$pad, $prefix) {
 
     $wrk = [];
@@ -205,7 +168,6 @@
 
   }
 
-
   function padDumpSQL () {
 
     if ( isset ( $GLOBALS ['padSqlConnect'     ] ) )
@@ -215,7 +177,6 @@
       padDumpLines ('MySQL-pad', $GLOBALS ['padSqlPadConnect']  );
 
   }
-
 
   function padDumpHeaders () {
 
@@ -233,14 +194,12 @@
 
   }
 
-
   function padDumpRequest () {
 
     if ( isset ( $_REQUEST ) and count ( $_REQUEST ) )
       padDumpLines ('Request variables', $_REQUEST);
 
   }
-
 
   function padDumpLevel () {
 
@@ -256,7 +215,6 @@
     }
 
   }
-
 
   function padDumpGetLevel ($pad)  {
 
@@ -282,7 +240,6 @@
 
   }
 
-
   function padDumpGlobals ( ) {
 
     echo ( "\n<b>GLOBALS</b>\n");
@@ -290,7 +247,6 @@
     echo htmlentities ( print_r ( $GLOBALS, TRUE ) );
 
   }
-
 
   function padDumpFunctions () {
 
@@ -300,20 +256,17 @@
 
   }
 
-
   function padDumpFiles () {
 
     padDumpLines ( 'Included files', get_included_files () );
 
   }
 
-
   function padDumpPhpInfo () {
 
      phpinfo();
 
   }
-
 
   function padDumpClean ( &$array ) {
 
@@ -324,7 +277,6 @@
         $array [$key] = padDumpShort ($value);
 
   }
-
 
   function padDumpShort ($G) {
 
@@ -338,7 +290,6 @@
 
   }
 
-
   function padDumpInput ( ) {
 
     padDumpLines ( 'Input', file_get_contents ('php://input') );
@@ -347,10 +298,7 @@
 
   function padDumpBuffer ( ) {
 
-    #padDumpLines ( 'Output buffer', $GLOBALS ['padBuffer'] );
-
   }
-
 
   function padDumpApp () {
 
@@ -365,7 +313,6 @@
     padDumpLines ( 'App variables', $app );
 
   }
-
 
   function padDumpLines ( $info, $source ) {
 
@@ -399,7 +346,6 @@
     }
 
   }
-
 
   function padDumpFields ( &$php, &$lvl, &$cfg, &$pad, &$ids, &$inf, &$pq ) {
 
@@ -460,18 +406,6 @@
 
   }
 
-
-  /**
-   * Writes debug dump to filesystem directory.
-   *
-   * Creates dump files in DATA/dumps/ with stack trace, variables,
-   * headers, SQL info, and other diagnostic data.
-   *
-   * @param string $info Error message to include.
-   * @param string $dir  Custom directory path (optional).
-   *
-   * @return string The directory path where dump was written.
-   */
   function padDumpToDir ( $info='', $dir='' ) {
 
     if ( ! $dir )
@@ -506,7 +440,6 @@
 
   }
 
-
   function padDumpToDirDone ( $info, $dir, $done ) {
 
     set_error_handler ( 'padErrorThrow' );
@@ -517,14 +450,11 @@
 
     } catch (Throwable $e ) {
 
-      // Ignore errors
-
     }
 
     restore_error_handler ();
 
   }
-
 
   function padDumpToDirGo ( $info ) {
 
@@ -561,7 +491,6 @@
 
   }
 
-
   function padDumpToDirCatch ( $info, $e, $dir ) {
 
     set_error_handler ( 'padErrorThrow' );
@@ -583,7 +512,6 @@
 
   }
 
-
   function padDumpToDirCatchCatch ( $info, $e1, $e2 ) {
 
     set_error_handler ( 'padErrorThrow' );
@@ -598,14 +526,11 @@
 
     } catch (Throwable $e2) {
 
-      // giving up
-
     }
 
     restore_error_handler ();
 
   }
-
 
   function padDumpFile ( $file, $txt ) {
 
@@ -615,7 +540,6 @@
     padFilePut ( "$dir/$file.html", "<pre>$txt</pre>" );
 
   }
-
 
   function padDumpInputToFile () {
 
@@ -628,6 +552,5 @@
     padFilePut ( $GLOBALS ['padDumpToDirDone'] . "/input.$type", $txt );
 
   }
-
 
 ?>

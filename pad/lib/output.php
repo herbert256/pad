@@ -1,22 +1,5 @@
 <?php
 
-
-  /**
-   * Sends final web output to client.
-   *
-   * Handles gzip compression based on cache and client settings,
-   * sends headers, outputs content, and finishes request.
-   *
-   * @param int $stop HTTP status code.
-   *
-   * @return void
-   *
-   * @global string $padOutput          The output content.
-   * @global bool   $padSent            Whether output was already sent.
-   * @global bool   $padGzip            Whether gzip is enabled.
-   * @global bool   $padClientGzip      Whether client accepts gzip.
-   * @global bool   $padCacheServerGzip Whether cached content is gzipped.
-   */
   function padWebSend ( $stop ) {
 
     if ( ! $GLOBALS ['padOutput']       ) return;
@@ -60,21 +43,6 @@
 
   }
 
-  /**
-   * Sets HTTP headers for file download.
-   *
-   * Configures Content-Type, Transfer-Encoding, Disposition,
-   * and Length headers for file downloads.
-   *
-   * @param string $contentType The MIME type of the file.
-   * @param string $fileName    The filename for Content-Disposition.
-   * @param int    $length      The content length in bytes.
-   *
-   * @return void
-   *
-   * @global bool $padSent Whether content was already sent.
-   * @global int  $padStop Current HTTP status code.
-   */
   function padDownLoadHeaders ( $contentType, $fileName, $length ) {
 
     global $padSent, $padStop;
@@ -92,19 +60,6 @@
 
   }
 
-  /**
-   * Sends HTTP response headers.
-   *
-   * Dispatches to padWebNoHeaders or padWebPadHeaders based
-   * on configuration. Prevents duplicate header sending.
-   *
-   * @param int $stop HTTP status code.
-   *
-   * @return void
-   *
-   * @global bool $padWebNoHeaders Skip PAD-specific headers.
-   * @global bool $padSent         Whether output was sent.
-   */
   function padWebHeaders ( $stop ) {
 
     global $padWebNoHeaders, $padSent;
@@ -119,33 +74,12 @@
 
   }
 
-
-  /**
-   * Sets only the HTTP response code.
-   *
-   * Minimal header output without PAD-specific headers.
-   *
-   * @param int $stop HTTP status code.
-   *
-   * @return void
-   */
   function padWebNoHeaders ( $stop ) {
 
     http_response_code ($stop);
 
   }
 
-
-  /**
-   * Sends full PAD HTTP headers.
-   *
-   * Includes PAD identification, stats, content type, length,
-   * encoding, and cache control headers.
-   *
-   * @param int $stop HTTP status code.
-   *
-   * @return void
-   */
   function padWebPadHeaders ( $stop ) {
 
     padHeader       ('PAD: ' . $GLOBALS ['padSesID'] . '-' . $GLOBALS ['padReqID']);
@@ -168,18 +102,6 @@
 
   }
 
-
-  /**
-   * Adds PAD-Stats header with performance info.
-   *
-   * Includes stats JSON in response header if info mode is
-   * enabled and stats collection is active.
-   *
-   * @return void
-   *
-   * @global bool   $padInfo      Whether info mode is enabled.
-   * @global bool   $padInfoStats Whether stats collection is active.
-   */
   function padWebStats () {
 
     if ( ! $GLOBALS ['padInfo']      ) return;
@@ -193,20 +115,6 @@
 
   }
 
-
-  /**
-   * Sends HTTP caching headers.
-   *
-   * Sets Cache-Control, Vary, Date, Expires, and Etag headers
-   * based on client and proxy cache age settings.
-   *
-   * @return void
-   *
-   * @global int    $padCacheClientAge Client cache max age.
-   * @global int    $padCacheProxyAge  Proxy cache max age.
-   * @global int    $padTime           Response generation time.
-   * @global string $padEtag           Entity tag for caching.
-   */
   function padWebCacheHeaders () {
 
     if ( $GLOBALS ['padCacheClientAge'] )
@@ -234,6 +142,5 @@
     padHeader ('Etag: '          . '"' . $GLOBALS ['padEtag'] . '"');
 
   }
-
 
 ?>

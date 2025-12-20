@@ -1,14 +1,5 @@
 <?php
 
-
-  /**
-   * Validates that open/close tags are balanced after a point.
-   *
-   * @param string $string Template content.
-   * @param string $check  Point to check from.
-   *
-   * @return bool TRUE if tags are balanced.
-   */
   function padOpenCloseOk ( $string, $check) {
 
     if ( strpos ( $string, $check ) === FALSE )
@@ -22,14 +13,6 @@
 
   }
 
-
-  /**
-   * Extracts list of closing tags from template string.
-   *
-   * @param string $string Template content.
-   *
-   * @return array Tag names found as closing tags.
-   */
   function padOpenCloseList ( $string ) {
 
     $tags = [];
@@ -60,15 +43,6 @@
 
   }
 
-
-  /**
-   * Verifies all tags in list are balanced.
-   *
-   * @param string $string Template content.
-   * @param array  $tags   Tag names to check.
-   *
-   * @return bool TRUE if all balanced.
-   */
   function padOpenCloseCount ( $string, $tags ) {
 
    foreach ( $tags as $tag => $dummy )
@@ -79,15 +53,6 @@
 
   }
 
-
-  /**
-   * Checks if single tag is balanced (opens equal closes).
-   *
-   * @param string $string Template content.
-   * @param string $tag    Tag name to check.
-   *
-   * @return bool TRUE if balanced.
-   */
   function padOpenCloseCountOne ( $string, $tag ) {
 
     if ( ( substr_count($string, '{'.$tag.' ' ) + substr_count($string, '{'.$tag.'}' ) )
@@ -99,32 +64,12 @@
 
   }
 
-
-  /**
-   * Checks if tag opens and closes are balanced.
-   *
-   * @param string $tag    Tag name.
-   * @param string $string Template content.
-   *
-   * @return bool TRUE if balanced.
-   */
   function padCheckTag ($tag, $string) {
 
     return ( substr_count($string, "{".$tag.' ') == substr_count($string, "{/" . $tag.'}') ) ;
 
   }
 
-
-  /**
-   * Splits string into before and after parts.
-   *
-   * @param string $needle   Delimiter.
-   * @param string $haystack String to split.
-   * @param string &$before  Receives part before delimiter.
-   * @param string &$after   Receives part after delimiter.
-   *
-   * @return void
-   */
   function padSplit ( $needle, $haystack, &$before, &$after ) {
 
     $array = explode ( $needle, $haystack, 2 );
@@ -134,19 +79,6 @@
 
   }
 
-
-  /**
-   * Extracts text between delimiters.
-   *
-   * @param string $string  Input string.
-   * @param string $open    Opening delimiter.
-   * @param string $close   Closing delimiter.
-   * @param string &$before Receives text before open.
-   * @param string &$between Receives text between delimiters.
-   * @param string &$after  Receives text after close.
-   *
-   * @return bool TRUE if delimiters found.
-   */
   function padBetween ( $string, $open, $close, &$before, &$between, &$after ) {
 
     $before = $between = $after = '';
@@ -171,18 +103,6 @@
 
   }
 
-
-  /**
-   * Splits string by delimiter with entity restoration.
-   *
-   * Restores escaped entities (&pipe;, &eq;, &comma;) after split.
-   *
-   * @param string $haystack String to split.
-   * @param string $limit    Delimiter character.
-   * @param int    $number   Max parts (0 = unlimited).
-   *
-   * @return array Array of trimmed parts.
-   */
   function padExplode ( $haystack, $limit, $number=0 ) {
 
     if ($number)
@@ -207,17 +127,6 @@
 
   }
 
-
-  /**
-   * Sanitizes input for safe logging/display.
-   *
-   * Removes control characters and truncates to length.
-   *
-   * @param mixed $input Input value.
-   * @param int   $len   Maximum length.
-   *
-   * @return string Sanitized string.
-   */
   function padMakeSafe ( $input, $len=2048 ) {
 
     if ( is_array($input) or is_object($input) )
@@ -235,15 +144,6 @@
 
   }
 
-
-  /**
-   * Creates numeric range from string notation.
-   *
-   * @param string $input     Range string (e.g., "1..10").
-   * @param int    $increment Step value.
-   *
-   * @return array Numeric range array.
-   */
   function padGetRange ( $input, $increment=1 ) {
 
     $parts = padExplode ($input, '..');
@@ -260,14 +160,6 @@
 
   }
 
-
-  /**
-   * Parses semicolon-separated list, converting numeric strings.
-   *
-   * @param string $list Semicolon-separated values.
-   *
-   * @return array Parsed list.
-   */
   function padGetList ( $list ) {
 
     $list = explode ( ';', $list );
@@ -279,6 +171,5 @@
     return $list;
 
   }
-
 
 ?>

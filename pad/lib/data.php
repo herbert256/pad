@@ -1,19 +1,5 @@
 <?php
 
-
-  /**
-   * Normalizes input data into PAD's standard array format.
-   *
-   * Converts various input types (null, bool, array, object,
-   * string) into the nested array structure expected by PAD
-   * for data iteration.
-   *
-   * @param mixed  $input The input data to normalize.
-   * @param string $type  Content type hint (auto-detected if empty).
-   * @param string $name  Field name for wrapping simple arrays.
-   *
-   * @return array Normalized data array for PAD processing.
-   */
   function padData ( $input, $type='', $name='' ) {
 
     if     ( $input === NULL           ) $data = [];
@@ -49,18 +35,6 @@
 
   }
 
-
-  /**
-   * Wraps simple (non-nested) arrays into standard data format.
-   *
-   * If array contains no nested arrays, wraps each value in a
-   * sub-array with the field name as key.
-   *
-   * @param array  $data The data array to check.
-   * @param string $name The field name to use for wrapping.
-   *
-   * @return array The processed data array.
-   */
   function padDataChkSimpleArray ($data,$name) {
 
     $result = $data;
@@ -80,18 +54,6 @@
 
   }
 
-
-  /**
-   * Converts sequential numeric arrays to nested data format.
-   *
-   * If inner arrays are sequential numeric (0,1,2...) with scalar
-   * values, converts them to named sub-arrays.
-   *
-   * @param array  $data The data array to check.
-   * @param string $name The field name to use for nesting.
-   *
-   * @return array The processed data array.
-   */
   function padDataChkCheckArray ($data,$name) {
 
     $result = $data;
@@ -118,18 +80,6 @@
 
   }
 
-
-  /**
-   * Wraps a single record into array format.
-   *
-   * If data contains scalar values at top level (single record),
-   * wraps it in an outer array with index 0.
-   *
-   * @param array  $data The data array to check.
-   * @param string $name The field name (unused).
-   *
-   * @return array The processed data array.
-   */
   function padDataChkCheckRecord ($data,$name) {
 
     $result = $data;
@@ -147,18 +97,6 @@
 
   }
 
-
-  /**
-   * Unwraps single-element arrays with sequential inner keys.
-   *
-   * If data has single element containing sequential numeric
-   * array, promotes inner array to top level.
-   *
-   * @param array  $data The data array to check.
-   * @param string $name The field name (unused).
-   *
-   * @return array The processed data array.
-   */
   function padDataChkChkOne ($data,$name) {
 
     $result = $data;
@@ -185,18 +123,6 @@
 
   }
 
-
-  /**
-   * Promotes 'attr' sub-arrays to parent level.
-   *
-   * Recursively finds arrays with 'attr' key and merges their
-   * contents up to parent level (XML attribute handling).
-   *
-   * @param array  $data The data array to process.
-   * @param string $name The field name (unused).
-   *
-   * @return array The processed data array.
-   */
   function padDataChkDataAttr ($data,$name) {
 
     $result = $data;
@@ -214,21 +140,6 @@
 
   }
 
-
-  /**
-   * Resolves the field name to use for data operations.
-   *
-   * Checks explicit name, tag parameters, forced name, or
-   * falls back to tag name. Strips leading $ if present.
-   *
-   * @param string $name Explicit name to use if provided.
-   *
-   * @return string The resolved field name.
-   *
-   * @global int   $pad    Current processing level.
-   * @global array $padPrm Tag parameters per level.
-   * @global array $padTag Tag names per level.
-   */
   function padDataName ($name) {
 
     global $pad, $padPrm, $padTag, $padName, $padForceDataName;
@@ -246,6 +157,5 @@
     return $return;
 
   }
-
 
 ?>

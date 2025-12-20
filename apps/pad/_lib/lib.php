@@ -1,6 +1,5 @@
 <?php
 
-
   function sequenceDir ( $dir )  {
 
     $out = [];
@@ -13,7 +12,6 @@
     return array_values ( $out );
 
   }
-
 
   function getExtra ( $base ) {
 
@@ -29,7 +27,6 @@
     return $array;
 
   }
-
 
   function getExtraFiles ($dir) {
 
@@ -57,7 +54,6 @@
 
   }
 
-
   function onlyResult ( $file ) {
 
     $pad = ( file_exists( $file ) ) ? fileGet( $file ) : '';
@@ -82,6 +78,5 @@
       return 'horizontal';
 
   }
-
 
 ?>

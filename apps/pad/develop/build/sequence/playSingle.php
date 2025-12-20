@@ -1,8 +1,5 @@
 <?php
 
-  # if ( $type == 'random' or $build == 'fixed' or $build == 'order' )
-  #  return;
-
   $main = ( $type == 'even') ? 'odd' : 'even';
 
   $space1 = str_repeat ( ' ', strlen ( $main ) );

@@ -7,7 +7,6 @@
   $formTitle = '';
   $formContent = '';
 
-  // Load existing article for editing
   if ($edit && db("CHECK news WHERE id = {0}", [$edit])) {
     $title = 'Edit News';
     $formTitle = db("FIELD title FROM news WHERE id = {0}", [$edit]);

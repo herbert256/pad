@@ -1,5 +1,5 @@
 <?php
 
-  $exits = 'klm';
+  $exits = 'xyz';
 
 ?>

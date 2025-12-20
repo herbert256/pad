@@ -1,6 +1,6 @@
 <?php
 
-  $padInfoTrace            = TRUE;       // Trace the internal working of PAD
+  $padInfoTrace            = TRUE;
 
   $padInfoTraceLines       = TRUE;
   $padInfoTraceDouble      = FALSE;

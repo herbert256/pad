@@ -1,13 +1,5 @@
 <?php
 
-
-  /**
-   * Tidies an XML file in place using PHP tidy extension.
-   *
-   * @param string $file Path to the XML file.
-   *
-   * @return void
-   */
   function padFileXmlTidy ( $file ) {
 
     $options = [
@@ -43,16 +35,6 @@
 
   }
 
-
-  /**
-   * Processes output string, replacing placeholders.
-   *
-   * Replaces @pad@ with base URL and @self@ with current page URL.
-   *
-   * @param string $output The output string to process.
-   *
-   * @return string Processed output.
-   */
   function padOutput ( $output ) {
 
     global $padGo, $padPage;
@@ -66,15 +48,6 @@
 
   }
 
-
-  /**
-   * Tidies HTML content using PHP tidy extension.
-   *
-   * @param string $data     HTML content.
-   * @param bool   $fragment If TRUE, output body only.
-   *
-   * @return string Tidied HTML.
-   */
   function padTidy ( $data, $fragment=FALSE ) {
 
     $config = $GLOBALS ['padTidyConfig'];
@@ -98,14 +71,6 @@
 
   }
 
-
-  /**
-   * Sends HTTP header if not already sent.
-   *
-   * @param string $header Header string.
-   *
-   * @return void
-   */
   function padHeader ($header) {
 
     if ( headers_sent () )
@@ -117,14 +82,6 @@
 
   }
 
-
-  /**
-   * Clears all output buffers and captures content.
-   *
-   * @param string &$output Receives concatenated buffer contents.
-   *
-   * @return void
-   */
   function padEmptyBuffers ( &$output ) {
 
     $output = '';
@@ -146,12 +103,6 @@
 
   }
 
-
-  /**
-   * Verifies output buffers are empty, errors if not.
-   *
-   * @return void
-   */
   function padCheckBuffers () {
 
     padEmptyBuffers ( $output );
@@ -160,6 +111,5 @@
       return padError ( "Illegal output: '$output'" );
 
   }
-
 
 ?>

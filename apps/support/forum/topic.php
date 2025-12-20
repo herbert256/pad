@@ -5,10 +5,8 @@
 
   $title = db("FIELD title FROM forum_topics WHERE id = {0}", [$id]);
 
-  // Increment view count
   db("UPDATE forum_topics SET views = views + 1 WHERE id = {0}", [$id]);
 
-  // Handle new reply
   if ($padPost && $action == 'reply') {
     if (!$user_id) {
       $error = 'You must be logged in to reply';

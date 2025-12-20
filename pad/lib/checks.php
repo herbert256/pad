@@ -1,13 +1,5 @@
 <?php
 
-
-  /**
-   * Checks if content name exists in store or app.
-   *
-   * @param string $content Content name to check.
-   *
-   * @return bool TRUE if content exists.
-   */
   function padContent ( $content ) {
 
     if ( padStoreCheck      ( $content ) ) return TRUE;
@@ -17,41 +9,20 @@
 
   }
 
-
-  /**
-   * Checks if a store name exists in content store.
-   *
-   * @param string $store Store name to check.
-   *
-   * @return bool TRUE if store exists.
-   */
   function padStoreCheck ( $store ) {
 
     return isset ( $GLOBALS ['padContentStore'] [$store] );
 
   }
 
-
-  /** Checks if page exists in app. @see padAppCheck */
   function padAppPageCheck     ( $check ) { return padAppCheck ( $check              ); }
 
-  /** Checks if include exists in app. @see padAppCheck */
   function padAppIncludeCheck  ( $check ) { return padAppCheck ( "_include/$check"   ); }
 
-  /** Checks if custom tag exists in app. @see padAppCheck */
   function padAppTagCheck      ( $check ) { return padAppCheck ( "_tags/$check"      ); }
 
-  /** Checks if custom function exists in app. @see padAppCheck */
   function padAppFunctionCheck ( $check ) { return padAppCheck ( "_functions/$check" ); }
 
-
-  /**
-   * Checks if a .pad or .php file exists in app directories.
-   *
-   * @param string $check Path relative to app directory.
-   *
-   * @return string|false Relative path if found, FALSE otherwise.
-   */
   function padAppCheck ( $check ) {
 
     foreach ( padDirs () as $value )
@@ -62,28 +33,12 @@
 
   }
 
-
-  /**
-   * Checks if .pad or .php file exists at given path.
-   *
-   * @param string $check Base path without extension.
-   *
-   * @return bool TRUE if .pad or .php exists.
-   */
   function padCheck ( $check ) {
 
      return  ( file_exists ( "$check.pad" ) or file_exists ( "$check.php" ) ) ;
 
   }
 
-
-  /**
-   * Checks if script files exist in _scripts directory.
-   *
-   * @param string $check Script name prefix.
-   *
-   * @return string|null Glob pattern if found.
-   */
   function padScriptCheck ( $check ) {
 
     foreach ( padDirs () as $value )
@@ -91,7 +46,6 @@
         return APP2 . $value . "_scripts/$check*";
 
   }
-  
 
   function padCallBackCheck ( $check ) {
 
@@ -99,34 +53,23 @@
       $check .= '.php';
 
     foreach ( padDirs () as $value )
-      if ( file_exists ( APP2 . $value . "_callbacks/$check" ) ) 
+      if ( file_exists ( APP2 . $value . "_callbacks/$check" ) )
         return APP2 . $value . "_callbacks/$check";
 
     return FALSE;
 
   }
 
-
   function padOptionCheck ( $check ) {
 
     foreach ( padDirs () as $value )
-      if ( file_exists ( APP2 . $value . "_options/$check.php" ) ) 
+      if ( file_exists ( APP2 . $value . "_options/$check.php" ) )
         return APP2 . $value . "_options/$check.php";
 
     return FALSE;
 
   }
 
-
-  /**
-   * Detects content type from content string.
-   *
-   * Returns: list, json, yaml, xml, pad, html, range, curl, file, or csv.
-   *
-   * @param string &$content Content string (may be modified).
-   *
-   * @return string Content type identifier.
-   */
   function padContentType ( &$content ) {
 
     $content = trim ( $content );
@@ -199,16 +142,6 @@
 
   }
 
-
-  /**
-   * Checks if field name is valid for app storage.
-   *
-   * Rejects pad*, pq*, and PHP superglobals.
-   *
-   * @param string $fld Field name.
-   *
-   * @return bool TRUE if valid for storage.
-   */
   function padValidStore ($fld) {
 
     if ( substr($fld, 0,3) == 'pad' )
@@ -224,14 +157,6 @@
 
   }
 
-
-  /**
-   * Checks if field is internal PAD variable (non-storable).
-   *
-   * @param string $field Field name.
-   *
-   * @return bool TRUE if internal PAD variable.
-   */
   function padStrPad ( $field ) {
 
     if ( str_starts_with ( $field, 'pad' ) or str_starts_with ( $field, 'pq' ) )
@@ -245,20 +170,11 @@
 
   }
 
-
-  /**
-   * Checks if character is valid as first char of identifier.
-   *
-   * @param string $char Single character.
-   *
-   * @return bool TRUE if alphabetic.
-   */
   function padValidFirstChar ($char) {
 
     if ( ctype_alpha ( $char) ) return TRUE;
     else                        return FALSE;
 
   }
-
 
 ?>

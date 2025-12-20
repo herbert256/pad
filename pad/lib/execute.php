@@ -1,13 +1,5 @@
 <?php
 
-
-  /**
-   * Executes PAD template code and returns result.
-   *
-   * @param string $padStrCod PAD template code to execute.
-   *
-   * @return mixed Execution result.
-   */
   function padCode ( $padStrCod ) {
 
     $GLOBALS ['padStrBox'] = FALSE;
@@ -19,14 +11,6 @@
 
   }
 
-
-  /**
-   * Executes PAD code in sandbox mode with isolated scope.
-   *
-   * @param string $padStrCod PAD template code to execute.
-   *
-   * @return mixed Execution result.
-   */
   function padSandbox ( $padStrCod ) {
 
     $GLOBALS ['padStrBox'] = TRUE;
@@ -38,34 +22,12 @@
 
   }
 
-
-  /**
-   * Executes PAD code as a function with custom settings.
-   *
-   * @param string $padStrCod PAD template code.
-   * @param bool   $padStrBox Sandbox mode flag.
-   * @param bool   $padStrRes Reset flag.
-   * @param bool   $padStrCln Clean flag.
-   * @param string $padStrFun Function name.
-   *
-   * @return mixed Execution result.
-   */
   function padStrFun (  $padStrCod, $padStrBox, $padStrRes, $padStrCln, $padStrFun ) {
 
     return include PAD . 'start/function.php';
 
   }
 
-
-  /**
-   * Executes a function using the eval/type system.
-   *
-   * @param string $name   Function name.
-   * @param string $myself Caller identifier.
-   * @param array  $parm   Function parameters.
-   *
-   * @return mixed Function result.
-   */
   function padFunctionAsTag ( $name, $myself, $parm ) {
 
     $k = 100;
@@ -90,16 +52,6 @@
 
   }
 
-
-  /**
-   * Executes a tag as if it were a function call.
-   *
-   * @param string $tag   Tag name.
-   * @param string $value Content between tags.
-   * @param array  $parms Tag parameters.
-   *
-   * @return mixed Tag result.
-   */
   function padTagAsFunction ( $tag, $value, $parms ) {
 
     $extra = '';
@@ -113,6 +65,5 @@
     return padCode ( '{' . $tag . $extra . '}' . $value . '{/' . $tag . '}' );
 
   }
-
 
 ?>

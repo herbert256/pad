@@ -4,18 +4,15 @@
   $dataFile = DAT . 'demo/todos.json';
   $message = '';
 
-  // Ensure data directory exists
   if ( ! is_dir ( DAT . 'demo' ) )
     @mkdir ( DAT . 'demo', 0755, TRUE );
 
-  // Load existing todos
   $todos = [];
   if ( file_exists ( $dataFile ) ) {
     $json = file_get_contents ( $dataFile );
     $todos = json_decode ( $json, TRUE ) ?: [];
   }
 
-  // Handle form submissions
   if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) switch ( $action ?? '' ) {
 
     case 'add':

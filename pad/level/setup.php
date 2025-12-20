@@ -80,7 +80,7 @@
   $padForceDataName = '';
   $padFalse         = '';
   $padNextPadLevel = 0;
-  
+
   if ( $padInfo )
     include PAD . 'events/setup.php';
 

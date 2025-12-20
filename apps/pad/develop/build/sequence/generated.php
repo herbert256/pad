@@ -2,12 +2,9 @@
 
   if ( $parm or $type == 'gould' or $type == 'range'
     or file_exists ( "sequence/types/$type/fixed.php" )
-   # or file_exists ( "sequence/types/$type/bool.php" )
+
   )
     return;
-
-  #if ( file_exists ( "sequence/types/$type/generated.php" ) )
-  #  unlink ( "sequence/types/$type/generated.php" );
 
   if ( file_exists ( "sequence/types/$type/generated.php" ) )
     return;

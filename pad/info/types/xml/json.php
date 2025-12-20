@@ -1,6 +1,5 @@
 <?php
 
-
   function padInfoJson () {
 
     global $padInfoXmlEvents, $padInfoXmlFile;
@@ -13,7 +12,6 @@
     }
 
   }
-
 
   function padInfoJsonLevelStart ( $event ) {
 
@@ -53,7 +51,6 @@
 
   }
 
-
   function padInfoJsonLevelParms ( $parms ) {
 
     padInfoJsonOpen ( 'parms' );
@@ -65,7 +62,6 @@
      padInfoJsonClose ( 'parms' );
 
   }
-
 
   function padInfoJsonOccurStart ( $event ) {
 
@@ -99,7 +95,6 @@
 
   }
 
-
   function padInfoJsonOpen ( $xml, $parms=[] ) {
 
     global $padInfoXmlDepth;
@@ -112,7 +107,6 @@
 
   }
 
-
   function padInfoJsonLine ( $xml, $parms=[] ) {
 
     $more = padInfoJsonMore ( $parms );
@@ -120,7 +114,6 @@
     padInfoJsonWrite ( "<$xml$more />" );
 
   }
-
 
   function padInfoJsonWrite ( $xml ) {
 
@@ -135,7 +128,6 @@
 
   }
 
-
   function padInfoJsonMore ( $parms ) {
 
     $more = '';
@@ -147,6 +139,5 @@
     return $more;
 
   }
-
 
 ?>

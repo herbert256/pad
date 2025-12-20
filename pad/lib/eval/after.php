@@ -1,17 +1,5 @@
 <?php
 
-
-  /**
-   * Post-processes parsed eval tokens to resolve types.
-   *
-   * Resolves 'other' tokens to functions/operators/values,
-   * $ tokens to field values, & to tag values, # to option values,
-   * and hex tokens to binary.
-   *
-   * @param array &$result The parsed token array (modified in place).
-   *
-   * @return void
-   */
   function padEvalAfter ( &$result ) {
 
     foreach ($result as $k => $one)
@@ -82,6 +70,5 @@
       }
 
   }
-
 
 ?>

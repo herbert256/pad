@@ -1,13 +1,5 @@
 <?php
 
-
-  /**
-   * Returns constant value if defined, otherwise the input string.
-   *
-   * @param string $parm Constant name or literal value.
-   *
-   * @return mixed Constant value or original string.
-   */
   function padConstant ( $parm ) {
 
     if ( defined ( $parm ) )
@@ -17,14 +9,6 @@
 
   }
 
-
-  /**
-   * Checks if value is a simple scalar (not array/object/special).
-   *
-   * @param mixed $value Value to check.
-   *
-   * @return bool TRUE if simple scalar value.
-   */
   function padSingleValue ( $value ) {
 
     if ( is_array        ( $value ) or
@@ -38,14 +22,6 @@
 
   }
 
-
-  /**
-   * Checks if value is a special type (TRUE/FALSE/NULL/INF/NAN).
-   *
-   * @param mixed $value Value to check.
-   *
-   * @return bool TRUE if special value.
-   */
   function padSpecialValue ( $value ) {
 
     if     ( $value === FALSE ) return TRUE;
@@ -57,14 +33,6 @@
 
   }
 
-
-  /**
-   * Converts value to boolean flag.
-   *
-   * @param mixed $input Value to convert.
-   *
-   * @return bool Boolean result.
-   */
   function padMakeFlag ( $input ) {
 
     if     ( $input === NULL  )          return FALSE;
@@ -93,14 +61,6 @@
 
   }
 
-
-  /**
-   * Converts value to content string.
-   *
-   * @param mixed $input Value to convert.
-   *
-   * @return string Content string.
-   */
   function padMakeContent ( $input ) {
 
     if     ( $input === NULL        )  return '';
@@ -110,14 +70,6 @@
 
   }
 
-
-  /**
-   * Safely converts value to array.
-   *
-   * @param mixed $xxx Value to convert.
-   *
-   * @return array Converted array or empty array on failure.
-   */
   function padToArray ($xxx) {
 
     if ( is_array($xxx) )
@@ -145,14 +97,6 @@
 
   }
 
-
-  /**
-   * Encodes data as JSON with pretty printing.
-   *
-   * @param mixed $data Data to encode.
-   *
-   * @return string JSON string or '{}' on error.
-   */
   function padJson ( $data ) {
 
     set_error_handler ( 'padErrorThrow' );
@@ -173,28 +117,12 @@
 
   }
 
-
-  /**
-   * Strips leading $ from field name.
-   *
-   * @param string $parm Field name possibly with $.
-   *
-   * @return string Field name without $.
-   */
   function padFieldName ($parm) {
 
     return (substr($parm, 0, 1) == '$') ? substr($parm, 1) : $parm;
 
   }
 
-
-  /**
-   * Converts associative array to PAD name/value format.
-   *
-   * @param array $data Input array.
-   *
-   * @return array Array with name/value structure.
-   */
   function padDataForcePad ($data) {
 
     $result = [];
@@ -208,26 +136,12 @@
 
   }
 
-
-  /**
-   * Returns default empty data structure.
-   *
-   * @return array Default data array.
-   */
   function padDefaultData () {
 
     return [ 999 => [] ];
 
   }
 
-
-  /**
-   * Checks if data matches default empty structure.
-   *
-   * @param mixed $data Data to check.
-   *
-   * @return bool TRUE if default data.
-   */
   function padIsDefaultData ( $data ) {
 
     if ( ! is_array ( $data ) ) return FALSE;
@@ -241,6 +155,5 @@
     return TRUE;
 
   }
-
 
 ?>

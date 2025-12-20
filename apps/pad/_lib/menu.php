@@ -1,6 +1,5 @@
 <?php
 
-
   function parts ( ) {
 
     global $padPage, $manual, $parts, $item;
@@ -47,11 +46,6 @@
       $parts ['i'] ['part'] = $GLOBALS ['xitem'];
       $parts ['i'] ['link'] = '';
 
- #     if ( $GLOBALS ['second'] ) {
- #       $parts ['s'] ['part'] = $GLOBALS ['second'];
- #       $parts ['s'] ['link'] = secondLink ();
- #     }
-
     }
 
     if ( $padPage == 'develop/xref' ) {
@@ -80,8 +74,6 @@
 
   }
 
-
-
   function forLink () {
 
     return 'Xref/xref'
@@ -90,7 +82,6 @@
     . '&xitem='  . ($GLOBALS ['xitem'] );
 
   }
-
 
   function itemLink () {
 
@@ -101,7 +92,6 @@
 
   }
 
-
   function secondLink () {
 
     if ( ! isset ($GLOBALS ['go'] ) )
@@ -110,6 +100,5 @@
     return forLink () . '&second='  . $GLOBALS ['second'] ;
 
   }
-
 
 ?>

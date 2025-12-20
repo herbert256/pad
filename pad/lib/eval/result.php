@@ -1,19 +1,5 @@
 <?php
 
-
-  /**
-   * Extracts final result from evaluated token array.
-   *
-   * Runs value resolution, array processing, parentheses handling,
-   * operator evaluation, and multi-value concatenation. Validates
-   * that exactly one VAL token remains and returns its value.
-   *
-   * @param array  $result The token array to finalize.
-   * @param mixed  $value  The value context passed through.
-   * @param string $eval   Original expression for error messages.
-   *
-   * @return mixed The final evaluated value.
-   */
   function padEvalResult ( $result, $value, $eval ) {
 
     padEvalValue  ( $result, $value );  padEvalTrace ( 'value1', $result );
@@ -31,6 +17,5 @@
     return $result [$key] [0];
 
   }
-
 
 ?>

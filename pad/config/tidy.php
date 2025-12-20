@@ -1,8 +1,5 @@
 <?php
 
-
-  // lib tidy
-
   $padTidyCcsid  = 'utf8';
   $padTidyConfig = [
     'output-html'         => TRUE,
@@ -22,11 +19,6 @@
     'merge-divs'          => 'yes'
   ];
 
-
-  // myTidy
-  // A basic & buggy implementation of formatting the output HTML
-  // Only used when $padTidy is FALSE
-
   $padMyTidySanitize         = [ 'STRIP_LOW', 'ENCODE_HIGH' ];
   $padMyTidyTabToSpace       = TRUE;
   $padMyTidyTrim             = TRUE;
@@ -34,6 +26,5 @@
   $padMyTidyNoIndent         = TRUE;
   $padMyTidyNoEmptyLines     = TRUE;
   $padMyTidyNoNewLines       = FALSE;
-
 
 ?>

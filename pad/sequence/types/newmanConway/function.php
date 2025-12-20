@@ -1,16 +1,5 @@
 <?php
 
-
-/**
- * Calculates the nth Newman-Conway sequence term.
- *
- * Recursive sequence where P(n) = P(P(n-1)) + P(n-P(n-1)).
- * Uses memoization in $GLOBALS['pqCache'] for performance.
- *
- * @param int $n The index in the sequence.
- *
- * @return int The nth Newman-Conway number.
- */
 function pqNewmanConway ($n) {
 
 	if ($n == 1 || $n == 2)
@@ -32,5 +21,4 @@ function pqNewmanConway ($n) {
 
 }
 
-// This code is contributed by Ajit.
 ?>

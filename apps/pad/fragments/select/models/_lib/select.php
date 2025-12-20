@@ -1,5 +1,5 @@
 <?php
- 
+
   $padSelect ['customers'] = [ 'db' => 'customers',    'key' => 'customerNumber', 'order' => 'customerName'];
   $padSelect ['employees'] = [ 'db' => 'employees',    'key' => 'employeeNumber', 'order' => 'lastName,firstName'];
   $padSelect ['offices']   = [ 'db' => 'offices',      'key' => 'officeCode'];
@@ -10,7 +10,7 @@
   $padSelect ['products']  = [ 'db' => 'products',     'key' => 'productCode'];
 
   $padRelations ['products']  ['lines']      = 'productLine';
-  $padRelations ['payments']  ['customers']  = 'customerNumber'
+  $padRelations ['payments']  ['customers']  = 'customerNumber';
   $padRelations ['orders']    ['customers']  = 'customerNumber';
   $padRelations ['details']   ['orders']     = 'orderNumber';
   $padRelations ['details']   ['products']   = 'productCode';

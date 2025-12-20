@@ -1,6 +1,5 @@
 <?php
 
-
   function padInfoTrackDbSession () {
 
     $session = $GLOBALS ['padSesID'];
@@ -33,7 +32,6 @@
 
   }
 
-
   function padInfoTrackDbData ( ) {
 
     global $padEtag, $padOutput;
@@ -44,7 +42,6 @@
       $session = padDb ( "insert into track_data values('{1}', '{2}')", [ 1 => $padEtag, 2=> $padOutput ] );
 
   }
-
 
   function padInfoTrackStart () {
 
@@ -65,7 +62,6 @@
     ] );
 
   }
-
 
   function padInfoTrackEnd () {
 
@@ -104,7 +100,6 @@
 
   }
 
-
   function padInfoTrackData () {
 
     global $padStartPage;
@@ -117,6 +112,5 @@
     padFilePut ( "track/data/$dir/$padStartPage.html", $GLOBALS ['padOutput'] );
 
   }
-
 
 ?>

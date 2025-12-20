@@ -4,15 +4,10 @@
 
     $N = 1000000007;
 
-    // To store
-    // the product.
     $a = 1;
 
-    // To store the
-    // current number.
     $ans = 2;
 
-    // Loop till n.
     for ($i = 1; $i <= $n; $i++)
     {
 
@@ -26,6 +21,5 @@
     return $ans;
 
   }
-
 
 ?>

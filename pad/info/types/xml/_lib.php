@@ -1,6 +1,5 @@
 <?php
 
-
   function padInfoXml () {
 
     global $padInfoXmlEvents, $padInfoXmlFile;
@@ -15,7 +14,6 @@
     }
 
   }
-
 
   function padInfoXmlLevelStart ( $event ) {
 
@@ -59,7 +57,6 @@
 
   }
 
-
   function padInfoXmlLevelParms ( $parms ) {
 
     padInfoXmlOpen ( 'parms' );
@@ -71,7 +68,6 @@
      padInfoXmlClose ( 'parms' );
 
   }
-
 
   function padInfoXmlLevelEnd ( $event ) {
 
@@ -90,7 +86,6 @@
       padInfoXmlClose ( $tag );
 
   }
-
 
   function padInfoXmlOccurStart ( $event ) {
 
@@ -124,7 +119,6 @@
 
   }
 
-
   function padInfoXmlOccurEnd ( $event ) {
 
     global $padInfoXmlTree, $padInfoXmlCompact;
@@ -144,7 +138,6 @@
 
   }
 
-
   function padInfoXmlOpen ( $xml, $parms=[] ) {
 
     global $padInfoXmlDepth;
@@ -157,7 +150,6 @@
 
   }
 
-
   function padInfoXmlLine ( $xml, $parms=[] ) {
 
     $more = padInfoXmlMore ( $parms );
@@ -165,7 +157,6 @@
     padInfoXmlWrite ( "<$xml$more />" );
 
   }
-
 
   function padInfoXmlClose ( $xml ) {
 
@@ -176,7 +167,6 @@
     padInfoXmlWrite ( "</$xml>" );
 
   }
-
 
   function padInfoXmlWrite ( $xml ) {
 
@@ -191,7 +181,6 @@
 
   }
 
-
   function padInfoXmlMore ( $parms ) {
 
     $more = '';
@@ -203,6 +192,5 @@
     return $more;
 
   }
-
 
 ?>

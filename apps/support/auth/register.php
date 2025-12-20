@@ -23,17 +23,17 @@
     } elseif ($password !== $password2) {
       $error = 'Passwords do not match';
     } else {
-      // Check if username exists
+
       $exists = db("CHECK users WHERE username='{0}'", [$formUsername]);
       if ($exists) {
         $error = 'Username already taken';
       } else {
-        // Check if email exists
+
         $exists = db("CHECK users WHERE email='{0}'", [$formEmail]);
         if ($exists) {
           $error = 'Email already registered';
         } else {
-          // Create user
+
           $hash = hashPassword($password);
           db("INSERT INTO users (username, email, password_hash) VALUES ('{0}', '{1}', '{2}')",
              [$formUsername, $formEmail, $hash]);

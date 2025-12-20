@@ -18,14 +18,13 @@
     if (!filter_var($formEmail, FILTER_VALIDATE_EMAIL)) {
       $error = 'Invalid email address';
     } elseif ($formEmail !== $user['email']) {
-      // Check if email is taken
+
       $exists = db("CHECK users WHERE email='{0}' AND id<>{1}", [$formEmail, $user_id]);
       if ($exists) {
         $error = 'Email already in use';
       }
     }
 
-    // Password change
     if (!$error && $newPassword) {
       if (!$currentPassword) {
         $error = 'Current password required to change password';

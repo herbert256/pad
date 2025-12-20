@@ -1,14 +1,11 @@
 <?php
 
-
   if (  $GLOBALS ['padInfoXref'] )
     foreach ( $padPrm [$pad] as $padK => $padV )
       padInfoXref ( "_options/$padK", $padType [$pad], $padTag [$pad] );
 
-
   if ( $GLOBALS ['padInfoXml']   )
     include PAD . 'info/types/xml/level/parms.php';
-
 
   if ( $GLOBALS ['padInfoTrace'] and $GLOBALS ['padInfoTraceParms'] ) {
 
@@ -26,6 +23,5 @@
       padInfoTrace ( 'parm', 'occ',  "$padK ==> $padV" );
 
   }
-
 
 ?>

@@ -6,17 +6,14 @@
   $error = '';
   $errors = [];
 
-  // Ensure data directory exists
   if ( ! is_dir ( DAT . 'demo' ) )
     @mkdir ( DAT . 'demo', 0755, TRUE );
 
-  // Form values (for repopulating on error)
   $formName    = $name    ?? '';
   $formEmail   = $email   ?? '';
   $formSubject = $subject ?? '';
   $formMessage = $message ?? '';
 
-  // Handle form submission
   if ( $_SERVER['REQUEST_METHOD'] == 'POST' && $action == 'send' ) {
 
     $formName    = trim ( $formName );
@@ -24,7 +21,6 @@
     $formSubject = trim ( $formSubject );
     $formMessage = trim ( $formMessage );
 
-    // Validation
     if ( ! $formName )
       $errors [] = [ 'field' => 'Name is required' ];
 
@@ -40,7 +36,7 @@
       $errors [] = [ 'field' => 'Message is required' ];
 
     if ( empty ( $errors ) ) {
-      // Save the message
+
       $messages = [];
       if ( file_exists ( $dataFile ) ) {
         $json = file_get_contents ( $dataFile );
@@ -59,7 +55,6 @@
 
       $successMsg = 'Thank you for your message! We will get back to you soon.';
 
-      // Clear form
       $formName = $formEmail = $formSubject = $formMessage = '';
     }
     else

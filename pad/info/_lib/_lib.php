@@ -1,17 +1,5 @@
 <?php
 
-
-  /**
-   * Gets a string representation of current level and occurrence.
-   *
-   * Returns the level index, optionally suffixed with occurrence number
-   * if not default (0 or 99999).
-   *
-   * @return string Level string, e.g., "3" or "3/2" for occurrence 2.
-   *
-   * @global int   $pad      Current level index.
-   * @global array $padOccur Array of occurrence counts by level.
-   */
   function padInfoPadOccur () {
 
     global $pad, $padOccur;
@@ -27,14 +15,6 @@
 
   }
 
-
-  /**
-   * Safely reads a file's contents if it exists.
-   *
-   * @param string $file The file path to read.
-   *
-   * @return string The file contents, or empty string if file doesn't exist.
-   */
   function padInfoGet ( $file ) {
 
     if ( ! file_exists ($file) )
@@ -44,14 +24,6 @@
 
   }
 
-
-  /**
-   * Recursively deletes a directory and all its contents.
-   *
-   * @param string $dir The directory path to delete.
-   *
-   * @return void
-   */
   function padInfoDelete ( $dir ) {
 
     if ( ! file_exists ( $dir ) )
@@ -72,6 +44,5 @@
     rmdir ( $dir );
 
   }
-
 
 ?>

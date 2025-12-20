@@ -1,37 +1,35 @@
 <?php
 
-
 function padSplitOnUnquotedColon ( $str ) {
 
     $len = strlen($str);
- 
+
     $inSingleQuote = false;
     $inDoubleQuote = false;
-    
+
     for ($i = 0; $i < $len; $i++) {
- 
+
         $char = $str[$i];
-        
+
         if ($char === '\\' && $i + 1 < $len) {
             $i++;
             continue;
         }
-        
+
         if     ( $char === "'" && !$inDoubleQuote ) $inSingleQuote = !$inSingleQuote;
         elseif ( $char === '"' && !$inSingleQuote ) $inDoubleQuote = !$inDoubleQuote;
-        
-        if ($char === ':' && !$inSingleQuote && !$inDoubleQuote) 
+
+        if ($char === ':' && !$inSingleQuote && !$inDoubleQuote)
             return [
                 substr($str, 0, $i),
                 substr($str, $i + 1)
             ];
-      
+
     }
-    
+
     return [$str, ''];
 
 }
-
 
   function padFindContinueBreak ( $parm ) {
 
@@ -58,18 +56,6 @@ function padSplitOnUnquotedColon ( $str ) {
 
   }
 
-
-
-  /**
-   * Splits string at first pipe not inside quotes.
-   *
-   * Respects single and double quoted strings, returning the
-   * part before the pipe and the part after.
-   *
-   * @param string $input The string to split.
-   *
-   * @return array Two-element array: [before_pipe, after_pipe].
-   */
   function padPipeSplit ($input) {
 
     $inSingle = false;
@@ -104,22 +90,6 @@ function padSplitOnUnquotedColon ( $str ) {
 
   }
 
-
-  /**
-   * Replaces current tag in output with a value.
-   *
-   * Substitutes the tag between padStart and padEnd positions
-   * in the current level's output buffer.
-   *
-   * @param string $value The value to insert.
-   *
-   * @return void
-   *
-   * @global array $padOut   Output buffer per level.
-   * @global array $padStart Tag start positions per level.
-   * @global array $padEnd   Tag end positions per level.
-   * @global int   $pad      Current processing level.
-   */
   function padLevel ( $value ) {
 
     global $padOut, $padStart, $padEnd, $pad;
@@ -130,16 +100,6 @@ function padSplitOnUnquotedColon ( $str ) {
 
   }
 
-
-  /**
-   * Checks if current tag is a comment (enclosed in #).
-   *
-   * Comments have format {#...#} - starts and ends with #.
-   *
-   * @return bool TRUE if tag is a comment.
-   *
-   * @global string $padBetween Content between { and }.
-   */
   function padCommentCheck () {
 
     global $padBetween;
@@ -148,58 +108,24 @@ function padSplitOnUnquotedColon ( $str ) {
 
   }
 
-  /**
-   * Processes a comment tag by removing it from output.
-   *
-   * @return void
-   */
   function padCommentGo () {
 
     return padLevelNo ( '' );
 
   }
 
-
-  /**
-   * Replaces tag with escaped version (won't be reprocessed).
-   *
-   * Uses &open; and &close; entities to prevent re-parsing.
-   *
-   * @param string $no The content to escape.
-   *
-   * @return void
-   */
   function padLevelNo ( $no ) {
 
     padLevel ( "&open;$no&close;" );
 
   }
 
-
-  /**
-   * Escapes current single tag to prevent reprocessing.
-   *
-   * @return void
-   *
-   * @global string $padBetween Current tag content.
-   */
   function padLevelNoSingle () {
 
     padLevelNo ( $GLOBALS ['padBetweenOrg'] );
 
   }
 
-
-  /**
-   * Escapes current paired tag to prevent reprocessing.
-   *
-   * @return void
-   *
-   * @global array $padOut   Output buffer per level.
-   * @global array $padStart Tag start positions.
-   * @global array $padEnd   Tag end positions.
-   * @global int   $pad      Current level.
-   */
   function padLevelNoPair () {
 
     global $padOut, $padStart, $padEnd, $pad;
@@ -208,21 +134,6 @@ function padSplitOnUnquotedColon ( $str ) {
 
   }
 
-
-  /**
-   * Extracts content between current tag delimiters.
-   *
-   * Sets padBetween and padOrgSet to the tag content.
-   *
-   * @return void
-   *
-   * @global array  $padOut     Output buffer per level.
-   * @global array  $padStart   Tag start positions.
-   * @global array  $padEnd     Tag end positions.
-   * @global int    $pad        Current level.
-   * @global string $padBetween Output: Extracted content.
-   * @global string $padOrgSet  Output: Original content backup.
-   */
   function padLevelBetween () {
 
     global $padOut, $padStart, $padEnd, $pad, $padBetween, $padOrgSet;
@@ -233,18 +144,6 @@ function padSplitOnUnquotedColon ( $str ) {
 
   }
 
-
-  /**
-   * Escapes closing brace to prevent tag parsing.
-   *
-   * Replaces } with &close; entity at current end position.
-   *
-   * @return void
-   *
-   * @global array $padOut  Output buffer per level.
-   * @global array $padEnd  Tag end positions.
-   * @global int   $pad     Current level.
-   */
   function padLevelNoOpen () {
 
     global $padOut, $padStart, $padEnd, $pad;
@@ -253,19 +152,6 @@ function padSplitOnUnquotedColon ( $str ) {
 
   }
 
-
-  /**
-   * Finds the opening brace for current tag.
-   *
-   * Searches backwards from end position to find matching {.
-   *
-   * @return void
-   *
-   * @global array $padOut   Output buffer per level.
-   * @global array $padStart Output: Tag start positions.
-   * @global array $padEnd   Tag end positions.
-   * @global int   $pad      Current level.
-   */
   function padLevelStart () {
 
     global $padOut, $padStart, $padEnd, $pad;
@@ -274,18 +160,6 @@ function padSplitOnUnquotedColon ( $str ) {
 
   }
 
-
-  /**
-   * Finds the closing brace for next tag.
-   *
-   * Searches forward from beginning to find first }.
-   *
-   * @return void
-   *
-   * @global array $padOut  Output buffer per level.
-   * @global array $padEnd  Output: Tag end positions.
-   * @global int   $pad     Current level.
-   */
   function padLevelEnd () {
 
     global $padOut, $padStart, $padEnd, $pad;
@@ -293,6 +167,5 @@ function padSplitOnUnquotedColon ( $str ) {
     $padEnd [$pad] = strpos ( $padOut [$pad], '}' );
 
   }
-
 
 ?>

@@ -2,10 +2,6 @@
 
   if ( count ($padMyTidySanitize) ) {
 
-    // Filter options on the complete output,
-    // must be a flag from FILTER_UNSAFE_RAW from below page.
-    // https://www.php.net/manual/en/filter.filters.sanitize.php
-
     $padSanitizeFlags = 0;
 
     foreach ( $padMyTidySanitize as $padK )

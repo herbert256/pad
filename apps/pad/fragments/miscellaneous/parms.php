@@ -52,7 +52,6 @@
 
   $php_array_parms_2 ['abc'] = 123;
 
-
   $php_array_vars_2 [0] ['name']  = 'bob-v2';
   $php_array_vars_2 [0] ['phone'] = '555-3425';
 

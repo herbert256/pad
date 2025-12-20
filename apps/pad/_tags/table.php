@@ -33,7 +33,7 @@
 
     filePutFile ( 'examples/demos', "$tableITEM.pad",  trim ( $tablePAD  ) );
     filePutFile ( 'examples/demos', "$tableITEM.html", trim ( $tableHTML ) );
-  
+
   }
 
   $padContent = str_replace ( '@ROWSPAN@', $padDemoCount [$pad] , $padContent);

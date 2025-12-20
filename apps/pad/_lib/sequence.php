@@ -1,12 +1,10 @@
 <?php
 
-
   function pqTypes () {
 
     return array_diff ( scandir ( PAD . 'sequence/types' ), [ '.', '..' ] ) ;
 
   }
-
 
   function pqActions () {
 
@@ -18,6 +16,5 @@
     return $array;
 
   }
-
 
 ?>

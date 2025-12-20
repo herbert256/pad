@@ -5,7 +5,6 @@
   if (!db("CHECK tickets WHERE id = {0}", [$id]))
     padRedirect('tickets/index');
 
-  // Check access: user can only see their own tickets (unless admin)
   $ticketUserId = db("FIELD user_id FROM tickets WHERE id = {0}", [$id]);
   if ($role !== 'admin' && $ticketUserId != $user_id) {
     padRedirect('tickets/index');
@@ -15,7 +14,6 @@
   $error = '';
   $success = '';
 
-  // Handle actions
   if ($padPost) {
 
     if ($action == 'comment') {
