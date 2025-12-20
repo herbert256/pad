@@ -9,8 +9,8 @@
 PAD is an [inversion of control](https://en.wikipedia.org/wiki/Inversion_of_control) PHP application driver.
  
 PAD:  
-\- first executes the application PHP code,
-\- then reads the application HTML markup code (aka PAD template),
+\- first executes the application PHP code, <br>
+\- then reads the application HTML markup code (aka PAD template), <br>
 \- merges both and send the result to the browser.
 
 There is no PAD code in the application PHP code at all !
@@ -33,7 +33,7 @@ There is no PAD code in the application PHP code at all !
 ```html
 <html>
   <body>
-    <h1>{$hi}!</h1>
+    <h1>{$hi}</h1>
   </body>
 </html>
 ```
@@ -70,9 +70,9 @@ pad/
 
 ### apps/
 
-PAD applications. Each subdirectory is a self-contained application with its own templates, data files, and libraries.
+PAD applications. Each subdirectory is a PAD application with its own templates, data files, and libraries.
 
-See [apps/README.md](apps/README.md) for application development guidelines.
+- See [apps/README.md](apps/README.md) for application development guidelines.
 
 ### docs/
 
@@ -90,7 +90,7 @@ The PAD framework itself - the template engine, tag processors, expression evalu
 
 Web server document root files. Contains PHP entry points that configure `APP` and `DAT` constants and include the PAD framework.
 
-See [www/README.md](www/README.md) for web server setup.
+- See [www/README.md](www/README.md) for web server setup.
 
 ### DATA/
 
