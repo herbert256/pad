@@ -23,7 +23,7 @@
    */
   function padFieldLevel ( $field, $type ) {
 
-    global $pad, $padCurrent, $padPrm, $padOpt, $padName, $padTable, $padLvlFunVar;
+    global $pad, $padCurrent, $padPrm, $padOpt, $padName, $padLvlFunVar;
     global $padSetOcc, $padSetLvl;
 
     if ( strlen($field) > 1 and substr($field,0,1) == '-' and is_numeric(substr($field,1)) ) {
@@ -48,14 +48,6 @@
         if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
         elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
       }
-
-      foreach ( $padTable [$i] as $table => $value)
-        if ( array_key_exists ( $field, $value) ) {
-          $work = $value [$field];
-          if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
-          if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
-          elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
-        }
 
       if ( isset ( $padSetOcc [$i] [$field] ) ) return $GLOBALS [$field] ; 
       if ( isset ( $padSetLvl [$i] [$field] ) ) return $GLOBALS [$field] ; 
@@ -98,67 +90,6 @@
       if ( array_key_exists ( $field, $padLvlFunVar [$i] ) ) {
         $work = $padLvlFunVar [$i] [$field];
         if     ($type == 9 and ! is_array ( $work ) and $work === NULL ) return NULL;
-        if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
-        elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
-      }
-
-    return INF;
-
-  }
-
-
-  function padCheckField ( $field, $type ) {
-
-    global $pad, $padCurrent, $padPrm, $padOpt, $padName, $padTable, $padLvlFunVar;
-
-    for ( $i=$pad; $i; $i-- ) {
-
-      if ( array_key_exists ( $field, $padCurrent [$i] ) ) {
-        $work = $padCurrent [$i] [$field];
-        if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
-        elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
-      }
-
-      foreach ( $padTable [$i] as $table => $value)
-        if ( array_key_exists ( $field, $value) ) {
-          $work = $value [$field];
-          if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
-          elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
-        }
-
-    }
-
-    if ( array_key_exists ( $field, $GLOBALS ) ) {
-      $work = $GLOBALS [$field];
-      if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
-      elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
-    }
-
-    foreach ( $GLOBALS as $key => $value )
-      if ( is_array ($value) and array_key_exists ( $field, $value)
-           and substr($key, 0, 3) <> 'pad' and substr($key, 0, 2) <> 'pq' )  {
-        $work = $value [$field];
-        if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
-        elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
-      }
-
-    for ( $i=$pad; $i >= 0; $i-- )
-      if ( array_key_exists ( $field, $padPrm [$i] ) ) {
-        $work = $padPrm [$i] [$field];
-        if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
-        elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
-      }
-
-    for ( $i=$pad; $i >= 0; $i-- )
-      if ( array_key_exists ( $field, $padOpt [$i] ) ) {
-        $work = $padOpt [$i] [$field];
-        if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
-        elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
-      }
-
-   for ( $i=$pad; $i >= 0; $i-- )
-      if ( array_key_exists ( $field, $padLvlFunVar [$i] ) ) {
-        $work = $padLvlFunVar [$i] [$field];
         if     (   is_array ( $work ) and ( $type == 3 or $type == 4 ) ) return $work;
         elseif ( ! is_array ( $work ) and ( $type == 1 or $type == 2 ) ) return $work;
       }

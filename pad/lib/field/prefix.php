@@ -24,9 +24,6 @@
         if ( $GLOBALS ['padName'] [$key] == $prefix)
           return padFieldSearch ( $GLOBALS ['padCurrent'] [$key], $field, $type );
 
-        if ( isset ( $GLOBALS ['padTable'] [$key] [$prefix] ) )
-          return padFieldSearch ( $GLOBALS ['padTable'] [$key] [$prefix], $field, $type );
-
       }
 
       if ( isset ( $GLOBALS [$prefix] ) )

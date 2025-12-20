@@ -3,7 +3,7 @@
   if ( ! $padIdx )
     return INF;
 
-  global $padCurrent, $padData, $padTable, $padOpt, $padPrm, $padSetLvl, $padLvlFunVar, $padSetOcc;
+  global $padCurrent, $padData, $padOpt, $padPrm, $padSetLvl, $padLvlFunVar, $padSetOcc;
 
   $name = end ( $names );
 
@@ -16,10 +16,6 @@
   }
 
   $current = padAtSearch ( $padCurrent [$padIdx], $names );
-  if ( $current !== INF )
-    return $current;
-
-  $current = padAtSearch ( $padTable [$padIdx], $names );
   if ( $current !== INF )
     return $current;
 

@@ -9,7 +9,6 @@
           if ( ! isset ( $padPrm [$pad] [$padStrKey] ) )
             if ( ! isset ( $padOpt [$pad] [$padStrKey] ) )
               if ( ! isset ( $padSetLvl [$pad] [$padStrKey] ) )
-                if ( ! isset ( $padTable [$pad] [$padStrKey] ) )
-                  $padLvlFunVar [$pad] [$padStrKey] = $padStrVal;
+                $padLvlFunVar [$pad] [$padStrKey] = $padStrVal;
 
 ?>

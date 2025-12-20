@@ -5,7 +5,6 @@
   if ( $padInfo )
     include PAD . 'events/occurStart.php';
 
-  include PAD . 'occurrence/table.php';
   include PAD . 'occurrence/set.php';
 
   if ( isset($padPrm [$pad] ['callback']) and ! isset ( $padPrm [$pad] ['before']) )

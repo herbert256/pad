@@ -732,17 +732,17 @@ PAD Select allows templates to access database tables directly without writing P
 
 ```php
 // Define tables with primary key
-$padSelectTables ['users']         = [ 'key' => 'id' ];
-$padSelectTables ['forum_topics']  = [ 'key' => 'id' ];
-$padSelectTables ['forum_posts']   = [ 'key' => 'id', 'order' => 'created_at' ];
+$padSelect ['users']         = [ 'key' => 'id' ];
+$padSelect ['forum_topics']  = [ 'key' => 'id' ];
+$padSelect ['forum_posts']   = [ 'key' => 'id', 'order' => 'created_at' ];
 
 // Define relations (foreign keys)
-$padSelectRelations ['forum_topics'] ['users']        = [ 'key' => 'user_id'  ];
-$padSelectRelations ['forum_posts']  ['forum_topics'] = [ 'key' => 'topic_id' ];
-$padSelectRelations ['forum_posts']  ['users']        = [ 'key' => 'user_id'  ];
+$padRelations ['forum_topics'] ['users']        = [ 'key' => 'user_id'  ];
+$padRelations ['forum_posts']  ['forum_topics'] = [ 'key' => 'topic_id' ];
+$padRelations ['forum_posts']  ['users']        = [ 'key' => 'user_id'  ];
 
 // Virtual tables (filtered/sorted views)
-$padSelectTables ['openBugs'] = [
+$padSelect ['openBugs'] = [
     'base'  => "tickets",
     'where' => "`type`='bug' and `status`='open'",
     'order' => "updated_at desc"

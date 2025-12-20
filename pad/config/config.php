@@ -80,7 +80,6 @@
   $padMyTidy = FALSE;
 
   $padSelect    = [];
-  $padTables    = [];
   $padRelations = [];
 
     // Other settings.

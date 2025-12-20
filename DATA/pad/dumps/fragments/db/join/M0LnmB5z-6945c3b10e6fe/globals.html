@@ -1,0 +1,1272 @@
+<pre><b>GLOBALS</b>
+Array
+(
+    [_GET] =&gt; Array
+        (
+            [fragments/db/join] =&gt; 
+            [padInclude] =&gt; 
+        )
+
+    [_POST] =&gt; Array
+        (
+        )
+
+    [_COOKIE] =&gt; Array
+        (
+            [padSesID] =&gt; AXwMjQLq
+            [padReqID] =&gt; mfM0n7T2
+        )
+
+    [_FILES] =&gt; Array
+        (
+        )
+
+    [padApp] =&gt; 0
+    [padOS] =&gt; lin
+    [padHome] =&gt; /home/herbert/pad
+    [padMicro] =&gt; 1766179750.6445
+    [padHR] =&gt; 82565438906122
+    [_SERVER] =&gt; Array
+        (
+            [HTTP_HOST] =&gt; penguin.linux.test
+            [HTTP_USER_AGENT] =&gt; Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+            [HTTP_ACCEPT] =&gt; */*
+            [HTTP_ACCEPT_ENCODING] =&gt; gzip
+            [HTTP_REFERER] =&gt; http://penguin.linux.test/?regression/show/index
+            [HTTP_COOKIE] =&gt; padSesID=AXwMjQLq; padReqID=mfM0n7T2
+            [PATH] =&gt; /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+            [SERVER_SIGNATURE] =&gt; &lt;address&gt;Apache/2.4.65 (Debian) Server at penguin.linux.test Port 80&lt;/address&gt;
+
+            [SERVER_SOFTWARE] =&gt; Apache/2.4.65 (Debian)
+            [SERVER_NAME] =&gt; penguin.linux.test
+            [SERVER_ADDR] =&gt; 127.0.0.1
+            [SERVER_PORT] =&gt; 80
+            [REMOTE_ADDR] =&gt; 127.0.0.1
+            [DOCUMENT_ROOT] =&gt; /home/herbert/pad/www
+            [REQUEST_SCHEME] =&gt; http
+            [CONTEXT_PREFIX] =&gt; 
+            [CONTEXT_DOCUMENT_ROOT] =&gt; /home/herbert/pad/www
+            [SERVER_ADMIN] =&gt; webmaster@localhost
+            [SCRIPT_FILENAME] =&gt; /home/herbert/pad/www/index.php
+            [REMOTE_PORT] =&gt; 37918
+            [GATEWAY_INTERFACE] =&gt; CGI/1.1
+            [SERVER_PROTOCOL] =&gt; HTTP/1.1
+            [REQUEST_METHOD] =&gt; GET
+            [QUERY_STRING] =&gt; fragments/db/join&amp;padInclude
+            [REQUEST_URI] =&gt; /?fragments/db/join&amp;padInclude
+            [SCRIPT_NAME] =&gt; /index.php
+            [PHP_SELF] =&gt; /index.php
+            [REQUEST_TIME_FLOAT] =&gt; 1766179750.6437
+            [REQUEST_TIME] =&gt; 1766179750
+        )
+
+    [padDisplayErrors] =&gt; 1
+    [padErrorReporting] =&gt; 30719
+    [padErrorAction] =&gt; pad
+    [padErrorLevel] =&gt; all
+    [padErrorTry] =&gt; 1
+    [padErrorLog] =&gt; 1
+    [padErrorReport] =&gt; 1
+    [padInfo] =&gt; 
+    [padOutputType] =&gt; web
+    [padCache] =&gt; 
+    [padSqlPadHost] =&gt; 127.0.0.1
+    [padSqlPadDatabase] =&gt; pad
+    [padSqlPadUser] =&gt; pad
+    [padSqlPadPassword] =&gt; pad
+    [padSqlHost] =&gt; 127.0.0.1
+    [padSqlDatabase] =&gt; demo
+    [padSqlUser] =&gt; demo
+    [padSqlPassword] =&gt; demo
+    [padDirMode] =&gt; 493
+    [padFileMode] =&gt; 420
+    [padFmtDate] =&gt; Y-m-d
+    [padFmtTime] =&gt; H:i:s
+    [padFmtTimestamp] =&gt; Y-m-d H:i:s
+    [padSessionVars] =&gt; Array
+        (
+        )
+
+    [padDataDefaultStart] =&gt; Array
+        (
+        )
+
+    [padDataDefaultEnd] =&gt; Array
+        (
+            [0] =&gt; sanitize
+        )
+
+    [padTidy] =&gt; 1
+    [padMyTidy] =&gt; 
+    [padSelect] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padTables] =&gt; Array
+        (
+            [table1] =&gt; Array
+                (
+                    [key] =&gt; key
+                    [fields] =&gt; Array
+                        (
+                            [key] =&gt; key1
+                            [text] =&gt; text1
+                        )
+
+                )
+
+            [table2] =&gt; Array
+                (
+                    [key] =&gt; key
+                    [fields] =&gt; Array
+                        (
+                            [key] =&gt; key2
+                            [text] =&gt; text2
+                        )
+
+                )
+
+            [table3] =&gt; Array
+                (
+                    [key] =&gt; key
+                    [fields] =&gt; Array
+                        (
+                            [key] =&gt; key3
+                            [text] =&gt; text3
+                        )
+
+                )
+
+            [table4] =&gt; Array
+                (
+                    [key] =&gt; key
+                    [fields] =&gt; Array
+                        (
+                            [key] =&gt; key4
+                            [text] =&gt; text4
+                        )
+
+                )
+
+            [join] =&gt; Array
+                (
+                    [base] =&gt; table1
+                    [join] =&gt; table2
+                )
+
+            [inner] =&gt; Array
+                (
+                    [base] =&gt; table1
+                    [join] =&gt; Array
+                        (
+                            [inner] =&gt; table2
+                            [key] =&gt; table1.key
+                        )
+
+                )
+
+            [natural1] =&gt; Array
+                (
+                    [base] =&gt; table1
+                    [join] =&gt; Array
+                        (
+                            [natural] =&gt; table2
+                        )
+
+                )
+
+            [left] =&gt; Array
+                (
+                    [base] =&gt; table1
+                    [join] =&gt; Array
+                        (
+                            [left] =&gt; table2
+                            [key] =&gt; table1.key
+                        )
+
+                )
+
+            [natural2] =&gt; Array
+                (
+                    [base] =&gt; table1
+                    [join] =&gt; Array
+                        (
+                            [natural left] =&gt; table2
+                        )
+
+                )
+
+            [right] =&gt; Array
+                (
+                    [base] =&gt; table1
+                    [join] =&gt; Array
+                        (
+                            [right] =&gt; table2
+                            [key] =&gt; table1.key
+                        )
+
+                )
+
+            [natural3] =&gt; Array
+                (
+                    [base] =&gt; table1
+                    [join] =&gt; Array
+                        (
+                            [natural right] =&gt; table2
+                        )
+
+                )
+
+            [cross] =&gt; Array
+                (
+                    [base] =&gt; table1
+                    [join] =&gt; Array
+                        (
+                            [cross] =&gt; table2
+                        )
+
+                )
+
+            [multi] =&gt; Array
+                (
+                    [base] =&gt; table1
+                    [join] =&gt; Array
+                        (
+                            [0] =&gt; Array
+                                (
+                                    [inner] =&gt; table2
+                                    [key] =&gt; table1.key
+                                )
+
+                            [1] =&gt; Array
+                                (
+                                    [inner] =&gt; table3
+                                    [key] =&gt; table1.key
+                                )
+
+                            [2] =&gt; Array
+                                (
+                                    [inner] =&gt; table4
+                                    [key] =&gt; table1.key
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [padRelations] =&gt; Array
+        (
+        )
+
+    [padGzip] =&gt; 
+    [padCookies] =&gt; 1
+    [padNoNo] =&gt; 
+    [padFastLink] =&gt; 32
+    [padLibDirectory] =&gt; RecursiveDirectoryIterator Object
+        (
+            [pathName:SplFileInfo:private] =&gt; 
+            [glob:DirectoryIterator:private] =&gt; 
+            [subPathName:RecursiveDirectoryIterator:private] =&gt; 
+        )
+
+    [padLibIterator] =&gt; RecursiveIteratorIterator Object
+        (
+        )
+
+    [padLibOne] =&gt; SplFileInfo Object
+        (
+            [pathName:SplFileInfo:private] =&gt; /home/herbert/pad/apps/pad/_lib/menu.php
+            [fileName:SplFileInfo:private] =&gt; menu.php
+        )
+
+    [padLibFile] =&gt; /home/herbert/pad/pad/lib/values.php
+    [padAt] =&gt; /home/herbert/pad/pad/at/_lib/search.php
+    [_REQUEST] =&gt; Array
+        (
+            [fragments/db/join] =&gt; 
+            [padInclude] =&gt; 
+            [padSesID] =&gt; AXwMjQLq
+            [padReqID] =&gt; mfM0n7T2
+        )
+
+    [pad] =&gt; 0
+    [padLvlId] =&gt; 1
+    [padRestart] =&gt; 
+    [padOutput] =&gt; 
+    [padStop] =&gt; 000
+    [padEtag] =&gt; 
+    [padLen] =&gt; 0
+    [padTime] =&gt; 1766179750
+    [padCacheStop] =&gt; 0
+    [padPageLevel] =&gt; Array
+        (
+        )
+
+    [padInclude] =&gt; 1
+    [padStrCnt] =&gt; -1
+    [padStrFunCnt] =&gt; 0
+    [padInfoCnt] =&gt; 0
+    [padEvalCnt] =&gt; -1
+    [pqStore] =&gt; Array
+        (
+        )
+
+    [padLastPush] =&gt; 
+    [padLastPull] =&gt; 
+    [padPost] =&gt; 
+    [padIgnored] =&gt; 
+    [padPage] =&gt; fragments/db/join
+    [padDir] =&gt; fragments/db
+    [padPath] =&gt; /home/herbert/pad/apps/pad/fragments/db
+    [padStartPage] =&gt; fragments/db/join
+    [padSesID] =&gt; AXwMjQLq
+    [padRefID] =&gt; mfM0n7T2
+    [padReqID] =&gt; M0LnmB5z
+    [padLog] =&gt; M0LnmB5z
+    [padSeqDefaultRows] =&gt; 10
+    [padSeqDefaultTries] =&gt; 10000
+    [padWebNoHeaders] =&gt; 
+    [padWebEtag304] =&gt; 1
+    [padContentType] =&gt; text/html; charset=UTF-8
+    [padTryCallTry] =&gt; xxx
+    [padTryCallTryOnce] =&gt; xxx
+    [padTryEvalEval] =&gt; xxx
+    [padTryLevelGo] =&gt; xxx
+    [padTryLevelVar] =&gt; xxx
+    [padBootShutdown] =&gt; 1
+    [padClientEtag] =&gt; 
+    [padClientDate] =&gt; 0
+    [padClientGzip] =&gt; 1
+    [padRequestScheme] =&gt; http
+    [padHttpHost] =&gt; penguin.linux.test
+    [padServerPort] =&gt; 80
+    [padScript] =&gt; /
+    [padUri] =&gt; /?fragments/db/join&amp;padInclude
+    [padHost] =&gt; http://penguin.linux.test
+    [padGo] =&gt; /?
+    [padGoExt] =&gt; http://penguin.linux.test/?
+    [padBetween] =&gt; internal
+    [padTypeCheck] =&gt; internal
+    [padTypeResult] =&gt; 
+    [padTypeGiven] =&gt; 
+    [padPairSet] =&gt; 
+    [padBaseSet] =&gt; 
+    [padPrmTypeSet] =&gt; none
+    [padTagResult] =&gt; internal
+    [padFirst] =&gt; i
+    [padWords] =&gt; Array
+        (
+            [0] =&gt; internal
+        )
+
+    [padTagCheck] =&gt; internal
+    [padTagOpts] =&gt; 
+    [padPrmParse] =&gt; Array
+        (
+        )
+
+    [padLvlIds] =&gt; Array
+        (
+            [0] =&gt; 1
+        )
+
+    [padParmParse] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padOpt] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [0] =&gt; 
+                )
+
+        )
+
+    [padPrm] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padParms] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padParmsType] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padSetLvl] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padSetOcc] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padTag] =&gt; Array
+        (
+            [0] =&gt; internal
+        )
+
+    [padType] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padGiven] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padPrefix] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padPair] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padPrmType] =&gt; Array
+        (
+            [0] =&gt; none
+        )
+
+    [padBase] =&gt; Array
+        (
+            [0] =&gt; &lt;h1&gt;Join demo&lt;/h1&gt;
+
+&lt;h2&gt;join&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {join}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/join}
+&lt;/table&gt;
+
+&lt;h2&gt;natural&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {natural1}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/natural1}
+&lt;/table&gt;
+
+&lt;h2&gt;inner&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {inner}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/inner}
+&lt;/table&gt;
+
+&lt;h2&gt;left&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {left}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/left}
+&lt;/table&gt;
+
+&lt;h2&gt;natural left&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {natural2}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/natural2}
+&lt;/table&gt;
+
+&lt;h2&gt;right&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {right}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/right}
+&lt;/table&gt;
+
+&lt;h2&gt;natural right&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {natural3}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/natural3}
+&lt;/table&gt;
+
+&lt;h2&gt;cross&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {cross}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/cross}
+&lt;/table&gt;
+
+&lt;h2&gt;multi&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {multi}
+    &lt;tr&gt;
+      &lt;td&gt;{$text3}&lt;/td&gt;
+      &lt;td&gt;{$text4}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/multi}
+&lt;/table&gt;
+
+&lt;!-- PAD: ABOVE --&gt;
+        )
+
+    [padOrg] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padSource] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padPipeBefore] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padPipeAfter] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padName] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padData] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [999] =&gt; Array
+                        (
+                        )
+
+                )
+
+        )
+
+    [padCurrent] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padKey] =&gt; Array
+        (
+            [0] =&gt; 999
+        )
+
+    [padWalk] =&gt; Array
+        (
+            [0] =&gt; start
+        )
+
+    [padWalkData] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padDone] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padOccur] =&gt; Array
+        (
+            [0] =&gt; 1
+        )
+
+    [padStart] =&gt; Array
+        (
+            [0] =&gt; 0
+        )
+
+    [padEnd] =&gt; Array
+        (
+            [0] =&gt; 0
+        )
+
+    [padOut] =&gt; Array
+        (
+            [0] =&gt; &lt;h1&gt;Join demo&lt;/h1&gt;
+
+&lt;h2&gt;join&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {join}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/join}
+&lt;/table&gt;
+
+&lt;h2&gt;natural&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {natural1}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/natural1}
+&lt;/table&gt;
+
+&lt;h2&gt;inner&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {inner}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/inner}
+&lt;/table&gt;
+
+&lt;h2&gt;left&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {left}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/left}
+&lt;/table&gt;
+
+&lt;h2&gt;natural left&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {natural2}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/natural2}
+&lt;/table&gt;
+
+&lt;h2&gt;right&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {right}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/right}
+&lt;/table&gt;
+
+&lt;h2&gt;natural right&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {natural3}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/natural3}
+&lt;/table&gt;
+
+&lt;h2&gt;cross&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {cross}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/cross}
+&lt;/table&gt;
+
+&lt;h2&gt;multi&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {multi}
+    &lt;tr&gt;
+      &lt;td&gt;{$text3}&lt;/td&gt;
+      &lt;td&gt;{$text4}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/multi}
+&lt;/table&gt;
+
+&lt;!-- PAD: ABOVE --&gt;
+        )
+
+    [padResult] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padHit] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padNull] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padElse] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padArray] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padCount] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padDefault] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padTagSeq] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padSaveLvl] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padDeleteLvl] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padSaveOcc] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padDeleteOcc] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padEndBase] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padStartBase] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padStartData] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padTable] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [table1] =&gt; Array
+                        (
+                        )
+
+                )
+
+        )
+
+    [padTableTag] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padSelectTag] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padLvlFun] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padLvlFunVar] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padOccurStart] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [1] =&gt; 1
+                )
+
+        )
+
+    [padOptionsAppStart] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padForceTagName] =&gt; 
+    [padForceDataName] =&gt; 
+    [padFalse] =&gt; 
+    [padNextPadLevel] =&gt; 0
+    [padBuildLib] =&gt; 
+    [padBuildBase] =&gt; @pad@
+    [padBuildPage] =&gt; &lt;h1&gt;Join demo&lt;/h1&gt;
+
+&lt;h2&gt;join&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {join}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/join}
+&lt;/table&gt;
+
+&lt;h2&gt;natural&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {natural1}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/natural1}
+&lt;/table&gt;
+
+&lt;h2&gt;inner&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {inner}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/inner}
+&lt;/table&gt;
+
+&lt;h2&gt;left&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {left}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/left}
+&lt;/table&gt;
+
+&lt;h2&gt;natural left&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {natural2}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/natural2}
+&lt;/table&gt;
+
+&lt;h2&gt;right&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {right}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/right}
+&lt;/table&gt;
+
+&lt;h2&gt;natural right&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {natural3}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/natural3}
+&lt;/table&gt;
+
+&lt;h2&gt;cross&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {cross}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/cross}
+&lt;/table&gt;
+
+&lt;h2&gt;multi&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {multi}
+    &lt;tr&gt;
+      &lt;td&gt;{$text3}&lt;/td&gt;
+      &lt;td&gt;{$text4}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/multi}
+&lt;/table&gt;
+
+&lt;!-- PAD: ABOVE --&gt;
+    [padBuildDirs] =&gt; Array
+        (
+            [0] =&gt; /home/herbert/pad/apps/pad
+            [1] =&gt; /home/herbert/pad/apps/pad/fragments
+            [2] =&gt; /home/herbert/pad/apps/pad/fragments/db
+        )
+
+    [padBuildNow] =&gt; /home/herbert/pad/apps/pad
+    [padBuildPos] =&gt; 22
+    [padBuildDir] =&gt; /home/herbert/pad/apps/pad/fragments/db
+    [padBuildMrg] =&gt; Array
+        (
+            [0] =&gt; pad
+            [1] =&gt; fragments
+            [2] =&gt; db
+        )
+
+    [padV] =&gt; db
+    [padCall] =&gt; /home/herbert/pad/apps/pad/_exits.php
+    [padTry] =&gt; call/_try
+    [padCallPHP] =&gt; 
+    [padCallOB] =&gt; 
+    [padBuildTrue] =&gt; &lt;h1&gt;Join demo&lt;/h1&gt;
+
+&lt;h2&gt;join&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {join}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/join}
+&lt;/table&gt;
+
+&lt;h2&gt;natural&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {natural1}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/natural1}
+&lt;/table&gt;
+
+&lt;h2&gt;inner&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {inner}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/inner}
+&lt;/table&gt;
+
+&lt;h2&gt;left&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {left}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/left}
+&lt;/table&gt;
+
+&lt;h2&gt;natural left&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {natural2}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/natural2}
+&lt;/table&gt;
+
+&lt;h2&gt;right&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {right}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/right}
+&lt;/table&gt;
+
+&lt;h2&gt;natural right&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {natural3}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/natural3}
+&lt;/table&gt;
+
+&lt;h2&gt;cross&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {cross}
+    &lt;tr&gt;
+      &lt;td&gt;{$key1}&lt;/td&gt;
+      &lt;td&gt;{$text1}&lt;/td&gt;
+      &lt;td&gt;{$key2}&lt;/td&gt;
+      &lt;td&gt;{$text2}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/cross}
+&lt;/table&gt;
+
+&lt;h2&gt;multi&lt;/h2&gt;
+
+&lt;table border=1&gt;
+  {multi}
+    &lt;tr&gt;
+      &lt;td&gt;{$text3}&lt;/td&gt;
+      &lt;td&gt;{$text4}&lt;/td&gt;
+    &lt;/tr&gt;
+  {/multi}
+&lt;/table&gt;
+
+&lt;!-- PAD: ABOVE --&gt;
+    [padBuildCall] =&gt; 
+    [padBuild] =&gt; Array
+        (
+            [999] =&gt; Array
+                (
+                )
+
+        )
+
+    [title] =&gt; join
+    [showTitle] =&gt; 1
+    [padOpenClose] =&gt; Array
+        (
+            [join] =&gt; 1
+            [natural1] =&gt; 1
+            [inner] =&gt; 1
+            [left] =&gt; 1
+            [natural2] =&gt; 1
+            [right] =&gt; 1
+            [natural3] =&gt; 1
+            [cross] =&gt; 1
+            [multi] =&gt; 1
+        )
+
+    [padPos] =&gt; 
+    [padParm] =&gt; 
+    [padSqlConnect] =&gt; mysqli Object
+        (
+            [affected_rows] =&gt; 0
+            [client_info] =&gt; mysqlnd 8.5.0
+            [client_version] =&gt; 80500
+            [connect_errno] =&gt; 0
+            [connect_error] =&gt; 
+            [errno] =&gt; 0
+            [error] =&gt; 
+            [error_list] =&gt; Array
+                (
+                )
+
+            [field_count] =&gt; 2
+            [host_info] =&gt; 127.0.0.1 via TCP/IP
+            [info] =&gt; 
+            [insert_id] =&gt; 0
+            [server_info] =&gt; 11.8.3-MariaDB-0+deb13u1 from Debian
+            [server_version] =&gt; 110803
+            [sqlstate] =&gt; 00000
+            [protocol_version] =&gt; 10
+            [thread_id] =&gt; 634
+            [warning_count] =&gt; 0
+        )
+
+    [padDbRowsFound] =&gt; 0
+    [padDataSetRecord] =&gt; 1
+    [_SQL] =&gt; select  table1.key as key1, table1.text as text1 from table1 where `key` = &#039;999&#039; limit 0,1
+    [padErrorGo] =&gt; /home/herbert/pad/pad/lib/field/level.php:72 SHUTDOWN: Maximum execution time of 5 seconds exceeded
+    [padErrorFile] =&gt; /home/herbert/pad/pad/lib/field/level.php
+    [padErrorLine] =&gt; 72
+    [padDumpToDirDone] =&gt; dumps/fragments/db/join/M0LnmB5z-6945c3b10e6fe
+    [_ENV] =&gt; Array
+        (
+            [USER] =&gt; root
+            [APACHE_RUN_DIR] =&gt; /var/run/apache2
+            [SYSTEMD_EXEC_PID] =&gt; 185
+            [APACHE_PID_FILE] =&gt; /var/run/apache2/apache2.pid
+            [JOURNAL_STREAM] =&gt; 8:2977
+            [PATH] =&gt; /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+            [INVOCATION_ID] =&gt; f786379f9f324ea4a5938c28ec23b3f3
+            [APACHE_LOCK_DIR] =&gt; /var/lock/apache2
+            [LANG] =&gt; C
+            [APACHE_RUN_USER] =&gt; herbert
+            [APACHE_RUN_GROUP] =&gt; herbert
+            [APACHE_LOG_DIR] =&gt; /var/log/apache2
+            [PWD] =&gt; /
+        )
+
+)</pre>

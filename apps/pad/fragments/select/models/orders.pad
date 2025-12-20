@@ -1,0 +1,33 @@
+<table border=1>
+ 
+  {customers $customerNumber = 495}
+
+    {orders}
+
+        {details}
+    
+          {products}
+    
+            {lines}
+
+              <tr>
+                <td> {$customerNumber}  </td>
+                <td> {$customerName}    </td>
+                <td> {$orderNumber}     </td>
+                <td> {$orderDate}       </td>
+                <td> {$orderLineNumber} </td>
+                <td> {$productName}     </td>
+                <td> {$productLine}     </td>
+              </tr>
+    
+            {/lines}
+          
+          {/products}
+    
+        {/details}
+        
+    {/orders}
+    
+  {/customers}
+
+</table>

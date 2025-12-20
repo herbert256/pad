@@ -2,7 +2,7 @@
 
   function padSelect ( $table, $unionBuild = 0 ) {
 
-    global $pad, $padPrm, $sql;
+    global $pad, $padPrm;
 
     $parms = padSelectGetDB ($table);
 
@@ -35,7 +35,7 @@
     $sql   = "$type $base $order $limit";
     $union = "union select $base";
 
-    $GLOBALS ['SQL'] [] = $sql;
+    $GLOBALS ['_SQL'] [] = $sql;
 
     if ($unionBuild)
       return $union;
@@ -105,7 +105,7 @@
 
   function padSelectWhere ( $where, $table, $keys ) {
 
-    global $pad, $padSelectRelations, $padCurrent, $padTag, $padType, $padSetLvl;
+    global $pad, $padRelations, $padCurrent, $padTag, $padType, $padSetLvl;
 
     if ($where)
       $where = 'where (' . $where . ')';
@@ -137,17 +137,17 @@
 
   function padSelectWhereRelation ( &$where, $table, $relation, $keys2, $data ) {
 
-    global $padSelectRelations;
+    global $padRelations;
 
-    if  ( isset ( $padSelectRelations [$relation] [$table] ) ) {
+    if  ( isset ( $padRelations [$relation] [$table] ) ) {
       
-      $keys3 = $padSelectRelations [$relation] [$table] ['key'];
+      $keys3 = $padRelations [$relation] [$table] ['key'];
       
       padSelectWhereGo ( $where, $keys2, $keys3, $data );
    
-    } elseif ( isset ( $padSelectRelations [$table] [$relation] ) )  {
+    } elseif ( isset ( $padRelations [$table] [$relation] ) )  {
    
-      $keys3 = $padSelectRelations [$table] [$relation] ['key'];
+      $keys3 = $padRelations [$table] [$relation] ['key'];
    
       padSelectWhereGo ( $where, $keys3, $keys2, $data );
 
@@ -292,15 +292,15 @@
 
   function padSelectGetDB ($table) {
 
-    global $padSelectTables;
+    global $padSelect;
 
-    if ( ! isset ( $padSelectTables [$table] ) )
+    if ( ! isset ( $padSelect [$table] ) )
       return [ 'db' => $table ];
 
-    $parms = $padSelectTables [$table];
+    $parms = $padSelect [$table];
 
-    if ( isset($parms['base']) and isset($padSelectTables [$parms['base']]) )
-      foreach($padSelectTables [$parms['base']] as $key => $value)
+    if ( isset($parms['base']) and isset($padSelect [$parms['base']]) )
+      foreach($padSelect [$parms['base']] as $key => $value)
         if ( ! isset($parms[$key]) )
           $parms[$key] = $value;
 

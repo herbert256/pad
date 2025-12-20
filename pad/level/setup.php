@@ -69,11 +69,6 @@
   $padStartBase  [$pad] = [];
   $padStartData  [$pad] = [];
 
-  $padTable      [$pad] = [];
-  $padTableTag   [$pad] = '';
-  $padSelect     [$pad] = [];
-  $padSelectTag  [$pad] = '';
-
   $padLvlFun     [$pad] = FALSE;
   $padLvlFunVar  [$pad] = [];
 

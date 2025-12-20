@@ -9,8 +9,8 @@
 PAD is an [inversion of control](https://en.wikipedia.org/wiki/Inversion_of_control) PHP application driver.
  
 PAD:  
-\- first executes the application PHP code,  
-\- then reads the application HTML markup code,  
+\- first executes the application PHP code,
+\- then reads the application HTML markup code (aka PAD template),
 \- merges both and send the result to the browser.
 
 There is no PAD code in the application PHP code at all !
