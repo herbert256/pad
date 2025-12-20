@@ -1,0 +1,174 @@
+<table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+      $xxx variables are set once at the beginning of a level<br>
+      %xxx variables are set on every occurence inside a level<br>
+    </td>
+  </tr>
+</table>
+<p></p>
+<table border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <th bgcolor="#DDDDDD">
+      HTML
+    </th>
+    <th bgcolor="#DDDDDD">
+      RESULT
+    </th>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>range = 10</font>}</b><br><br>&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Level&lt;/th&gt;<br>    &lt;th&gt;Occurence&lt;/th&gt;<br>  &lt;/tr&gt;<br><br>  <b>{<font color="blue">sequence </font><font color="red">range=<font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> <font color="red">$</font>abc=<font color="red">$</font>range<font color="black">,</font> <font color="black">%</font>xyz=<font color="red">$</font>range</font>}</b> <br>        &lt;tr&gt;<br>          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>abc</font>}</b>&lt;/td&gt;<br>          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>xyz</font>}</b>&lt;/td&gt;<br>        &lt;/tr&gt;<br>  <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br><br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <table border="1">
+        <tr>
+          <th>
+            Level
+          </th>
+          <th>
+            Occurence
+          </th>
+        </tr>
+        <tr>
+          <td>
+            10
+          </td>
+          <td>
+            1
+          </td>
+        </tr>
+        <tr>
+          <td>
+            10
+          </td>
+          <td>
+            2
+          </td>
+        </tr>
+        <tr>
+          <td>
+            10
+          </td>
+          <td>
+            3
+          </td>
+        </tr>
+        <tr>
+          <td>
+            10
+          </td>
+          <td>
+            4
+          </td>
+        </tr>
+        <tr>
+          <td>
+            10
+          </td>
+          <td>
+            5
+          </td>
+        </tr>
+      </table><!-- END DEMO RESULT -->
+    </td>
+  </tr>
+  <tr>
+    <td style="vertical-align:top">
+      <!-- START DEMO SOURCE -->
+      <pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue">staff </font><font color="red"><font color="black">%</font>total = <font color="red">$</font>salary + <font color="red">$</font>bonus</font>}</b><br><br>    &lt;tr align="right"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br> <br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE -->
+    </td>
+    <td style="vertical-align:top">
+      <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+      <table border="1">
+        <tr>
+          <th>
+            Name
+          </th>
+          <th>
+            Salary
+          </th>
+          <th>
+            Bonus
+          </th>
+          <th>
+            Total
+          </th>
+        </tr>
+        <tr align="right">
+          <td align="left">
+            joe
+          </td>
+          <td>
+            1000.00
+          </td>
+          <td>
+            500.00
+          </td>
+          <td>
+            1500.00
+          </td>
+        </tr>
+        <tr align="right">
+          <td align="left">
+            jim
+          </td>
+          <td>
+            2000.00
+          </td>
+          <td>
+            400.00
+          </td>
+          <td>
+            2400.00
+          </td>
+        </tr>
+        <tr align="right">
+          <td align="left">
+            john
+          </td>
+          <td>
+            3000.00
+          </td>
+          <td>
+            300.00
+          </td>
+          <td>
+            3300.00
+          </td>
+        </tr>
+        <tr align="right">
+          <td align="left">
+            jack
+          </td>
+          <td>
+            4000.00
+          </td>
+          <td>
+            200.00
+          </td>
+          <td>
+            4200.00
+          </td>
+        </tr>
+        <tr align="right">
+          <td align="left">
+            jerry
+          </td>
+          <td>
+            5000.00
+          </td>
+          <td>
+            100.00
+          </td>
+          <td>
+            5100.00
+          </td>
+        </tr>
+      </table><!-- END DEMO RESULT -->
+    </td>
+  </tr>
+</table>
+<p></p>

@@ -64,10 +64,11 @@
       $dir   = substr($item, 0, strrpos($item, '/')   );
       $file  = substr($item,    strrpos($item, '/')+1 );
 
-      if ( $ext <> 'pad'            ) continue;
-      if ( strpos($path, '/DATA/')  ) continue;
-      if ( strpos($path, '/_')      ) continue;
-      if ( strpos($path, 'develop') ) continue;
+      if ( $ext <> 'pad'               ) continue;
+      if ( strpos($path, '/DATA/')     ) continue;
+      if ( strpos($path, '/_')         ) continue;
+      if ( strpos($path, 'develop')    ) continue;
+      if ( strpos($path, 'regression') ) continue;
 
       $files [$item] ['path'] = $path;
       $files [$item] ['item'] = $item;

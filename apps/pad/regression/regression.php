@@ -7,7 +7,7 @@
     $item = $one ['item'];
 
     if (   $sequence and ! str_contains ( $item, 'sequence' ) ) continue;
-    if ( ! $sequence and ! str_contains ( $item, 'fragments') ) continue;
+    if ( ! $sequence and   str_contains ( $item, 'sequence' ) ) continue;
 
     $store  = "regression/DATA/$item.html";
     $check  = "$item.pad";

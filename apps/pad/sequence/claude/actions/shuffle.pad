@@ -1,8 +1,0 @@
-<p>The <code>shuffle</code> action randomizes the order of a sequence.</p>
-
-<h2>Shuffle Action</h2>
-<pre>{open}sequence '1..10', push='nums'{close}
-{open}pull:nums shuffle{close} {open}$sequence{close} {open}/pull:nums{close}</pre>
-<p>1-10 shuffled:</p>
-{sequence '1..10', push='nums'}
-<p>{pull:nums shuffle} {$sequence} {/pull:nums}</p>

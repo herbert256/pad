@@ -1,6 +1,6 @@
 <?php
 
   if ( $sequence ) $xref = 'sequences';
-  else             $xref = 'fragments';
+  else             $xref = 'xref';
 
 ?>

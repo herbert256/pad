@@ -1,7 +1,0 @@
-<p>The <code>distinct</code> action returns the count of unique values.</p>
-
-<h2>Distinct Action</h2>
-<pre>{open}list '1;2;2;3;3;3', push='nums'{close}
-{open}pull:nums distinct{close} {open}$sequence{close} {open}/pull:nums{close}</pre>
-{list '1;2;2;3;3;3', push='nums'}
-<p>Distinct count: {pull:nums distinct} {$sequence} {/pull:nums}</p>

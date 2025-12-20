@@ -1,9 +1,0 @@
-<p>The <code>append</code> action adds another sequence to the end.</p>
-
-<h2>Append Action</h2>
-<pre>{open}sequence '1..5', push='seqA'{close}
-{open}sequence '6..10', push='seqB'{close}
-{open}pull:seqA append='seqB'{close} {open}$sequence{close} {open}/pull:seqA{close}</pre>
-{sequence '1..5', push='seqA'}
-{sequence '6..10', push='seqB'}
-<p>Appended: {pull:seqA append='seqB'} {$sequence} {/pull:seqA}</p>

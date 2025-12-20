@@ -14,7 +14,7 @@ PAD (PHP Application Driver) is an Inversion of Control PHP template engine wher
 |-----------|-------------|
 | `manual/` | Interactive documentation pages explaining PAD concepts (template syntax, levels, occurrences, data handling, callbacks, properties, options) |
 | `reference/` | Cross-reference system that dynamically generates documentation by scanning PAD framework directories |
-| `fragments/` | Test fragments and working examples organized by category (30+ subdirectories) |
+| `` | Test fragments and working examples organized by category (30+ subdirectories) |
 | `regression/` | Automated regression testing system comparing fragment output against stored references |
 | `sequence/` | Comprehensive documentation and examples for the Sequence subsystem (80+ sequences, actions, plays) |
 | `develop/` | Development and debugging utilities (benchmarking, build tools, manual page rendering) |
@@ -63,7 +63,7 @@ Dynamic cross-reference system with cached data in `DATA/`:
 - Reads framework source files and presents them in navigable format
 - Fragment references stored in `_data/fragments.json`
 
-### fragments/
+### 
 
 Test fragments organized by category:
 
@@ -105,7 +105,7 @@ Automated testing system:
 3. Compares output against stored `.txt` reference files
 4. Reports status: ok, warning, error, new
 
-Reference files stored in `DATA/fragments/`.
+Reference files stored in `DATA/`.
 
 ### sequence/
 

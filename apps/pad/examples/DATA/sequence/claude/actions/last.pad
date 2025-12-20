@@ -1,9 +1,0 @@
-<p>The <code>last</code> action gets the last element(s) of a sequence.</p>
-
-<h2>Last Action</h2>
-<pre>{open}sequence '1..10', push='nums'{close}
-{open}pull:nums last{close} {open}$sequence{close} {open}/pull:nums{close}
-{open}pull:nums last=3{close} {open}$sequence{close} {open}/pull:nums{close}</pre>
-{sequence '1..10', push='nums'}
-<p>Last element: {pull:nums last} {$sequence} {/pull:nums}</p>
-<p>Last 3 elements: {pull:nums last=3} {$sequence} {/pull:nums}</p>
