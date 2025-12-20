@@ -28,9 +28,11 @@
 
   function padCacheStore ($url, $etag, $data) {
 
+    global $padCacheServerNoData;
+
     padFilePut ("url/$url", $etag);
 
-    if ( $GLOBALS ['padCacheServerNoData'] )
+    if ( $padCacheServerNoData )
       padCacheTouch ("etag/$etag", $_SERVER['REQUEST_TIME']);
     else
       padFilePut ("etag/$etag", $data);
@@ -52,7 +54,9 @@
 
   function  padCacheExists ( $file ) {
 
-    $file = $GLOBALS ['padCacheFile'] . $file;
+    global $padCacheFile;
+
+    $file = $padCacheFile . $file;
 
     $return = file_exists ($file);
 
@@ -62,9 +66,11 @@
 
   function padCacheTouch ($file, $time) {
 
+    global $padCacheFile;
+
     padCacheChkDir ($file);
 
-    $file = $GLOBALS ['padCacheFile'] . $file;
+    $file = $padCacheFile . $file;
 
     touch ( $file, $time );
 
@@ -72,17 +78,21 @@
 
   function padCacheChkDir ($file) {
 
-    $file = $GLOBALS ['padCacheFile'] . $file;
+    global $padCacheFile, $padDirMode;
+
+    $file = $padCacheFile . $file;
     $dir  = substr($file, 0, strrpos($file, '/'));
 
     if ( ! file_exists ($dir) )
-      mkdir($dir, $GLOBALS ['padDirMode'], true);
+      mkdir($dir, $padDirMode, true);
 
   }
 
   function padCacheDeleteFile ($file) {
 
-    $file = $GLOBALS ['padCacheFile'] . $file;
+    global $padCacheFile;
+
+    $file = $padCacheFile . $file;
 
     if ( file_exists($file) )
       unlink ($file);
@@ -91,7 +101,9 @@
 
   function padCacheTime ($file) {
 
-    $file = $GLOBALS ['padCacheFile'] . $file;
+    global $padCacheFile;
+
+    $file = $padCacheFile . $file;
 
     if ( file_exists($file) )
       return filemtime($file);

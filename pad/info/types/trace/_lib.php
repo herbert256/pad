@@ -2,13 +2,15 @@
 
   function padInfoTraceStart ( ) {
 
-    if ( ! isset ( $GLOBALS ['padInfoTraceLvl'] [ $GLOBALS ['padInfoTraceCnt'] ] ) )
+    global $padInfoTraceCnt, $padInfoTraceLvl;
+
+    if ( ! isset ( $padInfoTraceLvl [ $padInfoTraceCnt ] ) )
       return 0;
 
-    if ( $GLOBALS ['padInfoTraceLvl'] [ $GLOBALS ['padInfoTraceCnt'] ] < 0 )
+    if ( $padInfoTraceLvl [ $padInfoTraceCnt ] < 0 )
       return 0;
 
-    return $GLOBALS ['padInfoTraceLvl'] [ $GLOBALS ['padInfoTraceCnt'] ];
+    return $padInfoTraceLvl [ $padInfoTraceCnt ];
 
   }
 
@@ -45,6 +47,8 @@
 
   function padInfoTraceError ( $error ) {
 
+    global $padInfoTraceDir;
+
     if ( ! function_exists ( 'padInfoTrace') )
       return;
 
@@ -52,7 +56,7 @@
 
     try {
 
-      padDumpToDir ( $error, $GLOBALS ['padInfoTraceDir'] . '/ERROR');
+      padDumpToDir ( $error, $padInfoTraceDir . '/ERROR');
 
     } catch (Throwable $e) {
 

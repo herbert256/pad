@@ -50,11 +50,13 @@
 
   function padTidy ( $data, $fragment=FALSE ) {
 
-    $config = $GLOBALS ['padTidyConfig'];
+    global $padInclude, $padTidyCcsid, $padTidyConfig;
+
+    $config = $padTidyConfig;
 
     if ( $fragment
          or isset ( $_REQUEST ['padInclude'] )
-         or ( isset ( $GLOBALS  ['padInclude'] ) and $GLOBALS ['padInclude'] ) )
+         or ( isset ( $padInclude ) and $padInclude ) )
       $config ['show-body-only'] = true;
 
     if ( ! class_exists('tidy') )
@@ -62,7 +64,7 @@
 
     try {
       $tidy = new tidy;
-      $tidy->parseString($data, $config, $GLOBALS ['padTidyCcsid'] );
+      $tidy->parseString($data, $config, $padTidyCcsid );
       $tidy->cleanRepair();
       return $tidy->value ?? $data;
     } catch (Throwable $e) {
@@ -73,12 +75,14 @@
 
   function padHeader ($header) {
 
+    global $padHeaders;
+
     if ( headers_sent () )
       return;
 
     header ($header);
 
-    $GLOBALS ['padHeaders'] [] = $header;
+    $padHeaders [] = $header;
 
   }
 

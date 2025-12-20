@@ -31,6 +31,8 @@
 
   function padCurl ($input) {
 
+    global $padCurlLast, $padCurlStats, $padGo, $padGoExt, $padHost, $padInfo, $padPage, $padReqID, $padSesID;
+
     $output             = [];
     $output ['url']     = '';
     $output ['input']   = $input;
@@ -42,7 +44,7 @@
     $output ['cookies'] = [];
     $output ['data']    = '';
 
-    $stats = isset ( $GLOBALS ['padCurlStats'] );
+    $stats = isset ( $padCurlStats );
 
     $url = ( is_array($input) ) ? $input ['url'] : $input;
 
@@ -66,7 +68,7 @@
         $output ['type']   = padContentType  ( $output ['data'] );
         $output ['result'] = '200';
 
-        $GLOBALS ['padCurlLast'] = $output;
+        $padCurlLast = $output;
 
         return $output;
 
@@ -75,13 +77,13 @@
     }
 
     if ( ! strpos( $url, '://') ) {
-      $url = $GLOBALS ['padHost'] . $GLOBALS ['padGo']  . $url;
+      $url = $padHost . $padGo  . $url;
       $output ['url'] = $url;
     }
 
-    if ( str_starts_with ( strtolower ( $url ), strtolower ( $GLOBALS['padHost'] ) ) ) {
-      $input ['cookies'] ['padSesID'] = $GLOBALS ['padSesID'];
-      $input ['cookies'] ['padReqID'] = $GLOBALS ['padReqID'];
+    if ( str_starts_with ( strtolower ( $url ), strtolower ( $padHost ) ) ) {
+      $input ['cookies'] ['padSesID'] = $padSesID;
+      $input ['cookies'] ['padReqID'] = $padReqID;
     }
 
     $options = $input ['options'] ?? [];
@@ -91,7 +93,7 @@
     padCurlOpt ($options, 'FOLLOWLOCATION', true);
     padCurlOpt ($options, 'HEADER',         true);
     padCurlOpt ($options, 'USERAGENT',      $_SERVER['HTTP_USER_AGENT'] ?? 'Mozilla/5.0 (X11; CrOS x86_64 13904.77.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.147 Safari/537.36 pad/10.0');
-    padCurlOpt ($options, 'REFERER',        $GLOBALS ['padGoExt'] . $GLOBALS ['padPage']);
+    padCurlOpt ($options, 'REFERER',        $padGoExt . $padPage);
 
     if ( isset($input['user']) )
       padCurlOpt ($options, 'USERPWD', $input['user'] . ":" . $input['password']);
@@ -223,10 +225,10 @@
     if ( ! $output ['type'] )
       $output ['type'] = padContentType ( $output ['data'] );
 
-    if ( $GLOBALS ['padInfo'] )
+    if ( $padInfo )
       include PAD . 'events/curl.php';
 
-    $GLOBALS ['padCurlLast'] = $output;
+    $padCurlLast = $output;
 
     return $output;
 
@@ -241,10 +243,12 @@
 
   function padCurlError ( $output, $error ) {
 
+    global $padCurlLast;
+
     $output ['ERROR']  = $error;
     $output ['result'] = '999';
 
-    $GLOBALS ['padCurlLast'] = $output;
+    $padCurlLast = $output;
 
     return $output;
 

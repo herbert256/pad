@@ -2,11 +2,13 @@
 
   function padTypeCommon ( $item ) {
 
-    if     ( isset              ( $GLOBALS ['pqStore']         [$item] ) ) return 'pull';
-    elseif ( isset              ( $GLOBALS ['padBoolStore']    [$item] ) ) return 'flag';
-    elseif ( isset              ( $GLOBALS ['padContentStore'] [$item] ) ) return 'content';
-    elseif ( isset              ( $GLOBALS ['padSelect']       [$item] ) ) return 'select';
-    elseif ( isset              ( $GLOBALS ['padDataStore']    [$item] ) ) return 'data';
+    global $padBoolStore, $padContentStore, $padDataStore, $padSelect, $pqStore;
+
+    if     ( isset              ( $pqStore         [$item] ) ) return 'pull';
+    elseif ( isset              ( $padBoolStore    [$item] ) ) return 'flag';
+    elseif ( isset              ( $padContentStore [$item] ) ) return 'content';
+    elseif ( isset              ( $padSelect       [$item] ) ) return 'select';
+    elseif ( isset              ( $padDataStore    [$item] ) ) return 'data';
     elseif ( padAppIncludeCheck ( $item                                ) ) return 'include';
     elseif ( padFieldCheck      ( $item                                ) ) return 'field';
     elseif ( padTagCheck        ( $item                                ) ) return 'property';
@@ -44,14 +46,16 @@
 
   function padTypeTagCheck ( $type, $item ) {
 
+    global $padBoolStore, $padContentStore, $padDataStore, $padSelect, $pqStore;
+
     if     ( padAppTagCheck     ( $item                                ) and $item == 'app'      ) return $type;
     elseif ( file_exists        ( PAD . "tags/$item.php"               ) and $type == 'pad'      ) return $type;
     elseif ( file_exists        ( PAD . "tags/$item.pad"               ) and $type == 'pad'      ) return $type;
-    elseif ( isset              ( $GLOBALS ['pqStore']         [$item] ) and $type == 'pull'     ) return $type;
-    elseif ( isset              ( $GLOBALS ['padBoolStore']    [$item] ) and $type == 'flag'     ) return $type;
-    elseif ( isset              ( $GLOBALS ['padContentStore'] [$item] ) and $type == 'content'  ) return $type;
-    elseif ( isset              ( $GLOBALS ['padSelect']       [$item] ) and $type == 'select'   ) return $type;
-    elseif ( isset              ( $GLOBALS ['padDataStore']    [$item] ) and $type == 'data'     ) return $type;
+    elseif ( isset              ( $pqStore         [$item] ) and $type == 'pull'     ) return $type;
+    elseif ( isset              ( $padBoolStore    [$item] ) and $type == 'flag'     ) return $type;
+    elseif ( isset              ( $padContentStore [$item] ) and $type == 'content'  ) return $type;
+    elseif ( isset              ( $padSelect       [$item] ) and $type == 'select'   ) return $type;
+    elseif ( isset              ( $padDataStore    [$item] ) and $type == 'data'     ) return $type;
     elseif ( padAppIncludeCheck ( $item                                ) and $type == 'include'  ) return $type;
     elseif ( padFieldCheck      ( $item                                ) and $type == 'field'    ) return $type;
     elseif ( padTagCheck        ( $item                                ) and $type == 'property' ) return $type;
@@ -89,19 +93,21 @@
 
   function padTypeSeq ( $type, $item ) {
 
-    $GLOBALS ['padTypeSeq'] = $type;
+    global $padTypeSeq, $pqStore;
+
+    $padTypeSeq = $type;
 
     if ( $type == 'action' and file_exists ( PQ . "actions/types/$item.php" )                           ) return 'action';
     if ( $item == 'action' and file_exists ( PQ . "actions/types/$type.php" )                           ) return 'action';
 
-    if ( isset ( $GLOBALS ['pqStore'] [$type] ) and file_exists ( PQ . "actions/types/$item.php")       ) return 'action';
-    if ( isset ( $GLOBALS ['pqStore'] [$item] ) and file_exists ( PQ . "actions/types/$type.php")       ) return 'action';
+    if ( isset ( $pqStore [$type] ) and file_exists ( PQ . "actions/types/$item.php")       ) return 'action';
+    if ( isset ( $pqStore [$item] ) and file_exists ( PQ . "actions/types/$type.php")       ) return 'action';
 
-    if ( isset ( $GLOBALS ['pqStore'] [$type] ) and file_exists ( PT . "$item")                         ) return 'make';
-    if ( isset ( $GLOBALS ['pqStore'] [$item] ) and file_exists ( PT . "$type")                         ) return 'make';
+    if ( isset ( $pqStore [$type] ) and file_exists ( PT . "$item")                         ) return 'make';
+    if ( isset ( $pqStore [$item] ) and file_exists ( PT . "$type")                         ) return 'make';
 
-    if ( isset ( $GLOBALS ['pqStore'] [$type] ) and file_exists ( PQ . "start/types/$item.php")         ) return $item;
-    if ( isset ( $GLOBALS ['pqStore'] [$item] ) and file_exists ( PQ . "start/types/$type.php")         ) return $type;
+    if ( isset ( $pqStore [$type] ) and file_exists ( PQ . "start/types/$item.php")         ) return $item;
+    if ( isset ( $pqStore [$item] ) and file_exists ( PQ . "start/types/$type.php")         ) return $type;
 
     if ( file_exists ( PT . "$item" )    and file_exists ( PQ . "start/types/$type.php")                ) return $type;
     if ( file_exists ( PT . "$type" )    and file_exists ( PQ . "start/types/$item.php")                ) return $item;

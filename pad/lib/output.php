@@ -2,34 +2,36 @@
 
   function padWebSend ( $stop ) {
 
-    if ( ! $GLOBALS ['padOutput']       ) return;
-    if ( isset ( $GLOBALS ['padSent'] ) ) return;
+    global $padCacheServerGzip, $padCacheStop, $padClientGzip, $padGzip, $padLen, $padOutput, $padSent;
 
-    if ( $GLOBALS ['padCacheStop'] == 200 ) {
+    if ( ! $padOutput       ) return;
+    if ( isset ( $padSent ) ) return;
 
-      if ( $GLOBALS ['padCacheServerGzip'] and ! $GLOBALS ['padClientGzip'] )
-        $output = padUnzip ( $GLOBALS ['padOutput'] );
-      elseif ( ! $GLOBALS ['padCacheServerGzip'] and $GLOBALS ['padGzip'] and $GLOBALS ['padClientGzip'] )
-        $output = padZip ( $GLOBALS ['padOutput'] );
+    if ( $padCacheStop == 200 ) {
+
+      if ( $padCacheServerGzip and ! $padClientGzip )
+        $output = padUnzip ( $padOutput );
+      elseif ( ! $padCacheServerGzip and $padGzip and $padClientGzip )
+        $output = padZip ( $padOutput );
       else
-        $output = $GLOBALS ['padOutput'];
+        $output = $padOutput;
 
     } elseif ( $stop == 200 ) {
 
-      if ( $GLOBALS ['padGzip'] and $GLOBALS ['padClientGzip'] )
-        $output = padZip ( $GLOBALS ['padOutput'] );
+      if ( $padGzip and $padClientGzip )
+        $output = padZip ( $padOutput );
       else
-        $output = $GLOBALS ['padOutput'];
+        $output = $padOutput;
 
     } else
 
       $output = '';
 
-    $GLOBALS ['padLen'] = strlen ( $output );
+    $padLen = strlen ( $output );
 
     padWebHeaders ( $stop );
 
-    $GLOBALS ['padSent'] = TRUE;
+    $padSent = TRUE;
 
     if ( $stop == 200 )
       echo $output;
@@ -82,20 +84,22 @@
 
   function padWebPadHeaders ( $stop ) {
 
-    padHeader       ('PAD: ' . $GLOBALS ['padSesID'] . '-' . $GLOBALS ['padReqID']);
+    global $padCacheClientAge, $padClientGzip, $padContentType, $padGzip, $padLen, $padReqID, $padSesID;
+
+    padHeader       ('PAD: ' . $padSesID . '-' . $padReqID);
     padWebStats     ();
     padWebNoHeaders ($stop);
 
-    if ( $stop == 200 and $GLOBALS ['padGzip'] and $GLOBALS ['padClientGzip'] )
+    if ( $stop == 200 and $padGzip and $padClientGzip )
       padHeader ( 'Content-Encoding: gzip' );
 
     if ( $stop <> 302 and $stop <> 304 )
-      padHeader ( 'Content-Type: ' . $GLOBALS ['padContentType'] );
+      padHeader ( 'Content-Type: ' . $padContentType );
 
-    if ( $stop == 200 and $GLOBALS ['padLen'] )
-      padHeader ( 'Content-Length: ' . $GLOBALS ['padLen'] );
+    if ( $stop == 200 and $padLen )
+      padHeader ( 'Content-Length: ' . $padLen );
 
-    if ( ! isset ( $GLOBALS ['padCacheClientAge'] ) or ( $stop <> 200 and $stop <> 304 ) )
+    if ( ! isset ( $padCacheClientAge ) or ( $stop <> 200 and $stop <> 304 ) )
       padHeader ( 'Cache-Control: no-cache, no-store' );
     else
       padWebCacheHeaders ();
@@ -104,27 +108,31 @@
 
   function padWebStats () {
 
-    if ( ! $GLOBALS ['padInfo']      ) return;
-    if ( ! $GLOBALS ['padInfoStats'] ) return;
+    global $padInfo, $padInfoStats, $padInfoStatsJson;
 
-    if ( ! isset ( $GLOBALS ['padInfoStatsJson'] ) )
+    if ( ! $padInfo      ) return;
+    if ( ! $padInfoStats ) return;
+
+    if ( ! isset ( $padInfoStatsJson ) )
       include PAD . 'info/types/stats/end.php';
 
-    if ( isset ( $GLOBALS ['padInfoStatsJson'] ) )
-      padHeader ( 'PAD-Stats: ' . $GLOBALS ['padInfoStatsJson'] );
+    if ( isset ( $padInfoStatsJson ) )
+      padHeader ( 'PAD-Stats: ' . $padInfoStatsJson );
 
   }
 
   function padWebCacheHeaders () {
 
-    if ( $GLOBALS ['padCacheClientAge'] )
-      $age = $GLOBALS ['padCacheClientAge'] - ($_SERVER['REQUEST_TIME'] - $GLOBALS ['padTime']);
+    global $padCacheClientAge, $padCacheProxyAge, $padEtag, $padTime;
+
+    if ( $padCacheClientAge )
+      $age = $padCacheClientAge - ($_SERVER['REQUEST_TIME'] - $padTime);
     else
       $age = 0;
 
-    if ( $GLOBALS ['padCacheProxyAge'] ) {
+    if ( $padCacheProxyAge ) {
       $type = 'public';
-      $sage = $GLOBALS ['padCacheProxyAge'] - ($_SERVER['REQUEST_TIME'] - $GLOBALS ['padTime']);
+      $sage = $padCacheProxyAge - ($_SERVER['REQUEST_TIME'] - $padTime);
     } else {
       $type = 'private';
       $sage = 0;
@@ -139,7 +147,7 @@
     padHeader ('Vary: '          . 'Content-Encoding');
     padHeader ('Date: '          . gmdate('D, d M Y H:i:s', $_SERVER['REQUEST_TIME']        ) . ' GMT');;
     padHeader ('Expires: '       . gmdate('D, d M Y H:i:s', $_SERVER['REQUEST_TIME'] + $age ) . ' GMT');
-    padHeader ('Etag: '          . '"' . $GLOBALS ['padEtag'] . '"');
+    padHeader ('Etag: '          . '"' . $padEtag . '"');
 
   }
 

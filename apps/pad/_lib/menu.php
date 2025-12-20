@@ -2,7 +2,7 @@
 
   function parts ( ) {
 
-    global $padPage, $manual, $parts, $item;
+    global $for, $item, $manual, $padPage, $parts, $xitem, $xref;
 
     $parts = [];
     return $parts;
@@ -40,19 +40,19 @@
 
     if ( $padPage == 'Xref/xref' or $padPage == 'Xref/go' ) {
 
-      $parts ['f'] ['part'] = strtolower ( $GLOBALS ['for'] );
+      $parts ['f'] ['part'] = strtolower ( $for );
       $parts ['f'] ['link'] = '';
 
-      $parts ['i'] ['part'] = $GLOBALS ['xitem'];
+      $parts ['i'] ['part'] = $xitem;
       $parts ['i'] ['link'] = '';
 
     }
 
     if ( $padPage == 'develop/xref' ) {
 
-      if ( $GLOBALS ['xref'] ) {
+      if ( $xref ) {
 
-        $plode = padExplode ( $GLOBALS ['xref'], '/' );
+        $plode = padExplode ( $xref, '/' );
         $key   = array_key_last ($plode);
         $last  = $plode [$key];
 
@@ -76,16 +76,20 @@
 
   function forLink () {
 
+    global $first, $for, $xitem;
+
     return 'Xref/xref'
-    . '&first='  . ($GLOBALS ['first'] )
-    . '&for='    . urlencode(($GLOBALS ['for'] ))
-    . '&xitem='  . ($GLOBALS ['xitem'] );
+    . '&first='  . ($first )
+    . '&for='    . urlencode(($for ))
+    . '&xitem='  . ($xitem );
 
   }
 
   function itemLink () {
 
-    if ( ! $GLOBALS ['second'] )
+    global $second;
+
+    if ( ! $second )
       return '';
 
     return forLink ();
@@ -94,10 +98,12 @@
 
   function secondLink () {
 
-    if ( ! isset ($GLOBALS ['go'] ) )
+    global $go, $second;
+
+    if ( ! isset ($go ) )
       return '';
 
-    return forLink () . '&second='  . $GLOBALS ['second'] ;
+    return forLink () . '&second='  . $second ;
 
   }
 

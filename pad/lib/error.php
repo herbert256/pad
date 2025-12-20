@@ -19,9 +19,11 @@
 
   function padErrorRestoreBoot () {
 
+    global $padBootShutdown;
+
     restore_error_handler ();
     restore_exception_handler ();
-    $GLOBALS ['padBootShutdown'] = TRUE;
+    $padBootShutdown = TRUE;
 
   }
 

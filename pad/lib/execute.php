@@ -2,10 +2,12 @@
 
   function padCode ( $padStrCod ) {
 
-    $GLOBALS ['padStrBox'] = FALSE;
-    $GLOBALS ['padStrRes'] = FALSE;
-    $GLOBALS ['padStrCln'] = FALSE;
-    $GLOBALS ['padStrBld'] = 'code';
+    global $padStrBld, $padStrBox, $padStrCln, $padStrRes;
+
+    $padStrBox = FALSE;
+    $padStrRes = FALSE;
+    $padStrCln = FALSE;
+    $padStrBld = 'code';
 
     return include PAD . 'start/enter/function.php';
 
@@ -13,10 +15,12 @@
 
   function padSandbox ( $padStrCod ) {
 
-    $GLOBALS ['padStrBox'] = TRUE;
-    $GLOBALS ['padStrRes'] = TRUE;
-    $GLOBALS ['padStrCln'] = TRUE;
-    $GLOBALS ['padStrBld'] = 'code';
+    global $padStrBld, $padStrBox, $padStrCln, $padStrRes;
+
+    $padStrBox = TRUE;
+    $padStrRes = TRUE;
+    $padStrCln = TRUE;
+    $padStrBld = 'code';
 
     return include PAD . 'start/enter/function.php';
 

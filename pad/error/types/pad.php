@@ -24,24 +24,26 @@
 
   function padErrorTry ( $error, $file, $line ) {
 
-    if ( isset ( $GLOBALS ['padErrorGo'] ) )
-      return padErrorDouble ( $GLOBALS ['padErrorGo'], "$file:$line $error" );
+    global $padErrorFile, $padErrorGo, $padErrorLine, $padErrorLog, $padErrorReport;
+
+    if ( isset ( $padErrorGo ) )
+      return padErrorDouble ( $padErrorGo, "$file:$line $error" );
     else
-      $GLOBALS ['padErrorGo'] = TRUE;
+      $padErrorGo = TRUE;
 
     $go = padMakeSafe ( "$file:$line $error" );
 
-    $GLOBALS ['padErrorGo']   = $go;
-    $GLOBALS ['padErrorFile'] = $file;
-    $GLOBALS ['padErrorLine'] = $line;
+    $padErrorGo   = $go;
+    $padErrorFile = $file;
+    $padErrorLine = $line;
 
     if ( function_exists ( 'padInfoTraceError' ) )
       padInfoTraceError ( $go );
 
-    if ( $GLOBALS ['padErrorLog'] )
+    if ( $padErrorLog )
       padLogError ( $go );
 
-    if ( $GLOBALS ['padErrorReport'] )
+    if ( $padErrorReport )
       padDumpToDir ( $go );
 
     padDump ( $go );
@@ -70,10 +72,12 @@
 
   function padErrorDoubleTry ( $error1, $error2 ) {
 
-    if ( isset ( $GLOBALS ['padErrorDouble'] ) )
+    global $padErrorDouble;
+
+    if ( isset ( $padErrorDouble ) )
       include PAD . 'exits/exit.php';
     else
-      $GLOBALS ['padErrorDouble'] = TRUE;
+      $padErrorDouble = TRUE;
 
     padErrorLog ( $error1 );
     padErrorLog ( $error2 );

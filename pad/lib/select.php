@@ -2,7 +2,7 @@
 
   function padSelect ( $table, $unionBuild = 0 ) {
 
-    global $pad, $padPrm;
+    global $_SELECT, $_UNION, $pad, $padPrm;
 
     global     $start,$group,$limit,$where,$join,$order,$union;
 
@@ -35,13 +35,13 @@
     $order  = padSelectOrder  ( $order, $join, $keys );
     $union  = padSelectUnion  ( $union );
 
-    $GLOBALS ['_UNION'] [] = $union;
+    $_UNION [] = $union;
 
     $base  = "$start $fields from $db $join $where $group $having $union";
     $sql   = "$type $base $order $limit";
     $union = "union select $base";
 
-    $GLOBALS ['_SELECT'] [] = $sql;
+    $_SELECT [] = $sql;
 
     if ($unionBuild)
       return $union;

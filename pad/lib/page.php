@@ -35,9 +35,11 @@
 
   function padPageAjax ( $page, $qry ) {
 
+    global $padGo, $padHost;
+
     $ajax = 'padAjax' . padRandomString(8);
 
-    $url = $GLOBALS ['padHost'] . $GLOBALS ['padGo'] . $page . $qry;
+    $url = $padHost . $padGo . $page . $qry;
     $url = padAddIds ( $url );
 
     return <<< END
@@ -63,7 +65,9 @@ END;
 
   function padPageGet ( $page, $qry='' ) {
 
-    $curl = padCurl ( $GLOBALS['padGoExt'] . $page . $qry );
+    global $padGoExt;
+
+    $curl = padCurl ( $padGoExt . $page . $qry );
 
     if ( ! str_starts_with( $curl ['result'], '2') )
       return padError ("Curl failed: " . $curl['url'] );

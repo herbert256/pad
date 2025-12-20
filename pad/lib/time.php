@@ -10,7 +10,9 @@
 
   function padDuration ( $start = 0, $end = 0 ) {
 
-    if ( ! $start ) $start = $_SERVER ['REQUEST_TIME_FLOAT'] ?? $GLOBALS ['padMicro'] ?? microtime ( true );
+    global $padMicro;
+
+    if ( ! $start ) $start = $_SERVER ['REQUEST_TIME_FLOAT'] ?? $padMicro ?? microtime ( true );
     if ( ! $end   ) $end   = microtime ( true );
 
     $duration = (int) ( ( $end - $start ) * 1000000000 );
@@ -21,7 +23,9 @@
 
   function padDurationHR ( $start = 0, $end = 0 ) {
 
-    if ( ! $start ) $start = $GLOBALS ['padHR'] ?? hrtime ( TRUE );
+    global $padHR;
+
+    if ( ! $start ) $start = $padHR ?? hrtime ( TRUE );
     if ( ! $end   ) $end   = hrtime ( TRUE );
 
     return $end - $start;

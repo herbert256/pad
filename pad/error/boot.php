@@ -29,7 +29,9 @@
 
   function padBootShutdown () {
 
-    if ( isset ( $GLOBALS ['padBootShutdown'] ) )
+    global $padBootShutdown;
+
+    if ( isset ( $padBootShutdown ) )
       return;
 
     $error = error_get_last ();
@@ -41,7 +43,9 @@
 
   function padBootStop ( $error, $file, $line ) {
 
-    $GLOBALS ['padBootShutdown'] = TRUE;
+    global $padBootShutdown;
+
+    $padBootShutdown = TRUE;
 
     set_error_handler ( 'padBootStopError' );
 
@@ -63,10 +67,12 @@
 
   function padBootStopTry ( $error, $file, $line ) {
 
-    if ( isset ( $GLOBALS ['padBootStop'] ) )
-      padBootProblems ( "$file:$line $error", $GLOBALS ['padBootStop'] );
+    global $padBootStop;
 
-    $GLOBALS ['padBootStop'] = "$file:$line $error";
+    if ( isset ( $padBootStop ) )
+      padBootProblems ( "$file:$line $error", $padBootStop );
+
+    $padBootStop = "$file:$line $error";
 
     $j = ob_get_level ();
     for ( $i = 1; $i <= $j; $i++ )
@@ -98,7 +104,9 @@
 
   function padShowErrorRemote ( $error, $file, $line ) {
 
-      $id = $GLOBALS ['padReqID'] ?? bin2hex(random_bytes(8));
+      global $padReqID;
+
+      $id = $padReqID ?? bin2hex(random_bytes(8));
 
       error_log ( "[PAD] $id $file:$line $error", 4 );
 

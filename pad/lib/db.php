@@ -43,7 +43,7 @@
 
   function padDbPart2 ( $padSqlConnect, $sql, $vars ) {
 
-    global $pad, $padDbRowsFound, $padPrm;
+    global $_SQL, $pad, $padDataSetRecord, $padDbRowsFound, $padInfo, $padPrm;
 
     $input = $sql;
 
@@ -83,14 +83,14 @@
       $command = 'array';
 
     if ( $command == 'record' )
-      $GLOBALS ['padDataSetRecord'] = TRUE;
+      $padDataSetRecord = TRUE;
 
     if     ( $command == 'check'  )  $sql = 'select 1 from ' . $split[1] . ' limit 0,1';
     elseif ( $command == 'record' )  $sql = 'select '        . $split[1] . ' limit 0,1';
     elseif ( $command == 'field'  )  $sql = 'select '        . $split[1] . ' limit 0,1';
     elseif ( $command == 'array'  )  $sql = 'select '        . $split[1];
 
-    $GLOBALS ['_SQL'] [] = $sql;
+    $_SQL [] = $sql;
 
     $query = mysqli_query ( $padSqlConnect , $sql );
 
@@ -137,7 +137,7 @@
     else
       $return = '';
 
-    if ( $GLOBALS ['padInfo'] )
+    if ( $padInfo )
       include PAD . 'events/sql.php';
 
     return $return;

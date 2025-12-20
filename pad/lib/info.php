@@ -2,11 +2,13 @@
 
   function padInfoSet ( ) {
 
-    if ( ! isset ( $GLOBALS ['padInfoTrack'] ) ) $GLOBALS ['padInfoTrack'] = FALSE;
-    if ( ! isset ( $GLOBALS ['padInfoStats'] ) ) $GLOBALS ['padInfoStats'] = FALSE;
-    if ( ! isset ( $GLOBALS ['padInfoXref']  ) ) $GLOBALS ['padInfoXref']  = FALSE;
-    if ( ! isset ( $GLOBALS ['padInfoTrace'] ) ) $GLOBALS ['padInfoTrace'] = FALSE;
-    if ( ! isset ( $GLOBALS ['padInfoXml']   ) ) $GLOBALS ['padInfoXml']   = FALSE;
+    global $padInfoStats, $padInfoTrace, $padInfoTrack, $padInfoXml, $padInfoXref;
+
+    if ( ! isset ( $padInfoTrack ) ) $padInfoTrack = FALSE;
+    if ( ! isset ( $padInfoStats ) ) $padInfoStats = FALSE;
+    if ( ! isset ( $padInfoXref  ) ) $padInfoXref  = FALSE;
+    if ( ! isset ( $padInfoTrace ) ) $padInfoTrace = FALSE;
+    if ( ! isset ( $padInfoXml   ) ) $padInfoXml   = FALSE;
 
   }
 

@@ -2,6 +2,8 @@
 
   function padFileGet ( $file, $default='' ) {
 
+    global $padInfo;
+
     if ( $file == 'php://input' )
       return file_get_contents ( 'php://input' );
 
@@ -12,7 +14,7 @@
     if ( $check )
       return padError ( $check );
 
-    if ( $GLOBALS ['padInfo'] )
+    if ( $padInfo )
       include PAD . 'events/get.php';
 
     if ( is_dir ($file) or ! is_readable ( $file ) )
@@ -23,6 +25,8 @@
   }
 
   function padFilePut ( $file, $data='', $append=0 ) {
+
+    global $padInfo;
 
     if ( ! str_starts_with ( $file, DAT ) ) {
 
@@ -37,7 +41,7 @@
     if ( $check )
       return padError ( $check );
 
-    if ( $GLOBALS ['padInfo'] )
+    if ( $padInfo )
       include PAD . 'events/put.php';
 
     padFilePutGo ( $file, $data, $append );
@@ -56,6 +60,8 @@
 
   function padFilePutGo ( $file, $data, $append ) {
 
+    global $padDirMode, $padFileMode;
+
     $dir = substr ( $file, 0, strrpos ( $file, '/' ) );
 
     if ( ! is_writeable ( $dir ) ) {
@@ -63,7 +69,7 @@
       if ( file_exists ( $dir)  )
         return padError ( "Directory can not be written: $dir" );
 
-      if ( ! mkdir ($dir, $GLOBALS ['padDirMode'], true ) )
+      if ( ! mkdir ($dir, $padDirMode, true ) )
         return padError ( "Error creating directory: $dir" );
 
     }
@@ -74,7 +80,7 @@
         return padError ( "File can not be written: $file" );
 
       touch($file);
-      chmod($file, $GLOBALS ['padFileMode']);
+      chmod($file, $padFileMode);
 
     }
 

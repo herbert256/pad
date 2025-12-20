@@ -4,9 +4,11 @@
 
   function padErrorGo ( $error, $file, $line ) {
 
+    global $padDumpToDirDone;
+
     padDumpToDir ( "$file:$line $error" );
 
-    unset ( $GLOBALS ['padDumpToDirDone'] );
+    unset ( $padDumpToDirDone );
 
     return '';
 

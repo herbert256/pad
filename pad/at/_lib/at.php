@@ -14,13 +14,15 @@
 
   function padAtValue ( $field, $cor=0 ) {
 
+    global $padDataStore, $padForceDataName, $padForceTagName, $pqStore;
+
     padSplit ( '@', $field, $before, $after );
 
     $names = padExplode ( $before, '.' );
     $name  = reset ($names);
 
-    $GLOBALS ['padForceTagName']  = $name;
-    $GLOBALS ['padForceDataName'] = $name;
+    $padForceTagName  = $name;
+    $padForceDataName = $name;
 
     if ( str_contains($field, '@*') )
       return padAtValueAny ( $field, $cor);
@@ -53,11 +55,11 @@
     if ( $check !== INF )
       return $check;
 
-    $check = padAtStore ( $GLOBALS ['pqStore'] ?? [], $names, $parts );
+    $check = padAtStore ( $pqStore ?? [], $names, $parts );
     if ( $check !== INF )
       return $check;
 
-    $check = padAtStore ( $GLOBALS ['padDataStore'] ?? [], $names, $parts );
+    $check = padAtStore ( $padDataStore ?? [], $names, $parts );
     if ( $check !== INF )
       return $check;
 
@@ -248,10 +250,12 @@
 
   function padAtGroup ( $group, $name, $names, $padIdx ) {
 
+    global $padInfo;
+
     if ( ! $group or ! $padIdx or ! file_exists ( PAD . "at/groups/$group.php" ) )
       return INF;
 
-    if ( $GLOBALS ['padInfo'] )
+    if ( $padInfo )
       include PAD . 'events/atGroups.php';
 
     return include PAD . "at/groups/$group.php";
@@ -275,6 +279,8 @@
 
   function padAtProperty ( $names, $padIdx ) {
 
+    global $padInfo;
+
     if     ( count ( $names ) == 1 ) $parm = '';
     elseif ( count ( $names ) == 2 ) $parm = end ($names);
     else                             return INF;
@@ -289,7 +295,7 @@
     if ( $return !== INF )
       padAtSetTag ();
 
-    if ( $GLOBALS ['padInfo'] )
+    if ( $padInfo )
       include PAD . 'events/atProperties.php';
 
     return $return;
@@ -298,10 +304,12 @@
 
   function padAtType ( $go, $type, $names, $cor ) {
 
+    global $padInfo;
+
     if ( ! file_exists ( PAD . "at/types/$go.php" ) )
       return INF;
 
-    if ( $GLOBALS ['padInfo'] )
+    if ( $padInfo )
       include PAD . 'events/atTypes.php';
 
     return include PAD . "at/types/$go.php";

@@ -2,6 +2,8 @@
 
   function padData ( $input, $type='', $name='' ) {
 
+    global $padDataSetRecord;
+
     if     ( $input === NULL           ) $data = [];
     elseif ( $input === FALSE          ) $data = [];
     elseif ( is_float($input) && is_nan($input) ) $data = [];
@@ -20,9 +22,9 @@
       $data = include PAD . "data/$type.php";
     }
 
-    if ( isset ( $GLOBALS ['padDataSetRecord'] ) and $GLOBALS ['padDataSetRecord'] ) {
+    if ( isset ( $padDataSetRecord ) and $padDataSetRecord ) {
       $data = padDataChkCheckRecord ($data,$name);
-      $GLOBALS ['padDataSetRecord'] = FALSE;
+      $padDataSetRecord = FALSE;
     }
 
     $data = padDataChkSimpleArray ($data,$name);

@@ -2,6 +2,8 @@
 
   function padExit ( $stop = 200 ) {
 
+    global $exit;
+
     set_error_handler ( 'padErrorThrow' );
 
     try {
@@ -10,7 +12,7 @@
 
     } catch (Throwable $e) {
 
-      $GLOBALS['exit'] = $e;
+      $exit = $e;
 
       padExitCatch ( $e );
 
@@ -24,6 +26,8 @@
 
   function padExitTry ( $stop ) {
 
+    global $padInfoStarted, $padOutputType;
+
     if ( padSecondTime ( 'exit' ) )
       return padExitDouble ( $stop );
 
@@ -31,10 +35,10 @@
 
     padEmptyBuffers ( $padIgnored );
 
-    if ( $GLOBALS ['padOutputType'] == 'web' )
+    if ( $padOutputType == 'web' )
       padWebHeaders ( $stop );
 
-    if ( isset ( $GLOBALS ['padInfoStarted'] ) and ! padSecondTime ( 'exitInfo' ) )
+    if ( isset ( $padInfoStarted ) and ! padSecondTime ( 'exitInfo' ) )
       include PAD . 'info/end/config.php';
 
   }

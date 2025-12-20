@@ -21,7 +21,7 @@
 
   function padRedirect ( $go, $vars=[] ) {
 
-    global $padHost, $padGoExt;
+    global $padGoExt, $padHost, $padReqID, $padSesID;
 
     foreach ( $vars as $padK => $padV )
       $go .= "&$padK=" . urlencode($padV);
@@ -32,8 +32,8 @@
     $go = str_replace('SELF://', "$padHost/", $go);
 
     if  ( str_starts_with ( $go, $padHost ) ) {
-      $go = padAddGet ( $go, 'padSesID', $GLOBALS ['padSesID'] );
-      $go = padAddGet ( $go, 'padReqID', $GLOBALS ['padReqID'] );
+      $go = padAddGet ( $go, 'padSesID', $padSesID );
+      $go = padAddGet ( $go, 'padReqID', $padReqID );
     }
 
     padHeader ("Location: $go");
@@ -44,8 +44,10 @@
 
   function padRestart ( $go, $vars=[] ) {
 
-    $GLOBALS ['padRestart']     = $go;
-    $GLOBALS ['padRestartVars'] = $vars;
+    global $padRestart, $padRestartVars;
+
+    $padRestart     = $go;
+    $padRestartVars = $vars;
 
     return NULL;
 

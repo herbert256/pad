@@ -31,9 +31,9 @@
 
   function padErrorException ( $padException ) {
 
-    $GLOBALS ['padException'] = $padException;
+    $padException = $padException;
 
-    global $padExceptionFile, $padExceptionLine, $padExceptionError, $padExceptionText;
+    global $padException, $padExceptionError, $padExceptionFile, $padExceptionLine, $padExceptionText;
 
     $padExceptionFile  = $padException->getFile();
     $padExceptionLine  = $padException->getLine();
@@ -49,7 +49,9 @@
 
   function padErrorShutdown () {
 
-    if ( isset ( $GLOBALS ['padSkipShutdown'] ) )
+    global $padSkipShutdown;
+
+    if ( isset ( $padSkipShutdown ) )
       return;
 
     $error = error_get_last ();

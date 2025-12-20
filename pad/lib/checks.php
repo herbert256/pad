@@ -11,7 +11,9 @@
 
   function padStoreCheck ( $store ) {
 
-    return isset ( $GLOBALS ['padContentStore'] [$store] );
+    global $padContentStore;
+
+    return isset ( $padContentStore [$store] );
 
   }
 

@@ -28,9 +28,11 @@
 
   function padCacheStore ($url, $etag, $data) {
 
+    global $padCacheServerNoData;
+
     padCacheDb ( "replace etag values ('{0}', {1})", [$etag,$_SERVER['REQUEST_TIME']] );
 
-    if ( ! $GLOBALS ['padCacheServerNoData'] ) {
+    if ( ! $padCacheServerNoData ) {
       padCacheDb ( "replace url  values ('{0}', {1}, '{2}')", [$url,$_SERVER['REQUEST_TIME'],$etag] );
       padCacheDb ( "replace data values ('{0}', '{1}'     )", [$etag,$data] );
     }
@@ -39,18 +41,22 @@
 
   function padCacheUpdate ($url, $etag) {
 
+    global $padCacheServerNoData;
+
     padCacheDb ( "update etag set age={0} where etag='{1}'", [$_SERVER['REQUEST_TIME'],$etag] );
 
-    if ( ! $GLOBALS ['padCacheServerNoData'] )
+    if ( ! $padCacheServerNoData )
       padCacheDb ( "update url set age={0} where url='{1}'", [$_SERVER['REQUEST_TIME'],$url] );
 
   }
 
   function padCacheDelete ($url, $etag) {
 
+    global $padCacheServerNoData;
+
     padCacheDb ( "delete from etag where etag='{0}'", [$etag] );
 
-    if ( ! $GLOBALS ['padCacheServerNoData'] )
+    if ( ! $padCacheServerNoData )
       padCacheDb ( "delete from data where etag='{0}'", [$etag] );
 
   }

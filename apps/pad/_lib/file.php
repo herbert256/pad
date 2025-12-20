@@ -69,6 +69,8 @@
 
   function fileNew ( $file ) {
 
+    global $padDirMode, $padFileMode;
+
     if ( str_ends_with ( $file, '/' ) )
       return FALSE;
 
@@ -93,13 +95,13 @@
 
     } else {
 
-      if ( ! mkdir ($dir, $GLOBALS ['padDirMode'], true ) )
+      if ( ! mkdir ($dir, $padDirMode, true ) )
         return FALSE;
 
     }
 
     if ( ! touch($file)                                 ) return FALSE;
-    if ( ! chmod($file, $GLOBALS ['padFileMode'])       ) return FALSE;
+    if ( ! chmod($file, $padFileMode)       ) return FALSE;
 
     return TRUE;
 

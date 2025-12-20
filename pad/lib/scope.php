@@ -153,13 +153,17 @@
 
   function padDone ( $var, $val=TRUE ) {
 
-    $GLOBALS ['padDone'] [$GLOBALS ['pad']] [$var] = $val;
+    global $pad, $padDone;
+
+    $padDone [$pad] [$var] = $val;
 
   }
 
   function padIsDone ( $var ) {
 
-    return isset ( $GLOBALS ['padDone'] [$GLOBALS ['pad']] [$var] );
+    global $pad, $padDone;
+
+    return isset ( $padDone [$pad] [$var] );
 
   }
 

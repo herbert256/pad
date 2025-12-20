@@ -122,7 +122,9 @@ function padSplitOnUnquotedColon ( $str ) {
 
   function padLevelNoSingle () {
 
-    padLevelNo ( $GLOBALS ['padBetweenOrg'] );
+    global $padBetweenOrg;
+
+    padLevelNo ( $padBetweenOrg );
 
   }
 

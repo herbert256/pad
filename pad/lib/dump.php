@@ -22,21 +22,23 @@
 
   function padDumpTry ( $info ) {
 
+    global $padOutput, $padOutputType, $padSent;
+
     if ( ! headers_sent () )
       header ( 'HTTP/1.0 500 Internal Server Error' );
 
     padEmptyBuffers ( $padIgnored );
 
-    if ( $GLOBALS ['padOutputType'] == 'web' )
+    if ( $padOutputType == 'web' )
       for ($i = 1; $i <= 25; $i++)
           echo "</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>\r\n";
 
-    if     ( $GLOBALS ['padOutputType'] == 'console' )  padDumpConsole ( $info );
+    if     ( $padOutputType == 'console' )  padDumpConsole ( $info );
     elseif ( padLocal () )                              padDumpLocal   ( $info );
     else                                                padDumpRemote  ( $info );
 
-    $GLOBALS ['padSent']   = TRUE;
-    $GLOBALS ['padOutput'] = '';
+    $padSent   = TRUE;
+    $padOutput = '';
 
   }
 
@@ -80,7 +82,9 @@
 
   function padDumpRemote ( $info ) {
 
-    if ( ! isset ( $GLOBALS ['padDumpToDirDone'] ) )
+    global $padDumpToDirDone;
+
+    if ( ! isset ( $padDumpToDirDone ) )
       padDumpToDir ( $info );
 
     echo "Error: " . padID ();
@@ -89,8 +93,10 @@
 
   function padDumpInfo ( $info ) {
 
-    if ( ! $info and isset ( $GLOBALS ['padExceptionText'] ) )
-      echo ( "<hr><b>" . $GLOBALS ['padExceptionText'] . "</b><hr><br>" );
+    global $padExceptionText;
+
+    if ( ! $info and isset ( $padExceptionText ) )
+      echo ( "<hr><b>" . $padExceptionText . "</b><hr><br>" );
 
     if ( trim($info) )
       echo ( "<hr><b>" . htmlentities($info) . "</b><hr><br>" );
@@ -99,9 +105,11 @@
 
   function padDumpCurl ( &$pad ) {
 
-    if ( isset ( $GLOBALS ['padCurlLast'] ) ) {
+    global $padCurlLast;
 
-      padDumpLines ( "Last Curl",  $GLOBALS ['padCurlLast'] );
+    if ( isset ( $padCurlLast ) ) {
+
+      padDumpLines ( "Last Curl",  $padCurlLast );
 
       unset ( $pad ['padLastCurl'] );
 
@@ -111,10 +119,12 @@
 
   function padDumpStack () {
 
+    global $padException;
+
     echo "<br>";
 
-    if ( isset ( $GLOBALS ['padException'] ) ) {
-      padDumpStackGo ( $GLOBALS['padException']->getTrace() );
+    if ( isset ( $padException ) ) {
+      padDumpStackGo ( $padException->getTrace() );
       echo "<br>";
     }
 
@@ -126,12 +136,14 @@
 
   function padDumpStackGo ( $stack, $flag=0 ) {
 
+    global $padErrorFile, $padErrorLine;
+
     foreach ( $stack as $key => $trace ) {
 
       extract ( $trace );
 
-      $file     = $file     ?? $GLOBALS['padErrorFile'] ?? '???';
-      $line     = $line     ?? $GLOBALS['padErrorLine'] ?? '???';
+      $file     = $file     ?? $padErrorFile ?? '???';
+      $line     = $line     ?? $padErrorLine ?? '???';
       $function = $function ?? '???';
 
       $error = ( str_starts_with ( $function, 'padDump' ) or str_starts_with ( $function, 'padError' ) );
@@ -150,16 +162,18 @@
 
   }
 
-  function padDumpXXX (&$pad, $prefix) {
+  function padDumpXXX (&$input, $prefix) {
+
+    global $pad, $padOrg;
 
     $wrk = [];
 
     if ( $prefix == 'pq' )
-      $wrk ['tag'] = $GLOBALS ['padOrg'] [  $GLOBALS['pad'] ] ?? '';
+      $wrk ['tag'] = $padOrg [  $pad ] ?? '';
 
-    foreach ( $pad as $key => $value )
+    foreach ( $input as $key => $value )
       if ( str_starts_with ( $key, $prefix ) ) {
-        unset ($pad[$key]);
+        unset ($input[$key]);
         $wrk [$key] = $value;
       }
 
@@ -170,18 +184,22 @@
 
   function padDumpSQL () {
 
-    if ( isset ( $GLOBALS ['padSqlConnect'     ] ) )
-      padDumpLines ('MySQL-App', $GLOBALS ['padSqlConnect']      );
+    global $padSqlConnect, $padSqlPadConnect;
 
-    if ( isset ( $GLOBALS ['padSqlPadConnect' ] ) )
-      padDumpLines ('MySQL-pad', $GLOBALS ['padSqlPadConnect']  );
+    if ( isset ( $padSqlConnect ) )
+      padDumpLines ('MySQL-App', $padSqlConnect      );
+
+    if ( isset ( $padSqlPadConnect ) )
+      padDumpLines ('MySQL-pad', $padSqlPadConnect  );
 
   }
 
   function padDumpHeaders () {
 
+    global $padHeaders;
+
     $out = headers_list ();
-    $pad = $GLOBALS ['padHeaders'] ?? [];
+    $pad = $padHeaders ?? [];
 
     if ( function_exists ('getallheaders') )
       $hdr = getallheaders();
@@ -203,39 +221,41 @@
 
   function padDumpLevel () {
 
-    global $pad;
+    global $pad, $padCurrent;
 
     if ( ! isset ( $pad ) or $pad < 0 )
       return;
 
     for ( $lvl=$pad; $lvl>=0; $lvl-- ) {
       padDumpLines ("Level: $lvl", padDumpGetLevel ($lvl) );
-      if ( isset ($GLOBALS ['padCurrent'][$lvl]) )
-        padDumpLines ('   Current', $GLOBALS ['padCurrent'][$lvl] );
+      if ( isset ($padCurrent[$lvl]) )
+        padDumpLines ('   Current', $padCurrent[$lvl] );
     }
 
   }
 
   function padDumpGetLevel ($pad)  {
 
+    global $padArray, $padBase, $padElse, $padHit, $padName, $padNull, $padOpt, $padOrg, $padPad, $padPair, $padPrm, $padResult, $padTag, $padType;
+
     if ( ! isset($pad) or $pad === NULL or $pad < 0 )
       return [];
 
     return [
-      'org'     => $GLOBALS ['padOrg'] [$pad] ?? '',
-      'tag'     => $GLOBALS ['padTag'] [$pad] ?? '',
-      'type'    => $GLOBALS ['padType'] [$pad] ?? '',
-      'name'    => $GLOBALS ['padName'] [$pad] ?? '',
-      'pair'    => $GLOBALS ['padPair'] [$pad] ?? '',
-      'opt'     => $GLOBALS ['padOpt'] [$pad] ?? '',
-      'prm'     => $GLOBALS ['padPrm'] [$pad] ?? '',
-      'base'    => padDumpShort ($GLOBALS ['padBase'][$pad]??''),
-      'pad'     => padDumpShort ($GLOBALS ['padPad'][$pad]??''),
-      'result'  => padDumpShort ($GLOBALS ['padResult'][$pad]??''),
-      'flags'  => [ 'null' => $GLOBALS ['padNull'] [$pad] ?? '',
-                    'else' => $GLOBALS ['padElse'] [$pad] ?? '',
-                    'hit' => $GLOBALS ['padHit'] [$pad] ?? '',
-                    'Array' => $GLOBALS ['padArray'] [$pad] ?? '']
+      'org'     => $padOrg [$pad] ?? '',
+      'tag'     => $padTag [$pad] ?? '',
+      'type'    => $padType [$pad] ?? '',
+      'name'    => $padName [$pad] ?? '',
+      'pair'    => $padPair [$pad] ?? '',
+      'opt'     => $padOpt [$pad] ?? '',
+      'prm'     => $padPrm [$pad] ?? '',
+      'base'    => padDumpShort ($padBase[$pad]??''),
+      'pad'     => padDumpShort ($padPad[$pad]??''),
+      'result'  => padDumpShort ($padResult[$pad]??''),
+      'flags'  => [ 'null' => $padNull [$pad] ?? '',
+                    'else' => $padElse [$pad] ?? '',
+                    'hit' => $padHit [$pad] ?? '',
+                    'Array' => $padArray [$pad] ?? '']
     ];
 
   }
@@ -408,19 +428,21 @@
 
   function padDumpToDir ( $info='', $dir='' ) {
 
+    global $padDumpToDirDone, $padLog, $padPage;
+
     if ( ! $dir )
-      $dir = "dumps/" . $GLOBALS ['padPage'] . '/' . $GLOBALS ['padLog'] . '-' . uniqid();
+      $dir = "dumps/" . $padPage . '/' . $padLog . '-' . uniqid();
 
-    if ( isset ( $GLOBALS ['padDumpToDirDone'] ) ) {
+    if ( isset ( $padDumpToDirDone ) ) {
 
-      if ( $dir !== $GLOBALS ['padDumpToDirDone'] )
-        padDumpToDirDone ( $info, $dir, $GLOBALS ['padDumpToDirDone'] );
+      if ( $dir !== $padDumpToDirDone )
+        padDumpToDirDone ( $info, $dir, $padDumpToDirDone );
 
-      return $GLOBALS ['padDumpToDirDone'];
+      return $padDumpToDirDone;
 
     }
 
-    $GLOBALS ['padDumpToDirDone'] = $dir;
+    $padDumpToDirDone = $dir;
 
     set_error_handler ( 'padErrorThrow' );
 
@@ -534,7 +556,9 @@
 
   function padDumpFile ( $file, $txt ) {
 
-    $dir = $GLOBALS ['padDumpToDirDone'];
+    global $padDumpToDirDone;
+
+    $dir = $padDumpToDirDone;
     $txt = trim ( $txt );
 
     padFilePut ( "$dir/$file.html", "<pre>$txt</pre>" );
@@ -543,13 +567,15 @@
 
   function padDumpInputToFile () {
 
+    global $padDumpToDirDone;
+
     $txt  = trim ( file_get_contents ('php://input') ?? '' );
     $type = padContentType ( $txt );
 
     if ( $type == 'csv' )
       $type = 'txt';
 
-    padFilePut ( $GLOBALS ['padDumpToDirDone'] . "/input.$type", $txt );
+    padFilePut ( $padDumpToDirDone . "/input.$type", $txt );
 
   }
 

@@ -20,17 +20,19 @@
 
   function padField ( $field, $type, $lvl=0 ) {
 
-    if ( $field == 'pad' )
-      return $GLOBALS ['padGo'];
+    global $pad, $padGo, $padInfo;
 
-    if ( $GLOBALS ['padInfo'] )
+    if ( $field == 'pad' )
+      return $padGo;
+
+    if ( $padInfo )
       include PAD . 'events/fieldStart.php';
 
     if ( str_contains ( $field, '@' ) or str_contains ( $field, '.' ) ) {
 
       $value = padFieldAt ( $field, $lvl );
 
-      if ( $GLOBALS ['padInfo'] )
+      if ( $padInfo )
         include PAD . 'events/fieldAt.php';
 
     } else {
@@ -43,7 +45,7 @@
       if     ( $prefix                   ) $idx = padFieldGetLevel ($prefix);
       elseif ( in_array ( $type, [5,6] ) ) $idx = padFieldFirstParmTag ();
       elseif ( in_array ( $type, [7,8] ) ) $idx = padFieldFirstNonTag ($lvl);
-      else                                 $idx = $GLOBALS ['pad'];
+      else                                 $idx = $pad;
 
       padSplit ( ':', $field, $field, $parm  );
 
@@ -59,7 +61,7 @@
       if ( $value === INF and $type == 1 ) $value = padParm ( $field, $idx, 5);
       if ( $value === INF and $type == 2 ) $value = padParm ( $field, $idx, 6 );
 
-      if ( $GLOBALS ['padInfo'] )
+      if ( $padInfo )
         include PAD . 'events/fieldClassic.php';
 
     }
@@ -74,7 +76,7 @@
     elseif ($type ==  8) $return = ( $value === INF                                                ) ? ''    : $value;
     elseif ($type ==  9) $return = ( $value === NULL                                               ) ? TRUE  : FALSE;
 
-    if ( $GLOBALS ['padInfo'] )
+    if ( $padInfo )
       include PAD . 'events/fieldEnd.php';
 
     return $return;

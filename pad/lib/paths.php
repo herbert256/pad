@@ -2,7 +2,9 @@
 
   function padDirs () {
 
-    $padIncDirs  = padExplode ( $GLOBALS ['padDir'], '/' );
+    global $padDir;
+
+    $padIncDirs  = padExplode ( $padDir, '/' );
     $padIncDir   = '';
     $padIncCheck = [];
 
@@ -119,8 +121,10 @@
 
   function padAddIds ( $url ) {
 
-    $url = padAddGet ( $url, 'padSesID', $GLOBALS ['padSesID'] );
-    $url = padAddGet ( $url, 'padReqID', $GLOBALS ['padReqID'] );
+    global $padReqID, $padSesID;
+
+    $url = padAddGet ( $url, 'padSesID', $padSesID );
+    $url = padAddGet ( $url, 'padReqID', $padReqID );
 
     return $url;
 

@@ -2,10 +2,10 @@
 
   function padInfoXref ( $dir1, $dir2, $dir3='' ) {
 
-    if ( ! $GLOBALS ['padInfoXref'] )
-      return;
+    global $padInfoXref, $padInfoXrefSource, $padPage, $padStartPage;
 
-    global $padPage, $padInfoXrefSource, $padStartPage;
+    if ( ! $padInfoXref )
+      return;
 
     if ( $dir1 == 'sequence' )
       return padInfoXrefGo ( $dir1, $dir2, $dir3 );

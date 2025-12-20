@@ -2,23 +2,27 @@
 
   function padInfo () {
 
+    global $padEtag, $padLen, $padPage, $padRefID, $padReqID, $padSesID, $padStop;
+
     return [
-      'session' => $GLOBALS ['padSesID'] ?? '',
-      'request' => $GLOBALS ['padReqID'] ?? '',
-      'parent'  => $GLOBALS ['padRefID'] ?? '',
-      'page'    => $GLOBALS ['padPage']  ?? '',
-      'stop'    => $GLOBALS ['padStop']  ?? '',
-      'length'  => $GLOBALS ['padLen']   ?? '',
+      'session' => $padSesID ?? '',
+      'request' => $padReqID ?? '',
+      'parent'  => $padRefID ?? '',
+      'page'    => $padPage  ?? '',
+      'stop'    => $padStop  ?? '',
+      'length'  => $padLen   ?? '',
       'start'   => $_SERVER ['REQUEST_TIME_FLOAT'] ?? 0 ,
       'end'     => microtime (true),
-      'etag'    => $GLOBALS ['padEtag']  ?? ''
+      'etag'    => $padEtag  ?? ''
     ];
 
   }
 
   function padInclude () {
 
-    if ( isset ( $GLOBALS ['padInclude'] ) and $GLOBALS ['padInclude'] )
+    global $padInclude;
+
+    if ( isset ( $padInclude ) and $padInclude )
       return TRUE;
     else
       return FALSE;
@@ -67,7 +71,9 @@
 
   function padID () {
 
-    return $GLOBALS ['padReqID'] ?? uniqid (TRUE);
+    global $padReqID;
+
+    return $padReqID ?? uniqid (TRUE);
 
   }
 
