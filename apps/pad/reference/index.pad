@@ -2,7 +2,7 @@
 
 {block}
 
-  {pad data='{$xref}'}
+  {pad data='xref'}
 
     {sequence '1..{$lvl}'}
       <blockquote>
@@ -15,9 +15,9 @@
       {getXref '{$dir}', '{$xref}'}
 
         {if $dir}
-          <a href="@pad@reference/dir{?dir}{?type}{?item}{?sequence}">{$item}</a>
+          <a href="@pad@reference/dir{?dir}{?type}{?item}">{$item}</a>
         {elseif $pages}
-          <a href="@pad@reference/pages{?pages}{?type}{?item}{?sequence}">{$item}</a>
+          <a href="@pad@reference/pages{?pages}{?type}{?item}">{$item}</a>
         {else}
           {$item}
         {/if}

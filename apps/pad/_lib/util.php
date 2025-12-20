@@ -85,8 +85,13 @@
 
   function padItems ( $source ) {
 
-    $directory = new RecursiveDirectoryIterator ( $source );
-    $iterator  = new RecursiveIteratorIterator  ($directory);
+    if ( ! file_exists ( $source ) ) return [];
+    if ( ! is_dir      ( $source ) ) return [];
+
+    $files = [];
+    
+    $directory = new RecursiveDirectoryIterator ( $source    );
+    $iterator  = new RecursiveIteratorIterator  ( $directory );
 
     foreach ($iterator as $one ) {
 

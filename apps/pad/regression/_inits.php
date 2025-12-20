@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! isset ( $sequence) )
-    $sequence = 0;
+  if ( ! isset ( $item ) )
+  	$item = 'hello/hello';
 
 ?>

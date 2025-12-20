@@ -12,12 +12,6 @@
   $nows ['examples'] ['text']   = 'Examples';
   $nows ['examples'] ['now']    = 'examples';
 
-  $nows ['reference'] ['text']   = 'Reference';
-  $nows ['reference'] ['now']    = 'reference';
-
-  $nows ['regression'] ['text']  = 'Regression';
-  $nows ['regression'] ['now']   = 'regression';
-
   if ( ! isset ( $go ) or ! $go )
     $go = 'index';
 

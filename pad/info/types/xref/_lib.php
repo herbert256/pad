@@ -35,9 +35,6 @@
     if ( $dir3 !== '' )
       $file .= "/$dir3";
 
-    if ( $dir1 <> 'sequence' )
-      $file = "xref/$file";
-
     $target = APP . "reference/DATA/$file.txt";
 
     if ( file_exists ($target) and in_array ( $padStartPage, file ( $target, FILE_IGNORE_NEW_LINES ) ) )
