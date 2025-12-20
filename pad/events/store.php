@@ -1,11 +1,13 @@
 <?php
 
-  if ( ! $GLOBALS ['padInfoTrace'] )
+  global $padInfoTrace, $padInfoTraceStore;
+
+  if ( ! $padInfoTrace )
     return;
 
-  if ( ! $GLOBALS ['padInfoTrace'] or ! $GLOBALS ['padInfoTraceStore'] )
+  if ( ! $padInfoTrace or ! $padInfoTraceStore )
     return;
 
- if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'store', $padName [$pad], $padStoreData );
+ if ( $padInfoTrace ) padInfoTrace ( 'store', $padName [$pad], $padStoreData );
 
 ?>

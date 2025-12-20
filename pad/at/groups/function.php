@@ -1,5 +1,7 @@
 <?php
 
-  return padAtSearch ( $GLOBALS ['padLvlFunVar']  [$padIdx], $names );
+  global $padLvlFunVar;
+
+  return padAtSearch ( $padLvlFunVar  [$padIdx], $names );
 
 ?>

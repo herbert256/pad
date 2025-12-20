@@ -1,6 +1,8 @@
 <?php
 
-  if ( $GLOBALS ['padInfoTrace'] and $padInfoTraceFlags )
+  global $padInfoTrace;
+
+  if ( $padInfoTrace and $padInfoTraceFlags )
     padInfoTrace ( 'level', 'flags',
       ' hit='     . $padHit   [$pad] .
       ' else='    . $padElse  [$pad] .

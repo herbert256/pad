@@ -1,8 +1,10 @@
 <?php
 
+  global $padData;
+
   $padReturn = [];
 
-  foreach ( $GLOBALS['padData'] [$padIdx] as $padK => $padV) {
+  foreach ( $padData [$padIdx] as $padK => $padV) {
     $padReturn [$padK] ['name'] = $padK;
     $padReturn [$padK] ['value'] = padDataForcePad ($padV);
   }

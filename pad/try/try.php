@@ -1,6 +1,8 @@
 <?php
 
-  if ( ! $GLOBALS ['padErrorTry'] )
+  global $padErrorTry;
+
+  if ( ! $padErrorTry )
     return include PAD . "$padTry.php";
 
   try {

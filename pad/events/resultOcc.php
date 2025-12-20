@@ -1,6 +1,8 @@
 <?php
 
-  if ( ! $GLOBALS ['padInfoTrace'] )
+  global $padInfoTrace;
+
+  if ( ! $padInfoTrace )
     return;
 
   if ( ! $padInfoTrace or ! $padInfoTraceResultOcc )
@@ -9,6 +11,6 @@
   if ( !$padInfoTraceDouble and $padInfoTraceContent and $padBase [$pad] == $padOut [$pad] )
     return;
 
- if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'occur', 'occ-result', $padOut [$pad] );
+ if ( $padInfoTrace ) padInfoTrace ( 'occur', 'occ-result', $padOut [$pad] );
 
 ?>

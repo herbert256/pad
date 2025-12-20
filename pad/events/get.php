@@ -1,8 +1,10 @@
 <?php
 
+  global $padInfoTrace, $padInfoTraceGet;
+
   if ( function_exists ('padInfoTrace') )
-    if ( $GLOBALS ['padInfoTrace'] )
-      if ( $GLOBALS ['padInfoTraceGet'] )
+    if ( $padInfoTrace )
+      if ( $padInfoTraceGet )
          padInfoTrace ( 'file', 'get', $file );
 
 ?>

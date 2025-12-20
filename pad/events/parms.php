@@ -1,13 +1,15 @@
 <?php
 
-  if (  $GLOBALS ['padInfoXref'] )
+  global $padInfoTrace, $padInfoTraceParms, $padInfoXml, $padInfoXref;
+
+  if (  $padInfoXref )
     foreach ( $padPrm [$pad] as $padK => $padV )
       padInfoXref ( "_options/$padK", $padType [$pad], $padTag [$pad] );
 
-  if ( $GLOBALS ['padInfoXml']   )
+  if ( $padInfoXml   )
     include PAD . 'info/types/xml/level/parms.php';
 
-  if ( $GLOBALS ['padInfoTrace'] and $GLOBALS ['padInfoTraceParms'] ) {
+  if ( $padInfoTrace and $padInfoTraceParms ) {
 
     foreach ( $padOpt [$pad] as $padK => $padV )
       if ( $padK and $padV )

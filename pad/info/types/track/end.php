@@ -1,18 +1,20 @@
 <?php
 
+  global $padInfoTrackDbData, $padInfoTrackDbRequest, $padInfoTrackDbSession, $padInfoTrackFileData, $padInfoTrackFileRequest;
+
   if ( ! function_exists ( 'padInfoTrackDbSession') )
     return;
 
-  if ( $GLOBALS ['padInfoTrackDbSession'] or $GLOBALS ['padInfoTrackDbRequest'] )
+  if ( $padInfoTrackDbSession or $padInfoTrackDbRequest )
     padInfoTrackDbSession ();
 
-  if (  $GLOBALS ['padInfoTrackDbData'] )
+  if (  $padInfoTrackDbData )
     padInfoTrackDbData ();
 
-  if ( $GLOBALS ['padInfoTrackFileRequest'] )
+  if ( $padInfoTrackFileRequest )
     padInfoTrackEnd ();
 
-  if ( $GLOBALS ['padInfoTrackFileData'] )
+  if ( $padInfoTrackFileData )
     padInfoTrackData ();
 
 ?>

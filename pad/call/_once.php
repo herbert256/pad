@@ -1,16 +1,18 @@
 <?php
 
+  global $padInfo;
+
   include PAD . 'call/_init.php';
 
   if ( file_exists ( $padCall ) ) {
 
-    if ( $GLOBALS ['padInfo'] )
+    if ( $padInfo )
       include PAD . 'events/callStart.php';
 
     $padTry = 'call/_tryOnce';
     $padCallPHP = include PAD . 'try/try.php';
 
-    if ( $GLOBALS ['padInfo'] )
+    if ( $padInfo )
       include PAD . 'events/callEnd.php';
 
   }

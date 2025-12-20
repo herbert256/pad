@@ -1,6 +1,8 @@
 <?php
 
-  if ( $GLOBALS ['padInfoTrace'] and $GLOBALS ['padInfoTraceField'] )
+  global $padInfoTrace, $padInfoTraceField;
+
+  if ( $padInfoTrace and $padInfoTraceField )
     padInfoTrace ( 'field', 'start',
       ' field='  . $field .
       ' type='   . $type .

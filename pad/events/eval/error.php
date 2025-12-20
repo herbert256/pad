@@ -1,6 +1,8 @@
 <?php
 
-  if ( ! $GLOBALS ['padInfoTrace'] or ! $GLOBALS ['padInfoTraceEval'] )
+  global $padInfoTrace, $padInfoTraceEval;
+
+  if ( ! $padInfoTrace or ! $padInfoTraceEval )
     return;
 
   global $padInfoTraceEvalData;
@@ -9,7 +11,7 @@
 
   $padInfoTraceEvalData ['error'] = $error;
 
- if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'eval', 'error', $error );
- if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'eval', 'end',   $padInfoTraceEvalData );
+ if ( $padInfoTrace ) padInfoTrace ( 'eval', 'error', $error );
+ if ( $padInfoTrace ) padInfoTrace ( 'eval', 'end',   $padInfoTraceEvalData );
 
 ?>

@@ -1,6 +1,8 @@
 <?php
 
-  if ( ! $GLOBALS ['padInfoTrace'] )
+  global $padInfoTrace;
+
+  if ( ! $padInfoTrace )
     return;
 
   if ( ! $padInfoTrace or ! $padInfoTraceParse )
@@ -14,8 +16,8 @@
     $padInfoTraceParseEnd   = $padStart [$pad];
   }
 
- if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'parse', 'start',  '{' . $padBetween . '}');
- if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'parse', 'before', substr ( $padOut [$pad], $padInfoTraceParseStart, $padInfoTraceParseEnd ) );
- if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'parse', 'after',  substr ( $padOut [$pad], $padEnd [$pad] + 1 ) );
+ if ( $padInfoTrace ) padInfoTrace ( 'parse', 'start',  '{' . $padBetween . '}');
+ if ( $padInfoTrace ) padInfoTrace ( 'parse', 'before', substr ( $padOut [$pad], $padInfoTraceParseStart, $padInfoTraceParseEnd ) );
+ if ( $padInfoTrace ) padInfoTrace ( 'parse', 'after',  substr ( $padOut [$pad], $padEnd [$pad] + 1 ) );
 
 ?>

@@ -1,5 +1,7 @@
 <?php
 
+  global $pad, $padName;
+
   $padLocalParts = pathinfo ( $padLocalFile );
   $padLocalName  = padTagParm ( 'name', $padLocalParts ['filename']  ?? '' );
   $padLocalExt   = padTagParm ( 'type', $padLocalParts ['extension'] ?? '' );
@@ -18,8 +20,8 @@
     else
       $padLocalData = padCode ( padFileGet ($padLocalFile) );
 
-  if ( $padLocalName and ! $GLOBALS ['padName'] [$GLOBALS['pad']] )
-    $GLOBALS ['padName'] [$GLOBALS['pad']] = $padLocalName;
+  if ( $padLocalName and ! $padName [$pad] )
+    $padName [$pad] = $padLocalName;
 
   return padData ( $padLocalData, $padLocalExt, $padLocalName );
 

@@ -1,5 +1,7 @@
 <?php
 
-  return $GLOBALS ['padDataStore'] [$name];
+  global $padDataStore;
+
+  return $padDataStore [$name];
 
 ?>

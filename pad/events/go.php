@@ -1,6 +1,8 @@
 <?php
 
-  if ( $GLOBALS ['padInfoXref']  ) {
+  global $padInfoXref;
+
+  if ( $padInfoXref  ) {
 
     if ( str_contains ($padTagContent.$padContent, 'content@') ) padInfoXref ('constructs', 'content');
     if ( str_contains ($padTagContent.$padContent, 'start@'  ) ) padInfoXref ('constructs', 'start');

@@ -1,6 +1,8 @@
 <?php
 
-  foreach ( $GLOBALS ['padCurrent'] [$padIdx] as $padK => $padV )
+  global $padCurrent;
+
+  foreach ( $padCurrent [$padIdx] as $padK => $padV )
     return $padK;
 
   return '';

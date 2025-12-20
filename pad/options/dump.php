@@ -1,9 +1,11 @@
 <?php
 
+  global $padDumpToDirDone;
+
   x();
 
   padDumpToDir ( );
 
-  unset ( $GLOBALS ['padDumpToDirDone'] );
+  unset ( $padDumpToDirDone );
 
 ?>

@@ -1,5 +1,7 @@
 <?php
 
+  global $padCacheServerNoData;
+
   include PAD . 'config/cache.php';
 
   if ( $padOutputType <> 'web' )
@@ -44,7 +46,7 @@
       include PAD . 'cache/hit.php';
     }
 
-    if ( $padCacheAge >= $padCacheMax and ! $GLOBALS ['padCacheServerNoData'] ) {
+    if ( $padCacheAge >= $padCacheMax and ! $padCacheServerNoData ) {
 
       $padOutput = padCacheGet ($padCacheEtag);
 

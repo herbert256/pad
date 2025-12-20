@@ -1,6 +1,8 @@
 <?php
 
-  if ( $GLOBALS ['padInfoXref']  )
+  global $padInfoXref;
+
+  if ( $padInfoXref  )
     padInfoXref ( 'options', 'handling', $padHandName );
 
 ?>

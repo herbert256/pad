@@ -1,5 +1,7 @@
 <?php
 
-  $GLOBALS ['padInfoStatsStarted'] = TRUE;
+  global $padInfoStatsStarted;
+
+  $padInfoStatsStarted = TRUE;
 
 ?>

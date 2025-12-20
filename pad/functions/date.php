@@ -1,11 +1,13 @@
 <?php
 
+  global $padFmtDate;
+
   if ( ! $value )
     $value = time ();
 
   if ( $count == 0 ) {
 
-    $format = $GLOBALS ['padFmtDate'];
+    $format = $padFmtDate;
 
   } elseif ( $count == 1 ) {
 

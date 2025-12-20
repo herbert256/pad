@@ -1,5 +1,7 @@
 <?php
 
-  return $GLOBALS ['pqStore'] [$name];
+  global $pqStore;
+
+  return $pqStore [$name];
 
 ?>

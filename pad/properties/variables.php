@@ -1,6 +1,8 @@
 <?php
 
-  $padTagParmsResult = $GLOBALS ['padSetLvl'] [$padIdx];
+  global $padSetLvl;
+
+  $padTagParmsResult = $padSetLvl [$padIdx];
   $padTagParmsResult = padDataForcePad ($padTagParmsResult);
 
   return $padTagParmsResult;

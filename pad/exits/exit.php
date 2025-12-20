@@ -1,7 +1,9 @@
 <?php
 
-  $GLOBALS ['padBootShutdown'] = TRUE;
-  $GLOBALS ['padSkipShutdown'] = TRUE;
+  global $padBootShutdown, $padSkipShutdown;
+
+  $padBootShutdown = TRUE;
+  $padSkipShutdown = TRUE;
 
   exit;
 

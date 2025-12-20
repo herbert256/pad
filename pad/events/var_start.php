@@ -1,11 +1,13 @@
 <?php
 
-  if ( ! $GLOBALS ['padInfoTrace'] )
+  global $padInfoTrace;
+
+  if ( ! $padInfoTrace )
     return;
 
   if ( ! $padInfoTrace or ! $padInfoTraceVar )
     return;
 
- if ( $GLOBALS ['padInfoTrace'] ) padInfoTrace ( 'var', 'start', 'var=' . $padFld . ' options=' . padJson($padOpts) );
+ if ( $padInfoTrace ) padInfoTrace ( 'var', 'start', 'var=' . $padFld . ' options=' . padJson($padOpts) );
 
 ?>

@@ -1,6 +1,8 @@
 <?php
 
-  $padTagParmsResult = $GLOBALS ['padOpt'] [$padIdx];
+  global $padOpt;
+
+  $padTagParmsResult = $padOpt [$padIdx];
 
   unset ( $padTagParmsResult[0] );
 

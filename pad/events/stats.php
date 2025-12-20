@@ -1,9 +1,11 @@
 <?php
 
-  if ( $GLOBALS ['padInfoTrace'] and function_exists ( 'padInfoTrace') ) {
-    padInfoTrace ( 'stats', 'system',   $GLOBALS ['padInfoStatsInfo'] ['user']     ?? '' );
-    padInfoTrace ( 'stats', 'user',     $GLOBALS ['padInfoStatsInfo'] ['system']   ?? '' );
-    padInfoTrace ( 'stats', 'duration', $GLOBALS ['padInfoStatsInfo'] ['duration'] ?? '' );
+  global $padInfoStatsInfo, $padInfoTrace;
+
+  if ( $padInfoTrace and function_exists ( 'padInfoTrace') ) {
+    padInfoTrace ( 'stats', 'system',   $padInfoStatsInfo ['user']     ?? '' );
+    padInfoTrace ( 'stats', 'user',     $padInfoStatsInfo ['system']   ?? '' );
+    padInfoTrace ( 'stats', 'duration', $padInfoStatsInfo ['duration'] ?? '' );
   }
 
 ?>

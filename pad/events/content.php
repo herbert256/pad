@@ -1,8 +1,10 @@
 <?php
 
+  global $padInfoXref;
+
   return;
 
-  if ( $GLOBALS ['padInfoXref']  )
+  if ( $padInfoXref  )
       padInfoXref ( 'constructs', 'content' );
 
 ?>

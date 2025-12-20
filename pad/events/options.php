@@ -1,9 +1,11 @@
 <?php
 
+  global $padInfoXref;
+
   if ( $padTagSeq [$pad] )
     return;
 
-  if ( $GLOBALS ['padInfoXref']  )
+  if ( $padInfoXref  )
 
     foreach ( $padParms [$pad] as $padEventsOption ) {
 

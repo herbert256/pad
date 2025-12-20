@@ -1,9 +1,11 @@
 <?php
 
-  if ( $GLOBALS ['padInfoTrace'] )
+  global $padInfoTrace, $padInfoXref;
+
+  if ( $padInfoTrace )
     include PAD . 'info/types/trace/level/info.php';
 
-  if (  $GLOBALS ['padInfoXref'] ) {
+  if (  $padInfoXref ) {
 
     if ( str_contains($padTag [$pad], '@'))
       $padInfoTmp = strstr ( $padTag [$pad] , "@", true ) ;

@@ -1,5 +1,7 @@
 <?php
 
-  return $GLOBALS ['padData'] [$padIdx];
+  global $padData;
+
+  return $padData [$padIdx];
 
 ?>

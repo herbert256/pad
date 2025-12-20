@@ -1,6 +1,8 @@
 <?php
 
-  if ( $GLOBALS ['padInfoXmlCompact'] )
+  global $padInfoXmlCompact;
+
+  if ( $padInfoXmlCompact )
     return;
 
   $padInfoXmlLvl = $padInfoXmlLevel [$pad];

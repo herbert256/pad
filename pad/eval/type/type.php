@@ -1,9 +1,11 @@
 <?php
 
+  global $padInfo;
+
   $kind = $result [$k] [2];
   $name = $result [$k] [0];
 
-  if ( $GLOBALS ['padInfo'] )
+  if ( $padInfo )
     include PAD . 'events/functions.php';
 
   $padGetName = $name;
