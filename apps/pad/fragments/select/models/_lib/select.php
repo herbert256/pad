@@ -9,24 +9,13 @@
   $padSelect ['lines']     = [ 'db' => 'productlines', 'key' => 'productLine'];
   $padSelect ['products']  = [ 'db' => 'products',     'key' => 'productCode'];
 
-  // Relations between PAD tables, the key of *relation* must be in $padSelect
-  // $padRelations [*base*]  [*relation*]    = [];
-
-  $padRelations ['products']  ['lines']      = [ 'key' => 'productLine'    ];
-  $padRelations ['payments']  ['customers']  = [ 'key' => 'customerNumber' ];
-  $padRelations ['orders']    ['customers']  = [ 'key' => 'customerNumber' ];
-  $padRelations ['details']   ['orders']     = [ 'key' => 'orderNumber'    ];
-  $padRelations ['details']   ['products']   = [ 'key' => 'productCode'    ];
-  $padRelations ['employees'] ['offices']    = [ 'key' => 'officeCode'     ];
-
-  // Relations between PAD tables, the key of *relation* is an other field in *base*
-  // $padRelations [*base*]  [*relation*] = [ 'key' => *keyField*];
-  //
-  // All keys of *relation* must be given, use 'n/a' if it does not exists in *base* for a partly relation
-
-  $padRelations ['customers'] ['employees']  = [ 'key' => 'salesRepEmployeeNumber'];
-
-  // Virtual tables 
+  $padRelations ['products']  ['lines']      = 'productLine';
+  $padRelations ['payments']  ['customers']  = 'customerNumber'
+  $padRelations ['orders']    ['customers']  = 'customerNumber';
+  $padRelations ['details']   ['orders']     = 'orderNumber';
+  $padRelations ['details']   ['products']   = 'productCode';
+  $padRelations ['employees'] ['offices']    = 'officeCode';
+  $padRelations ['customers'] ['employees']  = 'salesRepEmployeeNumber';
 
   $padRelations ['customers'] ['sales']      = [ 'table' => 'employees', 'key' => 'salesRepEmployeeNumber' ];
   $padRelations ['employees'] ['managers']   = [ 'table' => 'employees', 'key' => 'reportsTo'              ];

@@ -1,0 +1,5 @@
+<?php
+
+  $inits = 'root';
+
+?>

@@ -4,6 +4,8 @@
 
     global $pad, $padPrm;
 
+    global     $start,$group,$limit,$where,$join,$order,$union;
+
     $parms = padSelectGetDB ($table);
 
     $db          = $padPrm [$pad] ['db']          ?? $parms ['db']          ?? $table;
@@ -23,13 +25,17 @@
     $page        = $padPrm [$pad] ['page']        ?? $parms ['page']        ?? 0;
     $rows        = $padPrm [$pad] ['rows']        ?? $parms ['rows']        ?? 0;
 
-    $start = padSelectStart ( $all, $distinct, $distinctrow);
-    $group = padSelectGroup ( $group, $rollup );
-    $limit = padSelectLimit ( $rows, $page );
-    $where = padSelectWhere ( $where, $table, $keys );    
-    $join  = padSelectJoin  ( $join, $fields );
-    $order = padSelectOrder ( $order, $join, $keys );
-    $union = padSelectUnion ( $union );
+    $start  = padSelectStart  ( $all, $distinct, $distinctrow);
+    $group  = padSelectGroup  ( $group, $rollup );
+    $limit  = padSelectLimit  ( $rows, $page );
+    $where  = padSelectWhere  ( $where, $table, $keys );    
+    $fields = padSelectFields ( $fields, $db );
+    $join   = padSelectJoin   ( $join, $fields );
+    $keys   = padSelectKeys   ( $keys );
+    $order  = padSelectOrder  ( $order, $join, $keys );
+    $union  = padSelectUnion  ( $union );
+
+    $GLOBALS ['_UNION'] [] = $union;
 
     $base  = "$start $fields from $db $join $where $group $having $union";
     $sql   = "$type $base $order $limit";
@@ -42,6 +48,18 @@
     else
       return db ( $sql );
 
+  }
+
+  function padSelectKeys ( $keys ) {
+
+    if ( ! $keys )
+      return '';
+
+    foreach ( padExplode ( $keys, ',' ) as $field ) 
+      $set [] = "`$field`";
+
+    return implode( ',' , $set );
+    
   }
 
 
@@ -120,12 +138,12 @@
         $relation = $padTag [$i] ;
         $parms    = padSelectGetDB ( $relation ) ;
 
-        padSelectWhereRelation ( $where, $table, $relation, $parms ['key'], $padCurrent [$i] );
+        padSelectWhereRelation ( $where, $table, $relation, $padCurrent [$i] );
 
         while ( isset ( $parms ['base'] ) ) {
           $relation = $parms ['base'];
           $parms    = padSelectGetDB ( $relation ) ;
-          padSelectWhereRelation ( $where, $table, $relation, $parms ['key'], $padCurrent [$i] );
+          padSelectWhereRelation ( $where, $table, $relation, $padCurrent [$i] );
         }
 
       }
@@ -135,43 +153,29 @@
   }
 
 
-  function padSelectWhereRelation ( &$where, $table, $relation, $keys2, $data ) {
+  function padSelectWhereRelation ( &$where, $table, $relation, $data ) {
 
     global $padRelations;
 
-    if  ( isset ( $padRelations [$relation] [$table] ) ) {
-      
-      if ( isset ( $padRelations [$relation] [$table] ['key'] ) )
-        $keys3 = $padRelations [$relation] [$table] ['key'];
-      else
-        $keys3 = $keys2;
-
-      padSelectWhereGo ( $where, $keys2, $keys3, $data );
-   
-    } elseif ( isset ( $padRelations [$table] [$relation] ) )  {
-   
-      if ( isset ($padRelations [$table] [$relation] ['key']) )
-        $keys3 = $padRelations [$table] [$relation] ['key'];
-      else
-        $keys3 = $keys2;
-   
-      padSelectWhereGo ( $where, $keys3, $keys2, $data );
-
-    }
+    if  ( isset ( $padRelations [$relation] [$table] ) )
+      padSelectWhereKeys ( $where, $padRelations [$relation] [$table], $data, 0 );   
+    elseif ( isset ( $padRelations [$table] [$relation] ) )
+      padSelectWhereKeys ( $where, $padRelations [$table] [$relation], $data, 1);
 
   }
 
 
-  function padSelectWhereGo ( &$where, $keys1, $keys2, $data ) {
+  function padSelectWhereKeys ( &$where, $keys, $data, $type ) {
   
-  global $k1, $k2, $k3;
-
-    $k1 = padExplode ( $keys1, ',' );
-    $k2 = padExplode ( $keys2, ',' );
-    $k3 = $data;
-
-    foreach ( $k1 as $k => $v )
-       padSelectWhereAdd ( $where, $v, $data [ $k2 [$k] ] );
+    if ( is_array ($keys) )
+      foreach ( $keys as $key => $value )
+        if ( $type )
+          padSelectWhereAdd ( $where, $key, $data [ $value ] );
+        else 
+          padSelectWhereAdd ( $where, $value, $data [ $key ] );
+    else
+      foreach ( padExplode ( $keys, ',' ) as $field )
+        padSelectWhereAdd ( $where, $field, $data [ $field ] );
   
   }
 
@@ -187,6 +191,18 @@
     else        $where  = 'where ';
 
     $where .= $add . padEscape ($value) . "'";
+
+  }
+
+  function padSelectFields  ( $fields, $db ) {
+
+    if ( is_array($fields) ) {
+      $work = $fields;
+      $fields = '';
+      padSelectAddFields ( $fields, $db, $work );
+    }
+
+    return $fields;
 
   }
 
@@ -247,7 +263,7 @@
   }
 
 
-  function padSelectUnion ( $union) {
+  function padSelectUnion ( $union ) {
 
     $unionSQL = '';
 

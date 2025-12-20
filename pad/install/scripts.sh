@@ -1,3 +1,3 @@
 #!/bin/bash
 
-chmod 755 /home/herbert/app/_scripts/*
+chmod 755 /home/herbert/apps/pad/_scripts/*

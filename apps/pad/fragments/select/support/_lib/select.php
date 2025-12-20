@@ -7,14 +7,14 @@
   $padSelect ['news']         = [ 'key' => 'id' ];
   $padSelect ['tickets']      = [ 'key' => 'id' ];
 
-  $padRelations ['forum_topics']    ['forum_boards']  = [ 'key' => 'board_id'  ];
-  $padRelations ['forum_topics']    ['users']         = [ 'key' => 'user_id'   ];
-  $padRelations ['forum_posts']     ['forum_topics']  = [ 'key' => 'topic_id'  ];
-  $padRelations ['forum_posts']     ['users']         = [ 'key' => 'user_id'   ];
-  $padRelations ['news']            ['users']         = [ 'key' => 'user_id'   ];
-  $padRelations ['tickets']         ['users']         = [ 'key' => 'user_id'   ];
-  $padRelations ['ticket_comments'] ['tickets']       = [ 'key' => 'ticket_id' ];
-  $padRelations ['ticket_comments'] ['users']         = [ 'key' => 'user_id'   ];
+  $padRelations ['forum_topics']    ['forum_boards']  = [ 'board_id'  => 'id' ];
+  $padRelations ['forum_topics']    ['users']         = [ 'user_id'   => 'id' ];
+  $padRelations ['forum_posts']     ['forum_topics']  = [ 'topic_id'  => 'id' ];
+  $padRelations ['forum_posts']     ['users']         = [ 'user_id'   => 'id' ];
+  $padRelations ['news']            ['users']         = [ 'user_id'   => 'id' ];
+  $padRelations ['tickets']         ['users']         = [ 'user_id'   => 'id' ];
+  $padRelations ['ticket_comments'] ['tickets']       = [ 'ticket_id' => 'id' ];
+  $padRelations ['ticket_comments'] ['users']         = [ 'user_id'   => 'id' ];
 
   $padSelect ['openBugs'] = [ 'base'  => "tickets", 
                               'where' => "`type`='bug' and `status`='open'",

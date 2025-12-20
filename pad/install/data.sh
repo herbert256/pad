@@ -1,10 +1,10 @@
 #!/bin/bash
 
-rm -rf /home/herbert/data
-rm -rf /home/herbert/www/data
+rm -rf /home/herbert/pad/DATA
+rm -rf /home/herbert/pad/www/DATA
 
-mkdir /home/herbert/data
-ln -s /home/herbert/data /home/herbert/www/data
+mkdir /home/herbert/pad/DATA
+ln -s /home/herbert/pad/DATA /home/herbert/pad/www/DATA
 
-chown herbert:herbert /home/herbert/data
-chown herbert:herbert /home/herbert/www/data
+chown herbert:herbert /home/herbert/pad/DATA
+chown herbert:herbert /home/herbert/pad/www/DATA
