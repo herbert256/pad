@@ -35,7 +35,7 @@
     $sql   = "$type $base $order $limit";
     $union = "union select $base";
 
-    $GLOBALS ['_SQL'] [] = $sql;
+    $GLOBALS ['_SELECT'] [] = $sql;
 
     if ($unionBuild)
       return $union;
@@ -141,13 +141,19 @@
 
     if  ( isset ( $padRelations [$relation] [$table] ) ) {
       
-      $keys3 = $padRelations [$relation] [$table] ['key'];
-      
+      if ( isset ( $padRelations [$relation] [$table] ['key'] ) )
+        $keys3 = $padRelations [$relation] [$table] ['key'];
+      else
+        $keys3 = $keys2;
+
       padSelectWhereGo ( $where, $keys2, $keys3, $data );
    
     } elseif ( isset ( $padRelations [$table] [$relation] ) )  {
    
-      $keys3 = $padRelations [$table] [$relation] ['key'];
+      if ( isset ($padRelations [$table] [$relation] ['key']) )
+        $keys3 = $padRelations [$table] [$relation] ['key'];
+      else
+        $keys3 = $keys2;
    
       padSelectWhereGo ( $where, $keys3, $keys2, $data );
 
