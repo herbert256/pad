@@ -1,6 +1,5 @@
 <?php
 
-
   $padSelect ['table1'] = [ 'key' => 'key', 'fields' => ['key' => 'key1', 'text' => 'text1'] ];
   $padSelect ['table2'] = [ 'key' => 'key', 'fields' => ['key' => 'key2', 'text' => 'text2'] ];
   $padSelect ['table3'] = [ 'key' => 'key', 'fields' => ['key' => 'key3', 'text' => 'text3'] ];
@@ -19,9 +18,4 @@
   $padSelect ['multi']    = [ 'base' => 'table1', 'join' => [ ['inner' => 'table2', 'key'=> 'table1.key'],
                                                               ['inner' => 'table3', 'key'=> 'table1.key'],
                                                               ['inner' => 'table4', 'key'=> 'table1.key'] ] ];
-
-  $padSelect ['union1']    = [ 'base' => 'table1',                                             ] ;
-  $padSelect ['union12']   = [ 'base' => 'table1', 'union' => 'table2'                         ] ;
-  $padSelect ['union1234'] = [ 'base' => 'table1', 'union' => [ 'table2', 'table3', 'table4' ] ] ;
-
 ?>
