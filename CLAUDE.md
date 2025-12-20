@@ -106,7 +106,14 @@ apps/myapp/
 ├── _data/                 # Static data files (XML, JSON)
 │
 └── subdir/                # Subdirectories can have own wrappers
-    ├── _inits.pad
+    ├── _callbacks/        # Subdirectory callbacks
+    ├── _functions/        # Subdirectory functions
+    ├── _include/          # Subdirectory includes
+    ├── _lib/              # Subdirectory lib
+    ├── _options/          # Subdirectory options
+    ├── _tags/             # Subdirectory tags
+    ├── _inits.pad         # Subdirectory wrapper (top)
+    ├── _exits.pad         # Subdirectory wrapper (bottom)
     └── page.pad
 ```
 
@@ -122,6 +129,49 @@ apps/myapp/
 | `_options/` | Tag options | Custom option handlers |
 | `_config/` | App config | `config.php` overrides |
 | `_data/` | Static data | XML, JSON files |
+| `_scripts/` | Shell scripts | On demand |
+
+### Wrapper Files (_inits.pad / _exits.pad)
+
+These files wrap page content at each directory level, creating nested wrappers:
+
+```
+/_inits.pad        ← Root wrapper (top)
+  /abc/_inits.pad  ← Subdirectory wrapper (top)
+    [page content]
+  /abc/_exits.pad  ← Subdirectory wrapper (bottom)
+/_exits.pad        ← Root wrapper (bottom)
+```
+
+### PHP Execution Order (_inits.php / _exits.php)
+
+PHP files execute in a specific order - all PHP runs before template rendering:
+
+1. `/_inits.php`
+2. `/abc/_inits.php`
+3. `/abc/klm/_inits.php`
+4. `/abc/klm/page.php`
+5. `/abc/klm/_exits.php`
+6. `/abc/_exits.php`
+7. `/_exits.php`
+
+### Directory Inheritance
+
+When accessing a page in a subdirectory (e.g., `?abc/klm/page`):
+
+- **_lib/** files from ALL parent directories are included (cumulative)
+- **_inits.pad** from each level wraps the content (nested)
+- **_tags/**, **_functions/**, **_include/**, etc. are searched from current directory up to root
+
+Example for `?abc/klm/page`:
+1. Include: `/_lib/*.php` → `/abc/_lib/*.php` → `/abc/klm/_lib/*.php`
+2. Wrap: `/_inits.pad` → `/abc/_inits.pad` → `/abc/klm/_inits.pad`
+3. Tag lookup: `/abc/klm/_tags/` first, then `/abc/_tags/`, then `/_tags/`
+
+This allows subdirectories to:
+- **Override** parent tags/functions with local versions
+- **Add** new tags/functions only available in that subdirectory
+- **Inherit** all functionality from parent directories
 
 ### _lib/ - PHP Functions
 
@@ -1264,6 +1314,7 @@ Each `{tag}` creates a new level scope. PAD maintains global variables per level
 | `minimal` | Minimal | Single template file (no .php) |
 | `cli` | CLI | Command-line interface for running PAD |
 | `support` | Standard | Support portal with forum, news, tickets |
+| `structure` | Example | Demo of nested _xxx directories and inheritance |
 | `nono` | Non-PAD | Plain PHP without PAD framework |
 
 ---
