@@ -3,3 +3,34 @@
   <li> Variable in _exits.php / {$exits}
 
 </ul>
+
+<hr> <h2>Sequence of calls</h2>
+
+<p>Note that some values 'root/abc/klm/xyz' look incorrect. This comes because all inits/exits/page PHP sources are called before the rendering of the PAD templates start. The sequence is.</p>
+
+<ul>
+ <li> /_inits.php
+ <li> /abc/_inits.php
+ <li> /abc/klm/_inits.php
+ <li> /abc/klm/xyz/_inits.php
+ <li> /abc/klm/xyz/page.php
+ <li> /abc/klm/xyz/_exits.php
+ <li> /abc/klm/_exits.php
+ <li> /abc/_exits.php
+ <li> /_exits.php
+</ul>
+
+<p>So it is possible (and in this example application it happens) that:<br>
+- &lt;page&gt;.php PHP code overwrites variables from the _inits.php PHP code <br>
+- the _exit.php files overwrites variabeles from &lt;page&gt;.php and _inits.php fPHP code <br>
+<br> An earlier version of PAD did prevent this, but in reality it is handy, this way you can set for exampe a $title variable in the page PHP code that is used in the _inits.pad template.
+
+
+<hr> <h2>Ajax calls of the pages without _inits.pad</h2>
+
+<hr> <h3>?page</h3>             <ul> {ajax 'page'}             </ul>
+<hr> <h3>?abc/page</h3>         <ul> {ajax 'abc/page'}         </ul>
+<hr> <h3>?abc/klm/page</h3>     <ul> {ajax 'abc/klm/page'}     </ul>
+<hr> <h3>?abc/klm/xyz/page</h3> <ul> {ajax 'abc/klm/xyz/page'} </ul>
+
+<hr>

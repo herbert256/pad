@@ -288,7 +288,7 @@
 
     $array = reset ($parts);
 
-    return padAtglobals2 ( $array, $names, $GLOBALS );
+    return padAtGlobals2 ( $array, $names, $GLOBALS );
 
   }
 

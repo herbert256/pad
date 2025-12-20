@@ -26,8 +26,6 @@
 
     throw new Exception ( "$file:$line $error" );
 
-    return '';
-
   }
 
 

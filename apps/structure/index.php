@@ -1,5 +1,5 @@
 <?php
 
-  padRedirect ('page')
+  padRedirect ('abc/klm/xyz/page')
 
 ?>

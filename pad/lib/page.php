@@ -13,7 +13,7 @@
    */
   function padPageCheck ( $page ) {
 
-    if ( ! preg_match ( '/^[a-zA-Z][a-zA-Z0-9_\/-]*$/', $page ) ) return FALSE;
+    if ( ! preg_match ( '/^[a-zA-Z0-9][a-zA-Z0-9_\/-]*$/', $page ) ) return FALSE;
     if ( trim($page) == '' )                                      return FALSE;
     if ( strpos($page, '//') !== FALSE)                           return FALSE;
     if ( substr($page, -1) == '/')                                return FALSE;

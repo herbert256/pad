@@ -1,7 +1,11 @@
 <?php
 
-  if ( file_exists ( APP . "_options/$padPrmName.php") )
-    $padOptionsAppStart [$pad] [] = $padPrmName;
+  $padOptionCheck = padOptionCheck ( $padPrmName );
+
+  if ( $padOptionCheck ) {
+    $padOptionsAppStart     [$pad] []            = $padPrmName;
+    $padOptionsAppStartCall [$pad] [$padPrmName] = $padOptionCheck;
+  }
 
   $padPrm [$pad] [$padPrmName] = ( $padPrmValue === '' ) ? TRUE : padEval ( $padPrmValue );
 

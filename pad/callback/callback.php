@@ -1,6 +1,6 @@
 <?php
 
-  $padCall = APP . "_callbacks/" . $GLOBALS ['padPrm'] [$GLOBALS ['pad']] ['callback'];
+  $padCall = padCallBackCheck ( $padPrm [$pad] ['callback'] );
 
   include PAD . 'call/any.php';
 

@@ -123,7 +123,7 @@
     if ( is_array($xxx) )
       return ($xxx);
 
-    set_error_handler ( function ($s, $m, $f, $l) { return; } );
+    set_error_handler ( function ($s, $m, $f, $l) { return TRUE; } );
     $error_level = error_reporting(0);
 
     $array = [];

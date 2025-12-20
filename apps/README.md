@@ -12,6 +12,7 @@ This directory contains PAD applications and examples.
 | [minimal](minimal/README.md) | Minimal | Absolute minimum - single template file |
 | [nono](nono/README.md) | Plain PHP | PHP application without PAD framework |
 | [pad](pad/README.md) | Standard | Reference application with manual and regression tests |
+| [structure](structure/README.md) | Example | Demonstrates PAD directory structure and nested `_xxx` directories |
 | [support](support/README.md) | Standard | Support portal with forum, news, and tickets |
 | [test](test/README.md) | Standard | Test application for database table subsystem |
 
@@ -20,6 +21,7 @@ This directory contains PAD applications and examples.
 | Type | Description |
 |------|-------------|
 | Standard | Full PAD application with templates (.pad files) |
+| Example | Demonstrates specific PAD features or patterns |
 | Minimal | Simple single-page application |
 | CLI | Command-line interface application |
 | Plain PHP | PHP application that does not use PAD templating |

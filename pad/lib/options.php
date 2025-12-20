@@ -53,12 +53,12 @@
         continue;
 
       if ( $one==')' and !$pair ) {
-        pad_error ("Closing ) without an opening (");
+        padError ("Closing ) without an opening (");
         return [];
       }
 
       if ( $one==']' and !$pair ) {
-        pad_error ("Closing ] without an opening [");
+        padError ("Closing ] without an opening [");
         return [];
       }
 

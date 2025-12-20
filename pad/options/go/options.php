@@ -16,7 +16,7 @@
       padDone ( $padOptionName );
 
       if ( $padOptions == 'app' )
-        $padCall = APP . "_options/$padOptionName.php" ;
+        $padCall = $padOptionsAppStartCall [$pad] [$padOptionName] ;
       else
         $padCall = PAD . "options/$padOptionName.php" ;
 

@@ -91,6 +91,31 @@
         return APP2 . $value . "_scripts/$check*";
 
   }
+  
+
+  function padCallBackCheck ( $check ) {
+
+    if ( ! str_ends_with ( $check, '.php' ) )
+      $check .= '.php';
+
+    foreach ( padDirs () as $value )
+      if ( file_exists ( APP2 . $value . "_callbacks/$check" ) ) 
+        return APP2 . $value . "_callbacks/$check";
+
+    return FALSE;
+
+  }
+
+
+  function padOptionCheck ( $check ) {
+
+    foreach ( padDirs () as $value )
+      if ( file_exists ( APP2 . $value . "_options/$check.php" ) ) 
+        return APP2 . $value . "_options/$check.php";
+
+    return FALSE;
+
+  }
 
 
   /**
