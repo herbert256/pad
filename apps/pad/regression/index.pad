@@ -1,4 +1,4 @@
-<h3><a href="{$pad}develop/build/regression">TEST</a></h3>
+<h3><a href="?develop/build/regression{?sequence}">TEST</a></h3>
 
 {list}
 
@@ -12,7 +12,7 @@
     {elseif $status eq 'empty'}   style="color:black;background-color: #ffc0cb;"
     {/if} 
 
-    href="{$pad}regression/show&item={$item}">{$item | cut ''}</a>
+    href="?regression/show&item={$item}{?sequence}">{$item | cut ''}</a>
 
   &nbsp; &nbsp;
 

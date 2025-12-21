@@ -167,7 +167,7 @@ Key entry points:
 ## Features Demonstrated
 
 - Page pairing (`.php` data + `.pad` template)
-- Global wrapper (`_inits.pad` with `@pad@` placeholder)
+- Global wrapper (`_inits.pad` with `?` placeholder)
 - Custom tags, functions, options
 - Database integration
 - File operations
