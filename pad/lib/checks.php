@@ -1,22 +1,5 @@
 <?php
 
-  function padContent ( $content ) {
-
-    if ( padStoreCheck      ( $content ) ) return TRUE;
-    if ( padAppContentCheck ( $content ) ) return TRUE;
-
-    return FALSE;
-
-  }
-
-  function padStoreCheck ( $store ) {
-
-    global $padContentStore;
-
-    return isset ( $padContentStore [$store] );
-
-  }
-
   function padAppPageCheck     ( $check ) { return padAppCheck ( $check              ); }
 
   function padAppIncludeCheck  ( $check ) { return padAppCheck ( "_include/$check"   ); }

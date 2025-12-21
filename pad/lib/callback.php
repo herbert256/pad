@@ -16,8 +16,8 @@
     $padVarsAfter = get_defined_vars ();
 
     foreach ($padVarsBefore as $padK => $padV)
-      if ( isset( $GLOBALS [$padK] ) )
-        unset( $GLOBALS [$padK] );
+      if ( isset( $GLOBALS [$padV] ) )
+        unset( $GLOBALS [$padV] );
 
     foreach ($padVarsAfter as $padK => $padV)
       if ( padValidStore ($padK) ) {
@@ -52,8 +52,8 @@
     $padVarsAfter = get_defined_vars();
 
     foreach ($padVarsBefore as $padK => $padV)
-      if ( isset( $GLOBALS [$padK] ) )
-        unset( $GLOBALS [$padK] );
+      if ( isset( $GLOBALS [$padV] ) )
+        unset( $GLOBALS [$padV] );
 
     foreach ($padVarsAfter as $padK => $padV)
       if ( $padK <> 'row' and padValidStore ($padK) ) {

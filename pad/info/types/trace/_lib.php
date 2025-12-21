@@ -193,14 +193,6 @@
 
   }
 
-  function padInfoTraceCheckDir ( $file, $type ) {
-
-    if ( $type == 'file' )
-      return;
-
-    padInfoChkDir ( $file );
-
-  }
 
   function padInfoTraceOccur ( $pad ) {
 

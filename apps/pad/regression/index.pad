@@ -7,12 +7,9 @@
     {if     $status eq 'ok'}      style="color:black;"
     {elseif $status eq 'error'}   style="color:black;background-color: #f44336;"
     {elseif $status eq 'warning'} style="color:black;background-color: #ffaa80;"
-    {elseif $status eq 'no'}      style="color:black;background-color: #ffffb3;"
-    {elseif $status eq 'skip'}    style="color:black;background-color: #93ff33;"
     {elseif $status eq 'new'}     style="color:black;background-color: #248f24;"
     {elseif $status eq 'random'}  style="color:black;background-color: #befffa;"
-    {elseif $status eq 'empty'}   style="color:black;background-color: #FFC0CB;"
-    {else}                        style="color:black;background-color: #ccffcc;" 
+    {elseif $status eq 'empty'}   style="color:black;background-color: #ffc0cb;"
     {/if} 
 
     href="{$pad}regression/show&item={$item}">{$item | cut ''}</a>

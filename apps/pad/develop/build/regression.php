@@ -20,12 +20,9 @@
     if     ( ! $good                            ) $status = 'error';
     elseif ( ! file_exists ($store)             ) $status = 'new';
     elseif ( ! trim ($new)                      ) $status = 'empty';
-    elseif ( strpos($source, '{example')        ) $status = 'skip' ;
-    elseif ( strpos($source, '{ajax')           ) $status = 'skip' ;
     elseif ( strpos($source, 'random')          ) $status = 'random' ;
     elseif ( strpos($source, 'shuffle')         ) $status = 'random' ;
     elseif ( strpos($source, 'chance')          ) $status = 'random' ;
-    elseif ( strpos($new,    'padAjax')         ) $status = 'skip' ;
     elseif ( $old == $new                       ) $status = 'ok';
     else                                          $status = 'warning';
 

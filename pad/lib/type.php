@@ -10,8 +10,8 @@
     elseif ( isset              ( $padSelect       [$item] ) ) return 'select';
     elseif ( isset              ( $padDataStore    [$item] ) ) return 'data';
     elseif ( padAppIncludeCheck ( $item                                ) ) return 'include';
-    elseif ( padFieldCheck      ( $item                                ) ) return 'field';
     elseif ( padTagCheck        ( $item                                ) ) return 'property';
+    elseif ( padFieldCheck      ( $item                                ) ) return 'field';
     elseif ( padArrayCheck      ( $item                                ) ) return 'array';
     elseif ( padOptCheck        ( $item, 1                             ) ) return 'parm';
     elseif ( padChkLevel        ( $item                                ) ) return 'level';
