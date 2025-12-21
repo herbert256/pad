@@ -1302,6 +1302,47 @@ Each `{tag}` creates a new level scope. PAD maintains global variables per level
 - Use `{trace}` tag for execution trace
 - Check `DATA/` directory for error dumps and logs
 
+### Testing PAD Pages from Command Line
+
+You can fetch and analyze PAD pages directly from a running server using `curl`:
+
+```bash
+# Fetch a PAD page
+curl "http://localhost/demo/?clock"
+
+# Fetch with headers
+curl -i "http://localhost/pad/?manual"
+
+# Fetch and save output
+curl -o output.html "http://localhost/myapp/?page/subpage"
+
+# Fetch with query parameters
+curl "http://localhost/app/?page&param=value"
+```
+
+**Examples:**
+```bash
+# Demo application pages
+curl "http://localhost/demo/?index"        # Home page
+curl "http://localhost/demo/?guestbook"    # Guestbook
+curl "http://localhost/demo/?clock"        # Clock with date/time
+
+# PAD reference application
+curl "http://localhost/pad/?manual"        # Framework manual
+curl "http://localhost/pad/?reference"     # Cross-reference
+curl "http://localhost/pad/?hello/hello"   # Hello World test
+
+# Debugging output
+curl "http://localhost/app/?page&padInfo=trace"  # With trace
+```
+
+This is particularly useful for:
+- **Automated testing** - Verify page output in scripts
+- **Debugging** - Inspect generated HTML without a browser
+- **Performance testing** - Measure response times
+- **Regression testing** - Compare output against expected results
+- **CI/CD integration** - Test PAD applications in pipelines
+
 ---
 
 ## Applications Overview
