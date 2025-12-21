@@ -25,30 +25,7 @@
 <!-- React component will be rendered here -->
 <div id="welcome-component"></div>
 
-{ignore}<script type="text/babel">
-  // Simple React component
-  function WelcomeComponent() {
-    const [count, setCount] = React.useState(0);
-
-    return (
-      <div className="react-component">
-        <div className="react-component-label">⚛️ REACT COMPONENT</div>
-        <h3>Interactive Counter</h3>
-        <p>Current count: <strong>{count}</strong></p>
-        <button onClick={() => setCount(count + 1)}>
-          Click to Increment
-        </button>
-        <button onClick={() => setCount(0)} style={{marginLeft: '10px', background: '#ff6b6b'}}>
-          Reset
-        </button>
-      </div>
-    );
-  }
-
-  // Render the component
-  const welcomeRoot = ReactDOM.createRoot(document.getElementById('welcome-component'));
-  welcomeRoot.render(<WelcomeComponent />);
-</script>{/ignore}
+<script type="text/babel" src="/react/index/welcome.js"></script>
 
 <h2>React Component with Server Data</h2>
 <p>This component receives data from PAD's server-side PHP:</p>
@@ -57,7 +34,7 @@
 <div id="users-component"
      data-server-message="{$serverMessage}"
      data-server-time="{$serverTime}"
-     data-users-json="{!usersJson}"></div>
+     data-users-json="{json 'users' | ignore}"></div>
 
 <script>
   // Parse from data attribute
@@ -69,56 +46,7 @@
   };
 </script>
 
-{ignore}<script type="text/babel">
-  // Component that uses server data
-  function UsersComponent() {
-    // Get server data from window object
-    const serverMessage = window.serverData.serverMessage;
-    const serverTime = window.serverData.serverTime;
-    const users = window.serverData.users;
-
-    const [selectedUser, setSelectedUser] = React.useState(null);
-
-    return (
-      <div className="react-component">
-        <div className="react-component-label">⚛️ REACT COMPONENT (with server data)</div>
-        <h3>User List from Server</h3>
-        <p style={{fontSize: '14px', color: '#666'}}>
-          Server message: "{serverMessage}" (generated at {serverTime})
-        </p>
-
-        <div style={{marginTop: '15px'}}>
-          {users.map(user => (
-            <div
-              key={user.id}
-              style={{
-                padding: '10px',
-                margin: '5px 0',
-                background: selectedUser?.id === user.id ? '#61dafb' : '#f0f0f0',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                transition: 'background 0.2s'
-              }}
-              onClick={() => setSelectedUser(user)}
-            >
-              <strong>{user.name}</strong> - {user.role}
-            </div>
-          ))}
-        </div>
-
-        {selectedUser && (
-          <div style={{marginTop: '15px', padding: '15px', background: '#e3f2fd', borderRadius: '5px'}}>
-            <strong>Selected:</strong> {selectedUser.name} ({selectedUser.role})
-          </div>
-        )}
-      </div>
-    );
-  }
-
-  // Render the component
-  const usersRoot = ReactDOM.createRoot(document.getElementById('users-component'));
-  usersRoot.render(<UsersComponent />);
-</script>{/ignore}
+<script type="text/babel" src="/react/index/users.js"></script>
 
 <h2>Next Steps</h2>
 <ul style="margin-left: 20px; line-height: 1.8;">

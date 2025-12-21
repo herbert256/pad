@@ -4,177 +4,19 @@
 
 <h2>1. Simple Click Handler</h2>
 <div id="example1"></div>
-{ignore}<script type="text/babel">
-  function ClickExample() {
-    const handleClick = () => {
-      alert('Button clicked! React is working!');
-    };
-
-    return (
-      <div className="react-component">
-        <div className="react-component-label">⚛️ CLICK HANDLER</div>
-        <button onClick={handleClick}>Click Me!</button>
-      </div>
-    );
-  }
-
-  ReactDOM.createRoot(document.getElementById('example1')).render(<ClickExample />);
-</script>{/ignore}
+<script type="text/babel" src="/react/examples/click.js"></script>
 
 <h2>2. Form with Controlled Components</h2>
 <div id="example2"></div>
-{ignore}<script type="text/babel">
-  function FormExample() {
-    const [name, setName] = React.useState('');
-    const [email, setEmail] = React.useState('');
-    const [submitted, setSubmitted] = React.useState(false);
-
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      setSubmitted(true);
-    };
-
-    return (
-      <div className="react-component">
-        <div className="react-component-label">⚛️ CONTROLLED FORM</div>
-        {!submitted ? (
-          <form onSubmit={handleSubmit}>
-            <div style={{marginBottom: '10px'}}>
-              <label>
-                Name:
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  style={{marginLeft: '10px', padding: '5px', borderRadius: '3px', border: '1px solid #ccc'}}
-                  required
-                />
-              </label>
-            </div>
-            <div style={{marginBottom: '10px'}}>
-              <label>
-                Email:
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  style={{marginLeft: '10px', padding: '5px', borderRadius: '3px', border: '1px solid #ccc'}}
-                  required
-                />
-              </label>
-            </div>
-            <button type="submit">Submit</button>
-          </form>
-        ) : (
-          <div style={{padding: '15px', background: '#d4edda', borderRadius: '5px'}}>
-            <strong>Form submitted!</strong>
-            <p>Name: {name}</p>
-            <p>Email: {email}</p>
-            <button onClick={() => setSubmitted(false)} style={{marginTop: '10px'}}>
-              Reset Form
-            </button>
-          </div>
-        )}
-      </div>
-    );
-  }
-
-  ReactDOM.createRoot(document.getElementById('example2')).render(<FormExample />);
-</script>{/ignore}
+<script type="text/babel" src="/react/examples/form.js"></script>
 
 <h2>3. Product List from Server Data</h2>
 <div id="example3" data-products="{json 'products' | ignore}"></div>
-{ignore}<script type="text/babel">
-  function ProductList() {
-    const productsData = JSON.parse(document.getElementById('example3').dataset.products);
-    const [products, setProducts] = React.useState(productsData);
-    const [sortBy, setSortBy] = React.useState('name');
-
-    const sortedProducts = [...products].sort((a, b) => {
-      if (sortBy === 'name') {
-        return a.name.localeCompare(b.name);
-      } else {
-        return a.price - b.price;
-      }
-    });
-
-    return (
-      <div className="react-component">
-        <div className="react-component-label">⚛️ PRODUCT LIST (from PAD server)</div>
-
-        <div style={{marginBottom: '15px'}}>
-          <label>
-            Sort by:
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              style={{marginLeft: '10px', padding: '5px', borderRadius: '3px'}}
-            >
-              <option value="name">Name</option>
-              <option value="price">Price</option>
-            </select>
-          </label>
-        </div>
-
-        <table style={{width: '100%', borderCollapse: 'collapse'}}>
-          <thead>
-            <tr style={{background: '#f0f0f0'}}>
-              <th style={{padding: '10px', textAlign: 'left'}}>Product</th>
-              <th style={{padding: '10px', textAlign: 'right'}}>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sortedProducts.map(product => (
-              <tr key={product.id} style={{borderBottom: '1px solid #ddd'}}>
-                <td style={{padding: '10px'}}>{product.name}</td>
-                <td style={{padding: '10px', textAlign: 'right'}}>${product.price.toFixed(2)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    );
-  }
-
-  ReactDOM.createRoot(document.getElementById('example3')).render(<ProductList />);
-</script>{/ignore}
+<script type="text/babel" src="/react/examples/products.js"></script>
 
 <h2>4. Toggle Component</h2>
 <div id="example4"></div>
-{ignore}<script type="text/babel">
-  function ToggleExample() {
-    const [isOn, setIsOn] = React.useState(false);
-
-    return (
-      <div className="react-component">
-        <div className="react-component-label">⚛️ TOGGLE SWITCH</div>
-        <div style={{textAlign: 'center'}}>
-          <div
-            style={{
-              fontSize: '48px',
-              marginBottom: '20px',
-              color: isOn ? '#4caf50' : '#999'
-            }}
-          >
-            {isOn ? '💡 ON' : '💡 OFF'}
-          </div>
-          <button
-            onClick={() => setIsOn(!isOn)}
-            style={{
-              background: isOn ? '#4caf50' : '#999',
-              padding: '15px 30px',
-              fontSize: '18px'
-            }}
-          >
-            {isOn ? 'Turn Off' : 'Turn On'}
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  ReactDOM.createRoot(document.getElementById('example4')).render(<ToggleExample />);
-</script>{/ignore}
+<script type="text/babel" src="/react/examples/toggle.js"></script>
 
 <h2>Learning Resources</h2>
 <ul style="margin-left: 20px; line-height: 1.8;">

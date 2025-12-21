@@ -6,14 +6,4 @@
   $serverMessage = 'Hello from PAD Server!';
   $serverTime = date('Y-m-d H:i:s');
 
-  // Sample data from server
-  $users = [
-    ['id' => 1, 'name' => 'Alice', 'role' => 'Developer'],
-    ['id' => 2, 'name' => 'Bob', 'role' => 'Designer'],
-    ['id' => 3, 'name' => 'Charlie', 'role' => 'Manager'],
-  ];
-
-  // Pre-encode for React (with HTML escaping for data attributes)
-  $usersJson = htmlspecialchars(json_encode($users), ENT_QUOTES, 'UTF-8');
-
 ?>
