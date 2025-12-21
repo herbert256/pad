@@ -21,6 +21,8 @@ Access the application at: `http://localhost/react/`
 
 ## Architecture
 
+This application follows PAD's philosophy of **separation of concerns**, extended to client-side code:
+
 ### Server-Side (PAD)
 
 ```
@@ -29,8 +31,12 @@ apps/react/
 ├── _inits.php          # Global PHP initialization
 ├── _config/
 │   └── config.php      # Application configuration
-├── _data/
-│   └── nav.json        # Navigation menu data
+├── _data/              # Static data (JSON files)
+│   ├── nav.json        # Navigation menu
+│   ├── products.json   # Product data
+│   └── users.json      # User data
+├── _tags/              # Custom PAD tags
+│   └── json.php        # {json} tag for data passing to React
 ├── index.php/pad       # Home page (data + template)
 ├── examples.php/pad    # Examples page
 ├── components.php/pad  # Components page
@@ -39,10 +45,35 @@ apps/react/
 
 ### Client-Side (React)
 
-React is loaded via CDN in `_inits.pad`:
+**React libraries** loaded via CDN in `_inits.pad`:
 - React 18 (Development build)
 - ReactDOM 18 (Development build)
 - Babel Standalone (for in-browser JSX transformation)
+
+**JavaScript components** (external files in `www/react/`):
+```
+www/react/
+├── index/              # Home page JavaScript
+│   ├── welcome.js      # WelcomeComponent
+│   └── users.js        # UsersComponent
+├── examples/           # Examples page JavaScript
+│   ├── click.js        # ClickExample
+│   ├── form.js         # FormExample
+│   ├── products.js     # ProductList
+│   └── toggle.js       # ToggleExample
+├── components/         # Components page JavaScript
+│   ├── demo.js         # ComponentsDemo
+│   └── todo.js         # TodoApp
+└── counter/            # Counter page JavaScript
+    └── app.js          # CounterApp
+```
+
+**Separation Benefits:**
+- **Data** (_data/*.json) - Static data separate from code
+- **PHP** (*.php) - Server logic and dynamic values
+- **Templates** (*.pad) - HTML structure
+- **JavaScript** (www/react/*/*.js) - Client-side interactivity
+- Each concern in its proper place, clean and maintainable
 
 ## How It Works
 
@@ -61,68 +92,105 @@ Each page consists of:
 - **`.php` file** - Server-side data (optional)
 - **`.pad` file** - Template with React components
 
-### 3. React Components in Templates
+### 3. React Components in External Files
 
-Embed React components directly in PAD templates:
+React components are defined in external JavaScript files and referenced from templates:
 
+**Template (page.pad):**
 ```html
 <!-- Container for React component -->
 <div id="my-component"></div>
 
-<!-- React component definition -->
-<script type="text/babel">
-  function MyComponent() {
-    const [count, setCount] = React.useState(0);
-
-    return (
-      <div>
-        <p>Count: {count}</p>
-        <button onClick={() => setCount(count + 1)}>
-          Increment
-        </button>
-      </div>
-    );
-  }
-
-  // Render the component
-  const root = ReactDOM.createRoot(document.getElementById('my-component'));
-  root.render(<MyComponent />);
-</script>
+<!-- Load external component -->
+<script type="text/babel" src="/react/page/component.js"></script>
 ```
+
+**JavaScript (www/react/page/component.js):**
+```javascript
+function MyComponent() {
+  const [count, setCount] = React.useState(0);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>
+        Increment
+      </button>
+    </div>
+  );
+}
+
+// Render the component
+const root = ReactDOM.createRoot(document.getElementById('my-component'));
+root.render(<MyComponent />);
+```
+
+**Why external files?**
+- Consistent with PAD's separation philosophy
+- Browser caching for better performance
+- Cleaner templates (structure only)
+- Easier debugging with proper file names
+- Can be minified/optimized for production
 
 ### 4. Passing Server Data to React
 
-Use data attributes to pass PAD/PHP data to React:
+The app uses a custom `{json}` tag to pass data from PAD to React cleanly and safely.
 
-```html
-<!-- In .php file -->
+#### Custom {json} Tag
+
+**Location:** `_tags/json.php`
+
+**Purpose:** Reads JSON files from `_data/`, compacts them, and HTML-escapes for safe use in attributes.
+
+**Implementation:**
+```php
 <?php
-  $users = [
-    ['name' => 'Alice', 'role' => 'Developer'],
-    ['name' => 'Bob', 'role' => 'Designer'],
-  ];
+  $jsonContent = file_get_contents(APP . "_data/$padParm.json");
+  $jsonData = json_decode($jsonContent, true);
+  $jsonCompact = json_encode($jsonData);
+  $padContent = htmlspecialchars($jsonCompact, ENT_QUOTES, 'UTF-8');
+  return TRUE;
 ?>
-
-<!-- In .pad file -->
-<div id="users-app" data-users='{echo padJson($users)}'></div>
-
-<script type="text/babel">
-  function UsersApp() {
-    const element = document.getElementById('users-app');
-    const users = JSON.parse(element.dataset.users);
-
-    return (
-      <ul>
-        {users.map((user, i) => (
-          <li key={i}>{user.name} - {user.role}</li>
-        ))}
-      </ul>
-    );
-  }
-
-  ReactDOM.createRoot(document.getElementById('users-app')).render(<UsersApp />);
-</script>
 ```
+
+#### Usage Pattern
+
+**1. Create JSON data file** (_data/users.json):
+```json
+[
+  {"id": 1, "name": "Alice", "role": "Developer"},
+  {"id": 2, "name": "Bob", "role": "Designer"}
+]
+```
+
+**2. Use in template** (page.pad):
+```html
+<div id="users-app" data-users="{json 'users' | ignore}"></div>
+```
+
+**3. Access in JavaScript** (www/react/page/users.js):
+```javascript
+function UsersApp() {
+  const element = document.getElementById('users-app');
+  const users = JSON.parse(element.dataset.users);
+
+  return (
+    <ul>
+      {users.map(user => (
+        <li key={user.id}>{user.name} - {user.role}</li>
+      ))}
+    </ul>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('users-app')).render(<UsersApp />);
+```
+
+**Key points:**
+- `{json 'filename'}` reads from `_data/filename.json`
+- `| ignore` pipe prevents PAD from parsing JSON curly braces
+- Data is HTML-escaped for safe use in attributes
+- React parses JSON from `data-*` attributes
 
 ### 5. Data-Driven Navigation (The PAD Way)
 
@@ -169,16 +237,6 @@ Following PAD's philosophy of separating data from presentation, the navigation 
 - Easy to extend with additional properties (tooltips, badges, permissions, etc.)
 - Template remains clean and focused on presentation
 - Data can be reused elsewhere (breadcrumbs, sitemap, etc.)
-
-**Important:** When embedding React/JSX code in PAD templates, wrap script blocks in `{ignore}...{/ignore}` tags to prevent PAD from parsing JSX curly braces as PAD syntax:
-
-```html
-{ignore}<script type="text/babel">
-  function MyComponent() {
-    return <div>{count}</div>;  <!-- JSX braces won't conflict with PAD -->
-  }
-</script>{/ignore}
-```
 
 ## Features Demonstrated
 
@@ -254,31 +312,75 @@ Then copy the built files to PAD and reference them in `_inits.pad`.
 
 ## Creating New Pages
 
-1. Create `mypage.php` (optional - for server data):
+Following the separation of concerns pattern:
+
+### 1. Create Data (Optional)
+
+**_data/mydata.json:**
+```json
+[
+  {"id": 1, "name": "Item 1"},
+  {"id": 2, "name": "Item 2"}
+]
+```
+
+### 2. Create PHP File (Optional)
+
+**mypage.php:**
 ```php
 <?php
   $title = 'My Page';
-  $data = ['item1', 'item2', 'item3'];
+  // Only dynamic server values here
+  $serverTime = date('Y-m-d H:i:s');
 ?>
 ```
 
-2. Create `mypage.pad`:
+### 3. Create Template
+
+**mypage.pad:**
 ```html
 <h1>My Page</h1>
 
-<div id="my-react-component"></div>
+<!-- Container for React component -->
+<div id="my-component" data-items="{json 'mydata' | ignore}"></div>
 
-<script type="text/babel">
-  function MyComponent() {
-    return <div>Hello from React!</div>;
-  }
-
-  ReactDOM.createRoot(document.getElementById('my-react-component'))
-    .render(<MyComponent />);
-</script>
+<!-- Load external JavaScript -->
+<script type="text/babel" src="/react/mypage/component.js"></script>
 ```
 
-3. Access at `http://localhost/react/?mypage`
+### 4. Create JavaScript Component
+
+**www/react/mypage/component.js:**
+```javascript
+function MyComponent() {
+  const element = document.getElementById('my-component');
+  const items = JSON.parse(element.dataset.items);
+
+  return (
+    <div>
+      <h2>Hello from React!</h2>
+      <ul>
+        {items.map(item => (
+          <li key={item.id}>{item.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('my-component'))
+  .render(<MyComponent />);
+```
+
+### 5. Access
+
+Visit: `http://localhost/react/?mypage`
+
+**File organization:**
+- Data → `apps/react/_data/mydata.json`
+- PHP → `apps/react/mypage.php`
+- Template → `apps/react/mypage.pad`
+- JavaScript → `www/react/mypage/component.js`
 
 ## Resources
 
@@ -288,16 +390,29 @@ Then copy the built files to PAD and reference them in `_inits.pad`.
 
 ## Tips
 
+### General
 - React is automatically available on every page via `_inits.pad`
-- Use `type="text/babel"` for JSX script tags
-- **Wrap JSX scripts in `{ignore}...{/ignore}`** to prevent PAD from parsing React curly braces
-- Pass server data via `data-*` attributes or `window` object
+- Use `type="text/babel"` for external JSX script tags
 - Each component needs its own root element (`<div id="...">`)
 - Use PAD for routing and server data, React for interactive UI
 - Check browser console for React errors and warnings
-- **Follow the PAD way**: Store repeating data in `_data/` JSON files (navigation, config, lists)
-- Use `{local:filename.json}` to iterate over data files
-- Keep templates focused on presentation, data in separate files
+
+### Separation of Concerns (The PAD Way)
+- **Data** → Store in `_data/*.json` files (not in PHP or templates)
+- **PHP** → Only dynamic server values (time, session, calculations)
+- **Templates** → Structure only (HTML + script references)
+- **JavaScript** → External files in `www/react/[page]/`
+
+### Data Passing
+- Use the custom `{json 'filename' | ignore}` tag for JSON data
+- Pass data via `data-*` attributes
+- Parse in JavaScript with `JSON.parse(element.dataset.attrName)`
+- The `| ignore` pipe is essential for JSON (prevents PAD from parsing `{}`)
+
+### File Organization
+- One subdirectory per page in `www/react/`
+- Group related components in the same directory
+- Name files descriptively (welcome.js, products.js, todo.js)
 
 ## Next Steps
 

@@ -40,15 +40,47 @@ Each app has a subdirectory with a minimal `index.php`:
 
 The app name is automatically derived from the directory name.
 
-| Directory | Application |
-|-----------|-------------|
-| `pad/` | Reference app (manual + tests) |
-| `demo/` | Demo application |
-| `hello/` | Hello World example |
-| `minimal/` | Minimal example |
-| `support/` | Support utilities |
-| `test/` | Test application |
-| `nono/` | Nono application |
+| Directory | Application | Static Assets |
+|-----------|-------------|---------------|
+| `pad/` | Reference app (manual + tests) | - |
+| `demo/` | Demo application | style.css |
+| `hello/` | Hello World example | - |
+| `minimal/` | Minimal example | - |
+| `support/` | Support utilities | - |
+| `structure/` | Directory structure demo | - |
+| `test/` | Test application | - |
+| `nono/` | Nono application | - |
+| `react/` | PAD + React integration | JavaScript files (see below) |
+
+## React App Static Assets
+
+The `react/` app demonstrates PAD's separation of concerns philosophy extended to client-side code. It contains external JavaScript files organized by page:
+
+```
+react/
+├── index.php              # App entry point
+├── index/                 # JavaScript for index page
+│   ├── welcome.js         # WelcomeComponent
+│   └── users.js           # UsersComponent
+├── examples/              # JavaScript for examples page
+│   ├── click.js           # ClickExample
+│   ├── form.js            # FormExample
+│   ├── products.js        # ProductList
+│   └── toggle.js          # ToggleExample
+├── components/            # JavaScript for components page
+│   ├── demo.js            # ComponentsDemo (Card & Button)
+│   └── todo.js            # TodoApp
+└── counter/               # JavaScript for counter page
+    └── app.js             # CounterApp
+```
+
+**Philosophy:** Just as PAD separates PHP from templates, the React app separates:
+- **Data** (apps/react/_data/*.json) - Static data
+- **PHP** (apps/react/*.php) - Server-side logic
+- **Templates** (apps/react/*.pad) - HTML structure
+- **JavaScript** (www/react/*/*.js) - Client-side interactivity
+
+Templates reference external scripts: `<script type="text/babel" src="/react/[page]/[component].js"></script>`
 
 ## Bootstrap (pad.php)
 
@@ -72,7 +104,13 @@ The centralized bootstrap:
      include __DIR__ . '/../pad.php'
    ?>
    ```
-3. Access via `http://server/newapp/`
+3. (Optional) Add static assets (CSS, JavaScript) in `www/newapp/`
+4. Access via `http://server/newapp/`
+
+**Static Assets:** Any files in `www/appname/` are served directly by the web server:
+- CSS files: `www/appname/style.css` → `/appname/style.css`
+- JavaScript: `www/appname/script.js` → `/appname/script.js`
+- Organized subdirectories: `www/react/index/welcome.js` → `/react/index/welcome.js`
 
 ## Documentation
 
