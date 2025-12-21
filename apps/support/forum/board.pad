@@ -1,0 +1,12 @@
+<h1>{$boardName}</h1>
+
+{if $user_id}
+  <a href="?forum/new&board_id={$boardId}" class="btn btn-primary">New Topic</a>
+{else}
+  <p class="info-message">Please <a href="?auth/login">login</a> to create a new topic.</p>
+{/if}
+
+<div id="topics-list"
+     data-board-id="{$boardId}"
+     data-logged-in="{$user_id ? 'true' : 'false'}"></div>
+<script type="text/babel" src="/support/forum/topics.js"></script>

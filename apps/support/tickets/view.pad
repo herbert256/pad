@@ -1,0 +1,19 @@
+<div class="breadcrumb">
+  <a href="?tickets/index">My Tickets</a> &raquo; #{$ticketId} {$ticketTitle}
+</div>
+
+<div id="ticket-details"
+     data-id="{$ticketId}"
+     data-title="{!ticketTitle}"
+     data-type="{$ticketType}"
+     data-status="{$ticketStatus}"
+     data-priority="{$ticketPriority}"
+     data-role="{$role}"
+     data-user-id="{$user_id}"></div>
+<script type="text/babel" src="/support/tickets/details.js"></script>
+
+<div id="ticket-comments"
+     data-ticket-id="{$ticketId}"
+     data-user-id="{$user_id}"
+     data-role="{$role}"></div>
+<script type="text/babel" src="/support/tickets/comments.js"></script>

@@ -1,0 +1,9 @@
+<h1>News</h1>
+
+{if $role eq 'admin'}
+  <a href="?news/new" class="btn btn-primary">New Article</a>
+{/if}
+
+<div id="news-list"
+     data-is-admin="{$role eq 'admin' ? 'true' : 'false'}"></div>
+<script type="text/babel" src="/support/news/list.js"></script>

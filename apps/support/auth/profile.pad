@@ -1,0 +1,11 @@
+<h1>Profile: {$profileUsername}</h1>
+
+<div id="profile-info"
+     data-username="{$profileUsername}"
+     data-email="{$profileEmail}"
+     data-role="{$profileRole}"
+     data-created="{echo $profileCreated | substr(0, 10)}"
+     data-topics="{$topicCount}"
+     data-posts="{$postCount}"
+     data-tickets="{$ticketCount}"></div>
+<script type="text/babel" src="/support/auth/profile.js"></script>

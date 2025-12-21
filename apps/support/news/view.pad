@@ -1,0 +1,17 @@
+<div class="breadcrumb">
+  <a href="?news/index">News</a> &raquo; {$articleTitle}
+</div>
+
+<div id="news-article"
+     data-id="{$id}"
+     data-title="{!articleTitle}"
+     data-date="{echo $articleDate | substr(0, 10)}"
+     data-user-id="{$articleUserId}"></div>
+<script type="text/babel" src="/support/news/article.js"></script>
+
+<div class="card">
+  <h3>Content</h3>
+  <div class="article-content">{$articleContent}</div>
+</div>
+
+<a href="?news/index" class="btn btn-secondary">Back to News</a>

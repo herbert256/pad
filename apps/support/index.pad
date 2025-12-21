@@ -1,0 +1,32 @@
+<h1>Welcome to PAD Support Portal</h1>
+
+<div id="stats-dashboard"
+     data-user-count="{$userCount}"
+     data-topic-count="{$topicCount}"
+     data-post-count="{$postCount}"
+     data-news-count="{$newsCount}"
+     data-ticket-count="{$ticketCount}"
+     data-server-time="{$serverTime}"></div>
+<script type="text/babel" src="/support/index/stats.js"></script>
+
+<div class="grid">
+  <div class="card">
+    <h2>📰 Latest News</h2>
+    <div id="latest-news"></div>
+    <script type="text/babel" src="/support/index/news.js"></script>
+  </div>
+
+  <div class="card">
+    <h2>💬 Forum Boards</h2>
+    <div id="forum-boards"></div>
+    <script type="text/babel" src="/support/index/boards.js"></script>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Quick Links</h2>
+  <div id="quick-links"
+       data-logged-in="{$user_id ? 'true' : 'false'}"
+       data-links="{json 'links' | ignore}"></div>
+  <script type="text/babel" src="/support/index/links.js"></script>
+</div>

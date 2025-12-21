@@ -1,0 +1,15 @@
+<div class="breadcrumb">
+  <a href="?forum/index">Forum</a> &raquo;
+  {forum_boards $id=$boardId}
+    <a href="?forum/board&slug={$slug}">{$name}</a>
+  {/forum_boards}
+  &raquo; {$topicTitle}
+</div>
+
+<h1>{$topicTitle}</h1>
+
+<div id="topic-posts"
+     data-topic-id="{$topicId}"
+     data-user-id="{$user_id}"
+     data-logged-in="{$user_id ? 'true' : 'false'}"></div>
+<script type="text/babel" src="/support/forum/posts.js"></script>
