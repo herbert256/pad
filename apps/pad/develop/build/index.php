@@ -4,7 +4,6 @@
 
   fileDeleteDir ( 'regression' );
   fileDeleteDir ( 'reference'  );
-  fileDeleteDir ( 'examples'  );
 
   include APP . 'develop/build/regression.php';
 

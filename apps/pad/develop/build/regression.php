@@ -9,9 +9,9 @@
     filePutFile ( 'develop', 'regression.txt', $item ) ;
 
     $store  = "regression/DATA/$item.html";
-    $check  = "$item.pad";
-    $source = fileGet ( $check );
-    $old    = fileGet ($store);
+    $old    = fileGet ( $store );
+    $source = fileGet ( "$item.pad" );
+    $php    = fileGet ( "$item.php" );
     $curl   = padCurl ( "$padHost$padScript?$item&padInclude&padReference" );
     $good   = str_starts_with ( $curl ['result'], '2');
     $new    = $curl ['data'] ?? '';
@@ -34,18 +34,16 @@
     if ( $status == 'new' )
       filePutFile ( 'regression', "$item.html", $new ) ;
 
-    if ( ! $good or ! $new                    ) continue
+    if ( ! $good or ! $new                    ) continue;
     if ( str_contains ( $source, '{page'    ) ) continue;
     if ( str_contains ( $source, '{example' ) ) continue;
-    if ( str_contains ( $source '{table'    ) ) continue;
-    if ( str_contains ( $source '{demo'     ) ) continue;
-    if ( str_contains ( $source '{ajax'     ) ) continue;
+    if ( str_contains ( $source, '{table'   ) ) continue;
+    if ( str_contains ( $source, '{demo'    ) ) continue;
+    if ( str_contains ( $source, '{ajax'    ) ) continue;
 
-    $itemPHP  = fileGet ( "$item.php" );
-
-    if ( $itemPHP  ) filePutFile ( 'examples', "$item.php",  $itemPHP ) ;
-    if ( $itemPAD  ) filePutFile ( 'examples', "$item.pad",  $source  ) ;
-    if ( $itemHTML ) filePutFile ( 'examples', "$item.html", $new     ) ;
+    if ( $php    ) filePutFile ( 'examples', "$item.php",  $php    ) ;
+    if ( $source ) filePutFile ( 'examples', "$item.pad",  $source ) ;
+    if ( $new    ) filePutFile ( 'examples', "$item.html", $new    ) ;
 
   }
 

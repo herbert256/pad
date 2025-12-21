@@ -24,15 +24,15 @@
 
   }
 
-  if ( $tablePAD and $tableHTML ) {
+  if ( $tablePAD and $tableHTML and isset ( $_REQUEST ['padExamples'] ) ) {
 
     $tablePADcount [$padPage] = $tablePADcount [$padPage] ?? 0;
     $tablePADcount [$padPage]++;
 
-    $tableITEM = $padPage . '/' . $tablePADcount [$padPage];
+    $tableITEM = $padPage . '_' . $tablePADcount [$padPage];
 
-    filePutFile ( 'examples/demos', "$tableITEM.pad",  trim ( $tablePAD  ) );
-    filePutFile ( 'examples/demos', "$tableITEM.html", trim ( $tableHTML ) );
+    filePutFile ( 'examples', "$tableITEM.pad",  trim ( $tablePAD  ) );
+    filePutFile ( 'examples', "$tableITEM.html", trim ( $tableHTML ) );
 
   }
 

@@ -1,0 +1,36 @@
+{users $id=2}
+
+  {$email} <br>
+
+  {tickets}
+    - {title} <br> 
+  {/tickets}
+
+{/users}
+
+<hr>
+
+{tickets $id=2}
+
+  {$title} -
+
+  {users}
+    - {email} <br> 
+  {/users}
+
+{/tickets}
+
+<hr>
+
+{openBugs}
+
+  {$title} -
+
+  {users}
+    - {email} <br> 
+  {/users}
+
+{/openBugs}
+
+<hr>
+

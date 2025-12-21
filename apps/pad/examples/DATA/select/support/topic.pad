@@ -1,0 +1,32 @@
+{content 'who'}
+  {users}
+    <p>@content@ by {$username}
+  {/users}
+  on {$created_at | substr (0, 16)}</p>
+{/content}
+
+{forum_topics $id=1}
+
+  {forum_boards}
+    <h1>Board: {$name}</h1>
+  {/forum_boards}
+
+  <h2>Topic: {$title}</h2>
+
+  {who}Started{/who}
+
+  {forum_posts}
+
+    <hr>
+
+    {who}Posted{/who}
+
+    <p>{$content}</p>
+  
+  {else}
+  
+    <p>No posts yet</p>
+  
+  {/forum_posts}
+
+{/forum_topics}

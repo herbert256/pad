@@ -1,0 +1,9 @@
+<table border='1'>
+  {sequence '10..30', increment=10, name='row'}
+    <tr>
+      {sequence '1..5', name='column'}
+        {cell $row + $column}
+      {/sequence}
+    </tr>
+  {/sequence}
+</table>
