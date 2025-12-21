@@ -13,4 +13,7 @@
     ['id' => 3, 'name' => 'Charlie', 'role' => 'Manager'],
   ];
 
+  // Pre-encode for React (with HTML escaping for data attributes)
+  $usersJson = htmlspecialchars(json_encode($users), ENT_QUOTES, 'UTF-8');
+
 ?>

@@ -107,4 +107,10 @@
 
   }
 
+  function padJsonEscape ( $parm )  {
+
+    return htmlspecialchars ( json_encode ( $parm ), ENT_QUOTES, 'UTF-8' );
+
+  }
+
 ?>

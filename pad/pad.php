@@ -5,6 +5,7 @@
 
   define ( 'PAD', dirname ( __FILE__ ) . '/' ) ;
 
+  include PAD . 'error/claude.php';
   include PAD . 'error/boot.php';
 
   if ( ! defined ( 'APP' ) ) padBootError ( 'Constant APP must be set before calling this script' );

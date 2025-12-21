@@ -18,6 +18,7 @@
   elseif ( $padFirst == '!' ) $padFldChk = padFieldCheck ( $padFld );
   elseif ( $padFirst == '#' ) $padFldChk = padOptCheck   ( $padFld );
   elseif ( $padFirst == '&' ) $padFldChk = padTagCheck   ( $padFld );
+  elseif ( $padFirst == '^' ) $padFldChk = padFieldCheck ( $padFld );
 
   if ( ! $padFldChk and ! str_starts_with ( $padOpts, 'optional'))
     padError ( "Field '$padFirst$padFld' not found $padOpts" );
@@ -27,6 +28,7 @@
   elseif ( $padFirst == '!' ) $padVal = padRawValue   ($padFld);
   elseif ( $padFirst == '#' ) $padVal = padOptValue   ($padFld);
   elseif ( $padFirst == '&' ) $padVal = padTagValue   ($padFld);
+  elseif ( $padFirst == '^' ) $padVal = padJsonEscape ($padFld);
 
   if ( $padFirst == '$' )
     foreach ( $padDataDefaultStart as $padOptOne )

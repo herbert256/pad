@@ -60,7 +60,7 @@
 
     global $pad, $padType;
 
-      $padType [$pad] = 'tag' ;
+    $padType [$pad] = 'tag' ;
 
   }
 

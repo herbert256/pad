@@ -119,19 +119,21 @@
 
   function padDumpStack () {
 
-    global $padException;
+    global $padException, $padTryException;
 
-    echo "<br>";
-
-    if ( isset ( $padException ) ) {
-      padDumpStackGo ( $padException->getTrace() );
-      echo "<br>";
+    if ( isset ( $padException ) and is_object ( $padException ) ) {
+      echo "stack 1:<br>"; padDumpStackGo ( $padException->getTrace() );
     }
 
-    padDumpStackGo ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS), 2 );
-    echo '<br>';
-    padDumpStackGo ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS), 1 );
+    if ( isset ( $padTryException )  and is_object ( $padTryException ) ) {
+      echo "stack 2:<br>"; padDumpStackGo ( $padTryException->getTrace() );
+    }
 
+    echo "stack 3:<br>"; padDumpStackGo ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS), 2 );
+    echo "stack 4:<br>"; padDumpStackGo ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS), 1 );
+
+    return TRUE;
+        
   }
 
   function padDumpStackGo ( $stack, $flag=0 ) {

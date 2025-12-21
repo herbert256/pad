@@ -1,0 +1,149 @@
+<h1>Ignore - Preventing PAD from Parsing Curly Braces</h1>
+
+<p>The {tag 'ignore'} feature tells PAD not to parse curly braces <code>{open}{close}</code> as PAD tags within specific content. This is essential when working with JavaScript, JSON data, CSS, or any content that uses curly braces for its own syntax.</p>
+
+<h2>Why Use Ignore?</h2>
+
+<p>PAD normally parses all <code>{open}{close}</code> pairs as potential PAD tags. When your content contains curly braces that should be treated as literal text (like JavaScript code or JSON data), you need to tell PAD to ignore them.</p>
+
+<h2>Three Ways to Use Ignore</h2>
+
+<h3>1. As a Tag Pair: <code>{open}ignore{close}...{open}/ignore{close}</code></h3>
+
+<p>Wrap content in ignore tags to prevent PAD from parsing any curly braces within that block. This is commonly used for inline JavaScript or CSS.</p>
+
+<h4>Example 1: JavaScript with Object Literals</h4>
+
+<p>Without {tag 'ignore'}, PAD would try to parse the JavaScript object literal as PAD tags:</p>
+
+{example 'fragments/ignore_1'}
+
+<h4>Example 2: Inline CSS with Selector Blocks</h4>
+
+<p>CSS uses curly braces for selector blocks. Wrap in {tag 'ignore'} to prevent PAD from parsing them:</p>
+
+{example 'fragments/ignore_2'}
+
+<h3>2. As a Pipe Function: <code>| ignore</code></h3>
+
+<p>Apply ignore to the output of an expression to prevent PAD from parsing curly braces in that output. This is useful when passing JSON data to JavaScript.</p>
+
+<h4>Example 3: JSON Data in Attributes</h4>
+
+<p>When a variable contains JSON data, use the {tag 'ignore'} pipe function to prevent PAD from parsing the curly braces:</p>
+
+{example 'fragments/ignore_4'}
+
+<p>The JSON data was passed from PAD/PHP through a data attribute using <code>{open}echo $usersJson | ignore{close}</code>.</p>
+
+<h3>3. As an Option: <code>ignore</code></h3>
+
+<p>Add the ignore option to a tag to prevent PAD from parsing curly braces in its content.</p>
+
+<h4>Example 4: Data Tag with JSON</h4>
+
+<p>Use the {tag 'ignore'} option on a tag to prevent PAD from parsing curly braces in its content:</p>
+
+{example 'fragments/ignore_5'}
+
+<p>Without the ignore option, PAD would try to parse <code>{open}"theme": "dark"{close}</code> as PAD tags, causing errors.</p>
+
+<h2>Best Practices</h2>
+
+<ul>
+  <li><strong>Always use {tag 'ignore'} for JavaScript blocks</strong> - Any <code>&lt;script&gt;</code> tag with JavaScript should be wrapped</li>
+  <li><strong>Use <code>| ignore</code> for dynamic JSON</strong> - When expressions output JSON, pipe through ignore</li>
+  <li><strong>Keep CSS in external files</strong> - But if inline CSS is needed, wrap in {tag 'ignore'}</li>
+  <li><strong>Minimal scope</strong> - Only wrap what needs to be ignored, not entire templates</li>
+  <li><strong>Not needed for HTML</strong> - Regular HTML doesn't use curly braces, no ignore needed</li>
+</ul>
+
+<h2>What Gets Ignored?</h2>
+
+<p>When ignore is active, PAD will NOT parse:</p>
+
+<ul>
+  <li><code>{open}variableName{close}</code> - Not treated as a variable reference</li>
+  <li><code>{open}tagName{close}</code> - Not treated as a PAD tag</li>
+  <li><code>{open}if condition{close}...{open}/if{close}</code> - Not treated as conditional</li>
+  <li><code>{open}echo $expr{close}</code> - Not treated as expression</li>
+</ul>
+
+<p>Everything within ignored content is treated as <strong>literal text</strong>.</p>
+
+<h2>Common Use Cases</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+  <tr style="background: #f0f0f0;">
+    <th>Scenario</th>
+    <th>Method</th>
+    <th>Example</th>
+  </tr>
+  <tr>
+    <td>Inline JavaScript</td>
+    <td>Tag Pair</td>
+    <td><code>{open}ignore{close}&lt;script&gt;...{open}/ignore{close}</code></td>
+  </tr>
+  <tr>
+    <td>Inline CSS</td>
+    <td>Tag Pair</td>
+    <td><code>{open}ignore{close}&lt;style&gt;...{open}/ignore{close}</code></td>
+  </tr>
+  <tr>
+    <td>React/JSX Code</td>
+    <td>Tag Pair</td>
+    <td><code>{open}ignore{close}&lt;script type="text/babel"&gt;...{open}/ignore{close}</code></td>
+  </tr>
+  <tr>
+    <td>JSON in Attributes</td>
+    <td>Pipe Function</td>
+    <td><code>data-json="{open}$jsonVar | ignore{close}"</code></td>
+  </tr>
+  <tr>
+    <td>JSON in Data Block</td>
+    <td>Option</td>
+    <td><code>{open}data 'name' ignore{close}</code></td>
+  </tr>
+</table>
+
+<h2>Important Notes</h2>
+
+<ul>
+  <li><strong>Cannot nest</strong> - Once inside an ignore block, all content is literal until <code>{open}/ignore{close}</code></li>
+  <li><strong>Use sparingly</strong> - Only use where necessary to avoid confusion</li>
+  <li><strong>External files preferred</strong> - For large JavaScript or CSS, use external files instead of inline code</li>
+</ul>
+
+<h2>Summary</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+  <tr style="background: #f0f0f0;">
+    <th>Method</th>
+    <th>Syntax</th>
+    <th>Use Case</th>
+  </tr>
+  <tr>
+    <td><strong>Tag Pair</strong></td>
+    <td><code>{open}ignore{close}...{open}/ignore{close}</code></td>
+    <td>Inline JavaScript, CSS, large blocks of code</td>
+  </tr>
+  <tr>
+    <td><strong>Pipe Function</strong></td>
+    <td><code>{open}expression | ignore{close}</code></td>
+    <td>Expression output contains JSON or curly braces</td>
+  </tr>
+  <tr>
+    <td><strong>Option</strong></td>
+    <td><code>{open}tag ignore{close}</code></td>
+    <td>Tag content should not be parsed</td>
+  </tr>
+</table>
+
+<h2>See Also</h2>
+
+<ul>
+  <li>{tag 'open'} - Output opening brace <code>{open}</code></li>
+  <li>{tag 'close'} - Output closing brace <code>{close}</code></li>
+  <li>{tag 'echo'} - Evaluate expressions</li>
+  <li>{tag 'data'} - Define inline data</li>
+</ul>

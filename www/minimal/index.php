@@ -1,10 +1,7 @@
 <?php
 
-  include __DIR__ . '/../padHome.php';
+  $padApp = basename ( __DIR__ );
 
-  define ( 'APP', "$padHome/apps/minimal/"  );
-  define ( 'DAT', "$padHome/DATA/"          );
-
-  include "$padHome/pad/pad.php";
+  include __DIR__ . '/../pad.php';
 
 ?>

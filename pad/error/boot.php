@@ -43,6 +43,8 @@
 
   function padBootStop ( $error, $file, $line ) {
 
+    padClaudeError ( $error, $file, $line );
+
     global $padBootShutdown;
 
     $padBootShutdown = TRUE;

@@ -1,0 +1,156 @@
+<pre><b>Level: 8</b>
+      [org] =&gt; page &#039;fragments/pipes_2&#039;, sandbox
+      [tag] =&gt; internal
+      [type] =&gt; 
+      [name] =&gt; 
+      [pair] =&gt; 
+      [opt] 
+              [0] =&gt; 
+      [prm] 
+      [base] =&gt; &lt;p&gt;Items separated by commas:&lt;/p&gt; &lt;p&gt;{items | glue=&#039;, &#039;}{$items}{/items}&lt;/p&gt; &lt;p&gt;Items in uppercase:&lt;/p&gt; &lt;ul&gt; {items}{/items | upper} &lt;li&gt;{$items}&lt;/li&gt;
+      [pad] =&gt; 
+      [result] =&gt; 
+      [flags] 
+              [null] =&gt; 
+              [else] =&gt; 
+              [hit] =&gt; 
+              [Array] =&gt; 
+
+<b>Level: 7</b>
+      [org] =&gt; page &#039;fragments/pipes_2&#039;, sandbox
+      [tag] =&gt; page
+      [type] =&gt; pad
+      [name] =&gt; 
+      [pair] =&gt; 
+      [opt] 
+              [0] =&gt; &#039;fragments/pipes_2&#039;, sandbox
+              [1] =&gt; fragments/pipes_2
+      [prm] 
+              [sandbox] =&gt; 1
+      [base] =&gt; 
+      [pad] =&gt; 
+      [result] =&gt; 
+      [flags] 
+              [null] =&gt; 
+              [else] =&gt; 
+              [hit] =&gt; 
+              [Array] =&gt; 
+
+<b>Level: 6</b>
+      [org] =&gt; if ! #skipResult
+      [tag] =&gt; if
+      [type] =&gt; pad
+      [name] =&gt; if
+      [pair] =&gt; 1
+      [opt] 
+      [prm] 
+      [base] =&gt;  &lt;td style=&quot;vertical-align:top&quot;&gt;{page &#039;{$examplePage}&#039;, sandbox}&lt;/td&gt; 
+      [pad] =&gt; 
+      [result] =&gt; 
+      [flags] 
+              [null] =&gt; 
+              [else] =&gt; 
+              [hit] =&gt; 1
+              [Array] =&gt; 
+
+<b>Level: 5</b>
+      [org] =&gt; case $exampleLayout
+      [tag] =&gt; case
+      [type] =&gt; pad
+      [name] =&gt; case
+      [pair] =&gt; 1
+      [opt] 
+      [prm] 
+      [base] =&gt;  {if ! #skipHeader} &lt;tr&gt; {if ! #skipPhp} &lt;th bgcolor=&quot;#dddddd&quot;&gt; PHP {if ! #skipNames}&lt;br&gt;&lt;font size=&quot;-2&quot;&gt;{$exampleFilePhp}&lt;/font&gt;{/if} &lt;/th&gt; {/if} {if
+      [pad] =&gt; 
+      [result] =&gt; 
+      [flags] 
+              [null] =&gt; 
+              [else] =&gt; 
+              [hit] =&gt; 1
+              [Array] =&gt; 
+
+<b>Level: 4</b>
+      [org] =&gt; if #onlyResult or $exampleOnlyResult
+      [tag] =&gt; if
+      [type] =&gt; pad
+      [name] =&gt; if
+      [pair] =&gt; 1
+      [opt] 
+      [prm] 
+      [base] =&gt;  {if ! #skipOpen} &lt;table border=&quot;1&quot; cellpadding=&quot;10&quot; cellspacing=&quot;0&quot;&gt; {/if} {case $exampleLayout} {when &#039;above&#039;} {if ! #skipPhp} {if ! #skipHeader} &lt;t
+      [pad] =&gt; 
+      [result] =&gt; 
+      [flags] 
+              [null] =&gt; 
+              [else] =&gt; 1
+              [hit] =&gt; 
+              [Array] =&gt; 
+
+<b>Level: 3</b>
+      [org] =&gt; example &#039;fragments/pipes_2&#039;
+      [tag] =&gt; example
+      [type] =&gt; app
+      [name] =&gt; example
+      [pair] =&gt; 
+      [opt] 
+      [prm] 
+      [base] =&gt; {if #center} &lt;center&gt; {/if} {if #withTitle} &lt;h3&gt;{$exampleTitle}&lt;/h3&gt; {/if} {if #onlyResult or $exampleOnlyResult} {page &#039;{$examplePage}&#039;, sandbox} {el
+      [pad] =&gt; 
+      [result] =&gt; 
+      [flags] 
+              [null] =&gt; 
+              [else] =&gt; 
+              [hit] =&gt; 1
+              [Array] =&gt; 
+
+<b>Level: 2</b>
+      [org] =&gt; block
+      [tag] =&gt; block
+      [type] =&gt; include
+      [name] =&gt; block
+      [pair] =&gt; 1
+      [opt] 
+      [prm] 
+      [base] =&gt; &lt;table with=&quot;95%&quot; border=&quot;0&quot; align=&quot;center&quot; style=&quot;margin-top: 0; margin-bottom: 0;&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt; &lt;tr&gt; &lt;td&gt;&lt;h1&gt;Pipes - Transform O
+      [pad] =&gt; 
+      [result] =&gt; 
+      [flags] 
+              [null] =&gt; 
+              [else] =&gt; 
+              [hit] =&gt; 1
+              [Array] =&gt; 
+
+<b>Level: 1</b>
+      [org] =&gt; block
+      [tag] =&gt; block
+      [type] =&gt; include
+      [name] =&gt; block
+      [pair] =&gt; 1
+      [opt] 
+      [prm] 
+      [base] =&gt; &lt;table with=&quot;95%&quot; border=&quot;0&quot; align=&quot;center&quot; style=&quot;margin-top: 0; margin-bottom: 0;&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt; &lt;tr&gt; &lt;td&gt; &lt;center&gt; {showTitle}&lt;h
+      [pad] =&gt; 
+      [result] =&gt; 
+      [flags] 
+              [null] =&gt; 
+              [else] =&gt; 
+              [hit] =&gt; 1
+              [Array] =&gt; 
+
+<b>Level: 0</b>
+      [org] =&gt; 
+      [tag] =&gt; internal
+      [type] =&gt; 
+      [name] =&gt; 
+      [pair] =&gt; 
+      [opt] 
+      [prm] 
+      [base] =&gt; &lt;html&gt; &lt;head&gt; &lt;title&gt;PAD - {$title}&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;center&gt; &lt;h1 id=&quot;top&quot;&gt; PAD - &lt;font color=&quot;red&quot;&gt;P&lt;/font&gt;HP &lt;font color=&quot;red&quot;&gt;A&lt;/font&gt;pplicat
+      [pad] =&gt; 
+      [result] =&gt; 
+      [flags] 
+              [null] =&gt; 
+              [else] =&gt; 
+              [hit] =&gt; 
+              [Array] =&gt;</pre>

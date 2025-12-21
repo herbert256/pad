@@ -53,20 +53,29 @@
 <h2>React Component with Server Data</h2>
 <p>This component receives data from PAD's server-side PHP:</p>
 
-<!-- Pass server data to React via data attributes -->
+<!-- Pass server data to React via JavaScript variable -->
 <div id="users-component"
      data-server-message="{$serverMessage}"
      data-server-time="{$serverTime}"
-     data-users='{echo padJson($users)}'></div>
+     data-users-json="{!usersJson}"></div>
+
+<script>
+  // Parse from data attribute
+  const elem = document.getElementById('users-component');
+  window.serverData = {
+    serverMessage: elem.dataset.serverMessage,
+    serverTime: elem.dataset.serverTime,
+    users: JSON.parse(elem.dataset.usersJson)
+  };
+</script>
 
 {ignore}<script type="text/babel">
   // Component that uses server data
   function UsersComponent() {
-    // Get server data from data attributes
-    const element = document.getElementById('users-component');
-    const serverMessage = element.dataset.serverMessage;
-    const serverTime = element.dataset.serverTime;
-    const users = JSON.parse(element.dataset.users);
+    // Get server data from window object
+    const serverMessage = window.serverData.serverMessage;
+    const serverTime = window.serverData.serverTime;
+    const users = window.serverData.users;
 
     const [selectedUser, setSelectedUser] = React.useState(null);
 

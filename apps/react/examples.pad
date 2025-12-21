@@ -83,7 +83,7 @@
 </script>{/ignore}
 
 <h2>3. Product List from Server Data</h2>
-<div id="example3" data-products='{echo padJson($products)}'></div>
+<div id="example3" data-products="{json 'products' | ignore}"></div>
 {ignore}<script type="text/babel">
   function ProductList() {
     const productsData = JSON.parse(document.getElementById('example3').dataset.products);

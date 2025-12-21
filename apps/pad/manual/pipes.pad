@@ -1,0 +1,126 @@
+<h1>Pipes - Transform Output with Functions</h1>
+
+<p>Pipes allow you to pass output through functions to transform it. Use the pipe symbol <code>|</code> followed by a function name to process data.</p>
+
+<h2>Two Ways to Use Pipes</h2>
+
+<h3>1. Variable Pipes</h3>
+
+<p>Apply functions to variables using <code>{open}echo $variable | function{close}</code>:</p>
+
+{example 'fragments/pipes_1'}
+
+<h3>2. Tag Pipes</h3>
+
+<p>Apply functions to tag output. Pipes can be placed on the opening tag or closing tag:</p>
+
+{example 'fragments/pipes_2'}
+
+<h2>Pipe Timing: Opening vs Closing Tag</h2>
+
+<p>The placement of the pipe determines <strong>when</strong> the function is applied:</p>
+
+<ul>
+  <li><strong>Opening tag</strong> <code>{open}tag | function{close}</code> - Processes data BEFORE the tag content is rendered</li>
+  <li><strong>Closing tag</strong> <code>{open}/tag | function{close}</code> - Processes output AFTER the tag is finished</li>
+</ul>
+
+{example 'fragments/pipes_4'}
+
+<h2>Chaining Pipes</h2>
+
+<p>Chain multiple pipe functions together by separating them with <code>|</code>. Functions are applied left to right:</p>
+
+{example 'fragments/pipes_3'}
+
+<h2>Common Pipe Functions</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+  <tr style="background: #f0f0f0;">
+    <th>Function</th>
+    <th>Description</th>
+    <th>Example</th>
+  </tr>
+  <tr>
+    <td><code>upper</code></td>
+    <td>Convert to uppercase</td>
+    <td><code>{open}echo $text | upper{close}</code></td>
+  </tr>
+  <tr>
+    <td><code>lower</code></td>
+    <td>Convert to lowercase</td>
+    <td><code>{open}echo $text | lower{close}</code></td>
+  </tr>
+  <tr>
+    <td><code>ucwords</code></td>
+    <td>Capitalize each word</td>
+    <td><code>{open}echo $text | ucwords{close}</code></td>
+  </tr>
+  <tr>
+    <td><code>trim</code></td>
+    <td>Remove whitespace</td>
+    <td><code>{open}echo $text | trim{close}</code></td>
+  </tr>
+  <tr>
+    <td><code>html</code></td>
+    <td>HTML encode</td>
+    <td><code>{open}echo $text | html{close}</code></td>
+  </tr>
+  <tr>
+    <td><code>replace(a,b)</code></td>
+    <td>Replace text</td>
+    <td><code>{open}echo $text | replace('old','new'){close}</code></td>
+  </tr>
+  <tr>
+    <td><code>+ n</code></td>
+    <td>Add number</td>
+    <td><code>{open}echo $count | + 1{close}</code></td>
+  </tr>
+  <tr>
+    <td><code>date(fmt)</code></td>
+    <td>Format date</td>
+    <td><code>{open}echo $timestamp | date('Y-m-d'){close}</code></td>
+  </tr>
+</table>
+
+<h2>Important Rules</h2>
+
+<ul>
+  <li><strong>Use {tag 'echo'} with variables</strong> - <code>{open}echo $var | function{close}</code> NOT <code>{open}$var | function{close}</code></li>
+  <li><strong>Arithmetic needs spaces</strong> - <code>{open}echo $x | + 1{close}</code> NOT <code>{open}echo $x | +1{close}</code></li>
+  <li><strong>Quote string parameters</strong> - <code>{open}echo $x | replace('a','b'){close}</code></li>
+  <li><strong>Functions apply left to right</strong> - <code>{open}echo $x | trim | upper{close}</code> trims first, then uppercases</li>
+</ul>
+
+<h2>When to Use Opening vs Closing Tag Pipes</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+  <tr style="background: #f0f0f0;">
+    <th>Use Case</th>
+    <th>Placement</th>
+    <th>Example</th>
+  </tr>
+  <tr>
+    <td>Transform input data before processing</td>
+    <td>Opening tag</td>
+    <td><code>{open}items | sort{close}...{open}/items{close}</code></td>
+  </tr>
+  <tr>
+    <td>Transform final output after rendering</td>
+    <td>Closing tag</td>
+    <td><code>{open}tag{close}...{open}/tag | upper{close}</code></td>
+  </tr>
+  <tr>
+    <td>Format variable values</td>
+    <td>Variable pipe</td>
+    <td><code>{open}echo $price | number_format(2){close}</code></td>
+  </tr>
+</table>
+
+<h2>See Also</h2>
+
+<ul>
+  <li>{tag 'echo'} - Evaluate and output expressions</li>
+  <li>{tag 'functions'} - List of all pipe functions</li>
+  <li>{tag 'options'} - Tag options reference</li>
+</ul>

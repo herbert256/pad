@@ -1,5 +1,6 @@
 <?php
 
+
   function padErrorThrow ( $type, $error, $file, $line ) {
 
     if ( ( error_reporting() & $type ) )

@@ -31,7 +31,10 @@
 
   function padErrorException ( $padException ) {
 
-    $padException = $padException;
+    $GLOBALS ['padException'] = $padException;
+
+    if ( $padException === NULL)
+      padErrorGo ('This is strange','???','???');
 
     global $padException, $padExceptionError, $padExceptionFile, $padExceptionLine, $padExceptionText;
 

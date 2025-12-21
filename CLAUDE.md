@@ -199,6 +199,20 @@ Files in `_lib/` are automatically included.
 
 Use in templates: `{button label="Submit" href="?submit"}`
 
+**_tags/json.php** (for React integration):
+```php
+<?php
+  // Read JSON file from _data/, compact and HTML-escape for attributes
+  $jsonContent = file_get_contents(APP . "_data/$padParm.json");
+  $jsonData = json_decode($jsonContent, true);
+  $jsonCompact = json_encode($jsonData);
+  $padContent = htmlspecialchars($jsonCompact, ENT_QUOTES, 'UTF-8');
+  return TRUE;
+?>
+```
+
+Use in templates: `{json 'products' | ignore}` - Outputs JSON from `_data/products.json`
+
 ### _functions/ - Pipe Functions
 
 **_functions/money.php**:
@@ -232,6 +246,26 @@ Use in templates: `{echo $price | money}`
 {$name | upper}                   # WRONG - bare expression won't work!
 {echo $value | +1}                # WRONG - needs space before 1
 ```
+
+### Pipe Timing: Opening vs Closing Tags
+
+Pipes can be applied to tags at two different points:
+
+**Opening tag pipe** - Processes data BEFORE the tag content is rendered:
+```
+{items | sort}
+  <li>{$name}</li>
+{/items}
+```
+
+**Closing tag pipe** - Processes output AFTER the tag finishes:
+```
+{message}
+  Content: {$message}
+{/message | upper}
+```
+
+The placement determines when the pipe function is applied in the processing flow.
 
 ### Pipe Arithmetic
 Arithmetic pipes require a space between the operator and operand:
@@ -364,6 +398,45 @@ The `@` represents the current value in expressions:
 {echo $text | '"' . @ . '"'}     # Wrap value in quotes
 ```
 
+### Ignore - Preventing PAD from Parsing Curly Braces
+
+The `ignore` feature tells PAD not to parse curly braces `{}` as PAD tags. Essential for JavaScript, JSON, CSS, or any content with curly braces.
+
+**Three ways to use ignore:**
+
+1. **Tag Pair** - Wrap content in ignore tags:
+```html
+{ignore}
+<script>
+  const user = { name: 'Alice', role: 'Developer' };
+  if (user.active) { console.log('Active'); }
+</script>
+{/ignore}
+```
+
+2. **Pipe Function** - Apply to expression output:
+```html
+<div data-json="{json 'products' | ignore}"></div>
+<div data-users="{echo $usersJson | ignore}"></div>
+```
+
+3. **Option** - Add to any tag:
+```
+{data 'rawJson' ignore}
+{
+  "theme": "dark",
+  "settings": { "notifications": true }
+}
+{/data}
+```
+
+**When to use:**
+- Inline JavaScript with object literals
+- CSS with selector blocks
+- JSON data in HTML attributes
+- React/JSX components
+- Any content with literal curly braces
+
 ---
 
 ## Critical Syntax Rules (Common Mistakes)
@@ -371,11 +444,12 @@ The `@` represents the current value in expressions:
 1. **Pipes need `{echo}`** - `{$var | upper}` won't work, use `{echo $var | upper}`
 2. **Arithmetic needs space** - `{echo $x | + 1}` not `| +1`
 3. **Quote literal strings** - `{count 'items'}` not `{count items}`
-4. **No inline CSS/JS** - PAD parses `{ }` as tags; use external files
+4. **No inline CSS/JS** - PAD parses `{ }` as tags; use external files or `{ignore}` wrapper
 5. **Use `padRedirect()`** - Don't use `exit` or `die` in PAD apps
 6. **Conditionals need comparison** - `{if $flag eq 1}` not `{if $flag}`
 7. **`$` vs `%` variables** - `$var` is level (constant), `%var` is occurrence (per-iteration)
 8. **CHECK syntax** - Use `db("CHECK table WHERE...")` NOT `db("CHECK * FROM table...")`
+9. **Boolean options** - Use `{tag option}` NOT `{tag option="true"}` - just the option name is enough
 
 ---
 
@@ -1370,11 +1444,101 @@ header('Location: ?tickets/index'); exit;  // WRONG
 ```
 
 ### CSS and JavaScript
-PAD parses `{ }` as tags. Move CSS/JS to external files:
+PAD parses `{ }` as tags. Prefer external files, or use `{ignore}` for inline code:
 ```html
-<link rel="stylesheet" href="style.css">  <!-- Correct -->
-<style>body { color: red; }</style>        <!-- WRONG -->
+<link rel="stylesheet" href="style.css">  <!-- Best -->
+{ignore}<style>body { color: red; }</style>{/ignore}  <!-- OK -->
+<style>body { color: red; }</style>        <!-- WRONG - will parse {} -->
 ```
+
+### PAD + React Integration
+
+When integrating React with PAD, use this pattern:
+
+**Data-driven navigation** - Use JSON files in `_data/`:
+```php
+// _data/nav.json
+[
+  { "page": "index", "label": "Home", "icon": "🏠" },
+  { "page": "about", "label": "About", "icon": "📖" }
+]
+```
+
+```html
+<!-- _inits.pad -->
+<nav>
+  {local:nav.json}
+    <a href="?{$page}" {if $padPage == $page}class="active"{/if}>
+      {$icon} {$label}
+    </a>
+  {/local:nav.json}
+</nav>
+```
+
+**Passing JSON to React** - Use custom `{json}` tag:
+```php
+// _tags/json.php
+<?php
+  $jsonContent = file_get_contents(APP . "_data/$padParm.json");
+  $jsonData = json_decode($jsonContent, true);
+  $jsonCompact = json_encode($jsonData);
+  $padContent = htmlspecialchars($jsonCompact, ENT_QUOTES, 'UTF-8');
+  return TRUE;
+?>
+```
+
+```html
+<!-- template.pad -->
+<div id="app" data-products="{json 'products' | ignore}"></div>
+
+{ignore}<script>
+  const products = JSON.parse(document.getElementById('app').dataset.products);
+  // React can now use products
+</script>{/ignore}
+```
+
+**Key principles:**
+- Server-side data in `_data/*.json` files
+- PAD handles data preparation and HTML structure
+- React handles client-side interactivity
+- Use `| ignore` pipe for JSON in attributes
+- Wrap JavaScript in `{ignore}...{/ignore}` tags
+
+### Manual Pages and Fragment Files
+
+When creating documentation with examples:
+
+**Manual page** (`manual/topic.pad`) - Contains all explanatory text:
+- Introduction and description
+- Section headings (`<h2>`, `<h3>`)
+- Explanatory paragraphs
+- Tables and reference content
+- Use `{example 'fragments/topic_N'}` to embed working examples
+
+**Fragment files** (`fragments/topic_N.pad` + optional `topic_N.php`) - Minimal executable code only:
+- Just the code that demonstrates the feature
+- No `<h3>` headings or `<p>` introduction text
+- Can have paired `.php` file for server data if needed
+- Should be small and focused on one concept
+
+**Example:**
+```html
+<!-- manual/pipes.pad -->
+<h1>Pipes - Transform Output</h1>
+<h3>Variable Pipes</h3>
+<p>Apply functions to variables:</p>
+{example 'fragments/pipes_1'}
+
+<!-- fragments/pipes_1.pad -->
+<p>Original: {$name}</p>
+<p>Uppercase: {echo $name | upper}</p>
+```
+
+**Benefits:**
+- Fragments are executable and testable
+- Manual pages remain readable without code clutter
+- Examples are reusable across documentation
+- Keeps manual pages concise - people don't read big pages
 
 ### Avoid Over-Engineering
 - Only make changes directly requested
