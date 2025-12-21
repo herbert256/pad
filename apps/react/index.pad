@@ -1,0 +1,127 @@
+<h1>Welcome to PAD + React</h1>
+
+<p>
+  This application demonstrates how to combine <strong>PAD</strong> (server-side template engine)
+  with <strong>React</strong> (client-side JavaScript framework).
+</p>
+
+<div class="info-box">
+  <strong>How it works:</strong>
+  <ul style="margin-top: 10px; margin-left: 20px;">
+    <li>PAD handles routing (?page URLs), server-side data, and initial HTML</li>
+    <li>React is loaded globally in _inits.pad and available on every page</li>
+    <li>You can embed React components anywhere in your PAD templates</li>
+    <li>Server data from PHP can be passed to React components via data attributes or window object</li>
+  </ul>
+</div>
+
+<h2>Server-Side Data from PAD</h2>
+<p>Message: <code>{$serverMessage}</code></p>
+<p>Server Time: <code>{$serverTime}</code></p>
+
+<h2>React Component Example</h2>
+<p>Below is a simple React component rendered on the client:</p>
+
+<!-- React component will be rendered here -->
+<div id="welcome-component"></div>
+
+{ignore}<script type="text/babel">
+  // Simple React component
+  function WelcomeComponent() {
+    const [count, setCount] = React.useState(0);
+
+    return (
+      <div className="react-component">
+        <div className="react-component-label">⚛️ REACT COMPONENT</div>
+        <h3>Interactive Counter</h3>
+        <p>Current count: <strong>{count}</strong></p>
+        <button onClick={() => setCount(count + 1)}>
+          Click to Increment
+        </button>
+        <button onClick={() => setCount(0)} style={{marginLeft: '10px', background: '#ff6b6b'}}>
+          Reset
+        </button>
+      </div>
+    );
+  }
+
+  // Render the component
+  const welcomeRoot = ReactDOM.createRoot(document.getElementById('welcome-component'));
+  welcomeRoot.render(<WelcomeComponent />);
+</script>{/ignore}
+
+<h2>React Component with Server Data</h2>
+<p>This component receives data from PAD's server-side PHP:</p>
+
+<!-- Pass server data to React via data attributes -->
+<div id="users-component"
+     data-server-message="{$serverMessage}"
+     data-server-time="{$serverTime}"
+     data-users='{echo padJson($users)}'></div>
+
+{ignore}<script type="text/babel">
+  // Component that uses server data
+  function UsersComponent() {
+    // Get server data from data attributes
+    const element = document.getElementById('users-component');
+    const serverMessage = element.dataset.serverMessage;
+    const serverTime = element.dataset.serverTime;
+    const users = JSON.parse(element.dataset.users);
+
+    const [selectedUser, setSelectedUser] = React.useState(null);
+
+    return (
+      <div className="react-component">
+        <div className="react-component-label">⚛️ REACT COMPONENT (with server data)</div>
+        <h3>User List from Server</h3>
+        <p style={{fontSize: '14px', color: '#666'}}>
+          Server message: "{serverMessage}" (generated at {serverTime})
+        </p>
+
+        <div style={{marginTop: '15px'}}>
+          {users.map(user => (
+            <div
+              key={user.id}
+              style={{
+                padding: '10px',
+                margin: '5px 0',
+                background: selectedUser?.id === user.id ? '#61dafb' : '#f0f0f0',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                transition: 'background 0.2s'
+              }}
+              onClick={() => setSelectedUser(user)}
+            >
+              <strong>{user.name}</strong> - {user.role}
+            </div>
+          ))}
+        </div>
+
+        {selectedUser && (
+          <div style={{marginTop: '15px', padding: '15px', background: '#e3f2fd', borderRadius: '5px'}}>
+            <strong>Selected:</strong> {selectedUser.name} ({selectedUser.role})
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Render the component
+  const usersRoot = ReactDOM.createRoot(document.getElementById('users-component'));
+  usersRoot.render(<UsersComponent />);
+</script>{/ignore}
+
+<h2>Next Steps</h2>
+<ul style="margin-left: 20px; line-height: 1.8;">
+  <li>Visit the <a href="?examples">Examples</a> page to see more React patterns</li>
+  <li>Visit the <a href="?counter">Counter Demo</a> to see a complete example</li>
+  <li>Create new pages by adding <code>.php</code> and <code>.pad</code> files</li>
+  <li>React is automatically loaded on every page via <code>_inits.pad</code></li>
+  <li>Learn more about React at <a href="https://react.dev" target="_blank">react.dev</a></li>
+</ul>
+
+<div class="info-box" style="margin-top: 30px;">
+  <strong>Development Mode:</strong> This application uses React development builds and Babel standalone
+  for in-browser JSX transformation. For production, you should use a build tool like Vite or Create React App
+  to compile JSX and use production builds of React.
+</div>
