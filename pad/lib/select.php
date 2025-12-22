@@ -2,28 +2,34 @@
 
   function padSelect ( $table, $unionBuild = 0 ) {
 
-    global $_SELECT, $_UNION, $pad, $padPrm;
+    global $_SELECT, $_UNION, $pad, $padPrm, $padHtmlAttrJson;
 
     global     $start,$group,$limit,$where,$join,$order,$union;
 
     $parms = padSelectGetDB ($table);
 
-    $db          = $padPrm [$pad] ['db']          ?? $parms ['db']          ?? $table;
-    $all         = $padPrm [$pad] ['all']         ?? $parms ['all']         ?? 0;
-    $distinct    = $padPrm [$pad] ['distinct']    ?? $parms ['distinct']    ?? 0;
-    $distinctrow = $padPrm [$pad] ['distinctrow'] ?? $parms ['distinctrow'] ?? 0;
-    $keys        = $padPrm [$pad] ['key']         ?? $parms ['key']         ?? '';
-    $fields      = $padPrm [$pad] ['fields']      ?? $parms ['fields']      ?? '*';
-    $type        = $padPrm [$pad] ['type']        ?? $parms ['type']        ?? 'array';
-    $where       = $padPrm [$pad] ['where']       ?? $parms ['where']       ?? '';
-    $group       = $padPrm [$pad] ['group']       ?? $parms ['group']       ?? '';
-    $rollup      = $padPrm [$pad] ['rollup']      ?? $parms ['rollup']      ?? 0;
-    $having      = $padPrm [$pad] ['having']      ?? $parms ['having']      ?? '';
-    $join        = $padPrm [$pad] ['join']        ?? $parms ['join']        ?? [];
-    $union       = $padPrm [$pad] ['union']       ?? $parms ['union']       ?? '';
-    $order       = $padPrm [$pad] ['order']       ?? $parms ['order']       ?? '';
-    $page        = $padPrm [$pad] ['page']        ?? $parms ['page']        ?? 0;
-    $rows        = $padPrm [$pad] ['rows']        ?? $parms ['rows']        ?? 0;
+    $db           = $padPrm [$pad] ['db']           ?? $parms ['db']          ?? $table;
+    $all          = $padPrm [$pad] ['all']          ?? $parms ['all']         ?? 0;
+    $distinct     = $padPrm [$pad] ['distinct']     ?? $parms ['distinct']    ?? 0;
+    $distinctrow  = $padPrm [$pad] ['distinctrow']  ?? $parms ['distinctrow'] ?? 0;
+    $keys         = $padPrm [$pad] ['key']          ?? $parms ['key']         ?? '';
+    $fields       = $padPrm [$pad] ['fields']       ?? $parms ['fields']      ?? '*';
+    $type         = $padPrm [$pad] ['type']         ?? $parms ['type']        ?? 'array';
+    $where        = $padPrm [$pad] ['where']        ?? $parms ['where']       ?? '';
+    $group        = $padPrm [$pad] ['group']        ?? $parms ['group']       ?? '';
+    $rollup       = $padPrm [$pad] ['rollup']       ?? $parms ['rollup']      ?? 0;
+    $having       = $padPrm [$pad] ['having']       ?? $parms ['having']      ?? '';
+    $join         = $padPrm [$pad] ['join']         ?? $parms ['join']        ?? [];
+    $union        = $padPrm [$pad] ['union']        ?? $parms ['union']       ?? '';
+    $order        = $padPrm [$pad] ['order']        ?? $parms ['order']       ?? '';
+    $page         = $padPrm [$pad] ['page']         ?? $parms ['page']        ?? 0;
+    $rows         = $padPrm [$pad] ['rows']         ?? $parms ['rows']        ?? 0;
+    $htmlAttrJson = $padPrm [$pad] ['htmlAttrJson'] ?? $parms ['rows']        ?? 0;
+
+    if ( ! $padHtmlAttrJson and $htmlAttrJson ) {
+      $padHtmlAttrJson = $htmlAttrJson;
+      $type            = $htmlAttrJson;
+    }
 
     $start  = padSelectStart  ( $all, $distinct, $distinctrow);
     $group  = padSelectGroup  ( $group, $rollup );

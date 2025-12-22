@@ -1,5 +1,21 @@
 <?php
 
+
+  function padArrayNumericValues ( &$parm ) {
+
+    if ( ! is_array ( $parm ) )
+      return;
+
+    array_walk_recursive ( $parm, 
+      function ( &$value ) {
+        if ( is_numeric ( $value ) ) {
+          $value = $value + 0; // Converts to int or float
+        }
+      });
+
+  }
+
+
   function padConstant ( $parm ) {
 
     if ( defined ( $parm ) )

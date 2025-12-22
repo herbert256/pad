@@ -235,7 +235,7 @@
   function padAtGroups ( $name, $names, $first, $second, $cor ) {
 
     global $pad;
-
+    
     if ( ! $second and file_exists ( PAD . "at/groups/$first.php") )
 
       for ( $i=$pad; $i>-1; $i-- ) {

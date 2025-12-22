@@ -1453,7 +1453,9 @@ PAD parses `{ }` as tags. Prefer external files, or use `{ignore}` for inline co
 
 ### PAD + React Integration
 
-When integrating React with PAD, use this pattern:
+When integrating React with PAD, use these patterns:
+
+#### Pattern 1: Static Data with {json} Tag
 
 **Data-driven navigation** - Use JSON files in `_data/`:
 ```php
@@ -1497,12 +1499,150 @@ When integrating React with PAD, use this pattern:
 </script>{/ignore}
 ```
 
+#### Pattern 2: Dynamic Data with {reactData} Tag and Providers
+
+For database-driven or dynamic data, use the `{reactData}` tag with the provider pattern:
+
+**Application structure:**
+```
+apps/myapp/
+├── _providers/           # PHP data providers
+│   ├── topic.php         # Returns topic record
+│   ├── user.php          # Returns user record
+│   └── posts.php         # Returns posts array
+└── _tags/
+    └── reactData.php     # Custom tag implementation
+```
+
+**The {reactData} tag** (`_tags/reactData.php`):
+```php
+<?php
+  // Get tag parameters
+  $padId = padTagParm('id', '');           // HTML element ID
+  $padProvider = padTagParm('provider', ''); // Provider name
+
+  // Execute provider to get data
+  $padProviderFile = APP . "_providers/$padProvider.php";
+  if (file_exists($padProviderFile)) {
+    $padData = include $padProviderFile;
+  } else {
+    padError("Provider not found: $padProvider");
+  }
+
+  // Convert to JSON and HTML-escape for attribute
+  $padJson = json_encode($padData);
+  $padJsonEscaped = htmlspecialchars($padJson, ENT_QUOTES, 'UTF-8');
+
+  // Generate HTML div with data attribute
+  $padContent = "<div id=\"$padId\" data=\"$padJsonEscaped\"></div>";
+
+  return TRUE;
+?>
+```
+
+**Provider files** (`_providers/topic.php`):
+```php
+<?php
+  // Providers return data - they have access to all variables from the page
+  return db("RECORD * FROM forum_topics WHERE id={0}", [$id]);
+?>
+```
+
+**Provider returning array** (`_providers/posts.php`):
+```php
+<?php
+  // IMPORTANT: Use array_values() to ensure proper JSON array (not object with numeric keys)
+  $posts = db("ARRAY * FROM forum_posts WHERE topic_id={0}", [$id]);
+  return array_values($posts);
+?>
+```
+
+**Using {reactData} in templates:**
+```html
+<!-- topic.pad -->
+<h1>Forum Topic</h1>
+
+<!-- Multiple data sources - each with unique ID -->
+{reactData id='topic', provider='topic', $id=$id}
+{reactData id='board', provider='board', $boardId=$boardId}
+{reactData id='user', provider='user', $userId=$userId}
+{reactData id='posts', provider='posts', $id=$id}
+
+<div id="react-app"></div>
+<script type="text/babel" src="/react/topic/display.js"></script>
+```
+
+**CRITICAL: Accessing data in React - Use getAttribute(), NOT dataset**
+
+```javascript
+// ❌ WRONG - dataset only works for data-* attributes, returns undefined for plain "data"
+const topicElem = document.getElementById('topic');
+const topic = JSON.parse(topicElem.dataset.data);  // FAILS!
+
+// ✅ CORRECT - Use getAttribute() for plain "data" attribute
+const topicElem = document.getElementById('topic');
+const topic = JSON.parse(topicElem.getAttribute('data'));  // WORKS!
+```
+
+**Complete React component example:**
+```javascript
+// www/react/topic/display.js
+function TopicDisplay() {
+  // Get data from all reactData divs
+  // IMPORTANT: Use getAttribute('data') NOT dataset.data!
+  const topicElem = document.getElementById('topic');
+  const boardElem = document.getElementById('board');
+  const userElem = document.getElementById('user');
+  const postsElem = document.getElementById('posts');
+
+  const topic = JSON.parse(topicElem.getAttribute('data'));
+  const board = JSON.parse(boardElem.getAttribute('data'));
+  const user = JSON.parse(userElem.getAttribute('data'));
+  const posts = JSON.parse(postsElem.getAttribute('data'));
+
+  return (
+    <div className="topic-display">
+      <div className="breadcrumb">
+        <a href="?forum/index">Forum</a> →
+        <a href={`?forum/board&id=${board.id}`}>{board.name}</a>
+      </div>
+
+      <h1>{topic.title}</h1>
+      <div className="topic-meta">
+        Posted by {user.username} on {new Date(topic.created_at).toLocaleDateString()}
+      </div>
+
+      <div className="posts">
+        {posts.map((post, index) => (
+          <div key={post.id} className="post">
+            <div className="post-header">
+              Post #{index + 1} by {post.username}
+            </div>
+            <div className="post-content">
+              {post.content}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Render the component
+const root = ReactDOM.createRoot(document.getElementById('react-app'));
+root.render(<TopicDisplay />);
+```
+
 **Key principles:**
-- Server-side data in `_data/*.json` files
+- Server-side data in `_data/*.json` files (static) or `_providers/*.php` (dynamic)
 - PAD handles data preparation and HTML structure
 - React handles client-side interactivity
-- Use `| ignore` pipe for JSON in attributes
+- Use `| ignore` pipe for JSON in attributes (with {json} tag)
 - Wrap JavaScript in `{ignore}...{/ignore}` tags
+- **CRITICAL:** Use `getAttribute('data')` NOT `dataset.data` for plain `data` attribute
+- Use `array_values()` in providers to ensure proper JSON arrays
+- Each {reactData} needs unique `id` parameter for the HTML element
+- Providers have access to all page variables (like `$id`, `$userId`, etc.)
 
 ### Manual Pages and Fragment Files
 

@@ -1,5 +1,11 @@
 <?php
 
+  function padJsonForHtmlAttr ( $input ) {
+  
+    return padEscape ( htmlspecialchars ( json_encode ( $input ), ENT_QUOTES, 'UTF-8' ) );
+
+  }
+
   function padMD5 ($input) {
     return substr(padBase64(padPack(md5($input))),0,22);
   }

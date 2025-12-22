@@ -8,8 +8,10 @@
 
 <h1>{$topicTitle}</h1>
 
-<div id="topic-posts"
-     data-topic-id="{$topicId}"
+{reactData id='topic-header', provider='topic', $id=$topicId}
+{reactData id='topic-posts', provider='posts', $topic_id=$topicId}
+
+<div id="topic-display"
      data-user-id="{$user_id}"
      data-logged-in="{$user_id ? 'true' : 'false'}"></div>
-<script type="text/babel" src="/support/forum/posts.js"></script>
+<script type="text/babel" src="/support/forum/topic-display.js"></script>

@@ -1,8 +1,12 @@
 <?php
 
-  $padSelectName       = $padTag [$pad];
-  $padSelectTag [$pad] = $padTag [$pad];
+  if ( ! padTagParm ( 'htmlAttrJson' ) )
+    return padSelect ( $padTag [$pad] );
 
-  return padSelect ( $padSelectName );
+  $padSelectData = padSelect ( $padTag [$pad] );
+
+  padArrayNumericValues ( $padSelectData );
+
+  return padJsonForHtmlAttr ( $padSelectData ) ;
 
 ?>

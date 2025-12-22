@@ -1,4 +1,4 @@
-<?php
+  <?php
 
   $pad++;
 
@@ -80,6 +80,7 @@
   $padForceDataName = '';
   $padFalse         = '';
   $padNextPadLevel = 0;
+  $padHtmlAttrJson = FALSE;
 
   if ( $padInfo )
     include PAD . 'events/setup.php';
