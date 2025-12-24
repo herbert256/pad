@@ -49,6 +49,26 @@ Aggregate values:
 Sum: {pull:nums sum}{$sequence}{/pull:nums}
 ```
 
+## Options for Sequence Tags
+
+| Option | Description |
+|--------|-------------|
+| `rows` | Limit number of elements |
+| `name` | Variable name for current value |
+| `push` | Store sequence with this name |
+| `minimal` | Minimum value (for random) |
+| `maximal` | Maximum value (for random) |
+| `increment` | Step increment |
+| `unique` | Ensure unique values |
+
+## Notes
+
+- Sequences are lazily evaluated where possible
+- Use `push` to store sequences for later transformation
+- Use `{resume}` to apply transformations to the last pushed sequence
+- Use `{pull:name}` to iterate over a stored sequence
+- The `@` symbol represents the current value in `eval` expressions
+
 ## See Also
 
 - [../APP.md](../APP.md) - Application development guide

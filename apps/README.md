@@ -8,11 +8,16 @@ This directory contains PAD applications and examples.
 |-----------|------|-------------|
 | [cli](cli/README.md) | CLI | Command-line interface for running PAD from terminal |
 | [demo](demo/README.md) | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
+| [develop](develop/) | Standard | Development tools and utilities for PAD |
 | [hello](hello/README.md) | Minimal | Hello World example demonstrating page pairing |
+| [manual](manual/) | Standard | User manual and documentation for PAD |
 | [minimal](minimal/README.md) | Minimal | Absolute minimum - single template file |
 | [nono](nono/README.md) | Plain PHP | PHP application without PAD framework |
 | [pad](pad/README.md) | Standard | Reference application with manual and regression tests |
 | [react](react/README.md) | Standard | PAD + React integration - demonstrates client-side JavaScript with server-side templates |
+| [reference](reference/) | Standard | Complete reference documentation for PAD tags, functions, and options |
+| [regression](regression/) | Standard | Automated regression testing for PAD |
+| [sequence](sequence/) | Standard | Interactive sequence generation and manipulation |
 | [structure](structure/README.md) | Example | Demonstrates PAD directory structure and nested `_xxx` directories |
 | [support](support/README.md) | Standard | Support portal with forum, news, and tickets |
 | [test](test/README.md) | Standard | Test application for database table subsystem |

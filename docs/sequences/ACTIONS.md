@@ -8,6 +8,7 @@ This document describes the actions and transformations available for PAD sequen
 {pull:nums reverse}       # Reverse order
 {pull:nums sort}          # Sort ascending
 {pull:nums shuffle}       # Randomize order
+{pull:nums randomize}     # Alias for shuffle
 ```
 
 ## Selection
@@ -16,10 +17,15 @@ This document describes the actions and transformations available for PAD sequen
 {pull:nums first}         # First element
 {pull:nums first=3}       # First 3 elements
 {pull:nums last=3}        # Last 3 elements
+{pull:nums left=5}        # First 5 elements
+{pull:nums right=5}       # Last 5 elements
+{pull:nums from=3}        # From position 3
+{pull:nums to=7}          # To position 7
 {pull:nums shift=2}       # Remove first 2
 {pull:nums pop=2}         # Remove last 2
 {pull:nums element=5}     # Get 5th element
 {pull:nums slice='3|4'}   # From position 3, length 4
+{pull:nums rows=10}       # Limit to 10 rows
 ```
 
 ## Negative Selection (Invert)
@@ -59,6 +65,44 @@ Apply an expression to each element:
 {pull:nums count}         # Number of elements
 {pull:nums distinct}      # Count of unique values
 {pull:nums dedup}         # Remove duplicates
+{pull:nums unique}        # Alias for dedup
+```
+
+## Arithmetic Operations
+
+```
+{pull:nums add=5}             # Add 5 to each element
+{pull:nums subtract=3}        # Subtract 3 from each
+{pull:nums multiply=2}        # Multiply each by 2
+{pull:nums divide=4}          # Divide each by 4
+{pull:nums modulo=3}          # Modulo 3 of each
+{pull:nums power=2}           # Square each element
+{pull:nums exponentiation=3}  # Cube each element
+{pull:nums ceil}              # Ceiling of each
+{pull:nums floor}             # Floor of each
+{pull:nums round}             # Round each
+{pull:nums negation}          # Negate each
+{pull:nums increment}         # Add 1 to each
+{pull:nums increment=5}       # Add 5 to each
+```
+
+## Logical Operations
+
+```
+{pull:nums and='seqB'}    # Logical AND
+{pull:nums or='seqB'}     # Logical OR
+{pull:nums not}           # Logical NOT
+{pull:nums nand='seqB'}   # Logical NAND
+{pull:nums nor='seqB'}    # Logical NOR
+{pull:nums xor='seqB'}    # Logical XOR
+{pull:nums xnor='seqB'}   # Logical XNOR
+```
+
+## One/Two Value Results
+
+```
+{pull:nums one}           # Return 1 if non-empty
+{pull:nums two}           # Return 2 if has 2+ elements
 ```
 
 ## Multi-Sequence Operations
@@ -132,9 +176,14 @@ Avg: {pull:nums average}{$sequence}{/pull:nums}
 |--------|-------------|
 | `reverse` | Reverse order |
 | `sort` | Sort ascending |
-| `shuffle` | Randomize order |
+| `shuffle` / `randomize` | Randomize order |
 | `first` / `first=N` | First element(s) |
 | `last` / `last=N` | Last element(s) |
+| `left=N` | First N elements |
+| `right=N` | Last N elements |
+| `from=N` | From position N |
+| `to=N` | To position N |
+| `rows=N` | Limit to N rows |
 | `shift=N` | Remove first N |
 | `pop=N` | Remove last N |
 | `element=N` | Get Nth element |
@@ -150,12 +199,39 @@ Avg: {pull:nums average}{$sequence}{/pull:nums}
 | `maximum` | Largest value |
 | `count` | Number of elements |
 | `distinct` | Unique count |
-| `dedup` | Remove duplicates |
+| `dedup` / `unique` | Remove duplicates |
+| `one` | Return 1 if non-empty |
+| `two` | Return 2 if 2+ elements |
+| `add=N` | Add N to each element |
+| `subtract=N` | Subtract N from each |
+| `multiply=N` | Multiply each by N |
+| `divide=N` | Divide each by N |
+| `modulo=N` | Modulo N of each |
+| `power=N` | Raise each to power N |
+| `increment` / `increment=N` | Add 1 or N to each |
+| `ceil` | Ceiling of each |
+| `floor` | Floor of each |
+| `round` | Round each |
+| `negation` | Negate each |
+| `and='seq'` | Logical AND |
+| `or='seq'` | Logical OR |
+| `not` | Logical NOT |
 | `append='seq'` | Add sequence to end |
 | `prepend='seq'` | Add sequence to start |
 | `merge='seq'` | Merge sequences |
+| `combine='seq'` | Combine sequences |
 | `intersection='seq'` | Common elements |
 | `difference='seq'` | Different elements |
+| `onlyNow='seq'` | Only in current |
+| `onlyStore='seq'` | Only in stored |
+| `splice='pos\|len'` | Splice operation |
+
+## Type Prefixes for Sequences
+
+| Prefix | Purpose | Example |
+|--------|---------|---------|
+| `pull:` | Stored sequence | `{pull:mySeq}` |
+| `action:` | Sequence action | `{action:reverse}` |
 
 ## See Also
 

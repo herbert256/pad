@@ -51,6 +51,9 @@ This document describes the sequence types available in PAD and how to generate 
 - `composite` - Composite numbers (4, 6, 8, 9, 10, ...)
 - `perfect` - Perfect numbers (6, 28, 496, ...)
 - `mersenne` - Mersenne numbers (3, 7, 31, 127, ...)
+- `emirp` - Emirp primes (primes that are different primes when reversed)
+- `strong` - Strong primes
+- `semiprime` - Semiprimes (products of exactly two primes)
 
 ### Figurate Numbers
 
@@ -61,9 +64,15 @@ This document describes the sequence types available in PAD and how to generate 
 - `hexagonal` - Hexagonal numbers (1, 6, 15, 28, 45, ...)
 - `heptagonal` - Heptagonal numbers (1, 7, 18, 34, 55, ...)
 - `octagonal` - Octagonal numbers (1, 8, 21, 40, 65, ...)
+- `decagonal` - Decagonal numbers
 - `tetrahedral` - Tetrahedral numbers (1, 4, 10, 20, 35, ...)
 - `octahedral` - Octahedral numbers (1, 6, 19, 44, 85, ...)
 - `biquadratic` - Biquadratic numbers (1, 16, 81, 256, ...)
+- `gnomonic` - Gnomonic numbers (1, 3, 5, 7, 9, ...)
+- `pronic` - Pronic/oblong numbers (n*(n+1))
+- `heptadecagonal` - Heptadecagonal numbers
+- `enneadecagonal` - Enneadecagonal numbers
+- `icosihenagonal` - Icosihenagonal numbers
 
 ### Filters
 
@@ -73,10 +82,24 @@ This document describes the sequence types available in PAD and how to generate 
 - `lucky` - Lucky numbers (1, 3, 7, 9, 13, ...)
 - `harshad` - Harshad/Niven numbers (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, ...)
 - `palindrome` - Palindromic numbers (1, 2, ..., 9, 11, 22, ...)
-- `semiprime` - Semiprimes (4, 6, 9, 10, 14, ...)
 - `powerful` - Powerful numbers (1, 4, 8, 9, 16, ...)
 - `polite` - Polite numbers (3, 5, 6, 7, 9, ...)
 - `kaprekar` - Kaprekar numbers (1, 9, 45, 55, ...)
+- `antiprime` - Antiprime (highly composite) numbers
+
+### Other Sequences
+
+- `golomb` - Golomb sequence
+- `gould` - Gould sequence
+- `kolakoski` - Kolakoski sequence
+- `kynea` - Kynea numbers
+- `moserdebruijn` - Moser-de Bruijn sequence
+- `newmanConway` - Newman-Conway sequence
+- `recaman` - Recaman sequence
+- `sylvester` - Sylvester sequence
+- `cullen` - Cullen numbers
+- `xpadovan` - Padovan sequence
+- `caterer` - Lazy caterer's sequence
 
 ### Arithmetic Operations
 
@@ -109,6 +132,9 @@ This document describes the sequence types available in PAD and how to generate 
 - `random` - Random numbers
 - `repeat` - Repeat a value
 - `oeis` - Fetch from Online Encyclopedia of Integer Sequences
+- `identity` - Identity sequence (returns input)
+- `step` - Step sequence
+- `chance` - Chance/probability sequence
 
 ## Storing and Retrieving Sequences
 
