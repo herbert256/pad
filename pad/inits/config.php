@@ -1,7 +1,8 @@
 <?php
 
-  include PAD . 'config/config.php';
-  include PAD . 'config/sequence.php';
+  include PAD    . 'config/config.php';
+  include PAD    . 'config/sequence.php';
+  include COMMON . '_config/config.php';
 
   if ( $padInfo ) {
     $padInfoList = padExplode ( $padInfo, ',' );

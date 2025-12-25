@@ -22,6 +22,7 @@
 
   }
 
-  return $padBuildBase;
+  if ( ! isset ($padSkipInits) )
+    return str_replace ( '@pad@', $padBuildBase, padFileGet ( COMMON . '_inits.pad' ) );
 
 ?>

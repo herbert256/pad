@@ -4,18 +4,20 @@ This document provides a complete reference for all PAD pipe functions.
 
 ## Usage
 
-Functions are used in PAD expressions via the pipe operator:
+Pipe functions transform values using the `|` operator. They **always require `{echo}`**:
 
 ```
-{$variable | functionName}
-{$variable | functionName('parameter')}
-{$variable | functionName('param1', 'param2')}
+{echo $name | upper}              # Correct - uppercase
+{echo $text | trim | lower}       # Chained functions
+{echo $date | date('Y-m-d')}      # With parameters
+
+{$name | upper}                   # WRONG - bare expression won't work!
 ```
 
 Multiple functions can be chained:
 
 ```
-{$name | trim | upper | left(10)}
+{echo $name | trim | upper | left(10)}
 ```
 
 ---
@@ -238,6 +240,80 @@ Functions for working with dates and timestamps.
 {$timestamp | time('H:i:s')}       → '14:30:00'
 ```
 
+### Date Format Characters
+
+| Char | Description | Example |
+|------|-------------|---------|
+| `Y` | 4-digit year | 2025 |
+| `m` | Month (01-12) | 03 |
+| `d` | Day (01-31) | 15 |
+| `H` | Hour (00-23) | 14 |
+| `i` | Minutes (00-59) | 30 |
+| `s` | Seconds (00-59) | 45 |
+| `D` | Day name (short) | Mon |
+| `l` | Day name (full) | Monday |
+| `M` | Month name (short) | Mar |
+| `F` | Month name (full) | March |
+
+---
+
+## Arithmetic
+
+**Important:** Arithmetic pipes require a space between the operator and operand!
+
+| Function | Description | Example |
+|----------|-------------|---------|
+| `+ n` | Add | `{echo $value \| + 1}` |
+| `- n` | Subtract | `{echo $value \| - 5}` |
+| `* n` | Multiply | `{echo $value \| * 2}` |
+| `/ n` | Divide | `{echo $value \| / 4}` |
+
+```
+{echo $value | + 1}          # Correct - adds 1
+{echo $value | * 2}          # Correct - multiplies by 2
+{echo $value | +1}           # WRONG - no space!
+```
+
+---
+
+## Printf-style Format
+
+Use printf format specifiers for number formatting:
+
+```
+{echo $nbr | %.5f}          # 5 decimal places: 3.14159
+{echo $nbr | %'.09d}        # Zero-padded to 9 digits: 000000123
+{echo $nbr | %d}            # Integer: 42
+{echo $nbr | %x}            # Hexadecimal: 2a
+{echo $nbr | %05d}          # Zero-padded to 5 digits: 00042
+{echo $nbr | %+d}           # With sign: +42
+```
+
+### Common Format Specifiers
+
+| Specifier | Description |
+|-----------|-------------|
+| `%d` | Integer |
+| `%f` | Float |
+| `%.Nf` | Float with N decimals |
+| `%s` | String |
+| `%x` | Hexadecimal (lowercase) |
+| `%X` | Hexadecimal (uppercase) |
+| `%0Nd` | Zero-padded integer |
+| `%+d` | Signed integer |
+
+---
+
+## The @ Placeholder
+
+The `@` symbol represents the current value in expressions:
+
+```
+{echo 50 | @ * 4}                # 200 (@ = 50)
+{echo $text | '"' . @ . '"'}     # Wrap value in quotes
+{echo $num | @ + @ * 2}          # Triple the value
+```
+
 ---
 
 ## PAD Template Helpers
@@ -290,41 +366,80 @@ Functions for working with PAD template syntax.
 ### Date/Time
 `now`, `date`, `time`, `timestamp`
 
+### Arithmetic
+`+`, `-`, `*`, `/`
+
+### Printf Format
+`%d`, `%f`, `%.Nf`, `%s`, `%x`, `%X`, `%0Nd`, `%+d`
+
 ### PAD Helpers
 `open`, `close`, `tag`, `optional`
 
 ---
 
-## Available Variables in Functions
+## Pipe Timing: Opening vs Closing Tags
 
-Each function file receives these variables:
+Pipes can be applied at two different points:
 
-| Variable | Description |
-|----------|-------------|
-| `$value` | The input value being piped |
-| `$parm` | Array of parameters passed to the function |
-| `$count` | Number of parameters in `$parm` |
+### Opening Tag Pipe
+
+Processes data BEFORE the tag content is rendered:
+```
+{items | sort}
+  <li>{$name}</li>
+{/items}
+```
+
+### Closing Tag Pipe
+
+Processes output AFTER the tag finishes:
+```
+{message}
+  Content: {$message}
+{/message | upper}
+```
 
 ---
 
 ## Creating Custom Functions
 
-To create a custom function, add a PHP file to the `functions/` directory:
+Create custom functions in `_functions/`:
 
+**_functions/money.php:**
 ```php
 <?php
-// functions/myfunction.php
-
-// $value contains the piped input
-// $parm contains parameters array
-// $count contains parameter count
-
-return strtoupper($value) . $parm[0];
-
+  return '$' . number_format($padContent, 2);
 ?>
 ```
 
-Usage:
+Use in templates:
 ```
-{'hello' | myfunction(' WORLD')}  → 'HELLO WORLD'
+{echo $price | money}     # $1,234.56
 ```
+
+**_functions/initials.php:**
+```php
+<?php
+  $words = explode(' ', $padContent);
+  $initials = '';
+  foreach ($words as $word) {
+    $initials .= strtoupper($word[0]);
+  }
+  return $initials;
+?>
+```
+
+Use in templates:
+```
+{echo $name | initials}   # "John Doe" → "JD"
+```
+
+### Available Variables
+
+Each function file receives these variables:
+
+| Variable | Description |
+|----------|-------------|
+| `$padContent` | The input value being piped |
+| `$parm` | Array of parameters passed to the function |
+| `$count` | Number of parameters in `$parm` |

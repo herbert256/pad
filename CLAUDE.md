@@ -476,8 +476,8 @@ Resolve naming conflicts with explicit prefixes:
 
 See the following files for complete reference documentation:
 
-- **[TAGS.md](docs/TAGS.md)** - All built-in tags (control flow, data, database, file, output, navigation, execution, debug), type prefixes, options, and properties
-- **[FUNCTIONS.md](docs/FUNCTIONS.md)** - All pipe functions (string, case, HTML, date, arithmetic, printf format)
+- **[TAGS.md](docs/reference/TAGS.md)** - All built-in tags (control flow, data, database, file, output, navigation, execution, debug), type prefixes, options, and properties
+- **[FUNCTIONS.md](docs/reference/FUNCTIONS.md)** - All pipe functions (string, case, HTML, date, arithmetic, printf format)
 - **[sequences/](docs/sequences/)** - Sequence subsystem (80+ mathematical sequences, actions, transformations)
 
 ---

@@ -7,7 +7,10 @@
     if ( $file == 'php://input' )
       return file_get_contents ( 'php://input' );
 
-    if ( ! str_starts_with($file, PAD) and ! str_starts_with($file, APP) and ! str_starts_with($file, DAT) )
+    if ( ! str_starts_with($file, PAD) and 
+         ! str_starts_with($file, APP) and 
+         ! str_starts_with($file, DAT) and
+         ! str_starts_with($file, COMMON) )
       $file = PAD . $file;
 
     $check = padFileCheck ( $file );

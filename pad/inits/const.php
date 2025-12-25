@@ -10,7 +10,8 @@
 
   define ( 'padOptionsEnd', ['toBool', 'toContent', 'toData', 'tidy', 'dump'] );
 
-  define ( 'PQ', PAD . 'sequence/' );
-  define ( 'PT', PAD . 'sequence/types/' );
+  define ( 'PQ', PAD . 'sequence/'      );
+  define ( 'PT', PQ .  'types/'         );
+  define ( 'PA', PQ .  'actions/types/' );
 
 ?>

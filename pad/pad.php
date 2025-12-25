@@ -3,23 +3,25 @@
   if ( ! isset ( $padMicro ) ) $padMicro = microtime ( TRUE );
   if ( ! isset ( $padHR )    ) $padHR    = hrtime    ( TRUE );
 
-  define ( 'PAD', dirname ( __FILE__ ) . '/' ) ;
+  if ( ! isset ( $padApp  ) ) die ( 'Variable $padApp must be set before calling this script' );
+  if ( ! isset ( $padApps ) ) die ( 'Variable $padApps must be set before calling this script' );
+  if ( ! isset ( $padData ) ) die ( 'Variable $padData must be set before calling this script' );
 
-  include PAD . 'error/claude.php';
-  include PAD . 'error/boot.php';
+  if ( ! str_ends_with ( $padApps, '/' ) ) $padApps .= '/';
+  if ( ! str_ends_with ( $padData, '/' ) ) $padData .= '/';
+ 
+  define ( 'PAD',    dirname ( __FILE__ ) . '/' );
+  define ( 'APP',    $padApps . $padApp . '/'   );
+  define ( 'DAT',    $padData . $padApp . '/'   );
+  define ( 'APPS',   $padApps                   );
+  define ( 'DATA',   $padData                   );
+  define ( 'COMMON', $padApps . '_common/'     );
 
-  if ( ! defined ( 'APP' ) ) padBootError ( 'Constant APP must be set before calling this script' );
-  if ( ! defined ( 'DAT' ) ) padBootError ( 'Constant DAT must be set before calling this script' );
-
-  if ( ! str_ends_with ( APP, '/' ) ) padBootError ( 'Constant APP must end with a / char' );
-  if ( ! str_ends_with ( DAT, '/' ) ) padBootError ( 'Constant DAT must end with a / char' );
-
-  if ( ! file_exists (APP) or ! is_dir (APP) ) padBootError ( "Application directory not found: " . APP );
+  if ( ! file_exists (APP) or ! is_dir (APP) ) die ( "Application directory not found: " . APP );
 
   chdir            ( APP );
   set_include_path ( APP );
 
-  include PAD . 'config/config.php';
-  include PAD . 'start/enter/start.php';
+  include PAD . 'start/enter/pad.php';
 
 ?>

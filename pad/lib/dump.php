@@ -317,6 +317,12 @@
     padDumpLines ( 'Input', file_get_contents ('php://input') );
 
   }
+ 
+  function padDumpConstants ( ) {
+
+    padDumpLines ( 'Constants', get_defined_constants () );
+
+  }
 
   function padDumpBuffer ( ) {
 
@@ -493,22 +499,24 @@
     ob_start (); padDumpRequest   ();                 padDumpFile ( 'request',   ob_get_clean () );
     ob_start (); padDumpSQL       ();                 padDumpFile ( 'sql',       ob_get_clean () );
     ob_start (); padDumpHeaders   ();                 padDumpFile ( 'headers',   ob_get_clean () );
-    ob_start (); padDumpPhpInfo   ();                 padDumpFile ( 'php-info',  ob_get_clean () );
-    ob_start (); padDumpLevel     ();                 padDumpFile ( 'level',     ob_get_clean () );
+    ob_start (); padDumpPhpInfo   ();                 padDumpFile ( 'info',      ob_get_clean () );
+    ob_start (); padDumpLevel     ();                 padDumpFile ( 'tree',      ob_get_clean () );
     ob_start (); padDumpFiles     ();                 padDumpFile ( 'files',     ob_get_clean () );
     ob_start (); padDumpFunctions ();                 padDumpFile ( 'functions', ob_get_clean () );
-    ob_start (); padDumpApp       ();                 padDumpFile ( 'app-vars',  ob_get_clean () );
+    #ob_start (); padDumpConstants ();                 padDumpFile ( 'constants', ob_get_clean () );
+    ob_start (); padDumpApp       ();                 padDumpFile ( 'app',       ob_get_clean () );
 
     padDumpFields ( $php, $lvl, $cfg, $pad, $ids, $inf, $pq );
 
     ob_start (); padDumpLines     ( "ID's", $ids );   padDumpFile ( 'ids',       ob_get_clean () );
-    ob_start (); padDumpCurl      ( $pad );           padDumpFile ( 'last-curl', ob_get_clean () );
-    ob_start (); padDumpXXX       ( $pad, 'pq' ); padDumpFile ( 'sequence',  ob_get_clean () );
+    ob_start (); padDumpCurl      ( $pad );           padDumpFile ( 'curl',      ob_get_clean () );
+    ob_start (); padDumpXXX       ( $pad, 'pq' );     padDumpFile ( 'sequence',  ob_get_clean () );
     ob_start (); padDumpLines     ( "Info", $inf );   padDumpFile ( 'info',      ob_get_clean () );
-    ob_start (); padDumpLines     ( "Level", $lvl );  padDumpFile ( 'lvl-vars',  ob_get_clean () );
+    ob_start (); padDumpLines     ( "Level", $lvl );  padDumpFile ( 'level',     ob_get_clean () );
     ob_start (); padDumpLines     ( 'Config', $cfg ); padDumpFile ( 'config',    ob_get_clean () );
-    ob_start (); padDumpLines     ( 'PHP', $php );    padDumpFile ( 'php-vars',  ob_get_clean () );
-    ob_start (); padDumpLines     ( "PAD",   $pad );  padDumpFile ( 'pad-vars',  ob_get_clean () );
+    ob_start (); padDumpLines     ( 'PHP', $php );    padDumpFile ( 'php',       ob_get_clean () );
+    ob_start (); padDumpLines     ( "PAD",   $pad );  padDumpFile ( 'pad',       ob_get_clean () );
+
     ob_start (); padDumpGlobals   ();                 padDumpFile ( 'globals',   ob_get_clean () );
 
     padDumpInputToFile () ;

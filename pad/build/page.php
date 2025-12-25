@@ -2,6 +2,9 @@
 
   $padBuildTrue = '';
 
+  $padCall = COMMON . '/_inits.php';
+  $padBuildTrue .= include PAD . 'call/noOne.php';
+
   foreach ( $padBuildDirs as $padCall ) {
     $padCall .= '/_inits.php';
     $padBuildTrue .= include PAD . 'call/noOne.php';
@@ -26,6 +29,9 @@
     $padCall .= '/_exits.php';
     $padBuildTrue .= include PAD . 'call/noOne.php';
   }
+
+  $padCall = COMMON . '/_exits.php';
+  $padBuildTrue .= include PAD . 'call/noOne.php';
 
   include PAD . 'build/split.php';
 

@@ -625,13 +625,44 @@ Generate mathematical sequences.
 ---
 
 ### continue
-Continue with next sequence value.
+Skip to next iteration of a loop.
 
 ```html
-{continue}
+{continue 'tagname'}
 ```
 
-**Behavior:** Used within sequence processing
+**Parameters:**
+- First parameter: Tag name to continue
+
+**Behavior:** Skips to next iteration (like PHP's continue)
+
+---
+
+### cease
+Soft stop - graceful end of loop.
+
+```html
+{cease 'tagname'}
+```
+
+**Parameters:**
+- First parameter: Tag name to cease
+
+**Behavior:** Gracefully ends loop processing
+
+---
+
+### break
+Hard stop - immediate exit from loop.
+
+```html
+{break 'tagname'}
+```
+
+**Parameters:**
+- First parameter: Tag name to break
+
+**Behavior:** Immediately exits loop (like PHP's break)
 
 ---
 
@@ -739,10 +770,155 @@ Transform sequence values.
 | `false` | Values | Return FALSE |
 | `null` | Values | Return NULL |
 | `sequence` | Sequences | Generate sequence |
-| `continue` | Sequences | Continue sequence |
+| `continue` | Loop Control | Skip to next iteration |
+| `cease` | Loop Control | Soft stop (graceful end) |
+| `break` | Loop Control | Hard stop (immediate exit) |
 | `pull` | Sequences | Pull stored data |
 | `flag` | Sequences | Set flag |
 | `keep` | Sequences | Keep matching |
 | `remove` | Sequences | Remove matching |
 | `make` | Sequences | Transform values |
-| `foo` | Testing | Test tag |
+
+---
+
+## Type Prefixes
+
+Resolve naming conflicts with explicit prefixes:
+
+| Prefix | Purpose | Example |
+|--------|---------|---------|
+| `app:` | App tag from `_tags/` | `{app:mytag}` |
+| `pad:` | Built-in PAD tag | `{pad:if}` |
+| `php:` | Call PHP function | `{php:strlen(@)}` |
+| `function:` | Custom PAD function | `{$x \| function:myfunc}` |
+| `data:` | Defined data block | `{data:items}` |
+| `content:` | Content block | `{content:header}` |
+| `pull:` | Stored sequence | `{pull:mySeq}` |
+| `field:` | Database field | `{field:"name from users"}` |
+| `table:` | Database table | `{table:users}` |
+| `local:` | Files from `_data/` | `{local:menu.json}` |
+| `constant:` | PHP constant | `{constant:PHP_VERSION}` |
+| `bool:` | Boolean store | `{bool:isAdmin}` |
+| `array:` | Access array as loop | `{array:items}` |
+| `action:` | Sequence action | `{action:reverse}` |
+
+---
+
+## Options Reference
+
+Options modify tag behavior. Add them to any tag.
+
+### Data Flow Options
+
+| Option | Direction | Description |
+|--------|-----------|-------------|
+| `data` | Input | Get data from source |
+| `content` | Input | Get content from store |
+| `toData` | Output | Store data to variable |
+| `toContent` | Output | Store content to variable |
+| `toBool` | Output | Store boolean flag |
+
+### Conditional Options
+
+| Option | Description |
+|--------|-------------|
+| `bool` | Check/create boolean flag |
+| `optional` | Suppress not-found errors |
+| `demand` | Mark as required |
+| `null` | Alternative for NULL |
+| `else` | Alternative for empty/false |
+| `notOk` / `error` | Alternative for error |
+
+### Formatting Options
+
+| Option | Description | Example |
+|--------|-------------|---------|
+| `quote` | Wrap in quotes | `quote="'"` |
+| `open` | Prefix on first | `open="["` |
+| `close` | Suffix on last | `close="]"` |
+| `glue` | Separator | `glue=", "` |
+| `tidy` | Clean whitespace | |
+
+### Control Options
+
+| Option | Description |
+|--------|-------------|
+| `sort` | Sort data |
+| `rows` | Limit rows |
+| `first` | First N items |
+| `last` | Last N items |
+| `page` | Pagination |
+| `cache` | Cache output |
+| `callback` | Run callback |
+| `ignore` | Skip PAD processing |
+| `noError` | Suppress errors |
+| `dump` | Debug output |
+
+### Combined Formatting Example
+
+```
+{list quote="'" glue=", " open="[" close="]"}
+```
+Result: `['item1', 'item2', 'item3']`
+
+---
+
+## Properties Reference
+
+Access iteration state and metadata using `property@tag` syntax.
+
+### Iteration State Properties
+
+| Property | Description |
+|----------|-------------|
+| `first@tag` | Is first iteration |
+| `last@tag` | Is last iteration |
+| `notFirst@tag` | Is NOT first |
+| `notLast@tag` | Is NOT last |
+| `border@tag` | Is first OR last |
+| `middle@tag` | Is neither first nor last |
+| `even@tag` | Is even occurrence |
+| `odd@tag` | Is odd occurrence |
+
+### Counter Properties
+
+| Property | Description |
+|----------|-------------|
+| `current@tag` | Current occurrence (1-based) |
+| `count@tag` | Total items |
+| `remaining@tag` | Items remaining |
+| `done@tag` | Items completed |
+
+### Data Access Properties
+
+| Property | Description |
+|----------|-------------|
+| `key@tag` | Current array key |
+| `keys@tag` | All keys with values |
+| `fields@tag` | Field name/value pairs |
+| `data@tag` | Full data array |
+| `firstFieldName@tag` | First field's name |
+| `firstFieldValue@tag` | First field's value |
+
+### Tag Metadata Properties
+
+| Property | Description |
+|----------|-------------|
+| `name@tag` | Tag name |
+| `parameter:x@tag` | Named parameter |
+| `parameters@tag` | All parameters |
+| `option:n@tag` | Positional option |
+| `options@tag` | All options |
+| `variable:x@tag` | Level variable |
+| `variables@tag` | All variables |
+
+### Properties Example
+
+```
+{items}
+  {if first@items}<ul>{/if}
+  <li class="{even@items ? even : odd}">{$name}</li>
+  {if last@items}</ul>{/if}
+  Index: {current@items} of {count@items}
+{/items}
+```

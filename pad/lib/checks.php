@@ -1,17 +1,25 @@
 <?php
 
-  function padAppPageCheck     ( $check ) { return padAppCheck ( $check              ); }
+  function padCommonCheck  ( $check ) { 
+    
+    if     ( padCommonTagCheck      ( $check ) ) return TRUE;
+    elseif ( padCommonIncludeCheck  ( $check ) ) return TRUE;
+    else                                         return FALSE;
 
-  function padAppIncludeCheck  ( $check ) { return padAppCheck ( "_include/$check"   ); }
+  }
+  
+  function padCommonTagCheck      ( $check ) { return padCheck    ( COMMON . "_tags/$check"    ); }
+  function padCommonIncludeCheck  ( $check ) { return padCheck    ( COMMON . "_include/$check" ); }
 
-  function padAppTagCheck      ( $check ) { return padAppCheck ( "_tags/$check"      ); }
-
-  function padAppFunctionCheck ( $check ) { return padAppCheck ( "_functions/$check" ); }
+  function padAppPageCheck        ( $check ) { return padAppCheck ( $check                     ); }
+  function padAppIncludeCheck     ( $check ) { return padAppCheck ( "_include/$check"          ); }
+  function padAppTagCheck         ( $check ) { return padAppCheck ( "_tags/$check"             ); }
+  function padAppFunctionCheck    ( $check ) { return padAppCheck ( "_functions/$check"        ); }
 
   function padAppCheck ( $check ) {
 
     foreach ( padDirs () as $value )
-      if ( padCheck ( APP2 . $value . $check ) )
+      if ( padCheck ( APP2 . "$value$check" ) ) 
         return $value . $check ;
 
     return FALSE;
@@ -20,7 +28,7 @@
 
   function padCheck ( $check ) {
 
-     return  ( file_exists ( "$check.pad" ) or file_exists ( "$check.php" ) ) ;
+    return ( file_exists ( "$check.pad" ) or file_exists ( "$check.php" ) ); 
 
   }
 

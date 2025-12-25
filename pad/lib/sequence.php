@@ -85,7 +85,7 @@
 
   function pqAction ( $action  ) {
 
-    if ( $action and file_exists ( PQ . "actions/types/$action.php" ) )
+    if ( $action and file_exists ( PA . "$action.php" ) )
       return TRUE;
     else
       return FALSE;

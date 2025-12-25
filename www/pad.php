@@ -1,8 +1,5 @@
 <?php
 
-  if ( ! isset ( $padApp ) )
-    die ( "Variable \$padApp must be set.\n" );
-
   $padOS = strtolower ( substr ( php_uname ('s'), 0, 3 ) );
 
   if     ( $padOS == 'lin' ) $padHome = '/home/herbert/pad';
@@ -11,9 +8,14 @@
   else
     die ( "Unsuported OS: $padOS" );
 
-  define ( 'APP', "$padHome/apps/$padApp/"  );
-  define ( 'DAT', "$padHome/DATA/$padApp/"  );
+  $padApps = "$padHome/apps/";
+  $padData = "$padHome/DATA/";
 
-  include "$padHome/pad/pad.php";
+  foreach ( explode ( '/' , str_replace ( '\\', '/', $_SERVER ['REQUEST_URI'] ) ) as $padApp )
+    if ( $padApp and is_dir ( "$padApps/$padApp" ) )
+      return include "$padHome/pad/pad.php";
+
+  $padApp = 'pad';
+  return include "$padHome/pad/pad.php";
 
 ?>
