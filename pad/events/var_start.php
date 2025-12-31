@@ -8,6 +8,6 @@
   if ( ! $padInfoTrace or ! $padInfoTraceVar )
     return;
 
- if ( $padInfoTrace ) padInfoTrace ( 'var', 'start', 'var=' . $padFld . ' options=' . padJson($padOpts) );
+ if ( $padInfoTrace ) padInfoTrace ( 'var', 'start', 'var=' . $padFld . ' options=' . padJson($padVarOpts) );
 
 ?>

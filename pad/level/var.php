@@ -4,10 +4,10 @@
 
   if ( $padPipe ) {
     $padFld  = rtrim(substr($padBetween, 1, $padPipe-1));
-    $padOpts = trim(substr($padBetween, $padPipe+1));
+    $padVarOpts = trim(substr($padBetween, $padPipe+1));
   } else {
     $padFld  = rtrim(substr($padBetween, 1));
-    $padOpts = '';
+    $padVarOpts = '';
   }
 
   if ( substr($padFld, 0, 1) == '$' )
@@ -20,8 +20,8 @@
   elseif ( $padFirst == '&' ) $padFldChk = padTagCheck   ( $padFld );
   elseif ( $padFirst == '^' ) $padFldChk = padFieldCheck ( $padFld );
 
-  if ( ! $padFldChk and ! str_starts_with ( $padOpts, 'optional'))
-    padError ( "Field '$padFirst$padFld' not found $padOpts" );
+  if ( ! $padFldChk and ! str_starts_with ( $padVarOpts, 'optional'))
+    padError ( "Field '$padFirst$padFld' not found $padVarOpts" );
 
   if     ( $padFirst == '$' ) $padVal = padFieldValue ($padFld);
   elseif ( $padFirst == '?' ) $padVal = padUrlValue   ($padFld);
@@ -34,8 +34,8 @@
     foreach ( $padDataDefaultStart as $padOptOne )
       $padVal = padEval ( $padOptOne, $padVal );
 
-  if ( $padOpts )
-    $padVal = padEval ( $padOpts, $padVal );
+  if ( $padVarOpts )
+    $padVal = padEval ( $padVarOpts, $padVal );
 
   if ( $padFirst == '$' )
     foreach ( $padDataDefaultEnd as $padOptOne )
