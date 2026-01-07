@@ -5,18 +5,18 @@
   if ( ! isset ( $padInfoStatsStarted ) )
     return;
 
-  global $padMicro, $padHR, $padApp, $padLog;
+  global $padMicro, $padHR, $padAppTime, $padLog;
 
   $padStats_total = padDuration ();
   $padStats_boot  = padDuration ( 0, $padMicro );
   $padStats_user  = $padStats_total - $padStats_boot;
-  $padStats_pad   = $padStats_user - $padApp;
+  $padStats_pad   = $padStats_user - $padAppTime;
 
   $padInfoStatsInfo =  [
     'total' => $padStats_total,
     'boot'  => $padStats_boot,
     'usr'   => $padStats_pad,
-    'call'  => $padApp
+    'call'  => $padAppTime
   ];
 
   $padInfoStatsJson = json_encode ( $padInfoStatsInfo ) ;

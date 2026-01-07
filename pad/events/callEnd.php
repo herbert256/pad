@@ -1,8 +1,8 @@
 <?php
 
-  global $padApp;
+  global $padAppTime;
 
   if ( $padCall [0] == '/' )
-    $padApp += hrtime ( TRUE ) - $padCallStart;
+    $padAppTime += hrtime ( TRUE ) - $padCallStart;
 
  ?>
