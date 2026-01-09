@@ -1,5 +1,6 @@
 <?php
 
+
   function padFileGet ( $file, $default='' ) {
 
     global $padInfo;
@@ -8,14 +9,16 @@
       return file_get_contents ( 'php://input' );
 
     if ( ! str_starts_with($file, PAD) and 
-         ! str_starts_with($file, APP) and 
-         ! str_starts_with($file, DAT) and
-         ! str_starts_with($file, COMMON) )
+         ! str_starts_with($file, APPS) and 
+         ! str_starts_with($file, DAT) )
       $file = PAD . $file;
 
     $check = padFileCheck ( $file );
     if ( $check )
-      return padError ( $check );
+      return $default;
+
+    if ( ! file_exists ( $file ) )
+      return $default;
 
     if ( $padInfo )
       include PAD . 'events/get.php';
@@ -27,18 +30,13 @@
 
   }
 
+
   function padFilePut ( $file, $data='', $append=0 ) {
 
-    global $padInfo;
+    global $padInfo, $padDirMode, $padFileMode;
 
-    if ( ! str_starts_with ( $file, DAT ) ) {
-
-      if ( str_starts_with ( $file, APP ) ) $file = substr ( $file, strlen ( APP ) );
-      if ( str_starts_with ( $file, PAD ) ) $file = substr ( $file, strlen ( PAD ) );
-
+    if ( ! str_starts_with ( $file, DAT ) )
       $file = DAT . $file;
-
-    }
 
     $check = padFileCheck ( $file );
     if ( $check )
@@ -46,24 +44,6 @@
 
     if ( $padInfo )
       include PAD . 'events/put.php';
-
-    padFilePutGo ( $file, $data, $append );
-
-  }
-
-  function padFileCheck ( $file ) {
-
-    if ( ! str_starts_with ( $file, '/' )       ) return "Invalid file (not starting with /): $file";
-    if ( strpos($file, '..' ) !== FALSE         ) return "Invalid file (contains '..'): $file";
-    if ( strpos($file, '//' ) !== FALSE         ) return "Invalid file (contains '//'): $file";
-    if ( preg_match('/[\x00-\x1F\x7F]/', $file) ) return "Invalid file (contains control chars): $file";
-                                                  return '';
-
-  }
-
-  function padFilePutGo ( $file, $data, $append ) {
-
-    global $padDirMode, $padFileMode;
 
     $dir = substr ( $file, 0, strrpos ( $file, '/' ) );
 
@@ -101,6 +81,49 @@
     }
 
     return TRUE;
+
+  }
+
+
+  function padFileCheck ( $file ) {
+
+    if ( ! str_starts_with ( $file, '/' )       ) return "Invalid file (not starting with /): $file";
+    if ( strpos($file, '..' ) !== FALSE         ) return "Invalid file (contains '..'): $file";
+    if ( strpos($file, '//' ) !== FALSE         ) return "Invalid file (contains '//'): $file";
+    if ( preg_match('/[\x00-\x1F\x7F]/', $file) ) return "Invalid file (contains control chars): $file";
+                                                  return '';
+
+  } 
+
+
+  function padDeleteDataDir ( $dir ) {
+
+    $dir = getPath ( $dir );
+
+    if ( $dir === FALSE )
+      return;
+
+    if ( ! str_ends_with ( $dir, '/' ) )
+      $dir .= '/';
+
+    if ( ! file_exists     ( $dir           ) ) return;
+    if ( ! is_dir          ( $dir           ) ) return;
+    if ( ! str_starts_with ( $dir, DAT      ) ) return;
+
+    foreach ( padFiles ( $dir ) as $file )
+      if ( is_dir ( "$dir/$file" ) and ! is_link ( "$dir/$file" ) )
+        padDeleteDataDir ( "$dir/$file" );
+      else
+        unlink ( "$dir/$file" );
+
+     rmdir ( $dir );
+
+  }
+
+
+  function files ( $dir ) {
+
+    return array_diff ( scandir ( $dir ), [ '.', '..' ] );
 
   }
 

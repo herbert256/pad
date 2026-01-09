@@ -35,13 +35,13 @@
     if ( $dir3 !== '' )
       $file .= "/$dir3";
 
-    $target = APP . "reference/DATA/$file.txt";
+    $target = APPS . "develop/reference/DATA/$file.txt";
     $xref = "$padApp;$padStartPage";
 
     if ( file_exists ($target) and in_array ( $xref, file ( $target, FILE_IGNORE_NEW_LINES ) ) )
       return;
 
-    filePutLine ( 'reference', "$file.txt", $xref );
+    padFilePut ( $target, $xref, 1);
 
   }
 

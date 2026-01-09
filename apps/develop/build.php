@@ -1,13 +1,10 @@
 <?php
 
-  $build = 1;
-
-  fileDeleteDataDir ( APPS . 'reference/DATA/'  );
-  fileDeleteDataDir ( APPS . 'regression/DATA/' );
+  padDeleteDataDir ( DAT . 'reference'  );
+  padDeleteDataDir ( DAT . 'regression' );
+  padDeleteDataDir ( DAT . 'examples'   );
 
   include APP . 'clean.php';
   include APP . 'regression.php';
-
-  padRedirect ( "regression" );
 
 ?>

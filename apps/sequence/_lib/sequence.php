@@ -5,7 +5,7 @@
 
     $out = [];
 
-    foreach ( files ( $dir ) as $file ) {
+    foreach ( padFiles ( $dir ) as $file ) {
       $key = str_replace( '.pad', '', str_replace( '.php', '', $file ) );
       $out [$key] = $key;
     }
@@ -17,14 +17,14 @@
 
   function types () {
 
-    return files ( PAD . 'sequence/types' ) ;
+    return padFiles ( PAD . 'sequence/types' ) ;
 
   }
 
 
   function actions () {
 
-    $array = files ( PAD . 'sequence/actions/types' ) ;
+    $array = padFiles ( PAD . 'sequence/actions/types' ) ;
 
     foreach ( $array as &$str )
       $str = str_replace ( '.php', '', $str );

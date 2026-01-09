@@ -4,15 +4,15 @@
 
   foreach ( padAppsList () as $one ) {
 
-    $item = $one ['item'];
+    extract ( $one );
 
-    filePutFile ( 'develop', 'regression.txt', $item ) ;
+    $store  = DAT . "regression/DATA/$app/$item.html";
+    $old    = padFileGet ( $store );
 
-    $store  = "regression/DATA/$item.html";
-    $old    = fileGet ( $store );
-    $source = fileGet ( "$item.pad" );
-    $php    = fileGet ( "$item.php" );
-    $curl   = padCurl ( "$padHost$padScript?$item&padInclude&padReference" );
+    $source = padFileGet ( APPS . "$app/$item.pad" );
+    $php    = padFileGet ( APPS . "$app/$item.php" );
+
+    $curl   = padCurl ( "$padHost/$app?$item&padReference" );
     $good   = str_starts_with ( $curl ['result'], '2');
     $new    = $curl ['data'] ?? '';
     $new    = str_replace ( "\r\n", "\n", $new );
@@ -26,10 +26,10 @@
     elseif ( $old == $new                       ) $status = 'ok';
     else                                          $status = 'warning';
 
-    filePutFile ( 'regression', "$item.txt", $status ) ;
+    padFilePut ( 'regression', "$app/$item.txt", $status ) ;
 
     if ( $status == 'new' )
-      filePutFile ( 'regression', "$item.html", $new ) ;
+      padFilePut ( 'regression', "$app/$item.html", $new ) ;
 
     if ( ! $good or ! $new                    ) continue;
     if ( str_contains ( $source, '{page'    ) ) continue;
@@ -38,15 +38,10 @@
     if ( str_contains ( $source, '{demo'    ) ) continue;
     if ( str_contains ( $source, '{ajax'    ) ) continue;
 
-    if ( $php    ) filePutFile ( 'examples', "$item.php",  $php    ) ;
-    if ( $source ) filePutFile ( 'examples', "$item.pad",  $source ) ;
-    if ( $new    ) filePutFile ( 'examples', "$item.html", $new    ) ;
+    if ( $php    ) padFilePut ( 'examples', "$app/$item.php",  $php    ) ;
+    if ( $source ) padFilePut ( 'examples', "$app/$item.pad",  $source ) ;
+    if ( $new    ) padFilePut ( 'examples', "$app/$item.html", $new    ) ;
 
   }
-
-  if ( isset ($build) )
-    return;
-
-  padRedirect ( "regression" );
 
 ?>

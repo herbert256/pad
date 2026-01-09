@@ -34,8 +34,8 @@
           echo "</pre></div></td></tr></th></table></font></span></blockquote></h1></h2></h3></h4></h5></h6></b></i></u></p></ul></li></ol></dl></dt></dd>\r\n";
 
     if     ( $padOutputType == 'console' )  padDumpConsole ( $info );
-    elseif ( padLocal () )                              padDumpLocal   ( $info );
-    else                                                padDumpRemote  ( $info );
+    elseif ( padLocal () )                  padDumpLocal   ( $info );
+    else                                    padDumpRemote  ( $info );
 
     $padSent   = TRUE;
     $padOutput = '';
@@ -439,7 +439,7 @@
     global $padDumpToDirDone, $padLog, $padPage;
 
     if ( ! $dir )
-      $dir = "dumps/" . $padPage . '/' . $padLog . '-' . uniqid();
+      $dir = $padPage . '/' . $padLog . '-' . uniqid();
 
     if ( isset ( $padDumpToDirDone ) ) {
 
@@ -476,7 +476,7 @@
 
     try {
 
-      padFilePut ( "$dir/error.txt", "$info\n\n$done" );
+      padFilePut ( "dumps/$dir/error.txt", "$info\n\n$done" );
 
     } catch (Throwable $e ) {
 
@@ -529,7 +529,7 @@
 
     try {
 
-      padFilePut ( "$dir/oops.txt",
+      padFilePut ( "dumps/$dir/oops.txt",
                            "$info\n\n" .
                            $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage()
                          );
@@ -571,7 +571,7 @@
     $dir = $padDumpToDirDone;
     $txt = trim ( $txt );
 
-    padFilePut ( "$dir/$file.html", "<pre>$txt</pre>" );
+    padFilePut ( "dumps/$dir/$file.html", "<pre>$txt</pre>" );
 
   }
 
@@ -579,13 +579,13 @@
 
     global $padDumpToDirDone;
 
-    $txt  = trim ( file_get_contents ('php://input') ?? '' );
+    $txt  = file_get_contents ('php://input') ?? '';
     $type = padContentType ( $txt );
 
     if ( $type == 'csv' )
       $type = 'txt';
 
-    padFilePut ( $padDumpToDirDone . "/input.$type", $txt );
+    padFilePut ( "dumps/$padDumpToDirDone" . "/input.$type", $txt );
 
   }
 

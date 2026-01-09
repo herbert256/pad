@@ -2,6 +2,6 @@
 
   $padDir = $padParm;
 
-  return files ($padDir);
+  return padFiles ($padDir);
 
 ?>

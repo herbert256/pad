@@ -9,6 +9,9 @@
     $padInfoTrace = FALSE;
     $padInfoXref  = TRUE;
 
+    $padInclude   = TRUE;
+    $padTidy      = FALSE;
+
   }
 
   if ( $padInfo )

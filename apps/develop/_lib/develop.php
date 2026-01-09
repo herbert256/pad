@@ -1,5 +1,23 @@
 <?php
 
+  function getAppFile ( $app, $file, $default='' ) {
+
+    $file = getPath ( APPS . "$app/$file" );
+
+    if ( $file === FALSE )
+      return $default;
+
+    if ( ! str_starts_with ( $file, APPS ) ) return $default;
+    if (   is_dir          ( $file       ) ) return $default;
+    if ( ! file_exists     ( $file       ) ) return $default;
+    if ( ! is_readable     ( $file       ) ) return $default;
+
+    $contents = file_get_contents ($file);
+
+    return ($contents === false) ? $default : $contents;
+
+  }
+
   function padAppsList () {
 
     $directory = new RecursiveDirectoryIterator (APPS);
@@ -9,7 +27,6 @@
 
       $path = padCorrectPath ( $one->getPathname() );
 
-      if ( strpos ( $path, '/DATA/')  ) continue;
       if ( strpos ( $path, '/_')      ) continue;
       if ( strpos ( $path, 'develop') ) continue;
 

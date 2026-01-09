@@ -1,6 +1,6 @@
 <?php
 
-  foreach ( files ( $xDir ) as $file ) {
+  foreach ( padFiles ( $xDir ) as $file ) {
 
     $hits [$file] ['item'  ] = str_replace ( '.txt', '', $file );
     $hits [$file] ['pages' ] = "$dir/$file";
