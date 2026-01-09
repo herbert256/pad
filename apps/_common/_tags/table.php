@@ -24,7 +24,7 @@
 
   }
 
-  if ( $tablePAD and $tableHTML and isset ( $_REQUEST ['padReference"'] ) ) {
+  if ( $tablePAD and $tableHTML and isset ( $_REQUEST ['padReference'] ) ) {
 
     $tablePADcount [$padPage] = $tablePADcount [$padPage] ?? 0;
     $tablePADcount [$padPage]++;

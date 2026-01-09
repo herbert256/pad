@@ -12,10 +12,10 @@
  
   define ( 'PAD',    dirname ( __FILE__ ) . '/' );
   define ( 'APP',    $padApps . $padApp . '/'   );
-  define ( 'DAT',    $padData . $padApp . '/'   );
+  define ( 'DAT',    $padData                   );
   define ( 'APPS',   $padApps                   );
   define ( 'DATA',   $padData                   );
-  define ( 'COMMON', $padApps . '_common/'     );
+  define ( 'COMMON', $padApps . '_common/'      );
 
   if ( ! file_exists (APP) or ! is_dir (APP) ) die ( "Application directory not found: " . APP );
 

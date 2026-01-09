@@ -3,7 +3,7 @@
   $padOutputType     = 'file';
 
   $padFileName       = 'myName';
-  $padFileDir        = 'myDir';
+  $padFileDir        = 'temp/myDir';
   $padFileExtension  = 'ext';
   $padFileDate       = FALSE;
   $padFileTimeStamp  = TRUE;

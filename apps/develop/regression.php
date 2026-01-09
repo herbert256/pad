@@ -6,7 +6,7 @@
 
     extract ( $one );
 
-    $store  = DAT . "regression/DATA/$app/$item.html";
+    $store  = DAT . "regression/$app/$item.html";
     $old    = padFileGet ( $store );
 
     $source = padFileGet ( APPS . "$app/$item.pad" );
@@ -26,10 +26,10 @@
     elseif ( $old == $new                       ) $status = 'ok';
     else                                          $status = 'warning';
 
-    padFilePut ( 'regression', "$app/$item.txt", $status ) ;
+    padFilePut ( "regression/$app/$item.txt", $status ) ;
 
     if ( $status == 'new' )
-      padFilePut ( 'regression', "$app/$item.html", $new ) ;
+      padFilePut ( "regression/$app/$item.html", $new ) ;
 
     if ( ! $good or ! $new                    ) continue;
     if ( str_contains ( $source, '{page'    ) ) continue;
@@ -38,9 +38,9 @@
     if ( str_contains ( $source, '{demo'    ) ) continue;
     if ( str_contains ( $source, '{ajax'    ) ) continue;
 
-    if ( $php    ) padFilePut ( 'examples', "$app/$item.php",  $php    ) ;
-    if ( $source ) padFilePut ( 'examples', "$app/$item.pad",  $source ) ;
-    if ( $new    ) padFilePut ( 'examples', "$app/$item.html", $new    ) ;
+    if ( $php    ) padFilePut ( "examples/$app/$item.php",  $php    ) ;
+    if ( $source ) padFilePut ( "examples/$app/$item.pad",  $source ) ;
+    if ( $new    ) padFilePut ( "examples/$app/$item.html", $new    ) ;
 
   }
 
