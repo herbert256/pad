@@ -1,11 +1,6 @@
 <?php
 
-  $list = scandir ( $xDir );
-
-  foreach ( $list as $file ) {
-
-    if ( $file == '.' or $file == '..' )
-      continue;
+  foreach ( files ( $xDir ) ) {
 
     $hits [$file] ['item'  ] = str_replace ( '.txt', '', $file );
     $hits [$file] ['pages' ] = "$dir/$file";

@@ -3,12 +3,12 @@
   if ( ! isset ( $pages ) )
     return;
 
-  $go = file ( APP . "_xref/sequence/$pages", FILE_IGNORE_NEW_LINES );
+  $go = file ( APP . "_xref/$pages", FILE_IGNORE_NEW_LINES );
 
   foreach ( $go as $key => $value )
-    if ( ! str_starts_with ( $value, 'sequence/' ) )
+    if ( ! str_starts_with ( $value, '' ) )
       unset ( $go [$key] );
-    elseif ( str_starts_with ( $value, 'sequence/random/randomly' ) )
+    elseif ( str_starts_with ( $value, 'random/randomly' ) )
       unset ( $go [$key] );
     elseif ( str_starts_with ( $value, 'sequences' ) )
       unset ( $go [$key] );

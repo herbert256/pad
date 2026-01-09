@@ -2,6 +2,6 @@
 
   $padDir = $padParm;
 
-  return scandir($padDir);
+  return files ($padDir);
 
 ?>

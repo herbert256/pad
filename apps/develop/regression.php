@@ -2,7 +2,7 @@
 
   set_time_limit ( 60 );
 
-  foreach ( padList () as $one ) {
+  foreach ( padAppsList () as $one ) {
 
     $item = $one ['item'];
 

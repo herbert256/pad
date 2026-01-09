@@ -8,16 +8,14 @@
       $item = 'basic';
 
   if ( $example == 'sequences')
-    $examples = sequenceDir ( APP . "sequence/basic" ) ;
+    $exam = sequenceDir ( APP . "basic" ) ;
   else
-    $examples = sequenceDir ( APP . "sequence/$example" ) ;
+    $exam = sequenceDir ( APP . "$example" ) ;
 
-  if ( isset ( $item ) and ! in_array ( $item, $examples) )
-    $item = $examples [0];
+  if ( isset ( $item ) and ! in_array ( $item, $exam) )
+    $item = $exam [0];
 
   if ( ! isset ( $item ) or ! $item )
-    $item = $examples [0];
-
-  $title .= " - $example - $item"
+    $item = $exam [0];
 
 ?>

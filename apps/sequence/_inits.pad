@@ -1,9 +1,18 @@
-<center>
+{padOpen}
 
-  {menuSeq}
+{lines}
+  {nows}
+    {if $padPage eq $now}
+      <b>{$text@nows}</b>
+    {else}
+      <a href="?{$now}">{$text@nows}</a>
+    {/if}
+    {notLast} | {/notLast}
+  {/nows}
+{/lines}
 
-  <br><br><hr>
-  
-  @page@
+<h2>{$sequenceTitile}</h2>
 
-</center>
+<p>@page@</p>
+
+{padClose}

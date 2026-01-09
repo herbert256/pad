@@ -100,8 +100,8 @@
 
     }
 
-    if ( ! touch($file)                                 ) return FALSE;
-    if ( ! chmod($file, $padFileMode)       ) return FALSE;
+    if ( ! touch($file)               ) return FALSE;
+    if ( ! chmod($file, $padFileMode) ) return FALSE;
 
     return TRUE;
 
@@ -119,50 +119,34 @@
 
    }
 
-  function fileDeleteDir ( $dir ) {
+  function files ( $dir ) {
 
-    if ( $dir === '' )
-      return FALSE;
+    return array_diff ( scandir ( $dir ), [ '.', '..' ] );
 
-    if ( ! str_starts_with ( $dir, APP ) )
-      $dir = APP . $dir;
+   }
 
-    return fileDeleteDirGo ( $dir . '/DATA/' );
-
-  }
-
-  function fileDeleteDirGo ( $dir ) {
+  function fileDeleteDataDir ( $dir ) {
 
     $dir = getPath ( $dir );
 
     if ( $dir === FALSE )
-      return FALSE;
+      return;
 
     if ( ! str_ends_with ( $dir, '/' ) )
       $dir .= '/';
 
-    if ( ! file_exists     ( $dir           ) ) return FALSE;
-    if ( ! str_starts_with ( $dir, APP      ) ) return FALSE;
-    if ( ! str_contains    ( $dir, '/DATA/' ) ) return FALSE;
+    if ( ! file_exists     ( $dir           ) ) return;
+    if ( ! is_dir          ( $dir           ) ) return;
+    if ( ! str_starts_with ( $dir, APPS     ) ) return;
+    if ( ! str_contains    ( $dir, '/DATA/' ) ) return;
 
-    foreach ( array_diff ( scandir ( $dir ), [ '.', '..' ] ) as $file ) {
+    foreach ( files ( $dir ) as $file )
+      if ( is_dir ( "$dir/$file" ) and ! is_link ( "$dir/$file" ) )
+        fileDeleteDataDir ( "$dir/$file" );
+      else
+        unlink ( "$dir/$file" );
 
-      if ( is_dir ( "$dir/$file" ) and ! is_link ( "$dir/$file" ) ) {
-
-        if ( ! fileDeleteDirGo ( "$dir/$file" ) )
-          return FALSE;
-
-      } else
-
-        if ( ! unlink ( "$dir/$file" ) )
-          return FALSE;
-
-    }
-
-    if ( ! rmdir ( $dir ) )
-      return FALSE;
-
-    return TRUE;
+     rmdir ( $dir );
 
   }
 

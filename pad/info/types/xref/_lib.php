@@ -25,7 +25,7 @@
 
   function padInfoXrefGo ( $dir1, $dir2, $dir3 ) {
 
-    global $padStartPage;
+    global $padApp, $padStartPage;
 
     if ( $dir1 == 'properties' and ! file_exists ( PAD . "properties/$dir2.php" ) )
       $dir2 = strtolower($dir2);
@@ -36,11 +36,12 @@
       $file .= "/$dir3";
 
     $target = APP . "reference/DATA/$file.txt";
+    $xref = "$padApp;$padStartPage";
 
-    if ( file_exists ($target) and in_array ( $padStartPage, file ( $target, FILE_IGNORE_NEW_LINES ) ) )
+    if ( file_exists ($target) and in_array ( $xref, file ( $target, FILE_IGNORE_NEW_LINES ) ) )
       return;
 
-    filePutLine ( 'reference', "$file.txt", $padStartPage );
+    filePutLine ( 'reference', "$file.txt", $xref );
 
   }
 

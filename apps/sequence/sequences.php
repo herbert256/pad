@@ -4,7 +4,7 @@
 
   echo str_pad ( "{demo}{sequence}", 38) . "{\$sequence} {/sequence} {/demo}";
 
-  foreach ( pqTypes () as $type ) {
+  foreach ( types () as $type ) {
 
     $parm = pqParm ( $type );
 

@@ -12,9 +12,11 @@
   $nows ['examples'] ['text']   = 'Examples';
   $nows ['examples'] ['now']    = 'examples';
 
-  if ( ! isset ( $go ) or ! $go )
-    $go = 'index';
+  $title = 'Sequences';
 
-  $title = 'Sequences - ' . $nows [$go] ['text']
+  if ( isset ( $nows [$padPage] ) )
+    $sequenceTitile = $nows [$padPage] ['text'];
+  else
+    $sequenceTitile = $padPage;
 
 ?>

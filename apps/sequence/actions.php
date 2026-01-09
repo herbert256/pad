@@ -4,12 +4,12 @@
   echo "{demo}{sequence '11..20', push='mySeq1'}{/demo}";
   echo str_pad ( "{demo}{mySeq1}", 36) . "{\$sequence} {/mySeq1} {/demo}";
 
-  foreach ( pqActions () as $action ) {
+  foreach ( actions () as $action ) {
 
         if ( in_array ( $action, ['slice','splice','pop','shift'] )  ) continue;
     elseif ( file_exists ( PAD . "sequence/actions/double/$action" ) ) continue;
     elseif ( file_exists ( PAD . "sequence/actions/parm/$action" )   ) $extra = "=3";
-    else                                                               $extra = '';
+    else                                                      $extra = '';
 
     echo str_pad ( "{demo}{mySeq1 $action$extra}", 36) . "{\$sequence} {/mySeq1} {/demo}";
 

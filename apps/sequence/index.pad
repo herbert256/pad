@@ -1,18 +1,16 @@
-{block}
+{lines}
+  {concepts}
+    {if &concepts:key NE $concept}
+      <a href="@self@&go=index&concept={&concepts:key}">{&concepts:key | ucfirst}</a>
+    {else}
+      <b> {&concepts:key | ucfirst} <b>
+    {/if}
+    {notLast} | {/notLast}
+  {/concepts}
+{/lines}
 
-{concepts}
-      {if &concepts:key NE $concept}
-        <a href="@self@&go=index&concept={&concepts:key}">{&concepts:key | ucfirst}</a>
-      {else}
-        <b> {&concepts:key | ucfirst} <b>
-      {/if}
-      &nbsp;
-{/concepts}
-
-{/block}
-
-<h3>{$conceptTitle}</h3>
+<h2>{$conceptTitle}</h2>
 
 {block}
-  {page 'sequence/concepts/{$concept}', include}
+  {page 'concepts/{$concept}', include}
 {/block}

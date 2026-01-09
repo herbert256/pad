@@ -9,8 +9,8 @@
   if ( ! isset ( $concept ) )
     $concept = 'sequences';
 
+  $title = 'Sequences';
+  
   $conceptTitle = ucfirst ($concept ) . ' - ' . $concepts [$concept];
-
-  $title .= ' - ' . ucfirst ($concept );
 
 ?>

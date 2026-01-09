@@ -1,17 +1,5 @@
 <?php
 
-  function sequenceDir ( $dir )  {
-
-    $out = [];
-
-    foreach ( array_diff ( scandir ( $dir ), [ '.', '..' ] ) as $file ) {
-      $key = str_replace( '.pad', '', str_replace( '.php', '', $file ) );
-      $out [$key] = $key;
-    }
-
-    return array_values ( $out );
-
-  }
 
   function getExtra ( $base ) {
 

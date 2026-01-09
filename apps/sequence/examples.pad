@@ -5,51 +5,57 @@
     'random',
     'play/single',
     'play/double',
-    'keepRemoveFlag',
-    'regression'
+    'keepRemoveFlag'
   )
 {/data}
 
-<center>
+{block}
 
-<p>Examples ! Many are generated and do not always make sence, the examples from 'specials' are hand crafted and gives a good view of what the Sequences subsystem of PAD can do.</p>
+<p>Examples ! Many are generated and do not always make sence, <br>the examples from 'specials' are hand crafted and gives a good view of what the Sequences subsystem of PAD can do.</p>
 
+{/block}
+
+<br>
+{lines}
   {list}
     {if $example eq $list}
       <b>{$list}</b>
     {else}
-      <a href="?manual/sequence/examples&example={$list}{?go}{?item}">{$list}</a>
+      <a href="?examples&example={$list}{?item}">{$list}</a>
     {/if}
-    &nbsp;
+  {notLast} | {/notLast}
   {/list}
+{/lines}
 
-  <br><br><hr>
+<br>
 
-  {examples}
-    {if $item eq $examples}
-      <b>{$examples}</b>
+{block}<center>
+
+  {exam} 
+    {if $item eq $exam}
+      <b>{$exam}</b>
     {else}
-      <a href="?manual/sequence/examples&example={$example}&item={$examples}{?go}">{$examples}</a>
+      <a href="?examples&example={$example}&item={$exam}">{$exam}</a>
     {/if}
     &nbsp;
-  {/examples}
+  {/exam}
 
   <br><br><hr>
 
   {if $example eq 'sequences' }
     <h3>{$item}</h3>
-      {exists APP . 'sequence/basic/{$item}.pad'}
-        <h5>{echo 'sequence/basic/{$item}.pad}</h5>
-        {example 'sequence/basic/{$item}', onlyResult}
+      {exists APP . 'basic/{$item}.pad'}
+        <h5>{echo 'basic/{$item}.pad}</h5>
+        {example 'basic/{$item}', onlyResult}
       {/exists}
     {list}
-      {exists APP . 'sequence/{$list}/{$item}.pad'}
-        <h5>{echo 'sequence/{$list}/{$item}.pad}</h5>
-        {example 'sequence/{$list}/{$item}', onlyResult}
+      {exists APP . '{$list}/{$item}.pad'}
+        <h5>{echo '{$list}/{$item}.pad}</h5>
+        {example '{$list}/{$item}', onlyResult}
       {/exists}
     {/list}
   {else}
-    {example 'sequence/{$example}/{$item}', onlyResult, include}
+    {example '{$example}/{$item}', onlyResult, include}
   {/if}
 
-</center>
+</center>{/block}

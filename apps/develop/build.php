@@ -2,11 +2,11 @@
 
   $build = 1;
 
-  fileDeleteDir ( 'regression' );
-  fileDeleteDir ( 'reference'  );
+  fileDeleteDataDir ( APPS . 'reference/DATA/'  );
+  fileDeleteDataDir ( APPS . 'regression/DATA/' );
 
-  include APP . 'develop/clean/regression.php';
-  include APP . 'develop/regression.php';
+  include APP . 'clean.php';
+  include APP . 'regression.php';
 
   padRedirect ( "regression" );
 
