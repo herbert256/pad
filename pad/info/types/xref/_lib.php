@@ -38,7 +38,8 @@
     $target = "reference/$file.txt";
     $xref   = "$padApp;$padStartPage";
 
-    if ( file_exists ($target) and in_array ( $xref, file ( $target, FILE_IGNORE_NEW_LINES ) ) )
+    $check = DAT . $target;
+    if ( file_exists ($check) and in_array ( $xref, file ( $check, FILE_IGNORE_NEW_LINES ) ) )
       return;
 
     padFilePut ( $target, $xref, 1);

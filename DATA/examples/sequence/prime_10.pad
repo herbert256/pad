@@ -1,0 +1,45 @@
+{loop rows=40, from=10                 }
+
+{pull flag='prime'            } {$sequence} {/pull}
+
+{pull flag, prime             } {$sequence} {/pull}
+
+{pull prime, flag             } {$sequence} {/pull}
+
+{default flag='prime'         } {$sequence} {/default}
+
+{default prime, flag          } {$sequence} {/default}
+
+{default flag, prime          } {$sequence} {/default}
+
+{flag default, prime          } {$sequence} {/flag}
+
+{flag prime, default          } {$sequence} {/flag}
+
+{flag pull, prime             } {$sequence} {/flag}
+
+{flag prime, pull             } {$sequence} {/flag}
+
+{prime default, flag          } {$sequence} {/prime}
+
+{prime flag, default          } {$sequence} {/prime}
+
+{prime flag, pull             } {$sequence} {/prime}
+
+{prime pull, flag             } {$sequence} {/prime}
+
+{default:flag prime           } {$sequence} {/default:flag}
+
+{flag:default prime           } {$sequence} {/flag:default}
+
+{sequence:prime default, flag } {$sequence} {/sequence:prime}
+
+{prime:sequence default, flag } {$sequence} {/prime:sequence}
+
+{sequence:prime pull, flag    } {$sequence} {/sequence:prime}
+
+{prime:sequence pull, flag    } {$sequence} {/prime:sequence}
+
+{pull:default flag='prime'    } {$sequence} {/pull:default}
+
+{default:pull flag='prime'    } {$sequence} {/default:pull}

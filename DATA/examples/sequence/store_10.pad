@@ -1,0 +1,21 @@
+{loop rows=20, from=10, push='mySequence'           }
+
+{pull prime             } {$sequence} {/pull}
+
+{mySequence prime          } {$sequence} {/mySequence}
+
+{prime mySequence          } {$sequence} {/prime}
+
+{prime pull='mySequence'           } {$sequence} {/prime}
+
+{sequence:prime mySequence } {$sequence} {/sequence:prime}
+
+{prime:sequence mySequence } {$sequence} {/prime:sequence}
+
+{sequence:prime pull='mySequence'  } {$sequence} {/sequence:prime}
+
+{prime:sequence pull='mySequence'  } {$sequence} {/prime:sequence}
+
+{pull:mySequence prime     } {$sequence} {/pull:mySequence}
+
+{mySequence:pull prime     } {$sequence} {/mySequence:pull}

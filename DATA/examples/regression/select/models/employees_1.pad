@@ -1,0 +1,23 @@
+<table border=1>
+  <tr> 
+    <td> employee </td>
+    <td> manager </td>
+    <td> boss </td>
+  </tr>
+  {employees} 
+    <tr>
+      <td> {$employees:lastName}, 
+           {$employees:firstName}  
+           ({$employees:employeeNumber}) 
+      </td>
+      <td> {$managers:lastName | optional},  
+           {$managers:firstName | optional}   
+           ({$managers:employeeNumber | optional})  
+      </td>
+      <td> {$bosses:lastName | optional},    
+           {$bosses:firstName | optional}     
+           ({$bosses:employeeNumber | optional})   
+     </td>
+    </tr>
+  {/employees}
+</table>

@@ -1,0 +1,53 @@
+{data 'myArray'}
+ []
+{/data}
+
+{myArray}
+
+  <table border="1">
+    <tr> <td> Before the first occurrence </td> </tr>
+    @start@
+      <tr> <td> For every occurence </td> </tr>
+    @end@
+    <tr> <td> After the last occurrence </td> </tr>
+  </table>
+
+{else}
+
+  <p> No occurences at all </p>
+
+{/myArray}
+
+{myArray}
+
+  {first}
+    <table border="1">
+      <tr> <td> Before the first occurrence </td> </tr>
+  {/first}
+      <tr> <td> For every occurence </td> </tr>
+  {last}
+      <tr> <td> After the last occurrence </td> </tr>
+    </table>
+  {/last}
+
+{else}
+
+  <p> No occurences at all </p>
+
+{/myArray}
+
+{count 'myArray'}
+
+  <table border="1">
+    <tr> <td> Before the first occurrence </td> </tr>
+  {myArray}
+    <tr> <td> For every occurence </td> </tr>
+  {/myArray}
+    <tr> <td> After the last occurrence </td> </tr>
+  </table>
+
+{else}
+
+  <p> No occurences at all </p>
+
+{/count}
