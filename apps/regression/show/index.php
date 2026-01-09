@@ -9,7 +9,7 @@
 
   $title = $item;
   $new   = $curl ['data'];
-  $old   = fileGet ( APP . "regression/DATA/$item.html" );
+  $old   = padFileGet ( APP . "regression/DATA/$item.html" );
   $diff  = diff ( $old, $new );
 
   $check = $old;

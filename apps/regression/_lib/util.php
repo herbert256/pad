@@ -132,7 +132,7 @@
     $file = str_replace ( '.php', '.pad', $file );
 
     if ( file_exists( $file ) )
-      if ( str_contains ( fileGet ( $file ), $string ) )
+      if ( str_contains ( padFileGet ( $file ), $string ) )
         return TRUE;
 
     return FALSE;

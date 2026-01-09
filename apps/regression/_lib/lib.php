@@ -8,7 +8,7 @@
     if ( ! file_exists ( $file ) )
       return [];
 
-    $data = fileGet ($file);
+    $data = padFileGet ($file);
     $data = str_replace ( "\n", ',', $data);
     $array = padExplode ( $data , ',');
 

@@ -16,7 +16,7 @@
     $store = DAT . "_regression/$item.txt";
     $bm    = DAT . "_benchmark/$item.json";
 
-    $status = fileGet ( $store );
+    $status = padFileGet ( $store );
     if ( $status <> 'ok' )
       continue;
 

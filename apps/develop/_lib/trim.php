@@ -7,17 +7,17 @@
 
     foreach ($iterator as $loop_info) {
 
-      $file = padCorrectPath ( $loop_info->getPathname() );
+      $file = $loop_info->getPathname();
       $ext  = substr($file, strrpos($file, '.')+1 );
 
       if ( $ext <> 'php' and $ext <> 'pad' )
         continue;
 
-      $old = fileGet ($file);
+      $old = padFileGet ($file);
       $new = trim($old);
 
       if ($old <> $new)
-        filePutFile ($file, $new, LOCK_EX);
+        file_put_contents ( $file, $new, LOCK_EX );
 
     }
 

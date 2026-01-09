@@ -98,7 +98,7 @@
 
   function padDeleteDataDir ( $dir ) {
 
-    $dir = getPath ( $dir );
+    $dir = padGetPath ( $dir );
 
     if ( $dir === FALSE )
       return;
@@ -121,9 +121,21 @@
   }
 
 
-  function files ( $dir ) {
+  function padFiles ( $dir ) {
 
     return array_diff ( scandir ( $dir ), [ '.', '..' ] );
+
+  }
+
+
+  function padGetPath ( $file ) {
+
+    $file = realpath ( $file );
+
+    if ( $file === FALSE )
+      return FALSE;
+
+    return str_replace ('\\',  '/', $file );
 
   }
 

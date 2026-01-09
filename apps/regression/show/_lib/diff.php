@@ -57,8 +57,8 @@ class Diff{
       $file1, $file2, $compareCharacters = false){
 
     return self::compare(
-        fileGet($file1),
-        fileGet($file2),
+        padFileGet($file1),
+        padFileGet($file2),
         $compareCharacters);
 
   }

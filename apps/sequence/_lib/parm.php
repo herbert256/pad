@@ -13,7 +13,7 @@
 
     foreach ( [ 'loop', 'make', 'function', 'bool', 'fixed', 'build' ] as $check )
       if ( file_exists ( "types/$type/$check.php") )
-        if ( str_contains ( fileGet ( "types/$type/$check.php"), "pqParm" ) )
+        if ( str_contains ( padFileGet ( "types/$type/$check.php"), "pqParm" ) )
           $e = TRUE;
 
     if ( $e or $a <> $b )

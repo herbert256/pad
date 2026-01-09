@@ -10,7 +10,7 @@
     if ( ! $sequence and   str_contains ( $item, 'sequence' ) ) continue;
 
     $list [$item] ['item']   = $item;
-    $list [$item] ['status'] = fileGet ( 'regression/DATA/' . "$item.txt" );
+    $list [$item] ['status'] = padFileGet ( 'regression/DATA/' . "$item.txt" );
 
   }
 

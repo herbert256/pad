@@ -25,8 +25,8 @@
   }
 
   if ( padTagParm ( 'skipWhenEmpty' ) ) {
-    if ( ! fileGet ( $examplePhp ) ) $padPrm [$pad] ['skipPhp'] = TRUE;
-    if ( ! fileGet ( $examplePad ) ) $padPrm [$pad] ['skipPad'] = TRUE;
+    if ( ! padFileGet ( $examplePhp ) ) $padPrm [$pad] ['skipPhp'] = TRUE;
+    if ( ! padFileGet ( $examplePad ) ) $padPrm [$pad] ['skipPad'] = TRUE;
   }
 
   return TRUE;
