@@ -33,13 +33,17 @@
 
   }
 
-  function padPageAjax ( $page, $qry ) {
+  function padPageAjax ( $page, $qry, $app='' ) {
 
     global $padGo, $padHost;
 
     $ajax = 'padAjax' . padRandomString(8);
 
-    $url = $padHost . $padGo . $page . $qry;
+    if ( $app )
+      $url = "$padHost/$app/?$page$qry";
+    else
+      $url = "$padHost$padGo$page$qry";
+
     $url = padAddIds ( $url );
 
     return <<< END

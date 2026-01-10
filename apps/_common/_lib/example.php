@@ -21,7 +21,6 @@
 
     if ( strpos($pad, '<!-- PAD: ONLYRESULT -->') !== false ) return ',onlyResult';
     if ( strpos($pad, '{demo')                    !== false ) return ',onlyResult';
-    if ( str_ends_with($file, 'index.pad')                  ) return ',onlyResult';
 
     return '';
 

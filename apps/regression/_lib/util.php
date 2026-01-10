@@ -86,47 +86,6 @@
 
 
 
-  function padItems ( $source ) {
-
-    if ( ! file_exists ( $source ) ) return [];
-    if ( ! is_dir      ( $source ) ) return [];
-
-    $files = [];
-    
-    $directory = new RecursiveDirectoryIterator ( $source    );
-    $iterator  = new RecursiveIteratorIterator  ( $directory );
-
-    foreach ($iterator as $one ) {
-
-      $path  = padCorrectPath ( $one->getPathname() );
-
-      $file  = str_replace (APP, '', $path );
-      $file  = str_replace (PAD, '', $path );
-
-      $ext   = substr($file,    strrpos($file, '.')+1 );
-      $item  = substr($file, 0, strrpos($file, '.')   );
-      $dir   = substr($item, 0, strrpos($item, '/')   );
-      $file  = substr($item,    strrpos($item, '/')+1 );
-
-      if ( ! $item       ) continue;
-      if ( $file == '.'  ) continue;
-      if ( $file == '..' ) continue;
-      if ( $ext  == 'md' ) continue;
-
-      $files [$item] ['item'] = $item;
-      $files [$item] ['path'] = $path;
-      $files [$item] ['dir']  = $dir;
-      $files [$item] ['file'] = $file;
-      $files [$item] ['ext']  = $ext;
-
-    }
-
-    ksort ($files);
-
-    return $files;
-
-  }
-
   function padFileContains ( $file, $string ) {
 
     $file = str_replace ( '.php', '.pad', $file );

@@ -1,5 +1,8 @@
 <?php
 
+  if ( padTagParm ( 'app' ) )
+    return include PAD . 'start/enter/_go/pageApp.php';
+
   $padStrPag [$pad] [0] = $padPage;
   $padStrPag [$pad] [1] = $padInclude;
   $padStrPag [$pad] [2] = $padDir;

@@ -8,7 +8,7 @@
 
 {if #onlyResult or $exampleOnlyResult} 
 
-  {page '{$examplePage}', sandbox}
+  {examplePage}
 
 {else}
 
@@ -55,7 +55,7 @@
             <td style="vertical-align:top">{!exampleSrcPad} </td>
           {/if}
           {if ! #skipResult}
-            <td style="vertical-align:top">{page '{$examplePage}', sandbox}</td>
+            <td style="vertical-align:top">{examplePage}</td>
           {/if}
         </tr>
 
@@ -91,7 +91,7 @@
           <td style="vertical-align:top">{!exampleSrcPad}</td>
         {/if}
         {if ! #skipResult}
-          <td style="vertical-align:top">{page '{$examplePage}', sandbox}</td>
+          <td style="vertical-align:top">{examplePage}</td>
         {/if}
       </tr>
 
@@ -132,7 +132,7 @@
           </tr>
         {/if}
         <tr>
-          <td style="vertical-align:top">{page '{$examplePage}', sandbox}</td>
+          <td style="vertical-align:top">{examplePage}</td>
         </tr>
       {/if}
 

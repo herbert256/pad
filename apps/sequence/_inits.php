@@ -12,6 +12,9 @@
   $nows ['examples'] ['text']   = 'Examples';
   $nows ['examples'] ['now']    = 'examples';
 
+  $nows ['reference'] ['text']  = 'Reference';
+  $nows ['reference'] ['now']   = 'reference';
+
   $title = 'Sequences';
 
   if ( isset ( $nows [$padPage] ) )
