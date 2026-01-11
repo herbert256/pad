@@ -3,6 +3,6 @@
   global $padInfoXref;
 
   if ( $padInfoXref  )
-    padInfoXref ( 'functions', $kind, $name );
+    padInfoXref ( 'functions/parms', $kind, $name );
 
 ?>

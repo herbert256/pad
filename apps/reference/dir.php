@@ -1,19 +1,20 @@
 <?php
 
-  foreach ( padFiles ( $xDir ) ) {
+  if ( ! isset ( $type ) ) $type = 'Tags';
+  if ( ! isset ( $xref ) ) $xref = 'tag';
+  if ( ! isset ( $item ) ) $item = 'pad';
 
-    $hits [$file] ['item'  ] = str_replace ( '.txt', '', $file );
-    $hits [$file] ['pages' ] = "$dir/$file";
+  foreach ( padFiles ( DAT . "reference/$xref/$item" ) as $file ) 
+    $hits [$file] ['item'] = str_replace ( '.txt', '', $file );
 
-    }
+  $xref = "$xref/$item";
 
   if ( count ($hits) == 1 )
-      padRedirect ( 'reference/pages',
-                    [ 'pages' => $hits [$file] ['pages'],
-                      'type'  => $type,
-                      'item'  => $item ] );
+    padRedirect ( 'pages',
+                  [ 'type' => $type,
+                    'xref' => $xref,
+                    'item' => $hits [array_key_first($hits)] ['item'] ] );
 
   $title .= " - $type - $item";
-  $type   = "$type - $item";
 
 ?>

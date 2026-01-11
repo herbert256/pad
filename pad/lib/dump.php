@@ -476,7 +476,7 @@
 
     try {
 
-      padFilePut ( "dumps/$dir/error.txt", "$info\n\n$done" );
+      padDumpFilePut ( "$dir/error.txt", "$info\n\n$done" );
 
     } catch (Throwable $e ) {
 
@@ -529,7 +529,7 @@
 
     try {
 
-      padFilePut ( "dumps/$dir/oops.txt",
+      padDumpFilePut ( "$dir/oops.txt",
                            "$info\n\n" .
                            $e->getFile() . ':' . $e->getLine() . ' ' . $e->getMessage()
                          );
@@ -571,7 +571,7 @@
     $dir = $padDumpToDirDone;
     $txt = trim ( $txt );
 
-    padFilePut ( "dumps/$dir/$file.html", "<pre>$txt</pre>" );
+    padDumpFilePut ( "$dir/$file.html", "<pre>$txt</pre>" );
 
   }
 
@@ -585,7 +585,15 @@
     if ( $type == 'csv' )
       $type = 'txt';
 
-    padFilePut ( "dumps/$padDumpToDirDone" . "/input.$type", $txt );
+    padDumpFilePut ( $padDumpToDirDone . "/input.$type", $txt );
+
+  }
+
+  function padDumpFilePut ( $file, $data ) {
+
+    global $padApp;
+
+    padFilePut ( "dumps/$padApp/$file", $data );
 
   }
 

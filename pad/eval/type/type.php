@@ -5,15 +5,23 @@
   $kind = $result [$k] [2];
   $name = $result [$k] [0];
 
-  if ( $padInfo )
-    include PAD . 'events/functions.php';
-
   $padGetName = $name;
 
-  if ( file_exists ( PAD . "eval/single/$kind.php" ) )
+  if ( file_exists ( PAD . "eval/single/$kind.php" ) ) {
+
+    if ( $padInfo )
+      include PAD . 'events/functionSingle.php';
+
     $value = include PAD . 'eval/type/single.php';
-  else
+
+  }  else {
+   
+    if ( $padInfo )
+      include PAD . 'events/functionParms.php';
+  
     $value = include PAD . 'eval/type/parms.php';
+
+  }
 
   $result [$k] [1] = 'VAL';
   $result [$k] [0] = $value;
