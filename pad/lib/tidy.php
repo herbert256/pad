@@ -52,15 +52,15 @@
 
     global $padInclude, $padTidyCcsid, $padTidyConfig;
 
+    if ( ! class_exists ( 'tidy' ) )
+      return $data;
+
     $config = $padTidyConfig;
 
-    if ( $fragment
-         or isset ( $_REQUEST ['padInclude'] )
-         or ( isset ( $padInclude ) and $padInclude ) )
+    if ( $fragment or $padInclude ) {
+      $data = trim ( $data );
       $config ['show-body-only'] = true;
-
-    if ( ! class_exists('tidy') )
-      return $data;
+    }
 
     try {
       $tidy = new tidy;
@@ -72,6 +72,56 @@
     }
 
   }
+
+  function padTidySmall ( $data ) {
+
+    global $padTidyCcsid;
+
+    $config = [
+      'indent'          => false,     // Disable indentation
+      'wrap'            => 0,         // Prevent wrapping lines at a certain length
+      'vertical-space'  => false,     // Remove extra empty lines
+      'hide-comments'   => true,      // Strip HTML comments
+      'tidy-mark'       => false,     // Remove the Tidy meta tag
+      'drop-empty-paras'=> true,      // Remove empty <p> tags
+      'join-classes'    => true,      // Merge consecutive classes
+      'join-styles'     => true,      // Merge consecutive styles
+      'show-body-only'  => true,
+      'merge-spans'     => 'yes',
+      'force-output'    => true,
+      'show-warnings'   => FALSE,
+      'omit-optional-tags'  => 'yes',
+      'merge-divs'      => 'yes',
+      'indent-spaces' => 0,
+      'drop-empty-elements' => true,
+      'drop-proprietary-attributes' => true,
+      'new-blocklevel-tags' => '',
+      'new-empty-tags' => '',
+      'new-inline-tags' => ''
+    ];
+
+#    try {
+
+      $tidy = new tidy;
+      $tidy->parseString($data, $config, $padTidyCcsid );
+      $tidy->cleanRepair();
+
+      $result = $tidy->value ?? $data;
+
+      $result = str_replace  ( ["\r", "\n", "\t"], '', $result );
+      $result = preg_replace ( '/ {2,}/', ' ',         $result );
+      $result = preg_replace ( '/>\s+</', '><', $result );
+
+      return $result;
+
+ #   } catch (Throwable $e) {
+
+  #    return $data;
+
+   # }
+
+  }
+
 
   function padHeader ($header) {
 

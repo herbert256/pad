@@ -8,11 +8,8 @@
 
     $store  = DAT . "regression/$app/$item.html";
     $old    = padFileGet ( $store );
-
     $source = padFileGet ( APPS . "$app/$item.pad" );
-    $php    = padFileGet ( APPS . "$app/$item.php" );
-
-    $curl   = padCurl ( "$padHost/$app?$item&padReference" );
+    $curl   = padCurl ( "$padHost/$app?$item" );
     $good   = str_starts_with ( $curl ['result'], '2');
     $new    = $curl ['data'] ?? '';
     $new    = str_replace ( "\r\n", "\n", $new );
@@ -30,17 +27,6 @@
 
     if ( $status == 'new' )
       padFilePut ( "regression/$app/$item.html", $new ) ;
-
-    if ( ! $good or ! $new                    ) continue;
-    if ( str_contains ( $source, '{page'    ) ) continue;
-    if ( str_contains ( $source, '{example' ) ) continue;
-    if ( str_contains ( $source, '{table'   ) ) continue;
-    if ( str_contains ( $source, '{demo'    ) ) continue;
-    if ( str_contains ( $source, '{ajax'    ) ) continue;
-
-    if ( $php    ) padFilePut ( "examples/$app/$item.php",  $php    ) ;
-    if ( $source ) padFilePut ( "examples/$app/$item.pad",  $source ) ;
-    if ( $new    ) padFilePut ( "examples/$app/$item.html", $new    ) ;
 
   }
 

@@ -51,7 +51,7 @@ Template tags provide the control structures, data manipulation, flow control, a
 ### Data and Variable Tags
 
 **data.php** - Access data stores
-- Delegates to tags/go/store.php
+- Delegates to tags/_go/store.php
 - Primary data access mechanism
 
 **get.php** - Include and execute a page/template
@@ -218,7 +218,7 @@ Template tags provide the control structures, data manipulation, flow control, a
 
 ### Subdirectories
 
-**tags/go/** - Navigation and flow control
+**tags/_go/** - Navigation and flow control
 - **data.php** - Data navigation
 - **store.php** - Store access/navigation
 

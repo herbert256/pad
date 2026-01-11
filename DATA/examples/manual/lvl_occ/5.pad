@@ -1,9 +1,1 @@
-<table border='1'>
-  {sequence '10..30', increment=10, name='row'}
-    <tr>
-      {sequence '1..5', name='column'}
-        <td>{$row | + $column}</td>      
-      {/sequence}
-    </tr>
-  {/sequence}
-</table>
+{sequence '10..30', increment=10, name='row'} {sequence '1..5', name='column'} {/sequence} {/sequence}<table border='1'><tr><td>{$row | + $column}</td></tr></table>

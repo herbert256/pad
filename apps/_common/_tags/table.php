@@ -24,15 +24,15 @@
 
   }
 
-  if ( $tablePAD and $tableHTML and isset ( $_REQUEST ['padReference'] ) ) {
+  if ( $tablePAD and $tableHTML and isset ( $_REQUEST ['padExamples'] ) ) {
 
     $tablePADcount [$padPage] = $tablePADcount [$padPage] ?? 0;
     $tablePADcount [$padPage]++;
 
     $tableITEM = "examples/$padApp/$padPage" . '_' . $tablePADcount [$padPage];
 
-    padFilePut ( "$tableITEM.pad",  trim ( $tablePAD  ) );
-    padFilePut ( "$tableITEM.html", trim ( $tableHTML ) );
+    padFilePut ( "$tableITEM.pad",  padTidySmall ( $tablePAD,  TRUE ) );
+    padFilePut ( "$tableITEM.html", padTidySmall ( $tableHTML, TRUE ) );
 
   }
 

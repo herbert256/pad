@@ -1,0 +1,1 @@
+<div id="ignore-example-4" data-users="{echo $usersJson | ignore}"></div>{ignore}<script> const element = document.getElementById('ignore-example-4'); const users = JSON.parse(element.dataset.users); const html = '<ul>' + users.map(user => '<li><strong>' + user.name + '</strong> - ' + user.role + '</li>' ).join('') + '</ul>'; element.innerHTML = html;</script>{/ignore}

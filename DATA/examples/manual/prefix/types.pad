@@ -1,15 +1,1 @@
-<hr>
-
-<h3> The list with PAD tag types</h3>
-
-{getReference 'types', 'tag'}
-
-  {if $dir}
-    <a href="{$padHost}/reference?dir&xref=tag&type=Tag+types{?item}">{$item}</a>
-  {else}
-    {$item}
-  {/if}
-
-  &nbsp; 
-
-{/getReference}
+<hr><h3>The list with PAD tag types</h3>{getReference 'types', 'tag'} {if $dir} <a href="{$padHost}/reference?dir&amp;xref=tag&amp;type=Tag+types{?item}">{$item}</a> {else} {$item} {/if} &nbsp; {/getReference}

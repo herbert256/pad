@@ -1,5 +1,1 @@
-{sequence '11..20', push='mySeq1'}
-
-{sequence 'A..E',   push='mySeq2'}
-
-{mySeq1 splice='3|5|mySeq2'} {$sequence} {/mySeq1}
+{sequence '11..20', push='mySeq1'} {sequence 'A..E', push='mySeq2'} {mySeq1 splice='3|5|mySeq2'} {$sequence} {/mySeq1}

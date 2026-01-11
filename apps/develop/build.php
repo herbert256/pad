@@ -7,6 +7,8 @@
 
   include APP . 'clean.php';
   include APP . 'regression.php';
+  include APP . 'reference.php';
+  include APP . 'examples.php';
 
   padRedirect ( 'errors' );
 

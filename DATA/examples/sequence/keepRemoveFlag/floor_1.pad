@@ -1,9 +1,1 @@
-{sequence 25, push='mySequence'}
-
-{pull mySequence, make,   floor=4} {$sequence} {/pull}
-
-{pull mySequence, keep,   floor=4} {$sequence} {/pull}
-
-{pull mySequence, remove, floor=4} {$sequence} {/pull}
-
-{pull mySequence, flag,   floor=4} {$sequence} {/pull}
+{sequence 25, push='mySequence'} {pull mySequence, make, floor=4} {$sequence} {/pull} {pull mySequence, keep, floor=4} {$sequence} {/pull} {pull mySequence, remove, floor=4} {$sequence} {/pull} {pull mySequence, flag, floor=4} {$sequence} {/pull}

@@ -1,12 +1,1 @@
-{data 'row'   } (1,2,3)     {/data}
-{data 'column'} (1,2,3,4,5) {/data}
-
-<table border='1'>
-  {row}
-    <tr>
-      {column}
-        <td>{$row | * 10 | + $column}</td>      
-      {/column}
-    </tr>
-  {/row}
-</table>
+{data 'row' } (1,2,3) {/data} {data 'column'} (1,2,3,4,5) {/data} {row} {column} {/column} {/row}<table border='1'><tr><td>{$row | * 10 | + $column}</td></tr></table>

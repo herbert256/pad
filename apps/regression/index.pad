@@ -2,6 +2,9 @@
 
 {list}
 
+<h3>{$app}</h3>
+
+{items}
   <a 
 
     {if     $status eq 'ok'}      style="color:black;"
@@ -12,8 +15,10 @@
     {elseif $status eq 'empty'}   style="color:black;background-color: #ffc0cb;"
     {/if} 
 
-    href="?regression/show&item={$item}{?sequence}">{$item | cut ''}</a>
+    href="?show&item={$item}{?sequence}">{$item | cut ''}</a>
 
   &nbsp; &nbsp;
+
+{/items}
 
 {/list}
