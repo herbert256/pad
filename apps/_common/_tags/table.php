@@ -29,7 +29,7 @@
     $tablePADcount [$padPage] = $tablePADcount [$padPage] ?? 0;
     $tablePADcount [$padPage]++;
 
-    $tableITEM = "examples/$padPage" . '_' . $tablePADcount [$padPage];
+    $tableITEM = "examples/$padApp/$padPage" . '_' . $tablePADcount [$padPage];
 
     padFilePut ( "$tableITEM.pad",  trim ( $tablePAD  ) );
     padFilePut ( "$tableITEM.html", trim ( $tableHTML ) );

@@ -1,33 +1,49 @@
 <?php
-  if (isLoggedIn()) {
-    padRedirect('index');
-  }
 
+  $title = 'Register';
   $error = '';
+  $success = '';
+  $formUsername = '';
+  $formEmail = '';
 
-  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'] ?? '';
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
-    $confirm = $_POST['confirm'] ?? '';
+  if ($_SERVER['REQUEST_METHOD'] == 'POST' && $action == 'register') {
+    $formUsername = trim($username ?? '');
+    $formEmail = trim($email ?? '');
+    $password = $password ?? '';
+    $password2 = $password2 ?? '';
 
-    if (!$username || !$email || !$password || !$confirm) {
+    if (!$formUsername || !$formEmail || !$password) {
       $error = 'All fields are required';
-    } elseif ($password !== $confirm) {
+    } elseif (strlen($formUsername) < 3) {
+      $error = 'Username must be at least 3 characters';
+    } elseif (!filter_var($formEmail, FILTER_VALIDATE_EMAIL)) {
+      $error = 'Invalid email address';
+    } elseif (strlen($password) < 6) {
+      $error = 'Password must be at least 6 characters';
+    } elseif ($password !== $password2) {
       $error = 'Passwords do not match';
-    } elseif (db("CHECK users WHERE username='{0}'", [$username])) {
-      $error = 'Username already exists';
-    } elseif (db("CHECK users WHERE email='{0}'", [$email])) {
-      $error = 'Email already exists';
     } else {
-      $passwordHash = hashPassword($password);
-      $new_id = db("INSERT INTO users (username, email, password_hash, role) VALUES ('{0}', '{1}', '{2}', 'user')",
-                  [$username, $email, $passwordHash]);
 
-      $_SESSION['user_id'] = $new_id;
-      $_SESSION['username'] = $username;
-      $_SESSION['role'] = 'user';
-      padRedirect('index');
+      $exists = db("CHECK users WHERE username='{0}'", [$formUsername]);
+      if ($exists) {
+        $error = 'Username already taken';
+      } else {
+
+        $exists = db("CHECK users WHERE email='{0}'", [$formEmail]);
+        if ($exists) {
+          $error = 'Email already registered';
+        } else {
+
+          $hash = hashPassword($password);
+          db("INSERT INTO users (username, email, password_hash) VALUES ('{0}', '{1}', '{2}')",
+             [$formUsername, $formEmail, $hash]);
+
+          $success = 'Account created successfully! You can now login.';
+          $formUsername = '';
+          $formEmail = '';
+        }
+      }
     }
   }
+
 ?>

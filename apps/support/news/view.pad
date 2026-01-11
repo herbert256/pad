@@ -1,17 +1,23 @@
-<div class="breadcrumb">
-  <a href="?news/index">News</a> &raquo; {$articleTitle}
-</div>
+{news $id=$id}
 
-<div id="news-article"
-     data-id="{$id}"
-     data-title="{!articleTitle}"
-     data-date="{echo $articleDate | substr(0, 10)}"
-     data-user-id="{$articleUserId}"></div>
-<script type="text/babel" src="/support/news/article.js"></script>
+<p class="meta"><a href="?news/index">&larr; Back to News</a></p>
 
 <div class="card">
-  <h3>Content</h3>
-  <div class="article-content">{$articleContent}</div>
+  <h1>{$title}</h1>
+  <p class="meta">
+    Posted by {users}{$username}{/users} on {$created_at | substr (0, 10)}
+    {if $updated_at ne $created_at}
+      (Updated: {$updated_at | substr (0, 10)})
+    {/if}
+  </p>
+
+  <div style="margin-top: 20px; white-space: pre-wrap;">{$content}</div>
 </div>
 
-<a href="?news/index" class="btn btn-secondary">Back to News</a>
+{if $role eq 'admin'}
+  <p>
+    <a href="?news/new&edit={$id}" class="btn btn-secondary">Edit Article</a>
+  </p>
+{/if}
+
+{/news}

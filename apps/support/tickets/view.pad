@@ -1,19 +1,97 @@
-<div class="breadcrumb">
-  <a href="?tickets/index">My Tickets</a> &raquo; #{$ticketId} {$ticketTitle}
+{tickets $id=$id}
+
+<p class="meta"><a href="?tickets/index">&larr; Back to Tickets</a></p>
+
+<h1>Ticket #{$id}: {$title}</h1>
+
+{if $error}
+  <div class="alert alert-error">{$error}</div>
+{/if}
+
+{if $success}
+  <div class="alert alert-success">{$success}</div>
+{/if}
+
+<div class="card">
+  <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+    <div>
+      <strong>Type:</strong>
+      <span class="badge badge-{$type}">{$type}</span>
+    </div>
+    <div>
+      <strong>Status:</strong>
+      <span class="badge badge-{$status}">{$status | replace ('_', ' ')}</span>
+    </div>
+    <div>
+      <strong>Priority:</strong>
+      <span class="badge badge-{$priority}">{$priority}</span>
+    </div>
+  </div>
+
+  <p class="meta">Submitted by {users}{$username}{/users} on {$created_at | substr (0, 16)}</p>
+
+  <h3 style="margin-top: 20px;">Description</h3>
+  <div style="white-space: pre-wrap; background: #f8f9fa; padding: 15px; border-radius: 4px;">{$description}</div>
 </div>
 
-<div id="ticket-details"
-     data-id="{$ticketId}"
-     data-title="{!ticketTitle}"
-     data-type="{$ticketType}"
-     data-status="{$ticketStatus}"
-     data-priority="{$ticketPriority}"
-     data-role="{$role}"
-     data-user-id="{$user_id}"></div>
-<script type="text/babel" src="/support/tickets/details.js"></script>
+{if $role eq 'admin'}
+  <div class="card">
+    <h3>Admin Actions</h3>
+    <div style="display: flex; gap: 20px;">
+      <form method="post" style="display: flex; gap: 10px; align-items: center;">
+        <input type="hidden" name="action" value="status">
+        <label>Status:</label>
+        <select name="new_status">
+          <option value="open"{if $status eq 'open'} selected{/if}>Open</option>
+          <option value="in_progress"{if $status eq 'in_progress'} selected{/if}>In Progress</option>
+          <option value="resolved"{if $status eq 'resolved'} selected{/if}>Resolved</option>
+          <option value="closed"{if $status eq 'closed'} selected{/if}>Closed</option>
+        </select>
+        <button type="submit" class="btn btn-secondary">Update</button>
+      </form>
 
-<div id="ticket-comments"
-     data-ticket-id="{$ticketId}"
-     data-user-id="{$user_id}"
-     data-role="{$role}"></div>
-<script type="text/babel" src="/support/tickets/comments.js"></script>
+      <form method="post" style="display: flex; gap: 10px; align-items: center;">
+        <input type="hidden" name="action" value="priority">
+        <label>Priority:</label>
+        <select name="new_priority">
+          <option value="low"{if $priority eq 'low'} selected{/if}>Low</option>
+          <option value="medium"{if $priority eq 'medium'} selected{/if}>Medium</option>
+          <option value="high"{if $priority eq 'high'} selected{/if}>High</option>
+        </select>
+        <button type="submit" class="btn btn-secondary">Update</button>
+      </form>
+    </div>
+  </div>
+{/if}
+
+<div class="card">
+  <h3>Comments ({count 'ticket_comments'})</h3>
+
+  {ticket_comments}
+    <div class="post">
+      <div class="post-author">
+        {users}
+          {$username}
+          {if $role eq 'admin'}<span class="badge badge-admin">Admin</span>{/if}
+        {/users}
+        <span class="meta" style="margin-left: 10px;">{$created_at | substr (0, 16)}</span>
+      </div>
+      <div class="post-content">{$content}</div>
+    </div>
+  {else}
+    <p class="meta">No comments yet.</p>
+  {/ticket_comments}
+
+  <hr style="margin: 20px 0;">
+
+  <h4>Add Comment</h4>
+  <form method="post">
+    <input type="hidden" name="action" value="comment">
+    <div class="form-group">
+      <textarea name="content" placeholder="Write a comment..." required></textarea>
+    </div>
+    <button type="submit" class="btn">Add Comment</button>
+  </form>
+</div>
+
+{/tickets}

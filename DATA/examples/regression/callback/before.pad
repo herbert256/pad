@@ -1,0 +1,30 @@
+<table border=1>
+
+  <tr>
+    <th>Name</th>
+    <th>Salary</th>
+    <th>Bonus</th>
+    <th>Total</th>
+  </tr>
+  
+  {staff callback='before.php', before}
+
+    {first}
+      <tr>
+        <td>Totals</td>
+        <td>{$salaryTotal | %.2f}</td>
+        <td>{$bonusTotal  | %.2f}</td>
+        <td>{$totalTotal  | %.2f}</td>
+      </tr>
+    {/first}
+
+    <tr align="right" bgcolor="{switch 'yellow', 'pink'}">
+      <td align="left">{$name | capitalize}</td>
+      <td>{$salary | %.2f}</td>
+      <td>{$bonus  | %.2f}</td>
+      <td>{$total  | %.2f}</td>
+    </tr>
+
+  {/staff}
+ 
+</table>

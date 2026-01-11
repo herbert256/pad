@@ -1,33 +1,35 @@
 <?php
+
   requireLogin();
 
-  $board_id = $_GET['board_id'] ?? 0;
-  $topic_id = $_GET['topic_id'] ?? 0;
+  if (!db("CHECK forum_boards WHERE slug = '{0}'", [$board]))
+    padRedirect('forum/index');
 
-  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if ($topic_id) {
-      // New post to existing topic
-      $content = $_POST['content'] ?? '';
+  $title = 'New Topic';
+  $boardId = db("FIELD id FROM forum_boards WHERE slug = '{0}'", [$board]);
 
-      if ($content) {
-        db("INSERT INTO forum_posts (topic_id, user_id, content) VALUES ({0}, {1}, '{2}')",
-           [$topic_id, $user_id, $content]);
-        padRedirect("forum/topic&id=$topic_id");
-      }
+  $error = '';
+  $formTitle = '';
+  $formContent = '';
+
+  if ($padPost && $action == 'create') {
+    $formTitle = trim($topic_title ?? '');
+    $formContent = trim($content ?? '');
+
+    if (!$formTitle) {
+      $error = 'Topic title is required';
+    } elseif (!$formContent) {
+      $error = 'Topic content is required';
     } else {
-      // New topic
-      $title = $_POST['title'] ?? '';
-      $content = $_POST['content'] ?? '';
 
-      if ($title && $content && $board_id) {
-        $new_topic_id = db("INSERT INTO forum_topics (board_id, user_id, title) VALUES ({0}, {1}, '{2}')",
-                          [$board_id, $user_id, $title]);
-        db("INSERT INTO forum_posts (topic_id, user_id, content) VALUES ({0}, {1}, '{2}')",
-           [$new_topic_id, $user_id, $content]);
-        padRedirect("forum/topic&id=$new_topic_id");
-      }
+      $topicId = db("INSERT INTO forum_topics (board_id, user_id, title) VALUES ({0}, {1}, '{2}')",
+                    [$boardId, $user_id, $formTitle]);
+
+      db("INSERT INTO forum_posts (topic_id, user_id, content) VALUES ({0}, {1}, '{2}')",
+         [$topicId, $user_id, $formContent]);
+
+      padRedirect("forum/topic&id=$topicId");
     }
   }
 
-  $isReply = $topic_id ? true : false;
 ?>

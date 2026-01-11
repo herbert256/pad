@@ -1,10 +1,27 @@
-<h1>Login</h1>
+<div class="card" style="max-width: 400px; margin: 40px auto;">
+  <h1>Login</h1>
 
-{if $error}
-  <div class="error-message">{$error}</div>
-{/if}
+  {if $error}
+    <div class="alert alert-error">{$error}</div>
+  {/if}
 
-<div id="login-form"></div>
-<script type="text/babel" src="/support/auth/login.js"></script>
+  <form method="post">
+    <input type="hidden" name="action" value="login">
 
-<p>Don't have an account? <a href="?auth/register">Register here</a></p>
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" name="username" value="{$formUsername}" required autofocus>
+    </div>
+
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" name="password" required>
+    </div>
+
+    <button type="submit" class="btn">Login</button>
+  </form>
+
+  <p style="margin-top: 20px;">
+    Don't have an account? <a href="?auth/register">Register here</a>
+  </p>
+</div>

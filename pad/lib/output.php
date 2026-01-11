@@ -78,7 +78,8 @@
 
   function padWebNoHeaders ( $stop ) {
 
-    http_response_code ($stop);
+    if ( ! headers_sent () )
+      http_response_code ($stop);
 
   }
 

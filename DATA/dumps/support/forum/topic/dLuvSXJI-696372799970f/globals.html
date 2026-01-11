@@ -1,0 +1,789 @@
+<pre><b>GLOBALS</b>
+Array
+(
+    [_GET] =&gt; Array
+        (
+            [forum/topic] =&gt; 
+            [padReference] =&gt; 
+        )
+
+    [_POST] =&gt; Array
+        (
+        )
+
+    [_COOKIE] =&gt; Array
+        (
+            [padSesID] =&gt; AXwMjQLq
+            [padReqID] =&gt; i1LoHNRQ
+        )
+
+    [_FILES] =&gt; Array
+        (
+        )
+
+    [padApp] =&gt; support
+    [_SERVER] =&gt; Array
+        (
+            [HTTP_HOST] =&gt; penguin.linux.test
+            [HTTP_USER_AGENT] =&gt; Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36
+            [HTTP_ACCEPT] =&gt; */*
+            [HTTP_ACCEPT_ENCODING] =&gt; gzip
+            [HTTP_REFERER] =&gt; http://penguin.linux.test/develop/?build
+            [HTTP_COOKIE] =&gt; padSesID=AXwMjQLq; padReqID=i1LoHNRQ
+            [PATH] =&gt; /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+            [SERVER_SIGNATURE] =&gt; &lt;address&gt;Apache/2.4.65 (Debian) Server at penguin.linux.test Port 80&lt;/address&gt;
+
+            [SERVER_SOFTWARE] =&gt; Apache/2.4.65 (Debian)
+            [SERVER_NAME] =&gt; penguin.linux.test
+            [SERVER_ADDR] =&gt; 127.0.0.1
+            [SERVER_PORT] =&gt; 80
+            [REMOTE_ADDR] =&gt; 127.0.0.1
+            [DOCUMENT_ROOT] =&gt; /home/herbert/pad/www
+            [REQUEST_SCHEME] =&gt; http
+            [CONTEXT_PREFIX] =&gt; 
+            [CONTEXT_DOCUMENT_ROOT] =&gt; /home/herbert/pad/www
+            [SERVER_ADMIN] =&gt; webmaster@localhost
+            [SCRIPT_FILENAME] =&gt; /home/herbert/pad/www/support/index.php
+            [REMOTE_PORT] =&gt; 52948
+            [GATEWAY_INTERFACE] =&gt; CGI/1.1
+            [SERVER_PROTOCOL] =&gt; HTTP/1.1
+            [REQUEST_METHOD] =&gt; GET
+            [QUERY_STRING] =&gt; forum/topic&amp;padReference
+            [REQUEST_URI] =&gt; /support/?forum/topic&amp;padReference
+            [SCRIPT_NAME] =&gt; /support/index.php
+            [PHP_SELF] =&gt; /support/index.php
+            [REQUEST_TIME_FLOAT] =&gt; 1768125049.6269
+            [REQUEST_TIME] =&gt; 1768125049
+        )
+
+    [padOS] =&gt; lin
+    [padHome] =&gt; /home/herbert/pad
+    [padApps] =&gt; /home/herbert/pad/apps/
+    [padData] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [999] =&gt; Array
+                        (
+                        )
+
+                )
+
+        )
+
+    [padMicro] =&gt; 1768125049.6274
+    [padHR] =&gt; 165386678047692
+    [padDisplayErrors] =&gt; 1
+    [padErrorReporting] =&gt; 30719
+    [padErrorAction] =&gt; pad
+    [padErrorLevel] =&gt; all
+    [padErrorTry] =&gt; 
+    [padErrorLog] =&gt; 1
+    [padErrorReport] =&gt; 1
+    [padInfo] =&gt; xref
+    [padOutputType] =&gt; web
+    [padCache] =&gt; 
+    [padSqlPadHost] =&gt; 127.0.0.1
+    [padSqlPadDatabase] =&gt; pad
+    [padSqlPadUser] =&gt; pad
+    [padSqlPadPassword] =&gt; pad
+    [padSqlHost] =&gt; 127.0.0.1
+    [padSqlDatabase] =&gt; support
+    [padSqlUser] =&gt; support
+    [padSqlPassword] =&gt; support
+    [padDirMode] =&gt; 493
+    [padFileMode] =&gt; 420
+    [padFmtDate] =&gt; Y-m-d
+    [padFmtTime] =&gt; H:i:s
+    [padFmtTimestamp] =&gt; Y-m-d H:i:s
+    [padSessionVars] =&gt; Array
+        (
+            [0] =&gt; user_id
+            [1] =&gt; username
+            [2] =&gt; role
+        )
+
+    [padDataDefaultStart] =&gt; Array
+        (
+        )
+
+    [padDataDefaultEnd] =&gt; Array
+        (
+            [0] =&gt; sanitize
+        )
+
+    [padTidy] =&gt; 
+    [padMyTidy] =&gt; 
+    [padSelect] =&gt; Array
+        (
+            [users] =&gt; Array
+                (
+                    [key] =&gt; id
+                )
+
+            [forum_boards] =&gt; Array
+                (
+                    [key] =&gt; id
+                )
+
+            [forum_topics] =&gt; Array
+                (
+                    [key] =&gt; id
+                )
+
+            [forum_posts] =&gt; Array
+                (
+                    [key] =&gt; id
+                    [order] =&gt; created_at
+                )
+
+            [news] =&gt; Array
+                (
+                    [key] =&gt; id
+                )
+
+            [tickets] =&gt; Array
+                (
+                    [key] =&gt; id
+                )
+
+            [ticket_comments] =&gt; Array
+                (
+                    [key] =&gt; id
+                )
+
+            [openBugs] =&gt; Array
+                (
+                    [base] =&gt; tickets
+                    [where] =&gt; `type`=&#039;bug&#039; and `status`=&#039;open&#039;
+                    [order] =&gt; updated_at desc
+                )
+
+            [pendingTickets] =&gt; Array
+                (
+                    [base] =&gt; tickets
+                    [where] =&gt; `status` IN (&#039;open&#039;, &#039;in_progress&#039;)
+                    [order] =&gt; CASE `priority` WHEN &#039;high&#039; THEN 1 WHEN &#039;medium&#039; THEN 2 ELSE 3 END, created_at
+                )
+
+        )
+
+    [padRelations] =&gt; Array
+        (
+            [forum_topics] =&gt; Array
+                (
+                    [forum_boards] =&gt; Array
+                        (
+                            [key] =&gt; board_id
+                        )
+
+                    [users] =&gt; Array
+                        (
+                            [key] =&gt; user_id
+                        )
+
+                )
+
+            [forum_posts] =&gt; Array
+                (
+                    [forum_topics] =&gt; Array
+                        (
+                            [key] =&gt; topic_id
+                        )
+
+                    [users] =&gt; Array
+                        (
+                            [key] =&gt; user_id
+                        )
+
+                )
+
+            [news] =&gt; Array
+                (
+                    [users] =&gt; Array
+                        (
+                            [key] =&gt; user_id
+                        )
+
+                )
+
+            [tickets] =&gt; Array
+                (
+                    [users] =&gt; Array
+                        (
+                            [key] =&gt; user_id
+                        )
+
+                )
+
+            [ticket_comments] =&gt; Array
+                (
+                    [tickets] =&gt; Array
+                        (
+                            [key] =&gt; ticket_id
+                        )
+
+                    [users] =&gt; Array
+                        (
+                            [key] =&gt; user_id
+                        )
+
+                )
+
+        )
+
+    [padGzip] =&gt; 
+    [padCookies] =&gt; 1
+    [padNoNo] =&gt; 
+    [padFastLink] =&gt; 32
+    [padLibDirectory] =&gt; RecursiveDirectoryIterator Object
+        (
+            [pathName:SplFileInfo:private] =&gt; 
+            [glob:DirectoryIterator:private] =&gt; 
+            [subPathName:RecursiveDirectoryIterator:private] =&gt; 
+        )
+
+    [padLibIterator] =&gt; RecursiveIteratorIterator Object
+        (
+        )
+
+    [padLibOne] =&gt; SplFileInfo Object
+        (
+            [pathName:SplFileInfo:private] =&gt; /home/herbert/pad/apps/support/_lib/select.php
+            [fileName:SplFileInfo:private] =&gt; select.php
+        )
+
+    [padLibFile] =&gt; /home/herbert/pad/pad/lib/type.php
+    [padAt] =&gt; /home/herbert/pad/pad/at/_lib/search.php
+    [_REQUEST] =&gt; Array
+        (
+            [forum/topic] =&gt; 
+            [padReference] =&gt; 
+            [padSesID] =&gt; AXwMjQLq
+            [padReqID] =&gt; i1LoHNRQ
+        )
+
+    [pad] =&gt; 0
+    [padLvlId] =&gt; 1
+    [padAppTime] =&gt; 34385
+    [padRestart] =&gt; 
+    [padOutput] =&gt; 
+    [padStop] =&gt; 000
+    [padEtag] =&gt; 
+    [padLen] =&gt; 0
+    [padTime] =&gt; 1768125049
+    [padCacheStop] =&gt; 0
+    [padPageLevel] =&gt; Array
+        (
+        )
+
+    [padInclude] =&gt; 1
+    [padStrCnt] =&gt; -1
+    [padStrFunCnt] =&gt; 0
+    [padInfoCnt] =&gt; 1
+    [padEvalCnt] =&gt; -1
+    [padProviders] =&gt; Array
+        (
+        )
+
+    [padProvidersLvl] =&gt; Array
+        (
+        )
+
+    [pqStore] =&gt; Array
+        (
+        )
+
+    [padLastPush] =&gt; 
+    [padLastPull] =&gt; 
+    [padPost] =&gt; 
+    [padIgnored] =&gt; 
+    [padPage] =&gt; forum/topic
+    [padDir] =&gt; forum
+    [padPath] =&gt; /home/herbert/pad/apps/support/forum
+    [padStartPage] =&gt; forum/topic
+    [padSesID] =&gt; AXwMjQLq
+    [padRefID] =&gt; i1LoHNRQ
+    [padReqID] =&gt; dLuvSXJI
+    [padLog] =&gt; dLuvSXJI
+    [padSeqDefaultRows] =&gt; 10
+    [padSeqDefaultTries] =&gt; 10000
+    [padWebNoHeaders] =&gt; 
+    [padWebEtag304] =&gt; 1
+    [padContentType] =&gt; text/html; charset=UTF-8
+    [padBootShutdown] =&gt; 1
+    [padClientEtag] =&gt; 
+    [padClientDate] =&gt; 0
+    [padClientGzip] =&gt; 1
+    [padRequestScheme] =&gt; http
+    [padHttpHost] =&gt; penguin.linux.test
+    [padServerPort] =&gt; 80
+    [padScript] =&gt; /support/
+    [padUri] =&gt; /support/?forum/topic&amp;padReference
+    [padHost] =&gt; http://penguin.linux.test
+    [padGo] =&gt; /support/?
+    [padGoExt] =&gt; http://penguin.linux.test/support/?
+    [padInfoTrack] =&gt; 
+    [padInfoXml] =&gt; 
+    [padInfoStats] =&gt; 
+    [padInfoTrace] =&gt; 
+    [padInfoXref] =&gt; 1
+    [padInfoStarted] =&gt; 1
+    [padInfoXrefSource] =&gt; {forum_topics $id=$id}
+
+{forum_boards}
+  &lt;p class=&quot;meta&quot;&gt;
+    &lt;a href=&quot;?forum/index&quot;&gt;Forum&lt;/a&gt; &amp;rarr;
+    &lt;a href=&quot;?forum/board&amp;slug={$slug}&quot;&gt;{$name}&lt;/a&gt;
+  &lt;/p&gt;
+{/forum_boards}
+
+&lt;h1&gt;{$title}&lt;/h1&gt;
+&lt;p class=&quot;meta&quot;&gt;Started by {users}{$username}{/users} on {$created_at | substr (0, 16)}&lt;/p&gt;
+
+{if $is_locked}
+  &lt;div class=&quot;alert alert-info&quot;&gt;This topic is locked. No new replies can be posted.&lt;/div&gt;
+{/if}
+
+{if $error}
+  &lt;div class=&quot;alert alert-error&quot;&gt;{$error}&lt;/div&gt;
+{/if}
+
+{if $success}
+  &lt;div class=&quot;alert alert-success&quot;&gt;{$success}&lt;/div&gt;
+{/if}
+
+&lt;div class=&quot;card&quot;&gt;
+  {forum_posts}
+    &lt;div class=&quot;post&quot;&gt;
+      &lt;div class=&quot;post-author&quot;&gt;
+        {users}
+          {$username}
+          {if $role eq &#039;admin&#039;}&lt;span class=&quot;badge badge-admin&quot;&gt;Admin&lt;/span&gt;{/if}
+        {/users}
+        &lt;span class=&quot;meta&quot; style=&quot;margin-left: 10px;&quot;&gt;{$created_at | substr (0, 16)}&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;post-content&quot;&gt;{$content}&lt;/div&gt;
+    &lt;/div&gt;
+  {else}
+    &lt;p class=&quot;meta&quot;&gt;No posts yet.&lt;/p&gt;
+  {/forum_posts}
+&lt;/div&gt;
+
+{if $user_id}
+  {if $is_locked}
+  {else}
+    &lt;div class=&quot;card&quot;&gt;
+      &lt;h3&gt;Post a Reply&lt;/h3&gt;
+      &lt;form method=&quot;post&quot;&gt;
+        &lt;input type=&quot;hidden&quot; name=&quot;action&quot; value=&quot;reply&quot;&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;textarea name=&quot;content&quot; placeholder=&quot;Write your reply...&quot; required&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+        &lt;button type=&quot;submit&quot; class=&quot;btn&quot;&gt;Post Reply&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+  {/if}
+{else}
+  &lt;div class=&quot;card&quot;&gt;
+    &lt;p&gt;&lt;a href=&quot;?auth/login&quot;&gt;Login&lt;/a&gt; to post a reply.&lt;/p&gt;
+  &lt;/div&gt;
+{/if}
+
+{forum_boards}
+  &lt;p&gt;&lt;a href=&quot;?forum/board&amp;slug={$slug}&quot;&gt;&amp;larr; Back to {$name}&lt;/a&gt;&lt;/p&gt;
+{/forum_boards}
+
+{/forum_topics}
+    [padInfoTraceGet] =&gt; 
+    [padBetween] =&gt; internal
+    [padTypeCheck] =&gt; internal
+    [padTypeResult] =&gt; 
+    [padTypeGiven] =&gt; 
+    [padPairSet] =&gt; 
+    [padBaseSet] =&gt; 
+    [padPrmTypeSet] =&gt; none
+    [padTagResult] =&gt; internal
+    [padFirst] =&gt; i
+    [padWords] =&gt; Array
+        (
+            [0] =&gt; internal
+        )
+
+    [padTagCheck] =&gt; internal
+    [padTagOpts] =&gt; 
+    [padPrmParse] =&gt; Array
+        (
+        )
+
+    [padLvlIds] =&gt; Array
+        (
+            [0] =&gt; 1
+        )
+
+    [padParmParse] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padOpt] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                    [0] =&gt; 
+                )
+
+        )
+
+    [padPrm] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padParms] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padParmsType] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padSetLvl] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padSetOcc] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padTag] =&gt; Array
+        (
+            [0] =&gt; internal
+        )
+
+    [padType] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padGiven] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padPrefix] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padPair] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padPrmType] =&gt; Array
+        (
+            [0] =&gt; none
+        )
+
+    [padBase] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padOrg] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padSource] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padPipeBefore] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padPipeAfter] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padName] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padCurrent] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padKey] =&gt; Array
+        (
+            [0] =&gt; 1
+        )
+
+    [padWalk] =&gt; Array
+        (
+            [0] =&gt; start
+        )
+
+    [padWalkData] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padDone] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padOccur] =&gt; Array
+        (
+            [0] =&gt; 0
+        )
+
+    [padStart] =&gt; Array
+        (
+            [0] =&gt; 0
+        )
+
+    [padEnd] =&gt; Array
+        (
+            [0] =&gt; 0
+        )
+
+    [padOut] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padResult] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padHit] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padNull] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padElse] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padArray] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padCount] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padDefault] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padTagSeq] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padSaveLvl] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padDeleteLvl] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padSaveOcc] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padDeleteOcc] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padEndBase] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padStartBase] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padStartData] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padLvlFun] =&gt; Array
+        (
+            [0] =&gt; 
+        )
+
+    [padLvlFunVar] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padOccurStart] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padOptionsAppStart] =&gt; Array
+        (
+            [0] =&gt; Array
+                (
+                )
+
+        )
+
+    [padForceTagName] =&gt; 
+    [padForceDataName] =&gt; 
+    [padFalse] =&gt; 
+    [padNextPadLevel] =&gt; 0
+    [padHtmlAttrJson] =&gt; 
+    [padVar] =&gt; role
+    [padSessionStarted] =&gt; 1
+    [_SESSION] =&gt; Array
+        (
+        )
+
+    [user_id] =&gt; 0
+    [username] =&gt; 
+    [role] =&gt; 
+    [padBuildLib] =&gt; 
+    [padBuildBase] =&gt; @pad@
+    [padBuildDirs] =&gt; Array
+        (
+            [0] =&gt; /home/herbert/pad/apps/support
+            [1] =&gt; /home/herbert/pad/apps/support/forum
+        )
+
+    [padBuildNow] =&gt; /home/herbert/pad/apps/support
+    [padBuildPos] =&gt; 22
+    [padBuildDir] =&gt; /home/herbert/pad/apps/support/forum
+    [padBuildMrg] =&gt; Array
+        (
+            [0] =&gt; support
+            [1] =&gt; forum
+        )
+
+    [padV] =&gt; forum
+    [padCall] =&gt; /home/herbert/pad/apps/support/forum/topic.php
+    [padTry] =&gt; call/_try
+    [padCallPHP] =&gt; 
+    [padCallOB] =&gt; 
+    [padInfoTraceCall] =&gt; 
+    [padCallStart] =&gt; 165386679106769
+    [padBuildTrue] =&gt; 
+    [title] =&gt; PAD Support
+    [session_user] =&gt; 
+    [page] =&gt; test
+    [padTryException] =&gt; 
+    [padErrorFile] =&gt; /home/herbert/pad/apps/support/forum/topic.php
+    [padErrorGo] =&gt; /home/herbert/pad/apps/support/forum/topic.php:3 ERROR: Undefined variable $id
+    [padErrorLine] =&gt; 3
+    [padDumpToDirDone] =&gt; forum/topic/dLuvSXJI-696372799970f
+    [padExceptionText] =&gt; 
+    [padInfoTracePut] =&gt; 
+    [padException] =&gt; 
+    [padSqlConnect] =&gt; 
+    [padSqlPadConnect] =&gt; 
+    [padHeaders] =&gt; 
+    [_ENV] =&gt; Array
+        (
+            [USER] =&gt; root
+            [APACHE_RUN_DIR] =&gt; /var/run/apache2
+            [SYSTEMD_EXEC_PID] =&gt; 185
+            [APACHE_PID_FILE] =&gt; /var/run/apache2/apache2.pid
+            [JOURNAL_STREAM] =&gt; 8:5497
+            [PATH] =&gt; /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+            [INVOCATION_ID] =&gt; 89b5d6c5c1d04a6295fdb5262d549e28
+            [APACHE_LOCK_DIR] =&gt; /var/lock/apache2
+            [LANG] =&gt; C
+            [APACHE_RUN_USER] =&gt; herbert
+            [APACHE_RUN_GROUP] =&gt; herbert
+            [APACHE_LOG_DIR] =&gt; /var/log/apache2
+            [PWD] =&gt; /
+        )
+
+    [padPad] =&gt; 
+    [padCurlLast] =&gt; 
+)</pre>

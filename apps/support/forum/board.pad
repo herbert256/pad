@@ -1,12 +1,52 @@
-<h1>{$boardName}</h1>
+{forum_boards $slug=$slug}
+
+<h1>{$name}</h1>
+<p class="meta">{$description}</p>
 
 {if $user_id}
-  <a href="?forum/new&board_id={$boardId}" class="btn btn-primary">New Topic</a>
+  <p style="margin: 20px 0;">
+    <a href="?forum/new&board={$slug}" class="btn">New Topic</a>
+  </p>
 {else}
-  <p class="info-message">Please <a href="?auth/login">login</a> to create a new topic.</p>
+  <p class="meta" style="margin: 20px 0;">
+    <a href="?auth/login">Login</a> to create a new topic.
+  </p>
 {/if}
 
-<div id="topics-list"
-     data-board-id="{$boardId}"
-     data-logged-in="{$user_id ? 'true' : 'false'}"></div>
-<script type="text/babel" src="/support/forum/topics.js"></script>
+<div class="card">
+  {forum_topics sort="is_pinned desc, updated_at desc"}
+    {if first@forum_topics}
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Topic</th>
+            <th style="width: 100px; text-align: center;">Replies</th>
+            <th style="width: 100px; text-align: center;">Views</th>
+          </tr>
+        </thead>
+        <tbody>
+    {/if}
+          <tr>
+            <td>
+              {if $is_pinned}<span class="badge badge-feature">Pinned</span> {/if}
+              {if $is_locked}<span class="badge badge-closed">Locked</span> {/if}
+              <a href="?forum/topic&id={$id}"><strong>{$title}</strong></a>
+              <p class="meta" style="margin: 5px 0 0 0;">
+                by {users}{$username}{/users} on {$created_at | substr (0, 10)}
+              </p>
+            </td>
+            <td style="text-align: center;">{count 'forum_posts'}</td>
+            <td style="text-align: center;">{$views}</td>
+          </tr>
+    {if last@forum_topics}
+        </tbody>
+      </table>
+    {/if}
+  {else}
+    <p class="meta">No topics yet. Be the first to create one!</p>
+  {/forum_topics}
+</div>
+
+<p><a href="?forum/index">&larr; Back to Forum</a></p>
+
+{/forum_boards}

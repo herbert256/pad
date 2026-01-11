@@ -1,0 +1,54 @@
+<pre><b>App variables</b>
+      [_SELECT] 
+              [0] =&gt; array * from forum_boards order by `id` 
+      [_SQL] 
+              [0] =&gt; select * from forum_boards order by `id`
+      [_UNION] 
+              [0] =&gt; 
+      [_eval] 
+              [0] 
+                      [parse] 
+                              [100] 
+                                      [0] =&gt; forum_topics
+                                      [1] =&gt; VAL
+      [_eval_after] 
+              [0] 
+                      [100] 
+                              [0] =&gt; sort_order
+                              [1] =&gt; VAL
+              [1] 
+                      [100] 
+                              [0] =&gt; forum_topics
+                              [1] =&gt; VAL
+      [_eval_last] 
+              [100] 
+                      [0] =&gt; forum_topics
+                      [1] =&gt; VAL
+      [_eval_parse] 
+              [0] 
+                      [100] 
+                              [0] =&gt; sort_order
+                              [1] =&gt; VAL
+              [1] 
+                      [100] 
+                              [0] =&gt; forum_topics
+                              [1] =&gt; VAL
+      [description] =&gt; Questions about installing and configuring PAD
+      [group] =&gt; 
+      [id] =&gt; 1
+      [join] =&gt; 
+      [limit] =&gt; 
+      [name] =&gt; Installation &amp; Setup
+      [order] =&gt; order by `id`
+      [page] =&gt; test
+      [role] =&gt; 
+      [session_user] =&gt; 
+      [showTitle] =&gt; 1
+      [slug] =&gt; installation
+      [sort_order] =&gt; 1
+      [start] =&gt; 
+      [title] =&gt; Forum
+      [union] =&gt; union select * from forum_boards 
+      [user_id] =&gt; 0
+      [username] =&gt; 
+      [where] =&gt;</pre>

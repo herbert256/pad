@@ -1,31 +1,21 @@
-<!DOCTYPE html>
+_lib<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{$title} - PAD Support</title>
-  <link rel="stylesheet" href="/support/style.css">
-
-  <!-- React 18 (Development build) -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-
-  <!-- Babel Standalone (for in-browser JSX transformation) -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="nav-component" data-nav="{json 'nav' | ignore}" data-current-page="{$padPage}" data-logged-in="{$user_id ? 'true' : 'false'}"></div>
-<script type="text/babel" src="/support/index/nav.js"></script>
+{nav}
 
 <div class="container">
 @pad@
 </div>
 
 <footer>
-  <div class="container">
-    PAD Support - Powered by PAD Framework &copy; 2025
-  </div>
+  PAD Support - Powered by PAD Framework
 </footer>
 
 </body>

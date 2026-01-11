@@ -1,8 +1,8 @@
 <?php
 
-  if ( ! isset ( $type ) ) $dir = 'PAD Tags';
-  if ( ! isset ( $xref ) ) $dir = 'tag/pad';
-  if ( ! isset ( $item ) ) $dir = 'switch';
+  if ( ! isset ( $type ) ) $type = 'PAD Tags';
+  if ( ! isset ( $xref ) ) $xref = 'tag/pad';
+  if ( ! isset ( $item ) ) $item = 'switch';
 
   foreach ( file ( DAT . "reference/$xref/$item.txt", FILE_IGNORE_NEW_LINES ) as $file ) {
 

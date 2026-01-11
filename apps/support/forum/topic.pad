@@ -1,17 +1,66 @@
-<div class="breadcrumb">
-  <a href="?forum/index">Forum</a> &raquo;
-  {forum_boards $id=$boardId}
+{forum_topics $id=$id}
+
+{forum_boards}
+  <p class="meta">
+    <a href="?forum/index">Forum</a> &rarr;
     <a href="?forum/board&slug={$slug}">{$name}</a>
-  {/forum_boards}
-  &raquo; {$topicTitle}
+  </p>
+{/forum_boards}
+
+<h1>{$title}</h1>
+<p class="meta">Started by {users}{$username}{/users} on {$created_at | substr (0, 16)}</p>
+
+{if $is_locked}
+  <div class="alert alert-info">This topic is locked. No new replies can be posted.</div>
+{/if}
+
+{if $error}
+  <div class="alert alert-error">{$error}</div>
+{/if}
+
+{if $success}
+  <div class="alert alert-success">{$success}</div>
+{/if}
+
+<div class="card">
+  {forum_posts}
+    <div class="post">
+      <div class="post-author">
+        {users}
+          {$username}
+          {if $role eq 'admin'}<span class="badge badge-admin">Admin</span>{/if}
+        {/users}
+        <span class="meta" style="margin-left: 10px;">{$created_at | substr (0, 16)}</span>
+      </div>
+      <div class="post-content">{$content}</div>
+    </div>
+  {else}
+    <p class="meta">No posts yet.</p>
+  {/forum_posts}
 </div>
 
-<h1>{$topicTitle}</h1>
+{if $user_id}
+  {if $is_locked}
+  {else}
+    <div class="card">
+      <h3>Post a Reply</h3>
+      <form method="post">
+        <input type="hidden" name="action" value="reply">
+        <div class="form-group">
+          <textarea name="content" placeholder="Write your reply..." required></textarea>
+        </div>
+        <button type="submit" class="btn">Post Reply</button>
+      </form>
+    </div>
+  {/if}
+{else}
+  <div class="card">
+    <p><a href="?auth/login">Login</a> to post a reply.</p>
+  </div>
+{/if}
 
-{reactData id='topic-header', provider='topic', $id=$topicId}
-{reactData id='topic-posts', provider='posts', $topic_id=$topicId}
+{forum_boards}
+  <p><a href="?forum/board&slug={$slug}">&larr; Back to {$name}</a></p>
+{/forum_boards}
 
-<div id="topic-display"
-     data-user-id="{$user_id}"
-     data-logged-in="{$user_id ? 'true' : 'false'}"></div>
-<script type="text/babel" src="/support/forum/topic-display.js"></script>
+{/forum_topics}

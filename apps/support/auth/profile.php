@@ -1,14 +1,55 @@
 <?php
+
   requireLogin();
 
-  $currentUser = getCurrentUser();
-  $profileUsername = $currentUser['username'];
-  $profileEmail = $currentUser['email'];
-  $profileRole = $currentUser['role'];
-  $profileCreated = $currentUser['created_at'];
+  $title = 'My Profile';
+  $error = '';
+  $success = '';
 
-  // Get user statistics
-  $topicCount = db("FIELD COUNT(*) FROM forum_topics WHERE user_id={0}", [$user_id]);
-  $postCount = db("FIELD COUNT(*) FROM forum_posts WHERE user_id={0}", [$user_id]);
-  $ticketCount = db("FIELD COUNT(*) FROM tickets WHERE user_id={0}", [$user_id]);
+  $user = getCurrentUser();
+  $formEmail = $user['email'];
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST' && $action == 'update') {
+    $formEmail = trim($email ?? '');
+    $currentPassword = $current_password ?? '';
+    $newPassword = $new_password ?? '';
+    $newPassword2 = $new_password2 ?? '';
+
+    if (!filter_var($formEmail, FILTER_VALIDATE_EMAIL)) {
+      $error = 'Invalid email address';
+    } elseif ($formEmail !== $user['email']) {
+
+      $exists = db("CHECK users WHERE email='{0}' AND id<>{1}", [$formEmail, $user_id]);
+      if ($exists) {
+        $error = 'Email already in use';
+      }
+    }
+
+    if (!$error && $newPassword) {
+      if (!$currentPassword) {
+        $error = 'Current password required to change password';
+      } elseif (!verifyPassword($currentPassword, $user['password_hash'])) {
+        $error = 'Current password is incorrect';
+      } elseif (strlen($newPassword) < 6) {
+        $error = 'New password must be at least 6 characters';
+      } elseif ($newPassword !== $newPassword2) {
+        $error = 'New passwords do not match';
+      }
+    }
+
+    if (!$error) {
+      if ($newPassword) {
+        $hash = hashPassword($newPassword);
+        db("UPDATE users SET email='{0}', password_hash='{1}' WHERE id={2}",
+           [$formEmail, $hash, $user_id]);
+      } else {
+        db("UPDATE users SET email='{0}' WHERE id={1}", [$formEmail, $user_id]);
+      }
+      $success = 'Profile updated successfully';
+      $user = getCurrentUser();
+    }
+  }
+
+  $memberSince = $user['created_at'];
+
 ?>

@@ -124,7 +124,7 @@ Many type handlers delegate to specialized subsystems:
 - `get/` directory for content retrieval
 - `call/` directory for function invocation
 - `PQ/start/types/` for operation-specific processing
-- `types/go/` for secondary processing stages
+- `types/_go/` for secondary processing stages
 
 ### Tag System Integration
 - `pad.php` and `app.php` load custom tag definitions

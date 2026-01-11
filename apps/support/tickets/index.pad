@@ -1,8 +1,79 @@
-<h1>My Tickets</h1>
+<h1>{if $showAll}All Tickets{else}My Tickets{/if}</h1>
 
-<a href="?tickets/new" class="btn btn-primary">New Ticket</a>
+<p style="margin-bottom: 20px;">
+  <a href="?tickets/new" class="btn">Submit New Ticket</a>
+</p>
 
-<div id="tickets-list"
-     data-user-id="{$user_id}"
-     data-role="{$role}"></div>
-<script type="text/babel" src="/support/tickets/list.js"></script>
+<div class="card">
+{if $showAll}
+  {tickets sort="status, created_at desc"}
+    {if first@tickets}
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Priority</th>
+            <th>Author</th>
+            <th>Comments</th>
+            <th>Created</th>
+          </tr>
+        </thead>
+        <tbody>
+    {/if}
+          <tr>
+            <td>#{$id}</td>
+            <td><a href="?tickets/view&id={$id}">{$title}</a></td>
+            <td><span class="badge badge-{$type}">{$type}</span></td>
+            <td><span class="badge badge-{$status}">{$status | replace ('_', ' ')}</span></td>
+            <td><span class="badge badge-{$priority}">{$priority}</span></td>
+            <td>{users}{$username}{/users}</td>
+            <td>{count 'ticket_comments'}</td>
+            <td class="meta">{$created_at | substr (0, 10)}</td>
+          </tr>
+    {if last@tickets}
+        </tbody>
+      </table>
+    {/if}
+  {else}
+    <p class="meta">No tickets found.</p>
+  {/tickets}
+{else}
+  {users $id=$user_id}
+    {tickets sort="created_at desc"}
+      {if first@tickets}
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Type</th>
+              <th>Status</th>
+              <th>Priority</th>
+              <th>Comments</th>
+              <th>Created</th>
+            </tr>
+          </thead>
+          <tbody>
+      {/if}
+            <tr>
+              <td>#{$id}</td>
+              <td><a href="?tickets/view&id={$id}">{$title}</a></td>
+              <td><span class="badge badge-{$type}">{$type}</span></td>
+              <td><span class="badge badge-{$status}">{$status | replace ('_', ' ')}</span></td>
+              <td><span class="badge badge-{$priority}">{$priority}</span></td>
+              <td>{count 'ticket_comments'}</td>
+              <td class="meta">{$created_at | substr (0, 10)}</td>
+            </tr>
+      {if last@tickets}
+          </tbody>
+        </table>
+      {/if}
+    {else}
+      <p class="meta">No tickets found.</p>
+    {/tickets}
+  {/users}
+{/if}
+</div>

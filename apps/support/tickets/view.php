@@ -1,43 +1,48 @@
 <?php
+
   requireLogin();
 
-  $id = $_GET['id'] ?? 0;
+  if (!db("CHECK tickets WHERE id = {0}", [$id]))
+    padRedirect('tickets/index');
 
-  if (!$id) {
+  $ticketUserId = db("FIELD user_id FROM tickets WHERE id = {0}", [$id]);
+  if ($role !== 'admin' && $ticketUserId != $user_id) {
     padRedirect('tickets/index');
   }
 
-  $ticket = db("RECORD * FROM tickets WHERE id={0}", [$id]);
+  $title = "Ticket #$id";
+  $error = '';
+  $success = '';
 
-  if (!$ticket) {
-    padRedirect('tickets/index');
-  }
+  if ($padPost) {
 
-  // Check if user owns ticket or is admin
-  if ($ticket['user_id'] != $user_id && $role !== 'admin') {
-    padRedirect('tickets/index');
-  }
+    if ($action == 'comment') {
+      $commentContent = trim($content ?? '');
+      if (!$commentContent) {
+        $error = 'Comment is required';
+      } else {
+        db("INSERT INTO ticket_comments (ticket_id, user_id, content) VALUES ({0}, {1}, '{2}')",
+           [$id, $user_id, $commentContent]);
+        db("UPDATE tickets SET updated_at = NOW() WHERE id = {0}", [$id]);
+        $success = 'Comment added';
+      }
+    }
 
-  $ticketId = $ticket['id'];
-  $ticketTitle = $ticket['title'];
-  $ticketType = $ticket['type'];
-  $ticketStatus = $ticket['status'];
-  $ticketPriority = $ticket['priority'];
+    if ($action == 'status' && $role === 'admin') {
+      if (in_array($new_status, ['open', 'in_progress', 'resolved', 'closed'])) {
+        db("UPDATE tickets SET status = '{0}', updated_at = NOW() WHERE id = {1}",
+           [$new_status, $id]);
+        $success = 'Status updated';
+      }
+    }
 
-  // Handle comment submission
-  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment'])) {
-    $comment = $_POST['comment'];
-    if ($comment) {
-      db("INSERT INTO ticket_comments (ticket_id, user_id, content) VALUES ({0}, {1}, '{2}')",
-         [$ticketId, $user_id, $comment]);
-      padRedirect("tickets/view&id=$ticketId");
+    if ($action == 'priority' && $role === 'admin') {
+      if (in_array($new_priority, ['low', 'medium', 'high'])) {
+        db("UPDATE tickets SET priority = '{0}', updated_at = NOW() WHERE id = {1}",
+           [$new_priority, $id]);
+        $success = 'Priority updated';
+      }
     }
   }
 
-  // Handle status update (admin only)
-  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status']) && $role === 'admin') {
-    $newStatus = $_POST['status'];
-    db("UPDATE tickets SET status='{0}' WHERE id={1}", [$newStatus, $ticketId]);
-    padRedirect("tickets/view&id=$ticketId");
-  }
 ?>

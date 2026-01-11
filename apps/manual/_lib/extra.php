@@ -1,0 +1,46 @@
+<?php
+
+
+  function getExtra ( $base ) {
+
+    $file = "$base.extra";
+
+    if ( ! file_exists ( $file ) )
+      return [];
+
+    $data = padFileGet ($file);
+    $data = str_replace ( "\n", ',', $data);
+    $array = padExplode ( $data , ',');
+
+    return $array;
+
+  }
+
+  function getExtraFiles ($dir) {
+
+    if ( ! is_dir ( $dir) )
+      return [];
+
+    $files = [];
+
+    $dir = new RecursiveDirectoryIterator ( $dir );
+    $dir = new RecursiveIteratorIterator  ( $dir );
+
+    foreach ( $dir as $one ) {
+
+      $path = padCorrectPath ( $one->getPathname() );
+      $file = str_replace ( APP, '', $path );
+
+      if ( substr ( $path, -1   ) == '.'       ) continue;
+      if ( str_ends_with ( $file, '.DS_Store') ) continue;
+
+      $files [] = $file;
+
+    }
+
+    return $files;
+
+  }
+
+
+?>

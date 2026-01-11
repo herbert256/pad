@@ -4,7 +4,7 @@
 
     $padTagGo = COMMON . '_tags/' . $padTag [$pad];
 
-    return include PAD . 'types/go/tag.php';
+    return include PAD . 'types/_go/tag.php';
 
   }
 
