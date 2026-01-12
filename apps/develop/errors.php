@@ -1,5 +1,8 @@
 <?php
 
+  padDeleteDataDir ( DAT . 'dumps' );
+  getRegression ();
+
   $dir = new RecursiveDirectoryIterator ( DAT . 'dumps' );
   $dir = new RecursiveIteratorIterator  ( $dir );
 

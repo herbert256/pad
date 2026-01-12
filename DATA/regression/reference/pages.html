@@ -1,303 +1,172 @@
 <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
   <tr>
     <td>
-  <center>
-
-    
-      <hr>
-      App: manual - Page: callback/before 
-      <br> 
-
- 
-
-
-
-   
-    <table border="1" cellpadding="10" cellspacing="0">
-  
-
-  
-
-      
+      <center>
+        <hr>
+        App: manual - Page: callback/before<br>
+        <table border="1" cellpadding="10" cellspacing="0">
           <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2"></font>
+            <th bgcolor="#DDDDDD">
+              PHP<br>
+              <font size="-2"></font>
             </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">callback/before.pad</font>
+            <th bgcolor="#DDDDDD">
+              HTML<br>
+              <font size="-2">callback/before.pad</font>
             </th>
-          
-          
-            <th bgcolor="#dddddd">
+            <th bgcolor="#DDDDDD">
               Result
             </th>
-          
-        </tr>
-      
-
-      <tr>
-        
-          <td style="vertical-align:top"> </td>
-        
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue">staff </font><font color="red">callback=<font color="black">'</font>before.php<font color="black">'</font><font color="black">,</font> before</font>}</b><br><br>    <b>{<font color="blue">first</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;Totals&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$salaryTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$bonusTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$totalTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">first</font><font color="red"></font>}</b><br><br>    &lt;tr align="right" bgcolor="<b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>yellow<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pink<font color="black">'</font></font>}</b>"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br> <br>&lt;/table&gt;</code></pre></td>
-        
-        
-          <td style="vertical-align:top">
-  <div id="padAjax6kv2VXPX"></div>
-
-<script>
-  padAjax6kv2VXPX = new XMLHttpRequest();
-  padAjax6kv2VXPX.onreadystatechange=function() {
-    if (padAjax6kv2VXPX.readyState === 4) {
-      if (padAjax6kv2VXPX.status === 200) {
-        document.getElementById("padAjax6kv2VXPX").innerHTML=padAjax6kv2VXPX.responseText;
-      } else {
-        document.getElementById("padAjax6kv2VXPX").innerHTML=padAjax6kv2VXPX.statusText;
-      }
-    }
-  }
-  padAjax6kv2VXPX.open("GET","http://penguin.linux.test/manual/?callback/before&padInclude&padSesID=AXwMjQLq&padReqID=CwlA0nwH",true);
-  padAjax6kv2VXPX.send();
-</script>
-</td>
-        
-      </tr>
-
-    
-
-  
-    </table>
-  
-
-
-
- <br>
-    
-      <hr>
-      App: manual - Page: callback/demand 
-      <br> 
-
- 
-
-
-
-   
-    <table border="1" cellpadding="10" cellspacing="0">
-  
-
-  
-
-      
+          </tr>
           <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2"></font>
+            <td style="vertical-align:top"></td>
+            <td style="vertical-align:top">
+              <pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue">staff </font><font color="red">callback=<font color="black">'</font>before.php<font color="black">'</font><font color="black">,</font> before</font>}</b><br><br>    <b>{<font color="blue">first</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;Totals&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$salaryTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$bonusTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$totalTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">first</font><font color="red"></font>}</b><br><br>    &lt;tr align="right" bgcolor="<b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>yellow<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pink<font color="black">'</font></font>}</b>"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br> <br>&lt;/table&gt;</code></pre>
+            </td>
+            <td style="vertical-align:top">
+              <div id="padAjaxKIEyK6DM"></div>
+              <script>
+              padAjaxKIEyK6DM = new XMLHttpRequest();
+              padAjaxKIEyK6DM.onreadystatechange=function() {
+              if (padAjaxKIEyK6DM.readyState === 4) {
+              if (padAjaxKIEyK6DM.status === 200) {
+              document.getElementById("padAjaxKIEyK6DM").innerHTML=padAjaxKIEyK6DM.responseText;
+              } else {
+              document.getElementById("padAjaxKIEyK6DM").innerHTML=padAjaxKIEyK6DM.statusText;
+              }
+              }
+              }
+              padAjaxKIEyK6DM.open("GET","http://penguin.linux.test/manual/?callback/before&padInclude&padSesID=AXwMjQLq&padReqID=JSGu8nPb",true);
+              padAjaxKIEyK6DM.send();
+              </script>
+            </td>
+          </tr>
+        </table><br>
+        <hr>
+        App: manual - Page: callback/demand<br>
+        <table border="1" cellpadding="10" cellspacing="0">
+          <tr>
+            <th bgcolor="#DDDDDD">
+              PHP<br>
+              <font size="-2"></font>
             </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">callback/demand.pad</font>
+            <th bgcolor="#DDDDDD">
+              HTML<br>
+              <font size="-2">callback/demand.pad</font>
             </th>
-          
-          
-            <th bgcolor="#dddddd">
+            <th bgcolor="#DDDDDD">
               Result
             </th>
-          
-        </tr>
-      
-
-      <tr>
-        
-          <td style="vertical-align:top"> </td>
-        
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue">staff </font><font color="red">callback=<font color="black">'</font>demand.php<font color="black">'</font><font color="black">,</font> demand</font>}</b><br><br>    &lt;tr align="right" <br>        bgcolor="<b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>yellow<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pink<font color="black">'</font></font>}</b>"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><br>  &lt;tr&gt;<br>    &lt;td&gt;Totals&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$salaryTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$bonusTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$totalTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br> <br>&lt;/table&gt;</code></pre></td>
-        
-        
-          <td style="vertical-align:top">
-  <div id="padAjaxprFhrp0F"></div>
-
-<script>
-  padAjaxprFhrp0F = new XMLHttpRequest();
-  padAjaxprFhrp0F.onreadystatechange=function() {
-    if (padAjaxprFhrp0F.readyState === 4) {
-      if (padAjaxprFhrp0F.status === 200) {
-        document.getElementById("padAjaxprFhrp0F").innerHTML=padAjaxprFhrp0F.responseText;
-      } else {
-        document.getElementById("padAjaxprFhrp0F").innerHTML=padAjaxprFhrp0F.statusText;
-      }
-    }
-  }
-  padAjaxprFhrp0F.open("GET","http://penguin.linux.test/manual/?callback/demand&padInclude&padSesID=AXwMjQLq&padReqID=CwlA0nwH",true);
-  padAjaxprFhrp0F.send();
-</script>
-</td>
-        
-      </tr>
-
-    
-
-  
-    </table>
-  
-
-
-
- <br>
-    
-      <hr>
-      App: manual - Page: check/miscellaneous/parms 
-      <br> 
-
- 
-
-
-
-   
-    <table border="1" cellpadding="10" cellspacing="0">
-  
-
-  
-
-      
+          </tr>
           <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">check/miscellaneous/parms.php</font>
+            <td style="vertical-align:top"></td>
+            <td style="vertical-align:top">
+              <pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue">staff </font><font color="red">callback=<font color="black">'</font>demand.php<font color="black">'</font><font color="black">,</font> demand</font>}</b><br><br>    &lt;tr align="right" <br>        bgcolor="<b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>yellow<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pink<font color="black">'</font></font>}</b>"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><br>  &lt;tr&gt;<br>    &lt;td&gt;Totals&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$salaryTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$bonusTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$totalTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br> <br>&lt;/table&gt;</code></pre>
+            </td>
+            <td style="vertical-align:top">
+              <div id="padAjaxY1Wy6snc"></div>
+              <script>
+              padAjaxY1Wy6snc = new XMLHttpRequest();
+              padAjaxY1Wy6snc.onreadystatechange=function() {
+              if (padAjaxY1Wy6snc.readyState === 4) {
+              if (padAjaxY1Wy6snc.status === 200) {
+              document.getElementById("padAjaxY1Wy6snc").innerHTML=padAjaxY1Wy6snc.responseText;
+              } else {
+              document.getElementById("padAjaxY1Wy6snc").innerHTML=padAjaxY1Wy6snc.statusText;
+              }
+              }
+              }
+              padAjaxY1Wy6snc.open("GET","http://penguin.linux.test/manual/?callback/demand&padInclude&padSesID=AXwMjQLq&padReqID=JSGu8nPb",true);
+              padAjaxY1Wy6snc.send();
+              </script>
+            </td>
+          </tr>
+        </table><br>
+        <hr>
+        App: check - Page: miscellaneous/parms<br>
+        <table border="1" cellpadding="10" cellspacing="0">
+          <tr>
+            <th bgcolor="#DDDDDD">
+              PHP<br>
+              <font size="-2">miscellaneous/parms.php</font>
             </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">check/miscellaneous/parms.pad</font>
+            <th bgcolor="#DDDDDD">
+              HTML<br>
+              <font size="-2">miscellaneous/parms.pad</font>
             </th>
-          
-          
-            <th bgcolor="#dddddd">
+            <th bgcolor="#DDDDDD">
               Result
             </th>
-          
-        </tr>
-      
-
-      <tr>
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $abc </span><span style="color: #007700">= </span><span style="color: #DD0000">'abc'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$xyz </span><span style="color: #007700">= </span><span style="color: #DD0000">'xyz'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$name  </span><span style="color: #007700">= </span><span style="color: #DD0000">'name'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$phone </span><span style="color: #007700">= </span><span style="color: #DD0000">'phone'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">define </span><span style="color: #007700">( </span><span style="color: #DD0000">"xxxx"</span><span style="color: #007700">, [ </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">22</span><span style="color: #007700">, </span><span style="color: #0000BB">333</span><span style="color: #007700">, </span><span style="color: #0000BB">4444</span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">$php_array_parms_1 </span><span style="color: #007700">[</span><span style="color: #DD0000">'xyz'</span><span style="color: #007700">] = </span><span style="color: #0000BB">789</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_1 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">0</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'bob-p1'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_parms_1 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">0</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-3425'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_1 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'jim'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_parms_1 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-4364'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_1 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'joe'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_parms_1 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-3422'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_1 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'jerry'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_parms_1 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-4973'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_1 </span><span style="color: #007700">[</span><span style="color: #DD0000">'abc'</span><span style="color: #007700">] = </span><span style="color: #0000BB">123</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_vars_1 </span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'bob-v1'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_vars_1 </span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-3425'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_vars_1 </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'jim'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_vars_1 </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-4364'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_vars_1 </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'joe'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_vars_1 </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-3422'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_vars_1 </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'jerry'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_vars_1 </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-4973'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_2 </span><span style="color: #007700">[</span><span style="color: #DD0000">'xyz'</span><span style="color: #007700">] = </span><span style="color: #0000BB">789</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_2 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">0</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'bob-p2'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_parms_2 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">0</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-3425'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_2 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'jim'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_parms_2 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-4364'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_2 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'joe'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_parms_2 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-3422'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_2 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'jerry'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_parms_2 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-4973'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_2 </span><span style="color: #007700">[</span><span style="color: #DD0000">'abc'</span><span style="color: #007700">] = </span><span style="color: #0000BB">123</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_vars_2 </span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'bob-v2'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_vars_2 </span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-3425'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_vars_2 </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'jim'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_vars_2 </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-4364'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_vars_2 </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'joe'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_vars_2 </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-3422'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_vars_2 </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'jerry'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_vars_2 </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-4973'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
-        
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;h3&gt;constant&lt;/h3&gt;<br><br>&lt;ul&gt;<br>  <b>{<font color="blue">xxxx</font><font color="red"></font>}</b><br>    &lt;li&gt;<b>{<font color="green"><font color="red">$</font>xxxx</font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue">xxxx</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br><br><br>&lt;h3&gt;PHP array 1&lt;/h3&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">php_array_vars_1</font><font color="red"></font>}</b><br>  &lt;tr bgcolor="<b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>pink<font color="black">'</font> <font color="black">,</font> <font color="black">'</font>orange<font color="black">'</font></font>}</b>"&gt;<br>    &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  <b>{/<font color="blue">php_array_vars_1</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
-        
-        
-          <td style="vertical-align:top">
-  <div id="padAjaxDWtwpzoZ"></div>
-
-<script>
-  padAjaxDWtwpzoZ = new XMLHttpRequest();
-  padAjaxDWtwpzoZ.onreadystatechange=function() {
-    if (padAjaxDWtwpzoZ.readyState === 4) {
-      if (padAjaxDWtwpzoZ.status === 200) {
-        document.getElementById("padAjaxDWtwpzoZ").innerHTML=padAjaxDWtwpzoZ.responseText;
-      } else {
-        document.getElementById("padAjaxDWtwpzoZ").innerHTML=padAjaxDWtwpzoZ.statusText;
-      }
-    }
-  }
-  padAjaxDWtwpzoZ.open("GET","http://penguin.linux.test/manual/?check/miscellaneous/parms&padInclude&padSesID=AXwMjQLq&padReqID=CwlA0nwH",true);
-  padAjaxDWtwpzoZ.send();
-</script>
-</td>
-        
-      </tr>
-
-    
-
-  
-    </table>
-  
-
-
-
- <br>
-    
-      <hr>
-      App: manual - Page: check/tags/switch 
-      <br> 
-
- 
-
-
-
-   
-    <table border="1" cellpadding="10" cellspacing="0">
-  
-
-  
-
-      
+          </tr>
           <tr>
-          
-            <th bgcolor="#dddddd">
-              PHP <br><font size="-2">check/tags/switch.php</font>
+            <td style="vertical-align:top">
+              <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $abc </span><span style="color: #007700">= </span><span style="color: #DD0000">'abc'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$xyz </span><span style="color: #007700">= </span><span style="color: #DD0000">'xyz'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$name  </span><span style="color: #007700">= </span><span style="color: #DD0000">'name'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$phone </span><span style="color: #007700">= </span><span style="color: #DD0000">'phone'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">define </span><span style="color: #007700">( </span><span style="color: #DD0000">"xxxx"</span><span style="color: #007700">, [ </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #0000BB">22</span><span style="color: #007700">, </span><span style="color: #0000BB">333</span><span style="color: #007700">, </span><span style="color: #0000BB">4444</span><span style="color: #007700">] );<br><br>  </span><span style="color: #0000BB">$php_array_parms_1 </span><span style="color: #007700">[</span><span style="color: #DD0000">'xyz'</span><span style="color: #007700">] = </span><span style="color: #0000BB">789</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_1 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">0</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'bob-p1'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_parms_1 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">0</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-3425'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_1 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'jim'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_parms_1 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-4364'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_1 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'joe'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_parms_1 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-3422'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_1 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'jerry'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_parms_1 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-4973'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_1 </span><span style="color: #007700">[</span><span style="color: #DD0000">'abc'</span><span style="color: #007700">] = </span><span style="color: #0000BB">123</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_vars_1 </span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'bob-v1'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_vars_1 </span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-3425'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_vars_1 </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'jim'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_vars_1 </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-4364'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_vars_1 </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'joe'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_vars_1 </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-3422'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_vars_1 </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'jerry'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_vars_1 </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-4973'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_2 </span><span style="color: #007700">[</span><span style="color: #DD0000">'xyz'</span><span style="color: #007700">] = </span><span style="color: #0000BB">789</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_2 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">0</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'bob-p2'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_parms_2 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">0</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-3425'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_2 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'jim'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_parms_2 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-4364'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_2 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'joe'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_parms_2 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-3422'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_2 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'jerry'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_parms_2 </span><span style="color: #007700">[</span><span style="color: #DD0000">'vars'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-4973'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_parms_2 </span><span style="color: #007700">[</span><span style="color: #DD0000">'abc'</span><span style="color: #007700">] = </span><span style="color: #0000BB">123</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_vars_2 </span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'bob-v2'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_vars_2 </span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-3425'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_vars_2 </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'jim'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_vars_2 </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-4364'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_vars_2 </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'joe'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_vars_2 </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-3422'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$php_array_vars_2 </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]  = </span><span style="color: #DD0000">'jerry'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$php_array_vars_2 </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'phone'</span><span style="color: #007700">] = </span><span style="color: #DD0000">'555-4973'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+            </td>
+            <td style="vertical-align:top">
+              <pre><code style="color: #000000">&lt;h3&gt;constant&lt;/h3&gt;<br><br>&lt;ul&gt;<br>  <b>{<font color="blue">xxxx</font><font color="red"></font>}</b><br>    &lt;li&gt;<b>{<font color="green"><font color="red">$</font>xxxx</font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue">xxxx</font><font color="red"></font>}</b><br>&lt;/ul&gt;<br><br><br>&lt;h3&gt;PHP array 1&lt;/h3&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">php_array_vars_1</font><font color="red"></font>}</b><br>  &lt;tr bgcolor="<b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>pink<font color="black">'</font> <font color="black">,</font> <font color="black">'</font>orange<font color="black">'</font></font>}</b>"&gt;<br>    &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  <b>{/<font color="blue">php_array_vars_1</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+            </td>
+            <td style="vertical-align:top">
+              <div id="padAjaxlaS4KSPn"></div>
+              <script>
+              padAjaxlaS4KSPn = new XMLHttpRequest();
+              padAjaxlaS4KSPn.onreadystatechange=function() {
+              if (padAjaxlaS4KSPn.readyState === 4) {
+              if (padAjaxlaS4KSPn.status === 200) {
+              document.getElementById("padAjaxlaS4KSPn").innerHTML=padAjaxlaS4KSPn.responseText;
+              } else {
+              document.getElementById("padAjaxlaS4KSPn").innerHTML=padAjaxlaS4KSPn.statusText;
+              }
+              }
+              }
+              padAjaxlaS4KSPn.open("GET","http://penguin.linux.test/check/?miscellaneous/parms&padInclude&padSesID=AXwMjQLq&padReqID=JSGu8nPb",true);
+              padAjaxlaS4KSPn.send();
+              </script>
+            </td>
+          </tr>
+        </table><br>
+        <hr>
+        App: check - Page: tags/switch<br>
+        <table border="1" cellpadding="10" cellspacing="0">
+          <tr>
+            <th bgcolor="#DDDDDD">
+              PHP<br>
+              <font size="-2">tags/switch.php</font>
             </th>
-          
-          
-            <th bgcolor="#dddddd">
-              HTML <br><font size="-2">check/tags/switch.pad</font>
+            <th bgcolor="#DDDDDD">
+              HTML<br>
+              <font size="-2">tags/switch.pad</font>
             </th>
-          
-          
-            <th bgcolor="#dddddd">
+            <th bgcolor="#DDDDDD">
               Result
             </th>
-          
-        </tr>
-      
-
-      <tr>
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $users </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'bob'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'phone' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'555-3425' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'jim'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'phone' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'555-4364' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'joe'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'phone' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'555-3422' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'jerry'</span><span style="color: #007700">, </span><span style="color: #DD0000">'phone' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'555-4973' </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
-        
-        
-          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table border="1"&gt;<br>  <b>{<font color="blue">users</font><font color="red"></font>}</b><br>    &lt;tr bgcolor="<b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>pink<font color="black">'</font> <font color="black">,</font> <font color="black">'</font>orange<font color="black">'</font></font>}</b>"&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">users</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre></td>
-        
-        
-          <td style="vertical-align:top">
-  <div id="padAjax4B0MThME"></div>
-
-<script>
-  padAjax4B0MThME = new XMLHttpRequest();
-  padAjax4B0MThME.onreadystatechange=function() {
-    if (padAjax4B0MThME.readyState === 4) {
-      if (padAjax4B0MThME.status === 200) {
-        document.getElementById("padAjax4B0MThME").innerHTML=padAjax4B0MThME.responseText;
-      } else {
-        document.getElementById("padAjax4B0MThME").innerHTML=padAjax4B0MThME.statusText;
-      }
-    }
-  }
-  padAjax4B0MThME.open("GET","http://penguin.linux.test/manual/?check/tags/switch&padInclude&padSesID=AXwMjQLq&padReqID=CwlA0nwH",true);
-  padAjax4B0MThME.send();
-</script>
-</td>
-        
-      </tr>
-
-    
-
-  
-    </table>
-  
-
-
-
- <br>
-    
-
-  </center>
-</td>
+          </tr>
+          <tr>
+            <td style="vertical-align:top">
+              <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $users </span><span style="color: #007700">= [<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'bob'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'phone' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'555-3425' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'jim'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'phone' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'555-4364' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'joe'</span><span style="color: #007700">,   </span><span style="color: #DD0000">'phone' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'555-3422' </span><span style="color: #007700">],<br>    [ </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'jerry'</span><span style="color: #007700">, </span><span style="color: #DD0000">'phone' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'555-4973' </span><span style="color: #007700">]<br>  ];<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+            </td>
+            <td style="vertical-align:top">
+              <pre><code style="color: #000000">&lt;table border="1"&gt;<br>  <b>{<font color="blue">users</font><font color="red"></font>}</b><br>    &lt;tr bgcolor="<b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>pink<font color="black">'</font> <font color="black">,</font> <font color="black">'</font>orange<font color="black">'</font></font>}</b>"&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">users</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+            </td>
+            <td style="vertical-align:top">
+              <div id="padAjaxb2NL0nNo"></div>
+              <script>
+              padAjaxb2NL0nNo = new XMLHttpRequest();
+              padAjaxb2NL0nNo.onreadystatechange=function() {
+              if (padAjaxb2NL0nNo.readyState === 4) {
+              if (padAjaxb2NL0nNo.status === 200) {
+              document.getElementById("padAjaxb2NL0nNo").innerHTML=padAjaxb2NL0nNo.responseText;
+              } else {
+              document.getElementById("padAjaxb2NL0nNo").innerHTML=padAjaxb2NL0nNo.statusText;
+              }
+              }
+              }
+              padAjaxb2NL0nNo.open("GET","http://penguin.linux.test/check/?tags/switch&padInclude&padSesID=AXwMjQLq&padReqID=JSGu8nPb",true);
+              padAjaxb2NL0nNo.send();
+              </script>
+            </td>
+          </tr>
+        </table><br>
+      </center>
+    </td>
   </tr>
 </table>

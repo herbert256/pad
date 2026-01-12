@@ -2,23 +2,23 @@
 
 {list}
 
-<h3>{$app}</h3>
+  <h3>{$app}</h3>
 
-{items}
-  <a 
+  {items}
+    <a 
 
-    {if     $status eq 'ok'}      style="color:black;"
-    {elseif $status eq 'error'}   style="color:black;background-color: #f44336;"
-    {elseif $status eq 'warning'} style="color:black;background-color: #ffaa80;"
-    {elseif $status eq 'new'}     style="color:black;background-color: #248f24;"
-    {elseif $status eq 'random'}  style="color:black;background-color: #befffa;"
-    {elseif $status eq 'empty'}   style="color:black;background-color: #ffc0cb;"
-    {/if} 
+      {if     $status eq 'ok'}      style="color:black;"
+      {elseif $status eq 'error'}   style="color:black;background-color: #f44336;"
+      {elseif $status eq 'warning'} style="color:black;background-color: #ffaa80;"
+      {elseif $status eq 'new'}     style="color:black;background-color: #248f24;"
+      {elseif $status eq 'random'}  style="color:black;background-color: #befffa;"
+      {elseif $status eq 'empty'}   style="color:black;background-color: #ffc0cb;"
+      {/if} 
 
-    href="?show&item={$item}{?sequence}">{$item | cut ''}</a>
+      href="?show{?app}{?item}{?sequence}">{$item | cut ''}</a>
 
-  &nbsp; &nbsp;
+    &nbsp; &nbsp;
 
-{/items}
+  {/items}
 
 {/list}

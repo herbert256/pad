@@ -3,8 +3,8 @@
   if ( ! isset ( $padMicro ) ) $padMicro = microtime ( TRUE );
   if ( ! isset ( $padHR )    ) $padHR    = hrtime    ( TRUE );
 
-  if ( ! isset ( $padApp  ) ) die ( 'Variable $padApp must be set before calling this script' );
   if ( ! isset ( $padApps ) ) die ( 'Variable $padApps must be set before calling this script' );
+  if ( ! isset ( $padApp  ) ) die ( 'Variable $padApp must be set before calling this script' );
   if ( ! isset ( $padData ) ) die ( 'Variable $padData must be set before calling this script' );
 
   if ( ! str_ends_with ( $padApps, '/' ) ) $padApps .= '/';

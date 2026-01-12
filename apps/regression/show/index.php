@@ -1,9 +1,9 @@
 <?php
 
-  $curl = getPage ($item, 1);
+  $curl = padCurl ( "$padHost/$app?$item" );
 
   if ( ! str_starts_with ( $curl ['result'], '2') )
-    padRedirect ($item, [ 'padInclude' => 1 ] );
+    padRedirect ( $item, [ 'padInclude' => 1 ], $app );
 
   $oldRes = $newRes = $newSrc = $compare = $demoLines = [];
 
