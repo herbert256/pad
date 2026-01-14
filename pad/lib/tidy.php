@@ -100,25 +100,17 @@
       'new-inline-tags' => ''
     ];
 
-#    try {
+    $tidy = new tidy;
+    $tidy->parseString($data, $config, $padTidyCcsid );
+    $tidy->cleanRepair();
 
-      $tidy = new tidy;
-      $tidy->parseString($data, $config, $padTidyCcsid );
-      $tidy->cleanRepair();
+    $result = $tidy->value ?? $data;
 
-      $result = $tidy->value ?? $data;
+    $result = str_replace  ( ["\r", "\n", "\t"], '', $result );
+    $result = preg_replace ( '/ {2,}/', ' ',         $result );
+    $result = preg_replace ( '/>\s+</', '><', $result );
 
-      $result = str_replace  ( ["\r", "\n", "\t"], '', $result );
-      $result = preg_replace ( '/ {2,}/', ' ',         $result );
-      $result = preg_replace ( '/>\s+</', '><', $result );
-
-      return $result;
-
- #   } catch (Throwable $e) {
-
-  #    return $data;
-
-   # }
+    return $result;
 
   }
 
