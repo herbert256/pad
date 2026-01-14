@@ -1,0 +1,74 @@
+<pre><b>Level: 3</b>
+      [org] =&gt; if $auth
+      [tag] =&gt; if
+      [type] =&gt; pad
+      [name] =&gt; if
+      [pair] =&gt; 1
+      [opt] 
+              [0] =&gt; $auth
+              [1] =&gt; 
+      [prm] 
+      [base] =&gt;  &lt;a href=&quot;?{$page}&quot;{if $padPage eq $page} class=&quot;active&quot;{/if}&gt;{$text}&lt;/a&gt; 
+      [pad] =&gt; 
+      [result] =&gt; 
+      [flags] 
+              [null] =&gt; 
+              [else] =&gt; 1
+              [hit] =&gt; 
+              [Array] =&gt; 
+
+<b>Level: 2</b>
+      [org] =&gt; menu
+      [tag] =&gt; menu
+      [type] =&gt; common
+      [name] =&gt; menu
+      [pair] =&gt; 1
+      [opt] 
+              [0] =&gt; 
+              [1] =&gt; 
+      [prm] 
+      [base] =&gt; {lines} {local:menu} {if $padApp eq $page} {$text} {else} &lt;a href=&quot;{$padHost}/{$page}&quot;&gt;{$text}&lt;/a&gt; {/if} {notLast} | {/notLast} {/local:menu} {/lines}
+      [pad] =&gt; 
+      [result] =&gt; 
+      [flags] 
+              [null] =&gt; 
+              [else] =&gt; 
+              [hit] =&gt; 1
+              [Array] =&gt; 
+
+<b>Level: 1</b>
+      [org] =&gt; nav
+      [tag] =&gt; nav
+      [type] =&gt; include
+      [name] =&gt; nav
+      [pair] =&gt; 
+      [opt] 
+              [0] =&gt; 
+              [1] =&gt; 
+      [prm] 
+      [base] =&gt; &lt;nav class=&quot;main-nav&quot;&gt; &lt;a href=&quot;?&quot; class=&quot;logo&quot;&gt;PAD Support&lt;/a&gt; &lt;div class=&quot;nav-links&quot;&gt; {menu} {if $auth} {if $user_id} &lt;a href=&quot;?{$page}&quot;{if $padPage
+      [pad] =&gt; 
+      [result] =&gt; 
+      [flags] 
+              [null] =&gt; 
+              [else] =&gt; 
+              [hit] =&gt; 1
+              [Array] =&gt; 
+
+<b>Level: 0</b>
+      [org] =&gt; 
+      [tag] =&gt; internal
+      [type] =&gt; 
+      [name] =&gt; 
+      [pair] =&gt; 
+      [opt] 
+              [0] =&gt; 
+      [prm] 
+      [base] =&gt; &lt;html&gt; &lt;head&gt; &lt;title&gt;PAD - {$title}&lt;/title&gt; &lt;/head&gt; &lt;body style=&quot;font-size: 12px;&quot;&gt; _lib&lt;!DOCTYPE html&gt; &lt;html lang=&quot;en&quot;&gt; &lt;head&gt; &lt;meta charset=&quot;UTF-8&quot;&gt;
+      [pad] =&gt; 
+      [result] =&gt; 
+      [flags] 
+              [null] =&gt; 
+              [else] =&gt; 
+              [hit] =&gt; 
+              [Array] =&gt;</pre>
