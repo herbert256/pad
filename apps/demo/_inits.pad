@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>PAD Demo - {$title}</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="container">
-    <nav class="menu">
-      {demoMenu}<a href="?{$page}"{if $padPage == $page} class="active"{/if}>{$text}</a>
-      {/demoMenu}
-    </nav>
 
-    <h1>{$title}</h1>
+  <head>
+    <title>PAD Demo - {$title}</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
 
-    @pad@
+  <body>
+    <div class="container">
 
-    <div class="footer">
-      &copy; 2025 PAD Demo Application. Powered by PAD - PHP Application Driver.
+      <nav class="menu">
+        {navigate}
+          <a href="?{$page}"{if $padPage == $page} class="active"{/if}>{$text}</a>
+        {/navigate}
+      </nav>
+
+      <h1>{$title}</h1>
+
+      @pad@
+
+      <div class="footer">
+        &copy; 2025 PAD Demo Application. Powered by PAD - PHP Application Driver.
+      </div>
+
     </div>
-  </div>
-</body>
+  </body>
+
 </html>

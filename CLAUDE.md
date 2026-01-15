@@ -71,7 +71,7 @@ Tags are defined in `pad/tags/`. Template syntax:
 - `{tagname params}...{/tagname}` - Block tags
 - `{$var}` - Variable output
 - `{$var | function}` - Piped functions
-- `{if condition}...{elseif}...{else}...{/if}` - Conditionals
+- `{if condition}...{elseif}...@else@...{/if}` - Conditionals
 - `{sequence '1..10'}...{/sequence}` - Iteration
 
 Functions for pipes are in `pad/functions/`.

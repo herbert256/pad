@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Part 2: Project Scaffolding - Claude Code Guide</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Claude Code Guide</a>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="part1.html">Security</a></li>
+        <li><a href="part2.html">Scaffolding</a></li>
+        <li><a href="part3.html">MCP</a></li>
+        <li><a href="part4.html">Context7</a></li>
+        <li><a href="part5.html">Commands</a></li>
+        <li><a href="part6.html">Chats</a></li>
+        <li><a href="part7.html">Hooks</a></li>
+        <li><a href="reference.html">Reference</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1>Part 2: Global Rules for New Project Scaffolding</h1>
+
+    <p>This is where global CLAUDE.md becomes a <strong>project factory</strong>. Every new project you create automatically inherits your standards, structure, and safety requirements.</p>
+
+    <h2>The Problem Without Scaffolding Rules</h2>
+
+    <p><a href="https://github.com/madison-hutson/claude-project-scaffolding">Research from project scaffolding experts</a> explains:</p>
+
+    <blockquote>
+      <p>"LLM-assisted development fails by silently expanding scope, degrading quality, and losing architectural intent."</p>
+    </blockquote>
+
+    <p>Without global scaffolding rules:</p>
+    <ul>
+      <li>Each project has different structures</li>
+      <li>Security files get forgotten (.gitignore, .dockerignore)</li>
+      <li>Error handling is inconsistent</li>
+      <li>Documentation patterns vary</li>
+      <li>You waste time re-explaining the same requirements</li>
+    </ul>
+
+    <h2>The Solution: Scaffolding Rules in Global CLAUDE.md</h2>
+
+    <p>Add a "New Project Setup" section to your global file:</p>
+
+    <pre><code class="language-markdown">## New Project Setup
+
+When creating ANY new project, ALWAYS do the following:
+
+### 1. Required Files (Create Immediately)
+- `.env` — Environment variables (NEVER commit)
+- `.env.example` — Template with placeholder values
+- `.gitignore` — Must include: .env, .env.*, node_modules/, dist/, .claude/
+- `.dockerignore` — Must include: .env, .git/, node_modules/
+- `README.md` — Project overview (reference env vars, don't hardcode)
+
+### 2. Required Directory Structure
+```
+project-root/
+├── src/               # Source code
+├── tests/             # Test files
+├── docs/              # Documentation (gitignored for generated docs)
+├── .claude/           # Claude configuration
+│   ├── commands/      # Custom slash commands
+│   └── settings.json  # Project-specific settings
+└── scripts/           # Build/deploy scripts
+```
+
+### 3. Required .gitignore Entries
+```
+# Environment
+.env
+.env.*
+.env.local
+
+# Dependencies
+node_modules/
+vendor/
+__pycache__/
+
+# Build outputs
+dist/
+build/
+.next/
+
+# Claude local files
+.claude/settings.local.json
+CLAUDE.local.md
+
+# Generated docs
+docs/*.generated.*
+```
+
+### 4. Node.js Projects — Required Error Handling
+Add to entry point (index.ts, server.ts, app.ts):
+```javascript
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  process.exit(1);
+});
+
+process.on('uncaughtException', (error) => {
+  console.error('Uncaught Exception:', error);
+  process.exit(1);
+});
+```
+
+### 5. Required CLAUDE.md Sections
+Every project CLAUDE.md must include:
+- Project overview (what it does)
+- Tech stack
+- Build commands
+- Test commands
+- Architecture overview</code></pre>
+
+    <h2>Why This Works</h2>
+
+    <p>When you tell Claude "create a new Node.js project," it reads your global CLAUDE.md first and <strong>automatically</strong>:</p>
+
+    <ol>
+      <li>Creates <code>.env</code> and <code>.env.example</code></li>
+      <li>Sets up proper <code>.gitignore</code> with all required entries</li>
+      <li>Creates the directory structure</li>
+      <li>Adds error handlers to the entry point</li>
+      <li>Generates a project CLAUDE.md with required sections</li>
+    </ol>
+
+    <p><strong>You never have to remember these requirements again.</strong></p>
+
+    <h2>Advanced: Framework-Specific Rules</h2>
+
+    <pre><code class="language-markdown">## Framework-Specific Setup
+
+### Next.js Projects
+- Use App Router (not Pages Router)
+- Create `src/app/` directory structure
+- Include `next.config.js` with strict mode enabled
+- Add analytics to layout.tsx
+
+### Python Projects
+- Create `pyproject.toml` (not setup.py)
+- Use `src/` layout
+- Include `requirements.txt` AND `requirements-dev.txt`
+- Add `.python-version` file
+
+### Docker Projects
+- Multi-stage builds ALWAYS
+- Never run as root (use non-root user)
+- Include health checks
+- `.dockerignore` must mirror `.gitignore` + include `.git/`</code></pre>
+
+    <h2>Quality Gates in Scaffolding</h2>
+
+    <p><a href="https://github.com/madison-hutson/claude-project-scaffolding">The claude-project-scaffolding approach</a> adds enforcement:</p>
+
+    <pre><code class="language-markdown">## Quality Requirements
+
+### File Size Limits
+- No file > 300 lines (split if larger)
+- No function > 50 lines
+
+### Required Before Commit
+- All tests pass
+- TypeScript compiles with no errors
+- Linter passes with no warnings
+- No secrets in staged files
+
+### CI/CD Requirements
+Every project must include:
+- `.github/workflows/ci.yml` for GitHub Actions
+- Pre-commit hooks via Husky (Node.js) or pre-commit (Python)</code></pre>
+
+    <h2>Example: What Happens When You Create a Project</h2>
+
+    <p><strong>You say:</strong> "Create a new Next.js e-commerce project called shopify-clone"</p>
+
+    <p><strong>Claude reads global CLAUDE.md and automatically creates:</strong></p>
+
+    <pre><code>shopify-clone/
+├── .env                          ← Created (empty, for secrets)
+├── .env.example                  ← Created (with placeholder vars)
+├── .gitignore                    ← Created (with ALL required entries)
+├── .dockerignore                 ← Created (mirrors .gitignore)
+├── README.md                     ← Created (references env vars)
+├── CLAUDE.md                     ← Created (with required sections)
+├── src/
+│   └── app/                      ← App Router structure
+├── tests/
+├── docs/
+├── .claude/
+│   ├── commands/
+│   └── settings.json
+└── scripts/</code></pre>
+
+    <p><strong>Zero manual setup. Every project starts secure and consistent.</strong></p>
+
+    <div class="page-nav">
+      <a href="part1.html" class="prev">Part 1: Security Gatekeeper</a>
+      <a href="part3.html" class="next">Part 3: MCP Servers</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Based on the guide by TheDecipherist • <a href="https://github.com/TheDecipherist/claude-code-mastery">GitHub Repository</a></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

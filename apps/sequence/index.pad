@@ -2,7 +2,7 @@
   {concepts}
     {if &concepts:key NE $concept}
       <a href="@self@&go=index&concept={&concepts:key}">{&concepts:key | ucfirst}</a>
-    {else}
+    @else@
       <b> {&concepts:key | ucfirst} <b>
     {/if}
     {notLast} | {/notLast}

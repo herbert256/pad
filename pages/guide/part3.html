@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Part 3: MCP Servers - Claude Code Guide</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Claude Code Guide</a>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="part1.html">Security</a></li>
+        <li><a href="part2.html">Scaffolding</a></li>
+        <li><a href="part3.html">MCP</a></li>
+        <li><a href="part4.html">Context7</a></li>
+        <li><a href="part5.html">Commands</a></li>
+        <li><a href="part6.html">Chats</a></li>
+        <li><a href="part7.html">Hooks</a></li>
+        <li><a href="reference.html">Reference</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1>Part 3: MCP Servers — Claude's Integrations</h1>
+
+    <p><a href="https://www.anthropic.com/news/model-context-protocol">MCP (Model Context Protocol)</a> lets Claude interact with external tools and services.</p>
+
+    <h2>What MCP Servers Do</h2>
+
+    <blockquote>
+      <p>"MCP is an open protocol that standardizes how applications provide context to LLMs."</p>
+    </blockquote>
+
+    <p>MCP servers give Claude:</p>
+    <ul>
+      <li>Access to databases</li>
+      <li>Integration with APIs</li>
+      <li>File system capabilities beyond the project</li>
+      <li>Browser automation</li>
+      <li>And much more</li>
+    </ul>
+
+    <h2>Adding MCP Servers</h2>
+
+    <pre><code class="language-bash"># Add a server
+claude mcp add &lt;server-name&gt; -- &lt;command&gt;
+
+# List servers
+claude mcp list
+
+# Remove a server
+claude mcp remove &lt;server-name&gt;</code></pre>
+
+    <h2>Essential MCP Servers</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Server</th>
+          <th>Purpose</th>
+          <th>Install</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Context7</strong></td>
+          <td>Live documentation</td>
+          <td><code>claude mcp add context7 -- npx -y @anthropic-ai/context7-mcp</code></td>
+        </tr>
+        <tr>
+          <td><strong>Playwright</strong></td>
+          <td>Browser testing</td>
+          <td><code>claude mcp add playwright -- npx -y @anthropic-ai/playwright-mcp</code></td>
+        </tr>
+        <tr>
+          <td><strong>GitHub</strong></td>
+          <td>Repo management</td>
+          <td><code>claude mcp add github -- npx -y @modelcontextprotocol/server-github</code></td>
+        </tr>
+        <tr>
+          <td><strong>PostgreSQL</strong></td>
+          <td>Database queries</td>
+          <td><code>claude mcp add postgres -- npx -y @modelcontextprotocol/server-postgres</code></td>
+        </tr>
+        <tr>
+          <td><strong>Filesystem</strong></td>
+          <td>Extended file access</td>
+          <td><code>claude mcp add fs -- npx -y @anthropic-ai/filesystem-mcp</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Browser Automation: Choosing the Right MCP</h2>
+
+    <p>Browser automation gets its own section because there are multiple solid options with different tradeoffs.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>MCP Server</th>
+          <th>Best For</th>
+          <th>Session State</th>
+          <th>Runs</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Playwright</strong></td>
+          <td>Testing, scraping, fresh contexts</td>
+          <td>None</td>
+          <td>Local</td>
+        </tr>
+        <tr>
+          <td><strong>Browser MCP</strong></td>
+          <td>Tasks needing your logins</td>
+          <td>Your Chrome profile</td>
+          <td>Local</td>
+        </tr>
+        <tr>
+          <td><strong>Browser Use</strong></td>
+          <td>Complex AI-driven workflows</td>
+          <td>Cloud profiles</td>
+          <td>Cloud</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Playwright MCP (Default Choice)</h3>
+
+    <pre><code class="language-bash">claude mcp add playwright -- npx -y @anthropic-ai/playwright-mcp</code></pre>
+
+    <p><strong>Pros:</strong> Official Anthropic server, reliable, uses accessibility trees for semantic page understanding, well-documented.</p>
+    <p><strong>Cons:</strong> Spawns fresh browser contexts — no access to your logged-in sessions. Every task starts from scratch.</p>
+    <p><strong>Use when:</strong> Writing tests, scraping public sites, debugging web apps.</p>
+
+    <h3>Browser MCP (Best for Authenticated Tasks)</h3>
+
+    <pre><code class="language-bash"># Install Chrome extension from https://browsermcp.io
+claude mcp add browser-mcp -- npx -y @anthropic-ai/browser-mcp</code></pre>
+
+    <p><strong>Pros:</strong> Uses your <strong>actual Chrome profile</strong> — stay logged into Gmail, GitHub, Twitter, etc. Bypasses bot detection using your real browser fingerprint. Local execution = no latency.</p>
+    <p><strong>Cons:</strong> Requires Chrome extension. Only works with your current browser session.</p>
+    <p><strong>Use when:</strong> "Check my email", "Post to my Twitter", "Review my GitHub notifications" — any task needing your existing logins.</p>
+
+    <h3>Browser Use MCP (AI-Driven Automation)</h3>
+
+    <pre><code class="language-bash"># Requires API key from https://browser-use.com
+claude mcp add browser-use -- npx -y browser-use-mcp</code></pre>
+
+    <p><strong>Pros:</strong> AI agent reasoning (describe tasks in natural language), persistent cloud profiles, 85.8% WebVoyager benchmark score, real-time task monitoring.</p>
+    <p><strong>Cons:</strong> Cloud-hosted (data leaves your machine), requires API key, higher abstraction = less direct control.</p>
+    <p><strong>Use when:</strong> Complex multi-step workflows, tasks requiring persistent cloud sessions, when you need AI to figure out the "how."</p>
+
+    <h3>Quick Decision Guide</h3>
+
+    <pre><code>Need your logged-in sessions? → Browser MCP
+Need AI to figure out complex steps? → Browser Use
+Writing tests or scraping? → Playwright
+Want the official/stable option? → Playwright</code></pre>
+
+    <h2>MCP in CLAUDE.md</h2>
+
+    <p>Document required MCP servers in your global file:</p>
+
+    <pre><code class="language-markdown">## Required MCP Servers
+
+These MCP servers must be installed for full functionality:
+
+### context7
+Live documentation access for all libraries.
+Install: `claude mcp add context7 -- npx -y @anthropic-ai/context7-mcp`
+
+### playwright
+Browser automation for testing.
+Install: `claude mcp add playwright -- npx -y @anthropic-ai/playwright-mcp`</code></pre>
+
+    <div class="page-nav">
+      <a href="part2.html" class="prev">Part 2: Project Scaffolding</a>
+      <a href="part4.html" class="next">Part 4: Context7</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Based on the guide by TheDecipherist • <a href="https://github.com/TheDecipherist/claude-code-mastery">GitHub Repository</a></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

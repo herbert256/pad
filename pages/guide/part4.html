@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Part 4: Context7 - Claude Code Guide</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Claude Code Guide</a>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="part1.html">Security</a></li>
+        <li><a href="part2.html">Scaffolding</a></li>
+        <li><a href="part3.html">MCP</a></li>
+        <li><a href="part4.html">Context7</a></li>
+        <li><a href="part5.html">Commands</a></li>
+        <li><a href="part6.html">Chats</a></li>
+        <li><a href="part7.html">Hooks</a></li>
+        <li><a href="reference.html">Reference</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1>Part 4: Context7 — Live Documentation</h1>
+
+    <p><a href="https://github.com/upstash/context7">Context7</a> is a game-changer. It gives Claude access to <strong>up-to-date documentation</strong> for any library.</p>
+
+    <h2>The Problem</h2>
+
+    <p>Claude's training data has a cutoff. When you ask about:</p>
+    <ul>
+      <li>A library released after training</li>
+      <li>Recent API changes</li>
+      <li>New framework features</li>
+    </ul>
+
+    <p>Claude might give outdated or incorrect information.</p>
+
+    <h2>The Solution</h2>
+
+    <p>Context7 fetches live documentation:</p>
+
+    <pre><code>You: "Using context7, show me how to use the new Next.js 15 cache API"
+
+Claude: *fetches current Next.js docs*
+        *provides accurate, up-to-date code*</code></pre>
+
+    <h2>Installation</h2>
+
+    <pre><code class="language-bash">claude mcp add context7 -- npx -y @anthropic-ai/context7-mcp</code></pre>
+
+    <h2>Usage Patterns</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Pattern</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Explicit</td>
+          <td>"Using context7, look up Prisma's createMany"</td>
+        </tr>
+        <tr>
+          <td>Research</td>
+          <td>"Check context7 for React Server Components patterns"</td>
+        </tr>
+        <tr>
+          <td>Debugging</td>
+          <td>"Use context7 to find the correct Tailwind v4 syntax"</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Add to Global CLAUDE.md</h2>
+
+    <pre><code class="language-markdown">## Documentation Lookup
+
+When unsure about library APIs or recent changes:
+1. Use Context7 MCP to fetch current documentation
+2. Prefer official docs over training knowledge
+3. Always verify version compatibility</code></pre>
+
+    <div class="page-nav">
+      <a href="part3.html" class="prev">Part 3: MCP Servers</a>
+      <a href="part5.html" class="next">Part 5: Commands & Agents</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Based on the guide by TheDecipherist • <a href="https://github.com/TheDecipherist/claude-code-mastery">GitHub Repository</a></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

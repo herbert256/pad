@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Part 5: Commands & Sub-Agents - Claude Code Guide</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Claude Code Guide</a>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="part1.html">Security</a></li>
+        <li><a href="part2.html">Scaffolding</a></li>
+        <li><a href="part3.html">MCP</a></li>
+        <li><a href="part4.html">Context7</a></li>
+        <li><a href="part5.html">Commands</a></li>
+        <li><a href="part6.html">Chats</a></li>
+        <li><a href="part7.html">Hooks</a></li>
+        <li><a href="reference.html">Reference</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1>Part 5: Custom Commands and Sub-Agents</h1>
+
+    <p><a href="https://code.claude.com/docs/en/slash-commands">Slash commands</a> are reusable prompts that automate workflows.</p>
+
+    <h2>Creating Commands</h2>
+
+    <p>Commands live in <code>.claude/commands/</code> as markdown files:</p>
+
+    <p><strong><code>.claude/commands/fix-types.md</code>:</strong></p>
+
+    <pre><code class="language-markdown">---
+description: Fix TypeScript errors
+---
+
+Run `npx tsc --noEmit` and fix any type errors.
+For each error:
+1. Identify the root cause
+2. Fix with minimal changes
+3. Verify the fix compiles
+
+After fixing all errors, run the check again to confirm.</code></pre>
+
+    <p><strong>Use it:</strong></p>
+
+    <pre><code>/fix-types</code></pre>
+
+    <h2>Benefits of Commands</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Benefit</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Workflow efficiency</strong></td>
+          <td>One word instead of paragraph prompts</td>
+        </tr>
+        <tr>
+          <td><strong>Team sharing</strong></td>
+          <td>Check into git, everyone gets them</td>
+        </tr>
+        <tr>
+          <td><strong>Parameterization</strong></td>
+          <td>Use <code>$ARGUMENTS</code> for dynamic input</td>
+        </tr>
+        <tr>
+          <td><strong>Orchestration</strong></td>
+          <td>Commands can spawn sub-agents</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Sub-Agents</h2>
+
+    <p><a href="https://www.arsturn.com/blog/commands-vs-sub-agents-in-claude-code-a-guide-to-supercharging-your-workflow">Sub-agents</a> run in <strong>isolated context windows</strong> — they don't pollute your main conversation.</p>
+
+    <blockquote>
+      <p>"Each sub-agent operates in its own isolated context window. This means it can focus on a specific task without getting 'polluted' by the main conversation."</p>
+    </blockquote>
+
+    <h2>Global Commands Library</h2>
+
+    <p>Add frequently-used commands to your global config:</p>
+
+    <pre><code class="language-markdown">## Global Commands
+
+Store these in ~/.claude/commands/ for use in ALL projects:
+
+### /new-project
+Creates new project with all scaffolding rules applied.
+
+### /security-check
+Scans for secrets, validates .gitignore, checks .env handling.
+
+### /pre-commit
+Runs all quality gates before committing.
+
+### /docs-lookup
+Spawns sub-agent with Context7 to research documentation.</code></pre>
+
+    <div class="page-nav">
+      <a href="part4.html" class="prev">Part 4: Context7</a>
+      <a href="part6.html" class="next">Part 6: Single-Purpose Chats</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Based on the guide by TheDecipherist • <a href="https://github.com/TheDecipherist/claude-code-mastery">GitHub Repository</a></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

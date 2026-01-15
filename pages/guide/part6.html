@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Part 6: Single-Purpose Chats - Claude Code Guide</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Claude Code Guide</a>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="part1.html">Security</a></li>
+        <li><a href="part2.html">Scaffolding</a></li>
+        <li><a href="part3.html">MCP</a></li>
+        <li><a href="part4.html">Context7</a></li>
+        <li><a href="part5.html">Commands</a></li>
+        <li><a href="part6.html">Chats</a></li>
+        <li><a href="part7.html">Hooks</a></li>
+        <li><a href="reference.html">Reference</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1>Part 6: Why Single-Purpose Chats Are Critical</h1>
+
+    <p>This might be the most important section. <strong>Research consistently shows that mixing topics destroys accuracy.</strong></p>
+
+    <h2>The Research</h2>
+
+    <p><a href="https://arxiv.org/pdf/2505.06120">Studies on multi-turn conversations</a> found:</p>
+
+    <blockquote>
+      <p>"An average <strong>39% performance drop</strong> when instructions are delivered across multiple turns, with models making premature assumptions and failing to course-correct."</p>
+    </blockquote>
+
+    <p><a href="https://research.trychroma.com/context-rot">Chroma Research on context rot</a>:</p>
+
+    <blockquote>
+      <p>"As the number of tokens in the context window increases, the model's ability to accurately recall information decreases."</p>
+    </blockquote>
+
+    <p><a href="https://kurtiskemple.com/blog/measuring-context-pollution/">Research on context pollution</a>:</p>
+
+    <blockquote>
+      <p>"A <strong>2% misalignment early</strong> in a conversation chain can create a <strong>40% failure rate</strong> by the end."</p>
+    </blockquote>
+
+    <h2>Why This Happens</h2>
+
+    <h3>1. Lost-in-the-Middle Problem</h3>
+
+    <p>LLMs recall information best from the <strong>beginning and end</strong> of context. Middle content gets forgotten.</p>
+
+    <h3>2. Context Drift</h3>
+
+    <p><a href="https://arxiv.org/html/2510.07777">Research shows</a> context drift is:</p>
+
+    <blockquote>
+      <p>"The gradual degradation or distortion of the conversational state the model uses to generate its responses."</p>
+    </blockquote>
+
+    <p>As you switch topics, earlier context becomes <strong>noise that confuses</strong> later reasoning.</p>
+
+    <h3>3. Attention Budget</h3>
+
+    <p><a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">Anthropic's context engineering guide</a> explains:</p>
+
+    <blockquote>
+      <p>"Transformers require n² pairwise relationships between tokens. As context expands, the model's 'attention budget' gets stretched thin."</p>
+    </blockquote>
+
+    <h2>What Happens When You Mix Topics</h2>
+
+    <pre><code>Turn 1-5: Discussing authentication system
+Turn 6-10: Switch to database schema design
+Turn 11-15: Ask about the auth system again
+
+Result: Claude conflates database concepts with auth,
+        makes incorrect assumptions, gives degraded answers</code></pre>
+
+    <p>The earlier auth discussion is now buried in "middle" context, competing with database discussion for attention.</p>
+
+    <h2>The Golden Rule</h2>
+
+    <blockquote>
+      <p><strong>"One Task, One Chat"</strong></p>
+    </blockquote>
+
+    <p>From <a href="https://www.arsturn.com/blog/beyond-prompting-a-guide-to-managing-context-in-claude-code">context management best practices</a>:</p>
+
+    <blockquote>
+      <p>"If you're switching from brainstorming marketing copy to analyzing a PDF, start a new chat. Don't bleed contexts. This keeps the AI's 'whiteboard' clean."</p>
+    </blockquote>
+
+    <h2>Practical Guidelines</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>New feature</td>
+          <td>New chat</td>
+        </tr>
+        <tr>
+          <td>Bug fix (unrelated to current work)</td>
+          <td><code>/clear</code> then new task</td>
+        </tr>
+        <tr>
+          <td>Different file/module</td>
+          <td>Consider new chat</td>
+        </tr>
+        <tr>
+          <td>Research vs implementation</td>
+          <td>Separate chats</td>
+        </tr>
+        <tr>
+          <td>20+ turns elapsed</td>
+          <td>Start fresh</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Use /clear Liberally</h2>
+
+    <pre><code class="language-bash">/clear</code></pre>
+
+    <p>This resets context. <a href="https://www.anthropic.com/engineering/claude-code-best-practices">Anthropic recommends</a>:</p>
+
+    <blockquote>
+      <p>"Use <code>/clear</code> frequently between tasks to reset the context window, especially during long sessions where irrelevant conversations accumulate."</p>
+    </blockquote>
+
+    <h2>Sub-Agents for Topic Isolation</h2>
+
+    <p>If you need to research something mid-task without polluting your context:</p>
+
+    <pre><code>Spawn a sub-agent to research React Server Components.
+Return only a summary of key patterns.</code></pre>
+
+    <p>The sub-agent works in isolated context and returns just the answer.</p>
+
+    <div class="page-nav">
+      <a href="part5.html" class="prev">Part 5: Commands & Agents</a>
+      <a href="part7.html" class="next">Part 7: Skills & Hooks</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Based on the guide by TheDecipherist • <a href="https://github.com/TheDecipherist/claude-code-mastery">GitHub Repository</a></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
