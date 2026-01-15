@@ -2,7 +2,7 @@
 
   $title    = 'Todo List';
   $dataFile = DAT . 'demo/todos.json';
-  $message   = '';
+  $message  = '';
 
   $todos = [];
 
