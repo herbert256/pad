@@ -28,7 +28,7 @@
 
   function padStrFun (  $padStrCod, $padStrBox, $padStrRes, $padStrCln, $padStrFun ) {
 
-    return include PAD . 'start/function.php';
+    return include PAD . 'start/pad/function.php';
 
   }
 

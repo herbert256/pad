@@ -8,6 +8,6 @@
   if ( $padStrFun )
     return padStrFun ( $padStrCod, $padStrBox, $padStrRes, $padStrCln, $padStrFun );
   else
-    return include PAD . 'start/pad.php';
+    return include PAD . 'start/pad/pad.php';
 
 ?>

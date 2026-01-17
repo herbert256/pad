@@ -11,7 +11,7 @@
     global $$padStrKey;
 
   $padLvlFun [$pad] = $padStrFunCnt;
-  $padStrFunResult = include PAD . 'start/pad.php';
+  $padStrFunResult = include PAD . 'start/pad/pad.php';
 
   if ( ! $padStrBox and ! $padStrCln )
     foreach ( get_defined_vars () as $padStrKey => $padStrVal )
