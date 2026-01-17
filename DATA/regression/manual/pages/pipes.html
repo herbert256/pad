@@ -1,305 +1,342 @@
-<h1>
-  Pipes - Transform Output with Functions
-</h1>
-<p>
-  Pipes allow you to pass output through functions to transform it. Use the pipe symbol <code>|</code> followed by a function name to process data.
-</p>
-<h2>
-  Two Ways to Use Pipes
-</h2>
-<h3>
-  1. Variable Pipes
-</h3>
-<p>
-  Apply functions to variables using <code>{echo $variable | function}</code>:
-</p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      PHP<br>
-      <font size="-2"></font>
-    </th>
-    <th bgcolor="#DDDDDD">
-      HTML<br>
-      <font size="-2"></font>
-    </th>
-    <th bgcolor="#DDDDDD">
-      Result
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top"></td>
-    <td style="vertical-align:top"></td>
-    <td style="vertical-align:top"></td>
-  </tr>
-</table>
-<h3>
-  2. Tag Pipes
-</h3>
-<p>
-  Apply functions to tag output. Pipes can be placed on the opening tag or closing tag:
-</p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      PHP<br>
-      <font size="-2"></font>
-    </th>
-    <th bgcolor="#DDDDDD">
-      HTML<br>
-      <font size="-2"></font>
-    </th>
-    <th bgcolor="#DDDDDD">
-      Result
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top"></td>
-    <td style="vertical-align:top"></td>
-    <td style="vertical-align:top"></td>
-  </tr>
-</table>
-<h2>
-  Pipe Timing: Opening vs Closing Tag
-</h2>
-<p>
-  The placement of the pipe determines <strong>when</strong> the function is applied:
-</p>
+<h1>Pipes - Transform Output with Functions</h1>
+
+<p>Pipes allow you to pass output through functions to transform it. Use the pipe symbol <code>|</code> followed by a function name to process data.</p>
+
+<h2>Two Ways to Use Pipes</h2>
+
+<h3>1. Variable Pipes</h3>
+
+<p>Apply functions to variables using <code>{echo $variable | function}</code>:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"></td>
+        
+        
+          <td style="vertical-align:top">
+  
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<h3>2. Tag Pipes</h3>
+
+<p>Apply functions to tag output. Pipes can be placed on the opening tag or closing tag:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"></td>
+        
+        
+          <td style="vertical-align:top">
+  
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<h2>Pipe Timing: Opening vs Closing Tag</h2>
+
+<p>The placement of the pipe determines <strong>when</strong> the function is applied:</p>
+
 <ul>
-  <li>
-    <strong>Opening tag</strong> <code>{tag | function}</code> - Processes data BEFORE the tag content is rendered
-  </li>
-  <li>
-    <strong>Closing tag</strong> <code>{/tag | function}</code> - Processes output AFTER the tag is finished
-  </li>
+  <li><strong>Opening tag</strong> <code>{tag | function}</code> - Processes data BEFORE the tag content is rendered</li>
+  <li><strong>Closing tag</strong> <code>{/tag | function}</code> - Processes output AFTER the tag is finished</li>
 </ul>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      PHP<br>
-      <font size="-2"></font>
-    </th>
-    <th bgcolor="#DDDDDD">
-      HTML<br>
-      <font size="-2"></font>
-    </th>
-    <th bgcolor="#DDDDDD">
-      Result
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top"></td>
-    <td style="vertical-align:top"></td>
-    <td style="vertical-align:top"></td>
-  </tr>
-</table>
-<h2>
-  Chaining Pipes
-</h2>
-<p>
-  Chain multiple pipe functions together by separating them with <code>|</code>. Functions are applied left to right:
-</p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      PHP<br>
-      <font size="-2"></font>
-    </th>
-    <th bgcolor="#DDDDDD">
-      HTML<br>
-      <font size="-2"></font>
-    </th>
-    <th bgcolor="#DDDDDD">
-      Result
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top"></td>
-    <td style="vertical-align:top"></td>
-    <td style="vertical-align:top"></td>
-  </tr>
-</table>
-<h2>
-  Common Pipe Functions
-</h2>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"></td>
+        
+        
+          <td style="vertical-align:top">
+  
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<h2>Chaining Pipes</h2>
+
+<p>Chain multiple pipe functions together by separating them with <code>|</code>. Functions are applied left to right:</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2"></font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"> </td>
+        
+        
+          <td style="vertical-align:top"></td>
+        
+        
+          <td style="vertical-align:top">
+  
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<h2>Common Pipe Functions</h2>
+
 <table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;">
   <tr style="background: #f0f0f0;">
-    <th>
-      Function
-    </th>
-    <th>
-      Description
-    </th>
-    <th>
-      Example
-    </th>
+    <th>Function</th>
+    <th>Description</th>
+    <th>Example</th>
   </tr>
   <tr>
-    <td>
-      <code>upper</code>
-    </td>
-    <td>
-      Convert to uppercase
-    </td>
-    <td>
-      <code>{echo $text | upper}</code>
-    </td>
+    <td><code>upper</code></td>
+    <td>Convert to uppercase</td>
+    <td><code>{echo $text | upper}</code></td>
   </tr>
   <tr>
-    <td>
-      <code>lower</code>
-    </td>
-    <td>
-      Convert to lowercase
-    </td>
-    <td>
-      <code>{echo $text | lower}</code>
-    </td>
+    <td><code>lower</code></td>
+    <td>Convert to lowercase</td>
+    <td><code>{echo $text | lower}</code></td>
   </tr>
   <tr>
-    <td>
-      <code>ucwords</code>
-    </td>
-    <td>
-      Capitalize each word
-    </td>
-    <td>
-      <code>{echo $text | ucwords}</code>
-    </td>
+    <td><code>ucwords</code></td>
+    <td>Capitalize each word</td>
+    <td><code>{echo $text | ucwords}</code></td>
   </tr>
   <tr>
-    <td>
-      <code>trim</code>
-    </td>
-    <td>
-      Remove whitespace
-    </td>
-    <td>
-      <code>{echo $text | trim}</code>
-    </td>
+    <td><code>trim</code></td>
+    <td>Remove whitespace</td>
+    <td><code>{echo $text | trim}</code></td>
   </tr>
   <tr>
-    <td>
-      <code>html</code>
-    </td>
-    <td>
-      HTML encode
-    </td>
-    <td>
-      <code>{echo $text | html}</code>
-    </td>
+    <td><code>html</code></td>
+    <td>HTML encode</td>
+    <td><code>{echo $text | html}</code></td>
   </tr>
   <tr>
-    <td>
-      <code>replace(a,b)</code>
-    </td>
-    <td>
-      Replace text
-    </td>
-    <td>
-      <code>{echo $text | replace('old','new')}</code>
-    </td>
+    <td><code>replace(a,b)</code></td>
+    <td>Replace text</td>
+    <td><code>{echo $text | replace('old','new')}</code></td>
   </tr>
   <tr>
-    <td>
-      <code>+ n</code>
-    </td>
-    <td>
-      Add number
-    </td>
-    <td>
-      <code>{echo $count | + 1}</code>
-    </td>
+    <td><code>+ n</code></td>
+    <td>Add number</td>
+    <td><code>{echo $count | + 1}</code></td>
   </tr>
   <tr>
-    <td>
-      <code>date(fmt)</code>
-    </td>
-    <td>
-      Format date
-    </td>
-    <td>
-      <code>{echo $timestamp | date('Y-m-d')}</code>
-    </td>
+    <td><code>date(fmt)</code></td>
+    <td>Format date</td>
+    <td><code>{echo $timestamp | date('Y-m-d')}</code></td>
   </tr>
 </table>
-<h2>
-  Important Rules
-</h2>
+
+<h2>Important Rules</h2>
+
 <ul>
-  <li>
-    <strong>Use <b>{echo}</b> with variables</strong> - <code>{echo $var | function}</code> NOT <code>{$var | function}</code>
-  </li>
-  <li>
-    <strong>Arithmetic needs spaces</strong> - <code>{echo $x | + 1}</code> NOT <code>{echo $x | +1}</code>
-  </li>
-  <li>
-    <strong>Quote string parameters</strong> - <code>{echo $x | replace('a','b')}</code>
-  </li>
-  <li>
-    <strong>Functions apply left to right</strong> - <code>{echo $x | trim | upper}</code> trims first, then uppercases
-  </li>
+  <li><strong>Use <b>{echo}</b> with variables</strong> - <code>{echo $var | function}</code> NOT <code>{$var | function}</code></li>
+  <li><strong>Arithmetic needs spaces</strong> - <code>{echo $x | + 1}</code> NOT <code>{echo $x | +1}</code></li>
+  <li><strong>Quote string parameters</strong> - <code>{echo $x | replace('a','b')}</code></li>
+  <li><strong>Functions apply left to right</strong> - <code>{echo $x | trim | upper}</code> trims first, then uppercases</li>
 </ul>
-<h2>
-  When to Use Opening vs Closing Tag Pipes
-</h2>
+
+<h2>When to Use Opening vs Closing Tag Pipes</h2>
+
 <table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;">
   <tr style="background: #f0f0f0;">
-    <th>
-      Use Case
-    </th>
-    <th>
-      Placement
-    </th>
-    <th>
-      Example
-    </th>
+    <th>Use Case</th>
+    <th>Placement</th>
+    <th>Example</th>
   </tr>
   <tr>
-    <td>
-      Transform input data before processing
-    </td>
-    <td>
-      Opening tag
-    </td>
-    <td>
-      <code>{items | sort}...{/items}</code>
-    </td>
+    <td>Transform input data before processing</td>
+    <td>Opening tag</td>
+    <td><code>{items | sort}...{/items}</code></td>
   </tr>
   <tr>
-    <td>
-      Transform final output after rendering
-    </td>
-    <td>
-      Closing tag
-    </td>
-    <td>
-      <code>{tag}...{/tag | upper}</code>
-    </td>
+    <td>Transform final output after rendering</td>
+    <td>Closing tag</td>
+    <td><code>{tag}...{/tag | upper}</code></td>
   </tr>
   <tr>
-    <td>
-      Format variable values
-    </td>
-    <td>
-      Variable pipe
-    </td>
-    <td>
-      <code>{echo $price | number_format(2)}</code>
-    </td>
+    <td>Format variable values</td>
+    <td>Variable pipe</td>
+    <td><code>{echo $price | number_format(2)}</code></td>
   </tr>
 </table>
-<h2>
-  See Also
-</h2>
+
+<h2>See Also</h2>
+
 <ul>
-  <li>
-    <b>{echo}</b> - Evaluate and output expressions
-  </li>
-  <li>
-    <b>{functions}</b> - List of all pipe functions
-  </li>
-  <li>
-    <b>{options}</b> - Tag options reference
-  </li>
+  <li><b>{echo}</b> - Evaluate and output expressions</li>
+  <li><b>{functions}</b> - List of all pipe functions</li>
+  <li><b>{options}</b> - Tag options reference</li>
 </ul>

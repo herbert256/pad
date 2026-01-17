@@ -11,7 +11,7 @@
   $padApps = "$padHome/apps/";
   $padData = "$padHome/DATA/";
 
-  foreach ( explode ( '/' , str_replace ( '\\', '/', $_SERVER ['REQUEST_URI'] ) ) as $padApp )
+  foreach ( explode ( '/' , str_replace ( '\\', '/', $_SERVER ['REQUEST_URI'] ?? '' ) ) as $padApp )
     if ( $padApp and is_dir ( "$padApps/$padApp" ) )
       return include "$padHome/pad/pad.php";
 

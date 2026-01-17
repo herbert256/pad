@@ -17,7 +17,7 @@
 
   }
 
-  function cut (&$content, $start, $end) {
+  function cut ( &$content, $start, $end ) {
 
     $cut = '';
 

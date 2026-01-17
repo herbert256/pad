@@ -216,6 +216,8 @@
     else
       $output ['data'] = trim($result);
 
+    $output ['data'] = str_replace ( "\r\n", "\n", $output ['data'] );
+
     if ( ! $output ['type'] and $file) {
       $pos = strrpos($file, '.');
       if ( $pos !== FALSE )

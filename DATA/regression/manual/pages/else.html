@@ -1,163 +1,108 @@
-When the result of a PAD tag is false the part after <b>@else@</b> is used.
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">if </font><font color="red">2 &gt; 1</font>}</b><br>  true<br><b>{<font color="blue">else</font><font color="red"></font>}</b><br>  false<br><b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->true<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">if </font><font color="red">1 &gt; 2</font>}</b><br>  true<br><b>{<font color="blue">else</font><font color="red"></font>}</b><br>  false<br><b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->false<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
-<hr>
-The <b>@else@</b> concept is a general feature of every PAD tag, it applies to all PAD tags.<br>
-<br>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      PHP<br>
-      <font size="-2">constructs/else_4.php</font>
-    </th>
-    <th bgcolor="#DDDDDD">
-      HTML<br>
-      <font size="-2">constructs/else_4.pad</font>
-    </th>
-    <th bgcolor="#DDDDDD">
-      Result
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $myVar </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
-    </td>
-    <td style="vertical-align:top">
-      <pre><code style="color: #000000"><b>{<font color="blue">myVar</font><font color="red"></font>}</b><br>  true<br><b>{<font color="blue">else</font><font color="red"></font>}</b><br>  false<br><b>{/<font color="blue">myVar</font><font color="red"></font>}</b></code></pre>
-    </td>
-    <td style="vertical-align:top">
-      false
-    </td>
-  </tr>
-</table>
-<hr>
-When the result of a PAD tag is an empty array the part after <b>@else@</b> is used.
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myArray1<font color="black">'</font></font>}</b><br>  [1,2,3]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">myArray1</font><font color="red"></font>}</b><br>  Occurence <b>{<font color="green"><font color="red">$</font>myArray1</font>}</b> &lt;br&gt;<br><b>{<font color="blue">else</font><font color="red"></font>}</b><br>  No occurences<br><b>{/<font color="blue">myArray1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->Occurence 1<br>
-      Occurence 2<br>
-      Occurence 3<br>
-      <!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myArray2<font color="black">'</font></font>}</b><br>  []<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">myArray2</font><font color="red"></font>}</b><br>  Occurence <b>{<font color="green"><font color="red">$</font>myArray2</font>}</b> &lt;br&gt;<br><b>{<font color="blue">else</font><font color="red"></font>}</b><br>  Nothing to see here<br><b>{/<font color="blue">myArray2</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->Nothing to see here<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
-<hr>
-The <b>@else@</b> context can also be given with the 'else' option at the tag itself.
-<p></p>
-<table border="1" cellpadding="10" cellspacing="0">
-  <tr>
-    <th bgcolor="#DDDDDD">
-      HTML
-    </th>
-    <th bgcolor="#DDDDDD">
-      RESULT
-    </th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myArray<font color="black">'</font></font>}</b><br>  []<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>nothing<font color="black">'</font></font>}</b><br>  Nothing to see here<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">else=<font color="black">'</font>nothing<font color="black">'</font></font>}</b><br>  Occurence <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> &lt;br&gt;<br><b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->Nothing to see here<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-  <tr>
-    <td style="vertical-align:top">
-      <!-- START DEMO SOURCE -->
-      <pre><code style="color: #000000"><b>{<font color="blue">if </font><font color="red">1 &gt; 2<font color="black">,</font> else=<font color="black">'</font>nothing<font color="black">'</font></font>}</b><br>  true<br><b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
-    </td>
-    <td style="vertical-align:top">
-      <code><span style="color: #000000"><!-- START DEMO RESULT -->Nothing to see here<!-- END DEMO RESULT --></span></code>
-    </td>
-  </tr>
-</table>
-<p></p>
+When the result of a PAD tag is false the part after <b>@</b><b>else</b><b>@</b> is used.
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">if </font><font color="red">2 &gt; 1</font>}</b><br>  true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false<br><b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->true<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">if </font><font color="red">1 &gt; 2</font>}</b><br>  true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false<br><b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->false<!-- END DEMO RESULT --></span></code></td></tr>
+  </table>
+</p>
+
+<hr>The <b>@</b><b>else</b><b>@</b> construct is a general feature of every PAD tag, it applies to all PAD tags.<br><br>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">constructs/else_4.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">constructs/else_4.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $myVar </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">myVar</font><font color="red"></font>}</b><br>  true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false<br><b>{/<font color="blue">myVar</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+  false
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </table>
+  
+
+
+
+
+
+<hr>When the result of a PAD tag is an empty array the part after <b>@</b><b>else</b><b>@</b> is used.
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myArray1<font color="black">'</font></font>}</b><br>  [1,2,3]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray1</font><font color="red"></font>}</b><br>  Occurence <b>{<font color="green"><font color="red">$</font>myArray1</font>}</b> &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  No occurences<br><b>{/<font color="blue">myArray1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Occurence 1 <br>
+
+  Occurence 2 <br>
+
+  Occurence 3 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myArray2<font color="black">'</font></font>}</b><br>  []<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray2</font><font color="red"></font>}</b><br>  Occurence <b>{<font color="green"><font color="red">$</font>myArray2</font>}</b> &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  Nothing to see here<br><b>{/<font color="blue">myArray2</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Nothing to see here<!-- END DEMO RESULT --></span></code></td></tr>
+  </table>
+</p>
+
+<hr>The <b>@</b><b>else</b><b>@</b> context can also be given with the 'else' option at the tag itself.
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myArray<font color="black">'</font></font>}</b><br>  []<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>nothing<font color="black">'</font></font>}</b><br>  Nothing to see here<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">else=<font color="black">'</font>nothing<font color="black">'</font></font>}</b><br>  Occurence <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> &lt;br&gt;<br><b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Nothing to see here<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">if </font><font color="red">1 &gt; 2<font color="black">,</font> else=<font color="black">'</font>nothing<font color="black">'</font></font>}</b><br>  true<br><b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Nothing to see here<!-- END DEMO RESULT --></span></code></td></tr>
+  </table>
+</p>

@@ -21,27 +21,22 @@
 
   function padRedirect ( $go='', $vars=[], $app='' ) {
 
-    global $padGoExt, $padHost, $padReqID, $padSesID, $padPage;
+    global $padGoExt, $padHost, $padReqID, $padSesID, $padApp, $padPage;
 
-    if ( ! $go )
-      $go = $padPage;
-    
-    if ( $app )
-      $go = "$padHost/$app/?$go";
-    elseif ( ! strpos($go, '://') )
-      $go = $padGoExt . $go;
+    if ( ! $app ) $app = $padApp;
+    if ( ! $go  ) $go  = $padPage;
 
-    if  ( str_starts_with ( $go, $padHost ) ) {
-      $go = padAddGet ( $go, 'padSesID', $padSesID );
-      $go = padAddGet ( $go, 'padReqID', $padReqID );
-    }
+    $go = ( $go ) ? "$padHost/$app/?$go" : "$padHost/$app/";
+
+    $go = padAddGet ( $go, 'padSesID', $padSesID );
+    $go = padAddGet ( $go, 'padReqID', $padReqID );
 
     foreach ( $vars as $padK => $padV )
       $go = padAddGet ( $go, $padK, $padV );
 
-    padHeader ("Location: $go");
+    padHeader ( "Location: $go" );
 
-    padExit (302);
+    padExit ( 302 );
 
   }
 

@@ -1,7 +1,7 @@
 <?php
 
 
-  function getRegression ( $filter=0 ) {
+  function getRegression ( $extra='' ) {
 
     set_time_limit ( 60 );
 
@@ -9,29 +9,26 @@
 
       extract ( $one );
 
-      if ( $filter == 1 and $app <> 'sequence' ) continue;
-      if ( $filter == 2 and $app == 'sequence' ) continue;
-
-      getRegressionGo ( $app, $item );
+      getRegressionGo ( $app, $item, $extra );
 
     }
 
   }
 
 
-  function getRegressionGo ( $app, $item ) {
+  function getRegressionGo ( $app, $item, $extra='' ) {
 
     global $padHost;
 
     $include = ( $item <> 'index' ) ? '&padInclude' : '';
     $store   = DAT . "regression/$app/$item.html";
  
-    $curl   = padCurl    ( "$padHost/$app?$item$include" );
+    $curl   = padCurl    ( "$padHost/$app?$item$include$extra" );
     $source = padFileGet ( APPS . "$app/$item.pad" );
     $old    = padFileGet ( $store );
 
     $good = str_starts_with ( $curl ['result'], '2');
-    $new  = str_replace     ( "\r\n", "\n", $curl ['data'] );
+    $new  = $curl ['data'];
 
     if     ( ! $good                    ) $status = 'error';
     elseif ( ! file_exists ($store)     ) $status = 'new';
@@ -46,6 +43,21 @@
       padFilePut ( $store, $new ) ;
 
     padFilePut ( str_replace ( '.html', '.txt', $store ), $status ) ;
+
+    if ( ! $extra <> '&padExamples' or ! str_starts_with ( $curl ['result'], '2' ) )
+      return;
+
+    if ( str_contains ( $source, '{page'    ) ) return;
+    if ( str_contains ( $source, '{example' ) ) return;
+    if ( str_contains ( $source, '{ajax'    ) ) return;
+    if ( str_contains ( $source, '{table'   ) ) return;
+    if ( str_contains ( $source, '{demo'    ) ) return;
+ 
+    if ( file_exists ( APPS . "$app/$item.php" ) )
+      padFilePut ( "examples/$app/$item.php",  padFileGet ( APPS . "$app/$item.php" ) );
+
+    padFilePut ( "examples/$app/$item.pad",  padTidySmall ( $source,        TRUE ) );
+    padFilePut ( "examples/$app/$item.html", padTidySmall ( $curl ['data'], TRUE ) );
 
   }
 

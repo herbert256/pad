@@ -29,24 +29,17 @@
 
   }
 
-  function padErrorException ( $padException ) {
-
-    $GLOBALS ['padException'] = $padException;
-
-    if ( $padException === NULL)
-      padErrorGo ('This is strange','???','???');
+  function padErrorException ( $e ) {
 
     global $padException, $padExceptionError, $padExceptionFile, $padExceptionLine, $padExceptionText;
 
-    $padExceptionFile  = $padException->getFile();
-    $padExceptionLine  = $padException->getLine();
-    $padExceptionError = $padException->getMessage();
+    $padException      = $e;
+    $padExceptionFile  = $e->getFile();
+    $padExceptionLine  = $e->getLine();
+    $padExceptionError = $e->getMessage();
     $padExceptionText  = "$padExceptionFile:$padExceptionLine $padExceptionError" ;
 
-    return padErrorGo (
-             'EXCEPTION: ' .
-             $padException->getMessage() , $padException->getFile(), $padException->getLine()
-    );
+    return padErrorGo ( "EXCEPTION: $padExceptionError", $padExceptionFile, $padExceptionLine );
 
   }
 
