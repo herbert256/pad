@@ -1,5 +1,5 @@
 <?php
 
-  return include PAD . 'start/enter/get.php' ;
+  return include PAD . 'start/get.php' ;
 
 ?>

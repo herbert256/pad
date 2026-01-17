@@ -1,7 +1,7 @@
 <?php
 
   if ( $padRestart )
-    return include PAD . 'start/enter/restart.php';
+    return include PAD . 'start/restart.php';
 
   padLevelEnd ();
   if ( $padEnd [$pad] === FALSE )

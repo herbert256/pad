@@ -2,6 +2,6 @@
 
   $padContent = '';
 
-  return include PAD . 'start/enter/code.php';
+  return include PAD . 'start/code.php';
 
 ?>
