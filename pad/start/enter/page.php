@@ -1,7 +1,7 @@
 <?php
 
   if ( padTagParm ( 'app' ) )
-    return include PAD . 'start/enter/_go/pageApp.php';
+    return include PAD . 'start/pad/pageApp.php';
 
   $padStrPag [$pad] [0] = $padPage;
   $padStrPag [$pad] [1] = $padInclude;
