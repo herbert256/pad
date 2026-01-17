@@ -1,28 +1,27 @@
 <?php
 
-  $padBuildBase = '@pad@';
+  $padBuildBase = '@page@';
 
   if ( $padInclude )
     return $padBuildBase;
 
   foreach ( $padBuildDirs as $padBuildDir ) {
 
-    $padBuildInit = str_replace ( '@page@', '@pad@', padFileGet ( "$padBuildDir/_inits.pad" ) );
-    $padBuildExit = str_replace ( '@page@', '@pad@', padFileGet ( "$padBuildDir/_exits.pad" ) );
+    $padBuildInit = padFileGet ( "$padBuildDir/_inits.pad" );
+    $padBuildExit = padFileGet ( "$padBuildDir/_exits.pad" );
 
-    if ( strpos($padBuildInit, '@pad@') === FALSE and strpos($padBuildExit, '@pad@') === FALSE  )
-      $padBuildInit .= '@pad@';
+    if ( strpos($padBuildInit, '@page@') === FALSE and strpos($padBuildExit, '@page@') === FALSE  )
+      $padBuildInit .= '@page@';
 
-    if ( strpos($padBuildInit, '@pad@') !== FALSE )
-      $padBuildBaseNow = str_replace ( '@pad@', "@pad@$padBuildExit", $padBuildInit );
+    if ( strpos($padBuildInit, '@page@') !== FALSE )
+      $padBuildBaseNow = str_replace ( '@page@', "@page@$padBuildExit", $padBuildInit );
     else
-      $padBuildBaseNow = str_replace ( '@pad@', "$padBuildInit@pad@", $padBuildExit );
+      $padBuildBaseNow = str_replace ( '@page@', "$padBuildInit@page@", $padBuildExit );
 
-    $padBuildBase = str_replace ( '@pad@', $padBuildBaseNow, $padBuildBase );
+    $padBuildBase = str_replace ( '@page@', $padBuildBaseNow, $padBuildBase );
 
   }
 
-  if ( ! isset ($padSkipInits) )
-    return str_replace ( '@pad@', $padBuildBase, padFileGet ( COMMON . '_inits.pad' ) );
+  return str_replace ( '@page@', $padBuildBase, padFileGet ( COMMON . '_inits.pad' ) );
 
 ?>

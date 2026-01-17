@@ -1,6 +1,6 @@
 <?php
 
-  $padOutput = padOutput ( $padResult [0] );
+  $padOutput = padUnescape ( $padResult [0] );
 
   if ( $padTidy or $padMyTidy )
     include PAD . 'exits/tidy.php';

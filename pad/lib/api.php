@@ -19,10 +19,13 @@
 
   }
 
-  function padRedirect ( $go, $vars=[], $app='' ) {
+  function padRedirect ( $go='', $vars=[], $app='' ) {
 
-    global $padGoExt, $padHost, $padReqID, $padSesID;
+    global $padGoExt, $padHost, $padReqID, $padSesID, $padPage;
 
+    if ( ! $go )
+      $go = $padPage;
+    
     if ( $app )
       $go = "$padHost/$app/?$go";
     elseif ( ! strpos($go, '://') )

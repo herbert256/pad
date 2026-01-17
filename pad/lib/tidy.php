@@ -35,18 +35,6 @@
 
   }
 
-  function padOutput ( $output ) {
-
-    global $padGo, $padPage;
-
-    $output = padUnescape ( $output );
-
-    $output = str_replace ( '@pad@',  $padGo,            $output );
-    $output = str_replace ( '@self@', $padGo . $padPage, $output );
-
-    return $output;
-
-  }
 
   function padTidy ( $data, $fragment=FALSE ) {
 

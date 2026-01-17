@@ -2,6 +2,11 @@
 
   $title = "Regression test";
 
+  if ( isset ( $go ) ) {
+    getRegression ();
+    padRedirect ();
+  }
+
   $directory = new RecursiveDirectoryIterator ( DAT . 'regression/' );
   $iterator  = new RecursiveIteratorIterator  ( $directory  );
 
