@@ -22,6 +22,9 @@
 
   }
 
-  return str_replace ( '@page@', $padBuildBase, padFileGet ( COMMON . '_inits.pad' ) );
+  if ( $padCommon )
+    return str_replace ( '@page@', $padBuildBase, padFileGet ( COMMON . '_inits.pad' ) );
+  else
+    return $padBuildBase;
 
 ?>

@@ -1,8 +1,9 @@
 <?php
 
   $padOutputType = 'console';
+  $padInfo       = '';
+  $padTidy       = FALSE;
+  $padCommon     = FALSE;
 
-  $padInfo = '';
-  $padTidy = FALSE;
 
 ?>

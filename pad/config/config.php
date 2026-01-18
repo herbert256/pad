@@ -11,6 +11,8 @@
 
   $padInfo = '';
 
+  $padCommon = TRUE;
+
   $padOutputType = 'web';
 
   $padCache = FALSE;

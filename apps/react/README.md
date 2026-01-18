@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This application demonstrates how to combine PAD (server-side template engine) with React (client-side JavaScript framework).
+Demonstrates how to combine PAD (server-side template engine) with React (client-side JavaScript framework).
 
 ## Overview
 
