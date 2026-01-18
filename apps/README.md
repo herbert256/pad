@@ -6,21 +6,20 @@ This directory contains PAD applications and examples.
 
 | Directory | Type | Description |
 |-----------|------|-------------|
+| [_common](_common/README.md) | Shared | Shared resources and utilities for all applications |
+| [check](check/README.md) | Test | Comprehensive test suite for PAD framework features |
 | [cli](cli/README.md) | CLI | Command-line interface for running PAD from terminal |
 | [demo](demo/README.md) | Standard | Interactive demo with guestbook, todo, contact, counter, clock |
-| [develop](develop/) | Standard | Development tools and utilities for PAD |
+| [develop](develop/README.md) | Standard | Development tools and utilities for PAD |
 | [hello](hello/README.md) | Minimal | Hello World example demonstrating page pairing |
-| [manual](manual/) | Standard | User manual and documentation for PAD |
-| [minimal](minimal/README.md) | Minimal | Absolute minimum - single template file |
-| [nono](nono/README.md) | Plain PHP | PHP application without PAD framework |
-| [pad](pad/README.md) | Standard | Reference application with manual and regression tests |
-| [react](react/README.md) | Standard | PAD + React integration - demonstrates client-side JavaScript with server-side templates |
-| [reference](reference/) | Standard | Complete reference documentation for PAD tags, functions, and options |
-| [regression](regression/) | Standard | Automated regression testing for PAD |
-| [sequence](sequence/) | Standard | Interactive sequence generation and manipulation |
+| [manual](manual/README.md) | Standard | Interactive documentation and examples |
+| [nono](nono/README.md) | Plain PHP | PHP application without PAD templating |
+| [pad](pad/README.md) | Standard | PAD framework introduction and reference |
+| [react](react/README.md) | Standard | PAD + React integration examples |
+| [reference](reference/README.md) | Standard | Cross-reference and directory utilities |
+| [regression](regression/README.md) | Standard | Automated regression testing for PAD |
+| [sequence](sequence/README.md) | Standard | Mathematical sequence subsystem demos |
 | [structure](structure/README.md) | Example | Demonstrates PAD directory structure and nested `_xxx` directories |
-| [support](support/README.md) | Standard | Support portal with forum, news, and tickets |
-| [test](test/README.md) | Standard | Test application for database table subsystem |
 
 ## Application Types
 
@@ -28,8 +27,9 @@ This directory contains PAD applications and examples.
 |------|-------------|
 | Standard | Full PAD application with templates (.pad files) |
 | Example | Demonstrates specific PAD features or patterns |
-| Minimal | Simple single-page application |
+| Test | Test suite for validating PAD functionality |
 | CLI | Command-line interface application |
+| Shared | Resources shared across multiple applications |
 | Plain PHP | PHP application that does not use PAD templating |
 
 ## Creating Applications
