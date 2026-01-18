@@ -1,0 +1,966 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - levels_and_occurrences
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Levels and occurrences
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <center>
+                  <p></p>
+                  <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td>
+                        PAD is data driven, the PAD data concepts are named Level and Occurence<br>
+                        <br>
+                        Below example:<br>
+                        - Is two levels deep<br>
+                        - The level 'row' has 3 occurences<br>
+                        - The level 'column' has 5 occurences<br>
+                        <br>
+                      </td>
+                    </tr>
+                  </table>
+                  <center>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                      <tr>
+                        <th bgcolor="#DDDDDD">
+                          PHP
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          HTML
+                        </th>
+                        <th bgcolor="#DDDDDD">
+                          Result
+                        </th>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $row </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">11</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">12</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">13</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">4</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">14</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">5</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">15</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">21</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">22</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">23</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">4</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">24</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">5</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">25</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">1</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">31</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">2</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">32</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">33</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">4</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">34</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #0000BB">3</span><span style="color: #007700">] [</span><span style="color: #DD0000">'column'</span><span style="color: #007700">] [</span><span style="color: #0000BB">5</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cell'</span><span style="color: #007700">] = </span><span style="color: #0000BB">35</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">row</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">column</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>cell</font>}</b>&lt;/td&gt;<br>      <b>{/<font color="blue">column</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">row</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                        </td>
+                        <td style="vertical-align:top">
+                          <table border='1'>
+                            <tr>
+                              <td>
+                                11
+                              </td>
+                              <td>
+                                12
+                              </td>
+                              <td>
+                                13
+                              </td>
+                              <td>
+                                14
+                              </td>
+                              <td>
+                                15
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                21
+                              </td>
+                              <td>
+                                22
+                              </td>
+                              <td>
+                                23
+                              </td>
+                              <td>
+                                24
+                              </td>
+                              <td>
+                                25
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                31
+                              </td>
+                              <td>
+                                32
+                              </td>
+                              <td>
+                                33
+                              </td>
+                              <td>
+                                34
+                              </td>
+                              <td>
+                                35
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </center>
+                  <p></p>
+                  <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td>
+                        If not specifield for a PAD tag then default it has 1 occurence.<br>
+                        <br>
+                        <hr>
+                        <br>
+                        Just for fun, below the above example implemented in a few different ways.<br>
+                        Hopefully all this magic will be explained in this manual.
+                      </td>
+                    </tr>
+                  </table>
+                  <p></p>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $row    </span><span style="color: #007700">= [</span><span style="color: #0000BB">1</span><span style="color: #007700">,</span><span style="color: #0000BB">2</span><span style="color: #007700">,</span><span style="color: #0000BB">3</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$column </span><span style="color: #007700">= [</span><span style="color: #0000BB">1</span><span style="color: #007700">,</span><span style="color: #0000BB">2</span><span style="color: #007700">,</span><span style="color: #0000BB">3</span><span style="color: #007700">,</span><span style="color: #0000BB">4</span><span style="color: #007700">,</span><span style="color: #0000BB">5</span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">row</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">column</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="green">$row</font> <font color="black">|</font> <font color="blue">* 10</font> <font color="black">|</font> <font color="blue">+ $column</font>}</b>&lt;/td&gt; <br>      <b>{/<font color="blue">column</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">row</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <table border='1'>
+                          <tr>
+                            <td>
+                              11
+                            </td>
+                            <td>
+                              12
+                            </td>
+                            <td>
+                              13
+                            </td>
+                            <td>
+                              14
+                            </td>
+                            <td>
+                              15
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              21
+                            </td>
+                            <td>
+                              22
+                            </td>
+                            <td>
+                              23
+                            </td>
+                            <td>
+                              24
+                            </td>
+                            <td>
+                              25
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              31
+                            </td>
+                            <td>
+                              32
+                            </td>
+                            <td>
+                              33
+                            </td>
+                            <td>
+                              34
+                            </td>
+                            <td>
+                              35
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $short </span><span style="color: #007700">= [ [ </span><span style="color: #0000BB">11</span><span style="color: #007700">,</span><span style="color: #0000BB">12</span><span style="color: #007700">,</span><span style="color: #0000BB">13</span><span style="color: #007700">,</span><span style="color: #0000BB">14</span><span style="color: #007700">,</span><span style="color: #0000BB">15 </span><span style="color: #007700">],<br>             [ </span><span style="color: #0000BB">21</span><span style="color: #007700">,</span><span style="color: #0000BB">22</span><span style="color: #007700">,</span><span style="color: #0000BB">23</span><span style="color: #007700">,</span><span style="color: #0000BB">24</span><span style="color: #007700">,</span><span style="color: #0000BB">25 </span><span style="color: #007700">],<br>             [ </span><span style="color: #0000BB">31</span><span style="color: #007700">,</span><span style="color: #0000BB">32</span><span style="color: #007700">,</span><span style="color: #0000BB">33</span><span style="color: #007700">,</span><span style="color: #0000BB">34</span><span style="color: #007700">,</span><span style="color: #0000BB">35 </span><span style="color: #007700">] ];<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;table border='1'&gt; <br>  <b>{<font color="blue">short</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">short</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>short</font>}</b>&lt;/td&gt;<br>      <b>{/<font color="blue">short</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">short</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <table border='1'>
+                          <tr>
+                            <td>
+                              11
+                            </td>
+                            <td>
+                              12
+                            </td>
+                            <td>
+                              13
+                            </td>
+                            <td>
+                              14
+                            </td>
+                            <td>
+                              15
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              21
+                            </td>
+                            <td>
+                              22
+                            </td>
+                            <td>
+                              23
+                            </td>
+                            <td>
+                              24
+                            </td>
+                            <td>
+                              25
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              31
+                            </td>
+                            <td>
+                              32
+                            </td>
+                            <td>
+                              33
+                            </td>
+                            <td>
+                              34
+                            </td>
+                            <td>
+                              35
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">for (</span><span style="color: #0000BB">$row </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">; </span><span style="color: #0000BB">$row </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">3</span><span style="color: #007700">; </span><span style="color: #0000BB">$row</span><span style="color: #007700">++)<br>    for (</span><span style="color: #0000BB">$col </span><span style="color: #007700">= </span><span style="color: #0000BB">1</span><span style="color: #007700">; </span><span style="color: #0000BB">$col </span><span style="color: #007700">&lt;= </span><span style="color: #0000BB">5</span><span style="color: #007700">; </span><span style="color: #0000BB">$col</span><span style="color: #007700">++)<br>      </span><span style="color: #0000BB">$rows </span><span style="color: #007700">[</span><span style="color: #0000BB">$row</span><span style="color: #007700">] [</span><span style="color: #DD0000">'cols'</span><span style="color: #007700">] [</span><span style="color: #0000BB">$col</span><span style="color: #007700">] = </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">rows</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">cols</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="blue">echo </font><font color="red">(&amp;rows<font color="black">:</font>key*10) + &amp;cols<font color="black">:</font>key</font>}</b>&lt;/td&gt;  <br>      <b>{/<font color="blue">cols</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">rows</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <table border='1'>
+                          <tr>
+                            <td>
+                              11
+                            </td>
+                            <td>
+                              12
+                            </td>
+                            <td>
+                              13
+                            </td>
+                            <td>
+                              14
+                            </td>
+                            <td>
+                              15
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              21
+                            </td>
+                            <td>
+                              22
+                            </td>
+                            <td>
+                              23
+                            </td>
+                            <td>
+                              24
+                            </td>
+                            <td>
+                              25
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              31
+                            </td>
+                            <td>
+                              32
+                            </td>
+                            <td>
+                              33
+                            </td>
+                            <td>
+                              34
+                            </td>
+                            <td>
+                              35
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>10..30<font color="black">'</font><font color="black">,</font> increment=10<font color="black">,</font> name=<font color="black">'</font>row<font color="black">'</font></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..5<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>column<font color="black">'</font></font>}</b><br>        &lt;td&gt;<b>{<font color="green">$row</font> <font color="black">|</font> <font color="blue">+ $column</font>}</b>&lt;/td&gt;      <br>      <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <table border='1'>
+                          <tr>
+                            <td>
+                              11
+                            </td>
+                            <td>
+                              12
+                            </td>
+                            <td>
+                              13
+                            </td>
+                            <td>
+                              14
+                            </td>
+                            <td>
+                              15
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              21
+                            </td>
+                            <td>
+                              22
+                            </td>
+                            <td>
+                              23
+                            </td>
+                            <td>
+                              24
+                            </td>
+                            <td>
+                              25
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              31
+                            </td>
+                            <td>
+                              32
+                            </td>
+                            <td>
+                              33
+                            </td>
+                            <td>
+                              34
+                            </td>
+                            <td>
+                              35
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">sequence </font><font color="red">3</font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">sequence </font><font color="red">5</font>}</b><br>        &lt;td&gt;<b>{<font color="blue">echo </font><font color="red">(<font color="red">$</font>-2 * 10) + <font color="red">$</font>-1</font>}</b>&lt;/td&gt;      <br>      <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <table border='1'>
+                          <tr>
+                            <td>
+                              11
+                            </td>
+                            <td>
+                              12
+                            </td>
+                            <td>
+                              13
+                            </td>
+                            <td>
+                              14
+                            </td>
+                            <td>
+                              15
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              21
+                            </td>
+                            <td>
+                              22
+                            </td>
+                            <td>
+                              23
+                            </td>
+                            <td>
+                              24
+                            </td>
+                            <td>
+                              25
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              31
+                            </td>
+                            <td>
+                              32
+                            </td>
+                            <td>
+                              33
+                            </td>
+                            <td>
+                              34
+                            </td>
+                            <td>
+                              35
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>row = 10</font>}</b><br>  <b>{<font color="blue">while </font><font color="red"><font color="red">$</font>row &lt;= 30</font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>column = 1</font>}</b><br>      <b>{<font color="blue">while </font><font color="red"><font color="red">$</font>column &lt;= 5</font>}</b><br>        &lt;td&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>row + <font color="red">$</font>column</font>}</b>&lt;/td&gt;  <br>        <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>column</font>}</b><br>      <b>{/<font color="blue">while</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>    <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>row = <font color="red">$</font>row + 10</font>}</b><br>  <b>{/<font color="blue">while</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <table border='1'>
+                          <tr>
+                            <td>
+                              11
+                            </td>
+                            <td>
+                              12
+                            </td>
+                            <td>
+                              13
+                            </td>
+                            <td>
+                              14
+                            </td>
+                            <td>
+                              15
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              21
+                            </td>
+                            <td>
+                              22
+                            </td>
+                            <td>
+                              23
+                            </td>
+                            <td>
+                              24
+                            </td>
+                            <td>
+                              25
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              31
+                            </td>
+                            <td>
+                              32
+                            </td>
+                            <td>
+                              33
+                            </td>
+                            <td>
+                              34
+                            </td>
+                            <td>
+                              35
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>row<font color="black">'</font>   </font>}</b> (1,2,3)     <b>{/<font color="blue">data</font><font color="red"></font>}</b><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>column<font color="black">'</font></font>}</b> (1,2,3,4,5) <b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br>&lt;table border='1'&gt;<br>  <b>{<font color="blue">row</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">column</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="green">$row</font> <font color="black">|</font> <font color="blue">* 10</font> <font color="black">|</font> <font color="blue">+ $column</font>}</b>&lt;/td&gt;      <br>      <b>{/<font color="blue">column</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">row</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <table border='1'>
+                          <tr>
+                            <td>
+                              11
+                            </td>
+                            <td>
+                              12
+                            </td>
+                            <td>
+                              13
+                            </td>
+                            <td>
+                              14
+                            </td>
+                            <td>
+                              15
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              21
+                            </td>
+                            <td>
+                              22
+                            </td>
+                            <td>
+                              23
+                            </td>
+                            <td>
+                              24
+                            </td>
+                            <td>
+                              25
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              31
+                            </td>
+                            <td>
+                              32
+                            </td>
+                            <td>
+                              33
+                            </td>
+                            <td>
+                              34
+                            </td>
+                            <td>
+                              35
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myJson<font color="black">'</font></font>}</b><br>[<br>  { "column": [ 11, 12, 13, 14, 15 ] },<br>  { "column": [ 21, 22, 23, 24, 35 ] },<br>  { "column": [ 31, 32, 33, 34, 35 ] }<br>]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>myJson<font color="black">'</font></font>}</b><br>  &lt;table border='1'&gt;<br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt;<br>        <b>{<font color="blue">column</font><font color="red"></font>}</b><br>          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>column</font>}</b>&lt;/td&gt;<br>        <b>{/<font color="blue">column</font><font color="red"></font>}</b><br>      &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br>  &lt;/table&gt;<br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <table border='1'>
+                          <tr>
+                            <td>
+                              11
+                            </td>
+                            <td>
+                              12
+                            </td>
+                            <td>
+                              13
+                            </td>
+                            <td>
+                              14
+                            </td>
+                            <td>
+                              15
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              21
+                            </td>
+                            <td>
+                              22
+                            </td>
+                            <td>
+                              23
+                            </td>
+                            <td>
+                              24
+                            </td>
+                            <td>
+                              35
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              31
+                            </td>
+                            <td>
+                              32
+                            </td>
+                            <td>
+                              33
+                            </td>
+                            <td>
+                              34
+                            </td>
+                            <td>
+                              35
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myCsv<font color="black">'</font></font>}</b><br>AA,BB,CC,DD,EE<br>11,12,13,14,15<br>21,22,23,24,35<br>31,32,33,34,35<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br>&lt;table border='1'&gt;<br>  <b>{<font color="blue">myCsv</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">fields</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/td&gt;<br>      <b>{/<font color="blue">fields</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">myCsv</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <table border='1'>
+                          <tr>
+                            <td>
+                              11
+                            </td>
+                            <td>
+                              12
+                            </td>
+                            <td>
+                              13
+                            </td>
+                            <td>
+                              14
+                            </td>
+                            <td>
+                              15
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              21
+                            </td>
+                            <td>
+                              22
+                            </td>
+                            <td>
+                              23
+                            </td>
+                            <td>
+                              24
+                            </td>
+                            <td>
+                              35
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              31
+                            </td>
+                            <td>
+                              32
+                            </td>
+                            <td>
+                              33
+                            </td>
+                            <td>
+                              34
+                            </td>
+                            <td>
+                              35
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myYaml<font color="black">'</font><font color="black">,</font> <font color="black">'</font>http<font color="black">:</font>//localhost/pad/level_demo.yaml<font color="black">'</font></font>}</b><br><br>&lt;table border='1'&gt;<br>  <b>{<font color="blue">myYaml</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">column</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>column</font>}</b>&lt;/td&gt;<br>      <b>{/<font color="blue">column</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">myYaml</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <table border='1'>
+                          <tr>
+                            <td>
+                              11
+                            </td>
+                            <td>
+                              12
+                            </td>
+                            <td>
+                              13
+                            </td>
+                            <td>
+                              14
+                            </td>
+                            <td>
+                              15
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              21
+                            </td>
+                            <td>
+                              22
+                            </td>
+                            <td>
+                              23
+                            </td>
+                            <td>
+                              24
+                            </td>
+                            <td>
+                              35
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              31
+                            </td>
+                            <td>
+                              32
+                            </td>
+                            <td>
+                              33
+                            </td>
+                            <td>
+                              34
+                            </td>
+                            <td>
+                              35
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myXml<font color="black">'</font><font color="black">,</font> <font color="black">'</font>level_demo.xml<font color="black">'</font></font>}</b><br><br>&lt;table border='1'&gt;<br>  <b>{<font color="blue">myXml</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">column</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>column</font>}</b>&lt;/td&gt;<br>      <b>{/<font color="blue">column</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">myXml</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <table border='1'>
+                          <tr>
+                            <td>
+                              11
+                            </td>
+                            <td>
+                              12
+                            </td>
+                            <td>
+                              13
+                            </td>
+                            <td>
+                              14
+                            </td>
+                            <td>
+                              15
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              21
+                            </td>
+                            <td>
+                              22
+                            </td>
+                            <td>
+                              23
+                            </td>
+                            <td>
+                              24
+                            </td>
+                            <td>
+                              35
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              31
+                            </td>
+                            <td>
+                              32
+                            </td>
+                            <td>
+                              33
+                            </td>
+                            <td>
+                              34
+                            </td>
+                            <td>
+                              35
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  <p></p>
+                </center>
+              </td>
+            </tr>
+          </table>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <hr>
+                <table valign="top" align="center">
+                  <tr>
+                    <td valign="top">
+                      <h3 align="center">
+                        Basic Concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tags.html">Tags</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7examples_used_in_this_manual.html">Examples used in this manual</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7parse.html">Parse</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7levels_and_occurrences.html">Levels and occurrences</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_content_tag.html">The content tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_data_tag.html">The data tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7php_and_html.html">Php and html</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7properties.html">Properties</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Advanced concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7prefix.html">Prefix</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7options_variables_parameters.html">Options variables parameters</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7callback.html">Callback</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7escaping_special_PAD_chars.html">Escaping special PAD chars</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tag_return_values.html">Tag return values</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7level_and_occurrence_variables.html">Level and occurrence variables</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7walking.html">Walking</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7data_handling.html">Data handling</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Constructs
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7else.html">Else</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7start_end.html">Start end</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7content.html">Content</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page.html">Page</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Miscellaneous
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ignore.html">Ignore</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

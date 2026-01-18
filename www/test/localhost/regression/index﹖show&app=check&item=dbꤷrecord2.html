@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - db/record2
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Db/record2
+          </h1>
+          <table border="1" cellpadding="10" cellspacing="0">
+            <tr>
+              <th bgcolor="#DDDDDD">
+                PHP<br>
+                <font size="-2"></font>
+              </th>
+              <th bgcolor="#DDDDDD">
+                HTML<br>
+                <font size="-2">db/record2.pad</font>
+              </th>
+              <th bgcolor="#DDDDDD">
+                Result
+              </th>
+            </tr>
+            <tr>
+              <td style="vertical-align:top"></td>
+              <td style="vertical-align:top">
+                <pre><code style="color: #000000">&lt;h3&gt;record, found&lt;/h3&gt;<br>  <br><b>{<font color="blue">record </font><font color="red">"* from staff where name = <font color="black">'</font>jim<font color="black">'</font>"</font>}</b><br>  &lt;p&gt;Jim's phone number is <b>{<font color="green"><font color="red">$</font>phone</font>}</b>, his salary is <b>{<font color="green"><font color="red">$</font>salary</font>}</b>&lt;/p&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;p&gt;Jim does not work here&lt;/p&gt;<br><b>{/<font color="blue">record</font><font color="red"></font>}</b><br><br>&lt;h3&gt;record, not found&lt;/h3&gt;<br>  <br><b>{<font color="blue">record </font><font color="red">"* from staff where name = <font color="black">'</font>john<font color="black">'</font>"</font>}</b><br>  &lt;p&gt;John's phone number is <b>{<font color="green"><font color="red">$</font>phone</font>}</b>, his salary is <b>{<font color="green"><font color="red">$</font>salary</font>}</b>&lt;/p&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;p&gt;John does not work here&lt;/p&gt;<br><b>{/<font color="blue">record</font><font color="red"></font>}</b></code></pre>
+              </td>
+              <td style="vertical-align:top">
+                <div id="padAjaxP7EhKmxc"></div>
+                <script>
+                padAjaxP7EhKmxc = new XMLHttpRequest();
+                padAjaxP7EhKmxc.onreadystatechange=function() {
+                if (padAjaxP7EhKmxc.readyState === 4) {
+                if (padAjaxP7EhKmxc.status === 200) {
+                document.getElementById("padAjaxP7EhKmxc").innerHTML=padAjaxP7EhKmxc.responseText;
+                } else {
+                document.getElementById("padAjaxP7EhKmxc").innerHTML=padAjaxP7EhKmxc.statusText;
+                }
+                }
+                }
+                padAjaxP7EhKmxc.open("GET","http://localhost/check/?db/record2&padInclude&padSesID=027NwY6C&padReqID=cKGKV1CR",true);
+                padAjaxP7EhKmxc.send();
+                </script>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

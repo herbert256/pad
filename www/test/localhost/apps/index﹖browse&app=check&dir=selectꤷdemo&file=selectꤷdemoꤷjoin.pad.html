@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Browse: check/select/demo
+    </title>
+    <style>.browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: check/select/demo
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=check&amp;dir=select.html">..</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=check&amp;dir=select%EA%A4%B7demo%EA%A4%B7_lib.html">_lib/</a>
+                  </li>
+                  <li class="current">join.pad
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=check&amp;dir=select%EA%A4%B7demo&amp;file=select%EA%A4%B7demo%EA%A4%B7join.php.html">join.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=check&amp;dir=select%EA%A4%B7demo&amp;file=select%EA%A4%B7demo%EA%A4%B7union.pad.html">union.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=check&amp;dir=select%EA%A4%B7demo&amp;file=select%EA%A4%B7demo%EA%A4%B7union.php.html">union.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  select/demo/join.pad
+                </h3>
+                <pre><code style="color: #000000">&lt;h1&gt;Join demo&lt;/h1&gt;<br><br>&lt;h2&gt;join&lt;/h2&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">join</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>key1</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>text1</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">join</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;h2&gt;natural&lt;/h2&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">natural1</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>key1</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>text1</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>key2</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>text2</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">natural1</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;h2&gt;inner&lt;/h2&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">inner</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>key1</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>text1</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>key2</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>text2</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">inner</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;h2&gt;left&lt;/h2&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">left</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>key1</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>text1</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>key2</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>text2</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">left</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;h2&gt;natural left&lt;/h2&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">natural2</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>key1</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>text1</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>key2</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>text2</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">natural2</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;h2&gt;right&lt;/h2&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">right</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>key1</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>text1</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>key2</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>text2</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">right</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;h2&gt;natural right&lt;/h2&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">natural3</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>key1</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>text1</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>key2</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>text2</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">natural3</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;h2&gt;cross&lt;/h2&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">cross</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>key1</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>text1</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>key2</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>text2</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">cross</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;h2&gt;multi&lt;/h2&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">multi</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>text3</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>text4</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">multi</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

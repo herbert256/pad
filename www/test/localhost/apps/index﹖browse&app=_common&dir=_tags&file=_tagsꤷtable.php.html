@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Browse: _common/_tags
+    </title>
+    <style>.browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: common/ tags
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=_common.html">..</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=_common&amp;dir=_tags&amp;file=_tags%EA%A4%B7demo.php.html">demo.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=_common&amp;dir=_tags&amp;file=_tags%EA%A4%B7example.pad.html">example.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=_common&amp;dir=_tags&amp;file=_tags%EA%A4%B7example.php.html">example.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=_common&amp;dir=_tags&amp;file=_tags%EA%A4%B7table.pad.html">table.pad</a>
+                  </li>
+                  <li class="current">table.php
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  _tags/table.php
+                </h3>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">if ( </span><span style="color: #0000BB">$padWalk</span><span style="color: #007700">[</span><span style="color: #0000BB">$pad</span><span style="color: #007700">] == </span><span style="color: #DD0000">'start' </span><span style="color: #007700">) {<br><br>    </span><span style="color: #0000BB">$tablePAD  </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>    </span><span style="color: #0000BB">$tableHTML </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br><br>    </span><span style="color: #0000BB">$padWalk</span><span style="color: #007700">[</span><span style="color: #0000BB">$pad</span><span style="color: #007700">] = </span><span style="color: #DD0000">'end'</span><span style="color: #007700">;<br><br>    </span><span style="color: #0000BB">$padDemoCount </span><span style="color: #007700">[</span><span style="color: #0000BB">$pad</span><span style="color: #007700">] = </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>    if ( </span><span style="color: #0000BB">padTagParm </span><span style="color: #007700">( </span><span style="color: #DD0000">'withPHP' </span><span style="color: #007700">) )<br><br>      </span><span style="color: #0000BB">$padDemoSourcePHP </span><span style="color: #007700">=<br>        </span><span style="color: #DD0000">'&lt;td style="vertical-align:top" rowspan="@ROWSPAN@"&gt;' </span><span style="color: #007700">.<br>          </span><span style="color: #0000BB">padColorsFile </span><span style="color: #007700">( </span><span style="color: #0000BB">APP </span><span style="color: #007700">. </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$padPage</span><span style="color: #DD0000">.php" </span><span style="color: #007700">)  .<br>        </span><span style="color: #DD0000">'&lt;/td&gt;'</span><span style="color: #007700">;<br><br>    else<br><br>      </span><span style="color: #0000BB">$padDemoSourcePHP </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br><br>    return </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br><br>  }<br><br>  if ( </span><span style="color: #0000BB">$tablePAD </span><span style="color: #007700">and </span><span style="color: #0000BB">$tableHTML </span><span style="color: #007700">and isset ( </span><span style="color: #0000BB">$_REQUEST </span><span style="color: #007700">[</span><span style="color: #DD0000">'padExamples'</span><span style="color: #007700">] ) ) {<br><br>    </span><span style="color: #0000BB">$tablePADcount </span><span style="color: #007700">[</span><span style="color: #0000BB">$padPage</span><span style="color: #007700">] = </span><span style="color: #0000BB">$tablePADcount </span><span style="color: #007700">[</span><span style="color: #0000BB">$padPage</span><span style="color: #007700">] ?? </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>    </span><span style="color: #0000BB">$tablePADcount </span><span style="color: #007700">[</span><span style="color: #0000BB">$padPage</span><span style="color: #007700">]++;<br><br>    </span><span style="color: #0000BB">$tableITEM </span><span style="color: #007700">= </span><span style="color: #DD0000">"examples/</span><span style="color: #0000BB">$padApp</span><span style="color: #DD0000">/</span><span style="color: #0000BB">$padPage</span><span style="color: #DD0000">" </span><span style="color: #007700">. </span><span style="color: #DD0000">'_' </span><span style="color: #007700">. </span><span style="color: #0000BB">$tablePADcount </span><span style="color: #007700">[</span><span style="color: #0000BB">$padPage</span><span style="color: #007700">];<br><br>    </span><span style="color: #0000BB">padFilePut </span><span style="color: #007700">( </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$tableITEM</span><span style="color: #DD0000">.pad"</span><span style="color: #007700">,  </span><span style="color: #0000BB">padTidySmall </span><span style="color: #007700">( </span><span style="color: #0000BB">$tablePAD</span><span style="color: #007700">,  </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) );<br>    </span><span style="color: #0000BB">padFilePut </span><span style="color: #007700">( </span><span style="color: #DD0000">"</span><span style="color: #0000BB">$tableITEM</span><span style="color: #DD0000">.html"</span><span style="color: #007700">, </span><span style="color: #0000BB">padTidySmall </span><span style="color: #007700">( </span><span style="color: #0000BB">$tableHTML</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) );<br><br>  }<br><br>  </span><span style="color: #0000BB">$padContent </span><span style="color: #007700">= </span><span style="color: #0000BB">str_replace </span><span style="color: #007700">( </span><span style="color: #DD0000">'@ROWSPAN@'</span><span style="color: #007700">, </span><span style="color: #0000BB">$padDemoCount </span><span style="color: #007700">[</span><span style="color: #0000BB">$pad</span><span style="color: #007700">] , </span><span style="color: #0000BB">$padContent</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

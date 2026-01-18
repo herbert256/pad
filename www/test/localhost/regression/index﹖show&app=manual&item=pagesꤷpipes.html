@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - pages/pipes
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Pages/pipes
+          </h1>
+          <table border="1" cellpadding="10" cellspacing="0">
+            <tr>
+              <th bgcolor="#DDDDDD">
+                PHP<br>
+                <font size="-2"></font>
+              </th>
+              <th bgcolor="#DDDDDD">
+                HTML<br>
+                <font size="-2">pages/pipes.pad</font>
+              </th>
+              <th bgcolor="#DDDDDD">
+                Result
+              </th>
+            </tr>
+            <tr>
+              <td style="vertical-align:top"></td>
+              <td style="vertical-align:top">
+                <pre><code style="color: #000000">&lt;h1&gt;Pipes - Transform Output with Functions&lt;/h1&gt;<br><br>&lt;p&gt;Pipes allow you to pass output through functions to transform it. Use the pipe symbol &lt;code&gt;|&lt;/code&gt; followed by a function name to process data.&lt;/p&gt;<br><br>&lt;h2&gt;Two Ways to Use Pipes&lt;/h2&gt;<br><br>&lt;h3&gt;1. Variable Pipes&lt;/h3&gt;<br><br>&lt;p&gt;Apply functions to variables using &lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>variable <font color="black">|</font> function</font>}</b>&lt;/code&gt;:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/pipes_1<font color="black">'</font></font>}</b><br><br>&lt;h3&gt;2. Tag Pipes&lt;/h3&gt;<br><br>&lt;p&gt;Apply functions to tag output. Pipes can be placed on the opening tag or closing tag:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/pipes_2<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Pipe Timing: Opening vs Closing Tag&lt;/h2&gt;<br><br>&lt;p&gt;The placement of the pipe determines &lt;strong&gt;when&lt;/strong&gt; the function is applied:&lt;/p&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;strong&gt;Opening tag&lt;/strong&gt; &lt;code&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">|</font> function</font>}</b>&lt;/code&gt; - Processes data BEFORE the tag content is rendered&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Closing tag&lt;/strong&gt; &lt;code&gt;<b>{/<font color="blue">tag </font><font color="red"><font color="black">|</font> function</font>}</b>&lt;/code&gt; - Processes output AFTER the tag is finished&lt;/li&gt;<br>&lt;/ul&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/pipes_4<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Chaining Pipes&lt;/h2&gt;<br><br>&lt;p&gt;Chain multiple pipe functions together by separating them with &lt;code&gt;|&lt;/code&gt;. Functions are applied left to right:&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>fragments/pipes_3<font color="black">'</font></font>}</b><br><br>&lt;h2&gt;Common Pipe Functions&lt;/h2&gt;<br><br>&lt;table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;"&gt;<br>  &lt;tr style="background: #f0f0f0;"&gt;<br>    &lt;th&gt;Function&lt;/th&gt;<br>    &lt;th&gt;Description&lt;/th&gt;<br>    &lt;th&gt;Example&lt;/th&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;&lt;code&gt;upper&lt;/code&gt;&lt;/td&gt;<br>    &lt;td&gt;Convert to uppercase&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> upper</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;&lt;code&gt;lower&lt;/code&gt;&lt;/td&gt;<br>    &lt;td&gt;Convert to lowercase&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> lower</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;&lt;code&gt;ucwords&lt;/code&gt;&lt;/td&gt;<br>    &lt;td&gt;Capitalize each word&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> ucwords</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;&lt;code&gt;trim&lt;/code&gt;&lt;/td&gt;<br>    &lt;td&gt;Remove whitespace&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> trim</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;&lt;code&gt;html&lt;/code&gt;&lt;/td&gt;<br>    &lt;td&gt;HTML encode&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> html</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;&lt;code&gt;replace(a,b)&lt;/code&gt;&lt;/td&gt;<br>    &lt;td&gt;Replace text&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>text <font color="black">|</font> replace(<font color="black">'</font>old<font color="black">'</font><font color="black">,</font><font color="black">'</font>new<font color="black">'</font>)</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;&lt;code&gt;+ n&lt;/code&gt;&lt;/td&gt;<br>    &lt;td&gt;Add number&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>count <font color="black">|</font> + 1</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;&lt;code&gt;date(fmt)&lt;/code&gt;&lt;/td&gt;<br>    &lt;td&gt;Format date&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>timestamp <font color="black">|</font> date(<font color="black">'</font>Y-m-d<font color="black">'</font>)</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;h2&gt;Important Rules&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;&lt;strong&gt;Use <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>echo<font color="black">'</font></font>}</b> with variables&lt;/strong&gt; - &lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>var <font color="black">|</font> function</font>}</b>&lt;/code&gt; NOT &lt;code&gt;<b>{<font color="green">$var</font> <font color="black">|</font> <font color="blue">function</font>}</b>&lt;/code&gt;&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Arithmetic needs spaces&lt;/strong&gt; - &lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>x <font color="black">|</font> + 1</font>}</b>&lt;/code&gt; NOT &lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>x <font color="black">|</font> +1</font>}</b>&lt;/code&gt;&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Quote string parameters&lt;/strong&gt; - &lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>x <font color="black">|</font> replace(<font color="black">'</font>a<font color="black">'</font><font color="black">,</font><font color="black">'</font>b<font color="black">'</font>)</font>}</b>&lt;/code&gt;&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Functions apply left to right&lt;/strong&gt; - &lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>x <font color="black">|</font> trim <font color="black">|</font> upper</font>}</b>&lt;/code&gt; trims first, then uppercases&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;When to Use Opening vs Closing Tag Pipes&lt;/h2&gt;<br><br>&lt;table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; width: 100%;"&gt;<br>  &lt;tr style="background: #f0f0f0;"&gt;<br>    &lt;th&gt;Use Case&lt;/th&gt;<br>    &lt;th&gt;Placement&lt;/th&gt;<br>    &lt;th&gt;Example&lt;/th&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Transform input data before processing&lt;/td&gt;<br>    &lt;td&gt;Opening tag&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">items </font><font color="red"><font color="black">|</font> sort</font>}</b>...<b>{/<font color="blue">items</font><font color="red"></font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Transform final output after rendering&lt;/td&gt;<br>    &lt;td&gt;Closing tag&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">tag</font><font color="red"></font>}</b>...<b>{/<font color="blue">tag </font><font color="red"><font color="black">|</font> upper</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Format variable values&lt;/td&gt;<br>    &lt;td&gt;Variable pipe&lt;/td&gt;<br>    &lt;td&gt;&lt;code&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>price <font color="black">|</font> number_format(2)</font>}</b>&lt;/code&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;h2&gt;See Also&lt;/h2&gt;<br><br>&lt;ul&gt;<br>  &lt;li&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>echo<font color="black">'</font></font>}</b> - Evaluate and output expressions&lt;/li&gt;<br>  &lt;li&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>functions<font color="black">'</font></font>}</b> - List of all pipe functions&lt;/li&gt;<br>  &lt;li&gt;<b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>options<font color="black">'</font></font>}</b> - Tag options reference&lt;/li&gt;<br>&lt;/ul&gt;</code></pre>
+              </td>
+              <td style="vertical-align:top">
+                <div id="padAjaxYcpjbGNJ"></div>
+                <script>
+                padAjaxYcpjbGNJ = new XMLHttpRequest();
+                padAjaxYcpjbGNJ.onreadystatechange=function() {
+                if (padAjaxYcpjbGNJ.readyState === 4) {
+                if (padAjaxYcpjbGNJ.status === 200) {
+                document.getElementById("padAjaxYcpjbGNJ").innerHTML=padAjaxYcpjbGNJ.responseText;
+                } else {
+                document.getElementById("padAjaxYcpjbGNJ").innerHTML=padAjaxYcpjbGNJ.statusText;
+                }
+                }
+                }
+                padAjaxYcpjbGNJ.open("GET","http://localhost/manual/?pages/pipes&padInclude&padSesID=027NwY6C&padReqID=YkOqmGDQ",true);
+                padAjaxYcpjbGNJ.send();
+                </script>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

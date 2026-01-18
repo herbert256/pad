@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Sequences
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Sequences
+          </h1>
+          <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td>
+                <hr style="margin:2; border: 1px solid black; width:100%">
+                <b>Concepts</b> | <a href="index%EF%B9%96sequences.html">Sequences</a> | <a href="index%EF%B9%96actions.html">Actions</a> | <a href="index%EF%B9%96examples.html">Examples</a> | <a href="index%EF%B9%96reference.html">Reference</a>
+                <hr style="margin:2; border: 1px solid black; width:100%">
+              </td>
+            </tr>
+          </table>
+          <h2>
+            Concepts
+          </h2>
+          <p></p>
+          <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td>
+                <hr style="margin:2; border: 1px solid black; width:100%">
+                <a href="index%EF%B9%96index&amp;go=index&amp;concept=sequences.html">Sequences</a> | <a href="index%EF%B9%96index&amp;go=index&amp;concept=stores.html">Stores</a> | <b>Actions | <a href="index%EF%B9%96index&amp;go=index&amp;concept=plays.html">Plays</a> | <a href="index%EF%B9%96index&amp;go=index&amp;concept=resume.html">Resume</a></b>
+                <hr style="margin:2; border: 1px solid black; width:100%">
+                <b></b>
+              </td>
+            </tr>
+          </table>
+          <h2>
+            Actions - An action executed on a Sequence list
+          </h2>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                Actions operate on a sequence list after the list is build.
+                <p>
+                  In below examples last/reverse/shuffle are actions.
+                </p>
+                <p></p>
+                <table border="1" cellpadding="10" cellspacing="0">
+                  <tr>
+                    <th bgcolor="#DDDDDD">
+                      HTML
+                    </th>
+                    <th bgcolor="#DDDDDD">
+                      RESULT
+                    </th>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">range=<font color="black">'</font>20..30<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>mySeq<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000"><b>{<font color="blue">mySeq </font><font color="red">last=3</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT -->28 29 30<!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000"><b>{<font color="blue">reverse </font><font color="red">mySeq</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT -->30 29 28 27 26 25 24 23 22 21 20<!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align:top">
+                      <!-- START DEMO SOURCE -->
+                      <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> shuffle</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                    </td>
+                    <td style="vertical-align:top">
+                      <code><span style="color: #000000"><!-- START DEMO RESULT -->25 29 30 22 26 20 21 24 27 28 23<!-- END DEMO RESULT --></span></code>
+                    </td>
+                  </tr>
+                </table>
+                <p></p>
+              </td>
+            </tr>
+          </table>
+          <p></p>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

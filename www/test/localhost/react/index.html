@@ -1,0 +1,249 @@
+<html>
+
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+    <title>PAD - Home - PAD + React</title>
+  
+  </head>
+  
+  <body>
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - PAD + React</title>
+
+  <!-- React and ReactDOM from CDN (Development mode) -->
+  <script src="../../unpkg.com/react@18.3.1/umd/react.development.js"></script>
+  <script src="../../unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+
+  <!-- Babel Standalone for JSX transformation in browser (Development only) -->
+  <script src="../../unpkg.com/@babel/standalone@7.28.6/babel.min.js"></script>
+
+  <style>* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    code {
+      font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      background: #282c34;
+      color: white;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    nav {
+      margin-top: 15px;
+    }
+
+    nav a {
+      color: #61dafb;
+      text-decoration: none;
+      margin-right: 20px;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    nav a.active {
+      color: #fff;
+      border-bottom: 2px solid #61dafb;
+    }
+
+    .content {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .react-component {
+      border: 2px dashed #61dafb;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      background: #f0f8ff;
+    }
+
+    .react-component-label {
+      color: #61dafb;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background: #61dafb;
+      color: #282c34;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #4fa8c5;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      text-align: center;
+      color: #666;
+      border-top: 1px solid #ddd;
+    }
+
+    .info-box {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+
+    .info-box strong {
+      color: #856404;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>PAD + React Application</h1>
+      <nav>
+        
+          <a href="index%EF%B9%96index.html" class="active">🏠 Home</a>
+        
+          <a href="index%EF%B9%96examples%EA%A4%B7index.html" >📚 Examples</a>
+        
+          <a href="index%EF%B9%96components.html" >🧩 Components</a>
+        
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="content">
+      <h1>Welcome to PAD + React</h1>
+
+<p>
+  This application demonstrates how to combine <strong>PAD</strong> (server-side template engine)
+  with <strong>React</strong> (client-side JavaScript framework).
+</p>
+
+<div class="info-box">
+  <strong>How it works:</strong>
+  <ul style="margin-top: 10px; margin-left: 20px;">
+    <li>PAD handles routing (?page URLs), server-side data, and initial HTML</li>
+    <li>React is loaded globally in _inits.pad and available on every page</li>
+    <li>You can embed React components anywhere in your PAD templates</li>
+    <li>Server data from PHP can be passed to React components via data attributes or window object</li>
+  </ul>
+</div>
+
+<h2>Server-Side Data from PAD</h2>
+<p>Message: <code>Hello from PAD Server!</code></p>
+<p>Server Time: <code>2026-01-18 08:34:30</code></p>
+
+<h2>React Component Example</h2>
+<p>Below is a simple React component rendered on the client:</p>
+
+<!-- React component will be rendered here -->
+<div id="welcome-component"></div>
+
+<script type="text/babel" src="index/welcome.js"></script>
+
+<h2>React Component with Server Data</h2>
+<p>This component receives data from PAD's server-side PHP:</p>
+
+<!-- Pass server data to React via JavaScript variable -->
+<div id="users-component"
+     data-server-message="Hello from PAD Server!"
+     data-server-time="2026-01-18 08:34:30"
+     data-users-json="[{&quot;id&quot;:1,&quot;name&quot;:&quot;Alice&quot;,&quot;role&quot;:&quot;Developer&quot;},{&quot;id&quot;:2,&quot;name&quot;:&quot;Bob&quot;,&quot;role&quot;:&quot;Designer&quot;},{&quot;id&quot;:3,&quot;name&quot;:&quot;Charlie&quot;,&quot;role&quot;:&quot;Manager&quot;}]"></div>
+
+<script>
+  // Parse from data attribute
+  const elem = document.getElementById('users-component');
+  window.serverData = {
+    serverMessage: elem.dataset.serverMessage,
+    serverTime: elem.dataset.serverTime,
+    users: JSON.parse(elem.dataset.usersJson)
+  };
+</script>
+
+<script type="text/babel" src="index/users.js"></script>
+
+<h2>Next Steps</h2>
+<ul style="margin-left: 20px; line-height: 1.8;">
+  <li>Visit the <a href="index%EF%B9%96examples%EA%A4%B7index&amp;padSesID=Y15x9rQ6&amp;padReqID=u390LyeA.html">Examples</a> page to see more React patterns</li>
+  <li>Visit the <a href="index%EF%B9%96counter.html">Counter Demo</a> to see a complete example</li>
+  <li>Create new pages by adding <code>.php</code> and <code>.pad</code> files</li>
+  <li>React is automatically loaded on every page via <code>_inits.pad</code></li>
+  <li>Learn more about React at <a href="https://react.dev" target="_blank">react.dev</a></li>
+</ul>
+
+<div class="info-box" style="margin-top: 30px;">
+  <strong>Development Mode:</strong> This application uses React development builds and Babel standalone
+  for in-browser JSX transformation. For production, you should use a build tool like Vite or Create React App
+  to compile JSX and use production builds of React.
+</div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>Powered by <strong>PAD Framework</strong> (Server-Side) + <strong>React</strong> (Client-Side)</p>
+      <p style="margin-top: 10px; font-size: 14px;">
+        PAD handles routing, data, and templates • React handles interactive UI components
+      </p>
+    </div>
+  </footer>
+</body>
+</html> 
+
+  </body>
+
+</html>

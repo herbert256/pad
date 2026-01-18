@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - guestbook
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Guestbook
+          </h1>
+          <table border="1" cellpadding="10" cellspacing="0">
+            <tr>
+              <th bgcolor="#DDDDDD">
+                PHP<br>
+                <font size="-2">guestbook.php</font>
+              </th>
+              <th bgcolor="#DDDDDD">
+                HTML<br>
+                <font size="-2">guestbook.pad</font>
+              </th>
+              <th bgcolor="#DDDDDD">
+                Result
+              </th>
+            </tr>
+            <tr>
+              <td style="vertical-align:top">
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Guestbook'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$dataFile </span><span style="color: #007700">= </span><span style="color: #0000BB">DAT </span><span style="color: #007700">. </span><span style="color: #DD0000">'demo/guestbook.json'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$message </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$error </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br><br>  if ( ! </span><span style="color: #0000BB">is_dir </span><span style="color: #007700">( </span><span style="color: #0000BB">DAT </span><span style="color: #007700">. </span><span style="color: #DD0000">'demo' </span><span style="color: #007700">) )<br>    @</span><span style="color: #0000BB">mkdir </span><span style="color: #007700">( </span><span style="color: #0000BB">DAT </span><span style="color: #007700">. </span><span style="color: #DD0000">'demo'</span><span style="color: #007700">, </span><span style="color: #0000BB">0755</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$entries </span><span style="color: #007700">= [];<br>  if ( </span><span style="color: #0000BB">file_exists </span><span style="color: #007700">( </span><span style="color: #0000BB">$dataFile </span><span style="color: #007700">) ) {<br>    </span><span style="color: #0000BB">$json </span><span style="color: #007700">= </span><span style="color: #0000BB">file_get_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">$dataFile </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$entries </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #0000BB">$json</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) ?: [];<br>  }<br><br>  if ( </span><span style="color: #0000BB">$_SERVER</span><span style="color: #007700">[</span><span style="color: #DD0000">'REQUEST_METHOD'</span><span style="color: #007700">] == </span><span style="color: #DD0000">'POST' </span><span style="color: #007700">&amp;& </span><span style="color: #0000BB">$action </span><span style="color: #007700">== </span><span style="color: #DD0000">'add' </span><span style="color: #007700">) {<br>    </span><span style="color: #0000BB">$name    </span><span style="color: #007700">= </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$name    </span><span style="color: #007700">?? </span><span style="color: #DD0000">'' </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$comment </span><span style="color: #007700">= </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$comment </span><span style="color: #007700">?? </span><span style="color: #DD0000">'' </span><span style="color: #007700">);<br><br>    if ( </span><span style="color: #0000BB">$name </span><span style="color: #007700">&amp;& </span><span style="color: #0000BB">$comment </span><span style="color: #007700">) {<br>      </span><span style="color: #0000BB">$entry </span><span style="color: #007700">= [<br>        </span><span style="color: #DD0000">'name'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">htmlspecialchars </span><span style="color: #007700">( </span><span style="color: #0000BB">$name </span><span style="color: #007700">),<br>        </span><span style="color: #DD0000">'comment' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">htmlspecialchars </span><span style="color: #007700">( </span><span style="color: #0000BB">$comment </span><span style="color: #007700">),<br>        </span><span style="color: #DD0000">'date'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">date </span><span style="color: #007700">( </span><span style="color: #DD0000">'Y-m-d H:i:s' </span><span style="color: #007700">)<br>      ];<br>      </span><span style="color: #0000BB">array_unshift </span><span style="color: #007700">( </span><span style="color: #0000BB">$entries</span><span style="color: #007700">, </span><span style="color: #0000BB">$entry </span><span style="color: #007700">);<br>      </span><span style="color: #0000BB">file_put_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">$dataFile</span><span style="color: #007700">, </span><span style="color: #0000BB">json_encode </span><span style="color: #007700">( </span><span style="color: #0000BB">$entries</span><span style="color: #007700">, </span><span style="color: #0000BB">JSON_PRETTY_PRINT </span><span style="color: #007700">) );<br>      </span><span style="color: #0000BB">$message </span><span style="color: #007700">= </span><span style="color: #DD0000">'Thank you for signing the guestbook!'</span><span style="color: #007700">;<br>    }<br>    else<br>      </span><span style="color: #0000BB">$error </span><span style="color: #007700">= </span><span style="color: #DD0000">'Please fill in both name and message.'</span><span style="color: #007700">;<br>  }<br><br>  </span><span style="color: #0000BB">$hasEntries </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$entries </span><span style="color: #007700">) &gt; </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+              </td>
+              <td style="vertical-align:top">
+                <pre><code style="color: #000000">&lt;p&gt;Sign our guestbook and leave a message for other visitors!&lt;/p&gt;<br><br><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>message</font>}</b><br>  &lt;div class="message"&gt;<b>{<font color="green"><font color="red">$</font>message</font>}</b>&lt;/div&gt;<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>error</font>}</b><br>  &lt;div class="message error"&gt;<b>{<font color="green"><font color="red">$</font>error</font>}</b>&lt;/div&gt;<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>&lt;h2&gt;Sign the Guestbook&lt;/h2&gt;<br><br>&lt;form method="post"&gt;<br>  &lt;input type="hidden" name="action" value="add"&gt;<br>  &lt;p&gt;<br>    &lt;label&gt;Your Name:&lt;/label&gt;&lt;br&gt;<br>    &lt;input type="text" name="name" required&gt;<br>  &lt;/p&gt;<br>  &lt;p&gt;<br>    &lt;label&gt;Your Message:&lt;/label&gt;&lt;br&gt;<br>    &lt;textarea name="comment" rows="4" required&gt;&lt;/textarea&gt;<br>  &lt;/p&gt;<br>  &lt;p&gt;<br>    &lt;input type="submit" value="Sign Guestbook"&gt;<br>  &lt;/p&gt;<br>&lt;/form&gt;<br><br>&lt;h2&gt;Guestbook Entries&lt;/h2&gt;<br><br><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>hasEntries</font>}</b><br>  <b>{<font color="blue">entries</font><font color="red"></font>}</b><br>    &lt;div class="guest-entry"&gt;<br>      &lt;div class="guest-name"&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/div&gt;<br>      &lt;div class="guest-date"&gt;<b>{<font color="green"><font color="red">$</font>date</font>}</b>&lt;/div&gt;<br>      &lt;p&gt;<b>{<font color="green"><font color="red">$</font>comment</font>}</b>&lt;/p&gt;<br>    &lt;/div&gt;<br>  <b>{/<font color="blue">entries</font><font color="red"></font>}</b><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;p&gt;No entries yet. Be the first to sign!&lt;/p&gt;<br><b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre>
+              </td>
+              <td style="vertical-align:top">
+                <div id="padAjaxcuvPaA5c"></div>
+                <script>
+                padAjaxcuvPaA5c = new XMLHttpRequest();
+                padAjaxcuvPaA5c.onreadystatechange=function() {
+                if (padAjaxcuvPaA5c.readyState === 4) {
+                if (padAjaxcuvPaA5c.status === 200) {
+                document.getElementById("padAjaxcuvPaA5c").innerHTML=padAjaxcuvPaA5c.responseText;
+                } else {
+                document.getElementById("padAjaxcuvPaA5c").innerHTML=padAjaxcuvPaA5c.statusText;
+                }
+                }
+                }
+                padAjaxcuvPaA5c.open("GET","http://localhost/demo/?guestbook&padInclude&padSesID=027NwY6C&padReqID=e88bqSTa",true);
+                padAjaxcuvPaA5c.send();
+                </script>
+              </td>
+            </tr>
+          </table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>

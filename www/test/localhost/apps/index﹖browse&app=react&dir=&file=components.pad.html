@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Browse: react
+    </title>
+    <style>.browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: react
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_config.html">_config/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_data.html">_data/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_lib.html">_lib/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_providers.html">_providers/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_tags.html">_tags/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=examples.html">examples/</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=_inits.pad.html">_inits.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=_inits.php.html">_inits.php</a>
+                  </li>
+                  <li class="current">components.pad
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=components.php.html">components.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=examples.pad.html">examples.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=examples.php.html">examples.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=index.pad.html">index.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=index.php.html">index.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  components.pad
+                </h3>
+                <pre><code style="color: #000000">&lt;h1&gt;Reusable React Components&lt;/h1&gt;<br><br>&lt;p&gt;Learn how to create and reuse React components in your PAD application.&lt;/p&gt;<br><br>&lt;h2&gt;Component Pattern&lt;/h2&gt;<br>&lt;p&gt;<br>  You can define React components once and reuse them multiple times. Here's an example<br>  showing how to create a reusable Card component:<br>&lt;/p&gt;<br><br>&lt;div id="components-demo"&gt;&lt;/div&gt;<br><br>&lt;script type="text/babel" src="/react/components/demo.js"&gt;&lt;/script&gt;<br><br>&lt;h2&gt;Component Best Practices&lt;/h2&gt;<br>&lt;ul style="margin-left: 20px; line-height: 1.8;"&gt;<br>  &lt;li&gt;&lt;strong&gt;Single Responsibility:&lt;/strong&gt; Each component should do one thing well&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Props:&lt;/strong&gt; Pass data to components via props (parameters)&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Composition:&lt;/strong&gt; Build complex UIs by combining simple components&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;Reusability:&lt;/strong&gt; Design components to be reused in different contexts&lt;/li&gt;<br>  &lt;li&gt;&lt;strong&gt;State Management:&lt;/strong&gt; Keep state in the component that needs it&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;h2&gt;Todo List Component Example&lt;/h2&gt;<br>&lt;div id="todo-app"&gt;&lt;/div&gt;<br><br>&lt;script type="text/babel" src="/react/components/todo.js"&gt;&lt;/script&gt;<br><br>&lt;h2&gt;Next Steps&lt;/h2&gt;<br>&lt;p&gt;<br>  For larger applications, consider organizing components in separate JavaScript files<br>  and using a build tool like Vite or Webpack. This example uses inline JSX for simplicity.<br>&lt;/p&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  </body>
+</html>
