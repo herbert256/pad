@@ -2,6 +2,10 @@
 
 This directory contains comprehensive documentation for the PAD (PHP Application Driver) framework.
 
+## Static mirror off the PAD aaplications
+
+See [herbert256.github.io/pad/apps/](https://herbert256.github.io/pad/apps/) for a static mirror off the PAD applications, including the PAD manual application
+
 ## Documents
 
 | File | Description |
@@ -9,7 +13,6 @@ This directory contains comprehensive documentation for the PAD (PHP Application
 | [README.md](../README.md) | Main project README - overview and quick start |
 | [apps/](../apps/README.md) | PAD applications and examples |
 | [pad/](../pad/README.md) | PAD framework core - template engine, module documentation |
-| [herbert256.github.io/pad/apps/](https://herbert256.github.io/pad/apps/) | Mirror of the PAD applications, including the PAD manual application |
 | [ANALYSE.md](ANALYSE.md) | Code analysis and architecture overview |
 | [APP.md](APP.md) | Application development guide - creating apps, template syntax, tags, patterns |
 | [DATABASE.md](DATABASE.md) | Database operations - db() function, template tags, PAD Select subsystem |
