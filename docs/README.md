@@ -2,9 +2,12 @@
 
 This directory contains comprehensive documentation for the PAD (PHP Application Driver) framework.
 
-## Static mirror off the PAD aaplications
+## Site
 
-See [herbert256.github.io/pad/apps/](https://herbert256.github.io/pad/apps/) for a static mirror off the PAD applications, including the PAD manual application
+| URL | Description |
+|------|-------------|
+| [herbert256.github.io/pad/](https://herbert256.github.io/pad/) | GitHub Pages version of this documentation |
+| [herbert256.github.io/pad/apps/](https://herbert256.github.io/pad/apps/) | A static mirror off the PAD applications, including the PAD manual application |
 
 ## Documents
 
