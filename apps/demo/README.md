@@ -1,5 +1,7 @@
 # Demo Application
 
+## Introduction
+
 Interactive demo showcasing PAD framework features with practical examples.
 
 ## Examples

@@ -41,6 +41,7 @@ The app name is automatically derived from the directory name.
 
 | Directory | Application | Static Assets |
 |-----------|-------------|---------------|
+| `apps/` | Application listing | - |
 | `check/` | Test suite | - |
 | `chess/` | Chess application | index.html |
 | `demo/` | Demo application | style.css |

@@ -1,5 +1,7 @@
 # Common Resources
 
+## Introduction
+
 Shared resources and utilities available to all PAD applications via symbolic links or includes.
 
 ## Structure

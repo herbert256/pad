@@ -1,5 +1,7 @@
 # Regression Test Application
 
+## Introduction
+
 Automated regression testing for PAD framework validation.
 
 ## Structure

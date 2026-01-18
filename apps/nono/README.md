@@ -1,5 +1,7 @@
 # Non-PAD Application
 
+## Introduction
+
 A plain PHP application that runs without the PAD template engine.
 
 ## Purpose

@@ -1,5 +1,7 @@
 # CLI Application
 
+## Introduction
+
 Command-line interface for running PAD applications from the terminal.
 
 ## Usage

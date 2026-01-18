@@ -1,6 +1,8 @@
-# Structure - PAD Application Directory Demo
+# Structure Application
 
-This application demonstrates the PAD directory structure and how special `_xxx` directories work at different levels of the application hierarchy.
+## Introduction
+
+Demonstrates the PAD directory structure and how special `_xxx` directories work at different levels of the application hierarchy.
 
 ## Purpose
 

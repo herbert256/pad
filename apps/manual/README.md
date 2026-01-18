@@ -1,5 +1,7 @@
 # Manual Application
 
+## Introduction
+
 Interactive documentation and examples for the PAD framework.
 
 ## Structure

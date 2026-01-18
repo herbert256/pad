@@ -1,5 +1,7 @@
 # Check Application
 
+## Introduction
+
 Comprehensive test suite for validating PAD framework features and functionality.
 
 ## Structure

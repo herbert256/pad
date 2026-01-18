@@ -1,5 +1,7 @@
 # Sequence Application
 
+## Introduction
+
 Demonstration and testing of PAD's mathematical sequence subsystem.
 
 ## Structure

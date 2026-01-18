@@ -1,0 +1,25 @@
+<style>
+  .apps-list { border-collapse: collapse; margin: 0 auto; }
+  .apps-list th { text-align: left; padding: 8px 16px; border-bottom: 2px solid #999; }
+  .apps-list td { padding: 6px 16px; border-bottom: 1px solid #ccc; vertical-align: top; }
+  .apps-list a { text-decoration: none; }
+  .apps-list a:hover { text-decoration: underline; }
+</style>
+
+<p>{$appCount} applications</p>
+
+<table class="apps-list">
+  <tr>
+    <th>Application</th>
+    <th>Description</th>
+  </tr>
+  {apps}
+  <tr>
+    <td><a href="{$link}">{$name}</a></td>
+    <td>
+      {if $description ne ''}{$description}{/if}
+      {if $description eq ''}<i>No description available</i>{/if}
+    </td>
+  </tr>
+  {/apps}
+</table>

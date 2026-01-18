@@ -1,5 +1,7 @@
 # PAD Reference Application
 
+## Introduction
+
 The main PAD framework reference and documentation application.
 
 ## Structure
