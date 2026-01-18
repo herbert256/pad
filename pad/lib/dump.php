@@ -58,12 +58,12 @@
     echo ( "<div align=\"left\"><pre>" );
 
     padDumpInfo      ( $info );
-    padDumpXXX       ( $pq, 'pq' );
     padDumpStack     ();
     padDumpLevel     ();
     padDumpInput     ();
     padDumpBuffer    ();
     padDumpApp       ();
+    padDumpXXX       ( $pq, 'pq' );
     padDumpRequest   ();
 
     padDumpCurl      ( $pad );
@@ -128,6 +128,7 @@
       padDumpStackGo ( $padTryException->getTrace() );
 
     padDumpStackGo ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS), 2 );
+    echo "<br>";
     padDumpStackGo ( debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS), 1 );
 
     return TRUE;

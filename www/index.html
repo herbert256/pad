@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lichess Game Replay</title>
+
+    <!-- jQuery (required by chessboardjs) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Chessboard.js -->
+    <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+    <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+
+    <!-- Chess.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #fff;
+            font-weight: 300;
+            font-size: 2rem;
+        }
+
+        .search-section {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        input[type="text"] {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            background: #16213e;
+            color: #fff;
+            width: 280px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #4a9eff;
+        }
+
+        input[type="text"]::placeholder {
+            color: #666;
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background: #4a9eff;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #3a8eef;
+        }
+
+        .btn-primary:disabled {
+            background: #333;
+            cursor: not-allowed;
+        }
+
+        .game-container {
+            display: none;
+        }
+
+        .game-container.active {
+            display: block;
+        }
+
+        .game-info {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .players {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .player {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .player-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 2px solid #444;
+        }
+
+        .player-color.white {
+            background: #fff;
+        }
+
+        .player-color.black {
+            background: #000;
+        }
+
+        .player-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .player-rating {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .game-result {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 10px;
+            background: #0f3460;
+            border-radius: 8px;
+        }
+
+        .board-section {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .board-wrapper {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        #board {
+            width: 100%;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-control {
+            background: #16213e;
+            color: #fff;
+            min-width: 50px;
+        }
+
+        .btn-control:hover {
+            background: #1f3460;
+        }
+
+        .move-display {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1.1rem;
+            color: #888;
+        }
+
+        .move-display .current-move {
+            color: #4a9eff;
+            font-weight: 600;
+        }
+
+        .moves-panel {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .moves-panel h3 {
+            margin-bottom: 15px;
+            font-weight: 500;
+            color: #888;
+        }
+
+        .moves-list {
+            display: grid;
+            grid-template-columns: 40px 1fr 1fr;
+            gap: 5px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        .move-number {
+            color: #666;
+        }
+
+        .move {
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .move:hover {
+            background: #1f3460;
+        }
+
+        .move.active {
+            background: #4a9eff;
+            color: #fff;
+        }
+
+        .error-message {
+            background: #ff4757;
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .error-message.active {
+            display: block;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            display: none;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #333;
+            border-top-color: #4a9eff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .auto-play-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .speed-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .speed-control label {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .speed-control select {
+            padding: 6px 10px;
+            border-radius: 6px;
+            background: #16213e;
+            color: #fff;
+            border: 2px solid #333;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .board-wrapper {
+                max-width: 100%;
+            }
+
+            .controls button {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lichess Game Replay</h1>
+
+        <div class="search-section">
+            <input type="text" id="username" placeholder="Enter Lichess username" autocomplete="off">
+            <button class="btn-primary" id="fetchBtn">Fetch Last Game</button>
+        </div>
+
+        <div class="error-message" id="errorMessage"></div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <div>Fetching game data...</div>
+        </div>
+
+        <div class="game-container" id="gameContainer">
+            <div class="game-info">
+                <div class="players">
+                    <div class="player">
+                        <div class="player-color white"></div>
+                        <div>
+                            <div class="player-name" id="whitePlayer">White</div>
+                            <div class="player-rating" id="whiteRating"></div>
+                        </div>
+                    </div>
+                    <div class="player">
+                        <div>
+                            <div class="player-name" id="blackPlayer">Black</div>
+                            <div class="player-rating" id="blackRating"></div>
+                        </div>
+                        <div class="player-color black"></div>
+                    </div>
+                </div>
+                <div class="game-result" id="gameResult">-</div>
+            </div>
+
+            <div class="board-section">
+                <div class="board-wrapper">
+                    <div id="board"></div>
+
+                    <div class="controls">
+                        <button class="btn-control" id="startBtn" title="Go to start">⏮</button>
+                        <button class="btn-control" id="prevBtn" title="Previous move">◀</button>
+                        <button class="btn-control" id="playBtn" title="Auto-play">▶</button>
+                        <button class="btn-control" id="nextBtn" title="Next move">▶</button>
+                        <button class="btn-control" id="endBtn" title="Go to end">⏭</button>
+                    </div>
+
+                    <div class="move-display">
+                        Move: <span class="current-move" id="moveCounter">0 / 0</span>
+                    </div>
+
+                    <div class="auto-play-controls">
+                        <div class="speed-control">
+                            <label for="speed">Speed:</label>
+                            <select id="speed">
+                                <option value="2000">Slow</option>
+                                <option value="1000" selected>Normal</option>
+                                <option value="500">Fast</option>
+                                <option value="250">Very Fast</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="moves-panel">
+                    <h3>Moves</h3>
+                    <div class="moves-list" id="movesList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game state
+        let board = null;
+        let game = new Chess();
+        let moves = [];
+        let currentMoveIndex = -1;
+        let isPlaying = false;
+        let playInterval = null;
+
+        // DOM elements
+        const usernameInput = document.getElementById('username');
+        const fetchBtn = document.getElementById('fetchBtn');
+        const errorMessage = document.getElementById('errorMessage');
+        const loading = document.getElementById('loading');
+        const gameContainer = document.getElementById('gameContainer');
+        const moveCounter = document.getElementById('moveCounter');
+        const movesList = document.getElementById('movesList');
+        const playBtn = document.getElementById('playBtn');
+        const speedSelect = document.getElementById('speed');
+
+        // Initialize board
+        function initBoard() {
+            board = Chessboard('board', {
+                position: 'start',
+                pieceTheme: 'https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/img/chesspieces/wikipedia/{piece}.png'
+            });
+        }
+
+        // Fetch game from Lichess API
+        async function fetchLastGame(username) {
+            showLoading(true);
+            hideError();
+
+            try {
+                const response = await fetch(`https://lichess.org/api/games/user/${username}?max=1&pgnInJson=true`, {
+                    headers: {
+                        'Accept': 'application/x-ndjson'
+                    }
+                });
+
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        throw new Error('User not found');
+                    }
+                    throw new Error('Failed to fetch game data');
+                }
+
+                const text = await response.text();
+                if (!text.trim()) {
+                    throw new Error('No games found for this user');
+                }
+
+                const gameData = JSON.parse(text);
+                loadGame(gameData);
+
+            } catch (error) {
+                showError(error.message);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        // Load and parse game
+        function loadGame(gameData) {
+            // Reset state
+            game = new Chess();
+            moves = [];
+            currentMoveIndex = -1;
+            stopAutoPlay();
+
+            // Parse PGN
+            const pgn = gameData.pgn;
+            if (!pgn) {
+                showError('No PGN data available for this game');
+                return;
+            }
+
+            const loaded = game.load_pgn(pgn);
+            if (!loaded) {
+                showError('Failed to parse game PGN');
+                return;
+            }
+
+            // Store moves and reset
+            moves = game.history({ verbose: true });
+            game.reset();
+
+            // Update UI
+            updateGameInfo(gameData);
+            renderMovesList();
+            updateBoard();
+            updateMoveCounter();
+
+            gameContainer.classList.add('active');
+        }
+
+        // Update game info display
+        function updateGameInfo(gameData) {
+            const white = gameData.players?.white;
+            const black = gameData.players?.black;
+
+            document.getElementById('whitePlayer').textContent = white?.user?.name || white?.aiLevel ? `Stockfish Level ${white.aiLevel}` : 'Anonymous';
+            document.getElementById('blackPlayer').textContent = black?.user?.name || black?.aiLevel ? `Stockfish Level ${black.aiLevel}` : 'Anonymous';
+
+            document.getElementById('whiteRating').textContent = white?.rating ? `(${white.rating})` : '';
+            document.getElementById('blackRating').textContent = black?.rating ? `(${black.rating})` : '';
+
+            let resultText = '';
+            if (gameData.winner === 'white') {
+                resultText = '1-0 (White wins)';
+            } else if (gameData.winner === 'black') {
+                resultText = '0-1 (Black wins)';
+            } else if (gameData.status === 'draw' || gameData.status === 'stalemate') {
+                resultText = '½-½ (Draw)';
+            } else {
+                resultText = gameData.status || 'Unknown';
+            }
+            document.getElementById('gameResult').textContent = resultText;
+        }
+
+        // Render moves list
+        function renderMovesList() {
+            movesList.innerHTML = '';
+
+            for (let i = 0; i < moves.length; i += 2) {
+                const moveNum = Math.floor(i / 2) + 1;
+
+                const numSpan = document.createElement('span');
+                numSpan.className = 'move-number';
+                numSpan.textContent = `${moveNum}.`;
+                movesList.appendChild(numSpan);
+
+                const whiteMove = document.createElement('span');
+                whiteMove.className = 'move';
+                whiteMove.textContent = moves[i].san;
+                whiteMove.dataset.index = i;
+                whiteMove.onclick = () => goToMove(i);
+                movesList.appendChild(whiteMove);
+
+                if (moves[i + 1]) {
+                    const blackMove = document.createElement('span');
+                    blackMove.className = 'move';
+                    blackMove.textContent = moves[i + 1].san;
+                    blackMove.dataset.index = i + 1;
+                    blackMove.onclick = () => goToMove(i + 1);
+                    movesList.appendChild(blackMove);
+                } else {
+                    movesList.appendChild(document.createElement('span'));
+                }
+            }
+        }
+
+        // Update board position
+        function updateBoard() {
+            board.position(game.fen());
+        }
+
+        // Update move counter
+        function updateMoveCounter() {
+            moveCounter.textContent = `${currentMoveIndex + 1} / ${moves.length}`;
+
+            // Update active move in list
+            document.querySelectorAll('.move').forEach((el, idx) => {
+                el.classList.toggle('active', parseInt(el.dataset.index) === currentMoveIndex);
+            });
+        }
+
+        // Navigation functions
+        function goToStart() {
+            stopAutoPlay();
+            game.reset();
+            currentMoveIndex = -1;
+            updateBoard();
+            updateMoveCounter();
+        }
+
+        function goToEnd() {
+            stopAutoPlay();
+            while (currentMoveIndex < moves.length - 1) {
+                currentMoveIndex++;
+                game.move(moves[currentMoveIndex]);
+            }
+            updateBoard();
+            updateMoveCounter();
+        }
+
+        function goToMove(index) {
+            stopAutoPlay();
+            game.reset();
+            currentMoveIndex = -1;
+
+            for (let i = 0; i <= index; i++) {
+                game.move(moves[i]);
+                currentMoveIndex = i;
+            }
+
+            updateBoard();
+            updateMoveCounter();
+        }
+
+        function nextMove() {
+            if (currentMoveIndex < moves.length - 1) {
+                currentMoveIndex++;
+                game.move(moves[currentMoveIndex]);
+                updateBoard();
+                updateMoveCounter();
+                return true;
+            }
+            return false;
+        }
+
+        function prevMove() {
+            if (currentMoveIndex >= 0) {
+                game.undo();
+                currentMoveIndex--;
+                updateBoard();
+                updateMoveCounter();
+            }
+        }
+
+        // Auto-play functions
+        function toggleAutoPlay() {
+            if (isPlaying) {
+                stopAutoPlay();
+            } else {
+                startAutoPlay();
+            }
+        }
+
+        function startAutoPlay() {
+            if (currentMoveIndex >= moves.length - 1) {
+                goToStart();
+            }
+
+            isPlaying = true;
+            playBtn.textContent = '⏸';
+
+            const speed = parseInt(speedSelect.value);
+            playInterval = setInterval(() => {
+                if (!nextMove()) {
+                    stopAutoPlay();
+                }
+            }, speed);
+        }
+
+        function stopAutoPlay() {
+            isPlaying = false;
+            playBtn.textContent = '▶';
+            if (playInterval) {
+                clearInterval(playInterval);
+                playInterval = null;
+            }
+        }
+
+        // UI helpers
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.add('active');
+            gameContainer.classList.remove('active');
+        }
+
+        function hideError() {
+            errorMessage.classList.remove('active');
+        }
+
+        function showLoading(show) {
+            loading.classList.toggle('active', show);
+            fetchBtn.disabled = show;
+        }
+
+        // Event listeners
+        fetchBtn.onclick = () => {
+            const username = usernameInput.value.trim();
+            if (username) {
+                fetchLastGame(username);
+            }
+        };
+
+        usernameInput.onkeypress = (e) => {
+            if (e.key === 'Enter') {
+                fetchBtn.click();
+            }
+        };
+
+        document.getElementById('startBtn').onclick = goToStart;
+        document.getElementById('prevBtn').onclick = prevMove;
+        document.getElementById('nextBtn').onclick = nextMove;
+        document.getElementById('endBtn').onclick = goToEnd;
+        playBtn.onclick = toggleAutoPlay;
+
+        speedSelect.onchange = () => {
+            if (isPlaying) {
+                stopAutoPlay();
+                startAutoPlay();
+            }
+        };
+
+        // Keyboard navigation
+        document.onkeydown = (e) => {
+            if (e.target.tagName === 'INPUT') return;
+
+            switch (e.key) {
+                case 'ArrowLeft':
+                    prevMove();
+                    break;
+                case 'ArrowRight':
+                    nextMove();
+                    break;
+                case 'Home':
+                    goToStart();
+                    break;
+                case 'End':
+                    goToEnd();
+                    break;
+                case ' ':
+                    e.preventDefault();
+                    toggleAutoPlay();
+                    break;
+            }
+        };
+
+        // Initialize
+        initBoard();
+
+        // Handle window resize
+        window.onresize = () => {
+            if (board) {
+                board.resize();
+            }
+        };
+    </script>
+</body>
+</html>

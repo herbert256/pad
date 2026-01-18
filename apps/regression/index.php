@@ -7,31 +7,38 @@
     padRedirect ();
   }
 
-  $directory = new RecursiveDirectoryIterator ( DAT . 'regression/' );
-  $iterator  = new RecursiveIteratorIterator  ( $directory  );
+  $list = [];
+  $regPath = DAT . 'regression/';
 
-  foreach ($iterator as $one ) {
+  if ( is_dir ( $regPath ) ) {
 
-    $path = $one->getPathname() ;
-    $ext  = $one->getExtension() ;
+    $directory = new RecursiveDirectoryIterator ( $regPath );
+    $iterator  = new RecursiveIteratorIterator  ( $directory  );
 
-    if ( $ext <> 'html' and $ext <> 'txt' ) continue;
+    foreach ($iterator as $one ) {
 
-    $base = str_replace ( DAT . 'regression/', '', $path ); 
-    list ( $app, $file ) = explode ( '/', $base, 2 );
-    $item = substr ( $file, 0, strrpos ( $file, '.') );
+      $path = $one->getPathname() ;
+      $ext  = $one->getExtension() ;
 
-    $list [$app] ['app']                    = $app;
-    $list [$app] ['items'] [$item] ['item'] = $item;
+      if ( $ext <> 'html' and $ext <> 'txt' ) continue;
 
-    if ( $ext == 'txt')
-      $list [$app] ['items'] [$item] ['status'] = padFileGet ( $path );
+      $base = str_replace ( $regPath, '', $path );
+      list ( $app, $file ) = explode ( '/', $base, 2 );
+      $item = substr ( $file, 0, strrpos ( $file, '.') );
+
+      $list [$app] ['app']                    = $app;
+      $list [$app] ['items'] [$item] ['item'] = $item;
+
+      if ( $ext == 'txt')
+        $list [$app] ['items'] [$item] ['status'] = padFileGet ( $path );
+
+    }
+
+    ksort ( $list );
+
+    foreach ( $list as $key => $value )
+      ksort ( $list [$key] ['items'] );
 
   }
-
-  ksort ( $list );
-
-  foreach ( $list as $key => $value )
-    ksort ( $list [$key] ['items'] );
 
 ?>
