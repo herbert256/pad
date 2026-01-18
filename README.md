@@ -62,7 +62,8 @@ The data that is send to the browser:
 ```
 pad/
 ├── apps/     # A few PAD applications, including the PAD manual
-├── docs/     # Documentation
+├── docs/     # Documentation - GitHub Pages
+├── md/       # Documentation - GitHub MarkDown
 ├── pad/      # PAD framework core
 ├── www/      # Web server entry points
 └── DATA/     # Runtime data (logs, cache, dumps)
