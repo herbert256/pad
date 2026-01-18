@@ -2,20 +2,15 @@
 
 This directory contains comprehensive documentation for the PAD (PHP Application Driver) framework.
 
-## Site
-
-| URL | Description |
-|------|-------------|
-| [herbert256.github.io/pad/](https://herbert256.github.io/pad/) | GitHub Pages version of this documentation |
-| [herbert256.github.io/pad/apps/](https://herbert256.github.io/pad/apps/) | A static mirror off the PAD applications, including the PAD manual application |
+See [herbert256.github.io/pad/apps/](https://herbert256.github.io/pad/apps/) for static mirror of the PAD applications, including the PAD manual application 
 
 ## Documents
 
 | File | Description |
 |------|-------------|
-| [README.md](../README.md) | Main project README - overview and quick start |
-| [apps/](../apps/README.md) | PAD applications and examples |
-| [pad/](../pad/README.md) | PAD framework core - template engine, module documentation |
+| [README.md](https://github.com/herbert256/pad/blob/master/README.md) | Main project README - overview and quick start |
+| [apps/](https://github.com/herbert256/pad/blob/master/apps/README.md) | PAD applications and examples |
+| [pad/](https://github.com/herbert256/pad/blob/master/pad/README.md) | PAD framework core - template engine, module documentation |
 | [ANALYSE.md](ANALYSE.md) | Code analysis and architecture overview |
 | [APP.md](APP.md) | Application development guide - creating apps, template syntax, tags, patterns |
 | [DATABASE.md](DATABASE.md) | Database operations - db() function, template tags, PAD Select subsystem |
