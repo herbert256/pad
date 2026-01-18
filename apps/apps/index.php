@@ -12,8 +12,11 @@
 
   foreach ($dirs as $dir) {
 
-    // Skip hidden files, current/parent dirs, and _ prefixed directories
-    if ($dir[0] === '.' || $dir[0] === '_') continue;
+    // Skip hidden files and current/parent dirs
+    if ($dir[0] === '.') continue;
+
+    // Skip _ prefixed directories except _common
+    if ($dir[0] === '_' && $dir !== '_common') continue;
 
     $appPath = $appsDir . $dir . '/';
 
@@ -26,7 +29,7 @@
     $app = [
       'name' => $dir,
       'path' => $appPath,
-      'link' => '/' . $dir . '/',
+      'link' => ($dir === '_common') ? '' : '/' . $dir . '/',
       'description' => ''
     ];
 
@@ -49,8 +52,10 @@
     $apps[] = $app;
   }
 
-  // Sort alphabetically by name
+  // Sort: _common first, then alphabetically
   usort($apps, function($a, $b) {
+    if ($a['name'] === '_common') return -1;
+    if ($b['name'] === '_common') return 1;
     return strcasecmp($a['name'], $b['name']);
   });
 

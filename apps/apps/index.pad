@@ -15,7 +15,10 @@
   </tr>
   {apps}
   <tr>
-    <td><a href="{$link}">{$name}</a></td>
+    <td>
+      {if $link ne ''}<a href="{$link}">{$name}</a>{/if}
+      {if $link eq ''}{$name}{/if}
+    </td>
     <td>
       {if $description ne ''}{$description}{/if}
       {if $description eq ''}<i>No description available</i>{/if}
