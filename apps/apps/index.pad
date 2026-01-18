@@ -12,6 +12,7 @@
   <tr>
     <th>Application</th>
     <th>Description</th>
+    <th>Code</th>
   </tr>
   {apps}
   <tr>
@@ -23,6 +24,7 @@
       {if $description ne ''}{$description}{/if}
       {if $description eq ''}<i>No description available</i>{/if}
     </td>
+    <td><a href="?browse&app={$name}">browse</a></td>
   </tr>
   {/apps}
 </table>

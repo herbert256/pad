@@ -1,0 +1,51 @@
+<style>
+  .browse-page { text-align: left; display: inline-block; }
+  .browse-container { display: flex; gap: 20px; }
+  .file-list { min-width: 150px; }
+  .file-list ul { list-style: none; padding: 0; margin: 0; }
+  .file-list li { padding: 2px 0; }
+  .file-list a { text-decoration: none; }
+  .file-list a:hover { text-decoration: underline; }
+  .file-list .current { font-weight: bold; }
+  .source-view { overflow-x: auto; }
+  .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+  .back-link { margin-bottom: 10px; }
+</style>
+
+<div class="browse-page">
+<p class="back-link"><a href="?index">&larr; Back to applications</a></p>
+
+{if $app ne ''}
+
+  <p>{$fileCount} files in <b>{$app}</b></p>
+
+  <div class="browse-container">
+
+    <div class="file-list">
+      <ul>
+        {appFiles}
+          {if $currentFile eq $path}
+            <li class="current">{$path}</li>
+          {/if}
+          {if $currentFile ne $path}
+            <li><a href="?browse&app={$app}&file={$path}">{$path}</a></li>
+          {/if}
+        {/appFiles}
+      </ul>
+    </div>
+
+    {if $currentFile ne ''}
+      <div class="source-view">
+        <h3>{$currentFile}</h3>
+        {!source}
+      </div>
+    {/if}
+
+  </div>
+
+{/if}
+
+{if $app eq ''}
+  <p>No application specified. <a href="?index">Return to applications list</a>.</p>
+{/if}
+</div>
