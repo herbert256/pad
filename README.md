@@ -108,4 +108,4 @@ This directory should be writable by the web server and excluded from version co
 
 ## License
 
-PAD is licensed under the GNU General Public License v3.0. See [LICENSE.md](docs/LICENSE.md) for details.
+PAD is licensed under the GNU General Public License v3.0. See [GPL.md](docs/GPL.md) for details.
