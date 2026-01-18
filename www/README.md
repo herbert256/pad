@@ -32,7 +32,6 @@ Each app has a subdirectory with a minimal `index.php`:
 
 ```php
 <?php
-  $padApp = basename ( __DIR__ );
   include __DIR__ . '/../pad.php'
 ?>
 ```
@@ -108,7 +107,6 @@ The centralized bootstrap:
 2. Create `www/newapp/index.php`:
    ```php
    <?php
-     $padApp = basename ( __DIR__ );
      include __DIR__ . '/../pad.php'
    ?>
    ```

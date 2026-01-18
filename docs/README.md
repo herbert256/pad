@@ -29,4 +29,4 @@ See [herbert256.github.io/pad/apps/](https://herbert256.github.io/pad/apps/) for
 
 ## License
 
-PAD is licensed under the GNU General Public License v3.0. See [GPL.md](GPL.md) for details.
+PAD is licensed under the GNU General Public License v3.0. See [LICENSE.md](https://github.com/herbert256/pad/blob/master/LICENSE.md) for details

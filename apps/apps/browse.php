@@ -1,5 +1,53 @@
 <?php
 
+  /**
+   * Redact sensitive values from source code before syntax highlighting.
+   * Replaces values of variables containing sensitive keywords with *REDACTED*
+   */
+  function padColorsFileRedacted($file) {
+    $source = padFileGet($file);
+
+    // Pattern matches: $varName = 'value' or $varName = "value"
+    // For variables containing sensitive keywords (case-insensitive)
+    $sensitiveKeywords = [
+      'password', 'passwd', 'pwd', 'pass',
+      'secret',
+      'token',
+      'apikey', 'api_key', 'key',
+      'credential', 'cred',
+      'auth',
+      'private',
+      'salt',
+      'hash',
+      'cipher',
+      'encrypt',
+    ];
+
+    $keywordPattern = implode('|', $sensitiveKeywords);
+
+    // Match: $varName = 'value' or $varName = "value" (with optional spaces)
+    // Captures: 1=variable with $, 2=equals and spaces, 3=quote char, 4=value, 5=closing quote
+    $pattern = '/(\$\w*(?:' . $keywordPattern . ')\w*)\s*(=\s*)([\'"])(.+?)\3/i';
+
+    $source = preg_replace_callback($pattern, function($matches) {
+      return $matches[1] . $matches[2] . $matches[3] . '*REDACTED*' . $matches[3];
+    }, $source);
+
+    // Also handle array definitions like 'password' => 'value'
+    $arrayPattern = '/([\'"](?:' . $keywordPattern . ')[\'"])\s*(=>\s*)([\'"])(.+?)\3/i';
+
+    $source = preg_replace_callback($arrayPattern, function($matches) {
+      return $matches[1] . $matches[2] . $matches[3] . '*REDACTED*' . $matches[3];
+    }, $source);
+
+    // Apply syntax highlighting to the redacted source
+    if (substr($file, -4) == '.pad') {
+      return padColorsString($source);
+    } else {
+      return padColorsHighLight($source);
+    }
+  }
+
   $title = 'Browse Application';
 
   // Get the apps directory
@@ -88,7 +136,7 @@
 
         if (file_exists($filePath) && strpos(realpath($filePath), realpath($appPath)) === 0) {
           $currentFile = $file;
-          $source = padColorsFile($filePath);
+          $source = padColorsFileRedacted($filePath);
         }
       }
     }
