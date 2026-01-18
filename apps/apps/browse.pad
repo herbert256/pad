@@ -7,28 +7,40 @@
   .file-list a { text-decoration: none; }
   .file-list a:hover { text-decoration: underline; }
   .file-list .current { font-weight: bold; }
+  .file-list .dir { font-weight: bold; }
+  .file-list .parent a { font-size: 1.4em; font-weight: bold; }
   .source-view { overflow-x: auto; }
   .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
   .back-link { margin-bottom: 10px; }
+  .path-info { color: #666; margin-bottom: 5px; }
 </style>
 
 <div class="browse-page">
-<p class="back-link"><a href="?index">&larr; Back to applications</a></p>
 
 {if $app ne ''}
-
-  <p>{$fileCount} files in <b>{$app}</b></p>
 
   <div class="browse-container">
 
     <div class="file-list">
       <ul>
+        {if $hasParent}
+          <li class="parent">
+            {if $parentDir ne ''}
+              <a href="?browse&app={$app}&dir={$parentDir}">..</a>
+            @else@
+              <a href="?browse&app={$app}">..</a>
+            {/if}
+          </li>
+        {/if}
+        {appDirs}
+          <li class="dir"><a href="?browse&app={$app}&dir={$path}">{$name}/</a></li>
+        {/appDirs}
         {appFiles}
           {if $currentFile eq $path}
-            <li class="current">{$path}</li>
+            <li class="current">{$name}</li>
           {/if}
           {if $currentFile ne $path}
-            <li><a href="?browse&app={$app}&file={$path}">{$path}</a></li>
+            <li><a href="?browse&app={$app}&dir={$dir}&file={$path}">{$name}</a></li>
           {/if}
         {/appFiles}
       </ul>

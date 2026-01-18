@@ -1,8 +1,8 @@
 {lines}
   {local:menu}
     {if $padApp eq $page}
-      {$text}
-    @else@ 
+      <a href="{$padHost}/{$page}" style="background-color: #eee; padding: 2px 4px; text-decoration: underline;">{$text}</a>
+    @else@
       <a href="{$padHost}/{$page}">{$text}</a>
     {/if}
     {notLast} | {/notLast}
