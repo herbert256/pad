@@ -1,0 +1,917 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Reference - @xxx@ constructs - else
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - @xxx@ constructs - else
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: apps - Page: browse<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">browse.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">browse.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Browse Application'</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// Get the apps directory<br>  </span><span style="color: #0000BB">$appsDir </span><span style="color: #007700">= </span><span style="color: #0000BB">dirname</span><span style="color: #007700">(</span><span style="color: #0000BB">APP</span><span style="color: #007700">) . </span><span style="color: #DD0000">'/'</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// Get requested app, directory and file from query string<br>  </span><span style="color: #0000BB">$app </span><span style="color: #007700">= </span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">'app'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$dir </span><span style="color: #007700">= </span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">'dir'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$file </span><span style="color: #007700">= </span><span style="color: #0000BB">$_GET</span><span style="color: #007700">[</span><span style="color: #DD0000">'file'</span><span style="color: #007700">] ?? </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$appPath </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$appDirs </span><span style="color: #007700">= [];<br>  </span><span style="color: #0000BB">$appFiles </span><span style="color: #007700">= [];<br>  </span><span style="color: #0000BB">$source </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$currentFile </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$parentDir </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br><br>  </span><span style="color: #FF8000">// Validate app name (security: prevent directory traversal)<br>  </span><span style="color: #007700">if (</span><span style="color: #0000BB">$app </span><span style="color: #007700">&amp;&amp; </span><span style="color: #0000BB">preg_match</span><span style="color: #007700">(</span><span style="color: #DD0000">'/^[a-zA-Z0-9_-]+$/'</span><span style="color: #007700">, </span><span style="color: #0000BB">$app</span><span style="color: #007700">)) {<br><br>    </span><span style="color: #0000BB">$appPath </span><span style="color: #007700">= </span><span style="color: #0000BB">$appsDir </span><span style="color: #007700">. </span><span style="color: #0000BB">$app </span><span style="color: #007700">. </span><span style="color: #DD0000">'/'</span><span style="color: #007700">;<br><br>    if (</span><span style="color: #0000BB">is_dir</span><span style="color: #007700">(</span><span style="color: #0000BB">$appPath</span><span style="color: #007700">)) {<br><br>      </span><span style="color: #0000BB">$title </span><span style="color: #007700">= </span><span style="color: #DD0000">"Browse: </span><span style="color: #0000BB">$app</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br><br>      </span><span style="color: #FF8000">// Validate and set current directory<br>      </span><span style="color: #0000BB">$currentDir </span><span style="color: #007700">= </span><span style="color: #0000BB">$appPath</span><span style="color: #007700">;<br>      if (</span><span style="color: #0000BB">$dir </span><span style="color: #007700">&amp;&amp; </span><span style="color: #0000BB">preg_match</span><span style="color: #007700">(</span><span style="color: #DD0000">'/^[a-zA-Z0-9_\-\/]+$/'</span><span style="color: #007700">, </span><span style="color: #0000BB">$dir</span><span style="color: #007700">)) {<br>        </span><span style="color: #0000BB">$testPath </span><span style="color: #007700">= </span><span style="color: #0000BB">$appPath </span><span style="color: #007700">. </span><span style="color: #0000BB">$dir </span><span style="color: #007700">. </span><span style="color: #DD0000">'/'</span><span style="color: #007700">;<br>        if (</span><span style="color: #0000BB">is_dir</span><span style="color: #007700">(</span><span style="color: #0000BB">$testPath</span><span style="color: #007700">) &amp;&amp; </span><span style="color: #0000BB">strpos</span><span style="color: #007700">(</span><span style="color: #0000BB">realpath</span><span style="color: #007700">(</span><span style="color: #0000BB">$testPath</span><span style="color: #007700">), </span><span style="color: #0000BB">realpath</span><span style="color: #007700">(</span><span style="color: #0000BB">$appPath</span><span style="color: #007700">)) === </span><span style="color: #0000BB">0</span><span style="color: #007700">) {<br>          </span><span style="color: #0000BB">$currentDir </span><span style="color: #007700">= </span><span style="color: #0000BB">$testPath</span><span style="color: #007700">;<br>          </span><span style="color: #0000BB">$title </span><span style="color: #007700">= </span><span style="color: #DD0000">"Browse: </span><span style="color: #0000BB">$app</span><span style="color: #DD0000">/</span><span style="color: #0000BB">$dir</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br><br>          </span><span style="color: #FF8000">// Calculate parent directory<br>          </span><span style="color: #007700">if (</span><span style="color: #0000BB">strpos</span><span style="color: #007700">(</span><span style="color: #0000BB">$dir</span><span style="color: #007700">, </span><span style="color: #DD0000">'/'</span><span style="color: #007700">) !== </span><span style="color: #0000BB">false</span><span style="color: #007700">) {<br>            </span><span style="color: #0000BB">$parentDir </span><span style="color: #007700">= </span><span style="color: #0000BB">dirname</span><span style="color: #007700">(</span><span style="color: #0000BB">$dir</span><span style="color: #007700">);<br>          } else {<br>            </span><span style="color: #0000BB">$parentDir </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>          }<br>        }<br>      } elseif (</span><span style="color: #0000BB">$dir</span><span style="color: #007700">) {<br>        </span><span style="color: #FF8000">// Invalid dir, reset<br>        </span><span style="color: #0000BB">$dir </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>      }<br><br>      </span><span style="color: #FF8000">// Scan current directory for files and subdirectories<br>      </span><span style="color: #0000BB">$items </span><span style="color: #007700">= </span><span style="color: #0000BB">scandir</span><span style="color: #007700">(</span><span style="color: #0000BB">$currentDir</span><span style="color: #007700">);<br><br>      foreach (</span><span style="color: #0000BB">$items </span><span style="color: #007700">as </span><span style="color: #0000BB">$item</span><span style="color: #007700">) {<br>        </span><span style="color: #FF8000">// Skip hidden files and . / ..<br>        </span><span style="color: #007700">if (</span><span style="color: #0000BB">$item</span><span style="color: #007700">[</span><span style="color: #0000BB">0</span><span style="color: #007700">] === </span><span style="color: #DD0000">'.'</span><span style="color: #007700">) continue;<br><br>        </span><span style="color: #0000BB">$itemPath </span><span style="color: #007700">= </span><span style="color: #0000BB">$currentDir </span><span style="color: #007700">. </span><span style="color: #0000BB">$item</span><span style="color: #007700">;<br>        </span><span style="color: #0000BB">$relativePath </span><span style="color: #007700">= (</span><span style="color: #0000BB">$dir </span><span style="color: #007700">? </span><span style="color: #0000BB">$dir </span><span style="color: #007700">. </span><span style="color: #DD0000">'/' </span><span style="color: #007700">: </span><span style="color: #DD0000">''</span><span style="color: #007700">) . </span><span style="color: #0000BB">$item</span><span style="color: #007700">;<br><br>        if (</span><span style="color: #0000BB">is_dir</span><span style="color: #007700">(</span><span style="color: #0000BB">$itemPath</span><span style="color: #007700">)) {<br>          </span><span style="color: #0000BB">$appDirs</span><span style="color: #007700">[] = [<br>            </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$item</span><span style="color: #007700">,<br>            </span><span style="color: #DD0000">'path' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$relativePath<br>          </span><span style="color: #007700">];<br>        } else {<br>          </span><span style="color: #0000BB">$ext </span><span style="color: #007700">= </span><span style="color: #0000BB">pathinfo</span><span style="color: #007700">(</span><span style="color: #0000BB">$item</span><span style="color: #007700">, </span><span style="color: #0000BB">PATHINFO_EXTENSION</span><span style="color: #007700">);<br>          </span><span style="color: #FF8000">// Only show source files<br>          </span><span style="color: #007700">if (</span><span style="color: #0000BB">in_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$ext</span><span style="color: #007700">, [</span><span style="color: #DD0000">'php'</span><span style="color: #007700">, </span><span style="color: #DD0000">'pad'</span><span style="color: #007700">, </span><span style="color: #DD0000">'json'</span><span style="color: #007700">, </span><span style="color: #DD0000">'xml'</span><span style="color: #007700">, </span><span style="color: #DD0000">'html'</span><span style="color: #007700">, </span><span style="color: #DD0000">'js'</span><span style="color: #007700">, </span><span style="color: #DD0000">'css'</span><span style="color: #007700">])) {<br>            </span><span style="color: #0000BB">$appFiles</span><span style="color: #007700">[] = [<br>              </span><span style="color: #DD0000">'path' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$relativePath</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$item</span><span style="color: #007700">,<br>              </span><span style="color: #DD0000">'ext' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">$ext<br>            </span><span style="color: #007700">];<br>          }<br>        }<br>      }<br><br>      </span><span style="color: #FF8000">// Sort directories and files by name<br>      </span><span style="color: #0000BB">usort</span><span style="color: #007700">(</span><span style="color: #0000BB">$appDirs</span><span style="color: #007700">, function(</span><span style="color: #0000BB">$a</span><span style="color: #007700">, </span><span style="color: #0000BB">$b</span><span style="color: #007700">) {<br>        return </span><span style="color: #0000BB">strcasecmp</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">], </span><span style="color: #0000BB">$b</span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]);<br>      });<br>      </span><span style="color: #0000BB">usort</span><span style="color: #007700">(</span><span style="color: #0000BB">$appFiles</span><span style="color: #007700">, function(</span><span style="color: #0000BB">$a</span><span style="color: #007700">, </span><span style="color: #0000BB">$b</span><span style="color: #007700">) {<br>        return </span><span style="color: #0000BB">strcasecmp</span><span style="color: #007700">(</span><span style="color: #0000BB">$a</span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">], </span><span style="color: #0000BB">$b</span><span style="color: #007700">[</span><span style="color: #DD0000">'name'</span><span style="color: #007700">]);<br>      });<br><br>      </span><span style="color: #FF8000">// If a file is requested, load its source<br>      </span><span style="color: #007700">if (</span><span style="color: #0000BB">$file </span><span style="color: #007700">&amp;&amp; </span><span style="color: #0000BB">preg_match</span><span style="color: #007700">(</span><span style="color: #DD0000">'/^[a-zA-Z0-9_\-\/\.]+$/'</span><span style="color: #007700">, </span><span style="color: #0000BB">$file</span><span style="color: #007700">)) {<br>        </span><span style="color: #0000BB">$filePath </span><span style="color: #007700">= </span><span style="color: #0000BB">$appPath </span><span style="color: #007700">. </span><span style="color: #0000BB">$file</span><span style="color: #007700">;<br><br>        if (</span><span style="color: #0000BB">file_exists</span><span style="color: #007700">(</span><span style="color: #0000BB">$filePath</span><span style="color: #007700">) &amp;&amp; </span><span style="color: #0000BB">strpos</span><span style="color: #007700">(</span><span style="color: #0000BB">realpath</span><span style="color: #007700">(</span><span style="color: #0000BB">$filePath</span><span style="color: #007700">), </span><span style="color: #0000BB">realpath</span><span style="color: #007700">(</span><span style="color: #0000BB">$appPath</span><span style="color: #007700">)) === </span><span style="color: #0000BB">0</span><span style="color: #007700">) {<br>          </span><span style="color: #0000BB">$currentFile </span><span style="color: #007700">= </span><span style="color: #0000BB">$file</span><span style="color: #007700">;<br>          </span><span style="color: #0000BB">$source </span><span style="color: #007700">= </span><span style="color: #0000BB">padColorsFile</span><span style="color: #007700">(</span><span style="color: #0000BB">$filePath</span><span style="color: #007700">);<br>        }<br>      }<br>    }<br>  }<br><br>  </span><span style="color: #0000BB">$dirCount </span><span style="color: #007700">= </span><span style="color: #0000BB">count</span><span style="color: #007700">(</span><span style="color: #0000BB">$appDirs</span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$fileCount </span><span style="color: #007700">= </span><span style="color: #0000BB">count</span><span style="color: #007700">(</span><span style="color: #0000BB">$appFiles</span><span style="color: #007700">);<br>  </span><span style="color: #0000BB">$hasParent </span><span style="color: #007700">= (</span><span style="color: #0000BB">$dir </span><span style="color: #007700">!== </span><span style="color: #DD0000">''</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;style&gt;<br>  .browse-page { text-align: left; display: inline-block; }<br>  .browse-container { display: flex; gap: 20px; }<br>  .file-list { min-width: 150px; }<br>  .file-list ul { list-style: none; padding: 0; margin: 0; }<br>  .file-list li { padding: 2px 0; }<br>  .file-list a { text-decoration: none; }<br>  .file-list a:hover { text-decoration: underline; }<br>  .file-list .current { font-weight: bold; }<br>  .file-list .dir { font-weight: bold; }<br>  .file-list .parent a { font-size: 1.4em; font-weight: bold; }<br>  .source-view { overflow-x: auto; }<br>  .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }<br>  .back-link { margin-bottom: 10px; }<br>  .path-info { color: #666; margin-bottom: 5px; }<br>&lt;/style&gt;<br><br>&lt;div class="browse-page"&gt;<br><br><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>app ne <font color="black">'</font><font color="black">'</font></font>}</b><br><br>  &lt;div class="browse-container"&gt;<br><br>    &lt;div class="file-list"&gt;<br>      &lt;ul&gt;<br>        <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>hasParent</font>}</b><br>          &lt;li class="parent"&gt;<br>            <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>parentDir ne <font color="black">'</font><font color="black">'</font></font>}</b><br>              &lt;a href="?browse&amp;app=<b>{<font color="green"><font color="red">$</font>app</font>}</b>&amp;dir=<b>{<font color="green"><font color="red">$</font>parentDir</font>}</b>"&gt;..&lt;/a&gt;<br>            <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>              &lt;a href="?browse&amp;app=<b>{<font color="green"><font color="red">$</font>app</font>}</b>"&gt;..&lt;/a&gt;<br>            <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>          &lt;/li&gt;<br>        <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>        <b>{<font color="blue">appDirs</font><font color="red"></font>}</b><br>          &lt;li class="dir"&gt;&lt;a href="?browse&amp;app=<b>{<font color="green"><font color="red">$</font>app</font>}</b>&amp;dir=<b>{<font color="green"><font color="red">$</font>path</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>/&lt;/a&gt;&lt;/li&gt;<br>        <b>{/<font color="blue">appDirs</font><font color="red"></font>}</b><br>        <b>{<font color="blue">appFiles</font><font color="red"></font>}</b><br>          <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>currentFile eq <font color="red">$</font>path</font>}</b><br>            &lt;li class="current"&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/li&gt;<br>          <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>          <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>currentFile ne <font color="red">$</font>path</font>}</b><br>            &lt;li&gt;&lt;a href="?browse&amp;app=<b>{<font color="green"><font color="red">$</font>app</font>}</b>&amp;dir=<b>{<font color="green"><font color="red">$</font>dir</font>}</b>&amp;file=<b>{<font color="green"><font color="red">$</font>path</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/a&gt;&lt;/li&gt;<br>          <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>        <b>{/<font color="blue">appFiles</font><font color="red"></font>}</b><br>      &lt;/ul&gt;<br>    &lt;/div&gt;<br><br>    <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>currentFile ne <font color="black">'</font><font color="black">'</font></font>}</b><br>      &lt;div class="source-view"&gt;<br>        &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>currentFile</font>}</b>&lt;/h3&gt;<br>        <b>{<font color="green"><font color="red"><font color="red">!</font></font>source</font>}</b><br>      &lt;/div&gt;<br>    <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>  &lt;/div&gt;<br><br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>app eq <font color="black">'</font><font color="black">'</font></font>}</b><br>  &lt;p&gt;No application specified. &lt;a href="?index"&gt;Return to applications list&lt;/a&gt;.&lt;/p&gt;<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxX4nOUCH3"><style>.browse-page { text-align: left; display: inline-block; }
+  .browse-container { display: flex; gap: 20px; }
+  .file-list { min-width: 150px; }
+  .file-list ul { list-style: none; padding: 0; margin: 0; }
+  .file-list li { padding: 2px 0; }
+  .file-list a { text-decoration: none; }
+  .file-list a:hover { text-decoration: underline; }
+  .file-list .current { font-weight: bold; }
+  .file-list .dir { font-weight: bold; }
+  .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+  .source-view { overflow-x: auto; }
+  .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+  .back-link { margin-bottom: 10px; }
+  .path-info { color: #666; margin-bottom: 5px; }
+</style>
+
+<div class="browse-page">
+
+
+
+
+  <p>No application specified. <a href="index%EF%B9%96index.html">Return to applications list</a>.</p>
+
+</div></div>
+                        <script>
+                        padAjaxX4nOUCH3 = new XMLHttpRequest();
+                        padAjaxX4nOUCH3.onreadystatechange=function() {
+                        if (padAjaxX4nOUCH3.readyState === 4) {
+                        if (padAjaxX4nOUCH3.status === 200) {
+                        document.getElementById("padAjaxX4nOUCH3").innerHTML=padAjaxX4nOUCH3.responseText;
+                        } else {
+                        document.getElementById("padAjaxX4nOUCH3").innerHTML=padAjaxX4nOUCH3.statusText;
+                        }
+                        }
+                        }
+                        padAjaxX4nOUCH3.open("GET","http://localhost/apps/?browse&padInclude&padSesID=DiM2hOlW&padReqID=C0Hh6w0u",true);
+                        padAjaxX4nOUCH3.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: sequence - Page: check/if<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">check/if.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>5;10;15;20<font color="black">'</font><font color="black">,</font>  name=<font color="black">'</font>q1<font color="black">'</font></font>}</b><br><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>15;20;25;30<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>q2<font color="black">'</font></font>}</b><br><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>15;20<font color="black">'</font><font color="black">,</font>       name=<font color="black">'</font>q3<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">if </font><font color="red">q3 eq sequence<font color="black">:</font>intersection ( q1<font color="black">,</font>           q2            )</font>}</b> ok <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> nok <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">if </font><font color="red">q3 eq sequence<font color="black">:</font>intersection ( q1<font color="black">,</font>           [15<font color="black">,</font>20<font color="black">,</font>25<font color="black">,</font>30] )</font>}</b> ok <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> nok <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">if </font><font color="red">q3 eq sequence<font color="black">:</font>intersection ( [5<font color="black">,</font>10<font color="black">,</font>15<font color="black">,</font>20]<font color="black">,</font> q2            )</font>}</b> ok <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> nok <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">if </font><font color="red">q3 eq sequence<font color="black">:</font>intersection ( [5<font color="black">,</font>10<font color="black">,</font>15<font color="black">,</font>20]<font color="black">,</font> [15<font color="black">,</font>20<font color="black">,</font>25<font color="black">,</font>30] )</font>}</b> ok <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> nok <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br><b>{<font color="blue">if </font><font color="red">q3 ne sequence<font color="black">:</font>intersection ( q1<font color="black">,</font>           q2            )</font>}</b> nok <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> ok <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">if </font><font color="red">q3 ne sequence<font color="black">:</font>intersection ( q1<font color="black">,</font>           [15<font color="black">,</font>20<font color="black">,</font>25<font color="black">,</font>30] )</font>}</b> nok <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> ok <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">if </font><font color="red">q3 ne sequence<font color="black">:</font>intersection ( [5<font color="black">,</font>10<font color="black">,</font>15<font color="black">,</font>20]<font color="black">,</font> q2            )</font>}</b> nok <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> ok <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">if </font><font color="red">q3 ne sequence<font color="black">:</font>intersection ( [5<font color="black">,</font>10<font color="black">,</font>15<font color="black">,</font>20]<font color="black">,</font> [15<font color="black">,</font>20<font color="black">,</font>25<font color="black">,</font>30] )</font>}</b> nok <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> ok <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>&lt;hr&gt;<br><br><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>3..5<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>abc<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">if </font><font color="red">4 in abc </font>}</b>  ok <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> nok <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">if </font><font color="red">6 in abc </font>}</b> nok <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>  ok <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>&lt;hr&gt;<br><br><b>{<font color="blue">if </font><font color="red">3 eq sequence<font color="black">:</font>count(abc)</font>}</b>  ok <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> nok <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">if </font><font color="red">sequence<font color="black">:</font>count(abc) eq 4</font>}</b> nok <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>  ok <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>&lt;hr&gt;<br><br><b>{<font color="blue">if </font><font color="red">3 in sequence<font color="black">:</font>count(abc)</font>}</b>  ok <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> nok <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">if </font><font color="red">4 in sequence<font color="black">:</font>count(abc)</font>}</b> nok <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>  ok <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>8..10<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>q1<font color="black">'</font></font>}</b><br><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..10<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>q2<font color="black">'</font></font>}</b><br><br>&lt;hr&gt;<br><br><b>{<font color="blue">if </font><font color="red">q1 eq sequence<font color="black">:</font>last(q2<font color="black">,</font>3)</font>}</b>  ok <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> nok <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">if </font><font color="red">q1 ne sequence<font color="black">:</font>last(q2<font color="black">,</font>3)</font>}</b> nok <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>  ok <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>&lt;hr&gt;<br><br><b>{<font color="blue">if </font><font color="red">[9<font color="black">,</font>10] ne sequence<font color="black">:</font>last ( q2<font color="black">,</font>      2) </font>}</b> nok <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>  ok <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">if </font><font color="red">[8<font color="black">,</font>9]  eq sequence<font color="black">:</font>last ( [7<font color="black">,</font>8<font color="black">,</font>9]<font color="black">,</font> 2) </font>}</b>  ok <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> nok <b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxydhTO2lT">
+
+
+
+ ok 
+ ok 
+ ok 
+ ok 
+
+ ok 
+ ok 
+ ok 
+ ok 
+
+<hr>
+
+
+
+  ok 
+  ok 
+
+<hr>
+
+  ok 
+  ok 
+
+<hr>
+
+  ok 
+  ok 
+
+
+
+
+<hr>
+
+  ok 
+  ok 
+
+<hr>
+
+  ok 
+  ok </div>
+                        <script>
+                        padAjaxydhTO2lT = new XMLHttpRequest();
+                        padAjaxydhTO2lT.onreadystatechange=function() {
+                        if (padAjaxydhTO2lT.readyState === 4) {
+                        if (padAjaxydhTO2lT.status === 200) {
+                        document.getElementById("padAjaxydhTO2lT").innerHTML=padAjaxydhTO2lT.responseText;
+                        } else {
+                        document.getElementById("padAjaxydhTO2lT").innerHTML=padAjaxydhTO2lT.statusText;
+                        }
+                        }
+                        }
+                        padAjaxydhTO2lT.open("GET","http://localhost/sequence/?check/if&padInclude&padSesID=DiM2hOlW&padReqID=C0Hh6w0u",true);
+                        padAjaxydhTO2lT.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: demo - Page: clock<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">clock.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;Current date and time information.&lt;/p&gt;<br><br>&lt;h2&gt;Current Time&lt;/h2&gt;<br><br>&lt;div class="counter" style="font-size: 36px;"&gt;<br>  <b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>l<font color="black">,</font> F j<font color="black">,</font> Y<font color="black">'</font></font>}</b>&lt;br&gt;<br>  <b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>g<font color="black">:</font>i<font color="black">:</font>s A<font color="black">'</font></font>}</b><br>&lt;/div&gt;<br><br>&lt;h2&gt;Time Formats&lt;/h2&gt;<br><br>&lt;table&gt;<br>  &lt;tr&gt;<br>    &lt;th&gt;Format&lt;/th&gt;<br>    &lt;th&gt;Value&lt;/th&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;12-hour format&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>g<font color="black">:</font>i<font color="black">:</font>s A<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;24-hour format&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>H<font color="black">:</font>i<font color="black">:</font>s<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;ISO 8601&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>c<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;RFC 2822&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>r<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Unix Timestamp&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>U<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;h2&gt;Calendar Information&lt;/h2&gt;<br><br>&lt;table&gt;<br>  &lt;tr&gt;<br>    &lt;th&gt;Property&lt;/th&gt;<br>    &lt;th&gt;Value&lt;/th&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Day of Week&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>l<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Month&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>F<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Year&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>Y<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Day of Year&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>z<font color="black">'</font> <font color="black">|</font> + 1</font>}</b> of <b>{<font color="blue">if </font><font color="red"><b><font color="black">{</font><font color="blue">clock </font><font color="red"><font color="black"><font color="black">'</font></font>L<font color="black"><font color="black">'</font></font></font><font color="black">}</font></b> eq 1</font>}</b>366<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>365<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Week of Year&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>W<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Days in This Month&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">clock </font><font color="red"><font color="black">'</font>t<font color="black">'</font></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Days Remaining in Year&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">if </font><font color="red"><b><font color="black">{</font><font color="blue">clock </font><font color="red"><font color="black"><font color="black">'</font></font>L<font color="black"><font color="black">'</font></font></font><font color="black">}</font></b> eq 1</font>}</b><b>{<font color="blue">echo </font><font color="red">365 - <b><font color="black">{</font><font color="blue">clock </font><font color="red"><font color="black"><font color="black">'</font></font>z<font color="black"><font color="black">'</font></font></font><font color="black">}</font></b></font>}</b><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><b>{<font color="blue">echo </font><font color="red">364 - <b><font color="black">{</font><font color="blue">clock </font><font color="red"><font color="black"><font color="black">'</font></font>z<font color="black"><font color="black">'</font></font></font><font color="black">}</font></b></font>}</b><b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Leap Year&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">if </font><font color="red"><b><font color="black">{</font><font color="blue">clock </font><font color="red"><font color="black"><font color="black">'</font></font>L<font color="black"><font color="black">'</font></font></font><font color="black">}</font></b> eq 1</font>}</b>Yes<b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b>No<b>{/<font color="blue">if</font><font color="red"></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Timezone&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="blue">date_default_timezone_get</font><font color="red"></font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxKCmKMZbd"><p>Current date and time information.</p>
+
+<h2>Current Time</h2>
+
+<div class="counter" style="font-size: 36px;">
+  Sunday, January 18, 2026<br>
+  9:01:49 AM
+</div>
+
+<h2>Time Formats</h2>
+
+<table>
+  <tbody><tr>
+    <th>Format</th>
+    <th>Value</th>
+  </tr>
+  <tr>
+    <td>12-hour format</td>
+    <td>9:01:49 AM</td>
+  </tr>
+  <tr>
+    <td>24-hour format</td>
+    <td>09:01:49</td>
+  </tr>
+  <tr>
+    <td>ISO 8601</td>
+    <td>2026-01-18T09:01:49+00:00</td>
+  </tr>
+  <tr>
+    <td>RFC 2822</td>
+    <td>Sun, 18 Jan 2026 09:01:49 +0000</td>
+  </tr>
+  <tr>
+    <td>Unix Timestamp</td>
+    <td>1768726909</td>
+  </tr>
+</tbody></table>
+
+<h2>Calendar Information</h2>
+
+<table>
+  <tbody><tr>
+    <th>Property</th>
+    <th>Value</th>
+  </tr>
+  <tr>
+    <td>Day of Week</td>
+    <td>Sunday</td>
+  </tr>
+  <tr>
+    <td>Month</td>
+    <td>January</td>
+  </tr>
+  <tr>
+    <td>Year</td>
+    <td>2026</td>
+  </tr>
+  <tr>
+    <td>Day of Year</td>
+    <td>18 of 365</td>
+  </tr>
+  <tr>
+    <td>Week of Year</td>
+    <td>03</td>
+  </tr>
+  <tr>
+    <td>Days in This Month</td>
+    <td>31</td>
+  </tr>
+  <tr>
+    <td>Days Remaining in Year</td>
+    <td>347</td>
+  </tr>
+  <tr>
+    <td>Leap Year</td>
+    <td>No</td>
+  </tr>
+  <tr>
+    <td>Timezone</td>
+    <td>UTC</td>
+  </tr>
+</tbody></table></div>
+                        <script>
+                        padAjaxKCmKMZbd = new XMLHttpRequest();
+                        padAjaxKCmKMZbd.onreadystatechange=function() {
+                        if (padAjaxKCmKMZbd.readyState === 4) {
+                        if (padAjaxKCmKMZbd.status === 200) {
+                        document.getElementById("padAjaxKCmKMZbd").innerHTML=padAjaxKCmKMZbd.responseText;
+                        } else {
+                        document.getElementById("padAjaxKCmKMZbd").innerHTML=padAjaxKCmKMZbd.statusText;
+                        }
+                        }
+                        }
+                        padAjaxKCmKMZbd.open("GET","http://localhost/demo/?clock&padInclude&padSesID=DiM2hOlW&padReqID=C0Hh6w0u",true);
+                        padAjaxKCmKMZbd.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: constructs/else_1<br>
+                  <div id="padAjaxVahyvF5P"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">if </font><font color="red">2 &gt; 1</font>}</b><br>  true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false<br><b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->true<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">if </font><font color="red">1 &gt; 2</font>}</b><br>  true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false<br><b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->false<!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxVahyvF5P = new XMLHttpRequest();
+                  padAjaxVahyvF5P.onreadystatechange=function() {
+                  if (padAjaxVahyvF5P.readyState === 4) {
+                  if (padAjaxVahyvF5P.status === 200) {
+                  document.getElementById("padAjaxVahyvF5P").innerHTML=padAjaxVahyvF5P.responseText;
+                  } else {
+                  document.getElementById("padAjaxVahyvF5P").innerHTML=padAjaxVahyvF5P.statusText;
+                  }
+                  }
+                  }
+                  padAjaxVahyvF5P.open("GET","http://localhost/manual/?constructs/else_1&padInclude&padSesID=DiM2hOlW&padReqID=C0Hh6w0u",true);
+                  padAjaxVahyvF5P.send();
+                  </script><br>
+                  <hr>
+                  App: manual - Page: constructs/else_2<br>
+                  <div id="padAjaxcOaejAC6"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myArray1<font color="black">'</font></font>}</b><br>  [1,2,3]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray1</font><font color="red"></font>}</b><br>  Occurence <b>{<font color="green"><font color="red">$</font>myArray1</font>}</b> &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  No occurences<br><b>{/<font color="blue">myArray1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Occurence 1 <br>
+
+  Occurence 2 <br>
+
+  Occurence 3 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myArray2<font color="black">'</font></font>}</b><br>  []<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray2</font><font color="red"></font>}</b><br>  Occurence <b>{<font color="green"><font color="red">$</font>myArray2</font>}</b> &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  Nothing to see here<br><b>{/<font color="blue">myArray2</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Nothing to see here<!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxcOaejAC6 = new XMLHttpRequest();
+                  padAjaxcOaejAC6.onreadystatechange=function() {
+                  if (padAjaxcOaejAC6.readyState === 4) {
+                  if (padAjaxcOaejAC6.status === 200) {
+                  document.getElementById("padAjaxcOaejAC6").innerHTML=padAjaxcOaejAC6.responseText;
+                  } else {
+                  document.getElementById("padAjaxcOaejAC6").innerHTML=padAjaxcOaejAC6.statusText;
+                  }
+                  }
+                  }
+                  padAjaxcOaejAC6.open("GET","http://localhost/manual/?constructs/else_2&padInclude&padSesID=DiM2hOlW&padReqID=C0Hh6w0u",true);
+                  padAjaxcOaejAC6.send();
+                  </script><br>
+                  <hr>
+                  App: manual - Page: constructs/else_4<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">constructs/else_4.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">constructs/else_4.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $myVar </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">myVar</font><font color="red"></font>}</b><br>  true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false<br><b>{/<font color="blue">myVar</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxU76BSIZX">
+  false
+</div>
+                        <script>
+                        padAjaxU76BSIZX = new XMLHttpRequest();
+                        padAjaxU76BSIZX.onreadystatechange=function() {
+                        if (padAjaxU76BSIZX.readyState === 4) {
+                        if (padAjaxU76BSIZX.status === 200) {
+                        document.getElementById("padAjaxU76BSIZX").innerHTML=padAjaxU76BSIZX.responseText;
+                        } else {
+                        document.getElementById("padAjaxU76BSIZX").innerHTML=padAjaxU76BSIZX.statusText;
+                        }
+                        }
+                        }
+                        padAjaxU76BSIZX.open("GET","http://localhost/manual/?constructs/else_4&padInclude&padSesID=DiM2hOlW&padReqID=C0Hh6w0u",true);
+                        padAjaxU76BSIZX.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: content/5<br>
+                  <div id="padAjaxPVjPupjm"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  This is the true content. &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is the false content. &lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">true </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>replace<font color="black">'</font></font>}</b><br>  This is the true base content &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is the false base content &lt;br&gt;<br><b>{/<font color="blue">true</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is the true content. <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">true </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>top<font color="black">'</font></font>}</b><br>  This is the true base content &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is the false base content &lt;br&gt;<br><b>{/<font color="blue">true</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is the true content. <br>
+
+  This is the true base content <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">true </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>bottom<font color="black">'</font></font>}</b><br>  This is the true base content &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is the false base content &lt;br&gt;<br><b>{/<font color="blue">true</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is the true base content <br>
+
+  This is the true content. <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">false </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>replace<font color="black">'</font></font>}</b><br>  This is the true base content &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is the false base content &lt;br&gt;<br><b>{/<font color="blue">false</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is the false content. <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">false </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>top<font color="black">'</font></font>}</b><br>  This is the true base content &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is the false base content &lt;br&gt;<br><b>{/<font color="blue">false</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is the false content. <br>
+
+  This is the false base content <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">false </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> merge=<font color="black">'</font>bottom<font color="black">'</font></font>}</b><br>  This is the true base content &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is the false base content &lt;br&gt;<br><b>{/<font color="blue">false</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is the false base content <br>
+
+  This is the false content. <br><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxPVjPupjm = new XMLHttpRequest();
+                  padAjaxPVjPupjm.onreadystatechange=function() {
+                  if (padAjaxPVjPupjm.readyState === 4) {
+                  if (padAjaxPVjPupjm.status === 200) {
+                  document.getElementById("padAjaxPVjPupjm").innerHTML=padAjaxPVjPupjm.responseText;
+                  } else {
+                  document.getElementById("padAjaxPVjPupjm").innerHTML=padAjaxPVjPupjm.statusText;
+                  }
+                  }
+                  }
+                  padAjaxPVjPupjm.open("GET","http://localhost/manual/?content/5&padInclude&padSesID=DiM2hOlW&padReqID=C0Hh6w0u",true);
+                  padAjaxPVjPupjm.send();
+                  </script><br>
+                  <hr>
+                  App: manual - Page: content/7<br>
+                  <div id="padAjaxvXdg8Cvf"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  true: This is the <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b> content. &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false: This is the <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b> content. &lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">true </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false<br><b>{/<font color="blue">true</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->true: This is the 
+  true
+ content. <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">false </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false<br><b>{/<font color="blue">false</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->false: This is the 
+  false
+ content. <br><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p>
+
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">true </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  true: This is the <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b> content. &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false: This is the <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b> content. &lt;br&gt;<br><b>{/<font color="blue">true</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->true: This is the 
+  true
+ content. <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">false </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  true: This is the <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b> content. &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false: This is the <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b> content. &lt;br&gt;<br><b>{/<font color="blue">false</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->false: This is the 
+  false
+ content. <br><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxvXdg8Cvf = new XMLHttpRequest();
+                  padAjaxvXdg8Cvf.onreadystatechange=function() {
+                  if (padAjaxvXdg8Cvf.readyState === 4) {
+                  if (padAjaxvXdg8Cvf.status === 200) {
+                  document.getElementById("padAjaxvXdg8Cvf").innerHTML=padAjaxvXdg8Cvf.responseText;
+                  } else {
+                  document.getElementById("padAjaxvXdg8Cvf").innerHTML=padAjaxvXdg8Cvf.statusText;
+                  }
+                  }
+                  }
+                  padAjaxvXdg8Cvf.open("GET","http://localhost/manual/?content/7&padInclude&padSesID=DiM2hOlW&padReqID=C0Hh6w0u",true);
+                  padAjaxvXdg8Cvf.send();
+                  </script><br>
+                  <hr>
+                  App: check - Page: db/array<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">db/array.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">db/array.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $array_1 </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">(</span><span style="color: #DD0000">"array name, phone from staff where phone like '%4%'"</span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$array_2 </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">(</span><span style="color: #DD0000">"array * from staff where name like '%x%'"</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;h3&gt;array, found&lt;/h3&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">array_1</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>   <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>    &lt;tr&gt;<br>      &lt;td&gt;Nothing&lt;/td&gt;<br>      &lt;td&gt;Found&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">array_1</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;h3&gt;array, no records found&lt;/h3&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">array_2</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>    &lt;tr&gt;<br>      &lt;td&gt;Nothing&lt;/td&gt;<br>      &lt;td&gt;Found&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">array_2</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxztWCgQvo"><h3>array, found</h3>
+
+<table border="1">
+  
+    <tbody><tr>
+      <td>bob</td>
+      <td>555-3425</td>
+    </tr>
+   
+    <tr>
+      <td>jim</td>
+      <td>555-4364</td>
+    </tr>
+   
+    <tr>
+      <td>joe</td>
+      <td>555-3422</td>
+    </tr>
+   
+    <tr>
+      <td>jerry</td>
+      <td>555-4973</td>
+    </tr>
+   
+</tbody></table>
+
+<h3>array, no records found</h3>
+
+<table border="1">
+  
+    <tbody><tr>
+      <td>Nothing</td>
+      <td>Found</td>
+    </tr>
+  
+</tbody></table></div>
+                        <script>
+                        padAjaxztWCgQvo = new XMLHttpRequest();
+                        padAjaxztWCgQvo.onreadystatechange=function() {
+                        if (padAjaxztWCgQvo.readyState === 4) {
+                        if (padAjaxztWCgQvo.status === 200) {
+                        document.getElementById("padAjaxztWCgQvo").innerHTML=padAjaxztWCgQvo.responseText;
+                        } else {
+                        document.getElementById("padAjaxztWCgQvo").innerHTML=padAjaxztWCgQvo.statusText;
+                        }
+                        }
+                        }
+                        padAjaxztWCgQvo.open("GET","http://localhost/check/?db/array&padInclude&padSesID=DiM2hOlW&padReqID=C0Hh6w0u",true);
+                        padAjaxztWCgQvo.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: db/array2<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">db/array2.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;h3&gt;array, found&lt;/h3&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">array </font><font color="red">"name<font color="black">,</font> phone from staff where phone like <font color="black">'</font><font color="black">%</font>4<font color="black">%</font><font color="black">'</font>"</font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>   <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>    &lt;tr&gt;<br>      &lt;td&gt;Nothing&lt;/td&gt;<br>      &lt;td&gt;Found&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">array</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;h3&gt;array, no records found&lt;/h3&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">array </font><font color="red">"* from staff where name like <font color="black">'</font><font color="black">%</font>x<font color="black">%</font><font color="black">'</font>"</font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>    &lt;tr&gt;<br>      &lt;td&gt;Nothing&lt;/td&gt;<br>      &lt;td&gt;Found&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">array</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxILwhBris"><h3>array, found</h3>
+
+<table border="1">
+  
+    <tbody><tr>
+      <td>bob</td>
+      <td>555-3425</td>
+    </tr>
+   
+    <tr>
+      <td>jim</td>
+      <td>555-4364</td>
+    </tr>
+   
+    <tr>
+      <td>joe</td>
+      <td>555-3422</td>
+    </tr>
+   
+    <tr>
+      <td>jerry</td>
+      <td>555-4973</td>
+    </tr>
+   
+</tbody></table>
+
+<h3>array, no records found</h3>
+
+<table border="1">
+  
+    <tbody><tr>
+      <td>Nothing</td>
+      <td>Found</td>
+    </tr>
+  
+</tbody></table></div>
+                        <script>
+                        padAjaxILwhBris = new XMLHttpRequest();
+                        padAjaxILwhBris.onreadystatechange=function() {
+                        if (padAjaxILwhBris.readyState === 4) {
+                        if (padAjaxILwhBris.status === 200) {
+                        document.getElementById("padAjaxILwhBris").innerHTML=padAjaxILwhBris.responseText;
+                        } else {
+                        document.getElementById("padAjaxILwhBris").innerHTML=padAjaxILwhBris.statusText;
+                        }
+                        }
+                        }
+                        padAjaxILwhBris.open("GET","http://localhost/check/?db/array2&padInclude&padSesID=DiM2hOlW&padReqID=C0Hh6w0u",true);
+                        padAjaxILwhBris.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: db/check<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">db/check.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">db/check.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $check_1 </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">(</span><span style="color: #DD0000">"check staff where name = 'jim'"</span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$check_2 </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">(</span><span style="color: #DD0000">"check staff where name = 'john'"</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;h3&gt;check, found&lt;/h3&gt;<br><br><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>check_1</font>}</b><br>  &lt;p&gt;Jim works here&lt;/p&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;p&gt;Jim does not work here&lt;/p&gt;<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>&lt;h3&gt;check, not found&lt;/h3&gt;<br><br><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>check_2</font>}</b><br>  &lt;p&gt;John works here&lt;/p&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;p&gt;John does not work here&lt;/p&gt;<br><b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxhmK75zik"><h3>check, found</h3>
+
+
+  <p>Jim works here</p>
+
+
+<h3>check, not found</h3>
+
+
+  <p>John does not work here</p>
+</div>
+                        <script>
+                        padAjaxhmK75zik = new XMLHttpRequest();
+                        padAjaxhmK75zik.onreadystatechange=function() {
+                        if (padAjaxhmK75zik.readyState === 4) {
+                        if (padAjaxhmK75zik.status === 200) {
+                        document.getElementById("padAjaxhmK75zik").innerHTML=padAjaxhmK75zik.responseText;
+                        } else {
+                        document.getElementById("padAjaxhmK75zik").innerHTML=padAjaxhmK75zik.statusText;
+                        }
+                        }
+                        }
+                        padAjaxhmK75zik.open("GET","http://localhost/check/?db/check&padInclude&padSesID=DiM2hOlW&padReqID=C0Hh6w0u",true);
+                        padAjaxhmK75zik.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: db/check2<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">db/check2.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;h3&gt;check, found&lt;/h3&gt;<br><br><b>{<font color="blue">check </font><font color="red">"staff where name = <font color="black">'</font>jim<font color="black">'</font>"</font>}</b><br>  &lt;p&gt;Jim works here&lt;/p&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;p&gt;Jim does not work here&lt;/p&gt;<br><b>{/<font color="blue">check</font><font color="red"></font>}</b><br><br>&lt;h3&gt;check, not found&lt;/h3&gt;<br><br><b>{<font color="blue">check </font><font color="red">"staff where name = <font color="black">'</font>john<font color="black">'</font>"</font>}</b><br>  &lt;p&gt;John works here&lt;/p&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;p&gt;John does not work here&lt;/p&gt;<br><b>{/<font color="blue">check</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxIJAMLOo9"><h3>check, found</h3>
+
+
+  <p>Jim works here</p>
+
+
+<h3>check, not found</h3>
+
+
+  <p>John does not work here</p>
+</div>
+                        <script>
+                        padAjaxIJAMLOo9 = new XMLHttpRequest();
+                        padAjaxIJAMLOo9.onreadystatechange=function() {
+                        if (padAjaxIJAMLOo9.readyState === 4) {
+                        if (padAjaxIJAMLOo9.status === 200) {
+                        document.getElementById("padAjaxIJAMLOo9").innerHTML=padAjaxIJAMLOo9.responseText;
+                        } else {
+                        document.getElementById("padAjaxIJAMLOo9").innerHTML=padAjaxIJAMLOo9.statusText;
+                        }
+                        }
+                        }
+                        padAjaxIJAMLOo9.open("GET","http://localhost/check/?db/check2&padInclude&padSesID=DiM2hOlW&padReqID=C0Hh6w0u",true);
+                        padAjaxIJAMLOo9.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: db/record<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">db/record.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">db/record.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $record_1 </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">(</span><span style="color: #DD0000">"record * from staff where name = 'jim'"</span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$record_2 </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">(</span><span style="color: #DD0000">"record * from staff where name = 'john'"</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;h3&gt;record, found&lt;/h3&gt;<br>  <br><b>{<font color="blue">record_1</font><font color="red"></font>}</b><br>  &lt;p&gt;Jim's phone number is <b>{<font color="green"><font color="red">$</font>phone</font>}</b>,&lt;br&gt; <br>     his salary is <b>{<font color="green"><font color="red">$</font>salary</font>}</b>&lt;/p&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;p&gt;Jim does not work here&lt;/p&gt;<br><b>{/<font color="blue">record_1</font><font color="red"></font>}</b><br><br>&lt;h3&gt;record, not found&lt;/h3&gt;<br>  <br><b>{<font color="blue">record_2</font><font color="red"></font>}</b><br>  &lt;p&gt;John's phone number is <b>{<font color="green"><font color="red">$</font>phone</font>}</b>,&lt;br&gt; <br>     his salary is <b>{<font color="green"><font color="red">$</font>salary</font>}</b>&lt;/p&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;p&gt;John does not work here&lt;/p&gt;<br><b>{/<font color="blue">record_2</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax6UCtiw4V"><h3>record, found</h3>
+  
+
+  <p>Jim's phone number is 555-4364,<br> 
+     his salary is 2000.00</p>
+
+
+<h3>record, not found</h3>
+  
+
+  <p>John does not work here</p>
+</div>
+                        <script>
+                        padAjax6UCtiw4V = new XMLHttpRequest();
+                        padAjax6UCtiw4V.onreadystatechange=function() {
+                        if (padAjax6UCtiw4V.readyState === 4) {
+                        if (padAjax6UCtiw4V.status === 200) {
+                        document.getElementById("padAjax6UCtiw4V").innerHTML=padAjax6UCtiw4V.responseText;
+                        } else {
+                        document.getElementById("padAjax6UCtiw4V").innerHTML=padAjax6UCtiw4V.statusText;
+                        }
+                        }
+                        }
+                        padAjax6UCtiw4V.open("GET","http://localhost/check/?db/record&padInclude&padSesID=DiM2hOlW&padReqID=C0Hh6w0u",true);
+                        padAjax6UCtiw4V.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: db/record2<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">db/record2.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;h3&gt;record, found&lt;/h3&gt;<br>  <br><b>{<font color="blue">record </font><font color="red">"* from staff where name = <font color="black">'</font>jim<font color="black">'</font>"</font>}</b><br>  &lt;p&gt;Jim's phone number is <b>{<font color="green"><font color="red">$</font>phone</font>}</b>, his salary is <b>{<font color="green"><font color="red">$</font>salary</font>}</b>&lt;/p&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;p&gt;Jim does not work here&lt;/p&gt;<br><b>{/<font color="blue">record</font><font color="red"></font>}</b><br><br>&lt;h3&gt;record, not found&lt;/h3&gt;<br>  <br><b>{<font color="blue">record </font><font color="red">"* from staff where name = <font color="black">'</font>john<font color="black">'</font>"</font>}</b><br>  &lt;p&gt;John's phone number is <b>{<font color="green"><font color="red">$</font>phone</font>}</b>, his salary is <b>{<font color="green"><font color="red">$</font>salary</font>}</b>&lt;/p&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  &lt;p&gt;John does not work here&lt;/p&gt;<br><b>{/<font color="blue">record</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxCSSfzj2U"><h3>record, found</h3>
+  
+
+  <p>Jim's phone number is 555-4364, his salary is 2000.00</p>
+
+
+<h3>record, not found</h3>
+  
+
+  <p>John does not work here</p>
+</div>
+                        <script>
+                        padAjaxCSSfzj2U = new XMLHttpRequest();
+                        padAjaxCSSfzj2U.onreadystatechange=function() {
+                        if (padAjaxCSSfzj2U.readyState === 4) {
+                        if (padAjaxCSSfzj2U.status === 200) {
+                        document.getElementById("padAjaxCSSfzj2U").innerHTML=padAjaxCSSfzj2U.responseText;
+                        } else {
+                        document.getElementById("padAjaxCSSfzj2U").innerHTML=padAjaxCSSfzj2U.statusText;
+                        }
+                        }
+                        }
+                        padAjaxCSSfzj2U.open("GET","http://localhost/check/?db/record2&padInclude&padSesID=DiM2hOlW&padReqID=C0Hh6w0u",true);
+                        padAjaxCSSfzj2U.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: functions/between<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">functions/between.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">if </font><font color="red">10 range (20<font color="black">,</font> 40)   </font>}</b> NOK <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> ok  <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">if </font><font color="red">20 range (20<font color="black">,</font> 40)   </font>}</b> ok  <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> NOK <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">if </font><font color="red">30 range (20<font color="black">,</font> 40)   </font>}</b> ok  <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> NOK <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">if </font><font color="red">40 range (20<font color="black">,</font> 40)   </font>}</b> ok  <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> NOK <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><b>{<font color="blue">if </font><font color="red">50 range (20<font color="black">,</font> 40)   </font>}</b> NOK <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> ok  <b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxAzzBNXLa"> ok  
+ ok  
+ ok  
+ ok  
+ ok  </div>
+                        <script>
+                        padAjaxAzzBNXLa = new XMLHttpRequest();
+                        padAjaxAzzBNXLa.onreadystatechange=function() {
+                        if (padAjaxAzzBNXLa.readyState === 4) {
+                        if (padAjaxAzzBNXLa.status === 200) {
+                        document.getElementById("padAjaxAzzBNXLa").innerHTML=padAjaxAzzBNXLa.responseText;
+                        } else {
+                        document.getElementById("padAjaxAzzBNXLa").innerHTML=padAjaxAzzBNXLa.statusText;
+                        }
+                        }
+                        }
+                        padAjaxAzzBNXLa.open("GET","http://localhost/check/?functions/between&padInclude&padSesID=DiM2hOlW&padReqID=C0Hh6w0u",true);
+                        padAjaxAzzBNXLa.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

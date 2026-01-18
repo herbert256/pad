@@ -1,0 +1,1285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - sequences - Xref - Single - reverse
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Sequences - Xref - Single - reverse
+          </h1>
+          <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+              <td>
+                <hr style="margin:2; border: 1px solid black; width:100%">
+                <a href="index%EF%B9%96index.html">Concepts</a> | <a href="index%EF%B9%96sequences.html">Sequences</a> | <a href="index%EF%B9%96actions.html">Actions</a> | <a href="index%EF%B9%96examples.html">Examples</a> | <a href="index%EF%B9%96reference.html">Reference</a>
+                <hr style="margin:2; border: 1px solid black; width:100%">
+              </td>
+            </tr>
+          </tbody></table>
+          <h2>
+            reference2
+          </h2>
+          <p></p>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: sequence Page: actions<br>
+                  <div id="padAjaxo1JqJSrw"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>11..20<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>mySeq1<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1</font><font color="red"></font>}</b>                      <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                       12                       13                       14                       15                       16                       17                       18                       19                       20<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">average</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->15.5<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">count</font>}</b>                <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->10<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">dedup</font>}</b>                <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                 12                 13                 14                 15                 16                 17                 18                 19                 20<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">distinct</font>}</b>             <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->10<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">element=3</font>}</b>            <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->13<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">first=3</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11               12               13<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">last=3</font>}</b>               <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->18                19                20<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">maximum=3</font>}</b>            <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->18             19             20<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">median</font>}</b>               <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->16<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">minimum=3</font>}</b>            <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11             12             13<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">product</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->670442572800<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">randomize=3</font>}</b>          <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->16           11           18<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">reverse</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->20               19               18               17               16               15               14               13               12               11<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">shuffle</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->20               14               15               11               18               17               12               19               16               13<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">sort</font>}</b>                 <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                  12                  13                  14                  15                  16                  17                  18                  19                  20<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">sum</font>}</b>                  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->155<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">trim=3</font>}</b>               <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->14                15                16                17<!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>11..20<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>mySeq1<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1</font><font color="red"></font>}</b>                      <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11                       12                       13                       14                       15                       16                       17                       18                       19                       20<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">slice=<font color="black">'</font>3<font color="black">|</font>5<font color="black">'</font></font>}</b>          <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->14           15           16           17           18<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">shift=2</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11               12<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">shift=2</font>}</b>              <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->13               14<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">pop=2</font>}</b>                <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19                 20<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">pop=2</font>}</b>                <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->17                 18<!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>11..20<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>mySeq1<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>A..E<font color="black">'</font><font color="black">,</font>   push=<font color="black">'</font>mySeq2<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq1 </font><font color="red">splice=<font color="black">'</font>3<font color="black">|</font>5<font color="black">|</font>mySeq2<font color="black">'</font></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  A  B  C  D  E  19  20<!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>5;10;15;20<font color="black">'</font><font color="black">,</font>  name=<font color="black">'</font>one<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>15;20;25;30<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>two<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">one</font>}</b>                     <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->5                      10                      15                      20<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">two</font>}</b>                     <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->15                      20                      25                      30<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">one<font color="black">,</font> append=<font color="black">'</font>two<font color="black">'</font></font>}</b>       <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->5        10        15        20        15        20        25        30<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">one<font color="black">,</font> prepend=<font color="black">'</font>two<font color="black">'</font></font>}</b>      <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->15       20       25       30       5       10       15       20<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">one<font color="black">,</font> combine=<font color="black">'</font>two<font color="black">'</font></font>}</b>      <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->5       10       15       15       20       20       25       30<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">one<font color="black">,</font> merge=<font color="black">'</font>two<font color="black">'</font></font>}</b>        <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->5         10         15         20         25         30<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">one<font color="black">,</font> intersection=<font color="black">'</font>two<font color="black">'</font></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->15  20<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">one<font color="black">,</font> difference=<font color="black">'</font>two<font color="black">'</font></font>}</b>   <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->5    10    25    30<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">one<font color="black">,</font> onlyNow=<font color="black">'</font>two<font color="black">'</font></font>}</b>      <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->5       10<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">one<font color="black">,</font> onlyStore=<font color="black">'</font>two<font color="black">'</font></font>}</b>    <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->25     30<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxo1JqJSrw = new XMLHttpRequest();
+                  padAjaxo1JqJSrw.onreadystatechange=function() {
+                  if (padAjaxo1JqJSrw.readyState === 4) {
+                  if (padAjaxo1JqJSrw.status === 200) {
+                  document.getElementById("padAjaxo1JqJSrw").innerHTML=padAjaxo1JqJSrw.responseText;
+                  } else {
+                  document.getElementById("padAjaxo1JqJSrw").innerHTML=padAjaxo1JqJSrw.statusText;
+                  }
+                  }
+                  }
+                  padAjaxo1JqJSrw.open("GET","http://localhost/sequence/?actions&padInclude&padSesID=DiM2hOlW&padReqID=okODkXPD",true);
+                  padAjaxo1JqJSrw.send();
+                  </script>
+                  <hr>
+                  App: sequence Page: check/combo<br>
+                  <div id="padAjaxwk2h2UqN"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>sequence</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->2  3  5  7  11  13  17  19  23  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>action </font><font color="red">reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>action</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  23  19  17  13  11  7  5  3  2<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->2  3  5  7  11  13  17  19  23  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>keep</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>keep</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->2  3  5  7  11  13  17  19  23  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>remove</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>remove</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->2  3  5  7  11  13  17  19  23  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>flag</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>flag</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->2  3  5  7  11  13  17  19  23  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>pull</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->2  3  5  7  11  13  17  19  23  29<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->2  3  5  7  11  13  17  19  23  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>prime </font><font color="red">reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  23  19  17  13  11  7  5  3  2<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->2  3  5  7  11  13  17  19  23  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->2  3  5  7  11  13  17  19  23  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">remove</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">remove</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->2  3  5  7  11  13  17  19  23  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->2  3  5  7  11  13  17  19  23  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->2  3  5  7  11  13  17  19  23  29<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">from=10<font color="black">,</font> rows=10<font color="black">,</font> push=<font color="black">'</font>mySequence<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySequence</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->10  11  12  13  14  15  16  17  18  19<!-- END DEMO RESULT --></span></code></td></tr>
+ 
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>sequence </font><font color="red">mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  31  37  41  43  47  53  59  61  67<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>action </font><font color="red">mySequence<font color="black">,</font> reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>action</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>action </font><font color="red">reverse<font color="black">,</font> mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>action</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>make </font><font color="red">mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  31  37  41  43  47  53  59  61  67<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>keep </font><font color="red">mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>keep</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  13  17  19<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>remove </font><font color="red">mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>remove</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->10  12  14  15  16  18<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>flag </font><font color="red">mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>flag</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->0  1  0  1  0  0  0  1  0  1<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>pull </font><font color="red">mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">prime</font><font color="black"><b>:</b></font>pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  31  37  41  43  47  53  59  61  67<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime </font><font color="red">mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  31  37  41  43  47  53  59  61  67<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>prime </font><font color="red">mySequence<font color="black">,</font> reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>prime </font><font color="red">reverse<font color="black">,</font> mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>prime </font><font color="red">mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  31  37  41  43  47  53  59  61  67<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>prime </font><font color="red">mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  13  17  19<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">remove</font><font color="black"><b>:</b></font>prime </font><font color="red">mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">remove</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->10  12  14  15  16  18<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>prime </font><font color="red">mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->0  1  0  1  0  0  0  1  0  1<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>prime </font><font color="red">mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>prime</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  31  37  41  43  47  53  59  61  67<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>sequence </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  31  37  41  43  47  53  59  61  67<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>action </font><font color="red">prime<font color="black">,</font> reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>action</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>action </font><font color="red">reverse<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>action</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  31  37  41  43  47  53  59  61  67<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>keep </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>keep</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  13  17  19<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>remove </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>remove</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->10  12  14  15  16  18<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>flag </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>flag</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->0  1  0  1  0  0  0  1  0  1<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>pull </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  31  37  41  43  47  53  59  61  67<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>mySequence </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  31  37  41  43  47  53  59  61  67<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>mySequence </font><font color="red">prime<font color="black">,</font> reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>mySequence </font><font color="red">reverse<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  31  37  41  43  47  53  59  61  67<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>mySequence </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  13  17  19<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">remove</font><font color="black"><b>:</b></font>mySequence </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">remove</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->10  12  14  15  16  18<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>mySequence </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->0  1  0  1  0  0  0  1  0  1<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>mySequence </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  31  37  41  43  47  53  59  61  67<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxwk2h2UqN = new XMLHttpRequest();
+                  padAjaxwk2h2UqN.onreadystatechange=function() {
+                  if (padAjaxwk2h2UqN.readyState === 4) {
+                  if (padAjaxwk2h2UqN.status === 200) {
+                  document.getElementById("padAjaxwk2h2UqN").innerHTML=padAjaxwk2h2UqN.responseText;
+                  } else {
+                  document.getElementById("padAjaxwk2h2UqN").innerHTML=padAjaxwk2h2UqN.statusText;
+                  }
+                  }
+                  }
+                  padAjaxwk2h2UqN.open("GET","http://localhost/sequence/?check/combo&padInclude&padSesID=DiM2hOlW&padReqID=okODkXPD",true);
+                  padAjaxwk2h2UqN.send();
+                  </script>
+                  <hr>
+                  App: sequence Page: check/reverse<br>
+                  <div id="padAjaxkBASHTv7"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>sequence </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  23  19  17  13  11  7  5  3  2<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>action </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>action</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  23  19  17  13  11  7  5  3  2<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>make </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  23  19  17  13  11  7  5  3  2<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>keep </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>keep</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  23  19  17  13  11  7  5  3  2<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>remove </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>remove</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  23  19  17  13  11  7  5  3  2<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>flag </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>flag</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  23  19  17  13  11  7  5  3  2<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>pull </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  23  19  17  13  11  7  5  3  2<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>reverse </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  23  19  17  13  11  7  5  3  2<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>reverse </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  23  19  17  13  11  7  5  3  2<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>reverse </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  23  19  17  13  11  7  5  3  2<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>reverse </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  23  19  17  13  11  7  5  3  2<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">remove</font><font color="black"><b>:</b></font>reverse </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">remove</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  23  19  17  13  11  7  5  3  2<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>reverse </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  23  19  17  13  11  7  5  3  2<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>reverse </font><font color="red">prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->29  23  19  17  13  11  7  5  3  2<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">from=10<font color="black">,</font> rows=10<font color="black">,</font> push=<font color="black">'</font>mySequence<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySequence</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->10  11  12  13  14  15  16  17  18  19<!-- END DEMO RESULT --></span></code></td></tr>
+ 
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>sequence </font><font color="red">mySequence<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>action </font><font color="red">mySequence<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>action</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>make </font><font color="red">mySequence<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>keep </font><font color="red">mySequence<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>keep</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  17  13  11<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>remove </font><font color="red">mySequence<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>remove</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->18  16  15  14  12  10<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>flag </font><font color="red">mySequence<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>flag</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1  0  1  0  0  0  1  0  1  0<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>pull </font><font color="red">mySequence<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>reverse </font><font color="red">mySequence<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>reverse </font><font color="red">mySequence<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>reverse </font><font color="red">mySequence<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>reverse </font><font color="red">mySequence<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  17  13  11<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">remove</font><font color="black"><b>:</b></font>reverse </font><font color="red">mySequence<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">remove</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->18  16  15  14  12  10<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>reverse </font><font color="red">mySequence<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1  0  1  0  0  0  1  0  1  0<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>reverse </font><font color="red">mySequence<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>sequence </font><font color="red">reverse<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>action </font><font color="red">reverse<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>action</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make </font><font color="red">reverse<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>keep </font><font color="red">reverse<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>keep</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  17  13  11<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>remove </font><font color="red">reverse<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>remove</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->18  16  15  14  12  10<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>flag </font><font color="red">reverse<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>flag</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1  0  1  0  0  0  1  0  1  0<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>pull </font><font color="red">reverse<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>mySequence </font><font color="red">reverse<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>mySequence </font><font color="red">reverse<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence </font><font color="red">reverse<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>mySequence </font><font color="red">reverse<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  17  13  11<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">remove</font><font color="black"><b>:</b></font>mySequence </font><font color="red">reverse<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">remove</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->18  16  15  14  12  10<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>mySequence </font><font color="red">reverse<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1  0  1  0  0  0  1  0  1  0<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>mySequence </font><font color="red">reverse<font color="black">,</font> prime</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>sequence </font><font color="red">prime<font color="black">,</font> mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>action </font><font color="red">prime<font color="black">,</font> mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>action</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>make </font><font color="red">prime<font color="black">,</font> mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>keep </font><font color="red">prime<font color="black">,</font> mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>keep</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  17  13  11<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>remove </font><font color="red">prime<font color="black">,</font> mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>remove</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->18  16  15  14  12  10<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>flag </font><font color="red">prime<font color="black">,</font> mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>flag</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1  0  1  0  0  0  1  0  1  0<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>pull </font><font color="red">prime<font color="black">,</font> mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>reverse </font><font color="red">prime<font color="black">,</font> mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>reverse </font><font color="red">prime<font color="black">,</font> mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>reverse </font><font color="red">prime<font color="black">,</font> mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>reverse </font><font color="red">prime<font color="black">,</font> mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  17  13  11<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">remove</font><font color="black"><b>:</b></font>reverse </font><font color="red">prime<font color="black">,</font> mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">remove</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->18  16  15  14  12  10<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>reverse </font><font color="red">prime<font color="black">,</font> mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1  0  1  0  0  0  1  0  1  0<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>reverse </font><font color="red">prime<font color="black">,</font> mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>sequence </font><font color="red">prime<font color="black">,</font> reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>action </font><font color="red">prime<font color="black">,</font> reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>action</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make </font><font color="red">prime<font color="black">,</font> reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>keep </font><font color="red">prime<font color="black">,</font> reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>keep</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  17  13  11<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>remove </font><font color="red">prime<font color="black">,</font> reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>remove</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->18  16  15  14  12  10<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>flag </font><font color="red">prime<font color="black">,</font> reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>flag</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1  0  1  0  0  0  1  0  1  0<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>pull </font><font color="red">prime<font color="black">,</font> reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>mySequence </font><font color="red">prime<font color="black">,</font> reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>mySequence </font><font color="red">prime<font color="black">,</font> reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence </font><font color="red">prime<font color="black">,</font> reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">make</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>mySequence </font><font color="red">prime<font color="black">,</font> reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">keep</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  17  13  11<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">remove</font><font color="black"><b>:</b></font>mySequence </font><font color="red">prime<font color="black">,</font> reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">remove</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->18  16  15  14  12  10<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>mySequence </font><font color="red">prime<font color="black">,</font> reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">flag</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1  0  1  0  0  0  1  0  1  0<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>mySequence </font><font color="red">prime<font color="black">,</font> reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->67  61  59  53  47  43  41  37  31  29<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>sequence </font><font color="red">mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  18  17  16  15  14  13  12  11  10<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>action </font><font color="red">mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>action</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  18  17  16  15  14  13  12  11  10<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>pull </font><font color="red">mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  18  17  16  15  14  13  12  11  10<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>reverse </font><font color="red">mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  18  17  16  15  14  13  12  11  10<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>reverse </font><font color="red">mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  18  17  16  15  14  13  12  11  10<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>reverse </font><font color="red">mySequence</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  18  17  16  15  14  13  12  11  10<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>sequence </font><font color="red">reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  18  17  16  15  14  13  12  11  10<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>action </font><font color="red">reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>action</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  18  17  16  15  14  13  12  11  10<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>pull </font><font color="red">reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">mySequence</font><font color="black"><b>:</b></font>pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  18  17  16  15  14  13  12  11  10<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>mySequence </font><font color="red">reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  18  17  16  15  14  13  12  11  10<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>mySequence </font><font color="red">reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">action</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  18  17  16  15  14  13  12  11  10<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>mySequence </font><font color="red">reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">pull</font><font color="black"><b>:</b></font>mySequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  18  17  16  15  14  13  12  11  10<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>sequence</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->10  9  8  7  6  5  4  3  2  1<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>action</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>action</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->10  9  8  7  6  5  4  3  2  1<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>make</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->10  9  8  7  6  5  4  3  2  1<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>keep</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>keep</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->10  9  8  7  6  5  4  3  2  1<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>flag</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>flag</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->10  9  8  7  6  5  4  3  2  1<!-- END DEMO RESULT --></span></code></td></tr>
+  <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>pull</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">reverse</font><font color="black"><b>:</b></font>pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->19  18  17  16  15  14  13  12  11  10<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxkBASHTv7 = new XMLHttpRequest();
+                  padAjaxkBASHTv7.onreadystatechange=function() {
+                  if (padAjaxkBASHTv7.readyState === 4) {
+                  if (padAjaxkBASHTv7.status === 200) {
+                  document.getElementById("padAjaxkBASHTv7").innerHTML=padAjaxkBASHTv7.responseText;
+                  } else {
+                  document.getElementById("padAjaxkBASHTv7").innerHTML=padAjaxkBASHTv7.statusText;
+                  }
+                  }
+                  }
+                  padAjaxkBASHTv7.open("GET","http://localhost/sequence/?check/reverse&padInclude&padSesID=DiM2hOlW&padReqID=okODkXPD",true);
+                  padAjaxkBASHTv7.send();
+                  </script>
+                  <hr>
+                  App: sequence Page: concepts/actions<br>
+                  <div id="padAjax4VnSp2V3">Actions operate on a sequence list after the list is build.
+<p>In below examples last/reverse/shuffle are actions.
+
+</p><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">range=<font color="black">'</font>20..30<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>mySeq<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">mySeq </font><font color="red">last=3</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->28  29  30<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">reverse </font><font color="red">mySeq</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">reverse</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->30  29  28  27  26  25  24  23  22  21  20<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">mySeq<font color="black">,</font> shuffle</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->21  25  23  27  30  26  29  24  28  20  22<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjax4VnSp2V3 = new XMLHttpRequest();
+                  padAjax4VnSp2V3.onreadystatechange=function() {
+                  if (padAjax4VnSp2V3.readyState === 4) {
+                  if (padAjax4VnSp2V3.status === 200) {
+                  document.getElementById("padAjax4VnSp2V3").innerHTML=padAjax4VnSp2V3.responseText;
+                  } else {
+                  document.getElementById("padAjax4VnSp2V3").innerHTML=padAjax4VnSp2V3.statusText;
+                  }
+                  }
+                  }
+                  padAjax4VnSp2V3.open("GET","http://localhost/sequence/?concepts/actions&padInclude&padSesID=DiM2hOlW&padReqID=okODkXPD",true);
+                  padAjax4VnSp2V3.send();
+                  </script>
+                  <hr>
+                  App: sequence Page: concepts/resume<br>
+                  <div id="padAjaxqonCfp62">Resume resumes with the last stored Sequence
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">25<font color="black">,</font> push=<font color="black">'</font>resumeDemo<font color="black">'</font></font>}</b><br><b>{<font color="blue">resume </font><font color="red">add=100</font>}</b> <br><b>{<font color="blue">resume </font><font color="red">reverse</font>}</b> <br><b>{<font color="blue">resume </font><font color="red">subtract=5</font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr> 
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">resumeDemo</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">resumeDemo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->120  119  118  117  116  115  114  113  112  111  110  109  108  107  106  105  104  103  102  101  100  99  98  97  96<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxqonCfp62 = new XMLHttpRequest();
+                  padAjaxqonCfp62.onreadystatechange=function() {
+                  if (padAjaxqonCfp62.readyState === 4) {
+                  if (padAjaxqonCfp62.status === 200) {
+                  document.getElementById("padAjaxqonCfp62").innerHTML=padAjaxqonCfp62.responseText;
+                  } else {
+                  document.getElementById("padAjaxqonCfp62").innerHTML=padAjaxqonCfp62.statusText;
+                  }
+                  }
+                  }
+                  padAjaxqonCfp62.open("GET","http://localhost/sequence/?concepts/resume&padInclude&padSesID=DiM2hOlW&padReqID=okODkXPD",true);
+                  padAjaxqonCfp62.send();
+                  </script>
+                  <hr>
+                  App: sequence Page: random/randomize_vs_shuffle<br>
+                  <div id="padAjaxviRiGCQ4"><h3>Random vs shuffle</h3>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>A..Z<font color="black">'</font></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->A
+
+  B
+
+  C
+
+  D
+
+  E
+
+  F
+
+  G
+
+  H
+
+  I
+
+  J
+
+  K
+
+  L
+
+  M
+
+  N
+
+  O
+
+  P
+
+  Q
+
+  R
+
+  S
+
+  T
+
+  U
+
+  V
+
+  W
+
+  X
+
+  Y
+
+  Z<!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>A..Z<font color="black">'</font><font color="black">,</font> shuffle</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->O
+
+  W
+
+  R
+
+  K
+
+  N
+
+  H
+
+  U
+
+  V
+
+  Z
+
+  G
+
+  I
+
+  Q
+
+  T
+
+  J
+
+  L
+
+  D
+
+  B
+
+  S
+
+  Y
+
+  F
+
+  C
+
+  P
+
+  E
+
+  A
+
+  M
+
+  X<!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>A..Z<font color="black">'</font><font color="black">,</font> shuffle<font color="black">,</font> sort</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->A
+
+  B
+
+  C
+
+  D
+
+  E
+
+  F
+
+  G
+
+  H
+
+  I
+
+  J
+
+  K
+
+  L
+
+  M
+
+  N
+
+  O
+
+  P
+
+  Q
+
+  R
+
+  S
+
+  T
+
+  U
+
+  V
+
+  W
+
+  X
+
+  Y
+
+  Z<!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>A..Z<font color="black">'</font><font color="black">,</font> random</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->E
+
+  F
+
+  C
+
+  K
+
+  B
+
+  T
+
+  L
+
+  Q
+
+  Y
+
+  M
+
+  H
+
+  L
+
+  A
+
+  J
+
+  C
+
+  N
+
+  U
+
+  K
+
+  K
+
+  S
+
+  E
+
+  M
+
+  M
+
+  M
+
+  S
+
+  Z<!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>A..Z<font color="black">'</font><font color="black">,</font> random<font color="black">,</font> sort</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->A
+
+  B
+
+  B
+
+  D
+
+  D
+
+  G
+
+  G
+
+  G
+
+  J
+
+  K
+
+  K
+
+  L
+
+  L
+
+  L
+
+  N
+
+  N
+
+  Q
+
+  T
+
+  T
+
+  U
+
+  U
+
+  V
+
+  X
+
+  X
+
+  X
+
+  Y<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p> <p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>A..Z<font color="black">'</font><font color="black">,</font> random<font color="black">,</font> unique<font color="black">,</font> sort</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->A
+
+  B
+
+  C
+
+  E
+
+  F
+
+  G
+
+  I
+
+  J
+
+  K
+
+  M
+
+  O
+
+  P
+
+  Q
+
+  R
+
+  U
+
+  V
+
+  W
+
+  Z<!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>A..Z<font color="black">'</font><font color="black">,</font> random<font color="black">,</font> dedup<font color="black">,</font> sort</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->A
+
+  B
+
+  C
+
+  D
+
+  E
+
+  G
+
+  J
+
+  K
+
+  L
+
+  M
+
+  N
+
+  P
+
+  Q
+
+  R
+
+  S
+
+  U
+
+  V
+
+  W<!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>A..Z<font color="black">'</font><font color="black">,</font> reverse</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Z
+
+  Y
+
+  X
+
+  W
+
+  V
+
+  U
+
+  T
+
+  S
+
+  R
+
+  Q
+
+  P
+
+  O
+
+  N
+
+  M
+
+  L
+
+  K
+
+  J
+
+  I
+
+  H
+
+  G
+
+  F
+
+  E
+
+  D
+
+  C
+
+  B
+
+  A<!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>A..Z<font color="black">'</font><font color="black">,</font> reverse<font color="black">,</font> sort</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->A
+
+  B
+
+  C
+
+  D
+
+  E
+
+  F
+
+  G
+
+  H
+
+  I
+
+  J
+
+  K
+
+  L
+
+  M
+
+  N
+
+  O
+
+  P
+
+  Q
+
+  R
+
+  S
+
+  T
+
+  U
+
+  V
+
+  W
+
+  X
+
+  Y
+
+  Z<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxviRiGCQ4 = new XMLHttpRequest();
+                  padAjaxviRiGCQ4.onreadystatechange=function() {
+                  if (padAjaxviRiGCQ4.readyState === 4) {
+                  if (padAjaxviRiGCQ4.status === 200) {
+                  document.getElementById("padAjaxviRiGCQ4").innerHTML=padAjaxviRiGCQ4.responseText;
+                  } else {
+                  document.getElementById("padAjaxviRiGCQ4").innerHTML=padAjaxviRiGCQ4.statusText;
+                  }
+                  }
+                  }
+                  padAjaxviRiGCQ4.open("GET","http://localhost/sequence/?random/randomize_vs_shuffle&padInclude&padSesID=DiM2hOlW&padReqID=okODkXPD",true);
+                  padAjaxviRiGCQ4.send();
+                  </script>
+                  <hr>
+                  App: sequence Page: specials/extra<br>
+                  <div id="padAjax1jV9zTco"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>31..40<font color="black">'</font><font color="black">,</font> push=<font color="black">'</font>abc<font color="black">'</font> </font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">abc </font><font color="red">add=2</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>add</font>}</b> | <b>{/<font color="blue">abc</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->31 33 |  32 34 |  33 35 |  34 36 |  35 37 |  36 38 |  37 39 |  38 40 |  39 41 |  40 42 |<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">loop </font><font color="red">10<font color="black">,</font> rows=5<font color="black">,</font> add=10<font color="black">,</font> subtract=1</font>}</b> <b>{<font color="green"><font color="red">$</font>loop</font>}</b> <b>{<font color="green"><font color="red">$</font>add</font>}</b> <b>{<font color="green"><font color="red">$</font>subtract</font>}</b> | <b>{/<font color="blue">loop</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1 11 10 |  2 12 11 |  3 13 12 |  4 14 13 |  5 15 14 |  6 16 15 |  7 17 16 |  8 18 17 |  9 19 18 |  10 20 19 |<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..3<font color="black">'</font><font color="black">,</font>         push=<font color="black">'</font>abc<font color="black">'</font> </font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">abc </font><font color="red">add=10<font color="black">,</font> subtract=1<font color="black">,</font> push=<font color="black">'</font>klm<font color="black">'</font> </font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">klm </font><font color="red">multiply=10<font color="black">,</font>         push=<font color="black">'</font>xyz<font color="black">'</font> </font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">xyz</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>add</font>}</b> <b>{<font color="green"><font color="red">$</font>subtract</font>}</b> <b>{<font color="green"><font color="red">$</font>klm</font>}</b> <b>{<font color="green"><font color="red">$</font>multiply</font>}</b> <b>{<font color="green"><font color="red">$</font>xyz</font>}</b> | <b>{/<font color="blue">xyz</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1 11 10 10 100 100 |  2 12 11 11 110 110 |  3 13 12 12 120 120 |<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p> 
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>11..15<font color="black">'</font><font color="black">,</font> name=<font color="black">'</font>q1<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">q1</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>q1</font>}</b> <b>{/<font color="blue">q1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">q1 </font><font color="red">randomize</font>}</b> <b>{<font color="green"><font color="red">$</font>randomize</font>}</b> <b>{/<font color="blue">q1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">q1 </font><font color="red">randomize<font color="black">,</font> sort</font>}</b> <b>{<font color="green"><font color="red">$</font>sort</font>}</b> <b>{/<font color="blue">q1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11  12  13  14  15<!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">q1 </font><font color="red">randomize<font color="black">,</font> sort<font color="black">,</font> reverse</font>}</b> <b>{<font color="green"><font color="red">$</font>reverse</font>}</b> <b>{/<font color="blue">q1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->15  14  13  12  11<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">loop </font><font color="red">5<font color="black">,</font> add=10<font color="black">,</font> subtract=1<font color="black">,</font> randomize<font color="black">,</font> sort<font color="black">,</font> reverse<font color="black">,</font> push=<font color="black">'</font>abc<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">abc</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>loop</font>}</b> <b>{<font color="green"><font color="red">$</font>add</font>}</b> <b>{<font color="green"><font color="red">$</font>subtract</font>}</b> <b>{<font color="green"><font color="red">$</font>randomize</font>}</b> <b>{<font color="green"><font color="red">$</font>sort</font>}</b> <b>{<font color="green"><font color="red">$</font>reverse</font>}</b> | <b>{/<font color="blue">abc</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1 11 10 12 10 14 |  2 12 11 10 11 13 |  3 13 12 11 12 12 |  4 14 13 13 13 11 |  5 15 14 14 14 10 |<!-- END DEMO RESULT --></span></code></td></tr>
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjax1jV9zTco = new XMLHttpRequest();
+                  padAjax1jV9zTco.onreadystatechange=function() {
+                  if (padAjax1jV9zTco.readyState === 4) {
+                  if (padAjax1jV9zTco.status === 200) {
+                  document.getElementById("padAjax1jV9zTco").innerHTML=padAjax1jV9zTco.responseText;
+                  } else {
+                  document.getElementById("padAjax1jV9zTco").innerHTML=padAjax1jV9zTco.statusText;
+                  }
+                  }
+                  }
+                  padAjax1jV9zTco.open("GET","http://localhost/sequence/?specials/extra&padInclude&padSesID=DiM2hOlW&padReqID=okODkXPD",true);
+                  padAjax1jV9zTco.send();
+                  </script>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+          <p></p>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

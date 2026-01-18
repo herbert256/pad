@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Browse: demo
+    </title>
+    <style>.browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: demo
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=_data.html">_data/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=_include.html">_include/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=_tags.html">_tags/</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=_inits.pad.html">_inits.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=_inits.php.html">_inits.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=clock.pad.html">clock.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=contact.pad.html">contact.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=contact.php.html">contact.php</a>
+                  </li>
+                  <li class="current">counter.pad
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=counter.php.html">counter.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=else.php.html">else.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=guestbook.pad.html">guestbook.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=guestbook.php.html">guestbook.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=index.pad.html">index.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=index.php.html">index.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=todo.pad.html">todo.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=todo.php.html">todo.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=todoPost.php.html">todoPost.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  counter.pad
+                </h3>
+                <pre><code style="color: #000000">&lt;p&gt;This page tracks how many times it has been viewed.&lt;/p&gt;<br><br>&lt;h2&gt;Total Page Views&lt;/h2&gt;<br><br>&lt;div class="counter"&gt;<br>  <b>{<font color="green"><font color="red">$</font>totalCount</font>}</b><br>&lt;/div&gt;<br><br>&lt;h2&gt;Statistics&lt;/h2&gt;<br><br>&lt;table&gt;<br>  &lt;tr&gt;<br>    &lt;th&gt;Metric&lt;/th&gt;<br>    &lt;th&gt;Value&lt;/th&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Total Views (all time)&lt;/td&gt;<br>    &lt;td&gt;&lt;strong&gt;<b>{<font color="green"><font color="red">$</font>totalCount</font>}</b>&lt;/strong&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Views Today&lt;/td&gt;<br>    &lt;td&gt;&lt;strong&gt;<b>{<font color="green"><font color="red">$</font>todayCount</font>}</b>&lt;/strong&gt;&lt;/td&gt;<br>  &lt;/tr&gt;<br>  &lt;tr&gt;<br>    &lt;td&gt;Current Date&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green"><font color="red">$</font>currentDate</font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;p style="color: #999; font-size: 12px; margin-top: 20px;"&gt;<br>  The counter increments each time this page is loaded. Daily counts reset at midnight.<br>&lt;/p&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

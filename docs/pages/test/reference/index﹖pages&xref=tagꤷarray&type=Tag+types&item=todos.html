@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Reference - Tag types - todos
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - todos
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: demo - Page: todo<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">todo.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">todo.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title    </span><span style="color: #007700">= </span><span style="color: #DD0000">'Todo List'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$dataFile </span><span style="color: #007700">= </span><span style="color: #0000BB">DAT </span><span style="color: #007700">. </span><span style="color: #DD0000">'demo/todos.json'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$message  </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$todos </span><span style="color: #007700">= [];<br><br>  if ( </span><span style="color: #0000BB">file_exists </span><span style="color: #007700">( </span><span style="color: #0000BB">$dataFile </span><span style="color: #007700">) ) {<br>    </span><span style="color: #0000BB">$json  </span><span style="color: #007700">= </span><span style="color: #0000BB">file_get_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">$dataFile </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$todos </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #0000BB">$json</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) ?: [];<br>  }<br><br>  </span><span style="color: #0000BB">$hasTodos     </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$todos </span><span style="color: #007700">) &gt; </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$doneCount    </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">array_filter </span><span style="color: #007700">( </span><span style="color: #0000BB">$todos</span><span style="color: #007700">, fn(</span><span style="color: #0000BB">$t</span><span style="color: #007700">) =&gt; </span><span style="color: #0000BB">$t </span><span style="color: #007700">[</span><span style="color: #DD0000">'done'</span><span style="color: #007700">] ) );<br>  </span><span style="color: #0000BB">$pendingCount </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$todos </span><span style="color: #007700">) - </span><span style="color: #0000BB">$doneCount</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;Manage your tasks with this simple todo list.&lt;/p&gt;<br><br><b>{<font color="blue">if </font><font color="red"><font color="red">$</font>message</font>}</b><br>  &lt;div class="message"&gt;<b>{<font color="green"><font color="red">$</font>message</font>}</b>&lt;/div&gt;<br><b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>&lt;h2&gt;Add New Task&lt;/h2&gt;<br><br><b>{<font color="blue">todo </font><font color="red"><font color="black">'</font>add<font color="black">'</font><font color="black">,</font> <font color="black">'</font>Add Task<font color="black">'</font></font>}</b><br>  &lt;input type="text" name="task" placeholder="Enter a new task..." required style="flex: 1;"&gt;<br><b>{/<font color="blue">todo</font><font color="red"></font>}</b><br><br>&lt;h2&gt;Tasks (<b>{<font color="green"><font color="red">$</font>pendingCount</font>}</b> pending, <b>{<font color="green"><font color="red">$</font>doneCount</font>}</b> done)&lt;/h2&gt;<br><br><b>{<font color="blue">todos</font><font color="red"></font>}</b><br><br>  &lt;table&gt;<br><br>    &lt;tr&gt;<br>      &lt;th&gt;Task&lt;/th&gt;<br>      &lt;th style="width: 120px;"&gt;Added&lt;/th&gt;<br>      &lt;th style="width: 5%; text-align: center;" colspan="2"&gt;Actions&lt;/th&gt;<br>    &lt;/tr&gt;<br><br>  <font color="black"><b>@</b></font>start<font color="black"><b>@</b></font><br><br>    &lt;tr<b>{<font color="blue">if </font><font color="red"><font color="red">$</font>done</font>}</b> class="todo-item done"<b>{/<font color="blue">if</font><font color="red"></font>}</b>&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>task</font>}</b>&lt;/td&gt;<br>      &lt;td style="font-size: 12px; color: #999;"&gt;<b>{<font color="green">$date</font> <font color="black">|</font> <font color="blue">substr (0, 10)</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<br>        <b>{<font color="blue">if </font><font color="red">! <font color="red">$</font>done</font>}</b><br>          <b>{<font color="blue">todo </font><font color="red"><font color="black">'</font>done<font color="black">'</font><font color="black">,</font> <font color="black">'</font>Done<font color="black">'</font></font>}</b><br>            &lt;input type="hidden" name="id" value="<b>{<font color="green"><font color="red">$</font>id</font>}</b>"&gt;<br>          <b>{/<font color="blue">todo</font><font color="red"></font>}</b><br>        <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>      &lt;/td&gt;<br>      &lt;td&gt;<br>        <b>{<font color="blue">todo </font><font color="red"><font color="black">'</font>delete<font color="black">'</font><font color="black">,</font> <font color="black">'</font>Delete<font color="black">'</font></font>}</b><br>          &lt;input type="hidden" name="id" value="<b>{<font color="green"><font color="red">$</font>id</font>}</b>"&gt;<br>        <b>{/<font color="blue">todo</font><font color="red"></font>}</b><br>      &lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <font color="black"><b>@</b></font>end<font color="black"><b>@</b></font><br><br>  &lt;/table&gt;<br><br>  <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>doneCount &gt; 0</font>}</b><br>    <b>{<font color="blue">todo </font><font color="red"><font color="black">'</font>clear<font color="black">'</font><font color="black">,</font> <font color="black">'</font>Clear Completed Tasks<font color="black">'</font></font>}</b><b>{/<font color="blue">todo</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">if</font><font color="red"></font>}</b><br>    <br><font color="black"><b>@</b></font>else<font color="black"><b>@</b></font><br><br>  &lt;p&gt;No tasks yet. Add one above!&lt;/p&gt;<br><br><b>{/<font color="blue">todos</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxqghFBkwa"><p>Manage your tasks with this simple todo list.</p>
+
+
+
+<h2>Add New Task</h2>
+
+<form method="post" action="index%EF%B9%96todoPost.html">
+  <input type="hidden" name="go" value="add">
+  
+  <input type="text" name="task" placeholder="Enter a new task..." required="" style="flex: 1;">
+
+  <button type="submit">Add Task</button>
+</form>
+
+<h2>Tasks (0 pending, 0 done)</h2>
+
+
+
+  <p>No tasks yet. Add one above!</p>
+
+</div>
+                        <script>
+                        padAjaxqghFBkwa = new XMLHttpRequest();
+                        padAjaxqghFBkwa.onreadystatechange=function() {
+                        if (padAjaxqghFBkwa.readyState === 4) {
+                        if (padAjaxqghFBkwa.status === 200) {
+                        document.getElementById("padAjaxqghFBkwa").innerHTML=padAjaxqghFBkwa.responseText;
+                        } else {
+                        document.getElementById("padAjaxqghFBkwa").innerHTML=padAjaxqghFBkwa.statusText;
+                        }
+                        }
+                        }
+                        padAjaxqghFBkwa.open("GET","http://localhost/demo/?todo&padInclude&padSesID=DiM2hOlW&padReqID=g6qaH0SZ",true);
+                        padAjaxqghFBkwa.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Reference - Tag types - array_2
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - array 2
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: check - Page: db/array<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">db/array.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">db/array.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $array_1 </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">(</span><span style="color: #DD0000">"array name, phone from staff where phone like '%4%'"</span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$array_2 </span><span style="color: #007700">= </span><span style="color: #0000BB">db </span><span style="color: #007700">(</span><span style="color: #DD0000">"array * from staff where name like '%x%'"</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;h3&gt;array, found&lt;/h3&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">array_1</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>   <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>    &lt;tr&gt;<br>      &lt;td&gt;Nothing&lt;/td&gt;<br>      &lt;td&gt;Found&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">array_1</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;h3&gt;array, no records found&lt;/h3&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">array_2</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>    &lt;tr&gt;<br>      &lt;td&gt;Nothing&lt;/td&gt;<br>      &lt;td&gt;Found&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">array_2</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxMnWin6kW"><h3>array, found</h3>
+
+<table border="1">
+  
+    <tbody><tr>
+      <td>bob</td>
+      <td>555-3425</td>
+    </tr>
+   
+    <tr>
+      <td>jim</td>
+      <td>555-4364</td>
+    </tr>
+   
+    <tr>
+      <td>joe</td>
+      <td>555-3422</td>
+    </tr>
+   
+    <tr>
+      <td>jerry</td>
+      <td>555-4973</td>
+    </tr>
+   
+</tbody></table>
+
+<h3>array, no records found</h3>
+
+<table border="1">
+  
+    <tbody><tr>
+      <td>Nothing</td>
+      <td>Found</td>
+    </tr>
+  
+</tbody></table></div>
+                        <script>
+                        padAjaxMnWin6kW = new XMLHttpRequest();
+                        padAjaxMnWin6kW.onreadystatechange=function() {
+                        if (padAjaxMnWin6kW.readyState === 4) {
+                        if (padAjaxMnWin6kW.status === 200) {
+                        document.getElementById("padAjaxMnWin6kW").innerHTML=padAjaxMnWin6kW.responseText;
+                        } else {
+                        document.getElementById("padAjaxMnWin6kW").innerHTML=padAjaxMnWin6kW.statusText;
+                        }
+                        }
+                        }
+                        padAjaxMnWin6kW.open("GET","http://localhost/check/?db/array&padInclude&padSesID=DiM2hOlW&padReqID=LGuwfgq8",true);
+                        padAjaxMnWin6kW.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

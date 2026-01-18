@@ -1,0 +1,1234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Reference - Tag types - increment
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - increment
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: content/2<br>
+                  <div id="padAjaxL4s4WC3z"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = 10</font>}</b><br><br><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b> &lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="blue">myContent</font><font color="red"></font>}</b><br><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="blue">myContent</font><font color="red"></font>}</b><br><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11 <br>
+
+ 
+  12 <br>
+
+ 
+  13 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = 10</font>}</b><br><br><b>{<font color="blue">content</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b> &lt;br&gt;<br><b>{/<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="blue">myContent</font><font color="red"></font>}</b><br><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="blue">myContent</font><font color="red"></font>}</b><br><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->10 <br>
+
+ 
+  10 <br>
+
+ 
+  10 <br><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxL4s4WC3z = new XMLHttpRequest();
+                  padAjaxL4s4WC3z.onreadystatechange=function() {
+                  if (padAjaxL4s4WC3z.readyState === 4) {
+                  if (padAjaxL4s4WC3z.status === 200) {
+                  document.getElementById("padAjaxL4s4WC3z").innerHTML=padAjaxL4s4WC3z.responseText;
+                  } else {
+                  document.getElementById("padAjaxL4s4WC3z").innerHTML=padAjaxL4s4WC3z.statusText;
+                  }
+                  }
+                  }
+                  padAjaxL4s4WC3z.open("GET","http://localhost/manual/?content/2&padInclude&padSesID=DiM2hOlW&padReqID=iO7nOZp7",true);
+                  padAjaxL4s4WC3z.send();
+                  </script><br>
+                  <hr>
+                  App: manual - Page: lvl_occ/7<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">lvl_occ/7.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;table border='1'&gt;<br>  <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>row = 10</font>}</b><br>  <b>{<font color="blue">while </font><font color="red"><font color="red">$</font>row &lt;= 30</font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>column = 1</font>}</b><br>      <b>{<font color="blue">while </font><font color="red"><font color="red">$</font>column &lt;= 5</font>}</b><br>        &lt;td&gt;<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>row + <font color="red">$</font>column</font>}</b>&lt;/td&gt;  <br>        <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>column</font>}</b><br>      <b>{/<font color="blue">while</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>    <b>{<font color="blue">set </font><font color="red"><font color="red">$</font>row = <font color="red">$</font>row + 10</font>}</b><br>  <b>{/<font color="blue">while</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxiOKXXCxo"><table border="1">
+  
+  
+    <tbody><tr>
+      
+      
+        <td>11</td>  
+        
+      
+        <td>12</td>  
+        
+      
+        <td>13</td>  
+        
+      
+        <td>14</td>  
+        
+      
+        <td>15</td>  
+        
+      
+    </tr>
+    
+  
+    <tr>
+      
+      
+        <td>21</td>  
+        
+      
+        <td>22</td>  
+        
+      
+        <td>23</td>  
+        
+      
+        <td>24</td>  
+        
+      
+        <td>25</td>  
+        
+      
+    </tr>
+    
+  
+    <tr>
+      
+      
+        <td>31</td>  
+        
+      
+        <td>32</td>  
+        
+      
+        <td>33</td>  
+        
+      
+        <td>34</td>  
+        
+      
+        <td>35</td>  
+        
+      
+    </tr>
+    
+  
+</tbody></table></div>
+                        <script>
+                        padAjaxiOKXXCxo = new XMLHttpRequest();
+                        padAjaxiOKXXCxo.onreadystatechange=function() {
+                        if (padAjaxiOKXXCxo.readyState === 4) {
+                        if (padAjaxiOKXXCxo.status === 200) {
+                        document.getElementById("padAjaxiOKXXCxo").innerHTML=padAjaxiOKXXCxo.responseText;
+                        } else {
+                        document.getElementById("padAjaxiOKXXCxo").innerHTML=padAjaxiOKXXCxo.statusText;
+                        }
+                        }
+                        }
+                        padAjaxiOKXXCxo.open("GET","http://localhost/manual/?lvl_occ/7&padInclude&padSesID=DiM2hOlW&padReqID=iO7nOZp7",true);
+                        padAjaxiOKXXCxo.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: start/code/increment/base<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">start/code/increment/base.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><b>{<font color="blue">code</font><font color="red"></font>}</b><br>  <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>  <b>{<font color="blue">code</font><font color="red"></font>}</b><br>    <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>    <b>{<font color="blue">code</font><font color="red"></font>}</b><br>      <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>      <b>{<font color="blue">code</font><font color="red"></font>}</b><br>        <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>        <b>{<font color="blue">code</font><font color="red"></font>}</b><br>          <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>          <b>{<font color="blue">code</font><font color="red"></font>}</b><br>            <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>            <b>{<font color="blue">code</font><font color="red"></font>}</b><br>              <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>              <b>{<font color="blue">code</font><font color="red"></font>}</b><br>                <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>              <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>            <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>          <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>        <b>{/<font color="blue">code</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>      <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>    <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>  <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><b>{/<font color="blue">code</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>abc</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxUYUO7jmy"> 1
+
+   2
+  
+     3
+    
+       4
+      
+         5
+        
+           6
+          
+             7
+            
+               8
+              
+                 9
+               9
+             9
+           9
+        9
+       9
+     9
+   9
+9</div>
+                        <script>
+                        padAjaxUYUO7jmy = new XMLHttpRequest();
+                        padAjaxUYUO7jmy.onreadystatechange=function() {
+                        if (padAjaxUYUO7jmy.readyState === 4) {
+                        if (padAjaxUYUO7jmy.status === 200) {
+                        document.getElementById("padAjaxUYUO7jmy").innerHTML=padAjaxUYUO7jmy.responseText;
+                        } else {
+                        document.getElementById("padAjaxUYUO7jmy").innerHTML=padAjaxUYUO7jmy.statusText;
+                        }
+                        }
+                        }
+                        padAjaxUYUO7jmy.open("GET","http://localhost/check/?start/code/increment/base&padInclude&padSesID=DiM2hOlW&padReqID=iO7nOZp7",true);
+                        padAjaxUYUO7jmy.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: start/code/increment/clean<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">start/code/increment/clean.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><b>{<font color="blue">code </font><font color="red">clean</font>}</b><br>  <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>  <b>{<font color="blue">code </font><font color="red">clean</font>}</b><br>    <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>    <b>{<font color="blue">code </font><font color="red">clean</font>}</b><br>      <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>      <b>{<font color="blue">code </font><font color="red">clean</font>}</b><br>        <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>        <b>{<font color="blue">code </font><font color="red">clean</font>}</b><br>          <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>          <b>{<font color="blue">code </font><font color="red">clean</font>}</b><br>            <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>            <b>{<font color="blue">code </font><font color="red">clean</font>}</b><br>              <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>              <b>{<font color="blue">code </font><font color="red">clean</font>}</b><br>                <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>              <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>            <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>          <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>        <b>{/<font color="blue">code</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>      <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>    <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>  <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><b>{/<font color="blue">code</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>abc</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxiBHNwGqh"> 1
+
+   2
+  
+     3
+    
+       4
+      
+         5
+        
+           6
+          
+             7
+            
+               8
+              
+                 9
+               8
+             7
+           6
+        5
+       4
+     3
+   2
+1</div>
+                        <script>
+                        padAjaxiBHNwGqh = new XMLHttpRequest();
+                        padAjaxiBHNwGqh.onreadystatechange=function() {
+                        if (padAjaxiBHNwGqh.readyState === 4) {
+                        if (padAjaxiBHNwGqh.status === 200) {
+                        document.getElementById("padAjaxiBHNwGqh").innerHTML=padAjaxiBHNwGqh.responseText;
+                        } else {
+                        document.getElementById("padAjaxiBHNwGqh").innerHTML=padAjaxiBHNwGqh.statusText;
+                        }
+                        }
+                        }
+                        padAjaxiBHNwGqh.open("GET","http://localhost/check/?start/code/increment/clean&padInclude&padSesID=DiM2hOlW&padReqID=iO7nOZp7",true);
+                        padAjaxiBHNwGqh.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: start/code/increment/reset<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">start/code/increment/reset.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><b>{<font color="blue">code </font><font color="red">reset</font>}</b><br>  <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>  <b>{<font color="blue">code </font><font color="red">reset</font>}</b><br>    <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>    <b>{<font color="blue">code </font><font color="red">reset</font>}</b><br>      <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>      <b>{<font color="blue">code </font><font color="red">reset</font>}</b><br>        <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>        <b>{<font color="blue">code </font><font color="red">reset</font>}</b><br>          <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>          <b>{<font color="blue">code </font><font color="red">reset</font>}</b><br>            <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>            <b>{<font color="blue">code </font><font color="red">reset</font>}</b><br>              <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>              <b>{<font color="blue">code </font><font color="red">reset</font>}</b><br>                <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>              <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>            <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>          <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>        <b>{/<font color="blue">code</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>      <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>    <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>  <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><b>{/<font color="blue">code</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>abc</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxUdFmxJ2J"> 1
+
+   1
+  
+     1
+    
+       1
+      
+         1
+        
+           1
+          
+             1
+            
+               1
+              
+                 1
+               1
+             1
+           1
+        1
+       1
+     1
+   1
+1</div>
+                        <script>
+                        padAjaxUdFmxJ2J = new XMLHttpRequest();
+                        padAjaxUdFmxJ2J.onreadystatechange=function() {
+                        if (padAjaxUdFmxJ2J.readyState === 4) {
+                        if (padAjaxUdFmxJ2J.status === 200) {
+                        document.getElementById("padAjaxUdFmxJ2J").innerHTML=padAjaxUdFmxJ2J.responseText;
+                        } else {
+                        document.getElementById("padAjaxUdFmxJ2J").innerHTML=padAjaxUdFmxJ2J.statusText;
+                        }
+                        }
+                        }
+                        padAjaxUdFmxJ2J.open("GET","http://localhost/check/?start/code/increment/reset&padInclude&padSesID=DiM2hOlW&padReqID=iO7nOZp7",true);
+                        padAjaxUdFmxJ2J.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: start/code/increment/sandbox<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">start/code/increment/sandbox.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><b>{<font color="blue">code </font><font color="red">sandbox</font>}</b><br>  <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>  <b>{<font color="blue">code </font><font color="red">sandbox</font>}</b><br>    <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>    <b>{<font color="blue">code </font><font color="red">sandbox</font>}</b><br>      <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>      <b>{<font color="blue">code </font><font color="red">sandbox</font>}</b><br>        <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>        <b>{<font color="blue">code </font><font color="red">sandbox</font>}</b><br>          <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>          <b>{<font color="blue">code </font><font color="red">sandbox</font>}</b><br>            <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>            <b>{<font color="blue">code </font><font color="red">sandbox</font>}</b><br>              <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>              <b>{<font color="blue">code </font><font color="red">sandbox</font>}</b><br>                <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>              <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b> <br>            <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>          <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>        <b>{/<font color="blue">code</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>      <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>    <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br>  <b>{/<font color="blue">code</font><font color="red"></font>}</b> <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><b>{/<font color="blue">code</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>abc</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax8cawZV1M"> 1
+
+   1
+  
+     1
+    
+       1
+      
+         1
+        
+           1
+          
+             1
+            
+               1
+              
+                 1
+               1 
+             1
+           1
+        1
+       1
+     1
+   1
+1</div>
+                        <script>
+                        padAjax8cawZV1M = new XMLHttpRequest();
+                        padAjax8cawZV1M.onreadystatechange=function() {
+                        if (padAjax8cawZV1M.readyState === 4) {
+                        if (padAjax8cawZV1M.status === 200) {
+                        document.getElementById("padAjax8cawZV1M").innerHTML=padAjax8cawZV1M.responseText;
+                        } else {
+                        document.getElementById("padAjax8cawZV1M").innerHTML=padAjax8cawZV1M.statusText;
+                        }
+                        }
+                        }
+                        padAjax8cawZV1M.open("GET","http://localhost/check/?start/code/increment/sandbox&padInclude&padSesID=DiM2hOlW&padReqID=iO7nOZp7",true);
+                        padAjax8cawZV1M.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: start/combi1/page1<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">start/combi1/page1.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">code</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b><br><br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><br>  <b>{<font color="blue">page </font><font color="red"><font color="black">'</font>start/combi1/page2<font color="black">'</font></font>}</b><br>  <br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><br><b>{/<font color="blue">code</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxEbyZjnfT">
+
+  
+
+  1
+
+  
+
+  
+
+  2
+
+  
+
+  
+
+  3
+
+  
+
+  
+
+  4
+
+  
+
+  
+
+  5
+
+  
+
+  
+
+  6
+
+  
+
+  
+
+  7
+
+  
+
+  
+
+  8
+
+  
+
+  
+
+  9
+
+
+  
+  9
+
+
+  
+  9
+
+
+  
+  9
+
+
+  
+  9
+
+
+  
+  9
+
+
+  
+  9
+
+
+  
+  9
+
+
+  
+  9
+
+</div>
+                        <script>
+                        padAjaxEbyZjnfT = new XMLHttpRequest();
+                        padAjaxEbyZjnfT.onreadystatechange=function() {
+                        if (padAjaxEbyZjnfT.readyState === 4) {
+                        if (padAjaxEbyZjnfT.status === 200) {
+                        document.getElementById("padAjaxEbyZjnfT").innerHTML=padAjaxEbyZjnfT.responseText;
+                        } else {
+                        document.getElementById("padAjaxEbyZjnfT").innerHTML=padAjaxEbyZjnfT.statusText;
+                        }
+                        }
+                        }
+                        padAjaxEbyZjnfT.open("GET","http://localhost/check/?start/combi1/page1&padInclude&padSesID=DiM2hOlW&padReqID=iO7nOZp7",true);
+                        padAjaxEbyZjnfT.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: start/combi1/page2<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">start/combi1/page2.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">code</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b><br><br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><br>  <b>{<font color="blue">page </font><font color="red"><font color="black">'</font>start/combi1/page3<font color="black">'</font></font>}</b><br>  <br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><br><b>{/<font color="blue">code</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxeZzWy9wr">
+
+  
+
+  1
+
+  
+
+  
+
+  2
+
+  
+
+  
+
+  3
+
+  
+
+  
+
+  4
+
+  
+
+  
+
+  5
+
+  
+
+  
+
+  6
+
+  
+
+  
+
+  7
+
+  
+
+  
+
+  8
+
+
+  
+  8
+
+
+  
+  8
+
+
+  
+  8
+
+
+  
+  8
+
+
+  
+  8
+
+
+  
+  8
+
+
+  
+  8
+
+</div>
+                        <script>
+                        padAjaxeZzWy9wr = new XMLHttpRequest();
+                        padAjaxeZzWy9wr.onreadystatechange=function() {
+                        if (padAjaxeZzWy9wr.readyState === 4) {
+                        if (padAjaxeZzWy9wr.status === 200) {
+                        document.getElementById("padAjaxeZzWy9wr").innerHTML=padAjaxeZzWy9wr.responseText;
+                        } else {
+                        document.getElementById("padAjaxeZzWy9wr").innerHTML=padAjaxeZzWy9wr.statusText;
+                        }
+                        }
+                        }
+                        padAjaxeZzWy9wr.open("GET","http://localhost/check/?start/combi1/page2&padInclude&padSesID=DiM2hOlW&padReqID=iO7nOZp7",true);
+                        padAjaxeZzWy9wr.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: start/combi1/page3<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">start/combi1/page3.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">code</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b><br><br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><br>  <b>{<font color="blue">page </font><font color="red"><font color="black">'</font>start/combi1/page4<font color="black">'</font></font>}</b><br>  <br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><br><b>{/<font color="blue">code</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxBLxUT7Ko">
+
+  
+
+  1
+
+  
+
+  
+
+  2
+
+  
+
+  
+
+  3
+
+  
+
+  
+
+  4
+
+  
+
+  
+
+  5
+
+  
+
+  
+
+  6
+
+  
+
+  
+
+  7
+
+
+  
+  7
+
+
+  
+  7
+
+
+  
+  7
+
+
+  
+  7
+
+
+  
+  7
+
+
+  
+  7
+
+</div>
+                        <script>
+                        padAjaxBLxUT7Ko = new XMLHttpRequest();
+                        padAjaxBLxUT7Ko.onreadystatechange=function() {
+                        if (padAjaxBLxUT7Ko.readyState === 4) {
+                        if (padAjaxBLxUT7Ko.status === 200) {
+                        document.getElementById("padAjaxBLxUT7Ko").innerHTML=padAjaxBLxUT7Ko.responseText;
+                        } else {
+                        document.getElementById("padAjaxBLxUT7Ko").innerHTML=padAjaxBLxUT7Ko.statusText;
+                        }
+                        }
+                        }
+                        padAjaxBLxUT7Ko.open("GET","http://localhost/check/?start/combi1/page3&padInclude&padSesID=DiM2hOlW&padReqID=iO7nOZp7",true);
+                        padAjaxBLxUT7Ko.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: start/combi1/page4<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">start/combi1/page4.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">code</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b><br><br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><br>  <b>{<font color="blue">page </font><font color="red"><font color="black">'</font>start/combi1/page5<font color="black">'</font></font>}</b><br>  <br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><br><b>{/<font color="blue">code</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxM5Nj6qZ2">
+
+  
+
+  1
+
+  
+
+  
+
+  2
+
+  
+
+  
+
+  3
+
+  
+
+  
+
+  4
+
+  
+
+  
+
+  5
+
+  
+
+  
+
+  6
+
+
+  
+  6
+
+
+  
+  6
+
+
+  
+  6
+
+
+  
+  6
+
+
+  
+  6
+
+</div>
+                        <script>
+                        padAjaxM5Nj6qZ2 = new XMLHttpRequest();
+                        padAjaxM5Nj6qZ2.onreadystatechange=function() {
+                        if (padAjaxM5Nj6qZ2.readyState === 4) {
+                        if (padAjaxM5Nj6qZ2.status === 200) {
+                        document.getElementById("padAjaxM5Nj6qZ2").innerHTML=padAjaxM5Nj6qZ2.responseText;
+                        } else {
+                        document.getElementById("padAjaxM5Nj6qZ2").innerHTML=padAjaxM5Nj6qZ2.statusText;
+                        }
+                        }
+                        }
+                        padAjaxM5Nj6qZ2.open("GET","http://localhost/check/?start/combi1/page4&padInclude&padSesID=DiM2hOlW&padReqID=iO7nOZp7",true);
+                        padAjaxM5Nj6qZ2.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: start/combi1/page5<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">start/combi1/page5.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">code</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b><br><br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><br>  <b>{<font color="blue">page </font><font color="red"><font color="black">'</font>start/combi1/page6<font color="black">'</font></font>}</b><br>  <br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><br><b>{/<font color="blue">code</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxRKL6t7mu">
+
+  
+
+  1
+
+  
+
+  
+
+  2
+
+  
+
+  
+
+  3
+
+  
+
+  
+
+  4
+
+  
+
+  
+
+  5
+
+
+  
+  5
+
+
+  
+  5
+
+
+  
+  5
+
+
+  
+  5
+
+</div>
+                        <script>
+                        padAjaxRKL6t7mu = new XMLHttpRequest();
+                        padAjaxRKL6t7mu.onreadystatechange=function() {
+                        if (padAjaxRKL6t7mu.readyState === 4) {
+                        if (padAjaxRKL6t7mu.status === 200) {
+                        document.getElementById("padAjaxRKL6t7mu").innerHTML=padAjaxRKL6t7mu.responseText;
+                        } else {
+                        document.getElementById("padAjaxRKL6t7mu").innerHTML=padAjaxRKL6t7mu.statusText;
+                        }
+                        }
+                        }
+                        padAjaxRKL6t7mu.open("GET","http://localhost/check/?start/combi1/page5&padInclude&padSesID=DiM2hOlW&padReqID=iO7nOZp7",true);
+                        padAjaxRKL6t7mu.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: start/combi1/page6<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">start/combi1/page6.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">code</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b><br><br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><br>  <b>{<font color="blue">page </font><font color="red"><font color="black">'</font>start/combi1/page7<font color="black">'</font></font>}</b><br>  <br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><br><b>{/<font color="blue">code</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxnVb1fRh2">
+
+  
+
+  1
+
+  
+
+  
+
+  2
+
+  
+
+  
+
+  3
+
+  
+
+  
+
+  4
+
+
+  
+  4
+
+
+  
+  4
+
+
+  
+  4
+
+</div>
+                        <script>
+                        padAjaxnVb1fRh2 = new XMLHttpRequest();
+                        padAjaxnVb1fRh2.onreadystatechange=function() {
+                        if (padAjaxnVb1fRh2.readyState === 4) {
+                        if (padAjaxnVb1fRh2.status === 200) {
+                        document.getElementById("padAjaxnVb1fRh2").innerHTML=padAjaxnVb1fRh2.responseText;
+                        } else {
+                        document.getElementById("padAjaxnVb1fRh2").innerHTML=padAjaxnVb1fRh2.statusText;
+                        }
+                        }
+                        }
+                        padAjaxnVb1fRh2.open("GET","http://localhost/check/?start/combi1/page6&padInclude&padSesID=DiM2hOlW&padReqID=iO7nOZp7",true);
+                        padAjaxnVb1fRh2.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: start/combi1/page7<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">start/combi1/page7.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">code</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b><br><br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><br>  <b>{<font color="blue">page </font><font color="red"><font color="black">'</font>start/combi1/page8<font color="black">'</font></font>}</b><br>  <br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><br><b>{/<font color="blue">code</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxg6sQzkVb">
+
+  
+
+  1
+
+  
+
+  
+
+  2
+
+  
+
+  
+
+  3
+
+
+  
+  3
+
+
+  
+  3
+
+</div>
+                        <script>
+                        padAjaxg6sQzkVb = new XMLHttpRequest();
+                        padAjaxg6sQzkVb.onreadystatechange=function() {
+                        if (padAjaxg6sQzkVb.readyState === 4) {
+                        if (padAjaxg6sQzkVb.status === 200) {
+                        document.getElementById("padAjaxg6sQzkVb").innerHTML=padAjaxg6sQzkVb.responseText;
+                        } else {
+                        document.getElementById("padAjaxg6sQzkVb").innerHTML=padAjaxg6sQzkVb.statusText;
+                        }
+                        }
+                        }
+                        padAjaxg6sQzkVb.open("GET","http://localhost/check/?start/combi1/page7&padInclude&padSesID=DiM2hOlW&padReqID=iO7nOZp7",true);
+                        padAjaxg6sQzkVb.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: start/combi1/page8<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">start/combi1/page8.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">code</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b><br><br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><br>  <b>{<font color="blue">page </font><font color="red"><font color="black">'</font>start/combi1/page9<font color="black">'</font></font>}</b><br>  <br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><br><b>{/<font color="blue">code</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxxpEPgNc8">
+
+  
+
+  1
+
+  
+
+  
+
+  2
+
+
+  
+  2
+
+</div>
+                        <script>
+                        padAjaxxpEPgNc8 = new XMLHttpRequest();
+                        padAjaxxpEPgNc8.onreadystatechange=function() {
+                        if (padAjaxxpEPgNc8.readyState === 4) {
+                        if (padAjaxxpEPgNc8.status === 200) {
+                        document.getElementById("padAjaxxpEPgNc8").innerHTML=padAjaxxpEPgNc8.responseText;
+                        } else {
+                        document.getElementById("padAjaxxpEPgNc8").innerHTML=padAjaxxpEPgNc8.statusText;
+                        }
+                        }
+                        }
+                        padAjaxxpEPgNc8.open("GET","http://localhost/check/?start/combi1/page8&padInclude&padSesID=DiM2hOlW&padReqID=iO7nOZp7",true);
+                        padAjaxxpEPgNc8.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: start/combi1/page9<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">start/combi1/page9.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">code</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b><br><br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><br><b>{/<font color="blue">code</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxMhaJTm3s">
+
+  
+
+  1
+
+</div>
+                        <script>
+                        padAjaxMhaJTm3s = new XMLHttpRequest();
+                        padAjaxMhaJTm3s.onreadystatechange=function() {
+                        if (padAjaxMhaJTm3s.readyState === 4) {
+                        if (padAjaxMhaJTm3s.status === 200) {
+                        document.getElementById("padAjaxMhaJTm3s").innerHTML=padAjaxMhaJTm3s.responseText;
+                        } else {
+                        document.getElementById("padAjaxMhaJTm3s").innerHTML=padAjaxMhaJTm3s.statusText;
+                        }
+                        }
+                        }
+                        padAjaxMhaJTm3s.open("GET","http://localhost/check/?start/combi1/page9&padInclude&padSesID=DiM2hOlW&padReqID=iO7nOZp7",true);
+                        padAjaxMhaJTm3s.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

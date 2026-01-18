@@ -1,0 +1,232 @@
+<html lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+    <title>PAD - toggle</title>
+  
+  <script>"use strict";
+
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function ToggleExample() {
+  var _React$useState = React.useState(false),
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    isOn = _React$useState2[0],
+    setIsOn = _React$useState2[1];
+  return /*#__PURE__*/React.createElement("div", {
+    className: "react-component"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "react-component-label"
+  }, "\u269B\uFE0F TOGGLE SWITCH"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: '48px',
+      marginBottom: '20px',
+      color: isOn ? '#4caf50' : '#999'
+    }
+  }, isOn ? '💡 ON' : '💡 OFF'), /*#__PURE__*/React.createElement("button", {
+    onClick: function onClick() {
+      return setIsOn(!isOn);
+    },
+    style: {
+      background: isOn ? '#4caf50' : '#999',
+      padding: '15px 30px',
+      fontSize: '18px'
+    }
+  }, isOn ? 'Turn Off' : 'Turn On')));
+}
+ReactDOM.createRoot(document.getElementById('example4')).render(/*#__PURE__*/React.createElement(ToggleExample, null));
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJUb2dnbGVFeGFtcGxlIiwiX1JlYWN0JHVzZVN0YXRlIiwiUmVhY3QiLCJ1c2VTdGF0ZSIsIl9SZWFjdCR1c2VTdGF0ZTIiLCJfc2xpY2VkVG9BcnJheSIsImlzT24iLCJzZXRJc09uIiwiY3JlYXRlRWxlbWVudCIsImNsYXNzTmFtZSIsInN0eWxlIiwidGV4dEFsaWduIiwiZm9udFNpemUiLCJtYXJnaW5Cb3R0b20iLCJjb2xvciIsIm9uQ2xpY2siLCJiYWNrZ3JvdW5kIiwicGFkZGluZyIsIlJlYWN0RE9NIiwiY3JlYXRlUm9vdCIsImRvY3VtZW50IiwiZ2V0RWxlbWVudEJ5SWQiLCJyZW5kZXIiXSwic291cmNlcyI6WyJodHRwOi8vbG9jYWxob3N0L3JlYWN0L2V4YW1wbGVzL3RvZ2dsZS5qcyJdLCJzb3VyY2VzQ29udGVudCI6WyJmdW5jdGlvbiBUb2dnbGVFeGFtcGxlKCkge1xuICBjb25zdCBbaXNPbiwgc2V0SXNPbl0gPSBSZWFjdC51c2VTdGF0ZShmYWxzZSk7XG5cbiAgcmV0dXJuIChcbiAgICA8ZGl2IGNsYXNzTmFtZT1cInJlYWN0LWNvbXBvbmVudFwiPlxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJyZWFjdC1jb21wb25lbnQtbGFiZWxcIj7impvvuI8gVE9HR0xFIFNXSVRDSDwvZGl2PlxuICAgICAgPGRpdiBzdHlsZT17e3RleHRBbGlnbjogJ2NlbnRlcid9fT5cbiAgICAgICAgPGRpdlxuICAgICAgICAgIHN0eWxlPXt7XG4gICAgICAgICAgICBmb250U2l6ZTogJzQ4cHgnLFxuICAgICAgICAgICAgbWFyZ2luQm90dG9tOiAnMjBweCcsXG4gICAgICAgICAgICBjb2xvcjogaXNPbiA/ICcjNGNhZjUwJyA6ICcjOTk5J1xuICAgICAgICAgIH19XG4gICAgICAgID5cbiAgICAgICAgICB7aXNPbiA/ICfwn5KhIE9OJyA6ICfwn5KhIE9GRid9XG4gICAgICAgIDwvZGl2PlxuICAgICAgICA8YnV0dG9uXG4gICAgICAgICAgb25DbGljaz17KCkgPT4gc2V0SXNPbighaXNPbil9XG4gICAgICAgICAgc3R5bGU9e3tcbiAgICAgICAgICAgIGJhY2tncm91bmQ6IGlzT24gPyAnIzRjYWY1MCcgOiAnIzk5OScsXG4gICAgICAgICAgICBwYWRkaW5nOiAnMTVweCAzMHB4JyxcbiAgICAgICAgICAgIGZvbnRTaXplOiAnMThweCdcbiAgICAgICAgICB9fVxuICAgICAgICA+XG4gICAgICAgICAge2lzT24gPyAnVHVybiBPZmYnIDogJ1R1cm4gT24nfVxuICAgICAgICA8L2J1dHRvbj5cbiAgICAgIDwvZGl2PlxuICAgIDwvZGl2PlxuICApO1xufVxuXG5SZWFjdERPTS5jcmVhdGVSb290KGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdleGFtcGxlNCcpKS5yZW5kZXIoPFRvZ2dsZUV4YW1wbGUgLz4pO1xuIl0sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFBLFNBQVNBLGFBQWFBLENBQUEsRUFBRztFQUN2QixJQUFBQyxlQUFBLEdBQXdCQyxLQUFLLENBQUNDLFFBQVEsQ0FBQyxLQUFLLENBQUM7SUFBQUMsZ0JBQUEsR0FBQUMsY0FBQSxDQUFBSixlQUFBO0lBQXRDSyxJQUFJLEdBQUFGLGdCQUFBO0lBQUVHLE9BQU8sR0FBQUgsZ0JBQUE7RUFFcEIsb0JBQ0VGLEtBQUEsQ0FBQU0sYUFBQTtJQUFLQyxTQUFTLEVBQUM7RUFBaUIsZ0JBQzlCUCxLQUFBLENBQUFNLGFBQUE7SUFBS0MsU0FBUyxFQUFDO0VBQXVCLEdBQUMsNEJBQXFCLENBQUMsZUFDN0RQLEtBQUEsQ0FBQU0sYUFBQTtJQUFLRSxLQUFLLEVBQUU7TUFBQ0MsU0FBUyxFQUFFO0lBQVE7RUFBRSxnQkFDaENULEtBQUEsQ0FBQU0sYUFBQTtJQUNFRSxLQUFLLEVBQUU7TUFDTEUsUUFBUSxFQUFFLE1BQU07TUFDaEJDLFlBQVksRUFBRSxNQUFNO01BQ3BCQyxLQUFLLEVBQUVSLElBQUksR0FBRyxTQUFTLEdBQUc7SUFDNUI7RUFBRSxHQUVEQSxJQUFJLEdBQUcsT0FBTyxHQUFHLFFBQ2YsQ0FBQyxlQUNOSixLQUFBLENBQUFNLGFBQUE7SUFDRU8sT0FBTyxFQUFFLFNBQVRBLE9BQU9BLENBQUE7TUFBQSxPQUFRUixPQUFPLENBQUMsQ0FBQ0QsSUFBSSxDQUFDO0lBQUEsQ0FBQztJQUM5QkksS0FBSyxFQUFFO01BQ0xNLFVBQVUsRUFBRVYsSUFBSSxHQUFHLFNBQVMsR0FBRyxNQUFNO01BQ3JDVyxPQUFPLEVBQUUsV0FBVztNQUNwQkwsUUFBUSxFQUFFO0lBQ1o7RUFBRSxHQUVETixJQUFJLEdBQUcsVUFBVSxHQUFHLFNBQ2YsQ0FDTCxDQUNGLENBQUM7QUFFVjtBQUVBWSxRQUFRLENBQUNDLFVBQVUsQ0FBQ0MsUUFBUSxDQUFDQyxjQUFjLENBQUMsVUFBVSxDQUFDLENBQUMsQ0FBQ0MsTUFBTSxjQUFDcEIsS0FBQSxDQUFBTSxhQUFBLENBQUNSLGFBQWEsTUFBRSxDQUFDLENBQUMiLCJpZ25vcmVMaXN0IjpbXX0=</script></head>
+  
+  <body>
+
+    
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>toggle</title>
+
+  <!-- React and ReactDOM from CDN (Development mode) -->
+  <script src="../../unpkg.com/react@18.3.1/umd/react.development.js"></script>
+  <script src="../../unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+
+  <!-- Babel Standalone for JSX transformation in browser (Development only) -->
+  <script src="../../unpkg.com/@babel/standalone@7.28.6/babel.min.js"></script>
+
+  <style>* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    code {
+      font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      background: #282c34;
+      color: white;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    nav {
+      margin-top: 15px;
+    }
+
+    nav a {
+      color: #61dafb;
+      text-decoration: none;
+      margin-right: 20px;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    nav a.active {
+      color: #fff;
+      border-bottom: 2px solid #61dafb;
+    }
+
+    .content {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .react-component {
+      border: 2px dashed #61dafb;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      background: #f0f8ff;
+    }
+
+    .react-component-label {
+      color: #61dafb;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background: #61dafb;
+      color: #282c34;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #4fa8c5;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      text-align: center;
+      color: #666;
+      border-top: 1px solid #ddd;
+    }
+
+    .info-box {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+
+    .info-box strong {
+      color: #856404;
+    }
+  </style>
+
+
+  <header>
+    <div class="container">
+      <h1>PAD + React Application</h1>
+      <nav>
+        
+          <a href="index%EF%B9%96index.html">🏠 Home</a>
+        
+          <a href="index%EF%B9%96examples%EA%A4%B7index.html">📚 Examples</a>
+        
+          <a href="index%EF%B9%96components.html">🧩 Components</a>
+        
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="content">
+      <h1>Toggle Component</h1>
+
+<p>Simple toggle button component with state management.</p>
+
+<div id="example4"><div class="react-component"><div class="react-component-label">⚛️ TOGGLE SWITCH</div><div style="text-align: center;"><div style="font-size: 48px; margin-bottom: 20px; color: rgb(153, 153, 153);">💡 OFF</div><button style="background: rgb(153, 153, 153); padding: 15px 30px; font-size: 18px;">Turn On</button></div></div></div>
+<script type="text/babel" src="examples/toggle.js"></script>
+
+<div style="margin-top: 30px;">
+  <a href="index%EF%B9%96examples%EA%A4%B7index.html" class="btn">← Back to Examples</a>
+</div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>Powered by <strong>PAD Framework</strong> (Server-Side) + <strong>React</strong> (Client-Side)</p>
+      <p style="margin-top: 10px; font-size: 14px;">
+        PAD handles routing, data, and templates • React handles interactive UI components
+      </p>
+    </div>
+  </footer>
+
+ 
+
+  
+
+</body></html>

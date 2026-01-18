@@ -1,0 +1,361 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Reference - Tag types - construct
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - construct
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: pages/3_ways_to_make_a_table<br>
+                  <div id="padAjaxS61P5Lwv"><table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td>
+<p>The <b>@</b><b>start</b><b>@</b> / <b>@</b><b>end</b><b>@</b> &amp; <b>@</b><b>else</b><b>@</b>  constructs act on the number of occurences.</p>
+<p>The <b>{first}</b> &amp; <b>{last}</b> tags are part of the special <a href="../manual/index%EF%B9%96pages%EA%A4%B7properties.html">Properties</a> tags.</p>
+<p></p>
+</td>
+  </tr>
+</tbody></table>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myArray<font color="black">'</font></font>}</b><br>  [1,2,3]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b><br><br>  &lt;table border="1"&gt;<br>    &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br>    &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>  &lt;/table&gt;<br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+    <tbody><tr> <td> Before the first occurrence </td> </tr>
+    
+      <tr> <td> For every occurence </td> </tr>
+    
+      <tr> <td> For every occurence </td> </tr>
+    
+      <tr> <td> For every occurence </td> </tr>
+    
+    <tr> <td> After the last occurrence </td> </tr>
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">first</font><font color="red"></font>}</b><br>    &lt;table border="1"&gt;<br>      &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{/<font color="blue">first</font><font color="red"></font>}</b><br>      &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{<font color="blue">last</font><font color="red"></font>}</b><br>      &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>    &lt;/table&gt;<br>  <b>{/<font color="blue">last</font><font color="red"></font>}</b><br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+      <tbody><tr> <td> Before the first occurrence </td> </tr>
+  
+      <tr> <td> For every occurence </td> </tr>
+  
+
+
+
+  
+      <tr> <td> For every occurence </td> </tr>
+  
+
+
+
+  
+      <tr> <td> For every occurence </td> </tr>
+  
+      <tr> <td> After the last occurrence </td> </tr>
+    </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">count </font><font color="red"><font color="black">'</font>myArray<font color="black">'</font></font>}</b><br><br>  &lt;table border="1"&gt;<br>    &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{<font color="blue">myArray</font><font color="red"></font>}</b><br>    &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{/<font color="blue">myArray</font><font color="red"></font>}</b><br>    &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>  &lt;/table&gt;<br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">count</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+    <tbody><tr> <td> Before the first occurrence </td> </tr>
+  
+    <tr> <td> For every occurence </td> </tr>
+  
+    <tr> <td> For every occurence </td> </tr>
+  
+    <tr> <td> For every occurence </td> </tr>
+  
+    <tr> <td> After the last occurrence </td> </tr>
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p>
+
+<br><hr><br>
+
+<table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td>
+<p>Now the same code with an empty array</p>
+<p>The {else} construct comes active when there are zero occurences for a PAD tag.</p>
+</td>
+  </tr>
+</tbody></table>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myArray<font color="black">'</font></font>}</b><br> []<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b><br><br>  &lt;table border="1"&gt;<br>    &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br>    &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>  &lt;/table&gt;<br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><p> No occurences at all </p><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">first</font><font color="red"></font>}</b><br>    &lt;table border="1"&gt;<br>      &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{/<font color="blue">first</font><font color="red"></font>}</b><br>      &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{<font color="blue">last</font><font color="red"></font>}</b><br>      &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>    &lt;/table&gt;<br>  <b>{/<font color="blue">last</font><font color="red"></font>}</b><br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><p> No occurences at all </p><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">count </font><font color="red"><font color="black">'</font>myArray<font color="black">'</font></font>}</b><br><br>  &lt;table border="1"&gt;<br>    &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{<font color="blue">myArray</font><font color="red"></font>}</b><br>    &lt;tr&gt; &lt;td&gt; For every occurence &lt;/td&gt; &lt;/tr&gt;<br>  <b>{/<font color="blue">myArray</font><font color="red"></font>}</b><br>    &lt;tr&gt; &lt;td&gt; After the last occurrence &lt;/td&gt; &lt;/tr&gt;<br>  &lt;/table&gt;<br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">count</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><p> No occurences at all </p><!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxS61P5Lwv = new XMLHttpRequest();
+                  padAjaxS61P5Lwv.onreadystatechange=function() {
+                  if (padAjaxS61P5Lwv.readyState === 4) {
+                  if (padAjaxS61P5Lwv.status === 200) {
+                  document.getElementById("padAjaxS61P5Lwv").innerHTML=padAjaxS61P5Lwv.responseText;
+                  } else {
+                  document.getElementById("padAjaxS61P5Lwv").innerHTML=padAjaxS61P5Lwv.statusText;
+                  }
+                  }
+                  }
+                  padAjaxS61P5Lwv.open("GET","http://localhost/manual/?pages/3_ways_to_make_a_table&padInclude&padSesID=DiM2hOlW&padReqID=CDqmASBi",true);
+                  padAjaxS61P5Lwv.send();
+                  </script><br>
+                  <hr>
+                  App: manual - Page: pages/else<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">pages/else.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">When the result of a PAD tag is false the part after <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>else<font color="black">'</font></font>}</b> is used.<br><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>constructs/else_1<font color="black">'</font></font>}</b><br><br>&lt;hr&gt;The <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>else<font color="black">'</font></font>}</b> construct is a general feature of every PAD tag, it applies to all PAD tags.&lt;br&gt;&lt;br&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>constructs/else_4<font color="black">'</font></font>}</b><br><br>&lt;hr&gt;When the result of a PAD tag is an empty array the part after <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>else<font color="black">'</font></font>}</b> is used.<br><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>constructs/else_2<font color="black">'</font></font>}</b><br><br>&lt;hr&gt;The <b>{<font color="blue">construct </font><font color="red"><font color="black">'</font>else<font color="black">'</font></font>}</b> context can also be given with the 'else' option at the tag itself.<br><br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>constructs/else_3<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxCiUIzw6f">When the result of a PAD tag is false the part after <b>@</b><b>else</b><b>@</b> is used.
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">if </font><font color="red">2 &gt; 1</font>}</b><br>  true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false<br><b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->true<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">if </font><font color="red">1 &gt; 2</font>}</b><br>  true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false<br><b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->false<!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p>
+
+<hr>The <b>@</b><b>else</b><b>@</b> construct is a general feature of every PAD tag, it applies to all PAD tags.<br><br>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tbody><tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">constructs/else_4.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">constructs/else_4.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $myVar </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">myVar</font><font color="red"></font>}</b><br>  true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  false<br><b>{/<font color="blue">myVar</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+  false
+
+</td>
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+
+
+<hr>When the result of a PAD tag is an empty array the part after <b>@</b><b>else</b><b>@</b> is used.
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myArray1<font color="black">'</font></font>}</b><br>  [1,2,3]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray1</font><font color="red"></font>}</b><br>  Occurence <b>{<font color="green"><font color="red">$</font>myArray1</font>}</b> &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  No occurences<br><b>{/<font color="blue">myArray1</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Occurence 1 <br>
+
+  Occurence 2 <br>
+
+  Occurence 3 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myArray2<font color="black">'</font></font>}</b><br>  []<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray2</font><font color="red"></font>}</b><br>  Occurence <b>{<font color="green"><font color="red">$</font>myArray2</font>}</b> &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  Nothing to see here<br><b>{/<font color="blue">myArray2</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Nothing to see here<!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p>
+
+<hr>The <b>@</b><b>else</b><b>@</b> context can also be given with the 'else' option at the tag itself.
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myArray<font color="black">'</font></font>}</b><br>  []<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>nothing<font color="black">'</font></font>}</b><br>  Nothing to see here<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray </font><font color="red">else=<font color="black">'</font>nothing<font color="black">'</font></font>}</b><br>  Occurence <b>{<font color="green"><font color="red">$</font>myArray</font>}</b> &lt;br&gt;<br><b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Nothing to see here<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">if </font><font color="red">1 &gt; 2<font color="black">,</font> else=<font color="black">'</font>nothing<font color="black">'</font></font>}</b><br>  true<br><b>{/<font color="blue">if</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Nothing to see here<!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p></div>
+                        <script>
+                        padAjaxCiUIzw6f = new XMLHttpRequest();
+                        padAjaxCiUIzw6f.onreadystatechange=function() {
+                        if (padAjaxCiUIzw6f.readyState === 4) {
+                        if (padAjaxCiUIzw6f.status === 200) {
+                        document.getElementById("padAjaxCiUIzw6f").innerHTML=padAjaxCiUIzw6f.responseText;
+                        } else {
+                        document.getElementById("padAjaxCiUIzw6f").innerHTML=padAjaxCiUIzw6f.statusText;
+                        }
+                        }
+                        }
+                        padAjaxCiUIzw6f.open("GET","http://localhost/manual/?pages/else&padInclude&padSesID=DiM2hOlW&padReqID=CDqmASBi",true);
+                        padAjaxCiUIzw6f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: pages/start_end<br>
+                  <div id="padAjax6ctgSiuN"><table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td>
+<p>The <b>@</b><b>start</b><b>@</b> &amp; <b>@</b><b>end</b><b>@</b> constructs limits the occurce content of a tag to the content between those 2 constructs</p>
+</td>
+  </tr>
+</tbody></table>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myArray<font color="black">'</font></font>}</b><br>  [1,2,3]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b><br><br>  &lt;table border="1"&gt;<br>    &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br><br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt; &lt;td&gt; For every occurence       &lt;/td&gt; &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br><br>    &lt;tr&gt; &lt;td&gt; After the last occurrence   &lt;/td&gt; &lt;/tr&gt;<br>  &lt;/table&gt;<br><br><b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+    <tbody><tr> <td> Before the first occurrence </td> </tr>
+
+    
+      <tr> <td> For every occurence       </td> </tr>
+    
+      <tr> <td> For every occurence       </td> </tr>
+    
+      <tr> <td> For every occurence       </td> </tr>
+    
+
+    <tr> <td> After the last occurrence   </td> </tr>
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myArray<font color="black">'</font></font>}</b><br> []<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myArray</font><font color="red"></font>}</b><br><br>  &lt;table border="1"&gt;<br>    &lt;tr&gt; &lt;td&gt; Before the first occurrence &lt;/td&gt; &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt; &lt;td&gt; For every occurence       &lt;/td&gt; &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br>    &lt;tr&gt; &lt;td&gt; After the last occurrence   &lt;/td&gt; &lt;/tr&gt;<br>  &lt;/table&gt;<br><br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br><br>  &lt;p&gt; No occurences at all &lt;/p&gt;<br><br><b>{/<font color="blue">myArray</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><p> No occurences at all </p><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjax6ctgSiuN = new XMLHttpRequest();
+                  padAjax6ctgSiuN.onreadystatechange=function() {
+                  if (padAjax6ctgSiuN.readyState === 4) {
+                  if (padAjax6ctgSiuN.status === 200) {
+                  document.getElementById("padAjax6ctgSiuN").innerHTML=padAjax6ctgSiuN.responseText;
+                  } else {
+                  document.getElementById("padAjax6ctgSiuN").innerHTML=padAjax6ctgSiuN.statusText;
+                  }
+                  }
+                  }
+                  padAjax6ctgSiuN.open("GET","http://localhost/manual/?pages/start_end&padInclude&padSesID=DiM2hOlW&padReqID=CDqmASBi",true);
+                  padAjax6ctgSiuN.send();
+                  </script><br>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

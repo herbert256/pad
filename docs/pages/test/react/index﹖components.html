@@ -1,0 +1,493 @@
+<html lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+    <title>PAD - Components - PAD + React</title>
+  
+  <script>"use strict";
+
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+// Reusable Card Component
+function Card(_ref) {
+  var title = _ref.title,
+    children = _ref.children,
+    _ref$color = _ref.color,
+    color = _ref$color === void 0 ? '#61dafb' : _ref$color;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      border: "2px solid ".concat(color),
+      borderRadius: '8px',
+      padding: '20px',
+      margin: '10px 0',
+      background: 'white'
+    }
+  }, title && /*#__PURE__*/React.createElement("h3", {
+    style: {
+      margin: '0 0 15px 0',
+      color: color,
+      borderBottom: "2px solid ".concat(color),
+      paddingBottom: '10px'
+    }
+  }, title), children);
+}
+
+// Reusable Button Component
+function Button(_ref2) {
+  var onClick = _ref2.onClick,
+    children = _ref2.children,
+    _ref2$variant = _ref2.variant,
+    variant = _ref2$variant === void 0 ? 'primary' : _ref2$variant;
+  var styles = {
+    primary: {
+      background: '#61dafb',
+      color: '#282c34'
+    },
+    danger: {
+      background: '#ff6b6b',
+      color: 'white'
+    },
+    success: {
+      background: '#4caf50',
+      color: 'white'
+    }
+  };
+  return /*#__PURE__*/React.createElement("button", {
+    onClick: onClick,
+    style: _objectSpread(_objectSpread({}, styles[variant]), {}, {
+      border: 'none',
+      padding: '10px 20px',
+      borderRadius: '5px',
+      fontSize: '16px',
+      fontWeight: 'bold',
+      cursor: 'pointer',
+      margin: '5px'
+    })
+  }, children);
+}
+
+// Main Demo Component
+function ComponentsDemo() {
+  var _React$useState = React.useState('No button clicked yet'),
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    message = _React$useState2[0],
+    setMessage = _React$useState2[1];
+  return /*#__PURE__*/React.createElement("div", {
+    className: "react-component"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "react-component-label"
+  }, "\u269B\uFE0F REUSABLE COMPONENTS"), /*#__PURE__*/React.createElement(Card, {
+    title: "Card Component Example",
+    color: "#61dafb"
+  }, /*#__PURE__*/React.createElement("p", null, "This is a reusable Card component with custom title and color."), /*#__PURE__*/React.createElement("p", null, "You can put any content inside it!")), /*#__PURE__*/React.createElement(Card, {
+    title: "Button Components",
+    color: "#9b59b6"
+  }, /*#__PURE__*/React.createElement("p", null, "Click the buttons below to see the reusable Button components:"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Button, {
+    onClick: function onClick() {
+      return setMessage('Primary button clicked!');
+    }
+  }, "Primary Button"), /*#__PURE__*/React.createElement(Button, {
+    onClick: function onClick() {
+      return setMessage('Danger button clicked!');
+    },
+    variant: "danger"
+  }, "Danger Button"), /*#__PURE__*/React.createElement(Button, {
+    onClick: function onClick() {
+      return setMessage('Success button clicked!');
+    },
+    variant: "success"
+  }, "Success Button")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: '15px',
+      padding: '10px',
+      background: '#f0f0f0',
+      borderRadius: '5px'
+    }
+  }, "Message: ", /*#__PURE__*/React.createElement("strong", null, message))), /*#__PURE__*/React.createElement(Card, {
+    title: "Nested Cards",
+    color: "#ffa500"
+  }, /*#__PURE__*/React.createElement("p", null, "Cards can be nested inside each other:"), /*#__PURE__*/React.createElement(Card, {
+    title: "Inner Card",
+    color: "#4caf50"
+  }, /*#__PURE__*/React.createElement("p", null, "This is a card inside another card!"))));
+}
+ReactDOM.createRoot(document.getElementById('components-demo')).render(/*#__PURE__*/React.createElement(ComponentsDemo, null));
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJDYXJkIiwiX3JlZiIsInRpdGxlIiwiY2hpbGRyZW4iLCJfcmVmJGNvbG9yIiwiY29sb3IiLCJSZWFjdCIsImNyZWF0ZUVsZW1lbnQiLCJzdHlsZSIsImJvcmRlciIsImNvbmNhdCIsImJvcmRlclJhZGl1cyIsInBhZGRpbmciLCJtYXJnaW4iLCJiYWNrZ3JvdW5kIiwiYm9yZGVyQm90dG9tIiwicGFkZGluZ0JvdHRvbSIsIkJ1dHRvbiIsIl9yZWYyIiwib25DbGljayIsIl9yZWYyJHZhcmlhbnQiLCJ2YXJpYW50Iiwic3R5bGVzIiwicHJpbWFyeSIsImRhbmdlciIsInN1Y2Nlc3MiLCJfb2JqZWN0U3ByZWFkIiwiZm9udFNpemUiLCJmb250V2VpZ2h0IiwiY3Vyc29yIiwiQ29tcG9uZW50c0RlbW8iLCJfUmVhY3QkdXNlU3RhdGUiLCJ1c2VTdGF0ZSIsIl9SZWFjdCR1c2VTdGF0ZTIiLCJfc2xpY2VkVG9BcnJheSIsIm1lc3NhZ2UiLCJzZXRNZXNzYWdlIiwiY2xhc3NOYW1lIiwibWFyZ2luVG9wIiwiUmVhY3RET00iLCJjcmVhdGVSb290IiwiZG9jdW1lbnQiLCJnZXRFbGVtZW50QnlJZCIsInJlbmRlciJdLCJzb3VyY2VzIjpbImh0dHA6Ly9sb2NhbGhvc3QvcmVhY3QvY29tcG9uZW50cy9kZW1vLmpzIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIFJldXNhYmxlIENhcmQgQ29tcG9uZW50XG5mdW5jdGlvbiBDYXJkKHsgdGl0bGUsIGNoaWxkcmVuLCBjb2xvciA9ICcjNjFkYWZiJyB9KSB7XG4gIHJldHVybiAoXG4gICAgPGRpdiBzdHlsZT17e1xuICAgICAgYm9yZGVyOiBgMnB4IHNvbGlkICR7Y29sb3J9YCxcbiAgICAgIGJvcmRlclJhZGl1czogJzhweCcsXG4gICAgICBwYWRkaW5nOiAnMjBweCcsXG4gICAgICBtYXJnaW46ICcxMHB4IDAnLFxuICAgICAgYmFja2dyb3VuZDogJ3doaXRlJ1xuICAgIH19PlxuICAgICAge3RpdGxlICYmIChcbiAgICAgICAgPGgzIHN0eWxlPXt7XG4gICAgICAgICAgbWFyZ2luOiAnMCAwIDE1cHggMCcsXG4gICAgICAgICAgY29sb3I6IGNvbG9yLFxuICAgICAgICAgIGJvcmRlckJvdHRvbTogYDJweCBzb2xpZCAke2NvbG9yfWAsXG4gICAgICAgICAgcGFkZGluZ0JvdHRvbTogJzEwcHgnXG4gICAgICAgIH19PlxuICAgICAgICAgIHt0aXRsZX1cbiAgICAgICAgPC9oMz5cbiAgICAgICl9XG4gICAgICB7Y2hpbGRyZW59XG4gICAgPC9kaXY+XG4gICk7XG59XG5cbi8vIFJldXNhYmxlIEJ1dHRvbiBDb21wb25lbnRcbmZ1bmN0aW9uIEJ1dHRvbih7IG9uQ2xpY2ssIGNoaWxkcmVuLCB2YXJpYW50ID0gJ3ByaW1hcnknIH0pIHtcbiAgY29uc3Qgc3R5bGVzID0ge1xuICAgIHByaW1hcnk6IHsgYmFja2dyb3VuZDogJyM2MWRhZmInLCBjb2xvcjogJyMyODJjMzQnIH0sXG4gICAgZGFuZ2VyOiB7IGJhY2tncm91bmQ6ICcjZmY2YjZiJywgY29sb3I6ICd3aGl0ZScgfSxcbiAgICBzdWNjZXNzOiB7IGJhY2tncm91bmQ6ICcjNGNhZjUwJywgY29sb3I6ICd3aGl0ZScgfVxuICB9O1xuXG4gIHJldHVybiAoXG4gICAgPGJ1dHRvblxuICAgICAgb25DbGljaz17b25DbGlja31cbiAgICAgIHN0eWxlPXt7XG4gICAgICAgIC4uLnN0eWxlc1t2YXJpYW50XSxcbiAgICAgICAgYm9yZGVyOiAnbm9uZScsXG4gICAgICAgIHBhZGRpbmc6ICcxMHB4IDIwcHgnLFxuICAgICAgICBib3JkZXJSYWRpdXM6ICc1cHgnLFxuICAgICAgICBmb250U2l6ZTogJzE2cHgnLFxuICAgICAgICBmb250V2VpZ2h0OiAnYm9sZCcsXG4gICAgICAgIGN1cnNvcjogJ3BvaW50ZXInLFxuICAgICAgICBtYXJnaW46ICc1cHgnXG4gICAgICB9fVxuICAgID5cbiAgICAgIHtjaGlsZHJlbn1cbiAgICA8L2J1dHRvbj5cbiAgKTtcbn1cblxuLy8gTWFpbiBEZW1vIENvbXBvbmVudFxuZnVuY3Rpb24gQ29tcG9uZW50c0RlbW8oKSB7XG4gIGNvbnN0IFttZXNzYWdlLCBzZXRNZXNzYWdlXSA9IFJlYWN0LnVzZVN0YXRlKCdObyBidXR0b24gY2xpY2tlZCB5ZXQnKTtcblxuICByZXR1cm4gKFxuICAgIDxkaXYgY2xhc3NOYW1lPVwicmVhY3QtY29tcG9uZW50XCI+XG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cInJlYWN0LWNvbXBvbmVudC1sYWJlbFwiPuKam++4jyBSRVVTQUJMRSBDT01QT05FTlRTPC9kaXY+XG5cbiAgICAgIDxDYXJkIHRpdGxlPVwiQ2FyZCBDb21wb25lbnQgRXhhbXBsZVwiIGNvbG9yPVwiIzYxZGFmYlwiPlxuICAgICAgICA8cD5UaGlzIGlzIGEgcmV1c2FibGUgQ2FyZCBjb21wb25lbnQgd2l0aCBjdXN0b20gdGl0bGUgYW5kIGNvbG9yLjwvcD5cbiAgICAgICAgPHA+WW91IGNhbiBwdXQgYW55IGNvbnRlbnQgaW5zaWRlIGl0ITwvcD5cbiAgICAgIDwvQ2FyZD5cblxuICAgICAgPENhcmQgdGl0bGU9XCJCdXR0b24gQ29tcG9uZW50c1wiIGNvbG9yPVwiIzliNTliNlwiPlxuICAgICAgICA8cD5DbGljayB0aGUgYnV0dG9ucyBiZWxvdyB0byBzZWUgdGhlIHJldXNhYmxlIEJ1dHRvbiBjb21wb25lbnRzOjwvcD5cbiAgICAgICAgPGRpdj5cbiAgICAgICAgICA8QnV0dG9uIG9uQ2xpY2s9eygpID0+IHNldE1lc3NhZ2UoJ1ByaW1hcnkgYnV0dG9uIGNsaWNrZWQhJyl9PlxuICAgICAgICAgICAgUHJpbWFyeSBCdXR0b25cbiAgICAgICAgICA8L0J1dHRvbj5cbiAgICAgICAgICA8QnV0dG9uXG4gICAgICAgICAgICBvbkNsaWNrPXsoKSA9PiBzZXRNZXNzYWdlKCdEYW5nZXIgYnV0dG9uIGNsaWNrZWQhJyl9XG4gICAgICAgICAgICB2YXJpYW50PVwiZGFuZ2VyXCJcbiAgICAgICAgICA+XG4gICAgICAgICAgICBEYW5nZXIgQnV0dG9uXG4gICAgICAgICAgPC9CdXR0b24+XG4gICAgICAgICAgPEJ1dHRvblxuICAgICAgICAgICAgb25DbGljaz17KCkgPT4gc2V0TWVzc2FnZSgnU3VjY2VzcyBidXR0b24gY2xpY2tlZCEnKX1cbiAgICAgICAgICAgIHZhcmlhbnQ9XCJzdWNjZXNzXCJcbiAgICAgICAgICA+XG4gICAgICAgICAgICBTdWNjZXNzIEJ1dHRvblxuICAgICAgICAgIDwvQnV0dG9uPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgPGRpdiBzdHlsZT17e1xuICAgICAgICAgIG1hcmdpblRvcDogJzE1cHgnLFxuICAgICAgICAgIHBhZGRpbmc6ICcxMHB4JyxcbiAgICAgICAgICBiYWNrZ3JvdW5kOiAnI2YwZjBmMCcsXG4gICAgICAgICAgYm9yZGVyUmFkaXVzOiAnNXB4J1xuICAgICAgICB9fT5cbiAgICAgICAgICBNZXNzYWdlOiA8c3Ryb25nPnttZXNzYWdlfTwvc3Ryb25nPlxuICAgICAgICA8L2Rpdj5cbiAgICAgIDwvQ2FyZD5cblxuICAgICAgPENhcmQgdGl0bGU9XCJOZXN0ZWQgQ2FyZHNcIiBjb2xvcj1cIiNmZmE1MDBcIj5cbiAgICAgICAgPHA+Q2FyZHMgY2FuIGJlIG5lc3RlZCBpbnNpZGUgZWFjaCBvdGhlcjo8L3A+XG4gICAgICAgIDxDYXJkIHRpdGxlPVwiSW5uZXIgQ2FyZFwiIGNvbG9yPVwiIzRjYWY1MFwiPlxuICAgICAgICAgIDxwPlRoaXMgaXMgYSBjYXJkIGluc2lkZSBhbm90aGVyIGNhcmQhPC9wPlxuICAgICAgICA8L0NhcmQ+XG4gICAgICA8L0NhcmQ+XG4gICAgPC9kaXY+XG4gICk7XG59XG5cblJlYWN0RE9NLmNyZWF0ZVJvb3QoZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2NvbXBvbmVudHMtZGVtbycpKS5yZW5kZXIoPENvbXBvbmVudHNEZW1vIC8+KTtcbiJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7QUFBQTtBQUNBLFNBQVNBLElBQUlBLENBQUFDLElBQUEsRUFBeUM7RUFB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</script><script>"use strict";
+
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+// TodoItem Component
+function TodoItem(_ref) {
+  var todo = _ref.todo,
+    onToggle = _ref.onToggle,
+    onDelete = _ref.onDelete;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      padding: '10px',
+      background: todo.completed ? '#d4edda' : 'white',
+      border: '1px solid #ddd',
+      borderRadius: '5px',
+      marginBottom: '5px'
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "checkbox",
+    checked: todo.completed,
+    onChange: function onChange() {
+      return onToggle(todo.id);
+    },
+    style: {
+      marginRight: '10px'
+    }
+  }), /*#__PURE__*/React.createElement("span", {
+    style: {
+      flex: 1,
+      textDecoration: todo.completed ? 'line-through' : 'none',
+      color: todo.completed ? '#666' : '#000'
+    }
+  }, todo.text), /*#__PURE__*/React.createElement("button", {
+    onClick: function onClick() {
+      return onDelete(todo.id);
+    },
+    style: {
+      background: '#ff6b6b',
+      color: 'white',
+      border: 'none',
+      padding: '5px 10px',
+      borderRadius: '3px',
+      cursor: 'pointer'
+    }
+  }, "Delete"));
+}
+
+// TodoApp Component
+function TodoApp() {
+  var _React$useState = React.useState([{
+      id: 1,
+      text: 'Learn React basics',
+      completed: true
+    }, {
+      id: 2,
+      text: 'Build a component',
+      completed: false
+    }, {
+      id: 3,
+      text: 'Integrate with PAD',
+      completed: false
+    }]),
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    todos = _React$useState2[0],
+    setTodos = _React$useState2[1];
+  var _React$useState3 = React.useState(''),
+    _React$useState4 = _slicedToArray(_React$useState3, 2),
+    newTodo = _React$useState4[0],
+    setNewTodo = _React$useState4[1];
+  var addTodo = function addTodo() {
+    if (newTodo.trim()) {
+      setTodos([].concat(_toConsumableArray(todos), [{
+        id: Date.now(),
+        text: newTodo,
+        completed: false
+      }]));
+      setNewTodo('');
+    }
+  };
+  var toggleTodo = function toggleTodo(id) {
+    setTodos(todos.map(function (todo) {
+      return todo.id === id ? _objectSpread(_objectSpread({}, todo), {}, {
+        completed: !todo.completed
+      }) : todo;
+    }));
+  };
+  var deleteTodo = function deleteTodo(id) {
+    setTodos(todos.filter(function (todo) {
+      return todo.id !== id;
+    }));
+  };
+  var completedCount = todos.filter(function (t) {
+    return t.completed;
+  }).length;
+  return /*#__PURE__*/React.createElement("div", {
+    className: "react-component"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "react-component-label"
+  }, "\u269B\uFE0F TODO APP (Component Composition)"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: '20px'
+    }
+  }, /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    value: newTodo,
+    onChange: function onChange(e) {
+      return setNewTodo(e.target.value);
+    },
+    onKeyPress: function onKeyPress(e) {
+      return e.key === 'Enter' && addTodo();
+    },
+    placeholder: "Enter a new todo...",
+    style: {
+      padding: '10px',
+      fontSize: '16px',
+      border: '1px solid #ccc',
+      borderRadius: '5px',
+      width: '70%',
+      marginRight: '10px'
+    }
+  }), /*#__PURE__*/React.createElement("button", {
+    onClick: addTodo
+  }, "Add Todo")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: '15px',
+      color: '#666'
+    }
+  }, completedCount, " of ", todos.length, " completed"), /*#__PURE__*/React.createElement("div", null, todos.map(function (todo) {
+    return /*#__PURE__*/React.createElement(TodoItem, {
+      key: todo.id,
+      todo: todo,
+      onToggle: toggleTodo,
+      onDelete: deleteTodo
+    });
+  })), todos.length === 0 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '20px',
+      textAlign: 'center',
+      color: '#999'
+    }
+  }, "No todos yet. Add one above!"));
+}
+ReactDOM.createRoot(document.getElementById('todo-app')).render(/*#__PURE__*/React.createElement(TodoApp, null));
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJUb2RvSXRlbSIsIl9yZWYiLCJ0b2RvIiwib25Ub2dnbGUiLCJvbkRlbGV0ZSIsIlJlYWN0IiwiY3JlYXRlRWxlbWVudCIsInN0eWxlIiwiZGlzcGxheSIsImFsaWduSXRlbXMiLCJwYWRkaW5nIiwiYmFja2dyb3VuZCIsImNvbXBsZXRlZCIsImJvcmRlciIsImJvcmRlclJhZGl1cyIsIm1hcmdpbkJvdHRvbSIsInR5cGUiLCJjaGVja2VkIiwib25DaGFuZ2UiLCJpZCIsIm1hcmdpblJpZ2h0IiwiZmxleCIsInRleHREZWNvcmF0aW9uIiwiY29sb3IiLCJ0ZXh0Iiwib25DbGljayIsImN1cnNvciIsIlRvZG9BcHAiLCJfUmVhY3QkdXNlU3RhdGUiLCJ1c2VTdGF0ZSIsIl9SZWFjdCR1c2VTdGF0ZTIiLCJfc2xpY2VkVG9BcnJheSIsInRvZG9zIiwic2V0VG9kb3MiLCJfUmVhY3QkdXNlU3RhdGUzIiwiX1JlYWN0JHVzZVN0YXRlNCIsIm5ld1RvZG8iLCJzZXROZXdUb2RvIiwiYWRkVG9kbyIsInRyaW0iLCJjb25jYXQiLCJfdG9Db25zdW1hYmxlQXJyYXkiLCJEYXRlIiwibm93IiwidG9nZ2xlVG9kbyIsIm1hcCIsIl9vYmplY3RTcHJlYWQiLCJkZWxldGVUb2RvIiwiZmlsdGVyIiwiY29tcGxldGVkQ291bnQiLCJ0IiwibGVuZ3RoIiwiY2xhc3NOYW1lIiwidmFsdWUiLCJlIiwidGFyZ2V0Iiwib25LZXlQcmVzcyIsImtleSIsInBsYWNlaG9sZGVyIiwiZm9udFNpemUiLCJ3aWR0aCIsInRleHRBbGlnbiIsIlJlYWN0RE9NIiwiY3JlYXRlUm9vdCIsImRvY3VtZW50IiwiZ2V0RWxlbWVudEJ5SWQiLCJyZW5kZXIiXSwic291cmNlcyI6WyJodHRwOi8vbG9jYWxob3N0L3JlYWN0L2NvbXBvbmVudHMvdG9kby5qcyJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBUb2RvSXRlbSBDb21wb25lbnRcbmZ1bmN0aW9uIFRvZG9JdGVtKHsgdG9kbywgb25Ub2dnbGUsIG9uRGVsZXRlIH0pIHtcbiAgcmV0dXJuIChcbiAgICA8ZGl2IHN0eWxlPXt7XG4gICAgICBkaXNwbGF5OiAnZmxleCcsXG4gICAgICBhbGlnbkl0ZW1zOiAnY2VudGVyJyxcbiAgICAgIHBhZGRpbmc6ICcxMHB4JyxcbiAgICAgIGJhY2tncm91bmQ6IHRvZG8uY29tcGxldGVkID8gJyNkNGVkZGEnIDogJ3doaXRlJyxcbiAgICAgIGJvcmRlcjogJzFweCBzb2xpZCAjZGRkJyxcbiAgICAgIGJvcmRlclJhZGl1czogJzVweCcsXG4gICAgICBtYXJnaW5Cb3R0b206ICc1cHgnXG4gICAgfX0+XG4gICAgICA8aW5wdXRcbiAgICAgICAgdHlwZT1cImNoZWNrYm94XCJcbiAgICAgICAgY2hlY2tlZD17dG9kby5jb21wbGV0ZWR9XG4gICAgICAgIG9uQ2hhbmdlPXsoKSA9PiBvblRvZ2dsZSh0b2RvLmlkKX1cbiAgICAgICAgc3R5bGU9e3ttYXJnaW5SaWdodDogJzEwcHgnfX1cbiAgICAgIC8+XG4gICAgICA8c3BhbiBzdHlsZT17e1xuICAgICAgICBmbGV4OiAxLFxuICAgICAgICB0ZXh0RGVjb3JhdGlvbjogdG9kby5jb21wbGV0ZWQgPyAnbGluZS10aHJvdWdoJyA6ICdub25lJyxcbiAgICAgICAgY29sb3I6IHRvZG8uY29tcGxldGVkID8gJyM2NjYnIDogJyMwMDAnXG4gICAgICB9fT5cbiAgICAgICAge3RvZG8udGV4dH1cbiAgICAgIDwvc3Bhbj5cbiAgICAgIDxidXR0b25cbiAgICAgICAgb25DbGljaz17KCkgPT4gb25EZWxldGUodG9kby5pZCl9XG4gICAgICAgIHN0eWxlPXt7XG4gICAgICAgICAgYmFja2dyb3VuZDogJyNmZjZiNmInLFxuICAgICAgICAgIGNvbG9yOiAnd2hpdGUnLFxuICAgICAgICAgIGJvcmRlcjogJ25vbmUnLFxuICAgICAgICAgIHBhZGRpbmc6ICc1cHggMTBweCcsXG4gICAgICAgICAgYm9yZGVyUmFkaXVzOiAnM3B4JyxcbiAgICAgICAgICBjdXJzb3I6ICdwb2ludGVyJ1xuICAgICAgICB9fVxuICAgICAgPlxuICAgICAgICBEZWxldGVcbiAgICAgIDwvYnV0dG9uPlxuICAgIDwvZGl2PlxuICApO1xufVxuXG4vLyBUb2RvQXBwIENvbXBvbmVudFxuZnVuY3Rpb24gVG9kb0FwcCgpIHtcbiAgY29uc3QgW3RvZG9zLCBzZXRUb2Rvc10gPSBSZWFjdC51c2VTdGF0ZShbXG4gICAgeyBpZDogMSwgdGV4dDogJ0xlYXJuIFJlYWN0IGJhc2ljcycsIGNvbXBsZXRlZDogdHJ1ZSB9LFxuICAgIHsgaWQ6IDIsIHRleHQ6ICdCdWlsZCBhIGNvbXBvbmVudCcsIGNvbXBsZXRlZDogZmFsc2UgfSxcbiAgICB7IGlkOiAzLCB0ZXh0OiAnSW50ZWdyYXRlIHdpdGggUEFEJywgY29tcGxldGVkOiBmYWxzZSB9XG4gIF0pO1xuICBjb25zdCBbbmV3VG9kbywgc2V0TmV3VG9kb10gPSBSZWFjdC51c2VTdGF0ZSgnJyk7XG5cbiAgY29uc3QgYWRkVG9kbyA9ICgpID0+IHtcbiAgICBpZiAobmV3VG9kby50cmltKCkpIHtcbiAgICAgIHNldFRvZG9zKFsuLi50b2Rvcywge1xuICAgICAgICBpZDogRGF0ZS5ub3coKSxcbiAgICAgICAgdGV4dDogbmV3VG9kbyxcbiAgICAgICAgY29tcGxldGVkOiBmYWxzZVxuICAgICAgfV0pO1xuICAgICAgc2V0TmV3VG9kbygnJyk7XG4gICAgfVxuICB9O1xuXG4gIGNvbnN0IHRvZ2dsZVRvZG8gPSAoaWQpID0+IHtcbiAgICBzZXRUb2Rvcyh0b2Rvcy5tYXAodG9kbyA9PlxuICAgICAgdG9kby5pZCA9PT0gaWQgPyB7IC4uLnRvZG8sIGNvbXBsZXRlZDogIXRvZG8uY29tcGxldGVkIH0gOiB0b2RvXG4gICAgKSk7XG4gIH07XG5cbiAgY29uc3QgZGVsZXRlVG9kbyA9IChpZCkgPT4ge1xuICAgIHNldFRvZG9zKHRvZG9zLmZpbHRlcih0b2RvID0+IHRvZG8uaWQgIT09IGlkKSk7XG4gIH07XG5cbiAgY29uc3QgY29tcGxldGVkQ291bnQgPSB0b2Rvcy5maWx0ZXIodCA9PiB0LmNvbXBsZXRlZCkubGVuZ3RoO1xuXG4gIHJldHVybiAoXG4gICAgPGRpdiBjbGFzc05hbWU9XCJyZWFjdC1jb21wb25lbnRcIj5cbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwicmVhY3QtY29tcG9uZW50LWxhYmVsXCI+4pqb77iPIFRPRE8gQVBQIChDb21wb25lbnQgQ29tcG9zaXRpb24pPC9kaXY+XG5cbiAgICAgIDxkaXYgc3R5bGU9e3ttYXJnaW5Cb3R0b206ICcyMHB4J319PlxuICAgICAgICA8aW5wdXRcbiAgICAgICAgICB0eXBlPVwidGV4dFwiXG4gICAgICAgICAgdmFsdWU9e25ld1RvZG99XG4gICAgICAgICAgb25DaGFuZ2U9eyhlKSA9PiBzZXROZXdUb2RvKGUudGFyZ2V0LnZhbHVlKX1cbiAgICAgICAgICBvbktleVByZXNzPXsoZSkgPT4gZS5rZXkgPT09ICdFbnRlcicgJiYgYWRkVG9kbygpfVxuICAgICAgICAgIHBsYWNlaG9sZGVyPVwiRW50ZXIgYSBuZXcgdG9kby4uLlwiXG4gICAgICAgICAgc3R5bGU9e3tcbiAgICAgICAgICAgIHBhZGRpbmc6ICcxMHB4JyxcbiAgICAgICAgICAgIGZvbnRTaXplOiAnMTZweCcsXG4gICAgICAgICAgICBib3JkZXI6ICcxcHggc29saWQgI2NjYycsXG4gICAgICAgICAgICBib3JkZXJSYWRpdXM6ICc1cHgnLFxuICAgICAgICAgICAgd2lkdGg6ICc3MCUnLFxuICAgICAgICAgICAgbWFyZ2luUmlnaHQ6ICcxMHB4J1xuICAgICAgICAgIH19XG4gICAgICAgIC8+XG4gICAgICAgIDxidXR0b24gb25DbGljaz17YWRkVG9kb30+QWRkIFRvZG88L2J1dHRvbj5cbiAgICAgIDwvZGl2PlxuXG4gICAgICA8ZGl2IHN0eWxlPXt7bWFyZ2luQm90dG9tOiAnMTVweCcsIGNvbG9yOiAnIzY2Nid9fT5cbiAgICAgICAge2NvbXBsZXRlZENvdW50fSBvZiB7dG9kb3MubGVuZ3RofSBjb21wbGV0ZWRcbiAgICAgIDwvZGl2PlxuXG4gICAgICA8ZGl2PlxuICAgICAgICB7dG9kb3MubWFwKHRvZG8gPT4gKFxuICAgICAgICAgIDxUb2RvSXRlbVxuICAgICAgICAgICAga2V5PXt0b2RvLmlkfVxuICAgICAgICAgICAgdG9kbz17dG9kb31cbiAgICAgICAgICAgIG9uVG9nZ2xlPXt0b2dnbGVUb2RvfVxuICAgICAgICAgICAgb25EZWxldGU9e2RlbGV0ZVRvZG99XG4gICAgICAgICAgLz5cbiAgICAgICAgKSl9XG4gICAgICA8L2Rpdj5cblxuICAgICAge3RvZG9zLmxlbmd0aCA9PT0gMCAmJiAoXG4gICAgICAgIDxkaXYgc3R5bGU9e3tcbiAgICAgICAgICBwYWRkaW5nOiAnMjBweCcsXG4gICAgICAgICAgdGV4dEFsaWduOiAnY2VudGVyJyxcbiAgICAgICAgICBjb2xvcjogJyM5OTknXG4gICAgICAgIH19PlxuICAgICAgICAgIE5vIHRvZG9zIHlldC4gQWRkIG9uZSBhYm92ZSFcbiAgICAgICAgPC9kaXY+XG4gICAgICApfVxuICAgIDwvZGl2PlxuICApO1xufVxuXG5SZWFjdERPTS5jcmVhdGVSb290KGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCd0b2RvLWFwcCcpKS5yZW5kZXIoPFRvZG9BcHAgLz4pO1xuIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQTtBQUNBLFNBQVNBLFFBQVFBLENBQUFDLElBQUEsRUFBK0I7RUFBQSxJQUE1QkMsSUFBSSxHQUFBRCxJQUFBLENBQUpDLElBQUk7SUFBRUMsUUFBUSxHQUFBRixJQUFBLENBQVJFLFFBQVE7SUFBRUMsUUFBUSxHQUFBSCxJQUFBLENBQVJHLFFBQVE7RUFDMUMsb0JBQ0VDLEtBQUEsQ0FBQUMsYUFBQTtJQUFLQyxLQUFLLEVBQUU7TUFDVkMsT0FBTyxFQUFFLE1BQU07TUFDZkMsVUFBVSxFQUFFLFFBQVE7TUFDcEJDLE9BQU8sRUFBRSxNQUFNO01BQ2ZDLFVBQVUsRUFBRVQsSUFBSSxDQUFDVSxTQUFTLEdBQUcsU0FBUyxHQUFHLE9BQU87TUFDaERDLE1BQU0s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</script></head>
+  
+  <body>
+
+    
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Components - PAD + React</title>
+
+  <!-- React and ReactDOM from CDN (Development mode) -->
+  <script src="../../unpkg.com/react@18.3.1/umd/react.development.js"></script>
+  <script src="../../unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+
+  <!-- Babel Standalone for JSX transformation in browser (Development only) -->
+  <script src="../../unpkg.com/@babel/standalone@7.28.6/babel.min.js"></script>
+
+  <style>* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    code {
+      font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      background: #282c34;
+      color: white;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    nav {
+      margin-top: 15px;
+    }
+
+    nav a {
+      color: #61dafb;
+      text-decoration: none;
+      margin-right: 20px;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    nav a.active {
+      color: #fff;
+      border-bottom: 2px solid #61dafb;
+    }
+
+    .content {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .react-component {
+      border: 2px dashed #61dafb;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      background: #f0f8ff;
+    }
+
+    .react-component-label {
+      color: #61dafb;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background: #61dafb;
+      color: #282c34;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #4fa8c5;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      text-align: center;
+      color: #666;
+      border-top: 1px solid #ddd;
+    }
+
+    .info-box {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+
+    .info-box strong {
+      color: #856404;
+    }
+  </style>
+
+
+  <header>
+    <div class="container">
+      <h1>PAD + React Application</h1>
+      <nav>
+        
+          <a href="index%EF%B9%96index.html">🏠 Home</a>
+        
+          <a href="index%EF%B9%96examples%EA%A4%B7index.html">📚 Examples</a>
+        
+          <a href="index%EF%B9%96components.html" class="active">🧩 Components</a>
+        
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="content">
+      <h1>Reusable React Components</h1>
+
+<p>Learn how to create and reuse React components in your PAD application.</p>
+
+<h2>Component Pattern</h2>
+<p>
+  You can define React components once and reuse them multiple times. Here's an example
+  showing how to create a reusable Card component:
+</p>
+
+<div id="components-demo"><div class="react-component"><div class="react-component-label">⚛️ REUSABLE COMPONENTS</div><div style="border: 2px solid rgb(97, 218, 251); border-radius: 8px; padding: 20px; margin: 10px 0px; background: white;"><h3 style="margin: 0px 0px 15px; color: rgb(97, 218, 251); border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: rgb(97, 218, 251); padding-bottom: 10px;">Card Component Example</h3><p>This is a reusable Card component with custom title and color.</p><p>You can put any content inside it!</p></div><div style="border: 2px solid rgb(155, 89, 182); border-radius: 8px; padding: 20px; margin: 10px 0px; background: white;"><h3 style="margin: 0px 0px 15px; color: rgb(155, 89, 182); border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: rgb(155, 89, 182); padding-bottom: 10px;">Button Components</h3><p>Click the buttons below to see the reusable Button components:</p><div><button style="background: rgb(97, 218, 251); color: rgb(40, 44, 52); border: medium; padding: 10px 20px; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; margin: 5px;">Primary Button</button><button style="background: rgb(255, 107, 107); color: white; border: medium; padding: 10px 20px; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; margin: 5px;">Danger Button</button><button style="background: rgb(76, 175, 80); color: white; border: medium; padding: 10px 20px; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; margin: 5px;">Success Button</button></div><div style="margin-top: 15px; padding: 10px; background: rgb(240, 240, 240); border-radius: 5px;">Message: <strong>No button clicked yet</strong></div></div><div style="border: 2px solid rgb(255, 165, 0); border-radius: 8px; padding: 20px; margin: 10px 0px; background: white;"><h3 style="margin: 0px 0px 15px; color: rgb(255, 165, 0); border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: rgb(255, 165, 0); padding-bottom: 10px;">Nested Cards</h3><p>Cards can be nested inside each other:</p><div style="border: 2px solid rgb(76, 175, 80); border-radius: 8px; padding: 20px; margin: 10px 0px; background: white;"><h3 style="margin: 0px 0px 15px; color: rgb(76, 175, 80); border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: rgb(76, 175, 80); padding-bottom: 10px;">Inner Card</h3><p>This is a card inside another card!</p></div></div></div></div>
+
+<script type="text/babel" src="components/demo.js"></script>
+
+<h2>Component Best Practices</h2>
+<ul style="margin-left: 20px; line-height: 1.8;">
+  <li><strong>Single Responsibility:</strong> Each component should do one thing well</li>
+  <li><strong>Props:</strong> Pass data to components via props (parameters)</li>
+  <li><strong>Composition:</strong> Build complex UIs by combining simple components</li>
+  <li><strong>Reusability:</strong> Design components to be reused in different contexts</li>
+  <li><strong>State Management:</strong> Keep state in the component that needs it</li>
+</ul>
+
+<h2>Todo List Component Example</h2>
+<div id="todo-app"><div class="react-component"><div class="react-component-label">⚛️ TODO APP (Component Composition)</div><div style="margin-bottom: 20px;"><input type="text" placeholder="Enter a new todo..." value="" style="padding: 10px; font-size: 16px; border: 1px solid rgb(204, 204, 204); border-radius: 5px; width: 70%; margin-right: 10px;"><button>Add Todo</button></div><div style="margin-bottom: 15px; color: rgb(102, 102, 102);">1 of 3 completed</div><div><div style="display: flex; align-items: center; padding: 10px; background: rgb(212, 237, 218); border: 1px solid rgb(221, 221, 221); border-radius: 5px; margin-bottom: 5px;"><input type="checkbox" checked="" style="margin-right: 10px;"><span style="flex: 1 1 0%; text-decoration: line-through; color: rgb(102, 102, 102);">Learn React basics</span><button style="background: rgb(255, 107, 107); color: white; border: medium; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Delete</button></div><div style="display: flex; align-items: center; padding: 10px; background: white; border: 1px solid rgb(221, 221, 221); border-radius: 5px; margin-bottom: 5px;"><input type="checkbox" style="margin-right: 10px;"><span style="flex: 1 1 0%; text-decoration: none; color: rgb(0, 0, 0);">Build a component</span><button style="background: rgb(255, 107, 107); color: white; border: medium; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Delete</button></div><div style="display: flex; align-items: center; padding: 10px; background: white; border: 1px solid rgb(221, 221, 221); border-radius: 5px; margin-bottom: 5px;"><input type="checkbox" style="margin-right: 10px;"><span style="flex: 1 1 0%; text-decoration: none; color: rgb(0, 0, 0);">Integrate with PAD</span><button style="background: rgb(255, 107, 107); color: white; border: medium; padding: 5px 10px; border-radius: 3px; cursor: pointer;">Delete</button></div></div></div></div>
+
+<script type="text/babel" src="components/todo.js"></script>
+
+<h2>Next Steps</h2>
+<p>
+  For larger applications, consider organizing components in separate JavaScript files
+  and using a build tool like Vite or Webpack. This example uses inline JSX for simplicity.
+</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>Powered by <strong>PAD Framework</strong> (Server-Side) + <strong>React</strong> (Client-Side)</p>
+      <p style="margin-top: 10px; font-size: 14px;">
+        PAD handles routing, data, and templates • React handles interactive UI components
+      </p>
+    </div>
+  </footer>
+
+ 
+
+  
+
+</body></html>

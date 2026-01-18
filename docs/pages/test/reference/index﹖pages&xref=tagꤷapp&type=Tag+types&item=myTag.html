@@ -1,0 +1,490 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Reference - Tag types - myTag
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - myTag
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: structure - Page: abc/klm/page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">abc/klm/page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">abc/klm/page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'klm'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / klm <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxJqejOnPb"><li> Line in page.pad / klm 
+</li><li> Variable in page.php / klm
+
+
+  </li><li> XML 1 from _data / klm
+
+  </li><li> XML 2 from _data / klm
+
+
+</li><li> Line in _tags/myTag.pad / klm 
+</li><li> Variable in _tags/myTag.php / klm
+
+</li><li> Line for _function/Myfunction.php in klm
+
+
+  </li><li> Line for _option/myOption.php in 
+klm
+
+</li><li> Line for _scripts/myScript.sh klm
+
+
+  </li><li> Line for _callbacks/myCallback in klm
+
+
+</li><li> Line in _include/myInclude.pad / klm 
+</li><li> Variable in _include/myInclude.php / klm
+
+
+  </li><li> Line in _lib/myLib.pad / klm 
+  </li><li> Variable in _lib/myLib.php / klm
+</li></div>
+                        <script>
+                        padAjaxJqejOnPb = new XMLHttpRequest();
+                        padAjaxJqejOnPb.onreadystatechange=function() {
+                        if (padAjaxJqejOnPb.readyState === 4) {
+                        if (padAjaxJqejOnPb.status === 200) {
+                        document.getElementById("padAjaxJqejOnPb").innerHTML=padAjaxJqejOnPb.responseText;
+                        } else {
+                        document.getElementById("padAjaxJqejOnPb").innerHTML=padAjaxJqejOnPb.statusText;
+                        }
+                        }
+                        }
+                        padAjaxJqejOnPb.open("GET","http://localhost/structure/?abc/klm/page&padInclude&padSesID=DiM2hOlW&padReqID=SEVZYVuK",true);
+                        padAjaxJqejOnPb.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: structure - Page: abc/klm/xyz/page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">abc/klm/xyz/page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">abc/klm/xyz/page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'xyz'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / xyz <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxXXIWYTP9"><li> Line in page.pad / xyz 
+</li><li> Variable in page.php / xyz
+
+
+  </li><li> XML 1 from _data / xyz
+
+  </li><li> XML 2 from _data / xyz
+
+
+</li><li> Line in _tags/myTag.pad / xyz 
+</li><li> Variable in _tags/myTag.php / xyz
+
+</li><li> Line for _function/Myfunction.php in xyz
+
+
+  </li><li> Line for _option/myOption.php in 
+xyz
+
+</li><li> Line for _scripts/myScript.sh xyz
+
+
+  </li><li> Line for _callbacks/myCallback in xyz
+
+
+</li><li> Line in _include/myInclude.pad / xyz 
+</li><li> Variable in _include/myInclude.php / xyz
+
+
+  </li><li> Line in _lib/myLib.pad / xyz 
+  </li><li> Variable in _lib/myLib.php / xyz
+</li></div>
+                        <script>
+                        padAjaxXXIWYTP9 = new XMLHttpRequest();
+                        padAjaxXXIWYTP9.onreadystatechange=function() {
+                        if (padAjaxXXIWYTP9.readyState === 4) {
+                        if (padAjaxXXIWYTP9.status === 200) {
+                        document.getElementById("padAjaxXXIWYTP9").innerHTML=padAjaxXXIWYTP9.responseText;
+                        } else {
+                        document.getElementById("padAjaxXXIWYTP9").innerHTML=padAjaxXXIWYTP9.statusText;
+                        }
+                        }
+                        }
+                        padAjaxXXIWYTP9.open("GET","http://localhost/structure/?abc/klm/xyz/page&padInclude&padSesID=DiM2hOlW&padReqID=SEVZYVuK",true);
+                        padAjaxXXIWYTP9.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: structure - Page: abc/page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">abc/page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">abc/page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'abc'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / abc <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxzdkYyCIC"><li> Line in page.pad / abc 
+</li><li> Variable in page.php / abc
+
+
+  </li><li> XML 1 from _data / abc
+
+  </li><li> XML 2 from _data / abc
+
+
+</li><li> Line in _tags/myTag.pad / abc 
+</li><li> Variable in _tags/myTag.php / abc
+
+</li><li> Line for _function/Myfunction.php in abc
+
+
+  </li><li> Line for _option/myOption.php in 
+abc
+
+</li><li> Line for _scripts/myScript.sh abc
+
+
+  </li><li> Line for _callbacks/myCallback in abc
+
+
+</li><li> Line in _include/myInclude.pad / abc 
+</li><li> Variable in _include/myInclude.php / abc
+
+
+  </li><li> Line in _lib/myLib.pad / abc 
+  </li><li> Variable in _lib/myLib.php / abc
+</li></div>
+                        <script>
+                        padAjaxzdkYyCIC = new XMLHttpRequest();
+                        padAjaxzdkYyCIC.onreadystatechange=function() {
+                        if (padAjaxzdkYyCIC.readyState === 4) {
+                        if (padAjaxzdkYyCIC.status === 200) {
+                        document.getElementById("padAjaxzdkYyCIC").innerHTML=padAjaxzdkYyCIC.responseText;
+                        } else {
+                        document.getElementById("padAjaxzdkYyCIC").innerHTML=padAjaxzdkYyCIC.statusText;
+                        }
+                        }
+                        }
+                        padAjaxzdkYyCIC.open("GET","http://localhost/structure/?abc/page&padInclude&padSesID=DiM2hOlW&padReqID=SEVZYVuK",true);
+                        padAjaxzdkYyCIC.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: structure - Page: def/klm/page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">def/klm/page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">def/klm/page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'klm'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / klm <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxx2fIjjv2"><li> Line in page.pad / klm 
+</li><li> Variable in page.php / klm
+
+
+  </li><li> XML 1 from _data / klm
+
+  </li><li> XML 2 from _data / klm
+
+
+</li><li> Line in _tags/myTag.pad / klm 
+</li><li> Variable in _tags/myTag.php / klm
+
+</li><li> Line for _function/Myfunction.php in klm
+
+
+  </li><li> Line for _option/myOption.php in 
+klm
+
+</li><li> Line for _scripts/myScript.sh klm
+
+
+  </li><li> Line for _callbacks/myCallback in klm
+
+
+</li><li> Line in _include/myInclude.pad / klm 
+</li><li> Variable in _include/myInclude.php / klm
+
+
+  </li><li> Line in _lib/myLib.pad / klm 
+  </li><li> Variable in _lib/myLib.php / klm
+</li></div>
+                        <script>
+                        padAjaxx2fIjjv2 = new XMLHttpRequest();
+                        padAjaxx2fIjjv2.onreadystatechange=function() {
+                        if (padAjaxx2fIjjv2.readyState === 4) {
+                        if (padAjaxx2fIjjv2.status === 200) {
+                        document.getElementById("padAjaxx2fIjjv2").innerHTML=padAjaxx2fIjjv2.responseText;
+                        } else {
+                        document.getElementById("padAjaxx2fIjjv2").innerHTML=padAjaxx2fIjjv2.statusText;
+                        }
+                        }
+                        }
+                        padAjaxx2fIjjv2.open("GET","http://localhost/structure/?def/klm/page&padInclude&padSesID=DiM2hOlW&padReqID=SEVZYVuK",true);
+                        padAjaxx2fIjjv2.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: structure - Page: def/page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">def/page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">def/page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'def'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / def <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax6L3itfXc"><li> Line in page.pad / def 
+</li><li> Variable in page.php / def
+
+
+  </li><li> XML 1 from _data / def
+
+  </li><li> XML 2 from _data / def
+
+
+</li><li> Line in _tags/myTag.pad / def 
+</li><li> Variable in _tags/myTag.php / def
+
+</li><li> Line for _function/Myfunction.php in def
+
+
+  </li><li> Line for _option/myOption.php in 
+def
+
+</li><li> Line for _scripts/myScript.sh def
+
+
+  </li><li> Line for _callbacks/myCallback in def
+
+
+</li><li> Line in _include/myInclude.pad / def 
+</li><li> Variable in _include/myInclude.php / def
+
+
+  </li><li> Line in _lib/myLib.pad / def 
+  </li><li> Variable in _lib/myLib.php / def
+</li></div>
+                        <script>
+                        padAjax6L3itfXc = new XMLHttpRequest();
+                        padAjax6L3itfXc.onreadystatechange=function() {
+                        if (padAjax6L3itfXc.readyState === 4) {
+                        if (padAjax6L3itfXc.status === 200) {
+                        document.getElementById("padAjax6L3itfXc").innerHTML=padAjax6L3itfXc.responseText;
+                        } else {
+                        document.getElementById("padAjax6L3itfXc").innerHTML=padAjax6L3itfXc.statusText;
+                        }
+                        }
+                        }
+                        padAjax6L3itfXc.open("GET","http://localhost/structure/?def/page&padInclude&padSesID=DiM2hOlW&padReqID=SEVZYVuK",true);
+                        padAjax6L3itfXc.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: structure - Page: page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'root'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / root <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxlfqyYZi5"><li> Line in page.pad / root 
+</li><li> Variable in page.php / root
+
+
+  </li><li> XML 1 from _data / root
+
+  </li><li> XML 2 from _data / root
+
+
+</li><li> Line in _tags/myTag.pad / root 
+</li><li> Variable in _tags/myTag.php / root
+
+</li><li> Line for _function/Myfunction.php in root
+
+
+  </li><li> Line for _option/myOption.php in 
+root
+
+</li><li> Line for _scripts/myScript.sh root
+
+
+  </li><li> Line for _callbacks/myCallback in root
+
+
+</li><li> Line in _include/myInclude.pad / root 
+</li><li> Variable in _include/myInclude.php / root
+
+
+  </li><li> Line in _lib/myLib.pad / root 
+  </li><li> Variable in _lib/myLib.php / root
+</li></div>
+                        <script>
+                        padAjaxlfqyYZi5 = new XMLHttpRequest();
+                        padAjaxlfqyYZi5.onreadystatechange=function() {
+                        if (padAjaxlfqyYZi5.readyState === 4) {
+                        if (padAjaxlfqyYZi5.status === 200) {
+                        document.getElementById("padAjaxlfqyYZi5").innerHTML=padAjaxlfqyYZi5.responseText;
+                        } else {
+                        document.getElementById("padAjaxlfqyYZi5").innerHTML=padAjaxlfqyYZi5.statusText;
+                        }
+                        }
+                        }
+                        padAjaxlfqyYZi5.open("GET","http://localhost/structure/?page&padInclude&padSesID=DiM2hOlW&padReqID=SEVZYVuK",true);
+                        padAjaxlfqyYZi5.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

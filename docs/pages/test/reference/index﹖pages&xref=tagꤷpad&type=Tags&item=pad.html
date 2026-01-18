@@ -1,0 +1,3627 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Reference - Tags - pad
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tags - pad
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: structure - Page: abc/klm/page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">abc/klm/page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">abc/klm/page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'klm'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / klm <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxvEA6YCHG"><li> Line in page.pad / klm 
+</li><li> Variable in page.php / klm
+
+
+  </li><li> XML 1 from _data / klm
+
+  </li><li> XML 2 from _data / klm
+
+
+</li><li> Line in _tags/myTag.pad / klm 
+</li><li> Variable in _tags/myTag.php / klm
+
+</li><li> Line for _function/Myfunction.php in klm
+
+
+  </li><li> Line for _option/myOption.php in 
+klm
+
+</li><li> Line for _scripts/myScript.sh klm
+
+
+  </li><li> Line for _callbacks/myCallback in klm
+
+
+</li><li> Line in _include/myInclude.pad / klm 
+</li><li> Variable in _include/myInclude.php / klm
+
+
+  </li><li> Line in _lib/myLib.pad / klm 
+  </li><li> Variable in _lib/myLib.php / klm
+</li></div>
+                        <script>
+                        padAjaxvEA6YCHG = new XMLHttpRequest();
+                        padAjaxvEA6YCHG.onreadystatechange=function() {
+                        if (padAjaxvEA6YCHG.readyState === 4) {
+                        if (padAjaxvEA6YCHG.status === 200) {
+                        document.getElementById("padAjaxvEA6YCHG").innerHTML=padAjaxvEA6YCHG.responseText;
+                        } else {
+                        document.getElementById("padAjaxvEA6YCHG").innerHTML=padAjaxvEA6YCHG.statusText;
+                        }
+                        }
+                        }
+                        padAjaxvEA6YCHG.open("GET","http://localhost/structure/?abc/klm/page&padInclude&padSesID=DiM2hOlW&padReqID=hMliSPkL",true);
+                        padAjaxvEA6YCHG.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: structure - Page: abc/klm/xyz/page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">abc/klm/xyz/page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">abc/klm/xyz/page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'xyz'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / xyz <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxJgWLh0lm"><li> Line in page.pad / xyz 
+</li><li> Variable in page.php / xyz
+
+
+  </li><li> XML 1 from _data / xyz
+
+  </li><li> XML 2 from _data / xyz
+
+
+</li><li> Line in _tags/myTag.pad / xyz 
+</li><li> Variable in _tags/myTag.php / xyz
+
+</li><li> Line for _function/Myfunction.php in xyz
+
+
+  </li><li> Line for _option/myOption.php in 
+xyz
+
+</li><li> Line for _scripts/myScript.sh xyz
+
+
+  </li><li> Line for _callbacks/myCallback in xyz
+
+
+</li><li> Line in _include/myInclude.pad / xyz 
+</li><li> Variable in _include/myInclude.php / xyz
+
+
+  </li><li> Line in _lib/myLib.pad / xyz 
+  </li><li> Variable in _lib/myLib.php / xyz
+</li></div>
+                        <script>
+                        padAjaxJgWLh0lm = new XMLHttpRequest();
+                        padAjaxJgWLh0lm.onreadystatechange=function() {
+                        if (padAjaxJgWLh0lm.readyState === 4) {
+                        if (padAjaxJgWLh0lm.status === 200) {
+                        document.getElementById("padAjaxJgWLh0lm").innerHTML=padAjaxJgWLh0lm.responseText;
+                        } else {
+                        document.getElementById("padAjaxJgWLh0lm").innerHTML=padAjaxJgWLh0lm.statusText;
+                        }
+                        }
+                        }
+                        padAjaxJgWLh0lm.open("GET","http://localhost/structure/?abc/klm/xyz/page&padInclude&padSesID=DiM2hOlW&padReqID=hMliSPkL",true);
+                        padAjaxJgWLh0lm.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: structure - Page: abc/page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">abc/page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">abc/page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'abc'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / abc <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxuGhgauER"><li> Line in page.pad / abc 
+</li><li> Variable in page.php / abc
+
+
+  </li><li> XML 1 from _data / abc
+
+  </li><li> XML 2 from _data / abc
+
+
+</li><li> Line in _tags/myTag.pad / abc 
+</li><li> Variable in _tags/myTag.php / abc
+
+</li><li> Line for _function/Myfunction.php in abc
+
+
+  </li><li> Line for _option/myOption.php in 
+abc
+
+</li><li> Line for _scripts/myScript.sh abc
+
+
+  </li><li> Line for _callbacks/myCallback in abc
+
+
+</li><li> Line in _include/myInclude.pad / abc 
+</li><li> Variable in _include/myInclude.php / abc
+
+
+  </li><li> Line in _lib/myLib.pad / abc 
+  </li><li> Variable in _lib/myLib.php / abc
+</li></div>
+                        <script>
+                        padAjaxuGhgauER = new XMLHttpRequest();
+                        padAjaxuGhgauER.onreadystatechange=function() {
+                        if (padAjaxuGhgauER.readyState === 4) {
+                        if (padAjaxuGhgauER.status === 200) {
+                        document.getElementById("padAjaxuGhgauER").innerHTML=padAjaxuGhgauER.responseText;
+                        } else {
+                        document.getElementById("padAjaxuGhgauER").innerHTML=padAjaxuGhgauER.statusText;
+                        }
+                        }
+                        }
+                        padAjaxuGhgauER.open("GET","http://localhost/structure/?abc/page&padInclude&padSesID=DiM2hOlW&padReqID=hMliSPkL",true);
+                        padAjaxuGhgauER.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: data/2<br>
+                  <div id="padAjaxYvGDkROb"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myXML<font color="black">'</font></font>}</b><br>  &lt;data&gt;<br>    &lt;row name="bob"   phone="555-1111" /&gt;<br>    &lt;row name="jim"   phone="555-2222" /&gt;<br>    &lt;row name="joe"   phone="555-3333" /&gt;<br>    &lt;row name="jerry" phone="555-4444" /&gt;<br>  &lt;/data&gt;<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myJSON<font color="black">'</font></font>}</b><br>  [ { "name": "bob",   "phone": "555-5555" },<br>    { "name": "jim",   "phone": "555-6666" },<br>    { "name": "joe",   "phone": "555-7777" },      <br>    { "name": "jerry", "phone": "555-8888" } ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myYAML<font color="black">'</font></font>}</b><br>  ---<br>  - name: bob<br>    phone: 555-3425<br>  - name: jim<br>    phone: 555-4364<br>  - name: joe<br>    phone: 555-3422<br>  - name: jerry<br>    phone: 555-4973<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myCSV<font color="black">'</font></font>}</b><br>  name,phone<br>  bob,555-3425<br>  jim,555-4364<br>  joe,555-3422<br>  jerry,555-4973<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myList<font color="black">'</font></font>}</b><br>  ( 'myXML', 'myJSON', 'myYAML', 'myCSV' )<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myList</font><font color="red"></font>}</b><br>  &lt;p&gt;<br>    &lt;table border=1&gt;<br>      &lt;tr&gt;<br>        &lt;th colspan="2"&gt;<br>          <b>{<font color="green"><font color="red">$</font>myList</font>}</b><br>        &lt;/th&gt;<br>      &lt;/tr&gt;<br>      <b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>myList</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br>        &lt;tr&gt;<br>          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt; <br>          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>        &lt;/tr&gt;<br>      <b>{/<font color="blue">pad</font><font color="red"></font>}</b><br>    &lt;/table&gt;<br>  &lt;/p&gt;<br><b>{/<font color="blue">myList</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><p>
+    <table border="1">
+      <tbody><tr>
+        <th colspan="2">
+          myXML
+        </th>
+      </tr>
+      
+        <tr>
+          <td>bob</td> 
+          <td>555-1111</td>
+        </tr>
+      
+        <tr>
+          <td>jim</td> 
+          <td>555-2222</td>
+        </tr>
+      
+        <tr>
+          <td>joe</td> 
+          <td>555-3333</td>
+        </tr>
+      
+        <tr>
+          <td>jerry</td> 
+          <td>555-4444</td>
+        </tr>
+      
+    </tbody></table>
+  </p>
+
+  <p>
+    <table border="1">
+      <tbody><tr>
+        <th colspan="2">
+          myJSON
+        </th>
+      </tr>
+      
+        <tr>
+          <td>bob</td> 
+          <td>555-5555</td>
+        </tr>
+      
+        <tr>
+          <td>jim</td> 
+          <td>555-6666</td>
+        </tr>
+      
+        <tr>
+          <td>joe</td> 
+          <td>555-7777</td>
+        </tr>
+      
+        <tr>
+          <td>jerry</td> 
+          <td>555-8888</td>
+        </tr>
+      
+    </tbody></table>
+  </p>
+
+  <p>
+    <table border="1">
+      <tbody><tr>
+        <th colspan="2">
+          myYAML
+        </th>
+      </tr>
+      
+        <tr>
+          <td>bob</td> 
+          <td>555-3425</td>
+        </tr>
+      
+        <tr>
+          <td>jim</td> 
+          <td>555-4364</td>
+        </tr>
+      
+        <tr>
+          <td>joe</td> 
+          <td>555-3422</td>
+        </tr>
+      
+        <tr>
+          <td>jerry</td> 
+          <td>555-4973</td>
+        </tr>
+      
+    </tbody></table>
+  </p>
+
+  <p>
+    <table border="1">
+      <tbody><tr>
+        <th colspan="2">
+          myCSV
+        </th>
+      </tr>
+      
+        <tr>
+          <td>bob</td> 
+          <td>555-3425</td>
+        </tr>
+      
+        <tr>
+          <td>jim</td> 
+          <td>555-4364</td>
+        </tr>
+      
+        <tr>
+          <td>joe</td> 
+          <td>555-3422</td>
+        </tr>
+      
+        <tr>
+          <td>jerry</td> 
+          <td>555-4973</td>
+        </tr>
+      
+    </tbody></table>
+  </p><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxYvGDkROb = new XMLHttpRequest();
+                  padAjaxYvGDkROb.onreadystatechange=function() {
+                  if (padAjaxYvGDkROb.readyState === 4) {
+                  if (padAjaxYvGDkROb.status === 200) {
+                  document.getElementById("padAjaxYvGDkROb").innerHTML=padAjaxYvGDkROb.responseText;
+                  } else {
+                  document.getElementById("padAjaxYvGDkROb").innerHTML=padAjaxYvGDkROb.statusText;
+                  }
+                  }
+                  }
+                  padAjaxYvGDkROb.open("GET","http://localhost/manual/?data/2&padInclude&padSesID=DiM2hOlW&padReqID=hMliSPkL",true);
+                  padAjaxYvGDkROb.send();
+                  </script><br>
+                  <hr>
+                  App: structure - Page: def/klm/page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">def/klm/page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">def/klm/page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'klm'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / klm <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax9Dg6zFTs"><li> Line in page.pad / klm 
+</li><li> Variable in page.php / klm
+
+
+  </li><li> XML 1 from _data / klm
+
+  </li><li> XML 2 from _data / klm
+
+
+</li><li> Line in _tags/myTag.pad / klm 
+</li><li> Variable in _tags/myTag.php / klm
+
+</li><li> Line for _function/Myfunction.php in klm
+
+
+  </li><li> Line for _option/myOption.php in 
+klm
+
+</li><li> Line for _scripts/myScript.sh klm
+
+
+  </li><li> Line for _callbacks/myCallback in klm
+
+
+</li><li> Line in _include/myInclude.pad / klm 
+</li><li> Variable in _include/myInclude.php / klm
+
+
+  </li><li> Line in _lib/myLib.pad / klm 
+  </li><li> Variable in _lib/myLib.php / klm
+</li></div>
+                        <script>
+                        padAjax9Dg6zFTs = new XMLHttpRequest();
+                        padAjax9Dg6zFTs.onreadystatechange=function() {
+                        if (padAjax9Dg6zFTs.readyState === 4) {
+                        if (padAjax9Dg6zFTs.status === 200) {
+                        document.getElementById("padAjax9Dg6zFTs").innerHTML=padAjax9Dg6zFTs.responseText;
+                        } else {
+                        document.getElementById("padAjax9Dg6zFTs").innerHTML=padAjax9Dg6zFTs.statusText;
+                        }
+                        }
+                        }
+                        padAjax9Dg6zFTs.open("GET","http://localhost/structure/?def/klm/page&padInclude&padSesID=DiM2hOlW&padReqID=hMliSPkL",true);
+                        padAjax9Dg6zFTs.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: structure - Page: def/page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">def/page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">def/page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'def'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / def <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxvIZZMi7f"><li> Line in page.pad / def 
+</li><li> Variable in page.php / def
+
+
+  </li><li> XML 1 from _data / def
+
+  </li><li> XML 2 from _data / def
+
+
+</li><li> Line in _tags/myTag.pad / def 
+</li><li> Variable in _tags/myTag.php / def
+
+</li><li> Line for _function/Myfunction.php in def
+
+
+  </li><li> Line for _option/myOption.php in 
+def
+
+</li><li> Line for _scripts/myScript.sh def
+
+
+  </li><li> Line for _callbacks/myCallback in def
+
+
+</li><li> Line in _include/myInclude.pad / def 
+</li><li> Variable in _include/myInclude.php / def
+
+
+  </li><li> Line in _lib/myLib.pad / def 
+  </li><li> Variable in _lib/myLib.php / def
+</li></div>
+                        <script>
+                        padAjaxvIZZMi7f = new XMLHttpRequest();
+                        padAjaxvIZZMi7f.onreadystatechange=function() {
+                        if (padAjaxvIZZMi7f.readyState === 4) {
+                        if (padAjaxvIZZMi7f.status === 200) {
+                        document.getElementById("padAjaxvIZZMi7f").innerHTML=padAjaxvIZZMi7f.responseText;
+                        } else {
+                        document.getElementById("padAjaxvIZZMi7f").innerHTML=padAjaxvIZZMi7f.statusText;
+                        }
+                        }
+                        }
+                        padAjaxvIZZMi7f.open("GET","http://localhost/structure/?def/page&padInclude&padSesID=DiM2hOlW&padReqID=hMliSPkL",true);
+                        padAjaxvIZZMi7f.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: reference - Page: index<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">index.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;blockquote&gt;<br><br><b>{<font color="blue">block</font><font color="red"></font>}</b><br><br>  <b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>reference<font color="black">'</font></font>}</b><br><br>    <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>lvl</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br>      &lt;blockquote&gt;<br>    <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br><br>    &lt;h3&gt;<b>{<font color="green"><font color="red">$</font>type</font>}</b>&lt;/h3&gt;<br><br>    &lt;blockquote&gt;<br><br>      <b>{<font color="blue">getReference </font><font color="red"><font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>dir</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> <font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>xref</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br><br>        <b>{<font color="blue">if </font><font color="red"><font color="red">$</font>dir</font>}</b><br>          &lt;a href="?dir<b>{<font color="green">?xref</font>}</b><b>{<font color="green">?type</font>}</b><b>{<font color="green">?item</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>item</font>}</b>&lt;/a&gt;<br>        <b>{<font color="blue">elseif </font><font color="red"><font color="red">$</font>pages</font>}</b><br>          &lt;a href="?pages<b>{<font color="green">?xref</font>}</b><b>{<font color="green">?type</font>}</b><b>{<font color="green">?item</font>}</b>"&gt;<b>{<font color="green"><font color="red">$</font>item</font>}</b>&lt;/a&gt;<br>        <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>          <b>{<font color="green"><font color="red">$</font>item</font>}</b><br>        <b>{/<font color="blue">if</font><font color="red"></font>}</b><br><br>        &amp;nbsp; <br>        <br>      <b>{/<font color="blue">getReference</font><font color="red"></font>}</b><br>            <br>    &lt;/blockquote&gt;<br><br>    <b>{<font color="blue">sequence </font><font color="red"><font color="black">'</font>1..<b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>lvl</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br>      &lt;/blockquote&gt;<br>    <b>{/<font color="blue">sequence</font><font color="red"></font>}</b><br><br>  <b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br>&lt;/blockquote&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxm31PNJnw"><blockquote>
+
+<table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td>
+
+  
+
+    
+      <blockquote>
+    
+
+    <h3>Tags</h3>
+
+    <blockquote>
+
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>PAD tags</h3>
+
+    <blockquote>
+
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=action.html">action</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          ajax
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=array.html">array</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=at.html">at</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=bool.html">bool</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          break
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=case.html">case</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=cease.html">cease</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=check.html">check</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=close.html">close</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=code.html">code</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=content.html">content</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          continue
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=count.html">count</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          curl
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=data.html">data</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          decrement
+        
+
+        &nbsp; 
+        
+      
+
+        
+          dir
+        
+
+        &nbsp; 
+        
+      
+
+        
+          dump
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=echo.html">echo</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          error
+        
+
+        &nbsp; 
+        
+      
+
+        
+          exception
+        
+
+        &nbsp; 
+        
+      
+
+        
+          exists
+        
+
+        &nbsp; 
+        
+      
+
+        
+          exit
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=false.html">false</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=field.html">field</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=file.html">file</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          files
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=flag.html">flag</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=foo.html">foo</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          get
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=if.html">if</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=ignore.html">ignore</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=increment.html">increment</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=keep.html">keep</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=make.html">make</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          null
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=open.html">open</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          output
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=pad.html">pad</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          page
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=pull.html">pull</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=reactData.html">reactData</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=record.html">record</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          redirect
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=remove.html">remove</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=restart.html">restart</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=resume.html">resume</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          sandbox
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=sequence.html">sequence</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=set.html">set</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=switch.html">switch</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          tidy
+        
+
+        &nbsp; 
+        
+      
+
+        
+          trace
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=true.html">true</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=until.html">until</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=tag%EA%A4%B7pad&amp;type=PAD+tags&amp;item=while.html">while</a>
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Tag types</h3>
+
+    <blockquote>
+
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=action.html">action</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=app.html">app</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=array.html">array</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=bool.html">bool</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=common.html">common</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=constant.html">constant</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=content.html">content</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=data.html">data</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=field.html">field</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=flag.html">flag</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;padSesID=DiM2hOlW&amp;padReqID=dRheoTam&amp;type=Tag+types&amp;xref=tag%EA%A4%B7function&amp;item=foo.html">function</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=include.html">include</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=keep.html">keep</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          level
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=local.html">local</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=make.html">make</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=pad.html">pad</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=php.html">php</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=property.html">property</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=pull.html">pull</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=remove.html">remove</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=script.html">script</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=select.html">select</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=tag&amp;type=Tag+types&amp;item=sequence.html">sequence</a>
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Tag properties</h3>
+
+    <blockquote>
+
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=border.html">border</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=count.html">count</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=current.html">current</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          data
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=done.html">done</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=even.html">even</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=fields.html">fields</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=first.html">first</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          firstFieldName
+        
+
+        &nbsp; 
+        
+      
+
+        
+          firstFieldValue
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=key.html">key</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          keys
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=last.html">last</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=middle.html">middle</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=name.html">name</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=notFirst.html">notFirst</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=notLast.html">notLast</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=odd.html">odd</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=option.html">option</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=options.html">options</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=parameter.html">parameter</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=parameters.html">parameters</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=remaining.html">remaining</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=variable.html">variable</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=properties&amp;type=Tag+properties&amp;item=variables.html">variables</a>
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Tag options</h3>
+
+    <blockquote>
+
+      
+
+        
+          bool
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=close.html">close</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=content.html">content</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=data.html">data</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=demand.html">demand</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          dump
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=else.html">else</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          error
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=glue.html">glue</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          go
+        
+
+        &nbsp; 
+        
+      
+
+        
+          ignore
+        
+
+        &nbsp; 
+        
+      
+
+        
+          noError
+        
+
+        &nbsp; 
+        
+      
+
+        
+          notOk
+        
+
+        &nbsp; 
+        
+      
+
+        
+          null
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=open.html">open</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=optional.html">optional</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=print.html">print</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=quote.html">quote</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          tidy
+        
+
+        &nbsp; 
+        
+      
+
+        
+          toBool
+        
+
+        &nbsp; 
+        
+      
+
+        
+          toContent
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7general&amp;type=Tag+options&amp;item=toData.html">toData</a>
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+
+    <h3>Functions</h3>
+
+    <blockquote>
+
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>PAD functions</h3>
+
+    <blockquote>
+
+      
+
+        
+          after
+        
+
+        &nbsp; 
+        
+      
+
+        
+          afterLast
+        
+
+        &nbsp; 
+        
+      
+
+        
+          before
+        
+
+        &nbsp; 
+        
+      
+
+        
+          beforeLast
+        
+
+        &nbsp; 
+        
+      
+
+        
+          between
+        
+
+        &nbsp; 
+        
+      
+
+        
+          bold
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=capitalize.html">capitalize</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          close
+        
+
+        &nbsp; 
+        
+      
+
+        
+          contains
+        
+
+        &nbsp; 
+        
+      
+
+        
+          cut
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=date.html">date</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          encodeHigh
+        
+
+        &nbsp; 
+        
+      
+
+        
+          exists
+        
+
+        &nbsp; 
+        
+      
+
+        
+          html
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=ignore.html">ignore</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=in.html">in</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          left
+        
+
+        &nbsp; 
+        
+      
+
+        
+          like
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=lower.html">lower</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          max_len
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=mid.html">mid</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          nbsp
+        
+
+        &nbsp; 
+        
+      
+
+        
+          now
+        
+
+        &nbsp; 
+        
+      
+
+        
+          open
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=optional.html">optional</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=range.html">range</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=replace.html">replace</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          right
+        
+
+        &nbsp; 
+        
+      
+
+        
+          sanitize
+        
+
+        &nbsp; 
+        
+      
+
+        
+          slashes
+        
+
+        &nbsp; 
+        
+      
+
+        
+          stripLow
+        
+
+        &nbsp; 
+        
+      
+
+        
+          stripslashes
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=substr.html">substr</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          tag
+        
+
+        &nbsp; 
+        
+      
+
+        
+          time
+        
+
+        &nbsp; 
+        
+      
+
+        
+          timestamp
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=trim.html">trim</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=ucwords.html">ucwords</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=upper.html">upper</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=functions%EA%A4%B7parms%EA%A4%B7pad&amp;type=PAD+functions&amp;item=url.html">url</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          white
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Single functions</h3>
+
+    <blockquote>
+
+      
+
+        
+          array
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=functions%EA%A4%B7single&amp;type=Single+functions&amp;item=constant.html">constant</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          content
+        
+
+        &nbsp; 
+        
+      
+
+        
+          data
+        
+
+        &nbsp; 
+        
+      
+
+        
+          field
+        
+
+        &nbsp; 
+        
+      
+
+        
+          flag
+        
+
+        &nbsp; 
+        
+      
+
+        
+          include
+        
+
+        &nbsp; 
+        
+      
+
+        
+          level
+        
+
+        &nbsp; 
+        
+      
+
+        
+          local
+        
+
+        &nbsp; 
+        
+      
+
+        
+          object
+        
+
+        &nbsp; 
+        
+      
+
+        
+          parm
+        
+
+        &nbsp; 
+        
+      
+
+        
+          property
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=functions%EA%A4%B7single&amp;type=Single+functions&amp;item=pull.html">pull</a>
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>Parms functions</h3>
+
+    <blockquote>
+
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=functions%EA%A4%B7parms&amp;type=Parms+functions&amp;item=app.html">app</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=functions%EA%A4%B7parms&amp;type=Parms+functions&amp;item=pad.html">pad</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=functions%EA%A4%B7parms&amp;type=Parms+functions&amp;item=php.html">php</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=functions%EA%A4%B7parms&amp;type=Parms+functions&amp;item=sequence.html">sequence</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          tag
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+
+    <h3>Data handling</h3>
+
+    <blockquote>
+
+      
+
+        
+          dedup
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=end.html">end</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=first.html">first</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=last.html">last</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=page.html">page</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=random.html">random</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=reverse.html">reverse</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=row.html">row</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=rows.html">rows</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=shuffle.html">shuffle</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=slice.html">slice</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=sort.html">sort</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=splice.html">splice</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=start.html">start</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=options%EA%A4%B7handling&amp;type=Data+handling&amp;item=trim.html">trim</a>
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+
+    <h3>@xxx@ constructs</h3>
+
+    <blockquote>
+
+      
+
+        
+          <a href="index%EF%B9%96dir&amp;xref=constructs&amp;type=@xxx@+constructs&amp;item=.html"></a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=constructs&amp;type=@xxx@+constructs&amp;item=content.html">content</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=constructs&amp;type=@xxx@+constructs&amp;item=end.html">end</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          page
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=constructs&amp;type=@xxx@+constructs&amp;item=start.html">start</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          tidy
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+
+    <h3>At (x@y)</h3>
+
+    <blockquote>
+
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>At - tag groups</h3>
+
+    <blockquote>
+
+      
+
+        
+          any
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7groups&amp;type=At+-+tag+groups&amp;item=current.html">current</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          function
+        
+
+        &nbsp; 
+        
+      
+
+        
+          level
+        
+
+        &nbsp; 
+        
+      
+
+        
+          options
+        
+
+        &nbsp; 
+        
+      
+
+        
+          parameters
+        
+
+        &nbsp; 
+        
+      
+
+        
+          providers
+        
+
+        &nbsp; 
+        
+      
+
+        
+          saved
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7groups&amp;type=At+-+tag+groups&amp;item=variables.html">variables</a>
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>At - tag properties</h3>
+
+    <blockquote>
+
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7properties&amp;type=At+-+tag+properties&amp;item=border.html">border</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          count
+        
+
+        &nbsp; 
+        
+      
+
+        
+          current
+        
+
+        &nbsp; 
+        
+      
+
+        
+          data
+        
+
+        &nbsp; 
+        
+      
+
+        
+          done
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7properties&amp;type=At+-+tag+properties&amp;item=even.html">even</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7properties&amp;type=At+-+tag+properties&amp;item=fields.html">fields</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7properties&amp;type=At+-+tag+properties&amp;item=first.html">first</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          key
+        
+
+        &nbsp; 
+        
+      
+
+        
+          keys
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7properties&amp;type=At+-+tag+properties&amp;item=last.html">last</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7properties&amp;type=At+-+tag+properties&amp;item=middle.html">middle</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          name
+        
+
+        &nbsp; 
+        
+      
+
+        
+          notFirst
+        
+
+        &nbsp; 
+        
+      
+
+        
+          notLast
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7properties&amp;type=At+-+tag+properties&amp;item=odd.html">odd</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          options
+        
+
+        &nbsp; 
+        
+      
+
+        
+          parameters
+        
+
+        &nbsp; 
+        
+      
+
+        
+          remaining
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7properties&amp;type=At+-+tag+properties&amp;item=variables.html">variables</a>
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+    
+      <blockquote>
+    
+      <blockquote>
+    
+
+    <h3>At - types</h3>
+
+    <blockquote>
+
+      
+
+        
+          all
+        
+
+        &nbsp; 
+        
+      
+
+        
+          data
+        
+
+        &nbsp; 
+        
+      
+
+        
+          <a href="index%EF%B9%96pages&amp;xref=at%EA%A4%B7types&amp;type=At+-+types&amp;item=globals.html">globals</a>
+        
+
+        &nbsp; 
+        
+      
+
+        
+          sequences
+        
+
+        &nbsp; 
+        
+      
+
+        
+          tags
+        
+
+        &nbsp; 
+        
+      
+            
+    </blockquote>
+
+    
+      </blockquote>
+    
+      </blockquote>
+    
+
+  
+
+</td>
+  </tr>
+</tbody></table>
+
+</blockquote></div>
+                        <script>
+                        padAjaxm31PNJnw = new XMLHttpRequest();
+                        padAjaxm31PNJnw.onreadystatechange=function() {
+                        if (padAjaxm31PNJnw.readyState === 4) {
+                        if (padAjaxm31PNJnw.status === 200) {
+                        document.getElementById("padAjaxm31PNJnw").innerHTML=padAjaxm31PNJnw.responseText;
+                        } else {
+                        document.getElementById("padAjaxm31PNJnw").innerHTML=padAjaxm31PNJnw.statusText;
+                        }
+                        }
+                        }
+                        padAjaxm31PNJnw.open("GET","http://localhost/reference/?index&padInclude&padSesID=DiM2hOlW&padReqID=hMliSPkL",true);
+                        padAjaxm31PNJnw.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: lvl_occ/9<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">lvl_occ/9.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myJson<font color="black">'</font></font>}</b><br>[<br>  { "column": [ 11, 12, 13, 14, 15 ] },<br>  { "column": [ 21, 22, 23, 24, 35 ] },<br>  { "column": [ 31, 32, 33, 34, 35 ] }<br>]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>myJson<font color="black">'</font></font>}</b><br>  &lt;table border='1'&gt;<br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt;<br>        <b>{<font color="blue">column</font><font color="red"></font>}</b><br>          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>column</font>}</b>&lt;/td&gt;<br>        <b>{/<font color="blue">column</font><font color="red"></font>}</b><br>      &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br>  &lt;/table&gt;<br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxvmHZUY33">
+
+
+  <table border="1">
+    
+      <tbody><tr>
+        
+          <td>11</td>
+        
+          <td>12</td>
+        
+          <td>13</td>
+        
+          <td>14</td>
+        
+          <td>15</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>21</td>
+        
+          <td>22</td>
+        
+          <td>23</td>
+        
+          <td>24</td>
+        
+          <td>35</td>
+        
+      </tr>
+    
+      <tr>
+        
+          <td>31</td>
+        
+          <td>32</td>
+        
+          <td>33</td>
+        
+          <td>34</td>
+        
+          <td>35</td>
+        
+      </tr>
+    
+  </tbody></table>
+</div>
+                        <script>
+                        padAjaxvmHZUY33 = new XMLHttpRequest();
+                        padAjaxvmHZUY33.onreadystatechange=function() {
+                        if (padAjaxvmHZUY33.readyState === 4) {
+                        if (padAjaxvmHZUY33.status === 200) {
+                        document.getElementById("padAjaxvmHZUY33").innerHTML=padAjaxvmHZUY33.responseText;
+                        } else {
+                        document.getElementById("padAjaxvmHZUY33").innerHTML=padAjaxvmHZUY33.statusText;
+                        }
+                        }
+                        }
+                        padAjaxvmHZUY33.open("GET","http://localhost/manual/?lvl_occ/9&padInclude&padSesID=DiM2hOlW&padReqID=hMliSPkL",true);
+                        padAjaxvmHZUY33.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: miscellaneous/local<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">miscellaneous/local.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><br>  &lt;h3&gt;<b>{<font color="purple"><font color="red">&amp;</font>departments<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>option<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>data</font>}</b>&lt;/h3&gt;<br><br>  &lt;table border=1&gt;<br><br>    &lt;tr&gt;<br>      &lt;th&gt; department &lt;/th&gt;<br>      &lt;th&gt; manager &lt;/th&gt;<br>      &lt;th&gt; phone &lt;/th&gt;<br>    &lt;/tr&gt;<br><br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>department</font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>manager</font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br><br>  &lt;/table&gt;<br><br><b>{/<font color="blue">content</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments<font color="black">'</font><font color="black">,</font>      content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.php<font color="black">'</font><font color="black">,</font>  content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.csv<font color="black">'</font><font color="black">,</font>  content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.xml<font color="black">'</font><font color="black">,</font>  content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.json<font color="black">'</font><font color="black">,</font> content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.yaml<font color="black">'</font><font color="black">,</font> content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxueOhWv3R">
+
+
+
+  <h3>departments/departments</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-8888 </td>
+      </tr>
+    
+
+  </tbody></table>
+
+
+
+
+  <h3>departments/departments.php</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-7777 </td>
+      </tr>
+    
+
+  </tbody></table>
+
+
+
+
+  <h3>departments/departments.csv</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-5555 </td>
+      </tr>
+    
+
+  </tbody></table>
+
+
+
+
+  <h3>departments/departments.xml</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-8888 </td>
+      </tr>
+    
+
+  </tbody></table>
+
+
+
+
+  <h3>departments/departments.json</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-6666   </td>
+      </tr>
+    
+
+  </tbody></table>
+
+
+
+
+  <h3>departments/departments.yaml</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-9999 </td>
+      </tr>
+    
+
+  </tbody></table>
+
+</div>
+                        <script>
+                        padAjaxueOhWv3R = new XMLHttpRequest();
+                        padAjaxueOhWv3R.onreadystatechange=function() {
+                        if (padAjaxueOhWv3R.readyState === 4) {
+                        if (padAjaxueOhWv3R.status === 200) {
+                        document.getElementById("padAjaxueOhWv3R").innerHTML=padAjaxueOhWv3R.responseText;
+                        } else {
+                        document.getElementById("padAjaxueOhWv3R").innerHTML=padAjaxueOhWv3R.statusText;
+                        }
+                        }
+                        }
+                        padAjaxueOhWv3R.open("GET","http://localhost/check/?miscellaneous/local&padInclude&padSesID=DiM2hOlW&padReqID=hMliSPkL",true);
+                        padAjaxueOhWv3R.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: miscellaneous/options_variables_parameters<br>
+                  <div id="padAjaxMux7FfJy"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">name=<font color="black">'</font>cool<font color="black">'</font><font color="black">,</font> abc=123<font color="black">,</font> <font color="black">'</font>fiets<font color="black">'</font><font color="black">,</font> <font color="red">$</font>abc=<font color="black">'</font>banaan<font color="black">'</font><font color="black">,</font> <font color="red">$</font>go=<font color="black">'</font>nuts<font color="black">'</font><font color="black">,</font> xyz=789<font color="black">,</font> 12*15</font>}</b><br><br>  &lt;h3&gt;variables&lt;/h3&gt;<br>  <br>  &lt;table border="1"&gt;<br>    &lt;th&gt;name&lt;/th&gt;<br>    &lt;th&gt;value&lt;/th&gt;<br>    <b>{<font color="blue">variables</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">variables</font><font color="red"></font>}</b><br>  &lt;/table&gt;<br><br>  &lt;h3&gt;options&lt;/h3&gt;<br>  <br>  &lt;table border="1"&gt;<br>    &lt;th&gt;name&lt;/th&gt;<br>    &lt;th&gt;value&lt;/th&gt;<br>    <b>{<font color="blue">options</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">options</font><font color="red"></font>}</b><br>  &lt;/table&gt;<br><br>  &lt;h3&gt;parameters&lt;/h3&gt;<br>  <br>  &lt;table border="1"&gt;<br>    &lt;th&gt;name&lt;/th&gt;<br>    &lt;th&gt;value&lt;/th&gt;<br>    <b>{<font color="blue">parameters</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">parameters</font><font color="red"></font>}</b><br>  &lt;/table&gt;<br><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>variables</h3>
+  
+  <table border="1">
+    <tbody><tr><th>name</th>
+    <th>value</th>
+    
+      </tr><tr>
+        <td>abc</td>
+        <td>banaan</td>
+      </tr>
+    
+      <tr>
+        <td>go</td>
+        <td>nuts</td>
+      </tr>
+    
+  </tbody></table>
+
+  <h3>options</h3>
+  
+  <table border="1">
+    <tbody><tr><th>name</th>
+    <th>value</th>
+    
+      </tr><tr>
+        <td>name</td>
+        <td>cool</td>
+      </tr>
+    
+      <tr>
+        <td>abc</td>
+        <td>123</td>
+      </tr>
+    
+      <tr>
+        <td>xyz</td>
+        <td>789</td>
+      </tr>
+    
+  </tbody></table>
+
+  <h3>parameters</h3>
+  
+  <table border="1">
+    <tbody><tr><th>name</th>
+    <th>value</th>
+    
+      </tr><tr>
+        <td>1</td>
+        <td>fiets</td>
+      </tr>
+    
+      <tr>
+        <td>2</td>
+        <td>180</td>
+      </tr>
+    
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">name=<font color="black">'</font>cool<font color="black">'</font><font color="black">,</font> abc=123<font color="black">,</font> <font color="black">'</font>fiets<font color="black">'</font><font color="black">,</font> <font color="red">$</font>abc=<font color="black">'</font>banaan<font color="black">'</font><font color="black">,</font> <font color="red">$</font>go=<font color="black">'</font>nuts<font color="black">'</font><font color="black">,</font> xyz=789<font color="black">,</font> 12*15</font>}</b><br><br>  &lt;h3&gt;variables&lt;/h3&gt;<br><br>  The value of variable 'abc' is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>variable<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>abc</font>}</b> &lt;br&gt;<br>  The value of variable 'go' is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>variable<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>go</font>}</b> &lt;br&gt;<br>  <br>  &lt;h3&gt;options&lt;/h3&gt;<br>  <br>  The value of option 'abc' is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>option<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>abc</font>}</b> &lt;br&gt;<br>  The value of option 'xyz' is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>option<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>xyz</font>}</b> &lt;br&gt;<br>  <br>  &lt;h3&gt;parameters&lt;/h3&gt;<br>  <br>  The first parameters is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>parameter<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>1</font>}</b> &lt;br&gt;<br>  The second parameter is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>parameter<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>2</font>}</b> &lt;br&gt;<br>  <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>variables</h3>
+
+  The value of variable 'abc' is: banaan <br>
+  The value of variable 'go' is: nuts <br>
+  
+  <h3>options</h3>
+  
+  The value of option 'abc' is: 123 <br>
+  The value of option 'xyz' is: 789 <br>
+  
+  <h3>parameters</h3>
+  
+  The first parameters is: fiets <br>
+  The second parameter is: 180 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">name=<font color="black">'</font>cool<font color="black">'</font><font color="black">,</font> abc=123<font color="black">,</font> <font color="black">'</font>fiets<font color="black">'</font><font color="black">,</font> <font color="red">$</font>abc=<font color="black">'</font>banaan<font color="black">'</font><font color="black">,</font> <font color="red">$</font>go=<font color="black">'</font>nuts<font color="black">'</font><font color="black">,</font> xyz=789<font color="black">,</font> 12*15</font>}</b><br><br>  &lt;h3&gt;variables&lt;/h3&gt;<br><br>  Variables can be directy accessed with the $ char &lt;br&gt;<br>  - variable 'abc' - <b>{<font color="green"><font color="red">$</font>abc</font>}</b> &lt;br&gt;<br>  - variable 'go' - <b>{<font color="green"><font color="red">$</font>go</font>}</b> &lt;br&gt;<br>  <br>  &lt;h3&gt;options&lt;/h3&gt;<br><br>  Options can be directy accessed with the # char &lt;br&gt;<br>  - option 'abc' - <b>{<font color="green"><font color="red">#</font>abc</font>}</b> &lt;br&gt;<br>  - option 'xyz' - <b>{<font color="green"><font color="red">#</font>xyz</font>}</b> &lt;br&gt;<br>    <br>  &lt;h3&gt;parameters&lt;/h3&gt;<br>  <br>  Parameters can be directy accesed with the $ char  &lt;br&gt;<br>  - The first parameters is: <b>{<font color="green"><font color="red">$</font>1</font>}</b> &lt;br&gt;<br>  - The second parameter is: <b>{<font color="green"><font color="red">$</font>2</font>}</b> &lt;br&gt;<br>  <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>variables</h3>
+
+  Variables can be directy accessed with the $ char <br>
+  - variable 'abc' - banaan <br>
+  - variable 'go' - nuts <br>
+  
+  <h3>options</h3>
+
+  Options can be directy accessed with the # char <br>
+  - option 'abc' - 123 <br>
+  - option 'xyz' - 789 <br>
+    
+  <h3>parameters</h3>
+  
+  Parameters can be directy accesed with the $ char  <br>
+  - The first parameters is: fiets <br>
+  - The second parameter is: 180 <br><!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxMux7FfJy = new XMLHttpRequest();
+                  padAjaxMux7FfJy.onreadystatechange=function() {
+                  if (padAjaxMux7FfJy.readyState === 4) {
+                  if (padAjaxMux7FfJy.status === 200) {
+                  document.getElementById("padAjaxMux7FfJy").innerHTML=padAjaxMux7FfJy.responseText;
+                  } else {
+                  document.getElementById("padAjaxMux7FfJy").innerHTML=padAjaxMux7FfJy.statusText;
+                  }
+                  }
+                  }
+                  padAjaxMux7FfJy.open("GET","http://localhost/manual/?miscellaneous/options_variables_parameters&padInclude&padSesID=DiM2hOlW&padReqID=hMliSPkL",true);
+                  padAjaxMux7FfJy.send();
+                  </script><br>
+                  <hr>
+                  App: manual - Page: miscellaneous/pad<br>
+                  <div id="padAjaxArUudJKm"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red"><font color="red">$</font>myColor=<font color="black">'</font>red<font color="black">'</font></font>}</b><br>  &lt;b&gt; &lt;font color="<b>{<font color="green"><font color="red">$</font>myColor</font>}</b>"&gt; Hallo Wereld &lt;/font&gt; &lt;/b&gt; &lt;br&gt;<br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><b> <font color="red"> Hallo Wereld </font> </b> <br><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p>
+
+<table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td>
+  <p>Below example gives a sneak preview of <a href="../manual/index%EF%B9%96pages%EA%A4%B7the_content_tag.html">The content tag</a> and <a href="../manual/index%EF%B9%96pages%EA%A4%B7the_data_tag.html">The data tag</a>, 
+     2 powerfull PAD tags.
+</p></td>
+  </tr>
+</tbody></table>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myData<font color="black">'</font></font>}</b><br>  ( "red", "green", "blue" ) <br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  &lt;b&gt; &lt;font color="<b>{<font color="green"><font color="red">$</font>myData</font>}</b>"&gt; Hello World &lt;/font&gt; &lt;/b&gt; &lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font><font color="black">,</font> content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><b> <font color="red"> Hello World </font> </b> <br>
+
+  <b> <font color="green"> Hello World </font> </b> <br>
+
+  <b> <font color="blue"> Hello World </font> </b> <br><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxArUudJKm = new XMLHttpRequest();
+                  padAjaxArUudJKm.onreadystatechange=function() {
+                  if (padAjaxArUudJKm.readyState === 4) {
+                  if (padAjaxArUudJKm.status === 200) {
+                  document.getElementById("padAjaxArUudJKm").innerHTML=padAjaxArUudJKm.responseText;
+                  } else {
+                  document.getElementById("padAjaxArUudJKm").innerHTML=padAjaxArUudJKm.statusText;
+                  }
+                  }
+                  }
+                  padAjaxArUudJKm.open("GET","http://localhost/manual/?miscellaneous/pad&padInclude&padSesID=DiM2hOlW&padReqID=hMliSPkL",true);
+                  padAjaxArUudJKm.send();
+                  </script><br>
+                  <hr>
+                  App: manual - Page: miscellaneous/parse/1<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">miscellaneous/parse/1.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">miscellaneous/parse/1.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php $myVar </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">; </span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">myOption=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>myVar</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> <font color="red">$</font>xyz=789</font>}</b><br>   ....<br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxA303L54n">
+   ....
+</div>
+                        <script>
+                        padAjaxA303L54n = new XMLHttpRequest();
+                        padAjaxA303L54n.onreadystatechange=function() {
+                        if (padAjaxA303L54n.readyState === 4) {
+                        if (padAjaxA303L54n.status === 200) {
+                        document.getElementById("padAjaxA303L54n").innerHTML=padAjaxA303L54n.responseText;
+                        } else {
+                        document.getElementById("padAjaxA303L54n").innerHTML=padAjaxA303L54n.statusText;
+                        }
+                        }
+                        }
+                        padAjaxA303L54n.open("GET","http://localhost/manual/?miscellaneous/parse/1&padInclude&padSesID=DiM2hOlW&padReqID=hMliSPkL",true);
+                        padAjaxA303L54n.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: miscellaneous/parse/2<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">miscellaneous/parse/2.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">myOption=<font color="black">'</font>ABC<font color="black">'</font><font color="black">,</font> <font color="red">$</font>xyz=789</font>}</b><br>   ....<br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxtX0NeXG2">
+   ....
+</div>
+                        <script>
+                        padAjaxtX0NeXG2 = new XMLHttpRequest();
+                        padAjaxtX0NeXG2.onreadystatechange=function() {
+                        if (padAjaxtX0NeXG2.readyState === 4) {
+                        if (padAjaxtX0NeXG2.status === 200) {
+                        document.getElementById("padAjaxtX0NeXG2").innerHTML=padAjaxtX0NeXG2.responseText;
+                        } else {
+                        document.getElementById("padAjaxtX0NeXG2").innerHTML=padAjaxtX0NeXG2.statusText;
+                        }
+                        }
+                        }
+                        padAjaxtX0NeXG2.open("GET","http://localhost/manual/?miscellaneous/parse/2&padInclude&padSesID=DiM2hOlW&padReqID=hMliSPkL",true);
+                        padAjaxtX0NeXG2.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: miscellaneous/parse/3<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">miscellaneous/parse/3.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">miscellaneous/parse/3.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php </span><span style="color: #007700">const </span><span style="color: #0000BB">ABC </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE ?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">myOption=ABC<font color="black">,</font> <font color="red">$</font>xyz=789</font>}</b><br>   ....<br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxaEljYGW5">
+   ....
+</div>
+                        <script>
+                        padAjaxaEljYGW5 = new XMLHttpRequest();
+                        padAjaxaEljYGW5.onreadystatechange=function() {
+                        if (padAjaxaEljYGW5.readyState === 4) {
+                        if (padAjaxaEljYGW5.status === 200) {
+                        document.getElementById("padAjaxaEljYGW5").innerHTML=padAjaxaEljYGW5.responseText;
+                        } else {
+                        document.getElementById("padAjaxaEljYGW5").innerHTML=padAjaxaEljYGW5.statusText;
+                        }
+                        }
+                        }
+                        padAjaxaEljYGW5.open("GET","http://localhost/manual/?miscellaneous/parse/3&padInclude&padSesID=DiM2hOlW&padReqID=hMliSPkL",true);
+                        padAjaxaEljYGW5.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: miscellaneous/set_2<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">miscellaneous/set_2.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = 123</font>}</b><br><br><b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red"><font color="red">$</font>abc = 456 </font>}</b><br>    <b>{<font color="green"><font color="red">$</font>abc</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="green"><font color="red">$</font>abc</font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxyHYDIXYG">
+
+123
+
+
+    456
+
+
+123</div>
+                        <script>
+                        padAjaxyHYDIXYG = new XMLHttpRequest();
+                        padAjaxyHYDIXYG.onreadystatechange=function() {
+                        if (padAjaxyHYDIXYG.readyState === 4) {
+                        if (padAjaxyHYDIXYG.status === 200) {
+                        document.getElementById("padAjaxyHYDIXYG").innerHTML=padAjaxyHYDIXYG.responseText;
+                        } else {
+                        document.getElementById("padAjaxyHYDIXYG").innerHTML=padAjaxyHYDIXYG.statusText;
+                        }
+                        }
+                        }
+                        padAjaxyHYDIXYG.open("GET","http://localhost/check/?miscellaneous/set_2&padInclude&padSesID=DiM2hOlW&padReqID=hMliSPkL",true);
+                        padAjaxyHYDIXYG.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

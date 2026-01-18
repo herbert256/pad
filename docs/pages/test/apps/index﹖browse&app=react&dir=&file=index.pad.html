@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Browse: react
+    </title>
+    <style>.browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: react
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_config.html">_config/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_data.html">_data/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_lib.html">_lib/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_providers.html">_providers/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=_tags.html">_tags/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=examples.html">examples/</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=_inits.pad.html">_inits.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=_inits.php.html">_inits.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=components.pad.html">components.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=components.php.html">components.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=examples.pad.html">examples.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=examples.php.html">examples.php</a>
+                  </li>
+                  <li class="current">index.pad
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=react&amp;dir=&amp;file=index.php.html">index.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  index.pad
+                </h3>
+                <pre><code style="color: #000000">&lt;h1&gt;Welcome to PAD + React&lt;/h1&gt;<br><br>&lt;p&gt;<br>  This application demonstrates how to combine &lt;strong&gt;PAD&lt;/strong&gt; (server-side template engine)<br>  with &lt;strong&gt;React&lt;/strong&gt; (client-side JavaScript framework).<br>&lt;/p&gt;<br><br>&lt;div class="info-box"&gt;<br>  &lt;strong&gt;How it works:&lt;/strong&gt;<br>  &lt;ul style="margin-top: 10px; margin-left: 20px;"&gt;<br>    &lt;li&gt;PAD handles routing (?page URLs), server-side data, and initial HTML&lt;/li&gt;<br>    &lt;li&gt;React is loaded globally in _inits.pad and available on every page&lt;/li&gt;<br>    &lt;li&gt;You can embed React components anywhere in your PAD templates&lt;/li&gt;<br>    &lt;li&gt;Server data from PHP can be passed to React components via data attributes or window object&lt;/li&gt;<br>  &lt;/ul&gt;<br>&lt;/div&gt;<br><br>&lt;h2&gt;Server-Side Data from PAD&lt;/h2&gt;<br>&lt;p&gt;Message: &lt;code&gt;<b>{<font color="green"><font color="red">$</font>serverMessage</font>}</b>&lt;/code&gt;&lt;/p&gt;<br>&lt;p&gt;Server Time: &lt;code&gt;<b>{<font color="green"><font color="red">$</font>serverTime</font>}</b>&lt;/code&gt;&lt;/p&gt;<br><br>&lt;h2&gt;React Component Example&lt;/h2&gt;<br>&lt;p&gt;Below is a simple React component rendered on the client:&lt;/p&gt;<br><br>&lt;!-- React component will be rendered here --&gt;<br>&lt;div id="welcome-component"&gt;&lt;/div&gt;<br><br>&lt;script type="text/babel" src="/react/index/welcome.js"&gt;&lt;/script&gt;<br><br>&lt;h2&gt;React Component with Server Data&lt;/h2&gt;<br>&lt;p&gt;This component receives data from PAD's server-side PHP:&lt;/p&gt;<br><br>&lt;!-- Pass server data to React via JavaScript variable --&gt;<br>&lt;div id="users-component"<br>     data-server-message="<b>{<font color="green"><font color="red">$</font>serverMessage</font>}</b>"<br>     data-server-time="<b>{<font color="green"><font color="red">$</font>serverTime</font>}</b>"<br>     data-users-json="<b>{<font color="blue">json </font><font color="red"><font color="black">'</font>users<font color="black">'</font> <font color="black">|</font> ignore</font>}</b>"&gt;&lt;/div&gt;<br><br>&lt;script&gt;<br>  // Parse from data attribute<br>  const elem = document.getElementById('users-component');<br>  window.serverData = {<br>    serverMessage: elem.dataset.serverMessage,<br>    serverTime: elem.dataset.serverTime,<br>    users: JSON.parse(elem.dataset.usersJson)<br>  };<br>&lt;/script&gt;<br><br>&lt;script type="text/babel" src="/react/index/users.js"&gt;&lt;/script&gt;<br><br>&lt;h2&gt;Next Steps&lt;/h2&gt;<br>&lt;ul style="margin-left: 20px; line-height: 1.8;"&gt;<br>  &lt;li&gt;Visit the &lt;a href="?examples"&gt;Examples&lt;/a&gt; page to see more React patterns&lt;/li&gt;<br>  &lt;li&gt;Visit the &lt;a href="?counter"&gt;Counter Demo&lt;/a&gt; to see a complete example&lt;/li&gt;<br>  &lt;li&gt;Create new pages by adding &lt;code&gt;.php&lt;/code&gt; and &lt;code&gt;.pad&lt;/code&gt; files&lt;/li&gt;<br>  &lt;li&gt;React is automatically loaded on every page via &lt;code&gt;_inits.pad&lt;/code&gt;&lt;/li&gt;<br>  &lt;li&gt;Learn more about React at &lt;a href="https://react.dev" target="_blank"&gt;react.dev&lt;/a&gt;&lt;/li&gt;<br>&lt;/ul&gt;<br><br>&lt;div class="info-box" style="margin-top: 30px;"&gt;<br>  &lt;strong&gt;Development Mode:&lt;/strong&gt; This application uses React development builds and Babel standalone<br>  for in-browser JSX transformation. For production, you should use a build tool like Vite or Create React App<br>  to compile JSX and use production builds of React.<br>&lt;/div&gt;</code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

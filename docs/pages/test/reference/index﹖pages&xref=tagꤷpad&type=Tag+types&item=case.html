@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Reference - Tag types - case
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - case
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: check - Page: tags/case_1<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/case_1.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/case_1.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $language </span><span style="color: #007700">= </span><span style="color: #DD0000">'FR'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;<br>  <b>{<font color="blue">case </font><font color="red"><font color="red">$</font>language</font>}</b><br>    <b>{<font color="blue">when </font><font color="red"><font color="black">'</font>NL<font color="black">'</font></font>}</b><br>      Hallo Wereld<br>    <b>{<font color="blue">when </font><font color="red"><font color="black">'</font>FR<font color="black">'</font></font>}</b><br>      Bonjour le Monde<br>    <b>{<font color="blue">when </font><font color="red"><font color="black">'</font>DE<font color="black">'</font></font>}</b><br>      Hallo Welt<br>    <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>      Hello World<br>  <b>{/<font color="blue">case</font><font color="red"></font>}</b><br>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxoJFiLQmj"><p>
+  
+      Bonjour le Monde
+    
+</p></div>
+                        <script>
+                        padAjaxoJFiLQmj = new XMLHttpRequest();
+                        padAjaxoJFiLQmj.onreadystatechange=function() {
+                        if (padAjaxoJFiLQmj.readyState === 4) {
+                        if (padAjaxoJFiLQmj.status === 200) {
+                        document.getElementById("padAjaxoJFiLQmj").innerHTML=padAjaxoJFiLQmj.responseText;
+                        } else {
+                        document.getElementById("padAjaxoJFiLQmj").innerHTML=padAjaxoJFiLQmj.statusText;
+                        }
+                        }
+                        }
+                        padAjaxoJFiLQmj.open("GET","http://localhost/check/?tags/case_1&padInclude&padSesID=DiM2hOlW&padReqID=t6PCDiq6",true);
+                        padAjaxoJFiLQmj.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: tags/case_2<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">tags/case_2.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">tags/case_2.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $happiness  </span><span style="color: #007700">= </span><span style="color: #0000BB">50</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$hours      </span><span style="color: #007700">= </span><span style="color: #0000BB">2</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$beer       </span><span style="color: #007700">= </span><span style="color: #0000BB">10</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$sausage    </span><span style="color: #007700">= </span><span style="color: #0000BB">5</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;p&gt;<br>  <b>{<font color="blue">case </font><font color="red"><font color="red">$</font>happiness * <font color="red">$</font>hours</font>}</b><br>    <b>{<font color="blue">when </font><font color="red">(<font color="red">$</font>beer*2) + (<font color="red">$</font>sausage*1)</font>}</b><br>      Bonjour le Monde<br>    <b>{<font color="blue">when </font><font color="red">(<font color="red">$</font>beer*4) + (<font color="red">$</font>sausage*2)</font>}</b><br>      Hallo Wereld<br>    <b>{<font color="blue">when </font><font color="red">(<font color="red">$</font>beer*8) + (<font color="red">$</font>sausage*4)</font>}</b><br>      Hallo Welt<br>    <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>      Hello World<br>  <b>{/<font color="blue">case</font><font color="red"></font>}</b><br>&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxNdOl8OCb"><p>
+  
+      Hallo Welt
+    
+</p></div>
+                        <script>
+                        padAjaxNdOl8OCb = new XMLHttpRequest();
+                        padAjaxNdOl8OCb.onreadystatechange=function() {
+                        if (padAjaxNdOl8OCb.readyState === 4) {
+                        if (padAjaxNdOl8OCb.status === 200) {
+                        document.getElementById("padAjaxNdOl8OCb").innerHTML=padAjaxNdOl8OCb.responseText;
+                        } else {
+                        document.getElementById("padAjaxNdOl8OCb").innerHTML=padAjaxNdOl8OCb.statusText;
+                        }
+                        }
+                        }
+                        padAjaxNdOl8OCb.open("GET","http://localhost/check/?tags/case_2&padInclude&padSesID=DiM2hOlW&padReqID=t6PCDiq6",true);
+                        padAjaxNdOl8OCb.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

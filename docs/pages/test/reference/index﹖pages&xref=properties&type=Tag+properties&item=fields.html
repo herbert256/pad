@@ -1,0 +1,391 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Reference - Tag properties - fields
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag properties - fields
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: lvl_occ/10<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">lvl_occ/10.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myCsv<font color="black">'</font></font>}</b><br>AA,BB,CC,DD,EE<br>11,12,13,14,15<br>21,22,23,24,35<br>31,32,33,34,35<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br>&lt;table border='1'&gt;<br>  <b>{<font color="blue">myCsv</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">fields</font><font color="red"></font>}</b><br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/td&gt;<br>      <b>{/<font color="blue">fields</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">myCsv</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxEJCI0Zeh">
+
+<table border="1">
+  
+    <tbody><tr>
+      
+        <td>11</td>
+      
+        <td>12</td>
+      
+        <td>13</td>
+      
+        <td>14</td>
+      
+        <td>15</td>
+      
+    </tr>
+  
+    <tr>
+      
+        <td>21</td>
+      
+        <td>22</td>
+      
+        <td>23</td>
+      
+        <td>24</td>
+      
+        <td>35</td>
+      
+    </tr>
+  
+    <tr>
+      
+        <td>31</td>
+      
+        <td>32</td>
+      
+        <td>33</td>
+      
+        <td>34</td>
+      
+        <td>35</td>
+      
+    </tr>
+  
+</tbody></table></div>
+                        <script>
+                        padAjaxEJCI0Zeh = new XMLHttpRequest();
+                        padAjaxEJCI0Zeh.onreadystatechange=function() {
+                        if (padAjaxEJCI0Zeh.readyState === 4) {
+                        if (padAjaxEJCI0Zeh.status === 200) {
+                        document.getElementById("padAjaxEJCI0Zeh").innerHTML=padAjaxEJCI0Zeh.responseText;
+                        } else {
+                        document.getElementById("padAjaxEJCI0Zeh").innerHTML=padAjaxEJCI0Zeh.statusText;
+                        }
+                        }
+                        }
+                        padAjaxEJCI0Zeh.open("GET","http://localhost/manual/?lvl_occ/10&padInclude&padSesID=DiM2hOlW&padReqID=T227k48Z",true);
+                        padAjaxEJCI0Zeh.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: vars/at/6<br>
+                  <div id="padAjaxvwfxQr9j"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        <b>{<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b><br>          &lt;th&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/th&gt;<br>        <b>{/<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b><br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b><br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b> &lt;/td&gt;<br>      <b>{/<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+  
+    
+      <tbody><tr>
+        
+          <th> name </th>
+        
+          <th> salary </th>
+        
+          <th> bonus </th>
+        
+          <th> phone </th>
+        
+      </tr>
+    
+    <tr>
+      
+        <td> joe </td>
+      
+        <td> 1000 </td>
+      
+        <td> 500 </td>
+      
+        <td> 555-1111 </td>
+      
+    </tr>
+  
+    
+    <tr>
+      
+        <td> jim </td>
+      
+        <td> 2000 </td>
+      
+        <td> 400 </td>
+      
+        <td> 555-2222 </td>
+      
+    </tr>
+  
+    
+    <tr>
+      
+        <td> john </td>
+      
+        <td> 3000 </td>
+      
+        <td> 300 </td>
+      
+        <td> 555-3333 </td>
+      
+    </tr>
+  
+    
+    <tr>
+      
+        <td> jack </td>
+      
+        <td> 4000 </td>
+      
+        <td> 200 </td>
+      
+        <td> 555-4444 </td>
+      
+    </tr>
+  
+    
+    <tr>
+      
+        <td> jerry </td>
+      
+        <td> 5000 </td>
+      
+        <td> 100 </td>
+      
+        <td> 555-5555 </td>
+      
+    </tr>
+  
+</tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">true</font><font color="red"></font>}</b><br>      <b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b> <br>        &lt;tr&gt;<br>          <b>{<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>-3</font><font color="red"></font>}</b><br>            &lt;th&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/th&gt;<br>          <b>{/<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>-3</font><font color="red"></font>}</b><br>        &lt;/tr&gt;<br>      <b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        <b>{<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b><br>          &lt;td&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b> &lt;/td&gt;<br>        <b>{/<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b><br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+  
+    
+       
+        <tbody><tr>
+          
+        </tr>
+      
+      <tr>
+        
+      </tr>
+    
+  
+    
+       
+        <tr>
+          
+        </tr>
+      
+      <tr>
+        
+      </tr>
+    
+  
+    
+       
+        <tr>
+          
+        </tr>
+      
+      <tr>
+        
+      </tr>
+    
+  
+    
+       
+        <tr>
+          
+        </tr>
+      
+      <tr>
+        
+      </tr>
+    
+  
+    
+       
+        <tr>
+          
+        </tr>
+      
+      <tr>
+        
+      </tr>
+    
+  
+</tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;table border=1&gt;<br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    <b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>3</font><font color="red"></font>}</b> <br>      &lt;tr&gt;<br>        <b>{<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>3</font><font color="red"></font>}</b><br>          &lt;th&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b> &lt;/th&gt;<br>        <b>{/<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>3</font><font color="red"></font>}</b><br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>3</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      <b>{<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>3</font><font color="red"></font>}</b><br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b> &lt;/td&gt;<br>      <b>{/<font color="blue">fields<font color="black"><b><font color="red">@</font></b></font>3</font><font color="red"></font>}</b><br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;p&gt;Level 3 because this part is wrapped in the <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>table<font color="black">'</font></font>}</b> and <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>demo<font color="black">'</font></font>}</b> tags</code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+  
+     
+      <tbody><tr>
+        
+          <th> name </th>
+        
+          <th> salary </th>
+        
+          <th> bonus </th>
+        
+          <th> phone </th>
+        
+      </tr>
+    
+    <tr>
+      
+        <td> joe </td>
+      
+        <td> 1000 </td>
+      
+        <td> 500 </td>
+      
+        <td> 555-1111 </td>
+      
+    </tr>
+  
+    
+    <tr>
+      
+        <td> jim </td>
+      
+        <td> 2000 </td>
+      
+        <td> 400 </td>
+      
+        <td> 555-2222 </td>
+      
+    </tr>
+  
+    
+    <tr>
+      
+        <td> john </td>
+      
+        <td> 3000 </td>
+      
+        <td> 300 </td>
+      
+        <td> 555-3333 </td>
+      
+    </tr>
+  
+    
+    <tr>
+      
+        <td> jack </td>
+      
+        <td> 4000 </td>
+      
+        <td> 200 </td>
+      
+        <td> 555-4444 </td>
+      
+    </tr>
+  
+    
+    <tr>
+      
+        <td> jerry </td>
+      
+        <td> 5000 </td>
+      
+        <td> 100 </td>
+      
+        <td> 555-5555 </td>
+      
+    </tr>
+  
+</tbody></table>
+
+</span></code><p><code>Level 3 because this part is wrapped in the <b>{table}</b> and <b>{demo}</b> tags<!-- END DEMO RESULT --></code></p></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxvwfxQr9j = new XMLHttpRequest();
+                  padAjaxvwfxQr9j.onreadystatechange=function() {
+                  if (padAjaxvwfxQr9j.readyState === 4) {
+                  if (padAjaxvwfxQr9j.status === 200) {
+                  document.getElementById("padAjaxvwfxQr9j").innerHTML=padAjaxvwfxQr9j.responseText;
+                  } else {
+                  document.getElementById("padAjaxvwfxQr9j").innerHTML=padAjaxvwfxQr9j.statusText;
+                  }
+                  }
+                  }
+                  padAjaxvwfxQr9j.open("GET","http://localhost/check/?vars/at/6&padInclude&padSesID=DiM2hOlW&padReqID=T227k48Z",true);
+                  padAjaxvwfxQr9j.send();
+                  </script><br>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

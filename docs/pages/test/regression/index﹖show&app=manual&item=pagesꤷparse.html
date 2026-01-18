@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - pages/parse
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Pages/parse
+          </h1>
+          <table border="1" cellpadding="10" cellspacing="0">
+            <tbody><tr>
+              <th bgcolor="#DDDDDD">
+                PHP<br>
+                <font size="-2"></font>
+              </th>
+              <th bgcolor="#DDDDDD">
+                HTML<br>
+                <font size="-2">pages/parse.pad</font>
+              </th>
+              <th bgcolor="#DDDDDD">
+                Result
+              </th>
+            </tr>
+            <tr>
+              <td style="vertical-align:top"></td>
+              <td style="vertical-align:top">
+                <pre><code style="color: #000000"><b>{<font color="blue">block</font><font color="red"></font>}</b><br><br>&lt;p&gt;<br>PAD parses on the fly (on demand) it searches for the first &lt;b&gt;}&lt;/b&gt;, then it takes the first &lt;b&gt;{&lt;/b&gt; before it, and analyses it to see if it is a PAD tag or a PAD variable.<br>&lt;/p&gt;<br><br>&lt;p&gt;<br>In below example, the <b>{<font color="blue">source</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>myVar</font>}</b><b>{/<font color="blue">source</font><font color="red"></font>}</b> part is parsed first and executed.<br>&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>miscellaneous/parse/1<font color="black">'</font><font color="black">,</font> skipResult<font color="black">,</font> skipPhp<font color="black">,</font> skipHeader</font>}</b><br><br>&lt;p&gt;<br>Lets assume <b>{<font color="blue">source</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>myVar</font>}</b><b>{/<font color="blue">source</font><font color="red"></font>}</b> has the value ABC, then the result will be below, and now the <b>{<font color="blue">tag </font><font color="red"><font color="black">'</font>pad<font color="black">'</font></font>}</b> tag will be processed.<br>&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>miscellaneous/parse/2<font color="black">'</font><font color="black">,</font> skipResult<font color="black">,</font> skipPhp<font color="black">,</font> skipHeader</font>}</b><br><br>&lt;p&gt;<br>If you do not put quotes around <b>{<font color="blue">source</font><font color="red"></font>}</b><b>{<font color="green"><font color="red">$</font>myVar</font>}</b><b>{/<font color="blue">source</font><font color="red"></font>}</b> then below will be executed, and PAD will give the error that the constant ABC does not exists<br>&lt;/p&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>miscellaneous/parse/3<font color="black">'</font><font color="black">,</font> skipResult<font color="black">,</font> skipPhp<font color="black">,</font> skipHeader</font>}</b><br><br><br><b>{/<font color="blue">block</font><font color="red"></font>}</b></code></pre>
+              </td>
+              <td style="vertical-align:top">
+                <div id="padAjaxXPDd7I9E"><table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td>
+
+<p>
+PAD parses on the fly (on demand) it searches for the first <b>}</b>, then it takes the first <b>{</b> before it, and analyses it to see if it is a PAD tag or a PAD variable.
+</p>
+
+<p>
+In below example, the <code style="color: #000000"><b>{<font color="green"><font color="red">$</font>myVar</font>}</b></code> part is parsed first and executed.
+</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+
+      <tbody><tr>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">myOption=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>myVar</font><font color="black">}</font></b><font color="black">'</font><font color="black">,</font> <font color="red">$</font>xyz=789</font>}</b><br>   ....<br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+
+
+<p>
+Lets assume <code style="color: #000000"><b>{<font color="green"><font color="red">$</font>myVar</font>}</b></code> has the value ABC, then the result will be below, and now the <b>{pad}</b> tag will be processed.
+</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+
+      <tbody><tr>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">myOption=<font color="black">'</font>ABC<font color="black">'</font><font color="black">,</font> <font color="red">$</font>xyz=789</font>}</b><br>   ....<br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+
+
+<p>
+If you do not put quotes around <code style="color: #000000"><b>{<font color="green"><font color="red">$</font>myVar</font>}</b></code> then below will be executed, and PAD will give the error that the constant ABC does not exists
+</p>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+
+      <tbody><tr>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">myOption=ABC<font color="black">,</font> <font color="red">$</font>xyz=789</font>}</b><br>   ....<br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+
+
+
+</td>
+  </tr>
+</tbody></table></div>
+                <script>
+                padAjaxXPDd7I9E = new XMLHttpRequest();
+                padAjaxXPDd7I9E.onreadystatechange=function() {
+                if (padAjaxXPDd7I9E.readyState === 4) {
+                if (padAjaxXPDd7I9E.status === 200) {
+                document.getElementById("padAjaxXPDd7I9E").innerHTML=padAjaxXPDd7I9E.responseText;
+                } else {
+                document.getElementById("padAjaxXPDd7I9E").innerHTML=padAjaxXPDd7I9E.statusText;
+                }
+                }
+                }
+                padAjaxXPDd7I9E.open("GET","http://localhost/manual/?pages/parse&padInclude&padSesID=DiM2hOlW&padReqID=6hN2yMDk",true);
+                padAjaxXPDd7I9E.send();
+                </script>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

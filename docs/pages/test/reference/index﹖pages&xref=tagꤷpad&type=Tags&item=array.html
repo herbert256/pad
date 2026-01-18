@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Reference - Tags - array
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tags - array
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: check - Page: db/array2<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">db/array2.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;h3&gt;array, found&lt;/h3&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">array </font><font color="red">"name<font color="black">,</font> phone from staff where phone like <font color="black">'</font><font color="black">%</font>4<font color="black">%</font><font color="black">'</font>"</font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>   <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>    &lt;tr&gt;<br>      &lt;td&gt;Nothing&lt;/td&gt;<br>      &lt;td&gt;Found&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">array</font><font color="red"></font>}</b><br>&lt;/table&gt;<br><br>&lt;h3&gt;array, no records found&lt;/h3&gt;<br><br>&lt;table border=1&gt;<br>  <b>{<font color="blue">array </font><font color="red">"* from staff where name like <font color="black">'</font><font color="black">%</font>x<font color="black">%</font><font color="black">'</font>"</font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>    &lt;tr&gt;<br>      &lt;td&gt;Nothing&lt;/td&gt;<br>      &lt;td&gt;Found&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">array</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxqfg9SmGe"><h3>array, found</h3>
+
+<table border="1">
+  
+    <tbody><tr>
+      <td>bob</td>
+      <td>555-3425</td>
+    </tr>
+   
+    <tr>
+      <td>jim</td>
+      <td>555-4364</td>
+    </tr>
+   
+    <tr>
+      <td>joe</td>
+      <td>555-3422</td>
+    </tr>
+   
+    <tr>
+      <td>jerry</td>
+      <td>555-4973</td>
+    </tr>
+   
+</tbody></table>
+
+<h3>array, no records found</h3>
+
+<table border="1">
+  
+    <tbody><tr>
+      <td>Nothing</td>
+      <td>Found</td>
+    </tr>
+  
+</tbody></table></div>
+                        <script>
+                        padAjaxqfg9SmGe = new XMLHttpRequest();
+                        padAjaxqfg9SmGe.onreadystatechange=function() {
+                        if (padAjaxqfg9SmGe.readyState === 4) {
+                        if (padAjaxqfg9SmGe.status === 200) {
+                        document.getElementById("padAjaxqfg9SmGe").innerHTML=padAjaxqfg9SmGe.responseText;
+                        } else {
+                        document.getElementById("padAjaxqfg9SmGe").innerHTML=padAjaxqfg9SmGe.statusText;
+                        }
+                        }
+                        }
+                        padAjaxqfg9SmGe.open("GET","http://localhost/check/?db/array2&padInclude&padSesID=DiM2hOlW&padReqID=Jx14NpnV",true);
+                        padAjaxqfg9SmGe.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

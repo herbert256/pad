@@ -1,0 +1,450 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Reference - PAD functions - optional
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - PAD functions - optional
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: check - Page: select/models/employees_1<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">select/models/employees_1.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;table border=1&gt;<br>  &lt;tr&gt; <br>    &lt;td&gt; employee &lt;/td&gt;<br>    &lt;td&gt; manager &lt;/td&gt;<br>    &lt;td&gt; boss &lt;/td&gt;<br>  &lt;/tr&gt;<br>  <b>{<font color="blue">employees</font><font color="red"></font>}</b> <br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="purple"><font color="red">$</font>employees<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>lastName</font>}</b>, <br>           <b>{<font color="purple"><font color="red">$</font>employees<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>firstName</font>}</b>  <br>           (<b>{<font color="purple"><font color="red">$</font>employees<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>employeeNumber</font>}</b>) <br>      &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="purple">$managers</font><font color="black">:</font><font color="green">lastName</font> <font color="black">|</font> <font color="blue">optional</font>}</b>,  <br>           <b>{<font color="purple">$managers</font><font color="black">:</font><font color="green">firstName</font> <font color="black">|</font> <font color="blue">optional</font>}</b>   <br>           (<b>{<font color="purple">$managers</font><font color="black">:</font><font color="green">employeeNumber</font> <font color="black">|</font> <font color="blue">optional</font>}</b>)  <br>      &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="purple">$bosses</font><font color="black">:</font><font color="green">lastName</font> <font color="black">|</font> <font color="blue">optional</font>}</b>,    <br>           <b>{<font color="purple">$bosses</font><font color="black">:</font><font color="green">firstName</font> <font color="black">|</font> <font color="blue">optional</font>}</b>     <br>           (<b>{<font color="purple">$bosses</font><font color="black">:</font><font color="green">employeeNumber</font> <font color="black">|</font> <font color="blue">optional</font>}</b>)   <br>     &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">employees</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax0goYupbS"><table border="1">
+  <tbody><tr> 
+    <td> employee </td>
+    <td> manager </td>
+    <td> boss </td>
+  </tr>
+   
+    <tr>
+      <td> Bondur, 
+           Gerard  
+           (1102) 
+      </td>
+      <td> Bondur,  
+           Gerard   
+           (1102)  
+      </td>
+      <td> Bondur,    
+           Gerard     
+           (1102)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> Bondur, 
+           Loui  
+           (1337) 
+      </td>
+      <td> Bondur,  
+           Loui   
+           (1337)  
+      </td>
+      <td> Bondur,    
+           Loui     
+           (1337)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> Bott, 
+           Larry  
+           (1501) 
+      </td>
+      <td> Bott,  
+           Larry   
+           (1501)  
+      </td>
+      <td> Bott,    
+           Larry     
+           (1501)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> Bow, 
+           Anthony  
+           (1143) 
+      </td>
+      <td> Bow,  
+           Anthony   
+           (1143)  
+      </td>
+      <td> Bow,    
+           Anthony     
+           (1143)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> Castillo, 
+           Pamela  
+           (1401) 
+      </td>
+      <td> Castillo,  
+           Pamela   
+           (1401)  
+      </td>
+      <td> Castillo,    
+           Pamela     
+           (1401)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> Firrelli, 
+           Jeff  
+           (1076) 
+      </td>
+      <td> Firrelli,  
+           Jeff   
+           (1076)  
+      </td>
+      <td> Firrelli,    
+           Jeff     
+           (1076)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> Firrelli, 
+           Julie  
+           (1188) 
+      </td>
+      <td> Firrelli,  
+           Julie   
+           (1188)  
+      </td>
+      <td> Firrelli,    
+           Julie     
+           (1188)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> Fixter, 
+           Andy  
+           (1611) 
+      </td>
+      <td> Fixter,  
+           Andy   
+           (1611)  
+      </td>
+      <td> Fixter,    
+           Andy     
+           (1611)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> Gerard, 
+           Martin  
+           (1702) 
+      </td>
+      <td> Gerard,  
+           Martin   
+           (1702)  
+      </td>
+      <td> Gerard,    
+           Martin     
+           (1702)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> Hernandez, 
+           Gerard  
+           (1370) 
+      </td>
+      <td> Hernandez,  
+           Gerard   
+           (1370)  
+      </td>
+      <td> Hernandez,    
+           Gerard     
+           (1370)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> Jennings, 
+           Leslie  
+           (1165) 
+      </td>
+      <td> Jennings,  
+           Leslie   
+           (1165)  
+      </td>
+      <td> Jennings,    
+           Leslie     
+           (1165)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> Jones, 
+           Barry  
+           (1504) 
+      </td>
+      <td> Jones,  
+           Barry   
+           (1504)  
+      </td>
+      <td> Jones,    
+           Barry     
+           (1504)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> Kato, 
+           Yoshimi  
+           (1625) 
+      </td>
+      <td> Kato,  
+           Yoshimi   
+           (1625)  
+      </td>
+      <td> Kato,    
+           Yoshimi     
+           (1625)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> King, 
+           Tom  
+           (1619) 
+      </td>
+      <td> King,  
+           Tom   
+           (1619)  
+      </td>
+      <td> King,    
+           Tom     
+           (1619)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> Marsh, 
+           Peter  
+           (1612) 
+      </td>
+      <td> Marsh,  
+           Peter   
+           (1612)  
+      </td>
+      <td> Marsh,    
+           Peter     
+           (1612)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> Murphy, 
+           Diane  
+           (1002) 
+      </td>
+      <td> Murphy,  
+           Diane   
+           (1002)  
+      </td>
+      <td> Murphy,    
+           Diane     
+           (1002)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> Nishi, 
+           Mami  
+           (1621) 
+      </td>
+      <td> Nishi,  
+           Mami   
+           (1621)  
+      </td>
+      <td> Nishi,    
+           Mami     
+           (1621)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> Patterson, 
+           Mary  
+           (1056) 
+      </td>
+      <td> Patterson,  
+           Mary   
+           (1056)  
+      </td>
+      <td> Patterson,    
+           Mary     
+           (1056)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> Patterson, 
+           Steve  
+           (1216) 
+      </td>
+      <td> Patterson,  
+           Steve   
+           (1216)  
+      </td>
+      <td> Patterson,    
+           Steve     
+           (1216)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> Patterson, 
+           William  
+           (1088) 
+      </td>
+      <td> Patterson,  
+           William   
+           (1088)  
+      </td>
+      <td> Patterson,    
+           William     
+           (1088)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> Thompson, 
+           Leslie  
+           (1166) 
+      </td>
+      <td> Thompson,  
+           Leslie   
+           (1166)  
+      </td>
+      <td> Thompson,    
+           Leslie     
+           (1166)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> Tseng, 
+           Foon Yue  
+           (1286) 
+      </td>
+      <td> Tseng,  
+           Foon Yue   
+           (1286)  
+      </td>
+      <td> Tseng,    
+           Foon Yue     
+           (1286)   
+     </td>
+    </tr>
+   
+    <tr>
+      <td> Vanauf, 
+           George  
+           (1323) 
+      </td>
+      <td> Vanauf,  
+           George   
+           (1323)  
+      </td>
+      <td> Vanauf,    
+           George     
+           (1323)   
+     </td>
+    </tr>
+  
+</tbody></table></div>
+                        <script>
+                        padAjax0goYupbS = new XMLHttpRequest();
+                        padAjax0goYupbS.onreadystatechange=function() {
+                        if (padAjax0goYupbS.readyState === 4) {
+                        if (padAjax0goYupbS.status === 200) {
+                        document.getElementById("padAjax0goYupbS").innerHTML=padAjax0goYupbS.responseText;
+                        } else {
+                        document.getElementById("padAjax0goYupbS").innerHTML=padAjax0goYupbS.statusText;
+                        }
+                        }
+                        }
+                        padAjax0goYupbS.open("GET","http://localhost/check/?select/models/employees_1&padInclude&padSesID=DiM2hOlW&padReqID=2geaXWBW",true);
+                        padAjax0goYupbS.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

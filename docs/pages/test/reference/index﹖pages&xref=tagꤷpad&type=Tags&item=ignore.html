@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Reference - Tags - ignore
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tags - ignore
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: check - Page: fragments/ignore_1<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/ignore_1.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">ignore</font><font color="red"></font>}</b><br>  &lt;script&gt;<br>    const user = {<br>      name: 'Alice',<br>      role: 'Developer',<br>      active: true<br>    };<br><br>    if (user.active) {<br>      console.log('User: ' + user.name + ' (' + user.role + ')');<br>    }<br>  &lt;/script&gt;<br><b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br><br>&lt;p&gt;JavaScript executed. Check browser console for output.&lt;/p&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxGacNZsYX">
+  <script>
+    const user = {
+      name: 'Alice',
+      role: 'Developer',
+      active: true
+    };
+
+    if (user.active) {
+      console.log('User: ' + user.name + ' (' + user.role + ')');
+    }
+  </script>
+
+
+<p>JavaScript executed. Check browser console for output.</p></div>
+                        <script>
+                        padAjaxGacNZsYX = new XMLHttpRequest();
+                        padAjaxGacNZsYX.onreadystatechange=function() {
+                        if (padAjaxGacNZsYX.readyState === 4) {
+                        if (padAjaxGacNZsYX.status === 200) {
+                        document.getElementById("padAjaxGacNZsYX").innerHTML=padAjaxGacNZsYX.responseText;
+                        } else {
+                        document.getElementById("padAjaxGacNZsYX").innerHTML=padAjaxGacNZsYX.statusText;
+                        }
+                        }
+                        }
+                        padAjaxGacNZsYX.open("GET","http://localhost/check/?fragments/ignore_1&padInclude&padSesID=DiM2hOlW&padReqID=8jF76vyD",true);
+                        padAjaxGacNZsYX.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: fragments/ignore_2<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/ignore_2.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">ignore</font><font color="red"></font>}</b>&lt;style&gt;<br>  .example-box {<br>    border: 2px solid #4CAF50;<br>    padding: 20px;<br>    margin: 10px 0;<br>    border-radius: 8px;<br>    background: #f0f8ff;<br>  }<br><br>  .example-box h4 {<br>    margin: 0 0 10px 0;<br>    color: #4CAF50;<br>  }<br>&lt;/style&gt;<b>{/<font color="blue">ignore</font><font color="red"></font>}</b><br><br>&lt;div class="example-box"&gt;<br>  &lt;h4&gt;Styled Box&lt;/h4&gt;<br>  &lt;p&gt;This box uses the CSS defined above.&lt;/p&gt;<br>&lt;/div&gt;</code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxXXVbjq3I"><style>.example-box {
+    border: 2px solid #4CAF50;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 8px;
+    background: #f0f8ff;
+  }
+
+  .example-box h4 {
+    margin: 0 0 10px 0;
+    color: #4CAF50;
+  }
+</style>
+
+<div class="example-box">
+  <h4>Styled Box</h4>
+  <p>This box uses the CSS defined above.</p>
+</div></div>
+                        <script>
+                        padAjaxXXVbjq3I = new XMLHttpRequest();
+                        padAjaxXXVbjq3I.onreadystatechange=function() {
+                        if (padAjaxXXVbjq3I.readyState === 4) {
+                        if (padAjaxXXVbjq3I.status === 200) {
+                        document.getElementById("padAjaxXXVbjq3I").innerHTML=padAjaxXXVbjq3I.responseText;
+                        } else {
+                        document.getElementById("padAjaxXXVbjq3I").innerHTML=padAjaxXXVbjq3I.statusText;
+                        }
+                        }
+                        }
+                        padAjaxXXVbjq3I.open("GET","http://localhost/check/?fragments/ignore_2&padInclude&padSesID=DiM2hOlW&padReqID=8jF76vyD",true);
+                        padAjaxXXVbjq3I.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: fragments/ignore_4<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">fragments/ignore_4.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">fragments/ignore_4.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Sample data for JSON example<br>  </span><span style="color: #0000BB">$userData </span><span style="color: #007700">= [<br>    [</span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Alice'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Developer'</span><span style="color: #007700">],<br>    [</span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Designer'</span><span style="color: #007700">],<br>    [</span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Charlie'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Manager'</span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #FF8000">// Encode to JSON with HTML escaping<br>  </span><span style="color: #0000BB">$usersJson </span><span style="color: #007700">= </span><span style="color: #0000BB">htmlspecialchars</span><span style="color: #007700">(</span><span style="color: #0000BB">json_encode</span><span style="color: #007700">(</span><span style="color: #0000BB">$userData</span><span style="color: #007700">), </span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">, </span><span style="color: #DD0000">'UTF-8'</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;div id="ignore-example-4" data-users="<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>usersJson <font color="black">|</font> ignore</font>}</b>"&gt;&lt;/div&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b>&lt;script&gt;<br>  const element = document.getElementById('ignore-example-4');<br>  const users = JSON.parse(element.dataset.users);<br><br>  const html = '&lt;ul&gt;' + users.map(user =&gt;<br>    '&lt;li&gt;&lt;strong&gt;' + user.name + '&lt;/strong&gt; - ' + user.role + '&lt;/li&gt;'<br>  ).join('') + '&lt;/ul&gt;';<br><br>  element.innerHTML = html;<br>&lt;/script&gt;<b>{/<font color="blue">ignore</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxyEWQeiaG"><div id="ignore-example-4" data-users="[{&quot;id&quot;:1,&quot;name&quot;:&quot;Alice&quot;,&quot;role&quot;:&quot;Developer&quot;},{&quot;id&quot;:2,&quot;name&quot;:&quot;Bob&quot;,&quot;role&quot;:&quot;Designer&quot;},{&quot;id&quot;:3,&quot;name&quot;:&quot;Charlie&quot;,&quot;role&quot;:&quot;Manager&quot;}]"></div>
+
+<script>
+  const element = document.getElementById('ignore-example-4');
+  const users = JSON.parse(element.dataset.users);
+
+  const html = '<ul>' + users.map(user =>
+    '<li><strong>' + user.name + '</strong> - ' + user.role + '</li>'
+  ).join('') + '</ul>';
+
+  element.innerHTML = html;
+</script></div>
+                        <script>
+                        padAjaxyEWQeiaG = new XMLHttpRequest();
+                        padAjaxyEWQeiaG.onreadystatechange=function() {
+                        if (padAjaxyEWQeiaG.readyState === 4) {
+                        if (padAjaxyEWQeiaG.status === 200) {
+                        document.getElementById("padAjaxyEWQeiaG").innerHTML=padAjaxyEWQeiaG.responseText;
+                        } else {
+                        document.getElementById("padAjaxyEWQeiaG").innerHTML=padAjaxyEWQeiaG.statusText;
+                        }
+                        }
+                        }
+                        padAjaxyEWQeiaG.open("GET","http://localhost/check/?fragments/ignore_4&padInclude&padSesID=DiM2hOlW&padReqID=8jF76vyD",true);
+                        padAjaxyEWQeiaG.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

@@ -1,0 +1,356 @@
+<html lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+    <title>PAD - Counter Demo - PAD + React</title>
+  
+  <script>"use strict";
+
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function CounterApp() {
+  // Get initial value from server
+  var initialCount = parseInt(document.getElementById('counter-app').dataset.initialCount);
+  var _React$useState = React.useState(initialCount),
+    _React$useState2 = _slicedToArray(_React$useState, 2),
+    count = _React$useState2[0],
+    setCount = _React$useState2[1];
+  var _React$useState3 = React.useState(1),
+    _React$useState4 = _slicedToArray(_React$useState3, 2),
+    step = _React$useState4[0],
+    setStep = _React$useState4[1];
+  var _React$useState5 = React.useState([initialCount]),
+    _React$useState6 = _slicedToArray(_React$useState5, 2),
+    history = _React$useState6[0],
+    setHistory = _React$useState6[1];
+  var increment = function increment() {
+    var newCount = count + step;
+    setCount(newCount);
+    setHistory([].concat(_toConsumableArray(history), [newCount]));
+  };
+  var decrement = function decrement() {
+    var newCount = count - step;
+    setCount(newCount);
+    setHistory([].concat(_toConsumableArray(history), [newCount]));
+  };
+  var reset = function reset() {
+    setCount(0);
+    setHistory([0]);
+  };
+  var undo = function undo() {
+    if (history.length > 1) {
+      var newHistory = history.slice(0, -1);
+      setHistory(newHistory);
+      setCount(newHistory[newHistory.length - 1]);
+    }
+  };
+  return /*#__PURE__*/React.createElement("div", {
+    className: "react-component"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "react-component-label"
+  }, "\u269B\uFE0F REACT COUNTER APP"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      marginTop: '20px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: '72px',
+      fontWeight: 'bold',
+      color: '#282c34',
+      marginBottom: '30px'
+    }
+  }, count), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: '20px'
+    }
+  }, /*#__PURE__*/React.createElement("label", {
+    style: {
+      marginRight: '10px'
+    }
+  }, "Step size:", /*#__PURE__*/React.createElement("input", {
+    type: "number",
+    value: step,
+    onChange: function onChange(e) {
+      return setStep(parseInt(e.target.value) || 1);
+    },
+    style: {
+      marginLeft: '10px',
+      padding: '5px 10px',
+      fontSize: '16px',
+      width: '80px',
+      borderRadius: '5px',
+      border: '1px solid #ccc'
+    }
+  }))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: '20px'
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: increment
+  }, "+ ", step), /*#__PURE__*/React.createElement("button", {
+    onClick: decrement,
+    style: {
+      marginLeft: '10px',
+      background: '#ff6b6b'
+    }
+  }, "- ", step), /*#__PURE__*/React.createElement("button", {
+    onClick: reset,
+    style: {
+      marginLeft: '10px',
+      background: '#ffa500'
+    }
+  }, "Reset"), /*#__PURE__*/React.createElement("button", {
+    onClick: undo,
+    disabled: history.length <= 1,
+    style: {
+      marginLeft: '10px',
+      background: history.length <= 1 ? '#ccc' : '#9b59b6',
+      cursor: history.length <= 1 ? 'not-allowed' : 'pointer'
+    }
+  }, "Undo")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: '30px',
+      padding: '15px',
+      background: '#f0f0f0',
+      borderRadius: '5px',
+      textAlign: 'left'
+    }
+  }, /*#__PURE__*/React.createElement("strong", null, "Statistics:"), /*#__PURE__*/React.createElement("ul", {
+    style: {
+      marginTop: '10px',
+      listStyle: 'none'
+    }
+  }, /*#__PURE__*/React.createElement("li", null, "Initial value from server: ", initialCount), /*#__PURE__*/React.createElement("li", null, "Current value: ", count), /*#__PURE__*/React.createElement("li", null, "Total operations: ", history.length - 1), /*#__PURE__*/React.createElement("li", null, "History length: ", history.length))), history.length > 1 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: '20px',
+      padding: '15px',
+      background: '#e3f2fd',
+      borderRadius: '5px',
+      textAlign: 'left'
+    }
+  }, /*#__PURE__*/React.createElement("strong", null, "History:"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: '10px',
+      maxHeight: '100px',
+      overflow: 'auto'
+    }
+  }, history.map(function (value, index) {
+    return /*#__PURE__*/React.createElement("span", {
+      key: index,
+      style: {
+        display: 'inline-block',
+        padding: '5px 10px',
+        margin: '2px',
+        background: index === history.length - 1 ? '#61dafb' : '#fff',
+        borderRadius: '3px',
+        fontSize: '14px'
+      }
+    }, value);
+  })))));
+}
+var counterRoot = ReactDOM.createRoot(document.getElementById('counter-app'));
+counterRoot.render(/*#__PURE__*/React.createElement(CounterApp, null));
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJDb3VudGVyQXBwIiwiaW5pdGlhbENvdW50IiwicGFyc2VJbnQiLCJkb2N1bWVudCIsImdldEVsZW1lbnRCeUlkIiwiZGF0YXNldCIsIl9SZWFjdCR1c2VTdGF0ZSIsIlJlYWN0IiwidXNlU3RhdGUiLCJfUmVhY3QkdXNlU3RhdGUyIiwiX3NsaWNlZFRvQXJyYXkiLCJjb3VudCIsInNldENvdW50IiwiX1JlYWN0JHVzZVN0YXRlMyIsIl9SZWFjdCR1c2VTdGF0ZTQiLCJzdGVwIiwic2V0U3RlcCIsIl9SZWFjdCR1c2VTdGF0ZTUiLCJfUmVhY3QkdXNlU3RhdGU2IiwiaGlzdG9yeSIsInNldEhpc3RvcnkiLCJpbmNyZW1lbnQiLCJuZXdDb3VudCIsImNvbmNhdCIsIl90b0NvbnN1bWFibGVBcnJheSIsImRlY3JlbWVudCIsInJlc2V0IiwidW5kbyIsImxlbmd0aCIsIm5ld0hpc3RvcnkiLCJzbGljZSIsImNyZWF0ZUVsZW1lbnQiLCJjbGFzc05hbWUiLCJzdHlsZSIsInRleHRBbGlnbiIsIm1hcmdpblRvcCIsImZvbnRTaXplIiwiZm9udFdlaWdodCIsImNvbG9yIiwibWFyZ2luQm90dG9tIiwibWFyZ2luUmlnaHQiLCJ0eXBlIiwidmFsdWUiLCJvbkNoYW5nZSIsImUiLCJ0YXJnZXQiLCJtYXJnaW5MZWZ0IiwicGFkZGluZyIsIndpZHRoIiwiYm9yZGVyUmFkaXVzIiwiYm9yZGVyIiwib25DbGljayIsImJhY2tncm91bmQiLCJkaXNhYmxlZCIsImN1cnNvciIsImxpc3RTdHlsZSIsIm1heEhlaWdodCIsIm92ZXJmbG93IiwibWFwIiwiaW5kZXgiLCJrZXkiLCJkaXNwbGF5IiwibWFyZ2luIiwiY291bnRlclJvb3QiLCJSZWFjdERPTSIsImNyZWF0ZVJvb3QiLCJyZW5kZXIiXSwic291cmNlcyI6WyJodHRwOi8vbG9jYWxob3N0L3JlYWN0L2NvdW50ZXIvYXBwLmpzIl0sInNvdXJjZXNDb250ZW50IjpbImZ1bmN0aW9uIENvdW50ZXJBcHAoKSB7XG4gIC8vIEdldCBpbml0aWFsIHZhbHVlIGZyb20gc2VydmVyXG4gIGNvbnN0IGluaXRpYWxDb3VudCA9IHBhcnNlSW50KGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdjb3VudGVyLWFwcCcpLmRhdGFzZXQuaW5pdGlhbENvdW50KTtcblxuICBjb25zdCBbY291bnQsIHNldENvdW50XSA9IFJlYWN0LnVzZVN0YXRlKGluaXRpYWxDb3VudCk7XG4gIGNvbnN0IFtzdGVwLCBzZXRTdGVwXSA9IFJlYWN0LnVzZVN0YXRlKDEpO1xuICBjb25zdCBbaGlzdG9yeSwgc2V0SGlzdG9yeV0gPSBSZWFjdC51c2VTdGF0ZShbaW5pdGlhbENvdW50XSk7XG5cbiAgY29uc3QgaW5jcmVtZW50ID0gKCkgPT4ge1xuICAgIGNvbnN0IG5ld0NvdW50ID0gY291bnQgKyBzdGVwO1xuICAgIHNldENvdW50KG5ld0NvdW50KTtcbiAgICBzZXRIaXN0b3J5KFsuLi5oaXN0b3J5LCBuZXdDb3VudF0pO1xuICB9O1xuXG4gIGNvbnN0IGRlY3JlbWVudCA9ICgpID0+IHtcbiAgICBjb25zdCBuZXdDb3VudCA9IGNvdW50IC0gc3RlcDtcbiAgICBzZXRDb3VudChuZXdDb3VudCk7XG4gICAgc2V0SGlzdG9yeShbLi4uaGlzdG9yeSwgbmV3Q291bnRdKTtcbiAgfTtcblxuICBjb25zdCByZXNldCA9ICgpID0+IHtcbiAgICBzZXRDb3VudCgwKTtcbiAgICBzZXRIaXN0b3J5KFswXSk7XG4gIH07XG5cbiAgY29uc3QgdW5kbyA9ICgpID0+IHtcbiAgICBpZiAoaGlzdG9yeS5sZW5ndGggPiAxKSB7XG4gICAgICBjb25zdCBuZXdIaXN0b3J5ID0gaGlzdG9yeS5zbGljZSgwLCAtMSk7XG4gICAgICBzZXRIaXN0b3J5KG5ld0hpc3RvcnkpO1xuICAgICAgc2V0Q291bnQobmV3SGlzdG9yeVtuZXdIaXN0b3J5Lmxlbmd0aCAtIDFdKTtcbiAgICB9XG4gIH07XG5cbiAgcmV0dXJuIChcbiAgICA8ZGl2IGNsYXNzTmFtZT1cInJlYWN0LWNvbXBvbmVudFwiPlxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJyZWFjdC1jb21wb25lbnQtbGFiZWxcIj7impvvuI8gUkVBQ1QgQ09VTlRFUiBBUFA8L2Rpdj5cblxuICAgICAgPGRpdiBzdHlsZT17e3RleHRBbGlnbjogJ2NlbnRlcicsIG1hcmdpblRvcDogJzIwcHgnfX0+XG4gICAgICAgIDxkaXYgc3R5bGU9e3tmb250U2l6ZTogJzcycHgnLCBmb250V2VpZ2h0OiAnYm9sZCcsIGNvbG9yOiAnIzI4MmMzNCcsIG1hcmdpbkJvdHRvbTogJzMwcHgnfX0+XG4gICAgICAgICAge2NvdW50fVxuICAgICAgICA8L2Rpdj5cblxuICAgICAgICA8ZGl2IHN0eWxlPXt7bWFyZ2luQm90dG9tOiAnMjBweCd9fT5cbiAgICAgICAgICA8bGFiZWwgc3R5bGU9e3ttYXJnaW5SaWdodDogJzEwcHgnfX0+XG4gICAgICAgICAgICBTdGVwIHNpemU6XG4gICAgICAgICAgICA8aW5wdXRcbiAgICAgICAgICAgICAgdHlwZT1cIm51bWJlclwiXG4gICAgICAgICAgICAgIHZhbHVlPXtzdGVwfVxuICAgICAgICAgICAgICBvbkNoYW5nZT17KGUpID0+IHNldFN0ZXAocGFyc2VJbnQoZS50YXJnZXQudmFsdWUpIHx8IDEpfVxuICAgICAgICAgICAgICBzdHlsZT17e1xuICAgICAgICAgICAgICAgIG1hcmdpbkxlZnQ6ICcxMHB4JyxcbiAgICAgICAgICAgICAgICBwYWRkaW5nOiAnNXB4IDEwcHgnLFxuICAgICAgICAgICAgICAgIGZvbnRTaXplOiAnMTZweCcsXG4gICAgICAgICAgICAgICAgd2lkdGg6ICc4MHB4JyxcbiAgICAgICAgICAgICAgICBib3JkZXJSYWRpdXM6ICc1cHgnLFxuICAgICAgICAgICAgICAgIGJvcmRlcjogJzFweCBzb2xpZCAjY2NjJ1xuICAgICAgICAgICAgICB9fVxuICAgICAgICAgICAgLz5cbiAgICAgICAgICA8L2xhYmVsPlxuICAgICAgICA8L2Rpdj5cblxuICAgICAgICA8ZGl2IHN0eWxlPXt7bWFyZ2luQm90dG9tOiAnMjBweCd9fT5cbiAgICAgICAgICA8YnV0dG9uIG9uQ2xpY2s9e2luY3JlbWVudH0+XG4gICAgICAgICAgICArIHtzdGVwfVxuICAgICAgICAgIDwvYnV0dG9uPlxuICAgICAgICAgIDxidXR0b24gb25DbGljaz17ZGVjcmVtZW50fSBzdHlsZT17e21hcmdpbkxlZnQ6ICcxMHB4JywgYmFja2dyb3VuZDogJyNmZjZiNmInfX0+XG4gICAgICAgICAgICAtIHtzdGVwfVxuICAgICAgICAgIDwvYnV0dG9uPlxuICAgICAgICAgIDxidXR0b24gb25DbGljaz17cmVzZXR9IHN0eWxlPXt7bWFyZ2luTGVmdDogJzEwcHgnLCBiYWNrZ3JvdW5kOiAnI2ZmYTUwMCd9fT5cbiAgICAgICAgICAgIFJlc2V0XG4gICAgICAgICAgPC9idXR0b24+XG4gICAgICAgICAgPGJ1dHRvblxuICAgICAgICAgICAgb25DbGljaz17dW5kb31cbiAgICAgICAgICAgIGRpc2FibGVkPXtoaXN0b3J5Lmxlbmd0aCA8PSAxfVxuICAgICAgICAgICAgc3R5bGU9e3tcbiAgICAgICAgICAgICAgbWFyZ2luTGVmdDogJzEwcHgnLFxuICAgICAgICAgICAgICBiYWNrZ3JvdW5kOiBoaXN0b3J5Lmxlbmd0aCA8PSAxID8gJyNjY2MnIDogJyM5YjU5YjYnLFxuICAgICAgICAgICAgICBjdXJzb3I6IGhpc3RvcnkubGVuZ3RoIDw9IDEgPyAnbm90LWFsbG93ZWQnIDogJ3BvaW50ZXInXG4gICAgICAgICAgICB9fVxuICAgICAgICAgID5cbiAgICAgICAgICAgIFVuZG9cbiAgICAgICAgICA8L2J1dHRvbj5cbiAgICAgICAgPC9kaXY+XG5cbiAgICAgICAgPGRpdiBzdHlsZT17e1xuICAgICAgICAgIG1hcmdpblRvcDogJzMwcHgnLFxuICAgICAgICAgIHBhZGRpbmc6ICcxNXB4JyxcbiAgICAgICAgICBiYWNrZ3JvdW5kOiAnI2YwZjBmMCcsXG4gICAgICAgICAgYm9yZGVyUmFkaXVzOiAnNXB4JyxcbiAgICAgICAgICB0ZXh0QWxpZ246ICdsZWZ0J1xuICAgICAgICB9fT5cbiAgICAgICAgICA8c3Ryb25nPlN0YXRpc3RpY3M6PC9zdHJvbmc+XG4gICAgICAgICAgPHVsIHN0eWxlPXt7bWFyZ2luVG9wOiAnMTBweCcsIGxpc3RTdHlsZTogJ25vbmUnfX0+XG4gICAgICAgICAgICA8bGk+SW5pdGlhbCB2YWx1ZSBmcm9tIHNlcnZlcjoge2luaXRpYWxDb3VudH08L2xpPlxuICAgICAgICAgICAgPGxpPkN1cnJlbnQgdmFsdWU6IHtjb3VudH08L2xpPlxuICAgICAgICAgICAgPGxpPlRvdGFsIG9wZXJhdGlvbnM6IHtoaXN0b3J5Lmxlbmd0aCAtIDF9PC9saT5cbiAgICAgICAgICAgIDxsaT5IaXN0b3J5IGxlbmd0aDoge2hpc3RvcnkubGVuZ3RofTwvbGk+XG4gICAgICAgICAgPC91bD5cbiAgICAgICAgPC9kaXY+XG5cbiAgICAgICAge2hpc3RvcnkubGVuZ3RoID4gMSAmJiAoXG4gICAgICAgICAgPGRpdiBzdHlsZT17e1xuICAgICAgICAgICAgbWFyZ2luVG9wOiAnMjBweCcsXG4gICAgICAgICAgICBwYWRkaW5nOiAnMTVweCcsXG4gICAgICAgICAgICBiYWNrZ3JvdW5kOiAnI2UzZjJmZCcsXG4gICAgICAgICAgICBib3JkZXJSYWRpdXM6ICc1cHgnLFxuICAgICAgICAgICAgdGV4dEFsaWduOiAnbGVmdCdcbiAgICAgICAgICB9fT5cbiAgICAgICAgICAgIDxzdHJvbmc+SGlzdG9yeTo8L3N0cm9uZz5cbiAgICAgICAgICAgIDxkaXYgc3R5bGU9e3ttYXJnaW5Ub3A6ICcxMHB4JywgbWF4SGVpZ2h0OiAnMTAwcHgnLCBvdmVyZmxvdzogJ2F1dG8nfX0+XG4gICAgICAgICAgICAgIHtoaXN0b3J5Lm1hcCgodmFsdWUsIGluZGV4KSA9PiAoXG4gICAgICAgICAgICAgICAgPHNwYW5cbiAgICAgICAgICAgICAgICAgIGtleT17aW5kZXh9XG4gICAgICAgICAgICAgICAgICBzdHlsZT17e1xuICAgICAgICAgICAgICAgICAgICBkaXNwbGF5OiAnaW5saW5lLWJsb2NrJyxcbiAgICAgICAgICAgICAgICAgICAgcGFkZGluZzogJzVweCAxMHB4JyxcbiAgICAgICAgICAgICAgICAgICAgbWFyZ2luOiAnMnB4JyxcbiAgICAgICAgICAgICAgICAgICAgYmFja2dyb3VuZDogaW5kZXggPT09IGhpc3RvcnkubGVuZ3RoIC0gMSA/ICcjNjFkYWZiJyA6ICcjZmZmJyxcbiAgICAgICAgICAgICAgICAgICAgYm9yZGVyUmFkaXVzOiAnM3B4JyxcbiAgICAgICAgICAgICAgICAgICAgZm9udFNpemU6ICcxNHB4J1xuICAgICAgICAgICAgICAgICAgfX1cbiAgICAgICAgICAgICAgICA+XG4gICAgICAgICAgICAgICAgICB7dmFsdWV9XG4gICAgICAgICAgICAgICAgPC9zcGFuPlxuICAgICAgICAgICAgICApKX1cbiAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICApfVxuICAgICAgPC9kaXY+XG4gICAgPC9kaXY+XG4gICk7XG59XG5cbmNvbnN0IGNvdW50ZXJSb290ID0gUmVhY3RET00uY3JlYXRlUm9vdChkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnY291bnRlci1hcHAnKSk7XG5jb3VudGVyUm9vdC5yZW5kZXIoPENvdW50ZXJBcHAgLz4pO1xuIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7QUFBQSxTQUFTQSxVQUFVQSxDQUFBLEVBQUc7RUFDcEI7RUFDQSxJQUFNQyxZQUFZLEdBQUdDLFFBQVEsQ0FBQ0MsUUFBUSxDQUFDQyxjQUFjLENBQUMsYUFBYSxDQUFDLENBQUNDLE9BQU8sQ0FBQ0osWUFBWSxDQUFDO0VBRTFGLElBQUFLLGVBQUEsR0FBMEJDLEtBQUssQ0FBQ0MsUUFBUSxDQUFDUCxZQUFZLENBQUM7SUFBQVEsZ0JBQUEsR0FBQUMsY0FBQSxDQUFBSixlQUFBO0lBQS9DSyxLQUFLLEdBQUFGLGdCQUFBO0lBQUVHLFFBQVEsR0FBQUgsZ0JBQUE7RUFDdEIsSUFBQUksZ0JBQUEsR0FBd0JO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</script></head>
+  
+  <body>
+
+    
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counter Demo - PAD + React</title>
+
+  <!-- React and ReactDOM from CDN (Development mode) -->
+  <script src="../../unpkg.com/react@18.3.1/umd/react.development.js"></script>
+  <script src="../../unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+
+  <!-- Babel Standalone for JSX transformation in browser (Development only) -->
+  <script src="../../unpkg.com/@babel/standalone@7.28.6/babel.min.js"></script>
+
+  <style>* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    code {
+      font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      background: #282c34;
+      color: white;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    nav {
+      margin-top: 15px;
+    }
+
+    nav a {
+      color: #61dafb;
+      text-decoration: none;
+      margin-right: 20px;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    nav a.active {
+      color: #fff;
+      border-bottom: 2px solid #61dafb;
+    }
+
+    .content {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .react-component {
+      border: 2px dashed #61dafb;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      background: #f0f8ff;
+    }
+
+    .react-component-label {
+      color: #61dafb;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background: #61dafb;
+      color: #282c34;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #4fa8c5;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      text-align: center;
+      color: #666;
+      border-top: 1px solid #ddd;
+    }
+
+    .info-box {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 20px 0;
+    }
+
+    .info-box strong {
+      color: #856404;
+    }
+  </style>
+
+
+  <header>
+    <div class="container">
+      <h1>PAD + React Application</h1>
+      <nav>
+        
+          <a href="index%EF%B9%96index.html">🏠 Home</a>
+        
+          <a href="index%EF%B9%96examples%EA%A4%B7index.html">📚 Examples</a>
+        
+          <a href="index%EF%B9%96components.html">🧩 Components</a>
+        
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="content">
+      <h1>Interactive Counter Demo</h1>
+
+<p>A complete React counter application with multiple features.</p>
+
+<div id="counter-app" data-initial-count="10"><div class="react-component"><div class="react-component-label">⚛️ REACT COUNTER APP</div><div style="text-align: center; margin-top: 20px;"><div style="font-size: 72px; font-weight: bold; color: rgb(40, 44, 52); margin-bottom: 30px;">10</div><div style="margin-bottom: 20px;"><label style="margin-right: 10px;">Step size:<input type="number" value="1" style="margin-left: 10px; padding: 5px 10px; font-size: 16px; width: 80px; border-radius: 5px; border: 1px solid rgb(204, 204, 204);"></label></div><div style="margin-bottom: 20px;"><button>+ 1</button><button style="margin-left: 10px; background: rgb(255, 107, 107);">- 1</button><button style="margin-left: 10px; background: rgb(255, 165, 0);">Reset</button><button disabled="" style="margin-left: 10px; background: rgb(204, 204, 204); cursor: not-allowed;">Undo</button></div><div style="margin-top: 30px; padding: 15px; background: rgb(240, 240, 240); border-radius: 5px; text-align: left;"><strong>Statistics:</strong><ul style="margin-top: 10px; list-style: none;"><li>Initial value from server: 10</li><li>Current value: 10</li><li>Total operations: 0</li><li>History length: 1</li></ul></div></div></div></div>
+
+<script type="text/babel" src="counter/app.js"></script>
+
+<h2>About This Demo</h2>
+<p>This counter demonstrates:</p>
+<ul style="margin-left: 20px; line-height: 1.8;">
+  <li><strong>State management</strong> - Using React's useState hook</li>
+  <li><strong>Event handling</strong> - Button clicks and input changes</li>
+  <li><strong>Conditional rendering</strong> - History only shows when available</li>
+  <li><strong>Server integration</strong> - Initial count from PAD/PHP: 10</li>
+  <li><strong>Dynamic UI</strong> - Disabled button when history is empty</li>
+  <li><strong>Controlled components</strong> - Step size input</li>
+</ul>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>Powered by <strong>PAD Framework</strong> (Server-Side) + <strong>React</strong> (Client-Side)</p>
+      <p style="margin-top: 10px; font-size: 14px;">
+        PAD handles routing, data, and templates • React handles interactive UI components
+      </p>
+    </div>
+  </footer>
+
+ 
+
+  
+
+</body></html>

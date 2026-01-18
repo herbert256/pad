@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - sequences - Xref - Sequences - round
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Sequences - Xref - Sequences - round
+          </h1>
+          <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+            <tbody><tr>
+              <td>
+                <hr style="margin:2; border: 1px solid black; width:100%">
+                <a href="index%EF%B9%96index.html">Concepts</a> | <a href="index%EF%B9%96sequences.html">Sequences</a> | <a href="index%EF%B9%96actions.html">Actions</a> | <a href="index%EF%B9%96examples.html">Examples</a> | <a href="index%EF%B9%96reference.html">Reference</a>
+                <hr style="margin:2; border: 1px solid black; width:100%">
+              </td>
+            </tr>
+          </tbody></table>
+          <h2>
+            reference2
+          </h2>
+          <p></p>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: sequence Page: basic/round<br>
+                  <div id="padAjaxDggbcgGK"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">round=4</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b><br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->0
+
+  4
+
+  4
+
+  4
+
+  4
+
+  8
+
+  8
+
+  8
+
+  8
+
+  12<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxDggbcgGK = new XMLHttpRequest();
+                  padAjaxDggbcgGK.onreadystatechange=function() {
+                  if (padAjaxDggbcgGK.readyState === 4) {
+                  if (padAjaxDggbcgGK.status === 200) {
+                  document.getElementById("padAjaxDggbcgGK").innerHTML=padAjaxDggbcgGK.responseText;
+                  } else {
+                  document.getElementById("padAjaxDggbcgGK").innerHTML=padAjaxDggbcgGK.statusText;
+                  }
+                  }
+                  }
+                  padAjaxDggbcgGK.open("GET","http://localhost/sequence/?basic/round&padInclude&padSesID=DiM2hOlW&padReqID=BunzYRwN",true);
+                  padAjaxDggbcgGK.send();
+                  </script>
+                  <hr>
+                  App: sequence Page: keepRemoveFlag/round<br>
+                  <div id="padAjaxZ1kAwyKn"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">25<font color="black">,</font> push=<font color="black">'</font>mySequence<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pull </font><font color="red">mySequence<font color="black">,</font> make<font color="black">,</font>   round=4</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->0  4  4  4  4  8  8  8  8  12  12  12  12  16  16  16  16  20  20  20  20  24  24  24  24<!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pull </font><font color="red">mySequence<font color="black">,</font> keep<font color="black">,</font>   round=4</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->4  8  12  16  20  24<!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pull </font><font color="red">mySequence<font color="black">,</font> remove<font color="black">,</font> round=4</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1  2  3  5  6  7  9  10  11  13  14  15  17  18  19  21  22  23  25<!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pull </font><font color="red">mySequence<font color="black">,</font> flag<font color="black">,</font>   round=4</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">pull</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->0  0  0  1  0  0  0  1  0  0  0  1  0  0  0  1  0  0  0  1  0  0  0  1  0<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxZ1kAwyKn = new XMLHttpRequest();
+                  padAjaxZ1kAwyKn.onreadystatechange=function() {
+                  if (padAjaxZ1kAwyKn.readyState === 4) {
+                  if (padAjaxZ1kAwyKn.status === 200) {
+                  document.getElementById("padAjaxZ1kAwyKn").innerHTML=padAjaxZ1kAwyKn.responseText;
+                  } else {
+                  document.getElementById("padAjaxZ1kAwyKn").innerHTML=padAjaxZ1kAwyKn.statusText;
+                  }
+                  }
+                  }
+                  padAjaxZ1kAwyKn.open("GET","http://localhost/sequence/?keepRemoveFlag/round&padInclude&padSesID=DiM2hOlW&padReqID=BunzYRwN",true);
+                  padAjaxZ1kAwyKn.send();
+                  </script>
+                  <hr>
+                  App: sequence Page: play/single/round<br>
+                  <div id="padAjaxrHp3DPHM"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">even<font color="black">,</font>          rows=5</font>}</b>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->2   4   6   8   10<!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">round=4<font color="black">,</font>       rows=10</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->0  4  4  4  4  8  8  8  8  12<!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">sequence </font><font color="red">even<font color="black">,</font> round=4<font color="black">,</font> rows=5</font>}</b>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->4   4   8   8   12<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxrHp3DPHM = new XMLHttpRequest();
+                  padAjaxrHp3DPHM.onreadystatechange=function() {
+                  if (padAjaxrHp3DPHM.readyState === 4) {
+                  if (padAjaxrHp3DPHM.status === 200) {
+                  document.getElementById("padAjaxrHp3DPHM").innerHTML=padAjaxrHp3DPHM.responseText;
+                  } else {
+                  document.getElementById("padAjaxrHp3DPHM").innerHTML=padAjaxrHp3DPHM.statusText;
+                  }
+                  }
+                  }
+                  padAjaxrHp3DPHM.open("GET","http://localhost/sequence/?play/single/round&padInclude&padSesID=DiM2hOlW&padReqID=BunzYRwN",true);
+                  padAjaxrHp3DPHM.send();
+                  </script>
+                  <hr>
+                  App: sequence Page: types/round<br>
+                  <div id="padAjaxn2xG4H59"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>round </font><font color="red">4<font color="black">,</font> rows=15</font>}</b><br>  <b>{<font color="green"><font color="red">$</font>round</font>}</b><br><b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>round</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->0
+
+  4
+
+  4
+
+  4
+
+  4
+
+  8
+
+  8
+
+  8
+
+  8
+
+  12
+
+  12
+
+  12
+
+  12
+
+  16
+
+  16<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxn2xG4H59 = new XMLHttpRequest();
+                  padAjaxn2xG4H59.onreadystatechange=function() {
+                  if (padAjaxn2xG4H59.readyState === 4) {
+                  if (padAjaxn2xG4H59.status === 200) {
+                  document.getElementById("padAjaxn2xG4H59").innerHTML=padAjaxn2xG4H59.responseText;
+                  } else {
+                  document.getElementById("padAjaxn2xG4H59").innerHTML=padAjaxn2xG4H59.statusText;
+                  }
+                  }
+                  }
+                  padAjaxn2xG4H59.open("GET","http://localhost/sequence/?types/round&padInclude&padSesID=DiM2hOlW&padReqID=BunzYRwN",true);
+                  padAjaxn2xG4H59.send();
+                  </script>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+          <p></p>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

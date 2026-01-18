@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - fragments/ignore_4
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Fragments/ignore 4
+          </h1>
+          <table border="1" cellpadding="10" cellspacing="0">
+            <tbody><tr>
+              <th bgcolor="#DDDDDD">
+                PHP<br>
+                <font size="-2">fragments/ignore_4.php</font>
+              </th>
+              <th bgcolor="#DDDDDD">
+                HTML<br>
+                <font size="-2">fragments/ignore_4.pad</font>
+              </th>
+              <th bgcolor="#DDDDDD">
+                Result
+              </th>
+            </tr>
+            <tr>
+              <td style="vertical-align:top">
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #FF8000">// Sample data for JSON example<br>  </span><span style="color: #0000BB">$userData </span><span style="color: #007700">= [<br>    [</span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">1</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Alice'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Developer'</span><span style="color: #007700">],<br>    [</span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">2</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Bob'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Designer'</span><span style="color: #007700">],<br>    [</span><span style="color: #DD0000">'id' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">3</span><span style="color: #007700">, </span><span style="color: #DD0000">'name' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Charlie'</span><span style="color: #007700">, </span><span style="color: #DD0000">'role' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Manager'</span><span style="color: #007700">]<br>  ];<br><br>  </span><span style="color: #FF8000">// Encode to JSON with HTML escaping<br>  </span><span style="color: #0000BB">$usersJson </span><span style="color: #007700">= </span><span style="color: #0000BB">htmlspecialchars</span><span style="color: #007700">(</span><span style="color: #0000BB">json_encode</span><span style="color: #007700">(</span><span style="color: #0000BB">$userData</span><span style="color: #007700">), </span><span style="color: #0000BB">ENT_QUOTES</span><span style="color: #007700">, </span><span style="color: #DD0000">'UTF-8'</span><span style="color: #007700">);<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+              </td>
+              <td style="vertical-align:top">
+                <pre><code style="color: #000000">&lt;div id="ignore-example-4" data-users="<b>{<font color="blue">echo </font><font color="red"><font color="red">$</font>usersJson <font color="black">|</font> ignore</font>}</b>"&gt;&lt;/div&gt;<br><br><b>{<font color="blue">ignore</font><font color="red"></font>}</b>&lt;script&gt;<br>  const element = document.getElementById('ignore-example-4');<br>  const users = JSON.parse(element.dataset.users);<br><br>  const html = '&lt;ul&gt;' + users.map(user =&gt;<br>    '&lt;li&gt;&lt;strong&gt;' + user.name + '&lt;/strong&gt; - ' + user.role + '&lt;/li&gt;'<br>  ).join('') + '&lt;/ul&gt;';<br><br>  element.innerHTML = html;<br>&lt;/script&gt;<b>{/<font color="blue">ignore</font><font color="red"></font>}</b></code></pre>
+              </td>
+              <td style="vertical-align:top">
+                <div id="padAjaxH7RIfUsD"><div id="ignore-example-4" data-users="[{&quot;id&quot;:1,&quot;name&quot;:&quot;Alice&quot;,&quot;role&quot;:&quot;Developer&quot;},{&quot;id&quot;:2,&quot;name&quot;:&quot;Bob&quot;,&quot;role&quot;:&quot;Designer&quot;},{&quot;id&quot;:3,&quot;name&quot;:&quot;Charlie&quot;,&quot;role&quot;:&quot;Manager&quot;}]"></div>
+
+<script>
+  const element = document.getElementById('ignore-example-4');
+  const users = JSON.parse(element.dataset.users);
+
+  const html = '<ul>' + users.map(user =>
+    '<li><strong>' + user.name + '</strong> - ' + user.role + '</li>'
+  ).join('') + '</ul>';
+
+  element.innerHTML = html;
+</script></div>
+                <script>
+                padAjaxH7RIfUsD = new XMLHttpRequest();
+                padAjaxH7RIfUsD.onreadystatechange=function() {
+                if (padAjaxH7RIfUsD.readyState === 4) {
+                if (padAjaxH7RIfUsD.status === 200) {
+                document.getElementById("padAjaxH7RIfUsD").innerHTML=padAjaxH7RIfUsD.responseText;
+                } else {
+                document.getElementById("padAjaxH7RIfUsD").innerHTML=padAjaxH7RIfUsD.statusText;
+                }
+                }
+                }
+                padAjaxH7RIfUsD.open("GET","http://localhost/check/?fragments/ignore_4&padInclude&padSesID=DiM2hOlW&padReqID=AbIY4yqm",true);
+                padAjaxH7RIfUsD.send();
+                </script>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

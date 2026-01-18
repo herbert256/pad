@@ -1,0 +1,376 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - pages/tag_return_values
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Pages/tag return values
+          </h1>
+          <table border="1" cellpadding="10" cellspacing="0">
+            <tbody><tr>
+              <th bgcolor="#DDDDDD">
+                PHP<br>
+                <font size="-2"></font>
+              </th>
+              <th bgcolor="#DDDDDD">
+                HTML<br>
+                <font size="-2">pages/tag_return_values.pad</font>
+              </th>
+              <th bgcolor="#DDDDDD">
+                Result
+              </th>
+            </tr>
+            <tr>
+              <td style="vertical-align:top"></td>
+              <td style="vertical-align:top">
+                <pre><code style="color: #000000">&lt;center&gt;<br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>tag_return_values/return_1<font color="black">'</font><font color="black">,</font> skipNames<font color="black">,</font>skipClose</font>}</b><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>tag_return_values/return_2<font color="black">'</font><font color="black">,</font> skipNames<font color="black">,</font>skipOpen<font color="black">,</font>skipHeader<font color="black">,</font>skipClose</font>}</b><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>tag_return_values/return_3<font color="black">'</font><font color="black">,</font> skipNames<font color="black">,</font>skipOpen<font color="black">,</font>skipHeader<font color="black">,</font>skipClose</font>}</b><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>tag_return_values/return_4<font color="black">'</font><font color="black">,</font> skipNames<font color="black">,</font>skipOpen<font color="black">,</font>skipHeader<font color="black">,</font>skipClose</font>}</b><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>tag_return_values/return_5<font color="black">'</font><font color="black">,</font> skipNames<font color="black">,</font>skipOpen<font color="black">,</font>skipHeader<font color="black">,</font>skipClose</font>}</b><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>tag_return_values/return_6<font color="black">'</font><font color="black">,</font> skipNames<font color="black">,</font>skipOpen<font color="black">,</font>skipHeader</font>}</b><br><br>&lt;h3&gt;The Same But Different Too&lt;/h3&gt;<br><b>{<font color="blue">page </font><font color="red"><font color="black">'</font>tag_return_values/2<font color="black">'</font></font>}</b><br><br>&lt;/center&gt;</code></pre>
+              </td>
+              <td style="vertical-align:top">
+                <div id="padAjaxz6SJB0S8"><center>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tbody><tr>
+          
+            <th bgcolor="#dddddd">
+              PHP 
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML 
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">function </span><span style="color: #0000BB">functionTrue </span><span style="color: #007700">() {<br>     return </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br>  }<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">functionTrue</font><font color="red"></font>}</b><br>  This is true <br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is false <br><b>{/<font color="blue">functionTrue</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+  This is true 
+
+</td>
+        
+      </tr>
+
+    
+
+  
+
+
+
+
+
+
+ 
+
+
+
+  
+
+  
+
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">function </span><span style="color: #0000BB">functionFalse </span><span style="color: #007700">() {<br>     return </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br>  }<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">functionFalse</font><font color="red"></font>}</b><br>  This is true <br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is false <br><b>{/<font color="blue">functionFalse</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+  This is false 
+
+</td>
+        
+      </tr>
+
+    
+
+  
+
+
+
+
+
+
+ 
+
+
+
+  
+
+  
+
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">function </span><span style="color: #0000BB">functionNull </span><span style="color: #007700">() {<br>     return </span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br>  }<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">functionNull</font><font color="red"></font>}</b><br>  This is true <br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  This is false <br><b>{/<font color="blue">functionNull</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+</td>
+        
+      </tr>
+
+    
+
+  
+
+
+
+
+
+
+ 
+
+
+
+  
+
+  
+
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">function </span><span style="color: #0000BB">functionArray </span><span style="color: #007700">() {<br>     return [</span><span style="color: #0000BB">1</span><span style="color: #007700">,</span><span style="color: #0000BB">2</span><span style="color: #007700">,</span><span style="color: #0000BB">3</span><span style="color: #007700">];<br>  }<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">functionArray </font><font color="red">name=<font color="black">'</font>line<font color="black">'</font></font>}</b><br>  This is line <b>{<font color="green"><font color="red">$</font>line</font>}</b> &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  No lines found <br><b>{/<font color="blue">functionArray</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+  This is line 1 <br>
+
+  This is line 2 <br>
+
+  This is line 3 <br>
+
+</td>
+        
+      </tr>
+
+    
+
+  
+
+
+
+
+
+
+ 
+
+
+
+  
+
+  
+
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">function </span><span style="color: #0000BB">functionArrayEmpty </span><span style="color: #007700">() {<br>     return [];<br>  }<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">functionArrayEmpty </font><font color="red">name=<font color="black">'</font>line<font color="black">'</font></font>}</b><br>  This is line <b>{<font color="green"><font color="red">$</font>line</font>}</b> &lt;br&gt;<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  No lines found <br><b>{/<font color="blue">functionArrayEmpty</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  
+  No lines found 
+
+</td>
+        
+      </tr>
+
+    
+
+  
+
+
+
+
+
+
+ 
+
+
+
+  
+
+  
+
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">function </span><span style="color: #0000BB">functionString </span><span style="color: #007700">() {<br>     return </span><span style="color: #DD0000">'Hello World !'</span><span style="color: #007700">;<br>  }<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><b>{<font color="blue">functionString</font><font color="red"></font>}</b></code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  Hello World !
+</td>
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+
+
+<h3>The Same But Different Too</h3>
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+        <th bgcolor="#dddddd">PHP</th>
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top" rowspan="4"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $var_null  </span><span style="color: #007700">= </span><span style="color: #0000BB">NULL</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$var_true  </span><span style="color: #007700">= </span><span style="color: #0000BB">TRUE</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$var_false </span><span style="color: #007700">= </span><span style="color: #0000BB">FALSE</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$var_value </span><span style="color: #007700">= </span><span style="color: #DD0000">'hello'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$arr_array </span><span style="color: #007700">= [</span><span style="color: #0000BB">1</span><span style="color: #007700">,</span><span style="color: #0000BB">2</span><span style="color: #007700">,</span><span style="color: #0000BB">3</span><span style="color: #007700">];<br>  </span><span style="color: #0000BB">$arr_empty </span><span style="color: #007700">= [];<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre></td><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">1 - <b>{<font color="blue">var_null</font><font color="red"></font>}</b>  &lt;br&gt;<br>2 - <b>{<font color="blue">var_true</font><font color="red"></font>}</b>  &lt;br&gt;<br>3 - <b>{<font color="blue">var_false</font><font color="red"></font>}</b> &lt;br&gt;<br>4 - <b>{<font color="blue">var_value</font><font color="red"></font>}</b> &lt;br&gt;<br>5 - <b>{<font color="blue">arr_array</font><font color="red"></font>}</b> &lt;br&gt;<br>6 - <b>{<font color="blue">arr_empty</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1 -   <br>
+2 -   <br>
+3 -  <br>
+4 - hello <br>
+5 -  <br>
+6 -<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">1 - <b>{<font color="blue">var_null</font><font color="red"></font>}</b>  true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">var_null</font><font color="red"></font>}</b> &lt;br&gt;<br>2 - <b>{<font color="blue">var_true</font><font color="red"></font>}</b>  true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">var_true</font><font color="red"></font>}</b> &lt;br&gt;<br>3 - <b>{<font color="blue">var_false</font><font color="red"></font>}</b> true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">var_false</font><font color="red"></font>}</b> &lt;br&gt;<br>4 - <b>{<font color="blue">var_value</font><font color="red"></font>}</b> true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">var_value</font><font color="red"></font>}</b> &lt;br&gt;<br>5 - <b>{<font color="blue">arr_array</font><font color="red"></font>}</b> true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">arr_array</font><font color="red"></font>}</b> &lt;br&gt;<br>6 - <b>{<font color="blue">arr_empty</font><font color="red"></font>}</b> true <b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b> false <b>{/<font color="blue">arr_empty</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1 -  <br>
+2 -   true  <br>
+3 -  false  <br>
+4 - hello true  <br>
+5 -  true  true  true  <br>
+6 -  false<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myData<font color="black">'</font></font>}</b><br>  (1,2,3)<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  myContent<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">1 - <b>{<font color="blue">var_null </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b> &lt;br&gt;<br>2 - <b>{<font color="blue">var_true </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b> &lt;br&gt;<br>3 - <b>{<font color="blue">var_false </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b> &lt;br&gt;<br>4 - <b>{<font color="blue">var_value </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b> &lt;br&gt;<br>5 - <b>{<font color="blue">arr_array </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b> &lt;br&gt;<br>6 - <b>{<font color="blue">arr_empty </font><font color="red">content=<font color="black">'</font>myContent<font color="black">'</font><font color="black">,</font> data=<font color="black">'</font>myData<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->1 -  <br>
+2 - 
+  myContent
+
+  myContent
+
+  myContent
+ <br>
+3 -  <br>
+4 - 
+  myContent
+hello
+  myContent
+hello
+  myContent
+hello <br>
+5 - 
+  myContent
+
+  myContent
+
+  myContent
+ <br>
+6 -<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p>
+
+</center></div>
+                <script>
+                padAjaxz6SJB0S8 = new XMLHttpRequest();
+                padAjaxz6SJB0S8.onreadystatechange=function() {
+                if (padAjaxz6SJB0S8.readyState === 4) {
+                if (padAjaxz6SJB0S8.status === 200) {
+                document.getElementById("padAjaxz6SJB0S8").innerHTML=padAjaxz6SJB0S8.responseText;
+                } else {
+                document.getElementById("padAjaxz6SJB0S8").innerHTML=padAjaxz6SJB0S8.statusText;
+                }
+                }
+                }
+                padAjaxz6SJB0S8.open("GET","http://localhost/manual/?pages/tag_return_values&padInclude&padSesID=DiM2hOlW&padReqID=jOnYxTVQ",true);
+                padAjaxz6SJB0S8.send();
+                </script>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

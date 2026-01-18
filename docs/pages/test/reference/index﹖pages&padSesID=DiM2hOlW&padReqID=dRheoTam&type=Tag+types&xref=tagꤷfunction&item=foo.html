@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Reference - Tag types - foo
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - foo
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: manual - Page: prefix/prefix<br>
+                  <div id="padAjaxK23qjdUt">
+
+
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From an pad tag&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">pad</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From an pad tag</h3>
+
+Foo tag from pad<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From an application tag &lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">app</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From an application tag </h3>
+
+Foo tag from app<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From the <b>{<font color="blue">content</font><font color="red"></font>}</b> tag &lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">content</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From the {content} tag </h3>
+
+
+  This is from content<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From a PHP function !&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">php</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From a PHP function !</h3>
+
+This is a function<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From an own PAD function &lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">function</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From an own PAD function </h3>
+
+From an own function<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From an defined bool&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  Bool 'foo' is true<br><b><font color="black">@</font><font color="purple">else</font><font color="black">@</font></b><br>  Bool 'foo' is false<br><b>{/<font color="blue"><font color="purple">bool</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From an defined bool</h3>
+
+
+  Bool 'foo' is true<!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From a PHP array&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">array</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From a PHP array</h3>
+
+
+  This is a PHP array - 1 <br>
+
+  This is a PHP array - 2 <br>
+
+  This is a PHP array - 3 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;A defined constant&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">constant</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">constant</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>A defined constant</h3>
+
+
+  This is a constant - 1 <br>
+
+  This is a constant - 2 <br>
+
+  This is a constant - 3 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From the <b>{<font color="blue">data</font><font color="red"></font>}</b> tag&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">data</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From the {data} tag</h3>
+
+
+  This is a json array - 1 <br>
+
+  This is a json array - 2 <br>
+
+  This is a json array - 3 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From the local _data directory&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>foo</font>}</b> &lt;br&gt;<br><b>{/<font color="blue"><font color="purple">local</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From the local _data directory</h3>
+
+
+  From the _data directory - 1 <br>
+
+  From the _data directory - 2 <br>
+
+  From the _data directory - 3 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000">&lt;h3&gt;From the local _scripts directory&lt;/h3&gt;<br><br><b>{<font color="blue"><font color="purple">script</font><font color="black"><b>:</b></font>foo</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>From the local _scripts directory</h3>
+
+Hello from foo.py<!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxK23qjdUt = new XMLHttpRequest();
+                  padAjaxK23qjdUt.onreadystatechange=function() {
+                  if (padAjaxK23qjdUt.readyState === 4) {
+                  if (padAjaxK23qjdUt.status === 200) {
+                  document.getElementById("padAjaxK23qjdUt").innerHTML=padAjaxK23qjdUt.responseText;
+                  } else {
+                  document.getElementById("padAjaxK23qjdUt").innerHTML=padAjaxK23qjdUt.statusText;
+                  }
+                  }
+                  }
+                  padAjaxK23qjdUt.open("GET","http://localhost/manual/?prefix/prefix&padInclude&padSesID=DiM2hOlW&padReqID=5OCmSTF4",true);
+                  padAjaxK23qjdUt.send();
+                  </script><br>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

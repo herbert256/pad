@@ -15,6 +15,8 @@
     if ( $padApp and is_dir ( "$padApps$padApp" ) )
       return include "$padHome/pad/pad.php";
 
-  die ( "No PAD application found" );
+  $padApp = 'pad';
+
+  include "$padHome/pad/pad.php";
 
 ?>

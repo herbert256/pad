@@ -1,5 +1,5 @@
 <?php
 
-  header ( 'Location: /pad/' );
+  include __DIR__ . '/pad.php'
 
 ?>

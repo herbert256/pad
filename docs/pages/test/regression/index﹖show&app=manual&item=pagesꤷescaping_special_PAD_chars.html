@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - pages/escaping_special_PAD_chars
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Pages/escaping special PAD chars
+          </h1>
+          <table border="1" cellpadding="10" cellspacing="0">
+            <tbody><tr>
+              <th bgcolor="#DDDDDD">
+                PHP<br>
+                <font size="-2"></font>
+              </th>
+              <th bgcolor="#DDDDDD">
+                HTML<br>
+                <font size="-2">pages/escaping_special_PAD_chars.pad</font>
+              </th>
+              <th bgcolor="#DDDDDD">
+                Result
+              </th>
+            </tr>
+            <tr>
+              <td style="vertical-align:top"></td>
+              <td style="vertical-align:top">
+                <pre><code style="color: #000000"><b>{<font color="blue">block</font><font color="red"></font>}</b><br><br>&lt;p&gt;<br>  Sometimes the PAD parser is confused and interprets something incorrectly as a PAD instruction.<br>  &lt;br&gt;&lt;br&gt;<br>  In those cases a PAD entity can be used to prevent this.<br>&lt;/p&gt;<br><br>&lt;p&gt;<br>&lt;table border="0"&gt;<br>  &lt;tr&gt;&lt;td&gt;&lt;b&gt;Character &lt;/b&gt; &amp;nbsp;&lt;/td&gt;&lt;td&gt;&amp;nbsp; &lt;b&gt; PAD entity&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td align="center"&gt;<b>{<font color="green">&lt;/td&gt;&lt;td&gt; <font color="red">&amp;</font>nbsp;<font color="red">&amp;</font>nbsp;<font color="red">&amp;</font>amp;open;&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td align="center"&gt;</font>}</b>&lt;/td&gt;&lt;td&gt; &amp;nbsp;&amp;nbsp;&amp;amp;close;&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td align="center"&gt;|&lt;/td&gt;&lt;td&gt; &amp;nbsp;&amp;nbsp;&amp;amp;pipe;&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td align="center"&gt;=&lt;/td&gt;&lt;td&gt; &amp;nbsp;&amp;nbsp;&amp;amp;eq;&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td align="center"&gt;,&lt;/td&gt;&lt;td&gt; &amp;nbsp;&amp;nbsp;&amp;amp;comma;&lt;/td&gt;&lt;/tr&gt;<br>  &lt;tr&gt;&lt;td align="center"&gt;@&lt;/td&gt;&lt;td&gt; &amp;nbsp;&amp;nbsp;&amp;amp;at;&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;p&gt;<br>  For example, in this manual the string &lt;b&gt;<b>{<font color="blue">tag</font><font color="red"></font>}</b>&lt;/b&gt; must be writen as &lt;b&gt;&amp;amp;open;&lt;/b&gt;tag&lt;b&gt;&amp;amp;close;&lt;/b&gt;<br>  &lt;br&gt;to make sure the PAD parser leaves it alone.<br>&lt;/p&gt;<br><br><b>{/<font color="blue">block</font><font color="red"></font>}</b></code></pre>
+              </td>
+              <td style="vertical-align:top">
+                <div id="padAjax0EWYz5nY"><table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td>
+
+<p>
+  Sometimes the PAD parser is confused and interprets something incorrectly as a PAD instruction.
+  <br><br>
+  In those cases a PAD entity can be used to prevent this.
+</p>
+
+<p>
+<table border="0">
+  <tbody><tr><td><b>Character </b> &nbsp;</td><td>&nbsp; <b> PAD entity</b></td></tr>
+  <tr><td align="center">{</td><td> &nbsp;&nbsp;&amp;open;</td></tr>
+  <tr><td align="center">}</td><td> &nbsp;&nbsp;&amp;close;</td></tr>
+  <tr><td align="center">|</td><td> &nbsp;&nbsp;&amp;pipe;</td></tr>
+  <tr><td align="center">=</td><td> &nbsp;&nbsp;&amp;eq;</td></tr>
+  <tr><td align="center">,</td><td> &nbsp;&nbsp;&amp;comma;</td></tr>
+  <tr><td align="center">@</td><td> &nbsp;&nbsp;&amp;at;</td></tr>
+</tbody></table>
+
+</p><p>
+  For example, in this manual the string <b>{tag}</b> must be writen as <b>&amp;open;</b>tag<b>&amp;close;</b>
+  <br>to make sure the PAD parser leaves it alone.
+</p>
+
+</td>
+  </tr>
+</tbody></table></div>
+                <script>
+                padAjax0EWYz5nY = new XMLHttpRequest();
+                padAjax0EWYz5nY.onreadystatechange=function() {
+                if (padAjax0EWYz5nY.readyState === 4) {
+                if (padAjax0EWYz5nY.status === 200) {
+                document.getElementById("padAjax0EWYz5nY").innerHTML=padAjax0EWYz5nY.responseText;
+                } else {
+                document.getElementById("padAjax0EWYz5nY").innerHTML=padAjax0EWYz5nY.statusText;
+                }
+                }
+                }
+                padAjax0EWYz5nY.open("GET","http://localhost/manual/?pages/escaping_special_PAD_chars&padInclude&padSesID=DiM2hOlW&padReqID=Da7BXGMu",true);
+                padAjax0EWYz5nY.send();
+                </script>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>
