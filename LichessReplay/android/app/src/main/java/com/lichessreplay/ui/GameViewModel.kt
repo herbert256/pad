@@ -19,6 +19,18 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
+// Analyse sequence options
+enum class AnalyseSequence {
+    FORWARDS,   // Analyze from move 1 to end
+    BACKWARDS,  // Analyze from end to move 1
+    MIXED       // Analyze last 10 moves backwards, then rest forwards from move 1
+}
+
+// General analyse settings
+data class AnalyseSettings(
+    val sequence: AnalyseSequence = AnalyseSequence.BACKWARDS
+)
+
 // Settings for auto-analysis stage (time-based)
 data class AnalyseStageSettings(
     val analysisTimeMs: Int = 1000,  // Time per move during auto-analysis (ms)
@@ -73,6 +85,7 @@ data class GameUiState(
     val stockfishReady: Boolean = false,
     val flippedBoard: Boolean = false,
     val stockfishSettings: StockfishSettings = StockfishSettings(),
+    val analyseSettings: AnalyseSettings = AnalyseSettings(),
     val showSettingsDialog: Boolean = false,
     // Exploring line state
     val isExploringLine: Boolean = false,
@@ -116,6 +129,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         private const val KEY_MANUAL_THREADS = "manual_threads"
         private const val KEY_MANUAL_HASH = "manual_hash"
         private const val KEY_MANUAL_MULTIPV = "manual_multipv"
+        // General analyse settings
+        private const val KEY_ANALYSE_SEQUENCE = "analyse_sequence"
         // Other settings
         private const val KEY_CHESS_SOURCE = "chess_source"
         private const val KEY_MAX_GAMES = "max_games"
@@ -151,6 +166,18 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             .apply()
     }
 
+    private fun loadAnalyseSettings(): AnalyseSettings {
+        val sequenceOrdinal = prefs.getInt(KEY_ANALYSE_SEQUENCE, AnalyseSequence.BACKWARDS.ordinal)
+        val sequence = AnalyseSequence.entries.getOrNull(sequenceOrdinal) ?: AnalyseSequence.BACKWARDS
+        return AnalyseSettings(sequence = sequence)
+    }
+
+    private fun saveAnalyseSettings(settings: AnalyseSettings) {
+        prefs.edit()
+            .putInt(KEY_ANALYSE_SEQUENCE, settings.sequence.ordinal)
+            .apply()
+    }
+
     private fun configureForAnalyseStage() {
         val settings = _uiState.value.stockfishSettings.analyseStage
         stockfish.configure(settings.threads, settings.hashMb, 1) // MultiPV=1 for analyse stage
@@ -164,10 +191,12 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     init {
         // Load saved settings
         val settings = loadStockfishSettings()
+        val analyseSettings = loadAnalyseSettings()
         val chessSource = loadChessSource()
         val maxGames = prefs.getInt(KEY_MAX_GAMES, 10)
         _uiState.value = _uiState.value.copy(
             stockfishSettings = settings,
+            analyseSettings = analyseSettings,
             chessSource = chessSource,
             maxGames = maxGames
         )
@@ -597,6 +626,14 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun updateAnalyseSettings(settings: AnalyseSettings) {
+        saveAnalyseSettings(settings)
+        _uiState.value = _uiState.value.copy(
+            analyseSettings = settings,
+            showSettingsDialog = false
+        )
+    }
+
     private fun analyzeCurrentPosition() {
         if (!_uiState.value.analysisEnabled || !_uiState.value.stockfishReady) return
 
@@ -628,8 +665,21 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 autoAnalysisCurrentScore = null
             )
 
-            // Analyze each position in reverse order (last move first)
-            for (moveIndex in (moves.size - 1) downTo 0) {
+            // Build the analysis order based on sequence setting
+            val sequence = _uiState.value.analyseSettings.sequence
+            val moveIndices = when (sequence) {
+                AnalyseSequence.FORWARDS -> (0 until moves.size).toList()
+                AnalyseSequence.BACKWARDS -> (moves.size - 1 downTo 0).toList()
+                AnalyseSequence.MIXED -> {
+                    // First: last 10 moves backwards, then: rest forwards from move 1
+                    val lastTenBackwards = (moves.size - 1 downTo maxOf(0, moves.size - 10)).toList()
+                    val restForwards = (0 until maxOf(0, moves.size - 10)).toList()
+                    lastTenBackwards + restForwards
+                }
+            }
+
+            // Analyze each position in the determined order
+            for (moveIndex in moveIndices) {
                 // Get the board position after this move
                 val board = boardHistory.getOrNull(moveIndex + 1) ?: continue
 

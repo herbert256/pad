@@ -87,10 +87,12 @@ fun GameScreen(
 
     // Settings dialog
     if (uiState.showSettingsDialog) {
-        StockfishSettingsDialog(
-            settings = uiState.stockfishSettings,
+        SettingsDialog(
+            stockfishSettings = uiState.stockfishSettings,
+            analyseSettings = uiState.analyseSettings,
             onDismiss = { viewModel.hideSettingsDialog() },
-            onSave = { viewModel.updateStockfishSettings(it) }
+            onSaveStockfish = { viewModel.updateStockfishSettings(it) },
+            onSaveAnalyse = { viewModel.updateAnalyseSettings(it) }
         )
     }
 
@@ -1282,22 +1284,28 @@ private fun getPieceSymbol(pieceType: com.lichessreplay.chess.PieceType, isWhite
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun StockfishSettingsDialog(
-    settings: StockfishSettings,
+private fun SettingsDialog(
+    stockfishSettings: StockfishSettings,
+    analyseSettings: AnalyseSettings,
     onDismiss: () -> Unit,
-    onSave: (StockfishSettings) -> Unit
+    onSaveStockfish: (StockfishSettings) -> Unit,
+    onSaveAnalyse: (AnalyseSettings) -> Unit
 ) {
     // Analyse stage settings
-    var analyseTimeMs by remember { mutableStateOf(settings.analyseStage.analysisTimeMs) }
+    var analyseTimeMs by remember { mutableStateOf(stockfishSettings.analyseStage.analysisTimeMs) }
     var analyseTimeExpanded by remember { mutableStateOf(false) }
-    var analyseThreads by remember { mutableStateOf(settings.analyseStage.threads.toString()) }
-    var analyseHashMb by remember { mutableStateOf(settings.analyseStage.hashMb.toString()) }
+    var analyseThreads by remember { mutableStateOf(stockfishSettings.analyseStage.threads.toString()) }
+    var analyseHashMb by remember { mutableStateOf(stockfishSettings.analyseStage.hashMb.toString()) }
 
     // Manual stage settings
-    var manualDepth by remember { mutableStateOf(settings.manualStage.depth.toString()) }
-    var manualThreads by remember { mutableStateOf(settings.manualStage.threads.toString()) }
-    var manualHashMb by remember { mutableStateOf(settings.manualStage.hashMb.toString()) }
-    var manualMultiPv by remember { mutableStateOf(settings.manualStage.multiPv.toString()) }
+    var manualDepth by remember { mutableStateOf(stockfishSettings.manualStage.depth.toString()) }
+    var manualThreads by remember { mutableStateOf(stockfishSettings.manualStage.threads.toString()) }
+    var manualHashMb by remember { mutableStateOf(stockfishSettings.manualStage.hashMb.toString()) }
+    var manualMultiPv by remember { mutableStateOf(stockfishSettings.manualStage.multiPv.toString()) }
+
+    // Analyse settings
+    var analyseSequence by remember { mutableStateOf(analyseSettings.sequence) }
+    var sequenceExpanded by remember { mutableStateOf(false) }
 
     // Analysis time options: 0.25, 0.50, 1.00, 1.50, 2.00 seconds
     val analysisTimeOptions = listOf(
@@ -1306,6 +1314,13 @@ private fun StockfishSettingsDialog(
         1000 to "1.00s",
         1500 to "1.50s",
         2000 to "2.00s"
+    )
+
+    // Sequence options
+    val sequenceOptions = listOf(
+        AnalyseSequence.FORWARDS to "Forwards",
+        AnalyseSequence.BACKWARDS to "Backwards",
+        AnalyseSequence.MIXED to "Mixed"
     )
 
     Dialog(onDismissRequest = onDismiss) {
@@ -1323,7 +1338,57 @@ private fun StockfishSettingsDialog(
                     .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                // ===== ANALYSE STAGE CARD =====
+                // ===== ANALYSE SETTINGS CARD =====
+                Card(
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceVariant
+                    ),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Column(
+                        modifier = Modifier.padding(12.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Text(
+                            text = "Analyse Settings",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.SemiBold
+                        )
+
+                        // Analyse Sequence dropdown
+                        ExposedDropdownMenuBox(
+                            expanded = sequenceExpanded,
+                            onExpandedChange = { sequenceExpanded = it }
+                        ) {
+                            OutlinedTextField(
+                                value = sequenceOptions.find { it.first == analyseSequence }?.second ?: "Backwards",
+                                onValueChange = {},
+                                readOnly = true,
+                                label = { Text("Analyse sequence") },
+                                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = sequenceExpanded) },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .menuAnchor()
+                            )
+                            ExposedDropdownMenu(
+                                expanded = sequenceExpanded,
+                                onDismissRequest = { sequenceExpanded = false }
+                            ) {
+                                sequenceOptions.forEach { (seq, label) ->
+                                    DropdownMenuItem(
+                                        text = { Text(label) },
+                                        onClick = {
+                                            analyseSequence = seq
+                                            sequenceExpanded = false
+                                        }
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // ===== STOCKFISH ANALYSE STAGE CARD =====
                 Card(
                     colors = CardDefaults.cardColors(
                         containerColor = MaterialTheme.colorScheme.surfaceVariant
@@ -1393,7 +1458,7 @@ private fun StockfishSettingsDialog(
                     }
                 }
 
-                // ===== MANUAL STAGE CARD =====
+                // ===== STOCKFISH MANUAL STAGE CARD =====
                 Card(
                     colors = CardDefaults.cardColors(
                         containerColor = MaterialTheme.colorScheme.surfaceVariant
@@ -1464,7 +1529,14 @@ private fun StockfishSettingsDialog(
                     Spacer(modifier = Modifier.width(8.dp))
                     Button(
                         onClick = {
-                            val newSettings = StockfishSettings(
+                            // Save analyse settings
+                            val newAnalyseSettings = AnalyseSettings(
+                                sequence = analyseSequence
+                            )
+                            onSaveAnalyse(newAnalyseSettings)
+
+                            // Save stockfish settings
+                            val newStockfishSettings = StockfishSettings(
                                 analyseStage = AnalyseStageSettings(
                                     analysisTimeMs = analyseTimeMs,
                                     threads = analyseThreads.toIntOrNull() ?: 1,
@@ -1477,7 +1549,7 @@ private fun StockfishSettingsDialog(
                                     multiPv = manualMultiPv.toIntOrNull() ?: 1
                                 )
                             )
-                            onSave(newSettings)
+                            onSaveStockfish(newStockfishSettings)
                         }
                     ) {
                         Text("Save")
