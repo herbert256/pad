@@ -298,6 +298,16 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         return ChessSource.entries.getOrNull(sourceOrdinal) ?: ChessSource.LICHESS
     }
 
+    /**
+     * Reload the last game from the active chess server.
+     * Called when user clicks the reload button.
+     */
+    fun reloadLastGame() {
+        viewModelScope.launch {
+            autoLoadLastGame()
+        }
+    }
+
     fun setLichessMaxGames(max: Int) {
         val validMax = max.coerceIn(1, 50)
         prefs.edit().putInt(KEY_LICHESS_MAX_GAMES, validMax).apply()

@@ -106,7 +106,7 @@ fun GameScreen(
             .padding(horizontal = 12.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        // Title row with New button (when game loaded) and settings button
+        // Title row with buttons (when game loaded) and settings button
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
@@ -114,12 +114,19 @@ fun GameScreen(
             verticalAlignment = Alignment.CenterVertically
         ) {
             if (uiState.game != null) {
-                // New button - clears game and shows search
-                IconButton(onClick = { viewModel.clearGame() }) {
-                    Text("↺", fontSize = 24.sp)
+                // Two buttons on the left
+                Row {
+                    // Reload last game from active server
+                    IconButton(onClick = { viewModel.reloadLastGame() }) {
+                        Text("↻", fontSize = 24.sp)
+                    }
+                    // Show retrieve games view
+                    IconButton(onClick = { viewModel.clearGame() }) {
+                        Text("≡", fontSize = 24.sp)
+                    }
                 }
             } else {
-                Spacer(modifier = Modifier.width(48.dp))
+                Spacer(modifier = Modifier.width(96.dp))
             }
             Text(
                 text = "Chess Replay",
@@ -1152,46 +1159,48 @@ private fun EvaluationGraph(
         // Calculate point spacing
         val pointSpacing = if (totalMoves > 1) width / (totalMoves - 1) else width / 2
 
-        // Draw the evaluation line
-        var previousPoint: Offset? = null
+        // Build list of points with their scores
+        data class GraphPoint(val x: Float, val y: Float, val score: Float)
+        val points = mutableListOf<GraphPoint>()
 
         for (moveIndex in 0 until totalMoves) {
             val score = moveScores[moveIndex]
             if (score != null) {
                 val x = if (totalMoves > 1) moveIndex * pointSpacing else width / 2
-
-                // Clamp score to maxScore range and calculate y position
                 val clampedScore = score.score.coerceIn(-maxScore, maxScore)
-                // Positive score (white better) goes UP (negative y direction)
                 val y = centerY - (clampedScore / maxScore) * (height / 2 - 4)
-
-                val currentPoint = Offset(x, y)
-
-                // Draw line from previous point
-                if (previousPoint != null) {
-                    // Determine color based on whether score is positive or negative
-                    val segmentColor = if (score.score >= 0) greenColor else redColor
-                    drawLine(
-                        color = segmentColor,
-                        start = previousPoint,
-                        end = currentPoint,
-                        strokeWidth = 2f
-                    )
-                }
-
-                // Draw point
-                val pointColor = if (score.score >= 0) greenColor else redColor
-                drawCircle(
-                    color = pointColor,
-                    radius = 3f,
-                    center = currentPoint
-                )
-
-                previousPoint = currentPoint
-            } else {
-                // No score yet for this move, break the line
-                previousPoint = null
+                points.add(GraphPoint(x, y, score.score))
             }
+        }
+
+        // Draw filled areas and lines between consecutive points
+        for (i in 0 until points.size - 1) {
+            val p1 = points[i]
+            val p2 = points[i + 1]
+
+            // Determine color based on the second point's score
+            val color = if (p2.score >= 0) greenColor else redColor
+
+            // Draw filled area from line to center (x-axis)
+            val path = androidx.compose.ui.graphics.Path().apply {
+                moveTo(p1.x, p1.y)
+                lineTo(p2.x, p2.y)
+                lineTo(p2.x, centerY)
+                lineTo(p1.x, centerY)
+                close()
+            }
+            drawPath(
+                path = path,
+                color = color.copy(alpha = 0.4f)
+            )
+
+            // Draw solid line on top
+            drawLine(
+                color = color,
+                start = Offset(p1.x, p1.y),
+                end = Offset(p2.x, p2.y),
+                strokeWidth = 2f
+            )
         }
 
         // Draw current move indicator (only when not auto-analyzing)
