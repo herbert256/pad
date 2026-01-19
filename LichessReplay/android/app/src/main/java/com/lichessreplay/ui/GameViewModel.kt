@@ -6,8 +6,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.lichessreplay.chess.ChessBoard
 import com.lichessreplay.chess.PgnParser
+import com.lichessreplay.data.ChessRepository
+import com.lichessreplay.data.ChessSource
 import com.lichessreplay.data.LichessGame
-import com.lichessreplay.data.LichessRepository
 import com.lichessreplay.data.Result
 import com.lichessreplay.stockfish.AnalysisResult
 import com.lichessreplay.stockfish.StockfishEngine
@@ -18,18 +19,33 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-data class StockfishSettings(
+// Settings for auto-analysis stage (time-based)
+data class AnalyseStageSettings(
+    val analysisTimeMs: Int = 1000,  // Time per move during auto-analysis (ms)
+    val threads: Int = 1,
+    val hashMb: Int = 64
+)
+
+// Settings for manual replay stage (depth-based)
+data class ManualStageSettings(
     val depth: Int = 16,
     val threads: Int = 1,
     val hashMb: Int = 64,
-    val multiPv: Int = 1,
-    val analysisTimeMs: Int = 1000  // Time per move during auto-analysis (ms)
+    val multiPv: Int = 1
+)
+
+// Combined settings for backward compatibility
+data class StockfishSettings(
+    val analyseStage: AnalyseStageSettings = AnalyseStageSettings(),
+    val manualStage: ManualStageSettings = ManualStageSettings()
 )
 
 data class MoveScore(
     val score: Float,
     val isMate: Boolean,
-    val mateIn: Int
+    val mateIn: Int,
+    val depth: Int = 0,
+    val nodes: Long = 0
 )
 
 data class MoveDetails(
@@ -67,11 +83,14 @@ data class GameUiState(
     val isAutoAnalyzing: Boolean = false,
     val autoAnalysisIndex: Int = -1,
     val moveScores: Map<Int, MoveScore> = emptyMap(),
-    val autoAnalysisCurrentScore: MoveScore? = null
+    val autoAnalysisCurrentScore: MoveScore? = null,
+    // Chess source settings
+    val chessSource: ChessSource = ChessSource.LICHESS,
+    val maxGames: Int = 10
 )
 
 class GameViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository = LichessRepository()
+    private val repository = ChessRepository()
     private val stockfish = StockfishEngine(application)
     private val prefs = application.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
@@ -86,45 +105,78 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         get() = prefs.getString(KEY_USERNAME, "") ?: ""
 
     companion object {
-        private const val PREFS_NAME = "lichess_replay_prefs"
+        private const val PREFS_NAME = "chess_replay_prefs"
         private const val KEY_USERNAME = "last_username"
-        private const val KEY_SF_DEPTH = "stockfish_depth"
-        private const val KEY_SF_THREADS = "stockfish_threads"
-        private const val KEY_SF_HASH = "stockfish_hash"
-        private const val KEY_SF_MULTIPV = "stockfish_multipv"
-        private const val KEY_SF_ANALYSIS_TIME = "stockfish_analysis_time"
+        // Analyse stage settings
+        private const val KEY_ANALYSE_TIME = "analyse_time_ms"
+        private const val KEY_ANALYSE_THREADS = "analyse_threads"
+        private const val KEY_ANALYSE_HASH = "analyse_hash"
+        // Manual stage settings
+        private const val KEY_MANUAL_DEPTH = "manual_depth"
+        private const val KEY_MANUAL_THREADS = "manual_threads"
+        private const val KEY_MANUAL_HASH = "manual_hash"
+        private const val KEY_MANUAL_MULTIPV = "manual_multipv"
+        // Other settings
+        private const val KEY_CHESS_SOURCE = "chess_source"
+        private const val KEY_MAX_GAMES = "max_games"
     }
 
     private fun loadStockfishSettings(): StockfishSettings {
         return StockfishSettings(
-            depth = prefs.getInt(KEY_SF_DEPTH, 16),
-            threads = prefs.getInt(KEY_SF_THREADS, 1),
-            hashMb = prefs.getInt(KEY_SF_HASH, 64),
-            multiPv = prefs.getInt(KEY_SF_MULTIPV, 1),
-            analysisTimeMs = prefs.getInt(KEY_SF_ANALYSIS_TIME, 1000)
+            analyseStage = AnalyseStageSettings(
+                analysisTimeMs = prefs.getInt(KEY_ANALYSE_TIME, 1000),
+                threads = prefs.getInt(KEY_ANALYSE_THREADS, 1),
+                hashMb = prefs.getInt(KEY_ANALYSE_HASH, 64)
+            ),
+            manualStage = ManualStageSettings(
+                depth = prefs.getInt(KEY_MANUAL_DEPTH, 16),
+                threads = prefs.getInt(KEY_MANUAL_THREADS, 1),
+                hashMb = prefs.getInt(KEY_MANUAL_HASH, 64),
+                multiPv = prefs.getInt(KEY_MANUAL_MULTIPV, 1)
+            )
         )
     }
 
     private fun saveStockfishSettings(settings: StockfishSettings) {
         prefs.edit()
-            .putInt(KEY_SF_DEPTH, settings.depth)
-            .putInt(KEY_SF_THREADS, settings.threads)
-            .putInt(KEY_SF_HASH, settings.hashMb)
-            .putInt(KEY_SF_MULTIPV, settings.multiPv)
-            .putInt(KEY_SF_ANALYSIS_TIME, settings.analysisTimeMs)
+            // Analyse stage
+            .putInt(KEY_ANALYSE_TIME, settings.analyseStage.analysisTimeMs)
+            .putInt(KEY_ANALYSE_THREADS, settings.analyseStage.threads)
+            .putInt(KEY_ANALYSE_HASH, settings.analyseStage.hashMb)
+            // Manual stage
+            .putInt(KEY_MANUAL_DEPTH, settings.manualStage.depth)
+            .putInt(KEY_MANUAL_THREADS, settings.manualStage.threads)
+            .putInt(KEY_MANUAL_HASH, settings.manualStage.hashMb)
+            .putInt(KEY_MANUAL_MULTIPV, settings.manualStage.multiPv)
             .apply()
+    }
+
+    private fun configureForAnalyseStage() {
+        val settings = _uiState.value.stockfishSettings.analyseStage
+        stockfish.configure(settings.threads, settings.hashMb, 1) // MultiPV=1 for analyse stage
+    }
+
+    private fun configureForManualStage() {
+        val settings = _uiState.value.stockfishSettings.manualStage
+        stockfish.configure(settings.threads, settings.hashMb, settings.multiPv)
     }
 
     init {
         // Load saved settings
         val settings = loadStockfishSettings()
-        _uiState.value = _uiState.value.copy(stockfishSettings = settings)
+        val chessSource = loadChessSource()
+        val maxGames = prefs.getInt(KEY_MAX_GAMES, 10)
+        _uiState.value = _uiState.value.copy(
+            stockfishSettings = settings,
+            chessSource = chessSource,
+            maxGames = maxGames
+        )
 
-        // Initialize Stockfish
+        // Initialize Stockfish with manual stage settings (default)
         viewModelScope.launch {
             val ready = stockfish.initialize()
             if (ready) {
-                stockfish.configure(settings.threads, settings.hashMb, settings.multiPv)
+                configureForManualStage()
             }
             _uiState.value = _uiState.value.copy(stockfishReady = ready)
         }
@@ -137,12 +189,31 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    private fun loadChessSource(): ChessSource {
+        val sourceOrdinal = prefs.getInt(KEY_CHESS_SOURCE, ChessSource.LICHESS.ordinal)
+        return ChessSource.entries.getOrNull(sourceOrdinal) ?: ChessSource.LICHESS
+    }
+
+    fun setChessSource(source: ChessSource) {
+        prefs.edit().putInt(KEY_CHESS_SOURCE, source.ordinal).apply()
+        _uiState.value = _uiState.value.copy(chessSource = source)
+    }
+
+    fun setMaxGames(max: Int) {
+        val validMax = max.coerceIn(1, 50)
+        prefs.edit().putInt(KEY_MAX_GAMES, validMax).apply()
+        _uiState.value = _uiState.value.copy(maxGames = validMax)
+    }
+
     fun fetchGames(username: String) {
         // Save the username for next time
         prefs.edit().putString(KEY_USERNAME, username).apply()
 
         // Cancel any ongoing auto-analysis
         autoAnalysisJob?.cancel()
+
+        val source = _uiState.value.chessSource
+        val maxGames = _uiState.value.maxGames
 
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(
@@ -153,13 +224,24 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 showGameSelection = false
             )
 
-            when (val result = repository.getRecentGames(username)) {
+            when (val result = repository.getRecentGames(username, source, maxGames)) {
                 is Result.Success -> {
-                    _uiState.value = _uiState.value.copy(
-                        isLoading = false,
-                        gameList = result.data,
-                        showGameSelection = true
-                    )
+                    val games = result.data
+                    if (games.size == 1) {
+                        // Auto-select if only 1 game
+                        _uiState.value = _uiState.value.copy(
+                            isLoading = false,
+                            gameList = games,
+                            showGameSelection = false
+                        )
+                        loadGame(games.first())
+                    } else {
+                        _uiState.value = _uiState.value.copy(
+                            isLoading = false,
+                            gameList = games,
+                            showGameSelection = true
+                        )
+                    }
                 }
                 is Result.Error -> {
                     _uiState.value = _uiState.value.copy(
@@ -504,9 +586,13 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             stockfishSettings = settings,
             showSettingsDialog = false
         )
-        // Apply new settings to Stockfish
+        // Apply new settings to Stockfish based on current stage
         if (_uiState.value.stockfishReady) {
-            stockfish.configure(settings.threads, settings.hashMb, settings.multiPv)
+            if (_uiState.value.isAutoAnalyzing) {
+                configureForAnalyseStage()
+            } else {
+                configureForManualStage()
+            }
             analyzeCurrentPosition()
         }
     }
@@ -518,7 +604,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         _uiState.value = _uiState.value.copy(analysisResult = null)
 
         val fen = _uiState.value.currentBoard.getFen()
-        val depth = _uiState.value.stockfishSettings.depth
+        val depth = _uiState.value.stockfishSettings.manualStage.depth
 
         // Use depth-based analysis for manual replay (not time-limited)
         stockfish.analyze(fen, depth)
@@ -529,6 +615,9 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
         // Cancel any previous auto-analysis
         autoAnalysisJob?.cancel()
+
+        // Configure Stockfish for analyse stage
+        configureForAnalyseStage()
 
         autoAnalysisJob = viewModelScope.launch {
             val moves = _uiState.value.moves
@@ -554,7 +643,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 )
 
                 val fen = board.getFen()
-                val analysisTimeMs = _uiState.value.stockfishSettings.analysisTimeMs
+                val analysisTimeMs = _uiState.value.stockfishSettings.analyseStage.analysisTimeMs
 
                 // Start analysis with time limit
                 stockfish.analyzeWithTime(fen, analysisTimeMs)
@@ -581,7 +670,9 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                         val score = MoveScore(
                             score = adjustedScore,
                             isMate = bestLine.isMate,
-                            mateIn = adjustedMateIn
+                            mateIn = adjustedMateIn,
+                            depth = result.depth,
+                            nodes = result.nodes
                         )
 
                         _uiState.value = _uiState.value.copy(
@@ -598,7 +689,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 autoAnalysisCurrentScore = null
             )
 
-            // Resume normal analysis of current position
+            // Configure for manual stage and resume analysis
+            configureForManualStage()
             analyzeCurrentPosition()
         }
     }
@@ -610,6 +702,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             isAutoAnalyzing = false,
             autoAnalysisIndex = -1
         )
+        // Configure for manual stage
+        configureForManualStage()
     }
 
     /**

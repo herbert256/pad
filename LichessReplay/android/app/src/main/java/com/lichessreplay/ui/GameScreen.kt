@@ -32,6 +32,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.lichessreplay.chess.ChessBoard
 import com.lichessreplay.chess.PieceColor
 import com.lichessreplay.chess.Square
+import com.lichessreplay.data.ChessSource
 import com.lichessreplay.data.LichessGame
 import com.lichessreplay.stockfish.PvLine
 import java.text.SimpleDateFormat
@@ -116,7 +117,7 @@ fun GameScreen(
                 Spacer(modifier = Modifier.width(48.dp))
             }
             Text(
-                text = "Lichess Replay",
+                text = "Chess Replay",
                 style = MaterialTheme.typography.headlineSmall,
                 color = Color.White,
                 fontWeight = FontWeight.Light,
@@ -130,17 +131,49 @@ fun GameScreen(
 
         // Search section - only show when no game is loaded
         if (uiState.game == null) {
+            // Source selection row
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 16.dp),
+                    .padding(bottom = 8.dp),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "lichess.org",
+                    fontSize = 14.sp,
+                    color = if (uiState.chessSource == ChessSource.LICHESS)
+                        MaterialTheme.colorScheme.primary else Color.Gray
+                )
+                Switch(
+                    checked = uiState.chessSource == ChessSource.CHESS_COM,
+                    onCheckedChange = { isChessCom ->
+                        viewModel.setChessSource(
+                            if (isChessCom) ChessSource.CHESS_COM else ChessSource.LICHESS
+                        )
+                    },
+                    modifier = Modifier.padding(horizontal = 8.dp)
+                )
+                Text(
+                    text = "chess.com",
+                    fontSize = 14.sp,
+                    color = if (uiState.chessSource == ChessSource.CHESS_COM)
+                        MaterialTheme.colorScheme.primary else Color.Gray
+                )
+            }
+
+            // Username and games count row
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 8.dp),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 OutlinedTextField(
                     value = username,
                     onValueChange = { username = it },
-                    placeholder = { Text("Enter Lichess username") },
+                    placeholder = { Text("Enter username") },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                     keyboardActions = KeyboardActions(onSearch = {
@@ -158,18 +191,43 @@ fun GameScreen(
 
                 Spacer(modifier = Modifier.width(8.dp))
 
-                Button(
-                    onClick = {
-                        focusManager.clearFocus()
-                        if (username.isNotBlank()) {
-                            viewModel.fetchGames(username)
+                // Games count field
+                var gamesCountText by remember { mutableStateOf(uiState.maxGames.toString()) }
+                OutlinedTextField(
+                    value = gamesCountText,
+                    onValueChange = { newValue ->
+                        // Only allow digits
+                        val filtered = newValue.filter { it.isDigit() }
+                        gamesCountText = filtered
+                        filtered.toIntOrNull()?.let { count ->
+                            viewModel.setMaxGames(count)
                         }
                     },
-                    enabled = !uiState.isLoading,
-                    modifier = Modifier.height(56.dp)
-                ) {
-                    Text("Fetch")
-                }
+                    label = { Text("Games", fontSize = 12.sp) },
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                    modifier = Modifier.width(70.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        unfocusedBorderColor = Color(0xFF333333),
+                        focusedBorderColor = MaterialTheme.colorScheme.primary
+                    )
+                )
+            }
+
+            // Fetch button
+            Button(
+                onClick = {
+                    focusManager.clearFocus()
+                    if (username.isNotBlank()) {
+                        viewModel.fetchGames(username)
+                    }
+                },
+                enabled = !uiState.isLoading,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 16.dp)
+            ) {
+                Text("Fetch")
             }
 
             // Error message
@@ -510,68 +568,124 @@ private fun GameContent(
 
             Spacer(modifier = Modifier.height(4.dp))
 
-            // Move info box - shows current move details with from/to coordinates
-            Box(
+            // Move info box - 3 sections: left (move), middle (stockfish info), right (score)
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(
                         MaterialTheme.colorScheme.surfaceVariant,
                         RoundedCornerShape(4.dp)
                     )
-                    .padding(6.dp),
-                contentAlignment = Alignment.Center
+                    .padding(horizontal = 8.dp, vertical = 6.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 val moveIndex = uiState.currentMoveIndex
                 val currentMove = uiState.moves.getOrNull(moveIndex)
                 val isWhiteMove = moveIndex % 2 == 0
-                val score = uiState.moveScores[moveIndex]
                 val lastMove = uiState.currentBoard.getLastMove()
 
+                // Determine which score/analysis to show
+                // In analyse mode: only show final score (from moveScores)
+                // In manual mode: show live analysis result
+                val storedScore = uiState.moveScores[moveIndex]
+                val liveResult = uiState.analysisResult
+                val isManualMode = !uiState.isAutoAnalyzing
+                val turn = uiState.currentBoard.getTurn()
+                val isWhiteTurn = turn == PieceColor.WHITE
+
                 if (currentMove != null && moveIndex >= 0) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        // Get piece symbol and coordinates
-                        val pieceSymbol = getPieceSymbolFromSan(currentMove, isWhiteMove)
-                        val fromSquare = lastMove?.from?.toAlgebraic() ?: ""
-                        val toSquare = lastMove?.to?.toAlgebraic() ?: ""
+                    // LEFT: Move info (piece + from-to) - left aligned
+                    val pieceSymbol = getPieceSymbolFromSan(currentMove, isWhiteMove)
+                    val fromSquare = lastMove?.from?.toAlgebraic() ?: ""
+                    val toSquare = lastMove?.to?.toAlgebraic() ?: ""
 
-                        // Display: piece  from-to
-                        Text(
-                            text = "$pieceSymbol  $fromSquare-$toSquare",
-                            fontWeight = FontWeight.SemiBold,
-                            fontSize = 16.sp
-                        )
+                    Text(
+                        text = "$pieceSymbol  $fromSquare-$toSquare",
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 16.sp,
+                        modifier = Modifier.weight(1f)
+                    )
 
-                        // Score: only show stored score (after analysis is complete for this move)
-                        if (score != null) {
-                            Spacer(modifier = Modifier.width(12.dp))
-                            val scoreText = if (score.isMate) {
-                                "M${kotlin.math.abs(score.mateIn)}"
-                            } else {
-                                "%.1f".format(kotlin.math.abs(score.score))
-                            }
-                            val scoreColor = when {
-                                score.isMate && score.mateIn > 0 -> Color(0xFF4CAF50)
-                                score.isMate && score.mateIn < 0 -> Color(0xFFF44336)
-                                score.score > 0.1f -> Color(0xFF4CAF50)
-                                score.score < -0.1f -> Color(0xFFF44336)
-                                else -> Color(0xFF2196F3)
-                            }
-                            Text(
-                                text = scoreText,
-                                color = scoreColor,
-                                fontWeight = FontWeight.SemiBold,
-                                fontSize = 16.sp
-                            )
+                    // MIDDLE: Stockfish info (Depth/Nodes) - centered, smaller font
+                    // In analyse mode: show stored depth/nodes after analysis is done
+                    // In manual mode: show live from analysisResult
+                    if (isManualMode && liveResult != null) {
+                        val nodesStr = when {
+                            liveResult.nodes >= 1_000_000 -> "%.1fM".format(liveResult.nodes / 1_000_000.0)
+                            liveResult.nodes >= 1_000 -> "%.1fK".format(liveResult.nodes / 1_000.0)
+                            else -> liveResult.nodes.toString()
                         }
+                        Text(
+                            text = "D:${liveResult.depth} N:$nodesStr",
+                            color = Color(0xFF888888),
+                            fontSize = 11.sp,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.weight(1f)
+                        )
+                    } else if (storedScore != null && storedScore.depth > 0) {
+                        // In analyse mode, show stored depth/nodes from completed analysis
+                        val nodesStr = when {
+                            storedScore.nodes >= 1_000_000 -> "%.1fM".format(storedScore.nodes / 1_000_000.0)
+                            storedScore.nodes >= 1_000 -> "%.1fK".format(storedScore.nodes / 1_000.0)
+                            else -> storedScore.nodes.toString()
+                        }
+                        Text(
+                            text = "D:${storedScore.depth} N:$nodesStr",
+                            color = Color(0xFF888888),
+                            fontSize = 11.sp,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.weight(1f)
+                        )
+                    } else {
+                        Spacer(modifier = Modifier.weight(1f))
+                    }
+
+                    // RIGHT: Score - right aligned
+                    // In analyse mode: show stored score
+                    // In manual mode: show live score from analysisResult
+                    val displayScore: MoveScore? = if (isManualMode && liveResult != null) {
+                        val bestLine = liveResult.bestLine
+                        if (bestLine != null) {
+                            val adjustedScore = if (isWhiteTurn) bestLine.score else -bestLine.score
+                            val adjustedMateIn = if (isWhiteTurn) bestLine.mateIn else -bestLine.mateIn
+                            MoveScore(adjustedScore, bestLine.isMate, adjustedMateIn)
+                        } else null
+                    } else {
+                        storedScore
+                    }
+
+                    if (displayScore != null) {
+                        val scoreText = if (displayScore.isMate) {
+                            "M${kotlin.math.abs(displayScore.mateIn)}"
+                        } else {
+                            val absScore = kotlin.math.abs(displayScore.score)
+                            if (displayScore.score >= 0) "+%.1f".format(absScore) else "-%.1f".format(absScore)
+                        }
+                        val scoreColor = when {
+                            displayScore.isMate && displayScore.mateIn > 0 -> Color(0xFF4CAF50)
+                            displayScore.isMate && displayScore.mateIn < 0 -> Color(0xFFF44336)
+                            displayScore.score > 0.1f -> Color(0xFF4CAF50)
+                            displayScore.score < -0.1f -> Color(0xFFF44336)
+                            else -> Color(0xFF2196F3)
+                        }
+                        Text(
+                            text = scoreText,
+                            color = scoreColor,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 16.sp,
+                            textAlign = TextAlign.End,
+                            modifier = Modifier.weight(1f)
+                        )
+                    } else {
+                        Spacer(modifier = Modifier.weight(1f))
                     }
                 } else {
                     Text(
                         text = "Start position",
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        fontSize = 14.sp
+                        fontSize = 14.sp,
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.Center
                     )
                 }
             }
@@ -598,23 +712,25 @@ private fun GameContent(
         )
     }
 
-    // Controls
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp),
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        ControlButton("⏮") { viewModel.goToStart() }
-        Spacer(modifier = Modifier.width(6.dp))
-        ControlButton("◀") { viewModel.prevMove() }
-        Spacer(modifier = Modifier.width(6.dp))
-        ControlButton("▶") { viewModel.nextMove() }
-        Spacer(modifier = Modifier.width(6.dp))
-        ControlButton("⏭") { viewModel.goToEnd() }
-        Spacer(modifier = Modifier.width(12.dp))
-        ControlButton("↻") { viewModel.flipBoard() }
+    // Controls - hide during auto-analysis
+    if (!uiState.isAutoAnalyzing) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            ControlButton("⏮") { viewModel.goToStart() }
+            Spacer(modifier = Modifier.width(6.dp))
+            ControlButton("◀") { viewModel.prevMove() }
+            Spacer(modifier = Modifier.width(6.dp))
+            ControlButton("▶") { viewModel.nextMove() }
+            Spacer(modifier = Modifier.width(6.dp))
+            ControlButton("⏭") { viewModel.goToEnd() }
+            Spacer(modifier = Modifier.width(12.dp))
+            ControlButton("↻") { viewModel.flipBoard() }
+        }
     }
 
     // Move counter / Analysis info box (not shown when exploring line)
@@ -658,15 +774,16 @@ private fun GameContent(
         }
     }
 
-    // Stockfish analysis panel
-    AnalysisPanel(
-        uiState = uiState,
-        onToggleAnalysis = { viewModel.setAnalysisEnabled(it) },
-        onExploreLine = { pv, moveIndex -> viewModel.exploreLine(pv, moveIndex) },
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 4.dp)
-    )
+    // Stockfish analysis panel - hide during auto-analysis
+    if (!uiState.isAutoAnalyzing) {
+        AnalysisPanel(
+            uiState = uiState,
+            onExploreLine = { pv, moveIndex -> viewModel.exploreLine(pv, moveIndex) },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 4.dp)
+        )
+    }
 
     // Moves list - only show during manual replay (not during auto-analysis)
     if (!uiState.isAutoAnalyzing) {
@@ -974,11 +1091,9 @@ private fun EvaluationGraph(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun AnalysisPanel(
     uiState: GameUiState,
-    onToggleAnalysis: (Boolean) -> Unit,
     onExploreLine: (String, Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -986,92 +1101,31 @@ private fun AnalysisPanel(
     val turn = uiState.currentBoard.getTurn()
     val isWhiteTurn = turn == PieceColor.WHITE
 
+    // Only show if analysis is enabled and ready with results
+    if (!uiState.analysisEnabled || !uiState.stockfishReady || result == null) {
+        return
+    }
+
     Card(
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
         ),
-        modifier = modifier.heightIn(min = 80.dp, max = 400.dp)
+        modifier = modifier
     ) {
-        Column(modifier = Modifier.padding(horizontal = 12.dp, vertical = 2.dp)) {
-            // Header
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(
-                        text = "Stockfish",
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 14.sp
-                    )
-                    if (result != null) {
-                        Spacer(modifier = Modifier.width(8.dp))
-                        val nodesStr = when {
-                            result.nodes >= 1_000_000 -> "%.1fM".format(result.nodes / 1_000_000.0)
-                            result.nodes >= 1_000 -> "%.1fK".format(result.nodes / 1_000.0)
-                            else -> result.nodes.toString()
-                        }
-                        Text(
-                            text = "Depth: ${result.depth} / Nodes: $nodesStr",
-                            color = Color(0xFF666666),
-                            fontSize = 11.sp
-                        )
+        Column(
+            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+            verticalArrangement = Arrangement.spacedBy(6.dp)
+        ) {
+            result.lines.forEach { line ->
+                PvLineRow(
+                    line = line,
+                    board = uiState.currentBoard,
+                    isWhiteTurn = isWhiteTurn,
+                    isFirst = line.multipv == 1,
+                    onMoveClick = { moveIndex ->
+                        onExploreLine(line.pv, moveIndex)
                     }
-                }
-
-                Switch(
-                    checked = uiState.analysisEnabled,
-                    onCheckedChange = onToggleAnalysis,
-                    modifier = Modifier.scale(0.6f)
                 )
-            }
-
-            if (!uiState.analysisEnabled) {
-                Box(
-                    modifier = Modifier.fillMaxWidth(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = "Analysis disabled",
-                        color = Color(0xFF666666),
-                        fontSize = 13.sp
-                    )
-                }
-            } else if (!uiState.stockfishReady) {
-                Box(
-                    modifier = Modifier.fillMaxWidth(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        CircularProgressIndicator(
-                            modifier = Modifier.size(24.dp),
-                            strokeWidth = 2.dp
-                        )
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Text(
-                            text = "Loading engine...",
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            fontSize = 12.sp
-                        )
-                    }
-                }
-            } else if (result != null) {
-                // Show all PV lines
-                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                    result.lines.forEach { line ->
-                        PvLineRow(
-                            line = line,
-                            board = uiState.currentBoard,
-                            isWhiteTurn = isWhiteTurn,
-                            isFirst = line.multipv == 1,
-                            onMoveClick = { moveIndex ->
-                                onExploreLine(line.pv, moveIndex)
-                            }
-                        )
-                    }
-                }
             }
         }
     }
@@ -1233,12 +1287,17 @@ private fun StockfishSettingsDialog(
     onDismiss: () -> Unit,
     onSave: (StockfishSettings) -> Unit
 ) {
-    var depth by remember { mutableStateOf(settings.depth.toString()) }
-    var threads by remember { mutableStateOf(settings.threads.toString()) }
-    var hashMb by remember { mutableStateOf(settings.hashMb.toString()) }
-    var multiPv by remember { mutableStateOf(settings.multiPv.toString()) }
-    var analysisTimeMs by remember { mutableStateOf(settings.analysisTimeMs) }
-    var analysisTimeExpanded by remember { mutableStateOf(false) }
+    // Analyse stage settings
+    var analyseTimeMs by remember { mutableStateOf(settings.analyseStage.analysisTimeMs) }
+    var analyseTimeExpanded by remember { mutableStateOf(false) }
+    var analyseThreads by remember { mutableStateOf(settings.analyseStage.threads.toString()) }
+    var analyseHashMb by remember { mutableStateOf(settings.analyseStage.hashMb.toString()) }
+
+    // Manual stage settings
+    var manualDepth by remember { mutableStateOf(settings.manualStage.depth.toString()) }
+    var manualThreads by remember { mutableStateOf(settings.manualStage.threads.toString()) }
+    var manualHashMb by remember { mutableStateOf(settings.manualStage.hashMb.toString()) }
+    var manualMultiPv by remember { mutableStateOf(settings.manualStage.multiPv.toString()) }
 
     // Analysis time options: 0.25, 0.50, 1.00, 1.50, 2.00 seconds
     val analysisTimeOptions = listOf(
@@ -1253,105 +1312,145 @@ private fun StockfishSettingsDialog(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(8.dp),
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.surface
             )
         ) {
             Column(
                 modifier = Modifier
-                    .padding(20.dp)
+                    .padding(16.dp)
                     .verticalScroll(rememberScrollState()),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+                verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                Text(
-                    text = "Stockfish Settings",
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.SemiBold
-                )
-
-                // Analysis Time Per Move dropdown
-                Column {
-                    Text(
-                        text = "Analysis Time Per Move",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.padding(bottom = 4.dp)
-                    )
-                    ExposedDropdownMenuBox(
-                        expanded = analysisTimeExpanded,
-                        onExpandedChange = { analysisTimeExpanded = it }
+                // ===== ANALYSE STAGE CARD =====
+                Card(
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceVariant
+                    ),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Column(
+                        modifier = Modifier.padding(12.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        OutlinedTextField(
-                            value = analysisTimeOptions.find { it.first == analysisTimeMs }?.second ?: "1.00s",
-                            onValueChange = {},
-                            readOnly = true,
-                            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = analysisTimeExpanded) },
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .menuAnchor(),
-                            supportingText = { Text("Time for auto-analysis per move") }
+                        Text(
+                            text = "Stockfish - Analyse Stage",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.SemiBold
                         )
-                        ExposedDropdownMenu(
-                            expanded = analysisTimeExpanded,
-                            onDismissRequest = { analysisTimeExpanded = false }
+
+                        // Analysis Time Per Move dropdown
+                        ExposedDropdownMenuBox(
+                            expanded = analyseTimeExpanded,
+                            onExpandedChange = { analyseTimeExpanded = it }
                         ) {
-                            analysisTimeOptions.forEach { (ms, label) ->
-                                DropdownMenuItem(
-                                    text = { Text(label) },
-                                    onClick = {
-                                        analysisTimeMs = ms
-                                        analysisTimeExpanded = false
-                                    }
-                                )
+                            OutlinedTextField(
+                                value = analysisTimeOptions.find { it.first == analyseTimeMs }?.second ?: "1.00s",
+                                onValueChange = {},
+                                readOnly = true,
+                                label = { Text("Time per move") },
+                                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = analyseTimeExpanded) },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .menuAnchor()
+                            )
+                            ExposedDropdownMenu(
+                                expanded = analyseTimeExpanded,
+                                onDismissRequest = { analyseTimeExpanded = false }
+                            ) {
+                                analysisTimeOptions.forEach { (ms, label) ->
+                                    DropdownMenuItem(
+                                        text = { Text(label) },
+                                        onClick = {
+                                            analyseTimeMs = ms
+                                            analyseTimeExpanded = false
+                                        }
+                                    )
+                                }
                             }
                         }
+
+                        // Threads
+                        OutlinedTextField(
+                            value = analyseThreads,
+                            onValueChange = { analyseThreads = it.filter { c -> c.isDigit() } },
+                            label = { Text("Threads") },
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+
+                        // Hash
+                        OutlinedTextField(
+                            value = analyseHashMb,
+                            onValueChange = { analyseHashMb = it.filter { c -> c.isDigit() } },
+                            label = { Text("Hash Memory (MB)") },
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth()
+                        )
                     }
                 }
 
-                // Depth
-                OutlinedTextField(
-                    value = depth,
-                    onValueChange = { depth = it.filter { c -> c.isDigit() } },
-                    label = { Text("Analysis Depth") },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth(),
-                    supportingText = { Text("Recommended: 16-24") }
-                )
+                // ===== MANUAL STAGE CARD =====
+                Card(
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceVariant
+                    ),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Column(
+                        modifier = Modifier.padding(12.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Text(
+                            text = "Stockfish - Manual Stage",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.SemiBold
+                        )
 
-                // Threads
-                OutlinedTextField(
-                    value = threads,
-                    onValueChange = { threads = it.filter { c -> c.isDigit() } },
-                    label = { Text("Threads") },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth(),
-                    supportingText = { Text("Number of CPU cores to use") }
-                )
+                        // Depth
+                        OutlinedTextField(
+                            value = manualDepth,
+                            onValueChange = { manualDepth = it.filter { c -> c.isDigit() } },
+                            label = { Text("Analysis Depth") },
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth()
+                        )
 
-                // Hash
-                OutlinedTextField(
-                    value = hashMb,
-                    onValueChange = { hashMb = it.filter { c -> c.isDigit() } },
-                    label = { Text("Hash Memory (MB)") },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth(),
-                    supportingText = { Text("Memory for hash tables") }
-                )
+                        // Threads
+                        OutlinedTextField(
+                            value = manualThreads,
+                            onValueChange = { manualThreads = it.filter { c -> c.isDigit() } },
+                            label = { Text("Threads") },
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth()
+                        )
 
-                // MultiPV
-                OutlinedTextField(
-                    value = multiPv,
-                    onValueChange = { multiPv = it.filter { c -> c.isDigit() } },
-                    label = { Text("MultiPV") },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth(),
-                    supportingText = { Text("Number of best lines to show") }
-                )
+                        // Hash
+                        OutlinedTextField(
+                            value = manualHashMb,
+                            onValueChange = { manualHashMb = it.filter { c -> c.isDigit() } },
+                            label = { Text("Hash Memory (MB)") },
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+
+                        // MultiPV
+                        OutlinedTextField(
+                            value = manualMultiPv,
+                            onValueChange = { manualMultiPv = it.filter { c -> c.isDigit() } },
+                            label = { Text("MultiPV (lines to show)") },
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                            singleLine = true,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
+                }
 
                 // Buttons
                 Row(
@@ -1366,11 +1465,17 @@ private fun StockfishSettingsDialog(
                     Button(
                         onClick = {
                             val newSettings = StockfishSettings(
-                                depth = depth.toIntOrNull() ?: 16,
-                                threads = threads.toIntOrNull() ?: 1,
-                                hashMb = hashMb.toIntOrNull() ?: 64,
-                                multiPv = multiPv.toIntOrNull() ?: 1,
-                                analysisTimeMs = analysisTimeMs
+                                analyseStage = AnalyseStageSettings(
+                                    analysisTimeMs = analyseTimeMs,
+                                    threads = analyseThreads.toIntOrNull() ?: 1,
+                                    hashMb = analyseHashMb.toIntOrNull() ?: 64
+                                ),
+                                manualStage = ManualStageSettings(
+                                    depth = manualDepth.toIntOrNull() ?: 16,
+                                    threads = manualThreads.toIntOrNull() ?: 1,
+                                    hashMb = manualHashMb.toIntOrNull() ?: 64,
+                                    multiPv = manualMultiPv.toIntOrNull() ?: 1
+                                )
                             )
                             onSave(newSettings)
                         }
