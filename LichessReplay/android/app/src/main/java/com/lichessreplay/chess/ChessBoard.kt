@@ -410,6 +410,7 @@ class ChessBoard {
         return true
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun undoMove(move: Move) {
         // This is a simplified undo - for proper undo we'd need to store state
         // For replay purposes, we just reset and replay
@@ -427,5 +428,108 @@ class ChessBoard {
         newBoard.fullMoveNumber = this.fullMoveNumber
         newBoard.lastMove = this.lastMove
         return newBoard
+    }
+
+    /**
+     * Check if a move from one square to another is legal
+     */
+    fun isLegalMove(from: Square, to: Square): Boolean {
+        val piece = getPiece(from) ?: return false
+        if (piece.color != turn) return false
+
+        // Check for castling
+        if (piece.type == PieceType.KING && kotlin.math.abs(to.file - from.file) == 2) {
+            return canCastle(from, to)
+        }
+
+        return canMove(from, to, piece)
+    }
+
+    /**
+     * Check if castling is possible
+     */
+    private fun canCastle(from: Square, to: Square): Boolean {
+        val piece = getPiece(from) ?: return false
+        if (piece.type != PieceType.KING) return false
+
+        val isKingside = to.file == 6
+        val rank = from.rank
+
+        // Check castling rights
+        if (piece.color == PieceColor.WHITE) {
+            if (isKingside && 'K' !in castlingRights) return false
+            if (!isKingside && 'Q' !in castlingRights) return false
+        } else {
+            if (isKingside && 'k' !in castlingRights) return false
+            if (!isKingside && 'q' !in castlingRights) return false
+        }
+
+        // Check path is clear
+        if (isKingside) {
+            if (getPiece(5, rank) != null || getPiece(6, rank) != null) return false
+        } else {
+            if (getPiece(1, rank) != null || getPiece(2, rank) != null || getPiece(3, rank) != null) return false
+        }
+
+        return true
+    }
+
+    /**
+     * Get all legal target squares for a piece at the given square
+     */
+    fun getLegalMoves(from: Square): List<Square> {
+        val piece = getPiece(from) ?: return emptyList()
+        if (piece.color != turn) return emptyList()
+
+        val legalMoves = mutableListOf<Square>()
+
+        for (rank in 0..7) {
+            for (file in 0..7) {
+                val to = Square(file, rank)
+                if (isLegalMove(from, to)) {
+                    legalMoves.add(to)
+                }
+            }
+        }
+
+        // Add castling moves for king
+        if (piece.type == PieceType.KING) {
+            val rank = from.rank
+            if (canCastle(from, Square(6, rank))) {
+                legalMoves.add(Square(6, rank))
+            }
+            if (canCastle(from, Square(2, rank))) {
+                legalMoves.add(Square(2, rank))
+            }
+        }
+
+        return legalMoves
+    }
+
+    /**
+     * Check if a pawn move requires promotion
+     */
+    fun needsPromotion(from: Square, to: Square): Boolean {
+        val piece = getPiece(from) ?: return false
+        if (piece.type != PieceType.PAWN) return false
+        return (piece.color == PieceColor.WHITE && to.rank == 7) ||
+               (piece.color == PieceColor.BLACK && to.rank == 0)
+    }
+
+    /**
+     * Make a move given from and to squares, with optional promotion
+     */
+    fun makeMoveFromSquares(from: Square, to: Square, promotion: PieceType? = null): Boolean {
+        if (!isLegalMove(from, to)) return false
+        val uci = from.toAlgebraic() + to.toAlgebraic() + (promotion?.let {
+            when (it) {
+                PieceType.QUEEN -> "q"
+                PieceType.ROOK -> "r"
+                PieceType.BISHOP -> "b"
+                PieceType.KNIGHT -> "n"
+                else -> ""
+            }
+        } ?: "")
+        return executeMove(Move(from, to, promotion, uci))
     }
 }

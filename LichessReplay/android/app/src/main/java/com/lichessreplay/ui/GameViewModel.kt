@@ -180,6 +180,34 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         _uiState.value = _uiState.value.copy(showGameSelection = false)
     }
 
+    fun clearGame() {
+        // Stop any ongoing auto-analysis
+        autoAnalysisJob?.cancel()
+        stockfish.stop()
+
+        // Clear game state and return to search screen
+        boardHistory.clear()
+        exploringLineHistory.clear()
+        _uiState.value = _uiState.value.copy(
+            game = null,
+            gameList = emptyList(),
+            showGameSelection = false,
+            currentBoard = ChessBoard(),
+            moves = emptyList(),
+            moveDetails = emptyList(),
+            currentMoveIndex = -1,
+            analysisResult = null,
+            flippedBoard = false,
+            isExploringLine = false,
+            exploringLineMoves = emptyList(),
+            exploringLineMoveIndex = -1,
+            savedGameMoveIndex = -1,
+            moveScores = emptyMap(),
+            isAutoAnalyzing = false,
+            autoAnalysisIndex = -1
+        )
+    }
+
     private fun loadGame(game: LichessGame) {
         val pgn = game.pgn
         if (pgn == null) {
@@ -200,7 +228,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         val tempBoard = ChessBoard()
         val moveDetailsList = mutableListOf<MoveDetails>()
 
-        for ((index, move) in moves.withIndex()) {
+        for (move in moves) {
             // Check if this move is a capture (target square has a piece before the move)
             val boardBeforeMove = tempBoard.copy()
             tempBoard.makeMove(move)
@@ -269,6 +297,11 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun goToStart() {
+        // Stop auto-analysis when user manually navigates
+        if (_uiState.value.isAutoAnalyzing) {
+            stopAutoAnalysis()
+        }
+
         if (_uiState.value.isExploringLine) {
             _uiState.value = _uiState.value.copy(
                 currentBoard = exploringLineHistory.firstOrNull() ?: ChessBoard(),
@@ -284,6 +317,11 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun goToEnd() {
+        // Stop auto-analysis when user manually navigates
+        if (_uiState.value.isAutoAnalyzing) {
+            stopAutoAnalysis()
+        }
+
         if (_uiState.value.isExploringLine) {
             val moves = _uiState.value.exploringLineMoves
             if (moves.isEmpty()) {
@@ -309,6 +347,11 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun goToMove(index: Int) {
+        // Stop auto-analysis when user manually navigates
+        if (_uiState.value.isAutoAnalyzing) {
+            stopAutoAnalysis()
+        }
+
         if (_uiState.value.isExploringLine) {
             val moves = _uiState.value.exploringLineMoves
             if (index < -1 || index >= moves.size) return
@@ -328,6 +371,11 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun nextMove() {
+        // Stop auto-analysis when user manually navigates
+        if (_uiState.value.isAutoAnalyzing) {
+            stopAutoAnalysis()
+        }
+
         if (_uiState.value.isExploringLine) {
             val currentIndex = _uiState.value.exploringLineMoveIndex
             val moves = _uiState.value.exploringLineMoves
@@ -351,6 +399,11 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun prevMove() {
+        // Stop auto-analysis when user manually navigates
+        if (_uiState.value.isAutoAnalyzing) {
+            stopAutoAnalysis()
+        }
+
         if (_uiState.value.isExploringLine) {
             val currentIndex = _uiState.value.exploringLineMoveIndex
             if (currentIndex < 0) return
@@ -465,7 +518,10 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         _uiState.value = _uiState.value.copy(analysisResult = null)
 
         val fen = _uiState.value.currentBoard.getFen()
-        stockfish.analyze(fen, _uiState.value.stockfishSettings.depth)
+        val depth = _uiState.value.stockfishSettings.depth
+
+        // Use depth-based analysis for manual replay (not time-limited)
+        stockfish.analyze(fen, depth)
     }
 
     private fun startAutoAnalysis() {
@@ -483,8 +539,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 autoAnalysisCurrentScore = null
             )
 
-            // Analyze each position (after each move)
-            for (moveIndex in 0 until moves.size) {
+            // Analyze each position in reverse order (last move first)
+            for (moveIndex in (moves.size - 1) downTo 0) {
                 // Get the board position after this move
                 val board = boardHistory.getOrNull(moveIndex + 1) ?: continue
 
@@ -549,10 +605,81 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     fun stopAutoAnalysis() {
         autoAnalysisJob?.cancel()
+        stockfish.stop()  // Stop any running time-based analysis
         _uiState.value = _uiState.value.copy(
             isAutoAnalyzing = false,
             autoAnalysisIndex = -1
         )
+    }
+
+    /**
+     * Make a manual move on the board (from user drag-and-drop).
+     * Only allowed during manual replay (not auto-analyzing).
+     */
+    fun makeManualMove(from: com.lichessreplay.chess.Square, to: com.lichessreplay.chess.Square) {
+        // Don't allow moves during auto-analysis
+        if (_uiState.value.isAutoAnalyzing) return
+
+        val currentBoard = _uiState.value.currentBoard
+
+        // Check if move is legal
+        if (!currentBoard.isLegalMove(from, to)) return
+
+        // Handle pawn promotion - default to queen for simplicity
+        val promotion = if (currentBoard.needsPromotion(from, to)) {
+            com.lichessreplay.chess.PieceType.QUEEN
+        } else null
+
+        // Make a copy of the board and execute the move
+        val newBoard = currentBoard.copy()
+        if (!newBoard.makeMoveFromSquares(from, to, promotion)) return
+
+        if (_uiState.value.isExploringLine) {
+            // Add the new board position to exploring line history
+            exploringLineHistory.add(newBoard.copy())
+            val newMoveIndex = _uiState.value.exploringLineMoveIndex + 1
+            val uciMove = from.toAlgebraic() + to.toAlgebraic() + (promotion?.let {
+                when (it) {
+                    com.lichessreplay.chess.PieceType.QUEEN -> "q"
+                    com.lichessreplay.chess.PieceType.ROOK -> "r"
+                    com.lichessreplay.chess.PieceType.BISHOP -> "b"
+                    com.lichessreplay.chess.PieceType.KNIGHT -> "n"
+                    else -> ""
+                }
+            } ?: "")
+
+            _uiState.value = _uiState.value.copy(
+                currentBoard = newBoard,
+                exploringLineMoves = _uiState.value.exploringLineMoves + uciMove,
+                exploringLineMoveIndex = newMoveIndex
+            )
+        } else {
+            // In main game: enter exploring line mode with this move
+            exploringLineHistory.clear()
+            exploringLineHistory.add(currentBoard.copy()) // Starting position
+            exploringLineHistory.add(newBoard.copy())     // After the move
+
+            val uciMove = from.toAlgebraic() + to.toAlgebraic() + (promotion?.let {
+                when (it) {
+                    com.lichessreplay.chess.PieceType.QUEEN -> "q"
+                    com.lichessreplay.chess.PieceType.ROOK -> "r"
+                    com.lichessreplay.chess.PieceType.BISHOP -> "b"
+                    com.lichessreplay.chess.PieceType.KNIGHT -> "n"
+                    else -> ""
+                }
+            } ?: "")
+
+            _uiState.value = _uiState.value.copy(
+                isExploringLine = true,
+                exploringLineMoves = listOf(uciMove),
+                exploringLineMoveIndex = 0,
+                savedGameMoveIndex = _uiState.value.currentMoveIndex,
+                currentBoard = newBoard
+            )
+        }
+
+        // Run Stockfish analysis on the new position
+        analyzeCurrentPosition()
     }
 
     override fun onCleared() {

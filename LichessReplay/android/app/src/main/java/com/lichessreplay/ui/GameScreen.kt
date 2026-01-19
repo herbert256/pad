@@ -23,6 +23,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.input.KeyboardType
@@ -52,27 +53,6 @@ private const val BLACK_BISHOP = "♝"
 private const val BLACK_KNIGHT = "♞"
 private const val BLACK_PAWN = "♟"
 
-// Add piece symbol to SAN move (e.g., "Nf3" -> "♘ f3", "e4" -> "♙ e4")
-private fun addPieceSymbol(move: String, isWhite: Boolean): String {
-    if (move.isEmpty()) return move
-
-    // Handle castling
-    if (move == "O-O" || move == "O-O-O") {
-        return if (isWhite) "$BLACK_KING $move" else "$WHITE_KING $move"
-    }
-
-    val pieceChar = move.first()
-    return when {
-        pieceChar == 'K' -> (if (isWhite) BLACK_KING else WHITE_KING) + " " + move.drop(1)
-        pieceChar == 'Q' -> (if (isWhite) BLACK_QUEEN else WHITE_QUEEN) + " " + move.drop(1)
-        pieceChar == 'R' -> (if (isWhite) BLACK_ROOK else WHITE_ROOK) + " " + move.drop(1)
-        pieceChar == 'B' -> (if (isWhite) BLACK_BISHOP else WHITE_BISHOP) + " " + move.drop(1)
-        pieceChar == 'N' -> (if (isWhite) BLACK_KNIGHT else WHITE_KNIGHT) + " " + move.drop(1)
-        pieceChar.isLowerCase() -> (if (isWhite) BLACK_PAWN else WHITE_PAWN) + " " + move // Pawn move
-        else -> move
-    }
-}
-
 // Get just the piece symbol from a SAN move (for use with separate coordinates)
 private fun getPieceSymbolFromSan(move: String, isWhite: Boolean): String {
     if (move.isEmpty()) return ""
@@ -92,19 +72,6 @@ private fun getPieceSymbolFromSan(move: String, isWhite: Boolean): String {
         pieceChar.isLowerCase() -> if (isWhite) BLACK_PAWN else WHITE_PAWN // Pawn move
         else -> if (isWhite) BLACK_PAWN else WHITE_PAWN
     }
-}
-
-// Add piece symbols to UCI moves (e.g., "e2e4 g1f3" -> "♙e2e4 ♘g1f3")
-// Note: Uses inverted symbols due to Unicode visual representation
-private fun addPieceSymbolsToUci(pv: String, isWhiteTurn: Boolean): String {
-    if (pv.isBlank()) return pv
-    val moves = pv.split(" ")
-    var isWhite = isWhiteTurn
-    return moves.mapIndexed { _, move ->
-        val symbol = if (isWhite) BLACK_PAWN else WHITE_PAWN
-        isWhite = !isWhite
-        "$symbol$move"
-    }.joinToString(" ")
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -127,24 +94,30 @@ fun GameScreen(
     }
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
-            .padding(16.dp)
+            .padding(horizontal = 12.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        // Title with settings button
+        // Title row with New button (when game loaded) and settings button
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 24.dp),
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Spacer(modifier = Modifier.width(48.dp))
+            if (uiState.game != null) {
+                // New button - clears game and shows search
+                IconButton(onClick = { viewModel.clearGame() }) {
+                    Text("↺", fontSize = 24.sp)
+                }
+            } else {
+                Spacer(modifier = Modifier.width(48.dp))
+            }
             Text(
-                text = "Lichess Game Replay",
-                style = MaterialTheme.typography.headlineMedium,
+                text = "Lichess Replay",
+                style = MaterialTheme.typography.headlineSmall,
                 color = Color.White,
                 fontWeight = FontWeight.Light,
                 textAlign = TextAlign.Center,
@@ -155,83 +128,85 @@ fun GameScreen(
             }
         }
 
-        // Search section
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 24.dp),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            OutlinedTextField(
-                value = username,
-                onValueChange = { username = it },
-                placeholder = { Text("Enter Lichess username") },
-                singleLine = true,
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-                keyboardActions = KeyboardActions(onSearch = {
-                    focusManager.clearFocus()
-                    if (username.isNotBlank()) {
-                        viewModel.fetchGames(username)
-                    }
-                }),
-                modifier = Modifier.weight(1f),
-                colors = OutlinedTextFieldDefaults.colors(
-                    unfocusedBorderColor = Color(0xFF333333),
-                    focusedBorderColor = MaterialTheme.colorScheme.primary
-                )
-            )
-
-            Spacer(modifier = Modifier.width(8.dp))
-
-            Button(
-                onClick = {
-                    focusManager.clearFocus()
-                    if (username.isNotBlank()) {
-                        viewModel.fetchGames(username)
-                    }
-                },
-                enabled = !uiState.isLoading,
-                modifier = Modifier.height(56.dp)
-            ) {
-                Text("Fetch")
-            }
-        }
-
-        // Error message
-        if (uiState.errorMessage != null) {
-            Card(
-                colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.error
-                ),
+        // Search section - only show when no game is loaded
+        if (uiState.game == null) {
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 16.dp)
+                    .padding(bottom = 16.dp),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = uiState.errorMessage!!,
-                    color = Color.White,
-                    modifier = Modifier.padding(16.dp),
-                    textAlign = TextAlign.Center
-                )
-            }
-        }
-
-        // Loading indicator
-        if (uiState.isLoading) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(40.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Text(
-                        text = "Fetching games...",
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                OutlinedTextField(
+                    value = username,
+                    onValueChange = { username = it },
+                    placeholder = { Text("Enter Lichess username") },
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+                    keyboardActions = KeyboardActions(onSearch = {
+                        focusManager.clearFocus()
+                        if (username.isNotBlank()) {
+                            viewModel.fetchGames(username)
+                        }
+                    }),
+                    modifier = Modifier.weight(1f),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        unfocusedBorderColor = Color(0xFF333333),
+                        focusedBorderColor = MaterialTheme.colorScheme.primary
                     )
+                )
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                Button(
+                    onClick = {
+                        focusManager.clearFocus()
+                        if (username.isNotBlank()) {
+                            viewModel.fetchGames(username)
+                        }
+                    },
+                    enabled = !uiState.isLoading,
+                    modifier = Modifier.height(56.dp)
+                ) {
+                    Text("Fetch")
+                }
+            }
+
+            // Error message
+            if (uiState.errorMessage != null) {
+                Card(
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.error
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 8.dp)
+                ) {
+                    Text(
+                        text = uiState.errorMessage!!,
+                        color = Color.White,
+                        modifier = Modifier.padding(12.dp),
+                        textAlign = TextAlign.Center
+                    )
+                }
+            }
+
+            // Loading indicator
+            if (uiState.isLoading) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(40.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Text(
+                            text = "Fetching games...",
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
                 }
             }
         }
@@ -391,7 +366,7 @@ private fun GameListItem(
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = "• ${game.speed ?: game.perf ?: ""}",
+                        text = "• ${game.speed}",
                         fontSize = 12.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -427,9 +402,9 @@ private fun GameContent(
         ),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(bottom = 16.dp)
+            .padding(bottom = 4.dp)
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(10.dp)) {
             // Players - white on top, black below
             val whiteResult = when (game.winner) {
                 "white" -> "1"
@@ -449,37 +424,37 @@ private fun GameContent(
             ) {
                 Box(
                     modifier = Modifier
-                        .size(32.dp)
-                        .background(Color.White, RoundedCornerShape(4.dp))
-                        .border(2.dp, Color(0xFF444444), RoundedCornerShape(4.dp)),
+                        .size(26.dp)
+                        .background(Color.White, RoundedCornerShape(3.dp))
+                        .border(1.dp, Color(0xFF444444), RoundedCornerShape(3.dp)),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
                         text = whiteResult,
                         color = Color.Black,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp
+                        fontSize = 14.sp
                     )
                 }
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(6.dp))
                 Text(
                     text = game.players.white.user?.name
-                        ?: game.players.white.aiLevel?.let { "Stockfish Level $it" }
+                        ?: game.players.white.aiLevel?.let { "SF $it" }
                         ?: "Anonymous",
                     fontWeight = FontWeight.SemiBold,
-                    fontSize = 16.sp,
+                    fontSize = 14.sp,
                     modifier = Modifier.weight(1f)
                 )
                 game.players.white.rating?.let {
                     Text(
                         text = "($it)",
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        fontSize = 14.sp
+                        fontSize = 12.sp
                     )
                 }
             }
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
             // Black player
             Row(
@@ -488,37 +463,52 @@ private fun GameContent(
             ) {
                 Box(
                     modifier = Modifier
-                        .size(32.dp)
-                        .background(Color.Black, RoundedCornerShape(4.dp))
-                        .border(2.dp, Color(0xFF444444), RoundedCornerShape(4.dp)),
+                        .size(26.dp)
+                        .background(Color.Black, RoundedCornerShape(3.dp))
+                        .border(1.dp, Color(0xFF444444), RoundedCornerShape(3.dp)),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
                         text = blackResult,
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp
+                        fontSize = 14.sp
                     )
                 }
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(6.dp))
                 Text(
                     text = game.players.black.user?.name
-                        ?: game.players.black.aiLevel?.let { "Stockfish Level $it" }
+                        ?: game.players.black.aiLevel?.let { "SF $it" }
                         ?: "Anonymous",
                     fontWeight = FontWeight.SemiBold,
-                    fontSize = 16.sp,
+                    fontSize = 14.sp,
                     modifier = Modifier.weight(1f)
                 )
                 game.players.black.rating?.let {
                     Text(
                         text = "($it)",
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        fontSize = 14.sp
+                        fontSize = 12.sp
                     )
                 }
             }
 
-            Spacer(modifier = Modifier.height(12.dp))
+            // Evaluation graph - inside card, smaller
+            if (uiState.moveDetails.isNotEmpty()) {
+                Spacer(modifier = Modifier.height(4.dp))
+                EvaluationGraph(
+                    moveScores = uiState.moveScores,
+                    totalMoves = uiState.moveDetails.size,
+                    currentMoveIndex = uiState.currentMoveIndex,
+                    isAutoAnalyzing = uiState.isAutoAnalyzing,
+                    onMoveSelected = { moveIndex -> viewModel.goToMove(moveIndex) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(80.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(4.dp))
 
             // Move info box - shows current move details with from/to coordinates
             Box(
@@ -526,9 +516,9 @@ private fun GameContent(
                     .fillMaxWidth()
                     .background(
                         MaterialTheme.colorScheme.surfaceVariant,
-                        RoundedCornerShape(8.dp)
+                        RoundedCornerShape(4.dp)
                     )
-                    .padding(12.dp),
+                    .padding(6.dp),
                 contentAlignment = Alignment.Center
             ) {
                 val moveIndex = uiState.currentMoveIndex
@@ -547,16 +537,16 @@ private fun GameContent(
                         val fromSquare = lastMove?.from?.toAlgebraic() ?: ""
                         val toSquare = lastMove?.to?.toAlgebraic() ?: ""
 
-                        // Display: piece  from-to (extra space between piece and coordinates)
+                        // Display: piece  from-to
                         Text(
                             text = "$pieceSymbol  $fromSquare-$toSquare",
                             fontWeight = FontWeight.SemiBold,
-                            fontSize = 20.sp
+                            fontSize = 16.sp
                         )
 
                         // Score: only show stored score (after analysis is complete for this move)
                         if (score != null) {
-                            Spacer(modifier = Modifier.width(16.dp))
+                            Spacer(modifier = Modifier.width(12.dp))
                             val scoreText = if (score.isMate) {
                                 "M${kotlin.math.abs(score.mateIn)}"
                             } else {
@@ -573,7 +563,7 @@ private fun GameContent(
                                 text = scoreText,
                                 color = scoreColor,
                                 fontWeight = FontWeight.SemiBold,
-                                fontSize = 20.sp
+                                fontSize = 16.sp
                             )
                         }
                     }
@@ -581,29 +571,14 @@ private fun GameContent(
                     Text(
                         text = "Start position",
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        fontSize = 16.sp
+                        fontSize = 14.sp
                     )
                 }
             }
         }
     }
 
-    // Evaluation graph - shows score progression, draggable to navigate moves
-    if (uiState.moveDetails.isNotEmpty()) {
-        EvaluationGraph(
-            moveScores = uiState.moveScores,
-            totalMoves = uiState.moveDetails.size,
-            currentMoveIndex = uiState.currentMoveIndex,
-            isAutoAnalyzing = uiState.isAutoAnalyzing,
-            onMoveSelected = { moveIndex -> viewModel.goToMove(moveIndex) },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(100.dp)
-                .padding(vertical = 8.dp)
-        )
-    }
-
-    // Chess board - click to stop auto-analysis
+    // Chess board - click to stop auto-analysis, drag to make moves during manual replay
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -617,6 +592,8 @@ private fun GameContent(
         ChessBoardView(
             board = uiState.currentBoard,
             flipped = uiState.flippedBoard,
+            interactionEnabled = !uiState.isAutoAnalyzing,
+            onMove = { from, to -> viewModel.makeManualMove(from, to) },
             modifier = Modifier.fillMaxWidth()
         )
     }
@@ -625,54 +602,44 @@ private fun GameContent(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 16.dp),
+            .padding(vertical = 8.dp),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
         ControlButton("⏮") { viewModel.goToStart() }
-        Spacer(modifier = Modifier.width(8.dp))
+        Spacer(modifier = Modifier.width(6.dp))
         ControlButton("◀") { viewModel.prevMove() }
-        Spacer(modifier = Modifier.width(8.dp))
+        Spacer(modifier = Modifier.width(6.dp))
         ControlButton("▶") { viewModel.nextMove() }
-        Spacer(modifier = Modifier.width(8.dp))
+        Spacer(modifier = Modifier.width(6.dp))
         ControlButton("⏭") { viewModel.goToEnd() }
-        Spacer(modifier = Modifier.width(16.dp))
+        Spacer(modifier = Modifier.width(12.dp))
         ControlButton("↻") { viewModel.flipBoard() }
     }
 
-    // Move counter / Analysis info box
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        if (uiState.isAutoAnalyzing) {
-            // Show analysis progress
-            Text(
-                text = "Analyzing: ${uiState.autoAnalysisIndex + 1} / ${uiState.moves.size}",
-                color = Color(0xFF6B9BFF),
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Medium
-            )
-        } else if (uiState.isExploringLine) {
-            Text(
-                text = "Exploring line",
-                color = Color(0xFF6B9BFF),
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Medium
-            )
-            Text(
-                text = "Move: ${uiState.exploringLineMoveIndex + 1} / ${uiState.exploringLineMoves.size}",
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Center
-            )
-        } else {
-            Text(
-                text = "Move: ${uiState.currentMoveIndex + 1} / ${uiState.moves.size}",
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Center
-            )
+    // Move counter / Analysis info box (not shown when exploring line)
+    if (!uiState.isExploringLine) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 4.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            if (uiState.isAutoAnalyzing) {
+                // Show analysis progress
+                Text(
+                    text = "Analyzing: ${uiState.autoAnalysisIndex + 1} / ${uiState.moves.size}",
+                    color = Color(0xFF6B9BFF),
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Medium
+                )
+            } else {
+                Text(
+                    text = "Move: ${uiState.currentMoveIndex + 1} / ${uiState.moves.size}",
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    textAlign = TextAlign.Center
+                )
+            }
         }
     }
 
@@ -685,46 +652,48 @@ private fun GameContent(
             ),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 8.dp)
+                .padding(bottom = 4.dp)
         ) {
-            Text("↩ Back to original game", fontSize = 14.sp)
+            Text("↩ Back to game", fontSize = 13.sp)
         }
     }
 
-    // Stockfish analysis panel (now on top)
+    // Stockfish analysis panel
     AnalysisPanel(
         uiState = uiState,
         onToggleAnalysis = { viewModel.setAnalysisEnabled(it) },
         onExploreLine = { pv, moveIndex -> viewModel.exploreLine(pv, moveIndex) },
         modifier = Modifier
             .fillMaxWidth()
-            .padding(bottom = 12.dp)
+            .padding(bottom = 4.dp)
     )
 
-    // Moves list (below analysis)
-    Card(
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
-        ),
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(200.dp)
-    ) {
-        Column(modifier = Modifier.padding(12.dp)) {
-            Text(
-                text = "Moves",
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                fontWeight = FontWeight.Medium,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
-            MovesList(
-                moveDetails = uiState.moveDetails,
-                currentMoveIndex = uiState.currentMoveIndex,
-                moveScores = uiState.moveScores,
-                isAutoAnalyzing = uiState.isAutoAnalyzing,
-                autoAnalysisIndex = uiState.autoAnalysisIndex,
-                onMoveClick = { viewModel.goToMove(it) }
-            )
+    // Moves list - only show during manual replay (not during auto-analysis)
+    if (!uiState.isAutoAnalyzing) {
+        Card(
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surface
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            Column(modifier = Modifier.padding(8.dp)) {
+                Text(
+                    text = "Moves",
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 13.sp,
+                    modifier = Modifier.padding(bottom = 4.dp)
+                )
+                MovesList(
+                    moveDetails = uiState.moveDetails,
+                    currentMoveIndex = uiState.currentMoveIndex,
+                    moveScores = uiState.moveScores,
+                    isAutoAnalyzing = uiState.isAutoAnalyzing,
+                    autoAnalysisIndex = uiState.autoAnalysisIndex,
+                    onMoveClick = { viewModel.goToMove(it) }
+                )
+            }
         }
     }
 }
@@ -754,32 +723,10 @@ private fun MovesList(
     autoAnalysisIndex: Int,
     onMoveClick: (Int) -> Unit
 ) {
-    val listState = rememberLazyListState()
-    val scope = rememberCoroutineScope()
+    val movePairs = moveDetails.chunked(2)
 
-    // Auto-scroll to current move or analysis position
-    LaunchedEffect(currentMoveIndex, autoAnalysisIndex) {
-        val targetIndex = if (isAutoAnalyzing && autoAnalysisIndex >= 0) {
-            autoAnalysisIndex / 2
-        } else if (currentMoveIndex >= 0) {
-            currentMoveIndex / 2
-        } else {
-            -1
-        }
-        if (targetIndex >= 0) {
-            scope.launch {
-                listState.animateScrollToItem(targetIndex)
-            }
-        }
-    }
-
-    LazyColumn(
-        state = listState,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        val movePairs = moveDetails.chunked(2)
-
-        itemsIndexed(movePairs) { pairIndex, pair ->
+    Column(modifier = Modifier.fillMaxWidth()) {
+        movePairs.forEachIndexed { pairIndex, pair ->
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -1045,7 +992,7 @@ private fun AnalysisPanel(
         ),
         modifier = modifier.heightIn(min = 80.dp, max = 400.dp)
     ) {
-        Column(modifier = Modifier.padding(12.dp)) {
+        Column(modifier = Modifier.padding(horizontal = 12.dp, vertical = 2.dp)) {
             // Header
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -1061,10 +1008,15 @@ private fun AnalysisPanel(
                     )
                     if (result != null) {
                         Spacer(modifier = Modifier.width(8.dp))
+                        val nodesStr = when {
+                            result.nodes >= 1_000_000 -> "%.1fM".format(result.nodes / 1_000_000.0)
+                            result.nodes >= 1_000 -> "%.1fK".format(result.nodes / 1_000.0)
+                            else -> result.nodes.toString()
+                        }
                         Text(
-                            text = "d${result.depth}",
+                            text = "Depth: ${result.depth} / Nodes: $nodesStr",
                             color = Color(0xFF666666),
-                            fontSize = 12.sp
+                            fontSize = 11.sp
                         )
                     }
                 }
@@ -1072,11 +1024,9 @@ private fun AnalysisPanel(
                 Switch(
                     checked = uiState.analysisEnabled,
                     onCheckedChange = onToggleAnalysis,
-                    modifier = Modifier.height(24.dp)
+                    modifier = Modifier.scale(0.6f)
                 )
             }
-
-            Spacer(modifier = Modifier.height(8.dp))
 
             if (!uiState.analysisEnabled) {
                 Box(
@@ -1243,7 +1193,13 @@ private fun formatUciMovesWithCaptures(pv: String, startBoard: ChessBoard, isWhi
             if (currentIsWhite) BLACK_PAWN else WHITE_PAWN
         }
 
-        val isCapture = toSquare != null && tempBoard.getPiece(toSquare) != null
+        // Check for capture: either there's a piece on target square, or it's en passant
+        val targetPiece = toSquare?.let { tempBoard.getPiece(it) }
+        val isPawn = piece?.type == com.lichessreplay.chess.PieceType.PAWN
+        val isEnPassant = isPawn && fromSquare != null && toSquare != null &&
+            fromSquare.file != toSquare.file && targetPiece == null
+        val isCapture = targetPiece != null || isEnPassant
+
         val separator = if (isCapture) "x" else "-"
         val formatted = "$symbol $fromStr$separator$toStr$promotion"
 
@@ -1303,7 +1259,9 @@ private fun StockfishSettingsDialog(
             )
         ) {
             Column(
-                modifier = Modifier.padding(20.dp),
+                modifier = Modifier
+                    .padding(20.dp)
+                    .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 Text(

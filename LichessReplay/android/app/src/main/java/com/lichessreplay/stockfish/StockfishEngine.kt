@@ -16,6 +16,7 @@ data class PvLine(
 
 data class AnalysisResult(
     val depth: Int,
+    val nodes: Long,
     val lines: List<PvLine>
 ) {
     // Convenience properties for backward compatibility
@@ -44,6 +45,7 @@ class StockfishEngine(private val context: Context) {
     private var stockfishPath: String? = null
     private var currentMultiPv = 1
     private val pvLines = mutableMapOf<Int, PvLine>()
+    private var currentNodes: Long = 0
 
     suspend fun initialize(): Boolean = withContext(Dispatchers.IO) {
         try {
@@ -144,13 +146,14 @@ class StockfishEngine(private val context: Context) {
             try {
                 // Stop any ongoing analysis
                 sendCommand("stop")
-                delay(50)
+                delay(100)  // Give Stockfish time to stop
 
                 // Clear previous lines and reset result
                 pvLines.clear()
+                currentNodes = 0
                 _analysisResult.value = null
 
-                // Set position and start analysis
+                // Set position and start depth-based analysis (runs until depth reached)
                 sendCommand("position fen $fen")
                 sendCommand("go depth $depth")
 
@@ -187,6 +190,7 @@ class StockfishEngine(private val context: Context) {
 
                 // Clear previous lines and reset result
                 pvLines.clear()
+                currentNodes = 0
                 _analysisResult.value = null
 
                 // Set position and start analysis with time limit
@@ -219,6 +223,11 @@ class StockfishEngine(private val context: Context) {
             // Extract depth
             val depthMatch = Regex("depth (\\d+)").find(line)
             val depth = depthMatch?.groupValues?.get(1)?.toIntOrNull() ?: 0
+
+            // Extract nodes
+            val nodesMatch = Regex("nodes (\\d+)").find(line)
+            val nodes = nodesMatch?.groupValues?.get(1)?.toLongOrNull() ?: currentNodes
+            currentNodes = nodes
 
             // Extract multipv (defaults to 1)
             val multipvMatch = Regex("multipv (\\d+)").find(line)
@@ -257,6 +266,7 @@ class StockfishEngine(private val context: Context) {
             // Update result with all collected lines sorted by multipv
             _analysisResult.value = AnalysisResult(
                 depth = depth,
+                nodes = currentNodes,
                 lines = pvLines.values.sortedBy { it.multipv }
             )
         } catch (e: Exception) {
