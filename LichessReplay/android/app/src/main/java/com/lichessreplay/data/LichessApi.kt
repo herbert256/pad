@@ -15,9 +15,9 @@ import java.util.concurrent.TimeUnit
 interface LichessApi {
     @GET("api/games/user/{username}")
     @Headers("Accept: application/x-ndjson")
-    suspend fun getLastGame(
+    suspend fun getGames(
         @Path("username") username: String,
-        @Query("max") max: Int = 1,
+        @Query("max") max: Int = 10,
         @Query("pgnInJson") pgnInJson: Boolean = true
     ): Response<String>
 

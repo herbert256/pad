@@ -14,9 +14,9 @@ class LichessRepository(
 ) {
     private val gson = Gson()
 
-    suspend fun getLastGame(username: String): Result<LichessGame> = withContext(Dispatchers.IO) {
+    suspend fun getRecentGames(username: String): Result<List<LichessGame>> = withContext(Dispatchers.IO) {
         try {
-            val response = api.getLastGame(username)
+            val response = api.getGames(username)
 
             if (!response.isSuccessful) {
                 return@withContext when (response.code()) {
@@ -30,12 +30,22 @@ class LichessRepository(
                 return@withContext Result.Error("No games found for this user")
             }
 
-            // Parse NDJSON (first line is the game)
-            val gameJson = body.lines().firstOrNull { it.isNotBlank() }
-                ?: return@withContext Result.Error("No games found for this user")
+            // Parse NDJSON (each line is a game)
+            val games = body.lines()
+                .filter { it.isNotBlank() }
+                .mapNotNull { line ->
+                    try {
+                        gson.fromJson(line, LichessGame::class.java)
+                    } catch (e: Exception) {
+                        null
+                    }
+                }
 
-            val game = gson.fromJson(gameJson, LichessGame::class.java)
-            Result.Success(game)
+            if (games.isEmpty()) {
+                return@withContext Result.Error("No games found for this user")
+            }
+
+            Result.Success(games)
         } catch (e: Exception) {
             Result.Error(e.message ?: "Unknown error occurred")
         }

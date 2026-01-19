@@ -6,14 +6,26 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import java.io.*
 
-data class AnalysisResult(
+data class PvLine(
     val score: Float,
     val isMate: Boolean,
     val mateIn: Int,
-    val depth: Int,
-    val bestMove: String,
-    val pv: String
+    val pv: String,
+    val multipv: Int
 )
+
+data class AnalysisResult(
+    val depth: Int,
+    val lines: List<PvLine>
+) {
+    // Convenience properties for backward compatibility
+    val bestLine: PvLine? get() = lines.firstOrNull()
+    val score: Float get() = bestLine?.score ?: 0f
+    val isMate: Boolean get() = bestLine?.isMate ?: false
+    val mateIn: Int get() = bestLine?.mateIn ?: 0
+    val bestMove: String get() = bestLine?.pv?.split(" ")?.firstOrNull() ?: ""
+    val pv: String get() = bestLine?.pv ?: ""
+}
 
 class StockfishEngine(private val context: Context) {
     private var process: Process? = null
@@ -30,6 +42,8 @@ class StockfishEngine(private val context: Context) {
     private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
 
     private var stockfishPath: String? = null
+    private var currentMultiPv = 1
+    private val pvLines = mutableMapOf<Int, PvLine>()
 
     suspend fun initialize(): Boolean = withContext(Dispatchers.IO) {
         try {
@@ -112,6 +126,16 @@ class StockfishEngine(private val context: Context) {
         }
     }
 
+    fun configure(threads: Int, hashMb: Int, multiPv: Int) {
+        if (!_isReady.value) return
+
+        currentMultiPv = multiPv
+        sendCommand("setoption name Threads value $threads")
+        sendCommand("setoption name Hash value $hashMb")
+        sendCommand("setoption name MultiPV value $multiPv")
+        android.util.Log.d("StockfishEngine", "Configured: Threads=$threads, Hash=$hashMb, MultiPV=$multiPv")
+    }
+
     fun analyze(fen: String, depth: Int = 16) {
         if (!_isReady.value) return
 
@@ -122,9 +146,52 @@ class StockfishEngine(private val context: Context) {
                 sendCommand("stop")
                 delay(50)
 
+                // Clear previous lines and reset result
+                pvLines.clear()
+                _analysisResult.value = null
+
                 // Set position and start analysis
                 sendCommand("position fen $fen")
                 sendCommand("go depth $depth")
+
+                // Read analysis output
+                var line = processReader?.readLine()
+                while (line != null && isActive) {
+                    when {
+                        line.startsWith("info depth") && line.contains("score") -> {
+                            parseInfoLine(line)
+                        }
+                        line.startsWith("bestmove") -> {
+                            break
+                        }
+                    }
+                    line = processReader?.readLine()
+                }
+            } catch (e: Exception) {
+                if (e !is CancellationException) {
+                    e.printStackTrace()
+                }
+            }
+        }
+    }
+
+    fun analyzeWithTime(fen: String, timeMs: Int) {
+        if (!_isReady.value) return
+
+        analysisJob?.cancel()
+        analysisJob = scope.launch {
+            try {
+                // Stop any ongoing analysis
+                sendCommand("stop")
+                delay(50)
+
+                // Clear previous lines and reset result
+                pvLines.clear()
+                _analysisResult.value = null
+
+                // Set position and start analysis with time limit
+                sendCommand("position fen $fen")
+                sendCommand("go movetime $timeMs")
 
                 // Read analysis output
                 var line = processReader?.readLine()
@@ -153,6 +220,10 @@ class StockfishEngine(private val context: Context) {
             val depthMatch = Regex("depth (\\d+)").find(line)
             val depth = depthMatch?.groupValues?.get(1)?.toIntOrNull() ?: 0
 
+            // Extract multipv (defaults to 1)
+            val multipvMatch = Regex("multipv (\\d+)").find(line)
+            val multipv = multipvMatch?.groupValues?.get(1)?.toIntOrNull() ?: 1
+
             // Extract score
             var score = 0f
             var isMate = false
@@ -173,16 +244,20 @@ class StockfishEngine(private val context: Context) {
             val pvMatch = Regex(" pv (.+)$").find(line)
             val pv = pvMatch?.groupValues?.get(1) ?: ""
 
-            // Extract best move (first move in PV)
-            val bestMove = pv.split(" ").firstOrNull() ?: ""
-
-            _analysisResult.value = AnalysisResult(
+            // Store this PV line
+            val pvLine = PvLine(
                 score = score,
                 isMate = isMate,
                 mateIn = mateIn,
+                pv = pv.split(" ").take(8).joinToString(" "),
+                multipv = multipv
+            )
+            pvLines[multipv] = pvLine
+
+            // Update result with all collected lines sorted by multipv
+            _analysisResult.value = AnalysisResult(
                 depth = depth,
-                bestMove = bestMove,
-                pv = pv.split(" ").take(5).joinToString(" ")
+                lines = pvLines.values.sortedBy { it.multipv }
             )
         } catch (e: Exception) {
             e.printStackTrace()

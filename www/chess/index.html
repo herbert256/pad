@@ -31,7 +31,7 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
@@ -314,6 +314,219 @@
             cursor: pointer;
         }
 
+        /* Stockfish Analysis Panel */
+        .analysis-panel {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 15px;
+            min-width: 180px;
+            max-width: 200px;
+        }
+
+        .analysis-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            gap: 8px;
+        }
+
+        .analysis-header h3 {
+            font-weight: 500;
+            color: #888;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .analysis-controls {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 36px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #333;
+            transition: 0.3s;
+            border-radius: 20px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 3px;
+            bottom: 3px;
+            background-color: #888;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+
+        .toggle-switch input:checked + .toggle-slider {
+            background-color: #4a9eff;
+        }
+
+        .toggle-switch input:checked + .toggle-slider:before {
+            transform: translateX(16px);
+            background-color: #fff;
+        }
+
+        .eval-container {
+            display: flex;
+            gap: 10px;
+            align-items: stretch;
+        }
+
+        .eval-bar-wrapper {
+            width: 24px;
+            height: 180px;
+            background: #333;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .eval-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            transition: height 0.3s ease;
+            height: 50%;
+        }
+
+        .eval-bar.black-winning {
+            background: #333;
+            top: 0;
+            bottom: auto;
+        }
+
+        .eval-details {
+            flex: 1;
+        }
+
+        .eval-score {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .eval-score.white-winning {
+            color: #fff;
+        }
+
+        .eval-score.black-winning {
+            color: #888;
+        }
+
+        .eval-score.equal {
+            color: #4a9eff;
+        }
+
+        .eval-mate {
+            color: #ff6b6b;
+        }
+
+        .eval-info {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 4px;
+        }
+
+        .eval-info strong {
+            color: #4a9eff;
+        }
+
+        .eval-pv {
+            font-family: monospace;
+            font-size: 10px;
+            color: #aaa;
+            background: #0f1629;
+            padding: 6px;
+            border-radius: 4px;
+            word-break: break-all;
+            max-height: 50px;
+            overflow-y: auto;
+            margin-top: 6px;
+        }
+
+        .analysis-loading {
+            color: #888;
+            font-size: 14px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .analysis-disabled {
+            color: #666;
+            font-size: 14px;
+            padding: 20px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .depth-control {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .depth-control label {
+            color: #888;
+            font-size: 11px;
+        }
+
+        .depth-control select {
+            padding: 2px 4px;
+            border-radius: 4px;
+            background: #0f1629;
+            color: #fff;
+            border: 1px solid #333;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        @media (max-width: 900px) {
+            .board-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .analysis-panel {
+                max-width: 100%;
+                min-width: auto;
+            }
+
+            .eval-container {
+                flex-direction: row;
+            }
+
+            .eval-bar-wrapper {
+                height: 120px;
+            }
+        }
+
         @media (max-width: 600px) {
             .board-wrapper {
                 max-width: 100%;
@@ -322,6 +535,14 @@
             .controls button {
                 padding: 10px 16px;
                 font-size: 14px;
+            }
+
+            .eval-bar-wrapper {
+                height: 100px;
+            }
+
+            .eval-score {
+                font-size: 1.3rem;
             }
         }
     </style>
@@ -390,11 +611,55 @@
                             </select>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="moves-panel">
                     <h3>Moves</h3>
                     <div class="moves-list" id="movesList"></div>
+                </div>
+
+                <!-- Stockfish Analysis Panel -->
+                <div class="analysis-panel">
+                    <div class="analysis-header">
+                        <h3>Stockfish 17</h3>
+                        <div class="analysis-controls">
+                            <div class="depth-control">
+                                <label for="analysisDepth">D:</label>
+                                <select id="analysisDepth">
+                                    <option value="12">12</option>
+                                    <option value="16" selected>16</option>
+                                    <option value="20">20</option>
+                                    <option value="24">24</option>
+                                </select>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="analysisToggle" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div id="analysisContent">
+                        <div class="analysis-loading" id="analysisLoading">Loading engine...</div>
+                        <div class="eval-container" id="evalContainer" style="display: none;">
+                            <div class="eval-bar-wrapper">
+                                <div class="eval-bar" id="evalBar"></div>
+                            </div>
+                            <div class="eval-details">
+                                <div class="eval-score" id="evalScore">0.0</div>
+                                <div class="eval-info">
+                                    Depth: <strong id="evalDepth">0</strong>
+                                </div>
+                                <div class="eval-info">
+                                    Best: <strong id="evalBestMove">-</strong>
+                                </div>
+                                <div class="eval-pv" id="evalPV">-</div>
+                            </div>
+                        </div>
+                        <div class="analysis-disabled" id="analysisDisabled" style="display: none;">
+                            Analysis disabled
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -409,6 +674,13 @@
         let isPlaying = false;
         let playInterval = null;
 
+        // Stockfish state
+        let stockfish = null;
+        let stockfishReady = false;
+        let isAnalyzing = false;
+        let currentAnalysisFen = null;
+        let analysisEnabled = true;
+
         // DOM elements
         const usernameInput = document.getElementById('username');
         const fetchBtn = document.getElementById('fetchBtn');
@@ -420,11 +692,216 @@
         const playBtn = document.getElementById('playBtn');
         const speedSelect = document.getElementById('speed');
 
+        // Stockfish DOM elements
+        const analysisToggle = document.getElementById('analysisToggle');
+        const analysisDepthSelect = document.getElementById('analysisDepth');
+        const analysisLoading = document.getElementById('analysisLoading');
+        const evalContainer = document.getElementById('evalContainer');
+        const analysisDisabled = document.getElementById('analysisDisabled');
+        const evalBar = document.getElementById('evalBar');
+        const evalScore = document.getElementById('evalScore');
+        const evalDepth = document.getElementById('evalDepth');
+        const evalBestMove = document.getElementById('evalBestMove');
+        const evalPV = document.getElementById('evalPV');
+
+        // Initialize Stockfish 17.1 Web Worker using blob URL (to bypass CORS)
+        // Using ASM.JS version which is self-contained (no WASM file needed)
+        async function initStockfish() {
+            analysisLoading.textContent = 'Loading Stockfish 17...';
+
+            const SF_URL = 'https://unpkg.com/stockfish@17.1.0/src/stockfish-17.1-asm-341ff22.js';
+
+            try {
+                // Fetch the stockfish ASM.JS script
+                const response = await fetch(SF_URL);
+                if (!response.ok) throw new Error('Failed to fetch Stockfish');
+
+                const scriptText = await response.text();
+
+                // Create a blob URL from the script
+                const blob = new Blob([scriptText], { type: 'application/javascript' });
+                const workerUrl = URL.createObjectURL(blob);
+
+                // Create worker from blob URL
+                stockfish = new Worker(workerUrl);
+
+                stockfish.onmessage = function(event) {
+                    const line = event.data;
+                    handleStockfishMessage(line);
+                };
+
+                stockfish.onerror = function(error) {
+                    console.error('Stockfish error:', error);
+                    analysisLoading.textContent = 'Failed to load Stockfish 17';
+                };
+
+                // Initialize UCI
+                stockfish.postMessage('uci');
+            } catch (error) {
+                console.error('Failed to initialize Stockfish:', error);
+                analysisLoading.textContent = 'Stockfish not available';
+            }
+        }
+
+        // Handle Stockfish UCI messages
+        function handleStockfishMessage(line) {
+            if (line === 'uciok') {
+                stockfishReady = true;
+                stockfish.postMessage('isready');
+            } else if (line === 'readyok') {
+                analysisLoading.style.display = 'none';
+                if (analysisEnabled) {
+                    evalContainer.style.display = 'flex';
+                }
+                // Analyze current position if game is loaded
+                if (moves.length > 0) {
+                    analyzePosition();
+                }
+            } else if (line.startsWith('info depth')) {
+                parseAnalysisInfo(line);
+            } else if (line.startsWith('bestmove')) {
+                isAnalyzing = false;
+            }
+        }
+
+        // Parse Stockfish info line
+        function parseAnalysisInfo(line) {
+            // Only process if we have a score
+            if (!line.includes(' score ')) return;
+
+            // Extract depth
+            const depthMatch = line.match(/depth (\d+)/);
+            const depth = depthMatch ? parseInt(depthMatch[1]) : 0;
+
+            // Extract score (cp = centipawns, mate = moves to mate)
+            let score = 0;
+            let isMate = false;
+            let mateIn = 0;
+
+            const mateMatch = line.match(/score mate (-?\d+)/);
+            const cpMatch = line.match(/score cp (-?\d+)/);
+
+            if (mateMatch) {
+                isMate = true;
+                mateIn = parseInt(mateMatch[1]);
+                score = mateIn > 0 ? 100 : -100; // Use large value for bar
+            } else if (cpMatch) {
+                score = parseInt(cpMatch[1]) / 100; // Convert centipawns to pawns
+            }
+
+            // Extract principal variation
+            const pvMatch = line.match(/ pv (.+)$/);
+            const pv = pvMatch ? pvMatch[1] : '';
+
+            // Update display
+            updateEvalDisplay(score, depth, pv, isMate, mateIn);
+        }
+
+        // Update evaluation display
+        function updateEvalDisplay(score, depth, pv, isMate, mateIn) {
+            // Adjust score for black's turn (Stockfish always reports from side to move)
+            const turn = game.turn();
+            const adjustedScore = turn === 'b' ? -score : score;
+
+            // Update score text
+            if (isMate) {
+                const mateValue = turn === 'b' ? -mateIn : mateIn;
+                evalScore.textContent = mateValue > 0 ? `M${mateValue}` : `M${Math.abs(mateValue)}`;
+                evalScore.className = 'eval-score eval-mate';
+            } else {
+                const displayScore = adjustedScore >= 0 ? `+${adjustedScore.toFixed(1)}` : adjustedScore.toFixed(1);
+                evalScore.textContent = displayScore;
+
+                if (adjustedScore > 0.3) {
+                    evalScore.className = 'eval-score white-winning';
+                } else if (adjustedScore < -0.3) {
+                    evalScore.className = 'eval-score black-winning';
+                } else {
+                    evalScore.className = 'eval-score equal';
+                }
+            }
+
+            // Update eval bar (50% = equal, higher = white winning)
+            let barHeight;
+            if (isMate) {
+                barHeight = adjustedScore > 0 ? 100 : 0;
+            } else {
+                // Clamp score to reasonable range and convert to percentage
+                const clampedScore = Math.max(-10, Math.min(10, adjustedScore));
+                barHeight = 50 + (clampedScore * 5); // Each pawn = 5%
+            }
+            evalBar.style.height = `${barHeight}%`;
+
+            // Update depth
+            evalDepth.textContent = depth;
+
+            // Update best move and PV
+            if (pv) {
+                const pvMoves = pv.split(' ');
+                evalBestMove.textContent = pvMoves[0] || '-';
+
+                // Convert PV to more readable format (first 5 moves)
+                const pvDisplay = pvMoves.slice(0, 5).join(' ');
+                evalPV.textContent = pvDisplay || '-';
+            }
+        }
+
+        // Analyze current position
+        function analyzePosition() {
+            if (!stockfishReady || !analysisEnabled) return;
+
+            const fen = game.fen();
+
+            // Skip if already analyzing this position
+            if (isAnalyzing && currentAnalysisFen === fen) return;
+
+            // Stop previous analysis
+            if (isAnalyzing) {
+                stockfish.postMessage('stop');
+            }
+
+            currentAnalysisFen = fen;
+            isAnalyzing = true;
+
+            // Reset display
+            evalScore.textContent = '...';
+            evalScore.className = 'eval-score';
+            evalBestMove.textContent = '...';
+            evalPV.textContent = 'Analyzing...';
+
+            // Send position and start analysis
+            const depth = parseInt(analysisDepthSelect.value);
+            stockfish.postMessage('position fen ' + fen);
+            stockfish.postMessage('go depth ' + depth);
+        }
+
+        // Toggle analysis
+        function toggleAnalysis() {
+            analysisEnabled = analysisToggle.checked;
+
+            if (analysisEnabled) {
+                analysisDisabled.style.display = 'none';
+                if (stockfishReady) {
+                    evalContainer.style.display = 'flex';
+                    analyzePosition();
+                } else {
+                    analysisLoading.style.display = 'block';
+                }
+            } else {
+                evalContainer.style.display = 'none';
+                analysisDisabled.style.display = 'block';
+                if (isAnalyzing) {
+                    stockfish.postMessage('stop');
+                    isAnalyzing = false;
+                }
+            }
+        }
+
         // Initialize board
         function initBoard() {
             board = Chessboard('board', {
                 position: 'start',
-                pieceTheme: 'https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/img/chesspieces/wikipedia/{piece}.png'
+                pieceTheme: 'https://lichess1.org/assets/piece/cburnett/{piece}.svg'
             });
         }
 
@@ -494,6 +971,9 @@
             updateMoveCounter();
 
             gameContainer.classList.add('active');
+
+            // Resize board after container becomes visible
+            board.resize();
         }
 
         // Update game info display
@@ -501,8 +981,8 @@
             const white = gameData.players?.white;
             const black = gameData.players?.black;
 
-            document.getElementById('whitePlayer').textContent = white?.user?.name || white?.aiLevel ? `Stockfish Level ${white.aiLevel}` : 'Anonymous';
-            document.getElementById('blackPlayer').textContent = black?.user?.name || black?.aiLevel ? `Stockfish Level ${black.aiLevel}` : 'Anonymous';
+            document.getElementById('whitePlayer').textContent = white?.user?.name || (white?.aiLevel ? `Stockfish Level ${white.aiLevel}` : 'Anonymous');
+            document.getElementById('blackPlayer').textContent = black?.user?.name || (black?.aiLevel ? `Stockfish Level ${black.aiLevel}` : 'Anonymous');
 
             document.getElementById('whiteRating').textContent = white?.rating ? `(${white.rating})` : '';
             document.getElementById('blackRating').textContent = black?.rating ? `(${black.rating})` : '';
@@ -555,6 +1035,8 @@
         // Update board position
         function updateBoard() {
             board.position(game.fen());
+            // Trigger Stockfish analysis
+            analyzePosition();
         }
 
         // Update move counter
@@ -697,6 +1179,14 @@
             }
         };
 
+        // Analysis event listeners
+        analysisToggle.onchange = toggleAnalysis;
+        analysisDepthSelect.onchange = () => {
+            if (analysisEnabled && stockfishReady) {
+                analyzePosition();
+            }
+        };
+
         // Keyboard navigation
         document.onkeydown = (e) => {
             if (e.target.tagName === 'INPUT') return;
@@ -723,6 +1213,7 @@
 
         // Initialize
         initBoard();
+        initStockfish();
 
         // Handle window resize
         window.onresize = () => {

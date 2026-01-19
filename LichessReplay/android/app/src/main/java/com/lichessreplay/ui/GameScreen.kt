@@ -13,7 +13,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.foundation.gestures.detectHorizontalDragGestures
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -21,9 +25,87 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.lichessreplay.chess.ChessBoard
 import com.lichessreplay.chess.PieceColor
+import com.lichessreplay.chess.Square
+import com.lichessreplay.data.LichessGame
+import com.lichessreplay.stockfish.PvLine
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import kotlinx.coroutines.launch
+
+// Chess piece Unicode symbols
+private const val WHITE_KING = "♔"
+private const val WHITE_QUEEN = "♕"
+private const val WHITE_ROOK = "♖"
+private const val WHITE_BISHOP = "♗"
+private const val WHITE_KNIGHT = "♘"
+private const val WHITE_PAWN = "♙"
+private const val BLACK_KING = "♚"
+private const val BLACK_QUEEN = "♛"
+private const val BLACK_ROOK = "♜"
+private const val BLACK_BISHOP = "♝"
+private const val BLACK_KNIGHT = "♞"
+private const val BLACK_PAWN = "♟"
+
+// Add piece symbol to SAN move (e.g., "Nf3" -> "♘ f3", "e4" -> "♙ e4")
+private fun addPieceSymbol(move: String, isWhite: Boolean): String {
+    if (move.isEmpty()) return move
+
+    // Handle castling
+    if (move == "O-O" || move == "O-O-O") {
+        return if (isWhite) "$BLACK_KING $move" else "$WHITE_KING $move"
+    }
+
+    val pieceChar = move.first()
+    return when {
+        pieceChar == 'K' -> (if (isWhite) BLACK_KING else WHITE_KING) + " " + move.drop(1)
+        pieceChar == 'Q' -> (if (isWhite) BLACK_QUEEN else WHITE_QUEEN) + " " + move.drop(1)
+        pieceChar == 'R' -> (if (isWhite) BLACK_ROOK else WHITE_ROOK) + " " + move.drop(1)
+        pieceChar == 'B' -> (if (isWhite) BLACK_BISHOP else WHITE_BISHOP) + " " + move.drop(1)
+        pieceChar == 'N' -> (if (isWhite) BLACK_KNIGHT else WHITE_KNIGHT) + " " + move.drop(1)
+        pieceChar.isLowerCase() -> (if (isWhite) BLACK_PAWN else WHITE_PAWN) + " " + move // Pawn move
+        else -> move
+    }
+}
+
+// Get just the piece symbol from a SAN move (for use with separate coordinates)
+private fun getPieceSymbolFromSan(move: String, isWhite: Boolean): String {
+    if (move.isEmpty()) return ""
+
+    // Handle castling
+    if (move == "O-O" || move == "O-O-O") {
+        return if (isWhite) BLACK_KING else WHITE_KING
+    }
+
+    val pieceChar = move.first()
+    return when {
+        pieceChar == 'K' -> if (isWhite) BLACK_KING else WHITE_KING
+        pieceChar == 'Q' -> if (isWhite) BLACK_QUEEN else WHITE_QUEEN
+        pieceChar == 'R' -> if (isWhite) BLACK_ROOK else WHITE_ROOK
+        pieceChar == 'B' -> if (isWhite) BLACK_BISHOP else WHITE_BISHOP
+        pieceChar == 'N' -> if (isWhite) BLACK_KNIGHT else WHITE_KNIGHT
+        pieceChar.isLowerCase() -> if (isWhite) BLACK_PAWN else WHITE_PAWN // Pawn move
+        else -> if (isWhite) BLACK_PAWN else WHITE_PAWN
+    }
+}
+
+// Add piece symbols to UCI moves (e.g., "e2e4 g1f3" -> "♙e2e4 ♘g1f3")
+// Note: Uses inverted symbols due to Unicode visual representation
+private fun addPieceSymbolsToUci(pv: String, isWhiteTurn: Boolean): String {
+    if (pv.isBlank()) return pv
+    val moves = pv.split(" ")
+    var isWhite = isWhiteTurn
+    return moves.mapIndexed { _, move ->
+        val symbol = if (isWhite) BLACK_PAWN else WHITE_PAWN
+        isWhite = !isWhite
+        "$symbol$move"
+    }.joinToString(" ")
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -35,6 +117,15 @@ fun GameScreen(
     var username by remember { mutableStateOf(viewModel.savedUsername) }
     val focusManager = LocalFocusManager.current
 
+    // Settings dialog
+    if (uiState.showSettingsDialog) {
+        StockfishSettingsDialog(
+            settings = uiState.stockfishSettings,
+            onDismiss = { viewModel.hideSettingsDialog() },
+            onSave = { viewModel.updateStockfishSettings(it) }
+        )
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -42,17 +133,27 @@ fun GameScreen(
             .padding(16.dp)
             .verticalScroll(rememberScrollState())
     ) {
-        // Title
-        Text(
-            text = "Lichess Game Replay",
-            style = MaterialTheme.typography.headlineMedium,
-            color = Color.White,
-            fontWeight = FontWeight.Light,
+        // Title with settings button
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 24.dp),
-            textAlign = TextAlign.Center
-        )
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Spacer(modifier = Modifier.width(48.dp))
+            Text(
+                text = "Lichess Game Replay",
+                style = MaterialTheme.typography.headlineMedium,
+                color = Color.White,
+                fontWeight = FontWeight.Light,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.weight(1f)
+            )
+            IconButton(onClick = { viewModel.showSettingsDialog() }) {
+                Text("⚙", fontSize = 24.sp)
+            }
+        }
 
         // Search section
         Row(
@@ -71,7 +172,7 @@ fun GameScreen(
                 keyboardActions = KeyboardActions(onSearch = {
                     focusManager.clearFocus()
                     if (username.isNotBlank()) {
-                        viewModel.fetchLastGame(username)
+                        viewModel.fetchGames(username)
                     }
                 }),
                 modifier = Modifier.weight(1f),
@@ -87,7 +188,7 @@ fun GameScreen(
                 onClick = {
                     focusManager.clearFocus()
                     if (username.isNotBlank()) {
-                        viewModel.fetchLastGame(username)
+                        viewModel.fetchGames(username)
                     }
                 },
                 enabled = !uiState.isLoading,
@@ -128,16 +229,186 @@ fun GameScreen(
                     CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = "Fetching game data...",
+                        text = "Fetching games...",
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             }
         }
 
+        // Game selection dialog
+        if (uiState.showGameSelection && uiState.gameList.isNotEmpty()) {
+            GameSelectionDialog(
+                games = uiState.gameList,
+                onSelectGame = { viewModel.selectGame(it) },
+                onDismiss = { viewModel.dismissGameSelection() }
+            )
+        }
+
         // Game content
         if (uiState.game != null) {
             GameContent(uiState = uiState, viewModel = viewModel)
+        }
+    }
+}
+
+@Composable
+private fun GameSelectionDialog(
+    games: List<LichessGame>,
+    onSelectGame: (LichessGame) -> Unit,
+    onDismiss: () -> Unit
+) {
+    Dialog(onDismissRequest = onDismiss) {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.8f),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surface
+            )
+        ) {
+            Column(
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Text(
+                    text = "Select a game",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
+                    modifier = Modifier.padding(bottom = 16.dp)
+                )
+
+                LazyColumn(
+                    modifier = Modifier.weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    itemsIndexed(games) { index, game ->
+                        GameListItem(
+                            game = game,
+                            index = index + 1,
+                            onClick = { onSelectGame(game) }
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Button(
+                    onClick = onDismiss,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("Cancel")
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun GameListItem(
+    game: LichessGame,
+    index: Int,
+    onClick: () -> Unit
+) {
+    val dateFormat = remember { SimpleDateFormat("MMM d, HH:mm", Locale.getDefault()) }
+    val gameDate = remember(game.createdAt) {
+        game.createdAt?.let { dateFormat.format(Date(it)) } ?: ""
+    }
+
+    val whiteName = game.players.white.user?.name
+        ?: game.players.white.aiLevel?.let { "Stockfish $it" }
+        ?: "Anonymous"
+    val blackName = game.players.black.user?.name
+        ?: game.players.black.aiLevel?.let { "Stockfish $it" }
+        ?: "Anonymous"
+
+    val result = when (game.winner) {
+        "white" -> "1-0"
+        "black" -> "0-1"
+        else -> if (game.status == "draw" || game.status == "stalemate") "½-½" else game.status
+    }
+
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant
+        )
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(12.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            // Game number
+            Text(
+                text = "$index.",
+                fontWeight = FontWeight.Bold,
+                fontSize = 16.sp,
+                modifier = Modifier.width(32.dp)
+            )
+
+            Column(modifier = Modifier.weight(1f)) {
+                // Players - names below each other
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Box(
+                        modifier = Modifier
+                            .size(12.dp)
+                            .background(Color.White, RoundedCornerShape(2.dp))
+                            .border(1.dp, Color.Gray, RoundedCornerShape(2.dp))
+                    )
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text(
+                        text = whiteName,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium
+                    )
+                }
+                Spacer(modifier = Modifier.height(2.dp))
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Box(
+                        modifier = Modifier
+                            .size(12.dp)
+                            .background(Color.Black, RoundedCornerShape(2.dp))
+                    )
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text(
+                        text = blackName,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Medium
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(4.dp))
+
+                // Game info
+                Row {
+                    Text(
+                        text = gameDate,
+                        fontSize = 12.sp,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = "• ${game.speed ?: game.perf ?: ""}",
+                        fontSize = 12.sp,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+
+            // Result
+            Text(
+                text = result,
+                fontWeight = FontWeight.Bold,
+                fontSize = 16.sp,
+                color = when (game.winner) {
+                    "white" -> Color(0xFF4CAF50)
+                    "black" -> Color(0xFFF44336)
+                    else -> Color(0xFF2196F3)
+                }
+            )
         }
     }
 }
@@ -159,70 +430,97 @@ private fun GameContent(
             .padding(bottom = 16.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            // Players row
+            // Players - white on top, black below
+            val whiteResult = when (game.winner) {
+                "white" -> "1"
+                "black" -> "0"
+                else -> if (game.status == "draw" || game.status == "stalemate") "½" else ""
+            }
+            val blackResult = when (game.winner) {
+                "black" -> "1"
+                "white" -> "0"
+                else -> if (game.status == "draw" || game.status == "stalemate") "½" else ""
+            }
+
+            // White player
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // White player
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Box(
-                        modifier = Modifier
-                            .size(20.dp)
-                            .background(Color.White, RoundedCornerShape(4.dp))
-                            .border(2.dp, Color(0xFF444444), RoundedCornerShape(4.dp))
+                Box(
+                    modifier = Modifier
+                        .size(32.dp)
+                        .background(Color.White, RoundedCornerShape(4.dp))
+                        .border(2.dp, Color(0xFF444444), RoundedCornerShape(4.dp)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = whiteResult,
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp
                     )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Column {
-                        Text(
-                            text = game.players.white.user?.name
-                                ?: game.players.white.aiLevel?.let { "Stockfish Level $it" }
-                                ?: "Anonymous",
-                            fontWeight = FontWeight.SemiBold,
-                            fontSize = 16.sp
-                        )
-                        game.players.white.rating?.let {
-                            Text(
-                                text = "($it)",
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                fontSize = 14.sp
-                            )
-                        }
-                    }
                 }
-
-                // Black player
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Column(horizontalAlignment = Alignment.End) {
-                        Text(
-                            text = game.players.black.user?.name
-                                ?: game.players.black.aiLevel?.let { "Stockfish Level $it" }
-                                ?: "Anonymous",
-                            fontWeight = FontWeight.SemiBold,
-                            fontSize = 16.sp
-                        )
-                        game.players.black.rating?.let {
-                            Text(
-                                text = "($it)",
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                fontSize = 14.sp
-                            )
-                        }
-                    }
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Box(
-                        modifier = Modifier
-                            .size(20.dp)
-                            .background(Color.Black, RoundedCornerShape(4.dp))
-                            .border(2.dp, Color(0xFF444444), RoundedCornerShape(4.dp))
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = game.players.white.user?.name
+                        ?: game.players.white.aiLevel?.let { "Stockfish Level $it" }
+                        ?: "Anonymous",
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 16.sp,
+                    modifier = Modifier.weight(1f)
+                )
+                game.players.white.rating?.let {
+                    Text(
+                        text = "($it)",
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        fontSize = 14.sp
                     )
                 }
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
-            // Result
+            // Black player
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(32.dp)
+                        .background(Color.Black, RoundedCornerShape(4.dp))
+                        .border(2.dp, Color(0xFF444444), RoundedCornerShape(4.dp)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = blackResult,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp
+                    )
+                }
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = game.players.black.user?.name
+                        ?: game.players.black.aiLevel?.let { "Stockfish Level $it" }
+                        ?: "Anonymous",
+                    fontWeight = FontWeight.SemiBold,
+                    fontSize = 16.sp,
+                    modifier = Modifier.weight(1f)
+                )
+                game.players.black.rating?.let {
+                    Text(
+                        text = "($it)",
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        fontSize = 14.sp
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // Move info box - shows current move details with from/to coordinates
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -233,31 +531,95 @@ private fun GameContent(
                     .padding(12.dp),
                 contentAlignment = Alignment.Center
             ) {
-                Text(
-                    text = when (game.winner) {
-                        "white" -> "1-0 (White wins)"
-                        "black" -> "0-1 (Black wins)"
-                        else -> if (game.status == "draw" || game.status == "stalemate") {
-                            "½-½ (Draw)"
-                        } else {
-                            game.status.replaceFirstChar { it.uppercase() }
+                val moveIndex = uiState.currentMoveIndex
+                val currentMove = uiState.moves.getOrNull(moveIndex)
+                val isWhiteMove = moveIndex % 2 == 0
+                val score = uiState.moveScores[moveIndex]
+                val lastMove = uiState.currentBoard.getLastMove()
+
+                if (currentMove != null && moveIndex >= 0) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        // Get piece symbol and coordinates
+                        val pieceSymbol = getPieceSymbolFromSan(currentMove, isWhiteMove)
+                        val fromSquare = lastMove?.from?.toAlgebraic() ?: ""
+                        val toSquare = lastMove?.to?.toAlgebraic() ?: ""
+
+                        // Display: piece  from-to (extra space between piece and coordinates)
+                        Text(
+                            text = "$pieceSymbol  $fromSquare-$toSquare",
+                            fontWeight = FontWeight.SemiBold,
+                            fontSize = 20.sp
+                        )
+
+                        // Score: only show stored score (after analysis is complete for this move)
+                        if (score != null) {
+                            Spacer(modifier = Modifier.width(16.dp))
+                            val scoreText = if (score.isMate) {
+                                "M${kotlin.math.abs(score.mateIn)}"
+                            } else {
+                                "%.1f".format(kotlin.math.abs(score.score))
+                            }
+                            val scoreColor = when {
+                                score.isMate && score.mateIn > 0 -> Color(0xFF4CAF50)
+                                score.isMate && score.mateIn < 0 -> Color(0xFFF44336)
+                                score.score > 0.1f -> Color(0xFF4CAF50)
+                                score.score < -0.1f -> Color(0xFFF44336)
+                                else -> Color(0xFF2196F3)
+                            }
+                            Text(
+                                text = scoreText,
+                                color = scoreColor,
+                                fontWeight = FontWeight.SemiBold,
+                                fontSize = 20.sp
+                            )
                         }
-                    },
-                    fontWeight = FontWeight.SemiBold,
-                    fontSize = 18.sp
-                )
+                    }
+                } else {
+                    Text(
+                        text = "Start position",
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        fontSize = 16.sp
+                    )
+                }
             }
         }
     }
 
-    // Chess board
-    ChessBoardView(
-        board = uiState.currentBoard,
-        flipped = uiState.flippedBoard,
+    // Evaluation graph - shows score progression, draggable to navigate moves
+    if (uiState.moveDetails.isNotEmpty()) {
+        EvaluationGraph(
+            moveScores = uiState.moveScores,
+            totalMoves = uiState.moveDetails.size,
+            currentMoveIndex = uiState.currentMoveIndex,
+            isAutoAnalyzing = uiState.isAutoAnalyzing,
+            onMoveSelected = { moveIndex -> viewModel.goToMove(moveIndex) },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(100.dp)
+                .padding(vertical = 8.dp)
+        )
+    }
+
+    // Chess board - click to stop auto-analysis
+    Box(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(8.dp))
-    )
+            .clickable {
+                if (uiState.isAutoAnalyzing) {
+                    viewModel.stopAutoAnalysis()
+                }
+            }
+    ) {
+        ChessBoardView(
+            board = uiState.currentBoard,
+            flipped = uiState.flippedBoard,
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
 
     // Controls
     Row(
@@ -271,8 +633,6 @@ private fun GameContent(
         Spacer(modifier = Modifier.width(8.dp))
         ControlButton("◀") { viewModel.prevMove() }
         Spacer(modifier = Modifier.width(8.dp))
-        ControlButton(if (uiState.isPlaying) "⏸" else "▶") { viewModel.toggleAutoPlay() }
-        Spacer(modifier = Modifier.width(8.dp))
         ControlButton("▶") { viewModel.nextMove() }
         Spacer(modifier = Modifier.width(8.dp))
         ControlButton("⏭") { viewModel.goToEnd() }
@@ -280,72 +640,92 @@ private fun GameContent(
         ControlButton("↻") { viewModel.flipBoard() }
     }
 
-    // Move counter
-    Text(
-        text = "Move: ${uiState.currentMoveIndex + 1} / ${uiState.moves.size}",
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
+    // Move counter / Analysis info box
+    Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(bottom = 8.dp),
-        textAlign = TextAlign.Center
-    )
-
-    // Speed selector
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically
+            .padding(bottom = 16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = "Speed:",
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            fontSize = 14.sp
-        )
-        Spacer(modifier = Modifier.width(8.dp))
-        SpeedDropdown(
-            currentSpeed = uiState.playSpeed,
-            onSpeedChange = { viewModel.setPlaySpeed(it) }
-        )
+        if (uiState.isAutoAnalyzing) {
+            // Show analysis progress
+            Text(
+                text = "Analyzing: ${uiState.autoAnalysisIndex + 1} / ${uiState.moves.size}",
+                color = Color(0xFF6B9BFF),
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Medium
+            )
+        } else if (uiState.isExploringLine) {
+            Text(
+                text = "Exploring line",
+                color = Color(0xFF6B9BFF),
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Medium
+            )
+            Text(
+                text = "Move: ${uiState.exploringLineMoveIndex + 1} / ${uiState.exploringLineMoves.size}",
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Center
+            )
+        } else {
+            Text(
+                text = "Move: ${uiState.currentMoveIndex + 1} / ${uiState.moves.size}",
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Center
+            )
+        }
     }
 
-    Spacer(modifier = Modifier.height(16.dp))
-
-    // Moves list and analysis panel
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        // Moves list
-        Card(
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surface
+    // Back to original game button (shown when exploring a line)
+    if (uiState.isExploringLine) {
+        Button(
+            onClick = { viewModel.backToOriginalGame() },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF4A6741)
             ),
             modifier = Modifier
-                .weight(1f)
-                .height(200.dp)
+                .fillMaxWidth()
+                .padding(bottom = 8.dp)
         ) {
-            Column(modifier = Modifier.padding(12.dp)) {
-                Text(
-                    text = "Moves",
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    fontWeight = FontWeight.Medium,
-                    modifier = Modifier.padding(bottom = 8.dp)
-                )
-                MovesList(
-                    moves = uiState.moves,
-                    currentMoveIndex = uiState.currentMoveIndex,
-                    onMoveClick = { viewModel.goToMove(it) }
-                )
-            }
+            Text("↩ Back to original game", fontSize = 14.sp)
         }
+    }
 
-        // Analysis panel
-        AnalysisPanel(
-            uiState = uiState,
-            onToggleAnalysis = { viewModel.setAnalysisEnabled(it) },
-            onDepthChange = { viewModel.setAnalysisDepth(it) },
-            modifier = Modifier.width(160.dp)
-        )
+    // Stockfish analysis panel (now on top)
+    AnalysisPanel(
+        uiState = uiState,
+        onToggleAnalysis = { viewModel.setAnalysisEnabled(it) },
+        onExploreLine = { pv, moveIndex -> viewModel.exploreLine(pv, moveIndex) },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 12.dp)
+    )
+
+    // Moves list (below analysis)
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(200.dp)
+    ) {
+        Column(modifier = Modifier.padding(12.dp)) {
+            Text(
+                text = "Moves",
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                fontWeight = FontWeight.Medium,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+            MovesList(
+                moveDetails = uiState.moveDetails,
+                currentMoveIndex = uiState.currentMoveIndex,
+                moveScores = uiState.moveScores,
+                isAutoAnalyzing = uiState.isAutoAnalyzing,
+                autoAnalysisIndex = uiState.autoAnalysisIndex,
+                onMoveClick = { viewModel.goToMove(it) }
+            )
+        }
     }
 }
 
@@ -365,71 +745,30 @@ private fun ControlButton(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun SpeedDropdown(
-    currentSpeed: Long,
-    onSpeedChange: (Long) -> Unit
-) {
-    var expanded by remember { mutableStateOf(false) }
-
-    val speeds = listOf(
-        2000L to "Slow",
-        1000L to "Normal",
-        500L to "Fast",
-        250L to "Very Fast"
-    )
-
-    val currentLabel = speeds.find { it.first == currentSpeed }?.second ?: "Normal"
-
-    ExposedDropdownMenuBox(
-        expanded = expanded,
-        onExpandedChange = { expanded = it }
-    ) {
-        OutlinedTextField(
-            value = currentLabel,
-            onValueChange = {},
-            readOnly = true,
-            modifier = Modifier
-                .menuAnchor()
-                .width(120.dp),
-            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
-            colors = OutlinedTextFieldDefaults.colors(
-                unfocusedBorderColor = Color(0xFF333333)
-            )
-        )
-
-        ExposedDropdownMenu(
-            expanded = expanded,
-            onDismissRequest = { expanded = false }
-        ) {
-            speeds.forEach { (speed, label) ->
-                DropdownMenuItem(
-                    text = { Text(label) },
-                    onClick = {
-                        onSpeedChange(speed)
-                        expanded = false
-                    }
-                )
-            }
-        }
-    }
-}
-
 @Composable
 private fun MovesList(
-    moves: List<String>,
+    moveDetails: List<MoveDetails>,
     currentMoveIndex: Int,
+    moveScores: Map<Int, MoveScore>,
+    isAutoAnalyzing: Boolean,
+    autoAnalysisIndex: Int,
     onMoveClick: (Int) -> Unit
 ) {
     val listState = rememberLazyListState()
     val scope = rememberCoroutineScope()
 
-    // Auto-scroll to current move
-    LaunchedEffect(currentMoveIndex) {
-        if (currentMoveIndex >= 0) {
+    // Auto-scroll to current move or analysis position
+    LaunchedEffect(currentMoveIndex, autoAnalysisIndex) {
+        val targetIndex = if (isAutoAnalyzing && autoAnalysisIndex >= 0) {
+            autoAnalysisIndex / 2
+        } else if (currentMoveIndex >= 0) {
+            currentMoveIndex / 2
+        } else {
+            -1
+        }
+        if (targetIndex >= 0) {
             scope.launch {
-                listState.animateScrollToItem(currentMoveIndex / 2)
+                listState.animateScrollToItem(targetIndex)
             }
         }
     }
@@ -438,7 +777,7 @@ private fun MovesList(
         state = listState,
         modifier = Modifier.fillMaxSize()
     ) {
-        val movePairs = moves.chunked(2)
+        val movePairs = moveDetails.chunked(2)
 
         itemsIndexed(movePairs) { pairIndex, pair ->
             Row(
@@ -452,15 +791,18 @@ private fun MovesList(
                     text = "${pairIndex + 1}.",
                     color = Color(0xFF666666),
                     fontFamily = FontFamily.Monospace,
-                    fontSize = 13.sp,
+                    fontSize = 15.sp,
                     modifier = Modifier.width(32.dp)
                 )
 
                 // White move
                 val whiteIndex = pairIndex * 2
                 MoveChip(
-                    move = pair[0],
+                    moveDetails = pair[0],
+                    isWhite = true,
                     isActive = whiteIndex == currentMoveIndex,
+                    isAnalyzing = isAutoAnalyzing && autoAnalysisIndex == whiteIndex,
+                    score = moveScores[whiteIndex],
                     onClick = { onMoveClick(whiteIndex) },
                     modifier = Modifier.weight(1f)
                 )
@@ -470,8 +812,11 @@ private fun MovesList(
                     Spacer(modifier = Modifier.width(4.dp))
                     val blackIndex = pairIndex * 2 + 1
                     MoveChip(
-                        move = pair[1],
+                        moveDetails = pair[1],
+                        isWhite = false,
                         isActive = blackIndex == currentMoveIndex,
+                        isAnalyzing = isAutoAnalyzing && autoAnalysisIndex == blackIndex,
+                        score = moveScores[blackIndex],
                         onClick = { onMoveClick(blackIndex) },
                         modifier = Modifier.weight(1f)
                     )
@@ -485,27 +830,200 @@ private fun MovesList(
 
 @Composable
 private fun MoveChip(
-    move: String,
+    moveDetails: MoveDetails,
+    isWhite: Boolean,
     isActive: Boolean,
+    isAnalyzing: Boolean = false,
+    score: MoveScore? = null,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Box(
+    val backgroundColor = when {
+        isActive -> MaterialTheme.colorScheme.primary
+        isAnalyzing -> Color(0xFFFFE082) // Light yellow when analyzing
+        else -> Color.Transparent
+    }
+
+    // Get piece symbol
+    val pieceSymbol = when (moveDetails.pieceType) {
+        "K" -> if (isWhite) BLACK_KING else WHITE_KING
+        "Q" -> if (isWhite) BLACK_QUEEN else WHITE_QUEEN
+        "R" -> if (isWhite) BLACK_ROOK else WHITE_ROOK
+        "B" -> if (isWhite) BLACK_BISHOP else WHITE_BISHOP
+        "N" -> if (isWhite) BLACK_KNIGHT else WHITE_KNIGHT
+        else -> if (isWhite) BLACK_PAWN else WHITE_PAWN
+    }
+
+    // Build move text: piece from-to or piece fromxto
+    val separator = if (moveDetails.isCapture) "x" else "-"
+    val moveText = "$pieceSymbol ${moveDetails.from}$separator${moveDetails.to}"
+
+    Row(
         modifier = modifier
             .clip(RoundedCornerShape(4.dp))
-            .background(
-                if (isActive) MaterialTheme.colorScheme.primary
-                else Color.Transparent
-            )
+            .background(backgroundColor)
             .clickable(onClick = onClick)
-            .padding(horizontal = 8.dp, vertical = 4.dp)
+            .padding(horizontal = 6.dp, vertical = 4.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = move,
-            fontFamily = FontFamily.Monospace,
-            fontSize = 13.sp,
+            text = moveText,
+            fontSize = 15.sp,
             color = if (isActive) Color.White else MaterialTheme.colorScheme.onSurface
         )
+
+        // Show score if available
+        if (score != null) {
+            Spacer(modifier = Modifier.width(4.dp))
+            val scoreText = if (score.isMate) {
+                "M${kotlin.math.abs(score.mateIn)}"
+            } else {
+                "%.1f".format(kotlin.math.abs(score.score))
+            }
+            val scoreColor = when {
+                isActive -> Color.White.copy(alpha = 0.9f)
+                score.isMate && score.mateIn > 0 -> Color(0xFF4CAF50) // Green for white winning mate
+                score.isMate && score.mateIn < 0 -> Color(0xFFF44336) // Red for black winning mate
+                score.score > 0.1f -> Color(0xFF4CAF50) // Green for white better
+                score.score < -0.1f -> Color(0xFFF44336) // Red for black better
+                else -> Color(0xFF2196F3) // Blue for equal (0)
+            }
+            Text(
+                text = scoreText,
+                fontSize = 15.sp,
+                color = scoreColor
+            )
+        } else if (isAnalyzing) {
+            Spacer(modifier = Modifier.width(4.dp))
+            Text(
+                text = "...",
+                fontSize = 15.sp,
+                color = Color(0xFF666666)
+            )
+        }
+    }
+}
+
+@Composable
+private fun EvaluationGraph(
+    moveScores: Map<Int, MoveScore>,
+    totalMoves: Int,
+    currentMoveIndex: Int,
+    isAutoAnalyzing: Boolean,
+    onMoveSelected: (Int) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val greenColor = Color(0xFF4CAF50)
+    val redColor = Color(0xFFF44336)
+    val lineColor = Color(0xFF666666)
+    val currentMoveColor = Color(0xFF2196F3)
+
+    // Track the graph width for calculating move index from drag position
+    var graphWidth by remember { mutableStateOf(0f) }
+
+    Canvas(
+        modifier = modifier
+            .background(Color(0xFF1A1A1A), RoundedCornerShape(8.dp))
+            .padding(8.dp)
+            .pointerInput(isAutoAnalyzing, totalMoves) {
+                if (!isAutoAnalyzing && totalMoves > 0) {
+                    detectHorizontalDragGestures { change, _ ->
+                        change.consume()
+                        val x = change.position.x.coerceIn(0f, graphWidth)
+                        val moveIndex = if (totalMoves > 1) {
+                            ((x / graphWidth) * (totalMoves - 1)).toInt().coerceIn(0, totalMoves - 1)
+                        } else {
+                            0
+                        }
+                        onMoveSelected(moveIndex)
+                    }
+                }
+            }
+            .pointerInput(isAutoAnalyzing, totalMoves) {
+                if (!isAutoAnalyzing && totalMoves > 0) {
+                    detectTapGestures { offset ->
+                        val x = offset.x.coerceIn(0f, graphWidth)
+                        val moveIndex = if (totalMoves > 1) {
+                            ((x / graphWidth) * (totalMoves - 1)).toInt().coerceIn(0, totalMoves - 1)
+                        } else {
+                            0
+                        }
+                        onMoveSelected(moveIndex)
+                    }
+                }
+            }
+    ) {
+        if (totalMoves == 0) return@Canvas
+
+        val width = size.width
+        val height = size.height
+        graphWidth = width
+        val centerY = height / 2
+        val maxScore = 5f // Cap the display at +/- 5 pawns
+
+        // Draw center line (x-axis)
+        drawLine(
+            color = lineColor,
+            start = Offset(0f, centerY),
+            end = Offset(width, centerY),
+            strokeWidth = 1f
+        )
+
+        // Calculate point spacing
+        val pointSpacing = if (totalMoves > 1) width / (totalMoves - 1) else width / 2
+
+        // Draw the evaluation line
+        var previousPoint: Offset? = null
+
+        for (moveIndex in 0 until totalMoves) {
+            val score = moveScores[moveIndex]
+            if (score != null) {
+                val x = if (totalMoves > 1) moveIndex * pointSpacing else width / 2
+
+                // Clamp score to maxScore range and calculate y position
+                val clampedScore = score.score.coerceIn(-maxScore, maxScore)
+                // Positive score (white better) goes UP (negative y direction)
+                val y = centerY - (clampedScore / maxScore) * (height / 2 - 4)
+
+                val currentPoint = Offset(x, y)
+
+                // Draw line from previous point
+                if (previousPoint != null) {
+                    // Determine color based on whether score is positive or negative
+                    val segmentColor = if (score.score >= 0) greenColor else redColor
+                    drawLine(
+                        color = segmentColor,
+                        start = previousPoint,
+                        end = currentPoint,
+                        strokeWidth = 2f
+                    )
+                }
+
+                // Draw point
+                val pointColor = if (score.score >= 0) greenColor else redColor
+                drawCircle(
+                    color = pointColor,
+                    radius = 3f,
+                    center = currentPoint
+                )
+
+                previousPoint = currentPoint
+            } else {
+                // No score yet for this move, break the line
+                previousPoint = null
+            }
+        }
+
+        // Draw current move indicator (only when not auto-analyzing)
+        if (!isAutoAnalyzing && currentMoveIndex >= 0 && currentMoveIndex < totalMoves) {
+            val x = if (totalMoves > 1) currentMoveIndex * pointSpacing else width / 2
+            drawLine(
+                color = currentMoveColor,
+                start = Offset(x, 0f),
+                end = Offset(x, height),
+                strokeWidth = 2f
+            )
+        }
     }
 }
 
@@ -514,14 +1032,18 @@ private fun MoveChip(
 private fun AnalysisPanel(
     uiState: GameUiState,
     onToggleAnalysis: (Boolean) -> Unit,
-    onDepthChange: (Int) -> Unit,
+    onExploreLine: (String, Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val result = uiState.analysisResult
+    val turn = uiState.currentBoard.getTurn()
+    val isWhiteTurn = turn == PieceColor.WHITE
+
     Card(
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
         ),
-        modifier = modifier.height(200.dp)
+        modifier = modifier.heightIn(min = 80.dp, max = 400.dp)
     ) {
         Column(modifier = Modifier.padding(12.dp)) {
             // Header
@@ -530,12 +1052,22 @@ private fun AnalysisPanel(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = "Stockfish",
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    fontWeight = FontWeight.Medium,
-                    fontSize = 14.sp
-                )
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        text = "Stockfish",
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        fontWeight = FontWeight.Medium,
+                        fontSize = 14.sp
+                    )
+                    if (result != null) {
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(
+                            text = "d${result.depth}",
+                            color = Color(0xFF666666),
+                            fontSize = 12.sp
+                        )
+                    }
+                }
 
                 Switch(
                     checked = uiState.analysisEnabled,
@@ -548,7 +1080,7 @@ private fun AnalysisPanel(
 
             if (!uiState.analysisEnabled) {
                 Box(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier.fillMaxWidth(),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
@@ -559,7 +1091,7 @@ private fun AnalysisPanel(
                 }
             } else if (!uiState.stockfishReady) {
                 Box(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier.fillMaxWidth(),
                     contentAlignment = Alignment.Center
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -575,71 +1107,317 @@ private fun AnalysisPanel(
                         )
                     }
                 }
-            } else {
-                val result = uiState.analysisResult
-                val turn = uiState.currentBoard.getTurn()
-
-                // Evaluation score
-                val displayScore = if (result != null) {
-                    val adjustedScore = if (turn == PieceColor.BLACK) -result.score else result.score
-                    if (result.isMate) {
-                        val mateValue = if (turn == PieceColor.BLACK) -result.mateIn else result.mateIn
-                        if (mateValue > 0) "M$mateValue" else "M${kotlin.math.abs(mateValue)}"
-                    } else {
-                        if (adjustedScore >= 0) "+%.1f".format(adjustedScore)
-                        else "%.1f".format(adjustedScore)
+            } else if (result != null) {
+                // Show all PV lines
+                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    result.lines.forEach { line ->
+                        PvLineRow(
+                            line = line,
+                            board = uiState.currentBoard,
+                            isWhiteTurn = isWhiteTurn,
+                            isFirst = line.multipv == 1,
+                            onMoveClick = { moveIndex ->
+                                onExploreLine(line.pv, moveIndex)
+                            }
+                        )
                     }
-                } else "..."
+                }
+            }
+        }
+    }
+}
 
+@Composable
+private fun PvLineRow(
+    line: PvLine,
+    board: ChessBoard,
+    isWhiteTurn: Boolean,
+    isFirst: Boolean,
+    onMoveClick: (Int) -> Unit
+) {
+    // Score display: always from white's perspective (positive = white better, negative = black better)
+    // If white's turn to move: Stockfish gives score from white's POV, keep it
+    // If black's turn to move: Stockfish gives score from black's POV, negate it
+    val adjustedScore = if (isWhiteTurn) line.score else -line.score
+    val adjustedMateIn = if (isWhiteTurn) line.mateIn else -line.mateIn
+
+    val displayScore = if (line.isMate) {
+        if (adjustedMateIn > 0) "M$adjustedMateIn" else "M${kotlin.math.abs(adjustedMateIn)}"
+    } else {
+        if (adjustedScore >= 0) "+%.1f".format(adjustedScore)
+        else "%.1f".format(adjustedScore)
+    }
+
+    val scoreColor = when {
+        line.isMate -> Color(0xFFFF6B6B)
+        else -> {
+            when {
+                adjustedScore > 0.3f -> Color.White
+                adjustedScore < -0.3f -> Color(0xFF888888)
+                else -> Color(0xFF6B9BFF)
+            }
+        }
+    }
+
+    // Format UCI moves with piece symbols and - or x for captures
+    val formattedMoves = remember(line.pv, board) {
+        formatUciMovesWithCaptures(line.pv, board, isWhiteTurn)
+    }
+
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        // Score box
+        Box(
+            modifier = Modifier
+                .width(50.dp)
+                .background(
+                    if (isFirst) Color(0xFF1A2744) else Color(0xFF151D30),
+                    RoundedCornerShape(4.dp)
+                )
+                .padding(horizontal = 6.dp, vertical = 4.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = displayScore,
+                fontSize = if (isFirst) 14.sp else 12.sp,
+                fontWeight = if (isFirst) FontWeight.Bold else FontWeight.Medium,
+                color = scoreColor
+            )
+        }
+
+        Spacer(modifier = Modifier.width(8.dp))
+
+        // PV moves with piece symbols - clickable
+        Row(
+            modifier = Modifier
+                .weight(1f)
+                .horizontalScroll(rememberScrollState())
+                .background(Color(0xFF0F1629), RoundedCornerShape(4.dp))
+                .padding(horizontal = 4.dp, vertical = 2.dp),
+            horizontalArrangement = Arrangement.spacedBy(2.dp)
+        ) {
+            formattedMoves.forEachIndexed { index, formattedMove ->
                 Text(
-                    text = displayScore,
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = when {
-                        result?.isMate == true -> Color(0xFFFF6B6B)
-                        result != null -> {
-                            val adjusted = if (turn == PieceColor.BLACK) -result.score else result.score
-                            when {
-                                adjusted > 0.3f -> Color.White
-                                adjusted < -0.3f -> Color(0xFF888888)
-                                else -> MaterialTheme.colorScheme.primary
+                    text = formattedMove,
+                    fontSize = 14.sp,
+                    color = Color(0xFFCCCCCC),
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(3.dp))
+                        .clickable { onMoveClick(index) }
+                        .background(Color(0xFF1A2744))
+                        .padding(horizontal = 6.dp, vertical = 3.dp)
+                )
+            }
+        }
+    }
+}
+
+// Format UCI moves with piece symbols and capture notation
+private fun formatUciMovesWithCaptures(pv: String, startBoard: ChessBoard, isWhiteTurn: Boolean): List<String> {
+    if (pv.isBlank()) return emptyList()
+
+    val moves = pv.split(" ").filter { it.isNotBlank() }
+    val result = mutableListOf<String>()
+    val tempBoard = startBoard.copy()
+    var currentIsWhite = isWhiteTurn
+
+    for (uciMove in moves) {
+        if (uciMove.length < 4) continue
+
+        val fromStr = uciMove.substring(0, 2)
+        val toStr = uciMove.substring(2, 4)
+        val promotion = if (uciMove.length > 4) uciMove.substring(4).uppercase() else ""
+
+        val fromSquare = Square.fromAlgebraic(fromStr)
+        val toSquare = Square.fromAlgebraic(toStr)
+
+        // Get the piece on the from square to determine the correct symbol
+        val piece = fromSquare?.let { tempBoard.getPiece(it) }
+        val symbol = if (piece != null) {
+            val isWhitePiece = piece.color == com.lichessreplay.chess.PieceColor.WHITE
+            getPieceSymbol(piece.type, isWhitePiece)
+        } else {
+            // Fallback - inverted because Unicode symbols are visually inverted
+            if (currentIsWhite) BLACK_PAWN else WHITE_PAWN
+        }
+
+        val isCapture = toSquare != null && tempBoard.getPiece(toSquare) != null
+        val separator = if (isCapture) "x" else "-"
+        val formatted = "$symbol $fromStr$separator$toStr$promotion"
+
+        result.add(formatted)
+
+        // Make the move on temp board for next iteration
+        tempBoard.makeUciMove(uciMove)
+        currentIsWhite = !currentIsWhite
+    }
+
+    return result
+}
+
+// Get the correct piece symbol based on piece type and color
+// Note: Unicode chess symbols are inverted - "white" symbols appear filled, "black" appear hollow
+private fun getPieceSymbol(pieceType: com.lichessreplay.chess.PieceType, isWhite: Boolean): String {
+    return when (pieceType) {
+        com.lichessreplay.chess.PieceType.KING -> if (isWhite) BLACK_KING else WHITE_KING
+        com.lichessreplay.chess.PieceType.QUEEN -> if (isWhite) BLACK_QUEEN else WHITE_QUEEN
+        com.lichessreplay.chess.PieceType.ROOK -> if (isWhite) BLACK_ROOK else WHITE_ROOK
+        com.lichessreplay.chess.PieceType.BISHOP -> if (isWhite) BLACK_BISHOP else WHITE_BISHOP
+        com.lichessreplay.chess.PieceType.KNIGHT -> if (isWhite) BLACK_KNIGHT else WHITE_KNIGHT
+        com.lichessreplay.chess.PieceType.PAWN -> if (isWhite) BLACK_PAWN else WHITE_PAWN
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun StockfishSettingsDialog(
+    settings: StockfishSettings,
+    onDismiss: () -> Unit,
+    onSave: (StockfishSettings) -> Unit
+) {
+    var depth by remember { mutableStateOf(settings.depth.toString()) }
+    var threads by remember { mutableStateOf(settings.threads.toString()) }
+    var hashMb by remember { mutableStateOf(settings.hashMb.toString()) }
+    var multiPv by remember { mutableStateOf(settings.multiPv.toString()) }
+    var analysisTimeMs by remember { mutableStateOf(settings.analysisTimeMs) }
+    var analysisTimeExpanded by remember { mutableStateOf(false) }
+
+    // Analysis time options: 0.25, 0.50, 1.00, 1.50, 2.00 seconds
+    val analysisTimeOptions = listOf(
+        250 to "0.25s",
+        500 to "0.50s",
+        1000 to "1.00s",
+        1500 to "1.50s",
+        2000 to "2.00s"
+    )
+
+    Dialog(onDismissRequest = onDismiss) {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surface
+            )
+        ) {
+            Column(
+                modifier = Modifier.padding(20.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Text(
+                    text = "Stockfish Settings",
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.SemiBold
+                )
+
+                // Analysis Time Per Move dropdown
+                Column {
+                    Text(
+                        text = "Analysis Time Per Move",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.padding(bottom = 4.dp)
+                    )
+                    ExposedDropdownMenuBox(
+                        expanded = analysisTimeExpanded,
+                        onExpandedChange = { analysisTimeExpanded = it }
+                    ) {
+                        OutlinedTextField(
+                            value = analysisTimeOptions.find { it.first == analysisTimeMs }?.second ?: "1.00s",
+                            onValueChange = {},
+                            readOnly = true,
+                            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = analysisTimeExpanded) },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .menuAnchor(),
+                            supportingText = { Text("Time for auto-analysis per move") }
+                        )
+                        ExposedDropdownMenu(
+                            expanded = analysisTimeExpanded,
+                            onDismissRequest = { analysisTimeExpanded = false }
+                        ) {
+                            analysisTimeOptions.forEach { (ms, label) ->
+                                DropdownMenuItem(
+                                    text = { Text(label) },
+                                    onClick = {
+                                        analysisTimeMs = ms
+                                        analysisTimeExpanded = false
+                                    }
+                                )
                             }
                         }
-                        else -> MaterialTheme.colorScheme.onSurface
                     }
+                }
+
+                // Depth
+                OutlinedTextField(
+                    value = depth,
+                    onValueChange = { depth = it.filter { c -> c.isDigit() } },
+                    label = { Text("Analysis Depth") },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth(),
+                    supportingText = { Text("Recommended: 16-24") }
                 )
 
-                Spacer(modifier = Modifier.height(4.dp))
-
-                // Depth and best move
-                Text(
-                    text = "Depth: ${result?.depth ?: 0}",
-                    fontSize = 11.sp,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                // Threads
+                OutlinedTextField(
+                    value = threads,
+                    onValueChange = { threads = it.filter { c -> c.isDigit() } },
+                    label = { Text("Threads") },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth(),
+                    supportingText = { Text("Number of CPU cores to use") }
                 )
 
-                Text(
-                    text = "Best: ${result?.bestMove ?: "-"}",
-                    fontSize = 11.sp,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                // Hash
+                OutlinedTextField(
+                    value = hashMb,
+                    onValueChange = { hashMb = it.filter { c -> c.isDigit() } },
+                    label = { Text("Hash Memory (MB)") },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth(),
+                    supportingText = { Text("Memory for hash tables") }
                 )
 
-                // PV line
-                if (result?.pv?.isNotBlank() == true) {
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(Color(0xFF0F1629), RoundedCornerShape(4.dp))
-                            .padding(6.dp)
+                // MultiPV
+                OutlinedTextField(
+                    value = multiPv,
+                    onValueChange = { multiPv = it.filter { c -> c.isDigit() } },
+                    label = { Text("MultiPV") },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth(),
+                    supportingText = { Text("Number of best lines to show") }
+                )
+
+                // Buttons
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.End,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    TextButton(onClick = onDismiss) {
+                        Text("Cancel")
+                    }
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Button(
+                        onClick = {
+                            val newSettings = StockfishSettings(
+                                depth = depth.toIntOrNull() ?: 16,
+                                threads = threads.toIntOrNull() ?: 1,
+                                hashMb = hashMb.toIntOrNull() ?: 64,
+                                multiPv = multiPv.toIntOrNull() ?: 1,
+                                analysisTimeMs = analysisTimeMs
+                            )
+                            onSave(newSettings)
+                        }
                     ) {
-                        Text(
-                            text = result.pv,
-                            fontSize = 10.sp,
-                            fontFamily = FontFamily.Monospace,
-                            color = Color(0xFFAAAAAA),
-                            maxLines = 2
-                        )
+                        Text("Save")
                     }
                 }
             }
