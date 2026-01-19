@@ -133,7 +133,16 @@ fun GameScreen(
 
         // Stage toggle button - only show when game is loaded
         if (uiState.game != null) {
-            val stageText = if (uiState.isAutoAnalyzing) "Analyse stage active" else "Manual stage active"
+            val stageText = if (uiState.isAutoAnalyzing) {
+                val totalRounds = uiState.analyseSettings.numberOfRounds
+                if (totalRounds > 1) {
+                    "Analyse stage active (Round ${uiState.currentAnalysisRound}/$totalRounds)"
+                } else {
+                    "Analyse stage active"
+                }
+            } else {
+                "Manual stage active"
+            }
             val stageColor = if (uiState.isAutoAnalyzing) Color(0xFF6B9BFF) else Color(0xFF4CAF50)
 
             Button(
@@ -1315,8 +1324,6 @@ private fun SettingsDialog(
     onSaveAnalyse: (AnalyseSettings) -> Unit
 ) {
     // Analyse stage settings
-    var analyseTimeMs by remember { mutableStateOf(stockfishSettings.analyseStage.analysisTimeMs) }
-    var analyseTimeExpanded by remember { mutableStateOf(false) }
     var analyseThreads by remember { mutableStateOf(stockfishSettings.analyseStage.threads.toString()) }
     var analyseHashMb by remember { mutableStateOf(stockfishSettings.analyseStage.hashMb.toString()) }
 
@@ -1329,15 +1336,12 @@ private fun SettingsDialog(
     // Analyse settings
     var analyseSequence by remember { mutableStateOf(analyseSettings.sequence) }
     var sequenceExpanded by remember { mutableStateOf(false) }
-
-    // Analysis time options: 0.25, 0.50, 1.00, 1.50, 2.00 seconds
-    val analysisTimeOptions = listOf(
-        250 to "0.25s",
-        500 to "0.50s",
-        1000 to "1.00s",
-        1500 to "1.50s",
-        2000 to "2.00s"
-    )
+    var numberOfRounds by remember { mutableStateOf(analyseSettings.numberOfRounds) }
+    var roundsExpanded by remember { mutableStateOf(false) }
+    var round1TimeMs by remember { mutableStateOf(analyseSettings.round1TimeMs) }
+    var round1Expanded by remember { mutableStateOf(false) }
+    var round2TimeMs by remember { mutableStateOf(analyseSettings.round2TimeMs) }
+    var round2Expanded by remember { mutableStateOf(false) }
 
     // Sequence options
     val sequenceOptions = listOf(
@@ -1345,6 +1349,40 @@ private fun SettingsDialog(
         AnalyseSequence.BACKWARDS to "Backwards",
         AnalyseSequence.MIXED to "Mixed"
     )
+
+    // Number of rounds options
+    val roundsOptions = listOf(1, 2)
+
+    // Round 1 time options: 0.10, 0.25, 0.50, 0.75, 1.00, 1.50, 2.50, 5.00 seconds
+    val round1TimeOptions = listOf(
+        100 to "0.10s",
+        250 to "0.25s",
+        500 to "0.50s",
+        750 to "0.75s",
+        1000 to "1.00s",
+        1500 to "1.50s",
+        2500 to "2.50s",
+        5000 to "5.00s"
+    )
+
+    // Round 2 time options: 1.00, 1.50, 2.50, 5.00, 7.50, 10.00, 15.00 seconds
+    val round2TimeOptions = listOf(
+        1000 to "1.00s",
+        1500 to "1.50s",
+        2500 to "2.50s",
+        5000 to "5.00s",
+        7500 to "7.50s",
+        10000 to "10.00s",
+        15000 to "15.00s"
+    )
+
+    // Filter round 2 options to only show values higher than round 1
+    val filteredRound2Options = round2TimeOptions.filter { it.first > round1TimeMs }
+
+    // If current round2 selection is no longer valid, update it to the first valid option
+    if (numberOfRounds == 2 && filteredRound2Options.isNotEmpty() && round2TimeMs <= round1TimeMs) {
+        round2TimeMs = filteredRound2Options.first().first
+    }
 
     Dialog(onDismissRequest = onDismiss) {
         Card(
@@ -1408,6 +1446,108 @@ private fun SettingsDialog(
                                 }
                             }
                         }
+
+                        // Number of rounds dropdown
+                        ExposedDropdownMenuBox(
+                            expanded = roundsExpanded,
+                            onExpandedChange = { roundsExpanded = it }
+                        ) {
+                            OutlinedTextField(
+                                value = "$numberOfRounds round${if (numberOfRounds > 1) "s" else ""}",
+                                onValueChange = {},
+                                readOnly = true,
+                                label = { Text("Number of analyse rounds") },
+                                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = roundsExpanded) },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .menuAnchor()
+                            )
+                            ExposedDropdownMenu(
+                                expanded = roundsExpanded,
+                                onDismissRequest = { roundsExpanded = false }
+                            ) {
+                                roundsOptions.forEach { rounds ->
+                                    DropdownMenuItem(
+                                        text = { Text("$rounds round${if (rounds > 1) "s" else ""}") },
+                                        onClick = {
+                                            numberOfRounds = rounds
+                                            roundsExpanded = false
+                                        }
+                                    )
+                                }
+                            }
+                        }
+
+                        // Round 1 time dropdown
+                        ExposedDropdownMenuBox(
+                            expanded = round1Expanded,
+                            onExpandedChange = { round1Expanded = it }
+                        ) {
+                            OutlinedTextField(
+                                value = round1TimeOptions.find { it.first == round1TimeMs }?.second ?: "0.50s",
+                                onValueChange = {},
+                                readOnly = true,
+                                label = { Text("Round 1 time per move") },
+                                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = round1Expanded) },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .menuAnchor()
+                            )
+                            ExposedDropdownMenu(
+                                expanded = round1Expanded,
+                                onDismissRequest = { round1Expanded = false }
+                            ) {
+                                round1TimeOptions.forEach { (ms, label) ->
+                                    DropdownMenuItem(
+                                        text = { Text(label) },
+                                        onClick = {
+                                            round1TimeMs = ms
+                                            round1Expanded = false
+                                            // Auto-adjust round 2 if it's now invalid
+                                            if (round2TimeMs <= ms) {
+                                                val validOptions = round2TimeOptions.filter { it.first > ms }
+                                                if (validOptions.isNotEmpty()) {
+                                                    round2TimeMs = validOptions.first().first
+                                                }
+                                            }
+                                        }
+                                    )
+                                }
+                            }
+                        }
+
+                        // Round 2 time dropdown (only show if 2 rounds selected)
+                        if (numberOfRounds == 2) {
+                            ExposedDropdownMenuBox(
+                                expanded = round2Expanded,
+                                onExpandedChange = { round2Expanded = it }
+                            ) {
+                                OutlinedTextField(
+                                    value = round2TimeOptions.find { it.first == round2TimeMs }?.second ?: "2.50s",
+                                    onValueChange = {},
+                                    readOnly = true,
+                                    label = { Text("Round 2 time per move") },
+                                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = round2Expanded) },
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .menuAnchor()
+                                )
+                                ExposedDropdownMenu(
+                                    expanded = round2Expanded,
+                                    onDismissRequest = { round2Expanded = false }
+                                ) {
+                                    filteredRound2Options.forEach { (ms, label) ->
+                                        DropdownMenuItem(
+                                            text = { Text(label) },
+                                            onClick = {
+                                                round2TimeMs = ms
+                                                round2Expanded = false
+                                            }
+                                        )
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
 
@@ -1427,37 +1567,6 @@ private fun SettingsDialog(
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.SemiBold
                         )
-
-                        // Analysis Time Per Move dropdown
-                        ExposedDropdownMenuBox(
-                            expanded = analyseTimeExpanded,
-                            onExpandedChange = { analyseTimeExpanded = it }
-                        ) {
-                            OutlinedTextField(
-                                value = analysisTimeOptions.find { it.first == analyseTimeMs }?.second ?: "1.00s",
-                                onValueChange = {},
-                                readOnly = true,
-                                label = { Text("Time per move") },
-                                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = analyseTimeExpanded) },
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .menuAnchor()
-                            )
-                            ExposedDropdownMenu(
-                                expanded = analyseTimeExpanded,
-                                onDismissRequest = { analyseTimeExpanded = false }
-                            ) {
-                                analysisTimeOptions.forEach { (ms, label) ->
-                                    DropdownMenuItem(
-                                        text = { Text(label) },
-                                        onClick = {
-                                            analyseTimeMs = ms
-                                            analyseTimeExpanded = false
-                                        }
-                                    )
-                                }
-                            }
-                        }
 
                         // Threads
                         OutlinedTextField(
@@ -1554,14 +1663,16 @@ private fun SettingsDialog(
                         onClick = {
                             // Save analyse settings
                             val newAnalyseSettings = AnalyseSettings(
-                                sequence = analyseSequence
+                                sequence = analyseSequence,
+                                numberOfRounds = numberOfRounds,
+                                round1TimeMs = round1TimeMs,
+                                round2TimeMs = round2TimeMs
                             )
                             onSaveAnalyse(newAnalyseSettings)
 
                             // Save stockfish settings
                             val newStockfishSettings = StockfishSettings(
                                 analyseStage = AnalyseStageSettings(
-                                    analysisTimeMs = analyseTimeMs,
                                     threads = analyseThreads.toIntOrNull() ?: 1,
                                     hashMb = analyseHashMb.toIntOrNull() ?: 64
                                 ),

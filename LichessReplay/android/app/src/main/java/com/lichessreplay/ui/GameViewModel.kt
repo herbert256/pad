@@ -28,12 +28,14 @@ enum class AnalyseSequence {
 
 // General analyse settings
 data class AnalyseSettings(
-    val sequence: AnalyseSequence = AnalyseSequence.BACKWARDS
+    val sequence: AnalyseSequence = AnalyseSequence.BACKWARDS,
+    val numberOfRounds: Int = 1,        // 1 or 2 rounds
+    val round1TimeMs: Int = 500,        // Time per move for round 1
+    val round2TimeMs: Int = 2500        // Time per move for round 2 (only if numberOfRounds = 2)
 )
 
 // Settings for auto-analysis stage (time-based)
 data class AnalyseStageSettings(
-    val analysisTimeMs: Int = 1000,  // Time per move during auto-analysis (ms)
     val threads: Int = 1,
     val hashMb: Int = 64
 )
@@ -100,6 +102,7 @@ data class GameUiState(
     val autoAnalysisCompleted: Boolean = false,
     val remainingAnalysisMoves: List<Int> = emptyList(),
     val currentAnalysisTimeMs: Int = 1000,
+    val currentAnalysisRound: Int = 1,    // Current round (1 or 2)
     // Chess source settings
     val chessSource: ChessSource = ChessSource.LICHESS,
     val maxGames: Int = 10
@@ -124,7 +127,6 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         private const val PREFS_NAME = "chess_replay_prefs"
         private const val KEY_USERNAME = "last_username"
         // Analyse stage settings
-        private const val KEY_ANALYSE_TIME = "analyse_time_ms"
         private const val KEY_ANALYSE_THREADS = "analyse_threads"
         private const val KEY_ANALYSE_HASH = "analyse_hash"
         // Manual stage settings
@@ -134,6 +136,9 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         private const val KEY_MANUAL_MULTIPV = "manual_multipv"
         // General analyse settings
         private const val KEY_ANALYSE_SEQUENCE = "analyse_sequence"
+        private const val KEY_ANALYSE_NUM_ROUNDS = "analyse_num_rounds"
+        private const val KEY_ANALYSE_ROUND1_TIME = "analyse_round1_time"
+        private const val KEY_ANALYSE_ROUND2_TIME = "analyse_round2_time"
         // Other settings
         private const val KEY_CHESS_SOURCE = "chess_source"
         private const val KEY_MAX_GAMES = "max_games"
@@ -142,7 +147,6 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     private fun loadStockfishSettings(): StockfishSettings {
         return StockfishSettings(
             analyseStage = AnalyseStageSettings(
-                analysisTimeMs = prefs.getInt(KEY_ANALYSE_TIME, 1000),
                 threads = prefs.getInt(KEY_ANALYSE_THREADS, 1),
                 hashMb = prefs.getInt(KEY_ANALYSE_HASH, 64)
             ),
@@ -158,7 +162,6 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     private fun saveStockfishSettings(settings: StockfishSettings) {
         prefs.edit()
             // Analyse stage
-            .putInt(KEY_ANALYSE_TIME, settings.analyseStage.analysisTimeMs)
             .putInt(KEY_ANALYSE_THREADS, settings.analyseStage.threads)
             .putInt(KEY_ANALYSE_HASH, settings.analyseStage.hashMb)
             // Manual stage
@@ -172,12 +175,20 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     private fun loadAnalyseSettings(): AnalyseSettings {
         val sequenceOrdinal = prefs.getInt(KEY_ANALYSE_SEQUENCE, AnalyseSequence.BACKWARDS.ordinal)
         val sequence = AnalyseSequence.entries.getOrNull(sequenceOrdinal) ?: AnalyseSequence.BACKWARDS
-        return AnalyseSettings(sequence = sequence)
+        return AnalyseSettings(
+            sequence = sequence,
+            numberOfRounds = prefs.getInt(KEY_ANALYSE_NUM_ROUNDS, 1),
+            round1TimeMs = prefs.getInt(KEY_ANALYSE_ROUND1_TIME, 500),
+            round2TimeMs = prefs.getInt(KEY_ANALYSE_ROUND2_TIME, 2500)
+        )
     }
 
     private fun saveAnalyseSettings(settings: AnalyseSettings) {
         prefs.edit()
             .putInt(KEY_ANALYSE_SEQUENCE, settings.sequence.ordinal)
+            .putInt(KEY_ANALYSE_NUM_ROUNDS, settings.numberOfRounds)
+            .putInt(KEY_ANALYSE_ROUND1_TIME, settings.round1TimeMs)
+            .putInt(KEY_ANALYSE_ROUND2_TIME, settings.round2TimeMs)
             .apply()
     }
 
@@ -211,12 +222,63 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 configureForManualStage()
             }
             _uiState.value = _uiState.value.copy(stockfishReady = ready)
+
+            // Auto-load the last user's most recent game and start analysis
+            if (ready) {
+                autoLoadLastGame()
+            }
         }
 
         // Observe analysis results
         viewModelScope.launch {
             stockfish.analysisResult.collect { result ->
                 _uiState.value = _uiState.value.copy(analysisResult = result)
+            }
+        }
+    }
+
+    /**
+     * Automatically load the last user's most recent game and start analysis.
+     * Called on app startup if there's a saved username.
+     */
+    private suspend fun autoLoadLastGame() {
+        val username = savedUsername
+        if (username.isBlank()) return
+
+        val source = _uiState.value.chessSource
+
+        _uiState.value = _uiState.value.copy(
+            isLoading = true,
+            errorMessage = null
+        )
+
+        // Fetch only 1 game (the most recent)
+        when (val result = repository.getRecentGames(username, source, 1)) {
+            is Result.Success -> {
+                val games = result.data
+                if (games.isNotEmpty()) {
+                    _uiState.value = _uiState.value.copy(
+                        isLoading = false,
+                        gameList = games,
+                        showGameSelection = false
+                    )
+                    loadGame(games.first())
+                    // Start analysis automatically after a short delay to let the game load
+                    kotlinx.coroutines.delay(100)
+                    startAutoAnalysis(startRound = 1)
+                } else {
+                    _uiState.value = _uiState.value.copy(
+                        isLoading = false,
+                        errorMessage = null // No error, just no game to auto-load
+                    )
+                }
+            }
+            is Result.Error -> {
+                // Don't show error on auto-load failure, just continue to manual mode
+                _uiState.value = _uiState.value.copy(
+                    isLoading = false,
+                    errorMessage = null
+                )
             }
         }
     }
@@ -650,9 +712,25 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         stockfish.analyze(fen, depth)
     }
 
+    private fun buildMoveIndices(): List<Int> {
+        val moves = _uiState.value.moves
+        val sequence = _uiState.value.analyseSettings.sequence
+        return when (sequence) {
+            AnalyseSequence.FORWARDS -> (0 until moves.size).toList()
+            AnalyseSequence.BACKWARDS -> (moves.size - 1 downTo 0).toList()
+            AnalyseSequence.MIXED -> {
+                // First: last 10 moves backwards, then: rest forwards from move 1
+                val lastTenBackwards = (moves.size - 1 downTo maxOf(0, moves.size - 10)).toList()
+                val restForwards = (0 until maxOf(0, moves.size - 10)).toList()
+                lastTenBackwards + restForwards
+            }
+        }
+    }
+
     private fun startAutoAnalysis(
         moveIndicesToAnalyze: List<Int>? = null,
-        analysisTimeMs: Int? = null
+        analysisTimeMs: Int? = null,
+        startRound: Int = 1
     ) {
         if (!_uiState.value.stockfishReady) return
 
@@ -666,88 +744,104 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             val moves = _uiState.value.moves
             if (moves.isEmpty()) return@launch
 
-            // Use provided time or default from settings
-            val timePerMove = analysisTimeMs ?: _uiState.value.stockfishSettings.analyseStage.analysisTimeMs
+            val analyseSettings = _uiState.value.analyseSettings
+            val numberOfRounds = analyseSettings.numberOfRounds
 
-            // Build the analysis order based on sequence setting, or use provided list
-            val moveIndices = moveIndicesToAnalyze ?: run {
-                val sequence = _uiState.value.analyseSettings.sequence
-                when (sequence) {
-                    AnalyseSequence.FORWARDS -> (0 until moves.size).toList()
-                    AnalyseSequence.BACKWARDS -> (moves.size - 1 downTo 0).toList()
-                    AnalyseSequence.MIXED -> {
-                        // First: last 10 moves backwards, then: rest forwards from move 1
-                        val lastTenBackwards = (moves.size - 1 downTo maxOf(0, moves.size - 10)).toList()
-                        val restForwards = (0 until maxOf(0, moves.size - 10)).toList()
-                        lastTenBackwards + restForwards
-                    }
+            // Determine which round we're starting from
+            var currentRound = startRound
+
+            // Loop through rounds
+            while (currentRound <= numberOfRounds) {
+                // Get time for current round
+                val timePerMove = if (currentRound == 1) {
+                    analysisTimeMs ?: analyseSettings.round1TimeMs
+                } else {
+                    analyseSettings.round2TimeMs
                 }
-            }
 
-            _uiState.value = _uiState.value.copy(
-                isAutoAnalyzing = true,
-                autoAnalysisCurrentScore = null,
-                autoAnalysisCompleted = false,
-                remainingAnalysisMoves = moveIndices,
-                currentAnalysisTimeMs = timePerMove
-            )
+                // Build or use provided move indices
+                val moveIndices = if (currentRound == startRound && moveIndicesToAnalyze != null) {
+                    moveIndicesToAnalyze
+                } else {
+                    buildMoveIndices()
+                }
 
-            // Analyze each position in the determined order
-            val remainingMoves = moveIndices.toMutableList()
-            for (moveIndex in moveIndices) {
-                // Get the board position after this move
-                val board = boardHistory.getOrNull(moveIndex + 1) ?: continue
-
-                // Update remaining moves (remove the one we're about to analyze)
-                remainingMoves.remove(moveIndex)
-
-                // Update board position and current analysis index, clear previous analysis result
                 _uiState.value = _uiState.value.copy(
-                    autoAnalysisIndex = moveIndex,
-                    currentBoard = board,
-                    currentMoveIndex = moveIndex,
+                    isAutoAnalyzing = true,
                     autoAnalysisCurrentScore = null,
-                    analysisResult = null,  // Clear previous result to prevent stale data
-                    remainingAnalysisMoves = remainingMoves.toList()
+                    autoAnalysisCompleted = false,
+                    remainingAnalysisMoves = moveIndices,
+                    currentAnalysisTimeMs = timePerMove,
+                    currentAnalysisRound = currentRound
                 )
 
-                val fen = board.getFen()
+                // Analyze each position in the determined order
+                val remainingMoves = moveIndices.toMutableList()
+                for (moveIndex in moveIndices) {
+                    // Get the board position after this move
+                    val board = boardHistory.getOrNull(moveIndex + 1) ?: continue
 
-                // Start analysis with time limit
-                stockfish.analyzeWithTime(fen, timePerMove)
+                    // Update remaining moves (remove the one we're about to analyze)
+                    remainingMoves.remove(moveIndex)
 
-                // Wait a bit for analysis to start and produce results
-                delay(100)
+                    // Update board position and current analysis index, clear previous analysis result
+                    _uiState.value = _uiState.value.copy(
+                        autoAnalysisIndex = moveIndex,
+                        currentBoard = board,
+                        currentMoveIndex = moveIndex,
+                        autoAnalysisCurrentScore = null,
+                        analysisResult = null,  // Clear previous result to prevent stale data
+                        remainingAnalysisMoves = remainingMoves.toList()
+                    )
 
-                // Wait for analysis to complete
-                delay(timePerMove.toLong())
+                    val fen = board.getFen()
 
-                // Get the current analysis result and store the score
-                val result = stockfish.analysisResult.value
-                if (result != null) {
-                    val bestLine = result.bestLine
-                    if (bestLine != null) {
-                        // Use the board's turn to determine score adjustment
-                        // Stockfish gives score from the side-to-move's perspective
-                        // If white to move: score is already from white's POV, keep it
-                        // If black to move: score is from black's POV, negate to get white's POV
-                        val isWhiteToMove = board.getTurn() == com.lichessreplay.chess.PieceColor.WHITE
-                        val adjustedScore = if (isWhiteToMove) bestLine.score else -bestLine.score
-                        val adjustedMateIn = if (isWhiteToMove) bestLine.mateIn else -bestLine.mateIn
+                    // Start analysis with time limit
+                    stockfish.analyzeWithTime(fen, timePerMove)
 
-                        val score = MoveScore(
-                            score = adjustedScore,
-                            isMate = bestLine.isMate,
-                            mateIn = adjustedMateIn,
-                            depth = result.depth,
-                            nodes = result.nodes
-                        )
+                    // Wait a bit for analysis to start and produce results
+                    delay(100)
 
-                        _uiState.value = _uiState.value.copy(
-                            moveScores = _uiState.value.moveScores + (moveIndex to score),
-                            autoAnalysisCurrentScore = score
-                        )
+                    // Wait for analysis to complete
+                    delay(timePerMove.toLong())
+
+                    // Get the current analysis result and store the score
+                    val result = stockfish.analysisResult.value
+                    if (result != null) {
+                        val bestLine = result.bestLine
+                        if (bestLine != null) {
+                            // Use the board's turn to determine score adjustment
+                            // Stockfish gives score from the side-to-move's perspective
+                            // If white to move: score is already from white's POV, keep it
+                            // If black to move: score is from black's POV, negate to get white's POV
+                            val isWhiteToMove = board.getTurn() == com.lichessreplay.chess.PieceColor.WHITE
+                            val adjustedScore = if (isWhiteToMove) bestLine.score else -bestLine.score
+                            val adjustedMateIn = if (isWhiteToMove) bestLine.mateIn else -bestLine.mateIn
+
+                            val score = MoveScore(
+                                score = adjustedScore,
+                                isMate = bestLine.isMate,
+                                mateIn = adjustedMateIn,
+                                depth = result.depth,
+                                nodes = result.nodes
+                            )
+
+                            _uiState.value = _uiState.value.copy(
+                                moveScores = _uiState.value.moveScores + (moveIndex to score),
+                                autoAnalysisCurrentScore = score
+                            )
+                        }
                     }
+                }
+
+                // Round completed
+                currentRound++
+
+                // If there's another round, stop and restart Stockfish
+                if (currentRound <= numberOfRounds) {
+                    stockfish.stop()
+                    delay(100) // Brief pause
+                    configureForAnalyseStage() // Reconfigure for next round
                 }
             }
 
@@ -756,7 +850,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 autoAnalysisIndex = -1,
                 autoAnalysisCurrentScore = null,
                 autoAnalysisCompleted = true,
-                remainingAnalysisMoves = emptyList()
+                remainingAnalysisMoves = emptyList(),
+                currentAnalysisRound = 1
             )
 
             // Configure for manual stage and resume analysis
@@ -771,7 +866,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         _uiState.value = _uiState.value.copy(
             isAutoAnalyzing = false,
             autoAnalysisIndex = -1
-            // Keep remainingAnalysisMoves and autoAnalysisCompleted as-is for potential resume
+            // Keep remainingAnalysisMoves, currentAnalysisRound and autoAnalysisCompleted for potential resume
         )
         // Configure for manual stage
         configureForManualStage()
@@ -780,8 +875,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     /**
      * Toggle between Analyse stage and Manual stage.
      * When switching to Analyse:
-     * - If previous analysis was incomplete: resume where it left off
-     * - If previous analysis was complete: restart with doubled time
+     * - If previous analysis was incomplete: resume where it left off (same round)
+     * - If previous analysis was complete: restart from round 1
      */
     fun toggleStage() {
         if (_uiState.value.isAutoAnalyzing) {
@@ -792,18 +887,16 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             // Currently in Manual stage -> switch to Analyse stage
             val remainingMoves = _uiState.value.remainingAnalysisMoves
             val wasCompleted = _uiState.value.autoAnalysisCompleted
+            val currentRound = _uiState.value.currentAnalysisRound
 
             if (!wasCompleted && remainingMoves.isNotEmpty()) {
                 // Previous analysis was not finished -> resume where it left off
                 val currentTime = _uiState.value.currentAnalysisTimeMs
-                startAutoAnalysis(remainingMoves, currentTime)
+                startAutoAnalysis(remainingMoves, currentTime, currentRound)
             } else {
-                // Previous analysis was finished -> start from beginning with doubled time
-                val previousTime = _uiState.value.currentAnalysisTimeMs
-                val doubledTime = (previousTime * 2).coerceAtMost(10000) // Cap at 10 seconds
-                // Clear previous scores for fresh analysis
+                // Previous analysis was finished -> start fresh from round 1
                 _uiState.value = _uiState.value.copy(moveScores = emptyMap())
-                startAutoAnalysis(analysisTimeMs = doubledTime)
+                startAutoAnalysis(startRound = 1)
             }
         }
     }
