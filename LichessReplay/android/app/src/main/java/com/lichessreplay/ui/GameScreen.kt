@@ -131,6 +131,29 @@ fun GameScreen(
             }
         }
 
+        // Stage toggle button - only show when game is loaded
+        if (uiState.game != null) {
+            val stageText = if (uiState.isAutoAnalyzing) "Analyse stage active" else "Manual stage active"
+            val stageColor = if (uiState.isAutoAnalyzing) Color(0xFF6B9BFF) else Color(0xFF4CAF50)
+
+            Button(
+                onClick = { viewModel.toggleStage() },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = stageColor.copy(alpha = 0.2f),
+                    contentColor = stageColor
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 4.dp)
+            ) {
+                Text(
+                    text = stageText,
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 14.sp
+                )
+            }
+        }
+
         // Search section - only show when no game is loaded
         if (uiState.game == null) {
             // Source selection row
