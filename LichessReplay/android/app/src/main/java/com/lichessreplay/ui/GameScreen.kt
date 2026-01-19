@@ -82,7 +82,10 @@ fun GameScreen(
     viewModel: GameViewModel = viewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
-    var username by remember { mutableStateOf(viewModel.savedUsername) }
+    var lichessUsername by remember { mutableStateOf(viewModel.savedLichessUsername) }
+    var chessComUsername by remember { mutableStateOf(viewModel.savedChessComUsername) }
+    var lichessGamesCount by remember { mutableStateOf(uiState.lichessMaxGames.toString()) }
+    var chessComGamesCount by remember { mutableStateOf(uiState.chessComMaxGames.toString()) }
     val focusManager = LocalFocusManager.current
 
     // Settings dialog
@@ -165,105 +168,6 @@ fun GameScreen(
 
         // Search section - only show when no game is loaded
         if (uiState.game == null) {
-            // Source selection row
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 8.dp),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = "lichess.org",
-                    fontSize = 14.sp,
-                    color = if (uiState.chessSource == ChessSource.LICHESS)
-                        MaterialTheme.colorScheme.primary else Color.Gray
-                )
-                Switch(
-                    checked = uiState.chessSource == ChessSource.CHESS_COM,
-                    onCheckedChange = { isChessCom ->
-                        viewModel.setChessSource(
-                            if (isChessCom) ChessSource.CHESS_COM else ChessSource.LICHESS
-                        )
-                    },
-                    modifier = Modifier.padding(horizontal = 8.dp)
-                )
-                Text(
-                    text = "chess.com",
-                    fontSize = 14.sp,
-                    color = if (uiState.chessSource == ChessSource.CHESS_COM)
-                        MaterialTheme.colorScheme.primary else Color.Gray
-                )
-            }
-
-            // Username and games count row
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 8.dp),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                OutlinedTextField(
-                    value = username,
-                    onValueChange = { username = it },
-                    placeholder = { Text("Enter username") },
-                    singleLine = true,
-                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-                    keyboardActions = KeyboardActions(onSearch = {
-                        focusManager.clearFocus()
-                        if (username.isNotBlank()) {
-                            viewModel.fetchGames(username)
-                        }
-                    }),
-                    modifier = Modifier.weight(1f),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        unfocusedBorderColor = Color(0xFF333333),
-                        focusedBorderColor = MaterialTheme.colorScheme.primary
-                    )
-                )
-
-                Spacer(modifier = Modifier.width(8.dp))
-
-                // Games count field
-                var gamesCountText by remember { mutableStateOf(uiState.maxGames.toString()) }
-                OutlinedTextField(
-                    value = gamesCountText,
-                    onValueChange = { newValue ->
-                        // Only allow digits
-                        val filtered = newValue.filter { it.isDigit() }
-                        gamesCountText = filtered
-                        filtered.toIntOrNull()?.let { count ->
-                            viewModel.setMaxGames(count)
-                        }
-                    },
-                    label = { Text("Games", fontSize = 12.sp) },
-                    singleLine = true,
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                    modifier = Modifier.width(70.dp),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        unfocusedBorderColor = Color(0xFF333333),
-                        focusedBorderColor = MaterialTheme.colorScheme.primary
-                    )
-                )
-            }
-
-            // Fetch button
-            Button(
-                onClick = {
-                    focusManager.clearFocus()
-                    if (username.isNotBlank()) {
-                        viewModel.fetchGames(username)
-                    }
-                },
-                enabled = !uiState.isLoading,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 16.dp)
-            ) {
-                Text("Fetch")
-            }
-
             // Error message
             if (uiState.errorMessage != null) {
                 Card(
@@ -280,6 +184,184 @@ fun GameScreen(
                         modifier = Modifier.padding(12.dp),
                         textAlign = TextAlign.Center
                     )
+                }
+            }
+
+            // ===== LICHESS CARD =====
+            Card(
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 12.dp)
+            ) {
+                Column(
+                    modifier = Modifier.padding(12.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        text = "lichess.org",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color(0xFFE0E0E0)
+                    )
+
+                    // Username field
+                    OutlinedTextField(
+                        value = lichessUsername,
+                        onValueChange = { lichessUsername = it },
+                        placeholder = { Text("Enter username") },
+                        singleLine = true,
+                        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                        keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            unfocusedBorderColor = Color(0xFF555555),
+                            focusedBorderColor = MaterialTheme.colorScheme.primary
+                        )
+                    )
+
+                    // Games count field
+                    OutlinedTextField(
+                        value = lichessGamesCount,
+                        onValueChange = { newValue ->
+                            val filtered = newValue.filter { it.isDigit() }
+                            lichessGamesCount = filtered
+                            filtered.toIntOrNull()?.let { count ->
+                                viewModel.setLichessMaxGames(count)
+                            }
+                        },
+                        label = { Text("Number of games") },
+                        singleLine = true,
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            unfocusedBorderColor = Color(0xFF555555),
+                            focusedBorderColor = MaterialTheme.colorScheme.primary
+                        )
+                    )
+
+                    // Buttons row
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        val lichessCount = lichessGamesCount.toIntOrNull() ?: uiState.lichessMaxGames
+                        Button(
+                            onClick = {
+                                focusManager.clearFocus()
+                                if (lichessUsername.isNotBlank()) {
+                                    viewModel.fetchGames(lichessUsername, ChessSource.LICHESS, lichessCount)
+                                }
+                            },
+                            enabled = !uiState.isLoading && lichessUsername.isNotBlank(),
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text("Retrieve $lichessCount games")
+                        }
+                        Button(
+                            onClick = {
+                                focusManager.clearFocus()
+                                if (lichessUsername.isNotBlank()) {
+                                    viewModel.fetchGames(lichessUsername, ChessSource.LICHESS, 1)
+                                }
+                            },
+                            enabled = !uiState.isLoading && lichessUsername.isNotBlank(),
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text("Retrieve last game")
+                        }
+                    }
+                }
+            }
+
+            // ===== CHESS.COM CARD =====
+            Card(
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 12.dp)
+            ) {
+                Column(
+                    modifier = Modifier.padding(12.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        text = "chess.com",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color(0xFFE0E0E0)
+                    )
+
+                    // Username field
+                    OutlinedTextField(
+                        value = chessComUsername,
+                        onValueChange = { chessComUsername = it },
+                        placeholder = { Text("Enter username") },
+                        singleLine = true,
+                        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                        keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            unfocusedBorderColor = Color(0xFF555555),
+                            focusedBorderColor = MaterialTheme.colorScheme.primary
+                        )
+                    )
+
+                    // Games count field
+                    OutlinedTextField(
+                        value = chessComGamesCount,
+                        onValueChange = { newValue ->
+                            val filtered = newValue.filter { it.isDigit() }
+                            chessComGamesCount = filtered
+                            filtered.toIntOrNull()?.let { count ->
+                                viewModel.setChessComMaxGames(count)
+                            }
+                        },
+                        label = { Text("Number of games") },
+                        singleLine = true,
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = OutlinedTextFieldDefaults.colors(
+                            unfocusedBorderColor = Color(0xFF555555),
+                            focusedBorderColor = MaterialTheme.colorScheme.primary
+                        )
+                    )
+
+                    // Buttons row
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        val chessComCount = chessComGamesCount.toIntOrNull() ?: uiState.chessComMaxGames
+                        Button(
+                            onClick = {
+                                focusManager.clearFocus()
+                                if (chessComUsername.isNotBlank()) {
+                                    viewModel.fetchGames(chessComUsername, ChessSource.CHESS_COM, chessComCount)
+                                }
+                            },
+                            enabled = !uiState.isLoading && chessComUsername.isNotBlank(),
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text("Retrieve $chessComCount games")
+                        }
+                        Button(
+                            onClick = {
+                                focusManager.clearFocus()
+                                if (chessComUsername.isNotBlank()) {
+                                    viewModel.fetchGames(chessComUsername, ChessSource.CHESS_COM, 1)
+                                }
+                            },
+                            enabled = !uiState.isLoading && chessComUsername.isNotBlank(),
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Text("Retrieve last game")
+                        }
+                    }
                 }
             }
 
