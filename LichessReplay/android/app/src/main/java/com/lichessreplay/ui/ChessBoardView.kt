@@ -25,7 +25,14 @@ val BoardDark = Color(0xFFB58863)
 val HighlightColor = Color(0xFFCDD26A)
 val LegalMoveColor = Color(0x6644AA44)
 val SelectedSquareColor = Color(0x8844AA44)
-val BestMoveArrowColor = Color(0xCC3399FF)  // Semi-transparent blue
+
+// Data class for arrow with color info
+data class MoveArrow(
+    val from: Square,
+    val to: Square,
+    val isWhiteMove: Boolean,  // true = white arrow with black border, false = black arrow with white border
+    val index: Int  // 0 = thickest, 3 = thinnest
+)
 
 @Composable
 fun ChessBoardView(
@@ -34,7 +41,8 @@ fun ChessBoardView(
     interactionEnabled: Boolean = false,
     onMove: ((Square, Square) -> Unit)? = null,
     onTap: (() -> Unit)? = null,
-    bestMoveArrow: Pair<Square, Square>? = null,  // Arrow from first square to second
+    moveArrows: List<MoveArrow> = emptyList(),  // Up to 8 arrows from PV line
+    showArrowNumbers: Boolean = false,  // Show move numbers on arrows
     modifier: Modifier = Modifier
 ) {
     val lastMove = board.getLastMove()
@@ -246,9 +254,13 @@ fun ChessBoardView(
             }
         }
 
-        // Draw best move arrow
-        if (bestMoveArrow != null) {
-            val (arrowFrom, arrowTo) = bestMoveArrow
+        // Draw move arrows (up to 8 from PV line)
+        // Draw in reverse order so first arrow (thickest) is on top
+        // Track number positions to avoid overlaps (key is grid position as string)
+        val drawnNumberPositions = mutableSetOf<String>()
+
+        for (arrow in moveArrows.sortedByDescending { it.index }) {
+            val (arrowFrom, arrowTo) = arrow.from to arrow.to
 
             // Convert squares to screen coordinates (center of each square)
             val fromFile = if (flipped) 7 - arrowFrom.file else arrowFrom.file
@@ -261,10 +273,23 @@ fun ChessBoardView(
             val endX = toFile * squareSize + squareSize / 2
             val endY = toRank * squareSize + squareSize / 2
 
-            // Calculate arrow properties
-            val arrowWidth = squareSize * 0.15f
-            val headLength = squareSize * 0.35f
-            val headWidth = squareSize * 0.35f
+            // Arrow width decreases with index: 0=thickest, 7=thinnest
+            val widthMultiplier = when (arrow.index) {
+                0 -> 0.20f
+                1 -> 0.15f
+                2 -> 0.11f
+                3 -> 0.08f
+                4 -> 0.07f
+                5 -> 0.06f
+                6 -> 0.05f
+                else -> 0.04f
+            }
+            val arrowWidth = squareSize * widthMultiplier
+            val headLength = squareSize * (0.30f + (0.10f * (1 - arrow.index / 7f)))
+            val headWidth = squareSize * (0.30f + (0.10f * (1 - arrow.index / 7f)))
+
+            // Colors: blue for white moves, green for black moves
+            val arrowColor = if (arrow.isWhiteMove) Color(0xCC3399FF) else Color(0xCC44BB44)
 
             // Calculate angle
             val dx = endX - startX
@@ -278,21 +303,20 @@ fun ChessBoardView(
             val adjustedEndX = endX - kotlin.math.cos(angle) * shortenAmount
             val adjustedEndY = endY - kotlin.math.sin(angle) * shortenAmount
 
-            // Draw arrow shaft
-            drawLine(
-                color = BestMoveArrowColor,
-                start = Offset(adjustedStartX, adjustedStartY),
-                end = Offset(adjustedEndX - kotlin.math.cos(angle) * headLength * 0.5f,
-                            adjustedEndY - kotlin.math.sin(angle) * headLength * 0.5f),
-                strokeWidth = arrowWidth
-            )
-
-            // Draw arrow head using a path
             val headBaseX = adjustedEndX - kotlin.math.cos(angle) * headLength
             val headBaseY = adjustedEndY - kotlin.math.sin(angle) * headLength
             val perpAngle = angle + kotlin.math.PI.toFloat() / 2
 
-            val path = androidx.compose.ui.graphics.Path().apply {
+            // Draw arrow shaft
+            drawLine(
+                color = arrowColor,
+                start = Offset(adjustedStartX, adjustedStartY),
+                end = Offset(headBaseX, headBaseY),
+                strokeWidth = arrowWidth
+            )
+
+            // Draw arrow head
+            val fillPath = androidx.compose.ui.graphics.Path().apply {
                 moveTo(adjustedEndX, adjustedEndY)
                 lineTo(
                     headBaseX + kotlin.math.cos(perpAngle) * headWidth / 2,
@@ -304,7 +328,60 @@ fun ChessBoardView(
                 )
                 close()
             }
-            drawPath(path, BestMoveArrowColor)
+            drawPath(fillPath, arrowColor)
+        }
+
+        // Draw move numbers on arrows (in forward order so they layer properly)
+        if (showArrowNumbers && moveArrows.isNotEmpty()) {
+            drawContext.canvas.nativeCanvas.apply {
+                val numberPaint = android.graphics.Paint().apply {
+                    textSize = squareSize * 0.25f
+                    isAntiAlias = true
+                    isFakeBoldText = true
+                    textAlign = android.graphics.Paint.Align.CENTER
+                    color = android.graphics.Color.WHITE
+                }
+                val outlinePaint = android.graphics.Paint().apply {
+                    textSize = squareSize * 0.25f
+                    isAntiAlias = true
+                    isFakeBoldText = true
+                    textAlign = android.graphics.Paint.Align.CENTER
+                    color = android.graphics.Color.BLACK
+                    style = android.graphics.Paint.Style.STROKE
+                    strokeWidth = squareSize * 0.02f
+                }
+
+                for (arrow in moveArrows.sortedBy { it.index }) {
+                    val (arrowFrom, arrowTo) = arrow.from to arrow.to
+
+                    // Convert squares to screen coordinates
+                    val fromFile = if (flipped) 7 - arrowFrom.file else arrowFrom.file
+                    val fromRank = if (flipped) arrowFrom.rank else 7 - arrowFrom.rank
+                    val toFile = if (flipped) 7 - arrowTo.file else arrowTo.file
+                    val toRank = if (flipped) arrowTo.rank else 7 - arrowTo.rank
+
+                    // Calculate center of arrow (midpoint between from and to)
+                    val centerX = (fromFile + toFile) * squareSize / 2 + squareSize / 2
+                    val centerY = (fromRank + toRank) * squareSize / 2 + squareSize / 2
+
+                    // Create position key to check for overlaps (rounded to nearest quarter square)
+                    val gridX = ((centerX / squareSize) * 4).toInt()
+                    val gridY = ((centerY / squareSize) * 4).toInt()
+                    val positionKey = "$gridX,$gridY"
+
+                    // Only draw if this position hasn't been used
+                    if (!drawnNumberPositions.contains(positionKey)) {
+                        drawnNumberPositions.add(positionKey)
+
+                        val moveNumber = (arrow.index + 1).toString()
+                        val textY = centerY + squareSize * 0.08f // Adjust for text baseline
+
+                        // Draw outline then fill for visibility
+                        drawText(moveNumber, centerX, textY, outlinePaint)
+                        drawText(moveNumber, centerX, textY, numberPaint)
+                    }
+                }
+            }
         }
 
         // Draw dragging piece on top

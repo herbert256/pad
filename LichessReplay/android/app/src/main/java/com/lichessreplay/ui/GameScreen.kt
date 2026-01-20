@@ -842,20 +842,30 @@ private fun GameContent(
         )
 
         // Chess board - drag to make moves during manual replay (no interaction during analyse mode)
-        // Get best move arrow from Stockfish analysis (only in manual mode)
-        val bestMoveArrow: Pair<Square, Square>? = if (!uiState.isAutoAnalyzing) {
-            uiState.analysisResult?.bestMove?.let { uciMove ->
-                if (uciMove.length >= 4) {
-                    val fromFile = uciMove[0] - 'a'
-                    val fromRank = uciMove[1] - '1'
-                    val toFile = uciMove[2] - 'a'
-                    val toRank = uciMove[3] - '1'
-                    if (fromFile in 0..7 && fromRank in 0..7 && toFile in 0..7 && toRank in 0..7) {
-                        Pair(Square(fromFile, fromRank), Square(toFile, toRank))
-                    } else null
+        // Get move arrows from Stockfish PV line (only in manual mode)
+        val numArrows = uiState.stockfishSettings.manualStage.numArrows
+        val moveArrows: List<MoveArrow> = if (!uiState.isAutoAnalyzing && numArrows > 0) {
+            val pvLine = uiState.analysisResult?.pv ?: ""
+            val pvMoves = pvLine.split(" ").filter { it.length >= 4 }.take(numArrows)
+            val isWhiteTurnNow = uiState.currentBoard.getTurn() == PieceColor.WHITE
+
+            pvMoves.mapIndexedNotNull { index, uciMove ->
+                val fromFile = uciMove[0] - 'a'
+                val fromRank = uciMove[1] - '1'
+                val toFile = uciMove[2] - 'a'
+                val toRank = uciMove[3] - '1'
+                if (fromFile in 0..7 && fromRank in 0..7 && toFile in 0..7 && toRank in 0..7) {
+                    // First move is by current turn, then alternates
+                    val isWhiteMove = if (index % 2 == 0) isWhiteTurnNow else !isWhiteTurnNow
+                    MoveArrow(
+                        from = Square(fromFile, fromRank),
+                        to = Square(toFile, toRank),
+                        isWhiteMove = isWhiteMove,
+                        index = index
+                    )
                 } else null
             }
-        } else null
+        } else emptyList()
 
         Box(contentAlignment = Alignment.Center) {
             ChessBoardView(
@@ -863,7 +873,8 @@ private fun GameContent(
                 flipped = uiState.flippedBoard,
                 interactionEnabled = !uiState.isAutoAnalyzing,
                 onMove = { from, to -> viewModel.makeManualMove(from, to) },
-                bestMoveArrow = bestMoveArrow,
+                moveArrows = moveArrows,
+                showArrowNumbers = uiState.stockfishSettings.manualStage.showArrowNumbers,
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -1708,6 +1719,8 @@ private fun SettingsScreen(
     var manualThreads by remember { mutableStateOf(stockfishSettings.manualStage.threads) }
     var manualHashMb by remember { mutableStateOf(stockfishSettings.manualStage.hashMb) }
     var manualMultiPv by remember { mutableStateOf(stockfishSettings.manualStage.multiPv) }
+    var manualNumArrows by remember { mutableStateOf(stockfishSettings.manualStage.numArrows) }
+    var manualShowArrowNumbers by remember { mutableStateOf(stockfishSettings.manualStage.showArrowNumbers) }
 
     // Dropdown expanded states for stockfish settings
     var analyseThreadsExpanded by remember { mutableStateOf(false) }
@@ -1716,6 +1729,8 @@ private fun SettingsScreen(
     var manualThreadsExpanded by remember { mutableStateOf(false) }
     var manualHashExpanded by remember { mutableStateOf(false) }
     var manualMultiPvExpanded by remember { mutableStateOf(false) }
+    var manualNumArrowsExpanded by remember { mutableStateOf(false) }
+    var manualShowArrowNumbersExpanded by remember { mutableStateOf(false) }
 
     // Analyse settings
     var analyseSequence by remember { mutableStateOf(analyseSettings.sequence) }
@@ -1749,7 +1764,9 @@ private fun SettingsScreen(
         mDepth: Int = manualDepth,
         mThreads: Int = manualThreads,
         mHash: Int = manualHashMb,
-        mMultiPv: Int = manualMultiPv
+        mMultiPv: Int = manualMultiPv,
+        mNumArrows: Int = manualNumArrows,
+        mShowArrowNumbers: Boolean = manualShowArrowNumbers
     ) {
         onSaveStockfish(StockfishSettings(
             analyseStage = AnalyseStageSettings(
@@ -1760,7 +1777,9 @@ private fun SettingsScreen(
                 depth = mDepth,
                 threads = mThreads,
                 hashMb = mHash,
-                multiPv = mMultiPv
+                multiPv = mMultiPv,
+                numArrows = mNumArrows,
+                showArrowNumbers = mShowArrowNumbers
             )
         ))
     }
@@ -1770,6 +1789,7 @@ private fun SettingsScreen(
     val depthOptions = listOf(12, 14, 16, 18, 20, 22, 24, 26, 28, 30)
     val hashOptions = listOf(64, 128, 256, 512, 1024, 2048)
     val multiPvOptions = listOf(1, 2, 3, 4, 5, 6)
+    val numArrowsOptions = listOf(0, 1, 2, 3, 4, 5, 6, 7, 8)
 
     // Sequence options
     val sequenceOptions = listOf(
@@ -1860,7 +1880,7 @@ private fun SettingsScreen(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Text(
-                    text = "Analyse Settings",
+                    text = "Analyse mode",
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold
                 )
@@ -2006,6 +2026,95 @@ private fun SettingsScreen(
             }
         }
 
+        // ===== MANUAL MODE SETTINGS CARD =====
+        Card(
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant
+            ),
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Column(
+                modifier = Modifier.padding(12.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Text(
+                    text = "Manual mode",
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold
+                )
+
+                // Number of arrows dropdown
+                ExposedDropdownMenuBox(
+                    expanded = manualNumArrowsExpanded,
+                    onExpandedChange = { manualNumArrowsExpanded = it }
+                ) {
+                    OutlinedTextField(
+                        value = if (manualNumArrows == 0) "None" else manualNumArrows.toString(),
+                        onValueChange = {},
+                        readOnly = true,
+                        label = { Text("Number of arrows") },
+                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = manualNumArrowsExpanded) },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .menuAnchor()
+                    )
+                    ExposedDropdownMenu(
+                        expanded = manualNumArrowsExpanded,
+                        onDismissRequest = { manualNumArrowsExpanded = false }
+                    ) {
+                        numArrowsOptions.forEach { num ->
+                            DropdownMenuItem(
+                                text = { Text(if (num == 0) "None" else num.toString()) },
+                                onClick = {
+                                    manualNumArrows = num
+                                    manualNumArrowsExpanded = false
+                                    saveStockfishSettings(mNumArrows = num)
+                                }
+                            )
+                        }
+                    }
+                }
+
+                // Show move number in arrow dropdown
+                ExposedDropdownMenuBox(
+                    expanded = manualShowArrowNumbersExpanded,
+                    onExpandedChange = { manualShowArrowNumbersExpanded = it }
+                ) {
+                    OutlinedTextField(
+                        value = if (manualShowArrowNumbers) "Yes" else "No",
+                        onValueChange = {},
+                        readOnly = true,
+                        label = { Text("Show move number in arrow") },
+                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = manualShowArrowNumbersExpanded) },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .menuAnchor()
+                    )
+                    ExposedDropdownMenu(
+                        expanded = manualShowArrowNumbersExpanded,
+                        onDismissRequest = { manualShowArrowNumbersExpanded = false }
+                    ) {
+                        DropdownMenuItem(
+                            text = { Text("Yes") },
+                            onClick = {
+                                manualShowArrowNumbers = true
+                                manualShowArrowNumbersExpanded = false
+                                saveStockfishSettings(mShowArrowNumbers = true)
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("No") },
+                            onClick = {
+                                manualShowArrowNumbers = false
+                                manualShowArrowNumbersExpanded = false
+                                saveStockfishSettings(mShowArrowNumbers = false)
+                            }
+                        )
+                    }
+                }
+            }
+        }
+
         // ===== STOCKFISH ANALYSE STAGE CARD =====
         Card(
             colors = CardDefaults.cardColors(
@@ -2018,7 +2127,7 @@ private fun SettingsScreen(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Text(
-                    text = "Stockfish - Analyse Stage",
+                    text = "Stockfish - Analyse mode",
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold
                 )
@@ -2101,7 +2210,7 @@ private fun SettingsScreen(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Text(
-                    text = "Stockfish - Manual Stage",
+                    text = "Stockfish - Manual mode",
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold
                 )

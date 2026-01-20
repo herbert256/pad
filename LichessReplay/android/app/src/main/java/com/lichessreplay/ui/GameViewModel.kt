@@ -45,7 +45,9 @@ data class ManualStageSettings(
     val depth: Int = 24,
     val threads: Int = 4,
     val hashMb: Int = 256,
-    val multiPv: Int = 3
+    val multiPv: Int = 3,
+    val numArrows: Int = 4,
+    val showArrowNumbers: Boolean = true
 )
 
 // Combined settings for backward compatibility
@@ -155,6 +157,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         private const val KEY_MANUAL_THREADS = "manual_threads"
         private const val KEY_MANUAL_HASH = "manual_hash"
         private const val KEY_MANUAL_MULTIPV = "manual_multipv"
+        private const val KEY_MANUAL_NUMARROWS = "manual_numarrows"
+        private const val KEY_MANUAL_SHOWNUMBERS = "manual_shownumbers"
         // General analyse settings
         private const val KEY_ANALYSE_SEQUENCE = "analyse_sequence"
         private const val KEY_ANALYSE_NUM_ROUNDS = "analyse_num_rounds"
@@ -171,10 +175,12 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 hashMb = prefs.getInt(KEY_ANALYSE_HASH, 256)
             ),
             manualStage = ManualStageSettings(
-                depth = prefs.getInt(KEY_MANUAL_DEPTH, 16),
+                depth = prefs.getInt(KEY_MANUAL_DEPTH, 24),
                 threads = prefs.getInt(KEY_MANUAL_THREADS, 4),
                 hashMb = prefs.getInt(KEY_MANUAL_HASH, 256),
-                multiPv = prefs.getInt(KEY_MANUAL_MULTIPV, 3)
+                multiPv = prefs.getInt(KEY_MANUAL_MULTIPV, 3),
+                numArrows = prefs.getInt(KEY_MANUAL_NUMARROWS, 4),
+                showArrowNumbers = prefs.getBoolean(KEY_MANUAL_SHOWNUMBERS, true)
             )
         )
     }
@@ -189,6 +195,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             .putInt(KEY_MANUAL_THREADS, settings.manualStage.threads)
             .putInt(KEY_MANUAL_HASH, settings.manualStage.hashMb)
             .putInt(KEY_MANUAL_MULTIPV, settings.manualStage.multiPv)
+            .putInt(KEY_MANUAL_NUMARROWS, settings.manualStage.numArrows)
+            .putBoolean(KEY_MANUAL_SHOWNUMBERS, settings.manualStage.showArrowNumbers)
             .apply()
     }
 
