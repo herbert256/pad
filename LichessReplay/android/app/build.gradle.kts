@@ -1,18 +1,44 @@
+import java.util.Properties
+import java.text.SimpleDateFormat
+import java.util.Date
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+}
+
+// Generate version from timestamp: yy.mmdd.hhmmss
+val versionFromTimestamp: String = SimpleDateFormat("yy.MMdd.HHmmss").format(Date())
+
+// Load keystore properties from local.properties
+val keystoreProperties = Properties()
+val keystoreFile = rootProject.file("local.properties")
+if (keystoreFile.exists()) {
+    keystoreProperties.load(keystoreFile.inputStream())
 }
 
 android {
     namespace = "com.lichessreplay"
     compileSdk = 34
 
+    signingConfigs {
+        create("release") {
+            val ksFile = keystoreProperties["KEYSTORE_FILE"]?.toString()
+            if (ksFile != null) {
+                storeFile = rootProject.file(ksFile)
+                storePassword = keystoreProperties["KEYSTORE_PASSWORD"]?.toString()
+                keyAlias = keystoreProperties["KEY_ALIAS"]?.toString()
+                keyPassword = keystoreProperties["KEY_PASSWORD"]?.toString()
+            }
+        }
+    }
+
     defaultConfig {
         applicationId = "com.lichessreplay"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = versionFromTimestamp
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -23,6 +49,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

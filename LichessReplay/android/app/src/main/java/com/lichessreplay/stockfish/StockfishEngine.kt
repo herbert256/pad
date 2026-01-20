@@ -29,6 +29,11 @@ data class AnalysisResult(
 }
 
 class StockfishEngine(private val context: Context) {
+    companion object {
+        // Maximum number of moves to display in the principal variation line
+        private const val MAX_PV_MOVES_DISPLAY = 8
+    }
+
     private var process: Process? = null
     private var processWriter: BufferedWriter? = null
     private var processReader: BufferedReader? = null
@@ -131,10 +136,16 @@ class StockfishEngine(private val context: Context) {
     fun configure(threads: Int, hashMb: Int, multiPv: Int) {
         if (!_isReady.value) return
 
+        // Stop any ongoing analysis first
+        sendCommand("stop")
+
         currentMultiPv = multiPv
         sendCommand("setoption name Threads value $threads")
         sendCommand("setoption name Hash value $hashMb")
         sendCommand("setoption name MultiPV value $multiPv")
+
+        // Note: analyze() will send isready and wait for readyok to ensure options are applied
+
         android.util.Log.d("StockfishEngine", "Configured: Threads=$threads, Hash=$hashMb, MultiPV=$multiPv")
     }
 
@@ -146,19 +157,29 @@ class StockfishEngine(private val context: Context) {
             try {
                 // Stop any ongoing analysis
                 sendCommand("stop")
-                delay(100)  // Give Stockfish time to stop
 
                 // Clear previous lines and reset result
                 pvLines.clear()
                 currentNodes = 0
                 _analysisResult.value = null
 
+                // Ensure engine is ready (waits for any pending commands to complete)
+                sendCommand("isready")
+
+                // Read until we get readyok to ensure engine is ready
+                var line = processReader?.readLine()
+                while (line != null && line != "readyok" && isActive) {
+                    line = processReader?.readLine()
+                }
+
+                if (!isActive) return@launch
+
                 // Set position and start depth-based analysis (runs until depth reached)
                 sendCommand("position fen $fen")
                 sendCommand("go depth $depth")
 
                 // Read analysis output
-                var line = processReader?.readLine()
+                line = processReader?.readLine()
                 while (line != null && isActive) {
                     when {
                         line.startsWith("info depth") && line.contains("score") -> {
@@ -186,19 +207,29 @@ class StockfishEngine(private val context: Context) {
             try {
                 // Stop any ongoing analysis
                 sendCommand("stop")
-                delay(50)
 
                 // Clear previous lines and reset result
                 pvLines.clear()
                 currentNodes = 0
                 _analysisResult.value = null
 
+                // Ensure engine is ready (waits for any pending commands to complete)
+                sendCommand("isready")
+
+                // Read until we get readyok to ensure engine is ready
+                var line = processReader?.readLine()
+                while (line != null && line != "readyok" && isActive) {
+                    line = processReader?.readLine()
+                }
+
+                if (!isActive) return@launch
+
                 // Set position and start analysis with time limit
                 sendCommand("position fen $fen")
                 sendCommand("go movetime $timeMs")
 
                 // Read analysis output
-                var line = processReader?.readLine()
+                line = processReader?.readLine()
                 while (line != null && isActive) {
                     when {
                         line.startsWith("info depth") && line.contains("score") -> {
@@ -258,7 +289,7 @@ class StockfishEngine(private val context: Context) {
                 score = score,
                 isMate = isMate,
                 mateIn = mateIn,
-                pv = pv.split(" ").take(8).joinToString(" "),
+                pv = pv.split(" ").take(MAX_PV_MOVES_DISPLAY).joinToString(" "),
                 multipv = multipv
             )
             pvLines[multipv] = pvLine
@@ -277,6 +308,67 @@ class StockfishEngine(private val context: Context) {
     fun stop() {
         analysisJob?.cancel()
         sendCommand("stop")
+    }
+
+    /**
+     * Wait for the current analysis job to complete.
+     * Returns true if completed, false if timed out.
+     */
+    suspend fun waitForCompletion(timeoutMs: Long = 5000): Boolean {
+        val job = analysisJob ?: return true
+        return try {
+            kotlinx.coroutines.withTimeout(timeoutMs) {
+                job.join()
+                true
+            }
+        } catch (e: kotlinx.coroutines.TimeoutCancellationException) {
+            false
+        }
+    }
+
+    /**
+     * Restart the Stockfish engine. Kills the current process and starts a new one.
+     * Returns true if the restart was successful.
+     */
+    suspend fun restart(): Boolean = withContext(Dispatchers.IO) {
+        try {
+            // Stop any ongoing analysis
+            analysisJob?.cancel()
+            _isReady.value = false
+            _analysisResult.value = null
+
+            // Kill the current process
+            try {
+                sendCommand("quit")
+                processWriter?.close()
+                processReader?.close()
+                val terminated = process?.waitFor(500, java.util.concurrent.TimeUnit.MILLISECONDS) ?: true
+                if (!terminated) {
+                    process?.destroyForcibly()
+                    process?.waitFor(500, java.util.concurrent.TimeUnit.MILLISECONDS)
+                }
+            } catch (e: Exception) {
+                // Ignore errors during cleanup
+            }
+
+            // Clear state
+            process = null
+            processWriter = null
+            processReader = null
+            pvLines.clear()
+            currentNodes = 0
+
+            // Delay to ensure process is fully terminated
+            kotlinx.coroutines.delay(300)
+
+            // Start new process
+            startProcess()
+
+            _isReady.value
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+        }
     }
 
     fun shutdown() {

@@ -18,7 +18,8 @@ interface LichessApi {
     suspend fun getGames(
         @Path("username") username: String,
         @Query("max") max: Int = 10,
-        @Query("pgnInJson") pgnInJson: Boolean = true
+        @Query("pgnInJson") pgnInJson: Boolean = true,
+        @Query("clocks") clocks: Boolean = true
     ): Response<String>
 
     companion object {

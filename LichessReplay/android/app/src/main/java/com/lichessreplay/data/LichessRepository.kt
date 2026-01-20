@@ -172,6 +172,3 @@ class ChessRepository(
         )
     }
 }
-
-// Keep old name for backwards compatibility
-typealias LichessRepository = ChessRepository

@@ -333,6 +333,10 @@ class ChessBoard {
     private fun executeMove(move: Move): Boolean {
         val piece = getPiece(move.from) ?: return false
 
+        // Check if this is a capture (must check BEFORE moving the piece)
+        val isCapture = getPiece(move.to) != null ||
+            (piece.type == PieceType.PAWN && move.to == enPassantSquare)
+
         // Remove piece from source
         board[move.from.index] = null
 
@@ -391,8 +395,8 @@ class ChessBoard {
             }
         }
 
-        // Update counters
-        if (piece.type == PieceType.PAWN || getPiece(move.to) != null) {
+        // Update counters (reset on pawn move or capture)
+        if (piece.type == PieceType.PAWN || isCapture) {
             halfMoveClock = 0
         } else {
             halfMoveClock++
@@ -408,12 +412,6 @@ class ChessBoard {
         lastMove = move
 
         return true
-    }
-
-    @Suppress("UNUSED_PARAMETER")
-    fun undoMove(move: Move) {
-        // This is a simplified undo - for proper undo we'd need to store state
-        // For replay purposes, we just reset and replay
     }
 
     fun copy(): ChessBoard {

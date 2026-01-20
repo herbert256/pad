@@ -25,6 +25,7 @@ val BoardDark = Color(0xFFB58863)
 val HighlightColor = Color(0xFFCDD26A)
 val LegalMoveColor = Color(0x6644AA44)
 val SelectedSquareColor = Color(0x8844AA44)
+val BestMoveArrowColor = Color(0xCC3399FF)  // Semi-transparent blue
 
 @Composable
 fun ChessBoardView(
@@ -32,6 +33,8 @@ fun ChessBoardView(
     flipped: Boolean = false,
     interactionEnabled: Boolean = false,
     onMove: ((Square, Square) -> Unit)? = null,
+    onTap: (() -> Unit)? = null,
+    bestMoveArrow: Pair<Square, Square>? = null,  // Arrow from first square to second
     modifier: Modifier = Modifier
 ) {
     val lastMove = board.getLastMove()
@@ -83,7 +86,12 @@ fun ChessBoardView(
             .aspectRatio(1f)
             .fillMaxWidth()
             .then(
-                if (interactionEnabled && onMove != null) {
+                if (!interactionEnabled && onTap != null) {
+                    // When interaction is disabled, just detect taps to notify parent
+                    Modifier.pointerInput(Unit) {
+                        detectTapGestures { onTap() }
+                    }
+                } else if (interactionEnabled && onMove != null) {
                     Modifier
                         .pointerInput(board, flipped) {
                             detectTapGestures { offset ->
@@ -236,6 +244,67 @@ fun ChessBoardView(
                     }
                 }
             }
+        }
+
+        // Draw best move arrow
+        if (bestMoveArrow != null) {
+            val (arrowFrom, arrowTo) = bestMoveArrow
+
+            // Convert squares to screen coordinates (center of each square)
+            val fromFile = if (flipped) 7 - arrowFrom.file else arrowFrom.file
+            val fromRank = if (flipped) arrowFrom.rank else 7 - arrowFrom.rank
+            val toFile = if (flipped) 7 - arrowTo.file else arrowTo.file
+            val toRank = if (flipped) arrowTo.rank else 7 - arrowTo.rank
+
+            val startX = fromFile * squareSize + squareSize / 2
+            val startY = fromRank * squareSize + squareSize / 2
+            val endX = toFile * squareSize + squareSize / 2
+            val endY = toRank * squareSize + squareSize / 2
+
+            // Calculate arrow properties
+            val arrowWidth = squareSize * 0.15f
+            val headLength = squareSize * 0.35f
+            val headWidth = squareSize * 0.35f
+
+            // Calculate angle
+            val dx = endX - startX
+            val dy = endY - startY
+            val angle = kotlin.math.atan2(dy, dx)
+
+            // Shorten the arrow slightly so it doesn't cover the piece centers
+            val shortenAmount = squareSize * 0.25f
+            val adjustedStartX = startX + kotlin.math.cos(angle) * shortenAmount
+            val adjustedStartY = startY + kotlin.math.sin(angle) * shortenAmount
+            val adjustedEndX = endX - kotlin.math.cos(angle) * shortenAmount
+            val adjustedEndY = endY - kotlin.math.sin(angle) * shortenAmount
+
+            // Draw arrow shaft
+            drawLine(
+                color = BestMoveArrowColor,
+                start = Offset(adjustedStartX, adjustedStartY),
+                end = Offset(adjustedEndX - kotlin.math.cos(angle) * headLength * 0.5f,
+                            adjustedEndY - kotlin.math.sin(angle) * headLength * 0.5f),
+                strokeWidth = arrowWidth
+            )
+
+            // Draw arrow head using a path
+            val headBaseX = adjustedEndX - kotlin.math.cos(angle) * headLength
+            val headBaseY = adjustedEndY - kotlin.math.sin(angle) * headLength
+            val perpAngle = angle + kotlin.math.PI.toFloat() / 2
+
+            val path = androidx.compose.ui.graphics.Path().apply {
+                moveTo(adjustedEndX, adjustedEndY)
+                lineTo(
+                    headBaseX + kotlin.math.cos(perpAngle) * headWidth / 2,
+                    headBaseY + kotlin.math.sin(perpAngle) * headWidth / 2
+                )
+                lineTo(
+                    headBaseX - kotlin.math.cos(perpAngle) * headWidth / 2,
+                    headBaseY - kotlin.math.sin(perpAngle) * headWidth / 2
+                )
+                close()
+            }
+            drawPath(path, BestMoveArrowColor)
         }
 
         // Draw dragging piece on top
