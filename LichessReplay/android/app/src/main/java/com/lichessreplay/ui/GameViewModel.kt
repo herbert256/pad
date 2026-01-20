@@ -40,6 +40,10 @@ data class AnalyseStageSettings(
     val hashMb: Int = 64
 )
 
+// Default arrow colors (with alpha for semi-transparency)
+const val DEFAULT_WHITE_ARROW_COLOR = 0xCC3399FFL  // Semi-transparent blue
+const val DEFAULT_BLACK_ARROW_COLOR = 0xCC44BB44L  // Semi-transparent green
+
 // Settings for manual replay stage (depth-based)
 data class ManualStageSettings(
     val depth: Int = 24,
@@ -47,7 +51,9 @@ data class ManualStageSettings(
     val hashMb: Int = 256,
     val multiPv: Int = 3,
     val numArrows: Int = 4,
-    val showArrowNumbers: Boolean = true
+    val showArrowNumbers: Boolean = false,
+    val whiteArrowColor: Long = DEFAULT_WHITE_ARROW_COLOR,
+    val blackArrowColor: Long = DEFAULT_BLACK_ARROW_COLOR
 )
 
 // Combined settings for backward compatibility
@@ -159,6 +165,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         private const val KEY_MANUAL_MULTIPV = "manual_multipv"
         private const val KEY_MANUAL_NUMARROWS = "manual_numarrows"
         private const val KEY_MANUAL_SHOWNUMBERS = "manual_shownumbers"
+        private const val KEY_MANUAL_WHITE_ARROW_COLOR = "manual_white_arrow_color"
+        private const val KEY_MANUAL_BLACK_ARROW_COLOR = "manual_black_arrow_color"
         // General analyse settings
         private const val KEY_ANALYSE_SEQUENCE = "analyse_sequence"
         private const val KEY_ANALYSE_NUM_ROUNDS = "analyse_num_rounds"
@@ -180,7 +188,9 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 hashMb = prefs.getInt(KEY_MANUAL_HASH, 256),
                 multiPv = prefs.getInt(KEY_MANUAL_MULTIPV, 3),
                 numArrows = prefs.getInt(KEY_MANUAL_NUMARROWS, 4),
-                showArrowNumbers = prefs.getBoolean(KEY_MANUAL_SHOWNUMBERS, true)
+                showArrowNumbers = prefs.getBoolean(KEY_MANUAL_SHOWNUMBERS, false),
+                whiteArrowColor = prefs.getLong(KEY_MANUAL_WHITE_ARROW_COLOR, DEFAULT_WHITE_ARROW_COLOR),
+                blackArrowColor = prefs.getLong(KEY_MANUAL_BLACK_ARROW_COLOR, DEFAULT_BLACK_ARROW_COLOR)
             )
         )
     }
@@ -197,6 +207,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             .putInt(KEY_MANUAL_MULTIPV, settings.manualStage.multiPv)
             .putInt(KEY_MANUAL_NUMARROWS, settings.manualStage.numArrows)
             .putBoolean(KEY_MANUAL_SHOWNUMBERS, settings.manualStage.showArrowNumbers)
+            .putLong(KEY_MANUAL_WHITE_ARROW_COLOR, settings.manualStage.whiteArrowColor)
+            .putLong(KEY_MANUAL_BLACK_ARROW_COLOR, settings.manualStage.blackArrowColor)
             .apply()
     }
 
@@ -495,6 +507,11 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun loadGame(game: LichessGame) {
+        // Cancel any ongoing analysis before loading new game
+        autoAnalysisJob?.cancel()
+        manualAnalysisJob?.cancel()
+        stockfish.stop()
+
         val pgn = game.pgn
         if (pgn == null) {
             _uiState.value = _uiState.value.copy(
@@ -1017,11 +1034,18 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         configureForAnalyseStage()
 
         autoAnalysisJob = viewModelScope.launch {
+            android.util.Log.d("AutoAnalysis", "Starting auto-analysis coroutine")
+
+            try {
             // Small delay to ensure UCI configuration is processed
             kotlinx.coroutines.delay(50)
 
             val moves = _uiState.value.moves
-            if (moves.isEmpty()) return@launch
+            if (moves.isEmpty()) {
+                android.util.Log.w("AutoAnalysis", "Exiting: moves list is empty")
+                return@launch
+            }
+            android.util.Log.d("AutoAnalysis", "Total moves to analyze: ${moves.size}")
 
             val analyseSettings = _uiState.value.analyseSettings
             val numberOfRounds = analyseSettings.numberOfRounds
@@ -1059,10 +1083,15 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 )
 
                 // Analyze each position in the determined order
+                android.util.Log.d("AutoAnalysis", "Round $currentRound: analyzing ${moveIndices.size} moves, time=$timePerMove ms")
                 val remainingMoves = moveIndices.toMutableList()
                 for (moveIndex in moveIndices) {
                     // Get the board position after this move
-                    val board = boardHistory.getOrNull(moveIndex + 1) ?: continue
+                    val board = boardHistory.getOrNull(moveIndex + 1)
+                    if (board == null) {
+                        android.util.Log.w("AutoAnalysis", "Skipping moveIndex=$moveIndex: boardHistory[${moveIndex + 1}] is null (boardHistory.size=${boardHistory.size})")
+                        continue
+                    }
 
                     // Update remaining moves (remove the one we're about to analyze)
                     remainingMoves.remove(moveIndex)
@@ -1130,10 +1159,12 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 }
 
                 // Round completed
+                android.util.Log.d("AutoAnalysis", "Round $currentRound completed, scores collected: ${if (currentRound == 1) _uiState.value.moveScores.size else _uiState.value.moveScoresRound2.size}")
                 currentRound++
 
                 // If there's another round, stop and restart Stockfish
                 if (currentRound <= numberOfRounds) {
+                    android.util.Log.d("AutoAnalysis", "Preparing for round $currentRound")
                     stockfish.stop()
                     delay(100) // Brief pause
 
@@ -1146,6 +1177,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 }
             }
 
+            android.util.Log.d("AutoAnalysis", "All rounds completed, transitioning to manual mode")
             // Find the move with the biggest score change
             val biggestChangeMoveIndex = findBiggestScoreChangeMove()
 
@@ -1166,6 +1198,18 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             // Configure for manual stage and resume analysis
             configureForManualStage()
             analyzeCurrentPosition()
+
+            } catch (e: kotlinx.coroutines.CancellationException) {
+                android.util.Log.d("AutoAnalysis", "Analysis coroutine was cancelled")
+                throw e // Re-throw to properly cancel
+            } catch (e: Exception) {
+                android.util.Log.e("AutoAnalysis", "Unexpected exception in analysis coroutine", e)
+                // Ensure we exit analysis mode on error
+                _uiState.value = _uiState.value.copy(
+                    isAutoAnalyzing = false,
+                    autoAnalysisIndex = -1
+                )
+            }
         }
     }
 

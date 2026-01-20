@@ -43,6 +43,8 @@ fun ChessBoardView(
     onTap: (() -> Unit)? = null,
     moveArrows: List<MoveArrow> = emptyList(),  // Up to 8 arrows from PV line
     showArrowNumbers: Boolean = false,  // Show move numbers on arrows
+    whiteArrowColor: Color = Color(0xCC3399FF),  // Default blue
+    blackArrowColor: Color = Color(0xCC44BB44),  // Default green
     modifier: Modifier = Modifier
 ) {
     val lastMove = board.getLastMove()
@@ -288,8 +290,8 @@ fun ChessBoardView(
             val headLength = squareSize * (0.30f + (0.10f * (1 - arrow.index / 7f)))
             val headWidth = squareSize * (0.30f + (0.10f * (1 - arrow.index / 7f)))
 
-            // Colors: blue for white moves, green for black moves
-            val arrowColor = if (arrow.isWhiteMove) Color(0xCC3399FF) else Color(0xCC44BB44)
+            // Use custom colors for white/black moves
+            val arrowColor = if (arrow.isWhiteMove) whiteArrowColor else blackArrowColor
 
             // Calculate angle
             val dx = endX - startX
@@ -335,20 +337,20 @@ fun ChessBoardView(
         if (showArrowNumbers && moveArrows.isNotEmpty()) {
             drawContext.canvas.nativeCanvas.apply {
                 val numberPaint = android.graphics.Paint().apply {
-                    textSize = squareSize * 0.25f
+                    textSize = squareSize * 0.35f
                     isAntiAlias = true
                     isFakeBoldText = true
                     textAlign = android.graphics.Paint.Align.CENTER
                     color = android.graphics.Color.WHITE
                 }
                 val outlinePaint = android.graphics.Paint().apply {
-                    textSize = squareSize * 0.25f
+                    textSize = squareSize * 0.35f
                     isAntiAlias = true
                     isFakeBoldText = true
                     textAlign = android.graphics.Paint.Align.CENTER
                     color = android.graphics.Color.BLACK
                     style = android.graphics.Paint.Style.STROKE
-                    strokeWidth = squareSize * 0.02f
+                    strokeWidth = squareSize * 0.03f
                 }
 
                 for (arrow in moveArrows.sortedBy { it.index }) {
@@ -374,7 +376,7 @@ fun ChessBoardView(
                         drawnNumberPositions.add(positionKey)
 
                         val moveNumber = (arrow.index + 1).toString()
-                        val textY = centerY + squareSize * 0.08f // Adjust for text baseline
+                        val textY = centerY + squareSize * 0.12f // Adjust for text baseline
 
                         // Draw outline then fill for visibility
                         drawText(moveNumber, centerX, textY, outlinePaint)

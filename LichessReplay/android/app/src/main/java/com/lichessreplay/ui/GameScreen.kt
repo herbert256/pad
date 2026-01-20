@@ -875,6 +875,8 @@ private fun GameContent(
                 onMove = { from, to -> viewModel.makeManualMove(from, to) },
                 moveArrows = moveArrows,
                 showArrowNumbers = uiState.stockfishSettings.manualStage.showArrowNumbers,
+                whiteArrowColor = Color(uiState.stockfishSettings.manualStage.whiteArrowColor.toULong()),
+                blackArrowColor = Color(uiState.stockfishSettings.manualStage.blackArrowColor.toULong()),
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -1358,8 +1360,10 @@ private fun EvaluationGraph(
         modifier = modifier
             .background(Color(0xFF1A1A1A), RoundedCornerShape(8.dp))
             .padding(8.dp)
-            .pointerInput(totalMoves) {
-                if (totalMoves > 0) {
+            .pointerInput(totalMoves, isAutoAnalyzing) {
+                // Only allow horizontal drag navigation in manual mode (not during auto-analysis)
+                // This prevents accidental exits when scrolling the screen
+                if (totalMoves > 0 && !isAutoAnalyzing) {
                     detectHorizontalDragGestures { change, _ ->
                         change.consume()
                         val x = change.position.x.coerceIn(0f, graphWidth)
@@ -1698,6 +1702,238 @@ private fun getPieceSymbol(pieceType: com.lichessreplay.chess.PieceType, isWhite
     }
 }
 
+// Color picker dialog with hue/saturation grid and brightness slider
+@Composable
+private fun ColorPickerDialog(
+    currentColor: Long,
+    title: String,
+    onColorSelected: (Long) -> Unit,
+    onDismiss: () -> Unit
+) {
+    // Extract HSV from current color
+    val initialColor = Color(currentColor.toULong())
+    val hsv = FloatArray(3)
+    android.graphics.Color.RGBToHSV(
+        (initialColor.red * 255).toInt(),
+        (initialColor.green * 255).toInt(),
+        (initialColor.blue * 255).toInt(),
+        hsv
+    )
+
+    var hue by remember { mutableStateOf(hsv[0]) }
+    var saturation by remember { mutableStateOf(hsv[1]) }
+    var brightness by remember { mutableStateOf(hsv[2]) }
+    var alpha by remember { mutableStateOf(initialColor.alpha) }
+
+    // Compute current color from HSV
+    val currentHsvColor = remember(hue, saturation, brightness, alpha) {
+        val rgb = android.graphics.Color.HSVToColor(floatArrayOf(hue, saturation, brightness))
+        Color(
+            red = android.graphics.Color.red(rgb) / 255f,
+            green = android.graphics.Color.green(rgb) / 255f,
+            blue = android.graphics.Color.blue(rgb) / 255f,
+            alpha = alpha
+        )
+    }
+
+    Dialog(onDismissRequest = onDismiss) {
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(16.dp)
+        ) {
+            Column(
+                modifier = Modifier.padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold
+                )
+
+                // Color preview
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(50.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(currentHsvColor)
+                        .border(1.dp, Color.Gray, RoundedCornerShape(8.dp))
+                )
+
+                // Hue/Saturation picker (2D grid)
+                Text("Color", style = MaterialTheme.typography.labelMedium)
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(150.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                        .border(1.dp, Color.Gray, RoundedCornerShape(8.dp))
+                ) {
+                    Canvas(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .pointerInput(Unit) {
+                                detectTapGestures { offset ->
+                                    hue = (offset.x / size.width * 360f).coerceIn(0f, 360f)
+                                    saturation = (1f - offset.y / size.height).coerceIn(0f, 1f)
+                                }
+                            }
+                            .pointerInput(Unit) {
+                                detectHorizontalDragGestures { change, _ ->
+                                    val offset = change.position
+                                    hue = (offset.x / size.width * 360f).coerceIn(0f, 360f)
+                                    saturation = (1f - offset.y / size.height).coerceIn(0f, 1f)
+                                }
+                            }
+                    ) {
+                        // Draw hue/saturation gradient
+                        val step = 4f
+                        for (x in 0 until size.width.toInt() step step.toInt()) {
+                            for (y in 0 until size.height.toInt() step step.toInt()) {
+                                val h = x / size.width * 360f
+                                val s = 1f - y / size.height
+                                val rgb = android.graphics.Color.HSVToColor(floatArrayOf(h, s, brightness))
+                                drawRect(
+                                    color = Color(rgb),
+                                    topLeft = Offset(x.toFloat(), y.toFloat()),
+                                    size = androidx.compose.ui.geometry.Size(step, step)
+                                )
+                            }
+                        }
+                        // Draw crosshair at current position
+                        val crossX = hue / 360f * size.width
+                        val crossY = (1f - saturation) * size.height
+                        drawCircle(Color.White, 8f, Offset(crossX, crossY))
+                        drawCircle(Color.Black, 6f, Offset(crossX, crossY))
+                    }
+                }
+
+                // Brightness slider
+                Text("Brightness", style = MaterialTheme.typography.labelMedium)
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(30.dp)
+                        .clip(RoundedCornerShape(4.dp))
+                        .border(1.dp, Color.Gray, RoundedCornerShape(4.dp))
+                ) {
+                    Canvas(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .pointerInput(Unit) {
+                                detectTapGestures { offset ->
+                                    brightness = (offset.x / size.width).coerceIn(0f, 1f)
+                                }
+                            }
+                            .pointerInput(Unit) {
+                                detectHorizontalDragGestures { change, _ ->
+                                    brightness = (change.position.x / size.width).coerceIn(0f, 1f)
+                                }
+                            }
+                    ) {
+                        // Draw brightness gradient
+                        for (x in 0 until size.width.toInt()) {
+                            val b = x / size.width
+                            val rgb = android.graphics.Color.HSVToColor(floatArrayOf(hue, saturation, b))
+                            drawLine(
+                                Color(rgb),
+                                Offset(x.toFloat(), 0f),
+                                Offset(x.toFloat(), size.height),
+                                strokeWidth = 1f
+                            )
+                        }
+                        // Draw indicator
+                        val indicatorX = brightness * size.width
+                        drawLine(Color.White, Offset(indicatorX, 0f), Offset(indicatorX, size.height), 3f)
+                        drawLine(Color.Black, Offset(indicatorX, 0f), Offset(indicatorX, size.height), 1f)
+                    }
+                }
+
+                // Alpha/Opacity slider
+                Text("Opacity", style = MaterialTheme.typography.labelMedium)
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(30.dp)
+                        .clip(RoundedCornerShape(4.dp))
+                        .border(1.dp, Color.Gray, RoundedCornerShape(4.dp))
+                ) {
+                    Canvas(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .pointerInput(Unit) {
+                                detectTapGestures { offset ->
+                                    alpha = (offset.x / size.width).coerceIn(0f, 1f)
+                                }
+                            }
+                            .pointerInput(Unit) {
+                                detectHorizontalDragGestures { change, _ ->
+                                    alpha = (change.position.x / size.width).coerceIn(0f, 1f)
+                                }
+                            }
+                    ) {
+                        // Draw checkerboard background for transparency
+                        val checkSize = 8f
+                        for (x in 0 until (size.width / checkSize).toInt()) {
+                            for (y in 0 until (size.height / checkSize).toInt()) {
+                                val isLight = (x + y) % 2 == 0
+                                drawRect(
+                                    if (isLight) Color.White else Color.LightGray,
+                                    Offset(x * checkSize, y * checkSize),
+                                    androidx.compose.ui.geometry.Size(checkSize, checkSize)
+                                )
+                            }
+                        }
+                        // Draw alpha gradient
+                        val baseRgb = android.graphics.Color.HSVToColor(floatArrayOf(hue, saturation, brightness))
+                        val baseColor = Color(baseRgb)
+                        for (x in 0 until size.width.toInt()) {
+                            val a = x / size.width
+                            drawLine(
+                                baseColor.copy(alpha = a),
+                                Offset(x.toFloat(), 0f),
+                                Offset(x.toFloat(), size.height),
+                                strokeWidth = 1f
+                            )
+                        }
+                        // Draw indicator
+                        val indicatorX = alpha * size.width
+                        drawLine(Color.White, Offset(indicatorX, 0f), Offset(indicatorX, size.height), 3f)
+                        drawLine(Color.Black, Offset(indicatorX, 0f), Offset(indicatorX, size.height), 1f)
+                    }
+                }
+
+                // Buttons
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.End)
+                ) {
+                    TextButton(onClick = onDismiss) {
+                        Text("Cancel")
+                    }
+                    Button(onClick = {
+                        // Convert to Long color value
+                        val rgb = android.graphics.Color.HSVToColor(floatArrayOf(hue, saturation, brightness))
+                        val r = android.graphics.Color.red(rgb)
+                        val g = android.graphics.Color.green(rgb)
+                        val b = android.graphics.Color.blue(rgb)
+                        val a = (alpha * 255).toInt()
+                        val colorLong = ((a.toLong() and 0xFF) shl 24) or
+                                ((r.toLong() and 0xFF) shl 16) or
+                                ((g.toLong() and 0xFF) shl 8) or
+                                (b.toLong() and 0xFF)
+                        onColorSelected(colorLong)
+                        onDismiss()
+                    }) {
+                        Text("Select")
+                    }
+                }
+            }
+        }
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun SettingsScreen(
@@ -1721,6 +1957,10 @@ private fun SettingsScreen(
     var manualMultiPv by remember { mutableStateOf(stockfishSettings.manualStage.multiPv) }
     var manualNumArrows by remember { mutableStateOf(stockfishSettings.manualStage.numArrows) }
     var manualShowArrowNumbers by remember { mutableStateOf(stockfishSettings.manualStage.showArrowNumbers) }
+    var manualWhiteArrowColor by remember { mutableStateOf(stockfishSettings.manualStage.whiteArrowColor) }
+    var manualBlackArrowColor by remember { mutableStateOf(stockfishSettings.manualStage.blackArrowColor) }
+    var showWhiteColorPicker by remember { mutableStateOf(false) }
+    var showBlackColorPicker by remember { mutableStateOf(false) }
 
     // Dropdown expanded states for stockfish settings
     var analyseThreadsExpanded by remember { mutableStateOf(false) }
@@ -1766,7 +2006,9 @@ private fun SettingsScreen(
         mHash: Int = manualHashMb,
         mMultiPv: Int = manualMultiPv,
         mNumArrows: Int = manualNumArrows,
-        mShowArrowNumbers: Boolean = manualShowArrowNumbers
+        mShowArrowNumbers: Boolean = manualShowArrowNumbers,
+        mWhiteArrowColor: Long = manualWhiteArrowColor,
+        mBlackArrowColor: Long = manualBlackArrowColor
     ) {
         onSaveStockfish(StockfishSettings(
             analyseStage = AnalyseStageSettings(
@@ -1779,7 +2021,9 @@ private fun SettingsScreen(
                 hashMb = mHash,
                 multiPv = mMultiPv,
                 numArrows = mNumArrows,
-                showArrowNumbers = mShowArrowNumbers
+                showArrowNumbers = mShowArrowNumbers,
+                whiteArrowColor = mWhiteArrowColor,
+                blackArrowColor = mBlackArrowColor
             )
         ))
     }
@@ -2112,7 +2356,66 @@ private fun SettingsScreen(
                         )
                     }
                 }
+
+                // Color picker for white move arrows
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text("Color of arrow for white moves")
+                    Box(
+                        modifier = Modifier
+                            .size(40.dp)
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(Color(manualWhiteArrowColor.toULong()))
+                            .border(2.dp, Color.Gray, RoundedCornerShape(8.dp))
+                            .clickable { showWhiteColorPicker = true }
+                    )
+                }
+
+                // Color picker for black move arrows
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text("Color of arrow for black moves")
+                    Box(
+                        modifier = Modifier
+                            .size(40.dp)
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(Color(manualBlackArrowColor.toULong()))
+                            .border(2.dp, Color.Gray, RoundedCornerShape(8.dp))
+                            .clickable { showBlackColorPicker = true }
+                    )
+                }
             }
+        }
+
+        // Color picker dialogs
+        if (showWhiteColorPicker) {
+            ColorPickerDialog(
+                currentColor = manualWhiteArrowColor,
+                title = "Arrow color for white moves",
+                onColorSelected = { color ->
+                    manualWhiteArrowColor = color
+                    saveStockfishSettings(mWhiteArrowColor = color)
+                },
+                onDismiss = { showWhiteColorPicker = false }
+            )
+        }
+
+        if (showBlackColorPicker) {
+            ColorPickerDialog(
+                currentColor = manualBlackArrowColor,
+                title = "Arrow color for black moves",
+                onColorSelected = { color ->
+                    manualBlackArrowColor = color
+                    saveStockfishSettings(mBlackArrowColor = color)
+                },
+                onDismiss = { showBlackColorPicker = false }
+            )
         }
 
         // ===== STOCKFISH ANALYSE STAGE CARD =====
