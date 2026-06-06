@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - fragments/pipes_2
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Fragments/pipes 2
+          </h1>
+          <table border="1" cellpadding="10" cellspacing="0">
+            <tbody><tr>
+              <th bgcolor="#DDDDDD">
+                PHP<br>
+                <font size="-2">fragments/pipes_2.php</font>
+              </th>
+              <th bgcolor="#DDDDDD">
+                HTML<br>
+                <font size="-2">fragments/pipes_2.pad</font>
+              </th>
+              <th bgcolor="#DDDDDD">
+                Result
+              </th>
+            </tr>
+            <tr>
+              <td style="vertical-align:top">
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $items </span><span style="color: #007700">= [</span><span style="color: #DD0000">'apple'</span><span style="color: #007700">, </span><span style="color: #DD0000">'banana'</span><span style="color: #007700">, </span><span style="color: #DD0000">'cherry'</span><span style="color: #007700">];<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+              </td>
+              <td style="vertical-align:top">
+                <pre><code style="color: #000000">&lt;p&gt;Items separated by commas:&lt;/p&gt;<br>&lt;p&gt;<b>{<font color="blue">items </font><font color="red">glue="<font color="black">,</font> "</font>}</b><b>{<font color="green"><font color="red">$</font>items</font>}</b><b>{/<font color="blue">items</font><font color="red"></font>}</b>&lt;/p&gt;<br><br>&lt;p&gt;Items in uppercase:&lt;/p&gt;<br>&lt;ul&gt;<br>  <b>{<font color="blue">items</font><font color="red"></font>}</b><br>    &lt;li&gt;<b>{<font color="green"><font color="red">$</font>items</font>}</b>&lt;/li&gt;<br>  <b>{/<font color="blue">items </font><font color="red"><font color="black">|</font> upper</font>}</b><br>&lt;/ul&gt;</code></pre>
+              </td>
+              <td style="vertical-align:top">
+                <div id="padAjaxUBrNyYHd"><p>Items separated by commas:</p>
+<p>applebananacherry</p>
+
+<p>Items in uppercase:</p>
+<ul>
+  
+    <li>APPLE</li>
+  
+    <li>BANANA</li>
+  
+    <li>CHERRY</li>
+  
+</ul></div>
+                <script>
+                padAjaxUBrNyYHd = new XMLHttpRequest();
+                padAjaxUBrNyYHd.onreadystatechange=function() {
+                if (padAjaxUBrNyYHd.readyState === 4) {
+                if (padAjaxUBrNyYHd.status === 200) {
+                document.getElementById("padAjaxUBrNyYHd").innerHTML=padAjaxUBrNyYHd.responseText;
+                } else {
+                document.getElementById("padAjaxUBrNyYHd").innerHTML=padAjaxUBrNyYHd.statusText;
+                }
+                }
+                }
+                padAjaxUBrNyYHd.open("GET","http://localhost/check/?fragments/pipes_2&padInclude&padSesID=DiM2hOlW&padReqID=JTKLn1vb",true);
+                padAjaxUBrNyYHd.send();
+                </script>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

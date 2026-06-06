@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - pages/callback
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Pages/callback
+          </h1>
+          <table border="1" cellpadding="10" cellspacing="0">
+            <tbody><tr>
+              <th bgcolor="#DDDDDD">
+                PHP<br>
+                <font size="-2"></font>
+              </th>
+              <th bgcolor="#DDDDDD">
+                HTML<br>
+                <font size="-2">pages/callback.pad</font>
+              </th>
+              <th bgcolor="#DDDDDD">
+                Result
+              </th>
+            </tr>
+            <tr>
+              <td style="vertical-align:top"></td>
+              <td style="vertical-align:top">
+                <pre><code style="color: #000000"><b>{<font color="blue">block</font><font color="red"></font>}</b><br>&lt;p&gt;<br>It's possible to put a PHP file in the directory '_callbacks' that is called back at the processing of a pad tag.&lt;br&gt;<br>- With option 'before' the callback happens for every occurrence before the processing of the ocurrences.&lt;br&gt;<br>- With option 'demand' the callback happens during the processing of the occurrences.<br><br>&lt;/p&gt;<br><b>{/<font color="blue">block</font><font color="red"></font>}</b><br><br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>callback/before<font color="black">'</font><font color="black">,</font> php=<font color="black">'</font>_callbacks/before.php<font color="black">'</font><font color="black">,</font> skipClose</font>}</b>          <br><b>{<font color="blue">example </font><font color="red"><font color="black">'</font>callback/demand<font color="black">'</font><font color="black">,</font> php=<font color="black">'</font>_callbacks/demand.php<font color="black">'</font><font color="black">,</font> skipOpen</font>}</b></code></pre>
+              </td>
+              <td style="vertical-align:top">
+                <div id="padAjaxzW8cD2IV"><table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+  <tbody><tr>
+    <td>
+<p>
+It's possible to put a PHP file in the directory '_callbacks' that is called back at the processing of a pad tag.<br>
+- With option 'before' the callback happens for every occurrence before the processing of the ocurrences.<br>
+- With option 'demand' the callback happens during the processing of the occurrences.
+
+</p>
+</td>
+  </tr>
+</tbody></table>
+
+
+
+ 
+
+
+
+   
+    <table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tbody><tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">_callbacks/before.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">callback/before.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">switch (</span><span style="color: #0000BB">$padCallback</span><span style="color: #007700">) {<br><br>    case </span><span style="color: #DD0000">'init'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>        </span><span style="color: #0000BB">$bonusTotal  </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>        break;<br><br>    case </span><span style="color: #DD0000">'row'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'total'</span><span style="color: #007700">] = </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'salary'</span><span style="color: #007700">] + </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'bonus'</span><span style="color: #007700">];<br><br>        </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">+= </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'salary'</span><span style="color: #007700">];<br>        </span><span style="color: #0000BB">$bonusTotal  </span><span style="color: #007700">+= </span><span style="color: #0000BB">$row </span><span style="color: #007700">[</span><span style="color: #DD0000">'bonus'</span><span style="color: #007700">];<br><br>        break;<br><br>    case </span><span style="color: #DD0000">'exit'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$totalTotal </span><span style="color: #007700">= </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">+ </span><span style="color: #0000BB">$bonusTotal </span><span style="color: #007700">;<br><br>        break;<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue">staff </font><font color="red">callback=<font color="black">'</font>before.php<font color="black">'</font><font color="black">,</font> before</font>}</b><br><br>    <b>{<font color="blue">first</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;Totals&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$salaryTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$bonusTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green">$totalTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">first</font><font color="red"></font>}</b><br><br>    &lt;tr align="right" bgcolor="<b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>yellow<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pink<font color="black">'</font></font>}</b>"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br> <br>&lt;/table&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <table border="1">
+
+  <tbody><tr>
+    <th>Name</th>
+    <th>Salary</th>
+    <th>Bonus</th>
+    <th>Total</th>
+  </tr>
+  
+  
+
+    
+      <tr>
+        <td>Totals</td>
+        <td>15000.00</td>
+        <td>1500.00</td>
+        <td>16500.00</td>
+      </tr>
+    
+
+    <tr align="right" bgcolor="yellow">
+      <td align="left">Joe</td>
+      <td>1000.00</td>
+      <td>500.00</td>
+      <td>1500.00</td>
+    </tr>
+
+  
+
+    
+
+    <tr align="right" bgcolor="pink">
+      <td align="left">Jim</td>
+      <td>2000.00</td>
+      <td>400.00</td>
+      <td>2400.00</td>
+    </tr>
+
+  
+
+    
+
+    <tr align="right" bgcolor="yellow">
+      <td align="left">John</td>
+      <td>3000.00</td>
+      <td>300.00</td>
+      <td>3300.00</td>
+    </tr>
+
+  
+
+    
+
+    <tr align="right" bgcolor="pink">
+      <td align="left">Jack</td>
+      <td>4000.00</td>
+      <td>200.00</td>
+      <td>4200.00</td>
+    </tr>
+
+  
+
+    
+
+    <tr align="right" bgcolor="yellow">
+      <td align="left">Jerry</td>
+      <td>5000.00</td>
+      <td>100.00</td>
+      <td>5100.00</td>
+    </tr>
+
+  
+ 
+</tbody></table>
+</td>
+        
+      </tr>
+
+    
+
+  
+
+
+
+          
+
+
+ 
+
+
+
+  
+
+  
+
+      
+          <tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">_callbacks/demand.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">callback/demand.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  </span><span style="color: #007700">switch (</span><span style="color: #0000BB">$padCallback</span><span style="color: #007700">) {<br><br>    case </span><span style="color: #DD0000">'init'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br>        </span><span style="color: #0000BB">$bonusTotal  </span><span style="color: #007700">= </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br>        break;<br><br>    case </span><span style="color: #DD0000">'row'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$total </span><span style="color: #007700">= </span><span style="color: #0000BB">$salary </span><span style="color: #007700">+ </span><span style="color: #0000BB">$bonus</span><span style="color: #007700">;<br><br>        </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">+= </span><span style="color: #0000BB">$salary</span><span style="color: #007700">;<br>        </span><span style="color: #0000BB">$bonusTotal  </span><span style="color: #007700">+= </span><span style="color: #0000BB">$bonus</span><span style="color: #007700">;<br><br>        break;<br><br>    case </span><span style="color: #DD0000">'exit'</span><span style="color: #007700">:<br><br>        </span><span style="color: #0000BB">$totalTotal </span><span style="color: #007700">= </span><span style="color: #0000BB">$salaryTotal </span><span style="color: #007700">+ </span><span style="color: #0000BB">$bonusTotal </span><span style="color: #007700">;<br><br>        break;<br><br>  }<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;table border=1&gt;<br><br>  &lt;tr&gt;<br>    &lt;th&gt;Name&lt;/th&gt;<br>    &lt;th&gt;Salary&lt;/th&gt;<br>    &lt;th&gt;Bonus&lt;/th&gt;<br>    &lt;th&gt;Total&lt;/th&gt;<br>  &lt;/tr&gt;<br>  <br>  <b>{<font color="blue">staff </font><font color="red">callback=<font color="black">'</font>demand.php<font color="black">'</font><font color="black">,</font> demand</font>}</b><br><br>    &lt;tr align="right" <br>        bgcolor="<b>{<font color="blue">switch </font><font color="red"><font color="black">'</font>yellow<font color="black">'</font><font color="black">,</font> <font color="black">'</font>pink<font color="black">'</font></font>}</b>"&gt;<br>      &lt;td align="left"&gt;<b>{<font color="green">$name</font> <font color="black">|</font> <font color="blue">capitalize</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$salary</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$bonus</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>      &lt;td&gt;<b>{<font color="green">$total</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><br>  &lt;tr&gt;<br>    &lt;td&gt;Totals&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$salaryTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$bonusTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>    &lt;td&gt;<b>{<font color="green">$totalTotal</font> <font color="black">|</font> <font color="blue">%.2f</font>}</b>&lt;/td&gt;<br>  &lt;/tr&gt;<br> <br>&lt;/table&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <table border="1">
+
+  <tbody><tr>
+    <th>Name</th>
+    <th>Salary</th>
+    <th>Bonus</th>
+    <th>Total</th>
+  </tr>
+  
+  
+
+    <tr align="right" bgcolor="pink">
+      <td align="left">Joe</td>
+      <td>1000.00</td>
+      <td>500.00</td>
+      <td>1500.00</td>
+    </tr>
+
+  
+
+    <tr align="right" bgcolor="yellow">
+      <td align="left">Jim</td>
+      <td>2000.00</td>
+      <td>400.00</td>
+      <td>2400.00</td>
+    </tr>
+
+  
+
+    <tr align="right" bgcolor="pink">
+      <td align="left">John</td>
+      <td>3000.00</td>
+      <td>300.00</td>
+      <td>3300.00</td>
+    </tr>
+
+  
+
+    <tr align="right" bgcolor="yellow">
+      <td align="left">Jack</td>
+      <td>4000.00</td>
+      <td>200.00</td>
+      <td>4200.00</td>
+    </tr>
+
+  
+
+    <tr align="right" bgcolor="pink">
+      <td align="left">Jerry</td>
+      <td>5000.00</td>
+      <td>100.00</td>
+      <td>5100.00</td>
+    </tr>
+
+  
+
+  <tr>
+    <td>Totals</td>
+    <td>15000.00</td>
+    <td>1500.00</td>
+    <td>16500.00</td>
+  </tr>
+ 
+</tbody></table>
+</td>
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+</div>
+                <script>
+                padAjaxzW8cD2IV = new XMLHttpRequest();
+                padAjaxzW8cD2IV.onreadystatechange=function() {
+                if (padAjaxzW8cD2IV.readyState === 4) {
+                if (padAjaxzW8cD2IV.status === 200) {
+                document.getElementById("padAjaxzW8cD2IV").innerHTML=padAjaxzW8cD2IV.responseText;
+                } else {
+                document.getElementById("padAjaxzW8cD2IV").innerHTML=padAjaxzW8cD2IV.statusText;
+                }
+                }
+                }
+                padAjaxzW8cD2IV.open("GET","http://localhost/manual/?pages/callback&padInclude&padSesID=DiM2hOlW&padReqID=nX8S6rS7",true);
+                padAjaxzW8cD2IV.send();
+                </script>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

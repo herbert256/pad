@@ -1,0 +1,526 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - the_data_tag
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            The data tag
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+                    <tbody><tr>
+                      <td>
+                        With the <b>{data}</b> tag it is possible to define data for later use.
+                      </td>
+                    </tr>
+                  </tbody></table>
+                  <p></p>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        HTML
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        RESULT
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <!-- START DEMO SOURCE -->
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myData<font color="black">'</font></font>}</b><br>  [<br>    { "name": "joe",   "phone": "555-3425" },<br>    { "name": "jim",   "phone": "555-2364" },<br>    { "name": "jack",  "phone": "555-3422" },<br>    { "name": "jerry", "phone": "555-4973" }<br>  ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br>&lt;table border="1"&gt;<br>  <b>{<font color="blue">myData</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt; <br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;  <br>  <b>{/<font color="blue">myData</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE -->
+                      </td>
+                      <td style="vertical-align:top">
+                        <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                        <table border="1">
+                          <tbody><tr>
+                            <td>
+                              joe
+                            </td>
+                            <td>
+                              555-3425
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jim
+                            </td>
+                            <td>
+                              555-2364
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jack
+                            </td>
+                            <td>
+                              555-3422
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jerry
+                            </td>
+                            <td>
+                              555-4973
+                            </td>
+                          </tr>
+                        </tbody></table><!-- END DEMO RESULT -->
+                      </td>
+                    </tr>
+                  </tbody></table>
+                  <p></p>
+                  <hr>
+                  <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+                    <tbody><tr>
+                      <td>
+                        Data can be in xml/json/yaml/csv format.<br>
+                        <br>
+                        There is also an own PAD list format with opening ( and closing )
+                        <p></p>
+                      </td>
+                    </tr>
+                  </tbody></table>
+                  <p></p>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        HTML
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        RESULT
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <!-- START DEMO SOURCE -->
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myXML<font color="black">'</font></font>}</b><br>  &lt;data&gt;<br>    &lt;row name="bob"   phone="555-1111" /&gt;<br>    &lt;row name="jim"   phone="555-2222" /&gt;<br>    &lt;row name="joe"   phone="555-3333" /&gt;<br>    &lt;row name="jerry" phone="555-4444" /&gt;<br>  &lt;/data&gt;<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myJSON<font color="black">'</font></font>}</b><br>  [ { "name": "bob",   "phone": "555-5555" },<br>    { "name": "jim",   "phone": "555-6666" },<br>    { "name": "joe",   "phone": "555-7777" },      <br>    { "name": "jerry", "phone": "555-8888" } ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myYAML<font color="black">'</font></font>}</b><br>  ---<br>  - name: bob<br>    phone: 555-3425<br>  - name: jim<br>    phone: 555-4364<br>  - name: joe<br>    phone: 555-3422<br>  - name: jerry<br>    phone: 555-4973<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myCSV<font color="black">'</font></font>}</b><br>  name,phone<br>  bob,555-3425<br>  jim,555-4364<br>  joe,555-3422<br>  jerry,555-4973<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myList<font color="black">'</font></font>}</b><br>  ( 'myXML', 'myJSON', 'myYAML', 'myCSV' )<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                      </td>
+                      <td style="vertical-align:top">
+                        <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <!-- START DEMO SOURCE -->
+                        <pre><code style="color: #000000"><b>{<font color="blue">myList</font><font color="red"></font>}</b><br>  &lt;p&gt;<br>    &lt;table border=1&gt;<br>      &lt;tr&gt;<br>        &lt;th colspan="2"&gt;<br>          <b>{<font color="green"><font color="red">$</font>myList</font>}</b><br>        &lt;/th&gt;<br>      &lt;/tr&gt;<br>      <b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font><b><font color="black">{</font><font color="green"><font color="red"><font color="red">$</font></font>myList</font><font color="black">}</font></b><font color="black">'</font></font>}</b><br>        &lt;tr&gt;<br>          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt; <br>          &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>        &lt;/tr&gt;<br>      <b>{/<font color="blue">pad</font><font color="red"></font>}</b><br>    &lt;/table&gt;<br>  &lt;/p&gt;<br><b>{/<font color="blue">myList</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                      </td>
+                      <td style="vertical-align:top">
+                        <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                        <p>
+                          <code><span style="color: #000000"></span></code>
+                        </p>
+                        <table border="1">
+                          <tbody><tr>
+                            <th colspan="2">
+                              myXML
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              bob
+                            </td>
+                            <td>
+                              555-1111
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jim
+                            </td>
+                            <td>
+                              555-2222
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              joe
+                            </td>
+                            <td>
+                              555-3333
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jerry
+                            </td>
+                            <td>
+                              555-4444
+                            </td>
+                          </tr>
+                        </tbody></table>
+                        <p></p>
+                        <p>
+                          <code><span style="color: #000000"></span></code>
+                        </p>
+                        <table border="1">
+                          <tbody><tr>
+                            <th colspan="2">
+                              myJSON
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              bob
+                            </td>
+                            <td>
+                              555-5555
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jim
+                            </td>
+                            <td>
+                              555-6666
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              joe
+                            </td>
+                            <td>
+                              555-7777
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jerry
+                            </td>
+                            <td>
+                              555-8888
+                            </td>
+                          </tr>
+                        </tbody></table>
+                        <p></p>
+                        <p>
+                          <code><span style="color: #000000"></span></code>
+                        </p>
+                        <table border="1">
+                          <tbody><tr>
+                            <th colspan="2">
+                              myYAML
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              bob
+                            </td>
+                            <td>
+                              555-3425
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jim
+                            </td>
+                            <td>
+                              555-4364
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              joe
+                            </td>
+                            <td>
+                              555-3422
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jerry
+                            </td>
+                            <td>
+                              555-4973
+                            </td>
+                          </tr>
+                        </tbody></table>
+                        <p></p>
+                        <p>
+                          <code><span style="color: #000000"></span></code>
+                        </p>
+                        <table border="1">
+                          <tbody><tr>
+                            <th colspan="2">
+                              myCSV
+                            </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              bob
+                            </td>
+                            <td>
+                              555-3425
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jim
+                            </td>
+                            <td>
+                              555-4364
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              joe
+                            </td>
+                            <td>
+                              555-3422
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jerry
+                            </td>
+                            <td>
+                              555-4973
+                            </td>
+                          </tr>
+                        </tbody></table>
+                        <p></p><!-- END DEMO RESULT -->
+                      </td>
+                    </tr>
+                  </tbody></table>
+                  <p></p>
+                  <hr>
+                  <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+                    <tbody><tr>
+                      <td>
+                        <p>
+                          If <b>{data 'xxx'}</b> is used, then the data will not be processed before it is stored in the data store,<br>
+                          all above examples use it in this way.
+                        </p>
+                        <p>
+                          If <b>{/data 'xxx'}</b> is used, then the data will be processed before it is stored in the data store.<br>
+                          Below a crazy example how this can be used:<br>
+                          - first there is a JSON data definition<br>
+                          - then this JSON data is converted to CSV data<br>
+                          - then this CSV data is converted to XML data<br>
+                          - then this XML data is converted to YAML data<br>
+                          - then this YAML data is used to show a HTML table.
+                        </p>
+                      </td>
+                    </tr>
+                  </tbody></table>
+                  <p></p>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        HTML
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        RESULT
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <!-- START DEMO SOURCE -->
+                        <pre><code style="color: #000000"><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myJson<font color="black">'</font></font>}</b><br>  [ { "name": "bob",   "phone": "555-5555" },<br>    { "name": "jim",   "phone": "555-6666" },<br>    { "name": "joe",   "phone": "555-7777" },      <br>    { "name": "jerry", "phone": "555-8888" } ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data</font><font color="red"></font>}</b><br>  name,phone<br>  <b>{<font color="blue">myJson</font><font color="red"></font>}</b><br>    <b>{<font color="green"><font color="red">$</font>name</font>}</b>, <b>{<font color="green"><font color="red">$</font>phone</font>}</b><br>  <b>{/<font color="blue">myJson</font><font color="red"></font>}</b><br><b>{/<font color="blue">data </font><font color="red"><font color="black">'</font>myCsv<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">data</font><font color="red"></font>}</b><br>  &lt;records&gt;<br>    <b>{<font color="blue">myCsv</font><font color="red"></font>}</b><br>      &lt;record name="<b>{<font color="green"><font color="red">$</font>name</font>}</b>" phone="<b>{<font color="green"><font color="red">$</font>phone</font>}</b>"/&gt;<br>    <b>{/<font color="blue">myCsv</font><font color="red"></font>}</b><br>  &lt;/records&gt;<br><b>{/<font color="blue">data </font><font color="red"><font color="black">'</font>myXml<font color="black">'</font></font>}</b><br><br><b>{<font color="blue">data</font><font color="red"></font>}</b><br>  ---<br>    <b>{<font color="blue">myXml</font><font color="red"></font>}</b> <br>    - name: <b>{<font color="green"><font color="red">$</font>name</font>}</b><br>      phone: <b>{<font color="green"><font color="red">$</font>phone</font>}</b><br>    <b>{/<font color="blue">myXml</font><font color="red"></font>}</b><br><b>{/<font color="blue">data </font><font color="red"><font color="black">'</font>myYaml<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE -->
+                      </td>
+                      <td style="vertical-align:top">
+                        <code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <!-- START DEMO SOURCE -->
+                        <pre><code style="color: #000000">&lt;table border="1"&gt;<br>  <b>{<font color="blue">myYaml</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt; <br>      &lt;td&gt;<b>{<font color="green"><font color="red">$</font>phone</font>}</b>&lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">myYaml</font><font color="red"></font>}</b><br>&lt;/table&gt;</code></pre><!-- END DEMO SOURCE -->
+                      </td>
+                      <td style="vertical-align:top">
+                        <code><span style="color: #000000"><!-- START DEMO RESULT --></span></code>
+                        <table border="1">
+                          <tbody><tr>
+                            <td>
+                              bob
+                            </td>
+                            <td>
+                              555-5555
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jim
+                            </td>
+                            <td>
+                              555-6666
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              joe
+                            </td>
+                            <td>
+                              555-7777
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              jerry
+                            </td>
+                            <td>
+                              555-8888
+                            </td>
+                          </tr>
+                        </tbody></table><!-- END DEMO RESULT -->
+                      </td>
+                    </tr>
+                  </tbody></table>
+                  <p></p>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <hr>
+                <table valign="top" align="center">
+                  <tbody><tr>
+                    <td valign="top">
+                      <h3 align="center">
+                        Basic Concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tags.html">Tags</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7examples_used_in_this_manual.html">Examples used in this manual</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7parse.html">Parse</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7levels_and_occurrences.html">Levels and occurrences</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_content_tag.html">The content tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7the_data_tag.html">The data tag</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7php_and_html.html">Php and html</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7properties.html">Properties</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Advanced concepts
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7prefix.html">Prefix</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7options_variables_parameters.html">Options variables parameters</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7callback.html">Callback</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7escaping_special_PAD_chars.html">Escaping special PAD chars</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7tag_return_values.html">Tag return values</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7level_and_occurrence_variables.html">Level and occurrence variables</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7walking.html">Walking</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7data_handling.html">Data handling</a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      &nbsp;&nbsp;
+                    </td>
+                    <td valign="top">
+                      <h3 align="center">
+                        Constructs
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7else.html">Else</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7start_end.html">Start end</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7content.html">Content</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7page.html">Page</a>
+                        </li>
+                      </ul>
+                      <h3 align="center">
+                        Miscellaneous
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7ignore.html">Ignore</a>
+                        </li>
+                        <li>
+                          <a href="index%EF%B9%96pages%EA%A4%B7pipes.html">Pipes</a>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody></table>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

@@ -1,0 +1,1095 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Reference - Tag types - myContent
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag types - myContent
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: structure - Page: abc/klm/page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">abc/klm/page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">abc/klm/page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'klm'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / klm <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxFTdyrA3o"><li> Line in page.pad / klm 
+</li><li> Variable in page.php / klm
+
+
+  </li><li> XML 1 from _data / klm
+
+  </li><li> XML 2 from _data / klm
+
+
+</li><li> Line in _tags/myTag.pad / klm 
+</li><li> Variable in _tags/myTag.php / klm
+
+</li><li> Line for _function/Myfunction.php in klm
+
+
+  </li><li> Line for _option/myOption.php in 
+klm
+
+</li><li> Line for _scripts/myScript.sh klm
+
+
+  </li><li> Line for _callbacks/myCallback in klm
+
+
+</li><li> Line in _include/myInclude.pad / klm 
+</li><li> Variable in _include/myInclude.php / klm
+
+
+  </li><li> Line in _lib/myLib.pad / klm 
+  </li><li> Variable in _lib/myLib.php / klm
+</li></div>
+                        <script>
+                        padAjaxFTdyrA3o = new XMLHttpRequest();
+                        padAjaxFTdyrA3o.onreadystatechange=function() {
+                        if (padAjaxFTdyrA3o.readyState === 4) {
+                        if (padAjaxFTdyrA3o.status === 200) {
+                        document.getElementById("padAjaxFTdyrA3o").innerHTML=padAjaxFTdyrA3o.responseText;
+                        } else {
+                        document.getElementById("padAjaxFTdyrA3o").innerHTML=padAjaxFTdyrA3o.statusText;
+                        }
+                        }
+                        }
+                        padAjaxFTdyrA3o.open("GET","http://localhost/structure/?abc/klm/page&padInclude&padSesID=DiM2hOlW&padReqID=UAOMYLFI",true);
+                        padAjaxFTdyrA3o.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: structure - Page: abc/klm/xyz/page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">abc/klm/xyz/page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">abc/klm/xyz/page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'xyz'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / xyz <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxoQtihhN1"><li> Line in page.pad / xyz 
+</li><li> Variable in page.php / xyz
+
+
+  </li><li> XML 1 from _data / xyz
+
+  </li><li> XML 2 from _data / xyz
+
+
+</li><li> Line in _tags/myTag.pad / xyz 
+</li><li> Variable in _tags/myTag.php / xyz
+
+</li><li> Line for _function/Myfunction.php in xyz
+
+
+  </li><li> Line for _option/myOption.php in 
+xyz
+
+</li><li> Line for _scripts/myScript.sh xyz
+
+
+  </li><li> Line for _callbacks/myCallback in xyz
+
+
+</li><li> Line in _include/myInclude.pad / xyz 
+</li><li> Variable in _include/myInclude.php / xyz
+
+
+  </li><li> Line in _lib/myLib.pad / xyz 
+  </li><li> Variable in _lib/myLib.php / xyz
+</li></div>
+                        <script>
+                        padAjaxoQtihhN1 = new XMLHttpRequest();
+                        padAjaxoQtihhN1.onreadystatechange=function() {
+                        if (padAjaxoQtihhN1.readyState === 4) {
+                        if (padAjaxoQtihhN1.status === 200) {
+                        document.getElementById("padAjaxoQtihhN1").innerHTML=padAjaxoQtihhN1.responseText;
+                        } else {
+                        document.getElementById("padAjaxoQtihhN1").innerHTML=padAjaxoQtihhN1.statusText;
+                        }
+                        }
+                        }
+                        padAjaxoQtihhN1.open("GET","http://localhost/structure/?abc/klm/xyz/page&padInclude&padSesID=DiM2hOlW&padReqID=UAOMYLFI",true);
+                        padAjaxoQtihhN1.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: structure - Page: abc/page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">abc/page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">abc/page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'abc'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / abc <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxou2QsMgE"><li> Line in page.pad / abc 
+</li><li> Variable in page.php / abc
+
+
+  </li><li> XML 1 from _data / abc
+
+  </li><li> XML 2 from _data / abc
+
+
+</li><li> Line in _tags/myTag.pad / abc 
+</li><li> Variable in _tags/myTag.php / abc
+
+</li><li> Line for _function/Myfunction.php in abc
+
+
+  </li><li> Line for _option/myOption.php in 
+abc
+
+</li><li> Line for _scripts/myScript.sh abc
+
+
+  </li><li> Line for _callbacks/myCallback in abc
+
+
+</li><li> Line in _include/myInclude.pad / abc 
+</li><li> Variable in _include/myInclude.php / abc
+
+
+  </li><li> Line in _lib/myLib.pad / abc 
+  </li><li> Variable in _lib/myLib.php / abc
+</li></div>
+                        <script>
+                        padAjaxou2QsMgE = new XMLHttpRequest();
+                        padAjaxou2QsMgE.onreadystatechange=function() {
+                        if (padAjaxou2QsMgE.readyState === 4) {
+                        if (padAjaxou2QsMgE.status === 200) {
+                        document.getElementById("padAjaxou2QsMgE").innerHTML=padAjaxou2QsMgE.responseText;
+                        } else {
+                        document.getElementById("padAjaxou2QsMgE").innerHTML=padAjaxou2QsMgE.statusText;
+                        }
+                        }
+                        }
+                        padAjaxou2QsMgE.open("GET","http://localhost/structure/?abc/page&padInclude&padSesID=DiM2hOlW&padReqID=UAOMYLFI",true);
+                        padAjaxou2QsMgE.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: content/2<br>
+                  <div id="padAjaxzsLDq13k"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = 10</font>}</b><br><br><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b> &lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="blue">myContent</font><font color="red"></font>}</b><br><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="blue">myContent</font><font color="red"></font>}</b><br><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->11 <br>
+
+ 
+  12 <br>
+
+ 
+  13 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">set </font><font color="red"><font color="red">$</font>abc = 10</font>}</b><br><br><b>{<font color="blue">content</font><font color="red"></font>}</b><br>  <b>{<font color="green"><font color="red">$</font>abc</font>}</b> &lt;br&gt;<br><b>{/<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="blue">myContent</font><font color="red"></font>}</b><br><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="blue">myContent</font><font color="red"></font>}</b><br><b>{<font color="blue">increment </font><font color="red"><font color="red">$</font>abc</font>}</b> <b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->10 <br>
+
+ 
+  10 <br>
+
+ 
+  10 <br><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxzsLDq13k = new XMLHttpRequest();
+                  padAjaxzsLDq13k.onreadystatechange=function() {
+                  if (padAjaxzsLDq13k.readyState === 4) {
+                  if (padAjaxzsLDq13k.status === 200) {
+                  document.getElementById("padAjaxzsLDq13k").innerHTML=padAjaxzsLDq13k.responseText;
+                  } else {
+                  document.getElementById("padAjaxzsLDq13k").innerHTML=padAjaxzsLDq13k.statusText;
+                  }
+                  }
+                  }
+                  padAjaxzsLDq13k.open("GET","http://localhost/manual/?content/2&padInclude&padSesID=DiM2hOlW&padReqID=UAOMYLFI",true);
+                  padAjaxzsLDq13k.send();
+                  </script><br>
+                  <hr>
+                  App: manual - Page: content/3<br>
+                  <div id="padAjax57a4j7Qy"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  Before &lt;br&gt;<br>  <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b><br>  After &lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>  This will be inserted &lt;br&gt;<br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Before <br>
+  
+  This will be inserted <br>
+
+  After <br><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p>
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  This will be inserted &lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>  Before &lt;br&gt;<br>  <b><font color="black">@</font><font color="purple">content</font><font color="black">@</font></b><br>  After &lt;br&gt;<br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->Before <br>
+  
+  This will be inserted <br>
+
+  After <br><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjax57a4j7Qy = new XMLHttpRequest();
+                  padAjax57a4j7Qy.onreadystatechange=function() {
+                  if (padAjax57a4j7Qy.readyState === 4) {
+                  if (padAjax57a4j7Qy.status === 200) {
+                  document.getElementById("padAjax57a4j7Qy").innerHTML=padAjax57a4j7Qy.responseText;
+                  } else {
+                  document.getElementById("padAjax57a4j7Qy").innerHTML=padAjax57a4j7Qy.statusText;
+                  }
+                  }
+                  }
+                  padAjax57a4j7Qy.open("GET","http://localhost/manual/?content/3&padInclude&padSesID=DiM2hOlW&padReqID=UAOMYLFI",true);
+                  padAjax57a4j7Qy.send();
+                  </script><br>
+                  <hr>
+                  App: manual - Page: content/4<br>
+                  <div id="padAjaxarXwReFV"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  This is my content.&lt;br&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is my content.<br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>  This is the base content. &lt;br&gt;<br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is my content.<br>
+
+  This is the base content. <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent </font><font color="red">merge=<font color="black">'</font>replace<font color="black">'</font></font>}</b><br>  This is the base content. &lt;br&gt;<br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is my content.<br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent </font><font color="red">merge=<font color="black">'</font>top<font color="black">'</font></font>}</b><br>  This is the base content. &lt;br&gt;<br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is my content.<br>
+
+  This is the base content. <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent </font><font color="red">merge=<font color="black">'</font>bottom<font color="black">'</font></font>}</b><br>  This is the base content. &lt;br&gt;<br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT -->This is the base content. <br>
+
+  This is my content.<br><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxarXwReFV = new XMLHttpRequest();
+                  padAjaxarXwReFV.onreadystatechange=function() {
+                  if (padAjaxarXwReFV.readyState === 4) {
+                  if (padAjaxarXwReFV.status === 200) {
+                  document.getElementById("padAjaxarXwReFV").innerHTML=padAjaxarXwReFV.responseText;
+                  } else {
+                  document.getElementById("padAjaxarXwReFV").innerHTML=padAjaxarXwReFV.statusText;
+                  }
+                  }
+                  }
+                  padAjaxarXwReFV.open("GET","http://localhost/manual/?content/4&padInclude&padSesID=DiM2hOlW&padReqID=UAOMYLFI",true);
+                  padAjaxarXwReFV.send();
+                  </script><br>
+                  <hr>
+                  App: structure - Page: def/klm/page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">def/klm/page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">def/klm/page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'klm'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / klm <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxOPPAjlkH"><li> Line in page.pad / klm 
+</li><li> Variable in page.php / klm
+
+
+  </li><li> XML 1 from _data / klm
+
+  </li><li> XML 2 from _data / klm
+
+
+</li><li> Line in _tags/myTag.pad / klm 
+</li><li> Variable in _tags/myTag.php / klm
+
+</li><li> Line for _function/Myfunction.php in klm
+
+
+  </li><li> Line for _option/myOption.php in 
+klm
+
+</li><li> Line for _scripts/myScript.sh klm
+
+
+  </li><li> Line for _callbacks/myCallback in klm
+
+
+</li><li> Line in _include/myInclude.pad / klm 
+</li><li> Variable in _include/myInclude.php / klm
+
+
+  </li><li> Line in _lib/myLib.pad / klm 
+  </li><li> Variable in _lib/myLib.php / klm
+</li></div>
+                        <script>
+                        padAjaxOPPAjlkH = new XMLHttpRequest();
+                        padAjaxOPPAjlkH.onreadystatechange=function() {
+                        if (padAjaxOPPAjlkH.readyState === 4) {
+                        if (padAjaxOPPAjlkH.status === 200) {
+                        document.getElementById("padAjaxOPPAjlkH").innerHTML=padAjaxOPPAjlkH.responseText;
+                        } else {
+                        document.getElementById("padAjaxOPPAjlkH").innerHTML=padAjaxOPPAjlkH.statusText;
+                        }
+                        }
+                        }
+                        padAjaxOPPAjlkH.open("GET","http://localhost/structure/?def/klm/page&padInclude&padSesID=DiM2hOlW&padReqID=UAOMYLFI",true);
+                        padAjaxOPPAjlkH.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: structure - Page: def/page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">def/page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">def/page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'def'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / def <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjax9xwESbZa"><li> Line in page.pad / def 
+</li><li> Variable in page.php / def
+
+
+  </li><li> XML 1 from _data / def
+
+  </li><li> XML 2 from _data / def
+
+
+</li><li> Line in _tags/myTag.pad / def 
+</li><li> Variable in _tags/myTag.php / def
+
+</li><li> Line for _function/Myfunction.php in def
+
+
+  </li><li> Line for _option/myOption.php in 
+def
+
+</li><li> Line for _scripts/myScript.sh def
+
+
+  </li><li> Line for _callbacks/myCallback in def
+
+
+</li><li> Line in _include/myInclude.pad / def 
+</li><li> Variable in _include/myInclude.php / def
+
+
+  </li><li> Line in _lib/myLib.pad / def 
+  </li><li> Variable in _lib/myLib.php / def
+</li></div>
+                        <script>
+                        padAjax9xwESbZa = new XMLHttpRequest();
+                        padAjax9xwESbZa.onreadystatechange=function() {
+                        if (padAjax9xwESbZa.readyState === 4) {
+                        if (padAjax9xwESbZa.status === 200) {
+                        document.getElementById("padAjax9xwESbZa").innerHTML=padAjax9xwESbZa.responseText;
+                        } else {
+                        document.getElementById("padAjax9xwESbZa").innerHTML=padAjax9xwESbZa.statusText;
+                        }
+                        }
+                        }
+                        padAjax9xwESbZa.open("GET","http://localhost/structure/?def/page&padInclude&padSesID=DiM2hOlW&padReqID=UAOMYLFI",true);
+                        padAjax9xwESbZa.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: options/sort<br>
+                  <div id="padAjaxxOEXP8Yr"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br>  &lt;table border=1&gt;<br>    &lt;tr&gt;<br>      &lt;th&gt; volume   &lt;/th&gt;<br>      &lt;th&gt; edition  &lt;/th&gt;<br>      &lt;th&gt; file     &lt;/th&gt;<br>    &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>volume</font>}</b>   &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>edition</font>}</b>  &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>file</font>}</b>     &lt;/td&gt;<br>      &lt;/tr&gt;    <br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br>  &lt;/table&gt;<br><b>{/<font color="blue">content</font><font color="red"></font>}</b><br><br><b>{<font color="blue">data </font><font color="red"><font color="black">'</font>myData<font color="black">'</font></font>}</b><br>  [ { "volume": 55, "edition": 3, "file": "file1.xml"  },<br>    { "volume": 33, "edition": 1, "file": "file2.xml"  },<br>    { "volume": 55, "edition": 2, "file": "file11.xml" },<br>    { "volume": 33, "edition": 3, "file": "file12.xml" },<br>    { "volume": 55, "edition": 1, "file": "file21.xml" },<br>    { "volume": 33, "edition": 2, "file": "file8.xml"  } ]<br><b>{/<font color="blue">data</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><!-- END DEMO RESULT --></span></code></td></tr>
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+    <tbody><tr>
+      <th> volume   </th>
+      <th> edition  </th>
+      <th> file     </th>
+    </tr>
+    
+      <tr>
+        <td> 55   </td>
+        <td> 3  </td>
+        <td> file1.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 1  </td>
+        <td> file2.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 2  </td>
+        <td> file11.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 3  </td>
+        <td> file12.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 1  </td>
+        <td> file21.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 2  </td>
+        <td> file8.xml     </td>
+      </tr>    
+    
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>volume;edition<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+    <tbody><tr>
+      <th> volume   </th>
+      <th> edition  </th>
+      <th> file     </th>
+    </tr>
+    
+      <tr>
+        <td> 33   </td>
+        <td> 1  </td>
+        <td> file2.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 2  </td>
+        <td> file8.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 3  </td>
+        <td> file12.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 1  </td>
+        <td> file21.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 2  </td>
+        <td> file11.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 3  </td>
+        <td> file1.xml     </td>
+      </tr>    
+    
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>volume DESC; edition DESC<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+    <tbody><tr>
+      <th> volume   </th>
+      <th> edition  </th>
+      <th> file     </th>
+    </tr>
+    
+      <tr>
+        <td> 55   </td>
+        <td> 3  </td>
+        <td> file1.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 2  </td>
+        <td> file11.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 1  </td>
+        <td> file21.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 3  </td>
+        <td> file12.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 2  </td>
+        <td> file8.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 1  </td>
+        <td> file2.xml     </td>
+      </tr>    
+    
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>file<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+    <tbody><tr>
+      <th> volume   </th>
+      <th> edition  </th>
+      <th> file     </th>
+    </tr>
+    
+      <tr>
+        <td> 55   </td>
+        <td> 3  </td>
+        <td> file1.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 2  </td>
+        <td> file11.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 3  </td>
+        <td> file12.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 1  </td>
+        <td> file2.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 1  </td>
+        <td> file21.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 2  </td>
+        <td> file8.xml     </td>
+      </tr>    
+    
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent </font><font color="red">data=<font color="black">'</font>myData<font color="black">'</font><font color="black">,</font> sort=<font color="black">'</font>file NATURAL<font color="black">'</font></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1">
+    <tbody><tr>
+      <th> volume   </th>
+      <th> edition  </th>
+      <th> file     </th>
+    </tr>
+    
+      <tr>
+        <td> 55   </td>
+        <td> 3  </td>
+        <td> file1.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 1  </td>
+        <td> file2.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 2  </td>
+        <td> file8.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 2  </td>
+        <td> file11.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 33   </td>
+        <td> 3  </td>
+        <td> file12.xml     </td>
+      </tr>    
+    
+      <tr>
+        <td> 55   </td>
+        <td> 1  </td>
+        <td> file21.xml     </td>
+      </tr>    
+    
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxxOEXP8Yr = new XMLHttpRequest();
+                  padAjaxxOEXP8Yr.onreadystatechange=function() {
+                  if (padAjaxxOEXP8Yr.readyState === 4) {
+                  if (padAjaxxOEXP8Yr.status === 200) {
+                  document.getElementById("padAjaxxOEXP8Yr").innerHTML=padAjaxxOEXP8Yr.responseText;
+                  } else {
+                  document.getElementById("padAjaxxOEXP8Yr").innerHTML=padAjaxxOEXP8Yr.statusText;
+                  }
+                  }
+                  }
+                  padAjaxxOEXP8Yr.open("GET","http://localhost/check/?options/sort&padInclude&padSesID=DiM2hOlW&padReqID=UAOMYLFI",true);
+                  padAjaxxOEXP8Yr.send();
+                  </script><br>
+                  <hr>
+                  App: structure - Page: page<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2">page.php</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">page.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $page </span><span style="color: #007700">= </span><span style="color: #DD0000">'root'</span><span style="color: #007700">;<br><br>  </span><span style="color: #0000BB">$function </span><span style="color: #007700">= </span><span style="color: #DD0000">'Line for _function/Myfunction.php in '</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000">&lt;li&gt; Line in page.pad / root <br>&lt;li&gt; Variable in page.php / <b>{<font color="green"><font color="red">$</font>page</font>}</b><br><br><b>{<font color="blue">myXML</font><font color="red"></font>}</b><br>  &lt;li&gt; <b>{<font color="green"><font color="red">$</font>value</font>}</b><br><b>{/<font color="blue">myXML</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myTag</font><font color="red"></font>}</b><br><br>&lt;li&gt; <b>{<font color="green">$function</font> <font color="black">|</font> <font color="blue">myFunction</font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">myOption</font>}</b><br>  &lt;li&gt; Line for _option/myOption.php in <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br>&lt;li&gt; Line for _scripts/myScript.sh <b>{<font color="blue">myScript</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">callback=<font color="black">'</font>myCallback.php<font color="black">'</font></font>}</b><br>  &lt;li&gt; Line for _callbacks/myCallback in <b>{<font color="green"><font color="red">$</font>callBack</font>}</b><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myInclude</font><font color="red"></font>}</b><br><br><b>{<font color="blue">myContent</font><font color="red"></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxU0edD07j"><li> Line in page.pad / root 
+</li><li> Variable in page.php / root
+
+
+  </li><li> XML 1 from _data / root
+
+  </li><li> XML 2 from _data / root
+
+
+</li><li> Line in _tags/myTag.pad / root 
+</li><li> Variable in _tags/myTag.php / root
+
+</li><li> Line for _function/Myfunction.php in root
+
+
+  </li><li> Line for _option/myOption.php in 
+root
+
+</li><li> Line for _scripts/myScript.sh root
+
+
+  </li><li> Line for _callbacks/myCallback in root
+
+
+</li><li> Line in _include/myInclude.pad / root 
+</li><li> Variable in _include/myInclude.php / root
+
+
+  </li><li> Line in _lib/myLib.pad / root 
+  </li><li> Variable in _lib/myLib.php / root
+</li></div>
+                        <script>
+                        padAjaxU0edD07j = new XMLHttpRequest();
+                        padAjaxU0edD07j.onreadystatechange=function() {
+                        if (padAjaxU0edD07j.readyState === 4) {
+                        if (padAjaxU0edD07j.status === 200) {
+                        document.getElementById("padAjaxU0edD07j").innerHTML=padAjaxU0edD07j.responseText;
+                        } else {
+                        document.getElementById("padAjaxU0edD07j").innerHTML=padAjaxU0edD07j.statusText;
+                        }
+                        }
+                        }
+                        padAjaxU0edD07j.open("GET","http://localhost/structure/?page&padInclude&padSesID=DiM2hOlW&padReqID=UAOMYLFI",true);
+                        padAjaxU0edD07j.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: check - Page: vars/at/10<br>
+                  <div id="padAjaxzeGAxXlH">
+
+<p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    <tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>    &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                          &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>  X <b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>  &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">border<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b> X <b>{/<font color="blue">border<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b> X <b>{/<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>   X <b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">even<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>   X <b>{/<font color="blue">even<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>    X <b>{/<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font>staff</font><font color="red"></font>}</b>    &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1" valign="center">
+    <tbody><tr>
+      <th>        </th>
+      <th> first  </th>
+      <th> border </th>
+      <th> middle </th>
+      <th> last   </th>
+      <th> even   </th>
+      <th> odd    </th>
+    </tr>
+    
+  
+    <tr>
+      <td> joe                          </td>
+      <td>   X   </td>
+      <td>  X  </td>
+      <td>  </td>
+      <td>    </td>
+      <td>    </td>
+      <td>     X     </td>
+    </tr>
+  
+    <tr>
+      <td> jim                          </td>
+      <td>   </td>
+      <td>  </td>
+      <td>  X  </td>
+      <td>    </td>
+      <td>    X    </td>
+      <td>     </td>
+    </tr>
+  
+    <tr>
+      <td> john                          </td>
+      <td>   </td>
+      <td>  </td>
+      <td>  X  </td>
+      <td>    </td>
+      <td>    </td>
+      <td>     X     </td>
+    </tr>
+  
+    <tr>
+      <td> jack                          </td>
+      <td>   </td>
+      <td>  </td>
+      <td>  X  </td>
+      <td>    </td>
+      <td>    X    </td>
+      <td>     </td>
+    </tr>
+  
+    <tr>
+      <td> jerry                          </td>
+      <td>   </td>
+      <td>  X  </td>
+      <td>  </td>
+      <td>    X    </td>
+      <td>    </td>
+      <td>     X     </td>
+    </tr>
+  
+
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>      <b>{<font color="blue">true</font><font color="red"></font>}</b><br>        &lt;tr&gt;<br>          &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                     &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>  X <b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>  &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue">border<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b> X <b>{/<font color="blue">border<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b> &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b> X <b>{/<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b> &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>   X <b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>   &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue">even<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>   X <b>{/<font color="blue">even<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>   &lt;/td&gt;<br>          &lt;td&gt; <b>{<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>    X <b>{/<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font>-2</font><font color="red"></font>}</b>    &lt;/td&gt;<br>        &lt;/tr&gt;<br>    <b>{/<font color="blue">true</font><font color="red"></font>}</b><br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1" valign="center">
+    <tbody><tr>
+      <th>        </th>
+      <th> first  </th>
+      <th> border </th>
+      <th> middle </th>
+      <th> last   </th>
+      <th> even   </th>
+      <th> odd    </th>
+    </tr>
+    
+  
+  	
+	    <tr>
+	      <td> joe                     </td>
+	      <td>   X   </td>
+	      <td>  X  </td>
+	      <td>  </td>
+	      <td>    X    </td>
+	      <td>    </td>
+	      <td>     X     </td>
+	    </tr>
+    
+  
+  	
+	    <tr>
+	      <td> jim                     </td>
+	      <td>   X   </td>
+	      <td>  X  </td>
+	      <td>  </td>
+	      <td>    X    </td>
+	      <td>    </td>
+	      <td>     X     </td>
+	    </tr>
+    
+  
+  	
+	    <tr>
+	      <td> john                     </td>
+	      <td>   X   </td>
+	      <td>  X  </td>
+	      <td>  </td>
+	      <td>    X    </td>
+	      <td>    </td>
+	      <td>     X     </td>
+	    </tr>
+    
+  
+  	
+	    <tr>
+	      <td> jack                     </td>
+	      <td>   X   </td>
+	      <td>  X  </td>
+	      <td>  </td>
+	      <td>    X    </td>
+	      <td>    </td>
+	      <td>     X     </td>
+	    </tr>
+    
+  
+  	
+	    <tr>
+	      <td> jerry                     </td>
+	      <td>   X   </td>
+	      <td>  X  </td>
+	      <td>  </td>
+	      <td>    X    </td>
+	      <td>    </td>
+	      <td>     X     </td>
+	    </tr>
+    
+  
+
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">myContent</font><font color="red"></font>}</b><br>  <b>{<font color="blue">staff</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>      &lt;td&gt; <b>{<font color="green"><font color="red">$</font>name</font>}</b>                &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">first<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>  X <b>{/<font color="blue">first<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>  &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">border<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b> X <b>{/<font color="blue">border<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b> X <b>{/<font color="blue">middle<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b> &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">last<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>   X <b>{/<font color="blue">last<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">even<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>   X <b>{/<font color="blue">even<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>   &lt;/td&gt;<br>      &lt;td&gt; <b>{<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>    X <b>{/<font color="blue">odd<font color="black"><b><font color="red">@</font></b></font></font><font color="red"></font>}</b>    &lt;/td&gt;<br>    &lt;/tr&gt;<br>  <b>{/<font color="blue">staff</font><font color="red"></font>}</b><br><b>{/<font color="blue">myContent</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><table border="1" valign="center">
+    <tbody><tr>
+      <th>        </th>
+      <th> first  </th>
+      <th> border </th>
+      <th> middle </th>
+      <th> last   </th>
+      <th> even   </th>
+      <th> odd    </th>
+    </tr>
+    
+  
+  	<tr>
+      <td> joe                </td>
+      <td>   X   </td>
+      <td>  X  </td>
+      <td>  </td>
+      <td>    </td>
+      <td>    </td>
+      <td>     X     </td>
+    </tr>
+  
+  	<tr>
+      <td> jim                </td>
+      <td>   </td>
+      <td>  </td>
+      <td>  X  </td>
+      <td>    </td>
+      <td>    X    </td>
+      <td>     </td>
+    </tr>
+  
+  	<tr>
+      <td> john                </td>
+      <td>   </td>
+      <td>  </td>
+      <td>  X  </td>
+      <td>    </td>
+      <td>    </td>
+      <td>     X     </td>
+    </tr>
+  
+  	<tr>
+      <td> jack                </td>
+      <td>   </td>
+      <td>  </td>
+      <td>  X  </td>
+      <td>    </td>
+      <td>    X    </td>
+      <td>     </td>
+    </tr>
+  
+  	<tr>
+      <td> jerry                </td>
+      <td>   </td>
+      <td>  X  </td>
+      <td>  </td>
+      <td>    X    </td>
+      <td>    </td>
+      <td>     X     </td>
+    </tr>
+  
+
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr>
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjaxzeGAxXlH = new XMLHttpRequest();
+                  padAjaxzeGAxXlH.onreadystatechange=function() {
+                  if (padAjaxzeGAxXlH.readyState === 4) {
+                  if (padAjaxzeGAxXlH.status === 200) {
+                  document.getElementById("padAjaxzeGAxXlH").innerHTML=padAjaxzeGAxXlH.responseText;
+                  } else {
+                  document.getElementById("padAjaxzeGAxXlH").innerHTML=padAjaxzeGAxXlH.statusText;
+                  }
+                  }
+                  }
+                  padAjaxzeGAxXlH.open("GET","http://localhost/check/?vars/at/10&padInclude&padSesID=DiM2hOlW&padReqID=UAOMYLFI",true);
+                  padAjaxzeGAxXlH.send();
+                  </script><br>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

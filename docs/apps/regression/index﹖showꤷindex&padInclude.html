@@ -1,0 +1,67 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body><table border="1" cellpadding="10" cellspacing="0">
+  
+
+  
+
+      
+          <tbody><tr>
+          
+            <th bgcolor="#dddddd">
+              PHP <br><font size="-2">hello/hello.php</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              HTML <br><font size="-2">hello/hello.pad</font>
+            </th>
+          
+          
+            <th bgcolor="#dddddd">
+              Result
+            </th>
+          
+        </tr>
+      
+
+      <tr>
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $hi </span><span style="color: #007700">= </span><span style="color: #DD0000">'Hello World !'</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre> </td>
+        
+        
+          <td style="vertical-align:top"><pre><code style="color: #000000">&lt;h3&gt;<br>  <b>{<font color="green"><font color="red">$</font>hi</font>}</b><br>&lt;/h3&gt;</code></pre></td>
+        
+        
+          <td style="vertical-align:top">
+  <div id="padAjaxrckqvW01"><h3>
+  Hello World !
+</h3></div>
+
+<script>
+  padAjaxrckqvW01 = new XMLHttpRequest();
+  padAjaxrckqvW01.onreadystatechange=function() {
+    if (padAjaxrckqvW01.readyState === 4) {
+      if (padAjaxrckqvW01.status === 200) {
+        document.getElementById("padAjaxrckqvW01").innerHTML=padAjaxrckqvW01.responseText;
+      } else {
+        document.getElementById("padAjaxrckqvW01").innerHTML=padAjaxrckqvW01.statusText;
+      }
+    }
+  }
+  padAjaxrckqvW01.open("GET","http://localhost/manual/?hello/hello&padInclude&padSesID=DiM2hOlW&padReqID=CH6jm2wv",true);
+  padAjaxrckqvW01.send();
+</script>
+</td>
+        
+      </tr>
+
+    
+
+  
+    </tbody></table>
+  
+
+
+
+</body></html>

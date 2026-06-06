@@ -1,0 +1,499 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Reference - Tag properties - option
+    </title>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Reference - Tag properties - option
+          </h1>
+          <table with="95%" border="0" align="center" style="margin-top: 0; margin-bottom: 0;" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+              <td>
+                <center>
+                  <hr>
+                  App: check - Page: miscellaneous/local<br>
+                  <table border="1" cellpadding="10" cellspacing="0">
+                    <tbody><tr>
+                      <th bgcolor="#DDDDDD">
+                        PHP<br>
+                        <font size="-2"></font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        HTML<br>
+                        <font size="-2">miscellaneous/local.pad</font>
+                      </th>
+                      <th bgcolor="#DDDDDD">
+                        Result
+                      </th>
+                    </tr>
+                    <tr>
+                      <td style="vertical-align:top"></td>
+                      <td style="vertical-align:top">
+                        <pre><code style="color: #000000"><b>{<font color="blue">content </font><font color="red"><font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><br>  &lt;h3&gt;<b>{<font color="purple"><font color="red">&amp;</font>departments<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>option<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>data</font>}</b>&lt;/h3&gt;<br><br>  &lt;table border=1&gt;<br><br>    &lt;tr&gt;<br>      &lt;th&gt; department &lt;/th&gt;<br>      &lt;th&gt; manager &lt;/th&gt;<br>      &lt;th&gt; phone &lt;/th&gt;<br>    &lt;/tr&gt;<br><br>    <b><font color="black">@</font><font color="purple">start</font><font color="black">@</font></b><br>      &lt;tr&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>department</font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>manager</font>}</b> &lt;/td&gt;<br>        &lt;td&gt; <b>{<font color="green"><font color="red">$</font>phone</font>}</b> &lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b><font color="black">@</font><font color="purple">end</font><font color="black">@</font></b><br><br>  &lt;/table&gt;<br><br><b>{/<font color="blue">content</font><font color="red"></font>}</b><br><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments<font color="black">'</font><font color="black">,</font>      content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.php<font color="black">'</font><font color="black">,</font>  content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.csv<font color="black">'</font><font color="black">,</font>  content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.xml<font color="black">'</font><font color="black">,</font>  content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.json<font color="black">'</font><font color="black">,</font> content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b><br><b>{<font color="blue">pad </font><font color="red">data=<font color="black">'</font>departments/departments.yaml<font color="black">'</font><font color="black">,</font> content=<font color="black">'</font>myContent<font color="black">'</font></font>}</b></code></pre>
+                      </td>
+                      <td style="vertical-align:top">
+                        <div id="padAjaxo1tLT8LN">
+
+
+
+  <h3>departments/departments</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-8888 </td>
+      </tr>
+    
+
+  </tbody></table>
+
+
+
+
+  <h3>departments/departments.php</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-7777 </td>
+      </tr>
+    
+
+  </tbody></table>
+
+
+
+
+  <h3>departments/departments.csv</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-5555 </td>
+      </tr>
+    
+
+  </tbody></table>
+
+
+
+
+  <h3>departments/departments.xml</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-8888 </td>
+      </tr>
+    
+
+  </tbody></table>
+
+
+
+
+  <h3>departments/departments.json</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-6666   </td>
+      </tr>
+    
+
+  </tbody></table>
+
+
+
+
+  <h3>departments/departments.yaml</h3>
+
+  <table border="1">
+
+    <tbody><tr>
+      <th> department </th>
+      <th> manager </th>
+      <th> phone </th>
+    </tr>
+
+    
+      <tr>
+        <td> IT </td>
+        <td> Bob </td>
+        <td> 555-1111 </td>
+      </tr>
+    
+      <tr>
+        <td> Kitchen </td>
+        <td> Jim </td>
+        <td> 555-2222 </td>
+      </tr>
+    
+      <tr>
+        <td> Helpdesk </td>
+        <td> Joe </td>
+        <td> 555-3333 </td>
+      </tr>
+    
+      <tr>
+        <td> Sales </td>
+        <td> Steve </td>
+        <td> 555-4444 </td>
+      </tr>
+    
+      <tr>
+        <td> Build </td>
+        <td> Jerry </td>
+        <td> 555-9999 </td>
+      </tr>
+    
+
+  </tbody></table>
+
+</div>
+                        <script>
+                        padAjaxo1tLT8LN = new XMLHttpRequest();
+                        padAjaxo1tLT8LN.onreadystatechange=function() {
+                        if (padAjaxo1tLT8LN.readyState === 4) {
+                        if (padAjaxo1tLT8LN.status === 200) {
+                        document.getElementById("padAjaxo1tLT8LN").innerHTML=padAjaxo1tLT8LN.responseText;
+                        } else {
+                        document.getElementById("padAjaxo1tLT8LN").innerHTML=padAjaxo1tLT8LN.statusText;
+                        }
+                        }
+                        }
+                        padAjaxo1tLT8LN.open("GET","http://localhost/check/?miscellaneous/local&padInclude&padSesID=DiM2hOlW&padReqID=hhypgnfw",true);
+                        padAjaxo1tLT8LN.send();
+                        </script>
+                      </td>
+                    </tr>
+                  </tbody></table><br>
+                  <hr>
+                  App: manual - Page: miscellaneous/options_variables_parameters<br>
+                  <div id="padAjax8MgsR868"><p> 
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tbody><tr>
+      
+      
+      
+      <th bgcolor="#dddddd">HTML</th>
+      <th bgcolor="#dddddd">RESULT</th>
+    </tr>
+    
+
+<tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">name=<font color="black">'</font>cool<font color="black">'</font><font color="black">,</font> abc=123<font color="black">,</font> <font color="black">'</font>fiets<font color="black">'</font><font color="black">,</font> <font color="red">$</font>abc=<font color="black">'</font>banaan<font color="black">'</font><font color="black">,</font> <font color="red">$</font>go=<font color="black">'</font>nuts<font color="black">'</font><font color="black">,</font> xyz=789<font color="black">,</font> 12*15</font>}</b><br><br>  &lt;h3&gt;variables&lt;/h3&gt;<br>  <br>  &lt;table border="1"&gt;<br>    &lt;th&gt;name&lt;/th&gt;<br>    &lt;th&gt;value&lt;/th&gt;<br>    <b>{<font color="blue">variables</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">variables</font><font color="red"></font>}</b><br>  &lt;/table&gt;<br><br>  &lt;h3&gt;options&lt;/h3&gt;<br>  <br>  &lt;table border="1"&gt;<br>    &lt;th&gt;name&lt;/th&gt;<br>    &lt;th&gt;value&lt;/th&gt;<br>    <b>{<font color="blue">options</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">options</font><font color="red"></font>}</b><br>  &lt;/table&gt;<br><br>  &lt;h3&gt;parameters&lt;/h3&gt;<br>  <br>  &lt;table border="1"&gt;<br>    &lt;th&gt;name&lt;/th&gt;<br>    &lt;th&gt;value&lt;/th&gt;<br>    <b>{<font color="blue">parameters</font><font color="red"></font>}</b><br>      &lt;tr&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>name</font>}</b>&lt;/td&gt;<br>        &lt;td&gt;<b>{<font color="green"><font color="red">$</font>value</font>}</b>&lt;/td&gt;<br>      &lt;/tr&gt;<br>    <b>{/<font color="blue">parameters</font><font color="red"></font>}</b><br>  &lt;/table&gt;<br><br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>variables</h3>
+  
+  <table border="1">
+    <tbody><tr><th>name</th>
+    <th>value</th>
+    
+      </tr><tr>
+        <td>abc</td>
+        <td>banaan</td>
+      </tr>
+    
+      <tr>
+        <td>go</td>
+        <td>nuts</td>
+      </tr>
+    
+  </tbody></table>
+
+  <h3>options</h3>
+  
+  <table border="1">
+    <tbody><tr><th>name</th>
+    <th>value</th>
+    
+      </tr><tr>
+        <td>name</td>
+        <td>cool</td>
+      </tr>
+    
+      <tr>
+        <td>abc</td>
+        <td>123</td>
+      </tr>
+    
+      <tr>
+        <td>xyz</td>
+        <td>789</td>
+      </tr>
+    
+  </tbody></table>
+
+  <h3>parameters</h3>
+  
+  <table border="1">
+    <tbody><tr><th>name</th>
+    <th>value</th>
+    
+      </tr><tr>
+        <td>1</td>
+        <td>fiets</td>
+      </tr>
+    
+      <tr>
+        <td>2</td>
+        <td>180</td>
+      </tr>
+    
+  </tbody></table><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">name=<font color="black">'</font>cool<font color="black">'</font><font color="black">,</font> abc=123<font color="black">,</font> <font color="black">'</font>fiets<font color="black">'</font><font color="black">,</font> <font color="red">$</font>abc=<font color="black">'</font>banaan<font color="black">'</font><font color="black">,</font> <font color="red">$</font>go=<font color="black">'</font>nuts<font color="black">'</font><font color="black">,</font> xyz=789<font color="black">,</font> 12*15</font>}</b><br><br>  &lt;h3&gt;variables&lt;/h3&gt;<br><br>  The value of variable 'abc' is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>variable<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>abc</font>}</b> &lt;br&gt;<br>  The value of variable 'go' is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>variable<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>go</font>}</b> &lt;br&gt;<br>  <br>  &lt;h3&gt;options&lt;/h3&gt;<br>  <br>  The value of option 'abc' is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>option<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>abc</font>}</b> &lt;br&gt;<br>  The value of option 'xyz' is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>option<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>xyz</font>}</b> &lt;br&gt;<br>  <br>  &lt;h3&gt;parameters&lt;/h3&gt;<br>  <br>  The first parameters is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>parameter<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>1</font>}</b> &lt;br&gt;<br>  The second parameter is: <b>{<font color="purple"><font color="red">&amp;</font>cool<font color="black"></font><b><font color="black">:</font></b><font color="orange"></font>parameter<font color="black"></font><b><font color="black">:</font></b><font color="green"></font>2</font>}</b> &lt;br&gt;<br>  <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>variables</h3>
+
+  The value of variable 'abc' is: banaan <br>
+  The value of variable 'go' is: nuts <br>
+  
+  <h3>options</h3>
+  
+  The value of option 'abc' is: 123 <br>
+  The value of option 'xyz' is: 789 <br>
+  
+  <h3>parameters</h3>
+  
+  The first parameters is: fiets <br>
+  The second parameter is: 180 <br><!-- END DEMO RESULT --></span></code></td></tr><tr><td style="vertical-align:top"><!-- START DEMO SOURCE --><pre><code style="color: #000000"><b>{<font color="blue">pad </font><font color="red">name=<font color="black">'</font>cool<font color="black">'</font><font color="black">,</font> abc=123<font color="black">,</font> <font color="black">'</font>fiets<font color="black">'</font><font color="black">,</font> <font color="red">$</font>abc=<font color="black">'</font>banaan<font color="black">'</font><font color="black">,</font> <font color="red">$</font>go=<font color="black">'</font>nuts<font color="black">'</font><font color="black">,</font> xyz=789<font color="black">,</font> 12*15</font>}</b><br><br>  &lt;h3&gt;variables&lt;/h3&gt;<br><br>  Variables can be directy accessed with the $ char &lt;br&gt;<br>  - variable 'abc' - <b>{<font color="green"><font color="red">$</font>abc</font>}</b> &lt;br&gt;<br>  - variable 'go' - <b>{<font color="green"><font color="red">$</font>go</font>}</b> &lt;br&gt;<br>  <br>  &lt;h3&gt;options&lt;/h3&gt;<br><br>  Options can be directy accessed with the # char &lt;br&gt;<br>  - option 'abc' - <b>{<font color="green"><font color="red">#</font>abc</font>}</b> &lt;br&gt;<br>  - option 'xyz' - <b>{<font color="green"><font color="red">#</font>xyz</font>}</b> &lt;br&gt;<br>    <br>  &lt;h3&gt;parameters&lt;/h3&gt;<br>  <br>  Parameters can be directy accesed with the $ char  &lt;br&gt;<br>  - The first parameters is: <b>{<font color="green"><font color="red">$</font>1</font>}</b> &lt;br&gt;<br>  - The second parameter is: <b>{<font color="green"><font color="red">$</font>2</font>}</b> &lt;br&gt;<br>  <br><b>{/<font color="blue">pad</font><font color="red"></font>}</b></code></pre><!-- END DEMO SOURCE --></td><td style="vertical-align:top"><code><span style="color: #000000"><!-- START DEMO RESULT --><h3>variables</h3>
+
+  Variables can be directy accessed with the $ char <br>
+  - variable 'abc' - banaan <br>
+  - variable 'go' - nuts <br>
+  
+  <h3>options</h3>
+
+  Options can be directy accessed with the # char <br>
+  - option 'abc' - 123 <br>
+  - option 'xyz' - 789 <br>
+    
+  <h3>parameters</h3>
+  
+  Parameters can be directy accesed with the $ char  <br>
+  - The first parameters is: fiets <br>
+  - The second parameter is: 180 <br><!-- END DEMO RESULT --></span></code></td></tr>
+
+
+  </tbody></table>
+</p></div>
+                  <script>
+                  padAjax8MgsR868 = new XMLHttpRequest();
+                  padAjax8MgsR868.onreadystatechange=function() {
+                  if (padAjax8MgsR868.readyState === 4) {
+                  if (padAjax8MgsR868.status === 200) {
+                  document.getElementById("padAjax8MgsR868").innerHTML=padAjax8MgsR868.responseText;
+                  } else {
+                  document.getElementById("padAjax8MgsR868").innerHTML=padAjax8MgsR868.statusText;
+                  }
+                  }
+                  }
+                  padAjax8MgsR868.open("GET","http://localhost/manual/?miscellaneous/options_variables_parameters&padInclude&padSesID=DiM2hOlW&padReqID=hhypgnfw",true);
+                  padAjax8MgsR868.send();
+                  </script><br>
+                </center>
+              </td>
+            </tr>
+          </tbody></table>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="../apps/index.html">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

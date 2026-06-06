@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Browse: sequence/random
+    </title>
+    <style>.browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: sequence/random
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="parent">
+                    <a href="index%EF%B9%96browse&amp;app=sequence.html">..</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=sequence&amp;dir=random&amp;file=random%EA%A4%B7all.pad.html">all.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=sequence&amp;dir=random&amp;file=random%EA%A4%B7parms.pad.html">parms.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=sequence&amp;dir=random&amp;file=random%EA%A4%B7random.pad.html">random.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=sequence&amp;dir=random&amp;file=random%EA%A4%B7randomize.pad.html">randomize.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=sequence&amp;dir=random&amp;file=random%EA%A4%B7randomize_vs_shuffle.pad.html">randomize_vs_shuffle.pad</a>
+                  </li>
+                  <li class="current">total.pad
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  random/total.pad
+                </h3>
+                <pre><code style="color: #000000">&lt;p&gt;There are 3 ways for randomizing, a sequence (random), an option (randomly) and an action (randomize)<br><br>&lt;h3&gt;The sequence 'random'&lt;/h3&gt;<br><br><b>{<font color="blue">table</font><font color="red"></font>}</b><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>random </font><font color="red">rows=25<font color="black">,</font> minimal=10<font color="black">,</font> maximal=50              </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>random</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>random </font><font color="red">rows=25<font color="black">,</font> minimal=10<font color="black">,</font> maximal=50<font color="black">,</font> unique      </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>random</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>random </font><font color="red">rows=15<font color="black">,</font> minimal=10<font color="black">,</font> maximal=50<font color="black">,</font> increment=5 </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue"><font color="purple">sequence</font><font color="black"><b>:</b></font>random</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><b>{/<font color="blue">table</font><font color="red"></font>}</b><br><br>&lt;h3&gt;The sequence option 'randomly'&lt;/h3&gt;<br><br>Here the loop index is randomly set before the sequence is executed.<br><br><b>{<font color="blue">table</font><font color="red"></font>}</b><br><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">sequence </font><font color="red">loop<font color="black">,</font>    rows=10<font color="black">,</font> randomly<font color="black">,</font> from=10<font color="black">,</font> to=20</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">sequence </font><font color="red">power=2<font color="black">,</font> rows=10<font color="black">,</font> randomly<font color="black">,</font> from=8<font color="black">,</font>  to=16</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">sequence </font><font color="red">prime<font color="black">,</font>   rows=10<font color="black">,</font> randomly<font color="black">,</font> to=1000       </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><br><b>{/<font color="blue">table</font><font color="red"></font>}</b><b>{<font color="blue">table</font><font color="red"></font>}</b><br><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">sequence </font><font color="red">rows=4<font color="black">,</font> randomly </font>}</b> <br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">sequence </font><font color="red">rows=4<font color="black">,</font> randomly<font color="black">,</font> from=10000000000<font color="black">,</font> increment=10000000000</font>}</b> <br>  <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <br><b>{/<font color="blue">sequence</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><br><b>{/<font color="blue">table</font><font color="red"></font>}</b><b>{<font color="blue">table</font><font color="red"></font>}</b><br><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">sequence </font><font color="red">from=10<font color="black">,</font> to=20<font color="black">,</font> push=<font color="black">'</font>mySeq<font color="black">'</font></font>}</b><b>{/<font color="blue">demo</font><font color="red"></font>}</b> <br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">mySeq </font><font color="red">randomly</font>}</b>         <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">mySeq </font><font color="red">randomly<font color="black">,</font> unique</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><br><b>{/<font color="blue">table</font><font color="red"></font>}</b><br><br>&lt;h3&gt;The sequence action 'randomize'&lt;/h3&gt;<br><br><b>{<font color="blue">table</font><font color="red"></font>}</b><br><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">sequence </font><font color="red">from=10<font color="black">,</font> to=20<font color="black">,</font> push=<font color="black">'</font>mySeq<font color="black">'</font></font>}</b><b>{/<font color="blue">demo</font><font color="red"></font>}</b> <br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">mySeq</font><font color="red"></font>}</b>                                     <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">mySeq </font><font color="red">randomize                          </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">mySeq </font><font color="red">randomize=5                        </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">mySeq </font><font color="red">randomize=5<font color="black">,</font> duplicates            </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">mySeq </font><font color="red">randomize=5<font color="black">,</font> orderly               </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">mySeq </font><font color="red">randomize=5<font color="black">,</font> orderly<font color="black">,</font> duplicates   </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">mySeq </font><font color="red">randomize=25                       </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">mySeq </font><font color="red">randomize=25<font color="black">,</font> orderly              </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">mySeq </font><font color="red">randomize=25<font color="black">,</font> atLeastOnce          </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">mySeq </font><font color="red">randomize=25<font color="black">,</font> atLeastOnce<font color="black">,</font> orderly </font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">mySeq</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><br><b>{/<font color="blue">table</font><font color="red"></font>}</b><br><br><br>&lt;h3&gt;The sequence 'random' - other usages of it&lt;/h3&gt;<br><br><b>{<font color="blue">table</font><font color="red"></font>}</b><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">sequence </font><font color="red">random=<font color="black">'</font>75<font color="black">%</font><font color="black">'</font><font color="black">,</font> from=1<font color="black">,</font> to=1000<font color="black">,</font> push=<font color="black">'</font>myRandom2<font color="black">'</font></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">myRandom2 </font><font color="red">action=<font color="black">'</font>count<font color="black">'</font></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">myRandom2</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><b>{/<font color="blue">table</font><font color="red"></font>}</b><br><br><b>{<font color="blue">table</font><font color="red"></font>}</b><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">sequence </font><font color="red">random=4<font color="black">,</font> from=1<font color="black">,</font> to=1000<font color="black">,</font> push=<font color="black">'</font>myRandom<font color="black">'</font></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">myRandom </font><font color="red">action=<font color="black">'</font>count<font color="black">'</font></font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">myRandom</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b><br><b>{/<font color="blue">table</font><font color="red"></font>}</b><br><br><br>&lt;h3&gt;Yes, it works&lt;/h3&gt;<br><br><b>{<font color="blue">table</font><font color="red"></font>}</b><br><br><b>{<font color="blue">demo</font><font color="red"></font>}</b> <b>{<font color="blue">sequence </font><font color="red">random<font color="black">,</font> randomly<font color="black">,</font> randomize<font color="black">,</font> maximal=1000</font>}</b> <b>{<font color="green"><font color="red">$</font>sequence</font>}</b> <b>{/<font color="blue">sequence</font><font color="red"></font>}</b> <b>{/<font color="blue">demo</font><font color="red"></font>}</b> <br><br><b>{/<font color="blue">table</font><font color="red"></font>}</b></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>

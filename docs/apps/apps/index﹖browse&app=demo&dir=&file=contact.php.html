@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>
+      PAD - Browse: demo
+    </title>
+    <style>.browse-page { text-align: left; display: inline-block; }
+    .browse-container { display: flex; gap: 20px; }
+    .file-list { min-width: 150px; }
+    .file-list ul { list-style: none; padding: 0; margin: 0; }
+    .file-list li { padding: 2px 0; }
+    .file-list a { text-decoration: none; }
+    .file-list a:hover { text-decoration: underline; }
+    .file-list .current { font-weight: bold; }
+    .file-list .dir { font-weight: bold; }
+    .file-list .parent a { font-size: 1.4em; font-weight: bold; }
+    .source-view { overflow-x: auto; }
+    .source-view pre { background: #f8f8f8; padding: 10px; border: 1px solid #ddd; margin: 0; }
+    .back-link { margin-bottom: 10px; }
+    .path-info { color: #666; margin-bottom: 5px; }
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1 id="top">
+        PAD - <font color="red">P</font>HP <font color="red">A</font>pplication <font color="red">D</font>river
+      </h1>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table><br>
+      <hr width="75%">
+    </center>
+    <blockquote>
+      <center>
+        <blockquote>
+          <h1>
+            Browse: demo
+          </h1>
+          <div class="browse-page">
+            <div class="browse-container">
+              <div class="file-list">
+                <ul>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=_data.html">_data/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=_include.html">_include/</a>
+                  </li>
+                  <li class="dir">
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=_tags.html">_tags/</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=_inits.pad.html">_inits.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=_inits.php.html">_inits.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=clock.pad.html">clock.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=contact.pad.html">contact.pad</a>
+                  </li>
+                  <li class="current">contact.php
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=counter.pad.html">counter.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=counter.php.html">counter.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=else.php.html">else.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=guestbook.pad.html">guestbook.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=guestbook.php.html">guestbook.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=index.pad.html">index.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=index.php.html">index.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=todo.pad.html">todo.pad</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=todo.php.html">todo.php</a>
+                  </li>
+                  <li>
+                    <a href="index%EF%B9%96browse&amp;app=demo&amp;dir=&amp;file=todoPost.php.html">todoPost.php</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="source-view">
+                <h3>
+                  contact.php
+                </h3>
+                <pre><code style="color: #000000"><span style="color: #0000BB">&lt;?php<br><br>  $title </span><span style="color: #007700">= </span><span style="color: #DD0000">'Contact Form'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$dataFile </span><span style="color: #007700">= </span><span style="color: #0000BB">DAT </span><span style="color: #007700">. </span><span style="color: #DD0000">'demo/messages.json'</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$successMsg </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$error </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$errors </span><span style="color: #007700">= [];<br><br>  if ( ! </span><span style="color: #0000BB">is_dir </span><span style="color: #007700">( </span><span style="color: #0000BB">DAT </span><span style="color: #007700">. </span><span style="color: #DD0000">'demo' </span><span style="color: #007700">) )<br>    @</span><span style="color: #0000BB">mkdir </span><span style="color: #007700">( </span><span style="color: #0000BB">DAT </span><span style="color: #007700">. </span><span style="color: #DD0000">'demo'</span><span style="color: #007700">, </span><span style="color: #0000BB">0755</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">);<br><br>  </span><span style="color: #0000BB">$formName    </span><span style="color: #007700">= </span><span style="color: #0000BB">$name    </span><span style="color: #007700">?? </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$formEmail   </span><span style="color: #007700">= </span><span style="color: #0000BB">$email   </span><span style="color: #007700">?? </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$formSubject </span><span style="color: #007700">= </span><span style="color: #0000BB">$subject </span><span style="color: #007700">?? </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>  </span><span style="color: #0000BB">$formMessage </span><span style="color: #007700">= </span><span style="color: #0000BB">$message </span><span style="color: #007700">?? </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br><br>  if ( </span><span style="color: #0000BB">$_SERVER</span><span style="color: #007700">[</span><span style="color: #DD0000">'REQUEST_METHOD'</span><span style="color: #007700">] == </span><span style="color: #DD0000">'POST' </span><span style="color: #007700">&amp;&amp; </span><span style="color: #0000BB">$action </span><span style="color: #007700">== </span><span style="color: #DD0000">'send' </span><span style="color: #007700">) {<br><br>    </span><span style="color: #0000BB">$formName    </span><span style="color: #007700">= </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$formName </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$formEmail   </span><span style="color: #007700">= </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$formEmail </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$formSubject </span><span style="color: #007700">= </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$formSubject </span><span style="color: #007700">);<br>    </span><span style="color: #0000BB">$formMessage </span><span style="color: #007700">= </span><span style="color: #0000BB">trim </span><span style="color: #007700">( </span><span style="color: #0000BB">$formMessage </span><span style="color: #007700">);<br><br>    if ( ! </span><span style="color: #0000BB">$formName </span><span style="color: #007700">)<br>      </span><span style="color: #0000BB">$errors </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'field' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Name is required' </span><span style="color: #007700">];<br><br>    if ( ! </span><span style="color: #0000BB">$formEmail </span><span style="color: #007700">)<br>      </span><span style="color: #0000BB">$errors </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'field' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Email is required' </span><span style="color: #007700">];<br>    elseif ( ! </span><span style="color: #0000BB">filter_var </span><span style="color: #007700">( </span><span style="color: #0000BB">$formEmail</span><span style="color: #007700">, </span><span style="color: #0000BB">FILTER_VALIDATE_EMAIL </span><span style="color: #007700">) )<br>      </span><span style="color: #0000BB">$errors </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'field' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Please enter a valid email address' </span><span style="color: #007700">];<br><br>    if ( ! </span><span style="color: #0000BB">$formSubject </span><span style="color: #007700">)<br>      </span><span style="color: #0000BB">$errors </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'field' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Subject is required' </span><span style="color: #007700">];<br><br>    if ( ! </span><span style="color: #0000BB">$formMessage </span><span style="color: #007700">)<br>      </span><span style="color: #0000BB">$errors </span><span style="color: #007700">[] = [ </span><span style="color: #DD0000">'field' </span><span style="color: #007700">=&gt; </span><span style="color: #DD0000">'Message is required' </span><span style="color: #007700">];<br><br>    if ( empty ( </span><span style="color: #0000BB">$errors </span><span style="color: #007700">) ) {<br><br>      </span><span style="color: #0000BB">$messages </span><span style="color: #007700">= [];<br>      if ( </span><span style="color: #0000BB">file_exists </span><span style="color: #007700">( </span><span style="color: #0000BB">$dataFile </span><span style="color: #007700">) ) {<br>        </span><span style="color: #0000BB">$json </span><span style="color: #007700">= </span><span style="color: #0000BB">file_get_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">$dataFile </span><span style="color: #007700">);<br>        </span><span style="color: #0000BB">$messages </span><span style="color: #007700">= </span><span style="color: #0000BB">json_decode </span><span style="color: #007700">( </span><span style="color: #0000BB">$json</span><span style="color: #007700">, </span><span style="color: #0000BB">TRUE </span><span style="color: #007700">) ?: [];<br>      }<br><br>      </span><span style="color: #0000BB">$messages </span><span style="color: #007700">[] = [<br>        </span><span style="color: #DD0000">'name'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">htmlspecialchars </span><span style="color: #007700">( </span><span style="color: #0000BB">$formName </span><span style="color: #007700">),<br>        </span><span style="color: #DD0000">'email'   </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">htmlspecialchars </span><span style="color: #007700">( </span><span style="color: #0000BB">$formEmail </span><span style="color: #007700">),<br>        </span><span style="color: #DD0000">'subject' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">htmlspecialchars </span><span style="color: #007700">( </span><span style="color: #0000BB">$formSubject </span><span style="color: #007700">),<br>        </span><span style="color: #DD0000">'message' </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">htmlspecialchars </span><span style="color: #007700">( </span><span style="color: #0000BB">$formMessage </span><span style="color: #007700">),<br>        </span><span style="color: #DD0000">'date'    </span><span style="color: #007700">=&gt; </span><span style="color: #0000BB">date </span><span style="color: #007700">( </span><span style="color: #DD0000">'Y-m-d H:i:s' </span><span style="color: #007700">)<br>      ];<br><br>      </span><span style="color: #0000BB">file_put_contents </span><span style="color: #007700">( </span><span style="color: #0000BB">$dataFile</span><span style="color: #007700">, </span><span style="color: #0000BB">json_encode </span><span style="color: #007700">( </span><span style="color: #0000BB">$messages</span><span style="color: #007700">, </span><span style="color: #0000BB">JSON_PRETTY_PRINT </span><span style="color: #007700">) );<br><br>      </span><span style="color: #0000BB">$successMsg </span><span style="color: #007700">= </span><span style="color: #DD0000">'Thank you for your message! We will get back to you soon.'</span><span style="color: #007700">;<br><br>      </span><span style="color: #0000BB">$formName </span><span style="color: #007700">= </span><span style="color: #0000BB">$formEmail </span><span style="color: #007700">= </span><span style="color: #0000BB">$formSubject </span><span style="color: #007700">= </span><span style="color: #0000BB">$formMessage </span><span style="color: #007700">= </span><span style="color: #DD0000">''</span><span style="color: #007700">;<br>    }<br>    else<br>      </span><span style="color: #0000BB">$error </span><span style="color: #007700">= </span><span style="color: #DD0000">'Please correct the errors below.'</span><span style="color: #007700">;<br>  }<br><br>  </span><span style="color: #0000BB">$hasErrors </span><span style="color: #007700">= </span><span style="color: #0000BB">count </span><span style="color: #007700">( </span><span style="color: #0000BB">$errors </span><span style="color: #007700">) &gt; </span><span style="color: #0000BB">0</span><span style="color: #007700">;<br><br></span><span style="color: #0000BB">?&gt;</span></code></pre>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+      </center>
+    </blockquote>
+    <center>
+      <hr width="75%">
+      <br>
+      <table style="margin:0; margin-bottom:0; margin-top:0;" border="0" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+          <td>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+            <a href="../pad/index.html">home</a> | <a href="../manual/index.html">manual</a> | <a href="../reference/index.html">reference</a> | <a href="../regression/index.html">regression</a> | <a href="../sequence/index.html">sequence</a> | <a href="../develop/index.html">develop</a> | <a href="index.html" style="background-color: #67d5c8; padding: 2px 4px; text-decoration: underline;">apps</a>
+            <hr style="margin:2; border: 1px solid black; width:100%">
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        <font size="-3">(c) 2003-2025 Herbert Groot Jebbink</font>
+      </p>
+    </center>
+  
+</body></html>
